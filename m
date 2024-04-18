@@ -1,60 +1,66 @@
-Return-Path: <devicetree+bounces-60652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3D38A9E92
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:37:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEE78A9EB4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B41B2833D4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:37:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62B6A1C2220E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251A516F832;
-	Thu, 18 Apr 2024 15:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D764F16D33E;
+	Thu, 18 Apr 2024 15:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AC0bbyN8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BYdA9rPg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A6616F29A;
-	Thu, 18 Apr 2024 15:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA76D3B18D;
+	Thu, 18 Apr 2024 15:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713454631; cv=none; b=ailhiki2ocCgHARWrzVuZ9FFEch4fER54JDLF0yAj78XeMrvVI+aC4b5WgtnapszD0EJgikKBcUSsghXLVsXs2QEFDS+Idi+Lf2dmGJNwyPWMXqWSCOlvDlj3tz2l5Va2uWPFHesFg57+3e/VKxBVQwdKZ1D8XpV6vWQoilOw3A=
+	t=1713454799; cv=none; b=Qmjioeyurkww2TqgWZ++rZrqw7HpHWDoslUKmsecGcnGGFl5KMRNp+T5CUolXqpk4RDSCrMCsH+XdKQ0WZF3jsN7s4NCpQ+1DvDVgAgMCMpAgHL5rTPGbb/lAdMcXzMb7K7g+T3dtqQ5lxXmD83j3nexcAXZnQ50FgcVbeZcriY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713454631; c=relaxed/simple;
-	bh=4OpUb2FGqt1dYv8qJb6rtIUYmk6NT4v+mrxt2BlJs78=;
+	s=arc-20240116; t=1713454799; c=relaxed/simple;
+	bh=eZMo4P2E3CI3NQ6VH6HqGAvDmu58DfAbXNVuH3h7jwE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zr+x3JPWjUqQjoylYpGWKbTJy3cUcNlDQaxlufHgE2hWVFtRRIDEK35sAChyrVL98YyIHJGqjPppppCm+0nsAcuRWl1RnlzmrGDoz+nZ1axzH/3JwiWHm7h36arrPQcEly5vuMuEcz0qCfq04DWi72tSiwiZQeMMoch6sC3PVFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AC0bbyN8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5121BC113CC;
-	Thu, 18 Apr 2024 15:37:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gPe3xYsaUgnn6Wktkp+DML8ssB4YDCCMOh6jGpXhOpwK3ob6nbw3DVDOxlrZkhP8jtKeBZjEBYv4WdL9rhaRoxUNEDzgxqI0R6fw30Scj2iRGVYLkkpnpJTqbOKAUmJMweLd9hb3euL9FpKPnGHa6lgQQZ53S4uvknxoU622TrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BYdA9rPg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 353BCC113CC;
+	Thu, 18 Apr 2024 15:39:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713454630;
-	bh=4OpUb2FGqt1dYv8qJb6rtIUYmk6NT4v+mrxt2BlJs78=;
+	s=k20201202; t=1713454799;
+	bh=eZMo4P2E3CI3NQ6VH6HqGAvDmu58DfAbXNVuH3h7jwE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AC0bbyN8qV2IAikf/ipz2Ymd6XBcB8nhdeM6bs18urmr+z6s3Nb3gVwxKNeZKieVp
-	 9q6OLQdESUN0YQ4SKdMAa9T/COjE1ccZPsd3nbF/cz5eH9XxBrFFYTXVErNKuBLOef
-	 XBsNcOAfQZKDLfNzsFvUi/Z9F7tNQFD2dSK89+zEYFzThtjUCeFo2zFPeIReUSTbHu
-	 AguAM3e62UFn3HX4OEf/y2xLYz50GqzNK14c1VyTBzauPXVsS3RDLJyt4dPFyF57KA
-	 Zm1TwVzx6iMC1qPzI/OZRt/zFw06Z59zJ4l8AUsnaO02Fe5yTctChRo5hlLUEiyozk
-	 7j/oY6mzOTodQ==
-Date: Thu, 18 Apr 2024 16:37:06 +0100
+	b=BYdA9rPgLqH9mQrFMhFCJ0IxNEI1EPG1KW8IjdO8N34qYNd0IW7o+DhVI0Qvqo0/O
+	 nvZFc+kcsRtbdHHv3NpSVBq2Mbm3hBoEcVQoCOtxs8Feosp5VMtSHzD+ObJJDE+yVh
+	 GiQELdSH/N9ITBo1vWmCE2Kb3Yr+xPzzd5CFKaK3n0bAJYIVHLlDZmrX/WeQdtpbCy
+	 hAhQFdzzZJPdpNRUwKgew/X6ZJ/ImN2r2DmcfmTf9ztDXj7zVS9+yAtD/UWeex7Eru
+	 Mpb8W6ZEcLbI6mlxAiMFQRM2jJOxJc4BUNTw02oYt6d5ZV/cz3GkEtdwj9HIgFGGw3
+	 JgSE8/YIRYMMw==
+Date: Thu, 18 Apr 2024 16:39:52 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: correct the model name
- for Radxa ROCK 3A
-Message-ID: <20240418-drove-boasting-d189ee3e22e0@spud>
-References: <20240418130120.67663-1-amadeus@jmu.edu.cn>
- <d00953aab0f1c978e3720885a6844caa@manjaro.org>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, andrew@lunn.ch, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v4 12/12] dt-bindings: net: add Microchip's
+ LAN865X 10BASE-T1S MACPHY
+Message-ID: <20240418-hypnosis-oblong-028c107e6c3f@spud>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+ <20240418125648.372526-13-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,41 +68,164 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aWQtx0wMEbSR6BGU"
+	protocol="application/pgp-signature"; boundary="OMoF28WElBeQfUgK"
 Content-Disposition: inline
-In-Reply-To: <d00953aab0f1c978e3720885a6844caa@manjaro.org>
+In-Reply-To: <20240418125648.372526-13-Parthiban.Veerasooran@microchip.com>
 
 
---aWQtx0wMEbSR6BGU
-Content-Type: text/plain; charset=us-ascii
+--OMoF28WElBeQfUgK
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 18, 2024 at 05:21:18PM +0200, Dragan Simic wrote:
-> On 2024-04-18 15:01, Chukun Pan wrote:
-> > According to https://radxa.com/products/rock3/3a,
-> > the name of this board should be "Radxa ROCK 3A".
-> > Also update compatible to match the model name.
-> >=20
-> > Suggested-by: FUKAUMI Naoki <naoki@radxa.com>
-> > Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+On Thu, Apr 18, 2024 at 06:26:48PM +0530, Parthiban Veerasooran wrote:
+> The LAN8650/1 combines a Media Access Controller (MAC) and an Ethernet
+> PHY to enable 10BASE-T1S networks. The Ethernet Media Access Controller
+> (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compatible
+> with the IEEE 802.3 standard and a 10BASE-T1S physical layer transceiver
+> integrated into the LAN8650/1. The communication between the Host and the
+> MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Serial
+> Interface (TC6).
 >=20
-> Looking good to me.  I'll send the remaining naming cleanup patches
-> a bit later.
+> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+> ---
+>  .../bindings/net/microchip,lan865x.yaml       | 80 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan86=
+5x.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/microchip,lan865x.yaml=
+ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+> new file mode 100644
+> index 000000000000..4fdec0ba3532
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
 
-What remaining patches?
+Filename matching a compatible please.
 
 
---aWQtx0wMEbSR6BGU
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/microchip,lan865x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip LAN8650/1 10BASE-T1S MACPHY Ethernet Controllers
+> +
+> +maintainers:
+> +  - Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+> +
+> +description:
+> +  The LAN8650/1 combines a Media Access Controller (MAC) and an Ethernet
+> +  PHY to enable 10BASE=E2=80=91T1S networks. The Ethernet Media Access C=
+ontroller
+> +  (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compatible
+> +  with the IEEE 802.3 standard and a 10BASE-T1S physical layer transceiv=
+er
+> +  integrated into the LAN8650/1. The communication between the Host and
+> +  the MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Serial
+> +  Interface (TC6).
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+
+Can you use the same referencing style for both elements here please?
+
+
+Otherwise, looks aight to me, so with those fixed:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: microchip,lan8650
+> +      - items:
+> +          - const: microchip,lan8651
+> +          - const: microchip,lan8650
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt from MAC-PHY asserted in the event of Receive Chunks
+> +      Available, Transmit Chunk Credits Available and Extended Status
+> +      Event.
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    minimum: 15000000
+> +    maximum: 25000000
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - spi-max-frequency
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      ethernet@0 {
+> +        compatible =3D "microchip,lan8651", "microchip,lan8650";
+> +        reg =3D <0>;
+> +        pinctrl-names =3D "default";
+> +        pinctrl-0 =3D <&eth0_pins>;
+> +        interrupt-parent =3D <&gpio>;
+> +        interrupts =3D <6 IRQ_TYPE_EDGE_FALLING>;
+> +        local-mac-address =3D [04 05 06 01 02 03];
+> +        spi-max-frequency =3D <15000000>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f41b7f2257d2..2172431a1935 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14378,6 +14378,7 @@ MICROCHIP LAN8650/1 10BASE-T1S MACPHY ETHERNET DR=
+IVER
+>  M:	Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+>  F:	drivers/net/ethernet/microchip/lan865x/lan865x.c
+> =20
+>  MICROCHIP LAN87xx/LAN937x T1 PHY DRIVER
+> --=20
+> 2.34.1
+>=20
+
+--OMoF28WElBeQfUgK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiE+IgAKCRB4tDGHoIJi
-0hSWAP9n75/NyOZRQmE4r2XfXbMCGpbQiFM8gRerTvqrwaYz3QEA6x0msj4+h3m/
-29tKpAiONgsDMh+3LtGHhE1FmBnTBwg=
-=+i2f
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiE+yAAKCRB4tDGHoIJi
+0p0YAQCAdG43pmde0U/WZ/1qUZLp+G75xP7+MuDgEJBmYJK+ZQD+LbWbLS+rfHQD
+5Lbz0TgMasyOgD4o28CfPhXnnRx9hQc=
+=TRKB
 -----END PGP SIGNATURE-----
 
---aWQtx0wMEbSR6BGU--
+--OMoF28WElBeQfUgK--
 
