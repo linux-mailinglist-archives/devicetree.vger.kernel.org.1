@@ -1,154 +1,187 @@
-Return-Path: <devicetree+bounces-60480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 804418A96C9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:55:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E388A96D5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:57:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B5702820F5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:55:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD6101C216CC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB45F15B15F;
-	Thu, 18 Apr 2024 09:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F4415B558;
+	Thu, 18 Apr 2024 09:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="n6YUKBVw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D78LisT4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40B015AAAD;
-	Thu, 18 Apr 2024 09:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C91015AAAD
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 09:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713434114; cv=none; b=jdbIG+gEqDwBV1Nl1TkLb6K8KIav2KKwh6IORb6poLhE9DdLyJbY5Iji2MgivFGCq/lRX34tiL+WkY8WGILT1u7qjG7Lt/bMSjXgInr67GyyPl8nkUyN39BzANI/jdLUdTytyYwxOCjoCqtjpL/2KDKCgBPqjKM1YovQIT9H/tk=
+	t=1713434261; cv=none; b=qRd8+8SajOceg5iZjO9SSACUbaUDefmNNmdvAAicylTqzXDW3xF5iB4L/AcrJ1Xq3ctQEjZM/vAk2MR5dSmUGPboHNn2nzzWYNlzfAyr9AdHYQwjtpcCowOA/UjiBeWeP2tIBBZVWgkgh8KAzvuHa4mHV09htz2kBGPGGdzA78U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713434114; c=relaxed/simple;
-	bh=duaR1AnrObmqETtxDghvr7defhHd1q2pgv4fpE/MLDo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VruC80sYECNONcb+ArLC/6ky0kIQuW9mqHH907ndPYf9CH3v/QdaSCmus/NzJYWmnyk9dBDxLsUtVmapfob9ROnGDCCU8mwdi7NwRXqIwpZT46mEPF/SWsucs082dnEQuAi/Y1AhyHV2Y3i1v1zp+bWOgNzDs0aZjrwbK5iJeVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=n6YUKBVw; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1713434112; x=1744970112;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=duaR1AnrObmqETtxDghvr7defhHd1q2pgv4fpE/MLDo=;
-  b=n6YUKBVwvB2ol+qn2y164nnedPopKC3VvGAAVR6OBjd6GAr19/BmMgF6
-   lFdadHIlPA4BP13v7XA1IMZPbvaMdfgrcfuYXEl1mKOZ2sVA7s5rNRAvn
-   rCLlpYkwUZKLX8C00NT1dNpH/cos6I6zD6r2Dz7R7WDQ2fKv+NwA1J3Z6
-   lBDh2a+UBuNPZbwGcomAKsr1XIVSvpgx6Z4B7ehxuoAEokg8aVTI05/Fk
-   6osCeQb3ne7x6vhQBxQfsbygRCVTST+rnZX68N8ZApuqkd+ySTf/HN1Oc
-   VS3NfjkL2RZPt/5j7CWX/mmEjLhicRMOtPrkDfX3XQiUqhj9DheiT5i0i
-   Q==;
-X-CSE-ConnectionGUID: ECU7hUHwT6yX4X4vObkvLg==
-X-CSE-MsgGUID: G7MHUU6ZS1qzj52fb6t0/g==
-X-IronPort-AV: E=Sophos;i="6.07,211,1708412400"; 
-   d="asc'?scan'208";a="188872991"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Apr 2024 02:55:11 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Apr 2024 02:54:31 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 18 Apr 2024 02:54:27 -0700
-Date: Thu, 18 Apr 2024 10:54:12 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Andy Chiu <andy.chiu@sifive.com>
-CC: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner
-	<heiko@sntech.de>, Guo Ren <guoren@kernel.org>, Conor Dooley
-	<conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Evan
- Green <evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
-	<cleger@rivosinc.com>, Shuah Khan <shuah@kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Palmer
- Dabbelt <palmer@rivosinc.com>, Vincent Chen <vincent.chen@sifive.com>,
-	Greentime Hu <greentime.hu@sifive.com>, <devicetree@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
-Subject: Re: [PATCH v4 1/9] riscv: vector: add a comment when calling
- riscv_setup_vsize()
-Message-ID: <20240418-harsh-childlike-94403aa132b3@wendy>
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-1-e0c45bb6b253@sifive.com>
+	s=arc-20240116; t=1713434261; c=relaxed/simple;
+	bh=W+KEKz0fbXV/o4Sk80wQbuId6W2rQw068fcMQz0a2Js=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t7MxlMiuIqc/ZNhYgpABN7ULoB0yWwDZINvv5FM9i1m4vDm+jqjLmB3zVrXDhVVY0ZifDrmdtxTEjYJ8IT3o+3fnvFsX7hBEHjWeNK5wUvV35JMTouWnf6PIwPAfq5Vy8dmjnAKKixpNyLSnd1jQSXrINpdSkUKdsIsU7NAPaTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D78LisT4; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e1bbdb362so816617a12.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 02:57:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713434257; x=1714039057; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zXwDxo3yNgOLbgTcANMQ9MnO25hrRBwhJ4xGHdCadxE=;
+        b=D78LisT4LBUKGkD0NQGJArlWZ20xaGVsuaH78BiuJNW9Nke9PL6V6hS/T9lPzOP0ZL
+         uAbY4tDy//0gGa5+OddTLoFjwTWuKq/ko5lRrI7IucoLa26xeiS4M/bxdwseIZgM/3P5
+         ZvpFdFM5bT3hH+zlcJurpXarBUDh7xqv5GXkoeTS1oJYk6QpR9L5+nKw/0v7nMgrUyCr
+         5Bt6/RhNVK80tt6icjNgZ7XBOWIHHA/XZ2uyV2ay/4Ydk3xX/jO7iTOE+l0EQ3bMyZqL
+         tqbs9XtOu5GsIYtXtNUPQDqjhzntQsskqn0vGtBMMp4Jy7fbQ7NXUC/bLGRYZkTDqN76
+         CtVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713434257; x=1714039057;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zXwDxo3yNgOLbgTcANMQ9MnO25hrRBwhJ4xGHdCadxE=;
+        b=ne6BbVDPEiOMGq12M8xpSNjnIUZlBpNW56Epp99SYFK80EvSMjylUyaxLgzfMnhT7o
+         Jp1MGGmAZZSdiNKawZxubw1VRm+DooXTx0RvGKmDw0QcmcfhcXTZo7MbsoIzydeo9gIn
+         Hqi6GdS/Ck8wKpgXVYXwkXFETG0MO7UpBW9a+tVenfqC/Tpr5bENE2zsUh5WOeiWuv2Z
+         qprS5qNYct94iLM0mlvG752sjzuPUb1I4p9xLIhq2o2ZuZjqCzsoPaQwhf1FN8VnwEEV
+         8/2UuPcdV9oJRRAi35Gnm/To6Y/lexybheyYAQIwjyvi9phIob/XOQOUzGtC/pUn2bxP
+         HP5w==
+X-Forwarded-Encrypted: i=1; AJvYcCXMEs+nDWQzCvGQus6o920suDAvR6B+vf6KKbKIaFXuFmLv2hNAwsXiGdgLK2vMeN+wzhA+rr5+giXBJ9IU/4ZHJ/pjsibz/fGLfw==
+X-Gm-Message-State: AOJu0YwDV9h2cVizXIbq3xKNkWRwotyVtpKdXcfloHsOCcnFjWcOJV9Y
+	w1Z6SWdP0SypBcgburzOz63ZUeu3vtRnMIQ6ERPtXDkWQPptWbuqpBlEWHvWtSM=
+X-Google-Smtp-Source: AGHT+IG4Ip44mhQHs2Rv5rrzJRGMGfJqeM0856BXRQLMSmmBeTtp7NnfFDK2mT/5Pr31/cdmO7qcfg==
+X-Received: by 2002:a17:906:3c3:b0:a52:2e08:207e with SMTP id c3-20020a17090603c300b00a522e08207emr1748131eja.77.1713434257541;
+        Thu, 18 Apr 2024 02:57:37 -0700 (PDT)
+Received: from [192.168.45.55] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id i8-20020a170906264800b00a52433f0907sm664056ejc.37.2024.04.18.02.57.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 02:57:36 -0700 (PDT)
+Message-ID: <132c1e03-f55c-46ba-8a22-9cea1ebdfae1@linaro.org>
+Date: Thu, 18 Apr 2024 11:57:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="stxnFH69aESRe/Ix"
-Content-Disposition: inline
-In-Reply-To: <20240412-zve-detection-v4-1-e0c45bb6b253@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/7] drm/msm/adreno: Redo the speedbin assignment
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
+ <20240404-topic-smem_speedbin-v2-6-c84f820b7e5b@linaro.org>
+ <rilfqdvei26bjyz76hdsh5wlh4s2lcn235up2vxbs65pnolyty@rs77jbxxqzye>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <rilfqdvei26bjyz76hdsh5wlh4s2lcn235up2vxbs65pnolyty@rs77jbxxqzye>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---stxnFH69aESRe/Ix
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 18.04.2024 1:49 AM, Dmitry Baryshkov wrote:
+> On Wed, Apr 17, 2024 at 10:02:58PM +0200, Konrad Dybcio wrote:
+>> There is no need to reinvent the wheel for simple read-match-set logic.
+>>
+>> Make speedbin discovery and assignment generation independent.
+>>
+>> This implicitly removes the bogus 0x80 / BIT(7) speed bin on A5xx,
+>> which has no representation in hardware whatshowever.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
 
-On Fri, Apr 12, 2024 at 02:48:57PM +0800, Andy Chiu wrote:
-> The function would fail when it detects the calling hart's vlen doesn't
-> match the first one's. The boot hart is the first hart calling this
-> function during riscv_fill_hwcap, so it is impossible to fail here. Add
-> a comment about this behavior.
->=20
-> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-> ---
-> Changelog v2:
->  - update the comment (Conor)
-> ---
->  arch/riscv/kernel/cpufeature.c | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 3ed2359eae35..d22b12072579 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -683,6 +683,10 @@ void __init riscv_fill_hwcap(void)
->  	}
-> =20
->  	if (elf_hwcap & COMPAT_HWCAP_ISA_V) {
-> +		/*
-> +		 * This callsite can't fail here. It cannot fail when called on
-> +		 * the boot hart.
+[...]
 
-I am loathe to comment on this again, so=20
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-but you could just write this as "This cannot fail when called on the
-boot hart."
+>> +	/* No speedbins defined for this GPU SKU => allow all defined OPPs */
+>> +	if (!info->speedbins) {
+>> +		adreno_gpu->speedbin = ADRENO_SPEEDBIN_FUSE_NODATA;
+>> +		return devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+> 
+> BIT(0)
 
-Cheers,
-Conor.
+You mean for &supp_hw, or "1"?
 
-> +		 */
->  		riscv_v_setup_vsize();
->  		/*
->  		 * ISA string in device tree might have 'v' flag, but
->=20
-> --=20
-> 2.44.0.rc2
->=20
+1 is the "count" parameter, supp_hw is a "u32 supported_hw[count]"
 
---stxnFH69aESRe/Ix
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>> +	}
+>> +
+>> +	/*
+>> +	 * If a real error (not counting older devicetrees having no nvmem references)
+>> +	 * occurs when trying to get the fuse value, bail out.
+>> +	 */
+>> +	ret = adreno_read_speedbin(adreno_gpu, dev, &fuse);
+>> +	if (ret) {
+>> +		return ret;
+>> +	} else if (fuse == ADRENO_SPEEDBIN_FUSE_NODATA) {
+>> +		/* The info struct has speedbin data, but the DT is too old => allow all OPPs */
+> 
+> Missing assignment to adeno_gpu->speedbin ? Or is it fine?
 
------BEGIN PGP SIGNATURE-----
+Good catch. Only mesa (and I suppose you :D) read this value.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiDtuAAKCRB4tDGHoIJi
-0vBwAP98Il+vXK4C3r4MkJnr98Iu2kDKN2juNFv17/2CzU01XAD8DKAV9cWacroD
-OxgMcDQ3nbE0Mhf3iWlSh55SQQYoqQ4=
-=At92
------END PGP SIGNATURE-----
+> 
+>> +		DRM_DEV_INFO(dev, "No GPU speed bin fuse, please update your device tree\n");
+>> +		return devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+> 
+> BIT(0)
+> maybe #define it?
 
---stxnFH69aESRe/Ix--
+(ditto)
+
+Konrad
 
