@@ -1,295 +1,168 @@
-Return-Path: <devicetree+bounces-60387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838238A9168
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 05:05:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8739F8A91A4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 05:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBB6AB21460
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 03:05:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA3681C2189E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 03:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DF44F208;
-	Thu, 18 Apr 2024 03:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703465467A;
+	Thu, 18 Apr 2024 03:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XMCD9oDY"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Lhc9wMVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3965464A;
-	Thu, 18 Apr 2024 03:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB0A50A73;
+	Thu, 18 Apr 2024 03:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713409495; cv=none; b=poc9twVRxtr/EyWHB7CLC8o28sqP/XvizwuQ91LWWsnjkjnx1PJojE1j28a3iFRU/cMJ11teJMl5aa0WPKu7qUkYHtVjybypT8e8LpgrHBVMwBlSxMXKHU69tbtKw8dHp4Ndn2SZYjl5D0JpHtW0123tZxx9MWPuXcYogymOuz4=
+	t=1713411873; cv=none; b=LSxLToQYAmgHUSGNXPtMWETc8cdNLRGdTP6F2D/C6zllR6lT+nMnoc7V1Xq2WU7e3+Og1KHJJ1TJnllzoEz9gGu+KV33SLvQaV5ZxEMf8bqSaF24AKdaGUgLvH+no62YEpBCACcaG3Fd1yf1AF9f4NagY5tYSVHQphRjyD1vQWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713409495; c=relaxed/simple;
-	bh=IYbsargPJwgAjYCUljsr0lTnKhEgUmtJDU007J3fZC4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tVZrHDKZBjcV+M7nuhFMm951dtExOJrNicua3mBkcNyFreuONWVK/WDVDI2RqlSWoC4T/Gvmuob3INoUeEtD6T7PX2/wqkHYk13TSgsl1vq22EgDMmGG5u3lZ6b0ZbBnt//uquKJWedlmuFRH1mqLGIz/JBlhhprMBaCFKk07Ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XMCD9oDY; arc=none smtp.client-ip=209.85.166.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-369e3c29aedso1831135ab.1;
-        Wed, 17 Apr 2024 20:04:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713409493; x=1714014293; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bxDTePvUuJpRciyRzWuf/NP9ERBrPpwmGa0ygfJXUdM=;
-        b=XMCD9oDYCWHoSzCGFbc/y/nk/xWvJnImxRDLzTEtQFXNbLYFC725p2lLrX2OYv49hP
-         kau+DkhKdhhcBbKs/HF1TYNa6FCBzbE73OD/VRpbehByO9WtP7DOUU/rYmueoQ1FJpZK
-         LdpDRh3x+deEvvoQmwK8c+kaoEZarvCs6go35Im7c8juPdQRMq95+dzPRJZpqnphh8E/
-         YemZCdCz0nshcJwsBm5CQ1lvKFbbbbxj5gjOYRg8pGM7WF8dqFXya/L82R3OI4fywA11
-         pysdmlgBBn5lWENcXYGwS1UGLa3nwE9CM6zzCJVM7M9LzC+vADzwqLa2iRrsFuwk+9Gn
-         2bHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713409493; x=1714014293;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bxDTePvUuJpRciyRzWuf/NP9ERBrPpwmGa0ygfJXUdM=;
-        b=b4iykXj1xCkvLnzQ6NHBD6k6jyQShZY6L9Fz2T0cbUccUQmPto6QW8Pc5EvDNMKigi
-         kht4A0kQ/v/QXKuhVW3mHVfiB6NDADrlleQl7URwQbMOOD9oOzZzWe8db/IWxCSFl+7L
-         wdtpG0/K8J493kn3cFRUvtza042zAUlPV9B7z9XoB2Co/aDhgFzUFRHtSLm3NpjXdvb4
-         9olS3nEyxPLVQ3yeqD78b0T4gbro+AVUDMPQ1N3eIObsYoWByHzlzFL5Cxd2i2EdtndF
-         0MRjXlG01W7O46VyzPsTrrsFACiQVdryWrRE7AXuXTjMQh+gVefu294SY8z0UQvdZpaW
-         /Iqw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMg1LTdbCr8F1IBfDJuHeIX4iiGn35enmmzCADkJF4hL9GGo5jThHABcbCFZvV5rcQ2KYFjKLiYwmP314gnJ9o/7P/aJyQNh9r3qPQ+nkX5MIY0HlrhkPxkzHTT3DWBnNErCuWS+ullErNkCju72VAmu50mPyMMSlTjEd1j44jAlB7pbTb
-X-Gm-Message-State: AOJu0YzE/3U+2Gy29CrNaXPEMw0utzQanzVa2omEl7gEJKuWHryg14zx
-	7wirsYH4bctFhNVILruC71shmjPxL25bcmjU/cHkeTkw9hPRVIGxJiVq55HaDOiTCBG1C2LMsod
-	iyH2dYzL1EwlKjL0LQL1zOS/WXzY=
-X-Google-Smtp-Source: AGHT+IHRKX1tdI8zogX+a2YNb9TstRLegJJP9XfxDyAqAFU+rTRkTUENh/cfe816KPB4rWxlbPae2hQrCSWBHmTZvIA=
-X-Received: by 2002:a05:6e02:1806:b0:36b:3bc7:f338 with SMTP id
- a6-20020a056e02180600b0036b3bc7f338mr1625970ilv.3.1713409492972; Wed, 17 Apr
- 2024 20:04:52 -0700 (PDT)
+	s=arc-20240116; t=1713411873; c=relaxed/simple;
+	bh=U2Nj0y8rgDV3GxEW5hGYuCnMlaN52bBjiECPFvi+s40=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tg/9nKTE6Cm4lIpXRoZ3gmtfpgFlvW9EldBsoyYcdK09ZGLvoaM3eey50aF9X5aMTUhh/EZmDp4ALYMsSqvUCXFRZbCz5szeVRIe6lnowDkJpeeYi/re8FVl2Bxm5acD6pXgSXG3KkD9fOKqjOfk3NY9h4ZcqYphzhSO7lnVLKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Lhc9wMVh; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f2ae429efd3511ee935d6952f98a51a9-20240418
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=2WZOZxeDxzclDmOroLLjFYiWM5YkLbMKvy/WySlZYsk=;
+	b=Lhc9wMVhaxyGUSTN/TCoW9WtFk5f3/de7p46OKwpWVzZsIrcfq+o2ELf3Dc+/Fxx8l1ywf1oG8yx8zuvSEoM/mdZx3b5SDk5JKxdFnewhN1rasyzXzZhfCX0rmhmIisfYA9dvYIuHZg6wZ+f/jM9HDK3wmoQA85OfSh2XF9iDGM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38,REQID:74206c3e-81c0-41e8-915f-e84c0589e004,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:82c5f88,CLOUDID:8546b791-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: f2ae429efd3511ee935d6952f98a51a9-20240418
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 562359842; Thu, 18 Apr 2024 11:44:24 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 17 Apr 2024 20:44:22 -0700
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Thu, 18 Apr 2024 11:44:22 +0800
+Message-ID: <cdcadfdc-1861-b3b3-eafa-22071516197b@mediatek.com>
+Date: Thu, 18 Apr 2024 11:44:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1713345932-6408-1-git-send-email-shengjiu.wang@nxp.com> <c3bcefc9-61de-44aa-8412-17ea42e7048c@kernel.org>
-In-Reply-To: <c3bcefc9-61de-44aa-8412-17ea42e7048c@kernel.org>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Thu, 18 Apr 2024 11:04:38 +0800
-Message-ID: <CAA+D8ANB1v1ei6ez6KSWoXLMqk+6CvThY3qrDsqO=tHOC0DNhg@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl,ssi: Convert to YAML
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: add u3port1
+ for xhci1
+Content-Language: en-US
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>, <stable@vger.kernel.org>
+References: <20240216095751.4937-1-macpaul.lin@mediatek.com>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20240216095751.4937-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 17, 2024 at 10:16=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 17/04/2024 11:25, Shengjiu Wang wrote:
-> > Convert the fsl,ssi binding to YAML.
-> >
->
-> ...
->
-> > +description:
-> > +  Notes on fsl,playback-dma and fsl,capture-dma
-> > +  On SOCs that have an SSI, specific DMA channels are hard-wired for p=
-layback
-> > +  and capture.  On the MPC8610, for example, SSI1 must use DMA channel=
- 0 for
-> > +  playback and DMA channel 1 for capture.  SSI2 must use DMA channel 2=
- for
-> > +  playback and DMA channel 3 for capture.  The developer can choose wh=
-ich
-> > +  DMA controller to use, but the channels themselves are hard-wired.  =
-The
-> > +  purpose of these two properties is to represent this hardware design=
-.
-> > +
-> > +  The device tree nodes for the DMA channels that are referenced by
-> > +  "fsl,playback-dma" and "fsl,capture-dma" must be marked as compatibl=
-e with
-> > +  "fsl,ssi-dma-channel".  The SOC-specific compatible string (e.g.
-> > +  "fsl,mpc8610-dma-channel") can remain.  If these nodes are left as
-> > +  "fsl,elo-dma-channel" or "fsl,eloplus-dma-channel", then the generic=
- Elo DMA
-> > +  drivers (fsldma) will attempt to use them, and it will conflict with=
- the
-> > +  sound drivers.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx50-ssi
-> > +              - fsl,imx53-ssi
-> > +          - enum:
-> > +              - fsl,imx51-ssi
-> > +          - enum:
-> > +              - fsl,imx21-ssi
->
-> That's a mess... you cannot have enums as fallbacks.
+On 2/16/24 17:57, Macpaul Lin wrote:
+> This patch fixes an issue where xhci1 was not functioning properly because
+> the state and PHY settings were incorrect.
+> 
+> The introduction of the 'force-mode' property in the phy-mtk-tphy driver
+> allows for the correct initialization of xhci1 by updating the Device Tree
+> settings accordingly.
+> 
+> The necessary fixup which added support for the 'force-mode' switch in the
+> phy-mtk-tphy driver.
+> commit 9b27303003f5 ("phy: mediatek: tphy: add support force phy mode switch")
+> Link: https://lore.kernel.org/r/20231211025624.28991-2-chunfeng.yun@mediatek.com
 
-ok, will use const.
->
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx25-ssi
-> > +              - fsl,imx27-ssi
-> > +              - fsl,imx35-ssi
-> > +              - fsl,imx51-ssi
-> > +              - fsl,imx6q-ssi
-> > +              - fsl,imx6sl-ssi
-> > +              - fsl,imx6sx-ssi
-> > +          - enum:
-> > +              - fsl,imx21-ssi
-> > +              - fsl,imx51-ssi
-> > +      - items:
-> > +          - const: fsl,mpc8610-ssi
-> > +
-> > +  cell-index:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1, 2]
-> > +    description: The SSI index
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  fsl,fifo-depth:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      The number of elements in the transmit and receive FIFOs.
-> > +      This number is the maximum allowed value for SFCSR[TFWM0].
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: The ipg clock for register access
-> > +      - description: clock for SSI master mode
-> > +    minItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: ipg
-> > +      - const: baud
-> > +    minItems: 1
-> > +
-> > +  dmas:
-> > +    oneOf:
-> > +      - items:
-> > +          - description: DMA controller phandle and request line for R=
-X
-> > +          - description: DMA controller phandle and request line for T=
-X
-> > +      - items:
-> > +          - description: DMA controller phandle and request line for R=
-X0
-> > +          - description: DMA controller phandle and request line for T=
-X0
-> > +          - description: DMA controller phandle and request line for R=
-X1
-> > +          - description: DMA controller phandle and request line for T=
-X1
-> > +
-> > +  dma-names:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: rx
-> > +          - const: tx
-> > +      - items:
-> > +          - const: rx0
-> > +          - const: tx0
-> > +          - const: rx1
-> > +          - const: tx1
-> > +
-> > +  codec-handle:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to a 'codec' node that defines an audio
-> > +      codec connected to this SSI.  This node is typically
-> > +      a child of an I2C or other control node.
-> > +
-> > +  fsl,fiq-stream-filter:
-> > +    type: boolean
-> > +    description:
-> > +      Disabled DMA and use FIQ instead to filter the codec stream.
-> > +      This is necessary for some boards where an incompatible codec
-> > +      is connected to this SSI, e.g. on pca100 and pcm043.
-> > +
-> > +  fsl,mode:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [ ac97-slave, ac97-master, i2s-slave, i2s-master,
-> > +            lj-slave, lj-master, rj-slave, rj-master ]
-> > +    description: |
-> > +      "ac97-slave" - AC97 mode, SSI is clock slave
-> > +      "ac97-master" - AC97 mode, SSI is clock master
-> > +      "i2s-slave" - I2S mode, SSI is clock slave
-> > +      "i2s-master" - I2S mode, SSI is clock master
-> > +      "lj-slave" - Left justified mode, SSI is clock slave
-> > +      "lj-master" - Left justified mode, SSI is clock master
-> > +      "rj-slave" - Right justified mode, SSI is clock slave
-> > +      "rj-master" - Right justified mode, SSI is clock master
-> > +
-> > +  fsl,ssi-asynchronous:
-> > +    type: boolean
-> > +    description: If specified, the SSI is to be programmed in asynchro=
-nous
-> > +      mode.  In this mode, pins SRCK, STCK, SRFS, and STFS must
-> > +      all be connected to valid signals.  In synchronous mode,
-> > +      SRCK and SRFS are ignored.  Asynchronous mode allows
-> > +      playback and capture to use different sample sizes and
-> > +      sample rates.  Some drivers may require that SRCK and STCK
-> > +      be connected together, and SRFS and STFS be connected
-> > +      together.  This would still allow different sample sizes,
-> > +      but not different sample rates.
-> > +
-> > +  fsl,playback-dma:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Phandle to a node for the DMA channel to use for
-> > +      playback of audio.  This is typically dictated by SOC
-> > +      design. Only used on Power Architecture.
-> > +
-> > +  fsl,capture-dma:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Phandle to a node for the DMA channel to use for
-> > +      capture (recording) of audio.  This is typically dictated
-> > +      by SOC design. Only used on Power Architecture.
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +    description: optional, some dts node didn't add it.
->
-> The question is: is this DAI or not?
+Dear AngeloGioacchino,
 
-Yes, it is a DAI. so, is there any issue here?
+Just a soft reminding about the patch has been sent a while back for the 
+shared U3PHY and PCIe PHY setup for genio-1200 boards. I'm not sure if 
+you've missed this patch in mail box. :)
 
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - fsl,fifo-depth
-> > +
-> > +unevaluatedProperties: false
->
-> This must be additionalProperties:false. Use example-schema as
-> reference... unless you want to reference dai-common.yaml, but then that
-> one is missing.
+The patch is pretty important as it lets the device tree (dts) decide 
+whether to enable U3PHY or PCIe PHY. Because this is a shared hardware 
+phy and could only be configured in dts to decide which function to be 
+initialized, so it's something that should be included in the 
+board-specific dts files.
 
-As it is a DAI,  so I should include dai-common.yaml,  right?
+Do you think it needs to be resubmitted, or is it still in the queue for 
+review? It's meant to be ready for action from kernel version 6.8 onwards.
 
-Best regards
-Shengjiu Wang
+Looking forward to your thoughts on this. Let me know if there's 
+anything else you need from my side.
 
->
-> Best regards,
-> Krzysztof
->
+> Prior to this fix, the system would exhibit the following probe failure messages
+> for xhci1:
+>    xhci-mtk 11290000.usb: supply vbus not found, using dummy regulator
+>    xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+>    xhci-mtk 11290000.usb: xHCI Host Controller
+>    xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
+>    xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+>    xhci-mtk 11290000.usb: can't setup: -110
+>    xhci-mtk 11290000.usb: USB bus 5 deregistered
+>    xhci-mtk: probe of 11290000.usb failed with error -110
+> 
+> With the application of this dts fixup, the aforementioned initialization errors
+> are resolved and xhci1 is working.
+> 
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> index 7fc515a07c65..e0b9f2615c11 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> @@ -854,6 +854,10 @@
+>   
+>   &u3phy1 {
+>   	status = "okay";
+> +
+> +	u3port1: usb-phy@700 {
+> +		mediatek,force-mode;
+> +	};
+>   };
+>   
+>   &u3phy2 {
+> @@ -885,6 +889,8 @@
+>   };
+>   
+>   &xhci1 {
+> +	phys = <&u2port1 PHY_TYPE_USB2>,
+> +	       <&u3port1 PHY_TYPE_USB3>;
+>   	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+>   	status = "okay";
+>   };
+
+Thanks
+Macpaul Lin
 
