@@ -1,190 +1,318 @@
-Return-Path: <devicetree+bounces-60672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350718A9F5C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:59:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5B408A9F78
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C95111F23338
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:59:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CE39281C3A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B031607B1;
-	Thu, 18 Apr 2024 15:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250E616F84F;
+	Thu, 18 Apr 2024 16:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="CF3k7WAF"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="kB4V+yGt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2027.outbound.protection.outlook.com [40.92.46.27])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2088.outbound.protection.outlook.com [40.107.20.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D849A16F83E
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 15:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.46.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CDC16F29F;
+	Thu, 18 Apr 2024 16:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.88
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713455961; cv=fail; b=d4xET2YlBJQHYAT3vvHQYAkaapo1CVphvE511SzExeLzSeCMCblv6pdZa/rc0BblA1q6uXmfWqF3fXlCvQtkejh15+gqd/y2tPpY1KlzVir9xIB6qzCsg5H7GMUAIFUmM49I4Vy7coEjUeQrj4AMaS96HWs4iWCd/yPpnHS7wEc=
+	t=1713456287; cv=fail; b=sf0bYfYTe1+cyBRuhqsr2Qya5RZKD/Y9WEf1KLftrA5sMDPs24VpPFBlEOvm6gF/q3iQknmMzpgpcz4/RSTHG+WL0HnSVJbDRer+z/L5AkZ/KJNgbBmLXJ69ycYzps8V6lAkXB6LElYQb6ki2hp3a0CVdhfdqDl/8il7WXZYdmw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713455961; c=relaxed/simple;
-	bh=D+jCSnQo8Y64bvZRaLpV989UIxjkwcKdbR9sT0dgAQc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=X9nWGPck4LpuQMRcNXtW9gAbSI5qVY3byHV2o4Tj4dFU2GAAMdeSTz58JJUmke6cHHZsa4tEx6CVJKq+ynQAlIjxOQtmr2tmiN1ZON2TheNb/7Pxd9oiIae1B5BVGyJ1JnjcS+x7V5+JR6iAFVl/PUmeqeFMmbXBPVzlPHNXPsY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=CF3k7WAF; arc=fail smtp.client-ip=40.92.46.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+	s=arc-20240116; t=1713456287; c=relaxed/simple;
+	bh=oa20jAtgf6BGI1t6XMDTMopuu8tQXdPY7/wRkpr1Qyk=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=C1cTCe4/g9Y0rmvavjpIWoQO71I0tDqtANDXMH+Bmgm+qpUjIht02KbqdxkBxUXXDHBZo6yKTVacmPDO8GaWBoSSVbz1drjx9qUMDR5Gim5yi6/U96JrWJGkOLDr9br6AT1FC3PX4fK5dL0TJBVHue4iL/Mvu20mmgfWukHhKcY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=kB4V+yGt; arc=fail smtp.client-ip=40.107.20.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UHsKoCEfL6HQwRoftWJo30uwXL3Wk/4tmQ3sxLmlDoHqybFu9wBJNn7K31Y5w7THs8fyvVtf7XPWPIqqsU4q/W9MW1Su9ex7HgmnLJSv/0ZMrjcWAv+kv+pb5uZdQpSj0EMgJFkxI4GxQMLX710kz+QrsGCPwDWmV80Q/NolBYzkM8b/wYqOkWfuMoSAd/XaBnGtFNKzLiti66YgFy7KykdiLCofolsRySBqXXrtSwDZNH8steMy18GD+gNNWjUcvqCcjrO/upgCTkx2oBImrqHgRx72I5ZT5o7Q4TNuTihGzNdb6A5p8ySugqMxUHpOzacpJ/5lkBWr+i2kPcKcEQ==
+ b=HWPkg/GRjDKDIbqb1biprlB2dH6TNLPjG5Lj/fzFthmxXCt6XJNgubnPFbsFtkP6PsUnY3haFvt307w8A57xG7vMqSukOfe090HuZc1pPb4uiz7lluEc+6Fwr9IzTm4kGU8jdWH8obzHUAv6ow2zPzT96E2rEcKI6gBty1ZqJoQeMGHea4Zsy+wnHiJ+glDSONjnFTN1ETWxN8DRGA8qx6oPexXaZib5+Qas1PDB6+ay5W733n5dHHMgJhoKH2PyOyhgLkcKGiDVL7UqaBjveyDmNPSlxvjc2HloOQdVITXE27h2HFrB9XaZDjhYoJa1EYzWcZeqWztTQjUbh4VOIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C6ZIBIJCb+uHRxFNSN6ENWdJuWX0bNab2b4j7psk0rk=;
- b=AuRCAfL2hyptG7bpGS047W2UKcI96Qb5wUrLFRop10sT75XTajH8uoqPozWxukf/XDBik8iFz6i2C4r7vAqn/y6Tkrwj4RWql4KLmw74ausowX+TFnUOzdyyjhc+xJZQKicMDc/TNLCRGuN/0Ish4bAISYtTuKAYzi9Jq2oR2557OjqykH+Ga9DStZRbKpQnTAqM0QutfxRfqdYNwyxTRkJqOA/8Gg8eobNTctOpRxvAAR216DJlUF+UfMG1A06kazubJejy+l8Hd1SPwJZJ5i4FpBHbPVpCrkSKU3RH3obFmcajZte+OfiLNTlTrWwVnXscfTf885N86qCrGm7TYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
+ bh=CpZltRIn18fpINxFNd1o0NL5JiPfprG4paj2+fqnaWw=;
+ b=CRiSyDDRiyU3euXxThrFeFN2pSFBjl6+aDPsUGT2xSv1mvGM5FT+dr32eRqUiSTPKNr5vAZhI7I+0jzVHPPs16rs2+DayBrVv6ffnkceIZLuSd2e8A6R65DFZ7uKb9+DfnJ3tCKRgL1cUTUsK3iR31axr8ypp1tRQpfE7xguEoZjKM6YRerAwSTVCayfSSpxN2ouSLdsHUNDyTbcO9Dqs5LuL6tXBlmjQg/zyp2tG4Cwd+AcYiipNVmWADajlH5UKunUp7TP5keXoyqXVeufHj3zW+Da2j3RgjeAzOWJ4HbcMwIwxlPWLy1jG4GOG6DcyyPc9edYtJCdlzLU81tW4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C6ZIBIJCb+uHRxFNSN6ENWdJuWX0bNab2b4j7psk0rk=;
- b=CF3k7WAFgoZL7hm8Cfv+385UHgZzN74Xyf3D6m2bIKeibWvoiRBtbfp4wW3n84TsF1TZHn9XsNnr3Z6UsZXZsNduS59gu8BKlsmjhZB+H/dWMkDaxLAaudAmFn04sBtRcs3ZyYvGc38f778ZoAoi+e+6ZapkJ0fs80RtOAUuOpC2eVYBI+20FJdjXWEQA1RGIcnhPo46ESpSes4y/BVLTiUy7m1RnlFETIksVM1ekpb3L+PplxpD+FM3P4ZWTQSmyN/SaR8vKuWL9C4XmAHp+nEtUJdJmM+HV5G7E1xj6BC37GWykCxzE6nd6qUsmvGkKqEiPWpeoZ+d0GJKxDq5Jw==
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
- SJ0PR05MB7472.namprd05.prod.outlook.com (2603:10b6:a03:285::12) with
+ bh=CpZltRIn18fpINxFNd1o0NL5JiPfprG4paj2+fqnaWw=;
+ b=kB4V+yGtjcpZO2D3QMRWtxTYOnpbGRzH5+CpvnN5kO7Zssiw+M7FhR+ddecdmYj+zWBteCp9qbaooGxgEGkSwvLtVt5ODdnd/or0NccYbuJgEvM304r3TqrkkZAnXgJTbC8t7CS+4ZfqAOKLlgJg/iJas+R9rb0n22ND5IKDDWE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBBPR04MB8057.eurprd04.prod.outlook.com (2603:10a6:10:1f1::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.41; Thu, 18 Apr
- 2024 15:59:17 +0000
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::12a8:4f88:32b0:9407]) by DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::12a8:4f88:32b0:9407%6]) with mapi id 15.20.7472.037; Thu, 18 Apr 2024
- 15:59:17 +0000
-Date: Thu, 18 Apr 2024 10:59:13 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org, mripard@kernel.org, samuel@sholland.org,
-	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-	ryan@testtoast.com
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: Add NMI device node
-Message-ID:
- <DM4PR05MB922973D047EB3BE774EEB943A50E2@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240414170424.614921-1-macroalpha82@gmail.com>
- <20240414170424.614921-3-macroalpha82@gmail.com>
- <20240415003740.666759d0@minigeek.lan>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240415003740.666759d0@minigeek.lan>
-X-TMN: [LOHw+rWztHpOpYnmIox+BqcNbFuwHkBz]
-X-ClientProxiedBy: SA1P222CA0074.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:2c1::20) To DM4PR05MB9229.namprd05.prod.outlook.com
- (2603:10b6:8:88::20)
-X-Microsoft-Original-Message-ID: <ZiFDURvRh1tU6i9o@wintermute.localhost.fail>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.39; Thu, 18 Apr
+ 2024 16:04:41 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.037; Thu, 18 Apr 2024
+ 16:04:41 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v8 0/5] PCI: dwc: Add common pme_turn_off message by using
+ outbound iATU
+Date: Thu, 18 Apr 2024 12:04:23 -0400
+Message-Id: <20240418-pme_msg-v8-0-a54265c39742@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIdEIWYC/2XMy07DMBCF4VepvCbIHt+74j0QQoNn3HqRixIUF
+ VV5d9xunMDyjOb772LhufAizqe7mHktSxmHOsLLSaQrDhfuCtUtQIKRSstu6vmzXy4dEVBQzDE
+ EJ+r3NHMut2fp/aPua1m+x/nnGV7V4/q/sapOdmThSyKRTT69DbfpNY29eBRWaAqkagqqct55a
+ SGzQ3NUeq+gKV1VzoDZepSAdFRmp5RuylTFgIkMeYQIR2Wb0io2ZavCHHNm67PRf5RryijblKv
+ KOkKKLiBpPCq/V74pX1VMDmRIhFHmprZt+wX3xGu24AEAAA==
+To: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+ Serge Semin <fancer.lancer@gmail.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713456277; l=6625;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=oa20jAtgf6BGI1t6XMDTMopuu8tQXdPY7/wRkpr1Qyk=;
+ b=1V3vdOMBncGsPSV+ADr2AI8UFQugrxPac6MHJisxTCaj7/V3EKAXbiQD2uUvsuLnqTS+jrwMJ
+ RTBx911sIxJBHTl/KQk3o65LGzo5cMrJ34e+hu8XfpUt87hzoYWwBwd
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR07CA0102.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::43) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|SJ0PR05MB7472:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0696d670-ae93-4442-c500-08dc5fc08042
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB8057:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a6a5022-da70-41a3-09db-08dc5fc14184
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	iQIFsC41co+LuHFBmyb+QooTmVs63IMbDoxmyhxb6nyPGXlHwplFvxcaDguXSELqZ7qrJ3YNOeE1LtSSlwmpL9jzRiguOXzRs+low6Fx0GGo3hdvMDjNcH9Gdo2vQmvhTimjEmhXxcLFHrko2WgVKEsK/hjLZ6NpqN6ZbG/s9dtYWnIZiKlHlEK5EIW7GZRr4JJk6n2aLH8BeA1fI39LTclKGkRXgx2xRy8AHFWQxndCCR6pT+sHW8fBzBqVOywbN9hlrb8pbrusMnWqI0hFGKP6QUFeMEmDoEaAmS2h09c6aLtFJ4+haLO5V3XiG/yElYGsBf8vhrWgIpqLwofuQjcd+ImPvTPIYbPKZczfR4OoPOZxzj1goXZpA8B8dNFnHXE12NIMRbQSTGefdUx+k4F9g5aBHfv1w1BRrF1dQA0MWxaEqCUfsWB963rhj1QyiNI3Pb9n4jCriXtbDoo3ASdSNOzUQ6mBAlKlsOEu5g1iKc3sk9hJ0y9y7cSOkDO6DYIvq0kP7l7P7zOMcsHYbPxioOqQZ1K3mxaEHa4Nz+jf9gU/uZoLOyKBavulMbpz
+	Xj72f0Mo3xPRIBMtVQDha0e0DeqV8qoj0NhQAAENoOUaIzO3n46/ky33N2DQDuc0c0gvdYmlZgarOdhjijSj0/p1VPoodbGeBIXItAvvKpupgDSOrt58MFMl89mBi5xyigUX2pXGcV1UXhoUNlxpoJvrWdG2mzfGPFfCS44qm8W9xJ8xb+SxSm+VJjYTYAr+0GG9LGeQpULZZZtD4FSP6ETF62IyhtzDfTlhXOPNPijtJJXHFOkEclvkRZRDRCL2w5slBvjYyrLFjH5I1BLfhr81WD2o5ZnN5e5j1OMJKr8PADuhsglag1bBmwBmEs7rIfkr43rvVXBIuImiz2z0qMdiIGJBj2G2nkycRoVj+lddPLFtvWQrMYRjqIr6aYAY2m6scp5hD/toygdKS2F5G2tJ6F1CVg7R/gTX2TK6Bw9N6ax/Ww2qo6UIhRVgO2nH5zvf8RRJD4SBH1ThODVc4MpGC8fGlNJOWU9A3kIaz3p3V/EWqvvlnvFMQHTRDFRuA5nm1cser+gz8ZT8/m303Mv+bh5dk4dpupn8STqLLz9OYXqlLEIsUME27FXuXHp3P6zAR75kTBlIHvz87rBWNG3Zl69/ujzeSmJFZRYx1K2gx68hgf2Zaw/8PjpUxclJzWpMR1+8yBfMFeZT4INTyjjlg4PIB2vXXtc1M+ZFGlcun0ziON4Znw29JsDq7ioJ3Y8hrdICH45RB5HfjRFhYcgbhCGkV36vaBDxL1cWkJA=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(52116005)(366007)(38350700005)(921011);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?B7dqex5Oi02LoTNQGgB4fQQq+DJgofLslNF32sG8hljKEIvspeq84lfZOXpn?=
- =?us-ascii?Q?mJHO4qVSj5mhg07jxh/19ON1lFLkFvf/b+AHNvZ47Od98uiz7PWDipM/pzP1?=
- =?us-ascii?Q?54uhCBd4f8QZbY74bo5dfxBhL4JC4D81JpiFlAFI4Vpm7xELmYJ93bSe5/fN?=
- =?us-ascii?Q?UAY8X75id3r8TfPR1F6k6POu/Gdmgi0ZG/HlpesuB+4aulDsoP8ieWbBGzDY?=
- =?us-ascii?Q?8l+jSXlC0wJIfv+aFbPvXd6E/fScimkLfYjMO2J5xpLLGebzzRemJzk/JOgW?=
- =?us-ascii?Q?z3pVbj0F0uOcGQgGmCnfzjOQsx0ycOESiEZ6UpODSlDTfW7A71UyHoGiH+qy?=
- =?us-ascii?Q?Nam5jvjbPZkVvl1aVZHOzPkG2CG9g/RUnthZ7G4b2gheWAg77TYgFbPcbVh0?=
- =?us-ascii?Q?k/lnJk6ElGa95PqyuIUq9t4uJCr+cdBuFGcb9fJAH1hfiAifLTmZaTTVSPHV?=
- =?us-ascii?Q?exA951A5pY0dpijhGdEZH60YiqR9JZt+0iBqgEcJPAXtYpc2e5wPluEZtGyE?=
- =?us-ascii?Q?RMuw21wQTCMncB00MPjYyODBqd+Op+BbZUlanCMM8YjR15SrVF82zjpYUY0o?=
- =?us-ascii?Q?JJxAUtOO77oqimu54yaZBMqS7hvKudEFi08sT13r3rMLHpHgqNQXeAtfqID4?=
- =?us-ascii?Q?tc3VPEBkEMiWjqt8Z6bdO3Ndec0EMJX7wSaX1HKtYN5cIkyF+sV09y7cq+VK?=
- =?us-ascii?Q?/7Uc7SzVnsGdlxpSV9EL8ncvvqI/hgZnlPErGziBcoirPFPvGny0QQPok/+w?=
- =?us-ascii?Q?AB7lwolyHDtRb6moAS4OSxSTlbXaBLVvDGngz8SF6B5qCscozEoQWm5xEYXx?=
- =?us-ascii?Q?QX6FB6u/v4WefAatzrPqqUxhDl8JCpRfO1XMGho0bYanIC2+togTaIYdZ18F?=
- =?us-ascii?Q?e2bUWb9N8ixXfjQ8A06sfOOKPCRelqgVHk3p6jCTNqx5JfuhTCgB7DwrowUI?=
- =?us-ascii?Q?JxEq6cafgpXTAzRaeV/1gIUBJRXD/jANyQT3pZrSWw6mnYzguXGByBGsGYLJ?=
- =?us-ascii?Q?IOpUTAjVJ9frtQzO3VMuMh+DWlu/V2tUqNHepfUcAUqXpq6e2Dpmj8XDpyVu?=
- =?us-ascii?Q?JhUzhdI5rt80ag418lKrTnR6Vhv9BHGdYEgJiTkv+Q5yMU85U/zCjYGauUun?=
- =?us-ascii?Q?Y2yFUHWEBrBiEahtjcmUSJB+dzOEuE9l82unmeRN7uk7iW8K9yfhQgTgaOsX?=
- =?us-ascii?Q?YWX6KuWnMHj9EHm/qibjrRg4QN/+tGhHjKhPzuBw1mQSor55NDWHv4JV9bM?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0696d670-ae93-4442-c500-08dc5fc08042
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
+	=?utf-8?B?bitKcStXUEZiUEM1UEJLYVd5YUdaZGZEa0RXdE9udlh2UHhRV25neXZpblZV?=
+ =?utf-8?B?MHZuQzRCSXp6LzVMYWZsdGpFeEpVWDhMVitHWkRMUHY3NkVZeDNtajV0Um1T?=
+ =?utf-8?B?bVBoVm8zVUhjNHlQM0VSUzZwRCtTdXEwRkQ1UjFmdklxTHJ5T1p6WjBGd1Ew?=
+ =?utf-8?B?NEMvcFhMUmh6Q2pMZWZqenFkWVIzSTBRMjJMY1RiWEhGRWk5LzNMWk1WaTJY?=
+ =?utf-8?B?eEZXTGRJMDE3RWNTSm9uRGNZWE90YWVHaVpONWt0TlRvV3VPWWlUSzZDSmVk?=
+ =?utf-8?B?aFdsNmE0aWZ1VFhxNFZYNEhROWMxb0FQOHYyTmtTMENEc2FUS1lvM1dVVHRq?=
+ =?utf-8?B?ZFJQeXc5dTF3WnBFSkJVRnBOY3UvN3BTekhyRUZ1LzVaK3dFYXFwTHI0V1p3?=
+ =?utf-8?B?d1d0VStla1BMdXJQbmhsK2Jnb2dUc3l2anhSNlpjVHIzbnJ4MTJldHVqSEN5?=
+ =?utf-8?B?aDBRVVhOZlhITXRvVWFqUVhVa1BLM0lvUkpGaC9aUzVZUkREK25jWWtYN2FP?=
+ =?utf-8?B?TDNIa3VCYkJPZWJ6QkdDK2x3YUVXK1oxbXlZUHhqT1NIUEEwNkZYWWMybGZF?=
+ =?utf-8?B?MHVnM1luUFRUU2VpSHhHUkFrWlE4NHBYdGlkUGxkbjBYWGY0cXVneDJ1YzZy?=
+ =?utf-8?B?RkkzMXNoRTV2dDNZOWw3NXJpKzBvdjZDTnNNaDdFWGQ1ODZ5eVZaL0kyRnZ4?=
+ =?utf-8?B?UTQxRGpaOEF5aVhzN1F5NU5ZV0JnVUtTOTZLN1ljWnYyc3FweGRlNHNUbDRV?=
+ =?utf-8?B?SUJ4SDJhMjFGU2g0NFk0ZGYxN1JhZGR2RFhPeTNzcFBvYVIwdjB6SVF6U2Fx?=
+ =?utf-8?B?ZzBDL3BOS2xhSk5WOEVDbmJUYUJRMWNrelRSL2NpeU5JMVRMbkw5bStZbTI0?=
+ =?utf-8?B?bXdtMFZtUHdYTGtJVlRtN0JhZ1BqYkJ1VWNXck9xN212TnIxYStsZ3RMdHpo?=
+ =?utf-8?B?SGdGQ1N2TndId0ZvSktscHFmUXVKMDJDRUxSVXZIQmI3MEhaSTdPMUNNZ2tW?=
+ =?utf-8?B?dWg2cEpLelFwZUhZc202WCs0ZzlobStmdExPT1E5TGFUb2dnNnRGU2hkWXk2?=
+ =?utf-8?B?L0lkSmNCb1lPZUdydzdHV3FWY3FYOTd2c282bUI4aVIwamJiUm1wdjlZaXpn?=
+ =?utf-8?B?N3RVNU1nYzVoQUVyRVlyWDk3d0w0ZU1hTHdtc3EzTmY4eUtiMittT3d3VWlY?=
+ =?utf-8?B?enhhQklNWDIrMCtWR3FnK3k5UEhQbGV3c1EvQm05blRwMjNMUGZHL0FqV1hO?=
+ =?utf-8?B?d2VoMWtmOUNqYSs0NlF6elE1R1BpZFBrZHQ5RGhwMTNGeG1wbDNXdGloU2c0?=
+ =?utf-8?B?L0s3b2RaYmVvR1B3UUp6TjJYU3N0RE1GQVRic09RWEV0ZUJyS041a3ROU1dL?=
+ =?utf-8?B?RWFjUEtqY1A2aDNCV0lLc2VNTDZSNFRVZjVRbno5MWtTSnVHclhtWDFEWFpH?=
+ =?utf-8?B?ZGRhaHkvUmVmMUI5MzFpbHUzdFpLaXNvVzNDemIyYXlsV0xqeCtSUjkrbzB2?=
+ =?utf-8?B?RkpQcDYxR2o1SDNZajNKNzdmcVBDL2FCOUl3THN2TENMRHJDWEJOd2Y4MXZD?=
+ =?utf-8?B?dURvSXhKSDJRd1VqaTVJeU16UnVidUN1bSt6WU5aM2MxTXFHU2FuYjFabHhN?=
+ =?utf-8?B?NTlFMGJVNjZuRDh6WHZrTGVaeFQxZ3FDcjFoMmxUbkFZUkVZTmdrNC8ybURC?=
+ =?utf-8?B?OU1BcXlEbG5TRTlTYmhRZXJKTXJUSFIrY2RFZGkyRnFnWkNSN1ZJUnJwMW93?=
+ =?utf-8?B?aGtITXZmRDU1NHdMUkFzb2YvN2NPNGtITTZkMndpRzhpeXBiMjMzdEN4ek1F?=
+ =?utf-8?B?bDFCQllBUW1LZGloRVFIUEhiV3RveG5DWmd6TnlpV1NRc3VSV3RoajVGQlhv?=
+ =?utf-8?B?alI2ZWtlRXNnU2Nmc1o2TFp1bTFpMUs5bE5KR2tjV1lUbHB0VnFvNXE3dnZG?=
+ =?utf-8?B?M3g1L2Qxd0xwdHh3U05CMzkyekxLTFB1ZmN4YXEzY2hRTHdGWXluc1hnVndN?=
+ =?utf-8?B?YnQvcGJZTXRhK1BHdytkNktpRCtNSTVCODJBZ285TkVlSDV4N0w1cDVab1FY?=
+ =?utf-8?B?U004Rm0yN1BYdUhySER4NHhVendNZVBBZkdDZ0U1U2JXK3pNMEJyTGJlRm04?=
+ =?utf-8?Q?/NXGCWBipl23/WJu3IBauJ7RM?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a6a5022-da70-41a3-09db-08dc5fc14184
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 15:59:17.4011
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 16:04:41.4810
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR05MB7472
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UOXTMB5Ude+rIJgCTYjXCJr86/n/PiT1gn0HtiCQ2tXzWAArlvQT1Sx/Fe8cd9GtKWPU7C0CrHNOjwyKTbsuNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB8057
 
-On Mon, Apr 15, 2024 at 12:37:40AM +0100, Andre Przywara wrote:
-> On Sun, 14 Apr 2024 12:04:24 -0500
-> Chris Morgan <macroalpha82@gmail.com> wrote:
-> 
-> Hi Chris,
-> 
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add device node for the H616 Non Maskable Interrupt (NMI) controller.
-> 
-> You might want to mention that the NMI pad is not exposed on the H616 variants, but on
-> the T507 and H700 packages.
-> 
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> > index b2e85e52d1a1..1e066f3057be 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> > @@ -775,6 +775,15 @@ r_ccu: clock@7010000 {
-> >  			#reset-cells = <1>;
-> >  		};
-> >  
-> > +		nmi_intc: interrupt-controller@7010320 {
-> > +			compatible = "allwinner,sun50i-h616-nmi",
-> > +				     "allwinner,sun9i-a80-nmi";
-> > +			reg = <0x07010320 0xc>;
-> > +			interrupt-controller;
-> > +			#interrupt-cells = <2>;
-> > +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> > +		};
-> > +
-> 
-> I can confirm that this matches the manual, and the registers behave as
-> described in the A80 manual. I don't have access to a chip with the NMI
-> pad exposed or used, so I cannot test this fully, but Chris'
-> experiments with the AXP717 PMIC connected to that pin on on H700
-> board seem to confirm that it indeed works.
-> 
-> So with that small amendment to the commit message please take my:
-> 
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> 
-> Cheers,
-> Andre
-> 
-> >  		r_pio: pinctrl@7022000 {
-> >  			compatible = "allwinner,sun50i-h616-r-pinctrl";
-> >  			reg = <0x07022000 0x400>;
-> 
+Involve an new and common mathod to send pme_turn_off() message. Previously
+pme_turn_off() implement by platform related special register to trigge    
+it.                                                                        
+                                                                           
+But Yoshihiro give good idea by using iATU to send out message. Previously 
+Yoshihiro provide patches to raise INTx message by dummy write to outbound 
+iATU.                                                                      
+                                                                           
+Use similar mathod to send out pme_turn_off message.                       
+                                                                           
+Previous two patches is picked from Yoshihiro' big patch serialise.        
+ PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()                 
+ PCI: Add INTx Mechanism Messages macros                                   
+                                                                           
+PCI: Add PME_TURN_OFF message macro                                        
+dt-bindings: PCI: dwc: Add 'msg" register region, Add "msg" region to use  
+to map PCI msg.                                                            
+                                                                           
+PCI: dwc: Add common pme_turn_off message method                           
+Using common pme_turn_off() message if platform have not define their.
 
-Since the H616 doesn't have this functionality but the T507 and H700
-does, should I change the compatible string? It's all the same
-silicon die with just a different part number printed on it, but
-still...
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v8:
+- Total use devm_ manage msg_res. after read devres.c code to better
+understand release sequence. It use reverse order to release resource. So
+it is safe for msg_res.
+- Add Reviewed tag of Manivannan Sadhasivam in patch 4/5
+- Link to v7: https://lore.kernel.org/r/20240417-pme_msg-v7-0-9c6208cda90f@nxp.com
 
-Thank you.
-Chris
+Changes in v7:
+  patch 4/5 add
+  /* Power Management Messages; PCIe r6.0, sec 2.2.8.2 */
+  patch 1/5 change comment to
+  /* Message Routing (r[2:0]); PCIe r6.0, sec 2.2.8 */
+  /* INTx Mechanism Messages; PCIe r6.0, sec 2.2.8.1 */
+
+  order according to value.
+  Add Acked-by: Bjorn Helgaas <bhelgaas@google.com> in patch 4/5
+
+  patch 5/5
+  Apply all mani's comments.
+
+- Link to v6: https://lore.kernel.org/r/20240415-pme_msg-v6-0-56dad968ad3a@nxp.com
+
+Changes in v6:
+- Move PCIE_MSG_CODE_PME_TURN_OFF ahead before INTx to keep the codes
+sorted.
+- Added reason why not alloc_resesource in commit messag.
+- Change title PCI: dwc: Add generic MSG TLP support for sending
+PME_Turn_Off when system suspend.
+- Rework commit message
+  "Instead of relying on the vendor specific implementations to send the
+PME_Turn_Off message, let's introduce a generic way of sending the message using
+the MSG TLP.
+
+This is achieved by reserving a region for MSG TLP of size 'pci->region_align',
+at the end of the first IORESOURCE_MEM window of the host bridge. And then
+sending the PME_Turn_Off message during system suspend with the help of iATU.
+
+It should be noted that this generic implementation is optional for the glue
+drivers and can be overridden by a custom 'pme_turn_off' callback.
+
+- using devm_request_resource()
+- using mani's suggest comments
+
+	/*
+	 * Allocate the resource for MSG TLP before programming the iATU
+	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
+	 * on the value of 'region_align', this has to be done after
+	 * dw_pcie_iatu_detect().
+	 */
+
+- Add comments, about use_atu_msg, need glue driver set it.
+
+- m -> mem in dw_pcie_pme_turn_off()
+
+- remove redundant check() if (!atu.size) in dw_pcie_pme_turn_off().
+
+- The reason can't adjust windows->end
+This windows already reported to pci system before this function. It is
+not good to modify window-res-end. It just add child resource like below.
+
+windows is root resource, which will create may child when call
+request_resource.
+          bridge -> windows
+		child1 -> msg
+		child2 -> pci ep1
+		child3 -> pci_ep2.
+		...
+
+Although you see whole bridge window, 'msg' already used and put under root
+resource,  new pci devices will never use 'msg' resource. 
+
+If change windows->res->end here, I worry about it may broken resource
+tree.
+
+Detail below thread:
+
+- Link to v5: https://lore.kernel.org/r/20240319-pme_msg-v5-0-af9ffe57f432@nxp.com
+
+Changes in v5:
+- Default disable allocate TLP message memory windows. If driver need use
+this feature, need set use_atu_msg = true before call dw_host_init().
+
+- Link to v4: https://lore.kernel.org/r/20240213-pme_msg-v4-0-e2acd4d7a292@nxp.com
+
+Changes in v4:
+- Remove dt-binding patch. Needn't change any dts file and binding doc.
+  Reserve a region at end of first IORESOURCE_MEM window by call
+  request_resource(). So PCIe stack will not use this reserve region to any
+PCIe devices.
+  I tested it by reserve at begin of IORESOURCE_MEM window. PCIe stack
+will skip it as expection.
+
+  Fixed a issue, forget set iATU index when sent PME_turn_off.
+
+- Link to v3: https://lore.kernel.org/r/20240202-pme_msg-v3-0-ff2af57a02ad@nxp.com
+
+Changes in v3:
+- fix 'MSG"
+- Add pcie spec ref in head file
+- using function name dw_pci_pme_turn_off()
+- Using PCIE_ prefix macro
+- Link to v2: https://lore.kernel.org/r/20240201-pme_msg-v2-0-6767052fe6a4@nxp.com
+
+Changes in v2:
+  - Add my sign off at PCI: dwc: Add outbound MSG TLPs support
+  - Add Bjorn review tag at  Add INTx Mechanism Messages macros
+  - using PME_Turn_Off match PCIe spec
+  - ref to pcie spec v6.1
+  - using section number.
+
+- Link to v1: https://lore.kernel.org/r/20240130-pme_msg-v1-0-d52b0add5c7c@nxp.com
+
+---
+Frank Li (2):
+      PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+      PCI: dwc: Add generic MSG TLP support for sending PME_Turn_Off when system suspend
+
+Yoshihiro Shimoda (3):
+      PCI: Add INTx Mechanism Messages macros
+      PCI: dwc: Consolidate args of dw_pcie_prog_outbound_atu() into a structure
+      PCI: dwc: Add outbound MSG TLPs support
+
+ drivers/pci/controller/dwc/pcie-designware-ep.c   |  21 ++--
+ drivers/pci/controller/dwc/pcie-designware-host.c | 145 +++++++++++++++++++---
+ drivers/pci/controller/dwc/pcie-designware.c      |  54 ++++----
+ drivers/pci/controller/dwc/pcie-designware.h      |  22 +++-
+ drivers/pci/pci.h                                 |  21 ++++
+ 5 files changed, 199 insertions(+), 64 deletions(-)
+---
+base-commit: ef6a734484e939cf67bc41c45bc936a78ea210f0
+change-id: 20240130-pme_msg-dd2d81ee9886
+
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
+
 
