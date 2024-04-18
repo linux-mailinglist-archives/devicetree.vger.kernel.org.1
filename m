@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-60762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCF8D8AA486
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 23:02:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E75D8AA491
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 23:03:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 520A31F23737
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:02:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0409A287BE5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6AC1194C6E;
-	Thu, 18 Apr 2024 21:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BCC194C86;
+	Thu, 18 Apr 2024 21:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jb0WozuY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="khewyLoN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C380A194C64
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 21:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA5E194C83
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 21:03:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713474113; cv=none; b=QrpwK82ndCIZR5hfFleVl5HLByvzyc/MHMAhogECRJrGXY47JQMjiniDf5C6zTRtsV3McFD9ksGJp8/C8ZJihNtOS1StohE6qhI5SndzjXIIMZ66J2+5rB4hMhsjoQ6ByEd2G8ehM1rxadmjGXO7ZgaA0FL5WaWYJ+YaN0UeNB4=
+	t=1713474187; cv=none; b=mLq7P6QZIuyqm7fbx6YG53tfLRMj1cwr/fSaVkJ5iuX/pLhFeOjJgMEa4LVUN8ct0iNiG4DuDHzF1fWEy3KF+U/iWScfjW2OGia6fNcXxzHXpYcfrhnYySSBcnd7pX4EvuqLEyYwzaThBL4gHjGlJNphUovjpdbdtAXadquVYMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713474113; c=relaxed/simple;
-	bh=7CdVP5Kj31ni265PFLdukb0vu5F9fG0Y+00FI3capLc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WpS4C/iCJVgqR6JKIAnPKxFvbub2JJCtBprEPJY+FkIn1jgVpneivroAs4Z65qpUTF3yYiW+5W00AstUPUujbhjjcpY/8dPcnnJGyl0hLoR6TYMX+kd2WY3nTQ6VIftCTvfQ0WT6hoWZZ+B6lPSJyO5sPV48evKqexpGdQs5R4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jb0WozuY; arc=none smtp.client-ip=209.85.208.180
+	s=arc-20240116; t=1713474187; c=relaxed/simple;
+	bh=5OF8qkOWFKuBZMUOLmpSdMe4KRuBZNzn/YHn8L/1G5E=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=W/6/ctF/5OGa+EcVUSQJrWXdSwJ+k1fatcr2rkHJYQnZQ9n1pfWp1/GXWIYg5eNzsEOJQfMRvI1sDYQekbIDeyygFm5+kXg6As68AGD5UcBGeZ4tNPD3ApUP0IElf4CNsqYnwrgJYVQHTNNgcb0iHwMdkzHqGi4PnCTCgD24jqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=khewyLoN; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2dac627e62dso1152021fa.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:01:51 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1e0bec01232so11459055ad.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:03:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713474110; x=1714078910; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K1Eg8XAotf29L29Zp7YHNAD+JmxvqCaer9g5b5fj8ko=;
-        b=jb0WozuYXi0p9JhP7epzMRfp6eV8eVBpuC7KZD5+2OTrjMYN1VJ9CR8wZLyVvStZ6I
-         DM5QiA0u2e7Zc18r7gRKXwr1mJWzYgwLVqSoEADIWXXdbsMLyZwmgZeTyaM/csngA9cu
-         hoY7PHegqXuB2Rux06QlP4bQkbEP53xozKTQzhw8x48IyXU+PqM97td6b9F2P388jnI5
-         Q/4WBBjSyv2KsMsl7csdHSfaS4WOVAS7FD5E8sjQ2bztUI13sKHWAfLYZ/6Cltm/OFGj
-         0Qd7kImULFKZJl5/FXnobUCB0dc4g2CKUvP8TzKs7qEUiCk7Vs50R1nrfMr0KLJz2kUo
-         Dekw==
+        d=linaro.org; s=google; t=1713474184; x=1714078984; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ECYyys6aoTgaptV/LoyO8VNanlxEG+pc2oeOwPKfVIc=;
+        b=khewyLoN93MeNt8mZsVSwJG5fEIaTJdZgrxFx11VIfWPrz9Mu60MrtQphCA9tglzcy
+         79zV5w1ZO39b31qjk8XxWFKlYnPfS2y0pvBh8CG6mG9gvAxd0g4lahaniSuZW3Lov3NO
+         iLHdwqIiSukgtA4Owi8JEvq6/UTJvRnMjknJEynjEyYG4au8Mj0hDGr7NxY8fADkbgrp
+         bAdS31iUHDpFbk5q/fHTcpfM6dqwSNr5bROhcOr+3ZKTrPxR13/n6D6gaEy5Y/1/JXxV
+         xarx+OxzAa6smlcxPgTsE1+LEBkPv3x9K+MthErbQvcOc1QkjNdFtsB/FLVREI5TPgWz
+         ac+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713474110; x=1714078910;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K1Eg8XAotf29L29Zp7YHNAD+JmxvqCaer9g5b5fj8ko=;
-        b=PFXDV+qn1gQEdwAKwifQBFP0o5hUwrwZ0Y/0GuUF/oX1dWu0QwlUqFcSBRowdgjjGJ
-         /H+HBEfkJZhqdRhyfE6aEKIXojWAo+NtBR3gdfPn+phZgLQ6OcJO9xonLvLMiIqA8Ond
-         +WWqqJpsFC6O2SMRIK7c/rbCMdCDxEKTJmQasyPNWtlIrDaa5AuOz/9TYRXLLwv1vDT2
-         q65D/+aROUoB5YzfMasACjfv+tS2+Ouks9b55tDGfKVK4IWHEbAvpcPzWNRyqLbIG4y9
-         7rKw2d0m80ctcmJBmKmCeBHLDgTnv7fFqjZXI7PxWpTK8MQZb0b57JSVVYEoKBmrEi4q
-         zcQw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5ls1fMSWfZR04KIgZfq/h/m/u2pdnyCClMmJ+weQvxWdp+XJ0Fo8aA8sXW3KCucNABVcJNoNYQfiqnlEZkgj7b7qE+SFQO4k7xQ==
-X-Gm-Message-State: AOJu0Yx7ewDHGMTGenP1mN0igPWoHimzr9L2yqjBB+IznhL7SY9gjVNu
-	ESHwPeTjH5YaMmzrsijqlR0o93gnPXMEP5zD0lrwKmBST6ZPQmL5mmasTWuTcgc=
-X-Google-Smtp-Source: AGHT+IGO7E0wKPCpyQwkhAvJUDIjqNmSsoDbzNbd01heBkjJR5epON3YpCVJX3hcRVc6iX6QO0bVng==
-X-Received: by 2002:ac2:464b:0:b0:519:69c6:29bb with SMTP id s11-20020ac2464b000000b0051969c629bbmr111728lfo.0.1713474109808;
-        Thu, 18 Apr 2024 14:01:49 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id e28-20020ac2547c000000b00515d407aaa0sm379193lfn.252.2024.04.18.14.01.48
+        d=1e100.net; s=20230601; t=1713474184; x=1714078984;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ECYyys6aoTgaptV/LoyO8VNanlxEG+pc2oeOwPKfVIc=;
+        b=e200XO3jAuPJda+jYW2/G7YkfBr+YBoBTTt0nN+vcyquvJriVJg7RtkWiTkTq12Y68
+         0W8QKHAPG3K8rRYx15ekk/SOKwQyAMI3G1B8qcO/YzsC0Yr6J/uIIIzw7/KWItODBQ75
+         m+77AqwnOt55jRatFYhTXIz0j6wNAaWwz/c0mwx97kYYTPBOdtWrmHDCWLcFJhXVtnrG
+         oIv8w23xj3zxSuMAPqlMAC5gxoC6I5a3+t4O10XuzpLsvTtIsmJDTAQKo0XUjnHb6Kar
+         QDr/n+8ffQ6MeZ+TbY4nGPPRAHXX6eybD3gg4DlJZ3d3z1QiPhXaP2Cap8N7YZb1t8cH
+         tQdA==
+X-Gm-Message-State: AOJu0YxjSx9+BKmO3ygsHlQ94ncoB5Ymt04z1sEScs/18uVyxsFLxFah
+	rUisIbXVy45wcdg8dllWO1DpBo8p80QfTW1t+/f+1oRaYOZdIa6vTGYAOQRwFQc=
+X-Google-Smtp-Source: AGHT+IGHor8csSxZDagYgaB6/ojvhxlu7Uteia1vXUisFp7SM+Grb6p8+pI0a41Y1E/Pv/SYi01gZA==
+X-Received: by 2002:a17:902:d2cf:b0:1e3:cfc5:589e with SMTP id n15-20020a170902d2cf00b001e3cfc5589emr308126plc.64.1713474183819;
+        Thu, 18 Apr 2024 14:03:03 -0700 (PDT)
+Received: from [10.36.52.145] ([24.75.208.148])
+        by smtp.gmail.com with ESMTPSA id b15-20020a170903228f00b001e4928c8026sm1973926plh.13.2024.04.18.14.03.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 14:01:49 -0700 (PDT)
-Message-ID: <c3ea22ed-5750-438f-89d5-e56f908ba835@linaro.org>
-Date: Fri, 19 Apr 2024 00:01:48 +0300
+        Thu, 18 Apr 2024 14:03:03 -0700 (PDT)
+Message-ID: <4736ba70-a42a-473f-8724-8e664bbfe4eb@linaro.org>
+Date: Thu, 18 Apr 2024 23:03:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,123 +77,199 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 RESEND 1/6] dt-bindings: clock: qcom: Add SM8650 video
- clock controller
-Content-Language: en-US
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240321092529.13362-1-quic_jkona@quicinc.com>
- <20240321092529.13362-2-quic_jkona@quicinc.com>
- <CAA8EJppsMchthssctEgUf9q45j84cSLQ78Ur+vaA0Z7GEQi8+g@mail.gmail.com>
- <725471b1-46a9-43b0-bede-33f01c953d51@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <725471b1-46a9-43b0-bede-33f01c953d51@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
+ <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
+ <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
+ <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
+ <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
+ <c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org>
+ <48005005-54ad-473b-826d-23b0b3f3a52c@amlogic.com>
+ <64c765e4-698f-49d6-8d17-4b512c3dc8ec@linaro.org>
+ <f845db57-64dc-4127-ab8d-9a038fd8d35b@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <f845db57-64dc-4127-ab8d-9a038fd8d35b@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hello Jagadeesh,
-
-On 3/25/24 08:07, Jagadeesh Kona wrote:
-> 
-> 
-> On 3/21/2024 6:42 PM, Dmitry Baryshkov wrote:
->> On Thu, 21 Mar 2024 at 11:26, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+On 17/04/2024 21:08, Krzysztof Kozlowski wrote:
+> On 16/04/2024 01:30, neil.armstrong@linaro.org wrote:
+>> On 15/04/2024 12:31, Kelvin Zhang wrote:
 >>>
->>> Extend device tree bindings of SM8450 videocc to add support
->>> for SM8650 videocc. While it at, fix the incorrect header
->>> include in sm8450 videocc yaml documentation.
->>>
->>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>    .../devicetree/bindings/clock/qcom,sm8450-videocc.yaml    | 4 +++-
->>>    include/dt-bindings/clock/qcom,sm8450-videocc.h           | 8 +++++++-
->>>    2 files changed, 10 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->>> index bad8f019a8d3..79f55620eb70 100644
->>> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->>> @@ -8,18 +8,20 @@ title: Qualcomm Video Clock & Reset Controller on SM8450
->>>
->>>    maintainers:
->>>      - Taniya Das <quic_tdas@quicinc.com>
->>> +  - Jagadeesh Kona <quic_jkona@quicinc.com>
->>>
->>>    description: |
->>>      Qualcomm video clock control module provides the clocks, resets and power
->>>      domains on SM8450.
->>>
->>> -  See also:: include/dt-bindings/clock/qcom,videocc-sm8450.h
->>> +  See also:: include/dt-bindings/clock/qcom,sm8450-videocc.h
+>>> On 2024/4/13 02:03, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> On 12/04/2024 19:57, Krzysztof Kozlowski wrote:
+>>>>> On 12/04/2024 15:12, Neil Armstrong wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
+>>>>>>> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
+>>>>>>>> From: Zelong Dong <zelong.dong@amlogic.com>
+>>>>>>>>
+>>>>>>>> Add a new compatible and the related header file
+>>>>>>>> for Amlogic T7 Reset Controller.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+>>>>>>>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+>>>>>>>> ---
+>>>>>>>>     .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+>>>>>>>>     include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
+>>>>>>>>     2 files changed, 198 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>>>>>>>> index f0c6c0df0ce3..fefe343e5afe 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>>>>>>>> @@ -19,6 +19,7 @@ properties:
+>>>>>>>>           - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+>>>>>>>>           - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+>>>>>>>>           - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+>>>>>>>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
+>>>>>>>>
+>>>>>>>
+>>>>>>> If there is going to be any resend, please drop the comment. It's not
+>>>>>>> really helpful and makes it trickier to read.
+>>>>>>>
+>>>>>>>>       reg:
+>>>>>>>>         maxItems: 1
+>>>>>>>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
+>>>>>>>> new file mode 100644
+>>>>>>>> index 000000000000..ca4a832eeeec
+>>>>>>>> --- /dev/null
+>>>>>>>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
+>>>>>>>> @@ -0,0 +1,197 @@
+>>>>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+>>>>>>>> +/*
+>>>>>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>>>>>>> + */
+>>>>>>>> +
+>>>>>>>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
+>>>>>>>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
+>>>>>>>> +
+>>>>>>>> +/* RESET0 */
+>>>>>>>> +/*                                        0-3     */
+>>>>>>>
+>>>>>>> I assume this matches existing drivers which do not use IDs but map the
+>>>>>>> binding to hardware value? I remember we talked about changing it, so if
+>>>>>>> something happened about this and it could be changed: please change.
+>>>>>>
+>>>>>> I'm not aware of such discussion, and I don't really see the issue...
+>>>>>> thoses are IDs, and yes they match the Hardware offsets, and ?
+>>>>>
+>>>>> Bindings are not for hardware offsets/values/addresses. It's just not a
+>>>>> binding.
+>>>>>
+>>>>> I quickly looked at your driver patch and it confirms: not a binding.
+>>>>> Binding constant is used by the driver and DTS consumer.
+>>>>>
+>>>>> I am really sure we had this talk in the past, but could be I think
+>>>>> about different platform. Since this is not a binding, I do not think
+>>>>> claiming there is any ABI here is reasonable. Feel free to store them
+>>>>> with other hardware values, like in DTS headers etc. We already moved to
+>>>>> DTS headers several such "non-binding" constants.
+>>>>
+>>>> Un-acked.
+>>>>
+>>>> I looked at my archives and we did talk about it and you were CCed:
+>>>>
+>>>> https://lore.kernel.org/linux-devicetree/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
+>>>> simple-reset is an exception.
+>>>>
+>>>> So to recap:
+>>>> That's not a binding. Don't add some real values to binding headers
+>>>> because it is not a binding then.
 >>
->> This almost pleads to go to a separate patch. Fixes generally should
->> be separated from the rest of the changes.
+>> So what's exactly a binding then?
+> 
+> Binding headers is interface needed (necessary) between implementation
+> (like Linux drivers) and DTS.
+> 
+>> random linear numbers that means nothing can be a binding
+>> but registers numbers can't be ? why ? I still don't understand, why this suddenly gets problematic ?
+> 
+> There is no interface here. Drivers don't use them. It's not "suddenly"
+> problematic, I commented on this year or two years ago and we also
+> started moving such header-abusers out of bindings.
+> 
 >>
-> 
-> Thanks Dmitry for your review.
-> 
-> Sure, will separate this into a separate patch in next series.
-> 
+>>>>
+>>>> https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
+>>>> https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
+>>>> https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
+>>>> https://lore.kernel.org/linux-devicetree/418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org/
+>>>> https://lore.kernel.org/all/201401111415.29395.arnd@arndb.de/
+>>>>
+>>> Got it. Will delete amlogic,t7-reset.h and use the hardware numbers
+>>> directly in the DT. >
+>>> Hi Neil,
+>>> As you know, Amlogic reset controller is divided into several groups: reset0, reset1, ..., resetN. I'd like to discuss the rationality of splitting the one device node of reset controller into device nodes according to the groups. Then we can use the bit number within the 'resets' property.
+>>> reset0: reset-controller@2000 {
+>>> ...
+>>> };
 >>>
->>>    properties:
->>>      compatible:
->>>        enum:
->>>          - qcom,sm8450-videocc
->>>          - qcom,sm8550-videocc
->>> +      - qcom,sm8650-videocc
+>>> reset1: reset-controller@2004 {
+>>> ...
+>>> };
+>>> ...
 >>>
->>>      reg:
->>>        maxItems: 1
->>> diff --git a/include/dt-bindings/clock/qcom,sm8450-videocc.h b/include/dt-bindings/clock/qcom,sm8450-videocc.h
->>> index 9d795adfe4eb..ecfebe52e4bb 100644
->>> --- a/include/dt-bindings/clock/qcom,sm8450-videocc.h
->>> +++ b/include/dt-bindings/clock/qcom,sm8450-videocc.h
->>> @@ -1,6 +1,6 @@
->>>    /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>    /*
->>> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>>     */
->>>
->>>    #ifndef _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8450_H
->>> @@ -19,6 +19,11 @@
->>>    #define VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC                                9
->>>    #define VIDEO_CC_PLL0                                          10
->>>    #define VIDEO_CC_PLL1                                          11
->>> +#define VIDEO_CC_MVS0_SHIFT_CLK                                        12
->>> +#define VIDEO_CC_MVS0C_SHIFT_CLK                               13
->>> +#define VIDEO_CC_MVS1_SHIFT_CLK                                        14
->>> +#define VIDEO_CC_MVS1C_SHIFT_CLK                               15
->>> +#define VIDEO_CC_XO_CLK_SRC                                    16
+>>> What do you think?
 >>
->> Are these values applicable to sm8450?
+>> No since you'll basically add a node per register, you need to add a node for the while reset HW function, another
+>> solution would be to split the phandle arguments in 2, the first first would be the reset bank, and the second one
+>> the reset line for the bank.
 >>
+>> But still it's a regression in readability to drop the macros, until gpios or pins the reset number doesn't mean anything per se.
 > 
-> No, the shift clocks above are part of SM8650 only. To reuse the
-> existing SM8550 videocc driver for SM8650 and to register these shift
-> clocks for SM8650, I added them here.
+> 
+> What stops you from putting the header in the DTS? Just like others are
+> doing?
+
+Ok so now I understand, Kelvin just keep the header but move it in arch/arm64/boot/dts/amlogic along the DT patch and drop it from the bindings patch.
+
+Thanks,
+Neil
+
+> 
+> Best regards,
+> Krzysztof
 > 
 
-In such case I'd strongly suggest to add a new qcom,sm8650-videocc.h file,
-and do #include qcom,sm8450-videocc.h in it, thus the new header will be
-really a short one.
-
-This will add pristine clarity.
-
---
-Best wishes,
-Vladimir
 
