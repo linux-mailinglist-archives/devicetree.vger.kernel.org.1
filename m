@@ -1,108 +1,99 @@
-Return-Path: <devicetree+bounces-60529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8A38A9993
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:11:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1FAD8A9997
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 809A71F217EA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:11:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ED5E1C20F2A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F179615F415;
-	Thu, 18 Apr 2024 12:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDE915F3EA;
+	Thu, 18 Apr 2024 12:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+190KiW"
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="QZKskoh9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD94215E814
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 12:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E2515CD6D;
+	Thu, 18 Apr 2024 12:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713442313; cv=none; b=tXMjWLteYGlYIuWyZ/KIvWQFg7nULKqOLs4TC4bK0R9CS5DYtOtq6sEv5ecP/k1NUBQifWl2pAxjEw+St2jaeS2HJsLBL62E2mHIMQ0ol7GdNToz18BMsrnbGZ+jhYSKHh5EzOoNZ+LcEf1Qb95emoUGcyX2v4YEXXYMHXJL2oo=
+	t=1713442397; cv=none; b=FjBPyl8DleWTJmV3QrInVmU6lhTUch5VZgs2HYngzTpmL9z7tv8lLcqiwzcBVTbgmSkwbh/c88L1OZCtjC1Ei/oROP2zVW477Fu0qHShwxvMjG9Qcuc+OUmf/6CUxwDThGXkoUnTj+ups3O36b60a38pk4AqhZjtexSbJD5hllM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713442313; c=relaxed/simple;
-	bh=TLaO4PDj+2DqhXNFfIhRQHhMhs/mD6k6Z62/73Qbj6Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JJchChE7MIFlW+hTSA2Pf0M76wvTP81YydL4TBeIT9hvC8S90kFPeGH0VpmW9RD4rIz7vTCQiWv5lky9h6X2qnvHolyaSUf5Zb6vd7aNHz1XdlvO9fMhEC3LwMG0O+5HW/0isyVckwi4TkwS7daaqKLakH7EK7HnQQErXKp5Krs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+190KiW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55819C32783;
-	Thu, 18 Apr 2024 12:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713442313;
-	bh=TLaO4PDj+2DqhXNFfIhRQHhMhs/mD6k6Z62/73Qbj6Y=;
-	h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=m+190KiWyW5iPuk9e5x7jRpPdJTxPwtkyR0TwhmjjKHI2YgYrObdRqFsWGwiZPRJs
-	 7lGnjjzPygcC4A8W6QmWt2+tPvGVe5fyti4FE3Klsf8T4UA2yk0+3xGjEocFCx+FKb
-	 mqffydc8J4F6bq3qvWWgfoZgvh0juILBcOcsK1HMMlsrg5UH6EeklFYC3r78GS0GL9
-	 GBwNm9slCX7vZjAYrUXUPcgdWqxA4J8+9oJc/Efrs4/GkGHZfdddKdbzKmmeFuaojd
-	 CKCkAm2+LodrlzITyrGjavpIVmg/JllUCD+y+u4SMwvHkguiVcCc8hOyStxTf+qKM/
-	 o1BurOx33xstA==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org
-Cc: arm@kernel.org,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 11/11] ARM: dts: turris-omnia: Add GPIO key node for front button
-Date: Thu, 18 Apr 2024 14:11:16 +0200
-Message-ID: <20240418121116.22184-12-kabel@kernel.org>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240418121116.22184-1-kabel@kernel.org>
-References: <20240418121116.22184-1-kabel@kernel.org>
+	s=arc-20240116; t=1713442397; c=relaxed/simple;
+	bh=HxsguZAiND8dos6ZuH+ziu2ZtuOU9eBSUicLkDQ2/Sg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VM7MxIwXf98hOC1D4nJ63DYPUbGDGaDdMan2QBKSYX04GQDa00MSzRDlY82s/TXgBLpmbsRuGInTHNE48fiNXgAmUuFcCQTqdDWk8xe/9nWSWPTSgCSGmBY2bxoMIyKhhgao2P6s/1T8XTgwLJO74E/wak2srzSiSsMWOFp5zew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b=QZKskoh9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 960D2C113CC;
+	Thu, 18 Apr 2024 12:13:15 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="QZKskoh9"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
+	t=1713442394;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=+oJqPZw5AQXZu4QX4SS/nMWpk2RFT/2PtyZ6M4OlIXA=;
+	b=QZKskoh9gGyyCUC9/S43imrO9mAZx6p0nv2skuZ6DsSMGfHZkt2TbrOzoz9WKlMoowDbNq
+	KKclte65w62fNb/VvGBYXPy1lan2vRF/6AaQvMRxOJkvPW3ENbrGPE9w+siySqQKMsSR5q
+	MDWlch/KQanX7rnczAdhKC8XLGKs+Sg=
+Received: 
+	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id e3547100 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
+	Thu, 18 Apr 2024 12:13:13 +0000 (UTC)
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: tytso@mit.edu,
+	robh@kernel.org,
+	krzk@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	sudanl@amazon.com,
+	graf@amazon.com,
+	dwmw@amazon.co.uk,
+	krzysztof.kozlowski@linaro.org
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Subject: [PATCH v7 0/3] virt: vmgenid: add devicetree bindings support
+Date: Thu, 18 Apr 2024 14:12:29 +0200
+Message-ID: <20240418121249.42380-1-Jason@zx2c4.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Now that we have the MCU device-tree node, which acts as a GPIO
-controller, add GPIO key node for the front button.
+Hi Krzysztof,
 
-Fixes: 26ca8b52d6e1 ("ARM: dts: add support for Turris Omnia")
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- .../boot/dts/marvell/armada-385-turris-omnia.dts    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+This is a cleanup of Sudan's OF vmgenid patches, simplified a bit, but
+still with the same intent and mostly unchanged. I'll take this via my
+random tree, but I would appreciate having your ack/review on it.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-index 59079d63fe27..43202890c959 100644
---- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-@@ -112,6 +112,19 @@ sfp: sfp {
- 		status = "disabled";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		front-button {
-+			label = "Front Button";
-+			linux,code = <KEY_VENDOR>;
-+			linux,can-disable;
-+			gpios = <&mcu 0 12 GPIO_ACTIVE_HIGH>;
-+			/* debouncing is done by the microcontroller */
-+			debounce-interval = <0>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "SPDIF";
+Sudan - if I've mangled something here, please let me know. I verified
+this still works with ACPI in QEMU, but I don't know about your private
+firecracker OF branch, so please pipe up if something is amiss. It's
+basically the same thing, though, so I suspect it'll be fine.
+
+Thanks,
+Jason
+
+Sudan Landge (3):
+  virt: vmgenid: change implementation to use a platform driver
+  dt-bindings: rng: Add vmgenid support
+  virt: vmgenid: add support for devicetree bindings
+
+ .../bindings/rng/microsoft,vmgenid.yaml       |  49 ++++++
+ MAINTAINERS                                   |   1 +
+ drivers/virt/Kconfig                          |   2 +-
+ drivers/virt/vmgenid.c                        | 150 ++++++++++++++----
+ 4 files changed, 166 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
+
 -- 
-2.43.2
+2.44.0
 
 
