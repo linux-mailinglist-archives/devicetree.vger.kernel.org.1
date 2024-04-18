@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-60578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366EA8A9ADE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:09:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59DCE8A9AE9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85BCDB22172
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:09:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16857285A12
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC4F1442E3;
-	Thu, 18 Apr 2024 13:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA0514535E;
+	Thu, 18 Apr 2024 13:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sm4Xj+Gz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S9QxW8Im"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE1313C3FF;
-	Thu, 18 Apr 2024 13:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80B013C3FF;
+	Thu, 18 Apr 2024 13:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713445759; cv=none; b=P3rosMWwJjVLkZNQySb2BlkNYZxGj0qiZN+2fKBmgCfxJRHfjtein96eh6vZv6YQMMU4U9gW3GSMsvViZ3K2OFlsNicMZZPk4LF2NPsHmdORIqU2afeJgx5G4nxGeuvPhCU6jqfAvPlRBsBWyxx0eohcBE+GjvvfG8xgwYUWVW0=
+	t=1713445827; cv=none; b=SAkQQu96gXxYI6/B6nsL7bX1RKslAhXdI3nwyo4+sFsTzgkud/2WV5H3nbU6+Psyji7zSXmM6I30cF5gDwOyvu66p9qhlslMwml+TU1YLTxZ+/cAa4NMriiB3SFVHpkEvW5eiJAlS8+Jg/Q4V8VHvnYl9c8LG692c0jpc7hxUrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713445759; c=relaxed/simple;
-	bh=hvKGkHxZPIW4Pt6T/rjRhahcUnodHa40YaR7g0BoD4g=;
+	s=arc-20240116; t=1713445827; c=relaxed/simple;
+	bh=fPZ9DpCJk3Y2zRw5kWl7PSP4OLa6YCUAoXfziirfp8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aPixayGkQRoIXTB0Q8TOu2kIfMRz8wAxAyjTwPCKkKlzKnBPFH+ABeQufnkznYYRHCGdX+esyY37KXqNie4y8S6SNrGH4S/FHRS5hGYURUlhx6frTG1a/qjiOEnrU2cwPehioqlEIjdcw1/FGkUxWR/gvjsgipF5v7ovNPw+Hgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sm4Xj+Gz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02941C2BD11;
-	Thu, 18 Apr 2024 13:09:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XvXd5N3Ow+amln1drfTBG0HGmzLbsKQvk7DxAr1oBJBaooxEEYkBNTZ9lVPs8e41w+RRlSjxdXPvKuuBntICD4N/u5POYjuqBTvqluHOIwvqqlUJFnL67Wb3ZlIBqQY23wSYTp7HVCb3YcKdjFacBLjoD0XM3ksdFwXr4bMoAh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9QxW8Im; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B5ABC113CC;
+	Thu, 18 Apr 2024 13:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713445759;
-	bh=hvKGkHxZPIW4Pt6T/rjRhahcUnodHa40YaR7g0BoD4g=;
+	s=k20201202; t=1713445826;
+	bh=fPZ9DpCJk3Y2zRw5kWl7PSP4OLa6YCUAoXfziirfp8I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Sm4Xj+GzFlBaqZBkolIpZr8PxUyKoQG2PVErnF19y8dLXpdLOPkOtl2FJ37ynV7/X
-	 LxUEh7KqcTARhBsu7h9l2UroGgxcfjcN9gZoNqlk8P+qmD5USeDLUoV89CNBu4KRHn
-	 qaRqDWMEqquDO4KoXwWPhWoxDJ+RH5WIWSTYrA91J2WEUVA9da5ybx8KlDQScMgSHe
-	 udbgm4Ng1TxyQM/pwyPxeRT+zPSDKfNdXj167YzuRYbZJ5ZCyr6L+oTSZy3jgnsuqy
-	 IKj7vH7rbs10Z0aOCXwdCrYR3Ip7RdV2vK2E6EhWp7Qn9uO5g324KBbUGBWeeXHebt
-	 Z581LFFCjFAyw==
-Date: Thu, 18 Apr 2024 08:09:16 -0500
+	b=S9QxW8ImvY08pMZCQGTLd+TE9QQh3W/q9gYW7iXhIMlQ6GZcjFBRt8XAjY37tbLCm
+	 5WhVJQk24NcORuoWGmUJQAZOlhefsBAWWm8M5IGLnTTTmKmRaeULkl2rdkdqRE4SuK
+	 x6aFmJ/ykArb53DNCok15aNCYytV84gmJDiFKni8Nl9AN8O6SlLz+n5ZRE3kEWp4C1
+	 cc1IxmwwGFYKNqRKRvd3lUUHJHIrSw+sgJNuXdqpXxhoLlQbH9weGr34ZjuBGNoYou
+	 hJqDbuH1yzpqubp76DF1CmbgQnAFx89uQXCi5td469G1zm8rMc8RkKzm6NidwTe3zu
+	 s4sDzv0CVx4oA==
+Date: Thu, 18 Apr 2024 08:10:24 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sylvain Petinot <sylvain.petinot@foss.st.com>
-Cc: benjamin.mugnier@foss.st.com, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
- binding
-Message-ID: <20240418130916.GA1016598-robh@kernel.org>
-References: <20240417133453.17406-1-sylvain.petinot@foss.st.com>
- <20240417133453.17406-2-sylvain.petinot@foss.st.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: vkoul@kernel.org, pankaj.gupta@nxp.com,
+	20240409185416.2224609-1-Frank.Li@nxp.com, shenwei.wang@nxp.com,
+	xu.yang_2@nxp.com, shengjiu.wang@nxp.com,
+	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	krzk@kernel.org, linux-kernel@vger.kernel.org, peng.fan@nxp.com,
+	imx@lists.linux.dev, conor+dt@kernel.org, dmaengine@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] dt-bindings: dma: fsl-edma: allow 'power-domains'
+ property
+Message-ID: <171344580514.1090639.5974994638297885495.robh@kernel.org>
+References: <20240417152457.361340-1-Frank.Li@nxp.com>
+ <20240417152457.361340-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,205 +63,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240417133453.17406-2-sylvain.petinot@foss.st.com>
+In-Reply-To: <20240417152457.361340-2-Frank.Li@nxp.com>
 
-On Wed, Apr 17, 2024 at 03:34:52PM +0200, Sylvain Petinot wrote:
-> Add devicetree bindings Documentation for ST VD56G3 & ST VD66GY camera
-> sensors. Update MAINTAINERS file.
+
+On Wed, 17 Apr 2024 11:24:57 -0400, Frank Li wrote:
+> Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
+> it. EDMA supports each power-domain for each dma channel. So minItems and
+> maxItems align 'dma-channels'.
 > 
-> Signed-off-by: Sylvain Petinot <sylvain.petinot@foss.st.com>
+> Change fsl,imx93-edma3 example to fsl,imx8qm-edma to reflect this variants.
+> 
+> Fixed below DTB_CHECK warning:
+>   dma-controller@599f0000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/media/i2c/st,st-vd56g3.yaml      | 143 ++++++++++++++++++
->  MAINTAINERS                                   |   9 ++
->  2 files changed, 152 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
-> new file mode 100644
-> index 000000000000..6792c02fea5c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
-> @@ -0,0 +1,143 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2024 STMicroelectronics SA.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/st,st-vd56g3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics VD56G3 Global Shutter Image Sensor
-> +
-> +maintainers:
-> +  - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> +  - Sylvain Petinot <sylvain.petinot@foss.st.com>
-> +
-> +description: |-
-> +  The STMicroelectronics VD56G3 is a 1.5 M pixel global shutter image sensor
-> +  with an active array size of 1124 x 1364 (portrait orientation).
-> +  It is programmable through I2C, the address is fixed to 0x10.
-> +  The sensor output is available via CSI-2, which is configured as either 1 or
-> +  2 data lanes.
-> +  The sensor provides 8 GPIOS that can be used for either
-> +    - frame synchronization (Master: out-sync or Slave: in-sync)
-> +    - external LED signal (synchronized with sensor integration periods)
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,st-vd56g3
-> +      - st,st-vd66gy
-> +    description:
-> +      Two variants are availables; VD56G3 is a monochrome sensor while VD66GY
-> +      is a colour variant.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  VCORE-supply:
-
-Convention is lowercase.
-
-> +    description: Digital core power supply (1.15V)
-> +
-> +  VDDIO-supply:
-> +    description: Digital IO power supply (1.8V)
-> +
-> +  VANA-supply:
-> +    description: Analog power supply (2.8V)
-> +
-> +  reset-gpios:
-> +    description: Sensor reset active low GPIO (XSHUTDOWN)
-> +    maxItems: 1
-> +
-> +  st,leds:
-> +    description:
-> +      Sensor's GPIOs used for external LED control.
-> +      Signal being the enveloppe of the integration time.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 8
-> +    items:
-> +      minimum: 0
-> +      maximum: 7
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          clock-lanes:
-> +            const: 0
-
-If required and only 1 possible value, why does this need to be in DT?
-
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 2
-> +            items:
-> +              enum: [1, 2]
-> +
-> +          link-frequencies:
-> +            minItems: 1
-> +            maxItems: 1
-> +            items:
-> +              enum: [402000000, 750000000]
-> +
-> +          lane-polarities:
-> +            minItems: 1
-> +            maxItems: 3
-> +            items:
-> +              enum: [0, 1]
-
-video-interfaces.yaml already defines this constraint, so you just need 
-to define how many entries.
-
-> +            description: Any lane can be inverted or not.
-> +
-> +        required:
-> +          - clock-lanes
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - VCORE-supply
-> +  - VDDIO-supply
-> +  - VANA-supply
-> +  - reset-gpios
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        vd56g3: camera-sensor@10 {
-
-Drop unused labels.
-
-> +            compatible = "st,st-vd56g3";
-> +            reg = <0x10>;
-> +
-> +            clocks = <&camera_clk_12M>;
-> +
-> +            VCORE-supply = <&camera_vcore_v1v15>;
-> +            VDDIO-supply = <&camera_vddio_v1v8>;
-> +            VANA-supply = <&camera_vana_v2v8>;
-> +
-> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
-> +            st,leds = <6>;
-> +
-> +            port {
-> +                vd56g3_ep: endpoint {
-> +                    clock-lanes = <0>;
-> +                    data-lanes = <1 2>;
-> +                    link-frequencies =
-> +                      /bits/ 64 <402000000>;
-> +                    remote-endpoint = <&csiphy0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7c121493f43d..991e65627e18 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20868,6 +20868,15 @@ S:	Maintained
->  F:	Documentation/hwmon/stpddc60.rst
->  F:	drivers/hwmon/pmbus/stpddc60.c
->  
-> +ST VD56G3 DRIVER
-> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-
-This should be covered by the media maintainer entry.
-
-> +F:	Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
-> +F:	drivers/media/i2c/st-vd56g3.c
-> +
->  ST VGXY61 DRIVER
->  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
->  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> -- 
-> 2.17.1
+> Notes:
+>     Change from v4 to v5
+>     - Add description according to rob's suggest.
 > 
+>      "The number of power domains matches the number of channels, arranged
+>      in ascending order according to their associated DMA channels."
+> 
+>     Change from v3 to v4
+>     - Remove 'contains' change should be belong to first patch when rebase.
+> 
+>     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,edma.yaml
+>       LINT    Documentation/devicetree/bindings
+>       DTEX    Documentation/devicetree/bindings/dma/fsl,edma.example.dts
+>       CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>       DTC_CHK Documentation/devicetree/bindings/dma/fsl,edma.example.dtb
+> 
+>     After this patch no warning for imx8dxl-evk.dtb.
+> 
+>     touch arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+>     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  CHECK_DTBS=y freescale/imx8dxl-evk.dtb
+>       DTC_CHK arch/arm64/boot/dts/freescale/imx8dxl-evk.dtb
+> 
+>     Change from v2 to v3
+>     - set 'power-domains' false for other compatitble string
+>     - change imx93 example to 8qm example to affect this change according to
+>     Krzysztof Kozlowski's suggestion, choose least channel number edma
+>     instance to reduce code copy. max channel number is 64.
+> 
+>     - Rebase to latest dmaengine/next, fixes conflicts.
+> 
+>     Change from v1 to v2
+>     - using maxitem: 64. Each channel have one power domain. Max 64 dmachannel.
+>     - add power-domains to 'required' when compatible string is fsl,imx8qm-adma
+>         or fsl,imx8qm-edma
+> 
+>  .../devicetree/bindings/dma/fsl,edma.yaml     | 80 ++++++++++---------
+>  1 file changed, 42 insertions(+), 38 deletions(-)
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
