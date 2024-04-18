@@ -1,277 +1,149 @@
-Return-Path: <devicetree+bounces-60398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E449D8A9302
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:25:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1CC8A9311
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46BD3B2107E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:25:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 493E3281840
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6463E6A8AD;
-	Thu, 18 Apr 2024 06:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA83C6A8D2;
+	Thu, 18 Apr 2024 06:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zhx8snLZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i/Kw3dy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8AE6A353
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:25:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0228C11;
+	Thu, 18 Apr 2024 06:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713421549; cv=none; b=JXndHlTG+b+rQ3u84bJ5IKbnDVIik+ymVvyOHfW5m9Qw0dl7V8r6HLcpnAmFpNxbwixemgc8qaln5xBy4diDBetY+JZ1PBOSpnJv5I+/VXFdDpJ1M34OtRdWcb7lttq7aFtRPVvlEtxMYDWhQHKSCXgM5yTGTQj38VAl/zFWKOI=
+	t=1713421654; cv=none; b=h72GvjAxidnBSnsMFiPmdRfTeDCXNv/S3Vj1l/6E3QDkRq9xRx9ztdDSmXCFYpcf57TlU8NvLSqEvhUjVb2qYyXZ7QKZbvLdR5+OXHnqkvMaqRCfoAk10HcdjGAWWuc2Hf0RZRFhVnddG94gp6hhg0hKPNJZKI4Kb+pa4amOk+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713421549; c=relaxed/simple;
-	bh=T3gnbHnqDTNsXZjKgzNhK3w8RI5MS5/ZOhFLUooP1d0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=edNJt0OOZChgCQXA0D0XIRWQM1i+BBRdnnpCx/Pf/3OjOuSAfFpiXQj9WDTjLp6li0GI97JDig7nkpch7GGMY2FV8msO5MCCKpPD2f6j+QNHJ2jw5sCjn0u2jLIthyMNI5xjsezeVSJVWZ5fT40V1XVELSo5oMirP4aIL84Nps4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zhx8snLZ; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-518bad5f598so540166e87.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:25:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713421545; x=1714026345; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eeGlYTEPtwsiwYM/TpHd0Olr3KwcbSC63wU7MbucUsg=;
-        b=zhx8snLZmp5exuwounzmXQbKqUfHp6A0ponlYTO8xsoK/4dRM7o3ymBUdbD3Rrv2Pv
-         rVfCiRHek/999VHK3O5dDtoH6lGkdhErSsGIa7eiYpsVyWZfGTSPGUVVn/VV5gl2Ulth
-         zNX7o7rK2HX4Izcyre0YY9qVCv/EesT8QP0qLYecCBPfsrJNm1s6aAU0OuRhWaaS6vY7
-         4i+b6aVkvf0qN1lVtqIQa3/L9o06i6lgtHehzPW2QLpW6FJ7ZUT9NEmoj522d1ibRVoZ
-         rdf2RyBrWFaIdsQ6EQ1T9QJHqJj2RqDgoWw+Z/NPzOF/e6xP8MyVUMqy045CipoGMREc
-         czkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713421545; x=1714026345;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eeGlYTEPtwsiwYM/TpHd0Olr3KwcbSC63wU7MbucUsg=;
-        b=tLGvUwD7qM67m6LeOz5d+Tz0E0shf27dCCOlejww+XCktMKvGOSps5FIK0HkKy/Plv
-         mR5wzg6qMuvyuo484LnzKXWN5hrvHnvz7rI6o9f4RRy8f1rP+bHRQoxF2vMsQvj1FRMK
-         DwAc4qt3eIEwE71M93RIQuKmtoTqylOdbh/056JZRIEYNx/PO7JAYBCQWDrg275bWC8v
-         YIfh60h9uCye9UF9H41Gp4GHj+k4Xz8VMFoi4XCi0vT33eh8OAnf/GbpVELA5RLkkhzY
-         zJJeZusDDkWH82/5ojDhCHnuGoP4d2PfbiCusvACfVoYcTMTRZ/yowLyAfE5s46a90ot
-         LAcg==
-X-Forwarded-Encrypted: i=1; AJvYcCWFF7W9QF2zv1Ne+ta8H6dzd+GQK6ZVj0WAwSe0ih7ywIp1quDs5kdjATk+pxRQpLPJxIOWWQtAeaDwmE5zwB160LtV3fNshXSiiw==
-X-Gm-Message-State: AOJu0YxolYnkYU4kFDoFm54siae2BZdH9h5ABlKcYmU+yDGxfajiAKCa
-	VwcAQrrJT2Ee3/pvWHjhx/tB2h0/nMVeG/YBdH0HqLAPReZgE+V80daO4lUt96o=
-X-Google-Smtp-Source: AGHT+IHSQo96rBAeGsNob689+akPWqSZqQAXLoOckGnqF2JqlaQLfymxbweLLljeqKZYLOM3+sLT9Q==
-X-Received: by 2002:a05:6512:484:b0:515:a6dd:9657 with SMTP id v4-20020a056512048400b00515a6dd9657mr800549lfq.16.1713421545466;
-        Wed, 17 Apr 2024 23:25:45 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id d22-20020ac241d6000000b0051327d2f5e5sm117819lfi.119.2024.04.17.23.25.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 23:25:45 -0700 (PDT)
-Date: Thu, 18 Apr 2024 09:25:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Dharma.B@microchip.com
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, linux@armlinux.org.uk, Nicolas.Ferre@microchip.com, 
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, Manikandan.M@microchip.com, 
-	arnd@arndb.de, geert+renesas@glider.be, Jason@zx2c4.com, mpe@ellerman.id.au, 
-	gerg@linux-m68k.org, rdunlap@infradead.org, vbabka@suse.cz, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	oe-kbuild-all@lists.linux.dev, Hari.PrasathGE@microchip.com
-Subject: Re: [PATCH v6 2/4] drm/bridge: add lvds controller support for sam9x7
-Message-ID: <ymw3bsbpqdfhwnidkvkenbv73fxdk3okuiqsmltknpnlzuwges@dqevpe6okpk4>
-References: <20240417024137.144727-1-dharma.b@microchip.com>
- <20240417024137.144727-3-dharma.b@microchip.com>
- <xbefyxiyiwckjsi5wyqaf5thqgpyyizy7sjojed4yc7bvm46l3@omffdudkxyhl>
- <f79861d1-2216-41de-8093-621cb07ba06a@microchip.com>
+	s=arc-20240116; t=1713421654; c=relaxed/simple;
+	bh=ck6D+u1yHGSMSsvI+farJRo08q/q17J/RdpWxcYLUzU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=V88VafIgtlU15OJ66JDzEFgI59Sct4BCBnK9odoIOZJql1WM+LLB3OorkxQgEV6VRAlWYWbdh06gJbh4kjmFRCSjP1wSRNAGv2I2dSdc03fgJ/8d3kIIH39jrCm/Vq0mSPzS1A/u5203NJZee3GKQO9DXRc/X2hHer9g6h0rLvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i/Kw3dy2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43HNrE0P018338;
+	Thu, 18 Apr 2024 06:27:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=tbWp83ngc6+C04lMqJmQF5eKNNcGbKVIZblsmEVEZDk=; b=i/
+	Kw3dy2+SLlBMkynWa4ccWUpbylndODYMvO/yknuuebbdm/N5JASvLAjc1ZzkXaXy
+	wwCVNdDoIDPSNX+b8vabYIT22lK/OUo8tflP6MZsqbXJdJjZwCioaOPDzqImcSPh
+	TUUlM7CjVsWUfyMPQxWum54UwUzelmXQlJnq0vWK2z0Z2ojeohNH3SSdXXAufciX
+	n9n2zFx+OhJs1G3/KCeWjvE7XgGqIQoDI4FCgswnYU371iMF+B4RzmA5mIRra/tS
+	Q4Tz1+RZxtpwMS9BQLs7Kx9Jz57Owz4fGr22nUDl+2l4XY6u0n3lkW25egFxsA+Y
+	1Bed6WS9/govow426Gqg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xjrfxgv25-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Apr 2024 06:27:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43I6RNZO027974
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Apr 2024 06:27:23 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Apr
+ 2024 23:27:18 -0700
+Message-ID: <1e334bd5-6d90-8ac7-084f-8b7928072c17@quicinc.com>
+Date: Thu, 18 Apr 2024 11:57:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f79861d1-2216-41de-8093-621cb07ba06a@microchip.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V3 1/5] dt-bindings: mailbox: qcom: Add CPUCP mailbox
+ controller bindings
+Content-Language: en-US
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <dmitry.baryshkov@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <conor+dt@kernel.org>, <quic_gkohli@quicinc.com>,
+        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>,
+        Rob Herring <robh@kernel.org>
+References: <20240417132856.1106250-1-quic_sibis@quicinc.com>
+ <20240417132856.1106250-2-quic_sibis@quicinc.com>
+ <ZiA0hOkpGVlVFp5u@hu-bjorande-lv.qualcomm.com>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <ZiA0hOkpGVlVFp5u@hu-bjorande-lv.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: CBqy4x_L3vRJwV6AY0rDmH2Iand2eEA2
+X-Proofpoint-GUID: CBqy4x_L3vRJwV6AY0rDmH2Iand2eEA2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-18_04,2024-04-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 spamscore=0 mlxscore=0 phishscore=0 suspectscore=0
+ adultscore=0 mlxlogscore=908 clxscore=1015 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404180042
 
-On Thu, Apr 18, 2024 at 03:54:53AM +0000, Dharma.B@microchip.com wrote:
-> Hi Dmitry,
+
+
+On 4/18/24 02:13, Bjorn Andersson wrote:
+> On Wed, Apr 17, 2024 at 06:58:52PM +0530, Sibi Sankar wrote:
+>> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
+>> controller.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+>>
+>> v2:
+>> * Pickup Rb from Dimitry.
+>>
+>>   .../bindings/mailbox/qcom,cpucp-mbox.yaml     | 49 +++++++++++++++++++
+>>   1 file changed, 49 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+>> new file mode 100644
+>> index 000000000000..491b0a05e630
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+>> @@ -0,0 +1,49 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mailbox/qcom,cpucp-mbox.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. CPUCP Mailbox Controller
+>> +
+>> +maintainers:
+>> +  - Sibi Sankar <quic_sibis@qti.qualcomm.com>
 > 
-> On 17/04/24 12:05 pm, Dmitry Baryshkov wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On Wed, Apr 17, 2024 at 08:11:35AM +0530, Dharma Balasubiramani wrote:
-> >> Add a new LVDS controller driver for sam9x7 which does the following:
-> >> - Prepares and enables the LVDS Peripheral clock
-> >> - Defines its connector type as DRM_MODE_CONNECTOR_LVDS and adds itself
-> >> to the global bridge list.
-> >> - Identifies its output endpoint as panel and adds it to the encoder
-> >> display pipeline
-> >> - Enables the LVDS serializer
-> >>
-> >> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> >> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> >> ---
-> >> Changelog
-> >> v5 -> v6
-> >> - No Changes.
-> >> v4 -> v5
-> >> - Drop the unused variable 'format'.
-> >> - Use DRM wrapper for dev_err() to maintain uniformity.
-> >> - return -ENODEV instead of -EINVAL to maintain consistency with other DRM
-> >>    bridge drivers.
-> >> v3 -> v4
-> >> - No changes.
-> >> v2 ->v3
-> >> - Correct Typo error "serializer".
-> >> - Consolidate get() and prepare() functions and use devm_clk_get_prepared().
-> >> - Remove unused variable 'ret' in probe().
-> >> - Use devm_pm_runtime_enable() and drop the mchp_lvds_remove().
-> >> v1 -> v2
-> >> - Drop 'res' variable and combine two lines into one.
-> >> - Handle deferred probe properly, use dev_err_probe().
-> >> - Don't print anything on deferred probe. Dropped print.
-> >> - Remove the MODULE_ALIAS and add MODULE_DEVICE_TABLE().
-> >> - symbol 'mchp_lvds_driver' was not declared. It should be static.
-> >> ---
-> >>   drivers/gpu/drm/bridge/Kconfig          |   7 +
-> >>   drivers/gpu/drm/bridge/Makefile         |   1 +
-> >>   drivers/gpu/drm/bridge/microchip-lvds.c | 228 ++++++++++++++++++++++++
-> >>   3 files changed, 236 insertions(+)
-> >>   create mode 100644 drivers/gpu/drm/bridge/microchip-lvds.c
-> >>
-> >> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> >> index efd996f6c138..889098e2d65f 100644
-> >> --- a/drivers/gpu/drm/bridge/Kconfig
-> >> +++ b/drivers/gpu/drm/bridge/Kconfig
+> That doesn't look like the correct domain.
 
-[skipped]
+Thanks, I don't know how I even constructed this chimera of an email-id
+lol.
 
-> >> +     if (ret < 0) {
-> >> +             DRM_DEV_ERROR(lvds->dev, "failed to enable lvds pclk %d\n", ret);
-> >> +             return;
-> >> +     }
-> >> +
-> >> +     ret = pm_runtime_get_sync(lvds->dev);
-> >> +     if (ret < 0) {
-> >> +             DRM_DEV_ERROR(lvds->dev, "failed to get pm runtime: %d\n", ret);
-> >> +             clk_disable(lvds->pclk);
-> > 
-> > This can result in unbalanced clk_disable(), if pm_runtime_get_sync()
-> > fails. This function calls clk_disable(), but the framework has no way
-> > to know that .enable() was not successful and calls .disable(), which
-> > also calls clk_disable( >
-> > Please consider turning pclk into pm_clk so that its state is managed
-> > automatically (or at least moving clk_enable/disable into pm_ops).
-> 
-> This process appears rather intricate. May I suggest omitting the 
-> 'clk_disable' operation here?
-
-Yes
+-Sibi
 
 > 
-> > 
-> >> +             return;
-> >> +     }
-> >> +
-> >> +     lvds_serialiser_on(lvds);
-> >> +}
-> >> +
-> >> +static void mchp_lvds_disable(struct drm_bridge *bridge)
-> >> +{
-> >> +     struct mchp_lvds *lvds = bridge_to_lvds(bridge);
-> >> +
-> >> +     pm_runtime_put(lvds->dev);
-> >> +     clk_disable(lvds->pclk);
-> >> +}
-> >> +
-> >> +static const struct drm_bridge_funcs mchp_lvds_bridge_funcs = {
-> >> +     .attach = mchp_lvds_attach,
-> >> +     .enable = mchp_lvds_enable,
-> >> +     .disable = mchp_lvds_disable,
-> >> +};
-> >> +
-> >> +static int mchp_lvds_probe(struct platform_device *pdev)
-> >> +{
-> >> +     struct device *dev = &pdev->dev;
-> >> +     struct mchp_lvds *lvds;
-> >> +     struct device_node *port;
-> >> +
-> >> +     if (!dev->of_node)
-> >> +             return -ENODEV;
-> >> +
-> >> +     lvds = devm_kzalloc(&pdev->dev, sizeof(*lvds), GFP_KERNEL);
-> >> +     if (!lvds)
-> >> +             return -ENOMEM;
-> >> +
-> >> +     lvds->dev = dev;
-> >> +
-> >> +     lvds->regs = devm_ioremap_resource(lvds->dev,
-> >> +                     platform_get_resource(pdev, IORESOURCE_MEM, 0));
-> >> +     if (IS_ERR(lvds->regs))
-> >> +             return PTR_ERR(lvds->regs);
-> >> +
-> >> +     lvds->pclk = devm_clk_get_prepared(lvds->dev, "pclk");
-> > 
-> > Why do you need _prepared version?
-> 
-> I will change this to just devm_clk_get().
-> 
-> > 
-> >> +     if (IS_ERR(lvds->pclk))
-> >> +             return dev_err_probe(lvds->dev, PTR_ERR(lvds->pclk),
-> >> +                             "could not get pclk_lvds prepared\n");
-> >> +
-> >> +     port = of_graph_get_remote_node(dev->of_node, 1, 0);
-> >> +     if (!port) {
-> >> +             DRM_DEV_ERROR(dev,
-> >> +                           "can't find port point, please init lvds panel port!\n");
-> >> +             return -ENODEV;
-> >> +     }
-> >> +
-> >> +     lvds->panel = of_drm_find_panel(port);
-> >> +     of_node_put(port);
-> >> +
-> >> +     if (IS_ERR(lvds->panel))
-> >> +             return -EPROBE_DEFER;
-> >> +
-> >> +     lvds->panel_bridge = devm_drm_panel_bridge_add(dev, lvds->panel);
-> > 
-> > Please use instead:
-> > 
-> > devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> 
-> Sure, Noted. Thanks.
-> > 
-> >> +
-> >> +     if (IS_ERR(lvds->panel_bridge))
-> >> +             return PTR_ERR(lvds->panel_bridge);
-> >> +
-> >> +     lvds->bridge.of_node = dev->of_node;
-> >> +     lvds->bridge.type = DRM_MODE_CONNECTOR_LVDS;
-> >> +     lvds->bridge.funcs = &mchp_lvds_bridge_funcs;
-> >> +
-> >> +     dev_set_drvdata(dev, lvds);
-> >> +     devm_pm_runtime_enable(dev);
-> > 
-> > Error check is missing.
-> 
-> Sure, I will add this
-> 
->          ret = devm_pm_runtime_enable(dev);
->          if (ret < 0) {
->                  DRM_DEV_ERROR(lvds->dev, "failed to enable pm runtime: 
-
-DRM_DEV_ERROR is deprecated, plese use suitable replacement.
-
-> %d\n", ret);
->                  return ret;
->          }
-> 
-> 
-
--- 
-With best wishes
-Dmitry
+> Regards,
+> Bjorn
 
