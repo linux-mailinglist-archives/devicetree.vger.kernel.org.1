@@ -1,73 +1,128 @@
-Return-Path: <devicetree+bounces-60485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B61748A96F5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:04:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A018A96FE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67C691F2323B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:04:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6030B224A0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BAEC15B559;
-	Thu, 18 Apr 2024 10:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C02015B56C;
+	Thu, 18 Apr 2024 10:08:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424BF15B544
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E3915B543
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713434665; cv=none; b=iBSICENJaEMFd3yhftDqTUNfAtuW3ml8tTnZDa8ecqf8kp6gS8SOwtvEbmRvRcAAgOnxePkahrKPDCM1CDsGNFWmiKUPq0fGIYGjPsIVRJeM2ZwwJ66lPLU1+b1/66hGo+dPnPeVa7SRt8HRA80wG1Wn7G7fw+KfiqG5TEq+Xr8=
+	t=1713434883; cv=none; b=Wrnix3OPNs+1K56GaFRAmZbH9aWsZlxlfhVvVXry7Cre7s6dc8UoPaLoGJj5izDtjVJsu/5uPOoxavK33O63LACM6XTpBxvLuTTAmtVbeCOKtfbFnghET4BBDJb4KmG6rn9eukT8D+7HqYc7S99MygwUm7/ZaNQxCVNDxe7W+dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713434665; c=relaxed/simple;
-	bh=b6lJQFNCjjDA0yhwUv4MRwEUg7K70HKbhEBMnS+OHew=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=htKs6uyxx2yk5tT5rfMCA59FQgXE4Vk2kenSOvvNj5MNLhHxwOve8lIpYwjEHwuTws7bC7+cPTAaMn9tFLrChHIPKzWE0SvTDWR9J/tpvsumKjq42cRt9kb0FrWXhp4W80qyy7X61DatFnGJ2i+MCJhPq0wybNj5xdXtjXOlRzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 59C19339;
-	Thu, 18 Apr 2024 03:04:50 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 73C563F64C;
-	Thu, 18 Apr 2024 03:04:21 -0700 (PDT)
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1713434883; c=relaxed/simple;
+	bh=7O+LNSXVNCaHl6Nfv33MAGBk4qvosexTJdATWUtdkM4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ioip9wu1r1yQvdapk5viclki6KyhP5LVt23xvPF2oT5ozyP4qCs+M4Zay/xNx3CrSFK81Iv1kI72SThtivz6pRUHvEg2M4FspQsqtXuZdOyaY2zoNGrXBUxGv1o+OVjcVJM+F+5VbTCU7XEZMKAkNm6bFIm63XUV/QW4tT3FFuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rxOfi-0008GD-F0; Thu, 18 Apr 2024 12:07:14 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rxOff-00CxIk-Fp; Thu, 18 Apr 2024 12:07:11 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rxOff-001VPQ-1C;
+	Thu, 18 Apr 2024 12:07:11 +0200
+Date: Thu, 18 Apr 2024 12:07:11 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Update examples for protocol@13
-Date: Thu, 18 Apr 2024 11:04:16 +0100
-Message-ID: <171343460224.3089128.167397556240377927.b4-ty@arm.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240403111106.1110940-1-ulf.hansson@linaro.org>
-References: <20240403111106.1110940-1-ulf.hansson@linaro.org>
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	kernel@pengutronix.de, "Rafael J. Wysocki" <rafael@kernel.org>,
+	linux-doc@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Russ Weight <russ.weight@linux.dev>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>, Mark Brown <broonie@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Jonathan Corbet <corbet@lwn.net>, netdev@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next v9 08/14] dt-bindings: net: pse-pd: Add another
+ way of describing several PSE PIs
+Message-ID: <ZiDwz7_2nGzwVHy8@pengutronix.de>
+References: <20240417-feature_poe-v9-0-242293fd1900@bootlin.com>
+ <20240417-feature_poe-v9-8-242293fd1900@bootlin.com>
+ <171336806575.2618779.157615998420721814.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <171336806575.2618779.157615998420721814.robh@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, 03 Apr 2024 13:11:06 +0200, Ulf Hansson wrote:
-> Recently we extended the binding for protocol@13 to allow it to be modelled
-> as a generic performance domain. In a way to promote using the new binding,
-> let's update the examples.
->
+Hi Rob,
 
-Applied to sudeep.holla/linux (for-next/scmi/updates), thanks!
+On Wed, Apr 17, 2024 at 10:34:26AM -0500, Rob Herring wrote:
+> On Wed, 17 Apr 2024 16:39:56 +0200, Kory Maincent wrote:
+....
+> > ---
+> >  .../bindings/net/pse-pd/pse-controller.yaml        | 101 ++++++++++++++++++++-
+> >  1 file changed, 98 insertions(+), 3 deletions(-)
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> 
+> 
+> doc reference errors (make refcheckdocs):
+> Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
+> Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
 
-[1/1] dt-bindings: firmware: arm,scmi: Update examples for protocol@13
-      https://git.kernel.org/sudeep.holla/c/4625810361d6
---
+Hm... this documentation was added by patch 7. I assume refcheckdocs
+is searching in the wrong place or should the path be relative?
+
+Is this warning a blocker for this patch set?
+
 Regards,
-Sudeep
-
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
