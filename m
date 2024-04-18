@@ -1,172 +1,206 @@
-Return-Path: <devicetree+bounces-60733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C29C8AA175
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C908AA17E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11A31283CBA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:52:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FFFE28180E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:53:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE86517920C;
-	Thu, 18 Apr 2024 17:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CF516C864;
+	Thu, 18 Apr 2024 17:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iHRL8t7H"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="KTNEB4VG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL0PR05CU006.outbound.protection.outlook.com (mail-eastusazolkn19013006.outbound.protection.outlook.com [52.103.11.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5127B168B06
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 17:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713462686; cv=none; b=KNCbNXJDN/TKPGVZl1jkIRKHQUiyWasDd/Rwem4LiaxwRjLP7uAGm/lC1At1w1uFuQK+q4TXOqJem9ckwcVW2jygDJP0ZmDCkh5ovp9TCgvnOU8FlwpJ5/coBEwwIiLHNnTIl5t+K1vx7bAzmgKp3oc+0GqwGwH/ndwRNaEjVEM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713462686; c=relaxed/simple;
-	bh=KdBXRsvK2CVr4aB7wlqRzi1vOez4nde2qg+3HRaBgTM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i6lzzY9GRutSF3FfMRQPP0ndaS7ZynEB9u0nWvvQBWzlHY0L3qQfmpjUnVPJ+nYQRDAQ55rmIlKg+7uCUKwEmaUsuQphlp5apoZNgMm/ZqPgWjE07td6xOKbbUEOSP493KZp0x7qjyGq2jpmJ5NiE8LKTT3gOCtz5QZwhpXD/6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iHRL8t7H; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2a528e7f2b6so952307a91.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713462685; x=1714067485; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bEWmndW1cSbjh0xIBdu/vAc29pKfsBmdXaqbFNxBkMQ=;
-        b=iHRL8t7Hf05DxlN4zLvnU8Ud/zeWCA/Zk5tU2pQmE9jqTV6OnvHuPp5iELJWTP2hca
-         7MEOpTQhsUdqwA+LMJb+Bs1KrdZhbOsiW2AfMHBqguCDtXt5sEi9bBUXvzQVJOUhDEB0
-         lV1dYptMRiHmzJZX0cA+9kp5UbsCWhHRFv4opk7O2fwdX0NdnvL4t1XmrhswCR6nH/Ph
-         lUBNJjSFQ+eFh3+9beLkFnyd9CuXCCHWiaYc5kMYubc//oA0ixbn4b5a6gpU/yHimqHe
-         Krk/XffuxaKVMuBsQTtkW1h9xy/XLfgwS9zzV5E4VZqYGIYOa4tdF/CwA3jf+XsxGtAH
-         HAhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713462685; x=1714067485;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bEWmndW1cSbjh0xIBdu/vAc29pKfsBmdXaqbFNxBkMQ=;
-        b=CB5O0rhztaY0Dfa7qYqefLWYBgQX2b3z7w/51UDADpw2wmywVYpjBLjzy9FcC4T0FU
-         CIBjXZAPq5DJnjSgoD63LClO41+yJpHORXG304DUwiqawkMkBq7enDPQRcqWSKgbSE9n
-         tTqFgIdABBVBn8Q+ReeHgZxynepH9rVP0ocQTlTpNlaKcRT3Kev4TqgLYTtRi31cUK3X
-         wLpRmlzStISra+6YO4gVsGGiic7dhNw6wmzWF9Xv6exL/fqCg9Da5I8x+6V+8Bt8oP4S
-         wb605pH876z88Rf3Xnb8Kp8njfUZ88yCd78svPqhE2Odrsd92/Fms+2taRDSyo5oD0vU
-         tTcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXT34Ej+9XVtCZVfHljwdQFs8Ozq9fUcESyZ8W0H1bbIQv9TaKsLLtw+0fuo69uiRc9KIpOsWpoDzG1XsN8VTSZ2jEtQqFV4HCNPA==
-X-Gm-Message-State: AOJu0YxaPGGAgIHPATY/DiWuAxIAU6Y7ez++AtuJbzFlG5+kRG0se8iU
-	ShRwDTldl7/gM/wN+/yEhL2dQowu/7CnxL2pWU/XzJIm/S7bbz3C3p06lBW4+fc=
-X-Google-Smtp-Source: AGHT+IHZvQc3Wsnv6HkiSUAv0ENsPEUsNwKlIvIpcc7XeSn2lY9Yfuvze8jZeChmnCTNukdKRxylLA==
-X-Received: by 2002:a17:90a:d507:b0:2a5:d979:8eb2 with SMTP id t7-20020a17090ad50700b002a5d9798eb2mr3152834pju.19.1713462684682;
-        Thu, 18 Apr 2024 10:51:24 -0700 (PDT)
-Received: from [10.36.51.174] ([24.75.208.151])
-        by smtp.gmail.com with ESMTPSA id g3-20020a17090a828300b002abf2057cefsm1324332pjn.0.2024.04.18.10.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 10:51:24 -0700 (PDT)
-Message-ID: <16a4a58c-cae6-4b62-859b-3661c052468a@linaro.org>
-Date: Thu, 18 Apr 2024 19:51:22 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9BA839E3
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 17:52:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.11.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713462778; cv=fail; b=RtXNgMJv0daPxOVq58qCnlZ8aGQK0wj/JzA4QehUUEMDGJyt8Z4/Px4XiCE3Fj/EhS5vhO30eWliGRrphMvSPUaWUAALyFQPqG5IbUP4Rw3OQMQC8ayPv/A3Pllv0fH1JJtNrYS5Vh/tMKeb+lZGbqVyeNq675cBZiKNya/KE3Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713462778; c=relaxed/simple;
+	bh=LnuLhPmkPFSy1dcxqO+G5UssOnoJUnEYdzB+QG35rOU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ub4i5BoOXG2ok6FdC8eAtTpLWgRRFIG500dCkUh8vTPzW6I+8cMJ5N0ZYgIBB8lhd7jSg5xj/peN/pdmlpTCjWrBlsYuKKsK/YAGsUtNBAYeiiHDS1fdsQoc2nr5y2DMQkAzYsnFinxBYDZcLu8plIbE3tlxk2nBoO8++lUMttQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=KTNEB4VG; arc=fail smtp.client-ip=52.103.11.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oA+jVHpsZ3apiGmxt8l2pKUndrncMe6Q3u7nvBYqDIphygftVkofGgEDLuEIZKXlNzNvoSKw7C9Blu2gjrh0CrkdK62KGEUyUhsD+EXFZr4bA7a4yxfFQ12yOMNOR6ggonadfeFMMaROYh6/WAkE5VASa0CQAJrphnA5RtXWvenRQyjwDJpcWAwKwagBsilEf847Ruw8DhVy9AzYZe4PvJ2+jpYIH448TbSZOjtn2XUgEt2yuNVEGAa1b1LxkT7OCvdJXhvkZstOGVUg8kzCYbcXaU4HlVTFT5ISn2sXYp3XwWogVv2NAg0cXsxMFe+LZwDNebBuHkbveQ820ABcLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ih1r80xYl1qdjjMokb0pFtJLldNuBCFKSrFju4bhhS0=;
+ b=VW+7y84fgqCbM56eqDp0w+oc263bS1enVINojf1VJCNlDXnij31cCDR9uqSzbxuoDlArjdDQAhnb4U1EgxnMXmxOgbIvr2klUdEnkHIzldt+C7pkpUNlTKVh6xed5xY+MQOd/Ast/yDvDoK74ACUyhowyOUyikeSVouskL/VfnvxhTHqPI2gGd3q8qb5fXtCHtXJ41LnbtAT9KwQjSwftFMeii6Z6647jj8CWKmQxTvWM5YlvUoWbrt+L9okFw/W6MXM0qavZtxBfWW1L+Aww0MefxWhu9zItx+ZGViOtfuXaxf7Pm8c8rz3m+7kqS9avUsxNzVKRmw3aGF9mk87ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ih1r80xYl1qdjjMokb0pFtJLldNuBCFKSrFju4bhhS0=;
+ b=KTNEB4VGGglTJGgZNDsvSUQ1oqZgGGVw10RrBHeyTFK8Xk4tni2xbm+sR++5+KZtpZOiCVrJMSPHO5bwu2+6K690ncmLhsj6LoFGx0f4OfpihE7jhAPqWPFJwjCv8eXXw6AA8gP5V5LfchLmjcsvatGinKHngMiJs7poJ4ZHgr1gnVIlcFpWn/kvl0AcB/r4lgdQxGN8ehhAJXUX2vlv+Q6ZLyH88Kwm04I+1ZISzZuBrnJAp6wK6y4AQ84Xn5Uv1Rit3XxyX6l+gdO9+1u72qzVqe07r6UiOxWzcZ4BDSxpAT3qgj4Jt2EIy5iOKvldNCBcBoqSBSPYsbJWY8Wydw==
+Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
+ MW4PR05MB8906.namprd05.prod.outlook.com (2603:10b6:303:132::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7472.39; Thu, 18 Apr 2024 17:52:48 +0000
+Received: from DM4PR05MB9229.namprd05.prod.outlook.com
+ ([fe80::12a8:4f88:32b0:9407]) by DM4PR05MB9229.namprd05.prod.outlook.com
+ ([fe80::12a8:4f88:32b0:9407%6]) with mapi id 15.20.7472.037; Thu, 18 Apr 2024
+ 17:52:47 +0000
+Date: Thu, 18 Apr 2024 12:52:44 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, mripard@kernel.org, samuel@sholland.org,
+	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+	ryan@testtoast.com
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: Add NMI device node
+Message-ID:
+ <DM4PR05MB9229EECD9B39729F8DE0F786A50E2@DM4PR05MB9229.namprd05.prod.outlook.com>
+References: <20240414170424.614921-1-macroalpha82@gmail.com>
+ <20240414170424.614921-3-macroalpha82@gmail.com>
+ <20240415003740.666759d0@minigeek.lan>
+ <DM4PR05MB922973D047EB3BE774EEB943A50E2@DM4PR05MB9229.namprd05.prod.outlook.com>
+ <20240418171907.27c0ef84@donnerap.manchester.arm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418171907.27c0ef84@donnerap.manchester.arm.com>
+X-TMN: [kpzDmTb2yyrO8macCD7W6TpaOljRKRou]
+X-ClientProxiedBy: DM6PR01CA0016.prod.exchangelabs.com (2603:10b6:5:296::21)
+ To DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20)
+X-Microsoft-Original-Message-ID: <ZiFd7NZGPRvCjz1D@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] spi: cadence: Allow to read basic xSPI
- configuration from ACPI
-To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, pthombar@cadence.com,
- Piyush Malgujar <pmalgujar@marvell.com>
-References: <20240329194849.25554-1-wsadowski@marvell.com>
- <20240418011353.1764672-1-wsadowski@marvell.com>
- <20240418011353.1764672-5-wsadowski@marvell.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240418011353.1764672-5-wsadowski@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|MW4PR05MB8906:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4da6c6df-2198-4b76-484e-08dc5fd05b76
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bKCFF0GwftlQ/y8I++GCdpm7ivAeXhUf7oEuUrEUqQ0HR4lb9lhxVju6bWQ2Wsu0TlDcgdayj/6+7SgDHe20C6jXXVpD3dEpAfTwuRz7SqCGQovldAToW76tm1TEtCXrcHxEJjhnXQgnny3aa+bTlOnsVUzS4lyM1Q6R7hsOoglF6z53Qlmkh6lqlsv3wIiQ64WFaTRpeDxH4Qa+tVMT8SMHvRfHkiaaMiP0ymYMykTGbS6Rzn6L00xJj+PJHhGx9mx/HDa/E9Fr8j0Hcaxh3Tad44JBolt6yA1JhV4kKLAYpOJJ/VnyOoPfzerZ+EGrwmx6fDEde3mFaONcVumXFlz0L1ZNJUEGotjztw0+NHuKimUMPqbNHWqWUkDojAsHWD/HPgrpduAyfuvbuybor+yHHZBypQjMOeBgaSxQsp7kWzpBlF4zAFDmTYJmqq7rni2/1y8c6C5ltCGnU2X+uaeGv5j4mjT61315sP001TjCiLbn/Z/23hBDfG1ldhTFJDPVyWI+CveQNYSRa4rRvq/gxylRHdYe0M7pe2Mw0R7JJHuTvnroiiOq4B3Ob8I7
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?x5+vuZqxDNhIMc7nT3d++k83gxlnbST6DA7L+SX2QtwHErPMdr9KZGrvSboC?=
+ =?us-ascii?Q?xuYUhdZLytZjbmcPZuaVKVfkT1uHpqAI10hilk9azAPz0ZX0UuaAvVOQF2v8?=
+ =?us-ascii?Q?aT3CpYeCOcAS7d2Bip1jd3CuR5owEyFuQgEXZUAqHWqyz/O266eOzG6MExQg?=
+ =?us-ascii?Q?8mnBc1aa0K9BH6V+7LUDSdZkPVKodlFqSwRo+AF4wNoQExMuVfjrQcYu2kta?=
+ =?us-ascii?Q?LUupDTTzMH9YZn5bUTdCofOz3FyGlmnSiT6Yn353V6uYnmNjZxj+2TfBBVHX?=
+ =?us-ascii?Q?SiNBzAOBJntNxppiuMuaoc2duofhV4B/20hNgN1mNpmVmT9u39+t2EYiEn3P?=
+ =?us-ascii?Q?oCvYTQ4jFmUXG7qbAWi/ApunZqJ8vmFUv/O2wBSnHmxTZUmn3sWjXqbG/KP9?=
+ =?us-ascii?Q?kcwtZJ3blCQedKKXQ0SGa/KFlp1ei+J7sRvFRFv4YxXopgILdejzSTCWs/nW?=
+ =?us-ascii?Q?6nRDiweVKpQOWo+heArrkMbEiRGbFqC6AHfe0TTznE9xVEE3fOILVTog3xeo?=
+ =?us-ascii?Q?mWD3DRaysQSOJQLC1u1FYNRQpSPUEQ2BAOytKYWjB8aEevPo37DKFM04QaKI?=
+ =?us-ascii?Q?Ddb7ZeQ/icLqInSDK+q1DvUArnPsMKBe8fYMUwhM5A71syrLReTndeLV8G2k?=
+ =?us-ascii?Q?2nuYykBhXoM/IuqgpELOeVr/erbmRAZt0OQ12K2czyxD3e1wOYDLVJxEKpgn?=
+ =?us-ascii?Q?6pRS/5VRSWMiurTuup0exbyn2c0yntYKj7PxlfipDZwlfSSCGwb6pCvkhwLi?=
+ =?us-ascii?Q?PGvHPCsNpgAvdie5ysJBqL3cu4QDJJwur2sQCOvCODRmXoJhlL2Bqn9IZ19C?=
+ =?us-ascii?Q?gfrP3M/GVTximNa4i2Ea0NQWQfZ3a4VqJy6ze24oyIK728blPYX5Uk3Hkpm2?=
+ =?us-ascii?Q?A/3kSHYvqrj18Ouj4tRfE+lSvfoF4FZR1rCRLg1Bq8CPjCbKoYUnL5u2DmRE?=
+ =?us-ascii?Q?n03BQVlhYNJOhqcIIiNqMEkb5SJv9IxEthjuROZIqu8QkSo7FeW88BpfP8ip?=
+ =?us-ascii?Q?sib1gfwXDtgX11cp2UN/ikP1ExQRP2/ue/NHlVanlFPZyTLdTsxReV7STeoX?=
+ =?us-ascii?Q?llR2z3/lAMEEF1ct6v9gpOBZ8glhpeXZ5fxOJZWWM+ffzTh6b7q47Hkcr4t/?=
+ =?us-ascii?Q?CGs7I0iQ9Ibo8jfiEZ9vAd1wdP8jT+qIe9B7fb2OZjoZrRwHTdEKq9nUkFzA?=
+ =?us-ascii?Q?cUT/jadQE4euemWYGaXxUmYqVGlSjystIUFfsul+PoIg1f9U0aNnQ+9gmJo?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4da6c6df-2198-4b76-484e-08dc5fd05b76
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 17:52:47.8162
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR05MB8906
 
-On 18/04/2024 03:13, Witold Sadowski wrote:
-> From: Piyush Malgujar <pmalgujar@marvell.com>
+On Thu, Apr 18, 2024 at 05:19:07PM +0100, Andre Przywara wrote:
+> On Thu, 18 Apr 2024 10:59:13 -0500
+> Chris Morgan <macromorgan@hotmail.com> wrote:
 > 
-> These changes enables to read the configs from ACPI tables as required
-> for successful probing in ACPI uefi environment.
-> In case of ACPI disabled/dts based environment, it will continue to
-> read configs from dts as before
+> Hi,
 > 
+> > On Mon, Apr 15, 2024 at 12:37:40AM +0100, Andre Przywara wrote:
+> > > On Sun, 14 Apr 2024 12:04:24 -0500
+> > > Chris Morgan <macroalpha82@gmail.com> wrote:
+> > > 
+> > > Hi Chris,
+> > >   
+> > > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > > 
+> > > > Add device node for the H616 Non Maskable Interrupt (NMI) controller.  
+> > > 
+> > > You might want to mention that the NMI pad is not exposed on the H616 variants, but on
+> > > the T507 and H700 packages.
+> > >   
+> > > > 
+> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
+> > > >  1 file changed, 9 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > > > index b2e85e52d1a1..1e066f3057be 100644
+> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > > > @@ -775,6 +775,15 @@ r_ccu: clock@7010000 {
+> > > >  			#reset-cells = <1>;
+> > > >  		};
+> > > >  
+> > > > +		nmi_intc: interrupt-controller@7010320 {
+> > > > +			compatible = "allwinner,sun50i-h616-nmi",
+> > > > +				     "allwinner,sun9i-a80-nmi";
+> > > > +			reg = <0x07010320 0xc>;
+> > > > +			interrupt-controller;
+> > > > +			#interrupt-cells = <2>;
+> > > > +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +		};
+> > > > +  
+> > > 
+> > > I can confirm that this matches the manual, and the registers behave as
+> > > described in the A80 manual. I don't have access to a chip with the NMI
+> > > pad exposed or used, so I cannot test this fully, but Chris'
+> > > experiments with the AXP717 PMIC connected to that pin on on H700
+> > > board seem to confirm that it indeed works.
+> > > 
+> > > So with that small amendment to the commit message please take my:
+> > > 
+> > > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> > > 
+> > > Cheers,
+> > > Andre
+> > >   
+> > > >  		r_pio: pinctrl@7022000 {
+> > > >  			compatible = "allwinner,sun50i-h616-r-pinctrl";
+> > > >  			reg = <0x07022000 0x400>;  
+> > >   
+> > 
+> > Since the H616 doesn't have this functionality but the T507 and H700
+> > does, should I change the compatible string? It's all the same
+> > silicon die with just a different part number printed on it, but
+> > still...
+> 
+> I would stick to h616, since we use that for all the other devices. Also
+> the H616 *has* that NMI controller: I can confirm that the registers exist,
+> and I can trigger and acknowledge interrupts. So in the interest of
+> consistency: keep using "allwinner,sun50i-h616-nmi".
+> 
+> Cheers,
+> Andre
 
-...
+Okay, and I'll just resubmit then with the notes you mentioned and
+your tags.
 
->  	}
-> @@ -924,6 +989,21 @@ static int cdns_xspi_probe(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +#ifdef CONFIG_ACPI
-> +static const struct acpi_device_id cdns_xspi_acpi_match[] = {
-> +	{
-> +		.id = "cdns,xspi-nor",
-> +		.driver_data = (kernel_ulong_t) &cdns_driver_data,
-> +	},
-> +	{
-> +		.id = "mrvl,xspi-nor",
-> +		.driver_data = (kernel_ulong_t) &mrvl_driver_data,
-
-UEFI provides compatibles for ACPI? I think that's first such format in
-the kernel.
-
-Best regards,
-Krzysztof
-
+Thank you.
 
