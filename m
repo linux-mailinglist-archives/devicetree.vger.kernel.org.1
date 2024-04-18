@@ -1,137 +1,130 @@
-Return-Path: <devicetree+bounces-60750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDAA28AA2EE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:37:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F7C8AA3AF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:04:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FEE31F22E42
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:37:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D60EDB256FB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D539181BB2;
-	Thu, 18 Apr 2024 19:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74631802A1;
+	Thu, 18 Apr 2024 20:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XZYxYOdF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eY4rQTR0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932DD18133F;
-	Thu, 18 Apr 2024 19:36:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C6F16D314;
+	Thu, 18 Apr 2024 20:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713468980; cv=none; b=Y68W6hibdlskUKQdTAVH2/ni4cGPvHjSyAJCa/cjcFXhR6IrEiCK0I3YpFm+UTPnDXJ0YoT54S2S3sTO+giyBrNZxD8qEBDPzgCG77gfNHwa2DpyECR1i7jD7M/RVwDKSCL9YL8F8hkuJYVm74CBoQLK18iXbuJVrSxa9S4k5ZY=
+	t=1713470408; cv=none; b=nqg9TR9hkFsjJ1+BZnpOjQBZEzBH6iZduhEFQiUSGi5D3vUw6rnvhAAh2UdD988pVp+/fTfS1K8/F2yRNE7U1lLMUUhULg8mxgqtlwj6JMjrhyu7aXPs3C0RbACJkgi8DrIFxFwtxNwhlJBBIg4oZD2wuOvdae3Z/7TVU9tq2pQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713468980; c=relaxed/simple;
-	bh=ciSkl5jjmwVLGNqACw+Y9/FoiKB85ls6a6PyIFwTt5s=;
+	s=arc-20240116; t=1713470408; c=relaxed/simple;
+	bh=HWefGnwQI2HwNz4Knpy1Fh114LZYu0wgCLBTdlxtmUM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=clgzS70mBGRRwk5sgKJGeL/bD/ZG22MC/DEmPA1xvsY0YAZSz3JAeVzDWCD3mRu81KU1+hL0DwnOtb6IC9qS1J12jt04j+lVErWPrR5tFBTXN1ZxMqKcNCf5nxgAbUAoQjsIfEkd/g8p75PcfutZCryXFr9gdO6bCttZ0MvSc/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XZYxYOdF; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713468978; x=1745004978;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ciSkl5jjmwVLGNqACw+Y9/FoiKB85ls6a6PyIFwTt5s=;
-  b=XZYxYOdFo6EyM9u6AP7w9Q/7ICOS3tGBWZUivjlOLmsRUB5RvrgcPIz8
-   /tAPFAUeeYalcKkJDIkrFFjNZmUO0xaYwXvmXhbMiEW55l1+ESdSEkkYN
-   ebsTmV0dcvtZdNYsiYYxHfDsUfOUm+tghUAv9Pw7QdroSjVUYt0GVVOX+
-   sYzQz7WNV4vFLdImW/1Bdgse0Z0eTHmE5E1hTB+d/GCgcqMs3z9hyO7xU
-   GzRV8Taz6h9tP0SDtxLRMZ2EjqNo0PIq9iuJeIBBdispdqXB2o4z5WN0w
-   UeIDnjVcNqUgWs1FxOKEWCGZAHm2Q3VpaxD8EfqbDL+kq4alrDcbfRXM1
-   g==;
-X-CSE-ConnectionGUID: 0kjjTXhiQnGfjU+EzV1fdA==
-X-CSE-MsgGUID: lMdC05ZERo6gDq8pyTkkFg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="26556358"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
-   d="scan'208";a="26556358"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 12:36:15 -0700
-X-CSE-ConnectionGUID: PuNa+9+fT2miWmb6tlExpA==
-X-CSE-MsgGUID: WnMTpszQTv6wTRC5wFCo6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
-   d="scan'208";a="23532035"
-Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
-  by orviesa006.jf.intel.com with ESMTP; 18 Apr 2024 12:36:13 -0700
-Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rxXYI-00099E-1L;
-	Thu, 18 Apr 2024 19:36:10 +0000
-Date: Fri, 19 Apr 2024 03:36:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pthombar@cadence.com, Witold Sadowski <wsadowski@marvell.com>
-Subject: Re: [PATCH v3 3/5] spi: cadence: Add Marvell xSPI IP overlay changes
-Message-ID: <202404190319.hTksJJAv-lkp@intel.com>
-References: <20240418011353.1764672-4-wsadowski@marvell.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=G+tkgY+fvZtBuM+ENr0k0NIhjhFuMoia0wjM7de6oC5nPQLeab0L4kERid5AuOYxFghLc6FvsR7UuXlhG2JRnGtkBgVOAsgJuwGf3qWUdX0gx9wEJEgXFiV1H1m+81kO1UvcjGXRqMkGyy31QYL6ayZ+jySJyU7DNDAEbum0xuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eY4rQTR0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6AAFC113CC;
+	Thu, 18 Apr 2024 20:00:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713470408;
+	bh=HWefGnwQI2HwNz4Knpy1Fh114LZYu0wgCLBTdlxtmUM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eY4rQTR0vB3nF31du2IEDKNwwn+Arhad3fDAJYF8yZ1FJh3Dhu/OomZi51qGz0+xm
+	 yra/nkWPz4cFawkghV0gdBKi6ECmIsqrPWj3/SQU3/50UuGZrAWlq2RS2efp5kTKhn
+	 sEsyCi98quhg615KvU+4ANrTH8KbscCy6oiuVNXuib7kuD0Id9WX3lNppWvtA90Im5
+	 0AKhCGhrvZTB2b9mhHgqt6RU8CbmlUzz8j1iWRciRpAczvqRefIU8Dz3FAeIcL/OOI
+	 zD8tMN5uEBWYh68fDMPlqOQL0e7l0KYx5v22crgl35DzYqXvHmF+v+qdFjxzsYhJvr
+	 6SFqrgLNKRXPw==
+Date: Thu, 18 Apr 2024 21:00:01 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Eric Biggers <ebiggers@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Andy Chiu <andy.chiu@sifive.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>,
+	Guo Ren <guoren@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	Vincent Chen <vincent.chen@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	Joel Granados <j.granados@samsung.com>,
+	Jerry Shih <jerry.shih@sifive.com>
+Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
+ to ZVE32X
+Message-ID: <20240418-dolphin-epileptic-749c9628e5a9@spud>
+References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
+ <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
+ <20240418-brook-chili-4d3e61d1a55c@wendy>
+ <20240418155256.GA2410@sol.localdomain>
+ <20240418-ultimatum-yam-11de4b063b83@spud>
+ <20240418173203.GA1081@sol.localdomain>
+ <20240418173946.GB1081@sol.localdomain>
+ <20240418-sterling-sanding-d59c3b0a2aaa@spud>
+ <20240418184129.GA1071@sol.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MEYWdzN/KoxvaYBs"
 Content-Disposition: inline
-In-Reply-To: <20240418011353.1764672-4-wsadowski@marvell.com>
+In-Reply-To: <20240418184129.GA1071@sol.localdomain>
 
-Hi Witold,
 
-kernel test robot noticed the following build warnings:
+--MEYWdzN/KoxvaYBs
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on v6.9-rc4]
-[also build test WARNING on linus/master next-20240418]
-[cannot apply to broonie-spi/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Thu, Apr 18, 2024 at 11:41:29AM -0700, Eric Biggers wrote:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Witold-Sadowski/spi-cadence-Ensure-data-lines-set-to-low-during-dummy-cycle-period/20240418-091647
-base:   v6.9-rc4
-patch link:    https://lore.kernel.org/r/20240418011353.1764672-4-wsadowski%40marvell.com
-patch subject: [PATCH v3 3/5] spi: cadence: Add Marvell xSPI IP overlay changes
-config: x86_64-randconfig-122-20240419 (https://download.01.org/0day-ci/archive/20240419/202404190319.hTksJJAv-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240419/202404190319.hTksJJAv-lkp@intel.com/reproduce)
+> If the RISC-V kernel ever disables V, then it should also disable everyth=
+ing
+> that depends on V.
+>=20
+> This would be similar to how on x86, if the kernel decides to disable AVX=
+ to
+> mitigate the Gather Data Sampling vulnerability, it also disables AVX2, A=
+VX512,
+> VAES, VPCLMULQDQ, etc.  See cpuid_deps[] in arch/x86/kernel/cpu/cpuid-dep=
+s.c.
+>=20
+> Sometimes CPU features depend on other ones.  That's just the way things =
+work.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404190319.hTksJJAv-lkp@intel.com/
+=F0=9F=A4=A8
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/spi/spi-cadence-xspi.c:288:11: sparse: sparse: symbol 'cdns_mrvl_xspi_clk_div_list' was not declared. Should it be static?
+> Whenever possible that should be handled centrally, not pushed down to ev=
+ery
+> user both in-kernel and userspace.
 
-vim +/cdns_mrvl_xspi_clk_div_list +288 drivers/spi/spi-cadence-xspi.c
+FWIW, anything detected but rejected while probing the DT or ACPI tables
+will cause riscv_isa_extension_available() (or other APIs) to return false.
 
-   287	
- > 288	const int cdns_mrvl_xspi_clk_div_list[] = {
-   289		4,	//0x0 = Divide by 4.   SPI clock is 200 MHz.
-   290		6,	//0x1 = Divide by 6.   SPI clock is 133.33 MHz.
-   291		8,	//0x2 = Divide by 8.   SPI clock is 100 MHz.
-   292		10,	//0x3 = Divide by 10.  SPI clock is 80 MHz.
-   293		12,	//0x4 = Divide by 12.  SPI clock is 66.666 MHz.
-   294		16,	//0x5 = Divide by 16.  SPI clock is 50 MHz.
-   295		18,	//0x6 = Divide by 18.  SPI clock is 44.44 MHz.
-   296		20,	//0x7 = Divide by 20.  SPI clock is 40 MHz.
-   297		24,	//0x8 = Divide by 24.  SPI clock is 33.33 MHz.
-   298		32,	//0x9 = Divide by 32.  SPI clock is 25 MHz.
-   299		40,	//0xA = Divide by 40.  SPI clock is 20 MHz.
-   300		50,	//0xB = Divide by 50.  SPI clock is 16 MHz.
-   301		64,	//0xC = Divide by 64.  SPI clock is 12.5 MHz.
-   302		128,	//0xD = Divide by 128. SPI clock is 6.25 MHz.
-   303		-1	//End of list
-   304	};
-   305	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--MEYWdzN/KoxvaYBs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiF7wQAKCRB4tDGHoIJi
+0lrQAP0ZnhY2j8dAgcGtM2slb23/HOfAFrbbsZhuBfSx0uoWSAEAubVPWlDs59pJ
+eFvw6AB3RzfrfggfMB1wA9nLHCZYzQs=
+=Ogch
+-----END PGP SIGNATURE-----
+
+--MEYWdzN/KoxvaYBs--
 
