@@ -1,111 +1,115 @@
-Return-Path: <devicetree+bounces-60362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 291DA8A8FB2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 01:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D0EA8A8FCF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 02:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8FB0283958
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 23:49:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 096A6282603
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 00:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F323F130A6C;
-	Wed, 17 Apr 2024 23:49:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wLiMXiYf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2306019A;
+	Thu, 18 Apr 2024 00:07:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0684786647
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:49:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95DC310F2;
+	Thu, 18 Apr 2024 00:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713397774; cv=none; b=sR90OZFOW8ilQNdIZhEidLc6BUYs5SmTF13DC71nOg3LABDNL37aazjRDMr5Jk3mlpmMg1XPKgX6+lnJTt7jClxP6xqrK/nk8BQ563JhGqLQjhNEKKi4cFQKgE7Ygr3ty0Cwx0QcBsixZ/84ExYRy/jyWpUp7PR7hpcu8PkBKXg=
+	t=1713398872; cv=none; b=S9EiULo1IC8M6pM77LP1lLDLEMvIk6M58TC98Qno0crjKwoWMk3XgC9gjl4xljL6V1tq5zNishzsUxYD/bWRqnrVtstk/OecaAE8zEoq35r0/YPv9Bi3dcQ1DST5fq/XYXNEF8qjQ26rFhprY6kwyF2cQTSeBP5ebrFr86OFQxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713397774; c=relaxed/simple;
-	bh=tlqRCKx02DY699x9+WjnG6mz6EwDvyHTPJ2Fyqrda4w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XFu27hF1B2ZmdGFtrqiY8iK1qjVaufo7zmzCldO3Wpi4p3l3vDUpI5CgA64lWbWmTQ+Q7KkrQgZoe/XYw8Kx9lqVyXuBTJhURSy36DTUROxwGMFdx/F71RMgMBnzNsLDIZ3i/RYvFGBfzMzINND2u56xfR4xUDDEsqGKl1vqyow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wLiMXiYf; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2db13ca0363so4583331fa.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 16:49:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713397770; x=1714002570; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IDyTmfUTB48zbrRJ3Ex/J4eaqhXRSOEtnoHY2dxsblE=;
-        b=wLiMXiYf2b7jVK60Y4Xk80xrnrYpwkFRF0QRtTjIJNbCiiCKCis7dGA2A0n8h7nETZ
-         blrDyIZY3JqybtERQzTtW0YSC9c/izXJ5D7rkDOY703lOOTW7Jz9uqnNK7WNRnuLJ5l+
-         GlB4LsRojZIL4jCYaaIUHJxKPBAIJ91maa19rJRqPSl9FI45t3QUxKdJmzhLy2a0eOk0
-         o0uUKEWByurYKGjpO0CsdeDeWOXrmQDSaJh75SeDX6eRFEld18hy3JNyyW/ZWKpurNx/
-         w29kBDCOFmTeDu2VqWVSPbYmx0G7iVWdxR5IM1Hif93/U/tSZkHwVXvFmT2vuEEOYNho
-         L/ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713397770; x=1714002570;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IDyTmfUTB48zbrRJ3Ex/J4eaqhXRSOEtnoHY2dxsblE=;
-        b=DSW2puCF5nZ60K+dDHOKiSblq8f2tKf8uA7ljDMGAtsgNtxjr8OwiVuqMBAPzmSxNE
-         jqd7t1b+87GrseCe/ISQ5wVwUWvwZ5IRTA9V8utg2mBn1t/PqnZNwvLMMduBkuyOZgzV
-         JcJYrOX0fMLNDOUr0JMx8wVvkaFHKdUK6WyhQ+UKcb75yhFXsw9dN43WzRBVn7zs1DVL
-         ghCKe7X1vmLnCDD0BkwGINaG0Pox5f2cmVWsVLHIz+6Br7tWMfipR5XtBAnZycaznFRL
-         myWrIbwrkMuWvSoyT8uOJH3hEXDe5yjS19QV38uRIjvFxK1XZFwuhSGg7Mwo8v9QQFve
-         69MA==
-X-Forwarded-Encrypted: i=1; AJvYcCVCHnNFGewWVm4CA1Sol/htu6GuXV6uQP2eJvy5UL84ohghWzcPVP7OWiL7rZ323us0idUSubJspH0XLM8bmQSV5NtRZwPMAtrihA==
-X-Gm-Message-State: AOJu0YxG7PI4snYWrWNynm3cDB5PStyBrGGgW/TePb6VCd+HEgSX8Eyz
-	cOY5GdaPwMzOsYt9SEVzBDyt7wRIBDbEiS6P2/iSLcgDJfpJD7u5Q0bVwAIM62I=
-X-Google-Smtp-Source: AGHT+IH/MUOBgyPCemAoyY2nfZkjc3UXoMr2/x45ATSbPEjenP4BTGIPiOlkgeZVrWhJMW0EEXYW4w==
-X-Received: by 2002:a05:651c:50c:b0:2d4:6893:24e1 with SMTP id o12-20020a05651c050c00b002d4689324e1mr536858ljp.50.1713397770075;
-        Wed, 17 Apr 2024 16:49:30 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id e21-20020a2ea555000000b002d70a040f21sm35241ljn.91.2024.04.17.16.49.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 16:49:29 -0700 (PDT)
-Date: Thu, 18 Apr 2024 02:49:28 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: sm8550: Wire up GPU speed bin &
- more OPPs
-Message-ID: <hykql6t7xy5uajvnzbslagrki6xvg3mjuba5hpjha36ue5ra76@4s3m2vsbxjav>
-References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
- <20240404-topic-smem_speedbin-v2-7-c84f820b7e5b@linaro.org>
+	s=arc-20240116; t=1713398872; c=relaxed/simple;
+	bh=KCFtt4+CJgY99XrUpZ/t3/3glu1QWpH5Pg1MJ7tRmVs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lESyRCvu7gV15hljmHlnBeB85M7g3wVILdbJu6H2el7Kno6JhSz7+6UOgvBRgC7lDv+Mq0BIuc/MCLl5/QqYYBzU0swjXGEJVPWDJaqOKjhqIRZv930mkM4YFDKOdO/c6Ok/OXoJ10XvHC1P9R/diKpqtb1DnneAAklbgzMbkRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 82804339;
+	Wed, 17 Apr 2024 17:08:16 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCFD43F64C;
+	Wed, 17 Apr 2024 17:07:46 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@csie.org>,
+	Lee Jones <lee@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
+Date: Thu, 18 Apr 2024 01:07:31 +0100
+Message-Id: <20240418000736.24338-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.35.8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240404-topic-smem_speedbin-v2-7-c84f820b7e5b@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 17, 2024 at 10:02:59PM +0200, Konrad Dybcio wrote:
-> Add the speedbin masks to ensure only the desired OPPs are available on
-> chips of a given bin.
-> 
-> Using this, add the binned 719 MHz OPP and the non-binned 124.8 MHz.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 21 ++++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
+This is v2 of the fixes to the AXP717 PMIC support series. Lee put the
+original patches in an immutable branch already, so these here go on top.
+Patch 1 is new in v2, and adds the IRQ status and acknowledge registers
+to the writable range. Thanks to Chris for pointing this out.
+Patch 2 contains fixes to the regulator descriptions: the LDOs had the
+wrong supply source, and two numbers were wrong. The datasheet describes
+the voltage ranges and register values differently from what our macros
+expect, in a way that literally begs for off-by-ones, so here you go.
+Also there is an actual wrong number in the datasheet, add a comment to
+document this.
+I don't know if that's still feasible, but those two patches would be a
+good candidate to squash into the patches that they fix.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+The other three patches add the "boost" regulator, which is meant to
+provide the 5V USB VBUS power when operating from the battery. It's the
+usual trinity of binding/mfd/regulator patches.
+Again this could be squashed into the respective patches from the
+original series, if people agree.
 
+Please have a look and test!
+
+Based on mfd/ib-mfd-regulator-6.10, as detailed below.
+
+Cheers,
+Andre
+
+Changelog v1 .. v2:
+- add tags
+- add patch to add missing IRQ ack register range
+- add comment to document bug in datasheet
+
+Andre Przywara (5):
+  mfd: axp20x: AXP717: Fix missing IRQ status registers range
+  regulator: axp20x: AXP717: fix LDO supply rails and off-by-ones
+  dt-bindings: mfd: x-powers,axp152: add boost regulator
+  mfd: axp20x: AXP717: Add support for boost regulator
+  regulator: axp20x: AXP717: Add boost regulator
+
+ .../bindings/mfd/x-powers,axp152.yaml         |  2 +-
+ drivers/mfd/axp20x.c                          |  3 ++
+ drivers/regulator/axp20x-regulator.c          | 37 ++++++++++++-------
+ include/linux/mfd/axp20x.h                    |  3 ++
+ 4 files changed, 30 insertions(+), 15 deletions(-)
+
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
+prerequisite-patch-id: 2b5fb10f68e0994071fc4c7dce73db7047c23220
+prerequisite-patch-id: 5d0735de888d155b2c1cdb814e852a5852a17ec7
+prerequisite-patch-id: 29c30894b4bf0b9e1e71de065cabbd842505e248
+prerequisite-patch-id: 0ab87cbf7362b6dc2d577d2264eb9574be47b5f6
 -- 
-With best wishes
-Dmitry
+2.35.8
+
 
