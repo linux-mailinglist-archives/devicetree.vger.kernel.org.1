@@ -1,128 +1,155 @@
-Return-Path: <devicetree+bounces-60392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C98B8A9229
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:54:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A178A9284
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 07:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 188CE28226A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 04:54:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9AB6B2157E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 05:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092C34EB46;
-	Thu, 18 Apr 2024 04:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E047555769;
+	Thu, 18 Apr 2024 05:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="kmAm/FmR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GvPPjrqf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEDD31A81
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 04:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD2C4F8A3;
+	Thu, 18 Apr 2024 05:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713416086; cv=none; b=eysxUut3jYTWkYMU7hAdFwN7rJEF1VqhAo+ku2tMifM01GUBMN45ELo2b8fGO6KoCrPrWmfPN7yI1Y1WYsXjfZ346Ldq1rjb1fEUGLvzL5tLT8QimFQg7NWe2e5VvMIbZtjJgt95FvCKkPXqftFwvdoBOFbgBp/MW7vBjvVbrq0=
+	t=1713418821; cv=none; b=uo9GZmy4t0rpZN1MMjzf/b5cgJWGxGtn/3trHK1ZMuDqg5lsOLS+mTXi59kxCiKN15sFckFq/Q8/hJ0CY21zNyUjTB+VEOgScHC6snkWPfZzYVJfarl7oTe1L5+v7VMCVbajYqm88SpjpfnkISPRIP/ls9a0DFKjrthVDxQApQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713416086; c=relaxed/simple;
-	bh=l+eY8tTDyqWyVXlISC7VFjgtUEuZI+FUR4T3V7xK5Ko=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m454ocp5F8miJSrlGUJ+paGM21qlwJMd+V54vO1PUhIyuvve/nxQBgh+Ju6whRJnin/aBjw2gqTppmKB63Rb2ChCZemvswJg7WboMyteSJAGuzWzuoICn9ClHh7DceYncrc1OSqa7WP7rQxZXPlW47vSFLBl5iFFUAfn/RUmAJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=kmAm/FmR; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-349e211e562so291069f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 21:54:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1713416083; x=1714020883; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SEV1/iFjpmWtEmSKqFgeoYjXuzkyg2NXZjtp9IdqTXI=;
-        b=kmAm/FmRb+83zYtuzhRcXZ6V79W1gOX9lY4UaGfhutfbdAnoHgr7BDEUlB4AHRijEH
-         731Y/4Y5mzepyveuubE66lGeMr9XHYmS9zDtEZ+8tE33DJZP2yGUPiIXLtlgM35U1mSc
-         gJk8a5Rij1jaEkp8oKnZ71wZcunqzJP15gN6mdo0C+e6sSPpXsdzjiazebwG0XQT+dzy
-         vXEUzU/KOUUHLJH4ii0HsyZpacIl8xoMxDaWP/5gxc+lyc/OJDCyQjM1tD/VSgHp2aLd
-         uRyfZhpefs6YWHU3ZxXmGN0V1L3FyAIBEwdtGZXEeSaItwHpSVqEURvZWftjXv2HG2yU
-         LKAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713416083; x=1714020883;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SEV1/iFjpmWtEmSKqFgeoYjXuzkyg2NXZjtp9IdqTXI=;
-        b=OPccarIW3bJBTiAN78afVOkb5jAJwzgQWQZhQpPE4Om2k+SiAUCbX7RQWjd1xU+icF
-         KVRrcmMmlEGzaYAh6KDbcgH9kIoUrgJ+9767jMtRgRfQS4ZCAyCIMOzd2snEeidFt0+0
-         EH3IgFYKJ+0iOctjFJz57OM0eyNhrtMOwtdWfR3jEaFFJT9V2e+mUq2JNOwPbVaGAI+0
-         CKfmiTthz3iEsxH2TmIz5vpEYbtYAfvyOW0KwBIbJL3tdPV0CFdJwNIkx8YI4CRS6Fec
-         4Ef68kjbPE0ojYXo1prRUDNPYEKQBYkrN0HKjOrOCoWxPIvAZROcCrNCGGhbhsyhCWpn
-         5R8A==
-X-Forwarded-Encrypted: i=1; AJvYcCUHDrtpYjOoZDcZ/hN8A7XEBsJdGIbcbDCZHOhiL/7JLsfh2tWwJg4RBDNViO+pAH3lt3HAjEGdYj3yS8IxZmRJkKck87peyfaC9Q==
-X-Gm-Message-State: AOJu0YzawwlnG5hjuaQ/PIQKxBq+kUatD8XHMokPwk261lNvr8VdmKPu
-	1eQPvO5YKjAYiEPswKgmx+3DuFpRhj/oDHA12XRHCP2uFzo/P5QE/9atGVdeQMs=
-X-Google-Smtp-Source: AGHT+IFxe6+PaKuJ6n6lY0fFBN+EBx9jVKZ5r9lFREaHx80p6pKJXX/SI+I0pB85FB7OsDWzDIJXGA==
-X-Received: by 2002:adf:f851:0:b0:345:223:2dd8 with SMTP id d17-20020adff851000000b0034502232dd8mr718339wrq.23.1713416083033;
-        Wed, 17 Apr 2024 21:54:43 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.185])
-        by smtp.gmail.com with ESMTPSA id l6-20020adfa386000000b00349e2fab2a2sm799118wrb.12.2024.04.17.21.54.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Apr 2024 21:54:42 -0700 (PDT)
-Message-ID: <dd231ad2-06e7-4f8d-b7ed-d0e374a9561f@tuxon.dev>
-Date: Thu, 18 Apr 2024 07:54:38 +0300
+	s=arc-20240116; t=1713418821; c=relaxed/simple;
+	bh=Xn0RVWlvlTOyrRFUOOl8D91VYhROtu1vHRLvJ0eToUg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FaL24Fw+mnunphyZIJSkGgaVsai6x+uN3iGM2lcf1VpVpOOEENS3l+dCQeaCRkJS40HHFtRwIj7H/umSObmw13+IVQOEfHpM3eRsyIbUy7Bk9QDjK80eCYZ5B/Bu3T2xptXXR5XRPE/XP3i+6hLxJ5ibFZCTXupiS/uVP0JGMuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GvPPjrqf; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713418819; x=1744954819;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Xn0RVWlvlTOyrRFUOOl8D91VYhROtu1vHRLvJ0eToUg=;
+  b=GvPPjrqfIRsixVvuzPihn9TyFyZjfaOhvUg6ruG6V+A9SlG89+tyx/55
+   gkbOHZrXFr9AEWGV24ETpy5DIrH5isu2Uc4MT3BigL9iOvvsz0WXgXFPm
+   yLYHk0m2tpxum8UwuiFO6xW0qGqZ5hvbTcGlAXJ1p1s1Iw1KICC4pdiAY
+   lzrS7rigL/ZwhaiVswqI1P5fUQws+4if//7L+1jR+RRMbcdWI/NyavKKm
+   qMQ1gYWwv/8UEQYiFvWT3HnwGrb4T2HPO58Ce3Gr4YOLpqsUF1sbYJfZV
+   zWqQlvPZirK4gNoG7NJbx4ftjJ+MoQHJZmj9vxA4KdZo0pETMPsIQcoTw
+   g==;
+X-CSE-ConnectionGUID: Nl67XlHDQWWngbY8Je8TBQ==
+X-CSE-MsgGUID: /HSMS1PlSVuO9QVnTUQ3eg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="19549959"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
+   d="scan'208";a="19549959"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 22:40:18 -0700
+X-CSE-ConnectionGUID: hqK14G0XTG6g02nkkwNImA==
+X-CSE-MsgGUID: 7ozkoNQSQKWrUEm/U+1dQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
+   d="scan'208";a="22958159"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 17 Apr 2024 22:40:16 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rxKVI-0007Lu-0q;
+	Thu, 18 Apr 2024 05:40:12 +0000
+Date: Thu, 18 Apr 2024 13:39:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	benjamin.mugnier@foss.st.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD56G3 camera sensor
+Message-ID: <202404181322.l6Ajlqbf-lkp@intel.com>
+References: <20240417133453.17406-3-sylvain.petinot@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc-som: Enable eMMC by
- default
-Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240417112003.428348-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240417112003.428348-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417133453.17406-3-sylvain.petinot@foss.st.com>
+
+Hi Sylvain,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on linus/master v6.9-rc4 next-20240417]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sylvain-Petinot/media-dt-bindings-Add-ST-VD56G3-camera-sensor-binding/20240417-213838
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240417133453.17406-3-sylvain.petinot%40foss.st.com
+patch subject: [PATCH 2/2] media: i2c: Add driver for ST VD56G3 camera sensor
+config: m68k-randconfig-r071-20240418 (https://download.01.org/0day-ci/archive/20240418/202404181322.l6Ajlqbf-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240418/202404181322.l6Ajlqbf-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404181322.l6Ajlqbf-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/media/i2c/st-vd56g3.c:1164:12: warning: 'vd56g3_runtime_suspend' defined but not used [-Wunused-function]
+    1164 | static int vd56g3_runtime_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/media/i2c/st-vd56g3.c:1142:12: warning: 'vd56g3_runtime_resume' defined but not used [-Wunused-function]
+    1142 | static int vd56g3_runtime_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~
 
 
+vim +/vd56g3_runtime_suspend +1164 drivers/media/i2c/st-vd56g3.c
 
-On 17.04.2024 14:20, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Enable eMMC by default on the RZ/G3S SMARC platform, as previously done
-> on RZ/G2L boards and other Renesas platforms.
-> 
-> The SW_CONFIG2 setting selects between the uSD0 card and eMMC. By setting
-> SW_CONFIG2 to SW_OFF, we select eMMC by default.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+  1141	
+> 1142	static int vd56g3_runtime_resume(struct device *dev)
+  1143	{
+  1144		struct v4l2_subdev *sd = dev_get_drvdata(dev);
+  1145		struct vd56g3 *sensor = to_vd56g3(sd);
+  1146		struct i2c_client *client = sensor->i2c_client;
+  1147		int ret;
+  1148	
+  1149		ret = vd56g3_power_on(sensor);
+  1150		if (ret) {
+  1151			dev_err(&client->dev, "Failed to power on %d", ret);
+  1152			return ret;
+  1153		}
+  1154	
+  1155		ret = vd56g3_boot(sensor);
+  1156		if (ret) {
+  1157			dev_err(&client->dev, "sensor boot failed %d", ret);
+  1158			return ret;
+  1159		}
+  1160	
+  1161		return ret;
+  1162	}
+  1163	
+> 1164	static int vd56g3_runtime_suspend(struct device *dev)
+  1165	{
+  1166		struct v4l2_subdev *sd = dev_get_drvdata(dev);
+  1167		struct vd56g3 *sensor = to_vd56g3(sd);
+  1168	
+  1169		return vd56g3_power_off(sensor);
+  1170	}
+  1171	
 
-Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-
-> ---
->  arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> index 1f87150a2e0a..8a3d302f1535 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> @@ -25,7 +25,7 @@
->   *	SW_OFF - SD2 is connected to SoC
->   *	SW_ON  - SCIF1, SSI0, IRQ0, IRQ1 connected to SoC
->   */
-> -#define SW_CONFIG2	SW_ON
-> +#define SW_CONFIG2	SW_OFF
->  #define SW_CONFIG3	SW_ON
->  
->  / {
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
