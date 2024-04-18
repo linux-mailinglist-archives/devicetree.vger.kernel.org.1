@@ -1,218 +1,238 @@
-Return-Path: <devicetree+bounces-60758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70EE18AA424
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:39:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E01818AA466
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:53:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93D2E1C21C58
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:39:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56FF91F21155
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 436AA199EA2;
-	Thu, 18 Apr 2024 20:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D0017BB31;
+	Thu, 18 Apr 2024 20:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YeaMMQHg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vhAvhs8M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFC1199E8B;
-	Thu, 18 Apr 2024 20:38:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F236818413E
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 20:53:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713472706; cv=none; b=sehMKlQdmjq5v2l2WA17B2XNciDMHNr9RT889ysOF4CVgO+vOovxSMAZ06n/CFJ6aZ5m+3gqeAXcUzbZNXdBurqVX7jVv/V6kenLbQipcknOLnT6SKJzjJbK4MQLbd5Hd1kBJCqhwAm/1I+4U3xUJWZucEGx1T3CfOQ8TCRI1vw=
+	t=1713473624; cv=none; b=YwmMhvAHjKLvLLNCusQHAdrLasg3XjtbRWV73RVabDYS4NTmeWqdwyc6i3Z9DW44IvisqjJb5dVYuWP6NzpfqRzr/j4Pwoo2poddB9GmXUi2zWpufUYqDBRcpFp1+T3i85wdsm19eEp46JxbRXPyz99s2NugB1CWcO2cMxObRaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713472706; c=relaxed/simple;
-	bh=IXsOSB48KhBFOf88YD8Blw+Mq+X3++0K3YE2RV82H3M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=i+ubhUx9R4hMIcqnP0OlWPnR7uoTQhRtEQ1BB+pe60+quOVfZ4Paye/Lx0wv9OiUNIhizHrr44Lmoyh3I9qq3oG5QWYyMPl+0JmcncMxM8U2X7O61fWHJSkQ3obCx74mFcTXLN/T/BNq+8Vh0kJ4r1O6FyeF0dZ7z+7T/Al02j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YeaMMQHg; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a52582ecde4so121980666b.0;
-        Thu, 18 Apr 2024 13:38:24 -0700 (PDT)
+	s=arc-20240116; t=1713473624; c=relaxed/simple;
+	bh=w8qzSdpu/SCQmocJ+CH2deWP5k6I+zFiM+IUq/6rudw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SZQ4pwf1fTtf7oA4TiLZzKpA0yav4PBdD3wzB65XHONJKpbzynqhe4NSfIGzSkvCZqO6v7gsoh/jQvkD+nleBAYRchQBddQKZjqNkoaqHllGoRUUFoBX54ymjOhmiJANQkvVmAfiHytCDnNy7LftBCGXUIRtU3hwrkLLXVDm/O4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vhAvhs8M; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-5f034b4dcecso909125a12.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 13:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713472703; x=1714077503; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7A9GTsxN8IunCYp1DUkY8RgJAa3KxxBOsbu5rncJB9Y=;
-        b=YeaMMQHgSoYK8eiiUqWRCwQVO9h9/+vdk4P+HzU9+3PF2Nug/vmBanjR9jVxkRp4fj
-         /XL4HPKTJ6IHsM/ra4LfrAz1A176WWlPLtZJooIGtyCmJxKsjWo0JucC5yKUz8pAp9Do
-         d+QOr9I1zv1m+ptF6KWoyXXvCc9XbXq8g84qg/bm5sxr4Oqv82X5CAzfjlFO9aImYVAc
-         U98qCvTc2QYHzmGXoEATvO6rvuBvukyYmkhn8J3TfcV/RZ50fs5wSzKzJcB7JGQlidV5
-         NyIlLXwOmxep1g+fcEgYXg041NXIejbDY+56vzuc1M+IbnFYhnJ/GakBkqdWcHLNztP1
-         wDMQ==
+        d=linaro.org; s=google; t=1713473622; x=1714078422; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LN/OEbto8fHfbuWGWfKxktnpDKBf8NomrA6s+e0fy8U=;
+        b=vhAvhs8MnEIdqJglnuUOeMdr6bjv07+2Eir4g07MVDj61qFJaP5Dd8OsNhNf4Lsg93
+         4CoE5Aicjxmaw/kgj2GNag7rAgQ+VjM4yhzM8PS8jz24HxFauVoUkHOBUOe+oR8poD3S
+         2f5NLaN0QAieAkuAdxK70F8if6WAg+IbeKK3oaQuKOxGo75Wxkeg+SUa4jG9K40U21BU
+         wuI9ZLV12D5+jnbtoFgdtqhXR9DkbjNDnOi8HhLfUGXL6akpsQkKk5lVi2hZS8abPsze
+         CoDSyYeI8TzZldDYQOt9FQeXTDNGt+RPGBQa3FQH853riy1hTIVihqODXRiUN15XmgGU
+         cm/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713472703; x=1714077503;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7A9GTsxN8IunCYp1DUkY8RgJAa3KxxBOsbu5rncJB9Y=;
-        b=m7kKkfAcuEg70ZbjvsAp3ELpbQDVhG8ETVQLZYCNHThMDhv6dXJhXs5qHKovhDox/L
-         UqXC8K0+EoW646QpsIBnX+0t+7u1ln4Wc5dQzlaF7r1/vOUyyJxWTtp3hu9DEVKeeaME
-         R/snxTFoUCQjC2FqbTMYrSBHsF6h5/lLiXA2SUCsW3jyq8czHtjjDYjlOCTLYhzaOS+Q
-         Hfucz6/wFvZY2NiZUhym2P4moOyt5NyK1+IRTb2C2m9PVznmoCCQoXzTbAmcrOXnS4hM
-         rJv0uha/eF7i4Mbu0JVrzmxn1xflceGoQtfXw7P7YrPAwmCO/8t8+i65Y7RkE3ZKf8Di
-         lPiw==
-X-Forwarded-Encrypted: i=1; AJvYcCWXZndWjs+Sh/ECwej2dDPDzsu1BmFLPi0kZmf2w7jsdcYJGPkSPhAUiJurugJlzNFn+mXzU3mLRg1mjK4KahH7MWFMwlX7hE74yLnpiVNz8tC2o5suJFgZ0V+4Hv2uqRpQyNKWNoJJGw==
-X-Gm-Message-State: AOJu0YzqtU4dhbuUhbFX15Ou9Jd6XOptiW615peS1KCgQf6wwHWCG735
-	ldhUqLufat0Z7fl0QtmphVfPhKVMjIptKo8s3tKWeDBAbIYdToN9
-X-Google-Smtp-Source: AGHT+IGzLyE7VxWjZDABe7Un265onJx95a/vOFgpB1qchpktSO/egBKsgsmbcFgr7ax7wodqHkbROQ==
-X-Received: by 2002:a17:906:5f89:b0:a55:5ba6:ace9 with SMTP id a9-20020a1709065f8900b00a555ba6ace9mr165722eju.9.1713472702807;
-        Thu, 18 Apr 2024 13:38:22 -0700 (PDT)
-Received: from lmc-playground.localdomain ([188.25.209.252])
-        by smtp.gmail.com with ESMTPSA id l21-20020a170906079500b00a473774b027sm1305649ejc.207.2024.04.18.13.38.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 13:38:22 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Liu Ying <victor.liu@nxp.com>
-Cc: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: imx8ulp: add DSP node
-Date: Thu, 18 Apr 2024 23:37:20 +0300
-Message-Id: <20240418203720.8492-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240418203720.8492-1-laurentiumihalcea111@gmail.com>
-References: <20240418203720.8492-1-laurentiumihalcea111@gmail.com>
+        d=1e100.net; s=20230601; t=1713473622; x=1714078422;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LN/OEbto8fHfbuWGWfKxktnpDKBf8NomrA6s+e0fy8U=;
+        b=KSxibEgc25JIQTvd96VulJnSnMPKndSd9NJUfyDDL2iZi6GU6KXU95mKoYTPwTzOGj
+         32y+ZnJOmDlCa9QypJyRBumzqqaUjqkvdss2YHvo7WTw0ANPjbfN4kdlPQ2c6j0Sy8WC
+         QmmCK1JYh8PML75mpkLlPW/D3390V+dAp0z0bOyVOUT18vz7Eb02J/UEG65O+fo0uBod
+         tHYYNwBTno9ud95xGdD5MqHd7GjwhSenwaMLks5bE7wy1yeJlvoT7qy0+Iqx4kcJYqEe
+         I0PmkIeJvfmDgm1ofh7vIc+rxLtak7bT5CZsHgw1WFjyU9o7EGneGlERKFXJcI2LHG1N
+         B0uw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+hCmwd5MQmPzN880tBDVs0l0CqHCBx0YdsiaUYemHfP8VGLmbLSj4xXtzjMN/CZIrqjszHVfKyrk7twQM3qx0bJ1WX1yioFH0cQ==
+X-Gm-Message-State: AOJu0Yx6aNpsk3W/tz8Hfh44v38RtavvYaYF6ouPPABzDhgaaoB04CzZ
+	anxldNxo5COwjjOKujV8GDPBNzpkpx1wq3mCBDE368IUit4cqnKEZofmHWDuyzg=
+X-Google-Smtp-Source: AGHT+IGY9MOOiqfPFnmjuPCesBJ53bCB4xW9Rw5ODTMkZqWS3OHvOCFbvjRw9F0Nb39EsuCphGauHg==
+X-Received: by 2002:a05:6a20:1054:b0:1a8:2cd1:e493 with SMTP id gt20-20020a056a20105400b001a82cd1e493mr400447pzc.29.1713473622217;
+        Thu, 18 Apr 2024 13:53:42 -0700 (PDT)
+Received: from [10.36.51.174] ([24.75.208.147])
+        by smtp.gmail.com with ESMTPSA id kr3-20020a056a004b4300b006ed26aa0ae6sm1930377pfb.54.2024.04.18.13.53.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 13:53:41 -0700 (PDT)
+Message-ID: <8e620885-9585-4ced-81c0-c1979decdfbc@linaro.org>
+Date: Thu, 18 Apr 2024 22:53:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/2] dt-bindings: pcie: Document QCOM PCIE ECAM
+ compatible root complex
+To: Mayank Rana <quic_mrana@quicinc.com>, linux-pci@vger.kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ andersson@kernel.org, manivannan.sadhasivam@linaro.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
+ quic_nkela@quicinc.com, quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+ quic_nitegupt@quicinc.com
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-2-git-send-email-quic_mrana@quicinc.com>
+ <51b02d02-0e20-49df-ad13-e3dbe3c3214f@linaro.org>
+ <1d6911e2-d0ec-4cb0-b417-af5001a4f8a3@quicinc.com>
+ <ce17f2dc-decf-4509-969e-e23bdef42eb9@linaro.org>
+ <708e1adf-833d-4de5-9e94-406883337d16@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <708e1adf-833d-4de5-9e94-406883337d16@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On 18/04/2024 20:56, Mayank Rana wrote:
+> 
+> 
+> On 4/8/2024 11:21 PM, Krzysztof Kozlowski wrote:
+>> On 08/04/2024 21:09, Mayank Rana wrote:
+>>>>> +  Firmware configures PCIe controller in RC mode with static iATU window mappings
+>>>>> +  of configuration space for entire supported bus range in ECAM compatible mode.
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Mayank Rana <quic_mrana@quicinc.com>
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: /schemas/pci/pci-bus.yaml#
+>>>>> +  - $ref: /schemas/power-domain/power-domain-consumer.yaml
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: qcom,pcie-ecam-rc
+>>>>
+>>>> No, this must have SoC specific compatibles.
+>>> This driver is proposed to work with any PCIe controller supported ECAM
+>>> functionality on Qualcomm platform
+>>> where firmware running on other VM/processor is controlling PCIe PHY and
+>>> controller for PCIe link up functionality.
+>>> Do you still suggest to have SoC specific compatibles here ?
+>>
+>> What does the writing-bindings document say? Why this is different than
+>> all other bindings?
+> Thank you for all your review comment and suggestions.
+> 
+> If it is must to have SOC name, then I am not sure how 
+> pci-host-generic.c driver having non SOC prefix for standard ECAM 
+> driver. I am here saying this is QCOM vendor specific generic ECAM 
+> driver. saying that it seems that I would be updating now 
+> pci-host-generic.c driver to add generic functionality as Rob suggested 
 
-Add node for i.MX8ULP's DSP core and its dependencies.
+I don't see any problem here. I talk about bindings, not driver. You can
+have also fallback, so how is it different than from existing code?
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 39 +++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi    | 22 +++++++++++
- 2 files changed, 61 insertions(+)
+> part of review comment. With
+> that I am seeing possible options as i.e. continue using default generic 
+> compatible as "pcie-host-ecam-generic" OR use new as 
+> "qcom,pcie-host-ecam-generic". will this work ?>>>> +
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
-index 24bb253b938d..5dadcbba370d 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
-@@ -67,6 +67,32 @@ vdevbuffer: vdevbuffer@a8400000 {
- 			reg = <0 0xa8400000 0 0x100000>;
- 			no-map;
- 		};
-+
-+		dsp_reserved: dsp_reserved@8e000000 {
-+			reg = <0 0x8e000000 0 0x1000000>;
-+			no-map;
-+		};
-+
-+		dsp_reserved_heap: dsp_reserved_heap@8f000000 {
-+			reg = <0 0x8f000000 0 0xef0000>;
-+			no-map;
-+		};
-+
-+		dsp_vdev0vring0: vdev0vring0@8fef0000 {
-+			reg = <0 0x8fef0000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		dsp_vdev0vring1: vdev0vring1@8fef8000 {
-+			reg = <0 0x8fef8000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		dsp_vdev0buffer: vdev0buffer@8ff00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x8ff00000 0 0x100000>;
-+			no-map;
-+		};
- 	};
- 
- 	clock_ext_rmii: clock-ext-rmii {
-@@ -95,6 +121,15 @@ &cm33 {
- 	status = "okay";
- };
- 
-+&dsp {
-+	assigned-clocks = <&cgc2 IMX8ULP_CLK_HIFI_SEL>, <&cgc2 IMX8ULP_CLK_HIFI_DIVCORE>;
-+	assigned-clock-parents = <&cgc2 IMX8ULP_CLK_PLL4_PFD0>;
-+	assigned-clock-rates = <0>, <475200000>;
-+	memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-+			<&dsp_vdev0vring1>, <&dsp_reserved>;
-+	status = "okay";
-+};
-+
- &flexspi2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&pinctrl_flexspi2_ptd>;
-@@ -176,6 +211,10 @@ &mu {
- 	status = "okay";
- };
- 
-+&mu3 {
-+	status = "okay";
-+};
-+
- &iomuxc1 {
- 	pinctrl_enet: enetgrp {
- 		fsl,pins = <
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index c4a0082f30d3..99ed8c1ee57c 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -198,6 +198,22 @@ soc: soc@0 {
- 		ranges = <0x0 0x0 0x0 0x40000000>,
- 			 <0x60000000 0x0 0x60000000 0x1000000>;
- 
-+		dsp: dsp@21170000 {
-+			compatible = "fsl,imx8ulp-hifi4";
-+			reg = <0x21170000 0x20000>;
-+			clocks = <&cgc2 IMX8ULP_CLK_LPAV_BUS_DIV>,
-+				 <&cgc2 IMX8ULP_CLK_HIFI_DIVPLAT>,
-+				 <&cgc2 IMX8ULP_CLK_HIFI_DIVCORE>,
-+				 <&pcc5 IMX8ULP_CLK_MU3_B>;
-+			clock-names = "ipg", "ocram", "core", "mu";
-+			power-domains = <&scmi_devpd IMX8ULP_PD_HIFI4>;
-+			firmware-name = "imx/dsp/hifi4.bin";
-+			mbox-names = "tx", "rx", "rxdb";
-+			mboxes = <&mu3 0 0>, <&mu3 1 0>, <&mu3 3 0>;
-+			fsl,dsp-ctrl = <&avd_sim>;
-+			status = "disabled";
-+		};
-+
- 		s4muap: mailbox@27020000 {
- 			compatible = "fsl,imx8ulp-mu-s4";
- 			reg = <0x27020000 0x10000>;
-@@ -520,6 +536,12 @@ per_bridge5: bus@2d800000 {
- 			#size-cells = <1>;
- 			ranges;
- 
-+			avd_sim: syscon@2da50000 {
-+				compatible = "fsl,imx8ulp-avd-sim", "syscon", "simple-mfd";
-+				reg = <0x2da50000 0x38>;
-+				clocks = <&pcc5 IMX8ULP_CLK_AVD_SIM>;
-+			};
-+
- 			cgc2: clock-controller@2da60000 {
- 				compatible = "fsl,imx8ulp-cgc2";
- 				reg = <0x2da60000 0x10000>;
--- 
-2.34.1
+Compatible and bindings focus on the hardware, so just write them
+describing the hardware. You keep asking it in context of driver, but I
+would say it does not matter. Is this generic hardware/firmware
+implementation or not?
+
+>>>>> +  reg:
+>>>>> +    minItems: 1
+>>>>
+>>>> maxItems instead
+>>>>
+>>>>> +    description: ECAM address space starting from root port till supported bus range
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 8
+>>>>
+>>>> This is way too unspecific.
+>>> will review and update.
+>>>>> +
+>>>>> +  ranges:
+>>>>> +    minItems: 2
+>>>>> +    maxItems: 3
+>>>>
+>>>> Why variable?
+>>> It depends on how ECAM configured to support 32-bit and 64-bit based
+>>> prefetch address space.
+>>> So there are different combination of prefetch (32-bit or 64-bit or
+>>> both) and non-prefetch (32-bit), and IO address space available. hence
+>>> kept it as variable with based on required use case and address space
+>>> availability.
+>>
+>> Really? So same device has it configured once for 32 once for 64-bit
+>> address space? Randomly?
+> no. as binding is not saying for any specific SOC. Depends on memory map
+> on particular SOC, how PCIe address space available based on that this 
+
+So specific to the SoC, so this is not variable.
+
+> would change for particular SOC variant.
+
+So this is not variable and you did not provide sufficient
+argumentation. You basically did not provide any argument, just
+disagreed with me. Bindings must be specific and all fields should be
+constrained, when reasonable.
+
+Best regards,
+Krzysztof
 
 
