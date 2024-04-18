@@ -1,200 +1,160 @@
-Return-Path: <devicetree+bounces-61562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899FD8AD399
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:58:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 908EC8AD3ED
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 20:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8783CB25398
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:57:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4725728139D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B707C153BFC;
-	Mon, 22 Apr 2024 17:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565B8154BF3;
+	Mon, 22 Apr 2024 18:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lX2sYVeI"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KyLetmpf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D79813F015;
-	Mon, 22 Apr 2024 17:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69C7153BFE;
+	Mon, 22 Apr 2024 18:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713808675; cv=none; b=qGa7hQNEgBX3J56ayfgo1NbzPQVLa94gHkQaJdbMsVvwg729ccq3R4vzu36k0cLkgf1UTBiRTpFEKItyTbkS5+iShhcZnJGmEE0cpLVA18tdpj9zczOwziq4h4pTGvD/Ouwdd4JxjTIsRMXZ31isYVXsm0QDvotwjhTWnTJr+80=
+	t=1713810573; cv=none; b=R8Zz4dsfotqa1nHvJqitZjuyCnkLikOb1dBrOMo+QdKBsvFu/iffegkMapClw3GsqO2VJDfFco+V8QxSSM9kxka1VbhuHeg4jCM6cIEvdqy5JbNJ8Nozj2FqJ9tZ/Cd++7G/BAqXtjngTfDsaIqTDT88sCBpl3GQ9lplQy6BvNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713808675; c=relaxed/simple;
-	bh=VrdKMe7DNv3xa2wyk3qVfJzcLONleATKakMS6dbBY8I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CCRLEVDJ9U9/EjbAq+FB6Gd5qmZCj2wxGUP+4oe0QzIi7I5HwROHpH70tYR3Wade6rn6TZHrg/W8vMchFPBe0olszLjLlfSYXKpoZJ0DDb0ucIZRJsCG3u5MrSVsBEbRSbT+GuQ3O8TsI1+nlHrVC5mFcK3ddU94wWplLqfVb8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lX2sYVeI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54F98C113CC;
-	Mon, 22 Apr 2024 17:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713808675;
-	bh=VrdKMe7DNv3xa2wyk3qVfJzcLONleATKakMS6dbBY8I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lX2sYVeI0VTlEnf0aYY930unIoBcCSbI1DVPzjnkgCR52Od/SGdKfizrumBNUEMui
-	 iSR4Ehk/9GrChRq/M6xcYK3UqFmzsKk8F7koL7orJgGwRQqSzHiCnkuaF137LheG+h
-	 aXGpM4AYdZSodfdAWRdzS1jkrV3V1Zjw9C3f93zZlttNTKo4w5dgjHcjoyEPkPLKJI
-	 MdULLYNaYE32p4wdJVF+yTmpt8QSh03WRn/SppAYwxynNataQHKGCW4rZEuK84sLSK
-	 67m/2WY7fLvB1A73ulzFf4k4Sp2qs5tcLHQViHldbRHsSmvC9y2LK/SQFJyTBwQMcv
-	 n0/v6/EKURs8A==
-Message-ID: <10811cbe-359f-42fe-b318-490309f95942@kernel.org>
-Date: Mon, 22 Apr 2024 19:57:49 +0200
+	s=arc-20240116; t=1713810573; c=relaxed/simple;
+	bh=lFyqqsTbvpBevoPN6/NMC90GOUXMW6KIKKFAoQiAmFs=;
+	h=Message-ID:Subject:From:To:Cc:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=n4SjjcZkcajU7Xtr1Otw5QR8bO8J/iFJHFKQ/e/8CCxsuY0Yhuhc2OnmADBW4TkFRYbhKweYvpXKgfXvBSRR7Kj24zz9Luu1zFEwLaMAZCsgpKLRgLuuY0JCOhoa0atADrNTa0FGCC5JHCu7D6rdtBB3cfiN/GzAz7CpEd+P5r0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KyLetmpf; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713810570;
+	bh=lFyqqsTbvpBevoPN6/NMC90GOUXMW6KIKKFAoQiAmFs=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
+	b=KyLetmpfhfD1CxoIRlN05i1koDUuorqGDIwBeQ6ZOKcqCiovB94RRm45TZ9YUy2SD
+	 Bs8DpHi+gVhLVVGm66EZXc49DACSnsYF//3WRj2sSehAdCOP9sZrXjbLTW5C/fQ+ZI
+	 l/+3dgVEJp1YzHGak+pZ1nx6/0WsmiFC2h3vrb3kbkqfRib35sRAiBnRXZ4PgmBMPu
+	 hWrTYCPiDnFfGs8EveixzyGMTRAicRjDbFuI4FAj2jS6x+tMPpRLcxxA/VJLJXCfad
+	 Dr4dXAuSPgo0tihp+8cGPWJu4Svu7pp9Jdnsnl7h536iIPeZQ/8Xlql54Si6J9LXgU
+	 AkDzdSyTckINw==
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EF1D13782139;
+	Mon, 22 Apr 2024 18:29:27 +0000 (UTC)
+Message-ID: <345e7b0ce96b900725e086f550aafd6ecf0dbc7f.camel@collabora.com>
+Subject: Re: [PATCH v2,1/5] media: mediatek: vcodec: fix incorrect MT2T
+ format information
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>, =?ISO-8859-1?Q?N=EDcolas?= "F .
+ R . A . Prado" <nfraprado@collabora.com>, Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
+ Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
+ <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
+ <stevecho@chromium.org>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+In-Reply-To: <20240409064431.16909-2-yunfei.dong@mediatek.com>
+References: <20240409064431.16909-1-yunfei.dong@mediatek.com>
+	 <20240409064431.16909-2-yunfei.dong@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 18 Apr 2024 16:17:46 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: regulator: pca9450: add restart handler
- priority
-To: Holger Assmann <h.assmann@pengutronix.de>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, yibin.gong@nxp.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20240419083104.3329252-1-h.assmann@pengutronix.de>
- <20240419083104.3329252-3-h.assmann@pengutronix.de>
- <5c1c8632-3d8f-41b1-8027-54129d8cd62c@kernel.org>
- <f70d53d2-0494-461d-9cbb-086077324e03@pengutronix.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <f70d53d2-0494-461d-9cbb-086077324e03@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 
-On 22/04/2024 10:24, Holger Assmann wrote:
-> Hello Krzysztof,
-> 
-> also thanks for the feedback on this one.
-> 
-> Am 19.04.24 um 15:39 schrieb Krzysztof Kozlowski:
->>
->> Please use subject prefixes matching the subsystem. You can get them for
->> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->> your patch is touching.
-> 
-> Short note: I did that prior submitting, but I did it directly for the
-> yaml-file and not for the directory - Those do not look the same
-> regarding their prefix scheme.
+Le mardi 09 avril 2024 =C3=A0 14:44 +0800, Yunfei Dong a =C3=A9crit=C2=A0:
+> Changing the bpp and hdiv values to make sure the bytesperline
+> of plane[0] and plane[1] are the same. The width and height are
+> 64 align.
+>=20
+> Fixes: 6afcc2b0aebf ("media: mediatek: vcodec: Add capture format to supp=
+ort 10bit tile mode")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>  drivers/media/v4l2-core/v4l2-common.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-c=
+ore/v4l2-common.c
+> index d34d210908d9..8587cd14741c 100644
+> --- a/drivers/media/v4l2-core/v4l2-common.c
+> +++ b/drivers/media/v4l2-core/v4l2-common.c
+> @@ -265,8 +265,8 @@ const struct v4l2_format_info *v4l2_format_info(u32 f=
+ormat)
+>  		{ .format =3D V4L2_PIX_FMT_VYUY,    .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
+ .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, .bpp_div =
+=3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
+>  		{ .format =3D V4L2_PIX_FMT_Y212,    .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
+ .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_div =
+=3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
+>  		{ .format =3D V4L2_PIX_FMT_YUV48_12, .pixel_enc =3D V4L2_PIXEL_ENC_YUV=
+, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .bpp_div =
+=3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
+> -		{ .format =3D V4L2_PIX_FMT_MT2110T, .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
+ .mem_planes =3D 2, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .bpp_div =
+=3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2,
+> -		  .block_w =3D { 16, 8, 0, 0 }, .block_h =3D { 32, 16, 0, 0 }},
+> +		{ .format =3D V4L2_PIX_FMT_MT2110T, .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
+ .mem_planes =3D 2, .comp_planes =3D 2, .bpp =3D { 5, 5, 0, 0 }, .bpp_div =
+=3D { 4, 4, 1, 1 }, .hdiv =3D 1, .vdiv =3D 2,
+> +		  .block_w =3D { 64, 64, 0, 0 }, .block_h =3D { 64, 64, 0, 0 }},
 
-No, if you run it per file or per directory, prefix is the same. Starts with regulator, doesn't it?
+The code that calculate the info you are fixing:
 
-> 
-> I will change it for my v2 and use a subject like for the directory.
+plane->bytesperline =3D
+	info->bpp[i] * DIV_ROUND_UP(aligned_width, hdiv) / info->bpp_div[i];
+plane->sizeimage =3D plane->bytesperline * DIV_ROUND_UP(aligned_height, vdi=
+v);
 
-regulator: dt-bindings: nxp,pca9450: add foo bar
+hdiv is 1 for the first plane, and 2 for second plane. Let say we have 1920=
+x1080
+video, bytesperline for that first planes would be 5 * (1920 / 1) / 4 =3D 2=
+400.
+But for the second plane with your change we have 5 * (1920 / 2) / 4 =3D 12=
+00. For
+me, you failed to achieve your goal, or there is a bug elsewhere.
 
+The second change should have its own commit, but I think it should be drop=
+ped.
+The driver is hacked to be compatible with the Mali GPUs (64x64 textures), =
+but
+does not need this alignment. And in any case, the block should represent t=
+he
+pixel format required alignment, so I'd suggest to leave it like this, and
+simply align width/height before calling the function to calculate
+stride/sizeimage. The 64x64 alignment can be applied using
+v4l2_apply_frmsize_constraints() during try fmt (or v4l_bound_align_image()=
+, but
+first is preferred).
 
-> 
-> 
->>
->>> ---
->>>  .../devicetree/bindings/regulator/nxp,pca9450-regulator.yaml   | 3 +++
->>>  1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
->>> index 3d469b8e97748..7cc2d6636cf52 100644
->>> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
->>> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
->>> @@ -35,6 +35,9 @@ properties:
->>>    interrupts:
->>>      maxItems: 1
->>>  
->>> +  priority:
->>> +    $ref: /schemas/power/reset/restart-handler.yaml#
->>
->> You defined object, which is not explained in commit msg. This code does
->> not look correct or it does not implement what you said.
->>
->> Please look at existing code - do you see anything like this? No, there
->> is no such code and this should raise question.
-> 
-> I am a bit lost on that one to be honest.
-> 
-> The only other instances where a "priority" for restart handling is
-> described are "gpio-poweroff.yaml" and "syscon-reboot.yaml". These files
-> are dedicated documentation for the reset bindings, so I tried to
-> transfer the respective entry over for my commit.
+Same comments apply to the following patch, which should be squashed.
 
-Where do you see such syntax?
-
-> 
-> Do you suggest I should replace
-> 
-> +  priority:
-> +    $ref: /schemas/power/reset/restart-handler.yaml#
-
-I don't understand what you want to express with such syntax. That's why I suggested you to look for existing examples. There is no such code as above, so you are the first one to add it. And then the obvious question: why are you doing things quite different than others? That's pretty often a hint that something is odd.
-
-> 
-> with
-> 
-> +allOf:
-> +  - $ref: /schemas/power/reset/restart-handler.yaml#
-> 
-> in order to properly include the context for the restart handling?
-> Running dt_binding_check does not indicate an issue with any of those two.
-
-Again, what do you want to achieve?
-
-> 
-> 
->>
->> You probably want to annotate that device is a restart handler?
-> 
-> You mean by adding to the "description" part of the file?
-
-No. What do you want to achieve?
-
-Best regards,
-Krzysztof
+>  		{ .format =3D V4L2_PIX_FMT_MT2110R, .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
+ .mem_planes =3D 2, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .bpp_div =
+=3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2,
+>  		  .block_w =3D { 16, 8, 0, 0 }, .block_h =3D { 32, 16, 0, 0 }},
+> =20
 
 
