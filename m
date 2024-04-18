@@ -1,95 +1,165 @@
-Return-Path: <devicetree+bounces-60506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8DD38A97EA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:54:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507818A97FE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 067041C20EB7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:54:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5201F21EC9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A54215E808;
-	Thu, 18 Apr 2024 10:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7B4215DBBB;
+	Thu, 18 Apr 2024 10:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kR+ja2UM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="je29j5SS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68F415E7EA;
-	Thu, 18 Apr 2024 10:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29D115D5C1;
+	Thu, 18 Apr 2024 10:58:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713437605; cv=none; b=TWmtHMTxLMBA2ox5NpSfV2mWVDGdXBkBJ+734AF6GLGnpWpafiDHGk3DT5kci/Re8LGtFcnWfupXjRGW4778X5JipHUpYqHaj3xMYAv/xbbwaSCfLp9L92rxzlPBqHgE3yHR4uCEkm+HExQUfjusa1147PczxMPf1Txhb3UlCCA=
+	t=1713437892; cv=none; b=CU0LPkkaYBeG/o8L4ySUm8ol+l8dptXxvqnyOJVPcVfPHl/3prSm54V1Y+cQfMyVpeOXLhhHXoeHIxXlmQTNpDSMXyOCF1lwbs/ApEUm534e2qv+8+vNazWPTBy7/7/rt5KQoM9zB7KKBpMx3E5/ZMy1aQJx3usy9vhNSE9kH5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713437605; c=relaxed/simple;
-	bh=SDDFhbUiNOwHfeB4Vw/OZxgE2arSxDacnYuS9csQZRQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IZBXuJBMU2xjf/2pRRtJ1f9SvbDgOf9ursx6k1JiCiU2QYi9/6Tt8M0e1zu7rYGhWV7waSc/UUbvwMl6UA3H6BO7Pce46Y3dWsPxW+qKFWeNxxCxawXa4HHfHgXivpjD5VpV601b4smxMl1uQUF13KrEPuS+ltsrC2nEinYuM4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kR+ja2UM; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713437601;
-	bh=SDDFhbUiNOwHfeB4Vw/OZxgE2arSxDacnYuS9csQZRQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kR+ja2UMsEgj0JRYQpxSDG7coPupOpBYOaLnNRByXmaQn3wgUqA6Bb02s+UX0Hsbk
-	 +0YeVKxn+uPnO7zWvz8f1nhFKoLOpHo3pkgJd7UM1fvaYAfPLqO9SUNQnxTB1E4YS7
-	 9aX31mD04D7PXwVXBtd3pgbbyntchqXNhLnEJEYbA5inq41D9VmqVX5vwPPSGRfvmo
-	 rqSfIPrf3bwH1xWykPcvFrdEY7fNsawkCIQ1Fk4YUS86StCtxUq7W6GWshpxfN/plx
-	 eiwDiR+KdEn3bDBfslA5EMajyk2uOHkqTUCtpi6rPRrY0//XiJNNff0lZpYO7RioeO
-	 /D+YhDal8E4Dw==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id F1A3C3780C22;
-	Thu, 18 Apr 2024 10:53:20 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Michael Walle <mwalle@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1713437892; c=relaxed/simple;
+	bh=c+HtUfU8cE/PCyrZjd9uRjkFQwV2SJ12Ui0Ms0/s8yo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hYGDQszcifkp8N2ulM99Z34KmdNqE8GCu/Thz41RVYm93Go8g7bIUqo2webYGl9efpx7pF8/M9oAOBg5s+XfbIS0jE4mcIpGBSGozbkv8fM6FWdKaUuNDY94LBvXeYK1m5MJAmIP8fetB1olkXbUzVRSU0iyfxeAjawQ6JzqW8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=je29j5SS; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2db2f6cb312so13741621fa.2;
+        Thu, 18 Apr 2024 03:58:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713437889; x=1714042689; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrxIXj7RnRz6Inm0MPVjaqJdEXgL4gVk17zWxjNGgWs=;
+        b=je29j5SSHXNsGYz215OVff9d2er5Ylt8DF9tdyXtUKGjcsTCyGKkyhsH5hLRXuQAHH
+         A0CkG9HCp3e/y/lu6cpO30UCDwaYHDutEd+nJgnK73MeNeu29jrAmEO4HClqGLc5pHRq
+         wo7NxvGAvMqt7FPe+Oyk3czKw92jzSMZv5FhWqPVobL/pQOFrxZxU+1fpkM/+Les8omW
+         Cm/iTUjbo7uD8qTV7GB9RM65E3+M8eC1UKS88SIqackM/JNpQYazNBGGu8gkEzM3EXWZ
+         DBG4yPndTbUKj3X923z+ueYgI9vaHltwHHnpKNCgr3nrOs/326OS4wDimn2eFURTNR/0
+         m9Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713437889; x=1714042689;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rrxIXj7RnRz6Inm0MPVjaqJdEXgL4gVk17zWxjNGgWs=;
+        b=XMNlji8ByRtw732W/a/YsDVNKYEK8Db5xDvd8PPbvtXmjlZscSA24S1c4ZMjdWDtHJ
+         cA4Q+MpY/K/R0YHZ1/i2rIP9cNeRNGlKsTziMdwruyK1ONw+c30Au33LMuFTTytLBGMy
+         KZ0uXgnVMduHEhNcjq8N2pcVPviyRfS8oPQhnssh6gjas/7+E6BNB2oAwj569aqDaBTJ
+         Yw1vUFdBthr5Uu8P8RZCpfVqAnAvg1AZXHZkByA7RckHMWvvB6iOOrK6zL2vB3exy/nZ
+         dmW+FF1qkl/HV7c7HKFwIdgI2wIdZCuM+8AMI07uAoSHMgTbUtGkdOwbJmNHIJtMz45n
+         WUKA==
+X-Forwarded-Encrypted: i=1; AJvYcCWb9Ec40foDTdKRNNPGQh+L2WGHr0Kpej7v30iDaqah9TWnd7IEofnT1E/jxtDDcKx2LWhUTSlyfm/ZoJyy4fJs56Fx/ABdtl2gaYAw+qUbeHgxYAYZ44EkRjCuFuwL2jniLHZZyfXXhw==
+X-Gm-Message-State: AOJu0YxSWbdLR3Fp8qPdYSoxSC8p11/klgyGpvYkOdIWKn28/b9S9nCD
+	um+RB05XWZgipbmaEY9xEL2hOrHA9NkntevqeWdePvpqvPMlIQUQW5s1lF1/
+X-Google-Smtp-Source: AGHT+IEnaxJjPFvGEVHV2AJPn5rK9q/wGwFArQkhNwfFo41T53iJo9bm5Ud2gkymL1QDpEaN0drT2g==
+X-Received: by 2002:a05:6512:3f0b:b0:513:ca40:fafc with SMTP id y11-20020a0565123f0b00b00513ca40fafcmr1950544lfa.11.1713437868011;
+        Thu, 18 Apr 2024 03:57:48 -0700 (PDT)
+Received: from andrejs-nb.int.toradex.com (77-59-154-235.dclient.hispeed.ch. [77.59.154.235])
+        by smtp.gmail.com with ESMTPSA id hx11-20020a170906846b00b00a46d2e9fd73sm724794ejc.222.2024.04.18.03.57.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Apr 2024 03:57:47 -0700 (PDT)
+From: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm64: mediatek: add Kontron 3.5"-SBC-i1200
-Date: Thu, 18 Apr 2024 12:53:15 +0200
-Message-ID: <171343758902.247007.7489492694009874618.b4-ty@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240408080816.4134370-1-mwalle@kernel.org>
-References: <20240408080816.4134370-1-mwalle@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: k3-am625-verdin: enable nau8822 pll
+Date: Thu, 18 Apr 2024 12:57:30 +0200
+Message-Id: <20240418105730.120913-1-andrejs.cainikovs@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Mon, 08 Apr 2024 10:08:15 +0200, Michael Walle wrote:
-> Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
-> computer.
-> 
-> 
+From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
 
-Applied to v6.9-next/dts64, thanks!
+In current configuration, nau8822 codec on development carrier board
+provides distorted audio output. This happens due to reference clock
+is fixed to 25MHz and no PLL is enabled. Following is the calculation
+of deviation error for different frequencies:
 
-[1/2] dt-bindings: arm64: mediatek: add Kontron 3.5"-SBC-i1200
-      commit: 465fd1517d9fda695f8105867cb8547272e9963c
-[2/2] arm64: dts: mediatek: add Kontron 3.5"-SBC-i1200
-      commit: 7d35c006a52661fd4d17a9f1ab627336cb215b97
+44100Hz:
 
-Cheers,
-Angelo
+fs = 256 (fixed)
+prescaler = 2
+target frequency = 44100 * 256 * 2 = 22579200
+deviation = 22579200 vs 25000000 = 9.6832%
+
+48000Hz:
+
+fs = 256 (fixed)
+prescaler = 2
+target frequency = 48000 * 256 * 2 = 24576000
+deviation = 24576000 vs 25000000 = 1.696%
+
+Enabling nau822 PLL via providing mclk-fs property to simple-audio-card
+configures clocks properly, but also adjusts audio reference clock
+(mclk), which in case of TI AM62 should be avoided, as it only
+supports 25MHz output [1][2].
+
+This change enables PLL on nau8822 by providing mclk-fs, and moves
+away audio reference clock from DAI configuration, which prevents
+simple-audio-card to adjust it before every playback [3].
+
+[1]: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1175479/processor-sdk-am62x-output-audio_ext_refclk0-as-mclk-for-codec-and-mcbsp/4444986#4444986
+[2]: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1188051/am625-audio_ext_refclk1-clock-output---dts-support/4476322#4476322
+[3]: sound/soc/generic/simple-card-utils.c#L441
+
+Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+---
+This patch requires https://lore.kernel.org/all/20240409121719.337709-1-andrejs.cainikovs@gmail.com/ to be applied,
+if not the audio will just stop working because no code will ever enable the required clock to the codec.
+---
+ arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+index 74eec1a1abca..5c1284b802ad 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+@@ -14,6 +14,7 @@ sound {
+ 		simple-audio-card,bitclock-master = <&codec_dai>;
+ 		simple-audio-card,format = "i2s";
+ 		simple-audio-card,frame-master = <&codec_dai>;
++		simple-audio-card,mclk-fs = <256>;
+ 		simple-audio-card,name = "verdin-nau8822";
+ 		simple-audio-card,routing =
+ 			"Headphones", "LHP",
+@@ -34,7 +35,6 @@ sound {
+ 			"Line", "Line In";
+ 
+ 		codec_dai: simple-audio-card,codec {
+-			clocks = <&audio_refclk1>;
+ 			sound-dai = <&nau8822_1a>;
+ 		};
+ 
+@@ -107,6 +107,8 @@ nau8822_1a: audio-codec@1a {
+ 		reg = <0x1a>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_i2s1_mclk>;
++		clock-names = "mclk";
++		clocks = <&audio_refclk1>;
+ 		#sound-dai-cells = <0>;
+ 	};
+ 
+-- 
+2.34.1
 
 
