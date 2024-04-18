@@ -1,82 +1,88 @@
-Return-Path: <devicetree+bounces-60642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72CF8A9E1F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:17:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28678A9E26
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:19:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790F91F2231C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:17:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3D731C21ABF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233EC16C688;
-	Thu, 18 Apr 2024 15:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCA916C68B;
+	Thu, 18 Apr 2024 15:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEm/EXAR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K0sWNa9B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA9D16C434;
-	Thu, 18 Apr 2024 15:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566056FC3;
+	Thu, 18 Apr 2024 15:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713453456; cv=none; b=lm81bw6xSLOWefbj85Ad1hTgp5NpOsTfADjocHHENY3glHmMIDwoXwcMohXzLsTvwz2DzMBI/xvCRm7PkVh+vYwEZA3G6TdoAvUHE/g5Gq5W5/WfyNqVplB6XMyq0NBu0xDYRYA93V5nUwwQALyjNjM0q5AKcGmo7ftNIrPpJGg=
+	t=1713453567; cv=none; b=TWUGxvqDLW9rIJ0YS5r4b9/BIwt9yCjUR50OPMJtJ9vRWVIO+4S/eFz9nbFjsuYTNU2shXfIk/hTsFS6r6ACnfYdblZSNj/qFwrEc1Kwj3O83x0cHw0bkYirQQmmlXk+ZPR+U5vilQInX3cY4/rQ1RHin5Y5WhId5Gg4iTjE3tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713453456; c=relaxed/simple;
-	bh=OnXQoJaaZduna0crf6DqxpjnV/O7YuE/F/TYknTfy8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MFjobw0j2K9dffscE8OZU1+7qjZ8Mu+2udnru8b5fY5XWv30K7ZP5RYf5nKBTvg79AWdK8BH4nLJFCGDJCpb0h7n1PTjDGkoIxaF77GxcTD4mm8+Rzxe4g/ukYi5C5lJFcMxt4D2u8jxyZ3xEQ99b9zsFRt5kyHzO1QxT+2UCAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEm/EXAR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E3D8C113CC;
-	Thu, 18 Apr 2024 15:17:35 +0000 (UTC)
+	s=arc-20240116; t=1713453567; c=relaxed/simple;
+	bh=/m88cFY+sszGDVxvUiNXiACTSqHBNqQZiJLjJ0y5k2k=;
+	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:References:To:
+	 Cc:Message-ID:Date; b=NnQPbBkpsVtZxn01pOjXtMksmd0/M9ZrBEpf8mCteR+5Gf3HElMywekFlCQ+NXS6p7R/4RN+webEfE0AG9VZ5PT3a5cm2rx/hftMxnbkXQsXxwXhhZ3GVKZP4mzYLvZySgnrsqzuB2cqbLYoJ/+5IMNwBDRuUyRC9R2bWe1bOwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K0sWNa9B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FB0C113CC;
+	Thu, 18 Apr 2024 15:19:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713453455;
-	bh=OnXQoJaaZduna0crf6DqxpjnV/O7YuE/F/TYknTfy8E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DEm/EXARLK6/EpIcNP+4gcbIy8H2+iSTvu6oSegH63E76SFWI3WnsuA4lDFX7fWEn
-	 HEnAFFYh0gsaxYOMSthHJJ/pF8BZNcMvBuCr3NnZGst34DdEcDAN8QC+OsB1GDQEK3
-	 Tr2drpWmpY8fPKEDMxSEGoAEqKbr+H8Hd9iXM2iQNU7TJ1emS8K9hz739i2zA26nbb
-	 iiQYL37pJ9qjJhuYk/rT+NTqe+eHlR5oy4DVCjjWUwOTHUhu3uCLV6U+iEnYqG5TA8
-	 lkTET7QVgPE9llosw3+Tlms9rCp87ehbYHdmchISL4OfTl7O0DdY6bi6+sWnryWD5h
-	 xXo00dX0r2vPg==
-Date: Thu, 18 Apr 2024 10:17:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: sboyd@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-iio@vger.kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>, wens@csie.org,
-	mturquette@baylibre.com, samuel@sholland.org,
-	linux-sunxi@lists.linux.dev, jernej.skrabec@gmail.com,
-	krzk+dt@kernel.org, p.zabel@pengutronix.de
-Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add GPADC for Allwinner H616
-Message-ID: <171345342441.1843687.15293376169534019509.robh@kernel.org>
-References: <20240417170423.20640-1-macroalpha82@gmail.com>
- <20240417170423.20640-3-macroalpha82@gmail.com>
+	s=k20201202; t=1713453566;
+	bh=/m88cFY+sszGDVxvUiNXiACTSqHBNqQZiJLjJ0y5k2k=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=K0sWNa9Bk2ceR6Kb7RYjPXgvqXWm0UkYxC8L7sOtDEIbREpV2Gp7RLlGsRV5k9RaC
+	 ++QOO3xj4aXywwtMx5mu7wQy+JBG15VC5r7/EXeiEHrt7YobDffBtkJN6FZ6pxI4Ii
+	 p6U2GJEDTw2v1KsCuKiAjsaUlOiNV8IjO/zEIvtyZWlLGfV/yogBQT6MhEF3TEUp0d
+	 mps7gpAj5gEH48Iyxn0L2X4JhapoSrCgIvIzVR1Ru6UPJlmkKb6F4Ek+q9qEUQLNhg
+	 kSa6E5nF43ErGOzN3aeO6AWP+XWD4bo83piXoITvH81RH/irMx6oDB09brtu2UjTok
+	 vnsFZGjfSXfWQ==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240417170423.20640-3-macroalpha82@gmail.com>
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: wireless: ath11k: add
+ ieee80211-freq-limit property
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: 
+ <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+References: 
+ <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+To: Christian Lamparter <chunkeey@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171345356303.934743.10571401233268486603.kvalo@kernel.org>
+Date: Thu, 18 Apr 2024 15:19:24 +0000 (UTC)
 
+Christian Lamparter <chunkeey@gmail.com> wrote:
 
-On Wed, 17 Apr 2024 12:04:22 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+> This is an existing optional property that ieee80211.yaml/cfg80211
+> provides. It's useful to further restrict supported frequencies
+> for a specified device through device-tree.
 > 
-> Add support for the GPADC for the Allwinner H616. It is identical to
-> the existing ADC for the D1/T113s/R329/T507 SoCs.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml      | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+2 patches applied to ath-next branch of ath.git, thanks.
+
+30ba0022b30a dt-bindings: net: wireless: ath11k: add ieee80211-freq-limit property
+43528ae9d9bf wifi: ath11k: add support DT ieee80211-freq-limit
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
