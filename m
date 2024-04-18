@@ -1,136 +1,178 @@
-Return-Path: <devicetree+bounces-60457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD57B8A95D8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:20:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395BB8A95FF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:26:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81A7E1F21E36
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:20:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 450DA1C21542
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0804615AADD;
-	Thu, 18 Apr 2024 09:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EBA15B13E;
+	Thu, 18 Apr 2024 09:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ReK9lGQd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NiL2VV3a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAADA7B3FD
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 09:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458A815EFCD;
+	Thu, 18 Apr 2024 09:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713432015; cv=none; b=Ehp4DIbd5TmCqDf+qN5LbKW/JiICD5HObk3xM/yhJQDZyiqjHd3Vkjy4PxbQiiucr2S+jMT06nnq+Ltrvy2B90v8gXkPg8w+IRsisdsnfIpj8hrhjkzUfaXofz/eXLLmoeAET/wsbMr5I3bNXJaeD/NiLXw9NYmLlQ7jXEkmHRk=
+	t=1713432223; cv=none; b=qj1/k8b6PVuiGGojAj+C+i29icOJ6AFgIoFQi/YyPWPAPT2drF4aw6fCUQ5m86sRgRpgT2K/bsaLsvrbinw+1BbcY1sBCWFKP6xtm2ykO9PcBIewc1ADsXZgwpA5XPo2QDtElTeTHA8erwQmRqbYXghcunmLrs5n5kgJQvxfMuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713432015; c=relaxed/simple;
-	bh=gfpbvJ7La8EXjl6RKoYMPgYZytNXvgyc+bueamjXyCk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QD35zFvldoWhkNEbN70vmBvwpPunNnKZJjSa/bRrdGaBQO4bXMH7FehHGkYim4jfB/uImuExe+LnkrASbMSlIKdT20glrTquqmKftSIWcTk6ylw7BOzBn059D4xOQxYN2BXzKscl1lw1mhKUshtxKKVIc2zVCTc+CE8ePLGzLkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ReK9lGQd; arc=none smtp.client-ip=95.215.58.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1713432010;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OgDQ00mUpxy3+2dq2TcrdALIdNhTcXrsqRSYdfRVb6Q=;
-	b=ReK9lGQduw+pn4a4IvkuUbIB2GRIVJ1ww7GWvcLG8CsRLsZajZzxpPHo9bfGYmuNmFR2aS
-	y/sLNTbOo6ijQy4bMGv6X/JmXGbAjULg5GYRDp3HumT5gfiDHgXp3vNWhMTUnuZ1PP0+w9
-	8Pc8VXXHUQanEtLYN0TK16UtWaujF6tssCaFQ1HJl+2a3Ftq4rHLa9aAaW6nacoUiMvS3T
-	XJ3yB06CmbUPnIDf1dmRdEF1WMUGczHML9iH91nYATDBw0gkdtcHmjeWNeu5WJ3xT3MCC8
-	4KteMe8chIxEq8blw8cIImy0cFdSYS6HCiaDDvbn8UHUd017Zg6iGdiNkhWS3g==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: liujianfeng1994@gmail.com
-Cc: krzk@kernel.org, linux-rockchip@lists.infradead.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org, mchehab@kernel.org,
- p.zabel@pengutronix.de, robh@kernel.org, sfr@canb.auug.org.au,
- Conor Dooley <conor.dooley@microchip.com>,
- Jianfeng Liu <liujianfeng1994@gmail.com>
-Subject:
- Re: [PATCH v5 2/2] dt-bindings: media: rockchip-vpu: Add rk3588 vdpu121
- compatible string
-Date: Thu, 18 Apr 2024 11:19:56 +0200
-Message-ID: <1774986.o0yEF5yP89@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20240413155709.802362-1-liujianfeng1994@gmail.com>
-References:
- <2a516484-ea87-444e-a89d-9fe33d08148f@kernel.org>
- <20240413155709.802362-1-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1713432223; c=relaxed/simple;
+	bh=Fac+43+ZkiTIwPw+5Eung8Nlq978sDrkCo5KeRfxUBI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Pk4XNlc8MV03FCQwPUmYFZCyx7J7Shmm+REXbEoBTQs/erZPv+ObbeBZiOHiUjsn3RW3LPbrm7xhpS+46K/oLpDmyqv1x3m1Yf5OhOQfKMJ6MlIVHXZAfL7IQACRX7MZVOGWS8SBxnY1VRCPwDk9kNm3cMjFoClkcpL/IoSy0Aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NiL2VV3a; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43I3kDao020377;
+	Thu, 18 Apr 2024 09:23:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=SilJgGv
+	0S/cTHjIt82kNZFIHhQaYicUU3VKMfUPu6X4=; b=NiL2VV3aw73r8jbLdtG3VcI
+	ryYNZSLQ6Dk0eltAVeISrdZUCQvWR6tp/tuF2WxjQOaZ2OWK6/q++yZNzFkOjtMP
+	TV+fdfHDoSpWgZqC1jrSZN/KgSQsZ+dLh51TMmqCBEpKypNq5QmMqTZPcPJaQwCW
+	CwNSJs4Abs0E1CYYC3mdzNscR/kyo/qjYWtRK0ryiZJpgG7aS0/5R4QrNuScF4IA
+	USj1RqwHvE8OTDaXops29OyvYbAuF5j1SSsF1+01U+cmrk+mqKVn7k6EpPEBNNKo
+	MIJ82vJxgEPWJk9DnTiIXbxyycxLV/tMgXUFdb25NqhtMNkFQs+4HBT3Eu4eR5A=
+	=
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xju74rs8j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Apr 2024 09:23:35 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43I9NYBw024740
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Apr 2024 09:23:34 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 18 Apr 2024 02:23:29 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <quic_varada@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <quic_anusha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v9 0/6] Add interconnect driver for IPQ9574 SoC
+Date: Thu, 18 Apr 2024 14:52:59 +0530
+Message-ID: <20240418092305.2337429-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart27639082.gtX0PHzvVj";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aenDTy-QT9pWuzS8t7P8dq6frnwxg5Nv
+X-Proofpoint-ORIG-GUID: aenDTy-QT9pWuzS8t7P8dq6frnwxg5Nv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-18_08,2024-04-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=970
+ mlxscore=0 suspectscore=0 spamscore=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404180065
 
---nextPart27639082.gtX0PHzvVj
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-To: liujianfeng1994@gmail.com
-Date: Thu, 18 Apr 2024 11:19:56 +0200
-Message-ID: <1774986.o0yEF5yP89@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20240413155709.802362-1-liujianfeng1994@gmail.com>
-MIME-Version: 1.0
+MSM platforms manage NoC related clocks and scaling from RPM.
+However, in IPQ SoCs, RPM is not involved in managing NoC
+related clocks and there is no NoC scaling.
 
-On Saturday, 13 April 2024 17:57:09 CEST Jianfeng Liu wrote:
-> I'm sorry for my unkonwing about the kernel patching process. And I'm
-> sorry to let maintainers do extra work. Thank you for teaching me this.
-> I will do this right in future patches.
-> 
-> I did received a Acked-by tag from Conor in v4:
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> I note it here in case someone forgets this tag.
+However, there is a requirement to enable some NoC interface
+clocks for the accessing the peripherals present in the
+system. Hence add a minimalistic interconnect driver that
+establishes a path from the processor/memory to those peripherals
+and vice versa.
 
-I think it's beneficial to send a v6 with the following changes:
-1) Make this dt-bindings patch the first in the series
-2) Make sure you've collected all the tags you've received to all the patches
-3) Specify the base commit
+---
+v9:	Squash icc-clk driver change and cbf-msm8996 change
+	Remove HWS_DATA macro
+v8:	Change icc-clk driver to take master and slave ids instead
+	of auto generating
+	Remove ICC_xxx defines from dt-bindings header
+	Define MASTER/SLAVE_xxx macros from 0 .. n
 
-ad 1) I don't know if it's a hard rule, but I've seen a consistent pattern 
-where the dt-binding changes come before those changes being applied to 
-DeviceTree files. It also makes sense as when the dt-binding change hasn't been 
-applied, then the DT file is technically invalid.
+v7:	Fix macro names in dt-bindings header
+	Do clock get in icc driver
 
-ad 2) You shouldn't make maintainers do extra work to get your patch(es) 
-merged; you want to make their work as easy as possible. Thus you do the 
-(extra) work and provide a new version of the patch(es).
-Sending multiple versions in a single day is generally not recommended as you 
-should give reviewers some time to do the review. But it should be fine now as 
-several days have past without new reviews.
+v6:	Removed 'Reviewed-by: Krzysztof' from dt-bindings patch
+	Remove clock get from ICC driver as suggested by Stephen Boyd
+	so that the actual peripheral can do the clock get
+	first_id -> icc_first_node_id
+	Remove tristate from INTERCONNECT_CLK
+v5:
+	Split gcc-ipq9574.c and common.c changes into separate patches
+	Introduce devm_icc_clk_register
+	Fix error handling
+v4:
+gcc-ipq9574.c
+	Use clk_hw instead of indices
+common.c
+	Do icc register in qcom_cc_probe() call stream
+common.h
+	Add icc clock info to qcom_cc_desc structure
 
-ad 3) The `git format-patch` command has a `--base=<commit>` parameter with 
-which you can make explicit upon which commit the patch is based.
-That works a lot better/easier then a textual description.
+v3:
+qcom,ipq9574.h
+	Move 'first id' define to clock driver
+gcc-ipq9574.c:
+	Use indexed identifiers here to avoid confusion
+	Fix error messages and move code to common.c as it can be
+	shared with future SoCs
 
-HTH
---nextPart27639082.gtX0PHzvVj
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+v2:
+qcom,ipq9574.h
+	Fix license identifier
+	Rename macros
+qcom,ipq9574-gcc.yaml
+	Include interconnect-cells
+gcc-ipq9574.c
+	Update commit log
+	Remove IS_ENABLED(CONFIG_INTERCONNECT) and auto select it from Kconfig
+ipq9574.dtsi
+	Moved to separate patch
+	Include interconnect-cells to clock controller node
+drivers/clk/qcom/Kconfig:
+	Auto select CONFIG_INTERCONNECT & CONFIG_INTERCONNECT_CLK
 
------BEGIN PGP SIGNATURE-----
+Varadarajan Narayanan (6):
+  interconnect: icc-clk: Allow user to specify master/slave ids
+  dt-bindings: interconnect: Add Qualcomm IPQ9574 support
+  interconnect: icc-clk: Add devm_icc_clk_register
+  clk: qcom: common: Add interconnect clocks support
+  clk: qcom: ipq9574: Use icc-clk for enabling NoC related clocks
+  arm64: dts: qcom: ipq9574: Add icc provider ability to gcc
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZiDlvAAKCRDXblvOeH7b
-bmEdAP9OLqzxTgUxfIC4NVwn89ZMipgZ02R2mr8wczdNorVfxgEAwMVlJgDzsjlr
-2lkalQpvcr6qdfULVlBbAY1pfncDyAY=
-=4ic4
------END PGP SIGNATURE-----
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  2 +
+ drivers/clk/qcom/Kconfig                      |  2 +
+ drivers/clk/qcom/clk-cbf-8996.c               |  7 ++-
+ drivers/clk/qcom/common.c                     | 35 ++++++++++-
+ drivers/clk/qcom/common.h                     |  9 +++
+ drivers/clk/qcom/gcc-ipq9574.c                | 31 ++++++++++
+ drivers/interconnect/icc-clk.c                | 24 +++++++-
+ .../dt-bindings/interconnect/qcom,ipq9574.h   | 59 +++++++++++++++++++
+ include/linux/interconnect-clk.h              |  4 ++
+ 10 files changed, 171 insertions(+), 5 deletions(-)
+ create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
 
---nextPart27639082.gtX0PHzvVj--
-
-
+-- 
+2.34.1
 
 
