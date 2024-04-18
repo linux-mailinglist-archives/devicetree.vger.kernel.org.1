@@ -1,68 +1,73 @@
-Return-Path: <devicetree+bounces-60533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FBB8A999D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC8A8A99CA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:29:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E56BA1F22407
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:14:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FBA51F2171A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF7315FA7A;
-	Thu, 18 Apr 2024 12:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E446115FA96;
+	Thu, 18 Apr 2024 12:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="edwjgr6E"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b="GbjClVAW";
+	dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b="PlydqyOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from e3i51.smtp2go.com (e3i51.smtp2go.com [158.120.84.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C9215FA76;
-	Thu, 18 Apr 2024 12:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4519015F418
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 12:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=158.120.84.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713442416; cv=none; b=ni8+qd2W3oU1vCcKxoTaNLFEcU4fPkW8Opys+RHzoyONj+j65NEeRckQw8AEd3S6wuZegithRQe/Z2NQ9gb3pH1ZkaSVOQ3/pUEmT4Jvf9YkBdsAYNs/a++qvNELAAI8Wa8Wip1hRcw6J/2pm7zwPKpcOriwI1/3KjWjO08PaEk=
+	t=1713443371; cv=none; b=gVmOaTpkryZgq0slBuE7q6YJu6il4IvawVNr/VVhs7AjOo37vvRWBq9cHkHUKMfInxuGsT2kuoF3VkFpHQm3+8eP/FLfRhjCcLIg484TsdvifUDz3aWUhmcPM8Z+bp5K/ruRr/0f0/L5ccLFcJz5g0hAPMj56+WEyWN2oyIryws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713442416; c=relaxed/simple;
-	bh=VQUJGeeRWUloAWWB1Hyejv1PGZzE7T5/iKqrDFVIZDo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=D56dhTwmbySM8wMF2qOLkmFdxUL/FS83wGAYs8ynkTZFdmNgcYVml7jo24ckJmzABvrcwO45gJam1B0pgAJL7f1JjEPgKUk5oL+JB1AerXctqGDK+KmYGgDOdctqKAE8I5+GLCEuOreA5hcNtlbeEJVNgSS0rZ7LJ+D/gtFHmgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b=edwjgr6E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7BE6C2BD11;
-	Thu, 18 Apr 2024 12:13:34 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
-	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="edwjgr6E"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
-	t=1713442413;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aq6JxSnWT2dRtETeeOa/f63j90uhZ8kS0pFZ3RGL2y8=;
-	b=edwjgr6EnEXfAJpSfhxKoISY47u6S9LNTNfxb7wqGAHku9KcROKgQty+HaL2+s5GqU7R5j
-	OwO7vmerWfA+m5BQAX/n7leXDYH4JdcHWUAB9jj5blEJNGF/KfG3S4qsbcjvuP6jTVN1Tg
-	Ok1fW9K6R/BZmkDK199QbBwZv00h+HE=
-Received: 
-	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 81429b10 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-	Thu, 18 Apr 2024 12:13:33 +0000 (UTC)
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: tytso@mit.edu,
-	robh@kernel.org,
-	krzk@kernel.org,
-	conor+dt@kernel.org,
+	s=arc-20240116; t=1713443371; c=relaxed/simple;
+	bh=fop2tDdvT4Rg5l7ondzUbscaRR+uHGG3gHYZCup3Lls=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BZY/Gg+THEHJ2TKoRknXDDv8CJtCL154h5FfNsX8cyYB2HxvH8qFcYTn3exMnXAEG9cv6tC2FN1mnVPCoA1VhmT102J0U4of5+1H4ZME9qxXLGq2CjvXFXFVx+y+ez3ijpdn8sHmAQrnomtF4+63hlNNH0EUOo+qmI7RteV5ASs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it; spf=pass smtp.mailfrom=em1174574.asem.it; dkim=pass (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b=GbjClVAW; dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b=PlydqyOr; arc=none smtp.client-ip=158.120.84.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=em1174574.asem.it
+Received: from [10.86.249.198] (helo=asas054.asem.intra)
+	by smtpcorp.com with esmtpa (Exim 4.96.1-S2G)
+	(envelope-from <f.suligoi@asem.it>)
+	id 1rxQtI-wSFvR6-2U;
+	Thu, 18 Apr 2024 12:29:24 +0000
+Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with Microsoft SMTPSVC(10.0.14393.4169);
+	 Thu, 18 Apr 2024 14:29:23 +0200
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	sudanl@amazon.com,
-	graf@amazon.com,
-	dwmw@amazon.co.uk,
-	krzysztof.kozlowski@linaro.org
-Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>
-Subject: [PATCH v7 3/3] virt: vmgenid: add support for devicetree bindings
-Date: Thu, 18 Apr 2024 14:12:32 +0200
-Message-ID: <20240418121249.42380-4-Jason@zx2c4.com>
-In-Reply-To: <20240418121249.42380-1-Jason@zx2c4.com>
-References: <20240418121249.42380-1-Jason@zx2c4.com>
+	Flavio Suligoi <f.suligoi@asem.it>
+Subject: [PATCH v2 0/5] arm64: dts: remove tx-sched-sp property in snps,dwmac
+Date: Thu, 18 Apr 2024 14:28:54 +0200
+Message-Id: <20240418122859.2079099-1-f.suligoi@asem.it>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,145 +75,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 18 Apr 2024 12:29:23.0515 (UTC) FILETIME=[0B7EA8B0:01DA918C]
+X-smtpcorp-track: 1rxQtmwSFvR62l.mcmXue4KDGp0e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smtpcorp.com;
+ i=@smtpcorp.com; q=dns/txt; s=a1-4; t=1713443366; h=feedback-id :
+ x-smtpcorp-track : date : message-id : to : subject : from : reply-to
+ : sender : list-unsubscribe;
+ bh=gHoVF4+qnuYpG3bFpPHolfB6dA01j229z+bTKcaSRuA=;
+ b=GbjClVAWgeGklVDD5s4IEWC6odCRncEixqTWTWypLOQ1sXlkXPULh2o4In0hecXFQuqns
+ GQmRmyakLWyS0Krln9jc6o4RUDqWhNZJKQ67DxEUldQeKfSJcYxQSW1jgMwdUyKY3kYFt4q
+ rqaBsaTUgUZDJo6MlMNahYK+xM5ZPOboUTFLsU9w2aX6QaqTglZ+mETCN4J5V4/wz/5HfL3
+ O8rhOXCNQpHA8lFhGfkrYdRnCVGoQldzU+vyYbyYm5cY5pO4L1m86R0GIi8dwMcjz6dfbpM
+ PblndIVYooJcP8Q2mjUEg4UW+rvP+emJaXMKhedCzcd9F6C1B6XMg5tCWANA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it;
+ i=@asem.it; q=dns/txt; s=s1174574; t=1713443366; h=from : subject : to
+ : message-id : date; bh=gHoVF4+qnuYpG3bFpPHolfB6dA01j229z+bTKcaSRuA=;
+ b=PlydqyOrtD4hsTAl7I1ZhCGZVE9jyua/ddh/rTxm4Odqr33f43QBrTAcuq4BJI1MldP/U
+ Dme8Pzl3jd1xu2PWHHnexUzdewGX6/aiqgMykdyT+1tIvYYmxb/2MYmIM24PKwQq+M5bcRS
+ eCzhEIy/hCtjCT7Lxc3qHdhg9No9LUZqdN1/cdJCxM056MbMQ91ItXXCBx2kLfRYP7+ycm0
+ /xXk0whs1IUAWHf7/TPzX1vxCFsxz1f2VwX56uv8HNn/Ov0MfJqpkC1znFnXNMkZ+lrIbao
+ lEo1OyaRlIBQaEPyJDQhYHLa6BCn8JGCa6t9CJLZk3TrjnUVLP6edAQXe0Tw==
 
-From: Sudan Landge <sudanl@amazon.com>
+In the ethernet stmmac device driver:
 
-Extend the vmgenid platform driver to support devicetree bindings. With
-this support, hypervisors can send vmgenid notifications to the virtual
-machine without the need to enable ACPI. The bindings are located at:
-Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
+- drivers/net/ethernet/stmicro/stmmac/
 
-Since this makes the driver work for both ACPI and devicetree, adjust
-the Kconfig to include `|| OF`, which in turn means accounting for
-!CONFIG_ACPI in the code with a short ifdef.
+The "Strict priority" for the tx scheduler is by default in Linux driver,
+so the tx-sched-sp property was removed in commit aed6864035b1 ("net:
+stmmac: platform: Delete a redundant condition branch").
 
-Signed-off-by: Sudan Landge <sudanl@amazon.com>
-Reviewed-by: Alexander Graf <graf@amazon.com>
-[Jason: - Small style cleanups and refactoring.
-        - Fold in Kconfig OF dependency and ACPI conditionalization. ]
-Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
----
- drivers/virt/Kconfig   |  2 +-
- drivers/virt/vmgenid.c | 53 ++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 52 insertions(+), 3 deletions(-)
+This patch series remove this property from the following device-tree
+files:
 
-diff --git a/drivers/virt/Kconfig b/drivers/virt/Kconfig
-index 40129b6f0eca..017d6c38c3ba 100644
---- a/drivers/virt/Kconfig
-+++ b/drivers/virt/Kconfig
-@@ -16,7 +16,7 @@ if VIRT_DRIVERS
- config VMGENID
- 	tristate "Virtual Machine Generation ID driver"
- 	default y
--	depends on ACPI
-+	depends on ACPI || OF
- 	help
- 	  Say Y here to use the hypervisor-provided Virtual Machine Generation ID
- 	  to reseed the RNG when the VM is cloned. This is highly recommended if
-diff --git a/drivers/virt/vmgenid.c b/drivers/virt/vmgenid.c
-index aebbd24512c9..7f2d1e5656df 100644
---- a/drivers/virt/vmgenid.c
-+++ b/drivers/virt/vmgenid.c
-@@ -2,12 +2,13 @@
- /*
-  * Copyright (C) 2022 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
-  *
-- * The "Virtual Machine Generation ID" is exposed via ACPI and changes when a
-+ * The "Virtual Machine Generation ID" is exposed via ACPI or DT and changes when a
-  * virtual machine forks or is cloned. This driver exists for shepherding that
-  * information to random.c.
-  */
- 
- #include <linux/acpi.h>
-+#include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
-@@ -41,6 +42,7 @@ static void setup_vmgenid_state(struct vmgenid_state *state, void *virt_addr)
- 	add_device_randomness(state->this_id, sizeof(state->this_id));
- }
- 
-+#ifdef CONFIG_ACPI
- static void vmgenid_acpi_handler(acpi_handle __always_unused handle,
- 				 u32 __always_unused event, void *dev)
- {
-@@ -92,6 +94,43 @@ static int vmgenid_add_acpi(struct device *dev, struct vmgenid_state *state)
- 	ACPI_FREE(parsed.pointer);
- 	return ret;
- }
-+#else
-+static int vmgenid_add_acpi(struct device *dev, struct vmgenid_state *state)
-+{
-+	return -EINVAL;
-+}
-+#endif
-+
-+static irqreturn_t vmgenid_of_irq_handler(int __always_unused irq, void *dev)
-+{
-+	vmgenid_notify(dev);
-+	return IRQ_HANDLED;
-+}
-+
-+static int vmgenid_add_of(struct platform_device *pdev,
-+			  struct vmgenid_state *state)
-+{
-+	void *virt_addr;
-+	int ret;
-+
-+	virt_addr = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
-+	if (IS_ERR(virt_addr))
-+		return PTR_ERR(virt_addr);
-+
-+	setup_vmgenid_state(state, virt_addr);
-+
-+	ret = platform_get_irq(pdev, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_request_irq(&pdev->dev, ret, vmgenid_of_irq_handler,
-+			       IRQF_SHARED, "vmgenid", &pdev->dev);
-+	if (ret)
-+		return ret;
-+
-+	pdev->dev.driver_data = state;
-+	return 0;
-+}
- 
- static int vmgenid_add(struct platform_device *pdev)
- {
-@@ -103,13 +142,22 @@ static int vmgenid_add(struct platform_device *pdev)
- 	if (!state)
- 		return -ENOMEM;
- 
--	ret = vmgenid_add_acpi(dev, state);
-+	if (dev->of_node)
-+		ret = vmgenid_add_of(pdev, state);
-+	else
-+		ret = vmgenid_add_acpi(dev, state);
- 
- 	if (ret)
- 		devm_kfree(dev, state);
- 	return ret;
- }
- 
-+static const struct of_device_id vmgenid_of_ids[] = {
-+	{ .compatible = "microsoft,vmgenid", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, vmgenid_of_ids);
-+
- static const struct acpi_device_id vmgenid_acpi_ids[] = {
- 	{ "VMGENCTR", 0 },
- 	{ "VM_GEN_COUNTER", 0 },
-@@ -122,6 +170,7 @@ static struct platform_driver vmgenid_plaform_driver = {
- 	.driver     = {
- 		.name   = "vmgenid",
- 		.acpi_match_table = vmgenid_acpi_ids,
-+		.of_match_table = vmgenid_of_ids,
- 	},
- };
- 
+- arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
+- arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+- arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+- arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+
+There is no problem if that property is still used in these DTS,
+since, as seen above, it is a default property of the driver.
+
+The property is also removed, in a separate patch, from the corresponding
+dt_bindings file:
+- Documentation/devicetree/bindings/net/snps,dwmac.yaml
+
+v2 - This patch is the 2nd version of a previous patch, where both the DTS
+     and the yaml files were included toghether. Then I split this 1st
+     patch in two, as suggested by Krzysztof.
+v1 - original version of the patch where, in addition to these DTS patches,
+     there was also the one related to the correspondent snps,dwmac.yaml
+     dt_binding file.
+
+Flavio Suligoi (5):
+  arm64: dts: freescale: imx8mp-beacon: remove tx-sched-sp property
+  arm64: dts: freescale: imx8mp-evk: remove tx-sched-sp property
+  arm64: dts: freescale: imx8mp-verdin: remove tx-sched-sp property
+  arm64: dts: qcom: sa8540p-ride: remove tx-sched-sp property
+  arm64: dts: qcom: sa8775p-ride: remove tx-sched-sp property
+
+ arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi | 1 -
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts         | 1 -
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi     | 1 -
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts            | 2 --
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts            | 2 --
+ 5 files changed, 7 deletions(-)
+
 -- 
-2.44.0
+2.34.1
 
 
