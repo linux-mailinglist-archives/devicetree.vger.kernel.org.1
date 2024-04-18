@@ -1,147 +1,164 @@
-Return-Path: <devicetree+bounces-60665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3218A9F07
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:50:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91D18A9F26
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:53:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEF0B1C2341E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:50:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 772DEB247C4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB9E216FF38;
-	Thu, 18 Apr 2024 15:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A1816F8E0;
+	Thu, 18 Apr 2024 15:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SnDWsU68"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zi83tpc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D0E16F8FD;
-	Thu, 18 Apr 2024 15:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFAC16C84E;
+	Thu, 18 Apr 2024 15:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713455378; cv=none; b=mVdNX9Qdsw9dexNpJtns4ErozXImzV5BCy+CFcDpAhYwm78ABTy+8ipt1nxnVq3s2pfUxqmkE0+y3PGfBuxqfSmcQmg4R3hV87W2oTnamdmsEJFaQjtHxboZ+3UIyYxlDf/K/6t6Cycfz3Ehvd3ZYcrD2eealm70ZfcMxLChfR0=
+	t=1713455579; cv=none; b=mgwJHIXDG9K1R/X6afqfXz/TL+4m4iw7kDkIqhQOjnckwMBoW0BwEdJ7ACvRzSKpQgnKgFbjLHiB8x3hLp6Ro9YWl5A6K3dk5hRdDjbMSPBoL97tbPhpEvL65xW1C7eD7gKD3EC1XNug81tbKoKsoXHRCTe1HaZJofTezzbIVPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713455378; c=relaxed/simple;
-	bh=UwEg6jQHcTgWeL4xO3d8TIf8vYvHIDPpAbd7TlKkK9Y=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gHeZagCK8Ifb6SjdpIyXSzqIxLsDS5jqpikR/YUgxDx7PxoFUk/rn3+ZeGdxhAwdYPL9TEPPncokB3MydQz2Yrj1naK/0Dvo+BN7K99guq3EEQQ3EHBb/PReeYPVnWRNgQWcHvM84ugEvmutPYszVXKT7Up+lBE3V39aunaLtjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SnDWsU68; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43I6JiOF007499;
-	Thu, 18 Apr 2024 15:49:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=xDnVdRubm2YXL//ItdDE7
-	olh+rPORPbRBCmmNqyZEqA=; b=SnDWsU68k87TLXy3IBt5MAPIPhXeEzEVDhxIH
-	BRejN8tVvTTFK9cUUMjukaAyCmNpESQqVjegG1kuGZPhk87U4ckaTPrMnQYKYZFg
-	kuRpytWviOwRj54Pg+4fF7oJg6tsOB2LUc7B7p3gBtubL8lYAGOLxfDymC5eQAcv
-	LVVR4b82a/WNDq0pi/9wbeIDSg57fLYbis91bm94FzOzK09CDYsyX1myoEc/zAVz
-	Vsq2DwUPtnwBXxcVYpnka+1KZhFcWPk8/vl2n2yVyVXvb2cQSAJ7kWIQ/rEa+3eB
-	igjGbFBLnH60+mc3RU4vrjY6k5Uo2zmAmWbTU7XrQA4GgQNTQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xjx54h8cq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Apr 2024 15:49:29 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43IFnSkr009256
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Apr 2024 15:49:28 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 18 Apr 2024 08:49:27 -0700
-Date: Thu, 18 Apr 2024 08:49:26 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <dmitry.baryshkov@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, <quic_gkohli@quicinc.com>,
-        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>
-Subject: Re: [PATCH V3 2/5] mailbox: Add support for QTI CPUCP mailbox
- controller
-Message-ID: <ZiFBBh+kQy6Pu3BM@hu-bjorande-lv.qualcomm.com>
-References: <20240417132856.1106250-1-quic_sibis@quicinc.com>
- <20240417132856.1106250-3-quic_sibis@quicinc.com>
- <ZiA+mE3QduLxc+a5@hu-bjorande-lv.qualcomm.com>
- <b8ba5179-cb36-6b13-4244-6da1ff96c2d3@quicinc.com>
+	s=arc-20240116; t=1713455579; c=relaxed/simple;
+	bh=6yP7DNU81gVVaBLvr4Yz015ghuSP2nPtHJYZrJGgZkw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r4zEJ044xwT1oY1h2EVH5GK0AiFyTzpSf9XnahgKwT3rIwCqjL1jHhBNYEoHb8lLMqnwQZjwN4dJTrRTalT7E3XjuVT3uw/LTVmiun1OyVq/RCWptDNdme/izA5reAd6t3xxuY8sAga+gfGwRP66qjqhGcBXh4fpJ7kVqSQsbnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zi83tpc6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3773FC113CC;
+	Thu, 18 Apr 2024 15:52:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713455579;
+	bh=6yP7DNU81gVVaBLvr4Yz015ghuSP2nPtHJYZrJGgZkw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zi83tpc6ru6TyArQhR6ravdTE5SWs2XiYm2p5hQUcjNinfQDw2cHCSmtmm6RwfWZV
+	 mptYHPMCzvu4Y0fz5PNnv4MkCgjUVgtC/A7m6CcFgB8RkDUgOANAcuBIZWN7X2b3Fi
+	 v/xjqf97txq8FkqnuDHLw3th53BtVEFnlXTFtnkRQJuyijFHXeKtoA/ux82SRH+ba0
+	 7PHwOlUjBi8jQfeGgz9stAJ4AFCbmooPwKFAj4gzV6saPUSUc1j4wy9OIQDsThF2vT
+	 tNRVlc3dBP7B7wp3WPYnzVcAFyHYu5IV7X3TotEjKuTGgrugDkjP2sbVgNymPmtKrU
+	 lNW6hPVqMU+nA==
+Date: Thu, 18 Apr 2024 08:52:56 -0700
+From: Eric Biggers <ebiggers@kernel.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Andy Chiu <andy.chiu@sifive.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>,
+	Guo Ren <guoren@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	Vincent Chen <vincent.chen@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	Joel Granados <j.granados@samsung.com>,
+	Jerry Shih <jerry.shih@sifive.com>
+Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
+ to ZVE32X
+Message-ID: <20240418155256.GA2410@sol.localdomain>
+References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
+ <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
+ <20240418-brook-chili-4d3e61d1a55c@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b8ba5179-cb36-6b13-4244-6da1ff96c2d3@quicinc.com>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VfKhppR1wgkYFVVoSwLUFTIakXyyUK0s
-X-Proofpoint-ORIG-GUID: VfKhppR1wgkYFVVoSwLUFTIakXyyUK0s
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-18_13,2024-04-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- suspectscore=0 malwarescore=0 phishscore=0 mlxlogscore=860 bulkscore=0
- impostorscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404180112
+In-Reply-To: <20240418-brook-chili-4d3e61d1a55c@wendy>
 
-On Thu, Apr 18, 2024 at 01:01:50PM +0530, Sibi Sankar wrote:
-> On 4/18/24 02:56, Bjorn Andersson wrote:
-> > On Wed, Apr 17, 2024 at 06:58:53PM +0530, Sibi Sankar wrote:
-> > > diff --git a/drivers/mailbox/qcom-cpucp-mbox.c b/drivers/mailbox/qcom-cpucp-mbox.c
-[..]
-> > 
-> > > +		if (status & BIT(i)) {
-> > 
-> > Can't you combine the for loop and this conditional into a
-> > for_each_bit_set()?
+Hi Conor,
+
+On Thu, Apr 18, 2024 at 12:02:10PM +0100, Conor Dooley wrote:
+> +CC Eric, Jerry
 > 
-> The only drawback I see here is if the number of channels increase to
-> it's full capacity of 64 since for_each_set_bit expects unsigned long.
-> 
-
-It takes a unsigned long * and it can take a size > BITS_PER_LONG. But
-I've not convinced myself that the bit order across two of those matches
-the u64 bits.
-
+> On Fri, Apr 12, 2024 at 02:49:03PM +0800, Andy Chiu wrote:
+> > Make has_vector take one argument. This argument represents the minimum
+> > Vector subextension that the following Vector actions assume.
 > > 
-> > > +			val = readl(cpucp->rx_base + APSS_CPUCP_RX_MBOX_CMD(i) + APSS_CPUCP_MBOX_CMD_OFF);
-> > > +			chan = &cpucp->chans[i];
-> > > +			spin_lock_irqsave(&chan->lock, flags);
+> > Also, change riscv_v_first_use_handler(), and boot code that calls
+> > riscv_v_setup_vsize() to accept the minimum Vector sub-extension,
+> > ZVE32X.
 > > 
-> > Can you please add a comment here to document that the lock is taken
-> > here to deal with races against client registration? (It wasn't obvious
-> > to me...)
+> > Most kernel/user interfaces requires minimum of ZVE32X. Thus, programs
+> > compiled and run with ZVE32X should be supported by the kernel on most
+> > aspects. This includes context-switch, signal, ptrace, prctl, and
+> > hwprobe.
+> > 
+> > One exception is that ELF_HWCAP returns 'V' only if full V is supported
+> > on the platform. This means that the system without a full V must not
+> > rely on ELF_HWCAP to tell whether it is allowable to execute Vector
+> > without first invoking a prctl() check.
+> > 
+> > Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> > Acked-by: Joel Granados <j.granados@samsung.com>
 > 
-> This is was put in to handle irqs after channel closure. Meaning we
-> don't want to send data on a closed/empty channel.
+> I'm not sure that I like this patch to be honest. As far as I can tell,
+> every user here of has_vector(ext) is ZVE32X, so why bother actually
+> having an argument?
 > 
+> Could we just document that has_vector() is just a tyre kick of "is
+> there a vector unit and are we allowed to use it", and anything
+> requiring more than the bare-minimum (so zve32x?)must explicitly check
+> for that form of vector using riscv_has_extension_[un]likely()?
+> 
+> Finally, the in-kernel crypto stuff or other things that use
+> can_use_simd() to check for vector support - do they all function correctly
+> with all of the vector flavours? I don't understand the vector
+> extensions well enough to evaluate that - I know that they do check for
+> the individual extensions like Zvkb during probe but don't have anything
+> for the vector version (at least in the chacha20 and sha256 glue code).
+> If they don't, then we need to make sure those drivers do not probe with
+> the cut-down variants.
 
-You're dealing with that through the chan->cl check below, not the lock
-itself. So the lock here would be for synchronizing this code with
-potentially concurrent execution of __mbox_bind_client() or e.g.
-mbox_free_channel().
+As far as I know, none of the RISC-V vector crypto code has been tested with
+Zve* yet.  Currently it always checks for VLEN >= 128, which should exclude most
+Zve* implementations.
 
-But if this is indeed the problem, then we're locking here to ensure
-that mbox_chan_received_data() will not dereference chan->cl while it's
-being modified elsewhere int he mailbox core.
+Currently it doesn't check for EEW >= 64, even though it sometimes assumes that.
+It looks like a check for EEW >= 64 needs to be added in order to exclude Zve32x
+and Zve32f implementations that don't support EEW == 64.
 
-If that's the case, I think this needs to be strongly documented in the
-API, or perhaps better yet the lock being moved into
-mbox_chan_received_data().
+If it would be useful to do so, we should be able to enable some of the code
+with a smaller VLEN and/or EEW once it has been tested in those configurations.
+Some of it should work, but some of it won't be able to work.  (For example, the
+SHA512 instructions require EEW==64.)
 
-Regards,
-Bjorn
+Also note that currently all the RISC-V vector crypto code only supports riscv64
+(XLEN=64).  Similarly, that could be relaxed in the future if people really need
+the vector crypto acceleration on 32-bit CPUs...  But similarly, the code would
+need to be revised and tested in that configuration.
+
+> Eric/Jerry (although read the previous paragraph too):
+> I noticed that the sha256 glue code calls crypto_simd_usable(), and in
+> turn may_use_simd() before kernel_vector_begin(). The chacha20 glue code
+> does not call either, which seems to violate the edict in
+> kernel_vector_begin()'s kerneldoc:
+> "Must not be called unless may_use_simd() returns true."
+
+skcipher algorithms can only be invoked in process and softirq context.  This
+differs from shash algorithms which can be invoked in any context.
+
+My understanding is that, like arm64, RISC-V always allows non-nested
+kernel-mode vector to be used in process and softirq context -- and in fact,
+this was intentionally done in order to support use cases like this.  So that's
+why the RISC-V skcipher algorithms don't check for may_use_simd() before calling
+kernel_vector_begin().
+
+Has that changed?  If so, why?
+
+Some architectures like x86 do provide no-SIMD fallbacks for all skcipher
+algorithms, but it's very annoying to do.  We were hoping to avoid that in
+RISC-V.
+
+- Eric
 
