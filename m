@@ -1,103 +1,101 @@
-Return-Path: <devicetree+bounces-60718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 189BF8AA0D3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:12:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 004768AA0BE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7C73284DFA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:12:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A91A61F2244A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39AD174EF7;
-	Thu, 18 Apr 2024 17:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b="wEo7gMHQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F131617164F;
+	Thu, 18 Apr 2024 17:07:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward501a.mail.yandex.net (forward501a.mail.yandex.net [178.154.239.81])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E09B172BD7;
-	Thu, 18 Apr 2024 17:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A8A17109D;
+	Thu, 18 Apr 2024 17:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713460345; cv=none; b=CGRp/ufyTNUTOkWrdnZEcXSdVsPCVihrXKGUTKNwKtBCZan7SXODaQg8eG0nCxNcbGbVLGnjNYATjczMWGXHTCJQRcvWPsAqDSX02Hvh+nDX0mYlqperttOFzpNDC1UiVBSGZaMPuBAkxfsQSR+d8Jsf5P/s7d6oKckJClBPhbc=
+	t=1713460039; cv=none; b=YzhFfXKY5WZeRX39nswPpReZaDDoPJvrLvzhMazeWf4Ut/8D3F8J+96tVPf719dVEgI0Ha7CPctZJBfy07iDW1Uw9PNEQpbchvynI9HSTHhybpA3gYIotxumnuPtdpB0TvL1hBEUxOXG/jfsBFnvWMlyXulFyIqSkxj9QtDvgVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713460345; c=relaxed/simple;
-	bh=FOi6eJPUFSojRtF9P/XwjqEpVwed2EL1xlarcDukTeg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ksLGSIHa5LCZZQ0l3pytGsHoDp1td6qaLzV4W4M2eUjxeMcH6a/kdX03FbzMRgRcx35S2wePZtJNWIu8MK3ST6/NdMb/WaN6fp0S2adRrZYQ+XNiMRJLGwDZ3jhre828nQ1tCoUmTqTZpiAOVHz4Wf/0Zeqsy+Nqx3V5kx4r7Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru; spf=pass smtp.mailfrom=ya.ru; dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b=wEo7gMHQ; arc=none smtp.client-ip=178.154.239.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ya.ru
-Received: from mail-nwsmtp-smtp-production-main-67.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-67.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1d:2c01:0:640:acf3:0])
-	by forward501a.mail.yandex.net (Yandex) with ESMTPS id 872DC61487;
-	Thu, 18 Apr 2024 20:06:34 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-67.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id M6JHjm3m3Gk0-GjtOvhpt;
-	Thu, 18 Apr 2024 20:06:33 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ya.ru; s=mail;
-	t=1713459993; bh=GaYIntdqsvXpjyEkkhoOihijbTv7eiJ72X4WWAqXMnU=;
-	h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=wEo7gMHQV5h7QrVruUvQOA6I/7OL8GKS6zvTjk+aCM0ScW/srE0ld6ARudnds6YQQ
-	 dpEVzU7mGWLBk3DUIhV1LlfEbSVeFQjRw7DBeBLTXotgp9L3gqBWI3e2bpLeOaSAIG
-	 BvKxqXyDdVQVjv3PHrWaplz8cDl7MaGuE+ID2xZ8=
-Authentication-Results: mail-nwsmtp-smtp-production-main-67.vla.yp-c.yandex.net; dkim=pass header.i=@ya.ru
-From: Konstantin Pugin <rilian.la.te@ya.ru>
-To: 
-Cc: Konstantin Pugin <ria.freelander@gmail.com>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Lech Perczak <lech.perczak@camlingroup.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 2/3] dt-bindings: sc16is7xx: Add compatible line for XR20M1172 UART
-Date: Thu, 18 Apr 2024 20:06:06 +0300
-Message-Id: <20240418170610.759838-3-rilian.la.te@ya.ru>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240418170610.759838-1-rilian.la.te@ya.ru>
-References: <20240418170610.759838-1-rilian.la.te@ya.ru>
+	s=arc-20240116; t=1713460039; c=relaxed/simple;
+	bh=WC30OFMc14/UNKx0UaMstGBJDDBM8TR/dxv2o6feHjo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U95Q8vbRYAOyIKhYYX1AGNtfNC+O5kRG1Ol5E0Vb2d2ipAZsatGRdOM1DuBxTV5Uc6WrKiDP7bdR42I574JKZv0Z70rSF8GLWwBwLUzSV6xZeOCzAjrgaqAywhgmkpXKxjJSk7je5CGI5m/zg3EuDkModjBiGFCjalnBPcMU860=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e861917.versanet.de ([94.134.25.23] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rxVE5-0000vA-Kr; Thu, 18 Apr 2024 19:07:09 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, amadeus@jmu.edu.cn,
+ FUKAUMI Naoki <naoki@radxa.com>
+Subject:
+ Re: [PATCH 1/2] dt-bindings: arm: rockchip: Correct the descriptions for
+ Radxa boards
+Date: Thu, 18 Apr 2024 19:07:08 +0200
+Message-ID: <2603669.Lt9SDvczpP@diego>
+In-Reply-To: <20240418-attach-tigress-bc2b9f844fc7@spud>
+References:
+ <1e148d6cd4486b31b5e7f3824cf6bccf536b74c0.1713457260.git.dsimic@manjaro.org>
+ <1888572.CQOukoFCf9@diego> <20240418-attach-tigress-bc2b9f844fc7@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-From: Konstantin Pugin <ria.freelander@gmail.com>
+Am Donnerstag, 18. April 2024, 19:04:44 CEST schrieb Conor Dooley:
+> On Thu, Apr 18, 2024 at 06:59:42PM +0200, Heiko St=FCbner wrote:
+> > Hi Dragan,
+> >=20
+> > Am Donnerstag, 18. April 2024, 18:26:19 CEST schrieb Dragan Simic:
+> > > Correct the descriptions of a few Radxa boards, according to the up-t=
+o-date
+> > > documentation from Radxa and the detailed explanation from Naoki. [1]=
+  To sum
+> > > it up, the short naming, as specified by Radxa, is preferred.
+> > >=20
+> > > [1] https://lore.kernel.org/linux-rockchip/B26C732A4DCEA9B3+282b8775-=
+601b-4d4a-a513-4924b7940076@radxa.com/
+> > >=20
+> > > Suggested-by: FUKAUMI Naoki <naoki@radxa.com>
+> > > Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 8 ++++----
+> > >  1 file changed, 4 insertions(+), 4 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Do=
+cumentation/devicetree/bindings/arm/rockchip.yaml
+> > > index fcf7316ecd74..ae58e25c29ec 100644
+> > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > > @@ -767,22 +767,22 @@ properties:
+> > >            - const: radxa,rockpis
+> > >            - const: rockchip,rk3308
+> > > =20
+> > > -      - description: Radxa Rock2 Square
+> > > +      - description: Radxa Rock 2 Square
+> >=20
+> > I may be just blind, but what changed here?
+>=20
+> There's now a space before the 2.
 
-Add EXAR XR20M1172 UART compatible line into devicetree documentation.
+ah, now I see it too :-)
 
-Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-Signed-off-by: Konstantin Pugin <ria.freelander@gmail.com>
----
- Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-index 5dec15b7e7c3..c4bedf23368b 100644
---- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-+++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-@@ -12,6 +12,7 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - exar,xr20m1172
-       - nxp,sc16is740
-       - nxp,sc16is741
-       - nxp,sc16is750
--- 
-2.34.1
 
 
