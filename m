@@ -1,217 +1,207 @@
-Return-Path: <devicetree+bounces-60421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B728A9451
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:43:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 113E48A94D3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 820351F2168C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 07:43:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A990B219AC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5A66E5EC;
-	Thu, 18 Apr 2024 07:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jSSlcDUl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6709B85627;
+	Thu, 18 Apr 2024 08:23:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2125.outbound.protection.partner.outlook.cn [139.219.17.125])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5091E37719;
-	Thu, 18 Apr 2024 07:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713426188; cv=none; b=SRS5nTr6FtLuzjxJCYhPaBMfUsIbMbuhCC11WKfv5VRHL7jkW31Io0bxM7c4gwfEcdQeBRe3uU+65mY8Zwx/jvE8yuiTUYlDjpLvC+WTF0uXUrN62lrZMqsRD3Pq/28HLg6FQ3UIlDs5wiq0lOIrp3lHun95nzvuTmL4/70aNy4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713426188; c=relaxed/simple;
-	bh=GLk8JMqo54bnpRu/mKNE88XqR0W0E3kJNx1Nb5NE5RM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qT2vu9otVgj+aRPzh3O61/Z7HL0isRJLT7/DhBRPzF84u5KVN0cF3pgrXcG66RkYNDVZnHiV6d/LTgpEFXaw3C0yBuOvsgTE4yo49rQIVtKRTfDENovkn2XjoO3ubMz/U3YO892scTXJSkeX6ki+SdKolxhy63AwUt7QAJsjNl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jSSlcDUl; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713426184;
-	bh=GLk8JMqo54bnpRu/mKNE88XqR0W0E3kJNx1Nb5NE5RM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jSSlcDUl3KojtgCcYK8Ve68K6Fol4vEzSfIwhqzZ0S3sxYT6M7ntIf2vYp0aPpkA2
-	 qtdihonwioKZJatjD9D2NK2OoBJ4eWfCa3IY1meOdZiROPt6AXYHfuY4EPH/iIRy2O
-	 HocyCBOLmfAjEc4hCpzyZe1HBk7cw4bDfoOhzFZ9FEEWZTv3q3JxFQk6fdBtxO9UOe
-	 aGTIbKFlhITcuRduoEAtMm9JiyLXNNM7xbA0Dq36HhcKeSj45pR+5M3dzOAhkujIDp
-	 L1h6mZkE5q1kVrskXUEBjka5+6X4u5cIdo90ulfjSHMQmc3KDeP4iVMAhO4U9FZ2PI
-	 paqmRCslQCsDg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7EDB33781104;
-	Thu, 18 Apr 2024 07:43:03 +0000 (UTC)
-Message-ID: <1d1bbc68-b484-4dc5-92f2-9454e8e2d6fb@collabora.com>
-Date: Thu, 18 Apr 2024 09:43:02 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507315FEED;
+	Thu, 18 Apr 2024 08:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.125
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713428602; cv=fail; b=arTjhTXrZMq78sbd16jEgjHSbK6Uv0RgR4PLO7GrrWVijf6GcbnB9Id/EaVFnxdCQB3mxmFf4aC+DhphhWvNo1NRUGuafbSs7t4K/fZQdfNbaAaR+QFcEeJVg1WsfrrhS3wuqJmnRODK5qf67Cheqlp6LMi/e9iLJ12D/JPX8P4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713428602; c=relaxed/simple;
+	bh=xJjltQkq6/OjxpJgmseY9RTa2sNkk3Csbr85pW1+CUA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=sPsBBhlPLiG9dUiwznJigH2nX+Ao6f5zbT9ar6ecf1EkWnWbDlNxCULJ1E5tobCb+I1NA+JrvQa7SK6uaeIficVzilOFgjzgfuxKJifGxKm80W2sQCOc3kyVhHfg243MD/ER6NhAGOT+v52UF8deEy51XDPdCuim7sp1xJIgkek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.125
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mUBB046rlaxVvdgLb2v3XB1zoZolfUX2IFvwJDKlWiugru2iolwtoo2zApdNOL4/mFrVXTFJfWYEjQppUgE8PpWLGd+Ivlqz6LaInicT+r06nmOSJBRhsKCYacHUIwLOOrnCn1kS+7czs9TYFfUNWvqztl74QKtVxLpD6Y+ccYsSRRsQ9abWaW539HEI/gP+hFilBqkN9Zo38RKQHsYBGO+vyvo5Bf9GbTyjMIhHBPG71xGaNZlzh2UbxjXc8CXgnoBNHYnWH8rkNrMIKWXwrE4M48Zchj4biKJqIciTiTE9qzBGrgcIaDRGD2tiF4KZTUY2zzxrDMhzmVkHQ6GmLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rNv0XYTAuK2gbD9fA/WE+fPExIotgIFv66Pt2Y4CS5Y=;
+ b=khAfQ8PGaAaqI6WzhIrTjmj9u6K4dyi64gEUw83R/Om6CAjvBH/MKPGXqKI5ePAyuzdv348+C4zZdxup7AbyKcQpRH8PX+uj4WtRgKIgdpRs0TsKAX7CSWKdnHwDH/3ZnXXwlsaTW/KYjG2gUSSCoknNL0nw4b1qVmH14lDd/mjlHrJAn1ahTddkbY1MKihZJh5pKsfoZs+uVZy47nmeXTm00jpAsjL3e59nMr+zzgmgmamxTmnYeOGtBvKUQI0v8kLW+MXvcBodL9U74pBDTDjSA8khc42LRnWni/AQDz82oa+cfQYIBOGNvdr4W6bF/9iytc01HsuORJ7xeLd8AQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:3::6) by NT0PR01MB1071.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:3::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 18 Apr
+ 2024 03:50:34 +0000
+Received: from NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+ ([fe80::103a:5792:ddaf:4283]) by
+ NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn ([fe80::103a:5792:ddaf:4283%4])
+ with mapi id 15.20.7409.042; Thu, 18 Apr 2024 03:50:33 +0000
+From: Shengyang Chen <shengyang.chen@starfivetech.com>
+To: devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Cc: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	minda.chen@starfivetech.com,
+	changhuang.liang@starfivetech.com,
+	rogerq@kernel.org,
+	geert+renesas@glider.be,
+	keith.zhao@starfivetech.com,
+	shengyang.chen@starfivetech.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/2] Add JH7110 MIPI DPHY TX support
+Date: Thu, 18 Apr 2024 11:50:18 +0800
+Message-Id: <20240418035020.47876-1-shengyang.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0036.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:c::13) To NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:3::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] dt-bindings: interconnect: Add MediaTek EMI
- Interconnect bindings
-To: Rob Herring <robh@kernel.org>
-Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
- broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
- henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com
-References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
- <20240417091442.170505-3-angelogioacchino.delregno@collabora.com>
- <20240417145402.GA2355631-robh@kernel.org>
- <207eb8d7-1a40-4114-a84b-26616dc39fcc@collabora.com>
- <20240417191445.GB3101736-robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240417191445.GB3101736-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: NT0PR01MB1070:EE_|NT0PR01MB1071:EE_
+X-MS-Office365-Filtering-Correlation-Id: a963dd02-07d2-4d1f-38df-08dc5f5ab32f
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	mpCSgAXvFu3VvauFTAOFlrD1N/i7M90duS9SHruQIgAve//Jh7zgYzSZjpHtTTpWa2WdoMnaJVpAYtwOVJPv6jVEEqGFEqk4XV5K26ovquw8OwWUIzcW+yJXjEtZvxSW67JXtmO7jIkr0zsPhOLgLTmZTWzqXmHJjkE1SvJYau56n5NkoRJIJEu/DQPKM4AxudtbeiwQ5VAYXdNHZde/NrjqDIQGggC8Vc0aloXwWC/cApkq7ppSauDSfT8hJ2KN5AsEjJ4Y5iAmSNBMHBKPCcIysMIP3jmtXCD/BeeuxuCdp/jd+aIJagnYrWzEvD1T/bVDcI/ha/YFycLoPiriEy5r5THziQfJUV6I+0ICGOM15Oy0SGIVavPrQdXgdII7dQMYJH+sIunAAJGFpq/UPULnPU8grLXjN+qnTFt6VDUdwwEiVqBbuDyOmNoU7hBBpOsSN+EFUfVcuN4H97ZRDVS4YJQASTd8au8YWqnh7gdvn8jkGkHSV6V0+5otfRvMbm4L45QxSW4T3IxSZTV8Ce2jmFsmglr6QmoCpXRCcBX5wg0aTGPG0N2ToE6GcU/dZjuRAV52HMjAhE1aISyu9BwCrSU9c9Kcp34OoRjA6q84aQAzua8EvtbectUqBzsE
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(41320700004)(1800799015)(52116005)(7416005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NDxPCyKFshGTRQSaqFSit5GBO7O8x903KMiYFvH/K/XD5BPdz4DUxpattV+h?=
+ =?us-ascii?Q?8trCD4ih6g2tObZwqFiSevbDzXNDY+dkuzxyhf706c9+CR5sAQekV5BAe1/M?=
+ =?us-ascii?Q?NUMHQHTBcq0rcSqk1qlTYiY+xBNjSyl6CDCX3w5mJ4Q8wXvHN6BKHMwb9Med?=
+ =?us-ascii?Q?Fna2NJk7PSfE1iqc03UVFPsSGjLlZB4+kX7KwfVIR+IA2fdaSOQEdOJaI5jM?=
+ =?us-ascii?Q?i8YV2/e8QtXCIo9Q40SdzsfiTUn7nj4GagHCO/JRzhJtwRAzDO+x3XaDphCs?=
+ =?us-ascii?Q?IKIRVtU5jweePLUobEj+FFxV07XYSbmGd0J/VDEStkaRw/rfnn6KS+9mkkdO?=
+ =?us-ascii?Q?d5ta/Oiq7w/HjdJxqEUvFCDBvgbzyR3SiNPAAI4xJ8DOjt8Y9af3Ci8SxAuy?=
+ =?us-ascii?Q?dBcJvutbk8vmmpQTHKC8kHIWLPLVmmbNgeK+s2ZV2KhUlQBcDR7hIG92k05N?=
+ =?us-ascii?Q?dgHworIXRZtpEmQ8La6xYgjub1LZ6B0DfUEpyXnUjwzRlgnlwhmApLlBypCx?=
+ =?us-ascii?Q?fN6rFFnQT232UhVJYtLBVopTSUmuo0eqy5JclSX1RgiWpameLgQ5Kp8q3RJ7?=
+ =?us-ascii?Q?62FUWA+wf0mHQlNsQGJTmQ6fCan+gn6JPkjRDxDnHfRCgzIccjPWv4AvGcI0?=
+ =?us-ascii?Q?WErZvh4VDIGWjETC6UgOMmSmakvD5PtkY8zMA+2YXF/aUDnHWT8A5C5NJF4c?=
+ =?us-ascii?Q?eBxdv4KOUyGGqsb/yXqpN0fXdBurT2FeCHrd5T1ijQcb7jlLT3tSDIjbCrqc?=
+ =?us-ascii?Q?VORpiwlECUi4EaUCC4s/HjVZR014Yr1kb8VkYHX7HFHmLrDvprSS7HIcRRgW?=
+ =?us-ascii?Q?XWI0dUUQLWG3QDbN6ZWpGXmquJi47h/rvP2lVebstlNkPs30oja/UB5J1HME?=
+ =?us-ascii?Q?mpC9XwgVUensGRPY7daiG1ClzSf8QYO6IBBwP2PmS+sjtfUqegV/sDokQuW5?=
+ =?us-ascii?Q?dhqQAgj6zDqQb534HsT9vXdgrdMSq0dIBCfHHzkO06fStyohC+HdJPsHhiRP?=
+ =?us-ascii?Q?gTuIM6S0ZbSjS2dQ7wAMvPQhIfDrZpGabuXwHLrSPyIhFwlRBdFi0PwncvOp?=
+ =?us-ascii?Q?pgzYNYHlacs1tzoXJRblrFoVq5blNPRj3ZsaBYFyQOlfHN0aonqYMRjugjL+?=
+ =?us-ascii?Q?y8MWiG3sjXEsCDHPF3WSTg0XMYjC6a2+FIU7CXmr+B5192PLOpNZa1zqcnjS?=
+ =?us-ascii?Q?M3O20wiY+0nrh/M0z0dRvxvaxdozkZaHv85CB+C9j9H5slUKVXhjIzSCYdOa?=
+ =?us-ascii?Q?o1yF2BCMkwkkQxqkHv5bqPqb1z9QhjHCuofHcku2jFDa5E9FrYpL2M+kNjE7?=
+ =?us-ascii?Q?w1Ef0U9eu4Q5ighj/m8pvtV3nGCLpkh0JoNKxqLnIM4LVJ0DDhFjRBkydjKC?=
+ =?us-ascii?Q?di3wYJ7VFHuahEajW3bMJVM++9IkgfrOKohA4/cj6Ryl80t3wTGRC03SmnDe?=
+ =?us-ascii?Q?/gkjof/m86IijoNiqbsZ5Ppbw1pKtcQEHpinAChY1KUfROG7REUgOf3RIlHf?=
+ =?us-ascii?Q?6ycVFwgS94KV2s0b4g7681/c/7w25HUCS4r0B1IZvu87BsVxQNAOqRXT2407?=
+ =?us-ascii?Q?Z1iBii8Quwaq1c+nsJc4ImbmMmET7xDNxaYkZJv4XPFMPDnR8RMIRqkt+z5G?=
+ =?us-ascii?Q?KGSoZHvdoACEFhKtjT7yoI8=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a963dd02-07d2-4d1f-38df-08dc5f5ab32f
+X-MS-Exchange-CrossTenant-AuthSource: NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 03:50:33.9022
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: usdba8WN/cqxzbJ4qYT37ZRPcYBFsXgDWzyM20bWR4V/TIg05YcPgNgtgZxNeXrkGjvzkxULUBwkeQYo07PUNY4PRUdBCp/d0mHNseDT0+E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NT0PR01MB1071
 
-Il 17/04/24 21:14, Rob Herring ha scritto:
-> On Wed, Apr 17, 2024 at 05:32:54PM +0200, AngeloGioacchino Del Regno wrote:
->> Il 17/04/24 16:54, Rob Herring ha scritto:
->>> On Wed, Apr 17, 2024 at 11:14:37AM +0200, AngeloGioacchino Del Regno wrote:
->>>> Add bindings for the MediaTek External Memory Interface Interconnect,
->>>> which providers support system bandwidth requirements through Dynamic
->>>> Voltage Frequency Scaling Resource Collector (DVFSRC) hardware.
->>>>
->>>> This adds bindings for MediaTek MT8183 and MT8195 SoCs.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> ---
->>>>    .../interconnect/mediatek,mt8183-emi.yaml     | 76 +++++++++++++++++++
->>>>    .../interconnect/mediatek,mt8183.h            | 23 ++++++
->>>>    .../interconnect/mediatek,mt8195.h            | 44 +++++++++++
->>>>    3 files changed, 143 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
->>>>    create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
->>>>    create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
->>>> new file mode 100644
->>>> index 000000000000..3ad60fd21f83
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
->>>> @@ -0,0 +1,76 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/interconnect/mediatek,mt8183-emi.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: MediaTek External Memory Interface (EMI) Interconnect
->>>> +
->>>> +maintainers:
->>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> +
->>>> +description: |
->>>> +  EMI interconnect providers support system bandwidth requirements through
->>>> +  Dynamic Voltage Frequency Scaling Resource Collector (DVFSRC) hardware.
->>>> +  The provider is able to communicate with the DVFSRC through Secure Monitor
->>>> +  Call (SMC).
->>>> +
->>>> +             ICC provider         ICC Nodes
->>>> +                              ----          ----
->>>> +             _________       |CPU |   |--- |VPU |
->>>> +    _____   |         |-----  ----    |     ----
->>>> +   |     |->|  DRAM   |       ----    |     ----
->>>> +   |DRAM |->|scheduler|----- |GPU |   |--- |DISP|
->>>> +   |     |->|  (EMI)  |       ----    |     ----
->>>> +   |_____|->|_________|---.   -----   |     ----
->>>> +               /|\         `-|MMSYS|--|--- |VDEC|
->>>> +                |             -----   |     ----
->>>> +                |                     |     ----
->>>> +                | change DRAM freq    |--- |VENC|
->>>> +             --------                 |     ----
->>>> +    SMC --> | DVFSRC |                |     ----
->>>> +             --------                 |--- |IMG |
->>>> +                                      |     ----
->>>> +                                      |     ----
->>>> +                                      |--- |CAM |
->>>> +                                            ----
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - mediatek,mt8183-emi
->>>> +      - mediatek,mt8195-emi
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  '#interconnect-cells':
->>>> +    const: 1
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - '#interconnect-cells'
->>>> +
->>>> +unevaluatedProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/interconnect/mediatek,mt8195.h>
->>>> +
->>>> +    soc {
->>>> +        #address-cells = <2>;
->>>> +        #size-cells = <2>;
->>>> +
->>>> +        system-controller@10012000 {
->>>> +            compatible = "mediatek,mt8195-dvfsrc";
->>>> +            reg = <0 0x10012000 0 0x1000>;
->>>> +            #address-cells = <1>;
->>>> +            #size-cells = <0>;
->>>> +
->>>> +            emi_icc: interconnect@1 {
->>>> +                compatible = "mediatek,mt8195-emi";
->>>> +                reg = <1>;
->>>> +                #interconnect-cells = <1>;
->>>
->>>
->>> There's not really any need for this node. Just put #interconnect-cells
->>> in the parent.
->>>
->>
->> Actually, I modeled it to be a subnode of the DVFSRC for multiple reasons:
->>
->> 1. Some SoCs have more than one interconnect on the DVFSRC (two different kinds
->>     of EMI interconnect, and then also a SMI interconnect); and
->>
->> 2. Some boards will want to not enable the interconnect driver because some of
->>     those are not battery powered (so they just keep the knobs at full thrust
->>     from the bootloader and never care scaling busses); and
->>
->> 3. Some DVFSRC interconnect features may depend on firmware (but I'm not
->>     sure which ones and which SoCs, as there are lots of SMI/EMI ICC things that
->>     are not implemented yet with this series).
->>
->> The alternative would've been to add a property to enable, or disable, the SMI ICC
->> (not present in this series), and/or one, or the other kind of EMI ICC (this series
->> implements only the simpler EMI ICC, and I keep saying "the other" because I
->> currently don't remember the name).... which is really ugly.
->>
->> Ideas? :-)
-> 
-> Just provide that reasoning in the commit msg.
-> 
+This patchset adds mipi dphy tx support for the StarFive JH7110 SoC.
+It is used to transfer DSI data. The series has been tested on
+the VisionFive 2 board.
 
-Okay, that's sensible - should've done that in v1 even. My bad.
 
-Cheers
-Angelo
+change since v4:
+- Rebased on tag v6.9-rc4.
 
-> Rob
+patch 2:
+-Drop shift macro definitions.
+-Drop useless member variables of config array.
+-Drop stf_dphy_set_reg() and  stf_dphy_get_reg().
+-Add readl_poll_timeout_atomic() for delay in stf_dphy_hw_reset().
+-Rewrite register configure logic with FIELD_PREP()/FIELD_GET() and writel()/readl().
 
+v4: https://patchwork.kernel.org/project/linux-phy/cover/20240301012406.92589-1-shengyang.chen@starfivetech.com/
+
+
+change since v3:
+- Rebased on tag v6.8-rc6.
+
+patch 2:
+- Lower case for hex value.
+- Replace bit shifts operation with macro definitions.
+- Drop delay in stf_dphy_hw_reset().
+- Change variable declarations order in stf_dphy_configure().
+
+v3: https://patchwork.kernel.org/project/linux-phy/cover/20240206061921.107372-1-shengyang.chen@starfivetech.com/
+
+
+change since v2:
+- Rebased on tag v6.8-rc3.
+
+patch 2:
+- Drop regulator operation.
+
+v2: https://patchwork.kernel.org/project/linux-phy/cover/20240109071246.24065-1-shengyang.chen@starfivetech.com/
+
+
+changes since v1:
+- Rebased on tag v6.7.
+
+patch 1:
+- Drop 'dphy_'prefix.
+- Drop DSI reset.
+- Drop unnecessary resets.
+
+
+patch 2:
+- Changed the commit message.
+- Use dev_err_probe() and PTR_ERR() in probing.
+- Drop DSI reset operation.
+- Drop unnecessary resets operation.
+- Add configs in array for full support of the module
+- Changed 'void *io_addr' to 'void __iomem *io_addr'.
+
+v1: https://patchwork.kernel.org/project/linux-phy/cover/20231117130421.79261-1-shengyang.chen@starfivetech.com/
+
+Shengyang Chen (2):
+  dt-bindings: phy: Add starfive,jh7110-dphy-tx
+  phy: starfive: Add mipi dphy tx support
+
+ .../bindings/phy/starfive,jh7110-dphy-tx.yaml |  68 +++
+ MAINTAINERS                                   |   7 +
+ drivers/phy/starfive/Kconfig                  |  10 +
+ drivers/phy/starfive/Makefile                 |   1 +
+ drivers/phy/starfive/phy-jh7110-dphy-tx.c     | 459 ++++++++++++++++++
+ 5 files changed, 545 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-tx.yaml
+ create mode 100644 drivers/phy/starfive/phy-jh7110-dphy-tx.c
+
+-- 
+2.17.1
 
 
