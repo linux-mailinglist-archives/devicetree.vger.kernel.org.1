@@ -1,148 +1,169 @@
-Return-Path: <devicetree+bounces-60493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF7C8A9744
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CFE88A9754
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:26:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88BE81C21F13
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:23:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F2891C21D49
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913AA15E1EE;
-	Thu, 18 Apr 2024 10:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C389D15B980;
+	Thu, 18 Apr 2024 10:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uBrsSwj5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HzBxXK0l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC4815D5C4
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0183015AAAD;
+	Thu, 18 Apr 2024 10:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713435762; cv=none; b=nNwtLBpmB7I7aH3ABhbHPkMcio4leQSNe8BXdQFl41pfzSXbtik79zlI1/G1M9I21ZzoWqNUxrXA2s1IbUfbVfXny3mDVgNwd2MAFZBJHBDxMjrgIoK1UNY/8omXt45UGBGKLU0S0OwYjppotIKMWMz12I0/173CAuyXwjsckwE=
+	t=1713435956; cv=none; b=qTkccm/e44a+Qp2lKN6OJXy7tNYuF83hdjw2R5oNCGjH6xA1gbux+xqEND70L2nYZcSdM58XDzBGuJKsOa0ziCXIn3WMYmW+vHvN0IF0E3VlL6f0cnvQC2wMvSKBuhD5tMrH6WAfbTF/0CB0I52HIF7kIufAeOgpkY2o6VGsTaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713435762; c=relaxed/simple;
-	bh=fyrB2zKsnuCxMy75fTKuLIBuGW6KBf2JOcIuu77jQrc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tva/sjGklWZyMN4CWI+peQYI9vfipBbkFzhGYNi0Ltl2KnFeh5pmuVuI8sHw7b0muzq3bPMM3MhpzMmVkT937MonuJIpqAWY8Zyp5dIr9vjiG/vDjcgXfgXP9jpzX8d21f88B8F02bk7Z+W9gyFzBhbpEQ8qs+0vOP8PP1Kzea4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uBrsSwj5; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-349e211e562so490174f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 03:22:40 -0700 (PDT)
+	s=arc-20240116; t=1713435956; c=relaxed/simple;
+	bh=Il0xcH4eayVY+QK+wjCnPabCr8SYBb2diIuGENWPsXI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RFE/JOtvs3Kbf1Z0XaGmahX+BIF7fYBUpI5TaBDC9Id/jCd++wEWZpAD5TlXcj6Kbwwfmj8J+BjJtpihMS74YPvswRea1J7lyM0/8MpaSxTubnyvyyyvUnE/xsd3gbrZ2iylwbwpuQ+XO6cEvjx/JV/XF/Hce0kNnXic36WWdC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HzBxXK0l; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5d81b08d6f2so480194a12.0;
+        Thu, 18 Apr 2024 03:25:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713435759; x=1714040559; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LOtlvLMRoMLi+ZuN7ENQliSfydoPN1lFWLT8EZaevks=;
-        b=uBrsSwj55ur64ciknMqKEcxGakFVqgjZmuGEuq1vyDoNyjmYDP9STLzdOvie2j1ldw
-         3CVKX+EMd7R+lhXrc872Gc6Cr6s1WhgOI/9GvrRbBr5VWu1kFK1Z/DYqEkGd/FqSxsKh
-         c8U1a7M70676wegr/LeGnNpgNg+KPpSuxrIE81qUbeiIS0gZbn+wCpNekCA2ZYqDrIYL
-         DeHZJBPPcSng1ylHeW5CivLUWUdkRJxP/oJ88PCIhN0kjPQa7wx0jwMuukAMYjACXIC4
-         mz9J/3lZrtLurTDJh5B8Xsevfg8F5QZsUSJm/7WAoKGHAvXCGRtmu8Bk0aes6FX3g7Oj
-         XOJg==
+        d=gmail.com; s=20230601; t=1713435954; x=1714040754; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LzZgtCUTPjY2W+0TRdJ+vVl+P6oFUY7BJ5Vj111QbBg=;
+        b=HzBxXK0lgpHCNpaGCwosEDrXhjtGCEzGxjDtpL6abaAby+Fnm17IBjZ0/saDcJ4JHI
+         3Mmo1UbIVSGu3wUijuWI++IxFVLs2zzHz/uJKR0umu6IKHaeeeGuIEKWdtprska/UVo5
+         295zxrqi9nEE8tmKui6+O/Vz2588rR2S+F6GIH1oTEmse5UiGHy+aL1DpSp1GU/o0qtp
+         W9th2NSyerv9qOAqgWRDm6pp6d7iYsMdWDdq5AGs27NKPY8RKt+0YenxSaaTW43MXDcJ
+         yVHJmWifdaP+ce9YofzzoFEgzg++ZQG5b29spVDA4gD4244VvxC9z9Vvd6NqKmhHJ+p7
+         B3QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713435759; x=1714040559;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1713435954; x=1714040754;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LOtlvLMRoMLi+ZuN7ENQliSfydoPN1lFWLT8EZaevks=;
-        b=S28AQVvEobts2bhS+ZROjE1L58rMeibM/7N1gi7gH/v134B0XSkG6TZJZ2Y1tlYOWD
-         MpT+hEcRx7UcWBS/a6g1bGBcls3KVfqOOY4NahTlln4vuPpOjtzKT+Gx0RpIprvrMd/D
-         /fp+RK4nL1H0mcP4kgJ0kSY0a+tcHefWBte7KaRfqdH9xHzisNWi39wu0k0oSaYDTs9U
-         H/rbyuNlJj8NDZTxBDvqBIni32vP+SBKmuPEO0yV46wFgYpongvOO7N21CpaTRHmDEwK
-         ih50PQpO7JdrE+GJeEc8RLjKisQuwzwUxGeazYECoVA3CZxMsPxRXkihDaC6DEPyZLfj
-         AXRA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXGfJd/vacgDUI4b9pa0S8/eWK8QYNqsHRQixlUr/p3beFfIWx/MezxmnMEDr+FL7WxlbhJLHGCqya8uFkuZVTZRyKL846ar7XNA==
-X-Gm-Message-State: AOJu0YwJF6XRwCMun6kyrL7fNIgQKJIHdUZiPdzwOVyquq0X0zynSSnk
-	NTKPylcO0a0nby6XgDa74GYJKX265lzX8E6WoT/P6aIM1BQqS8jlCM6lqrQAyHk=
-X-Google-Smtp-Source: AGHT+IFT66JSt/uKtk7mujJeuyDnCfsJApQk6u0xgnM9h/4pbeddYpA8FCQ2OothZHytJEoJywZ1NA==
-X-Received: by 2002:a05:6000:912:b0:346:cd6f:40d4 with SMTP id cw18-20020a056000091200b00346cd6f40d4mr1414809wrb.59.1713435759189;
-        Thu, 18 Apr 2024 03:22:39 -0700 (PDT)
-Received: from [127.0.1.1] ([62.231.100.236])
-        by smtp.gmail.com with ESMTPSA id e32-20020a5d5960000000b0033ec9ddc638sm1472731wri.31.2024.04.18.03.22.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 03:22:38 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 18 Apr 2024 13:22:20 +0300
-Subject: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add data-lanes and
- link-frequencies to DP3
+        bh=LzZgtCUTPjY2W+0TRdJ+vVl+P6oFUY7BJ5Vj111QbBg=;
+        b=t3r7fhxnVky2dWOghjzfp+KSMy86+DdFqBVsc1WDLOZWMDj7N36a3TBNNyvbRHEJxT
+         k3VyxR+kcUbr6bEZHwLGSKgf+UMhz32zVORaPHJ794CEM31UcQY70ds72ccDjyFlUE4C
+         NwOUFuX2YLoLQyQ4ua3LInWarFXcwFFkIRpUyWwiiXZVhHrENHinoy7L6sWXCvJb5F0O
+         s+a3Feyn7+tbYEVOHhfiRmyt6bmDrAciIVPy99IlnDIvAKXhwlQrWckHB2TbdLkA8Xx7
+         OYjrow43ne+gDI5clDa99wYycWfDVzyCo045RdiqC/r/5EqxeFRC0iX5R3K1DTeMQvYE
+         5hag==
+X-Forwarded-Encrypted: i=1; AJvYcCVvSZKwgYi1Mr4T9oRvc+FsVor6dqPgMSNLRe2SBQhuuuMRPd4dy/ZxKzIxzvalUvX87t3z9LDqeiiG/ckIyL+jUx7wRgB+seaZ2llDC7tjf9t9Mys69YcOevt6USzPnqZCHkuOyp5BPPx83yEH8cwtqcoKvm5bDCKuBG5SEOC0dA==
+X-Gm-Message-State: AOJu0YyjCuI1zag2o/2Mk/amgTwvIziYZFOE8CVQWkCG0TQkpWPI1anh
+	PaqTjWRkBFTvsHLMoRq+eg3oeNrad2MpIw7DRgAlic2mkBewljsv/O7wShqMeBlbZcdtODy2sNU
+	+RzhHGG5A77y5yUVIbO/Y4PLYqHs=
+X-Google-Smtp-Source: AGHT+IGM01K541EgnuYvh+w/GpIyFuX4z14UC0b5PyXo5WA2L+qrS1q+2v+9oEgc9/5RXOqD2qRGLCo8HhqXfbx/jfU=
+X-Received: by 2002:a17:90a:3d4c:b0:2a4:892f:39b2 with SMTP id
+ o12-20020a17090a3d4c00b002a4892f39b2mr2165830pjf.11.1713435954299; Thu, 18
+ Apr 2024 03:25:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240418-x1e80100-dts-fix-mdss-dp3-v1-3-9f8420e395d4@linaro.org>
-References: <20240418-x1e80100-dts-fix-mdss-dp3-v1-0-9f8420e395d4@linaro.org>
-In-Reply-To: <20240418-x1e80100-dts-fix-mdss-dp3-v1-0-9f8420e395d4@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, 
- Sibi Sankar <quic_sibis@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1126; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=fyrB2zKsnuCxMy75fTKuLIBuGW6KBf2JOcIuu77jQrc=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmIPRpxOLaL4M/Lf8uplNtpTLZ1Hxr257PHH2lI
- k3joV+EC3aJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZiD0aQAKCRAbX0TJAJUV
- Vp65EAChhmRlNUlrBTF4pnjnzLaz2tBB312wbpAwewDTpqctXxEyjn0Lwp1s7uZkn+HHcL98Q/+
- DOSnhAW94JRoQavEatCLiKYE5ygzpGdEanBsBoYGsJ+67rB8/WskM3ZNu5LCl20TOlZzSVMx8Im
- DT6NK8dqAUwnmg6LWTEy9/Ykecu/gK5QJDaWBrTMXgkkbvsFen1AxBQPyTu18HtxDJH4jBYhHW+
- hgrUUDj0tBrUn3gvOFOMDZvvzqNiMPtJeDKqUMQp1F9BSoAPxc+yIglCC2rVhwn1GpDWLfsd3Zo
- /ifffQfq605pW91PZJmyaztestunLzuKoUUiYvj/Cwj5k4/VyYzvVHW8YSd8XTMkOgLsb1u+I61
- vrUI1a4ls4hVH2sULE0xSRBff3INZLywDgzXMPl51CXQgbk/lYhAmk4vwW2pdJw0e58tHp55sN6
- XKg+b6ewEV9zaemrP879+29V+PaL2+Wwic5A9Rxdbo2stmzJKubOXl+tFyS5pzWkNVFJSWr5YGk
- e93VNdXfspGGJzDzNofkE0jz5vlBUzWfJ6jGv0GRYeQMaOr4fXVDTKm1Rlh0NHa79+HanFOvjq5
- rX84zAbf4zJlrDCe33yG5SNBbKg67gp9tc4cXcwZ3m6NmRFZ/z8mHp98Uq3qh5A6WZHfpOqwtnL
- b8nX7luRMD2sPbA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+References: <20240418091148.1968155-1-f.suligoi@asem.it> <20240418091148.1968155-2-f.suligoi@asem.it>
+In-Reply-To: <20240418091148.1968155-2-f.suligoi@asem.it>
+From: Adam Ford <aford173@gmail.com>
+Date: Thu, 18 Apr 2024 05:25:43 -0500
+Message-ID: <CAHCN7xL-18xL04KCZUYfegBH0vWa8i5EEa8UkhoedbmrpOqyWg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: net: snps,dwmac: remove tx-sched-sp property
+To: Flavio Suligoi <f.suligoi@asem.it>
+Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The data-lanes are a property of the out remote endpoint, so move them
-from mdss_dp3 to the mdss_dp3_out. Also add the link-frequencies to
-mdss_dp3_out and make sure to include all frequencies.
+On Thu, Apr 18, 2024 at 4:12=E2=80=AFAM Flavio Suligoi <f.suligoi@asem.it> =
+wrote:
+>
+> Strict priority for the tx scheduler is by default in Linux driver, so th=
+e
+> tx-sched-sp property was removed in commit aed6864035b1 ("net: stmmac:
+> platform: Delete a redundant condition branch").
+>
+> This property is still in use in the following DT (and it will be removed
+> in a separate patch series):
+>
+> - arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
+> - arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> - arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+> - arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> - arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+>
+> There is no problem if that property is still used in the DTs above,
+> since, as seen above, it is a default property of the driver.
+>
+> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Fixes: f9a9c11471da ("arm64: dts: qcom: x1e80100-qcp: Enable more support")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index 35580ac3430d..2061fbe7b75a 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -410,8 +410,6 @@ &mdss_dp3 {
- 	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
--	data-lanes = <0 1 2 3>;
--
- 	status = "okay";
- 
- 	aux-bus {
-@@ -431,6 +429,9 @@ ports {
- 		port@1 {
- 			reg = <1>;
- 			mdss_dp3_out: endpoint {
-+				data-lanes = <0 1 2 3>;
-+				link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+
- 				remote-endpoint = <&edp_panel_in>;
- 			};
- 		};
-
--- 
-2.34.1
-
+Acked-by:  Adam Ford <aford173@gmail.com>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml        | 14 --------------
+>  1 file changed, 14 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
+mentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 15073627c53a..21cc27e75f50 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -328,9 +328,6 @@ properties:
+>        snps,tx-sched-dwrr:
+>          type: boolean
+>          description: Deficit Weighted Round Robin
+> -      snps,tx-sched-sp:
+> -        type: boolean
+> -        description: Strict priority
+>      allOf:
+>        - if:
+>            required:
+> @@ -339,7 +336,6 @@ properties:
+>            properties:
+>              snps,tx-sched-wfq: false
+>              snps,tx-sched-dwrr: false
+> -            snps,tx-sched-sp: false
+>        - if:
+>            required:
+>              - snps,tx-sched-wfq
+> @@ -347,7 +343,6 @@ properties:
+>            properties:
+>              snps,tx-sched-wrr: false
+>              snps,tx-sched-dwrr: false
+> -            snps,tx-sched-sp: false
+>        - if:
+>            required:
+>              - snps,tx-sched-dwrr
+> @@ -355,15 +350,6 @@ properties:
+>            properties:
+>              snps,tx-sched-wrr: false
+>              snps,tx-sched-wfq: false
+> -            snps,tx-sched-sp: false
+> -      - if:
+> -          required:
+> -            - snps,tx-sched-sp
+> -        then:
+> -          properties:
+> -            snps,tx-sched-wrr: false
+> -            snps,tx-sched-wfq: false
+> -            snps,tx-sched-dwrr: false
+>      patternProperties:
+>        "^queue[0-9]$":
+>          description: Each subnode represents a queue.
+> --
+> 2.34.1
+>
+>
 
