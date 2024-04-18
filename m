@@ -1,163 +1,113 @@
-Return-Path: <devicetree+bounces-60587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D808E8A9B42
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:28:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF118A9B76
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:42:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCBB8B233A9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:28:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCF201C2161D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3D0160790;
-	Thu, 18 Apr 2024 13:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C1A161B6A;
+	Thu, 18 Apr 2024 13:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="wh5BN/C6"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="c4lDgiMa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpdh20-1.aruba.it (smtpdh20-1.aruba.it [62.149.155.164])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A4FE15E7E7
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 13:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A777D15FD0D
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 13:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.155.164
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713446907; cv=none; b=nsIkkU3vlDprTxO9PTSBxHgt9Qnd0FBpzfJmtTu18HEf4lmmKA3BaaNo1Yt2Axf2OQIrXRbGUD/BmHtK+ozRVsTvu0axcNlTd2eDeZoKv01++a5zZLOuPxlrWhetggTKWPXQ26j0YVY3hUWoJTOX88MS9im2yiEjeYj0cIzSJmQ=
+	t=1713447758; cv=none; b=aD1d4QL3EJTGV4ezkZdDCT8XpYxQE2gLLeO8x1rgwGvMIXdG9RKgJkIX2yuqs+zw7TnnU5rVF3LHyXmREqMXKRqOpHS3hDf8W/au3qE4v6Op4nWZxzztE+parE1nngOQz7uUNSZPOWoAlkZVZrDTNAVqNbNQVXQgJYiKX9v6v18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713446907; c=relaxed/simple;
-	bh=xlB7rdi2o9xH7y6LdwhVg9RVEN+FAlcEKx+Jy8RyAyc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qviX8cs63ILjd79RCa1SAROYHFT5Bi62l+FL4ePwthEUIAm1ORi5IZP0ii+bdxdy1kh8Ck865i49KfVghGYH2/d7jyeZAYCPOjjl+e8IEHxcy35kZbC6O+Iw0UvsgY07TLwBraQariDY054zA48vJyWXefmawtERn1vSdojLHI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=wh5BN/C6; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7d03a66e895so84376039f.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:28:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1713446905; x=1714051705; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KMNMsgIxykHwVLRcqTZk25HnL0Z5DBPcc9H1w13fRk4=;
-        b=wh5BN/C6ovuEY6CE4JRdE/sqYVByicuEaAlCaOsUeUFhM3jcFfYTpsBhKDnaJW9Hho
-         GCXfvRTFXXW3/fzppewG3dxxUAq/2BJjcG86+ztbNUVUCUjaH9mV2XzXbvHvhYPXgift
-         qeZRuJm9bT0qK9TLbkDIKvyeWExVpsQOwCU4aT9Sryy9T5pacPvPJzBqZShV2Z0zE7JS
-         BaOVStRsA+OnbUWBBVR+LFOI+lwFc1A3ohFULOT1DWWmJALOBjBikLODStgJuJXbNtZK
-         ugOcQ+ZRGBvXDxFeyLgME52HSpE5lOxU43Tfj7QNj8JC1NzG1iRYgDrd/fbZSUBESxGL
-         ntcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713446905; x=1714051705;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KMNMsgIxykHwVLRcqTZk25HnL0Z5DBPcc9H1w13fRk4=;
-        b=szeEkCYwYLeEGvPpvC2e1KYR1EpgVuStu5uQko3bdGRhMQQPohDHpEPl9BS7p78kGH
-         12i1SWPbI8qKCIgxVSjW/MObJy1Pbr6rOjxOZVPm7M3TVR3hx/NpPQj7HRpe9gcEbgSH
-         692Wy2aO9gU7ms5yPcDvjxOR1uHJlAA5zgzcRklNvvJQj8NBu9n3pWhZzUcew5OGBgL1
-         E59zZsemaNzUd8Yf516GPCK2+z07mvfwR4oNbYVOnF/TGPZ1+IEOAIKYO324YFFqrMpc
-         brSKF8W7/mvWJWDum6FGQt6XkHpy/NaZx5/bceHF0e9V+d/nazXVQuKWiWvZxCXrflNw
-         ewWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXaorbZoz50Z6u3ns2r/9dHNLfZitQ4Ryx2+7GNvjcdcbg590uhc5zoCvYVxyZuaXDLO4+YCYHL5GLmqkNKSDnTSwz1Bdsg63uYEw==
-X-Gm-Message-State: AOJu0YwpZghcPgkK4J3st84mIzhRM1xSzVFrM/HlwMN/4jic02KZUjpB
-	R1QOWKPujpthZQnIAHqvQhEyqTEgmBQ6CvO/N85DVqd+XgwALWtdjBfcxeJ7PxTrpLCuVt+pNuP
-	Y0eSn345ZRCbaJ1GXlFRFE1WvmA90EAS7NnMxRjou2ehROk7g
-X-Google-Smtp-Source: AGHT+IFrWxljQUhM4BHCWc1rpwi1ngTEKRjguXPUXYX/AlzCjkEoKCfJFfKh82U9YYFX9h6A9SWk0YTxswpzIbsp85s=
-X-Received: by 2002:a05:6e02:1c8b:b0:368:920b:e211 with SMTP id
- w11-20020a056e021c8b00b00368920be211mr3604422ill.5.1713446905449; Thu, 18 Apr
- 2024 06:28:25 -0700 (PDT)
+	s=arc-20240116; t=1713447758; c=relaxed/simple;
+	bh=6MUcUp/OtL7AaDM8zpiLYMwqSosY0z5R4WOeBTogrUI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=S9QWaYEXddrjSVuMctJYYmAJ3/xvEvka0HiUYzMWpxvV2vfliHGcl+NXTqEu9vSaBtHz93lhFEgyIf22bYlLP6zY3j9r5cOJDdDwUdCqP8SZW7SwTFV0KQOqCBoU/LwWkBzZKZk5uMbeB08GQ0trUNURnRnFKRL/crRS9vxvAIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=c4lDgiMa; arc=none smtp.client-ip=62.149.155.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam.com ([146.241.28.123])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id xRz2rgYv8wWj2xRz3rpfsM; Thu, 18 Apr 2024 15:39:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1713447566; bh=6MUcUp/OtL7AaDM8zpiLYMwqSosY0z5R4WOeBTogrUI=;
+	h=From:To:Subject:Date:MIME-Version;
+	b=c4lDgiMaEfzTQb4VJSAWkmaql7rWCbFALx8/KIbI0AUQcKn8lO2GQikHBj2tAsMvP
+	 t7ytW7OqaUJbC1t29idrNM4WO3SwiXxa6X5UJpWEfS25vGQaGqPAK3wuJkX4nyHWGD
+	 dM759+/GOKtJ5Ib0kzZV+4JpibDxeanG4VPQ0+Y5gU/pRW0drPs8JEytICgDLAswis
+	 U0yE34YFn46ROkdsTHuz8zZky2C5SxpTGWKyDkDAtGOL3dsDLeGEX2dXjpCRyVxKhU
+	 b2sbUvWruvfNGMBj4u/zLNspEjI4Vj30NiONweVCd3O7zhZsnrGFGy1P/ZpyDARmc1
+	 Lj0I3hIDxo9gA==
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Aiuto <fabio.aiuto@engicam.com>
+Subject: [PATCH v2 0/3] arm64: dts: imx93: add i.Core MX93 EDIMM 2.0 board
+Date: Thu, 18 Apr 2024 15:39:20 +0200
+Message-Id: <20240418133923.3705-1-fabio.aiuto@engicam.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240418124300.1387978-1-cleger@rivosinc.com>
-In-Reply-To: <20240418124300.1387978-1-cleger@rivosinc.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Thu, 18 Apr 2024 18:58:13 +0530
-Message-ID: <CAAhSdy0RPOX7_rLQ8GcYzbWQ8wzKDxDKXUqNoNd2ZFkVx4sfMg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/12] Add support for a few Zc* extensions as well as Zcmop
-To: Palmer Dabbelt <palmer@dabbelt.com>, Palmer Dabbelt <palmer@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Shuah Khan <shuah@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org, 
-	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfLPJjMyjuC46EePe1tB96/9btQeWSPEKQd8nMiBOciL4/I/k80FuI2OCQZSoAVSxtrbAPJcmCyYr7zN2Fw1D1aVoW/BQPbue5kadG7bPGNMAufDG97zR
+ DTIqauKgc9+6o3A9gWUxLdfPdffO5bPmcITi+l+SGWKlQd/50/HRzTN5I1YNukGWpWjsmWzwMMcp7fS6CijoGOs/M1k4aDlHU2B0owH6fYlzPJs6z1rJOr9Q
+ KEzICuFcB1YT2e9Fgt54j5i0kg67C9B0OPFFFZKFC+TMlixLh82QUVskYpYwppc0AxmY0EL/lTktJ4uhGBsWnmryR7q+WdiIYZQx75MxGox1dwaIylCrUMCK
+ T+0tqxV5rimIPXIpDEzbcGAK5EaSWyZxA/ueYpOme5T5muLhj70mfchdeOstxXKbxiZ3XDHirfn4wgSqulMemHR+AVqfeIr3tyYp1xPNefQHVTwvAgwwPn68
+ YEuLqLh7EbUhIr752qtIEsA02mhyp9CwicUwTdPtN/EYxzSOQvRKUi5+dKhuz5dUQ9Z1jDRChR/mw4Yv
 
-Hi Palmer,
+Hello all,
 
-On Thu, Apr 18, 2024 at 6:13=E2=80=AFPM Cl=C3=A9ment L=C3=A9ger <cleger@riv=
-osinc.com> wrote:
->
-> Add support for (yet again) more RVA23U64 missing extensions. Add
-> support for Zcmop, Zca, Zcf, Zcd and Zcb extensions isa string parsing,
-> hwprobe and kvm support. Zce, Zcmt and Zcmp extensions have been left
-> out since they target microcontrollers/embedded CPUs and are not needed
-> by RVA23U64
->
-> This series is based on the Zimop one [1].
->
-> Link: https://lore.kernel.org/linux-riscv/20240404103254.1752834-1-cleger=
-@rivosinc.com/ [1]
->
-> ---
-> v2:
->  - Add Zc* dependencies validation in dt-bindings
->  - v1: https://lore.kernel.org/lkml/20240410091106.749233-1-cleger@rivosi=
-nc.com/
->
-> Cl=C3=A9ment L=C3=A9ger (12):
->   dt-bindings: riscv: add Zca, Zcf, Zcd and Zcb ISA extension
->     description
->   riscv: dts: enable Zc* extensions when needed
->   dt-bindings: riscv: add Zc* extension rules implied by C extension
->   riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
->   riscv: hwprobe: export Zca, Zcf, Zcd and Zcb ISA extensions
->   RISC-V: KVM: Allow Zca, Zcf, Zcd and Zcb extensions for Guest/VM
->   KVM: riscv: selftests: Add some Zc* extensions to get-reg-list test
->   dt-bindings: riscv: add Zcmop ISA extension description
->   riscv: add ISA extension parsing for Zcmop
->   riscv: hwprobe: export Zcmop ISA extension
->   RISC-V: KVM: Allow Zcmop extension for Guest/VM
->   KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
->
->  Documentation/arch/riscv/hwprobe.rst          |  24 ++
->  .../devicetree/bindings/riscv/cpus.yaml       |   8 +-
->  .../devicetree/bindings/riscv/extensions.yaml | 124 +++++++++
->  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |   4 +-
->  arch/riscv/boot/dts/microchip/mpfs.dtsi       |  20 +-
->  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   |   4 +-
->  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  20 +-
->  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  20 +-
->  arch/riscv/boot/dts/sophgo/cv18xx.dtsi        |   4 +-
->  arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi   | 256 +++++++++---------
->  arch/riscv/boot/dts/starfive/jh7100.dtsi      |   8 +-
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  20 +-
->  arch/riscv/boot/dts/thead/th1520.dtsi         |  16 +-
->  arch/riscv/include/asm/hwcap.h                |   5 +
->  arch/riscv/include/uapi/asm/hwprobe.h         |   5 +
->  arch/riscv/include/uapi/asm/kvm.h             |   5 +
->  arch/riscv/kernel/cpufeature.c                |   5 +
->  arch/riscv/kernel/sys_hwprobe.c               |   5 +
->  arch/riscv/kvm/vcpu_onereg.c                  |  10 +
->  .../selftests/kvm/riscv/get-reg-list.c        |  20 ++
->  20 files changed, 394 insertions(+), 189 deletions(-)
->
-> --
-> 2.43.0
->
+this patchset adds support for i.Core MX93 EDIMM 2.0 Starter Kit,
+a SoM + Evaluation Board combination from Engicam.
 
-Most likely the KVM RISC-V related changes in this series
-will conflict with the KVM RISC-V repo.
+The number of patch has diminished to 3, for I dropped the
+patch introducing a change in nxp,pca9450 binding which has
+been already submitted in regulator tree.
 
-I will provide a shared tag based on 6.9-rc3 tomorrow or
-early next week.
+(Dropped also regulator tree maintainers as recipients for
+they aren't anymore involved in this patchset)
 
-Regards,
-Anup
+Thanks in advance,
+
+fabio
+---
+v1 ---> v2:
+	- dropped patch updating nxp,pca9450 binding
+	- fixed indentation issue
+	- fixed missing space issue
+	- improved naming of regulator nodes
+	- removed unneeded include
+	- fixed email recipients
+
+Fabio Aiuto (3):
+  dt-bindings: arm: fsl: add Engicam i.Core MX93 EDIMM 2.0 Starter Kit
+  arm64: dts: imx93: add Engicam i.Core MX93 SoM
+  arm64: dts: imx93: Add Engicam i.Core MX93 EDIMM 2.0 Starter Kit
+
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx93-icore-mx93-edimm2.dts | 354 ++++++++++++++++++
+ .../boot/dts/freescale/imx93-icore-mx93.dtsi  | 270 +++++++++++++
+ 4 files changed, 632 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-icore-mx93-edimm2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-icore-mx93.dtsi
+
+-- 
+2.34.1
+
 
