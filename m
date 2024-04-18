@@ -1,182 +1,100 @@
-Return-Path: <devicetree+bounces-60415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F1ED8A93D8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:18:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA768A941C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:34:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEC88281A6A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 07:18:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A2401C2178C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 07:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C5E3BB22;
-	Thu, 18 Apr 2024 07:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF42471727;
+	Thu, 18 Apr 2024 07:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ulnMLQ0y"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="KKFu+8iC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtpcmd14162.aruba.it (smtpcmd14162.aruba.it [62.149.156.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449F438F9A;
-	Thu, 18 Apr 2024 07:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7748481A7
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:33:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.162
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713424693; cv=none; b=pTLEs9RAutbGmtIfnHoIUo5Q6RLeFmJmIW8SPFx/DTFKlSeOWm1TJUgxqCDVIQZPrsTimW3fBZFwns/ozjDxEbB3J2H8KEJofYCvygLaCEZGuzRrNtxJ8t2iiqgT1EZUXOgNW7TDpene0sXUtuDdF6sjceCcoBPfIFLtGzgqa+k=
+	t=1713425613; cv=none; b=frl13TXnema9m0TjasXBaFjHApxMb7HPnN29sWQ9SNfPIVEauWWKbs0nqXFWsahxw+tcVfE76bD2vuVWdTUDKQsbml/NavOlo/KggzA8lHAu7Y3Yfs27MxKyndyKwwpgv9PgqxRtR23NN6hofi7YRFoSq/1JI+8OgcSPQAD7JK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713424693; c=relaxed/simple;
-	bh=goE/qDaO4VHKS7K9FeJgejduaauF9topo8TgMn4Vd4g=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=YxdatqokD4Yl4FUHczNNlMc5DoePSyNaO8dr0QjMF/seVoBWbNMRDYrz3hg+PgDmb0VNy7oEOiQvHeclnsdUYBaif++WQXHnI9IUi3VMgnj3YUFT7zRKGWjq9KoL1igSHrt3zEqza4ZyzfPc72TfNT88Am0fM0BtdRBlitt0Xlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ulnMLQ0y; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1713425613; c=relaxed/simple;
+	bh=QjDsPauPVvETjdDUqVUtGoBEtOicY6rA+B+E3Pa/tIg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qTbg5bhBFQNdlBQaasVGLN40VG0K0fg3a7A31zygok3T8KoFvGl3Uf4xWb+gJSiYhWz6RCrgvlvSPoHLbKyRB7pomDKVqH7vDXOCUyAKav+ztgr4j3b8Qs5AqRc6vH2MyNOY0UUD1bqg4gc8QrTuFT3++taQMgXvOPawom3Yly8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=KKFu+8iC; arc=none smtp.client-ip=62.149.156.162
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam ([146.241.28.123])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id xMA0r2HrjjEwexMA1rCLye; Thu, 18 Apr 2024 09:26:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1713425182; bh=QjDsPauPVvETjdDUqVUtGoBEtOicY6rA+B+E3Pa/tIg=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=KKFu+8iCRp0A4zk+iLwfqMUjAUFPhEZugyZw0GpYZxpul4HlhdFpUehgi5llQpiNc
+	 gQJ6O5jahEk0+VVi614/3HvzRIo5uUZJqh87iTvwNW1RLbg81/PvVsF96F+xwlzI+C
+	 SBL7Inqg8OorN+qbDKborDmZUuzGv1hPpMTtSPY55yPQ2KwTDwpPKGUhRSFXWFrcxt
+	 C5AmOEqXvZKfwzmrmTsvIsKGRr8EH2/QNf++CXcRAuK0cpGbWmQxh6G0+9T5Rkc+XY
+	 UM0sBlbDOlSppts9yVhju7us5gxFYAlijYvk2ZHr4FjwJ7hL4ofZODAcUyX/52pHIk
+	 Z0Uut/LVfFlpA==
+Date: Thu, 18 Apr 2024 09:26:19 +0200
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
+	Mirko Ardinghi <mirko.ardinghi@engicam.com>
+Subject: Re: [PATCH 2/4] regulator: dt-bindings: pca9450: add pca9451a support
+Message-ID: <ZiDLGzJymI4W+LII@engicam>
+References: <20240417153528.7838-1-fabio.aiuto@engicam.com>
+ <20240417153528.7838-3-fabio.aiuto@engicam.com>
+ <ZiBrbghc510G02tx@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1713424688;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kNxJpDgz3ydxdfldvoCq44swMIRMijaZQ8+0vq0di0E=;
-	b=ulnMLQ0yGxKcMqnkHFDU3bPy/kR5S9tGBHsKJsHd6i2aIUt2N7ItMvCjqGiTdYC1HvpW0k
-	X6f6w7o9SdfRVpF88iZScbRcnfTGWJItDyhsjhnZ141zgGSqzrQIMIaeXiU0hc9+fUltqn
-	9lql3nH0u2pjQxbzlmc+J2wRYKwr9r+H5zrdZjyUyoNtak66VvpV0ZQJKxyYSKvxO9ZtRI
-	Oby02TC9WHTjTfYv+pBq/IhsM9VvbfIpd6Ulzu4wrgw+cJK8KHmc+9Mig7gFshKFIRIIjT
-	/ul+QTMWIBlgDzPzxYHuyeE6BQZFW4lNsvx8bdVx01ZOfCd68J7scQjUmK/h+w==
-Date: Thu, 18 Apr 2024 09:18:07 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, jonas@kwiboo.se, conor+dt@kernel.org,
- devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, robh@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Radxa ROCK3 Model C
-In-Reply-To: <ebf7b5f5ff4cd3c8cbee36f35df6ef5d@manjaro.org>
-References: <d7de2213-8dd2-42ec-9a30-a569ac71be3e@kwiboo.se>
- <20240417133016.62753-1-amadeus@jmu.edu.cn>
- <a144c052fcc2460a615a754a64a8f739@manjaro.org>
- <B26C732A4DCEA9B3+282b8775-601b-4d4a-a513-4924b7940076@radxa.com>
- <9e915ef29a2b49ce56446ec9d474eb64@manjaro.org>
- <ebf7b5f5ff4cd3c8cbee36f35df6ef5d@manjaro.org>
-Message-ID: <730e21fc4c74bf42b8a5e54473270899@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZiBrbghc510G02tx@finisterre.sirena.org.uk>
+X-CMAE-Envelope: MS4xfBz44pDssyOg9TqbSc5MDfBh5D8WhSxeCJhJX37EgF1N/qzG/L7rZwwFPltMRjeHtI4EcG34jlBQYAgpAwfHmdgim7KrBa3KewvI5hLdsqaMS5aCvBdP
+ IvQqxK9hAW1AoUI4QUU/yqy6XuWyYb5cFJIjTNWY4Uw4twBH7mTkC95EWe3LXYyiYwxdRVbmpaec4WmvgA5gTDAQ3fPFM1jN+pcqrSmcFQxDU3WO09DVqlec
+ VnKC6wRLhcTpUtY4Y+JHHb9k6lC/e2Bahtrevmhljyjxc2Y0bCLxoIK/PfEzeJzWy+uckkaHe8iOxIgfvJc0YNt0H9QqnfUfVTFy7Y4/ByNi788fcgVKaDK7
+ cX0lqtkHmV/NjmCGTQy+SDKy+XM2ug065m9TzepVMv9RTfGpX3ltJ2m75fTHFZBB5Qw5RoZIQUDivJ5BegEFAgT8KvVI89I6svKBKccjmKHAhrZQIy2twP25
+ EWVuQDnyWUOddC9SDaAlPLza92rKItw77DJg0TTxS/t3VgqjusA81ri7wNRKyCOHcY8USP4+CrSEt/5JgvJLEAQVNPyri2SKmVdd0wzRO5AN30h51+33ewcV
+ Hb+97l7UtJ2nIF2amU1px/SP
 
-On 2024-04-18 08:33, Dragan Simic wrote:
-> On 2024-04-18 07:55, Dragan Simic wrote:
->> On 2024-04-18 07:52, FUKAUMI Naoki wrote:
->>> this is Naoki @ Radxa.
->>> 
->>> thank you for your great work!
->>> 
->>> On 4/18/24 02:02, Dragan Simic wrote:
->>>> Hello Chukun,
->>>> 
->>>> On 2024-04-17 15:30, Chukun Pan wrote:
->>>>> Hi Jonas,
->>>>>>> +    model = "Radxa ROCK3 Model C";
->>>>>> 
->>>>>> The marketing name seems to be "Radxa ROCK 3C" according to the 
->>>>>> product
->>>>>> page at [1].
->>>>>> 
->>>>>> [1] https://radxa.com/products/rock3/3c
->>>>> 
->>>>> According to https://wiki.radxa.com/Rock3/3c , it should be called
->>>>> "Radxa ROCK 3 Model C". I copied rock3a here without paying 
->>>>> attention.
->>> 
->>> sorry, wiki.radxa.com is outdated.
->>> 
->>> docs.radxa.com is correct one and maintained.
->>> (but it still has some errors, sorry)
->>> 
->>>> If I may interject, here's the result of a quick qrep:
->>>> 
->>>> ./rk3399pro-rock-pi-n10.dts:    model = "Radxa ROCK Pi N10";
->>>> ./rk3399-rock-pi-4a-plus.dts:    model = "Radxa ROCK Pi 4A+";
->>>> ./rk3588s-rock-5a.dts:    model = "Radxa ROCK 5 Model A";
->>>> ./rk3588-rock-5b.dts:    model = "Radxa ROCK 5 Model B";
->>>> ./rk3399-rock-4c-plus.dts:    model = "Radxa ROCK 4C+";
->>>> ./rk3399-rock-pi-4b-plus.dts:    model = "Radxa ROCK Pi 4B+";
->>>> ./rk3399-rock-pi-4b.dts:    model = "Radxa ROCK Pi 4B";
->>>> ./rk3399-rock-pi-4c.dts:    model = "Radxa ROCK Pi 4C";
->>>> ./rk3308-rock-pi-s.dts:    model = "Radxa ROCK Pi S";
->>>> ./rk3399-rock-pi-4a.dts:    model = "Radxa ROCK Pi 4A";
->>>> ./rk3399-rock-4se.dts:    model = "Radxa ROCK 4SE";
->>>> ./rk3328-rock-pi-e.dts:    model = "Radxa ROCK Pi E";
->>>> ./rk3568-rock-3a.dts:    model = "Radxa ROCK3 Model A";
->>>> 
->>>> Based on that, I think that "Radxa ROCK 3 Model C" would actually
->>>> be the preferred name...  Perhaps?
->>>> 
->>>> If we end up following that approach, the last board dts on the list
->>>> above should also be fixed to read "Radxa ROCK 3 Model A".
->>>> 
->>>> Either that, or all "Model " strings should be stripped out from
->>>> all board dts files that currently contain it.
->>> 
->>> we have a document named "Radxa Product Naming Convention".
->>> there are "full name" and "short name". "Model" is used in "full
->>> name", but it's not used in "short name". both are correct.
->>> 
->>> but, we preferred to use "short name" for "model = " in mainline 
->>> linux/u-boot.
->>> 
->>> for ROCK 3C, please use
->>> 
->>>  model = "Radxa ROCK 3C";
->>> 
->>> for ROCK 5A/5B and ROCK 3A,
->>> 
->>>  model = "Radxa ROCK 5A";
->>>  model = "Radxa ROCK 5B";
->>>  model = "Radxa ROCK 3A";
->>> 
->>> are preferred.
->>> 
->>> we need to fix this inconsistency. (include our docs)
->> 
->> Great, thanks for this detailed clarification!
+Dear Mark,
+
+Il Thu, Apr 18, 2024 at 09:38:06AM +0900, Mark Brown ha scritto:
+> On Wed, Apr 17, 2024 at 05:35:26PM +0200, Fabio Aiuto wrote:
+> > Update bindings for pca9451a support.
 > 
-> I went ahead and prepared a patch that cleans up currently present
-> naming inconsistencies for the Radxa boards.  AFAICT, there should
-> be no issues arising from the changes in the "model" and "compatible"
-> strings, because they aren't used anywhere in the drivers.  There
-> are no board-specific ALSA UCM2 profiles, which could be affected
-> by those changes.  U-Boot is also fine.
-> 
-> I'll think a bit more about it, and I'll send the patch over a bit
-> later.  If it goes well, I'll prepare and send one more similar patch,
-> for some other boards.
+> Please do not submit new versions of already applied patches, please
+> submit incremental updates to the existing code.  Modifying existing
+> commits creates problems for other users building on top of those
+> commits so it's best practice to only change pubished git commits if
+> absolutely essential.
 
-Actually, a couple of board dts(i) files, listed below, need to
-be renamed to add dashes into their names.  That, together with
-the other naming cleanups I've already prepared, would make the
-naming cleanup of the Radxa boards complete.
+thank you, I was in doubt because I did the whole job based on
+shawnguo's repo where the patch isn't applied yet.
 
-- arch/arm/boot/dts/rockchip/rk3288-rock2-som.dtsi
-   (-> arch/arm/boot/dts/rockchip/rk3288-rock-2-som.dtsi)
-- arch/arm/boot/dts/rockchip/rk3288-rock2-square.dts
-   (-> arch/arm/boot/dts/rockchip/rk3288-rock-2-square.dts)
+Maybe this approach was not good, should I have considered broonie's
+repo for this single patch, shouldn't I?
 
-I see no possible issues in the kernel arising from these two
-file renames, with the other related changes applied, of course,
-but there are some issues in U-Boot.  Luckily, overcoming those
-issues shouldn't be too hard, and I've already submitted a small
-preparatory patch to the U-Boot mailing list. [1]  We'll see
-how it goes.
+Anyway I'm dropping this patch for a v2.
 
-[1] 
-https://lore.kernel.org/u-boot/369151a2b8d73d733ca79eca98d4d5958f90d491.1713423687.git.dsimic@manjaro.org/
+kr,
+
+fabio
 
