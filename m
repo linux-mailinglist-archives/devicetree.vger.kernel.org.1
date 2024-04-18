@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-60481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E388A96D5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:57:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4239A8A96E4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:01:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD6101C216CC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:57:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBD0D283F86
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F4415B558;
-	Thu, 18 Apr 2024 09:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A133D15B56C;
+	Thu, 18 Apr 2024 10:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D78LisT4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aw/8P9iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C91015AAAD
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 09:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5939A26ACB
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713434261; cv=none; b=qRd8+8SajOceg5iZjO9SSACUbaUDefmNNmdvAAicylTqzXDW3xF5iB4L/AcrJ1Xq3ctQEjZM/vAk2MR5dSmUGPboHNn2nzzWYNlzfAyr9AdHYQwjtpcCowOA/UjiBeWeP2tIBBZVWgkgh8KAzvuHa4mHV09htz2kBGPGGdzA78U=
+	t=1713434486; cv=none; b=E2t4BZfSjfYWK0k/xNeNWdGs7AMAWKa62yka9YzbeInVoufc+qNTP6M8RTzGioKat8TWsr2A6T1MZHJ302wnXXEomHdKT+gUq7e7gpsv85ChT/p/5jDyYcPsMOCOgfYOA3GyETPj2LinZ8v46gDj0NAIpxarxKfCRGv7c7PnJI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713434261; c=relaxed/simple;
-	bh=W+KEKz0fbXV/o4Sk80wQbuId6W2rQw068fcMQz0a2Js=;
+	s=arc-20240116; t=1713434486; c=relaxed/simple;
+	bh=a71/SiU5KJx7Ms0b+OJ/gEOzH6yCrAFm+lS0rqmxGAw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t7MxlMiuIqc/ZNhYgpABN7ULoB0yWwDZINvv5FM9i1m4vDm+jqjLmB3zVrXDhVVY0ZifDrmdtxTEjYJ8IT3o+3fnvFsX7hBEHjWeNK5wUvV35JMTouWnf6PIwPAfq5Vy8dmjnAKKixpNyLSnd1jQSXrINpdSkUKdsIsU7NAPaTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D78LisT4; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=Hoo1AdBb32yDV8IQUJO7M9gEEo8ZsWk4ucWz5v9rE2nsKfrFQ0sQNEIJ4yhGXC4ZGgkik0upukQ29NMpYXtJXPGDofaZ1bykChSmTrIC50TDuw+MNbMmgbRgQPZ+xPf+/w7wus8WlXsI701HapfomchDBcPsYLJ941fU/wMHOrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aw/8P9iq; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e1bbdb362so816617a12.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 02:57:39 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a52582ecde4so58356066b.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 03:01:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713434257; x=1714039057; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713434481; x=1714039281; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zXwDxo3yNgOLbgTcANMQ9MnO25hrRBwhJ4xGHdCadxE=;
-        b=D78LisT4LBUKGkD0NQGJArlWZ20xaGVsuaH78BiuJNW9Nke9PL6V6hS/T9lPzOP0ZL
-         uAbY4tDy//0gGa5+OddTLoFjwTWuKq/ko5lRrI7IucoLa26xeiS4M/bxdwseIZgM/3P5
-         ZvpFdFM5bT3hH+zlcJurpXarBUDh7xqv5GXkoeTS1oJYk6QpR9L5+nKw/0v7nMgrUyCr
-         5Bt6/RhNVK80tt6icjNgZ7XBOWIHHA/XZ2uyV2ay/4Ydk3xX/jO7iTOE+l0EQ3bMyZqL
-         tqbs9XtOu5GsIYtXtNUPQDqjhzntQsskqn0vGtBMMp4Jy7fbQ7NXUC/bLGRYZkTDqN76
-         CtVA==
+        bh=1pf1mAA/6NMUQyAgFcZPxZ6nbHjAHUH3C0AGYT83PgE=;
+        b=aw/8P9iqQ2YP0sMzARpB035NIHOrZJr4As1zOiZ7y06YSCBDROxQWEeLdu4LN0redb
+         qRV+IFXf9rlL+BiTmfmIe39iLrQPvUr1zvYdqTg/FFTUBWP8tyo81d40iMMHS5ADWvZ4
+         GXIj2nr6zXTL3dQsMCZfddGO69EDJGXkIDl4NqqOXmLQ8FtRvq/PdwrjgdLYgHmuLyW1
+         hXnTuFhKeV0twdIOIz1WNsnT9q1vMNnfMFDGVN/vdUJ4Rd7xaXwxay1e6zukUxxj8WRA
+         7Jllin6leyRJKHGf6NGwMBGfdzk39cS3KPgWJhKj2RCR4oj2pEeypQuBnxqHbhZQlwvS
+         N94w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713434257; x=1714039057;
+        d=1e100.net; s=20230601; t=1713434481; x=1714039281;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zXwDxo3yNgOLbgTcANMQ9MnO25hrRBwhJ4xGHdCadxE=;
-        b=ne6BbVDPEiOMGq12M8xpSNjnIUZlBpNW56Epp99SYFK80EvSMjylUyaxLgzfMnhT7o
-         Jp1MGGmAZZSdiNKawZxubw1VRm+DooXTx0RvGKmDw0QcmcfhcXTZo7MbsoIzydeo9gIn
-         Hqi6GdS/Ck8wKpgXVYXwkXFETG0MO7UpBW9a+tVenfqC/Tpr5bENE2zsUh5WOeiWuv2Z
-         qprS5qNYct94iLM0mlvG752sjzuPUb1I4p9xLIhq2o2ZuZjqCzsoPaQwhf1FN8VnwEEV
-         8/2UuPcdV9oJRRAi35Gnm/To6Y/lexybheyYAQIwjyvi9phIob/XOQOUzGtC/pUn2bxP
-         HP5w==
-X-Forwarded-Encrypted: i=1; AJvYcCXMEs+nDWQzCvGQus6o920suDAvR6B+vf6KKbKIaFXuFmLv2hNAwsXiGdgLK2vMeN+wzhA+rr5+giXBJ9IU/4ZHJ/pjsibz/fGLfw==
-X-Gm-Message-State: AOJu0YwDV9h2cVizXIbq3xKNkWRwotyVtpKdXcfloHsOCcnFjWcOJV9Y
-	w1Z6SWdP0SypBcgburzOz63ZUeu3vtRnMIQ6ERPtXDkWQPptWbuqpBlEWHvWtSM=
-X-Google-Smtp-Source: AGHT+IG4Ip44mhQHs2Rv5rrzJRGMGfJqeM0856BXRQLMSmmBeTtp7NnfFDK2mT/5Pr31/cdmO7qcfg==
-X-Received: by 2002:a17:906:3c3:b0:a52:2e08:207e with SMTP id c3-20020a17090603c300b00a522e08207emr1748131eja.77.1713434257541;
-        Thu, 18 Apr 2024 02:57:37 -0700 (PDT)
+        bh=1pf1mAA/6NMUQyAgFcZPxZ6nbHjAHUH3C0AGYT83PgE=;
+        b=FAUfKGHp7NGqWRrWOCEuN+nldM0iHkYSqTr8enxoIJOLAUHchTez76slGnWJu/dsUu
+         KgDmBYE9qOB4cdAgNFbHX6uEuuqDFK++7HzyRKodZ44yNSDvSjPYOsfRaEkuGT+o1Cfm
+         fHdqHoz4hJl1QItho5MGJCBYfS4SFqx7x/0vRXPRQ11TOjrDqAHd3O7BGMyuQwNGH97R
+         znRlMq5Z2B2lTB4sraaF1/43TOFYIUoh7A9LuopVZe9CT9pWMsiAYQuzz5YQSi5ojTxo
+         AsSm7LJ0d5G10Vh9F1lUGWpjlYgs4pg2wNvjlXWqONxWpkb8pGy4tyIPVe8NavFd/qJG
+         TItQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOE3MJiwffzUKRZ2NEDcLz94Td//l8ELkxi89d+EGs3D6iYSVpXHRb1A34Gg99sRiTifqS4es7JS+9SVLwyoJp9dLxrUsa8pVTbg==
+X-Gm-Message-State: AOJu0Yzq/1WfQpquMFO9hpFy5I9OMhD89oKQLrrROQGjgwWP6RFgg87G
+	ffg4zH6cBTFVGR0RZw+oUMbCxjANAiP33nhZDCt9vKiXkv/csQKItM4NE6vRRvU=
+X-Google-Smtp-Source: AGHT+IFR9G7tUCBHZF0uqiUjDBLI1xxggsUPZAlg0f+UEA7J7e7NFdmBwEo2wI3dmDKOr/I3QPOp8w==
+X-Received: by 2002:a17:906:a14e:b0:a55:387b:ef07 with SMTP id bu14-20020a170906a14e00b00a55387bef07mr1433955ejb.13.1713434480707;
+        Thu, 18 Apr 2024 03:01:20 -0700 (PDT)
 Received: from [192.168.45.55] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id i8-20020a170906264800b00a52433f0907sm664056ejc.37.2024.04.18.02.57.35
+        by smtp.gmail.com with ESMTPSA id h20-20020a170906591400b00a51d3785c7bsm662615ejq.196.2024.04.18.03.01.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 02:57:36 -0700 (PDT)
-Message-ID: <132c1e03-f55c-46ba-8a22-9cea1ebdfae1@linaro.org>
-Date: Thu, 18 Apr 2024 11:57:35 +0200
+        Thu, 18 Apr 2024 03:01:20 -0700 (PDT)
+Message-ID: <c1763d69-f0a4-4415-be7a-31b04153fbfb@linaro.org>
+Date: Thu, 18 Apr 2024 12:01:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] drm/msm/adreno: Redo the speedbin assignment
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- Neil Armstrong <neil.armstrong@linaro.org>
-References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
- <20240404-topic-smem_speedbin-v2-6-c84f820b7e5b@linaro.org>
- <rilfqdvei26bjyz76hdsh5wlh4s2lcn235up2vxbs65pnolyty@rs77jbxxqzye>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: pmi632: Add vibrator
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Fenglin Wu <quic_fenglinw@quicinc.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240418-fp3-vibra-v1-0-b636b8b3ff32@fairphone.com>
+ <20240418-fp3-vibra-v1-1-b636b8b3ff32@fairphone.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -128,60 +124,23 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <rilfqdvei26bjyz76hdsh5wlh4s2lcn235up2vxbs65pnolyty@rs77jbxxqzye>
+In-Reply-To: <20240418-fp3-vibra-v1-1-b636b8b3ff32@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18.04.2024 1:49 AM, Dmitry Baryshkov wrote:
-> On Wed, Apr 17, 2024 at 10:02:58PM +0200, Konrad Dybcio wrote:
->> There is no need to reinvent the wheel for simple read-match-set logic.
->>
->> Make speedbin discovery and assignment generation independent.
->>
->> This implicitly removes the bogus 0x80 / BIT(7) speed bin on A5xx,
->> which has no representation in hardware whatshowever.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
-
-[...]
-
->> +	/* No speedbins defined for this GPU SKU => allow all defined OPPs */
->> +	if (!info->speedbins) {
->> +		adreno_gpu->speedbin = ADRENO_SPEEDBIN_FUSE_NODATA;
->> +		return devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+On 18.04.2024 8:36 AM, Luca Weiss wrote:
+> Add a node for the vibrator module found inside the PMI632.
 > 
-> BIT(0)
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-You mean for &supp_hw, or "1"?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-1 is the "count" parameter, supp_hw is a "u32 supported_hw[count]"
+On a side note, this is a totally configuration-free peripheral that doesn't do
+anything crazy until manually configured.
 
-> 
->> +	}
->> +
->> +	/*
->> +	 * If a real error (not counting older devicetrees having no nvmem references)
->> +	 * occurs when trying to get the fuse value, bail out.
->> +	 */
->> +	ret = adreno_read_speedbin(adreno_gpu, dev, &fuse);
->> +	if (ret) {
->> +		return ret;
->> +	} else if (fuse == ADRENO_SPEEDBIN_FUSE_NODATA) {
->> +		/* The info struct has speedbin data, but the DT is too old => allow all OPPs */
-> 
-> Missing assignment to adeno_gpu->speedbin ? Or is it fine?
-
-Good catch. Only mesa (and I suppose you :D) read this value.
-
-> 
->> +		DRM_DEV_INFO(dev, "No GPU speed bin fuse, please update your device tree\n");
->> +		return devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
-> 
-> BIT(0)
-> maybe #define it?
-
-(ditto)
+In the slow quest to be (hopefully) more sane about the defaults, should we keep
+them enabled by default? Bjorn?
 
 Konrad
 
