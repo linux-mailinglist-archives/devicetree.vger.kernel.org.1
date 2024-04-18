@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-60437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453508A950D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:33:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A168A951E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:36:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 028F2281B6B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:33:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACE381F21B72
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F881156F54;
-	Thu, 18 Apr 2024 08:33:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C02015821A;
+	Thu, 18 Apr 2024 08:36:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="cbWfah37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AEB1E489;
-	Thu, 18 Apr 2024 08:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7411E498;
+	Thu, 18 Apr 2024 08:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713429190; cv=none; b=V/zjkH1PIhorfA3wtz2n5zM1uvjGHBW7V3yzXGsbGGrMZJoMMkH5DsHv85kn2+Da8X8akaGHmOzIYvDA/CBIiXPAkdfZrZ8K3iqHJwguGMIf8D7/VQsneXBJ3JJqpm+T4JoUmU8el7aGWrp7T37A9cyeIVVroZEnMmiF2t+/Wlc=
+	t=1713429408; cv=none; b=odDBsLKmxGMUxvi3jQKWiOeZfncb9NrhCQu8ikqDtS15+uPuczwM6/8xhgBHNA1PdW/UdTACZBOkLQoo+A9coDBH+d0x8scUjumtT6N0BP41SLQpKCu9IC0TuhpwGHeiJYcNXIgpLZMdNStQhg9Sfyfn8hy50NkQJAhVywrm0x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713429190; c=relaxed/simple;
-	bh=q+i8pVmlIrlg2uXNb2LPqfkCOiu8Po9mLE63rqzPPp8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G+YAEJXUluW5mWUJOfRVOv9LBTgwFdCbOdTy5XqZ1OBWj6x4CkVogWReLjiQgcstOzF/JharOnu2b0rlX0+yeq+GV7ysD4jGM9P13u4WKMKB6yKZFll0Tode2+uQkMHYNbieI72dHGIaW9mEwbGZgpdtWZ2E0+vtTacfgYsMyUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.194.254.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpsz8t1713429112t1pczxp
-X-QQ-Originating-IP: V8JKS7yvHdhP0iKN6L3sa6gtMib2nnjrQRhERCSiCuQ=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 18 Apr 2024 16:31:49 +0800 (CST)
-X-QQ-SSF: 01100000000000C0G000000A0000000
-X-QQ-FEAT: ALw5QuVtm4XcJgw+J5V+e1OHlRlWVPQRtBJdXNg7y9MPl3lldtrMstt74caul
-	bMSHUekZJddAOgMTKK/6SQcoFWyyk1Zuxo/0Xn/AM+AAIilub6RJsYj/EABugMx+km3y2Cq
-	JqOCfiBKVWcHYvJZxKqQn6qXk5AG1Q4v1kUxMmk1C6m0HFrrfaMqYku0kdonl3SECJ5ddTC
-	WU5AYb9lC/ggfFvSJs+a3XgwyZHL471CgrKosjXXP+jS3mDUkBnG/lGaN/FxLBjZZ4GJ0O6
-	myDqQjaPMLgMK+YCKE8JUsb07fLVIWrXHi+hmfQ70YDrh7VrsfrADPkgFEc+N5qkaTM/vHb
-	yHt+CZ6pLuPQbx0zsDnwpugnjssCZg/Cww57kCq5WVjFeZoK34txDMmVd+i8bYASJ6xMqXr
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16492290732445670536
-Message-ID: <5C3644E82F788C47+c823a9ad-5dcd-4f20-b589-057c7d31eb22@radxa.com>
-Date: Thu, 18 Apr 2024 17:31:49 +0900
+	s=arc-20240116; t=1713429408; c=relaxed/simple;
+	bh=yFvxY7AzwVnnSQ8ucWawolwzbibsY7q8XL7KxsGJHqs=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=luneJOwv8O3Jbw32OqNX1fPuZnirV/o8YowAqwgV0apKZYhOYoeXEcrUtXZuhSpKeABuCDlMlaUUekprpgf6g8ym4hVLqaE7U5x7yqhzF2fp9Kax5jSWky67fiBJUssAKlUIeSo5xDFbvFOxWwRmIXbYpANxuVY032OG71uIzKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=cbWfah37; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Radxa ROCK3 Model C
-To: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1713429404;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g0/pcL8zpK5I18i+eBbw+Iwo3gVo9gl9K+bm6kJi3/g=;
+	b=cbWfah37TC39SvM3VxL7ZEQaqL3EWiESpIWQhAVKmh/L52QKdeb/qRUbnu+PRm5U+vV9PC
+	TBjciVZ5OPKuKJ0hfwdknCBl/w2lMQqSxDp8KZ8xduKwD6lsVq2z8O6PDk4f/TacoVrUSg
+	GKfroAhQKweVa//nKaOTQ+xEP0VmzeCNc4koquXyNLD79GeVWjGKxardACQnOEbeKNZzhn
+	lUu4E3ubbqUbuWdL5o01gh7tcxj7toNIadZ4CdfeFZUtLw27NjW0ieUju5dk0x0xIm2v+U
+	8TDL6oryiQZ3aQsbNjdwsrGQuwffAqYJ8GLWHxXwKeLm8+K5ZEmWRm0RN2Cavw==
+Date: Thu, 18 Apr 2024 10:36:42 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
 Cc: Chukun Pan <amadeus@jmu.edu.cn>, jonas@kwiboo.se, conor+dt@kernel.org,
  devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org, robh@kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Radxa ROCK3 Model C
+In-Reply-To: <5C3644E82F788C47+c823a9ad-5dcd-4f20-b589-057c7d31eb22@radxa.com>
 References: <d7de2213-8dd2-42ec-9a30-a569ac71be3e@kwiboo.se>
  <20240417133016.62753-1-amadeus@jmu.edu.cn>
  <a144c052fcc2460a615a754a64a8f739@manjaro.org>
@@ -65,33 +65,33 @@ References: <d7de2213-8dd2-42ec-9a30-a569ac71be3e@kwiboo.se>
  <9e915ef29a2b49ce56446ec9d474eb64@manjaro.org>
  <ebf7b5f5ff4cd3c8cbee36f35df6ef5d@manjaro.org>
  <730e21fc4c74bf42b8a5e54473270899@manjaro.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <730e21fc4c74bf42b8a5e54473270899@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <5C3644E82F788C47+c823a9ad-5dcd-4f20-b589-057c7d31eb22@radxa.com>
+Message-ID: <4d171d1365965c72a19fb23040be026a@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz6a-0
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi,
-
-On 4/18/24 16:18, Dragan Simic wrote:
-> Actually, a couple of board dts(i) files, listed below, need to
-> be renamed to add dashes into their names.  That, together with
-> the other naming cleanups I've already prepared, would make the
-> naming cleanup of the Radxa boards complete.
+On 2024-04-18 10:31, FUKAUMI Naoki wrote:
+> On 4/18/24 16:18, Dragan Simic wrote:
+>> Actually, a couple of board dts(i) files, listed below, need to
+>> be renamed to add dashes into their names.  That, together with
+>> the other naming cleanups I've already prepared, would make the
+>> naming cleanup of the Radxa boards complete.
+>> 
+>> - arch/arm/boot/dts/rockchip/rk3288-rock2-som.dtsi
+>>    (-> arch/arm/boot/dts/rockchip/rk3288-rock-2-som.dtsi)
+>> - arch/arm/boot/dts/rockchip/rk3288-rock2-square.dts
+>>    (-> arch/arm/boot/dts/rockchip/rk3288-rock-2-square.dts)
 > 
-> - arch/arm/boot/dts/rockchip/rk3288-rock2-som.dtsi
->    (-> arch/arm/boot/dts/rockchip/rk3288-rock-2-som.dtsi)
-> - arch/arm/boot/dts/rockchip/rk3288-rock2-square.dts
->    (-> arch/arm/boot/dts/rockchip/rk3288-rock-2-square.dts)
+> uh... they are prehistoric relics... there was no strict rule...
+> (FYI, there is rk3188-radxarock.dts too)
+> 
+> I don't feel a strong need for them...
 
-uh... they are prehistoric relics... there was no strict rule...
-(FYI, there is rk3188-radxarock.dts too)
-
-I don't feel a strong need for them...
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+In that case, it's perhaps better not to do any file renaming,
+which will also keep us on the extra safe side.  The U-Boot patch
+I already submitted won't hurt anyway. :)
 
