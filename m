@@ -1,103 +1,157 @@
-Return-Path: <devicetree+bounces-60516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E4268A9875
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:24:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 991B48A988A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:29:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C666D28415D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:24:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C71A31C211EB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2839715E5B4;
-	Thu, 18 Apr 2024 11:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6909C15E7E5;
+	Thu, 18 Apr 2024 11:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RjKcP8eC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p7gOe1Hj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A7B15AD99;
-	Thu, 18 Apr 2024 11:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58EC15E5DD
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 11:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713439466; cv=none; b=jQ2COdTfludtGTXmb+WKDw15GVVN6C6qAq+C9qB9+KpC2kgHOjbGTVsFujQ2L7twxmcizLmwkugvgDjh1JSeMIrwVKoOdx8NN0b6I8FIM9nD5M7Qg1bGGoVAPBCy2FtczAncmHH76PfWOtyxr0G2OMk0Ol2r0KS4s6XQng03qHE=
+	t=1713439775; cv=none; b=KxD48iOPDrEsAoGEhrfTN++dRb1cmiXAQWA4VAGmE3CtBy/wx1FTUCsSvQTzHNfB2pQ9tYBPejyrDVoxdOo0dp7FURw7qByOOJ5ZTBgEF1TnK/ttxTQE1TyCH/nDzyDl0QS4Lvfe8P+Md3+Bk1aLv7Y0yAMTh/PtGf13OYea+xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713439466; c=relaxed/simple;
-	bh=oc066vT+D/F5ovmoh/FG9gPN0vrcXHwurKJtRWRajb8=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=ukdsEfvl81jJCoHEHSnMzeXEDIRl71Axd9Ft/DUutNdmtVyZbow2n0UCK5C2pfysWzJqCbty+P9R4AUYQtWlNrwVv1dnI3sAlUq3JPqPks9zxOks4KqeyJWr8QEet4vYe20AQGrFUrVcp1FjZlLAqZE9peBSKH3ey7+LBt6XGck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RjKcP8eC; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D7D8AE0003;
-	Thu, 18 Apr 2024 11:24:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1713439460;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jMOGVNbuITYt7dy+1dT/3leK/5M9H8PcreUPt+p35qI=;
-	b=RjKcP8eCCvgTt8VGT8VoIlKf0Qq6wN1vbHBN65pxwLkuoNSCCRK9HMIckOEc7Pmk3kxTN0
-	Y14XTy+U0naNbBritHYr/5MoYDZj9oZm7AB5GSvTo4z9DTD0SiPxe0GwgxNzIW9eV9RVM/
-	LVS7FDjuhPyJyN2nvTk0SeXijjt7oVx4KDFMlSHrErHJ+5+n9mLvPfgmI05Jphqx8MXe/n
-	3HOKNshqS/DM6R0bDDbngk/eKBeSl9EvMysy9TeEGAVbxEVcf3IGTUaBJ8VQeJY27rfz8K
-	1oy9fzsN+qb+Glkaf/Na1dKUANBKFagdcw8XuoHhc0ZnI08f25vTEMLXOwy2+w==
-Date: Thu, 18 Apr 2024 13:24:56 +0200 (CEST)
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-cc: Romain Gantois <romain.gantois@bootlin.com>, 
-    "David S. Miller" <davem@davemloft.net>, 
-    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Geert Uytterhoeven <geert+renesas@glider.be>, 
-    Magnus Damm <magnus.damm@gmail.com>, 
-    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-    Jose Abreu <joabreu@synopsys.com>, 
-    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-    Russell King <linux@armlinux.org.uk>, 
-    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
-    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    linux-renesas-soc@vger.kernel.org, 
-    linux-stm32@st-md-mailman.stormreply.com, 
-    linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v3 5/5] ARM: dts: r9a06g032: describe GMAC1
-In-Reply-To: <CAMuHMdVWEMSR6vKSPdXRbf5_dqBWsM+Z2PV46DBmwHAoBNv_5w@mail.gmail.com>
-Message-ID: <57f94b4a-75e2-32ad-506f-954c13498cd8@bootlin.com>
-References: <20240415-rzn1-gmac1-v3-0-ab12f2c4401d@bootlin.com> <20240415-rzn1-gmac1-v3-5-ab12f2c4401d@bootlin.com> <CAMuHMdVWEMSR6vKSPdXRbf5_dqBWsM+Z2PV46DBmwHAoBNv_5w@mail.gmail.com>
+	s=arc-20240116; t=1713439775; c=relaxed/simple;
+	bh=lN1vDTT/1GpDlMc7dTQoQFul/16jZ2rP94h7wx/6jI4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BsWSujxJJqgTfPD6Mkh26b3BCWDV1aUebE8AOTmKGIcBZ3jBuC7O+sTCT8y+7w+2e968rvpl15D27EjBohR4PVPAForRzmD2W3bDrKe+5WMw9KDGckUAFzaM9SfiQ37H1A9N+BuFuCQJOg1UFc2rv69Dl8MaH/2fgh/bAveMSRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p7gOe1Hj; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d717603aa5so9891971fa.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 04:29:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713439772; x=1714044572; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VnnE/IfmzmlA5CHyUgqh20yYFBPuvnnShtetUjnyr8w=;
+        b=p7gOe1HjaE+WJl5Zyf9NG4wwUdgRLiy+jDK0WDsxYVRzvQzwOm+RFdvrER9BKtoSgz
+         44nuQxIsUkS0qzaRojKw1AvN/jbJOXPyblXD3pBGl4G0+SGaI4fMkp4lxFsmhXtWyPG6
+         /mChTzrIJ5nzXEOa5CcAErL7dtSN7Ytpy/8zsQB9myWsTFI4le/wRBqMpTvcjGUtsznw
+         OCENGPeKjsf1cTF7wxSoo12xCMYaOOA5N5ekBqfwQ/njkUf10RdoTZQtrgr6WpCLi9Ie
+         AHBqDn3mAvFbnzeyVmx/efq+1Omf01GH6kSkyUePCBklZzoPXRS4vh7kPVskt5pyv/Pc
+         PnDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713439772; x=1714044572;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VnnE/IfmzmlA5CHyUgqh20yYFBPuvnnShtetUjnyr8w=;
+        b=p/Mplus2OPL62E01YndH9tCMpKWEZKSYO9FBlU6ALWKBz3l31PdxmG7dP5aRtN35Cq
+         Q46D1bKTJ5/FiXchtW5Ksh3GC+pu4SXEgUVBz5y6OcECFLc9FcHcgajX6cG12XJhj6j8
+         8RUtVOv33/4zYdnZV3BY4GWSs/1sb3zA+tSERC3ZnKCUYseEzQwfO3W+FNbWc/lDB1mD
+         2CVdv3NGbgs8C5SyAm6tt26Tqh9m+1qjjUpj75xg7lYcjjj8fIH/T4V4iByjUrn/7N04
+         qwsqBvYmhqXhuwVBaJ5bgAxTQngugtL393qmRGeMNkAE9l0KgrkatNNYKj4xKjXIqtjb
+         4VEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWn3x7/n3QVd3TARDlGCYFScwMIDxZNqsoAT3flTnXS94b+WxnJLorkj7TgFz6jxwxzt/y9zX+iRPLgWx8T49v8gTPyYVoFUo35kQ==
+X-Gm-Message-State: AOJu0YwzGRbyghAwvRFY4KsWXCnHeJtzO2fLytIdNm68qZZS1lGaFNuG
+	gYg2QLdkfptClm0xDC0IJGTbUkWxsL6e5B85MjRxG3RJQiMoYxRWEY59WFQ1EUQ=
+X-Google-Smtp-Source: AGHT+IHDv6oDHXnx691EqLgUPOwR5cVUUBZLA5KH4jyaTEU8AhEQ4q2Ks28SwOSGF59XRR6bH5r3jg==
+X-Received: by 2002:a05:6512:158d:b0:519:591b:6d7a with SMTP id bp13-20020a056512158d00b00519591b6d7amr2116064lfb.7.1713439771793;
+        Thu, 18 Apr 2024 04:29:31 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id n17-20020a056512389100b005175dbca53bsm202809lft.185.2024.04.18.04.29.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Apr 2024 04:29:31 -0700 (PDT)
+Date: Thu, 18 Apr 2024 14:29:29 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 6/7] drm/msm/adreno: Redo the speedbin assignment
+Message-ID: <2ha26ft5hliicfgaiu6uk7cywyjhhl4x6gygg7rhqqftyfmwqo@qpqf6xr4zudy>
+References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
+ <20240404-topic-smem_speedbin-v2-6-c84f820b7e5b@linaro.org>
+ <rilfqdvei26bjyz76hdsh5wlh4s2lcn235up2vxbs65pnolyty@rs77jbxxqzye>
+ <132c1e03-f55c-46ba-8a22-9cea1ebdfae1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <132c1e03-f55c-46ba-8a22-9cea1ebdfae1@linaro.org>
 
-Hi Geert,
-
-On Thu, 18 Apr 2024, Geert Uytterhoeven wrote:
-
-> > +               gmac1: ethernet@44000000 {
-> > +                       compatible = "renesas,r9a06g032-gmac", "renesas,rzn1-gmac", "snps,dwmac";
-> > +                       reg = <0x44000000 0x2000>;
-> > +                       interrupt-parent = <&gic>;
+On Thu, Apr 18, 2024 at 11:57:35AM +0200, Konrad Dybcio wrote:
+> On 18.04.2024 1:49 AM, Dmitry Baryshkov wrote:
+> > On Wed, Apr 17, 2024 at 10:02:58PM +0200, Konrad Dybcio wrote:
+> >> There is no need to reinvent the wheel for simple read-match-set logic.
+> >>
+> >> Make speedbin discovery and assignment generation independent.
+> >>
+> >> This implicitly removes the bogus 0x80 / BIT(7) speed bin on A5xx,
+> >> which has no representation in hardware whatshowever.
+> >>
+> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >> ---
 > 
-> The surrounding "soc" node already specifies the interrupt parent,
-> so there is no need to repeat that. I could fix that while applying
-> to renesas-devel for v6.10, but it looks like there will be a v4 for
-> the rest of the series anyway?
+> [...]
+> 
+> >> +	/* No speedbins defined for this GPU SKU => allow all defined OPPs */
+> >> +	if (!info->speedbins) {
+> >> +		adreno_gpu->speedbin = ADRENO_SPEEDBIN_FUSE_NODATA;
+> >> +		return devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+> > 
+> > BIT(0)
+> 
+> You mean for &supp_hw, or "1"?
+> 
+> 1 is the "count" parameter, supp_hw is a "u32 supported_hw[count]"
 
-Indeed there will be a v4 so I'll fix it.
+I see. It confused me. This way it's getting set to UINT_MAX, which
+will match against any non-zero opp-supported-hw. Ack.
 
-Thanks,
+> 
+> > 
+> >> +	}
+> >> +
+> >> +	/*
+> >> +	 * If a real error (not counting older devicetrees having no nvmem references)
+> >> +	 * occurs when trying to get the fuse value, bail out.
+> >> +	 */
+> >> +	ret = adreno_read_speedbin(adreno_gpu, dev, &fuse);
+> >> +	if (ret) {
+> >> +		return ret;
+> >> +	} else if (fuse == ADRENO_SPEEDBIN_FUSE_NODATA) {
+> >> +		/* The info struct has speedbin data, but the DT is too old => allow all OPPs */
+> > 
+> > Missing assignment to adeno_gpu->speedbin ? Or is it fine?
+> 
+> Good catch. Only mesa (and I suppose you :D) read this value.
+> 
+> > 
+> >> +		DRM_DEV_INFO(dev, "No GPU speed bin fuse, please update your device tree\n");
+> >> +		return devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+> > 
+> > BIT(0)
+> > maybe #define it?
+> 
+> (ditto)
+> 
+> Konrad
 
 -- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With best wishes
+Dmitry
 
