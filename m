@@ -1,115 +1,101 @@
-Return-Path: <devicetree+bounces-60452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2645A8A95B0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:09:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27D18A95A2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:08:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA6A11F234BF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:09:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41373B21405
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:08:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88F215A4BD;
-	Thu, 18 Apr 2024 09:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63BED158A13;
+	Thu, 18 Apr 2024 09:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="GABKATOM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZSM+iswS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417A015AD8D;
-	Thu, 18 Apr 2024 09:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A6B158845;
+	Thu, 18 Apr 2024 09:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713431362; cv=none; b=nBCHnXdTPItR7ezMVofVwOP3vaLWcdfooVr8xjWfkC38u3k+x2VoaSaIPiYfsA5jp/0R78fUbfOiTRGDqRGS4buP2OhqWcFOJm6gXGaoAWaMpL39idyVS/MwoNBRemdqvVgBf/5HxyG47VIaF9Hw84U7+QtVztPiogZgqJ4/dv8=
+	t=1713431320; cv=none; b=ASKCmjNnQELrOCU294DJUzCyhPXcTFpFdBo64tb4QcpUZ/je241NiyZxZ/zI8iqOEhrbiYkpWangZOtObDT6wjVrkx6FUjhTKmOYlJ8IgqKtrMlVObGm6AYT05wPVCmCtWi6EFVQQTFrptoI9Bc+Wtf04h5pw/xGMq0MHATpYrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713431362; c=relaxed/simple;
-	bh=6OVXTuVEs3Ti3gwc47dT8+dSYZ/eZYsmW6QUwZ2xss4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=M4cz4lA/XnFl2qqgIUmQk687KkC3v89xKrAo2o3mGFps6/Hj1NwxKY+WPIeedVIssYu5KtpxzF3QZupjOqGQjIPC5KTPhol/8uW5Py11CCkou5pbiO5W5u36rWlPj4XG60BtLYmfJ+paPDPo+7ePLHA9HvWY/b7qNGcAB0r07yA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=GABKATOM; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AC1DA17E1;
-	Thu, 18 Apr 2024 11:08:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1713431293;
-	bh=6OVXTuVEs3Ti3gwc47dT8+dSYZ/eZYsmW6QUwZ2xss4=;
+	s=arc-20240116; t=1713431320; c=relaxed/simple;
+	bh=LsD7yUmtMCTzO1crQtPBvcjHCAiLcbN7MpNEaC3Gpgc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ECFZ1WGyHRNHSWhV2HG2Fzmk7Izt0rE+Rbe/oXlZOJv1oGr5DRQLo1oXECMfAShX/3jbdHIs9S2c7812VmMrFUpcU6P0VSMWCvC0uM6Ir8r+8I6csw6EilolOuH+Q3KprDWvVKB3cz2gp1v3ba2Ymp0qvSuoVUFbRMHm0as7TDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZSM+iswS; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713431314;
+	bh=LsD7yUmtMCTzO1crQtPBvcjHCAiLcbN7MpNEaC3Gpgc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GABKATOMguOvelsDziuC6I2FwBZ93tEmy9hNgtQedFKWgtX1yFMMIS2RI50c0acHG
-	 PD9uMQYybkDO3O5pCiMXiM0ZjFKsATbtbc3BQQfj334mCXuhSxguxDeEfEebi0+s8G
-	 LSQPOo8Wy0kjtfFJeHiqhj9uOlr7NR6896N9dJ/8=
-From: Daniel Scally <dan.scally@ideasonboard.com>
-To: linux-media@vger.kernel.org,
+	b=ZSM+iswSiJQUhdHGJZ5VxHCJyxeJgeADTcN/qrYIiaa/asAzkICNqsr4/5U9k44rs
+	 QPZfkY59B8IMG7vKo49CkAUiJM///EsWvguueXGdNQpjZMq2xQx3GlPXqOx+xlHMib
+	 jc2aPNAVdUuKtcXum8MMmkIMtLFaGrrYdYZwwgraNT2OzJ4mP0LeHGIiJt2Cjj2ux6
+	 ToRFZXHBrIj+MAIFxWQy1f+5bbtRwaDvjRfoVjtqh6PeetCgOTg8sylHq9oI1QXaXo
+	 OiSYk4PwgCyeZ4LrwCxqSBgmLt/jom8s4i9w52Ymtj22OhN1zVYROjj0z9puzHYh5X
+	 nOGMCfUIeaXlQ==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BB7E6378203F;
+	Thu, 18 Apr 2024 09:08:33 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com,
-	robh+dt@kernel.org,
-	mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jerome.forissier@linaro.org,
-	kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com,
-	Daniel Scally <dan.scally@ideasonboard.com>
-Subject: [PATCH v4 5/5] MAINTAINERS: Add entry for mali-c55 driver
-Date: Thu, 18 Apr 2024 10:08:25 +0100
-Message-Id: <20240418090825.624747-6-dan.scally@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240418090825.624747-1-dan.scally@ideasonboard.com>
-References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: add u3port1 for xhci1
+Date: Thu, 18 Apr 2024 11:08:26 +0200
+Message-ID: <171343130258.187209.10545268279574102752.b4-ty@collabora.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240216095751.4937-1-macpaul.lin@mediatek.com>
+References: <20240216095751.4937-1-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Add a MAINTAINERS entry for the mali-c55 driver and its associated
-documentation.
+On Fri, 16 Feb 2024 17:57:51 +0800, Macpaul Lin wrote:
+> This patch fixes an issue where xhci1 was not functioning properly because
+> the state and PHY settings were incorrect.
+> 
+> The introduction of the 'force-mode' property in the phy-mtk-tphy driver
+> allows for the correct initialization of xhci1 by updating the Device Tree
+> settings accordingly.
+> 
+> [...]
 
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
----
-Changes in v4:
-	- None
+Applied to v6.9-next/dts64, thanks!
 
-Changes in v3:
+[1/1] arm64: dts: mediatek: mt8395-genio-1200-evk: add u3port1 for xhci1
+      commit: 2cf936800fc1eb22465e43d9d908336630255c3d
 
-	- none
-
-Changes in v2:
-
-	- none
-
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7c121493f43d..6231f74ef12e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1688,6 +1688,16 @@ F:	Documentation/gpu/panfrost.rst
- F:	drivers/gpu/drm/panfrost/
- F:	include/uapi/drm/panfrost_drm.h
- 
-+ARM MALI-C55 ISP DRIVER
-+M:	Daniel Scally <dan.scally@ideasonboard.com>
-+M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/admin-guide/media/mali-c55.rst
-+F:	Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-+F:	drivers/media/platform/arm/mali-c55/
-+
- ARM MALI-DP DRM DRIVER
- M:	Liviu Dudau <liviu.dudau@arm.com>
- S:	Supported
--- 
-2.34.1
+Cheers,
+Angelo
 
 
