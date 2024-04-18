@@ -1,110 +1,117 @@
-Return-Path: <devicetree+bounces-60593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622628A9BB8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:54:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0AC08A9BA7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93CFC1C23100
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:54:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55F941F239E1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E23161900;
-	Thu, 18 Apr 2024 13:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0B61635DE;
+	Thu, 18 Apr 2024 13:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="uCvMHtqw";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="uCvMHtqw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RmxsbDgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1188B15AAA4;
-	Thu, 18 Apr 2024 13:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652C26A8CA;
+	Thu, 18 Apr 2024 13:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713448485; cv=none; b=hphZctdtUlPPotSqJYxUCjn1VknNG120tPNILaX9d9tYYUGyTT03N/sUBzMTi0DqotvOE6OcmXSq3lGy3hEpyyaYst9FGS1iN5HfVjPwrJu8ze3/5ah2NWOQJOxszQkDLDL/k82O8PZgkK9gMPFmsKeDG2W3n4UYonuV6+fLU6U=
+	t=1713448356; cv=none; b=ZKjOrqTuJE/EF5vU2s7jauO22adZTTuNkzOviX7mgjlL7eXpUSWhAmth2wdN77XYEhWcOr+rBJr8j6Pckr0lc/qaqWrkxxW+mhTFeyCc1pIambwZoWf+U4jdIfDwHirru5c5D+gaTsQl0QIJ7xXHBqLIkwFdlGaz3zma6i0ST/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713448485; c=relaxed/simple;
-	bh=d4qDJxtj0TKPWtUGjhTmuDRXiwM9jmNP0Ljg54XpF3U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sr9xqKv8E1+RQps1boxweYPqNB9SjOhrZF7n7szPejLhM5/QwpV10wYxKwkkZ5tLpM6tr1BMPnPTnhlpT0uqr2kL2OdGbNSvNYdrNQQi26nrR7m1QmTYiixiHhuOEf8x3CuL5LXHcWAKkkY8nR1TMNrBxdm5AA1MYdtnXCrsHcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=uCvMHtqw; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=uCvMHtqw; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1713448026; bh=d4qDJxtj0TKPWtUGjhTmuDRXiwM9jmNP0Ljg54XpF3U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uCvMHtqwEOf8PCo2M08gknm7c5L8y8eo9UzDePHvd/Rt1vR1zjUDSpGfQj8S2proF
-	 JOOHDuwjGUlf+otQ3hsiw2lRRPb+Z2vpqpQSHDcZsX2lgf8LhpF2tqpyeW02wgr/Hd
-	 zggQgDgnU6uw9dUFHGsCezaWXxTtzw+XLxtAcTIgj8f+l0taPw5+xgqnHBuGngCg73
-	 uttu9dP4Xx0j2nYuk5slhze8++ZcIBPw+HadMrH8FtdqFflqpj6UlON7Ykk0NPRiPO
-	 RAL6jfhm3KP55CXAqpPLwm6/k9W1Yps1CX+4mmE7fi7hqGOBEM2UlPbYqRaEp9r/FV
-	 /exwmV9lPQBww==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 937EA4677E3;
-	Thu, 18 Apr 2024 13:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1713448026; bh=d4qDJxtj0TKPWtUGjhTmuDRXiwM9jmNP0Ljg54XpF3U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uCvMHtqwEOf8PCo2M08gknm7c5L8y8eo9UzDePHvd/Rt1vR1zjUDSpGfQj8S2proF
-	 JOOHDuwjGUlf+otQ3hsiw2lRRPb+Z2vpqpQSHDcZsX2lgf8LhpF2tqpyeW02wgr/Hd
-	 zggQgDgnU6uw9dUFHGsCezaWXxTtzw+XLxtAcTIgj8f+l0taPw5+xgqnHBuGngCg73
-	 uttu9dP4Xx0j2nYuk5slhze8++ZcIBPw+HadMrH8FtdqFflqpj6UlON7Ykk0NPRiPO
-	 RAL6jfhm3KP55CXAqpPLwm6/k9W1Yps1CX+4mmE7fi7hqGOBEM2UlPbYqRaEp9r/FV
-	 /exwmV9lPQBww==
-Message-ID: <ca1e249b-2f2b-4936-8c88-935c3112356e@mleia.com>
-Date: Thu, 18 Apr 2024 16:47:04 +0300
+	s=arc-20240116; t=1713448356; c=relaxed/simple;
+	bh=DFMBpvLg9bEM08JQ9ob6upTO1i+WiZqw2n6cDonSo4w=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=hkLPK5vSU7Qq1oCMXrswgANtXkRoEOkivWE8HPXRsi8HmUIENYbZi/bAkLl+XpSaD9NKBGffq3D9MXtSnB707scAflPYNu8JMHnNsAncAttM2XpQ5VrCdaN97XoLuq2DqfnQihtwFjdVbGTR+Yqit+dLkiTuxM8LXs7nX/l8D+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RmxsbDgx; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C2C281BF209;
+	Thu, 18 Apr 2024 13:52:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1713448351;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8wUOi164P3lAmjE1ClSdezuP19LGck9A7BJ4c8R2rWo=;
+	b=RmxsbDgxhNpNQOPoFlayXDpwdP+tytqkGF2OJI6z52D3jvdH0BINaMaSOJABYa6/o6WxeC
+	ghog+bvm/6xdvqTf7B+xQM1u8PJB3QGicA2yN5ueeF17yS8iO+LMOt3yX/95A/69vx0wFU
+	cWHL5OJ6Vcw7APt18HuFE96l5gziHKoup8zj+aF3KookZJxRSzPjCOjoJAU1e0WxFzVysT
+	v/WQR3MUr8UJwvigXjjQu2WXU9bhHEg4YS9NtOcNTo94oqfGuwGimoaaP5yb6TJK1bx/Ff
+	aiZo6SsBfRs+qKWkz/kuZH1VCi7XUvW5NuGt7bGVzPZKfEQBmV9RD8UVbJaq/w==
+Date: Thu, 18 Apr 2024 15:53:07 +0200 (CEST)
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Serge Semin <fancer.lancer@gmail.com>
+cc: Romain Gantois <romain.gantois@bootlin.com>, 
+    "David S. Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Geert Uytterhoeven <geert+renesas@glider.be>, 
+    Magnus Damm <magnus.damm@gmail.com>, 
+    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+    Jose Abreu <joabreu@synopsys.com>, 
+    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+    Russell King <linux@armlinux.org.uk>, 
+    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
+    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-renesas-soc@vger.kernel.org, 
+    linux-stm32@st-md-mailman.stormreply.com, 
+    linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v3 4/5] net: stmmac: add support for RZ/N1
+ GMAC
+In-Reply-To: <eqfta73ost45nbzz3aoa2tw5tasg3geehf4fgphu4teq5yfvar@ngif2e6j5j2k>
+Message-ID: <c99b452b-be35-3a67-1c87-042dbc5fce49@bootlin.com>
+References: <20240415-rzn1-gmac1-v3-0-ab12f2c4401d@bootlin.com> <20240415-rzn1-gmac1-v3-4-ab12f2c4401d@bootlin.com> <xp34tp5cjmdshefxjczltz2prqtiikagfspf4lobznzypvsyah@ihpmwfynwzhh> <232e3b0c-ca55-2da0-1c9f-47520a1bcfbd@bootlin.com>
+ <eqfta73ost45nbzz3aoa2tw5tasg3geehf4fgphu4teq5yfvar@ngif2e6j5j2k>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] serial: sc16is7xx: Add bindings documentation for
- EXAR XR20M1172 UART
-Content-Language: en-US
-To: Konstantin <rilian.la.te@ya.ru>
-Cc: Konstantin <ria.freelander@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Lech Perczak <lech.perczak@camlingroup.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240418132508.3447800-1-rilian.la.te@ya.ru>
- <20240418132508.3447800-3-rilian.la.te@ya.ru>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20240418132508.3447800-3-rilian.la.te@ya.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20240418_134706_631872_0B25327F 
-X-CRM114-Status: UNSURE (   8.06  )
-X-CRM114-Notice: Please train this message. 
+Content-Type: text/plain; charset=US-ASCII
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hi Konstantin,
+On Thu, 18 Apr 2024, Serge Semin wrote:
 
-On 4/18/24 16:25, Konstantin wrote:
-> From: Konstantin <ria.freelander@gmail.com>
-
-please use a full name, which points to the author of the change, thank you!
-
-> This patch adds the devicetree documentation for the XR20M1172 UART.
+> On Thu, Apr 18, 2024 at 01:57:47PM +0200, Romain Gantois wrote:
+> > Hi Serge,
+> > 
+> > On Tue, 16 Apr 2024, Serge Semin wrote:
+> > 
+> > > > +static int rzn1_dwmac_pcs_init(struct stmmac_priv *priv,
+> > > 
+> > > > +			       struct mac_device_info *hw)
+> > > 
+> > > AFAICS hw is unused, and the mac_device_info instance is reached via
+> > > the priv pointer. What about dropping the unused argument then?
+> > 
 > 
-> Signed-off-by: Konstantin Pugin <ria.freelander@gmail.com>
+> > Unfortunately, this is an implementation of the pcs_init() callback, which is 
+> > also used by socfpga (see patch 4/6 in this series). The socfpga implementations 
+> > use the hw parameter for both pcs_init() and pcs_exit() so I can't remove it.
+> 
+> I had that patch content in mind when was writing my comment. There is
+> no point in passing the hw-pointer there either because you already
+> have the stmmac_priv pointer. There is stmmac_priv::hw field which you
+> can use instead in the same way as you do in this patch. Here is the
+> respective change for your SoCFPGA patch:
+> 
 
-Other than that the change is good from my point of view.
+You're right, I'll remove the parameter.
 
-Please make the requested update, add my tag below and resubmit v2 of the change.
+Thanks,
 
-Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-
---
-Best wishes,
-Vladimir
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
