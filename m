@@ -1,275 +1,271 @@
-Return-Path: <devicetree+bounces-60763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E75D8AA491
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 23:03:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 883D88AA49D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 23:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0409A287BE5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:03:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB9F71C22820
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BCC194C86;
-	Thu, 18 Apr 2024 21:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3424E194C64;
+	Thu, 18 Apr 2024 21:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="khewyLoN"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="ldc9vV1e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2053.outbound.protection.outlook.com [40.107.104.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA5E194C83
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 21:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713474187; cv=none; b=mLq7P6QZIuyqm7fbx6YG53tfLRMj1cwr/fSaVkJ5iuX/pLhFeOjJgMEa4LVUN8ct0iNiG4DuDHzF1fWEy3KF+U/iWScfjW2OGia6fNcXxzHXpYcfrhnYySSBcnd7pX4EvuqLEyYwzaThBL4gHjGlJNphUovjpdbdtAXadquVYMk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713474187; c=relaxed/simple;
-	bh=5OF8qkOWFKuBZMUOLmpSdMe4KRuBZNzn/YHn8L/1G5E=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=W/6/ctF/5OGa+EcVUSQJrWXdSwJ+k1fatcr2rkHJYQnZQ9n1pfWp1/GXWIYg5eNzsEOJQfMRvI1sDYQekbIDeyygFm5+kXg6As68AGD5UcBGeZ4tNPD3ApUP0IElf4CNsqYnwrgJYVQHTNNgcb0iHwMdkzHqGi4PnCTCgD24jqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=khewyLoN; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1e0bec01232so11459055ad.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:03:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713474184; x=1714078984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ECYyys6aoTgaptV/LoyO8VNanlxEG+pc2oeOwPKfVIc=;
-        b=khewyLoN93MeNt8mZsVSwJG5fEIaTJdZgrxFx11VIfWPrz9Mu60MrtQphCA9tglzcy
-         79zV5w1ZO39b31qjk8XxWFKlYnPfS2y0pvBh8CG6mG9gvAxd0g4lahaniSuZW3Lov3NO
-         iLHdwqIiSukgtA4Owi8JEvq6/UTJvRnMjknJEynjEyYG4au8Mj0hDGr7NxY8fADkbgrp
-         bAdS31iUHDpFbk5q/fHTcpfM6dqwSNr5bROhcOr+3ZKTrPxR13/n6D6gaEy5Y/1/JXxV
-         xarx+OxzAa6smlcxPgTsE1+LEBkPv3x9K+MthErbQvcOc1QkjNdFtsB/FLVREI5TPgWz
-         ac+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713474184; x=1714078984;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ECYyys6aoTgaptV/LoyO8VNanlxEG+pc2oeOwPKfVIc=;
-        b=e200XO3jAuPJda+jYW2/G7YkfBr+YBoBTTt0nN+vcyquvJriVJg7RtkWiTkTq12Y68
-         0W8QKHAPG3K8rRYx15ekk/SOKwQyAMI3G1B8qcO/YzsC0Yr6J/uIIIzw7/KWItODBQ75
-         m+77AqwnOt55jRatFYhTXIz0j6wNAaWwz/c0mwx97kYYTPBOdtWrmHDCWLcFJhXVtnrG
-         oIv8w23xj3zxSuMAPqlMAC5gxoC6I5a3+t4O10XuzpLsvTtIsmJDTAQKo0XUjnHb6Kar
-         QDr/n+8ffQ6MeZ+TbY4nGPPRAHXX6eybD3gg4DlJZ3d3z1QiPhXaP2Cap8N7YZb1t8cH
-         tQdA==
-X-Gm-Message-State: AOJu0YxjSx9+BKmO3ygsHlQ94ncoB5Ymt04z1sEScs/18uVyxsFLxFah
-	rUisIbXVy45wcdg8dllWO1DpBo8p80QfTW1t+/f+1oRaYOZdIa6vTGYAOQRwFQc=
-X-Google-Smtp-Source: AGHT+IGHor8csSxZDagYgaB6/ojvhxlu7Uteia1vXUisFp7SM+Grb6p8+pI0a41Y1E/Pv/SYi01gZA==
-X-Received: by 2002:a17:902:d2cf:b0:1e3:cfc5:589e with SMTP id n15-20020a170902d2cf00b001e3cfc5589emr308126plc.64.1713474183819;
-        Thu, 18 Apr 2024 14:03:03 -0700 (PDT)
-Received: from [10.36.52.145] ([24.75.208.148])
-        by smtp.gmail.com with ESMTPSA id b15-20020a170903228f00b001e4928c8026sm1973926plh.13.2024.04.18.14.03.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 14:03:03 -0700 (PDT)
-Message-ID: <4736ba70-a42a-473f-8724-8e664bbfe4eb@linaro.org>
-Date: Thu, 18 Apr 2024 23:03:02 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3C8194C6A;
+	Thu, 18 Apr 2024 21:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713474515; cv=fail; b=IrbszbeUzylo2M0sI6ZqQvjjmumC8S8cHK6bpkRhzTPUiiclWzIoM84mZMop1Js1nLBDPV75/60R8Z+N9zg62Q7nYf/xjsj0hRqxlh4AKEwtTdqMRPn4QvXa/I8KvabQWOS5RgizKXhmO1OHsKmsulaKN4fNXCtxjsluiCoA2Ak=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713474515; c=relaxed/simple;
+	bh=THPOI2X0JHbJrd1+6+X7x0GIh27IDP1/73OZTagUPLw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=hB92rwKOQ/UUzJtFt8jel5MRLKbCdTBTgRKy7erRQSqeIGmgl15SuVIhydshUodmchUHNmG82zaWKdee9lbu9EX6j7JtfVEol4Q+bbXSvr1knGD0NsqeOv1zsE0TWu3GWTs9Prc0RazIfnjvovW2MlP9Rj4wp0gb//QUDIYd+No=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=ldc9vV1e; arc=fail smtp.client-ip=40.107.104.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TJcBOkGjIgO9fIbstPk9SscZEWeE6gwp+pEhB+mFxRlFtwyO+2jJvrs383C/NZBaBg0yLecuNNdIjpj7e2RSAxHfXegL+r0+FhKVqtj2lHaIM5rK69xQwKGVmpQ/gKPg2ShNTVNoB8dmIgZjMlbCaIlI9M6IojEoNwQtbbVwEjzK3mx9VxEnIwKRuRwOXAMtEpiSyQJJqNGM6z42gfNvSTQqnwQMP8BlEfEs4icAsobCpFeOo/6WYei37IoEuGy62w1BqaTNZLAxi1nkht2IFmkwe7GIQyWd1bYuYOyXBD7ES6hmun8hx1RTSVROpiqzDJMMFRdeU9lWpZah1nc5bQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ouCBZyrIAcHp8FM8vBHyBWMzvwMmpG+f6YJ7shwQ1Pw=;
+ b=bg6R99uOH7I/jYFqjyh9vc/SK4bgFbnwCxtflzp+ockw7S9yHczKWGFlNGhpoCSNFkvtB93YDb7E4gPJupf3AB8Ga5vRE1CkJswKsOl8KDkPFTkUIEXIkA90zXcdrfnwBJVrBuuNXD5+yKV5l+jm5CWCYikWV89TtMDNfudT/jDiKoiRMH3M1zoDnkjPDaCBggeFAD+3WZluHFalg/tBxstGP91V1JVIb8crCRvATTBfKmxUrLNmyifvMMhMAmbZTDtJ9U4QSx/TfBUfDlVWybolwR86aektsV+EkV+xtnFhPq/FTeiIsOJqYj2NeND5B8rCClt6ngPDNYl8t9LLAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ouCBZyrIAcHp8FM8vBHyBWMzvwMmpG+f6YJ7shwQ1Pw=;
+ b=ldc9vV1eDxUOr+7wd/64ZB6UfQqlNE/fw3IDdtd5gGXN1yRtavGQuMWumpl6o1lUnmOxYuey6we81y2JBGLBaj5vsipxG+UkzcLaKdkp3DEUBDxOjYJb3mircVrE5BjZSH/7pkKozVDwVHIs85e06TFTohH6mRoKsFBzb63EtsQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB8014.eurprd04.prod.outlook.com (2603:10a6:102:c7::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.43; Thu, 18 Apr
+ 2024 21:08:29 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.037; Thu, 18 Apr 2024
+ 21:08:29 +0000
+Date: Thu, 18 Apr 2024 17:08:20 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: dsp: support imx8ulp dsp clocks
+Message-ID: <ZiGLxBa8CMsaRSTc@lizhi-Precision-Tower-5810>
+References: <20240418203720.8492-1-laurentiumihalcea111@gmail.com>
+ <20240418203720.8492-2-laurentiumihalcea111@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418203720.8492-2-laurentiumihalcea111@gmail.com>
+X-ClientProxiedBy: SJ0PR13CA0219.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Kelvin Zhang <kelvin.zhang@amlogic.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>
-References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
- <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
- <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
- <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
- <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
- <c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org>
- <48005005-54ad-473b-826d-23b0b3f3a52c@amlogic.com>
- <64c765e4-698f-49d6-8d17-4b512c3dc8ec@linaro.org>
- <f845db57-64dc-4127-ab8d-9a038fd8d35b@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <f845db57-64dc-4127-ab8d-9a038fd8d35b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB8014:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39414b12-3fc9-4aa0-42c0-08dc5febb265
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	/Hzc1Q5oFZfG93dYHIi/QCAkbrf2L/7DdgAwOR9TY3247ZZ3B2XowjuGst0yNy/XcfwVFjwK6aVnsq77a1O9Ft38HQFimQOROakmyvC5eergPpHXr2W7PoK8cafe7dxiLxg5lKnYFxmOPkToGJ/hVYL8/ieedAiI7UnYpO/vWw7qS/Dt3LoLbBiHK5tpUyNtlUWUJ89vPmbnhjCBbh8pzv8obqnqBvN5TT/Gi/rLOxLRssRDPdNaNhrkUaKmSoiXSLhpEU6+XCFDI/nJfPb1BQSPcg17HBliX2x2LqqMFz5pG0WkrxP6qwyoGXcUmKbnBKr4W2pluvzm4G8fSmKrEna9BGcW8duq3577svsJ466VJHG8Sn6pES0x0DpqeNsYyy7Ta90yqT9fZAvAsnoI0nSpjpNjCqvBn3QZXlIBSXR4PlkBFQNabXenzHE7UbudpRP66+yIAE+sYiKXsC3kzXJGN0MQIdwYJrLrSkSwR1ysDp5fJo58aVW80FCJ0WHmWYX+wmH/TTL8npixfATeM88D/pS14izuTOa8+xEyUMj1Ow10g9UAAl2ndo7p2xii7lAIK+ToWRyfi8kotLNs2T1Gwo24phqkOi5Hjzxo6XPSoo20GgBnzSAq6MkdMMDWAlxXU3aGjRruKATBujzTlkwQ+DD7Ex3NKerFX9Wwrl56NgtZv4jGUZxT9jna051XVEEWRuF7bLNT20WtzHgipVeV2lz5E6+9IfE776Ma2pg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(366007)(52116005)(376005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?6kaikUrqYMMDIbuLdyvX5SxETWxzfaVL8J2JS34lOfTUldC3S4tGHm/1mjjw?=
+ =?us-ascii?Q?0XHZkSG8ybhsKt3EPTGZyg/e5D7jRgvx0kYqPUuwZJ7cqnlePMbbclDlkqM8?=
+ =?us-ascii?Q?uiOht5WBDsBOyb2iZI8lUdp1C/IZUEA0FDDUVYSOIeIweT6rGYaI0U7lFl4Z?=
+ =?us-ascii?Q?C7US7qwGiGT7IyukDl+V5SbpiYCkn0YKN9LjS7K9+Tn4EUzEHINj+/ZbzGez?=
+ =?us-ascii?Q?9Nr/mV1vNn5O7YmjW5goZ7QVqCOUk0bsaCng8pLdYXol7+yVJoKlNSCPSgvt?=
+ =?us-ascii?Q?b6NfnTyGbi9taQNGPu/+tyzMqya2ZdoF/rla/OsI5jdco+95EEzKm4fYZmoa?=
+ =?us-ascii?Q?ZTkOU64szGvY9uzkKDTZMpzSXGnMJqj9Jw82Yc0iSCDwaZ4tsR82xODWoJ5M?=
+ =?us-ascii?Q?WsTcOvXejiS6n8EuNWOaBgqj++pqCv0o6nBqiYmTd9YYGTjMiAFNRNdFZH9k?=
+ =?us-ascii?Q?aoYOqwxz89fY1KIfe1vXOb2IiggSEdLSbfa32p6N+QKHaUD60Jl8HJqbhoq1?=
+ =?us-ascii?Q?7g0BrTfXRzKZt18DBFTlK9ngxIoLe3bWDEDu/N8oMRtblPfAvGD8EmsA/Wja?=
+ =?us-ascii?Q?akYQWc5BEd28uh1WUDZ9DAIAIgEVpgiSMYvtmDXH1JaRztLck/0TsTeFuJWH?=
+ =?us-ascii?Q?vPycXjuCcgcJDvhiSM5HgQteoWZa0mR9M/U86FJe4h9oZqXsJuoU3ZUgRc7v?=
+ =?us-ascii?Q?nk5DE7YVp7/HX9MT04hk3y+kHP7z1F4aAYhI7PbPBqsxWXm5Hvog1rLssAPe?=
+ =?us-ascii?Q?9hcdMDIB4mQM6dNatSmkThRdOMTYed5XMh6Aj5Zoj3cf9OkYvzTk+F37q01C?=
+ =?us-ascii?Q?YsEPdYMm6tiP2SuWhbHHwthtnv9ndE/kQHDu1bFyZC9yNFePt8vx9rGxcoxB?=
+ =?us-ascii?Q?hFnwlOgu27NtPxbI41kQ1eEQvdoTZ4NpgKQ+UTurujGJoKtn6aSi8lNwe5ah?=
+ =?us-ascii?Q?hD7m86WrJIp/GMOIKn3i/z5LtozkqmGwMLZUwQvrPlWDhcj6B06v2fm4whYW?=
+ =?us-ascii?Q?EaErQgTDa522YzKFqvUoMi2EWQpZ54D7ECJGo7WMIxjUsLl+eRfZFSCTUU4I?=
+ =?us-ascii?Q?SLMKcAnPAEbW7cfVn+gV/KgnUuzykCKsLZzUYAtGBOXYHr6qtPpGg+yK/3nZ?=
+ =?us-ascii?Q?mxRPi1VETupdMsMulnsjJAdamw/+TURp9QV0EinwgIYCvmsuvLxcUD372ZnI?=
+ =?us-ascii?Q?bT8QDyi2T+cy4w48avTEXqHJlEvohTgvy84Zyt8wAMK54UVJEUbS8tjNu9D9?=
+ =?us-ascii?Q?2qYgl+1d2F1k9mm82Uky6h9g6D+yDdqQOpmDILfLb1QJT+I7QLghnUwoVbNn?=
+ =?us-ascii?Q?ewuIwMzkItQfwWMYjh4dkmlxxkUQcouVOSpLrdEE7duRCuMkEryetWmpS4zj?=
+ =?us-ascii?Q?17LmgjK/JTqUu8H8TVDnxD5WSy6P5phgPeNUvx4sv+yx2SlOkbeUXQEHQArC?=
+ =?us-ascii?Q?gGNYdiIS/esQO2/ya+Cy+OZFT1eLeiMITUcI89VxlCWGNcJgyabyRADtxOYx?=
+ =?us-ascii?Q?yo4RQVbMvRW7V/yYiFeRrD9Jorpo0BiAWgdUmt+9gHwlzMk6GgHKK2BojQlt?=
+ =?us-ascii?Q?JPARDTwwfMBJYYCBkJhU+tCe31AeIWPjYr8eM6IF?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39414b12-3fc9-4aa0-42c0-08dc5febb265
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 21:08:29.6178
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: L5veAqGTfQY3aV8rXoFRyXsa4nlKhdB8NTpWjEyKjEwrB+wnE2FBLD4o0gsNO+sU9na8lR6/WUb3Fof6yj71JA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB8014
 
-On 17/04/2024 21:08, Krzysztof Kozlowski wrote:
-> On 16/04/2024 01:30, neil.armstrong@linaro.org wrote:
->> On 15/04/2024 12:31, Kelvin Zhang wrote:
->>>
->>> On 2024/4/13 02:03, Krzysztof Kozlowski wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> On 12/04/2024 19:57, Krzysztof Kozlowski wrote:
->>>>> On 12/04/2024 15:12, Neil Armstrong wrote:
->>>>>> Hi,
->>>>>>
->>>>>> On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
->>>>>>> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
->>>>>>>> From: Zelong Dong <zelong.dong@amlogic.com>
->>>>>>>>
->>>>>>>> Add a new compatible and the related header file
->>>>>>>> for Amlogic T7 Reset Controller.
->>>>>>>>
->>>>>>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
->>>>>>>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->>>>>>>> ---
->>>>>>>>     .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
->>>>>>>>     include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
->>>>>>>>     2 files changed, 198 insertions(+)
->>>>>>>>
->>>>>>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>>>>> index f0c6c0df0ce3..fefe343e5afe 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>>>>> @@ -19,6 +19,7 @@ properties:
->>>>>>>>           - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->>>>>>>>           - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
->>>>>>>>           - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->>>>>>>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
->>>>>>>>
->>>>>>>
->>>>>>> If there is going to be any resend, please drop the comment. It's not
->>>>>>> really helpful and makes it trickier to read.
->>>>>>>
->>>>>>>>       reg:
->>>>>>>>         maxItems: 1
->>>>>>>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>>>>>> new file mode 100644
->>>>>>>> index 000000000000..ca4a832eeeec
->>>>>>>> --- /dev/null
->>>>>>>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>>>>>> @@ -0,0 +1,197 @@
->>>>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>>>>>>> +/*
->>>>>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>>>>>> + */
->>>>>>>> +
->>>>>>>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>>>>>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>>>>>> +
->>>>>>>> +/* RESET0 */
->>>>>>>> +/*                                        0-3     */
->>>>>>>
->>>>>>> I assume this matches existing drivers which do not use IDs but map the
->>>>>>> binding to hardware value? I remember we talked about changing it, so if
->>>>>>> something happened about this and it could be changed: please change.
->>>>>>
->>>>>> I'm not aware of such discussion, and I don't really see the issue...
->>>>>> thoses are IDs, and yes they match the Hardware offsets, and ?
->>>>>
->>>>> Bindings are not for hardware offsets/values/addresses. It's just not a
->>>>> binding.
->>>>>
->>>>> I quickly looked at your driver patch and it confirms: not a binding.
->>>>> Binding constant is used by the driver and DTS consumer.
->>>>>
->>>>> I am really sure we had this talk in the past, but could be I think
->>>>> about different platform. Since this is not a binding, I do not think
->>>>> claiming there is any ABI here is reasonable. Feel free to store them
->>>>> with other hardware values, like in DTS headers etc. We already moved to
->>>>> DTS headers several such "non-binding" constants.
->>>>
->>>> Un-acked.
->>>>
->>>> I looked at my archives and we did talk about it and you were CCed:
->>>>
->>>> https://lore.kernel.org/linux-devicetree/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
->>>> simple-reset is an exception.
->>>>
->>>> So to recap:
->>>> That's not a binding. Don't add some real values to binding headers
->>>> because it is not a binding then.
->>
->> So what's exactly a binding then?
+On Thu, Apr 18, 2024 at 11:37:18PM +0300, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > 
-> Binding headers is interface needed (necessary) between implementation
-> (like Linux drivers) and DTS.
+> i.MX8ULP DSP node needs a MU clock, but doesn't need
+> a debug clock. Change "clocks" and "clock-names" properties
+> to allow for this case.
 > 
->> random linear numbers that means nothing can be a binding
->> but registers numbers can't be ? why ? I still don't understand, why this suddenly gets problematic ?
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 51 ++++++++++++++-----
+>  1 file changed, 39 insertions(+), 12 deletions(-)
 > 
-> There is no interface here. Drivers don't use them. It's not "suddenly"
-> problematic, I commented on this year or two years ago and we also
-> started moving such header-abusers out of bindings.
-> 
->>
->>>>
->>>> https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
->>>> https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
->>>> https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
->>>> https://lore.kernel.org/linux-devicetree/418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org/
->>>> https://lore.kernel.org/all/201401111415.29395.arnd@arndb.de/
->>>>
->>> Got it. Will delete amlogic,t7-reset.h and use the hardware numbers
->>> directly in the DT. >
->>> Hi Neil,
->>> As you know, Amlogic reset controller is divided into several groups: reset0, reset1, ..., resetN. I'd like to discuss the rationality of splitting the one device node of reset controller into device nodes according to the groups. Then we can use the bit number within the 'resets' property.
->>> reset0: reset-controller@2000 {
->>> ...
->>> };
->>>
->>> reset1: reset-controller@2004 {
->>> ...
->>> };
->>> ...
->>>
->>> What do you think?
->>
->> No since you'll basically add a node per register, you need to add a node for the while reset HW function, another
->> solution would be to split the phandle arguments in 2, the first first would be the reset bank, and the second one
->> the reset line for the bank.
->>
->> But still it's a regression in readability to drop the macros, until gpios or pins the reset number doesn't mean anything per se.
-> 
-> 
-> What stops you from putting the header in the DTS? Just like others are
-> doing?
+> diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> index 9af40da5688e..4a39d57b1cc6 100644
+> --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> @@ -30,22 +30,12 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    items:
+> -      - description: ipg clock
+> -      - description: ocram clock
+> -      - description: core clock
+> -      - description: debug interface clock
+> -      - description: message unit clock
+>      minItems: 3
+> +    maxItems: 5
+>  
+>    clock-names:
+> -    items:
+> -      - const: ipg
+> -      - const: ocram
+> -      - const: core
+> -      - const: debug
+> -      - const: mu
+>      minItems: 3
+> +    maxItems: 5
+>  
+>    power-domains:
+>      description:
+> @@ -93,6 +83,43 @@ required:
+>    - memory-region
+>  
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx8ulp-hifi4
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: ipg clock
+> +            - description: ocram clock
+> +            - description: core clock
+> +            - description: message unit clock
+> +        clock-names:
+> +          items:
+> +            - const: ipg
+> +            - const: ocram
+> +            - const: core
+> +            - const: mu
+> +    else:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: ipg clock
+> +            - description: ocram clock
+> +            - description: core clock
+> +            - description: debug interface clock
+> +            - description: message unit clock
+> +          minItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: ipg
+> +            - const: ocram
+> +            - const: core
+> +            - const: debug
+> +            - const: mu
+> +          minItems: 3
 
-Ok so now I understand, Kelvin just keep the header but move it in arch/arm64/boot/dts/amlogic along the DT patch and drop it from the bindings patch.
+According to your descript, look like only clk "debug" is difference.
 
-Thanks,
-Neil
+How about
 
+  clocks:                                                               
+    items:                                                              
+      - description: ipg clock                                          
+      - description: ocram clock                                        
+      - description: core clock                                         
+      - description: message unit clock                                 
+      - description: debug interface clock
+
+   clock-names:                                                          
+      items:                                                              
+        - const: ipg                                                      
+        - const: ocram                                                    
+        - const: core
+	- const: mu                                                     
+        - const: debug                                                    
+
+allOf:
+   if:                                                                 
+     properties:                                                       
+       compatible:                                                     
+          contains:                                                     
+            const: fsl,imx8ulp-hifi4
+   then:
+     properties:
+       clocks:
+         minItems: 4
+       clock-names:
+         minItems: 4
+
+   else:
+     propertyies:
+       clocks:
+         minItems: 3
+       clock-names:
+         minItems: 3
+
+
+
+>    - if:
+>        properties:
+>          compatible:
+> -- 
+> 2.34.1
 > 
-> Best regards,
-> Krzysztof
-> 
-
 
