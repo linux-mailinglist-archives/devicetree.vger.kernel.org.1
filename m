@@ -1,109 +1,282 @@
-Return-Path: <devicetree+bounces-60617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E368A9CC0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:21:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBBB78A9D05
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:28:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41076B23494
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:21:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F54CB23753
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B0216F846;
-	Thu, 18 Apr 2024 14:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B585168B00;
+	Thu, 18 Apr 2024 14:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fX15OLhh"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="YU8IcQvL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6B816F841;
-	Thu, 18 Apr 2024 14:17:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09600168AEE
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713449854; cv=none; b=TmYv4yguMm5wVIftwlWfiKGoo6yfJ7ENqIiVFQS7xgXIY1+LHfuEe3uS42OPaLyxhm9fia8sdMfVxZ6hE+c2csIH6K/uucePGQb2K1uWkZfov0HTRp0BtDplxRpFxd3wTnCul1mos6XRSdtX7NbFc9F2+ddSsqQk+EpXqRdNCe0=
+	t=1713450434; cv=none; b=HMupYw/2mdhDNKxNfPcUYo8ZaIl9h68iXwJ8ee4o7tpsGDexi3w/9S61Nwmmz59nqMdN/Qtd9S2bFPi7sLOorQ+PQe6QpC7VyQ2/Rh/8BVtL24Nhbynk00/rvcqv1YZmX1n+K0+yhqQNg3j/Ej59qtRKqSDM0xhJ6I2bkpyH2Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713449854; c=relaxed/simple;
-	bh=g3bociu/TKxYjBLoEsR045a0G3zCwH9uH+OLKgq63aY=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=qrISwqk8nM6wP9mTHFgDcRIbpR4tfh5RuA7+ffdk0aBV8l0Icin/GM05t5fIM/mT8/AfitbBP1/E28da3D+SmxISNm5xLoEXWYt2TfFFDNLo2ogLXjRPvQ1tAE0O+iXyg9V11AvpO1v/oOQT5vK4oTs6RqMNPbgpFstANMvubm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fX15OLhh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66EC4C4AF18;
-	Thu, 18 Apr 2024 14:17:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713449853;
-	bh=g3bociu/TKxYjBLoEsR045a0G3zCwH9uH+OLKgq63aY=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=fX15OLhhfVGSOCLKc7dIm4096I52YHgwNfdFqGAYQjhxNN63qVKdmqjw4nQI1OOeL
-	 Q3tXx0IDqscekZYeRUmryyJpO5D2pm34mY24QVo8AhEjD1bcsBUlU3ZM0inq7YEwS6
-	 uaZEtHve9eO4Hc/e2LEsE4K3utZC58IfdYU8j2MFTLLAh/hteP5qVKwP+cPt9xnsCp
-	 gI1uOJo1IK3wUNRUW8k6h7c0/syPGFaGvg0KXH0wN8ieeiW/pt65tefskjbjRPABUC
-	 Ss9Tw6mkZDrwLkZPvFYT5ug3jHqcwFSwZoz5PHdcvKqoiwsQtak3DAZZwx/N4I9/g5
-	 f4zVVMFJYyLvQ==
-Date: Thu, 18 Apr 2024 09:17:32 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1713450434; c=relaxed/simple;
+	bh=4xAZjsq5NBCk8pMTWSn7cGEZjggQAqPnOuHGhTfr1N4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dbcLusqlw1Zq0KffKu/QlIHt+pamlcTT4V00KRvSG1cN3AazT795PAWJ4XbN8LxHZLMF0luOE+jlQlGZACJvDMB+nAWhL/FghzgFtdf5Rc3s4NU8WdWsoivmF3/0lCPd2DiBDFM2hBlT5Sq2qm8V0ZI8fnT1ZRVHDyr9lNpu62M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=YU8IcQvL; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-343d32aba7eso184336f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:27:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713450430; x=1714055230; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p3RiUuSEoG2S8esV/YzS5auTHlA7j5ReVp1mTpYduo8=;
+        b=YU8IcQvLzq9Q8bZtr3YqGNHYXi9jReRjVxb/R36xMx/8xGG8lrZiSXtRZhbC6+ZgLs
+         wHue9C5RQ+UWNIo8YMUjUHz1hH9ys7HCBz1vIYWAdAUFOTK09+RAZ/7aKM/SilbYrx/P
+         XVMJGHh2oWPHIbU5boayw1RD4dO5X4vCkuU9L57E2xV1CiV53YJpXKGwqDKGwMwa/Phk
+         oaGNohhWNULpW7bhOuUv+66M8uk9ngicnDHQNBBv0+nGRstAvTGON6AdHsxZRRb5kXdt
+         Rpfpm67eR4PrS6y5UGP93OwNCH/sD8wlk67qiy+ZI/XYju3s2thIjPaNP0lm4Hmn4jGI
+         5abA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713450430; x=1714055230;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p3RiUuSEoG2S8esV/YzS5auTHlA7j5ReVp1mTpYduo8=;
+        b=uXfXjJf38vgxVgiGyWbCGGqHDaYewaJNzyBpqHAIteO+o9Ab996KBHQf1XBx51LSuU
+         ul7eS8dQ1D05dTD44/6LbjrKxxGo6PX1i0hb2Y5VHJI3VBBeTrNlV6qVE0ZrvBoPvaS0
+         NSeLU6v85Dl8zhWnCyWm81rlJz0PobrOKWT3bJNSwCC5e234DmbW5QBqNMX/M7zXodoO
+         jYVrEtGl6i4U6UuYKsFb1iU8pZLUgwopDUUjXREVbxqnmsjXJUGteBo9xPgkjudXNww5
+         yr2wr8tb7koKC9hK+uTWrIFj63rPbM45eSteG8+RO+XsT1l+278te8pHdMvWJE0n3wEQ
+         PFwA==
+X-Forwarded-Encrypted: i=1; AJvYcCVpINRFFLUfWUlm++qod9JNzam7z7dOxLGhZAnPZTzu6iblYg5mdd8zsVGYElTtghNgYHhNz+FspQfrDcnflH9QXcDotv96y4FBWg==
+X-Gm-Message-State: AOJu0YzB6qAZDmyLs0j/xrHmffiKqXsf6dArt7LdR+w0ToMO4e0r4O6d
+	phWQauLCXw5OnuINctGuqvs1NG7th91o7mO+khk010rbY9qtMUSTmSAJO0UmMUA=
+X-Google-Smtp-Source: AGHT+IFEKKLATpLTVwutm2tzIoiZ11Ga9pVF4NMfg4vCen7e5iSouPTou2BE8D1MsN0dG3NtPPHp/g==
+X-Received: by 2002:a05:600c:524a:b0:418:2719:6b14 with SMTP id fc10-20020a05600c524a00b0041827196b14mr2077367wmb.3.1713450430306;
+        Thu, 18 Apr 2024 07:27:10 -0700 (PDT)
+Received: from carbon-x1.. ([2a01:e0a:999:a3a0:7b64:4d1d:16d8:e38b])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b00418a386c059sm2873645wmo.42.2024.04.18.07.27.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Apr 2024 07:27:09 -0700 (PDT)
+From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <anup@brainfault.org>,
+	Atish Patra <atishp@atishpatra.org>
+Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org,
+	Ved Shanbhogue <ved@rivosinc.com>
+Subject: [RFC PATCH 0/7] riscv: Add support for Ssdbltrp extension
+Date: Thu, 18 Apr 2024 16:26:39 +0200
+Message-ID: <20240418142701.1493091-1-cleger@rivosinc.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, conor+dt@kernel.org, dianders@google.com, 
- hsinyi@google.com, krzysztof.kozlowski+dt@linaro.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- benjamin.tissoires@redhat.co, devicetree@vger.kernel.org, jikos@kernel.org
-In-Reply-To: <20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com>
-References: <20240418124815.31897-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com>
-Message-Id: <171344985111.1370788.4070620666918735217.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: input: i2c-hid: Introduce Ilitek
- ili2900
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+A double trap typically arises during a sensitive phase in trap handling
+operations — when an exception or interrupt occurs while the trap
+handler (the component responsible for managing these events) is in a
+non-reentrant state. This non-reentrancy usually occurs in the early
+phase of trap handling, wherein the trap handler has not yet preserved
+the necessary state to handle and resume from the trap. The occurrence
+of such event is unlikely but can happen when dealing with hardware
+errors.
 
-On Thu, 18 Apr 2024 20:48:14 +0800, lvzhaoxiong wrote:
-> The ili2900 touch screen chip same as ilitek ili9882t controller
-> has a reset gpio.
-> 
-> Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
-> ---
->  Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+This series adds support for Ssdbltrp[1]. It is based on SSE support as well as
+firmware feature to enable double trap.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Ssdbltrp can be tested using qemu[1], opensbi[2], linux[3] and
+kvm-unit-tests[5]. Assuming you have a riscv environment available and
+configured (CROSS_COMPILE), it can be built for riscv64 using the
+following instructions:
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml:22:5: [error] duplication of key "const" in mapping (key-duplicates)
+Qemu:
+  $ git clone https://github.com/rivosinc/qemu.git
+  $ cd qemu
+  $ git switch dev/cleger/dbltrp_rfc_v1
+  $ mkdir build && cd build
+  $ ../configure --target-list=riscv64-softmmu
+  $ make
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/input/ilitek,ili9882t.example.dts'
-Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml:22:5: found duplicate key "const" with value "ilitek,ili2900" (original value: "ilitek,ili9882t")
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/input/ilitek,ili9882t.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml:22:5: found duplicate key "const" with value "ilitek,ili2900" (original value: "ilitek,ili9882t")
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+OpenSBI:
+  $ git clone https://github.com/rivosinc/opensbi.git
+  $ cd opensbi
+  $ git switch dev/cleger/dbltrp_rfc_v1
+  $ make O=build PLATFORM_RISCV_XLEN=64 PLATFORM=generic
 
-doc reference errors (make refcheckdocs):
+Linux:
+  $ git clone https://github.com/rivosinc/linux.git
+  $ cd linux
+  $ git switch dev/cleger/dbltrp_rfc_v1
+  $ export ARCH=riscv
+  $ make O=build defconfig
+  $ ./script/config --file build/.config --enable RISCV_DBLTRP
+  $ make O=build
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com
+kvm-unit-tests:
+  $ git clone https://github.com/clementleger/kvm-unit-tests.git
+  $ cd kvm-unit-tests
+  $ git switch dev/cleger/dbltrp_rfc_v1
+  $ ./configure --arch=riscv64 --cross-prefix=$CROSS_COMPILE
+  $ make
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+You will also need kvmtool in your rootfs. One can build a buildroot
+rootfs using the buildroot provided at [6] (which contains an update
+of kvmtool with riscv support).
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Run with kvm-unit-test test as kernel:
+  $ qemu-system-riscv64 \
+    -M virt \
+    -cpu rv64,x-ssdbltrp=true,x-smdbltrp=true \
+    -nographic \
+    -serial mon:stdio \
+    -bios opensbi/build/platform/generic/firmware/fw_jump.bin \
+    -kernel kvm-unit-tests-dbltrp/riscv/sbi_dbltrp.flat
+  ...
+  [OpenSBI boot partially elided]
+  Boot HART ISA Extensions  : sscofpmf,sstc,zicntr,zihpm,zicboz,zicbom,sdtrig,svadu,ssdbltrp
+  ...
+  ##########################################################################
+  #    kvm-unit-tests
+  ##########################################################################
 
-pip3 install dtschema --upgrade
+  PASS: sbi: fwft: FWFT extension probing no error
+  PASS: sbi: fwft: FWFT extension is present
+  PASS: sbi: fwft: dbltrp: Get double trap enable feature value
+  PASS: sbi: fwft: dbltrp: Set double trap enable feature value == 0
+  PASS: sbi: fwft: dbltrp: Get double trap enable feature value == 0
+  PASS: sbi: fwft: dbltrp: Double trap disabled, trap first time ok
+  PASS: sbi: fwft: dbltrp: Set double trap enable feature value == 1
+  PASS: sbi: fwft: dbltrp: Get double trap enable feature value == 1
+  PASS: sbi: fwft: dbltrp: Trapped twice allowed ok
+  INFO: sbi: fwft: dbltrp: Should generate a double trap and crash !
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+  sbi_trap_error: hart0: trap0: double trap handler failed (error -10)
+
+  sbi_trap_error: hart0: trap0: mcause=0x0000000000000010 mtval=0x0000000000000000
+  sbi_trap_error: hart0: trap0: mtval2=0x0000000000000003 mtinst=0x0000000000000000
+  sbi_trap_error: hart0: trap0: mepc=0x00000000802000d8 mstatus=0x8000000a01006900
+  sbi_trap_error: hart0: trap0: ra=0x00000000802001fc sp=0x0000000080213e70
+  sbi_trap_error: hart0: trap0: gp=0x0000000000000000 tp=0x0000000080088000
+  sbi_trap_error: hart0: trap0: s0=0x0000000080213e80 s1=0x0000000000000001
+  sbi_trap_error: hart0: trap0: a0=0x0000000080213e80 a1=0x0000000080208193
+  sbi_trap_error: hart0: trap0: a2=0x000000008020dc20 a3=0x000000000000000f
+  sbi_trap_error: hart0: trap0: a4=0x0000000080210cd8 a5=0x00000000802110d0
+  sbi_trap_error: hart0: trap0: a6=0x00000000802136e4 a7=0x0000000046574654
+  sbi_trap_error: hart0: trap0: s2=0x0000000080210cd9 s3=0x0000000000000000
+  sbi_trap_error: hart0: trap0: s4=0x0000000000000000 s5=0x0000000000000000
+  sbi_trap_error: hart0: trap0: s6=0x0000000000000000 s7=0x0000000000000001
+  sbi_trap_error: hart0: trap0: s8=0x0000000000002000 s9=0x0000000080083700
+  sbi_trap_error: hart0: trap0: s10=0x0000000000000000 s11=0x0000000000000000
+  sbi_trap_error: hart0: trap0: t0=0x0000000000000000 t1=0x0000000080213ed8
+  sbi_trap_error: hart0: trap0: t2=0x0000000000001000 t3=0x0000000080213ee0
+  sbi_trap_error: hart0: trap0: t4=0x0000000000000000 t5=0x000000008020f8d0
+  sbi_trap_error: hart0: trap0: t6=0x0000000000000000
+
+Run with linux and kvm-unit-test test in kvm (testing VS-mode):
+  $ qemu-system-riscv64 \
+    -M virt \
+    -cpu rv64,x-ssdbltrp=true,x-smdbltrp=true \
+    -nographic \
+    -serial mon:stdio \
+    -bios opensbi/build/platform/generic/firmware/fw_jump.bin \
+    -kernel linux/build/arch/riscv/boot/Image
+  ...
+  [Linux boot partially elided]
+  [    0.735079] riscv-dbltrp: Double trap handling registered
+  ...
+
+  $ lkvm run -k sbi_dbltrp.flat -m 128 -c 2
+  ##########################################################################
+  #    kvm-unit-tests
+  ##########################################################################
+
+  PASS: sbi: fwft: FWFT extension probing no error
+  PASS: sbi: fwft: FWFT extension is present
+  PASS: sbi: fwft: dbltrp: Get double trap enable feature value
+  PASS: sbi: fwft: dbltrp: Set double trap enable feature value == 0
+  PASS: sbi: fwft: dbltrp: Get double trap enable feature value == 0
+  PASS: sbi: fwft: dbltrp: Double trap disabled, trap first time ok
+  PASS: sbi: fwft: dbltrp: Set double trap enable feature value == 1
+  PASS: sbi: fwft: dbltrp: Get double trap enable feature value == 1
+  PASS: sbi: fwft: dbltrp: Trapped twice allowed ok
+  INFO: sbi: fwft: dbltrp: Should generate a double trap and crash !
+  [   51.939077] Guest double trap
+  [   51.939323] kvm [93]: VCPU exit error -95
+  [   51.939683] kvm [93]: SEPC=0x802000d8 SSTATUS=0x200004520 HSTATUS=0x200200180
+  [   51.939947] kvm [93]: SCAUSE=0x10 STVAL=0x0 HTVAL=0x3 HTINST=0x0
+  KVM_RUN failed: Operation not supported
+  $
+
+Link: https://github.com/riscv/riscv-double-trap/releases/download/v0.56/riscv-double-trap.pdf [1]
+Link: https://github.com/rivosinc/qemu/tree/dev/cleger/dbltrp_rfc_v1 [2]
+Link: https://github.com/rivosinc/opensbi/tree/dev/cleger/dbltrp_rfc_v1 [3]
+Link: https://github.com/rivosinc/linux/tree/dev/cleger/dbltrp_rfc_v1 [4]
+Link: https://github.com/clementleger/kvm-unit-tests/tree/dev/cleger/dbltrp_rfc_v1 [5]
+Link: https://github.com/clementleger/buildroot/tree/dev/cleger/kvmtool [6]
+---
+
+Clément Léger (7):
+  riscv: kvm: add support for FWFT SBI extension
+  dt-bindings: riscv: add Ssdbltrp ISA extension description
+  riscv: add Ssdbltrp ISA extension parsing
+  riscv: handle Ssdbltrp mstatus SDT bit
+  riscv: add double trap driver
+  riscv: kvm: add SBI FWFT support for SBI_FWFT_DOUBLE_TRAP_ENABLE
+  RISC-V: KVM: add support for double trap exception
+
+ .../devicetree/bindings/riscv/extensions.yaml |   6 +
+ arch/riscv/include/asm/csr.h                  |   3 +
+ arch/riscv/include/asm/hwcap.h                |   1 +
+ arch/riscv/include/asm/kvm_host.h             |  12 +-
+ arch/riscv/include/asm/kvm_vcpu_sbi.h         |   1 +
+ arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h    |  37 ++++
+ arch/riscv/include/asm/sbi.h                  |   1 +
+ arch/riscv/include/uapi/asm/kvm.h             |   2 +
+ arch/riscv/kernel/cpufeature.c                |   1 +
+ arch/riscv/kernel/entry.S                     |  52 ++---
+ arch/riscv/kernel/head.S                      |   4 +
+ arch/riscv/kernel/sse_entry.S                 |   4 +-
+ arch/riscv/kvm/Makefile                       |   1 +
+ arch/riscv/kvm/vcpu.c                         |  28 +--
+ arch/riscv/kvm/vcpu_exit.c                    |  33 +++-
+ arch/riscv/kvm/vcpu_insn.c                    |  15 +-
+ arch/riscv/kvm/vcpu_onereg.c                  |   2 +
+ arch/riscv/kvm/vcpu_sbi.c                     |   8 +-
+ arch/riscv/kvm/vcpu_sbi_fwft.c                | 177 ++++++++++++++++++
+ arch/riscv/kvm/vcpu_switch.S                  |  19 +-
+ drivers/firmware/Kconfig                      |   7 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/riscv_dbltrp.c               |  95 ++++++++++
+ include/linux/riscv_dbltrp.h                  |  19 ++
+ 24 files changed, 466 insertions(+), 63 deletions(-)
+ create mode 100644 arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
+ create mode 100644 arch/riscv/kvm/vcpu_sbi_fwft.c
+ create mode 100644 drivers/firmware/riscv_dbltrp.c
+ create mode 100644 include/linux/riscv_dbltrp.h
+
+-- 
+2.43.0
 
 
