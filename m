@@ -1,236 +1,103 @@
-Return-Path: <devicetree+bounces-60523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41ECC8A9932
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:58:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC0F8A9926
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:57:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F22EB20C2E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:58:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 344F6281675
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF3C15E7E7;
-	Thu, 18 Apr 2024 11:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09B415EFBD;
+	Thu, 18 Apr 2024 11:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lWQaCZl7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Hy2SsbNn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CA715E814;
-	Thu, 18 Apr 2024 11:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99BC15D5D6;
+	Thu, 18 Apr 2024 11:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713441478; cv=none; b=cfglEGm8EeR9JazLxjRNKKqcZUZZ4chVQFwiQScak7NuRRrCJbZoonngVVH4wRSl+Msy1WtRrw1+o2zP3L4R3PxJRnizIYsT2PajU/qZUzB5J5pSseEeP/Rd4Pfcfu9XWfNGmvuiGP4HwPjNAlv+weyP9EuVO0IVQ+rfS2jAVUE=
+	t=1713441435; cv=none; b=I27qv2qQY785kiym2kiUH34xyBhGZ1Q89aVm4YW8vlHwJ1U53c55dlgUz7hyyGPzlQyqNU4aF8+umzErHGSHhZtqvVxoAFncBixVnv2Vt8yrvUYdrXoauHP/bXk0owjdfR1WQCEeyv7TvnDijdPtPrQ/ihK7C/EG0TVUo2SbI3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713441478; c=relaxed/simple;
-	bh=EJ+eUdeeBCXzftAQJU57/zkUCCLUBsA/k3v4mshrZgA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s9CimmH74Lufgn9byze31TpxJWBsGbLXY8nIfQBD/tqHNvguxyBrEVCSJAuSd2zUkldRZscK3ipxrYAWJR0N6pOfbfD4HlybrBVr+nFk2er+gRdP2HAfkRIsI9bWYeIMPzXsFUQXHNlqoi3BsFKs8BmJX6zLW1PgjJaMdCeztjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lWQaCZl7; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713441476; x=1744977476;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EJ+eUdeeBCXzftAQJU57/zkUCCLUBsA/k3v4mshrZgA=;
-  b=lWQaCZl7iycAWX5vCf4g9mXIMsQTdBwlcGin9oD5BlrUf5Wud1J+P0BR
-   70sj8ajQxoO2p/0c9vbAJ8ExKwESMiU3ut/nXa/8DQ3SjzZ4JYm8uGA7A
-   adfi7JPU5WLK1E0T81TnP3YcFfEVv7IWptPcGHe5CcQcp6s3lENIbGto4
-   fsEgqF66vv2DndFcceHyMDKRXyKj5DqREOnTBUGybTE6xbX/oSz/l+8tP
-   7BfIkWLIavL+xB7f81Hp2Gzf0tW5syY5I5Li481W0Yuzu59nDk3j0n7dT
-   LfDurFJ0JCZcDZCtArIxY4icrgGMYKAM4VtotLtfsgD8q0UigHPGJ0Fe/
-   A==;
-X-CSE-ConnectionGUID: s3DpWTKgSDmIb2JsEnKfVA==
-X-CSE-MsgGUID: 7TT2d7j7T7SJ2A4obqFeQw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="12767279"
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="12767279"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 04:57:52 -0700
-X-CSE-ConnectionGUID: gOdMdSlySyqCFwAcsFuv1w==
-X-CSE-MsgGUID: DntNxO6tSPCCloBUxJgvLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="27774216"
-Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 18 Apr 2024 04:57:47 -0700
-Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rxQOf-0007Zx-0T;
-	Thu, 18 Apr 2024 11:57:45 +0000
-Date: Thu, 18 Apr 2024 19:57:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-spi@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <202404181933.AfPnhmy7-lkp@intel.com>
-References: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1713441435; c=relaxed/simple;
+	bh=M7F9AOhLfsq2Uh4staUpb8IChltcrroxoNWvR3Qvuxc=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=IxjEJ3BrwCjMPPf3Hgt/uFw12F4MktI64W4bIeNZogmnEdNbZ05LvG+XuhrEYIthHdlGad+efeT5ubaBXzQatyPn2fdCheG2eXC/gm+EbaH4M5ArQTQJ5K+Rw32jDWRpYBOhtF85DWuSRCVrkMV7r3s9YF9IN8ogbYlyDx1R4pE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Hy2SsbNn; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AD03D1BF20C;
+	Thu, 18 Apr 2024 11:57:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1713441431;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=O1G2JcwttleuEX4OArtvrIC9rhjBFn4pb36VCCBIh/k=;
+	b=Hy2SsbNnYmDiJbouDoQakG4O9hhGXW4f+OjvJAR3aQz8kL2s8/mbpBjipIEcykp1brgcjr
+	kJ+d9gSauDycypI+PmrGrD9mrzFGc23eeqRwQYLbkzGRyeXVKEcMiWZg5hWbUgpJznFlRn
+	5V7abewlK8QD2a6f8PjfAXELplvwBZP2YIPnkUR+48xmyi0cvNa/YPqRE2B2fk1ozWk2Y6
+	MU2FCi0NcSbFEC7E0hWlLKOWpRrQBUDsU6a9RVthAORmx26StgefFaaICrvbzSgrLdQppE
+	1ZmdlRAGxtTWxKIcm+wOGUO8UuWr6897yKZsU3eT7r8zUI5i35pKX4KaHo9c2A==
+Date: Thu, 18 Apr 2024 13:57:47 +0200 (CEST)
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Serge Semin <fancer.lancer@gmail.com>
+cc: Romain Gantois <romain.gantois@bootlin.com>, 
+    "David S. Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Geert Uytterhoeven <geert+renesas@glider.be>, 
+    Magnus Damm <magnus.damm@gmail.com>, 
+    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+    Jose Abreu <joabreu@synopsys.com>, 
+    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+    Russell King <linux@armlinux.org.uk>, 
+    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
+    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-renesas-soc@vger.kernel.org, 
+    linux-stm32@st-md-mailman.stormreply.com, 
+    linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v3 4/5] net: stmmac: add support for RZ/N1
+ GMAC
+In-Reply-To: <xp34tp5cjmdshefxjczltz2prqtiikagfspf4lobznzypvsyah@ihpmwfynwzhh>
+Message-ID: <232e3b0c-ca55-2da0-1c9f-47520a1bcfbd@bootlin.com>
+References: <20240415-rzn1-gmac1-v3-0-ab12f2c4401d@bootlin.com> <20240415-rzn1-gmac1-v3-4-ab12f2c4401d@bootlin.com> <xp34tp5cjmdshefxjczltz2prqtiikagfspf4lobznzypvsyah@ihpmwfynwzhh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hi Lorenzo,
+Hi Serge,
 
-kernel test robot noticed the following build errors:
+On Tue, 16 Apr 2024, Serge Semin wrote:
 
-[auto build test ERROR on next-20240416]
-[cannot apply to broonie-spi/for-next robh/for-next arm/for-next arm/fixes arm64/for-next/core kvmarm/next rockchip/for-next shawnguo/for-next soc/for-next linus/master v6.9-rc4 v6.9-rc3 v6.9-rc2 v6.9-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > +static int rzn1_dwmac_pcs_init(struct stmmac_priv *priv,
+> 
+> > +			       struct mac_device_info *hw)
+> 
+> AFAICS hw is unused, and the mac_device_info instance is reached via
+> the priv pointer. What about dropping the unused argument then?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-spi-airoha-Add-YAML-schema-for-SNFI-controller/20240417-144847
-base:   next-20240416
-patch link:    https://lore.kernel.org/r/25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo%40kernel.org
-patch subject: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240418/202404181933.AfPnhmy7-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240418/202404181933.AfPnhmy7-lkp@intel.com/reproduce)
+Unfortunately, this is an implementation of the pcs_init() callback, which is 
+also used by socfpga (see patch 4/6 in this series). The socfpga implementations 
+use the hw parameter for both pcs_init() and pcs_exit() so I can't remove it.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404181933.AfPnhmy7-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/spi/spi-airoha-snfi.c: In function 'airoha_snand_set_fifo_op':
->> drivers/spi/spi-airoha-snfi.c:233:28: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
-     233 |                            FIELD_PREP(SPI_CTRL_OPFIFO_LEN, op_len) |
-         |                            ^~~~~~~~~~
-   drivers/spi/spi-airoha-snfi.c: In function 'airoha_snand_read_data_from_fifo':
->> drivers/spi/spi-airoha-snfi.c:320:26: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
-     320 |                 ptr[i] = FIELD_GET(SPI_CTRL_DFIFO_RDATA, val);
-         |                          ^~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/FIELD_PREP +233 drivers/spi/spi-airoha-snfi.c
-
-   225	
-   226	static int airoha_snand_set_fifo_op(struct airoha_snand_ctrl *as_ctrl,
-   227					    u8 op_cmd, int op_len)
-   228	{
-   229		int err;
-   230		u32 val;
-   231	
-   232		err = regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_OPFIFO_WDATA,
- > 233				   FIELD_PREP(SPI_CTRL_OPFIFO_LEN, op_len) |
-   234				   FIELD_PREP(SPI_CTRL_OPFIFO_OP, op_cmd));
-   235		if (err)
-   236			return err;
-   237	
-   238		err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   239					       REG_SPI_CTRL_OPFIFO_FULL,
-   240					       val, !(val & SPI_CTRL_OPFIFO_FULL),
-   241					       0, 250 * USEC_PER_MSEC);
-   242		if (err)
-   243			return err;
-   244	
-   245		err = regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_OPFIFO_WR,
-   246				   SPI_CTRL_OPFIFO_WR);
-   247		if (err)
-   248			return err;
-   249	
-   250		return regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   251						REG_SPI_CTRL_OPFIFO_EMPTY,
-   252						val, (val & SPI_CTRL_OPFIFO_EMPTY),
-   253						0, 250 * USEC_PER_MSEC);
-   254	}
-   255	
-   256	static int airoha_snand_set_cs(struct airoha_snand_ctrl *as_ctrl, u8 cs)
-   257	{
-   258		return airoha_snand_set_fifo_op(as_ctrl, cs, sizeof(cs));
-   259	}
-   260	
-   261	static int airoha_snand_write_data_to_fifo(struct airoha_snand_ctrl *as_ctrl,
-   262						   const u8 *data, int len)
-   263	{
-   264		int i;
-   265	
-   266		for (i = 0; i < len; i++) {
-   267			int err;
-   268			u32 val;
-   269	
-   270			/* 1. Wait until dfifo is not full */
-   271			err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   272						       REG_SPI_CTRL_DFIFO_FULL, val,
-   273						       !(val & SPI_CTRL_DFIFO_FULL),
-   274						       0, 250 * USEC_PER_MSEC);
-   275			if (err)
-   276				return err;
-   277	
-   278			/* 2. Write data to register DFIFO_WDATA */
-   279			err = regmap_write(as_ctrl->regmap_ctrl,
-   280					   REG_SPI_CTRL_DFIFO_WDATA,
-   281					   FIELD_PREP(SPI_CTRL_DFIFO_WDATA, data[i]));
-   282			if (err)
-   283				return err;
-   284	
-   285			/* 3. Wait until dfifo is not full */
-   286			err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   287						       REG_SPI_CTRL_DFIFO_FULL, val,
-   288						       !(val & SPI_CTRL_DFIFO_FULL),
-   289						       0, 250 * USEC_PER_MSEC);
-   290			if (err)
-   291				return err;
-   292		}
-   293	
-   294		return 0;
-   295	}
-   296	
-   297	static int airoha_snand_read_data_from_fifo(struct airoha_snand_ctrl *as_ctrl,
-   298						    u8 *ptr, int len)
-   299	{
-   300		int i;
-   301	
-   302		for (i = 0; i < len; i++) {
-   303			int err;
-   304			u32 val;
-   305	
-   306			/* 1. wait until dfifo is not empty */
-   307			err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   308						       REG_SPI_CTRL_DFIFO_EMPTY, val,
-   309						       !(val & SPI_CTRL_DFIFO_EMPTY),
-   310						       0, 250 * USEC_PER_MSEC);
-   311			if (err)
-   312				return err;
-   313	
-   314			/* 2. read from dfifo to register DFIFO_RDATA */
-   315			err = regmap_read(as_ctrl->regmap_ctrl,
-   316					  REG_SPI_CTRL_DFIFO_RDATA, &val);
-   317			if (err)
-   318				return err;
-   319	
- > 320			ptr[i] = FIELD_GET(SPI_CTRL_DFIFO_RDATA, val);
-   321			/* 3. enable register DFIFO_RD to read next byte */
-   322			err = regmap_write(as_ctrl->regmap_ctrl,
-   323					   REG_SPI_CTRL_DFIFO_RD, SPI_CTRL_DFIFO_RD);
-   324			if (err)
-   325				return err;
-   326		}
-   327	
-   328		return 0;
-   329	}
-   330	
+Thanks,
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
