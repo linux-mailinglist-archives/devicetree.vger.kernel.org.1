@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-60629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724B78A9D13
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF1E8A9D17
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:29:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27D45285F31
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:29:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21284286EB6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B63C16D4DD;
-	Thu, 18 Apr 2024 14:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E06B16D9A6;
+	Thu, 18 Apr 2024 14:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="vxzTKzzB"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Fs099w3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60BF16C693
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E5116D32D
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713450439; cv=none; b=aiwNKmyd9aJ3SkfK8rhou3d7xPxzNOYzPdNre8QIEERVD+dQPUCZ8+PwW0K/yHmqgyysZZvff+H34j2Z69u1Z5Z/TwCNvKtLNpbfm4WSvJBpDvjmaXlS88mWdA+24FNzpQBXio5GwiQl/mkNEs6d9kYdxio27mL/ASLZ4ZUjoH0=
+	t=1713450440; cv=none; b=I2EM0aeHrAlJYUEqbHCuHm+zfB0Ql/wAEyIV4WS9UKDVAGT48ybim/fhB2nbYofIdd5EmSThWIVoiWn+A6vA6obcoT0LTkQjSdH7TKZkY9a0gNHRYJjyBN0MSzvPlXe//jBOg/xT/Nwr2idzvymEmzmAO0G5lso57H1D+kj4wkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713450439; c=relaxed/simple;
-	bh=kcoG6jiY9kWv2/uOQlFh79xxb7l93htaZIA0+tqUeuI=;
+	s=arc-20240116; t=1713450440; c=relaxed/simple;
+	bh=jmGcUvmOSHSqYkb7pBNAS2mVaUm49bDaV7hi2clFia8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nh5CCoK4gskCC/nzc2fqAfZ4WiqeA4P2/z0pHQC5XV9szPISpfsP7s0zw/CdY4pqQf0aR8H4TLRRR4v5C4uHGoVWYb1r9oFI39HBcR+DioilifwPlDlksiiG4lTqtuxT3fkx9jseI9nmThZ+/HFB5++Ch6IDHrcj1pHj4n1wKLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=vxzTKzzB; arc=none smtp.client-ip=209.85.221.42
+	 MIME-Version:Content-Type; b=JwN2wK1+MqxxktK9FRJIlhX9wkm/e7IX1nbSYxKMQBaU7+S5RfsryBVB/UcS/D9uX/UiCF72npXuSyAi3lEf7txI+rnmB30XXAXtSyW9z+fXYr119YgxoTg690vxlSr65487tGTWQXgwDfSqswx0UxkLXUk2XpLa4lBEQpT9S/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Fs099w3h; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-349a33a9667so132749f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:27:16 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-349a35aba9dso167617f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:27:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713450435; x=1714055235; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713450436; x=1714055236; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/AvdB3u3xfYtOVc85K9gr+w0O/Mfoyuz+qydkV22p5c=;
-        b=vxzTKzzBJLSR4s1E3LLAE8ZNhOmy1jAWuFlqUwCD541Y06sB3wr6KamOju+8O05pH9
-         pfVTGYFnzsBispbgw5umkEXCj6GMGv/jDIDb2EWrNwrQ8jSgo154zuE1/14d9QTdTYnp
-         tRXlOaxRBcpTQp67Z88JwBlitbv7C28Y0U4H0CjJDYY/YM5paHDXiO7BiYYdNox+a4sO
-         1Hyhz6T2C/0ghxHlMwISmlazGM3WQnGEe7U5W5wkeEq3HASHoAoBeq2OIOiqPxNVmjRU
-         lf/AcSVRuCNIOzn0d6//0D9Jj9G6ij7lha0EvXiffBnDNDT9wlHw+18bgnl2xIMMFOzG
-         X1WQ==
+        bh=JY0qCZAt1G9FqrirGdQPEL//dx+I/VeYeDHijBAzwaE=;
+        b=Fs099w3h93nPvR3q4Es8mQTeBlSfS0ZYVwXvg/GhnZAHhG7AXcN5/wSMg2tPkBt0HC
+         CS67fAz7UZqoacW0cObF50fg90PGctvfo0qS++lxwMcS1gxO0zVeoxwM2LTHycZGZ+Xi
+         c+LFQ8BPxqmVq2ni0o9n9LAaBCYfaZPJIxcxtB0/NvG1ACNJXFvOram8W1ipJt9KP4y+
+         3ikC8bKZ4IwFwWOoYU9AacRsVERuIMTknM2VTunFRCoEL+NKLM/qMvtyBnd4xBWCC8Px
+         1QFcTdUgccCwyvPJrXiz5+j7YkGBz3bjKQjG7e0QR8McVQWhATAb+QUj2bNY3ST8bfUj
+         P8RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713450435; x=1714055235;
+        d=1e100.net; s=20230601; t=1713450436; x=1714055236;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/AvdB3u3xfYtOVc85K9gr+w0O/Mfoyuz+qydkV22p5c=;
-        b=b06+c6UKpZjQ9PiVMxbnhTSB1Q2jg7RLJ595d1xeWRWTXyjD/cQR1SR+wfmknsL3VZ
-         6lbZxbY65bvZa0/JlieO0+gEh276UrTeIvgUV8nj95i1hNN+Si5egVIYTbDBKZaf15yn
-         PcltJxK1fe8P7tTZO0ik4Atk7or/af+PSZYWrKTX4YWsos04LBCNRsDsE12dRG/+7kkZ
-         dazFn1KFpD7z6yiBOhnH7QgZW4yMN7aPmqVbB8wrNaEbDU7RMym6wDLYEo4yOA5TmR+z
-         lulthe7vZ10ZAinoE5u8xj0hxgydOHhC5SYo4nT/MM+tfMSRnOraiF1jb8008iN8SBp6
-         +pHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKssP97l74HOUEMG8HtMa8iBLn3L2528Mg/UlFjGCCAlZlBk4euU93S3GcXPr6446mXbkjjm18LLaZHbgVHrFiPIF0NL7UkeR6/A==
-X-Gm-Message-State: AOJu0YxhbbftVD5BDoQAZRGasUqm32MX7m+cClwpwdH/a9KNst6JF9Qz
-	I5MLSL5jRu9VNL9LEvMQjuFgTLY+Fh33ifl3e8Y3LjHCV7O5Z4CjSqORswfDPXA=
-X-Google-Smtp-Source: AGHT+IEwlQ04KaJP3EVY+XCohGbQqha8fE09E68ZNltKaQxFJ4YDXOPGuVd4fVf/pEkQ78VT8bcTuA==
-X-Received: by 2002:a05:600c:35ca:b0:418:9941:ca28 with SMTP id r10-20020a05600c35ca00b004189941ca28mr2125666wmq.2.1713450435180;
-        Thu, 18 Apr 2024 07:27:15 -0700 (PDT)
+        bh=JY0qCZAt1G9FqrirGdQPEL//dx+I/VeYeDHijBAzwaE=;
+        b=Tt2H0U4Swafg10oT9ywNcEPF2XTimeNjedQGBO8w4yPF2hkk9b03tC3sTwzGYXzYCH
+         gIaHFq9GA1h3eWACilkW7Yogl5LZrNziEMJ8WH+xjLbdGF9SDi6Vvten3Ad9gqIg1vex
+         3LvSZnvJ0nkHwTCOQyDX/dTYMcYpi92LD5W/jL8rLJIE1ebXqwjcw5HoL3TzUkElrYfP
+         2+XMfOkl1ID2gPk26cm5nH7E8HvTMHpEFZnhryCvBhePZuRyCnAVulePgVXFeBDaUMr4
+         LtV6JPvfDaNFS4mw2a7oU0On/LFNExiID4xLYgGxnzVyqm8bk0YR4jD4ENjhFvzF4nou
+         9HNg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdcvS3s5VBpObDdwh/t3ks71aDeHm3VnHe41mNvkBIfSbkVETlORySFqc+jRe5YljSpb05JP/kdCyCVZsRr8w7FkiKyrsKWHf3qg==
+X-Gm-Message-State: AOJu0Yw0RbeVWBLqRPIC3doZcextuK70sV8B8HkB+1oB2dY7px+DQVXx
+	n8pH9kmCEYadE7RXm6hy0yBDDU8TZInDRKXk8Bp4jv2+8nXx/xARWkxgEpAT2QI=
+X-Google-Smtp-Source: AGHT+IG9QM4RObWosVaHJ2Bu9iGsOImG7zvYuk0PErpgTMOYFhKXz5bCpwhT6ZoBg0yBf1Ld4kG3yA==
+X-Received: by 2002:a05:600c:3554:b0:416:7b2c:df05 with SMTP id i20-20020a05600c355400b004167b2cdf05mr2101037wmq.1.1713450436400;
+        Thu, 18 Apr 2024 07:27:16 -0700 (PDT)
 Received: from carbon-x1.. ([2a01:e0a:999:a3a0:7b64:4d1d:16d8:e38b])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b00418a386c059sm2873645wmo.42.2024.04.18.07.27.14
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b00418a386c059sm2873645wmo.42.2024.04.18.07.27.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 07:27:14 -0700 (PDT)
+        Thu, 18 Apr 2024 07:27:15 -0700 (PDT)
 From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
 To: Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -83,9 +83,9 @@ Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
 	kvm@vger.kernel.org,
 	kvm-riscv@lists.infradead.org,
 	Ved Shanbhogue <ved@rivosinc.com>
-Subject: [RFC PATCH 5/7] riscv: add double trap driver
-Date: Thu, 18 Apr 2024 16:26:44 +0200
-Message-ID: <20240418142701.1493091-6-cleger@rivosinc.com>
+Subject: [RFC PATCH 6/7] riscv: kvm: add SBI FWFT support for SBI_FWFT_DOUBLE_TRAP_ENABLE
+Date: Thu, 18 Apr 2024 16:26:45 +0200
+Message-ID: <20240418142701.1493091-7-cleger@rivosinc.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240418142701.1493091-1-cleger@rivosinc.com>
 References: <20240418142701.1493091-1-cleger@rivosinc.com>
@@ -98,190 +98,112 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add a small driver to request double trap enabling as well as
-registering a SSE handler for double trap. This will also be used by KVM
-SBI FWFT extension support to detect if it is possible to enable double
-trap in VS-mode.
+Add support in KVM SBI FWFT extension to allow VS-mode to request double
+trap enabling. Double traps can then be generated by VS-mode, allowing
+M-mode to redirect them to S-mode.
 
 Signed-off-by: Clément Léger <cleger@rivosinc.com>
 ---
- arch/riscv/include/asm/sbi.h    |  1 +
- drivers/firmware/Kconfig        |  7 +++
- drivers/firmware/Makefile       |  1 +
- drivers/firmware/riscv_dbltrp.c | 95 +++++++++++++++++++++++++++++++++
- include/linux/riscv_dbltrp.h    | 19 +++++++
- 5 files changed, 123 insertions(+)
- create mode 100644 drivers/firmware/riscv_dbltrp.c
- create mode 100644 include/linux/riscv_dbltrp.h
+ arch/riscv/include/asm/csr.h               |  1 +
+ arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h |  2 +-
+ arch/riscv/kvm/vcpu_sbi_fwft.c             | 41 ++++++++++++++++++++++
+ 3 files changed, 43 insertions(+), 1 deletion(-)
 
-diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
-index 744aa1796c92..9cd4ca66487c 100644
---- a/arch/riscv/include/asm/sbi.h
-+++ b/arch/riscv/include/asm/sbi.h
-@@ -314,6 +314,7 @@ enum sbi_sse_attr_id {
- #define SBI_SSE_ATTR_INTERRUPTED_FLAGS_SPIE	(1 << 2)
+diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+index 905cdf894a57..ee1b73655bec 100644
+--- a/arch/riscv/include/asm/csr.h
++++ b/arch/riscv/include/asm/csr.h
+@@ -196,6 +196,7 @@
+ /* xENVCFG flags */
+ #define ENVCFG_STCE			(_AC(1, ULL) << 63)
+ #define ENVCFG_PBMTE			(_AC(1, ULL) << 62)
++#define ENVCFG_DTE			(_AC(1, ULL) << 59)
+ #define ENVCFG_CBZE			(_AC(1, UL) << 7)
+ #define ENVCFG_CBCFE			(_AC(1, UL) << 6)
+ #define ENVCFG_CBIE_SHIFT		4
+diff --git a/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h b/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
+index 7dc1b80c7e6c..a9e20d655126 100644
+--- a/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
++++ b/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
+@@ -11,7 +11,7 @@
  
- #define SBI_SSE_EVENT_LOCAL_RAS		0x00000000
-+#define SBI_SSE_EVENT_LOCAL_DOUBLE_TRAP	0x00000001
- #define SBI_SSE_EVENT_GLOBAL_RAS	0x00008000
- #define SBI_SSE_EVENT_LOCAL_PMU		0x00010000
- #define SBI_SSE_EVENT_LOCAL_SOFTWARE	0xffff0000
-diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
-index 59f611288807..a037f6e89942 100644
---- a/drivers/firmware/Kconfig
-+++ b/drivers/firmware/Kconfig
-@@ -197,6 +197,13 @@ config RISCV_SSE_TEST
- 	  Select if you want to enable SSE extension testing at boot time.
- 	  This will run a series of test which verifies SSE sanity.
+ #include <asm/sbi.h>
  
-+config RISCV_DBLTRP
-+	bool "Enable Double trap handling"
-+	depends on RISCV_SSE && RISCV_SBI
-+	default n
-+	help
-+	  Select if you want to enable SSE double trap handler.
-+
- config SYSFB
- 	bool
- 	select BOOT_VESA_SUPPORT
-diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
-index fb7b0c08c56d..ad67a1738c0f 100644
---- a/drivers/firmware/Makefile
-+++ b/drivers/firmware/Makefile
-@@ -18,6 +18,7 @@ obj-$(CONFIG_RASPBERRYPI_FIRMWARE) += raspberrypi.o
- obj-$(CONFIG_FW_CFG_SYSFS)	+= qemu_fw_cfg.o
- obj-$(CONFIG_RISCV_SSE)		+= riscv_sse.o
- obj-$(CONFIG_RISCV_SSE_TEST)	+= riscv_sse_test.o
-+obj-$(CONFIG_RISCV_DBLTRP)	+= riscv_dbltrp.o
- obj-$(CONFIG_SYSFB)		+= sysfb.o
- obj-$(CONFIG_SYSFB_SIMPLEFB)	+= sysfb_simplefb.o
- obj-$(CONFIG_TI_SCI_PROTOCOL)	+= ti_sci.o
-diff --git a/drivers/firmware/riscv_dbltrp.c b/drivers/firmware/riscv_dbltrp.c
-new file mode 100644
-index 000000000000..72f9a067e87a
---- /dev/null
-+++ b/drivers/firmware/riscv_dbltrp.c
-@@ -0,0 +1,95 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2023 Rivos Inc.
-+ */
-+
-+#define pr_fmt(fmt) "riscv-dbltrp: " fmt
-+
-+#include <linux/cpu.h>
-+#include <linux/init.h>
+-#define KVM_SBI_FWFT_FEATURE_COUNT	1
++#define KVM_SBI_FWFT_FEATURE_COUNT	2
+ 
+ struct kvm_sbi_fwft_config;
+ struct kvm_vcpu;
+diff --git a/arch/riscv/kvm/vcpu_sbi_fwft.c b/arch/riscv/kvm/vcpu_sbi_fwft.c
+index b9b7f8fa6d22..9e8e397eb02f 100644
+--- a/arch/riscv/kvm/vcpu_sbi_fwft.c
++++ b/arch/riscv/kvm/vcpu_sbi_fwft.c
+@@ -9,10 +9,19 @@
+ #include <linux/errno.h>
+ #include <linux/err.h>
+ #include <linux/kvm_host.h>
 +#include <linux/riscv_dbltrp.h>
-+#include <linux/riscv_sse.h>
-+
-+#include <asm/sbi.h>
-+
-+static bool double_trap_enabled;
-+
-+static int riscv_sse_dbltrp_handle(uint32_t evt, void *arg,
-+				   struct pt_regs *regs)
-+{
-+	__show_regs(regs);
-+	panic("Double trap !\n");
-+
-+	return 0;
-+}
-+
-+struct cpu_dbltrp_data {
-+	int error;
-+};
-+
-+static void
-+sbi_cpu_enable_double_trap(void *data)
-+{
-+	struct sbiret ret;
-+	struct cpu_dbltrp_data *cdd = data;
-+
-+	ret = sbi_ecall(SBI_EXT_FWFT, SBI_EXT_FWFT_SET,
-+			SBI_FWFT_DOUBLE_TRAP_ENABLE, 1, 0, 0, 0, 0);
-+
-+	if (ret.error) {
-+		cdd->error = 1;
-+		pr_err("Failed to enable double trap on cpu %d\n", smp_processor_id());
-+	}
-+}
-+
-+static int sbi_enable_double_trap(void)
-+{
-+	struct cpu_dbltrp_data cdd = {0};
-+
-+	on_each_cpu(sbi_cpu_enable_double_trap, &cdd, 1);
-+	if (cdd.error)
-+		return -1;
-+
-+	double_trap_enabled = true;
-+
-+	return 0;
-+}
-+
-+bool riscv_double_trap_enabled(void)
-+{
-+	return double_trap_enabled;
-+}
-+EXPORT_SYMBOL(riscv_double_trap_enabled);
-+
-+static int __init riscv_dbltrp(void)
-+{
-+	struct sse_event *evt;
-+
-+	if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SSDBLTRP)) {
-+		pr_err("Ssdbltrp extension not available\n");
-+		return 1;
-+	}
-+
-+	if (!sbi_probe_extension(SBI_EXT_FWFT)) {
-+		pr_err("Can not enable double trap, SBI_EXT_FWFT is not available\n");
-+		return 1;
-+	}
-+
-+	if (sbi_enable_double_trap()) {
-+		pr_err("Failed to enable double trap on all cpus\n");
-+		return 1;
-+	}
-+
-+	evt = sse_event_register(SBI_SSE_EVENT_LOCAL_DOUBLE_TRAP, 0,
-+				 riscv_sse_dbltrp_handle, NULL);
-+	if (IS_ERR(evt)) {
-+		pr_err("SSE double trap register failed\n");
-+		return PTR_ERR(evt);
-+	}
-+
-+	sse_event_enable(evt);
-+	pr_info("Double trap handling registered\n");
-+
-+	return 0;
-+}
-+device_initcall(riscv_dbltrp);
-diff --git a/include/linux/riscv_dbltrp.h b/include/linux/riscv_dbltrp.h
-new file mode 100644
-index 000000000000..6de4f43fae6b
---- /dev/null
-+++ b/include/linux/riscv_dbltrp.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2023 Rivos Inc.
-+ */
-+
-+#ifndef __LINUX_RISCV_DBLTRP_H
-+#define __LINUX_RISCV_DBLTRP_H
-+
-+#if defined(CONFIG_RISCV_DBLTRP)
-+bool riscv_double_trap_enabled(void);
+ #include <asm/sbi.h>
+ #include <asm/kvm_vcpu_sbi.h>
+ #include <asm/kvm_vcpu_sbi_fwft.h>
+ 
++#ifdef CONFIG_32BIT
++# define CSR_HENVCFG_DBLTRP	CSR_HENVCFGH
++# define DBLTRP_DTE	(ENVCFG_DTE >> 32)
 +#else
-+
-+static inline bool riscv_double_trap_enabled(void)
-+{
-+	return false;
-+}
++# define CSR_HENVCFG_DBLTRP	CSR_HENVCFG
++# define DBLTRP_DTE	ENVCFG_DTE
 +#endif
 +
-+#endif /* __LINUX_RISCV_DBLTRP_H */
+ #define MIS_DELEG (1UL << EXC_LOAD_MISALIGNED | 1UL << EXC_STORE_MISALIGNED)
+ 
+ static int kvm_sbi_fwft_set_misaligned_delegation(struct kvm_vcpu *vcpu,
+@@ -36,6 +45,33 @@ static int kvm_sbi_fwft_get_misaligned_delegation(struct kvm_vcpu *vcpu,
+ 	return SBI_SUCCESS;
+ }
+ 
++static int kvm_sbi_fwft_set_double_trap(struct kvm_vcpu *vcpu,
++					struct kvm_sbi_fwft_config *conf,
++					unsigned long value)
++{
++	if (!riscv_double_trap_enabled())
++		return SBI_ERR_NOT_SUPPORTED;
++
++	if (value)
++		csr_set(CSR_HENVCFG_DBLTRP, DBLTRP_DTE);
++	else
++		csr_clear(CSR_HENVCFG_DBLTRP, DBLTRP_DTE);
++
++	return SBI_SUCCESS;
++}
++
++static int kvm_sbi_fwft_get_double_trap(struct kvm_vcpu *vcpu,
++					struct kvm_sbi_fwft_config *conf,
++					unsigned long *value)
++{
++	if (!riscv_double_trap_enabled())
++		return SBI_ERR_NOT_SUPPORTED;
++
++	*value = (csr_read(CSR_HENVCFG_DBLTRP) & DBLTRP_DTE) != 0;
++
++	return SBI_SUCCESS;
++}
++
+ static struct kvm_sbi_fwft_config *
+ kvm_sbi_fwft_get_config(struct kvm_vcpu *vcpu, enum sbi_fwft_feature_t feature)
+ {
+@@ -111,6 +147,11 @@ static const struct kvm_sbi_fwft_feature features[] = {
+ 		.id = SBI_FWFT_MISALIGNED_DELEG,
+ 		.set = kvm_sbi_fwft_set_misaligned_delegation,
+ 		.get = kvm_sbi_fwft_get_misaligned_delegation,
++	},
++	{
++		.id = SBI_FWFT_DOUBLE_TRAP_ENABLE,
++		.set = kvm_sbi_fwft_set_double_trap,
++		.get = kvm_sbi_fwft_get_double_trap,
+ 	}
+ };
+ 
 -- 
 2.43.0
 
