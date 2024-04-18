@@ -1,54 +1,51 @@
-Return-Path: <devicetree+bounces-60502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4658A97C2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:50:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E890F8A97DD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:53:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB971F21FCB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:50:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 606B91F220F9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:53:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C0915D5D3;
-	Thu, 18 Apr 2024 10:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D27A15E1F0;
+	Thu, 18 Apr 2024 10:52:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D4915D5C1
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:49:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E560115D5B7;
+	Thu, 18 Apr 2024 10:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713437394; cv=none; b=sq5KboWrkZxSrDtJCcbqgGzl8GhuXnq/EmDcTyKc48EiZCyVIMsGHyLkUHfoPpAYLRe12YY+H+ummCXf0NCXeR8g56hcJCkedpDr3k5xQ5a7IT7Z3VQIZ5+TuJ7xYdQyqT05IUJIWG0Vn7phMjitsUdQ+JZtN7F2PAOJu0+y63I=
+	t=1713437555; cv=none; b=IQOY6hmRrEDk+AyT83aGaj+0yyqZhu6gjaFHHjNdeI6Th7BbeQNvpWrnkLXsbkYGTz1Yn66uY16fXK6IZu1kollu8axN4KYIrEG9z22KKNDTzGfa32oectn3RVfKP419lAnXRbYae/ic8Xhaw2wW+n8v7fKYKsXy1d+InUc4XsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713437394; c=relaxed/simple;
-	bh=Q2iJrHjgeZFMVPTluMmajqhRCTiAtWkia18SzxWwb+8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dnao52L2QXykprv83c9e3ZPaH7WNKzeLvXExnj5B/t5QJ6rctHKaQa+yOZFdUeySjBHJsC6fVYeHLz9Efj1RL+syZfyj8G6+JsLSqBhkommz4hYJb0tNWmeCb2OvZjXKrANVDOVsgV6IFSXOsLigIpre7fpT6mHh/RokMYCwXIs=
+	s=arc-20240116; t=1713437555; c=relaxed/simple;
+	bh=kiPB+yMnAQ/errWXuztA428++u6EIv6kkQXBQ9DMCM4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=McT9VXFu4q+A6WKbTPCvzpo4KGOzshTeXZJycR18FSASOJwqpBqv1HN2hxoAel8eWAx6Bg4IsomzSVo3ywdUllh9sFz+bKRY79ki0xhyCwz1roJG0RE/Gk2yOhMXYfd6JIRVc9z7a/mb8L5GjD+9P0psDzjotRu4j6LHEm4x6fE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B24A339;
-	Thu, 18 Apr 2024 03:50:18 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.100.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5D1A83F792;
-	Thu, 18 Apr 2024 03:49:49 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: allwinner: Add Tanix TX1 support
-Date: Thu, 18 Apr 2024 11:49:42 +0100
-Message-Id: <20240418104942.1556914-3-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240418104942.1556914-1-andre.przywara@arm.com>
-References: <20240418104942.1556914-1-andre.przywara@arm.com>
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D49A9DA7;
+	Thu, 18 Apr 2024 03:53:00 -0700 (PDT)
+Received: from e120937-lin.. (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B0CE33F792;
+	Thu, 18 Apr 2024 03:52:31 -0700 (PDT)
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: sudeep.holla@arm.com,
+	cristian.marussi@arm.com,
+	jassisinghbrar@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Subject: [PATCH v5 0/2] Add initial ARM MHUv3 mailbox support
+Date: Thu, 18 Apr 2024 11:52:08 +0100
+Message-Id: <20240418105210.290938-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,239 +54,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Tanix TX1 is a tiny TV box with the Allwinner H313 SoC. The box
-features no Ethernet or an SD card slot, which makes booting from it
-somewhat interesting: Pressing the hidden FEL button and using a USB-A
-to USB-A cable to upload code from a host PC is one way to run mainline.
-The box features:
-	- Allwinner H313 SoC (4 * Arm Cortex-A53 cores)
-	- 1 or 2 GB DRAM
-	- 8 or 16 GB eMMC flash
-	- SCI S9082H WiFi chip
-	- HDMI port
-	- one USB 2.0 port
-	- 3.5mm AV port
-	- barrel plug 5V DC input via barrel plug
+Hi,
 
-The devicetree covers most peripherals.
-The eMMC did not work properly in HS200 speed mode, so this mode property
-is omitted. HS-DDR seems to work fine.
-The blue LED is connected to the same GPIO pin as the red LED, just
-using the opposite polarity. Apparently there is no way of describing
-this in DT, so the red LED is omitted.
-Next to the FEL button is a hidden button, that can be pushed by using
-something like a paperclip, through the ventilation vents of the case.
+This series adds support for the new ARM Message Handling Unit v3 mailbox
+controller [1].
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+The ARM MHUv3 can optionally support various extensions, enabling the
+usage of different transport protocols.
+
+Patch [2/2] adds a platform driver which, as of now, provides support only
+for the Doorbell extension using the combined interrupt.
+
+On the other side, bindings in [1/2] are introduced for all the extensions
+described by the specification, as long as they are of interest to an
+entity running from Normal world, like Linux: as such, Doorbell, FIFO and
+FastChannel extensions are documented.
+
+In these regards, note that the ARM MHUv3 controller can optionally
+implement a considerable number of interrupts to express a great deal of
+events and many of such interrupts are defined as being per-channel: with
+the total maximum amount of possibly implemented channels across all
+extensions being 1216 (1024+128+64), it would mean *a lot* of
+interrupt-names to enumerate in the bindings.
+
+For the sake of simplicity the binding as of now only introduces interrupt
+names for a mere 8-channels in the range (0,7) for each per-channel
+interrupt type: the idea is to leave open the possibility to add more to
+this list of numbered items only when (and if) new real HW appears that
+effectively needs more than 8 channels. (like AMBA, where the maximum
+number of IRQ was progressively increased when needed, AFAIU).
+
+Based on v6.9-rc1, tested on ARM TCS23 [2]
+(TCS23 reference SW stack is still to be made fully publicly available)
+
+Thanks,
+Cristian
+
+[1]: https://developer.arm.com/documentation/aes0072/aa/?lang=en
+[2]: https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/total-compute-solutions-platform-software-stack-and-fvp
+
 ---
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h313-tanix-tx1.dts   | 183 ++++++++++++++++++
- 2 files changed, 184 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
+v4 -> v5
+- changed Kconfig to depend on just OF && HAS_IOMEM
+- fixed LLVM warnings on FIELD_PREP and missing slab.h as reported-by <lkp@intel.com>
+v3 -> v4
+ - avoid magic numbers for regs padding holes
+ - renaming various enums terminators to count_ instead of max_
+ - using scoped_guards for spinlock_save
+ - dropping FIRST_EXT naming for 0-indexed enum
+ - reduce indentation by using early returns or continue on failure-paths
+ - use dev_err_probe where appropriate
+ - be less noisy with dev_dbg
+ - refactored mhuv3_mbx_comb_interrupt using __free cleanups for .read_data
+ - refactored doorbell lookups with scoped_guards
+ - fail on IRQ request failures: do not carry-on best effort
+ - drop usage of platform_set_drvdata and .remove in favour of
+   devm_add_action_or_reset
+ - review failures handling on extensions initialization
+ - removed name clashes
+ - more comments on regs decorations
+ - decreasing line-lengths definitions
+ - use __ffs instead of __builtin_ctz
+ - dropped used of bitfields in favour of bitmasks
+ - reading implementer/revision/variant/product_id
+ - fixed a few misspellings
+ - DT: using ARM GIC defines in example
+ - DT: defined MHUv3 Extensions types in new file dt-bindings/arm/mhuv3-dt.h
+v2 -> v3
+ - fixed spurious tabs/spaces in DT binding
+v1 -> v2
+ - clarified DT bindings extension descriptions around configurability
+   and discoverability
+ - removed unused labels from the DT example
+ - using pattern properties to define DT interrupt-names
+ - bumped DT interrupt maxItems to 74 (allowing uo to 8 channels per extension)
+ - fixed checkpatch warnings about side-effects on write/read bitfield macros
+ - fixed sparse errors as reported
+   | Reported-by: kernel test robot <lkp@intel.com>
+   | Closes: https://lore.kernel.org/oe-kbuild-all/202403290015.tCLXudqC-lkp@intel.com/
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 21149b346a60e..c571971f2fac3 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h313-tanix-tx1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-new file mode 100644
-index 0000000000000..bb2cde59bd033
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2024 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Tanix TX1";
-+	compatible = "oranth,tanix-tx1", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &sdio_wifi;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key {
-+			label = "hidden";
-+			linux,code = <BTN_0>;
-+			gpios = <&pio 7 9 GPIO_ACTIVE_LOW>; /* PH9 */
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 7 6 GPIO_ACTIVE_HIGH>; /* PH6 */
-+			default-state = "on";
-+		};
-+	};
-+
-+	wifi_pwrseq: pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "ext_clock";
-+		pinctrl-0 = <&x32clk_fanout_pin>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the DC input */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ir {
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_aldo1>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+
-+	sdio_wifi: wifi@1 {
-+		reg = <1>;
-+	};
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_aldo1>;
-+	bus-width = <8>;
-+	non-removable;
-+	max-frequency = <100000000>;
-+	cap-mmc-hw-reset;
-+	mmc-ddr-1_8v;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_aldo1>;
-+	vcc-pf-supply = <&reg_dldo1>;
-+	vcc-pg-supply = <&reg_aldo1>;
-+	vcc-ph-supply = <&reg_dldo1>;
-+	vcc-pi-supply = <&reg_dldo1>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+
-+		vin1-supply = <&reg_vcc5v>;
-+		vin2-supply = <&reg_vcc5v>;
-+		vin3-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			/* Supplies VCC-PLL, so needs to be always on. */
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Supplies VCC-IO, so needs to be always on. */
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1120000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd-dram";
-+			};
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	dr_mode = "host";       /* USB A type receptable */
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
+Cristian Marussi (2):
+  dt-bindings: mailbox: arm,mhuv3: Add bindings
+  mailbox: arm_mhuv3: Add driver
+
+ .../bindings/mailbox/arm,mhuv3.yaml           |  224 ++++
+ MAINTAINERS                                   |    9 +
+ drivers/mailbox/Kconfig                       |   12 +
+ drivers/mailbox/Makefile                      |    2 +
+ drivers/mailbox/arm_mhuv3.c                   | 1103 +++++++++++++++++
+ include/dt-bindings/arm/mhuv3-dt.h            |   13 +
+ 6 files changed, 1363 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv3.yaml
+ create mode 100644 drivers/mailbox/arm_mhuv3.c
+ create mode 100644 include/dt-bindings/arm/mhuv3-dt.h
+
 -- 
-2.25.1
+2.34.1
 
 
