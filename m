@@ -1,133 +1,277 @@
-Return-Path: <devicetree+bounces-60397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44EC58A92F6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:20:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E449D8A9302
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B98B1C20BC6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46BD3B2107E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5D169E1C;
-	Thu, 18 Apr 2024 06:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6463E6A8AD;
+	Thu, 18 Apr 2024 06:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gJ6GF1zn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zhx8snLZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96ACA5B217
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:20:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8AE6A353
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713421220; cv=none; b=hrgKpEkQPnN7L61m1svW7ol00N/fOaZgzD7twPOjaoUy/YwdGZPSga7xpPdubV43DIbN49jiv/r6y3pf4l3XPCK6jomC3KegMTloWntP4IlIZTalL/Ske9fVX4Ypqa6WjYMu+DO6FCIKrSQh6KpQ0NmIoVy1EsOtvTq2ci26Nnk=
+	t=1713421549; cv=none; b=JXndHlTG+b+rQ3u84bJ5IKbnDVIik+ymVvyOHfW5m9Qw0dl7V8r6HLcpnAmFpNxbwixemgc8qaln5xBy4diDBetY+JZ1PBOSpnJv5I+/VXFdDpJ1M34OtRdWcb7lttq7aFtRPVvlEtxMYDWhQHKSCXgM5yTGTQj38VAl/zFWKOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713421220; c=relaxed/simple;
-	bh=ioUowZ4DOFzP0N/qgT9D4k4N1wRxG9niaft+g/nCSIY=;
+	s=arc-20240116; t=1713421549; c=relaxed/simple;
+	bh=T3gnbHnqDTNsXZjKgzNhK3w8RI5MS5/ZOhFLUooP1d0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CT2cwBgyN37MGppB+WyRBb2EHjQmCeEXZuofkK0cr3lcfZLdSkJF+VgPN5ODA1CB5ZWeHED3ZFLOSkA/SWIgfGcvV6iHnyXUmkcUQMKCaCTJe9v3ZHrtWeizLjjLI6oQrJX5vEXJwMQVfT2X0MQ3mshbGZGIcEm79NKmMKQXz9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gJ6GF1zn; arc=none smtp.client-ip=209.85.214.169
+	 Content-Type:Content-Disposition:In-Reply-To; b=edNJt0OOZChgCQXA0D0XIRWQM1i+BBRdnnpCx/Pf/3OjOuSAfFpiXQj9WDTjLp6li0GI97JDig7nkpch7GGMY2FV8msO5MCCKpPD2f6j+QNHJ2jw5sCjn0u2jLIthyMNI5xjsezeVSJVWZ5fT40V1XVELSo5oMirP4aIL84Nps4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zhx8snLZ; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1e4f341330fso4639815ad.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:20:17 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-518bad5f598so540166e87.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:25:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713421217; x=1714026017; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eC0jjvQDPobd97rKZ4kcPj9ytdXbP5Fo1R6tB5tlq9k=;
-        b=gJ6GF1znWZyEuwRDdA+uya92POSmz5n6eodlWz4RiooNiYXEDy43kceiWN1kvS2+vV
-         ElUKnjYvBAAW+cLlwZxn8R34QwaiRvrJOuodDZrukurQVJFLVlxzVn/wSI1nshz2xS8U
-         nBRtNjNEMmfRq8diyz0anD5geW1/WAKKJT/QNt2ad7jxp4PJt3JMS1E5bRr0fSq302VY
-         cYGGEu/h+O7b5LWV1E472PEirnUZ5nht7RXeAK29fgcXD3PsiBRcvr02RkPLbPq0Pm2r
-         KTro1HLU07bNh7ScLV3Qt2y9Ve7S1P1TSw3xN9dXdN28Tn33ewTxA2ksOAD7cyKwTVkL
-         tU2Q==
+        d=linaro.org; s=google; t=1713421545; x=1714026345; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eeGlYTEPtwsiwYM/TpHd0Olr3KwcbSC63wU7MbucUsg=;
+        b=zhx8snLZmp5exuwounzmXQbKqUfHp6A0ponlYTO8xsoK/4dRM7o3ymBUdbD3Rrv2Pv
+         rVfCiRHek/999VHK3O5dDtoH6lGkdhErSsGIa7eiYpsVyWZfGTSPGUVVn/VV5gl2Ulth
+         zNX7o7rK2HX4Izcyre0YY9qVCv/EesT8QP0qLYecCBPfsrJNm1s6aAU0OuRhWaaS6vY7
+         4i+b6aVkvf0qN1lVtqIQa3/L9o06i6lgtHehzPW2QLpW6FJ7ZUT9NEmoj522d1ibRVoZ
+         rdf2RyBrWFaIdsQ6EQ1T9QJHqJj2RqDgoWw+Z/NPzOF/e6xP8MyVUMqy045CipoGMREc
+         czkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713421217; x=1714026017;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eC0jjvQDPobd97rKZ4kcPj9ytdXbP5Fo1R6tB5tlq9k=;
-        b=Jz9LlQwKEOSCOTjn8ylO/hjJCvCactvVoSYtmhn42xPQ9QbtyL1ieeNArgu85O+eEb
-         ts/vJ9sV7AY4/LYPGRwfpe6DrjuEBeAWUACfAiwMID28mBrRUa71HIdezeNaNW3/iPFe
-         m9CIWM4lk53IRoM+vvNGCWA4Ui679YYqWJ1sooE4woXwEBke+IUdAfE/37k7vR/MZI2a
-         MDrBFpI+s03oqclE9Iux1Bs6V1m4YjNC4JTur8Jp2VWmUzpZgR5uDyXFnns8qrBOi6NG
-         gXQsc19Z6Km2W9Aynl0uNZbxXSyQn7lHB6UHPSI8M1JpiL8CFZt40KFWCdYnSX9e1l9N
-         pS6w==
-X-Forwarded-Encrypted: i=1; AJvYcCX0/+gzzBbnMlxYKvBNI/rSO6adBUw4HxLVY1uCToi2MK0UvEb6uPAItEMelgUagt85Pf82j2rKYu1E8nZJwL4cL027hHtppcXkHQ==
-X-Gm-Message-State: AOJu0YzOtlqNL1GJsh1yL+0MDTxLBiXQtlMnWaADLJw+JVCLryHHCrxR
-	RLYS/U2IhMosvTcunj3XFDp0kIcUF63gR4N0p1RmHVz+hYPJYCVH67xOvJbMrg==
-X-Google-Smtp-Source: AGHT+IGdfM7ZRhJKbLTZ3yVa5ET1b0iJCVoUvItzdBrd7Ol9ksqn1v2z6enDdZegm9UydZGVy5biZQ==
-X-Received: by 2002:a17:903:48f:b0:1e4:24bc:426e with SMTP id jj15-20020a170903048f00b001e424bc426emr1861087plb.28.1713421216842;
-        Wed, 17 Apr 2024 23:20:16 -0700 (PDT)
-Received: from thinkpad ([120.56.197.253])
-        by smtp.gmail.com with ESMTPSA id h10-20020a170902b94a00b001e088a9e2bcsm691770pls.292.2024.04.17.23.20.11
+        d=1e100.net; s=20230601; t=1713421545; x=1714026345;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eeGlYTEPtwsiwYM/TpHd0Olr3KwcbSC63wU7MbucUsg=;
+        b=tLGvUwD7qM67m6LeOz5d+Tz0E0shf27dCCOlejww+XCktMKvGOSps5FIK0HkKy/Plv
+         mR5wzg6qMuvyuo484LnzKXWN5hrvHnvz7rI6o9f4RRy8f1rP+bHRQoxF2vMsQvj1FRMK
+         DwAc4qt3eIEwE71M93RIQuKmtoTqylOdbh/056JZRIEYNx/PO7JAYBCQWDrg275bWC8v
+         YIfh60h9uCye9UF9H41Gp4GHj+k4Xz8VMFoi4XCi0vT33eh8OAnf/GbpVELA5RLkkhzY
+         zJJeZusDDkWH82/5ojDhCHnuGoP4d2PfbiCusvACfVoYcTMTRZ/yowLyAfE5s46a90ot
+         LAcg==
+X-Forwarded-Encrypted: i=1; AJvYcCWFF7W9QF2zv1Ne+ta8H6dzd+GQK6ZVj0WAwSe0ih7ywIp1quDs5kdjATk+pxRQpLPJxIOWWQtAeaDwmE5zwB160LtV3fNshXSiiw==
+X-Gm-Message-State: AOJu0YxolYnkYU4kFDoFm54siae2BZdH9h5ABlKcYmU+yDGxfajiAKCa
+	VwcAQrrJT2Ee3/pvWHjhx/tB2h0/nMVeG/YBdH0HqLAPReZgE+V80daO4lUt96o=
+X-Google-Smtp-Source: AGHT+IHSQo96rBAeGsNob689+akPWqSZqQAXLoOckGnqF2JqlaQLfymxbweLLljeqKZYLOM3+sLT9Q==
+X-Received: by 2002:a05:6512:484:b0:515:a6dd:9657 with SMTP id v4-20020a056512048400b00515a6dd9657mr800549lfq.16.1713421545466;
+        Wed, 17 Apr 2024 23:25:45 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id d22-20020ac241d6000000b0051327d2f5e5sm117819lfi.119.2024.04.17.23.25.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 23:20:15 -0700 (PDT)
-Date: Thu, 18 Apr 2024 11:50:09 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 4/5] PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
-Message-ID: <20240418062009.GD2861@thinkpad>
-References: <20240417-pme_msg-v7-0-9c6208cda90f@nxp.com>
- <20240417-pme_msg-v7-4-9c6208cda90f@nxp.com>
+        Wed, 17 Apr 2024 23:25:45 -0700 (PDT)
+Date: Thu, 18 Apr 2024 09:25:43 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dharma.B@microchip.com
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, linux@armlinux.org.uk, Nicolas.Ferre@microchip.com, 
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, Manikandan.M@microchip.com, 
+	arnd@arndb.de, geert+renesas@glider.be, Jason@zx2c4.com, mpe@ellerman.id.au, 
+	gerg@linux-m68k.org, rdunlap@infradead.org, vbabka@suse.cz, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	oe-kbuild-all@lists.linux.dev, Hari.PrasathGE@microchip.com
+Subject: Re: [PATCH v6 2/4] drm/bridge: add lvds controller support for sam9x7
+Message-ID: <ymw3bsbpqdfhwnidkvkenbv73fxdk3okuiqsmltknpnlzuwges@dqevpe6okpk4>
+References: <20240417024137.144727-1-dharma.b@microchip.com>
+ <20240417024137.144727-3-dharma.b@microchip.com>
+ <xbefyxiyiwckjsi5wyqaf5thqgpyyizy7sjojed4yc7bvm46l3@omffdudkxyhl>
+ <f79861d1-2216-41de-8093-621cb07ba06a@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240417-pme_msg-v7-4-9c6208cda90f@nxp.com>
+In-Reply-To: <f79861d1-2216-41de-8093-621cb07ba06a@microchip.com>
 
-On Wed, Apr 17, 2024 at 12:59:42PM -0400, Frank Li wrote:
-> Add PCIE_MSG_CODE_PME_TURN_OFF macros to enable a PCIe host driver to send
-> PME_Turn_Off messages.
+On Thu, Apr 18, 2024 at 03:54:53AM +0000, Dharma.B@microchip.com wrote:
+> Hi Dmitry,
 > 
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> On 17/04/24 12:05 pm, Dmitry Baryshkov wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > On Wed, Apr 17, 2024 at 08:11:35AM +0530, Dharma Balasubiramani wrote:
+> >> Add a new LVDS controller driver for sam9x7 which does the following:
+> >> - Prepares and enables the LVDS Peripheral clock
+> >> - Defines its connector type as DRM_MODE_CONNECTOR_LVDS and adds itself
+> >> to the global bridge list.
+> >> - Identifies its output endpoint as panel and adds it to the encoder
+> >> display pipeline
+> >> - Enables the LVDS serializer
+> >>
+> >> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> >> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> >> ---
+> >> Changelog
+> >> v5 -> v6
+> >> - No Changes.
+> >> v4 -> v5
+> >> - Drop the unused variable 'format'.
+> >> - Use DRM wrapper for dev_err() to maintain uniformity.
+> >> - return -ENODEV instead of -EINVAL to maintain consistency with other DRM
+> >>    bridge drivers.
+> >> v3 -> v4
+> >> - No changes.
+> >> v2 ->v3
+> >> - Correct Typo error "serializer".
+> >> - Consolidate get() and prepare() functions and use devm_clk_get_prepared().
+> >> - Remove unused variable 'ret' in probe().
+> >> - Use devm_pm_runtime_enable() and drop the mchp_lvds_remove().
+> >> v1 -> v2
+> >> - Drop 'res' variable and combine two lines into one.
+> >> - Handle deferred probe properly, use dev_err_probe().
+> >> - Don't print anything on deferred probe. Dropped print.
+> >> - Remove the MODULE_ALIAS and add MODULE_DEVICE_TABLE().
+> >> - symbol 'mchp_lvds_driver' was not declared. It should be static.
+> >> ---
+> >>   drivers/gpu/drm/bridge/Kconfig          |   7 +
+> >>   drivers/gpu/drm/bridge/Makefile         |   1 +
+> >>   drivers/gpu/drm/bridge/microchip-lvds.c | 228 ++++++++++++++++++++++++
+> >>   3 files changed, 236 insertions(+)
+> >>   create mode 100644 drivers/gpu/drm/bridge/microchip-lvds.c
+> >>
+> >> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> >> index efd996f6c138..889098e2d65f 100644
+> >> --- a/drivers/gpu/drm/bridge/Kconfig
+> >> +++ b/drivers/gpu/drm/bridge/Kconfig
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+[skipped]
 
-- Mani
-
-> ---
->  drivers/pci/pci.h | 3 +++
->  1 file changed, 3 insertions(+)
+> >> +     if (ret < 0) {
+> >> +             DRM_DEV_ERROR(lvds->dev, "failed to enable lvds pclk %d\n", ret);
+> >> +             return;
+> >> +     }
+> >> +
+> >> +     ret = pm_runtime_get_sync(lvds->dev);
+> >> +     if (ret < 0) {
+> >> +             DRM_DEV_ERROR(lvds->dev, "failed to get pm runtime: %d\n", ret);
+> >> +             clk_disable(lvds->pclk);
+> > 
+> > This can result in unbalanced clk_disable(), if pm_runtime_get_sync()
+> > fails. This function calls clk_disable(), but the framework has no way
+> > to know that .enable() was not successful and calls .disable(), which
+> > also calls clk_disable( >
+> > Please consider turning pclk into pm_clk so that its state is managed
+> > automatically (or at least moving clk_enable/disable into pm_ops).
 > 
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 02f46875fe2d9..36381fc7ebd32 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -30,6 +30,9 @@
->  #define PCIE_MSG_TYPE_R_LOCAL	4
->  #define PCIE_MSG_TYPE_R_GATHER	5
->  
-> +/* Power Management Messages; PCIe r6.0, sec 2.2.8.2 */
-> +#define PCIE_MSG_CODE_PME_TURN_OFF	0x19
-> +
->  /* INTx Mechanism Messages; PCIe r6.0, sec 2.2.8.1 */
->  #define PCIE_MSG_CODE_ASSERT_INTA	0x20
->  #define PCIE_MSG_CODE_ASSERT_INTB	0x21
+> This process appears rather intricate. May I suggest omitting the 
+> 'clk_disable' operation here?
+
+Yes
+
 > 
-> -- 
-> 2.34.1
+> > 
+> >> +             return;
+> >> +     }
+> >> +
+> >> +     lvds_serialiser_on(lvds);
+> >> +}
+> >> +
+> >> +static void mchp_lvds_disable(struct drm_bridge *bridge)
+> >> +{
+> >> +     struct mchp_lvds *lvds = bridge_to_lvds(bridge);
+> >> +
+> >> +     pm_runtime_put(lvds->dev);
+> >> +     clk_disable(lvds->pclk);
+> >> +}
+> >> +
+> >> +static const struct drm_bridge_funcs mchp_lvds_bridge_funcs = {
+> >> +     .attach = mchp_lvds_attach,
+> >> +     .enable = mchp_lvds_enable,
+> >> +     .disable = mchp_lvds_disable,
+> >> +};
+> >> +
+> >> +static int mchp_lvds_probe(struct platform_device *pdev)
+> >> +{
+> >> +     struct device *dev = &pdev->dev;
+> >> +     struct mchp_lvds *lvds;
+> >> +     struct device_node *port;
+> >> +
+> >> +     if (!dev->of_node)
+> >> +             return -ENODEV;
+> >> +
+> >> +     lvds = devm_kzalloc(&pdev->dev, sizeof(*lvds), GFP_KERNEL);
+> >> +     if (!lvds)
+> >> +             return -ENOMEM;
+> >> +
+> >> +     lvds->dev = dev;
+> >> +
+> >> +     lvds->regs = devm_ioremap_resource(lvds->dev,
+> >> +                     platform_get_resource(pdev, IORESOURCE_MEM, 0));
+> >> +     if (IS_ERR(lvds->regs))
+> >> +             return PTR_ERR(lvds->regs);
+> >> +
+> >> +     lvds->pclk = devm_clk_get_prepared(lvds->dev, "pclk");
+> > 
+> > Why do you need _prepared version?
+> 
+> I will change this to just devm_clk_get().
+> 
+> > 
+> >> +     if (IS_ERR(lvds->pclk))
+> >> +             return dev_err_probe(lvds->dev, PTR_ERR(lvds->pclk),
+> >> +                             "could not get pclk_lvds prepared\n");
+> >> +
+> >> +     port = of_graph_get_remote_node(dev->of_node, 1, 0);
+> >> +     if (!port) {
+> >> +             DRM_DEV_ERROR(dev,
+> >> +                           "can't find port point, please init lvds panel port!\n");
+> >> +             return -ENODEV;
+> >> +     }
+> >> +
+> >> +     lvds->panel = of_drm_find_panel(port);
+> >> +     of_node_put(port);
+> >> +
+> >> +     if (IS_ERR(lvds->panel))
+> >> +             return -EPROBE_DEFER;
+> >> +
+> >> +     lvds->panel_bridge = devm_drm_panel_bridge_add(dev, lvds->panel);
+> > 
+> > Please use instead:
+> > 
+> > devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+> 
+> Sure, Noted. Thanks.
+> > 
+> >> +
+> >> +     if (IS_ERR(lvds->panel_bridge))
+> >> +             return PTR_ERR(lvds->panel_bridge);
+> >> +
+> >> +     lvds->bridge.of_node = dev->of_node;
+> >> +     lvds->bridge.type = DRM_MODE_CONNECTOR_LVDS;
+> >> +     lvds->bridge.funcs = &mchp_lvds_bridge_funcs;
+> >> +
+> >> +     dev_set_drvdata(dev, lvds);
+> >> +     devm_pm_runtime_enable(dev);
+> > 
+> > Error check is missing.
+> 
+> Sure, I will add this
+> 
+>          ret = devm_pm_runtime_enable(dev);
+>          if (ret < 0) {
+>                  DRM_DEV_ERROR(lvds->dev, "failed to enable pm runtime: 
+
+DRM_DEV_ERROR is deprecated, plese use suitable replacement.
+
+> %d\n", ret);
+>                  return ret;
+>          }
+> 
 > 
 
 -- 
-மணிவண்ணன் சதாசிவம்
+With best wishes
+Dmitry
 
