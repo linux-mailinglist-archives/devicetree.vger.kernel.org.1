@@ -1,169 +1,125 @@
-Return-Path: <devicetree+bounces-60494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CFE88A9754
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:26:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D4A8A9765
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F2891C21D49
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:26:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF8E1F23817
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C389D15B980;
-	Thu, 18 Apr 2024 10:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583E654FAB;
+	Thu, 18 Apr 2024 10:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HzBxXK0l"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="z00elmWE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0183015AAAD;
-	Thu, 18 Apr 2024 10:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D94F8821;
+	Thu, 18 Apr 2024 10:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713435956; cv=none; b=qTkccm/e44a+Qp2lKN6OJXy7tNYuF83hdjw2R5oNCGjH6xA1gbux+xqEND70L2nYZcSdM58XDzBGuJKsOa0ziCXIn3WMYmW+vHvN0IF0E3VlL6f0cnvQC2wMvSKBuhD5tMrH6WAfbTF/0CB0I52HIF7kIufAeOgpkY2o6VGsTaw=
+	t=1713436249; cv=none; b=u2ilw5EoqyrUsSD8cOmgjcUyS6/hmh84OtXq/LCz3hUMsaHjZlO8wtFKiRPkhBMX1pgeDfYD6Ftt4M7c4e0EZmzFgaMgTKMpeInma9gWj8FcLKlh9qZOsMn9Sh2Arng+12JvOmUC3PhZzEq/iRfOx9WdI7SclTFryuLzpi1zQvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713435956; c=relaxed/simple;
-	bh=Il0xcH4eayVY+QK+wjCnPabCr8SYBb2diIuGENWPsXI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RFE/JOtvs3Kbf1Z0XaGmahX+BIF7fYBUpI5TaBDC9Id/jCd++wEWZpAD5TlXcj6Kbwwfmj8J+BjJtpihMS74YPvswRea1J7lyM0/8MpaSxTubnyvyyyvUnE/xsd3gbrZ2iylwbwpuQ+XO6cEvjx/JV/XF/Hce0kNnXic36WWdC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HzBxXK0l; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5d81b08d6f2so480194a12.0;
-        Thu, 18 Apr 2024 03:25:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713435954; x=1714040754; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LzZgtCUTPjY2W+0TRdJ+vVl+P6oFUY7BJ5Vj111QbBg=;
-        b=HzBxXK0lgpHCNpaGCwosEDrXhjtGCEzGxjDtpL6abaAby+Fnm17IBjZ0/saDcJ4JHI
-         3Mmo1UbIVSGu3wUijuWI++IxFVLs2zzHz/uJKR0umu6IKHaeeeGuIEKWdtprska/UVo5
-         295zxrqi9nEE8tmKui6+O/Vz2588rR2S+F6GIH1oTEmse5UiGHy+aL1DpSp1GU/o0qtp
-         W9th2NSyerv9qOAqgWRDm6pp6d7iYsMdWDdq5AGs27NKPY8RKt+0YenxSaaTW43MXDcJ
-         yVHJmWifdaP+ce9YofzzoFEgzg++ZQG5b29spVDA4gD4244VvxC9z9Vvd6NqKmhHJ+p7
-         B3QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713435954; x=1714040754;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LzZgtCUTPjY2W+0TRdJ+vVl+P6oFUY7BJ5Vj111QbBg=;
-        b=t3r7fhxnVky2dWOghjzfp+KSMy86+DdFqBVsc1WDLOZWMDj7N36a3TBNNyvbRHEJxT
-         k3VyxR+kcUbr6bEZHwLGSKgf+UMhz32zVORaPHJ794CEM31UcQY70ds72ccDjyFlUE4C
-         NwOUFuX2YLoLQyQ4ua3LInWarFXcwFFkIRpUyWwiiXZVhHrENHinoy7L6sWXCvJb5F0O
-         s+a3Feyn7+tbYEVOHhfiRmyt6bmDrAciIVPy99IlnDIvAKXhwlQrWckHB2TbdLkA8Xx7
-         OYjrow43ne+gDI5clDa99wYycWfDVzyCo045RdiqC/r/5EqxeFRC0iX5R3K1DTeMQvYE
-         5hag==
-X-Forwarded-Encrypted: i=1; AJvYcCVvSZKwgYi1Mr4T9oRvc+FsVor6dqPgMSNLRe2SBQhuuuMRPd4dy/ZxKzIxzvalUvX87t3z9LDqeiiG/ckIyL+jUx7wRgB+seaZ2llDC7tjf9t9Mys69YcOevt6USzPnqZCHkuOyp5BPPx83yEH8cwtqcoKvm5bDCKuBG5SEOC0dA==
-X-Gm-Message-State: AOJu0YyjCuI1zag2o/2Mk/amgTwvIziYZFOE8CVQWkCG0TQkpWPI1anh
-	PaqTjWRkBFTvsHLMoRq+eg3oeNrad2MpIw7DRgAlic2mkBewljsv/O7wShqMeBlbZcdtODy2sNU
-	+RzhHGG5A77y5yUVIbO/Y4PLYqHs=
-X-Google-Smtp-Source: AGHT+IGM01K541EgnuYvh+w/GpIyFuX4z14UC0b5PyXo5WA2L+qrS1q+2v+9oEgc9/5RXOqD2qRGLCo8HhqXfbx/jfU=
-X-Received: by 2002:a17:90a:3d4c:b0:2a4:892f:39b2 with SMTP id
- o12-20020a17090a3d4c00b002a4892f39b2mr2165830pjf.11.1713435954299; Thu, 18
- Apr 2024 03:25:54 -0700 (PDT)
+	s=arc-20240116; t=1713436249; c=relaxed/simple;
+	bh=Kx/O3NbYmmye71xw/73E2GXjtvhWZUZ9V2RPXla/lMw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lIC6xWzJeor+eSlvEijC+hXqYsJYoIEM3ZHxgewX3chTnwge1s6c6nPo3d/1X2FWozKusGMsTgdBWhQ+VzYBtoHjA5Lt9xnPxixMkiNlzJidtuHDi+Gr5QHVOSt0wVt5vHw+Upt0IPpYCp9LUzUgWizfQ14tziyMAETnr/k9EaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=z00elmWE; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1713436246; x=1744972246;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Kx/O3NbYmmye71xw/73E2GXjtvhWZUZ9V2RPXla/lMw=;
+  b=z00elmWELtbcPeTB4DKGS+v09AG49WHfYDhBaHLFLTU5mYA+7bb22pDv
+   r89yMsjVfiUsjGO+maTI1mi4SHPFs7HvoCyJiv2twFV6kWCouLI7CqsDY
+   R1qrWulswX0qmbmUbgJR4FAxOE08O6uDxBue8wWvmWyfIuGtaNvopPD3E
+   BQ5Vh/88zb9g3fEsYdi4PegRCKlTiFGiWDJUSlcVOHs5GAnL8YE7MAcev
+   CAikYsWt61SDoXyn/JvOw6x094pcSpVNRGrbgLACNnhwOVzDU2YPd61mC
+   ln2voPf2W0feQ7hrQEn0E7w8nRDX9AQ9jk00nAfFjsOa5/lz1cNkDcSrU
+   g==;
+X-CSE-ConnectionGUID: IwiwC4InSEmNg7Dv2twxMA==
+X-CSE-MsgGUID: noxMaoaySkiucyrpesccLQ==
+X-IronPort-AV: E=Sophos;i="6.07,211,1708412400"; 
+   d="asc'?scan'208";a="21540872"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Apr 2024 03:30:44 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 18 Apr 2024 03:30:18 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 18 Apr 2024 03:30:14 -0700
+Date: Thu, 18 Apr 2024 11:29:59 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Andy Chiu <andy.chiu@sifive.com>
+CC: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner
+	<heiko@sntech.de>, Guo Ren <guoren@kernel.org>, Conor Dooley
+	<conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Evan
+ Green <evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
+	<cleger@rivosinc.com>, Shuah Khan <shuah@kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Palmer
+ Dabbelt <palmer@rivosinc.com>, Vincent Chen <vincent.chen@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>, <devicetree@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH v4 3/9] riscv: cpufeature: call match_isa_ext() for
+ single-letter extensions
+Message-ID: <20240418-twirl-aground-a581d6e45854@wendy>
+References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
+ <20240412-zve-detection-v4-3-e0c45bb6b253@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240418091148.1968155-1-f.suligoi@asem.it> <20240418091148.1968155-2-f.suligoi@asem.it>
-In-Reply-To: <20240418091148.1968155-2-f.suligoi@asem.it>
-From: Adam Ford <aford173@gmail.com>
-Date: Thu, 18 Apr 2024 05:25:43 -0500
-Message-ID: <CAHCN7xL-18xL04KCZUYfegBH0vWa8i5EEa8UkhoedbmrpOqyWg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: snps,dwmac: remove tx-sched-sp property
-To: Flavio Suligoi <f.suligoi@asem.it>
-Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+kb/Lbwm7h/0iKfQ"
+Content-Disposition: inline
+In-Reply-To: <20240412-zve-detection-v4-3-e0c45bb6b253@sifive.com>
+
+--+kb/Lbwm7h/0iKfQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 18, 2024 at 4:12=E2=80=AFAM Flavio Suligoi <f.suligoi@asem.it> =
-wrote:
->
-> Strict priority for the tx scheduler is by default in Linux driver, so th=
-e
-> tx-sched-sp property was removed in commit aed6864035b1 ("net: stmmac:
-> platform: Delete a redundant condition branch").
->
-> This property is still in use in the following DT (and it will be removed
-> in a separate patch series):
->
-> - arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
-> - arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> - arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> - arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> - arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->
-> There is no problem if that property is still used in the DTs above,
-> since, as seen above, it is a default property of the driver.
->
-> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Fri, Apr 12, 2024 at 02:48:59PM +0800, Andy Chiu wrote:
+> Single-letter extensions may also imply multiple subextensions. For
+> example, Vector extension implies zve64d, and zve64d implies zve64f.
+>=20
+> Extension parsing for "riscv,isa-extensions" has the ability to resolve
+> the dependency by calling match_isa_ext(). This patch makes deprecated
+> parser call the same function for single letter extensions.
 
-Acked-by:  Adam Ford <aford173@gmail.com>
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml        | 14 --------------
->  1 file changed, 14 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 15073627c53a..21cc27e75f50 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -328,9 +328,6 @@ properties:
->        snps,tx-sched-dwrr:
->          type: boolean
->          description: Deficit Weighted Round Robin
-> -      snps,tx-sched-sp:
-> -        type: boolean
-> -        description: Strict priority
->      allOf:
->        - if:
->            required:
-> @@ -339,7 +336,6 @@ properties:
->            properties:
->              snps,tx-sched-wfq: false
->              snps,tx-sched-dwrr: false
-> -            snps,tx-sched-sp: false
->        - if:
->            required:
->              - snps,tx-sched-wfq
-> @@ -347,7 +343,6 @@ properties:
->            properties:
->              snps,tx-sched-wrr: false
->              snps,tx-sched-dwrr: false
-> -            snps,tx-sched-sp: false
->        - if:
->            required:
->              - snps,tx-sched-dwrr
-> @@ -355,15 +350,6 @@ properties:
->            properties:
->              snps,tx-sched-wrr: false
->              snps,tx-sched-wfq: false
-> -            snps,tx-sched-sp: false
-> -      - if:
-> -          required:
-> -            - snps,tx-sched-sp
-> -        then:
-> -          properties:
-> -            snps,tx-sched-wrr: false
-> -            snps,tx-sched-wfq: false
-> -            snps,tx-sched-dwrr: false
->      patternProperties:
->        "^queue[0-9]$":
->          description: Each subnode represents a queue.
-> --
-> 2.34.1
->
->
+Sure, why not..
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--+kb/Lbwm7h/0iKfQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiD2JwAKCRB4tDGHoIJi
+0lSLAP9etZ2WCMHmao3TIOEA8ZgOo2OTJ3ipe9slmFEM10nxuwD/Zi2J1xel+G8Q
+uSuqYeiY5lSCD4TaQEPHlc1Aa2nRgwQ=
+=7adE
+-----END PGP SIGNATURE-----
+
+--+kb/Lbwm7h/0iKfQ--
 
