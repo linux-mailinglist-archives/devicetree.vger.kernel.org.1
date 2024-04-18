@@ -1,137 +1,388 @@
-Return-Path: <devicetree+bounces-60728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BC7B8AA144
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:39:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FD28AA14A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E92A1C20DAB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:39:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51C381F2159E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491A1175551;
-	Thu, 18 Apr 2024 17:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4677B173343;
+	Thu, 18 Apr 2024 17:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pgH+9nnk"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="rPY1wW8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A940174EF9;
-	Thu, 18 Apr 2024 17:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713461989; cv=none; b=IuMA5eT+TJLeOWFnISJ5slhkEp5Q8ga8NcskwfOJqHclvgz0DCgh8o7jyL1n+g9BJMlhQj0nLGvS1/BXDpaSWz+8WwivH3kyGKimEmvp7JcuiIgDFZHtMV6A4bdckjoo5ypEtj003aGUljN5Q4JfpdslzgxBY/evSjJTMwmzjso=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713461989; c=relaxed/simple;
-	bh=GXEJnDgXD0al0NQ8T331oUdZEbAPsYSGlJB78NRUgOc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xgtpz0wdL96q2KSfinpEtgPSfgqcBlw9ROVqo2QFxOj5Jvrbw2njut/SZESROpepFvfc7O6LQ8avV+NAfroMXEa9uviuFq8fjnPHnRnhoIQJcOa9Pb+fj6yQNt78L85Wc3un/JIDNnpirY8+hVnlBedBCsKICXA68L8Dp6qRLC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pgH+9nnk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDDC8C113CC;
-	Thu, 18 Apr 2024 17:39:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713461988;
-	bh=GXEJnDgXD0al0NQ8T331oUdZEbAPsYSGlJB78NRUgOc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pgH+9nnkJcgiy6ZLsqkR5+4VKV6w0M1TWbLGnvBrFqtBBluQOhKLe++VtghO6iQli
-	 gUoimbTqs3XnOnuKzldy/3pkdXn0OWmoUPOaCnek0JeirbnL4BrxKH9EAEXL47nmkH
-	 0GLaBfRhfi6ris3bXKmuZUDFbtYPovoHuImdu+R6QOks8aEfzpSEna8rhYD37KMDil
-	 yvERbictIkGfKdXKxb5lVgjGWvb1TDXNf55GcQe1MEFJq/euzmz2FeDbaPdBse2Mwq
-	 R3kuWUaRuEhBhNxGL2Ph+njoeNuLQSCZo+HiflYCamYSx/XQ5Mp6Lvq+b6Z0oJ/Jua
-	 tGpvf4w9LtxfA==
-Date: Thu, 18 Apr 2024 10:39:46 -0700
-From: Eric Biggers <ebiggers@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>,
-	Guo Ren <guoren@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	Vincent Chen <vincent.chen@sifive.com>,
-	Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	Joel Granados <j.granados@samsung.com>,
-	Jerry Shih <jerry.shih@sifive.com>
-Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
- to ZVE32X
-Message-ID: <20240418173946.GB1081@sol.localdomain>
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
- <20240418-brook-chili-4d3e61d1a55c@wendy>
- <20240418155256.GA2410@sol.localdomain>
- <20240418-ultimatum-yam-11de4b063b83@spud>
- <20240418173203.GA1081@sol.localdomain>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656CA1649D1;
+	Thu, 18 Apr 2024 17:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713462089; cv=fail; b=gWh2Vg8tPPQtg9sKsTpt7r0XzgkZhGCP54zvZta1YjPDobCW4n0YLJbBqN/NRzdVMLdBeNM2kWYyTPFkkQsK+RuV13JeGBXkO22O5mWqU8zLFzILMSZSUHQ0YfTlONPkv2Zt1zIhe2SiFpVUFW/utAoh0NmP6MHhVkpd6LY4a0M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713462089; c=relaxed/simple;
+	bh=iJ1EmQVvOIq/mD53630GTuVyWQYchcgYsYl4xPwnLjg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=atCbWwuRGITzdmQTFkjVgQDSZRlkOwCkDnefAM5ORbUxWAO3TlsPTHz2a0DVHqlppQ9eQDCR7cL0GLU7ccjIajSYhr4UiybrhpBNYj0lXqOkKKIPRdZZn2bJY2IjyHHo1EkRj8rj/Zwbb0dedBUFwg9kSFNKshCCSKylW4ACZTs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=rPY1wW8h; arc=fail smtp.client-ip=40.107.223.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LlkGqc0ealK9Cy0AAdsCnPlciIOPeHoUVKuV0xfbgQikKZFiLIPiA3zgBYyGvwXS62FbKnONRKDOdo4tipiBahQ1OLMUSZAfiWP8IZSTXfgmjyS+rS1XF1KH31JKPFu6ep0Gsp1irRIBstDkhcjPVg4za7KljtQxQiPe2ywTpFj5vKvTkRC+cJ08JzZxb/Dxpfr7YEHwP9gF/30n07XJAh1k5REtVW1ItURaStTkPqvMTwXcpHqoS1vN2cT/cVANvH04aTpKBdSX+C2HH623w9tsDnHDy26GfeosOb4hy4hNYJEVUhpOx3Xbe895Lus2GbJcmNztbbYVMQ87F1QeBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AynsCg8GMI/Qc1YwTGlrUd8DnCnrI7ujfRB4x0Y8s/Q=;
+ b=YYbEgkbbxCfojiV0Ijy3BnAqrG0t4N4AMOwdJd58TN17yQDVTeC1OENHbDOMxtUNvlpxKNtF9vtqutBYWATgODfyuLfAykf55kctovmqJllBrFPhG5BcFQlhURhRfF49eTxoMZ40cgmqst4WCSOZiWjUBr8o/r6OT+b1uh2YgE89BBhKi9xfXFyUvLJ5m/sqAxH7H0k66jzeXNkar03qZDKPgUZzm+/ML8s7GzAQ90BJC2NXcbOv1z+BBJ70rjZ4nqBByHcLjKKmvv2Y1SHLVIPRn+Ymj7AUoYUwewiHlIdTnQNC8xzq+YQ1xRcuoQkV2RdTH3QSPnwPR80P6d8JUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AynsCg8GMI/Qc1YwTGlrUd8DnCnrI7ujfRB4x0Y8s/Q=;
+ b=rPY1wW8h3Cv+2JPZWCWojtKyeUhCi1kwq1z2LYRv3LzUSqMCxmV79HNIl6ptZFhSQCOYZWB+DT9Cba6zQ39+GW9XllMoXc475LyjJ+hLk6JzHOLDsvmT9P9gw8RFaG9k5HYhTovlPA+8ARlaZ64LjZe7uZ2QEgyQs0Gn4/deR7vkLNscAlwzoEynF5YoO4M2e0XgJ9r8dxmOUXPm3ybVEAkn5a5I4ATautYRF+1ckvvxD7xqDjsv1q0uFV8T5/uPNH9NJFs9M1g2Awb9Z/sTGdn6qolSxtr7bXnG1tjbV9w6yuihVC35rmGy6kSjaJnacQFXdT8SMtZoQ8IbIvhP1Q==
+Received: from BYAPR11CA0046.namprd11.prod.outlook.com (2603:10b6:a03:80::23)
+ by PH8PR12MB7157.namprd12.prod.outlook.com (2603:10b6:510:22b::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.39; Thu, 18 Apr
+ 2024 17:41:22 +0000
+Received: from SN1PEPF000252A4.namprd05.prod.outlook.com
+ (2603:10b6:a03:80:cafe::b8) by BYAPR11CA0046.outlook.office365.com
+ (2603:10b6:a03:80::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.28 via Frontend
+ Transport; Thu, 18 Apr 2024 17:41:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SN1PEPF000252A4.mail.protection.outlook.com (10.167.242.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7452.22 via Frontend Transport; Thu, 18 Apr 2024 17:41:22 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 18 Apr
+ 2024 10:41:02 -0700
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 18 Apr
+ 2024 10:41:01 -0700
+Received: from vidyas-desktop.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Thu, 18 Apr 2024 10:40:56 -0700
+From: Vidya Sagar <vidyas@nvidia.com>
+To: <bhelgaas@google.com>, <rafael@kernel.org>, <lenb@kernel.org>,
+	<will@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<robh@kernel.org>, <frowand.list@gmail.com>
+CC: <linux-pci@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <treding@nvidia.com>, <jonathanh@nvidia.com>,
+	<kthota@nvidia.com>, <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>,
+	<sagar.tv@gmail.com>
+Subject: [PATCH V6] PCI: Add support for preserving boot configuration
+Date: Thu, 18 Apr 2024 23:10:43 +0530
+Message-ID: <20240418174043.3750240-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240401075031.3337211-1-vidyas@nvidia.com>
+References: <20240401075031.3337211-1-vidyas@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418173203.GA1081@sol.localdomain>
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A4:EE_|PH8PR12MB7157:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c1f5f52-7d8d-468c-f9bc-08dc5fcec32e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	jDpJI0ziY6d71lwoIG4IOYbglCgfU+J93CQCqs/sr6/jQuJyWD7Bp1GBrUabyj6q2ZcA8/P5YGzHX6hX2/gW93BnSPftDHDLLd/jxoNIpLtMHNv/pI9oPyUlyw7ITTKrUx9y5cIb6yV3D6uirOBoqKeA02gx/7CSPAEWoYNRj8vPphZbDEQicTP4xY7pmdilZ4XzpRo+Ycnd9an6aNncMAs8TDCzPXX2/u4pLdQ9yHKFQ55b0Y+yVymBVXs+0aZI+mFSayZ95VQTwQEAIuSJtvT/F4ixeYlOiruD8oaW3OQzbxzOorZK2lydoIOG+82n0bEG4cB1l1lARts2hhw+b2qESuC2ahCPnWpsKkn0Fd5NXsKsjfpQsleXjym7+EIvr3/pVcyhUpa6KHGekgGveshCd/DKYBtKu10XQrLSKpaVymI2pvi4DZNrNtsJxeiGAQWPiPF6KEnS5+cEZsavs6EIT5ELbx9PR0eeunT78ehe9ciQoKQlXUQ/n4jUYP1WXnHUU2HWmBhiHCs9IvjzWqhPh7urLYYTf6tlXVpymEihxXAJq3NiHVF0SeodftCdB722EV8kQalR4Y4VeEuKU8im6t2UgNGXkez95dfoaO4rvEGkLjVz4b1yFIpOYLxSBD8Ey4G1MHQA2Tww+fyuZKiswrOfT64cyZS6QHFiqFmFLhsXVfmkBe3OIR0FrBJEEdZ3uu5XMfiWUOt4W65J10BPK1tFN4bvuialJbvAW2nUGpJvQzGZ2AMnwdXUDozF
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(36860700004)(7416005)(1800799015)(376005)(82310400014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 17:41:22.0898
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c1f5f52-7d8d-468c-f9bc-08dc5fcec32e
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF000252A4.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7157
 
-On Thu, Apr 18, 2024 at 10:32:03AM -0700, Eric Biggers wrote:
-> On Thu, Apr 18, 2024 at 05:53:55PM +0100, Conor Dooley wrote:
-> > > If it would be useful to do so, we should be able to enable some of the code
-> > > with a smaller VLEN and/or EEW once it has been tested in those configurations.
-> > > Some of it should work, but some of it won't be able to work.  (For example, the
-> > > SHA512 instructions require EEW==64.)
-> > > 
-> > > Also note that currently all the RISC-V vector crypto code only supports riscv64
-> > > (XLEN=64).  Similarly, that could be relaxed in the future if people really need
-> > > the vector crypto acceleration on 32-bit CPUs...  But similarly, the code would
-> > > need to be revised and tested in that configuration.
-> > > 
-> > > > Eric/Jerry (although read the previous paragraph too):
-> > > > I noticed that the sha256 glue code calls crypto_simd_usable(), and in
-> > > > turn may_use_simd() before kernel_vector_begin(). The chacha20 glue code
-> > > > does not call either, which seems to violate the edict in
-> > > > kernel_vector_begin()'s kerneldoc:
-> > > > "Must not be called unless may_use_simd() returns true."
-> > > 
-> > > skcipher algorithms can only be invoked in process and softirq context.  This
-> > > differs from shash algorithms which can be invoked in any context.
-> > > 
-> > > My understanding is that, like arm64, RISC-V always allows non-nested
-> > > kernel-mode vector to be used in process and softirq context -- and in fact,
-> > > this was intentionally done in order to support use cases like this.  So that's
-> > > why the RISC-V skcipher algorithms don't check for may_use_simd() before calling
-> > > kernel_vector_begin().
-> > 
-> > I see, thanks for explaining that. I think you should probably check
-> > somewhere if has_vector() returns true in that driver though before
-> > using vector instructions. Only checking vlen seems to me like relying on
-> > an implementation detail and if we set vlen for the T-Head/0.7.1 vector
-> > it'd be fooled. That said, I don't think that any of the 0.7.1 vector
-> > systems actually support Zvkb, but I hope you get my drift.
-> 
-> All the algorithms check for at least one of the vector crypto extensions being
-> supported, for example Zvkb.  'if (riscv_isa_extension_available(NULL, ZVKB))'
-> should return whether the ratified version of Zvkb is supported, and likewise
-> for the other vector crypto extensions.  The ratified version of the vector
-> crypto extensions depends on the ratified version of the vector extension.  So
-> there should be no issue.  If there is, the RISC-V core architecture code needs
-> to be fixed to not declare that extensions are supported when they are actually
-> incompatible non-standard versions of those extensions.  Incompatible
-> non-standard extensions should be represented as separate extensions.
-> 
+Add support for preserving the boot configuration done by the
+platform firmware per host bridge basis, based on the presence of
+'linux,pci-probe-only' property in the respective PCI host bridge
+device-tree node. It also unifies the ACPI and DT based boot flows
+in this regard.
 
-It probably makes sense to check has_vector() to exclude Zve* for now, though.
+Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+---
+V5:
+* Addressed Rob's review comments
 
-I am just concerned about how you're suggesting that non-standard extensions
-might be pretending to be standard ones and individual users of kernel-mode
-vector would need to work around that.  I think that neither has_vector() nor
-'if (riscv_isa_extension_available(NULL, ZVKB))' should return true if the CPU's
-vector extension is non-standard.
+V4:
+* Addressed Bjorn's review comments
 
-- Eric
+V3:
+* Unified ACPI and DT flows as part of addressing Bjorn's review comments
+
+V2:
+* Addressed issues reported by kernel test robot <lkp@intel.com>
+
+ drivers/acpi/pci_root.c                  | 12 ------
+ drivers/pci/controller/pci-host-common.c |  4 --
+ drivers/pci/of.c                         | 54 +++++++++++++++++++-----
+ drivers/pci/pci.h                        |  7 +++
+ drivers/pci/probe.c                      | 48 ++++++++++++++++-----
+ 5 files changed, 88 insertions(+), 37 deletions(-)
+
+diff --git a/drivers/acpi/pci_root.c b/drivers/acpi/pci_root.c
+index 58b89b8d950e..ddc2b3e89111 100644
+--- a/drivers/acpi/pci_root.c
++++ b/drivers/acpi/pci_root.c
+@@ -1008,7 +1008,6 @@ struct pci_bus *acpi_pci_root_create(struct acpi_pci_root *root,
+ 	int node = acpi_get_node(device->handle);
+ 	struct pci_bus *bus;
+ 	struct pci_host_bridge *host_bridge;
+-	union acpi_object *obj;
+ 
+ 	info->root = root;
+ 	info->bridge = device;
+@@ -1050,17 +1049,6 @@ struct pci_bus *acpi_pci_root_create(struct acpi_pci_root *root,
+ 	if (!(root->osc_ext_control_set & OSC_CXL_ERROR_REPORTING_CONTROL))
+ 		host_bridge->native_cxl_error = 0;
+ 
+-	/*
+-	 * Evaluate the "PCI Boot Configuration" _DSM Function.  If it
+-	 * exists and returns 0, we must preserve any PCI resource
+-	 * assignments made by firmware for this host bridge.
+-	 */
+-	obj = acpi_evaluate_dsm_typed(ACPI_HANDLE(bus->bridge), &pci_acpi_dsm_guid, 1,
+-				      DSM_PCI_PRESERVE_BOOT_CONFIG, NULL, ACPI_TYPE_INTEGER);
+-	if (obj && obj->integer.value == 0)
+-		host_bridge->preserve_config = 1;
+-	ACPI_FREE(obj);
+-
+ 	acpi_dev_power_up_children_with_adr(device);
+ 
+ 	pci_scan_child_bus(bus);
+diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
+index 45b71806182d..c96b2de163b5 100644
+--- a/drivers/pci/controller/pci-host-common.c
++++ b/drivers/pci/controller/pci-host-common.c
+@@ -73,10 +73,6 @@ int pci_host_common_probe(struct platform_device *pdev)
+ 	if (IS_ERR(cfg))
+ 		return PTR_ERR(cfg);
+ 
+-	/* Do not reassign resources if probe only */
+-	if (!pci_has_flag(PCI_PROBE_ONLY))
+-		pci_add_flags(PCI_REASSIGN_ALL_BUS);
+-
+ 	bridge->sysdata = cfg;
+ 	bridge->ops = (struct pci_ops *)&ops->pci_ops;
+ 	bridge->msi_domain = true;
+diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+index 51e3dd0ea5ab..aeacff742706 100644
+--- a/drivers/pci/of.c
++++ b/drivers/pci/of.c
+@@ -234,27 +234,61 @@ int of_get_pci_domain_nr(struct device_node *node)
+ EXPORT_SYMBOL_GPL(of_get_pci_domain_nr);
+ 
+ /**
+- * of_pci_check_probe_only - Setup probe only mode if linux,pci-probe-only
+- *                           is present and valid
++ * of_pci_bridge_preserve_resources - Return true if the boot configuration
++ *                                    needs to be preserved
++ * @node: Device tree node.
++ *
++ * This function looks for "linux,pci-probe-only" property for a given
++ * PCI controller's node and returns true if found. It will also look in the
++ * chosen node if the property is not found in the given controller's node.
++ * Having this property ensures that the kernel doesn't reconfigure the
++ * BARs and bridge windows that are already done by the platform firmware.
++ *
++ * Return: true if the property exists false otherwise.
+  */
+-void of_pci_check_probe_only(void)
++bool of_pci_bridge_preserve_resources(struct device_node *node)
+ {
+-	u32 val;
++	u32 val = 0;
+ 	int ret;
+ 
+-	ret = of_property_read_u32(of_chosen, "linux,pci-probe-only", &val);
++	if (!node) {
++		pr_warn("device node is NULL, trying with of_chosen\n");
++		node = of_chosen;
++	}
++
++retry:
++	ret = of_property_read_u32(node, "linux,pci-probe-only", &val);
+ 	if (ret) {
+-		if (ret == -ENODATA || ret == -EOVERFLOW)
+-			pr_warn("linux,pci-probe-only without valid value, ignoring\n");
+-		return;
++		if (ret == -ENODATA || ret == -EOVERFLOW) {
++			pr_warn("Incorrect value for linux,pci-probe-only in %pOF, ignoring\n",
++				node);
++			return false;
++		}
++		if (ret == -EINVAL) {
++			if (node == of_chosen)
++				return false;
++
++			node = of_chosen;
++			goto retry;
++		}
+ 	}
+ 
+ 	if (val)
++		return true;
++	else
++		return false;
++}
++
++/**
++ * of_pci_check_probe_only - Setup probe only mode if linux,pci-probe-only
++ *                           is present and valid
++ */
++void of_pci_check_probe_only(void)
++{
++	if (of_pci_bridge_preserve_resources(of_chosen))
+ 		pci_add_flags(PCI_PROBE_ONLY);
+ 	else
+ 		pci_clear_flags(PCI_PROBE_ONLY);
+-
+-	pr_info("PROBE_ONLY %s\n", val ? "enabled" : "disabled");
+ }
+ EXPORT_SYMBOL_GPL(of_pci_check_probe_only);
+ 
+diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+index 17fed1846847..1da54ab18534 100644
+--- a/drivers/pci/pci.h
++++ b/drivers/pci/pci.h
+@@ -650,6 +650,7 @@ int of_pci_get_max_link_speed(struct device_node *node);
+ u32 of_pci_get_slot_power_limit(struct device_node *node,
+ 				u8 *slot_power_limit_value,
+ 				u8 *slot_power_limit_scale);
++bool of_pci_bridge_preserve_resources(struct device_node *node);
+ int pci_set_of_node(struct pci_dev *dev);
+ void pci_release_of_node(struct pci_dev *dev);
+ void pci_set_bus_of_node(struct pci_bus *bus);
+@@ -688,6 +689,12 @@ of_pci_get_slot_power_limit(struct device_node *node,
+ 	return 0;
+ }
+ 
++static inline bool
++of_pci_bridge_preserve_resources(struct device_node *node)
++{
++	return false;
++}
++
+ static inline int pci_set_of_node(struct pci_dev *dev) { return 0; }
+ static inline void pci_release_of_node(struct pci_dev *dev) { }
+ static inline void pci_set_bus_of_node(struct pci_bus *bus) { }
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index 1325fbae2f28..ceb9129823ee 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -15,6 +15,7 @@
+ #include <linux/cpumask.h>
+ #include <linux/aer.h>
+ #include <linux/acpi.h>
++#include <linux/pci-acpi.h>
+ #include <linux/hypervisor.h>
+ #include <linux/irqdomain.h>
+ #include <linux/pm_runtime.h>
+@@ -889,6 +890,30 @@ static void pci_set_bus_msi_domain(struct pci_bus *bus)
+ 	dev_set_msi_domain(&bus->dev, d);
+ }
+ 
++static bool pci_must_preserve_config(struct pci_host_bridge *host_bridge)
++{
++	if (ACPI_HANDLE(&host_bridge->dev)) {
++		union acpi_object *obj;
++
++		/*
++		 * Evaluate the "PCI Boot Configuration" _DSM Function.  If it
++		 * exists and returns 0, we must preserve any PCI resource
++		 * assignments made by firmware for this host bridge.
++		 */
++		obj = acpi_evaluate_dsm_typed(ACPI_HANDLE(&host_bridge->dev), &pci_acpi_dsm_guid,
++					      1, DSM_PCI_PRESERVE_BOOT_CONFIG, NULL,
++					      ACPI_TYPE_INTEGER);
++		if (obj && obj->integer.value == 0)
++			return true;
++		ACPI_FREE(obj);
++	}
++
++	if (host_bridge->dev.parent && host_bridge->dev.parent->of_node)
++		return of_pci_bridge_preserve_resources(host_bridge->dev.parent->of_node);
++
++	return false;
++}
++
+ static int pci_register_host_bridge(struct pci_host_bridge *bridge)
+ {
+ 	struct device *parent = bridge->dev.parent;
+@@ -983,6 +1008,9 @@ static int pci_register_host_bridge(struct pci_host_bridge *bridge)
+ 	if (nr_node_ids > 1 && pcibus_to_node(bus) == NUMA_NO_NODE)
+ 		dev_warn(&bus->dev, "Unknown NUMA node; performance will be reduced\n");
+ 
++	/* Check if the boot configuration by FW needs to be preserved */
++	bridge->preserve_config = pci_must_preserve_config(bridge);
++
+ 	/* Coalesce contiguous windows */
+ 	resource_list_for_each_entry_safe(window, n, &resources) {
+ 		if (list_is_last(&window->node, &resources))
+@@ -3074,20 +3102,18 @@ int pci_host_probe(struct pci_host_bridge *bridge)
+ 
+ 	bus = bridge->bus;
+ 
++	/* If we must preserve the resource configuration, claim now */
++	if (bridge->preserve_config)
++		pci_bus_claim_resources(bus);
++
+ 	/*
+-	 * We insert PCI resources into the iomem_resource and
+-	 * ioport_resource trees in either pci_bus_claim_resources()
+-	 * or pci_bus_assign_resources().
++	 * Assign whatever was left unassigned. If we didn't claim above,
++	 * this will reassign everything.
+ 	 */
+-	if (pci_has_flag(PCI_PROBE_ONLY)) {
+-		pci_bus_claim_resources(bus);
+-	} else {
+-		pci_bus_size_bridges(bus);
+-		pci_bus_assign_resources(bus);
++	pci_assign_unassigned_root_bus_resources(bus);
+ 
+-		list_for_each_entry(child, &bus->children, node)
+-			pcie_bus_configure_settings(child);
+-	}
++	list_for_each_entry(child, &bus->children, node)
++		pcie_bus_configure_settings(child);
+ 
+ 	pci_bus_add_devices(bus);
+ 	return 0;
+-- 
+2.25.1
+
 
