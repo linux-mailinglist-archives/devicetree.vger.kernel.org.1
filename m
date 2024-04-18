@@ -1,133 +1,122 @@
-Return-Path: <devicetree+bounces-60466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 618788A9655
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:38:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 487268A966B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1933F283B19
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:37:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E650D1F2338F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F2615B104;
-	Thu, 18 Apr 2024 09:37:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qzhdWhRS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F49715B125;
+	Thu, 18 Apr 2024 09:41:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0420A15ADB7;
-	Thu, 18 Apr 2024 09:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C6715B109;
+	Thu, 18 Apr 2024 09:41:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713433074; cv=none; b=OEvYlTt00ZOx7w7Rzd3iV0J/OJ46aVMg0yM6fC5D52lwT/hhKjriu+kz4GUq2OPk9YQiDWvbwGnMM9RwmEzcfPJZ+mK5A01tr66d1dEAv3ISUbcUyqsebOo1sBZP22clZDuyjQ0Vnt7VOKpy01UZquE3XUOL5K5Vn8Dh+aG4wXk=
+	t=1713433269; cv=none; b=Cu7mzS2CoN5cTlidR7aa6BNiEIEMipFIuYcmKxYteYaMLSyPgGkNlXRXw1kQIIbEUZfAaKdn7qXVb0bIJPWiOmcpQrBr+FJsUMVS/xSsCGr/HcaMoL8acylkCCJ4iRbW72e06y7/5W6n/OOVDPhdFzPIrMNRUmvFtnREmo2tm5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713433074; c=relaxed/simple;
-	bh=xTTRylhxTMNxuBPyF0ZhqgtTHDOevThfPc3RUW/tG/c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HSyVLGyHK6QDsjYsF9QOWHt+CfdeAb1YWq82nSdQdmISKIAQzQ9bdkvVv1I45yJK1uJumEqyQRbr15MLu99hJaeeZ+spTkWKPQ2qXpyY5VqfhQSPGdYeGN78xiosFAfte0R24OKRCMcQw9lSjzaID5cypQ/A3owmmdo7E/b4Vxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qzhdWhRS; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713433071;
-	bh=xTTRylhxTMNxuBPyF0ZhqgtTHDOevThfPc3RUW/tG/c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qzhdWhRSZDUQAR3tcksUDkxqnZpVvM6wSVUDbGme+YCwaZ6VCN6zVZCwj4V82tqTF
-	 SGtlShSYstZUYS6Hm7D+qpZT8L0IOFgbR7EYbqi75tbyHpg/VwjmUO8LdkT5WI1lEy
-	 Cguc92jAtUWBprkFt7MpVm3RLHbc5elQ3cn5TV6G9FADJw4mV/E9CeeAxuIYikY17V
-	 eT7ya0NbDgfsm2JDBvqqfQbUFf/c+KnVitUuAAGJyVIohYZli06fFcALDWyT4Iv9Xd
-	 7Zve4oKydMyuemER0dwuub0KPc873KsZjt+SfIh8h5kp95S2G8in9vhLbZO6cY5Pbm
-	 hJN6qqUkgC5jA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8A90737813E3;
-	Thu, 18 Apr 2024 09:37:49 +0000 (UTC)
-Message-ID: <8e572021-f872-48c7-bebb-e33e7ed7acf1@collabora.com>
-Date: Thu, 18 Apr 2024 11:37:48 +0200
+	s=arc-20240116; t=1713433269; c=relaxed/simple;
+	bh=X7mmMSW7WStS5uGM2nHr9Jyj4I7qxPWCtETwdZg8xmQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pu4+REh1C+/6B94XAGypToVLun34asbth/z2vesmCkOaOd2c97m6E6DVRqQxRqQuZmZ1oZGo6TnswHrnn7dTYvYUGQoRN0saoXlfERlW7DBxKbBto2Pc6y3lruBJKMF1G3BaahCfrdnue3+S9okQVm5DJiliUFEQBE81SdqsF5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-61acfd3fd3fso6439747b3.1;
+        Thu, 18 Apr 2024 02:41:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713433265; x=1714038065;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kkbR5FG9nHCaDQQ83/fhCPl692MGBzI0gOcU1PXseUQ=;
+        b=nYXdEE43IhQ0T+43wzBAEjMNSxggzS7nmbjKVjEZ8k3uLBOM2epVN+oyVrvTxwBt1j
+         B+VqflqEHyT0KOwQ4hAUiLtzHGCyIQn5mNOpN1MSkdBkiVWayQdVD+hDCFEMhhWRV/0t
+         95GMfTXCQ3HiN1HfQCQb5R6ou8hF48glPwufu5IuH8lR0gwua51vC0psPCoas3aLAQPw
+         oZnBuRgtoZYMcmTGqrZLuYEp5KAtfKQU3juJ60CeEp4qmDux5LhsdnugLtIwBVSDYGT4
+         UWLjFtvyMsKPQkKm86r9hq4PB98YyYFG1aNYQMqWmd1+4GD9Srn1hQ9OM9lE2hGfGmdO
+         UTnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVEAasNiKcb72O6m7MlG4OJj/TCkcsEAji4RtPrI6Bvvl44ycy7DgC6v2aiT6wiXn8wl+JBJzMPqPAYHuXBSlxbbWMHDVgdbzSol3TCJZOkTUB/+x/cnCmiSmhbFK75YNcw0tDBLXR8c1WcKpMiuKd2xsRra4u/QTxo7Sxc4KVAPq6RwBFS6i1NUpH6jAwdidnll9r0cVXSk9KKKL8KdUUqUxB
+X-Gm-Message-State: AOJu0YxNeX/5VX/+rsBOuA/3H/csqzCQizu5hq94Pc/WwFshO+Ra4eHh
+	sP03UFHxZcJPmDeU99cyujtyqst3Ij0OgggNxWTbnBQTACGzQkraT5DPXE1DtiI=
+X-Google-Smtp-Source: AGHT+IEn54X5uiU3BE/DsxoFMqWcHS+NO5BYsT3yK2uQg5vWljAHSopORNAwPm2fiBzKzrL40NJJ4Q==
+X-Received: by 2002:a05:690c:6082:b0:60a:6ad0:6c72 with SMTP id hg2-20020a05690c608200b0060a6ad06c72mr2230224ywb.36.1713433265624;
+        Thu, 18 Apr 2024 02:41:05 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id g125-20020a0ddd83000000b0061b06ae1d09sm261308ywe.29.2024.04.18.02.41.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 02:41:04 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-de45385a1b4so749987276.3;
+        Thu, 18 Apr 2024 02:41:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVwYCQt7oozfMLbG4YCH4/ioBH2L9rZZwTwfs7cZgBWfVcRKB36P6MjENpsPUP9aGxaudpftg/CX6Xrt/qARjs+nTwIun9sZZWlf4Pw3jnRD2gKOQZGWlL2eUU1QN1EbGpjGpGHtFyXd6SeHW/YpXPYqoOnXaHW+Ux1NzYyVCyXaIlhyOPdi3Mqn+IU8YXxdj8iIAT2HQSwoMLBhP2EmPvrBB0V
+X-Received: by 2002:a25:4a46:0:b0:de0:de85:e388 with SMTP id
+ x67-20020a254a46000000b00de0de85e388mr1985378yba.24.1713433264294; Thu, 18
+ Apr 2024 02:41:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] dt-bindings: soc: mediatek: Add DVFSRC bindings
- for MT8183 and MT8195
-To: Rob Herring <robh@kernel.org>
-Cc: henryc.chen@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
- wenst@chromium.org, gustavoars@kernel.org, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
- conor+dt@kernel.org, kernel@collabora.com, amergnat@baylibre.com,
- linux-pm@vger.kernel.org, keescook@chromium.org,
- linux-arm-kernel@lists.infradead.org, lgirdwood@gmail.com,
- djakov@kernel.org, broonie@kernel.org, linux-kernel@vger.kernel.org
-References: <20240418082812.152270-1-angelogioacchino.delregno@collabora.com>
- <20240418082812.152270-4-angelogioacchino.delregno@collabora.com>
- <171343301130.424721.10758711321868587171.robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <171343301130.424721.10758711321868587171.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240415-rzn1-gmac1-v3-0-ab12f2c4401d@bootlin.com> <20240415-rzn1-gmac1-v3-1-ab12f2c4401d@bootlin.com>
+In-Reply-To: <20240415-rzn1-gmac1-v3-1-ab12f2c4401d@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 18 Apr 2024 11:40:52 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUZJf=mL4bNik6ausMi9jOb9DegwX4ovLjdVLmnf7Sobg@mail.gmail.com>
+Message-ID: <CAMuHMdUZJf=mL4bNik6ausMi9jOb9DegwX4ovLjdVLmnf7Sobg@mail.gmail.com>
+Subject: Re: [PATCH net-next v3 1/5] dt-bindings: net: renesas,rzn1-gmac:
+ Document RZ/N1 GMAC support
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 18/04/24 11:36, Rob Herring ha scritto:
-> 
-> On Thu, 18 Apr 2024 10:28:08 +0200, AngeloGioacchino Del Regno wrote:
->> Add bindings for the MediaTek Dynamic Voltage and Frequency Scaling
->> Resource Collector (DVFSRC), a hardware module used to collect all the
->> requests from both software and the various remote processors embedded
->> into the SoC and decide about a minimum operating voltage and a minimum
->> DRAM frequency to fulfill those requests in an effort to provide the
->> best achievable performance per watt.
->>
->> This hardware IP is capable of transparently performing direct register
->> R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  | 94 +++++++++++++++++++
->>   1 file changed, 94 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.yaml
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.example.dtb: system-controller@10012000: regulators@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/soc/mediatek/mediatek,mt8183-dvfsrc.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.example.dtb: system-controller@10012000: interconnect@1: Unevaluated properties are not allowed ('reg' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/soc/mediatek/mediatek,mt8183-dvfsrc.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.example.dtb: regulators@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt6873-dvfsrc-regulator.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.example.dtb: interconnect@1: Unevaluated properties are not allowed ('reg' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/interconnect/mediatek,mt8183-emi.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240418082812.152270-4-angelogioacchino.delregno@collabora.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+On Mon, Apr 15, 2024 at 11:18=E2=80=AFAM Romain Gantois
+<romain.gantois@bootlin.com> wrote:
+> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+>
+> The RZ/N1 series of MPUs feature up to two Gigabit Ethernet controllers.
+> These controllers are based on Synopsys IPs. They can be connected to
+> RZ/N1 RGMII/RMII converters.
+>
+> Add a binding that describes these GMAC devices.
+>
+> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> [rgantois: commit log]
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 
-Whoops. Forgot to update this one. Sending v4.
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
