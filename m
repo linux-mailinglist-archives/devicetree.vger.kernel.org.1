@@ -1,129 +1,123 @@
-Return-Path: <devicetree+bounces-60634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065CF8A9DAB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:54:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64C18A9DBC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:58:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D1EF1C219B4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:54:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C4801F2363C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA248168B06;
-	Thu, 18 Apr 2024 14:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ejI4EaRZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4649316ABFA;
+	Thu, 18 Apr 2024 14:57:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268CC168B11;
-	Thu, 18 Apr 2024 14:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D716016ABC0;
+	Thu, 18 Apr 2024 14:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713452070; cv=none; b=AIS9ekBeVMWkfFLCuDj/F/TlSKPyyUfTnu+Rg7oKiCVEPXG3TAm1rumTGQVMcH5lgbJZHP6xUu/EWI6dbwlQ7Bi9oDqCF3j4T3sSdrBJnkvyzYKNPMJhwl6p1XCLigPb0HLGkwWak9LwQ/1446om5DUtoTQCs0hpreYtNKCJjMs=
+	t=1713452272; cv=none; b=lVoVq8Ol+RGwPirRLPwm6OrVitRr6JACdDWCudwox0++VYXnK/NnaTP2yY1+zGbWKSgC/BS4xKsYs54jgFOqOqzZpcw3gMPFGgv5qZXeNSvb5of9M2DLsjgW31v/RCoIj4953f1O3EqUq5SweN3aIb5gTOEnVzkK8Q4HO6vdlhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713452070; c=relaxed/simple;
-	bh=OvGBkvFoWVsZGonrRvzCmb0bTHJXTs/4/G/PWLo4Ruw=;
+	s=arc-20240116; t=1713452272; c=relaxed/simple;
+	bh=Eb/EVSMY879H2500DGFBLbJRSwhWpGh81TIuhr6YDhc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=niJBsbVOcTrMd4QqiwBjj3ZXcowgEkcdIZQQ2JtOXo6+iHrVK7IM1zdnImdJw4yfMX/DUlPbjjg6QwlfhyrLMfsNwLwr0yPeJIAMDnxo+zZNe1OOCiFAViTpmW1PBzAAUcrhk5hacDbvZyYEz6lTijChvRE5raTSO0nvUB3TiAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ejI4EaRZ; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=UDDSyr/A5q1p1XAU+iT/QcsASGoNBxCq2RbghyPWwzH44c+lIp+pMkhN3/19bBEqD2MZVK8Bpg6NP+x4yCz/DsYNqKY1XgfIHFCqbuGP+fP7Nf/GH37y9Eqf+fQV8gmAnu86YI303twzHMuyL6D9fTZpF+SDSnB12O+mzMdJD/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34a32ba1962so296212f8f.2;
-        Thu, 18 Apr 2024 07:54:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713452067; x=1714056867; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OvGBkvFoWVsZGonrRvzCmb0bTHJXTs/4/G/PWLo4Ruw=;
-        b=ejI4EaRZmJTO0TmoeEAKyrXH8dJZyWVcDROO4BZKsjLAxC56M+4zvvouW5/jTaQmGz
-         YBEEhxKB7pEenbsCBQCnyHtVPKygNUVARV/biy03bAFbT3FgKdZ6vxPdfCgfVigFKGqe
-         shOWhz1rgTmRMuty/OPoRqcclcZEt+alS7mavnYURDSg6mOLHtQKHjsKYNpFklLykKap
-         Veq+UJc4hDmMvtAZRDaL11tWyjnq9umNIqW142DcDR+Xbel2DQgkF/cn9xDqSaWrVNOm
-         CfUY0Zdgce3c9qEsZkPtDMF50yrzCyFO2JOnuy0ZLeTdwIkHpPA5gKnWI8JGg7tFe0tC
-         SHTg==
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc742543119so1112327276.0;
+        Thu, 18 Apr 2024 07:57:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713452067; x=1714056867;
+        d=1e100.net; s=20230601; t=1713452269; x=1714057069;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OvGBkvFoWVsZGonrRvzCmb0bTHJXTs/4/G/PWLo4Ruw=;
-        b=Ls4O9r68W/DmoWBMH5IBZo/im2u+f9RWAxT3xPEyUFt0BVdbqJKO+erhc3Y4fbmawY
-         vJwBuVMq5nieH1ts8pCcz+N0JVRMeBpIw3oQY6/JShAXrByix+G4KLt94InkKF85xzat
-         N+q5QFzgC2LQ8f6VoUgxr1YPOL5EslnLqYy0vG3vFp8klRU4AQ7r10jg9SE7Yfm81IIS
-         BWL4DXYyPZ5/l17OH6d/+W2DuHIgqvIlrQku4lpGnPCqwUDNaUkr4TNMU0gsF9tRTbTI
-         nEmt5h9CK2KNpnK6NQhAHLuNwWpBXqxx8IK9h1UZROboerbsNZRTUOih+z/FFy0xo2AC
-         zBkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWPz0AS3mJ6bekTsVKgzT/NkWQFxMjHCwEG8uQi5jJwE3s1jW2+dNNtq3vxhQNR76elBAsGTe5uN0YNUenBl9aWuEi3qgz6m+MOn4wRzVmA+hY/7S0Vaovxiy8CQW0B6gSvQ8x7Y/724g==
-X-Gm-Message-State: AOJu0YybqAYmGCQX1KA64vefZ3RA9ZSXlPhIY8zozR61mACeL5G/J4bi
-	DrJdRU6KYh8txfVhl09JgHD82I3FhNq7BVDa4Ta+ovpuff25cXf2GEkaaar2BN6zr67WLhQa11G
-	fM5ItDkCHJzyxVg9ixYkAjFPGOi8=
-X-Google-Smtp-Source: AGHT+IF1GOB+9k0yqpKSFsOcg6dnXs0PLwnWjCVD16905JB4IckCABWiGjTamMXxYATZwLvowgjCD80p4Zu9jj0+CjI=
-X-Received: by 2002:a05:6000:1:b0:346:d2c0:7682 with SMTP id
- h1-20020a056000000100b00346d2c07682mr1734554wrx.30.1713452067341; Thu, 18 Apr
- 2024 07:54:27 -0700 (PDT)
+        bh=tBkk7IToPf8pTng3q6RoyHKsGOCoZ6cSUuNVh7MUIdE=;
+        b=RPH85LIOwF3MZezkmlgMlGeHuk7ggQtIVMWoozkjNNj/5zwUf6y2lx+eWDILOZMBkM
+         IIV3zztkWEJKcIC1oEaowfOZZjBx4WAQVnUjQQOL9YeaS8mxSCFOA/KMK8SnovhIqymC
+         YM8RzkcAXzazlr0AmOzJLEi56qlm4cxSBpqnNWonYhsXbpu4cOlGVnu5hUk9nc9sGZ5X
+         TC01lg4m3DZaFRk3bI/2TsYD/3HlLho+qIDw4RrmdeLWIFXbNtOvcmKFnzVjeLd36xnn
+         7MFx4yaqAZQbHIsDLj81YE1Z7Rug0+S5umok0GQXKuoNfAEI+/9pwKyiMcaJGtIlB6p3
+         GnsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX+QNy9iNZ/mkuoqIlQmNtDGiZEm4if6HeL8Vanh5Nlo3GqyT/m7qOe1mEZkTuaZwZJ8NL/uxLTF4XwDMFGSMQGoLVGkMJOXRuVYy66MJ+P+hMblLZUYU9U0f6EQAGds6+7acFuK34hjHHn71a8yIW3OHGU7zRJ5wHQN+Ep8LsL+BZH+dkCaOu6I7Lx
+X-Gm-Message-State: AOJu0Yxw5EzKYBO+4HnXimx75hMgofn7orAgVVrGtugmG860+YHkyuWa
+	h6bZizgdrEb8BWcDH/xHjDTHxk/xAjAg0mdj5B6yN/Wp50zCfmjT+DIIwhxE
+X-Google-Smtp-Source: AGHT+IGIyMJFVhgtnxFONQA1/XGvMga9mv7jVfqh26rTZKafJEORDSLkz8+VMvLteIzHPdwn0CkxxA==
+X-Received: by 2002:a25:d30c:0:b0:dcf:f525:2b81 with SMTP id e12-20020a25d30c000000b00dcff5252b81mr3078678ybf.46.1713452268895;
+        Thu, 18 Apr 2024 07:57:48 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id z18-20020a5b0e92000000b00dcdb0f80b69sm385665ybr.48.2024.04.18.07.57.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 07:57:48 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-61ac45807cbso10236837b3.1;
+        Thu, 18 Apr 2024 07:57:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX+jo2g0pGOU4qUqoLAoHPzXT/8xDJd8Sv7jEcqhCgPKQveMA1Pr94dZfymlvy2c2cywmNYUKyFqvhJhfJ1FBCd3M+THOgajLCoIxbiwSB5wdLzZdCiTLpRU85lrdP8PHNXjQ+XGqYVIEgU3BBi9IztRIW0n8kBx4TYLF5kHOLvKA+vZ7hyPt1or0Tb
+X-Received: by 2002:a25:aaaa:0:b0:dcc:2f09:4742 with SMTP id
+ t39-20020a25aaaa000000b00dcc2f094742mr2918100ybi.51.1713452268112; Thu, 18
+ Apr 2024 07:57:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <linux-mm@kvack.org> <20240416120635.361838-1-skseofh@gmail.com>
- <20240416120635.361838-2-skseofh@gmail.com> <Zh9l_LpThq9aFUR7@kernel.org>
-In-Reply-To: <Zh9l_LpThq9aFUR7@kernel.org>
-From: DaeRo Lee <skseofh@gmail.com>
-Date: Thu, 18 Apr 2024 23:54:15 +0900
-Message-ID: <CAATEi5kywwC2yUaYjgs+Gm=4HM5o=KHTqH1ALKJijWE_gge0=g@mail.gmail.com>
-Subject: Re: [PATCH v2] memblock: add no-map alloc functions
-To: Mike Rapoport <rppt@kernel.org>
-Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
-	Daero Lee <daero_le.lee@samsung.com>
+References: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240403203503.634465-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240403203503.634465-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 18 Apr 2024 16:57:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVmat=o-+_KX+G275SEcdC-OxAjOw5CS-rag9ZxnQFHfg@mail.gmail.com>
+Message-ID: <CAMuHMdVmat=o-+_KX+G275SEcdC-OxAjOw5CS-rag9ZxnQFHfg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] riscv: dts: renesas: r9a07g043f: Add IRQC node to
+ RZ/Five SoC DTSI
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2024=EB=85=84 4=EC=9B=94 17=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 3:03, M=
-ike Rapoport <rppt@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> On Tue, Apr 16, 2024 at 09:06:35PM +0900, skseofh@gmail.com wrote:
-> > From: Daero Lee <daero_le.lee@samsung.com>
-> >
-> > Like reserved-memory with the 'no-map' property and only 'size' propert=
-y
-> > (w/o 'reg' property), there are memory regions need to be allocated in
-> > memblock.memory marked with the MEMBLOCK_NOMAP flag, but should not be
-> > allocated in memblock.reserved.
->
-> This still does not explain why you need such regions.
->
-> As Wei Yang explained, memblock does not allocate memory from
-> memblock.reserved. The memblock.reserved array represents memory that is =
-in
-> use by firmware or by early kernel allocations and cannot be freed to pag=
-e
-> allocator.
-Thank you for your comments. I used the wrong word.
-When I use 'allocate', I mean that the region 'adds' to the memblock.reserv=
-ed.
+Hi Prabhakar,
 
+On Wed, Apr 3, 2024 at 10:36=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> If you have a region that's _NOMAP in memblock.memory and is absent in
-> memblock.reserved it will not be mapped by the kernel page tables, but it
-> will be considered as free memory by the core mm.
+> Add the IRQC node to RZ/Five (R9A07G043F) SoC DTSI.
 >
-> Is this really what you want?
-If my understanding is right, before freeing (memory && !reserved)
-area, we marked the memblock.reserved regions and memblock.memory
-regions with no-map flag. And when we free (memory && !reserved) area,
-we skip the memblock.memory regions with no-map(see
-should_skip_region). So, I think that the memory regions with no-map
-flag will not be considered as free memory.
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-If there is anything I think is wrong, feel free to correct me.
+Thanks for the update!
 
-Regards,
-DaeRo Lee
+> ---
+> v1->v2
+> - Dropped using SOC_PERIPHERAL_IRQ() macro
+
+and change the bus-err interrupt to from EDGE_RISING to LEVEL_HIGH,
+to match the documentation ;-)
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.10, with patches 4/5 and 5/5.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
