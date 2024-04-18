@@ -1,229 +1,207 @@
-Return-Path: <devicetree+bounces-60707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C30D8AA047
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:39:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F099D8AA0AB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:01:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 951E8B226E1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:39:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1B61F21DE8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C822217AD95;
-	Thu, 18 Apr 2024 16:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC2717109D;
+	Thu, 18 Apr 2024 16:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="rhPHwGcA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LR5SOtA8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2046.outbound.protection.outlook.com [40.107.21.46])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B29917AD8D;
-	Thu, 18 Apr 2024 16:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713458249; cv=fail; b=jTiKZFZUJd8NALgUdy86N2E2b5qM2S4QF8EH6cgE8p7gO9wtmMT58jq/Nso19Tdq+pqUCH7UicsHaOeJWkByC+7sJlXGIjAA3HbIo42Mvmu5/M+BMe30uN/cUIRzDB4c8rMY5FcPj3ofUK0Hu2SrwbPxmeY2r40njHggwj/FUBA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713458249; c=relaxed/simple;
-	bh=iABd3AXBm1528gmAK301whXV8Exmx1dF3ftflY3C/1g=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=MfC+sdrUnbTh4U9DBcSRvcjGZnw20EY8LUC4FhD2jpcJLhSkSiWiUentM3MsBJ/3iWtSMPN5byEGbnEZCuoKXJVe0wQPKWmA6d82aQPKXpVUErgL/7S9D4Nk9jfRrjWbxc3ewQ01rfDrK+GmBzq+aZevyWeIF9ADGX45uaYQpAE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=rhPHwGcA; arc=fail smtp.client-ip=40.107.21.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T/kHmWYoYgBdBjhA7jzZWaksdFKn4S+KfwR/upSH5KG1SK18Y9IWgr0kofkoK9nD4E0oubykXgvvVLGLcKMHODRNER0PFhZ9NuZ7N3lVB5DIrgK1SI1GYmZ/l6K+sADY109qiu/ze/B3V/340OoLVGxFKD6YBYyrmu8ZdRuhODBe6KwM4f3LQjogzjkp9hb2j77O/TxuyBm64EaiVllb8XvrDG1I9ZgSHShQ/ymbQeirvh+jhWtFSEbkSGEIC00jpONhPB5+uTni9lO7YbzcIcWvNTmF3iOu63N8mwrVu0njR1dJg3SC0tvZeFahjaryj5NRtOFe9fkIKduJ1YxYnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7yuPjruf6RlNTPh5lXCrWgoKwk8FTu49cksCCTIh3js=;
- b=dFyG0mJGalap6MbBpUg6N1fhJC+IH3HmIgRF2jc+O0QCCgCjhE4yYq39AuTiOhQvO6GE6gALdnmhNivEtyMaP9Fr/0/hPRdpZLBHkdjoGlAx/k71MoStzIHtpjlHjOvGJVj5ae5LdQeuKvp7Kt388n+KvT/vYP4R0fAv9PTwVvAcPGNhhGCAjIMS0vWEff/niOr0A+hQ4A4oIUohGfRTv+QujKKONii/6QcHDB8wbo7tOZiPrybjUPAmZnH8dQBOk5+xRtpUBtn5t7kCO6r3Vev8lFnHqUwAODn33RJgBjMAX8Tdl4BMLF4fEYWWdHNVnM83gTJKkXVHeEco0jBBwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7yuPjruf6RlNTPh5lXCrWgoKwk8FTu49cksCCTIh3js=;
- b=rhPHwGcAOvPAeh6WEr4hYoHnXtbdPHRVU562wP0nC/lpLXzaqJ+e9i389j6QxgG1yV5sRmuYs33AxW/hzLeL8PR8za175NBcgm8sEoqpSVJqCjgKAlH5zCFMJ0e91DFsKC6PkyWxUDuXAk6eTq5Yo2WTeXPfFdyTpGksW1HPNn4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB8681.eurprd04.prod.outlook.com (2603:10a6:20b:43c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.37; Thu, 18 Apr
- 2024 16:37:26 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.037; Thu, 18 Apr 2024
- 16:37:26 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Thu, 18 Apr 2024 12:36:45 -0400
-Subject: [PATCH v2 10/10] arm64: dts: imx8qm-mek: add fec2 support
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240418-dts_8qm_audio-v2-10-e40fe76b60a6@nxp.com>
-References: <20240418-dts_8qm_audio-v2-0-e40fe76b60a6@nxp.com>
-In-Reply-To: <20240418-dts_8qm_audio-v2-0-e40fe76b60a6@nxp.com>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713458209; l=2437;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=iABd3AXBm1528gmAK301whXV8Exmx1dF3ftflY3C/1g=;
- b=TIPMxU+8+Z5to+OVc214rWt2MNFlG8DZobQyL3xg49kOtIdWucluPwvviaizIBn/yb5GqjqWB
- dmohMeLLGYADWW5Isi6wpR/GQmZdElVGTBlrjeD3X9DRKd5JkwFYba7
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: BY3PR05CA0045.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::20) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA6C16F8F7;
+	Thu, 18 Apr 2024 16:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713459243; cv=none; b=THaULIbiTWQqztUthBEq2bVhqLX+sfZPSVTagCu2t3ogajUGG+bG0INv/XX1fNFNxuscJkaKdiKdyfSpo8fNyCJ1XJBOW4LV/ehe6f2+O9+02Gi1bjm7/8eP4lOIPGOKD7Rv4RIRhZ8iEOqNUAm5Gu/nNkhJGt/fC+kcD/BU+hE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713459243; c=relaxed/simple;
+	bh=Td96Pr2RLxCmccrLCbz0GSBYtl2efgCYqTBO4CPC85Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=etOstbJZuGlqIyr2vsSeJbrjOPeqVi0l4vNJGRSOrDpZ94wbxdqvAmfKfsqZMpIYvQptLtPpdmDrZEweyjUF0CYxs1uzUffLR/I5kHTX4buXdCybbKMBbWGuZjlPLi56W/iITqnZ1XMnOWogxneCGmpTfdXR+r3nN9ecZ1FGBHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LR5SOtA8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00F01C113CC;
+	Thu, 18 Apr 2024 16:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713459242;
+	bh=Td96Pr2RLxCmccrLCbz0GSBYtl2efgCYqTBO4CPC85Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LR5SOtA8WsHMP6vVIvV29C88LXwY4oD+ef/jdGjbN3bb54kSGt4EoJHQg89DKFlRi
+	 jJ5gOUQHX8QKRHrbQgrjvklqJroXZjGvGntVSvJ0JIClsi0k1C8TETJyXK1+EfQ9PR
+	 639TjYZyOQswbawi0oVjBq77Ithr9GznM+wr4uIy93snA3jlvZ74ZbfhtOqrKLLXAi
+	 42UUK6THGudljukfqbn7Tg0P1EtQCPLgssw+SO0QetYbyXIB7Q9vr862R7zLRENx88
+	 TjbVtJkE5kioS84t+pzUqjwDnGciFsuX3e4akgNc6bzc/0+1lkF/jK0QX8ROzMNrae
+	 oLckb+4wXzjVg==
+Date: Thu, 18 Apr 2024 17:53:55 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Eric Biggers <ebiggers@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Andy Chiu <andy.chiu@sifive.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>,
+	Guo Ren <guoren@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	Vincent Chen <vincent.chen@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	Joel Granados <j.granados@samsung.com>,
+	Jerry Shih <jerry.shih@sifive.com>
+Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
+ to ZVE32X
+Message-ID: <20240418-ultimatum-yam-11de4b063b83@spud>
+References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
+ <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
+ <20240418-brook-chili-4d3e61d1a55c@wendy>
+ <20240418155256.GA2410@sol.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8681:EE_
-X-MS-Office365-Filtering-Correlation-Id: a47df804-c8a4-469d-86cb-08dc5fc5d4a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	UOV3PfrQJob2dvm54gxr72VB2UrGJ8Ze4051d3+gcGkW3N08M1GkHMk/RD3tOKyX6PE/6JolpTFF8YuV6bPKBImJ053FQUvP6aOnwCgB+OBVvVaZJ8da7ZG2ubiAcDrgEtzxWZwhmH1SkiwuFkpqdP44sysagKPIPt3oqAo4xAwzQL6Dmi0S9c2BCiMZkoVbyLFwG55nV2k/rhsght08OHLZkOC5BShXwMdSgGsnAqlz/qNTsRRVoUJE0dXkj2v7DvlhOEgKGFGh400nPRjdPNxTk04Ro3weq93Pc0WLb8/z0RViFWR3Q2grvkUr5/JLEmDPZ5ZPbzhu7dK8QwJxeylDzwdb2I1iwuPCiMHf2ANVGQQ4C2BhavZRBOKi7zBi5Q0LrN1sPpe+8nMr9WWkvlQV206f/RWP+0DPBhJjaqDh+RZDg4o8wQn5oA7mCR4KcHYwHb1g32EwBSzbmxRlwrBeFwHrg/CJUcUC7nX6Ckq0xaj21DeR6oXmuxRo5U/10HEg8mO1VsguFtUhHfP5La1Sfx/Bj105sg0LjqkomK/w/U4SwxTcdrFK6rmGbkKKWssOmr57cM7VjsjUsBP4UYA4fPO5sg6pMDaQzowGTYObpg6W3/zfk/rMYegUdxm0aSnhc26QFtQnqtgDkC2geofjUwEOay4t6JsXMP/1g573aOpLpl4lYPu2iQ2ccfznQ4LnQH93sSyNAYABn/uo+A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(52116005)(376005)(366007)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bnR2OHhXcGdCYStSeW9wSHhIRlVpUUFtL2lEZzVWbmNlcUdkMTlKeVBJbUJ2?=
- =?utf-8?B?M1JxMmNvK3gzNXkyTHlZUlpOQmRRTFJQbVdLTk1VYzk4cmVDS2pIRVZOK3JZ?=
- =?utf-8?B?Z1VZRHJzeDN1WTBzaFVzeXJqOW4rYXZTUlBjMFQ3Qjlvd2ZVQXZjcnNBbzNY?=
- =?utf-8?B?OWpvN2FTTmhwMTZYL3orSWtLWVBRWGV2QXVlNzJsdnBJYm9QZW42Um5mYmNw?=
- =?utf-8?B?d1dEcFpNNXl2UTEwWkxnUDNrbFFvc2RxTlo1TGxBaU5hTFNRTm05S3VTMFhr?=
- =?utf-8?B?b2IzN29YMURqVXJGOFo5Ui9aY0ZuK1lQdFZFWWRSNXJXNkdLSU5DU3hPS0NO?=
- =?utf-8?B?RTlqQkd4YzVicjBsdW1qVXV6VlF4SjRsL1Rqa2tyOHlveHB4aDdFR3hXWnhk?=
- =?utf-8?B?TkNnUklaNkMxRUJLUkw4am1UT0FOMVJwVFVCenpxV1JoZU5BbHJqZGw0L1I5?=
- =?utf-8?B?WkwzSDdoVFg1UUx6Z1lNbk9sbjc4endjam5tOTR1WkgrendVUU5oM1RoQSti?=
- =?utf-8?B?ZmVQUHRQSGFqVW1IUGNLUlZtVkxvWkc4RS9nOGdEVHJaYzNSWVJ6bVlBSGF5?=
- =?utf-8?B?TjJBcVpZV0NxS3RhT3FmNWQ2Q1ZDMmpCNE9DaFFvSWZXWktRVjBEdTV1Y09E?=
- =?utf-8?B?ckIzaWl5YnlHOVVIVlgxZllWWVAzWDRzaXNKczVvSWN2cWVKQmRtVEQyTGJK?=
- =?utf-8?B?RzRIekhGT3ZxQ3VxMW82VDVUbVVabkZHS3dTeXJ3TEdsUExrMXJpeDBEcUh3?=
- =?utf-8?B?Qm96a1dscCtjMDdqTmVkVUN4YWc5MnNUUnZXTHM3M3doc2h2TkpVNFlZVXVP?=
- =?utf-8?B?b3J1OFVtYWkxVGM4Y0RwaGxPNVJqM1Z1TUowT2Y4TmxPTU1wZzkwYUtTWVFV?=
- =?utf-8?B?eVpTZU5nRC9UbXJBZDJ1Z0FCTnBMUURlTWtybUZmZXkreVZVajNsci9aVllC?=
- =?utf-8?B?Mk1oNDhwQ0NENW9CbGlhZHlwWk1LNWk3dnBmQWdwaXdGSEdGNjRSbVNGMVMr?=
- =?utf-8?B?VzNIVkdSa0F4SmgxbHdRWXJleWpreEU4TW95bTRuTkhBd25JUjZyUTcwUGJv?=
- =?utf-8?B?ZFRScXJ5NWJ4eEVoRGxmdzZWcW5hdk52Y0hML01HTmhKdVZPcTFXRVNpRG5p?=
- =?utf-8?B?QU1iNDhlOVdNUHp5dzVuMXM3ZnpZbHh2VUsvdlM3bHREdFg3eGRuV1JlZjdT?=
- =?utf-8?B?TmsxTWlYSGJiNzBTZEJ5UVVkb1dsY2hKcURiaEl4SEo5azJYVlNtMXRnLzFj?=
- =?utf-8?B?SjFpbkNOMzJ5UzI3TmFobU9xempsaXJFdnUrUTlFeFduOGZiQWlpYzVYN1Jh?=
- =?utf-8?B?Vy81UU5zZ05OaTdCOXp6bDNWZllZeFBPdVRxZXdHdVNKMlFVMlFJRURwSXlV?=
- =?utf-8?B?dWIweFVBTEZseU11SXdmQm1vTkwwSVNCSUFUTzk0VDRBbWFGajRwZE9VRXJl?=
- =?utf-8?B?YTJEb21pbnJqTTNWang3N0tIZFozWDBNWFhBUUtRUDJUUmw3NFk1eUJTa3V5?=
- =?utf-8?B?VkoxQktONFEzVnVZYURJWVIwa21NOTNNYVBvMjNFU3BEc0YrUGNSNjE4QXdi?=
- =?utf-8?B?RlBUYXNEYk5HZm1Cc2ZhVmhLRGFLclNMRFkzOVlHVk10eWZaQ3UwN1FvVjJv?=
- =?utf-8?B?R3FZTHNURVB2ZVpoRTJHczRvazlXaGJyUDNEOFUxbzIvOFNUZ0U5UGpNekY3?=
- =?utf-8?B?Wi8zMHFsWTkyVDJoeFpEaG83OXhEd3dxendBN0k5dmM3dzV5aWlWcXo4NmN5?=
- =?utf-8?B?ZHBhcXVMdzdnaWo0cTNRRjNtY2ZXLzAxc3VsWmJsYjBXN2ZmN01DOEpqWXE0?=
- =?utf-8?B?djc4bThTaWhDYTFVNUZKSlVWK0t1VDQ1MnFQWkFFUmpqMHZrTEx2NFNaVlNv?=
- =?utf-8?B?Vk1QN0dqYjBvZzY2U0pzajBrVEkyZEtOcGxCUTVBUktWeWo0MzhQcXE0eWVC?=
- =?utf-8?B?Q0dkWS8zMHRIbGh0MnQvMk9mczR4ZFpTT3U4RGI4MDhvWHBxVVdsdnRIVFhl?=
- =?utf-8?B?M1hvQVlrQnF2ZEk3amdpQUExbC9LdmVrKy9YcGdxQTB1ZEQ3R0Y2ZkFzS0VW?=
- =?utf-8?B?WjNrRlBYYnIxT3hIcnB0c280ck1JZDBOcXN3eHJBbjYvZWp2VHZmUjNtcURK?=
- =?utf-8?Q?v5wOkaPF3rtAdKsdJGVpN+lcP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a47df804-c8a4-469d-86cb-08dc5fc5d4a7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 16:37:26.1643
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dT7tkF5oJL8DXsuXl+XiVAx1B6CVThUtQYWCS6xyBce8O3wadxuv1h0uGIgSYgluNFf4BaWYoiVo0SpvjHMazg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8681
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="caZE0P60wQJMi2ZH"
+Content-Disposition: inline
+In-Reply-To: <20240418155256.GA2410@sol.localdomain>
 
-Add fec2 support.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8qm-mek.dts | 40 ++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+--caZE0P60wQJMi2ZH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-index c8b24c46c30a4..09f2d3e76a3fe 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-@@ -40,6 +40,15 @@ reg_usdhc2_vmmc: usdhc2-vmmc {
- 		enable-active-high;
- 	};
- 
-+	reg_fec2_supply: fec2_nvcc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fec2_nvcc";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&max7322 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	reg_can01_en: regulator-can01-gen {
- 		compatible = "regulator-fixed";
- 		regulator-name = "can01-en";
-@@ -382,6 +391,19 @@ ethphy1: ethernet-phy@1 {
- 	};
- };
- 
-+&fec2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec2>;
-+	phy-mode = "rgmii-txid";
-+	phy-handle = <&ethphy1>;
-+	phy-supply = <&reg_fec2_supply>;
-+	nvmem-cells = <&fec_mac1>;
-+	nvmem-cell-names = "mac-address";
-+	rx-internal-delay-ps = <2000>;
-+	fsl,magic-packet;
-+	status = "okay";
-+};
-+
- &usdhc1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_usdhc1>;
-@@ -501,6 +523,24 @@ IMX8QM_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B     0x06000021
- 		>;
- 	};
- 
-+	pinctrl_fec2: fec2grp {
-+		fsl,pins = <
-+			IMX8QM_COMP_CTL_GPIO_1V8_3V3_ENET_ENETA_PAD		0x000014a0
-+			IMX8QM_ENET1_RGMII_TX_CTL_CONN_ENET1_RGMII_TX_CTL	0x00000060
-+			IMX8QM_ENET1_RGMII_TXC_CONN_ENET1_RGMII_TXC		0x00000060
-+			IMX8QM_ENET1_RGMII_TXD0_CONN_ENET1_RGMII_TXD0		0x00000060
-+			IMX8QM_ENET1_RGMII_TXD1_CONN_ENET1_RGMII_TXD1		0x00000060
-+			IMX8QM_ENET1_RGMII_TXD2_CONN_ENET1_RGMII_TXD2		0x00000060
-+			IMX8QM_ENET1_RGMII_TXD3_CONN_ENET1_RGMII_TXD3		0x00000060
-+			IMX8QM_ENET1_RGMII_RXC_CONN_ENET1_RGMII_RXC		0x00000060
-+			IMX8QM_ENET1_RGMII_RX_CTL_CONN_ENET1_RGMII_RX_CTL	0x00000060
-+			IMX8QM_ENET1_RGMII_RXD0_CONN_ENET1_RGMII_RXD0		0x00000060
-+			IMX8QM_ENET1_RGMII_RXD1_CONN_ENET1_RGMII_RXD1		0x00000060
-+			IMX8QM_ENET1_RGMII_RXD2_CONN_ENET1_RGMII_RXD2		0x00000060
-+			IMX8QM_ENET1_RGMII_RXD3_CONN_ENET1_RGMII_RXD3		0x00000060
-+		>;
-+	};
-+
- 	pinctrl_flexcan1: flexcan0grp {
- 		fsl,pins = <
- 			IMX8QM_FLEXCAN0_TX_DMA_FLEXCAN0_TX            0x21
+On Thu, Apr 18, 2024 at 08:52:56AM -0700, Eric Biggers wrote:
+> Hi Conor,
+>=20
+> On Thu, Apr 18, 2024 at 12:02:10PM +0100, Conor Dooley wrote:
+> > +CC Eric, Jerry
+> >=20
+> > On Fri, Apr 12, 2024 at 02:49:03PM +0800, Andy Chiu wrote:
+> > > Make has_vector take one argument. This argument represents the minim=
+um
+> > > Vector subextension that the following Vector actions assume.
+> > >=20
+> > > Also, change riscv_v_first_use_handler(), and boot code that calls
+> > > riscv_v_setup_vsize() to accept the minimum Vector sub-extension,
+> > > ZVE32X.
+> > >=20
+> > > Most kernel/user interfaces requires minimum of ZVE32X. Thus, programs
+> > > compiled and run with ZVE32X should be supported by the kernel on most
+> > > aspects. This includes context-switch, signal, ptrace, prctl, and
+> > > hwprobe.
+> > >=20
+> > > One exception is that ELF_HWCAP returns 'V' only if full V is support=
+ed
+> > > on the platform. This means that the system without a full V must not
+> > > rely on ELF_HWCAP to tell whether it is allowable to execute Vector
+> > > without first invoking a prctl() check.
+> > >=20
+> > > Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> > > Acked-by: Joel Granados <j.granados@samsung.com>
+> >=20
+> > I'm not sure that I like this patch to be honest. As far as I can tell,
+> > every user here of has_vector(ext) is ZVE32X, so why bother actually
+> > having an argument?
+> >=20
+> > Could we just document that has_vector() is just a tyre kick of "is
+> > there a vector unit and are we allowed to use it", and anything
+> > requiring more than the bare-minimum (so zve32x?)must explicitly check
+> > for that form of vector using riscv_has_extension_[un]likely()?
+> >=20
+> > Finally, the in-kernel crypto stuff or other things that use
+> > can_use_simd() to check for vector support - do they all function corre=
+ctly
+> > with all of the vector flavours? I don't understand the vector
+> > extensions well enough to evaluate that - I know that they do check for
+> > the individual extensions like Zvkb during probe but don't have anything
+> > for the vector version (at least in the chacha20 and sha256 glue code).
+> > If they don't, then we need to make sure those drivers do not probe with
+> > the cut-down variants.
+>=20
+> As far as I know, none of the RISC-V vector crypto code has been tested w=
+ith
+> Zve* yet.  Currently it always checks for VLEN >=3D 128, which should exc=
+lude most
+> Zve* implementations.
+>=20
+> Currently it doesn't check for EEW >=3D 64, even though it sometimes assu=
+mes that.
+> It looks like a check for EEW >=3D 64 needs to be added in order to exclu=
+de Zve32x
+> and Zve32f implementations that don't support EEW =3D=3D 64.
 
--- 
-2.34.1
+Cool, glad I asked then :)
 
+> If it would be useful to do so, we should be able to enable some of the c=
+ode
+> with a smaller VLEN and/or EEW once it has been tested in those configura=
+tions.
+> Some of it should work, but some of it won't be able to work.  (For examp=
+le, the
+> SHA512 instructions require EEW=3D=3D64.)
+>=20
+> Also note that currently all the RISC-V vector crypto code only supports =
+riscv64
+> (XLEN=3D64).  Similarly, that could be relaxed in the future if people re=
+ally need
+> the vector crypto acceleration on 32-bit CPUs...  But similarly, the code=
+ would
+> need to be revised and tested in that configuration.
+>=20
+> > Eric/Jerry (although read the previous paragraph too):
+> > I noticed that the sha256 glue code calls crypto_simd_usable(), and in
+> > turn may_use_simd() before kernel_vector_begin(). The chacha20 glue code
+> > does not call either, which seems to violate the edict in
+> > kernel_vector_begin()'s kerneldoc:
+> > "Must not be called unless may_use_simd() returns true."
+>=20
+> skcipher algorithms can only be invoked in process and softirq context.  =
+This
+> differs from shash algorithms which can be invoked in any context.
+>=20
+> My understanding is that, like arm64, RISC-V always allows non-nested
+> kernel-mode vector to be used in process and softirq context -- and in fa=
+ct,
+> this was intentionally done in order to support use cases like this.  So =
+that's
+> why the RISC-V skcipher algorithms don't check for may_use_simd() before =
+calling
+> kernel_vector_begin().
+
+I see, thanks for explaining that. I think you should probably check
+somewhere if has_vector() returns true in that driver though before
+using vector instructions. Only checking vlen seems to me like relying on
+an implementation detail and if we set vlen for the T-Head/0.7.1 vector
+it'd be fooled. That said, I don't think that any of the 0.7.1 vector
+systems actually support Zvkb, but I hope you get my drift.
+
+Thanks,
+Conor.
+
+--caZE0P60wQJMi2ZH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiFQIwAKCRB4tDGHoIJi
+0gl8AQCH5jcR0fwp68BBBcX8uk063UxUZdEjt7Yt3nU+80K6GgEA64+MkNFk/ns9
+57UBSy8tcN6JCY0eSgoJEzI8o/6y4gY=
+=d1id
+-----END PGP SIGNATURE-----
+
+--caZE0P60wQJMi2ZH--
 
