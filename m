@@ -1,176 +1,137 @@
-Return-Path: <devicetree+bounces-60749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2789C8AA257
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDAA28AA2EE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A55DE1F2218D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:56:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FEE31F22E42
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2891017AD67;
-	Thu, 18 Apr 2024 18:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D539181BB2;
+	Thu, 18 Apr 2024 19:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a0AHG7C9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XZYxYOdF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A9616F843;
-	Thu, 18 Apr 2024 18:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932DD18133F;
+	Thu, 18 Apr 2024 19:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713466593; cv=none; b=nI0zSNzV8ofpWQXV2iO/SuEZh8YpDDPwKaSX3FuTbdlZK0kiAoLu3OoH4jhe0TiLteGW8L61mdbSZohv3Y5210QeIaC2ko2WIqMsmtWvkKK4D8J6uNXsDCTFGbgujKotBa4+K2OzaZVTvcnkmQZeAbX84qKGMJ5ZCzoVxhhysYU=
+	t=1713468980; cv=none; b=Y68W6hibdlskUKQdTAVH2/ni4cGPvHjSyAJCa/cjcFXhR6IrEiCK0I3YpFm+UTPnDXJ0YoT54S2S3sTO+giyBrNZxD8qEBDPzgCG77gfNHwa2DpyECR1i7jD7M/RVwDKSCL9YL8F8hkuJYVm74CBoQLK18iXbuJVrSxa9S4k5ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713466593; c=relaxed/simple;
-	bh=jCAIuFUcsXQf2F7fvZuri9i30DRCKKvTTUiYa7xsW0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nFp6QmBC5G5cMA11jHUIbGRRJt49X9PysZ8YU7tXAZYfxMN+6v157J9X+K/4v74IQvs4yGPVeh6gHBkBSpb1DatcsMfo58KEggm2lZ9d8ao6QEF+Pwf2dqUTiqG9S5bnDIgrSSfujD1SxkVNbUCCiBkyxify4EfdHsTNzq08guo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a0AHG7C9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43IGQNWO024563;
-	Thu, 18 Apr 2024 18:56:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=qZk8y/Ka/u6+JADvgAql2OoxA4UPD3xewpwj6kCAWPY=; b=a0
-	AHG7C9EO8horbYBCgv6ZOnlo4DI/5ZOrNYf0Gfs39j8OEEulizbmNxaykqjFneph
-	6XSUNSVaHQlM2h727TbYmdtqvTpQ107R47xYB9czYihDDIjNS2yUkLCskHGmzxiv
-	fig2uYmACdwHJtDjkEoAcddJaGgaWhKe8m8vTDDfCC66/4Mmg+N3W8A8s0r/Oy+h
-	Roc+Arsz5hMGtjsUwJqXIMlz4Apo7NcbgyMDh/zVU9H0LCMkjSpaeN6Gm2s8NN87
-	7phz8zsAWKp1wUw7AHl04I4FUddXt5+FBk1+0F6ORaTbdRFAwJDa6ajEYMoCNuv7
-	qKx68vQiZffe7h61jjEw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xk3chgyma-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Apr 2024 18:56:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43IIuGHq022654
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Apr 2024 18:56:16 GMT
-Received: from [10.110.67.157] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 18 Apr
- 2024 11:56:15 -0700
-Message-ID: <708e1adf-833d-4de5-9e94-406883337d16@quicinc.com>
-Date: Thu, 18 Apr 2024 11:56:15 -0700
+	s=arc-20240116; t=1713468980; c=relaxed/simple;
+	bh=ciSkl5jjmwVLGNqACw+Y9/FoiKB85ls6a6PyIFwTt5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=clgzS70mBGRRwk5sgKJGeL/bD/ZG22MC/DEmPA1xvsY0YAZSz3JAeVzDWCD3mRu81KU1+hL0DwnOtb6IC9qS1J12jt04j+lVErWPrR5tFBTXN1ZxMqKcNCf5nxgAbUAoQjsIfEkd/g8p75PcfutZCryXFr9gdO6bCttZ0MvSc/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XZYxYOdF; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713468978; x=1745004978;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ciSkl5jjmwVLGNqACw+Y9/FoiKB85ls6a6PyIFwTt5s=;
+  b=XZYxYOdFo6EyM9u6AP7w9Q/7ICOS3tGBWZUivjlOLmsRUB5RvrgcPIz8
+   /tAPFAUeeYalcKkJDIkrFFjNZmUO0xaYwXvmXhbMiEW55l1+ESdSEkkYN
+   ebsTmV0dcvtZdNYsiYYxHfDsUfOUm+tghUAv9Pw7QdroSjVUYt0GVVOX+
+   sYzQz7WNV4vFLdImW/1Bdgse0Z0eTHmE5E1hTB+d/GCgcqMs3z9hyO7xU
+   GzRV8Taz6h9tP0SDtxLRMZ2EjqNo0PIq9iuJeIBBdispdqXB2o4z5WN0w
+   UeIDnjVcNqUgWs1FxOKEWCGZAHm2Q3VpaxD8EfqbDL+kq4alrDcbfRXM1
+   g==;
+X-CSE-ConnectionGUID: 0kjjTXhiQnGfjU+EzV1fdA==
+X-CSE-MsgGUID: lMdC05ZERo6gDq8pyTkkFg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="26556358"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
+   d="scan'208";a="26556358"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 12:36:15 -0700
+X-CSE-ConnectionGUID: PuNa+9+fT2miWmb6tlExpA==
+X-CSE-MsgGUID: WnMTpszQTv6wTRC5wFCo6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
+   d="scan'208";a="23532035"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by orviesa006.jf.intel.com with ESMTP; 18 Apr 2024 12:36:13 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rxXYI-00099E-1L;
+	Thu, 18 Apr 2024 19:36:10 +0000
+Date: Fri, 19 Apr 2024 03:36:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	pthombar@cadence.com, Witold Sadowski <wsadowski@marvell.com>
+Subject: Re: [PATCH v3 3/5] spi: cadence: Add Marvell xSPI IP overlay changes
+Message-ID: <202404190319.hTksJJAv-lkp@intel.com>
+References: <20240418011353.1764672-4-wsadowski@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/2] dt-bindings: pcie: Document QCOM PCIE ECAM
- compatible root complex
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <bhelgaas@google.com>, <andersson@kernel.org>,
-        <manivannan.sadhasivam@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <quic_ramkri@quicinc.com>,
-        <quic_nkela@quicinc.com>, <quic_shazhuss@quicinc.com>,
-        <quic_msarkar@quicinc.com>, <quic_nitegupt@quicinc.com>
-References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
- <1712257884-23841-2-git-send-email-quic_mrana@quicinc.com>
- <51b02d02-0e20-49df-ad13-e3dbe3c3214f@linaro.org>
- <1d6911e2-d0ec-4cb0-b417-af5001a4f8a3@quicinc.com>
- <ce17f2dc-decf-4509-969e-e23bdef42eb9@linaro.org>
-From: Mayank Rana <quic_mrana@quicinc.com>
-In-Reply-To: <ce17f2dc-decf-4509-969e-e23bdef42eb9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RSiBnNvXK6tSleo8rK7kkNNw5PFWqMu-
-X-Proofpoint-GUID: RSiBnNvXK6tSleo8rK7kkNNw5PFWqMu-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-18_17,2024-04-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=999
- priorityscore=1501 impostorscore=0 bulkscore=0 malwarescore=0 phishscore=0
- mlxscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404180136
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418011353.1764672-4-wsadowski@marvell.com>
 
+Hi Witold,
 
+kernel test robot noticed the following build warnings:
 
-On 4/8/2024 11:21 PM, Krzysztof Kozlowski wrote:
-> On 08/04/2024 21:09, Mayank Rana wrote:
->>>> +  Firmware configures PCIe controller in RC mode with static iATU window mappings
->>>> +  of configuration space for entire supported bus range in ECAM compatible mode.
->>>> +
->>>> +maintainers:
->>>> +  - Mayank Rana <quic_mrana@quicinc.com>
->>>> +
->>>> +allOf:
->>>> +  - $ref: /schemas/pci/pci-bus.yaml#
->>>> +  - $ref: /schemas/power-domain/power-domain-consumer.yaml
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: qcom,pcie-ecam-rc
->>>
->>> No, this must have SoC specific compatibles.
->> This driver is proposed to work with any PCIe controller supported ECAM
->> functionality on Qualcomm platform
->> where firmware running on other VM/processor is controlling PCIe PHY and
->> controller for PCIe link up functionality.
->> Do you still suggest to have SoC specific compatibles here ?
-> 
-> What does the writing-bindings document say? Why this is different than
-> all other bindings?
-Thank you for all your review comment and suggestions.
+[auto build test WARNING on v6.9-rc4]
+[also build test WARNING on linus/master next-20240418]
+[cannot apply to broonie-spi/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-If it is must to have SOC name, then I am not sure how 
-pci-host-generic.c driver having non SOC prefix for standard ECAM 
-driver. I am here saying this is QCOM vendor specific generic ECAM 
-driver. saying that it seems that I would be updating now 
-pci-host-generic.c driver to add generic functionality as Rob suggested 
-part of review comment. With
-that I am seeing possible options as i.e. continue using default generic 
-compatible as "pcie-host-ecam-generic" OR use new as 
-"qcom,pcie-host-ecam-generic". will this work ?>>>> +
->>>> +  reg:
->>>> +    minItems: 1
->>>
->>> maxItems instead
->>>
->>>> +    description: ECAM address space starting from root port till supported bus range
->>>> +
->>>> +  interrupts:
->>>> +    minItems: 1
->>>> +    maxItems: 8
->>>
->>> This is way too unspecific.
->> will review and update.
->>>> +
->>>> +  ranges:
->>>> +    minItems: 2
->>>> +    maxItems: 3
->>>
->>> Why variable?
->> It depends on how ECAM configured to support 32-bit and 64-bit based
->> prefetch address space.
->> So there are different combination of prefetch (32-bit or 64-bit or
->> both) and non-prefetch (32-bit), and IO address space available. hence
->> kept it as variable with based on required use case and address space
->> availability.
-> 
-> Really? So same device has it configured once for 32 once for 64-bit
-> address space? Randomly?
-no. as binding is not saying for any specific SOC. Depends on memory map
-on particular SOC, how PCIe address space available based on that this 
-would change for particular SOC variant.
-> Best regards,
-> Krzysztof
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Witold-Sadowski/spi-cadence-Ensure-data-lines-set-to-low-during-dummy-cycle-period/20240418-091647
+base:   v6.9-rc4
+patch link:    https://lore.kernel.org/r/20240418011353.1764672-4-wsadowski%40marvell.com
+patch subject: [PATCH v3 3/5] spi: cadence: Add Marvell xSPI IP overlay changes
+config: x86_64-randconfig-122-20240419 (https://download.01.org/0day-ci/archive/20240419/202404190319.hTksJJAv-lkp@intel.com/config)
+compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240419/202404190319.hTksJJAv-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404190319.hTksJJAv-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/spi/spi-cadence-xspi.c:288:11: sparse: sparse: symbol 'cdns_mrvl_xspi_clk_div_list' was not declared. Should it be static?
+
+vim +/cdns_mrvl_xspi_clk_div_list +288 drivers/spi/spi-cadence-xspi.c
+
+   287	
+ > 288	const int cdns_mrvl_xspi_clk_div_list[] = {
+   289		4,	//0x0 = Divide by 4.   SPI clock is 200 MHz.
+   290		6,	//0x1 = Divide by 6.   SPI clock is 133.33 MHz.
+   291		8,	//0x2 = Divide by 8.   SPI clock is 100 MHz.
+   292		10,	//0x3 = Divide by 10.  SPI clock is 80 MHz.
+   293		12,	//0x4 = Divide by 12.  SPI clock is 66.666 MHz.
+   294		16,	//0x5 = Divide by 16.  SPI clock is 50 MHz.
+   295		18,	//0x6 = Divide by 18.  SPI clock is 44.44 MHz.
+   296		20,	//0x7 = Divide by 20.  SPI clock is 40 MHz.
+   297		24,	//0x8 = Divide by 24.  SPI clock is 33.33 MHz.
+   298		32,	//0x9 = Divide by 32.  SPI clock is 25 MHz.
+   299		40,	//0xA = Divide by 40.  SPI clock is 20 MHz.
+   300		50,	//0xB = Divide by 50.  SPI clock is 16 MHz.
+   301		64,	//0xC = Divide by 64.  SPI clock is 12.5 MHz.
+   302		128,	//0xD = Divide by 128. SPI clock is 6.25 MHz.
+   303		-1	//End of list
+   304	};
+   305	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
