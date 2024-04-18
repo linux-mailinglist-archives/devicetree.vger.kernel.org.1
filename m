@@ -1,298 +1,114 @@
-Return-Path: <devicetree+bounces-60771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2058AA543
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 00:07:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E21A48AA559
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 00:15:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD0781F2146D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9987A28185E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38252199E8B;
-	Thu, 18 Apr 2024 22:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9849919DF5C;
+	Thu, 18 Apr 2024 22:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aqs5FGO5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192042F30;
-	Thu, 18 Apr 2024 22:07:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292AC199E98;
+	Thu, 18 Apr 2024 22:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713478059; cv=none; b=NC51hRgU8344D/KHhLI/c6XCSC58erEsYgjumQKLRhYqKkApwWlgQCmMJAdYYPSLOpBmrnxgYbTjzhSHCyF4NhqmaaChKQk+l2/v8bze0bdWel1Go0Kwuj1t4X+GnFp+dEM9k9P/xnrZNRhvVZzAoUPsLThHLz0S3+VaKFGe1c8=
+	t=1713478515; cv=none; b=W8zkzTakqehivOLTVHWWK6xrBJYHXnhHXyUQTeBU0dgFrTV42s5HFDRX9Xk8c4pGSgT4h2guudYX9TAoTIok1ZUMuTtNc6t/uYxi1F7OuMAv7npeYT7RK7fIft103wlBuF0EY/c2pJ/YR60Rcit8/wIlwPCeC257CDAPtNtSFXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713478059; c=relaxed/simple;
-	bh=fTO83B9lWQ2Ur2tqdGc4yty66F7+uoKHWYHtE+j6Jis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uh4kpRainsT0vu4Yiy8EuO0Okf45RQs0U2BSobGTIIsZBSB2gH1NWn+XNCKM8z2G9lXam4OWWb9X0O4m3C8nhwiMbtrhsskDh0/xpdwpIk7I4zjcKDr0Eanc5iJ8QTmokTbyAfc4XgjkF/mjQ1AK2fL8/olLlSI/YryFPehSQtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A8332F;
-	Thu, 18 Apr 2024 15:08:03 -0700 (PDT)
-Received: from [10.57.20.187] (unknown [10.57.20.187])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3717E3F738;
-	Thu, 18 Apr 2024 15:07:32 -0700 (PDT)
-Message-ID: <08e12daa-3fcc-4ab2-ac55-dee8f69c429a@arm.com>
-Date: Thu, 18 Apr 2024 23:07:31 +0100
+	s=arc-20240116; t=1713478515; c=relaxed/simple;
+	bh=F16f7m+rXA4gqWpAX3hVUPiuUj/nL5rhRES+7nViR3k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jSDmiSdsBBaW2Ge1uv8AWwcYA1o0e66XHDd4X4/DerB2L4hB5CBxxn0ZcbfAwoNl0x3lWBGFOuz9pVmcQf3wZ1vFwI+t4eSwlcD7TVw93n+40uxvsNJHSL9N4JMFlQtvUfTkIryh49XRKWrAzmPGSnddqu51eCSfu37W86Ba19E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aqs5FGO5; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43IMEH8O054612;
+	Thu, 18 Apr 2024 17:14:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713478457;
+	bh=kEuyqCXrDydWu1snvJbTAmkNKiY15UuzZvoSw7vyxXo=;
+	h=From:To:CC:Subject:Date;
+	b=aqs5FGO5h3fONrjTiVETv7F6Ia+Ye3e7ioACqD8jNxL0hePrVHn79atWKdIPqiuCE
+	 JICbtWkIKFRVaRWxEA6ktxn08/cOeqVUFQwAzjVbAr+IN9rirPDRZ5WUeSTZC9CoOm
+	 4v62gSA1XNcOPBeAOrehqZOIseIQ8DIig9z3qW4U=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43IMEHbA112329
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 18 Apr 2024 17:14:17 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 18
+ Apr 2024 17:14:17 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 18 Apr 2024 17:14:17 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43IMEHqo111027;
+	Thu, 18 Apr 2024 17:14:17 -0500
+From: Judith Mendez <jm@ti.com>
+To: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>
+CC: David Lechner <david@lechnology.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>
+Subject: [PATCH 0/7] Enable eQEP DT support for Sitara K3 platforms
+Date: Thu, 18 Apr 2024 17:14:10 -0500
+Message-ID: <20240418221417.1592787-1-jm@ti.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] iommu/riscv: Add RISC-V IOMMU PCIe device driver
-To: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>,
- Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux@rivosinc.com
-References: <cover.1713456597.git.tjeznach@rivosinc.com>
- <4a068da7a7a984a43d419c52310f8ab7d91da46e.1713456598.git.tjeznach@rivosinc.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <4a068da7a7a984a43d419c52310f8ab7d91da46e.1713456598.git.tjeznach@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 2024-04-18 5:32 pm, Tomasz Jeznach wrote:
-> Introduce device driver for PCIe implementation
-> of RISC-V IOMMU architected hardware.
-> 
-> IOMMU hardware and system support for MSI or MSI-X is
-> required by this implementation.
-> 
-> Vendor and device identifiers used in this patch
-> matches QEMU implementation of the RISC-V IOMMU PCIe
-> device, from Rivos VID (0x1efd) range allocated by the PCI-SIG.
-> 
-> Link: https://lore.kernel.org/qemu-devel/20240307160319.675044-1-dbarboza@ventanamicro.com/
-> Co-developed-by: Nick Kossifidis <mick@ics.forth.gr>
-> Signed-off-by: Nick Kossifidis <mick@ics.forth.gr>
-> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
-> ---
->   MAINTAINERS                     |   1 +
->   drivers/iommu/riscv/Kconfig     |   6 ++
->   drivers/iommu/riscv/Makefile    |   1 +
->   drivers/iommu/riscv/iommu-pci.c | 154 ++++++++++++++++++++++++++++++++
->   4 files changed, 162 insertions(+)
->   create mode 100644 drivers/iommu/riscv/iommu-pci.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 051599c76585..4da290d5e9db 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18975,6 +18975,7 @@ F:	Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
->   F:	drivers/iommu/riscv/Kconfig
->   F:	drivers/iommu/riscv/Makefile
->   F:	drivers/iommu/riscv/iommu-bits.h
-> +F:	drivers/iommu/riscv/iommu-pci.c
->   F:	drivers/iommu/riscv/iommu-platform.c
->   F:	drivers/iommu/riscv/iommu.c
->   F:	drivers/iommu/riscv/iommu.h
-> diff --git a/drivers/iommu/riscv/Kconfig b/drivers/iommu/riscv/Kconfig
-> index d02326bddb4c..711326992585 100644
-> --- a/drivers/iommu/riscv/Kconfig
-> +++ b/drivers/iommu/riscv/Kconfig
-> @@ -14,3 +14,9 @@ config RISCV_IOMMU
->   
->   	  Say Y here if your SoC includes an IOMMU device implementing
->   	  the RISC-V IOMMU architecture.
-> +
-> +config RISCV_IOMMU_PCI
-> +	def_bool y if RISCV_IOMMU && PCI_MSI
-> +	depends on RISCV_IOMMU && PCI_MSI
-> +	help
-> +	  Support for the PCI implementation of RISC-V IOMMU architecture.
+This patch series adds eQEP DT nodes for K3 Sitara devices:
+- AM62x
+- AM62ax
+- AM62px
+- AM64x
 
-Similar comments as before.
+Also enable eQEP to be built as a module for ARCH_k3.
 
-> diff --git a/drivers/iommu/riscv/Makefile b/drivers/iommu/riscv/Makefile
-> index e4c189de58d3..f54c9ed17d41 100644
-> --- a/drivers/iommu/riscv/Makefile
-> +++ b/drivers/iommu/riscv/Makefile
-> @@ -1,2 +1,3 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   obj-$(CONFIG_RISCV_IOMMU) += iommu.o iommu-platform.o
-> +obj-$(CONFIG_RISCV_IOMMU_PCI) += iommu-pci.o
-> diff --git a/drivers/iommu/riscv/iommu-pci.c b/drivers/iommu/riscv/iommu-pci.c
-> new file mode 100644
-> index 000000000000..9263c6e475be
-> --- /dev/null
-> +++ b/drivers/iommu/riscv/iommu-pci.c
-> @@ -0,0 +1,154 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/*
-> + * Copyright © 2022-2024 Rivos Inc.
-> + * Copyright © 2023 FORTH-ICS/CARV
-> + *
-> + * RISCV IOMMU as a PCIe device
-> + *
-> + * Authors
-> + *	Tomasz Jeznach <tjeznach@rivosinc.com>
-> + *	Nick Kossifidis <mick@ics.forth.gr>
-> + */
-> +
-> +#include <linux/compiler.h>
-> +#include <linux/init.h>
-> +#include <linux/iommu.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/pci.h>
-> +
-> +#include "iommu-bits.h"
-> +#include "iommu.h"
-> +
-> +/* Rivos Inc. assigned PCI Vendor and Device IDs */
-> +#ifndef PCI_VENDOR_ID_RIVOS
-> +#define PCI_VENDOR_ID_RIVOS             0x1efd
-> +#endif
-> +
-> +#ifndef PCI_DEVICE_ID_RIVOS_IOMMU
-> +#define PCI_DEVICE_ID_RIVOS_IOMMU       0xedf1
-> +#endif
-> +
-> +static int riscv_iommu_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct riscv_iommu_device *iommu;
-> +	int rc, vec;
-> +
-> +	rc = pci_enable_device_mem(pdev);
-> +	if (rc)
-> +		return rc;
-> +
-> +	rc = pci_request_mem_regions(pdev, KBUILD_MODNAME);
-> +	if (rc)
-> +		goto fail;
-> +
-> +	pci_set_master(pdev);
-> +
-> +	if (!(pci_resource_flags(pdev, 0) & IORESOURCE_MEM))
-> +		goto fail;
-> +
-> +	if (pci_resource_len(pdev, 0) < RISCV_IOMMU_REG_SIZE)
-> +		goto fail;
-> +
-> +	iommu = devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
-> +	if (!iommu)
-> +		goto fail;
-> +
-> +	iommu->dev = dev;
-> +	iommu->reg = pci_iomap(pdev, 0, RISCV_IOMMU_REG_SIZE);
+Judith Mendez (7):
+  arm64: dts: ti: k3-am62-main: Add eQEP nodes
+  arm64: dts: ti: k3-am62a-main: Add eQEP nodes
+  arm64: dts: ti: k3-am62p-main: Add eQEP nodes
+  arm64: dts: ti: k3-am64-main: Add eQEP nodes
+  dt-bindings: counter: Update TI eQEP binding
+  counter: ti-eqep: Allow eQEP driver to be built for K3 devices
+  arm64: defconfig: Enable TI eQEP Driver
 
-Maybe consider some of the pcim_* devres helpers, to simplify 
-cleanup/remove?
+ .../devicetree/bindings/counter/ti-eqep.yaml  | 10 +++++--
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 30 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 30 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 30 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 30 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/counter/Kconfig                       |  2 +-
+ 7 files changed, 129 insertions(+), 4 deletions(-)
 
-> +
-> +	if (!iommu->reg)
-> +		goto fail;
-> +
-> +	dev_set_drvdata(dev, iommu);
-> +
-> +	/* Check device reported capabilities / features. */
-> +	iommu->caps = riscv_iommu_readq(iommu, RISCV_IOMMU_REG_CAP);
-> +	iommu->fctl = riscv_iommu_readl(iommu, RISCV_IOMMU_REG_FCTL);
-> +
-> +	/* The PCI driver only uses MSIs, make sure the IOMMU supports this */
-> +	switch (FIELD_GET(RISCV_IOMMU_CAP_IGS, iommu->caps)) {
-> +	case RISCV_IOMMU_CAP_IGS_MSI:
-> +	case RISCV_IOMMU_CAP_IGS_BOTH:
-> +		break;
-> +	default:
-> +		dev_err(dev, "unable to use message-signaled interrupts\n");
-> +		rc = -ENODEV;
-> +		goto fail_unmap;
-> +	}
-> +
-> +	/* Allocate and assign IRQ vectors for the various events */
-> +	rc = pci_alloc_irq_vectors(pdev, 1, RISCV_IOMMU_INTR_COUNT,
-> +				   PCI_IRQ_MSIX | PCI_IRQ_MSI);
-> +	if (rc <= 0) {
-> +		dev_err(dev, "unable to allocate irq vectors\n");
-> +		goto fail_unmap;
-> +	}
-> +	for (vec = 0; vec < rc; vec++) {
-> +		iommu->irqs[vec] = msi_get_virq(dev, vec);
-> +		if (!iommu->irqs[vec])
 
-Can that ever fail if the loop is already bounded to the number of 
-vectors successfully allocated?
+base-commit: 534ad093bb80f19c20b251a89f09ce1a0e3d4f2d
+-- 
+2.43.2
 
-> +			break;
-> +	}
-> +	iommu->irqs_count = vec;
-> +
-> +	/* Enable message-signaled interrupts, fctl.WSI */
-> +	if (iommu->fctl & RISCV_IOMMU_FCTL_WSI) {
-> +		iommu->fctl ^= RISCV_IOMMU_FCTL_WSI;
-> +		riscv_iommu_writel(iommu, RISCV_IOMMU_REG_FCTL, iommu->fctl);
-> +	}
-> +
-> +	rc = riscv_iommu_init(iommu);
-> +	if (!rc)
-> +		return 0;
-> +
-> +fail_unmap:
-> +	iounmap(iommu->reg);
-> +	pci_free_irq_vectors(pdev);
-> +fail:
-> +	pci_release_regions(pdev);
-> +	pci_clear_master(pdev);
-> +	pci_disable_device(pdev);
-> +	return rc;
-> +}
-> +
-> +static void riscv_iommu_pci_remove(struct pci_dev *pdev)
-> +{
-> +	struct riscv_iommu_device *iommu = dev_get_drvdata(&pdev->dev);
-> +
-> +	riscv_iommu_remove(iommu);
-> +	iounmap(iommu->reg);
-> +	pci_free_irq_vectors(pdev);
-> +	pci_release_regions(pdev);
-> +	pci_clear_master(pdev);
-> +	pci_disable_device(pdev);
-> +}
-> +
-> +static const struct pci_device_id riscv_iommu_pci_tbl[] = {
-> +	{PCI_VENDOR_ID_RIVOS, PCI_DEVICE_ID_RIVOS_IOMMU,
-> +	 PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
-> +	{0,}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(pci, riscv_iommu_pci_tbl);
-> +
-> +static const struct of_device_id riscv_iommu_of_match[] = {
-> +	{.compatible = "riscv,pci-iommu",},
-> +	{},
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, riscv_iommu_of_match);
-> +
-> +static struct pci_driver riscv_iommu_pci_driver = {
-> +	.name = KBUILD_MODNAME,
-> +	.id_table = riscv_iommu_pci_tbl,
-> +	.probe = riscv_iommu_pci_probe,
-> +	.remove = riscv_iommu_pci_remove,
-> +	.driver = {
-> +		.of_match_table = riscv_iommu_of_match,
-
-Does an of_match_table serve any functional purpose for a PCI driver? I 
-can't find any other examples of this being done.
-
-Thanks,
-Robin.
-
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +
-> +module_pci_driver(riscv_iommu_pci_driver);
 
