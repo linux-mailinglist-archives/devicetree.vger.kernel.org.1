@@ -1,173 +1,151 @@
-Return-Path: <devicetree+bounces-60510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670098A9839
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:07:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CEC8A9846
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:10:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B62FDB23073
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:07:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 692BD1C20DA8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF6F15E218;
-	Thu, 18 Apr 2024 11:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5738515E5AB;
+	Thu, 18 Apr 2024 11:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mjrGAeHy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L+ffTQUZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9151415E20C
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 11:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67BE15E218;
+	Thu, 18 Apr 2024 11:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713438456; cv=none; b=YXqn60ZJouH4KMdyzHzQ/44xCD/qwN/otkRExpQfr4GzPrcRzZCeggiUbnYaS39Fe6bm5+xA2U5o/oex5leZ73IaorQRI5pnZ4xLYq5vWc5JH5JQ3hWZ50/MnT9ePbyPu7IeBhQ/vVJsxs0OPHLj1wReCQhD0zIO13gIo9B5YcQ=
+	t=1713438630; cv=none; b=HysNl0T9y1Jx4FHt/RjD/ERrdqEj30ZiQf6yOiG59C5ol464VaWyeAs9AWOxkidg/q69X8DtqyV5ldwe+sXXJ5PYSFsMziVTftLp7qi9oBJLaT+92S9+GdfA7MmVbha8sDbaUs/0RBV13j2GDlJrUpILF07FaEoZfYyW0D/Uc0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713438456; c=relaxed/simple;
-	bh=uVSRpt8F3GFhGujnI01U5SChDc2eJ2JPLMzVIQUMANQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=emPRQo5XGBNxT/Tups9sGOp8mjWU+wFDI/fSjobVYuSQ83RKo2hvKsanZg1kPSxnF1UOl2HvQjvyA+PTr7RkaCaz0u3UBhib8ihCwnv3qrp7h3VSicsDDLPjDlPFgHjCcXkHea+L25bXPf1XPE3P/smxIwiKRR3XspIuazdklfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mjrGAeHy; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5196fe87775so644483e87.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 04:07:34 -0700 (PDT)
+	s=arc-20240116; t=1713438630; c=relaxed/simple;
+	bh=aM709iaBDuiEMYntK7996B1tBFrfkx+MdgWjG9QW6Bk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GDfOsaJIunCo507GheicFI2m7cnIRipO/KddvyLaf04o+lT4jTa4nMNegUVvtnGCsaYZrzQYyBPTk1ZXJs6xcuPYs36IDzuKRPJAIUxCL1RWpUQ8JL78jlocLMaj16EikCI5x1QpPkOx61He/Uv5rlVtLr05SJ75rtzVXO4654A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L+ffTQUZ; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e86d56b3bcso6759585ad.1;
+        Thu, 18 Apr 2024 04:10:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713438453; x=1714043253; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MyO/GjotGUHlFltRGjYbztp9IACAS8Q+nLylpcG9+Rw=;
-        b=mjrGAeHySRDtvBpntukQETGWe7ArFTV4Mc7D8bj2g1MTbd5whEtkLswF0qf2NoTCN8
-         DzoGS9XeTu7SFZ2gcIj4lfO6WORu0cfD0iZzrAU1dT6RMv+2yGRkXeYkUrqzsrx/rJCW
-         f3Do5/S8rfoWlmcBG6zif5GzjAyHxh0ZfWdzPzwodI8BAlV/oFBOOvMSgjFvj46T+Bgl
-         tCM2SVztDCpV2ibYcLsJrYK/W8576pwZZbYMHCCv58vjeGjYk4gLGX+bosEHy7nMHSjA
-         NZc6JXwb+3d7wkR+/pND8jNUdVr0k7I5EsR7R1mVrs8nMxDkqvd/Emjkbl/Q3hZLgOG/
-         /EPA==
+        d=gmail.com; s=20230601; t=1713438628; x=1714043428; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MEYZdxZ9ZKFOWmTeiAFHDTp2vDfUpWN0o2R7rPWODZc=;
+        b=L+ffTQUZsGoQLfmbvUNzf2wWAsLg9FugMeuyZEq7VSw9x0k2r+/++GBSmRrNjCOt4T
+         F3wt2IKBwq7VM+Tk+inc7xd0R1VFZiY+H+mH+FjSYBFsmZ0ZvEGj4mKOfsgv1bb00xDW
+         q+CXwZqEmrxcg3dybZSAe+mC1MoBqScU15UUfvpDO4xdN+qOWx3tAwSUgjaAL/ICa10i
+         VKBF5BwHHV3t2LAC0sJ7YCyrm7LbMIbY3bCP9NBVJcn2kqByKaOGrAUq6IEjvzTx4N+B
+         vJkAMFRkkNHRq7+MzKs8s5Chf/RTrebD85hNqKX+jn8mzk2nmuyOMJZW+BrnGFL0k7ng
+         7s+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713438453; x=1714043253;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MyO/GjotGUHlFltRGjYbztp9IACAS8Q+nLylpcG9+Rw=;
-        b=J7uH6lhRHt/z1ehku+VVKTNhSJ+wZCXWP0i4FZgnkFYiKU54r+141DaXx1kfBaEQrG
-         5HVkp/ZYGsXGkICvEx69s7v56aF4d3iBu8rtuGqy9j8ijpmJzrPcOhDJrp/58TKgiWqy
-         sdV2+LYf1leFB6s1DT3oBXpdtYBHqyMPS4APXnRA81pLsiiyHdYvVuq+y0afghwYpu7e
-         4XyOHeu2IaDZ7xV/PiHiBz+tVPFatcdEpSo7cfgIpWsbIizTDnhS4vkHacAbFSH5i7u7
-         XAheTForbYZwWy3C/ikDDGKww0oXuWJcksx8uhycuCGcHDHQ7zPLXP8Sf5R56ejyN8mF
-         7y+w==
-X-Forwarded-Encrypted: i=1; AJvYcCVtFxH3+DB5uCM3xld5V29eg2HBHG6hSSx+Ti0Gq3DSSnpCp0XEGusycEy3KlC6fMINJ5bdE0VPMqu8xzbdLAbAyvmADKHRPLmfNA==
-X-Gm-Message-State: AOJu0YxebGyBM4q9XP6kQcm3rs+rhGdSVXZzPCf/ueGS+X+GSV5V3zo6
-	W4AG1z/26TFv1Lehq38uM7T4CJTm5JgGJ+XOVwqdUt1Bn6C7cbU2vbmpcsrJ/jE=
-X-Google-Smtp-Source: AGHT+IEwPXTDTwrWeLYeoadFGaTFA9rHj1W+CNy99dyVg08+5SUOCAzomXSQbfzVVzpXPPNwtz7O1Q==
-X-Received: by 2002:ac2:4853:0:b0:518:b4a3:dee1 with SMTP id 19-20020ac24853000000b00518b4a3dee1mr1574836lfy.66.1713438452661;
-        Thu, 18 Apr 2024 04:07:32 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id t14-20020ac24c0e000000b00517374e92e9sm191076lfq.167.2024.04.18.04.07.32
+        d=1e100.net; s=20230601; t=1713438628; x=1714043428;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MEYZdxZ9ZKFOWmTeiAFHDTp2vDfUpWN0o2R7rPWODZc=;
+        b=jsQWceZHIkAw376Ka7owqZb9Z7Pf3Nv6uZjsutz8YhwN/uEYFH9+6cd1Lxc8mBF47B
+         TYkK+loRp+/nqOH7Ema+f4Se7qU3rzpqVn97YRQFIUtzaHiv5+e2jdojX81bRCfiuNsl
+         SzGWvtR/N0j+IChkbhv5U+Dv+rDSdldrtpdggibsTotx5jmHG0Q182A/CLFWK6U2Y8mV
+         woQ2nMSzJWJwly+nsOFmA3k79eg859EIktzCi3iz0kY0DjMzcldjjHFf9uKcryMNKIOi
+         ep91gmgPs8VNBuMZXLPUhdWS0fk7RawdrTeRtvzvLHc/uTPeYOvqoNYVpgjqFncFTRsO
+         gv+g==
+X-Forwarded-Encrypted: i=1; AJvYcCUKBVXVSKp3bMmyr8kqAVcZnHWQWP20aCyqDmkMvsEErO3v+jwTSZZRZhZz3KjYkRxQBef3DKzf7p9XoqxHNszsF/Sod3qOs2L1j1iUWfiUZZdaH0ry/Ky5TmWM3pdVT8+wPPehmT2M7w==
+X-Gm-Message-State: AOJu0Yyjm7AOAuiY4bodoZf3QMOJS/7Yf4zCQKdjI2qk7KmvgyO2vIPN
+	rnS8g4ma9Hl94Au05EyD8dY57KSY9MDu4raXx8qvUZIZcnDje9jszVacjwiUJfM=
+X-Google-Smtp-Source: AGHT+IHW2OefZKApGAQcCcxMIShFsJ9lBRZjH06QsH+lKPPakyQiSSbApOKUwSHn3fD1f8W0RHQLDQ==
+X-Received: by 2002:a17:902:b716:b0:1e4:e5fe:ce0 with SMTP id d22-20020a170902b71600b001e4e5fe0ce0mr1999513pls.43.1713438627752;
+        Thu, 18 Apr 2024 04:10:27 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.135.251])
+        by smtp.gmail.com with ESMTPSA id kh5-20020a170903064500b001e4d22f828fsm1051159plb.33.2024.04.18.04.10.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 04:07:32 -0700 (PDT)
-Date: Thu, 18 Apr 2024 14:07:30 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 3/7] drm/msm/adreno: Implement SMEM-based speed bin
-Message-ID: <7ynodjzjuxwwqkjgns5jtnkckw52qyldfpsqpjh7645swva4xk@7wucftyjyyy3>
-References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
- <20240404-topic-smem_speedbin-v2-3-c84f820b7e5b@linaro.org>
- <hi7vzqm5ebypzs6m6bw64ghgfwsdzuaxy65jpah37iw5ww7fku@n3c5sucic27i>
- <bfd6aa32-a28e-47a4-82c7-76c5dd99a44d@linaro.org>
+        Thu, 18 Apr 2024 04:10:27 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: ezequiel@vanguardiasur.com.ar,
+	p.zabel@pengutronix.de,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	liujianfeng1994@gmail.com,
+	sfr@canb.auug.org.au,
+	sebastian.reichel@collabora.com,
+	sigmaris@gmail.com,
+	didi.debian@cknow.org
+Subject: [PATCH v6 0/2] Add hantro g1 video decoder support for RK3588
+Date: Thu, 18 Apr 2024 19:10:00 +0800
+Message-Id: <20240418111002.83015-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bfd6aa32-a28e-47a4-82c7-76c5dd99a44d@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Apr 18, 2024 at 11:51:16AM +0200, Konrad Dybcio wrote:
-> On 18.04.2024 1:43 AM, Dmitry Baryshkov wrote:
-> > On Wed, Apr 17, 2024 at 10:02:55PM +0200, Konrad Dybcio wrote:
-> >> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
-> >> abstracted through SMEM, instead of being directly available in a fuse.
-> >>
-> >> Add support for SMEM-based speed binning, which includes getting
-> >> "feature code" and "product code" from said source and parsing them
-> >> to form something that lets us match OPPs against.
-> >>
-> >> Due to the product code being ignored in the context of Adreno on
-> >> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
-> >>
-> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> ---
-> 
-> [...]
-> 
-> >> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-> >> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-> >> @@ -6,6 +6,8 @@
-> >>   * Copyright (c) 2014,2017 The Linux Foundation. All rights reserved.
-> >>   */
-> >>  
-> >> +#include <linux/soc/qcom/socinfo.h>
-> >> +
-> > 
-> > Stray leftover?
-> 
-> Looks like
-> 
-> [...]
-> 
-> >> +
-> >> +#ifdef CONFIG_QCOM_SMEM
-> > 
-> > Please extract to a separate function and put the function under ifdef
-> > (providing a stub otherwise). Having #ifndefs inside funciton body is
-> > frowned upon.
-> 
-> Hm, this looked quite sparse and straightforward, but I can do that.
-> 
-> [...]
-> 
-> >> +/* As of SM8650, PCODE on production SoCs is meaningless wrt the GPU bin */
-> >> +#define ADRENO_SKU_ID_FCODE		GENMASK(15, 0)
-> >> +#define ADRENO_SKU_ID(fcode)	(SOCINFO_PC_UNKNOWN << 16 | fcode)
-> > 
-> > If we got rid of PCode matching, is there a need to actually use
-> > SOCINFO_PC_UNKNOWN here? Or just 0 would be fine?
-> 
-> The IDs need to stay constant for mesa
-> 
-> I used the define here to:
-> 
-> a) define the SKU_ID structure so that it's clear what it's comprised of
-> b) make it easy to add back Pcode in case it becomes useful with future SoCs
-> c) avoid mistakes - PC_UNKNOWN happens to be zero, but that's a lucky
->    coincidence
-> 
-> We don't *match* based on PCODE, but still need to construct the ID properly
-> 
-> Another option would be to pass the real pcode and add some sort of
-> "pcode_invalid" property that if found would ignore this part of the
-> SKU_ID in mesa, but that sounds overly and unnecessarily complex.
+This is the v6 version of this series adding hantro g1 video decoder
+support for RK3588.
 
-It's fine, just add a comment please. Maybe we can rename PC_UNKNOWN to
-PC_PRODUCTION?
+RK3588 has Hantro G1 video decoder known as VDPU121 in TRM of RK3588 which
+is capable to decode MPEG2/H.264/VP8 up to 1920x1088. This vpu ip is also
+found in RK3568.
 
-> 
-> Konrad
-> 
-> Konrad
+Test results from fluster can be found from thread of v3[1].
 
--- 
-With best wishes
-Dmitry
+Changes in v6:
+ - Apply dt-bindings first
+ - Collect missing commit tags of old versions
+ - Specify the base commit suggested by Diederik
+ - Link to v5: https://lore.kernel.org/all/20240413064608.788561-1-liujianfeng1994@gmail.com/
+
+Changes in v5:
+ - Add missing interrupt-names to devicetree node
+ - Rebase devicetree patch based on next-20240412
+ - Link to v4: https://lore.kernel.org/all/20240316071100.2419369-1-liujianfeng1994@gmail.com/
+
+Changes in v4:
+ - Change compatible string to rockchip,rk3588-vdpu121
+ - Link to v3: https://lore.kernel.org/all/20231231151112.3994194-1-liujianfeng1994@gmail.com/
+
+Changes in v3:
+ - Drop code in hantro_drv.c because hantro g1 vpu in rk3588 is compatible
+with the one in rk3568, only adding devicetree node should work.
+ - Change devicetree node name to video-codec@fdb50000 to match the reg
+address.
+ - Add dt-bindings rockchip,rk3588-vpu compatible with rockchip,rk3568-vpu
+ - Link to v2: https://lore.kernel.org/all/20231228131617.3411561-1-liujianfeng1994@gmail.com
+
+Changes in v2:
+- Fix alphabetical order in patch1 and patch3
+- Sort device tree node by bus-address
+- Drop rk3588_vpu_variant fron v1 because that is exactly the same as rk3568_vpu_variant
+- Link to v1: https://lore.kernel.org/all/20231227173911.3295410-1-liujianfeng1994@gmail.com
+
+[1]https://lore.kernel.org/all/20240118080602.9028-1-liujianfeng1994@gmail.com/
+
+Jianfeng Liu (2):
+  dt-bindings: media: rockchip-vpu: Add rk3588 vdpu121 compatible string
+  arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
+
+ .../bindings/media/rockchip-vpu.yaml          |  3 +++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 21 +++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+
+
+base-commit: 7b4f2bc91c15fdcf948bb2d9741a9d7d54303f8d
+--
+2.34.1
+
 
