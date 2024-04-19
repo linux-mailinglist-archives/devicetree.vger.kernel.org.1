@@ -1,283 +1,98 @@
-Return-Path: <devicetree+bounces-60827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017F08AA90E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:22:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58738AA926
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:28:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257471C20C2A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:22:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A18EB2817FC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C714087F;
-	Fri, 19 Apr 2024 07:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58CB3F9D8;
+	Fri, 19 Apr 2024 07:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YsFK3sw4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UjQ/y3ac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE3F3F8EA;
-	Fri, 19 Apr 2024 07:22:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3938F3B7A0;
+	Fri, 19 Apr 2024 07:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713511370; cv=none; b=bthv9GTG6uBDWbrlnQv3GFdx6Pn2MVBD4O5ICJjEtAjm+zFOt7FZcwOmJCA+PNvLY7yrsv9V8le6Y7uvhlh2sI+R5N10IiggeqFO8Cv21FEX6p08a57u77/PEwFelpyL+qfKCj7Ydb8RbUHh6mFy/h/hpvMq7Z94Om+BBqhvwIA=
+	t=1713511683; cv=none; b=OqDizHZwGCEdsnLPPsssi2DJJdf4odgIPhZgtpVHL4PbjIUnuK8HeZtxxf9AtAPd8uc4JJKQROkP6WtB0st1+Ms6eS1fkUxzf/rGzAERx5I/ohn5vN71EqBlXF0SkXv14kthqwl6TIlMqGCUTe7RmJaP4xxcVbLCs2tNxQfAkms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713511370; c=relaxed/simple;
-	bh=6vKQ1YUDD97UB7gfwj/VT8OGiYLvu5Z0lBIvNse7W9s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a3qESUhgyDkkz95VewypxYRd4jhpdLHf2aGI84nLD3jd13y7aCSETGBFvKsQ/x0dHFMY2YO9496qFnp9BdFMieX7nXIC8lUH7LhGSHHUaMVB4INybsaZ4EACit8lAI6psjWI/YByjWLoBraZIEYYTjyOut3OT8xffo/HsR0Jyf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YsFK3sw4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 400A1C4AF12;
-	Fri, 19 Apr 2024 07:22:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713511370;
-	bh=6vKQ1YUDD97UB7gfwj/VT8OGiYLvu5Z0lBIvNse7W9s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YsFK3sw4Lk5H0nqLZ1B8EX62fHobvSjlpCyR7Js+d8GoyA+h1kQseiY7yQpTKxe6i
-	 pn/a2c1SK/7qwquYitWYFqcZ8jafumgnVfkhDTiKQ2lv47OpORofGSoXg4tfMX3IbS
-	 Fw/YkLMSqk/iyk9eO7/woo6kjVr6vyv/dTieX/HHiK1aM9b0jpNcVEvs98hSbg5qwh
-	 6Fb7pVGPCOreEyh60OfzpQYztv5Zi4LpQ6Xbk5bNKOIJH8n/5+ZvPLZlMlLPOV6Gns
-	 jJf3Me89txEDbuBT8rrtKsrtrIB1gIt23Shd0/xND4/ehraSdjPRPz6KKGwULyNEJU
-	 BdT+u9WbydjwQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30B52C04FF6;
-	Fri, 19 Apr 2024 07:22:50 +0000 (UTC)
-From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL_via_B4_Relay?= <devnull+arinc.unal.arinc9.com@kernel.org>
-Date: Fri, 19 Apr 2024 10:22:51 +0300
-Subject: [PATCH v2 4/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300
+	s=arc-20240116; t=1713511683; c=relaxed/simple;
+	bh=zw7eqyLTCYpzLSY9EaMU3gS3464AZcknyXMq4TOLyec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kh+L6VLhPBHfrr6on3wCFmMKyiBNAvIwWIuuCJRwrbF00TqztnWFEfuxhQ0HbdwHT5rfT66S5kcX7BJwu92vYWTbbvQoPYs9JqYvjJ9v8/QYq4NcBdbxus5PXSgoF2viKvzYkcqQDO5ngyJwDJqQxiCxousbJXK63amJnDA/sjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UjQ/y3ac; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713511680;
+	bh=zw7eqyLTCYpzLSY9EaMU3gS3464AZcknyXMq4TOLyec=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UjQ/y3acphHaIV9MFM51DsH35E4dA1gORYFEcz4Qnyf/dk/UoB2DoB0FpEp5wfqEo
+	 tVQ5/EoySNnmwXsb/XsERTyqU9vQkDZ1XY2VuMK69r52P/tP4nBmVoRfdPMRT/SCBl
+	 hxyv+E5Lt/zNe56ubf6Yia265rxvNCyledkMfHhlMwWgx4EQwj4tkapmC9biiO3oVh
+	 hwZhmhZ8+RtHkaeMOc8k4s1N6Kn+t8UGVH0lFT6ey+Pr2B0+lRuOIhQ/u3LSt4ZU3P
+	 UKdIj6jc9ec/RSlrXve14FNY5jw3H0P0so9o5kvctHy9Rv7PAt2pGGpBLu5XoZiYd2
+	 HPa3xeGW8lJMA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7C3E23781104;
+	Fri, 19 Apr 2024 07:27:58 +0000 (UTC)
+Message-ID: <49399153-bf70-4709-b020-f40e2654a53e@collabora.com>
+Date: Fri, 19 Apr 2024 09:27:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240419-for-soc-asus-rt-ac3200-ac5300-v2-4-f95ff50c2a4d@arinc9.com>
-References: <20240419-for-soc-asus-rt-ac3200-ac5300-v2-0-f95ff50c2a4d@arinc9.com>
-In-Reply-To: <20240419-for-soc-asus-rt-ac3200-ac5300-v2-0-f95ff50c2a4d@arinc9.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713511368; l=4382;
- i=arinc.unal@arinc9.com; s=arinc9-Xeront; h=from:subject:message-id;
- bh=Hh1hFLSkYeym2L6Ley0dgoK9f6xM572VDJkCcZTPEBo=;
- b=7FuoBIJgppNlyc5ai7U1smffD/Ml0jmn+kkuuh2OdZBOVuiqsRWjWac5TV+8Ih2XUqK1h/aNN
- DALNUT9o3XEAflkHEJcvth5mluZx3RIpOKM5rVrfaxQUSw4k9sbZpQp
-X-Developer-Key: i=arinc.unal@arinc9.com; a=ed25519;
- pk=z49tLn29CyiL4uwBTrqH9HO1Wu3sZIuRp4DaLZvtP9M=
-X-Endpoint-Received: by B4 Relay for arinc.unal@arinc9.com/arinc9-Xeront
- with auth_id=137
-X-Original-From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Reply-To: arinc.unal@arinc9.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/17] dt-bindings: display: mediatek: dpi: add
+ compatible for MT8365
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Jitao Shi <jitao.shi@mediatek.com>,
+ CK Hu <ck.hu@mediatek.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Fabien Parent <fparent@baylibre.com>,
+ Markus Schneider-Pargmann <msp@baylibre.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20231023-display-support-v3-0-53388f3ed34b@baylibre.com>
+ <20231023-display-support-v3-7-53388f3ed34b@baylibre.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20231023-display-support-v3-7-53388f3ed34b@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
+Il 18/04/24 16:16, Alexandre Mergnat ha scritto:
+> Add dt-binding documentation of dpi for MediaTek MT8365 SoC.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-Add the device tree for ASUS RT-AC5300 which is an AC5300 router featuring
-5 Ethernet ports over the integrated Broadcom switch.
-
-Hardware info:
-* Processor: Broadcom BCM4709C0 dual-core @ 1.4 GHz
-* Switch: BCM53012 in BCM4709C0
-* DDR3 RAM: 512 MB
-* Flash: 128 MB
-* 2.4GHz: BCM4366 4x4 single chip 802.11b/g/n SoC
-* 5GHz: BCM4366 4x4 two chips 802.11a/n/ac SoC
-* Ports: 4 LAN Ports, 1 WAN Port
-
-Co-developed-by: Tom Brautaset <tbrautaset@gmail.com>
-Signed-off-by: Tom Brautaset <tbrautaset@gmail.com>
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/arm/boot/dts/broadcom/Makefile                |   1 +
- .../boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts  | 156 +++++++++++++++++++++
- 2 files changed, 157 insertions(+)
-
-diff --git a/arch/arm/boot/dts/broadcom/Makefile b/arch/arm/boot/dts/broadcom/Makefile
-index c61fca514775..5881bcc95eba 100644
---- a/arch/arm/boot/dts/broadcom/Makefile
-+++ b/arch/arm/boot/dts/broadcom/Makefile
-@@ -72,6 +72,7 @@ dtb-$(CONFIG_ARCH_BCM_5301X) += \
- 	bcm4709-netgear-r8000.dtb \
- 	bcm4709-tplink-archer-c9-v1.dtb \
- 	bcm47094-asus-rt-ac3100.dtb \
-+	bcm47094-asus-rt-ac5300.dtb \
- 	bcm47094-asus-rt-ac88u.dtb \
- 	bcm47094-dlink-dir-885l.dtb \
- 	bcm47094-dlink-dir-890l.dtb \
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-new file mode 100644
-index 000000000000..b75154a9710d
---- /dev/null
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-@@ -0,0 +1,156 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Author: Tom Brautaset <tbrautaset@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm47094.dtsi"
-+#include "bcm5301x-nand-cs0-bch8.dtsi"
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	compatible = "asus,rt-ac5300", "brcm,bcm47094", "brcm,bcm4708";
-+	model = "ASUS RT-AC5300";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x08000000>,
-+		      <0x88000000 0x18000000>;
-+	};
-+
-+	nvram@1c080000 {
-+		compatible = "brcm,nvram";
-+		reg = <0x1c080000 0x00180000>;
-+
-+		et1macaddr: et1macaddr {
-+			#nvmem-cell-cells = <1>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-lan {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&chipcommon 21 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-power {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&chipcommon 3 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		led-wan-red {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_WAN;
-+			gpios = <&chipcommon 5 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-wps {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_WPS;
-+			gpios = <&chipcommon 19 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-reset {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&chipcommon 11 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-wifi {
-+			label = "Wi-Fi";
-+			linux,code = <KEY_RFKILL>;
-+			gpios = <&chipcommon 20 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-wps {
-+			label = "WPS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&chipcommon 18 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&usb2 {
-+	vcc-gpio = <&chipcommon 9 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&gmac0 {
-+	nvmem-cells = <&et1macaddr 0>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&gmac1 {
-+	nvmem-cells = <&et1macaddr 1>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&gmac2 {
-+	nvmem-cells = <&et1macaddr 2>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&srab {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			label = "lan4";
-+		};
-+
-+		port@1 {
-+			label = "lan3";
-+		};
-+
-+		port@2 {
-+			label = "lan2";
-+		};
-+
-+		port@3 {
-+			label = "lan1";
-+		};
-+
-+		port@4 {
-+			label = "wan";
-+		};
-+	};
-+};
-+
-+&nandcs {
-+	partitions {
-+		compatible = "fixed-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		partition@0 {
-+			label = "boot";
-+			reg = <0x00000000 0x00080000>;
-+			read-only;
-+		};
-+
-+		partition@80000 {
-+			label = "nvram";
-+			reg = <0x00080000 0x00180000>;
-+		};
-+
-+		partition@200000 {
-+			label = "firmware";
-+			reg = <0x00200000 0x07e00000>;
-+			compatible = "brcm,trx";
-+		};
-+	};
-+};
-
--- 
-2.40.1
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
 
