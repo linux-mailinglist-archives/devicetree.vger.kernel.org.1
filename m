@@ -1,163 +1,139 @@
-Return-Path: <devicetree+bounces-60817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320218AA7AD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 06:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC668AA811
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:48:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E85501C20A44
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 04:37:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 504C81C20A79
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 05:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9DA864F;
-	Fri, 19 Apr 2024 04:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8BBD515;
+	Fri, 19 Apr 2024 05:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fcj/RZ87"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EiLc8h1z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0BC5256;
-	Fri, 19 Apr 2024 04:37:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B49C127;
+	Fri, 19 Apr 2024 05:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713501448; cv=none; b=Kxv7a+tYPYxGBb6Ixn6C8+lvu1mGWwHuWVk19fhst77GLrA0xhwZjskIE7Nd7jgixcyyctuMa8qWDP/f3OWmSt2AV1qe893hjdPRc+lh/D2vC63hejJMQwh21EW8451eZ/Lbwcyw8+qUr8IggvRwu1mA6rWdgmG5afxvLet1KkE=
+	t=1713505721; cv=none; b=BfeKzIWq4149twAwQ8ifqo1N+IFDdsk7C77E2HE1K3UbIHeDUmq1UispjQNZWaIFu9Tkx77QXc6VLvlKQ79shvXdzEz3i0hDJ9e2PLYqTgJVD4KPaHw4WC5fnFjRq/Dzlk2LWZj1/Qnuk6re0q0Qx9M0Ycwt1HcE41jhcQ8fO+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713501448; c=relaxed/simple;
-	bh=aA0eWf4lTjyJXrzsPGUfl9MnnAc/P4pB9uRI/dobEws=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TimKwRoYE9qYz9Ps4TQsJ5Lv5lhJRL5pUVkmkY4L75TaSeM0Q/mR+0NOmpeTu9c1VAPygsI2RQYnot68eltSAezKBHmnSq54dTZw0wXQJBb5uHf5bIQGg2cYgGNzpvuLi8A8b2FBwwx6c5MZ8vsrMjX/B+GTLuRRhk+2+TrBrtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fcj/RZ87; arc=none smtp.client-ip=209.85.219.181
+	s=arc-20240116; t=1713505721; c=relaxed/simple;
+	bh=HlnIXS8pM3ffZ/RvmET8aAuoWI2SeR20JxIsTBt/+Go=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vs1CmzAVDQZDrB2DV6U8SechEkYsYvZjL/5sdNPOLNmzCPvjne4uV6Q9Uh8AGaOqgMfcs5IbgG4Jei1flPDQk0AB690iEyCTZyYI7wRkYMmMQldJGXgsuuFly1UQQIQVRAwF6JbDUOqqEdeVFU9vsqZiPhEGG7ZCk/VWRAFaZq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EiLc8h1z; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dbed0710c74so1632242276.1;
-        Thu, 18 Apr 2024 21:37:27 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-51ac9c6599bso59064e87.1;
+        Thu, 18 Apr 2024 22:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713501446; x=1714106246; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CFpAdFUlK6c+FuOE2UkmdUUly6ellBWMJzLFthxSKp4=;
-        b=fcj/RZ8770N/1WpzjpIYwzVZ3xS3i+AJPoaJ4n7R9Gb2ua1QlI1QG8vRHkncjVC7eW
-         UcfudVd+FPLxRnTZ8NTFCWTG1P8Xv+GSL8jwAMjlwNdIWCJj9SFRCZB4DqdhKCyal6xq
-         BvlYVS8WbzKnC64anlA2H20bgFWOAI9e0BExbCvkZ1z7YxdpleIsMRFfayCtNHbWGxVy
-         G2D01SoF4pCOrUgKMdGWyIgFhSE9w+0FRBHuUxLZsxyGYW3/qvUNHCkUNIausBXFxGrK
-         2owr4SjBJIiLbrzIlzPUaFqzQob5W1A4jLCFDMxjjnjarfcvkao58c1HldgU7jF4jHIU
-         QuSw==
+        d=gmail.com; s=20230601; t=1713505718; x=1714110518; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5c2Rhg4mgS4eH1ovISMs98g6pb/JQ+nRM/lpp4nqnQI=;
+        b=EiLc8h1zL8F/SYJBpYGcWFQh7meRFXhhj13YmgxyLW4/zUPxNqaq9zw9adDgE3fhtJ
+         4dm3lZUTswYoHP4rwJ1Fx/v2QZxezCXG0yv/C93s7F3OFPw/xBAsBFAWPzVEKrbRAjGZ
+         pynHgxpZ1jpbu5atD27jszbvpJCKZdMP7tk5h5nVTtoN2xwX5vueDwXdopAXNHbQev84
+         5f009dSxIvkXxkdZVHZKYioDPwvy0+9XPBG7aHlsn53zGHTSPBwuZlAJL/IR1Awq/0vn
+         R1gCszbZsgnnabdvrSKj9gOhMVbq9B3jbRs2DIb1xYpEdQKnFuI2ZF0QevveeUBA2pGB
+         Jx1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713501446; x=1714106246;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CFpAdFUlK6c+FuOE2UkmdUUly6ellBWMJzLFthxSKp4=;
-        b=GOvj40z2vCTHQsicSmnUpoRjkap23FEYD8W2CKO7qx7AK0RwlrRwav/8Z4hJql0t58
-         6R1mJEcWlhAImsPLWICtAJdFidT0c455Y9lIpkDOaZWRhXL34j8VPVIENPZab64HMtZX
-         /W2pXqIee+WCGpUJI8NJJblyeijrSN5QGiYzbK7vpv8Kr0BhRpf/oNdIrwEhirBDKH0a
-         KvJAXOAefP5uGIrPpTv7n1jvpRlvQpXAGvKZfV0RoMRpeuDxjRkIeeT/5J1eCQVA6QyI
-         Qf9HudQh2+835/BV1KOaFRRvaT/kre36wYpXlE0pmvtIwexOiJRuouw5KmdeCszLxxYm
-         +lBg==
-X-Forwarded-Encrypted: i=1; AJvYcCXhL5e+EydUKIaXHa7HaostJCQEf5qgR+i8i3yJrFCm3e7GMpANQuZhO+Pbgfd9X0d6fgtjpYa+JVwDd96f6MlCkumKi4XQDC1SiNLkdphlHyrXifUQ0xBe4Z2MTL8h2g1P8lj0
-X-Gm-Message-State: AOJu0YzoQueUXRyAfVD4cvRoE8cxgEYNzq9kU+0Exi2ionf07kdnW4Ft
-	ybV+O+7xQ9l8okBcXm7fsu5lAFvJAUcjoy7utVM7eGJon+mqXtln+xi60Qim3uVPLHe2dZvtM0q
-	cPsrZPREqwyNIAPuUa9esgWJSLBNCBSdpWrhgPw==
-X-Google-Smtp-Source: AGHT+IGTBPvZEpv98oIQFH2424OjkFzeVum4zf0vfYLvtPIGm4i4ccBnGSIz8ZL6mTZ/+r66PKpvcXJU8KZMx2xCLfg=
-X-Received: by 2002:a25:8046:0:b0:dc7:4c21:fbd5 with SMTP id
- a6-20020a258046000000b00dc74c21fbd5mr716876ybn.0.1713501446407; Thu, 18 Apr
- 2024 21:37:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713505718; x=1714110518;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5c2Rhg4mgS4eH1ovISMs98g6pb/JQ+nRM/lpp4nqnQI=;
+        b=W99RZtr54ZMC19n4amb2Ry5DYf11BY81Bg1b5l/UslQNSb3Rlhn4zXRTJnXjEilR5M
+         Y7Q+hYjkuGXByXRmpXvE1uk0Nw5wlKtHTlE6eOCZvm7Md3sx81fg/R4iQk5HHKpmNfl7
+         SYYVcum24KDumRiZO93OH0ks0r7Exix8HlowmT7sMs7nIbOY7oicca+0jY/a3xE5ULJg
+         9RmlQSJElj+nDlwxXe6s/XKmO1rXsLR3SxNpGOAtUpKLP09V8WzveHchraZAgRZrVViR
+         wI1rh+ogTkbGP42qQjNdgSQIiRgp09d4e52Pw9ogvE+TyF5ED7o1lxmHOM2Z9WaTYTW0
+         ceFA==
+X-Forwarded-Encrypted: i=1; AJvYcCXootP+TkbGmY4b3TGJQio20/E7ox6HHQ71k7Jz7/3FuPixUHs13rOEKpi1WVOSEwfMvOwN7FIyshCbAHhMUSbuu3GZrNuYJDmbq/VVwEMt9duuQw1pEaOaew78q+fuz6mcMyoOqnFHF+QabSPpQUuA4WBZp85a6AxfT/6/8JYfzlNU0HEQSv9O
+X-Gm-Message-State: AOJu0YzmbGTjgsYZKPgkTSq+HqhBO7Lhb2ihLYOJr/AysAqrgXfpZJnl
+	cbYHmKl6w45hqinbcDr+Bh2x56K4SMusjT6aeZbI35U5eVAJBOAY
+X-Google-Smtp-Source: AGHT+IEdcyybcHYAP3yMpgWtqA9Atv2L/pwyITTXmjPJPeVnp2PCxQKjGhR1B1FVx+YcDIC48dP3Tg==
+X-Received: by 2002:a05:6512:3082:b0:513:30fb:d64 with SMTP id z2-20020a056512308200b0051330fb0d64mr950308lfd.44.1713505717640;
+        Thu, 18 Apr 2024 22:48:37 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:7426:df00::2? (drtxq0yyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:7426:df00::2])
+        by smtp.gmail.com with ESMTPSA id s19-20020a056512215300b00518c1387e6esm550580lfr.64.2024.04.18.22.48.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 22:48:37 -0700 (PDT)
+Message-ID: <8622b4aa-1693-4762-b415-61e1b927efe3@gmail.com>
+Date: Fri, 19 Apr 2024 08:48:35 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1713147645.git.zhoubinbin@loongson.cn> <9d2132d4713321a83cdeef3cdc8887b7d39340e6.1713147645.git.zhoubinbin@loongson.cn>
- <7396c6d4-878f-4b07-9b7f-bc793bebe4bd@linaro.org>
-In-Reply-To: <7396c6d4-878f-4b07-9b7f-bc793bebe4bd@linaro.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Fri, 19 Apr 2024 10:37:14 +0600
-Message-ID: <CAMpQs4JDWd3=ne3KisBXi3pYZWtRuu=3VsMv1+Gj0zHxL0TBRA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: thermal: loongson,ls2k-thermal: Fix
- incorrect compatible definition
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Yinbo Zhu <zhuyinbo@loongson.cn>, WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 2/6] dt-bindings: mfd: bd96801 PMIC core
+Content-Language: en-US, en-GB
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ Fabio Aiuto <fabio.aiuto@engicam.com>
+References: <cover.1712920132.git.mazziesaccount@gmail.com>
+ <ea49494429528cf8e60fa984ae1f523ddacd850c.1712920132.git.mazziesaccount@gmail.com>
+ <b5eeaf10-e011-452b-840a-176c4f62cac4@linaro.org>
+ <7541fb24-894a-439e-8f9a-b18f04e06afe@gmail.com>
+ <675cd641-7322-43d5-a33a-7f0be48c380c@linaro.org>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <675cd641-7322-43d5-a33a-7f0be48c380c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 15, 2024 at 2:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 15/04/2024 04:31, Binbin Zhou wrote:
-> > The temperature output register of the Loongson-2K2000 is defined in th=
-e
-> > chip configuration domain, which is different from the Loongson-2K1000,
-> > so it can't be fallbacked.
-> >
-> > We need to use two groups of registers to describe it: the first group
-> > is the high and low temperature threshold setting register; the second
-> > group is the temperature output register.
-> >
-> > It is true that this fix will cause ABI corruption, but it is necessary
-> > otherwise the Loongson-2K2000 temperature sensor will not work properly=
-.
-> >
-> > Fixes: 72684d99a854 ("thermal: dt-bindings: add loongson-2 thermal")
-> > Cc: Yinbo Zhu <zhuyinbo@loongson.cn>
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../thermal/loongson,ls2k-thermal.yaml        | 23 +++++++++++++++++--
-> >  1 file changed, 21 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-th=
-ermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-therma=
-l.yaml
-> > index 9748a479dcd4..fac6f64d6c67 100644
-> > --- a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.y=
-aml
-> > @@ -18,14 +18,15 @@ properties:
-> >      oneOf:
-> >        - enum:
-> >            - loongson,ls2k1000-thermal
-> > +          - loongson,ls2k2000-thermal
-> >        - items:
-> >            - enum:
-> >                - loongson,ls2k0500-thermal
-> > -              - loongson,ls2k2000-thermal
-> >            - const: loongson,ls2k1000-thermal
-> >
-> >    reg:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 2
-> >
-> >    interrupts:
-> >      maxItems: 1
-> > @@ -41,6 +42,24 @@ required:
-> >
-> >  unevaluatedProperties: false
-> >
-> > +if:
->
-> This goes before unevaluatedProperties, just like in example schema.
->
-Hi Krzysztof:
+On 4/18/24 20:28, Krzysztof Kozlowski wrote:
+> On 15/04/2024 10:28, Matti Vaittinen wrote:
+>>>
+>>> Missing allOf and $ref to watchdog.yaml
+>>
+>> Huh. The watchdog.yaml contains:
+>>
+>> select:
+>>     properties:
+>>       $nodename:
+>>         pattern: "^watchdog(@.*|-([0-9]|[1-9][0-9]+))?$"
+>>
+>> properties:
+>>     $nodename:
+>>       pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
+>>
+>>
+>> This means the watchdog _must_ have own sub-node inside the PMIC node,
+> 
+> Yes, that's a bit of a trouble.
 
-Thanks for your reply.
-I will adjust the position of this part in the next version.
+Agree. I'm not 100% sure why this requirement? I guess it is a bit of a 
+problem for many MFD devices with a watchdog.
 
-Thanks.
-Binbin
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Best regards,
-> Krzysztof
->
+> Then instead maybe just add timeout-sec
+> with maxItems: 2.
+
+Nice idea. Thanks for the suggestion, I'll do just that!
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
 
