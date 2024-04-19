@@ -1,174 +1,243 @@
-Return-Path: <devicetree+bounces-60869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A38728AAB65
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:23:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF138AAB78
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7EA61C2133C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 916D61C20CBB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6107E768EA;
-	Fri, 19 Apr 2024 09:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Dn6Yg5We"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB947BAEE;
+	Fri, 19 Apr 2024 09:28:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3A171B3D
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD597BAFE
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713518578; cv=none; b=o+LvBfZYzBA+LHNUPpQQF8/MEcEYpCj1YLYkLPZN8Ljyy6q0sIn0Bqdssc/SZhpbK0cLKn2Rtwml01xlwH12MS8M9SvnMIVnfH1QHKqDnVYaMQTtE+BJsYYSnvyQ1WTFxJYsA17c/AWPkosMBtsxKlHZ/XhUXVp4jW77D8Coum8=
+	t=1713518921; cv=none; b=V6713vO9QcWQh3lE16ALljsv9gEuBchqbBt9BmQSYjPvv0ytnm15Jwh43ZlnIDJPjbfACPpwZ1NpkdDNuPRWSjd8C589cqA2pzGxkByF7qTYxJjwI1r+YKGPPHEBNgdOH8/lvQEy9IedYZI1ozMFR/ivhNJA8aDGtIBuH/h5qjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713518578; c=relaxed/simple;
-	bh=NcKAO7tP/x4sIAxUUHYXR+L4ly5ODcgul0HtEzI6yDs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R86dYJgWqHHPtAkg7na6lNL1zJcHOsncyhl6aD7szR3XkjX17rwFwzxyUmXWtQSlAB2gcuCSD9gEFZq2LWnXckP6Aljf7KeYxlXjfbTOFDeGfh8tv4Z9T8ALHWCFZ4m4BqcrMTZtd4xrPT9yVEc7M+PAe41DZCSCad99Yb+IC7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Dn6Yg5We; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4196c62bb6fso1627355e9.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 02:22:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713518574; x=1714123374; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y576gXoPcjc3Y2FVL6fqBu3Gc7Q1+NXvtH+iYdNf3yU=;
-        b=Dn6Yg5WeRyohMHQrnYNQylmvY2rP9Q/jJSLAWy2V/CYgQnS7egZ6pUimHcVTyV1nnU
-         VEOrjF3JgoX3FCzvpjGF+kIb6lEpo4S5N0SULLkxDw3XgwcIaYQQl3uEK9pL1f/QKjWG
-         6Rj5ZO23Cfsq4cyoCuafdyGJ2cCT/tJzgMko2+vu1UB/vV7OSs/uhKDBFhJ9BX2Woy0K
-         82UYHxSRvaulHZDlnD+kcVaHdf2nesT2EDM0iGcwvsS3qUYXqtelKJmw9nKYi3s1ckOo
-         +HS55Y6RE+eCJsy4NTFAMrn7mW3yXK5YKuscWt4jo74mcoUcR1m7VNoYZtgUAN6tPs57
-         Hy1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713518574; x=1714123374;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y576gXoPcjc3Y2FVL6fqBu3Gc7Q1+NXvtH+iYdNf3yU=;
-        b=dyLeGtn3xiiraK0GWHjjkaaRlCMOeugtsN+cC/ViatPLIuchCZi992zvxNQB6vDO1d
-         ttHvoAKuk/oxXqHDhAXCNFLuq3WGuGrF4SDMIcwrcLs6Wo9s+XKINFunz8Ej933DGS12
-         c5dxRrceECMbPB0WWBHHmZ9LluuxXnQBl0FjLxCVTt2IaO735tF1hSNMhepQSWaPZxG4
-         5deRrb6dbfDgq5ecdR/JcrsoEz3+309RSvdXsXnzwYsUCU3Kf36eAslbgelQGMZ/uSEW
-         wdexANEDMgm90O8rqttEAeTrJ/okHrxxz0KbYiRN6ZHX1uU/ocVD2vV42wpQXZbk3z0m
-         S4jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWWww1p/CKug3X98tQfOiyUbEXTDB/IFvJTE+37tFdA9Toz5HYLY4D0qYhoBOiE81JJ+204OrDiHORBDq6rpwIlVGprwWsUEhfj/g==
-X-Gm-Message-State: AOJu0YxRC6R5UQ1Gr29ZTcgeazz5aqSFSSmCTPzbaeYmYTcOzEgLFAOK
-	+m1YjNOHmoHfKE3YAxOnNJM0/1OQRvRvzmmz1t5WveLvYAyYNEiKOmAW9c9NOKo=
-X-Google-Smtp-Source: AGHT+IGEMMwvqsWa1wBPlb1YxcuxGJHgk4ZlrLlGwj3TJU4+1nuQXEqo0CbuUtJgEODgebOizRMxsg==
-X-Received: by 2002:a05:600c:1d0f:b0:418:f6b7:a383 with SMTP id l15-20020a05600c1d0f00b00418f6b7a383mr990122wms.2.1713518574007;
-        Fri, 19 Apr 2024 02:22:54 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id b10-20020a05600c4e0a00b00418f30874b4sm4015450wmq.17.2024.04.19.02.22.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Apr 2024 02:22:53 -0700 (PDT)
-Message-ID: <57705980-e776-4178-878d-15c2007f7ef3@baylibre.com>
-Date: Fri, 19 Apr 2024 11:22:52 +0200
+	s=arc-20240116; t=1713518921; c=relaxed/simple;
+	bh=RzsGOHqQ+PBnsoxOmJDgqk3bfw/edxPwlwpalPgjzwg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qAsanMLMaYDrOaZsoSrLxKMNb8Pqb1W3RDoyHyUF2XFP2pe9xUmNPTmSV6nuSgxpAEc0BLCmu13p3ySvbbn61CHj0Lk4r+/Ki7TlNtjLel4oLAVgO8sXqI/yz7HxFmT/9zkzdNxwyA02AMatrtM9A6cSm1SyCltsm/YtnWq2LnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rxkXj-0008Iw-W0; Fri, 19 Apr 2024 11:28:28 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rxkXi-00D89e-MH; Fri, 19 Apr 2024 11:28:26 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rxkXi-0039nT-1t;
+	Fri, 19 Apr 2024 11:28:26 +0200
+Date: Fri, 19 Apr 2024 11:28:26 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Jeff LaBundy <jeff@labundy.com>,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v10 3/3] Input: Add TouchNetix axiom i2c touchscreen
+ driver
+Message-ID: <20240419092826.2gq72etn4fh4q7ph@pengutronix.de>
+References: <20240419083342.61199-1-kamel.bouhara@bootlin.com>
+ <20240419083342.61199-4-kamel.bouhara@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 14/17] drm/mediatek: add MT8365 SoC support
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Jitao Shi <jitao.shi@mediatek.com>,
- CK Hu <ck.hu@mediatek.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Fabien Parent <fparent@baylibre.com>,
- Markus Schneider-Pargmann <msp@baylibre.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20231023-display-support-v3-0-53388f3ed34b@baylibre.com>
- <20231023-display-support-v3-14-53388f3ed34b@baylibre.com>
- <9ef43fff-ee2a-4b2c-a595-30f5bf7588c2@collabora.com>
-Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <9ef43fff-ee2a-4b2c-a595-30f5bf7588c2@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240419083342.61199-4-kamel.bouhara@bootlin.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Kamel,
 
+thank you for the patch. Again just a rough review.
 
-On 19/04/2024 10:01, AngeloGioacchino Del Regno wrote:
-> Il 18/04/24 16:17, amergnat@baylibre.com ha scritto:
->> From: Fabien Parent <fparent@baylibre.com>
->>
->> Add DRM support for MT8365 SoC.
->>
->> Signed-off-by: Fabien Parent <fparent@baylibre.com>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+On 24-04-19, Kamel Bouhara wrote:
+> Add a new driver for the TouchNetix's axiom family of
+> touchscreen controllers. This driver only supports i2c
+> and can be later adapted for SPI and USB support.
 > 
-> There are two things that I want to point out. Please check below.
-> 
-> The series that I've sent for adding OF Graphs [1] support to MediaTek DRM is
-> not going to be picked in time for v6.10, but I think neither your MT8365 support
-> series is, and that's why I'm telling you this.
-> 
-> If your work was based off my series, you would not need to add the MT8365 ddp
-> MAIN and EXT paths to mtk_drm_drv: you'd just add it to the bindings and then
-> you would declare the paths in devicetree.
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> ---
 
-Ok then I will rebase my v4 on top of your serie
+...
 
-> 
-> 
-> [1]: https://lore.kernel.org/r/20240409120211.321153-1-angelogioacchino.delregno@collabora.com
-> 
-> There's also one more comment....
-> 
->> ---
->>   drivers/gpu/drm/mediatek/mtk_drm_drv.c | 30 ++++++++++++++++++++++++++++++
->>   1 file changed, 30 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> index 74832c213092..427b601309c4 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> 
-> ..snip..
-> 
->> @@ -793,6 +821,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
->>         .data = (void *)MTK_DSI },
->>       { .compatible = "mediatek,mt8188-dsi",
->>         .data = (void *)MTK_DSI },
->> +    { .compatible = "mediatek,mt8365-dpi",
-> 
-> You removed the mt8365 specific compatible from the DPI driver - why did you keep
-> it here?! that's not needed! :-)
+> +static int axiom_i2c_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct input_dev *input_dev;
+> +	struct axiom_data *ts;
+> +	u32 poll_interval;
+> +	int target;
+> +	int error;
+> +
+> +	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+> +	if (!ts)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, ts);
+> +	ts->client = client;
+> +	ts->dev = dev;
+> +
+> +	ts->regmap = devm_regmap_init_i2c(client, &axiom_i2c_regmap_config);
+> +	error = PTR_ERR_OR_ZERO(ts->regmap);
+> +	if (error) {
+> +		dev_err(dev, "Failed to initialize regmap: %d\n", error);
+> +		return error;
+> +	}
+> +
+> +	ts->vddi = devm_regulator_get(dev, "VDDI");
 
-Sorry for that, I forgot to remove it in this driver too. Thanks to catched it.
+This does not match the dt-bindings.
 
-> 
-> Cheers,
-> Angelo
-> 
->> +      .data = (void *)MTK_DPI },
->>       { }
->>   };
->>
-> 
+> +	if (IS_ERR(ts->vddi))
+> +		return dev_err_probe(&client->dev, PTR_ERR(ts->vddi),
+> +				     "Failed to enable VDDI regulator\n");
+> +
+> +	ts->vdda = devm_regulator_get(dev, "VDDA");
 
--- 
+Here as well.
+
+> +	if (IS_ERR(ts->vdda))
+> +		return dev_err_probe(&client->dev, PTR_ERR(ts->vdda),
+> +				     "Failed to enable VDDA regulator\n");
+
+Now we handle it as always but..
+
+> +	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ts->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ts->reset_gpio), "failed to get reset GPIO\n");
+> +
+> +	if (ts->reset_gpio)
+> +		axiom_reset(ts->reset_gpio);
+> +	else
+> +		msleep(AXIOM_STARTUP_TIME_MS);
+
+still the reset is useless since you never enabled the regulators. So
+either use devm_regulator_get_enable() or you do the enable/disable
+separate via regulator_enable()/disable(). If there are no strict
+enablement restrictions like orders and timings you could also make use
+of the regulator_bulk API (e.g. devm_regulator_bulk_get_enable).
+
 Regards,
-Alexandre
+  Marco
+
+> +
+> +	error = axiom_discover(ts);
+> +	if (error)
+> +		return dev_err_probe(dev, error, "Failed touchscreen discover\n");
+> +
+> +	input_dev = devm_input_allocate_device(ts->dev);
+> +	if (!input_dev)
+> +		return -ENOMEM;
+> +
+> +	input_dev->name = "TouchNetix axiom Touchscreen";
+> +	input_dev->phys = "input/axiom_ts";
+> +
+> +	input_set_abs_params(input_dev, ABS_MT_POSITION_X, 0, 65535, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_POSITION_Y, 0, 65535, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_TOOL_TYPE, 0, MT_TOOL_MAX, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_DISTANCE, 0, 127, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_PRESSURE, 0, 127, 0, 0);
+> +
+> +	touchscreen_parse_properties(input_dev, true, &ts->prop);
+> +
+> +	/* Registers the axiom device as a touchscreen instead of a mouse pointer */
+> +	error = input_mt_init_slots(input_dev, AXIOM_U41_MAX_TARGETS, INPUT_MT_DIRECT);
+> +	if (error)
+> +		return error;
+> +
+> +	/* Enables the raw data for up to 4 force channels to be sent to the input subsystem */
+> +	set_bit(EV_REL, input_dev->evbit);
+> +	set_bit(EV_MSC, input_dev->evbit);
+> +	/* Declare that we support "RAW" Miscellaneous events */
+> +	set_bit(MSC_RAW, input_dev->mscbit);
+> +
+> +	ts->input_dev = input_dev;
+> +	input_set_drvdata(ts->input_dev, ts);
+> +
+> +	/* Ensure that all reports are initialised to not be present. */
+> +	for (target = 0; target < AXIOM_U41_MAX_TARGETS; target++)
+> +		ts->targets[target].state = AXIOM_TARGET_STATE_NOT_PRESENT;
+> +
+> +	error = devm_request_threaded_irq(dev, client->irq, NULL,
+> +					  axiom_irq, IRQF_ONESHOT, dev_name(dev), ts);
+> +	if (error) {
+> +		dev_info(dev, "Request irq failed, falling back to polling mode");
+> +
+> +		error = input_setup_polling(input_dev, axiom_i2c_poll);
+> +		if (error)
+> +			return dev_err_probe(ts->dev, error, "Unable to set up polling mode\n");
+> +
+> +		if (!device_property_read_u32(ts->dev, "poll-interval", &poll_interval))
+> +			input_set_poll_interval(input_dev, poll_interval);
+> +		else
+> +			input_set_poll_interval(input_dev, POLL_INTERVAL_DEFAULT_MS);
+> +	}
+> +
+> +	return input_register_device(input_dev);
+> +}
+> +
+> +static const struct i2c_device_id axiom_i2c_id_table[] = {
+> +	{ "ax54a" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, axiom_i2c_id_table);
+> +
+> +static const struct of_device_id axiom_i2c_of_match[] = {
+> +	{ .compatible = "touchnetix,ax54a", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, axiom_i2c_of_match);
+> +
+> +static struct i2c_driver axiom_i2c_driver = {
+> +	.driver = {
+> +		   .name = "axiom",
+> +		   .of_match_table = axiom_i2c_of_match,
+> +	},
+> +	.id_table = axiom_i2c_id_table,
+> +	.probe = axiom_i2c_probe,
+> +};
+> +module_i2c_driver(axiom_i2c_driver);
+> +
+> +MODULE_AUTHOR("Bart Prescott <bartp@baasheep.co.uk>");
+> +MODULE_AUTHOR("Pedro Torruella <pedro.torruella@touchnetix.com>");
+> +MODULE_AUTHOR("Mark Satterthwaite <mark.satterthwaite@touchnetix.com>");
+> +MODULE_AUTHOR("Hannah Rossiter <hannah.rossiter@touchnetix.com>");
+> +MODULE_AUTHOR("Kamel Bouhara <kamel.bouhara@bootlin.com>");
+> +MODULE_DESCRIPTION("TouchNetix axiom touchscreen I2C bus driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.25.1
+> 
+> 
 
