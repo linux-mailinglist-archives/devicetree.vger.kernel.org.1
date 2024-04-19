@@ -1,89 +1,103 @@
-Return-Path: <devicetree+bounces-60879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12418AAD94
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:19:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507648AADD5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:42:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 885E2B21F34
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:19:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 050E61F218FD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191B181730;
-	Fri, 19 Apr 2024 11:19:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F23D823B7;
+	Fri, 19 Apr 2024 11:42:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [195.130.137.89])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5B183CCB;
-	Fri, 19 Apr 2024 11:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF3A13F8F6
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 11:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713525554; cv=none; b=HDnkVSCxd+NZusS/eCWAPCT8GHRSyqVsYZ0GbgWuq7Q0Ka1sF0qEiBfBsBWR7tL5lKX8XZqUWtijzrrckIpT5Pxj2BSpaPHcxSPkohbz+t2TKFh21+804NT+8yEeIcdWANpyyR5xAl7dmIb36/P+N2loYJb7CDQPvX9Ka0RAqJw=
+	t=1713526949; cv=none; b=CCtx57qiDA0iKDhrimxbHM90eUNKTO+ZLCfUkF2JNxA/JgC3SOF5Zu8kxtoTDWiBgnOAg9BJsi/eSsh3WiQ2AfxbhvT2n8NRxFXFFI7KUwIty6Pi2bkQF4B8XmClStCM+T8pEdks1/jvM46NhA0ewu7FontKLkIHtqu0TqpjJ20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713525554; c=relaxed/simple;
-	bh=8PCateXJ7QSgCXxmFAjJirF7McdYH8JFUi9yff4bVqk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=axt2ElNeP4BtuHoOTrbTECw1CVpzfY4b/64bJVWnXjCQsqzrwqVS97g4w7y+80guny2HDp+78CBjCiHcq+WY/zjoOhDa50zMEy/SWYxHWwOhENwxMBQoLi4Ldo7TuS9gMbDGPN+CKBL977LVwaMH/gjHXxp+dzQ7Knx6tEbqFmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from [213.70.33.226] (helo=phil.intern)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rxmGl-0000RL-Hh; Fri, 19 Apr 2024 13:19:03 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Johan Jonker <jbx6244@gmail.com>,
-	andy.yan@rock-chips.com,
-	hjc@rock-chips.com
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org,
-	airlied@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	dri-devel@lists.freedesktop.org,
+	s=arc-20240116; t=1713526949; c=relaxed/simple;
+	bh=XI1CIY8Uy1ePPx0r2pbVyCDv5z03IxUZnSNpHy8+vBg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Gp3G9KzjSufMHcYIXInW7tARsablMZLz5xA5mx/3k1unlysaXOJogEkA+thLCs+H0QCpFT6FgWJWtvl04gCt60HwTvmahQbX/1zjY6nXrlZydzmKonVz1fALllquOoVRK4oNSzdaez0rLj9pR25Ir4YUqldu1sHOS3G49npUSQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:76d0:2bff:fec8:549])
+	by laurent.telenet-ops.be with bizsmtp
+	id CziF2C0090SSLxL01ziFdR; Fri, 19 Apr 2024 13:42:19 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rxmcb-00DFk9-RF;
+	Fri, 19 Apr 2024 13:42:15 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rxmdD-00GDIk-Au;
+	Fri, 19 Apr 2024 13:42:15 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: iommu@lists.linux.dev,
 	devicetree@vger.kernel.org,
-	markyao0591@gmail.com,
-	conor+dt@kernel.org,
-	tzimmermann@suse.de,
-	mripard@kernel.org,
-	daniel@ffwll.ch,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: display: add #sound-dai-cells property to rockchip dw hdmi
-Date: Fri, 19 Apr 2024 13:18:57 +0200
-Message-Id: <171352551023.2525344.13101791805180451568.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
-References: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
+	linux-renesas-soc@vger.kernel.org,
+	Thanh Le <thanh.le.xv@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779h0 support
+Date: Fri, 19 Apr 2024 13:42:11 +0200
+Message-Id: <13643259be4e8a8e30632de622ad7c685dbb7c61.1713526852.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Sat, 13 Apr 2024 17:38:05 +0200, Johan Jonker wrote:
-> The Rockchip DWC HDMI TX Encoder can take one I2S input and transmit it
-> over the HDMI output. Add #sound-dai-cells (= 0) to the binding for it.
-> 
-> 
+From: Thanh Le <thanh.le.xv@renesas.com>
 
-Applied, thanks!
+Document support for the I/O Memory Management Unit (IPMMU) on the
+Renesas R-Car V4M (R8A779H0) SoC.
 
-[1/3] dt-bindings: display: add #sound-dai-cells property to rockchip dw hdmi
-      commit: e58414e44b5315230de829ed88a63611646907ac
-[2/3] dt-bindings: display: add #sound-dai-cells property to rockchip rk3066 hdmi
-      commit: 9be3eb5d6ee57662a22b56153c7ee39265685455
-[3/3] dt-bindings: display: add #sound-dai-cells property to rockchip inno hdmi
-      commit: b1ee6bd3ea954d081bfb1d5559ce3e78ef40443a
+Signed-off-by: Thanh Le <thanh.le.xv@renesas.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+Interestingly, the IMSSTR register is documented for R-Car V4M, unlike
+for R-Car S4 and R-Car V4H, so the second cell of the renesas,ipmmu-main
+property could be added again.
+As nothing really uses this register and the associated bit numbers,
+I think it is better to keep it simple, and not partially revert commit
+b67ab6fb63bbbe6d ("dt-bindings: iommu: renesas, ipmmu-vmsa: Update for
+R-Car Gen4").
+---
+ Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+index be90f68c11d18b03..0acaa2bcec0898b2 100644
+--- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
++++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+@@ -50,6 +50,7 @@ properties:
+               - renesas,ipmmu-r8a779a0           # R-Car V3U
+               - renesas,ipmmu-r8a779f0           # R-Car S4-8
+               - renesas,ipmmu-r8a779g0           # R-Car V4H
++              - renesas,ipmmu-r8a779h0           # R-Car V4M
+           - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
+ 
+   reg:
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.34.1
+
 
