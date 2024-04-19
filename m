@@ -1,130 +1,200 @@
-Return-Path: <devicetree+bounces-60921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D28C8AAFBF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:52:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB50B8AAFC2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:53:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 558C0281F79
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:52:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 664A81F21DFE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6644F1292F2;
-	Fri, 19 Apr 2024 13:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6898912A151;
+	Fri, 19 Apr 2024 13:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dI39Gi31"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="C7WM6U+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400EEA59
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86771200D3
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713534740; cv=none; b=D8wmMcExUAst2HQF5hrXnyM2wxbPU7yT1fnlVMzP2Y154XRoUbo0g9lHI0eZ6Fhb9IrUBM0ge5kIwD5Gp6Ca7fk5f1PIWAz9FH6bg1ALpqqbH5YJBXgEa1vs7BqC04tp0sXVGMJQsyLFaPL/25+F7nkw243r3+es4jTORq+PsYU=
+	t=1713534807; cv=none; b=gvdN4gH0hZiSeAdEB+WGQmyE3+2LO0c7WmvS8YdwGYKcvq5FZrTTsLXXyg2JQXSZgYoTMuLHM+57pkOPlQpl68mxA7NsYQ1dbIYaItkEbjMQq5oG45uMPH//RVV3lS/fzTRR8XxOu+syjrBPwcX3ICkUzkWV1f2tpdPwDquqhyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713534740; c=relaxed/simple;
-	bh=fY+0iOG7auw+u/WWt7hwcicZp9xCy4zlB4ouADBllh4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MPxLzn8nwG+5etrBTvym9l96fp+qcjMvl4WAnzFfAy+Bv7Hjua7FwQWMSmWug+H/JUs8Mk1OpWpOsXYz3XV/5dGn8i5s5r/NiHBU+lyYDN7n8eddJFDO5F25JuskowZr1dDwzqW6HczPyP5uAWIF3fdjoxdhF03EwCb8lEAyX/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dI39Gi31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6949C072AA;
-	Fri, 19 Apr 2024 13:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713534739;
-	bh=fY+0iOG7auw+u/WWt7hwcicZp9xCy4zlB4ouADBllh4=;
-	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
-	b=dI39Gi312O8FHE4uHaVJyldTfTUvAR1lB/AnLBsKmi8EceO6pBuKbP6sALopQoGCi
-	 MlwDhIna0Tq0nBexYuye/Zo2FA/oUS8D50tjJ2EKLjZnX99/mBV9oQXZCxGMsl6i2V
-	 a6iOg0Qe40uJxqHWheUNLQKQKiNzer385TJ4j3BmxzzrgJFmXEabb04tHGobQu/CrK
-	 O8KnfNwrlwfJn/zfPj5RYJWZO1d+/Bs4D6uK7gy0ejskPEKZQzoy1H+Cff7a2xH/qL
-	 q4qPf97ogEX7vCM/fMGp5ZFCaH7EfZDt1iPBIKbdeu5T5umgNjTzi1A0S7cYR9ikaF
-	 /h7XkyskxO9vQ==
-Date: Fri, 19 Apr 2024 14:52:09 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 01/11] dt-bindings: arm: add cznic,turris-omnia-mcu
- binding
-Message-ID: <20240419-magnolia-entourage-dd8a690ee288@spud>
-References: <20240418121116.22184-1-kabel@kernel.org>
- <20240418121116.22184-2-kabel@kernel.org>
- <20240418-grain-ethics-8a3ee62ac9a1@spud>
- <20240419082337.646a54a5jam7x3x6@kandell>
- <20240419111445.wirqqjza4hbsekyp@kandell>
+	s=arc-20240116; t=1713534807; c=relaxed/simple;
+	bh=xfzH6BZrc06a1HLflSF6QEIDYR7DUr3ByDtP2wGK+7s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 Content-type; b=euTPsPXvPEPEs6XXvPrFmaFcFkftzcjlnzBBIUyC1zGZr4iReI5c3JOiwjnAITWpeyH2Uc+6hH60JeFCMGuzxjothSKpileFd+PUlgbozauDMR978NaQctuJHk1md5JbuvrVt9qr4dyU+ODQ5tzU91qHU6Jrj19p3VmWp5ur2qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=C7WM6U+8; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-51967f75729so2401718e87.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 06:53:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1713534803; x=1714139603; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vygojg6kK2t93LE6Jccui0sWTwt0Dla9UnPOwn3MABA=;
+        b=C7WM6U+822osLeE7GZj2fZXKOvtKQ9QQ2wNttnc+Sh7CcKVn4GOOMA8RX+YPmhpUux
+         3I4m/HvLh8WnZ6cATSjuQfL44q7HpJQkUNbAf6KXn7sfawpVexE7oWMUpx3cSh7gCrvd
+         Ku5dRiNC7DwFKuKmjqX1KjeDvsmqI7b349ywIPccgZrNRYAJXWpSW6eKUGPPIIuYRB6s
+         slsXjyMB54loulzQAchlsYbot0u8gh6MwxJ311BEXqyixLBObfICXGUFtNyfswCxFio+
+         CFJBeBH8TUd4qjdmp3K8Bf+I98OfF0u7K8Ryvx7dPj2W0Ppx1Hbj1Xuo4N2S3uwI8cN5
+         NUpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713534803; x=1714139603;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vygojg6kK2t93LE6Jccui0sWTwt0Dla9UnPOwn3MABA=;
+        b=NOGd/lDj498dg3f5TczuyfYsSAQCWxL/p53XYFpL3sNHP3S2+Vzi4OCf1zbMgWy6/e
+         JBcGU++sVgCZH8Y/OpKjNCaMKUa2RXtcM1JjUmiL8WEjJZu9pJjv6sIbx8c+s/KUn/mV
+         2U1P6Wra4gZ0Rvf9xEcfG3sxCYVTuojb79QXcFJSPHRXeXVKKbwlm2Pfk3hFOjOTVZgt
+         SHDoycd1h9ceK9/oaIAv+8PD9Qyq0XK1ByJbFbxW9RHtJf5fgBOxn3RK5N07yXXpzsgD
+         8jguIEEzHnu7kjRelqxIOBnUi7lr2lHmQl/OcIEHpZ+qnKSOkrEcAe3DkRQ/aNg2OP3d
+         7qEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPYkorRhcid4pEQe65u7irg+PytWrtdrxv1p86y/86VkSDJJUhVVAu/6MEr9H9ukZ1RYpdkbDiAQBgk9eza5R+hMC4Eha+ZVqCtA==
+X-Gm-Message-State: AOJu0YyZWD/PxmjLDDgE8GA/T6VGIB5uVtaHanfmeJERYBrTW4TdEesi
+	60qGr5Mk4HYW8M4R2ZDMPpKaO9rCrQCNM4xcXiN2+Y0ICGA1ZpXRhil48CFQZjU=
+X-Google-Smtp-Source: AGHT+IFFzEV9Mdl8G4cryaHfYH+SN86dJZ7B9fY5aMYsjcaqBCQ0YnmeqoSttiNY9Cm5AgowfnUBMg==
+X-Received: by 2002:ac2:5388:0:b0:519:14a2:72da with SMTP id g8-20020ac25388000000b0051914a272damr1453236lfh.67.1713534803347;
+        Fri, 19 Apr 2024 06:53:23 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id lj26-20020a170906f9da00b00a5254ec731esm2242648ejb.176.2024.04.19.06.53.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Apr 2024 06:53:22 -0700 (PDT)
+From: Andrew Jones <ajones@ventanamicro.com>
+To: linux-riscv@lists.infradead.org,
+	kvm-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	conor.dooley@microchip.com,
+	anup@brainfault.org,
+	atishp@atishpatra.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	christoph.muellner@vrull.eu,
+	heiko@sntech.de,
+	charlie@rivosinc.com,
+	David.Laight@ACULAB.COM,
+	parri.andrea@gmail.com,
+	luxu.kernel@bytedance.com
+Subject: [PATCH v2 0/6] riscv: Apply Zawrs when available
+Date: Fri, 19 Apr 2024 15:53:22 +0200
+Message-ID: <20240419135321.70781-8-ajones@ventanamicro.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LmHCYhuoA18M2vxz"
-Content-Disposition: inline
-In-Reply-To: <20240419111445.wirqqjza4hbsekyp@kandell>
+Content-Type: text/plain; charset=UTF-8
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+
+Zawrs provides two instructions (wrs.nto and wrs.sto), where both are
+meant to allow the hart to enter a low-power state while waiting on a
+store to a memory location. The instructions also both wait an
+implementation-defined "short" duration (unless the implementation
+terminates the stall for another reason). The difference is that while
+wrs.sto will terminate when the duration elapses, wrs.nto, depending on
+configuration, will either just keep waiting or an ILL exception will be
+raised. Linux will use wrs.nto, so if platforms have an implementation
+which falls in the "just keep waiting" category, then it should _not_
+advertise Zawrs in the hardware description. Text to that effect has
+been added to the Zawrs DT definition.
+
+Like wfi (and with the same {m,h}status bits to configure it), when
+wrs.nto is configured to raise exceptions it's expected that the higher
+privilege level will see the instruction was a wait instruction, do
+something, and then resume execution following the instruction. For
+example, KVM does configure exceptions for wfi (hstatus.VTW=1) and
+therefore also for wrs.nto. KVM does this for wfi since it's better to
+allow other tasks to be scheduled while a VCPU waits for an interrupt.
+For waits such as those where wrs.nto/sto would be used, which are
+typically locks, it is also a good idea for KVM to be involved, as it
+can attempt to schedule the lock holding VCPU.
+
+This series starts with Christoph's addition of riscv smp_cond_load*
+functions which apply wrs.sto when available. That patch has been
+reworked to use wrs.nto and to use the same approach as Arm for the
+wait loop, since we can't have arbitrary C code between the load-
+reserved and the wrs. Then, hwprobe support is added (since the
+instructions are also usable from usermode), and finally KVM is
+taught about wrs.nto, allowing guests to see and use the Zawrs
+extension.
+
+We still don't have test results from hardware, and it's not possible to
+prove that using Zawrs is a win when testing on QEMU, not even when
+oversubscribing VCPUs to guests. However, it is possible to use KVM
+selftests to force a scenario where we can prove Zawrs does its job and
+does it well. [4] is a test which does this and, on my machine, without
+Zawrs it takes 16 seconds to complete and with Zawrs it takes 0.25
+seconds.
+
+This series is also available here [1]. In order to use QEMU for testing
+a build with [2] is needed. In order to enable guests to use Zawrs with
+KVM using kvmtool, the branch at [3] may be used.
+
+[1] https://github.com/jones-drew/linux/commits/riscv/zawrs-v2/
+[2] https://lore.kernel.org/all/20240312152901.512001-2-ajones@ventanamicro.com/
+[3] https://github.com/jones-drew/kvmtool/commits/riscv/zawrs/
+[4] https://github.com/jones-drew/linux/commit/9311702bcd118bdbfa8b9be4a8ec355c40559499
+
+Thanks,
+drew
+
+v2:
+ - Added DT bindings patch with additional Linux specifications due
+   to wrs.nto potentially never terminating, as suggested by Palmer
+ - Added patch to share pause insn definition
+ - Rework main Zawrs support patch to use Arm approach (which is
+   also the approach that Andrea Parri suggested)
+ - Dropped the riscv implementation of smp_cond_load_acquire().
+   afaict, the generic implementation, which will use the riscv
+   implementation of smp_cond_load_relaxed() is sufficient for riscv.
+ - The rework was large enough (IMO) to drop Heiko's s-o-b and to
+   add myself as a co-developer
 
 
---LmHCYhuoA18M2vxz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Andrew Jones (5):
+  riscv: Provide a definition for 'pause'
+  dt-bindings: riscv: Add Zawrs ISA extension description
+  riscv: hwprobe: export Zawrs ISA extension
+  KVM: riscv: Support guest wrs.nto
+  KVM: riscv: selftests: Add Zawrs extension to get-reg-list test
 
-On Fri, Apr 19, 2024 at 01:14:45PM +0200, Marek Beh=FAn wrote:
-> On Fri, Apr 19, 2024 at 10:23:37AM +0200, Marek Beh=FAn wrote:
-> > On Thu, Apr 18, 2024 at 04:43:54PM +0100, Conor Dooley wrote:
-> > > On Thu, Apr 18, 2024 at 02:11:06PM +0200, Marek Beh=FAn wrote:
-> > > > Add binding for cznic,turris-omnia-mcu, the device-tree node
-> > > > representing the system-controller features provided by the MCU on =
-the
-> > > > Turris Omnia router.
-> > > >=20
-> > > > Signed-off-by: Marek Beh=FAn <kabel@kernel.org>
-> > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > ---
-> > > >  .../bindings/arm/cznic,turris-omnia-mcu.yaml  | 86 +++++++++++++++=
-++++
-> > >=20
-> > > Why's this in bindings/arm btw? Seems like it is some remote firmware=
- if
-> > > it is running off-SoC on an MCU, so either remoteproc or firmware wou=
-ld
-> > > make more sense? Tying it to arm at least needs an explanation IMO.
-> >=20
-> > This was discussed with Krzysztof in v1, you can look it up at
-> >   https://lore.kernel.org/soc/20230824131736.067c40e2@dellmb/
-> >=20
-> > Basically the SoC is an ARM board, and the MCU is also always ARM.
->=20
-> What I wrote does not make sense. I wanted to say is that the driver
-> drives the peripherals implemented by the Turris Omnia MCU firmware, and
-> the Turris Omnia router is based on an ARM SoC, and that the MCU is also
-> an ARM-based MCU.
+Christoph Müllner (1):
+  riscv: Add Zawrs support for spinlocks
 
-Yeah, it didn't really make sense, but I read between the lines.
-FWIW, I still don't really think that bindings/arm is the right place
-for it.
+ Documentation/arch/riscv/hwprobe.rst          |  4 ++
+ .../devicetree/bindings/riscv/extensions.yaml | 12 +++++
+ arch/riscv/Kconfig                            | 20 +++++---
+ arch/riscv/Makefile                           |  3 --
+ arch/riscv/include/asm/barrier.h              | 45 ++++++++++------
+ arch/riscv/include/asm/cmpxchg.h              | 51 +++++++++++++++++++
+ arch/riscv/include/asm/hwcap.h                |  1 +
+ arch/riscv/include/asm/insn-def.h             |  4 ++
+ arch/riscv/include/asm/kvm_host.h             |  1 +
+ arch/riscv/include/asm/vdso/processor.h       |  8 +--
+ arch/riscv/include/uapi/asm/hwprobe.h         |  1 +
+ arch/riscv/include/uapi/asm/kvm.h             |  1 +
+ arch/riscv/kernel/cpufeature.c                |  1 +
+ arch/riscv/kernel/sys_hwprobe.c               |  1 +
+ arch/riscv/kvm/vcpu.c                         |  1 +
+ arch/riscv/kvm/vcpu_insn.c                    | 15 ++++++
+ arch/riscv/kvm/vcpu_onereg.c                  |  2 +
+ .../selftests/kvm/riscv/get-reg-list.c        |  4 ++
+ 18 files changed, 144 insertions(+), 31 deletions(-)
 
->=20
-> >=20
-> > I'm guessing firmware would also make sense...
-> >=20
+-- 
+2.44.0
 
---LmHCYhuoA18M2vxz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiJ3AwAKCRB4tDGHoIJi
-0kWJAQCzBaYHntWrc8f1wqbnivc/ITMcI1zyPd3QBi4hrxJICQD/alRGLCh44/j1
-rmYojSioUDIXW05OouVo73EN/9viuws=
-=DXoZ
------END PGP SIGNATURE-----
-
---LmHCYhuoA18M2vxz--
 
