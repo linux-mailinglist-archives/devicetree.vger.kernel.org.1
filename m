@@ -1,191 +1,158 @@
-Return-Path: <devicetree+bounces-61030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812A48AB602
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 22:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9CB8AB611
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 22:41:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA68E1F21A6B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 20:32:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 635071F22B75
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 20:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64AF610A2C;
-	Fri, 19 Apr 2024 20:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40202134DE;
+	Fri, 19 Apr 2024 20:41:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="JOKOWyhY"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lc8pvcRL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4AE310A2E
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 20:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09631119F
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 20:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713558766; cv=none; b=XeMy4BWH51XvqtT+FDrXoAK9BXZXPj3JrX/0/YPGhPKUK7qHrPaAaHWwbeh8dNEzFHnjuoeSc0xZWgatQ8BgFHBAzh9kKHNtoAW/aeX4zQyQwdeKjExfK2ebPeTvKISma37NddH0nRJAlieB5LwKruXXoeLwwoBD4XbG3mIpOyk=
+	t=1713559314; cv=none; b=JvKt6ibhfsAQ8eUUfzIDGnRXwtgy9jgmBYuPX/nPn3uUEsl8bGMa9rfoK7tphBFEz63ksRHVu+w+tvD9QShj7kmiQbPUASN64ZOocgcSi3+rsWHPjSsNYkL4X4MqH9Gds6WqBjCUEEc2iuA5V/Y1yhT9RjJkf0l6IIjqwFP/xlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713558766; c=relaxed/simple;
-	bh=qANyF0MfnSoqiIGwcJR08TrdWTsCQzlauedjspuw/oU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Cthza+QE7Y9d2U0yj1LZpJSP9QyP/qOSMJRFQvGi+8QR2urj8t26f47K9Zr2yydv/eTfljRp6EVZ0Uq6W9IJo/4fjo4x3fxcUyOrcuDpwNM9WxQz8aX3blaeyPNjqFyFz1ia7jk8Hi/QIgWzNA6i4kGwav79+X5cL2UjiDfFyBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=JOKOWyhY; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43JKRWol027269;
-	Fri, 19 Apr 2024 20:32:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=DPqHixwHyTS1PGw7hY3SyQbtbCZSG9kVzOIrtq0sWgI=;
- b=JOKOWyhYXjpDmYa6uK7q68LQdaltWY1ibBkRvhi5VrUlSpEIF3xo3j7DRiKAzIuXxxFI
- ARXMGWAWyTisjTf0QkrXJoGUCLPYYy8OPEb1d3uBxXuOZj9CnwChcbNIlPid1EWj6is7
- azJSjCdMaU2cjCdarJSONFUPzgcf88EySrAGwLyM8EOFYKFHVmMT7ggr3zHka623H6Dt
- GxmkUWfUrW1d0JANVHCjCp+Ye5wO7fntFdNdYv+m/SSq7q1LjCa9FBsHLAAXPB3gASVj
- ZX3I9sK8XYAjhMNWN2zSxZ8umG/yGSk/Xs2zs0YQPLOR4UtJLXmmN9KEw0deBF5Xp8lB xg== 
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xkynk80e7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Apr 2024 20:32:25 +0000
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43JIVKOc020834;
-	Fri, 19 Apr 2024 20:32:24 GMT
-Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xkbm9nvgp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Apr 2024 20:32:24 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43JKWLgV26804756
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 19 Apr 2024 20:32:23 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id C0B4E58053;
-	Fri, 19 Apr 2024 20:32:21 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 208C558043;
-	Fri, 19 Apr 2024 20:32:21 +0000 (GMT)
-Received: from [9.61.157.174] (unknown [9.61.157.174])
-	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 19 Apr 2024 20:32:21 +0000 (GMT)
-Message-ID: <6d604d36-8960-4abf-a75d-a097ef0a00b4@linux.ibm.com>
-Date: Fri, 19 Apr 2024 15:32:20 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: fsi: Document the IBM SBEFIFO engine
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-aspeed@lists.ozlabs.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-        devicetree@vger.kernel.org, linux-fsi@lists.ozlabs.org,
-        robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-        jk@ozlabs.org, alistair@popple.id.au, lakshmiy@us.ibm.com
-References: <20240415153907.10051-1-eajames@linux.ibm.com>
- <20240415153907.10051-2-eajames@linux.ibm.com>
- <20240416-askew-slapstick-994453ecbf73@spud>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <20240416-askew-slapstick-994453ecbf73@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: riFHLh5-xdKKzfQXdlLgtSYOfHOMbUAN
-X-Proofpoint-ORIG-GUID: riFHLh5-xdKKzfQXdlLgtSYOfHOMbUAN
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1713559314; c=relaxed/simple;
+	bh=RMZAGX6lS8OT/tfzcDXtJwOv1xMnu0fCjRT0ln1nlZ4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P7S8+yf14LewycVnk1E20Opyg5eVHxWfM1GGswToqR8f6RzfunW8BTUdMBMAnPmJy1HiFPFigtuB2XbKrSb6Kqi6HYt6jH+TvlNhXTxubknMDKwgWlT+ofLYwb6hTRwe8p/uG64I8/60ducqfg6chqLeEgfmyEM9uArQzEofeug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lc8pvcRL; arc=none smtp.client-ip=209.85.160.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-434ffc2b520so88751cf.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1713559312; x=1714164112; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6K3dsqSlYNszsCn1h++dCBb6+hru/S0oFdAjebQTHM0=;
+        b=lc8pvcRL02xTcXJZSFUSu+1To0NyNPVOy0DQ0qhaIuRIe0lLdmTi3fvu/uyRJ7UL/I
+         94xjXIFLoz1MRKIvPj5tlG8T1LVjnaR0/DaQWPMdb2VCth5Ug1/9qZJIUE4yFay7CQOD
+         Q71oKdNkKMIGsukLJoWiVngk72U4+Q2g4b9vjEhdG1aDbnkiy2e73rq1oLcLzoFP1JLt
+         qDs6GcBsuni0yyT+O3mK2QyFhwZG1FMarXzZJXwrEgRmOtPVFldfCxlxqoh4d6nf5Mvj
+         8yTDohKwM+zn9PEoLFOkyh7X/KHEz/DdpTQvIRwmT/ATO9O0Z/4fn5TfJpk9t92QJY6s
+         Wx2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713559312; x=1714164112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6K3dsqSlYNszsCn1h++dCBb6+hru/S0oFdAjebQTHM0=;
+        b=iY8PTS4dbyI0QAWXdhIs8TwOAkrhR1JjxvA4b7H0Cuo249mgP+9QbXU0sqNHobnORT
+         sSmlPPKNnod6jiMjEv9OPsdIys+g7SmRACPffF3ywl5c2fa3DgysgLS+52jc4FcQoIFn
+         /vM1dJFfRqB9dffN+KU3tv5prbabCBEnxITNThrjvYOIlRR4/SLKP0gG1NfV251njmub
+         7oWXQPlpft7bTy3MpueVxuEbXjqm2O+h2UlGDO2tviaURceGcY4ylBZUW2h+YPhGZirW
+         F41M4NshzO764xAOm2sJBnR34IULbjhNshv5XZGQGx3TpxiV5vy8dy0FzkF303+r3mFM
+         JnKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUD6pyptDKqXHtADvNck1CynybwmNUKFk4cgX9/OWJqjS/643GthAjvFxDpvlEprBpKhRXRXFSyq4Mhi8491sM0cp3ZcUG2jRo2Zg==
+X-Gm-Message-State: AOJu0YyKCwPkZZeUdBGHrmZ1Jg35dPa74F6PHNdahqoTKjGFX7/acFgt
+	gumE83svCDk7WEBwgqBxON/vtANUgORL1s52QoQ013vEdvSHDh0gAYEn4zPHXUlAG835Mz7Ljuo
+	lJ7ViMqajDgaSgwJMvnzixH4rJpwvNrVYOjBa
+X-Google-Smtp-Source: AGHT+IHZbGtaHsrDZJlMeCvL5n3nHY8v9RvCEAZmDRwJuRM5kQHZzdgDzoyAqJc7HDUdc4L091tykzPFVNpxeTYTWEk=
+X-Received: by 2002:ac8:729a:0:b0:437:b99c:dbf7 with SMTP id
+ v26-20020ac8729a000000b00437b99cdbf7mr9471qto.11.1713559311445; Fri, 19 Apr
+ 2024 13:41:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-19_15,2024-04-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 bulkscore=0
- suspectscore=0 clxscore=1011 phishscore=0 priorityscore=1501 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2404010000
- definitions=main-2404190159
+References: <20240418124815.31897-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240418124815.31897-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240418124815.31897-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@google.com>
+Date: Fri, 19 Apr 2024 13:41:34 -0700
+Message-ID: <CAD=FV=X5tk0tCcDa+vLnu0aoas1TDWuqvkMzM-278dOCX8K1gw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] HID: i2c-hid: elan: Add ili2900 timing
+To: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
+	benjamin.tissoires@redhat.co, hsinyi@google.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-On 4/16/24 12:25, Conor Dooley wrote:
-> On Mon, Apr 15, 2024 at 10:39:05AM -0500, Eddie James wrote:
->> The SBEFIFO engine provides an interface to the POWER processor
->> Self Boot Engine (SBE).
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->> Changes since v1:
->>   - Chance "ody" to "odyssey"
->>   - Fix typo in commit message
->>   - Reword description to describe the hardware only
->>
->>   .../devicetree/bindings/fsi/ibm,sbefifo.yaml  | 39 +++++++++++++++++++
->>   1 file changed, 39 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
->> new file mode 100644
->> index 000000000000..69521b1cfb25
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
-> Filename matching a compatible please.
-
-
-Ack, and ack to your comments below. I'll send v3.
-
-
-Thanks,
-
-Eddie
-
-
+On Thu, Apr 18, 2024 at 5:48=E2=80=AFAM lvzhaoxiong
+<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
 >
->> @@ -0,0 +1,39 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/fsi/ibm,sbefifo.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: IBM FSI-attached SBEFIFO engine
->> +
->> +maintainers:
->> +  - Eddie James <eajames@linux.ibm.com>
->> +
->> +description: |
-> This | should not be needed, there's no formatting to preserve.
+> ILI2900 requires reset to pull down time greater than 10ms,
+> so the configuration post_power_delay_ms is 10, and the chipset
+> initial time is required to be greater than 100ms,
+> so the post_gpio_reset_on_delay_ms is set to 100.
 >
->> +  The SBEFIFO is an FSI CFAM engine that provides an interface to the
->> +  POWER processor Self Boot Engine (SBE). This node will always be a child
->> +  of an FSI CFAM node; see fsi.txt for details on FSI slave and CFAM
->> +  nodes.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ibm,p9-sbefifo
->> +      - ibm,odyssey-sbefifo
->> +
->> +  reg:
->> +    items:
->> +      - description: FSI slave address
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    sbefifo@2400 {
-> Per fsi.txt, the generic node name looks like it should be
-> "fsi-slave-engine"?
+> Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
+
+Please use a proper name instead of "lvzhaoxiong".
+
+
+> ---
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> Cheers,
-> Conor.
+> diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/=
+i2c-hid-of-elan.c
+> index 5b91fb106cfc..3073620b2dec 100644
+> --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> @@ -137,10 +137,18 @@ static const struct elan_i2c_hid_chip_data ilitek_i=
+li2901_chip_data =3D {
+>         .main_supply_name =3D "vcc33",
+>  };
 >
->> +        compatible = "ibm,p9-sbefifo";
->> +        reg = <0x2400 0x400>;
->> +    };
->> -- 
->> 2.39.3
->>
+> +static const struct elan_i2c_hid_chip_data ilitek_ili2900_chip_data =3D =
+{
+> +       .post_power_delay_ms =3D 10,
+> +       .post_gpio_reset_on_delay_ms =3D 100,
+> +       .hid_descriptor_address =3D 0x0001,
+> +       .main_supply_name =3D NULL,
+
+There's really no main power supply for this device? It feels likely
+that there is one.
+
+Also: other than the main power supply, there is no difference between
+this and the ili2901. If you actually do have a main power supply,
+then you probably don't need a new table. You probably don't even need
+your own compatible string and in the device tree you could just
+specify:
+
+compatible =3D "ilitek,ili2900, "ilitek,ili2901";
+
+...which says "I actually have an ILI 2900, but if you don't have any
+special driver for the ILI 2900 it's likely that the driver for the
+ILI 2901 will work because the hardware is almost the same."
+
+
+> +};
+> +
+>  static const struct of_device_id elan_i2c_hid_of_match[] =3D {
+>         { .compatible =3D "elan,ekth6915", .data =3D &elan_ekth6915_chip_=
+data },
+>         { .compatible =3D "ilitek,ili9882t", .data =3D &ilitek_ili9882t_c=
+hip_data },
+>         { .compatible =3D "ilitek,ili2901", .data =3D &ilitek_ili2901_chi=
+p_data },
+> +       { .compatible =3D "ilitek,ili2900", .data =3D &ilitek_ili2900_chi=
+p_data },
+
+If you do need this, these should be sorted. 2900 should come before 2901.
+
+
+-Doug
 
