@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-60927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7ED8AAFC6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:53:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D41348AAFC7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:53:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72FC828252F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:53:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 900AD282578
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1496512AAF4;
-	Fri, 19 Apr 2024 13:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC0412BF1C;
+	Fri, 19 Apr 2024 13:53:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="TfsA0shd"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="d5UBILp8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5391012A151
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4944200D3
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713534814; cv=none; b=sIW2r0xT5la9hynx6X8EqBqXnDOwdsCgfqag3G6Ux+m2FS0Ri2QFODH8ROuYeRL1xYfsPH6wqRTEP+MCN299PdgSb2//taIQd9iBw7olVQkCey9A0NJrTgJex2gCsLXXzqLyvgKxrmee7fEYNdAvIIucPViP7lKwwDHL5t6de7U=
+	t=1713534815; cv=none; b=FyiYh+Osrc1ujCyrrfGFsU47B4H3Sdojmr5VI8tTO9hZVZ3PRPOBC2FMZGl4ciFZMsPFwPnvtInZAxv5tKv3QoIqve0+TOOrQhceTPTH8UG/qMeZ3vaGGI+HC/yJTTQtKIkPft0L0Lxvhq7azFl26KhOZoq/t4ucoCMYyvR1wzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713534814; c=relaxed/simple;
-	bh=/+RCT2PQcQbxcdDlZ1qzKOIQWqvxqwYfsMlCrWUC9EI=;
+	s=arc-20240116; t=1713534815; c=relaxed/simple;
+	bh=sxvf32/JpNtPHFVEpEj3h9lpXz108v2JRtAY8b9TiXg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-type; b=nnpk+Op6El2gBXWTI0kg1/5H2q+OARCl789r0AOWE5+6dAw6Y6bYIf1/QU9H5FziIGx9DvaOpH/FrnvN9nSMTYEoQK4mwJQO82Y642zXDdg7GfEKGU+LPNOGl46piw29fWHG4Bc1ia+BjAf+sK4ZRd7Cs5ml/E8jVZ6XjUAKFco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=TfsA0shd; arc=none smtp.client-ip=209.85.218.44
+	 MIME-Version:Content-type; b=Vlq8Gc9QPNu8H+vvzspN+hXHcNJeNqw9ntn7Oq2TK3+HobPiPHhZyfQILdYbyRqmNOhGOqRzlFNKUTnDQ5Tet+kR3YllmS0iCgkk+yxUkf62wsIob8KA/7ixczrCke8iBpgknSqyErXP2foRvrYqMRIj0zh6D+Sx73MREZX8U8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=d5UBILp8; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a526a200879so259922866b.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 06:53:32 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a5200afe39eso219742866b.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 06:53:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1713534811; x=1714139611; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1713534812; x=1714139612; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v7Wus7+04U367SmPRgLRcagyxip4bNtqJZUWzPYUkwc=;
-        b=TfsA0shdc1qP153seLtzztSIOMvQfuhWRTlTqq5aftUXThQ/0yMgHWoooMOPb4HqMc
-         cISaSwggi/7vCVk5wfhn/dKqFiLhOOVp5o2xFmggM8AvtuD31IbIgG2Bh+RnqyE8C4Yx
-         DTRGXAVyCujwW5mptY98P4++/aez3lcA+oTXjnASEwjHzCT4MF5YbI8jzsdINiXlFq+H
-         4aNNxO1aW7Qkh89vLGT5RaAXmSuTjNPwh15UjNR5wzrLSu+vTgyDhSa2YH+4SBlEPh4P
-         hR1qv/SD97A3wvSvaxPJbkJebhv8M+19jqsB+cV0AUclytMqbKbdYk6N+fbPKpXWGlNM
-         bdLg==
+        bh=L/o9GJYOsp32C4ZK5XVSIqlhvuJ+jgCOlcUd/wXUyPQ=;
+        b=d5UBILp8s1FC/U1QePfAyVMrE9kPFGvNtZnItOgY3htE4fMcqdY3MEjDXDpDKYyzFV
+         1qqc1G99WjVFFCSjbzQ7FrRLLh4j6QG9lXpU+0XRRwaISNNcteM+Ql08IfoLV5vtVHGS
+         S3NObrL6hPCDpJAqqAHavDetfX5q74uYZ5EI16FQVsOPJv9v1UOeOtlunmVxornTSiC4
+         MCQ7cuB3vFpiKrEwx6RvryxD+A41RVkIntIZ6J8MOVlh2JTBwxmxvFvHa9jUSpILUvrL
+         ZhfuO0vJyG9MfMCCaDAiwwlFgu7OeKvl8RaLhJBDaUNo3bYhj0h2RtY8zFzYhMMdqkyQ
+         tb7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713534811; x=1714139611;
+        d=1e100.net; s=20230601; t=1713534812; x=1714139612;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=v7Wus7+04U367SmPRgLRcagyxip4bNtqJZUWzPYUkwc=;
-        b=jUAOgTrbvhvpezECL57yJg/a0JtVl1zw24WyHDyQ9vcOYf0xAb51EABEOme0mkEsdx
-         KbTfLpGxvFWRAeQzbyuLNjFQPOhy8dt2X9O3PaBUsCrs13Y+x7r/nlMTKrVRbt5mcLkG
-         x17trBykUZ7CGgaFEj2VZjD0ImAZOwqNJESTFsb1nsGHyEkaL1TwjHrdrGp0pxuRRmbv
-         twmczLnGT4Ojv/eko5tEDXPnzwRD3vXx8CAr8cvudFKkNp2NIatZvswCYWfBa/jhoC5H
-         Av8Tq/kyf+jU+dbHHHP/Z0YNmzohdhBSeiWICdz4SfeyOpEFszqrenNO5TnGcPdGBFox
-         qbzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVXWztMJcWc3jP34QllhawcURaNMa+F+bIKh5zjF9fD5NeLHr2yoYjZ8Gaz0cl9vufz3huwSaKSj00cVvP9pQBl/jFaQgAxJCF+hQ==
-X-Gm-Message-State: AOJu0YwjKSU9H9ygTWoQ8gainMRGd3RxWMUGUmAiZFAMqIlCVamThUDl
-	HChlm21DNUJsSacyRFBHC6XUhK2ePpVWMi42bk8eJWxga50s3zF+YVyvSOg8w3k=
-X-Google-Smtp-Source: AGHT+IGW5DMzpQ1s7RJVHZYrIDlcwyg2slIg6T6KVtXyKcpiNBcc1wPNCm7ONf1zgIDtdYgJqAgZAw==
-X-Received: by 2002:a17:906:f8c5:b0:a55:5ddd:e5f6 with SMTP id lh5-20020a170906f8c500b00a555ddde5f6mr1513975ejb.28.1713534810779;
-        Fri, 19 Apr 2024 06:53:30 -0700 (PDT)
+        bh=L/o9GJYOsp32C4ZK5XVSIqlhvuJ+jgCOlcUd/wXUyPQ=;
+        b=aI02FcMxQlu3vnZ9gq/tGnQ/Z67AhUeety1DGGdCQPx0AYqJMTXkHT2DZXzbeZgQn9
+         0vMcxs9dUz4KEHOf7hGX+pbprtmcO0aloCz+Jbu3q2IfPWTrZbYxUN3BqNoz2S2xr9iI
+         X53dlW7nT7Q3EWHObVFW3iuKN0ZO09F44juyA7++sjfE/gXTDY5P+6S+E9xglMstlQK5
+         3SuG8VZ2fKUWd0k0nQAyqQ3F6444jTwpm1y197OWlj+BlmwKCOtgRiYHOGqXNcui2mWZ
+         JTCZgPPr/ceDskUkeDYoQvaJ8hHcTI+pJLpIeeYhY3KVIz36jvqaYEFN853R8MZBVL1J
+         ftuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxrZAmjoUgYVWOTtwHI6bjc3pW5353ie/K14ulftLE/sNvCk1M58YmCdB5cBCa0xQxeCweJiq9jI+E1SlZdoex5bz3fdwPrh5k3A==
+X-Gm-Message-State: AOJu0Ywaz3fBUe4RwBPBGP0tLteHvmuipPAjEcXOn0ZmFmtvNGgPmQzm
+	2FLhSNzXK87D+zEzqa3CZ8o2yTF1RXnhZz+Qhejb/nH6dR5OjRHJFlHo0/SiImg=
+X-Google-Smtp-Source: AGHT+IGBQ9t0lRGzscQAhpOHuvu3T6H/3CaUBbGTMF7yl3wKq7mI9JkjJ8Ug9d+DetW6DEe2LgbkcA==
+X-Received: by 2002:a17:906:6d54:b0:a55:7837:b546 with SMTP id a20-20020a1709066d5400b00a557837b546mr1941644ejt.57.1713534812041;
+        Fri, 19 Apr 2024 06:53:32 -0700 (PDT)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id t22-20020a1709063e5600b00a5209dc79c1sm2266768eji.146.2024.04.19.06.53.30
+        by smtp.gmail.com with ESMTPSA id lk19-20020a170906cb1300b00a526418d0ebsm2233256ejb.74.2024.04.19.06.53.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Apr 2024 06:53:30 -0700 (PDT)
+        Fri, 19 Apr 2024 06:53:31 -0700 (PDT)
 From: Andrew Jones <ajones@ventanamicro.com>
 To: linux-riscv@lists.infradead.org,
 	kvm-riscv@lists.infradead.org,
@@ -86,9 +86,9 @@ Cc: paul.walmsley@sifive.com,
 	David.Laight@ACULAB.COM,
 	parri.andrea@gmail.com,
 	luxu.kernel@bytedance.com
-Subject: [PATCH v2 5/6] KVM: riscv: Support guest wrs.nto
-Date: Fri, 19 Apr 2024 15:53:27 +0200
-Message-ID: <20240419135321.70781-13-ajones@ventanamicro.com>
+Subject: [PATCH v2 6/6] KVM: riscv: selftests: Add Zawrs extension to get-reg-list test
+Date: Fri, 19 Apr 2024 15:53:28 +0200
+Message-ID: <20240419135321.70781-14-ajones@ventanamicro.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240419135321.70781-8-ajones@ventanamicro.com>
 References: <20240419135321.70781-8-ajones@ventanamicro.com>
@@ -101,116 +101,50 @@ MIME-Version: 1.0
 Content-type: text/plain
 Content-Transfer-Encoding: 8bit
 
-When a guest traps on wrs.nto, call kvm_vcpu_on_spin() to attempt
-to yield to the lock holding VCPU. Also extend the KVM ISA extension
-ONE_REG interface to allow KVM userspace to detect and enable the
-Zawrs extension for the Guest/VM.
+KVM RISC-V allows the Zawrs extension for the Guest/VM, so add it
+to the get-reg-list test.
 
 Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
 ---
- arch/riscv/include/asm/kvm_host.h |  1 +
- arch/riscv/include/uapi/asm/kvm.h |  1 +
- arch/riscv/kvm/vcpu.c             |  1 +
- arch/riscv/kvm/vcpu_insn.c        | 15 +++++++++++++++
- arch/riscv/kvm/vcpu_onereg.c      |  2 ++
- 5 files changed, 20 insertions(+)
+ tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/riscv/include/asm/kvm_host.h b/arch/riscv/include/asm/kvm_host.h
-index 484d04a92fa6..e27c56e44783 100644
---- a/arch/riscv/include/asm/kvm_host.h
-+++ b/arch/riscv/include/asm/kvm_host.h
-@@ -69,6 +69,7 @@ struct kvm_vcpu_stat {
- 	struct kvm_vcpu_stat_generic generic;
- 	u64 ecall_exit_stat;
- 	u64 wfi_exit_stat;
-+	u64 wrs_exit_stat;
- 	u64 mmio_exit_user;
- 	u64 mmio_exit_kernel;
- 	u64 csr_exit_user;
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index b1c503c2959c..89ea06bd07c2 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -167,6 +167,7 @@ enum KVM_RISCV_ISA_EXT_ID {
- 	KVM_RISCV_ISA_EXT_ZFA,
- 	KVM_RISCV_ISA_EXT_ZTSO,
- 	KVM_RISCV_ISA_EXT_ZACAS,
-+	KVM_RISCV_ISA_EXT_ZAWRS,
- 	KVM_RISCV_ISA_EXT_MAX,
- };
- 
-diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index b5ca9f2e98ac..abcdc78671e0 100644
---- a/arch/riscv/kvm/vcpu.c
-+++ b/arch/riscv/kvm/vcpu.c
-@@ -25,6 +25,7 @@ const struct _kvm_stats_desc kvm_vcpu_stats_desc[] = {
- 	KVM_GENERIC_VCPU_STATS(),
- 	STATS_DESC_COUNTER(VCPU, ecall_exit_stat),
- 	STATS_DESC_COUNTER(VCPU, wfi_exit_stat),
-+	STATS_DESC_COUNTER(VCPU, wrs_exit_stat),
- 	STATS_DESC_COUNTER(VCPU, mmio_exit_user),
- 	STATS_DESC_COUNTER(VCPU, mmio_exit_kernel),
- 	STATS_DESC_COUNTER(VCPU, csr_exit_user),
-diff --git a/arch/riscv/kvm/vcpu_insn.c b/arch/riscv/kvm/vcpu_insn.c
-index ee7215f4071f..97dec18e6989 100644
---- a/arch/riscv/kvm/vcpu_insn.c
-+++ b/arch/riscv/kvm/vcpu_insn.c
-@@ -16,6 +16,9 @@
- #define INSN_MASK_WFI		0xffffffff
- #define INSN_MATCH_WFI		0x10500073
- 
-+#define INSN_MASK_WRS		0xffffffff
-+#define INSN_MATCH_WRS		0x00d00073
-+
- #define INSN_MATCH_CSRRW	0x1073
- #define INSN_MASK_CSRRW		0x707f
- #define INSN_MATCH_CSRRS	0x2073
-@@ -203,6 +206,13 @@ static int wfi_insn(struct kvm_vcpu *vcpu, struct kvm_run *run, ulong insn)
- 	return KVM_INSN_CONTINUE_NEXT_SEPC;
- }
- 
-+static int wrs_insn(struct kvm_vcpu *vcpu, struct kvm_run *run, ulong insn)
-+{
-+	vcpu->stat.wrs_exit_stat++;
-+	kvm_vcpu_on_spin(vcpu, vcpu->arch.guest_context.sstatus & SR_SPP);
-+	return KVM_INSN_CONTINUE_NEXT_SEPC;
-+}
-+
- struct csr_func {
- 	unsigned int base;
- 	unsigned int count;
-@@ -378,6 +388,11 @@ static const struct insn_func system_opcode_funcs[] = {
- 		.match = INSN_MATCH_WFI,
- 		.func  = wfi_insn,
- 	},
-+	{
-+		.mask  = INSN_MASK_WRS,
-+		.match = INSN_MATCH_WRS,
-+		.func  = wrs_insn,
-+	},
- };
- 
- static int system_opcode_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
-diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
-index f4a6124d25c9..67c5794af3b6 100644
---- a/arch/riscv/kvm/vcpu_onereg.c
-+++ b/arch/riscv/kvm/vcpu_onereg.c
-@@ -41,6 +41,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
- 	KVM_ISA_EXT_ARR(SVNAPOT),
- 	KVM_ISA_EXT_ARR(SVPBMT),
- 	KVM_ISA_EXT_ARR(ZACAS),
-+	KVM_ISA_EXT_ARR(ZAWRS),
- 	KVM_ISA_EXT_ARR(ZBA),
- 	KVM_ISA_EXT_ARR(ZBB),
- 	KVM_ISA_EXT_ARR(ZBC),
-@@ -120,6 +121,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
- 	case KVM_RISCV_ISA_EXT_SVINVAL:
- 	case KVM_RISCV_ISA_EXT_SVNAPOT:
- 	case KVM_RISCV_ISA_EXT_ZACAS:
-+	case KVM_RISCV_ISA_EXT_ZAWRS:
- 	case KVM_RISCV_ISA_EXT_ZBA:
- 	case KVM_RISCV_ISA_EXT_ZBB:
- 	case KVM_RISCV_ISA_EXT_ZBC:
+diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+index b882b7b9b785..8c4c27bd4b88 100644
+--- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
++++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+@@ -48,6 +48,7 @@ bool filter_reg(__u64 reg)
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVNAPOT:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVPBMT:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZACAS:
++	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZAWRS:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBA:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBB:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBC:
+@@ -413,6 +414,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
+ 		KVM_ISA_EXT_ARR(SVNAPOT),
+ 		KVM_ISA_EXT_ARR(SVPBMT),
+ 		KVM_ISA_EXT_ARR(ZACAS),
++		KVM_ISA_EXT_ARR(ZAWRS),
+ 		KVM_ISA_EXT_ARR(ZBA),
+ 		KVM_ISA_EXT_ARR(ZBB),
+ 		KVM_ISA_EXT_ARR(ZBC),
+@@ -936,6 +938,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
+ KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
+ KVM_ISA_EXT_SIMPLE_CONFIG(svpbmt, SVPBMT);
+ KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
++KVM_ISA_EXT_SIMPLE_CONFIG(zawrs, ZAWRS);
+ KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
+ KVM_ISA_EXT_SIMPLE_CONFIG(zbb, ZBB);
+ KVM_ISA_EXT_SIMPLE_CONFIG(zbc, ZBC);
+@@ -991,6 +994,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
+ 	&config_svnapot,
+ 	&config_svpbmt,
+ 	&config_zacas,
++	&config_zawrs,
+ 	&config_zba,
+ 	&config_zbb,
+ 	&config_zbc,
 -- 
 2.44.0
 
