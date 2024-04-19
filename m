@@ -1,131 +1,114 @@
-Return-Path: <devicetree+bounces-60904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5832F8AAF30
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:20:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9E78AAF34
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 130EB2814C9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:20:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFCB5B22BF0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD7586642;
-	Fri, 19 Apr 2024 13:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538838624B;
+	Fri, 19 Apr 2024 13:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b="bWYGChA9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gyxpWJ7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-80008.amazon.com (smtp-fw-80008.amazon.com [99.78.197.219])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9455F19E;
-	Fri, 19 Apr 2024 13:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.219
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D089D127B72
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:20:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713532797; cv=none; b=TR712nR2YJQ/Ip0vbMmI6XrhO105cK6CazcHNoNe8ucHBa5v5Z1J50QeDCH04ZuaAP5p/ECsU98s6K01uzqlOr4F/geijPRAaUySH3m4SMjrKpoxSZuDWH47qTWiyqLeUSwznI1iIWwhXo4BD7PCs2zeaDFvAdZnoT0gH9Hcx1k=
+	t=1713532821; cv=none; b=parbPtechLUFB3o65+3xAakOJjnc+cNm+DWl83CVlDX4NllKS/XIk4ES0pj7SkXkx/nPyd4tUSFergi0GryCsj8of1CRWevX8l7DFMPXnMPvuXQ3yxSBqljuBIPKwpgirDCVOfUR3Sp3Sbipsp44M9jNcgInL/Gq6TTasD8rjDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713532797; c=relaxed/simple;
-	bh=YtNxjDr6ye0tfNkDHrO8NQs2k9s6SpkWez4dpC7SRbw=;
-	h=Subject:Message-ID:Date:MIME-Version:To:References:From:
-	 In-Reply-To:Content-Type; b=CRKxhATG4SLKoMuh7P7dhjvROZ9AG3zc+O/obDFB+YjbLEUKalyPkX38XqssgsY/V7z3J/fSheqoSaXkrmMnmFdLhtQC1mmaESNL2V+VQwxhWWw6DOhT41fdn30W+ZMsCs/Z/D3b7Ny3yuHPcH5rPGc2QZWQ9vZYLpwdgUxBHx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk; spf=pass smtp.mailfrom=amazon.co.uk; dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b=bWYGChA9; arc=none smtp.client-ip=99.78.197.219
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.co.uk
+	s=arc-20240116; t=1713532821; c=relaxed/simple;
+	bh=ukqNim2wR4zF3yUVwL5ebSYvcGgLz6CYpTrNBxxNrNU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zp6yN/vtAkbOOJe3TGtWSMe0ScoVJ8FcWcM4ICtXlGB8I8Y3Azfwnqt4OqLa1XL1YU1MgFH04JmlIX4CsvIXdJyfonVKqeki3sn12HWv1ow6BnNS6CXs99Se3P8WVlOvhEVYrEmOM1nNQJ/8/PlnzcmVaF8eIiTnNyEsABso4wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gyxpWJ7D; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-de45dba15feso2171207276.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 06:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.co.uk; i=@amazon.co.uk; q=dns/txt;
-  s=amazon201209; t=1713532795; x=1745068795;
-  h=message-id:date:mime-version:to:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=ISutO2pj2s7Fy7875dgH0wvjUUVXcJi8DHrFYOiS41E=;
-  b=bWYGChA9m/E6EcTxzeWS2rXiTWdwwP6igzsHTTzpU0QvZHB+jNmLTXLW
-   d2ON7s4nlpaevVMtcQFzVhrsL8O05QhV3cqA8V5RFfehxo4KQLIxcT+uC
-   qatSGULp9FDMAS0cfQtpDsp00X9n81TqtHXVZeUQFFDDkEIJWu6peusbj
-   4=;
-X-IronPort-AV: E=Sophos;i="6.07,213,1708387200"; 
-   d="scan'208";a="82627423"
-Subject: Re: [PATCH v7 0/3] virt: vmgenid: add devicetree bindings support
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.25.36.214])
-  by smtp-border-fw-80008.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2024 13:19:51 +0000
-Received: from EX19MTAEUC002.ant.amazon.com [10.0.43.254:23544]
- by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.12.189:2525] with esmtp (Farcaster)
- id 1b5b2be0-81f6-477c-a1ce-ffec33c6ea87; Fri, 19 Apr 2024 13:19:50 +0000 (UTC)
-X-Farcaster-Flow-ID: 1b5b2be0-81f6-477c-a1ce-ffec33c6ea87
-Received: from EX19D036EUC002.ant.amazon.com (10.252.61.191) by
- EX19MTAEUC002.ant.amazon.com (10.252.51.245) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Fri, 19 Apr 2024 13:19:44 +0000
-Received: from [10.95.129.79] (10.95.129.79) by EX19D036EUC002.ant.amazon.com
- (10.252.61.191) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Fri, 19 Apr
- 2024 13:19:39 +0000
-Message-ID: <3dc70f28-b2cc-44b8-93ad-c5550d8298c0@amazon.co.uk>
-Date: Fri, 19 Apr 2024 14:19:35 +0100
+        d=linaro.org; s=google; t=1713532819; x=1714137619; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ukqNim2wR4zF3yUVwL5ebSYvcGgLz6CYpTrNBxxNrNU=;
+        b=gyxpWJ7DQoONgUIXaVXhsNH+4a//S2TMpfKpHA8nOBSsAifOpd9YXMcffjOfiKsQzC
+         mUtuuhBBe/tauEnU2uRBZkwY8uw5l28Fp/MwFBYQ7VSv4DVK5yGJcfFEKb5aKCEBeTyE
+         P+TtlJCHE+zynCGlX6X5WyZlZyebnHSYyjRz3UChIjxSKz0pHf/G3pvo3CKGcdHzUYHZ
+         zs8AO1E6klEYdRYLJe9TPgsv8OTzW7eCczq8mhdMx14eYv1xEaFNf2jyDhWousRhbHTO
+         CnJHfcwm8eysEdPujMC/a2nDuRTMLric+lDJOllwkxuL4kEoc8pbj0TOd+oCIRnhbkjG
+         ZAUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713532819; x=1714137619;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ukqNim2wR4zF3yUVwL5ebSYvcGgLz6CYpTrNBxxNrNU=;
+        b=SBUAqwuQ4Gw5J7RZ77JSewt0Uu+0qtbcMzftByujdWIMqS+fySMn3o3IrQ+nBXNxQw
+         Kq7YBJ2WbbxOYtTxwnow5KtT8P7P1oobUreUKnjXy6W1xPL3NvgLoiV1GAYTlAP+Rhlo
+         Y/sNHJ0wkr1nLFkzc6ynQgKhgc9BD7xAn40y7grUsUqGRsyH3ZcJOIBzpTgF9leU4wo4
+         kpdG3NlIBJFQIRy37Cr+XjdGpnHPyt/5fI/BNU4vmh9O9xB0W7NwRdgLVy6+F88yjRXE
+         hYaroXFcylGu3GgpLG4nLO3IZ7Pm03Ca8MNcgbtHlhNKSABrRzleJVV3RXIrNJbyDy+X
+         AbUg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6+Bj+aGUTJDzwfIiyX7Pe5SvhOE5Xi6zoJ/p+OkFK9lN7hD0q+FkOqRmf0D/v+b4S6s3B5V+fAFw3muwBobMxBdfMPpBIKQEPfA==
+X-Gm-Message-State: AOJu0YwHQ1U8vPTu1npQVB+fmokPzxAIW2TdMtmsGoUxaSebJMG1IbzJ
+	cEtRIeK5/Xh3gtVS2CrlAUFmfy7ZZhwaKXqtj8YNbmjL2SEMkFtZ7vtJnJUnlWXODmdE+mvpAqM
+	I3k3OkoVsh4Y2DOJ5EcI0LmKcUPlVUhC0077m3A==
+X-Google-Smtp-Source: AGHT+IEI8D+Rjptnk9iY+KnYSSwY8zcUnaRQkQica2+cfdRoT6xlKYqfZKkb6nl1YXf4Kgi4R3V+bGAEnQx8Wp+MmB0=
+X-Received: by 2002:a25:acdc:0:b0:dc7:4460:878a with SMTP id
+ x28-20020a25acdc000000b00dc74460878amr1977072ybd.3.1713532818807; Fri, 19 Apr
+ 2024 06:20:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>, <tytso@mit.edu>,
-	<robh@kernel.org>, <krzk@kernel.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<sudanl@amazon.com>, <graf@amazon.com>, <dwmw@amazon.co.uk>,
-	<krzysztof.kozlowski@linaro.org>, <bchalios@amazon.es>,
-	<xmarcalx@amazon.co.uk>
-References: <20240418121249.42380-1-Jason@zx2c4.com>
-Content-Language: en-US
-From: "Landge, Sudan" <sudanl@amazon.co.uk>
-In-Reply-To: <20240418121249.42380-1-Jason@zx2c4.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EX19D031UWA001.ant.amazon.com (10.13.139.88) To
- EX19D036EUC002.ant.amazon.com (10.252.61.191)
+References: <20240418-pinctrl-scmi-v11-0-499dca9864a7@nxp.com>
+In-Reply-To: <20240418-pinctrl-scmi-v11-0-499dca9864a7@nxp.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 19 Apr 2024 15:20:08 +0200
+Message-ID: <CACRpkdbswetf2Tr6H216nxb8XKX8evyiWiVcsK5E=inqBUUVng@mail.gmail.com>
+Subject: Re: [PATCH v11 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>, 
+	Dhruva Gole <d-gole@ti.com>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Peng Fan <peng.fan@nxp.com>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>, 
+	Andy Shevchenko <andy@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Apr 18, 2024 at 3:24=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.co=
+m> wrote:
 
+> Per Sudeep's reply in v10,
+> "This series looks good overall. Since it has pinctrl driver, I need Linu=
+s
+> to ack/agree to pick the whole series up or I can ack them so that Linus
+> can take the whole series. Either way it is fine for me."
+>
+> v11 is just minor update per Andy to patch 4 and Andy's R-b applied.
+>
+> Hope v11 is good for you to pick up.
+>
+> Linus, would you ack or this patchset go through your tree?
 
-On 18/04/2024 13:12, Jason A. Donenfeld wrote:
-> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you can confirm the sender and know the content is safe.
-> 
-> 
-> 
-> Hi Krzysztof,
-> 
-> This is a cleanup of Sudan's OF vmgenid patches, simplified a bit, but
-> still with the same intent and mostly unchanged. I'll take this via my
-> random tree, but I would appreciate having your ack/review on it.
-> 
-> Sudan - if I've mangled something here, please let me know. I verified
-> this still works with ACPI in QEMU, but I don't know about your private
-> firecracker OF branch, so please pipe up if something is amiss. It's
-> basically the same thing, though, so I suspect it'll be fine.
-> 
-> Thanks,
-> Jason
-> 
-> Sudan Landge (3):
->    virt: vmgenid: change implementation to use a platform driver
->    dt-bindings: rng: Add vmgenid support
->    virt: vmgenid: add support for devicetree bindings
-> 
->   .../bindings/rng/microsoft,vmgenid.yaml       |  49 ++++++
->   MAINTAINERS                                   |   1 +
->   drivers/virt/Kconfig                          |   2 +-
->   drivers/virt/vmgenid.c                        | 150 ++++++++++++++----
->   4 files changed, 166 insertions(+), 36 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
-> 
-> --
-> 2.44.0
-> 
-Hi Jason,
+Since most of it is in firmware rather than pinctrl I suppose
+the best is to merge it in the firmware or SoC tree, so:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thank you very much for helping us with the patches. I am on a personal 
-leave with very limited access to mails/system so Babis is helping me by 
-taking over the task. Looping in Babis so that he can verify the patch 
-with DT. I would also kindly request you to please loop in Babis 
-(bchalios@amazon.es) for future discussion on these patches.
-
-Thanks and regards,
-Sudan
+Yours,
+Linus Walleij
 
