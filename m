@@ -1,195 +1,120 @@
-Return-Path: <devicetree+bounces-61020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04FBC8AB459
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 19:28:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E710E8AB4D1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 20:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6C7D287CD5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 17:28:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 249F51C210AB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 18:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F5D13A3E4;
-	Fri, 19 Apr 2024 17:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E7A13B5B5;
+	Fri, 19 Apr 2024 18:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UJDvtBOr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qdQauAQd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4742977F13;
-	Fri, 19 Apr 2024 17:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964C2137920
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 18:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713547696; cv=none; b=S/bADADt8v69FeNFH1RPrY5TK5ds373q2ZckMbjCp+ESCK+lEvRFZcB6tvgD/9wxuJi+6APJFZ6SyD0dyXpdTmg9TTYv3/EplFUz0DmeRi6lXcafH+aWmHF38kqEHSgRnQKW9A33wUZ6XHTIYgTPJb4kDe6cx6yOCmETl29+0iw=
+	t=1713550311; cv=none; b=OK3Oa3mk31oDcv8dMCIG6BxWsaX7jjIomLJXuR+iJ3fc1gU0jHKzvDQFvPcYyh5VLPLCH2IxHjQ4cpFz6kQLzlNe3Ev3wNCSuTodyyCZdW+CWE0DQUk5EF7T1wGJBrMhnh1/yVM9tktLwrOmABHEnHv/jw5kNTu4cqPypn/hynY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713547696; c=relaxed/simple;
-	bh=CiY8/nAJ94vQ5TldCY4pGhgSrPvSqfEp6YEoeLDubQM=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=ZadozfQQuc9pzZ0ZAxlL43zYk3is4ciAt+1uniedKQ5OCyGry4wkUBcwFpPQRAx8Cclm4Q2kVKKmTUw0qX97oyX+86esgAKHJnrfkxqXaU91i6t719FT+jSbw+6RPDN7sZCoL+w9ZEznUJr2ZybjEOzVhB0p6Xze3bya+eu16h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UJDvtBOr; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-343cfa6faf0so2106113f8f.0;
-        Fri, 19 Apr 2024 10:28:14 -0700 (PDT)
+	s=arc-20240116; t=1713550311; c=relaxed/simple;
+	bh=kpDp/tDKF6u8aQQFzTlCZlZ2nmv/pCiyMG5DCRNEMH4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BDDf4K2sHkODUmm2zZgff7UO9bSLtoqlHmr//fS9jdm+kh5ESDNkyovBv6adyodMt05U3doUYWE3epM4KB0gUCOazL/7Koxv01FAnpvcHacdZviSY7AVdH+6B4K8SKAV0R/hT6l3sUdvQVVz2YAand3aKDE4C0/Zo6uQ8Fh4e8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qdQauAQd; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dcd7c526cc0so2583263276.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 11:11:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713547693; x=1714152493; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Atbe4MPhJuRT7fbR5tzI2HH3PRwHbiVkk8k6A1FcZ4s=;
-        b=UJDvtBOr7K6tjoIEL0OrynSPH1ca8rHjfuEim2Ok2LHR17MoUSxuptkTm9ie7SOEVA
-         ng5HWcLF8pkS+cQRqmTvtYNcXDnHZ735EE0jholiGgQcxni418Mf+vtSv2RcAbK0l+hw
-         gewu1pizpktt1kmH/Bn+GFFsqpcPiLpNmxOuGMSysh24pJsOPdy7o63MRUUBrxdck2rx
-         FtDJoGKy8J0cMJ0/hHSzaS5tDCuOo2z9fXf3iGPj20XOgT8AFUxbOtN7qTP7zsgB8x3I
-         M1Lw/a8yz03ZWdcG0OI8xl0HtvHUlfkx5MBQVkCYKKzLNrxKO7zCTunFCUs3FuZiuHOw
-         pNsQ==
+        d=linaro.org; s=google; t=1713550308; x=1714155108; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hyxqidtiL/NTat07i5sxE7s0Wa8dugW75yP7YmoWNV8=;
+        b=qdQauAQdielGwknHNSZDpQqZT4cnbb1pz34Rtwk3LcuLpI78LuA1eagJnUytdXq3kF
+         CfZx5rzs10T3ZCVwibjYxE3MDqq5b+FDEIhYBEvygRDIre8gN7/bybyeyiUwAUMwx1C5
+         /O6Xha+bVb2yphtRC/lW/W3fhhXqU7galr57vZGkSEJJU+PdO1ntJpavUiOTdJ1M9M32
+         YlXByQIQ+/nnbReU1HaOAcF0jDXWCbyjgjTxBytdQXpIY6hDrC2U3OXm0FKbCw/PYODU
+         3wzhydkE0ERsfmD6sQd2p7cjXXMjz6rhocpAIDpf9dcYDzIHtGLSJTf5r4tHkm45zKoU
+         T+Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713547693; x=1714152493;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Atbe4MPhJuRT7fbR5tzI2HH3PRwHbiVkk8k6A1FcZ4s=;
-        b=r7LSTY5KHBbFUaZzDkN22shwemr25EtA1HUGEeGAfUmO5Ecs7vColfI9+Vw+hNy8tF
-         8gaSwiWFKxOAm0eNZW1o44PkKvf5TTwIi+5duavZUnL1S0mAdLR7UPwmL+2ZIxVSljmL
-         XnCNS+A7xYbNxAfeBlN5wcLpZJmT/FQc6Fsv+l9DlK2DUV+jx3z137IOR8kobqWsPR8y
-         NWGMe+nkXF1umhfpwfjB5O+dHs8cAKzzbGc0/rx+upJbBsjdwcBFjOaAXIadaqVfBLRE
-         0afrk9uGqrL428kXzrhZ0U6dp6m3vukP48b1B/RstK8yIxugQJcUwC2WJIYMvAb9prxs
-         YVRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVq/WlrUGo2w9uVFA9vx+CKFAbhm1/XQS2gmyCx/k8OgEBUU8IspJzdVh8NN7lGEMHlepKKDElgZuP6atU/4qsl2m/c24azReqzMSn2Wy/LazGVRGgRkzFvpZN+87Rz9PUwjM5RqexZZw==
-X-Gm-Message-State: AOJu0YwpTGVRhKYXq2uiOZdtR8uyUV/U7ACUlugsGZdI6pHIq95Tp5wa
-	9J3OHFcFEzwPhu4BpOA2qTzyND/XpYVNrqYTKrKGFg0R/l7XJiCH
-X-Google-Smtp-Source: AGHT+IF6A+v0NN01QBnz5fAkXZW88z/35Cm0aPRsMcAa+BCGpAJrxeXuNMaFWA8mTEjVyx/z7j97/Q==
-X-Received: by 2002:a5d:4e0d:0:b0:33e:c91a:127e with SMTP id p13-20020a5d4e0d000000b0033ec91a127emr2289532wrt.63.1713547693290;
-        Fri, 19 Apr 2024 10:28:13 -0700 (PDT)
-Received: from smtpclient.apple ([2a02:8010:6606:0:8130:9b6:fda5:3b16])
-        by smtp.gmail.com with ESMTPSA id fj3-20020a05600c0c8300b00416b2cbad06sm11117515wmb.41.2024.04.19.10.28.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 19 Apr 2024 10:28:12 -0700 (PDT)
-Content-Type: text/plain;
-	charset=us-ascii
+        d=1e100.net; s=20230601; t=1713550308; x=1714155108;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hyxqidtiL/NTat07i5sxE7s0Wa8dugW75yP7YmoWNV8=;
+        b=Eu0/bLh4n45RGGghKAMvY/nUMg9noVU4ZOiKiPIP1FOv2/2O5FUcc4Tvu/YPJkyiO7
+         8IMazsGJW57mRV6Ng0Cran/gavbuXyCnkHL0WsYLnP6U4uqfSnTBpRAPgxFkReWQV+FY
+         xpxfHaf9Lw0mdeG3aLI9f2H4qOFcYVZ/3GosLacR+SvIzFqg7f5kv4rKNsoMmiYNDLz7
+         FzcU3QubG7HQzDTCtx5h7YZnQlzdQ/f4LAhXky0cNGNmab/nBVtLNezxkrEAk99q0WNk
+         oEQE6CTPZ/s8qvpTIF+LztLAd5A0BSXaPJzBdoBhTUB70ww3dyw1TIRzewWaQ7k6VqJz
+         7kwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUU6SvfGrCxFa+aMiR4yWsVkVw+D8Gho1HIOnOzH7SZCqdN6AHOcQiFplrlQIMM1Gx2AAeLNVmmnIUKqQljUbqNRONZmfynqaThqA==
+X-Gm-Message-State: AOJu0YymNpGfp52Aeq2qwOQXKBAulvWfj0iMjZQMpcwtFZN5PFdik5NQ
+	F9dD7aw62kiS4IQfnLGqjKfkk4veU4rnCRdhOzCfu0aGxZBQKn0Z5MFjGQ+nfatSDkGhRcfofBM
+	hn2VHM1xN5b3mLOre59Zf8TJbwh73tcP4UFyZu5dt0AZwGJlS
+X-Google-Smtp-Source: AGHT+IGcWi/OG56+hiuPqFqYIVOD3gn8BVTrYH92OTVBqaeRKs+lfGtmgMgHUQk5ZN8KQBFfqn+s6lCL73G+tbty58A=
+X-Received: by 2002:a25:8548:0:b0:dc6:c32f:6126 with SMTP id
+ f8-20020a258548000000b00dc6c32f6126mr2862185ybn.22.1713550308636; Fri, 19 Apr
+ 2024 11:11:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
-Subject: Re: [PATCH v6 2/2] arm64: dts: rockchip: Add Hantro G1 VPU support
- for RK3588
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-In-Reply-To: <20240418111002.83015-3-liujianfeng1994@gmail.com>
-Date: Fri, 19 Apr 2024 18:28:01 +0100
-Cc: linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- ezequiel@vanguardiasur.com.ar,
- p.zabel@pengutronix.de,
- mchehab@kernel.org,
- robh@kernel.org,
- krzk+dt@kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>,
- sfr@canb.auug.org.au,
- sebastian.reichel@collabora.com,
- didi.debian@cknow.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B9F108CF-4BC5-41A0-A28A-1CA1F4D2CD3C@gmail.com>
-References: <20240418111002.83015-1-liujianfeng1994@gmail.com>
- <20240418111002.83015-3-liujianfeng1994@gmail.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-X-Mailer: Apple Mail (2.3774.500.171.1.1)
+MIME-Version: 1.0
+References: <20240419-x1e80100-dts-fix-mdss-dp3-v2-0-10f4ed7a09b4@linaro.org> <20240419-x1e80100-dts-fix-mdss-dp3-v2-1-10f4ed7a09b4@linaro.org>
+In-Reply-To: <20240419-x1e80100-dts-fix-mdss-dp3-v2-1-10f4ed7a09b4@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 19 Apr 2024 21:11:38 +0300
+Message-ID: <CAA8EJpomLDLf0QwKXV1s2VTqxxQsKLJEGdyYYbWKGEP8A4uyyw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: x1e80100: Drop the
+ link-frequencies from mdss_dp3_in
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Jianfeng,
-
-> On 18 Apr 2024, at 12:10, Jianfeng Liu <liujianfeng1994@gmail.com> =
-wrote:
->=20
-> Enable Hantro G1 video decoder in RK3588's devicetree.
->=20
-> Tested with FFmpeg v4l2_request code taken from [1]
-> with MPEG2, H.264 and VP8 samples.
->=20
-> [1] =
-https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/=
-ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
->=20
-> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-> Tested-by: Hugh Cole-Baker <sigmaris@gmail.com>
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+On Fri, 19 Apr 2024 at 19:14, Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> The link-frequencies belong in mdss_dp3_out. Drop them from mdss_dp3_in.
+>
+> Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
-> arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 21 +++++++++++++++++++++
-> 1 file changed, 21 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi =
-b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> index b0a59ec51..b0817382f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -1135,6 +1135,27 @@ power-domain@RK3588_PD_SDMMC {
-> };
-> };
->=20
-> + vpu: video-codec@fdb50000 {
-> + compatible =3D "rockchip,rk3588-vdpu121", "rockchip,rk3568-vpu";
-> + reg =3D <0x0 0xfdb50000 0x0 0x800>;
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index f5a3b39ae70e..5f90a0b3c016 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -4095,8 +4095,6 @@ port@0 {
+>
+>                                                 mdss_dp3_in: endpoint {
+>                                                         remote-endpoint = <&mdss_intf5_out>;
+> -
+> -                                                       link-frequencies = /bits/ 64 <8100000000>;
+>                                                 };
+>                                         };
+>
 
-The register range at 0xfdb50000 length 0x800 includes "VEPU121 core0" =
-encoder
-regs at offset 0 and "VDPU121" decoder regs at offset 0x400 (referring =
-to the
-TRM v1.0 Part 1, section 5.5.1). So I think the =
-"rockchip,rk3588-vdpu121"
-compatible isn't exactly correct to use for this entire device.
+Not to mention that limiting DP output to HBR3 only is wrong.
 
-IMO "rockchip,rk3588-vpu121" would be more appropriate if including both =
-the
-decoder and encoder. It also raises the question of whether the decoder =
-and
-encoder should be modeled in DT as one device like on RK3399, or =
-separate
-devices. In the vendor DT [0] they are modeled as two devices but they =
-share
-clocks, resets, IOMMU, and a "rockchip,taskqueue-node" value.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-I've tested the JPEG encoding functionality of this encoder with [1], =
-and it
-seems to work, gstreamer produces a MJPEG video of the test pattern as
-expected.
-
-> + interrupts =3D <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
-> + interrupt-names =3D "vdpu";
-> + clocks =3D <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> + clock-names =3D "aclk", "hclk";
-> + iommus =3D <&vdpu_mmu>;
-> + power-domains =3D <&power RK3588_PD_VDPU>;
-> + };
-> +
-> + vdpu_mmu: iommu@fdb50800 {
-> + compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> + reg =3D <0x0 0xfdb50800 0x0 0x40>;
-> + interrupts =3D <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
-> + clock-names =3D "aclk", "iface";
-> + clocks =3D <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> + power-domains =3D <&power RK3588_PD_VDPU>;
-> + #iommu-cells =3D <0>;
-> + };
-> +
-> av1d: video-codec@fdc70000 {
-> compatible =3D "rockchip,rk3588-av1-vpu";
-> reg =3D <0x0 0xfdc70000 0x0 0x800>;
-> --
-> 2.34.1
->=20
-
-[0]: =
-https://github.com/friendlyarm/kernel-rockchip/blob/18fd1215fee01daef16b6c=
-ed1c0c3c3b83a4d8df/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#L3630-L3683
-[1]: https://github.com/sigmaris/linux/tree/rk3588-hantro-vpus
-     with: gst-launch-1.0 videotestsrc pattern=3Dball flip=3Dtrue ! =
-v4l2jpegenc \
-      ! matroskamux ! filesink location=3Djpegtest.mkv
-
+-- 
+With best wishes
+Dmitry
 
