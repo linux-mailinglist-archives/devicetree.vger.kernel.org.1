@@ -1,192 +1,166 @@
-Return-Path: <devicetree+bounces-60786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 884598AA59F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 01:06:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 388378AA61F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 02:12:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C8251C20E42
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 23:06:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E97AD28254F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 00:12:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075444EB2B;
-	Thu, 18 Apr 2024 23:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601CF37C;
+	Fri, 19 Apr 2024 00:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zlUQMRjX"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fLkuqs2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E92A4A20
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 23:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B2B19B;
+	Fri, 19 Apr 2024 00:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713481582; cv=none; b=uT25XYUXZele0arM9hl/JJQ1sy48MGGxHn+MPQvQF2ldSyVS09Mj1b5DU88CoJGvVYr/0fc1w6ty5sElVHNNAbh/AZDpR3IWQEOFC4Zhg8q5MTisZw5LyVkgzgEoVU3h1mOz5ju9n1f/DeHkDELqOTeufmthr2Au0g/0sivlEP8=
+	t=1713485440; cv=none; b=neDAW8OzT0evjYLPq5l5JMhhvZKPrW9ON0lms8A3F4F3fReggmIej90HW9dkDJs5RTcZVazxFyw4qjEjY1SgM0qotKj+52sY6FuJk6HdFknRQmMG41YT/SuE32xpc2Km+frBbXPC2NjfRjhgD46YAXw8XX5NeIz32c0ZB2DMd4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713481582; c=relaxed/simple;
-	bh=RAlNXI0pZdRt1duDvMUlU016mDBq/sV73XepOv3WwSw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rjPQIWN3DE0g+7YazqfHnYzqrMQAubViMHNDMlqW2INtTxdoxy2UV79GItrlUKulmXr14X67r153qLJOnZADXuQiqrhj6E7OJlDe2W7YoLxv524vgb0tcBeIQRZtJ4WfK0+Sb01FW29UeRv6Xu+VxGV3GDYvPh3rMeYgMOz5Irw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zlUQMRjX; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-5cedfc32250so950358a12.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 16:06:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713481581; x=1714086381; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+eBAbd5WwPqI3LEdzv+bUfvrmzrEdDodkqWSBZ40boY=;
-        b=zlUQMRjXt5BPaLJQYb680eLxnIQQqwl9RmzC3K/jpvgC7u4lPVLqvBE9eEC08xGc7k
-         iCrU1L+ZXxJ/WDvskexuCoScb0UdeBcDcFgCTKTo4Pv1mHvIbRtahzznCdamS9EFZo2I
-         /PKK1SJFtMAaezn0YfkU4CGeNRWCQkhK/Q8d95zSsXFkQ1bJ1ZJGE4/3ojcdg0/G6LW1
-         HdkK/hqFdG/iaNnPWTmPdIm/d0GkRVmZpSTXGX4gK03Abfur9W8YnX5zDOId6WBRny4c
-         9lRo3gInAwrSMK4JaYyC5hysfUmtxElaaoVeDJ6tgxmiczdMPkGLty7+zpAiqIZiePn+
-         31vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713481581; x=1714086381;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+eBAbd5WwPqI3LEdzv+bUfvrmzrEdDodkqWSBZ40boY=;
-        b=LSGAXJ/czYLu9eznk6FtkgjEprcAeGFvQlV2ldbt14mCPXlr8lA+hLrP2l7KIZw06M
-         NjjR60jqlby/PBr1QlMW2nPwG2F1DRGmuITSq87qELPWO/gqnM65nVDvQTvloq+LeqhA
-         PQjJ/Vviw+j5CuHPGOmkvbHe7GLkQjkUynhOgoMBs7AU8A4Ou/9lMzpaget9KnmEN8pO
-         EKcCv74U0/ItsI93SjpkhJLsmxz4OW4f2U4Ywq8zml/CBk/AdvO167jdZourUzeqrRLY
-         1Wk3wqfsUAymztu6rnnU+laxkErynqo8VlcWd/xF4cF1rdlizlOi49Rkp3rvNOWrYqSJ
-         eAZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWn/NjUmWeaGpVUc7VpI2U65KavjPxeKzrhKIxI7khHa4ZRQ3DItsjZfe/48exuxumlKfAdc/7Khr74fIQIJSakwWGBI/aSCXHW8Q==
-X-Gm-Message-State: AOJu0Yxgemno3YKL/M9MqqLpO1sflEB1L5l0kCHSG01r6RkNvlHQsC82
-	sfLuYzF7k4HINxoHvcutY4uzMbBeAr0FHPaBrNWVGq3LvEnWB1dVzer0iCSLyFE=
-X-Google-Smtp-Source: AGHT+IHZov8Ta3j29EV4qG0fYa92F9QoQSdSDcWCBKZ2jeADxr5Zw/wAzlj+Ca9b8XiXLcf5T0rFYQ==
-X-Received: by 2002:a17:90b:818:b0:2a4:f16f:f31f with SMTP id bk24-20020a17090b081800b002a4f16ff31fmr557256pjb.40.1713481580853;
-        Thu, 18 Apr 2024 16:06:20 -0700 (PDT)
-Received: from [10.36.51.174] ([24.75.208.146])
-        by smtp.gmail.com with ESMTPSA id e7-20020a17090a77c700b002a55d8a99d5sm3673136pjs.22.2024.04.18.16.06.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 16:06:20 -0700 (PDT)
-Message-ID: <76b46467-6a27-4f07-8a3e-cdd51e2e28bb@linaro.org>
-Date: Fri, 19 Apr 2024 01:06:19 +0200
+	s=arc-20240116; t=1713485440; c=relaxed/simple;
+	bh=G9Z/tW8og1ICHUXARDylS43YX/C9X4jXDk8QDq5f9S8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KaAz7FBFuyDSscqtaSvNVZJGWQ7ehJNdJ/Vg0aIkoPxl3fUi0rNkkQ//egwCs9Kj15ZXdlk5KUcHIZdxMayVDmARRagBHCVmJNS21vluRs9uESicIzESQy9VAQ7o9fkpUaIfDBjH8+u/OmUrCwBKzP3kjzu88mwKKOb5Q095fks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fLkuqs2y; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713485438; x=1745021438;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=G9Z/tW8og1ICHUXARDylS43YX/C9X4jXDk8QDq5f9S8=;
+  b=fLkuqs2yGUWOZba3PC7Tea0Tk7RAavcychMJOuejCa9/sAa+JheGgA8z
+   R8r1PtdY7Jza+bcCv8m7bIlYQ/7XDf2rhzximQT7iiap88Q2U6nRnk62q
+   PiZ4yeCSPV0QaNWj92VdNXqjYT05gyXHwW1+rVehSKw4yHpRFhvE1MjWp
+   NUDp7bBIkTeVGR/MYVgKyTeleQ3jjwfS2Q4jeOVSEOwf3rjJdn73FQxL2
+   2eunfd6MzQaP0K/Ae7SWFuRMUC2mpczEcfbBUhRWO8NmBUk19Q3r4kYy/
+   lMDxInoPP/J2HjHjf9A4jtyGTFWDpDFuEMaGd1GMYAAguIvUN53qadnm6
+   g==;
+X-CSE-ConnectionGUID: ue2+92HqTaiAj75KnhSJ3g==
+X-CSE-MsgGUID: S1nq7XABT7eegfANSYKfsA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="12850768"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
+   d="scan'208";a="12850768"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 17:10:37 -0700
+X-CSE-ConnectionGUID: yWA50Pj5ROG4BJ3wgFI6Ww==
+X-CSE-MsgGUID: XbpKVrp8TbGXaGj2n7IMTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
+   d="scan'208";a="27789915"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 18 Apr 2024 17:10:34 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rxbpm-0009Ml-1x;
+	Fri, 19 Apr 2024 00:10:30 +0000
+Date: Fri, 19 Apr 2024 08:09:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>,
+	dmitry.torokhov@gmail.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jikos@kernel.org, benjamin.tissoires@redhat.co, dianders@google.com,
+	hsinyi@google.com
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: input: i2c-hid: Introduce Ilitek
+ ili2900
+Message-ID: <202404190818.TnHkpNZd-lkp@intel.com>
+References: <20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/panel: panel-simple: Add generic panel-dsi driver
-To: Johan Adolfsson <johan.adolfsson@axis.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@axis.com
-References: <20240418-foo-fix-v1-0-461bcc8f5976@axis.com>
- <20240418-foo-fix-v1-1-461bcc8f5976@axis.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240418-foo-fix-v1-1-461bcc8f5976@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 
-On 18/04/2024 16:01, Johan Adolfsson wrote:
-> Add generic panel-dsi panel, similar to panel-dpi that can have it's
-> timing, lanes and flags overridden by devicetree.
-> Add some dev_err() and dev_warn() calls.
-> 
+Hi lvzhaoxiong,
 
-...
+kernel test robot noticed the following build warnings:
 
->  		/* sentinel */
->  	}
-> @@ -4992,17 +5051,28 @@ static int panel_simple_dsi_probe(struct mipi_dsi_device *dsi)
->  		return -ENODEV;
->  
->  	err = panel_simple_probe(&dsi->dev, &desc->desc);
-> +	if (err)
-> +		dev_err(&dsi->dev, "%s: err %i\n", __func__, err);
+[auto build test WARNING on hid/for-next]
+[also build test WARNING on robh/for-next linus/master v6.9-rc4 next-20240418]
+[cannot apply to dtor-input/next dtor-input/for-linus]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-This looks like debugging code.
+url:    https://github.com/intel-lab-lkp/linux/commits/lvzhaoxiong/dt-bindings-input-i2c-hid-Introduce-Ilitek-ili2900/20240418-205059
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git for-next
+patch link:    https://lore.kernel.org/r/20240418124815.31897-2-lvzhaoxiong%40huaqin.corp-partner.google.com
+patch subject: [PATCH v1 1/2] dt-bindings: input: i2c-hid: Introduce Ilitek ili2900
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+dtschema version: 2024.3.dev14+g64b72b0
+reproduce: (https://download.01.org/0day-ci/archive/20240419/202404190818.TnHkpNZd-lkp@intel.com/reproduce)
 
-> +
-> +	if (desc == &panel_dsi) {
-> +		struct panel_simple *panel = mipi_dsi_get_drvdata(dsi);
-> +		/* Handle the generic panel-dsi binding */
-> +		err = panel_dsi_probe(&dsi->dev, panel);
-> +	}
-> +
->  	if (err < 0)
->  		return err;
->  
->  	dsi->mode_flags = desc->flags;
->  	dsi->format = desc->format;
->  	dsi->lanes = desc->lanes;
-> +	of_property_read_u32(dsi->dev.of_node, "lanes", &dsi->lanes);
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404190818.TnHkpNZd-lkp@intel.com/
 
-Is this defined in the binding?
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml:22:5: [error] duplication of key "const" in mapping (key-duplicates)
+--
+   Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml:
+   Error in referenced schema matching $id: http://devicetree.org/schemas/nvmem/xlnx,zynqmp-nvmem.yaml
+>> Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml:22:5: found duplicate key "const" with value "ilitek,ili2900" (original value: "ilitek,ili9882t")
+--
+>> Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml: ignoring, error parsing file
 
->  
->  	err = mipi_dsi_attach(dsi);
->  	if (err) {
->  		struct panel_simple *panel = mipi_dsi_get_drvdata(dsi);
->  
-> +		dev_err(&dsi->dev, "probe attach err: %i", err);
+vim +/const +22 Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
 
-Do not introduce unrelated code changes.
+     8	
+     9	maintainers:
+    10	  - Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+    11	
+    12	description:
+    13	  Supports the Ilitek ili9882t touchscreen controller.
+    14	  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
+    15	
+    16	allOf:
+    17	  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+    18	
+    19	properties:
+    20	  compatible:
+    21	    const: ilitek,ili9882t
+  > 22	    const: ilitek,ili2900
+    23	
+    24	  reg:
+    25	    const: 0x41
+    26	
+    27	  interrupts:
+    28	    maxItems: 1
+    29	
+    30	  panel: true
+    31	
+    32	  reset-gpios:
+    33	    maxItems: 1
+    34	    description: Reset GPIO.
+    35	
+    36	  vccio-supply:
+    37	    description: The 1.8V supply to the touchscreen.
+    38	
+    39	required:
+    40	  - compatible
+    41	  - reg
+    42	  - interrupts
+    43	  - panel
+    44	  - vccio-supply
+    45	
 
-Best regards,
-Krzysztof
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
