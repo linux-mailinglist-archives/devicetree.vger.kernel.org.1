@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975538AAF70
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:34:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B828AAF7A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:36:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5446D284331
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:34:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED5671F216CC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067B1129E81;
-	Fri, 19 Apr 2024 13:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E571A128811;
+	Fri, 19 Apr 2024 13:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDpS5T3o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iabnmbkm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD31F85C66;
-	Fri, 19 Apr 2024 13:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB579128366;
+	Fri, 19 Apr 2024 13:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713533691; cv=none; b=tpXccbf5Y3fw0CkE1KbYPe1WKzVh0tqrmmSwlgOv0pGIXlcT/cKSiyuTTptkIfn8DJRFjjYpY6YI4+P1iCBz4nmxdjkU3kb+qBQkCdsb3lkPwS4VfO8fKyqGYBaNgf+NLP+Ubz4WNAb5q+h4Fwe5+RCU/MqUp5mi3qBMTuyBUvI=
+	t=1713533810; cv=none; b=rl/f8fFf9Inrc5j7NNqIRbPLojR2WitFmEm6yHlFt8Pk4/GI/T7OE/pw/1I4tWFYFUlpInD5gHSC7yowBHymVRl0MB+ZOHa9iGGAGH5rChHu1XE8r3tzGys5tDI7wJkagSABLyWcjAr5eHd9skMIi11E5GLElVqJMmKPoUVds5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713533691; c=relaxed/simple;
-	bh=OmQXyhMeGfoV2Fmk/9xqaerAbggklguVk+gTlCW5nvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LiS+CFXUOQg250/gzrTzGjaqypw/Jcq1kOfRra3nByFTHDPR8apJpGAHEd16LaH0v+j49mkxCEUCE5efcg1pfFea8Ziujul6tWwIatWqGgvd2Su41+B/CdDy2IixboHXgV9ylkJl2CaHUTyljjAium2fzW7XevVmZrFuzSlevOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDpS5T3o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0099BC072AA;
-	Fri, 19 Apr 2024 13:34:50 +0000 (UTC)
+	s=arc-20240116; t=1713533810; c=relaxed/simple;
+	bh=U4aqqscz4hwYVD7/WUzWa+gb7dWeA61ua2/mMi8nDpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=h5zLn/Sk9Xfbmqj0Y94DY3K6b03H8BTqqIrvomxQAGj6dl1rZipqY4JzMDgnLeX6fSZz9JFIQp/ftNtjJYmSpztmMwWGZiX2ABhEq3zPFbF8z9KNzmx8XiJAGbnle9AtVok+qUM5pXrqcptnAK6C7O3rN0VhgRqK/vGgoKATQUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iabnmbkm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21E26C072AA;
+	Fri, 19 Apr 2024 13:36:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713533691;
-	bh=OmQXyhMeGfoV2Fmk/9xqaerAbggklguVk+gTlCW5nvs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aDpS5T3ogGrhY+sw7hnSgc2X4Z5dU8KznkpK46sTF06H+gy5RYyzCPnerDtIwW/PR
-	 7WnAH9k/RNfWtrvG08c4ufl72GEdJ5tLcMNLmMM2Ru+71fU9ASdvmkSGUVEUpQnxAB
-	 mqHCkDf6kON5UnM6FhET+U2RGnHxxNu3GGNRmAz2wBcjHRcgETO2+oTKDkTOCuuGs5
-	 lYAFqWxzsoO1v7/Vo5ZIu5gO0zBqaJEeKxHHZYYQRND2dIMz2u50ECbcgKK0p2wCpo
-	 6j04VaF2Cwpe+p13msJPnAwPvsfBYeSABRCm3Nqv9Mq1XSMR6zxf+jTlTsO2ZkA6tA
-	 RIFXNRRhR4L6g==
-Message-ID: <9494c5e4-f078-4d92-8830-12c5b0f0466b@kernel.org>
-Date: Fri, 19 Apr 2024 15:34:50 +0200
+	s=k20201202; t=1713533810;
+	bh=U4aqqscz4hwYVD7/WUzWa+gb7dWeA61ua2/mMi8nDpM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=iabnmbkmijCMIS27u2Zn7TNmeWwaeYDvgG1yGndZuHY1abEloEb0oOda1CPtCT9Oh
+	 IBGZRDtQHNQwU+2AMGQMdOEFb9fZgHRVFSwQSDGExUiWFVqLFiFhZRRAgVVnfdfnOO
+	 Hky/RAE7e5V6wb9hl18rLAC9UYBdfdqwgZ2cWeibY0SjHwZh2Gdh+rkrplBSlbUBMG
+	 ceAxvceynXchWT3oaooraaL4O2JwwBB8wEAxDOxMUkhdCX1Oz2QWCq2tQKzM1Ofn0R
+	 HWVzfJae+r7qqFNy6tijzRY+rakDPIrL1k0+JBu9CE8uEMc0Phj0NG5wH6/eP+mZrl
+	 VMVF/PmKcos9g==
+Message-ID: <46a9196a-aca2-413b-8f82-794c19861a51@kernel.org>
+Date: Fri, 19 Apr 2024 15:36:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: serial: cdsn,uart: Add optional reset
- property
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, michal.simek@amd.com,
- p.zabel@pengutronix.de, laurent.pinchart@ideasonboard.com,
- radhey.shyam.pandey@amd.com, parth.gajjar@amd.com,
- u.kleine-koenig@pengutronix.de, tglx@linutronix.de,
- julien.malik@unseenlabs.fr, ruanjinjie@huawei.com,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: srinivas.goud@amd.com, shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-References: <20240419120531.3775919-1-manikanta.guntupalli@amd.com>
- <20240419120531.3775919-2-manikanta.guntupalli@amd.com>
+Subject: Re: [PATCH v7 2/3] dt-bindings: rng: Add vmgenid support
+To: "Landge, Sudan" <sudanl@amazon.co.uk>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>, tytso@mit.edu, robh@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, sudanl@amazon.com, graf@amazon.com,
+ dwmw@amazon.co.uk, krzysztof.kozlowski@linaro.org, bchalios@amazon.es,
+ xmarcalx@amazon.co.uk
+References: <20240418121249.42380-1-Jason@zx2c4.com>
+ <20240418121249.42380-3-Jason@zx2c4.com>
+ <bf9b59ed-a739-4a06-93db-facb0c89dab6@amazon.co.uk>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,18 +105,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240419120531.3775919-2-manikanta.guntupalli@amd.com>
+In-Reply-To: <bf9b59ed-a739-4a06-93db-facb0c89dab6@amazon.co.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/04/2024 14:05, Manikanta Guntupalli wrote:
-> Add optional reset device-tree property to the uartps controller.
-> 
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+On 19/04/2024 15:31, Landge, Sudan wrote:
+>> +...
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index aa3b947fb080..c84ac9258a48 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -18463,6 +18463,7 @@ M:      "Theodore Ts'o" <tytso@mit.edu>
+>>   M:     Jason A. Donenfeld <Jason@zx2c4.com>
+>>   S:     Maintained
+>>   T:     git https://git.kernel.org/pub/scm/linux/kernel/git/crng/random.git
+>> +F:     Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
+>>   F:     drivers/char/random.c
+>>   F:     drivers/virt/vmgenid.c
+>>
+>> --
+>> 2.44.0
+>>
+> Since I am on leave, looping in Babis to review/verify the patches.
 
+You can bounce emails to Babis. Or ask him to use lei/lore. No need to
+Cc all of us with such forward. This is just unnecessary noise in our
+mailboxes.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Especially if you want to get some reviews...
 
 Best regards,
 Krzysztof
