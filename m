@@ -1,116 +1,126 @@
-Return-Path: <devicetree+bounces-60829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 061808AA918
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:24:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612578AA90B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:22:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF85D281C04
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:24:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 165AD1F21ACE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B6E3EA8C;
-	Fri, 19 Apr 2024 07:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931F53FBAF;
+	Fri, 19 Apr 2024 07:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="UgP8Nrlo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r/IsYB29"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpdh16-2.aruba.it (smtpdh16-2.aruba.it [62.149.155.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A82883F8EA
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 07:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0D33F8E6;
+	Fri, 19 Apr 2024 07:22:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713511420; cv=none; b=QTpecPUJMVnv7u4hLhH/IwSyjY+GyLl7rQiyhs0Ru+A0DprTyhUlEOEc5+mTPY+C+RIG9zIlgBFri0BQVY6zblZ0DCcuVwAq3laGb9NMTCivupMOgwNBZeo5k/4k8iQsSF3ABYAJXBuhK/uKfiKfgZQlbEYRKGJivJQAGDztnpA=
+	t=1713511370; cv=none; b=gJjqHdSFArKX+rw+AfjF31Z2X+neL+CsI2+OMKOrWOGVCgPWx37xuSxDWTf6jaWqH7HqXbgxoSg41dGRmPGT3o8y/cqSJBe/OrY14gfPSIiaie36VJwjFt35QxoZoqtL9MmzqkX6lX+NHWOZ8JILSXxIqCHuqWj2ynRO5awloVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713511420; c=relaxed/simple;
-	bh=MsoeGdQjfbrInj5eTOqBiVvaSFeUUPab3XbLCWt+Adc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fhsutng9X3Kmrj2Hrm57L2scVTHHwBMgBM82UFVK8U+8Id1E56TB4+CU1C4ObYprbtMjMuIhlOfcMsWavoGlrPgbzSw2eZEVi2h8Uy6SOOWgOByTlx++jGA2GD3VHecHYAc0pX0prIg9sCJNdEcBXhTePaR/eYvZF8lHp5YAr/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=UgP8Nrlo; arc=none smtp.client-ip=62.149.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
-Received: from engicam ([146.241.22.218])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id xiXqrzu5tYt7axiXrr9Pl2; Fri, 19 Apr 2024 09:20:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1713511227; bh=MsoeGdQjfbrInj5eTOqBiVvaSFeUUPab3XbLCWt+Adc=;
-	h=Date:From:To:Subject:MIME-Version:Content-Type;
-	b=UgP8Nrlo2yIRiWy8UpwVIHQ2OA2X4glZI0I882a3VUGuPyt4WWNjRCK4cFvUtz+x3
-	 qvE9OJhGN2LSoDE05Ioh5xuP3YTtGS9gVa+vHZndXJKYRz2oCyGtCIY3PrtMdehV2y
-	 0u1q7KxldT6RNRw6WXAnlfHEvi1r+mqrLXLDANySVEeIjFX7G2dErSit9L8uJsPZC3
-	 TuNKaBI3W8PvYS254DQKbctuESytQxMQ35zrMVLvd5ZYQ633BBrZZOA2UCGLIRb2bE
-	 lGeXrDA58IYsAj/H0PuguZVbOMYFN5Yol4SbMh0jBVoOakRv3m0F1XrjGQ1pzSkvqx
-	 WCVQdcu5b5LJg==
-Date: Fri, 19 Apr 2024 09:20:26 +0200
-From: Fabio Aiuto <fabio.aiuto@engicam.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Matteo Lisi <matteo.lisi@engicam.com>,
-	Mirko Ardinghi <mirko.ardinghi@engicam.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: add Engicam i.Core MX93
- EDIMM 2.0 Starter Kit
-Message-ID: <ZiIbOvH1hY0UKW2A@engicam>
-References: <20240418133923.3705-1-fabio.aiuto@engicam.com>
- <20240418133923.3705-2-fabio.aiuto@engicam.com>
- <20240418-lapel-monstrous-5774610c7405@spud>
- <20240418-distort-dial-c56ca175d8b0@spud>
+	s=arc-20240116; t=1713511370; c=relaxed/simple;
+	bh=fTx2/kEZ6vQTQyJpDG0BPTHimKj4QlyE9Zlf2maFXRA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Gm04UVJRBRLW6AIbIpMDuOAagkA3r0K7flQo1aGLTqou5loefVuQWn7nLahU3CPCU4anw7X48/Knv0PrURFYhjB0/aOWOoD2At8cWoU5UhUwvDLCnDzloPd6OQ5sAuHP5eFU5BrVw8nlIXbcm7umIuhlDKPiA8xY7djgVXY07jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r/IsYB29; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EF2DDC072AA;
+	Fri, 19 Apr 2024 07:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713511370;
+	bh=fTx2/kEZ6vQTQyJpDG0BPTHimKj4QlyE9Zlf2maFXRA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=r/IsYB296KlE2TEK22/NBYLocDw0yZgNXgRH7FUbA5Z1R/7vdcvmcQ2nAdpKi/5gJ
+	 SrC/JtC3iNv/z4UqsrII1Nlo7Jpjks2vAKcfgUryJ1Xe5u0ESVdZtVYw2N3aQfPVCs
+	 8yIpTarrkSgyOdd5d27WUMPm4Nkp8p/qgcbJRerfRuRX36CY7gpnoXDO0YAdAe2YEs
+	 7eqoFx+CB7sPO0992gc2hTomcurecZNEFPhyPH/stPdh5E8ZrBdPuXyiI8QkNfYMdy
+	 xpV3Gfq8Suo3yaTsp84dokKys4rVsLeGtU7nIfJ2/gT71zPfRkerCZksZUCcXxWpFi
+	 VZnW9elV9z2GQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D49FDC4345F;
+	Fri, 19 Apr 2024 07:22:49 +0000 (UTC)
+From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL_via_B4_Relay?= <devnull+arinc.unal.arinc9.com@kernel.org>
+Subject: [PATCH v2 0/4] Document ASUS RT-AC3200 and ASUS RT-AC5300 and add
+ device trees
+Date: Fri, 19 Apr 2024 10:22:47 +0300
+Message-Id: <20240419-for-soc-asus-rt-ac3200-ac5300-v2-0-f95ff50c2a4d@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418-distort-dial-c56ca175d8b0@spud>
-X-CMAE-Envelope: MS4xfLAlsPnftFFvbX/IYDRgo9zZ3Ssv4KAUoDvHbqsQCssjDv0qDcDkq8+N3kxJE8/g2dnBLkAvnxkgxRlAZEnR0uE67f2ClYmnaJAE+lkwGGijyLbSJRMY
- vW0C/XXVTOZYfCdov8Q5YGXB6nT2+lWBG52QSuataOeDAYMTTU3nUS7O/IhrbLtSwsxB/in55jAxbc5Rd2569aDS5tnJk7nFfRNuK4/0qY/h1zdSERFfWrfx
- RrCGpcK8qTdtC0l4/e2oAWKpxTaJXMk27VlF5q+7As+s2kdrqAo8FhyCkX3CEaQIy6ZEQQtHQyObxn/26a2ERDZ1EkPc0Za+0AheN0YyuD6LXxsICal+a2Xi
- N+JQxLvfyheOcrNkp5uzvOy+MhXlZ+Ry/Pr02l6aIC1ztWGStWgoW8sELgtkrj19BYV91yCtOJeMX3iL0aWd1n5smqnrv2gzCIOpnqDrvi/rUUj8qoPz2nGM
- aC/lTdu1Hdqv+N3B1ZokH9D2CnKjDfMVA6vTwm7nuO2lwXI+9P7/ZL6IVfTqT12H0NLdsytXWh36BZBoRS0YC+Nk/SjQkQDnWdQynbBm84OdFJ8TgrvU++QA
- 69w=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMcbImYC/4WNQQ6CMBBFr0K6dkxbCoIr72FYlGGQWUjNFImG9
+ O5W4t7Vy/uL9zcVSZiiOhebElo5cpiz2EOhcPLzjYCH7Mpq67TTDYxBIAYEH58RZAGPpdU6oyo
+ zqqGmES269tSr3HgIjfza+9cu+8RxCfLe71bzXX9l4/6UVwMajGmw1b2nmqqLF56xPWK4qy6l9
+ AHn3XUsywAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713511367; l=1620;
+ i=arinc.unal@arinc9.com; s=arinc9-Xeront; h=from:subject:message-id;
+ bh=fTx2/kEZ6vQTQyJpDG0BPTHimKj4QlyE9Zlf2maFXRA=;
+ b=C40LCsSt9mET0CXsjILLPq6IXlS0AybUsb2BeYFICsFynLdE0SO7mdqsOlMvr3tcFf/4cJsOY
+ GgZ4YnNYIbTCPQ0bKX25EA+BoYK22mAnlotZ3VmQjyzf6Kb031zpCXW
+X-Developer-Key: i=arinc.unal@arinc9.com; a=ed25519;
+ pk=z49tLn29CyiL4uwBTrqH9HO1Wu3sZIuRp4DaLZvtP9M=
+X-Endpoint-Received: by B4 Relay for arinc.unal@arinc9.com/arinc9-Xeront
+ with auth_id=137
+X-Original-From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Reply-To: arinc.unal@arinc9.com
 
-Dear Conor,
+Hello.
 
-Il Thu, Apr 18, 2024 at 05:34:07PM +0100, Conor Dooley ha scritto:
-> On Thu, Apr 18, 2024 at 04:33:21PM +0100, Conor Dooley wrote:
-> > On Thu, Apr 18, 2024 at 03:39:21PM +0200, Fabio Aiuto wrote:
-> > > i.Core MX93 is a NXP i.MX93 based EDIMM SoM by Engicam.
-> > > 
-> > > EDIMM 2.0 Starter Kit is an EDIMM 2.0 Form Factor Capacitive
-> > > Evaluation Board by Engicam.
-> > > 
-> > > i.Core MX93 needs to be mounted on top of EDIMM 2.0 Starter Kit
-> > > to get the full i.Core MX93 EDIMM 2.0 Starter Kit board.
-> > > 
-> > > Add bindings for this board.
-> > > 
-> > > Cc: Matteo Lisi <matteo.lisi@engicam.com>
-> > > Cc: Mirko Ardinghi <mirko.ardinghi@engicam.com>
-> > > Signed-off-by: Fabio Aiuto <fabio.aiuto@engicam.com>
-> > 
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Looks like you might've already got an Ack from Krzysztof on a previous
-> version. Please make sure to pick up acks etc when you post new
-> versions.
+This patch series documents the compatible strings for ASUS RT-AC3200 and
+ASUS RT-AC5300, and adds the device trees for them.
 
-thanks for your Ack, will send a v3 including both your Ack and Krzysztof's
-one.
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+Changes in v2:
+- Patch 3
+  - Remove the chosen node as earlycon is not for mainline use, and the
+    stdout-path property which should be used instead of bootargs =
+    "console=" is already described in bcm4708.dtsi with the same value.
+  - Remove MAC address assignment to switch ports. To explain why shortly,
+    on the switch with CPU port architecture, the LLC Entity associated
+    with each port can be accessed without a distinct MAC address assigned
+    to each port. Therefore, it is unnecessary.
+- Patch 4
+  - Same as above.
+- Link to v1: https://lore.kernel.org/r/20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com
 
-kr,
+---
+Arınç ÜNAL (4):
+      dt-bindings: arm: bcm: add bindings for ASUS RT-AC3200
+      dt-bindings: arm: bcm: add bindings for ASUS RT-AC5300
+      ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
+      ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300
 
-fabio
+ .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml  |   2 +
+ arch/arm/boot/dts/broadcom/Makefile                |   2 +
+ .../boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts   | 150 ++++++++++++++++++++
+ .../boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts  | 156 +++++++++++++++++++++
+ 4 files changed, 310 insertions(+)
+---
+base-commit: 011d79ef1cfad701c2d8e7e80d8c77523af9c771
+change-id: 20240408-for-soc-asus-rt-ac3200-ac5300-5d6efc2c497b
 
-> 
-> Thanks,
-> Conor.
+Best regards,
+-- 
+Arınç ÜNAL <arinc.unal@arinc9.com>
 
 
 
