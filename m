@@ -1,132 +1,139 @@
-Return-Path: <devicetree+bounces-60993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C6B8AB298
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 17:57:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D77DD8AB2C2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 18:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03C541F23535
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:57:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76A4D1F2135F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4487E130A4D;
-	Fri, 19 Apr 2024 15:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C15130AED;
+	Fri, 19 Apr 2024 16:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NB10FGA3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zEgQvc+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1490512F59B;
-	Fri, 19 Apr 2024 15:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29581304B6
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 16:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713542272; cv=none; b=pwhcw6Q/uiJCa8EQv4tLae7NMHpeiNpFQBeHiogzNuqJBOdvE5A2ega80WwgTsDIm+Flz8TxjzS+1p4rlGiXuCVm0EJz9QcXi2BAfh5YhMjFBSZ28N+7h780E1Vaj11yCIIbcsoiToSW/0ipDAf+imQej+MHhdwQA1uptvM60HU=
+	t=1713542615; cv=none; b=unmAIF8NWvT1cDU1ZDzp2Amtn6zDdC5NQHR6hdakx1PjHVMdBZW5pyxeRSR0+UQsSjF2YfeQS9kiVVBKivcX7lnPl/7zRKhFJ/1Q3wHVidDmiUiNgrE5E73mFda+QCo3c7x/EplWbX3hvFW10LC5ly8tSL2x1JO5ZFn7LovI3t4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713542272; c=relaxed/simple;
-	bh=8QEDQjOppN6rgrkwPLW/8KvmAUWYG8et7RnU5mOglu8=;
+	s=arc-20240116; t=1713542615; c=relaxed/simple;
+	bh=/eXm0CTaLlshMmOpuJ+Hb0diIo+ynEWJIFTKEePjGU0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lzbg2gh7wJp2wxIBoMVef6n92HK66nvWzgA/GQz4jw8akbaJnE/fL5qBfQE2CU5GScvlSyDB8yafZ+5miSm77l/oqsiMoq3CsLOQIDB5XfKEy9fJ4Rof/FlMsP+iqeM+MiEm5W00Q3dzpUt+0TxjkM20z2B5T6EhcnPhE+MoYXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NB10FGA3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F5B9C072AA;
-	Fri, 19 Apr 2024 15:57:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713542271;
-	bh=8QEDQjOppN6rgrkwPLW/8KvmAUWYG8et7RnU5mOglu8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NB10FGA3HUo4FWUdWzr/7uRQFBe3lrvgTHD57CEE1hkQsdk2PFT0iRvsT6WlBsryH
-	 R9ECS0tIP+q2ePoWG3IXYHRwrC4ZbdKbm2b6WKVRbsH6kivseIWcvWn1YLLFFCjqnJ
-	 +WEiNG9+K6yDDCcarItZTLBsG6w0laG+wVvCVK6NBCvHmYuMpUV1H6260C2irK8N3s
-	 N1ICOKTf3K1upQySIskCOkv9FNsFnP6fBdzQmAOw3+O15/uvuu1Td3Jr7hm0nIo9ij
-	 ShYAEPNvj7I0A5Guge7e3pn+aQC+rO7on5RMuT9Gg8vururtjFLBW040ID3hA375Zi
-	 S69jOsJC2LEcw==
-Date: Fri, 19 Apr 2024 16:57:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Jamie Gibbons <jamie.gibbons@microchip.com>,
-	Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 4/5] dt-bindings: PCI: microchip: increase number of
- items in ranges property
-Message-ID: <20240419-batboy-mutt-4da787cffd3d@spud>
-References: <20240327-parkway-dodgy-f0fe1fa20892@spud>
- <20240327-debunk-perky-f5514ca332be@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2PvDdQ4xFtYL+73/s75dH8/jvWG69NTHnrSMZ5163Ghe8BzljgKj9Xi+oeEQ92ZAbNuzDERtvlK5kOTdCEFtIEEk0Cgd5ifQu7+GXSN0Femt+R7kqCvU5OlDmP0uAzjnFlvcN7Atl7Hpz57C1JVkKJKeCgUs4KCLvTAx/v07pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zEgQvc+N; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-418c2bf2f15so18606645e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:03:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713542612; x=1714147412; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9K87eyQsJcPV+MjC9TGZ0b2ErIOF7s0I6KGHZUdEzoY=;
+        b=zEgQvc+N88bX+glGqWa/yGXwTIooRIidFGDWBPF/SrkYef0Qa+2jEggM/ajYj+ukj3
+         vLpbN4dp5Sinja6c9YNOOQiEhuW5L7NeLa1qQp3ENZVH9jQ7hkx7uOr66F5eFkeLByXi
+         CTLcEM7PwTvt1XLm7iq6H7KNNR3n5uio7mdet26R8bM7Blt0RFXMnaVUreeV0+Q9CPMb
+         lqshwqHiPAHMRGFQHQEgVRF39rQ/HoZLHfl/NFCI4hvVYRWgnxvMkORHfmYejWN9NbEO
+         nfGA+VH6cSsD+gJcIvJhaDNa+5cOZYH1lKAY3tP1Wjm0ioi4lcT89F4UIzWfCuki1oc9
+         BrAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713542612; x=1714147412;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9K87eyQsJcPV+MjC9TGZ0b2ErIOF7s0I6KGHZUdEzoY=;
+        b=TMDQzCwrzPNpfGwSs0Ur3BN9zc8j2VuTcQm2QnGTcKqbT1g+8Pv8VvP19h8oCqY+Ak
+         /tMYh+ac7J8YxTwYweX+p1MFe7Z71Y2naiqjRv1CNQhlQEKzJuQTUFVAwom98g8u6spa
+         4tS1LER9CUL/V0RA845hTNbsmREo5VI2J09Z0HuLpnooG9hnqB0X9Bk1zeoGnLD3rJUd
+         1i9Umm2n+tY2fxUwJ6GDfpbGBdmGVMxShHh4WJs93RxkSNxUXn7QbIH9tHPmSyG2QxsD
+         88CNosoBxCOlYvUDgbT+d9BoC4TCYTUAQHN/EyL1U++/M+mEpWwVEQl3f/qHxjKpLof3
+         UmNA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwA0iI4KpyMt6gjEoz6Zu69NaDk8PqBs1dVz5+tnoZlIltaAatakHS9fb2OUIKQFRFsGW7ThmCiVxnYqRoI2NDh5z96tiCKBVs0A==
+X-Gm-Message-State: AOJu0YxcY6V/kUB8hLbOuel7n+lBNIQCHiSv9nbiwDlsfJqtW0PpuTDe
+	XZL+pHT4mnsL6gEDjaTn75znKUMXAn89gz58q4CCwSl7ogbVH7FFTW5yk29CJd8=
+X-Google-Smtp-Source: AGHT+IF61j90FxwaOMyvxHlliptjSNEA5j4fWAYLAKVrzRuIp5qzebPKQLaE+h5oX2Q4HLOyia2QSA==
+X-Received: by 2002:a05:600c:154f:b0:417:fbc2:caf8 with SMTP id f15-20020a05600c154f00b00417fbc2caf8mr1783059wmg.23.1713542612133;
+        Fri, 19 Apr 2024 09:03:32 -0700 (PDT)
+Received: from linaro.org ([62.231.100.236])
+        by smtp.gmail.com with ESMTPSA id d20-20020a05600c34d400b00419c4e85b54sm1405965wmq.16.2024.04.19.09.03.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Apr 2024 09:03:31 -0700 (PDT)
+Date: Fri, 19 Apr 2024 19:03:30 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: x1e80100: Drop the
+ link-frequencies from mdss_dp3_in
+Message-ID: <ZiKV0ube6J8pXXfU@linaro.org>
+References: <20240418-x1e80100-dts-fix-mdss-dp3-v1-0-9f8420e395d4@linaro.org>
+ <20240418-x1e80100-dts-fix-mdss-dp3-v1-1-9f8420e395d4@linaro.org>
+ <ZiFC8d6cD35B+PaC@hu-bjorande-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="P5gNKGuon3/meze+"
-Content-Disposition: inline
-In-Reply-To: <20240327-debunk-perky-f5514ca332be@spud>
-
-
---P5gNKGuon3/meze+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZiFC8d6cD35B+PaC@hu-bjorande-lv.qualcomm.com>
 
-PCI maintainers, could you please either apply this (preferred!) or give
-me an ack to take it with the dts?
+On 24-04-18 08:57:37, Bjorn Andersson wrote:
+> On Thu, Apr 18, 2024 at 01:22:18PM +0300, Abel Vesa wrote:
+> > The link-frequences belong in mdss_dp3_out. Display is broken because of
+> > this. Drop them from mdss_dp3_in.
+> > 
+> 
+> Why is display broken because you have this property in the wrong node?
+> Isn't it broken because you don't have it in &mdss_dp3_out and this is
+> just a cleanup of an invalid property?
+> 
+> Perhaps that's what you're trying to say? Would be nice to have that
+> clarified.
 
-Thanks,
-Conor.
+Will drop the "Display is broken because of this." part.
 
-On Wed, Mar 27, 2024 at 12:24:39PM +0000, Conor Dooley wrote:
-> From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
->=20
-> Increase the number of items in the ranges property to allow up to 3
-> ranges. For example a prefetchable range, a non-prefetchable range
-> and an IO range, depending on configuration.
->=20
-> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.c=
-om>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.ya=
-ml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-> index f7a3c2636355..e8212a05b7b1 100644
-> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-> @@ -65,7 +65,8 @@ properties:
->        - const: msi
-> =20
->    ranges:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
-> =20
->    dma-ranges:
->      minItems: 1
-> --=20
-> 2.43.0
->=20
+Thanks.
 
---P5gNKGuon3/meze+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiKUdAAKCRB4tDGHoIJi
-0uRiAP0V/vBz26onjgXgloeZ0gVi8i6q/SLsKfs59S/dQBZHkwEAjywPdUJikVo/
-2Y4XvNpmuSZqJZbzHcMQXcsxriJmdgQ=
-=nmUD
------END PGP SIGNATURE-----
-
---P5gNKGuon3/meze+--
+> 
+> Regards,
+> Bjorn
+> 
+> > Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 -
+> >  1 file changed, 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index f5a3b39ae70e..0642b5e88639 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -4096,7 +4096,6 @@ port@0 {
+> >  						mdss_dp3_in: endpoint {
+> >  							remote-endpoint = <&mdss_intf5_out>;
+> >  
+> > -							link-frequencies = /bits/ 64 <8100000000>;
+> >  						};
+> >  					};
+> >  
+> > 
+> > -- 
+> > 2.34.1
+> > 
 
