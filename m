@@ -1,156 +1,168 @@
-Return-Path: <devicetree+bounces-60834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CFFC8AA95C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 477418AA975
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:45:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18ABC283EB2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:40:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECBB528462E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 07:45:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B1F4317A;
-	Fri, 19 Apr 2024 07:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gOCiSZp7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A9B4C615;
+	Fri, 19 Apr 2024 07:44:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09B91DFC5;
-	Fri, 19 Apr 2024 07:40:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C474DA0D;
+	Fri, 19 Apr 2024 07:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713512428; cv=none; b=vAKocTZmamBk3pwkzJtwpx6Q+qSZIeO49vCjldUGCEaRtd3FDSm4oXoPdr9iiPxKB/DWTjHDZgbHIPDNPS0p5dP69GwGBBekYoz1grSk2p0sA9U22M6dLB4+tKj0e+5DpsLluqIAStZaKl7Qh0RZnemqpH1/I+1gEYBi8y+Xer8=
+	t=1713512684; cv=none; b=RXgetMEnUycgV7/LXlB+4dAFD9ivWd6hn8H/n6jr4FaQzyroc7ssN6JZrlf92agp5Q8zczCUe5tCquSxCAxU6nL3xSAf7Ur0neLYARrbWd+xbeVc4BDAoySrvlh+E5V525O2Y1SymVxS4/UtYqnXtPqx07oARydm5kziuhVSOao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713512428; c=relaxed/simple;
-	bh=W/wi9e5UBK+Wu+Dsx1s02GeUnADp2GIoRZR8c6T4osA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZsN0165UY0Ywa4JlMiu0JURitcB4ChxVkWT2rpl8W3PDBF4E9uPDI9xPn1581E78SQ4qHZMNsvs6mJSN49lS3wgygf7hoCEOQ8VbNkwZ/WZhBI3+MIfFwEM2NjH9qUVi8QVqq/yrMPVrhg/BBRSJM9o3BvGuoUEVScpK9bJVJ3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gOCiSZp7; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713512424;
-	bh=W/wi9e5UBK+Wu+Dsx1s02GeUnADp2GIoRZR8c6T4osA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gOCiSZp74yYzUrOFKOX2tlJw04+WM/R4MfrvttLuUnU7i+tzNH5NAA0E142iiSwAS
-	 pFmOu0dGZdFfKJuubuHztaVs98IxsKPfLwfKNJPP/LmW7RpaEqhqQ3HhGRZFPU9BAS
-	 cYDtio0y+GRc/Oi5z0V6+df5sVLitmBMAjoDNe1Fsv/1SfYfJGIq0wYlhYTaWzqSSi
-	 cfu9ew/ROizc1XomMH7DR7aNbG0o8/X+s3r0vuh/hf4LyGdbNzG+BQMuforbTQr8zJ
-	 t02M4jwW6blvnRXg0VCBMiHkrzE/+oc4ArbG5CFPl0qMB4MsY6pbFpj41SXoxUoT/X
-	 fJPHvQpuvaf+Q==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 86D0A3782149;
-	Fri, 19 Apr 2024 07:40:23 +0000 (UTC)
-Message-ID: <28b0eeff-55ed-4e30-ac0b-a7bcac276fe9@collabora.com>
-Date: Fri, 19 Apr 2024 09:40:22 +0200
+	s=arc-20240116; t=1713512684; c=relaxed/simple;
+	bh=2GGt86edY2lm8kr2PVjmA1G4gvSGUPMlBXuQK8dCo7g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DgrmmLgDpr5d0VGmaIorW54LsensP3F64fYsoEME33kfPGBF/H0LXKA5QlZRMDI7M8ZQuiQWVxHuQb42CInLjYMYI/t+qoIYSFLJKSsRY6AQKjId1raxZ78pQMo6unVl/zwfLWJScbrLOMYyj8V7MZqqQmaxYwwM1rqV5ob4KEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-61ad5f2c231so19951167b3.2;
+        Fri, 19 Apr 2024 00:44:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713512679; x=1714117479;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y9aGfGVkclitK9fGaCPJLToKLvFSDmM3YASsQou3aVI=;
+        b=mkQQ47yKPp1CvnDxrJHF31YvvnomRBLoH03LMc3CH2bQlGnk3Z37lcNmaj61SonHZa
+         ZtZSn7TP2cBZbZb51fhqd9lZqAJdH62iG/I8wx99H++7Ky7b2QZSLgCqe8bbzocnBtxy
+         WuMJdYteh2oLXO6j4IWIj1eOZJiBdAL7UmLu/kY3frTBJ/UF115aVDRBgujs3aK40P//
+         X/J6q+tXopcaXzkP3b1gp7aI/IdaSqkZHmFblycQRXRv8/vLqUrfKhcsuaRVUZq1WuYQ
+         YJpf5ke63ySNELFBGIhphEa1IZRFkhakVTpx2ODtvFQ4T9b4nrmzZRGdlUcUMaixc/GU
+         s7LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU4oVkPyBA6/D6OrpJ+axOpMvVBY6GW+j2BC3hDbYJbn/TQOMhflTLtbUmPko+2u5IDv4t6dB0a01hXzj2B82ZIeLgHVWxPe86KS1bHpn/XLKMa8X6z/Rvio3miF4D13AeHfGO9I/HN88UJ13uFUPqjlq3WWBya2Ryyr8TLcoDTE1wU/EOP+lG4gTch
+X-Gm-Message-State: AOJu0YxKT2sH1GB6Wck+fuBCIIPNeQxApcqwmOBgN4yX5TB0zycerup0
+	FGJ4ROZeQZR8H3hNgKw9pJvPF1UvFeYXzvT+AsJzeDswd/SHfNMzJvO8OCsg
+X-Google-Smtp-Source: AGHT+IHtQIQI7on1rrTyVCHfOJzKCHqK1v7A/S6siyBrX4swfn+bLUPU3t2jO3JZLezcrDjYj1qiAw==
+X-Received: by 2002:a05:690c:620c:b0:618:8b98:f274 with SMTP id hl12-20020a05690c620c00b006188b98f274mr1449346ywb.45.1713512679087;
+        Fri, 19 Apr 2024 00:44:39 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id l12-20020a81ad4c000000b00617be0a2bf2sm680714ywk.72.2024.04.19.00.44.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Apr 2024 00:44:38 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-de47485532cso1377542276.3;
+        Fri, 19 Apr 2024 00:44:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUGVrHYv8K1qsV5u8NDZJamRFMRQWWAI92xHLIDwTAWIHs/k81fEh8Z0azUEPOXDTaZZAhyML1Ux+zJMKW4vLpGkw6O/ITXZ0iqSAJA31CfOSY9g7Qe1bj22KdNXLGBZxgv9d8gmvgqQ5GKzOzrR1BtYH18TbA4xWhm/O3LJfrDTfKKxGQMId5zx+KF
+X-Received: by 2002:a05:6902:218d:b0:dc6:bcb3:5d8e with SMTP id
+ dl13-20020a056902218d00b00dc6bcb35d8emr1436727ybb.20.1713512677738; Fri, 19
+ Apr 2024 00:44:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: mediatek: Add OF graph
- support for board path
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: chunkuang.hu@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com
-References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
- <20240409120211.321153-2-angelogioacchino.delregno@collabora.com>
- <oe75tx35rd27r2a24ofdxfaqwr53tylfp5fwz3nrwc2uz6nmrs@vwc2krbpy3fh>
- <8600acf8-7b51-456b-8a81-4233cfd6f121@collabora.com>
- <CAA8EJpo68f=9ZyNnVY=+q+drHu9xJMSGk1kNCBa=HM442Jth8g@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAA8EJpo68f=9ZyNnVY=+q+drHu9xJMSGk1kNCBa=HM442Jth8g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240403203503.634465-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdW7kiSYm8n8CfMs9zKaN+PhVt+=16nx=ttLk6Ur_jOa-g@mail.gmail.com> <CA+V-a8t6B3pGjrciDNRzdpGQp-8cGW0JXV9k0udpku3GVA0ckA@mail.gmail.com>
+In-Reply-To: <CA+V-a8t6B3pGjrciDNRzdpGQp-8cGW0JXV9k0udpku3GVA0ckA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 19 Apr 2024 09:44:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWCHD+AuP9v2fBygDv-fJqP4RZ=Gtp3PX9b1K-GX1+XQg@mail.gmail.com>
+Message-ID: <CAMuHMdWCHD+AuP9v2fBygDv-fJqP4RZ=Gtp3PX9b1K-GX1+XQg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 09/04/24 17:45, Dmitry Baryshkov ha scritto:
-> On Tue, 9 Apr 2024 at 18:41, AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 09/04/24 17:20, Dmitry Baryshkov ha scritto:
->>> On Tue, Apr 09, 2024 at 02:02:09PM +0200, AngeloGioacchino Del Regno wrote:
->>>> The display IPs in MediaTek SoCs support being interconnected with
->>>> different instances of DDP IPs (for example, merge0 or merge1) and/or
->>>> with different DDP IPs (for example, rdma can be connected with either
->>>> color, dpi, dsi, merge, etc), forming a full Display Data Path that
->>>> ends with an actual display.
->>>>
->>>> The final display pipeline is effectively board specific, as it does
->>>> depend on the display that is attached to it, and eventually on the
->>>> sensors supported by the board (for example, Adaptive Ambient Light
->>>> would need an Ambient Light Sensor, otherwise it's pointless!), other
->>>> than the output type.
->>>
->>> With the color and gamma being in play, should the configuration be
->>> board-driver or rather use-case driven with the driver being able to
->>> reroute some of the blocks at runtime?
->>>
->>
->> The driver can already set some blocks to "BYPASS MODE" at runtime, meaning
->> that those will work as simple pass-through, performing *no* processing at
->> all, so that's addressed from the very beginning.
->>
->> This doesn't mean that a specific pipeline must always support the "DISP_GAMMA"
->> or the "DISP_CCOLOR" block(s) alone, or together, or in combination with another
->> specific block.
-> 
-> I was thinking about slightly different case: do you have enough
-> colour blocks to drive all outputs or do you have to select them for
-> the particular output only?
+Hi Prabhakar,
 
-Sorry for the very very very very .. very late reply, your email slipped through
-the cracks and I just noticed it.
+On Fri, Apr 19, 2024 at 9:15=E2=80=AFAM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Thu, Apr 18, 2024 at 4:11=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Wed, Apr 3, 2024 at 10:36=E2=80=AFPM Prabhakar <prabhakar.csengg@gma=
+il.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > The IX45 block has additional mask registers (NMSK/IMSK/TMSK) as comp=
+ared
+> > > to the RZ/G2L (family) SoC.
+> > >
+> > > Introduce masking/unmasking support for IRQ and TINT interrupts in IR=
+QC
+> > > controller driver. Two new registers, IMSK and TMSK, are defined to
+> > > handle masking on RZ/Five SoC. The implementation utilizes a new data
+> > > structure, `struct rzg2l_irqc_data`, to determine mask support for a
+> > > specific controller instance.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> > > ---
+> > > v1->v2
+> > > - Added IRQCHIP_MATCH() for RZ/Five
+> > > - Retaining a copy of OF data in priv
+> > > - Rebased the changes
+> >
+> > Thanks for the update!
+> >
+> > > --- a/drivers/irqchip/irq-renesas-rzg2l.c
+> > > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> > > @@ -66,15 +68,25 @@ struct rzg2l_irqc_reg_cache {
+> > >         u32     titsr[2];
+> > >  };
+> > >
+> > > +/**
+> > > + * struct rzg2l_irqc_of_data - OF data structure
+> > > + * @mask_supported: Indicates if mask registers are available
+> > > + */
+> > > +struct rzg2l_irqc_of_data {
+> > > +       bool    mask_supported;
+> > > +};
+> > > +
+> > >  /**
+> > >   * struct rzg2l_irqc_priv - IRQ controller private data structure
+> > >   * @base:      Controller's base address
+> > > + * @data:      OF data pointer
+> > >   * @fwspec:    IRQ firmware specific data
+> > >   * @lock:      Lock to serialize access to hardware registers
+> > >   * @cache:     Registers cache for suspend/resume
+> > >   */
+> > >  static struct rzg2l_irqc_priv {
+> > >         void __iomem                    *base;
+> > > +       const struct rzg2l_irqc_of_data *data;
+> >
+> > That's not a copy, but a pointer.
+> >
+> Oops, should that be OK or shall I create a copy instead?
 
-That depends on the SoC, but generally... no, you have to select them for the
-particular output.
+If you would use a copy, all SoC-specific rzg2l_irqc_of_data structures
+could become __initconst.
 
-There is a restricted set of outputs that support this block, but between this
-set, there are still not enough blocks for all of them.
+However, depending on how far you want to go with the irq_chip
+separation, you may no longer need this field anyway.
 
-> 
-> (excuse me, I didn't check the platform details).
+Gr{oetje,eeting}s,
 
-You (and me, and everyone else) can't really invest hours of time to check on
-how each and every SoC on the planet works - that's normal.
+                        Geert
 
-No worries ;-)
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Cheers,
-Angelo
-
-> 
->> For any other question, clarification, etc, I'm here :-)
->>
->> Cheers!
->>
->>>>
->>>> Add support for OF graphs to most of the MediaTek DDP (display) bindings
->>>> to add flexibility to build custom hardware paths, hence enabling board
->>>> specific configuration of the display pipeline and allowing to finally
->>>> migrate away from using hardcoded paths.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>
-> 
-> 
-
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
