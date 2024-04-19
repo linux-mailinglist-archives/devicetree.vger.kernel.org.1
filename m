@@ -1,139 +1,155 @@
-Return-Path: <devicetree+bounces-60994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D77DD8AB2C2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 18:03:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0B08AB302
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 18:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76A4D1F2135F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:03:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 270451F2121A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C15130AED;
-	Fri, 19 Apr 2024 16:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B011C130E5C;
+	Fri, 19 Apr 2024 16:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zEgQvc+N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lqWOKAz1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29581304B6
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 16:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E431311BF
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 16:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713542615; cv=none; b=unmAIF8NWvT1cDU1ZDzp2Amtn6zDdC5NQHR6hdakx1PjHVMdBZW5pyxeRSR0+UQsSjF2YfeQS9kiVVBKivcX7lnPl/7zRKhFJ/1Q3wHVidDmiUiNgrE5E73mFda+QCo3c7x/EplWbX3hvFW10LC5ly8tSL2x1JO5ZFn7LovI3t4=
+	t=1713543119; cv=none; b=D3HmjXwTpq8OZ5ajNc4ryg9TvCpUgnDWKuqsZpwf9EhoiWxftHKpDrhPlMtoRA1XEBQQsERzk7F7tC4R9Q80uSu7g5LSgBORU07zjqE5A9xGzEvC4Q4I968n0RhvL3NnCvaGKaMBfIgVCkgzgiuILc8p3ouEgoV+Eg1Kt8NzO6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713542615; c=relaxed/simple;
-	bh=/eXm0CTaLlshMmOpuJ+Hb0diIo+ynEWJIFTKEePjGU0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q2PvDdQ4xFtYL+73/s75dH8/jvWG69NTHnrSMZ5163Ghe8BzljgKj9Xi+oeEQ92ZAbNuzDERtvlK5kOTdCEFtIEEk0Cgd5ifQu7+GXSN0Femt+R7kqCvU5OlDmP0uAzjnFlvcN7Atl7Hpz57C1JVkKJKeCgUs4KCLvTAx/v07pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zEgQvc+N; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1713543119; c=relaxed/simple;
+	bh=FNgAl46ULEMP7u5HdRKsyrgLJBZ21oSduu43Vw0mqrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b/HnOIlY8A2Wd6IBfeIDJZIjPFevWjCNReQkwKoT2CP1gJCJtdnNaStYeCZARzRDz2C4VpR4/iu9NEYgDbSHvz7vydzlsbmUtZpXefa0kxwS1p9L1MV9ccYJbc3NAQ9bqmODwsK3rpFodenZRqttBOIdwbHGQ2otebFK0kjE+ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lqWOKAz1; arc=none smtp.client-ip=209.85.210.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-418c2bf2f15so18606645e9.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:03:33 -0700 (PDT)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ed691fb83eso1884688b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:11:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713542612; x=1714147412; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9K87eyQsJcPV+MjC9TGZ0b2ErIOF7s0I6KGHZUdEzoY=;
-        b=zEgQvc+N88bX+glGqWa/yGXwTIooRIidFGDWBPF/SrkYef0Qa+2jEggM/ajYj+ukj3
-         vLpbN4dp5Sinja6c9YNOOQiEhuW5L7NeLa1qQp3ENZVH9jQ7hkx7uOr66F5eFkeLByXi
-         CTLcEM7PwTvt1XLm7iq6H7KNNR3n5uio7mdet26R8bM7Blt0RFXMnaVUreeV0+Q9CPMb
-         lqshwqHiPAHMRGFQHQEgVRF39rQ/HoZLHfl/NFCI4hvVYRWgnxvMkORHfmYejWN9NbEO
-         nfGA+VH6cSsD+gJcIvJhaDNa+5cOZYH1lKAY3tP1Wjm0ioi4lcT89F4UIzWfCuki1oc9
-         BrAA==
+        d=linaro.org; s=google; t=1713543117; x=1714147917; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=8dc4Ms99LBRGrIqP0+CdoFO8dpvQ1QG48vdBO0u0MyA=;
+        b=lqWOKAz1QAtoxOhouSJs8G5roM8ZniDtTKnzlmPCQm75oCef702nmeLxnPo07BfrKx
+         Xk6BSRVDl5lTGyn0akqY3Y4ksjH3PGMGJz8k76qVF0Yff/LGqerRbj1Wld4d8gDOksub
+         X412Qq9HU0+ERo6SNbrUzD6ZxJciWW52ro79rEJFO8yEg3XXc9bhyUI8VYRMMIimRE+M
+         /4OOpS+TlvDKnXxrGcFzn2a8TUh2heT+DaUcbw3/DuMwJJxnqUoV9w4yLnl1fzoAA7bo
+         D34pC8xsTw3MJQzhkx/MvRtSkJUTkmiPtINk0Ozd4yQn3CYGVtSgG0JLgZZtN4jqVWW0
+         edWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713542612; x=1714147412;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1713543117; x=1714147917;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9K87eyQsJcPV+MjC9TGZ0b2ErIOF7s0I6KGHZUdEzoY=;
-        b=TMDQzCwrzPNpfGwSs0Ur3BN9zc8j2VuTcQm2QnGTcKqbT1g+8Pv8VvP19h8oCqY+Ak
-         /tMYh+ac7J8YxTwYweX+p1MFe7Z71Y2naiqjRv1CNQhlQEKzJuQTUFVAwom98g8u6spa
-         4tS1LER9CUL/V0RA845hTNbsmREo5VI2J09Z0HuLpnooG9hnqB0X9Bk1zeoGnLD3rJUd
-         1i9Umm2n+tY2fxUwJ6GDfpbGBdmGVMxShHh4WJs93RxkSNxUXn7QbIH9tHPmSyG2QxsD
-         88CNosoBxCOlYvUDgbT+d9BoC4TCYTUAQHN/EyL1U++/M+mEpWwVEQl3f/qHxjKpLof3
-         UmNA==
-X-Forwarded-Encrypted: i=1; AJvYcCWwA0iI4KpyMt6gjEoz6Zu69NaDk8PqBs1dVz5+tnoZlIltaAatakHS9fb2OUIKQFRFsGW7ThmCiVxnYqRoI2NDh5z96tiCKBVs0A==
-X-Gm-Message-State: AOJu0YxcY6V/kUB8hLbOuel7n+lBNIQCHiSv9nbiwDlsfJqtW0PpuTDe
-	XZL+pHT4mnsL6gEDjaTn75znKUMXAn89gz58q4CCwSl7ogbVH7FFTW5yk29CJd8=
-X-Google-Smtp-Source: AGHT+IF61j90FxwaOMyvxHlliptjSNEA5j4fWAYLAKVrzRuIp5qzebPKQLaE+h5oX2Q4HLOyia2QSA==
-X-Received: by 2002:a05:600c:154f:b0:417:fbc2:caf8 with SMTP id f15-20020a05600c154f00b00417fbc2caf8mr1783059wmg.23.1713542612133;
-        Fri, 19 Apr 2024 09:03:32 -0700 (PDT)
-Received: from linaro.org ([62.231.100.236])
-        by smtp.gmail.com with ESMTPSA id d20-20020a05600c34d400b00419c4e85b54sm1405965wmq.16.2024.04.19.09.03.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Apr 2024 09:03:31 -0700 (PDT)
-Date: Fri, 19 Apr 2024 19:03:30 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: x1e80100: Drop the
- link-frequencies from mdss_dp3_in
-Message-ID: <ZiKV0ube6J8pXXfU@linaro.org>
-References: <20240418-x1e80100-dts-fix-mdss-dp3-v1-0-9f8420e395d4@linaro.org>
- <20240418-x1e80100-dts-fix-mdss-dp3-v1-1-9f8420e395d4@linaro.org>
- <ZiFC8d6cD35B+PaC@hu-bjorande-lv.qualcomm.com>
+        bh=8dc4Ms99LBRGrIqP0+CdoFO8dpvQ1QG48vdBO0u0MyA=;
+        b=XWEOeoVC3NYUgj1VJkNeSwYR2xLq+Zl5hZoT8YRJr7jddnTwpThOQbDn/fnpsSZpvm
+         VaVqG46B5HYieLomGD2qJqLqWjPdevTK9M9QZwFM7PWx1G2ZVZ4N1tS8AmugGD4ykdxR
+         YeJ6KjVE1cxP0r9Jyt8C730nvdeK7zNB1+cDZTV7gFJSFkQ/0fewCsgPIrUWQRNd83I9
+         UXzSm3vbSOY3L0fjO4C4Zis96U3ssvBNWPP/qckMorh0dEapE4+x8rCVabzNfDivLh05
+         cdaoeoRLJbg7LIHD6TFxljEI6sYgbi+XyORuHudu5SeNX67ikj9zmv2V7BRsbDAuz75F
+         4KIg==
+X-Forwarded-Encrypted: i=1; AJvYcCUPXmG3bccY+OBGiSMghxMWdR1QoYLlY0JyIw+uO5FwkIkhpa43Fg8N/YqsUkQhfdcq2BgCoapHRY/XIyuQcJh6zbY/35I7LuOcrg==
+X-Gm-Message-State: AOJu0YzmWpqmGAcUkeRAHW3YZeEQ8QC8A2pCyVoPoLP/VCEHeeREYnnj
+	8s3Snpl+hL+Y28MiiJUBLP0GWSSE6Eldvn6mItXU35+xCbQD7tsoAPqnM6LC+D+2r7V+uNxCTyE
+	9Y74=
+X-Google-Smtp-Source: AGHT+IEfmEn80bk0LQvQmkauvwFGRXgiuRyCp0Rxl5JkBcXJa+Yg91+5bVUl+84LZ3wsnvejbI1bng==
+X-Received: by 2002:a05:6a00:1906:b0:6ea:aaf5:9e00 with SMTP id y6-20020a056a00190600b006eaaaf59e00mr2865256pfi.33.1713543117643;
+        Fri, 19 Apr 2024 09:11:57 -0700 (PDT)
+Received: from [172.20.9.36] ([209.37.221.130])
+        by smtp.gmail.com with ESMTPSA id c2-20020a62e802000000b006ed4f616ec4sm3404528pfi.57.2024.04.19.09.11.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Apr 2024 09:11:57 -0700 (PDT)
+Message-ID: <2608692c-7723-4ee5-884c-2dd691f03fe4@linaro.org>
+Date: Fri, 19 Apr 2024 18:11:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZiFC8d6cD35B+PaC@hu-bjorande-lv.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] dt-bindings: adc: axi-adc: add clocks property
+To: nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Alexandru Ardelean <alexandru.ardelean@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>
+References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
+ <20240419-ad9467-new-features-v1-3-3e7628ff6d5e@analog.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240419-ad9467-new-features-v1-3-3e7628ff6d5e@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-04-18 08:57:37, Bjorn Andersson wrote:
-> On Thu, Apr 18, 2024 at 01:22:18PM +0300, Abel Vesa wrote:
-> > The link-frequences belong in mdss_dp3_out. Display is broken because of
-> > this. Drop them from mdss_dp3_in.
-> > 
+On 19/04/2024 17:36, Nuno Sa via B4 Relay wrote:
+> From: Nuno Sa <nuno.sa@analog.com>
 > 
-> Why is display broken because you have this property in the wrong node?
-> Isn't it broken because you don't have it in &mdss_dp3_out and this is
-> just a cleanup of an invalid property?
+> Add a required clock property as we can't access the device registers if
+> the AXI bus clock is not properly enabled.
 > 
-> Perhaps that's what you're trying to say? Would be nice to have that
-> clarified.
 
-Will drop the "Display is broken because of this." part.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks.
+Best regards,
+Krzysztof
 
-> 
-> Regards,
-> Bjorn
-> 
-> > Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 -
-> >  1 file changed, 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index f5a3b39ae70e..0642b5e88639 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -4096,7 +4096,6 @@ port@0 {
-> >  						mdss_dp3_in: endpoint {
-> >  							remote-endpoint = <&mdss_intf5_out>;
-> >  
-> > -							link-frequencies = /bits/ 64 <8100000000>;
-> >  						};
-> >  					};
-> >  
-> > 
-> > -- 
-> > 2.34.1
-> > 
 
