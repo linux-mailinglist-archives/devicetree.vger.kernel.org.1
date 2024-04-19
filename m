@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-60965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D840A8AB1B1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 17:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D79D8AB1B6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 17:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F8D51F215C1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:23:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34A2D1F22A05
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:25:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6131312F5A4;
-	Fri, 19 Apr 2024 15:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D9D12FB08;
+	Fri, 19 Apr 2024 15:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bq7MJf0A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtnQxdlU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D09812F583
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 15:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCE5184E;
+	Fri, 19 Apr 2024 15:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713540184; cv=none; b=NpwLl6EZwjav0/Untyp56BabneBSQ5MM75ozZG9Z4qNJgMK1N8N6g4UT+Y7P7X7jtHT9EV9g7tOB/AuZAQ55EKRzm9tuiuqNCb5MBXWgaY0FDRO5UqIiaeGLwrQUyJIoyEdhWksiqSuKANXjaQeEj5Je6pqQE5sbhnPNW27Ic+Y=
+	t=1713540297; cv=none; b=aQIE+R3Ag9ohDLHvgXQpNg6mioE6QV+9l1TUOY3v5V+3lMeOuLV+a3kGtdqkskskdZ2XFykXZKsdcP9YPreoz6Ma1qZB5cEOc1FEFkiPmGCB9CPi5Bm+8g1CIYwOqdrbi/YH6z/4s4dRX1p01oddeHHAkoUnloRo8lOobT8Xjwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713540184; c=relaxed/simple;
-	bh=WgpaSd8gGDM2VtZUXLsdlXMBesxAbl08DIZs+EshcWU=;
+	s=arc-20240116; t=1713540297; c=relaxed/simple;
+	bh=vdYzPMrx1mL0pzbTIRpayXsUt9mVPOYYeTwr96fWnps=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QajCSQLktNhPsfArfkfQOenoJUTi5vSLhSg5pHjIxCQ/+EI4MW9EdyhZfPf7mQgNgJozYfKfD3OuoGHq0SWO4ZYTO7KlGxtkMHcEfEjNnbv5P9LQQvFU18vBL59mpyWbeDJgAwVrTSBC/1V++U0ugV4C2sq90sgLLAVDdZsjymY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bq7MJf0A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23AD5C072AA;
-	Fri, 19 Apr 2024 15:22:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UUI6O0YONtUr8damflhLy8T002XAtaapXrs0hS80NE4tMEkH+DA9g46sqg7L2vvenvGB2LqCMLG55rRYTM4/sqobgtXnxlt7prNySj8JaQtmsdQA4RfmeGWGSH8ujYykNjxxD+Nxjj3JKG8YiQZVGD2KMq8K6bjhuC02sMW0Agg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtnQxdlU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B962BC072AA;
+	Fri, 19 Apr 2024 15:24:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713540183;
-	bh=WgpaSd8gGDM2VtZUXLsdlXMBesxAbl08DIZs+EshcWU=;
+	s=k20201202; t=1713540297;
+	bh=vdYzPMrx1mL0pzbTIRpayXsUt9mVPOYYeTwr96fWnps=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bq7MJf0ANxxVvko+MORQK7tkExjxY8t0FWI5XkvrXHcW6V+mywxMoakepDADp5ZGP
-	 wzFLOrjI2yZUukXlpppIdA8V3ZIxHTfX3anctFdKP+FtY4RKwQ6fVUC6Ajki9tRUEi
-	 16UR77KQtNzq8EWPZ1NaaCghjMq0JheCv7Q9Es+Ool8LYeMP8GxZRANDBD8S148g7s
-	 nwGZLcTr1eycU21O1cCuM9XqOMdZW0hGdA5dz/c8vdw3K30zuwVKpXXx1rz1OJFpO9
-	 BQXrfRZoknTwZlM8x8AYRfzT19g4De/QhALHhRLujMZDHbtq74uMxMT8OIOYoBifJz
-	 RxbK0dTlFobrQ==
-Date: Fri, 19 Apr 2024 16:22:52 +0100
+	b=CtnQxdlUEF3vKpQu1sx95LnMRlgV/aqKHQp0/csAwg1lJioNcOwmzSnvFtAvZyTUx
+	 SSn6uRE4pJZ1NY55n+E5ORiQaYkV4svupYgE1k2LWMVBT9HczBGLkwN7GOKnvyflmU
+	 giuHhxuXJwBDLp9qDYKLWKAGqUAB5AVrUjaRyK5HHiej7M1L48HLKnyNbxjPEFE0WA
+	 s+H+uAzInE+/8T9KgJEE7pi5pGShvJfNTIDNImR9rYZboqDKpuRPnZLU4mVrdQs34u
+	 n/Qn9X7edphCZfK8wfXC+VeDoo7etOF+QLJrKW1UvWYxVvEMthRHAKegjEq6MAvp4G
+	 OsYgWYFAz49AQ==
+Date: Fri, 19 Apr 2024 16:24:45 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	conor.dooley@microchip.com, anup@brainfault.org,
-	atishp@atishpatra.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	christoph.muellner@vrull.eu, heiko@sntech.de, charlie@rivosinc.com,
-	David.Laight@aculab.com, parri.andrea@gmail.com,
-	luxu.kernel@bytedance.com
-Subject: Re: [PATCH v2 3/6] riscv: Add Zawrs support for spinlocks
-Message-ID: <20240419-irate-dispute-2714c42f3a63@spud>
-References: <20240419135321.70781-8-ajones@ventanamicro.com>
- <20240419135321.70781-11-ajones@ventanamicro.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 01/12] dt-bindings: riscv: add Zca, Zcf, Zcd and Zcb
+ ISA extension description
+Message-ID: <20240419-aground-extradite-9557a5b90afe@spud>
+References: <20240418124300.1387978-1-cleger@rivosinc.com>
+ <20240418124300.1387978-2-cleger@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,43 +66,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="28c4hpi9ivVxCwkB"
+	protocol="application/pgp-signature"; boundary="IbJ7nnYDSyrUMi3r"
 Content-Disposition: inline
-In-Reply-To: <20240419135321.70781-11-ajones@ventanamicro.com>
+In-Reply-To: <20240418124300.1387978-2-cleger@rivosinc.com>
 
 
---28c4hpi9ivVxCwkB
-Content-Type: text/plain; charset=us-ascii
+--IbJ7nnYDSyrUMi3r
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 19, 2024 at 03:53:25PM +0200, Andrew Jones wrote:
+On Thu, Apr 18, 2024 at 02:42:24PM +0200, Cl=E9ment L=E9ger wrote:
+> Add description for Zca, Zcf, Zcd and Zcb extensions which are part the
+> Zc* standard extensions for code size reduction. Additional validation
+> rules are added since Zcb depends on Zca, Zcf, depends on Zca and F, Zcd
+> depends on Zca and D and finally, Zcf can not be present on rv64.
 
-> +config RISCV_ISA_ZAWRS
-> +	bool "Zawrs extension support for more efficient busy waiting"
-> +	depends on RISCV_ALTERNATIVE
-> +	default y
-> +	help
-> +	  The Zawrs extension defines instructions to be used in polling loops
-> +	  which allow a hart to enter a low-power state or to trap to the
-> +	  hypervisor while waiting on a store to a memory location. Enable the
-> +	  use of these instructions in the kernel when the Zawrs extension is
-> +	  detected at boot.
+> +allOf:
+> +  # Zcf extension does not exists on rv64
 
-Ignoring the rest of the patch, and focusing on the bit relevant to our
-other conversation, I think this description satisfies what I was trying
-to do with the other options in terms of being clear about what exactly
-it does.
+If there's another version, "exist".
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---28c4hpi9ivVxCwkB
+Thanks,
+Conor.
+
+
+--IbJ7nnYDSyrUMi3r
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiKMSwAKCRB4tDGHoIJi
-0iHgAP0bVRo/k8VGTCVwXeHhxWQfgjD463Unkv1KkQBnmsakhQD/Tkvq1OZjDrZp
-rJPhWINZM3MPa7ALj6yQ2JG6CVw6ngQ=
-=5nYv
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiKMvQAKCRB4tDGHoIJi
+0ip5AP9dWXDapMOiL35Gtl6YMVu8HpKNUc2H+iDTWD003piM/QD6AnztSi8/8umM
+hU83nbsm7PdjtwFfBV7LErQIay+iZwE=
+=Kdnw
 -----END PGP SIGNATURE-----
 
---28c4hpi9ivVxCwkB--
+--IbJ7nnYDSyrUMi3r--
 
