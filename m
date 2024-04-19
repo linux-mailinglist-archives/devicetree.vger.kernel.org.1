@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-60868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 589988AAB59
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:20:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38728AAB65
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C5771C21AEE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:20:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7EA61C2133C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 09:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB866768EA;
-	Fri, 19 Apr 2024 09:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6107E768EA;
+	Fri, 19 Apr 2024 09:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="m9OekeZS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Dn6Yg5We"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7BD762F7;
-	Fri, 19 Apr 2024 09:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3A171B3D
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713518413; cv=none; b=GcGmofzDnRaAGiW9cDwCAt4XicV4B2drrWUV+AzuTNAkAkOi/XeGuz91v/V6vbHUIeG1By8T9KQY40ruXQ8c6awXbKSoWXi0OozpgL3QdZc9pDHTDbW9VwNUzs5/VmYY7/eVikKXsfvPmx0KvX+NzJokVC/mtefcUK9PkavkiEI=
+	t=1713518578; cv=none; b=o+LvBfZYzBA+LHNUPpQQF8/MEcEYpCj1YLYkLPZN8Ljyy6q0sIn0Bqdssc/SZhpbK0cLKn2Rtwml01xlwH12MS8M9SvnMIVnfH1QHKqDnVYaMQTtE+BJsYYSnvyQ1WTFxJYsA17c/AWPkosMBtsxKlHZ/XhUXVp4jW77D8Coum8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713518413; c=relaxed/simple;
-	bh=QtNgxoc1T9rXhS4WykEdSd1FP7MyZIp+3XhEK2Z+L2I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FJfw8Magff+j/gGZLbkeo9WRFzcl7H5UfuxLVmCrw68sn3BBcZ6SY7uG6cLADLeu3vuJ3A26x7f3J5aO+lINH7CYGa4SdXpT8tW8mhatktXMxA98nw7Vk32xCdYmlv0DuVizeaYw8QWEhJM9RbLvQ+rrz3KWaPN7oDtjmqrHbmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m9OekeZS; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43J9K3su059001;
-	Fri, 19 Apr 2024 04:20:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713518403;
-	bh=QtNgxoc1T9rXhS4WykEdSd1FP7MyZIp+3XhEK2Z+L2I=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=m9OekeZSkke1/EcB/WEreIBL2geXmliaho8Ik96G74G3mRUog77UUFM/0+anwuzOG
-	 FiMYhh9FJGNND4RImPtneTYk3HAyKUehQ9EWbmfDKRRIFxsfSlTbdJkjrc4r4kdyT9
-	 XNRbHdEZ1NJJVWg3MXLaCRmF18xtSHfU8GEAAtcA=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43J9K3C6048904
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 19 Apr 2024 04:20:03 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
- Apr 2024 04:20:02 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 19 Apr 2024 04:20:02 -0500
-Received: from [10.249.133.115] ([10.249.133.115])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43J9JvY0009878;
-	Fri, 19 Apr 2024 04:19:58 -0500
-Message-ID: <e9e3ac5d-a048-4058-a5a1-205ded24cb8d@ti.com>
-Date: Fri, 19 Apr 2024 14:49:56 +0530
+	s=arc-20240116; t=1713518578; c=relaxed/simple;
+	bh=NcKAO7tP/x4sIAxUUHYXR+L4ly5ODcgul0HtEzI6yDs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R86dYJgWqHHPtAkg7na6lNL1zJcHOsncyhl6aD7szR3XkjX17rwFwzxyUmXWtQSlAB2gcuCSD9gEFZq2LWnXckP6Aljf7KeYxlXjfbTOFDeGfh8tv4Z9T8ALHWCFZ4m4BqcrMTZtd4xrPT9yVEc7M+PAe41DZCSCad99Yb+IC7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Dn6Yg5We; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4196c62bb6fso1627355e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 02:22:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713518574; x=1714123374; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y576gXoPcjc3Y2FVL6fqBu3Gc7Q1+NXvtH+iYdNf3yU=;
+        b=Dn6Yg5WeRyohMHQrnYNQylmvY2rP9Q/jJSLAWy2V/CYgQnS7egZ6pUimHcVTyV1nnU
+         VEOrjF3JgoX3FCzvpjGF+kIb6lEpo4S5N0SULLkxDw3XgwcIaYQQl3uEK9pL1f/QKjWG
+         6Rj5ZO23Cfsq4cyoCuafdyGJ2cCT/tJzgMko2+vu1UB/vV7OSs/uhKDBFhJ9BX2Woy0K
+         82UYHxSRvaulHZDlnD+kcVaHdf2nesT2EDM0iGcwvsS3qUYXqtelKJmw9nKYi3s1ckOo
+         +HS55Y6RE+eCJsy4NTFAMrn7mW3yXK5YKuscWt4jo74mcoUcR1m7VNoYZtgUAN6tPs57
+         Hy1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713518574; x=1714123374;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y576gXoPcjc3Y2FVL6fqBu3Gc7Q1+NXvtH+iYdNf3yU=;
+        b=dyLeGtn3xiiraK0GWHjjkaaRlCMOeugtsN+cC/ViatPLIuchCZi992zvxNQB6vDO1d
+         ttHvoAKuk/oxXqHDhAXCNFLuq3WGuGrF4SDMIcwrcLs6Wo9s+XKINFunz8Ej933DGS12
+         c5dxRrceECMbPB0WWBHHmZ9LluuxXnQBl0FjLxCVTt2IaO735tF1hSNMhepQSWaPZxG4
+         5deRrb6dbfDgq5ecdR/JcrsoEz3+309RSvdXsXnzwYsUCU3Kf36eAslbgelQGMZ/uSEW
+         wdexANEDMgm90O8rqttEAeTrJ/okHrxxz0KbYiRN6ZHX1uU/ocVD2vV42wpQXZbk3z0m
+         S4jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWWww1p/CKug3X98tQfOiyUbEXTDB/IFvJTE+37tFdA9Toz5HYLY4D0qYhoBOiE81JJ+204OrDiHORBDq6rpwIlVGprwWsUEhfj/g==
+X-Gm-Message-State: AOJu0YxRC6R5UQ1Gr29ZTcgeazz5aqSFSSmCTPzbaeYmYTcOzEgLFAOK
+	+m1YjNOHmoHfKE3YAxOnNJM0/1OQRvRvzmmz1t5WveLvYAyYNEiKOmAW9c9NOKo=
+X-Google-Smtp-Source: AGHT+IGEMMwvqsWa1wBPlb1YxcuxGJHgk4ZlrLlGwj3TJU4+1nuQXEqo0CbuUtJgEODgebOizRMxsg==
+X-Received: by 2002:a05:600c:1d0f:b0:418:f6b7:a383 with SMTP id l15-20020a05600c1d0f00b00418f6b7a383mr990122wms.2.1713518574007;
+        Fri, 19 Apr 2024 02:22:54 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id b10-20020a05600c4e0a00b00418f30874b4sm4015450wmq.17.2024.04.19.02.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Apr 2024 02:22:53 -0700 (PDT)
+Message-ID: <57705980-e776-4178-878d-15c2007f7ef3@baylibre.com>
+Date: Fri, 19 Apr 2024 11:22:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,274 +76,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add support for multiple
- CAN instances
-To: "Kumar, Udit" <u-kumar1@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <nm@ti.com>
-References: <20240411201747.18697-1-b-kapoor@ti.com>
- <85ea2b33-05ac-400f-8017-5539d21ebe32@ti.com>
- <8d9a6dc7-7590-412d-aa81-18a6cf5d09ca@ti.com>
- <9c7f0e3d-4558-4a73-bbb1-ceb7ebe02cd9@ti.com>
+Subject: Re: [PATCH v3 14/17] drm/mediatek: add MT8365 SoC support
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Jitao Shi <jitao.shi@mediatek.com>,
+ CK Hu <ck.hu@mediatek.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Fabien Parent <fparent@baylibre.com>,
+ Markus Schneider-Pargmann <msp@baylibre.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20231023-display-support-v3-0-53388f3ed34b@baylibre.com>
+ <20231023-display-support-v3-14-53388f3ed34b@baylibre.com>
+ <9ef43fff-ee2a-4b2c-a595-30f5bf7588c2@collabora.com>
 Content-Language: en-US
-From: Bhavya Kapoor <b-kapoor@ti.com>
-In-Reply-To: <9c7f0e3d-4558-4a73-bbb1-ceb7ebe02cd9@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <9ef43fff-ee2a-4b2c-a595-30f5bf7588c2@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-On 16/04/24 15:24, Kumar, Udit wrote:
-> Hello Bhavya
->
-> On 4/16/2024 2:52 PM, Bhavya Kapoor wrote:
->> On 15/04/24 10:42, Kumar, Udit wrote:
->>> Hello Bhavya,
->>>
->>> On 4/12/2024 1:47 AM, Bhavya Kapoor wrote:
->>>> CAN instances 0 and 1 in the mcu domain and 16 in the main domain are
->>>> brought on the evm through headers J42, J43 and J46 respectively. Thus,
->>>> add their respective transceiver's 0, 1 and 2 dt nodes to add support
->>>> for these CAN instances.
->>> Looking at schematic and board data sheet, it appears, board has 6 CAN interfaces.
->>>
->>> [J41--J46],  but we are enabling only 4.
->>>
->>> I understand, other interfaces might be used for other purpose.
->>>
->>> Vignesh/Nishanth,
->>>
->>> Do you think, this make sense to code all available interfaces on board and
->>>
->>> mark as reserved, if used for other purpose , similar to what is done for wkup_uart for this board.
->>>
->> Hi Udit, there is a mux that is used between audio and the signal lines of other 2 cans.
+
+On 19/04/2024 10:01, AngeloGioacchino Del Regno wrote:
+> Il 18/04/24 16:17, amergnat@baylibre.com ha scritto:
+>> From: Fabien Parent <fparent@baylibre.com>
 >>
->> If we turn on the other 2 cans or even mark  them as reserved, we will still have to
+>> Add DRM support for MT8365 SoC.
 >>
->> alter the mux sel lines which will impact the audio.
->
->
-> How it will impact ?
->
-> Audio and CAN lines goes to 1B port of mux .
->
-> IMO, even CAN or Audio does mux select they are going to select same port no ?
->
-> I refer U58 and U50 MUX of schematic, Hope we are on same page
->
->
-Hi Udit, Thanks for the clarity on muxes number otherwise we would have been in a lot of confusion
-I was referring to muxes U112 and U108.
-After U58 and UU50 , the signal will pass to U112 and U108 and in these 2 Muxes,
+>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> 
+> There are two things that I want to point out. Please check below.
+> 
+> The series that I've sent for adding OF Graphs [1] support to MediaTek DRM is
+> not going to be picked in time for v6.10, but I think neither your MT8365 support
+> series is, and that's why I'm telling you this.
+> 
+> If your work was based off my series, you would not need to add the MT8365 ddp
+> MAIN and EXT paths to mtk_drm_drv: you'd just add it to the bindings and then
+> you would declare the paths in devicetree.
 
-we will either have to select _B1 or _B2 ie from audio or the can signals. And, we
+Ok then I will rebase my v4 on top of your serie
 
-are going for audio signals.
-
-Regards
-
+> 
+> 
+> [1]: https://lore.kernel.org/r/20240409120211.321153-1-angelogioacchino.delregno@collabora.com
+> 
+> There's also one more comment....
+> 
+>> ---
+>>   drivers/gpu/drm/mediatek/mtk_drm_drv.c | 30 ++++++++++++++++++++++++++++++
+>>   1 file changed, 30 insertions(+)
 >>
->> Thanks.
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+>> index 74832c213092..427b601309c4 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> 
+> ..snip..
+> 
+>> @@ -793,6 +821,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
+>>         .data = (void *)MTK_DSI },
+>>       { .compatible = "mediatek,mt8188-dsi",
+>>         .data = (void *)MTK_DSI },
+>> +    { .compatible = "mediatek,mt8365-dpi",
+> 
+> You removed the mt8365 specific compatible from the DPI driver - why did you keep
+> it here?! that's not needed! :-)
+
+Sorry for that, I forgot to remove it in this driver too. Thanks to catched it.
+
+> 
+> Cheers,
+> Angelo
+> 
+>> +      .data = (void *)MTK_DPI },
+>>       { }
+>>   };
 >>
->> ~B-Kapoor
->>
->>>> CAN instance 4 in the main domain is brought on the evm through header
->>>> J45. The CAN High and Low lines from the SoC are routed through a mux
->>>> on the evm. The select lines need to be set for the CAN signals to
->>>> reach to its transceiver on the evm. Therefore, add transceiver 3
->>>> dt node to add support for this CAN instance.
->>>>
->>>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
->>>> ---
->>>>
->>>> rebased to next-20240411
->>>>
->>>>    arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 107 +++++++++++++++++++++++
->>>>    1 file changed, 107 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>>> index 81fd7afac8c5..e56901973895 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>>> @@ -272,6 +272,45 @@ dp0_connector_in: endpoint {
->>>>                };
->>>>            };
->>>>        };
->>>> +
->>>> +    transceiver0: can-phy0 {
->>>> +        compatible = "ti,tcan1042";
->>>> +        #phy-cells = <0>;
->>>> +        max-bitrate = <5000000>;
->>>> +        pinctrl-names = "default";
->>>> +        pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
->>>> +        standby-gpios = <&wkup_gpio0 69 GPIO_ACTIVE_HIGH>;
->>>> +    };
->>>> +
->>>> +    transceiver1: can-phy1 {
->>>> +        compatible = "ti,tcan1042";
->>>> +        #phy-cells = <0>;
->>>> +        max-bitrate = <5000000>;
->>>> +        pinctrl-names = "default";
->>>> +        pinctrl-0 = <&mcu_mcan1_gpio_pins_default>;
->>>> +        standby-gpios = <&wkup_gpio0 2 GPIO_ACTIVE_HIGH>;
->>>> +    };
->>>> +
->>>> +    transceiver2: can-phy2 {
->>>> +        /* standby pin has been grounded by default */
->>>> +        compatible = "ti,tcan1042";
->>>> +        #phy-cells = <0>;
->>>> +        max-bitrate = <5000000>;
->>>> +    };
->>>> +
->>>> +    transceiver3: can-phy3 {
->>>> +        compatible = "ti,tcan1042";
->>>> +        #phy-cells = <0>;
->>>> +        max-bitrate = <5000000>;
->>>> +        standby-gpios = <&exp2 7 GPIO_ACTIVE_HIGH>;
->>>> +        mux-states = <&mux1 1>;
->>>> +    };
->>>> +
->>>> +    mux1: mux-controller {
->>>> +        compatible = "gpio-mux";
->>>> +        #mux-state-cells = <1>;
->>>> +        mux-gpios = <&exp2 14 GPIO_ACTIVE_HIGH>;
->>> Could you help here on logic to choose pin 14
->>>
->>> As I see for this mux
->>>
->>> S0 is CANUART_MUX_SEL0 [Pin 14, which you want to control as high]
->>>
->>> S1 is Pin 15 is "CANUART_MUX2_SEL1"
->>>
->>> S2 is high
->>>
->>> So in order to get CAN on mux output
->>>
->>> All, S0, S1 and S2 should be high.
->>>
->>> IMO, you should control both S0 and S1, or just S1 and S0 with dip switch
->> Hi Udit, S0 comes at a default Active High State always. Thus, i have kept it the same.
->>
->> This was done in the same way as it was done for mux2 for  j721s2. mcan 5
->>
->> Thanks
->
-> May be i was not clear in my previous comment
->
-> Looking at schematic
->
-> S0 is CANUART_MUX_SEL0 , which is connected with DIP switch and IO expander U173
->
-> S1 is CANUART_MUX2_SEL1, which is connected only IO with expander U173
->
-> S2 is CANUART_MUX_SEL2 is pulled high by hardware itself .
->
-> Here all lines high are needed to route CAN correctly out from mux.
->
-> So this patch is controlling CANUART_MUX_SEL0 but not controlling CANUART_MUX2_SEL1.
->
-> IMO, CANUART_MUX_SEL0 can be controlled by dip switch and CANUART_MUX2_SEL1 should be controlled by driver.
+> 
 
-Hi Udit, thanks for conveying this in a much more explained way.
-
-What i am trying to say that in the  default state as well we are getting s1 signal as high itself.
-
-So, if you  want that we should specifically add gpio for that in dts, we can also go ahead with that.
-
-Regards
-
-~B-Kapoor
-
->
->
->>>> +    };
->>>>    };
->>>>      &wkup_gpio0 {
->>>> @@ -336,6 +375,20 @@ J784S4_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AG33) MCAN14_TX.I2C4_SCL */
->>>>                J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
->>>>            >;
->>>>        };
->>>> +
->>>> +    main_mcan4_pins_default: main-mcan4-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            J784S4_IOPAD(0x088, PIN_INPUT, 0) /* (AF36) MCAN4_RX */
->>>> +            J784S4_IOPAD(0x084, PIN_OUTPUT, 0) /* (AG38) MCAN4_TX */
->>>> +        >;
->>>> +    };
->>>> +
->>>> +    main_mcan16_pins_default: main-mcan16-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            J784S4_IOPAD(0x028, PIN_INPUT, 0) /* (AE33) MCAN16_RX */
->>>> +            J784S4_IOPAD(0x024, PIN_OUTPUT, 0) /* (AH34) MCAN16_TX */
->>>> +        >;
->>>> +    };
->>>>    };
->>>>      &wkup_pmx2 {
->>>> @@ -415,6 +468,32 @@ J784S4_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
->>>>                J784S4_WKUP_IOPAD(0x108, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
->>>>            >;
->>>>        };
->>>> +
->>>> +    mcu_mcan0_pins_default: mcu-mcan0-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            J784S4_WKUP_IOPAD(0x050, PIN_OUTPUT, 0) /* (K33) MCU_MCAN0_TX */
->>>> +            J784S4_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (F38) MCU_MCAN0_RX */
->>>> +        >;
->>>> +    };
->>>> +
->>>> +    mcu_mcan1_pins_default: mcu-mcan1-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (H35) WKUP_GPIO0_4.MCU_MCAN1_TX */
->>>> +            J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (K36) WKUP_GPIO0_5.MCU_MCAN1_RX */
->>>> +        >;
->>>> +    };
->>>> +
->>>> +    mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            J784S4_WKUP_IOPAD(0x040, PIN_INPUT, 7) /* (J38) MCU_SPI0_D1.WKUP_GPIO0_69 */
->>>> +        >;
->>>> +    };
->>>> +
->>>> +    mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            J784S4_WKUP_IOPAD(0x060, PIN_INPUT, 7) /* (J35) WKUP_GPIO0_2 */
->>>> +        >;
->>>> +    };
->>>>    };
->>>>      &wkup_pmx1 {
->>>> @@ -1105,3 +1184,31 @@ dp0_out: endpoint {
->>>>            };
->>>>        };
->>>>    };
->>>> +
->>>> +&mcu_mcan0 {
->>>> +    status = "okay";
->>>> +    pinctrl-names = "default";
->>>> +    pinctrl-0 = <&mcu_mcan0_pins_default>;
->>>> +    phys = <&transceiver0>;
->>>> +};
->>>> +
->>>> +&mcu_mcan1 {
->>>> +    status = "okay";
->>>> +    pinctrl-names = "default";
->>>> +    pinctrl-0 = <&mcu_mcan1_pins_default>;
->>>> +    phys = <&transceiver1>;
->>>> +};
->>>> +
->>>> +&main_mcan16 {
->>>> +    status = "okay";
->>>> +    pinctrl-names = "default";
->>>> +    pinctrl-0 = <&main_mcan16_pins_default>;
->>>> +    phys = <&transceiver2>;
->>>> +};
->>>> +
->>>> +&main_mcan4 {
->>>> +    status = "okay";
->>>> +    pinctrl-names = "default";
->>>> +    pinctrl-0 = <&main_mcan4_pins_default>;
->>>> +    phys = <&transceiver3>;
->>>> +};
+-- 
+Regards,
+Alexandre
 
