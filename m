@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C024D8AAF91
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:41:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 130598AAF9C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:43:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41B57B20ECC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:41:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44FD01C2194E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0582D12A14A;
-	Fri, 19 Apr 2024 13:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05A512A14C;
+	Fri, 19 Apr 2024 13:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNvexn1h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bHNO7LDC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0ABD1292DC;
-	Fri, 19 Apr 2024 13:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820BE129A68;
+	Fri, 19 Apr 2024 13:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713534108; cv=none; b=M24e4TzJ4++OJOyGbvdQwPWOqF97ANLVnTIYhFzWzKc/5oA9NiTpdli1FjVawnph55acI0sBICIH/aP6SnqzO3KlKeofN2D171LWm/AC3c+iXVuiGzH669GZMHf2VTDrubk0f/BSu4gzmza0L3sxwuIqSVgBpDuakrELoWE01/k=
+	t=1713534185; cv=none; b=FNXMryBNZ7ERXNUfcIq1DjZisiZq6f5qzz5OUlhs7sbJZ7u++1A01r6Nk6WJuqy3T5/76rIxKqR31RjWRT8DhqmA3t5A7wU8RN9zHmwSu1LFOujIqi1IWuejO+FxXyzC8mlp7UcLTkQwlsI1ss/Ko40jzYesveQK47RX6RFuGpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713534108; c=relaxed/simple;
-	bh=YWtwWwFaBIA9VlLC/ZdB22WXXGjlkyXLSpJuWuzctw4=;
+	s=arc-20240116; t=1713534185; c=relaxed/simple;
+	bh=SSvm0lOOrjdcH1Ke8leLSKOKpPwYFHJGZqkZJycISJg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nlOxfXAehkEOJEdGiuq/AFRXHIpasC178XFp6yf4oA+fIdv2R50Baz+aozQ4nyQtg/amTVPSdrWU6baSd/xoUGOIsZwLpujPrJfEsjKXG5m03F9M6Sarzaco/Ji/Q9bzmUEr6DBfzbITT59sShXQcge7j7uB+ONO/ZP7zJT2bA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNvexn1h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55215C072AA;
-	Fri, 19 Apr 2024 13:41:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jpZ2iZ19VUHhFxIcUhEzPeUaL6PJZMCTAs8e9qDbhOa19X71xxwrNchYISHZ15+UlYHjptM8t0Z7JbzhtfnwJxG8Stp3jhVAeO7YtF7ww4iAsVVCKsh3besK4E0XpU3ThV7rsit+MnIpgOwyzp35DrN8nJCrGaIt3AwhCDFGS1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bHNO7LDC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8DDEC072AA;
+	Fri, 19 Apr 2024 13:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713534108;
-	bh=YWtwWwFaBIA9VlLC/ZdB22WXXGjlkyXLSpJuWuzctw4=;
+	s=k20201202; t=1713534185;
+	bh=SSvm0lOOrjdcH1Ke8leLSKOKpPwYFHJGZqkZJycISJg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YNvexn1hyeCUgjOFwOrH6x4neJZeusd80IyEHjrXYC5693cH6khvm4zOxu/4cK64A
-	 yg0NkIEAeg8E+XV1kHQrucaj0eDLqedTtWOH2JS0MmqCblQWBiQkR4ogIwro7QyF3b
-	 KbUF/vQvFNokmVcfg+A1LxggZ5niZkCI5IhC1HbTFc5rvQsPN1JoXWpOzZn+LjziJz
-	 2cQ5ozqd1PUoYcdahN7SfmlSbCdgQl+8BugDl2Ib4Nwm8qrAw4u65e8rzKH/LTxfJB
-	 /wcTVmMocK+SFcWKvCZBCKFrSfWIhmYpN1Zws1YesfhXgKFrUHZw9mUa/EuYHON7Y5
-	 RfD024kVBMw3w==
-Message-ID: <af6316ff-78c6-4b0a-894f-6076d36ffb90@kernel.org>
-Date: Fri, 19 Apr 2024 15:41:48 +0200
+	b=bHNO7LDCM+WM8SVhjD1Jg9w4uvK7kOGTlsPHeUUsV9h4RVqBUA1t5gPtpSQLrp6jx
+	 Dk/WMTWUXXTzR/OTUBF3IZGebVEpmeMSTu+eJXxNbdc1g9b/IpPDX1GLRW1sSqs1sA
+	 hs+naqDYL8xUnhKuFxdnvzVT9cBYo63tgBpWeBA/UHCuQbUqXR78pEfHIMqzu3ASUd
+	 az9nyXZyFr2OrqniXgO6HfO5ycXrGVg5RbbbXQEFc5lL5LLgHOw73t+CP5ilgRj3Ah
+	 npaAKhDrstdkm2SQ8IH+9n0wSRi2MjsGjmwoswjhCR8Cli9A05wZh68u4sRN5l9EaS
+	 AddBLWBiwU22g==
+Message-ID: <0dfc402a-ee31-404f-9dc2-8828d7a6b337@kernel.org>
+Date: Fri, 19 Apr 2024 15:43:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] regulator: pca9450: enable restart handler for I2C
- operation
-To: Holger Assmann <h.assmann@pengutronix.de>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, yibin.gong@nxp.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240419083104.3329252-1-h.assmann@pengutronix.de>
- <20240419083104.3329252-2-h.assmann@pengutronix.de>
+Subject: Re: [PATCH v2 12/12] arm64: defconfig: build in OCOTP ELE
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Peng Fan <peng.fan@nxp.com>
+References: <20240419-imx93-dts-4-13-v2-0-9076e1d7d399@nxp.com>
+ <20240419-imx93-dts-4-13-v2-12-9076e1d7d399@nxp.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,36 +107,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240419083104.3329252-2-h.assmann@pengutronix.de>
+In-Reply-To: <20240419-imx93-dts-4-13-v2-12-9076e1d7d399@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/04/2024 10:31, Holger Assmann wrote:
-> The NXP PCA9450 can perform various kinds of power cycles when triggered
-> by I2C-command.
-> We therefore make this functionality accessible by introducing a
-> respective restart handler. It will be used after a priority has been
-> defined within the devicetree.
+On 19/04/2024 05:37, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
+> The FEC network driver is built in, with OCOTP ELE built as module,
+> the FEC drive will defer probe because nvmem provider not ready and
+> nfsboot not work. So build in OCOTP ELE driver.
+
+That's not an explanation. FEC can defer and probe immediately, that's
+not a problem. Just use ramdisk.
 
 
-...
+No, this stays as module. Fix your system instead.
 
-> +
->  static int pca9450_i2c_probe(struct i2c_client *i2c)
->  {
->  	enum pca9450_chip_type type = (unsigned int)(uintptr_t)
-> @@ -845,12 +875,35 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
->  		return PTR_ERR(pca9450->sd_vsel_gpio);
->  	}
->  
-> +	/* Register I2C restart handler if one is defined by device tree */
-> +	if (!of_property_read_u32(i2c->dev.of_node, "priority",
-> +				  &pca9450->restart_handler.priority)) {
-
-Priority property does not define whether this is or is not restart
-handler. In case of missing priority, you should use just default:
-SYS_OFF_PRIO_DEFAULT. Not skip the registering.
 
 Best regards,
 Krzysztof
