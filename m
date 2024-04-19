@@ -1,147 +1,149 @@
-Return-Path: <devicetree+bounces-60950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CA18AB0CB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:32:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035E68AB0F4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:46:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5C871C21423
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 14:32:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A67F91F2328B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 14:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BE912DDAF;
-	Fri, 19 Apr 2024 14:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA6312EBD9;
+	Fri, 19 Apr 2024 14:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mJYuwsrh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B9lnCVQt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D1EB661;
-	Fri, 19 Apr 2024 14:32:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61361E893
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 14:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713537160; cv=none; b=CYgmg1MGXtBL7Y89pOepa8XAfOeFtKUMW2e/djIceK0YQpRiZsTJpn73GFplaJ7IxpjllZVQte6mrL6+wWxzkX/tpt6mp1kng4+NtTrzVs28qYvKtLVB4OLXySmBNLJmtbH7FJs/96kwuMgATRfc5BIKVFI/Sa5iXOjIQt1FMAc=
+	t=1713537958; cv=none; b=B5o1wSQuJVhYzf/FgUd4PMbhB1Us3tteRdQgrqjaucE7aUMlpNPsN6fVFDx8c5dYt07FEXDdSYUEPUEvmGROBCCg2P7WJbObjWmYLzId3TFzMwnkmjcYla6574cLLBuGE97iO+m17xK3AvJ3/KRRpb4MtQEChhN31SLzmfOscj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713537160; c=relaxed/simple;
-	bh=wpubB5RGGs+N9oSpYbdeFOjJ3Vm/Rrf9Ev30ZPMU4sA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rKOjevaJe1tXiMI1I+2eMlG70RtsznmSc+hU6ju+EgIB9CZQmpglXEc5PlRev/ocbAbT2Ev3uK5uqOARFDhibYEcIG+7KNBMtZjxAeMaCfHO6CgSrSjEtGzpliwxUAC1QWqK9gpufoP9wzSnzRmxQJ24PYa7buLuNiAXZM3YsYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mJYuwsrh; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2a519ac18b3so1615364a91.2;
-        Fri, 19 Apr 2024 07:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713537158; x=1714141958; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wpubB5RGGs+N9oSpYbdeFOjJ3Vm/Rrf9Ev30ZPMU4sA=;
-        b=mJYuwsrhumsgrR9fTeyWJbnBfOZhyqMgnpc5z+cWVpME/rMUgfSl1die1CkXgDmTGC
-         RStUXdkoUKlfxP1ENaZVBDPEePW8dPYVgmEXmjN12+S2aUtzrwNqH6VaRTCKp1L4MDVd
-         +e7UmTI61b440wjpE3svaEqxmEjtaot9qxksXBFOf3yAXhra2ys8F0ivWrCHjqUm+Du6
-         KDWKbBUk6qWZwEOcIwOnHNnD/mTHi8q190vumOMc95MsxzTHrDkqtqWZJCsNTzT8tp8M
-         0vIL2ALIjH/X8ZWEkqJAfifxc5qMp8XhO2sATMi5Xoy7sWvSRAtzIUbUud7Wr/4jYpxB
-         NjFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713537158; x=1714141958;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wpubB5RGGs+N9oSpYbdeFOjJ3Vm/Rrf9Ev30ZPMU4sA=;
-        b=DjrCv0gyiqa0bQF8495ZAIUhzRIx5KZ9OBX8f/O74bwFERPaUJXhvSPDaGtHjGeTGD
-         A7jeqqiSpcR7lyT8kigggbVuvTFYpjnZ4NuXizKtiVrX7bofYpEwl82ZcAq1DG/HRxp1
-         xloR3mXEPw5iV5gMGPLXmra2/eVC33I/FwGWvdoLM9DZxxVhvs5awgjOf4CyoVYse33N
-         15peCrVqMPJMl/9taCQhRmHdBfeCXwPrxmA6XxjwWtg6ILFss/Y8T7vlVtOcAP2IPn3R
-         1+S8TIZSj9qj0iHnOp3g3+SA05okhYcLF7BG3hf/e7tQdhf4OgnOit88jcfuu3SD3BJg
-         M4ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW94sK8apuHqZzPxRsteK5nV/gnymRNPBHLGsWXuFQATTlOlUZXQ9Px43KzBqPopRtLuApdZTWpXloWo1MkZxIqyxj5NhMASysnjH1IW6slckTKD8IaCfkojsmd0I/MreH5j2foDIwATS6j48Vw4KCd14SJjC3ZuaJsBF0MudGUiy6SC6Lsvw==
-X-Gm-Message-State: AOJu0YwYhvARA5pUjYBcz7jkjij15qScGlX/e5SauMzdj2WcqZuXwz3n
-	YO3VQZrNHr3rQ8vvim8aSDTWeIXLiH5qnMpM/hxzL1kJXgTLjcFgP59zsjlCm/Q0yElwlgJHaJp
-	it0mMx2uCldCpfqoFEPwpJIoF1T4=
-X-Google-Smtp-Source: AGHT+IGx6hIS3g+ara6O42TicQaaFPwEmS+NsYEwehh6Rjx1ecg93nnhIbYtQVpE31PFXzePbkZG7q7XQx/qyxbn/Ao=
-X-Received: by 2002:a17:90b:1651:b0:2a5:99e6:45a with SMTP id
- il17-20020a17090b165100b002a599e6045amr2284524pjb.29.1713537158490; Fri, 19
- Apr 2024 07:32:38 -0700 (PDT)
+	s=arc-20240116; t=1713537958; c=relaxed/simple;
+	bh=IbMuf6RtD8S+NgEks0arYU+taglxFQZdg/xWQtc4Hp0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hXWxeg4llztRK65Cg12VkfEqjOPJq7fRGaDgBSSAxhKM2H0Qs9w74OYugfm/wOxAFbYLWexdVPlcgi6sZSs4AaSfrSeseQ+slQ4Mqp+BgnWcLB4O/rhJ5vLkW/2KkpuwMZGULnjKf8IlXfG5AtLcf/cVbKkjbwMRu1pZc/7u/Uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B9lnCVQt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F07C9C072AA;
+	Fri, 19 Apr 2024 14:45:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713537958;
+	bh=IbMuf6RtD8S+NgEks0arYU+taglxFQZdg/xWQtc4Hp0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B9lnCVQtVuS6xv7XDhACZfxS2wk9z2JSrYp2yb6cmTvW1iv/kI+XLGTtwk7XrbdaA
+	 D5slUkl1Lmbss4pJXB89SVWKGNnIc/bbSRPjCiBabn5VMfmIUTqarF/+pJPXE3DDve
+	 tMRfw2Wr0+ljxp82dy/Rws2fIdHwNGWwmnNQRdb+bNKTIhPXa6Zi/hNfvR78sKp4PU
+	 ha9U3WT3AKRIzKIyxM2j4uquHiW4ytBE9/knza1FRHelKtM0eHomRr9qF93okHMkk+
+	 m7GmwQWaFACFcrDs78Ji29+8HvsgrRbgLRwreNq3mihbFZhVJwCOruEh/xOhcykxMy
+	 48Lm6xuVctydQ==
+Date: Fri, 19 Apr 2024 15:45:46 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	conor.dooley@microchip.com, anup@brainfault.org,
+	atishp@atishpatra.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	christoph.muellner@vrull.eu, heiko@sntech.de, charlie@rivosinc.com,
+	David.Laight@aculab.com, parri.andrea@gmail.com,
+	luxu.kernel@bytedance.com
+Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Add Zawrs ISA extension
+ description
+Message-ID: <20240419-chafe-leotard-e5daee19b1c8@spud>
+References: <20240419135321.70781-8-ajones@ventanamicro.com>
+ <20240419135321.70781-10-ajones@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240419124506.1531035-1-rilian.la.te@ya.ru> <20240419124506.1531035-3-rilian.la.te@ya.ru>
- <20240419-glue-pyramid-584728c0076a@spud> <CAF1WSuy4OJVTU5VJdn23BSw4aTAq7i8UQ416V7BxveuQ+5=-1w@mail.gmail.com>
- <dc6573ba-37cb-4394-9a89-16b6f8caa7ad@kernel.org>
-In-Reply-To: <dc6573ba-37cb-4394-9a89-16b6f8caa7ad@kernel.org>
-From: "Konstantin P." <ria.freelander@gmail.com>
-Date: Fri, 19 Apr 2024 17:34:44 +0300
-Message-ID: <CAF1WSuzVLrsYt6+CyMHJuRbuXNEy2XnWhbHkcPHT3xXpB3Yh-Q@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: sc16is7xx: Add compatible line for
- XR20M1172 UART
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Konstantin Pugin <rilian.la.te@ya.ru>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Lech Perczak <lech.perczak@camlingroup.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QfhU+XUBAB3cbLSe"
+Content-Disposition: inline
+In-Reply-To: <20240419135321.70781-10-ajones@ventanamicro.com>
+
+
+--QfhU+XUBAB3cbLSe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 19, 2024 at 5:24=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 19/04/2024 16:17, Konstantin P. wrote:
-> > On Fri, Apr 19, 2024 at 5:08=E2=80=AFPM Conor Dooley <conor@kernel.org>=
- wrote:
-> >>
-> >> On Fri, Apr 19, 2024 at 03:45:02PM +0300, Konstantin Pugin wrote:
-> >>> From: Konstantin Pugin <ria.freelander@gmail.com>
-> >>>
-> >>> Add EXAR XR20M1172 UART compatible line into devicetree documentation=
-.
-> >>
-> >> What you're doing is obvious from the diff, why this exar device is
-> >> related to the nxp devices is what should be mentioned here.
-> >>
-> >> Thanks,
-> >> Conor.
-> >
-> > It is already mentioned in cover letter and in previous patches in the
-> > series. Do I need to repeat it in DTS patch?
-> > If so, I will do it.
-> >
-> > Citation from my cover letter:
-> >
-> > EXAR XR20M1172 UART is mostly SC16IS762-compatible, but
-> > it has additional register which can change UART multiplier
-> > to 4x and 8x, similar to UPF_MAGIC_MULTIPLIER does. So, I used this
-> > flag to guard access to its specific DLD register. It seems than
-> > other EXAR SPI UART modules also have this register, but I tested
-> > only XR20M1172.
-> > Yes, in datasheet this register is called "DLD - Divisor Fractional"
-> > or "DLD - Divisor Fractional Register", calling depends on datasheet
-> > version.
->
-> Commits must stand on their own. Cover letter is not merged. This is the
-> place where you add new hardware, so here you describe and explain the
-> hardware.
+On Fri, Apr 19, 2024 at 03:53:24PM +0200, Andrew Jones wrote:
+> Add description for the Zawrs (Wait-on-Reservation-Set) ISA extension
+> which was ratified in commit 98918c844281 of riscv-isa-manual.
+>=20
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml        | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 468c646247aa..584da2f539e5 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -177,6 +177,18 @@ properties:
+>              is supported as ratified at commit 5059e0ca641c ("update to
+>              ratified") of the riscv-zacas.
+> =20
+> +        - const: zawrs
+> +          description: |
+> +            The Zawrs extension for entering a low-power state or for tr=
+apping
+> +            to a hypervisor while waiting on a store to a memory locatio=
+n, as
+> +            ratified in commit 98918c844281 ("Merge pull request #1217 f=
+rom
+> +            riscv/zawrs") of riscv-isa-manual.
 
-It is also described in patch 3 in the series. I need to repeat this
-description in patch 2 too?
+This part is fine...
 
-Cite from patch 3:
 
-XR20M1172 register set is mostly compatible with SC16IS762, but it has
-a support for additional division rates of UART with special DLD register.
+> Linux assumes that WRS.NTO will
+> +            either always eventually terminate the stall due to the rese=
+rvation
+> +            set becoming invalid, implementation-specific other reasons,=
+ or
+> +            because a higher privilege level has configured it to cause =
+an
+> +            illegal instruction exception after an implementation-specif=
+ic
+> +            bounded time limit.
 
-> Best regards,
-> Krzysztof
->
+=2E..but I don't like this bit. The binding should just describe what the
+property means for the hardware, not discuss specifics about a
+particular OS.
+
+And with my dt-bindings hat off and my kernel hat on, I think that if we
+want to have more specific requirements than the extension provides we
+either need to a) document that zawrs means that it will always
+terminate or b) additionally document a "zawrs-always-terminates" that
+has that meaning and look for it to enable the behaviour.
+
+Documenting something and immediately turning around and saying "this
+isn't sufficient, let's assume it means more than it does" just seems
+like we should make firmware tell us exactly what we want.
+
+Cheers,
+Conor.
+
+--QfhU+XUBAB3cbLSe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiKDmgAKCRB4tDGHoIJi
+0jOSAP9IqK4PvY8JeZDma5rT1sWNFuEdFbrapMauGdGGPvAdSgEA+z96eLuQkw2x
+uEfFX14BejcPofZs+eTpz/QcR0u9/wQ=
+=dstU
+-----END PGP SIGNATURE-----
+
+--QfhU+XUBAB3cbLSe--
 
