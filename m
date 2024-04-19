@@ -1,707 +1,476 @@
-Return-Path: <devicetree+bounces-61034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9928AB65D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 23:18:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8028AB66C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 23:28:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54E682811FB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 21:18:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17B701F21578
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 21:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F0883CC7;
-	Fri, 19 Apr 2024 21:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="pm3j0ltP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0CC113C90D;
+	Fri, 19 Apr 2024 21:28:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6676E36B00
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 21:18:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62792AF01
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 21:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713561523; cv=none; b=YUILVuyOpg0MEbfSQWZTUKbTH3x/dgGzUyag4wV6E6fO0FIW7gx3QFJipqK/FPAVNT7mY4GniAHe1A10jFTYXoaBH9L6nqNRMCzm2t/Er852Ae1i80bYwzjQo6rJiJ0KwkrCU1EmQE1yEts88Qg40EYJ2U3TibGjUAeDCg2ZcQ0=
+	t=1713562093; cv=none; b=Fl6KH34S4zhqtNuW3ENwlgbAQW1ePdozOfr5Bx0Syi+yg5u5MlDH4awHT7j9qVFiGLe7lSA915qfTcWZ7BW50BSaG99Pay995m6GL6yVcnCrGIhnvDO9u0I8eWUUQR/ZIp+0b8Dj1w19hxP5FasXO3XdDHj978WG3C59gDTuVJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713561523; c=relaxed/simple;
-	bh=KI5Ygf7Z4eQjQk67kZO81QngSJTd2W5JKTMV9W/aMn4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=sqqBxVlZ5GwD5ohMQ6blBD+IwpVbMjSqXSRlQGsm59TFhRzUC90eYwnp9vH4tl4W63cM02Fck13F7Ukd1euravZnVPR0SC4S+OSwg1YTJEUnSE5MV4BAnwHTNaP8Qe1T2wK2DYEieoFOcreIbfYeFG/Jw2b+JrfnFRMOHLpDh9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=pm3j0ltP; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43JKv83n007335;
-	Fri, 19 Apr 2024 21:18:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=Kgiart2H1LhIs4HrMoEZfYxfSqLDr2qGv3V4+oa/2+8=;
- b=pm3j0ltPLFTiP+Ya/Hb/w7A8p4/hw5Fff78UIc0ZwSFEoi9bqp2txzWt+Rbj3D34sKa/
- BFGH1Mc70PHWgg6mwn49JH5vlSI7ofiXla2J/mstLE3XAevH5lr9wWykXLsD86AMxV+8
- X4imOAJ0IS0qZ8yLTrKJxnK0fQQ6C+OCLGySGaJWvSubmYoOaoZ+z1qXq7qCPqOPz2Ya
- qrM3Ec6ITTF3mWGSU40LVpd1MYwXEmDLO23FBsvEGq18ghucjU7/v5jBr8ko2YtoHOSS
- 9XfVmWDcIN+7IJpM6J+MdH357LEWHYjkMf0l1wVh3Pb0nT2iFVroYIzbz1EQAs20WLoz hg== 
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xm03n81vf-5
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Apr 2024 21:18:27 +0000
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43JIOo0u030356;
-	Fri, 19 Apr 2024 21:11:48 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3xkbmcp2hq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Apr 2024 21:11:48 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43JLBkZ447907348
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 19 Apr 2024 21:11:48 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 91D5C5806D;
-	Fri, 19 Apr 2024 21:11:44 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3FC535806B;
-	Fri, 19 Apr 2024 21:11:44 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.157.174])
-	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 19 Apr 2024 21:11:44 +0000 (GMT)
-From: Eddie James <eajames@linux.ibm.com>
-To: linux-aspeed@lists.ozlabs.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
-        krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au,
-        eajames@linux.ibm.com, lakshmiy@us.ibm.com
-Subject: [PATCH v3 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible strings
-Date: Fri, 19 Apr 2024 16:11:43 -0500
-Message-Id: <20240419211143.1039868-4-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20240419211143.1039868-1-eajames@linux.ibm.com>
-References: <20240419211143.1039868-1-eajames@linux.ibm.com>
+	s=arc-20240116; t=1713562093; c=relaxed/simple;
+	bh=QVb/cMNmeCH/umj/RAepO+euThPMc9G5aOhqs2UYF5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gT+TpruTuFtI8G3n4sfidPKVKG86PwQzjMG1ChaMZALAX4mLdNolFJaYtZMhr06GxNWmF0r0BqKrIWdzuJjVCLJp6FAqLWciG6eFKUfvWi2EZKBNCqShQN1VzMYhuvfL1U+xGoSYibtJZSSykhMiT7QAS5+MkivmWDX7SN8R0e4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 621D6405E7;
+	Fri, 19 Apr 2024 23:28:01 +0200 (CEST)
+Date: Fri, 19 Apr 2024 23:27:59 +0200
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: David Wronek <david@mainlining.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] drm/panel: Add driver for EDO RM69380 OLED panel
+Message-ID: <2ril3lznqamiexdfgumxv3qa2fo3lprqt26qbjg2qhxxsxx5wb@yqwz7hm4ipha>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Wronek <david@mainlining.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20240417-raydium-rm69380-driver-v4-0-e9c2337d0049@mainlining.org>
+ <20240417-raydium-rm69380-driver-v4-2-e9c2337d0049@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: dw3UtMaK3iYpEFelRn-DLJO1Wxp02k1E
-X-Proofpoint-GUID: dw3UtMaK3iYpEFelRn-DLJO1Wxp02k1E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-19_15,2024-04-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- bulkscore=0 phishscore=0 spamscore=0 adultscore=0 priorityscore=1501
- clxscore=1015 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2404010000 definitions=main-2404190165
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417-raydium-rm69380-driver-v4-2-e9c2337d0049@mainlining.org>
 
-A new type of SBE, found on the Odyssey chip, will return any async FFDC in
-the next transaction, so collecting the FFDC is unnecessary and results in
-unexpected behavior. This difference in behavior between the Odyssey SBE
-and the POWER9/10 SBEs wasn't apparent when support for the Odyssey was
-added. To fix the unexpected behavior, set the new compatible string for
-Odyssey SBEFIFOs so that they don't collect async FFDC.
+On 2024-04-17 18:29:34, David Wronek wrote:
+> Add support for the 2560x1600@90Hz OLED panel by EDO bundled with a
+> Raydium RM69380 controller, as found on the Lenovo Xiaoxin Pad Pro 2021.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: David Wronek <david@mainlining.org>
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
-Changes since v2:
- - Update commit message
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-Changes since v1:
- - Change "ody" to "odyssey"
-
- .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++----------
- .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++----------
- 2 files changed, 64 insertions(+), 64 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-index 214b2e6a4c6d..27dfe315d633 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-@@ -2545,7 +2545,7 @@ scom500: scom@1000 {
- 						};
- 
- 						sbefifo500: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2577,7 +2577,7 @@ scom501: scom@1000 {
- 						};
- 
- 						sbefifo501: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2609,7 +2609,7 @@ scom510: scom@1000 {
- 						};
- 
- 						sbefifo510: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2641,7 +2641,7 @@ scom511: scom@1000 {
- 						};
- 
- 						sbefifo511: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2673,7 +2673,7 @@ scom512: scom@1000 {
- 						};
- 
- 						sbefifo512: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2705,7 +2705,7 @@ scom513: scom@1000 {
- 						};
- 
- 						sbefifo513: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2737,7 +2737,7 @@ scom514: scom@1000 {
- 						};
- 
- 						sbefifo514: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2769,7 +2769,7 @@ scom515: scom@1000 {
- 						};
- 
- 						sbefifo515: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2918,7 +2918,7 @@ scom602: scom@1000 {
- 						};
- 
- 						sbefifo602: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2950,7 +2950,7 @@ scom603: scom@1000 {
- 						};
- 
- 						sbefifo603: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2982,7 +2982,7 @@ scom610: scom@1000 {
- 						};
- 
- 						sbefifo610: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3014,7 +3014,7 @@ scom611: scom@1000 {
- 						};
- 
- 						sbefifo611: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3046,7 +3046,7 @@ scom614: scom@1000 {
- 						};
- 
- 						sbefifo614: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3078,7 +3078,7 @@ scom615: scom@1000 {
- 						};
- 
- 						sbefifo615: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3110,7 +3110,7 @@ scom616: scom@1000 {
- 						};
- 
- 						sbefifo616: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3142,7 +3142,7 @@ scom617: scom@1000 {
- 						};
- 
- 						sbefifo617: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3291,7 +3291,7 @@ scom700: scom@1000 {
- 						};
- 
- 						sbefifo700: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3323,7 +3323,7 @@ scom701: scom@1000 {
- 						};
- 
- 						sbefifo701: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3355,7 +3355,7 @@ scom710: scom@1000 {
- 						};
- 
- 						sbefifo710: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3387,7 +3387,7 @@ scom711: scom@1000 {
- 						};
- 
- 						sbefifo711: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3419,7 +3419,7 @@ scom712: scom@1000 {
- 						};
- 
- 						sbefifo712: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3451,7 +3451,7 @@ scom713: scom@1000 {
- 						};
- 
- 						sbefifo713: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3483,7 +3483,7 @@ scom714: scom@1000 {
- 						};
- 
- 						sbefifo714: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3515,7 +3515,7 @@ scom715: scom@1000 {
- 						};
- 
- 						sbefifo715: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3664,7 +3664,7 @@ scom802: scom@1000 {
- 						};
- 
- 						sbefifo802: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3696,7 +3696,7 @@ scom803: scom@1000 {
- 						};
- 
- 						sbefifo803: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3728,7 +3728,7 @@ scom810: scom@1000 {
- 						};
- 
- 						sbefifo810: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3760,7 +3760,7 @@ scom811: scom@1000 {
- 						};
- 
- 						sbefifo811: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3792,7 +3792,7 @@ scom814: scom@1000 {
- 						};
- 
- 						sbefifo814: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3824,7 +3824,7 @@ scom815: scom@1000 {
- 						};
- 
- 						sbefifo815: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3856,7 +3856,7 @@ scom816: scom@1000 {
- 						};
- 
- 						sbefifo816: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3888,7 +3888,7 @@ scom817: scom@1000 {
- 						};
- 
- 						sbefifo817: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-index 57494c744b5d..58848e77143c 100644
---- a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-+++ b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-@@ -22,7 +22,7 @@ scom100: scom@1000 {
- 			};
- 
- 			sbefifo100: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -50,7 +50,7 @@ scom101: scom@1000 {
- 			};
- 
- 			sbefifo101: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -78,7 +78,7 @@ scom110: scom@1000 {
- 			};
- 
- 			sbefifo110: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -106,7 +106,7 @@ scom111: scom@1000 {
- 			};
- 
- 			sbefifo111: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -134,7 +134,7 @@ scom112: scom@1000 {
- 			};
- 
- 			sbefifo112: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -162,7 +162,7 @@ scom113: scom@1000 {
- 			};
- 
- 			sbefifo113: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -190,7 +190,7 @@ scom114: scom@1000 {
- 			};
- 
- 			sbefifo114: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -218,7 +218,7 @@ scom115: scom@1000 {
- 			};
- 
- 			sbefifo115: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -246,7 +246,7 @@ scom202: scom@1000 {
- 			};
- 
- 			sbefifo202: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -274,7 +274,7 @@ scom203: scom@1000 {
- 			};
- 
- 			sbefifo203: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -302,7 +302,7 @@ scom210: scom@1000 {
- 			};
- 
- 			sbefifo210: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -330,7 +330,7 @@ scom211: scom@1000 {
- 			};
- 
- 			sbefifo211: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -358,7 +358,7 @@ scom214: scom@1000 {
- 			};
- 
- 			sbefifo214: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -386,7 +386,7 @@ scom215: scom@1000 {
- 			};
- 
- 			sbefifo215: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -414,7 +414,7 @@ scom216: scom@1000 {
- 			};
- 
- 			sbefifo216: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -442,7 +442,7 @@ scom217: scom@1000 {
- 			};
- 
- 			sbefifo217: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -492,7 +492,7 @@ scom300: scom@1000 {
- 						};
- 
- 						sbefifo300: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -524,7 +524,7 @@ scom301: scom@1000 {
- 						};
- 
- 						sbefifo301: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -556,7 +556,7 @@ scom310: scom@1000 {
- 						};
- 
- 						sbefifo310: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -588,7 +588,7 @@ scom311: scom@1000 {
- 						};
- 
- 						sbefifo311: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -620,7 +620,7 @@ scom312: scom@1000 {
- 						};
- 
- 						sbefifo312: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -652,7 +652,7 @@ scom313: scom@1000 {
- 						};
- 
- 						sbefifo313: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -684,7 +684,7 @@ scom314: scom@1000 {
- 						};
- 
- 						sbefifo314: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -716,7 +716,7 @@ scom315: scom@1000 {
- 						};
- 
- 						sbefifo315: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -865,7 +865,7 @@ scom402: scom@1000 {
- 						};
- 
- 						sbefifo402: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -897,7 +897,7 @@ scom403: scom@1000 {
- 						};
- 
- 						sbefifo403: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -929,7 +929,7 @@ scom410: scom@1000 {
- 						};
- 
- 						sbefifo410: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -961,7 +961,7 @@ scom411: scom@1000 {
- 						};
- 
- 						sbefifo411: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -993,7 +993,7 @@ scom414: scom@1000 {
- 						};
- 
- 						sbefifo414: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1025,7 +1025,7 @@ scom415: scom@1000 {
- 						};
- 
- 						sbefifo415: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1057,7 +1057,7 @@ scom416: scom@1000 {
- 						};
- 
- 						sbefifo416: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1089,7 +1089,7 @@ scom417: scom@1000 {
- 						};
- 
- 						sbefifo417: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
--- 
-2.39.3
-
+> ---
+>  drivers/gpu/drm/panel/Kconfig                 |  12 +
+>  drivers/gpu/drm/panel/Makefile                |   1 +
+>  drivers/gpu/drm/panel/panel-raydium-rm69380.c | 344 ++++++++++++++++++++++++++
+>  3 files changed, 357 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 154f5bf82980..e2a66c21349f 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -542,6 +542,18 @@ config DRM_PANEL_RAYDIUM_RM692E5
+>  	  Say Y here if you want to enable support for Raydium RM692E5-based
+>  	  display panels, such as the one found in the Fairphone 5 smartphone.
+>  
+> +config DRM_PANEL_RAYDIUM_RM69380
+> +	tristate "Raydium RM69380-based DSI panel"
+> +	depends on OF && GPIOLIB
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y here if you want to enable support for Raydium RM69380-based
+> +	  display panels.
+> +
+> +	  This panel controller can be found in the Lenovo Xiaoxin Pad Pro 2021
+> +	  in combination with an EDO OLED panel.
+> +
+>  config DRM_PANEL_RONBO_RB070D30
+>  	tristate "Ronbo Electronics RB070D30 panel"
+>  	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index 24a02655d726..e2a2807d4ef0 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -55,6 +55,7 @@ obj-$(CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN) += panel-raspberrypi-touchscreen
+>  obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM67191) += panel-raydium-rm67191.o
+>  obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM68200) += panel-raydium-rm68200.o
+>  obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM692E5) += panel-raydium-rm692e5.o
+> +obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM69380) += panel-raydium-rm69380.o
+>  obj-$(CONFIG_DRM_PANEL_RONBO_RB070D30) += panel-ronbo-rb070d30.o
+>  obj-$(CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20) += panel-samsung-atna33xc20.o
+>  obj-$(CONFIG_DRM_PANEL_SAMSUNG_DB7430) += panel-samsung-db7430.o
+> diff --git a/drivers/gpu/drm/panel/panel-raydium-rm69380.c b/drivers/gpu/drm/panel/panel-raydium-rm69380.c
+> new file mode 100644
+> index 000000000000..4dca6802faef
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-raydium-rm69380.c
+> @@ -0,0 +1,344 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree.
+> + * Copyright (c) 2024 David Wronek <david@mainlining.org>
+> + */
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +struct rm69380_panel {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi[2];
+> +	struct regulator_bulk_data supplies[2];
+> +	struct gpio_desc *reset_gpio;
+> +};
+> +
+> +static inline
+> +struct rm69380_panel *to_rm69380_panel(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct rm69380_panel, panel);
+> +}
+> +
+> +static void rm69380_reset(struct rm69380_panel *ctx)
+> +{
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(15000, 16000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(10000, 11000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	msleep(30);
+> +}
+> +
+> +static int rm69380_on(struct rm69380_panel *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi[0];
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +	if (ctx->dsi[1])
+> +		ctx->dsi[1]->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0xd4);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x80);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0xd0);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x48, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0x26);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x75, 0x3f);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x1a);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x28);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xc2, 0x08);
+> +
+> +	ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set tear on: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(20);
+> +
+> +	ret = mipi_dsi_dcs_set_display_on(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display on: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(36);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rm69380_off(struct rm69380_panel *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi[0];
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +	if (ctx->dsi[1])
+> +		ctx->dsi[1]->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_off(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display off: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(35);
+> +
+> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(20);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rm69380_prepare(struct drm_panel *panel)
+> +{
+> +	struct rm69380_panel *ctx = to_rm69380_panel(panel);
+> +	struct device *dev = &ctx->dsi[0]->dev;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	rm69380_reset(ctx);
+> +
+> +	ret = rm69380_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int rm69380_unprepare(struct drm_panel *panel)
+> +{
+> +	struct rm69380_panel *ctx = to_rm69380_panel(panel);
+> +	struct device *dev = &ctx->dsi[0]->dev;
+> +	int ret;
+> +
+> +	ret = rm69380_off(ctx);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode rm69380_mode = {
+> +	.clock = (2560 + 32 + 12 + 38) * (1600 + 20 + 4 + 8) * 90 / 1000,
+> +	.hdisplay = 2560,
+> +	.hsync_start = 2560 + 32,
+> +	.hsync_end = 2560 + 32 + 12,
+> +	.htotal = 2560 + 32 + 12 + 38,
+> +	.vdisplay = 1600,
+> +	.vsync_start = 1600 + 20,
+> +	.vsync_end = 1600 + 20 + 4,
+> +	.vtotal = 1600 + 20 + 4 + 8,
+> +	.width_mm = 248,
+> +	.height_mm = 155,
+> +	.type = DRM_MODE_TYPE_DRIVER,
+> +};
+> +
+> +static int rm69380_get_modes(struct drm_panel *panel,
+> +					struct drm_connector *connector)
+> +{
+> +	return drm_connector_helper_get_modes_fixed(connector, &rm69380_mode);
+> +}
+> +
+> +static const struct drm_panel_funcs rm69380_panel_funcs = {
+> +	.prepare = rm69380_prepare,
+> +	.unprepare = rm69380_unprepare,
+> +	.get_modes = rm69380_get_modes,
+> +};
+> +
+> +static int rm69380_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness = backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rm69380_bl_get_brightness(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness;
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_get_display_brightness_large(dsi, &brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return brightness;
+> +}
+> +
+> +static const struct backlight_ops rm69380_bl_ops = {
+> +	.update_status = rm69380_bl_update_status,
+> +	.get_brightness = rm69380_bl_get_brightness,
+> +};
+> +
+> +static struct backlight_device *
+> +rm69380_create_backlight(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	const struct backlight_properties props = {
+> +		.type = BACKLIGHT_RAW,
+> +		.brightness = 511,
+> +		.max_brightness = 2047,
+> +	};
+> +
+> +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
+> +					      &rm69380_bl_ops, &props);
+> +}
+> +
+> +static int rm69380_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct mipi_dsi_host *dsi_sec_host;
+> +	struct rm69380_panel *ctx;
+> +	struct device *dev = &dsi->dev;
+> +	struct device_node *dsi_sec;
+> +	int ret, i;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->supplies[0].supply = "vddio";
+> +	ctx->supplies[1].supply = "avdd";
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
+> +				      ctx->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	dsi_sec = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
+> +
+> +	if (dsi_sec) {
+> +		const struct mipi_dsi_device_info info = { "RM69380 DSI1", 0,
+> +							   dsi_sec };
+> +
+> +		dsi_sec_host = of_find_mipi_dsi_host_by_node(dsi_sec);
+> +		of_node_put(dsi_sec);
+> +		if (!dsi_sec_host)
+> +			return dev_err_probe(dev, -EPROBE_DEFER,
+> +					     "Cannot get secondary DSI host\n");
+> +
+> +		ctx->dsi[1] =
+> +			devm_mipi_dsi_device_register_full(dev, dsi_sec_host, &info);
+> +		if (IS_ERR(ctx->dsi[1]))
+> +			return dev_err_probe(dev, PTR_ERR(ctx->dsi[1]),
+> +					     "Cannot get secondary DSI node\n");
+> +
+> +		mipi_dsi_set_drvdata(ctx->dsi[1], ctx);
+> +	}
+> +
+> +	ctx->dsi[0] = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	drm_panel_init(&ctx->panel, dev, &rm69380_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	ctx->panel.backlight = rm69380_create_backlight(dsi);
+> +	if (IS_ERR(ctx->panel.backlight))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> +				     "Failed to create backlight\n");
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ctx->dsi); i++) {
+> +		if (!ctx->dsi[i])
+> +			continue;
+> +
+> +		dev_dbg(&ctx->dsi[i]->dev, "Binding DSI %d\n", i);
+> +
+> +		ctx->dsi[i]->lanes = 4;
+> +		ctx->dsi[i]->format = MIPI_DSI_FMT_RGB888;
+> +		ctx->dsi[i]->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +					  MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> +
+> +		ret = devm_mipi_dsi_attach(dev, ctx->dsi[i]);
+> +		if (ret < 0) {
+> +			drm_panel_remove(&ctx->panel);
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to attach to DSI%d\n", i);
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void rm69380_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct rm69380_panel *ctx = mipi_dsi_get_drvdata(dsi);
+> +
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id rm69380_of_match[] = {
+> +	{ .compatible = "lenovo,j716f-edo-rm69380" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, rm69380_of_match);
+> +
+> +static struct mipi_dsi_driver rm69380_panel_driver = {
+> +	.probe = rm69380_probe,
+> +	.remove = rm69380_remove,
+> +	.driver = {
+> +		.name = "panel-raydium-rm69380",
+> +		.of_match_table = rm69380_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(rm69380_panel_driver);
+> +
+> +MODULE_AUTHOR("David Wronek <david@mainlining.org");
+> +MODULE_DESCRIPTION("DRM driver for Raydium RM69380-equipped DSI panels");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.44.0
+> 
 
