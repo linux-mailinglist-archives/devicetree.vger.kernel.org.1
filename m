@@ -1,104 +1,103 @@
-Return-Path: <devicetree+bounces-61048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B628AB73A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 00:24:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C547C8AB74C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 00:40:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 855641F22512
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 22:24:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E554B1C20EA5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 22:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987B413D2AF;
-	Fri, 19 Apr 2024 22:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027A613D277;
+	Fri, 19 Apr 2024 22:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJ+nSZZo"
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="YxP7DKR5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6378313D2A1;
-	Fri, 19 Apr 2024 22:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C266D64D;
+	Fri, 19 Apr 2024 22:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713565485; cv=none; b=ucXaqSyNP+dyyq9EfNnB7goKP4jLvc2I28c5F6oZN3ANmYOgkvWFgm8r+u9Tp3VAQ6LpdzvDZSwUULPY78pzoR0RVOfd+AvJFEatmOCMdEHTi/UebD2cQde++O37LSL29rGkIaOpLne/SSqPUfoHZWTYu+rRJvswDKUeeMW3698=
+	t=1713566433; cv=none; b=CxWkgwri7dzckBTvBsSReVCNv3Mw9V3s3sIZhsRml6szgWBABFOuIqjiKqu2SGM0e1f7RcfdeVExmTYHJneFHpUcLbPSDLtzNZxXmqKQ1NA3Or7yeFYFIlOxPBbVoc+z8W7yah4j91dR+oYnxgTW0PI70Gu6Dosc/e/hMEqWLuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713565485; c=relaxed/simple;
-	bh=0pD1drXQj39EFN70jQBI3yqld3d3RmDOuileOMRvtOA=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=n9rjERSm4DljifxfOpjS61yxfcWaUe1T1ck6yM8TfevGihERsJ4G7AZVjE41JQqWcrpnGHJFmVZQ7cKXalgQd4cUmHNahEob8T73lnSStX0Oz+3sOwAA8/G1gFfwjUHr0P4BfgqTr57ZmrxBArWGMz/hhugw7Uf0wMv0KQdNZxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJ+nSZZo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B25F0C116B1;
-	Fri, 19 Apr 2024 22:24:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713565484;
-	bh=0pD1drXQj39EFN70jQBI3yqld3d3RmDOuileOMRvtOA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=rJ+nSZZoJx3f6EJuiigZuYRjPe0R+Glwm9i+QGpOqc7TGdsye5yFeaoD736tqv9He
-	 MCSyZ4VcJFcULkULRxpuZLMiivKub3KLxbSTZNIJrcHc1BYs/oWBqcIhQi7YhpCKrd
-	 bn8BQNsVc6iHexGOxLVjtppPRXvK1+F5a506CSPqpRJ5BtS86jg5DeArHC7L7b5XyP
-	 5gJTx93tQjPKjLCNLCHee/v4Y/bD9nRTpM+BpPOilpkJliu5tpDgsCZmWtywNNOyOU
-	 X1QN7XerODRFMluOIZto5hzj6Woeqhpcq/LNa2an4nDdBL95/yr8Qpxe8g9z55eZWS
-	 UJNmsj9flPzjA==
-Message-ID: <d7ff7dd609cd1b9a50e5ffa882d05b90.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1713566433; c=relaxed/simple;
+	bh=BLFVLdvU9NKQVPFJ9lkOxKZX98gDWz8QP8n6TniqGwI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KpoijOHTwKEUkjuvBeWYE9q+xShg9g8OwLbh5guM3iaG0dAcoNt6rOHYTj0GfeGhlyc9rNzgmWzl80PBY7lJ/6c9FHlJksXUIeveCce4RDLF290Wvar1pnSMXcxShZ6iVcO4si1BfCAzQ7owIivQiv4mDEC5YwF4REiddCa1624=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b=YxP7DKR5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCF56C072AA;
+	Fri, 19 Apr 2024 22:40:31 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="YxP7DKR5"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
+	t=1713566429;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=BvTzOUUvkXW7f/b/MPNNcGab2kVSdnda+T0yRBlxFys=;
+	b=YxP7DKR5OM3gt49XEtX/v4vF/fiuNcM3cqqUmG3FL4mu8iwo7wx1B1dScbSxJ7KvWSflZe
+	/+8FGWj/F3/UlB96O7c11tJy6dsrQy98LA7uYzvrTJd4kxzXQcRHvHvHTaAihfN1A1vsYO
+	OCC0t5L9NR2YDt+4v2A71eXWtiSt/n8=
+Received: 
+	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 17871b02 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
+	Fri, 19 Apr 2024 22:40:28 +0000 (UTC)
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: tytso@mit.edu,
+	robh@kernel.org,
+	krzk@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	sudanl@amazon.com,
+	graf@amazon.com,
+	dwmw@amazon.co.uk,
+	krzysztof.kozlowski@linaro.org,
+	bchalios@amazon.es
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Subject: [PATCH v8 0/3] virt: vmgenid: add devicetree bindings support
+Date: Sat, 20 Apr 2024 00:39:57 +0200
+Message-ID: <20240419224020.780377-1-Jason@zx2c4.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <3287993.aeNJFYEL58@radijator>
-References: <20240402-pxa1908-lkml-v9-0-25a003e83c6f@skole.hr> <de4c56a8-488d-4cdb-9d6c-e9d6e63b22b9@skole.hr> <58b23157c088cb4774d579cc8700de85.sboyd@kernel.org> <3287993.aeNJFYEL58@radijator>
-Subject: Re: [PATCH v9 5/9] clk: mmp: Add Marvell PXA1908 clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-To: Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Duje =?utf-8?q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, Guilherme G. Piccoli <gpiccoli@igalia.com>, Haojian Zhuang <haojian.zhuang@linaro.org>, Kees Cook <keescook@chromium.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, Lubomir Rintel <lkundrak@v3.sk>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>, Tony Luck <tony.luck@intel.com>, Will Deacon <will@kernel.org>
-Date: Fri, 19 Apr 2024 15:24:42 -0700
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 
-Quoting Duje Mihanovi=C4=87 (2024-04-19 07:31:14)
-> On Friday, April 12, 2024 4:57:09=E2=80=AFAM GMT+2 Stephen Boyd wrote:
-> > Quoting Duje Mihanovi=C4=87 (2024-04-11 03:15:34)
-> >=20
-> > > On 4/11/2024 10:00 AM, Stephen Boyd wrote:
-> > > > Is there a reason this file can't be a platform driver?
-> > >=20
-> > > Not that I know of, I did it like this only because the other in-tree
-> > > MMP clk drivers do so. I guess the initialization should look like any
-> > > of the qcom GCC drivers then?
-> >=20
-> > Yes.
->=20
-> With the entire clock driver code in one file this is quite messy as I al=
-so=20
-> needed to add module_init and module_exit functions to (un)register each =
+Changes v7->v8:
+- Remove Kconfig depends statement entirely, instead of ACPI||OF.
+- Check platform_get_irq() return value against < 0 rather than !0.
 
-> platform driver, presumably because the module_platform_driver macro does=
-n't=20
-> work with multiple platform drivers in one module. If I split up the driv=
-er=20
-> code for each clock controller block into its own file (such as clk-of-
-> pxa1908-apbc.c) as I believe is the best option, should the commits be sp=
-lit=20
-> up accordingly as well?
+This is a cleanup of Sudan's OF vmgenid patches, simplified a bit, but
+still with the same intent and mostly unchanged. I'll take this via my
+random tree, but Krzysztof, I would appreciate having your ack/review on
+it.
 
-Sure. Why is 'of' in the name? Maybe that is unnecessary?
+Sudan - if I've mangled something here, please let me know. I verified
+this still works with ACPI in QEMU, but I don't know about your private
+firecracker OF branch, so please pipe up if something is amiss. It's
+basically the same thing, though, so I suspect it'll be fine.
 
->=20
-> > > While at it, do you think the other MMP clk drivers could use a=20
-> conversion?
-> >=20
-> > I'm a little wary if the conversion cannot be tested though.
->=20
-> I'd rather leave it to someone with the hardware then, especially since t=
-he=20
-> only reason I found out about the above is that the board I'm working on =
+Thanks,
+Jason
 
-> failed to boot completely without the module_init function.
->=20
+Sudan Landge (3):
+  virt: vmgenid: change implementation to use a platform driver
+  dt-bindings: rng: Add vmgenid support
+  virt: vmgenid: add support for devicetree bindings
 
-Ok, sounds fine.
+ .../bindings/rng/microsoft,vmgenid.yaml       |  49 ++++++
+ MAINTAINERS                                   |   1 +
+ drivers/virt/Kconfig                          |   1 -
+ drivers/virt/vmgenid.c                        | 150 ++++++++++++++----
+ 4 files changed, 165 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
+
+-- 
+2.44.0
+
 
