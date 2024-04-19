@@ -1,102 +1,149 @@
-Return-Path: <devicetree+bounces-60872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75758AAC5B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 12:04:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B00A8AACB0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 12:20:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55E351F210F9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 10:04:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89966B21D00
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 10:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7079F7E0F3;
-	Fri, 19 Apr 2024 10:03:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CBF7D09F;
+	Fri, 19 Apr 2024 10:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YOktfFrN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mOzfZS+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4086B7D416;
-	Fri, 19 Apr 2024 10:03:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C7A7C0A6;
+	Fri, 19 Apr 2024 10:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713521023; cv=none; b=neeNrGlgsfdYkTna+F8v5AV8FNEwz/inpzZKpCDIrkqudoSA3PJJ0v9wfrXg1zbvMVEknlnuuLokPO6M8YDbEstl/O/pvHAuxGNXz4Y85KxQ6HX0KhX7cBWkwJVuRqqFZlLFQdfJx4g1bjChs6lpYMIEdPrM3zb6WYDn81wxiOc=
+	t=1713522045; cv=none; b=Ps1A30joYfpYBqpv3yppNuAb0zFFCuXWMDWfRW2dwGI5c0O0tAV0z0i/fvXyKhzQQxAJO0jdajwqM3qCbwtkUHiFqSAdyu8mJGJnRXkttTY6qf1kvxPuzWc8dxInTXVyiMuGHSWcfOgeVMV1VxUS6nVX7D5dCH1ya0xAkjLa+yE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713521023; c=relaxed/simple;
-	bh=n7OH67vOnUXT5E0+NaPP78ro9DgTG2qSCSXMWSem9jY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=kqVL63vWsIxFi2C+xV7YZUBHArJGR8em3CSmZmdt/f9VaxcwdMA2Mbs8JBuWkyeTC0X6xHoH2gwe4/P9b3GulwDD2M8vYkNdi29PzfNeonRVkxcLRjT+7pLcwwDKhnvocxI/aOgILhZisfTPagTd7N9X89o7aqwKphCXp0DxBwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YOktfFrN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47D28C116B1;
-	Fri, 19 Apr 2024 10:03:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713521022;
-	bh=n7OH67vOnUXT5E0+NaPP78ro9DgTG2qSCSXMWSem9jY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=YOktfFrNflfjaUdNMGWq/tg+BH5si9SBuwqCBudQsIk6tMeJFYAyibAjYpFRZbL9v
-	 QMQ9rpTYoW/+hQsqvPenWVvfaddwu6UHyjEpumpPOROBv0aBY9Bg9c1LAYQJTOATBu
-	 LiayzcykMUo/eMMh+QTCec9QZLXjhXpE9UZ0uCdtV0aujGM01CkKv/PHdlx19r4gGH
-	 5iwVowdHMsZraL78IKkSq1a1bXW4QTSJeLCBsfLsdlpQo1hqEAFaEAl4Oe6TcYyR6I
-	 ngmV2XhEusPwg30t1ue1FgWwJSH84e/Edqox2CeTGqwKZIQiN7Ogf4046dvJuRki+s
-	 3vqkz4QJ0QtvQ==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
-Cc: Thierry Reding <treding@nvidia.com>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240418163326.58365-1-sheharyaar48@gmail.com>
-References: <20240418163326.58365-1-sheharyaar48@gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: tegra20-das: Convert to schema
-Message-Id: <171352101993.1723702.4818534972723783279.b4-ty@kernel.org>
-Date: Fri, 19 Apr 2024 19:03:39 +0900
+	s=arc-20240116; t=1713522045; c=relaxed/simple;
+	bh=ARPr0uPN58IxzEf1SX/9k+ar4CkwGdC5TCXqcWGMsQw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=IE0D3ll9biLGENQeUIrQMqsAvJMnfSaM7Yxv4znG/vm/bkkwVUXJ/5+iuh4NXRel5DU0Oz6OvRNQ19KaZLF/OswKtf9G6SBhz4W2qEY8umX0Y+HqHSNBaD0K7Dghyp8YbgBVgtcOM+vgEB3sxCO7lD9/ko4yO18kBobxg+oEJ84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mOzfZS+6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43J8nG62002928;
+	Fri, 19 Apr 2024 10:20:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:from:subject:to:cc:references
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=yaTjOd4Xo9AXRQiffLemhUtMHcm7hjBtYX1OiupahF8=; b=mO
+	zfZS+6D8MNoYRf6lzQpoCspjqxjVdMaB2oc92ypW25zMfIyt6aSkr3aFomSQMHqb
+	wt7Nz9SjCTU+lfwKss8Ptv1HLdmIjADfikjp1tIKPZKyC6aAF3Lf0b6h74QeDIqj
+	XRg0S+QP/8rkqzNMHhM3sd3NUMvkA4QFCwQpVZzA6KDizM30kVFgbrzZWS7iJ3f7
+	8j7JPmEuZmL7E1ZuJ1Z3b/dEa3FskbrWYRBnVi5+8xE0n9wuwE4CrAGclOYT7ACZ
+	y9nQKg3UgEz/Hanu+vgEXcp9I1IWArq+Jb18tm6taF/2PMmKWH9kgZ3FbRpyrahd
+	fpb7tC+JIbYGe502byLA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xkkgm8dqn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 19 Apr 2024 10:20:39 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43JAKcmv002687
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 19 Apr 2024 10:20:38 GMT
+Received: from [10.217.217.112] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 19 Apr
+ 2024 03:20:35 -0700
+Message-ID: <229b9ae2-1705-493b-b0fc-9de6c32925a5@quicinc.com>
+Date: Fri, 19 Apr 2024 15:50:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Umang Chheda <quic_uchheda@quicinc.com>
+Subject: Re: [PATCH RESEND] arm64: dts: qcom: qcs6490-rb3gen2: enable PMIC
+ Volume and Power buttons
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240403132839.2117675-1-quic_uchheda@quicinc.com>
+ <6b3gqfrvljvlfaf365l55kjcbjd4rfmw223tro6rqy5crykxgb@l66dptcrujip>
+ <3ca2f601-ce45-43cf-b0dd-e28865874455@quicinc.com>
+ <jlwxlnllpt557eiktovujcrfm2qwd3ynlxpo2v2witkekvocey@indbptcgvitm>
+Content-Language: en-US
+In-Reply-To: <jlwxlnllpt557eiktovujcrfm2qwd3ynlxpo2v2witkekvocey@indbptcgvitm>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Be1aZIVxTqcTFGf2uSNwnNRL9JrcxVof
+X-Proofpoint-ORIG-GUID: Be1aZIVxTqcTFGf2uSNwnNRL9JrcxVof
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-19_07,2024-04-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0 adultscore=0
+ lowpriorityscore=0 mlxlogscore=545 impostorscore=0 mlxscore=0
+ suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2404010003 definitions=main-2404190077
 
-On Thu, 18 Apr 2024 22:03:24 +0530, Mohammad Shehar Yaar Tausif wrote:
-> Convert NVIDIA Tegra20 DAS (Digital Audio Switch) binding to schema.
+
+
+On 4/15/2024 7:30 AM, Bjorn Andersson wrote:
+> On Fri, Apr 12, 2024 at 04:18:36PM +0530, Umang Chheda wrote:
+>> Hi Bjorn,
+>>
+>> On 4/9/2024 8:47 PM, Bjorn Andersson wrote:
+>>> On Wed, Apr 03, 2024 at 06:58:39PM +0530, Umang Chheda wrote:
+>>>> The Volume Down & Power buttons are controlled by the PMIC via
+>>>> the PON hardware, and the Volume Up is connected to a PMIC gpio.
+>>>>
+>>>> Enable the necessary hardware and setup the GPIO state for the
+>>>> Volume Up gpio key.
+>>>>
+>>>> Signed-off-by: Umang Chheda <quic_uchheda@quicinc.com>
+>>>> ---
+>>>
+>>> I suppose this isn't a "resend" either, so please send me a new version
+>>> of this as well.
+>>>
+>>
+>> I had earlier sent [1] for review, on which I hadn't received any review comments.
+>>
 > 
+> I see.
 > 
+> If you want reviews on your patches, ask a colleague to invest a few
+> minutes in the patch and send a Reviewed-by or Tested-by. That both 
+> 
+> Not only will this give you reviews, it will show the community and the
+> maintainer that there's someone out there who's interested in seeing the
+> patch merged.
+>
 
-Applied to
+Thanks for the suggestion! will ask colleagues to help with R-by/T-By tags on the patches
+as suggested.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+>> Hence, I resent this patch again after 2 weeks for review.
+>>
+> 
+> Please only resend patches if you strongly believe that necessary
+> recipients didn't receive the patch.
+> 
+Ack
 
-Thanks!
+Regards,
+Umang
 
-[1/1] ASoC: dt-bindings: tegra20-das: Convert to schema
-      commit: ed37d240d03e84d09d4d2a771fda419da4308d17
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> Regards,
+> Bjorn
 
