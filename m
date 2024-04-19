@@ -1,169 +1,189 @@
-Return-Path: <devicetree+bounces-61004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE7D8AB37C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 18:40:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082648AB38B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 18:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3D941C20402
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:40:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AC51B238B4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 16:44:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C33130A73;
-	Fri, 19 Apr 2024 16:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F594132C04;
+	Fri, 19 Apr 2024 16:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="EeJMUj+S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mJjpC5Ib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DDF7E783
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 16:40:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AC4132800;
+	Fri, 19 Apr 2024 16:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713544806; cv=none; b=uP81vEih4RFbR+DIfLSPAlHhpBshVe06WG91vvITDgbh1XHbjs0cE1xnY5RuQyCdSxHVKMp53E1CMCqGZdfzBEdFmgQbC335QNmANlmT+QSZ+cUpIXBZsgTdY6C0fIIv0EBBk9qK7DUHwJ7vnK4WC1QBuHRoPV7RUjLHtKFDdWw=
+	t=1713545044; cv=none; b=m635e4WeqGohqAC9VdCX1P9Cn5Vp4dhm2YkBi7fEUWTvDpGVWaTYywqfomcgHs5x/4up/u8fCXqf5RGQv033lkbh8HWrLnxV6wKDiLJNMmMzK3kN1CZsPmuTjF7Lc2mErrVicmfpRNnGWs+lv6/PmoI2vgIKslnTRwl3RQ/d3iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713544806; c=relaxed/simple;
-	bh=o5GIs4IUCd1x3QO2b5YrIhF5EOX9DK9oPJRPns4ntt8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gF8lL43SnAiAYLh7bTwq2WyYc18vh1OUdTssrFgBO7Yj0skn6ijicHZKIhNPZM/XS0CcmpuCY6bcqWXyrgxDcFNRR8UUM3hhvgc8EEvtu8+bojkL2IHlWPO2DvNnhT6DYL27LN2hT1h5ayWTDmpaxZF9qhtoT6okzz9zokukL3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=EeJMUj+S; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-61b4387ae4fso2516257b3.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 09:40:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713544804; x=1714149604; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BHuuiI/AP3O3oKJTbl0AoPiEMvYpTd1A7t0Ev/LsBaw=;
-        b=EeJMUj+SfRdDJLyu8sj/Tn/OZiuOuUIIeESK/uA2VELbK9LiI4JJQNzayLK4PpBi4b
-         L/NhD8+sfANMViYEQpMdoPKK+WPknb0S1j1TGPf5eB2GKaiRJeKTmhC0vSDupoPtD8ut
-         GlrdZ8s2qhugJUdiKWtp+PJD4LRKLxJqwmy4Yle45lflZqopB0v7kFRQnblWlDuhsw+3
-         RsuW4QyT93TszuXFnadFzTaUwJ0P1ZeYkDXSGvwTuTYqvo8IF/+Lth5cq4g6TpNN7Q9h
-         mjGlyYSgR2Z2Iqy/f785jGGPBNznSwxheleyIDj3LnqnmpQpzA7H0dfkcSRio8wkzyZ+
-         ePNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713544804; x=1714149604;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BHuuiI/AP3O3oKJTbl0AoPiEMvYpTd1A7t0Ev/LsBaw=;
-        b=eH9xJVBXrq+IOXb2GjMhyFEg9V8I6bnw5l5wylU20T7Ttt5jk/Qa7rgb2pq5CYXQaR
-         uAJgTcZ3xHeAxVx17A/lOC9QlQtrJJaGv1g9LvM3UdlgIshs/G+Lgut+T6an5fmk/khx
-         eLBV1kcSQvAKgv2Z6cTh/yVUzv9bh+lMQrq0Jxan5Gu/6e4X8TXSpHfccDRk+ON3vCZj
-         IUPKwr4vfkveNfWkpdUMiNMqBoDkLZYz+/lgoxNQ8r8wCKzQa+mN1zIRocca8b+kc4Pu
-         kLEmxnnYAXKe5FeGUmkl7rm7WXpFf91HR8xemiq3AnT8ashTqWwg2TiLmp/EzdZzpP3m
-         h86g==
-X-Forwarded-Encrypted: i=1; AJvYcCXZpoTcQ5bDaqM+Yaq9unp7ZUoGdWoiqdClb/rPGcDinKL8k/9V5Rm7tgntTBcKYZmyiN6omCIpZLyGT8GL34JsmL19xqXJ2fVT6A==
-X-Gm-Message-State: AOJu0YxOKETYSSzKVMdKnXrr/AD6ol2yBSWbA3qwSjwg0cfUCgI2G0tg
-	0SzqIpOs/E9rAXJhc15cStUI5zRq8H9qOM1NfjEX4k9G0SDS1M6VR71hOkrL4USou2s2YpA6R5w
-	J
-X-Google-Smtp-Source: AGHT+IEJrpMfE8+b8zjBescqx1tYiC6d+c3dCk765qSjsA8szvE9daL5UaT7V3lS6jT5vGJhUb2IBA==
-X-Received: by 2002:a05:690c:450c:b0:618:8b8a:b4de with SMTP id gt12-20020a05690c450c00b006188b8ab4demr2683625ywb.27.1713544803866;
-        Fri, 19 Apr 2024 09:40:03 -0700 (PDT)
-Received: from ghost ([50.146.0.2])
-        by smtp.gmail.com with ESMTPSA id z186-20020a0df0c3000000b006188902e8c1sm842592ywe.28.2024.04.19.09.40.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Apr 2024 09:40:03 -0700 (PDT)
-Date: Fri, 19 Apr 2024 12:40:01 -0400
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrew Jones <ajones@ventanamicro.com>, linux-riscv@lists.infradead.org,
-	kvm-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	conor.dooley@microchip.com, anup@brainfault.org,
-	atishp@atishpatra.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	christoph.muellner@vrull.eu, heiko@sntech.de,
-	David.Laight@aculab.com, parri.andrea@gmail.com,
-	luxu.kernel@bytedance.com
-Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Add Zawrs ISA extension
- description
-Message-ID: <ZiKeYRnXxtLUtkkW@ghost>
-References: <20240419135321.70781-8-ajones@ventanamicro.com>
- <20240419135321.70781-10-ajones@ventanamicro.com>
- <20240419-chafe-leotard-e5daee19b1c8@spud>
- <20240419-8c6af6a169a7aa0b9aa5cac5@orel>
- <20240419-disdain-litmus-82874cc4872e@spud>
+	s=arc-20240116; t=1713545044; c=relaxed/simple;
+	bh=EAIyrDoQ4YoT2Dsm6kgF6uHOznfOFQEAv/ygoBq63sY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=YJCyi25D9dSkK/wbA3SzKQPe2pMjssmT9QisOZbCBa0Lu2sIk4pHQxWkUb2fpcuO06um+8eqAex+ENaIn4mQdk8mLzBgeu9zIItCfepUuGv79omc8gZ7VjL8Nc5gant9Dt1ysCse8C0Yd/ac09HcnFP6HkSdOHHDSSpXd0VnnjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mJjpC5Ib; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38AF6C2BD10;
+	Fri, 19 Apr 2024 16:44:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713545044;
+	bh=EAIyrDoQ4YoT2Dsm6kgF6uHOznfOFQEAv/ygoBq63sY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=mJjpC5Ib9GO8rtPw5czyeIrWEymHj3ywrDQCaKdY08xgybtRacyrEO3mHJhWmDZcX
+	 gHiTxYV38C7MgvfRbfH3ybmSlQhs4BP7cnNZ+uXOHIBJ7qV/7KuddJ6WQ0/S4ju5uD
+	 xWg9Sffpe9J2MGoo116QSXCe10GYl28F4sWUZaEChUh6Kn/O+E41Hq4t8rPK83GFV0
+	 etV0POHFPLJ86Ixq+4Z1Fo2t8KaE8mubswrTB2q5w6dPpqY0+bfSjOGdHwRHjHrJrv
+	 adfzhvpjDYZrtVf8uGQib/qbR0jk9y3w0+XzWoa9p4graIsv9h1VOF04h3AbEH1ngO
+	 kdjyZ4KBoEGIA==
+Date: Fri, 19 Apr 2024 11:44:03 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240419-disdain-litmus-82874cc4872e@spud>
+From: Rob Herring <robh@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: linux-kernel@vger.kernel.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Stephen Boyd <sboyd@kernel.org>, linux-amlogic@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-clk@vger.kernel.org, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
+References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
+ <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
+Message-Id: <171354504249.3529859.17389375879772293692.robh@kernel.org>
+Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
+ audio clock controller driver
 
-On Fri, Apr 19, 2024 at 04:19:52PM +0100, Conor Dooley wrote:
-> On Fri, Apr 19, 2024 at 05:16:05PM +0200, Andrew Jones wrote:
-> > On Fri, Apr 19, 2024 at 03:45:46PM +0100, Conor Dooley wrote:
-> > > On Fri, Apr 19, 2024 at 03:53:24PM +0200, Andrew Jones wrote:
-> > > > Add description for the Zawrs (Wait-on-Reservation-Set) ISA extension
-> > > > which was ratified in commit 98918c844281 of riscv-isa-manual.
-> > > > 
-> > > > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > > > ---
-> > > >  .../devicetree/bindings/riscv/extensions.yaml        | 12 ++++++++++++
-> > > >  1 file changed, 12 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > index 468c646247aa..584da2f539e5 100644
-> > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > @@ -177,6 +177,18 @@ properties:
-> > > >              is supported as ratified at commit 5059e0ca641c ("update to
-> > > >              ratified") of the riscv-zacas.
-> > > >  
-> > > > +        - const: zawrs
-> > > > +          description: |
-> > > > +            The Zawrs extension for entering a low-power state or for trapping
-> > > > +            to a hypervisor while waiting on a store to a memory location, as
-> > > > +            ratified in commit 98918c844281 ("Merge pull request #1217 from
-> > > > +            riscv/zawrs") of riscv-isa-manual.
-> > > 
-> > > This part is fine...
-> > > 
-> > > 
-> > > > Linux assumes that WRS.NTO will
-> > > > +            either always eventually terminate the stall due to the reservation
-> > > > +            set becoming invalid, implementation-specific other reasons, or
-> > > > +            because a higher privilege level has configured it to cause an
-> > > > +            illegal instruction exception after an implementation-specific
-> > > > +            bounded time limit.
-> > > 
-> > > ...but I don't like this bit. The binding should just describe what the
-> > > property means for the hardware, not discuss specifics about a
-> > > particular OS.
-> > > 
-> > > And with my dt-bindings hat off and my kernel hat on, I think that if we
-> > > want to have more specific requirements than the extension provides we
-> > > either need to a) document that zawrs means that it will always
-> > > terminate or b) additionally document a "zawrs-always-terminates" that
-> > > has that meaning and look for it to enable the behaviour.
-> > 
-> > IIUC, the text above mostly just needs to remove 'Linux assumes' in order
-> > to provide what we want for (a)? I'm not sure about (b). If Zawrs is
-> > unusable as is, then we should probably just go back to the specs and get
-> > a new standard extension name for a new version which includes the changes
-> > we need.
+
+On Fri, 19 Apr 2024 15:58:10 +0300, Jan Dakinevich wrote:
+> Add device tree bindings for A1 SoC audio clock and reset controllers.
 > 
-> An (official) new name for the behaviour that you actually want, especially
-> if the patchset sent the other day does not have the more stringent
-> requirement (I won't even pretend to understand Zawrs well enough to know
-> whether it does or not), sounds like the ideal outcome. That way you're
-> also sorted on the ACPI side.
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+> 
+> This controller has 6 mandatory and up to 20 optional clocks. To describe
+> this, I use 'additionalItems'. It produces correct processed-schema.json:
+> 
+>   "clock-names": {
+>       "maxItems": 26,
+>       "items": [
+>           {
+>               "const": "pclk"
+>           },
+>           {
+>               "const": "dds_in"
+>           },
+>           {
+>               "const": "fclk_div2"
+>           },
+>           {
+>               "const": "fclk_div3"
+>           },
+>           {
+>               "const": "hifi_pll"
+>           },
+>           {
+>               "const": "xtal"
+>           }
+>       ],
+>       "additionalItems": {
+>           "oneOf": [
+>               {
+>                   "pattern": "^slv_sclk[0-9]$"
+>               },
+>               {
+>                   "pattern": "^slv_lrclk[0-9]$"
+>               }
+>           ]
+>       },
+>       "type": "array",
+>       "minItems": 6
+>   },
+> 
+> and it behaves as expected. However, the checking is followed by
+> complaints like this:
+> 
+>   Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
+> 
+> And indeed, 'additionalItems' has boolean type in meta-schema. So, how to
+> do it right?
+> ---
+>  .../bindings/clock/amlogic,a1-audio-clkc.yaml | 124 ++++++++++++++++++
+>  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 +++++++++++++++++
+>  .../reset/amlogic,meson-a1-audio-reset.h      |  29 ++++
+>  3 files changed, 275 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+> 
 
-What would be the purpose of a vendor implementing WRS.NTO (and putting
-it in the DT) that never terminates? The spec says "Then a subsequent
-WRS.NTO instruction would cause the hart to temporarily stall execution
-in a low- power state until a store occurs to the reservation set or an
-interrupt is observed." Why is this wording for WRS.NTO not sufficient
-to assume that an implementation of this instruction would eventually
-terminate?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-- Charlie
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clocks:additionalItems: {'oneOf': [{'description': 'slv_sclk[0-9] - slave bit clocks provided by external components'}, {'description': 'slv_lrclk[0-9]- slave sample clocks provided by external components'}]} is not of type 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clocks: 'oneOf' conditional failed, one must be fixed:
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clocks: 'anyOf' conditional failed, one must be fixed:
+		'items' is not one of ['maxItems', 'description', 'deprecated']
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		'additionalItems' is not one of ['maxItems', 'description', 'deprecated']
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+		'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+		'additionalItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+		{'oneOf': [{'description': 'slv_sclk[0-9] - slave bit clocks provided by external components'}, {'description': 'slv_lrclk[0-9]- slave sample clocks provided by external components'}]} is not of type 'boolean'
+			hint: Arrays must be described with a combination of minItems/maxItems/items
+		True was expected
+			hint: Arrays must be described with a combination of minItems/maxItems/items
+		1 was expected
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+		from schema $id: http://devicetree.org/meta-schemas/clocks.yaml#
+	'maxItems' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
+	'items' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
+	'additionalItems' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
+	'type' is a required property
+		hint: DT nodes ("object" type in schemas) can only use a subset of json-schema keywords
+	from schema $id: http://devicetree.org/meta-schemas/clocks.yaml#
+Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.example.dtb: /example-0/audio/clock-controller@fe054800: failed to match any schema with compatible: ['amlogic,a1-audio2-clkc']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240419125812.983409-5-jan.dakinevich@salutedevices.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
