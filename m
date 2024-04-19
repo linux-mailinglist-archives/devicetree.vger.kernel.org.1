@@ -1,151 +1,194 @@
-Return-Path: <devicetree+bounces-60928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41348AAFC7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:53:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD1D8AAFD6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:56:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 900AD282578
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:53:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835C22831F2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC0412BF1C;
-	Fri, 19 Apr 2024 13:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A479512C53F;
+	Fri, 19 Apr 2024 13:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="d5UBILp8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FyPK1FO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4944200D3
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA473A1B5
+	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 13:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713534815; cv=none; b=FyiYh+Osrc1ujCyrrfGFsU47B4H3Sdojmr5VI8tTO9hZVZ3PRPOBC2FMZGl4ciFZMsPFwPnvtInZAxv5tKv3QoIqve0+TOOrQhceTPTH8UG/qMeZ3vaGGI+HC/yJTTQtKIkPft0L0Lxvhq7azFl26KhOZoq/t4ucoCMYyvR1wzA=
+	t=1713534960; cv=none; b=jqNl/eysza7mIeWfKIPgc7OOYlcilEaPtsS+46V/UsYj4qFug4hkk3Ih+qJEonO34B8EDIZPVexAVHE1bJZzNMElFFrHV0RcGKKvV6CWuV1qcV+mG7KLy4E8sh8UGz6qdMTBNahCBZSb5rWiY/PACqLH7E9b+4AliQ+kHXpl3mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713534815; c=relaxed/simple;
-	bh=sxvf32/JpNtPHFVEpEj3h9lpXz108v2JRtAY8b9TiXg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-type; b=Vlq8Gc9QPNu8H+vvzspN+hXHcNJeNqw9ntn7Oq2TK3+HobPiPHhZyfQILdYbyRqmNOhGOqRzlFNKUTnDQ5Tet+kR3YllmS0iCgkk+yxUkf62wsIob8KA/7ixczrCke8iBpgknSqyErXP2foRvrYqMRIj0zh6D+Sx73MREZX8U8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=d5UBILp8; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a5200afe39eso219742866b.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 06:53:33 -0700 (PDT)
+	s=arc-20240116; t=1713534960; c=relaxed/simple;
+	bh=cNe7mRTp1ogXGH2CNwBC4rc6nQxiA60pp6uYOkJrEZ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fUqmbFDZP/s4UsFQOQm7oCS9iN10KQNlIp2QcgaHWtPZ+xAWpW/yMobu6ubaKkz9XdJqY/S2QQag8hpKMKz6GedGQrkkzz8tGye2drvaDzuIyXyoFKZmPAdsi55qNPP3+VU6L01Kn+S70wPH+Rr0BH0HOPUzTJkGTkTYZE8EM4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FyPK1FO6; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1e3ca546d40so17226765ad.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 06:55:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1713534812; x=1714139612; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L/o9GJYOsp32C4ZK5XVSIqlhvuJ+jgCOlcUd/wXUyPQ=;
-        b=d5UBILp8s1FC/U1QePfAyVMrE9kPFGvNtZnItOgY3htE4fMcqdY3MEjDXDpDKYyzFV
-         1qqc1G99WjVFFCSjbzQ7FrRLLh4j6QG9lXpU+0XRRwaISNNcteM+Ql08IfoLV5vtVHGS
-         S3NObrL6hPCDpJAqqAHavDetfX5q74uYZ5EI16FQVsOPJv9v1UOeOtlunmVxornTSiC4
-         MCQ7cuB3vFpiKrEwx6RvryxD+A41RVkIntIZ6J8MOVlh2JTBwxmxvFvHa9jUSpILUvrL
-         ZhfuO0vJyG9MfMCCaDAiwwlFgu7OeKvl8RaLhJBDaUNo3bYhj0h2RtY8zFzYhMMdqkyQ
-         tb7A==
+        d=linaro.org; s=google; t=1713534958; x=1714139758; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HWswkpbNV5pVk026bNcNJlNDUWrsvsyYmi3izHouWVg=;
+        b=FyPK1FO61mMuKT50NQ8qYjrF9/dGHrMefyxrgrSK+5AHqe5LEOQ4c+vbjivVIeDZ2w
+         LYTQPYYgbCRvoWETpQBR019ey1TBHnRzmy+mxUEnGcn3i5UbRduHDRduSw1ruFBi7B+v
+         k5jZpi50bBGW+gdNE3bAcHtGISpCoAosv0wc3eInAI5Uh++Lard25nfcvA/PKIofVj89
+         sOB4yWLNTHZqQVqf/N5PWB7c4C9kL5IQ/JyTNmoXvdWpEfeQbwV2o9uC/QzNxYEW/9W1
+         lYwqfn1beaMi0yZXnzQykONoaS9+Kj4ja3eT8MHT/2OA/ke1IKBdRIEa7NEPqL1W4w8B
+         4uAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713534812; x=1714139612;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L/o9GJYOsp32C4ZK5XVSIqlhvuJ+jgCOlcUd/wXUyPQ=;
-        b=aI02FcMxQlu3vnZ9gq/tGnQ/Z67AhUeety1DGGdCQPx0AYqJMTXkHT2DZXzbeZgQn9
-         0vMcxs9dUz4KEHOf7hGX+pbprtmcO0aloCz+Jbu3q2IfPWTrZbYxUN3BqNoz2S2xr9iI
-         X53dlW7nT7Q3EWHObVFW3iuKN0ZO09F44juyA7++sjfE/gXTDY5P+6S+E9xglMstlQK5
-         3SuG8VZ2fKUWd0k0nQAyqQ3F6444jTwpm1y197OWlj+BlmwKCOtgRiYHOGqXNcui2mWZ
-         JTCZgPPr/ceDskUkeDYoQvaJ8hHcTI+pJLpIeeYhY3KVIz36jvqaYEFN853R8MZBVL1J
-         ftuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxrZAmjoUgYVWOTtwHI6bjc3pW5353ie/K14ulftLE/sNvCk1M58YmCdB5cBCa0xQxeCweJiq9jI+E1SlZdoex5bz3fdwPrh5k3A==
-X-Gm-Message-State: AOJu0Ywaz3fBUe4RwBPBGP0tLteHvmuipPAjEcXOn0ZmFmtvNGgPmQzm
-	2FLhSNzXK87D+zEzqa3CZ8o2yTF1RXnhZz+Qhejb/nH6dR5OjRHJFlHo0/SiImg=
-X-Google-Smtp-Source: AGHT+IGBQ9t0lRGzscQAhpOHuvu3T6H/3CaUBbGTMF7yl3wKq7mI9JkjJ8Ug9d+DetW6DEe2LgbkcA==
-X-Received: by 2002:a17:906:6d54:b0:a55:7837:b546 with SMTP id a20-20020a1709066d5400b00a557837b546mr1941644ejt.57.1713534812041;
-        Fri, 19 Apr 2024 06:53:32 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id lk19-20020a170906cb1300b00a526418d0ebsm2233256ejb.74.2024.04.19.06.53.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Apr 2024 06:53:31 -0700 (PDT)
-From: Andrew Jones <ajones@ventanamicro.com>
-To: linux-riscv@lists.infradead.org,
-	kvm-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	conor.dooley@microchip.com,
-	anup@brainfault.org,
-	atishp@atishpatra.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	christoph.muellner@vrull.eu,
-	heiko@sntech.de,
-	charlie@rivosinc.com,
-	David.Laight@ACULAB.COM,
-	parri.andrea@gmail.com,
-	luxu.kernel@bytedance.com
-Subject: [PATCH v2 6/6] KVM: riscv: selftests: Add Zawrs extension to get-reg-list test
-Date: Fri, 19 Apr 2024 15:53:28 +0200
-Message-ID: <20240419135321.70781-14-ajones@ventanamicro.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240419135321.70781-8-ajones@ventanamicro.com>
-References: <20240419135321.70781-8-ajones@ventanamicro.com>
+        d=1e100.net; s=20230601; t=1713534958; x=1714139758;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HWswkpbNV5pVk026bNcNJlNDUWrsvsyYmi3izHouWVg=;
+        b=MVCxdnEhcjblwV+6d1Dl+lkQ89HfnNxVFYzNpi1VoyaJebACaxNzO1V8i60PFq7Z5K
+         VYNqVMTj+GGFt4BviOBLcTETLCW0k2t1GH2fksqVPoNmRDX194fS/Bja15dmxfUAddlf
+         Ax227ThQdh591pVcwRSaGs07NJaP3LZ2Dzw35tEQJlh+K8t56e9RHuiMGBCqoVUMMGWv
+         F8HlWyiUox5EcrREhSARxq3WBH7mARcJhdj6teEJgu5bcyL4tBnrXRgr7NGaCNOtsZAQ
+         nVwueFJiQowsGKhzmjBPmnY9N9qPT7zB5AbPt5cxJZ32KQ2TUnEj0qLW5c1r8JjravE+
+         yLgg==
+X-Forwarded-Encrypted: i=1; AJvYcCUr6vu8Ldes1riwhfjl35uFd5AxykYEgU/n20Lcy5n41l8YPnC9jLwVIWswLIRcwTeGx01+negNO7m/zub2xgw2n5bB4DHeX0bvOQ==
+X-Gm-Message-State: AOJu0YyaZfnWFK6v7fqNZVwcEUu2/B30g6xc82uvGLMS0AG8QYkqiYqZ
+	wyqiHmQyVRA3Ir323giUmolN9mBZQgkXQnZFwtpz3kgdwFOd0sUCwwmPfEDtBx3RS5ZPthMSn0N
+	1
+X-Google-Smtp-Source: AGHT+IGITd8TaYR2TmwYbKTCTxNimDmszkDAym37priI7z47wvsoXX0D0V31EVkpO7qpUVx+mo/O6A==
+X-Received: by 2002:a17:903:249:b0:1e7:b775:64bd with SMTP id j9-20020a170903024900b001e7b77564bdmr2401471plh.53.1713534958543;
+        Fri, 19 Apr 2024 06:55:58 -0700 (PDT)
+Received: from [172.20.9.36] ([209.37.221.130])
+        by smtp.gmail.com with ESMTPSA id i15-20020a17090332cf00b001e904f9717asm213609plr.87.2024.04.19.06.55.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Apr 2024 06:55:58 -0700 (PDT)
+Message-ID: <a0eee08b-17c0-4089-85eb-d645cbcafae3@linaro.org>
+Date: Fri, 19 Apr 2024 15:55:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] dt-bindings: counter: Update TI eQEP binding
+To: Judith Mendez <jm@ti.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ William Breathitt Gray <william.gray@linaro.org>
+Cc: David Lechner <david@lechnology.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20240418221417.1592787-1-jm@ti.com>
+ <20240418221417.1592787-6-jm@ti.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240418221417.1592787-6-jm@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-KVM RISC-V allows the Zawrs extension for the Guest/VM, so add it
-to the get-reg-list test.
+On 19/04/2024 00:14, Judith Mendez wrote:
+> Update eQEP binding for TI K3 devices.
 
-Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Here and in subject: everything is an update. Be specific.
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index b882b7b9b785..8c4c27bd4b88 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -48,6 +48,7 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVNAPOT:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVPBMT:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZACAS:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZAWRS:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBC:
-@@ -413,6 +414,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(SVNAPOT),
- 		KVM_ISA_EXT_ARR(SVPBMT),
- 		KVM_ISA_EXT_ARR(ZACAS),
-+		KVM_ISA_EXT_ARR(ZAWRS),
- 		KVM_ISA_EXT_ARR(ZBA),
- 		KVM_ISA_EXT_ARR(ZBB),
- 		KVM_ISA_EXT_ARR(ZBC),
-@@ -936,6 +938,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
- KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
- KVM_ISA_EXT_SIMPLE_CONFIG(svpbmt, SVPBMT);
- KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
-+KVM_ISA_EXT_SIMPLE_CONFIG(zawrs, ZAWRS);
- KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
- KVM_ISA_EXT_SIMPLE_CONFIG(zbb, ZBB);
- KVM_ISA_EXT_SIMPLE_CONFIG(zbc, ZBC);
-@@ -991,6 +994,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_svnapot,
- 	&config_svpbmt,
- 	&config_zacas,
-+	&config_zawrs,
- 	&config_zba,
- 	&config_zbb,
- 	&config_zbc,
--- 
-2.44.0
+A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>  Documentation/devicetree/bindings/counter/ti-eqep.yaml | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/counter/ti-eqep.yaml b/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+> index 85f1ff83afe72..11755074c8a91 100644
+> --- a/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+> +++ b/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+> @@ -14,19 +14,23 @@ properties:
+>      const: ti,am3352-eqep
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+
+Why? This must be constrained. Devices either have 1 or 2, no both at
+the same time.
+
+>  
+>    interrupts:
+>      description: The eQEP event interrupt
+>      maxItems: 1
+>  
+>    clocks:
+> -    description: The clock that determines the SYSCLKOUT rate for the eQEP
+> +    description: The clock that determines the clock rate for the eQEP
+>        peripheral.
+>      maxItems: 1
+>  
+>    clock-names:
+> -    const: sysclkout
+> +    maxItems: 1
+
+NAK. That's just wrong, not explained at all either.
+
+
+Best regards,
+Krzysztof
 
 
