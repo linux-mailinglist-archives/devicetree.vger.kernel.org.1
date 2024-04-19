@@ -1,297 +1,139 @@
-Return-Path: <devicetree+bounces-60882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6AB58AADE2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:46:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D048AAE0B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 14:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D3801C20AA1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 11:46:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C93141F21FE8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 12:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E26583A06;
-	Fri, 19 Apr 2024 11:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1E783CCB;
+	Fri, 19 Apr 2024 12:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J8NumG+q"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="aLe47f7U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62A38287E
-	for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 11:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713527202; cv=none; b=pDR/a0F6CuraFLXa2j+MLA2B42EZw0fDCQFwkcdwBhh33yiUBEnqcxa7cuZjgYAqVbNovqeCZaahAk+ul9ak9lftHTEPN3rFqBrr3IaiFh3ljNGKJ7R0sGmNSDnRZzsKWrkjAPVYsQZwG5lKWXzYBPTevyT7Pq1Wvz82NeczVYA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713527202; c=relaxed/simple;
-	bh=Z+5PnQstdz12unLr6o7KdhlMebiLBth/tiY2nW6b1g4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CtKrz9wsZIzpYTwvMCA7T0RTR0lNKi964wMcE6X+zKwkPi0Zi4nm8H0D62vYf0/zobwHR+XntmcfKEBzG7QzHsweVEeV1ff6RYZyU8XmSYNBjkcmU+AI3FcmH38SznCDVsY5EtWCwzf9QTdGRYW5VJNoWcgV1wSPbj9VOmCkBYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J8NumG+q; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6ecec796323so1978443b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Apr 2024 04:46:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713527200; x=1714132000; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GTMLAnugiBw3dWYCKfju/5rwkj08UNff4qYOo0W3/Mg=;
-        b=J8NumG+qjgGvt4IGM8DwBZmMvoVY3++IGdNPdbFteAD+tOR+LxG1JPnUvdxCax0yfN
-         A9Ve9yN/wxkpQOvXa+o/94kdkYStay/RtZ1gUT+L7K9GbEWAKfGMqynpXVT5u6uN0yQg
-         KH8aRDqq2XPehnX3aW5jTucHnJHiuYrdRtiqIX012O9PPbGiW9BXIh1P0yImLut4ckZ9
-         yXF3td/PTI0R2fEHDrErkI6mORrp4G7xX1wtM6xThtdwBRLembNJWtXz5tgoTgiI1Zbh
-         P1+LFDQAcltOWj4pzBvzuN2XzUsugHd8dg5qOi0KM1kSAw+/oNO4YTS0NRDGCX8OLWtY
-         wk0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713527200; x=1714132000;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GTMLAnugiBw3dWYCKfju/5rwkj08UNff4qYOo0W3/Mg=;
-        b=GSH06/DYZRmjjArNduPG3nDUHzyEQ6fDfIC4zAAYt6MA9tnl5p35Tysekkit+/DyBO
-         xI8HTfjjnpYtnaQLN9RIuYZoO2i+wXWv4p52sDJ2a2nsXNl/nsKtiALn9c5KIQHKsW0h
-         nI4Ice70eksZ0QhSoI1hBVDPab9B/tOCb8VISin2r0riqtFDAc2Olehr2oPVx2RgozZx
-         npHKSjzQq0XAAHzW8UTFiMyTRsveAD5oKIgT2f8nQjiTO7yxYJF5UQ8l4mtBDNhauzOr
-         /YyCR7cze6te7gbvRTaEqGjOM2tPAufxE105D4atWN4GDZFsyiTULNbdNfJ8jOGmLkwv
-         8kzw==
-X-Forwarded-Encrypted: i=1; AJvYcCXY67/smcY7TFqPWeE4F61nblYOMqyr4Rv0ZKtfC2/bIpjLlx1uCCR8A5v8eoc8+dkbeXcoiYWSVVYSd4lU2GbXG7Hjn5u5GNidqQ==
-X-Gm-Message-State: AOJu0Yx6RjKaSuDdg/Yug4qt2OdK4+/cK+HKrSAgVFff9pfYgr0g4UTc
-	8ccpz1zQMpoZJSJMce66CLHFlE41RfK9DNutFV+wrI5v3iMcWuL1KCA8QDr1BKeszPKIf3h+eVI
-	=
-X-Google-Smtp-Source: AGHT+IGoeU3eLSHGnW/Igh6/PaoVXNbmoJf+pid7O9XRyDCan+9n9T8XLGseBxtm5bNETZe2cgOMeA==
-X-Received: by 2002:a05:6a20:9150:b0:1ac:34cc:b323 with SMTP id x16-20020a056a20915000b001ac34ccb323mr2469551pzc.33.1713527199827;
-        Fri, 19 Apr 2024 04:46:39 -0700 (PDT)
-Received: from thinkpad ([220.158.156.51])
-        by smtp.gmail.com with ESMTPSA id fk12-20020a056a003a8c00b006e6a684a6ddsm3029904pfb.220.2024.04.19.04.46.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Apr 2024 04:46:39 -0700 (PDT)
-Date: Fri, 19 Apr 2024 17:16:33 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 5/5] PCI: dwc: Add generic MSG TLP support for sending
- PME_Turn_Off when system suspend
-Message-ID: <20240419114633.GB7195@thinkpad>
-References: <20240418-pme_msg-v8-0-a54265c39742@nxp.com>
- <20240418-pme_msg-v8-5-a54265c39742@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DB67F49A;
+	Fri, 19 Apr 2024 12:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713528358; cv=fail; b=OgSOkb7J36daUecvlf+hbmxhEcVZw3Tps3kbDSuddSXzgaDEbyq6zyTEh4Lwt+fP+xuR+jvM/qx4ZJdkOBH0ANkwZk+3z60rvnzyJbpRxoy6j/b52ZPvJQXmmPr1JptP7vYNCQ0IKwO8OQ6WzvYByXINvdVZOAFMtBIMGPuLbkQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713528358; c=relaxed/simple;
+	bh=YOoimxnrmOmT5utXcu3b82K7hDymYuF3WwTQlf8ML+4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IhBEx2ZNZCt/GumYyOyd1A6+9BlrncWEV/m6BS/41hDgwWZuJIUTr+sixav3tVqLI/KKskMk5PsLWclpUxiA0BKiCgp0ullzIEcGoyhbMyhTccKIH71exx0xHBzTMcj0XwIeWinuGxS4suWHGGDdOvqWFzhwNlZz2zW74R+u9s4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=aLe47f7U; arc=fail smtp.client-ip=40.107.243.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fQjM/oalSws//rKNo0bVPzZMWh8ct8wmAnM1uvDFpiJajckdc9YNpQhNWC68viIGX+IotqwOFz7mQ7ZHN2ainAf7q+U0WjxmuWCZs0YZ0nip6ICQD1KdVGyYCbd4oDZgFT2bQg9WlcohuWod6tKOwzaUHCefTy7fAH3qzXEbSmnAiitoZgURpreK2TEWsjw1xUS+NQxwS6bXbvbJkp0dXT+PY/ICbeqxY3OnMr78G5YdQztL6yDT/IhDBn4ohg3YYt/b/Cki9Jtjh76cux3holu4jeILjlJ8UQ52yf67ttELBozvdUTCQuan7/ZGI96RYQZz7+t7wFfFh+OHKohLDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3MiY6ZvIpFk8RK1YVJr5KZrW4OtKtJo/c84nK26TEeg=;
+ b=cW0zimoWjmOKctXNrc60BZL5AORWRaVPsuLrAsnxr29l41JB8vK4eCu9nlO4goGbA9auA2oxG4p8yUX9mYXOtjTY+n1LM8LsP690jJy6Q0FvBwViyL9DBuv+wWOIxX60K3revFIK9vaER5Yy5oOW9tZetokM8Uv7uzh1unhCStflTohzEwONkyqSrQUIG8CEu9ztnnnaBRlpMYPptkbDkwz/CPYcWjVGvn24ANJvTHmHFEaYO1aapBI6MzKcUhcXS9Ci2yoe3rWMMi08UNFziQJ5jstWcJb5cVUqHxwQh+J56x5xCgEkfzpW4MNXMIRno9JPGmuh8qNhZ2TXi7wtRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3MiY6ZvIpFk8RK1YVJr5KZrW4OtKtJo/c84nK26TEeg=;
+ b=aLe47f7UoH4KCkz+jE5e2OQrAGADvjXkqKiG6OLEwXh5VSLAR7EqnHakGS7ZnBDseaYDBego8ExpHw8u0BjNdihygh974dRpoWeD7nNC7osW+jFFZ6/sVK6xsOBtoIS+Y3d4IpwEeeq6TlCMcV6SqTRBHjWnWwdVjtMqJIXjYaM=
+Received: from DM6PR02CA0104.namprd02.prod.outlook.com (2603:10b6:5:1f4::45)
+ by DM4PR12MB6160.namprd12.prod.outlook.com (2603:10b6:8:a7::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.37; Fri, 19 Apr
+ 2024 12:05:52 +0000
+Received: from DS2PEPF00003439.namprd02.prod.outlook.com
+ (2603:10b6:5:1f4:cafe::1) by DM6PR02CA0104.outlook.office365.com
+ (2603:10b6:5:1f4::45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.30 via Frontend
+ Transport; Fri, 19 Apr 2024 12:05:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF00003439.mail.protection.outlook.com (10.167.18.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7452.22 via Frontend Transport; Fri, 19 Apr 2024 12:05:52 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 19 Apr
+ 2024 07:05:50 -0500
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Fri, 19 Apr 2024 07:05:45 -0500
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <p.zabel@pengutronix.de>,
+	<laurent.pinchart@ideasonboard.com>, <radhey.shyam.pandey@amd.com>,
+	<parth.gajjar@amd.com>, <u.kleine-koenig@pengutronix.de>,
+	<tglx@linutronix.de>, <julien.malik@unseenlabs.fr>, <ruanjinjie@huawei.com>,
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <srinivas.goud@amd.com>, <shubhrajyoti.datta@amd.com>,
+	<manion05gk@gmail.com>, Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: [PATCH 0/3] Add support for uartps controller reset
+Date: Fri, 19 Apr 2024 17:35:28 +0530
+Message-ID: <20240419120531.3775919-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240418-pme_msg-v8-5-a54265c39742@nxp.com>
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: manikanta.guntupalli@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003439:EE_|DM4PR12MB6160:EE_
+X-MS-Office365-Filtering-Correlation-Id: da9222e8-ffcf-4738-9aca-08dc60690f51
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	4Je+1AxbBEPxUB1W/IWJlA8Y9TR5jh+ugvCFkJ7tFWOgyy+cLJoOKn0OIrqBabEuF/PRmm2Gayeoo6XDoVugcgBZ1zKVA8dqKW6lisR717qwXnt8wXwPYlM6tSO9uasgoAQpJvyr1FXNcsflYYP85hrexWOOPp1FX3ZwU+xniYqQbalzPetpAc9oDYEDjQAIwMzX8vh6HqO78Kyl4RyVTSn+Rz+0PMC25rcd8yuUWslVDIYL16gEojTyvY6dGfXvIa43bIS/uktCCsiJoxXuUZx9MNSkfRZlwciwDk7tQgAzVkG3N47wybTlSlDMkmbyvKSlv5+oFqGh6j0m80BwO0xZvNKH7Az54WdvYB8c3SslN7g3S14HsYnVmknNC7Z3v8HukwEDA5OVWy0FYs0uV4JGGJpftIFE8xC9zO2qLpivTYC6PZ0DdYQ8d2oX/l9DRYkS9Qmb7s9KyL/onmAsIRI0qKtz1jMIuR++mQXE7BjtNpw4EYgHhtWtui60Tofb6B2CLN+yRT4d23GDlHN3HxCWhyizuDWkKioWnw44RXHpUQ3qr1jVIkS9mnG0kncvzzndSbC3VI0w+3Kgt5+7JTZtnGAz68AamBQor0SJDSymhgK0Dw8nsWBzTELFcXmPOAi77Ptcu0WkbfiX4TDHmJXRUTVZktlzH+tjXwNjDa/OjY3D48xeLuXKjsd/iZkO6uyDq/XgJYpzxC/gYp96Xdiq3dyK4d71zDY/VjUgHov/vmyo5ndUqnFF6+cN3vuV+IzejNP+/GtTgdK/Emw8hg==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(1800799015)(376005)(36860700004)(82310400014)(7416005)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2024 12:05:52.1950
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: da9222e8-ffcf-4738-9aca-08dc60690f51
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF00003439.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6160
 
-On Thu, Apr 18, 2024 at 12:04:28PM -0400, Frank Li wrote:
-> Instead of relying on the vendor specific implementations to send the
-> PME_Turn_Off message, let's introduce a generic way of sending the message
-> using the MSG TLP.
-> 
-> This is achieved by reserving a region for MSG TLP of size
-> 'pci->region_align', at the end of the first IORESOURCE_MEM window of the
-> host bridge. And then sending the PME_Turn_Off message during system
-> suspend with the help of iATU.
-> 
-> The reason for reserving the MSG TLP region at the end of the
-> IORESOURCE_MEM is to avoid generating holes in between. Because, when the
-> region is allocated using allocate_resource(), memory will be allocated
-> from the start of the window. Later, if memory gets allocated for an
-> endpoint of size bigger than 'region_align', there will be a hole between
-> MSG TLP region and endpoint memory.
-> 
-> It should be noted that this generic implementation is optional for the
-> glue drivers and can be overridden by a custom 'pme_turn_off' callback.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Add optional resets property for UART nodes.
+Add support for uartps controller reset.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Manikanta Guntupalli (3):
+  dt-bindings: serial: cdsn,uart: Add optional reset property
+  arm64: zynqmp: Add resets property for UART nodes
+  tty: serial: uartps: Add support for uartps controller reset
 
-- Mani
-
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 95 +++++++++++++++++++++--
->  drivers/pci/controller/dwc/pcie-designware.h      |  3 +
->  2 files changed, 93 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 3a9cb4be22ab2..a0822d5371bc5 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -398,6 +398,32 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
->  	return 0;
->  }
->  
-> +static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct resource_entry *win;
-> +	struct resource *res;
-> +
-> +	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> +	if (win) {
-> +		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
-> +		if (!res)
-> +			return;
-> +
-> +		/*
-> +		 * Allocate MSG TLP region of size 'region_align' at the end of
-> +		 * the host bridge window.
-> +		 */
-> +		res->start = win->res->end - pci->region_align + 1;
-> +		res->end = win->res->end;
-> +		res->name = "msg";
-> +		res->flags = win->res->flags | IORESOURCE_BUSY;
-> +
-> +		if (!devm_request_resource(pci->dev, win->res, res))
-> +			pp->msg_res = res;
-> +	}
-> +}
-> +
->  int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -484,6 +510,18 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  
->  	dw_pcie_iatu_detect(pci);
->  
-> +	/*
-> +	 * Allocate the resource for MSG TLP before programming the iATU
-> +	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-> +	 * on the value of 'region_align', this has to be done after
-> +	 * dw_pcie_iatu_detect().
-> +	 *
-> +	 * Glue drivers need to set 'use_atu_msg' before dw_pcie_host_init() to
-> +	 * make use of the generic MSG TLP implementation.
-> +	 */
-> +	if (pp->use_atu_msg)
-> +		dw_pcie_host_request_msg_tlp_res(pp);
-> +
->  	ret = dw_pcie_edma_detect(pci);
->  	if (ret)
->  		goto err_free_msi;
-> @@ -700,7 +738,13 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  		atu.type = PCIE_ATU_TYPE_MEM;
->  		atu.cpu_addr = entry->res->start;
->  		atu.pci_addr = entry->res->start - entry->offset;
-> -		atu.size = resource_size(entry->res);
-> +
-> +		/* Adjust iATU size if MSG TLP region was allocated before */
-> +		if (pp->msg_res && pp->msg_res->parent == entry->res)
-> +			atu.size = resource_size(entry->res) -
-> +					resource_size(pp->msg_res);
-> +		else
-> +			atu.size = resource_size(entry->res);
->  
->  		ret = dw_pcie_prog_outbound_atu(pci, &atu);
->  		if (ret) {
-> @@ -733,6 +777,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
->  			 pci->num_ob_windows);
->  
-> +	pp->msg_atu_index = i;
-> +
->  	i = 0;
->  	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
->  		if (resource_type(entry->res) != IORESOURCE_MEM)
-> @@ -838,11 +884,47 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
->  
-> +static int dw_pcie_pme_turn_off(struct dw_pcie *pci)
-> +{
-> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
-> +	void __iomem *mem;
-> +	int ret;
-> +
-> +	if (pci->num_ob_windows <= pci->pp.msg_atu_index)
-> +		return -ENOSPC;
-> +
-> +	if (!pci->pp.msg_res)
-> +		return -ENOSPC;
-> +
-> +	atu.code = PCIE_MSG_CODE_PME_TURN_OFF;
-> +	atu.routing = PCIE_MSG_TYPE_R_BC;
-> +	atu.type = PCIE_ATU_TYPE_MSG;
-> +	atu.size = resource_size(pci->pp.msg_res);
-> +	atu.index = pci->pp.msg_atu_index;
-> +
-> +	atu.cpu_addr = pci->pp.msg_res->start;
-> +
-> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mem = ioremap(atu.cpu_addr, pci->region_align);
-> +	if (!mem)
-> +		return -ENOMEM;
-> +
-> +	/* A dummy write is converted to a Msg TLP */
-> +	writel(0, mem);
-> +
-> +	iounmap(mem);
-> +
-> +	return 0;
-> +}
-> +
->  int dw_pcie_suspend_noirq(struct dw_pcie *pci)
->  {
->  	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->  	u32 val;
-> -	int ret;
-> +	int ret = 0;
->  
->  	/*
->  	 * If L1SS is supported, then do not put the link into L2 as some
-> @@ -854,10 +936,13 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
->  	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
->  		return 0;
->  
-> -	if (!pci->pp.ops->pme_turn_off)
-> -		return 0;
-> +	if (pci->pp.ops->pme_turn_off)
-> +		pci->pp.ops->pme_turn_off(&pci->pp);
-> +	else
-> +		ret = dw_pcie_pme_turn_off(pci);
->  
-> -	pci->pp.ops->pme_turn_off(&pci->pp);
-> +	if (ret)
-> +		return ret;
->  
->  	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
->  				PCIE_PME_TO_L2_TIMEOUT_US/10,
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 703b50bc5e0f1..dca5de4c6e877 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -341,6 +341,9 @@ struct dw_pcie_rp {
->  	struct pci_host_bridge  *bridge;
->  	raw_spinlock_t		lock;
->  	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
-> +	bool			use_atu_msg;
-> +	int			msg_atu_index;
-> +	struct resource		*msg_res;
->  };
->  
->  struct dw_pcie_ep_ops {
-> 
-> -- 
-> 2.34.1
-> 
+ .../devicetree/bindings/serial/cdns,uart.yaml   |  3 +++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi          |  2 ++
+ drivers/tty/serial/xilinx_uartps.c              | 17 +++++++++++++++++
+ 3 files changed, 22 insertions(+)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
 
