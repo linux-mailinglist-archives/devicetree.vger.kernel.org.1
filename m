@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 060088AAF7E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 880CB8AAF89
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 15:39:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B73752838CC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:37:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EFD8283941
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 13:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F3A129A8E;
-	Fri, 19 Apr 2024 13:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B35912A14E;
+	Fri, 19 Apr 2024 13:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rz6nIz8G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8QLxLsH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8861E867;
-	Fri, 19 Apr 2024 13:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C741E867;
+	Fri, 19 Apr 2024 13:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713533846; cv=none; b=HNK1RHNP3GsdVnjTtCCzm3GKlPY3D7CgwbqmUmNUJXxb5tiThFwWCqJIsZmmMfHvLGzkWTQOggw/QMAcWNITKOgdWNUNlGddTB/VPhMeeWc9Q5st+IVwkFBejKBuPcjQcCxtSzad65jpFayuKf+Yhog1W3z87bRb94OUEYB0Cto=
+	t=1713533975; cv=none; b=EFfuUHjTCo//jC8VZcGIBLsUAW4/p5PK1ZaOzsk9g+K+X3k5C0rcez9C4pI2m1u4sE9IYBWvpJXT809LMCiR8LUnUH6w4nRuSnz/fVpNzpLHmZNStTo8kUUlZiXVT/j3YvCjP5XrjOipJZNeWfvfHWqyMG5d8t8algUXJdZM4EY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713533846; c=relaxed/simple;
-	bh=xVV5juS7Tp+XkVklQzSylMIgxjKvJ8BFWUq4yzo5IUE=;
+	s=arc-20240116; t=1713533975; c=relaxed/simple;
+	bh=yj//rVNohwy+BWuZKr60iGIeSdu35pzslkwp5bw3myc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MrOEN4WK8Phm3l5oK4xTbSBQnEOqM8f36p712FHVhz0uvFado4rmV8JXA06YHEphrHgi3yTqs03TwdaXO/Q6t2BiTUmG7TyGZFtSQ0V40q8TNXpsuoHEfpjZ2odd4OZUsoa3mKWtvSu8zLMJHrI/v4Bpgurd9BKH/0wIMxDZA1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rz6nIz8G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06419C072AA;
-	Fri, 19 Apr 2024 13:37:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Jbaf3E0Dpg/nunzgly9WEgPcf/rpMpyU6fa73MXm2chjE36PzMPVkJhkHQaBCCXhalmStqx5aViOwo3b3LwD3upR155A4dMtvfWh+i/e1KErcfZp+esmGWdWMeONuGHv1Q1L0fN7VjzC88ec70ItpIkJ90lz/alRh8ioPlARWKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8QLxLsH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A599C072AA;
+	Fri, 19 Apr 2024 13:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713533846;
-	bh=xVV5juS7Tp+XkVklQzSylMIgxjKvJ8BFWUq4yzo5IUE=;
+	s=k20201202; t=1713533975;
+	bh=yj//rVNohwy+BWuZKr60iGIeSdu35pzslkwp5bw3myc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rz6nIz8Go6JPu3CuH9x0HsKn0M2hzyQLAMVGhdstfUvU4MkevotHOKVYTir7v3imO
-	 zNLylrOMBUrpPT2cdkvjSxpZDvDZkJJxmaKFs7nQpVTeLYqxoZHUF57Rczr2Zpfxel
-	 79qhdO0mfJpGn+Z7zD0DGUnJb8MXgx1yww8UMxKFomNalvlpLysbTYpKai1pilWQr/
-	 fVEb/w0h/jOnRaRM7uKGosJEs0UmK4JeD+j4apjWrx8Ti93zDzRnwm/6b4X7rda4SV
-	 5VY04JCRh+0nU9BjzKAEQGdAf6z/SlYk0yR6MXTVNd5ch/YmJgd86wdIn1wg7zXihZ
-	 pOy8JyhTQUxQA==
-Message-ID: <87cd0bdf-9c98-4488-b38f-89ac48b09b36@kernel.org>
-Date: Fri, 19 Apr 2024 15:37:25 +0200
+	b=J8QLxLsHhWQlCInvCMXTdF5Y7NC4wHUbD8YBbPCRjGJSS8sCR+VST1ugmAOV0wIG7
+	 hDfsmlsNUimcGfZ3/g94VFU+B2fz2NWKGHfeIfitGx5LUghJcqLBlxWGoyoecT7BKH
+	 E4kSD4962q5Fe3ujhKqgL2J/uFt27WWn7FvZjPnC5pgWMZ57bZiNZIXQAb+os7qqWH
+	 ShLBga5ikfnm/C5jSzT6i5V8HsX7Ug8SZNZno2joVm8OHZSm4a42oflc4j6U97bQrU
+	 vEoRUqfnXRcb2sjBE4uOtrh7cPhoZ6QCSmxUxt9EH7GODC9Va/H6pqsLYcuhk3l1hP
+	 2460MZl7ct7lQ==
+Message-ID: <5c1c8632-3d8f-41b1-8027-54129d8cd62c@kernel.org>
+Date: Fri, 19 Apr 2024 15:39:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: mediatek: Support MT8188
- dual-core SCP
-To: Olivia Wen <olivia.wen@mediatek.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Tinghan Shen <tinghan.shen@mediatek.com>, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- jason-ch.chen@mediatek.com, yaya.chang@mediatek.com, teddy.chen@mediatek.com
-References: <20240419084211.31901-1-olivia.wen@mediatek.com>
- <20240419084211.31901-2-olivia.wen@mediatek.com>
+Subject: Re: [PATCH 2/2] dt-bindings: regulator: pca9450: add restart handler
+ priority
+To: Holger Assmann <h.assmann@pengutronix.de>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, yibin.gong@nxp.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240419083104.3329252-1-h.assmann@pengutronix.de>
+ <20240419083104.3329252-3-h.assmann@pengutronix.de>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,20 +103,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240419084211.31901-2-olivia.wen@mediatek.com>
+In-Reply-To: <20240419083104.3329252-3-h.assmann@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/04/2024 10:42, Olivia Wen wrote:
-> From: "olivia.wen" <olivia.wen@mediatek.com>
+On 19/04/2024 10:31, Holger Assmann wrote:
+> This is an optional property. If set, the pca9450 will be registered as
+> a reset device with the chosen priority level.
 > 
-> Under different applications, the MT8188 SCP can be used as single-core
-> or dual-core.
+> Signed-off-by: Holger Assmann <h.assmann@pengutronix.de>
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+> ---
+>  .../devicetree/bindings/regulator/nxp,pca9450-regulator.yaml   | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Signed-off-by: olivia.wen <olivia.wen@mediatek.com>
+> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+> index 3d469b8e97748..7cc2d6636cf52 100644
+> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+> @@ -35,6 +35,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  priority:
+> +    $ref: /schemas/power/reset/restart-handler.yaml#
 
+You defined object, which is not explained in commit msg. This code does
+not look correct or it does not implement what you said.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please look at existing code - do you see anything like this? No, there
+is no such code and this should raise question.
+
+You probably want to annotate that device is a restart handler?
 
 Best regards,
 Krzysztof
