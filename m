@@ -1,149 +1,72 @@
-Return-Path: <devicetree+bounces-60873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B00A8AACB0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 12:20:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8B98AACEE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 12:37:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89966B21D00
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 10:20:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E0951F219E7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 10:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CBF7D09F;
-	Fri, 19 Apr 2024 10:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mOzfZS+6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C7A87E77B;
+	Fri, 19 Apr 2024 10:37:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C7A7C0A6;
-	Fri, 19 Apr 2024 10:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D23537FC;
+	Fri, 19 Apr 2024 10:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713522045; cv=none; b=Ps1A30joYfpYBqpv3yppNuAb0zFFCuXWMDWfRW2dwGI5c0O0tAV0z0i/fvXyKhzQQxAJO0jdajwqM3qCbwtkUHiFqSAdyu8mJGJnRXkttTY6qf1kvxPuzWc8dxInTXVyiMuGHSWcfOgeVMV1VxUS6nVX7D5dCH1ya0xAkjLa+yE=
+	t=1713523035; cv=none; b=ljn0BOBWEFQyeaCA/dZ7vt2uNBkv78wos9q3AIhkhDr/3eJ1n12Cb6YZ48cJ0xymt1C2cl9RW53ltLDIkkqiwvgxJSXWTmGXCPuIi0DkM62gdVkhoNvcLrK95Z/dCHQArtyGWLuBzeNSBxe+Z1EFbzJt33dYJn1BWXMZ4X0UqN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713522045; c=relaxed/simple;
-	bh=ARPr0uPN58IxzEf1SX/9k+ar4CkwGdC5TCXqcWGMsQw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=IE0D3ll9biLGENQeUIrQMqsAvJMnfSaM7Yxv4znG/vm/bkkwVUXJ/5+iuh4NXRel5DU0Oz6OvRNQ19KaZLF/OswKtf9G6SBhz4W2qEY8umX0Y+HqHSNBaD0K7Dghyp8YbgBVgtcOM+vgEB3sxCO7lD9/ko4yO18kBobxg+oEJ84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mOzfZS+6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43J8nG62002928;
-	Fri, 19 Apr 2024 10:20:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=yaTjOd4Xo9AXRQiffLemhUtMHcm7hjBtYX1OiupahF8=; b=mO
-	zfZS+6D8MNoYRf6lzQpoCspjqxjVdMaB2oc92ypW25zMfIyt6aSkr3aFomSQMHqb
-	wt7Nz9SjCTU+lfwKss8Ptv1HLdmIjADfikjp1tIKPZKyC6aAF3Lf0b6h74QeDIqj
-	XRg0S+QP/8rkqzNMHhM3sd3NUMvkA4QFCwQpVZzA6KDizM30kVFgbrzZWS7iJ3f7
-	8j7JPmEuZmL7E1ZuJ1Z3b/dEa3FskbrWYRBnVi5+8xE0n9wuwE4CrAGclOYT7ACZ
-	y9nQKg3UgEz/Hanu+vgEXcp9I1IWArq+Jb18tm6taF/2PMmKWH9kgZ3FbRpyrahd
-	fpb7tC+JIbYGe502byLA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xkkgm8dqn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Apr 2024 10:20:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43JAKcmv002687
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Apr 2024 10:20:38 GMT
-Received: from [10.217.217.112] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 19 Apr
- 2024 03:20:35 -0700
-Message-ID: <229b9ae2-1705-493b-b0fc-9de6c32925a5@quicinc.com>
-Date: Fri, 19 Apr 2024 15:50:32 +0530
+	s=arc-20240116; t=1713523035; c=relaxed/simple;
+	bh=uUzlRYYg0wBzoCsmrKnn7rE6m+C4E5F+sA4ybRUnFss=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Blj80O2/E7vpPGtAXzS5btITuUZD0VkVUfRGMapcuVRBrbWozOWbfx50ZrgLfphC/82CBH0t3OBIDtOFgv0iTfv9yPQ35iMyTjNw2m/hIYDvtpu+0Z1gEnCGj4+9lJNga5ZMTgy2x9Sx156yTbNC16g3/tvbwbNnnCmehdx7k9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:4860:bdbf:c4be:ec53:8f46])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 46CC27E0105;
+	Fri, 19 Apr 2024 18:30:27 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH v2 0/1] arm64: dts: rockchip: correct the model name for Radxa ROCK 3A
+Date: Fri, 19 Apr 2024 18:30:17 +0800
+Message-Id: <20240419103019.992586-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Umang Chheda <quic_uchheda@quicinc.com>
-Subject: Re: [PATCH RESEND] arm64: dts: qcom: qcs6490-rb3gen2: enable PMIC
- Volume and Power buttons
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240403132839.2117675-1-quic_uchheda@quicinc.com>
- <6b3gqfrvljvlfaf365l55kjcbjd4rfmw223tro6rqy5crykxgb@l66dptcrujip>
- <3ca2f601-ce45-43cf-b0dd-e28865874455@quicinc.com>
- <jlwxlnllpt557eiktovujcrfm2qwd3ynlxpo2v2witkekvocey@indbptcgvitm>
-Content-Language: en-US
-In-Reply-To: <jlwxlnllpt557eiktovujcrfm2qwd3ynlxpo2v2witkekvocey@indbptcgvitm>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Be1aZIVxTqcTFGf2uSNwnNRL9JrcxVof
-X-Proofpoint-ORIG-GUID: Be1aZIVxTqcTFGf2uSNwnNRL9JrcxVof
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-19_07,2024-04-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 mlxlogscore=545 impostorscore=0 mlxscore=0
- suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2404010003 definitions=main-2404190077
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHUwdVh8fHU4fSB8aTRkfTlUTARMWGhIXJBQOD1
+	lXWRgSC1lBWUlPSx5BSBlIQUkYS0pBT0NNS0EZHxkdQRhPGR5BHhhOSEFDHU9NWVdZFhoPEhUdFF
+	lBWU9LSFVKSktISkNVSktLVUtZBg++
+X-HM-Tid: 0a8ef5e853cb03a2kunm46cc27e0105
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6M1E6Mww5OjMRFU9IC0osPw43
+	QgIKCU1VSlVKTEpITklJTUlMQkpPVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0pBT0NNS0EZHxkdQRhPGR5BHhhOSEFDHU9NWVdZCAFZQUpJT0M3Bg++
 
+Changes in v2:
+  Collected Reviewed-by.
+  Remove changes to compatible.
 
+-- 
+2.25.1
 
-On 4/15/2024 7:30 AM, Bjorn Andersson wrote:
-> On Fri, Apr 12, 2024 at 04:18:36PM +0530, Umang Chheda wrote:
->> Hi Bjorn,
->>
->> On 4/9/2024 8:47 PM, Bjorn Andersson wrote:
->>> On Wed, Apr 03, 2024 at 06:58:39PM +0530, Umang Chheda wrote:
->>>> The Volume Down & Power buttons are controlled by the PMIC via
->>>> the PON hardware, and the Volume Up is connected to a PMIC gpio.
->>>>
->>>> Enable the necessary hardware and setup the GPIO state for the
->>>> Volume Up gpio key.
->>>>
->>>> Signed-off-by: Umang Chheda <quic_uchheda@quicinc.com>
->>>> ---
->>>
->>> I suppose this isn't a "resend" either, so please send me a new version
->>> of this as well.
->>>
->>
->> I had earlier sent [1] for review, on which I hadn't received any review comments.
->>
-> 
-> I see.
-> 
-> If you want reviews on your patches, ask a colleague to invest a few
-> minutes in the patch and send a Reviewed-by or Tested-by. That both 
-> 
-> Not only will this give you reviews, it will show the community and the
-> maintainer that there's someone out there who's interested in seeing the
-> patch merged.
->
-
-Thanks for the suggestion! will ask colleagues to help with R-by/T-By tags on the patches
-as suggested.
-
->> Hence, I resent this patch again after 2 weeks for review.
->>
-> 
-> Please only resend patches if you strongly believe that necessary
-> recipients didn't receive the patch.
-> 
-Ack
-
-Regards,
-Umang
-
-> Regards,
-> Bjorn
 
