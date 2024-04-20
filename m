@@ -1,93 +1,214 @@
-Return-Path: <devicetree+bounces-61141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F0B8ABC89
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 19:10:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E598ABC92
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 19:50:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A62B1F2184B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 17:10:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 636181C2099A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 17:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A3029CFA;
-	Sat, 20 Apr 2024 17:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 765BF3A1A2;
+	Sat, 20 Apr 2024 17:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="oP0EDJoK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OSszIAgN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A9BB669;
-	Sat, 20 Apr 2024 17:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A3FB669;
+	Sat, 20 Apr 2024 17:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713632997; cv=none; b=FAe2spvUwMnR30PJcbUa9AzPBkoQEtvUzvtMwcElCPM0vADefYjOk+wj3GNZkJkj/0GM/eTvXYpe81HrGOF6nONZhlryGM/oGwGSqVz42zOCBLzMgfg7XBCfou6YSgvW9YVboQVcW9fO5nsGYwEQgwDnCpOxZZHRopyMqQbDtkg=
+	t=1713635426; cv=none; b=kpo1xBEUuU4fOjkoesh8y8Otk2Ct3V8/jrvlsvJekHmSXRY+siPGrt2tucPh0/zxovRQusdfR3R0iAw+9yXYAGxc8nN9lbFIbWGNy3/9R6qkxZWOhUZmcvGJm201UWVKoHS8ayE5TOC7CbngBhC7gQCwb8OHUePJJFOOOdu7r1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713632997; c=relaxed/simple;
-	bh=0dVVpE/Ef2ZFUlq2btvCHR/zVZNJ9htirrWD1+sakCY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dcfMGbYAXFTi52ZNg/Xqszlv2R0x8mZ1JFnE/yv3mKAn1yJQqlKG55x9FW+KmFmupfre/E5lvYE4Ghj60a0I/5rdQuocEPbp7Ksha/iIURq0LWsoH1Vv6YY71M+dTFEKzKCuPZG42blNaSzXZb2YY9cC2UUVdqs7bmqPOgOYudk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=oP0EDJoK; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QJQv0IFfhCqqi5fGOn/2mKzOeCfHNZDrDncRR4s5SZs=; b=oP0EDJoK3Y66j0EyeUL0e8B6Ms
-	0mqIUIQkm0RBDhCiH3xgjBq8AFgVIQWi2hxz/Co8ot1OtG+SIP17a7+/YigvV9/NKo4DmG++YWnSZ
-	HZow2w+e8XBb6IBw/wnp5AnioOiFFpCjPVopZr9GQqIsbOZIMmDIJah9innXzfsKDoe4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ryEDb-00DWNy-5x; Sat, 20 Apr 2024 19:09:39 +0200
-Date: Sat, 20 Apr 2024 19:09:39 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1713635426; c=relaxed/simple;
+	bh=bVd2eqTTQlE/lqeXUNJSYbprksBuhxAdRsI9Y4zTEvA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mB6cM9TBpxPkqH9/7nP9RxMBTmMngNmNQtkIbzf1HF0MWEj877CsKXhvREn/vW24SZpuM25q065dgkDxxQD6upqQbYPHTYa/Ea07pGcwhNsskqBksunRaUwLyow9i85Tvy+V5cIRJmLmUq8IhVzZFju9GbW9f9EiPsuPwhY87OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OSszIAgN; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e3ca4fe4cfso23579775ad.2;
+        Sat, 20 Apr 2024 10:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713635424; x=1714240224; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KIYLQlpLMFUl3xE1BrT2UElBskzOTTw5EVqsEEuHPoM=;
+        b=OSszIAgNGaNPblVwWpAo/M46PpPOAPdFllLjWy244cngff7bEDGMEMLof7x5xJOYLt
+         4Zbe1dZ7XaIxYaQhm1woHI4WG3i22Ivn1wZTxC3uFqlFo3xMwJFT3NkAHjvxRPoLBo6s
+         YtS0Y4nbgD9VMi6TqTDa9dZzuUwkFVy4nLTJ8xVvNsCaHrxOSXT6pA8C4X6vJkJmDkt9
+         VR8NIg6iTWzezwVQTvWNuLPyfG5o3eMMdXMdjnpjIIuF1tKV79D47zHZIn8KLgqeLBUK
+         zYKzH/cWc+jYLG9Qnh8GoQFw7vpOVsB0JlbzE4XN7j1yNRoj2j8nQJamV5EKbPfbXb+5
+         htDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713635424; x=1714240224;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KIYLQlpLMFUl3xE1BrT2UElBskzOTTw5EVqsEEuHPoM=;
+        b=w3DuXZ0ZTop84rITxbyEnq55wjzOXpxHU4gip8xK/gAW/lc8OsLO8YkZEUH6jUko2S
+         kW+HjA2Hm0iEm9zcp9y8Z04iaJLJZWu/2vLCsGSGEVG8s7btAJghvT4BjpisAKBKHgvH
+         A6MYDAOpgGhPS1NzSXzUJR+xWWT6eMbUfq9dNTJBYacNJoRIOxudqDiYJyqeG2YAaEah
+         Y5FtSEdEJ12YpZ0/RJKbOy2G62KQ6lcfbvWLqEWttpiHCRyS1Rdkqlx5wB51ijyFF90J
+         W/MNivbZEkIYx8HNf2W15s5ZUmfcGvtm79LdFQX5jesFeNWT7yR8GKe+R2jkLDrYSwds
+         eA2g==
+X-Forwarded-Encrypted: i=1; AJvYcCVcJkk0ufL0ezCFcSYLeSi5BYvPp2IQOZPH1qdC111KzP7PPiOptS4EkJ0u75OQAYlSPsQA2UY0NJBUg1mnkE7sQPnrpkCvdGABTG5/d1HziaT0SQAu9ksTPoqCTx59TKh3jlYaCNygE3+GOp4OsR00sU6ITxgsgvTcjCYIDNhgEeoT5V2MvsNur5Hkiut42SUDk2+WE0oKzMdBeAnztjSZINA=
+X-Gm-Message-State: AOJu0YyLuvL2k9cNLDmQhzA/VG3aViKSXnDf6b4q0jGcMRw8SFkVbqM3
+	NUF68Cg1yU5klvXyHzSSKzncUsdXLXvjQ2x/v5QOLHDJC9biUJiw
+X-Google-Smtp-Source: AGHT+IFqChhWQ6i2C7dFaSVGjRE/tc97YyCzXmiS5MEjIM1QDSggqS3S3tgcf3dU66SY3krSEKy3pQ==
+X-Received: by 2002:a17:902:760d:b0:1e3:de79:35d1 with SMTP id k13-20020a170902760d00b001e3de7935d1mr5655350pll.23.1713635423960;
+        Sat, 20 Apr 2024 10:50:23 -0700 (PDT)
+Received: from localhost (ec2-3-111-32-5.ap-south-1.compute.amazonaws.com. [3.111.32.5])
+        by smtp.gmail.com with UTF8SMTPSA id i18-20020a170902c95200b001e0c5be4e2esm5278704pla.48.2024.04.20.10.50.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 20 Apr 2024 10:50:23 -0700 (PDT)
+From: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandru Tachici <alexandru.tachici@analog.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jon Nettleton <jon@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: adin: add property for
- link-status pin polarity
-Message-ID: <2c622947-3b54-4172-b009-0551f43c3504@lunn.ch>
-References: <20240420-adin-pin-polarity-v2-0-bf9714da7648@solid-run.com>
- <20240420-adin-pin-polarity-v2-1-bf9714da7648@solid-run.com>
- <41567aec-adf2-422a-867e-9087ef33ef36@lunn.ch>
- <b3c4301b-afae-44fb-86c5-94f23d363c0a@solid-run.com>
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: tegra30-i2s: convert to dt schema
+Date: Sat, 20 Apr 2024 23:20:07 +0530
+Message-ID: <20240420175008.140391-1-sheharyaar48@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b3c4301b-afae-44fb-86c5-94f23d363c0a@solid-run.com>
+Content-Transfer-Encoding: 8bit
 
-> Main reason for having a vendor-specific and non-led property
-> is that this pin is not a led.
+Convert NVIDIA Tegra30 I2S binding to DT schema.
 
-So you are not driving an LED with its? What are you using it for?
+Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+---
+ .../bindings/sound/nvidia,tegra30-i2s.txt     | 27 --------
+ .../bindings/sound/nvidia,tegra30-i2s.yaml    | 68 +++++++++++++++++++
+ 2 files changed, 68 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
 
-> This kind of configuration is much more like pinctrl than led.
- 
-So what is the pinctrl way of describing this? You should not be
-inventing something new if there is an existing mechanism to describe
-it. We want consistency, not 42 different ways of doing one thing.
-
-	Andrew
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
+deleted file mode 100644
+index 38caa936f6f8..000000000000
+--- a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-NVIDIA Tegra30 I2S controller
+-
+-Required properties:
+-- compatible : For Tegra30, must contain "nvidia,tegra30-i2s".  For Tegra124,
+-  must contain "nvidia,tegra124-i2s".  Otherwise, must contain
+-  "nvidia,<chip>-i2s" plus at least one of the above, where <chip> is
+-  tegra114 or tegra132.
+-- reg : Should contain I2S registers location and length
+-- clocks : Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+-- resets : Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names : Must include the following entries:
+-  - i2s
+-- nvidia,ahub-cif-ids : The list of AHUB CIF IDs for this port, rx (playback)
+-  first, tx (capture) second. See nvidia,tegra30-ahub.txt for values.
+-
+-Example:
+-
+-i2s@70080300 {
+-	compatible = "nvidia,tegra30-i2s";
+-	reg = <0x70080300 0x100>;
+-	nvidia,ahub-cif-ids = <4 4>;
+-	clocks = <&tegra_car 11>;
+-	resets = <&tegra_car 11>;
+-	reset-names = "i2s";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
+new file mode 100644
+index 000000000000..3809e4049fe1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nvidia,tegra30-i2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra30 I2S controller
++
++maintainers:
++  - Thierry Reding <treding@nvidia.com>
++  - Jon Hunter <jonathanh@nvidia.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - nvidia,tegra124-i2s
++          - nvidia,tegra30-i2s
++      - items:
++          - enum:
++              - nvidia,tegra114-i2s
++              - nvidia,tegra132-i2s
++          - const: nvidia,tegra124-i2s
++          - const: nvidia,tegra30-i2s
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: i2s
++
++  nvidia,ahub-cif-ids:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      The list of AHUB CIF IDs for this port, rx (playback)
++      first, tx (capture) second. See nvidia,tegra30-ahub.txt for values.
++    minItems: 2
++    maxItems: 2
++    items:
++      $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - resets
++  - reset-names
++  - nvidia,ahub-cif-ids
++
++additionalProperties: false
++
++examples:
++  - |
++    i2s@70080300 {
++            compatible = "nvidia,tegra30-i2s";
++            reg = <0x70080300 0x100>;
++            nvidia,ahub-cif-ids = <4 4>;
++            clocks = <&tegra_car 11>;
++            resets = <&tegra_car 11>;
++            reset-names = "i2s";
++    };
++...
+-- 
+2.44.0
 
 
