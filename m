@@ -1,93 +1,119 @@
-Return-Path: <devicetree+bounces-61103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0E58ABB24
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 12:54:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DC8F8ABB26
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 12:55:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED5461C20A6B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 10:54:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FB7E1C20BA9
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 10:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CB915E88;
-	Sat, 20 Apr 2024 10:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BE41B809;
+	Sat, 20 Apr 2024 10:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+MhFRNz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K+xPIczF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E45DDD9
-	for <devicetree@vger.kernel.org>; Sat, 20 Apr 2024 10:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E39DDD9;
+	Sat, 20 Apr 2024 10:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713610482; cv=none; b=qbaSOe42ErgG9RcHUjtwh+HyllnpQAHr1C2cDuVjg4anOP1DwXwwpz+rAZEDQdp4teXLCdzAstrBzYMqPD/rCojWOmS0D+4hL8Nzz7cal/z81a+2HlDYXRBJ5LIO6Wk6Un8EV+p7Gbc7PyWWSTAhi2esIyAsYYEdWPM7XKoN3ck=
+	t=1713610530; cv=none; b=C9h9zP41Dkm4/VniftRRkq+muiAxeuvDkhbdpzTCD2dAJgNsvM6ijnYqxLldjMs+tfYGwUMYdX8uRy/wTyx9UfitybEsczUeNvwFCJjNal4oxw+1DyM8QujyNca1/PtyX8KrbaW28yb09AUyWoTOq3Mt0ZSl8ltpwPSBhelBQuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713610482; c=relaxed/simple;
-	bh=8yYLW7gyuedZRx0RuumC/a4QgikYsX4XXuwlrGE+6LI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pHnryVu8uYhvK3lQdmgwYLd8MXy+RysLFmWdBJf38D20Zqpo8D0lZTbXutSZy1USH8zeZRdxUkJQLZulJEdqV82/3/TIcJmH5EhMEEpdTOb+QJuRuMffcvs9gpOWLBynj90eEb+i51DlM+c4zGaGBXBm9Y1c5QJOSd6pWPoT+ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+MhFRNz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14354C072AA;
-	Sat, 20 Apr 2024 10:54:38 +0000 (UTC)
+	s=arc-20240116; t=1713610530; c=relaxed/simple;
+	bh=zTvudgFfH/h0LYFsm8ge6F5OW8AtcgM2CqtKKJJoAFI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PVR3qfynIhuJqSi0AD/21mOari82yYpLan0Kb5c+hpPV6DwUj4Cjc0Hj2aGOr3h/3D6/fS0JaCgDXeDi79DxlKK9y7I0ZnteDyTnN49Xm0iB1wOw/aunS7DE3UluVH9r57kHqMJr11qFsV/iQH+BLsXimcFq3Jl4o3mWi/hmx+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K+xPIczF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88899C072AA;
+	Sat, 20 Apr 2024 10:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713610481;
-	bh=8yYLW7gyuedZRx0RuumC/a4QgikYsX4XXuwlrGE+6LI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i+MhFRNzmwun318tjv2apgDOjPymkWQojhdg2dg0w7ouVO0Pu1TyxonbZZpdl0DqO
-	 eVTXd//9RShBN8Dik2Ze+T3Y9aGCDc6qnyy6R22rL3GoxxFrAGMaUGKmcwji6CIGj/
-	 No3oEwoEJjrvx1Xnmub+hoEiC7x1fyBocYxAuAMTxuedIMqBhQWFyTAboksgOZdVSs
-	 S+MoRD2Z7qA8EcL85/HXsVCKFH12J6e27YaZQJEtXeFqbUi8Pp/7N8/SsMTz4mOkvM
-	 Su81SFoR+SZ1MZ43EbJLLMq+f3dIRSrOYzpZEAsImugI4Z8IeZOKW5lzTOplkbUIh2
-	 kRbkqlTlW5nJw==
-Date: Sat, 20 Apr 2024 11:54:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: linux-aspeed@lists.ozlabs.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
-	linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au,
-	lakshmiy@us.ibm.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: fsi: Document the IBM SBEFIFO engine
-Message-ID: <20240420-importer-smugness-fdb48c92ea15@spud>
-References: <20240419211143.1039868-1-eajames@linux.ibm.com>
- <20240419211143.1039868-2-eajames@linux.ibm.com>
+	s=k20201202; t=1713610529;
+	bh=zTvudgFfH/h0LYFsm8ge6F5OW8AtcgM2CqtKKJJoAFI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=K+xPIczFcKc0b03zVTfBLWnljX+6W2rVvX4lqpSCUmjQtyhiSx8W/GZ7/sqAq9Vth
+	 8cxUJmGzzX0jLpi9iZXm45JqDTQ+/LgD84zFNZj2wKllv/esuC1O+gc7oa5xkpeD1A
+	 j8nfyazAHCWabIAKKCJBJ+VSrhybwPEva7B5sdsTQ5+AEK1m60s4WLvxCgT5Ak/Brj
+	 BZqAq8Z7YGLv/YJCe1rXwzb21D1tk8fkGb0c2ljKD/gkRVOARRe0uG9cY2TucckA9A
+	 Im5MnlnN1BjXS6PbZ4mD1kFT8meceWp6oE8r/TwNRgb94uXz2yPYKM/krZLWlBHugd
+	 n1sU2FSogK41A==
+Date: Sat, 20 Apr 2024 11:55:15 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alexandru.tachici@analog.com, lars@metafoo.de, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
+ nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
+ dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
+ alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
+ liambeguin@gmail.com
+Subject: Re: [PATCH v6 5/5] iio: adc: ad7192: Add AD7194 support
+Message-ID: <20240420115457.44f558cf@jic23-huawei>
+In-Reply-To: <CAHp75VctFbys8ARoE9ZqsCSCOYWjsZnR80g+YXstbyzo5r6TYw@mail.gmail.com>
+References: <20240417170054.140587-1-alisa.roman@analog.com>
+	<20240417170054.140587-6-alisa.roman@analog.com>
+	<CAHp75VctFbys8ARoE9ZqsCSCOYWjsZnR80g+YXstbyzo5r6TYw@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2jVjDS/uYvR8ikWT"
-Content-Disposition: inline
-In-Reply-To: <20240419211143.1039868-2-eajames@linux.ibm.com>
-
-
---2jVjDS/uYvR8ikWT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 19, 2024 at 04:11:41PM -0500, Eddie James wrote:
-> The SBEFIFO engine provides an interface to the POWER processor
-> Self Boot Engine (SBE).
+On Wed, 17 Apr 2024 20:06:00 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> On Wed, Apr 17, 2024 at 8:01=E2=80=AFPM Alisa-Dariana Roman
+> <alisadariana@gmail.com> wrote:
+> >
+> > Unlike the other AD719Xs, AD7194 has configurable differential
+> > channels. The user can dynamically configure them in the devicetree.
+> >
+> > Also modify config AD7192 description for better scaling. =20
 >=20
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> ...
+>=20
+> > +       device_for_each_child_node(dev, child) { =20
+>=20
+> You can use scoped variant AFAIU that's available in Jonathan's tree.
+>=20
+> > +               *ad7194_channels =3D ad7194_chan_diff;
+> > +               ad7194_channels->scan_index =3D index++;
+> > +               ret =3D ad7194_parse_channel(child, ad7194_channels);
+> > +               if (ret) { =20
+>=20
+> > +                       fwnode_handle_put(child); =20
+>=20
+> With the above this wouldn't be needed.
+>=20
+As it's a minor improvement, and I tend not to like unnecessary
+interdependence of series in my tree (until they are in char-misc
+and hence no chance of them changing), I'm fine with not using
+that new functionality here.=20
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+That will change once it's upstream of course!
 
---2jVjDS/uYvR8ikWT
-Content-Type: application/pgp-signature; name="signature.asc"
+I will send a pull request to Greg nice and early this cycle
+so that should be in my upstream soon.
 
------BEGIN PGP SIGNATURE-----
+I'm also fine with you using this if you want to though!
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiOe6AAKCRB4tDGHoIJi
-0lt8APwOSCYgU1v4jfqtkGKOKck3jvgqM0rviuuVaPNURcdTywD/ZUz0yis4GFE1
-pfcyKkHHp4IeVY6C+5duicPKVy1ZIwE=
-=R6YT
------END PGP SIGNATURE-----
+Jonathan
 
---2jVjDS/uYvR8ikWT--
+> > +                       return ret;
+> > +               }
+> > +               ad7194_channels++;
+> > +       } =20
+>=20
+
 
