@@ -1,180 +1,148 @@
-Return-Path: <devicetree+bounces-61085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD328AB9BB
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 06:52:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E21E8AB9C6
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 07:09:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 056E81F21559
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 04:52:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AB6F1F2139B
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 05:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8953FE4E;
-	Sat, 20 Apr 2024 04:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F488DDDC;
+	Sat, 20 Apr 2024 05:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nLuSpm4k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lxS7cqu8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB673F8D6;
-	Sat, 20 Apr 2024 04:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4464205E31;
+	Sat, 20 Apr 2024 05:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713588622; cv=none; b=Xb9kxCSjx25lVgzYgfiv0kWeC0g1W6O29OJX4zhFJiO2V6qe0m0lJInvHCVWe0P5I6X6+UXn+JnERb/tLR3lQzsVi0G3UUFPvuN03Phi15A7eB1EBXANPbPq/Rozn7LPC1HCyo3AlefUhNAVpRSG7hUr1cJOoMDRbm40VTQ4jcs=
+	t=1713589765; cv=none; b=jgK7MdiVOQ2WgyDkNzdxPcnwm3a248mdgoJItWyvw20j/xdmnRf0KxrXnJftWUD1ptw571Uk9RFj2rGq5Kwu7xUDyrVjCP6ut4gXH1LIkEgAP9cfKAGI3EMzXZ3K0WjT/nDd9bc6+KpRv/113B4uJm1bQwQ0NKbr2rqvu2yfAGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713588622; c=relaxed/simple;
-	bh=YVkIw7DgewVq3TVr3KbyecW8Zew7ckYFRjU2pFfUQ5Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FqqPb4AVmudr3k8YSP6gBPbZdh/TwvXtIiBVsA7peIksQGHDEnOEj+TRFvHvhWREgXx7TOPXlbgWLBl1/xC2T9lDqv5l2levT7KauX7mWZEXsVZX+qLNInDxS7hBRr2oU0cYe0bQ/Ny+t2sqO9HsCFkjpTln0SxUvaeydz+sJOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nLuSpm4k; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43K4ncjJ004636;
-	Sat, 20 Apr 2024 04:50:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=8eFsn6tci9SXWkk51b18J8sHwR83J9tUKFJVQ+MA0P0=; b=nL
-	uSpm4k4Ti76TZ9jMht4/Sb+YMJM4/6KaSjm9P4DYhVYf7utzPe+tyy6OjWNr5RLi
-	kHeGNCi2F7gCXBXM5AP6Mm2uzcCQoN7V8X4zsoc515rsCTt+lwmUdo4/i6nV/XPN
-	Kvk3jMDBcA0kslKVK5Yxv91OVUUb2Otw+WZcVmmO/GO6NHmebl5n9FtAmYZnmnEu
-	5ceTWyqlH8WuGs75SJU0O32rYYx+AzkwsNJEkMe6a3WrNd2/iqJWZ8O5EguSYTXk
-	aTOd2r6lGL2eOk+Q9iUfqHjUcmWNRSiyy6OCii5EAPLg1OQl06NXbplJUwfpR6uj
-	nAiweqNGYauuNEOdHkJQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xm6vr80bx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 20 Apr 2024 04:50:16 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43K4oFmH001910
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 20 Apr 2024 04:50:15 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 19 Apr 2024 21:50:10 -0700
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Felipe Balbi
-	<balbi@kernel.org>, Johan Hovold <johan@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        Krishna Kurapati
-	<quic_kriskura@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-Subject: [PATCH v21 9/9] usb: dwc3: qcom: Add multiport suspend/resume support for wrapper
-Date: Sat, 20 Apr 2024 10:19:01 +0530
-Message-ID: <20240420044901.884098-10-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1713589765; c=relaxed/simple;
+	bh=Zj2LiikqunHRasRXmuEtpJTW1RcqRjmmWOahD7pquLo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SDmOxae3EW5wKV7/XzLkFrQiLV2KwWc7pWoL6wNj0rlTr8xr9OrJhpMlnm/7k9EXntjcZRfgFZ/CvEElWspYh9cEngQjl3sp85UCe00Z3p7jtJv2z9ka/XgxHc4HQBf1nw7iSf37wznhOLoxQR94nrOs5D+ywkxizD1w7lZfI+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lxS7cqu8; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3c749aa444fso796435b6e.0;
+        Fri, 19 Apr 2024 22:09:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713589763; x=1714194563; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zj2LiikqunHRasRXmuEtpJTW1RcqRjmmWOahD7pquLo=;
+        b=lxS7cqu8wGuNU/NyjjUHGeTzS12de651NScx8Mwzy7lPg7p9K7LaYEqBsBQKJAqQwZ
+         +SW8Qy3HRpgqXV5ckOn1ZG8XwPxEv3dRvly3XecQnZwsA3evMV/NgTAbrdEWZ5Jb5oau
+         HXLfThsOZ1e4wvue27R5hQ5D3xuO/l3W8kXAkCL+1yAxSEISFCDqfCmbfe28QPCa/yij
+         yGIyh3N/hm8fFbBIZcGPUnOsxwPZoZ9m6boPNlFQEHlt4MZv9JDmLVDqliqNfX0VWNzF
+         N9CLN+FFdAdNKpTSnvGB2czrIbzSRYgXJ+eCkmDk0JpcoKoSZL5D1XiGEU5F0lrgeva1
+         gPXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713589763; x=1714194563;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zj2LiikqunHRasRXmuEtpJTW1RcqRjmmWOahD7pquLo=;
+        b=ejuT8rphpCjReNo9EMxP09Vqc5CdRm3fQ2K1M08T179yXLLog37Vo1UaeeNs6qAIS1
+         AoJBB37aOsYW2y0/JzYuoZvfWtHpbj9CfSxZ8Q0HFRPMo+dWvKDiwv68Vlv46pyS8zLe
+         kbVhcKJdwdQ9E9IbgUc9Fy+S/mijnK4IgV+8G3H2UpxWirHH9NbXAYyiu3H6j9cDceHV
+         x309gBTzWuhM1/f3LQZxKgq+aGeEwdAVMGrKkRBAyhAQn1B75p9t4dkuzBubGrOFQKJx
+         FHVyAYi6Ktu318Dyb3lFIEx3+bnXYiSmu9FmSQAF7RV+UAKW7TFOVTq9hIS5GP60jbAr
+         mdwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVPkyI7+VeOk0jx9YfC7oL3ZLTXBgKS6fkdxbJxyFoNElrWgf0mRSFcC1mbkSoI3qr6pLjKqRmvCxqUSIJ7yvG8/2oansok1LKTnrlHOWSjhcmAlpdclZ3iKBpLqeagv7IXuJJfB/HtPSqWZHtZ0NiztlJJwFxQs7uS19x5lCQtaLkBp4m
+X-Gm-Message-State: AOJu0YwlHX8+FDVtWPMpTBayqteCXjDknzDd4PUPshrE8LQRcToDMj6R
+	A4b0pRGO8ggszZdlNlyruKJTrm1FfsWp9tT1zSrjsaw0ksnsG+Ar
+X-Google-Smtp-Source: AGHT+IELx6scJmOUwJTe62jFJmVk1DSdsGKXwe8jKcqr9G80zsbl4g4GQihKDnGL7pqimIyBqUykEA==
+X-Received: by 2002:a05:6808:15a:b0:3c6:1500:abef with SMTP id h26-20020a056808015a00b003c61500abefmr4704701oie.55.1713589762720;
+        Fri, 19 Apr 2024 22:09:22 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.135.251])
+        by smtp.gmail.com with ESMTPSA id g25-20020a62e319000000b006ed59172d2fsm4127949pfh.87.2024.04.19.22.09.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Apr 2024 22:09:22 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: sigmaris@gmail.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	didi.debian@cknow.org,
+	ezequiel@vanguardiasur.com.ar,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	mchehab@kernel.org,
+	p.zabel@pengutronix.de,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	sfr@canb.auug.org.au,
+	nicolas@ndufresne.ca,
+	linkmauve@linkmauve.fr
+Subject: Re: Re: [PATCH v6 2/2] arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
+Date: Sat, 20 Apr 2024 13:09:13 +0800
+Message-Id: <20240420050913.182225-1-liujianfeng1994@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240420044901.884098-1-quic_kriskura@quicinc.com>
-References: <20240420044901.884098-1-quic_kriskura@quicinc.com>
+In-Reply-To: <B9F108CF-4BC5-41A0-A28A-1CA1F4D2CD3C@gmail.com>
+References: <B9F108CF-4BC5-41A0-A28A-1CA1F4D2CD3C@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: donBu3u2KTyfVvakkFL0V6vnNhkSaxxF
-X-Proofpoint-ORIG-GUID: donBu3u2KTyfVvakkFL0V6vnNhkSaxxF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-20_03,2024-04-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- mlxlogscore=909 impostorscore=0 phishscore=0 clxscore=1015 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404200032
 
-Power event IRQ is used for wakeup either when the controller is
-SuperSpeed capable but is missing an SuperSpeed PHY interrupt, or when
-the GIC is not capable of detecting DP/DM High-Speed PHY interrupts.
+Hi Hugh,
 
-The Power event IRQ stat register indicates whether the High-Speed
-phy entered and exited L2 successfully during suspend and resume.
-Indicate the same for all ports of a multiport controller.
+Fri, 19 Apr 2024 18:28:01 +0100, Hugh Cole-Baker wrote:
+>The register range at 0xfdb50000 length 0x800 includes "VEPU121 core0" encoder
+>regs at offset 0 and "VDPU121" decoder regs at offset 0x400 (referring to the
+>TRM v1.0 Part 1, section 5.5.1). So I think the "rockchip,rk3588-vdpu121"
+>compatible isn't exactly correct to use for this entire device.
 
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- drivers/usb/dwc3/dwc3-qcom.c | 23 +++++++++++++++++------
- 1 file changed, 17 insertions(+), 6 deletions(-)
+There are five vepu121 cores for jpeg encoding. And Emmanuel is doing work on
+them[1]. And at the moment the driver doesn’t yet support exposing these cores
+all as a single video node to userspace, so Emmanuel only exposes one single
+core.
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index b6f13bb14e2c..88fb6706a18d 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -36,7 +36,6 @@
- #define PIPE3_PHYSTATUS_SW			BIT(3)
- #define PIPE_UTMI_CLK_DIS			BIT(8)
- 
--#define PWR_EVNT_IRQ_STAT_REG			0x58
- #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
- #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
- 
-@@ -55,6 +54,13 @@
- /* Qualcomm SoCs with multiport support has up to 4 ports */
- #define DWC3_QCOM_MAX_PORTS	4
- 
-+static const u32 pwr_evnt_irq_stat_reg[DWC3_QCOM_MAX_PORTS] = {
-+	0x58,
-+	0x1dc,
-+	0x228,
-+	0x238,
-+};
-+
- struct dwc3_qcom_port {
- 	int			qusb2_phy_irq;
- 	int			dp_hs_phy_irq;
-@@ -424,9 +430,11 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
- 	if (qcom->is_suspended)
- 		return 0;
- 
--	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
--	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
--		dev_err(qcom->dev, "HS-PHY not in L2\n");
-+	for (i = 0; i < qcom->num_ports; i++) {
-+		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg[i]);
-+		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-+			dev_err(qcom->dev, "port-%d HS-PHY not in L2\n", i + 1);
-+	}
- 
- 	for (i = qcom->num_clocks - 1; i >= 0; i--)
- 		clk_disable_unprepare(qcom->clks[i]);
-@@ -475,8 +483,11 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
- 		dev_warn(qcom->dev, "failed to enable interconnect: %d\n", ret);
- 
- 	/* Clear existing events from PHY related to L2 in/out */
--	dwc3_qcom_setbits(qcom->qscratch_base, PWR_EVNT_IRQ_STAT_REG,
--			  PWR_EVNT_LPM_IN_L2_MASK | PWR_EVNT_LPM_OUT_L2_MASK);
-+	for (i = 0; i < qcom->num_ports; i++) {
-+		dwc3_qcom_setbits(qcom->qscratch_base,
-+				  pwr_evnt_irq_stat_reg[i],
-+				  PWR_EVNT_LPM_IN_L2_MASK | PWR_EVNT_LPM_OUT_L2_MASK);
-+	}
- 
- 	qcom->is_suspended = false;
- 
--- 
-2.34.1
+>IMO "rockchip,rk3588-vpu121" would be more appropriate if including both the
+>decoder and encoder. It also raises the question of whether the decoder and
+>encoder should be modeled in DT as one device like on RK3399, or separate
+>devices. In the vendor DT [0] they are modeled as two devices but they share
+>clocks, resets, IOMMU, and a "rockchip,taskqueue-node" value.
 
+Now we have 5 jpeg enc cores, one from 0xfdb50000 and other four from
+0xfdba00000. I tried to add a decoding only core 0xfb50400, but that does not
+work. So the vpu should be defined as one node in devicetree for both encoder
+and decoder like rk3399.
+
+This vpu121 should be exactly the same as the one in rk3399 which supports both
+encoding and decoding. But the current hantro driver has disabled h264 decoding
+since there is anthoer decoder rkvdec on rk3399. This vpu121 is the only
+decoder which supports h254 decoding on rk3588, so we can't just use the
+vpu_variant from rk3399. Maybe we can use rk3399_vpu_variant back when rkvdec2
+on rk3588 is supported by mainline kernel.
+
+At the moment we can keep the compatible string same as the one from rk356x.
+Since there are already jpeg enc cores at 0xfdba0000, we can ignore the one at
+0xfdb50000. When rkvdec2 is supported, I will change "rockchip,rk3588-vpu121"
+same as "rockchip,rk3399-vpu".
+
+And I think changing "rockchip,rk3588-vdpu121" to "rockchip,rk3588-vpu121"
+should match the hardware correctly.
+
+[1] https://lore.kernel.org/all/20240418141509.2485053-1-linkmauve@linkmauve.fr/
+
+Best regards,
+Jianfeng
 
