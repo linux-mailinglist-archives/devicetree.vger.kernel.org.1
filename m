@@ -1,128 +1,184 @@
-Return-Path: <devicetree+bounces-61095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916548ABB09
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 12:43:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C2E8ABB06
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 12:42:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC0BC1C2138B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 10:43:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BF13282450
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 10:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE5F14AAD;
-	Sat, 20 Apr 2024 10:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880E414AAD;
+	Sat, 20 Apr 2024 10:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="jv8C1R9Z";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="T431UlSk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6GYzugA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfout5-smtp.messagingengine.com (wfout5-smtp.messagingengine.com [64.147.123.148])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9351010A09
-	for <devicetree@vger.kernel.org>; Sat, 20 Apr 2024 10:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4422563;
+	Sat, 20 Apr 2024 10:42:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713609815; cv=none; b=kxtbHYtcnW8ZsrXxbbDVefh6PhkxXltLxQ4n4QlSw2OeL7NY48OPmN0yITBoEa/NAIiWzoyp6x+DDvgC4HSmn10lM8LfX7m+wtpM8WgTW2DYGTRMse1YOFF/CQVMP2LGy5g192/2rgHzO3++8H4hscSa5RQt1kMLNNz8wuG0eoc=
+	t=1713609748; cv=none; b=IQ3/NOSaTutNZKQbdW7w8z1K5HMdYIRI0LGCHw//IvBQcyFfQsFa6ukjkstTcd0wqTG+LqcDa78F8fLtHfzxYm8+iUo/k2aXyQjqcqirO8wKzT7TujxDYket3naE8fTqY+J5IyjIABIzuly7DsCYpHFiv8f7EK4YfnQuKp7XLTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713609815; c=relaxed/simple;
-	bh=AL+/tOVJr0LIManyjh9wLnfwMcwYYMLA68W+dcUQvuw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g1eme3AhQE3FJXOlMM/yLOFrmBJeNM3YG2ePgdKZz6pNAzQW+djJyBmkaT8s62MUEut5Lf39ME/NdajZQkpkZZmqo1px3mwBTqphSnFaXYu8OST/OJQQ1+7LZQwx3WHWEp0VdG7aT4bRDziZiMhWCEQ4UnkDFDkQPWu7RQIVsjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=jv8C1R9Z; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=T431UlSk; arc=none smtp.client-ip=64.147.123.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
-	by mailfout.west.internal (Postfix) with ESMTP id D47CC1C000C1;
-	Sat, 20 Apr 2024 06:43:31 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute7.internal (MEProxy); Sat, 20 Apr 2024 06:43:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to; s=fm3; t=1713609811; x=1713696211; bh=92hzw2yJ8J
-	N1p9dBELrZE4K4PO55lW1xwepgcYSmPEc=; b=jv8C1R9ZiZ83bsD1TTvn0jEZmh
-	Dl0gQKFdMXuQWe5MbekPJ3o3mD7lyjj+1aK6Q3HNB282ImayYQSxngSqobz1CKwS
-	u/wreim5BewpjA3GNMpNgR/9FS+IyCAtekbtJwCpMRYQJiOdpF/prQd+huY9fENI
-	njYBLZAmGX6KoNlCkecm2/pNhM25CEqpL7pKlz7ZH4nbSAk5kO8St25LmjVZ59sc
-	xi9T4p5oXpRqRfNyFqAt/hbTMG0qnQVD1FPs3HVJd6m1l1xie3gPFybMmzkLpl4U
-	o8hVlwNv1KM/m6+zZjY5PNIyPhfU23l8jOGyZ71bM1UqnfEPncRV8gYekIUw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1713609811; x=1713696211; bh=92hzw2yJ8JN1p9dBELrZE4K4PO55
-	lW1xwepgcYSmPEc=; b=T431UlSkypbP5ZVou7nujGiaFsRdsDn0rvO4fY4o1qt/
-	wLW7TNWzhcG5bicEzdTEPNrq4oRulKsTBEYC5zGSaOBybLGVYBaMZua7py4IH2pc
-	iKC42bAF+TRqFCVsJX+FemUn03PB1/0uTpaHu0IHq44ficze3hJuGEpK81BIBbJo
-	DB5k0GoUOaGktaq+JG6VwpVkDBc8ZoEYi/ghSQr57hWz0cMH7sz9wswzVjgJOW1l
-	C8z1Lxth3F0bAxjqir90z1k68Iehwm5w7Yy5JKSB1EmoEyZpYMRC+vc7SZseg5No
-	2xUuFFCXSx/jRpJR0AwuKMkCgEtO32ZYnD4iLMmWpQ==
-X-ME-Sender: <xms:UpwjZu4CuIw6_MYdsN_oLTci7-wlm4NugeoeGUcOY8jf5cNp5eKl-g>
-    <xme:UpwjZn4vWZyZ6F6qOOhBNixJ1z_m-G09srxUaAvDsTc8tAeFnBg9VvI4gEh9KJIji
-    52f_3PGsEVtcJZ1SA>
-X-ME-Received: <xmr:UpwjZtfELLaIkUZBlYUCPgxCIqPWS3I7TGQrOC_vONJd1bgywQS_RcijfhVW5FHBjxUrYzoZtLz21WFkhkPs7h2uKwY4jHW7vetDFmOAvhBazGPp>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudekgedgfeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
-    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
-    gvrhhnpeduvdeuudeugedtueffteevveegheehvdfhfeduudevkefggfeftdehgeethffh
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhi
-    grnhesthgvshhtthhorghsthdrtghomh
-X-ME-Proxy: <xmx:UpwjZrJlAPet1mEjR5YbHo4eWWvtEo5aVEUa6DEVaer5LJ-xdNeaBA>
-    <xmx:UpwjZiL95N4RS7plLG31d8xzYO1jetZnw2I6YUIporMIAUbPTsm1yA>
-    <xmx:UpwjZszvKvsVUT2SYUKJCbIZY3wphUjA0VcD4gbanvUNc609pDrtig>
-    <xmx:UpwjZmLzZu9ivmcRL0R2ucidEp_GxTuabP3hO0PCAQ_sCuwa_Ef5Tw>
-    <xmx:U5wjZoyNzILcmLnl8XcML_cxbI6hyFv49Rc01mfUYuuKV9S3LFB0CP9G>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 20 Apr 2024 06:43:27 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Andre Przywara <andre.przywara@arm.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v2 0/5] *** SUBJECT HERE ***
-Date: Sat, 20 Apr 2024 22:40:37 +1200
-Message-ID: <20240420104042.334259-1-ryan@testtoast.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1713609748; c=relaxed/simple;
+	bh=5L1xgUBudmjOD4Io0oeVDwwfciZkDudOjZawUJrPhOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=az4U4qt2mXpSwzXyZQKFq+0AhYjXyhvow+kVBTCuXyAUKC6sUbGeZbJ+Ojd1wFc3/L2OafEbPm/hIqRQyxqEvhnKsFUWSIYQCeNc1X2ON/0ph4GHJEJVK6Hko2H31xXh4/DK2u30JdPTNEOgQshM4LMDa5JlNyIvd8yhB74Nfec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6GYzugA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CC58C072AA;
+	Sat, 20 Apr 2024 10:42:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713609747;
+	bh=5L1xgUBudmjOD4Io0oeVDwwfciZkDudOjZawUJrPhOI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=g6GYzugAVZv4zZqkgcFQBy/d3P8EIS+G3fo7g9IM3zj4QLIYo6fxC3OeAu9LQKC7u
+	 5M/cScdmWm5w9dGZ3XeB99YipdjZSKk1fVv2+ucE5MEf82P/uOQb6jy0+n73lwuloR
+	 koZuhU2IqWcCLfZ+pf/QxkkmIaqf9Be4pZjLMNEstjFvuEalqdUu6ClP7mSCHnrY54
+	 442ItyIfVFUpQLojubL8dWNWQbMnKd8csHYMcqK7dMXHh2eU7dJBaZTOaNOAZGIavh
+	 5824ec3UJHrcyokKykCv7Esm0xxgHKqMjnVghl93H5G2M694YFtep8r8JrTtj48d/2
+	 KNirC4lve4kWQ==
+Date: Sat, 20 Apr 2024 11:42:12 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alexandru.tachici@analog.com, lars@metafoo.de, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
+ nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
+ dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
+ alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
+ liambeguin@gmail.com
+Subject: Re: [PATCH v6 3/5] iio: adc: ad7192: Add aincom supply
+Message-ID: <20240420114212.4f40fb89@jic23-huawei>
+In-Reply-To: <20240417170054.140587-4-alisa.roman@analog.com>
+References: <20240417170054.140587-1-alisa.roman@analog.com>
+	<20240417170054.140587-4-alisa.roman@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-*** BLURB HERE ***
+On Wed, 17 Apr 2024 20:00:52 +0300
+Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
 
-Ryan Walklin (5):
-  dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
-    device variants
-  arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-  arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
-  arm64: dts: allwinner: h700: Add RG35XX-H DTS
-  arm64: dts: allwinner: h700: Add RG35XX DTBs to Makefile
+> AINCOM should actually be a supply. AINx inputs are referenced to AINCOM
+> in pseduo-differential operation mode. AINCOM voltage represets the
+> offset of corresponding channels.
+> 
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+One request inline to make my life easier :)
 
- .../devicetree/bindings/arm/sunxi.yaml        |  15 +
- arch/arm64/boot/dts/allwinner/Makefile        |   3 +
- .../sun50i-h700-anbernic-rg35xx-2024.dts      | 375 ++++++++++++++++++
- .../sun50i-h700-anbernic-rg35xx-h.dts         | 126 ++++++
- .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
- 5 files changed, 572 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+Otherwise, I noticed a subset of what Andy picked up on so won't
+repeat his comments!
 
--- 
-2.44.0
+Thanks,
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/ad7192.c | 37 +++++++++++++++++++++++++++++++++++--
+>  1 file changed, 35 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+> index fe8dbb68a8ba..8d56cf889973 100644
+> --- a/drivers/iio/adc/ad7192.c
+> +++ b/drivers/iio/adc/ad7192.c
+> @@ -186,6 +186,7 @@ struct ad7192_state {
+>  	struct regulator		*vref;
+>  	struct clk			*mclk;
+>  	u16				int_vref_mv;
+> +	u32				aincom_mv;
+>  	u32				fclk;
+>  	u32				mode;
+>  	u32				conf;
+> @@ -742,10 +743,19 @@ static int ad7192_read_raw(struct iio_dev *indio_dev,
+>  			*val = -(1 << (chan->scan_type.realbits - 1));
+>  		else
+>  			*val = 0;
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (st->aincom_mv && !chan->differential)
+> +				*val += DIV_ROUND_CLOSEST_ULL((u64)st->aincom_mv * 1000000000,
+> +							      st->scale_avail[gain][1]);
+> +			return IIO_VAL_INT;
+>  		/* Kelvin to Celsius */
+> -		if (chan->type == IIO_TEMP)
+> +		case IIO_TEMP:
+>  			*val -= 273 * ad7192_get_temp_scale(unipolar);
+> -		return IIO_VAL_INT;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+>  	case IIO_CHAN_INFO_SAMP_FREQ:
+>  		*val = DIV_ROUND_CLOSEST(ad7192_get_f_adc(st), 1024);
+>  		return IIO_VAL_INT;
+> @@ -1052,6 +1062,7 @@ static int ad7192_probe(struct spi_device *spi)
+>  {
+>  	struct ad7192_state *st;
+>  	struct iio_dev *indio_dev;
+> +	struct regulator *aincom;
+>  	int ret;
+>  
+>  	if (!spi->irq) {
+> @@ -1067,6 +1078,27 @@ static int ad7192_probe(struct spi_device *spi)
+>  
+>  	mutex_init(&st->lock);
+>  
+As we are going around again, could you do me a favour and add a comment
+here along the lines of.
+
+	/*
+	 * aincom is optional to maintain compatibility with older DT.
+	 * Newer firmware should provide a zero volt fixed supply if
+	 * this is wired to ground.	 
+	 */
+
+Aim being to discourage this getting cut and paste into other drivers
+that support the common voltage from the start!
+
+
+> +	aincom = devm_regulator_get_optional(&spi->dev, "aincom");
+> +	if (!IS_ERR(aincom)) {
+> +		ret = regulator_enable(aincom);
+> +		if (ret) {
+> +			dev_err(&spi->dev, "Failed to enable specified AINCOM supply\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = devm_add_action_or_reset(&spi->dev, ad7192_reg_disable, aincom);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = regulator_get_voltage(aincom);
+> +		if (ret < 0)
+> +			return dev_err_probe(&spi->dev, ret,
+> +					     "Device tree error, AINCOM voltage undefined\n");
+> +		st->aincom_mv = ret / 1000;
+> +	} else {
+> +		st->aincom_mv = 0;
+> +	}
+> +
+>  	st->avdd = devm_regulator_get(&spi->dev, "avdd");
+>  	if (IS_ERR(st->avdd))
+>  		return PTR_ERR(st->avdd);
+> @@ -1113,6 +1145,7 @@ static int ad7192_probe(struct spi_device *spi)
+>  	st->int_vref_mv = ret / 1000;
+>  
+>  	st->chip_info = spi_get_device_match_data(spi);
+> +
+>  	indio_dev->name = st->chip_info->name;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+>  	indio_dev->channels = st->chip_info->channels;
 
 
