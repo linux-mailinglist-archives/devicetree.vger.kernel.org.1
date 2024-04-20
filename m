@@ -1,184 +1,171 @@
-Return-Path: <devicetree+bounces-61094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C2E8ABB06
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 12:42:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7995A8ABB0A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 12:46:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BF13282450
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 10:42:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96B541C20828
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 10:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880E414AAD;
-	Sat, 20 Apr 2024 10:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EB314AAD;
+	Sat, 20 Apr 2024 10:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6GYzugA"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="n/aS+rEc";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="P7mz4zja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from wfout5-smtp.messagingengine.com (wfout5-smtp.messagingengine.com [64.147.123.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4422563;
-	Sat, 20 Apr 2024 10:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E94D515
+	for <devicetree@vger.kernel.org>; Sat, 20 Apr 2024 10:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713609748; cv=none; b=IQ3/NOSaTutNZKQbdW7w8z1K5HMdYIRI0LGCHw//IvBQcyFfQsFa6ukjkstTcd0wqTG+LqcDa78F8fLtHfzxYm8+iUo/k2aXyQjqcqirO8wKzT7TujxDYket3naE8fTqY+J5IyjIABIzuly7DsCYpHFiv8f7EK4YfnQuKp7XLTc=
+	t=1713609997; cv=none; b=HlDA4zTu3g6Tq33KejkqCDyJVxZbPtnikg2BxkHDvIet020lcdxraGf5DqbYKlFtYNH+juDVTceCrGvgOD2shTAy3TYK4ZfqBxBxCGVV1Wk8dvGYiWuDfBsLJRC5iqD1ywLlsIqBh+91kmOYlXCvYcmlRSMVcZqnKa3tCO9HwjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713609748; c=relaxed/simple;
-	bh=5L1xgUBudmjOD4Io0oeVDwwfciZkDudOjZawUJrPhOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=az4U4qt2mXpSwzXyZQKFq+0AhYjXyhvow+kVBTCuXyAUKC6sUbGeZbJ+Ojd1wFc3/L2OafEbPm/hIqRQyxqEvhnKsFUWSIYQCeNc1X2ON/0ph4GHJEJVK6Hko2H31xXh4/DK2u30JdPTNEOgQshM4LMDa5JlNyIvd8yhB74Nfec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6GYzugA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CC58C072AA;
-	Sat, 20 Apr 2024 10:42:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713609747;
-	bh=5L1xgUBudmjOD4Io0oeVDwwfciZkDudOjZawUJrPhOI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=g6GYzugAVZv4zZqkgcFQBy/d3P8EIS+G3fo7g9IM3zj4QLIYo6fxC3OeAu9LQKC7u
-	 5M/cScdmWm5w9dGZ3XeB99YipdjZSKk1fVv2+ucE5MEf82P/uOQb6jy0+n73lwuloR
-	 koZuhU2IqWcCLfZ+pf/QxkkmIaqf9Be4pZjLMNEstjFvuEalqdUu6ClP7mSCHnrY54
-	 442ItyIfVFUpQLojubL8dWNWQbMnKd8csHYMcqK7dMXHh2eU7dJBaZTOaNOAZGIavh
-	 5824ec3UJHrcyokKykCv7Esm0xxgHKqMjnVghl93H5G2M694YFtep8r8JrTtj48d/2
-	 KNirC4lve4kWQ==
-Date: Sat, 20 Apr 2024 11:42:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- alexandru.tachici@analog.com, lars@metafoo.de, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
- nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
- alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
- liambeguin@gmail.com
-Subject: Re: [PATCH v6 3/5] iio: adc: ad7192: Add aincom supply
-Message-ID: <20240420114212.4f40fb89@jic23-huawei>
-In-Reply-To: <20240417170054.140587-4-alisa.roman@analog.com>
-References: <20240417170054.140587-1-alisa.roman@analog.com>
-	<20240417170054.140587-4-alisa.roman@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1713609997; c=relaxed/simple;
+	bh=+oydJ1P4VEg8KRwamEs73qUeFgR9pj011MyCpQDZkPE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Kv0FjyMFgs1NWsBC6+XUzHNFSQLj9S9T0ayjXH6UDCI6enMm/gHIJIMC4MCF51qV5yJ6PAchQC2rrVkljmub4jfRDN7BNQafsgv9Xsznx2uLPsSHHwh/vfjJHuetJeGzIosO3PSLUX2CcvGm+eLg6eAozFgaJMf1Hljm/H0buX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=n/aS+rEc; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=P7mz4zja; arc=none smtp.client-ip=64.147.123.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfout.west.internal (Postfix) with ESMTP id D33071C000C1;
+	Sat, 20 Apr 2024 06:46:34 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Sat, 20 Apr 2024 06:46:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm3; t=1713609994; x=1713696394; bh=dbRLtQQRMY
+	qByze6gh7/BRYEmZm78OTT1L0HVRXo8QQ=; b=n/aS+rEcv4fBC64Xh/kgGMgOFQ
+	Jb70iCYAZfRY3W3qpKX8M3iBWR5Ag6kzWWSpulwBSypR4iTdwJdcvQRf04aDlq3w
+	PORjpZpBgzonE71LbAxcJHNMcPO9CWbLq/i90yItsw/0IQmPANbK7ZCjyrn/OMW5
+	NUiR3CtbQEViN3lS5MfI5SmOO+u9TWNl8eKGUa1JSa6cCKmYgzsCRQKTM+x+MfYd
+	r1yX6rtIBtPbQjAuPmPsTVKPm0N6HFfYaMq98352ppFpSJQIffU++K+n2/D+wRJU
+	OP89rAtLn6PA7zxYObfYAAusNXCXQ9a/USiwlJnJoRTzwruYgPZQWoqk81HQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1713609994; x=1713696394; bh=dbRLtQQRMYqByze6gh7/BRYEmZm7
+	8OTT1L0HVRXo8QQ=; b=P7mz4zjag/ns6mWSUl/4+EBIbbTXQHziUnN43dvaXsWz
+	0BgK4k9ZlU6hTdPc/mQwyfCETSlcVzgahLhJpiwKF3pVn3G9YbhvKyx53100CkgV
+	tw4Oj5geyrnfsspjO/F+H+mGy21bVkEI/1tlmV6ey4VDHUqJCgaTM0fdjz6Pj3HW
+	2KqjU63WL+iQxTzcHWUvSojortcWXrD+M4/GUYn0AhF1EHVK3V1d8ixL2J5cqS9w
+	o9hphthCwQxaidr764Vzbnh5GLPig4Y7JdcmwBaCZgFkCSPRBPfDbyN794G/gkDz
+	THIkQdPC5F/PBRL1v81U+zSTVQs9sc6/9aAQ3hwUZw==
+X-ME-Sender: <xms:Cp0jZh_xeBpc4gccilWMqwUX-YG-sSl2RTmDXJ2nyafl_97k2FBTzw>
+    <xme:Cp0jZlugqmBMwBaEYZbFuWxhYITOHNdnWNVPt4a2ThiVH3nYOZBJ1ticuAewAgfii
+    TI_6L67m-XgiD05WQ>
+X-ME-Received: <xmr:Cp0jZvBg_CnMyzgvJi_u9_otK0hZiQOAylGaKYuojbru7YYVmJxEL2nNZ27n9GdyYn5YwM_hwP_jHhe4onkPTK3FgeZXYc4nEZmueRXgMWA9uwXl>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudekgedgfedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
+    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
+    gvrhhnpeffjeetfefgkeeukeeihfeuhefguddvtdekjeeffedtjeeuieefvdfhgeffleeh
+    leenucffohhmrghinhepghhoohhglhgvshhouhhrtggvrdgtohhmnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgr
+    shhtrdgtohhm
+X-ME-Proxy: <xmx:Cp0jZldSsGG2oBq52naX3lr47hsSQLMXkHj0GWD4OVIx98WWl82OIA>
+    <xmx:Cp0jZmP9hJihHkiFjbaBEntFOjQ-1OdANZSuDT5m-by81xUdZ4rp6Q>
+    <xmx:Cp0jZnlxcV7r4SQ7bHWSIpJ9OsZ2JzgGsiunOUpE6hmn60oelabj0w>
+    <xmx:Cp0jZguYaR7VQCsGLMCNwyb1G1m28pJLZ2HpBiMPXZtz__GQ9HDh-w>
+    <xmx:Cp0jZnnUGufxoouuuOmmR26jnnNmsljB2v4tj_-LKCo7xAIw2UxE53Dk>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 20 Apr 2024 06:46:30 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v2 0/5] arm64: dts: allwinner: Add Anbernic RG35XX (Plus/H/2024) support
+Date: Sat, 20 Apr 2024 22:43:53 +1200
+Message-ID: <20240420104354.334947-5-ryan@testtoast.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Wed, 17 Apr 2024 20:00:52 +0300
-Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+Revised patchset based on review with many changes including improved regulators and formatting.
+Changelog inline, original cover below.
 
-> AINCOM should actually be a supply. AINx inputs are referenced to AINCOM
-> in pseduo-differential operation mode. AINCOM voltage represets the
-> offset of corresponding channels.
-> 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-One request inline to make my life easier :)
+--
 
-Otherwise, I noticed a subset of what Andy picked up on so won't
-repeat his comments!
+The Anbernic RG35XX is a family of handheld gaming devices. There are 4 
+variants, of which 3 using the Allwinner H700 chip are covered by this patchset.
+The fourth (released first and named simply RG35XX) uses an Actions 
+Semiconductor ATM7039s which is a 32-bit Cortex-A9 chip with no mainline support 
+and is not covered.
 
-Thanks,
+Common features (RG35XX-2024):
+- Allwinner H700 @ 1.5GHz (H616 variant exposing RGB LCD pins, with 4x 
+  Cortex-A53 Cores and a Mali G31 GPU)
+- 1 GB LPDDR4 DRAM
+- AXP717 PMIC (patches accepted in mfd-next - 
+  https://kernel.googlesource.com/pub/scm/linux/kernel/git/lee/mfd/+/d2ac3df75c3a995064cfac0171e082a30d8c4c66)
+- 3.5" 640x480 RGB LCD
+- Mini-HDMI, 3.5mm audio jack, mono speaker, two microSD slots and USB-C 
+  (USB 2.0) for power.
 
-Jonathan
+RG35XX-Plus adds:
+- RTL8821CS SDIO Wifi/BT chip
 
-> ---
->  drivers/iio/adc/ad7192.c | 37 +++++++++++++++++++++++++++++++++++--
->  1 file changed, 35 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-> index fe8dbb68a8ba..8d56cf889973 100644
-> --- a/drivers/iio/adc/ad7192.c
-> +++ b/drivers/iio/adc/ad7192.c
-> @@ -186,6 +186,7 @@ struct ad7192_state {
->  	struct regulator		*vref;
->  	struct clk			*mclk;
->  	u16				int_vref_mv;
-> +	u32				aincom_mv;
->  	u32				fclk;
->  	u32				mode;
->  	u32				conf;
-> @@ -742,10 +743,19 @@ static int ad7192_read_raw(struct iio_dev *indio_dev,
->  			*val = -(1 << (chan->scan_type.realbits - 1));
->  		else
->  			*val = 0;
-> +		switch (chan->type) {
-> +		case IIO_VOLTAGE:
-> +			if (st->aincom_mv && !chan->differential)
-> +				*val += DIV_ROUND_CLOSEST_ULL((u64)st->aincom_mv * 1000000000,
-> +							      st->scale_avail[gain][1]);
-> +			return IIO_VAL_INT;
->  		/* Kelvin to Celsius */
-> -		if (chan->type == IIO_TEMP)
-> +		case IIO_TEMP:
->  			*val -= 273 * ad7192_get_temp_scale(unipolar);
-> -		return IIO_VAL_INT;
-> +			return IIO_VAL_INT;
-> +		default:
-> +			return -EINVAL;
-> +		}
->  	case IIO_CHAN_INFO_SAMP_FREQ:
->  		*val = DIV_ROUND_CLOSEST(ad7192_get_f_adc(st), 1024);
->  		return IIO_VAL_INT;
-> @@ -1052,6 +1062,7 @@ static int ad7192_probe(struct spi_device *spi)
->  {
->  	struct ad7192_state *st;
->  	struct iio_dev *indio_dev;
-> +	struct regulator *aincom;
->  	int ret;
->  
->  	if (!spi->irq) {
-> @@ -1067,6 +1078,27 @@ static int ad7192_probe(struct spi_device *spi)
->  
->  	mutex_init(&st->lock);
->  
-As we are going around again, could you do me a favour and add a comment
-here along the lines of.
+RG35XX-H (Horizontal form-factor) adds:
+- RTL8821CS SDIO Wifi/BT chip
+- Two analog thumbsticks
+- Second USB-C port
+- Stereo speaker
 
-	/*
-	 * aincom is optional to maintain compatibility with older DT.
-	 * Newer firmware should provide a zero volt fixed supply if
-	 * this is wired to ground.	 
-	 */
+Patch 1 adds the DT bindings for the board names, Patch 2 adds the -2024 device
+as a common base, Patch 3 adds Wifi/BT support for the -Plus (and -H), and Patch 
+3 adds the second USB and thumbsticks for the -H. The -H is a strict superset of
+the -Plus, which is in turn a strict superset of the -2024, so this translates 
+quite neatly. Alternatively a single DTS for the three devices could be 
+considered.
 
-Aim being to discourage this getting cut and paste into other drivers
-that support the common voltage from the start!
+LCD, HDMI, audio and GPU support are not yet ready and relying on out-of-tree 
+patches currently, so will be added once these drivers are mainlined.
 
+Ryan
 
-> +	aincom = devm_regulator_get_optional(&spi->dev, "aincom");
-> +	if (!IS_ERR(aincom)) {
-> +		ret = regulator_enable(aincom);
-> +		if (ret) {
-> +			dev_err(&spi->dev, "Failed to enable specified AINCOM supply\n");
-> +			return ret;
-> +		}
-> +
-> +		ret = devm_add_action_or_reset(&spi->dev, ad7192_reg_disable, aincom);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regulator_get_voltage(aincom);
-> +		if (ret < 0)
-> +			return dev_err_probe(&spi->dev, ret,
-> +					     "Device tree error, AINCOM voltage undefined\n");
-> +		st->aincom_mv = ret / 1000;
-> +	} else {
-> +		st->aincom_mv = 0;
-> +	}
-> +
->  	st->avdd = devm_regulator_get(&spi->dev, "avdd");
->  	if (IS_ERR(st->avdd))
->  		return PTR_ERR(st->avdd);
-> @@ -1113,6 +1145,7 @@ static int ad7192_probe(struct spi_device *spi)
->  	st->int_vref_mv = ret / 1000;
->  
->  	st->chip_info = spi_get_device_match_data(spi);
-> +
->  	indio_dev->name = st->chip_info->name;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  	indio_dev->channels = st->chip_info->channels;
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+
+Ryan Walklin (5):
+  dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
+    device variants
+  arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+  arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+  arm64: dts: allwinner: h700: Add RG35XX-H DTS
+  arm64: dts: allwinner: h700: Add RG35XX DTBs to Makefile
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  15 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   3 +
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      | 375 ++++++++++++++++++
+ .../sun50i-h700-anbernic-rg35xx-h.dts         | 126 ++++++
+ .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
+ 5 files changed, 572 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+
+-- 
+2.44.0
 
 
