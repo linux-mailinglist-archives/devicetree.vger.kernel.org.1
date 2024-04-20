@@ -1,173 +1,167 @@
-Return-Path: <devicetree+bounces-61107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85ED88ABB30
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 13:00:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D310C8ABB34
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 13:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED05D1F211EB
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 11:00:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BD552819E5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 11:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0791A23778;
-	Sat, 20 Apr 2024 11:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2E623778;
+	Sat, 20 Apr 2024 11:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a+HXLlFE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UoKNOhOs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C231AAA5
-	for <devicetree@vger.kernel.org>; Sat, 20 Apr 2024 11:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426F3205E30;
+	Sat, 20 Apr 2024 11:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713610804; cv=none; b=A1eiZs4UZovoMjQeleMiTiW95CpW5XsSU3U7bPQ8pb1Y6DTxCTY8EqLasba91J3XMQ5bK7cR/c4Bd2XhzV3vw8g7yHGsM6joIb2mvub6FsfqQbpwU+dHDDC3n34C6iYZrvwJU1Q1I74iGPyi63L9wiX+rqXxUMz6jjOnD4akFOM=
+	t=1713610971; cv=none; b=N1n96egSUc6ilKq5T39SomJaAZcKxXjCMq/IeA4GGYU26aUr8cfFj/CJFdpiVJgVyNOaRiJGgToc9vtAQo5W/oJ+x6+WZrwcXMYgj00QTaNhe8ZdlKQnEB4+qXJjuKI1cIFRyhFt+YZ/1JtKW75cyL3O4mgaFV/V2k3kYkdfJSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713610804; c=relaxed/simple;
-	bh=Ar6eInfORK5tMxsobW/qAg83tCNK3ThFWRLLWsCwySg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lW2qJStS6r9X7I7Ctsw0qrFub0yMiZZoXHBxyLrHE3aMpkleajZ5K1c/gjqmEe6Awomg4i+62I05gcsPD2+SLtYtcPeVZKcBthSwhrd007qIUM7eGO31VyDI/CYbdrlAaPD/x2RdclxOY/jYaJ//qtWW6YzTxcyB9jcVgAfBPK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a+HXLlFE; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-419d320b899so5552145e9.1
-        for <devicetree@vger.kernel.org>; Sat, 20 Apr 2024 04:00:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713610802; x=1714215602; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gkOmWICMxMbEwa45FeowiCNiouTMG6+FWUQrmenOz5A=;
-        b=a+HXLlFEJoD3+ldAG043738ST2STkrfGoHuUgwtuoYpL7VT7fEezmWHk5mQzmro8b0
-         LhK/gMNJcQy9cSIhYc7LtdeaPQj/gTe16xx8NNUECtdiquN24e/smIA7BoWo+JFgwKcy
-         dfarHVhXy9mmpV51Eta3oL8QwBDKvaeJnBJvd+ByTwSrqzzwkRh6mrA0lUmHVjDsEU+e
-         xlf03d0J00/e7/buEVcIbIUwcUGEcyNb5GlrTT/3kFvAoEfwn+Xklf0w/0srolm4288S
-         JWdocfJF+Ota+kyndoN2eTN1gdtrX+THhWLK9NSf4QcKrWcW/yYTCABBvuSwLpLL7NQg
-         8O4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713610802; x=1714215602;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gkOmWICMxMbEwa45FeowiCNiouTMG6+FWUQrmenOz5A=;
-        b=wxT6Vjn7aGVihp1pCvSFvQZGGAoUNAcpmUSOBA5INiKi16iauL7uVIOK8/OqI6QFXY
-         ipUtZIU0OtnxeiMq7OH3p97Z9J8nrs0nI5VJ6fFZJZTTsj214kIZBMLvCJqLjnvnyVvc
-         m4nbzokm2o0waJ2HU5MGKIyYgLFKaouyrACrDn3l2rZZwlZyCkz9KiRjmKAMu8vsHhBb
-         ct1dnFiKSep9LAdhCwSmsRNf785NhT0KBySmVitNlvD0ppYT5n4GSKkpmm1Onl4QwfrK
-         VR4amHNVxJPvweJKfh0VA0K2owPuGKV6DhMMsZe3wsZkaDXur3/0od7xG8KEmPp8cKrD
-         RJ8w==
-X-Gm-Message-State: AOJu0YwEKGYLHCqabPUwLi2qer85ka+Oe98SStKJtWBsOZNrKofXvFsP
-	7ifRez72tk0BAM0gkf/m3m/7BQ4QypeBMDDrxOuHaWA81ImjT37F7pcKaUyrW3g=
-X-Google-Smtp-Source: AGHT+IEiF/OyP5hiEGYC9xNO3KsZX2GhUORGzoDHG+hEKJNFs6l8qHPoHqCKSTND78jC+jdq5qS8Uw==
-X-Received: by 2002:a05:600c:3108:b0:418:e964:605c with SMTP id g8-20020a05600c310800b00418e964605cmr3363451wmo.40.1713610801531;
-        Sat, 20 Apr 2024 04:00:01 -0700 (PDT)
-Received: from [10.236.36.88] ([88.128.88.151])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c315000b00419d841cea7sm2768753wmo.48.2024.04.20.04.00.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Apr 2024 04:00:01 -0700 (PDT)
-Message-ID: <37ec07c5-5235-4356-8ab2-ad09ddd58347@linaro.org>
-Date: Sat, 20 Apr 2024 12:59:59 +0200
+	s=arc-20240116; t=1713610971; c=relaxed/simple;
+	bh=Bz8Fp8hN4Mlc9ZnQKuGXEkk/3st/E9Rbstg5YTsOdv8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=af58GAQ5i1GnLWnEjXwUBYz3blQh0kR9rXcUeZvyltT8H9J3Wxl7Wwvdlh8lV0IuGlcdvMwriK2Tdtj6JHIuVP82tpCSFOxavX2u1rygYm3nYkg0MHB2zt6JvdtYIBxoD6MltVD2Rp2JG0Yd4SoSl/iLsM3c50SLAH4PsuIDSOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UoKNOhOs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17CA9C072AA;
+	Sat, 20 Apr 2024 11:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713610970;
+	bh=Bz8Fp8hN4Mlc9ZnQKuGXEkk/3st/E9Rbstg5YTsOdv8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UoKNOhOsf0AqhmGSvpPxyL48GbB/m9Av7fdoj8f/PjgyKCzfwcWjIbRUKwMyc2wP9
+	 mqywb9gYU1HDGq+ROKPNgLyft9BAcdocfsLUde8niKyueGRVjrRpFPz5EOx/zP6z3I
+	 40pqs2RKkBi3ikkq3QL/s8P3jjgrQX4HsBbB90VyPQEbwYj5hwL7WxThpKEwzaNDCK
+	 Ibo6XnSPzDTbxG/2iagJrE38ErBHuPboNwwzvBVFX9Q4kTCsqjY09OCLLYDHAky9EP
+	 iJGy4Pk22cCs4PW64CaVbc5p55vcJV8Kxp4fmrCE6UChyIwOaz9qGilUSSuLwWzhJL
+	 aHfn7HlhRSj4Q==
+Date: Sat, 20 Apr 2024 12:02:35 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alexandru.tachici@analog.com, lars@metafoo.de, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
+ nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
+ dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
+ alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
+ liambeguin@gmail.com
+Subject: Re: [PATCH v6 5/5] iio: adc: ad7192: Add AD7194 support
+Message-ID: <20240420120235.63e32769@jic23-huawei>
+In-Reply-To: <20240417170054.140587-6-alisa.roman@analog.com>
+References: <20240417170054.140587-1-alisa.roman@analog.com>
+	<20240417170054.140587-6-alisa.roman@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-To: Ryan Walklin <ryan@testtoast.com>, Andre Przywara
- <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Chris Morgan <macromorgan@hotmail.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20240420104354.334947-5-ryan@testtoast.com>
- <20240420104354.334947-8-ryan@testtoast.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240420104354.334947-8-ryan@testtoast.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 20/04/2024 12:43, Ryan Walklin wrote:
-> The base model RG35XX (2024) is a handheld gaming device based on an Allwinner H700 chip.
+On Wed, 17 Apr 2024 20:00:54 +0300
+Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+
+> Unlike the other AD719Xs, AD7194 has configurable differential
+> channels. The user can dynamically configure them in the devicetree.
 > 
-> The H700 is a H616 variant (4x ARM Cortex-A53 cores @ 1.5Ghz with Mali G31 GPU) which exposes RGB LCD and NMI pins.
+> Also modify config AD7192 description for better scaling.
 > 
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&pio 8 12 GPIO_ACTIVE_HIGH>; /* PI12 */
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +	   compatible = "gpio-keys";
-> +
-> +	   button-up {
-> +		   label = "D-Pad Up";
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
 
-Please fix your indentation to match kernel/DTS coding style.
+Late feedback (sorry!) but I think we should resolve the single ended
+channel description so that it sits at the same level in DT binding
+as do differential channels.  Current situation just feels inconsistent.
+
+See DT binding reply.  Should be easy to do now, and wouldn't be possible
+to add later.  It would be possible to add support for moving to
+per channel DT entries for a driver that previously assumed all should be
+available, but we can't easily move from assuming all single ended channels
+are but differential are specified by DT child nodes.
+
+Jonathan
+
+> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+> index 8d56cf889973..dc113405f1bc 100644
+> --- a/drivers/iio/adc/ad7192.c
+> +++ b/drivers/iio/adc/ad7192.c
+> @@ -1,6 +1,6 @@
 
 
-Best regards,
-Krzysztof
+> +static int ad7194_parse_channels(struct iio_dev *indio_dev)
+> +{
+> +	struct device *dev = indio_dev->dev.parent;
+> +	struct iio_chan_spec *ad7194_channels;
+> +	struct fwnode_handle *child;
+> +	struct iio_chan_spec ad7194_chan = AD7193_CHANNEL(0, 0, 0);
+> +	struct iio_chan_spec ad7194_chan_diff = AD7193_DIFF_CHANNEL(0, 0, 0, 0);
+> +	struct iio_chan_spec ad7194_chan_temp = AD719x_TEMP_CHANNEL(0, 0);
+> +	struct iio_chan_spec ad7194_chan_timestamp = IIO_CHAN_SOFT_TIMESTAMP(0);
+> +	unsigned int num_channels, index = 0, ain_chan;
+> +	int ret;
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +	if (num_channels > AD7194_CH_DIFF_NR_MAX)
+> +		return -EINVAL;
+> +
+> +	num_channels += AD7194_CH_BASE_NR;
+> +
+> +	ad7194_channels = devm_kcalloc(dev, num_channels,
+> +				       sizeof(*ad7194_channels), GFP_KERNEL);
+> +	if (!ad7194_channels)
+> +		return -ENOMEM;
+> +
+> +	indio_dev->channels = ad7194_channels;
+> +	indio_dev->num_channels = num_channels;
+> +
+> +	device_for_each_child_node(dev, child) {
+> +		*ad7194_channels = ad7194_chan_diff;
+> +		ad7194_channels->scan_index = index++;
+> +		ret = ad7194_parse_channel(child, ad7194_channels);
+> +		if (ret) {
+> +			fwnode_handle_put(child);
+> +			return ret;
+> +		}
+> +		ad7194_channels++;
+> +	}
+> +
+> +	*ad7194_channels = ad7194_chan_temp;
+> +	ad7194_channels->scan_index = index++;
+> +	ad7194_channels->address = AD7194_CH_TEMP;
+> +	ad7194_channels++;
+> +
+> +	for (ain_chan = 1; ain_chan <= 16; ain_chan++) {
+
+I think it's worth making these more similar to the differential channels.
+Seems odd to allow DT to provide that list, but not the same for single ended.
+See comment on binding.  Should be fairly easy to add now, and if we
+leave it until later, there won't be a way to move this forwards because
+we won't be able to tell if no single ended channels in DT means none
+are relevant, or if it means the DT file predates us adding per single ended
+channel description.
+
+
+> +		*ad7194_channels = ad7194_chan;
+> +		ad7194_channels->scan_index = index++;
+> +		ad7194_channels->channel = ain_chan;
+> +		ad7194_channels->address = AD7194_CH_DIFF(ain_chan, 0);
+> +		ad7194_channels++;
+> +	}
+> +
+> +	*ad7194_channels = ad7194_chan_timestamp;
+> +	ad7194_channels->scan_index = index;
+> +
+> +	return 0;
+> +}
+
 
 
