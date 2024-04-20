@@ -1,159 +1,120 @@
-Return-Path: <devicetree+bounces-61136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C458ABC39
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 17:39:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25CC88ABC58
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 18:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70CE11C20748
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 15:39:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 481951C20F91
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 16:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F112940D;
-	Sat, 20 Apr 2024 15:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED61374F7;
+	Sat, 20 Apr 2024 16:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RoopK/Mi"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="sp3H5nX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C27E28373;
-	Sat, 20 Apr 2024 15:39:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E867F;
+	Sat, 20 Apr 2024 16:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713627576; cv=none; b=b2X66G9b3eEP+TRBgG1gH5YX0Ulo4n8Gnrq416Wy5IwNWCEMMY5tIfs65oPgWoKqYmyBKX8/PYUHr/KYaVV8NKu0Ltku+cpPdPvOJNgf9Joq0a5saYiy7mqiQFULZfO803QYpfuSWqmDCa6xB/XpcQ2YMyHI+tqNoPo60qjGjRc=
+	t=1713629079; cv=none; b=ESdtoSG9ID2c5DBYMbzReJCxjvmSMKzF50FIv3CJEQ6G1Kz6//1YU9PjoxEIX5F7jCutjrimBHw/zusk2V42VwyJi+QX5zQ8y+ynBpMQ5lwdxIcSfVfsgrRErl7//QTBcL3SbXG9IEfVj3ooKsArKgAfOUHh/2PQSlBlJdZK7bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713627576; c=relaxed/simple;
-	bh=i9cY9qp6/a0mcmsh3qFB586htevc7etX3YNS7yvrCd0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hvtMyQfUvFVg76PLYnhxT/sIvRW/mZDCg8jQJnvzTgNK+pfgwbP/k5RQFGy0zYS+giIE8UTuxi5AqaTNhxTswxBPMQux+w7jl/6DN3JI66fJqF6qbBdzDzXcCA4ws9vcONZtP1GzY8WgCaciHUXS0uYWUNWfGMQQVRaQ7cUxmaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RoopK/Mi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 765FCC072AA;
-	Sat, 20 Apr 2024 15:39:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713627576;
-	bh=i9cY9qp6/a0mcmsh3qFB586htevc7etX3YNS7yvrCd0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RoopK/Mi4T4fahlLvKZqpmYCQDwzA/PWEl9uPvfI130RXWhFoXZ5fW0pi8VR932XB
-	 aHm3f3qkPn7fUVBk65/sSNT1DS7a9QApC8t+T6roUVXvrRnBozeQ7AIJcSgtjurrvy
-	 Whfahws7ERSpc/WOKGmeG/jKpAP4NW1ehpp+LOItwCmA7CoAw9ltWiMITNqMzf0meF
-	 DsomxnlVOD72DrR7p2bK0j0nXvDYdfFp3nk59v4AePNJS9LkYJOsd5ccNlE22y2WF9
-	 BfmY7XJPzXYprZHeI1ov7RKGfkRXM9cthduHozNygOyuM1nCRY36JGpyD6QfG9vvdw
-	 YEJVBNs1CNXwQ==
-Date: Sat, 20 Apr 2024 16:39:26 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Alexandru Ardelean <alexandru.ardelean@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH 0/8] iio: ad9467: support interface tuning
-Message-ID: <20240420163926.3ae99cb1@jic23-huawei>
-In-Reply-To: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
-References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1713629079; c=relaxed/simple;
+	bh=7L8msFWXsjgIOFymfuyiLmAka5va6AwcRXmVCbhMnws=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nq5r9l0yYMZirIczCx64OVmIi0Uj4o7x7+G4khiVnmTut41wmNSNaIhjffWlaid1HTd71QkPLyyC903QIg2gCuuO35qB9tCGw0bwHA19VMDMeZvqt6L7aCBWTdSar2R+XvR9N3CyqutIwuhpY7kmQnn+BQ2kC9UUHxn9jlieNGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=sp3H5nX+; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=wjJBKDNaKI0ROz+bFURwPDTbi+LX3n6MLMpFALh+vcA=; b=sp
+	3H5nX+2Ccm3oiq+FmvNNVtASCII9OZoogBVIXfg4nFBgRaP2ynqNCaYRza2TsT4xavAP48eoHKxiI
+	RQqYUxzk8GpMEP8xH/sFTE/T4DLwyF/RWANYd3dEXdVkIQqY9Dp73lPEjtiLG6MV0nONqlY0NaFpA
+	BS6Jx8fKGgAoCjE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ryDCC-00DW82-EA; Sat, 20 Apr 2024 18:04:08 +0200
+Date: Sat, 20 Apr 2024 18:04:08 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandru Tachici <alexandru.tachici@analog.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jon Nettleton <jon@solid-run.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 2/2] net: phy: adin: add support for setting
+ led-, link-status-pin polarity
+Message-ID: <6d843f6f-01f9-4ac9-a661-af452f5ab623@lunn.ch>
+References: <20240419-adin-pin-polarity-v1-0-eaae8708db8d@solid-run.com>
+ <20240419-adin-pin-polarity-v1-2-eaae8708db8d@solid-run.com>
+ <65411c68-c76a-499d-88c7-e80ca59a3027@lunn.ch>
+ <fb13743f-a1f6-44b7-9659-882976f0bc7d@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fb13743f-a1f6-44b7-9659-882976f0bc7d@solid-run.com>
 
-On Fri, 19 Apr 2024 17:36:43 +0200
-Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> Hi Andrew,
+> 
+> That looks very much related!
+> 
+> I was already planning to investigate adding led support ... .
+> 
+> 1. for the  LINK_ST pin I believe we still need a non-led-framework
+> device property for setting polarity, as it is a fixed function signal
+> that we can't even turn on or off from software.
 
-> Hi Jonathan,
-Hi Nuno,
+We should separate the device tree binding from the implementation of
+the binding. The binding describes the hardware. The hardware is
+active low. And the binding can describe that. So i don't see a need
+for anything vendor specific.
 
-Friday special :)
+I think the real question is, can the current generic LED code be made
+to handle this LED, or should you have code in the PHY driver to
+handle this binding in a specific way for this LED?
 
->=20
-> Here it goes one more set of new functionality for the backend
-> framework. This allows for one of the most important missing features of
-> the ad9467 driver. I hope the new interfaces to be fairly straight.
-> Though, there's one that's likely to catch your attention:
->=20
-> iio_backend_iodelay_set()
->=20
-> as you would expect (rightfully) some delay with actual units. The
-> reason why it does not have any units is because the IO delay thing is
-> mostly a calibration done at the backend level and the actually values
-> and timings (each tap corresponds to) is very HW specific. For example
-> the Xilinx/AMD zedboard has different specifications when compared to
-> zc706.
->=20
-> Given the above, I admit (:sweat smile:) I went the easier path and just =
-added a
-> parameter with no meaningful unit (with proper docs). I'm definitely open
-> for ideas if this fells to hacky. One thing that I thought would be to
-> have any additional API that could be called during probe and get an
-> array of delays from the backend. Something like:
->=20
-> iio_backend_iodelays_get(back, const unsigned int **delays_ps, unsigned i=
-nt *ndelays)
->=20
-> The backend should know what delays it supports. For the axi-adc IP we
-> do have registers to detect the fpga grade etc so we could return the
-> delays based on the HW we are running on. We would also need an addition
-> refclk as the actual delay each tap introduces depends on a refclk.
+Given the restrictions on this LED, i don't think it makes sense to
+expose it in /sys/class/leds. But is it possible to leverage the
+framework to parse the binding and call the polarity function?
 
-=46rom a userspace point of view do we care about the real values? (in units =
-we understand)
-Does the front end driver algorithm ever care about what they actually mean=
- either?
+> 2. LED_0 control not currently supported by adin driver.
+> The phy supports what data-sheet calls extended configuration
+> (disabled by default) for controlling led state (on, off, patterns).
+> 
+> Since it is not default, I see the polarity setting separate from leds.
+> However I do believe the led_polarity_set callback is an acceptable
+> solution.
 
-Feels like all these are is a sequence of magic flags that we try, the only
-thing that assigns them any absolute meaning is that you assume they
-are monotonic in some sense, so picking the middle value of a set in a row =
-that
-works makes sense.
+Again, you should use the LED binding, even if you don't use the LED
+framework. I just wounder how much code you will duplicate if you do
+decide to implement the binding in the driver. And when you fully
+implement the control of the LED using the framework, are you going to
+throw the code away again?
 
-So I'm not really that bothered about the lack of units.
-Whether this interface generalizes well to other device will be interesting
-to see, but if it doesn't and we come up with something better a later stag=
-e,
-this is all in kernel interface, so we can change it anwyay at that point.
-
->=20
-> The series also has some "unrelated" patches for improvements and fixes.=
-=20
-
-Hmm.  Next time pull those out as a separate set and just mention
-it as a dependency.
-
->=20
-> ---
-> Nuno Sa (8):
->       iio: backend: add API for interface tuning
->       iio: adc: adi-axi-adc: only error out in major version mismatch
->       dt-bindings: adc: axi-adc: add clocks property
->       iio: adc: axi-adc: make sure AXI clock is enabled
->       iio: adc: adi-axi-adc: remove regmap max register
->       iio: adc: adi-axi-adc: support digital interface calibration
->       iio: adc: ad9467: cache the sample rate
->       iio: adc: ad9467: support digital interface calibration
->=20
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   5 +
->  drivers/iio/adc/ad9467.c                           | 340 +++++++++++++++=
-+++---
->  drivers/iio/adc/adi-axi-adc.c                      | 123 +++++++-
->  drivers/iio/industrialio-backend.c                 |  86 ++++++
->  include/linux/iio/backend.h                        |  57 +++-
->  5 files changed, 561 insertions(+), 50 deletions(-)
-> ---
-> base-commit: 62d3fb9dcc091ccdf25eb3b716e90e07e3ed861f
-> change-id: 20240419-ad9467-new-features-fbfbaa5edf06
-> --
->=20
-> Thanks!
-> - Nuno S=C3=A1
->=20
->=20
-
+       Andrew
 
