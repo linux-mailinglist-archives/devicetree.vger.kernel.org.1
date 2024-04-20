@@ -1,148 +1,212 @@
-Return-Path: <devicetree+bounces-61086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E21E8AB9C6
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 07:09:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE478ABA07
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 08:51:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AB6F1F2139B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 05:09:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD93A2817D0
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 06:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F488DDDC;
-	Sat, 20 Apr 2024 05:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C5910A12;
+	Sat, 20 Apr 2024 06:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lxS7cqu8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wj0HTv6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4464205E31;
-	Sat, 20 Apr 2024 05:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE096FD0;
+	Sat, 20 Apr 2024 06:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713589765; cv=none; b=jgK7MdiVOQ2WgyDkNzdxPcnwm3a248mdgoJItWyvw20j/xdmnRf0KxrXnJftWUD1ptw571Uk9RFj2rGq5Kwu7xUDyrVjCP6ut4gXH1LIkEgAP9cfKAGI3EMzXZ3K0WjT/nDd9bc6+KpRv/113B4uJm1bQwQ0NKbr2rqvu2yfAGQ=
+	t=1713595857; cv=none; b=qkccArFCVeDHhc6yR7HII/xDf5nwbGpsUxRk596U+9Sa71q3XBvij/iT2jIGgDuNVgvu8IIpEyQmteaPSKQElaYmSPZg57ajtsbzS6Wi7T2r4NT5E7Mb4FjQsc4aina+M6RGThK6CqOmsG2yn3lnsxZTexdwgFRlph0sGS9Dhmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713589765; c=relaxed/simple;
-	bh=Zj2LiikqunHRasRXmuEtpJTW1RcqRjmmWOahD7pquLo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SDmOxae3EW5wKV7/XzLkFrQiLV2KwWc7pWoL6wNj0rlTr8xr9OrJhpMlnm/7k9EXntjcZRfgFZ/CvEElWspYh9cEngQjl3sp85UCe00Z3p7jtJv2z9ka/XgxHc4HQBf1nw7iSf37wznhOLoxQR94nrOs5D+ywkxizD1w7lZfI+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lxS7cqu8; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3c749aa444fso796435b6e.0;
-        Fri, 19 Apr 2024 22:09:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713589763; x=1714194563; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zj2LiikqunHRasRXmuEtpJTW1RcqRjmmWOahD7pquLo=;
-        b=lxS7cqu8wGuNU/NyjjUHGeTzS12de651NScx8Mwzy7lPg7p9K7LaYEqBsBQKJAqQwZ
-         +SW8Qy3HRpgqXV5ckOn1ZG8XwPxEv3dRvly3XecQnZwsA3evMV/NgTAbrdEWZ5Jb5oau
-         HXLfThsOZ1e4wvue27R5hQ5D3xuO/l3W8kXAkCL+1yAxSEISFCDqfCmbfe28QPCa/yij
-         yGIyh3N/hm8fFbBIZcGPUnOsxwPZoZ9m6boPNlFQEHlt4MZv9JDmLVDqliqNfX0VWNzF
-         N9CLN+FFdAdNKpTSnvGB2czrIbzSRYgXJ+eCkmDk0JpcoKoSZL5D1XiGEU5F0lrgeva1
-         gPXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713589763; x=1714194563;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zj2LiikqunHRasRXmuEtpJTW1RcqRjmmWOahD7pquLo=;
-        b=ejuT8rphpCjReNo9EMxP09Vqc5CdRm3fQ2K1M08T179yXLLog37Vo1UaeeNs6qAIS1
-         AoJBB37aOsYW2y0/JzYuoZvfWtHpbj9CfSxZ8Q0HFRPMo+dWvKDiwv68Vlv46pyS8zLe
-         kbVhcKJdwdQ9E9IbgUc9Fy+S/mijnK4IgV+8G3H2UpxWirHH9NbXAYyiu3H6j9cDceHV
-         x309gBTzWuhM1/f3LQZxKgq+aGeEwdAVMGrKkRBAyhAQn1B75p9t4dkuzBubGrOFQKJx
-         FHVyAYi6Ktu318Dyb3lFIEx3+bnXYiSmu9FmSQAF7RV+UAKW7TFOVTq9hIS5GP60jbAr
-         mdwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVPkyI7+VeOk0jx9YfC7oL3ZLTXBgKS6fkdxbJxyFoNElrWgf0mRSFcC1mbkSoI3qr6pLjKqRmvCxqUSIJ7yvG8/2oansok1LKTnrlHOWSjhcmAlpdclZ3iKBpLqeagv7IXuJJfB/HtPSqWZHtZ0NiztlJJwFxQs7uS19x5lCQtaLkBp4m
-X-Gm-Message-State: AOJu0YwlHX8+FDVtWPMpTBayqteCXjDknzDd4PUPshrE8LQRcToDMj6R
-	A4b0pRGO8ggszZdlNlyruKJTrm1FfsWp9tT1zSrjsaw0ksnsG+Ar
-X-Google-Smtp-Source: AGHT+IELx6scJmOUwJTe62jFJmVk1DSdsGKXwe8jKcqr9G80zsbl4g4GQihKDnGL7pqimIyBqUykEA==
-X-Received: by 2002:a05:6808:15a:b0:3c6:1500:abef with SMTP id h26-20020a056808015a00b003c61500abefmr4704701oie.55.1713589762720;
-        Fri, 19 Apr 2024 22:09:22 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.135.251])
-        by smtp.gmail.com with ESMTPSA id g25-20020a62e319000000b006ed59172d2fsm4127949pfh.87.2024.04.19.22.09.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Apr 2024 22:09:22 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: sigmaris@gmail.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	didi.debian@cknow.org,
-	ezequiel@vanguardiasur.com.ar,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	mchehab@kernel.org,
-	p.zabel@pengutronix.de,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	sfr@canb.auug.org.au,
-	nicolas@ndufresne.ca,
-	linkmauve@linkmauve.fr
-Subject: Re: Re: [PATCH v6 2/2] arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
-Date: Sat, 20 Apr 2024 13:09:13 +0800
-Message-Id: <20240420050913.182225-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <B9F108CF-4BC5-41A0-A28A-1CA1F4D2CD3C@gmail.com>
-References: <B9F108CF-4BC5-41A0-A28A-1CA1F4D2CD3C@gmail.com>
+	s=arc-20240116; t=1713595857; c=relaxed/simple;
+	bh=snym6v7DHr/ZhRMpLFZQINKJvOzHnir8QzID0r2TtZ8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eds6Thxv0Rs2D6GzBzSDfzZ5QHSwpMVrZKHxu36aCSGN9OdfiyC8pxokVWU0MomRDf2tbJpMBsIyPn6vK5ubnewDpVKavvDweOiM/dOm4DacvW7lTCzwkBoGVTwR/J/FRm47UJoGBJApMQ6SolyYzj4F5iS4dxjwnf50L+SUX0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wj0HTv6K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04B41C32782;
+	Sat, 20 Apr 2024 06:50:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713595857;
+	bh=snym6v7DHr/ZhRMpLFZQINKJvOzHnir8QzID0r2TtZ8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Wj0HTv6KTjozQcVwiCLdNakWp6XwYTgOP7X1tC1tJcA+OQYjYm1GsyrIA2qMkmHQK
+	 3ke50wkfEDySZ/3h0+YS/YGGDzP5ruI9UkmS7BSp93lpiLtwo1UY2gYkn0HEdTPBL1
+	 rUzaASVRdkfeejoycPH0VufrB8B5npJNTIdDELF1GsZibW2dHHpTOvu7vgDn9db/M3
+	 2SRjf96k6PQ3+R36XJ0rgUtDU0Q9A3018JkDjjpeVYRkjnyfb/9dNZVCZRxJLvLL09
+	 KT67wIePvxLVq+j5QC+yzSDp0lwbtQtcBu3/2K0rOA7i4gaqEtqmwLni5O+hOPwCmq
+	 AnvF4SiNh9qOQ==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-516d68d7a8bso2590252e87.1;
+        Fri, 19 Apr 2024 23:50:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX8LY3ZwNRGUr8hXkIU8t6gr0sZIMGzdJyzupVW0XO6NGqf0A28UC+CA2eh9ru/TqK6uznM8SxlYr9aSSGenz8F92/+UqMYNKSDUuV6q/Bx/OBTtYwwb27AaM0sPXK3GcJ/grIRe/4aO+WCvGXROfbIDjGkzFGe0Nqa5cMOPQ/VQLkht0Ssdw==
+X-Gm-Message-State: AOJu0Yzp89/9C0d3BP21MSYZpIrz0NKLGLIPVEaHeNO0eYhNmUPnLKSC
+	F2McdUXSeWCwcmD4VvBpsUL5+vXQWP+lLZWcZyG/MLzV0ifEaKUFZpbKOOlo2QkkFajCafvCyq9
+	YkHPCeV73NlNH2UYR2ktfwJeOij8=
+X-Google-Smtp-Source: AGHT+IF8E6tEjqWZmwZbg0RPE1jOQ2stBPtD9ankZeN2tQz8zWnxTtv8IIW9LwtVj3uIgH/eFpbpitFiXLkycKmsVKM=
+X-Received: by 2002:a05:6512:329c:b0:518:b91e:489b with SMTP id
+ p28-20020a056512329c00b00518b91e489bmr2051776lfe.13.1713595855586; Fri, 19
+ Apr 2024 23:50:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240405-dt-kbuild-rework-v2-0-3a035caee357@kernel.org> <20240405-dt-kbuild-rework-v2-2-3a035caee357@kernel.org>
+In-Reply-To: <20240405-dt-kbuild-rework-v2-2-3a035caee357@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Sat, 20 Apr 2024 15:50:19 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATENrTeCt4bE+bXzq1-caMguiT+U0G5YyT09T032gNtWQ@mail.gmail.com>
+Message-ID: <CAK7LNATENrTeCt4bE+bXzq1-caMguiT+U0G5YyT09T032gNtWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: kbuild: Split targets out to separate rules
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Hugh,
+On Sat, Apr 6, 2024 at 7:56=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+>
+> Masahiro pointed out the use of if_changed_rule is incorrect and command
+> line changes are not correctly accounted for.
+>
+> To fix this, split up the DT binding validation target,
+> dt_binding_check, into multiple rules for each step: yamllint, schema
+> validtion with meta-schema, and building the processed schema.
+>
+> One change in behavior is the yamllint or schema validation will be
+> re-run again when there are warnings present.
 
-Fri, 19 Apr 2024 18:28:01 +0100, Hugh Cole-Baker wrote:
->The register range at 0xfdb50000 length 0x800 includes "VEPU121 core0" encoder
->regs at offset 0 and "VDPU121" decoder regs at offset 0x400 (referring to the
->TRM v1.0 Part 1, section 5.5.1). So I think the "rockchip,rk3588-vdpu121"
->compatible isn't exactly correct to use for this entire device.
 
-There are five vepu121 cores for jpeg encoding. And Emmanuel is doing work on
-them[1]. And at the moment the driver doesn’t yet support exposing these cores
-all as a single video node to userspace, so Emmanuel only exposes one single
-core.
+Is this intentional?
 
->IMO "rockchip,rk3588-vpu121" would be more appropriate if including both the
->decoder and encoder. It also raises the question of whether the decoder and
->encoder should be modeled in DT as one device like on RK3399, or separate
->devices. In the vendor DT [0] they are modeled as two devices but they share
->clocks, resets, IOMMU, and a "rockchip,taskqueue-node" value.
+I think it is annoying to re-run the same check
+when none of the schemas is updated.
 
-Now we have 5 jpeg enc cores, one from 0xfdb50000 and other four from
-0xfdba00000. I tried to add a decoding only core 0xfb50400, but that does not
-work. So the vpu should be defined as one node in devicetree for both encoder
-and decoder like rk3399.
+'make dt_binding_check' is already warning-free.
+So, I think it is OK to make it fail if any warning occurs.
 
-This vpu121 should be exactly the same as the one in rk3399 which supports both
-encoding and decoding. But the current hantro driver has disabled h264 decoding
-since there is anthoer decoder rkvdec on rk3399. This vpu121 is the only
-decoder which supports h254 decoding on rk3588, so we can't just use the
-vpu_variant from rk3399. Maybe we can use rk3399_vpu_variant back when rkvdec2
-on rk3588 is supported by mainline kernel.
+Besides, yamllint exists with 0 even if it finds a format error.
+Hence  "|| true" is not sensible.
 
-At the moment we can keep the compatible string same as the one from rk356x.
-Since there are already jpeg enc cores at 0xfdba0000, we can ignore the one at
-0xfdb50000. When rkvdec2 is supported, I will change "rockchip,rk3588-vpu121"
-same as "rockchip,rk3399-vpu".
 
-And I think changing "rockchip,rk3588-vdpu121" to "rockchip,rk3588-vpu121"
-should match the hardware correctly.
 
-[1] https://lore.kernel.org/all/20240418141509.2485053-1-linkmauve@linkmauve.fr/
+I like this code:
 
-Best regards,
-Jianfeng
+cmd_yamllint =3D $(find_cmd) | \
+        xargs -n200 -P$$(nproc) \
+        $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2; \
+         touch $@
+
+
+Same for  cmd_chk_bindings.
+
+
+
+
+
+>
+> Reported-by: Masahiro Yamada <masahiroy@kernel.org>
+> Link: https://lore.kernel.org/all/20220817152027.16928-1-masahiroy@kernel=
+.org/
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+>  - Separated rework of build rules to fix if_changed_rule usage from
+>    addition of top-level build rules.
+> ---
+>  Documentation/devicetree/bindings/Makefile | 25 ++++++++++++++----------=
+-
+>  1 file changed, 14 insertions(+), 11 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/d=
+evicetree/bindings/Makefile
+> index 95f1436ebcd0..3779405269ab 100644
+> --- a/Documentation/devicetree/bindings/Makefile
+> +++ b/Documentation/devicetree/bindings/Makefile
+> @@ -37,11 +37,13 @@ CHK_DT_EXAMPLES :=3D $(patsubst $(srctree)/%.yaml,%.e=
+xample.dtb, $(shell $(find_cm
+>  quiet_cmd_yamllint =3D LINT    $(src)
+>        cmd_yamllint =3D ($(find_cmd) | \
+>                       xargs -n200 -P$$(nproc) \
+> -                    $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.=
+yamllint >&2) || true
+> +                    $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.=
+yamllint >&2) \
+> +                    && touch $@ || true
+>
+> -quiet_cmd_chk_bindings =3D CHKDT   $@
+> +quiet_cmd_chk_bindings =3D CHKDT   $(src)
+
+
+Nit.
+
+If you want to avoid the long absolute path
+when O=3D is given, you can do
+"CHKDT   $(obj)" instead.
+
+
+
+
+
+>        cmd_chk_bindings =3D ($(find_cmd) | \
+> -                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(=
+srctree)/$(src)) || true
+> +                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(=
+srctree)/$(src)) \
+> +                         && touch $@ || true
+>
+>  quiet_cmd_mk_schema =3D SCHEMA  $@
+>        cmd_mk_schema =3D f=3D$$(mktemp) ; \
+> @@ -49,12 +51,6 @@ quiet_cmd_mk_schema =3D SCHEMA  $@
+>                        $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@=
+ ; \
+>                       rm -f $$f
+>
+> -define rule_chkdt
+> -       $(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
+> -       $(call cmd,chk_bindings)
+> -       $(call cmd,mk_schema)
+> -endef
+> -
+>  DT_DOCS =3D $(patsubst $(srctree)/%,%,$(shell $(find_all_cmd)))
+>
+>  override DTC_FLAGS :=3D \
+> @@ -64,8 +60,15 @@ override DTC_FLAGS :=3D \
+>         -Wno-unique_unit_address \
+>         -Wunique_unit_address_if_enabled
+>
+> -$(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema=
+_version FORCE
+> -       $(call if_changed_rule,chkdt)
+> +$(obj)/processed-schema.json: $(DT_DOCS) check_dtschema_version FORCE
+> +       $(call if_changed,mk_schema)
+> +
+> +always-$(CHECK_DT_BINDING) +=3D .dt-binding.checked .yamllint.checked
+> +$(obj)/.yamllint.checked: $(DT_DOCS) $(src)/.yamllint FORCE
+> +       $(if $(DT_SCHEMA_LINT),$(call if_changed,yamllint),)
+> +
+> +$(obj)/.dt-binding.checked: $(DT_DOCS) FORCE
+> +       $(call if_changed,chk_bindings)
+>
+>  always-y +=3D processed-schema.json
+>  always-$(CHECK_DT_BINDING) +=3D $(patsubst $(obj)/%,%, $(CHK_DT_EXAMPLES=
+))
+>
+> --
+> 2.43.0
+>
+
+
+--
+Best Regards
+Masahiro Yamada
 
