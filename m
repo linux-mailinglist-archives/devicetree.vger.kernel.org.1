@@ -1,170 +1,506 @@
-Return-Path: <devicetree+bounces-61121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205F38ABBD6
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 15:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 234F98ABBF3
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 16:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5243E1F21318
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 13:54:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CA551F21014
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 14:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2084D22301;
-	Sat, 20 Apr 2024 13:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89CD20DC5;
+	Sat, 20 Apr 2024 14:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PFbKP1Ln"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hqrNfyoR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D7C20326;
-	Sat, 20 Apr 2024 13:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE781CAA9;
+	Sat, 20 Apr 2024 14:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713621249; cv=none; b=ACT3ihYfF7V0cVq3VJqiHlefBPlgn8RfAedZPzAvM8L0PDGILFU9JRaC5Y/5Tw42y52Dz8YjwGCzo4KgxCOJOq2/o+Lrt0jcR6NsZ5ub73G8n0HvufXc6O9sguyokN4Q+W5N2ykdQDleQxWCpoOG3Dk1qk/2unjgbgkDXmIRIbU=
+	t=1713622661; cv=none; b=G853/7csDzQdgOrqXvcVucOXetEIcUHnlhqn5KohyA/P2KmUrkznx4H4tQ7SC+D0VZVcOqfQzghZE98j451BOpXJdrlifIcOrkIaSnbMcAYSkRr4Y87B4bdk+9opf2J5kZY8l7dVS/+59PIwK7P2Z4bvmF1pXbB30oihzJHiczQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713621249; c=relaxed/simple;
-	bh=xFvJad8z9ShvGIHnmmfacH83jUL0xd55b1ZUaiiR2gI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ajiFxBmGROM0A79Ysu8Dl0H2Qwl4+gouZBrvbj4DbxF+ibhIELGtZpxV89eL4L5aH5ynOEh1GSKpeNrJ8BZ8MiRkFa5AEhjc/cPf9B2XT78mraSAyUQXuwdpNt1UwhPFJq9p0sOsw44Q9GPKlLHMiQUEn3be3Hh5yuTvabAdBpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PFbKP1Ln; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43KCWRFu018736;
-	Sat, 20 Apr 2024 13:53:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=RXERqp/s+wwOveqRN1HcpASDEXXZ76enuqc/QtiXO/o=; b=PF
-	bKP1LnMdbSyLfUCXmglQttSumrdUWK4q9G4HjEQ4O8PNRw5xUHgxSP6T74Mk+ibC
-	UbOugtqBW2mJhyhP0xA06Pv2sklKnsVVH1kdCi77F1C86aVt3Z0OJXjqiXnn3Hjz
-	OAZK5mUckF1p5UXf8zu1J0tE4HQPgsn/0ZAimHGK/ldDdZTgzc8TgtpROW9W90Cj
-	FozNjJ9oFFYsT4Ax/Bn/DAGE+JC9CXFA0lojwEzAvUhxdNwiUF6H3adD2onn7AL8
-	6j+b0ke9xpO5JkNljypTSsPXyf5KV8DWVyIpEadZnq8uSlUgxWG59+Z+BrcmoOdH
-	9rA6j0rRC8ZveUKhYYIw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xm4wx0x2q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 20 Apr 2024 13:53:45 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43KDri8q025738
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 20 Apr 2024 13:53:44 GMT
-Received: from [10.216.42.137] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 20 Apr
- 2024 06:53:38 -0700
-Message-ID: <7034e026-5c50-4c65-ba78-e9c73f4a276a@quicinc.com>
-Date: Sat, 20 Apr 2024 19:23:35 +0530
+	s=arc-20240116; t=1713622661; c=relaxed/simple;
+	bh=Mxf4y0BRq/mUXjfjugfPwbXVy4IObRMWA6nlfpEgOk0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rF1wNf8n57YK0BGTk2e1Sa1fFdHAIPXmvne7aPeNGz7VXRByHl0UUTFtujWblsfkmlrRwvspYurT35htHoOeH9tf4OdPkYlD35u8dW4/WPth7p8l5t/xOu2jIhBbRUx7BLi47lxW5lVfJfJ2iEQEGQg9DIKzXnfzgwJrnyGbWfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hqrNfyoR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 250EBC072AA;
+	Sat, 20 Apr 2024 14:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713622660;
+	bh=Mxf4y0BRq/mUXjfjugfPwbXVy4IObRMWA6nlfpEgOk0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hqrNfyoRqbnCkeagvZZn/miOJyo1V86pdOt+6MHQd92MCs/ltD4+12sRNhq/smUeM
+	 qEEwe1u+EA8dLZlM9o2oWXOE8M03lk/TZZuZZ0urQs7i3M8hou8pYSaXYu2kMqcvz2
+	 bR10GpF6jVU+gOa2xXf9iCKERBuEsK7ViGNnaZhRubGxdVoJB9lBDvZdVp07prWgr0
+	 PmZ91HD8NOppgMjTkglcgHjXvmtnUMAZwYw/m1oc9yxwGp/GeYWE9/+l/81fmdCzPZ
+	 nIYx82re3LgQslgrwF3yVJm390KK5B6Oih2hM8grYaKWHbh6+oP6XRBqi5tasiTbBd
+	 87YWjkt88m62A==
+Date: Sat, 20 Apr 2024 15:17:27 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, David Lechner
+ <dlechner@baylibre.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ lars@metafoo.de, Michael.Hennerich@analog.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add AD4000
+Message-ID: <20240420151727.767b2861@jic23-huawei>
+In-Reply-To: <Zh7xo8__v-ghLcHP@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1712585500.git.marcelo.schmitt@analog.com>
+	<7c877c865f0b7da28d9f1f177b3b2692b0ae20b9.1712585500.git.marcelo.schmitt@analog.com>
+	<CAMknhBGKNZhGbD7pQ0Z7SMCWqxqGux0LcO_wW0XGP4hLTOwNBg@mail.gmail.com>
+	<ZhVfARtMfOLOPRid@debian-BULLSEYE-live-builder-AMD64>
+	<20240413171409.4575fe6f@jic23-huawei>
+	<87058695-a1a6-4e68-87c5-accdb8451bf4@baylibre.com>
+	<20240414190907.000011e5@Huawei.com>
+	<Zh7xo8__v-ghLcHP@debian-BULLSEYE-live-builder-AMD64>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v21 5/9] dt-bindings: usb: qcom,dwc3: Add bindings for
- SC8280 Multiport
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Herring
-	<robh@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        Bjorn Andersson
-	<quic_bjorande@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Johan Hovold
-	<johan@kernel.org>, Felipe Balbi <balbi@kernel.org>
-References: <20240420044901.884098-1-quic_kriskura@quicinc.com>
- <20240420044901.884098-6-quic_kriskura@quicinc.com>
- <3ca24a3d-e7e0-4f68-9a6f-ebaf83079ebe@linaro.org>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <3ca24a3d-e7e0-4f68-9a6f-ebaf83079ebe@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XQsZNxS82Yp6mqZ684_ocyIU-pw4L6QD
-X-Proofpoint-ORIG-GUID: XQsZNxS82Yp6mqZ684_ocyIU-pw4L6QD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-20_12,2024-04-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 mlxscore=0 priorityscore=1501
- suspectscore=0 malwarescore=0 impostorscore=0 spamscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404200101
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 16 Apr 2024 18:46:11 -0300
+Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+
+> So, I have been trying to make this work, though I haven't been successfu=
+l so
+> far, and I don't really think using pinctrl is a good solution for this e=
+ither.
+>=20
+> Comments inline.
+>=20
+> On 04/14, Jonathan Cameron wrote:
+> > On Sat, 13 Apr 2024 12:33:54 -0500
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >  =20
+> > > On 4/13/24 11:14 AM, Jonathan Cameron wrote: =20
+> > > > On Tue, 9 Apr 2024 12:30:09 -0300
+> > > > Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+> > > >    =20
+> > > >> On 04/08, David Lechner wrote:   =20
+> > > >>> On Mon, Apr 8, 2024 at 9:32=E2=80=AFAM Marcelo Schmitt
+> > > >>> <marcelo.schmitt@analog.com> wrote:     =20
+> > > >>>>   =20
+> > >=20
+> > > ...
+> > >  =20
+>=20
+> ...
+>=20
+> > > >>>
+> > > >>> We identified A) an additional wiring configuration where SDI of =
+the
+> > > >>> ADC chip is wired to SDO of the SPI controller and B) a potential=
+ need
+> > > >>> to pin mux between wiring modes to work around SPI controller
+> > > >>> limitations perhaps we could omit the adi,spi-mode property and j=
+ust
+> > > >>> use the standard pinctrl properties.
+> > > >>>
+> > > >>>   pinctrl-names:   =20
+> > > >=20
+> > > > I'm lost on how pinctrl makes sense here.
+> > > > Yes you are changing the modes of the pins, but not in a convention=
+al sense
+> > > > of some register that is being updated to say now use them like thi=
+s.
+> > > > The mode is dependent on the timing sequence of how the pins are us=
+ed.
+> > > > Otherwise looking at it a different way it's an external wiring thi=
+ng we
+> > > > aren't controlling it at all.  Is pinctrl suitable for that?
+> > > > I always thought of it as a way to change configurations of SoC pin=
+s.   =20
+> > >=20
+> > > Yes, this is exactly what I think we need here.
+> > >=20
+> > > To write to the register, the chip has to be wired like this ("defaul=
+t"):
+> > >=20
+> > >                                          +-------------+
+> > >      +-----------------------------------| SDO         |
+> > >      |                                   |             |
+> > >      |              +--------------------| CS          |
+> > >      |              v                    |             |
+> > >      |    +--------------------+         |     HOST    |
+> > >      |    |        CNV         |         |             |
+> > >      +--->| SDI   AD7944   SDO |-------->| SDI         |
+> > >           |        SCK         |         |             |
+> > >           +--------------------+         |             |
+> > >                     ^                    |             |
+> > >                     +--------------------| SCLK        |
+> > >                                          +-------------+
+> > >=20
+> > > But to read sample data, the chip has to be wired in one of these
+> > > 3 configurations:
+> > >=20
+> > >=20
+> > > 3-wire mode ("single"):
+> > >=20
+> > >                                          +-------------+
+> > >                     +--------------------| CS          |
+> > >                     v                    |             |
+> > >     VIO   +--------------------+         |     HOST    |
+> > >      |    |        CNV         |         |             |
+> > >      +--->| SDI   AD7944   SDO |-------->| SDI         |
+> > >           |        SCK         |         |             |
+> > >           +--------------------+         |             |
+> > >                     ^                    |             |
+> > >                     +--------------------| SCLK        |
+> > >                                          +-------------+
+> > >  =20
+>=20
+> 3-wire mode like setup can be achieved if the SPI controller is capable of
+> keeping the ADC SDI line high (at VIO level) during ADC sampling, but kee=
+ping
+> controller SDO high throughout the entire transfer is not a thing all SPI
+> controllers can do (RPi's can't).
+> If the ADC is hard wired connected as in the 3-wire diagram then the user
+> can't write/read the configuration register. Same applies to "4-wire" mode
+> where controller CS is connected to ADC SDI.
+> The whole point of having pinctrl configurations was to make it possible
+> to both read/write config register and do ADC sampling if the SPI control=
+ler
+> can't keep ADC SDI at VIO. I don't think pinctrl can solve this problem t=
+hough.
+>=20
+> ...
+>=20
+> > >=20
+> > > If we want to be able to both write the register and read data,
+> > > some reconfiguration is needed. It might be possible to read data
+> > > using the register-write wiring configuration, but that only
+> > > works if SDO can be set to the correct state *before* the
+> > > CS line changes. This is not something that I think most SPI
+> > > controllers can do (e.g. Marcelo mentioned in the cover letter
+> > > that RPi always returns SDO to low after every xfer while
+> > > the AXI SPI Engine leaves SDO wherever it was last).
+> > >  =20
+> > > >=20
+> > > > A pointer to some precendence in another driver for using it like t=
+his
+> > > > would go some way towards convincing me.
+> > > >=20
+> > > > Jonathan
+> > > >    =20
+> > >=20
+> > >=20
+> > > I didn't find much precedence for something like this, but I
+> > > found devicetree/bindings/net/mediatek-bluetooth.txt that uses
+> > > pinctrl to pull a UART Rx pin low for a bootstrap mode which
+> > > sounds very similar to what we need to do here (pull the SPI
+> > > controller SDO pin high or low for 3-wire or chain mode).
+> > >  =20
+>=20
+> The pinctrl configuration for this ADC would not be meant to change once =
+after
+> boot as it looks to be the usual use case for pinctrl (including mediatek=
+-bluetooth.txt).
+>=20
+> Also, no suitable mux for the "3-wire" mode in
+> Documentation/devicetree/bindings/pinctrl/xlnx,pinctrl-zynq.yaml
+> to do it like Documentation/devicetree/bindings/net/mediatek-bluetooth.tx=
+t.
+> The zynq pinctrl driver (drivers/pinctrl/pinctrl-zynq.c) would have to be
+> updated to add the new mux function in=20
+> static const struct zynq_pinmux_function zynq_pmux_functions[] =3D {
+> 	DEFINE_ZYNQ_PINMUX_FUNCTION(ethernet0, 1),
+> ...
+> 	DEFINE_ZYNQ_PINMUX_FUNCTION(axi_spi_single, 1),
+> 	DEFINE_ZYNQ_PINMUX_FUNCTION(axi_spi_multi, 2),
+> though this is not really a thing that's on zynq, but one that is related=
+ to
+> these ADCs so I'm not sure it should go there.
 
 
+I'd argue we are after a specific SPI controller setup for this.
+A controller driver would need modifying to make it work.
 
-On 4/20/2024 5:01 PM, Krzysztof Kozlowski wrote:
-> On 20/04/2024 06:48, Krishna Kurapati wrote:
->> Add the compatible string for SC8280 Multiport USB controller from
->> Qualcomm.
->>
->> There are 4 power event interrupts supported by this controller
->> (one for each port of multiport controller). Add all the 4 as
->> non-optional interrupts for SC8280XP-MP
->>
->> Also each port of multiport has one DP and one DM IRQ. Add all DP/DM
->> IRQs related to 4 ports of SC8280XP Teritiary controller.
->>
->> Also added SuperSpeed PHY interrupt for both Superspeed ports.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> 
-> v21 and suddenly you drop tags requiring everyone to re-review this. I
-> do not think this process is working. I will not re-review this.
-> 
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> 
-> 
+>=20
+> > > For example, if we wanted to use 3-wire mode for reading
+> > > data, we would set the pinctrl to "default" to write the
+> > > register to configure the chip during driver probe. Then
+> > > to read data, we would change the pinctrl to "single" before
+> > > doing the SPI xfer to ensure that the ADC SDI pin is pulled
+> > > high independent of what the SDO line of the SPI controller
+> > > is currently doing. =20
+>=20
+> No, the pin configuration for this ADCs would be expected to change unres=
+tricted
+> amount of times. The pin configuration would have to change every time a =
+sample
+> read is made after a register access transfers and vice-versa. If we deci=
+de
+> to support span compression, every change to _scale would lead to pinctrl
+> configuration change.
+>=20
+> At pin level, we would want to rise SPI controller SDO line to VIO but th=
+en
+> the new SDO pin config would conflict with SPI pin group config.
+>=20
+> I included pinctrl properties in my test dts to make use of pinctrl frame=
+work.
+> Yet, that doesn't really alternate SPI line configuration we are using be=
+cause
+> the SPI function that is in the PS (FPGA's Processing System) is not what=
+ we are
+> interfacing when using spi-engine. Copy of my test dts at end of email.
+>=20
+> Currently, the SPI controller we are using to test with these exotic ADCs
+> is the spi-engine which is implemented in the FPGA as an IP block which
+> owns control of the bus lines (SPI, SDO, CS, ...). To alternate the
+> configuration of SPI lines (pull SDO (ADC SDI) up to VIO, connect control=
+ler CS
+> to ADC SDI, etc.) I think it should be done in the HDL project. I don't t=
+hink
+> it's a good idea to hijack spi-engine lines through pinctrl.
 
-Hi Krzysztof,
+Such functionality would need to be pushed to the spi controller driver
+which could know if there was any need to do anything like this, or if there
+was simply a register to set.
 
-  There was a commit text change to fix minor nits:
-  -> One minor spell check: /s/oen/one
-  -> minor nits like: /s/ss/SuperSpeed
+>=20
+> >=20
+> > Ah ok.  This is implying that we are switching to a controllable
+> > mode to pull that pin high (or I guess one where it is always
+> > high).  I'm not sure if that's more common than an SPI controller
+> > where you can set the 'don't' care state to high or low.
+> > I assume we can't get away with just setting the output buffer
+> > to all 1s because it won't hold that state between transfers? =20
+>=20
+> I tried sending the tx buffer filled with 1s when testing this with a RPi=
+4 but
+> it brought the controller SDO (ADC SDI) line low between each 8 bits of t=
+ransfer
+> (attaching an image (yellow line is SCLK, green lines is controller SDO)).
 
-  So removed the tags and requested for a review.
-  "Updated commit text in patches 2/5/6."
+Pity - thought that was overly optimistic.
 
-  Apologies, My intention was to just fix the spell check and minor nits.
-.
-  The changes in v21 were in patches 1/2/4/7/9.
-  Patches 3 and 8 were left untouched.
-  Made minor nit fixes to commit text in patches 5 and 6 so that it 
-feels more accurate.
+> Anyway, can we have any guaranties with respect to controller SDO line be=
+haviour
+> when its not clocking out data?
 
-Regards,
-Krishna,
+
+>=20
+> >=20
+> > Feels like that could be rolled into the SPI subsystem with
+> > any necessary transitions handled there (maybe) =20
+>=20
+> To me, this sounds more reasonable than pinctrl.
+> Yeah, if we can set a don't' care state for the SDO line then that should=
+ be
+> enough for these ADCs.
+> Otherwise, can we really do anything if the controller can't keep SDO hig=
+h?
+
+There is one similar (ish) entry already.
+https://elixir.bootlin.com/linux/latest/source/include/uapi/linux/spi/spi.h=
+#L29
+#define	SPI_3WIRE_HIZ		_BITUL(15)	/* high impedance turnaround */
+in that it is controlling state in what I think would normally be a don't c=
+are state.
+
+I think we could have an
+SPI_SDO_DONT_CARE_HIGH (naming to be improved upon ;)=20
+that a driver could advertise support for and the spi device could request.
+
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/panel/panel-=
+tpo-tpg110.c#L429
+
+Implement that in the spi-gpio driver as a PoC probably and in your SPI cop=
+ntoller
+driver.
+
+Ultimately if the controller really isn't capable (including dances through=
+ pin
+mode changes if necessary) then the ADC won't work in this wiring with that=
+ host
+controller.
+
+I'd propose something along these lines and see whether Mark + any other ac=
+tive
+SPI folk think it is reasonable or not?
+
+>=20
+> >=20
+> > Just to check, this isn't just a case of a missing pull up
+> > resistor to drag that line correctly when it isn't actively
+> > driven (combined with all 1s in the write buffer) etc? =20
+>=20
+> When using spi-engine, the controller SDO is connected to ADC SDI, contro=
+ller
+> CS to ADC CNV and, for reg access, it works as conventional SPI.
+> spi-engine leaves the SDO line the state it was after last transfer so it=
+ we
+> can make it idle high during sample read. No hardware pull-up needed.
+
+Fair enough. No multi master support I guess (that is a bit obscure for
+SPI).  A little ugly that it's dependent on the last access - so you would =
+need
+to do a dummy access if the normal last bit was wrong level?
+
+Jonathan
+
+>=20
+> Marcelo
+>=20
+> >=20
+> > Jonathan
+> >=20
+> >  =20
+>=20
+> The device tree source file I was using for testing with the ADC with the
+> changes for using pinctrl. Didn't really work.
+>=20
+> // SPDX-License-Identifier: GPL-2.0
+> /*
+>  * Analog Devices ADAQ4003
+>  * https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc=
+/ad400x
+>  * https://wiki.analog.com/resources/eval/user-guides/ad400x
+>  *
+>  * hdl_project: <pulsar_adc_pmdz/zed>
+>  * board_revision: <>
+>  *
+>  * Copyright (C) 2016-2023 Analog Devices Inc.
+>  */
+> /dts-v1/;
+>=20
+> #include "zynq-zed.dtsi"
+> #include "zynq-zed-adv7511.dtsi"
+> #include <dt-bindings/pinctrl/pinctrl-zynq.h>
+>=20
+> / {
+> 	adc_vref: regulator-vref {
+> 		compatible =3D "regulator-fixed";
+> 		regulator-name =3D "EVAL 5V Vref";
+> 		regulator-min-microvolt =3D <5000000>;
+> 		regulator-max-microvolt =3D <5000000>;
+> 		regulator-always-on;
+> 	};
+>=20
+> 	adc_vdd: regulator-vdd {
+> 		compatible =3D "regulator-fixed";
+> 		regulator-name =3D "Eval VDD supply";
+> 		regulator-min-microvolt =3D <1800000>;
+> 		regulator-max-microvolt =3D <1800000>;
+> 		regulator-always-on;
+> 	};
+>=20
+> 	adc_vio: regulator-vio {
+> 		compatible =3D "regulator-fixed";
+> 		regulator-name =3D "Eval VIO supply";
+> 		regulator-min-microvolt =3D <3300000>;
+> 		regulator-max-microvolt =3D <3300000>;
+> 		regulator-always-on;
+> 	};
+> };
+>=20
+> &pinctrl0 {
+> 	/* Restore conventional SPI pin configuration */
+> 	pinctrl_spi_default: default_config {
+> 		mux {
+> 			/* Are these the ones used by spi-engine? */
+> 			groups =3D "spi0_0_grp";
+> 			function =3D "spi0";
+> 		};
+> 		conf {
+> 			groups =3D "spi0_0_grp";
+> 			power-source =3D <IO_STANDARD_LVCMOS33>;
+> 		};
+> 		conf-spi-sdo {
+> 			pins =3D "MIO17"; /* SPI0 SDO? */
+> 			bias-disable;
+> 		};
+> 	};
+>=20
+> 	/* Pull-up SPI SDO (ADC SDI) to VIO */
+> 	pinctrl_spi_single: single_config {
+> 		conf-spi-sdo {
+> 			pins =3D "MIO17"; /* Conflicts with SPI0 pin group */
+> 			bias-pull-up;
+> 		};
+> 	};
+> };
+>=20
+> &fpga_axi {
+> 	rx_dma: rx-dmac@44a30000 {
+> 		compatible =3D "adi,axi-dmac-1.00.a";
+> 		reg =3D <0x44a30000 0x1000>;
+> 		#dma-cells =3D <1>;
+> 		interrupts =3D <0 57 IRQ_TYPE_LEVEL_HIGH>;
+> 		clocks =3D <&clkc 17>;
+>=20
+> 		adi,channels {
+> 			#size-cells =3D <0>;
+> 			#address-cells =3D <1>;
+>=20
+> 			dma-channel@0 {
+> 				reg =3D <0>;
+> 				adi,source-bus-width =3D <32>;
+> 				adi,source-bus-type =3D <1>;
+> 				adi,destination-bus-width =3D <64>;
+> 				adi,destination-bus-type =3D <0>;
+> 			};
+> 		};
+> 	};
+>=20
+> 	axi_pwm_gen: axi-pwm-gen@ {
+> 		compatible =3D "adi,axi-pwmgen";
+> 		reg =3D <0x44b00000 0x1000>;
+> 		label =3D "cnv";
+> 		#pwm-cells =3D <2>;
+> 		clocks =3D <&spi_clk>;
+> 	};
+>=20
+> 	spi_clk: axi-clkgen@44a70000 {
+> 		compatible =3D "adi,axi-clkgen-2.00.a";
+> 		reg =3D <0x44a70000 0x10000>;
+> 		#clock-cells =3D <0>;
+> 		clocks =3D <&clkc 15>, <&clkc 15>;
+> 		clock-names =3D "s_axi_aclk", "clkin1";
+> 		clock-output-names =3D "spi_clk";
+> 	};
+>=20
+> 	axi_spi_engine_0: spi@44a00000 {
+> 		compatible =3D "adi,axi-spi-engine-1.00.a";
+> 		reg =3D <0x44a00000 0x1000>;
+> 		interrupt-parent =3D <&intc>;
+> 		interrupts =3D <0 56 IRQ_TYPE_LEVEL_HIGH>;
+> 		clocks =3D <&clkc 15 &spi_clk>;
+> 		clock-names =3D "s_axi_aclk", "spi_clk";
+> 		num-cs =3D <1>;
+>=20
+> 		#address-cells =3D <0x1>;
+> 		#size-cells =3D <0x0>;
+>=20
+> 		adaq4003: adc@0 {
+> 			compatible =3D "adi,adaq4003";
+> 			reg =3D <0>;
+> 			spi-max-frequency =3D <102000000>;
+> 			spi-cpha;
+> 			pinctrl-names =3D "default", "single";
+> 			pinctrl-0 =3D <&pinctrl_spi_default>;
+> 			pinctrl-1 =3D <&pinctrl_spi_single>;
+> 			vdd-supply =3D <&adc_vdd>;
+> 			vio-supply =3D <&adc_vio>;
+> 			ref-supply =3D <&adc_vref>;
+> 			adi,high-z-input;
+> 			adi,gain-milli =3D <454>;
+> 		};
+> 	};
+> };
+
 
