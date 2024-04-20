@@ -1,273 +1,324 @@
-Return-Path: <devicetree+bounces-61128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A7A8ABC14
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 16:54:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C11F48ABC1B
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 17:00:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CB762815AC
-	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 14:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 355111F21277
+	for <lists+devicetree@lfdr.de>; Sat, 20 Apr 2024 15:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F95120DCC;
-	Sat, 20 Apr 2024 14:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD1E620DCC;
+	Sat, 20 Apr 2024 15:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Oyi4d1fo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r7ik+35J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9F1B669;
-	Sat, 20 Apr 2024 14:54:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BCA1EA7D;
+	Sat, 20 Apr 2024 15:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713624847; cv=none; b=Si71hZGAE07igW7NJJmyGoeY8cqjJbhu0b4olDyFUAqeKDLf9lHzuMlMy2i9PVysRW3KlROb6YENZ/0AvTpupxRJJAWQeCS6eFzoh0UOMJBbD5zRTC/FBawvH5CocSi0Qq9ywFpdTFdit7HohlOB/ZbElLXRpxl5W2bFGv1ac0U=
+	t=1713625220; cv=none; b=ZJzLLuSC0JsZdXc+ZWmaAKk4ZCU5eDES0XoXToFHK7PGBnhS/gVcVSEDvrVXy96DF3R664vP7G/waeCXg4RQoQofGOelsP6ZU2K950cHpiU1Ebs05ZNByOfmfl84Dh9Mr0vQefEYVdSoAd+oTGhXP9MMiOwJtMHv6CE1RL3j5pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713624847; c=relaxed/simple;
-	bh=oIrb6wJ4fZuey5KYNJS/voO+opaNOiTbqtomeD0H9EQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=I+Lwm7qJjQ7AGMKcjbPyRyR6xjnIHD/uRADaOO0ruQMnQRVODIfTI/bsubityQunel5j1GmNL0ZODPRnMNi2JMi0bVgTx9hq2QsM8vRZPz+KvG/Ru1tAUjPJAE8ByQidVFTYtnt52vcxPIYkluS8+X+qq/Sn4QUSmNOoaG7+9v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Oyi4d1fo; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713624845; x=1745160845;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=oIrb6wJ4fZuey5KYNJS/voO+opaNOiTbqtomeD0H9EQ=;
-  b=Oyi4d1foWrAdT7nvDlyWcWfARTpVyOJ5KSF3hifoMSFHdLhcLY4/H29p
-   HPb5W1swFGiPZxwLEhHgjXgbcrhuLzUwP6l8sNVUucVXHejB0h/q0QQML
-   CdtHxaX2vfUTtO4i8jF0xTdbS0dFZP1QQpx/6FNtyBcGgZydxifNZhcMn
-   FymH33XrRbXdJWK8JYqYLD3gTkE7bova2uonrNj7HuabpcBLQv8Uh1yzY
-   k5hbu63Crx8JtSJkc8uyZATawjqalYu0J9PJoKsPNwuxP6szxdphCDGwf
-   qR2imr1sclzGiuJxyAUl7Mat4PGscdoTCPapW2yZoyhqNrILisKeqAg7c
-   g==;
-X-CSE-ConnectionGUID: hSyxUjwAQi+nK3QBaJQPiw==
-X-CSE-MsgGUID: JZQ1tPTiSCa1MAUw0K+DRQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11050"; a="31696851"
-X-IronPort-AV: E=Sophos;i="6.07,216,1708416000"; 
-   d="scan'208";a="31696851"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2024 07:54:04 -0700
-X-CSE-ConnectionGUID: YWHLdN4jTM2kWBYvcjtEtQ==
-X-CSE-MsgGUID: rpM0sb4sRoqDyyTYw2qWrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,216,1708416000"; 
-   d="scan'208";a="54528949"
-Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
-  by orviesa002.jf.intel.com with ESMTP; 20 Apr 2024 07:54:04 -0700
-From: matthew.gerlach@linux.intel.com
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Subject: [PATCH v4] dt-bindings: PCI: altera: Convert to YAML
-Date: Sat, 20 Apr 2024 09:53:42 -0500
-Message-Id: <20240420145342.118643-1-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1713625220; c=relaxed/simple;
+	bh=ftupAihT0EorcprLdFe49OCcdoL7GVPGYRep8pVwN8o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u/Df19hgXMil+DbeDxmMHZ+D3aMVPasNGvziM5YJ3aPTJqw6l3eyAVeYsMRlJKGUdTQsn1UGPa6SierUa3+nLfb6Vx/gWvTqdLdQ6ZTWzfMuavh8fk46tYs6TjSLlvlK3bGbWQqB782V83sDM2iO6IVv/H5phC22VUCVyDy4exQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r7ik+35J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B20C072AA;
+	Sat, 20 Apr 2024 15:00:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713625220;
+	bh=ftupAihT0EorcprLdFe49OCcdoL7GVPGYRep8pVwN8o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=r7ik+35JP3hPgXaQOc/J0WkGRzl5MWOZkug7oU4DsiHOF9L5owODQYlnWtTisplKk
+	 T+PPEI5lmcds95yvO/mgRUGZUinlfKSsHArB0tE/UfM9K+pHKxSLHfTPYdc+zrFr4D
+	 dWHffjNMUyXnBxk7OuTfiS+elAjUYSl2BznLP34xsxiNjadaRC1Eu2p1u+3G68qGI6
+	 OcCnzQBdBLywwn7e+/e0KjTMARBrbNQ4J0AZ/qsW7hR/xlSZVbcaEOqDNvaImwWiAC
+	 ZW+zzNC9ZpJ9cMIDBq1PUVoHvYx0ZxUXmz5K3P5pMjdboMwAQNcZJm5Ui5ojdi2B99
+	 8ZOpfAh5GZpRg==
+Date: Sat, 20 Apr 2024 16:00:06 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Alexandru Ardelean <alexandru.ardelean@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 1/8] iio: backend: add API for interface tuning
+Message-ID: <20240420160006.720a3810@jic23-huawei>
+In-Reply-To: <20240419-ad9467-new-features-v1-1-3e7628ff6d5e@analog.com>
+References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
+	<20240419-ad9467-new-features-v1-1-3e7628ff6d5e@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On Fri, 19 Apr 2024 17:36:44 +0200
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-Convert the device tree bindings for the Altera Root Port PCIe controller
-from text to YAML.
+> From: Nuno Sa <nuno.sa@analog.com>
+> 
+> This is in preparation for supporting interface tuning in one for the
+> devices using the axi-adc backend. The new added interfaces are all
+> needed for that calibration:
 
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
----
-v4:
- - reorder reg-names to match original binding
- - move reg and reg-names to top level with limits.
+Would be good to have a little more info in this commit message on what
+interface tuning involves?  I hope a tuning fork and a very good sense
+of hearing...
 
-v3:
- - Added years to copyright
- - Correct order in file of allOf and unevaluatedProperties
- - remove items: in compatible field
- - fix reg and reg-names constraints
- - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
- - fix entries in ranges property
- - remove device_type from required
+> 
+>  * iio_backend_test_pattern_set();
+>  * iio_backend_chan_status();
+>  * iio_backend_iodelay_set();
+>  * iio_backend_data_sample_trigger().
+> 
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+Otherwise, trivial stuff inline.  Mostly looks fine. 
 
-v2:
- - Move allOf: to bottom of file, just like example-schema is showing
- - add constraint for reg and reg-names
- - remove unneeded device_type
- - drop #address-cells and #size-cells
- - change minItems to maxItems for interrupts:
- - change msi-parent to just "msi-parent: true"
- - cleaned up required:
- - make subject consistent with other commits coverting to YAML
- - s/overt/onvert/g
----
- .../devicetree/bindings/pci/altera-pcie.txt   | 50 -----------
- .../bindings/pci/altr,pcie-root-port.yaml     | 88 +++++++++++++++++++
- 2 files changed, 88 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+I appreciate you pointed out the taps thing was unit free and hence
+possibly controversial.  Not much we can do about it and reality is
+its a tweak factor - things like calibbias are unit free as well
+for exactly the reason that they tend to be incredibly hardware dependent
+and sometimes even instance of hardware dependent.
 
-diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
-deleted file mode 100644
-index 816b244a221e..000000000000
---- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Altera PCIe controller
--
--Required properties:
--- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
--- reg:		a list of physical base address and length for TXS and CRA.
--		For "altr,pcie-root-port-2.0", additional HIP base address and length.
--- reg-names:	must include the following entries:
--		"Txs": TX slave port region
--		"Cra": Control register access region
--		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
--- interrupts:	specifies the interrupt source of the parent interrupt
--		controller.  The format of the interrupt specifier depends
--		on the parent interrupt controller.
--- device_type:	must be "pci"
--- #address-cells:	set to <3>
--- #size-cells:		set to <2>
--- #interrupt-cells:	set to <1>
--- ranges:	describes the translation of addresses for root ports and
--		standard PCI regions.
--- interrupt-map-mask and interrupt-map: standard PCI properties to define the
--		mapping of the PCIe interface to interrupt numbers.
--
--Optional properties:
--- msi-parent:	Link to the hardware entity that serves as the MSI controller
--		for this PCIe controller.
--- bus-range:	PCI bus numbers covered
--
--Example
--	pcie_0: pcie@c00000000 {
--		compatible = "altr,pcie-root-port-1.0";
--		reg = <0xc0000000 0x20000000>,
--			<0xff220000 0x00004000>;
--		reg-names = "Txs", "Cra";
--		interrupt-parent = <&hps_0_arm_gic_0>;
--		interrupts = <0 40 4>;
--		interrupt-controller;
--		#interrupt-cells = <1>;
--		bus-range = <0x0 0xFF>;
--		device_type = "pci";
--		msi-parent = <&msi_to_gic_gen_0>;
--		#address-cells = <3>;
--		#size-cells = <2>;
--		interrupt-map-mask = <0 0 0 7>;
--		interrupt-map = <0 0 0 1 &pcie_0 1>,
--			            <0 0 0 2 &pcie_0 2>,
--			            <0 0 0 3 &pcie_0 3>,
--			            <0 0 0 4 &pcie_0 4>;
--		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
--			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-new file mode 100644
-index 000000000000..5794396f0986
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2015, 2019, 2024, Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera PCIe Root Port
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - altr,pcie-root-port-1.0
-+      - altr,pcie-root-port-2.0
-+
-+  reg:
-+    items:
-+      - description: TX slave port region
-+      - description: Control register access region
-+      - description: Hard IP region
-+    minItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: Txs
-+      - const: Cra
-+      - const: Hip
-+    minItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-map-mask:
-+    items:
-+      - const: 0
-+      - const: 0
-+      - const: 0
-+      - const: 7
-+
-+  interrupt-map:
-+    maxItems: 4
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  msi-parent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-map
-+  - interrupt-map-mask
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-host-bridge.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    pcie_0: pcie@c00000000 {
-+        compatible = "altr,pcie-root-port-1.0";
-+        reg = <0xc0000000 0x20000000>,
-+              <0xff220000 0x00004000>;
-+        reg-names = "Txs", "Cra";
-+        interrupt-parent = <&hps_0_arm_gic_0>;
-+        interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-+        #interrupt-cells = <1>;
-+        bus-range = <0x0 0xff>;
-+        device_type = "pci";
-+        msi-parent = <&msi_to_gic_gen_0>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        interrupt-map-mask = <0 0 0 7>;
-+        interrupt-map = <0 0 0 1 &pcie_intc 1>,
-+                        <0 0 0 2 &pcie_intc 2>,
-+                        <0 0 0 3 &pcie_intc 3>,
-+                        <0 0 0 4 &pcie_intc 4>;
-+        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000>,
-+                 <0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
-+    };
--- 
-2.34.1
+Jonathan
+
+> ---
+>  drivers/iio/industrialio-backend.c | 86 ++++++++++++++++++++++++++++++++++++++
+>  include/linux/iio/backend.h        | 57 +++++++++++++++++++++----
+>  2 files changed, 136 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+> index 2fea2bbbe47fd..45eea3b725a35 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -186,6 +186,92 @@ int iio_backend_data_format_set(struct iio_backend *back, unsigned int chan,
+>  }
+>  EXPORT_SYMBOL_NS_GPL(iio_backend_data_format_set, IIO_BACKEND);
+>  
+> +/**
+> + * iio_backend_test_pattern_set - Configure a test pattern
+> + * @back:	Backend device
+> + * @chan:	Channel number
+> + * @pattern:
+> + *
+> + * Configure a test pattern on the backend. This is typically used for
+> + * calibrating the timings on the data digital interface.
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_test_pattern_set(struct iio_backend *back,
+> +				 unsigned int chan,
+> +				 enum iio_backend_test_pattern pattern)
+> +{
+> +	if (pattern >= IIO_BACKEND_TEST_PATTERN_MAX)
+> +		return -EINVAL;
+> +
+> +	return iio_backend_op_call(back, test_pattern_set, chan, pattern);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_test_pattern_set, IIO_BACKEND);
+> +
+> +/**
+> + * iio_backend_chan_status - Get the channel status
+> + * @back:	Backend device
+> + * @chan:	Channel number
+> + * @status:	Channel status
+
+Feels premature to define a structure for status when it simply returns if
+there is an error so far.  Maybe simplify for now, and revisit once that
+structure needs to be more complex?
+
+> + *
+> + * Get the current state of the backend channel. Typically used to check if
+> + * there were any errors sending/receiving data.
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_chan_status(struct iio_backend *back, unsigned int chan,
+> +			    struct iio_backend_chan_status *status)
+> +{
+> +	return iio_backend_op_call(back, chan_status, chan, status);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_chan_status, IIO_BACKEND);
+> +
+> +/**
+> + * iio_backend_iodelay_set - Set digital I/O delay
+> + * @back:	Backend device
+> + * @lane:	Lane number
+> + * @tap:	Number of taps
+> + *
+> + * Controls delays on sending/receiving data. One usecase for this is to
+> + * calibrate the data digital interface so we get the best results when
+> + * transferring data. Note that @tap has no unit since the actual delay per tap
+> + * is very backend specific. Hence, frontend devices typically should go through
+> + * an array of @taps (the size of that array should typically match the size of
+> + * calibration points on the frontend device) and call this API.
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_iodelay_set(struct iio_backend *back, unsigned int lane,
+> +			    unsigned int tap)
+
+taps maybe given it's a number of them?
+Is this an industry standard term - sounds like it probably is but my
+google fu is failing.
+
+> +{
+> +	return iio_backend_op_call(back, iodelay_set, lane, tap);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_iodelay_set, IIO_BACKEND);
+> +
+> +/**
+> + * iio_backend_data_sample_trigger - Control when to sample data
+> + * @back:	Backend device
+> + * @trigger:	Data trigger
+> + *
+> + * Mostly useful for input backends. Configures the backend for when to sample
+> + * data (eg: rising vs falling edge).
+
+Feels like it might become a flags field at some point, but enum is fine for
+trigger for now I guess.
+
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_data_sample_trigger(struct iio_backend *back,
+> +				    enum iio_backend_sample_trigger trigger)
+> +{
+> +	if (trigger >= IIO_BACKEND_SAMPLE_TRIGGER_MAX)
+> +		return -EINVAL;
+> +
+> +	return iio_backend_op_call(back, data_sample_trigger, trigger);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_data_sample_trigger, IIO_BACKEND);
+> +
+>  static void iio_backend_free_buffer(void *arg)
+>  {
+>  	struct iio_backend_buffer_pair *pair = arg;
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index a6d79381866ec..ad793fe0d78c2 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -15,6 +15,19 @@ enum iio_backend_data_type {
+>  	IIO_BACKEND_DATA_TYPE_MAX
+>  };
+>  
+> +/* vendor specific from 32 */
+> +enum iio_backend_test_pattern {
+> +	/* modified prbs9 */
+> +	IIO_BACKEND_ADI_PRBS_9A = 32,
+
+Not knowing anything much about this, does it make sense to use an enum,
+or should we face facts that we can't have a true generic interface
+and just use a suitably sized int?
+
+How do you unset the test pattern? I expected a IIO_BACKEND_NO_TESTPATERN = 0
+or something like that.
+
+> +	IIO_BACKEND_TEST_PATTERN_MAX
+> +};
+> +
+> +enum iio_backend_sample_trigger {
+> +	IIO_BACKEND_SAMPLE_TRIGGER_EDGE_FALLING,
+> +	IIO_BACKEND_SAMPLE_TRIGGER_EDGE_RISING,
+> +	IIO_BACKEND_SAMPLE_TRIGGER_MAX
+> +};
+> +
+>  /**
+>   * struct iio_backend_data_fmt - Backend data format
+>   * @type:		Data type.
+> @@ -28,15 +41,27 @@ struct iio_backend_data_fmt {
+>  	bool enable;
+>  };
+>  
+> +/**
+> + * struct iio_backend_chan_status - Backend channel status
+> + *  @errors:	Errors occurred when sending/receiving data.
+
+error, it's only a bool so we know there was at least one.
+
+> + */
+> +struct iio_backend_chan_status {
+> +	bool errors;
+> +};
+> +
+>  /**
+>   * struct iio_backend_ops - operations structure for an iio_backend
+> - * @enable:		Enable backend.
+> - * @disable:		Disable backend.
+> - * @chan_enable:	Enable one channel.
+> - * @chan_disable:	Disable one channel.
+> - * @data_format_set:	Configure the data format for a specific channel.
+> - * @request_buffer:	Request an IIO buffer.
+> - * @free_buffer:	Free an IIO buffer.
+> + * @enable:			Enable backend.
+
+Hmm. I dislike aligning comments because of this sort of noise.
+I guess I can cope without the ideal precursor patch making the padding
+change, but I am moaning about it...
+
+> + * @disable:			Disable backend.
+> + * @chan_enable:		Enable one channel.
+> + * @chan_disable:		Disable one channel.
+> + * @data_format_set:		Configure the data format for a specific channel.
+> + * @test_pattern_set:		Configure a test pattern.
+> + * @chan_status:		Get the channel status.
+> + * @iodelay_set:		Set digital I/O delay.
+> + * @data_sample_trigger:	Control when to sample data.
+> + * @request_buffer:		Request an IIO buffer.
+> + * @free_buffer:		Free an IIO buffer.
+>   **/
+>  struct iio_backend_ops {
+>  	int (*enable)(struct iio_backend *back);
+> @@ -45,6 +70,15 @@ struct iio_backend_ops {
+>  	int (*chan_disable)(struct iio_backend *back, unsigned int chan);
+>  	int (*data_format_set)(struct iio_backend *back, unsigned int chan,
+>  			       const struct iio_backend_data_fmt *data);
+> +	int (*test_pattern_set)(struct iio_backend *back,
+> +				unsigned int chan,
+> +				enum iio_backend_test_pattern pattern);
+> +	int (*chan_status)(struct iio_backend *back, unsigned int chan,
+> +			   struct iio_backend_chan_status *status);
+> +	int (*iodelay_set)(struct iio_backend *back, unsigned int chan,
+> +			   unsigned int tap);
+> +	int (*data_sample_trigger)(struct iio_backend *back,
+> +				   enum iio_backend_sample_trigger trigger);
+>  	struct iio_buffer *(*request_buffer)(struct iio_backend *back,
+>  					     staptruct iio_dev *indio_dev);
+>  	void (*free_buffer)(struct iio_backend *back,
+> @@ -56,6 +90,15 @@ int iio_backend_chan_disable(struct iio_backend *back, unsigned int chan);
+>  int devm_iio_backend_enable(struct device *dev, struct iio_backend *back);
+>  int iio_backend_data_format_set(struct iio_backend *back, unsigned int chan,
+>  				const struct iio_backend_data_fmt *data);
+> +int iio_backend_test_pattern_set(struct iio_backend *back,
+> +				 unsigned int chan,
+> +				 enum iio_backend_test_pattern pattern);
+> +int iio_backend_chan_status(struct iio_backend *back, unsigned int chan,
+> +			    struct iio_backend_chan_status *status);
+> +int iio_backend_iodelay_set(struct iio_backend *back, unsigned int lane,
+> +			    unsigned int tap);
+> +int iio_backend_data_sample_trigger(struct iio_backend *back,
+> +				    enum iio_backend_sample_trigger trigger);
+>  int devm_iio_backend_request_buffer(struct device *dev,
+>  				    struct iio_backend *back,
+>  				    struct iio_dev *indio_dev);
+> 
 
 
