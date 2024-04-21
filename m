@@ -1,150 +1,119 @@
-Return-Path: <devicetree+bounces-61204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7658ABF3C
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 14:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 822758ABF6B
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 15:54:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88C9DB21332
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 12:59:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2D4BB21677
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 13:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACA114006;
-	Sun, 21 Apr 2024 12:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24344175B7;
+	Sun, 21 Apr 2024 13:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Y2tQHT9z"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="C4CWtl+D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-251-66.mail.qq.com (out203-205-251-66.mail.qq.com [203.205.251.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FD412E6A;
-	Sun, 21 Apr 2024 12:58:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.251.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D12D175A7;
+	Sun, 21 Apr 2024 13:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713704334; cv=none; b=VTKQw4Vd/a6JIhKmtzGbyD3JSjh1sFnWARm/eu6W1kdNWWQJ2d8pSTkhAcH9iKrH9f2U0gy0OZMSePLOTQ9kOKaGHekGTa5Bq209UtrKhUiiwl9yALFHsqIrhVWAEtp4ZqPa+RbYlBckGn44xl48xQU/nic6B/VKi4xwKruoVvU=
+	t=1713707681; cv=none; b=LJ0Q13Ee55CTzuR8k/4JvaYtoXMHJUHe3DUBOck7v/R6qR5Q176+oluCab2XI0C2VRExpKgCszQU9ZarMT7Q7OGDbGJra8ncPGq2jYSLW/0hpL4XvIP/tv836LhDBybC9fhTecoKvPIvPukGAc0woutWHpj3nyFIZA/g83lWbIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713704334; c=relaxed/simple;
-	bh=NVxRoRPRimApQYLL+SiZLTJ3GwIVnEopHPufJImejG8=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=a++FMHl54nxVRMgZz7gE3K/d8fvMgs5Qg6i/JPZXatyEUCzBAyXSJ0q611iLM4Q2Ru18ut9wvPwlvvqLx/ymJKnP65bUjzBV5FJi2haDPx0Z+bL0kfUZLzlnqbwREc9GyXthxPGgOabgCAAJqkF91X6eKGs76S2//1GVEhLdmuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Y2tQHT9z; arc=none smtp.client-ip=203.205.251.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1713704029; bh=Oid0/2+ncbfbBpARfu+QMrQ+JfMw2YqRGSqME5w6tAU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Y2tQHT9zzQCX7cNwNGXG89m4/wTe/78DKsmLrtWoi7V1NH/fhIfbjTSmc4JPhHxPO
-	 KMHgiM6/7J2Cer23fOz9QncBttXV/FRREgb1csHQ7dD5qOKNaHLSoGLfEZ35FB0Rrz
-	 WIDscc7qlmLYaNsHyB1Adezihhz1zSGRDBPprxEg=
-Received: from cyy-pc.lan ([240e:379:2264:6200:aa04:7d36:395a:da35])
-	by newxmesmtplogicsvrsza10-0.qq.com (NewEsmtp) with SMTP
-	id D6B1C271; Sun, 21 Apr 2024 20:53:43 +0800
-X-QQ-mid: xmsmtpt1713704026tyjhfqvqz
-Message-ID: <tencent_AD84B436C2F31108B66B4739D6E306C5E80A@qq.com>
-X-QQ-XMAILINFO: NMGzQWUSIfvTF2H89VCD5B7DlQMjdlBiz4ngf34c+hz0HuyiJ+FkP71jdACfwi
-	 Re+X3AAMqp/wxVLWMqLChc4Wifkbxnp3//Tde0b1j4bfQOUOEAXuUe4RjmxsYYtDWsnqYOtsseN4
-	 pnr/rX+sPq1AGW16QiQOqUpXqzVmrBfdLsho8crjAK6Xo4Y2wBMxgxU0Sg08Dmppo/9C6JTftFli
-	 qEzItM5Z/wFSqohRUzIfgPNB3qlQOWbLjv23iWRY0gsfmr7bJF2pZucQr8V5odlUGwKGfHmWQwt/
-	 RNozxGpfoZbT8xxp471ItP77hofEXg/K+aA42FJWAN0L1HbbVTM2YioUaVJcigMlTNqkTWnoYn+K
-	 gnskcNCgfiVG8/O6mbP34GT6+Zo5Ftv1lSMCoQJ6U9VPXkrGuZw4KPofx8jMDTC7ylAyz/7T6eKT
-	 xu2pY/Ht3nvf4yh2t5vB7R34zVxAUJkuQKLrsJ7aydJr4PWQ7hwzfPVSROuaPR4MQklXrhqoqoDJ
-	 TG60ZbfziMtm2ljVUcnJmMyNlxXjVlTVvhtdkVSn2Rl7e0U7KikTJVOtezEbfHMdgH1OQIa12ho0
-	 ctEFSOlHluBsuL+nU+9TyAaLjDlO4RWqp7dIGnghdy5BrPsQPnGKbU01rT+6yA2pSB14lLeHw6Po
-	 SN9k0UJ/D0qxswyRPPBh85twKsjPWwOfXfuCiuxtfpzUdm1q6DRbxN5eilEOW4OmthwuaWO4F737
-	 bJnNF8ULJymrKOQJQyqsI3Om0qKYMarOi8WdUMuFCAoXJcYAuvT5q749lmi6g57bB9Jn2oM15dxG
-	 oEK2UsOPB6ZRoTDVwlX/JaGAc5Du+ug7T5mwoHS5Os7ketYJizhE+QIxevA2d1LtignjzTM6cn21
-	 6A7/RUcUpanX2ZRUDSf/sNh3sO2RCngysjitPERLJq8ZTkUaBJG8LhBtMBa1E6DVJ0hoApnO3wdd
-	 0vmWBoNKD6Xwyod1bI7yTgltkaTmgpWQ1t/CnmniVzFJtAPgT78Ui9AmQJqle97E4xIWtNilMPhq
-	 Rs3jP+Pi05dvYxJdmcL1XjdqiIHOqg5v0YzdbfDgh2WWFj21fi
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH v1 2/2] riscv: dts: add usb nodes for Canaan Kendryte K230 SoCs
-Date: Sun, 21 Apr 2024 20:53:30 +0800
-X-OQ-MSGID: <20240421125330.1039774-2-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <tencent_E9B853316D217B8D1E7CDF8288DA5E8ED908@qq.com>
-References: <tencent_E9B853316D217B8D1E7CDF8288DA5E8ED908@qq.com>
+	s=arc-20240116; t=1713707681; c=relaxed/simple;
+	bh=NA+h1kZ4ZYosSXB9YC2ayj8s4oTUaovMwew+/FDs8yo=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Anbk4uIzSQDhoeG1Oi1f2fX7BJ+is1SAMf5tBU33VoFxDuTrdOSzyTh1h5KJP9m3vwCIiIW5AFghJhItN1zRPUo5u2vc11LApSt0bpDyXaOOAY3gNvmWQdy6w2nAmZkrghC+XG8asUUprcSEIs+vLVU3YZo3yu1do4IvKEhOMbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=C4CWtl+D; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1713707675;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/4ooY+dJBDon3+uBiWdkfQ49raa8NLkoa8U8AjhBhvA=;
+	b=C4CWtl+DvcM0SmFngK7FHkT2L/ZMtfaY6AswksaDF51yPAlkJLOg7sc9j+mRdNRjlt4Qqp
+	IdmaYM6OJN8IGQaaHdfUybveyzIOgkjYQPTcaG46wuE2lZWRmWtxb8HmM1NGAgWJ3pM9JQ
+	wKNk6Gn+OA5IDp+jcm0Fk3f+lI/aoQAcK3eEOLZG9KSbl88ppMwjFMyfYedDFfWDrSQ9A8
+	roWBJ2bmEE3Ch2WLVybA4EBG02vYlB8Z+ajPSDL1A0Vrq/a0ngbUlL1cSJvgHHA/c8CEfm
+	lckgPzXyZyoU65b/4Pb2yAR8GuPL2rV2qBCKp/02SE7qECbYyBMywyIlizS12Q==
+Date: Sun, 21 Apr 2024 15:54:32 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, amadeus@jmu.edu.cn,
+ FUKAUMI Naoki <naoki@radxa.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Correct the descriptions
+ for Radxa boards
+In-Reply-To: <20240419-triumph-cheddar-77fc2f6948b0@spud>
+References: <1e148d6cd4486b31b5e7f3824cf6bccf536b74c0.1713457260.git.dsimic@manjaro.org>
+ <1888572.CQOukoFCf9@diego> <20240418-attach-tigress-bc2b9f844fc7@spud>
+ <c3c4a6ad48fbd62b44991c9bfd81570a@manjaro.org>
+ <20240419-triumph-cheddar-77fc2f6948b0@spud>
+Message-ID: <a3930b26634a78888c9fe3013284563c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-This patch adds USB nodes for Canaan Kendryte K230 SoCs. The fifo
-parameters are taken from factory dts [1]. For the clock parameter, we use
-a dummy node here as we don't know the actual clock this IP connected
-inside the SoC chip, and it doesn't matter after reviewing the dwc2 driver
-code, which will not read the clock frequency but only use the binding to
-turn the clock on or off to save power.
+On 2024-04-19 16:09, Conor Dooley wrote:
+> On Thu, Apr 18, 2024 at 07:12:35PM +0200, Dragan Simic wrote:
+>> On 2024-04-18 19:04, Conor Dooley wrote:
+>> > On Thu, Apr 18, 2024 at 06:59:42PM +0200, Heiko Stübner wrote:
+>> > > Am Donnerstag, 18. April 2024, 18:26:19 CEST schrieb Dragan Simic:
+>> > > > Correct the descriptions of a few Radxa boards, according to the up-to-date
+>> > > > documentation from Radxa and the detailed explanation from Naoki. [1]  To sum
+>> > > > it up, the short naming, as specified by Radxa, is preferred.
+>> > > >
+>> > > > [1] https://lore.kernel.org/linux-rockchip/B26C732A4DCEA9B3+282b8775-601b-4d4a-a513-4924b7940076@radxa.com/
+>> > > >
+>> > > > Suggested-by: FUKAUMI Naoki <naoki@radxa.com>
+>> > > > Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> > > > ---
+>> > > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 8 ++++----
+>> > > >  1 file changed, 4 insertions(+), 4 deletions(-)
+>> > > >
+>> > > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > > index fcf7316ecd74..ae58e25c29ec 100644
+>> > > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > > @@ -767,22 +767,22 @@ properties:
+>> > > >            - const: radxa,rockpis
+>> > > >            - const: rockchip,rk3308
+>> > > >
+>> > > > -      - description: Radxa Rock2 Square
+>> > > > +      - description: Radxa Rock 2 Square
+>> > >
+>> > > I may be just blind, but what changed here?
+>> >
+>> > There's now a space before the 2.
+>> 
+>> Exactly.  That's part of the Radxa's naming convention, which may be
+>> seen as somewhat similar to the general rule of spacing out values and
+>> their associated units, e.g. "2 MB" is in general preferred over "2MB"
+>> in nearly any kind of a formally correct document.
+> 
+>> As a side note, there's even so-called "half space" as a typographical
+>> convention for spacing out the values and the associated units.  That
+>> makes formatted text with such spacing a bit nicer. :)
+> 
+> Let's not introduce half spaces into the bindings though :)
 
-[1] https://github.com/kendryte/k230_sdk/blob/v1.5/src/little/linux/arch/riscv/boot/dts/kendryte/k230.dtsi
-
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
----
- arch/riscv/boot/dts/canaan/k230.dtsi | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 95c1a3d8fb11..2311fb7f7127 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -65,6 +65,13 @@ apb_clk: apb-clk-clock {
- 		#clock-cells = <0>;
- 	};
- 
-+	clk_dummy: clock-dummy {
-+		compatible = "fixed-clock";
-+		clock-frequency = <0>;
-+		clock-output-names = "clk_dummy";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -138,5 +145,27 @@ uart4: serial@91404000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		usb0: usb@91500000 {
-+			compatible = "canaan,k230-otg", "snps,dwc2";
-+			reg = <0x0 0x91500000 0x0 0x40000>;
-+			interrupts = <173 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_dummy>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+		};
-+
-+		usb1: usb@91540000 {
-+			compatible = "canaan,k230-otg", "snps,dwc2";
-+			reg = <0x0 0x91540000 0x0 0x40000>;
-+			interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_dummy>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+		};
- 	};
- };
--- 
-2.43.0
-
+Of course. :)
 
