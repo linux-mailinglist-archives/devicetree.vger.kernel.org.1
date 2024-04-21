@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-61245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DC78AC1D8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 00:33:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 276718AC1E3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 00:33:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 768871C209C7
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 22:33:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2FF81F210C1
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 22:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2348E535D4;
-	Sun, 21 Apr 2024 22:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C97E54F91;
+	Sun, 21 Apr 2024 22:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RRkg5aiy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aRtnaQDs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6AB535B8;
-	Sun, 21 Apr 2024 22:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC1B54F87;
+	Sun, 21 Apr 2024 22:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713738591; cv=none; b=NF3Fb9AW5C7NrGVSAODz7fHJAu0OwitzeM/CvAAMU+aMR0r/28/Nih59KbsBgWNVF04cqhryJjgjQA8UbRmQaM6g/b8UqbkS4Wv3DsXMW4bkUnPh4D29zATrLSwSXwtpKu/Q8y7xTN7qKSeC7FjgQRndFhgLJyxVLzCXU5Lt9ak=
+	t=1713738594; cv=none; b=fPVJUg424au1cMN8C2DSpSw7KvXLbZ9zywQ6UTsMAITOCQamNHbEKEdtZ3oy9RGwgnhqirYy/wv27KVPQhDifbhswqXkPf7ZzIrvFhLXm2eLEntZHbDQe2qofUCjfxaMD/TDbQGosKkVSas8G2UBUPnRqylbfLE5XCaQnqnpClE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713738591; c=relaxed/simple;
-	bh=EUoxTsamOCo66SH/7zQy0RIHDfmyzMqYgK3TQW0Zu3Q=;
+	s=arc-20240116; t=1713738594; c=relaxed/simple;
+	bh=3vmMKDvCV2iQl97DV5Inx095IODyeS7q3G6u/bm+ZyU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uJAEdLuLuFreuQjNmaaFLsV9kuroMoDcyCqVVz+k7RjcwFN20e7ok/oiMcTYoHiI45at/f4ZlqfimU6B9hUwn68Q+9zbTynWHYo59hHhnqJJF07FfehOo6rtzpgEDG9cNHxMKy8ghU3RRMulblSDiusUbsDWG2J9miMucidVLj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RRkg5aiy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE3DBC32783;
-	Sun, 21 Apr 2024 22:29:49 +0000 (UTC)
+	 MIME-Version:Content-Type; b=fkOiQ2FJwawIp4v4TdWzCE1Iv1XfXcOIgm/gks34dsmhs9c5hHmaIeFxR7XX1FV7apLZyIieDYruey58bCLRQSyS/RpnlgVMmexzrUEbmr6r4PJAqG1mcqISQhzaemrDahhxbsNj+FyU9nXxtlQRVOzqtnCzct3akj/RGwruyS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aRtnaQDs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1ECDC113CE;
+	Sun, 21 Apr 2024 22:29:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713738590;
-	bh=EUoxTsamOCo66SH/7zQy0RIHDfmyzMqYgK3TQW0Zu3Q=;
+	s=k20201202; t=1713738594;
+	bh=3vmMKDvCV2iQl97DV5Inx095IODyeS7q3G6u/bm+ZyU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RRkg5aiyE3zufg+I35+rWLGXF4l4DsnO9VnJx2vh6IguqVXux0HxcCvOUGtWXCbMU
-	 mhZy+kLgkD768Oh6mEPgttPrGHYPlDM/JiZ4571OYyJaIjyCFLqRfnkTMUQgnOKjt+
-	 CBr1+umzcakvOwJ7T9yBAKaWcBVrFuFV5shpQ7UJysYY+QEl50Jp4e92TGMhd+Fyi4
-	 LE58bL6thuj61X4OoLdQ+RZGDVik11im6LIH6vgGzcSA2c5E/yJQbQPVZ5FvxfnBZQ
-	 9p3IcHyh5jUUk0Jm8v6gar4Av8IygLaPYt+SHQM8so3OrBJYOMcYfvGOEl6IbUyAiM
-	 GFsCN0GoA5DEw==
+	b=aRtnaQDsemW00z/9oRK4T5osCb1LznkuFltnFwg+UwBvDWqoBd5WtpMl9I6tfijGg
+	 fW4ESJaFVPACQItAoPImjbofvKcsPTYvTcN5uUlzUEZaEoGAiPLIfyfGqjq6VaW4Ar
+	 LjToe7urU9wLp/FO04Imgbup7wY5RbpH/YXPIAel+7fNuWQRN9dQI8NVjpU3grOyID
+	 GdrxrJiehzrr9uDVgN0sV4VBuEUNKgXWiZh0bQEuc94eHFbnu6ofii1NGDgctmGOIB
+	 13A7IeF1Dqq50MVM+qoLuuudAsFHCaZeK5kG2VL3UOtseGntGdGjst97gczsEvdWcz
+	 nq0BHU2uk2rvw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: konrad.dybcio@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Ling Xu <quic_lxu5@quicinc.com>
-Cc: quic_ekangupt@quicinc.com,
-	kernel@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8650: Add three missing fastrpc-compute-cb nodes
-Date: Sun, 21 Apr 2024 17:29:24 -0500
-Message-ID: <171373856768.1196479.14779642234944924935.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>
+Subject: Re: [PATCH v2] clk: qcom: gcc-sm8150: De-register gcc_cpuss_ahb_clk_src
+Date: Sun, 21 Apr 2024 17:29:28 -0500
+Message-ID: <171373856762.1196479.482456722925873210.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240319032816.27070-1-quic_lxu5@quicinc.com>
-References: <20240319032816.27070-1-quic_lxu5@quicinc.com>
+In-Reply-To: <20240213-gcc-ao-support-v2-1-fd2127e8d8f4@quicinc.com>
+References: <20240213-gcc-ao-support-v2-1-fd2127e8d8f4@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,15 +73,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 19 Mar 2024 08:58:16 +0530, Ling Xu wrote:
-> Add three missing cDSP fastrpc compute-cb nodes for the SM8650 SoC.
+On Tue, 13 Feb 2024 12:17:24 +0530, Satya Priya Kakitapalli wrote:
+> De-register the gcc_cpuss_ahb_clk_src and its branch clocks
+> as there is no rate setting happening on them.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8650: Add three missing fastrpc-compute-cb nodes
-      commit: dae8cdb0a9e18f0cc7bda75e42d0da750e05ca77
+[1/1] clk: qcom: gcc-sm8150: De-register gcc_cpuss_ahb_clk_src
+      commit: 7ca07a174f3b4021ae0a2d60fed1f5c993cf4b49
 
 Best regards,
 -- 
