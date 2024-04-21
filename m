@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-61211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A9EB8AC002
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 18:07:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C088AC007
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 18:07:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05397B20E01
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 16:07:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2C6E281579
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 16:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755581BF5C;
-	Sun, 21 Apr 2024 16:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFEA2941C;
+	Sun, 21 Apr 2024 16:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hAPHVL2u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R+Accpq3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C231BF2F;
-	Sun, 21 Apr 2024 16:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE0424A03;
+	Sun, 21 Apr 2024 16:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713715631; cv=none; b=RR0/6lyRiewqgxiR+PcgdmdRpmJ76Bwi3SmCtn/2s7NhlFZE843n8MYgqut9uxM9DRn1lUkYlutp+gTlVG4yTAIUUkcFdiK2UBughHYSVVWiEUAXJ15Hn8zqYyIQdyCmJcK8v/bBY1Roc6cLIVm1iyE8Tt5ggF/5rSCRmt6yo1Q=
+	t=1713715633; cv=none; b=BlVfbNM8PJonUdlLcyGvzysDgkRdRlm0Gm2nc217b0nPRKy0SVIB7YeommoZXG9MzvSXu0NQ85S9HT8oRQe/CRlr+2xUvApbYdU3x9evxKHl4NzLLdm8F3dRh2zuesqM4nMW+a0mcmANaO6ChMRds94MiFQUMZXH9sEwMoWA2aM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713715631; c=relaxed/simple;
-	bh=Efnt3l81Q793dglbwd4hVVRTyYvPXZXpbLZtb36MwFs=;
+	s=arc-20240116; t=1713715633; c=relaxed/simple;
+	bh=k8ouJEDnPjHW77IdXvL48XXyrgLgpjXfup/v/JZtYXY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DIEXyjSppALfKiBTAHYyQi/bRpTGJeyUE88FKbyGr0YxnD14jUQ8u9fNwXgPyYJ9iKn1JKvdLj42tKQYIA6SiabcNihrc22cfY4UYQ4vk7If/FMRnPjpF+1UsuYDIri10SWc2U8t/TCCcLIt+vFQLGO9ON6ojJb4OKs0Rjjt3Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hAPHVL2u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 251DCC2BD11;
-	Sun, 21 Apr 2024 16:07:10 +0000 (UTC)
+	 MIME-Version:Content-Type; b=g3gcGAGJQkUZxwngmst1WUl8zkM/tMpT/0vOuZvMPBCYECHAlislMbVK1602w+oeI0L9BCjNNs3cQ4ybxc64wPGrSB1+VsGCScCVc0iITA41DhRs3YJ8JVaMRqCFB3+uysmbxOzrq/HhQTRnWS20/SrNSRenzYMTrBd8IJ/pCDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R+Accpq3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 997F8C32783;
+	Sun, 21 Apr 2024 16:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713715630;
-	bh=Efnt3l81Q793dglbwd4hVVRTyYvPXZXpbLZtb36MwFs=;
+	s=k20201202; t=1713715632;
+	bh=k8ouJEDnPjHW77IdXvL48XXyrgLgpjXfup/v/JZtYXY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hAPHVL2uEiTipnL0Wh10LIi5KBbG24h6yqxc6MhQaC3aGgY5uT08edEIImmxra2s8
-	 VECnQoGHPuVy5A79UuAOfhxE0Ruz/RfQxww+o1qyReRnUW3z85yyYjjfIFTYpe/1WK
-	 tK0JspEyW6A75iPeYbXrODVXrAOFOwJTK7k9zJaI9FCEJCJ9LZXKCSvX379yJQSFc3
-	 7LhywNpw5YTsiqwIBhZlS+ktEYkNTGMgncTi56wEg4XghQjuAXaeHXbRg2yp4ysAYy
-	 kGPmJKM+rNt5VJQWMAWkZoSUVAvWaRCEGFaaNnBdGs3UlAykHD8eXG6L0dKnXxXM41
-	 Ael2vEfJIKfQg==
+	b=R+Accpq3xJNt4gM7EaOV6tEJbjf2V5S1VPNrPf4q5Qk7rCfVQuq+5DBFravH2mwZY
+	 rUW0u7Sh/u0hAkNaUiSFqfdGIX25mL1Z8PnWbU7Fv26HG2hno3cKENTfPB2dOU7p+y
+	 HNmQ9bZyADYzF+lSuGBr2/2rJsc73dKhXacx2xhdwWxiIIqzg4++a3qK6IKcIVymON
+	 6O48Eby7AOrbSYDkCU7B9LU5jjYBl8kg+VqqJ9OxYdwjWErFOv2Y5UNGXjhdkzESpD
+	 TqJ429sv1c7Egw7X3GNfHtQKAPLEp3nEnR3F93Ury5Jebnu/QvJPKIbppqvdW2YShp
+	 7nzi0yM9DL4Xw==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] arm64: dts: qcom: add USB-C orientation GPIOs
-Date: Sun, 21 Apr 2024 11:07:03 -0500
-Message-ID: <171371562483.1174524.3782383436002226614.b4-ty@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add USB-C orientation GPIO
+Date: Sun, 21 Apr 2024 11:07:05 -0500
+Message-ID: <171371562482.1174524.9194500934821003879.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
-References: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
+In-Reply-To: <20240411-fp5-usb-c-gpio-v1-1-78f11deb940a@fairphone.com>
+References: <20240411-fp5-usb-c-gpio-v1-1-78f11deb940a@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +69,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 09 Apr 2024 17:28:10 +0300, Dmitry Baryshkov wrote:
-> Populate orientation GPIOs for some of the PMIC-GLINK-based devices.
-> This leaves only FairPhone5, RB3Gen2, SC8180X Primus and SC8280XP CRD
-> without the orientation GPIOs declared.
+On Thu, 11 Apr 2024 09:06:11 +0200, Luca Weiss wrote:
+> Define the USB-C orientation GPIOs so that the USB-C ports orientation
+> is known without having to resort to the altmode notifications.
+> 
+> On PCB level this is the signal from PM7250B (pin CC_OUT) which is
+> called USB_PHY_PS.
 > 
 > 
+> [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: soc: qcom: pmic-glink: allow orientation-gpios
-      commit: 254c101efde79ecf1264ba49be9cb9366542f150
-[2/5] arm64: dts: qcom: sm8350-hdk: add USB-C orientation GPIO
-      commit: defac2c098965534e36e257cf80712c54207d99b
-[3/5] arm64: dts: qcom: sm8450-hdk: add USB-C orientation GPIO
-      commit: 70b47e7b764ce0c31ed81fdb483738e3d9135e22
-[4/5] arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s: add USB-C orientation GPIOs
-      commit: e34d83d968165841250cc4e780921f4bb33247d9
-[5/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: add USB-C orientation GPIOs
-      commit: d2dbb1047e05d68b4f031fd50717cf3d2016268f
+[1/1] arm64: dts: qcom: qcm6490-fairphone-fp5: Add USB-C orientation GPIO
+      commit: e788ef2bdac7fdbd61b626f65fdf7528a1c6fd3b
 
 Best regards,
 -- 
