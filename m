@@ -1,287 +1,120 @@
-Return-Path: <devicetree+bounces-61180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0304E8ABE5D
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 03:54:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC818ABE65
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 04:05:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18D8A1C2067B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 01:54:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80C651C2085A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 02:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BF3FC12;
-	Sun, 21 Apr 2024 01:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1664409;
+	Sun, 21 Apr 2024 02:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uLp/GRyc"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="PnMORuza";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ajdRl7Dj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from wfout6-smtp.messagingengine.com (wfout6-smtp.messagingengine.com [64.147.123.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC6E38C;
-	Sun, 21 Apr 2024 01:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E400617F5
+	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 02:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713664405; cv=none; b=NRQjAQhzE6uxb23+W+JSaB/iBJX5VjjMK8PLABeR3F/k8xySZY9R60m1CoX1/z9eHETZWDc+7Z8RVyjgKKWeD/k33q9/nNJ1IYRevaO4BaYiQKedagwIrgorYymM6D4d+GxiSa/5eKRxQv6A76kivcWX4opKBxoMAx/J7N0sCB8=
+	t=1713665146; cv=none; b=onV8x9JmTmmti1ZU3M2twzwiCHSeemVeL7TP4oL4P711W6j9xYwGAa5kmAQN7CTBSoaZiimTwpQ3oipchi+CytG1Ah1ZSOQ3RsuwgiKZSigaA73XC7L20Ydp/QK8Ya6r8IDEZBn8Yp6lUq8ArbG8Rp2RrZTqqGN6q3CvCHxdR5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713664405; c=relaxed/simple;
-	bh=rSDhC5PAkuAsXTcdlV+TqxFyDVc6SrLFiJeeck1bQec=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Br7NqD8F9cy5LgUP2baMK/rpv2+vlNmqFlHZJVzz5t6UKcXnrvqEn5FUJDBT+muTbmFuKOdV0IYCmGGo2SVHmthfPlG6VqAiF2cYejY/DI08FeP+0BHxJQIFG2hJDnUT9r4+Phd9GhIIP8w6Qgr9A973enO6i+ju8bfPH/e6eXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uLp/GRyc; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43L1qYXd000612;
-	Sat, 20 Apr 2024 20:52:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713664354;
-	bh=lefSTSp/ZxaykGj2g6ai9aSjJZIy05hDz3B0bEAtMx8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=uLp/GRycksCpfoxbUmJYQRuVl9FX+r/fOE0mUDc8jXoV/RKaZ6MZVuv3YUUCI7plq
-	 7oyRCCp/FKzBMpiXl7PlwVXeBlxUGEmgHh4aVUEt8E/VjIKVDWsvPn6BeinW1eKnLY
-	 KHT2BXQBHgfVd/OxSG2nTf4yK1/nLc8b6XOMAd+A=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43L1qYCm077920
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 20 Apr 2024 20:52:34 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 20
- Apr 2024 20:52:33 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 20 Apr 2024 20:52:33 -0500
-Received: from LT5CG31242FY.dhcp.ti.com ([10.250.160.109])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43L1pmOk047902;
-	Sat, 20 Apr 2024 20:52:27 -0500
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <linux-kernel@vger.kernel.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
-        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
-        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
-        <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
-        <Baojun.Xu@fpt.com>, Shenghao Ding
-	<shenghao-ding@ti.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH v9 4/4] PCM6240 family chips are popular among audio customers, in spite of only a portion of the functionality of codec, such as ADC or DAC, and so on, for different Specifications, range from Personal Electric to Automotive Electric, even some professional fields. Yet their audio performance is far superior to the codec's, and cost is lower than codec, and much easier to program than codec.
-Date: Sun, 21 Apr 2024 09:51:43 +0800
-Message-ID: <20240421015144.1154-5-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20240421015144.1154-1-shenghao-ding@ti.com>
-References: <20240421015144.1154-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1713665146; c=relaxed/simple;
+	bh=HB/4XgsGiInPsVY0eYnbCI/gVH3tI3gGqc5hVAwy5zY=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=MSa2TWFXhptCBUnRyE0hejq9P2QU2UDh23UAJMTpAl4PH0AWIc1x4DatG8uqWHetPI0hBOFmvbCh2gpbw2koaKCgnvy2qariz/FZzTctTclfXALiTZSMg/r1DzoEcbZTtsOnDz12KiuzUzhCjlkI/rEw4Rf9Yj3Iqalv2efY/MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=PnMORuza; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ajdRl7Dj; arc=none smtp.client-ip=64.147.123.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfout.west.internal (Postfix) with ESMTP id 1DBCC1C000FF;
+	Sat, 20 Apr 2024 22:05:43 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Sat, 20 Apr 2024 22:05:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm3; t=1713665142; x=
+	1713751542; bh=En32aJrMQ/0Gzak9gE/0H5E2giTlCwXJ+O3be82usqM=; b=P
+	nMORuza5G6W3CwHGkAWtBCX4sN3CSEfi3AnwrZNOQ4Prdkcy07pCYmgcIp2SYrCw
+	ZPpqVpND4MEsf8xEek2phM3RuHBFckMylen/LpxpaePVA6kmGOKwV5JnU3rbMe8a
+	6YEuL13nu7QVMh7HvN8IMiyyNizGFm34+ahEWZjRLw8/FLT1iASebepi7b4AD8Mt
+	a0RUDVYB0D66D6D5Q7pQWrmuZojX97Igt05arLPM091P1c9joCth1waUftIL+QdQ
+	mSJTsVM2jOAhMm1EYlaRiGASrk7KWtfXzN3uqQcgtOu+s2KAdayBREFbfws2q+7U
+	yaE1rPKODdtap4iJ2b3IA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1713665142; x=1713751542; bh=En32aJrMQ/0Gzak9gE/0H5E2giTl
+	CwXJ+O3be82usqM=; b=ajdRl7Dj5uzcuOaz9C85G/sI3bIZv4nbJZ1Z9OwTNr5b
+	1+jf+gI55fElI+4YuFRNKS0gnuO5GbLyaqxWEJm/hSBTozz4IkZ5lsoKdYpvZk+c
+	OWg6JZ2RDP/vypALx2JcSAp4EVeSIF+9PpPgrSyZd/Jlx55+DC8Ql4dn0EkgwWyT
+	y3zTyoS2LNMtb+S6uP8Dq9jdYVFDHef41YSw7YjgHgn10lv6cDjWQFGNYW508nl6
+	pIe0L25eQh1OsLn8wujQeyMxE1hP72tlAIhI9hUTtaYlspsD1xE5Ps7nvsEmTjNd
+	rmjkRwDMm8fN4M6W84SRjZMgciEthxoisGjmZGGv5g==
+X-ME-Sender: <xms:dXQkZoAUY7xN1txSCLiFqAxVlG1nRdQEwZRNrvhqtJUGGspeo95wvw>
+    <xme:dXQkZqjWkGg76w1us623DIdci0EqYXqwJ0h8KMtN-vTn9foqBxdaiOjp0lggKXqkF
+    8XZmoFn7H-T-tBlMQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudekhedgheegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
+    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
+    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
+    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
+X-ME-Proxy: <xmx:dXQkZrmtxjD3mQWj4aa6VinM2g0YH4Qdpvwt9puIkP4E4PmhQrbdyQ>
+    <xmx:dXQkZuyZGx7RG8koIJDWej2EcUh6qBHHjjpIBzgYNduUgXcxppT3cA>
+    <xmx:dXQkZtRV3mfGoK1IAk7DZEk47pviAgC4NQJ0jOsThgu_OHO4pgbdzA>
+    <xmx:dXQkZpafHXN1sTbHonleIl5h_nxJ7e546xkfQ-l1CfvX5LTS6wx_8w>
+    <xmx:dnQkZiIFlhB8GXHbTU5YESN8cud_wxRJ2-JrFs0p_dWIpzRK1Gf7VIJw>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 9830AA61492; Sat, 20 Apr 2024 22:05:41 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-379-gabd37849b7-fm-20240408.001-gabd37849
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Message-Id: <7e4d3272-c1d7-456d-b1cf-fd80dbe396e1@app.fastmail.com>
+In-Reply-To: <37ec07c5-5235-4356-8ab2-ad09ddd58347@linaro.org>
+References: <20240420104354.334947-5-ryan@testtoast.com>
+ <20240420104354.334947-8-ryan@testtoast.com>
+ <37ec07c5-5235-4356-8ab2-ad09ddd58347@linaro.org>
+Date: Sun, 21 Apr 2024 14:05:21 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+ "Andre Przywara" <andre.przywara@arm.com>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>,
+ "Chris Morgan" <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 2/5] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+Content-Type: text/plain
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
 
----
-v9:
- - No changes.
-v8:
- - use some reasonable format of changelog.
- - Link to v5: https://lore.kernel.org/all/20240221051501.627-4-shenghao-ding@ti.com/
----
- .../devicetree/bindings/sound/ti,pcm6240.yaml | 177 ++++++++++++++++++
- 1 file changed, 177 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+>> +	   button-up {
+>> +		   label = "D-Pad Up";
+>
+> Please fix your indentation to match kernel/DTS coding style.
+>
+Good spot, thanks!
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-new file mode 100644
-index 000000000000..dd5b08e3d7a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-@@ -0,0 +1,177 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2024 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM6240 Family Audio ADC/DAC
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description: |
-+  The PCM6240 Family is a big family of Audio ADC/DAC for
-+  different Specifications, range from Personal Electric
-+  to Automotive Electric, even some professional fields.
-+
-+  Specifications about the audio chip can be found at:
-+    https://www.ti.com/lit/gpn/tlv320adc3120
-+    https://www.ti.com/lit/gpn/tlv320adc5120
-+    https://www.ti.com/lit/gpn/tlv320adc6120
-+    https://www.ti.com/lit/gpn/dix4192
-+    https://www.ti.com/lit/gpn/pcm1690
-+    https://www.ti.com/lit/gpn/pcm3120-q1
-+    https://www.ti.com/lit/gpn/pcm3140-q1
-+    https://www.ti.com/lit/gpn/pcm5120-q1
-+    https://www.ti.com/lit/gpn/pcm6120-q1
-+    https://www.ti.com/lit/gpn/pcm6260-q1
-+    https://www.ti.com/lit/gpn/pcm9211
-+    https://www.ti.com/lit/gpn/pcmd3140
-+    https://www.ti.com/lit/gpn/pcmd3180
-+    https://www.ti.com/lit/gpn/taa5212
-+    https://www.ti.com/lit/gpn/tad5212
-+
-+properties:
-+  compatible:
-+    description: |
-+      ti,adc3120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 106-dB SNR.
-+
-+      ti,adc5120: 2-Channel, 768-kHz, Burr-Brown™ Audio ADC with 120-dB SNR.
-+
-+      ti,adc6120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 123-dB SNR.
-+
-+      ti,dix4192: 216-kHz digital audio converter with Quad-Channel In
-+      and One-Channel Out.
-+
-+      ti,pcm1690: Automotive Catalog 113dB SNR 8-Channel Audio DAC with
-+      Differential Outputs.
-+
-+      ti,pcm3120: Automotive, stereo, 106-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm3140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 106-dB SNR.
-+
-+      ti,pcm5120: Automotive, stereo, 120-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm5140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 120-dB SNR.
-+
-+      ti,pcm6120: Automotive, stereo, 123-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm6140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 123-dB SNR.
-+
-+      ti,pcm6240: Automotive 4-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm6260: Automotive 6-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm9211: 216-kHz digital audio converter With Stereo ADC and
-+      Routing.
-+
-+      ti,pcmd3140: Four-channel PDM-input to TDM or I2S output converter.
-+
-+      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
-+      I2S output converter.
-+
-+      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
-+      dynamic range.
-+
-+      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,adc3120
-+              - ti,adc5120
-+              - ti,pcm3120
-+              - ti,pcm5120
-+              - ti,pcm6120
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcmd512x
-+              - ti,pcm9211
-+              - ti,taa5212
-+              - ti,tad5212
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcm3140
-+              - ti,pcm5140
-+              - ti,dix4192
-+              - ti,pcm6140
-+              - ti,pcm6260
-+          - const: ti,pcm6240
-+      - items:
-+          - enum:
-+              - ti,pcmd3140
-+              - ti,pcmd3180
-+              - ti,pcm1690
-+              - ti,taa5412
-+              - ti,tad5412
-+          - const: ti,pcm6240
-+      - enum:
-+          - ti,adc6120
-+          - ti,pcm6240
-+
-+  reg:
-+    description:
-+      I2C address, in multiple pcmdevices case, all the i2c address
-+      aggregate as one Audio Device to support multiple audio slots.
-+    minItems: 1
-+    maxItems: 4
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Invalid only for ti,pcm1690 because of no INT pin.
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm1690
-+    then:
-+      properties:
-+        interrupts: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for two devices with interrupt support */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     pcm6240: audio-codec@48 {
-+       compatible = "ti,pcm6240";
-+       reg = <0x48>, /* primary-device */
-+             <0x4b>; /* secondary-device */
-+       #sound-dai-cells = <0>;
-+       reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+     };
-+   };
-+...
--- 
-2.34.1
-
+>
+> Best regards,
+> Krzysztof
 
