@@ -1,119 +1,158 @@
-Return-Path: <devicetree+bounces-61205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822758ABF6B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 15:54:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7518ABF74
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 16:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2D4BB21677
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 13:54:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C44B281A84
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 14:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24344175B7;
-	Sun, 21 Apr 2024 13:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39F11757A;
+	Sun, 21 Apr 2024 14:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="C4CWtl+D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EMTjJ+20"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D12D175A7;
-	Sun, 21 Apr 2024 13:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723C61798C;
+	Sun, 21 Apr 2024 14:01:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713707681; cv=none; b=LJ0Q13Ee55CTzuR8k/4JvaYtoXMHJUHe3DUBOck7v/R6qR5Q176+oluCab2XI0C2VRExpKgCszQU9ZarMT7Q7OGDbGJra8ncPGq2jYSLW/0hpL4XvIP/tv836LhDBybC9fhTecoKvPIvPukGAc0woutWHpj3nyFIZA/g83lWbIQ=
+	t=1713708071; cv=none; b=RsgTBx/AAnFuRdaSFsVo/YMKH+J7neZ7LLnYPL0Fi4cYyOFcUzFQsFLGn1UCsoIjLhLRLCFgA6m5LIuvwHj1uRF+6JOd+zk9N4JKbnUmTquh46jha/z3vpsQSTF5u//FgepjhSYCxk6u6sX44t22qT1+SEXUPAVrzAJ6BOarPGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713707681; c=relaxed/simple;
-	bh=NA+h1kZ4ZYosSXB9YC2ayj8s4oTUaovMwew+/FDs8yo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Anbk4uIzSQDhoeG1Oi1f2fX7BJ+is1SAMf5tBU33VoFxDuTrdOSzyTh1h5KJP9m3vwCIiIW5AFghJhItN1zRPUo5u2vc11LApSt0bpDyXaOOAY3gNvmWQdy6w2nAmZkrghC+XG8asUUprcSEIs+vLVU3YZo3yu1do4IvKEhOMbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=C4CWtl+D; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1713708071; c=relaxed/simple;
+	bh=0hbnqKabwtzz3UJmJ24LVgTLyMbSVASrLx26P2wp4mg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O76b/a2Mc9dcPS3wpwtIU09ZaN7raJ96cmzxySKOTckhsP+KUcp+QFrKbi5fkUAMVq0e8twiVEGwG3dn1A+EBzA3dkP15K+ClZTECXmP+gXmABU+5GuweciXc0A8+eqsbSJMpBomUOjT61XU+jhDHx5Xnsg8m6/koQsAb5JhpSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EMTjJ+20; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87B55C3277B;
+	Sun, 21 Apr 2024 14:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713708071;
+	bh=0hbnqKabwtzz3UJmJ24LVgTLyMbSVASrLx26P2wp4mg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EMTjJ+20VzuLrQz62z8f8X7I4o3J5rt3WItEAjX7H1kmnYQuevJzkYL/iJwlq03bA
+	 tNzpJTvbav/1AcMfEu4BqBysVSunpZZRpFoCs3bmdaNOPytmpGhiCSIsnmLFpDmx4f
+	 TPv1gd81y4414HHJ3xYvUNzuovkzllgCUKtvkYl9ARtvgbBvuD4G11PkU8ThSh9Vdv
+	 +HPAmOuAaGKEVi4IvQltGpQUXymTWzU3wSUQzUs7EwMBqu/KxtB9qGfmuwgPJftl5W
+	 RNoZl2Z1TpwZXvfEtYNRBZKZsazwVEb1TFCzf4pzNuZ2fu0em+PlN4H3Nkb3jun/Kr
+	 YNYJmHZNUPjig==
+Message-ID: <198c5021-4347-4ac1-bf23-b98924b224ac@kernel.org>
+Date: Sun, 21 Apr 2024 16:00:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1713707675;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/4ooY+dJBDon3+uBiWdkfQ49raa8NLkoa8U8AjhBhvA=;
-	b=C4CWtl+DvcM0SmFngK7FHkT2L/ZMtfaY6AswksaDF51yPAlkJLOg7sc9j+mRdNRjlt4Qqp
-	IdmaYM6OJN8IGQaaHdfUybveyzIOgkjYQPTcaG46wuE2lZWRmWtxb8HmM1NGAgWJ3pM9JQ
-	wKNk6Gn+OA5IDp+jcm0Fk3f+lI/aoQAcK3eEOLZG9KSbl88ppMwjFMyfYedDFfWDrSQ9A8
-	roWBJ2bmEE3Ch2WLVybA4EBG02vYlB8Z+ajPSDL1A0Vrq/a0ngbUlL1cSJvgHHA/c8CEfm
-	lckgPzXyZyoU65b/4Pb2yAR8GuPL2rV2qBCKp/02SE7qECbYyBMywyIlizS12Q==
-Date: Sun, 21 Apr 2024 15:54:32 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, amadeus@jmu.edu.cn,
- FUKAUMI Naoki <naoki@radxa.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Correct the descriptions
- for Radxa boards
-In-Reply-To: <20240419-triumph-cheddar-77fc2f6948b0@spud>
-References: <1e148d6cd4486b31b5e7f3824cf6bccf536b74c0.1713457260.git.dsimic@manjaro.org>
- <1888572.CQOukoFCf9@diego> <20240418-attach-tigress-bc2b9f844fc7@spud>
- <c3c4a6ad48fbd62b44991c9bfd81570a@manjaro.org>
- <20240419-triumph-cheddar-77fc2f6948b0@spud>
-Message-ID: <a3930b26634a78888c9fe3013284563c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] media: dt-bindings: i2c: add Giantec GT97xx VCM
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Zhi Mao <zhi.mao@mediatek.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Heiko Stuebner <heiko@sntech.de>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Paul Elder <paul.elder@ideasonboard.com>,
+ Mehdi Djait <mehdi.djait@bootlin.com>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Bingbu Cao <bingbu.cao@intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ shengnan.wang@mediatek.com, yaya.chang@mediatek.com, yunkec@chromium.org,
+ 10572168@qq.com
+References: <20240420011840.23148-1-zhi.mao@mediatek.com>
+ <20240420011840.23148-2-zhi.mao@mediatek.com>
+ <0cb44232-3be3-47cd-9e4c-f01f2839aff3@kernel.org>
+ <171361758199.1737874.11884706323295617909@ping.linuxembedded.co.uk>
+ <171369930090.365791.12487523856935433191@ping.linuxembedded.co.uk>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <171369930090.365791.12487523856935433191@ping.linuxembedded.co.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2024-04-19 16:09, Conor Dooley wrote:
-> On Thu, Apr 18, 2024 at 07:12:35PM +0200, Dragan Simic wrote:
->> On 2024-04-18 19:04, Conor Dooley wrote:
->> > On Thu, Apr 18, 2024 at 06:59:42PM +0200, Heiko Stübner wrote:
->> > > Am Donnerstag, 18. April 2024, 18:26:19 CEST schrieb Dragan Simic:
->> > > > Correct the descriptions of a few Radxa boards, according to the up-to-date
->> > > > documentation from Radxa and the detailed explanation from Naoki. [1]  To sum
->> > > > it up, the short naming, as specified by Radxa, is preferred.
->> > > >
->> > > > [1] https://lore.kernel.org/linux-rockchip/B26C732A4DCEA9B3+282b8775-601b-4d4a-a513-4924b7940076@radxa.com/
->> > > >
->> > > > Suggested-by: FUKAUMI Naoki <naoki@radxa.com>
->> > > > Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> > > > ---
->> > > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 8 ++++----
->> > > >  1 file changed, 4 insertions(+), 4 deletions(-)
->> > > >
->> > > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> > > > index fcf7316ecd74..ae58e25c29ec 100644
->> > > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> > > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> > > > @@ -767,22 +767,22 @@ properties:
->> > > >            - const: radxa,rockpis
->> > > >            - const: rockchip,rk3308
->> > > >
->> > > > -      - description: Radxa Rock2 Square
->> > > > +      - description: Radxa Rock 2 Square
->> > >
->> > > I may be just blind, but what changed here?
->> >
->> > There's now a space before the 2.
->> 
->> Exactly.  That's part of the Radxa's naming convention, which may be
->> seen as somewhat similar to the general rule of spacing out values and
->> their associated units, e.g. "2 MB" is in general preferred over "2MB"
->> in nearly any kind of a formally correct document.
+On 21/04/2024 13:35, Kieran Bingham wrote:
+> Quoting Kieran Bingham (2024-04-20 13:53:01)
+>> Quoting Krzysztof Kozlowski (2024-04-20 12:21:46)
+>>> On 20/04/2024 03:18, Zhi Mao wrote:
+>>>> Add YAML device tree binding for GT9768 & GT8769 VCM,
+>>>> and the relevant MAINTAINERS entries.
+>>>>
+>>>> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
+>>>> ---
+>>>
+>>> Sorry, there was v1. Please do not send same versions twice. BTW, use
+>>> patman or b4 for your submissions if versioning is tricky.
+>>>
+>>
+>> Whats Patman? google returns false positives for me.
 > 
->> As a side note, there's even so-called "half space" as a typographical
->> convention for spacing out the values and the associated units.  That
->> makes formatted text with such spacing a bit nicer. :)
+> Digging deeper, I've discovered patman comes from the u-boot project,
+> and is known as 'patch manager', and can work along side patchwork.
 > 
-> Let's not introduce half spaces into the bindings though :)
+>  - https://docs.u-boot.org/en/latest/develop/patman.html
 
-Of course. :)
+Patman is the tool brought for U-boot and used a lot within some of
+Chromebook folks, quite powerful. Now most of the community uses b4, but
+for completeness I proposed patman (which has few nice features not
+present in b4). See Doug's talk from this EOSS.
+
+Best regards,
+Krzysztof
+
 
