@@ -1,232 +1,164 @@
-Return-Path: <devicetree+bounces-61216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98E38AC02E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 18:53:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A608AC044
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 19:24:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3CE11C208A1
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 16:53:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E636D1F2100A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 17:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486731BF2F;
-	Sun, 21 Apr 2024 16:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E54F2C853;
+	Sun, 21 Apr 2024 17:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="QSNLCLBW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a9OGZHDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2088.outbound.protection.outlook.com [40.92.46.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DABE17BD4
-	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 16:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.46.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713718426; cv=fail; b=WDuA/h1ocADIkPhsVDYZs5jTqZ3VXCWZRFo6uUkD9Hpol8itTVzQuyvHTCqLvloD2wcMmmK4PJ9Q78BFQ5EITrbhGLkkexVqikpxtOL3F+bfF0tsYslqTSf9sCzN4ywkTdysNQE+y10rVHnFN87VVYdjBf/BkSxFPlHxC6doeug=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713718426; c=relaxed/simple;
-	bh=njf2a21/UJDnpEW2DIa1AOYrMo3+qe8Zu+kqGTQkwI4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=SnWyyoKiN4mSFx1tKCHy5PnKpNafwXLq4cOGgoWx7vBU683OSyY6W4WUcdktmGPC3bkrvPd1t0Qz1OETUQvc3kdlhJXOhp6FQK7OpA1X3mX0qjjN5z5U6YLYtQkkfd7rVY93u2Pkz9eYyTVwaOBP1ZV74+NhArXtHQ2Gg0T+jUI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=QSNLCLBW; arc=fail smtp.client-ip=40.92.46.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OjHry3jthjAMClZHHalOugTrvPCzwMDic8NkyMgRElOk7DYsauK4E7CXmfwdGjoZFRM5BoaEdGhi6QjhUG/P9gSzFKXhb+Wht+CE5u/iC2W2s8frnEo6n+2Ios6RURNRKqtu0AfeDAVUze6EdI3bQKEaujVPuSnle34PdSsmOtp6Shm+pvUTaeJEfj1QTRL/ZX7ON7aWy3sPxEsg2c+Oze4z2RB4B7/vmNlzGAHiZlxnqAMhFbuKTDQYgd59LXn+y9EvtzVEX5xQpByUY3+nRd98NIxBzDeGDgtTgt+1YHA53a50PXI1xGpp7O8mGaCvUu1okhRtI1ez2SYR7PAgIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KkMQE7okN4nt6DaV/SaS+Bbxk0w+rkjhNdmCY/qWfM8=;
- b=gKa58ucGNXj4E7iQ0DdinxRNQzuHgHJFSnV8XxhcnMFXIxrtLGH/sUOKPEGU3BIkq/PNQrCziPiC+HwrdHcsrWHHUB1JzID88Jp9huefhjHb/Q3T6zqJ3JwXypgmg3cRC++pS0e+1lGk27zz6pywEJ9CfMAIN61JYpAtklMOST6MJEWxk7yE9VP3iX/BwO320vAN1K9ySof+/X1Z+S3rRIlSBJLRQg0IjrtYgPDqbjcVHtWHDoXwQCp0+CCexJ5pXtUtTTn8vv7uzCf77ANeVL6UvrA+IsKji2BLYbg9b6g6DetpzRq1B26LYDEExD5Hm0gWZ2iGxcYlXAqX21ExWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KkMQE7okN4nt6DaV/SaS+Bbxk0w+rkjhNdmCY/qWfM8=;
- b=QSNLCLBW23LLUplAJyLncUGdnIfDXRoebDuPDuHWAK+0ao0aFhBz5Bep7hMaM6rn6JDw8JefWuDXPORoVqQWocdkR7930CAMkerXMl8hMxLHx3K/jIaqURG6sc/Td80pAsU3QXhTzYDlLLmgWNCTt9AriXonBBbpgVIUqMi3YzO+Xj7B81eoAVlWBovXyg+p4bwub30TQLcpizrFUQ+y/bK8pVlmkuh21NTosI1wZxcneUYjfq5jb4YD2DS8oOLr1mb4wXY7f9w0xcVoRhHemDdtuo5RvsmUTITFGmtUeMser0yy2ZMYBIfl5o0srpUAecvnm3oC18YZRlwVP3somw==
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
- SN7PR05MB9625.namprd05.prod.outlook.com (2603:10b6:806:348::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Sun, 21 Apr
- 2024 16:53:42 +0000
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::12a8:4f88:32b0:9407]) by DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::12a8:4f88:32b0:9407%6]) with mapi id 15.20.7472.044; Sun, 21 Apr 2024
- 16:53:42 +0000
-Date: Sun, 21 Apr 2024 11:53:38 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Ryan Walklin <ryan@testtoast.com>, Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 3/5] arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
-Message-ID:
- <DM4PR05MB92292B18E05B16834DE41B5BA5132@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240420104354.334947-5-ryan@testtoast.com>
- <20240420104354.334947-9-ryan@testtoast.com>
- <20240421015317.4a400e31@minigeek.lan>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240421015317.4a400e31@minigeek.lan>
-X-TMN: [KWHmxnHYii5gneH1qV5UAR5tvCCoaGob]
-X-ClientProxiedBy: DM6PR06CA0075.namprd06.prod.outlook.com
- (2603:10b6:5:336::8) To DM4PR05MB9229.namprd05.prod.outlook.com
- (2603:10b6:8:88::20)
-X-Microsoft-Original-Message-ID: <ZiVEkiOmu4YPVKSh@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BB21BC4B
+	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 17:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713720271; cv=none; b=HRDg1nfibMkQ6itXA56WiAYQcQl9WiYOmX5PryO/tzTfh44ZbanTGAE8vQJqfJN1M3Naxa8CJ+YF7GuOJXtzEFd4RNE+pFrKvZZsXm+zv5fn4wXayr+WHZABPFAzSktHwSVPXjqCQHutxkDQmCX3muZFFsLIEg5y8tzb8qBRwK0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713720271; c=relaxed/simple;
+	bh=yHL0DbIQLkmeGdlCKpk8kjyfuAXLVJzOnT87LUKVr0U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AXidNYAOaLmMBhRJ0FAJ6XDOH2P5q2fCqAxinGlGMq4fGTqiAdWfzAJwCT6BvZE1CB/dYOTEf9SbdIJnHzR0Umhk2I4u8Rt5H3XmHG7ax8TtqdLArbYRHII+bD50khoAdBBuTaQ4niL//GWokk864WIh7kC9+fAVNEH4Tn5qmuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a9OGZHDQ; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5176f217b7bso6018671e87.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 10:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713720268; x=1714325068; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qP4QRJgU1BApHuToLH0DTtNB0ZEyDCq59t66ZEJwTQg=;
+        b=a9OGZHDQKWoxmfR7m45beg+jR3nuU52r4x5ykQE4fxp7OoS6kxSYpU/aQTZfFvFPRi
+         J0870j/SaQQMdTImnJXA3uhKdKD8wwJIjkMPLC5RS/FVElwAnJUsjdR+PuOITZ1Nb8lA
+         fxCbd3TniFqIgN9Fy+QU45F+7iM2q2Bzpg3RoDMhElJ67A0TxwoVpIBdjyBYUaQf+S3j
+         VDTYTP/6H9ev7LTUJVxsAaABxN71S9KlDBItG+2qL0LdFFr1mI/230u5IFcQNJyZ7UCW
+         6nlsthjy4AE/hLCn9eaIlYOuedRuB0uwpSKQJp0tVLabcSdO14mIjYuFI15moToDNWLA
+         1hnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713720268; x=1714325068;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qP4QRJgU1BApHuToLH0DTtNB0ZEyDCq59t66ZEJwTQg=;
+        b=a0s47uLMZTiRoMsHvLpoNEpca6xfG2MWBpTMF6g+7bJnVCV6gg1tMQqoOIDcgirgZj
+         nkK5UkOO46J6Sf+yK1mDEp8WH9hUmd9LfsiXAHUVCkKZ9V0lZlszUTPWNbBk0hn4S1jU
+         zN0bBtlewUM5XCSoMEbyJekUnIKYOcwcepQnRUa4NMwNsPxt/NPAy590EOwvXJSndP2Z
+         YoKys3WDsjxrUD+3UB0fwHlOgObCN5G8JHzPqOpjVIdyzH1hcyLyt5kTZyJTC9tQI0DU
+         20SYzYHt6IaMS31R7KFFtc6VuNE1btbqtNUCEJr3qMB/enKCI0WGk6fnAlUMJcN+Cad0
+         hIlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAIi9T3CiRpwgp5ry7PlbatBF1UjPagTnukO3wm8V2tC90cYkWqDS0wZOq3igTun63PAgJPynnP+c3S4h/wjdG3gDXfn0BIsfZ1Q==
+X-Gm-Message-State: AOJu0YxriaWN63FdvutDY7V+nXM1G5O5H1dIefVWtv8t6BT9b24WlnMu
+	bhcYXa89S2Hm/CFBLc3+vFupAye4Z6wqu4Eu+rzX5dpgQY5XWNTbkwDUfwNhrQA=
+X-Google-Smtp-Source: AGHT+IFLvHBYF/HR8/m7asEk356ewfwQEIZ3ux1d+BGEv1g/KRonZRM89ywg48Iy/h82lTw96asb1w==
+X-Received: by 2002:a05:6512:370f:b0:518:c8e1:478 with SMTP id z15-20020a056512370f00b00518c8e10478mr5802469lfr.58.1713720267513;
+        Sun, 21 Apr 2024 10:24:27 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::8a5])
+        by smtp.gmail.com with ESMTPSA id u18-20020ac25192000000b00518d5c5740esm1507389lfi.180.2024.04.21.10.24.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Apr 2024 10:24:26 -0700 (PDT)
+Date: Sun, 21 Apr 2024 20:24:25 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: "andrzej . hajda @ intel . com" <andrzej.hajda@intel.com>, 
+	"neil . armstrong @ linaro . org" <neil.armstrong@linaro.org>, "rfoss @ kernel . org" <rfoss@kernel.org>, 
+	"Laurent . pinchart @ ideasonboard . com" <Laurent.pinchart@ideasonboard.com>, "jonas @ kwiboo . se" <jonas@kwiboo.se>, 
+	"jernej . skrabec @ gmail . com" <jernej.skrabec@gmail.com>, 
+	"maarten . lankhorst @ linux . intel . com" <maarten.lankhorst@linux.intel.com>, "mripard @ kernel . org" <mripard@kernel.org>, 
+	"tzimmermann @ suse . de" <tzimmermann@suse.de>, "airlied @ gmail . com" <airlied@gmail.com>, 
+	"daniel @ ffwll . ch" <daniel@ffwll.ch>, "robh+dt @ kernel . org" <robh+dt@kernel.org>, 
+	"krzysztof . kozlowski+dt @ linaro . org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt @ kernel . org" <conor+dt@kernel.org>, 
+	"linux @ armlinux . org . uk" <linux@armlinux.org.uk>, 
+	"Nicolas . Ferre @ microchip . com" <Nicolas.Ferre@microchip.com>, 
+	"alexandre . belloni @ bootlin . com" <alexandre.belloni@bootlin.com>, "claudiu . beznea @ tuxon . dev" <claudiu.beznea@tuxon.dev>, 
+	"Manikandan . M @ microchip . com" <Manikandan.M@microchip.com>, "arnd @ arndb . de" <arnd@arndb.de>, 
+	"geert+renesas @ glider . be" <geert+renesas@glider.be>, "Jason @ zx2c4 . com" <Jason@zx2c4.com>, 
+	"mpe @ ellerman . id . au" <mpe@ellerman.id.au>, "gerg @ linux-m68k . org" <gerg@linux-m68k.org>, 
+	"rdunlap @ infradead . org" <rdunlap@infradead.org>, "vbabka @ suse . cz" <vbabka@suse.cz>, 
+	"dri-devel @ lists . freedesktop . org" <dri-devel@lists.freedesktop.org>, "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>, 
+	"linux-kernel @ vger . kernel . org" <linux-kernel@vger.kernel.org>, 
+	"oe-kbuild-all @ lists . linux . dev" <oe-kbuild-all@lists.linux.dev>, 
+	"Hari . PrasathGE @ microchip . com" <Hari.PrasathGE@microchip.com>
+Subject: Re: [PATCH v8 2/4] drm/bridge: add lvds controller support for sam9x7
+Message-ID: <2ct5tav52onwd6ceuzqbbam4qsqfvxdjpsrbn72jbsyjtcgtsl@j3d7piqqheel>
+References: <20240421011050.43265-1-dharma.b@microchip.com>
+ <20240421011050.43265-3-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|SN7PR05MB9625:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcee40c9-e5e4-43e9-5587-08dc62239880
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3BT0Fsv2Y2BNfcXMPkfNhJcnhBiyDW1UiruYPH2EuTASm8Mu4p14a/2i5ikWprOOOUZhhIjPBRaYnBlM7H+oSLq7gMVrOpyNVbHF7njEt+V1WUt5qdJS8lk8DjLPD3XArYWuD0rjUlMZRpB9jlYZ0H7NWmH2HpJr/NQbLWaSk2KoteYMILBUUtip/c+0U46fk5qhXcHXwg89yg7g/JFwivO2xkv/WSZOVgrcjrW9ZDjAIbqtq40BqQ3LB6y5PD4oo0+T1TwMVUa+ltHRttQvBukrFxqOXbl9VvjUJHo0jjBFf5YAAQUJRlu9eLJ3T3okDmKXCGFNstenME+6mDMrn/GaGN7gkpwJi6K8FzeKvob0589X5T7/LjrC+RF98GSeylyT4i+eGBPKZv6lsPVLLlK1ol0x5Zh4rB5mOC4LgwHrCTmaeCbtAXj5ssy5/CuRgblJWNuccRb5PbzwRtqwnKR+jt06U2IORLZDJYUXkRnhJXoRSfgra5O0XD4+UKMepUIfE/WjN9hEO3yfONOZBffsnZexco7L9wjbOH1kLDNRShb0WtJH0SsaCajDExKu
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?mIDKGrOM92wsnfnxqOCTb+HeWOEmPg+p2ZBBExx+gz3PMjB88a0Ex0FAK7q/?=
- =?us-ascii?Q?1XRfhHtlXGnojVTzMdMi5teZnlnoEZ23xcnsq/fROekVe+HCSMRv7Sk00xWB?=
- =?us-ascii?Q?/FhWxeRMlI4blmAqUWPwgmct1siA44xAL1UJKe8kpS3UUPBZ0kw+UR1Byfz2?=
- =?us-ascii?Q?ukc1tn145ywbUkum0W9QhtveDFO30+ldtzcnBkyftACE/q4edn5JcJr6jEnO?=
- =?us-ascii?Q?qrK72HjdcHLJ29mBTeU5U8VjXlO6AY11rbAxgVWB+M7LmqocxXtiduGKwivO?=
- =?us-ascii?Q?KKgkL9hSaOevHMEaw2ZAxi5lFtkC4etIkuHB3Ky8oSCuQhUhwq5KMBptbrWX?=
- =?us-ascii?Q?bpzzKVVO0Katb1Pu6jTQYCsEj/J3U30FMasT6p9WLD6/3XV7oqywnTwwgH2x?=
- =?us-ascii?Q?roALNVu6ywyxbPkgZKurp61a3la/kKVF/F6fgXOQSr4nGAPZI42/p36iVY65?=
- =?us-ascii?Q?OnlbtDMq8PeYfIzgtQ34CcgQ0HeKdkkwDKcTIZFXvRG5nsHzcfcSQrsno9WP?=
- =?us-ascii?Q?znJAtQ+ebDGnlxlag0IHOmJtp9b8cONPROeg5YcBlsaTzUpj6/bpYLub/NX2?=
- =?us-ascii?Q?hTAEp4FvLWRaN6L63wQWYw0A68zuzZi1bzDYsxSmQEbxZxnxpgEOZ9+nj190?=
- =?us-ascii?Q?Eh0EEJG3xICCCMOvKa31lPB8+y4ZKF+BKXfsVAnePbJWb9wK3GKmVRcWN710?=
- =?us-ascii?Q?Q/COXLAr8f6stn62kGkqNhLegMg2XgvY++BtbS1AVEyKFeGlUgdihwN1ZCEr?=
- =?us-ascii?Q?6I9WEDeB5jpybrXY25//UL2/jlXqiX17FGUSon+o7u/ZYFtp1wdSYt+lASEY?=
- =?us-ascii?Q?4oCtA7cucEbHI1rgrj1R34A6emCpHeeQT39b1pY6ZS6MufRKZgxhCL2mF/uf?=
- =?us-ascii?Q?tc2ESXtpt3aWhVH1r+be56BmcHrUHSckQuygQNfyVWtG/7skFhyV490CO96a?=
- =?us-ascii?Q?m4kXGUgH4i+dO1QU2nhrYbHnnZSus+o+Uzg2ZZ3CZauIM9mp6VpCyXTOSb83?=
- =?us-ascii?Q?jyzMY0Crfcg784CH5+9v9pZlnQ4HCCFOmFSiMSSoPoAscNIyAzCpi1C/OKNB?=
- =?us-ascii?Q?4N+Xvg4w0Ujp3B+NJDsK6WLLT0o55S/XQZQhdZaNiq2nps/PrbY4a/oaLEG4?=
- =?us-ascii?Q?tDsedghDG1xQTeXx1vz2SxR3n/2L3vakB7SB6/9bxgWKF4WuOS0x7f96xJVV?=
- =?us-ascii?Q?bqNOxJgvnAzMM/+I3DwDpb0w00bkHJr8EjnBBD/56OFv3s6erGM+PcbDmcQ?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcee40c9-e5e4-43e9-5587-08dc62239880
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2024 16:53:42.1347
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR05MB9625
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240421011050.43265-3-dharma.b@microchip.com>
 
-On Sun, Apr 21, 2024 at 01:53:17AM +0100, Andre Przywara wrote:
-> On Sat, 20 Apr 2024 22:43:57 +1200
-> Ryan Walklin <ryan@testtoast.com> wrote:
+On Sun, Apr 21, 2024 at 06:40:48AM +0530, Dharma Balasubiramani wrote:
+> Add a new LVDS controller driver for sam9x7 which does the following:
+> - Prepares and enables the LVDS Peripheral clock
+> - Defines its connector type as DRM_MODE_CONNECTOR_LVDS and adds itself
+> to the global bridge list.
+> - Identifies its output endpoint as panel and adds it to the encoder
+> display pipeline
+> - Enables the LVDS serializer
 > 
-> Hi,
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Acked-by: Hari Prasath Gujulan Elango <hari.prasathge@microchip.com>
+> ---
+> Changelog
+> v7 -> v8
+> - Assign ret variable properly before checking it for err.
+> v6 -> v7
+> - Remove setting encoder type from bridge driver.
+> - Drop clk_disable() from pm_runtime_get_sync() error handling.
+> - Use devm_clk_get() instead of prepared version.
+> - Hence use clk_prepare_enable() and clk_disable_unprepare().
+> - Use devm_drm_of_get_bridge() instead of devm_drm_panel_bridge_add().
+> - Add error check for devm_pm_runtime_enable().
+> - Use dev_err() instead of DRM_DEV_ERROR() as it is deprecated.
+> - Add missing Acked-by tag.
+> v5 -> v6
+> - No Changes.
+> v4 -> v5
+> - Drop the unused variable 'format'.
+> - Use DRM wrapper for dev_err() to maintain uniformity.
+> - return -ENODEV instead of -EINVAL to maintain consistency with other DRM
+>   bridge drivers.
+> v3 -> v4
+> - No changes.
+> v2 ->v3
+> - Correct Typo error "serializer".
+> - Consolidate get() and prepare() functions and use devm_clk_get_prepared().
+> - Remove unused variable 'ret' in probe().
+> - Use devm_pm_runtime_enable() and drop the mchp_lvds_remove().
+> v1 -> v2
+> - Drop 'res' variable and combine two lines into one.
+> - Handle deferred probe properly, use dev_err_probe().
+> - Don't print anything on deferred probe. Dropped print.
+> - Remove the MODULE_ALIAS and add MODULE_DEVICE_TABLE().
+> - symbol 'mchp_lvds_driver' was not declared. It should be static.
+> ---
+>  drivers/gpu/drm/bridge/Kconfig          |   7 +
+>  drivers/gpu/drm/bridge/Makefile         |   1 +
+>  drivers/gpu/drm/bridge/microchip-lvds.c | 229 ++++++++++++++++++++++++
+>  3 files changed, 237 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/microchip-lvds.c
 > 
-> > The RG35XX-Plus adds a RTL8221CS SDIO Wifi/BT chip to the RG35XX (2024).
-> > 
-> > Enabled in this DTS:
-> > - WiFi
-> > - Bluetooth
-> > - Supporting power sequence and GPIOs
-> > 
-> > Changelog v1..v2:
-> > - Update copyright
-> > - Spaces -> Tabs
-> > - Remove redundant &uart0 node and DTS version tag
-> > - Add GPIO bank comments
-> > - Use generic pwrseq name
-> > 
-> > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> > ---
-> >  .../sun50i-h700-anbernic-rg35xx-plus.dts      | 53 +++++++++++++++++++
-> >  1 file changed, 53 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
-> > new file mode 100644
-> > index 000000000000..67ba1c7bb3ca
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
-> > @@ -0,0 +1,53 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/*
-> > + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-> > + */
-> > +
-> > +#include "sun50i-h700-anbernic-rg35xx-2024.dts"
-> > +
-> > +/ {
-> > +	model = "Anbernic RG35XX Plus";
-> > +	compatible = "anbernic,rg35xx-plus", "allwinner,sun50i-h700";
-> > +
-> > +	wifi_pwrseq: pwrseq {
-> > +		compatible = "mmc-pwrseq-simple";
-> > +		clocks = <&rtc CLK_OSC32K_FANOUT>;
-> > +		clock-names = "ext_clock";
-> > +		pinctrl-0 = <&x32clk_fanout_pin>;
-> > +		pinctrl-names = "default";
-> > +		post-power-on-delay-ms = <200>;
-> > +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-> > +	};
-> > +};
-> > +
-> > +/* SDIO WiFi RTL8821CS */
-> > +&mmc1 {
-> > +	vmmc-supply = <&reg_cldo4>;
-> > +	vqmmc-supply = <&reg_pll_dcx0>;
-> 
-> It would be great to confirm what the I/O voltage for MMC1/WiFi really
-> is, 1.8V or 3.3V? Is someone with a board able to measure this?
-> 
-> The rest looks good to me, thanks for the changes.
 
-I have measured this on my 35XXH and can confirm both the mmc1 IO
-voltage and the uart1 IO voltage is 1.8v. It's supplied by aldo4.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Thank you.
-Chris
 
-> 
-> Cheers,
-> Andre
-> 
-> > +	mmc-pwrseq = <&wifi_pwrseq>;
-> > +	bus-width = <4>;
-> > +	non-removable;
-> > +	status = "okay";
-> > +
-> > +	sdio_wifi: wifi@1 {
-> > +	   reg = <1>;
-> > +	   interrupt-parent = <&pio>;
-> > +	   interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
-> > +	   interrupt-names = "host-wake";
-> > +	};
-> > +};
-> > +
-> > +/* Bluetooth RTL8821CS */
-> > +&uart1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-> > +	uart-has-rtscts;
-> > +	status = "okay";
-> > +
-> > +	bluetooth {
-> > +		compatible = "realtek,rtl8821cs-bt", "realtek,rtl8723bs-bt";
-> > +		device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>; /* PG17 */
-> > +		enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>; /* PG19 */
-> > +		host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>; /* PG16 */
-> > +	};
-> > +};
-> 
+-- 
+With best wishes
+Dmitry
 
