@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-61220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA0C18AC0B3
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 20:17:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E818AC0B9
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 20:23:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61A921F21118
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 18:17:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9BAA2815E8
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 18:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE773AC34;
-	Sun, 21 Apr 2024 18:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D77A3B2AD;
+	Sun, 21 Apr 2024 18:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hH9Aw/Tj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FihFIFls"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4964518637;
-	Sun, 21 Apr 2024 18:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B29C10A35;
+	Sun, 21 Apr 2024 18:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713723443; cv=none; b=NUoVQM3AYFSxBWNjBuuhAmQJOr34/uuQFNOVXxCuImPAX4UK2703D3NaCLrBJ3lTOsKM7APB9bvIVQK8T0yrjg5tF8RlB2hyWC6FUbxP45Io39SI7XpuCp2RzXYO5oFf3JwF13j5/ivPGoHcMDtgqMZs04hZ1jSgidfPAHUGNgQ=
+	t=1713723809; cv=none; b=C07Ys1AKPngwh/ddl3oscqsCcHH/dLKkcjO8u0vuY5iP0k7oFyfdM+9+iXW30jQNB8eJXd45OO+U1wM6wiWjm11dTMTM/UcR5u4RdNFPEegCa1e1/MgJLTJ1q7ry0nhrALCa+NJwi2wdAj1abIUmtJ8uZFKPpZH2s59pXP+SarY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713723443; c=relaxed/simple;
-	bh=w85IwqQb+A5zg1qYjhWFn/BvQxCdbd79OHyQID1GX8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BqiGUAwwVAwrHuIK3UBKIeSvWL6ZDczXZtbQhy1Pdq6GBg9JdouhKQzCSirnEIepRmsgV2znfVFqBAwJ1PY1cRrRkpkZSjmvHF/sy2RKMGUq5d/8HDvR+icYI+Qw0KUGkgCubh4TSg1E4TEeMczgTggEFDv1sRlr2l/WcN9qOug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hH9Aw/Tj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42C6C113CE;
-	Sun, 21 Apr 2024 18:17:18 +0000 (UTC)
+	s=arc-20240116; t=1713723809; c=relaxed/simple;
+	bh=BV+7ZhZojp/eFlhUHpQbc4Yl9vwGklRIUscYmJ+Lehg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XE4PLaFCNoBVUU+yIRuSmuIrVwjnrN8UxPiP2xjIiUl8r/aQxlTf6nqY6GswtvoVyfPGu2IBuCZWudUStbPU8psb0P9sMQ6uwhDwtEEZGL2sQAdg2FXXUh3Lw1djLjIkVj/KjKYHEk/u/IbB52kvHJCyEYpTEbgTk2lkGHlcqN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FihFIFls; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2964CC113CE;
+	Sun, 21 Apr 2024 18:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713723442;
-	bh=w85IwqQb+A5zg1qYjhWFn/BvQxCdbd79OHyQID1GX8s=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=hH9Aw/Tjzv2tJ1JaBTt0RF75Bzcx7JignWaMhqHVBmCbTN8h6mqv6UUIa3hDtST6z
-	 eSYqVI+AhyXvrPNHF/vmv2KM1p/zoVrY3FK5PSGn3oLa5NbQ/qab9I6aOy7Qsi1Ny7
-	 BVS1Al2mW+Gxnus8xJ1NYZs9ewH/p7UUgdrVMtxzEI08FmHR6Sx23F+d78pJz7CJNR
-	 T3hoE1cpmPMCdphrOCNXDLf2aZC7QktO3Iqc9LQrY6madLF7KqJDCK9wtvdYkq+uet
-	 5QRXy8MedaSwKfWrAytZZ8O7UDrxzA31lRAlvDRYrc+c6QeVnEj9AGtJKqEkc27ypt
-	 WVp2rQGvBHYKQ==
-Message-ID: <7a3ea23d-d6a2-4036-9d0a-9b9b6582d26f@kernel.org>
-Date: Sun, 21 Apr 2024 20:17:16 +0200
+	s=k20201202; t=1713723809;
+	bh=BV+7ZhZojp/eFlhUHpQbc4Yl9vwGklRIUscYmJ+Lehg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FihFIFlsG/5RA5cmqQF1sjN9ATQO2E8Er2pZ2dIig5Msx4Qc3Ob/EkzVmuyBLiAi1
+	 PW12c/ws/Ovc9PjZZ6JYNq7wRs2fR/Bs2tpBsC4x9jz0RXGYwZTxwYCJf9QmW/HurH
+	 qLe+JJGehu7xVyDb6wv3DoEIezygPrfVd2Nn6ioM1iYbED9+x2OyV1qOohTpo+IWKx
+	 CvP1oFCDHk+inV1iyy5RzPT5PUFYszSLFA0HaHevk0tF8ZRgR/Lc3Lr7FXkZ3JCGNc
+	 +7PuaeGa1HvJsia06vufo37BZVxVVqaFWxIU8Cj99migq0diFEcGgAiRZRZ2ClEaUU
+	 nmn/4iKN+oErA==
+Message-ID: <f1c27992-5014-440b-a1e2-835744d51062@kernel.org>
+Date: Sun, 21 Apr 2024 20:23:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
- audio clock controller driver
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Jiucheng Xu
- <jiucheng.xu@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
- <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
- <07b1ca57-49a0-4151-99bf-caac053eaa01@kernel.org>
- <0194ddb8-6e93-4a77-9fdd-93fc79a4e03e@salutedevices.com>
- <7746a6a8-110f-4920-9f15-8fb592e829ff@kernel.org>
- <ca1b1263-1574-4fbe-913e-f68f6c59608e@salutedevices.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: tegra30-i2s: convert to dt schema
+To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Thierry Reding <treding@nvidia.com>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240421123037.75680-1-sheharyaar48@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,42 +105,150 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ca1b1263-1574-4fbe-913e-f68f6c59608e@salutedevices.com>
+In-Reply-To: <20240421123037.75680-1-sheharyaar48@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/04/2024 17:35, Jan Dakinevich wrote:
->>>>
->>>>> +        };
->>>>> +
->>>>> +        clkc_audio_vad: clock-controller@fe054800 {
->>>>
->>>> Just keep one example. It's basically almost the same.
->>>>
->>>
->>> The worth of this duplication is to show how a clock from second
->>> controller (<&clkc_audio_vad AUD_CLKID_VAD_AUDIOTOP>) is used by first
->>> one. May be it would be better to keep it... What do you think?
->>
->> I don't understand what is worth here. Using clocks is kind of obvious?
->> What's special?
->>
+On 21/04/2024 14:30, Mohammad Shehar Yaar Tausif wrote:
+> Convert NVIDIA Tegra30 I2S binding to DT schema.
 > 
-> The special is that the clock "pclk" for "clkc_audio" must be
-> <&clkc_audio_vad AUD_CLKID_VAD_AUDIOTOP>. This thing is not obvious. I
+> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+> ---
+> v1->v2:
+> - Removed incorrect item ref definition
+> 
+> Previous versions:
+> v1:
+> https://lore.kernel.org/all/20240420175008.140391-1-sheharyaar48@gmail.com/
+> ---
+>  .../bindings/sound/nvidia,tegra30-i2s.txt     | 27 --------
+>  .../bindings/sound/nvidia,tegra30-i2s.yaml    | 66 +++++++++++++++++++
+>  2 files changed, 66 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
+> deleted file mode 100644
+> index 38caa936f6f8..000000000000
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -NVIDIA Tegra30 I2S controller
+> -
+> -Required properties:
+> -- compatible : For Tegra30, must contain "nvidia,tegra30-i2s".  For Tegra124,
+> -  must contain "nvidia,tegra124-i2s".  Otherwise, must contain
+> -  "nvidia,<chip>-i2s" plus at least one of the above, where <chip> is
+> -  tegra114 or tegra132.
+> -- reg : Should contain I2S registers location and length
+> -- clocks : Must contain one entry, for the module clock.
+> -  See ../clocks/clock-bindings.txt for details.
+> -- resets : Must contain an entry for each entry in reset-names.
+> -  See ../reset/reset.txt for details.
+> -- reset-names : Must include the following entries:
+> -  - i2s
+> -- nvidia,ahub-cif-ids : The list of AHUB CIF IDs for this port, rx (playback)
+> -  first, tx (capture) second. See nvidia,tegra30-ahub.txt for values.
+> -
+> -Example:
+> -
+> -i2s@70080300 {
+> -	compatible = "nvidia,tegra30-i2s";
+> -	reg = <0x70080300 0x100>;
+> -	nvidia,ahub-cif-ids = <4 4>;
+> -	clocks = <&tegra_car 11>;
+> -	resets = <&tegra_car 11>;
+> -	reset-names = "i2s";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
+> new file mode 100644
+> index 000000000000..b4cc0b0abfb8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra30-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra30 I2S controller
+> +
+> +maintainers:
+> +  - Thierry Reding <treding@nvidia.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - nvidia,tegra124-i2s
+> +          - nvidia,tegra30-i2s
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra114-i2s
+> +              - nvidia,tegra132-i2s
+> +          - const: nvidia,tegra124-i2s
+> +          - const: nvidia,tegra30-i2s
 
-So you want to document non-obvious SoC architecture via example, not
-via actual documentation. Plus you want to document it for purpose of
-...? Isn't this SoC component, so once you write DTSI it is done?
+That's not what the binding said and not what DTS is saying.
 
-I fail to see any logic in this, but maybe the binding is kind of
-special, misrepresented or hardware is different? But the subject
-clearly states it is part of SoC, so dunno...
+This points to the fact you did not really test this binding on real DTS.
 
-> can keep only "clkc_audio" node here, but reference to "clkc_audio_vad"
-> will be undefined in example. Is it okay?
+When you convert the binding to DT schema, you *must* test all existing
+DTS. Especially that trivial one, like this case armv7 multiplatform boards.
 
-Just like all phandles.
+That's a requirement in DT conversion work.
+
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: i2s
+> +
+> +  nvidia,ahub-cif-ids:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+> +      The list of AHUB CIF IDs for this port, rx (playback)
+> +      first, tx (capture) second. See nvidia,tegra30-ahub.txt for values.
+> +    minItems: 2
+> +    maxItems: 2
+
+Better list items with description
+items:
+ - description:
+ - description:
+
+Also provide proper constraints. Looks like RX and TX are max 5.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +  - reset-names
+> +  - nvidia,ahub-cif-ids
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2s@70080300 {
+> +            compatible = "nvidia,tegra30-i2s";
+
+Use 4 spaces for example indentation.
+
+
 
 Best regards,
 Krzysztof
