@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-61236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EFF28AC1AB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 00:29:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B07C38AC1BC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 00:30:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 508E11C20404
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 22:29:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DED5280DE9
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 22:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36AB845BEF;
-	Sun, 21 Apr 2024 22:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327BE4AEF6;
+	Sun, 21 Apr 2024 22:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kEj8+X54"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SiGz2npN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053D71BF20;
-	Sun, 21 Apr 2024 22:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0767F4AEDF;
+	Sun, 21 Apr 2024 22:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713738576; cv=none; b=jj78+FYk9KOBRrLTO/FXsN1VCUD/hn56llHAo4NVTaK9j2RMiA5P4c0y0GdLemRUBxTXJkHdVDIDU88zlw+PKJx6ZstE/+LeVMWPXgJWf8jKr1DTxkpmE8yjAaS47Vx91xf+X8D3wF99wMcYpkZ1aEZls7tIelssQjhmjXiH0+8=
+	t=1713738580; cv=none; b=CoUYiyoTL9N4p7tvJyh988FAnLa2ed5IPKUym4MyMaa8coomwXbkPAA+pOUeaMYNLrdLPNIu+RcbA/tChJhtktGNgRROOLXKapLyWetxTVcaYuapWsPViRbxUk1I2a7XhcX35VswyDA79GvKJ0RY7kOKEl2jTnvBue2FE+Xwtpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713738576; c=relaxed/simple;
-	bh=fjnlmQG/zKSKyaaI2gI7CgNgrI3kSndRTJARTY1T4RI=;
+	s=arc-20240116; t=1713738580; c=relaxed/simple;
+	bh=KT4Zr8XakFQd+cvqM2qj2rWx1AuzeHfgNWVDm8VCpgA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eS40Fs4kWsZBATLKQehLdIuyf32wwhy1lGXFlQtRSlijePlJpKr87QtHbPlHlqye3fjq7DWsflnN6yi+chphX2HVeqRLOv2I8240V4VjWChca5MY8TXur7vXteTTRwc6IXZJ15GBf63YwVsBHYvxXD/L8F+nU+hsDTTkwxcUZAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kEj8+X54; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA173C32782;
-	Sun, 21 Apr 2024 22:29:34 +0000 (UTC)
+	 MIME-Version:Content-Type; b=MLb2hgM4jzeipcV2B9ZFsUCQ6ET0Sf1P+Qmdt72gYtvjxm0Xvzwg346ve84og2GS6XPhVhGilXxgGekHOk9Xo/mec3gvM+N+xbxSdR47+ssxH8ABow1UwH5pMejHC3Uv1989m4mjzaCCN9bpTuKuryBU9w+OJkQhbSPLOhvSPU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SiGz2npN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32EB7C4AF0C;
+	Sun, 21 Apr 2024 22:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713738575;
-	bh=fjnlmQG/zKSKyaaI2gI7CgNgrI3kSndRTJARTY1T4RI=;
+	s=k20201202; t=1713738579;
+	bh=KT4Zr8XakFQd+cvqM2qj2rWx1AuzeHfgNWVDm8VCpgA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kEj8+X547u9fY1btlugAPTJsSQLuUJC87uOLwpPB0gOaTnZG7/SnflMPQOl297p0I
-	 bllUMVaDealwqLcRwTRgJKFDw7jVqWwR3V0yNihGCddoXpTcBKvYMx4J6EYDsaFuwC
-	 hTDkoeKLLWc4L7Tto4b20/XhRiVLsXfQHUuml0dOkFW7GYzKHQGMZRZG+46Fn2Z8Ry
-	 OJTSqunJgeU7Xki2zWPMiTdL88qvwRLlnIwr9yggHMVTdGK39O6Z/16OiDjbbLMOY4
-	 XfcKIMERVBNACvmgkC22mPjgoMNMjPRF3oySJRGQfbTmbuD7VCWyxGOsEITrAqdv4l
-	 AZZkp6DMly2Cw==
+	b=SiGz2npN0YobmOjsxd7pB/3Nbiq6G6Ak3+xo6j1MVUKGugKAp23IbGPAvgN7+4bmD
+	 w97lc/AcBavYNURAlV3DYa4U6cqGiSEhWjxVNezUHbPnX/Fz0AuU6tTa7+UWJp5MCI
+	 FkMTXSlYcw1Gd5Pw86bcIRyTicyOh4JBejIBmGiLzWCDBW4NGluSvAMcxUjSbEIiNW
+	 +Pi8j4O4LZZiBP+5vyGt/TNCiz5INGuOXkHyJqP038GCj7BBokWjIEr+qrPsINECB9
+	 XBHDBreX9oRUhMTe4mFja3uuH2jEWximZ7UiBTky2LoYkmBRWcOR3SMtep41eaiAbm
+	 mkpwyysj5dqdA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: pavel@ucw.cz,
-	lee@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	konrad.dybcio@linaro.org,
-	Danila Tikhonov <danila@jiaxyga.com>
-Cc: linux-leds@vger.kernel.org,
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/2] Add LPG/PWM support for PM6150L PMIC
-Date: Sun, 21 Apr 2024 17:29:09 -0500
-Message-ID: <171373856765.1196479.10666864440233558408.b4-ty@kernel.org>
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Fill in EAS properties
+Date: Sun, 21 Apr 2024 17:29:14 -0500
+Message-ID: <171373856768.1196479.18038444368463734568.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240306172710.59780-1-danila@jiaxyga.com>
-References: <20240306172710.59780-1-danila@jiaxyga.com>
+In-Reply-To: <20240319-topic-8280_eas-v1-1-c605b4ea063d@linaro.org>
+References: <20240319-topic-8280_eas-v1-1-c605b4ea063d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,29 +66,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 06 Mar 2024 20:27:08 +0300, Danila Tikhonov wrote:
-> This series adds LPG/PWM support for PM6150L. Was tested on SM7150
-> (xiaomi-surya).
+On Tue, 19 Mar 2024 16:23:33 +0100, Konrad Dybcio wrote:
+> Replace the bogus capacity-dmips-mhz values and add the measured
+> dynamic-power-coefficient values.
 > 
-> To: Pavel Machek <pavel@ucw.cz>
-> To: Lee Jones <lee@kernel.org>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Bjorn Andersson <andersson@kernel.org>
-> To: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Cc: linux-leds@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> The power numbers were measured by matters much more precise than the
+> laggy and cache-y pmic_glink battery data, though the reported values
+> were only accurate to 10mA. But that shouldn't be an issue, especially
+> for the fat and power-hungry X1Cs and given that *each SoC unit* has
+> somewhat different frequency-voltage maps.
 > 
 > [...]
 
 Applied, thanks!
 
-[2/2] arm64: dts: qcom: pm6150l: add Light Pulse Generator device node
-      commit: 11525960fcf40fcb772b62dd5117c59fdc27eb57
+[1/1] arm64: dts: qcom: sc8280xp: Fill in EAS properties
+      commit: 365e19c466a57ff17093cf6e9f8ad362dd122602
 
 Best regards,
 -- 
