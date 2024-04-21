@@ -1,349 +1,203 @@
-Return-Path: <devicetree+bounces-61184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737068ABE73
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 05:09:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED368ABE7B
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 05:35:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D72B1C204DB
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 03:09:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B92281009
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 03:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7AB3205E2E;
-	Sun, 21 Apr 2024 03:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEF92F26;
+	Sun, 21 Apr 2024 03:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="ZqAby0m/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SE6E2bew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11olkn2033.outbound.protection.outlook.com [40.92.18.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A3238C
-	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 03:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.18.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713668992; cv=fail; b=jsASEzkQeW9eQtdXH6MBMe4OMIrmnQai8IF/b9o0+9+fVTAD7VccdYaGsiAJUWhv4Q4Zs60G8a4EYpNWHHdBy224Jlylvv8q8c4G3ozFEVefdkoT1H/4QFM6qa+sGCYdJJQif+mI15vJ+iYRKNhWovvKC+8eRvHfiF/KujtiIBw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713668992; c=relaxed/simple;
-	bh=2m+WjXAGJpNsvXO3+7cCPj+CMB/iazlhE+xk616MZMU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=W9KK+IrdGxzMBTzi5oKUp3OuKmTjNjqW7LJyk4SeK72rvpGxebAtK9x00Na87jfkt8Dlwc4LvlsSmt4lg188l5Hkz/zFMc44FcbZUTVMY0X6WKEg40JmVwpG1hLxwxjh3q5M6qGiHDK7ZLsMjaUS0K/pMN8S9sBIhYwYKJ4DCSw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=ZqAby0m/; arc=fail smtp.client-ip=40.92.18.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QXqHdvSubc5M9pyo22MazFXBAATWqfyhunFDvSgdSNf/vLNC+cbZr5n31z1U7c7P8QwIjD5GhOUYLAFbDRefdpamGzsAwiauy6yAt96AV1iZ5iuReGyvwxdXBbsauB9l3T/n6ardePlbF9HBomvOVOYIQk+BBci1sZPeoH3dj958LeC0YNhNWCB8T+JxX18siiQBZ4Tg0/Mu50vqUJFkouHxURm9mUlOOR2kREeLofDubMV43xX+OaQ2i+0oSm7a+ZRZ9FPh/3RYPTHndprSqVR8d7hBX9B4Z50QfuS9YEADHBgU0SMCjZV9JrAdecRO88QlzE0LsvnLHWMXM+Mj3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yg4gTLm9gCUPuc3RAGWth6YFI7OSKa7aRyZ08k/W8A0=;
- b=avb3pZ3tmwQBBDx71opuNVKV7dFLFe6+MhHwjKprCauPshy43qFGaqa9n01iKuzAMjtc9q8EHtq1S342f49XogW+WRVzvANPN93onZiouGrRFWXHId0uBWEgOHd3dAwEeGI5EdnsrwrwzYev9MYvkAYlMZaaysmeIOvdFz3nOzap1JzIt8hUTHXNBXeKznAQjiUDw0VzX90NIezFEIXp6hkXfwmOWB8NqvfxOTcTHLzzIdC5dJ2YR1fWjFfjGsV2PYr3DTUlPRwRXzRw+f9nFSdUna6bjJDcVdjL609TUWGbtr2Vd3HBaQxTMRX81YnytXeMJ4Z9EkOaD8G96rK8Rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yg4gTLm9gCUPuc3RAGWth6YFI7OSKa7aRyZ08k/W8A0=;
- b=ZqAby0m/WtS6/CiUeiauuaI1iB6jWcv1wlGv0gDZEZ2wNCnPYc1mHQmNzzwb/MJ2JJtfT1p9YwJdu5/Vhc/mbus8mXAnlHCd7M7GBIjHUVn1PEGpO2XLM72+ucJrVir9S4oqddFtfTix5LEJ4qn419hsceC6fmfW995cQIGufM0k2qRuYYR5gfygXUe3D8yCeThdGVEjTRJFvlUOuFVQ928xXTYyAMGRnJaAr6/RJ047TnyHLmiAOMxP9bLwuWG74bSOq9eG1kmBpMkiGXxd1PJrc5MO2ITKjvmJNgOkiwqRbXMkh0qwDcKSpoziGCIvBYMWB+yipazQa8A2xm1iCQ==
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
- PH0PR05MB8415.namprd05.prod.outlook.com (2603:10b6:510:ca::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7472.44; Sun, 21 Apr 2024 03:09:43 +0000
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::12a8:4f88:32b0:9407]) by DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::12a8:4f88:32b0:9407%6]) with mapi id 15.20.7472.037; Sun, 21 Apr 2024
- 03:09:43 +0000
-Date: Sat, 20 Apr 2024 22:09:40 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Ryan Walklin <ryan@testtoast.com>, Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 4/5] arm64: dts: allwinner: h700: Add RG35XX-H DTS
-Message-ID:
- <DM4PR05MB9229B7D4654478D28D1BC2B6A5132@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240420104354.334947-5-ryan@testtoast.com>
- <20240420104354.334947-10-ryan@testtoast.com>
- <20240421020627.6d186f8f@minigeek.lan>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240421020627.6d186f8f@minigeek.lan>
-X-TMN: [vXIg1AqbCbOOxR47jkLEiWsvKsAjEmdb]
-X-ClientProxiedBy: SN1PR12CA0075.namprd12.prod.outlook.com
- (2603:10b6:802:20::46) To DM4PR05MB9229.namprd05.prod.outlook.com
- (2603:10b6:8:88::20)
-X-Microsoft-Original-Message-ID: <ZiSDdKnR2PWjxqb5@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB048205E22;
+	Sun, 21 Apr 2024 03:35:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713670518; cv=none; b=cIA75QptwcsBBk4RYAYGk01PXizqUcK5KGcviMaPd4LgQ9Usiv8pTygQIDUEbwSlaJMqMVEqfNOAB/bjbyitkCOT9mqVIzviZrkWUuZUpO+xevtS2jrVVcY9dQ8lilHrgn4a1JMaZe5n8j26H+45hApbzYzGKkWKfOsVP/4duco=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713670518; c=relaxed/simple;
+	bh=w3BWd/Mb/cQJxsngUQxpZvCJqYSIFwkMtiPa2dhMohE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Cp629rCXlm6zvTLQnnWOVsxn4te0LnINF5bAZpI44H+oSwDqTdJ6a6RYcw1EmTg/RYSDMnt0bS47jzAx5065hzHIBbfQiIu26bV3ks+6GrcoHCYQhRualLo6TJec/y+3/a9bV+e/SmU8eUYsQ/ritSV/w+1SDkRqI7umczKsuCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SE6E2bew; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3c5ee4ce695so1079364b6e.0;
+        Sat, 20 Apr 2024 20:35:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713670512; x=1714275312; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DqTFUStUgUgHwhHTzA1wLZlhW+xV4wEDyDdTFLtabz0=;
+        b=SE6E2bewEJBoRJy6o9B0J3nrA21kZO3PLaE8Wj8G05KO0itYF5782tm8yHUxlHg4Ot
+         e7NkC32sXu7Q3Gjb3RAgA7lIS2QxlNP1pUSrYx6M2n2ni6LUHoqJ0ITXE77PKefwHaRK
+         ox34ZWIIDGwrMRFXwvMEDhml7MD4IeOpaDFM2xmL3pE0ft7mmQvMQ80vvSr54NcUUfOj
+         jdvzUrA/CJeU22e0TxMqXnFrhWJ6PJw1mQ1E80ejU734xfkGb4MSQJfX/x4lsc4h9Mdt
+         gw7rVq7ceFh2wSPGSMayREjWp0UioGEon39gAAw3yEFyilBS94xB48nXgLY56ROd48f1
+         rGeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713670512; x=1714275312;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DqTFUStUgUgHwhHTzA1wLZlhW+xV4wEDyDdTFLtabz0=;
+        b=HlcQwhms+Tf0SsJiJZ6Jjn7Ml9XqEBrB/mFoLHitg6NHWrDwRaUkjTT9D3W9CxPAPv
+         1cab49hhomSGaG5rqUpwlq549jT6JCHOdyEflvk9xq0GO069qm6qgv3+axTf9XDqZGzy
+         EX2QXhXTSxIgXgATc+qWBO60cdxXHuH2fbsv6muuiVDkxx/+nqq9Cn6zZA8Hv8EM7aBf
+         qc4c+7M7S1KdON0ZtGtUj6rTCSwEnucxbbCJwPdh97SYSrhkVaFl9jp5gnRAmFEJq9kS
+         MXdQFdyre1t/amd2vg3IeQV5O/FnRcTRImqGNRlWSzZ4YZWsmeZ1gEecueUd5PmhdCK2
+         zsPA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfBpW359XUPhxMa21AcgybOH8kC/xAslqUGiohluaaSTOW5Lnsk3k3uFZZjixGUozD0oETJUmuj0Ytwx3AqzcnwwKxALXPjTFZlEfoxvlTaO9xVh+pciI0DY1SaZIa/6HqNVmKnBjlVKIQkLRr5yES8BbGGQLrqgy+YbkaUaCdWSiquIYl
+X-Gm-Message-State: AOJu0YxGExj9m9LFV5CQDIdES69stICa2RKwpvyC2c70iT7bkDvZlZ8S
+	RSdsTlcQ1oj1tBiCfLYu4mWHLbjk7pTMX4Io9MJ/5spAB/Ysj8YB
+X-Google-Smtp-Source: AGHT+IEhIi5dpao0M7bfoPbGYTuQ9jJSf6VyRPSAaGoV0oTkl8Eb5w20BzCqE9x96m8tcu3YW0MIkQ==
+X-Received: by 2002:a05:6808:6c1:b0:3c6:4d7:abf9 with SMTP id m1-20020a05680806c100b003c604d7abf9mr7562694oih.55.1713670511864;
+        Sat, 20 Apr 2024 20:35:11 -0700 (PDT)
+Received: from localhost ([117.239.226.201])
+        by smtp.gmail.com with UTF8SMTPSA id b9-20020a056a00114900b006eaaaf5e0a8sm5517386pfm.71.2024.04.20.20.35.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 20 Apr 2024 20:35:11 -0700 (PDT)
+From: Kartik Agarwala <agarwala.kartik@gmail.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com
+Cc: Kartik Agarwala <agarwala.kartik@gmail.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v2] ASoC: dt-bindings: mt2701-wm8960: Convert to dtschema
+Date: Sun, 21 Apr 2024 09:01:31 +0530
+Message-Id: <20240421033129.13076-1-agarwala.kartik@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|PH0PR05MB8415:EE_
-X-MS-Office365-Filtering-Correlation-Id: d75781d1-f575-4c09-2731-08dc61b07db7
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	O1LB6nPjHHgNU0/NDsFYDSv/owX7xRJnqCfxLrYEqtSlZXzoAaXOkpHaJvoLF47GpUH53bQoCrWsK4mLfFQvV1My+zQPIX8gnlXu3+QrSL/XzKIsBlSvqy1uSBTttlAmNXBtwxbcRemjWK6MrFFSS6daZ0G56DAbMvXEnmlv0emDaC3b1doagqHfCbOUF9qALUo4zV7IYf9vku4L+A0hpNsZgVTCIEUTQB+NFZLh2aPM7vDZrPPIwhr9R9G/f5BZ+g/iQnrTjSwu5NWs1Gq7HOOI7PNfq5dhlgu1Hc3A4JvU8CCbxV8STtA/H8ZA7d20TK/8bP15LqZOwrzdPLo+zAxxmsNJAqLHeiFj37x0TggsTrk3m4X9bsd+burwu342fF+KJD/3RDt/GHEdCHGEZYPecW4BsS6+SAyAGP6UngEqkGCt30EUDcDRDExv6EolW6cy5cY8KHNVs5CMadFcw7zX46SOhr6lNlzTkoGcLyZ/pp3ZPhnCA8MFnV3jWMLy/R2t+f90VzzFIIPJxi+IwY8xT1W/LzksDZ2Z/z5mki3zjwpoxtpYfUR4hFc8T0+2QPpT+MOEnq1qj8uCRhevWDsrF8wtqKkO+7QAUYHqVC5K4w0POEB/EWyo2033uJ4A3TeEvnaMBU3k2/EEu1l5TbqFk69WbKR8a1V/yISJOEU=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JQX1BGYe41RfRbBfibbMs25iCQLJ2VOJ1fr/VJ+ZFefpqskscAH5GwgRpy4S?=
- =?us-ascii?Q?XUXFO5D0oezBSd/Kz2DfuHXVAIv3cEbYisUEdrHCF0rQeY+UrXZx+x1BWiKy?=
- =?us-ascii?Q?ty6e4E8kqvwRxGkzXbbh1eYL3vYKj2O1uGo0unrjfli+3nV95KXmSDPllQ7+?=
- =?us-ascii?Q?uiI2WjNF09W7f9STPYE7fbXiIKXc7l6OLUqr8gLv7jdPvGOyPKNuF93S+klo?=
- =?us-ascii?Q?xx9eIHpTpfV+xuv+/reY8nA+UCabvvmSC0/CCyzkzmKFn2JI33rNdoU1jKu5?=
- =?us-ascii?Q?LEmUPsh1DbXznQ8XRxn/vZb+5Y9jOxvOjHY1TzBchVEAmbHQvPSFJFEc6bI7?=
- =?us-ascii?Q?n4AHEsmAn9qa2YQUeGVn4NzhPp0FEppUpT7NuzTrEY+Xgk70BNvn74NpLy0C?=
- =?us-ascii?Q?DasM19PSwlxc9p/iM/4UttKXZQnf4RtQkMGtt6maIX1ccoDNp8O6/jnV67vA?=
- =?us-ascii?Q?y25QQXm77M7RjZ65xuF7S3/FpQwPVuuud3J3Oy2+DQGyVABX0YcRc8ie1mDc?=
- =?us-ascii?Q?ApNRCbjtEtey503ZX7PRzmYdWiX7z9yZ9ZLNf4pbSDeyErHIXSBjiL5EoEBC?=
- =?us-ascii?Q?mDrQUUmKovaH/QhA0q3olPcRdfmWX2z+ohv7IoRMUw2gl03o9RFyysYwHkaq?=
- =?us-ascii?Q?JnyUwRfneDNnCGO10Kep+mOAFCpKbMPkWEdwxPtPeh0A0G09qbEJdza2EKY+?=
- =?us-ascii?Q?iaBbrtAITFvwcR+3HTD4lbs3g6DoYNUHdObT9Wzk379kFPKVUj90ueEOATjK?=
- =?us-ascii?Q?g9ATJJLAu4ln56ulRg8Y+0guH7ziE+C5/IAh5r1qn4ED31dYuTTixM2FhHZY?=
- =?us-ascii?Q?dwNAvDjmylryzIao/LQzGY4zNzG4lLIc81yllZkpCPuwSW0EtuAhm2XKy5L6?=
- =?us-ascii?Q?oHTYL1gUuPti01lA89LiFF/n1HccHn5Vxdzohb63/YsmJal5ndOqGSDFVy7P?=
- =?us-ascii?Q?Nt1N+y5R93qoayv2OtBQxPYSDXR5l1xXTrQwnqbdD8AWdk+bv44OmZe5O4lH?=
- =?us-ascii?Q?YC4xScFxiVYGbVJkzxJ5mTwCkBxFCGJXVGVNKjkpyare/UcCmbGW1MK1j7Az?=
- =?us-ascii?Q?XUPr2dJGQEDNKgvrALdiVMOB+Ji8YV2zKiD+babCst3B/2Qhz8Add1WQX6AU?=
- =?us-ascii?Q?NWAZn8ITDNNn/6GUfyMGgiBIxzOJefcoBPlS2ZZKMSBt/+7w01n8tx2UQKFk?=
- =?us-ascii?Q?ysDY9EmQ1R44mevwi0QGeeVHFLfShf7XrgKvrnIrkZ/OrjE1frb+sT6zk3M?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: d75781d1-f575-4c09-2731-08dc61b07db7
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2024 03:09:43.4136
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR05MB8415
+Content-Transfer-Encoding: 8bit
 
-On Sun, Apr 21, 2024 at 02:06:27AM +0100, Andre Przywara wrote:
-> On Sat, 20 Apr 2024 22:43:58 +1200
-> Ryan Walklin <ryan@testtoast.com> wrote:
-> 
-> Hi,
-> 
-> > The RG35XX-H adds thumbsticks, a stereo speaker, and a second USB port to the RG35XX-Plus, and has a horizontal form factor.
-> > 
-> > Enabled in this DTS:
-> > - Thumbsticks
-> > - Second USB port
-> > 
-> > Changelog v1..v2:
-> > - Update copyright
-> > - Spaces -> Tabs
-> > - Add GP ADC joystick axes and mux [1]
-> > - Add EHCI/OHCI1 for second USB port and add vbus supply
-> > 
-> > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> > 
-> > [1]: https://lore.kernel.org/linux-sunxi/20240417170423.20640-1-macroalpha82@gmail.com/T/#t
-> 
-> As mention on patch 2/5, this might be better an optional dependency,
-> so the GPADC part might be a separate patch.
-> 
-> > 
-> > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> > ---
-> >  .../sun50i-h700-anbernic-rg35xx-h.dts         | 126 ++++++++++++++++++
-> >  1 file changed, 126 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-> > new file mode 100644
-> > index 000000000000..d62cf5cd9d9b
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-> > @@ -0,0 +1,126 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/*
-> > + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-> > + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-> > + */
-> > +
-> > +#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-> > +
-> > +/ {
-> > +	model = "Anbernic RG35XX H";
-> > +	compatible = "anbernic,rg35xx-h", "allwinner,sun50i-h700";
-> > +
-> > +	adc-joystick {
-> > +		compatible = "adc-joystick";
-> > +		io-channels = <&adc_mux 0>,
-> > +				  <&adc_mux 1>,
-> > +				  <&adc_mux 2>,
-> > +				  <&adc_mux 3>;
-> > +		pinctrl-0 = <&joy_mux_pin>;
-> > +		pinctrl-names = "default";
-> > +		poll-interval = <60>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		axis@0 {
-> > +			reg = <0>;
-> > +			abs-flat = <32>;
-> > +			abs-fuzz = <32>;
-> > +			abs-range = <4096 0>;
-> > +			linux,code = <ABS_X>;
-> > +		};
-> > +
-> > +		axis@1 {
-> > +			reg = <1>;
-> > +			abs-flat = <32>;
-> > +			abs-fuzz = <32>;
-> > +			abs-range = <0 4096>;
-> > +			linux,code = <ABS_Y>;
-> > +		};
-> > +
-> > +		axis@2 {
-> > +			reg = <2>;
-> > +			abs-flat = <32>;
-> > +			abs-fuzz = <32>;
-> > +			abs-range = <0 4096>;
-> > +			linux,code = <ABS_RX>;
-> > +		};
-> > +
-> > +		axis@3 {
-> > +			reg = <3>;
-> > +			abs-flat = <32>;
-> > +			abs-fuzz = <32>;
-> > +			abs-range = <4096 0>;
-> > +			linux,code = <ABS_RY>;
-> > +		};
-> > +	};
-> > +
-> > +	adc_mux: adc-mux {
-> > +		compatible = "io-channel-mux";
-> > +		channels = "left_x", "left_y", "right_x", "right_y";
-> > +		#io-channel-cells = <1>;
-> > +		io-channels = <&gpadc 0>;
-> > +		io-channel-names = "parent";
-> > +		mux-controls = <&gpio_mux>;
-> > +		settle-time-us = <100>;
-> > +	};
-> > +
-> > +	gpio_keys: gpio-keys-thumb {
-> 
-> Is there any reason to not just use the existing gpio-keys node?
-> Either put a label on it in patch 2/5, and reference that below,
-> outside of the root node, or use an absolute path reference.
+Convert mt2701-wm890 bindings from text to dtschema. This is used by
+MediaTek mt7623a/n SoC.
 
-I would also second just putting an alias and adding these to it.
-I myself as a preference tend to set the GPIO volume buttons as
-a seperate node only so I can enable key repeat on them, otherwise
-one node is best.
+Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
+---
+Changes for v2:
+- Do not define pinctrl properties as they are implicitly supported.
 
-> 
-> > +		compatible = "gpio-keys";
-> > +
-> > +		button-thumbl {
-> > +			label = "GPIO Thumb Left";
-> > +			gpios = <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
-> > +			linux,input-type = <EV_KEY>;
-> > +			linux,code = <BTN_THUMBL>;
-> > +		};
-> > +
-> > +		button-thumbr {
-> > +			label = "GPIO Thumb Right";
-> > +			gpios = <&pio 4 9 GPIO_ACTIVE_LOW>; /* PE9 */
-> > +			linux,input-type = <EV_KEY>;
-> > +			linux,code = <BTN_THUMBR>;
-> > +		};
-> > +	};
-> > +
-> > +	gpio_mux: mux-controller {
-> > +		compatible = "gpio-mux";
-> > +		mux-gpios = <&pio 8 1 GPIO_ACTIVE_LOW>,
-> > +				<&pio 8 2 GPIO_ACTIVE_LOW>; /* PI1, PI2 */
-> > +		#mux-control-cells = <0>;
-> > +	};
-> > +};
-> > +
-> > +&gpadc {
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +	status = "okay";
-> > +
-> > +	channel@0 {
-> > +		reg = <0>;
-> > +	};
-> > +};
-> > +
-> > +&pio {
+Previous versions:
+v1: https://lore.kernel.org/all/20240401043505.40972-1-agarwala.kartik@gmail.com/
+---
+ .../sound/mediatek,mt2701-wm8960.yaml         | 54 +++++++++++++++++++
+ .../bindings/sound/mt2701-wm8960.txt          | 24 ---------
+ 2 files changed, 54 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt2701-wm8960.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/mt2701-wm8960.txt
 
-After extensive testing with a multimeter and fudging the regulator
-voltages up or down, I've been able to figure out the regulator
-assignments for each of the different power domains. Schematics would
-have helped, but sadly this had to be done the hard way. Based on
-past experience with Anbernic I would strongly suspect all devices
-have this assignment, but I know for sure my  35XXH does.
+diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt2701-wm8960.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt2701-wm8960.yaml
+new file mode 100644
+index 000000000..cf985461a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/mediatek,mt2701-wm8960.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/mediatek,mt2701-wm8960.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek MT2701 with WM8960 CODEC
++
++maintainers:
++  - Kartik Agarwala <agarwala.kartik@gmail.com>
++
++properties:
++  compatible:
++    const: mediatek,mt2701-wm8960-machine
++
++  mediatek,platform:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of MT2701 ASoC platform.
++
++  audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description:
++      A list of the connections between audio components. Each entry is a
++      pair of strings, the first being the connection's sink, the second
++      being the connection's source.
++
++  mediatek,audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the WM8960 audio codec.
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - mediatek,platform
++  - audio-routing
++  - mediatek,audio-codec
++  - pinctrl-names
++  - pinctrl-0
++
++examples:
++  - |
++    sound {
++        compatible = "mediatek,mt2701-wm8960-machine";
++        mediatek,platform = <&afe>;
++        audio-routing =
++            "Headphone", "HP_L",
++            "Headphone", "HP_R",
++            "LINPUT1", "AMIC",
++            "RINPUT1", "AMIC";
++        mediatek,audio-codec = <&wm8960>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&aud_pins_default>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/mt2701-wm8960.txt b/Documentation/devicetree/bindings/sound/mt2701-wm8960.txt
+deleted file mode 100644
+index 809b609ea..000000000
+--- a/Documentation/devicetree/bindings/sound/mt2701-wm8960.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-MT2701 with WM8960 CODEC
+-
+-Required properties:
+-- compatible: "mediatek,mt2701-wm8960-machine"
+-- mediatek,platform: the phandle of MT2701 ASoC platform
+-- audio-routing: a list of the connections between audio
+-- mediatek,audio-codec: the phandles of wm8960 codec
+-- pinctrl-names: Should contain only one value - "default"
+-- pinctrl-0: Should specify pin control groups used for this controller.
+-
+-Example:
+-
+-	sound:sound {
+-		compatible = "mediatek,mt2701-wm8960-machine";
+-		mediatek,platform = <&afe>;
+-		audio-routing =
+-			"Headphone", "HP_L",
+-			"Headphone", "HP_R",
+-			"LINPUT1", "AMIC",
+-			"RINPUT1", "AMIC";
+-		mediatek,audio-codec = <&wm8960>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&aud_pins_default>;
+-	};
+-- 
+2.34.1
 
-        vcc-pa-supply = <&reg_cldo3>;
-        vcc-pc-supply = <&reg_cldo3>;
-        vcc-pe-supply = <&reg_cldo3>;
-        vcc-pf-supply = <&reg_cldo3>;
-        vcc-pg-supply = <&reg_aldo4>;
-        vcc-ph-supply = <&reg_cldo3>;
-        vcc-pi-supply = <&reg_cldo3>;
-
-On my board the reg_cldo3 is a constant 3.3v output, and the reg_aldo4
-is a constant 1.8v output.
-
-> > +	joy_mux_pin: joy-mux-pin {
-> > +		pins = "PI0";
-> > +		function = "gpio_out";
-> > +	};
-> > +};
-> > +
-> > +&ehci1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&ohci1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usbotg {
-> > +	dr_mode = "peripheral";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +	usb1_vbus-supply = <&reg_vcc_usb>;
-> 
-> This is the dodgy USB supply chain. Any chance we can narrow this down,
-> to maybe one GPIO controlled regulator? Also, where does the boost
-> controller come into play here?
-
-I haven't figured out the boost regulator yet, but for the host port
-I've been able to ascertain there's no less than 2 GPIO controlled
-regulators in play. PE5 must be driven high or the USB host port will
-not power on at all. If PE5 is driven high then the port kicks on, but
-at 3.3v. Once I also enable PI7 the port then reaches 4.6v. I'm not sure
-how to get it to a proper 5v yet, I'm still working that part out.
-
-Maybe PE5 is a reset of some kind that's active low, I don't know. I
-just know so far/for sure that if PE5 is low then nothing registers on
-the USB host port; if PE5 is high but PI7 is low the port sort-of works
-at 3.3v, and if both PE5 and PI7 are high the port works consistently
-and at 4.6v.
-
-> 
-> Cheers,
-> Andre
-> 
-> > +};
-> 
-
-Thank you,
-Chris
 
