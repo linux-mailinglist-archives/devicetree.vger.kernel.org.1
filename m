@@ -1,146 +1,217 @@
-Return-Path: <devicetree+bounces-61232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3688AC128
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 22:11:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522548AC13C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 23:05:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FDDF1F2100E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 20:11:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74201F21002
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 21:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B44442056;
-	Sun, 21 Apr 2024 20:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D650643ACB;
+	Sun, 21 Apr 2024 21:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BftnlgYI"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="N2ZHT3AM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E256879FD
-	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 20:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E701B974;
+	Sun, 21 Apr 2024 21:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713730278; cv=none; b=C0KFqaN1Vj+atQh3SGbs2IdG2MFj15XcbLLq793y9GFBRXaRw0uQUH5ZfOvPSaxCnmGPN4iE8kp3fU4QNXXFDUeGbr9WWTgTLX2hnsyYhJ0rXhZA1BuEKk9ss+nzqikguXt0JCKuloAW5JSpMlRUj7Z7b8MUazCNlZwgwGWn51E=
+	t=1713733552; cv=none; b=Uwvix6Ivk5ucavMpHGY5bFxhOu5JLRUv2pQd5d9oO6BmKqS0lTBGXn16FCTtatwlDhD4pNoitfYCj2DwUPZr3XT2bvojH8iW5t8lIRAky0inP7CL+CRIl1+mErbB6YKY+MWejXTxuXvYYtI1+9fT1bzlZTu3jnJplLtAVwmXWZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713730278; c=relaxed/simple;
-	bh=qqMBfA0N+w7XGWIBhraZ8GVSy/adytCb55VV+xgaTUA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n3TJW5F5RHw7kuTJZiusG2oH7U51q55IDfZS7syuJs4SJfPplVbZc6haneeATw6RvUPzc1vSehQClj0/XtlSZQd8sS/EoVCLGkk7bun0RpwX8CPpxd21r0UrxKNYIMHJNYmCjB3NzvW+t+YMsUCTx/zTnBbf5/WrxV5y7a5AH2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BftnlgYI; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-346406a5fb9so2957377f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 13:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713730275; x=1714335075; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3RwdqOtr//AaV24LaG86NV9h5snzCvAUKPrjQ8vmFB8=;
-        b=BftnlgYIUlsm3wTJ8fG77LCi0wauwqOh432e1YcG7+VBMHsKGi8b9gSxYfu/HRhUUJ
-         jXz7Ye1ZOyd1CF28YqfGWu9440hl5d3yus4e8gZuVXE5vwCrzS+jchSZbN4ofD0qLkT1
-         PmCEAx5VN2jPWqT0wbhsndHfr+Se6u08pb6vuBSW7YUpW9Atk2+8YldVSCtwDw9BVd2L
-         WKkIGJL5B3UYIpT1A1hlxWXJkC4kTZIVTIWWf4jKccqLyuumtA8naJW/0+KO1poF4zip
-         gHrw88lvgJduPy7Z6D5JV0AqjZl6XNeiGnPWPn7cLhPDOR9tt4kZtEH3deBu7F3Mj6BK
-         AoZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713730275; x=1714335075;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3RwdqOtr//AaV24LaG86NV9h5snzCvAUKPrjQ8vmFB8=;
-        b=qy0HwHalz/5CddmNzjqraVkRQW8gXNoJp3dBiPmZ+VnoylpLqygn3ehb2AqOJHSZ/a
-         b0gkuYqU0ltjc7bPwdNf85Rk80uc4/5MzL7QUmlILp3qtUlOPAPzJFfhNhgiWi/sSVa+
-         XCh4n5z8yUSD0h9InKeuYeMApdrZ8rEHwzJsqVylfoKZAlX6aVW6Qfqac124cynWg8TZ
-         iVIvnC/nXClSq9ydboslHsFMVd4Ynwo3icd38jdm5pmTXEHonKSr9AiTX3GWQXHmPFiQ
-         j5jaagUi8kKQBnp+vi9zwc9Ao203A8KnJmmQA/tRXuhsYZS2UMu+g3ST4/ZbtNm8iU1A
-         ri1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUrRTrMGUJJhX3uZGsvbGwp8onbZOjpniLfI1btt19oBZ9rZCJQeghZygF3eMAU13ynkq/wn0ikiLAMMig6NOJ/l5IYh9/6acyk9w==
-X-Gm-Message-State: AOJu0YxjyASUfUV6seugX+Yf0Z3d0W8WnfK1uogjo4HmlCcud1Gyi/4M
-	Xfx4o+qwEgYCTXjdFNmv8LzJQbzJ866omTYwVuoaFru/bLb2nl10
-X-Google-Smtp-Source: AGHT+IEqk4KI+7BlHqF5IqUldRnCMFoNl4zIRAo51MUO37B3RZ51InldpXjYE1nGvwIC7tRm4HdxIg==
-X-Received: by 2002:adf:ff8e:0:b0:34a:56e7:5cc4 with SMTP id j14-20020adfff8e000000b0034a56e75cc4mr5418624wrr.2.1713730275182;
-        Sun, 21 Apr 2024 13:11:15 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id w20-20020adfe054000000b0034a366f26b0sm8488295wrh.87.2024.04.21.13.11.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Apr 2024 13:11:14 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: dts: allwinner: Add Tanix TX1 support
-Date: Sun, 21 Apr 2024 22:11:13 +0200
-Message-ID: <13495191.uLZWGnKmhe@jernej-laptop>
-In-Reply-To: <20240418104942.1556914-1-andre.przywara@arm.com>
-References: <20240418104942.1556914-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1713733552; c=relaxed/simple;
+	bh=QLDln7YA9I5hDs65OcTHbuAQgSwZ2E5WVljdqajAUsk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nXr0zQVjZTVv1fXLM8dCF+fxKEs9I8AfELbTRBGeTxP66S+Ociz8dD9aCAXu8hunCo+lmMaLySZVyaYuxtkaTftt2C+qc8QKgGo1jJmfJqN0PmJpQLPbpam8zlb/fTHJi8dP+ZyFMyO62GHfYlSf+b9+8w5eNZ4cqEKjy6JnlPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=N2ZHT3AM; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9988D120005;
+	Mon, 22 Apr 2024 00:05:44 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9988D120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1713733544;
+	bh=R0C125p3kVCLuPYBMrbEwNQGj81MQPjuuYJOoUD8tqU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=N2ZHT3AMzi0SzOYpYvrei1rigTUEJazbj3PRW89smokzyk9oH40KdKnKmgEJ4fSMX
+	 LL361Y+ux/IfNNM0k3lwK2pe3tuDWPk+WI3Gh+P8XyR1cuTQXBmoH6vkp5WPIsZ3Qn
+	 Zmh7g7uIU/BhMVMzSMLtfzmc++gUVexXF+fM7hkDmaI5u5oyHxgGAqmBhRSjaJ23Az
+	 htSkAqwzFHFYHT+QURlO0Yc4bZ2KT76NMHnKxKHBnWfJFPwrFQXZ5panRteNTOoIpH
+	 AJQkK/SF35ueEQ8VOQWLzHkcOq69MNSx5Zq+c96Ldj9j4Y5xhbK90Bhh6q6hM+Ysh0
+	 +f+/qD91HIsfA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 22 Apr 2024 00:05:44 +0300 (MSK)
+Received: from [172.28.66.92] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 22 Apr 2024 00:05:44 +0300
+Message-ID: <7f8b3916-ddc1-42e1-a2e5-b5ed42010120@salutedevices.com>
+Date: Mon, 22 Apr 2024 00:03:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-Dne =C4=8Detrtek, 18. april 2024 ob 12:49:40 GMT +2 je Andre Przywara napis=
-al(a):
-> v2 just removes the premature OPP header inclusion, and adds tags,
-> otherwise it's the same as the previous post. Based on sunxi/for-next.
->=20
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Tanix TX1 is a tiny TV box (60% of a credit card) with an Allwinner
-> H313 SoC. This seems to be the same as the H616, just the "bad bin"
-> version, limited to 1.3 GHz.
-> The box has no Ethernet or SD card slot, which makes booting from it
-> somewhat interesting: Pressing the hidden FEL button and using a USB-A
-> to USB-A cable to upload code from a host PC is one way to run mainline.
-> The box features a minimal set of peripherals: one USB port, 8 or 16GB
-> of eMMC, an HDMI port and an (unsupported) SCI S9082H WiFi chip.
->=20
-> Patch 1 adds the DT binding for the board compatible, I refrained from
-> using the H313 name here, since it seems to be functionally identical to
-> the H616.
-> Patch 2 adds the devicetree.
->=20
-> There is a blue and a red LED, both connected to the same GPIO pin, but
-> with different polarities, so it's only either one of them enabled.
-> I did not find a way to describe this in DT, so I omitted the red LED.
->=20
-> Please have a look!
-
-Applied, thanks!
-
-Best regards,
-Jernej
-
->=20
-> Cheers,
-> Andre
->=20
-> Changelog v1 .. v2:
-> - add tags
-> - remove premature opp.dtsi inclusion
->=20
-> Andre Przywara (2):
->   dt-bindings: arm: sunxi: document Tanix TX1 name
->   arm64: dts: allwinner: Add Tanix TX1 support
->=20
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../dts/allwinner/sun50i-h313-tanix-tx1.dts   | 183 ++++++++++++++++++
->  3 files changed, 189 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.d=
-ts
->=20
->=20
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
+ audio clock controller driver
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
+ <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
+ <20240419210949.GA3979121-robh@kernel.org>
+ <b86f1058-da53-4a9c-bc12-e7297351b482@salutedevices.com>
+ <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184824 [Apr 21 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/21 18:21:00 #24913485
+X-KSMG-AntiVirus-Status: Clean, skipped
 
 
 
+On 4/21/24 21:14, Krzysztof Kozlowski wrote:
+> On 20/04/2024 18:15, Jan Dakinevich wrote:
+>>
+>>
+>> On 4/20/24 00:09, Rob Herring wrote:
+>>> On Fri, Apr 19, 2024 at 03:58:10PM +0300, Jan Dakinevich wrote:
+>>>> Add device tree bindings for A1 SoC audio clock and reset controllers.
+>>>>
+>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>>>> ---
+>>>>
+>>>> This controller has 6 mandatory and up to 20 optional clocks. To describe
+>>>> this, I use 'additionalItems'. It produces correct processed-schema.json:
+>>>>
+>>>>   "clock-names": {
+>>>>       "maxItems": 26,
+>>>>       "items": [
+>>>>           {
+>>>>               "const": "pclk"
+>>>>           },
+>>>>           {
+>>>>               "const": "dds_in"
+>>>>           },
+>>>>           {
+>>>>               "const": "fclk_div2"
+>>>>           },
+>>>>           {
+>>>>               "const": "fclk_div3"
+>>>>           },
+>>>>           {
+>>>>               "const": "hifi_pll"
+>>>>           },
+>>>>           {
+>>>>               "const": "xtal"
+>>>>           }
+>>>>       ],
+>>>>       "additionalItems": {
+>>>>           "oneOf": [
+>>>>               {
+>>>>                   "pattern": "^slv_sclk[0-9]$"
+>>>>               },
+>>>>               {
+>>>>                   "pattern": "^slv_lrclk[0-9]$"
+>>>>               }
+>>>>           ]
+>>>>       },
+>>>>       "type": "array",
+>>>>       "minItems": 6
+>>>>   },
+>>>>
+>>>> and it behaves as expected. However, the checking is followed by
+>>>> complaints like this:
+>>>>
+>>>>   Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
+>>>>
+>>>> And indeed, 'additionalItems' has boolean type in meta-schema. So, how to
+>>>> do it right?
+>>>
+>>> The meta-schemas are written both to prevent nonsense that json-schema 
+>>> allows by default (e.g additionalitems (wrong case)) and constraints to 
+>>> follow the patterns we expect. I'm happy to loosen the latter case if 
+>>> there's really a need. 
+>>>
+>>> Generally, most bindings shouldn't be using 'additionalItems' at all as 
+>>> all entries should be defined, but there's a few exceptions. Here, the 
+>>> only reasoning I see is 26 entries is a lot to write out, but that 
+>>> wouldn't really justify it. 
+>>
+>> Writing a lot of entries don't scary me too much, but the reason is that
+>> the existence of optional clock sources depends on schematics. Also, we
+> 
+> Aren't you documenting SoC component, not a board? 
 
+Yes, I'm documenting SoC component. And the feature of this component is
+that its external clock inputs are not mandatory.
+
+> So how exactly it
+> depends on schematics? SoC is done or not done...
+> 
+
+Schematics determines which external clock sources exist.
+
+>> unable to declare dt-nodes for 'clocks' array in any generic way,
+>> because their declaration would depends on that what is actually
+>> connected to the SoC (dt-node could be "fixed-clock" with specific rate
+>> or something else).
+> 
+> So these are clock inputs to the SoC?
+> 
+
+Yes, these are clock inputs to the SoC, and external hardware could be
+connected to them.
+
+>>
+>> By the way, I don't know any example (neither for A1 SoC nor for other
+>> Amlogic's SoCs) where these optional clocks are used, but they are
+>> allowed by hw.
+>>
+>> This is my understanding of this controller. I hope, Jerome Brunet will
+>> clarify how it actually works.
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Best regards
+Jan Dakinevich
 
