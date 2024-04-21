@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-61208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571E88ABF89
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 16:11:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C746C8ABF8A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 16:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C07AB21504
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 14:03:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BA6BB209DE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 14:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E45E17BDD;
-	Sun, 21 Apr 2024 14:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECA91798E;
+	Sun, 21 Apr 2024 14:12:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cq7ZSLcG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bJrMfaaO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9EA175AB
-	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 14:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A7916426
+	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 14:12:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713708214; cv=none; b=mXtkKYQb36NQDVxjQDQanS36cNYQh7kaCqszP99p1M5uDHozxjnztdgGmiMAp/wjrmG/mW0w7OSPf070vh0KVT9p5qD/JotsTQJLgOQ3PiF2Otv9PQ6dE0zQKBtnWJpDFel4uh9alunVOLlF2kjXH9UWJ1GuHNhkno5i/gZt1aE=
+	t=1713708740; cv=none; b=hmLzPzLGhutKGlacOU1Jf2t6T8hfrh7j2REtnVgFQiSNENW3zRZXf5ePbwvb23BwWQ/8MkxjLUCBHi/nf1O0OYqKPV7W6xtVueK/SklcWuLledcpVzeosgxP4Lqx4VPV+6GZUZz0VXJg/qfQIN6M1cfGZvh9uW8hmq+OuJpitcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713708214; c=relaxed/simple;
-	bh=t4LTkonD4i06Ex7cZRKGZh5MSInx3YygrGIzRDI+Mh0=;
+	s=arc-20240116; t=1713708740; c=relaxed/simple;
+	bh=j38FBvVpffwLMJ/5x+0Ljs8nKq3Z+wFOVRBj8Homfqg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gJXhjXqFJCyog8F5/8WhXBBAUeR0LBLOLyBEhSeuaw+2iSc0gOy6+SbOjijLMIiD0DKEw+gHWLcCCYx0IXMUX0Nhwf8lOu5kAvENFDWr6LW/B5iTDPz+vi9LSSQlHpKns0oD+GQ91/Px9CcQz13Ligza2SWw70Vu2RsBRkMUz0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cq7ZSLcG; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=cMcZnmWscgFezUb+1g1wIZMW9k/3VnBGpa/OfzKPvHUm+BZZRxyxp5xq4vCfmLb5nn7EBjY0ZsEbymnSPTfDFt3mg96twTCygoVafMgMgL+aAR5zhZjRaa9LuLExQnclNWM0pUEVaNSQ4NtV6sv9K5+n7ybc51iclwbOzvMXRRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bJrMfaaO; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e56ee8d5cso4566036a12.2
-        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 07:03:30 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a51ddc783e3so427219166b.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 07:12:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713708209; x=1714313009; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713708737; x=1714313537; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DTW/CJQ4s88DVa55ELjYpLvZW6dhOyn4d4BvCYkVK9Y=;
-        b=cq7ZSLcG23SrXZmSripEbgotIXnb14vMeFk8J3ogudpYrpX8sMImB3/3kXSdNeh9v4
-         yCyIlP3wwf/1qVUFN3DttFtL2e2x/l40sWhO43nItAPyOgZIkWJxxupwBn6pffJ0wLbG
-         7OIJozie1JS6DSu0gg9L12UNivMsf/0QC6Hi2jGA5bRLjzXo3jiKjjr3iu6IKxYAk8cp
-         PfnK30jYpRtd9FEsjRHkepDvu0bYVQHvv6hnglM/fyaYU914ijcgpKOl8ZqrVtoOCoPc
-         i0QkXVIfSRhZNN9Tv7tmyFLSTk4rxVXVNtcmsdF1qYqN24kwsdVJfKYig3HweRRfsmGJ
-         U/ww==
+        bh=9MEklzQv9IxzYen+J18adPH5pcve7DGyheVxmRR09c0=;
+        b=bJrMfaaObshX8qKbQcIweZgmPH11unKE8pWvmg0r5E0j1akIB5xwFOUfiqLZhYAA0C
+         RN52Pz6rf8aroaNrS8D3PJ133Wn4we5DEqmjcx8HAuHy7hyvDcUwYCxk13GmNnYklNGX
+         2P9Cxne6V0DECNrddNyRaRehgzhBs6l+qctL/UyweaNHacUsCJYMcZ5XC4iDiXXhUqbl
+         02QcQta5r084ZrW2Dck4XAbYdyO+LVDmyri/ih8Uxp7VWNSLnfSUSbDBuM1gmOuO0dM5
+         UUTgxpkIQP0CaqlF2sFjea4I8bRHqFH+iMBY2MtBX/vFnwgprYKFYbp8+PvG28PygTU1
+         h3WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713708209; x=1714313009;
+        d=1e100.net; s=20230601; t=1713708737; x=1714313537;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DTW/CJQ4s88DVa55ELjYpLvZW6dhOyn4d4BvCYkVK9Y=;
-        b=SzJcGhnMQMftPlJ1MjY+QOuv/+Y8RaR1hlF+xxagkbWGEc7TWzLn46PR2ZhljS8wVr
-         sNsGzbembtwf5ogYO4uxkZAkzc5DZSDzP4/xDELvg+tjnpK9V/JeHigej+w4w7sdw3S2
-         au/5VdSAmM8UP/VEQ99rU39yt3ArFo1EjJ9pxKPb2NYmj76oZ1CIBAFDQu06ftVxYHW1
-         HkuFCVuZ9LMckMmbRsfqh184wV2K/qoEqb9tJiPmKeGwM3+xp7EoJOKpuLDAeK8nAcO3
-         CZPIfG6QwhT1gV99xejEXeb9EozfUKQIDniAU3mqXK58tteEO/iWgKLA0EBjSceNlXjN
-         8NMQ==
-X-Gm-Message-State: AOJu0Yxfl7ysNbXrkkWJZKJI6413tnapuvaaufygMdtwfzG/rc0+sgHX
-	81Vw3fQJKpLf4nl94vUvGMU+D0SvBpJ8jU+JVtXyTnx4Dc6yJpLY/XrbIP+q/IEmwnvarpOYxQG
-	s
-X-Google-Smtp-Source: AGHT+IEbBYYmKJn5bzeTvWfcW2l/wHJTBjpKqiCdGf182vrNU/MwXM6wS5bCcbDD74qJFnFVN5U2dw==
-X-Received: by 2002:aa7:c702:0:b0:571:fc5d:dbab with SMTP id i2-20020aa7c702000000b00571fc5ddbabmr1780010edq.7.1713708209411;
-        Sun, 21 Apr 2024 07:03:29 -0700 (PDT)
+        bh=9MEklzQv9IxzYen+J18adPH5pcve7DGyheVxmRR09c0=;
+        b=BgodIRRClMek5VjLNZO6IhQVaCEENvEfWcfDN2MvTByDsuNy0A6KW5oBZ7NWhCWnbO
+         cS1nVDo+Mc4ubhdnAWTzCtZgARw2lIlNzITLrE5BSddw2JxrtN815+SWoKQeiJqsKySW
+         rKgHoJuODBWt0qGV3ESi6EoVX3DzsPZP2rPIhQgE8S3rd2dSBv9fMMt7pfzpmM8Ytg0j
+         bVSUUxEsSlP7cT6RW+TfPWPP4Nz8niyv663Kb67CS8kitTPWbnIyS1z/2fHJhA+fpUvs
+         nRGxDriEviMawiSTZ/z0SFfby8iXaD1QjreELjol6UM5IjBVzYWS/nh1oQcy5J6cnWbQ
+         ySow==
+X-Forwarded-Encrypted: i=1; AJvYcCUrJOsvpGR4oRwC2YLeq9M1U+WwQfWWRdRsxHFow/Se+Bp0+XplZXmVD0hFCb44XvPjXn6ClQFdbk+QYsH9ZN431hezJpBe2pDcqw==
+X-Gm-Message-State: AOJu0Yw5oOXs00ukN5c2/3I43Mkt2N7A8vr+YsM3U4DiDeXXh+VPHP0Z
+	ZelGo7Do+m1AIIp8lznuv1saV76BTtl6f1Ufr/QhxA1giG8KaOFM9miQC+T21s8=
+X-Google-Smtp-Source: AGHT+IFl1o5q6L7vKYmfe8zfRJ79XSxelsD2JpT5zYYP6mbIkZ9KliA3NRV7gG3qvnhRe2RZq8mbJg==
+X-Received: by 2002:a17:906:2693:b0:a52:4edb:6db7 with SMTP id t19-20020a170906269300b00a524edb6db7mr4214072ejc.54.1713708736881;
+        Sun, 21 Apr 2024 07:12:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id fi5-20020a056402550500b0056e598155fasm4360037edb.64.2024.04.21.07.03.27
+        by smtp.gmail.com with ESMTPSA id kn9-20020a170906aa4900b00a534000d525sm4588367ejb.158.2024.04.21.07.12.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Apr 2024 07:03:28 -0700 (PDT)
-Message-ID: <4e03d84e-490f-4054-a175-94e769770b37@linaro.org>
-Date: Sun, 21 Apr 2024 16:03:27 +0200
+        Sun, 21 Apr 2024 07:12:16 -0700 (PDT)
+Message-ID: <c30cc11a-209a-4919-a382-7588daff0d71@linaro.org>
+Date: Sun, 21 Apr 2024 16:12:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,25 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v21 5/9] dt-bindings: usb: qcom,dwc3: Add bindings for
- SC8280 Multiport
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+Subject: Re: [PATCH v6 1/2] dt-bindings: riscv: add Milk-V Duo S board
+ compatibles
+To: michael.opdenacker@bootlin.com, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
- Bjorn Andersson <quic_bjorande@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen
- <Thinh.Nguyen@synopsys.com>, Johan Hovold <johan@kernel.org>,
- Felipe Balbi <balbi@kernel.org>
-References: <20240420044901.884098-1-quic_kriskura@quicinc.com>
- <20240420044901.884098-6-quic_kriskura@quicinc.com>
- <3ca24a3d-e7e0-4f68-9a6f-ebaf83079ebe@linaro.org>
- <7034e026-5c50-4c65-ba78-e9c73f4a276a@quicinc.com>
+ Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Chao Wei <chao.wei@sophgo.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240421055710.143617-1-michael.opdenacker@bootlin.com>
+ <20240421055710.143617-2-michael.opdenacker@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -142,65 +136,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7034e026-5c50-4c65-ba78-e9c73f4a276a@quicinc.com>
+In-Reply-To: <20240421055710.143617-2-michael.opdenacker@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/04/2024 15:53, Krishna Kurapati PSSNV wrote:
+On 21/04/2024 07:57, michael.opdenacker@bootlin.com wrote:
+> From: Michael Opdenacker <michael.opdenacker@bootlin.com>
 > 
+> Document the compatible strings for the Milk-V Duo S board[1] which uses
+> the SOPHGO SG2000 SoC, compatible with the CV1812H SoC[2].
 > 
-> On 4/20/2024 5:01 PM, Krzysztof Kozlowski wrote:
->> On 20/04/2024 06:48, Krishna Kurapati wrote:
->>> Add the compatible string for SC8280 Multiport USB controller from
->>> Qualcomm.
->>>
->>> There are 4 power event interrupts supported by this controller
->>> (one for each port of multiport controller). Add all the 4 as
->>> non-optional interrupts for SC8280XP-MP
->>>
->>> Also each port of multiport has one DP and one DM IRQ. Add all DP/DM
->>> IRQs related to 4 ports of SC8280XP Teritiary controller.
->>>
->>> Also added SuperSpeed PHY interrupt for both Superspeed ports.
->>>
->>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>
->> v21 and suddenly you drop tags requiring everyone to re-review this. I
->> do not think this process is working. I will not re-review this.
->>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions, under or above your Signed-off-by tag. Tag is "received", when
->> provided in a message replied to you on the mailing list. Tools like b4
->> can help here. However, there's no need to repost patches *only* to add
->> the tags. The upstream maintainer will do that for tags received on the
->> version they apply.
->>
->> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->>
->>
+> Link: https://milkv.io/duo-s [1]
+> Link: https://en.sophgo.com/product/introduce/cv181xH.html [2]
 > 
-> Hi Krzysztof,
-> 
->   There was a commit text change to fix minor nits:
->   -> One minor spell check: /s/oen/one
->   -> minor nits like: /s/ss/SuperSpeed
-> 
->   So removed the tags and requested for a review.
->   "Updated commit text in patches 2/5/6."
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+> ---
+
+Where is the changelog? It's v6!
 
 
-Did you read the doc I linked? I am pretty sure I linked it many times
-before as well...
+>  Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> index 9bc813dad098..79546aa21021 100644
+> --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> @@ -24,6 +24,7 @@ properties:
+>            - const: sophgo,cv1800b
+>        - items:
+>            - enum:
+> +              - milkv,duo-s
 
+? It was duo... and duos... now weirdly duo-s without explanation.
 
+>                - sophgo,huashan-pi
+>            - const: sophgo,cv1812h
+
+It was CV1800 before... and you were asked for SoC compatible.
+
+Please reach to your Bootlin folks to explain you how to send new
+versions of patchsets and how to use compatibles.
 
 Best regards,
 Krzysztof
