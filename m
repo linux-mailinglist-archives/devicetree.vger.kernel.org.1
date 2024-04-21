@@ -1,185 +1,235 @@
-Return-Path: <devicetree+bounces-61196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84848ABEEF
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 12:20:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89318ABF09
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 13:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B7D6B20ABB
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 10:20:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A069D280FD3
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 11:09:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A977E10A01;
-	Sun, 21 Apr 2024 10:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205AA10A3C;
+	Sun, 21 Apr 2024 11:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Rr2gNeV1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ba4BUY3O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D1033D5
-	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 10:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB12205E18;
+	Sun, 21 Apr 2024 11:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713694809; cv=none; b=D21R20UR18C8qSm/3FTRAf3ia4TtNnmUT61eJpatD5rH8fFnnzxb48a+27ceaVoKdov5vQpbbctS5S2jK9XUo36vQ3UNXojckiWmtpF/P9ZT/V9Dp+tzbnwccl0Pslo1v//SaIhFKVthVwOaiGJeqy+ZLYTw5dk6yLXRQd//Rag=
+	t=1713697785; cv=none; b=b8P4uzLd0ec8cyP4uAJGADeycf01B3T+gRs99JiiCIpfU8RpC+/LCb31BV60O56En7bIVEODDrTCELJlxC270XPx4YEtHvtgZvKtF4tik5tF6rXt8Gf0FHOIPL+vPnBD20ZpjEIz/YIauUxjTD9k52OiwVPRloMiGUN3CmY5XK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713694809; c=relaxed/simple;
-	bh=nPphRiryGCuxRttR9brQZ7EvvVXwElj2sw1/g4Av6jo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d9yXcAbc3Y6s+uj190LaaAp+plq0P63qcBVek+dZFeolPRLHIXjscYvCNgSAXG/NoscJ0hkJS0llS4I1+OYnm/vPgKkLGBNgt9Tvo97w1IWduvKgCWUxeEXXIwJaF3wDiffYE3FrRNSQYd0s5LAa2X8L+l0QcBYEhpX3wrqTwyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Rr2gNeV1; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2db101c11beso39615171fa.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 03:20:07 -0700 (PDT)
+	s=arc-20240116; t=1713697785; c=relaxed/simple;
+	bh=4LIluELKsAg0RvjnTm13p6oqqf2Kl3p8f3JSIQo4YVo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cYCJEBKqlm5ktepZCDXKJus8nhjomAudpQLuN8RhAfRrIl9WC35LY/xeUm8k0GZoYosE5rQX1faW3PMeueV7iEETXlb7oTWFB6JYPHFlceBsEDYlp+ofjX+vVVI7HV8PsJpppckWVW881UpLZFr3XBBvukRZwdsYW3ox9Q0fgUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ba4BUY3O; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1e4266673bbso31106995ad.2;
+        Sun, 21 Apr 2024 04:09:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1713694805; x=1714299605; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NQ34QbYUP42radFqcG4Fu2rfSxDEHqCa4xcp8CRb+6I=;
-        b=Rr2gNeV1KN/LkV9FIdQChRSIPOZXw8I87TNhn1VCg6jtcvg9oHeW5F7211mxJeKAPt
-         rh5QyYYCRTz/QtPopyx8SxzhbeGCrDO20qHREPakPPcWQwQx3z8uXVoj0XzX1M4+EBIy
-         pgQzccjxHQZDAvlVdxRH7BNyzjEgPweiGfgYXm30eC5/G4V9+ZTMkUz9L0DH9afTzxv4
-         etWN9zcOC9mrJiOBwXKpf4xqFvd5b27MO1fc7K3r0rNVAWkc1nIiO3tjUL0EeNl0eUNQ
-         1/JyAPC4/yuwWKS7gxk9LTCA/lH4ohcKth5f9QpLK2i30lqeIVfJDUdfZxIDmx21te97
-         t9Mw==
+        d=gmail.com; s=20230601; t=1713697783; x=1714302583; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gCeM9ne1R4TNu8Re+QZrgQf9jfqwpZtPiiKgFbyNlW4=;
+        b=ba4BUY3OLh2KrmlZqfTyasfhw4rBut5lVD1GhG6CHRKLLSK+yjMq2MSfEKl0HEQxCY
+         2cIfEy5GUgjEjWrtnDNsCaZ0mPwXJctCKeADHjwFa5vaqj7V9jRR2MBLHP2mh8jIsQs0
+         qJjZXObVPtTa6oBGPdi8B0QF/PVFjeO+lAb99UU1noypIePw5jXFv74Tc+D3WPnsGtRE
+         WMmYGutNsuJELyhciKjQB1PC5y2xZcC8mgc6hyT4jND3jKtDCM/tYzQgYV5Fn7CH50mn
+         gf1OQyKwnW+Qzdu0vYySDb6wkvT9wU9HhA/EGdLBiXNMVQZ3kQ4Yilr1hkr5WZpn3MHt
+         /PJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713694805; x=1714299605;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NQ34QbYUP42radFqcG4Fu2rfSxDEHqCa4xcp8CRb+6I=;
-        b=ILD3ARMNGxFrUQ4LWoxnmTFlTQLfyVyY1l2iQSYnIs+N4P7qc+Kvyox+ZtYXdas3tk
-         00RmnEqa11Ayb6ya9nh/4cRYwkTDQmaKoxgfmgerY+Nz8OPt+Xw3JkvuB9rfLFA/MeiF
-         O4TPGttjX2i6X8FkPr7SHOskjDu6Py98saHKrNoD50DaaHU5UTtUkRIR8x6y6mY/lAhW
-         xxn6gUt803EitMkslE7XjPkL/kS5cxf/89JvYDqe6TD0u4E9QZ21NWQpCYIaxmcu03Wf
-         02OoNCy6LF4aZwskz5ykbrcR+zi6orQmQDMLFHKtRLLH3xsGYLaDCFmjThE5iT212mqT
-         wzEg==
-X-Forwarded-Encrypted: i=1; AJvYcCW07cYuy8iUHpJP0HmqY100IUOZux1KWlJo2oljW8lg/pdDX18hxbqug+PKd1Db0+NwJMyy7ESk1HuqkCUR9DYH9V3NsH3hfDBeTQ==
-X-Gm-Message-State: AOJu0Ywukd3g/8huQSC5f1XoUKsDewlCOgKUawotFwNmt7cjlIQowsYN
-	nCl2EY3wtxOspeHVTpSs0aOV5m8LBpZ4Bykd+QM9Hh7rjvs0eYWwTVSm8t1rB6xqqbrbWli3Iy8
-	gAgI=
-X-Google-Smtp-Source: AGHT+IEAP5ccnT87Gjlugcu7UBPy8RZkCrhchcaaIW1xoFta2k9UOHEQVI4x2dhSEVzyP+LDuaDHTw==
-X-Received: by 2002:a05:6512:4809:b0:518:d4c3:4682 with SMTP id eo9-20020a056512480900b00518d4c34682mr4163280lfb.24.1713694805349;
-        Sun, 21 Apr 2024 03:20:05 -0700 (PDT)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id b61-20020a509f43000000b0056e51535a2esm4426362edf.82.2024.04.21.03.20.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Apr 2024 03:20:04 -0700 (PDT)
-Date: Sun, 21 Apr 2024 12:20:03 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org, 
-	kvm-riscv@lists.infradead.org, devicetree@vger.kernel.org, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, conor.dooley@microchip.com, 
-	anup@brainfault.org, atishp@atishpatra.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, christoph.muellner@vrull.eu, 
-	heiko@sntech.de, David.Laight@aculab.com, parri.andrea@gmail.com, 
-	luxu.kernel@bytedance.com
-Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Add Zawrs ISA extension
- description
-Message-ID: <20240421-f63f90c2146deb0695b84441@orel>
-References: <20240419135321.70781-8-ajones@ventanamicro.com>
- <20240419135321.70781-10-ajones@ventanamicro.com>
- <20240419-chafe-leotard-e5daee19b1c8@spud>
- <20240419-8c6af6a169a7aa0b9aa5cac5@orel>
- <20240419-disdain-litmus-82874cc4872e@spud>
- <ZiKeYRnXxtLUtkkW@ghost>
+        d=1e100.net; s=20230601; t=1713697783; x=1714302583;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gCeM9ne1R4TNu8Re+QZrgQf9jfqwpZtPiiKgFbyNlW4=;
+        b=NfgHeBj4wAvh3RYtqmZmfxaOTEK1vRcHvTYa+xVlaHeHoqoSEF3Tgimi5zNGCP/B5i
+         2FBaDacrmbUiQrphJtiAmSTM9CQtUCAUALzfdGKTbrI2xSFmDJTTrwQDBjxZBPh41wsO
+         ynzQhNC3Elgb8YhpaUtriHjnCMSavlmYg/803zOV7zOTthiZLHBffR3AwDxVzT/uG2mA
+         WxkdOOSHOLAuesFfpS/iSxnZGX9kSIWyHqsGB2kgJICuIeCjqEzhToSDzQHDQE1Uorgo
+         uC1yZO0Oi0rMsja04b8hO8dj+KqmuqaVyajmELgJvnfoJbE+pV38Zqs/YG6+lSeqIHni
+         susg==
+X-Forwarded-Encrypted: i=1; AJvYcCXoUuk+uOTpIDbRU0hy2IE1uTocvBF9LTVXbF0m4oe4HdJrQGCqg64HlHDjHg7JpRsrxHQgmkel2UzOFhcGsJ2YHYxUbI4KUUiVuIvAaqUOf0ItGpt3VIbl1DAW3qVQ5PopEn1NNYX94bjNYxu2gHYJOV1jFW5kgdo6Sh2gTGAfAAiwHkmDaUd3KhT8eWrt3uQMC2sZHMqVyxOT6hCrountQM0=
+X-Gm-Message-State: AOJu0YyiAof1dqpH8ep4SSp/HbR7Vxf4KVwTzehYZ+XtM3V/6udV/g7D
+	qP1IkQj+PgXWy6xZyD9OapOcBo80a8MXFGy8khF/aM9yMo2Xa62Ks7UOU8hUmq4=
+X-Google-Smtp-Source: AGHT+IHyxcxKCNoIbIl6jQA5poxccSFgss/1TDc5IEDT+158XYAb96YfGxSAkztcPYCUhraYU1wpKA==
+X-Received: by 2002:a17:902:d2d0:b0:1e8:32ed:6f6d with SMTP id n16-20020a170902d2d000b001e832ed6f6dmr7851014plc.39.1713697782482;
+        Sun, 21 Apr 2024 04:09:42 -0700 (PDT)
+Received: from localhost (ec2-3-111-32-5.ap-south-1.compute.amazonaws.com. [3.111.32.5])
+        by smtp.gmail.com with UTF8SMTPSA id r11-20020a170902c60b00b001e54f250ca9sm6154435plr.212.2024.04.21.04.09.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Apr 2024 04:09:40 -0700 (PDT)
+From: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: tegra20-ac97: convert to dt schema
+Date: Sun, 21 Apr 2024 16:39:25 +0530
+Message-ID: <20240421110929.139191-1-sheharyaar48@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZiKeYRnXxtLUtkkW@ghost>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 19, 2024 at 12:40:01PM -0400, Charlie Jenkins wrote:
-> On Fri, Apr 19, 2024 at 04:19:52PM +0100, Conor Dooley wrote:
-> > On Fri, Apr 19, 2024 at 05:16:05PM +0200, Andrew Jones wrote:
-> > > On Fri, Apr 19, 2024 at 03:45:46PM +0100, Conor Dooley wrote:
-> > > > On Fri, Apr 19, 2024 at 03:53:24PM +0200, Andrew Jones wrote:
-> > > > > Add description for the Zawrs (Wait-on-Reservation-Set) ISA extension
-> > > > > which was ratified in commit 98918c844281 of riscv-isa-manual.
-> > > > > 
-> > > > > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/riscv/extensions.yaml        | 12 ++++++++++++
-> > > > >  1 file changed, 12 insertions(+)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > > index 468c646247aa..584da2f539e5 100644
-> > > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > > @@ -177,6 +177,18 @@ properties:
-> > > > >              is supported as ratified at commit 5059e0ca641c ("update to
-> > > > >              ratified") of the riscv-zacas.
-> > > > >  
-> > > > > +        - const: zawrs
-> > > > > +          description: |
-> > > > > +            The Zawrs extension for entering a low-power state or for trapping
-> > > > > +            to a hypervisor while waiting on a store to a memory location, as
-> > > > > +            ratified in commit 98918c844281 ("Merge pull request #1217 from
-> > > > > +            riscv/zawrs") of riscv-isa-manual.
-> > > > 
-> > > > This part is fine...
-> > > > 
-> > > > 
-> > > > > Linux assumes that WRS.NTO will
-> > > > > +            either always eventually terminate the stall due to the reservation
-> > > > > +            set becoming invalid, implementation-specific other reasons, or
-> > > > > +            because a higher privilege level has configured it to cause an
-> > > > > +            illegal instruction exception after an implementation-specific
-> > > > > +            bounded time limit.
-> > > > 
-> > > > ...but I don't like this bit. The binding should just describe what the
-> > > > property means for the hardware, not discuss specifics about a
-> > > > particular OS.
-> > > > 
-> > > > And with my dt-bindings hat off and my kernel hat on, I think that if we
-> > > > want to have more specific requirements than the extension provides we
-> > > > either need to a) document that zawrs means that it will always
-> > > > terminate or b) additionally document a "zawrs-always-terminates" that
-> > > > has that meaning and look for it to enable the behaviour.
-> > > 
-> > > IIUC, the text above mostly just needs to remove 'Linux assumes' in order
-> > > to provide what we want for (a)? I'm not sure about (b). If Zawrs is
-> > > unusable as is, then we should probably just go back to the specs and get
-> > > a new standard extension name for a new version which includes the changes
-> > > we need.
-> > 
-> > An (official) new name for the behaviour that you actually want, especially
-> > if the patchset sent the other day does not have the more stringent
-> > requirement (I won't even pretend to understand Zawrs well enough to know
-> > whether it does or not), sounds like the ideal outcome. That way you're
-> > also sorted on the ACPI side.
-> 
-> What would be the purpose of a vendor implementing WRS.NTO (and putting
-> it in the DT) that never terminates? The spec says "Then a subsequent
-> WRS.NTO instruction would cause the hart to temporarily stall execution
-> in a low- power state until a store occurs to the reservation set or an
-> interrupt is observed." Why is this wording for WRS.NTO not sufficient
-> to assume that an implementation of this instruction would eventually
-> terminate?
->
+Convert NVIDIA Tegra20 AC97 binding to DT schema.
 
-We can invoke smp_cond_load_relaxed(addr, VAL || anything_we_want()). This
-means we may not expect VAL ever to be written, which rules out "until a
-store occurs". As for "an interrupt is observed", we don't know which one
-to expect to arrive within a "reasonable" amount of time. We need to know
-which one(s), since, while wrs.nto will terminate even when interrupts are
-globally disabled, we still need to have the interrupt(s) we expect to be
-locally enabled. And, the interrupts should arrive in a "reasonable"
-amount of time since we want to poll anything_we_want() at a "reasonable"
-frequency.
+Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+---
+ .../bindings/sound/nvidia,tegra20-ac97.txt    | 36 ---------
+ .../bindings/sound/nvidia,tegra20-ac97.yaml   | 80 +++++++++++++++++++
+ 2 files changed, 80 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.yaml
 
-So, we need firmware to promise to enable exceptions if there aren't any
-such interrupts. Or, we could require hardware descriptions to identify
-which interrupt(s) would be good to have enabled before calling wrs.nto.
-Maybe there's already some way to describe something like that?
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.txt b/Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.txt
+deleted file mode 100644
+index eaf00102d92c..000000000000
+--- a/Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-NVIDIA Tegra 20 AC97 controller
+-
+-Required properties:
+-- compatible : "nvidia,tegra20-ac97"
+-- reg : Should contain AC97 controller registers location and length
+-- interrupts : Should contain AC97 interrupt
+-- resets : Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names : Must include the following entries:
+-  - ac97
+-- dmas : Must contain an entry for each entry in clock-names.
+-  See ../dma/dma.txt for details.
+-- dma-names : Must include the following entries:
+-  - rx
+-  - tx
+-- clocks : Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+-- nvidia,codec-reset-gpio : The Tegra GPIO controller's phandle and the number
+-  of the GPIO used to reset the external AC97 codec
+-- nvidia,codec-sync-gpio : The Tegra GPIO controller's phandle and the number
+-  of the GPIO corresponding with the AC97 DAP _FS line
+-
+-Example:
+-
+-ac97@70002000 {
+-	compatible = "nvidia,tegra20-ac97";
+-	reg = <0x70002000 0x200>;
+-	interrupts = <0 81 0x04>;
+-	nvidia,codec-reset-gpio = <&gpio 170 0>;
+-	nvidia,codec-sync-gpio = <&gpio 120 0>;
+-	clocks = <&tegra_car 3>;
+-	resets = <&tegra_car 3>;
+-	reset-names = "ac97";
+-	dmas = <&apbdma 12>, <&apbdma 12>;
+-	dma-names = "rx", "tx";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.yaml
+new file mode 100644
+index 000000000000..e7ffa93eec30
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nvidia,tegra20-ac97.yaml
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nvidia,tegra20-ac97.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra20 AC97 controller
++
++maintainers:
++  - Thierry Reding <treding@nvidia.com>
++  - Jon Hunter <jonathanh@nvidia.com>
++
++properties:
++  compatible:
++    const: nvidia,tegra20-ac97
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: ac97
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++
++  dmas:
++    minItems: 2
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++  nvidia,codec-reset-gpio:
++    description: |
++      The Tegra GPIO controller's phandle and the number
++      of the GPIO used to reset the external AC97 codec
++    maxItems: 1
++
++  nvidia,codec-sync-gpio:
++    description: |
++      The Tegra GPIO controller's phandle and the number
++      of the GPIO corresponding with the AC97 DAP _FS line
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - resets
++  - reset-names
++  - interrupts
++  - clocks
++  - dmas
++  - dma-names
++  - nvidia,codec-reset-gpio
++  - nvidia,codec-sync-gpio
++
++additionalProperties: false
++
++examples:
++  - |
++    ac97@70002000 {
++            compatible = "nvidia,tegra20-ac97";
++            reg = <0x70002000 0x200>;
++            resets = <&tegra_car 3>;
++            reset-names = "ac97";
++            interrupts = <0 81 0x04>;
++            clocks = <&tegra_car 3>;
++            dmas = <&apbdma 12>, <&apbdma 12>;
++            dma-names = "rx", "tx";
++            nvidia,codec-reset-gpio = <&gpio 170 0>;
++            nvidia,codec-sync-gpio = <&gpio 120 0>;
++    };
++...
+-- 
+2.44.0
 
-Thanks,
-drew
 
