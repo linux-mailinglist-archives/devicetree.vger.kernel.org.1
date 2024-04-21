@@ -1,312 +1,223 @@
-Return-Path: <devicetree+bounces-61193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A3F8ABECD
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 10:43:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B508ABED1
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 10:49:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D221F210EE
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 08:43:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A0D41C2083B
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 08:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581C3D527;
-	Sun, 21 Apr 2024 08:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1958B4C96;
+	Sun, 21 Apr 2024 08:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="LDCdsYrk";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Nymzn4ap"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kbokX4Dy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh6-smtp.messagingengine.com (fhigh6-smtp.messagingengine.com [103.168.172.157])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8BC4205E15
-	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 08:43:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82B410A03;
+	Sun, 21 Apr 2024 08:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713689030; cv=none; b=hemWFreufe4r2mtLb8ton3CYjfUAiiQmD27AzXepRtBXWBDPm6RxixOwviqDsAOMmyz6hyDFzD0w5i2TN7RZHj15Bj2ZWqeWDGq1aeNOEuSvG4KM52YE6GUf04DTJp+JAQXJcXYLYo+M5SkKcSIlhXcX3JeRYPHrwNbqXnV0A+Q=
+	t=1713689390; cv=none; b=RTp/2zhTskN364EPpuYXv+7/f8XHv6oJ4/XtTptbhY2F36UDh7lmMitZLr/jtKWzW00z8QQIt4S7e4l21fp67H4KDnW7u6SHCzofXrMT0hleUNN6dmTrL2O9RAe9e0N+HBBiuoyh7JZsMCJz7otiBoSQdjgh3TrfH5F24eZ9vcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713689030; c=relaxed/simple;
-	bh=UWyAALjuIpVFabeaxMVUBCChPCq5AlYRzwZOkIBR6m8=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=NknVpoZR7CayooeKmAqKHnI9WyNP84oaBbWovWGJMMEgC3XLJjjYeh5wTPJh75J/u/jcC2xw6RyAfnxIY9MsEGVs1EXV8otIAiTiaijWK2kEcIQ4jlw53c3H0AXWUZ3VtXpn9n7u5+0D3Wf7FD3NEFsz6k8yHI4jXFgtDAZiKlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=LDCdsYrk; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Nymzn4ap; arc=none smtp.client-ip=103.168.172.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id D51B61140106;
-	Sun, 21 Apr 2024 04:43:47 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sun, 21 Apr 2024 04:43:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1713689027; x=
-	1713775427; bh=AU1RSpBWDrI1Gn8fVHBhHinFceDQNZd9SgUPqYVdpqk=; b=L
-	DCdsYrkA8lzwMvsz7oG9unsmmaz5sb5Hx1OG2wkSywEkvQSzBN0zbgrxSM5TOpmd
-	GcxyEgtMa8/j9CbPOUqqcTKdWca51UXlEi753wYeb5rUaXJ+oEBQRyAFye1Ekh9s
-	k/8+qgoCwoMhVVGErtDFarHG2G/U2QCpJ2H7O7nN0/+l5L5MdW4BgANCBpsdx+J4
-	KRyq5zvsqc5uPp0HvBSFLmfbbi3ORfuCoAv3ql7Oz0DewTCZRDeqwvhX97xO5uf4
-	FVx4hxoZXMV2J+FpktUkNupDLwh1veXW/DSve+NwCkEb6atOeCqvxXaWGTW4TiD3
-	bXgmunXzW1XzwVoeSz4SQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1713689027; x=1713775427; bh=AU1RSpBWDrI1Gn8fVHBhHinFceDQ
-	NZd9SgUPqYVdpqk=; b=Nymzn4aps+Lnj8fgcGOK1Z+Q92v7WxxTxBTgbleANCGw
-	etFk44s2qKcpHcX/3JH000B0r4OIqc4BT8rNrg/vSnFAhY15ho6DrsWX9TYpehV/
-	UJvpcd8N8/yvH82ozoZsQN1UEUZraPV2hVMnxcHImfeXskfHi1xtA0PGNHhld7FS
-	jd2IEhixWStIV7A88NMgFU5Zp8b6CHu0fejMiHqkqu+2qY31HnrPRXAU9MHUYX3N
-	fk7LNx8K579fGzEe/5OJRClu1TkIo0js/SWRiM4yB872WRF7nJ2XJlo5Ntb4NX8C
-	F5LaDesnur21+DnKVg+p/OHTHnru4xOttEj2GJJmag==
-X-ME-Sender: <xms:w9EkZqobQpTG2nI-6Hv9Sd0yHtl2-lwg30q75mE4dRqO_zxFHooslw>
-    <xme:w9EkZoqfrrkh90wYzawR425Oi4ggVeGZ9rPFL6OzePhDCuiB6l_K7bAlg4kuwQaKf
-    h1OdWImrvuRjlIf9Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudekjedgtdekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
-    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
-    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
-    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:w9EkZvNBSKl4IAMH9cnJoH9AZZSk-VYYIT1J7UOq8a6Czs4C59_ajw>
-    <xmx:w9EkZp7S68kj2eoxVGaIBngLJtqJ84ABOLY5e0dq3tDn6LxJAT4Zxg>
-    <xmx:w9EkZp5ljkI9c9e2wzU1V5ZebiOEJGfw8Sz7jeJF_T6S50FhtEs0qA>
-    <xmx:w9EkZpjUe3j6KWcMC6xae61f-fr54ivsQqsRQaDG0sSaxrtagWF0iQ>
-    <xmx:w9EkZuHWMumN7ucmaz5_JLIIdZy6rMVXQIYdpVHWnSI8q3wrTDqK5n1l>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 3117AA618EF; Sun, 21 Apr 2024 04:43:47 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-379-gabd37849b7-fm-20240408.001-gabd37849
+	s=arc-20240116; t=1713689390; c=relaxed/simple;
+	bh=xM9lXqlYZOpwamIi6wqW2Ib1u9BbnYJVFjHkfNNDcQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OBilUCXAH2HSFlqfCVx9MXdWduis6DlowWP/qjIKMHeypWb5XOTHfC1HngT0W4Qk4mWO9iDWPHf4/LM4nwLtFEEYUVgYNbGLIFfiJt5/56+OqM5JuTct8odKw56ED+QfjZNw01XoqUY/rATPRek67UKMLwk4oW9fl/JwblTf/14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kbokX4Dy; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713689388; x=1745225388;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xM9lXqlYZOpwamIi6wqW2Ib1u9BbnYJVFjHkfNNDcQU=;
+  b=kbokX4DyWEEBhoiepGr2aNZS4gpGQCmW9jjo8jYUw8I7R/A/+VZjkzcp
+   7OQeVTkHdK7JQW+9c/JYHx0qr2FudjD0G8KxXSJ7ntQv1u1NCkQ+MIdKI
+   Jqi5tb7k+SZgTTPTLC83lHC/W3eQgPVUklMCcRefYesdD2mUTdkvHwll/
+   5mQ6/+/wPKatBxtGa6k8xRoAxVlhhqo6BIFBcRPSpYFmqeLOr/iM9ekSn
+   zUuhAzc7janT1MWPQKLkwvwqvVBPBgzTpP8Dxtqy7huzMlAUF5c+UkZE3
+   JMmbw7bZB353h5zyc4qW0YrugVQLvOzKPaL9KJURjPi/PB6X+aMhs9C8d
+   w==;
+X-CSE-ConnectionGUID: rbnzgxu8TbmarVs7RyRDXA==
+X-CSE-MsgGUID: 93gYRwtgTVej/9oQ1yWWeA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11050"; a="9073131"
+X-IronPort-AV: E=Sophos;i="6.07,218,1708416000"; 
+   d="scan'208";a="9073131"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2024 01:49:47 -0700
+X-CSE-ConnectionGUID: u2lN+IqUTRuMfKsVTFbUOA==
+X-CSE-MsgGUID: 12Q7yg7+QIqL7BIOirSgNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,218,1708416000"; 
+   d="scan'208";a="23780258"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by fmviesa006.fm.intel.com with ESMTP; 21 Apr 2024 01:49:42 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ryStI-000Bp8-1S;
+	Sun, 21 Apr 2024 08:49:40 +0000
+Date: Sun, 21 Apr 2024 16:49:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sibi Sankar <quic_sibis@quicinc.com>, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, andersson@kernel.org,
+	konrad.dybcio@linaro.org, jassisinghbrar@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	dmitry.baryshkov@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
+	quic_sibis@quicinc.com, conor+dt@kernel.org,
+	quic_gkohli@quicinc.com, quic_nkela@quicinc.com,
+	quic_psodagud@quicinc.com
+Subject: Re: [PATCH V3 2/5] mailbox: Add support for QTI CPUCP mailbox
+ controller
+Message-ID: <202404211602.d8vcGEH0-lkp@intel.com>
+References: <20240417132856.1106250-3-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <2735abdc-764d-4073-a55b-a4f5572a74f8@app.fastmail.com>
-In-Reply-To: 
- <DM4PR05MB922920FBFF980694507FAE11A5132@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240420104354.334947-5-ryan@testtoast.com>
- <20240420104354.334947-8-ryan@testtoast.com>
- <20240421014920.4946a5ce@minigeek.lan>
- <DM4PR05MB922920FBFF980694507FAE11A5132@DM4PR05MB9229.namprd05.prod.outlook.com>
-Date: Sun, 21 Apr 2024 20:43:26 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Chris Morgan" <macromorgan@hotmail.com>,
- "Andre Przywara" <andre.przywara@arm.com>
-Cc: "Chen-Yu Tsai" <wens@csie.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 2/5] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417132856.1106250-3-quic_sibis@quicinc.com>
+
+Hi Sibi,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.9-rc4 next-20240419]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sibi-Sankar/dt-bindings-mailbox-qcom-Add-CPUCP-mailbox-controller-bindings/20240417-213339
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240417132856.1106250-3-quic_sibis%40quicinc.com
+patch subject: [PATCH V3 2/5] mailbox: Add support for QTI CPUCP mailbox controller
+config: hexagon-randconfig-r121-20240421 (https://download.01.org/0day-ci/archive/20240421/202404211602.d8vcGEH0-lkp@intel.com/config)
+compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project.git 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
+reproduce: (https://download.01.org/0day-ci/archive/20240421/202404211602.d8vcGEH0-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404211602.d8vcGEH0-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/mailbox/qcom-cpucp-mbox.c:6:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __raw_readb(PCI_IOBASE + addr);
+                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+                                                     ^
+   In file included from drivers/mailbox/qcom-cpucp-mbox.c:6:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+                                                     ^
+   In file included from drivers/mailbox/qcom-cpucp-mbox.c:6:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writeb(value, PCI_IOBASE + addr);
+                               ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+>> drivers/mailbox/qcom-cpucp-mbox.c:61:11: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+           status = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_STAT);
+                    ^
+>> drivers/mailbox/qcom-cpucp-mbox.c:71:4: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+                           writeq(BIT(i), cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
+                           ^
+   drivers/mailbox/qcom-cpucp-mbox.c:85:8: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+           val = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+                 ^
+   drivers/mailbox/qcom-cpucp-mbox.c:87:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+           writeq(val, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+           ^
+   drivers/mailbox/qcom-cpucp-mbox.c:98:8: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+           val = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+                 ^
+   drivers/mailbox/qcom-cpucp-mbox.c:100:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+           writeq(val, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+           ^
+   drivers/mailbox/qcom-cpucp-mbox.c:140:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Werror,-Wimplicit-function-declaration]
+           writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+           ^
+   6 warnings and 7 errors generated.
 
 
+vim +/readq +61 drivers/mailbox/qcom-cpucp-mbox.c
 
-On Sun, 21 Apr 2024, at 4:00 PM, Chris Morgan wrote:
+    51	
+    52	static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
+    53	{
+    54		struct qcom_cpucp_mbox *cpucp = data;
+    55		struct mbox_chan *chan;
+    56		unsigned long flags;
+    57		u64 status;
+    58		u32 val;
+    59		int i;
+    60	
+  > 61		status = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_STAT);
+    62	
+    63		for (i = 0; i < APSS_CPUCP_IPC_CHAN_SUPPORTED; i++) {
+    64			val = 0;
+    65			if (status & BIT(i)) {
+    66				val = readl(cpucp->rx_base + APSS_CPUCP_RX_MBOX_CMD(i) + APSS_CPUCP_MBOX_CMD_OFF);
+    67				chan = &cpucp->chans[i];
+    68				spin_lock_irqsave(&chan->lock, flags);
+    69				if (chan->cl)
+    70					mbox_chan_received_data(chan, &val);
+  > 71				writeq(BIT(i), cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
+    72				spin_unlock_irqrestore(&chan->lock, flags);
+    73			}
+    74		}
+    75	
+    76		return IRQ_HANDLED;
+    77	}
+    78	
 
-> FYI - PI12 can run as a PWM so when we get PWM output I intend to
-> request this be run as a PWM led (so we can adjust the brightness).
-> I'll handle that when it's ready though so don't worry for now.
-
-Sounds good.
-
-> Your preference, but in the past I've had the volume up/down done as a
-> seperate node so we can enable key repeat. 
-
-Done as mentioned.
-
-> separation.  Also I usually alphabetize node names, I don't remember
-> if I'm just that anal or if I was told to at one point though.
-
-I'm easy, the order there seemed logical based on the physical layout on the -Plus but I don't have a real preference.
-
->
-> It's described wrong, but based on the behaviour I've seen. The specific
-> seems to be 2 GPIO controlled regulators; one of them enables the logic
-> voltage for the USB (the 3.3v regulator) and the other enables the VBUS
-> for the USB (the 5v regulator). If you only enable the 5v regulator the
-> bus otherwise lays dormant. If you only enable the 3v3 regulator the
-> USB bus powers on and intermittently enumerates devices at 3.3v.
-> Further enabling the 5v regulator drives the USB at 4.6v (I'm guessing
-> something is still wrong, we have more to poke at).
->
-> To my knowledge this only applies for the USB host port which this
-> device lacks.
->
-Will await your work on this, I'm not at all familiar with USB to this depth, conceptually makes sense though. This will also rely on the boost working well, which is at least now being enabled with the WIP AXP717 driver.
-
-
->
-> After much digging I'm certain the rails powering the wifi are
-> reg_cldo4 for the 3.3v and reg_aldo4 for the IO bits at 1.8v.
-> The curious thing about reg_cldo4 is it appears to feed into
-> another regulator that regulates at precisely 3.3v. If I under or
-> overvolt cldo4 I still read exactly 3.3v at the wifi module, but as
-> soon as I turn off reg_cldo4 the wifi reads 0v. So while I can't
-> directly control the power of the wifi's 3.3v rail, as long as I
-> get cldo4 close to 3.3v it powers correctly.
-
-Nice, have reworked the SD and Wifi regulators as described, and power management for the Wifi in particular seems to be working much better after moving it off BLDO2 (which seems to be VCC-PLL) to CLDO4. 
-
->> > +&mmc0 {
->> > +	vmmc-supply = <&reg_vcc_sd2>;
->> 
->> I don't think this GPIO controlled regulator provides the supply voltage
->> for the first SD card, since it would be disabled on reset, and the
->> BROM couldn't boot from the SD card. So it must be some other 3.3V
->> source, either a discrete regulator (fixed regulator), or some
->> default-on 3.3V AXP rail.
->
-> Both the vcc and the logic for the mmc0 appear to be handled by the
-> cldo3 regulator at 3.3v.
->
-Thanks, makes sense. I've tentatively renamed CLDO3 to VCC-IO, looking at the H616 datasheet.
->> 
->> > +	disable-wp;
->> > +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
->> > +	bus-width = <4>;
->> > +	status = "okay";
->> > +};
->> > +
->> > +&mmc2 {
->> > +	vmmc-supply = <&reg_vcc_sd2>;
->> > +	vqmmc-supply = <&reg_aldo1>;
->> > +	cd-gpios = <&pio 4 22 GPIO_ACTIVE_LOW>; /* PE22 */
->> > +	bus-width = <4>;
->> > +	status = "okay";
->> > +};
->> 
->> This one seems more plausible. To confirm this, you could not use
->> reg_vcc_sd2 anywhere, and use some other 3.3V supply for vmmc, which
->> should break operation on the second SD card. Then just swap
->> reg_vcc_sd2 back in, and if it starts working again, we have confirmation.
->> 
-Swapped in CLDO4 for MMC2 and the card read fine, will swap it back and see what happens.
->
-> cldo3 and the gpio controlled regulator are the 2 regulators used for
-> mmc2 on my board. My notes have the vmmc supply as cldo3 and the
-> vqmmc supply as the GPIO controlled one, but that feels wrong. That
-> said the IO pins measured 1.1v when the GPIO regulator was off and
-> 3.3v when the GPIO regulator was on. The 1.1v didn't seem to come
-> from the PMIC, as the only rail I had running 1.1v at the time was
-> the RAM and I tested and confirmed that wasn't it.
->
->> > +
->> > +&ohci0 {
->> > +	status = "okay";
->> > +};
->> > +
->> > +&ehci0 {
->> > +	status = "okay";
->> > +};
->> > +
->
-> I haven't confirmed on my board we need ohci0 and ehci0 for the OTG
-> port.
->
-OK, shall I remove them or will it do no harm?
-
->> > +&r_rsb {
->> > +   status = "okay";
->> > +
->
-> Any advantage to doing this on the rsb over i2c? That's how I have mine
-> wired. Both are fine with me, I just didn't know what was better.
->
-I don't think so, this was Andre's first suggestion when he sent the AXP717's kernel driver so have stuck with it, but either should be fine.
-
-
->> 
->> > +
->> > +		vin1-supply = <&reg_vcc5v>;
->> > +		vin2-supply = <&reg_vcc5v>;
->> > +		vin3-supply = <&reg_vcc5v>;
->> > +		vin4-supply = <&reg_vcc5v>;
->
-> FYI - I never actually confirmed the vin supply of the PMIC, I just put
-> these in here to shut up some errors or warnings. If these are based
-> on something I did it couldn't hurt to recheck.
-
-Ta, will see if I can find anything out.
-
->
->> > +
->> > +		regulators {
->> > +			reg_dcdc1: dcdc1 {
->> > +				regulator-always-on;
->> > +				regulator-boot-on;
->> > +				regulator-min-microvolt = <810000>;
->> > +				regulator-max-microvolt = <1100000>;
->
-> The CPU opp table in the BSP device tree had this between 900000 and
-> 1120000. Though like most things, take anything in the BSP device
-> tree with a grain of salt (lime and tequila help too).
->
-
-Quite! That's the spec from the H616 datasheet, I may need to push it up to 1.16v max to hit 1.5Ghz, but will relook at it once the cpufreq patches land.
-
-> I'm just speculating, but I strongly *guess* that this dcdc2 is used
-> for the GPU. SoC datasheet says max should be 900000 for the GPU, but
-> I don't have an opp table to go off of sadly.
->
->> > +			reg_dcdc2: dcdc2 {
->> > +				regulator-always-on;
->> > +				regulator-min-microvolt = <940000>;
->> > +				regulator-max-microvolt = <940000>;
->> > +				regulator-name = "vdd-sys";
->> > +			};
-
-Thanks, I think I did know that from somewhere. My reading of the datasheet is 0.81-0.99v though, so will put those in.
-
->
-> aldo4 is a critical regulator that should run at 1.8v based on my
-> testing.
->
-Yup, noted.
-
->
-> cldo3 is a critical regulator run at 3.3v based on my testing. It
-> supplies power to the majority of the system's pins.
->
-Have called this VCC-IO for now.
-
-
-> On my 35XXH I can confirm PG is supplied by reg_aldo4 at 1.8v and the
-> rest are supplied by reg_cldo3 at 3.3v.
->
->         vcc-pa-supply = <&reg_cldo3>;
->         vcc-pc-supply = <&reg_cldo3>;
->         vcc-pe-supply = <&reg_cldo3>;
->         vcc-pf-supply = <&reg_cldo3>;
->         vcc-pg-supply = <&reg_aldo4>;
->         vcc-ph-supply = <&reg_cldo3>;
->         vcc-pi-supply = <&reg_cldo3>;
->
-> This is what my 35XXH looks like after manually raising or lowering the
-> PMIC voltage values a tad, observing the GPIO out voltages, adjusting
-> again, measuring the voltages again, etc etc. By checking at least 1
-> pin from each bank and confirming voltage changes via PMIC changes
-> I get this mapping.
->
-
-Great, have added these in. From the vendor DT looks like the audio codec is powered from the G pin bank.
-
-> Thank you for all your hard work on this series. I'm going to continue
-> to try and identify the remaining regulators on my board and what they
-> do/how they're used. I expect at least one or two of the ones we've
-> flagged for removal will need to be added back once we get the panel
-> code working.
->
-> Chris
-
-No worries, thanks for the feedback! Much improved now, I think the last big issue here is the USB ports. Have been testing on my -H for now, but will have to look at the -Plus too given the single port.
-
-Ryan
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
