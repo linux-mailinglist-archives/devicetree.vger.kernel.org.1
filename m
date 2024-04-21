@@ -1,217 +1,172 @@
-Return-Path: <devicetree+bounces-61233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522548AC13C
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 23:05:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4D7F8AC141
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 23:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74201F21002
-	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 21:05:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BCBFB209A6
+	for <lists+devicetree@lfdr.de>; Sun, 21 Apr 2024 21:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D650643ACB;
-	Sun, 21 Apr 2024 21:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E82C44C97;
+	Sun, 21 Apr 2024 21:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="N2ZHT3AM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AqTdHsPg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E701B974;
-	Sun, 21 Apr 2024 21:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E62383BD
+	for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 21:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713733552; cv=none; b=Uwvix6Ivk5ucavMpHGY5bFxhOu5JLRUv2pQd5d9oO6BmKqS0lTBGXn16FCTtatwlDhD4pNoitfYCj2DwUPZr3XT2bvojH8iW5t8lIRAky0inP7CL+CRIl1+mErbB6YKY+MWejXTxuXvYYtI1+9fT1bzlZTu3jnJplLtAVwmXWZE=
+	t=1713734216; cv=none; b=Z4C6QrfnX4MiMLAztG1kLpcspt1qLy6fle6jxQb/a9YLnd+OY6zL4YRAtxBTIlskeA5k+Juzuhj4G1O02uCJCKCM3+O3sbVXx9wbfiteJHVCL5j3jkTxiQWmiUoQcR1YGGoni9fkT+gQcO8zKPEDPozLp16Cwkjz25F+8mpaEbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713733552; c=relaxed/simple;
-	bh=QLDln7YA9I5hDs65OcTHbuAQgSwZ2E5WVljdqajAUsk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nXr0zQVjZTVv1fXLM8dCF+fxKEs9I8AfELbTRBGeTxP66S+Ociz8dD9aCAXu8hunCo+lmMaLySZVyaYuxtkaTftt2C+qc8QKgGo1jJmfJqN0PmJpQLPbpam8zlb/fTHJi8dP+ZyFMyO62GHfYlSf+b9+8w5eNZ4cqEKjy6JnlPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=N2ZHT3AM; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 9988D120005;
-	Mon, 22 Apr 2024 00:05:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9988D120005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713733544;
-	bh=R0C125p3kVCLuPYBMrbEwNQGj81MQPjuuYJOoUD8tqU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=N2ZHT3AMzi0SzOYpYvrei1rigTUEJazbj3PRW89smokzyk9oH40KdKnKmgEJ4fSMX
-	 LL361Y+ux/IfNNM0k3lwK2pe3tuDWPk+WI3Gh+P8XyR1cuTQXBmoH6vkp5WPIsZ3Qn
-	 Zmh7g7uIU/BhMVMzSMLtfzmc++gUVexXF+fM7hkDmaI5u5oyHxgGAqmBhRSjaJ23Az
-	 htSkAqwzFHFYHT+QURlO0Yc4bZ2KT76NMHnKxKHBnWfJFPwrFQXZ5panRteNTOoIpH
-	 AJQkK/SF35ueEQ8VOQWLzHkcOq69MNSx5Zq+c96Ldj9j4Y5xhbK90Bhh6q6hM+Ysh0
-	 +f+/qD91HIsfA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 22 Apr 2024 00:05:44 +0300 (MSK)
-Received: from [172.28.66.92] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 22 Apr 2024 00:05:44 +0300
-Message-ID: <7f8b3916-ddc1-42e1-a2e5-b5ed42010120@salutedevices.com>
-Date: Mon, 22 Apr 2024 00:03:28 +0300
+	s=arc-20240116; t=1713734216; c=relaxed/simple;
+	bh=IOocQYYqtgQtpSock/NXyVT93zBEhceUWpIDMnClmTU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dc/lOeluGaGp0G32c9OjHCeSlprS53lIQw7ulNnYJE2FQLwhjD2hmc0tT7nfgUOGtA8BFmuGaOSzVKttLN68LYEEiAzFN/tEJ8I+oW+BxrKexPxAFocFloK0pRe5gI+yUpibhvSWPe+NNdWnubMCvoxEDPvMSOaMTe1I9OZ+TgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AqTdHsPg; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-345522f7c32so1655132f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 14:16:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713734213; x=1714339013; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=C3XD0aGyobZQu9vXJb1rWcoNhZJ6ku9NSVnNpSmzHD8=;
+        b=AqTdHsPgdFDG2LZarVYyzcVY186AplBODs647lvuMNIUS8Vieuza0Jgm6FAH/hhRbd
+         WLfSRbxU47k+sb1T7/kaSJcDQZXhvxmT0H7ywK9KNV7MN6vyf5SwG0bKJFGRUmnXbnEv
+         FoQYGKq5J+9zb97iJ3duZIwB04xf8TnLUgp7kXufKeaL7oYb6kppWHCROLYDipjgLrH+
+         iTC5RvT3qNyprAy9SBOClDcB3QVNCgm+zUm+BxyM5VxYZ+dnqWVEXBLoYV/4DAEy3ghn
+         MlfomtVqspYzVPmxMsxS46mVOZsJTRd5gEZfbWa7RojPHqB38Yyn3Km8VFha1ItW7/NU
+         ZBgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713734213; x=1714339013;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C3XD0aGyobZQu9vXJb1rWcoNhZJ6ku9NSVnNpSmzHD8=;
+        b=MoUyrDjBjWl6gJdsDd1zN5QS3WmQeij/z3p7gCfmxINIH68eGBYuYArgDRjQHmbxWf
+         bpCDROfTvwm62N3kGcjRv3xbth7igHrL3No7XM3sqeLNNTTAq1mQJR02R3nJbgo1UYma
+         aLuHd6rEah4+VsWWKRoEi0pYZXoMsLgsudwE/0s8iiQq1qsaeRKDcI3NXvJDXIJOy1nY
+         x+LiH5NInFU4AMJ64RGBW/LlNDlXw7Ki+2Oj6gPVYcmgOcbc+gcP02MjLZBM7QTI7yBM
+         wCFApL5UozGkQpxivfY4M8wQeK712ZxZ4LXX8ki6hqY7qzvgJcS2GaZ4yvCP+c+HsB51
+         0jHA==
+X-Forwarded-Encrypted: i=1; AJvYcCUb5QBnOD4G1Hq/G2YaDLOmxdUeO7zUNzPTMD6BTSgOVJjuIb4E0ZaFPJ81f9tY9xDxGtJDpU5QMqUDMO/c5UT1wfUuffY1ohuSjA==
+X-Gm-Message-State: AOJu0YwWOQD+O3QLXSMb8TGGfluZ/NqVZ4f6JlRz19EO/Amk3bHUILHn
+	NN/5kBpKmcAzdyREzOvRj5FjSLLbHLDdPUA73HUpZYRsOKdrgfM8
+X-Google-Smtp-Source: AGHT+IHDnjdZhBKZ/N8qotjF8wfVr8PE8appA8t34tqhSKSbaxo3xaKZxkRcR1Kc49r1HaArvS4mCg==
+X-Received: by 2002:a5d:59a8:0:b0:343:7b6b:dcc6 with SMTP id p8-20020a5d59a8000000b003437b6bdcc6mr7249290wrr.30.1713734212622;
+        Sun, 21 Apr 2024 14:16:52 -0700 (PDT)
+Received: from andrea ([31.189.47.123])
+        by smtp.gmail.com with ESMTPSA id n12-20020a5d67cc000000b0034a51283404sm7734635wrw.72.2024.04.21.14.16.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Apr 2024 14:16:52 -0700 (PDT)
+Date: Sun, 21 Apr 2024 23:16:47 +0200
+From: Andrea Parri <parri.andrea@gmail.com>
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	conor.dooley@microchip.com, anup@brainfault.org,
+	atishp@atishpatra.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	christoph.muellner@vrull.eu, heiko@sntech.de, charlie@rivosinc.com,
+	David.Laight@aculab.com, luxu.kernel@bytedance.com
+Subject: Re: [PATCH v2 3/6] riscv: Add Zawrs support for spinlocks
+Message-ID: <ZiWCP6f6zZ3dKXfN@andrea>
+References: <20240419135321.70781-8-ajones@ventanamicro.com>
+ <20240419135321.70781-11-ajones@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
- audio clock controller driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
- <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
- <20240419210949.GA3979121-robh@kernel.org>
- <b86f1058-da53-4a9c-bc12-e7297351b482@salutedevices.com>
- <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184824 [Apr 21 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/21 18:21:00 #24913485
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240419135321.70781-11-ajones@ventanamicro.com>
 
-
-
-On 4/21/24 21:14, Krzysztof Kozlowski wrote:
-> On 20/04/2024 18:15, Jan Dakinevich wrote:
->>
->>
->> On 4/20/24 00:09, Rob Herring wrote:
->>> On Fri, Apr 19, 2024 at 03:58:10PM +0300, Jan Dakinevich wrote:
->>>> Add device tree bindings for A1 SoC audio clock and reset controllers.
->>>>
->>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->>>> ---
->>>>
->>>> This controller has 6 mandatory and up to 20 optional clocks. To describe
->>>> this, I use 'additionalItems'. It produces correct processed-schema.json:
->>>>
->>>>   "clock-names": {
->>>>       "maxItems": 26,
->>>>       "items": [
->>>>           {
->>>>               "const": "pclk"
->>>>           },
->>>>           {
->>>>               "const": "dds_in"
->>>>           },
->>>>           {
->>>>               "const": "fclk_div2"
->>>>           },
->>>>           {
->>>>               "const": "fclk_div3"
->>>>           },
->>>>           {
->>>>               "const": "hifi_pll"
->>>>           },
->>>>           {
->>>>               "const": "xtal"
->>>>           }
->>>>       ],
->>>>       "additionalItems": {
->>>>           "oneOf": [
->>>>               {
->>>>                   "pattern": "^slv_sclk[0-9]$"
->>>>               },
->>>>               {
->>>>                   "pattern": "^slv_lrclk[0-9]$"
->>>>               }
->>>>           ]
->>>>       },
->>>>       "type": "array",
->>>>       "minItems": 6
->>>>   },
->>>>
->>>> and it behaves as expected. However, the checking is followed by
->>>> complaints like this:
->>>>
->>>>   Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
->>>>
->>>> And indeed, 'additionalItems' has boolean type in meta-schema. So, how to
->>>> do it right?
->>>
->>> The meta-schemas are written both to prevent nonsense that json-schema 
->>> allows by default (e.g additionalitems (wrong case)) and constraints to 
->>> follow the patterns we expect. I'm happy to loosen the latter case if 
->>> there's really a need. 
->>>
->>> Generally, most bindings shouldn't be using 'additionalItems' at all as 
->>> all entries should be defined, but there's a few exceptions. Here, the 
->>> only reasoning I see is 26 entries is a lot to write out, but that 
->>> wouldn't really justify it. 
->>
->> Writing a lot of entries don't scary me too much, but the reason is that
->> the existence of optional clock sources depends on schematics. Also, we
+On Fri, Apr 19, 2024 at 03:53:25PM +0200, Andrew Jones wrote:
+> From: Christoph M??llner <christoph.muellner@vrull.eu>
 > 
-> Aren't you documenting SoC component, not a board? 
-
-Yes, I'm documenting SoC component. And the feature of this component is
-that its external clock inputs are not mandatory.
-
-> So how exactly it
-> depends on schematics? SoC is done or not done...
+> RISC-V code uses the generic ticket lock implementation, which calls
+> the macros smp_cond_load_relaxed() and smp_cond_load_acquire().
+> Introduce a RISC-V specific implementation of smp_cond_load_relaxed()
+> which applies WRS.NTO of the Zawrs extension in order to reduce power
+> consumption while waiting and allows hypervisors to enable guests to
+> trap while waiting. smp_cond_load_acquire() doesn't need a RISC-V
+> specific implementation as the generic implementation is based on
+> smp_cond_load_relaxed() and smp_acquire__after_ctrl_dep() sufficiently
+> provides the acquire semantics.
 > 
-
-Schematics determines which external clock sources exist.
-
->> unable to declare dt-nodes for 'clocks' array in any generic way,
->> because their declaration would depends on that what is actually
->> connected to the SoC (dt-node could be "fixed-clock" with specific rate
->> or something else).
+> This implementation is heavily based on Arm's approach which is the
+> approach Andrea Parri also suggested.
 > 
-> So these are clock inputs to the SoC?
+> The Zawrs specification can be found here:
+> https://github.com/riscv/riscv-zawrs/blob/main/zawrs.adoc
 > 
+> Signed-off-by: Christoph M??llner <christoph.muellner@vrull.eu>
+> Co-developed-by: Andrew Jones <ajones@ventanamicro.com>
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> ---
+>  arch/riscv/Kconfig                | 13 ++++++++
+>  arch/riscv/include/asm/barrier.h  | 45 ++++++++++++++++++---------
+>  arch/riscv/include/asm/cmpxchg.h  | 51 +++++++++++++++++++++++++++++++
+>  arch/riscv/include/asm/hwcap.h    |  1 +
+>  arch/riscv/include/asm/insn-def.h |  2 ++
+>  arch/riscv/kernel/cpufeature.c    |  1 +
+>  6 files changed, 98 insertions(+), 15 deletions(-)
 
-Yes, these are clock inputs to the SoC, and external hardware could be
-connected to them.
+Doesn't apply to riscv/for-next (due to, AFAIU,
 
->>
->> By the way, I don't know any example (neither for A1 SoC nor for other
->> Amlogic's SoCs) where these optional clocks are used, but they are
->> allowed by hw.
->>
->> This is my understanding of this controller. I hope, Jerome Brunet will
->> clarify how it actually works.
-> 
-> Best regards,
-> Krzysztof
-> 
+  https://lore.kernel.org/all/171275883330.18495.10110341843571163280.git-patchwork-notify@kernel.org/ ).
 
--- 
-Best regards
-Jan Dakinevich
+But other than that, this LGTM.  One nit below.
+
+
+> -#define __smp_store_release(p, v)					\
+> -do {									\
+> -	compiletime_assert_atomic_type(*p);				\
+> -	RISCV_FENCE(rw, w);						\
+> -	WRITE_ONCE(*p, v);						\
+> -} while (0)
+> -
+> -#define __smp_load_acquire(p)						\
+> -({									\
+> -	typeof(*p) ___p1 = READ_ONCE(*p);				\
+> -	compiletime_assert_atomic_type(*p);				\
+> -	RISCV_FENCE(r, rw);						\
+> -	___p1;								\
+> -})
+> -
+>  /*
+>   * This is a very specific barrier: it's currently only used in two places in
+>   * the kernel, both in the scheduler.  See include/linux/spinlock.h for the two
+> @@ -70,6 +56,35 @@ do {									\
+>   */
+>  #define smp_mb__after_spinlock()	RISCV_FENCE(iorw, iorw)
+>  
+> +#define __smp_store_release(p, v)					\
+> +do {									\
+> +	compiletime_assert_atomic_type(*p);				\
+> +	RISCV_FENCE(rw, w);						\
+> +	WRITE_ONCE(*p, v);						\
+> +} while (0)
+> +
+> +#define __smp_load_acquire(p)						\
+> +({									\
+> +	typeof(*p) ___p1 = READ_ONCE(*p);				\
+> +	compiletime_assert_atomic_type(*p);				\
+> +	RISCV_FENCE(r, rw);						\
+> +	___p1;								\
+> +})
+
+Unrelated/unmotivated changes.
+
+  Andrea
 
