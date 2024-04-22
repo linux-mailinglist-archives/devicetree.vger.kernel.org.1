@@ -1,202 +1,182 @@
-Return-Path: <devicetree+bounces-61557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A858AD31F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:09:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 100368AD318
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:09:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7CCFB273AF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:09:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B02BD1F220E5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12886153BF3;
-	Mon, 22 Apr 2024 17:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQwGaxlI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87786153BC6;
+	Mon, 22 Apr 2024 17:08:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4826153839;
-	Mon, 22 Apr 2024 17:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713805745; cv=none; b=A8cUfX9vzxxnCmw1vk/u3CfIqgujtkf/dg5SM48bZQn5aRqVUT+0vg1vmML1vjj5xkI1HwoomWWOYthmVLb4Z8yMICYjVM4kuqxKA9rREj3cnBg/JkjJ1U5pCtWCY0K07AfsHsCOVPN3E5u9VFiLQDrVY1Ced6U4KznIK43SyKQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713805745; c=relaxed/simple;
-	bh=+gIC4KdUtfmTwuaNPgYrW2N0OiI+7zGr44ir/9OqFhQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lqrYkJTFDXFC0Wx2doZ3jnzvfYPOgTkcOc4jFWxv0pn5gNIlpCD8TIG/zt1dJnv/hGFBOGozz1H/oisBH8tsn5wltjK8nigChts6QJ1uzFIekZFlxhZIBw7diUfSo1xV/oCTfzT/qkOwmQ7wyWqg9DWddlDySspuCDkDHRpHaHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQwGaxlI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DC6AC113CC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F791153BC1;
 	Mon, 22 Apr 2024 17:08:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713805744;
-	bh=+gIC4KdUtfmTwuaNPgYrW2N0OiI+7zGr44ir/9OqFhQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CQwGaxlIPaHJP73+DrBusG65P+8fNgSoFXCy+lJLRAF4UYA0NXuAnRrSMPEtjOJ6A
-	 wVi3FL3AKf0brAjJ8AsMq0WeASveHhJM2NPjtooKhiJnvhxZITiX5nGGDwM/rkZ5+Q
-	 xM3E5R+l3tOpkSVi3Z8plKVzk6qWqJLy0zrimEFmEU5E+tCLUuoiI3IkTLt9AaG1E5
-	 WAXd6vbd+M86WAUGiRxMJZqw1IINNveEqEsYAyqMMGJkTaISiVhYzqI3FREegk4xEw
-	 xELTbLPxLSzFJkLZ2xokPXafDMYfPrXRtz/oDuS3vHLdeu9BgxilBpWDU+B1fkZyIk
-	 25BVKD69v4B7A==
-Date: Mon, 22 Apr 2024 22:38:47 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
-	bmasney@redhat.com, djakov@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH v10 4/6] arm64: dts: qcom: sm8450: Add OPP table support
- to PCIe
-Message-ID: <20240422170847.GI9775@thinkpad>
-References: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
- <20240409-opp_support-v10-4-1956e6be343f@quicinc.com>
- <20240422144431.GE9775@thinkpad>
- <aaee8605-848f-fe9c-63aa-af4ae2d399a6@quicinc.com>
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713805738; cv=none; b=Pp9ReRJ9xHmo1L8bhtu+25ugO5ItHNjCi9OJessAHkmOoy1/Y4iou+/4DFnJD0FLroAT2COBXyZqCrVKVAHPD9CGyS0z9DFKV5t5Ra7+lD+Lhld1Irni3MjqK7qg4Dy384dQGw2NKRyNEXe3kryP3jL5vhk3dwX7QoNzVBK2oGw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713805738; c=relaxed/simple;
+	bh=IbpS6xzjUAS+OaaRcBZ449Fa8wf7UA3mE8vd05w6YwI=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BPtHN3oQ3YG+/by4L+2iujbjFoyP77TgxlJjN7sT32LmJza6OLQ/kMcbOqLQ78tDeTGqcVIW1vhlqaKvrJh60LIyfaUvHFhXSpy5Vs4oBrmI6Yg5q1/PZJxGHAUwXs3nkd6zWQqQg1IO29SRYkEo6S4LOy9gN3UcWfqqHfTXTLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VNWqz5J9jz6JBSd;
+	Tue, 23 Apr 2024 01:06:39 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 0D873140A77;
+	Tue, 23 Apr 2024 01:08:54 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Mon, 22 Apr
+ 2024 18:08:53 +0100
+Date: Mon, 22 Apr 2024 18:08:52 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
+	<devnull+nuno.sa.analog.com@kernel.org>, <nuno.sa@analog.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Alexandru Ardelean
+	<alexandru.ardelean@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+	<olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 7/8] iio: adc: ad9467: cache the sample rate
+Message-ID: <20240422180852.00007fad@Huawei.com>
+In-Reply-To: <824d8db92adcd1effd9020e4add873b108f087b4.camel@gmail.com>
+References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
+	<20240419-ad9467-new-features-v1-7-3e7628ff6d5e@analog.com>
+	<20240420161941.212e92c5@jic23-huawei>
+	<824d8db92adcd1effd9020e4add873b108f087b4.camel@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aaee8605-848f-fe9c-63aa-af4ae2d399a6@quicinc.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Mon, Apr 22, 2024 at 10:25:06PM +0530, Krishna Chaitanya Chundru wrote:
-> 
-> 
-> On 4/22/2024 8:14 PM, Manivannan Sadhasivam wrote:
-> > On Tue, Apr 09, 2024 at 03:43:22PM +0530, Krishna chaitanya chundru wrote:
-> > > PCIe needs to choose the appropriate performance state of RPMh power
-> > 
-> > 'PCIe host controller driver'
-> > 
-> > > domain and interconnect bandwidth based up on the PCIe data rate.
-> > 
-> > 'based on the PCIe data rate'
-> > 
-> > > 
-> > > Add the OPP table support to specify RPMh performance states and
-> > 
-> > 'Hence, add...'
-> > 
-> > > interconnect peak bandwidth.
-> > > 
-> > > Different link configurations may share the same aggregate bandwidth,
-> > 
-> > 'It should be noted that the different...'
-> > 
-> > > e.g., a 2.5 GT/s x2 link and a 5.0 GT/s x1 link have the same bandwidth
-> > > and share the same OPP entry.
-> > > 
-> > > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+On Mon, 22 Apr 2024 17:46:02 +0200
+Nuno S=E1 <noname.nuno@gmail.com> wrote:
+
+> On Sat, 2024-04-20 at 16:19 +0100, Jonathan Cameron wrote:
+> > On Fri, 19 Apr 2024 17:36:50 +0200
+> > Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> >  =20
+> > > From: Nuno Sa <nuno.sa@analog.com>
+> > >=20
+> > > Since we allow to change the sampling frequency and do it with
+> > > clk_round_rate(), we can cache it and use on the read_raw() interface.
+> > > This will also be useful in a following patch supporting interface
+> > > calibration.
+> > >=20
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com> =20
+> >=20
+> > The clk subsystem caches the clock rate in most cases anyway, so
+> > I'm not sure why we need this.=A0 Or it the point that you are going
+> > to temporarily change it in the next patch?
+> >  =20
+>=20
+> The idea is that in the next patch I want to bail out early if we're not =
+changing the
+> rate (after clk_round_rate()) because I also don't want to re-run tuning =
+in that
+> case. Since the rate is not guaranteed to be cached (even though I think =
+most clock
+> providers don't set the NO_CACHE flag), I went this way. Anyways, this is=
+ minor so I
+> can stick to clk_get_rate() if you prefer.
+
+I'd make it local by retrieving current clock just before you consider writ=
+ing
+it.  We can optimize any need to cache it later.
+
+Jonathan
+
+>=20
+> > Patch looks fine, but I think a clearer requirements statement is
+> > needed.
+> >=20
+> > Jonathan
+> >=20
+> >  =20
 > > > ---
-> > >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 77 ++++++++++++++++++++++++++++++++++++
-> > >   1 file changed, 77 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > index 615296e13c43..9dfe16012726 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > @@ -1855,7 +1855,35 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > >   			pinctrl-names = "default";
-> > >   			pinctrl-0 = <&pcie0_default_state>;
-> > > +			operating-points-v2 = <&pcie0_opp_table>;
+> > > =A0drivers/iio/adc/ad9467.c | 13 +++++++++++--
+> > > =A01 file changed, 11 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> > > index 7475ec2a56c72..7db87ccc1ea4b 100644
+> > > --- a/drivers/iio/adc/ad9467.c
+> > > +++ b/drivers/iio/adc/ad9467.c
+> > > @@ -117,6 +117,7 @@ struct ad9467_state {
+> > > =A0	struct iio_backend		*back;
+> > > =A0	struct spi_device		*spi;
+> > > =A0	struct clk			*clk;
+> > > +	unsigned long			sample_rate;
+> > > =A0	unsigned int			output_mode;
+> > > =A0	unsigned int=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 (*scales)[2];
+> > > =A0
+> > > @@ -331,7 +332,7 @@ static int ad9467_read_raw(struct iio_dev *indio_=
+dev,
+> > > =A0	case IIO_CHAN_INFO_SCALE:
+> > > =A0		return ad9467_get_scale(st, val, val2);
+> > > =A0	case IIO_CHAN_INFO_SAMP_FREQ:
+> > > -		*val =3D clk_get_rate(st->clk);
+> > > +		*val =3D st->sample_rate;
+> > > =A0
+> > > =A0		return IIO_VAL_INT;
+> > > =A0	default:
+> > > @@ -346,6 +347,7 @@ static int ad9467_write_raw(struct iio_dev *indio=
+_dev,
+> > > =A0	struct ad9467_state *st =3D iio_priv(indio_dev);
+> > > =A0	const struct ad9467_chip_info *info =3D st->info;
+> > > =A0	long r_clk;
+> > > +	int ret;
+> > > =A0
+> > > =A0	switch (mask) {
+> > > =A0	case IIO_CHAN_INFO_SCALE:
+> > > @@ -358,7 +360,12 @@ static int ad9467_write_raw(struct iio_dev *indi=
+o_dev,
+> > > =A0			return -EINVAL;
+> > > =A0		}
+> > > =A0
+> > > -		return clk_set_rate(st->clk, r_clk);
+> > > +		ret =3D clk_set_rate(st->clk, r_clk);
+> > > +		if (ret)
+> > > +			return ret;
 > > > +
-> > >   			status = "disabled";
+> > > +		st->sample_rate =3D r_clk;
+> > > +		return 0;
+> > > =A0	default:
+> > > =A0		return -EINVAL;
+> > > =A0	}
+> > > @@ -543,6 +550,8 @@ static int ad9467_probe(struct spi_device *spi)
+> > > =A0	if (IS_ERR(st->clk))
+> > > =A0		return PTR_ERR(st->clk);
+> > > =A0
+> > > +	st->sample_rate =3D clk_get_rate(st->clk);
 > > > +
-> > > +			pcie0_opp_table: opp-table {
-> > > +				compatible = "operating-points-v2";
-> > > +
-> > > +				/* GEN 1 x1 */
-> > > +				opp-2500000 {
-> > > +					opp-hz = /bits/ 64 <2500000>;
-> > > +					required-opps = <&rpmhpd_opp_low_svs>;
-> > > +					opp-peak-kBps = <250000 1>;
-> > > +				};
-> > > +
-> > > +				/* GEN 2 x1 */
-> > > +				opp-5000000 {
-> > > +					opp-hz = /bits/ 64 <5000000>;
-> > > +					required-opps = <&rpmhpd_opp_low_svs>;
-> > > +					opp-peak-kBps = <500000 1>;
-> > > +				};
-> > > +
-> > > +				/* GEN 3 x1 */
-> > > +				opp-8000000 {
-> > > +					opp-hz = /bits/ 64 <8000000>;
-> > 
-> > I doubt this value. See below...
-> > 
-> > > +					required-opps = <&rpmhpd_opp_nom>;
-> > > +					opp-peak-kBps = <984500 1>;
-> > > +				};
-> > > +			};
-> > > +
-> > >   		};
-> > >   		pcie0_phy: phy@1c06000 {
-> > > @@ -1982,7 +2010,56 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > >   			pinctrl-names = "default";
-> > >   			pinctrl-0 = <&pcie1_default_state>;
-> > > +			operating-points-v2 = <&pcie1_opp_table>;
-> > > +
-> > >   			status = "disabled";
-> > > +
-> > > +			pcie1_opp_table: opp-table {
-> > > +				compatible = "operating-points-v2";
-> > > +
-> > > +				/* GEN 1 x1 */
-> > > +				opp-2500000 {
-> > > +					opp-hz = /bits/ 64 <2500000>;
-> > > +					required-opps = <&rpmhpd_opp_low_svs>;
-> > > +					opp-peak-kBps = <250000 1>;
-> > > +				};
-> > > +
-> > > +				/* GEN 1 x2 GEN 2 x1 */
-> > > +				opp-5000000 {
-> > > +					opp-hz = /bits/ 64 <5000000>;
-> > > +					required-opps = <&rpmhpd_opp_low_svs>;
-> > > +					opp-peak-kBps = <500000 1>;
-> > > +				};
-> > > +
-> > > +				/* GEN 2 x2 */
-> > > +				opp-10000000 {
-> > > +					opp-hz = /bits/ 64 <10000000>;
-> > > +					required-opps = <&rpmhpd_opp_low_svs>;
-> > > +					opp-peak-kBps = <1000000 1>;
-> > > +				};
-> > > +
-> > > +				/* GEN 3 x1 */
-> > > +				opp-8000000 {
-> > > +					opp-hz = /bits/ 64 <8000000>;
-> > 
-> > GEN 3 x1 frequency is lower than GEN 2 x2? This looks strange. Both should be of
-> > same frequency.
-> > 
-> Gen2 is 5GT/s where as GEN3 is 8GT/s. so the freq for 3 x1(8 x1 GT/s) is
-> less than Gen2 x2(5 x2 GT/s)
-> 
+> > > =A0	st->pwrdown_gpio =3D devm_gpiod_get_optional(&spi->dev, "powerdow=
+n",
+> > > =A0						=A0=A0 GPIOD_OUT_LOW);
+> > > =A0	if (IS_ERR(st->pwrdown_gpio))
+> > >  =20
+> >  =20
+>=20
 
-Sorry, that's my bad. I missed the fact that the spec doubled the data rate
-starting from GEN 3 only.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
