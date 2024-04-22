@@ -1,168 +1,207 @@
-Return-Path: <devicetree+bounces-61510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20688AD00B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:59:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0798AD022
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8391C21317
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:59:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF64A1F22C7A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A931152189;
-	Mon, 22 Apr 2024 14:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD95152513;
+	Mon, 22 Apr 2024 15:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nT/3TJP+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="tAnB9/d9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5321E49F;
-	Mon, 22 Apr 2024 14:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6366152505;
+	Mon, 22 Apr 2024 15:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713797938; cv=none; b=mCT8ws6FU4k3YLbTowHIgPqK2sdIH9HqwkwLKhSUZKsFD+Z0e1zYogndOXl4IzfLsBtLh2IPpHnUEsFLZ/KB/HoUH0s6hcNJSgQ5ALkzwGe4k48tAY/1xEnL3vWF/26OWEKJTott9Wor3JY/vYccHKjl7Yo1cyw/Q5ORoKqGeTY=
+	t=1713798217; cv=none; b=bMRZm814oERwidI0fMaPWdtWlrez4Uo1gPFAGz5KbJc/CuZYyEYeKq9AFwHgBeEpOzvU8RjtTbz7v2fi6CZRfcfvmzHR42sMOBBEgD2DizSBPTxTQdg+qBbMoTCVR79fU4tfc+C5UzVi2vtiDGW5PJp1ywXx8LsVRAvhK9EqnrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713797938; c=relaxed/simple;
-	bh=KgbM3k+jSRBzGRZiQzyCDCUnLSPGShDmfs2+LbcxB7M=;
+	s=arc-20240116; t=1713798217; c=relaxed/simple;
+	bh=K1c2J2jmo6umVK5HW0tWaNBNJhKzdLGZgNU2VMJH8bs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pLfUSOdMChyODhgxQOFMxXGbAooCUprwGz/Al1jNqc/TLAbr17nwjto6L7jPdFumWJC2O8FF+Ab2+83AOAJC6WN6ty99vjD0dEAZD/8irbhGjSal09ptzUYNQgXgTXTIg/YlHFtP+/O4a29aaI2zB34wdZ9LCAE+woDnzebtGpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nT/3TJP+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B433FC113CC;
-	Mon, 22 Apr 2024 14:58:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713797938;
-	bh=KgbM3k+jSRBzGRZiQzyCDCUnLSPGShDmfs2+LbcxB7M=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=DGQBtvucrJyiiiUdqlp/OfCEzsmtLwWvjbxLBQ4NBCgvBhm3UUBM8S85sdPOoLMAKeNm9kpnQyT6HDN+01OfjWEUQlKXW+tGnVUzoB18OYo+n/0oW5AIDUF7vV/bk9py5ZO1P/xeRRMIpMnc6uAQxIMXhoPyk0472uLZeSxn1pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=tAnB9/d9; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713798213;
+	bh=K1c2J2jmo6umVK5HW0tWaNBNJhKzdLGZgNU2VMJH8bs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nT/3TJP+dzwNxRWbeYbmeJVied1e70gL/B9J88fLb7P47PDm3Y1/yKw1A1eI829sK
-	 ltcuub6sB/t4oBclXnDcrm6q9UrQtUbxzXsjvFtf9ZQBQivuVGx/dJ50o21Od500HB
-	 PyQ90Wy2aesN0k/tWVDsHhAstXV70k2JtBagWBrQM41nyUHt13914bn3b8Dy/osSCf
-	 poJQMVJfrJzto8zLzHsenkrP8SZfIxU2VzESxy9YXvZK4oFUhvvo+4gDjflrPiP1yr
-	 IwBdaCUvOpg82wk5ETmJ57A7BAHRWCw1aUrFwrWTi4TkVAHLPv9ig7QEnvrRZCcg8v
-	 D4/p46gUebNIw==
-Date: Mon, 22 Apr 2024 09:58:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: matthew.gerlach@linux.intel.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: PCI: altera: Convert to YAML
-Message-ID: <20240422145855.GA1242711-robh@kernel.org>
-References: <20240420145342.118643-1-matthew.gerlach@linux.intel.com>
+	b=tAnB9/d92phCLscFKn6v8HppPH56kzhSHvWO8X4hJ2jnNMllXUz4w+AfCBK/DD7OU
+	 coFDiRV4tSTggJS/eRqahBz+t7236i36TCbSAURlrlzNVneSjgq1saasp36AafX3B9
+	 hfwEhJchc93CU9Se85IVWvDMy5Cf+jwjMTyiBBGLS4I6WT7Q5a9+epUlbxhO0ZDTD7
+	 zmXd0/2/Yy8BuLSw22RHY9S8uwPuf1C6EB7C7nDqOGtYk4EMptA+qf2c/pjlYpvIKT
+	 HiloKrwV10oj85lfOi9bQHYKcvSmFpz/FbzlRX5Mm3nPC9mlVEc/R9/snvHpm6ZEh9
+	 nEZM8ikaFO5Cw==
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CE93B3782123;
+	Mon, 22 Apr 2024 15:03:29 +0000 (UTC)
+Date: Mon, 22 Apr 2024 11:03:27 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 07/10] ARM: dts: bcm2711-rpi: Add pinctrl-based
+ multiplexing for I2C0
+Message-ID: <a21e8f30-f644-4196-a445-f4e2968eac1d@notapiano>
+References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
+ <20240402000424.4650-8-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240420145342.118643-1-matthew.gerlach@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240402000424.4650-8-laurent.pinchart@ideasonboard.com>
 
-On Sat, Apr 20, 2024 at 09:53:42AM -0500, matthew.gerlach@linux.intel.com wrote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> 
-> Convert the device tree bindings for the Altera Root Port PCIe controller
-> from text to YAML.
-> 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> ---
-> v4:
->  - reorder reg-names to match original binding
->  - move reg and reg-names to top level with limits.
-> 
-> v3:
->  - Added years to copyright
->  - Correct order in file of allOf and unevaluatedProperties
->  - remove items: in compatible field
->  - fix reg and reg-names constraints
->  - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
->  - fix entries in ranges property
->  - remove device_type from required
-> 
-> v2:
->  - Move allOf: to bottom of file, just like example-schema is showing
->  - add constraint for reg and reg-names
->  - remove unneeded device_type
->  - drop #address-cells and #size-cells
->  - change minItems to maxItems for interrupts:
->  - change msi-parent to just "msi-parent: true"
->  - cleaned up required:
->  - make subject consistent with other commits coverting to YAML
->  - s/overt/onvert/g
-> ---
->  .../devicetree/bindings/pci/altera-pcie.txt   | 50 -----------
->  .../bindings/pci/altr,pcie-root-port.yaml     | 88 +++++++++++++++++++
->  2 files changed, 88 insertions(+), 50 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
->  create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
-> deleted file mode 100644
-> index 816b244a221e..000000000000
-> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
-> +++ /dev/null
-> @@ -1,50 +0,0 @@
-> -* Altera PCIe controller
-> -
-> -Required properties:
-> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
-> -- reg:		a list of physical base address and length for TXS and CRA.
-> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
-> -- reg-names:	must include the following entries:
-> -		"Txs": TX slave port region
-> -		"Cra": Control register access region
-> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
-> -- interrupts:	specifies the interrupt source of the parent interrupt
-> -		controller.  The format of the interrupt specifier depends
-> -		on the parent interrupt controller.
-> -- device_type:	must be "pci"
-> -- #address-cells:	set to <3>
-> -- #size-cells:		set to <2>
-> -- #interrupt-cells:	set to <1>
-> -- ranges:	describes the translation of addresses for root ports and
-> -		standard PCI regions.
-> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
-> -		mapping of the PCIe interface to interrupt numbers.
-> -
-> -Optional properties:
-> -- msi-parent:	Link to the hardware entity that serves as the MSI controller
-> -		for this PCIe controller.
-> -- bus-range:	PCI bus numbers covered
-> -
-> -Example
-> -	pcie_0: pcie@c00000000 {
-> -		compatible = "altr,pcie-root-port-1.0";
-> -		reg = <0xc0000000 0x20000000>,
-> -			<0xff220000 0x00004000>;
-> -		reg-names = "Txs", "Cra";
-> -		interrupt-parent = <&hps_0_arm_gic_0>;
-> -		interrupts = <0 40 4>;
-> -		interrupt-controller;
+On Tue, Apr 02, 2024 at 03:04:14AM +0300, Laurent Pinchart wrote:
+[..]
+> +
+> +	i2c0mux: i2c-mux0 {
+> +		compatible = "i2c-mux-pinctrl";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		i2c-parent = <&i2c0>;
+> +
+> +		pinctrl-names = "i2c0", "i2c0-vc";
+> +		pinctrl-0 = <&i2c0_gpio0>;
+> +		pinctrl-1 = <&i2c0_gpio44>;
+> +
+> +		i2c0_0: i2c@0 {
+> +			reg = <0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		i2c0_1: i2c@1 {
+> +			reg = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +	};
 
-What happened to this? It is clearly needed since the interrupt-map 
-below points back to this node. Note that that didn't work at one point 
-in time, but I think we fixed it.
+Hi Laurent,
 
-It doesn't seem you are testing the binding against an actual DT. 
-Please do that.
+I noticed you added this new DT node that binds to a driver, but didn't enable
+the corresponding driver in the arm64 defconfig. We're running the DT kselftest
+in KernelCI which reports DT nodes that haven't bound to a driver and this node
+now shows up as a failure. Consider enabling the driver in the defconfig so we
+can continually validate that the driver correctly probes this device and we'll
+be able to report if it breaks in the future :).
 
-Rob
+Thanks,
+Nícolas
 
-> -		#interrupt-cells = <1>;
-> -		bus-range = <0x0 0xFF>;
-> -		device_type = "pci";
-> -		msi-parent = <&msi_to_gic_gen_0>;
-> -		#address-cells = <3>;
-> -		#size-cells = <2>;
-> -		interrupt-map-mask = <0 0 0 7>;
-> -		interrupt-map = <0 0 0 1 &pcie_0 1>,
-> -			            <0 0 0 2 &pcie_0 2>,
-> -			            <0 0 0 3 &pcie_0 3>,
-> -			            <0 0 0 4 &pcie_0 4>;
-> -		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
-> -			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
-> -	};
+PS: I've included the full test output for this platform below if you'd like to
+check it out. There's one single other device that fails to probe,
+/soc/mailbox@7e00b840, though that needs CONFIG_BCM2835_VCHIQ, which is on
+staging, so I'm guessing not something we should be enabling in the defconfig.
+
+
+TAP version 13
+1..1
+# timeout set to 45
+# selftests: dt: test_unprobed_devices.sh
+# TAP version 13
+# 1..69
+# ok 1 / # SKIP
+# ok 2 /arm-pmu
+# ok 3 /clk-108M # SKIP
+# ok 4 /clk-27M # SKIP
+# ok 5 /clocks/clk-osc # SKIP
+# ok 6 /clocks/clk-usb # SKIP
+# ok 7 /cpus/cpu@0 # SKIP
+# ok 8 /cpus/cpu@1 # SKIP
+# ok 9 /cpus/cpu@2 # SKIP
+# ok 10 /cpus/cpu@3 # SKIP
+# ok 11 /cpus/l2-cache0 # SKIP
+# ok 12 /emmc2bus
+# ok 13 /emmc2bus/mmc@7e340000
+# ok 14 /gpu
+# not ok 15 /i2c-mux0
+# ok 16 /leds
+# ok 17 /phy
+# ok 18 /regulator-cam1
+# ok 19 /regulator-sd-io-1v8
+# ok 20 /regulator-sd-vcc
+# ok 21 /reserved-memory/linux,cma # SKIP
+# ok 22 /reserved-memory/nvram@0
+# ok 23 /scb
+# ok 24 /scb/ethernet@7d580000
+# ok 25 /scb/ethernet@7d580000/mdio@e14
+# ok 26 /scb/gpu@7ec00000
+# ok 27 /scb/pcie@7d500000
+# ok 28 /soc
+# ok 29 /soc/aux@7e215000
+# ok 30 /soc/avs-monitor@7d5d2000 # SKIP
+# ok 31 /soc/avs-monitor@7d5d2000/thermal
+# ok 32 /soc/clock@7ef00000
+# ok 33 /soc/cprman@7e101000
+# ok 34 /soc/dma-controller@7e007000
+# ok 35 /soc/firmware
+# ok 36 /soc/firmware/clocks
+# ok 37 /soc/firmware/gpio
+# ok 38 /soc/firmware/reset
+# ok 39 /soc/gpio@7e200000
+# ok 40 /soc/hdmi@7ef00700
+# ok 41 /soc/hdmi@7ef05700
+# ok 42 /soc/hvs@7e400000
+# ok 43 /soc/i2c@7e205000
+# ok 44 /soc/i2c@7e804000
+# ok 45 /soc/i2c@7ef04500
+# ok 46 /soc/i2c@7ef09500
+# ok 47 /soc/interrupt-controller@40000000 # SKIP
+# ok 48 /soc/interrupt-controller@40041000 # SKIP
+# ok 49 /soc/interrupt-controller@7ef00100
+# not ok 50 /soc/mailbox@7e00b840
+# ok 51 /soc/mailbox@7e00b880
+# ok 52 /soc/mmc@7e300000
+# ok 53 /soc/mmc@7e300000/wifi@1 # SKIP
+# ok 54 /soc/pixelvalve@7e206000
+# ok 55 /soc/pixelvalve@7e207000
+# ok 56 /soc/pixelvalve@7e20a000
+# ok 57 /soc/pixelvalve@7e216000
+# ok 58 /soc/power
+# ok 59 /soc/pwm@7e20c800
+# ok 60 /soc/rng@7e104000
+# ok 61 /soc/serial@7e201000
+# ok 62 /soc/serial@7e201000/bluetooth
+# ok 63 /soc/serial@7e215040
+# ok 64 /soc/timer@7e003000 # SKIP
+# ok 65 /soc/txp@7e004000
+# ok 66 /soc/usb@7e980000
+# ok 67 /soc/watchdog@7e100000
+# ok 68 /timer # SKIP
+# ok 69 /wifi-pwrseq
+# # Totals: pass:50 fail:2 xfail:0 xpass:0 skip:17 error:0
+not ok 1 selftests: dt: test_unprobed_devices.sh # exit=1
 
