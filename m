@@ -1,124 +1,92 @@
-Return-Path: <devicetree+bounces-61316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30BDC8AC41A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:23:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3EA18AC449
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:37:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6204C1C21BB5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 06:23:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67773282E08
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 06:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118DF3FB3B;
-	Mon, 22 Apr 2024 06:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kYEG9A3N"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D9D481AB;
+	Mon, 22 Apr 2024 06:37:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87900DDA3;
-	Mon, 22 Apr 2024 06:23:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460E93F9ED;
+	Mon, 22 Apr 2024 06:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713767001; cv=none; b=nXsYGGU/1uDcnJpso+HFnR3Xnz3sipmpIla9fV7epCT/CQO+D73z4z9HO74LbPnNE/gfSl25cCWUIL6ciV/15paYcBfJoFNE7a/AEgpPOIG1yHOuH4tJGkzpdo0x9gU7UMaODbpw0iy3IGTcRsJXPHchUWuEhule2/CgwOoAmPU=
+	t=1713767862; cv=none; b=QPnyx0WzX/Df2OSk2+wIUff4WI8gUJzSznsVEA4co8tSl6Qu0ddVBsUYGsD8F6DXeEKflXHbPI5MFjtAk95wUn6f4vh+h9N9eQphTC5xpUkxPdebxuD6u9gJn/beROlchzGq8CTqb/yeTHid04AffG1r3x22t502H8tpAxgEqk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713767001; c=relaxed/simple;
-	bh=0yqWmG4lFvTjrQyRBilrn39JPzAakJCXrEK1lFFWrvU=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=JQxFvURmtc+1vNZ8qSoxKi9RGNwoYUfYxQLVtzo9QsEgTuCtNSKoBh0uwrHlovpudu51PFUHdfcZvBEMYrJ8N+8okzAylY7ljNXOBUG44OhrHF3O8B+JWYXg6HJdnpu95Kz9HihldfsnSKM+EwbJUk0Jj+VMXfsVF7lfPL71TMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kYEG9A3N; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 13E8240008;
-	Mon, 22 Apr 2024 06:23:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1713766990;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qTFhysNt/3zWhuk9APN+XkSCHeCT2braUpoM8bTINGY=;
-	b=kYEG9A3N5oVABsryFafN7bFTT6Dtj6GkdtikX8DKyrAXSNEdsxaHLrFdOz2EmKkIHZCfmA
-	Q0CFA0/o4uaJSlA9qBfop3gCCHF1bhPjIA60S0J5F+QbiZWtyU8+xxWjR3M6EKWELtzyON
-	bW0pz8Q8lZfpIw6g5omvxiA56R8JoSKj162nZMwLLvolDA1UI3N02sYDHjH7//uPu+FLJU
-	LaCo0lzVZnj1/3HvDbGy82nhJvaPTnY3vYH6dD9cMoh7V1Zc+u1wOmA55gGVV20HbFh+Hi
-	E3DHdNuTHRZCYIcJL4nICNYV+MoK78TEz+B9ztz6O3bgIwxXvTWPl7gPIT+j9g==
-Message-ID: <505a8cea-5b0e-4ecf-b566-e68b37b2d4ed@bootlin.com>
-Date: Mon, 22 Apr 2024 08:23:04 +0200
+	s=arc-20240116; t=1713767862; c=relaxed/simple;
+	bh=JC1IIk6PjUEaa0fE6CEQRFVeHjWHlAFA0r0s8+x8o4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L0UYrwxlm8p9f9GMaDNrS/ZRBsaUV9vIU7HSgYRgv4VsuACuALjQ786ydOeyvWNvKafXbaD5O7DV/gYjHBsguK8C27pALD9uYCQRLp5JdiTlbyLagTJMvK4Y94xiUZRaHNCqTxMWv+zZrYjRgrTBpsuAu7k9jdA2xdXXOC6oO88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
+Received: by verein.lst.de (Postfix, from userid 2407)
+	id 4A37E227A87; Mon, 22 Apr 2024 08:37:34 +0200 (CEST)
+Date: Mon, 22 Apr 2024 08:37:34 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
+	Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] iommu, dma-mapping: Simplify
+ arch_setup_dma_ops()
+Message-ID: <20240422063734.GA3750@lst.de>
+References: <cover.1713523152.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@bootlin.com, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: riscv: add Milk-V Duo S board
- compatibles
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Chao Wei <chao.wei@sophgo.com>
-References: <20240421055710.143617-1-michael.opdenacker@bootlin.com>
- <20240421055710.143617-2-michael.opdenacker@bootlin.com>
- <c30cc11a-209a-4919-a382-7588daff0d71@linaro.org>
- <b1f59075-f2b0-4f2c-aea3-bc596ac45f1c@bootlin.com>
- <71f2e031-41b0-4a47-9bdd-e8fb6334da5d@linaro.org>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <71f2e031-41b0-4a47-9bdd-e8fb6334da5d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: michael.opdenacker@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1713523152.git.robin.murphy@arm.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 
+On Fri, Apr 19, 2024 at 05:54:39PM +0100, Robin Murphy wrote:
+> v3: https://lore.kernel.org/linux-iommu/cover.1707493264.git.robin.murphy@arm.com/
+> 
+> Hi all,
+> 
+> Since this ended up missing the boat for 6.9, here's a rebase and resend
+> with the additional tags from v3 collected.
 
-On 4/22/24 at 06:24, Krzysztof Kozlowski wrote:
-> On 21/04/2024 20:55, Michael Opdenacker wrote:
->> Hi Krzysztof
->>
->> On 4/21/24 at 16:12, Krzysztof Kozlowski wrote:
->>> On 21/04/2024 07:57, michael.opdenacker@bootlin.com wrote:
->>>> From: Michael Opdenacker <michael.opdenacker@bootlin.com>
->>>>
->>>> Document the compatible strings for the Milk-V Duo S board[1] which uses
->>>> the SOPHGO SG2000 SoC, compatible with the CV1812H SoC[2].
->>>>
->>>> Link: https://milkv.io/duo-s [1]
->>>> Link: https://en.sophgo.com/product/introduce/cv181xH.html [2]
->>>>
->>>> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
->>>> ---
->>> Where is the changelog? It's v6!
->> Oops, it was in my cover letter
->> (https://lore.kernel.org/linux-riscv/20240421055710.143617-1-michael.opdenacker@bootlin.com/T/#t),
->> which you didn't get because of get-maintainer.pl. As the recipients are
->> patch dependent, am I supposed to describe the changes in all patches
->> and not only in the cover letter?
-> If you do not send the changelog to everyone, then yes, please describe
-> respective changes in each patch.
-
-Ok, will do, thanks!
-
->
-> It's your choice, but if you decide not to send cover letter to some
-> folks, then *it does not exist* for such folks.
-
-Well, actually, I shouldn't have let get-maintainer.pl decide for me. Is 
-there a way to send the cover-letter to the union of people who will 
-receive the individual patches?
-Cheers
-Michael.
-
--- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+And just to clarify:  I expect this to go in through the iommu tree.
+If you need further action from me, just let me know.
 
 
