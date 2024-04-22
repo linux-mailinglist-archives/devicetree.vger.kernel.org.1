@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-61265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0293B8AC262
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D27F18AC263
 	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 02:20:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3459D1C20AB0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 00:20:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 102491C20891
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 00:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA79AED9;
-	Mon, 22 Apr 2024 00:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E434367;
+	Mon, 22 Apr 2024 00:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="QYyg41PA"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="pEgWTTc7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA8D802
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D036428FA
 	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 00:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713745248; cv=none; b=QWvQ83UTKuy++5rQR0q3thpLVQPdDagJxjei2Fh8Vzz/4HzUgEkLn3Q0I77IfrUIz9TTjvStvcsONMWlyD1Un2QEzJyoDbo3lsYmhFkuzrLHmDc0cbrgQzPQGTwuG+sc2nJCjdFy0a2LwpjHtOUu1mqYEWHFUY8O81WSL65WAOg=
+	t=1713745249; cv=none; b=pLTPBaFSFxbtWlGzhF4uLmZy99tw8Ke2n14+kfCNdCg8BohTnec8GpAkyGN5SlSBQNGH2140VvsQ0ze+m4HdB3repNQG4cCzDmN0tto6eK/F6+CHbqFvKp+Rh7M+TXF3O7lMSm6o4o+GdrapxloohHOWXqPadO9DfjwLM4GJogk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713745248; c=relaxed/simple;
-	bh=GBBzVtMCmryf0Equr628XhbJfFHbS2PA0it2uxNmG2w=;
+	s=arc-20240116; t=1713745249; c=relaxed/simple;
+	bh=qxb4jWzmGWLVVwRYPlOh+z6RpK76DrFVeIwBbCDH1Js=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GLKV4VtznJROh6KG2oiy3dTuSWCD7Ul1c2qJeqojubsZNbMLHGsgAQ3QjJVaUEpXqzVvyTiJNvAC9vZ5pXskbCjNL+e4hUB7ilROREh/6AaCSQpiASPWeuFHOzZgsXsllog8HQesdo6QVmqIpJjllIEanmLOTtF5amtcwEotagQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=QYyg41PA; arc=none smtp.client-ip=85.214.62.61
+	 MIME-Version:Content-Type; b=W+gxBgr0HORHQmsi4+9iFPAguwbTSkLVthgX/9kesDqB4pic9zAL4yXA36rCr862Yy6af5nimSEX2Low7VzjRPy0uqr+zLw+c55aAuy7GD+/ryZA9Igaro+vVlcmGJ0IbqKroj1AI0bNaA5DkSOkuFa0kaTBO6tH66rLy2WLH/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=pEgWTTc7; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id D91118832E;
-	Mon, 22 Apr 2024 02:20:44 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id AC97288311;
+	Mon, 22 Apr 2024 02:20:45 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1713745245;
-	bh=7KrDz+5SrjrOwT2hbyGUYLasiifEHGZkxgI8HCHUFIE=;
+	s=phobos-20191101; t=1713745246;
+	bh=hLqi1reObWKPU10UZK88JvmIk14Vm7wyGJm1oop9fIU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=QYyg41PAzvI/bW2YK68ZBXWgEe1UeRDT+idPtTxAwAWkUsRA/r97420A82BLEK3lh
-	 hBTG5JdiX9S5aKKKOG5FPIBXFNpK+TKE5VQCe6qHAP4h8BY5WGxgDUDxxc4/ULKOCe
-	 b6rccjQ030JFxiaApn7VlFxctpoltiLkxkcfcWNwblbUl7RbnpcsF/MBebtzc+EXSI
-	 IeN1o/IhQc8ZvTmshBEb2Q3w0OS50ksF2gjG6Qkc2/cbOSHeNDwOk9jII51taDVNEY
-	 yt57dcCmtX8kDsiIDE9Wn9aKfnowRM6vFRNn2W23satl4LBfMgmodv128fqh13sMiU
-	 VvQw8EFcZHZtQ==
+	b=pEgWTTc7qj+cezl8dvjwBf5X9XiCjBJNC6NNmvE1/TVL9v5UjhsTzziZILk+WHtaX
+	 UAtbCCWY6MZKg5k8GKnq8lM2/vz6lL+azPLc+7m34TWx0l0Hvwvbw853l8VVDZX7Zt
+	 sJeAiJ0wysdy4/gigN+Aza569FsO9Z1O+5o7CnDkCBZLT1779zR1c0ZSj781KeFEda
+	 bx7ezxcN1VS7BLkwdPwjebfMJzVxz9/dqqjRV0US+VvqHIXgOXl9Lkm7dF+xuIHCcl
+	 H1+KcwqvYruaMZqQ0Lrb4cIXCxfWC9iU97X2kxmBc2C752znZJhAA0gcH+VXESZdVR
+	 UOyjvF8mxtLCQ==
 From: Marek Vasut <marex@denx.de>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marex@denx.de>,
@@ -65,9 +65,9 @@ Cc: Marek Vasut <marex@denx.de>,
 	devicetree@vger.kernel.org,
 	kernel@dh-electronics.com,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 14/20] ARM: dts: stm32: Add alternate pinmux for MP13 SPI2 pins
-Date: Mon, 22 Apr 2024 02:19:28 +0200
-Message-ID: <20240422002006.243687-14-marex@denx.de>
+Subject: [PATCH 15/20] ARM: dts: stm32: Add alternate pinmux for MP13 SPI3 pins
+Date: Mon, 22 Apr 2024 02:19:29 +0200
+Message-ID: <20240422002006.243687-15-marex@denx.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240422002006.243687-1-marex@denx.de>
 References: <20240422002006.243687-1-marex@denx.de>
@@ -82,7 +82,7 @@ Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-Add another mux option for SPI2 pins, this is used on
+Add another mux option for SPI3 pins, this is used on
 DH electronics STM32MP13xx DHCOR DHSBC board.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
@@ -108,33 +108,33 @@ Cc: linux-stm32@st-md-mailman.stormreply.com
  1 file changed, 23 insertions(+)
 
 diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-index c6967e82b5d2e..17acd2850d381 100644
+index 17acd2850d381..7abd227e69f4b 100644
 --- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
 +++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-@@ -511,6 +511,29 @@ pins {
+@@ -534,6 +534,29 @@ pins {
  		};
  	};
  
-+	spi2_pins_a: spi2-0 {
++	spi3_pins_a: spi3-0 {
 +		pins1 {
-+			pinmux = <STM32_PINMUX('B', 10, AF6)>, /* SPI2_SCK */
-+				 <STM32_PINMUX('H', 10, AF6)>; /* SPI2_MOSI */
++			pinmux = <STM32_PINMUX('H', 13, AF6)>, /* SPI3_SCK */
++				 <STM32_PINMUX('F', 1, AF5)>; /* SPI3_MOSI */
 +			bias-disable;
 +			drive-push-pull;
 +			slew-rate = <1>;
 +		};
 +
 +		pins2 {
-+			pinmux = <STM32_PINMUX('B', 5, AF5)>; /* SPI2_MISO */
++			pinmux = <STM32_PINMUX('D', 4, AF5)>; /* SPI3_MISO */
 +			bias-disable;
 +		};
 +	};
 +
-+	spi2_sleep_pins_a: spi2-sleep-0 {
++	spi3_sleep_pins_a: spi3-sleep-0 {
 +		pins {
-+			pinmux = <STM32_PINMUX('B', 10, ANALOG)>, /* SPI2_SCK */
-+				 <STM32_PINMUX('B', 5, ANALOG)>, /* SPI2_MISO */
-+				 <STM32_PINMUX('H', 10, ANALOG)>; /* SPI2_MOSI */
++			pinmux = <STM32_PINMUX('H', 13, ANALOG)>, /* SPI3_SCK */
++				 <STM32_PINMUX('D', 4, ANALOG)>, /* SPI3_MISO */
++				 <STM32_PINMUX('F', 1, ANALOG)>; /* SPI3_MOSI */
 +		};
 +	};
 +
