@@ -1,476 +1,166 @@
-Return-Path: <devicetree+bounces-61365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0EA8AC682
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:16:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7D18AC68B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:17:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69BA92831D0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:16:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6987D1F22771
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196314F217;
-	Mon, 22 Apr 2024 08:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17094F60D;
+	Mon, 22 Apr 2024 08:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="itu84G3X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0657A4F213;
-	Mon, 22 Apr 2024 08:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291014AEC1;
+	Mon, 22 Apr 2024 08:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713773774; cv=none; b=lhL02/QqWXnPuBqvQp8R1/Yn0NJEv8Hu/XRi+9/RwMUowDc7xzqMYrdXv8vV9BzEoijpkZ+JgEqXx5oVnUFelfA8eCfabSLDRQsqgOOOX5laDmZCas+3WLVWPbJw/ZrSSPFGL1SPjPXxzd0PTIqHpKbCGwnli2rcnneRV5qEWlQ=
+	t=1713773830; cv=none; b=ENQSNuATw0UtSwMpZLqKb2Z2P4E0G9JrfD8aDcCDcUj1URBni/wQQrKYmqpuqjkPfieF+GnpMqFnNxG9SXplxHPYpnrRSvy8PHYztCLarZEPGZMwAw8o+tj1eMV3OaaoEcT1KiXoQXKlKna8yv/fIIDYrWjaN3nUS84DrPeSzwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713773774; c=relaxed/simple;
-	bh=qAWlMO+mJckBfsgbgVLMe7pu85yrkM2x3clj1P0pEMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oB1WPVXtwlb47At4BnLoyFNM9nRplSx1c5lKcBKl7KoWMs/m3UuYfLyayUXR1PfarXNf/8tc2cTh4eMPHi9RlgrdjTzMrvUkQjimKnTQLMpmhSeKtWZqIY2x+xzNZPGyQblrgjUasHyNLeh7iq2PG4I3Vh8YDue38BGfE6eyac8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	s=arc-20240116; t=1713773830; c=relaxed/simple;
+	bh=M9B7WRjrvk2JAsBFwlrLC6qkllLzalEbntZIoYH3cKw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cNrRqNfzryRIzRpsiT/XFHoAagKms8zKTfgxaBxqUgxpf5VqB7oK/TjiNlu0xTrUon7cK9rrmZgGWi1lt6pGG8LffEDXJx40i55kU2d27/yOIA3r8+0vh22b0GKmLmWIaoSZMn1p3IRxexKU8dE+647B+PBjyqkZF+25sdnFR4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=itu84G3X; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a55b78510bbso60356466b.0;
-        Mon, 22 Apr 2024 01:16:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713773770; x=1714378570;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a4702457ccbso455388366b.3;
+        Mon, 22 Apr 2024 01:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713773827; x=1714378627; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9Gm3/+eIAlVK76IUGUfx20Iohyy5DG5rA1sUx7ABxCI=;
-        b=rjt8Q4trmIFniBgd8CKym0Vkilza9rfcIdFlys9cM0PNtqYQBUoQWZ33w2k8rzk5UK
-         8zq5aBz5/paH4tLVTunuySvhRbj1W1oxLfBTry9C1LtkcbWIgS0GbFtdgG0Rbpk7jHtY
-         0YQ5JRU3uYJKGH40SBKjwe5/VICbBndmzcsbln+Io/VFazOESZJzOc4FIoHarQGOB2W4
-         Uv+FZhMRIjrq9Foz3VtX7/fXuuRiwmcOwuW+Geah32w+jLBDfXf8TazSzzxXo+LkYwYj
-         hXa3Eo/g42JTEkDPOBbA188UPsNhHSa/FOqGpZx3yXSLqBniY2ooOYGn1fN53EREa0ry
-         UwKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUWZKvqtCXC++GqAI+kvO/vZ2DEBOnMtNmX1R4V/sjuuKD0de2kE+xdVjJLww0hNs3OQh2wmZxSJkTDXUEZmHgUztiOiX/HxyDX9nZhCkzpkaN1/Lgf+Z1JvpiliGCs2bCT7pR2QcKzHp2aWOFm7NOT+4LiR/0QxLIECCLCLlhMY9xRkAXuGICUdabPtg6O1por00itL75giEE87lleDZZWjvgYruWKyHh08H9fCW6/qR5ElDCW5ljg
-X-Gm-Message-State: AOJu0YzBOgfl7UUKmVsWzOvP4A9VNm9Z2et7DW71SgWG8tm1MXDRMeJx
-	GslpFUcKLQYUuQLg/17M0SNS82pM6mwGpBrYO3leMuMGtoovcegf
-X-Google-Smtp-Source: AGHT+IHoFdg7F/YVJ5s+QHYIV5PCqNr1/E7zg4Ly33+6ykDlUT+Ah6m05PDLTTlcZkTtUguOCb1KFQ==
-X-Received: by 2002:a17:906:2e92:b0:a55:8200:c466 with SMTP id o18-20020a1709062e9200b00a558200c466mr5576859eji.39.1713773769958;
-        Mon, 22 Apr 2024 01:16:09 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:69? ([2a0b:e7c0:0:107::aaaa:69])
-        by smtp.gmail.com with ESMTPSA id dk21-20020a170907941500b00a55aee4bf74sm1525648ejc.79.2024.04.22.01.16.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 01:16:09 -0700 (PDT)
-Message-ID: <cf9109ac-f17b-4812-aa50-449b8fb9504e@kernel.org>
-Date: Mon, 22 Apr 2024 10:16:07 +0200
+        bh=POE7+7bDdgxJYrWynyeU3Cirtp8tecozyW6D2rsQgo8=;
+        b=itu84G3XOf6V0qGmoMJMy7DGC5TUJ9Qbh6K2ZoLABhklzCNZ+TZmv0cJrNyrxqVHzU
+         1yvtgaNnahz1KQHXf8cKKMw7LeOKqkArp5nTjZWgSA/WZF3+tlOwwXAfg0B5QiMkjzss
+         KYejzdOaJlzTZlTDpIY6ODaCiB73/w62GkZ8muFvblBGjfi1nmB6ZoO6OckfKLPo/tNL
+         kb0bvPoHW3IvZR+mVX7suU1nOAUoFKGxNoNpMPMSen//uXavL2jhTtCkgYGWS4jwPC5z
+         go5rcJCoKLLhTRgduekGS9l67LajAnv2NKPuAI2W0eBG+DR0sBzWgxE4u/JjtJBmtC8b
+         XvJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713773827; x=1714378627;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=POE7+7bDdgxJYrWynyeU3Cirtp8tecozyW6D2rsQgo8=;
+        b=iB4LmxspRV3x7DSJNE2SW0tlT1ysW/trdsxQfOrPZnUvRhOqLxAutpEg8k+Bx04p3g
+         bFDSXwQytBe6f5nYiSBJ3DLIcsnaBjcX/q3TWlQslmYnJiqQhCpPS+8yygNAFM5TRR+w
+         EyR82vU2mKthBmL0m/17SToooGkBN+6yA6jNo+n47WR8EVInUKNFtHzDy8M9VlnqIVYm
+         RvkcSFzEyAL9EBONCYeAkeKckmuWfs7j8bMR1ZSu9OwE9i9xA3yinL/WMxxkFIjcR4Pj
+         faCKrDOQqR/+5bXDZmmOp895glIrhicB4vO4gwZllyftZAnt3C0ec3vrbqZ562XzDfEu
+         xU0g==
+X-Forwarded-Encrypted: i=1; AJvYcCV9sTC/7oN4FAXn6THEZTRpdFBEO4L9njeyOr8ns2BVsv3i2uayecnSGHn3pnpyHr6AuN74z9H9b8h5Ui1L5gkdmXEQkefVhghlxe+jMWijin6xfe71UYqxOahnW5MaRiweZEHUGhUk5EAFM+uPnGUwuzUE92GZrlTITFH/vKj6EB7azWE=
+X-Gm-Message-State: AOJu0Ywu6/k2bzDxcJ80rAECABHbuqKqFC0hQnE1Avk3Mlcr8Pb+Ypq6
+	BSsvlAjEQrm254rh08261S5SxJ1irFsKt8Jp/V5X+8ZDTnbiIIM4cItFIPQZLLVR//lJyJ9Ju0e
+	eUG1bhNyMddJ56qoIog/Cxj+n8ms=
+X-Google-Smtp-Source: AGHT+IGdGb378Q6HBFI7vnqwgZAe/ou95qevOvoX9Sk6JXOvi4Phmy2Xhg+rj7Z4WCygmd7t+cDyddlSEuxBKKtbxVQ=
+X-Received: by 2002:a17:907:2d9f:b0:a56:cb24:fbb9 with SMTP id
+ gt31-20020a1709072d9f00b00a56cb24fbb9mr388348ejc.20.1713773827167; Mon, 22
+ Apr 2024 01:17:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] can: Add LIN bus as CAN abstraction
-To: Christoph Fritz <christoph.fritz@hexdev.de>,
- Oliver Hartkopp <socketcan@hartkopp.net>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-can@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20240422065114.3185505-1-christoph.fritz@hexdev.de>
- <20240422065114.3185505-2-christoph.fritz@hexdev.de>
-Content-Language: en-US
-From: Jiri Slaby <jirislaby@kernel.org>
-Autocrypt: addr=jirislaby@kernel.org; keydata=
- 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
-In-Reply-To: <20240422065114.3185505-2-christoph.fritz@hexdev.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240409095637.2135-1-ychuang570808@gmail.com>
+ <20240409095637.2135-4-ychuang570808@gmail.com> <ZhZTsV3RKpuyeUr4@surfacebook.localdomain>
+ <643a0d80-3d99-420e-9e77-acc67728fbe7@gmail.com>
+In-Reply-To: <643a0d80-3d99-420e-9e77-acc67728fbe7@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 22 Apr 2024 11:16:31 +0300
+Message-ID: <CAHp75VfMb_=XKoQNbbVphLg-eQgc6eJbZOW36g_hU=-iK2bSOQ@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver
+To: Jacky Huang <ychuang570808@gmail.com>
+Cc: linus.walleij@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, j.neuschaefer@gmx.net, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ychuang3@nuvoton.com, schung@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22. 04. 24, 8:51, Christoph Fritz wrote:
-> This patch adds a LIN (local interconnect network) bus abstraction on
-> top of CAN.  It is a glue driver adapting CAN on one side while offering
-> LIN abstraction on the other side. So that upcoming LIN device drivers
-> can make use of it.
+On Mon, Apr 22, 2024 at 7:10=E2=80=AFAM Jacky Huang <ychuang570808@gmail.co=
+m> wrote:
+> On 2024/4/10 =E4=B8=8B=E5=8D=88 04:54, Andy Shevchenko wrote:
+
 ...
-> --- /dev/null
-> +++ b/drivers/net/can/lin.c
-...> +static int lin_create_sysfs_id_files(struct net_device *ndev)
-> +{
-> +	struct lin_device *ldev = netdev_priv(ndev);
-> +	struct kobj_attribute *attr;
-> +	int ret;
-> +
-> +	for (int id = 0; id < LIN_NUM_IDS; id++) {
-> +		ldev->sysfs_entries[id].ldev = ldev;
-> +		attr = &ldev->sysfs_entries[id].attr;
-> +		attr->attr.name = kasprintf(GFP_KERNEL, "%02x", id);
-> +		if (!attr->attr.name)
-> +			return -ENOMEM;
-> +		attr->attr.mode = 0644;
-> +		attr->show = lin_identifier_show;
-> +		attr->store = lin_identifier_store;
-> +
-> +		sysfs_attr_init(&attr->attr);
-> +		ret = sysfs_create_file(ldev->lin_ids_kobj, &attr->attr);
-> +		if (ret) {
-> +			kfree(attr->attr.name);
-> +			kfree(attr);
 
-Is the latter kfree() right? It appears not.
+> >> +#define MA35_GP_MODE_MASK_WIDTH              2
+> >> +
+> >> +#define MA35_GP_SLEWCTL_MASK_WIDTH   2
+> > I looked at the code how you use these... Oh, please switch to FIELD_GE=
+T() /
+> > FIELD_PREP() (don't forget to include bitfield.h)
+> >
+> > ...
+> >
+> > ...
+> >> +             regval &=3D ~GENMASK(setting->shift + MA35_MFP_BITS_PER_=
+PORT - 1,
+> >> +                                setting->shift);
+> > This will generate an awful code. Use respective FIELD_*() macros.
+> >
+> > ...
+> >
+> >> +     regval &=3D ~GENMASK(gpio * MA35_GP_MODE_MASK_WIDTH - 1,
+> >> +                        gpio * MA35_GP_MODE_MASK_WIDTH);
+> >> +     regval |=3D mode << gpio * MA35_GP_MODE_MASK_WIDTH;
+> > Ditto.
+> >
+> > ...
+> >
+> >> +     regval &=3D GENMASK(gpio * MA35_GP_MODE_MASK_WIDTH - 1,
+> >> +                       gpio * MA35_GP_MODE_MASK_WIDTH);
+> >> +
+> >> +     return regval >> gpio * MA35_GP_MODE_MASK_WIDTH;
+> > Ditto.
 
-> +			return -ENOMEM;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
 ...
-> +static void lin_tx_work_handler(struct work_struct *ws)
-> +{
-> +	struct lin_device *ldev = container_of(ws, struct lin_device,
-> +					       tx_work);
-> +	struct net_device *ndev = ldev->ndev;
-> +	struct canfd_frame *cfd;
-> +	struct lin_frame lf;
-> +
-> +	ldev->tx_busy = true;
 
-How is this store protected against reordering/race conditions?
+> Allow me to remove irrelevant parts.
+>
+> I attempted to follow your advice and use FIELD_GET() and FIELD_PREP(),
+> but found
+> it impractical. The reason is that these two macros require their 'mask'
+> argument
+> to be a constant, otherwise compilation errors occur, which is the issue
+> I encountered.
+> Since the mask here is calculated and not a constant, compilation errors
+> occur.
+>
+> Taking MA35_GP_REG_MODE as an example, within 32 bits, every 2 bits
+> represent
+> the mode of a GPIO pin, and the mask is obtained by GENMASK(gpio * 2 -1,
+> gpio * 2),
 
-> +
-> +	cfd = (struct canfd_frame *)ldev->tx_skb->data;
-> +	lf.checksum_mode = (cfd->can_id & LIN_ENHANCED_CKSUM_FLAG) ?
-> +			   LINBUS_ENHANCED : LINBUS_CLASSIC;
-> +	lf.lin_id = (u8)(cfd->can_id & LIN_ID_MASK);
+This is not good for the compiler, it can't figure out (at least in
+some _supported_ by Linux kernel versions on some architectures) that
+GENMASK can be constant here just left-shifted by arbitrary bits.
 
-Why is that cast necessary?
+> where the 'gpio' argument is a variable, not a constant, leading to
+> compilation
+> errors.
+>
+> Due to this reason, I will leave this part unchanged, or do you have any
+> other suggestions?
 
-> +	lf.len = min(cfd->len, LIN_MAX_DLEN);
-> +	memcpy(lf.data, cfd->data, lf.len);
-> +
-> +	ret = ldev->ldev_ops->ldo_tx(ldev, &lf);
-> +	if (ret) {
-> +		DEV_STATS_INC(ndev, tx_dropped);
-> +		netdev_err_once(ndev, "transmission failure %d\n", ret);
-> +		goto lin_tx_out;
+If you need non-constant field_get()/field_prep(), add a new patch
+that moves them from drivers/iio/temperature/mlx90614.c (and there are
+more custom implementations:
+https://elixir.bootlin.com/linux/latest/A/ident/field_get) to the
+bitfield.h and use them in your code.
 
-Where is this label?
-
-> +	}
-> +
-> +	DEV_STATS_INC(ndev, tx_packets);
-> +	DEV_STATS_ADD(ndev, tx_bytes, lf.len);
-> +	ldev->tx_busy = false;
-
-The same as above.
-
-> +	netif_wake_queue(ndev);
-> +}
-> +
-> +static netdev_tx_t lin_start_xmit(struct sk_buff *skb,
-> +				  struct net_device *ndev)
-> +{
-> +	struct lin_device *ldev = netdev_priv(ndev);
-> +
-> +	if (ldev->tx_busy)
-> +		return NETDEV_TX_BUSY;
-
-And here too.
-
-> +
-> +	netif_stop_queue(ndev);
-> +	ldev->tx_skb = skb;
-> +	queue_work(ldev->wq, &ldev->tx_work);
-> +
-> +	return NETDEV_TX_OK;
-> +}
-...
-> +u8 lin_get_checksum(u8 pid, u8 n_of_bytes, const u8 *bytes,
-> +		    enum lin_checksum_mode cm)
-> +{
-> +	uint csum = 0;
-
-Is "uint" of the preffered types in the kernel?
-
-> +	int i;
-> +
-> +	if (cm == LINBUS_ENHANCED)
-> +		csum += pid;
-> +
-> +	for (i = 0; i < n_of_bytes; i++) {
-> +		csum += bytes[i];
-> +		if (csum > 255)
-> +			csum -= 255;
-> +	}
-> +
-> +	return (u8)(~csum & 0xff);
-
-Unnecessary cast?
-
-> +}
-
-
-> +int lin_rx(struct lin_device *ldev, const struct lin_frame *lf)
-> +{
-> +	struct net_device *ndev = ldev->ndev;
-> +	struct can_frame *cf;
-> +	struct sk_buff *skb;
-> +	int ret;
-> +
-> +	if (!ndev)
-> +		return -ENODEV;
-
-Is this racy or is this only a sanity check?
-
-> +	netdev_dbg(ndev, "id:%02x, len:%u, data:%*ph, checksum:%02x (%s)\n",
-> +		   lf->lin_id, lf->len, lf->len, lf->data, lf->checksum,
-> +		   lf->checksum_mode ? "enhanced" : "classic");
-> +
-> +	ret = lin_bump_rx_err(ldev, lf);
-> +	if (ret) {
-> +		DEV_STATS_INC(ndev, rx_dropped);
-> +		return ret;
-> +	}
-> +
-> +	skb = alloc_can_skb(ndev, &cf);
-> +	if (unlikely(!skb)) {
-> +		DEV_STATS_INC(ndev, rx_dropped);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	cf->can_id = lf->lin_id;
-> +	cf->len = min(lf->len, LIN_MAX_DLEN);
-> +	memcpy(cf->data, lf->data, cf->len);
-> +
-> +	DEV_STATS_INC(ndev, rx_packets);
-> +	DEV_STATS_ADD(ndev, rx_bytes, cf->len);
-> +
-> +	netif_receive_skb(skb);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(lin_rx);
-> +
-> +static int lin_set_bittiming(struct net_device *ndev)
-> +{
-> +	struct lin_device *ldev = netdev_priv(ndev);
-> +	unsigned int bitrate;
-> +	int ret;
-> +
-> +	bitrate = ldev->can.bittiming.bitrate;
-> +	ret = ldev->ldev_ops->update_bitrate(ldev, bitrate);
-> +
-> +	return ret;
-
-No need for ret then.
-
-> +}
-> +
-> +static const u32 lin_bitrate[] = { 1200, 2400, 4800, 9600, 19200 };
-> +
-> +struct lin_device *register_lin(struct device *dev,
-> +				const struct lin_device_ops *ldops)
-> +{
-> +	struct net_device *ndev;
-> +	struct lin_device *ldev;
-> +	int ret;
-> +
-> +	if (!ldops || !ldops->ldo_tx || !ldops->update_bitrate) {
-> +		netdev_err(ndev, "missing mandatory lin_device_ops\n");
-> +		return ERR_PTR(-EOPNOTSUPP);
-
-Would EINVAL fit better?
-
-> +	}
-> +
-> +	ndev = alloc_candev(sizeof(struct lin_device), 1);
-> +	if (!ndev)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	ldev = netdev_priv(ndev);
-> +
-> +	ldev->ldev_ops = ldops;
-> +	ndev->netdev_ops = &lin_netdev_ops;
-> +	ndev->flags |= IFF_ECHO;
-> +	ndev->mtu = CANFD_MTU;
-> +	ldev->can.bittiming.bitrate = LIN_DEFAULT_BAUDRATE;
-> +	ldev->can.ctrlmode = CAN_CTRLMODE_LIN;
-> +	ldev->can.ctrlmode_supported = 0;
-> +	ldev->can.bitrate_const = lin_bitrate;
-> +	ldev->can.bitrate_const_cnt = ARRAY_SIZE(lin_bitrate);
-> +	ldev->can.do_set_bittiming = lin_set_bittiming;
-> +	ldev->ndev = ndev;
-> +	ldev->dev = dev;
-> +
-> +	SET_NETDEV_DEV(ndev, dev);
-> +
-> +	ret = lin_set_bittiming(ndev);
-> +	if (ret) {
-> +		netdev_err(ndev, "set bittiming failed\n");
-> +		goto exit_candev;
-> +	}
-> +
-> +	ret = register_candev(ndev);
-> +	if (ret)
-> +		goto exit_candev;
-> +
-> +	ldev->lin_ids_kobj = kobject_create_and_add("lin_ids", &ndev->dev.kobj);
-> +	if (!ldev->lin_ids_kobj) {
-> +		netdev_err(ndev, "Failed to create sysfs directory\n");
-> +		ret = -ENOMEM;
-> +		goto exit_unreg;
-> +	}
-> +
-> +	ret = lin_create_sysfs_id_files(ndev);
-> +	if (ret) {
-> +		netdev_err(ndev, "Failed to create sysfs entry: %d\n", ret);
-> +		goto exit_kobj_put;
-> +	}
-> +
-> +	ldev->wq = alloc_workqueue(dev_name(dev), WQ_FREEZABLE | WQ_MEM_RECLAIM,
-> +				   0);
-
-It would be worth noting why you need your own WQ.
-
-> +	if (!ldev->wq)
-> +		goto exit_rm_files;
-> +
-> +	INIT_WORK(&ldev->tx_work, lin_tx_work_handler);
-> +
-> +	netdev_info(ndev, "LIN initialized.\n");
-> +
-> +	return ldev;
-> +
-> +exit_rm_files:
-> +	lin_remove_sysfs_id_files(ndev);
-> +exit_kobj_put:
-> +	kobject_put(ldev->lin_ids_kobj);
-> +exit_unreg:
-> +	unregister_candev(ndev);
-> +exit_candev:
-> +	free_candev(ndev);
-> +	return ERR_PTR(ret);
-> +}
-> +EXPORT_SYMBOL_GPL(register_lin);
-> +
-> +void unregister_lin(struct lin_device *ldev)
-> +{
-> +	struct net_device *ndev = ldev->ndev;
-> +
-> +	lin_remove_sysfs_id_files(ndev);
-> +	kobject_put(ldev->lin_ids_kobj);
-> +	unregister_candev(ndev);
-> +	destroy_workqueue(ldev->wq);
-> +	free_candev(ndev);
-> +}
-> +EXPORT_SYMBOL_GPL(unregister_lin);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Christoph Fritz <christoph.fritz@hexdev.de>");
-> +MODULE_DESCRIPTION("LIN bus to CAN glue driver");
-> diff --git a/include/net/lin.h b/include/net/lin.h
-> new file mode 100644
-> index 0000000000000..2fe16e142db96
-> --- /dev/null
-> +++ b/include/net/lin.h
-> @@ -0,0 +1,97 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/* Copyright (C) 2024 hexDEV GmbH - https://hexdev.de */
-> +
-> +#ifndef _NET_LIN_H_
-> +#define _NET_LIN_H_
-> +
-> +#include <linux/can/dev.h>
-> +#include <linux/device.h>
-> +
-> +#define LIN_NUM_IDS		64
-> +#define LIN_HEADER_SIZE		3
-> +#define LIN_MAX_DLEN		8
-> +
-> +#define LIN_MAX_BAUDRATE	20000
-> +#define LIN_MIN_BAUDRATE	1000
-> +#define LIN_DEFAULT_BAUDRATE	9600
-> +#define LIN_SYNC_BYTE		0x55
-> +
-> +#define LIN_ID_MASK		0x0000003FU
-
-GEN_MASK() ?
-
-> +/* special ID descriptions for LIN */
-> +#define LIN_ENHANCED_CKSUM_FLAG	0x00000100U
-> +
-> +static const unsigned char lin_id_parity_tbl[] = {
-
-This ends up in every translation unit you include lin.h into. Bad.
-
-And perhaps u8?
-
-> +	0x80, 0xc0, 0x40, 0x00, 0xc0, 0x80, 0x00, 0x40,
-> +	0x00, 0x40, 0xc0, 0x80, 0x40, 0x00, 0x80, 0xc0,
-> +	0x40, 0x00, 0x80, 0xc0, 0x00, 0x40, 0xc0, 0x80,
-> +	0xc0, 0x80, 0x00, 0x40, 0x80, 0xc0, 0x40, 0x00,
-> +	0x00, 0x40, 0xc0, 0x80, 0x40, 0x00, 0x80, 0xc0,
-> +	0x80, 0xc0, 0x40, 0x00, 0xc0, 0x80, 0x00, 0x40,
-> +	0xc0, 0x80, 0x00, 0x40, 0x80, 0xc0, 0x40, 0x00,
-> +	0x40, 0x00, 0x80, 0xc0, 0x00, 0x40, 0xc0, 0x80,
-> +};
-> +
-> +#define LIN_GET_ID(PID)		((PID) & LIN_ID_MASK)
-
-FIELD_GET() ?
-
-> +#define LIN_FORM_PID(ID)	(LIN_GET_ID(ID) | \
-> +					lin_id_parity_tbl[LIN_GET_ID(ID)])
-> +#define LIN_GET_PARITY(PID)	((PID) & ~LIN_ID_MASK)
-> +#define LIN_CHECK_PID(PID)	(LIN_GET_PARITY(PID) == \
-> +					LIN_GET_PARITY(LIN_FORM_PID(PID)))
-
-thanks,
--- 
-js
-suse labs
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
