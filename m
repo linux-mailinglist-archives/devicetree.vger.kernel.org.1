@@ -1,177 +1,168 @@
-Return-Path: <devicetree+bounces-61509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DF88ACFFA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:56:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E20688AD00B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9DCF281359
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:56:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8391C21317
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB402152502;
-	Mon, 22 Apr 2024 14:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A931152189;
+	Mon, 22 Apr 2024 14:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U4HjiUXU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nT/3TJP+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6160B1514FC
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 14:56:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5321E49F;
+	Mon, 22 Apr 2024 14:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713797768; cv=none; b=FSSGic8xkx9wzKemZtV2O3gYvQ6XXFDLyannum59umCJNRuAq+47cIuKUrjRyA0PgYl7gUhJvRCyGScyd5ucvFJQfX5edgoe1wI90hOUU1HO8M+0Vf0voOoghbLDeZQmIy8bDnTqrYgbKEZb8Qv05f87mX2CKp2BpQFyCJTJvpE=
+	t=1713797938; cv=none; b=mCT8ws6FU4k3YLbTowHIgPqK2sdIH9HqwkwLKhSUZKsFD+Z0e1zYogndOXl4IzfLsBtLh2IPpHnUEsFLZ/KB/HoUH0s6hcNJSgQ5ALkzwGe4k48tAY/1xEnL3vWF/26OWEKJTott9Wor3JY/vYccHKjl7Yo1cyw/Q5ORoKqGeTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713797768; c=relaxed/simple;
-	bh=imsekkblo55XmgjAaWRpZaTVc+ZBiFNXzC9IucNVpbg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NJFGvVX1oubCw2/S/sLMPAd2IuuH5CIVZngl7DlyXKN3jHxe9vdavSQUgnyBnUjmVg2ybvKIJpCXvYQOwLAwypWZb46KGV6/BvxT3rTqCp0lbRrgVnxy6wKx50xJEhxbCAMOYwkpw/yOKIdjdEQ8IK34HEcoILGtuAs9B2/RExc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U4HjiUXU; arc=none smtp.client-ip=209.85.160.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-22f32226947so2070964fac.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:56:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713797765; x=1714402565; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NTOg8DkAW/3dkpxikcsk436y8h1eZe1SfUF5lmW3ku0=;
-        b=U4HjiUXUk7RxfDBJM02w61BKjrevJJkbVQ4n308mTss7ZrXCgsfziCIwLKxShfByoo
-         hWFUPwgoHrnn3+txvd+/dIRdrUyblWZBxXoIwQ7UOUEt5AXEp3fu6NW1YR9Euv3EQx5h
-         I1rveApyv3uw4B8KPrC6Jknj+jJkMsDnxzmLngWhjRpXz52q9hKfhn6LfI2E+KADBrKI
-         r+uDdkRm9scQAFyNYr+06lPE2DWOuUWWkQvldJVTr7zvmAQ4ictOwHFJ3K+eaL8sVheP
-         2p/ckccpkJIi/sQewygszj8wg3710ivlA+IL92IGQ0r+8UQMLXtriqxQHG6s6r8iYUjm
-         58zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713797765; x=1714402565;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NTOg8DkAW/3dkpxikcsk436y8h1eZe1SfUF5lmW3ku0=;
-        b=dLUjphVYXaLT4GaAFlPPkObqr4Sfn5kgEtuy9nqhYLz1goUXpy+EoM4d4UNPZZpS6W
-         dApl0YfK/KOH2AsNZkTZKZ6RilJTLiCOvnl+DVL+P0g/fEYKeKxubj0CdzJJ5y2evoqf
-         mK5Rpo3uhNfkRh+1Din++1ZNnTQ74d+89/NgsiQsKvvjnigpHLM/XpYyHFD2Y0QHhxPc
-         5Wcydlp/iAPK77e+Sxy0kIF1EtYO9TLPsXL23xdib7YNoYV3GTlr9Wvt0SCI9xB5isIy
-         hQPReJSXu7arvBw/rXv6lhAqdQP8J1wNOyRUplxGVgVSM+oTiz6oRk5uBftfVYk1l/Ss
-         IqMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUt7koUsNBAmxjIbp7vGFRT5eFDph84rYQOSW+L5P7TXntvi/p0qHgRSHZsmPbGIvkB5p331cGXtVIYVXqEPfjxD+D0wQhPMiMuoQ==
-X-Gm-Message-State: AOJu0YwGyyq4tR29l7h/4i9vjq4EGnzAFEdplq3LXEAOp7btXURTBt4Q
-	Ws/9tDIgtMxMUkJJVALdVewiMTh+X1GqPAW4YV6g0JlBoHykW2PHGAonKQawCIEr9tSXem+Cbrj
-	aOXQSEN7TZC19IUhznxhInr8eAE9Q2ZMXoH63gQ==
-X-Google-Smtp-Source: AGHT+IHTzGHT1v9LeibIhpXISDP5Up0NDJE//bpDlntvJJiW0sMwcyQm0rL5VdwsrhLb5OjnZBVN3sPtCblaMnzwbwM=
-X-Received: by 2002:a05:6870:1318:b0:21f:aba0:772d with SMTP id
- 24-20020a056870131800b0021faba0772dmr10853360oab.39.1713797765495; Mon, 22
- Apr 2024 07:56:05 -0700 (PDT)
+	s=arc-20240116; t=1713797938; c=relaxed/simple;
+	bh=KgbM3k+jSRBzGRZiQzyCDCUnLSPGShDmfs2+LbcxB7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pLfUSOdMChyODhgxQOFMxXGbAooCUprwGz/Al1jNqc/TLAbr17nwjto6L7jPdFumWJC2O8FF+Ab2+83AOAJC6WN6ty99vjD0dEAZD/8irbhGjSal09ptzUYNQgXgTXTIg/YlHFtP+/O4a29aaI2zB34wdZ9LCAE+woDnzebtGpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nT/3TJP+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B433FC113CC;
+	Mon, 22 Apr 2024 14:58:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713797938;
+	bh=KgbM3k+jSRBzGRZiQzyCDCUnLSPGShDmfs2+LbcxB7M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nT/3TJP+dzwNxRWbeYbmeJVied1e70gL/B9J88fLb7P47PDm3Y1/yKw1A1eI829sK
+	 ltcuub6sB/t4oBclXnDcrm6q9UrQtUbxzXsjvFtf9ZQBQivuVGx/dJ50o21Od500HB
+	 PyQ90Wy2aesN0k/tWVDsHhAstXV70k2JtBagWBrQM41nyUHt13914bn3b8Dy/osSCf
+	 poJQMVJfrJzto8zLzHsenkrP8SZfIxU2VzESxy9YXvZK4oFUhvvo+4gDjflrPiP1yr
+	 IwBdaCUvOpg82wk5ETmJ57A7BAHRWCw1aUrFwrWTi4TkVAHLPv9ig7QEnvrRZCcg8v
+	 D4/p46gUebNIw==
+Date: Mon, 22 Apr 2024 09:58:55 -0500
+From: Rob Herring <robh@kernel.org>
+To: matthew.gerlach@linux.intel.com
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: PCI: altera: Convert to YAML
+Message-ID: <20240422145855.GA1242711-robh@kernel.org>
+References: <20240420145342.118643-1-matthew.gerlach@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404122559.898930-1-peter.griffin@linaro.org>
- <20240404122559.898930-9-peter.griffin@linaro.org> <61f427ab3793def23d80d94457ff1568cae5ee11.camel@linaro.org>
-In-Reply-To: <61f427ab3793def23d80d94457ff1568cae5ee11.camel@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 22 Apr 2024 15:55:54 +0100
-Message-ID: <CADrjBPqAyWzuw9TmdE1XRQ2BkYojR8r7nnH7JcRWc9_xOpUgHg@mail.gmail.com>
-Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
-	martin.petersen@oracle.com, chanho61.park@samsung.com, ebiggers@kernel.org, 
-	linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240420145342.118643-1-matthew.gerlach@linux.intel.com>
 
-Hi Andr=C3=A9,
+On Sat, Apr 20, 2024 at 09:53:42AM -0500, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> 
+> Convert the device tree bindings for the Altera Root Port PCIe controller
+> from text to YAML.
+> 
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> ---
+> v4:
+>  - reorder reg-names to match original binding
+>  - move reg and reg-names to top level with limits.
+> 
+> v3:
+>  - Added years to copyright
+>  - Correct order in file of allOf and unevaluatedProperties
+>  - remove items: in compatible field
+>  - fix reg and reg-names constraints
+>  - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
+>  - fix entries in ranges property
+>  - remove device_type from required
+> 
+> v2:
+>  - Move allOf: to bottom of file, just like example-schema is showing
+>  - add constraint for reg and reg-names
+>  - remove unneeded device_type
+>  - drop #address-cells and #size-cells
+>  - change minItems to maxItems for interrupts:
+>  - change msi-parent to just "msi-parent: true"
+>  - cleaned up required:
+>  - make subject consistent with other commits coverting to YAML
+>  - s/overt/onvert/g
+> ---
+>  .../devicetree/bindings/pci/altera-pcie.txt   | 50 -----------
+>  .../bindings/pci/altr,pcie-root-port.yaml     | 88 +++++++++++++++++++
+>  2 files changed, 88 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
+> deleted file mode 100644
+> index 816b244a221e..000000000000
+> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -* Altera PCIe controller
+> -
+> -Required properties:
+> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
+> -- reg:		a list of physical base address and length for TXS and CRA.
+> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
+> -- reg-names:	must include the following entries:
+> -		"Txs": TX slave port region
+> -		"Cra": Control register access region
+> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
+> -- interrupts:	specifies the interrupt source of the parent interrupt
+> -		controller.  The format of the interrupt specifier depends
+> -		on the parent interrupt controller.
+> -- device_type:	must be "pci"
+> -- #address-cells:	set to <3>
+> -- #size-cells:		set to <2>
+> -- #interrupt-cells:	set to <1>
+> -- ranges:	describes the translation of addresses for root ports and
+> -		standard PCI regions.
+> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
+> -		mapping of the PCIe interface to interrupt numbers.
+> -
+> -Optional properties:
+> -- msi-parent:	Link to the hardware entity that serves as the MSI controller
+> -		for this PCIe controller.
+> -- bus-range:	PCI bus numbers covered
+> -
+> -Example
+> -	pcie_0: pcie@c00000000 {
+> -		compatible = "altr,pcie-root-port-1.0";
+> -		reg = <0xc0000000 0x20000000>,
+> -			<0xff220000 0x00004000>;
+> -		reg-names = "Txs", "Cra";
+> -		interrupt-parent = <&hps_0_arm_gic_0>;
+> -		interrupts = <0 40 4>;
+> -		interrupt-controller;
 
-On Thu, 4 Apr 2024 at 14:24, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
-wrote:
->
-> Hi Pete,
->
-> Thanks for this!
->
-> I haven't reviewed this, but one immediate comment...
->
-> On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
-> > [...]
-> > diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-=
-gs101.c
-> > index d065e343a85d..b9f84c7d5c22 100644
-> > --- a/drivers/clk/samsung/clk-gs101.c
-> > +++ b/drivers/clk/samsung/clk-gs101.c
-> > @@ -22,6 +22,7 @@
-> >  #define CLKS_NR_MISC (CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
-> >  #define CLKS_NR_PERIC0       (CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
-> >  #define CLKS_NR_PERIC1       (CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
-> > +#define CLKS_NR_HSI2 (CLK_GOUT_HSI2_XIU_P_HSI2_ACLK + 1)
->
-> Can you please keep the #defines alphabetical (hsi before misc).
+What happened to this? It is clearly needed since the interrupt-map 
+below points back to this node. Note that that didn't work at one point 
+in time, but I think we fixed it.
 
-Will fix
+It doesn't seem you are testing the binding against an actual DT. 
+Please do that.
 
->
-> >
-> >  /* ---- CMU_TOP ------------------------------------------------------=
-------- */
-> >
-> > @@ -3409,6 +3410,560 @@ static const struct samsung_cmu_info peric1_cmu=
-_info __initconst =3D {
-> >       .clk_name               =3D "bus",
-> >  };
-> >
-> > +/* ---- CMU_HSI2 -----------------------------------------------------=
------ */
->
-> and this code block should be earlier in the file
+Rob
 
-Will fix
->
-> > [..]
->
-> >  static int __init gs101_cmu_probe(struct platform_device *pdev)
-> > @@ -3432,6 +3987,9 @@ static const struct of_device_id gs101_cmu_of_mat=
-ch[] =3D {
-> >       }, {
-> >               .compatible =3D "google,gs101-cmu-peric1",
-> >               .data =3D &peric1_cmu_info,
-> > +     }, {
-> > +             .compatible =3D "google,gs101-cmu-hsi2",
-> > +             .data =3D &hsi2_cmu_info,
-> >       }, {
->
-> and this block should move up
-
-Will fix
->
-> >       },
-> >  };
-> > diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bind=
-ings/clock/google,gs101.h
-> > index 3dac3577788a..ac239ce6821b 100644
-> > --- a/include/dt-bindings/clock/google,gs101.h
-> > +++ b/include/dt-bindings/clock/google,gs101.h
-> > @@ -518,4 +518,67 @@
-> >  #define CLK_GOUT_PERIC1_CLK_PERIC1_USI9_USI_CLK              45
-> >  #define CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK           46
-> >
-> > +/* CMU_HSI2 */
->
-> and all these defines, too.
-
-Will fix.
-
-regards,
-
-Peter
+> -		#interrupt-cells = <1>;
+> -		bus-range = <0x0 0xFF>;
+> -		device_type = "pci";
+> -		msi-parent = <&msi_to_gic_gen_0>;
+> -		#address-cells = <3>;
+> -		#size-cells = <2>;
+> -		interrupt-map-mask = <0 0 0 7>;
+> -		interrupt-map = <0 0 0 1 &pcie_0 1>,
+> -			            <0 0 0 2 &pcie_0 2>,
+> -			            <0 0 0 3 &pcie_0 3>,
+> -			            <0 0 0 4 &pcie_0 4>;
+> -		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
+> -			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
+> -	};
 
