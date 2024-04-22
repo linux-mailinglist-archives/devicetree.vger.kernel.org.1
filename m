@@ -1,567 +1,140 @@
-Return-Path: <devicetree+bounces-61356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0F788AC607
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:54:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA388AC5EF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:49:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E042E1C20EC6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 07:54:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C55A61F211A2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 07:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2164D9FC;
-	Mon, 22 Apr 2024 07:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8AA24CE13;
+	Mon, 22 Apr 2024 07:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aUMlGhsO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="0E7xJ4aB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D305336D
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01304CE05;
+	Mon, 22 Apr 2024 07:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713772388; cv=none; b=F5stkolVNtv8vEg5tstFUbyOpXkvs1H4EC7m2R0Sy68uzNG8WZ/3N3GYb/kkvYRpNSa2B/dAaK4Ezu+O2ro3Ksr4lTZii1hKlwfilhE/1Ab7TcMtDrie4FD3FdrKT3+RfyO1IrY5RDDWp9mfLqh0uDplvHQsAvH25B9GRnqmKXY=
+	t=1713772174; cv=none; b=iM2NbnXjAO3yO2FAh311CaefDFwC57J+3JUq7BO/2T6m2/WygZrKxfTfII9XtdiQadtM+4OqscuuKLtnl7JL9OjR/o+DAfvh1fwjuFzEIaw+3Wi78Ry6H2CLsPeXNNn23HXkzF9ZKnCsw+6BS9aOaDlrN1Zkth0Jqz4ltogo47k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713772388; c=relaxed/simple;
-	bh=j9JjtyXiGRvAwgvWih4klkkaFN5qmbIzFHjMYLkFfWU=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=Zz4GjEx24MQl1XvPMnm/6M8UPTag6rGwyT543A3QRyEEwA/+nMZvUI2pmYnxl+GHUqMcUvEzAd0fGJTslRyRf+nWQ38q3BHX16EOmft5hB7PP2/d6dNCOtISGNwosFMCuVFaTXQ3a2g+MxtdE1AeHGwcdew2dgnuD1cOoAmdzfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aUMlGhsO; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41a5b68ed5cso5476595e9.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 00:53:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713772383; x=1714377183; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=4jGjfwgF7TyQMRv12TtcmSPfCodeSwoGNJ55HvwtMeQ=;
-        b=aUMlGhsOV0TdYNKwt3DyXhESl5w6XfWgggQ250VFviI3uTHKBCTLRL6f2gJpFujL4w
-         IBYUhNIQRHyGdIDBZQnXCc+M2j2t9n4h21C5Bl4/W3FXoDHuZxSQ/C9wsJt8jl3qPHI4
-         gkWTOGgsAn1OABdu7p4tE9kh/hdbZG+TuCRARzzQ29Iy1jzs0IICIU5cgwgwSnhk2dIc
-         Fv65sCPJx8dNQkKrRjnt6HtkWYds05ARFtlJ6idcBxOEEXa/YOM6kCSC56+ZJHc1Nz7k
-         8jVlCfCzdKK278AFxieqNp6HONOvPn2bDH91Z2EVZNlTxsCTlF6J6t5zxZQkbQRVL37D
-         2qAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713772383; x=1714377183;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4jGjfwgF7TyQMRv12TtcmSPfCodeSwoGNJ55HvwtMeQ=;
-        b=NE9BL/VcokgoUuddCdQ958WuFr+1alg4jgkTCzjPNJsdlz44u+kv3GPxVAvzKXHNLP
-         nC1W/awi8S/WlBmrIeiDa++4GFuEmqrHeiWspBrOO8U487A5l2kUciORaR6ysNXOpQi0
-         pWKHv3dpp1JJSGagc7/6D0sDYu87B4gz/0oja2IoGTkGrQNgxHOWbDbdEO14wPEmnT+6
-         tXzVSt+NHgkVoSxkun9Nw9yv4mA3s7Yvv5OZ8/cYFB3qc9Y7quVteI7sVKiw1pFaIA4O
-         YxwVSLh/DI7nuexKVF3xlbddmtXuTHUQLhhrBQ1OUahn7uhoTFWezKOKmaEmI3czysW4
-         Zzxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUty252U8CYUt3YeQEJjHI/gRG3RMV1YxQVEF2BjweRcnF3sbL5gUlFVM5DiEfzcXwgtJDJ6f6SNg1Xj93KkRDWQ/e8EELn9Gwuzg==
-X-Gm-Message-State: AOJu0YwE5+HS5P4TGKCLUuoUZFGttTWY++x1E5uRafApiehLztfi94Pm
-	1pd+Yp0Rsz1ktIrRCu8rFDLn3gF430GoVrJg0cQfsDzLkwzwO2tYnQEKEeHnypI=
-X-Google-Smtp-Source: AGHT+IHnAHq7UbeP632AWGtLrRm4Wi/yaGG11GCMmRkMCaECGE9BPz64Y0OIYfXnkIPNFYWuZajQaw==
-X-Received: by 2002:a05:600c:45ca:b0:41a:66b1:3922 with SMTP id s10-20020a05600c45ca00b0041a66b13922mr948452wmo.19.1713772382759;
-        Mon, 22 Apr 2024 00:53:02 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:a619:ccb0:5f40:262c])
-        by smtp.gmail.com with ESMTPSA id j13-20020a05600c190d00b00418a386c17bsm19450021wmq.12.2024.04.22.00.53.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 00:53:02 -0700 (PDT)
-References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
- <20240419125812.983409-2-jan.dakinevich@salutedevices.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
- <jbrunet@baylibre.com>, Michael  Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob  Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor  Dooley <conor+dt@kernel.org>, Kevin
- Hilman <khilman@baylibre.com>, Martin  Blumenstingl
- <martin.blumenstingl@googlemail.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH v3 1/6] reset: reset-meson-audio: introduce separate
- driver
-Date: Mon, 22 Apr 2024 09:46:50 +0200
-In-reply-to: <20240419125812.983409-2-jan.dakinevich@salutedevices.com>
-Message-ID: <1j8r15bzqa.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1713772174; c=relaxed/simple;
+	bh=BYZdKxYmj8SkYixzwReLHnNnVyK/zqpbBVvuT2PSauY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GRdYXc8iJqXf1rI/QipirDsYUU6FDZ7a+9KcRtuPKi3UCzKM1/JaKyQToffYmsIzv0+/Jnz/lUOfeZY0vZUs/H/koSFOhB1XthqwquMoO+Djdg0ha0h9kcJOD/oTsUSiOKp3OHpTUeIJoYzNH7WAB/fvPAS2jH8ALaHBhI0SkQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=0E7xJ4aB; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713772170;
+	bh=BYZdKxYmj8SkYixzwReLHnNnVyK/zqpbBVvuT2PSauY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=0E7xJ4aBLe8dfoQFa7zSZuCfGVa1dp3todBYbpWwRtc4wn3NbnduJz9yR/7KkDINl
+	 jk1ZPROjt6zi3jkyRIdkjIk7hKwHII/w578SZ0zQql/Cx+YkYCJ/cHAugsrlJ+WLkX
+	 9RFwn7gbAf65M91i/PYqgIO7QHhzIg7Tc9zrcxTPJOQgnMt2dO3g85TKMQQ06huxB2
+	 zqo51yFoZQbo7PIbOYXy0llC8Yjx9mLiY0mwhoWNcdTfTUfjiZnBrUG3I3+WuJNfDU
+	 CYKv1fg9bHW7Akdqh02aUYH2u1gE88lEKliqugzMu/b30TRf4TQRT/JDiLSnmWawiv
+	 g4bQKR+7v/KtQ==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 12CA837800DE;
+	Mon, 22 Apr 2024 07:49:30 +0000 (UTC)
+Message-ID: <47a25b01-b087-4a3d-9af9-07bb58c8d5b8@collabora.com>
+Date: Mon, 22 Apr 2024 10:49:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: riscv: add Milk-V Duo S board
+ compatibles
+To: Michael Opdenacker <michael.opdenacker@bootlin.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Chao Wei <chao.wei@sophgo.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240421055710.143617-1-michael.opdenacker@bootlin.com>
+ <20240421055710.143617-2-michael.opdenacker@bootlin.com>
+ <c30cc11a-209a-4919-a382-7588daff0d71@linaro.org>
+ <b1f59075-f2b0-4f2c-aea3-bc596ac45f1c@bootlin.com>
+ <71f2e031-41b0-4a47-9bdd-e8fb6334da5d@linaro.org>
+ <505a8cea-5b0e-4ecf-b566-e68b37b2d4ed@bootlin.com>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <505a8cea-5b0e-4ecf-b566-e68b37b2d4ed@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Michael,
 
-On Fri 19 Apr 2024 at 15:58, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+On 4/22/24 9:23 AM, Michael Opdenacker wrote:
+> 
+> On 4/22/24 at 06:24, Krzysztof Kozlowski wrote:
+>> On 21/04/2024 20:55, Michael Opdenacker wrote:
+>>> Hi Krzysztof
+>>>
+>>> On 4/21/24 at 16:12, Krzysztof Kozlowski wrote:
+>>>> On 21/04/2024 07:57, michael.opdenacker@bootlin.com wrote:
+>>>>> From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+>>>>>
+>>>>> Document the compatible strings for the Milk-V Duo S board[1] which
+>>>>> uses
+>>>>> the SOPHGO SG2000 SoC, compatible with the CV1812H SoC[2].
+>>>>>
+>>>>> Link: https://milkv.io/duo-s [1]
+>>>>> Link: https://en.sophgo.com/product/introduce/cv181xH.html [2]
+>>>>>
+>>>>> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+>>>>> ---
+>>>> Where is the changelog? It's v6!
+>>> Oops, it was in my cover letter
+>>> (https://lore.kernel.org/linux-riscv/20240421055710.143617-1-michael.opdenacker@bootlin.com/T/#t),
+>>> which you didn't get because of get-maintainer.pl. As the recipients are
+>>> patch dependent, am I supposed to describe the changes in all patches
+>>> and not only in the cover letter?
+>> If you do not send the changelog to everyone, then yes, please describe
+>> respective changes in each patch.
+> 
+> Ok, will do, thanks!
+> 
+>>
+>> It's your choice, but if you decide not to send cover letter to some
+>> folks, then *it does not exist* for such folks.
+> 
+> Well, actually, I shouldn't have let get-maintainer.pl decide for me. Is
+> there a way to send the cover-letter to the union of people who will
+> receive the individual patches?
 
-> Typically, Amlogic Meson SoCs have a couple a reset registers lost in
-> middle of audio clock controller. Reset controller on top of them was
-> implemented inside audio clock controller driver. This patch moves reset
-> functionality of this controller to auxiliary driver. There are at least
-> two reasons for this:
->
->   - architecturally it is more convenient;
->
->   - reusing the code of reset controller for new SoCs becomes easier.
->
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> ---
->  drivers/clk/meson/Kconfig               |   2 +
->  drivers/clk/meson/axg-audio.c           | 106 +------------
->  drivers/reset/Kconfig                   |   7 +
->  drivers/reset/Makefile                  |   1 +
->  drivers/reset/reset-meson-audio.c       | 197 ++++++++++++++++++++++++
->  include/soc/amlogic/meson-audio-reset.h |  10 ++
+You may call get-maintainer.pl once for all the patches in the series
+(e.g. use a glob pattern to select all needed files) and then manually
+edit the cover letter to provide the 'To:' and 'Cc:' fields.
 
-You must an effort to touch a single subsystem per series.
-Making a series about a single subsystem makes like a lot easier for
-maintainers. clk, reset and dt and different subsystems
+Additionally, you could use '--to-cover --cc-cover' arguments passed to
+'git send-email' so that all those recipients will receive all patches.
 
-That constraints relaxed for RFCs but mixing subsystems within a single
-patch is a red flag, unless you really have a good reason ... and you
-don't have one here.
+Alternatively, you may try the b4 utility [1], which is able to automate
+most of the manual steps.
 
-Nothing blocks introducting support in reset, then use it in clocks.
+Hope this helps!
 
-You could also have allowed a bit more time before reposting since I
-said I would look at the reset issue.
+Regards,
+Cristian
 
-I doubt introducing a separate driver for this is required since since
-the current amlogic reset driver is fairly close.
-
->  6 files changed, 224 insertions(+), 99 deletions(-)
->  create mode 100644 drivers/reset/reset-meson-audio.c
->  create mode 100644 include/soc/amlogic/meson-audio-reset.h
->
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index 29ffd14d267b..33614f8b8cf7 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -101,6 +101,8 @@ config COMMON_CLK_AXG_AUDIO
->  	select COMMON_CLK_MESON_PHASE
->  	select COMMON_CLK_MESON_SCLK_DIV
->  	select COMMON_CLK_MESON_CLKC_UTILS
-> +	select RESET_CONTROLLER
-> +	select RESET_MESON_AUDIO
->  	select REGMAP_MMIO
->  	help
->  	  Support for the audio clock controller on AmLogic A113D devices,
-> diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-> index ac3482960903..9cd6b5c3aa7e 100644
-> --- a/drivers/clk/meson/axg-audio.c
-> +++ b/drivers/clk/meson/axg-audio.c
-> @@ -12,9 +12,10 @@
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/reset.h>
-> -#include <linux/reset-controller.h>
->  #include <linux/slab.h>
->  
-> +#include <soc/amlogic/meson-audio-reset.h>
-> +
->  #include "meson-clkc-utils.h"
->  #include "axg-audio.h"
->  #include "clk-regmap.h"
-> @@ -1648,84 +1649,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
->  	&sm1_sysclk_b_en,
->  };
->  
-> -struct axg_audio_reset_data {
-> -	struct reset_controller_dev rstc;
-> -	struct regmap *map;
-> -	unsigned int offset;
-> -};
-> -
-> -static void axg_audio_reset_reg_and_bit(struct axg_audio_reset_data *rst,
-> -					unsigned long id,
-> -					unsigned int *reg,
-> -					unsigned int *bit)
-> -{
-> -	unsigned int stride = regmap_get_reg_stride(rst->map);
-> -
-> -	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
-> -	*reg += rst->offset;
-> -	*bit = id % (stride * BITS_PER_BYTE);
-> -}
-> -
-> -static int axg_audio_reset_update(struct reset_controller_dev *rcdev,
-> -				unsigned long id, bool assert)
-> -{
-> -	struct axg_audio_reset_data *rst =
-> -		container_of(rcdev, struct axg_audio_reset_data, rstc);
-> -	unsigned int offset, bit;
-> -
-> -	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
-> -
-> -	regmap_update_bits(rst->map, offset, BIT(bit),
-> -			assert ? BIT(bit) : 0);
-> -
-> -	return 0;
-> -}
-> -
-> -static int axg_audio_reset_status(struct reset_controller_dev *rcdev,
-> -				unsigned long id)
-> -{
-> -	struct axg_audio_reset_data *rst =
-> -		container_of(rcdev, struct axg_audio_reset_data, rstc);
-> -	unsigned int val, offset, bit;
-> -
-> -	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
-> -
-> -	regmap_read(rst->map, offset, &val);
-> -
-> -	return !!(val & BIT(bit));
-> -}
-> -
-> -static int axg_audio_reset_assert(struct reset_controller_dev *rcdev,
-> -				unsigned long id)
-> -{
-> -	return axg_audio_reset_update(rcdev, id, true);
-> -}
-> -
-> -static int axg_audio_reset_deassert(struct reset_controller_dev *rcdev,
-> -				unsigned long id)
-> -{
-> -	return axg_audio_reset_update(rcdev, id, false);
-> -}
-> -
-> -static int axg_audio_reset_toggle(struct reset_controller_dev *rcdev,
-> -				unsigned long id)
-> -{
-> -	int ret;
-> -
-> -	ret = axg_audio_reset_assert(rcdev, id);
-> -	if (ret)
-> -		return ret;
-> -
-> -	return axg_audio_reset_deassert(rcdev, id);
-> -}
-> -
-> -static const struct reset_control_ops axg_audio_rstc_ops = {
-> -	.assert = axg_audio_reset_assert,
-> -	.deassert = axg_audio_reset_deassert,
-> -	.reset = axg_audio_reset_toggle,
-> -	.status = axg_audio_reset_status,
-> -};
-> -
->  static const struct regmap_config axg_audio_regmap_cfg = {
->  	.reg_bits	= 32,
->  	.val_bits	= 32,
-> @@ -1737,15 +1660,13 @@ struct audioclk_data {
->  	struct clk_regmap *const *regmap_clks;
->  	unsigned int regmap_clk_num;
->  	struct meson_clk_hw_data hw_clks;
-> -	unsigned int reset_offset;
-> -	unsigned int reset_num;
-> +	const char *reset_name;
->  };
->  
->  static int axg_audio_clkc_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	const struct audioclk_data *data;
-> -	struct axg_audio_reset_data *rst;
->  	struct regmap *map;
->  	void __iomem *regs;
->  	struct clk_hw *hw;
-> @@ -1804,21 +1725,10 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
->  		return ret;
->  
->  	/* Stop here if there is no reset */
-> -	if (!data->reset_num)
-> +	if (!data->reset_name)
->  		return 0;
->  
-> -	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
-> -	if (!rst)
-> -		return -ENOMEM;
-> -
-> -	rst->map = map;
-> -	rst->offset = data->reset_offset;
-> -	rst->rstc.nr_resets = data->reset_num;
-> -	rst->rstc.ops = &axg_audio_rstc_ops;
-> -	rst->rstc.of_node = dev->of_node;
-> -	rst->rstc.owner = THIS_MODULE;
-> -
-> -	return devm_reset_controller_register(dev, &rst->rstc);
-> +	return meson_audio_reset_register(dev, data->reset_name);
->  }
->  
->  static const struct audioclk_data axg_audioclk_data = {
-> @@ -1837,8 +1747,7 @@ static const struct audioclk_data g12a_audioclk_data = {
->  		.hws = g12a_audio_hw_clks,
->  		.num = ARRAY_SIZE(g12a_audio_hw_clks),
->  	},
-> -	.reset_offset = AUDIO_SW_RESET,
-> -	.reset_num = 26,
-> +	.reset_name = "g12a",
->  };
->  
->  static const struct audioclk_data sm1_audioclk_data = {
-> @@ -1848,8 +1757,7 @@ static const struct audioclk_data sm1_audioclk_data = {
->  		.hws = sm1_audio_hw_clks,
->  		.num = ARRAY_SIZE(sm1_audio_hw_clks),
->  	},
-> -	.reset_offset = AUDIO_SM1_SW_RESET0,
-> -	.reset_num = 39,
-> +	.reset_name = "sm1",
->  };
->  
->  static const struct of_device_id clkc_match_table[] = {
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 7112f5932609..98106694566f 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -138,6 +138,13 @@ config RESET_MESON
->  	help
->  	  This enables the reset driver for Amlogic Meson SoCs.
->  
-> +config RESET_MESON_AUDIO
-> +	tristate "Meson Audio Reset Driver"
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	select AUXILIARY_BUS
-> +	help
-> +	  This enables the audio reset driver for Amlogic Meson SoCs.
-> +
->  config RESET_MESON_AUDIO_ARB
->  	tristate "Meson Audio Memory Arbiter Reset Driver"
->  	depends on ARCH_MESON || COMPILE_TEST
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index fd8b49fa46fc..8ee7a57ccf03 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
->  obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
->  obj-$(CONFIG_RESET_MCHP_SPARX5) += reset-microchip-sparx5.o
->  obj-$(CONFIG_RESET_MESON) += reset-meson.o
-> +obj-$(CONFIG_RESET_MESON_AUDIO) += reset-meson-audio.o
->  obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
->  obj-$(CONFIG_RESET_NPCM) += reset-npcm.o
->  obj-$(CONFIG_RESET_NUVOTON_MA35D1) += reset-ma35d1.o
-> diff --git a/drivers/reset/reset-meson-audio.c b/drivers/reset/reset-meson-audio.c
-> new file mode 100644
-> index 000000000000..aaea9931cfe2
-> --- /dev/null
-> +++ b/drivers/reset/reset-meson-audio.c
-> @@ -0,0 +1,197 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (c) 2018 BayLibre, SAS.
-> + * Author: Jerome Brunet <jbrunet@baylibre.com>
-> + */
-> +
-> +#include <linux/regmap.h>
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/reset-controller.h>
-> +
-> +#include <soc/amlogic/meson-audio-reset.h>
-> +
-> +struct meson_audio_reset_data {
-> +	struct reset_controller_dev rstc;
-> +	struct regmap *map;
-> +	unsigned int offset;
-> +};
-> +
-> +struct meson_audio_reset_info {
-> +	unsigned int reset_offset;
-> +	unsigned int reset_num;
-> +};
-> +
-> +static void meson_audio_reset_reg_and_bit(struct meson_audio_reset_data *rst,
-> +					  unsigned long id,
-> +					  unsigned int *reg,
-> +					  unsigned int *bit)
-> +{
-> +	unsigned int stride = regmap_get_reg_stride(rst->map);
-> +
-> +	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
-> +	*reg += rst->offset;
-> +	*bit = id % (stride * BITS_PER_BYTE);
-> +}
-> +
-> +static int meson_audio_reset_update(struct reset_controller_dev *rcdev,
-> +				    unsigned long id, bool assert)
-> +{
-> +	struct meson_audio_reset_data *rst =
-> +		container_of(rcdev, struct meson_audio_reset_data, rstc);
-> +	unsigned int offset, bit;
-> +
-> +	meson_audio_reset_reg_and_bit(rst, id, &offset, &bit);
-> +
-> +	regmap_update_bits(rst->map, offset, BIT(bit),
-> +			assert ? BIT(bit) : 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_audio_reset_status(struct reset_controller_dev *rcdev,
-> +				    unsigned long id)
-> +{
-> +	struct meson_audio_reset_data *rst =
-> +		container_of(rcdev, struct meson_audio_reset_data, rstc);
-> +	unsigned int val, offset, bit;
-> +
-> +	meson_audio_reset_reg_and_bit(rst, id, &offset, &bit);
-> +
-> +	regmap_read(rst->map, offset, &val);
-> +
-> +	return !!(val & BIT(bit));
-> +}
-> +
-> +static int meson_audio_reset_assert(struct reset_controller_dev *rcdev,
-> +				    unsigned long id)
-> +{
-> +	return meson_audio_reset_update(rcdev, id, true);
-> +}
-> +
-> +static int meson_audio_reset_deassert(struct reset_controller_dev *rcdev,
-> +				      unsigned long id)
-> +{
-> +	return meson_audio_reset_update(rcdev, id, false);
-> +}
-> +
-> +static int meson_audio_reset_toggle(struct reset_controller_dev *rcdev,
-> +				    unsigned long id)
-> +{
-> +	int ret;
-> +
-> +	ret = meson_audio_reset_assert(rcdev, id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return meson_audio_reset_deassert(rcdev, id);
-> +}
-> +
-> +static const struct reset_control_ops meson_audio_reset_ops = {
-> +	.assert = meson_audio_reset_assert,
-> +	.deassert = meson_audio_reset_deassert,
-> +	.reset = meson_audio_reset_toggle,
-> +	.status = meson_audio_reset_status,
-> +};
-> +
-> +static int meson_audio_reset_probe(struct auxiliary_device *adev,
-> +				  const struct auxiliary_device_id *id)
-> +{
-> +	struct device *dev = &adev->dev;
-> +	struct meson_audio_reset_info *info =
-> +		(struct meson_audio_reset_info *)id->driver_data;
-> +	struct meson_audio_reset_data *rst;
-> +
-> +	dev_info(dev, "%s, reset_offset = %#x, reset_num = %u", __func__,
-> +		 info->reset_offset, info->reset_num);
-> +
-> +	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
-> +	if (!rst)
-> +		return -ENOMEM;
-> +
-> +	rst->map = dev_get_regmap(dev->parent, NULL);
-> +	if (!rst->map)
-> +		return -ENODEV;
-> +
-> +	rst->offset = info->reset_offset;
-> +	rst->rstc.ops = &meson_audio_reset_ops;
-> +	rst->rstc.of_node = dev->parent->of_node;
-> +	rst->rstc.nr_resets = info->reset_num;
-> +	rst->rstc.owner = THIS_MODULE;
-> +
-> +	return devm_reset_controller_register(dev, &rst->rstc);
-> +}
-> +
-> +static void meson_audio_reset_adev_release(struct device *dev)
-> +{
-> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> +
-> +	kfree(adev);
-> +}
-> +
-> +static void meson_audio_reset_adev_unregister(void *_adev)
-> +{
-> +	struct auxiliary_device *adev = _adev;
-> +
-> +	auxiliary_device_delete(adev);
-> +	auxiliary_device_uninit(adev);
-> +}
-> +
-> +static const struct meson_audio_reset_info meson_audio_reset_info_g12a = {
-> +	.reset_offset = 0x024,
-> +	.reset_num = 26,
-> +};
-> +
-> +static const struct meson_audio_reset_info meson_audio_reset_info_sm1 = {
-> +	.reset_offset = 0x028,
-> +	.reset_num = 39,
-> +};
-> +static const struct auxiliary_device_id meson_audio_reset_id[] = {
-> +	{
-> +		.name = "reset_meson_audio.g12a",
-> +		.driver_data = (kernel_ulong_t)&meson_audio_reset_info_g12a,
-> +	},
-> +	{
-> +		.name = "reset_meson_audio.sm1",
-> +		.driver_data = (kernel_ulong_t)&meson_audio_reset_info_sm1,
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(auxiliary, meson_audio_reset_id);
-> +
-> +static struct auxiliary_driver meson_audio_reset_driver = {
-> +	.probe = meson_audio_reset_probe,
-> +	.id_table = meson_audio_reset_id,
-> +};
-> +
-> +module_auxiliary_driver(meson_audio_reset_driver);
-> +
-> +int meson_audio_reset_register(struct device *dev, const char *name)
-> +{
-> +	struct auxiliary_device *adev;
-> +	int ret;
-> +
-> +	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-> +	if (!adev)
-> +		return -ENOMEM;
-> +
-> +	adev->name = name;
-> +	adev->dev.parent = dev;
-> +	adev->dev.release = meson_audio_reset_adev_release;
-> +	adev->id = 0;
-> +
-> +	ret = auxiliary_device_init(adev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = auxiliary_device_add(adev);
-> +	if (ret) {
-> +		auxiliary_device_uninit(adev);
-> +		return ret;
-> +	}
-> +
-> +	return devm_add_action_or_reset(dev, meson_audio_reset_adev_unregister,
-> +					adev);
-> +}
-> +EXPORT_SYMBOL_GPL(meson_audio_reset_register);
-> +
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/include/soc/amlogic/meson-audio-reset.h b/include/soc/amlogic/meson-audio-reset.h
-> new file mode 100644
-> index 000000000000..279c6a2197ec
-> --- /dev/null
-> +++ b/include/soc/amlogic/meson-audio-reset.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +
-> +#ifndef __MESON_AUDIO_RESET_H
-> +#define __MESON_AUDIO_RESET_H
-> +
-> +#include <linux/device.h>
-> +
-> +int meson_audio_reset_register(struct device *dev, const char *name);
-> +
-> +#endif /* __MESON_AUDIO_RESET_H */
-
-
--- 
-Jerome
+[1]: https://b4.docs.kernel.org/en/latest/contributor/prep.html
 
