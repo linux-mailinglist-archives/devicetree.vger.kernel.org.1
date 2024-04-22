@@ -1,222 +1,151 @@
-Return-Path: <devicetree+bounces-61559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18EF8AD329
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:13:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F638AD33E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15E42B21F0E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:13:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AD491F21512
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D7F153BCB;
-	Mon, 22 Apr 2024 17:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC980153BE0;
+	Mon, 22 Apr 2024 17:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="G0c1q1Mj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C472EB11;
-	Mon, 22 Apr 2024 17:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC82153BC6;
+	Mon, 22 Apr 2024 17:21:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713806001; cv=none; b=SJwo7qdNBKLxWlnV6oOWVgfkCujMfdE6dfLV2ljkvcntRczOxDYH9+l+1f1fQOSkM+zncfggt6K7BU5C3NcgCW2HgQydscNpAHz783oYJS9N64VsDj7cZpnQBuFdO75HxO6jo5QGrNoG5rwj4QZRFVKNnLMrnuB/YYfRF7yDyGs=
+	t=1713806468; cv=none; b=hoUva+Sfr5lM94BJ4GUuKB2TRteS+v1aEWW9UaVeqNvgmBnSg8j49+X/caJHS01StyfOkW3F/q+2RBTWaMAEdDN+VnK87dHNUV5B7kOyhmlAPZJJKvb5gMXzlNnjJCaCxgtxiwL3X9aKr8stg9+kcpHDwpksb8NpDmRr+eOW3iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713806001; c=relaxed/simple;
-	bh=Qi0UashU32EVK41AYe5M6JfOWzLu17qW5BHdjn1C3PY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nEi6M0h0dGz8xqu/kKGv18NWsDaqTQGgsrQnryU9f8VYCCrvnK7mRe+saYF9SFnI0ibPF+uEkRNIbrdKQs7XoF3rU+I74Jrv98nvb6gotb0MX9uokDPWE42/YdcGKSpD5THMBgh48tt6F9pwMy73nnqJLSJiUQdoc7Z5HzXpyUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VNWzX0rHVz6K8xJ;
-	Tue, 23 Apr 2024 01:13:12 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 268E5140C72;
-	Tue, 23 Apr 2024 01:13:18 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Mon, 22 Apr
- 2024 18:13:17 +0100
-Date: Mon, 22 Apr 2024 18:13:16 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-CC: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
-	<devnull+nuno.sa.analog.com@kernel.org>, <nuno.sa@analog.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Alexandru Ardelean
-	<alexandru.ardelean@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
-	<olivier.moysan@foss.st.com>
-Subject: Re: [PATCH 1/8] iio: backend: add API for interface tuning
-Message-ID: <20240422181316.000060ff@Huawei.com>
-In-Reply-To: <2131a0feac13fa8c1341c3546761ff1a34ca79df.camel@gmail.com>
-References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
-	<20240419-ad9467-new-features-v1-1-3e7628ff6d5e@analog.com>
-	<20240420160006.720a3810@jic23-huawei>
-	<2131a0feac13fa8c1341c3546761ff1a34ca79df.camel@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1713806468; c=relaxed/simple;
+	bh=qgqSpsSQ6i9LStU3ApBLA/aCwEQLIznNK7QqnsGhiKM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i8ZMJXb8JgHfhMwL7m23gDm7qKbtes+/BuaEJenc6yUCBsALiBl2gkTGT05XdlajGTLSZ6T4wT5ks5m+mq2QMTj5ZLZ7P4jVa8IUQI9PfOgUfBNpLsdN+Tvb4d8Dgf5Ile42MJ1VcINGa1qhekOwzG01EnmZb3ZYyIb925u2gok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=G0c1q1Mj; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713806465;
+	bh=qgqSpsSQ6i9LStU3ApBLA/aCwEQLIznNK7QqnsGhiKM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G0c1q1MjVpdxEukvNuXnG2SUWKZtDFdixPSJme1WvAakT5hrd2mzkr5c0JqFEOqaJ
+	 xxESYS9tDy4oKw4pPN5yt/+9VdSAUFBMRniW2LcQrb+I78PkIRdXCBVkRG7X4lV45l
+	 r7roGnwAYzLUDoogyK/XknRWBbFrpmsyImEj+3SO2kKXgEmdRYRTFHBZhgXe/UY1N1
+	 Nv4kDI+M4vNx1VSm8y5n+Iz7p8QnE40++NHuIFg4Q/Xljb0fmvuhUc+KwUGSs072dq
+	 eE6YvX3uOKA4HIXFDPsyn/3M5/jS6IZbcqvdmpbolLMNqRCYjGovhGSTVacxDdxk0B
+	 ouRAPIqgTj1Mw==
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 808B33782134;
+	Mon, 22 Apr 2024 17:21:02 +0000 (UTC)
+Date: Mon, 22 Apr 2024 13:21:00 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	Umang Jain <umang.jain@ideasonboard.com>
+Subject: Re: [PATCH v9 07/10] ARM: dts: bcm2711-rpi: Add pinctrl-based
+ multiplexing for I2C0
+Message-ID: <961b3d43-b4c9-4573-82d7-844aa129d994@notapiano>
+References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
+ <20240402000424.4650-8-laurent.pinchart@ideasonboard.com>
+ <a21e8f30-f644-4196-a445-f4e2968eac1d@notapiano>
+ <20240422160140.GB2438@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240422160140.GB2438@pendragon.ideasonboard.com>
 
-
-> >  =20
-> > > + *
-> > > + * Get the current state of the backend channel. Typically used to c=
-heck if
-> > > + * there were any errors sending/receiving data.
-> > > + *
-> > > + * RETURNS:
-> > > + * 0 on success, negative error number on failure.
-> > > + */
-> > > +int iio_backend_chan_status(struct iio_backend *back, unsigned int c=
-han,
-> > > +			=A0=A0=A0 struct iio_backend_chan_status *status)
-> > > +{
-> > > +	return iio_backend_op_call(back, chan_status, chan, status);
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iio_backend_chan_status, IIO_BACKEND);
+On Mon, Apr 22, 2024 at 07:01:40PM +0300, Laurent Pinchart wrote:
+> Hi Nícolas,
+> 
+> On Mon, Apr 22, 2024 at 11:03:27AM -0400, Nícolas F. R. A. Prado wrote:
+> > On Tue, Apr 02, 2024 at 03:04:14AM +0300, Laurent Pinchart wrote:
+> > [..]
 > > > +
-> > > +/**
-> > > + * iio_backend_iodelay_set - Set digital I/O delay
-> > > + * @back:	Backend device
-> > > + * @lane:	Lane number
-> > > + * @tap:	Number of taps
-> > > + *
-> > > + * Controls delays on sending/receiving data. One usecase for this i=
-s to
-> > > + * calibrate the data digital interface so we get the best results w=
-hen
-> > > + * transferring data. Note that @tap has no unit since the actual de=
-lay per tap
-> > > + * is very backend specific. Hence, frontend devices typically shoul=
-d go through
-> > > + * an array of @taps (the size of that array should typically match =
-the size of
-> > > + * calibration points on the frontend device) and call this API.
-> > > + *
-> > > + * RETURNS:
-> > > + * 0 on success, negative error number on failure.
-> > > + */
-> > > +int iio_backend_iodelay_set(struct iio_backend *back, unsigned int l=
-ane,
-> > > +			=A0=A0=A0 unsigned int tap) =20
-> >=20
-> > taps maybe given it's a number of them? =20
->=20
-> yeps...
->=20
-> > Is this an industry standard term - sounds like it probably is but my
-> > google fu is failing.
-> >  =20
->=20
-> Not really (I think). It's very AMD/Xilinx specific. If you google for Xi=
-linx IDELAY
-> control you may found something. I could not find a good name (originally=
- I just had
-> 'delay' but without a proper unit it felt weird), so I admit I used the o=
-ne it made
-> more sense for my specific usecase. Open to suggestions though :).
+> > > +	i2c0mux: i2c-mux0 {
+> > > +		compatible = "i2c-mux-pinctrl";
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <0>;
+> > > +
+> > > +		i2c-parent = <&i2c0>;
+> > > +
+> > > +		pinctrl-names = "i2c0", "i2c0-vc";
+> > > +		pinctrl-0 = <&i2c0_gpio0>;
+> > > +		pinctrl-1 = <&i2c0_gpio44>;
+> > > +
+> > > +		i2c0_0: i2c@0 {
+> > > +			reg = <0>;
+> > > +			#address-cells = <1>;
+> > > +			#size-cells = <0>;
+> > > +		};
+> > > +
+> > > +		i2c0_1: i2c@1 {
+> > > +			reg = <1>;
+> > > +			#address-cells = <1>;
+> > > +			#size-cells = <0>;
+> > > +		};
+> > > +	};
+> > 
+> > Hi Laurent,
+> > 
+> > I noticed you added this new DT node that binds to a driver, but didn't enable
+> > the corresponding driver in the arm64 defconfig. We're running the DT kselftest
+> > in KernelCI which reports DT nodes that haven't bound to a driver and this node
+> > now shows up as a failure. Consider enabling the driver in the defconfig so we
+> > can continually validate that the driver correctly probes this device and we'll
+> > be able to report if it breaks in the future :).
+> 
+> Interesting, I wasn't aware of the requirement to enable in the
+> defconfig all drivers that are used by an upstream DT. I'll send a patch
+> to fix that.
 
-Taps is fine.
+Oh no, this isn't a requirement at all. I'm just pointing out that by doing it
+you enable more testing to get done on the platform automatically, which I
+thought you'd appreciate (and we do too!). So yes, please add it to the
+defconfig if you'd like to have the driver probe tested in KernelCI and thank
+you.
 
+> 
+> > PS: I've included the full test output for this platform below if you'd like to
+> > check it out. There's one single other device that fails to probe,
+> > /soc/mailbox@7e00b840, though that needs CONFIG_BCM2835_VCHIQ, which is on
+> > staging, so I'm guessing not something we should be enabling in the defconfig.
+> 
+> Probably not. We're working on getting it out of staging, it should be
+> enabled then. I've CC'ed Umang for awareness.
 
-> > > =A0
-> > > +/* vendor specific from 32 */
-> > > +enum iio_backend_test_pattern {
-> > > +	/* modified prbs9 */
-> > > +	IIO_BACKEND_ADI_PRBS_9A =3D 32, =20
-> >=20
-> > Not knowing anything much about this, does it make sense to use an enum,
-> > or should we face facts that we can't have a true generic interface
-> > and just use a suitably sized int?
-> >  =20
->=20
-> I'm also not a fan of the above but we do have generic/standard patterns =
-in this core
-> (and that could be used by others):
->=20
-> - 0x0: pn9a (device specific, modified pn9)
-> - 0x1: pn23a (device specific, modified pn23)
-> - 0x4: pn7 (standard O.150)
-> - 0x5: pn15 (standard O.150)
-> - 0x6: pn23 (standard O.150)
-> - 0x7: pn31 (standard O.150)
-> - 0x9: pnX (device specific, e.g. ad9361)
-> - 0x0A: Nibble ramp (Device specific e.g. adrv9001)
-> - 0x0B: 16 bit ramp=20
->=20
-> Lucky enough the user we have for this is only using a custom/modified pa=
-ttern. my
-> issue with the int is that how do frontends know what value do they need =
-to pass into
-> the API? It would really be very backend specific. I know we do expect fr=
-ontends to
-> have some assumed knowledge on the backend they're connected too but I wo=
-uld like to
-> avoid making those assumptions bigger than they need to be.
->=20
-> My expectation with the enum is that we can have some "contract" between =
-backends and
-> frontends on the pattern to use. I guess we could give it a try (unless y=
-ou have some
-> other idea) and if it starts going out of control, I can assume defeat an=
-d change it
-> to an int.
->=20
-> Or, is the idea to just have the int parameter and some plain defines in =
-the backend
-> header?
+That's good to hear, thank you for the information!
 
-Keep it as an enum for now and let's see where this goes.  Things called=20
-'modified' are always ominous.  Modified how?  The standard defined ones
-are easier to argue for.
-
-
->=20
-> > How do you unset the test pattern? I expected a IIO_BACKEND_NO_TESTPATE=
-RN =3D 0
-> > or something like that.
-> >  =20
->=20
-> Since this is on the input direction (and for our particular core), we do=
-n't have to
-> unset it. When you choose a test pattern, it just tells the core to match=
- for a
-> specific signal/pattern. So when you do start getting "real" data, we may=
- still have
-> those status bits saying there are "errors" but in reality we don't care.=
- We just
-> care during the tuning/calibration procedure as we configure matching pat=
-ters between
-> frontend and backend...
->=20
-> OTOH for the axi-dac, for example, we do need to unset the test pattern. =
-And we do
-> that by (re)configuring the internal CW tone or the external data source =
-(typically
-> some DMA core).
-
-Can we unset it for both input and output?  May make no difference, but eas=
-ier to reason about
-perhaps.
-
->=20
->=20
-> > > +	IIO_BACKEND_TEST_PATTERN_MAX
-> > > +};
-
-
-
+Thanks,
+Nícolas
 
