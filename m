@@ -1,91 +1,135 @@
-Return-Path: <devicetree+bounces-61484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D3948ACE3A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:31:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429C88ACE4D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:33:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAF7A2816B0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:31:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8B161F22049
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5351214F9D8;
-	Mon, 22 Apr 2024 13:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DBB14F9FA;
+	Mon, 22 Apr 2024 13:32:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W7E4rY9d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U/5p79N9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2999F5028B;
-	Mon, 22 Apr 2024 13:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3761514F8;
+	Mon, 22 Apr 2024 13:32:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713792667; cv=none; b=lcB2+8+Fqhe4ER1iiggan7T4BPk4GnXTr4wK2sxEcSny4AKg2QF+zCg1esQwN+HIznWRGy9XtH8B7X/IDNMqzkIYrx71dDhB2xzh8atPYz58OZaox9J3BqcBgaChu8iSyjfd/LnImpdTb2f3w46mtyOTMw0/cxXawUrk3USEEjU=
+	t=1713792754; cv=none; b=S0CoqxVKsSLHHoe5PTqDqCdEdklw8Xa6DVrwC591WFu3KQFNR6dzzJIUbbmZto2g+2Ihn+8Z6CGOtBUj+pjLuNhrMB+fii9l/Qa4B6zj8hDY/VjvW5UUiXHFbbOK1JbTDXZk04Se2Z/FyAKGRvbqFH3Ak4Ky+Wu541OP75Ms374=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713792667; c=relaxed/simple;
-	bh=RmWPWoJmuT/0TeUYKPz5ezD+M2RoaksC3ftBdfD+wfY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VvmWKktdXkbWW07FQ+QZev60sdpQ9sMH75wcVGjAMY6Xgqs4IT842u7vLMbJcxXIXD05F76PFqEMzwqQSBBDMs4HTO5n2Zux7aPRkN0IDwi0HJ+WgLEtoMn+6BzOoZ6mRraKl3qVaD12FdSz4LrpcaCgtHmy+cQXnXym5XvXsm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W7E4rY9d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93824C113CC;
-	Mon, 22 Apr 2024 13:31:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713792666;
-	bh=RmWPWoJmuT/0TeUYKPz5ezD+M2RoaksC3ftBdfD+wfY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W7E4rY9do8FFKN+uduXw6rv2lCPWOHbnN1YJi3knJ+DQTYw4r4KXDAWKNgzOBD7iX
-	 8pZGOBSQqPYmYyn6x2u/uUdigsbXUcNmQ6Br276FHoNjr7mXcltAje56eszwWeGUUN
-	 3QgU806dbPZ6qj1Zcy1ye6z6E1RYdCT7rF2QsUYYfcEOkmfdmnXPLgonxCaCb8GEff
-	 jj9ZyOaGHRCgxsXYEGtuaQPP7IDP4RqNo4jyrhIWk+qiUdSMxMQnH31GD686Gz4u4W
-	 V3mats/Z4lDhC6ePu2nxABTI7pR7qR7Nw1CPx49bcflqyMB1+t9kx29kGWHhyuNnZO
-	 +33+ZbY7NE5lw==
-Date: Mon, 22 Apr 2024 08:31:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, lgirdwood@gmail.com, gustavoars@kernel.org,
-	linux-pm@vger.kernel.org, matthias.bgg@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org, djakov@kernel.org,
-	keescook@chromium.org, kernel@collabora.com,
-	linux-kernel@vger.kernel.org, wenst@chromium.org,
-	amergnat@baylibre.com, broonie@kernel.org, henryc.chen@mediatek.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/7] dt-bindings: soc: mediatek: Add DVFSRC bindings
- for MT8183 and MT8195
-Message-ID: <171379264441.1122105.10432183532468198558.robh@kernel.org>
-References: <20240418094134.203330-1-angelogioacchino.delregno@collabora.com>
- <20240418094134.203330-4-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713792754; c=relaxed/simple;
+	bh=I6zTviAUpwvH8g7u39Fogj77XDX9HiwSphiao4M1bek=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=uQboT8qa9pHS7xEtqz8I75k/TOUzbMZvTaYzwbJu9eHSULbA90kbzmAtjZRa2yMAS6F+Q5GKn1WfWtqhDWdvyhtOTEDgxWlGA1wY4YP6yFKz5wje1wz62b03VQLkWSNmX7a7bkZkiEnb3lQCJzWnscyjz0IMzJdz9rc9AXTjdjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U/5p79N9; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-516d68d7a8bso4180780e87.1;
+        Mon, 22 Apr 2024 06:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713792751; x=1714397551; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pERNAC/1G6R8rWK9gYCpNgVxXW3BBITnVp0+rm86Ey0=;
+        b=U/5p79N9f1nko73gXsUP6+N0dl3k4WaZvu1iLr9rPQDPcjxvqv/6pRirM7WMg+Q6sB
+         PXuiyPfyR+g2qq0Rt+9meeeTlYi3MnvQnIkxlnfXQ7TfhmjgKV4AsGJYwkZZcrXBUU3I
+         R2Z40I40jOivY9qQqaoSoBj5snxyvgK0loUzXf/0ONEW6wDk+LR31834WGlmeMKxat18
+         xoiZJB2WqDpEZ7UQNWgLgItBX6J3xkPGWJoS8eYbY7ccoFZGLnWGuIVK4bd5VtCAju5R
+         PoMMgubXDer/Uug7NtXvAuoL14e6wYy1/+ca/HhYK/YVqgBe26wNWkdcXUxzLlof+XKX
+         0/ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713792751; x=1714397551;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pERNAC/1G6R8rWK9gYCpNgVxXW3BBITnVp0+rm86Ey0=;
+        b=t912XDy+QgIaB0p8et9oVqY0D9WXawWwkJbA5CJRQGPJ0ycmwr2OzQrOOCctzmJWD2
+         Hd+ul8YxexEwRszEk3rTGToQH/BLk+AaKTb8JwCnexHUT5afaU1vz0StMEfGsna37Apx
+         1ZqOGMLb7GnhuS2jRwVOTggc8gFYkdv3tJeVjJtgeR+VTziEy7oHIHISew6JVp8rAOdR
+         2GrnN2lFPBPBPtqD5jcZuYECnSPZKWMnkWGgI/Y7nW3VKIUlQ3YFLU2JLKEhIdbiDaI7
+         2cKFJBa3y2Lv3FSh/OTW/y/nfIUOF102MmFJPFwkjjpiAHYpAQfhBaSJ4IWiteJ6F/4p
+         wqBg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9mrHhiSmQdHWjm2VJCY6Msj0nHfq0LJAq31ZsKDwgKUOIVqYcjJK2TKf4tFKGzBi/qcwLarhIjl5xVLJkMetmkWoZrTnqcs8tyPwuN4td1yoHtcIixmUqZ4YysecpEn55A/9Ep1ni/lzyHMDIdVivc/MzVZ1n5gt1DXmALWiFKsNsS/AVAA==
+X-Gm-Message-State: AOJu0YxW9ss/LWFkglxNPZRfYdcRTwbNIoerwqWrO/1TS/LN/KB/5q4Z
+	AGJa/OUoMtRhq/9THI3Te9UvG51fYWQGwszhhIbiJxzyNnIvMoBr
+X-Google-Smtp-Source: AGHT+IHYr/SQLvrDaPycD0DIJxeMydM1vclpT/dW31eMp7lP6Lg2UMH0puva6nFBK2rqFFB63dm5IQ==
+X-Received: by 2002:ac2:5f87:0:b0:516:c97d:96b4 with SMTP id r7-20020ac25f87000000b00516c97d96b4mr3741310lfe.2.1713792751047;
+        Mon, 22 Apr 2024 06:32:31 -0700 (PDT)
+Received: from CVSIT-Server.. ([193.232.173.109])
+        by smtp.gmail.com with ESMTPSA id d22-20020ac241d6000000b0051327d2f5e5sm1729568lfi.119.2024.04.22.06.32.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Apr 2024 06:32:30 -0700 (PDT)
+From: Konstantin Pugin <ria.freelander@gmail.com>
+To: 
+Cc: krzk@kernel.org,
+	conor@kernel.org,
+	lkp@intel.com,
+	vz@mleia.com,
+	robh@kernel.org,
+	jcmvbkbc@gmail.com,
+	nicolas.ferre@microchip.com,
+	manikanta.guntupalli@amd.com,
+	corbet@lwn.net,
+	ychuang3@nuvoton.com,
+	u.kleine-koenig@pengutronix.de,
+	Maarten.Brock@sttls.nl,
+	Konstantin Pugin <ria.freelander@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lech Perczak <lech.perczak@camlingroup.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v7 2/3] dt-bindings: sc16is7xx: Add compatible line for XR20M1172 UART
+Date: Mon, 22 Apr 2024 16:32:14 +0300
+Message-Id: <20240422133219.2710061-3-ria.freelander@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240422133219.2710061-1-ria.freelander@gmail.com>
+References: <20240422133219.2710061-1-ria.freelander@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418094134.203330-4-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
 
+Add EXAR XR20M1172 UART compatible line into devicetree documentation.
 
-On Thu, 18 Apr 2024 11:41:30 +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings for the MediaTek Dynamic Voltage and Frequency Scaling
-> Resource Collector (DVFSRC), a hardware module used to collect all the
-> requests from both software and the various remote processors embedded
-> into the SoC and decide about a minimum operating voltage and a minimum
-> DRAM frequency to fulfill those requests in an effort to provide the
-> best achievable performance per watt.
-> 
-> This hardware IP is capable of transparently performing direct register
-> R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.yaml
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+Signed-off-by: Konstantin Pugin <ria.freelander@gmail.com>
+---
+ Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+index 5dec15b7e7c3..c4bedf23368b 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+@@ -12,6 +12,7 @@ maintainers:
+ properties:
+   compatible:
+     enum:
++      - exar,xr20m1172
+       - nxp,sc16is740
+       - nxp,sc16is741
+       - nxp,sc16is750
+-- 
+2.34.1
 
 
