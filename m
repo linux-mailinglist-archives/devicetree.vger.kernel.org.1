@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-61489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B805E8ACE76
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:38:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9028ACE7D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:39:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5950E1F210BC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:38:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F04FB282883
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B7B14F9D9;
-	Mon, 22 Apr 2024 13:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D5014F9F1;
+	Mon, 22 Apr 2024 13:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="mLcLmNSC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iixz3cF+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D460914F10E;
-	Mon, 22 Apr 2024 13:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8DB13F45F;
+	Mon, 22 Apr 2024 13:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713793116; cv=none; b=fNL5X6snxNS8+uIS9GbtcLg7ngteRdEiJkAAOPjKbMJzVuPTU5BDYLG5BBgq4wBh6q/FBtCh4yV/AVnhFZgNAtNVDp6Q4mzpqiDDQSmGcv06TbrssrNjr3b0t1tU9aueeSWhCjP479dYkuV3zoApHbGzECO7+qHl/kxexlxVqZo=
+	t=1713793150; cv=none; b=liovaRay6N+NAbmtYWbt3gGyZU7jRMwYSaf6YrsexGGMtwP+FsB7cTB0jdHHpG9We8IJn5Y1UKFa6xD0jOGoVbOyehOmvoxECYpMQNrye/MAxkCt9ngXu1G7dOmkJMom8BYYY0RgMy1rneP9BKCUgzvF8AmOioSd1rutgsVN+1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713793116; c=relaxed/simple;
-	bh=6F+LT2q3yqToeF5QNOLF1VqWjh6jSnDMZ0wnh3Nc+Lw=;
+	s=arc-20240116; t=1713793150; c=relaxed/simple;
+	bh=aT4PQ5lC5s45eaoHkuUwSZZpTi8/HgCpiBvJiq65H6U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ApWqcoZacuN5b77WuwxyAu1gzqc9EQByWjrfl1GoCoTCQQwZyTaVfw1Rl6P8sED7pFlNrM+2hJCJGa0Cu6FaCSeDmedLYcUQbfoIpwVesbSq9zc7Q0j1PWek/JyejluhEoGFeRIL1noQQbPCCuwKgNcC1QJC1qKi0v8DIN3EG08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=mLcLmNSC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=i/z/ljxJCkCbXFoPaHHHNc0jJSxMgEuJU2NmFrG20xw=; b=mLcLmNSCdrh0Fz850zbJXom4Iw
-	K9BFaWBG6Mu8rmWJ9OUDJecizh3SPiaSGkWUzUp5BHb3hHgAJMOZ9BLS0cay6cCSeqbOg+kZIcEYt
-	TKsqsZZEEJA/9mhJTGQNThMLo9VtqMtowJxDEzIJJMTltkeMT0xvR6q7lU4STfl75lsc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rytsJ-00Dcas-VI; Mon, 22 Apr 2024 15:38:27 +0200
-Date: Mon, 22 Apr 2024 15:38:27 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=gUWTGwvefZQ0dUwhJdzyslEPErc8R+gGFGtVybcx8z60LEvj05ziVWPfTG5PbRDsci94mrKpzt91Fwvi+OCb+y9nt5qKku15ECLIOTPb+g/FQ0zrQ99ItDd2qfbEWB5Sg0PP54fvjRrsRkwYYSN1+j5of6xV6YcfzAD8ybnX5pE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iixz3cF+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADBABC113CC;
+	Mon, 22 Apr 2024 13:39:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713793149;
+	bh=aT4PQ5lC5s45eaoHkuUwSZZpTi8/HgCpiBvJiq65H6U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iixz3cF+UZtX6hXDhGzB1/f/S2pBWT0Kx4vtFTQirpEOhjL/QuJJa7YPp5tS4wu39
+	 f8qunA41uat41G3IvI6voh6PBMZAF49UtYI1X0M5Dy+xzyHF0vRVhXAogd0pPI3rjX
+	 qzp5xaxRJgFigyl6IzetX8GCLxZzD2UuiTj9hpSP6mnSetZH4TSqW0i4KkimezbfzT
+	 3HG6xQNbITqhszhY1MdSB8AqMAghqh+T8mdwwIrq3WyozrjKcWmReNGQDj8BzpUbyi
+	 3nMcDiq36+siQ6Dfo3jn6P36uNwoWNRq5uxE0dhKEHtbbROeZoFvT78eG5vvb6Mo+v
+	 zalyiQF9eBElQ==
+Date: Mon, 22 Apr 2024 08:39:07 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: David Airlie <airlied@gmail.com>, linux-pwm@vger.kernel.org,
+	Philipp Zabel <p.zabel@pengutronix.de>, CK Hu <ck.hu@mediatek.com>,
+	linux-arm-kernel@lists.infradead.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	linux-mediatek@lists.infradead.org,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] arm64: dts: add description for solidrun cn9130
- som and clearfog boards
-Message-ID: <0c43e182-ac86-4a70-88a9-d064bfa74d6c@lunn.ch>
-References: <20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com>
- <20240414-cn9130-som-v3-3-350a67d44e0a@solid-run.com>
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Fabien Parent <fparent@baylibre.com>, Will Deacon <will@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Stephen Boyd <sboyd@kernel.org>, Jitao Shi <jitao.shi@mediatek.com>,
+	Markus Schneider-Pargmann <msp@baylibre.com>,
+	Daniel Vetter <daniel@ffwll.ch>, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 07/17] dt-bindings: display: mediatek: dpi: add
+ compatible for MT8365
+Message-ID: <171379313275.1132930.2620391532022388821.robh@kernel.org>
+References: <20231023-display-support-v3-0-53388f3ed34b@baylibre.com>
+ <20231023-display-support-v3-7-53388f3ed34b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,35 +77,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240414-cn9130-som-v3-3-350a67d44e0a@solid-run.com>
+In-Reply-To: <20231023-display-support-v3-7-53388f3ed34b@baylibre.com>
 
-On Sun, Apr 14, 2024 at 02:58:34PM +0200, Josua Mayer wrote:
-> Add description for the SolidRun CN9130 SoM, and Clearfog Base / Pro
-> reference boards.
-> 
-> The SoM has been designed as a pin-compatible replacement for the older
-> Armada 388 based SoM. Therefore it supports the same boards and a
-> similar feature set.
-> 
-> Most notable upgrades:
-> - 4x Cortex-A72
-> - 10Gbps SFP
-> - Both eMMC and SD supported at the same time
-> 
-> The developer first supporting this product at SolidRun decided to use
-> different filenames for the DTBs: Armada 388 uses the full
-> "clearfog" string while cn9130 uses the abbreviation "cf".
-> This name is already hard-coded in pre-installed vendor u-boot and can
-> not be changed easily.
-> 
-> NOTICE IN CASE ANYBODY WANTS TO SELF-UPGRADE:
-> CN9130 SoM has a different footprint from Armada 388 SoM.
-> Components on the carrier board below the SoM may collide causing
-> damage, such as on Clearfog Base.
-> 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Thu, 18 Apr 2024 16:16:55 +0200, Alexandre Mergnat wrote:
+> Add dt-binding documentation of dpi for MediaTek MT8365 SoC.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-    Andrew
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
