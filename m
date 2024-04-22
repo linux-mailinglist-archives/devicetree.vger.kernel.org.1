@@ -1,287 +1,254 @@
-Return-Path: <devicetree+bounces-61504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C918ACF80
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:33:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 487098ACF71
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D4201F217C8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:33:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F35EA284285
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2622F1514C5;
-	Mon, 22 Apr 2024 14:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37F315218B;
+	Mon, 22 Apr 2024 14:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="YOaMLEJT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JREs8Q4M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A6031A60;
-	Mon, 22 Apr 2024 14:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378AC152192
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 14:31:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713796419; cv=none; b=KTZLKQl9Klvg7jqL09kQrUj+x4gDuWUZ9Nlye4RS3iHKVyBDrrAC8yz45McAOcgzwWZJjrJFyeKVhw8K/A+xTVCEGw4bm+JBDBtSl9J2TL+y6f+OmN4J2RjMRJG/AldwAzFbdmeDwFr+fzjoUgqLET/ZncNQ27uRZozjgpjrwd4=
+	t=1713796314; cv=none; b=IKNexVbXztFoUHyCVDVmoO6lyWyxqfJbAUZ4hgc7qsUSf4f5t2Zx1JKgd+jR0atRy3mywSS1AsaeB1d9LaNiLDe+bi3c6Hbv+VomUhoKp2OsBeGPwSHmUgRFiSDzbmW40yYSNcv8XRTe2ZO/FHs3MxyLg+MDpPXJByV1pW9fftc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713796419; c=relaxed/simple;
-	bh=32lb28Z1lYWMZpAbjMEe1sXkQLPBbUMC5yKyb4I3/l8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UM890dOtDHHFDrltqH1fTzdFuGv8Wb1yEKVhGVNk4haT/9m5ggkGW7xGTppoy4FFKgRX0eVxCAeItydhw+hFscUXhuIuGf7tdAsw3pw7ICv80IlP9ObfT1EbY0Xa3NYwWdbEveoCa5lEJIgOGF9cOUxq3m+zK9PJObpL74/gBrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=YOaMLEJT; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id EEAC812000E;
-	Mon, 22 Apr 2024 17:33:29 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru EEAC812000E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713796409;
-	bh=pg3cuV5F8kgkTSzq1f+/Nqe/VS1vbp7/MOJbVVv5HY8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=YOaMLEJT20TTg+ZXgm8/NFw9WAnHbDAhFTWyUS7SFGsGckragCFd5biJ/qQ17+6m4
-	 EQp9NTBgkA9O+sYav117553xximaeyzNwJ0AqI0Mc9qVvYoG4gVgI7UcdSpHHp+CwD
-	 qOEXLHjPUy/DqAM0+cgCBPmxrgOgAFKx7Ma+mgqiYt/FJX2RqUD1Ctl+9LMCEKzZli
-	 R2PKOrgORnJrjVzq5S9tQdw93/6gRMIbGGvLdEOX8ljFa5x5Jq+l8PGx80zTlCO972
-	 KYwJlr3Oz3aeFjrdG29ggb3y+B36be74DF16MFyR7IpJx9AD5zzvIqeUMN/aOI7gwY
-	 SnuMXh0zQmLuA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 22 Apr 2024 17:33:29 +0300 (MSK)
-Received: from [172.28.225.118] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 22 Apr 2024 17:33:29 +0300
-Message-ID: <0272deb1-5427-4805-a6f1-df223a5c14f5@salutedevices.com>
-Date: Mon, 22 Apr 2024 17:31:12 +0300
+	s=arc-20240116; t=1713796314; c=relaxed/simple;
+	bh=Ygh4m5cCpdrw4QNncMQcx2VxNsPyT145KZ8wuVy33pk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r+W267nmE3CxilpFHXPdJ1n5dtCkmLdu1SHv3LfmqWlFxhvR5/EgIB6zizPUgowaxaw5UetGxemuQ7KAZIy2TdmPGTM05iieoO0CllaY4TwDX5xaESyn5L+sLYz1aUATU4tMpcg3uCeOqdUglr5N+pzXEyl3/omjhjzTceG4/Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JREs8Q4M; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6ece8991654so4255235b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:31:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713796312; x=1714401112; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=I6gA3DduJ/5QN/9c3l1EeoTlW606PB+epDSKgeExDug=;
+        b=JREs8Q4MVaau6uRCIWjOyu0XuSncFGs2GV4Qh37aPbHKEi+qtsqJwRdL3uV8EfWkOj
+         up9zORgSYNkVFrhSOWafgpENUDJSsx2zS11bK9JGBZU3Tt73D2lQ21huFmm1iBs9Gw4l
+         WhQ0mKwd6eQvNfDof1W71ZFM/FvpVHihCGPnnNXZ2Jg3VV8AUJ1B3L95srdLu602wjN3
+         rb556ePbG3Z3R64pIxTdBUJPA97PNdK13AF9soALoQCdUOQ9pm6Gf/xDVhuGPSxSyc0P
+         OTglbY+EBAf6VrOy0OavmR+3PD3bC4/vRylkByPA1rkBtrxcDEr0vCYRi8ttgTh7eZhz
+         w2dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713796312; x=1714401112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I6gA3DduJ/5QN/9c3l1EeoTlW606PB+epDSKgeExDug=;
+        b=lmKyEtOl/JB0GHSidTspE7AjNnAX54eEzFZaiX8zXiRaWBPePPMYL6aLJZ7dwC05K/
+         ZjFSoYULOrgcGSXGRSjpSNWjpFO48wo6IISt8xb7ZYc8le2u7flDhLi3x/4akme2uhb3
+         Lp1+q2PH+m3rCOuVWj/Xf9ApsuR8Evc4WE9gLMfONawa9PE5fPa7zO+mbix0doAT1M1/
+         8WrWnUgUiWhKQempAO3ug/HRoMQCDrx87fFIpKj7qqZ5XTaXYlosSCw5W8Td96BCsSl6
+         tPBBjRDOM1C9yPdOp3lSdyGPrklFHtKEkvLiXKrKSxa90nepV/cSL+dyCgDQBRGPqS6Z
+         KAvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpb+7CFH0itf9j8MKPZuKji6XH4BluDnIhlEjomfgeiDRVw4URz52AAxa5Gkq+F59n4HWdUNoGlL/eXm/Uvb6FeOER5ZGL2DRRcw==
+X-Gm-Message-State: AOJu0YxWETt/32HVXTcYhs9CjOv9lWtFER5jp+HABAY8tv3BPhoFayvu
+	VgBG5UMtRI3ezdwQwbu4ivnTH2pKGIj+1Skyb0Kvj9PzGEPx389HmfprU+nGFQ==
+X-Google-Smtp-Source: AGHT+IGN2yX1hZi9NqmP5nGDbTnPt2JRBgZs/+VkK0pGcrgVLali0lkvBAV10nf0CRDwS9U0erEjfw==
+X-Received: by 2002:a05:6a20:734d:b0:1aa:755f:1746 with SMTP id v13-20020a056a20734d00b001aa755f1746mr15651557pzc.22.1713796312334;
+        Mon, 22 Apr 2024 07:31:52 -0700 (PDT)
+Received: from thinkpad ([120.60.70.118])
+        by smtp.gmail.com with ESMTPSA id f33-20020a056a000b2100b006ecee611c05sm7904647pfu.182.2024.04.22.07.31.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Apr 2024 07:31:51 -0700 (PDT)
+Date: Mon, 22 Apr 2024 20:01:43 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
+	bmasney@redhat.com, djakov@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	vireshk@kernel.org, quic_vbadigan@quicinc.com,
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v10 2/6] PCI: qcom: Add ICC bandwidth vote for CPU to
+ PCIe path
+Message-ID: <20240422143143.GD9775@thinkpad>
+References: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
+ <20240409-opp_support-v10-2-1956e6be343f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
- audio clock controller driver
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin
- Hilman <khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Jiucheng Xu <jiucheng.xu@amlogic.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
- <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
- <20240419210949.GA3979121-robh@kernel.org>
- <b86f1058-da53-4a9c-bc12-e7297351b482@salutedevices.com>
- <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
- <1jle55c0bl.fsf@starbuckisacylon.baylibre.com>
- <1jzftlakgg.fsf@starbuckisacylon.baylibre.com>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <1jzftlakgg.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184850 [Apr 22 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;lore.kernel.org:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;sberdevices.ru:7.1.1,5.0.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/04/22 11:56:00
-X-KSMG-LinksScanning: Clean, bases: 2024/04/22 13:18:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/22 12:16:00 #24919134
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240409-opp_support-v10-2-1956e6be343f@quicinc.com>
 
+On Tue, Apr 09, 2024 at 03:43:20PM +0530, Krishna chaitanya chundru wrote:
+> To access PCIe registers of the host controller and endpoint PCIe
+> BAR space, config space the CPU-PCIe ICC (interconnect) path should
 
+'To access the host controller registers and endpoint BAR/Config space,'
 
-On 4/22/24 10:57, Jerome Brunet wrote:
+> be voted otherwise it may lead to NoC (Network on chip) timeout.
+> We are surviving because of other driver voting for this path.
 > 
-> On Mon 22 Apr 2024 at 09:16, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> As there is less access on this path compared to PCIe to mem path
+> add minimum vote i.e 1KBps bandwidth always which is sufficient enough
+> to keep the path active and is recommended by HW team.
 > 
->> On Sun 21 Apr 2024 at 20:14, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->>> On 20/04/2024 18:15, Jan Dakinevich wrote:
->>>>
->>>>
->>>> On 4/20/24 00:09, Rob Herring wrote:
->>>>> On Fri, Apr 19, 2024 at 03:58:10PM +0300, Jan Dakinevich wrote:
->>>>>> Add device tree bindings for A1 SoC audio clock and reset controllers.
->>>>>>
->>>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->>>>>> ---
->>>>>>
->>>>>> This controller has 6 mandatory and up to 20 optional clocks. To describe
->>>>>> this, I use 'additionalItems'. It produces correct processed-schema.json:
->>>>>>
->>>>>>   "clock-names": {
->>>>>>       "maxItems": 26,
->>>>>>       "items": [
->>>>>>           {
->>>>>>               "const": "pclk"
->>>>>>           },
->>>>>>           {
->>>>>>               "const": "dds_in"
->>>>>>           },
->>>>>>           {
->>>>>>               "const": "fclk_div2"
->>>>>>           },
->>>>>>           {
->>>>>>               "const": "fclk_div3"
->>>>>>           },
->>>>>>           {
->>>>>>               "const": "hifi_pll"
->>>>>>           },
->>>>>>           {
->>>>>>               "const": "xtal"
->>>>>>           }
->>>>>>       ],
->>>>>>       "additionalItems": {
->>>>>>           "oneOf": [
->>>>>>               {
->>>>>>                   "pattern": "^slv_sclk[0-9]$"
->>>>>>               },
->>>>>>               {
->>>>>>                   "pattern": "^slv_lrclk[0-9]$"
->>>>>>               }
->>>>>>           ]
->>>>>>       },
->>>>>>       "type": "array",
->>>>>>       "minItems": 6
->>>>>>   },
->>>>>>
->>>>>> and it behaves as expected. However, the checking is followed by
->>>>>> complaints like this:
->>>>>>
->>>>>>   Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
->>>>>>
->>>>>> And indeed, 'additionalItems' has boolean type in meta-schema. So, how to
->>>>>> do it right?
->>>>>
->>>>> The meta-schemas are written both to prevent nonsense that json-schema 
->>>>> allows by default (e.g additionalitems (wrong case)) and constraints to 
->>>>> follow the patterns we expect. I'm happy to loosen the latter case if 
->>>>> there's really a need. 
->>>>>
->>>>> Generally, most bindings shouldn't be using 'additionalItems' at all as 
->>>>> all entries should be defined, but there's a few exceptions. Here, the 
->>>>> only reasoning I see is 26 entries is a lot to write out, but that 
->>>>> wouldn't really justify it. 
->>>>
->>>> Writing a lot of entries don't scary me too much, but the reason is that
->>>> the existence of optional clock sources depends on schematics. Also, we
->>>
->>> Aren't you documenting SoC component, not a board? So how exactly it
->>> depends on schematics? SoC is done or not done...
->>>
->>>> unable to declare dt-nodes for 'clocks' array in any generic way,
->>>> because their declaration would depends on that what is actually
->>>> connected to the SoC (dt-node could be "fixed-clock" with specific rate
->>>> or something else).
->>>
->>> So these are clock inputs to the SoC?
->>>
->>
->> Yes, possibly.
->> Like an external crystal or a set clocks provided by an external codec
->> where the codec is the clock master of the link.
->>
->> This is same case as the AXG that was discussed here:
->> https://lore.kernel.org/linux-devicetree/20230808194811.113087-1-alexander.stein@mailbox.org/
->>
->> IMO, like the AXG, only the pclk is a required clock.
->> All the others - master and slave clocks - are optional.
->> The controller is designed to operate with grounded inputs
-> 
-> Looking again at the implementation of the controller, there is a clear
-> indication in patch 3 that the controller interface is the same as the
-> AXG and that the above statement is true.
-> > The AXG had 8 master clocks wired in. The A1 just has 5 - and 3 grounded
-> master clocks. This is why you to had to provide a mux input table to
-> skip the grounded inputs. You would not have to do so if the controller was
-> properly declared with the 8 master clock input, as it actually is.
+> In suspend to ram case there can be some DBI access. Except in suspend
+> to ram case disable CPU-PCIe ICC path after register space access
+> is done.
 > 
 
-For simplicity, I could make something like this in device tree:
+During S2RAM (Suspend-to-RAM), DBI access can happen very late (while disabling
+the boot CPU). So do not disable the CPU-PCIe interconnect path during S2RAM as
+that may lead to NoC error.
 
-clocks = <&clk0,
-          &clk1,
-          &clk2,
-          &clk3,
-          &clk4,
-          0,
-          0,
-          0>
-clock-names = <"mst_in0",
-               "mst_in1",
-               "mst_in2"
-               "mst_in2"
-               "mst_in3"
-               "mst_in4"
-               "mst_in5"
-               "mst_in6"
-               "mst_in7">
-
-But I don't see in the doc that the last 3 clocks are grounded to
-anywhere. It will be just community's assumption about internals of the
-controller.
-
-Anyway, I still don't understand what to do with external slv_* clocks.
-I can do the same as in example above: list slv_(s|lr)clk[0-9] in
-"clock-names" and fill the rest if "clocks" by "0" phandles.
-
-> It also shows that it is a bad idea to name input after what is coming
-> in (like you do with "dds_in" or "fclk_div2") instead of what they
-> actually are like in the AXG (mst0, mst1, etc ...)
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 43 ++++++++++++++++++++++++++++++----
+>  1 file changed, 39 insertions(+), 4 deletions(-)
 > 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 14772edcf0d3..e53422171c01 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -245,6 +245,7 @@ struct qcom_pcie {
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+>  	struct icc_path *icc_mem;
+> +	struct icc_path *icc_cpu;
+>  	const struct qcom_pcie_cfg *cfg;
+>  	struct dentry *debugfs;
+>  	bool suspended;
+> @@ -1409,6 +1410,9 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>  	if (IS_ERR(pcie->icc_mem))
+>  		return PTR_ERR(pcie->icc_mem);
+>  
+> +	pcie->icc_cpu = devm_of_icc_get(pci->dev, "cpu-pcie");
+> +	if (IS_ERR(pcie->icc_cpu))
+> +		return PTR_ERR(pcie->icc_cpu);
+>  	/*
+>  	 * Some Qualcomm platforms require interconnect bandwidth constraints
+>  	 * to be set before enabling interconnect clocks.
+> @@ -1418,7 +1422,20 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>  	 */
+>  	ret = icc_set_bw(pcie->icc_mem, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
+>  	if (ret) {
+> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+> +		dev_err(pci->dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n",
 
-I agree, these are not the best names.
+'Failed to set bandwidth for PCIe-MEM interconnect path: %d\n'
 
->>
->>>>
->>>> By the way, I don't know any example (neither for A1 SoC nor for other
->>>> Amlogic's SoCs) where these optional clocks are used, but they are
->>>> allowed by hw.
->>
->> Those scenario exists and have been tested. There is just no dts using
->> that upstream because they are all mostly copy of the AML ref design.
->>
->>>>
->>>> This is my understanding of this controller. I hope, Jerome Brunet will
->>>> clarify how it actually works.
->>>
->>
->> I think the simpliest way to deal with this to just list all the clocks
->> with 'minItems = 1'. It is going be hard to read with a lot of '<0>,' in
->> the DTS when do need those slave clocks but at least the binding doc
->> will be simple.
->>
->>> Best regards,
->>> Krzysztof
->>
->> If you are going ahead with this, please name the file
->> amlogic,axg-audio-clkc.yaml because this is really the first controller
->> of the type and is meant to be documented in the same file.
->>
->> You are free to handle the conversion of the AXG at the same time if
->> you'd like. It would be much appreciated if you do.
-> 
-> 
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Since the CPU-PCIe path is only used for activities like register
+> +	 * access of the host controller and endpoint Config/BAR space access,
+> +	 * HW team has recommended to use a  minimal bandwidth of 1KBps just to
+
+Single space after 'a'
+
+> +	 * keep the path active.
+> +	 */
+> +	ret = icc_set_bw(pcie->icc_cpu, 0, kBps_to_icc(1));
+> +	if (ret) {
+> +		dev_err(pci->dev, "Failed to set interconnect bandwidth for CPU-PCIe: %d\n",
+
+'Failed to set bandwidth for CPU-PCIe interconnect path: %d\n'
+
+>  			ret);
+>  		return ret;
+>  	}
+> @@ -1448,7 +1465,7 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
+>  
+>  	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
+>  	if (ret) {
+> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+> +		dev_err(pci->dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n",
+
+'Failed to set bandwidth for PCIe-MEM interconnect path: %d\n'
+
+>  			ret);
+>  	}
+>  }
+> @@ -1610,7 +1627,7 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>  	 */
+>  	ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
+>  	if (ret) {
+> -		dev_err(dev, "Failed to set interconnect bandwidth: %d\n", ret);
+> +		dev_err(dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n", ret);
+
+'Failed to set bandwidth for PCIe-MEM interconnect path: %d\n'
+
+>  		return ret;
+>  	}
+>  
+> @@ -1634,7 +1651,17 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>  		pcie->suspended = true;
+>  	}
+>  
+> -	return 0;
+> +	/*
+> +	 * In suspend to ram case there are DBI access, except in suspend to ram case
+> +	 * remove the vote for CPU-PCIe path now, since at this point onwards,
+> +	 * no register access will be done.
+> +	 */
+
+	/*
+	 * Only disable CPU-PCIe interconnect path if the suspend is non-S2RAM.
+	 * Because on some platforms, DBI access can happen very late during the
+	 * S2RAM and a non-active CPU-PCIe interconnect path may lead to NoC
+	 * error.
+	 */
+
+> +	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
+> +		ret = icc_disable(pcie->icc_cpu);
+> +		if (ret)
+> +			dev_err(dev, "Failed to disable Interconnect path of CPU-PCIe: %d\n", ret);
+
+'Failed to disable CPU-PCIe interconnect path: %d\n'
+
+> +	}
+> +	return ret;
+>  }
+>  
+>  static int qcom_pcie_resume_noirq(struct device *dev)
+> @@ -1642,6 +1669,14 @@ static int qcom_pcie_resume_noirq(struct device *dev)
+>  	struct qcom_pcie *pcie = dev_get_drvdata(dev);
+>  	int ret;
+>  
+> +	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
+> +		ret = icc_enable(pcie->icc_cpu);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to enable Interconnect path of CPU-PCIe: %d\n", ret);
+
+'Failed to enable CPU-PCIe interconnect path: %d\n'
+
+- Mani
 
 -- 
-Best regards
-Jan Dakinevich
+மணிவண்ணன் சதாசிவம்
 
