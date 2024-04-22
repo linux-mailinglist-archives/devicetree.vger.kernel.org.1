@@ -1,207 +1,123 @@
-Return-Path: <devicetree+bounces-61511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0798AD022
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:04:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90AA78AD035
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF64A1F22C7A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:04:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F27B1F21B2D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD95152513;
-	Mon, 22 Apr 2024 15:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9683115251B;
+	Mon, 22 Apr 2024 15:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="tAnB9/d9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hQ07eb1N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6366152505;
-	Mon, 22 Apr 2024 15:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741BE5025E;
+	Mon, 22 Apr 2024 15:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713798217; cv=none; b=bMRZm814oERwidI0fMaPWdtWlrez4Uo1gPFAGz5KbJc/CuZYyEYeKq9AFwHgBeEpOzvU8RjtTbz7v2fi6CZRfcfvmzHR42sMOBBEgD2DizSBPTxTQdg+qBbMoTCVR79fU4tfc+C5UzVi2vtiDGW5PJp1ywXx8LsVRAvhK9EqnrI=
+	t=1713798390; cv=none; b=pQEgkqFsmQ3wGXxy7TpcM8Yjg5fNf7oxcpfRT/qDvEyuTCTnPwAshx7EqSsqKPLQYd0u8vXtcruO94BqThL4GW4Nm0PRG0xgw6BtsDiJ9wkJ9NOnlvRCpAZtkVhu/Yzu5aMZYb6F2sRjJkXZRmLKrTFJ9z6OEgHzMm3aYueitSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713798217; c=relaxed/simple;
-	bh=K1c2J2jmo6umVK5HW0tWaNBNJhKzdLGZgNU2VMJH8bs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DGQBtvucrJyiiiUdqlp/OfCEzsmtLwWvjbxLBQ4NBCgvBhm3UUBM8S85sdPOoLMAKeNm9kpnQyT6HDN+01OfjWEUQlKXW+tGnVUzoB18OYo+n/0oW5AIDUF7vV/bk9py5ZO1P/xeRRMIpMnc6uAQxIMXhoPyk0472uLZeSxn1pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=tAnB9/d9; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713798213;
-	bh=K1c2J2jmo6umVK5HW0tWaNBNJhKzdLGZgNU2VMJH8bs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tAnB9/d92phCLscFKn6v8HppPH56kzhSHvWO8X4hJ2jnNMllXUz4w+AfCBK/DD7OU
-	 coFDiRV4tSTggJS/eRqahBz+t7236i36TCbSAURlrlzNVneSjgq1saasp36AafX3B9
-	 hfwEhJchc93CU9Se85IVWvDMy5Cf+jwjMTyiBBGLS4I6WT7Q5a9+epUlbxhO0ZDTD7
-	 zmXd0/2/Yy8BuLSw22RHY9S8uwPuf1C6EB7C7nDqOGtYk4EMptA+qf2c/pjlYpvIKT
-	 HiloKrwV10oj85lfOi9bQHYKcvSmFpz/FbzlRX5Mm3nPC9mlVEc/R9/snvHpm6ZEh9
-	 nEZM8ikaFO5Cw==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CE93B3782123;
-	Mon, 22 Apr 2024 15:03:29 +0000 (UTC)
-Date: Mon, 22 Apr 2024 11:03:27 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 07/10] ARM: dts: bcm2711-rpi: Add pinctrl-based
- multiplexing for I2C0
-Message-ID: <a21e8f30-f644-4196-a445-f4e2968eac1d@notapiano>
-References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
- <20240402000424.4650-8-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1713798390; c=relaxed/simple;
+	bh=1ZM36XBQ+Ug/+Msdxo9lrVnAiv5Wct4bZHL2H8s5r7I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Td0nsR7r+MMUDlQDW0xUpXSEEwY1UJJ4bqlpMgB0KwA/Oc3k2Wc+b+kQWjxvvomO2Q5J/taZpjoHf+qyrCkWg2I/bBbOMA0c3g9kwHLhtBxC8p21K74kyzOwlAIzMVx5jzWAVV2AjLmyZxMHz12SfYKySNuockXN36KJuBzd6pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hQ07eb1N; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57215beb09bso418967a12.3;
+        Mon, 22 Apr 2024 08:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713798384; x=1714403184; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1ZM36XBQ+Ug/+Msdxo9lrVnAiv5Wct4bZHL2H8s5r7I=;
+        b=hQ07eb1Nh28KgRizECkQ87fBwg4IAxqqpAQhCb5OF2hItYGfQ/l4p8PeEP3o3mc5jg
+         RtWE0lSEKTzqDQTDgBKDB/V8K00utof+wOcg9upOiRYg3e33WPANImhjV9omQB2Xq8+s
+         EKKj7rrWHH0B1HJasnaEAKDJGlwBv7c2g5acMCrCWI+wGX9OaWzK1ynvjXRBmLVaRVVq
+         MI77x0DVxmXIf2Y1u96Y677ykw5tWQpqyimnFqWq5zzruGPE+0rMgYq2gGO3ry4xCHuw
+         zRqdyODqU0ef6ahDaSsXo7r/wkMY5dp5xn4KeqGwtl8lwq+QhpghSYWvggPSHEFC4IQx
+         ZcRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713798384; x=1714403184;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1ZM36XBQ+Ug/+Msdxo9lrVnAiv5Wct4bZHL2H8s5r7I=;
+        b=RyTy0/rpJSKGSSsb1E2oPYG6KJr8oTlodB1ItrBj0wZF5Ri3aoUC73zkC0RAI3Fsjr
+         6oVxiQW+NZLvNCfVYfJxIeouZkJcEnPxjdjKV1TS0vhUTrgesszhnpJJc3U+hREoHG+1
+         4242CYsPolBnEVVq8vmSSQOgmJwktFTF5EkRrZs5F75yuPkD7aMSZuousbln4j7t6Iac
+         fMn3gzKFEzA7eaHUcGR1BaWXLAXpcxiq1C56uvisHIqehyyDdbgLY0umCCdmt5o+ARke
+         o22dmKuSwu1OhCU8IkRL1/AMLam11IgC6MJduJBXoJFdlRrBRd9hkr7q0DmeBAMura0N
+         J24g==
+X-Forwarded-Encrypted: i=1; AJvYcCXgWGYN89/gtvrNcJTel2XjegNRAnbsqzdBIa/W0FdNZ9q+w1ikXrcID6u7yRq2+DwTrcvvtzJ5BtoYBBXce6aJ1PS8TJYPBt9I5xdxXxpYS21Wor4mBSZi8mlwrm745gdoTVtuNA==
+X-Gm-Message-State: AOJu0Yzr4WSYAXKe54a63+TWZSQnunjZRML334025TSQCpeqoJIr6dRT
+	iP7213XYm/K+dJ9s5gQR3R2ZSpPbq9peNzW/zpjK8oiryiPQeQL0
+X-Google-Smtp-Source: AGHT+IEyyP9ZOlkbRcFQw0325uLAtTa0tGcrbkt2eUgskPxOVixG+wxPpNr63tSMwqyMHV4usMy0yQ==
+X-Received: by 2002:a17:906:5955:b0:a52:36e1:c139 with SMTP id g21-20020a170906595500b00a5236e1c139mr6791672ejr.4.1713798383209;
+        Mon, 22 Apr 2024 08:06:23 -0700 (PDT)
+Received: from ?IPv6:2001:a61:3481:2201:6106:96db:d27b:d2c2? ([2001:a61:3481:2201:6106:96db:d27b:d2c2])
+        by smtp.gmail.com with ESMTPSA id bw19-20020a170906c1d300b00a5238156017sm5896882ejb.88.2024.04.22.08.06.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Apr 2024 08:06:22 -0700 (PDT)
+Message-ID: <be927df578a936e7699a26edfddd42470689e7cd.camel@gmail.com>
+Subject: Re: [PATCH 3/8] dt-bindings: adc: axi-adc: add clocks property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
+	 <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org,  Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, Alexandru Ardelean
+ <alexandru.ardelean@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+  Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Date: Mon, 22 Apr 2024 17:06:22 +0200
+In-Reply-To: <20240420160404.57bd835d@jic23-huawei>
+References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
+	 <20240419-ad9467-new-features-v1-3-3e7628ff6d5e@analog.com>
+	 <20240420160404.57bd835d@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240402000424.4650-8-laurent.pinchart@ideasonboard.com>
 
-On Tue, Apr 02, 2024 at 03:04:14AM +0300, Laurent Pinchart wrote:
-[..]
-> +
-> +	i2c0mux: i2c-mux0 {
-> +		compatible = "i2c-mux-pinctrl";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		i2c-parent = <&i2c0>;
-> +
-> +		pinctrl-names = "i2c0", "i2c0-vc";
-> +		pinctrl-0 = <&i2c0_gpio0>;
-> +		pinctrl-1 = <&i2c0_gpio44>;
-> +
-> +		i2c0_0: i2c@0 {
-> +			reg = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		i2c0_1: i2c@1 {
-> +			reg = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
+On Sat, 2024-04-20 at 16:04 +0100, Jonathan Cameron wrote:
+> On Fri, 19 Apr 2024 17:36:46 +0200
+> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+>=20
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >=20
+> > Add a required clock property as we can't access the device registers i=
+f
+> > the AXI bus clock is not properly enabled.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> Fix, or doesn't matter until this series?
+>=20
 
-Hi Laurent,
+It does matter. But reality is that it's rare for you to catch this issue b=
+ecause
+such a fundamental clock is typically enabled pretty early during boot. But=
+ we did
+had some issues (on other cores) regarding this. Anyways, for correctness, =
+I'll add a
+tag on v2.
 
-I noticed you added this new DT node that binds to a driver, but didn't enable
-the corresponding driver in the arm64 defconfig. We're running the DT kselftest
-in KernelCI which reports DT nodes that haven't bound to a driver and this node
-now shows up as a failure. Consider enabling the driver in the defconfig so we
-can continually validate that the driver correctly probes this device and we'll
-be able to report if it breaks in the future :).
-
-Thanks,
-Nícolas
-
-PS: I've included the full test output for this platform below if you'd like to
-check it out. There's one single other device that fails to probe,
-/soc/mailbox@7e00b840, though that needs CONFIG_BCM2835_VCHIQ, which is on
-staging, so I'm guessing not something we should be enabling in the defconfig.
+- Nuno S=C3=A1
 
 
-TAP version 13
-1..1
-# timeout set to 45
-# selftests: dt: test_unprobed_devices.sh
-# TAP version 13
-# 1..69
-# ok 1 / # SKIP
-# ok 2 /arm-pmu
-# ok 3 /clk-108M # SKIP
-# ok 4 /clk-27M # SKIP
-# ok 5 /clocks/clk-osc # SKIP
-# ok 6 /clocks/clk-usb # SKIP
-# ok 7 /cpus/cpu@0 # SKIP
-# ok 8 /cpus/cpu@1 # SKIP
-# ok 9 /cpus/cpu@2 # SKIP
-# ok 10 /cpus/cpu@3 # SKIP
-# ok 11 /cpus/l2-cache0 # SKIP
-# ok 12 /emmc2bus
-# ok 13 /emmc2bus/mmc@7e340000
-# ok 14 /gpu
-# not ok 15 /i2c-mux0
-# ok 16 /leds
-# ok 17 /phy
-# ok 18 /regulator-cam1
-# ok 19 /regulator-sd-io-1v8
-# ok 20 /regulator-sd-vcc
-# ok 21 /reserved-memory/linux,cma # SKIP
-# ok 22 /reserved-memory/nvram@0
-# ok 23 /scb
-# ok 24 /scb/ethernet@7d580000
-# ok 25 /scb/ethernet@7d580000/mdio@e14
-# ok 26 /scb/gpu@7ec00000
-# ok 27 /scb/pcie@7d500000
-# ok 28 /soc
-# ok 29 /soc/aux@7e215000
-# ok 30 /soc/avs-monitor@7d5d2000 # SKIP
-# ok 31 /soc/avs-monitor@7d5d2000/thermal
-# ok 32 /soc/clock@7ef00000
-# ok 33 /soc/cprman@7e101000
-# ok 34 /soc/dma-controller@7e007000
-# ok 35 /soc/firmware
-# ok 36 /soc/firmware/clocks
-# ok 37 /soc/firmware/gpio
-# ok 38 /soc/firmware/reset
-# ok 39 /soc/gpio@7e200000
-# ok 40 /soc/hdmi@7ef00700
-# ok 41 /soc/hdmi@7ef05700
-# ok 42 /soc/hvs@7e400000
-# ok 43 /soc/i2c@7e205000
-# ok 44 /soc/i2c@7e804000
-# ok 45 /soc/i2c@7ef04500
-# ok 46 /soc/i2c@7ef09500
-# ok 47 /soc/interrupt-controller@40000000 # SKIP
-# ok 48 /soc/interrupt-controller@40041000 # SKIP
-# ok 49 /soc/interrupt-controller@7ef00100
-# not ok 50 /soc/mailbox@7e00b840
-# ok 51 /soc/mailbox@7e00b880
-# ok 52 /soc/mmc@7e300000
-# ok 53 /soc/mmc@7e300000/wifi@1 # SKIP
-# ok 54 /soc/pixelvalve@7e206000
-# ok 55 /soc/pixelvalve@7e207000
-# ok 56 /soc/pixelvalve@7e20a000
-# ok 57 /soc/pixelvalve@7e216000
-# ok 58 /soc/power
-# ok 59 /soc/pwm@7e20c800
-# ok 60 /soc/rng@7e104000
-# ok 61 /soc/serial@7e201000
-# ok 62 /soc/serial@7e201000/bluetooth
-# ok 63 /soc/serial@7e215040
-# ok 64 /soc/timer@7e003000 # SKIP
-# ok 65 /soc/txp@7e004000
-# ok 66 /soc/usb@7e980000
-# ok 67 /soc/watchdog@7e100000
-# ok 68 /timer # SKIP
-# ok 69 /wifi-pwrseq
-# # Totals: pass:50 fail:2 xfail:0 xpass:0 skip:17 error:0
-not ok 1 selftests: dt: test_unprobed_devices.sh # exit=1
 
