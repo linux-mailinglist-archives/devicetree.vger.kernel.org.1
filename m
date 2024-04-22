@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-61318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F2C8AC478
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:50:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB048AC4F3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:13:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0604C1C20CC9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 06:50:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 956B6282030
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 07:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CE94481CD;
-	Mon, 22 Apr 2024 06:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656445026E;
+	Mon, 22 Apr 2024 07:12:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="J1fyflLZ";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="iWh6WZmh"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="DdZz0iIY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0EE63FB09;
-	Mon, 22 Apr 2024 06:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68F75029E;
+	Mon, 22 Apr 2024 07:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713768603; cv=none; b=L/QiD8iduH7eXbw3TF67tH64auuib8Rrb5EXJXES+A2/7A6gNkW9b4VC3g/1X0Zwa2hYAGiCJIEMrVXoNeSGHdvGM9Cqd86Wyx5ttOj9tMKtOwagFeJl0rKxl6D6yS0tVgs8L6TsMvPxs+mbKml5oXrLDbMV6i9xZaUdEisLI1w=
+	t=1713769931; cv=none; b=J1y9sRpKRhWe24nOYAB91PkJJfDxrErBeXdicDyzz26KxFL/Xfo0p+haJAmLBYyAVmt+fLADu0oTFFDG+IT5pg4qFzDChghIQs/uIs7Z08Uf4t5Zb4+P8Lfe9S04uWtfrUAYCoAlATcIs435siIqCpBoLneNQIPh43CYqCW9akM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713768603; c=relaxed/simple;
-	bh=sizjEXdnQIm4DoN/Y0pcUBhana0MS1upvGYwNtl05/k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Kwk8y0EtP+aU/0JPpIqR9D1m2ogPTc8DPio/lBTZS4ubN7lQovJ1nN2MxDbfRtqGQ+Ty21Rzye9wVytMs6pkfBHTclF9wAq2gNI7S78pJzAkpa/31Z/FYwy55e8PY8zxvsqn3KjRxajg0jMlYggImO5d+jSmnoaOozbyqxglE/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=J1fyflLZ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=iWh6WZmh reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1713768599; x=1745304599;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=+sgIu3vs+pfjr2GCben4TQs4zEyijSBG80TUgm+psUs=;
-  b=J1fyflLZv9QeMfgt3jZsjdnnE3+eFIFwDWpgG1lr0tBgvyS6/B4vj0OI
-   WZjS5hPUrmmybj4tubdCvaau2hQfSTfe3YnUhwRD4c74kVOf0ack657Fj
-   YYoMIxdB1jqEXSZxFuLMP+dtFcL/yOQt1rv1hl/zOFOESwMND8Qhk1++F
-   SP+Vm5GNZdwmQ2Nh5W/zegiIOJf4Cp60KugHf5OFAHYmQC4RcHaqXbxvd
-   PoaQxXPZjFYWVJkPj7hMgB/pH4AxOiaUdLOlcqKDBgaUZFwkWx3KQgDKa
-   aTKjTjMLavOhlQTdqShItvTU7GgRCoz4/XAFpfqTt7t2vjiwtYJh2iHlz
-   w==;
-X-IronPort-AV: E=Sophos;i="6.07,220,1708383600"; 
-   d="scan'208";a="36531778"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 22 Apr 2024 08:49:56 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4824316E4ED;
-	Mon, 22 Apr 2024 08:49:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1713768591; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=+sgIu3vs+pfjr2GCben4TQs4zEyijSBG80TUgm+psUs=;
-	b=iWh6WZmhXAGE0BU9uXxNHZ3Cj3i0mdprnyFEnb+3fzPy5aU9ZlQzUbqmrgylTjTvbHd9Yw
-	XHivKZLfW65Bs5LO7V8HY1idTjyiL2mUnFkRBLlEqO75GgCKRwCeNgDVOHG4EAJJJ1plsQ
-	h1dlJSn8mRfmwLbLtdj4uo2jGEBie2a+e1IhzJelt7HHR8ymXOz6QZX6gzgQzm/NeQwb2A
-	K0eHAbv5zajBuHVxkXJSoU2XMwsuk0ccGNIIsHnZJynmyNq1E/oLZvN37pI5QsuH+hIvAO
-	8qN1XNiy58ETzE39JMfeC5Cw86ld23k1csllxPrCNlzpp9HCymFZYK3+psGiOw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
+	s=arc-20240116; t=1713769931; c=relaxed/simple;
+	bh=hpSwpq8t85oJgWzBAb0sGwMKMZLQnDwXbtThMElaBjk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KJSE4fa7U4IuxTdBT9dZ1f17AKl9xWvfY70ObiVzWAr1EvUEj+EVnH7R4IBuorov1dGocUH76F7TLJuSjBqoGy0hLlHYgyVOrJVZVtFtzabZl2+bFEA6rr+YjfbA+O7s/r9hPW9zdQ7S39we8M0wPTgMvkR/pIq9NeMWcTRseEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=DdZz0iIY; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
+	To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=SF2ECz2nkc3iAx/gW3lWEA5oZJYY9ghIYAkmZKvVY/E=; b=DdZz0iIY61cgM89iG8hhc4U/c4
+	mhqwc4EVqseuKe+ULiMA6LSl6sb1C4prfUGYE7zdiZTN1VsrpLMQVjJi+N8vWXVxTcYdDfyk8APay
+	s+OkZDqeIWSkmnmvFaQJZte4EAu6BvupRWS3Uc2DcWyCOcaa1/0TKsVr0hOILvdm4SIM=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1rynWe-001JRH-2R;
+	Mon, 22 Apr 2024 08:51:41 +0200
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+To: Oliver Hartkopp <socketcan@hartkopp.net>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 1/1] dt-bindings: interrupt-controller: fsl,irqsteer: Add imx8qxp support
-Date: Mon, 22 Apr 2024 08:49:49 +0200
-Message-Id: <20240422064949.70778-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>
+Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-can@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: [PATCH 00/11] LIN Bus support for Linux
+Date: Mon, 22 Apr 2024 08:51:03 +0200
+Message-Id: <20240422065114.3185505-1-christoph.fritz@hexdev.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,65 +78,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-specific
-compatible, which also requires a power-domain.
+This series is introducing basic Local Interconnect Network (LIN) (ISO
+17987) [0] support to the Linux kernel, along with two drivers that make
+use of it: An advanced USB adapter and a lightweight serdev driver (for
+UARTs equipped with a LIN transceiver).
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Thanks for the feedback.
+The LIN bus is common in the automotive industry for connecting
+low-level devices like side mirrors, seats, ambient lights, etc.
 
-Changes in v3:
-* Move 'allOf' before 'additionalProperties'
-* Remove superfluous 'minItems: 1'
+The LIN bus is a lower-cost bus system with a subset of features of CAN.
+Its earlier specification (before ISO) is publicly accessible [1].
 
- .../interrupt-controller/fsl,irqsteer.yaml      | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+This series of patches follows up on a discussion initiated by an RFC
+patch series [2].
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
-index 20ad4ad82ad64..3d33b75d6ecfa 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
-@@ -14,7 +14,9 @@ properties:
-     oneOf:
-       - const: fsl,imx-irqsteer
-       - items:
--          - const: fsl,imx8m-irqsteer
-+          - enum:
-+              - fsl,imx8m-irqsteer
-+              - fsl,imx8qxp-irqsteer
-           - const: fsl,imx-irqsteer
- 
-   reg:
-@@ -42,6 +44,9 @@ properties:
-   clock-names:
-     const: ipg
- 
-+  power-domains:
-+    maxItems: 1
-+
-   interrupt-controller: true
- 
-   "#interrupt-cells":
-@@ -70,6 +75,16 @@ required:
-   - fsl,channel
-   - fsl,num-irqs
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx8qxp-irqsteer
-+    then:
-+      required:
-+        - power-domains
-+
- additionalProperties: false
- 
- examples:
+The core of this series is the first patch, which implements the CAN_LIN
+glue driver. It basically utilizes the CAN interface on one side and
+for device drivers on the other side it creates a rx() function and
+several callbacks.
+
+This approach is non-invasive, as LIN frames (nearly identical to CAN
+frames) are just treated as a special case of CAN frames. This approach
+eliminates the need for a separate API for LIN, allowing the use of
+existing CAN tools, including the CAN broadcast manager.
+
+For the responder part of LIN, when a device responds to a controller
+request, it can reply on up to LIN its 64 possible IDs (0...63) with a
+maximum of 8 bytes payload.  The response must be sent relatively
+quickly, so offloading is used (which is used by most devices anyway).
+Devices that do not support offloading (like the lightweight serdev)
+handle the list of responses in the driver on a best-effort basis.
+
+The CAN broadcast manager (bcm) makes a good interface for the LIN
+userland interface, bcm is therefore enhanced to handle the
+configuration of these offload RX frames, so that the device can handle
+the response on its own.  As a basic alternative, a sysfs file per LIN
+identifier gets also introduced.
+
+The USB device driver for the hexLIN [3] adapter uses the HID protocol
+and is located in the drivers/hid directory. Which is a bit uncommon for
+a CAN device, but this is a LIN device and mainly a hid driver (and all
+hid drivers go into drivers/hid).
+
+The other driver, the UART lin-serdev driver requires support for break
+detection, this is addressed by two serdev patches.
+
+The lin-serdev driver has been tested on an ARM SoC, on its uart
+(uart-pl011) an adapter board (hexLIN-tty [4]) has been used.  As a
+sidenote, in that tty serial driver (amba-pl011.c) it was necessary to
+disable DMA_ENGINE to accurately detect breaks [5].
+
+The functions for generating LIN-Breaks and checksums, originally from
+a line discipline driver named sllin [6], have been adopted into the
+lin-serdev driver.
+
+To make use of the LIN mode configuration (commander or responder)
+option, a patch for iproute2 [7] has been made.
+
+The lin-utils [8] provide userland tools for reference, testing, and
+evaluation. These utilities are currently separate but may potentially
+be integrated into can-utils in the future.
+
+[0]: https://en.wikipedia.org/wiki/Local_Interconnect_Network
+[1]: https://www.lin-cia.org/fileadmin/microsites/lin-cia.org/resources/documents/LIN_2.2A.pdf
+[2]: https://lwn.net/Articles/916049/
+[3]: https://hexdev.de/hexlin
+[4]: https://hexdev.de/hexlin#tty
+[5]: https://github.com/raspberrypi/linux/issues/5985
+[6]: https://github.com/lin-bus/linux-lin/blob/master/sllin/sllin.c
+[7]: https://github.com/ch-f/iproute2/tree/lin-feature
+[8]: https://github.com/ch-f/lin-utils
+
+Christoph Fritz (11):
+  can: Add LIN bus as CAN abstraction
+  HID: hexLIN: Add support for USB LIN bus adapter
+  tty: serdev: Add flag buffer aware receive_buf_fp()
+  tty: serdev: Add method to enable break flags
+  dt-bindings: net: can: Add serdev LIN bus dt bindings
+  can: Add support for serdev LIN adapters
+  can: lin: Add special frame id for rx offload config
+  can: bcm: Add LIN answer offloading for responder mode
+  can: lin: Handle rx offload config frames
+  can: lin: Support setting LIN mode
+  HID: hexLIN: Implement ability to update lin mode
+
+ .../bindings/net/can/linux,lin-serdev.yaml    |  29 +
+ drivers/hid/Kconfig                           |  19 +
+ drivers/hid/Makefile                          |   1 +
+ drivers/hid/hid-hexlin.c                      | 594 ++++++++++++++++++
+ drivers/hid/hid-ids.h                         |   1 +
+ drivers/hid/hid-quirks.c                      |   3 +
+ drivers/net/can/Kconfig                       |  26 +
+ drivers/net/can/Makefile                      |   2 +
+ drivers/net/can/lin-serdev.c                  | 467 ++++++++++++++
+ drivers/net/can/lin.c                         | 547 ++++++++++++++++
+ drivers/tty/serdev/core.c                     |  11 +
+ drivers/tty/serdev/serdev-ttyport.c           |  19 +-
+ include/linux/serdev.h                        |  19 +-
+ include/net/lin.h                             | 105 ++++
+ include/uapi/linux/can/bcm.h                  |   5 +-
+ include/uapi/linux/can/netlink.h              |   2 +
+ net/can/bcm.c                                 |  74 ++-
+ 17 files changed, 1918 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml
+ create mode 100644 drivers/hid/hid-hexlin.c
+ create mode 100644 drivers/net/can/lin-serdev.c
+ create mode 100644 drivers/net/can/lin.c
+ create mode 100644 include/net/lin.h
+
 -- 
-2.34.1
+2.39.2
 
 
