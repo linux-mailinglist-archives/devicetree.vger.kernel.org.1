@@ -1,179 +1,137 @@
-Return-Path: <devicetree+bounces-61463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370E28ACC47
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8708ACC4D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E00BC1F241E8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:49:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A6521F241D5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F53146A67;
-	Mon, 22 Apr 2024 11:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761D2146D7D;
+	Mon, 22 Apr 2024 11:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8qcjZiV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rURjD30t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9D614430B;
-	Mon, 22 Apr 2024 11:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDE2146D76;
+	Mon, 22 Apr 2024 11:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713786563; cv=none; b=CjYmcppY28vweXztc8FW3qFeKQB5K3/4+UvDxiJlmkCq9mlNLzSNE1u8qW/j3ouBJjcM7CvzSr444fnWB6iQiVwb+7eeIa5XfFsBK6gYEp/QHon7CH/G2mQsmWMsIughkdjKbABVgYc6+fe/bCK9zaKK+mKbqepfUh4zyPpLz40=
+	t=1713786623; cv=none; b=GeqO1wxWOvslFHGeBLxs2iscE8gXXNAIMVGy+IHOyJqYqxXvdcCZu+0m+4OpMDSM123LYHb3dddrLB7xePls7hnC+2p4J+7KH6xodBoXaI6HnjS8kopGRkhEPMQ7BBw4OpZ09ijTdQE3Xu3vmsOSTRwLwiba+OZXz1LJ29ojPNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713786563; c=relaxed/simple;
-	bh=oa565rT+yJwur5f64+QWMUWJjWDSTlu51r9yAsnO/cQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=abXfnzhG+LxQePJoFI+srhBUmSjcylVrA/YFTPJXZ9P0srBgMhenDhxruYUkP86fpeXtAFnm2MDpyf+q9dnfWV13cGfw0hk3kwwfkfTKLpdeEVgQEs9K54j4CJc4UpzGVUuUBqZYyBC/nBxtB6VV1Mfba/K/wJXel/3vP3Z+iOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8qcjZiV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D9FFC113CC;
-	Mon, 22 Apr 2024 11:49:19 +0000 (UTC)
+	s=arc-20240116; t=1713786623; c=relaxed/simple;
+	bh=YS917ueHwtBqt9TiFEnAUZ8trcpY/y+Y3C0bGNm08oc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Kj2ODrXo6/xxd6ajn4pUc8ZmRlDfLPR9UP7bNU7o/qnQ/BEYioJIB4yu8mAdJizy/Wf/EkcLP1pox1GcrH1wa6W+rJrlxggMK0H3VKtpCvBj7zd4VwNuYbOyX+uI72oMkgOrGFV7lzTAGmYWP+Qq7WX/cZJQxqTi48b59f2UH0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rURjD30t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F134C113CC;
+	Mon, 22 Apr 2024 11:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713786562;
-	bh=oa565rT+yJwur5f64+QWMUWJjWDSTlu51r9yAsnO/cQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m8qcjZiVMZwPzvsf/mGXDqRPN4LEorVGqL4g0TIW9H14oLT4yTLWqhN9QnS9O1nHp
-	 508wVaDH45H+yaJPYmRBjOljKpuNDFWMtr9bvWFSvznl6wTTnwGRDi0EtMYiiwokO3
-	 9NF4lkONdtckxwDw1RPHwEuS2YOr3ZsrRZ8zy1Kkjw2sHvr97EQPK9PUX9lO6LuWQH
-	 Ak07BoSkLMkB/16OIhGgc8OYNF86v08Pnk4m0K9Hracf9EyBUjd0yVdLwD1Msd5RTw
-	 kbtvA6u3nSrqI+e5f55Dasuhc6tzvEX0HFYEahZKknuWPaf4ALDx1qklxXlV+JC4QD
-	 3bUCdEwxXJtVA==
-Message-ID: <0b6bf7b9-f9c6-40c4-a166-7bdd4984b023@kernel.org>
-Date: Mon, 22 Apr 2024 13:49:17 +0200
+	s=k20201202; t=1713786622;
+	bh=YS917ueHwtBqt9TiFEnAUZ8trcpY/y+Y3C0bGNm08oc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=rURjD30tresfVvBDhALNF39w6T3y5FlfiOPc3mKx02RqAYXlbTp1KRdDiNUxo6yp9
+	 GGkF+Y1BBEPDWYBsVdXE0ZWLZQg+Gss9tn3jgS+T9DmQelpy7+Wnuhg5HQ25jJfMlA
+	 3x6ZvYlZebkargiU6qV/sK+BUhLffQXyyDM6R4GzTX30XCnMpKol4OPS7X4knwoJL8
+	 PkCvCJLFw4AF7K54E7xN0cIRSALmWSZ9RG/v9TqmIK3G4h2RHe+KeqcPnly+R3trK/
+	 4H10kbeOv5vu3MIgwrwDRviQrav7Oghq/XzSrLsoLdWHm/pv32kZJ5EXnTM5qQqx4o
+	 gqGNCeA5KqUEg==
+Date: Mon, 22 Apr 2024 06:50:21 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: usb: uhci: convert to dt schema
-To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240422093706.324115-1-sheharyaar48@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240422093706.324115-1-sheharyaar48@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Rob Herring <robh@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, 
+ MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Yow-shin Liou <yow-shin.liou@mediatek.com>, 
+ Jason-ch Chen <Jason-ch.Chen@mediatek.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, 
+ Chris-qj chen <chris-qj.chen@mediatek.com>, 
+ Bear Wang <bear.wang@mediatek.com>, linux-mediatek@lists.infradead.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20240422093926.15392-1-macpaul.lin@mediatek.com>
+References: <20240422093926.15392-1-macpaul.lin@mediatek.com>
+Message-Id: <171378646243.749127.4216494442345691988.robh@kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt8390-genio-700-evk: update
+ regulator names
 
-On 22/04/2024 11:37, Mohammad Shehar Yaar Tausif wrote:
-> Convert USB UHCI bindings to DT schema.
 
-Please mention changes from pure conversion, so documenting aspeed
-compatibles and missing properties.
-
+On Mon, 22 Apr 2024 17:39:24 +0800, Macpaul Lin wrote:
+> Update regulator names to match schematics, replacing generic terms.
+> 1. Add system wide 'reg_vsys' node for 4.2V power rail.
+> 2. Add 'reg_vsys' node as 'vin-supply' for the following nodes
+>  - common_fixed_5v, edp_panel_fixed_3v3, gpio_fixed_3v3, sdio_fixed_3v3,
+>    touch0_fixed_3v3, usb_hub_fixed_3v3, usb_p0_vbus, and usb_p1_vbus.
+> 3. Update regulator names according to the stable output name on
+>    schematics.
+>  - vdd_5v, vedp_3v3, ext_3v3, vio18_conn, wifi_3v3, vio33_tp1, vhub_3v3,
+>    vbus_p0, vbus_p1.
+>  - vcn18_pmu, vcn33_2_pmu, dvdd_proc_l, dvdd_core, vpa_pmu, dvdd_adsp,
+>    va12_abb2_pmu, vsim1_pmu, vufs18_pmu.
+> 4. Remove usb_hub_reset_1v8. Use 'hub' node to probe USB HUB
+>    in subsequent patches.
 > 
-> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > ---
-
-...
-
-...
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +if:
-
-This should be under allOf
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: generic-uhci
-> +then:
-> +  allOf:
-> +    - $ref: usb-hcd.yaml
-
-This is confusing. Aspeed is not different here.
-
-> +  if:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          enum:
-> +            - aspeed,ast2400-uhci
-> +            - aspeed,ast2500-uhci
-> +            - aspeed,ast2600-uhci
-> +  then:
-> +    properties:
-> +      '#ports':
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-
-And the #ports property looks valid for generic-ahci. Why do you think
-it is not valid?
+>  .../dts/mediatek/mt8390-genio-700-evk.dts     | 65 ++++++++++++-------
+>  1 file changed, 42 insertions(+), 23 deletions(-)
+> 
 
 
-> +      clocks:
-> +        maxItems: 1
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Define properties top-level.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-> +    required:
-> +      - clocks
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-This looks required for generic-uhci as well. Why did you put it only
-for aspeed?
+  pip3 install dtschema --upgrade
 
 
-Best regards,
-Krzysztof
+New warnings running 'make CHECK_DTBS=y mediatek/mt8390-genio-700-evk.dtb' for 20240422093926.15392-1-macpaul.lin@mediatek.com:
+
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts:925.3-13: Warning (reg_format): /soc/usb@11200000/hub@1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts:933.3-13: Warning (reg_format): /soc/usb@11200000/hub@2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts:923.17-929.4: Warning (avoid_default_addr_size): /soc/usb@11200000/hub@1: Relying on default #address-cells value
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts:923.17-929.4: Warning (avoid_default_addr_size): /soc/usb@11200000/hub@1: Relying on default #size-cells value
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts:931.17-937.4: Warning (avoid_default_addr_size): /soc/usb@11200000/hub@2: Relying on default #address-cells value
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts:931.17-937.4: Warning (avoid_default_addr_size): /soc/usb@11200000/hub@2: Relying on default #size-cells value
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: /soc/pwrap@10024000/pmic/keys: failed to match any schema with compatible: ['mediatek,mt6359-keys']
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: typec-mux@48: 'port' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/ite,it5205.yaml#
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: i2c@11e01000: pinctrl-names: ['default', 'default'] has non-unique elements
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: rt1715@4e: 'vbus-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/richtek,rt1711h.yaml#
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: rt1715@4e: 'connector' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/richtek,rt1711h.yaml#
+
+
+
+
 
 
