@@ -1,287 +1,112 @@
-Return-Path: <devicetree+bounces-61470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450298ACCC6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:34:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5339E8ACD23
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6841A1C20D5A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 12:34:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E86141F236C7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 12:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDEA743AC0;
-	Mon, 22 Apr 2024 12:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244741509AC;
+	Mon, 22 Apr 2024 12:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b="DxjqHUIZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2519E3D3B3
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 12:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from forward502b.mail.yandex.net (forward502b.mail.yandex.net [178.154.239.146])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E351E146D6C;
+	Mon, 22 Apr 2024 12:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713789294; cv=none; b=oW5+4nAZ76Vrv05ME67VPL98ta/0w/4aW3URF5YpeUXArSMex2PUwn97RmfUAu+2jffi5eA79nqg9onEp6sQgWY1r9N8COeYc0osTAwTmfPDDd4HIgfQwtIk9/TRDlYCenOz4q/R4KMBias+C40fzv0thpglgeUZ8ATlc4odC8s=
+	t=1713789872; cv=none; b=Bsh2tV6z7wd9lQBT2A0agyuFRE+Oobl9xBOkG3yF1hSVbuhvorOyiQxhZx8KlTcpjPfc++IZGqNTa89HL+kL4O80qsOq7iV2Duf53WTDcK7+KOC5gj2je9NGhs41+yVnUrhKKtCJq5Ixd1DE4zSEP14pZO2BI+1XhwTyLtdJzsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713789294; c=relaxed/simple;
-	bh=bgfHRCke/1fxZcEX2cCxyFprWIkbIc/pvZaX7/wWX2M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VjfC4S4AmpqsA5XF8LZb7s7Ka5tPtGCIkqUduZfWiukaz0v+re+5wh76khcMbrRUb/ZxtBaQqtLCCAfBVZeNDieJ7w6W96kJW7hYG6nCgJQXJfmoTtGZi2PQ1S9gWdd3EXGE6BMAy4XNGgzZE7YgDnTsKQ3udoDilbIpNrqUmoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD2F6339;
-	Mon, 22 Apr 2024 05:35:20 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3F14B3F7BD;
-	Mon, 22 Apr 2024 05:34:51 -0700 (PDT)
-Date: Mon, 22 Apr 2024 13:34:48 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: "Ryan Walklin" <ryan@testtoast.com>
-Cc: "Chris Morgan" <macromorgan@hotmail.com>, "Chen-Yu Tsai"
- <wens@csie.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel Holland"
- <samuel@sholland.org>, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 2/5] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-Message-ID: <20240422133448.6866a3c5@donnerap.manchester.arm.com>
-In-Reply-To: <2735abdc-764d-4073-a55b-a4f5572a74f8@app.fastmail.com>
-References: <20240420104354.334947-5-ryan@testtoast.com>
-	<20240420104354.334947-8-ryan@testtoast.com>
-	<20240421014920.4946a5ce@minigeek.lan>
-	<DM4PR05MB922920FBFF980694507FAE11A5132@DM4PR05MB9229.namprd05.prod.outlook.com>
-	<2735abdc-764d-4073-a55b-a4f5572a74f8@app.fastmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1713789872; c=relaxed/simple;
+	bh=FOi6eJPUFSojRtF9P/XwjqEpVwed2EL1xlarcDukTeg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=MSDwcmBYPH2KnJeUw/C8/n4bTnULsebTLzblY2Oyw2AUUEyX4fxXN5A2LLj9RXryw9IgOyayRpfvXoHtRMpCQ3sAuf/Dkm0Gfh1kEH1rQQ8PGqeJJSE3LVUv/OrvU9kz0rRxNThyh+xX6bcarl1BLBjtB3SnJ7rQlNZU6Mpm8S0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru; spf=pass smtp.mailfrom=ya.ru; dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b=DxjqHUIZ; arc=none smtp.client-ip=178.154.239.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ya.ru
+Received: from mail-nwsmtp-smtp-production-main-81.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-81.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:3729:0:640:85f7:0])
+	by forward502b.mail.yandex.net (Yandex) with ESMTPS id 8D8D25E7F6;
+	Mon, 22 Apr 2024 15:38:19 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-81.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 6cIEH34oJ8c0-ZPIIL6Is;
+	Mon, 22 Apr 2024 15:38:18 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ya.ru; s=mail;
+	t=1713789498; bh=GaYIntdqsvXpjyEkkhoOihijbTv7eiJ72X4WWAqXMnU=;
+	h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=DxjqHUIZnyp+8RZBswjnKDXpfXqPFG+7JTQqJ5qBd+lfr5ch83ahD3LBQyr0klf1G
+	 Y71ael1TRRAMfZ6jd3UU4l81c4Ohy0RwYhWdMMtsnydwvVdg92Q1JFimq0f4OKFTaU
+	 6Q1w2KNVOtCaBe2jvhJkZzDrVRwlYqnW9lgUHY2E=
+Authentication-Results: mail-nwsmtp-smtp-production-main-81.myt.yp-c.yandex.net; dkim=pass header.i=@ya.ru
+From: Konstantin Pugin <rilian.la.te@ya.ru>
+To: 
+Cc: krzk@kernel.org,
+	conor@kernel.org,
+	lkp@intel.com,
+	vz@mleia.com,
+	robh@kernel.org,
+	jcmvbkbc@gmail.com,
+	nicolas.ferre@microchip.com,
+	manikanta.guntupalli@amd.com,
+	corbet@lwn.net,
+	ychuang3@nuvoton.com,
+	u.kleine-koenig@pengutronix.de,
+	Maarten.Brock@sttls.nl,
+	Konstantin Pugin <ria.freelander@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lech Perczak <lech.perczak@camlingroup.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v6 2/3] dt-bindings: sc16is7xx: Add compatible line for XR20M1172 UART
+Date: Mon, 22 Apr 2024 15:37:56 +0300
+Message-Id: <20240422123801.2695129-3-rilian.la.te@ya.ru>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240422123801.2695129-1-rilian.la.te@ya.ru>
+References: <20240422123801.2695129-1-rilian.la.te@ya.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Sun, 21 Apr 2024 20:43:26 +1200
-"Ryan Walklin" <ryan@testtoast.com> wrote:
+From: Konstantin Pugin <ria.freelander@gmail.com>
 
-Hi,
+Add EXAR XR20M1172 UART compatible line into devicetree documentation.
 
-> On Sun, 21 Apr 2024, at 4:00 PM, Chris Morgan wrote:
-> 
-> > FYI - PI12 can run as a PWM so when we get PWM output I intend to
-> > request this be run as a PWM led (so we can adjust the brightness).
-> > I'll handle that when it's ready though so don't worry for now.  
-> 
-> Sounds good.
-> 
-> > Your preference, but in the past I've had the volume up/down done as a
-> > seperate node so we can enable key repeat.   
-> 
-> Done as mentioned.
-> 
-> > separation.  Also I usually alphabetize node names, I don't remember
-> > if I'm just that anal or if I was told to at one point though.  
-> 
-> I'm easy, the order there seemed logical based on the physical layout on the -Plus but I don't have a real preference.
-> 
-> >
-> > It's described wrong, but based on the behaviour I've seen. The specific
-> > seems to be 2 GPIO controlled regulators; one of them enables the logic
-> > voltage for the USB (the 3.3v regulator) and the other enables the VBUS
-> > for the USB (the 5v regulator). If you only enable the 5v regulator the
-> > bus otherwise lays dormant. If you only enable the 3v3 regulator the
-> > USB bus powers on and intermittently enumerates devices at 3.3v.
-> > Further enabling the 5v regulator drives the USB at 4.6v (I'm guessing
-> > something is still wrong, we have more to poke at).
-> >
-> > To my knowledge this only applies for the USB host port which this
-> > device lacks.
-> >  
-> Will await your work on this, I'm not at all familiar with USB to this depth, conceptually makes sense though. This will also rely on the boost working well, which is at least now being enabled with the WIP AXP717 driver.
-> 
-> 
-> >
-> > After much digging I'm certain the rails powering the wifi are
-> > reg_cldo4 for the 3.3v and reg_aldo4 for the IO bits at 1.8v.
-> > The curious thing about reg_cldo4 is it appears to feed into
-> > another regulator that regulates at precisely 3.3v. If I under or
-> > overvolt cldo4 I still read exactly 3.3v at the wifi module, but as
-> > soon as I turn off reg_cldo4 the wifi reads 0v. So while I can't
-> > directly control the power of the wifi's 3.3v rail, as long as I
-> > get cldo4 close to 3.3v it powers correctly.  
-> 
-> Nice, have reworked the SD and Wifi regulators as described, and power management for the Wifi in particular seems to be working much better after moving it off BLDO2 (which seems to be VCC-PLL) to CLDO4. 
-> 
-> >> > +&mmc0 {
-> >> > +	vmmc-supply = <&reg_vcc_sd2>;  
-> >> 
-> >> I don't think this GPIO controlled regulator provides the supply voltage
-> >> for the first SD card, since it would be disabled on reset, and the
-> >> BROM couldn't boot from the SD card. So it must be some other 3.3V
-> >> source, either a discrete regulator (fixed regulator), or some
-> >> default-on 3.3V AXP rail.  
-> >
-> > Both the vcc and the logic for the mmc0 appear to be handled by the
-> > cldo3 regulator at 3.3v.
-> >  
-> Thanks, makes sense. I've tentatively renamed CLDO3 to VCC-IO, looking at the H616 datasheet.
-> >>   
-> >> > +	disable-wp;
-> >> > +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
-> >> > +	bus-width = <4>;
-> >> > +	status = "okay";
-> >> > +};
-> >> > +
-> >> > +&mmc2 {
-> >> > +	vmmc-supply = <&reg_vcc_sd2>;
-> >> > +	vqmmc-supply = <&reg_aldo1>;
-> >> > +	cd-gpios = <&pio 4 22 GPIO_ACTIVE_LOW>; /* PE22 */
-> >> > +	bus-width = <4>;
-> >> > +	status = "okay";
-> >> > +};  
-> >> 
-> >> This one seems more plausible. To confirm this, you could not use
-> >> reg_vcc_sd2 anywhere, and use some other 3.3V supply for vmmc, which
-> >> should break operation on the second SD card. Then just swap
-> >> reg_vcc_sd2 back in, and if it starts working again, we have confirmation.
-> >>   
-> Swapped in CLDO4 for MMC2 and the card read fine, will swap it back and see what happens.
-> >
-> > cldo3 and the gpio controlled regulator are the 2 regulators used for
-> > mmc2 on my board. My notes have the vmmc supply as cldo3 and the
-> > vqmmc supply as the GPIO controlled one, but that feels wrong. That
-> > said the IO pins measured 1.1v when the GPIO regulator was off and
-> > 3.3v when the GPIO regulator was on. The 1.1v didn't seem to come
-> > from the PMIC, as the only rail I had running 1.1v at the time was
-> > the RAM and I tested and confirmed that wasn't it.
-> >  
-> >> > +
-> >> > +&ohci0 {
-> >> > +	status = "okay";
-> >> > +};
-> >> > +
-> >> > +&ehci0 {
-> >> > +	status = "okay";
-> >> > +};
-> >> > +  
-> >
-> > I haven't confirmed on my board we need ohci0 and ehci0 for the OTG
-> > port.
-> >  
-> OK, shall I remove them or will it do no harm?
+Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+Signed-off-by: Konstantin Pugin <ria.freelander@gmail.com>
+---
+ Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-For pure peripheral mode we don't need them, but it wouldn't harm to have
-them anyway, and later on we will want to have them.
-
-> >> > +&r_rsb {
-> >> > +   status = "okay";
-> >> > +  
-> >
-> > Any advantage to doing this on the rsb over i2c? That's how I have mine
-> > wired. Both are fine with me, I just didn't know what was better.
-> >  
-> I don't think so, this was Andre's first suggestion when he sent the AXP717's kernel driver so have stuck with it, but either should be fine.
-
-As mentioned in the other mail, please stick to RSB.
-
-> >> > +
-> >> > +		vin1-supply = <&reg_vcc5v>;
-> >> > +		vin2-supply = <&reg_vcc5v>;
-> >> > +		vin3-supply = <&reg_vcc5v>;
-> >> > +		vin4-supply = <&reg_vcc5v>;  
-> >
-> > FYI - I never actually confirmed the vin supply of the PMIC, I just put
-> > these in here to shut up some errors or warnings. If these are based
-> > on something I did it couldn't hurt to recheck.  
-> 
-> Ta, will see if I can find anything out.
-> 
-> >  
-> >> > +
-> >> > +		regulators {
-> >> > +			reg_dcdc1: dcdc1 {
-> >> > +				regulator-always-on;
-> >> > +				regulator-boot-on;
-> >> > +				regulator-min-microvolt = <810000>;
-> >> > +				regulator-max-microvolt = <1100000>;  
-> >
-> > The CPU opp table in the BSP device tree had this between 900000 and
-> > 1120000. Though like most things, take anything in the BSP device
-> > tree with a grain of salt (lime and tequila help too).
-> >  
-> 
-> Quite! That's the spec from the H616 datasheet, I may need to push it up to 1.16v max to hit 1.5Ghz, but will relook at it once the cpufreq patches land.
-> 
-> > I'm just speculating, but I strongly *guess* that this dcdc2 is used
-> > for the GPU. SoC datasheet says max should be 900000 for the GPU, but
-> > I don't have an opp table to go off of sadly.
-> >  
-> >> > +			reg_dcdc2: dcdc2 {
-> >> > +				regulator-always-on;
-> >> > +				regulator-min-microvolt = <940000>;
-> >> > +				regulator-max-microvolt = <940000>;
-> >> > +				regulator-name = "vdd-sys";
-> >> > +			};  
-> 
-> Thanks, I think I did know that from somewhere. My reading of the datasheet is 0.81-0.99v though, so will put those in.
-
-Please try to be as precise as possible. The BSP used 0.94V, if I remember
-the dumps correctly, so it's better to stick with that single value.
-*Changing* such a critical voltage during runtime sounds like asking for
-trouble, and given the recent experience with GPU DVFS on the A64, I'd say
-we stick with a single voltage.
-Also a range only makes sense if the consumer knows about that and
-supports a change, examples are the SD card I/O voltage, or the CPU
-supply, for DVFS. But most devices just *enable* their regulator. So this
-would leave the voltage at whatever was set before, which does not sound
-helpful if this was wrong or slightly off for whatever reason.
-
-> > aldo4 is a critical regulator that should run at 1.8v based on my
-> > testing.
-> >  
-> Yup, noted.
-> 
-> >
-> > cldo3 is a critical regulator run at 3.3v based on my testing. It
-> > supplies power to the majority of the system's pins.
-> >  
-> Have called this VCC-IO for now.
-
-Yeah, that's a good name.
-
-Cheers,
-Andre
-
-> > On my 35XXH I can confirm PG is supplied by reg_aldo4 at 1.8v and the
-> > rest are supplied by reg_cldo3 at 3.3v.
-> >
-> >         vcc-pa-supply = <&reg_cldo3>;
-> >         vcc-pc-supply = <&reg_cldo3>;
-> >         vcc-pe-supply = <&reg_cldo3>;
-> >         vcc-pf-supply = <&reg_cldo3>;
-> >         vcc-pg-supply = <&reg_aldo4>;
-> >         vcc-ph-supply = <&reg_cldo3>;
-> >         vcc-pi-supply = <&reg_cldo3>;
-> >
-> > This is what my 35XXH looks like after manually raising or lowering the
-> > PMIC voltage values a tad, observing the GPIO out voltages, adjusting
-> > again, measuring the voltages again, etc etc. By checking at least 1
-> > pin from each bank and confirming voltage changes via PMIC changes
-> > I get this mapping.
-> >  
-> 
-> Great, have added these in. From the vendor DT looks like the audio codec is powered from the G pin bank.
-> 
-> > Thank you for all your hard work on this series. I'm going to continue
-> > to try and identify the remaining regulators on my board and what they
-> > do/how they're used. I expect at least one or two of the ones we've
-> > flagged for removal will need to be added back once we get the panel
-> > code working.
-> >
-> > Chris  
-> 
-> No worries, thanks for the feedback! Much improved now, I think the last big issue here is the USB ports. Have been testing on my -H for now, but will have to look at the -Plus too given the single port.
-> 
-> Ryan
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+index 5dec15b7e7c3..c4bedf23368b 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+@@ -12,6 +12,7 @@ maintainers:
+ properties:
+   compatible:
+     enum:
++      - exar,xr20m1172
+       - nxp,sc16is740
+       - nxp,sc16is741
+       - nxp,sc16is750
+-- 
+2.34.1
 
 
