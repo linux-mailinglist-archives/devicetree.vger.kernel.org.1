@@ -1,114 +1,107 @@
-Return-Path: <devicetree+bounces-61601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E638AD671
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 23:17:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5CB8AD682
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 23:28:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0567F1C21008
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 21:17:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082382835FA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 21:28:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B161C6B7;
-	Mon, 22 Apr 2024 21:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2101CAAD;
+	Mon, 22 Apr 2024 21:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JEcu7p4q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cdKQB2mX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5001CD3D
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 21:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E4DEAC7;
+	Mon, 22 Apr 2024 21:28:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713820663; cv=none; b=Q8HAwTReOne0Ji1QxPIee4GiEU9hsK7BdMiOE58Q1y9wQXrMWqV5wwO4Ssfl6W2j6kVhp+YWwQ0QOq5ulUp0y4wPqvHrZggMDjEqL6ddmd7DYmY4UDqjZTu2jJD69747JDIaT0Gt1Ahx6FscpgtkjA9rxXdFeL3/DZ65A7CQ3nc=
+	t=1713821307; cv=none; b=JVZBSzmcc19iRowEeqmOEdhrCehxKb2iJVOGeQacxFnsNhFKieo/2ozmD2ChKqEfvtimSVuKjFOhhkT3eSFI2LjWDKwUrpkOqlUIdX/I2E2kU1Nor/yqWYoGbEUKxW2WCJEAXcAyQDeL5y5vxUDg1W7FNeoLIyLOLehE78S3lIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713820663; c=relaxed/simple;
-	bh=4iw7ODXz7jcXnC9I/HtNNzAfisnjy5MrvL1n6NmWuIk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S+9aQL/DEXWLNIFxjrirFzmcBCejy+QxpPHIgeuKUCKVFIClr1G65M1faN7JYeDCJAwQLpXRjqK7L5yHiFqT50D28QJUXXEvtUEVzGq8pZppHi79A7oOQ/TFn2MnUSl1e98vwZ9yhL0WLFF/TAJDagovaPJEQGs4tZYmGLyCa7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JEcu7p4q; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51967f75763so5821920e87.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 14:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1713820658; x=1714425458; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y2m/l3tOuUABljidnIMWozMhmQuiJxyH3dIJhKQ/b+4=;
-        b=JEcu7p4qoVZpuWe3hbhvUJC83fW83yZlZk8Ke4ZBA9n0yJ9nVGoaVczYKURVsd0LKL
-         qKhQgbbQA+25CFV92DR4QmxXWOC12qYw8A8rD3+/2wT3t6e+71eBn8mWAan+FbzEvMel
-         KoKqulkXt+g5M3jZpJzrnREXA934xTlizrkqI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713820658; x=1714425458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y2m/l3tOuUABljidnIMWozMhmQuiJxyH3dIJhKQ/b+4=;
-        b=GE8KRy08mwBDXDbyhDWeVhzsVXJ5z9KRZg205ZlSeTSUxVMNZmpmR+b309WEaNA4kA
-         bwK78QzvvpHX2cJGUUbczf1zQfCqojt7/2/Obc7/8/Ku9FjUQs/p3Ve1FtClyIo1tLmK
-         5jdnXKjVwc14NwcBXwgBV/dvb6fMJS/ss02ZNRjWQy2ci5RX3onmZ3a+ijdfbYScykIA
-         BEsocDnHismFnLaKya8L8lB1I0ADvhL9q65ferMmCJI46dUttQ66srmx5wmJw1qwYE8K
-         qU285D8y7cm7vZhm9ROsqjNC7XFLxpnDxbZxXeRCPW97YiLIRZZTRKk65LeKA1z2gwmV
-         FLbw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxsQbveGa9PxmRNHRL/UhlDdoIFmXBlnXodSGf9XnE+4xaBy+YaGDe5vzq1cGt6hZc0DN7qeoqLLFbHO7/y4lHNW9oz8vGio8GhA==
-X-Gm-Message-State: AOJu0Yw2Wt9+3MpM+JqM4otAvdbGa/Z5qJl1iBdTRxte/Vpt6ECHY8h3
-	2G8SxT5S42/rbmpKVln2WCa4wmc7Uotj7SJcQWSGkFg2me3QLVEPXDHxWFR5VDM3Mun8jbeUOKh
-	6tHjs
-X-Google-Smtp-Source: AGHT+IF3meN7RnwI2LBJbnY9zOFQ6yGO1NmSYgWbryIouiYpMNUIcOirI9Rev0FwyotHRw3ys/84xA==
-X-Received: by 2002:ac2:58d6:0:b0:51a:f11c:b229 with SMTP id u22-20020ac258d6000000b0051af11cb229mr5438741lfo.25.1713820658216;
-        Mon, 22 Apr 2024 14:17:38 -0700 (PDT)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
-        by smtp.gmail.com with ESMTPSA id og45-20020a1709071ded00b00a587696d536sm263667ejc.36.2024.04.22.14.17.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 14:17:37 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-418820e6effso25065e9.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 14:17:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWtrYYmMLGfWvf99gTNHH8tyPGPwv2yeZHB/mv1XaiYzihut6blCWNdQlHIiODKrUxBTeDhg+Q73lJM5m69MU6RoRRIAtJj7OpoZQ==
-X-Received: by 2002:a05:600c:1d28:b0:41a:4331:89c with SMTP id
- l40-20020a05600c1d2800b0041a4331089cmr55545wms.2.1713820656705; Mon, 22 Apr
- 2024 14:17:36 -0700 (PDT)
+	s=arc-20240116; t=1713821307; c=relaxed/simple;
+	bh=WaHGXBsM0MuaHIbaQfdNhKENKHsWyZ8D1sqZg8eAJqU=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=qzS8npq6JlvYH86M+8ewZF+b8Q3uRfKy1oYV0+plpm8OZpaXk5MsmfX/df8DgQ7mQXu9qxg073C1kUl3Nb64oeK76ND/aerY72O10NJwZa/LW++5fjdErqTzHnutEGN2p+DpmxVMiLEDbOgTznj6Xb+W6qdjPZwzKh7rNV+6qAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cdKQB2mX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EEC2C113CC;
+	Mon, 22 Apr 2024 21:28:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713821306;
+	bh=WaHGXBsM0MuaHIbaQfdNhKENKHsWyZ8D1sqZg8eAJqU=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=cdKQB2mXKBtoRSvhAGTGtE+YajDVqN4dNYjCqcDpZ8aY/cc99N/7yWrn4Iv+2TgRn
+	 pNRdWhCpnHgh6ICRgI++La2rs8YnQp+DOhkCjtPwuEBAoplT4FAw4igYGAKptaMs+g
+	 C15asXjVg7H7rUQAFv4v+JpHohLY5bMs+OstY5f0tR7GsxkNUdgDUSbIyMz2/X1evY
+	 b954x0J1Cc3Ml8hZyHs1e2gcVVWdUkoajbG4q7vBkLur1rrN69cOaP7/AGGHgs+hI2
+	 snFKHMQsloZxwkDF34yvfqx7l9JUe93Dmy5Vz7Jk3W4xoFtOR7OmH9bd+UcSVxkouz
+	 zaWwZk3jlFs1g==
+Date: Mon, 22 Apr 2024 16:28:24 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422090310.3311429-1-yangcong5@huaqin.corp-partner.google.com>
- <20240422090310.3311429-4-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20240422090310.3311429-4-yangcong5@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 22 Apr 2024 14:17:19 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XWNf6-Qtf91EkDZhLzD0J_SpSEmm=APjuaqV099QDj+w@mail.gmail.com>
-Message-ID: <CAD=FV=XWNf6-Qtf91EkDZhLzD0J_SpSEmm=APjuaqV099QDj+w@mail.gmail.com>
-Subject: Re: [PATCH v2 3/7] arm64: defconfig: Enable HIMAX_HX83102 panel
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	robh+dt@kernel.org, conor+dt@kernel.org, airlied@gmail.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Rob Herring <robh@kernel.org>
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Michal Simek <michal.simek@amd.com>, 
+ Thippeswamy Havalige <thippeswamy.havalige@amd.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>
+In-Reply-To: <20240422195904.3591683-2-sean.anderson@linux.dev>
+References: <20240422195904.3591683-1-sean.anderson@linux.dev>
+ <20240422195904.3591683-2-sean.anderson@linux.dev>
+Message-Id: <171382130333.1986303.15938018699322126426.robh@kernel.org>
+Subject: Re: [PATCH 1/7] dt-bindings: pci: xilinx-nwl: Add phys
 
-Hi,
 
-On Mon, Apr 22, 2024 at 2:03=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> DRM_PANEL_HIMAX_HX83102 is being split out from DRM_PANEL_BOE_TV101WUM_NL=
-6.
-> Since the arm64 defconfig had the BOE panel driver enabled, let's also
-> enable the himax driver.
->
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+On Mon, 22 Apr 2024 15:58:58 -0400, Sean Anderson wrote:
+> Add phys properties so Linux can power-on/configure the GTR
+> transcievers.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
 > ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+> 
+>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml: properties:phy-names: {'maxItems': 4, 'items': [{'pattern': '^pcie-phy[0-3]$'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240422195904.3591683-2-sean.anderson@linux.dev
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
