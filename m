@@ -1,127 +1,188 @@
-Return-Path: <devicetree+bounces-61459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CE28ACC06
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:28:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E3BC8ACC1D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:37:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97F281F230FF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 553B3281F70
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EC3146A65;
-	Mon, 22 Apr 2024 11:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A220146A60;
+	Mon, 22 Apr 2024 11:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="f4FOhdlL"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WIN6TNL0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D56B1465A6
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 11:28:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463D21465A2;
+	Mon, 22 Apr 2024 11:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713785316; cv=none; b=Wn+++lSY1JJ7OCOsRquCXJVLUWFqIWROVWxRbzVepbFK1F2YL/Be9/z0JAsTmdPeO4wYNA5VXYiD0ejj+bATnkuTL6eGmlTfmOPB26Q8GfRprGUwQL49KrE3x0KUAyofaJaOWzMP96vtfVneGmuiKCgdPYZX8c5SYqjPTE38h44=
+	t=1713785853; cv=none; b=M4KDAZmxt92HXAgeYNacJ6FJW1vr6V9PZV/F9ONGtROkmj+gcqtzTVtjEIwej0LcrE4EUluBwkih5ChUUogKD/GctVYta98hCkcq+edoeXmygTsGh8E0LrpzqBEWfvbyR8hPhnDU/1Z1pFVemEg2I3m4jFFQTcaTUbr++7DpdJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713785316; c=relaxed/simple;
-	bh=LlC9TFfkOyKE9KBJ0ruLXt/YXgDvS60W07+SiC4G7dQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dqr/j8UfRs1aaC/DkkzhhTFCZtJA3xEpi80f2qmZXS+F9f8mFyN35kucDUGOPo/ToxxgrruzFwCd1pOrVdap5QkpT5QulH1M6mI2ztMMQ1QfQrRgeM2AJMMGSkHTy+EbZyD4GTqq3FkKAHiBhj71P4F5VddtVUOISQICVqleH5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=f4FOhdlL; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1713785314;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IdP6aBlHUd1XAByP0AzLdNCgpA2tCV7wBjkJeHqJq1E=;
-	b=f4FOhdlLq1BLs8s5QPd0bc6XOpBTrEYDdO/J2A30rD3ZlYP8DJYV7O6qAN3W+fkYFhAPuo
-	fBG9mKfY249fMzwYG+kibJtxF/57OhqwlFvG2g+gj4xZCZDxzK9aqBhkHvdqUdrZ1YxNkr
-	FBp2bsE7WUGE0e9+cylscWnzLh6XAuU=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-619-d2CB45IcM52oHrpXMIMCCQ-1; Mon, 22 Apr 2024 07:28:31 -0400
-X-MC-Unique: d2CB45IcM52oHrpXMIMCCQ-1
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-a4e9ac44d37so216667966b.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 04:28:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713785310; x=1714390110;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IdP6aBlHUd1XAByP0AzLdNCgpA2tCV7wBjkJeHqJq1E=;
-        b=BDQUDZFgzJQoJdXKBkj9Q6VaJi6WjxmjnI8fYxWR6sXt4kpuQ6+yo1QebM96CpQSaQ
-         G6aOZXV9KnME2bqYjcu5F6NEAVYcdHodyOv2cE8grHpDShXgMv+n1xpzpL6DYulD7Ye2
-         nAbpLwi+e/wqBvTXg5OTB5trYZ8a5K/O0ceakEh2KDciMmgwPiA5HJnKqpro0GMjHUMb
-         Qdi+bDmLWwNDV5n5IUcboC3849H0FJi6KDNFf6/0+7iafRY/2NWr1RU20Ig5oACpS6ew
-         QhR97iilOSfryuVCJfXqOgMfEGy9Rodcwzv1vKxKB4g56nPIy97CvBJAfBEz8w5N2O2w
-         iIPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZEcLMZa5pCFVTno4mCSFF8PzfU03VXhmPSxhyQFDPg13cR4cG36uTtYakNhsD2tQJlLqw7kG94ZXEY7oO8/Mpm3j3akKqzSVw4Q==
-X-Gm-Message-State: AOJu0Yx6lccGAfaQG7anRSmxvrbtl6rcE9hSMaaB75lwvVjpSs7AHgbB
-	cpkAKUBGnXMF/KxMWq48JgY7pWk3Bx0HLBFI5EeI2c5Puv/MVKobrLjAR4JPpg4jI2zsING332c
-	LRlqYUcz6zj8unhQR32CObTJ4FYtj/JfC24njuXXi3Va98KONsUPsbkU7itI=
-X-Received: by 2002:a17:907:94c7:b0:a55:aee0:517 with SMTP id dn7-20020a17090794c700b00a55aee00517mr2715566ejc.30.1713785310800;
-        Mon, 22 Apr 2024 04:28:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEYltrgJMhWpRSqD48zzNpCNz3G5JP8VifbDGgrJ1pm53j5xEijUgLtV36FCwtzF7rrmcTjmg==
-X-Received: by 2002:a17:907:94c7:b0:a55:aee0:517 with SMTP id dn7-20020a17090794c700b00a55aee00517mr2715553ejc.30.1713785310475;
-        Mon, 22 Apr 2024 04:28:30 -0700 (PDT)
-Received: from [10.40.98.157] ([78.108.130.194])
-        by smtp.gmail.com with ESMTPSA id d13-20020a170906640d00b00a5267ee40efsm5731727ejm.18.2024.04.22.04.28.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 04:28:30 -0700 (PDT)
-Message-ID: <44b64f19-8141-4c6e-855f-d2b4e821e0c9@redhat.com>
-Date: Mon, 22 Apr 2024 13:28:29 +0200
+	s=arc-20240116; t=1713785853; c=relaxed/simple;
+	bh=JirxwaUTPZ7gRRTADFPsE4LALCUoW+coAPWl1mh0lv4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tCDK9w44yM3rQ4iSeAzUR7SZ41WHz8dcFyEWaqyZZwOY3GFkGehUINZspsRQSbsBOx7+gIlT6X5GlrW7Rc8vypzfCPJQfBNTB9EKu1W+qZWy0oS0qYmmnlp5avs1vDJlu7KUwditiZpkr0ici+lQ7eyvpKW36QaSbajBAw/Y4AM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WIN6TNL0; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1713785851; x=1745321851;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JirxwaUTPZ7gRRTADFPsE4LALCUoW+coAPWl1mh0lv4=;
+  b=WIN6TNL03JCsd7HKa0aw3VOEEuMCrHdC+t4+50oDi+OAczxbg4ptWVMj
+   IeT58zkDtOaLps1dtLG7t4B4RxgBjs3HgoSeZF9lLtqPbCmSLz5P8sY7x
+   fHoo1qFNrHBttf1r6QZvGABPMfRHQIlEFF1QEpsnW+2Bkd0gMMqqmfjRT
+   9vslTZO88+WMbvvrsHMA2X04y4WaHAxhdumql9cEWiNKXTDMb7HRM7KH4
+   D84ZS6R5Z8byef3xFrQh0dQ6/gDlk61smcDOSMUUZYOSNGYu+boWZIF5v
+   qEqF1S7+gZw9Z8bDiyLhcfs1lLRngr8jR+O6Id2l5UTx4ez14EVJmoOdJ
+   w==;
+X-CSE-ConnectionGUID: RWC0UfowTpGbeC6DP7jNJg==
+X-CSE-MsgGUID: E2DBmtQjS3e/5QeweITlcg==
+X-IronPort-AV: E=Sophos;i="6.07,220,1708412400"; 
+   d="asc'?scan'208";a="22099120"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Apr 2024 04:37:27 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 22 Apr 2024 04:37:01 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 22 Apr 2024 04:36:58 -0700
+Date: Mon, 22 Apr 2024 12:36:42 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+CC: Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel
+	<anup@brainfault.org>, Shuah Khan <shuah@kernel.org>, Atish Patra
+	<atishp@atishpatra.org>, <linux-doc@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <kvm@vger.kernel.org>,
+	<kvm-riscv@lists.infradead.org>, <linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH v2 04/12] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+Message-ID: <20240422-matchbook-unlikable-59987a8d8b1f@wendy>
+References: <20240418124300.1387978-1-cleger@rivosinc.com>
+ <20240418124300.1387978-5-cleger@rivosinc.com>
+ <20240419-clinic-amusing-d23b1b6d2af2@spud>
+ <6ab9e591-f2f2-4267-8bdd-169ef0243e14@rivosinc.com>
+ <20240422-daylight-sassy-ff3b0d867fef@wendy>
+ <032530b8-a26e-494f-bd9c-3e1661add5d4@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/4] Input: support overlay objects on touchscreens
-To: Gregor Riepl <onitake@gmail.com>,
- Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Jeff LaBundy
- <jeff@labundy.com>, Conor Dooley <conor+dt@kernel.org>,
- Bastian Hecht <hechtb@gmail.com>,
- Michael Riesch <michael.riesch@wolfvision.net>
-References: <20240422-feature-ts_virtobj_patch-v9-0-acf118d12a8a@wolfvision.net>
- <9d898a98-cb7d-45d8-80c2-2ef428288e6b@gmail.com>
-Content-Language: en-US
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <9d898a98-cb7d-45d8-80c2-2ef428288e6b@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BQeFG0OJOWz1hKp9"
+Content-Disposition: inline
+In-Reply-To: <032530b8-a26e-494f-bd9c-3e1661add5d4@rivosinc.com>
 
-Hi Gregor,
+--BQeFG0OJOWz1hKp9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 4/22/24 1:22 PM, Gregor Riepl wrote:
->> In order to generate proper key events by overlay buttons and adjust the
->> touch events to a clipped surface, this series offers a documented,
->> device-tree-based solution by means of helper functions.
->> An implementation for a specific touchscreen driver is also included.
-> 
-> I believe there's at least some x86 tablets that have such a layout, so maybe ACPI bindings would also make sense? Or can this be supported by your DT-based solution?
-> 
-> I'm not sure if it would really be needed for existing devices, though. It's possible they were all handled by touchscreen controller firmware so far.
-> 
-> Hans, do you remember if we've encountered any Silead or Goodix devices where the soft button overlay didn't work due to missing firmware support?
+On Mon, Apr 22, 2024 at 01:14:26PM +0200, Cl=E9ment L=E9ger wrote:
+> On 22/04/2024 11:35, Conor Dooley wrote:
+> > On Mon, Apr 22, 2024 at 10:53:10AM +0200, Cl=E9ment L=E9ger wrote:
+> >> On 19/04/2024 17:51, Conor Dooley wrote:
+> >>> On Thu, Apr 18, 2024 at 02:42:27PM +0200, Cl=E9ment L=E9ger wrote:
+> >>>> The Zc* standard extension for code reduction introduces new extensi=
+ons.
+> >>>> This patch adds support for Zca, Zcf, Zcd and Zcb. Zce, Zcmt and Zcmp
+> >>>> are left out of this patch since they are targeting microcontrollers/
+> >>>> embedded CPUs instead of application processors.
+> >>>>
+> >>>> Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
+> >>>> ---
+> >>>>  arch/riscv/include/asm/hwcap.h | 4 ++++
+> >>>>  arch/riscv/kernel/cpufeature.c | 4 ++++
+> >>>>  2 files changed, 8 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm=
+/hwcap.h
+> >>>> index 543e3ea2da0e..b7551bad341b 100644
+> >>>> --- a/arch/riscv/include/asm/hwcap.h
+> >>>> +++ b/arch/riscv/include/asm/hwcap.h
+> >>>> @@ -82,6 +82,10 @@
+> >>>>  #define RISCV_ISA_EXT_ZACAS		73
+> >>>>  #define RISCV_ISA_EXT_XANDESPMU		74
+> >>>>  #define RISCV_ISA_EXT_ZIMOP		75
+> >>>> +#define RISCV_ISA_EXT_ZCA		76
+> >>>> +#define RISCV_ISA_EXT_ZCB		77
+> >>>> +#define RISCV_ISA_EXT_ZCD		78
+> >>>> +#define RISCV_ISA_EXT_ZCF		79
+> >>>> =20
+> >>>>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+> >>>> =20
+> >>>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpuf=
+eature.c
+> >>>> index 115ba001f1bc..09dee071274d 100644
+> >>>> --- a/arch/riscv/kernel/cpufeature.c
+> >>>> +++ b/arch/riscv/kernel/cpufeature.c
+> >>>> @@ -261,6 +261,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[]=
+ =3D {
+> >>>>  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+> >>>>  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
+> >>>>  	__RISCV_ISA_EXT_DATA(zfhmin, RISCV_ISA_EXT_ZFHMIN),
+> >>>> +	__RISCV_ISA_EXT_DATA(zca, RISCV_ISA_EXT_ZCA),
+> >>>> +	__RISCV_ISA_EXT_DATA(zcb, RISCV_ISA_EXT_ZCB),
+> >>>> +	__RISCV_ISA_EXT_DATA(zcd, RISCV_ISA_EXT_ZCD),
+> >>>> +	__RISCV_ISA_EXT_DATA(zcf, RISCV_ISA_EXT_ZCF),
+> >>>>  	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
+> >>>>  	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+> >>>>  	__RISCV_ISA_EXT_DATA(zbc, RISCV_ISA_EXT_ZBC),
+> >>>
+> >>> Ye, this looks exactly like what I "feared".
+> >>
+> >> Ok but for instance, Qemu actually set Zc* based on C/F/D. So the ISA
+> >> string containing theses dependencies should actually also be allowed.
+> >> So should we simply ignore them in the ISA string and always do our own
+> >> "post-processing" based on C/F/D?
+> >=20
+> > I'm not familiar with the contents of all of these extensions, but I
+> > assume the reasoning for splitting them out is that you can implement
+> > them but not maybe not implement C (or something similar)? If that's the
+> > case, you cannot always imply.
+>=20
+> Yeah, they can be implemented independently so we need to be able to
+> parse them independently.
 
-The x86 devices with Silead or Goodix touchscreens with soft buttons which are
-part of the touchscreen digitizer that I know off all handle the soft buttons
-in firmware and do not report regular touches for the soft buttons area.
+> However, the kernel currently requires C
 
-So I don't think that something like this is necessary for x86 devices atm.
+No it doesn't!
+There's a Kconfig option that controls whether or not we build with
+compressed instructions.
 
-Regards,
+> so we
+> should always have Zca/Zcf/Zcd. But if that changes in the future, then,
+> that won't be true anymore. Better keep it generic probably
 
-Hans
 
+--BQeFG0OJOWz1hKp9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiZLygAKCRB4tDGHoIJi
+0rZqAPsH+rOY+xwtmy02hvEj5S0LCo5WHbH42moKe/rg2JsecQD9Efgn3/dHRehg
+SrE0p8oOablre3zPC16fRvmLyILrMAw=
+=iMqf
+-----END PGP SIGNATURE-----
+
+--BQeFG0OJOWz1hKp9--
 
