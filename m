@@ -1,123 +1,138 @@
-Return-Path: <devicetree+bounces-61512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90AA78AD035
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:06:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EAA8AD04B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 17:09:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F27B1F21B2D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:06:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D7C1B258C5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:09:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9683115251B;
-	Mon, 22 Apr 2024 15:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE77153572;
+	Mon, 22 Apr 2024 15:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hQ07eb1N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiuLOtpt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741BE5025E;
-	Mon, 22 Apr 2024 15:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162B015356D
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 15:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713798390; cv=none; b=pQEgkqFsmQ3wGXxy7TpcM8Yjg5fNf7oxcpfRT/qDvEyuTCTnPwAshx7EqSsqKPLQYd0u8vXtcruO94BqThL4GW4Nm0PRG0xgw6BtsDiJ9wkJ9NOnlvRCpAZtkVhu/Yzu5aMZYb6F2sRjJkXZRmLKrTFJ9z6OEgHzMm3aYueitSs=
+	t=1713798492; cv=none; b=ZZeVDcoC+8fUtMPfxqxEVxfRTZnzPZ9mKArAGH1XnNF74N5TsNYRkltE+9gSSQE917khv29R1btOYFBtoD65vejVNwtmekGYPJWeih71evnFNoQIcd8CTyuDVVoCJQpBsjgk3T6o3VwDbUATNGfwGW14QUf+Wdg4WnrZx9XO4LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713798390; c=relaxed/simple;
-	bh=1ZM36XBQ+Ug/+Msdxo9lrVnAiv5Wct4bZHL2H8s5r7I=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Td0nsR7r+MMUDlQDW0xUpXSEEwY1UJJ4bqlpMgB0KwA/Oc3k2Wc+b+kQWjxvvomO2Q5J/taZpjoHf+qyrCkWg2I/bBbOMA0c3g9kwHLhtBxC8p21K74kyzOwlAIzMVx5jzWAVV2AjLmyZxMHz12SfYKySNuockXN36KJuBzd6pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hQ07eb1N; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57215beb09bso418967a12.3;
-        Mon, 22 Apr 2024 08:06:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713798384; x=1714403184; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1ZM36XBQ+Ug/+Msdxo9lrVnAiv5Wct4bZHL2H8s5r7I=;
-        b=hQ07eb1Nh28KgRizECkQ87fBwg4IAxqqpAQhCb5OF2hItYGfQ/l4p8PeEP3o3mc5jg
-         RtWE0lSEKTzqDQTDgBKDB/V8K00utof+wOcg9upOiRYg3e33WPANImhjV9omQB2Xq8+s
-         EKKj7rrWHH0B1HJasnaEAKDJGlwBv7c2g5acMCrCWI+wGX9OaWzK1ynvjXRBmLVaRVVq
-         MI77x0DVxmXIf2Y1u96Y677ykw5tWQpqyimnFqWq5zzruGPE+0rMgYq2gGO3ry4xCHuw
-         zRqdyODqU0ef6ahDaSsXo7r/wkMY5dp5xn4KeqGwtl8lwq+QhpghSYWvggPSHEFC4IQx
-         ZcRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713798384; x=1714403184;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1ZM36XBQ+Ug/+Msdxo9lrVnAiv5Wct4bZHL2H8s5r7I=;
-        b=RyTy0/rpJSKGSSsb1E2oPYG6KJr8oTlodB1ItrBj0wZF5Ri3aoUC73zkC0RAI3Fsjr
-         6oVxiQW+NZLvNCfVYfJxIeouZkJcEnPxjdjKV1TS0vhUTrgesszhnpJJc3U+hREoHG+1
-         4242CYsPolBnEVVq8vmSSQOgmJwktFTF5EkRrZs5F75yuPkD7aMSZuousbln4j7t6Iac
-         fMn3gzKFEzA7eaHUcGR1BaWXLAXpcxiq1C56uvisHIqehyyDdbgLY0umCCdmt5o+ARke
-         o22dmKuSwu1OhCU8IkRL1/AMLam11IgC6MJduJBXoJFdlRrBRd9hkr7q0DmeBAMura0N
-         J24g==
-X-Forwarded-Encrypted: i=1; AJvYcCXgWGYN89/gtvrNcJTel2XjegNRAnbsqzdBIa/W0FdNZ9q+w1ikXrcID6u7yRq2+DwTrcvvtzJ5BtoYBBXce6aJ1PS8TJYPBt9I5xdxXxpYS21Wor4mBSZi8mlwrm745gdoTVtuNA==
-X-Gm-Message-State: AOJu0Yzr4WSYAXKe54a63+TWZSQnunjZRML334025TSQCpeqoJIr6dRT
-	iP7213XYm/K+dJ9s5gQR3R2ZSpPbq9peNzW/zpjK8oiryiPQeQL0
-X-Google-Smtp-Source: AGHT+IEyyP9ZOlkbRcFQw0325uLAtTa0tGcrbkt2eUgskPxOVixG+wxPpNr63tSMwqyMHV4usMy0yQ==
-X-Received: by 2002:a17:906:5955:b0:a52:36e1:c139 with SMTP id g21-20020a170906595500b00a5236e1c139mr6791672ejr.4.1713798383209;
-        Mon, 22 Apr 2024 08:06:23 -0700 (PDT)
-Received: from ?IPv6:2001:a61:3481:2201:6106:96db:d27b:d2c2? ([2001:a61:3481:2201:6106:96db:d27b:d2c2])
-        by smtp.gmail.com with ESMTPSA id bw19-20020a170906c1d300b00a5238156017sm5896882ejb.88.2024.04.22.08.06.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 08:06:22 -0700 (PDT)
-Message-ID: <be927df578a936e7699a26edfddd42470689e7cd.camel@gmail.com>
-Subject: Re: [PATCH 3/8] dt-bindings: adc: axi-adc: add clocks property
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
-	 <devnull+nuno.sa.analog.com@kernel.org>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, Alexandru Ardelean
- <alexandru.ardelean@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Mon, 22 Apr 2024 17:06:22 +0200
-In-Reply-To: <20240420160404.57bd835d@jic23-huawei>
-References: <20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com>
-	 <20240419-ad9467-new-features-v1-3-3e7628ff6d5e@analog.com>
-	 <20240420160404.57bd835d@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	s=arc-20240116; t=1713798492; c=relaxed/simple;
+	bh=QNpTh7SSEKm5aEurHWCD45AQgT9MI90Hn8igWPVhotQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k4h7eL7IzLu/SfPiQsMtABhFY5uFg5zYe1Z2h+rRLb8LgWm/KtUy299q9ajS2YJm5MTzmSeCsgMqkP8LWJunnwgnCW9qfS3/5KSeQ2LRiFXpPbGiSZg6sTl6yges0y05Ywzvc31W93MkrvE6JlV62XOpZOPcJcQxuWQIt9LvJSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiuLOtpt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53CF3C4AF09;
+	Mon, 22 Apr 2024 15:08:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713798491;
+	bh=QNpTh7SSEKm5aEurHWCD45AQgT9MI90Hn8igWPVhotQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fiuLOtptFHLOeefhxmjlT4jLTL4HLwYlkSOHlscuaJQ+xo5tFcFazaW1VER9jI1Ga
+	 MQXi2Ez2VvHvIQTReJZ2qhza4NQ7kfKeeUw+Eppv2MaIpMIAoFVywHHHXAfLXs1YSI
+	 MNI9S+vRySYhe61Tm0h+eGElxBF1Sv5TtQYl5b2VvPIXqozvz7KGwpVMB8rY1ce9dq
+	 dRdbz0BYE/XbXBbHnysZmT2WSCJbRgj1voHfXDQDZ5svax42zwGxQ57NlfRbaNwOK0
+	 9DRjm+OUjyYV1PnbP25xMqCjpaOnI9hFtd+eUf6xRTBLLryWnmsppKQ8AUiBbRSafr
+	 HHvONsJGedWBA==
+Date: Mon, 22 Apr 2024 10:08:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Sean Nyekjaer <sean@geanix.com>,
+	Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+	devicetree@vger.kernel.org, kernel@dh-electronics.com,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 01/20] dt-bindings: arm: stm32: Add compatible string for
+ DH electronics STM32MP13xx DHCOR DHSBC board
+Message-ID: <20240422150809.GA1265252-robh@kernel.org>
+References: <20240422002006.243687-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240422002006.243687-1-marex@denx.de>
 
-On Sat, 2024-04-20 at 16:04 +0100, Jonathan Cameron wrote:
-> On Fri, 19 Apr 2024 17:36:46 +0200
-> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
->=20
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > Add a required clock property as we can't access the device registers i=
-f
-> > the AXI bus clock is not properly enabled.
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> Fix, or doesn't matter until this series?
->=20
+On Mon, Apr 22, 2024 at 02:19:15AM +0200, Marek Vasut wrote:
+> Add DT compatible string for DH electronics STM32MP13xx DHCOR SoM and
+> DHSBC carrier board. This stm32mp135f-dhcor-dhsbc board is a stack of
+> DHCOR SoM based on STM32MP135F SoC (900MHz / crypto capabilities)
+> populated on DHSBC carrier board.
+> 
+> The SoM contains the following peripherals:
+> - STPMIC (power delivery)
+> - 512MB DDR3L memory
+> - eMMC and SDIO WiFi module
+> 
+> The DHSBC carrier board contains the following peripherals:
+> - Two RGMII Ethernet ports
+> - USB-A Host port, USB-C peripheral port, USB-C power supply plug
+> - Expansion connector
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: "Leonard Göhrs" <l.goehrs@pengutronix.de>
+> Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Andre Przywara <andre.przywara@arm.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sean Nyekjaer <sean@geanix.com>
+> Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> index bc2f43330ae42..7f61223b8ef24 100644
+> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> @@ -59,6 +59,12 @@ properties:
+>                - prt,prtt1s   # Protonic PRTT1S
+>            - const: st,stm32mp151
+>  
+> +      - description: DH STM32MP135 DHCOR SoM based Boards
+> +        items:
+> +          - const: dh,stm32mp135f-dhcor-dhsbc
+> +          - const: dh,stm32mp131a-dhcor-som
 
-It does matter. But reality is that it's rare for you to catch this issue b=
-ecause
-such a fundamental clock is typically enabled pretty early during boot. But=
- we did
-had some issues (on other cores) regarding this. Anyways, for correctness, =
-I'll add a
-tag on v2.
+Either this or your dts is wrong. Either way, please test your dts files 
+against the schemas.
 
-- Nuno S=C3=A1
-
-
+> +          - const: st,stm32mp135
+> +
+>        - description: DH STM32MP151 DHCOR SoM based Boards
+>          items:
+>            - const: dh,stm32mp151a-dhcor-testbench
+> -- 
+> 2.43.0
+> 
 
