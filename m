@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-61435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B928ACB1E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 12:45:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3628ACB3E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 12:52:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31F1BB230E0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:45:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CAF91F20F1A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B4A414659E;
-	Mon, 22 Apr 2024 10:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B0C1448C6;
+	Mon, 22 Apr 2024 10:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J3dlUSGZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QcqiBEIr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B784146597
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 10:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EA2482C1;
+	Mon, 22 Apr 2024 10:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713782540; cv=none; b=kYd3h92ZAK0gfcPVrLQRfhs1YrMXsMQFktJfaz1sgtnouNe7JzK0Tq0r14Fv9cDbwndARUzfGYrgqXnaC+3V0xNMQ6OYwlDXj8pBmDQWRVKITqt8xUQsIK8GYGLfonm97EqhPtaKGaIM+Dmm4FywPl51gchVThx2gLYLHHN4U7g=
+	t=1713783154; cv=none; b=DFwOcZAeExRWMw6YIA1f3IvQvHoUrTHgZHYgw7EFVHy1vnEoG4fkWtcM0rqH5o/WjiUOTS5I7GEhMUmTdMwobq3cgWzCeZRbwJZEnko4l4wXVv1AhnCaHp5MJf44ugjlxvGAh9aOZ9XGPvTCCVdVdW9vuEC4bAOAqvwRW6OW9Mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713782540; c=relaxed/simple;
-	bh=YoEJKKsBkO7Hy2UG3Vai0ze1YI1Lzm34ca+sCXhjjss=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QUMuBgbV7ySP6pNSBNOKZ4lQc+HU75sDaqljLKosqHgOxneWiui3KR91LbBmNCxUXFbMwPlbyBMkYbGw2e/R1uC9dcK6MNGsGF3QhKo6Eediom4RB3LqjrJREYJjXp0STBRgx+ZkG/i/zHOxnJHw1Sjf1/27JRiulzk89Lx3eco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J3dlUSGZ; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-346b96f1483so2180757f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 03:42:17 -0700 (PDT)
+	s=arc-20240116; t=1713783154; c=relaxed/simple;
+	bh=0KlyZbYLtPzoaO0C9rWrtsHQkri9Vg0zakhGtHwYeko=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=AL+2fy6M+dLIVy3KwhHj9N9acwDcGaJAqX9xLmjLx5+cFLlXY8lKmpm8CJgrdoPumOM1A2snqBK8mfUZp9atQpM3EBYDDC5eSsmbnkNM2Us6UoqRz8QCWinVNCb2I7Vi1vmKq+7RbNRI1N1Vmj/+KE9zDaNhJXReK02hFKa4Nv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QcqiBEIr; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-518a56cdbcfso6575908e87.2;
+        Mon, 22 Apr 2024 03:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713782536; x=1714387336; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=gmail.com; s=20230601; t=1713783150; x=1714387950; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gC4DR+9J4HO1tL0F3u172IWLsSfAcz/KXWZdmgKrFKM=;
-        b=J3dlUSGZiHqkad1RhFy7aCo97XcT8rWgfZ0JlWiHxtn3mspMnU7qjs1b34oNikXCbJ
-         KJi6nVWi0bOGhXcRKzfNNjYLdfNXsst2MI9adSU099rhTSznV/HXzYLcQaq74xCfgZbS
-         mD0u7l2vid6080lKaTKvDIS/urFbHd5PZjCJiPWirNVeTEFwrm9sB7/Dm92TIlqCTCal
-         WkpKAPEr0A9bYBX5Ui8NNwLJrpXHR7Kq5aIkKXY6JgMUgWlviBcfDEs7+9nI8WC0+sDr
-         5SW0me3+JIa/fxJV0S5Jn/eQiu/sYl3HuXPF/L9CXagl3TkITdhoQYrXLtFT+/STa+iA
-         rI2Q==
+        bh=XB9rFLfMWN1g7ihRLHwOUgZ6Nm1LwOP8sZGJRcsldyE=;
+        b=QcqiBEIrDdfB2wRJu8SJ4XUlcj7/V+wF/e64LNSS/BwV7wqLh+3FgprSGbhFmYs/RX
+         Q2DD7GRioJ1VjI4zN2YFp5oRfKpNFs4VeEqvlQGi6wGeK69m9W/O6OY+MxVe9mKEOAjx
+         YQDZSDSpqJKuEBnGslw7uceOBDE/eVz5Jotm/r192Pt3WZEs8vKomEuF1jDcKr08CLIu
+         nxwsWrV6uc55lvUnZno6s09QQyQ0prTpcuMMUwZO/Y9uPukI90909IkLcoMGXg576jIS
+         If7+USLHSv2R0f7mnkNEw5Fm8RSLNtgF6/RjILYhBWr/jSn2zrye0jqdF+dKaLBCLG3B
+         LXdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713782536; x=1714387336;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20230601; t=1713783150; x=1714387950;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gC4DR+9J4HO1tL0F3u172IWLsSfAcz/KXWZdmgKrFKM=;
-        b=FcawlLc5/rhph5xegQTr9+TRY5d2HP32dhrc8SAiS/Btp+YwaGx7CuR8yrqscPIG3v
-         3NTmzo4FpAg3h6UVMgho+zBbuI1aKTHAyyzK0TVxdkMl19BcVpfMRWvoGcepf3gXnK9v
-         +qzaKh0lejGXm8avelw4SzsIZQG9RVphfQh2+9i2vn+aOvW32eGMj6SrRaZvqZaP54mn
-         liy9CpUsVRyOfpzTk2nVB7NQz5rv6c5na5Y9nS+ITXQHmjn80kulINqMEr/fwryWQh0H
-         IZ39Di6ikAFLByoROW6UD4xjlWczfA6Mlgb6urqotNzdfQ9UnVhIWf1bhCF3agiMx6gl
-         7zZg==
-X-Forwarded-Encrypted: i=1; AJvYcCX9i4w4mmBDCNwvPk45MDxzL/oN9zYfKwCKNukU6LVENbxdxDa7kRlxE28c9yuNOoeXg3o7FPB8kboSU5Lq9oz7BOT+EN04ay76QQ==
-X-Gm-Message-State: AOJu0Ywba6LiOmCx0oiWtZj5AuUAvVkqyBCITyJdSFtS1pO8tdICyjEM
-	zpmXJHklWDItfzh/qViAp5uzLXhkHgez1snIjcOgCGh6srOZocRvn1i+0ttZKV8=
-X-Google-Smtp-Source: AGHT+IGjxf3Zq7FCFraVyj/pZnVXYDfnBTpiDA1Kik2gtcjePJ46VP2hfL68eZOAV63TO64TVMWrYA==
-X-Received: by 2002:a5d:59a9:0:b0:34a:6fac:6dab with SMTP id p9-20020a5d59a9000000b0034a6fac6dabmr7224398wrr.12.1713782536459;
-        Mon, 22 Apr 2024 03:42:16 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id e5-20020adfe385000000b003455e5d2569sm11874012wrm.0.2024.04.22.03.42.15
+        bh=XB9rFLfMWN1g7ihRLHwOUgZ6Nm1LwOP8sZGJRcsldyE=;
+        b=VMHpXjuaTtxcKNfmjzsWlxl967h/HeJ3Udn5H5wD2k+0IWAi1/nCqVV0E8AlJs0QfU
+         PmTyX/KDcq1zk0Ear5nVL+E58G2RdOX/PkuTwaOJFusFTNoTZh9gCJCTS0tNwHLbjolU
+         1OXhwu8Iap+O/4tTiNrXH4U5YaolIjdjyJUzx+ZgZXULYgl8DEl01Be4YWRzoVW1agf4
+         95KlQ2ISwuRNs1R6MZgZA0jcBlNEFrRcY3PSZtMJFH40ofL4XKZ0s9e/MUpjag0EQ71C
+         3HnBBUtES7/8dJRM+R38fzEEcMnaEaSthaB+fC53htctNqC7uCIYv3ogeBNgQnwYIEwf
+         iXsg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3WGgIHLHCGjcadOBKyfElzqB+tiaEutYRoy3eGMXXXwMwki0I++V8iIDuZXc/Uq3ZSkYlVKB07rXppU8Aehg3rSuGC1rrTewvpOQt3sPXGwf+ym9EcPWN4tlggLhxwfiqDy4R+pUrygztrhrB1Yptp1MUgZoxOGSFKizoLIKbI6j11ZrF2N2A
+X-Gm-Message-State: AOJu0Yy0h1hAcsQq/kla0/N2mX+G23LsAqUeaKC3fAatET063+Hm83NF
+	QB0RMwXJAhSi4NLbzebkrPfxY/FUnf0Hwjru8jW0mSDSShUnJTpSWIQOVg==
+X-Google-Smtp-Source: AGHT+IE2Fra+D9O2RmKL2tYXLgjMiLcbqzqK/4+uP5rJNuLIq6LRSJ0NyrdFpn1hET47c94bt7nfdQ==
+X-Received: by 2002:a05:6512:398b:b0:51b:214c:5231 with SMTP id j11-20020a056512398b00b0051b214c5231mr3320962lfu.15.1713783150279;
+        Mon, 22 Apr 2024 03:52:30 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id w8-20020ac24428000000b0051b627770ecsm111901lfl.237.2024.04.22.03.52.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 03:42:16 -0700 (PDT)
-Message-ID: <fc73c913-a6e5-418c-811c-57567a3115b8@linaro.org>
-Date: Mon, 22 Apr 2024 12:42:15 +0200
+        Mon, 22 Apr 2024 03:52:29 -0700 (PDT)
+Message-ID: <b6ded975-1d16-46ea-84a2-8799b36e1270@gmail.com>
+Date: Mon, 22 Apr 2024 13:52:27 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,189 +76,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] thermal: loongson2: Add Loongson-2K2000 support
-Content-Language: en-US
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
- <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- Yinbo Zhu <zhuyinbo@loongson.cn>, WANG Xuerui <git@xen0n.name>,
- loongarch@lists.linux.dev
-References: <cover.1713509889.git.zhoubinbin@loongson.cn>
- <e3c9b6bdfe8624d90bcc16eefe92abd66bd3da12.1713509889.git.zhoubinbin@loongson.cn>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <e3c9b6bdfe8624d90bcc16eefe92abd66bd3da12.1713509889.git.zhoubinbin@loongson.cn>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>
+References: <cover.1712058690.git.mazziesaccount@gmail.com>
+ <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
+ <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
+ <b6279be8-cf7d-4608-b556-3c01587f0d43@gmail.com>
+ <f1e3d31d-8c24-4cdc-ae26-747f383a937b@gmail.com>
+In-Reply-To: <f1e3d31d-8c24-4cdc-ae26-747f383a937b@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/04/2024 03:46, Binbin Zhou wrote:
-> The Loongson-2K2000 and Loongson-2K1000 have similar thermal sensors,
-> except that the temperature is read differently.
+Hi dee Ho peeps,
+
+On 4/5/24 12:19, Matti Vaittinen wrote:
+> On 4/4/24 16:15, Matti Vaittinen wrote:
+>> Hi Mark,
+>>
+>> On 4/4/24 15:09, Mark Brown wrote:
+>>> On Thu, Apr 04, 2024 at 10:26:34AM +0300, Matti Vaittinen wrote:
+>>>
+>>>> 1. Should we be able to have more than 1 IRQ domain / device?
+>>>> 2. Should regmap_irq support having more than 1 HWIRQ
+>>>
+>>> I would expect each parent interrupt to show up as a separate remap_irq.
+
+...
+>>> So if we arrange to supply a name when we register multiple domains
+>>> things should work fine?
 > 
-> In particular, the temperature output registers of the Loongson-2K2000
-> are defined in the chip configuration domain and are read in a different
-> way.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> Acked-by: Huacai Chen <chenhuacai@loongson.cn>
-> ---
->   drivers/thermal/loongson2_thermal.c | 50 +++++++++++++++++++++++------
->   1 file changed, 40 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
-> index 7de01fbea801..8ecd8ed465ec 100644
-> --- a/drivers/thermal/loongson2_thermal.c
-> +++ b/drivers/thermal/loongson2_thermal.c
-> @@ -30,12 +30,20 @@
->   					 LOONGSON2_THSENS_INT_HIGH)
->   #define LOONGSON2_THSENS_OUT_MASK	0xFF
->   
-> +/*
-> + * This flag is used to indicate the temperature reading
-> + * method of the Loongson-2K2000
-> + */
-> +#define LS2K2000_THSENS_OUT_FLAG	BIT(0)
-> +
->   struct loongson2_thermal_chip_data {
->   	unsigned int thermal_sensor_sel;
-> +	unsigned int flags;
->   };
->   
->   struct loongson2_thermal_data {
-> -	void __iomem *regs;
-> +	void __iomem *ctrl_reg;
-> +	void __iomem *temp_reg;
->   	const struct loongson2_thermal_chip_data *chip_data;
->   };
->   
-> @@ -48,7 +56,7 @@ static void loongson2_set_ctrl_regs(struct loongson2_thermal_data *data,
->   
->   	reg_ctrl = ctrl_data + HECTO;
->   	reg_ctrl |= enable ? 0x100 : 0;
-> -	writew(reg_ctrl, data->regs + ctrl_reg + reg_off);
-> +	writew(reg_ctrl, data->ctrl_reg + ctrl_reg + reg_off);
->   }
->   
->   static int loongson2_thermal_set(struct loongson2_thermal_data *data,
-> @@ -65,11 +73,16 @@ static int loongson2_thermal_set(struct loongson2_thermal_data *data,
->   
->   static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
->   {
-> -	u32 reg_val;
-> +	int val;
->   	struct loongson2_thermal_data *data = thermal_zone_device_priv(tz);
->   
-> -	reg_val = readl(data->regs + LOONGSON2_THSENS_OUT_REG);
-> -	*temp = ((reg_val & LOONGSON2_THSENS_OUT_MASK) - HECTO) * KILO;
-> +	if (data->chip_data->flags) {
-> +		val = readl(data->temp_reg);
-> +		*temp = ((val & 0xffff) * 820 / 0x4000 - 311) * KILO;
-> +	} else {
-> +		val = readl(data->ctrl_reg + LOONGSON2_THSENS_OUT_REG);
-> +		*temp = ((val & LOONGSON2_THSENS_OUT_MASK) - HECTO) * KILO;
-> +	}
+> After my latest findings, yes, I think so. How to do this correctly is 
+> beyond me though. The __irq_domain_create() seems to me that the name is 
+> meant to be the dt-node name when the controller is backed by a real 
+> dt-node. Naming of the irq_domain_alloc_named_fwnode() sounds to me like 
+> it is only intended to be used when there is no real fwnode. All 
+> suggestions appreciated. Using the:
+> irq_domain_update_bus_token(intb_domain, DOMAIN_BUS_WIRED);
+> feels like a dirty hack, and won't scale if there is more HWIRQs.
 
-Why not use a different ops. That will keep the code cleaner for the 
-next sensor versions.
+I tried taking a look at this again.
 
-For example:
+If we wanted to support multiple HWIRQs / regmap-IRQ controller, it 
+would require us to duplicate almost everything in the struct 
+regmap_irq_chip for every new parent IRQ. The status/mask register 
+information, IRQ type, etc. Naturally, it would require also duplicating 
+lot of the data contained in the struct regmap_irq_chip_data. I am not 
+sure if this could be done so the change is not reflected in the 
+existing IRQ data initialization macros etc. Furthermore, some API 
+changes would be required like changes to regmap_irq_get_domain().
 
-static int loongson2_2k2000_get_temp(...)
-{
-}
+I am a bit afraid this change, if implemented in regmap-IRQ, would be 
+very intrusive and potentially impact large amount of callers. But more 
+importantly, looking the amount of data that should be duplicated per 
+new HWIRQ makes me think that an IRQ controller is really a product of a 
+parent IRQ, not product of the device. Hence, assuming there is only one 
+IRQ controller instance / device does not feel any more correct than 
+assuming there is an IRQ controller instance / parent IRQ. Same thinking 
+applies to IRQ domains.
 
-static int loongson2_2k1000_get_temp(...)
-{
-}
+Thus, forcing the regmap-IRQ to support multiple parents instead of 
+having own regmap-IRQ instance / parent IRQ feels like fitting square 
+item to a round hole. I am sure fixing all the bugs I caused would give 
+donate a lot of EXP-points though :rolleyes:
 
-static struct thermal_zone_device_ops loongson2_of_thermal_ops = {
-         .get_temp = loongson2_2k1000_get_temp,
-         .set_trips = loongson2_thermal_set_trips,
-};
+Question is, should I still try?
 
+Another option I see, is trying to think if irq-domain name could be 
+changed. (This is what the RFC v3 does, [ab]using the 
+irq_domain_update_bus_token()). I was a bit put off by the idea of 
+'instantiating' multiple domains (or regmap-IRQ controllers) from a 
+single node, but more I think of this, more I lean towards it. Besides, 
+this is not something completely odd, I think MFD devices do this 
+anyways. (Instantiate multiple [sub]devices from single DT-node). I 
+would love to get an opinion from someone who knows the 'fundamentals' 
+of the IRQ domains, and possibly some pointer for the right approach.
 
-loongson2_thermal_probe
-{
-	...	
+Finally we might also consider adding own sub-node in DT for each parent 
+IRQ - but this feels very wrong to me.
 
-	if (data->chip_data->flags & LS2K2000_THSENS_OUT_FLAG)
-		loongson2_of_thermal_ops.get_temp = loongson2_2k2000_get_temp;
-	...
+All in all, I am having very hard time trying to think how to proceed. 
+The last option for me is to skip support for the ERRB IRQ from the 
+BD96801 driver, which would leave this problem to the next person 
+working with a device providing multiple physical IRQs.
 
-}
-
->   	return 0;
->   }
-> @@ -79,7 +92,7 @@ static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
->   	struct thermal_zone_device *tzd = dev;
->   	struct loongson2_thermal_data *data = thermal_zone_device_priv(tzd);
->   
-> -	writeb(LOONGSON2_THSENS_INT_EN, data->regs + LOONGSON2_THSENS_STATUS_REG);
-> +	writeb(LOONGSON2_THSENS_INT_EN, data->ctrl_reg + LOONGSON2_THSENS_STATUS_REG);
->   
->   	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
->   
-> @@ -111,15 +124,22 @@ static int loongson2_thermal_probe(struct platform_device *pdev)
->   
->   	data->chip_data = device_get_match_data(dev);
->   
-> -	data->regs = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(data->regs))
-> -		return PTR_ERR(data->regs);
-> +	data->ctrl_reg = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(data->ctrl_reg))
-> +		return PTR_ERR(data->ctrl_reg);
-> +
-> +	/* The temperature output register is separate for Loongson-2K2000 */
-> +	if (data->chip_data->flags) {
-> +		data->temp_reg = devm_platform_ioremap_resource(pdev, 1);
-> +		if (IS_ERR(data->temp_reg))
-> +			return PTR_ERR(data->temp_reg);
-> +	}
->   
->   	irq = platform_get_irq(pdev, 0);
->   	if (irq < 0)
->   		return irq;
->   
-> -	writeb(LOONGSON2_THSENS_INT_EN, data->regs + LOONGSON2_THSENS_STATUS_REG);
-> +	writeb(LOONGSON2_THSENS_INT_EN, data->ctrl_reg + LOONGSON2_THSENS_STATUS_REG);
->   
->   	loongson2_thermal_set(data, 0, 0, false);
->   
-> @@ -146,6 +166,12 @@ static int loongson2_thermal_probe(struct platform_device *pdev)
->   
->   static const struct loongson2_thermal_chip_data loongson2_thermal_ls2k1000_data = {
->   	.thermal_sensor_sel = 0,
-> +	.flags = 0,
-> +};
-> +
-> +static const struct loongson2_thermal_chip_data loongson2_thermal_ls2k2000_data = {
-> +	.thermal_sensor_sel = 0,
-> +	.flags = LS2K2000_THSENS_OUT_FLAG,
->   };
->   
->   static const struct of_device_id of_loongson2_thermal_match[] = {
-> @@ -153,6 +179,10 @@ static const struct of_device_id of_loongson2_thermal_match[] = {
->   		.compatible = "loongson,ls2k1000-thermal",
->   		.data = &loongson2_thermal_ls2k1000_data,
->   	},
-> +	{
-> +		.compatible = "loongson,ls2k2000-thermal",
-> +		.data = &loongson2_thermal_ls2k2000_data,
-> +	},
->   	{ /* end */ }
->   };
->   MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
+Yours,
+	-- Matti
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
