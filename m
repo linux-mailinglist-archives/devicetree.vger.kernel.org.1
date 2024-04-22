@@ -1,150 +1,181 @@
-Return-Path: <devicetree+bounces-61466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8678ACC52
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:51:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B04D8ACC5F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5520C285B4C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:51:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 186FC1F247E5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651C614A09D;
-	Mon, 22 Apr 2024 11:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2D5146D46;
+	Mon, 22 Apr 2024 11:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bpEmg+5m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xE4YAHnw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BCE146A9A;
-	Mon, 22 Apr 2024 11:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B834D146A68
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 11:56:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713786628; cv=none; b=PQP8WnGsx/apw0FbyXz/pr7j1YwyWkShSq9h86M71h3/WZvNofPfCfa2Hve0qjVbsE1ECl/jxQxM42nOG2OhXfxotOcVDb3wlk0mhQZOV8xFL0a11T9bRF94AhPUCiWYIUPS6OW9Y1cxAGVWlqIcgH1GW3cnNqnK+d9xMlBcCfg=
+	t=1713786992; cv=none; b=aVTBB5AZuEojQ3c7hFGiog0L1fly7KZFDoF/9RrbW/RnD1+6YGLHhQiq5dCRuSAYap5tdj1qL1ZPFOUjX0Vuouo1mg/Jv1pwrj3b9ZqqH0WIvjFLaec9y4tWkxMRQQRHpU9K8cOEWG3r/wAs2dI8+Y2WL+zTiG+S8Pt9+hoFAGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713786628; c=relaxed/simple;
-	bh=zIsEFBhzD+ZLEO1S9a4Cy+7IngF0zRAtRSaUbuQMgQ0=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=MPYydDTES9kHxbuKfr3f87g2h4kbnpH7plMTkrGoKtBfdSAjcdKIAJpUAdPFW7Dtxs47qqbD6j6GcG07HlWtdykpaQfwJRstAx6MIyaZqaTmDxa9puxWeEPHea2g3w4EsXePPdJCDQvpdElAJYzPjRMFdCrhtNDgUhHEl2q3c2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bpEmg+5m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74B58C32782;
-	Mon, 22 Apr 2024 11:50:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713786627;
-	bh=zIsEFBhzD+ZLEO1S9a4Cy+7IngF0zRAtRSaUbuQMgQ0=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=bpEmg+5mn+onj3b66rqHoJKYf13F+mBQn6j56G+3+iyAuuian6f5TSaJcbAPMG1JX
-	 h3ICYktXKg5hhzHsUobwLyzm46KYj5mn37dGf9FFoWTDdqK+lPjdhhAvKVDDOhPN4b
-	 yIEc4HifqRQGw1bVR8PnS62Q7maQYpNVXDERrDhq3RmtCGKLlD4Psr7CpOe8IVeRId
-	 chXylBwNAE9yPunHZywdrdU4Jabixsg0lSV58u5n0ZWZfu0RGQ3twcBvfI+6Kre1oz
-	 0Nly5z40HFKG2t7ZGyopobEAg/fpFPLCxZLCZJMz0r0asFp+IwUB4vZfgCqVQB7HHe
-	 Q8jhbsXjv6P4Q==
-Date: Mon, 22 Apr 2024 06:50:26 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1713786992; c=relaxed/simple;
+	bh=eOGcIFG5AL3KYS7txR41D0DrhKGFKf6mBmKuVSlv8g8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DqWK4ibVEkYm+XRcGbJj1N72MJbcrvm4JogXnq7lu5f7CuppFnvnndwv38SKL84zYXLl3PUurM2fNVYAf9DKftOTJXMO2BVCPggP+S3bdSUdL/T5mAXIOFl6BJEiKyUAF2iSWGkwBkie+yakCO8f8aLDP+nwMtwYHToIHJDVqwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xE4YAHnw; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-418e4cd2196so31710705e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 04:56:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713786988; x=1714391788; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nX/bMWfXLXDn6zEUT9fHT9j4a6f6t+9m1elQSx8/+lQ=;
+        b=xE4YAHnw0NQigLOw6Lvwuwh5wIcHXZdJZcN70BQUSSsux1aL2sEwdfpbXf4ILvYQ4m
+         AoWKFJXQxAu3FOuoA8BmMMUWECDvnigD1+Ik11UQULOXeYi0km/eGaNecF6QfU1f5H5k
+         EQ02JK3zR1uJKu35SmdWGSvGsZ+nTlX4jjmQTpA9FQIQEJL0JetCK2uOxz2ivW9AP+6q
+         RGpSvgBhtXcSG3v1PPEGZ6Slm+6BgMjGJerBAw7leob+BGZgVbsYO1+RTyXEUejC+roP
+         4I7lOcBBskmigWDPX5kqgZlrqzG9eCjVkFX7sxXdg7Kphf9yq3Q+dGo9NhKeHwSn2qHl
+         pMow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713786988; x=1714391788;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nX/bMWfXLXDn6zEUT9fHT9j4a6f6t+9m1elQSx8/+lQ=;
+        b=dBu8sAtJ/BQ0oS19EnYpbiHnfi4Exm5O7zJCZjJsXfeaioK5px16lCbnYhQ06vp28K
+         uwSyYU5hv88v5QC0qy4pRqC5plMknAXvq68/IiwoiShz/qnagMo0vSrTU1PPIegj+mHB
+         KcQC85W8ZmgG3Folxw/zJviP7jPy5L165J1yRYN5r02WeVgoFrj9Bt62GztibSpKTQ+9
+         creUyqZq0CntyxgYBcY7YZ3sULKLqpETooOg4SIEWhPtvOyQTIrjnRRd+FwIHou55fwa
+         g3CeD7eE43mkfp3acDI6WGnO0ySAtMg2M1EZNtX3+UKpMVMQeBdvuHTLSDDIQ9doY/om
+         n4tg==
+X-Forwarded-Encrypted: i=1; AJvYcCWW9vCj3rZNXXM/RdXRZh4ydmbWnZd/zS2d3JrmMxcz2TCW6X6T+IgROGdIgW0xPofqgx5sIoHt5W9fl8LnSn5h0V/Blkp8LtU/Gg==
+X-Gm-Message-State: AOJu0Yyj5gve7cq8J5+SgLCPq5Gb6FXYn33FTbTJxmTHrpo/kYf+0ddh
+	hEvT2O3uMq0X57cakDWxGiLbvTUKYlvCWLdsmrq3l41Lwa5qfBNolsj5Pz/lFak=
+X-Google-Smtp-Source: AGHT+IGVXgMIXd3YHlwOCTD3Vi0s0IjqBet7mPIGRlkGEfrfiJzXlInqlZH69CmrU10ID0Wv9BeUtw==
+X-Received: by 2002:a05:600c:4591:b0:419:400:de88 with SMTP id r17-20020a05600c459100b004190400de88mr7113299wmo.27.1713786988025;
+        Mon, 22 Apr 2024 04:56:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id m5-20020a7bca45000000b0041a68d4fe76sm1761348wml.0.2024.04.22.04.56.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Apr 2024 04:56:27 -0700 (PDT)
+Message-ID: <eab45cdd-a0b5-4766-b62c-00c1a92a3618@linaro.org>
+Date: Mon, 22 Apr 2024 13:56:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>
-In-Reply-To: <20240422-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v3-0-799475a27cce@linaro.org>
-References: <20240422-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v3-0-799475a27cce@linaro.org>
-Message-Id: <171378646293.749182.6639047187760279527.robh@kernel.org>
-Subject: Re: [PATCH v3 0/3] arm64: qcom-sm8[456]50: properly describe the
- PCIe Gen4x2 PHY AUX clock
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] dt-bindings: power: Extend battery chemistry with
+ capacitor
+To: Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.b2a893bc-f00b-47cf-ae07-b37ec1bace22@emailsignatures365.codetwo.com>
+ <20240415081305.316107-1-mike.looijmans@topic.nl>
+ <1f94ee56-7f8e-453b-ab86-f640b298d81c@linaro.org>
+ <16ff3a55-3d04-46e6-b78c-c1964c062329@topic.nl>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <16ff3a55-3d04-46e6-b78c-c1964c062329@topic.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Mon, 22 Apr 2024 10:33:10 +0200, Neil Armstrong wrote:
-> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock named
-> "PHY_AUX_CLK" which is an input of the Global Clock Controller (GCC) which
-> is muxed & gated then returned to the PHY as an input.
+On 22/04/2024 09:50, Mike Looijmans wrote:
+> On 15-04-2024 17:24, Krzysztof Kozlowski wrote:
+>> On 15/04/2024 10:13, Mike Looijmans wrote:
+>>> Another technology to store energy is a (super)capacitor.
+>>>
+>>> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+>>> ---
+>>>
+>>> (no changes since v1)
+>>>
+>>>   Documentation/devicetree/bindings/power/supply/battery.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/Documentation/devicetree/bindings/power/supply/battery.yaml
+>>> index 491488e7b970..a22c97dfad88 100644
+>>> --- a/Documentation/devicetree/bindings/power/supply/battery.yaml
+>>> +++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
+>>> @@ -44,6 +44,7 @@ properties:
+>>>         - const: lithium-ion-polymer
+>>>         - const: lithium-ion-iron-phosphate
+>>>         - const: lithium-ion-manganese-oxide
+>>> +      - const: capacitor
+>> Please keep some sort of order... everyone insists on adding to the end
+>> of the lists...
 > 
-> Document the clock IDs to select the PIPE clock or the AUX clock,
-> also enforce a second clock-output-names and a #clock-cells value of 1
-> for the PCIe Gen4x2 PHY found in the SM8[456]50 SoCs.
+> Could make it alphabetical, but that requires re-ordering the existing 
+> ones so "lithium" sorts before "nickel".
+
+So just put it at beginning, less sorting later.
+
 > 
-> The PHY driver needs a light refactoring to support a second clock,
-> and finally the DT is changed to connect the PHY second clock to the
-> corresponding GCC input then drop the dummy fixed rate clock.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Changes in v3:
-> - Rebased on linux-next, applies now cleanly
-> - Link to v2: https://lore.kernel.org/r/20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-0-3ec0a966d52f@linaro.org
-> 
-> Changes in v2:
-> - Collected review tags
-> - Switched back to of_clk_add_hw_provider/devm_add_action_or_reset to maintain compatibility
-> - Tried to use generic of_clk_hw_onecell_get() but it requires to much boilerplate code
->   and would still need a local qmp_pcie_clk_hw_get() to support the current #clock-cells=0
->   when exposing 2 clocks, so it's simpler to just return the clocks in qmp_pcie_clk_hw_get()
-> - Link to v1: https://lore.kernel.org/r/20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org
-> 
-> ---
-> Neil Armstrong (3):
->       arm64: dts: qcom: sm8450: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk
->       arm64: dts: qcom: sm8550: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk
->       arm64: dts: qcom: sm8650: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk
-> 
->  arch/arm64/boot/dts/qcom/sm8450.dtsi    |  8 ++++----
->  arch/arm64/boot/dts/qcom/sm8550-hdk.dts |  4 ----
->  arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  4 ----
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts |  8 --------
->  arch/arm64/boot/dts/qcom/sm8550.dtsi    | 13 ++++---------
->  arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  4 ----
->  arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  4 ----
->  arch/arm64/boot/dts/qcom/sm8650.dtsi    | 13 ++++---------
->  8 files changed, 12 insertions(+), 46 deletions(-)
-> ---
-> base-commit: f529a6d274b3b8c75899e949649d231298f30a32
-> change-id: 20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-4b35169707dd
-> 
-> Best regards,
-> --
-> Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> 
-> 
+> I think the intention here was that the order is the same as the 
+> matching defines in power-supply.h
 
+There is no such binding as power-supply.h. And other headers do not
+matter, they are not bindings.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/sm8550-hdk.dtb qcom/sm8550-mtp.dtb qcom/sm8550-qrd.dtb qcom/sm8650-mtp.dtb qcom/sm8650-qrd.dtb' for 20240422-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v3-0-799475a27cce@linaro.org:
-
-arch/arm64/boot/dts/qcom/sm8550-qrd.dtb: clock-controller@100000: clocks: [[41], [42], [43], [44, 0], [45, 0], [45, 1], [45, 2], [46, 0]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8550-gcc.yaml#
-arch/arm64/boot/dts/qcom/sm8550-qrd.dtb: clock-controller@100000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8550-gcc.yaml#
-
-
-
-
+Best regards,
+Krzysztof
 
 
