@@ -1,132 +1,146 @@
-Return-Path: <devicetree+bounces-61473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9F28ACD14
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:44:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF098ACDAC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:02:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A789B23AAF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 12:44:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C337E1F22CCD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3348A14F107;
-	Mon, 22 Apr 2024 12:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8AB414F135;
+	Mon, 22 Apr 2024 13:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MB2WIfh4"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="HLs6xNmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A783E1E485
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 12:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB5C14F13A
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 13:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713789650; cv=none; b=bItdoNga40rcqj6nKXDZGrcizy24DbPVMmJY+mZhdL3rk4qwlXP2XBrSn0tMMpcRNOuw7BQaPfwt5RqxOCruNmeXsYcwrIBwCvk/6zG20pB6jg0DOkAtE9TYDgGupRYY5rF5dRPyXQiKvUle5tWL3UkYMpWT7rihFPBzw2DnR/g=
+	t=1713790886; cv=none; b=eRSrzA/bA5fKmBapOvWoybv5c1F0FaJFF8stTSQUcPe70NiNTlBmd5vDhcPhWJf387er1PJWUlCwE+xLz5yRMtK/CEXzgXnua7oqSxKSS19/cB64eCBMYjCEFVi/89dAgkfI4Xr9YLenHtqCAwnJhI78AoJ8pX7Tym1FK8cNO8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713789650; c=relaxed/simple;
-	bh=rHwtqOJ7hfOxjOvIBhN3DOgNQntQgRNTBmHT3TVb85g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YImfYO4scfOj6F2rHz/eUFBn/VsFK3EBcJxOQpRcvPqkdY2Ity8J347uL6q2Y1ZXKh9eIEfM48zFyQXOaSUTes4kw8Xsj4TsDAhQhjHGX2sgg9C32IxtQ97pdTw1F5ZoLeZ+u0WAWxmyKTb1gzzW5obg7Xzrc1DxNVX0PHXc44U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MB2WIfh4; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c75075ad30so1411755b6e.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 05:40:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713789648; x=1714394448; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CG4hPexSWedosu3J2N32I42487kxLi51E4WCYQ7z86Q=;
-        b=MB2WIfh4rnpQvPmiUpr5uUnAIHibvLzy+iAN3xVwvrhEaW0XYXtPsUEb+iP/lShDmH
-         dtlFEsrvpKGphAw5yaIjDYshejPLgxIQiJYL+WWO4Pdmh2nIqbJoIl2xygXzgocgpx92
-         dMH8Oypugo07UY7vrx+JMOtxIHtet4Ecl6Zr1LkMCLo29tX3ypPgmmiTAdNbR/KYB1+s
-         KFVky1O5yt7228LjC2k+7AyRUv9N4AyJStrzgWziosLnrhA0Qs68qGgowC2rjSW8x+jX
-         ON6rah4tqFo1KZ+8IijvfUGbY8IdSpUl227PawVTzkwib7eyPaHenxFXln/JIl4P9R/n
-         O5rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713789648; x=1714394448;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CG4hPexSWedosu3J2N32I42487kxLi51E4WCYQ7z86Q=;
-        b=waYbc3j81rZ0CMs7hGmEIQKcRKUbJKCxUgDpXIBuyV/EfgYJdefrcafLBAgA57KfEg
-         fIwYmpXxATozBg8ipOk69KEMgQc79o2TgeC1j69rcQZ52W3kPAVN7HtEHencR8nbL7Z5
-         3/FBjS2Eu8ppvB7kn7uV1Czp0n2ji1ceIIHQbm/9NAdzrNaXytlgU2AIv1ci0R+l1koC
-         QKuX9DL3sgn6MI27ww4RHEpJrDMnzesoCxrkpzjc4g2z5hoFrzfv1UexphFv4bJp1UQk
-         VRdBV74dg7ea7YsunEHaVZBgB4YmM831snwJb+whswZMJ8TmSXhLyHkQjp8xvlY76JGl
-         GtPw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdJ8YQeKf+8nraXCGxZWtp7KnyADg5RRAUXHTIIwC8rAQ1Tb9LgFZ1SceiYfFXGjsoeMc162LyqsEg3ylHyVhF7vOVFNS0+ZR7Tw==
-X-Gm-Message-State: AOJu0YzxFJ9Bdr5WN/Ps7vktrnkwXXTKLYReTlcNVV979XyOBUPpz1QK
-	XlGfDvQiZGSwXkGODVQd7I/Ds0xg0jvJTKJh8VQWTeiQ75OSSfJyCgn6JkBtnNhdmURvyeMhVu/
-	UQ0mzWVEEo071cbxhLpEDLZaN98OhNt1jadMYow==
-X-Google-Smtp-Source: AGHT+IEMfGJHMTEml1VRNaAfoa4qnzNHZkeLKuW9Vl9je272KzGmuVy0hJtkx+vfLt1IPHkVf/BJiDOJlfCqo09Adjo=
-X-Received: by 2002:a05:6870:b601:b0:233:5557:c6a2 with SMTP id
- cm1-20020a056870b60100b002335557c6a2mr14543327oab.34.1713789647808; Mon, 22
- Apr 2024 05:40:47 -0700 (PDT)
+	s=arc-20240116; t=1713790886; c=relaxed/simple;
+	bh=7dCCBSb70BSKtBQyjtr5xEIfOADNRzGEG1iaLKDhVJU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=foPLwiziiIh1tMTl7Poxzp8/vK+v99ma4Hs+//bCBcFE7hJtjEoFvyPrkpkF29SOAxSF2JftIcSTXGxSiNrE+3fXsZJqL78ZQRl2PQpl0xuihGnD/wUFPk+t8X2jObu/yeCfLwdAdDDd+L/iyPM7Ql/HbuI+sK2rmeAVzZEqe1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=HLs6xNmF; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 9F352883F5;
+	Mon, 22 Apr 2024 15:01:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1713790873;
+	bh=T2LhG+d5gfzpt+6frmELCYtldXw+0HdWnIbONHY1Lhw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HLs6xNmF2cHmt3/CSA7MsZxkirPPCo88FDPluDlTKu1MrjkbFM/fUI5WXck/of2D0
+	 jevpHqvu/HxIAEqMWxhP6zAF01CZe1Rhf82bIwJfoIJGze4ixDkV34XccpkRpkHbXk
+	 hbAFsnN6dI8QrRTYj600AQeVuau5YApne9YaNoCWq8YoH5/dZaKYZZbFv3Is65wp5r
+	 63ka9+nIuaP6CQJ4Mjrxr/gDbIpkFkTzbOqEDGrL0tJBZDH1bT4XHSCeOgbdRmOVia
+	 K95WNNF8UqIp9iGRQDqRrdsQTroRoef8fLQGbuUYNwvHs7g5NO8rx8gVP7HNPeZA2J
+	 ed7Tb4vmmKf1g==
+Message-ID: <fc42c239-1dff-4848-a0cf-4b21e3e59d8e@denx.de>
+Date: Mon, 22 Apr 2024 14:52:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404122559.898930-1-peter.griffin@linaro.org>
- <20240404122559.898930-10-peter.griffin@linaro.org> <95bcdc942cba564f78a6f2fe4cde892575838d5c.camel@linaro.org>
-In-Reply-To: <95bcdc942cba564f78a6f2fe4cde892575838d5c.camel@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 22 Apr 2024 13:40:36 +0100
-Message-ID: <CADrjBPrnWzT6raAtuswC0AE6EEwtQ7sTUkm8SjpBh=3nibcmSQ@mail.gmail.com>
-Subject: Re: [PATCH 09/17] phy: samsung-ufs: use exynos_get_pmu_regmap_by_phandle()
- to obtain PMU regmap
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
-	martin.petersen@oracle.com, chanho61.park@samsung.com, ebiggers@kernel.org, 
-	linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/20] dt-bindings: arm: stm32: Add compatible string for
+ DH electronics STM32MP13xx DHCOR DHSBC board
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ linux-arm-kernel@lists.infradead.org
+Cc: =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andre Przywara <andre.przywara@arm.com>, Conor Dooley <conor+dt@kernel.org>,
+ Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
+ Sean Nyekjaer <sean@geanix.com>, Steffen Trumtrar
+ <s.trumtrar@pengutronix.de>, devicetree@vger.kernel.org,
+ kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com
+References: <20240422002006.243687-1-marex@denx.de>
+ <f02c63b3-d6e1-495d-a73a-493e39e40b2e@kernel.org>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <f02c63b3-d6e1-495d-a73a-493e39e40b2e@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Andr=C3=A9,
+On 4/22/24 6:21 AM, Krzysztof Kozlowski wrote:
+> On 22/04/2024 02:19, Marek Vasut wrote:
+>> Add DT compatible string for DH electronics STM32MP13xx DHCOR SoM and
+>> DHSBC carrier board. This stm32mp135f-dhcor-dhsbc board is a stack of
+>> DHCOR SoM based on STM32MP135F SoC (900MHz / crypto capabilities)
+>> populated on DHSBC carrier board.
+>>
+>> The SoM contains the following peripherals:
+>> - STPMIC (power delivery)
+>> - 512MB DDR3L memory
+>> - eMMC and SDIO WiFi module
+>>
+>> The DHSBC carrier board contains the following peripherals:
+>> - Two RGMII Ethernet ports
+>> - USB-A Host port, USB-C peripheral port, USB-C power supply plug
+>> - Expansion connector
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: "Leonard Göhrs" <l.goehrs@pengutronix.de>
+>> Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>> Cc: Andre Przywara <andre.przywara@arm.com>
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Linus Walleij <linus.walleij@linaro.org>
+>> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: Sean Nyekjaer <sean@geanix.com>
+>> Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: kernel@dh-electronics.com
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-stm32@st-md-mailman.stormreply.com
+>> ---
+>>   Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>> index bc2f43330ae42..7f61223b8ef24 100644
+>> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>> @@ -59,6 +59,12 @@ properties:
+>>                 - prt,prtt1s   # Protonic PRTT1S
+>>             - const: st,stm32mp151
+>>   
+>> +      - description: DH STM32MP135 DHCOR SoM based Boards
+>> +        items:
+>> +          - const: dh,stm32mp135f-dhcor-dhsbc
+>> +          - const: dh,stm32mp131a-dhcor-som
+>> +          - const: st,stm32mp135
+> 
+> The entries look ordered by last compatible, so this breaks the order.
 
-Thanks for the review feedback.
+And uh ... I will not do last minute changes before sending out large 
+series next time, sorry.
 
-On Fri, 5 Apr 2024 at 08:04, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
-wrote:
->
-> On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
-> > This allows us to obtain a PMU regmap that is created by the exynos-pmu
-> > driver. Platforms such as gs101 require exynos-pmu created regmap to
-> > issue SMC calls for PMU register accesses. Existing platforms still get
-> > a MMIO regmap as before.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  drivers/phy/samsung/phy-samsung-ufs.c | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/phy/samsung/phy-samsung-ufs.c b/drivers/phy/samsun=
-g/phy-samsung-ufs.c
-> > index 183c88e3d1ec..c567efafc30f 100644
-> > --- a/drivers/phy/samsung/phy-samsung-ufs.c
-> > +++ b/drivers/phy/samsung/phy-samsung-ufs.c
-> > @@ -18,6 +18,7 @@
-> >  #include <linux/phy/phy.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/regmap.h>
-> > +#include <linux/soc/samsung/exynos-pmu.h>
->
-> You can now drop the include of linux/mfd/syscon.h
+I'll wait for Alex to see if 02..19 better be squashed or separate, and 
+then fix this up and send V2.
 
-I'll send a followup patch for this.
-
-Thanks,
-
-Peter
+Thanks
 
