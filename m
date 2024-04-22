@@ -1,225 +1,177 @@
-Return-Path: <devicetree+bounces-61508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42A98ACFCD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:45:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DF88ACFFA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:56:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A2F31F21A8D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:45:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9DCF281359
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 14:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAAC152176;
-	Mon, 22 Apr 2024 14:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB402152502;
+	Mon, 22 Apr 2024 14:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lhu3AVpL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U4HjiUXU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FDB14F124
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 14:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6160B1514FC
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 14:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713797084; cv=none; b=jQrgpE2BPbv70V828qWniKLO7hEyJnvWkD03Bh4ZkIJbVHn2uE7Y/jC+VeRZk6jvJFqGiuSUgW1RvhSAuoX3vQ1GiFY5CPdaI9AvMKQojDqAPyV8Ef3qGncp2iLjNLsv8uLfQRDUYRGKFBegs08kZO/h+/zaqyCSomfWwoJJOeY=
+	t=1713797768; cv=none; b=FSSGic8xkx9wzKemZtV2O3gYvQ6XXFDLyannum59umCJNRuAq+47cIuKUrjRyA0PgYl7gUhJvRCyGScyd5ucvFJQfX5edgoe1wI90hOUU1HO8M+0Vf0voOoghbLDeZQmIy8bDnTqrYgbKEZb8Qv05f87mX2CKp2BpQFyCJTJvpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713797084; c=relaxed/simple;
-	bh=uWsKl1wAe7kVcGq6U6naQwvSk15aE/AV9VCmlH9NuAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uP+RZ4dBIyZ4e+OB8ixB0zCA8hQwZNiT6LJ7nNa7v+ew6vDvmwPSve7RvFIpYJdeGqTlGuDOkCF9sliUgTnCt5c83/XmikSiJ58E25NmnFyy+SdCpmpWJPpV7YuuYascV8OUAZ6kAjzlklHxvOSf2pJ3fHiHQ4DfttBHre9Dlpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lhu3AVpL; arc=none smtp.client-ip=209.85.214.172
+	s=arc-20240116; t=1713797768; c=relaxed/simple;
+	bh=imsekkblo55XmgjAaWRpZaTVc+ZBiFNXzC9IucNVpbg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NJFGvVX1oubCw2/S/sLMPAd2IuuH5CIVZngl7DlyXKN3jHxe9vdavSQUgnyBnUjmVg2ybvKIJpCXvYQOwLAwypWZb46KGV6/BvxT3rTqCp0lbRrgVnxy6wKx50xJEhxbCAMOYwkpw/yOKIdjdEQ8IK34HEcoILGtuAs9B2/RExc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U4HjiUXU; arc=none smtp.client-ip=209.85.160.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e2c725e234so41585095ad.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:44:42 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-22f32226947so2070964fac.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:56:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713797082; x=1714401882; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LVRNChhXa7FZ9k90/6TDVi7/XDV6ST4jrfTPlduROb4=;
-        b=lhu3AVpLMOqAeeqq2ozi6/Puu3pZhvDMoarqfG2GKHmJuzNQ30EBCebevlcCVbmFGF
-         O3rz7Jq9sykVtDQ9C6ZfdJjEmZvm7LqROI+HDMhgce0EwXZd4prynwGlI99qK/ZniTG/
-         caRVrpqM6kLWBZbzWGDnsYf4rvFzazcjCUtMQ9iJu8giUISVtfRHAhNlhNQaU6IiNzVE
-         dD3Qp64WAli3yVKgzAienVIfX+STTTo9hbxKJ1GpLBKteESvBoNz38NU5NSvgm1Nvpcj
-         njle/hkn3TH0Ziyjl9eP25HGYXre6qkYTxL0BhDpPYu8YnbKmP5ekrr2YBaMEmRXwfPu
-         zFCw==
+        d=linaro.org; s=google; t=1713797765; x=1714402565; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NTOg8DkAW/3dkpxikcsk436y8h1eZe1SfUF5lmW3ku0=;
+        b=U4HjiUXUk7RxfDBJM02w61BKjrevJJkbVQ4n308mTss7ZrXCgsfziCIwLKxShfByoo
+         hWFUPwgoHrnn3+txvd+/dIRdrUyblWZBxXoIwQ7UOUEt5AXEp3fu6NW1YR9Euv3EQx5h
+         I1rveApyv3uw4B8KPrC6Jknj+jJkMsDnxzmLngWhjRpXz52q9hKfhn6LfI2E+KADBrKI
+         r+uDdkRm9scQAFyNYr+06lPE2DWOuUWWkQvldJVTr7zvmAQ4ictOwHFJ3K+eaL8sVheP
+         2p/ckccpkJIi/sQewygszj8wg3710ivlA+IL92IGQ0r+8UQMLXtriqxQHG6s6r8iYUjm
+         58zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713797082; x=1714401882;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LVRNChhXa7FZ9k90/6TDVi7/XDV6ST4jrfTPlduROb4=;
-        b=KMUgVymollBVktzrn9FrLmCXvvLVDQ0GE/jUOGCzTowGpFwcI23qCDijgDa9jvqNY/
-         hxsmAXJmu5cTuNs0UKsvsuV6zafyDFnK1Wq98RB6VOSrsZHsaHVpkwKFYnE1q4oBLssK
-         BqwnUE+Xz8WpNBV3NExYGfygZtXZoSy/SFBfG4U/CQhaOl3R8epnZgTeNx8Lfi07wTqm
-         3WWNHQZdXmKEYWjnHBjq7D1NcGZLxUNOoRKqDyryK8NxEsKxs/OUyoOLVmLzIueEKDpl
-         /ulKZNmckOSq+TEjayOUuRtHIo4JuQji0jOxZIEmCp/n1Jarq9e+cuEltLXcN8VKwhwU
-         BN/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWyUk8Srub2qgXlfhbFKMbXiOG+SlWxwmMEal+5G8CChTwObJEXEFbhzm3x1dSRYKxu6EhI0BLUuBVo6u0Vu0JLHgDmkElyr0/Fqw==
-X-Gm-Message-State: AOJu0Yw36kD3V+sSaKqsvxFRTgmJZn7nnOVhlw4VBm1vkgLMWCwu4Lxe
-	Eq7cfLQeNF0JxPbMK9HA1ycH2eLHnYMO2uac5EhPk8IHCtU46uFEmhmSbzPaJA==
-X-Google-Smtp-Source: AGHT+IG6t5wD268CJ9WM36yr69Ky8Cqce1xxt3gCjMhfQP8IBUnGiHqPiYx8GUUBwnRLDr0gdFewlg==
-X-Received: by 2002:a17:903:2308:b0:1ea:147:d4fd with SMTP id d8-20020a170903230800b001ea0147d4fdmr243785plh.32.1713797081973;
-        Mon, 22 Apr 2024 07:44:41 -0700 (PDT)
-Received: from thinkpad ([120.60.70.118])
-        by smtp.gmail.com with ESMTPSA id w19-20020a170902c79300b001e0c956f0dcsm8215015pla.213.2024.04.22.07.44.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 07:44:41 -0700 (PDT)
-Date: Mon, 22 Apr 2024 20:14:31 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
-	bmasney@redhat.com, djakov@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH v10 4/6] arm64: dts: qcom: sm8450: Add OPP table support
- to PCIe
-Message-ID: <20240422144431.GE9775@thinkpad>
-References: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
- <20240409-opp_support-v10-4-1956e6be343f@quicinc.com>
+        d=1e100.net; s=20230601; t=1713797765; x=1714402565;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NTOg8DkAW/3dkpxikcsk436y8h1eZe1SfUF5lmW3ku0=;
+        b=dLUjphVYXaLT4GaAFlPPkObqr4Sfn5kgEtuy9nqhYLz1goUXpy+EoM4d4UNPZZpS6W
+         dApl0YfK/KOH2AsNZkTZKZ6RilJTLiCOvnl+DVL+P0g/fEYKeKxubj0CdzJJ5y2evoqf
+         mK5Rpo3uhNfkRh+1Din++1ZNnTQ74d+89/NgsiQsKvvjnigpHLM/XpYyHFD2Y0QHhxPc
+         5Wcydlp/iAPK77e+Sxy0kIF1EtYO9TLPsXL23xdib7YNoYV3GTlr9Wvt0SCI9xB5isIy
+         hQPReJSXu7arvBw/rXv6lhAqdQP8J1wNOyRUplxGVgVSM+oTiz6oRk5uBftfVYk1l/Ss
+         IqMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUt7koUsNBAmxjIbp7vGFRT5eFDph84rYQOSW+L5P7TXntvi/p0qHgRSHZsmPbGIvkB5p331cGXtVIYVXqEPfjxD+D0wQhPMiMuoQ==
+X-Gm-Message-State: AOJu0YwGyyq4tR29l7h/4i9vjq4EGnzAFEdplq3LXEAOp7btXURTBt4Q
+	Ws/9tDIgtMxMUkJJVALdVewiMTh+X1GqPAW4YV6g0JlBoHykW2PHGAonKQawCIEr9tSXem+Cbrj
+	aOXQSEN7TZC19IUhznxhInr8eAE9Q2ZMXoH63gQ==
+X-Google-Smtp-Source: AGHT+IHTzGHT1v9LeibIhpXISDP5Up0NDJE//bpDlntvJJiW0sMwcyQm0rL5VdwsrhLb5OjnZBVN3sPtCblaMnzwbwM=
+X-Received: by 2002:a05:6870:1318:b0:21f:aba0:772d with SMTP id
+ 24-20020a056870131800b0021faba0772dmr10853360oab.39.1713797765495; Mon, 22
+ Apr 2024 07:56:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240409-opp_support-v10-4-1956e6be343f@quicinc.com>
+References: <20240404122559.898930-1-peter.griffin@linaro.org>
+ <20240404122559.898930-9-peter.griffin@linaro.org> <61f427ab3793def23d80d94457ff1568cae5ee11.camel@linaro.org>
+In-Reply-To: <61f427ab3793def23d80d94457ff1568cae5ee11.camel@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 22 Apr 2024 15:55:54 +0100
+Message-ID: <CADrjBPqAyWzuw9TmdE1XRQ2BkYojR8r7nnH7JcRWc9_xOpUgHg@mail.gmail.com>
+Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
+	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, chanho61.park@samsung.com, ebiggers@kernel.org, 
+	linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 09, 2024 at 03:43:22PM +0530, Krishna chaitanya chundru wrote:
-> PCIe needs to choose the appropriate performance state of RPMh power
+Hi Andr=C3=A9,
 
-'PCIe host controller driver'
+On Thu, 4 Apr 2024 at 14:24, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
+>
+> Hi Pete,
+>
+> Thanks for this!
+>
+> I haven't reviewed this, but one immediate comment...
+>
+> On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
+> > [...]
+> > diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-=
+gs101.c
+> > index d065e343a85d..b9f84c7d5c22 100644
+> > --- a/drivers/clk/samsung/clk-gs101.c
+> > +++ b/drivers/clk/samsung/clk-gs101.c
+> > @@ -22,6 +22,7 @@
+> >  #define CLKS_NR_MISC (CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
+> >  #define CLKS_NR_PERIC0       (CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
+> >  #define CLKS_NR_PERIC1       (CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
+> > +#define CLKS_NR_HSI2 (CLK_GOUT_HSI2_XIU_P_HSI2_ACLK + 1)
+>
+> Can you please keep the #defines alphabetical (hsi before misc).
 
-> domain and interconnect bandwidth based up on the PCIe data rate.
+Will fix
 
-'based on the PCIe data rate'
+>
+> >
+> >  /* ---- CMU_TOP ------------------------------------------------------=
+------- */
+> >
+> > @@ -3409,6 +3410,560 @@ static const struct samsung_cmu_info peric1_cmu=
+_info __initconst =3D {
+> >       .clk_name               =3D "bus",
+> >  };
+> >
+> > +/* ---- CMU_HSI2 -----------------------------------------------------=
+----- */
+>
+> and this code block should be earlier in the file
 
-> 
-> Add the OPP table support to specify RPMh performance states and
+Will fix
+>
+> > [..]
+>
+> >  static int __init gs101_cmu_probe(struct platform_device *pdev)
+> > @@ -3432,6 +3987,9 @@ static const struct of_device_id gs101_cmu_of_mat=
+ch[] =3D {
+> >       }, {
+> >               .compatible =3D "google,gs101-cmu-peric1",
+> >               .data =3D &peric1_cmu_info,
+> > +     }, {
+> > +             .compatible =3D "google,gs101-cmu-hsi2",
+> > +             .data =3D &hsi2_cmu_info,
+> >       }, {
+>
+> and this block should move up
 
-'Hence, add...'
+Will fix
+>
+> >       },
+> >  };
+> > diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bind=
+ings/clock/google,gs101.h
+> > index 3dac3577788a..ac239ce6821b 100644
+> > --- a/include/dt-bindings/clock/google,gs101.h
+> > +++ b/include/dt-bindings/clock/google,gs101.h
+> > @@ -518,4 +518,67 @@
+> >  #define CLK_GOUT_PERIC1_CLK_PERIC1_USI9_USI_CLK              45
+> >  #define CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK           46
+> >
+> > +/* CMU_HSI2 */
+>
+> and all these defines, too.
 
-> interconnect peak bandwidth.
-> 
-> Different link configurations may share the same aggregate bandwidth,
+Will fix.
 
-'It should be noted that the different...'
+regards,
 
-> e.g., a 2.5 GT/s x2 link and a 5.0 GT/s x1 link have the same bandwidth
-> and share the same OPP entry.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 77 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 615296e13c43..9dfe16012726 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1855,7 +1855,35 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pcie0_default_state>;
->  
-> +			operating-points-v2 = <&pcie0_opp_table>;
-> +
->  			status = "disabled";
-> +
-> +			pcie0_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				/* GEN 1 x1 */
-> +				opp-2500000 {
-> +					opp-hz = /bits/ 64 <2500000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +					opp-peak-kBps = <250000 1>;
-> +				};
-> +
-> +				/* GEN 2 x1 */
-> +				opp-5000000 {
-> +					opp-hz = /bits/ 64 <5000000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +					opp-peak-kBps = <500000 1>;
-> +				};
-> +
-> +				/* GEN 3 x1 */
-> +				opp-8000000 {
-> +					opp-hz = /bits/ 64 <8000000>;
-
-I doubt this value. See below...
-
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <984500 1>;
-> +				};
-> +			};
-> +
->  		};
->  
->  		pcie0_phy: phy@1c06000 {
-> @@ -1982,7 +2010,56 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pcie1_default_state>;
->  
-> +			operating-points-v2 = <&pcie1_opp_table>;
-> +
->  			status = "disabled";
-> +
-> +			pcie1_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				/* GEN 1 x1 */
-> +				opp-2500000 {
-> +					opp-hz = /bits/ 64 <2500000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +					opp-peak-kBps = <250000 1>;
-> +				};
-> +
-> +				/* GEN 1 x2 GEN 2 x1 */
-> +				opp-5000000 {
-> +					opp-hz = /bits/ 64 <5000000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +					opp-peak-kBps = <500000 1>;
-> +				};
-> +
-> +				/* GEN 2 x2 */
-> +				opp-10000000 {
-> +					opp-hz = /bits/ 64 <10000000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +					opp-peak-kBps = <1000000 1>;
-> +				};
-> +
-> +				/* GEN 3 x1 */
-> +				opp-8000000 {
-> +					opp-hz = /bits/ 64 <8000000>;
-
-GEN 3 x1 frequency is lower than GEN 2 x2? This looks strange. Both should be of
-same frequency.
-
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <984500 1>;
-> +				};
-> +
-> +				/* GEN 3 x2 GEN 4 x1 */
-
-'GEN 3 x2 and GEN 4 x1'
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Peter
 
