@@ -1,591 +1,293 @@
-Return-Path: <devicetree+bounces-61419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB7C18AC9E6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:54:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C878ACA3A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 12:08:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DED301C21489
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:54:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 913272837C6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBB813DB96;
-	Mon, 22 Apr 2024 09:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0E413DDCA;
+	Mon, 22 Apr 2024 10:07:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X1GE8NQW"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="HFr/Rb5K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2130.outbound.protection.outlook.com [40.107.22.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A52E43178
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 09:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713779635; cv=none; b=fXN5yZ2XHrGX3mPtSkHob3pY/M+301ELubIZ5sjHMjn/lR2yHX/cdDM+9csdoaCjbSjjc1fbh/2izE/refQZUPdoZo2OIHo9SQhOFhLsIyCs2M71GQ6nq3pC4ZuRFY0So6+rpMpz5UAPDZW9s5RwKcHQLVy8FXJL/VI89JU0aKI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713779635; c=relaxed/simple;
-	bh=N1vyexUJTOQeKTD1hVlxVmzss+1ZNvL8gjrDrN9+c5A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iMQorp/MV3zmLCBjmUwo3JGyIs+gpHku/ZXOIRNyi87s25NjnduemnKXiluJG+l3B8+siLh30ZooBILPs98whA11Z4Eri29sjp4pID6oKO6CGf8qasGqG4G87aS1o3xM7jDVjdktYm9HOnJXOWbZAPs7HdYcjoPaIotXo8Cf0Po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X1GE8NQW; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a4715991c32so432859466b.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 02:53:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713779631; x=1714384431; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=d2uumArb564F2HWCEnPtPYvaUcc8ViHiyMPm3V2MaMY=;
-        b=X1GE8NQWIup58JzNcWE9ZNhMnQr9sUdVs+K8IahuPD7CcrSvTOoayqkpTzhHwClZ2m
-         ZtVay9YgUkgqv7I9q6om+Mh4aARQ9uyTgWy6eBWalRaRhJ2ERJ/5EG/BMu/UqHVptamg
-         ZC+jSGQ9m1ezs4VPcNDhXMvp+19c29B1xVW3hcPgEbifJ1so5SBwkAb4icbCXiph7pjA
-         bInWqgYl2xkGmW+Smz7pZbhxJrzcHOKt6C3G+OUwjg0vY308ABa7HJ68VbaYhpcwYYfR
-         P6N6K9/jPVaA3qq7/VGLwuWg7JrFGwEdnjlo+BI94GmcBGM1vPghtuaWF5g1IlZdT3lx
-         JFkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713779631; x=1714384431;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d2uumArb564F2HWCEnPtPYvaUcc8ViHiyMPm3V2MaMY=;
-        b=VnFWItxMPV9c23gHFm9BUABmkEqtwB1b8r9dfPAIYPaXkrfDP4MxMk6h4udocOkdnz
-         cUE5Pw9zVZcwpPU823fvy1673qbLsSvuhptJ6BzbBNSQITuhckr7weCHqmzKcar3c/82
-         Q+jWU2je+cFeRX+YANzSKgssODJLpUk+czXwVoQMmoFwrQBsznMb/UMWbUs4mYJSN5rZ
-         TMM+3iCkAh4Vewr3I0nQCBnGtliis25H7vOdS+rYf1cuiwpuxw63nmCocpPNeo0aacJc
-         rekHC0MuDkzgiiqBuE7WJg9UpvqCOvnCKt8W22romKyacigNc2KyuS1KQnrKKqDDrJvq
-         Uw/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXXf8vyaPJBCNbtZz5ygeobIgSk0Z4zqfTuRzLFPtG4MKtOyfchxI7mxYuU+35WbfJTgFKlFtXlJD0+YZ4Xtb/rVFlcghB9XXnVTQ==
-X-Gm-Message-State: AOJu0YyvlJiav4R+di67tXqzDceYJ8bgIe9W12T38Nx8t6Cs//NZ/+RC
-	eq+nbZ0FxFrcOnr6mzmaYUXwstPePzTMAuzT3yQnOyY0m1OpdjhV7Re6uNKOhjo=
-X-Google-Smtp-Source: AGHT+IHtVQEJ5E8Z4QaC15gw43IZTt11181hKo2PdG891CUSiHQ3+kZc3JnZz0whOG2LSvqCj2assg==
-X-Received: by 2002:a17:906:f292:b0:a55:5eb0:6f2d with SMTP id gu18-20020a170906f29200b00a555eb06f2dmr5754405ejb.56.1713779630981;
-        Mon, 22 Apr 2024 02:53:50 -0700 (PDT)
-Received: from linaro.org ([62.231.100.236])
-        by smtp.gmail.com with ESMTPSA id m18-20020a1709060d9200b00a5561456fa8sm5534335eji.21.2024.04.22.02.53.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 02:53:50 -0700 (PDT)
-Date: Mon, 22 Apr 2024 12:53:48 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v6 4/4] clk: imx: add i.MX95 BLK CTL clk driver
-Message-ID: <ZiYzrDndFV+GSG+O@linaro.org>
-References: <20240401-imx95-blk-ctl-v6-0-84d4eca1e759@nxp.com>
- <20240401-imx95-blk-ctl-v6-4-84d4eca1e759@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEFBE13D611;
+	Mon, 22 Apr 2024 10:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.130
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713780471; cv=fail; b=SP1I12L5Yhmry+8bm5awocYCoXswqsCaMphU6VHfb4r4zYL9krt8aDEwFWvIlB+6W3iy5Ei1kWb78jKJNT5Luv8zNAqKpr3Q32QPaQfNQLGj83rf9Falyr5uTudVnHzn8erUrJb/NG7Nj7yAq91biLhza9EbT6X+Ou9g/v7Cb6s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713780471; c=relaxed/simple;
+	bh=xqSujAmAV6/3SRa4nYhyKQa4ADU+qccjdvBXJR5CB0w=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=jtRbw8BH5eDHpMzirSZr14UfLBRw095ZbamkmL9un3huhv12OFfrHkOVDe8xWzD9ffEUHKOhvOQJmAkjeoyMkAh4SvUtxFEbxsGt9CH/NRkcxu5+UMSqVjrlGs8NS1ZjJdS0fmpN7jLGu54bANun2cguRVfmPIVP9w1HuFJT2KI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=HFr/Rb5K; arc=fail smtp.client-ip=40.107.22.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KGTF5WqN2ENSvfb+ZaTCH0T3P5tlc11R/so6jQdjBkoxhtuMguAdwZNDScjEH4pz6+dESpe3c5qRs0WHtJkzRVctHRzHO0fpgIuUbnqVptpvvhNkpAgj/4/Y9/qNZCxDsl+m08z73uzJF/d6es5mLcFnmtctBOHb0nqs7i4VNoiOHjyAhYyCmLOCNErPi4LBvStXXsvaYIPFfX4yPJ3uxYEkpIziOzxXn/k2PpAq6lautTf/NhTF3IhK7/TrPmLfyFjlsLF2or9rk9AgEyWgD3X4JOoO/EpkY1ZeeuFXqGdtug6+AJ4wJZb8i8AFJuLsRs1ucqcH54l+m/Thn7SUtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zWBj8+b4lzxBjqPTVkhmewDiQTK1BlKfm1lKWS6844Y=;
+ b=jNyKc+gx2ri/+Sp90A0jga2wRSRrstQCa8aHPhc16+XIMNxfLBzrIuklzK1AI+Zb3fdigbFz61sXDfx+PPoZdFtq9kRAjJW+DMdgaIiyxoNdMcJdQrgsqnI080toXmcH7ppIiWPbB7ShzXn5bNbENbCOx05z+sRTjU3XEXl/PidYfpSPl2w05xbgxlhJq3QVRPnpWgVv8+gICJIlNeOJYMJZzxPLwmZC8TOxbeTvu1d4blFLk7xEoNu31NWB04XZY+GahC7HGhn5hIZQSHnNzi8qS5Wv3PHYe1ZHxIBhLAXlD1a2iUc+bQQV6liGkGUZPlrK2RmrE3ZCaRQiqzS/vA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zWBj8+b4lzxBjqPTVkhmewDiQTK1BlKfm1lKWS6844Y=;
+ b=HFr/Rb5KXpyGgsxzDgVhl0mBjwNKNM7Wj64hKYw7MzYHnKfme5pMV/lmKVdiBbeHHZK1avf39KaxvnBH5/a8JrAuPwKqOjTr2g0KE0IuJJxDChMhm0vf7xJVgDE9RnrUdowWllbcvIrWpnqXMC68YPER3+s+RY8ng23asPUKDzE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by AS8PR08MB7885.eurprd08.prod.outlook.com (2603:10a6:20b:508::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 22 Apr
+ 2024 10:07:44 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::6621:68a6:ab00:c040]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::6621:68a6:ab00:c040%5]) with mapi id 15.20.7472.044; Mon, 22 Apr 2024
+ 10:07:43 +0000
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+Subject: [PATCH v9 0/4] Input: support overlay objects on touchscreens
+Date: Mon, 22 Apr 2024 12:07:36 +0200
+Message-Id: <20240422-feature-ts_virtobj_patch-v9-0-acf118d12a8a@wolfvision.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOg2JmYC/43Q3U7EIBAF4FfZcC0boPx098r3MGbD0MFiTLsBR
+ M2m7y6s8crGcHkg8w2HG0kYAyZyPtxIxBJSWJcaTg8H4ma7vCANU81EMDEwxRn1aPN7RJrTpYS
+ YV3i9XG12M0WhjZLMWjSS1HGwCSlEu7i5AUUfJY2Ot6trRB8+71ufnmueQ8pr/Lo/ovB22rGvc
+ Mqosqhw5OCElo8f65v/aXBcMJMmF9Griap5PVoNHo1lflcberWhaiA9GO8kWDC7muzVZGvqtGP
+ eccRJ72qqV1OtqdegnJxAn4ZdTfdqumpT/TamTkZxta+Nv5pkg/hPG6vmLGg0kwPu/zbdtu0bw
+ 5RkrbQCAAA=
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bastian Hecht <hechtb@gmail.com>, 
+ Michael Riesch <michael.riesch@wolfvision.net>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco@wolfvision.net>, 
+ Jeff LaBundy <jeff@labundy.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713780463; l=5105;
+ i=javier.carrasco@wolfvision.net; s=20240320; h=from:subject:message-id;
+ bh=xqSujAmAV6/3SRa4nYhyKQa4ADU+qccjdvBXJR5CB0w=;
+ b=fmxxqBdBNNy9Pp5XfwiBYiXjJiypAOnULXDgsjUKr3wSRPiNn8pnXlB9rs/06m3sU6H0sR1jt
+ bifSR6ml5/8DtvjwxqmW90HhxGAHJTmLLAwX/OHnreGIWNtC4909F3Z
+X-Developer-Key: i=javier.carrasco@wolfvision.net; a=ed25519;
+ pk=Vxk2/0sGIxM8rsKnceszFuSuHVfQwa1Yo8+is7BX2nY=
+X-ClientProxiedBy: VI1PR0502CA0004.eurprd05.prod.outlook.com
+ (2603:10a6:803:1::17) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240401-imx95-blk-ctl-v6-4-84d4eca1e759@nxp.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|AS8PR08MB7885:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e81507e-e936-4135-8f20-08dc62b40d4a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TVgvSmdFTkNYcmZYM2ptVlltV2czcVllQnhpRE1YYkxUTWFpZ0xhaldZU2FI?=
+ =?utf-8?B?VGg1ZzF4VXEvMjgzcm5BU2NlSGMvSTZqVGd2UWdaNThzUjh4bllBenNjS2RP?=
+ =?utf-8?B?eUVORUdDVFltNzRkaG1DUURXQTNZaUdkaDBlUDdsN09tL0hJYWNraHE2dGNx?=
+ =?utf-8?B?RXdpbGxpSmROd2twN2t3amE2T1N1ZG5kRWsxRnpibFV2VW55T1ROOFRYbzF5?=
+ =?utf-8?B?K3FDYUcxTVJpbGNIRUM1U2VTQTEzSE92RElxZW1WcGE3MmRrY2wvQ1NRUjY1?=
+ =?utf-8?B?K2hjdHFqdDBtR0VFNkgveFl1Vk9jWXJEU0hxN0JtOTlyUUo0N3dRSlBCM09S?=
+ =?utf-8?B?azMyRXFpaVJVSTlsS21Ib3RxaENYMklGaTNhZE9TVGdZQ20vZDNRMnJWOFc1?=
+ =?utf-8?B?KzhUUWJINmVHdDVSRGRwdGRyMlluUVA0cEp0OWs4d2RXbFc2WWJxTy9PZ2xt?=
+ =?utf-8?B?TDNJL1ZId0hXOXJBUzR2aFlJSkg4QkxRNzluWXA1QkJ3RWRUVDkvQU9kSVlK?=
+ =?utf-8?B?dkJPL3JOZ2JjSEtWdnUxcTZsbDZEZTNDN2lRTkVjQ0QrVW4ySmxBQ3ZiUTNU?=
+ =?utf-8?B?bW95dXNsVW80V1V6STVHYURid1ZWNU95SHhNbGZ4Q1ZBNUFtWkNkMkVUajhK?=
+ =?utf-8?B?a0tuNVlmcnJ3cmtuRTBOeXJsazJMaWxWZHdaKy9RM09ONGsrWXBybG9STW1y?=
+ =?utf-8?B?NDBuNHNpdGtVZ2cwcC94WXZSeUJqZ1ZET3ZyTWdaSzRTRXRjM1E0bmMvakFh?=
+ =?utf-8?B?K3B2b0xUR3NyNzhWWDF3cCtyQlJHdWx1L2E1aTFyMWkvcStMY0RuL0V1blV4?=
+ =?utf-8?B?YnJyUDhjdUdzSWxZYXZTcUl5TVJTb1FwRUdlY3ZTMXhJSVN1dVhvS2FYV1Rn?=
+ =?utf-8?B?UmMxanlMRTRndVVJMXNvN0l4UTlrMit1WEZWMHZBVkd5cldYZHdWWitNU242?=
+ =?utf-8?B?OHpoSVk3VllpelJkRTNWM1BOMGhicDlBVldGSjl5c0RDT3UwQVhoKzNTdDd1?=
+ =?utf-8?B?dmVLREFaNk9KTWRwMTZ6YXVBd295SkE5T1JZVDRhMW96L2h5T043VGcrTWw4?=
+ =?utf-8?B?TjBOeDI4bk9rOWt5ZjBGcTNaOGlBM0NKM0lMTWRjSHpsci9INzNFZy9sZ3Fh?=
+ =?utf-8?B?azlHTk1pM3pjMmFwQk1XdWYyTnFkNDdyeWQzcWFLdkZ3d2FsT1JsRFhqVHRB?=
+ =?utf-8?B?TkJ6c093T2lLRC9HT01JbzRsWFRRUFp0amsyOHROekZEN3lqWjdyUFFIVC9s?=
+ =?utf-8?B?MjV5d2lyR3EwUkJBTWp3VzVDbkJ1U1NDbDZ5ZlEwdWRUZWNzMDFmTC9mNWJF?=
+ =?utf-8?B?R3pQSDJGWnhyOFBoUGkyaVFmZFE5bnZ5bUc5aFcwSDBLWlA0d1Bib2NRd1Vw?=
+ =?utf-8?B?bWtsMXVGRjBBdTNMUytEdXQ2Zm12Wkcrdm5HRXgwYkdUZ0ZBdVJpTXVjQkN4?=
+ =?utf-8?B?Ymh0OVJFVis4MFAvN1BlaHRzcU5KdU5YWXUvVTJsQjdlanl2RldxVmt2b0lk?=
+ =?utf-8?B?MFhvNjhyRHA4Nlg2Rmo4eGpDaVZOdUdrd3pKcWhwS2FYVElhNlM2cytRL3R1?=
+ =?utf-8?B?bEgybDBlK2tLU0JFRW9tZkViVXhLNE9SNTU0Nm1uMElqQU9xeE8xWE11b1ZD?=
+ =?utf-8?B?aEhwVk1ZL2p0c01YSDRoOVI4VzAxZ2Z4OCtHWno5Ym9iQllPOThJQlNSNnBD?=
+ =?utf-8?B?RkF4RzZYVGpjUHcrekpVOEp0a0s1Y2p0UE9pWHZFc0I5dHprV0UwdCt4T1dx?=
+ =?utf-8?B?TzJPTEQ5ekFaWUU5V0JVREo5SkVQanZOczRTdElTL2tDTDNnaHFNT0xWWEYz?=
+ =?utf-8?B?Mjd0cEhySkVqZjQ0SklhQT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(52116005)(1800799015)(376005)(366007)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bFJUY3FQSCtFL2xSSlljYkdsTHczUnRlMnMzaWx2QXVSSXVRdk5sOFlNamox?=
+ =?utf-8?B?VmxzTCtsN2xjS1FrMjZ2REpTMVJFK2ZxNlJhOHBwOXdQS1o1RWZ1WUZIQ2FL?=
+ =?utf-8?B?dDc3UHBCRVozc3JaMkg0NGdIMENuNWpPNE5NckFuYW5CZTRrNUNyTFExQzJY?=
+ =?utf-8?B?c0ZNcU9hMzNLeVlWM2Y5U2ZVUkl2SU9DRXpLUVNBL3NFMzlGaFQ3QVJvNmZ6?=
+ =?utf-8?B?TWVQY0tlWGlvZ2NlU1IyK1hrZTBlMWRyZUpmZGgxRW5GL2xhT3FuOHdaMUx5?=
+ =?utf-8?B?MlUwSHNIcWg3akRRK3dVaHp4ZjRVQVJUUm4vd2NwTWdnZlB5aWFwNHdWTDBi?=
+ =?utf-8?B?YkJ0Y2t3d0NVN2tpVW9OcnhOakhuS1B5eDlycm9Uakl2TEJKaFQ4b0dUSnRw?=
+ =?utf-8?B?SGJwUEVsWG9jaVBuWlJ4QTVwMU9jTmlwU2tST3g4U0lOUS9YaUZoeFlCVFFG?=
+ =?utf-8?B?MXpjNVE5TnBRck1YM1FRZDkwZXV6Q0xKU0h4eTY3TGwrbWNHRFU5ZVJTWU5L?=
+ =?utf-8?B?NWdyZVc0dkRLVGJIWTdyYjJQd2RGZUtzNG8wcjJNdjkxNnpNUjJpVnJZVzdh?=
+ =?utf-8?B?RXZtK3JTRjNpTXVHUTFOYUcxdlorNGEzZGNiVW5ybmc2Z3lUVEV1Q3d2WVhr?=
+ =?utf-8?B?Z25JeThLbkQ4K3YzZDNDQXNlZ0pCMWRkOUdrWHF1b0RoSTdhNVdPVVJ2SHdy?=
+ =?utf-8?B?YU56SjcrZ09xdE5EUE5qQWdXdFp6WjZRZk0vcFhDeFU3a2pSVmErSVdia1ds?=
+ =?utf-8?B?Z2NmQms0ZERvb0xNdkJzSDljUFU0YjVvK1EraGNtTUx1YkY0U3pHQjJtQkor?=
+ =?utf-8?B?cTdjQUoxL2lobEdNK21TOVA0VHAyVklPZUozYzdBcGlrRkxybGNna3RqWjRS?=
+ =?utf-8?B?VHJPNS9Va0UwejQ1VGhIQy9OMjJQTTJ1OVRBcSt5VW1NNXdrZE9wOUFGU3Av?=
+ =?utf-8?B?Tnc2VlM5TjJaNXRSOURaT1pUV0N0aHVlNEVGeGs5d0p1d0pFbkZUWXNmQTdJ?=
+ =?utf-8?B?RC9EcU4wV2U1YWI1blZFbmFIa1dTVmRCY2dGbVhYMkVhZUc0WFpGTktodFNC?=
+ =?utf-8?B?NnBwT21idzZnRk5TcHlVNjJwYWJ2dXZKdXMyYXdaTzc3dnc4YkhMczRmaUhm?=
+ =?utf-8?B?algrakQwM3JlWDlTQTVHeWZoa2djVG15dEVkbXJ6eittN3JyUngrenBmbWN4?=
+ =?utf-8?B?Y0gxc2duUkZSUE1NeDIrQm9Qby9zUEQ5d2x3bHp1MG1KaXI0MFJpL3hYdlJV?=
+ =?utf-8?B?ZjljSi80RkJ0VzlPMGpKQ3k5eHRuOEJCeVNRa0VNM0F1em1yNVEyZG1DMkZY?=
+ =?utf-8?B?dVVweVBnL3VrUzF4anVWWEQ4eUJjeHhOZWR3dHpSR0x3WEVyMDI0OEFMZHdJ?=
+ =?utf-8?B?Tk40dStEVmJzME9aZVBuVG15VWNVMWt5Ry9KZ1pYcGVrMEU3UVFjM2tpMkRy?=
+ =?utf-8?B?R3htTWpaZVN4UzRpYmRKQ2hDR3hhMi82QklkNitTZ1MybWV5a3E2L0pTZmZm?=
+ =?utf-8?B?UWNiMjBqK1MyQ09LemFrWGNkR3h2UW1lWjFQTjdteXFhUkp3TzB4SXd6S2x6?=
+ =?utf-8?B?ZjBtTWlDU0lyYkdQTmNhaEhuRUt3WDdJUitIbEtBSmdaR1owMVpOSXpoL3Vn?=
+ =?utf-8?B?WTFxT2ZnZUVBNjJMMnFnUE9oTFdEeWpJK2VjdjFIcWU3bHB5V2MvZlJDdVFK?=
+ =?utf-8?B?MEsxZHprTENLdFVkb3RDYTdrUnhraHI2SStNb3NwcytuKzNjckgyeXpIemtL?=
+ =?utf-8?B?MEM1Z0lRZmJ6b2lQdGt0dXhtZUFlSWhUOGlsZ2lRRzdVSG5wOVg3czVKQys2?=
+ =?utf-8?B?NDFGTXh0S20zMEFmM3lzbEJ6Sjk1Y3l3WCtxaHczalV3NDUxU1o3NzRuOTdR?=
+ =?utf-8?B?Z3piQXppSUkvSEhLNEdyWFRBK3VmTitRVnVjaHVTOU5yckQyeXg0NWVPZUZq?=
+ =?utf-8?B?czArVDUyL0tXL3ZNZFFxS0JDaCt6bTRibjlNL1NCL1FNQWVGdTlhT3JIU0Z2?=
+ =?utf-8?B?SXlsMGc0Z1FaQ3NNOXRLNVNVRzZiUDVYUEp2R3ZDN1hrbFc2VzAvZVJVRm5X?=
+ =?utf-8?B?ZlVGbGlrZGUxRko0UEpHaTlsMWlzbDF2L2psdFo1MHFhWkRtUzU1ZXU3SEYw?=
+ =?utf-8?B?eVExMFdNT252bko0THZSdjJ4ZnlVMlRGa25IdU1zRGVQSnpTeXRmMDJpQmpp?=
+ =?utf-8?Q?Q5j6w1Hw6Lec25IbCUKyE8w=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e81507e-e936-4135-8f20-08dc62b40d4a
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 10:07:43.7707
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5Wybz9jA2ZxsQdRibtxuJI0ZWo1dweiTk8ka3qXKTk+A4nk3m5eka1Pya37Rvn96s2iWvVNemKiif5toDj5NlWhDxsIjiq+5hqEU1jvRxi4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB7885
 
-On 24-04-01 21:28:18, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX95 has BLK CTL modules in various MIXes, the BLK CTL modules
-> support clock features such as mux/gate/div. This patch
-> is to add the clock feature of BLK CTL modules
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Some touchscreens are shipped with a physical layer on top of them where
+a number of buttons and a resized touchscreen surface might be available.
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+In order to generate proper key events by overlay buttons and adjust the
+touch events to a clipped surface, this series offers a documented,
+device-tree-based solution by means of helper functions.
+An implementation for a specific touchscreen driver is also included.
 
-> ---
->  drivers/clk/imx/Kconfig             |   7 +
->  drivers/clk/imx/Makefile            |   1 +
->  drivers/clk/imx/clk-imx95-blk-ctl.c | 438 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 446 insertions(+)
-> 
-> diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
-> index db3bca5f4ec9..6da0fba68225 100644
-> --- a/drivers/clk/imx/Kconfig
-> +++ b/drivers/clk/imx/Kconfig
-> @@ -114,6 +114,13 @@ config CLK_IMX93
->  	help
->  	    Build the driver for i.MX93 CCM Clock Driver
->  
-> +config CLK_IMX95_BLK_CTL
-> +	tristate "IMX95 Clock Driver for BLK CTL"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	select MXC_CLK
-> +	help
-> +	    Build the clock driver for i.MX95 BLK CTL
-> +
->  config CLK_IMXRT1050
->  	tristate "IMXRT1050 CCM Clock Driver"
->  	depends on SOC_IMXRT || COMPILE_TEST
-> diff --git a/drivers/clk/imx/Makefile b/drivers/clk/imx/Makefile
-> index d4b8e10b1970..03f2b2a1ab63 100644
-> --- a/drivers/clk/imx/Makefile
-> +++ b/drivers/clk/imx/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_CLK_IMX8MP) += clk-imx8mp.o clk-imx8mp-audiomix.o
->  obj-$(CONFIG_CLK_IMX8MQ) += clk-imx8mq.o
->  
->  obj-$(CONFIG_CLK_IMX93) += clk-imx93.o
-> +obj-$(CONFIG_CLK_IMX95_BLK_CTL) += clk-imx95-blk-ctl.o
->  
->  obj-$(CONFIG_MXC_CLK_SCU) += clk-imx-scu.o clk-imx-lpcg-scu.o clk-imx-acm.o
->  clk-imx-scu-$(CONFIG_CLK_IMX8QXP) += clk-scu.o clk-imx8qxp.o \
-> diff --git a/drivers/clk/imx/clk-imx95-blk-ctl.c b/drivers/clk/imx/clk-imx95-blk-ctl.c
-> new file mode 100644
-> index 000000000000..74f595f9e5e3
-> --- /dev/null
-> +++ b/drivers/clk/imx/clk-imx95-blk-ctl.c
-> @@ -0,0 +1,438 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#include <dt-bindings/clock/nxp,imx95-clock.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/types.h>
-> +
-> +enum {
-> +	CLK_GATE,
-> +	CLK_DIVIDER,
-> +	CLK_MUX,
-> +};
-> +
-> +struct imx95_blk_ctl {
-> +	struct device *dev;
-> +	spinlock_t lock;
-> +	struct clk *clk_apb;
-> +
-> +	void __iomem *base;
-> +	/* clock gate register */
-> +	u32 clk_reg_restore;
-> +};
-> +
-> +struct imx95_blk_ctl_clk_dev_data {
-> +	const char *name;
-> +	const char * const *parent_names;
-> +	u32 num_parents;
-> +	u32 reg;
-> +	u32 bit_idx;
-> +	u32 bit_width;
-> +	u32 clk_type;
-> +	u32 flags;
-> +	u32 flags2;
-> +	u32 type;
-> +};
-> +
-> +struct imx95_blk_ctl_dev_data {
-> +	const struct imx95_blk_ctl_clk_dev_data *clk_dev_data;
-> +	u32 num_clks;
-> +	bool rpm_enabled;
-> +	u32 clk_reg_offset;
-> +};
-> +
-> +static const struct imx95_blk_ctl_clk_dev_data vpublk_clk_dev_data[] = {
-> +	[IMX95_CLK_VPUBLK_WAVE] = {
-> +		.name = "vpublk_wave_vpu",
-> +		.parent_names = (const char *[]){ "vpu", },
-> +		.num_parents = 1,
-> +		.reg = 8,
-> +		.bit_idx = 0,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_VPUBLK_JPEG_ENC] = {
-> +		.name = "vpublk_jpeg_enc",
-> +		.parent_names = (const char *[]){ "vpujpeg", },
-> +		.num_parents = 1,
-> +		.reg = 8,
-> +		.bit_idx = 1,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_VPUBLK_JPEG_DEC] = {
-> +		.name = "vpublk_jpeg_dec",
-> +		.parent_names = (const char *[]){ "vpujpeg", },
-> +		.num_parents = 1,
-> +		.reg = 8,
-> +		.bit_idx = 2,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	}
-> +};
-> +
-> +static const struct imx95_blk_ctl_dev_data vpublk_dev_data = {
-> +	.num_clks = ARRAY_SIZE(vpublk_clk_dev_data),
-> +	.clk_dev_data = vpublk_clk_dev_data,
-> +	.rpm_enabled = true,
-> +	.clk_reg_offset = 8,
-> +};
-> +
-> +static const struct imx95_blk_ctl_clk_dev_data camblk_clk_dev_data[] = {
-> +	[IMX95_CLK_CAMBLK_CSI2_FOR0] = {
-> +		.name = "camblk_csi2_for0",
-> +		.parent_names = (const char *[]){ "camisi", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 0,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_CAMBLK_CSI2_FOR1] = {
-> +		.name = "camblk_csi2_for1",
-> +		.parent_names = (const char *[]){ "camisi", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 1,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_CAMBLK_ISP_AXI] = {
-> +		.name = "camblk_isp_axi",
-> +		.parent_names = (const char *[]){ "camaxi", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 4,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_CAMBLK_ISP_PIXEL] = {
-> +		.name = "camblk_isp_pixel",
-> +		.parent_names = (const char *[]){ "camisi", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 5,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_CAMBLK_ISP] = {
-> +		.name = "camblk_isp",
-> +		.parent_names = (const char *[]){ "camisi", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 6,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	}
-> +};
-> +
-> +static const struct imx95_blk_ctl_dev_data camblk_dev_data = {
-> +	.num_clks = ARRAY_SIZE(camblk_clk_dev_data),
-> +	.clk_dev_data = camblk_clk_dev_data,
-> +	.clk_reg_offset = 0,
-> +};
-> +
-> +static const struct imx95_blk_ctl_clk_dev_data lvds_clk_dev_data[] = {
-> +	[IMX95_CLK_DISPMIX_LVDS_PHY_DIV] = {
-> +		.name = "ldb_phy_div",
-> +		.parent_names = (const char *[]){ "ldbpll", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 0,
-> +		.bit_width = 1,
-> +		.type = CLK_DIVIDER,
-> +		.flags2 = CLK_DIVIDER_POWER_OF_TWO,
-> +	},
-> +	[IMX95_CLK_DISPMIX_LVDS_CH0_GATE] = {
-> +		.name = "lvds_ch0_gate",
-> +		.parent_names = (const char *[]){ "ldb_phy_div", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 1,
-> +		.bit_width = 1,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_DISPMIX_LVDS_CH1_GATE] = {
-> +		.name = "lvds_ch1_gate",
-> +		.parent_names = (const char *[]){ "ldb_phy_div", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 2,
-> +		.bit_width = 1,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_DISPMIX_PIX_DI0_GATE] = {
-> +		.name = "lvds_di0_gate",
-> +		.parent_names = (const char *[]){ "ldb_pll_div7", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 3,
-> +		.bit_width = 1,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +	[IMX95_CLK_DISPMIX_PIX_DI1_GATE] = {
-> +		.name = "lvds_di1_gate",
-> +		.parent_names = (const char *[]){ "ldb_pll_div7", },
-> +		.num_parents = 1,
-> +		.reg = 0,
-> +		.bit_idx = 4,
-> +		.bit_width = 1,
-> +		.type = CLK_GATE,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.flags2 = CLK_GATE_SET_TO_DISABLE,
-> +	},
-> +};
-> +
-> +static const struct imx95_blk_ctl_dev_data lvds_csr_dev_data = {
-> +	.num_clks = ARRAY_SIZE(lvds_clk_dev_data),
-> +	.clk_dev_data = lvds_clk_dev_data,
-> +	.clk_reg_offset = 0,
-> +};
-> +
-> +static const struct imx95_blk_ctl_clk_dev_data dispmix_csr_clk_dev_data[] = {
-> +	[IMX95_CLK_DISPMIX_ENG0_SEL] = {
-> +		.name = "disp_engine0_sel",
-> +		.parent_names = (const char *[]){"videopll1", "dsi_pll", "ldb_pll_div7", },
-> +		.num_parents = 4,
-> +		.reg = 0,
-> +		.bit_idx = 0,
-> +		.bit_width = 2,
-> +		.type = CLK_MUX,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
-> +	[IMX95_CLK_DISPMIX_ENG1_SEL] = {
-> +		.name = "disp_engine1_sel",
-> +		.parent_names = (const char *[]){"videopll1", "dsi_pll", "ldb_pll_div7", },
-> +		.num_parents = 4,
-> +		.reg = 0,
-> +		.bit_idx = 2,
-> +		.bit_width = 2,
-> +		.type = CLK_MUX,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	}
-> +};
-> +
-> +static const struct imx95_blk_ctl_dev_data dispmix_csr_dev_data = {
-> +	.num_clks = ARRAY_SIZE(dispmix_csr_clk_dev_data),
-> +	.clk_dev_data = dispmix_csr_clk_dev_data,
-> +	.clk_reg_offset = 0,
-> +};
-> +
-> +static int imx95_bc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct imx95_blk_ctl_dev_data *bc_data;
-> +	struct imx95_blk_ctl *bc;
-> +	struct clk_hw_onecell_data *clk_hw_data;
-> +	struct clk_hw **hws;
-> +	void __iomem *base;
-> +	int i, ret;
-> +
-> +	bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
-> +	if (!bc)
-> +		return -ENOMEM;
-> +	bc->dev = dev;
-> +	dev_set_drvdata(&pdev->dev, bc);
-> +
-> +	spin_lock_init(&bc->lock);
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	bc->base = base;
-> +	bc->clk_apb = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(bc->clk_apb))
-> +		return dev_err_probe(dev, PTR_ERR(bc->clk_apb), "failed to get APB clock\n");
-> +
-> +	ret = clk_prepare_enable(bc->clk_apb);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable apb clock: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	bc_data = of_device_get_match_data(dev);
-> +	if (!bc_data)
-> +		return devm_of_platform_populate(dev);
-> +
-> +	clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws, bc_data->num_clks),
-> +				   GFP_KERNEL);
-> +	if (!clk_hw_data)
-> +		return -ENOMEM;
-> +
-> +	if (bc_data->rpm_enabled)
-> +		pm_runtime_enable(&pdev->dev);
-> +
-> +	clk_hw_data->num = bc_data->num_clks;
-> +	hws = clk_hw_data->hws;
-> +
-> +	for (i = 0; i < bc_data->num_clks; i++) {
-> +		const struct imx95_blk_ctl_clk_dev_data *data = &bc_data->clk_dev_data[i];
-> +		void __iomem *reg = base + data->reg;
-> +
-> +		if (data->type == CLK_MUX) {
-> +			hws[i] = clk_hw_register_mux(dev, data->name, data->parent_names,
-> +						     data->num_parents, data->flags, reg,
-> +						     data->bit_idx, data->bit_width,
-> +						     data->flags2, &bc->lock);
-> +		} else if (data->type == CLK_DIVIDER) {
-> +			hws[i] = clk_hw_register_divider(dev, data->name, data->parent_names[0],
-> +							 data->flags, reg, data->bit_idx,
-> +							 data->bit_width, data->flags2, &bc->lock);
-> +		} else {
-> +			hws[i] = clk_hw_register_gate(dev, data->name, data->parent_names[0],
-> +						      data->flags, reg, data->bit_idx,
-> +						      data->flags2, &bc->lock);
-> +		}
-> +		if (IS_ERR(hws[i])) {
-> +			ret = PTR_ERR(hws[i]);
-> +			dev_err(dev, "failed to register: %s:%d\n", data->name, ret);
-> +			goto cleanup;
-> +		}
-> +	}
-> +
-> +	ret = of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get, clk_hw_data);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	ret = devm_of_platform_populate(dev);
-> +	if (ret) {
-> +		of_clk_del_provider(dev->of_node);
-> +		goto cleanup;
-> +	}
-> +
-> +	if (pm_runtime_enabled(bc->dev))
-> +		clk_disable_unprepare(bc->clk_apb);
-> +
-> +	return 0;
-> +
-> +cleanup:
-> +	for (i = 0; i < bc_data->num_clks; i++) {
-> +		if (IS_ERR_OR_NULL(hws[i]))
-> +			continue;
-> +		clk_hw_unregister(hws[i]);
-> +	}
-> +
-> +	if (bc_data->rpm_enabled)
-> +		pm_runtime_disable(&pdev->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +#ifdef CONFIG_PM
-> +static int imx95_bc_runtime_suspend(struct device *dev)
-> +{
-> +	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(bc->clk_apb);
-> +	return 0;
-> +}
-> +
-> +static int imx95_bc_runtime_resume(struct device *dev)
-> +{
-> +	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-> +
-> +	return clk_prepare_enable(bc->clk_apb);
-> +}
-> +#endif
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int imx95_bc_suspend(struct device *dev)
-> +{
-> +	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-> +	const struct imx95_blk_ctl_dev_data *bc_data;
-> +	int ret;
-> +
-> +	bc_data = of_device_get_match_data(dev);
-> +	if (!bc_data)
-> +		return 0;
-> +
-> +	if (bc_data->rpm_enabled) {
-> +		ret = pm_runtime_get_sync(bc->dev);
-> +		if (ret < 0) {
-> +			pm_runtime_put_noidle(bc->dev);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	bc->clk_reg_restore = readl(bc->base + bc_data->clk_reg_offset);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx95_bc_resume(struct device *dev)
-> +{
-> +	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-> +	const struct imx95_blk_ctl_dev_data *bc_data;
-> +
-> +	bc_data = of_device_get_match_data(dev);
-> +	if (!bc_data)
-> +		return 0;
-> +
-> +	writel(bc->clk_reg_restore, bc->base + bc_data->clk_reg_offset);
-> +
-> +	if (bc_data->rpm_enabled)
-> +		pm_runtime_put(bc->dev);
-> +
-> +	return 0;
-> +}
-> +#endif
-> +
-> +static const struct dev_pm_ops imx95_bc_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(imx95_bc_runtime_suspend, imx95_bc_runtime_resume, NULL)
-> +	SET_SYSTEM_SLEEP_PM_OPS(imx95_bc_suspend, imx95_bc_resume)
-> +};
-> +
-> +static const struct of_device_id imx95_bc_of_match[] = {
-> +	{ .compatible = "nxp,imx95-camera-csr", .data = &camblk_dev_data },
-> +	{ .compatible = "nxp,imx95-display-master-csr", },
-> +	{ .compatible = "nxp,imx95-lvds-csr", .data = &lvds_csr_dev_data },
-> +	{ .compatible = "nxp,imx95-display-csr", .data = &dispmix_csr_dev_data },
-> +	{ .compatible = "nxp,imx95-vpu-csr", .data = &vpublk_dev_data },
-> +	{ /* Sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, imx95_bc_of_match);
-> +
-> +static struct platform_driver imx95_bc_driver = {
-> +	.probe = imx95_bc_probe,
-> +	.driver = {
-> +		.name = "imx95-blk-ctl",
-> +		.of_match_table = imx95_bc_of_match,
-> +		.pm = &imx95_bc_pm_ops,
-> +	},
-> +};
-> +module_platform_driver(imx95_bc_driver);
-> +
-> +MODULE_DESCRIPTION("NXP i.MX95 blk ctl driver");
-> +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.37.1
-> 
+The functions in touch-overlay provide a simple workflow to acquire
+physical objects from the device tree, map them into a list and generate
+events according to the object descriptions.
+
+This feature has been tested with a JT240MHQS-E3 display, which consists
+of an st1624 as the base touchscreen and an overlay with two buttons and
+a frame that clips its effective surface mounted on it.
+
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bastian Hecht <hechtb@gmail.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: linux-input@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+
+Changes in v9:
+- touch-overlay.c: trigger a button release if the finger slides out of
+  the button segment to be consistent with the button press when sliding
+  into a button segment (see touch_overlay_button_event()).
+- touch-overlay.c: (nit) remove braces in if with a single statement in
+  touch_overaly_process_event().
+- Link to v8: https://lore.kernel.org/r/20240320-feature-ts_virtobj_patch-v8-0-cab6e7dcb1f6@wolfvision.net
+
+Changes in v8:
+- touchscreen bindings: fix description formatting.
+- Link to v7: https://lore.kernel.org/r/20240119-feature-ts_virtobj_patch-v7-0-eda70985808f@wolfvision.net
+
+Changes in v7:
+- General: return to a single input device implementation.
+- touchscreen bindings: segment instead of button in the label
+  description.
+- touch-overlay.c: define button-specific data inside segment struct.
+- touch-overlay.c: remove fwnode_property_present() and check return
+  value of fwnode_property_read_u32() in touch_overlay_get_segment().
+- touch-overlay.c: simplify return path in touch_overlay_map().
+- Link to v6: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v6-0-d8a605975153@wolfvision.net
+
+Changes in v6:
+- General: use a single list to manage a single type of object.
+- General: swap patches to have bindings preceding the code.
+- touch-overlay.c: minor code-sytle fixes.
+- Link to v5: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v5-0-ff6b5c4db693@wolfvision.net
+
+Changes in v5:
+- touchscreen bindings: move overlay common properties to a $def entry (Rob Herring)
+- st1232 bindings: move overlays to the existing example instead of
+  making a new one (Rob Herring)
+- Link to v4: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v4-0-5c6c0fc1eed6@wolfvision.net
+
+Changes in v4:
+- General: rename "touchscreen" to "touch" to include other consumers.
+- PATCH 1/4: move touch-overlay feature to input core.
+- PATCH 1/4, 3/4: set key caps and report key events without consumer's
+  intervention.
+- PATCH 2/4: add missing 'required' field with the required properties.
+- Link to v3: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v3-0-b4fb7fc4bab7@wolfvision.net
+
+Changes in v3:
+- General: rename "virtobj" and "virtual" to "overlay"
+- PATCH 1/4: Make feature bool instead of tristate (selected by
+  supported touchscreens)
+- Link to v2: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v2-0-f68a6bfe7a0f@wolfvision.net
+
+Changes in v2:
+- PATCH 1/4: remove preprocessor directives (the module is selected by
+  the drivers that support the feature). Typo in the commit message.
+- PATCH 2/4: more detailed documentation. Images and examples were added.
+- PATCH 3/4: select ts-virtobj automatically.
+- Link to v1: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v1-0-5ae5e81bc264@wolfvision.net
+
+---
+Javier Carrasco (4):
+      dt-bindings: touchscreen: add touch-overlay property
+      Input: touch-overlay - Add touchscreen overlay handling
+      dt-bindings: input: touchscreen: st1232: add touch-overlay example
+      Input: st1232 - add touch overlays handling
+
+ .../input/touchscreen/sitronix,st1232.yaml         |  29 +++
+ .../bindings/input/touchscreen/touchscreen.yaml    | 119 ++++++++++
+ MAINTAINERS                                        |   7 +
+ drivers/input/Makefile                             |   2 +-
+ drivers/input/touch-overlay.c                      | 263 +++++++++++++++++++++
+ drivers/input/touchscreen/st1232.c                 |  48 ++--
+ include/linux/input/touch-overlay.h                |  22 ++
+ 7 files changed, 475 insertions(+), 15 deletions(-)
+---
+base-commit: 0bbac3facb5d6cc0171c45c9873a2dc96bea9680
+change-id: 20230510-feature-ts_virtobj_patch-e267540aae74
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco@wolfvision.net>
+
 
