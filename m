@@ -1,104 +1,96 @@
-Return-Path: <devicetree+bounces-61590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122ED8AD561
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 21:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 576D48AD59C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 22:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 445A61C20F1B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:59:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891B81C20E68
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 20:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19CB155752;
-	Mon, 22 Apr 2024 19:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14FE155399;
+	Mon, 22 Apr 2024 20:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="uEIe/Tr0"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="g+rxy39V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5531553BC
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 19:59:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF2C15534A;
+	Mon, 22 Apr 2024 20:07:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713815960; cv=none; b=PjuhWENmM7k0+NqmtEWY5gXbEyisBH2DSHiBdyfaK/3U6PMNesQmMkZSr5GHJkYKfxfRAeZduJR1usGHV3J/+SC+85EDrIlOSU56wGFj/LAj13/SlAqez7g1ABb6nXgl/XgI4n6ked0+kU3+7jqKPW1b1hpwe7SKwMfJSQc0eec=
+	t=1713816466; cv=none; b=E6+M0eulEB/nAKuJyH6tR/Z7i2sZ53FgmbohUWIUXMylMx7y3pKcZw51g3h3LTOXJiulWxPbn4E01bjPI743bi8wKQbkbQ3a4YCQPPPOamjrtjfq1F5AKd0IcjcjeRPnU0orJb4KS3ItXPxUEOXw9dwCpBNpdS2O1a94J3Xgi1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713815960; c=relaxed/simple;
-	bh=1vNlEqox6uMgRn3Af21glmZB/Nwjhj2D/nnw+8Etiw0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rcuxfWRkSunYZ4eE+l0dELy7k/M/EvxthMDjj/BWMnA1MGaa56P+Ez1ud2ODzd80Jxo300X9h+wDGZtCf1E9l+jbWOKeBOvkngtr6zskISNOwC5bhALAMxKfQ7vbNKJeGC+Ru4fFlYPViYxuZC3/Xh4Kz2j6OwUwF5IjQEjtKso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=uEIe/Tr0; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1713815953;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nYP4mxOavzB2qCcAfv7/Ktjba9PcHe+yH0s2PIMDZB8=;
-	b=uEIe/Tr0sG+X3pEYz52rCl5ct5Jhk9nzexkpGCZQWsET51HmpeimmiF+Fsyf+/4p4qsHkS
-	9/Iy2JbaPb8pxfEI5/RwleQYqATXn392ST9a2XddVy6eK4QBi2r+OYM6QKcj6clWDJPIbz
-	Lalxu2MGoR7KZWYcpNywIDJyp9V8PAo=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	linux-pci@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: pci: xilinx-nwl: Add phys
-Date: Mon, 22 Apr 2024 15:58:58 -0400
-Message-Id: <20240422195904.3591683-2-sean.anderson@linux.dev>
-In-Reply-To: <20240422195904.3591683-1-sean.anderson@linux.dev>
-References: <20240422195904.3591683-1-sean.anderson@linux.dev>
+	s=arc-20240116; t=1713816466; c=relaxed/simple;
+	bh=YwB3B7Ax1N+hcIIIexsiYQywXNfrCXaxhG8ux0IuDWM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G5JNO4Uvs24IskpqyA0rgsPllDKgvZjkwy5wl3SkrcUhuxaslV3JCH1/O5nCnfcRbWESuLkfV9a8dObuT5HkEZRoI4sfEcDRowen66Za+e+mNde7FfLdMybCnZ6EBjOAzv4QUeICa660N0+3NVI59FWgelMnubOeJ9Q4rhHIi2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=g+rxy39V; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=TU14y8FTwcIUu8V8KvTbGpugfd4H2ENzIeZb0l05KiQ=; b=g+rxy39VeCVO17Y8nhBHPyk9IM
+	Uuf5Qn+YixYxykhUqVz+jSm+UIRt2T72KgWAWdRvI4AC2Co6TrGqzgnQoUjAC7mcanyJVxTgb+7Lc
+	vR8QymzRPUDqicNvDmhCa4W/kj1bjhIV+M5ESXly/OL2jq+848uE39gur8+HEgKLN8/g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ryzwh-00DeFV-5e; Mon, 22 Apr 2024 22:07:23 +0200
+Date: Mon, 22 Apr 2024 22:07:23 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v4 00/12] Add support for OPEN Alliance
+ 10BASE-T1x MACPHY Serial Interface
+Message-ID: <2526cd6a-2300-47f2-bf94-3c697dda87e0@lunn.ch>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
 
-Add phys properties so Linux can power-on/configure the GTR
-transcievers.
+On Thu, Apr 18, 2024 at 06:26:36PM +0530, Parthiban Veerasooran wrote:
+> This patch series contain the below updates,
+> - Adds support for OPEN Alliance 10BASE-T1x MACPHY Serial Interface in the
+>   net/ethernet/oa_tc6.c.
+>   Link to the spec:
+>   -----------------
+>   https://opensig.org/download/document/OPEN_Alliance_10BASET1x_MAC-PHY_Serial_Interface_V1.1.pdf
+> 
+> - Adds driver support for Microchip LAN8650/1 Rev.B1 10BASE-T1S MACPHY
+>   Ethernet driver in the net/ethernet/microchip/lan865x/lan865x.c.
+>   Link to the product:
+>   --------------------
+>   https://www.microchip.com/en-us/product/lan8650
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
----
+I will get around to reviewing this soon, i promise.
 
- Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+To the OnSemi people: Have you tried your driver/device using this
+framework? It would be good to have a second vendors device using it,
+just to show no vendor specific code has slipped into the framework.
 
-diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-index 426f90a47f35..02315669b831 100644
---- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-@@ -61,6 +61,14 @@ properties:
-   interrupt-map:
-     maxItems: 4
- 
-+  phys:
-+    maxItems: 4
-+
-+  phy-names:
-+    maxItems: 4
-+    items:
-+      - pattern: '^pcie-phy[0-3]$'
-+
-   power-domains:
-     maxItems: 1
- 
--- 
-2.35.1.1320.gc452695387.dirty
-
+Thanks
+	Andrew
 
