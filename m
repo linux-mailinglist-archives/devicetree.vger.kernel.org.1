@@ -1,163 +1,229 @@
-Return-Path: <devicetree+bounces-61536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7D48AD1BD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:18:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 826828AD1CE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:22:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEEAD1F2450A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A050D1C218A5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F07115359C;
-	Mon, 22 Apr 2024 16:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFF6153811;
+	Mon, 22 Apr 2024 16:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kfiPqUqJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VwEfKmyw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014A2153594;
-	Mon, 22 Apr 2024 16:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61D615380D;
+	Mon, 22 Apr 2024 16:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713802724; cv=none; b=XO5bLakNkrAxPR/28EWh6OcoZa7yrTgGb1UWZy+TW/oEoUs9BzQbq87mLe4O5mRF9tAMbqrjREEtfwvGaSV0sZyNCHBJ52+rlsbXlQ8ngZljVjJat6skme72WJUOTI4m4JURQ0dFEz2hSZhHZ+Iez2lyD7NOKCeSdSLETqldpa8=
+	t=1713802892; cv=none; b=igWZha/4Rk3FDo5xX1W6eiN6wRing8oQat9YOsQiAIBjlKAttal4GNZKWkqoTBHt6uzb1zicP0pa70KAQRA+d5ryDIFO4t7QPsJTO7XR2E4KZ0jbv4FNxUarRVyfeOBDztyR35zE0StFZg9bK6Wi9nz5y7a13tKyGv9Vt0nXDjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713802724; c=relaxed/simple;
-	bh=QR/kzCbyaOuRWiYV19PwDbm3SqBRCcpUe7hr5QMI4Do=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=naQeZ/cdsMzRBOxPOdARr4XHctN9aD0naKujhT/t93E/E1ky9CG9JZDO4fVna5Js8AHgfR05XvixjYylBeDuK7W/z/RDV/W92P97Rn8XQBG+w4ff7CPSFethuB3UWeWNnnEkvPi9+kR7G/iYdvoFxWUzuZQOid3mKTof/guUa70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kfiPqUqJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9156EC113CC;
-	Mon, 22 Apr 2024 16:18:43 +0000 (UTC)
+	s=arc-20240116; t=1713802892; c=relaxed/simple;
+	bh=AFRCwPy48IRqorUVwWw91pu04QMTojwYvcp8gaaxSg0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jr6hPJB5WIaBsDwOFzistBZ41OAbrHnJ7ObIx7uexNwHVgDWRuJYzLF7kcgcU61dPnrEkMALNEwGewW1wJv93EUU/YyfCdipGwWe30yDUG7p2Waet5u0AQqR/U2yC7mgqgIC/LckoywhoE0dVQ+sz3ECby2Qt/yPoBLPdR/G68o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VwEfKmyw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7896C113CC;
+	Mon, 22 Apr 2024 16:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713802723;
-	bh=QR/kzCbyaOuRWiYV19PwDbm3SqBRCcpUe7hr5QMI4Do=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kfiPqUqJScrWwgk7lkUiivDNZIGJTNbNCOj/OkwFir1rjWyoXaizxSOzuvpziVcX9
-	 SNCPqN8pZseb73IbPoFap1GgpLAFILkdQQOhkyH9g7gK2ZBVyJAkuiVdoQfs8rmMLd
-	 nJH787eE6Tn9Ini1RY09TFnwC8vqu4OBzO3j8NldoEAkt1VOThuRLaVL4JZkmnlpk9
-	 GhEr1kjf2zEkzQndLJqpUR6REoc5sVjHvlZzMm5m8vc6rk3hMLbxfU6gqeZ/j59/MB
-	 cxFgdIN+XnEdR2XjVDlxp2Ab7//BObVI5UGwUFS6DctRnXEXktqid4Bb46CRqc+LqL
-	 W0m0KJ7Jak42A==
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5acf5723325so1082653eaf.0;
-        Mon, 22 Apr 2024 09:18:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV+J4Ieke1yBKlEq2Su+Rs9Ao+z5Y6gBWmsrS1BmLDGehrRsM0miaOsgyghJF5QOg5+OouLhjPg6erVck/jVwV0TIh6JBXAa9BK+xIrQFWnEeAutMbIsQfPjOxhLdVbfLNzmIWX/PvkKpj/Ott1gNQSdlSBEA5OCDUfRxOr1toInc4HTS8=
-X-Gm-Message-State: AOJu0YzteF0jy9N3gd2GrCOGUzvmWJApV2VHzbRGrjeQbcy3fyR1qHbd
-	h0TolJNVMVS/0/xyXOLt+FebeJFLwbsddxG5+IOEJwTsrhoeGT5JNWzQ/o6KXfml7W2YF6QBbva
-	jJlByIqbuNb88NHu3p1KlGAfpltw=
-X-Google-Smtp-Source: AGHT+IFESPYVINFnF2ss/dRaMfKVcLtz/mjOYNrxgkasSqC/INJSn+XkVq/aXneWpbNTIE2SYgqkZ572ytK+cUbbuJE=
-X-Received: by 2002:a4a:de19:0:b0:5a7:db56:915c with SMTP id
- y25-20020a4ade19000000b005a7db56915cmr11836041oot.1.1713802722990; Mon, 22
- Apr 2024 09:18:42 -0700 (PDT)
+	s=k20201202; t=1713802892;
+	bh=AFRCwPy48IRqorUVwWw91pu04QMTojwYvcp8gaaxSg0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VwEfKmyw82HsaUL37rAvvwNItHpyNTg1GIg4F221ja1a+s0OhbrcRDX70Jgm16kUT
+	 vtLXqqSOky87PY/5F8n6SXjoV5HGzkM+gVF9EiYx38t93a9DukxQ3vyTS++Bn9KNPw
+	 thg1unZuJLGivIPRQ3096RmQEAcje2tsQR0dbzo7oba/aEc3aYY2YQBu1Uy6d1n8W+
+	 kZSQUT8H2NdxkoO3JG0MnoLT0arPg2iP/nF1/Dz4Bl+h12ceknFXltsMdXLuvDels/
+	 aTeU6Jyjs7+jjtEinE1t5/3zVhFqRJ4OJSrr3WPxtFAoitQtxlDOD+GCjfLypqx1V4
+	 P7GRQ6DfgwGyw==
+Date: Mon, 22 Apr 2024 17:21:26 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Liu Gui <kenneth.liu@sophgo.com>,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Add Sophgo CV1800 USB phy
+Message-ID: <20240422-folic-obtuse-570b1747e7b9@spud>
+References: <IA1PR20MB4953780F4617823F7173B6D6BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953040232A4D41E41F2D2A9BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240419-harmful-neutron-d0db367cf659@spud>
+ <IA1PR20MB49536E7548B65B41F4F33FDEBB0C2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1713523251.git.robin.murphy@arm.com> <3ae004dfc581fa12fc9432c5008f1225882d5464.1713523251.git.robin.murphy@arm.com>
-In-Reply-To: <3ae004dfc581fa12fc9432c5008f1225882d5464.1713523251.git.robin.murphy@arm.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Mon, 22 Apr 2024 18:18:27 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0iMY1eKYgcH20Uxd1nW0yZ2xt980ob0Rcb_4n4OONWSZA@mail.gmail.com>
-Message-ID: <CAJZ5v0iMY1eKYgcH20Uxd1nW0yZ2xt980ob0Rcb_4n4OONWSZA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] ACPI: Retire acpi_iommu_fwspec_ops()
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>, linux-acpi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zBWc+J/izNiVp8j0"
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB49536E7548B65B41F4F33FDEBB0C2@IA1PR20MB4953.namprd20.prod.outlook.com>
+
+
+--zBWc+J/izNiVp8j0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 19, 2024 at 6:56=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
- wrote:
->
-> Now that iommu_fwspec_init() can signal for probe deferral directly,
-> acpi_iommu_fwspec_ops() is unneeded and can be cleaned up.
->
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+On Sat, Apr 20, 2024 at 09:39:18AM +0800, Inochi Amaoto wrote:
+> On Fri, Apr 19, 2024 at 03:26:53PM GMT, Conor Dooley wrote:
+> > On Fri, Apr 12, 2024 at 03:22:24PM +0800, Inochi Amaoto wrote:
+> > > The USB phy of Sophgo CV18XX series SoC needs to sense a pin called
+> > > "VBUS_DET" to get the right operation mode. If this pin is not
+> > > connected, it only supports setting the mode manually.
+> > >=20
+> > > Add USB phy bindings for Sophgo CV18XX/SG200X series SoC.
+> > >=20
+> > > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > > ---
+> > >  .../bindings/phy/sophgo,cv1800-usb-phy.yaml   | 90 +++++++++++++++++=
+++
+> > >  1 file changed, 90 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/phy/sophgo,cv18=
+00-usb-phy.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/phy/sophgo,cv1800-usb-=
+phy.yaml b/Documentation/devicetree/bindings/phy/sophgo,cv1800-usb-phy.yaml
+> > > new file mode 100644
+> > > index 000000000000..cb394ac5d8c4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/sophgo,cv1800-usb-phy.yaml
+> > > @@ -0,0 +1,90 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/phy/sophgo,cv1800-usb-phy.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sophgo CV18XX/SG200X USB 2.0 PHY
+> > > +
+> > > +maintainers:
+> > > +  - Inochi Amaoto <inochiama@outlook.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: sophgo,cv1800-usb-phy
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#phy-cells":
+> > > +    const: 0
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: PHY clock
+> > > +      - description: PHY app clock
+> > > +      - description: PHY stb clock
+> > > +      - description: PHY lpm clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: phy
+> > > +      - const: app
+> > > +      - const: stb
+> > > +      - const: lpm
+> > > +
+> > > +  dr_mode:
+> > > +    description: PHY device mode when initing.
+> >=20
+> > "initing" isn't a word, "initialising" is the correct word. Or
+> > "initializing" if you speak American. But if it is just the value during
+> > initialisation, why do we need to know - we can just overwrite it in
+> > software, right?
+> >=20
+> > Are you sure that this is limited to initialisation? I would have
+> > thought that it describes the configuration that the board is in, and is
+> > a fixed property of the system?
+> >=20
+> > > +    enum: [host, peripheral, otg]
+> >=20
+> > Rob, I know this is a phy rather than a controller, so referencing
+> > usb-drd.yaml doesn't really make sense, but there are several PHYs using
+> > dr_mode so it feels like there should be something to reference here
+> > rather than defining the property anew.
+> >=20
+>=20
+> Yes, you are right. Using dr_mode in initialisation is not necessary.
+> We can just let it go and using the default mode. In fact, for most
+> boards with this SoC, host mode is just enough. And it is just easy=20
+> to overwrite the mode value in the driver if we want another mode.=20
+> For the OTG, it can just check the `vbus_det-gpios`. I will remove=20
+> this property, thanks.
 
-Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Just to be clear, it's valid to have a dr_mode property in cases that
+you cannot detect what the mode is dynamically. What I was questioning
+was the wording about only valid for init.
 
-> ---
->  drivers/acpi/scan.c | 30 ++++++------------------------
->  1 file changed, 6 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-> index 9d36fc3dc5ac..d6b64dcbf9a6 100644
-> --- a/drivers/acpi/scan.c
-> +++ b/drivers/acpi/scan.c
-> @@ -1588,26 +1588,14 @@ int acpi_iommu_fwspec_init(struct device *dev, u3=
-2 id,
->         return ret;
->  }
->
-> -static inline const struct iommu_ops *acpi_iommu_fwspec_ops(struct devic=
-e *dev)
-> -{
-> -       struct iommu_fwspec *fwspec =3D dev_iommu_fwspec_get(dev);
-> -
-> -       return fwspec ? fwspec->ops : NULL;
-> -}
-> -
->  static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
->  {
->         int err;
-> -       const struct iommu_ops *ops;
->
->         /* Serialise to make dev->iommu stable under our potential fwspec=
- */
->         mutex_lock(&iommu_probe_device_lock);
-> -       /*
-> -        * If we already translated the fwspec there is nothing left to d=
-o,
-> -        * return the iommu_ops.
-> -        */
-> -       ops =3D acpi_iommu_fwspec_ops(dev);
-> -       if (ops) {
-> +       /* If we already translated the fwspec there is nothing left to d=
-o */
-> +       if (dev_iommu_fwspec_get(dev)) {
->                 mutex_unlock(&iommu_probe_device_lock);
->                 return 0;
->         }
-> @@ -1624,16 +1612,7 @@ static int acpi_iommu_configure_id(struct device *=
-dev, const u32 *id_in)
->         if (!err && dev->bus)
->                 err =3D iommu_probe_device(dev);
->
-> -       /* Ignore all other errors apart from EPROBE_DEFER */
-> -       if (err =3D=3D -EPROBE_DEFER) {
-> -               return err;
-> -       } else if (err) {
-> -               dev_dbg(dev, "Adding to IOMMU failed: %d\n", err);
-> -               return -ENODEV;
-> -       }
-> -       if (!acpi_iommu_fwspec_ops(dev))
-> -               return -ENODEV;
-> -       return 0;
-> +       return err;
->  }
->
->  #else /* !CONFIG_IOMMU_API */
-> @@ -1672,6 +1651,9 @@ int acpi_dma_configure_id(struct device *dev, enum =
-dev_dma_attr attr,
->         ret =3D acpi_iommu_configure_id(dev, input_id);
->         if (ret =3D=3D -EPROBE_DEFER)
->                 return -EPROBE_DEFER;
-> +       /* Ignore all other errors apart from EPROBE_DEFER */
-> +       if (ret)
-> +               dev_dbg(dev, "Adding to IOMMU failed: %d\n", ret);
->
->         arch_setup_dma_ops(dev, attr =3D=3D DEV_DMA_COHERENT);
->
-> --
-> 2.39.2.101.g768bb238c484.dirty
->
+> > > +  vbus_det-gpios:
+> > > +    description: GPIO to the USB OTG VBUS detect pin. This should no=
+t be
+> > > +      defined if vbus_det gpio and switch gpio are connected.
+> >=20
+> > I don't understand the second sentence here.
+
+Ah, with your explanation below I now understand what you mean here. I
+think this needs to be re-written - I think it would be easier to
+understand with s/gpio/pin/ in the second line.
+
+> > > +    maxItems: 1
+> > > +
+> > > +  sophgo,switch-gpios:
+> > > +    description: GPIO for the phy to control connected switch.
+> > > +    maxItems: 2
+> >=20
+> > You've got two items here, they should be described. /But/ the property
+> > above says "switch gpio", which is singular. Which is it?
+> >=20
+>=20
+> `switch-gpios` is gpios to controll USB switch connected to the
+> phy. Sophgo recommends that phy use a switch to separate device
+> port and host port if it supports both. I know this is weird,
+> but many board follows this design, such as Huashan PI and=20
+> Milkv Duo S. As for item number, it is just an array of gpios
+> to process one by one, I mark it as two just because Milkv=20
+> Duo S use two gpios to controll the USB switch.
+
+Right, but what I'm looking for is a description for what each GPIO
+does, so that someone can know how the dts should be written.
+
+> For vbus_det gpio description, There is because the design of=20
+> Milk-v Duo S, which connect the switch gpio and VBUS detect=20
+> gpio. In this case the OTG function is broken and we can just=20
+> change the mode by toggling switch gpios. So I suggest not=20
+> defining this property.
+
+Okay. See my comment on it above.
+
+Thanks,
+Conor.
+
+--zBWc+J/izNiVp8j0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiaOhgAKCRB4tDGHoIJi
+0q3VAQCrGsXppmUynfWM7SA2AFjgkUzDreJrN1u78Q9BRRDXjgD/c6kSQbgAQB85
+O/F2pHE5G5vYsnXHPejmMURPSVfkmQ4=
+=AGnu
+-----END PGP SIGNATURE-----
+
+--zBWc+J/izNiVp8j0--
 
