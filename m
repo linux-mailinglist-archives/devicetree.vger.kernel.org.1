@@ -1,150 +1,170 @@
-Return-Path: <devicetree+bounces-61417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3310A8AC92F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:44:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB418AC8FA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:36:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2F001F21EB0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:44:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93C7FB20400
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C27313B59B;
-	Mon, 22 Apr 2024 09:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98AA856751;
+	Mon, 22 Apr 2024 09:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="DFrm4TpI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 14.mo581.mail-out.ovh.net (14.mo581.mail-out.ovh.net [178.33.251.19])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625EE64A98
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 09:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.33.251.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3FD50280;
+	Mon, 22 Apr 2024 09:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713779044; cv=none; b=DOjoTpmKbyC0kWjd6DpjxY9bbBE+MWmhX56deos1AxouZVemKZ4HjWeWciuoIoSaXhz4FdfuTMpy4zHg6rKvLW4EqSKQv2WGDf2lkvzd4DnzzobXGXQtFXPhCP6Gd02bmvrPmslyGHBu+X7dl5SJCn54NxTt7Zjui8Gznee9PxI=
+	t=1713778557; cv=none; b=fmyLY24L4tbxyFkyAaoVa9MMWOuNu3tVSYxgeHWA3vZMHhiLMFrkk2q+Ww6l/rMNx27BsSi6/EEW+ZoY9VUac1b9HG/YyOnYdqHVyIhLTnkLd2+gHr2uNVgFJV9dy0tdnkChoOot0RhH0N9+t6s7HzRScROTMhmoL4PhCJjDSGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713779044; c=relaxed/simple;
-	bh=xDSmU42HwR7p82VHSVrC1r6JVxcHqDX7Wo5kVPyv4Ds=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=na9xy9W6WfMdT/QYvaa7Iv+CQTJ9nxeUp8UQ0mIkZ8cKRcmKFoW343V7BkWbo5md6/73+NyofFcZbPlWt9JREYdzgCJaYsb5fUMvjI7qTK00QpciR6vtCVFMIylF0BnoBnsbI7kcJNn40UvOeAblu3iIa4FZUl7glHEQEbUo5us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com; spf=pass smtp.mailfrom=armadeus.com; arc=none smtp.client-ip=178.33.251.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=armadeus.com
-Received: from director4.ghost.mail-out.ovh.net (unknown [10.108.2.89])
-	by mo581.mail-out.ovh.net (Postfix) with ESMTP id 4VNKg04Y3Wz1Qg1
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 09:28:12 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-rl684 (unknown [10.110.113.68])
-	by director4.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 920A11FE65;
-	Mon, 22 Apr 2024 09:28:09 +0000 (UTC)
-Received: from armadeus.com ([37.59.142.101])
-	by ghost-submission-6684bf9d7b-rl684 with ESMTPSA
-	id qQDTHKktJmYMfgAAjN946g
-	(envelope-from <sebastien.szymanski@armadeus.com>); Mon, 22 Apr 2024 09:28:09 +0000
-Authentication-Results:garm.ovh; auth=pass (GARM-101G004c9d7feca-c54e-499e-ad96-007dd4ebdda3,
-                    A64A67AECC9DB63596043E25B5FC1CC6B28F39B0) smtp.auth=sebastien.szymanski@armadeus.com
-X-OVh-ClientIp:92.148.253.243
-Message-ID: <f01d49cf-5955-405c-9c2b-05b0c7bb982c@armadeus.com>
-Date: Mon, 22 Apr 2024 11:28:08 +0200
+	s=arc-20240116; t=1713778557; c=relaxed/simple;
+	bh=677JTIwL5UswqAMre8oBa/Ouum0+FEfuPU/W+YYnR/8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fMPEXpYKD0wH8TvYFKvrzVZL8zCJ00PyUW40VQdzdDOiuZ4jz8znqTQv7YrArNB/vSek7SLsJh9FrRZDNpDedUGsYCDM6LFVA1YE17VYOc4mSKRwf4pSKcG9HwpUoPN7kDP3LP5Wziyp8H9Dn5CJtJSpucU5qi8vtHNCxm2t/uQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=DFrm4TpI; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1713778555; x=1745314555;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=677JTIwL5UswqAMre8oBa/Ouum0+FEfuPU/W+YYnR/8=;
+  b=DFrm4TpIsukX3mCQpWYKeR4jyMEZhmFuFTeJ+S3XNgn6eGhl5CKn4NA9
+   NHkWuL2ymmyvREIkm+Y9HCmjeoEyAzN7MHN9aPch4V37wa6mFvE8LR+YZ
+   cgYeFx5GqZPs7CULtKPxUKpKCFvdnDRqmsr9PGwj7tZf4Q1MYGVKsA9EN
+   cvXGrNWzBRXRIbZ7Gn0pr+aPBLDeh8DSxx8iWYsPtfF4XqF2OZ5fARiDY
+   TfBTk7wHowH+jVaxrO0rjgvU4pgGJg4GWxGzaV7EgB5Dk0gilfWg2z46v
+   9gDDHjXT19XlhdBKVizuioZguS+U8YuEAHGIw/0FxEA+jpKlyJitz1rYV
+   A==;
+X-CSE-ConnectionGUID: pUtzPF9AQeyO8Y9fcaMWRA==
+X-CSE-MsgGUID: RbrRuDOgRGGKP/iBnvhOVQ==
+X-IronPort-AV: E=Sophos;i="6.07,220,1708412400"; 
+   d="asc'?scan'208";a="22042204"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Apr 2024 02:35:47 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 22 Apr 2024 02:35:40 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 22 Apr 2024 02:35:37 -0700
+Date: Mon, 22 Apr 2024 10:35:21 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+CC: Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel
+	<anup@brainfault.org>, Shuah Khan <shuah@kernel.org>, Atish Patra
+	<atishp@atishpatra.org>, <linux-doc@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <kvm@vger.kernel.org>,
+	<kvm-riscv@lists.infradead.org>, <linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH v2 04/12] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+Message-ID: <20240422-daylight-sassy-ff3b0d867fef@wendy>
+References: <20240418124300.1387978-1-cleger@rivosinc.com>
+ <20240418124300.1387978-5-cleger@rivosinc.com>
+ <20240419-clinic-amusing-d23b1b6d2af2@spud>
+ <6ab9e591-f2f2-4267-8bdd-169ef0243e14@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: mx93: etherrnet: set TX_CLK in RMII mode
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Clark Wang <xiaoning.wang@nxp.com>,
- Linux Team <linux-imx@nxp.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20240422-v6-9-topic-imx93-eqos-rmii-v1-0-30151fca43d2@pengutronix.de>
-Content-Language: en-US
-From: =?UTF-8?Q?S=C3=A9bastien_Szymanski?= <sebastien.szymanski@armadeus.com>
-Autocrypt: addr=sebastien.szymanski@armadeus.com; keydata=
- xsBNBFNfZLEBCACv1lqSePHJNpRgcnER+3emy+Arjz84zFax3XkogjY/e3ZneihIgWrVKe5M
- ql16pX4KTkzNgMUKz4bG/XwT3kjcrXshxFLlg7KrHMl287C+W+QOUjnjVeRi/su+SPmjz8VD
- yr11h+ZkVLAWhS+uQJ93jy1NwG8M4t1kBLAVHHD5Vw4FJ+3ouaVYIp1X1Cr8bVKQw33Q1aTd
- ro0kMBb96B9vNu7ciJZ3gvlaBzUEKOgNnq9KaywuLnqrqr4HUIn5JuxZjCjJzt9kTAKcTfp2
- cJM8qpp+2FF5qtbkse9fZ6M64qozgOPr9Tk4Amf9fZEUQ6UNw14mmBZuXSzoHe75gI7TABEB
- AAHNN1PDqWJhc3RpZW4gU1pZTUFOU0tJIDxzZWJhc3RpZW4uc3p5bWFuc2tpQGFybWFkZXVz
- LmNvbT7CwJAEEwEIADoCGyMHCwkIBwMCAQYVCAIJCgsEFgIDAQIeAQIXgBYhBJwGygpYm/1C
- /GCmwbCaKeiBMmTiBQJdhIHLAAoJELCaKeiBMmTixXIH/2W3kbzRG0UF81jtRRnp0H83rjDT
- v0H+8fgFMRL/7HCJ1QPArkfRJlM2wlJkN+ChP09CCarYfUEHfRCHlTb7At6Yyrz1jziD7ZwX
- 8IWHYRXnZkY5eZc5DsiUgq6JH49kt+GPzK8UVP9MTa6zkBpPCUf7LzZ4pD3FihdkT52BU3gI
- d9P49fSI0TYySlb/VKn815aOhvwEr7+Dh3mZUjSh7saofbRmVUOr7p+R3MvvGI19/IJZjeOE
- ZWliODDOt6HnBOtoGSXMcNIFF6snH52D5N5gY88njZjTwhgGGUBix1bsgf/EY0v4R5itZBXB
- B/Ze4Tm++YHaB75hZK6PQu/YRv7OwE0EU19ksQEIALo7jhXddrXBTRu5SAjelV53jyHBJTX/
- vN4nL/VbbW/saca+NJjDSxx5DBmotZbQdWIyZiSIjU/xnTREvtDrl6ZeSsKWd7ZqiuiY4fSR
- zwuQp9rd0yqRuxesrWeyJB1zCSdEvLyKASERt+nxkOA+IzJ4y1qLtvnWr+SL1AXgTMw+Tkyw
- KIDCRWHTIYas11ldGj82gOIpYeXnapeNLHfT4EQwg0NeWYHynJxAQWiX5aPlw0uSpAQSsBXQ
- FIe3fpoveMSnXK+PG2BBOzexYv7r4S70a6sF9sgTTPpfKqUaqqC+u1+bUX6alTAKhGKJywaF
- 6ViqLlgY8PfwohSyAlqlTRMAEQEAAcLAdgQYAQgAIAIbDBYhBJwGygpYm/1C/GCmwbCaKeiB
- MmTiBQJdhIHSAAoJELCaKeiBMmTitU8IAK7NQM3fEwaF5XaKtepYWsVka44CD8A9e4r7NVK9
- ugirKvXirIxBSDmN/Db862NmVpITsZ6ERNSNZLm/7k55N+TexKYiFZeU7G92TEfAM6qPElvx
- DLEcrkNMq9r08YZeUloacsq31AL5fK4LW+xdvXudkdiKRMJsdTpmff3x5kIziGOHjwFP9wve
- ZgEH52gpbRsP8Whx/Z2lNX/BBRmFM8OnEXFsjjqDzYThdxTq85wGPpkgvvUGyPNRD7TpbB1C
- pajOUUkPxgj5LKt77HD1afeZNudWhgcdkbtT5PMQTT0WY6wvMEj9S1+bGPeXRGWLYB7gHQ+L
- JNoSD7Kz6Y9qnKo=
-In-Reply-To: <20240422-v6-9-topic-imx93-eqos-rmii-v1-0-30151fca43d2@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 3291005431560006571
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvledrudekledgudeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefurogsrghsthhivghnucfuiiihmhgrnhhskhhiuceoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqeenucggtffrrghtthgvrhhnpeeujeffheehvddtuefhjeevveffkeetfffgtedvjeekleelvdfhjeelfeeludduieenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeduvdejrddtrddtrddupdelvddrudegkedrvdehfedrvdegfedpfeejrdehledrudegvddruddtudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedupdhmohguvgepshhmthhpohhuth
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qeeS7kj0r9HsIAfv"
+Content-Disposition: inline
+In-Reply-To: <6ab9e591-f2f2-4267-8bdd-169ef0243e14@rivosinc.com>
 
-Hello,
+--qeeS7kj0r9HsIAfv
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 4/22/24 10:46, Steffen Trumtrar wrote:
-> This series adds support for setting the TX_CLK direction in the eQOS
-> ethernet core on the i.MX93 when RMII mode is used.
-> 
-> According to AN14149, when the i.MX93 ethernet controller is used in
-> RMII mode, the TX_CLK *must* be set to output mode.
+On Mon, Apr 22, 2024 at 10:53:10AM +0200, Cl=E9ment L=E9ger wrote:
+> On 19/04/2024 17:51, Conor Dooley wrote:
+> > On Thu, Apr 18, 2024 at 02:42:27PM +0200, Cl=E9ment L=E9ger wrote:
+> >> The Zc* standard extension for code reduction introduces new extension=
+s.
+> >> This patch adds support for Zca, Zcf, Zcd and Zcb. Zce, Zcmt and Zcmp
+> >> are left out of this patch since they are targeting microcontrollers/
+> >> embedded CPUs instead of application processors.
+> >>
+> >> Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
+> >> ---
+> >>  arch/riscv/include/asm/hwcap.h | 4 ++++
+> >>  arch/riscv/kernel/cpufeature.c | 4 ++++
+> >>  2 files changed, 8 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/h=
+wcap.h
+> >> index 543e3ea2da0e..b7551bad341b 100644
+> >> --- a/arch/riscv/include/asm/hwcap.h
+> >> +++ b/arch/riscv/include/asm/hwcap.h
+> >> @@ -82,6 +82,10 @@
+> >>  #define RISCV_ISA_EXT_ZACAS		73
+> >>  #define RISCV_ISA_EXT_XANDESPMU		74
+> >>  #define RISCV_ISA_EXT_ZIMOP		75
+> >> +#define RISCV_ISA_EXT_ZCA		76
+> >> +#define RISCV_ISA_EXT_ZCB		77
+> >> +#define RISCV_ISA_EXT_ZCD		78
+> >> +#define RISCV_ISA_EXT_ZCF		79
+> >> =20
+> >>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+> >> =20
+> >> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufea=
+ture.c
+> >> index 115ba001f1bc..09dee071274d 100644
+> >> --- a/arch/riscv/kernel/cpufeature.c
+> >> +++ b/arch/riscv/kernel/cpufeature.c
+> >> @@ -261,6 +261,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =
+=3D {
+> >>  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+> >>  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
+> >>  	__RISCV_ISA_EXT_DATA(zfhmin, RISCV_ISA_EXT_ZFHMIN),
+> >> +	__RISCV_ISA_EXT_DATA(zca, RISCV_ISA_EXT_ZCA),
+> >> +	__RISCV_ISA_EXT_DATA(zcb, RISCV_ISA_EXT_ZCB),
+> >> +	__RISCV_ISA_EXT_DATA(zcd, RISCV_ISA_EXT_ZCD),
+> >> +	__RISCV_ISA_EXT_DATA(zcf, RISCV_ISA_EXT_ZCF),
+> >>  	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
+> >>  	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+> >>  	__RISCV_ISA_EXT_DATA(zbc, RISCV_ISA_EXT_ZBC),
+> >=20
+> > Ye, this looks exactly like what I "feared".
+>=20
+> Ok but for instance, Qemu actually set Zc* based on C/F/D. So the ISA
+> string containing theses dependencies should actually also be allowed.
+> So should we simply ignore them in the ISA string and always do our own
+> "post-processing" based on C/F/D?
 
-Must ? I don't think that is true. Downstream NXP kernel has an option 
-to set TX_CLK as an input:
+I'm not familiar with the contents of all of these extensions, but I
+assume the reasoning for splitting them out is that you can implement
+them but not maybe not implement C (or something similar)? If that's the
+case, you cannot always imply.
 
-https://github.com/nxp-imx/linux-imx/blob/lf-6.6.y/Documentation/devicetree/bindings/net/nxp%2Cdwmac-imx.yaml#L69
+--qeeS7kj0r9HsIAfv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-https://github.com/nxp-imx/linux-imx/commit/fbc17f6f7919d03c275fc48b0400c212475b60ec
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiYvWQAKCRB4tDGHoIJi
+0tQCAP9mC34KZI4RlzykLZZJcqOkhj2mcUcNSSr/RaK9eFBoxQEA2vpvtlw6ZDsy
+MIBjOz/mpW/guSx4/dUBlp9zwuIycAA=
+=vD9i
+-----END PGP SIGNATURE-----
 
-> 
-> Add a devicetree property with the register to set this bit and parse it
-> in the dwmac-imx driver.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
-> Steffen Trumtrar (3):
->        dt-bindings: net: mx93: add enet_clk_sel binding
->        arm64: dts: imx93: add enet_clk_sel
->        net: stmicro: imx: set TX_CLK direction in RMII mode
-> 
->   .../devicetree/bindings/net/nxp,dwmac-imx.yaml     | 10 ++++++++
->   arch/arm64/boot/dts/freescale/imx93.dtsi           |  1 +
->   drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c    | 27 ++++++++++++++++++++++
->   3 files changed, 38 insertions(+)
-> ---
-> base-commit: 4cece764965020c22cff7665b18a012006359095
-> change-id: 20240422-v6-9-topic-imx93-eqos-rmii-3a2cb421c81d
-> 
-> Best regards,
-
--- 
-Sébastien Szymanski, Armadeus Systems
-Software engineer
-
+--qeeS7kj0r9HsIAfv--
 
