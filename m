@@ -1,139 +1,124 @@
-Return-Path: <devicetree+bounces-61371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6521E8AC6DE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:25:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8FD48AC6F3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 10:27:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7F6EB208A1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:25:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D69FB21092
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:27:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0146502B1;
-	Mon, 22 Apr 2024 08:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D691650286;
+	Mon, 22 Apr 2024 08:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/liFmLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDA15028F
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 08:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A467651C46;
+	Mon, 22 Apr 2024 08:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713774298; cv=none; b=j6LDkmjh1gCgAqD2SiNLRGTuWCGOzu+gmMJXKtPSM6lyPAJgNtNSrD+pOETK4Sl0iYbJo6dplFN+UjNIhWswQxupLmry6PuJ+YfCrtXBNbwbvMQPBI+ShI3PcuMkS70ydiDtpwOcPMNP2ViRLjwu4WQs3XxZT08b7ZbMboPBKS0=
+	t=1713774409; cv=none; b=U8GtCXvcLhrPakMdQQEWsTJafHwRHqBuqrFbHiuyfXydXOIjifpvGeAU26O++C9WXuBxiJRIC05BGrOeVVLIvTNORfbzknvdk9+nXnEcJK3hhqkIsGhdBUmfi1isD5rHtkjw/I1L6dwPqKAfizXzL+M3/rImrGH1n/VhsPKPBvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713774298; c=relaxed/simple;
-	bh=ipo8Tkh/OO1bi5/uYHqgJEwHcimyAW/pZY1OW6jfzvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UoybQu7LY9rZigZYZEn+/RwZnzYEOqURYO9GVm8oJ21d2dxf0iwwWK7kPj7NkOp/zP3aAjH+zgZFGjwHzw+0mPEiQ8P9mOAuoXgo0LIdAvxA7TnHbr9TixQYhvuUwXqfSmV8QpC5zpdd0XPmynx44lKNoso5gnbANKuQtuxOv4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <h.assmann@pengutronix.de>)
-	id 1ryoyk-0006hP-10; Mon, 22 Apr 2024 10:24:46 +0200
-Message-ID: <f70d53d2-0494-461d-9cbb-086077324e03@pengutronix.de>
-Date: Mon, 22 Apr 2024 10:24:45 +0200
+	s=arc-20240116; t=1713774409; c=relaxed/simple;
+	bh=DqdqDFnZ+YUvebT1NAXo2ShsLjrf3XUSBWmbdnKI6HU=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=kvl56KNdxwD+v9WhNHQAgRhjw4rbDXHcqmB7FgpMlMlFu9yT2TOwpdiWgS+7uMGXGMTHwsD1GEwIl8Pb1U3+XF03Tp7bcv3t+JWrd6uSOOk8H8x6oaG+MSUxRpNt7c5XmhtUhTKmLFDWw8zt8co8Iw18Thfx2069tsMuo39iMPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/liFmLi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B0ABC113CC;
+	Mon, 22 Apr 2024 08:26:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713774409;
+	bh=DqdqDFnZ+YUvebT1NAXo2ShsLjrf3XUSBWmbdnKI6HU=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=G/liFmLilfjZ4Kj7Wt6Z0/xwSTwm2ArRgNWKX4SxDyvFYPIVG24dXQS/1bvlOsEER
+	 qC+o3FLrUReL6eFdAUf0V+kdrSwbou1U9WWrfMRG0Y2j3+/sTS8QtLtDE2Mu84QyFX
+	 9wVhclxgKv3im2Vr9l30p0SE9FKVfyUBrqw/QmcLIuv2QDKq62QvC3UA8483h6+Utv
+	 thqfRKH3PP8ZPfLDsty4JSq9h2WyQzG99bOHggcJQRHfRD+5VZlxDE408FNsJAd9tI
+	 H9QcePwBKNtZtDONjDhryImErCE4LnREClbrvS6z9EaUXHd5jgYBwlVsa8IszblwB8
+	 /3+rPX0kxgpFQ==
+Date: Mon, 22 Apr 2024 03:26:48 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: regulator: pca9450: add restart handler
- priority
-To: Krzysztof Kozlowski <krzk@kernel.org>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, yibin.gong@nxp.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20240419083104.3329252-1-h.assmann@pengutronix.de>
- <20240419083104.3329252-3-h.assmann@pengutronix.de>
- <5c1c8632-3d8f-41b1-8027-54129d8cd62c@kernel.org>
-From: Holger Assmann <h.assmann@pengutronix.de>
-Content-Language: en-US, de-DE, de-LI
-In-Reply-To: <5c1c8632-3d8f-41b1-8027-54129d8cd62c@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: h.assmann@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+From: Rob Herring <robh@kernel.org>
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ linux-input@vger.kernel.org, linux-serial@vger.kernel.org, 
+ Oliver Hartkopp <socketcan@hartkopp.net>, netdev@vger.kernel.org, 
+ "David S . Miller" <davem@davemloft.net>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Benjamin Tissoires <bentiss@kernel.org>, linux-can@vger.kernel.org, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, Jakub Kicinski <kuba@kernel.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>, 
+ Paolo Abeni <pabeni@redhat.com>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org, 
+ Andreas Lauser <andreas.lauser@mercedes-benz.com>
+In-Reply-To: <20240422065114.3185505-6-christoph.fritz@hexdev.de>
+References: <20240422065114.3185505-1-christoph.fritz@hexdev.de>
+ <20240422065114.3185505-6-christoph.fritz@hexdev.de>
+Message-Id: <171377440691.455449.12311389300613565393.robh@kernel.org>
+Subject: Re: [PATCH 05/11] dt-bindings: net: can: Add serdev LIN bus dt
+ bindings
 
-Hello Krzysztof,
 
-also thanks for the feedback on this one.
-
-Am 19.04.24 um 15:39 schrieb Krzysztof Kozlowski:
+On Mon, 22 Apr 2024 08:51:08 +0200, Christoph Fritz wrote:
+> Add documentation of device tree bindings for serdev UART LIN-Bus
+> devices equipped with LIN transceivers.
 > 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
-
-Short note: I did that prior submitting, but I did it directly for the
-yaml-file and not for the directory - Those do not look the same
-regarding their prefix scheme.
-
-I will change it for my v2 and use a subject like for the directory.
-
-
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> ---
+>  .../bindings/net/can/linux,lin-serdev.yaml    | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml
 > 
->> ---
->>  .../devicetree/bindings/regulator/nxp,pca9450-regulator.yaml   | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
->> index 3d469b8e97748..7cc2d6636cf52 100644
->> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
->> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
->> @@ -35,6 +35,9 @@ properties:
->>    interrupts:
->>      maxItems: 1
->>  
->> +  priority:
->> +    $ref: /schemas/power/reset/restart-handler.yaml#
-> 
-> You defined object, which is not explained in commit msg. This code does
-> not look correct or it does not implement what you said.
-> 
-> Please look at existing code - do you see anything like this? No, there
-> is no such code and this should raise question.
 
-I am a bit lost on that one to be honest.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-The only other instances where a "priority" for restart handling is
-described are "gpio-poweroff.yaml" and "syscon-reboot.yaml". These files
-are dedicated documentation for the reset bindings, so I tried to
-transfer the respective entry over for my commit.
+yamllint warnings/errors:
 
-Do you suggest I should replace
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml: 'maintainers' is a required property
+	hint: Metaschema for devicetree binding documentation
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+Error: Documentation/devicetree/bindings/net/can/linux,lin-serdev.example.dts:18.9-15 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/net/can/linux,lin-serdev.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-+  priority:
-+    $ref: /schemas/power/reset/restart-handler.yaml#
+doc reference errors (make refcheckdocs):
 
-with
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240422065114.3185505-6-christoph.fritz@hexdev.de
 
-+allOf:
-+  - $ref: /schemas/power/reset/restart-handler.yaml#
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-in order to properly include the context for the restart handling?
-Running dt_binding_check does not indicate an issue with any of those two.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
+pip3 install dtschema --upgrade
 
-> 
-> You probably want to annotate that device is a restart handler?
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-You mean by adding to the "description" part of the file?
-
-
-Kind regards,
-Holger
-
--- 
-Pengutronix e.K.                         | Holger Assmann              |
-Steuerwalder Str. 21                     | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686         | Fax:   +49-5121-206917-5555 |
 
