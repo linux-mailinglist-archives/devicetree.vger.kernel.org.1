@@ -1,99 +1,100 @@
-Return-Path: <devicetree+bounces-61478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30478ACDF6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:15:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612A38ACE06
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 15:19:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80758B21AD5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:15:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F36F2B23906
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 13:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4C814F120;
-	Mon, 22 Apr 2024 13:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE71D14F134;
+	Mon, 22 Apr 2024 13:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H7DzM5Ei"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="r57bAFbA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF0614EC67;
-	Mon, 22 Apr 2024 13:15:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F9E3399F;
+	Mon, 22 Apr 2024 13:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713791716; cv=none; b=Jc7vUndLtg9cxmb7ymqsdcEHqjgkGQrr4Fkei7bulY406dpoCrqfGzXQ/+GA37GD2Z21/MX3jGpw+V1jOzNDZ2GBB+w9jfYFnTxTdwDpXvDt+kbZm6ItBi4HwmqGHkDaOVvcrVusKCvEciyxigN3ArrcDv7zx5xV1jBjNgriomk=
+	t=1713791944; cv=none; b=KtzljrsLL0AG5gHodKPa9/n8RSTIyb2ZYCXKYxY4i6BRwskM45Jjs40BuoCj0C5hxTyZIOFkNR8HKmqYCzuyHHWwTaqVWRAko3txlXXhfct9tlttTQ8eraT8ZcsGFb6SU0Z0Uwk3bH8j+IaFX6gy7qcfQ58EL1TQ6U0XMV1WfHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713791716; c=relaxed/simple;
-	bh=Eio/1AEc7ubO0FasZh46qzObS9lQSnNE57hP8qhc5Ss=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hgeui5wni9UgOwxjCC+LBq0FUOO/btUn3lKSL/tbMBz+FSta301EFY6hqWQkfSmlIb4hBJ4LOy9mBzBeUF09xWYbPr7qaqJkZ7akBziDDr2YRJeopO9H/SPLqSfzmk0v8s7wM50mu3IpGl0nhsq+oP8E4x/HCz1qz3X8GnzE42U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H7DzM5Ei; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7718EC113CC;
-	Mon, 22 Apr 2024 13:15:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713791715;
-	bh=Eio/1AEc7ubO0FasZh46qzObS9lQSnNE57hP8qhc5Ss=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=H7DzM5Eib4LTUdtI8EUX/6yzxsvNX3ccwNEngynGV/pqCi6g4O+IrzcTi5u3Q/5nQ
-	 wgmR/xx7BLiImCXH1RCOIttNXHQt2ZViIBDMqnn7VgGTn3mxDiiTD6yVuaLuVNJKz1
-	 r+59rFVB21rdOC87v5yC4KnSiplLLhFAacJaIedNz7v19D7yMyIDqcwRTTF01NAlYH
-	 pRQeGREO1CKoHDZqJT/MhFg2ZpGixj4D54c0TrnH25TVvr0l5ib7ijZYrFD2BM1hfb
-	 0D5LfRU0B0vzHsAOE9cvoHRN44CM+npJ14iC6PTiZK7X/WxJjAWw+Js1j3lzZ9v0lH
-	 80BV6ACi7rN5A==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: ath10k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH RFC v2 0/4] wifi: ath10k: support board-specific firmware overrides
-Date: Mon, 22 Apr 2024 08:15:12 -0500
-Message-ID: <171379170888.1217989.8167751161214805581.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
-References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
+	s=arc-20240116; t=1713791944; c=relaxed/simple;
+	bh=nEIImInbgCdKAwG1S5PDkhkW78nGxj3mhR5gm/NG8rc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QWGuiKZ+zgeGD4ywilnH0FnWLMzB6X03HvYIi73mktcCn9MTu+PH20go2j5erXVV8R04u/3V3tgmto4DYDdb67Ok8Dct7NjO9JxyWVebSUIN9ngTtl8KtHCNCYAytOhog6Ojpy3ELwdjnIk2Z13tDJ0ZrhJ6H+noGeP8abCWEDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=r57bAFbA; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43MDIhLm026330;
+	Mon, 22 Apr 2024 08:18:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713791923;
+	bh=qbn10NRmBdiC8cpl9UdEzAERTYd1gkIgankGkqfzrRE=;
+	h=From:To:CC:Subject:Date;
+	b=r57bAFbABQPhFOPr4tEUysnw8+14302h0+Bdj0Sez3Zod7Ti3qoQyPpdJALLad+Gc
+	 pUiKxfpjZFnm3dsBrwxO8CUStzEGVWbgMxJz1hFm+T7E4D8VbVCs+hV0eNMl5C1hwR
+	 0hdocmohGlUfdqHeHpAHvoXvVujSeJi1yo2+rWPc=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43MDIhDb078973
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 22 Apr 2024 08:18:43 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ Apr 2024 08:18:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 Apr 2024 08:18:42 -0500
+Received: from localhost ([10.250.148.22])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43MDIfwc080761;
+	Mon, 22 Apr 2024 08:18:42 -0500
+From: Bhavya Kapoor <b-kapoor@ti.com>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j722s-evm: Enable UHS support for MMCSD
+Date: Mon, 22 Apr 2024 18:48:40 +0530
+Message-ID: <20240422131840.34642-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Enable the UHS modes for MMCSD in J722S by removing the
+no-1-8-v property.
 
-On Wed, 06 Mar 2024 10:16:44 +0200, Dmitry Baryshkov wrote:
-> On WCN3990 platforms actual firmware, wlanmdsp.mbn, is sideloaded to the
-> modem DSP via the TQFTPserv. These MBN files are signed by the device
-> vendor, can only be used with the particular SoC or device.
-> 
-> Unfortunately different firmware versions come with different features.
-> For example firmware for SDM845 doesn't use single-chan-info-per-channel
-> feature, while firmware for QRB2210 / QRB4210 requires that feature.
-> 
-> [...]
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-Applied, thanks!
-
-[3/4] arm64: dts: qcom: qrb2210-rb1: add firmware-name qualifier to WiFi node
-      commit: 57ce4b27a12c827a24aaa18aa444bcb8733cb053
-[4/4] arm64: dts: qcom: qrb4210-rb1: add firmware-name qualifier to WiFi node
-      commit: 673b174b5b2ca2fb99fe52bf7bad3cc348432170
-
-Best regards,
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index 78032caeb5fc..bf3c246d13d1 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -381,7 +381,6 @@ &sdhci1 {
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	ti,driver-strength-ohm = <50>;
+ 	disable-wp;
+-	no-1-8-v;
+ 	status = "okay";
+ 	bootph-all;
+ };
 -- 
-Bjorn Andersson <andersson@kernel.org>
+2.40.1
+
 
