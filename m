@@ -1,95 +1,205 @@
-Return-Path: <devicetree+bounces-61592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E208AD5A8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 22:08:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FECC8AD5FC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 22:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F36641C20E51
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 20:08:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93CED1F219F0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 20:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AEBA1553A0;
-	Mon, 22 Apr 2024 20:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4391BDDC;
+	Mon, 22 Apr 2024 20:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nxM0lyA0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q/a8o4xX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA14415532F;
-	Mon, 22 Apr 2024 20:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73961B27D;
+	Mon, 22 Apr 2024 20:40:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713816515; cv=none; b=JsEjK/m4twvwgVQbPQazcI3HDQNgN6F85KJHcahKykxxbuxGoPX9Hv+UIjMjEW4xf5Plbz7+9PrafiK/SFkGmnsDs3E7bNwG4LBvFMqwKzpORpgmc9TCGHbfrAZGV/kPWsrjhBvNX8m33PMFecfT9OzPx0j/mbLFv/hJoW6pH6k=
+	t=1713818412; cv=none; b=LaRHG6W1+fNuwfPaNBndyelQ1LqxICVedFyaPYphE3a5IF/cU/TymelMTbDB5S/T4u5TRPecHbFUF8F6EDK1zz2qNe2nEOPqHiLb7DoWQijK0XH1DrEW3pVNg3UDCpjhByHP9eTQiGZBR2d2klbST1WdvPAfUdrD/U9C5jHGY40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713816515; c=relaxed/simple;
-	bh=KaJ+NKYdo03BsBZ2eLdFmRwcG8JugyABNskGFpktxOE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KBrIfcXhTtbaDIqFozJfhBqiZMgw2g3eUjz2MDIuU5tbakcCWO1DTJmr9Dc/Md5DuMMwDKD+wd224RKKImeZj5DbreftK840j9KQwaXhuBYH8pZhh3TtGYK3uMXsqCDOTp7MNYxW19R27DhB0WjrhAfoyfyEFd1BgbmmZBe1zEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nxM0lyA0; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=BtAYhAYP1vm83aI3IXJgYBpWB+UbrPUSs9pOyPbh51o=; b=nxM0lyA0bk8GWyydokRHEbJLL/
-	CV5g+r4sECy1DVu7PShcc62sqVUsD6VpTTLZy+Hz73Io2xN3YgTzFEg3rpVr0AE2GSn1fBCLx19gl
-	Jo5i6KOgr/ZtliulgwpA35L6BVZs8YXcmU6ZuDub+Stasm3uSdXLGK75Eh84gaH3cLNc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ryzxf-00DeGH-7N; Mon, 22 Apr 2024 22:08:23 +0200
-Date: Mon, 22 Apr 2024 22:08:23 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 00/12] Add support for OPEN Alliance
- 10BASE-T1x MACPHY Serial Interface
-Message-ID: <5f73edc0-1a25-4d03-be21-5b1aa9e933b2@lunn.ch>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+	s=arc-20240116; t=1713818412; c=relaxed/simple;
+	bh=B7l0/65vO7+DjY80lOHywR958KdsAp0VxS0wq8JSYD8=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=VXaK/ao9nDALEh1OcXEywBpuBrtnwlLDrd1CubxDqlIy7T/SlMjUJVATYVBT6L5APuWy7hGVW0QLILszHB3u3FsRyF1D30GeWuHd85KOLCcn5b0//uQGRqt2+bF9C/NQzJk4OGxjgwP0lFcZtJNwr+3YSlhUcuLjmp4R/RkeI0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q/a8o4xX; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713818411; x=1745354411;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=B7l0/65vO7+DjY80lOHywR958KdsAp0VxS0wq8JSYD8=;
+  b=Q/a8o4xXZBx6Y/WfbgeO4C9MZioeEKqNzF/umbT9FxRATrF++KFY00VH
+   KVUz3c8hsenyp9fI8e+YBhSr+ADat+cef8Qj6lMb9zXWN48hhXYwC72Kl
+   QhrL2BuUAYT5KXkHw+EjraF9Ysz1sUYUugbwLfmwm6EDqtJL1kgjbUn12
+   4LvshE22gxoIGbfc05jvvUfWy1NFy1pzv4ovgTponj1T9o+drbRl29iv0
+   cMDfFwZs/igD3WQ3kik2iNTq094pc9v+rVLGRlsRV6DU+HP9zlJkW6czW
+   5+tmFfm9u48F8BynEnmcduaxQF2ZEqY5ax43NLUzO8nl1qtendWlzEa3N
+   g==;
+X-CSE-ConnectionGUID: aYke8BjJRGePVDAxTygung==
+X-CSE-MsgGUID: nZuVrdMYR5iZ9fYo+hHMmw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9548813"
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; 
+   d="scan'208";a="9548813"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2024 13:40:10 -0700
+X-CSE-ConnectionGUID: 9bgKImlkQS+/6twUl2Iprg==
+X-CSE-MsgGUID: bGG3c9YUR261z1tgCG1Uhg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; 
+   d="scan'208";a="28804520"
+Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2024 13:40:09 -0700
+Date: Mon, 22 Apr 2024 13:40:00 -0700 (PDT)
+From: matthew.gerlach@linux.intel.com
+X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
+To: Rob Herring <robh@kernel.org>
+cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: PCI: altera: Convert to YAML
+In-Reply-To: <20240422145855.GA1242711-robh@kernel.org>
+Message-ID: <alpine.DEB.2.22.394.2404221320270.442026@sj-4150-psse-sw-opae-dev2>
+References: <20240420145342.118643-1-matthew.gerlach@linux.intel.com> <20240422145855.GA1242711-robh@kernel.org>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-> Testing Details:
-> ----------------
-> The driver performance was tested using iperf3 in the below two setups
-> separately.
-> 
-> Setup 1:
-> --------
-> Node 0 - Raspberry Pi 4 with LAN8650 MAC-PHY 
-> Node 1 - Raspberry Pi 4 with EVB-LAN8670-USB USB Stick
-> 
-> Setup 2:
-> --------
-> Node 0 - SAMA7G54-EK with LAN8650 MAC-PHY 
-> Node 1 - Raspberry Pi 4 with EVB-LAN8670-USB USB Stick
 
-Would it be possible to chain these two setups together by adding two
-USB dongles to one of the Ri 4s? If i remember correctly, there were
-reports of issues when two devices were using the framework at once.
 
-Thanks
-	Andrew
+On Mon, 22 Apr 2024, Rob Herring wrote:
+
+> On Sat, Apr 20, 2024 at 09:53:42AM -0500, matthew.gerlach@linux.intel.com wrote:
+>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>
+>> Convert the device tree bindings for the Altera Root Port PCIe controller
+>> from text to YAML.
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>> v4:
+>>  - reorder reg-names to match original binding
+>>  - move reg and reg-names to top level with limits.
+>>
+>> v3:
+>>  - Added years to copyright
+>>  - Correct order in file of allOf and unevaluatedProperties
+>>  - remove items: in compatible field
+>>  - fix reg and reg-names constraints
+>>  - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
+>>  - fix entries in ranges property
+>>  - remove device_type from required
+>>
+>> v2:
+>>  - Move allOf: to bottom of file, just like example-schema is showing
+>>  - add constraint for reg and reg-names
+>>  - remove unneeded device_type
+>>  - drop #address-cells and #size-cells
+>>  - change minItems to maxItems for interrupts:
+>>  - change msi-parent to just "msi-parent: true"
+>>  - cleaned up required:
+>>  - make subject consistent with other commits coverting to YAML
+>>  - s/overt/onvert/g
+>> ---
+>>  .../devicetree/bindings/pci/altera-pcie.txt   | 50 -----------
+>>  .../bindings/pci/altr,pcie-root-port.yaml     | 88 +++++++++++++++++++
+>>  2 files changed, 88 insertions(+), 50 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+>>  create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
+>> deleted file mode 100644
+>> index 816b244a221e..000000000000
+>> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
+>> +++ /dev/null
+>> @@ -1,50 +0,0 @@
+>> -* Altera PCIe controller
+>> -
+>> -Required properties:
+>> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
+>> -- reg:		a list of physical base address and length for TXS and CRA.
+>> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
+>> -- reg-names:	must include the following entries:
+>> -		"Txs": TX slave port region
+>> -		"Cra": Control register access region
+>> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
+>> -- interrupts:	specifies the interrupt source of the parent interrupt
+>> -		controller.  The format of the interrupt specifier depends
+>> -		on the parent interrupt controller.
+>> -- device_type:	must be "pci"
+>> -- #address-cells:	set to <3>
+>> -- #size-cells:		set to <2>
+>> -- #interrupt-cells:	set to <1>
+>> -- ranges:	describes the translation of addresses for root ports and
+>> -		standard PCI regions.
+>> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
+>> -		mapping of the PCIe interface to interrupt numbers.
+>> -
+>> -Optional properties:
+>> -- msi-parent:	Link to the hardware entity that serves as the MSI controller
+>> -		for this PCIe controller.
+>> -- bus-range:	PCI bus numbers covered
+>> -
+>> -Example
+>> -	pcie_0: pcie@c00000000 {
+>> -		compatible = "altr,pcie-root-port-1.0";
+>> -		reg = <0xc0000000 0x20000000>,
+>> -			<0xff220000 0x00004000>;
+>> -		reg-names = "Txs", "Cra";
+>> -		interrupt-parent = <&hps_0_arm_gic_0>;
+>> -		interrupts = <0 40 4>;
+>> -		interrupt-controller;
+>
+> What happened to this? It is clearly needed since the interrupt-map
+> below points back to this node. Note that that didn't work at one point
+> in time, but I think we fixed it.
+
+I think the DTs I was using test were created during the point in time 
+when this did not work. The interrupt-controller boolean and 
+#interrupt-cells property were in a sub node, and the interrupt-map 
+pointed to the sub-node. Keeping everything in the base node maintains 
+compatiblity. I will fix this for v5.
+
+>
+> It doesn't seem you are testing the binding against an actual DT.
+> Please do that.
+
+I need to fix the DTs I'm using for test :)
+
+Thanks for the feedback,
+
+Matthew Gerlach
+
+>
+> Rob
+>
+>> -		#interrupt-cells = <1>;
+>> -		bus-range = <0x0 0xFF>;
+>> -		device_type = "pci";
+>> -		msi-parent = <&msi_to_gic_gen_0>;
+>> -		#address-cells = <3>;
+>> -		#size-cells = <2>;
+>> -		interrupt-map-mask = <0 0 0 7>;
+>> -		interrupt-map = <0 0 0 1 &pcie_0 1>,
+>> -			            <0 0 0 2 &pcie_0 2>,
+>> -			            <0 0 0 3 &pcie_0 3>,
+>> -			            <0 0 0 4 &pcie_0 4>;
+>> -		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
+>> -			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
+>> -	};
+>
 
