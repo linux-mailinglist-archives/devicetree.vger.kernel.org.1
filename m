@@ -1,116 +1,119 @@
-Return-Path: <devicetree+bounces-61603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 639588AD68A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 23:30:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F428AD716
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 00:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FEA3283CDA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 21:30:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81C6D1F217B7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 22:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6C81CD29;
-	Mon, 22 Apr 2024 21:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348E91D539;
+	Mon, 22 Apr 2024 22:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="mWuX9Kg/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OAe/vxOP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09651CA8A
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 21:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 864371CD2E;
+	Mon, 22 Apr 2024 22:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713821414; cv=none; b=WCREX2yVDe5rv+UUJraYuD4jRtM4wOQy6aVRbFInLc6uUVz/YfFRmFTnHBZAgEVy+odkLZDiIyEjs0lYEqvUYwwD1p8AqM3xRwjKOGmAkVIsMEeWCb6Nrzd7KExgzQdhglgx/J6a34PexfGRGRv23spKzhg+UasEqIGeMYfx3dA=
+	t=1713823624; cv=none; b=mqniDXb3BF5LHQfXSGCaPxjZitLUUTX28n4KEmkwu7W2RbE8A4wtq3urdKxQ9BK87jJ0cY5OtCHYdGjwyXUXWoaHMHEl/sKUJSb8F/FTXwQlKTnnLGi/+ER1ae7APInIbgG9WlHWk9l6JGeb5hJ/qmaeJJ+AQoMzyJ57RNtFKJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713821414; c=relaxed/simple;
-	bh=Ku1DGEy0db+OnEa5w7PseS2QxxW9d5ZfsbNmxLSkJk4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HyjUXo6KZyIxMg+w7Y7xUI/tS5d6hbiZXfz3bMoJpJLi8iCR/DclZ/sgUa4nnJxQ15cZ8+XRHA2i9fdJUHpGz0y79T1rAwKwkMaR7FWSyKc/zXyMHFrR5GxZZPDqNBBAhINCz7lnxyPP+PbKDcB3Y4erjFxeW5zuuoj8RQiTgzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=mWuX9Kg/; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <173a7bb2-5473-4c1b-b3dd-ef776e63ac7a@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1713821410;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nH11/CXhaPQDxPvStD1h8S0lo64PkavloRKwmStdkfE=;
-	b=mWuX9Kg/JSi1GlYagbN/iSGyHb/7PXLCjJlVe2ffi1+IfdKuKtnzjNx4prIYV7NtPx33eP
-	8B5u1AI13YXJt+teLHVOvg75/U1S+3pRwtbXlsY/OMJnyiEvQkkBySvgFP0vw/MxqUcOGj
-	Qy2HIzwX+531fGEzPAj3ctd1ecHdlnk=
-Date: Mon, 22 Apr 2024 17:30:06 -0400
+	s=arc-20240116; t=1713823624; c=relaxed/simple;
+	bh=YG2ho/COX1GcuoOgAMZQGsutT3JYVTyxSfFQqkjoH58=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=P5IWvDFl8GIMgY8dCMkKQo6FWiU7PlJv3QeVz1rrA1xruZhwJ2NUW8zxL5RzTGyWcHeLCTIdnqFvmNCSzGkRj/LcjJFFWoc4AtovUs4Xlb/iSCq0nr/lcFezFXZEUyGfN0Pe3AlWglHv/UtJd91uHJWBc7M6uMwHp1SdCnSM3Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OAe/vxOP; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43MM6nw3059208;
+	Mon, 22 Apr 2024 17:06:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713823609;
+	bh=1BJa45blcEjepqkQOUqbdHFGqA41MZjWndkZliOxTMU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=OAe/vxOPVyE2yfRFo4SEglCbI+L8otru7AmIGIvYiVRwc4L1XBU86vavejN9JC99q
+	 sVmqcySnZRldFXb4INZc3uiQ4FZblqYcE6tmnAal5WGQbmWtVU/KFixGCNdJ5CIujf
+	 FdirCdUsS8b2vfippch+jYnorAQfdWd4wZnviwyo=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43MM6ne0069246
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 22 Apr 2024 17:06:49 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ Apr 2024 17:06:48 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 Apr 2024 17:06:48 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43MM6mvq104678;
+	Mon, 22 Apr 2024 17:06:48 -0500
+Message-ID: <ecf3f42b-9758-4ee4-b1e4-a003933ea225@ti.com>
+Date: Mon, 22 Apr 2024 17:06:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/7] dt-bindings: pci: xilinx-nwl: Add phys
-To: Rob Herring <robh@kernel.org>
-Cc: Michal Simek <michal.simek@amd.com>,
- Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>
-References: <20240422195904.3591683-1-sean.anderson@linux.dev>
- <20240422195904.3591683-2-sean.anderson@linux.dev>
- <171382130333.1986303.15938018699322126426.robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/6] arm64: defconfig: Set CONFIG_MFD_TPS6594_I2C=y
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Bhavya Kapoor <b-kapoor@ti.com>,
+        Dasnavis
+ Sabiya <sabiya.d@ti.com>
+References: <20240416221648.3522201-1-jm@ti.com>
+ <20240416221648.3522201-7-jm@ti.com>
+ <5f03207b-c29b-4d16-92b0-d14eef77bf17@linaro.org>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <171382130333.1986303.15938018699322126426.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <5f03207b-c29b-4d16-92b0-d14eef77bf17@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 4/22/24 17:28, Rob Herring wrote:
+Hi,
+
+On 4/19/24 8:59 AM, Krzysztof Kozlowski wrote:
+> On 17/04/2024 00:16, Judith Mendez wrote:
+>> SK-AM62A-LP uses TPS6593x PMIC (interfaced over I2C) to power the SoC
+>> and various other peripherals on the board [1].
+>>
+>> Booting SD with UHS modes have a dependency on TPS6593x PMIC driver so
+>> change to built in order to boot using SD boot at the higher speed modes.
+>>
+>> Fixes: f9010eb938be ("arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A")
 > 
-> On Mon, 22 Apr 2024 15:58:58 -0400, Sean Anderson wrote:
->> Add phys properties so Linux can power-on/configure the GTR
->> transcievers.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
->> ---
->> 
->>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->> 
+> No, that's not a fix. Fix is using proper initramfs, because bug is lack
+> of initramfs, not having it as module.
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
+> I don't agree, because I prefer to have this as module.
+
+ok, will drop this patch, thanks.
+
+~ Judith
+
 > 
-> yamllint warnings/errors:
+>> Signed-off-by: Judith Mendez <jm@ti.com>
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml: properties:phy-names: {'maxItems': 4, 'items': [{'pattern': '^pcie-phy[0-3]$'}]} should not be valid under {'required': ['maxItems']}
-> 	hint: "maxItems" is not needed with an "items" list
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
 > 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240422195904.3591683-2-sean.anderson@linux.dev
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+> Best regards,
+> Krzysztof
 > 
 
-This warning is invalid, since I am using pattern with items.
-
---Sean
 
