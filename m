@@ -1,194 +1,243 @@
-Return-Path: <devicetree+bounces-61540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B84558AD245
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F59D8AD180
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:05:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D573B1C20EDA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:41:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61A411C2100E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486B615381D;
-	Mon, 22 Apr 2024 16:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C723153586;
+	Mon, 22 Apr 2024 16:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b="jaTEBHbf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lIuTCyVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00549402.pphosted.com (mx0b-00549402.pphosted.com [205.220.178.134])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D20515532D;
-	Mon, 22 Apr 2024 16:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.178.134
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713804018; cv=fail; b=QQ4XiBw7SMHXmFXF4TOjH+VGiOJalCTiTQ3zCqNZdw3Yqxq6UVErdDHfuH5FGsSc6bt5YVTRhQEPKU/3Y3lWLWBsNX2X0rXYo1rz0DIpdyx39jf5PnaqGsHJX8s8DQioHRyKyitr6w2YNpbS1fnq8Um7tSV7uK8xqK/4zz+YzQQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713804018; c=relaxed/simple;
-	bh=Lw7xcZnct3Zmd0IBykH3/2Db3Q70WS3QVHIPEBXV/Qs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jb8BmUKs5m7LCmPc1iGNmSAYB+ZyKpE+bs8Dg2nzxeNs1m8EeUfqslMUuNH7X29HxkgHoBYZBTU1yUDSQO/0J1S6EM+gCSmJRybnx+Gh9i5IHXyM8WKxhNwE/7QlzDURwuYSYdqFrdKbcCrTkZDmtjxtVJJ3EQpV+VBtADYJX0U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com; spf=pass smtp.mailfrom=tdk.com; dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b=jaTEBHbf; arc=fail smtp.client-ip=205.220.178.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tdk.com
-Received: from pps.filterd (m0233779.ppops.net [127.0.0.1])
-	by mx0b-00549402.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43M7tnoD010569;
-	Mon, 22 Apr 2024 15:23:06 GMT
-Received: from tyvp286cu001.outbound.protection.outlook.com (mail-japaneastazlp17010000.outbound.protection.outlook.com [40.93.73.0])
-	by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 3xm72j9aw5-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Apr 2024 15:23:06 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XCzILRgoWc7id/JtOAWSx4djwjhc/dPe8NQyyzsEy7cL1Wr/dU5wGqO/vrZvhrKv5z7tyTWQzwG3nY2cQxqN+vjXrZRcdPZ8T+aQutIV7D7tZLjhnBtxF+abMmsA5i9Xg7P5guROMbdD9JjJ7oiP7L+3+QMJSwICJCNWt0eZ+YCE/dFw9nTBt1smfoCxVLLqC0JsOt7cGAKJ4ZrLi7B3fyddnmH8uqBgxgPXw2ugbQjpiHmTzJjBES3q01pa9pSGB+BhIqMfrrWwZGWZi2yt4LBJv9sJonUy6piYh9zwAwUq3+4zmDcTZPtr4zM4ECbzQVAxFlH6JYgYvBmVvO/MZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+R/4hW4Kp9/UqGCxMx4BhWsmYzZ5yKSFWWRpACx1RiU=;
- b=IywdS6DHK7eQAYK8BWZ2X4xw6zVHg7yQZqW0YgpE2p4SJ51kSccZthUzczzrgNEUhQl+S7NrXmv7bPoPM1qPqTxQSWhShY12zSbPtQQvre2/sclTrBN5UDozzIgWWPOhhWaWbR18evHdbp/6Wm+CNome1YCsppWq0C0TSel+9zUdA4pfj0GdxD3Ybt2xfwNifqRqcfCl93wqZfXt+eGFyHumL+Eefi4eB7sWfGRaMqWW7djPZSBpEN2fi0LDskX4llLWcWuplZW/PSGenlyx4RN8Nzp+qJI3Rv6bPzdV0E6BOZwtku0TBrPuwBvskc6OYuDil69UQ9ZFs4HfofhBmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
- header.d=tdk.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+R/4hW4Kp9/UqGCxMx4BhWsmYzZ5yKSFWWRpACx1RiU=;
- b=jaTEBHbfyehZaEHHYvASDtJyYBu6+fquxOCF1W5fy4tAD/0pv7pH27E+oNtdqSLvyb1KVwF417R6nHa6Zg3VyEmQC9qG2bQT7AetDRWE/tyT5u0lqLDVwuEsdXZ4OzsucjtNkkr+1eHkGpvzK8rvqelyv+6ZeAtBI5hLO8WJmT0wAdnxU/ZQcwZ3ZpvUS64Akx2F5o1cEwLm1WnteYxzLTiGLmVJMQgm1Gxb9a1JgQ1/hleGz4l73/vdVt7J0S1StidIyScMnEvcMjPC0/4gWA77gZZcWPVrwAnnKwkx2uwvs8J1UhlnQSWTzsArJ/qRONgU/0sgZFlXu81WpW+J3g==
-Received: from OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:1a7::13)
- by TYYP286MB4079.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:14f::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 22 Apr
- 2024 15:23:02 +0000
-Received: from OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
- ([fe80::9119:3ad4:c68d:9da2]) by OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
- ([fe80::9119:3ad4:c68d:9da2%6]) with mapi id 15.20.7472.044; Mon, 22 Apr 2024
- 15:23:02 +0000
-From: inv.git-commit@tdk.com
-To: jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc: lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Subject: [PATCH 1/2] dt-bindings: iio: imu: add icm42686 inside inv_icm42600
-Date: Mon, 22 Apr 2024 15:22:39 +0000
-Message-Id: <20240422152240.85974-2-inv.git-commit@tdk.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240422152240.85974-1-inv.git-commit@tdk.com>
-References: <20240422152240.85974-1-inv.git-commit@tdk.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR2P278CA0051.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:53::6) To OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:604:1a7::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441F1153518
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 16:05:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713801909; cv=none; b=HV8t8fukxZ4Y6U7f5FLDQK+cqV9fbnkyRJYh44UIn2faCrMg2LwxwFV1v4m2jki7Vg/+pV1nO2zo3Q10lICnZqwULAe6ate/jhVmtjZCJhvoihm1yRnJ6Vuz9QsZ/Xndt1vN9uPtfmbhNIpTYmgZrjxKBrCcOgQi8cW5fXd9RlE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713801909; c=relaxed/simple;
+	bh=uMrqfXtK6k+O5vJvYEYy/TACHxRsqtS+As5XBUxjJb8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=be/6cvQuCBj11zmdEhC+R9D7ieyTumEtONqym0q7cEXekW5pPov8TD4iVoloypVxkzuZBauCQUdSboQHKilTpSGgGwLFyPU3kHjJ7Ej9pk7hQzS88/0U2LgiqJU/IMU35kL+ThstQ1yzKWBg+w9vFJweVAIYIH1HmmGrqHG/RJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lIuTCyVp; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41a5b68ed85so6710635e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 09:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713801906; x=1714406706; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dWwGyt3dTm+Wuf9S+gzlWNOA5yNIL5XlLbZV/xMCQ0E=;
+        b=lIuTCyVp45AAyZUf6x54pVz1T4s0mTi1gOa1YwZAowlM8AydlhXXfNvGUuZ4O//fuU
+         nQ0KJafisMVL4fwYJ9Z5x/P4KF2+W9yse8cqKLaOtzZ/i0QRhxVoT7xmmfE4zK8ywFe9
+         ebL6YfUwxNGct0FddjHzyL2jSwnvl8JdzrXaIJOqT5rTIhNbe0V8SMSRVzCRF3MoD/6b
+         AJiSYtMTWJMQIRQ/WQLxRh4jSJpaAvlhKcgvQcVAJUShMYyuHfIpJaYB264TiLtgaRNJ
+         DpvkVTsUwVF0tlVIiaJQ7toZYR6HC517po1OpoET1PTJ3YnNjZ61U2bMgxkykN9yknjR
+         a2Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713801906; x=1714406706;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dWwGyt3dTm+Wuf9S+gzlWNOA5yNIL5XlLbZV/xMCQ0E=;
+        b=FLGbwJJX34zPhgTyRmkFbVQdJ9tZjyFtGy/3WBEJkiFl6z/l8Huh9PqL1PHmxLrF1n
+         A61e/Rdt5FgVtt/TZo6vUssFDkH7rl005bp3mhYo4RuXHTuWHvx45u1hoqngYD67M8E4
+         c23tqUFXILYK2i30aZACNIyxuxu8elgMteA7vz9E72WHNr4xH4D45LGGYYv/Io/AKQgc
+         dg+ioLwJvFHt1zJ4ZparNiWtKBKSB7qtkAhIg3Do00AIwKRrHPyTVJ0MGn+sxlDPlWVH
+         ZqEtlKz7Ryx5UcT1eA+CB2UTrwLDhdwP0ZDuXefcuQO2KZyiD+lu9+8jwYPazXpzHCAt
+         qGWQ==
+X-Gm-Message-State: AOJu0YxEduEydWuQDQ4G2UzB+9FFDYK0c6yObymoO85J+UYhKEVd1c65
+	jmbdLad0kaVuiuNcCKELhsCgqM/gT/H3McuqCXq1tpGEV7KQPu0DmF60qqIBDi0=
+X-Google-Smtp-Source: AGHT+IE/nftNT+d/dSVZ6a3LU5UwbsOra6VLe9tpF78RFTwys+yB9GNv7ju2pzg5L6PKopNHp9RnJA==
+X-Received: by 2002:a05:600c:4f51:b0:418:5ef3:4a04 with SMTP id m17-20020a05600c4f5100b004185ef34a04mr72995wmq.18.1713801905239;
+        Mon, 22 Apr 2024 09:05:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e5e5:892f:e81f:7cad? ([2a01:e0a:982:cbb0:e5e5:892f:e81f:7cad])
+        by smtp.gmail.com with ESMTPSA id j10-20020a05600c190a00b00418a9961c47sm17130734wmq.47.2024.04.22.09.05.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Apr 2024 09:05:04 -0700 (PDT)
+Message-ID: <9c83bd1e-8753-4f25-a1d9-97f106db4bb2@linaro.org>
+Date: Mon, 22 Apr 2024 18:05:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSZP286MB1942:EE_|TYYP286MB4079:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b203159-f8c4-45df-ca4d-08dc62e019be
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?B3BhEJF5Mu+mxi/Dup/Qe3YR6kPfjkx591KVz8PKWisO6Q293oZj4ttuFCBX?=
- =?us-ascii?Q?GLbjkXZemx24roJ+6+0E6Fw3ujM9nluagLaZL0aOhP+HKGxpV/dRYMR9t1VU?=
- =?us-ascii?Q?C55bYYOu1jOM6SScn9n7Beq9rhGxpCqI9P4aG+b5UhA9PYRtGYZkxhXNnl0K?=
- =?us-ascii?Q?cC4Y2Knv69AjvySsNh/4LFRNQcuO/avI5AZM4I9yMzH589EyFlFAhibzXr4F?=
- =?us-ascii?Q?G78pCtrJ6FoY1TzfrxhIjaiFD2NRyUEMmNVbqmkdA480w+Vsxm7vN22eUxJw?=
- =?us-ascii?Q?MD/JJ2r/sb86K1mANFpvTrCfkB7Zdlf0ksd/TF2f7GW94BZqBtjFsIMx5WfI?=
- =?us-ascii?Q?tzV39Fu5kO0rZ0ZgC1Zp7DZbvnW4Ru6cn6wEh+Vlu7QJ1EG2fpjnTAVcv89R?=
- =?us-ascii?Q?Vd+AMT7GLfMbzbQGgnAiMVd04W/ipg505ilPQ5FBnXNFDZiZcwXgq2OcF/Wy?=
- =?us-ascii?Q?9MRNppcYNh1q8lJQDxWET00JwrOrYBg7AtUpg0oCF1PqRPySsXMTsuoyu/KJ?=
- =?us-ascii?Q?2c3xgGy2hl1kXOLkjtZVg1eQUOnCIH8qkjdyI9sLwqWh/P1tYhiig/ya19bZ?=
- =?us-ascii?Q?YhzBurmKyqV1JPkSBZUMRiedSVN0rHBWVrIFIMwQuG08RTb48Bfu0V6zCq5p?=
- =?us-ascii?Q?Y6PjXIReRQ/DfeTuMez0R97SOwpTB/by6Sfzqx8oHT7q2ffCUOKThviPoiMZ?=
- =?us-ascii?Q?PKR/CDJMJkHUDHB0sXDMS944boprnWNQ5syVraAyAXqI02j/KpStLiC11/pD?=
- =?us-ascii?Q?QyPBLrRSLg8E8xBoz5ZuKeMhbRIRKuddzx0r+BK9uz7JgaIWVpYN39ftLPhq?=
- =?us-ascii?Q?7EPBhATUbnNv/bEPRBaOYxXCJMWuTCOvVJAKY+ACHvuSzxfwpZ64dBkoE0hz?=
- =?us-ascii?Q?T0wi2m2Qum9Lh7K9ilZia9/Ic74z8yPah2dcO/TZ1dW2V8e48CjAsCQUZ2vP?=
- =?us-ascii?Q?MzvU7oI0xsabb3OChLta3wp0QhVf/dqiS8Ok6jP2hx8CEyqZKuzn8cDMNHIr?=
- =?us-ascii?Q?lC76do4zaPL37+cq087qUS0nle2YnYMn+Px6gNZryYAVc6AtupJC+Qdi60So?=
- =?us-ascii?Q?fS/uCMLAxnxGxBOMK9sY3SkYoQWLcyTe/EYhSchRCsvphp8n0IqXipCjHaIf?=
- =?us-ascii?Q?OdSMFO/CE91bVqArI+8yre6jx+JkUoAE4d6X8/3KhdcM6FK2aJMo7mNdJAYb?=
- =?us-ascii?Q?eWrOe7G4C94ZOhEctdWhrb2bSm0g9QFkRJoZBorCQlxz0/zs8Gz7A5Fz7r4x?=
- =?us-ascii?Q?y7tPeRxBexXYT/Wqt3UPK1zgb5jL/JZfiw7eZVOs/Pzkhk9ky25oDme4a3fi?=
- =?us-ascii?Q?m8BqMDaJ9SdJYhGA1JykpvYI+hunp8vzQTqCmqEHQV3+nIlaiqvOzGA74XZ8?=
- =?us-ascii?Q?Q4vlNKw=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(52116005)(376005)(1800799015)(366007)(38350700005)(3613699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?55sXkAA2FYMN27kMoNvEEl9/bI/hWvBhOx4H44qU1lAQNef9mb+cgtJl1b7O?=
- =?us-ascii?Q?u76oFExoPI3hdc8h/CgtyqTc3iUcHrTvnsxEeVnN5f1w2PhNEPOFHd1ztvJJ?=
- =?us-ascii?Q?rWXcYhqyuCvM/3EwiRSPIj1GQD69Q+sP6rH8akSu8tDFoHO5iLq0RBU4BVZy?=
- =?us-ascii?Q?OOdCVLcSjuL3wePJhoyCfsKttCmmugbY0u0cnJmH+HEzdM9OpI7+bhWFP9Ty?=
- =?us-ascii?Q?i6HkJABbUxde+UbUOZlWxHe2uL5MrSBwS+/12yhSF6foPx0Y5p76ykpFh/9p?=
- =?us-ascii?Q?LKwcPUabwQFf7s6TECVdmFSEyB6nOPAEtS3fK9RVSrQKyxJDLKii2XTyazER?=
- =?us-ascii?Q?qZhzTVzw5NmElLj97Bch/5n1dzqj8kJaRJpe/2uluNtYrAsox7X/LxscD7pL?=
- =?us-ascii?Q?IO8wyyxfg7EfERMWqzJEJBdHcg5sEeaKVyjlGMElrZ9TqDJRUqz2iYcEjEy7?=
- =?us-ascii?Q?l5KrmRLwmFvvc+YQF5rCjG1JuhvotNClcJGL6S7aR6rXsZldn5WUiwhUy1L1?=
- =?us-ascii?Q?OU8QRz4YmM+Gc2CoSZ7le/4w9F96Etp/iiwUus/bfTl9urLu0gz6kmlp/UOW?=
- =?us-ascii?Q?81GxazCMqQ003gy1Nv1AmLbeUsjyPoAf6JwEhPRJm+EmyyK5x1OkJIoYj4tW?=
- =?us-ascii?Q?AJZdWDQ85Cn+JIApATiSkF8BbLYFXbbtkvYPGzYMJpQQ5Att+aN09uPCiS6t?=
- =?us-ascii?Q?ibXaWT7CXll/gHRrkzeiSori1zqtFxgY0uZ9pyK4QP9L8J+Ibd4hO0yKTWLT?=
- =?us-ascii?Q?ekriu0/n+V5VyAllVZ/toRPqmfDjR1Y6u0WbgSGTWCVJUJyHRHcbtNt2N5DT?=
- =?us-ascii?Q?6FaX2n5dHd90oSN/nw/05CoUAmURe1k07bAhIfdS0MMgjkhLq14a1s0I5BtI?=
- =?us-ascii?Q?/xE/VNUnMa4C5br6p9ZK+OH250t1sEFrkwh1uwPktlvEjZQYhjLVrRz4BmeK?=
- =?us-ascii?Q?udQEQvRzxLJDXwyx+dKFwkT0zXnUEEvljjHK8ycrfygGDlTgwV17eDufwhkf?=
- =?us-ascii?Q?+6CDsiElvKhmm+Pu7f2GVjejCSy2oBRLGM7gvEMAeOUUZnfT5ygcAyfneEV6?=
- =?us-ascii?Q?7FM5qzaH1bcSEzA0X2QRaTGxvOr9ceUw2NWOo/T5vFs+0RkxklLv/+CAB90a?=
- =?us-ascii?Q?SX+8XctqpQ1X63IxGLzn0lNT/ZxjGJZg+QeYlo3AIPIFi4NPsaZvXYBc0Q8n?=
- =?us-ascii?Q?3O0ePfokO+1xgzuQfI7Nq66ThJrJpbmgmhQWkq2O3SXrPHjxRopGErntnvju?=
- =?us-ascii?Q?7qa8Qu4hs3wYlKrbZMEpqTSL9Fi+XwpBj3WZBYJ+laJGdvFxsUAbJdTHP7mf?=
- =?us-ascii?Q?848Lmmg+CIiBL6PZ8vmhQChbBBvdttuqunj3ukI36uJoVagA9LgydkSszpgA?=
- =?us-ascii?Q?6X9M5WNELTBrmptJ5+F3683/Rme9EMC9J0wpLqS9lWmAmlzNZczSdjqCiMI2?=
- =?us-ascii?Q?Ybs32gxVk+pGrQlx0/GWN45QPXV9b9eGPQHr3wDb94DmrPKQEcdbP/qHOGMI?=
- =?us-ascii?Q?/4PCVhLTeY9dIjb/q8r8a7oBKcMTItL5a4svlVb7/ji6wk+a0YMfKy/wj0Lu?=
- =?us-ascii?Q?eti/WJdaSVdAbcWiGJiJCWtmSoEV0lELl+VDS/o/?=
-X-OriginatorOrg: tdk.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b203159-f8c4-45df-ca4d-08dc62e019be
-X-MS-Exchange-CrossTenant-AuthSource: OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 15:23:02.8273
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7e452255-946f-4f17-800a-a0fb6835dc6c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8lpGBcnsuLFl5SxAWJCyyp+nM2ENv+BdbRGBMjgBPGBGRjiqZpYaKzs8fpS/Wpa3UiAzQfpa2VkbgR0BcNW9kA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYP286MB4079
-X-Proofpoint-GUID: 2iTr5BAgI_BhlSNrUHXvJV6kk3kS6w9x
-X-Proofpoint-ORIG-GUID: 2iTr5BAgI_BhlSNrUHXvJV6kk3kS6w9x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-22_09,2024-04-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0
- impostorscore=0 mlxscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 suspectscore=0
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404220066
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 0/3] arm64: qcom: sm8650: add support for the
+ SM8650-HDK board
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20240422-topic-sm8650-upstream-hdk-v4-0-b33993eaa2e8@linaro.org>
+ <171378646269.749144.3843772037586831461.robh@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <171378646269.749144.3843772037586831461.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+On 22/04/2024 13:50, Rob Herring wrote:
+> 
+> On Mon, 22 Apr 2024 10:48:11 +0200, Neil Armstrong wrote:
+>> The SM8650-HDK is an embedded development platforms for the
+>> Snapdragon 8 Gen 3 SoC aka SM8650, with the following features:
+>> - Qualcomm SM8650 SoC
+>> - 16GiB On-board LPDDR5
+>> - On-board WiFi 7 + Bluetooth 5.3/BLE
+>> - On-board UFS4.0
+>> - M.2 Key B+M Gen3x2 PCIe Slot
+>> - HDMI Output
+>> - USB-C Connector with DP Almode & Audio Accessory mode
+>> - Micro-SDCard Slot
+>> - Audio Jack with Playback and Microphone
+>> - 2 On-board Analog microphones
+>> - 2 On-board Speakers
+>> - 96Boards Compatible Low-Speed and High-Speed connectors [1]
+>> - For Camera, Sensors and external Display cards
+>> - Compatible with the Linaro Debug board [2]
+>> - SIM Slot for Modem
+>> - Debug connectors
+>> - 6x On-Board LEDs
+>>
+>> An optional Display Card kit can be connected on top,
+>> an overlay is handled to add support for the DSI Display
+>> and Touch Controller.
+>>
+>> Product Page: [3]
+>>
+>> Build Dependencies: None
+>>
+>> Functional Dependencies:
+>> - PCIe 1 PHY AUX Clock: https://lore.kernel.org/all/20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-0-3ec0a966d52f@linaro.org/
+>> - PCI-MSI Fix: https://lore.kernel.org/all/20240318-pci-bdf-sid-fix-v1-3-acca6c5d9cf1@linaro.org/
+>> - UCSI Fix: https://lore.kernel.org/all/20240315171836.343830-1-jthies@google.com/
+>> - USB IRQs DT check fix: https://lore.kernel.org/all/20240314-topic-sm8650-upstream-usb-dt-irq-fix-v1-1-ea8ab2051869@linaro.org/
+>>
+>> [1] https://www.96boards.org/specifications/
+>> [2] https://git.codelinaro.org/linaro/qcomlt/debugboard
+>> [3] https://www.lantronix.com/products/snapdragon-8-gen-3-mobile-hardware-development-kit/
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>> Changes in v4:
+>> - Rebased on next and fixed the apply failures
+>> - Link to v3: https://lore.kernel.org/r/20240325-topic-sm8650-upstream-hdk-v3-0-4f365d7932af@linaro.org
+>>
+>> Changes in v3:
+>> - fixed regulator node name to fix ordering
+>> - deleted pcie_1_phy_aux clock
+>> - removed undeeded mdss_mdp status okay
+>> - collected revied & tested tags
+>> - Link to v2: https://lore.kernel.org/r/20240318-topic-sm8650-upstream-hdk-v2-0-b63a5d45a784@linaro.org
+>>
+>> Changes in v2:
+>> - Fixed commit messages with links, and recently added product page URL
+>> - Swapped i2c3/i2c6 nodes
+>> - Moved pcie_1_phy_aux_clk under pcie1_phy
+>> - Removed duplicate mdp_vsync pinctrl state
+>> - Collected review & tested tags
+>> - Link to v1: https://lore.kernel.org/r/20240223-topic-sm8650-upstream-hdk-v1-0-ccca645cd901@linaro.org
+>>
+>> ---
+>> Neil Armstrong (3):
+>>        dt-bindings: arm: qcom: Document the HDK8650 board
+>>        arm64: dts: qcom: sm8650: add support for the SM8650-HDK board
+>>        arch: arm64: dts: sm8650-hdk: add support for the Display Card overlay
+>>
+>>   Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+>>   arch/arm64/boot/dts/qcom/Makefile                  |    5 +
+>>   .../boot/dts/qcom/sm8650-hdk-display-card.dtso     |  144 +++
+>>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts            | 1251 ++++++++++++++++++++
+>>   4 files changed, 1401 insertions(+)
+>> ---
+>> base-commit: a8e1147ee205e7b8dfe18094ed39552a982857f1
+>> change-id: 20240223-topic-sm8650-upstream-hdk-e21cfd6f1de8
+>>
+>> Best regards,
+>> --
+>> Neil Armstrong <neil.armstrong@linaro.org>
+>>
+>>
+>>
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>    pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y qcom/sm8650-hdk.dtb' for 20240422-topic-sm8650-upstream-hdk-v4-0-b33993eaa2e8@linaro.org:
+> 
+> arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: pcie-1-phy-aux-clk: 'clock-frequency' is a required property
+> 	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+> arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: phy@1c0e000: clock-output-names: ['pcie1_pipe_clk'] is too short
+> 	from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
+> arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: phy@1c0e000: #clock-cells:0:0: 1 was expected
+> 	from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
 
-Add bindings for ICM-42686-P chip supporting high FSRs.
+Thx, this is fixed by https://lore.kernel.org/all/20240422-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v3-0-799475a27cce@linaro.org/
 
-Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
----
- .../devicetree/bindings/iio/imu/invensense,icm42600.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+Neil
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-index 5e0bed2c45de..3769f8e8e98c 100644
---- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-@@ -32,6 +32,7 @@ properties:
-       - invensense,icm42605
-       - invensense,icm42622
-       - invensense,icm42631
-+      - invensense,icm42686
-       - invensense,icm42688
- 
-   reg:
--- 
-2.34.1
+> 
+> 
+> 
+> 
+> 
 
 
