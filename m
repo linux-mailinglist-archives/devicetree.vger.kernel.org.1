@@ -1,114 +1,105 @@
-Return-Path: <devicetree+bounces-61313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B5D8AC403
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:09:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A558AC40A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 08:12:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E4C6280EE4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 06:09:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FA311F226D3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 06:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DD41862F;
-	Mon, 22 Apr 2024 06:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB403FB0F;
+	Mon, 22 Apr 2024 06:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="F5V/FCKT"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="AeLgzfaS";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Dks0CRfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21964111AD
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 06:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EBD3F9ED;
+	Mon, 22 Apr 2024 06:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713766156; cv=none; b=pLfnQEf96vD0nyycuI9lY0J3qWUwQMv9zMou59JHRoDjOp1aslxrfOFcXnV2OQfQnA/XmmO49nLq8knWC1cQE+Lis6HEu0MfBMfQ+vvhy+p0mBPyRg8tQp1mOzZgoLnmpLJn4x+ora1xlkY1XmsMkDCWj0I8xjY+dJGww+O7clc=
+	t=1713766334; cv=none; b=rqHu3bDoqK543QJb3sUHfosU1YjLHGtKwC/T7BgZiBOq4A9+lOiCsDHaWRfohfzeKmd8AAfVTQuVB6myOgqHfnYhI2UxuxjcnUsqgs5PSQfl6ijeDIBkYGwpllblggwBj7iWfVVv6Y+O4LdYeVBxHwfBPVcVTWmStXBfMKjooic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713766156; c=relaxed/simple;
-	bh=nyArUnBg5/hDmOuC6ahA58yh3apbVYLq5zMmcb+2gVs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gCLAl3yHqT0KXy+Jf9L1rja81YPizIh+d4zZ4zLmecR235p98hkOlzFDhSocfHaNekoVqCTeYL3gYj4jaHqMObM6s94xXR4tZz4YiMs6RsKABq7+oS0nKpggjLDfG5AYM5bbAgX9WexwocNKyDE5yZtE4HzeQP2HdFKGJqwNgGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=F5V/FCKT; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6ed01c63657so3480951b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 21 Apr 2024 23:09:14 -0700 (PDT)
+	s=arc-20240116; t=1713766334; c=relaxed/simple;
+	bh=pGtJ9gIGV7seB/e/mwOpRG7Axiz9HjSbo6N/rMMhZZ8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fsU2j4claP81+adw10a5U8pvOV11A0vwVV2kCrMq4QqpVCKdec0As5oLrj0pAg7N1kO3yo4pJKz55iA4dtN2hukTLN4ZVPFBJiIgrbd2EWHevPEojb+aAkWOpFacrumZ53YJ/sSPMTRq2Vyirc6vA+cSG+v3R3RQZh/q9CcwhH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=AeLgzfaS; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Dks0CRfJ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1713766154; x=1714370954; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WPdE9YfOY6tF7QVVshsJe8Xe/FfKSmz53cCLcrBPnoE=;
-        b=F5V/FCKTtAfRs8vTvGZZGYuj0O5/MKSRpoKYD97xWKHGKGVsARTIZufHFUvibuvIvJ
-         UrnqLXxlxRfuVw8/yCTT23LNGc/M5EtoMcM99ebFZZ1p0xfTuHO3hqoWtLjtWPAI1hjw
-         uiEHV8OssD1h/YZMIJQ5zD1U21Ptsr2K6lFTcEWm3dI+a6hiSnfgS6GA4XyR/ckscobJ
-         bqYVO3Y+soyG8qVYvesgwDWxTGxsFEkWiExJT6OjWzUB+00GRpRj+HWgKjUkHS7d7RKD
-         Hp5KcCH82CysoBldw4xNKkNzosQfKY5bEBufywhEPn1BzBa8dRrxnCV2cP+oK4FioRHa
-         OuGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713766154; x=1714370954;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WPdE9YfOY6tF7QVVshsJe8Xe/FfKSmz53cCLcrBPnoE=;
-        b=hY44vtHivH/uU1Vq+ZUQsycxrXYxSx2yix21zX/65LAiYUQPZrS57zvxFV8MdTEiIW
-         Fw/4x9wkL4mX/8thewPBYvqCrCH813aLPKps8BpKleBZ5lIvFvY3DmU/aLFrsKNWmbtn
-         wyAqC5DdmNvK4wO2THtKZw8HolIW08mLVpGIh0fjGw40BQOiw5NmTDeFzGu6k5GCjt2u
-         Prj9EMMrGP/OS8iR8vdiX4oFTeSC/Q7lCAQrysquTL0mvHffKD/FLp9eAZxBZH7KJbhF
-         ncUSgNuSPAcbRRUkbgsy31YBS1+1+oBBwt+n4rw5ySmwPSBBCTaowaPoVzNaTn20dVHm
-         j+dw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxXNiqhzsLwgRoqS1qKosDioW26FPPD7J0Mjru4lyKYJjphBd8trBrDRSY+iqKe9Z8okLGWbAtbubfwjtZdDNM4fIMNUpP6Opzwg==
-X-Gm-Message-State: AOJu0YzTpplORCJVOHgkqbWbUHCeiJsVA5E97Ttwi9O/iu4WZBM0I0kr
-	7FvLtkeB2l1hDxAHTzGEibnKut1K12zCRCow0dUnZUtbZWZcylxkdqqdPGD9vJQ=
-X-Google-Smtp-Source: AGHT+IE7uuh+ywoyBucKduzYL7bX2Qw9Sd/LYqw1wAGxX4QfchDgzdgePUmiui6ueBcvQf1bgrpoXg==
-X-Received: by 2002:a05:6a20:3213:b0:1a7:242a:cb69 with SMTP id hl19-20020a056a20321300b001a7242acb69mr7435722pzc.40.1713766154336;
-        Sun, 21 Apr 2024 23:09:14 -0700 (PDT)
-Received: from xu.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id f25-20020a056a000b1900b006ed97aa7975sm7057014pfu.111.2024.04.21.23.09.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Apr 2024 23:09:14 -0700 (PDT)
-From: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-To: sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	daniel@ffwll.ch,
-	dianders@chromium.org,
-	hsinyi@google.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-Subject: [PATCH] drm/panel-edp: Add panel CSOT MNB601LS1-1
-Date: Mon, 22 Apr 2024 14:08:11 +0800
-Message-Id: <20240422060811.670693-1-xuxinxiong@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.40.1
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1713766332; x=1745302332;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=pGtJ9gIGV7seB/e/mwOpRG7Axiz9HjSbo6N/rMMhZZ8=;
+  b=AeLgzfaS2+3zSwifqfGk7ocGwzJj1w6AX72IKfO0ukwHzHKQe1wH2JD+
+   VEBmpcfClXAhpLxPb29lKiGMqwc6doA9LvaLe/YQ0SIcvyqiHDUaOFZFK
+   T/SIWYweNs9eK3jKFo+osyHwcLBroglZBywrypSGpGZGPGX1yaYQB2cW0
+   ZAbdrd9ixufBIItoHc9POIUpOqSsti4OovOKAK/kBM9OVy7+6rvIYedmz
+   JIymUQE71ttrzCP4PAe9CgGRAXj/QybK2hpVzJBGOFg3i9itY9bBUDPQ3
+   CugZ5gjnybMjU9vU/EeVe+Kq3s2KLRA9G7Ixjwvc7yPknhomoRBhhjOwh
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.07,219,1708383600"; 
+   d="scan'208";a="36530830"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 22 Apr 2024 08:12:03 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 22A2E16E19D;
+	Mon, 22 Apr 2024 08:11:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1713766319;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=pGtJ9gIGV7seB/e/mwOpRG7Axiz9HjSbo6N/rMMhZZ8=;
+	b=Dks0CRfJTKw3nkuqdncHwWoHYoWhiwZW80AKiiKVkA2Vjma88IkuyYLHWQ0+orbYBB2r9k
+	rbaZ85/RMsQC9kYIz0648p16O73AFzLsTUeboxekEDPSQdmD8F1lYZyhF9igs7I/eYxFgj
+	7FoFTCBeYdCaUQesGZmgTSpBT60xey8qPWuZ87wYW1pM7kijwwx6O8oDVUusA9CPqjNfQD
+	nPEH1t4TgJGARgL9tZ0XkT+rBt6iKSrRsUTuuFJGkrzMSYLTp1pq4jnPPdmE4I0fiNHwdP
+	t/QTSMH/LUv39mvslYF4QvInLHidnVwCUwDvYoSo/cmBe914bc19C53nyO4o0w==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: tqma8mnql: Add EASRC support
+Date: Mon, 22 Apr 2024 08:11:44 +0200
+Message-ID: <2731133.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <ZiX4S/H98e/lQXR5@dragon>
+References: <20240412132021.520666-1-alexander.stein@ew.tq-group.com> <ZiX4S/H98e/lQXR5@dragon>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add support for the following panel:
-CSOT MNB601LS1-1
+Hi Shawn,
 
-Signed-off-by: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
----
- drivers/gpu/drm/panel/panel-edp.c | 2 ++
- 1 file changed, 2 insertions(+)
+Am Montag, 22. April 2024, 07:40:27 CEST schrieb Shawn Guo:
+> On Fri, Apr 12, 2024 at 03:20:21PM +0200, Alexander Stein wrote:
+> > Enable EASRC support in tlv320aic32x4 sound card.
+> >=20
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>=20
+> Hmm, it doesn't apply to imx/dt64 branch.
 
-diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index d58f90bc48fb..5e0b1c94bc62 100644
---- a/drivers/gpu/drm/panel/panel-edp.c
-+++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -2036,6 +2036,8 @@ static const struct edp_panel_entry edp_panels[] = {
- 
- 	EDP_PANEL_ENTRY('C', 'S', 'O', 0x1200, &delay_200_500_e50, "MNC207QS1-1"),
- 
-+	EDP_PANEL_ENTRY('C', 'S', 'W', 0x1100, &delay_200_500_e80_d50, "MNB601LS1-1"),
-+
- 	EDP_PANEL_ENTRY('H', 'K', 'C', 0x2d51, &delay_200_500_e200, "Unknown"),
- 	EDP_PANEL_ENTRY('H', 'K', 'C', 0x2d5b, &delay_200_500_e200, "Unknown"),
- 	EDP_PANEL_ENTRY('H', 'K', 'C', 0x2d5c, &delay_200_500_e200, "MB116AN01-2"),
--- 
-2.40.1
+Thanks for that information. As you need a dedicated firmware, which is not
+included in linux-firmware, I will withhold/drop this patch for now.
+
+Thanks
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
