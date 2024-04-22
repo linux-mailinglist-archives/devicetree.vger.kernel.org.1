@@ -1,205 +1,141 @@
-Return-Path: <devicetree+bounces-61593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FECC8AD5FC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 22:40:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6308AD61D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 22:51:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93CED1F219F0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 20:40:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BB4C1C2144C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 20:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4391BDDC;
-	Mon, 22 Apr 2024 20:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7FBA1BC44;
+	Mon, 22 Apr 2024 20:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q/a8o4xX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B2Ltw14P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73961B27D;
-	Mon, 22 Apr 2024 20:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B6E1BC2F;
+	Mon, 22 Apr 2024 20:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713818412; cv=none; b=LaRHG6W1+fNuwfPaNBndyelQ1LqxICVedFyaPYphE3a5IF/cU/TymelMTbDB5S/T4u5TRPecHbFUF8F6EDK1zz2qNe2nEOPqHiLb7DoWQijK0XH1DrEW3pVNg3UDCpjhByHP9eTQiGZBR2d2klbST1WdvPAfUdrD/U9C5jHGY40=
+	t=1713819074; cv=none; b=YI5qkxW9JuSlW1UktE7uDnO2RH7mnEeBeNlhm8kWJsxqaR4uaE/rZYVm8uv5xDGOlOVPx2Oa9d2n+AXrm5/4K+tOl8IgJVrzqSrlVwTsBtHlosEWo+8tIINYt6CueiqhgCO7aM6k+sAI9CTCjQ7KeyLDLXoiCAthM9wmjDQS2ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713818412; c=relaxed/simple;
-	bh=B7l0/65vO7+DjY80lOHywR958KdsAp0VxS0wq8JSYD8=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=VXaK/ao9nDALEh1OcXEywBpuBrtnwlLDrd1CubxDqlIy7T/SlMjUJVATYVBT6L5APuWy7hGVW0QLILszHB3u3FsRyF1D30GeWuHd85KOLCcn5b0//uQGRqt2+bF9C/NQzJk4OGxjgwP0lFcZtJNwr+3YSlhUcuLjmp4R/RkeI0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q/a8o4xX; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713818411; x=1745354411;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=B7l0/65vO7+DjY80lOHywR958KdsAp0VxS0wq8JSYD8=;
-  b=Q/a8o4xXZBx6Y/WfbgeO4C9MZioeEKqNzF/umbT9FxRATrF++KFY00VH
-   KVUz3c8hsenyp9fI8e+YBhSr+ADat+cef8Qj6lMb9zXWN48hhXYwC72Kl
-   QhrL2BuUAYT5KXkHw+EjraF9Ysz1sUYUugbwLfmwm6EDqtJL1kgjbUn12
-   4LvshE22gxoIGbfc05jvvUfWy1NFy1pzv4ovgTponj1T9o+drbRl29iv0
-   cMDfFwZs/igD3WQ3kik2iNTq094pc9v+rVLGRlsRV6DU+HP9zlJkW6czW
-   5+tmFfm9u48F8BynEnmcduaxQF2ZEqY5ax43NLUzO8nl1qtendWlzEa3N
-   g==;
-X-CSE-ConnectionGUID: aYke8BjJRGePVDAxTygung==
-X-CSE-MsgGUID: nZuVrdMYR5iZ9fYo+hHMmw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9548813"
-X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; 
-   d="scan'208";a="9548813"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2024 13:40:10 -0700
-X-CSE-ConnectionGUID: 9bgKImlkQS+/6twUl2Iprg==
-X-CSE-MsgGUID: bGG3c9YUR261z1tgCG1Uhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; 
-   d="scan'208";a="28804520"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2024 13:40:09 -0700
-Date: Mon, 22 Apr 2024 13:40:00 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Rob Herring <robh@kernel.org>
-cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: PCI: altera: Convert to YAML
-In-Reply-To: <20240422145855.GA1242711-robh@kernel.org>
-Message-ID: <alpine.DEB.2.22.394.2404221320270.442026@sj-4150-psse-sw-opae-dev2>
-References: <20240420145342.118643-1-matthew.gerlach@linux.intel.com> <20240422145855.GA1242711-robh@kernel.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	s=arc-20240116; t=1713819074; c=relaxed/simple;
+	bh=oHqU6FsT+OcEGFJpCBQeLNq+s3Q6ZTeD9mj3g6Al0Tk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FaVkt0cUU+3ifOwWRlvkmhWf6oenrc3qindNsE6tz6wfie/blIsVgj0Zw56eV4gt6ha7Xw45oYxnlc9Fyh3dXtcTOXwj+jlbuWenAXBWBfeKe2jcjJ7XJMzjU77+7lpizvakTI6YOFVcueyXq1L+ihVHWn35job6ZQsdunx0PL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B2Ltw14P; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-349545c3eb8so3604382f8f.2;
+        Mon, 22 Apr 2024 13:51:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713819071; x=1714423871; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3zu/hKewDxFZUd7julkmO/mSVLYzINum0GUwCUV8BmA=;
+        b=B2Ltw14P34aQ1LqoDhSPf5FRZWJaIT3iPLKm+KMith1HerXla/PCuSfeAIGQkS+zM5
+         UJ0KJNLdfARU7hbwgN5XVZikp0HTPVK2jFyZC2RVMtzlHm+aHPXBlNvKGvPYTRM6wAQu
+         h8Ist97TtBMQcJN/+/82GCNuTlZgC6EAOvFG+7Tt/Rd7LBsDpwwnzBIqgfXbHGle8eVF
+         gMjQ5xxWGtYliHorjLZvQQQZtyw+hSPi2LwMaJL6WQZ1yyZth/qh074skNvPFFyrZonL
+         vaPpKYempeNDeu+1DX1yz8H0tARJKQtPmhufaDKkPs6czaA/kjucPXtOHvdDalHFkAi3
+         llQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713819071; x=1714423871;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3zu/hKewDxFZUd7julkmO/mSVLYzINum0GUwCUV8BmA=;
+        b=ICSb9WRME1Ejuvzzs3gtlRZB5VWmfY8Tf10Vjz6YQvXk9ZkQI6XFEdEEL1jdJF/3mQ
+         C9pIn6TUofBmHAyB/suMZ5rn5Og1oMj/aE7UiVX2AsOjq6gjY9ZOJFd3p3XLFP3X6DZE
+         6PpcVMNPj/4l/vpyrzqWnoX4H4GD94pP9g2FRdH1HM3MvoKGEeZ4B9HKZB2d9xrIrCGu
+         bT04SHMwGQuulqxmyYlgfKZeWFEp7FzKp5oDG6+of0StDmCJjOoxYIN4mD/qRhgvMI9J
+         2AmiZfNayR4zN202N2o5pFG//9D8CicWHGZd1LDi4uRuNYezavn3CU9R1ObBWiydtRSN
+         kARg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHUWF6QJwcV6AJJwBjfWK49V3hCUmZlT64z0yiCvjYbESWKz9twsRs83ntuRc5qkX4LCig59a2SVojB//IMfIs6iQo6HjbRMyF05dWtKfS2c49fpSbhQaSKZ/kkeoZ+5iVVOFAi2jUS/dT9ndY
+X-Gm-Message-State: AOJu0Yz09zrDdBo4dJil39fXZgO9bQUXZmoNF26mmclZAwUsdmh/uqaY
+	8Al7e5aHfW5dMN4zWd/FPdSG72qu6Ia4qj+brKg8i6iRp2BNmdNk
+X-Google-Smtp-Source: AGHT+IHf9umZ5lbNZtP5yOgE2BHbesHxaX5NHSR2BitCLKgSeCTurwhmeUltxAQeOVniozw1S4i7Hg==
+X-Received: by 2002:adf:e58d:0:b0:346:251a:396d with SMTP id l13-20020adfe58d000000b00346251a396dmr6516246wrm.51.1713819071183;
+        Mon, 22 Apr 2024 13:51:11 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:ab0d:124:447c:bf37])
+        by smtp.gmail.com with ESMTPSA id w15-20020a5d544f000000b00349c63eb484sm12861576wrv.23.2024.04.22.13.51.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Apr 2024 13:51:10 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/2] Add IAX45 support for RZ/Five SoC
+Date: Mon, 22 Apr 2024 21:50:51 +0100
+Message-Id: <20240422205053.496095-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Hi All,
 
-On Mon, 22 Apr 2024, Rob Herring wrote:
+The IAX45 block on RZ/Five SoC is almost identical to the IRQC bock found
+on the RZ/G2L family of SoCs.
 
-> On Sat, Apr 20, 2024 at 09:53:42AM -0500, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Convert the device tree bindings for the Altera Root Port PCIe controller
->> from text to YAML.
->>
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> ---
->> v4:
->>  - reorder reg-names to match original binding
->>  - move reg and reg-names to top level with limits.
->>
->> v3:
->>  - Added years to copyright
->>  - Correct order in file of allOf and unevaluatedProperties
->>  - remove items: in compatible field
->>  - fix reg and reg-names constraints
->>  - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
->>  - fix entries in ranges property
->>  - remove device_type from required
->>
->> v2:
->>  - Move allOf: to bottom of file, just like example-schema is showing
->>  - add constraint for reg and reg-names
->>  - remove unneeded device_type
->>  - drop #address-cells and #size-cells
->>  - change minItems to maxItems for interrupts:
->>  - change msi-parent to just "msi-parent: true"
->>  - cleaned up required:
->>  - make subject consistent with other commits coverting to YAML
->>  - s/overt/onvert/g
->> ---
->>  .../devicetree/bindings/pci/altera-pcie.txt   | 50 -----------
->>  .../bindings/pci/altr,pcie-root-port.yaml     | 88 +++++++++++++++++++
->>  2 files changed, 88 insertions(+), 50 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
->>  create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
->> deleted file mode 100644
->> index 816b244a221e..000000000000
->> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
->> +++ /dev/null
->> @@ -1,50 +0,0 @@
->> -* Altera PCIe controller
->> -
->> -Required properties:
->> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
->> -- reg:		a list of physical base address and length for TXS and CRA.
->> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
->> -- reg-names:	must include the following entries:
->> -		"Txs": TX slave port region
->> -		"Cra": Control register access region
->> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
->> -- interrupts:	specifies the interrupt source of the parent interrupt
->> -		controller.  The format of the interrupt specifier depends
->> -		on the parent interrupt controller.
->> -- device_type:	must be "pci"
->> -- #address-cells:	set to <3>
->> -- #size-cells:		set to <2>
->> -- #interrupt-cells:	set to <1>
->> -- ranges:	describes the translation of addresses for root ports and
->> -		standard PCI regions.
->> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
->> -		mapping of the PCIe interface to interrupt numbers.
->> -
->> -Optional properties:
->> -- msi-parent:	Link to the hardware entity that serves as the MSI controller
->> -		for this PCIe controller.
->> -- bus-range:	PCI bus numbers covered
->> -
->> -Example
->> -	pcie_0: pcie@c00000000 {
->> -		compatible = "altr,pcie-root-port-1.0";
->> -		reg = <0xc0000000 0x20000000>,
->> -			<0xff220000 0x00004000>;
->> -		reg-names = "Txs", "Cra";
->> -		interrupt-parent = <&hps_0_arm_gic_0>;
->> -		interrupts = <0 40 4>;
->> -		interrupt-controller;
->
-> What happened to this? It is clearly needed since the interrupt-map
-> below points back to this node. Note that that didn't work at one point
-> in time, but I think we fixed it.
+IAX45 performs various interrupt controls including synchronization for the
+external interrupts of NMI, IRQ, and GPIOINT and the interrupts of the
+built-in peripheral interrupts output by each module. And it notifies the
+interrupt to the PLIC.
+- Select 32 TINT from 82 GPIOINT.
+- Integration of bus error interrupts from system bus.
+- Integration of ECC error interrupts from On-chip RAM.
+- Indicate interrupt status. (NMI, IRQ, TINT, integrated bus error
+  interrupt and integrated ECC error interrupt)
+- Setting of interrupt detection method. (NMI, IRQ and TINT)
+- All interrupts are masked by INTMASK.
+- Mask function for NMI, IRQ and TINT
 
-I think the DTs I was using test were created during the point in time 
-when this did not work. The interrupt-controller boolean and 
-#interrupt-cells property were in a sub node, and the interrupt-map 
-pointed to the sub-node. Keeping everything in the base node maintains 
-compatiblity. I will fix this for v5.
+This patch series adds support for IAX45 in the IRQC driver and enables
+this on RZ/Five SoC.
 
->
-> It doesn't seem you are testing the binding against an actual DT.
-> Please do that.
+v2->v3
+* DTS/I patches dropped from the series as they have been merged into
+  renesas-soc tree
+* Just using a const from compat string instead of having it in a items
+* Added RZ/Five specific irqchip
 
-I need to fix the DTs I'm using for test :)
+v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Thanks for the feedback,
+Cheers,
+Prabhakar
 
-Matthew Gerlach
+Lad Prabhakar (2):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document
+    RZ/Five SoC
+  irqchip/renesas-rzg2l: Add support for RZ/Five SoC
 
->
-> Rob
->
->> -		#interrupt-cells = <1>;
->> -		bus-range = <0x0 0xFF>;
->> -		device_type = "pci";
->> -		msi-parent = <&msi_to_gic_gen_0>;
->> -		#address-cells = <3>;
->> -		#size-cells = <2>;
->> -		interrupt-map-mask = <0 0 0 7>;
->> -		interrupt-map = <0 0 0 1 &pcie_0 1>,
->> -			            <0 0 0 2 &pcie_0 2>,
->> -			            <0 0 0 3 &pcie_0 3>,
->> -			            <0 0 0 4 &pcie_0 4>;
->> -		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
->> -			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
->> -	};
->
+ .../renesas,rzg2l-irqc.yaml                   |  17 +-
+ drivers/irqchip/irq-renesas-rzg2l.c           | 150 +++++++++++++++++-
+ 2 files changed, 157 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
+
 
