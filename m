@@ -1,83 +1,80 @@
-Return-Path: <devicetree+bounces-61413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E519F8AC90A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:37:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651DB8AC917
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:40:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68D011F21A6D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:37:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88E831C210FF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4709C64CF2;
-	Mon, 22 Apr 2024 09:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6909413BC39;
+	Mon, 22 Apr 2024 09:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPlPCwiY"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="HmVXWdBU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59DC502B3;
-	Mon, 22 Apr 2024 09:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E38282893;
+	Mon, 22 Apr 2024 09:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713778656; cv=none; b=ZKfqUWcroYuytEWymsDh09lfn+de1wOLhZCwfanWXNTdQqeq9di1K9UR4ZVBcWiPZPAXpFgqjrEzttAfoA6k2ntfAAzdXqq+Xicti3E4p/CB6GMMjNVAfU07tZ480UxhS6YPzQZW4paz2Ll6NMhPY5H58wV/nupgZ9qxEMc+nfI=
+	t=1713778790; cv=none; b=btQDbNnVpmVp2BD7y6PjFZ39yxtx+pIDwCSYVeSJqOlbMjae1GUf+jueaLb6UbeASsCgtjQyfANq77cny/ccgRq0SHQIXAJpzt0XkPPJb6o0LqzkEcnIch4ndMRcW+RKtHzdNYJPt5t8NTKycWSjwy5NAdzZ3GZruLkSh/dw4WU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713778656; c=relaxed/simple;
-	bh=6FFicjleLaK4NSrzR0hZBxcOH2qkSWXm1PjvEXM5AAg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V/S91YKtr53S/6jNBDdCp4/D5GnyITygQOEwRYYQITI64h8LBtfeaI3m4RkUfwcsirWTfa7hH7aT0SfUJDCOZTFF35/6e6wchXkVJLNxyEdVwUzvT5wN7zocR1Z06PJWXA7bRVHkAZf3Wve43VSJOuXb6p/h0BI+3ZixB2N7xnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPlPCwiY; arc=none smtp.client-ip=209.85.166.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-36a38c13550so16784445ab.0;
-        Mon, 22 Apr 2024 02:37:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713778654; x=1714383454; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zDnU4LVHrNGJ4IpdX+j3QH8fQ0vCkqgYOxnuWATwBXc=;
-        b=KPlPCwiYZHSoF+Qo6AIRyV8WJqIy76vb1VyWlFdp36cTLzidzeWheobSsZk/QCfNsb
-         3JHxS9wcgtzDujYTJVnJ5fRnuHr/eJNG+7buuFU1qJuvqXWdiSaNtj2/GpTQeKkb0jlV
-         FF65yaNvhqXnzCIU3c9llDBq7YLWY60Lf56h/XCEdptCFkPHmZAccJEM8Ktp6i2wXpbu
-         He9YuwUwsInjdiLIN2j9yBPYCF3ZYILAY2VvFCyq/cELM1LDV0JmtGg16XmluVif8Z4o
-         i3XD52D9ASk91NvbB7ubxmKw1nE+FvbZfZWJwqEpdVGkommr7EO9yfzfwV7KK8z8sG0S
-         vjhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713778654; x=1714383454;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zDnU4LVHrNGJ4IpdX+j3QH8fQ0vCkqgYOxnuWATwBXc=;
-        b=nbDAyeXiqfz9P0iwN31PeSNhnDW9xO8OhflbRcTQZCmvFQndyWSUz3iAblOr6IaS55
-         lAmUWKxILucMeru1HnzlVuuMVxnT/JSawbMrWLf96rfuhoBf3rU93vYpkVrmnnXMYtBS
-         t3dBvMcSD99j4OkUphcHjbnhq+OSBPGwQKUbKJJIyd+SC67wEMX63GwUldw5j4pRm1hN
-         dAA6xb54ZTmfemj4PCcJ2ndbPecWhJW1+UIvnlwSAPnOg4MbjKvByzboh0+nLCWqugcV
-         W2K0DC/2ElIav4Vcy3sKwtd5weZp46AzFWWcA7zBzfTD22NwilqcFRecyM+w2jmUzTpD
-         kXNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxiQRf4t3jt+xywlRSYXhwx1minQLRJANcaQcrOB4seM/QEoy9yKG46eTW6/fhwHQ1lPEHAifvPGcOvLv+xrhNtpg8cEu0UmaSf87TzD17+P/B/7FP5+y1eghsCLkNa+z7wQpX8BkryIK8JMO6oUsVrAoI5ZgCxM5NzakX513JfGq63Q==
-X-Gm-Message-State: AOJu0Yyf42wq2hFJJuWz+khJySO6f9muPaVw6rSyTqbz0mnGhoKXeXH4
-	z1l3JCf5JgVbGHIkhY8iQsQMwZ2oS8UWu0GLbwN2ogkHaz563xXq
-X-Google-Smtp-Source: AGHT+IESL+15Zhi1sznbljSsh+otZIGBA3yjXTo9QZaza/SdrEzFkHVJOjnF7H2qv1Dy520CRiFzdQ==
-X-Received: by 2002:a92:c56b:0:b0:36a:2245:205d with SMTP id b11-20020a92c56b000000b0036a2245205dmr16591052ilj.15.1713778653720;
-        Mon, 22 Apr 2024 02:37:33 -0700 (PDT)
-Received: from localhost (ec2-3-111-32-5.ap-south-1.compute.amazonaws.com. [3.111.32.5])
-        by smtp.gmail.com with UTF8SMTPSA id a7-20020a654187000000b0060013d7c463sm1115911pgq.72.2024.04.22.02.37.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 02:37:33 -0700 (PDT)
-From: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: usb: uhci: convert to dt schema
-Date: Mon, 22 Apr 2024 15:07:04 +0530
-Message-ID: <20240422093706.324115-1-sheharyaar48@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1713778790; c=relaxed/simple;
+	bh=jJD45jtO+ooAQG9xIvSp5qqBFhfQ9ZlEAcB1IkTgIGU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZfhlA4OvOoeNgPSCajb6AFnWaxb1dawGhYydGmpefYetbAilwaw+cTctqW/njYizuhJAg2UQ9JPalINfBPbOqzGiDxNxJSU8JTpqyX4RuEPHr7oG61vdRGRF0CKb5CK/cAhWlMxVZ9slQXD5w+T93KDA2JN1Wkene08wDfUwwuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=HmVXWdBU; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 3dd490a8008c11efb8927bc1f75efef4-20240422
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=YW7vLNb1CooAswGdrq5C8QnFRuDupMcVgx5EZF4rBoI=;
+	b=HmVXWdBU37fQhOjR6h+Sr0VbElNkXchfRDX56+17OFpm7h6lYjiwjV2Nydw6405xgeg+KqxHQIjY1NV3KfS+HlTuY5sugHqy4996r7JCY+4PTQWX1ssaThrX1+ZQhxHTS2GSEQq63wqDTYbZIA2HHbjWVvXsEXk/CUy5+YfQ7nc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38,REQID:50fdc328-632f-4b65-862e-1f307de96503,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-30
+X-CID-META: VersionHash:82c5f88,CLOUDID:05def682-4f93-4875-95e7-8c66ea833d57,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:2,IP:nil,UR
+	L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
+	PR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 3dd490a8008c11efb8927bc1f75efef4-20240422
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1552289964; Mon, 22 Apr 2024 17:39:40 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 22 Apr 2024 17:39:37 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 22 Apr 2024 17:39:37 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Yow-shin Liou
+	<yow-shin.liou@mediatek.com>, Jason-ch Chen <Jason-ch.Chen@mediatek.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+Subject: [PATCH 1/3] arm64: dts: mediatek: mt8390-genio-700-evk: update regulator names
+Date: Mon, 22 Apr 2024 17:39:24 +0800
+Message-ID: <20240422093926.15392-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,125 +82,242 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10-1.155300-8.000000
+X-TMASE-MatchedRID: he/3GKrlJcbeTJ7REvV1+1z+axQLnAVBzQQ2zkt0IfmWU8yr2LEGrk3v
+	YK+4NwyrVlhEP3oQTmgwzEWv7JigN2UlOh2o2oTOdOc7KAdVCk4k227Ivqakhd9RlPzeVuQQYYS
+	ydbbRt4Yli7b+tQ5fvzctK0KUOQ1lhUSj0P0iytKeAiCmPx4NwBnUJ0Ek6yhjxEHRux+uk8it4J
+	O7oSODmJ48frLn7nsy8kJcJpKwfYfvBgraGdIeD1sEmWjsdOweQwMWhhQpHvFF20N++tKwS5ZKk
+	9ThZiYZftBGJ2jFfS3WcY8SsugGWhz+PhojlLUuev0YPTN868QBqq+/+aGCsQhzL04Or2eZWoC0
+	8z/YUWKUTGVAhB5EbQ==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10-1.155300-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 648AF09DEE9A84B80FD2E6BA3265B6882D50805966AE8EAA0AA76531D01680202000:8
+X-MTK: N
 
-Convert USB UHCI bindings to DT schema.
+Update regulator names to match schematics, replacing generic terms.
+1. Add system wide 'reg_vsys' node for 4.2V power rail.
+2. Add 'reg_vsys' node as 'vin-supply' for the following nodes
+ - common_fixed_5v, edp_panel_fixed_3v3, gpio_fixed_3v3, sdio_fixed_3v3,
+   touch0_fixed_3v3, usb_hub_fixed_3v3, usb_p0_vbus, and usb_p1_vbus.
+3. Update regulator names according to the stable output name on
+   schematics.
+ - vdd_5v, vedp_3v3, ext_3v3, vio18_conn, wifi_3v3, vio33_tp1, vhub_3v3,
+   vbus_p0, vbus_p1.
+ - vcn18_pmu, vcn33_2_pmu, dvdd_proc_l, dvdd_core, vpa_pmu, dvdd_adsp,
+   va12_abb2_pmu, vsim1_pmu, vufs18_pmu.
+4. Remove usb_hub_reset_1v8. Use 'hub' node to probe USB HUB
+   in subsequent patches.
 
-Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 ---
+ .../dts/mediatek/mt8390-genio-700-evk.dts     | 65 ++++++++++++-------
+ 1 file changed, 42 insertions(+), 23 deletions(-)
 
-Changes v1->v2:
-- add aspeed compatible and deprecated platform-uhci compatible
-
-v1 patch : https://lore.kernel.org/all/20240420142108.76984-1-sheharyaar48@gmail.com/
-
----
- .../devicetree/bindings/usb/usb-uhci.txt      | 18 -----
- .../devicetree/bindings/usb/usb-uhci.yaml     | 70 +++++++++++++++++++
- 2 files changed, 70 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/usb-uhci.txt
- create mode 100644 Documentation/devicetree/bindings/usb/usb-uhci.yaml
-
-diff --git a/Documentation/devicetree/bindings/usb/usb-uhci.txt b/Documentation/devicetree/bindings/usb/usb-uhci.txt
-deleted file mode 100644
-index d1702eb2c8bd..000000000000
---- a/Documentation/devicetree/bindings/usb/usb-uhci.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--Generic Platform UHCI Controller
-------------------------------------------------------
--
--Required properties:
--- compatible : "generic-uhci" (deprecated: "platform-uhci")
--- reg : Should contain 1 register ranges(address and length)
--- interrupts : UHCI controller interrupt
--
--additionally the properties from usb-hcd.yaml (in the current directory) are
--supported.
--
--Example:
--
--	uhci@d8007b00 {
--		compatible = "generic-uhci";
--		reg = <0xd8007b00 0x200>;
--		interrupts = <43>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+index 6bb1d5d112ef..9b7ad046f193 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+@@ -87,103 +87,113 @@
+ 
+ 	common_fixed_5v: regulator-0 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "5v_en";
++		regulator-name = "vdd_5v";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		gpio = <&pio 10 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	edp_panel_fixed_3v3: regulator-1 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "edp_panel_3v3";
++		regulator-name = "vedp_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		enable-active-high;
+ 		gpio = <&pio 15 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&edp_panel_3v3_en_pins>;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	gpio_fixed_3v3: regulator-2 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "gpio_3v3_en";
++		regulator-name = "ext_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 9 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
++	/* system wide 4.2V power rail from charger */
++	reg_vsys: regulator-vsys {
++		compatible = "regulator-fixed";
++		regulator-name = "vsys";
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	/* used by mmc2 */
+ 	sdio_fixed_1v8: regulator-3 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "sdio_io";
++		regulator-name = "vio18_conn";
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <1800000>;
+ 		enable-active-high;
+ 		regulator-always-on;
+ 	};
+ 
++	/* used by mmc2 */
+ 	sdio_fixed_3v3: regulator-4 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "sdio_card";
++		regulator-name = "wifi_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 74 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	touch0_fixed_3v3: regulator-5 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "touch_3v3";
++		regulator-name = "vio33_tp1";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 119 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	usb_hub_fixed_3v3: regulator-6 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_hub_3v3";
++		regulator-name = "vhub_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 112 GPIO_ACTIVE_HIGH>; /* HUB_3V3_EN */
+ 		startup-delay-us = <10000>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+-	usb_hub_reset_1v8: regulator-7 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "usb_hub_reset";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-		gpio = <&pio 7 GPIO_ACTIVE_HIGH>; /* HUB_RESET */
+-		vin-supply = <&usb_hub_fixed_3v3>;
 -	};
-diff --git a/Documentation/devicetree/bindings/usb/usb-uhci.yaml b/Documentation/devicetree/bindings/usb/usb-uhci.yaml
-new file mode 100644
-index 000000000000..c5cbcc0a820a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/usb-uhci.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/usb-uhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic Platform UHCI Controller
-+
-+maintainers:
-+  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: generic-uhci
-+      - const: platform-uhci
-+        deprecated: true
-+      - items:
-+          - enum:
-+              - aspeed,ast2400-uhci
-+              - aspeed,ast2500-uhci
-+              - aspeed,ast2600-uhci
-+          - const: generic-uhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: generic-uhci
-+then:
-+  allOf:
-+    - $ref: usb-hcd.yaml
-+  if:
-+    properties:
-+      compatible:
-+        contains:
-+          enum:
-+            - aspeed,ast2400-uhci
-+            - aspeed,ast2500-uhci
-+            - aspeed,ast2600-uhci
-+  then:
-+    properties:
-+      '#ports':
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+      clocks:
-+        maxItems: 1
-+    required:
-+      - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    usb@d8007b00 {
-+        compatible = "generic-uhci";
-+        reg = <0xd8007b00 0x200>;
-+        interrupts = <43>;
-+    };
-+...
+-
+-	usb_p0_vbus: regulator-8 {
++	usb_p0_vbus: regulator-7 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_p0_vbus";
++		regulator-name = "vbus_p0";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		gpio = <&pio 84 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+-	usb_p1_vbus: regulator-9 {
++	usb_p1_vbus: regulator-8 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_p1_vbus";
++		regulator-name = "vbus_p1";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		gpio = <&pio 87 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+-	usb_p2_vbus: regulator-10 {
++	/* used by ssusb2 */
++	usb_p2_vbus: regulator-9 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_p2_vbus";
++		regulator-name = "wifi_3v3";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		enable-active-high;
+@@ -295,38 +305,47 @@
+ };
+ 
+ &mt6359_vcn18_ldo_reg {
++	regulator-name = "vcn18_pmu";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vcn33_2_bt_ldo_reg {
++	regulator-name = "vcn33_2_pmu";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vcore_buck_reg {
++	regulator-name = "dvdd_proc_l";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vgpu11_buck_reg {
++	regulator-name = "dvdd_core";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vpa_buck_reg {
++	regulator-name = "vpa_pmu";
+ 	regulator-max-microvolt = <3100000>;
+ };
+ 
+ &mt6359_vpu_buck_reg {
++	regulator-name = "dvdd_adsp";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vrf12_ldo_reg {
++	regulator-name = "va12_abb2_pmu";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vsim1_ldo_reg {
++	regulator-name = "vsim1_pmu";
+ 	regulator-enable-ramp-delay = <480>;
+ };
+ 
+ &mt6359_vufs_ldo_reg {
++	regulator-name = "vufs18_pmu";
+ 	regulator-always-on;
+ };
+ 
+@@ -871,10 +890,10 @@
+ &xhci1 {
+ 	status = "okay";
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+-	vbus-supply = <&usb_hub_reset_1v8>;
+ };
+ 
+ &xhci2 {
+ 	status = "okay";
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	vbus-supply = <&sdio_fixed_3v3>; /* wifi_3v3 */
+ };
 -- 
-2.44.0
+2.18.0
 
 
