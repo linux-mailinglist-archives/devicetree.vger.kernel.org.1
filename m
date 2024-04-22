@@ -1,74 +1,49 @@
-Return-Path: <devicetree+bounces-61411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DBFC8AC8B0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:19:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3310A8AC92F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 11:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03BA282B17
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:19:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2F001F21EB0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B93253E30;
-	Mon, 22 Apr 2024 09:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BB7+TtK2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C27313B59B;
+	Mon, 22 Apr 2024 09:44:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from 14.mo581.mail-out.ovh.net (14.mo581.mail-out.ovh.net [178.33.251.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9709B52F96;
-	Mon, 22 Apr 2024 09:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625EE64A98
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 09:44:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.33.251.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713777561; cv=none; b=BG7AFpvL2GnPql6rXIXKl+5KOGPzZRl0rH3mefEE8jDoUJIIv7/zb6GYKjcT0/Ob2mDkKgxDXUQvTPK6Ta7Pi+hpPDZ2+GV3CJhqJMW2QjJoXOW6L4ldrcINrJcox/Qjpww6iK4/KxACteEJYpRWoVyRe2oGHH0QENWFTlNdBc8=
+	t=1713779044; cv=none; b=DOjoTpmKbyC0kWjd6DpjxY9bbBE+MWmhX56deos1AxouZVemKZ4HjWeWciuoIoSaXhz4FdfuTMpy4zHg6rKvLW4EqSKQv2WGDf2lkvzd4DnzzobXGXQtFXPhCP6Gd02bmvrPmslyGHBu+X7dl5SJCn54NxTt7Zjui8Gznee9PxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713777561; c=relaxed/simple;
-	bh=0SzAzbO9mizr1+31aiP0iXs3Mw2nXgbrlKRbnEyHEV0=;
+	s=arc-20240116; t=1713779044; c=relaxed/simple;
+	bh=xDSmU42HwR7p82VHSVrC1r6JVxcHqDX7Wo5kVPyv4Ds=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rheRBvpvKkL5nSLZAbNkdlmGBhEJKbubAPd6jk973SZTYXdhzFvoEy84r6ilM/yG+CdJiqlbZitT9j8MzkK66NC5UV9x8b/3yj35aoZye/Zs+z3F4RGdWDJv/kaNS9JYs6HvEQXRyYltts+Pl8jRkAdkZ36wOFfB9dPQGVjnxN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BB7+TtK2; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6ed3cafd766so3355823b3a.0;
-        Mon, 22 Apr 2024 02:19:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713777560; x=1714382360; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Ep3MhmTtFiF+uEKgR3YsV/c0mK0RSR4QMExWC1N258=;
-        b=BB7+TtK2f+1fzz655IBMEY4ZiVKijlzOuw1U/AG1taNme8BQQ8nqit8YPF3wT8zN+x
-         Bcl6QaDiRy2UYCfwTP2ESJyFfR7M7H52KK0WOqlzarUZQ4xtL/S47dfPmV60iKc3ZVXW
-         ycy2lvcGZ0747q00IoAsd59CUN3ZqkHTUPA6FmvFgpFfMgSae8LJt7JA3KgWkHZCOZXh
-         soK2v5DwqPgj1Flc2xsKjJ8nm8UKRyqRCGYikPpzyWmL/uRLdcj8FPkw8Kfw3bRh5zxX
-         zzJBrTvOXMtb1rXNAajhEvHEwschzndG2Gkfe/siHU/gtgfxvcYEPVp5JVw6Nc4cBk6Z
-         swCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713777560; x=1714382360;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Ep3MhmTtFiF+uEKgR3YsV/c0mK0RSR4QMExWC1N258=;
-        b=pwe8D8OsAVutTDB1e5n7L4wmYnQQMFNJ7vj3zdnWrooak8V5Hl/1z/bsTFXLKlqlMJ
-         XRcWLZQ5Q9tBs3UpDrViPvfgBvSrhdBFy1n8X+KF3FcDPMsjk9Jeqestogrk8ilnH6W7
-         QfYqlYJXKyChQUExkhC7mYerEXaBFkMKlHq9X1E3pcXiE5cN1wonNJgsPn9U/gy+ngTV
-         PoORWAtB9DnpaWMtrADXDP+lIDcCtOawRo/9mhvNzt6idBz1zbJiwmBiCvS67x2Xfvba
-         6M6/8pI6v7jBVF54q8oQDM/rzMFsPrFf59M915beB2rJBRqaQKRxoN3rCGPAok+Uaklu
-         y2jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUuCWQS/tYmXbXVR5hssVBMudQGy2ZO0VH4MHinKpq4aAxd4v93g4hv+dTQ9BX+8bSYpupj/QuK+gRDnASI3v8QzrCEMIS584arS+dJICbiWZBp0I/3H5mKR+eMw8ImMe7SwJKTF8LHaI1uKpfN/ICg/iAGqN6q6QGS+3YQTiwAqEMd1+c=
-X-Gm-Message-State: AOJu0YymS7G+OD4b72Pc97UZIVBPOjYlMQ8G6oVS9CXA5D1ffddzhJ22
-	Pa42sdGqWZ93CSbgdoR9own2jm0Fw3rI3uaLiHPea1/SaukyBXel
-X-Google-Smtp-Source: AGHT+IEXrDILus4aNiNBVg1PEwpG5j2RHHDlxnvL7ic9sqQK7z3m47SHTbboBcgfTF53l9Ffs1/HzA==
-X-Received: by 2002:a05:6a00:10c3:b0:6ed:2fb8:467b with SMTP id d3-20020a056a0010c300b006ed2fb8467bmr9424598pfu.26.1713777559764;
-        Mon, 22 Apr 2024 02:19:19 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id y8-20020aa78048000000b006f2e10b00d6sm1283814pfm.41.2024.04.22.02.19.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 02:19:19 -0700 (PDT)
-Message-ID: <843c3c2a-2f46-4d49-aed4-ad07ebcb7b27@gmail.com>
-Date: Mon, 22 Apr 2024 17:19:15 +0800
+	 In-Reply-To:Content-Type; b=na9xy9W6WfMdT/QYvaa7Iv+CQTJ9nxeUp8UQ0mIkZ8cKRcmKFoW343V7BkWbo5md6/73+NyofFcZbPlWt9JREYdzgCJaYsb5fUMvjI7qTK00QpciR6vtCVFMIylF0BnoBnsbI7kcJNn40UvOeAblu3iIa4FZUl7glHEQEbUo5us=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com; spf=pass smtp.mailfrom=armadeus.com; arc=none smtp.client-ip=178.33.251.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=armadeus.com
+Received: from director4.ghost.mail-out.ovh.net (unknown [10.108.2.89])
+	by mo581.mail-out.ovh.net (Postfix) with ESMTP id 4VNKg04Y3Wz1Qg1
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 09:28:12 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-rl684 (unknown [10.110.113.68])
+	by director4.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 920A11FE65;
+	Mon, 22 Apr 2024 09:28:09 +0000 (UTC)
+Received: from armadeus.com ([37.59.142.101])
+	by ghost-submission-6684bf9d7b-rl684 with ESMTPSA
+	id qQDTHKktJmYMfgAAjN946g
+	(envelope-from <sebastien.szymanski@armadeus.com>); Mon, 22 Apr 2024 09:28:09 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-101G004c9d7feca-c54e-499e-ad96-007dd4ebdda3,
+                    A64A67AECC9DB63596043E25B5FC1CC6B28F39B0) smtp.auth=sebastien.szymanski@armadeus.com
+X-OVh-ClientIp:92.148.253.243
+Message-ID: <f01d49cf-5955-405c-9c2b-05b0c7bb982c@armadeus.com>
+Date: Mon, 22 Apr 2024 11:28:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,99 +51,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
- driver
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240409095637.2135-1-ychuang570808@gmail.com>
- <20240409095637.2135-4-ychuang570808@gmail.com>
- <ZhZTsV3RKpuyeUr4@surfacebook.localdomain>
- <643a0d80-3d99-420e-9e77-acc67728fbe7@gmail.com>
- <CAHp75VfMb_=XKoQNbbVphLg-eQgc6eJbZOW36g_hU=-iK2bSOQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] arm64: mx93: etherrnet: set TX_CLK in RMII mode
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Clark Wang <xiaoning.wang@nxp.com>,
+ Linux Team <linux-imx@nxp.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20240422-v6-9-topic-imx93-eqos-rmii-v1-0-30151fca43d2@pengutronix.de>
 Content-Language: en-US
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <CAHp75VfMb_=XKoQNbbVphLg-eQgc6eJbZOW36g_hU=-iK2bSOQ@mail.gmail.com>
+From: =?UTF-8?Q?S=C3=A9bastien_Szymanski?= <sebastien.szymanski@armadeus.com>
+Autocrypt: addr=sebastien.szymanski@armadeus.com; keydata=
+ xsBNBFNfZLEBCACv1lqSePHJNpRgcnER+3emy+Arjz84zFax3XkogjY/e3ZneihIgWrVKe5M
+ ql16pX4KTkzNgMUKz4bG/XwT3kjcrXshxFLlg7KrHMl287C+W+QOUjnjVeRi/su+SPmjz8VD
+ yr11h+ZkVLAWhS+uQJ93jy1NwG8M4t1kBLAVHHD5Vw4FJ+3ouaVYIp1X1Cr8bVKQw33Q1aTd
+ ro0kMBb96B9vNu7ciJZ3gvlaBzUEKOgNnq9KaywuLnqrqr4HUIn5JuxZjCjJzt9kTAKcTfp2
+ cJM8qpp+2FF5qtbkse9fZ6M64qozgOPr9Tk4Amf9fZEUQ6UNw14mmBZuXSzoHe75gI7TABEB
+ AAHNN1PDqWJhc3RpZW4gU1pZTUFOU0tJIDxzZWJhc3RpZW4uc3p5bWFuc2tpQGFybWFkZXVz
+ LmNvbT7CwJAEEwEIADoCGyMHCwkIBwMCAQYVCAIJCgsEFgIDAQIeAQIXgBYhBJwGygpYm/1C
+ /GCmwbCaKeiBMmTiBQJdhIHLAAoJELCaKeiBMmTixXIH/2W3kbzRG0UF81jtRRnp0H83rjDT
+ v0H+8fgFMRL/7HCJ1QPArkfRJlM2wlJkN+ChP09CCarYfUEHfRCHlTb7At6Yyrz1jziD7ZwX
+ 8IWHYRXnZkY5eZc5DsiUgq6JH49kt+GPzK8UVP9MTa6zkBpPCUf7LzZ4pD3FihdkT52BU3gI
+ d9P49fSI0TYySlb/VKn815aOhvwEr7+Dh3mZUjSh7saofbRmVUOr7p+R3MvvGI19/IJZjeOE
+ ZWliODDOt6HnBOtoGSXMcNIFF6snH52D5N5gY88njZjTwhgGGUBix1bsgf/EY0v4R5itZBXB
+ B/Ze4Tm++YHaB75hZK6PQu/YRv7OwE0EU19ksQEIALo7jhXddrXBTRu5SAjelV53jyHBJTX/
+ vN4nL/VbbW/saca+NJjDSxx5DBmotZbQdWIyZiSIjU/xnTREvtDrl6ZeSsKWd7ZqiuiY4fSR
+ zwuQp9rd0yqRuxesrWeyJB1zCSdEvLyKASERt+nxkOA+IzJ4y1qLtvnWr+SL1AXgTMw+Tkyw
+ KIDCRWHTIYas11ldGj82gOIpYeXnapeNLHfT4EQwg0NeWYHynJxAQWiX5aPlw0uSpAQSsBXQ
+ FIe3fpoveMSnXK+PG2BBOzexYv7r4S70a6sF9sgTTPpfKqUaqqC+u1+bUX6alTAKhGKJywaF
+ 6ViqLlgY8PfwohSyAlqlTRMAEQEAAcLAdgQYAQgAIAIbDBYhBJwGygpYm/1C/GCmwbCaKeiB
+ MmTiBQJdhIHSAAoJELCaKeiBMmTitU8IAK7NQM3fEwaF5XaKtepYWsVka44CD8A9e4r7NVK9
+ ugirKvXirIxBSDmN/Db862NmVpITsZ6ERNSNZLm/7k55N+TexKYiFZeU7G92TEfAM6qPElvx
+ DLEcrkNMq9r08YZeUloacsq31AL5fK4LW+xdvXudkdiKRMJsdTpmff3x5kIziGOHjwFP9wve
+ ZgEH52gpbRsP8Whx/Z2lNX/BBRmFM8OnEXFsjjqDzYThdxTq85wGPpkgvvUGyPNRD7TpbB1C
+ pajOUUkPxgj5LKt77HD1afeZNudWhgcdkbtT5PMQTT0WY6wvMEj9S1+bGPeXRGWLYB7gHQ+L
+ JNoSD7Kz6Y9qnKo=
+In-Reply-To: <20240422-v6-9-topic-imx93-eqos-rmii-v1-0-30151fca43d2@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 3291005431560006571
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvledrudekledgudeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefurogsrghsthhivghnucfuiiihmhgrnhhskhhiuceoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqeenucggtffrrghtthgvrhhnpeeujeffheehvddtuefhjeevveffkeetfffgtedvjeekleelvdfhjeelfeeludduieenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeduvdejrddtrddtrddupdelvddrudegkedrvdehfedrvdegfedpfeejrdehledrudegvddruddtudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedupdhmohguvgepshhmthhpohhuth
 
-Dear Andy,
+Hello,
 
+On 4/22/24 10:46, Steffen Trumtrar wrote:
+> This series adds support for setting the TX_CLK direction in the eQOS
+> ethernet core on the i.MX93 when RMII mode is used.
+> 
+> According to AN14149, when the i.MX93 ethernet controller is used in
+> RMII mode, the TX_CLK *must* be set to output mode.
 
-On 2024/4/22 下午 04:16, Andy Shevchenko wrote:
-> On Mon, Apr 22, 2024 at 7:10 AM Jacky Huang <ychuang570808@gmail.com> wrote:
->> On 2024/4/10 下午 04:54, Andy Shevchenko wrote:
-> ...
->
->>>> +#define MA35_GP_MODE_MASK_WIDTH              2
->>>> +
->>>> +#define MA35_GP_SLEWCTL_MASK_WIDTH   2
->>> I looked at the code how you use these... Oh, please switch to FIELD_GET() /
->>> FIELD_PREP() (don't forget to include bitfield.h)
->>>
->>> ...
->>>
->>> ...
->>>> +             regval &= ~GENMASK(setting->shift + MA35_MFP_BITS_PER_PORT - 1,
->>>> +                                setting->shift);
->>> This will generate an awful code. Use respective FIELD_*() macros.
->>>
->>> ...
->>>
->>>> +     regval &= ~GENMASK(gpio * MA35_GP_MODE_MASK_WIDTH - 1,
->>>> +                        gpio * MA35_GP_MODE_MASK_WIDTH);
->>>> +     regval |= mode << gpio * MA35_GP_MODE_MASK_WIDTH;
->>> Ditto.
->>>
->>> ...
->>>
->>>> +     regval &= GENMASK(gpio * MA35_GP_MODE_MASK_WIDTH - 1,
->>>> +                       gpio * MA35_GP_MODE_MASK_WIDTH);
->>>> +
->>>> +     return regval >> gpio * MA35_GP_MODE_MASK_WIDTH;
->>> Ditto.
-> ...
->
->> Allow me to remove irrelevant parts.
->>
->> I attempted to follow your advice and use FIELD_GET() and FIELD_PREP(),
->> but found
->> it impractical. The reason is that these two macros require their 'mask'
->> argument
->> to be a constant, otherwise compilation errors occur, which is the issue
->> I encountered.
->> Since the mask here is calculated and not a constant, compilation errors
->> occur.
->>
->> Taking MA35_GP_REG_MODE as an example, within 32 bits, every 2 bits
->> represent
->> the mode of a GPIO pin, and the mask is obtained by GENMASK(gpio * 2 -1,
->> gpio * 2),
-> This is not good for the compiler, it can't figure out (at least in
-> some _supported_ by Linux kernel versions on some architectures) that
-> GENMASK can be constant here just left-shifted by arbitrary bits.
->
->> where the 'gpio' argument is a variable, not a constant, leading to
->> compilation
->> errors.
->>
->> Due to this reason, I will leave this part unchanged, or do you have any
->> other suggestions?
-> If you need non-constant field_get()/field_prep(), add a new patch
-> that moves them from drivers/iio/temperature/mlx90614.c (and there are
-> more custom implementations:
-> https://elixir.bootlin.com/linux/latest/A/ident/field_get) to the
-> bitfield.h and use them in your code.
->
+Must ? I don't think that is true. Downstream NXP kernel has an option 
+to set TX_CLK as an input:
 
-Thank you. It works for me. I will adopt the approach used in mlx90614.c.
+https://github.com/nxp-imx/linux-imx/blob/lf-6.6.y/Documentation/devicetree/bindings/net/nxp%2Cdwmac-imx.yaml#L69
 
+https://github.com/nxp-imx/linux-imx/commit/fbc17f6f7919d03c275fc48b0400c212475b60ec
 
-Best Regards,
-Jacky Huang
+Regards,
+
+> 
+> Add a devicetree property with the register to set this bit and parse it
+> in the dwmac-imx driver.
+> 
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
+> Steffen Trumtrar (3):
+>        dt-bindings: net: mx93: add enet_clk_sel binding
+>        arm64: dts: imx93: add enet_clk_sel
+>        net: stmicro: imx: set TX_CLK direction in RMII mode
+> 
+>   .../devicetree/bindings/net/nxp,dwmac-imx.yaml     | 10 ++++++++
+>   arch/arm64/boot/dts/freescale/imx93.dtsi           |  1 +
+>   drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c    | 27 ++++++++++++++++++++++
+>   3 files changed, 38 insertions(+)
+> ---
+> base-commit: 4cece764965020c22cff7665b18a012006359095
+> change-id: 20240422-v6-9-topic-imx93-eqos-rmii-3a2cb421c81d
+> 
+> Best regards,
+
+-- 
+Sébastien Szymanski, Armadeus Systems
+Software engineer
 
 
