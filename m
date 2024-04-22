@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-61351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719FB8AC5CE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:44:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9138AC5E1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 09:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 267901F22582
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 07:44:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C16C0B2220A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 07:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6068D5102E;
-	Mon, 22 Apr 2024 07:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B23C4EB31;
+	Mon, 22 Apr 2024 07:45:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3B7502A3
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.83
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAB134CDEC
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 07:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713771794; cv=none; b=UMg4yPmt+kLti3cekgHIzSc5Mjsihz6L8PQ9hgXtr7XNCtX0w8yLJ9XcMs0zDhrJH/VKSScESNk8aa9wwnYo4gAMBnfPyZQbvV3vWGq9ts9B4Y/FgwgVKG1kFbr1xjuURN/0ddcusnnE+MsxvVgO9ooE/iJ/yA+Pma2JCHcZKMw=
+	t=1713771951; cv=none; b=gOrQyQ8lytE1iu4NJWeF4KnAGKoxzXthziDFCBRqV6ikejcJ9ELMhYAu7iWMPi8e85JTIYBGFNVDglfNy+LCaUTI9FLCQB/Bho2TxOU559RR1McEXT7of2FWJpDiYfvUkjMR4o7PC04ndyKxICRViWETiujhr6eNFvJZWjLRgrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713771794; c=relaxed/simple;
-	bh=ew5dSgQMfS9IwbBwrIa9E4pKL0iPTREwTY8/gbHfluY=;
+	s=arc-20240116; t=1713771951; c=relaxed/simple;
+	bh=0tZUCejrJ79JNWlBVqZKd9V4vKZCGo0VoibkvLVA/P8=;
 	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4VmorWdMiEQcoPUzmaLWHIE2DeGx1Qp8FDGFG888gMWmUuk0WXOVCLP96vreyNMeR4TnNZ6HlkOAXv55M0+MNEYXBUsNDJZ0lGUnQb/9dRNpduk7Nx7rSHt5gsUsQiq9qLwjkVKXfTzkC+GaPhCow/Zc7MgZTT9rk7BS/QmUr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.83
+	 Content-Type:Content-Disposition:In-Reply-To; b=iqyebP9lKA285QplUNKcIRB0YL0LfhH6n833FzRDXtnRnvaS2AtyKTLdgPDzviixL9Kc39UNaYo4juOFXq+jPQy/W7HKtlaEycMvSBq76OFOx17c3kiMxeemWb0E8wrOCoW/c6ST7lqVipghHvzL9B9pLIIpJY13k+6IRZsDeUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
 Received: from localhost (88-113-25-208.elisa-laajakaista.fi [88.113.25.208])
 	by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-	id f64f7c0a-007b-11ef-a9de-005056bdf889;
-	Mon, 22 Apr 2024 10:43:09 +0300 (EEST)
+	id 5482aa03-007c-11ef-a9de-005056bdf889;
+	Mon, 22 Apr 2024 10:45:46 +0300 (EEST)
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 22 Apr 2024 10:43:08 +0300
+Date: Mon, 22 Apr 2024 10:45:46 +0300
 To: Bjorn Helgaas <helgaas@kernel.org>
 Cc: Vidya Sagar <vidyas@nvidia.com>,
 	"Rafael J . Wysocki" <rafael@kernel.org>,
@@ -51,12 +51,12 @@ Cc: Vidya Sagar <vidyas@nvidia.com>,
 	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH v7-incomplete 3/3] PCI: Unify ACPI and DT 'preserve
- config' support
-Message-ID: <ZiYVDEt-c57rAIl7@surfacebook.localdomain>
+Subject: Re: [PATCH v7-incomplete 1/3] PCI: Move PRESERVE_BOOT_CONFIG _DSM
+ evaluation to pci_register_host_bridge()
+Message-ID: <ZiYVqulm8cE_FGKx@surfacebook.localdomain>
 References: <20240418174043.3750240-1-vidyas@nvidia.com>
  <20240421190914.374399-1-helgaas@kernel.org>
- <20240421190914.374399-4-helgaas@kernel.org>
+ <20240421190914.374399-2-helgaas@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,21 +65,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240421190914.374399-4-helgaas@kernel.org>
+In-Reply-To: <20240421190914.374399-2-helgaas@kernel.org>
 
-Sun, Apr 21, 2024 at 02:09:14PM -0500, Bjorn Helgaas kirjoitti:
+Sun, Apr 21, 2024 at 02:09:12PM -0500, Bjorn Helgaas kirjoitti:
+> From: Bjorn Helgaas <bhelgaas@google.com>
+> 
+> Move the PRESERVE_BOOT_CONFIG _DSM evaluation from acpi_pci_root_create()
+> to pci_register_host_bridge().
+> 
+> This will help unify the ACPI _DSM path and the DT-based
+> "linux,pci-probe-only" paths.
 
 ...
 
-> +	if (host_bridge->dev.parent && host_bridge->dev.parent->of_node)
-> +		return of_pci_preserve_config(host_bridge->dev.parent->of_node);
+> +bool pci_acpi_preserve_config(struct pci_host_bridge *host_bridge)
+> +{
+> +	if (ACPI_HANDLE(&host_bridge->dev)) {
 
-If you need fwnode or of_node from struct device, please avoid direct
-dereference, we have
+Wouldn't the below looks nicer if you invert the conditional?
 
-dev_fwnode()
-of_fwnode_handle()
-dev_of_node()
+	handle = ACPI_HANDLE(...);
+
+	if (!handle)
+		return false;
+
+	...
+
+> +		union acpi_object *obj;
+> +
+> +		/*
+> +		 * Evaluate the "PCI Boot Configuration" _DSM Function.  If it
+> +		 * exists and returns 0, we must preserve any PCI resource
+> +		 * assignments made by firmware for this host bridge.
+> +		 */
+> +		obj = acpi_evaluate_dsm_typed(ACPI_HANDLE(&host_bridge->dev),
+> +					      &pci_acpi_dsm_guid,
+> +					      1, DSM_PCI_PRESERVE_BOOT_CONFIG,
+> +					      NULL, ACPI_TYPE_INTEGER);
+> +		if (obj && obj->integer.value == 0)
+> +			return true;
+> +		ACPI_FREE(obj);
+> +	}
+> +
+> +	return false;
+> +}
+
 
 -- 
 With Best Regards,
