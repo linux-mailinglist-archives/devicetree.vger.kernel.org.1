@@ -1,97 +1,89 @@
-Return-Path: <devicetree+bounces-61574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A71BE8AD4DD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 21:31:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A4BA8AD505
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 21:44:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 630AC2825BC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:31:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E98B1C2131B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 19:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C914C155335;
-	Mon, 22 Apr 2024 19:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03C6155345;
+	Mon, 22 Apr 2024 19:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="ozMTwlfw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="goZuQyMj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F675025E
-	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 19:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B17155348
+	for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 19:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713814264; cv=none; b=B3kWXOjn4A2qa48LVdI0/KMhBU9raybY1Et84uuPWkXf8qAk9nTjKsO6qW9h4rfjOkETmE5aTZNXxiP+qME2Ic2inms3DB+LFaryfhT+6dd8dW+3++5Ts7Q0eqNivMxpRYhCjTyycBL3wKtQBpx9LDBy5oRAGQE861mlLkqWvgc=
+	t=1713815031; cv=none; b=bXJC5TBCZEMBOYBHFqJoMTDa7rpbqL2Oxm+3TcUFbirXgTvaSOI8MXUcNDYTUJfmjWo/jR2q1woCt8G7BGqtYyTO2Ktgn+XDNjWkVAW5VXzjxy99jV3dF/T1Ga3zXv8vGY+BQRJgpLbRqGW0TsFilmo7gUOsH8/P4brGhGRgXMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713814264; c=relaxed/simple;
-	bh=3uf88LX4hpj9MBbr+gHmp4PX3GIFmCWPggLOKfmTPMg=;
+	s=arc-20240116; t=1713815031; c=relaxed/simple;
+	bh=VJ5gsQjKohl4OTel83tK1x5fN8lYDcKtYI/XPbA72XA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYJ210l1NzWwIwkhv8w3QX2dl4+BDeDN8BYsVAlRMxycxmJejKK/VtFAsgCD0nO4dm90RO7cy4Jpbgm3ZtFdUtEcazCtPPeW3QhTyZfy404270Qxm2P4xPQ5FqaC8zPZM3RWtRHD255IzpgsKnwl42zrezDkQfAPKnK4djPXKlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=ozMTwlfw; arc=none smtp.client-ip=209.85.166.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-36c11a66458so2902225ab.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 12:31:02 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NkRVJodMTmJtbEt5qdh9BQh1ocaS/BkxS2lONmM/bn5QtCjQgoWx5mWg3uRyehGV0JeNGjiBlYBQw+tPfunCQXI759IIjZmtkr+ynruT8NBoyCPjEkQ4qH/AfHEPur3+MhrWdsh7LMyikGjmc+RzWZTm//WYvqK8JLs/1bQ2m0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=goZuQyMj; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-51ac9c6599bso4230090e87.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Apr 2024 12:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1713814261; x=1714419061; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713815028; x=1714419828; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yh3rgiRcQXBNCIidxjhakiopwH4ays77o8Kd/hCbWDI=;
-        b=ozMTwlfwZKB37Hb98oiOZhU/PNh/DBJlBuYXdzDa803v+k5PrriFzBTEJpCz7+iz8B
-         D+ZTZa/WYx0Aer25Ax8TxoKhZq1qoT5YftQzH2bTVFQF4uNl+TjNztDpl6YW6lGnkebS
-         flAq3a3ltNM8Oap3g1VOZ2ixYmzdKIGVdJ97HwZT372UOylqoefYlOWJS0ILyJb3iEiS
-         5J0NRsIOm//wY7JnL5I1IQIzyx/Aa1vXMDMQDDe8wr8JMm3OmXcOCkQkPqIfuQdqpM66
-         SEcA3FYKWmT+A1yOmnZGcMDU7I0tFjodyC7SOw8GO8jlMn5j7f7rzvgK/DexmbwA3a/d
-         pIdw==
+        bh=h1ey6L2csyRt+gTq+IESmLKOnnLpd2+PnL3t5tu0kbA=;
+        b=goZuQyMjSRunTdWGcATyGIF/FHDPslxTk3LR+nMyIVsZhi3yaCoFcDgWOqUw9M5XBN
+         4GvqllmtYa+APDgCzW96HFDFGDg/a7irwR7LNLXoB1IjLT4ZWvO6/6DI6fH67HjqcfeR
+         qGOP5Nrgu9dRdnl9naRJ3SUJ1beUklopWNcdItcpZ5/KZtuamoaqkrffdFoYMqwDNXkL
+         6PSHdCG4s4xakdQ/REqszmI6h69DuaAA/R2Xjn1eOSOv1PbgO611w2eW4MKNHu6yrwNT
+         xQMkdifX/T3dTfkKbXrRdISDd/FjVg3f+35+S30xyI00OoHonPYc6AOankhV9hFEQLi5
+         HH+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713814261; x=1714419061;
+        d=1e100.net; s=20230601; t=1713815028; x=1714419828;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yh3rgiRcQXBNCIidxjhakiopwH4ays77o8Kd/hCbWDI=;
-        b=EF6rmWB3DKrWr8xKxblvKa+OOO6oqLWZEJuRqjg8dEKSwQA8knydKr3pulwUzTzg0W
-         NrkgEoQd54jIvFecv4u/hCuN0ax0cMZZA1NOnDU3LiO3Ika6MSwV/CUBBZuPEkv3xA3x
-         lTrlCr41NKjIXF/7Z5S8EK/4WlP3hTNBHUiWKDt2dBSpON50sPcuXTbiR3KTkY8Rekvk
-         rbUTchQR3neafh7PlnpS6emxXWUYNpl719OnUEWk23M92iYXD8g6ev/wonh18+ySMcrD
-         ygKi3gTMk+uv7YjiPy4nmYpbB5POmUsZiHbuXaqVnhIYjV+tIZN30RBuxY6BuimFNZsb
-         9+vA==
-X-Forwarded-Encrypted: i=1; AJvYcCV4LdhcuE2wxipV3QVFuMtPN0UN7oF9jQNaBA8mT+NCsR4ghG6MbqDLOtYcsGKizb4jHJsJnT9hEPxVoSsZXSFYRVrCJZgP9nzlaw==
-X-Gm-Message-State: AOJu0YxknTPRL2RUYQz+QGv0pzyYoP24NQbAZ6l71SbVvMnSuDsytYbG
-	W7fplkLWQPEWFBu44xPze9ZpX6iqtP4SRNjbaS51Sie2g5J5pOgwwjA8/cc+p1w=
-X-Google-Smtp-Source: AGHT+IH895F9KLddG1s2eZCz4/bKHter3T6UNI8IsPcUq25R04uAGE5maPekZYiqnwm1PrKXKmatlA==
-X-Received: by 2002:a05:6e02:b45:b0:36b:1868:fab7 with SMTP id f5-20020a056e020b4500b0036b1868fab7mr15663679ilu.15.1713814261611;
-        Mon, 22 Apr 2024 12:31:01 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id u10-20020a0cdd0a000000b0069b60baec46sm4402412qvk.146.2024.04.22.12.31.00
+        bh=h1ey6L2csyRt+gTq+IESmLKOnnLpd2+PnL3t5tu0kbA=;
+        b=ctvvcnyUK7DZ3JPn6N4P8YuTNOQS/RzIzEHc9iqlSvfkoOL/BVSSQp3SzagaF3hv2E
+         +Yz/j/rhY0IArg/zUPizk0yz98nXDDggeaToNTTrQf4MMyA+YhrCL+5cgD88CxankzBH
+         fl2yqKLyv2nMkseh0KOHf/J+q9DMxQnSR6vEMedUKalz2YPN8HZSJiRi1I5D0l1xOAKu
+         NpDMWd1hxperJbVAcALi40ExWJ7H26qx4tJousTOVwLR6IqucVG20ErRtRM+QtvF0rjk
+         ZaFv2DoW6jWuopAOlzlzyjBW1rS8+RKbj85awNgztU3ykrh45gdD/vwM27RFNe0hhIrn
+         AukQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVKV2m9rQ04viIJhIDzH7k7OeGkdSeNiWZOTHueNwVVnb22+83ufnneL+FUyCht/ZlHLTGVPrsxdwI8QiPVFUq+rbCJL5eMDntvCg==
+X-Gm-Message-State: AOJu0YxMZIbmLRVjcRBF6ABlJ2oHppePNNAzadPQmAL0tXw9lv2fdCyN
+	xdHGiYqI1g88Pi77S9b8OKiiy2vkApDSiQu03vwBtISwMoCjO00fA8V7pjTnB80=
+X-Google-Smtp-Source: AGHT+IG9ElrH/duOxvqcTOK0AesyJ0VjegSyv6v2IqW2JOwhgaQv9K0zAcHZGc9ZxELyif0HeSN2WQ==
+X-Received: by 2002:a05:6512:ba0:b0:51a:b955:4014 with SMTP id b32-20020a0565120ba000b0051ab9554014mr9729079lfv.18.1713815027508;
+        Mon, 22 Apr 2024 12:43:47 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::8a5])
+        by smtp.gmail.com with ESMTPSA id v14-20020ac2558e000000b0051891b7578esm1802167lfg.198.2024.04.22.12.43.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 12:31:00 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1ryzNT-0015IM-Mf;
-	Mon, 22 Apr 2024 16:30:59 -0300
-Date: Mon, 22 Apr 2024 16:30:59 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Baolu Lu <baolu.lu@linux.intel.com>
-Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Sebastien Boeuf <seb@rivosinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux@rivosinc.com
-Subject: Re: [PATCH v2 7/7] iommu/riscv: Paging domain support
-Message-ID: <20240422193059.GC231144@ziepe.ca>
-References: <cover.1713456597.git.tjeznach@rivosinc.com>
- <301244bc3ff5da484b46d3fecc931cdad7d2806f.1713456598.git.tjeznach@rivosinc.com>
- <2f2750cd-a5bf-4486-8f50-c93d246f8b0c@linux.intel.com>
+        Mon, 22 Apr 2024 12:43:47 -0700 (PDT)
+Date: Mon, 22 Apr 2024 22:43:45 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Adolfsson <Johan.Adolfsson@axis.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, kernel <kernel@axis.com>
+Subject: Re: [PATCH 1/2] drm/panel: panel-simple: Add generic panel-dsi driver
+Message-ID: <dn33u6orierkw3skh3mymkc3u77wn2cbpqs7rznyndnku7txr7@2lvvxudsvda7>
+References: <20240418-foo-fix-v1-0-461bcc8f5976@axis.com>
+ <20240418-foo-fix-v1-1-461bcc8f5976@axis.com>
+ <76b46467-6a27-4f07-8a3e-cdd51e2e28bb@linaro.org>
+ <PAWPR02MB9281557BDDA960812412E0D59B122@PAWPR02MB9281.eurprd02.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,42 +92,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2f2750cd-a5bf-4486-8f50-c93d246f8b0c@linux.intel.com>
+In-Reply-To: <PAWPR02MB9281557BDDA960812412E0D59B122@PAWPR02MB9281.eurprd02.prod.outlook.com>
 
-On Mon, Apr 22, 2024 at 01:21:05PM +0800, Baolu Lu wrote:
-> > +	/* Track domain to devices mapping. */
-> > +	if (bond)
-> > +		list_add_rcu(&bond->list, &domain->bonds);
-> > +
-> > +	/* Remove tracking from previous domain, if needed. */
-> > +	iommu_domain = iommu_get_domain_for_dev(dev);
+On Mon, Apr 22, 2024 at 02:05:01PM +0000, Johan Adolfsson wrote:
+> Hi,
+> Sorry for delayed response, still investigating why these mails didn't reach my inbox as expected..
 > 
-> Calling iommu_get_domain_for_dev() in the domain attaching path is very
-> fragile because it heavily depends on the order of calling the attach
-> callback and setting the domain pointer in the core.
-
-We have a couple places doing this already, the core code accomodates
-it well enough for deleting from a list.. So I think it is OK to keep
-doing.
-
-> Perhaps the driver can use dev_iommu_priv_set/get() to keep the active
-> domain in the per-device private data?
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 
+> Sent: den 19 april 2024 01:06
+> To: Johan Adolfsson <Johan.Adolfsson@axis.com>; Neil Armstrong <neil.armstrong@linaro.org>; Jessica Zhang <quic_jesszhan@quicinc.com>; Sam Ravnborg <sam@ravnborg.org>; Maarten Lankhorst <maarten.lankhorst@linux.intel.com>; Maxime Ripard <mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.de>; David Airlie <airlied@gmail.com>; Daniel Vetter <daniel@ffwll.ch>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>; Thierry Reding <thierry.reding@gmail.com>
+> Cc: dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; kernel <kernel@axis.com>
+> Subject: Re: [PATCH 1/2] drm/panel: panel-simple: Add generic panel-dsi driver
 > 
-> > +	if (iommu_domain && !!(iommu_domain->type & __IOMMU_DOMAIN_PAGING)) {
-> > +		domain = iommu_domain_to_riscv(iommu_domain);
-> > +		bond = NULL;
-> > +		rcu_read_lock();
-> > +		list_for_each_entry_rcu(b, &domain->bonds, list) {
-> > +			if (b->dev == dev) {
-> > +				bond = b;
-> > +				break;
-> > +			}
-> > +		}
-> > +		rcu_read_unlock();
+> On 18/04/2024 16:01, Johan Adolfsson wrote:
+> > Add generic panel-dsi panel, similar to panel-dpi that can have it's 
+> > timing, lanes and flags overridden by devicetree.
+> > Add some dev_err() and dev_warn() calls.
+> > 
+> 
+> ...
+> 
+> >>  		/* sentinel */
+> >>  	}
+> >> @@ -4992,17 +5051,28 @@ static int panel_simple_dsi_probe(struct mipi_dsi_device *dsi)
+> >>  		return -ENODEV;
+> >>  
+> >>  	err = panel_simple_probe(&dsi->dev, &desc->desc);
+> >> +	if (err)
+> >> +		dev_err(&dsi->dev, "%s: err %i\n", __func__, err);
+> 
+> >This looks like debugging code.
+> I added it since you don't really get any good hints on where things fails if they do it.
+> Debugging code or not depends on the definition I guess - it helps the user track down a faulty devicetree,
+> or as in the case below mismatch with the DSI driver.
+> 
+> ...
+> >>  	dsi->format = desc->format;
+> >>  	dsi->lanes = desc->lanes;
+> >> +	of_property_read_u32(dsi->dev.of_node, "lanes", &dsi->lanes);
+> >
+> >Is this defined in the binding?
+> 
+> Apparently not which I assumed. Other bindings mentions dsi-lanes, but I guess "num-dsi-lanes" would be more correct.
 
-But now that I look again, this is not safe, you have to hold some
-kind of per-domain lock to mutate the list. rcu_*read*_lock() cannot
-be used for write.
+Please use drm_of_get_data_lanes_count() and corresponding property from
+the bindings.
+> 
+> >>  	err = mipi_dsi_attach(dsi);
+> >>  	if (err) {
+> >>  		struct panel_simple *panel = mipi_dsi_get_drvdata(dsi);
+> >>  
+> >> +		dev_err(&dsi->dev, "probe attach err: %i", err);
+> >
+> >Do not introduce unrelated code changes.
+> 
+> As before, it helps the user who has a messed up devicetree find out, since we now gets some more configurability using devicetree.
+> Would it be acceptable as a separate commit, or should I simply skip this?
+> 
+> 
+> >Best regards,
+> >Krzysztof
+> 
+> Thanks!
+> 
+> Best regards
+> /Johan
+> 
+> 
 
-Jason
+-- 
+With best wishes
+Dmitry
 
