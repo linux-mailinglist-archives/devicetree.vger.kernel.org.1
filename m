@@ -1,139 +1,240 @@
-Return-Path: <devicetree+bounces-61552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73ED08AD2C0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:52:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 679ED8AD2CB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 18:55:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 147881F21720
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:52:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E56B01F217D3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 16:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4203615380C;
-	Mon, 22 Apr 2024 16:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF4015380C;
+	Mon, 22 Apr 2024 16:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SVbbHamD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m6dGXjxZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19221DDE9;
-	Mon, 22 Apr 2024 16:52:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F82B1DDE9;
+	Mon, 22 Apr 2024 16:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713804773; cv=none; b=QIjOchrkQOaU1Vq+MMm2IcHW8xhhPuAheCZZ8PS88B0cz9rXknVw9bStuJgvMReptvWNmve2O/KG6O8x00aGCe6Jdo86OQSHE1ZiE0mDJvhbbgIEjT8Bd8AOwDtzXrMyw17tC2G+YAZg2US8q6xKOd/cYKUTourIRQBEi6uQs7g=
+	t=1713804930; cv=none; b=gBQEJIpAgRMiCswZoKpeJGuxmygrifl9vI0eoXXpn61AdNNF5uuu/Idbv4rNO9yE6LKlsIp87tbgIvyYbqiQb7Kfkmy9J46gybu6/2jCoICNfTTg6hhB4YS1n7yH4L95a/AShLeqrm6+rXb7q2ZweCCTorcANf1/vLonMr8R2VU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713804773; c=relaxed/simple;
-	bh=3/GWBoMvjgEOep+U+PUV0wTmJjwtNpbj6ntfK4jNUks=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=a4BhoqZ8XyZnH487v7gkhUgiszZUxVWFf3z2YGqHiKoAnk77JZnoVYH1TAJuLJsAFfNl9vgHIkl9Pf7dzZk+MY+hPT4dmG8U50j75NaYLPqtmAEYJ0DSsccUtCnWTQVunvUIUCee/4NFZdLddS0Sk7qDmYtkWK4I354xWlGHWIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SVbbHamD; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 59D60240005;
-	Mon, 22 Apr 2024 16:52:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1713804768;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/bdZjyK+cz4gPmCanhUjDaq4XaZFBYb3A0dLn9Cm1x8=;
-	b=SVbbHamDIX+Ww/Itls8kkhQCUnzjTqVQ3QYkJRK+jmV7MbWq/nwSJmjoE2pFg6c8O13//U
-	e0UxUzw/pR/hQrHzqzX4add5r8vrS35AwF04slxe2FMpy81QpXwnpiXIC9SLMYu46y1FUO
-	zdNc6FhULzaP0VRMdTqgUuY3kzlwygFf9QQkxv8GcllV++vPNsZ1EWabZXKoMTpd9U8JFw
-	gwO7Z2fZwBDI1jjKs+wbGSADSKTsjWLpHaBZeZj2JKDtqkUu+t6JrM+zlOVHyrAjwApYvo
-	PI3UDOXquh2kgrLGavBOssYoNyPl7MnuBM4HUZqueLSpxCq+x3yyhC5rcgo8sA==
+	s=arc-20240116; t=1713804930; c=relaxed/simple;
+	bh=2jZwFQHtiH7cm+Ga9AwJWMCkGznGng+DZ6vbx9U5YrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tFUTMVvm/w6M1YC4jtbpSHFHGC76GPfW+AMUpwkft30LqnFxjLTmS8FxNkBhS25UK784BRgzEAUec5z1ZsDbKTUeKCBOGSwsIK1c2F/MWMgA6F3B0DRzXc3KL5jtfwkfTB3E2N6EaQr395DUKi2ZEv+xZoes/V9pHKBrPw8sVj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m6dGXjxZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43MBEDIZ005693;
+	Mon, 22 Apr 2024 16:55:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=WqGboBVd32J2qAYOSSOnGKGRpD5bTQ7vE9elE/ZKkTA=; b=m6
+	dGXjxZbWqEl3GJWLoxB/fz5piKVqA/om+BPGJCQDj0Ysfm9cx8FrmJBHP3nJ+ae0
+	8P7C+cwA+OyQUYDr++QSAiSIdKks2mwx8FaOtIXfEK0XdQvSE6Iton0l7BhKbLjx
+	Lepk8LiEj5En6SXaJReYKR3PA/5dUdCZpbC7e+LTxiNezu6riCtLCwdK1HrnnJ1f
+	3dQeD7Zi+bABkOz0oZamuwtcJ7zCfK7IuXLHcnK3TI5GvO3Zi1MZglvHmO++brox
+	LXPqFTJB38QSFQEdoEsqN1CiWhDnG8izgHN1zK5Zl0SMpdonrSTSLSg2YpKFDEaR
+	BcUNfYrP2Pt7fWT/ZU5w==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xnmuvh5s7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Apr 2024 16:55:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43MGtIjK022925
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Apr 2024 16:55:18 GMT
+Received: from [10.216.42.44] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 22 Apr
+ 2024 09:55:10 -0700
+Message-ID: <aaee8605-848f-fe9c-63aa-af4ae2d399a6@quicinc.com>
+Date: Mon, 22 Apr 2024 22:25:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 22 Apr 2024 18:52:47 +0200
-Message-Id: <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
-To: "Mark Brown" <broonie@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Vaishnav Achath" <vaishnav.a@ti.com>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, "Rob Herring" <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: (subset) [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5
- support
-Cc: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-mips@vger.kernel.org>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@linaro.org>
-X-Mailer: aerc 0.17.0
-References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
- <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
-In-Reply-To: <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v10 4/6] arm64: dts: qcom: sm8450: Add OPP table support
+ to PCIe
+Content-Language: en-US
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas
+	<bhelgaas@google.com>, <johan+linaro@kernel.org>,
+        <bmasney@redhat.com>, <djakov@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_parass@quicinc.com>, <krzysztof.kozlowski@linaro.org>
+References: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
+ <20240409-opp_support-v10-4-1956e6be343f@quicinc.com>
+ <20240422144431.GE9775@thinkpad>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20240422144431.GE9775@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: huHlSHyjlGnejDwA-RQTxRbv-uGRYwTh
+X-Proofpoint-ORIG-GUID: huHlSHyjlGnejDwA-RQTxRbv-uGRYwTh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-22_09,2024-04-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 mlxlogscore=999 clxscore=1011 priorityscore=1501
+ mlxscore=0 suspectscore=0 phishscore=0 adultscore=0 spamscore=0
+ malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2404010003 definitions=main-2404220071
 
-Hello Mark,
 
-On Thu Apr 11, 2024 at 2:03 PM CEST, Mark Brown wrote:
-> On Wed, 10 Apr 2024 11:29:03 +0200, Th=C3=A9o Lebrun wrote:
-> > V3 of this series adding octal SPI-NOR support to Mobileye EyeQ5
-> > platform. It has been tested on EyeQ5 hardware successfully.
-> > V1 cover letter [5] contains a brief summary of what gets added.
-> >=20
-> > There is no dependency except if you want zero errors in devicetree:
-> > system-controller series [3] for <&clocks> phandle.
-> >=20
-> > [...]
->
-> Applied to
->
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-ne=
-xt
->
-> Thanks!
->
-> [1/9] spi: dt-bindings: cdns,qspi-nor: sort compatibles alphabetically
->       commit: 002514d91fccde2adbe750c9ec5c6207d56c890b
-> [2/9] spi: dt-bindings: cdns,qspi-nor: add mobileye,eyeq5-ospi compatible
->       commit: 52826aee484b3ebb6ed94c1ae89c0944110ed8b1
-> [3/9] spi: dt-bindings: cdns,qspi-nor: make cdns,fifo-depth optional
->       commit: eb4fdb4bf46f875eac3c093f7ff43a223985f7b8
-> [4/9] spi: cadence-qspi: allow FIFO depth detection
->       (no commit info)
-> [5/9] spi: cadence-qspi: add no-IRQ mode to indirect reads
->       (no commit info)
-> [6/9] spi: cadence-qspi: add early busywait to cqspi_wait_for_bit()
->       (no commit info)
-> [7/9] spi: cadence-qspi: add mobileye,eyeq5-ospi compatible
->       (no commit info)
 
-All commits tagged "(no commit info)" do not show up in your for-next
-branch. Is that expected and is there anything I can do? There was one
-pending -Wunused-variable compiler warning to be addressed for
-example, see [0].
+On 4/22/2024 8:14 PM, Manivannan Sadhasivam wrote:
+> On Tue, Apr 09, 2024 at 03:43:22PM +0530, Krishna chaitanya chundru wrote:
+>> PCIe needs to choose the appropriate performance state of RPMh power
+> 
+> 'PCIe host controller driver'
+> 
+>> domain and interconnect bandwidth based up on the PCIe data rate.
+> 
+> 'based on the PCIe data rate'
+> 
+>>
+>> Add the OPP table support to specify RPMh performance states and
+> 
+> 'Hence, add...'
+> 
+>> interconnect peak bandwidth.
+>>
+>> Different link configurations may share the same aggregate bandwidth,
+> 
+> 'It should be noted that the different...'
+> 
+>> e.g., a 2.5 GT/s x2 link and a 5.0 GT/s x1 link have the same bandwidth
+>> and share the same OPP entry.
+>>
+>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 77 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 77 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> index 615296e13c43..9dfe16012726 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> @@ -1855,7 +1855,35 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>>   			pinctrl-names = "default";
+>>   			pinctrl-0 = <&pcie0_default_state>;
+>>   
+>> +			operating-points-v2 = <&pcie0_opp_table>;
+>> +
+>>   			status = "disabled";
+>> +
+>> +			pcie0_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				/* GEN 1 x1 */
+>> +				opp-2500000 {
+>> +					opp-hz = /bits/ 64 <2500000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +					opp-peak-kBps = <250000 1>;
+>> +				};
+>> +
+>> +				/* GEN 2 x1 */
+>> +				opp-5000000 {
+>> +					opp-hz = /bits/ 64 <5000000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +					opp-peak-kBps = <500000 1>;
+>> +				};
+>> +
+>> +				/* GEN 3 x1 */
+>> +				opp-8000000 {
+>> +					opp-hz = /bits/ 64 <8000000>;
+> 
+> I doubt this value. See below...
+> 
+>> +					required-opps = <&rpmhpd_opp_nom>;
+>> +					opp-peak-kBps = <984500 1>;
+>> +				};
+>> +			};
+>> +
+>>   		};
+>>   
+>>   		pcie0_phy: phy@1c06000 {
+>> @@ -1982,7 +2010,56 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>>   			pinctrl-names = "default";
+>>   			pinctrl-0 = <&pcie1_default_state>;
+>>   
+>> +			operating-points-v2 = <&pcie1_opp_table>;
+>> +
+>>   			status = "disabled";
+>> +
+>> +			pcie1_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				/* GEN 1 x1 */
+>> +				opp-2500000 {
+>> +					opp-hz = /bits/ 64 <2500000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +					opp-peak-kBps = <250000 1>;
+>> +				};
+>> +
+>> +				/* GEN 1 x2 GEN 2 x1 */
+>> +				opp-5000000 {
+>> +					opp-hz = /bits/ 64 <5000000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +					opp-peak-kBps = <500000 1>;
+>> +				};
+>> +
+>> +				/* GEN 2 x2 */
+>> +				opp-10000000 {
+>> +					opp-hz = /bits/ 64 <10000000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +					opp-peak-kBps = <1000000 1>;
+>> +				};
+>> +
+>> +				/* GEN 3 x1 */
+>> +				opp-8000000 {
+>> +					opp-hz = /bits/ 64 <8000000>;
+> 
+> GEN 3 x1 frequency is lower than GEN 2 x2? This looks strange. Both should be of
+> same frequency.
+> 
+Gen2 is 5GT/s where as GEN3 is 8GT/s. so the freq for 3 x1(8 x1 GT/s) is
+less than Gen2 x2(5 x2 GT/s)
 
-=E2=9F=A9 git log --oneline --author theo.lebrun v6.9-rc1..spi/for-next
-eb4fdb4bf46f spi: dt-bindings: cdns,qspi-nor: make cdns,fifo-depth optional
-52826aee484b spi: dt-bindings: cdns,qspi-nor: add mobileye,eyeq5-ospi compa=
-tible
-002514d91fcc spi: dt-bindings: cdns,qspi-nor: sort compatibles alphabetical=
-ly
-563f8598cbc2 spi: cadence-qspi: minimise register accesses on each op if !D=
-TR
-dcc594aef1bf spi: cadence-qspi: store device data pointer in private struct
-708eafeba9ee spi: cadence-qspi: allow building for MIPS
-
-[0]: https://lore.kernel.org/lkml/161eebc1-9417-4ab0-ad8c-c1b17be119b4@sire=
-na.org.uk/
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+- Krishna Chaitanya.
+>> +					required-opps = <&rpmhpd_opp_nom>;
+>> +					opp-peak-kBps = <984500 1>;
+>> +				};
+>> +
+>> +				/* GEN 3 x2 GEN 4 x1 */
+> 
+> 'GEN 3 x2 and GEN 4 x1'
+> 
+> - Mani
+> 
 
