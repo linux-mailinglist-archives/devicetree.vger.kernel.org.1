@@ -1,110 +1,96 @@
-Return-Path: <devicetree+bounces-61893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257A18AE8A6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2222B8AE8FA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4ECE2896C7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:50:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2C39288B90
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE9213774D;
-	Tue, 23 Apr 2024 13:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC65413B2AF;
+	Tue, 23 Apr 2024 14:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJRvjvv+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qww5zQ8M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1223136E38;
-	Tue, 23 Apr 2024 13:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE06A13774F;
+	Tue, 23 Apr 2024 14:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713880243; cv=none; b=adeTs/X7gdMN4GeTjj4Eo/qZc3Nbep0J0K3x29L3FP2BtBCjIgnsNCeL2o3EhpHkVJ0DR8yUqsjAlbxZYFClG2zfhj4FLh+cSMoD4V6dbIqFCf+duUPd7q1gPM4JmcgHqQt69tFnW6SMUhMI7ntp/TgFD3AWD9u7o0CcUcPIcPI=
+	t=1713880858; cv=none; b=AZUVozaGKgOakFSRTr5fi8FjCKi9gt9zzcD1dUsxpSXKxqLETwwnqDpg271GZcL73yi2veLdGfngQ062UJr4sV+iAOaoMLf4m+Y6U/bnLYoN5YTyBT0XVezW5GtGYOgfWX3luQEYGVubbH+CrKTpbP8+skFlPib3Z6dvg0LU9eY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713880243; c=relaxed/simple;
-	bh=69xKIHYi9IlkPeRLSshR5Kkz2te6ObXlX0YWGXKs98A=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=h6TLAngWpctKYdE2NtzMP90csgkM24/T0Z5CfB5/vbv5rp+00gQv3/YLYk8EcF86P7pznTuRtQ9MjTo2XCecmXxyLD22AbVZ+E30HKO/89hpG3FkMgwjreitm8QDyKKqBzXABaX0ulsdXpZlIf568NE+XIq2ai8aMfTu2BBCVxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJRvjvv+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE67C32783;
-	Tue, 23 Apr 2024 13:50:42 +0000 (UTC)
+	s=arc-20240116; t=1713880858; c=relaxed/simple;
+	bh=U5ONziDaCttdPKhkIOEueLEAiyPNH0TnEDai6u5SLNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BbcwtZUJ8q5ITGznhly7tkNSnCjuyNQ7lnJIdZIPKnKcMShW5QmJXnxE+ZRHkBL/H/sVoKU2udXWaNPp5BgDvlI6+O5SiiJOI5zkZ095/Pi3RJ6sA1XfJdRNh+BbnLKUQfXPTBSr+tCWeA7saoPYcaWLsIoXpF3CIaASzg1AnMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qww5zQ8M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD06C116B1;
+	Tue, 23 Apr 2024 14:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713880242;
-	bh=69xKIHYi9IlkPeRLSshR5Kkz2te6ObXlX0YWGXKs98A=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=uJRvjvv+NskakdFYTyFSA8LvJusLkXDk85F1TIbbT6zb04rUFmlCmdZJbPRZJctwv
-	 fyLDEgsPmHdVYnqa2irO5oOhhnc5gVEkb7KmGBIk56+RYNRZkav5cWgxyhlm87IzXv
-	 eMLCy4fXhtNLZMVGt+GkXPnTWQhHykIclEoBLxur9mMYJrWv3ogAdZNM/s6/AOWn3D
-	 rNbNtLZ7nabTNi6EpZ/FlU4ArW1RKkoFtp7sw93audwp4THtxqn3012OrZBEY7bVbJ
-	 eBaXyZ7FeBe0vj/3yDjC6u53Q47gvgIAMXDYt3R/cNRL+LkE3JLlIoHPHTq+xh57y0
-	 8W4EMtW3zYA3A==
-Date: Tue, 23 Apr 2024 08:50:41 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1713880858;
+	bh=U5ONziDaCttdPKhkIOEueLEAiyPNH0TnEDai6u5SLNQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qww5zQ8MpvVgMCgYso0anl+IDVueBE7HE0bQqpm3UfHjVqss83se6mrRVVbmhnSHE
+	 inP3GOhYCBMyamNWjEALHnoNBFHqIKFNY0eGZvvPLRAESMtEDuogW1BxCa7xLZR//B
+	 lEkIek9mkZjg+oZA87gEtkkHpLJJMs88LE+HQXUgrOJMHd5wFo+h7+nc1DYjUCQzug
+	 p44dEhTE+jCPUQo++URXAqwdnuqKuuRbD9up3rCYDyXhhOBiwi6gO4U0osXUJie4js
+	 O2gNfADYS1CMg+R2tfeioc8PJMg4SuIKvDPEl4YABHYGeHmfkLU6r81gEo4Jw3cQbe
+	 KyJHtIVfIG+Og==
+Date: Tue, 23 Apr 2024 09:00:56 -0500
+From: Rob Herring <robh@kernel.org>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: joel@jms.id.au, conor+dt@kernel.org, zev@bewilderbeest.net,
+	devicetree@vger.kernel.org, linux@roeck-us.net,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, wim@linux-watchdog.org,
+	linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: watchdog: aspeed,ast2400-wdt: Convert to
+ DT schema
+Message-ID: <171388085227.112740.4043099256538346209.robh@kernel.org>
+References: <20240403020439.418788-1-andrew@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, dmaengine@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- Vinod Koul <vkoul@kernel.org>, linux-hardening@vger.kernel.org, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20240423123302.1550592-2-amelie.delaunay@foss.st.com>
-References: <20240423123302.1550592-1-amelie.delaunay@foss.st.com>
- <20240423123302.1550592-2-amelie.delaunay@foss.st.com>
-Message-Id: <171388024017.101826.4338039717721212935.robh@kernel.org>
-Subject: Re: [PATCH 01/12] dt-bindings: dma: New directory for STM32 DMA
- controllers bindings
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240403020439.418788-1-andrew@codeconstruct.com.au>
 
 
-On Tue, 23 Apr 2024 14:32:51 +0200, Amelie Delaunay wrote:
-> Gather the STM32 DMA controllers bindings under ./dma/stm32/
+On Wed, 03 Apr 2024 12:34:39 +1030, Andrew Jeffery wrote:
+> Squash warnings such as:
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> ```
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e600000/watchdog@1e785000: failed to match any schema with compatible: ['aspeed,ast2400-wdt']
+> ```
+> 
+> The schema binding additionally defines the clocks property over the
+> prose binding to align with use of the node in the DTS files.
+> 
+> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 > ---
->  .../devicetree/bindings/dma/{ => stm32}/st,stm32-dma.yaml     | 4 ++--
->  .../devicetree/bindings/dma/{ => stm32}/st,stm32-dmamux.yaml  | 4 ++--
->  .../devicetree/bindings/dma/{ => stm32}/st,stm32-mdma.yaml    | 4 ++--
->  3 files changed, 6 insertions(+), 6 deletions(-)
->  rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-dma.yaml (97%)
->  rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-dmamux.yaml (89%)
->  rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-mdma.yaml (96%)
+> v2: Address feedback from Rob and Zev
+> 
+>     - Rob: https://lore.kernel.org/linux-watchdog/20240402180718.GA358505-robh@kernel.org/
+>     - Zev: https://lore.kernel.org/linux-watchdog/65722a59-2e94-4616-81e1-835615b0e600@hatter.bewilderbeest.net/
+> 
+> v1: https://lore.kernel.org/linux-watchdog/20240402120118.282035-1-andrew@codeconstruct.com.au/
+> 
+>  .../bindings/watchdog/aspeed,ast2400-wdt.yaml | 142 ++++++++++++++++++
+>  .../bindings/watchdog/aspeed-wdt.txt          |  73 ---------
+>  2 files changed, 142 insertions(+), 73 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/spi/st,stm32-spi.yaml references a file that doesn't exist: Documentation/devicetree/bindings/dma/st,stm32-dma.yaml
-Documentation/devicetree/bindings/spi/st,stm32-spi.yaml: Documentation/devicetree/bindings/dma/st,stm32-dma.yaml
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240423123302.1550592-2-amelie.delaunay@foss.st.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Applied, thanks!
 
 
