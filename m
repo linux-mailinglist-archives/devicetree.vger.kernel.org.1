@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-61982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D9C8AF508
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F158F8AF50C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:08:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B896D1C226CC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:07:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 251C01C22D92
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866CB13F455;
-	Tue, 23 Apr 2024 17:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 141E413FD7D;
+	Tue, 23 Apr 2024 17:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J1+LVHHG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UAqppM+c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44B713DDB6
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6283A13E058
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713891990; cv=none; b=FbB+JBGJVUJ9t6onus47JUc2lq1fCRnKRS++C60u/InliqXJdJWpogwbwEaVAutE3KThvLS/K9kxelcGk2C1P6g0zLAW8+7ZIUwBMTY4yQWYIva2FVoK1Hwud3sPeXCIOIp4YAXg1VPIx4OskrdDAInZwjKPUrv/UX0U+7DiAN8=
+	t=1713891990; cv=none; b=vCoOVDDAGeAuvGXvm3w59U7QQAS832k7BlOthAicwujQbBZbWZ3TltSwFS3b4/i79YVlfkvY5JGyr+4p0QcU3+Dew8gIDZ8mjgI7waaVeVMTybTAfJRb0oLtKukO1TvcUoDRTlb7R0TK8QZmP3LdCS1VVwB8EoJLcsyBYOPtazw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1713891990; c=relaxed/simple;
-	bh=lEQL4JvbQIS8+IoUWQG/7yIMLEyuerLO3fV1yFnwKN8=;
+	bh=1BGjDVhru+5/yOFEbbagkzyjgP7K72hcwEVM+kRJzS0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eCp1MSYvDt4XKBH6o7pgamcPKfbT7r8KywKWW5nOf6MzenBbDnPbp8Z0Wls6IOH200mVdUL2uT2exq2CVM6f6rYrXUA9bBQ28E+zjh+MZd327pWemHOWbrbSjv1tuWu5SFnJPlaM2nkxbPGVzuvnj+KkfAnG/5dBtcVFD2DqtSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J1+LVHHG; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:To:Cc; b=STFTW4woucYPvaTxi4hcKPS6FEAs9nJylvep5enEeo9kzX51ooOnO+2+JxRrCvjanxLQ/JemTzN3rNuLbWfGkB8dpIYiGYEaZvzSB1j1b7BIi6mVhU7iXeYWuVybRZA2Kd8Dl4iz5WTS/ipxC46P8NmiV0PaWRe4wdXI4n+lIkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UAqppM+c; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a556d22fa93so663392966b.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:06:27 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a5878caeb9eso150893066b.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:06:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713891986; x=1714496786; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713891987; x=1714496787; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vTeJ++F/mnm19eqXVShab+zLQp1WnhObbyrG4T/vDvk=;
-        b=J1+LVHHGU4fc/kJiwUkIocQCh3g6oYCGubGzapdWl277CvX3AHHCab0XHPO48nb0rV
-         a/y85XwKDxsn0dJ3smjAtFj0KRCC0eGloLvJfI2OL0YduBLKDIOir0rNYmBsbEu5MsxH
-         HClZQako+P0Dye1RWj0EfN0DgS9zw1LxE+J1jFt/FIGpZaZS8Lf9UfQfCDR4P8GhnsO3
-         QNyt/xt5gsCsUAbO+M60veQCIR2tW5FE9ho/grpyY+EDeXES/sprO+RsBTpbsuXb9dqh
-         GXev4y7W7s4LxEDCs/TyCLuuvymSAlRMaw+mI/OprgO7QLyR44SndGXsAX5z6Sh2DEdr
-         Ls4w==
+        bh=7PAyFdu9H0sY3Lt54kr3wrNBIQI45vetjxyjmFr1cOo=;
+        b=UAqppM+chKH61EnIriaFT5as5fVionuFjUPlqsXg2Rq9sX5XOusjfwrgw6UF8puq5i
+         RGVe+p4t2j4t+Vec8GJJNgva3//nTLEV62ZxLgZfnehH1QzP8QnHGA+qbU/v2K6IDjxH
+         TtyM2Eraufg+dSNsGSmpLIYSUJjvdCOc7GmQ3S3q8ZV8NgPL5gsenop2VjtqxkXfaE8r
+         oM6CEhfPfT+zQEV0Af/y0ddFV5D+uM9kExv9Gib56UDK3/kiFvV6ZUUe+AfsSVj0GyPl
+         nQiZjDIus5VG41JZhqcuGZZ9ku15n0lVN8nuBc0KNWU1JAkfgPQ53DXG+DWXIHWhadPj
+         BdRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713891986; x=1714496786;
+        d=1e100.net; s=20230601; t=1713891987; x=1714496787;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vTeJ++F/mnm19eqXVShab+zLQp1WnhObbyrG4T/vDvk=;
-        b=pyQ/0fudFpAMTAVFt8lJMCv9vvMHi0QvXJJoI93H4jRmLSF2JMjl2DDjgp+ABtsxKK
-         s8ESA+bRf/98HHskB+V5pz3zByXxbepinluf+lOuraGW/PaWBStQArRgFOlG1zOZvjNG
-         pncUzGA/HQ9N3yz7puoAqpTfw0573l47kH/chnaQO2n9Jm7Yc0L3zKIAVEAMMoecMPC6
-         gejbtNHOTHZxhAckuPbWvRxUDPxxeppl1F9IEDZzcGKR5cEOaYRAXViaiEUmTuNXCWLz
-         gKlwkcfb4j+rckeTduXMTKuMJ4iu05eaXwi+mjJ+ZxIW+TWSEUgIXr8iECz5i6Eyuh4U
-         y39w==
-X-Forwarded-Encrypted: i=1; AJvYcCXwbJpkR6jPYgI7qL7GgMjAQveHlxW0XRutgAM9o1FKY8En4YGCr8tkQwR0k4otoaAMNgPjudZmUViNShjp+OceaonFNiCWpDsL/g==
-X-Gm-Message-State: AOJu0YyHXv8ugV8JnA+x1HZISFXqAXR7Hq7bGp4VeddoAPAX4FkfGqPY
-	TmTCjyUGYUzLt+lJ3rvO0QmUJbCfu+1HcxLG4IvLW5UxCI0mVA7nvFZTK4J7AfQ=
-X-Google-Smtp-Source: AGHT+IGmX8/L0/I9Xfi/12RjpvA/XDSBEjDv0Ba0q/FGDoMM5t1bQJxoQFANCyEahhfvXPMRwfCN7A==
-X-Received: by 2002:a17:907:bb92:b0:a58:7505:1968 with SMTP id xo18-20020a170907bb9200b00a5875051968mr2076701ejc.43.1713891986224;
+        bh=7PAyFdu9H0sY3Lt54kr3wrNBIQI45vetjxyjmFr1cOo=;
+        b=JnMJEiNyW1f3IjKJ8Xq2chv/D/vU1dYAjlcQIRyocHau3/E9HGT2nBFYXAYNhnLg9O
+         en9iJrkaNNWkqUzLuBXhptc0vP2G0A46aeudh18B0zXlMq0bZBzhxLpUEU60j0D38WaG
+         q6v2UKJU8NKNy6xbMPojj0rD5mn+I/bZpyzvXbLSIoytF7z2vjkOvKJwH2Bav7Y0FP1k
+         4OYSe/ZzhMa4OPolWt8kqz432bK7oHQ7sWHT5VKzyg5exuA+5DdMhQHgp3trb3+NzzsA
+         D4hI1GUaR89zi3EQbSYCh/aGDQdHOkjy3T9v3UEhU6tkN8A9RKJ4C9Zc10tduynIyyD3
+         bflg==
+X-Forwarded-Encrypted: i=1; AJvYcCUBGHMGA3FNmvpTSUagl5Y2Yzfb+76Pp1oCRRxBbPd7oUsLniegtkIL0wlNzqtmpV/0cQQYN5A/Id9V9ThGO3J00gaICYsWT6RfJQ==
+X-Gm-Message-State: AOJu0Yx6g+u/hC6ATWZ9PmWWveBKB2oMSAIn86czDPiVBAMZ6kLDKCPH
+	+Scgt8neoEgVEp06k+fQ3Tyd48j0usisBbf8XSHWPMMv//QBFMGdLFQHRoixX6A=
+X-Google-Smtp-Source: AGHT+IEY3fEkZYym5AetXKUhc3n7D5n6/HgpY9y7SZRytgjmS2FxWFGvhQdXsj4H4Kyog2WyOktaKw==
+X-Received: by 2002:a17:906:578d:b0:a58:734d:f111 with SMTP id k13-20020a170906578d00b00a58734df111mr2664615ejq.11.1713891986669;
         Tue, 23 Apr 2024 10:06:26 -0700 (PDT)
 Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id t22-20020a1709063e5600b00a5209dc79c1sm7351624eji.146.2024.04.23.10.06.25
+        by smtp.gmail.com with ESMTPSA id t22-20020a1709063e5600b00a5209dc79c1sm7351624eji.146.2024.04.23.10.06.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 10:06:25 -0700 (PDT)
+        Tue, 23 Apr 2024 10:06:26 -0700 (PDT)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 23 Apr 2024 18:06:05 +0100
-Subject: [PATCH 3/7] phy: exynos5-usbdrd: support isolating HS and SS ports
- independently
+Date: Tue, 23 Apr 2024 18:06:06 +0100
+Subject: [PATCH 4/7] phy: exynos5-usbdrd: set ref clk freq in
+ exynos850_usbdrd_utmi_init()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240423-usb-phy-gs101-v1-3-ebdcb3ac174d@linaro.org>
+Message-Id: <20240423-usb-phy-gs101-v1-4-ebdcb3ac174d@linaro.org>
 References: <20240423-usb-phy-gs101-v1-0-ebdcb3ac174d@linaro.org>
 In-Reply-To: <20240423-usb-phy-gs101-v1-0-ebdcb3ac174d@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -101,72 +101,68 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.12.4
 
-Some versions of this IP have been integrated using separate PMU power
-control registers for the HS and SS parts. One example is the Google
-Tensor gs101 SoC.
+While commit 255ec3879dd4 ("phy: exynos5-usbdrd: Add 26MHz ref clk
+support") correctly states that CLKRSTCTRL[7:5] doesn't need to be set
+on modern Exynos platforms, SSPPLLCTL[2:0] should be programmed with
+the frequency of the reference clock for the USB2.0 phy.
 
-Such SoCs can now set pmu_offset_usbdrd0_phy_ss in their
-exynos5_usbdrd_phy_drvdata for the SS phy to the appropriate value.
+Do so.
 
-The existing 'usbdrdphy' alias can not be used in this case because
-that is meant for determining the correct PMU offset if multiple
-distinct PHYs exist in the system (as opposed to one PHY with multiple
-isolators).
-
+Fixes: 691525074db9 ("phy: exynos5-usbdrd: Add Exynos850 support")
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
+
 ---
- drivers/phy/samsung/phy-exynos5-usbdrd.c | 24 ++++++++++++++----------
- 1 file changed, 14 insertions(+), 10 deletions(-)
+Feel free to drop the Fixes: if you think that is unwarranted here.
+---
+ drivers/phy/samsung/phy-exynos5-usbdrd.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-index ac208b89f5a6..d69187c22613 100644
+index d69187c22613..0f9078689856 100644
 --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
 +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-@@ -196,6 +196,7 @@ struct exynos5_usbdrd_phy_drvdata {
- 	const struct exynos5_usbdrd_phy_config *phy_cfg;
- 	const struct phy_ops *phy_ops;
- 	u32 pmu_offset_usbdrd0_phy;
-+	u32 pmu_offset_usbdrd0_phy_ss;
- 	u32 pmu_offset_usbdrd1_phy;
- 	bool has_common_clk_gate;
- };
-@@ -1050,16 +1051,6 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
- 	if (channel < 0)
- 		dev_dbg(dev, "Not a multi-controller usbdrd phy\n");
+@@ -155,6 +155,9 @@
+ #define CLKRST_PORT_RST				BIT(1)
+ #define CLKRST_PHY_SW_RST			BIT(3)
  
--	switch (channel) {
--	case 1:
--		pmu_offset = phy_drd->drv_data->pmu_offset_usbdrd1_phy;
--		break;
--	case 0:
--	default:
--		pmu_offset = phy_drd->drv_data->pmu_offset_usbdrd0_phy;
--		break;
--	}
--
- 	/* Get Vbus regulators */
- 	phy_drd->vbus = devm_regulator_get(dev, "vbus");
- 	if (IS_ERR(phy_drd->vbus)) {
-@@ -1094,6 +1085,19 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
- 		phy_drd->phys[i].phy = phy;
- 		phy_drd->phys[i].index = i;
- 		phy_drd->phys[i].reg_pmu = reg_pmu;
-+		switch (channel) {
-+		case 1:
-+			pmu_offset = phy_drd->drv_data->pmu_offset_usbdrd1_phy;
-+			break;
-+		case 0:
-+		default:
-+			pmu_offset = phy_drd->drv_data->pmu_offset_usbdrd0_phy;
-+			if (i == EXYNOS5_DRDPHY_PIPE3
-+			    && phy_drd->drv_data->pmu_offset_usbdrd0_phy_ss)
-+				pmu_offset = phy_drd->drv_data
-+						->pmu_offset_usbdrd0_phy_ss;
-+			break;
-+		}
- 		phy_drd->phys[i].pmu_offset = pmu_offset;
- 		phy_drd->phys[i].phy_cfg = &drv_data->phy_cfg[i];
- 		phy_set_drvdata(phy, &phy_drd->phys[i]);
++#define EXYNOS850_DRD_SSPPLLCTL			0x30
++#define SSPPLLCTL_FSEL				GENMASK(2, 0)
++
+ #define EXYNOS850_DRD_UTMI			0x50
+ #define UTMI_FORCE_SLEEP			BIT(0)
+ #define UTMI_FORCE_SUSPEND			BIT(1)
+@@ -788,6 +791,31 @@ static void exynos850_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
+ 	reg |= HSP_VBUSVLDEXT | HSP_VBUSVLDEXTSEL;
+ 	writel(reg, regs_base + EXYNOS850_DRD_HSP);
+ 
++	reg = readl(regs_base + EXYNOS850_DRD_SSPPLLCTL);
++	reg &= ~SSPPLLCTL_FSEL;
++	switch (phy_drd->extrefclk) {
++	case EXYNOS5_FSEL_50MHZ:
++		reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 7);
++		break;
++	case EXYNOS5_FSEL_26MHZ:
++		reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 6);
++		break;
++	case EXYNOS5_FSEL_24MHZ:
++		reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 2);
++		break;
++	case EXYNOS5_FSEL_20MHZ:
++		reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 1);
++		break;
++	case EXYNOS5_FSEL_19MHZ2:
++		reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 0);
++		break;
++	default:
++		dev_warn(phy_drd->dev, "unsupported ref clk: %#.2x\n",
++			 phy_drd->extrefclk);
++		break;
++	}
++	writel(reg, regs_base + EXYNOS850_DRD_SSPPLLCTL);
++
+ 	/* Power up PHY analog blocks */
+ 	reg = readl(regs_base + EXYNOS850_DRD_HSP_TEST);
+ 	reg &= ~HSP_TEST_SIDDQ;
 
 -- 
 2.44.0.769.g3c40516874-goog
