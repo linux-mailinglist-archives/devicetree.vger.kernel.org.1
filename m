@@ -1,206 +1,208 @@
-Return-Path: <devicetree+bounces-61684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516858ADB40
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 02:44:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8928ADB44
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 02:47:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D172E1F227B5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 00:44:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A38B1F226C8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 00:47:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC77917BB7;
-	Tue, 23 Apr 2024 00:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227C229AB;
+	Tue, 23 Apr 2024 00:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="b5YDzs2q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZ3SiHyu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63BA5E574;
-	Tue, 23 Apr 2024 00:43:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56D1802;
+	Tue, 23 Apr 2024 00:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713833035; cv=none; b=l4120I2hL9Z2zk8pjqoenwCituq7morwRgLSWBXkI9KaHX5KrbeCyzJFbbThuo7UixJ9VhE+559CpPwXA2/SOzjy2VKvey83vVry8NjS/XSlDeJ+QPY+CBmuDXqr/bQTWQab+5BPvg5fFiDEhQyL05wo2nfDQavNUotGLftK09w=
+	t=1713833259; cv=none; b=av2/fr4LqitAezw9DGqYK9W6qp6jo0zFfI5yRIYBHZP3cTP/DmY206FI4v8ijCIvfBpd/1SudIJT0hOCT0BALzeVEgj3wMtq+tOA5Qohvv95fdOLiNOw0YXrDlLbm0Of7kP/IMhWhsPJsf2mOZlHcnRkaKcROMjD+2A0GIv7Epw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713833035; c=relaxed/simple;
-	bh=5wf3JZLqI6upNb+N5iKbqNKrv3daabbZy4Q4+q2D1Yc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hPokRwxdbuiY87a6+C8F3mIVtJNc5Nu79qWUAlPLrdgcOJE4LHYfIT6WM5qOptBfkEMgx+KyTZMGXLqj9+qvoWVnZSeT6CfGygfbMv9GCYN+H8DfRIyklOfKw1yezBXVU4dRIoHD6h9rRVhe1mixoKFu6aaF+xNgW8ih4eDqeZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=b5YDzs2q; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1713833030;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4TC68yymP75Ak5L5NmW4Ic8c+OFYL0ZiXlhMXToNWT0=;
-	b=b5YDzs2qPHOpGi0lWbwotcXXHGEdno2XCkWbu0DdQLgiAG7C/Si7U8DsWyX3ND6MgMr+Ae
-	dZKls3h11dutdJnnjNCxUgl/nr6nf7YN1T+abFqyEFBB3Q2s+N8O0DCFHrG67b5RPAd1GZ
-	zgx83enO5AwUd7UcT23VyvwZxrqLeAMj7PEzGUL7luCfl9QfX+2lC8s2y3Z8oI6PJP4ByT
-	nwcHUgOmBfZyC9VY5dSsV2mSEeDmtmDxJFImBMOuHm0A8GLQ9iqC8gV2YvXAs9APaGecAz
-	fBJZCbNpQmvR8UvAqbpCPpfFNC80Xd1ZnSgPvNUuzWZtTtyxqA7sL4CnkZruDg==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	didi.debian@cknow.org,
-	Marek Kraus <gamiee@pine64.org>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Correct the model names for Pine64 boards
-Date: Tue, 23 Apr 2024 02:43:44 +0200
-Message-Id: <06ce014a1dedff11a785fe523056b3b8ffdf21ee.1713832790.git.dsimic@manjaro.org>
-In-Reply-To: <ec124dab2b1a8776aa39177ecce34babca3a50e2.1713832790.git.dsimic@manjaro.org>
-References: <ec124dab2b1a8776aa39177ecce34babca3a50e2.1713832790.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1713833259; c=relaxed/simple;
+	bh=LPMHQme1V8vDzMirJlOpLb0vftLJDLrVwcaPBuEO5Fo=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=jEegyCr7MmzbXKQjXNMFpFDTPdUFrnxBeINC17acnofXbEcJb43QQHqQCvI/luygp7DNQHOQAhEtmrrq6UvZL/mXCgpXai26oJXcCEXEbBQ94KdGKWGyXOOySrFk7lSRzLyjVUpXecQjfkeE/80ihCRI4KnbUKT2JZvfMTCxLgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZ3SiHyu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 675CBC113CC;
+	Tue, 23 Apr 2024 00:47:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713833258;
+	bh=LPMHQme1V8vDzMirJlOpLb0vftLJDLrVwcaPBuEO5Fo=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=SZ3SiHyuarYWB1F6tUkkzJzyu22t8hnVHWFlNGoRPoXlF7pH8kOwJUhYRe4QUK/8+
+	 JsVMSN0pt92WDOrwRouIEgBC9KwME4SGtqhrz3urJK3N0yH+pQdAeRAS2Jdajax+fv
+	 ezTpMm4VrCIa6YsUJnLeTUga7IcLYyWcviRWnb2VI17XAq46Kwm9W1olCg+vpLMe+k
+	 1WU/H0WoJ7QhZdXeFQt3NVyQ+LrE3aSdDJ4TI1fWoreR6UoiVw5PCMKZJnyV6AOcNn
+	 RvvxLGSH9+jyEU2G3HwSyJEFpRcVwJRb3i2Ebn7eZhQj/xS7col3kvATKlx7w/RcEw
+	 z93aSoFkhQYeg==
+Message-ID: <eca85d9094538b8713b556979e811b39.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <06f26e2f49a8423cb0122a08fb2d868484e2e0a4.1713164546.git.unicorn_wang@outlook.com>
+References: <cover.1713164546.git.unicorn_wang@outlook.com> <06f26e2f49a8423cb0122a08fb2d868484e2e0a4.1713164546.git.unicorn_wang@outlook.com>
+Subject: Re: [PATCH v14 4/5] clk: sophgo: Add SG2042 clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Chen Wang <unicorn_wang@outlook.com>
+To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org, haijiao.liu@sophgo.com, inochiama@outlook.com, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com, robh+dt@kernel.org, samuel.holland@sifive.com, xiaoguang.xing@sophgo.com
+Date: Mon, 22 Apr 2024 17:47:36 -0700
+User-Agent: alot/0.10
 
-Correct the model names of a few Pine64 boards and devices, according
-to their official names used on the Pine64 wiki.  This ensures consistency
-between the officially used names and the names in the source code.
+Quoting Chen Wang (2024-04-15 00:23:27)
+> diff --git a/drivers/clk/sophgo/clk-sophgo-sg2042.c b/drivers/clk/sophgo/=
+clk-sophgo-sg2042.c
+> new file mode 100644
+> index 000000000000..0bcfaab52f51
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/clk-sophgo-sg2042.c
+> @@ -0,0 +1,1645 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Sophgo SG2042 Clock Generator Driver
+> + *
+> + * Copyright (C) 2024 Sophgo Technology Inc. All rights reserved.
+> + */
+> +
+> +#include <asm/div64.h>
 
-Cc: Marek Kraus <gamiee@pine64.org>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
+asm goes after linux includes...
 
-Notes:
-    This continues the model naming cleanup started with Radxa boards. [1]
-    
-    These improvements may cause certain issues if some scripts misuse
-    /proc/device-tree/model to detect the board they're executed on.  Though,
-    the right way to detect a board is to use /proc/device-tree/compatible
-    instead, because its contents is part of the ABI.  Such scripts, if they
-    actually exist in the field, should be improved to use the right way to
-    detect the board model.
-    
-    [1] https://lore.kernel.org/linux-rockchip/6931289a252dc2d6c7bfd2388835c5e98ba0d8c9.1713457260.git.dsimic@manjaro.org/
+> +#include <linux/array_size.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/platform_device.h>
 
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts    | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts       | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts       | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts   | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts     | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi        | 2 +-
- arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts      | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
+here.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 61f3fec5a8b1..e5709c7ee06a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -16,7 +16,7 @@
- #include "rk3399-opp.dtsi"
- 
- / {
--	model = "Pine64 PinePhonePro";
-+	model = "Pine64 PinePhone Pro";
- 	compatible = "pine64,pinephone-pro", "rockchip,rk3399";
- 	chassis-type = "handset";
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 59843a7a199c..0b191d8462ad 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -8,7 +8,7 @@
- #include "rk3566.dtsi"
- 
- / {
--	model = "Pine64 RK3566 Quartz64-A Board";
-+	model = "Pine64 Quartz64 Model A";
- 	compatible = "pine64,quartz64-a", "rockchip,rk3566";
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-index 2d92713be2a0..26322a358d91 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-@@ -8,7 +8,7 @@
- #include "rk3566.dtsi"
- 
- / {
--	model = "Pine64 RK3566 Quartz64-B Board";
-+	model = "Pine64 Quartz64 Model B";
- 	compatible = "pine64,quartz64-b", "rockchip,rk3566";
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts
-index fdbf1c783242..fdbb4a6a19d8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts
-@@ -10,7 +10,7 @@
- #include "rk3566-soquartz.dtsi"
- 
- / {
--	model = "PINE64 RK3566 SOQuartz on Blade carrier board";
-+	model = "Pine64 SOQuartz on Blade carrier board";
- 	compatible = "pine64,soquartz-blade", "pine64,soquartz", "rockchip,rk3566";
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-index 6ed3fa4aee34..2b6f0df477b6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-@@ -5,7 +5,7 @@
- #include "rk3566-soquartz.dtsi"
- 
- / {
--	model = "Pine64 RK3566 SoQuartz with CM4-IO Carrier Board";
-+	model = "Pine64 SOQuartz on CM4-IO carrier board";
- 	compatible = "pine64,soquartz-cm4io", "pine64,soquartz", "rockchip,rk3566";
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts
-index f2095dfa4eaf..9a6a63277c3d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts
-@@ -5,7 +5,7 @@
- #include "rk3566-soquartz.dtsi"
- 
- / {
--	model = "PINE64 RK3566 SOQuartz on Model A carrier board";
-+	model = "Pine64 SOQuartz on Model A carrier board";
- 	compatible = "pine64,soquartz-model-a", "pine64,soquartz", "rockchip,rk3566";
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-index bfb7b952f4c5..dd4e9c1893c6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-@@ -8,7 +8,7 @@
- #include "rk3566.dtsi"
- 
- / {
--	model = "Pine64 RK3566 SoQuartz SOM";
-+	model = "Pine64 SOQuartz system on module";
- 	compatible = "pine64,soquartz", "rockchip,rk3566";
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-index 67414d72e2b6..e1deb9c13ad0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-@@ -13,7 +13,7 @@
- #include "rk3588.dtsi"
- 
- / {
--	model = "PINE64 QuartzPro64";
-+	model = "Pine64 QuartzPro64";
- 	compatible = "pine64,quartzpro64", "rockchip,rk3588";
- 
- 	aliases {
+> +
+> +/*
+> + * The clock of SG2042 is composed of three parts.
+> + * The registers of these three parts of the clock are scattered in three
+> + * different memory address spaces:
+> + * - pll clocks
+> + * - gate clocks for RP subsystem
+> + * - div/mux, and gate clocks working for other subsystem than RP subsys=
+tem
+> + */
+> +#include <dt-bindings/clock/sophgo,sg2042-pll.h>
+> +#include <dt-bindings/clock/sophgo,sg2042-rpgate.h>
+> +#include <dt-bindings/clock/sophgo,sg2042-clkgen.h>
+> +
+> +/* Registers defined in SYS_CTRL */
+> +#define R_PLL_BEGIN            0xC0
+[...]
+> +
+> +#define SG2042_PLL(_id, _name, _parent_name, _r_stat, _r_enable, _r_ctrl=
+, _shift) \
+> +       {                                                               \
+> +               .hw.init =3D CLK_HW_INIT(                                =
+ \
+> +                               _name,                                  \
+> +                               _parent_name,                           \
+
+This still uses a string. Please convert all parents described by
+strings to use clk_parent_data or clk_hw directly.
+
+> +                               &sg2042_clk_pll_ops,                    \
+> +                               CLK_GET_RATE_NOCACHE | CLK_GET_ACCURACY_N=
+OCACHE),\
+> +               .id =3D _id,                                             =
+ \
+> +               .offset_ctrl =3D _r_ctrl,                                =
+ \
+> +               .offset_status =3D _r_stat,                              =
+ \
+> +               .offset_enable =3D _r_enable,                            =
+ \
+> +               .shift_status_lock =3D 8 + (_shift),                     =
+ \
+> +               .shift_status_updating =3D _shift,                       =
+ \
+[...]
+> + * "clk_div_ddr01_1" is the name of Clock divider 1 control of DDR01, and
+> + * "clk_gate_ddr01_div1" is the gate clock in front of the "clk_div_ddr0=
+1_1",
+> + * they are both controlled by register CLKDIVREG28;
+> + * While for register value of mux selection, use Clock Select for DDR01=
+=E2=80=99s clock
+> + * as example, see CLKSELREG0, bit[2].
+> + * 1: Select in_dpll0_clk as clock source, correspondng to the parent in=
+put
+> + *    source from "clk_div_ddr01_0".
+> + * 0: Select in_fpll_clk as clock source, corresponding to the parent in=
+put
+> + *    source from "clk_div_ddr01_1".
+> + * So we need a table to define the array of register values correspondi=
+ng to
+> + * the parent index and tell CCF about this when registering mux clock.
+> + */
+> +static const u32 sg2042_mux_table[] =3D {1, 0};
+> +
+> +static const struct clk_parent_data clk_mux_ddr01_p[] =3D {
+> +       { .hw =3D &sg2042_div_clks[0].hw },
+> +       { .hw =3D &sg2042_div_clks[1].hw },
+
+Just use struct clk_init_data::parent_hws for this if you only have a
+clk_hw pointer for every element of the parent array.
+
+> +};
+> +
+> +static const struct clk_parent_data clk_mux_ddr23_p[] =3D {
+> +       { .hw =3D &sg2042_div_clks[2].hw },
+> +       { .hw =3D &sg2042_div_clks[3].hw },
+> +};
+> +
+[...]
+> +
+> +static int sg2042_pll_probe(struct platform_device *pdev)
+> +{
+> +       struct sg2042_clk_data *clk_data =3D NULL;
+> +       int i, ret =3D 0;
+> +       int num_clks =3D 0;
+> +
+> +       num_clks =3D ARRAY_SIZE(sg2042_pll_clks);
+> +
+> +       ret =3D sg2042_init_clkdata(pdev, num_clks, &clk_data);
+> +       if (ret < 0)
+> +               goto error_out;
+> +
+> +       ret =3D sg2042_clk_register_plls(&pdev->dev, clk_data, sg2042_pll=
+_clks,
+> +                                      num_clks);
+> +       if (ret)
+> +               goto cleanup;
+> +
+> +       return devm_of_clk_add_hw_provider(&pdev->dev,
+> +                                          of_clk_hw_onecell_get,
+> +                                          &clk_data->onecell_data);
+> +
+> +cleanup:
+> +       for (i =3D 0; i < num_clks; i++) {
+> +               if (clk_data->onecell_data.hws[i])
+> +                       clk_hw_unregister(clk_data->onecell_data.hws[i]);
+
+This should be unnecessary if devm is used throughout.
+
+> +       }
+> +
+> +error_out:
+> +       pr_err("%s failed error number %d\n", __func__, ret);
+> +       return ret;
+
+Just do this part in the one place the goto is. These two comments apply
+to all probes.
 
