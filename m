@@ -1,207 +1,234 @@
-Return-Path: <devicetree+bounces-61734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60E88ADFA4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:24:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E4B38AE0A5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:09:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62E3628858A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:24:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31B461C20EBD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF690502B3;
-	Tue, 23 Apr 2024 08:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="QSq4WAGa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D87956446;
+	Tue, 23 Apr 2024 09:08:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2028.outbound.protection.outlook.com [40.92.20.28])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2103.outbound.protection.partner.outlook.cn [139.219.146.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B8221A0B;
-	Tue, 23 Apr 2024 08:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.20.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A23185FB8A;
+	Tue, 23 Apr 2024 09:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.103
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713860649; cv=fail; b=m2VODMDUncBnisaNjwBBfFsma1OhHgzV5nje2ZOuer/KQ4YBe5OGMeuUcKOUx6Jj55C1KsKH/3ZWr0sUOoN2fAfQhJFlfn+1OrCQeRbE3Py/apjYY6eXzHmtQ11mulAUBXZUo9p1xGq08zNwGzdpiQJfYnCKA9WBE1WZNH2sc9M=
+	t=1713863301; cv=fail; b=SRS6wntwSLrYlQ2zvpKOhXXlAC4AoDgSh/hN3vrwWnXmMVHHfKwqm774S96V7Go/tn+RPaDq4GWQwdwk6QNKTjONx+QBtGMvHWdfYXjdLoToKZqt+imoN9Am8YooNAPLobKKb9/7ia/WTdWoBjNYoEoUyGp3akKwto7pRGiEdDQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713860649; c=relaxed/simple;
-	bh=vAwfCEVCw/c/VZjyKqXlS+/bvU0vYXRb7MjxubyHhjk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=k20ehg+22m7WpDgSjGDvq6pJupfMC9vl8hjus1FaAonG/KH1yrJCrN3EojBM83PXQUiMxf2kB+No84c/FM8C45ghbC3DnWZIzUGsuRCNAhWPv7x7NYH8H/P84m22JbglwqeitBXKRWqb3ncge0ZBvtF9MydS+qRa54n4ub2xoM0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=fail (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=QSq4WAGa reason="signature verification failed"; arc=fail smtp.client-ip=40.92.20.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1713863301; c=relaxed/simple;
+	bh=412bFqvSqNGn6MZpeYvBdoeaJBBVRdjdrVRpLjglQgY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VvTSc9kiVoiNU87w8sRKwH9DuYPIx9M9q3STJGNrit19ouJjFzPClmZ6GqxsIXEuSjo7xZN4GlrJEso8fh1+mqOapEDgNAYlZ1gvpkzkN0mENSYHH2G2jXaYL5qjzjPoctALuqqQRcmVhuuCeIM9+FteWCCFlCLMAcExIPNmoxM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EkwPOsYhESsX3Sq3nZUy4cvGFzhTep8UfYRjY8UcJi+BDoTv7wIUbCJ1wdlrDx1Wh/QhRNDOvtjouTgHllYwA0Yy5RWWqwjS/E5D1pJ4pZWYsFzvT9T4sqgpyQ9vzP8pEWryoK+QssqUtSNDxDgUsrkYf3sTF6LoID31TrfxvQV0wIoiWTZJylEtdISPUDfKzLh5Gdt51txk7DiIhLfrqahMWaZvxsujHIXStzmoRnSMG5U9fxnUAjTMm+tSYRolpj0Prd8KgJnDXC0mjxv3+xeYRszPP3d5rtUBrAxaUiYnVAYqUUPo9wU570eU6iQC3hjP3g3zoq0Hbvd/3BrwxA==
+ b=LuWQB+bWIVXnGmzZbsMPTKr7ZGmikoBkiIXCA2z65Rcv6QfZPuI42kOj93ztJxhRdVn/uexcfWzVBRZBk0sNTVz8cTUQ3Lqyj6hjsnNiE1qg9TSV2jLgkXuCkOYw86tNrfxk7oufvZxQthILuJh6Ggb+rYUE5C0Y632ZcTeJ1WO1qa5IS6JqVDR41T7B6co9BVjnFwsREPDK5bPEzx7VgaDhJC4mXdD1N3Gp/dGZogEJgTD5Km8QMQDZ5hsUqYp/BHNi/RNqzjKMiibjaeHu1ivN0wUGyTRZwHe3FrmrB1TS3i5PMxpmPcqVCZq/O9J9BZv2N5HfUg+t2nVkipOqbg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M4Qjd01hVymGpeHKV0Ej3fXiVs1ANEMVNNN2gNYCYzQ=;
- b=NSRdA/9s8qzp/j9Qmy1sjSA2yPK4IP4L6njwUBBlntYTco/03yr002MQwCVV5OXQW13dmhgNiXC8XRzaSRYrC3kB5cWvf1wHhfpG6dUaymJ9zOBUYJhCJYSPksVQUMFhcpBDG+8YfQWaYSS5UxIGLrvNt+O76OHMqMhQpelH4jP0ZE+y0If3dcNyS8YDFao3v/InwVQCfWqDyPnn0THInCyfUcfdQYzUKKxa81lGOLbLfmBfaSVe+qEFQKAv6S4w2yRAZ4VK0a1zRTlfHOTm0N/hFuKrhGawJC7aDQcRnslP+OwN+Ib5xVw5Ow8cr1OdiY2pbxYOYCOXnBf80UN9KA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M4Qjd01hVymGpeHKV0Ej3fXiVs1ANEMVNNN2gNYCYzQ=;
- b=QSq4WAGa+SMzNgXMfS6EbL20BqOISRoVsSE8uvgt3WHy6tvJgKGz2VDN3xrg8uKCsrm3+8wLjk4+Jy0MMb0YV1kYC+Xx29jFlzy2HrI9NlZy03ljsKPuH8EZLXoQdIyrhR9+k8431cB5shi3yWSFIC4vXUiQOSFv3KkgTFLBEXKH0sAalaNItMNbvHxnzXQtXWM08d3u/AHdeDQYROQEvZesmxi/QGy0RqBtNT4sZuQclDOJn/FTpx06uBoBEpz39p/IBzxK7VOgNwCYVxAeeJAyW7XwLcu2TWBEAOWFmDwYrtTO9WizjSX8jFMoVInDOKCWSOcp4U1oA7RV9ofu+Q==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by SN7PR20MB5412.namprd20.prod.outlook.com (2603:10b6:806:2a7::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
- 2024 08:24:02 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
- 08:24:02 +0000
-Date: Tue, 23 Apr 2024 16:24:29 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Michael Opdenacker <michael.opdenacker@bootlin.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] riscv: dts: sophgo: add initial Milk-V Duo S
- board support
-Message-ID:
- <IA1PR20MB495332310AE9596CF04493F4BB112@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <20240417065311.3881023-1-michael.opdenacker@bootlin.com>
- <20240417065311.3881023-3-michael.opdenacker@bootlin.com>
- <IA1PR20MB49539A380E44459ACE19DEB6BB0F2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <e457d5f6-3289-4049-b663-2ebcfe78dce4@bootlin.com>
- <IA1PR20MB4953D0D45EB0EDB6E8046664BB132@IA1PR20MB4953.namprd20.prod.outlook.com>
- <fbdcc77e-eab4-41da-803c-d65405f37f02@bootlin.com>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+ bh=CBbcEid8WijpR0ClFgB8yVZ5bhElHnfLckNgQ8+4QSU=;
+ b=eR15KyR/rCjaSaHR95ZAwGr2MKLNqmweO0LjBZsccL44W5g1uP+j566B1PFpxfeO4lGV6cvivUZ0IBZYWJW+06k1UJdxy/8SlT7kv1elxnWD4+a3tQNZVIahLp+7+Vjfy7/MbEQEUObCfQkGgzAaB+fTXEJwn1T+sTKyV0xm7whKHBu9o0qicaixc8UqoThri4HGi4gbyMCwnP43OwPp4lHfV4PC7Z0sDBM9iXIwW4DKBuGHYczID7lv8Nuqa3orjbOeBtFqiPkLcLhORbJTDaWVwpEn+R5PQXao1WI1+vPWb+ZIN0IDs6zp7NLtQ3sU7wIgY5hWe+nwf9Ia97pOIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10) by NTZPR01MB1002.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:b::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.33; Tue, 23 Apr
+ 2024 08:34:17 +0000
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e903:99a6:10b7:304d]) by
+ NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::e903:99a6:10b7:304d%6])
+ with mapi id 15.20.7472.044; Tue, 23 Apr 2024 08:34:17 +0000
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Cc: Walker Chen <walker.chen@starfivetech.com>,
+	Xingyu Wu <xingyu.wu@starfivetech.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: Add PDM controller for the StarFive JH8100 SoC
+Date: Tue, 23 Apr 2024 16:34:04 +0800
+Message-Id: <20240423083405.263912-2-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240423083405.263912-1-xingyu.wu@starfivetech.com>
+References: <20240423083405.263912-1-xingyu.wu@starfivetech.com>
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fbdcc77e-eab4-41da-803c-d65405f37f02@bootlin.com>
-X-TMN: [r//28Cciv81t3jGs7aP7nCKLgx4Fne4iTaufuyheOG4=]
-X-ClientProxiedBy: TY2PR02CA0069.apcprd02.prod.outlook.com
- (2603:1096:404:e2::33) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <s6tbjbwwfmavscrjc7w3qrf63sy5lqa6zd2f7cgzmz6xn2scca@dqq23tv2dauz>
+Content-Type: text/plain
+X-ClientProxiedBy: SHXPR01CA0022.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1b::31) To NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SN7PR20MB5412:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef87dd17-be4a-4dfc-b1f4-08dc636ebb9e
+X-MS-TrafficTypeDiagnostic: NTZPR01MB0956:EE_|NTZPR01MB1002:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5411580c-5984-41f2-a34b-08dc63702a5c
+X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	A8cEpHH4Y/rsANnXRZfpXz13WJz+uG6hZlqbKPRNwgkw2T2MHXRjlqDJuV1h1ZkIR/SD1yCb2A6AGzdJKiJ5TahghKp70ffpfwZ/UT7VqKoPzfkBCMXkC1ZoZpQBpd4j5XjDFeMICcUqTmioIJZ8zw/1QQzwJwrEA7oQF7uzq+W67ieUkcw/SEOmtkoeK8Ok3bN+fD7C+xnBDWeqcVPy8WeHk/3gdl8MU3QeEtE/xkrHMpFpx5zObL532uJmVWEXgCArAQ1gby+jVuM4i+CaQsJwLO17/DsPtb0OE7HL+HSw9kGoVUrVzo7AOSLnZuVEQClAnD9J1hTAgwqEXDgMx0Dq14TyYuJ7WxTISAivsvCySxu3lGapOQleNwJfxSFKT4gYiNIJ2ShQXei3PCRP/qt+NBFdVuQHGpRrMV1hwCbN0xdkikqKRIpQbgj6O6sGjuct6/iIhHn0Ibod99YeqpgoI+fjVl1dpMxeWn2WdKVrLc+TfqLy469yi7Rgxu6vJebTA4MU2OE9Q78Y4XmNY1bWopqFsVIMZKHA0DGwfI/BCTN2XLx5MIJqmSm42LWoQj0cOW/27aztnAeVNXQGTVIPzh0Fv5IjwW0xnrfKXYXYQf4YSfgRdPH4pSMBUu/k54/4DLr2iAR4A8zhw4NC+KaFP45vae/4BjL6Ig1d4YLoSmJpzFWaZectg7kJfzzZoZJ981cj3nnHkFqSWBxmgg==
+	BPibnEEWZTBnolsY+8afLEwP80i9m1pxODW1YdKhEylv0SZEP0oAtZuCGCO15oGfTKXB1YMIgsmwY8wv4DOax3lA1SYfWEeIPxCak+7iRscWo1JL28iTbnP3bBnCbcnUWyousbP+vMLjm0LezLMBrlSl5ydtHp2pfzsMvilUUsfElm1Q2YzVGRLFrYEWwAGiRV2f4q1okw6vRgPt1cgVkyLxWt6cOxP9izZ7qhuUJpJSBnjNQBv9l6t3vTTuA58GEeEHZofGBZl5mdorTrxGs4iBcKdmkU9ebDef6YToLugl5RtNI57FQzMWwpqHJCS88HjKVwMHm7K6H614PKcf9ycj0dlAbGipCvTAFJ4PgdAtTHosLZUhEMoH3sEI+alzLpCui00JKHJhD2MBhHqJkygpWDsbN6SsnFqz3w8i90iBUY3duLB7uMNUlnjOEyKhpaDgqplWnoDmRE+X4tLZLJjYQ/AHVFWdxn1OW2Q4ZZykp2r/lXq7equIGZWEPwR4AvgwyTROEMWUFngXbMyYLDtXyCBPy+dPJgJE05EjHvjWwfzTvRSG5qfHtR4ZAtvJQWV1ypPGmc/tdVnxxzQtLz4wh0xePZTTv2wEA34mg2g3yl0nyi1fVfBJb9JQAmp8
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(52116005)(366007)(1800799015)(7416005)(38350700005);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?kL+eqdW/BWV2u83qYoFAL3UJjf8XMl+dy2zy878MemBuOzGPgKw5yhtjQ9?=
- =?iso-8859-1?Q?pC6cg78wDbl1ygTSR+frR1kTm1y5Ff2QjjZwXyr2eehG1+yyNBtE+p2Rao?=
- =?iso-8859-1?Q?I+Ea7OJg904Ns1wA2xL5PrAoAtjMIZ+m0MwnxaqyVsLTY+c5G+CKvwu/lS?=
- =?iso-8859-1?Q?yCFex5pn22n9k1O8DM9KuDrvV3nt0hHXK/a9+jMG4OR6+GIXwVRTc09E+f?=
- =?iso-8859-1?Q?+I13BlEgPIjelgkyZzHFJlgrTW6OzP5ThDA22/+YvjMWspaL1aVnMlwwD7?=
- =?iso-8859-1?Q?HdBfLmc/4a2+jCTaKBfZs5Wzb69S1uKo47flhqLs+JvZW/ob6DdCzvP5C/?=
- =?iso-8859-1?Q?NtKpZ057iTToA6JDVUVI/ejLbWFNcsXSmQJ8NgspB6oLiO/CiYrKsezRme?=
- =?iso-8859-1?Q?pHWWVVq8wwKIeUZvITyD6ucD3kHLVwt/XU0OJ81x6w/UF5FoYwCObtlhrt?=
- =?iso-8859-1?Q?33X599PDXVuqwbyfYd+A5CFM5ZANcz9GNFx58sxUYDzc4tkNoUYlMbDErE?=
- =?iso-8859-1?Q?fF3aEGKANL3K4QaXMaxZAnxPypoCXKbYepzsCvqST3IapMNSfRzuUcmIea?=
- =?iso-8859-1?Q?JxKw2rGHLzA1fkL5RaZiXLKicJyXz5MHt6RX1tnP8rV1rtIKmrG7V2lUxi?=
- =?iso-8859-1?Q?KSEBGWV4m3kdW/TYjlXY9QCP+idmMWeMSGnqq8X02cwBxgTbkuy1Q9wyug?=
- =?iso-8859-1?Q?veCR3tuQFohXLGZqEa2xa3Uj/Q/hGDFkdHSM4bnpOSKbd0TTNzVTdD+NvC?=
- =?iso-8859-1?Q?E6aOxOqBRamcUueCa3TbBz7J59PeZv5MfRxcQAW5+sZ3dVXgQV/m9QlG1T?=
- =?iso-8859-1?Q?3nL2augSEX0F8MvfJHFEJ1i6qGdiWiJu1Yiegh4QFsAL+MJhpVx0U0Bzsh?=
- =?iso-8859-1?Q?azWsTnYyu3+ibhNCBZG42eA52DastbNyo6TWucGioll8a+cQqz7Al7cDj0?=
- =?iso-8859-1?Q?+ItsA8HNODkfq9xYHX6flJan9ppDam6Q0iNvfhhN1LL/bQJnXPmBHRrh/W?=
- =?iso-8859-1?Q?Ve5qUfSgmenWOG9ocP69b601vEMHz12IFKLJEwzZK0rTOnqKdbLQN9gDCg?=
- =?iso-8859-1?Q?14Tw3A1bf6J3oEQ4NaVBGyqqx+6e6wtJekBmZLWIlbbQlynTXNw1HEziZn?=
- =?iso-8859-1?Q?J+Re4Clux2mL4IPRCl7K31EcGAdU1U9VZcxLVLjd2l2DG2p7A4626K+FNy?=
- =?iso-8859-1?Q?tA2ZQypSJ6+noH7WxaPbQesbdFe4Aau8ddxvyB5Qk56A2yBeaFlG4U/nZy?=
- =?iso-8859-1?Q?FOlLmd6XysvgQnmnrZ1mW2i08rqnqOh+t/yMnD4zK9rtDvOOWogbBpS/ll?=
- =?iso-8859-1?Q?XBzt?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef87dd17-be4a-4dfc-b1f4-08dc636ebb9e
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+	=?us-ascii?Q?9XvDn1KdlSufsH5qn7QHrbggK5cRJhmY6CwhhZw724E5+RgVgUonkTxpBf2n?=
+ =?us-ascii?Q?hWDFg/etpV5rMBpVIbO+uJgxC5zxkht8z8QURNUfZ9hTbnT3xPX59am4HMeA?=
+ =?us-ascii?Q?QN7QSk864ezCdXw0/32md0m8q1+eXZWrWCtqYfQ33kK8+HWYNHE0N3iXByhL?=
+ =?us-ascii?Q?fcUTt4QrggWE8u2wxtp95Z4DCe0zBHYVHv9Fo27XZ+BwjAeefNYUozqyLWxy?=
+ =?us-ascii?Q?kAGldmW2mu6CXX/uDp2V6rQXzk2YWA+5poBm1Dtvl93cAmUGTqgllUV5U/O6?=
+ =?us-ascii?Q?3Y+WrXCyAD8docssUYhTfsB6dWwOyn9d7MCewtMG0TzRygoD2v+jhmvhWX+f?=
+ =?us-ascii?Q?dzPyjDhC9WwngeLK5MlE6k9m67Hj6ULdraG8Q7S/Sqpq5zHJGET5hlZqcR0h?=
+ =?us-ascii?Q?ODV+J9KSF3S716qSlgZN75exf0IcPYSyWuatp8Aw+07GT/aTi9I6LqfgJeW1?=
+ =?us-ascii?Q?921Un1ZR5BY50qKDaJ35oessqbV8Hp+Z01FIxK9UcEqFDL16hBa3UT5frR9L?=
+ =?us-ascii?Q?fjPfHxXOLEZNxYO1l3qTWUWHKORjzn865VxGVgxbmMbYdzTlPmaCU8k/2RRZ?=
+ =?us-ascii?Q?XCaZJsv+OzwbTkzuspEFgVADkvWlpdoZX37yxu9wLDDi+M8KpLKFI6GT0ljj?=
+ =?us-ascii?Q?qEWpsHoDurO1xeAnC2oUOsZBiPYgKbCE47THTtBE7b315SQ0HPlkJlPs8yr3?=
+ =?us-ascii?Q?zfqKff3GYtc0aYVpWxoqZCyWLY+8dpgRtGpEW7zf5XczU93i03EwjdzgJN7t?=
+ =?us-ascii?Q?HYyXoJyBinaJp0zoodUu/4rYWYM7db1Jrc6+n7JZoseaW8kjQUAIHSkcJt2n?=
+ =?us-ascii?Q?nb4K7AV6aFaTS77h9R3C2hisRaCIfi4e3IynULQku10asK+10Uby3JF7snsN?=
+ =?us-ascii?Q?wxVgsVqcAQVduMo32mbln4q/j0gJtcJH6tcVEFOvFqweQj1zTJhzKF0nUdRI?=
+ =?us-ascii?Q?++Ncmi5G2FxQuDo8SvjaHhprGYPjT8JoDaKlZKQQdLbA0YNQpj9iZDTcRk5e?=
+ =?us-ascii?Q?upTSVNQ2IbpFlyQWFGRQ7ZyvEMNcUvIcjadrrUrNDyQk6wsJ36exk676uBGq?=
+ =?us-ascii?Q?j3gY4E5FKQ9vjw0ZSXl9JPmUSH+E/Mua+g35Y0CsSacWIIYjh/k4OQNwQpVo?=
+ =?us-ascii?Q?Tb8H6O4Hj0ZC9v2TgxI6IjW6x800uoEr1Abatz0ZE5udo/HCtcdbPYVAmIwb?=
+ =?us-ascii?Q?S560DG48mFfAznYi3OTZsVzCoRRqplVa5qjs/7a0KXyz/wyQrQIbEMjwaq/b?=
+ =?us-ascii?Q?nrtX5O3AYIeoEywcbqD/srRQHjX5+lQ331Ck/rp5QyoPfI02Av869AsnuoWJ?=
+ =?us-ascii?Q?yIiANOtQvUZcAN3Tws/lcyqLeF62SlwNGljBhi0giUiVWezyEhh9YXS+Yuf3?=
+ =?us-ascii?Q?8CchtNvT3EcschYtyUWhisqw+1d1+3PiAbczx1E6YND4J3R819kgZnb7/zy8?=
+ =?us-ascii?Q?EBxD/wbm8egeFz2U9ciT/yU3Ty3Kp/Qk5L0hubow2KMWc4Lr/GvroiCGo0Gw?=
+ =?us-ascii?Q?YjEg8T53mWtHt7Tuq4LFjnfI7ehDJ9IxP/yJafFERKSBj8w8jbX3JcRJ9b1u?=
+ =?us-ascii?Q?gvZq4eWSyfrGGRYG/q6jlvJ0JoK+V8lnIO/6NDcOYZIdy66rzzVxjnZ1pFtC?=
+ =?us-ascii?Q?xA=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5411580c-5984-41f2-a34b-08dc63702a5c
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 08:24:02.7553
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 08:34:17.9235
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR20MB5412
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZyGDa+jMvtS+9tHYckjaQLFln9zRA/49TAvNAIM9hjsM4cPznOgDdPGbmneNfWD5/Khu5MWD9A80WOm6HrZwLmQlglqWN6NVSvtzk22dUQk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1002
 
-On Tue, Apr 23, 2024 at 08:11:29AM GMT, Michael Opdenacker wrote:
-> Hi Inochi,
-> 
-> Thanks for the advice.
-> 
-> On 4/21/24 at 08:30, Inochi Amaoto wrote:
-> > On Sun, Apr 21, 2024 at 07:57:01AM GMT, Michael Opdenacker wrote:
-> > +++ b/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
-> > @@ -0,0 +1,34 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (C) 2024 Michael Opdenacker <michael.opdenacker@bootlin.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "cv1812h.dtsi"
-> > +
-> > +/ {
-> > +	model = "Milk-V Duo S";
-> > +	compatible = "milkv,duos", "sophgo,cv1812h";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart0;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0:115200n8";
-> > +	};
-> > +
-> > +	memory@80000000 {
-> > +		device_type = "memory";
-> > +		reg = <0x80000000 0x20000000>;
-> > +	};
-> > > > Add a cpu specific file, and move this to it.
-> > > Now that I'm including "cv1812h.dtsi", which has the same structure, all I
-> > > need is to change the reg setting to have 512 MB of RAM instead of 256MB,
-> > > right? See the V6 I'm sending soon.
-> > > 
-> > No, Duo S does not use cv1812h, in any means. I just told you to use
-> > cv1812h for local test. If you want to upstream Duo S, you must add
-> > the right cpu compatibles and necessary nodes. These two are different
-> > things.
-> 
-> So, do you mean I should create a new "sophgo,sg2000" compatible, together
-> with  a new "sg2000.dtsi" (or "sg200x.dtsi"?) file? Could this file include
-> "cv18xx.dtsi"?
-> 
+Add bindings about the PDM controller for the StarFive JH8100 SoC.
 
-Right. For the second question, it must. "cv18xx.dtsi" is the common file
-for the whole series. You can check the existed cpu file in sophgo upstream 
-repository: https://github.com/sophgo/linux/tree/for-next.
+Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+---
+ .../bindings/sound/starfive,jh8100-pdm.yaml   | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml
 
-> By the way, where's the best source of information about the Sophgo sg2000
-> and sg2002 processors? Even the Sophgo website doesn't seem to have them :-/
-> . It just mentions the CV18xx ones.
-> 
+diff --git a/Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml b/Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml
+new file mode 100644
+index 000000000000..50401e177f41
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/starfive,jh8100-pdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: StarFive JH8100 PDM controller
++
++description: |
++  The Pulse Density Modulation (PDM) controller is a digital PDM out
++  microphone interface controller and decoder that supports both up to 4
++  channels, and an Inter-IC Sound (I2S) transmitter that outputs standard
++  stereo audio data to another device. The I2S transmitter can be
++  configured to operate either a master or a slave (default mode). The PDM
++  controller includes two PDM blocks, each PDM block can drive one
++  bitstream sampling clock and two bitstream coming data (mono/stereo)
++  with sampling clock rising and falling edge.
++
++maintainers:
++  - Xingyu Wu <xingyu.wu@starfivetech.com>
++  - Walker Chen <walker.chen@starfivetech.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: starfive,jh8100-pdm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: DMIC output clock
++      - description: Main ICG clock
++
++  clock-names:
++    items:
++      - const: dmic
++      - const: icg
++
++  resets:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  starfive,syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to System Register Controller sys_syscon_ne node.
++          - description: PDM source enabled control offset of SYS_SYSCON_NE register.
++          - description: PDM source enabled control mask
++    description:
++      The phandle to System Register Controller syscon node and the PDM source
++      from I2S enabled control offset and mask of SYS_SYSCON_NE register.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - '#sound-dai-cells'
++  - starfive,syscon
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pdm@12250000 {
++      compatible = "starfive,jh8100-pdm";
++      reg = <0x12250000 0x1000>;
++      clocks = <&syscrg_ne 142>,
++               <&syscrg_ne 171>;
++      clock-names = "dmic", "icg";
++      resets = <&syscrg_ne 44>;
++      starfive,syscon = <&sys_syscon_ne 0xc 0xff>;
++      #sound-dai-cells = <0>;
++    };
+-- 
+2.25.1
 
-In additional to the doc mentioned by Thomas, I think you may need to
-check Duo docs from milkv: https://github.com/milkv-duo/duo-files. It
-contains all you need for Duo S.
-
-> Thanks again
-> Cheers
-> Michael.
-> 
-> -- 
-> Michael Opdenacker, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-> 
 
