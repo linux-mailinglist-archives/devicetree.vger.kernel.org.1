@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-62016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66E18AF6F5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:59:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1EE8AF703
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:04:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EDF22867E7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 18:59:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 609A81C22C55
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CA913F437;
-	Tue, 23 Apr 2024 18:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C89513FD67;
+	Tue, 23 Apr 2024 19:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="a7PnzJ9W"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="VN+9FpPH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E52E13E8B8
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 18:59:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0075B6A03F
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 19:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713898794; cv=none; b=AW5OxTR80eplm8tV+KnuuEwZdMsq18wmNLHR75LL2APwH/hrUcGl+qlXIvsfWCfocbS8iFzJp4lOkimjSgoTSdb331uv0fQcFEX9WA+u9S+Z/9eXFmWgqe9X8USG6zrsq4fIlVlNm3RjTWe8evHsPP77EHwqCQHa8d88I+KZgBk=
+	t=1713899035; cv=none; b=HPyUWl/kGroy6Q6zDesjLn1ug1gpzt7SfU/jqcBpR0YXk4nunajGuq5wkB/o28u1mMjivUHVnfDP9hwvvzuFoDyQ+TAi3AxMcAF/GCo5APvRqcSLzy+WIOZomu0uUU7O4KKuZSZDHrSYycqwZpqTMFrQNNPX+YqkYtq9K9nQ8s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713898794; c=relaxed/simple;
-	bh=KzsD0OHRzXzE/EruVQ8/nLZA7kuMltZzssCy6Gr2xEc=;
+	s=arc-20240116; t=1713899035; c=relaxed/simple;
+	bh=KK1Q4WCnuMRpDBt+Q/pZYPGYtfDZSBV8O6v25bAJ3xE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DzlPa24LUQzsfRbkpq0FtaNoM09SMAfQjJTT/BDvBTOxAD3cknzlNGtjsN5gIwLWqa7Nylb0hkYMwa9xcvsKyAvEtIElCW9IjO1DFwmIbropAV3QgMmomqTGp3gBXhD0wBXobk5Bbf5/hYTjvhgaC5PHIi6jD+gwJb0xpBRCmPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=a7PnzJ9W; arc=none smtp.client-ip=209.85.167.174
+	 In-Reply-To:Content-Type; b=ioCNUOJQlRCWclJkUMq0zs6JQeG5SiiBqZgb9QjzYkJt7RhZnZKkhLKv962KmgB3SwhzFJOe3UMw12hWaufSALvDAs5zX5nX8kAYhV0dtVwyOELsxB2/Q3GQPTF/wUsDRwtKDSnwFYcAaFfgpT82iNm+hjqRKB5MwtyVOEOGZF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=VN+9FpPH; arc=none smtp.client-ip=209.85.222.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3c71c7e2d40so1677390b6e.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 11:59:53 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-78efd1a0022so444435785a.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 12:03:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1713898792; x=1714503592; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1713899033; x=1714503833; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UDVaU8KlslbJJxogkDm4Ap1m4bosEAmziAv88oLUX98=;
-        b=a7PnzJ9WM3Q1gowSqWfwNKvEoQJoWCg9xOzQyDVoCkVMXQf/WDwG2IF7lQYyaLptzT
-         tikYGVJJf+gqqdRrO6WbKrT/v+ymHjH1t+l94VBjZQwUDsPyEiOOQ2YQ8rSncb5QoabU
-         BlhCWi2Uoa9lOwsOXMqv2GEsPCAOsY3vtZelI=
+        bh=ssvsGMAQieqjdP1qTwHaC2y3Sy6Sa4R1LtbkphxceGE=;
+        b=VN+9FpPHLFXT2kw93/4CjgZneL2gxBw/SKCAFV0LA3pqasSoavQtkmTq3t80xWsVjE
+         X9Jk0wFkimkJAEdfWPuTK7Id2O7aEVj8FmJow+B6V9QjT3hpkzKEJ5LqXI1gQysYyXAs
+         K4Ope4z+MzyjExPFehYsXJOnIb6voxHfyv5zc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713898792; x=1714503592;
+        d=1e100.net; s=20230601; t=1713899033; x=1714503833;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=UDVaU8KlslbJJxogkDm4Ap1m4bosEAmziAv88oLUX98=;
-        b=bTatZ19hD+ZUdzbZmE8L5PqIWtbMswtM/3nOZdKwPQ1XpgtJlfT43tEHRFVQysNvKV
-         eOtRVOR/XnxwWw4psNrlZzv5oTiE+Acsr1fMw8r1TQkjjUjpUfX3vtxwpfoS9mbpZkW1
-         oYsvJL3fJ0hx64+O1/Si52EklNaT/kDwstcW9VimrjXTxty5wrlRBgeqy+tKTru+EmIz
-         3fPmcygioCHIbUZvo42xI63+SJWKVT25aXvJ5Xb9iz/ou1udzHUKmqb4TJuge0FQu2rY
-         VdOWS6fWsMz4ux3ltuh+kIu7uqxGebon23d70OJ7z1MA193YcrWG8Gzx6L9W4Y1vIK9Q
-         ELkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWE8ikKQ2blU8E/vDTo8Z1a8gyilR3G26kBtns5fcsMsiUgTSOekcn2tUf9A6Uyl0CtM4nXGM0IT33tayd4kAugNcgikEove6kRPg==
-X-Gm-Message-State: AOJu0YwuUunF0Ew0Lx73cAgzqc0obpv6hXMdvHrRB3XvBjsrNym04Vdg
-	KDTZ7jUl0x0XYmnJmdPCBZ6whgRwbAjk/SIACbuxWOE56AF2ZDMIblkCAYB99A==
-X-Google-Smtp-Source: AGHT+IHEiqOcT6HxgW8P8VGrl24xX/pXpEi8gc6k6e0KEXyu948GkZkDB67Zi9Yis8ebgkrjRS4/Zg==
-X-Received: by 2002:a05:6808:654b:b0:3c6:ef85:b297 with SMTP id fn11-20020a056808654b00b003c6ef85b297mr267474oib.20.1713898792290;
-        Tue, 23 Apr 2024 11:59:52 -0700 (PDT)
+        bh=ssvsGMAQieqjdP1qTwHaC2y3Sy6Sa4R1LtbkphxceGE=;
+        b=niMwyajYZSqcKDd4GakZ+vsT4Snpez+A2rFirB98E1Z4e/f1o3qQodsQxZKLzfI92m
+         8wnODZvMsykJqgZduMP3ladux/jewY60t3UIyPYNAajsqA4Tccavdb4k8eXuk3Z1KAfR
+         0+eKwa5gSCdu2QhR3jilKj1U/5SZgE7IgbqXE3QleHA2kn3UtU4LJ+OsA0geZ9SHRYUz
+         DIy1qFFsGwQkvDYYO1GvAw5eaMpDjvhRcgXjLyU6ixB53uVI218bJSklL1Ip3n2X1OUt
+         lmat82DA88Y/YxH4oAgt64Q5lef8x074lcaU6J7VdO6FiuEemx/u3FuMVOdZSXAJ9vkE
+         54AA==
+X-Forwarded-Encrypted: i=1; AJvYcCUy4jiAMkWVem03gJ07XvwkC4kJLnImeSBBW1pKq0/2cwdzoO0xXs/Rh+5WKUQguwNapY9ue/23vbP59W5YK9DTs2M1hhkeUiqXDw==
+X-Gm-Message-State: AOJu0YyHl89aTMWgfjNFD9/KOWuuYE3j+TB0GHL/iNtR8slFi8gc3qx6
+	3b4vtiq0EkB+CPPLj9l88sRwMnv9sNBR6y7Z5i5E8wMg7CGN40DpfQo8T7tGYT5YlyyQuNyNgJo
+	=
+X-Google-Smtp-Source: AGHT+IEfUJ6iCKd+MaQEIj10UeRQBN8/oxE8CmB/exftCVpP9juI+C1EDWMbtV9DOX5hHR/zySS+4g==
+X-Received: by 2002:a05:620a:1587:b0:790:841d:3ff7 with SMTP id d7-20020a05620a158700b00790841d3ff7mr437334qkk.32.1713899032812;
+        Tue, 23 Apr 2024 12:03:52 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id s5-20020a0ce305000000b0069b61f8c0a1sm5373506qvl.42.2024.04.23.11.59.49
+        by smtp.gmail.com with ESMTPSA id m8-20020ae9e708000000b0078d60b8009csm5497621qka.42.2024.04.23.12.03.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 11:59:50 -0700 (PDT)
-Message-ID: <70d92b41-df5f-48e8-9139-a3661f6c16b6@broadcom.com>
-Date: Tue, 23 Apr 2024 11:59:48 -0700
+        Tue, 23 Apr 2024 12:03:51 -0700 (PDT)
+Message-ID: <c619a7a6-c635-4fba-b9ad-d0c5664b541b@broadcom.com>
+Date: Tue, 23 Apr 2024 12:03:43 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,14 +74,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ARM: dts: BCM5301X: Drop ranges mapping from AXI bus
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Describe PCIe controllers fully
 To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
  Hauke Mehrtens <hauke@hauke-m.de>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
 References: <20240423110238.32148-1-zajec5@gmail.com>
+ <20240423110238.32148-2-zajec5@gmail.com>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -114,11 +117,11 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240423110238.32148-1-zajec5@gmail.com>
+In-Reply-To: <20240423110238.32148-2-zajec5@gmail.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000b8a8d10616c828e6"
+	boundary="0000000000000d3eac0616c83784"
 
---000000000000b8a8d10616c828e6
+--0000000000000d3eac0616c83784
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
@@ -126,21 +129,43 @@ Content-Transfer-Encoding: 8bit
 On 4/23/24 04:02, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Limiting addresses to 0x18000000 + 0x100000 disallowed describing some
-> devices (e.g. PCIe controllers).
+> This fixes:
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18012000: 'device_type' is a required property
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18012000: 'ranges' is a required property
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18013000: 'device_type' is a required property
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18013000: 'ranges' is a required property
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18014000: 'device_type' is a required property
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18014000: 'ranges' is a required property
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> 
+> Cc: Arınç ÜNAL <arinc.unal@arinc9.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-This might require a little more explanation, because the PCIe 
-controlers are (relative to the base of the axi@18000000 node) at 
-0x12000, 0x13000 and 0x14000 respectively, which are all within the 1MiB 
-aperture defined from 0x18000000.
+OK, so this is the rationale for patch #1, because you are adding a 
+'ranges' property to each PCIe root complex node, and you need the 
+values in the 'ranges' property to be expressed relative to the global 
+address space, and not the axi@18000000 address space, you needed to 
+flatten the axi@18000000 range.
 
-The PCIe node(s) do not currently have a "ranges" node either, so I am 
-not sure what this change does besides flattening the address space?
+Why not just bring those 3 nodes out of the axi@18000000 node into the 
+global address space then? That would greatly limit the amount of 
+changes in patch #1, some of which are just unfortunate noise.
+
+ From the chip diagram, each PCIe controller has its own separate AXI 
+interface to the NIC 301 AXI fabric, so having 3 independent nodes which 
+are not tied to the axi@18000000 would not be wrong IMHO.
+
+Thanks for doing this!
 -- 
 Florian
 
 
---000000000000b8a8d10616c828e6
+--0000000000000d3eac0616c83784
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -211,15 +236,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHfh7wjD09/eeMsZ
-gclBML4iqI2HAQyYCQy9BtSfn9TqMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDQyMzE4NTk1MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF/0EIcccCsdl4P6
+yc1KJ9Xzns9kEo8CPf8WJLZlhIusMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDQyMzE5MDM1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAro/b1moXCnE+Ux000D12piV9BbOANiP0S
-DiqWclf8sk1tb8XBQaOTjNc6oJeP2ySRhs6vQiV1uCgjBiNfT1vrsC7XqKcX5rf1ujScKd/Nr8ve
-+CZy1DZKNdxBQFbgF4lu/79EC3z/NwaP3XwwZCrqdT6/zhWHqiI6Tm6ft/wbMclgc8qQRET8JvII
-T9CjJd9qf/d5Zfz0Du/Rolk60Hui1tot0q2F1MtF0PqUKM5PEHuWADso3Ku09P/67nrOLoRpaD52
-tIsjPne3ei36zYJI4YTV2iVxStON+FMnMkRbjunA/7fzbcwjgcnRAvDncvBSf/5Mv7/voCMBOqc+
-eOjz
---000000000000b8a8d10616c828e6--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDiQe3isuwXAwNXQR4cjr9tQXuVsiHA6fCh
+jM7C2WZSvdsAydO/ZOdwBrpMmzLIFs/dIrx1uZVs/8coIARs/YQ0SA312CMiC2zcdE2XoFlotIkR
+GZSfdIf8Oy+zSnHRCLTZ0dVULvPgkuTwZ6GGhoOoVU8em4AMGBf9wv84dSh3NCCn4nwo3sPcNLtA
+SSQknfTFE5Wlw3VGMU1HFwAbaZX69f1nbs/BajpSNbauJ9nHsKuEVM3YnvRw6IlJHpipVnZa8g6/
+j88tyqHJ3AxRz/Lgqx0tVGWdFUI8zdr3ffg4Y0MMC2mgsp2GU5DFN66eP9BusHcIbEQmHudHRsmP
+Lriu
+--0000000000000d3eac0616c83784--
 
