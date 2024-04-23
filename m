@@ -1,166 +1,147 @@
-Return-Path: <devicetree+bounces-61688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDBB8ADBA0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 03:43:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 874E68ADBBA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 03:59:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A41C6B22A45
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 01:43:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA45BB21D74
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 01:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B52612E5B;
-	Tue, 23 Apr 2024 01:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XsE/uXQC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89131643D;
+	Tue, 23 Apr 2024 01:59:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3A117997;
-	Tue, 23 Apr 2024 01:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A17134C6;
+	Tue, 23 Apr 2024 01:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713836609; cv=none; b=odbXiXUaO20omOUlYpylUMWCiiqTMn73zfZHZstLlWycv8M2D7+TXlHogU31sFIuRGNAVtzC83ETM1R59D0BW8a9Gmu5KhXstjqm3VASxyTnTv50O3IwkBtLsDcjliTh1J/l3+WkvkEYP7BhPSS6SkyvuWin1maibe4Q6QMrZVs=
+	t=1713837563; cv=none; b=XvVSAM2XM5CheGk3InIQwtDxR9VC/y43j0DDvqjqtkeQBbPiPGHnZiR2NoEVJ0hLxoHWoC3y+RwSy/ZFIdrhHwV3+R3pPU7v8yIWR5DHI2ohSUj6yRBYugWXrJUaRmIgbUR9VZXU1SAw7Aczv/GUpfRxlzMpohcypCW4vrGkTUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713836609; c=relaxed/simple;
-	bh=ufSwTEYdLjNh53VNo5n/InjNNNfWiz9aDd8WKQpIqGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pjtpURaZbt/FLiMvF/DGXYDKVZIbtZVvUrfc/zB/OUdOT4jD4mIwGlPg5qUEUblWr+aonFf5LODzVtaPGTTe491ix/MN5fGfzJCdl0pCqQP6/7xbRIXPvOoMEDQgyhYuTmtMITAoKUFkYtVJxXbboMrigownT5n2f6s33U5ZPqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XsE/uXQC; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6f30f69a958so1020782b3a.1;
-        Mon, 22 Apr 2024 18:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713836607; x=1714441407; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FVv9MGjbF3k+4QlXe6bHKBL0yNq+kWVhwIIKL4GtREU=;
-        b=XsE/uXQCN/6TG3l6T2DX0NeV+bTHIV4vN+5qaVPSmiL15rpKSg9yS0IXnscWg7K+wL
-         HpYmTOP6J623lV1IYfQIG+gE4yS6kWmwCdBmOgyrZ/xY9pYJZBJ3zcPQIjgwB2iQQPtj
-         tQMWSOg2Baj29JIUNhPiGIfoyqBN17FCepd85Xd02FOxOOwvPo33CldHBwIHjlDwlLQQ
-         8hC/LBbXsHOj/VXOfO1bNJvRJuKhwcobhyCbgCZDyPv0XKUebgNL9x3ZnTR3/biYBEO7
-         QZ/4Msd1/0qpNHRm5iriju4LzQJ18V8613YVXsKqqQC0QvZKFL1BqLl0C76cgtmas9Z6
-         Q1/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713836607; x=1714441407;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FVv9MGjbF3k+4QlXe6bHKBL0yNq+kWVhwIIKL4GtREU=;
-        b=LZ+lEhQFLS0zvfNvkBRewpF652PwiAbvvmBEEuMnmV5A0+yZmrNTEALjwEPayIcYXL
-         jdbzHzqC66ptkcmYLev4Tt6dCXIhg90syaRmVbMJW6lHb2Fs+UQC9iF8yCAn1V1ubaJb
-         oibqp5logYVxPJvXMLPXRcyOUVuFEF3D+DUkw6zMfj5k4YpyCkmWGD5I/9zsQaZHSjya
-         YhKFiCY/IGmOMuKjPIkI4UlnhC67r9evbdSqsWPv7WWxGOXF7PAdP0r4Jym3OloUqSL6
-         8dIKtfudwY1ATS3zPkSKbVe7mrVdTN8/zZZP2cePIQrCCRREq6PmXMNL9kfn2mNBzgvi
-         XP5g==
-X-Forwarded-Encrypted: i=1; AJvYcCWYJ6ZF7rt1lgZeO2TYI44322++PrkkhU6GNd+u/7qVx0qW2nrp9EVStb/fAMLxqpLZHdiwV/wwplp02ISLmVypABII5Vhk4yArHdplCZ6Wmm9eG2M/QNlMfpcQWTWohSj7fT5/R6RivOpcQZiwiawPeelCBhzc+l6tUH7xfNDqT2BgXf62PcW/cDAPWFMWZhiZk97O31RGSuYN0sE+G4J+dRWYBQIY1NET0lJhAmKeZxX20RW8Lps5L1HCVg==
-X-Gm-Message-State: AOJu0YzgXcvTuy0HRNjSOQlqi3WrO/w04DhcsKEwEvwwhweOQncUOTs0
-	HtA4L+sAorouIUeXqnm1hCTLU9wHNt/lazxJHsbhU52mVNysTlf2
-X-Google-Smtp-Source: AGHT+IHNvVbE9cA2XCQLQKjnl3qgdgnVkMyNXB6fh5i88nUQTMFnT4C4mWly1ZAKH13pWuCwaxCS8g==
-X-Received: by 2002:a05:6a00:1950:b0:6ec:fe38:d94 with SMTP id s16-20020a056a00195000b006ecfe380d94mr14924140pfk.33.1713836607279;
-        Mon, 22 Apr 2024 18:43:27 -0700 (PDT)
-Received: from archie.me ([103.124.138.155])
-        by smtp.gmail.com with ESMTPSA id gj14-20020a056a00840e00b006ed93e7ef22sm8471175pfb.39.2024.04.22.18.43.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 18:43:26 -0700 (PDT)
-Received: by archie.me (Postfix, from userid 1000)
-	id 6C2B718688A48; Tue, 23 Apr 2024 08:43:23 +0700 (WIB)
-Date: Tue, 23 Apr 2024 08:43:23 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
-	corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-	Thinh.Nguyen@synopsys.com, broonie@kernel.org, bgoswami@quicinc.com,
-	tiwai@suse.com, robh@kernel.org, konrad.dybcio@linaro.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Subject: Re: [PATCH v19 41/41] ASoC: doc: Add documentation for SOC USB
-Message-ID: <ZicSOzE8KyaYGi0v@archie.me>
-References: <20240422224906.15868-1-quic_wcheng@quicinc.com>
- <20240422224906.15868-42-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1713837563; c=relaxed/simple;
+	bh=8DGHlsuX7VCV0LWKxXv65thzSYoHUKP22O3737krA4s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gMUWbZRZwwaG+75tHx388DY+4F7jXJnyDHSHhITTQP5xEFabFsEPJ7EpXSk1uCHdVQAf5pkXgXxKtHJqCjbhnjAky73fq2fTAYNMN7GQ33r4wEWNG+dqdkthHJoMnf6ykJoH0BFWPUnXmVdzmRNXmsrkuce3vm8bW3szOFsOVL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.112.218])
+	by gateway (Coremail) with SMTP id _____8Cx7+v2FSdm8x0BAA--.6573S3;
+	Tue, 23 Apr 2024 09:59:18 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.112.218])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8BxnlfxFSdmX+EBAA--.2983S2;
+	Tue, 23 Apr 2024 09:59:14 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	WANG Xuerui <git@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 0/4] thermal: loongson2: Add Loongson-2K0500 and Loongson-2K2000 thermal support
+Date: Tue, 23 Apr 2024 09:58:59 +0800
+Message-ID: <cover.1713837379.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240422224906.15868-42-quic_wcheng@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8BxnlfxFSdmX+EBAA--.2983S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZrWftFW8AryDZw45KFWUJrc_yoW8CrWkpa
+	15u39xGF4DCF1UZw4fA3yrArs093yfta98XFs3Cw1rZrZ8Gw43t34rta1YvrZ7urW0gFW2
+	qr95KF4UCFn8CrXCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	Gr0_Gr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
+	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWU
+	twAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
+	8JMxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+	6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
+	AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
+	0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4
+	v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AK
+	xVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8svtJUUUUU==
 
-On Mon, Apr 22, 2024 at 03:49:06PM -0700, Wesley Cheng wrote:
-> +.. code-block:: rst
-> +
-> +int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
-> +					struct snd_soc_jack *jack)
-> +..
+Hi all:
 
-You forget to indent snd_soc_usb_setup_offload_jack() prototype:
+This patchset introduce the Loongson-2K0500 and Loongson-2K2000
+temperature sensors.
 
----- >8 ----
-diff --git a/Documentation/sound/soc/usb.rst b/Documentation/sound/soc/usb.rst
-index 3f7c3ef6a0c03c..0b6da0be9f317f 100644
---- a/Documentation/sound/soc/usb.rst
-+++ b/Documentation/sound/soc/usb.rst
-@@ -218,8 +218,8 @@ state.
- 
- .. code-block:: rst
- 
--int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
--					struct snd_soc_jack *jack)
-+        int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
-+        					struct snd_soc_jack *jack)
- ..
- 
-   - ``component``: ASoC component to add the jack
+The temperature sensors of Loongson-2K series CPUs are similar, except
+that the temperature reading method of the Loongson-2K2000 is
+different.
 
-> +USB Offload Playback Route Select Kcontrol
-> +-----------------------------------
-
-USB offload playback heading underlines are not long enough to cover heading
-titles, so I have to extend them:
-
----- >8 ----
-diff --git a/Documentation/sound/soc/usb.rst b/Documentation/sound/soc/usb.rst
-index 0b6da0be9f317f..5e0e9fad131b24 100644
---- a/Documentation/sound/soc/usb.rst
-+++ b/Documentation/sound/soc/usb.rst
-@@ -482,7 +482,7 @@ into the physical USB port and enumerated.  The kcontrols are defined as:
-     kcontrol exposed by the platform card.
- 
- USB Offload Playback Route Select Kcontrol
-------------------------------------
-+------------------------------------------
- In order to allow for vendor specific implementations on audio offloading device
- selection, the SOC USB layer exposes the following:
- 
-@@ -545,7 +545,7 @@ along to the external DSP.
- 
- 
- USB Offload Playback Route Status
---------------------
-+---------------------------------
- SOC USB exposes APIs for keeping track of the offloading state, and expects this
- to be maintained by the BE DAI link that created/added the SOC USB device.
- 
-@@ -573,7 +573,7 @@ When executing the kcontrol get callback, it will loop across the active_list ar
- and report to the application for active USB sound card and USB PCM device indexes.
- 
- USB Offload Playback Capable Card
---------------------------------
-+---------------------------------
- USB sound also creates a kcontrol for applications to help determine which platform
- sound card USB offloading is linked to.  This will allow applications to further
- query the platform sound card for specific information about the current USB offload
+Specifically, the temperature output register of the Loongson-2K2000 is
+defined in the chip configuration domain. We need to define it in dts
+and calculate it using different calculation methods.
 
 Thanks.
 
+---
+V4:
+patch(1/4):
+  - Drop devm_thermal_add_hwmon_sysfs() return value checking, to avoid
+    jeopardize the initialization of this driver if the
+    devm_thermal_add_hwmon_sysfs() function fails.
+patch(4/4):
+  - Use the different ops to get temperature.
+
+Thanks Daniel for your advice.
+
+Link to V3:
+https://lore.kernel.org/all/cover.1713509889.git.zhoubinbin@loongson.cn/
+
+V3:
+- Collect Acked-by and Reviewed-by tag, thanks.
+patch(1/4):
+  - Several code stlye adjustments, such as line breaks.
+patch(3/4):
+  - If-else statement goes before unevaluatedProperties.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1713147645.git.zhoubinbin@loongson.cn/
+
+V2:
+patch(2/4):
+ - Add Acked-by tag from Rob, thanks.
+patch(3/4):
+ - Add "minItems: 2" to the reg attribute of Loongson-2K2000.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1712733065.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (4):
+  thermal: loongson2: Trivial code style adjustment
+  dt-bindings: thermal: loongson,ls2k-thermal: Add Loongson-2K0500
+    compatible
+  dt-bindings: thermal: loongson,ls2k-thermal: Fix incorrect compatible
+    definition
+  thermal: loongson2: Add Loongson-2K2000 support
+
+ .../thermal/loongson,ls2k-thermal.yaml        |  24 +++-
+ drivers/thermal/loongson2_thermal.c           | 117 ++++++++++++------
+ 2 files changed, 101 insertions(+), 40 deletions(-)
+
 -- 
-An old man doll... just what I always wanted! - Clara
+2.43.0
+
 
