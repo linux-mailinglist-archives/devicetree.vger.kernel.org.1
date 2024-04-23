@@ -1,75 +1,57 @@
-Return-Path: <devicetree+bounces-61944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093248AEB3E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:38:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A868AEB45
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ADE71C21C8A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:38:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A50991F21B80
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FBF13BAF5;
-	Tue, 23 Apr 2024 15:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/v0Pqjy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DC513C817;
+	Tue, 23 Apr 2024 15:39:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0EE17BA8
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 15:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99212136652;
+	Tue, 23 Apr 2024 15:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713886705; cv=none; b=eSILunwiFmTkTPcqVNwXV9hHIiSFmFP+O6VYl1j3BCGlfT0v4E+ZvRS1DDeG+7ejtODqGqX1ouxv6Y4sjtUKaYhhRqIrTo19HpNiaJF0TVPvQkvDTg8iCEYXc2Mg3+yoiWwdiczM5tYUzK0NTI8cvZmj734cyLoERCRfwMKHCZM=
+	t=1713886767; cv=none; b=qdjQEqeq1udG1XMouhXFw/eUchWoKpL6HC2hYKD2JZ36e5w15OQ2AatwUsAkSJfg0U1iZj26g7tr7IV3nmpSnBhKUa+/mHKHV5Db/Lt1Y9BT8FI4Gmm1Y5uojNIM+LGI3cG4smkVUEmtzFop8lCRSFRuSh5YWsv7ROkjtlkPNKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713886705; c=relaxed/simple;
-	bh=MpUeJX8ffb4u+FjT+llCRbfgNL5taVVPGqoxL2U9JmI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=G/di6+k+WjNQMALQyRfqmLY118u1rs/QEfnmZqJilSPG6debFaTVgHutsIBmYtj3ERFQTDLEKlBDI4ZQRMYSmTxtGe6Gg+6hQ/D58ni3AOrJhQqZvkoYHcWh9fOB7F3KKsBrdmdwUt9D4iNrGLBfo7cbMIZXdW+wTChEsmlMaeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/v0Pqjy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 659DDC2BD10;
-	Tue, 23 Apr 2024 15:38:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713886705;
-	bh=MpUeJX8ffb4u+FjT+llCRbfgNL5taVVPGqoxL2U9JmI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Q/v0PqjyczJtqEgG+JUcLV84YoFgLJidGcK4RsMz/RmACT6tmbL7BgySrfnPXo/yI
-	 Gu8UI+2a/rjJi221QPl60E7DW//v+o1CHj5xs/ZoUl48oBR0TsyK0kmpBQEUlLFCpe
-	 U0wpDqE+KCA3vFLMmRUlsEfTvIuGbslV1Xds9LNGb2ZPMd5BFrf2AUSjRpMCqWrb31
-	 N71IruaSA3LCyy5XHKNkx4RAevELxRiNPGf7bNbFB4VFEUXZXQ6dmYBAOzsn2WlsfQ
-	 K/M0Igsry36sb+dE2FHPvmEjdsyJMj6DsPNi1/m3WDaMgvAgBf1mMM/GK9JmVkXmfa
-	 2yEkDr8/16DaA==
-From: Robert Foss <rfoss@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>,
-	Rob Herring <robh+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	David Airlie <airlied@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Simha BN <simhavcs@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Daniel Vetter <daniel@ffwll.ch>
-Cc: Robert Foss <rfoss@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 00/10] Improvments for tc358775 with support for tc358765
-Date: Tue, 23 Apr 2024 17:38:14 +0200
-Message-ID: <171388665771.1455301.34959660424269300.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240225062008.33191-1-tony@atomide.com>
-References: <20240225062008.33191-1-tony@atomide.com>
+	s=arc-20240116; t=1713886767; c=relaxed/simple;
+	bh=EtO6N+QrbNhbhs0KN/FYNqL+zuuZdE0DVI/R+Ug2GFo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o/mXr/akvQmnRM9WpooGVC/IfSzLDWtVY8pMTr2fCJfdxLhuLQFXXwNtaTJsrhTQd7/Y8S78yxiF3wwsxwq3+INa0J+PcSDa17HBiQZl/MrOT9rsov5Qc/Fy7wBHvAZg4zx7T5ypRiURQEW5EvWJ284TjFeOL0r6kM50+wI2yYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e861d9e.versanet.de ([94.134.29.158] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rzIEo-0007h9-3X; Tue, 23 Apr 2024 17:39:18 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Jing Luo <jing@jing.rocks>,
+	linux-rockchip@lists.infradead.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	sebastian.reichel@collabora.com,
+	jagan@edgeble.ai,
+	cfsworks@gmail.com,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: correct gpio_pwrctrl1 typos on rk3588(s) boards
+Date: Tue, 23 Apr 2024 17:39:15 +0200
+Message-Id: <171388674748.2655666.197923029393759084.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240420130355.639406-1-jing@jing.rocks>
+References: <20240420130355.639406-1-jing@jing.rocks>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,43 +61,22 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Sun, 25 Feb 2024 08:19:29 +0200, Tony Lindgren wrote:
-> Here are v5 patches to improve tc358775 driver and add support for
-> tc358765.
+On Sat, 20 Apr 2024 22:03:55 +0900, Jing Luo wrote:
+> gpio_pwrctrl2 gets duplicated by both rk806_dvs1_null and rk806_dvs2_null
+> gpio_pwrctrl1 is unset. This typo appears in multiple files. Let's fix them.
 > 
-> Regards,
+> Note: I haven't had the chance to test them all because I don't own all
+> of these boards (obviously). Please test if it's needed.
 > 
-> Tony
 > 
 > [...]
 
-Thanks for the really nice series, sorry about the delay in applying it.
-
 Applied, thanks!
 
-[01/10] dt-bindings: display: bridge: tc358775: make stby gpio optional
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=51debb6d4a21
-[02/10] dt-bindings: display: bridge: tc358775: Add data-lanes
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=497f0a1bdc06
-[03/10] dt-bindings: display: bridge: tc358775: Add support for tc358765
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=efcfac3e8e37
-[04/10] drm/bridge: tc358775: fix support for jeida-18 and jeida-24
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=30ea09a182cb
-[05/10] drm/bridge: tc358775: make standby GPIO optional
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=733daaebe250
-[06/10] drm/bridge: tc358775: Get bridge data lanes instead of the DSI host lanes
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=005102727d9e
-[07/10] drm/bridge: tc358775: Add burst and low-power modes
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a4ed72e85c46
-[08/10] drm/bridge: tc358775: Enable pre_enable_prev_first flag
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e2ee8e82cf42
-[09/10] drm/bridge: tc358775: Add support for tc358765
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ce2196dbba66
-[10/10] drm/bridge: tc358775: Configure hs_rate and lp_rate
-        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ec710af54a1c
+[1/1] arm64: dts: rockchip: correct gpio_pwrctrl1 typos on rk3588(s) boards
+      commit: d7f2039e5321636069baa77ef2f1e5d22cb69a88
 
-
-
-Rob
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
