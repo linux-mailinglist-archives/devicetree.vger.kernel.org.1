@@ -1,129 +1,91 @@
-Return-Path: <devicetree+bounces-61815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 828848AE41C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:34:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062368AE429
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:36:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38D6D1F2393D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:34:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEA63B2310B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815D712FB24;
-	Tue, 23 Apr 2024 11:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42BEF82C60;
+	Tue, 23 Apr 2024 11:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="a678XM4+";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="QhwY3aun"
+	dkim=pass (2048-bit key) header.d=pqrs.dk header.i=@pqrs.dk header.b="D4KlswLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FC912F5A2;
-	Tue, 23 Apr 2024 11:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46222E576;
+	Tue, 23 Apr 2024 11:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713871956; cv=none; b=Is4MurvCJg7anrPahqwuJlBT4Z8rpl1J/lFBwaSth7P3M8RQ19HD2LwZhYLNVCV5PAAlugZA+zOMk96U0a3FfMFUosOyiJ+Qd2IiBrC5rBWYP+WdWv04qjaZ350FyisejZBY3ipGWDJWSi/42rM9HylhewzzskU1UEKp+ZZP4Q8=
+	t=1713872152; cv=none; b=u4Q/RrrswW/1mK579kgYicf00xbMKEKjfdx4ZC9uA5YEZtwqAnzCCsJm7oi+/+7HTnF7r09c63EWLjzpbRg4vnsjQVPbEFlhS+O1NOD/33MHOh1DgPJyFDgjddZ6gYmIAYRPEyvX6D7W+inoIt+1Jq2NIqvy7MWCrdrQWjNdvrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713871956; c=relaxed/simple;
-	bh=ZeYlrTotjERbxmW3X60SZKrwg2gt2Rp06cYW5JNsCOM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=B8anTJQfscbCL4IUnQOGJceg0idLoCVaIt1eoOnG+geK+vGzsUp/vCVcjBe7RWijsV+itYyXhZ66tq06xT0SZjR5fUZM4JPnVHwG0KWtQF+9QKE4xFtVHTdmFjLa72d34gZcAlZ3wqoR5AvXFUDWhxJsTra0nishyIM7ADi+zmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=a678XM4+; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=QhwY3aun reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1713871954; x=1745407954;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=pCLoCC6GOo9gQ9iL/Fi4GAoIoWICczCG1YlZoCwuv8U=;
-  b=a678XM4+Ntc0d0Pnyi7hYH+N1YAEcu7M9rLTFzGBegyuTUnPy4CCEvP1
-   qT166I4p87jmOv4bZ2NTNaDXoZ0wAsuYgLjR7eR0I60O1eIvxtbAUIgDC
-   6ElIDnFc7l6eUS8iZDMz6/cPThghBDFqPPe5cAOxutkn2ySYOkLBpj46F
-   zGSMMuyMjXqkVjD2BrUj3IseVrJthuJbBahw24hUm8VHOY8HXDuTazg7V
-   Els1GH82Y5GIkzScVkJ93Vts+TuAhOq3mQ1qxwTZSMPMregjlNRG5C/Zk
-   WfGpwFa3puBgj975InXdRwoYw6UhdnxiPcpN9EIbwRGktKnLx3eWz4xql
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.07,222,1708383600"; 
-   d="scan'208";a="36565292"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 23 Apr 2024 13:32:33 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98CA61706D1;
-	Tue, 23 Apr 2024 13:32:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1713871949; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=pCLoCC6GOo9gQ9iL/Fi4GAoIoWICczCG1YlZoCwuv8U=;
-	b=QhwY3aund2zBHehIjbkKKf5Dw5G1hphylELqCTpdTSET2ekepXcgiNkrfK8NHecF4DHTxQ
-	PkMULW0Skx2/pwI1AvLSueg82jzDHcxTw5mqVBM9ByNzx2sFDKp6tT75eh3Jwq/te5TvxS
-	qWW7A1dtaw6RIsA3yk1XTot8iwyEHvUQ06kSTZRvTHc2ZKeUU8VwHyDdvEFAsf8br9I9RW
-	sTu7McLyyPVLs8jH8+twgeMOqGBUZX+MLGCiXkK++YPJycnmzlffMRhvbfnpryK1SvvUdr
-	ILKIdvSgwyC9g1njHtW9CNwYKOeoPpVL6UU6y0FWT0+58Yni7C8Yn85UAHXigg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: freescale: tqma8xx: Add partitions subnode to spi-nor
-Date: Tue, 23 Apr 2024 13:31:51 +0200
-Message-Id: <20240423113151.2145120-7-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240423113151.2145120-1-alexander.stein@ew.tq-group.com>
-References: <20240423113151.2145120-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1713872152; c=relaxed/simple;
+	bh=lJt8E0U3Mk8gFwh7JvTQ5k6BmWh49nIGxdJHH7cyVEc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ct6yk8DCFxRwf035BG2y4tKPwbJJd7bRvYKzFLlBI+C6d2ITebi165a3ZmaKgDlsdReXP36lfie1/S2TcTc4i0JXSY2Eg6+kPLHdrJb6VISFhuT2h00UFuvlFn5+Or1zh6AYUMnULuw0Ua32Oz3Pm7bt28Gv1RnExmawruWF0YY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pqrs.dk; spf=pass smtp.mailfrom=pqrs.dk; dkim=pass (2048-bit key) header.d=pqrs.dk header.i=@pqrs.dk header.b=D4KlswLM; arc=none smtp.client-ip=91.218.175.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pqrs.dk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pqrs.dk
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqrs.dk; s=key1;
+	t=1713872145;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SeGdmR9Tag7SOUwFc4v/9fCbObSDxffUEqU54SLcBGw=;
+	b=D4KlswLM0VXPMkuJTMq35iulmEONaMwMfl8HvhVphaihApvIHqllOgFN5Y0nWva7M7lurJ
+	q4yNNV0XZVvh6doS2hT5OTxjs/h39LV0LlXkEheJcH7L1vxntdsjTZy10g0RSFlH/dP4OJ
+	V3lji1l8Nw9kb7dqL8Y0Z4eHKA7T5QdDClIqR0UC7UrLzQvpU+68jwpmdzbB0Ra7x497HW
+	2RI8kJ5IR5bcKL11KMq0lI84xnDyn/rk2ugJhBGxGalKS5Ev+NB5BdqW+ydF1mokVIkgKl
+	AIBNCwu+00UeA2MhmfGUtpiiqWejUDRzeRe1dZmVHWC6evCtvfRhFNX3OumR7A==
+From: =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
+Subject: [PATCH 0/3] spi: sc18is602: add support for SC18IS606
+Date: Tue, 23 Apr 2024 13:35:29 +0200
+Message-Id: <20240423-sc18is606-v1-0-094ef37d5a59@bang-olufsen.dk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-B4-Tracking: v=1; b=H4sIAAGdJ2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDEyNj3eJkQ4vMYjMDM90UY3NTM0Pj1KQUCyMloPqCotS0zAqwWdGxtbU
+ ACtPpnVsAAAA=
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+X-Migadu-Flow: FLOW_OUT
 
-The bootloader adds MTD partitions in this subnode if present, or in the
-spi-nor node itself otherwise.
-Setting #size-cells in MTD nodes itself is deprecated by mtd.yaml.
-Fix all this by adding an empty partitions node which the bootloader will
-fill with configured MTD partitions. Remove the deprecated properties
-as well.
+The SC18IS606 is basically already supported by the driver, but since it
+has a larger data buffer and fewer chip selects, it deserves its own
+compatible string together with some minor modifications to the driver
+to support this.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+While at it, convert the device tree bindings to YAML before adding an
+additional compatible string.
+
+Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
 ---
- arch/arm64/boot/dts/freescale/tqma8xx.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Alvin Šipraga (3):
+      spi: dt-bindings: nxp,sc18is602: convert binding to YAML
+      spi: dt-bindings: nxp,sc18is602: add compatible for SC18IS606
+      spi: sc18is602: add support for SC18IS606
 
-diff --git a/arch/arm64/boot/dts/freescale/tqma8xx.dtsi b/arch/arm64/boot/dts/freescale/tqma8xx.dtsi
-index d98469a7c47cc..366912bf3d5e5 100644
---- a/arch/arm64/boot/dts/freescale/tqma8xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/tqma8xx.dtsi
-@@ -61,12 +61,16 @@ &flexspi0 {
- 
- 	flash0: flash@0 {
- 		reg = <0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
- 		compatible = "jedec,spi-nor";
- 		spi-max-frequency = <66000000>;
- 		spi-tx-bus-width = <1>;
- 		spi-rx-bus-width = <4>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
- 	};
- };
- 
--- 
-2.34.1
+ .../devicetree/bindings/spi/nxp,sc18is602.yaml     | 60 ++++++++++++++++++++++
+ .../devicetree/bindings/spi/spi-sc18is602.txt      | 23 ---------
+ drivers/spi/spi-sc18is602.c                        | 29 ++++++++---
+ 3 files changed, 83 insertions(+), 29 deletions(-)
+---
+base-commit: 5343a65e03e4ee9f81508032e70b547e3c9f99ed
+change-id: 20240423-sc18is606-d375613ebd82
 
 
