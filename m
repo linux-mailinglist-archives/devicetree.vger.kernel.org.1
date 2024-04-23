@@ -1,232 +1,136 @@
-Return-Path: <devicetree+bounces-61988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9508AF523
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:11:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E108AF56D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:24:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A044B2837C7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:11:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2F0A1C23E66
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4847213DBA8;
-	Tue, 23 Apr 2024 17:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A08813E04C;
+	Tue, 23 Apr 2024 17:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NoLQs1lS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c+7lX35t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9231BC23;
-	Tue, 23 Apr 2024 17:10:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0872713D287;
+	Tue, 23 Apr 2024 17:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713892246; cv=none; b=uXPPSQ2eM91MJ4xEZKFvmBbAWgdjVngRaylGI2Ro/Zsm9rH/vNlO2T/QICOAiopOg30FSAgP3mQFHwNR7FeQ+dbfbhJWWGOlr1EElriDA056a8tVsXMWmzDrMp51zj84ghKprITKx+QJDhHyh4obxZv1bGYPSc3YJSK/pmhQh6Q=
+	t=1713893003; cv=none; b=GNQBy6BoygBF+mSVpA35ra3Q8YG3s3vzOHxzb4W5129XQ29g6LcCS2pFYrwNJR4l2eFBe67b5AuwIVPWoIscBBgufNHMDtXANIEppHcVZ4Usp5nTl+WF/LdFKBB6Cq3/1EynMNlxM3127kpLZDjhYlDiQoYC+yG27L+U1DLN0q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713892246; c=relaxed/simple;
-	bh=3iJsSjxbI0PNipnxd/KeM1DCk6cveiFrDgu3Xi+l1Og=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=s6gphxlWwj2aKIpXgCIEEWM13imqOqs2wPYO978x9eKgswKumrqoawrRmUkGJ/VBBzOxDqzDXKRx9NQZyLmaTwoH730pGV8vXj91EPxMsA/MCoKwDft15JED+mmNIFScW5doFF6mG5KDLDCQmOfxWe0S3qhal7FKTt49XB4JKBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NoLQs1lS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43NBI66Z007348;
-	Tue, 23 Apr 2024 17:10:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=iwfP7SYyKYAwAEtQZw+SpCrrNAmXiipoup29vOfLkR8=; b=No
-	LQs1lSuLQagIs4RxVZYijk6ekijLT9OH0KL0M8aq/0CX0vfJUdSlKCN9E810mwjS
-	Ls38RwaPpWWZbMAjQnAMRQlG70z0pLrKo7VjcBWHmBE7GBQgR55u7UCXxgQS3g+j
-	K3yIaw7qQwHCBRvV2H3tDZJ83GmKhqo5OI1qT3pKRcbZdzQRTIarrPeXxjFaKJuz
-	4uDFWCWEWAYW469lR/rrUh1UZmoqKLcGt6owboQDze261U7o5rKzACVpvsa2Y30M
-	zkSUhkKQYmd8Tseud6vibHhIxXxG+3YdggYTR3r3kLituAabN7DlkYkMv+FSx8n3
-	T/1CF85n7u8Hz5TXRFxg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xp8chsn2d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 17:10:33 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43NHAWY6008955
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 17:10:32 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 23 Apr
- 2024 10:10:26 -0700
-Message-ID: <d5581614-71ad-5f7f-e948-bdbab3ef854e@quicinc.com>
-Date: Tue, 23 Apr 2024 22:40:22 +0530
+	s=arc-20240116; t=1713893003; c=relaxed/simple;
+	bh=LNIkqN117CWF9zanEHE17vB3B3+2CNeQYopVecWmHeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bmlwRq9CYnjun7PhdZkpum7kpH5oYTSV4o52Ktj4Jrl1+9g5fR7opMMFUgyKwFWThDxt+sV1CdyL397LjvWzLQCKShCsWylMuqJshDmUYRyEsFh9/99lfRARKOvct1Cx3gjls+drLvRqoOl05977HOUcjAnUT9/gyS6CNfIoVZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+7lX35t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A31C32781;
+	Tue, 23 Apr 2024 17:23:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713893002;
+	bh=LNIkqN117CWF9zanEHE17vB3B3+2CNeQYopVecWmHeI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c+7lX35tQMnGBj2ewu8z9oSTSqQeMf4Seo+ZmZnUCWoxo3+DKcsB53gBYHpLMvwWp
+	 1f8cAUpA3BJumfz2r+/t76yvkeczbcgQMKttml0pqszh9gjC6crKVL0yCNE5MvnKzp
+	 hpzBvnS+fQ2QH7NOxG0lcJ8/7ei/uXlcqegV6iZly+dnoSD6FnVJHV6ghMAIrFofWo
+	 LRfmFT9uzdiD+Vyb8ElaS5D0+SUiIopFBKaaFGJgmczqN0Tn9rwuygOnVQDrquVbUE
+	 NnXHoOqegvoiCOYeroGp0zqdUUlyW6zL2D7NuORkLauwS8UXdt9hjqnC6IsTUzL6tk
+	 O8ONK1DpjAfuw==
+Date: Tue, 23 Apr 2024 18:23:16 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vaishnav Achath <vaishnav.a@ti.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Subject: Re: (subset) [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5
+ support
+Message-ID: <20240423-epidemic-schedule-6fa9869b3e87@spud>
+References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
+ <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
+ <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
+ <ZidAefc0Ejrklopf@finisterre.sirena.org.uk>
+ <D0RF1AKWAEAE.44N64GHMV2ZY@bootlin.com>
+ <3f891794-0083-4245-bad7-518b1c48bb7c@linaro.org>
+ <D0RIXN4JG6ZA.4W4HN68M9U6I@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V4 2/5] mailbox: Add support for QTI CPUCP mailbox
- controller
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <sudeep.holla@arm.com>,
-        <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.baryshkov@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        <quic_gkohli@quicinc.com>, <quic_nkela@quicinc.com>,
-        <quic_psodagud@quicinc.com>, <abel.vesa@linaro.org>
-References: <20240422164035.1045501-1-quic_sibis@quicinc.com>
- <20240422164035.1045501-3-quic_sibis@quicinc.com>
- <d6052413-5706-446b-b508-2a5ed839acc4@linaro.org>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <d6052413-5706-446b-b508-2a5ed839acc4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: upaUshkJipjEYvkzg4rZ8gJBqozeNrgc
-X-Proofpoint-ORIG-GUID: upaUshkJipjEYvkzg4rZ8gJBqozeNrgc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-23_14,2024-04-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 bulkscore=0
- mlxlogscore=999 mlxscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404230039
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dLUQzGTCWgy5qnxs"
+Content-Disposition: inline
+In-Reply-To: <D0RIXN4JG6ZA.4W4HN68M9U6I@bootlin.com>
 
 
+--dLUQzGTCWgy5qnxs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 4/23/24 04:47, Konrad Dybcio wrote:
-> 
-> 
-> On 4/22/24 18:40, Sibi Sankar wrote:
->> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
->> this driver enables communication between AP and CPUCP by acting as
->> a doorbell between them.
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
-> 
-> [...]
-> 
->> +
->> +static int qcom_cpucp_mbox_send_data(struct mbox_chan *chan, void *data)
->> +{
->> +    struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct 
->> qcom_cpucp_mbox, mbox);
->> +    unsigned long chan_id = channel_number(chan);
->> +    u32 *val = data;
->> +
->> +    writel(*val, cpucp->tx_base + APSS_CPUCP_TX_MBOX_CMD(chan_id) + 
->> APSS_CPUCP_MBOX_CMD_OFF);
-> 
+On Tue, Apr 23, 2024 at 03:08:05PM +0200, Th=E9o Lebrun wrote:
+> Hello,
+>=20
+> On Tue Apr 23, 2024 at 12:25 PM CEST, Krzysztof Kozlowski wrote:
+> > On 23/04/2024 12:04, Th=E9o Lebrun wrote:
+> > > Hello,
+> > >=20
+> > > On Tue Apr 23, 2024 at 7:00 AM CEST, Mark Brown wrote:
+> > >> On Mon, Apr 22, 2024 at 06:52:47PM +0200, Th=E9o Lebrun wrote:
+> > >>> All commits tagged "(no commit info)" do not show up in your for-ne=
+xt
+> > >>> branch. Is that expected and is there anything I can do? There was =
+one
+> > >>> pending -Wunused-variable compiler warning to be addressed for
+> > >>> example, see [0].
+> > >>
+> > >> Please submit any patches you'd like to see included.  If there were
+> > >> outstanding issues that need fixing then fixing those prior to
+> > >> submitting would be sensible.
+> > >=20
+> > > Seeing "Applied" followed by a list of commits, with some of those not
+> > > being applied confused me.
+> >
+> > That's a standard output of b4 and maybe also Patchwork, if some parts
+> > are applied.
+>=20
+> Thanks for the pointer. I've created an issue over at b4 to see what
+> people think about this matter. Current behavior is not intuitive as a
+> young contributor.
 
-Hey Konrad,
+FWIW, given I see `having a more confident comment such as
+"(commit not applied)".` there, having (no commit info) doesn't mean
+that it wasn't applied always. Sometimes I've found that due to changes
+in the patch b4 could not detect that it was applied and reported (no
+commit info).
 
-Thanks for taking time to review the series.
+--dLUQzGTCWgy5qnxs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Just checking in, is *this access only* supposed to be 32b instead of 64 
-> like others?
+-----BEGIN PGP SIGNATURE-----
 
-yeah, the readl and writely in the driver were used intentionally.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifuhAAKCRB4tDGHoIJi
+0l7bAQDnzDqSfwWn/wDBsIvN00NjQAGOFccnLtQcSDf6yj2z1gEA+DyINGJ3YxOM
+oaJn81egHe6ayRZEwloZJ8SXlXa8mgI=
+=nkkg
+-----END PGP SIGNATURE-----
 
-> 
-> [...]
-> 
->> +
->> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
->> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
->> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
-> 
-> If these writes are here to prevent a possible interrupt storm type 
-> tragedy,
-> you need to read back these registers to ensure the writes have left the 
-> CPU
-> complex and reached the observer at the other end of the bus (not to be
-> confused with barriers which only ensure that such accesses are ordered
-> *when still possibly within the CPU complex*).
-
-I couldn't find anything alluding to ^^. This sequence was just
-meant to reset the mailbox. Looks like we do need to preserve the
-ordering so relaxed read/writes aren't an option.
-
--Sibi
-
-> 
-> Moreover, if the order of them arriving (en/clear/mask) doesn't matter, you
-> can add _relaxed for a possible nanosecond-order perf gain
-> 
->> +
->> +    irq = platform_get_irq(pdev, 0);
->> +    if (irq < 0)
->> +        return irq;
->> +
->> +    ret = devm_request_irq(dev, irq, qcom_cpucp_mbox_irq_fn,
->> +                   IRQF_TRIGGER_HIGH, "apss_cpucp_mbox", cpucp);
->> +    if (ret < 0)
->> +        return dev_err_probe(dev, ret, "Failed to register irq: 
->> %d\n", irq);
->> +
->> +    writeq(APSS_CPUCP_RX_MBOX_CMD_MASK, cpucp->rx_base + 
->> APSS_CPUCP_RX_MBOX_MAP);
-> 
-> Similarly here, unless read back, we may potentially miss some 
-> interrupts if
-> e.g. a channel is opened and that write "is decided" (by the silicon) to 
-> leave
-> the internal buffer first
-
-At this point in time we don't expect any interrupts. They are expected
-only after channel activation. Also there were no recommendations for
-reading it back here as well.
-
--Sibi
-
-> 
-> 
->> +
->> +    mbox = &cpucp->mbox;
->> +    mbox->dev = dev;
->> +    mbox->num_chans = APSS_CPUCP_IPC_CHAN_SUPPORTED;
->> +    mbox->chans = cpucp->chans;
->> +    mbox->ops = &qcom_cpucp_mbox_chan_ops;
->> +    mbox->txdone_irq = false;
->> +    mbox->txdone_poll = false;
-> 
-> "false" == 0 is the default value (as you're using k*z*alloc)
-> 
-> 
->> +
->> +    ret = devm_mbox_controller_register(dev, mbox);
->> +    if (ret)
->> +        return dev_err_probe(dev, ret, "Failed to create mailbox\n");
->> +
->> +    return 0;
->> +}
->> +
->> +static const struct of_device_id qcom_cpucp_mbox_of_match[] = {
->> +    { .compatible = "qcom,x1e80100-cpucp-mbox" },
->> +    {}
->> +};
->> +MODULE_DEVICE_TABLE(of, qcom_cpucp_mbox_of_match);
->> +
->> +static struct platform_driver qcom_cpucp_mbox_driver = {
->> +    .probe = qcom_cpucp_mbox_probe,
->> +    .driver = {
->> +        .name = "qcom_cpucp_mbox",
->> +        .of_match_table = qcom_cpucp_mbox_of_match,
->> +    },
->> +};
->> +module_platform_driver(qcom_cpucp_mbox_driver);
-> 
-> That's turbo late. Go core_initcall.
-> 
-> Konrad
+--dLUQzGTCWgy5qnxs--
 
