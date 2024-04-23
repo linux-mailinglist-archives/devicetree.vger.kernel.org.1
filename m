@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-62035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A382B8AF853
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:51:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA19D8AF859
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:51:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 862551C24199
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:51:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC23E1C24196
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF257143884;
-	Tue, 23 Apr 2024 20:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67211448EA;
+	Tue, 23 Apr 2024 20:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NYHtLYuR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k6MWVal8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE708143C5A
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 20:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCBA143C5A
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 20:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713905420; cv=none; b=dL4qG7CLQfNp+sUErJXZ8OxARn7Eor1b2sDcjMIiX8NEJTAyzPt46MESBhuWvb/WyNeBva1IT7ADEuYRB2egoQ+fFnpB5gjCNym7n8Cu5zVC9MM1inxnq3RDJZBgXI6pqGOw168RugAxVIXfuJaO0m0ewNEK7WJz6Kw0liFwC2s=
+	t=1713905422; cv=none; b=RSvoC+RoZxNR00I4Xdsj0B7zy/zOqjpO6Ov8mUfj2O8DHBxbqk/oDRRKLRzkp5BxTz4DA8Q0KfxGXKhShyuDak3PX3NXqaNBGtXlkMPkTkPtF7wGDw/dYr4LHLq0b9CznsQYV5lqMAu1pztlOSjKxd+W5ys7+w5OOZChnJLBV4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713905420; c=relaxed/simple;
-	bh=BXQ2t9iAj7eohIsEGoqiB0oQevfiMgMotmBetgnWWks=;
+	s=arc-20240116; t=1713905422; c=relaxed/simple;
+	bh=WfkPLo16W+IyF/O7XM3xMKPYypFNJEWjEmOzEVbzyPE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AkMiI5iDzXO3polDtpV7/CpzMa8kC0jurkypVUcld+FzcSsxZfHOshUVBlddmEGvj6WHsuZ4QW8JHNDqudTqLzIESBVbK3BYubyOG2JcKzmutspuoquQiwTGjxrt9FXUXWnAhblCVxYVVrLz0D6cX9qyoaPWsteEcNMaQv6NEmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NYHtLYuR; arc=none smtp.client-ip=209.85.128.46
+	 MIME-Version; b=croXDirc4rQI0hKUpeIvTnto9xF3X2+YKwDOEWPFRo6kVUy57/HY5aHpkiBqWvBc69SgGfQBNzg2u0Np7g76WYfXG8Oq3P0IhJvyxN85WBoCfjSO+zDXoRVXU4a8fTFhbdhcJqJGe4GE4coT+lzXXlf+YWQwIYtqsQcWWPTaQJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k6MWVal8; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41a523e2888so20527045e9.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 13:50:18 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-41ae95468efso3151105e9.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 13:50:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713905417; x=1714510217; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713905419; x=1714510219; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7YDoEtxb3WAccXiFYU++BdYy9LiGKO7VakM6fMKLsd0=;
-        b=NYHtLYuRD8KiNchDzCfr5vYz24pnWq3+l5rwgx+EZ5aeiEmRMmofy/vq4IhBIdfbpE
-         8gdnAADZgVqNnnZpr2HO0td7v/iurPIVo+5961eRr/WgGZOKdezdmCobp5CHMZnXbY2C
-         JiqQ6c5mPqL6mwEqo17vDki9tpIz2wUlJ0iOICTq1oNo1IL3o0Exz+K1dpnhgVoEidGy
-         9r+hx0O1slo4GN3jJ58wDpfFh2Kvnjk4vjUxoK8WKoiYMNJK/Oj4hgPnFYZMY4z2ogTt
-         ubDucXIOU58k6Z3OlXNQ0HFB9ZKjZ5JLAKcEw7QHi67uSxMNY4CYhmlufuz/vFT3jax+
-         tRWw==
+        bh=RO0Q7DT7yLKUiAcPvW3Nf6mTKRVRL8o5OiH+h8e335U=;
+        b=k6MWVal8UG3L3xoeRrUSE8wj+NhXfd9e0AYPlIMtWHOqJ7rrSwe7bmHgg0EBmA9qAN
+         vZ87bdKbo8jJ0qr/GYb+2uZM5eg1tj0tWg0hvA9j8gRI/UbEeToqAhWrE/Xjn8l6EFqw
+         O3aQWgAYc9Jw1hwukf1rRlIyr5g1Qqbn8mmVcgJo8g/EM8Z3/bJFITO/PIGpq1t6Dd0i
+         7hUGkrLYVL1LynXOAAIeOnwIY9nOtAfPe7LpFmpLAUO00D1y2hFH6c0+npLdve9B2g/3
+         9+xoaMQB+RRLwvHZ7Jkc0lmcBQRl1F6hhYfaomroUGppd8ueuxAECjH+O2hvYmWeQEJu
+         BITg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713905417; x=1714510217;
+        d=1e100.net; s=20230601; t=1713905419; x=1714510219;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7YDoEtxb3WAccXiFYU++BdYy9LiGKO7VakM6fMKLsd0=;
-        b=jaBJ/8wdqWbSmhvl4vj9Cz34IINysHxoOfDbOdBbJ1qw/bXsMuEDXzS0vWbM0zbdhr
-         Rn3KEV7J7yVXq9J10eZ5ztROENQ696/UwCc8Sv8fQv3lO0tyTNnSSuNYgkvdCjX8QEXa
-         uYx3eS0HKF00Ql+h9gyD9/heLloe6PKsjxMNiLc+zfXfNpK+tEl2lM1ll6BcmjQGo6jN
-         Dd/PETqrQcPtb0g/p3sx0yVplHLi/L7Dzm/7vrrg0QjyNj3Ep5m1cK/KHEA8C02BqFSs
-         QqFUWHH09zkG1y1zzqQaoiwDb7QC3a/aTSodrUotCBAZQ1zxw2AmU1CNRLO0CH8Ior3P
-         ZDDw==
-X-Forwarded-Encrypted: i=1; AJvYcCViMStVbheh3tYhc+cQw8dd1u7EgQLUutI8n0Ifwo7CsjnISTgp16EqTZjOcPROrlq1hRzbUBq1V1S97AeOZmN6ttEljqWekf5J1g==
-X-Gm-Message-State: AOJu0YwJGy1n5AqrdQUJgnOxZmXJ3/LBBP4rho4BWYBK36+3MVuNG8ET
-	mY72RI0w8CSF1ZnvdXdQg4un70Ub3YQoMgSiGI8t5T/BWo/aH9pk5YD47R6ZAXI=
-X-Google-Smtp-Source: AGHT+IG67KylFXiAI0/BsAFLR1B8wx1LOJwe93ySSY8NQpxdP8gGTGPG7VdGHrq1rWe4qptsIIR9aA==
-X-Received: by 2002:a05:600c:310a:b0:418:5e80:a6fa with SMTP id g10-20020a05600c310a00b004185e80a6famr337401wmo.14.1713905417453;
-        Tue, 23 Apr 2024 13:50:17 -0700 (PDT)
+        bh=RO0Q7DT7yLKUiAcPvW3Nf6mTKRVRL8o5OiH+h8e335U=;
+        b=o6YyU3ZUsSs2JiSZXb6EmVK3n2OSa2JSwKBnZDy+FuC6jHfxdtdQyuYL8C5GJoBjXa
+         mKGKbIhStZAgGuXRBtk60rp2h58UznNDTTVfsVFt/u1gkL3MOijW/IxmrnmxGVw3swck
+         N4RCOysWr51YjCG1+M/Yx5GWxL5BGHTsH6GPhKyIT6M+TKmpz3RDkYnluzHOk3vkan2q
+         6gf0PY/7lxOFGTbTEK13KCWtdH8unhwmBDD9sNFA6DnHHpNgBx431Sc0IGGyiZVm8aYP
+         6E7Y6p1oh1Ppbsp94mqWnd54xNSumvv79/KOLVMgMl3mA9QNK0/TDSx6QR54RVm8pdaK
+         vEKw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3aADmy8MxvcD3vI+0KV95t5azfKiAuVhxvX6hTNPrK3qjy+saA8RSrEuysvat6MWe02DHAOwDSt7vXkISkzruHcbBAXAlb6vFUw==
+X-Gm-Message-State: AOJu0YxDa5Fc2ABJum+LaxteP8bRVRJdzakoX2oaP7aR7WYyJlfPs+pU
+	5uUyauYPaAAf8d1V+bvU3OzgwkdPp154M+EPoOX5RSo8sYkkSmDCPKzIAyvY+8U=
+X-Google-Smtp-Source: AGHT+IF8O2EPzbnNSG6U4NWCE/9Bmgh96w+1G9WQQPsP87ZTH8fEdARtLUqlxUJ0kewOWRJsF6pWyg==
+X-Received: by 2002:a05:600c:444b:b0:416:7b2c:df0f with SMTP id v11-20020a05600c444b00b004167b2cdf0fmr297771wmn.7.1713905419532;
+        Tue, 23 Apr 2024 13:50:19 -0700 (PDT)
 Received: from gpeter-l.lan ([2a0d:3344:2e8:8510:4269:2542:5a09:9ca1])
-        by smtp.gmail.com with ESMTPSA id bg5-20020a05600c3c8500b00419f419236fsm13065443wmb.41.2024.04.23.13.50.15
+        by smtp.gmail.com with ESMTPSA id bg5-20020a05600c3c8500b00419f419236fsm13065443wmb.41.2024.04.23.13.50.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 13:50:17 -0700 (PDT)
+        Tue, 23 Apr 2024 13:50:19 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: mturquette@baylibre.com,
 	sboyd@kernel.org,
@@ -96,9 +96,9 @@ Cc: linux-scsi@vger.kernel.org,
 	saravanak@google.com,
 	willmcvicker@google.com,
 	Peter Griffin <peter.griffin@linaro.org>
-Subject: [PATCH v2 03/14] dt-bindings: ufs: exynos-ufs: Add gs101 compatible
-Date: Tue, 23 Apr 2024 21:49:55 +0100
-Message-ID: <20240423205006.1785138-4-peter.griffin@linaro.org>
+Subject: [PATCH v2 04/14] arm64: dts: exynos: gs101: enable cmu-hsi2 clock controller
+Date: Tue, 23 Apr 2024 21:49:56 +0100
+Message-ID: <20240423205006.1785138-5-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.44.0.769.g3c40516874-goog
 In-Reply-To: <20240423205006.1785138-1-peter.griffin@linaro.org>
 References: <20240423205006.1785138-1-peter.griffin@linaro.org>
@@ -110,88 +110,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add dedicated google,gs101-ufs compatible for Google Tensor gs101
-SoC.
+Enable the cmu_hsi2 clock management unit. It feeds some of
+the high speed interfaces such as PCIe and UFS.
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- .../bindings/ufs/samsung,exynos-ufs.yaml      | 38 +++++++++++++++++--
- 1 file changed, 35 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-index b2b509b3944d..1179527d29d1 100644
---- a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-@@ -12,12 +12,10 @@ maintainers:
- description: |
-   Each Samsung UFS host controller instance should have its own node.
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index eddb6b326fde..38ac4fb1397e 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -1253,6 +1253,18 @@ pinctrl_hsi1: pinctrl@11840000 {
+ 			interrupts = <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH 0>;
+ 		};
  
--allOf:
--  - $ref: ufs-common.yaml
--
- properties:
-   compatible:
-     enum:
-+      - google,gs101-ufs
-       - samsung,exynos7-ufs
-       - samsung,exynosautov9-ufs
-       - samsung,exynosautov9-ufs-vh
-@@ -38,14 +36,24 @@ properties:
-       - const: ufsp
- 
-   clocks:
-+    minItems: 2
-     items:
-       - description: ufs link core clock
-       - description: unipro main clock
-+      - description: fmp clock
-+      - description: ufs aclk clock
-+      - description: ufs pclk clock
-+      - description: sysreg clock
- 
-   clock-names:
-+    minItems: 2
-     items:
-       - const: core_clk
-       - const: sclk_unipro_main
-+      - const: fmp
-+      - const: ufs_aclk
-+      - const: ufs_pclk
-+      - const: sysreg
- 
-   phys:
-     maxItems: 1
-@@ -72,6 +80,30 @@ required:
-   - clocks
-   - clock-names
- 
-+allOf:
-+  - $ref: ufs-common.yaml
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: google,gs101-ufs
++		cmu_hsi2: clock-controller@14400000 {
++			compatible = "google,gs101-cmu-hsi2";
++			reg = <0x14400000 0x4000>;
++			#clock-cells = <1>;
++			clocks = <&ext_24_5m>,
++				 <&cmu_top CLK_DOUT_CMU_HSI2_BUS>,
++				 <&cmu_top CLK_DOUT_CMU_HSI2_PCIE>,
++				 <&cmu_top CLK_DOUT_CMU_HSI2_UFS_EMBD>,
++				 <&cmu_top CLK_DOUT_CMU_HSI2_MMC_CARD>;
++			clock-names = "oscclk", "bus", "pcie", "ufs_embd", "mmc_card";
++		};
 +
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+
-+        clock-names:
-+          minItems: 6
-+
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+
-+        clock-names:
-+          maxItems: 2
-+
- unevaluatedProperties: false
- 
- examples:
+ 		pinctrl_hsi2: pinctrl@14440000 {
+ 			compatible = "google,gs101-pinctrl";
+ 			reg = <0x14440000 0x00001000>;
 -- 
 2.44.0.769.g3c40516874-goog
 
