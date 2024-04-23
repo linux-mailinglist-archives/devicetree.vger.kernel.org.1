@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-62044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30BE8AF883
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:54:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81BC88AF88A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78B1C281B60
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:54:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DE92287850
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08749148826;
-	Tue, 23 Apr 2024 20:50:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9537D148FE2;
+	Tue, 23 Apr 2024 20:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WGn88T2i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XD2/a67G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B711487D3
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 20:50:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB5F1487E5
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 20:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713905439; cv=none; b=H2fqVm/gszsfRRAuvpfo3YRbwjhXT7Kl8Bpk6ZBa+Ucys8WFmWVO74yMRhdgRVLext6FUntlGAHzWqwohWdHniVqUfHF6inwQBLveGj8dgm/u/AAG3at0sK9Ypc9M24ZU7tK0UCYgHMhqRaJ/PzwHNI8pmGqcCLjihepM8m6VVM=
+	t=1713905442; cv=none; b=VUdkOXAumIaerQDyD8iAYKfdh+2cIeD5bK2sI7gSTi6aJVwmSwcevjjL21w5KXG+NS4j5nl02qk56G3NYxW8gYVkEohfk89rtJf2XeV2dnRO5BVOU43ZAlcpu+00GMBZAdXccDQ3YlThB8IxJKd49m//WbXVZI+08dVnC2BDVUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713905439; c=relaxed/simple;
-	bh=k3FP8n950VFNgwhupopw0Tk1YOkwNpwES55fzU6HHhU=;
+	s=arc-20240116; t=1713905442; c=relaxed/simple;
+	bh=IMYKiq52emn3Dk5Vs4D46brLTo3TfZSVtNkXv8osBGY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VjrXMTYZFJfE86kKaxF2j9aP4wEGW0zCet48PWPW/TRhIqQipIhGdCJDzigAo2ApvaD/J2ikcYCkCh3r6BvraubP8Tj3HXXfCi0Bqx6srAkq0L2GX8xlgU75M1pvBylomWcDlaODMBDhhEuHWxqJCVqVjFiCDuC7FRCjhJs53ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WGn88T2i; arc=none smtp.client-ip=209.85.128.49
+	 MIME-Version; b=HRCkBoeiH3b5sA9NUgH9TZHyRO+m9xOyBbKgUqcz/lkgKQwLZNNmb5bIy1oxVQ5kDkc8ok8S99a65RgT4TycL+b70DeGv9NUrTud5bJrfJE5cB86A4CMkrr78qVL/ixVxgrAmML5s0e2+Vrk9JnIljv5svmiFCL/nIqOB4fHQRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XD2/a67G; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41a1d88723bso21714995e9.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 13:50:37 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41aa2f6ff2dso12379285e9.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 13:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713905436; x=1714510236; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713905438; x=1714510238; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YA/3tT3fr7pWJ8UM5dniRKuE+JDGAM81Xu5sX8YLlYU=;
-        b=WGn88T2i1r2X8nemnp7PA0/Ix23hcxyZ99u2xFQndg6SeQxxOB9T8zTBSUHzMtl+gU
-         xgTnzHoY2cGx0s0WgkWu+XD1wrzjgIQmp4R/YSU8L51DWmkrCUmKbsGFssOQkEcCwnQy
-         95w2/K4DVUb8VyaG9WHQR+E1CRq55aoYRXGkLjks/rH3JwCPUk2dcOYCiyOQGHDdUpH7
-         oZzbil747Xs4rWCNR8eCCqxXy3QSL2bzFNa0FVZ8/LaIcEaTtz/48lcPhXiyvQsJu4ya
-         bvD1D9p6kauxfIFXBtLiThe3T+T6UZZatYLaSuykrwjj9kqU8YPUw8WHpLqRY1GKmHg1
-         xSBg==
+        bh=InFnIY+p533KdBP4NACQo0sZ0V7hrv1Ldx+BeIELt2w=;
+        b=XD2/a67GFAI35JBE+U+pYbkE+dHl31lotCNQbebR20nCvME+hdN9cBvugiVzqr5heV
+         EDJLPQ4kjtNEgDUxDOokYNdeBQDC0CXsHuoIaX3p8i1r3wcW4Ih9ZmM0fmmc6J4+51ZR
+         0Vd88T4wemN0kfVJ2NWp+VauOfSJahbui86ekCibbIGpDkwxJ7K/wh7RAHxyxcfMaVLa
+         mJsxxPVcX/Uku5QF6hLQcpkHuyQW+2V6PHfMwwLnF4vPYDwfXEFFw57q9wmbMhMKPDc+
+         lKsqf3A4mVQBuzsRGD9I3skRq4CBOn3EAKNmmJiv19b1+p7/CWSQ95T+P7Z+/GEtiWV+
+         XgWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713905436; x=1714510236;
+        d=1e100.net; s=20230601; t=1713905438; x=1714510238;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YA/3tT3fr7pWJ8UM5dniRKuE+JDGAM81Xu5sX8YLlYU=;
-        b=aZWG5spPcikMX2Has1PjDtQN1E8FPNm2m7o3lq+atxscb/JnfM9KFM4N4VdoSyfXFd
-         vHcx3Aq4XyvJfjxGx77Lpsah7X6B5MpcR1kKqTmaDqj7nHqx1lfiIm0mfOLz/MtusUBK
-         Ci8E7wZsHhYFNLCY+gJdGgPF/p3ak4qCx2Epj+ix1+9Pw0tkH7S2LCdppDrDLOv8tTrd
-         kFPtJQEQyFVEgS9DG5joQpskI25gzfq4iWPKUbUWBb4xOgwZpOZy0i5zzVaEuUAi4zwx
-         YDvkCrlPjnANtRjrJBmz5y0t+hnaCB5Y+EDlC16vS0IkrVyEfhb79p5Ivhc++khMPIrY
-         vhWA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6ctHiRsBz+fEtaMQhHvzi7pInGq7KCj5KoFOofn1R/wOU6R5BwR1aySrB8YPPyhZSYlOj0cDMDQokSk443XlUp6lW1thrb8OCvA==
-X-Gm-Message-State: AOJu0YwYmlKHcXZcWoT/ngEnoTaanIBig+LIaYv+fo3jmcjTzqnkzrs6
-	d1eYm96ZRVioJ8Y/ku/DUOqUBypfDouXkl4nMLQCyTcBM4T79MH0LMCFC0LBsk4=
-X-Google-Smtp-Source: AGHT+IE3j5UJkjv75kYjHfbyWnSKhU/M0Mggu5WGBtj0OCON0029UeKJ/+zOv8tdADgwTVZGTLUlrA==
-X-Received: by 2002:a05:600c:3d8b:b0:418:e964:4684 with SMTP id bi11-20020a05600c3d8b00b00418e9644684mr322036wmb.1.1713905436525;
-        Tue, 23 Apr 2024 13:50:36 -0700 (PDT)
+        bh=InFnIY+p533KdBP4NACQo0sZ0V7hrv1Ldx+BeIELt2w=;
+        b=Xesz++0tP5GvftzCIgRo0bQqaIW4/QxhnR5/NuBM3PjRBfz/WiFLyhchuTc8xeKEuh
+         IM3Ew+QYWXTeFq5RPKv9W8UVOG3KXYwckTV9gIL7Mh4ZFlrncZ+lVG0H193iNs1QfDZQ
+         sOzGLGabLrYk8GrIyGyprf/Iz60UFJmrgDAz1hDoV0EbborXX9V2KJ3ymypuA7hTFOsM
+         eVXG/zP+yGNSQu3g3iqZkECakyQhljfoWd9DAoO0HxPaul+8RglOW9QhnygMdz7ATrqh
+         ffgaBUmdqUbo+WAJD8dIEibvYVDsQLsdvpFpNHRqEUCxrvASGKuDkq0JLcWFFmNuTAnQ
+         FxZA==
+X-Forwarded-Encrypted: i=1; AJvYcCU7qsCoMfRc5tLP0ArfRdmYxqt2vq2nwjMXiseWI7hPxK/y0n1uoGmdNhFV1MIhLjSdNPIfj2kWdELCdnXI5MSViE+UKUylhtx+Kw==
+X-Gm-Message-State: AOJu0Yyehb2H7DtmG+lPzb2KZwZRShIZGwjtC+0RvpbGax59DjgirEva
+	GD03IbKTTyBys3MIsC+OFL9yXL/kOcwRFYYFss+UQv7fih2fX6adG0ejvercuT8=
+X-Google-Smtp-Source: AGHT+IFwW0Qe2OJNFDAP49c6EJtw+kAQOSHqygzMmmEvDFQ3fb8+GmSzGKcIdG4RXGhib6lwlZrI8Q==
+X-Received: by 2002:a05:600c:5405:b0:41a:a08f:2696 with SMTP id he5-20020a05600c540500b0041aa08f2696mr310906wmb.12.1713905438258;
+        Tue, 23 Apr 2024 13:50:38 -0700 (PDT)
 Received: from gpeter-l.lan ([2a0d:3344:2e8:8510:4269:2542:5a09:9ca1])
-        by smtp.gmail.com with ESMTPSA id bg5-20020a05600c3c8500b00419f419236fsm13065443wmb.41.2024.04.23.13.50.33
+        by smtp.gmail.com with ESMTPSA id bg5-20020a05600c3c8500b00419f419236fsm13065443wmb.41.2024.04.23.13.50.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 13:50:35 -0700 (PDT)
+        Tue, 23 Apr 2024 13:50:37 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: mturquette@baylibre.com,
 	sboyd@kernel.org,
@@ -95,11 +95,10 @@ Cc: linux-scsi@vger.kernel.org,
 	andre.draszik@linaro.org,
 	saravanak@google.com,
 	willmcvicker@google.com,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 12/14] scsi: ufs: host: ufs-exynos: Add support for Tensor gs101 SoC
-Date: Tue, 23 Apr 2024 21:50:04 +0100
-Message-ID: <20240423205006.1785138-13-peter.griffin@linaro.org>
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH v2 13/14] phy: samsung-ufs: ufs: remove superfluous mfd/syscon.h header
+Date: Tue, 23 Apr 2024 21:50:05 +0100
+Message-ID: <20240423205006.1785138-14-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.44.0.769.g3c40516874-goog
 In-Reply-To: <20240423205006.1785138-1-peter.griffin@linaro.org>
 References: <20240423205006.1785138-1-peter.griffin@linaro.org>
@@ -111,252 +110,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add a dedicated compatible and drv_data with associated
-hooks for gs101 SoC found on Pixel 6.
+mfd/syscon.h header is no longer required since the update to
+exynos_get_pmu_regmap_by_phandle() api.
 
-Note we make use of the previously added EXYNOS_UFS_OPT_UFSPR_SECURE
-option, to skip initialisation of UFSPR registers as these are only
-accessible via SMC call.
-
-EXYNOS_UFS_OPT_TIMER_TICK_SELECT option is also set to select tick
-source. This has been done so as not to effect any existing platforms.
-
-DBG_OPTION_SUITE on gs101 has different address offsets to other SoCs
-so these register offsets now come from uic_attr struct.
-
+Fixes: f2c6d0fa197a ("phy: samsung-ufs: use exynos_get_pmu_regmap_by_phandle() to obtain PMU regmap")
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-Tested-by: Will McVicker <willmcvicker@google.com>
 ---
- drivers/ufs/host/ufs-exynos.c | 146 ++++++++++++++++++++++++++++++++++
- drivers/ufs/host/ufs-exynos.h |  14 ++++
- 2 files changed, 160 insertions(+)
+ drivers/phy/samsung/phy-samsung-ufs.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/ufs/host/ufs-exynos.c b/drivers/ufs/host/ufs-exynos.c
-index c086630a96e8..d66dccdc82db 100644
---- a/drivers/ufs/host/ufs-exynos.c
-+++ b/drivers/ufs/host/ufs-exynos.c
-@@ -61,6 +61,7 @@
- #define CLK_STOP_MASK		(REFCLKOUT_STOP | REFCLK_STOP |\
- 				 UNIPRO_MCLK_STOP | MPHY_APBCLK_STOP|\
- 				 UNIPRO_PCLK_STOP)
-+/* HCI_MISC is also known as HCI_FORCE_HCS */
- #define HCI_MISC		0xB4
- #define REFCLK_CTRL_EN		BIT(7)
- #define UNIPRO_PCLK_CTRL_EN	BIT(6)
-@@ -138,6 +139,9 @@ enum {
- /*
-  * UNIPRO registers
-  */
-+#define UNIPRO_DME_POWERMODE_REQ_LOCALL2TIMER0	0x7888
-+#define UNIPRO_DME_POWERMODE_REQ_LOCALL2TIMER1	0x788c
-+#define UNIPRO_DME_POWERMODE_REQ_LOCALL2TIMER2	0x7890
- #define UNIPRO_DME_POWERMODE_REQ_REMOTEL2TIMER0	0x78B8
- #define UNIPRO_DME_POWERMODE_REQ_REMOTEL2TIMER1	0x78BC
- #define UNIPRO_DME_POWERMODE_REQ_REMOTEL2TIMER2	0x78C0
-@@ -938,6 +942,10 @@ static void exynos_ufs_config_unipro(struct exynos_ufs *ufs)
- 	if (attr->pa_dbg_opt_suite1_off)
- 		ufshcd_dme_set(hba, UIC_ARG_MIB(attr->pa_dbg_opt_suite1_off),
- 			       attr->pa_dbg_opt_suite1_val);
-+
-+	if (attr->pa_dbg_opt_suite2_off)
-+		ufshcd_dme_set(hba, UIC_ARG_MIB(attr->pa_dbg_opt_suite2_off),
-+			       attr->pa_dbg_opt_suite2_val);
- }
- 
- static void exynos_ufs_config_intr(struct exynos_ufs *ufs, u32 errs, u8 index)
-@@ -1589,6 +1597,96 @@ static int fsd_ufs_pre_pwr_change(struct exynos_ufs *ufs,
- 	return 0;
- }
- 
-+static inline u32 get_mclk_period_unipro_18(struct exynos_ufs *ufs)
-+{
-+	return (16 * 1000 * 1000000UL / ufs->mclk_rate);
-+}
-+
-+static int gs101_ufs_pre_link(struct exynos_ufs *ufs)
-+{
-+	struct ufs_hba *hba = ufs->hba;
-+	int i;
-+	u32 tx_line_reset_period, rx_line_reset_period;
-+
-+	rx_line_reset_period = (RX_LINE_RESET_TIME * ufs->mclk_rate)
-+				/ NSEC_PER_MSEC;
-+	tx_line_reset_period = (TX_LINE_RESET_TIME * ufs->mclk_rate)
-+				/ NSEC_PER_MSEC;
-+
-+	unipro_writel(ufs, get_mclk_period_unipro_18(ufs), COMP_CLK_PERIOD);
-+
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(0x200), 0x40);
-+
-+	for_each_ufs_rx_lane(ufs, i) {
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_RX_CLK_PRD, i),
-+			       DIV_ROUND_UP(NSEC_PER_SEC, ufs->mclk_rate));
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_RX_CLK_PRD_EN, i), 0x0);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_RX_LINERESET_VALUE2, i),
-+			       (rx_line_reset_period >> 16) & 0xFF);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_RX_LINERESET_VALUE1, i),
-+			       (rx_line_reset_period >> 8) & 0xFF);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_RX_LINERESET_VALUE0, i),
-+			       (rx_line_reset_period) & 0xFF);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x2f, i), 0x69);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x84, i), 0x1);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x25, i), 0xf6);
-+	}
-+
-+	for_each_ufs_tx_lane(ufs, i) {
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_TX_CLK_PRD, i),
-+			       DIV_ROUND_UP(NSEC_PER_SEC, ufs->mclk_rate));
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_TX_CLK_PRD_EN, i),
-+			       0x02);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_TX_LINERESET_PVALUE2, i),
-+			       (tx_line_reset_period >> 16) & 0xFF);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_TX_LINERESET_PVALUE1, i),
-+			       (tx_line_reset_period >> 8) & 0xFF);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(VND_TX_LINERESET_PVALUE0, i),
-+			       (tx_line_reset_period) & 0xFF);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x04, i), 1);
-+		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x7F, i), 0);
-+	}
-+
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(0x200), 0x0);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(PA_LOCAL_TX_LCC_ENABLE), 0x0);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(N_DEVICEID), 0x0);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(N_DEVICEID_VALID), 0x1);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(T_PEERDEVICEID), 0x1);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(T_CONNECTIONSTATE), CPORT_CONNECTED);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(0xA006), 0x8000);
-+
-+	return 0;
-+}
-+
-+static int gs101_ufs_post_link(struct exynos_ufs *ufs)
-+{
-+	struct ufs_hba *hba = ufs->hba;
-+
-+	exynos_ufs_enable_dbg_mode(hba);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(PA_SAVECONFIGTIME), 0x3e8);
-+	exynos_ufs_disable_dbg_mode(hba);
-+
-+	return 0;
-+}
-+
-+static int gs101_ufs_pre_pwr_change(struct exynos_ufs *ufs,
-+					 struct ufs_pa_layer_attr *pwr)
-+{
-+	struct ufs_hba *hba = ufs->hba;
-+
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(PA_PWRMODEUSERDATA0), 12000);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(PA_PWRMODEUSERDATA1), 32000);
-+	ufshcd_dme_set(hba, UIC_ARG_MIB(PA_PWRMODEUSERDATA2), 16000);
-+	unipro_writel(ufs, 8064, UNIPRO_DME_POWERMODE_REQ_LOCALL2TIMER0);
-+	unipro_writel(ufs, 28224, UNIPRO_DME_POWERMODE_REQ_LOCALL2TIMER1);
-+	unipro_writel(ufs, 20160, UNIPRO_DME_POWERMODE_REQ_LOCALL2TIMER2);
-+	unipro_writel(ufs, 12000, UNIPRO_DME_POWERMODE_REQ_REMOTEL2TIMER0);
-+	unipro_writel(ufs, 32000, UNIPRO_DME_POWERMODE_REQ_REMOTEL2TIMER1);
-+	unipro_writel(ufs, 16000, UNIPRO_DME_POWERMODE_REQ_REMOTEL2TIMER2);
-+
-+	return 0;
-+}
-+
- static const struct ufs_hba_variant_ops ufs_hba_exynos_ops = {
- 	.name				= "exynos_ufs",
- 	.init				= exynos_ufs_init,
-@@ -1715,6 +1813,34 @@ static const struct exynos_ufs_drv_data exynos_ufs_drvs = {
- 	.post_pwr_change	= exynos7_ufs_post_pwr_change,
- };
- 
-+static struct exynos_ufs_uic_attr gs101_uic_attr = {
-+	.tx_trailingclks		= 0xff,
-+	.tx_dif_p_nsec			= 3000000,	/* unit: ns */
-+	.tx_dif_n_nsec			= 1000000,	/* unit: ns */
-+	.tx_high_z_cnt_nsec		= 20000,	/* unit: ns */
-+	.tx_base_unit_nsec		= 100000,	/* unit: ns */
-+	.tx_gran_unit_nsec		= 4000,		/* unit: ns */
-+	.tx_sleep_cnt			= 1000,		/* unit: ns */
-+	.tx_min_activatetime		= 0xa,
-+	.rx_filler_enable		= 0x2,
-+	.rx_dif_p_nsec			= 1000000,	/* unit: ns */
-+	.rx_hibern8_wait_nsec		= 4000000,	/* unit: ns */
-+	.rx_base_unit_nsec		= 100000,	/* unit: ns */
-+	.rx_gran_unit_nsec		= 4000,		/* unit: ns */
-+	.rx_sleep_cnt			= 1280,		/* unit: ns */
-+	.rx_stall_cnt			= 320,		/* unit: ns */
-+	.rx_hs_g1_sync_len_cap		= SYNC_LEN_COARSE(0xf),
-+	.rx_hs_g2_sync_len_cap		= SYNC_LEN_COARSE(0xf),
-+	.rx_hs_g3_sync_len_cap		= SYNC_LEN_COARSE(0xf),
-+	.rx_hs_g1_prep_sync_len_cap	= PREP_LEN(0xf),
-+	.rx_hs_g2_prep_sync_len_cap	= PREP_LEN(0xf),
-+	.rx_hs_g3_prep_sync_len_cap	= PREP_LEN(0xf),
-+	.pa_dbg_opt_suite1_val		= 0x90913C1C,
-+	.pa_dbg_opt_suite1_off		= PA_GS101_DBG_OPTION_SUITE1,
-+	.pa_dbg_opt_suite2_val		= 0xE01C115F,
-+	.pa_dbg_opt_suite2_off		= PA_GS101_DBG_OPTION_SUITE2,
-+};
-+
- static struct exynos_ufs_uic_attr fsd_uic_attr = {
- 	.tx_trailingclks		= 0x10,
- 	.tx_dif_p_nsec			= 3000000,	/* unit: ns */
-@@ -1758,7 +1884,27 @@ static const struct exynos_ufs_drv_data fsd_ufs_drvs = {
- 	.pre_pwr_change         = fsd_ufs_pre_pwr_change,
- };
- 
-+static const struct exynos_ufs_drv_data gs101_ufs_drvs = {
-+	.uic_attr		= &gs101_uic_attr,
-+	.quirks			= UFSHCD_QUIRK_PRDT_BYTE_GRAN |
-+				  UFSHCI_QUIRK_SKIP_RESET_INTR_AGGR |
-+				  UFSHCI_QUIRK_BROKEN_REQ_LIST_CLR |
-+				  UFSHCD_QUIRK_BROKEN_OCS_FATAL_ERROR |
-+				  UFSHCI_QUIRK_SKIP_MANUAL_WB_FLUSH_CTRL |
-+				  UFSHCD_QUIRK_SKIP_DEF_UNIPRO_TIMEOUT_SETTING,
-+	.opts			= EXYNOS_UFS_OPT_BROKEN_AUTO_CLK_CTRL |
-+				  EXYNOS_UFS_OPT_SKIP_CONFIG_PHY_ATTR |
-+				  EXYNOS_UFS_OPT_UFSPR_SECURE |
-+				  EXYNOS_UFS_OPT_TIMER_TICK_SELECT,
-+	.drv_init		= exynosauto_ufs_drv_init,
-+	.pre_link		= gs101_ufs_pre_link,
-+	.post_link		= gs101_ufs_post_link,
-+	.pre_pwr_change		= gs101_ufs_pre_pwr_change,
-+};
-+
- static const struct of_device_id exynos_ufs_of_match[] = {
-+	{ .compatible = "google,gs101-ufs",
-+	  .data	      = &gs101_ufs_drvs },
- 	{ .compatible = "samsung,exynos7-ufs",
- 	  .data	      = &exynos_ufs_drvs },
- 	{ .compatible = "samsung,exynosautov9-ufs",
-diff --git a/drivers/ufs/host/ufs-exynos.h b/drivers/ufs/host/ufs-exynos.h
-index f30423223474..1646c4a9bb08 100644
---- a/drivers/ufs/host/ufs-exynos.h
-+++ b/drivers/ufs/host/ufs-exynos.h
-@@ -9,6 +9,12 @@
- #ifndef _UFS_EXYNOS_H_
- #define _UFS_EXYNOS_H_
- 
-+/*
-+ * Component registers
-+ */
-+
-+#define COMP_CLK_PERIOD	0x44
-+
- /*
-  * UNIPRO registers
-  */
-@@ -29,6 +35,14 @@
- #define PA_DBG_OPTION_SUITE	0x9564
- #define PA_DBG_OPTION_SUITE_DYN	0x9565
- 
-+/*
-+ * Note: GS101_DBG_OPTION offsets below differ from the TRM
-+ * but match the downstream driver. Following the TRM
-+ * results in non-functioning UFS.
-+ */
-+#define PA_GS101_DBG_OPTION_SUITE1 0x956a
-+#define PA_GS101_DBG_OPTION_SUITE2 0x956d
-+
- /*
-  * MIBs for Transport Layer debug registers
-  */
+diff --git a/drivers/phy/samsung/phy-samsung-ufs.c b/drivers/phy/samsung/phy-samsung-ufs.c
+index 813bce47121d..ffc46c953ed6 100644
+--- a/drivers/phy/samsung/phy-samsung-ufs.c
++++ b/drivers/phy/samsung/phy-samsung-ufs.c
+@@ -13,7 +13,6 @@
+ #include <linux/of.h>
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
+-#include <linux/mfd/syscon.h>
+ #include <linux/module.h>
+ #include <linux/phy/phy.h>
+ #include <linux/platform_device.h>
 -- 
 2.44.0.769.g3c40516874-goog
 
