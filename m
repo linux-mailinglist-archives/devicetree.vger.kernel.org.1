@@ -1,158 +1,114 @@
-Return-Path: <devicetree+bounces-61737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 477308ADFEC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 494808AE00B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2D8F28225A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:40:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F36B128502D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A9251037;
-	Tue, 23 Apr 2024 08:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259F458AD6;
+	Tue, 23 Apr 2024 08:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Yg3+oDS+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JZKGAWbo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2105.outbound.protection.outlook.com [40.92.42.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319F056B79;
-	Tue, 23 Apr 2024 08:40:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.105
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713861615; cv=fail; b=q4R+PicU/wW/GRnsJ4e435obIzXzLUDpYvhsGLtezD07azW+kc73b0ja4Mj9T2OUVMrVDkxi7YpUYzHH8OwM30F0nSA0Cj1FX8JlX7hlSVgSePmBjDeiBhTlgYW44JMQ9yg9y62hfedU7rCVAmJPef6GoxNnZHJEj+oqaUf+//4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713861615; c=relaxed/simple;
-	bh=9ecqAseZazkZOSp/DwoNVmlWLvP1iqroSQchSk8S6Ss=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pJiOVb2Qsm+w5jEQIcOb++AKDWr1N0ANyvHtKz/lm3EVHg+Qj+Z11QS46zZucFXy6tcjufiYOHxnXvCwmOepoGqAZctf3TLORoSjLTdx8nblHAQUPxukDCmewWqIX8MxSUri5/tN891ZCrhTSlFYtHEqudaLzmoDVuC8Ghl3/6g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Yg3+oDS+; arc=fail smtp.client-ip=40.92.42.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b1mMOT/cX09U3Uh+grUiFuYmbMe4zCmul/lJtpq8gXHvjCawRrpxipqLAomJVGgFrZRz0LKGkkgO8kMs2UijnAzIzzTxUnsKrSON0PvpwLW+vhwUchZ7GcmAjgPk5OykD+uIxXUEtS34MBNCKqkkahSvWkop71ovXpmnHQnP/uJD+LSZLPG6CowgovsI1UFgMktvXGwrx8zy6NfaprQtHgROvg3nzGmsU513OoYEf2u+mxF1cVbIf2AU5C9leTN+Z/Cec1qCdnS1uJNfcGCloWLlrF4C8QomSGyivWaZmF+OEXestoDeErtfGXbFyI0XhBOEVi6WmomhukrvpMEoMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QFSZ0vtxkwn16nyxP7zOjZRu5mD2GuA6Bfe08Gmsu50=;
- b=cw7iaixiEWtxnIXv+Ykq82uEqgRIQ1Fl0cpqKGMQt7/qtNtLEyqeIysGqtcTg/WUGqRYNROOABdWbXlsOCa0Gdm078YHE8X7gdT0PLiFi2WAQqh0+brMJIuHrRKJZtcEhQ9XfZCQ+OUOyLuQ8uG3V4QBgl8DQhK8OwpfHvN3A2nI6sgONuNPl1aWdJnVhtDI2ssw9+R7bHq/2aoIFYaZMz7NAhiqDdnGMD9eCYL5Cvzk/O2w65zzrBJ1xtNKf6CGlnyW7S0J6DoBBhflxDb2RchuOyKd825inVywz7nMH8tY3STeWIKUtKcSWhJO/1b65pJZNVqL28M06MP5FrZwUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QFSZ0vtxkwn16nyxP7zOjZRu5mD2GuA6Bfe08Gmsu50=;
- b=Yg3+oDS+Vd7zKYJ0w5kefXxCvhsTnV/p4irtXK/2san4dcuVxjfuJJErpRm58MfpTUNmEFLLp/CjJ01E7BGUDLU9Ok8Gt4yhDX5GJ5BCBf24T6oLdHvWUBKmKWQVB5Xwzzywm6q3VT7hexscKOoC1B1YM3iqQ85J9I+xfd/cLaC1bU6Gl/XmVBaFNlsS8Wz3/6GSqRhp5EXB3kt6xlybPvGiIJkp7SuZ5w+qI1NkyPqBhU7xKwVmZmdYXpHjKaznMvWSqZLvk8k2OgAUoz5htwa8M1AOTR4BI07DxyYbp/oGUqrKrVQi1qqiWJXpH2IkTJv7WCSBP7W4nQVWDOUqtA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by MN2PR20MB3335.namprd20.prod.outlook.com (2603:10b6:208:265::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
- 2024 08:40:11 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
- 08:40:11 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Drew Fustini <dfustini@baylibre.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: sophgo: add reserved memory node for CV1800B
-Date: Tue, 23 Apr 2024 16:40:28 +0800
-Message-ID:
- <IA1PR20MB49535871D139131CBC913036BB112@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <IA1PR20MB49531F274753B04A5547DB59BB052@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49531F274753B04A5547DB59BB052@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-TMN: [IWhmVXR4aNR3H7qlrgSJGd+KDvij3eF6iHjzHsSeGjE=]
-X-ClientProxiedBy: KL1PR0401CA0024.apcprd04.prod.outlook.com
- (2603:1096:820:e::11) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <171386151250.888417.16344348642120969607.b4-ty@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7D058213;
+	Tue, 23 Apr 2024 08:42:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713861762; cv=none; b=CTYTYHZr0/fgmmHDExkbfH1ZpFiPTD8dBoBgE0UYdwrVBmfSouJr3lq80zD7tBgm2dmsKrE696cPvUh0Eh/oxU9NYsqP9VT31VvPv315Od6daHWRvpVXDAevR5j8WiZ6sGGeaZefH25t7dEv4qwQSNyNkTyJ081zZvl9avdVDzs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713861762; c=relaxed/simple;
+	bh=jVIS089dbZ3wXdCNQYTfk4ga5CpPJxYC+Ek+nANsWKs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jrxuBSt/TVWc7GSJ+QFRhRxodWkpyFl8GkgeuJq09ClzA+wS0UAsOFKER7Ej90G0uWIe/M1GsPy3R7e/mRy99zUHMaYRoHmjjoMdbn0lol55bIKxCNmI6Vd0GY3j5LWhxL30DQ/AdoquTkot5994vjSX+F3MT1e7AX9q4IOffNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JZKGAWbo; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-34a3e0b31e6so3856515f8f.1;
+        Tue, 23 Apr 2024 01:42:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713861758; x=1714466558; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PbBwe79c842+R2b2YoCAfcl0fXxYuruoHQYuTfXaKdA=;
+        b=JZKGAWbo4e2OO/0IcsfQitbvfdbtd9WOmGwlKKY/Pz+RIdM8Potej8xMZMCj2/rzba
+         0bw7PAGt2ZtFV6JGv/fgVhEn4pXeZSSJcZKGYtJ03VAe6xF348vn5rxoFZZB9eojJPdZ
+         PbNoIbQA6vYO8A5f7OJyNmpaGirS9S0M00cqkN1tn7KnGhqpGZ4OihVLGhWtN1QLvPAw
+         FPQAKhwASllz4wtTnx3MH92lzsw9gDZVEXvIq+BDFeKci30tYrVYI+XoTK95tPicxvT/
+         R7u9GFOSjQw46z693vQY7EeQoVdmw3+hYyUyMXPs1VNOxlGekVtK7fV5E0tVdZwGik/w
+         7hMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713861758; x=1714466558;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PbBwe79c842+R2b2YoCAfcl0fXxYuruoHQYuTfXaKdA=;
+        b=mhtkIbJyEOjbt28NZVzcSR6s3ODd7zYsuW9pLfkshZ+YBl5q9Ji+Qx4rrZMoOo07XO
+         d2OX4RW7R/EhW8+nPh4NA9vr6PNG+1CV027cx4q1S5AGEYXAwAoPDwe9+la6Gt+le9s5
+         1zS2wuHua3MpcbO44Nvb0P8PoufLNz4iqcZQ9NhBHzmYg6J+IxvQldrYULTAQm6FaZhm
+         3TZfjzHvmWBMh1ZhYl77VV9/B0RI33iRodzESzVN1l5ZknHKMEPRVIKRIjCbKLkfD+IR
+         mym4V0rmwyAWUVG+VnL1MylxStBGdaFtbsxrdphoyqeidTq/1gH39JJ3ohTCge+1EqbH
+         Rpmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVgFqYjfYVhtosKyLUWf6q59vAawsRRdo2K9AY/B4XzZs9VbBYxZXa3/BJAdv97NzhAThhDVHhSxy8PZo41fg5w4fKQlYNil8zHUD9D3PGfLadqtEXAGD5iCeM+u5lVgKjNOyIc/tC7H0WHG7qmTvFDr42HSYKdTUSK27WIxe82Cg==
+X-Gm-Message-State: AOJu0Yx6aVCI1xqVeb5HjR6ul5s+PfTAs2PXAnEW4QPol8iW7fbsI0Bi
+	V4iaOKfJ1H8g5CF58JzOGzU/wcrNaSM0rQlcebUSrf16dkv9n7uQG6U1Z6G8
+X-Google-Smtp-Source: AGHT+IHQKR4h7agVByUQl9VxYHYGh69c7ndqTu7EZ0nPt8u1A61qGG6Ok/JtpvAeUVR1nFhZqHQVeA==
+X-Received: by 2002:adf:f283:0:b0:346:85a0:20af with SMTP id k3-20020adff283000000b0034685a020afmr7333249wro.35.1713861758099;
+        Tue, 23 Apr 2024 01:42:38 -0700 (PDT)
+Received: from rbolboac.. ([2a02:2f0e:320d:e800:cce2:61fe:1efc:ce48])
+        by smtp.gmail.com with ESMTPSA id a16-20020adffb90000000b0034af18ef68csm5989939wrr.5.2024.04.23.01.42.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Apr 2024 01:42:37 -0700 (PDT)
+From: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+X-Google-Original-From: Ramona Gradinariu <ramona.gradinariu@analog.com>
+To: linux-kernel@vger.kernel.org,
+	jic23@kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	corbet@lwn.net,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh@kernel.org
+Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>
+Subject: [PATCH 0/5] Add support for adis16545/47
+Date: Tue, 23 Apr 2024 11:42:05 +0300
+Message-Id: <20240423084210.191987-1-ramona.gradinariu@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MN2PR20MB3335:EE_
-X-MS-Office365-Filtering-Correlation-Id: 52e94995-7cbf-472d-4ea7-08dc6370fd07
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	0jY5PXmrAMa98EFNxkxFA3gwSn2HkdrJXBKphS5XPPg2stAn/5KOojiNKLEABGaTLS6s/kfIB/7PSE4mtJCGnGTs1HZ2/qRao/e29l0h5YYmQ8Y4h4E6ehslQLWfd6i1eg0GQB+vEaESNHcya2mfRpba3IsZNESTQPY6D0YaktFkmBq8kPhejiIj6EJ45kXUtAaCxZIGxv8hPPnFBO4oSbQX0UT7lE4j3qmyHp2hak5PqOMBdhZZu8WlWMzsWt8++KkfaPD3SJtqrxwpyGa0BA3vwZztCB2EC3RR1qD/HhuovHNdQZZ0rwv+fhMOKkFz4Zxs5w2oOx2jHL3ilwMCZS5QZvX9GxeleMZTXnIzqqLZ9tsOMDH0/zHdxs7lT9T5lS0dA57+CQK/4Z9nmklkA+QerdD6RAMs67i//0BKwqGbkEiGAwiX9xxRJQH5D+0sgrw4mJWV9FNbnMAv1Oc2QYZCmOyQPg5InmLCPgdk2pnDPZ/JVvrQH/FPYMxilmJDpCQEg61cDiGRDuhndSQ5QhLvGL2mYJXmgPdWCt1Q9zO12vTPSbN+q/zA1JuCFF0/JTRXSMHTmjB12DwOTZ08Bf35eamFshaTSC9c9uDf5h/upp6BRFDZrOCReypp8VadyB82IKWVXma81dKX7IvZ9EKO+6QVFv7GWjSVyzNfgepqC15+1qslddDP7/jwyWdR
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VFpXY3d2VnQ3aWhxOC9iTHhpK3JyNWFUSnpsblluYlgrSFJTbzJPRDdyOGlT?=
- =?utf-8?B?dDZoWTZxVFFmK2tvbjkzaGd3em5ZOTBHNkxTRzBRM2oxckZRd3hKZnRiMGFt?=
- =?utf-8?B?TDZxeXJ3Z1NpZDJ3bWFnRnk2cThZdzRuQ2NJM29aOUNpTVVnUmRNcTZuMmlS?=
- =?utf-8?B?Q0NJcEFVSG9wcnVaQUVMeGFVM3RLdGNzVXV3TC9GeTdxM0RxWXpqYXZwOWlm?=
- =?utf-8?B?WklsOXFVcmI2WThabUhtTHZQSW41NnB0TnNYb0xzbmhhdHlka1IwalZwVURr?=
- =?utf-8?B?WTFvdi9mZUJZa3ZSSHNmSmhyR0tkQzVMd09XV09Qd3VXanVLYTBpdUxXK1hm?=
- =?utf-8?B?UWNUcFFXaHNNSFJYdWlGSmNqcGpVMk5MUmNSYjM4WWw3RDFwdCtqbDl4Y2FC?=
- =?utf-8?B?SnVMMFR2bjgzbXF4bzQwNXlnTy9oRXZzYVdMS3hLajlTTUJGYzJEa1dqeU5n?=
- =?utf-8?B?dXV6dzJJZHRkZ3lXRVhGb2E0SW0yOTMyVkpoZTlDOW5Kb0ZYVjBnK05qaUlP?=
- =?utf-8?B?bzlGU2drWlh1emVpeG9zdlREYUxMcEtnL2V4MGlESkRhSndKYVYvU0dDd1Ns?=
- =?utf-8?B?ZWo4UUIxTlVpcnFXRk9TTHhkdlFja1VVSXhXWjcvQWNaR3FZeC81RWdQcEE4?=
- =?utf-8?B?NW52cjVGWFpKVWdXWjBDeTkwbHdtUWNyMjJaRTdNQ05RWEF6NXRhbTlPTFJ1?=
- =?utf-8?B?WUREYWpNdzdjMWcwSG5DR3ZwdytMQWNJTW80R0Q5emVFVlcrLzB3bEFNejJJ?=
- =?utf-8?B?dzZxL2IvL0NsZ2JlMUYxTWt4LzBiMjhDb0VmbVhRSFdOdFZLRU8rT1pPMjB5?=
- =?utf-8?B?c1pad053aEdMblhTRlNHcGJiakpwd3Bwd0F4Y3FMbzU4TjZhSHRvSmJTNkFJ?=
- =?utf-8?B?UldRTUd2VEFnRDM3QXZzY0Y3SW5udzBYSlZVZzJnY3BQQVFzU0hkanZIUG9E?=
- =?utf-8?B?RGxFRzcvRExLaHhJYnFhVWZuNSsyYThsVDc5Q0hJRWhFLzVtNFJkYXNiM2R1?=
- =?utf-8?B?SzlERUNnMExyUVNjVXBjeWtjZlBYS1oxMkpVTHcyY2NKY0IweS96Q2psaDRD?=
- =?utf-8?B?K2M4cWdDVVZkcStac29DUy9mb0NDVEZqcVBLTkZ3L2VXSDBSOFNDQlU2b3pp?=
- =?utf-8?B?NmpxeG5laXRDR0Y1L3JUaEJpTmdjV2FjWTB6ZTRUcVh6TGtaZm5hSkdTYXdT?=
- =?utf-8?B?OHUxQ1FVMVl0YjYrNHpyN09EeUFpTDVKVE5RQlAyaGk4RXJ6c2FPZ1VtTnM5?=
- =?utf-8?B?NEZkdWF1bHE3bWJjcFJnOHlQMVpQRmliMFBHTHl3aWtlTWNPQ1hpZW9PRVpF?=
- =?utf-8?B?c1NlYTVEZVhjRmdzVzdzYTU5d09EN3J5aDdkc05aVU1iSWk0VFpXRE4xN084?=
- =?utf-8?B?VysvTUhXWU9jd2tSbG1naEloUU5sclg3ZHY0cTFZdnNBVXJCU3MveEl5QTRO?=
- =?utf-8?B?R25zS2RmQ0dMa0NlRWEvQytnQWplNlBRcWNrc0hYeEl0YzNEM2lKaTNkWmta?=
- =?utf-8?B?WjFQNzA4UzdGeXdnQ0t3cVo0VkVtZGs3R25jSkpSZjdmNUtSam8rNUNSckN6?=
- =?utf-8?B?SjY4VElZN1B2c2x0Nk9WRlF2RzU2eHZ6RkVQdWF3TC9nQ1Bod1N6M2x0dFY5?=
- =?utf-8?B?K2IxUXZ6MHJWZVpGaTZwbENRYjhUc3AyTnh5U3hBOWV1WXlVVUl5dTUvWVhO?=
- =?utf-8?Q?2I1j+QFBqStsoWQqm1e+?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52e94995-7cbf-472d-4ea7-08dc6370fd07
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 08:40:11.4081
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR20MB3335
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, 11 Apr 2024 08:45:00 +0800, Inochi Amaoto wrote:
-> The original dts of CV1800B has a weird memory length as it
-> contains reserved memory for coprocessor. Make this area a
-> separate node so it can get the real memory length.
-> 
-> 
+Add support for delta angle and delta velocity channels in adis16480 driver.
+Add support for ADIS16545/47 devices in already existing adis16480 driver.
+Add documentation for adis16480 driver.
 
-Applied to sophgo/for-next, thanks!
+Ramona Gradinariu (5):
+  iio: adis16480: make the burst_max_speed configurable
+  iio: imu: adis16480.c: Add delta angle and delta velocity channels
+  dt-bindings: iio: imu: Add docs for ADIS16545/47
+  iio: adis16480: add support for adis16545/7 families
+  docs: iio: add documentation for adis16480 driver
 
-[1/1] riscv: dts: sophgo: add reserved memory node for CV1800B
-      https://github.com/sophgo/linux/commit/1eba0b61be72506549e79dd11a132b5d73aed094
+ .../bindings/iio/imu/adi,adis16480.yaml       |   6 +
+ Documentation/iio/adis16480.rst               | 461 ++++++++++++++++++
+ Documentation/iio/index.rst                   |   1 +
+ drivers/iio/imu/adis16480.c                   | 384 +++++++++++++--
+ 4 files changed, 803 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/iio/adis16480.rst
 
-Thanks,
-Inochi
+--
+2.34.1
 
 
