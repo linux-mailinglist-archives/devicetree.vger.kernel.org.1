@@ -1,200 +1,352 @@
-Return-Path: <devicetree+bounces-61790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 949538AE1CC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:06:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0AB18AE1D0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B3E628101E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:06:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2F901C20B75
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C96B60263;
-	Tue, 23 Apr 2024 10:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612BA5FB9A;
+	Tue, 23 Apr 2024 10:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Kkd7DBgy"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="Q5y2ztsA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2115.outbound.protection.outlook.com [40.107.15.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2795A5FDB3;
-	Tue, 23 Apr 2024 10:06:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713866793; cv=none; b=CRJBKrqtTYw1C3XaKWg5imJoJs3YmeAjmJBDapVtbd7wFKh444N7xyot+yeaO75O+9d8oUwWya7X0kxDMnVnREeKh/BqPoyxc7zv0YO04STLuOcFeOjvJSs2t++El40BNL+hJNIoFA6ioGPeGG/v5CViZ1S2+ARUbLKjOKmw+Y4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713866793; c=relaxed/simple;
-	bh=yrr4gsn171SjhlcmAbOeqEzq/BCZDNfEl5okhkv1n0Y=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DmtOcYfRGxCL3C2FFhoR4kmpG05vOSSOSloIqNKZgRw2FgiyBKY4/of6OQ5Qe+OQ5Gc+LgH7FbVzvlcySPxvFflHEc7vJdgEPp2K9o/gNC5qkAycjTbNC1VTwM1FT/SntmIh4eTUY6BXDgnjbzbrsPWho0VvdWcUg1h4iplgGDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Kkd7DBgy; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43NA6AcQ126963;
-	Tue, 23 Apr 2024 05:06:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713866770;
-	bh=uVTPeL69Wr7PxFyW13waEJ2yfkc25M5addJiWs5CC9M=;
-	h=From:To:CC:Subject:Date;
-	b=Kkd7DBgyAEVjKQrBjvbz4z/55VTDzRqUnfH/kMiCBTg1MvutKcD4r6FBbBELvO5y9
-	 9fMRFcxy30r9st5pPnKqkvm0CV84aD0t7BSxo4bGoBPpWexX/Kscb75zFMC+Id5ZL3
-	 suPA9I4Wj1UJooEqSiknt2MInEOmPMu0Fzmx+oYY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43NA6Aax013513
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 23 Apr 2024 05:06:10 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
- Apr 2024 05:06:10 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 23 Apr 2024 05:06:10 -0500
-Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43NA6AYQ099678;
-	Tue, 23 Apr 2024 05:06:10 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 43NA69PD017417;
-	Tue, 23 Apr 2024 05:06:09 -0500
-From: MD Danish Anwar <danishanwar@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-am64-main: Add PRU system events for virtio
-Date: Tue, 23 Apr 2024 15:36:08 +0530
-Message-ID: <20240423100608.1421652-1-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8155022F11
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.15.115
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713866881; cv=fail; b=i1nxOmW3w5eU0w9kEdKK2BuIz0eL9B+bcIV2JGaAiYVGYR7jdQGurouWP3RzTZAvOcDJJD4gYQycQCv6t6E6yb9fJf3U1tx6LpWkoBMtB1exzT5PlxcezKr1mCO9cv0VMU99FStiOd1EE5pQHvcF23QnCDDYJO6cuDGtHyjSNW4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713866881; c=relaxed/simple;
+	bh=QvM4sjk+cpRh/ulitrC4JFMC7Bs/qOyuLuUFQqc+oMk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=nZCupW5m5dk8apBRF2tyQ8TUl7ydxin+FI2WZuvOecQf7yoLS/s7ru+vbTJYm8GkgQBYHAZQSiKyBGaqCLxbFjYhGQPN6AZN0aTW7AMaJe+26Cj3nG8ky+JbwEFdXCduG/b6Q25U7K4hWEvSduaT3cPd4RF3We0D9Zu/6CXm8xI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=Q5y2ztsA; arc=fail smtp.client-ip=40.107.15.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SffKbzu4LWBxHnKYmr7/c8WZlTd0b2tdwgj9LLtp8/sZupZrdRlCHOKkZ5CoYdkGU8T8eap4R9VAKJybFJDFcbQNBh68ZxeYJYKfrZrzHwBUmK/63zV4I7Hk23nB4Y2e9brF5wVW18wGzp7UBUgQmG+4sYqdx7X51tF9jUoRACJs1n7M30ZcLvJtI/PvOjBzD0ayMbSPvgEFn6DwnFyUNckVvKQWXekJ9aQ4SI2faX0uRSaL7pgaQsC0qNmEZ013GHcTaOFdX4GoCtTCH0uGTAeuDgaATyfBl56yFzfUT5Bjw57Z9cGBUAA60IkAGtp1AujpqJh2cu4PzGR/BtBIMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qMyGNQzVOmIMIqTB23ckJ2irVpgFmkVsX7BKdDR7s0Q=;
+ b=B2BwM89Q5TznDJ68SCKEMWiexZXwALj9ypzl8VNMlLHJ1zXFT3S8g+1LEom9EpmJ50tIXJf9Fdw3tMiLoE0lgvPHtklDB63hcvAeUct7QDZhSAeIsxl6BBvHm4qA1Jgl8/Wj+7Btu0Jptmbysyg2ZOGzY7t+9F69uA4hIQ1K+krhL1M0QiY37NdBBif0YtIsNuGxinhi1pOiSQZTY7Bl+z2HW1JM4T2tZC+2XPExeUUtg4JVDxCLmpZdyo9r59tPISIb8Gjz6mN/SD2MnDvVOfBAaX8lFbmKsAutpJ0G+MtxPIqWscFZzHIZqGrFJYL3ie5Wa/KA18LnV6wBOIio7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qMyGNQzVOmIMIqTB23ckJ2irVpgFmkVsX7BKdDR7s0Q=;
+ b=Q5y2ztsAYXqzodQuMRB/xB82KSUBSyeHtGMW68U1qvNWsGYrXqKVU7IY1EWyccfFYSMHce1nMUUc2QVgUoPgNwjd3WCXQitkJ10I0hC2BMukBEAM51DNYURXEVl1kuJYMFUftSN5nWV7VuHBjuBMqtMmd7T0Tu1MgEFptaXJ6ZA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by AS2PR08MB9048.eurprd08.prod.outlook.com (2603:10a6:20b:5fe::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 10:07:55 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::224e:39b5:5107:43de]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::224e:39b5:5107:43de%3]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
+ 10:07:55 +0000
+Message-ID: <d7938a36-6607-46c4-9934-895fe268358a@wolfvision.net>
+Date: Tue, 23 Apr 2024 12:07:52 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/7] ASoC: rockchip: Add support for rv1126 pdm
+Content-Language: en-US
+To: Sugar Zhang <sugar.zhang@rock-chips.com>, broonie@kernel.org,
+ heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <1630675357-3286-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1630675410-3354-1-git-send-email-sugar.zhang@rock-chips.com>
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <1630675410-3354-1-git-send-email-sugar.zhang@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0179.eurprd06.prod.outlook.com
+ (2603:10a6:803:c8::36) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AS2PR08MB9048:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8906b31-e9f8-4e6d-7eec-08dc637d3eba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YWxRdC81M1VTbzRteElJOUhHTHhmc2NiNVJSUjFmSXlBYkpVNkNyVkdhTHhN?=
+ =?utf-8?B?U1RaOGs0dUJUZzJheEh0bDFId1M3V2k3U2ZUeGdsdE9iZFk3QVlWYzU3R3RT?=
+ =?utf-8?B?ZC9XckszS2xPYVUwWkdabXBQOUUwRUtSOW91UmgzeVhJRjNLcWxZc3hWR1F1?=
+ =?utf-8?B?cXlydjZLUDB3T2NxUWk1MnM2MlVlVW5vRVM0VFJieG5aY3FkTEdPWUV2dUo0?=
+ =?utf-8?B?a0w2TWNFY0Jta3J2WTJ3ZU9SQUFWaDMyWkc0eXdhbUNyc210c2FYTVY2eENH?=
+ =?utf-8?B?L3B4dG5hZGlicURrZTJhM3FMbEhBNU5zK1JYck1ZcCtmY08vamloYzdBWDFL?=
+ =?utf-8?B?VTExdThvTzVLWlRiOUpWVzZJVEZXaS9yRFpYcTVBZDE2YkQ0cHJqM0FqOWlw?=
+ =?utf-8?B?b3NJZ0R4cER1TStoaWd0V0ZMQWp6ajhjYXpYaHIyR3B6TW9ISTZPUTNiSG5S?=
+ =?utf-8?B?UENxNFV1STY2RXhOU0ZBS0hNMnI2RkQ2eHdrY0NTT2VhOVJqQnB1MWEzcHYz?=
+ =?utf-8?B?OFJXVkJNYUo1RnZ0ODRIRUVsekdLUGhObDFaZjBsQ1BvR0xOSlhydWZXVC9t?=
+ =?utf-8?B?WlpKbUdQQVYzNHdoRWIzTFdEZFE5YllGWnNJSHI5eS94ckhOdDNHV2NubVJu?=
+ =?utf-8?B?NHh3ME50dVViS0hxUllNUHlJUWozSCtNUERXMVVJQ016cHBVMktQWXFKNXVY?=
+ =?utf-8?B?YU1aV1p5MHNmZWRneXk4ZmFqZHRMNzJpeTBFdjdDQ29mcjR4QzhTdUZOM0kr?=
+ =?utf-8?B?Y0hZYmg2WmltaXBlTzRJbVkvUXhnSzZGWHA5ZXRDN3pZb09BU2ZOOXVtelB2?=
+ =?utf-8?B?bWZnVHJ3OG1nMnJGMkJMRTlMVWxmMmt2T0pJSkFjb0FOUjVXc0psYkhlck9M?=
+ =?utf-8?B?UE9PdEdkQ2I0OGFXZFl2ZFhWd2EyMXRRWFJwY3dDR09zaFpicTFCbm95TWph?=
+ =?utf-8?B?YXNpRy9GbVN3cDBlUnpXczdmRmpma3NSSUNuRzFnaW95U2xQaFU0VHdnQ0hT?=
+ =?utf-8?B?aGJtd0p0enhtL3BuTG83MDlKbDlocVZiNW5valBTU0VRa3FHS3ZxTmNUanVh?=
+ =?utf-8?B?b1MyUGJ1R1NsZlhFbVRReG9oRGkrb0lXNkxYdHBuRDdHcmZMb0p2S3FNV1ha?=
+ =?utf-8?B?NElpalNBV2NrVHd6SE5WRURQbG9MYU9vOVVTa2dkaXRPbHhJckRHcXdJM2JE?=
+ =?utf-8?B?MFdTM0dDYnV6TDd5bkVucGg3SlZGWWw5RVNEWW0zN2FwVTVyelByNlZXdmVh?=
+ =?utf-8?B?M294OFN3QkRHSkI5ME1sRFJpWFU0SUdOeEF0MHZ0djJHM1orZVUyTVpyT21O?=
+ =?utf-8?B?NnVVZWJtakdzWm5Gdlo3Ny9EVC83T2dQby9tU0JXWTk3eFord1g3MlFFTWZr?=
+ =?utf-8?B?ZFJtZTRtUmZ6R0hVaVRUYWlNYms5NkFSdGRCQzZXNSs5SjBHSDh4c091dTB6?=
+ =?utf-8?B?TUNSaFU4ZDdraEIzOEVZNXB0YlUxZHlHL3JKbXNDT2tmaHBUaytHek5RMXFv?=
+ =?utf-8?B?bkJ6VVRWUHgvdFhqZDFSNkVRTTZ1emh6Nk1JQUZDYTRodThNMitPeUh6THFL?=
+ =?utf-8?B?djRrL2c5NFZzS3hrWStQQ2lNUVNuaEhHSHZyYzZTZkRsSGhJQkczcHFIMkZ2?=
+ =?utf-8?B?cUtBN3BVdU85aUIzblU5cDBCSTMzT1hSU3B5SkJJL3F1Y1ZkdCtySERyY2Fo?=
+ =?utf-8?B?MWtUeVlPcFk0cWVUZDFDM0RNS1YrU0NuajhySVBFUVdKbVkvMVlqY2VBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WHdLQ1NwYUhXWkxhNHljNW1Xbmh0YzJSTW1jSTFDSUgrNHN4UW8rVm5xS3pr?=
+ =?utf-8?B?aEhaUmVjTmJtOTJ4YktKWlpZMEdTdXdNd0tGQ0orTWVLeTYyM0RwditLZHlN?=
+ =?utf-8?B?QzlWdzVhUGpLR0xwb0dHeTFLU1hZV2hhMUdFSkc1b1dsN2Z0YktnV1laNlFB?=
+ =?utf-8?B?ZDF5TVZFSHVzRHpVa0FNWUhIREQ5UUxIMTdIT2tBQ1dyMVJEZHVhMmlOWE9X?=
+ =?utf-8?B?NVJkWHVIVGxuOEdybFVFanFMQ2ZGbWRlNTFKcm5ud1AyT3BEVjcvVUJPQ2NE?=
+ =?utf-8?B?SmJidnAxZVVPWVZScnZ5NWY2Q0Z3cU1aNFNiQkk2K3d2bkw0UG12V0Z3OXVa?=
+ =?utf-8?B?NVYxdmpYWlp2UCtYU0pXdDZTWWdHeDlydGVJbUZaT0hqVDZacVRCeUlyemMz?=
+ =?utf-8?B?REhCTjV2RGxFZjVoMnYwTWllVHU1TFhBK0tTUlZlMDArdkY2VlF2K3F6WmFq?=
+ =?utf-8?B?SnZFQUtXcUhNdDl6VWVTK3RZQ2dJakZCQ3lRNmJXV1lLcXVzQXE0VU1VMUhL?=
+ =?utf-8?B?Z00va0RSM0h1MjQrMUM0UTZyYURlY1FMR1VkQUxySHVJNGl2ZTNoa050MkZh?=
+ =?utf-8?B?WHpkMjgzVE5MUmJWR2JOTTh0Z3EvOGhjUW50UTd3a05hc3FYdVQ2dCswdDlt?=
+ =?utf-8?B?YWpGQnd2TTVrcG9uVkZzTzZtZnFkSUptQWZQVUI1bkZBdWpQTVo3bkYrc0h4?=
+ =?utf-8?B?Q1I2L1pkR1lVSldaZzNkdlpsTkcrTzNmc0c0a0ZNQXpKcnhXTGx3dTZDQjhV?=
+ =?utf-8?B?SnpWTVVLSENQRGhmUjRrcWRCM0IvZzRwbFNRenlPbElGUWxSSC9adTNZL29Q?=
+ =?utf-8?B?K3o0alg2RFdoRWZ5b09TQXBYWFg3Nmh6dGlxbHRRK1ZLZVVyWFVidmtlZjZH?=
+ =?utf-8?B?S0pBL0VEK0VseFViN1BxZjFFU0hHMWdPQlhKZEhZRUJNZHRPcGc2Q0E1cUlt?=
+ =?utf-8?B?UFp5ZzQzbDhvZGVBL1ByYndzZkswb1k3Yi9Za292Z0ZDZzhScDZPQnBpbG9u?=
+ =?utf-8?B?Z3BVOEptaHl5Q0hUV2pKU0JwUW8wMUtvMkYwT29tQTdMOE5mRGlxNTllblJI?=
+ =?utf-8?B?b1lQK283WUp6RVYwMTE0SWJpRWlrcnNUUSs3ZEhac2dhejVFdWZ6NGVvUSty?=
+ =?utf-8?B?eGMxWWx3cWMxRE5teG1ra0tSbCs1cDRlWWdDbmRHSzNsTVVSNU5wQXkwKzJy?=
+ =?utf-8?B?T3ZCTDFNeTNUU1E5eUlHNURrU1E1alViSDYwNDFNT2pkNThibmdFNnpEUXYw?=
+ =?utf-8?B?VFI0Q1I1bmdKaVhqY3JXWjYrS1lQVk52emdsaCt2eVdTVjZZYk1qV0pvZXZz?=
+ =?utf-8?B?RSthclpjbi94bnhxYVFpbk45c2k0KzUyR3YzZTVQL0VUNEtxaUwranh5eWxY?=
+ =?utf-8?B?azNEMllWOEwyS0JyK2RjelRvOFVJOEQ0QURNdVFJcTJhcXlyelFsL21HYUZm?=
+ =?utf-8?B?YXUzZExLSHQ5S3pxNXA3UXhGSXRLelNIYW56TnRiUUFPbDhxKzlDUXhtM1Vq?=
+ =?utf-8?B?ek5HM2RtR2JMQ3hubkplV1c3V2VxZE1Ld1lzQzRZa3I1RzV4Yy9oa08zNmd1?=
+ =?utf-8?B?K0tqandFOW5sWUI0SWwvdGZObUdTRmtVSjRFbjdLRG5CalhvSWRrbHM3UE9O?=
+ =?utf-8?B?ckUwRWtINDZSdmV1QTBMY0dzbGxOWHpFV3pTV2lVK1Z6Uk50VUlUOE1NV0ov?=
+ =?utf-8?B?UjFYVHI5VWJtb252QnJyOXpKSWh1dkYwcHR1WnVxazZLZnp5bHVJVGNSSjhk?=
+ =?utf-8?B?SHJkZFA1K1AwY2dRTE9hZWl4U1R1ZkEzWCtXSjFUK25LMEVwdEpveGRubkVm?=
+ =?utf-8?B?a0UwOGhxWXpGRXdOQlpVd1paYkNUYzRPWFhabnZDMi9XL2YyY0pZKzNCVmtV?=
+ =?utf-8?B?QkJGY0cwbjNmVEpHWWhhQlppNDFneWtRNU81QU5mdCt2WTJyMm9mcVhkSWha?=
+ =?utf-8?B?d1JZcFFpUzJRZllTbGtHSHlEbnFJUFFLZklreTFvK0ZwVFZWb3M5L3FaN25R?=
+ =?utf-8?B?THo0VDdqcGI1ZHJ2SDA0VHRJUGRxSXBnWmpzandIbkJKdVovV3NBVWhxTVpt?=
+ =?utf-8?B?S0NaN1ZYZ0dtTk9yTWNPSkgzSTAvSzhlQkttckVqMnJITHcyRzNGemRqR3cy?=
+ =?utf-8?B?amZQVWQyY2Z6VDcwZkovT1hDY0xSeGQyazZTNFM0UjFQc2lkNzZtZ0p1b3RZ?=
+ =?utf-8?B?Mmc9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8906b31-e9f8-4e6d-7eec-08dc637d3eba
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 10:07:55.6396
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vqori3FSWHSeI7tpDkdCL9aGLMd30AwB/VPPJ8Rt0Y39dE9RtcHBijRUe0EZFAkR1HZoywvpAbks6kxHOOcntqd9onr2XIMGK7Fn7rsj/ZQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB9048
 
-From: Suman Anna <s-anna@ti.com>
+Hi Sugar Zhang,
 
-PRU system events "vring" have been added to each PRU and RTU node
-in each of the ICSSG0 and ICSSG1 remote processor subsystems to
-enable the virtio/rpmsg communication between MPU and that PRU/RTU core.
-No events have been added to the Tx_PRU cores at present. The
-additions are done in the base k3-am64main.dtsi, and so are inherited
-by all the K3 AM64x boards.
+Sorry to dig out this old thread, but I have two questions. Please see
+below:
 
-The PRU system events is the preferred approach over using TI
-mailboxes, as it eliminates an external peripheral access from
-the PRU/RTU-side, and keeps the interrupt generation internal to
-the ICSSG. The difference from MPU would be minimal in using one
-versus the other.
+On 9/3/21 15:23, Sugar Zhang wrote:
+> This patch adds support for rv1126 pdm controller which
+> redesign cic filiter for better performance.
+> 
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> ---
+> 
+> Changes in v4: None
+> Changes in v3: None
+> Changes in v2: None
+> 
+>  sound/soc/rockchip/rockchip_pdm.c | 76 +++++++++++++++++++++++++++++++++++----
+>  sound/soc/rockchip/rockchip_pdm.h |  3 ++
+>  2 files changed, 73 insertions(+), 6 deletions(-)
+> 
+> diff --git a/sound/soc/rockchip/rockchip_pdm.c b/sound/soc/rockchip/rockchip_pdm.c
+> index 38bd603..67634d1 100644
+> --- a/sound/soc/rockchip/rockchip_pdm.c
+> +++ b/sound/soc/rockchip/rockchip_pdm.c
+> @@ -24,6 +24,7 @@
+>  enum rk_pdm_version {
+>  	RK_PDM_RK3229,
+>  	RK_PDM_RK3308,
+> +	RK_PDM_RV1126,
+>  };
+>  
+>  struct rk_pdm_dev {
+> @@ -121,6 +122,55 @@ static unsigned int get_pdm_ds_ratio(unsigned int sr)
+>  	return ratio;
+>  }
+>  
+> +static unsigned int get_pdm_cic_ratio(unsigned int clk)
+> +{
+> +	switch (clk) {
+> +	case 4096000:
+> +	case 5644800:
+> +	case 6144000:
+> +		return 0;
+> +	case 2048000:
+> +	case 2822400:
+> +	case 3072000:
+> +		return 1;
+> +	case 1024000:
+> +	case 1411200:
+> +	case 1536000:
+> +		return 2;
+> +	default:
+> +		return 1;
+> +	}
+> +}
+> +
+> +static unsigned int samplerate_to_bit(unsigned int samplerate)
+> +{
+> +	switch (samplerate) {
+> +	case 8000:
+> +	case 11025:
+> +	case 12000:
+> +		return 0;
+> +	case 16000:
+> +	case 22050:
+> +	case 24000:
+> +		return 1;
+> +	case 32000:
+> +		return 2;
+> +	case 44100:
+> +	case 48000:
+> +		return 3;
+> +	case 64000:
+> +	case 88200:
+> +	case 96000:
+> +		return 4;
+> +	case 128000:
+> +	case 176400:
+> +	case 192000:
+> +		return 5;
+> +	default:
+> +		return 1;
+> +	}
+> +}
+> +
+>  static inline struct rk_pdm_dev *to_info(struct snd_soc_dai *dai)
+>  {
+>  	return snd_soc_dai_get_drvdata(dai);
+> @@ -166,7 +216,8 @@ static int rockchip_pdm_hw_params(struct snd_pcm_substream *substream,
+>  	if (ret)
+>  		return -EINVAL;
+>  
+> -	if (pdm->version == RK_PDM_RK3308) {
+> +	if (pdm->version == RK_PDM_RK3308 ||
+> +	    pdm->version == RK_PDM_RV1126) {
+>  		rational_best_approximation(clk_out, clk_src,
+>  					    GENMASK(16 - 1, 0),
+>  					    GENMASK(16 - 1, 0),
+> @@ -194,8 +245,18 @@ static int rockchip_pdm_hw_params(struct snd_pcm_substream *substream,
+>  				   PDM_CLK_FD_RATIO_MSK,
+>  				   val);
+>  	}
+> -	val = get_pdm_ds_ratio(samplerate);
+> -	regmap_update_bits(pdm->regmap, PDM_CLK_CTRL, PDM_DS_RATIO_MSK, val);
+> +
+> +	if (pdm->version == RK_PDM_RV1126) {
+> +		val = get_pdm_cic_ratio(clk_out);
+> +		regmap_update_bits(pdm->regmap, PDM_CLK_CTRL, PDM_CIC_RATIO_MSK, val);
+> +		val = samplerate_to_bit(samplerate);
+> +		regmap_update_bits(pdm->regmap, PDM_CTRL0,
+> +				   PDM_SAMPLERATE_MSK, PDM_SAMPLERATE(val));
+> +	} else {
+> +		val = get_pdm_ds_ratio(samplerate);
+> +		regmap_update_bits(pdm->regmap, PDM_CLK_CTRL, PDM_DS_RATIO_MSK, val);
+> +	}
+> +
+>  	regmap_update_bits(pdm->regmap, PDM_HPF_CTRL,
+>  			   PDM_HPF_CF_MSK, PDM_HPF_60HZ);
+>  	regmap_update_bits(pdm->regmap, PDM_HPF_CTRL,
+> @@ -441,9 +502,10 @@ static bool rockchip_pdm_precious_reg(struct device *dev, unsigned int reg)
+>  }
+>  
+>  static const struct reg_default rockchip_pdm_reg_defaults[] = {
+> -	{0x04, 0x78000017},
+> -	{0x08, 0x0bb8ea60},
+> -	{0x18, 0x0000001f},
+> +	{ PDM_CTRL0, 0x78000017 },
+> +	{ PDM_CTRL1, 0x0bb8ea60 },
+> +	{ PDM_CLK_CTRL, 0x0000e401 },
+> +	{ PDM_DMA_CTRL, 0x0000001f },
+>  };
+>  
+>  static const struct regmap_config rockchip_pdm_regmap_config = {
+> @@ -469,6 +531,8 @@ static const struct of_device_id rockchip_pdm_match[] __maybe_unused = {
+>  	  .data = (void *)RK_PDM_RK3308 },
+>  	{ .compatible = "rockchip,rk3308-pdm",
+>  	  .data = (void *)RK_PDM_RK3308 },
+> +	{ .compatible = "rockchip,rv1126-pdm",
+> +	  .data = (void *)RK_PDM_RV1126 },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, rockchip_pdm_match);
+> diff --git a/sound/soc/rockchip/rockchip_pdm.h b/sound/soc/rockchip/rockchip_pdm.h
+> index 8e5bbaf..13bfbc2 100644
+> --- a/sound/soc/rockchip/rockchip_pdm.h
+> +++ b/sound/soc/rockchip/rockchip_pdm.h
+> @@ -41,6 +41,8 @@
+>  #define PDM_PATH1_EN		BIT(28)
+>  #define PDM_PATH0_EN		BIT(27)
+>  #define PDM_HWT_EN		BIT(26)
+> +#define PDM_SAMPLERATE_MSK	GENMASK(7, 5)
+> +#define PDM_SAMPLERATE(x)	((x) << 5)
+>  #define PDM_VDW_MSK		(0x1f << 0)
+>  #define PDM_VDW(X)		((X - 1) << 0)
 
-Mailboxes can still be used if desired, but currently there is
-no support on firmware-side for K3 SoCs to use mailboxes. Either
-approach would require that an appropriate firmware image is
-loaded/booted on the PRU.
+The TRM of RV1126 and RK3568 both state that sample resolutions from 16
+up to 24 bits are supported. However, I don't see anything in this patch
+that restricts the capture formats accordingly. In fact, the driver
+offers SNDRV_PCM_FMTBIT_S32_LE in my setup and via this PDM_VDW macro 31
+is written to PDM_CTRL0, which is undefined behavior according to the TRM.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
-This patch is based on linux-next tag next-20240423
- 
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Are 32 bit samples supported by the RK3568/RV1126 PDM block?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 6f9aa5e02138..f8370dd03350 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -1283,6 +1283,9 @@ pru0_0: pru@34000 {
- 			      <0x22400 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-pru0_0-fw";
-+			interrupt-parent = <&icssg0_intc>;
-+			interrupts = <16 2 2>;
-+			interrupt-names = "vring";
- 		};
- 
- 		rtu0_0: rtu@4000 {
-@@ -1292,6 +1295,9 @@ rtu0_0: rtu@4000 {
- 			      <0x23400 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-rtu0_0-fw";
-+			interrupt-parent = <&icssg0_intc>;
-+			interrupts = <20 4 4>;
-+			interrupt-names = "vring";
- 		};
- 
- 		tx_pru0_0: txpru@a000 {
-@@ -1310,6 +1316,9 @@ pru0_1: pru@38000 {
- 			      <0x24400 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-pru0_1-fw";
-+			interrupt-parent = <&icssg0_intc>;
-+			interrupts = <18 3 3>;
-+			interrupt-names = "vring";
- 		};
- 
- 		rtu0_1: rtu@6000 {
-@@ -1319,6 +1328,9 @@ rtu0_1: rtu@6000 {
- 			      <0x23c00 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-rtu0_1-fw";
-+			interrupt-parent = <&icssg0_intc>;
-+			interrupts = <22 5 5>;
-+			interrupt-names = "vring";
- 		};
- 
- 		tx_pru0_1: txpru@c000 {
-@@ -1436,6 +1448,9 @@ pru1_0: pru@34000 {
- 			      <0x22400 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-pru1_0-fw";
-+			interrupt-parent = <&icssg1_intc>;
-+			interrupts = <16 2 2>;
-+			interrupt-names = "vring";
- 		};
- 
- 		rtu1_0: rtu@4000 {
-@@ -1445,6 +1460,9 @@ rtu1_0: rtu@4000 {
- 			      <0x23400 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-rtu1_0-fw";
-+			interrupt-parent = <&icssg1_intc>;
-+			interrupts = <20 4 4>;
-+			interrupt-names = "vring";
- 		};
- 
- 		tx_pru1_0: txpru@a000 {
-@@ -1463,6 +1481,9 @@ pru1_1: pru@38000 {
- 			      <0x24400 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-pru1_1-fw";
-+			interrupt-parent = <&icssg1_intc>;
-+			interrupts = <18 3 3>;
-+			interrupt-names = "vring";
- 		};
- 
- 		rtu1_1: rtu@6000 {
-@@ -1472,6 +1493,9 @@ rtu1_1: rtu@6000 {
- 			      <0x23c00 0x100>;
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "am64x-rtu1_1-fw";
-+			interrupt-parent = <&icssg1_intc>;
-+			interrupts = <22 5 5>;
-+			interrupt-names = "vring";
- 		};
- 
- 		tx_pru1_1: txpru@c000 {
--- 
-2.34.1
+> @@ -66,6 +68,7 @@
+>  #define PDM_CLK_1280FS		(0x2 << 0)
+>  #define PDM_CLK_2560FS		(0x3 << 0)
+>  #define PDM_CLK_5120FS		(0x4 << 0)
+> +#define PDM_CIC_RATIO_MSK	(0x3 << 0)
+>  
+>  /* PDM HPF CTRL */
+>  #define PDM_HPF_LE		BIT(3)
 
+Also, I noticed that the number of channels must be an even number.
+Shouldn't it be possible to use a single mono PDM microphone with this
+PDM block (i.e., having one channel)?
+
+Thanks a lot and best regards,
+Michael
 
