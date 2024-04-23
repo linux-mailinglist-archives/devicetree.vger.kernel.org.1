@@ -1,137 +1,237 @@
-Return-Path: <devicetree+bounces-61896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37D388AE916
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:08:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328168AE91E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:08:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB4F61F234D9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:08:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54FF81C21CD5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8CF13790C;
-	Tue, 23 Apr 2024 14:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E925B138480;
+	Tue, 23 Apr 2024 14:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pxI8wOD4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S6z+Zc0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C37E13774E
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 14:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3034F136E07
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 14:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713881276; cv=none; b=TYsQ596qM5dKg0AwDLggeXn21YDL6UIO0sIRHe5XMbTNOaF2J8wuIEgJk7zeuAgvGhGZlZnHDBfwpBSDh4TYq2hJ0X5VS9LcS3fvZIRBsMmWaiqODU8fuGNXnU2Vsl6fBkY/9qvkJaDfpXku5bbyTXJrM8FZ+P9PlEgoI7gaTko=
+	t=1713881328; cv=none; b=j/sELoWywcoSgXBsOBER2R1lncJMuswnszZk+VIJH2hhe3dPCKc119tKJszQwpTAzGEN99iVoKzjIBUMiIJxLUN8Pi9+SVSNGhw/LeA+c+NCqJJTvx57QO2vxZVPFByDlE2zEuQ/9DXabHDUW0y/y7thOP9b+RDhfRN7/TJXoIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713881276; c=relaxed/simple;
-	bh=SCCRcYBSUWi6YZAeBOgGaAFk9sSP20YVxD8KQauNigo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gz7LkWZHfmi1x3zXrn0sxJn/tZhnQ3VhdhI1caKcjKNs+mf/diAZD2YyfH5JiXZ/13tM01V55Sy5zkMHonw+nqd8gLx8UNN2pk/lsKGReHSXh8ddxgI5f+yj0ZaoocRVipT6AYWoj1h+iDqWphNLDFZKzqjAX6yZbHZ9tliQn8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pxI8wOD4; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1713881328; c=relaxed/simple;
+	bh=IWCU0w3VL0cvSLjhHzfvAO7YugroezgVY+Qah+oy6jg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=b1KUAoVRFlNPiO2OagcOKICETXjNz0ce75k5L/SnE39fVR7GaHMQcBmcpU0m4NBDr6mjQdVtPuEZ8a3Vc7rsZp3f1BQoHx8bWVt9XIIpquxFq5b3D7A5DonA3CVjDSak7fP0+7VBmDl5Gdcc6mawZRINmb0GGbDQCzQYKlviZoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S6z+Zc0s; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41a7820620dso14528035e9.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 07:07:52 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-345522f7c32so2694090f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 07:08:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713881271; x=1714486071; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ivZL1KMf5HVtw/Oo+a4INAZ/yDs5tBPuPTBsYEgRcbc=;
-        b=pxI8wOD4CgCSFvS/2oXD5Wa0VC2b9Z+SImYYKaDd4Hkat8Zs98WqkstnCJjYktLCBF
-         Xzyt9HF6RpvmJFNIrIJ9x9s5YQQl+R+LoQFRbfmu4SbP9zAJuZo5393mF+H2cvsF2W9D
-         0/pvcFO/ucwlqPdAiiE5SzsPoqI0VsPJeGbjklVxjFV3r+Jmp01+T9JkMw1mH0SkNr72
-         nvgbX2sN7+pRa+Mqc8m1ecW9o1Yu9NKCHHYqrHavsqjwnI/Hz/45bwqyhxVLediTwt+s
-         F1vHN4pNOVWD1TaeBUeW8/8Yiw86g++tjKrkxAtn8yo6Jepf7gzjdQWgC1/RNCJ+BwAR
-         4asg==
+        d=linaro.org; s=google; t=1713881325; x=1714486125; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b1BoVNFpU0aThQ3DZVA1XTVmetSk4HOUliHNQd7s2Lg=;
+        b=S6z+Zc0sptV3BqEA8gjLQ0GBFmeaePjtrgZe1OYsPNtu7dlgOo1SnuXeU3bPxgqBti
+         0pkuJRao7uvEZ7KMe1DpFUcKO5Se+82PaFhc+xKKjAQFT8t9/APdOL90NvDqethvMEXU
+         SCuvVw+RCNMVXk9kz1zxhqZl5ND21Scj1NwhFzNujtJtRy9F2I06XZqAf43RTJq2cQJE
+         UyRXzs1ZMfbNPpK7vDjZA3/qyf9jWYpLdnsj18Rw2S1RAccBBdjmsJdpx9OQykZgF6Vb
+         eLeXvxnLPEbKRNH4pRRaOCy0W/7p1G7e6QPpMMBdjCWtTapVqwonSilSnIjIzwpo/7YN
+         wr8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713881271; x=1714486071;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ivZL1KMf5HVtw/Oo+a4INAZ/yDs5tBPuPTBsYEgRcbc=;
-        b=oiu5ax4L/1yagbyjouI0eKzY3raj5msh82ybU7JYf73xgu4EMBOQ6UfmW57ak2uWbZ
-         4MH9WeJwq6lV6GlyS1xWMyxgtPSfbJUhMl3THVo0k/ZVy7jpwM+hdHKWu6deoUc00ddW
-         2SrusG7UdNDgTEWQZWU5xiWhEnbryzFYHeYkuMt039xAzvaQX+/wmh6ThIqYrjy/jgpo
-         T3Lp9hBjw4St3mB6pZPkt0zuX45sIGnzeTMzTzccZ04YuQD3X0Y8NILyeGlHLLtm3QxG
-         g2zQGxr7zc1uQd/SOqnwWSo1xswy0yPUg1jDZEqVv0Rp+PGUkHEnhFT56crHcNB5ea7Y
-         /nPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUAdHUneL7uIYhe9GUAY7ClkCOjdRHc7dU70VmmEioYTpjwYR8uzS65YCE6X2Y/XRLaPzPpWr+DcgeSCL40rP7SjE/tJEdEWIMgag==
-X-Gm-Message-State: AOJu0YxCXu9vwfPGfc9HqyPvQVR5DUBXV943YTBjm6H4D9hK9QlKCbIC
-	Yud3YT+05PzUzoQ0fPLklu5EaUa30hY09ALPm7FkzomH4EcNDuIMp9yzuQqiwow=
-X-Google-Smtp-Source: AGHT+IEIwm2tVBxncnsuTwhWGS/GtsX0X8yGwreFbsWOjkFsI91R+e9ti269gvGnFYpY+RoCeixbxQ==
-X-Received: by 2002:a05:600c:1e1b:b0:41a:7370:85ab with SMTP id ay27-20020a05600c1e1b00b0041a737085abmr4113391wmb.33.1713881270854;
-        Tue, 23 Apr 2024 07:07:50 -0700 (PDT)
-Received: from myrica ([2.221.137.100])
-        by smtp.gmail.com with ESMTPSA id o3-20020a05600c4fc300b00418f7605249sm18226069wmq.24.2024.04.23.07.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 07:07:50 -0700 (PDT)
-Date: Tue, 23 Apr 2024 15:08:03 +0100
-From: Jean-Philippe Brucker <jean-philippe@linaro.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>
-Subject: Re: [PATCH 0/4] iommu: Remove iommu_fwspec ops
-Message-ID: <20240423140803.GA931103@myrica>
-References: <cover.1713523251.git.robin.murphy@arm.com>
+        d=1e100.net; s=20230601; t=1713881325; x=1714486125;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=b1BoVNFpU0aThQ3DZVA1XTVmetSk4HOUliHNQd7s2Lg=;
+        b=djBL2JvCWTRn3vHWhWNuBrr8jnBASI42mGDl/LXD1pDD+j9ca3n+gDIXbBuJ4FRnY6
+         Cr0sSGEf13OwmKUvRMZYHHF/wzP3LOKhh9k0HVoJRHZrrgIsl1CxjzI0RQW6c8NNezKe
+         YeLrC90Z99htmFnUsz/urRHQvtNEPsLulp8OK6sUmtX3MjhJKMwiMwm/uBrlY7EsWbNh
+         hdmFZT3Ui4aOf4H/emxz6iEtkubT5U6u4dfwWYH7XGX9MbXZrzGKye/uBW1L/iymCJ2z
+         1117BYfE4YWeURv0ZKTA/S/NvmNTLArJQ6VSdAhhC2xHeJzGdP1TFvVfWNEJ3khqEK6J
+         n6Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCXalKQYXJrA5NTuxD7U95l5iqGOuajKCjHosonEvfcQZQv2M0W3rhW2XqsNXiJ70mzzYSe6GtG3NDM1gcodvZXr/NlJ73yADeDTEg==
+X-Gm-Message-State: AOJu0YyB/HV1n6kjT12HWsIRCOVsUzQzR4XEq5yQVtde6YLYkPMnCDQk
+	FDohejGE0rkCSU/hc7ROuXd4VSE///piLP8ZQwfX/5R+kKyXR1GTrTqq7iPgtrA=
+X-Google-Smtp-Source: AGHT+IG40KDQ1MC6cSzKj7qM2lR4kQsCPwKdIVDQbpX2/BBZIqVwoVg6yVQRHufyqvSCY9BG+P/NYA==
+X-Received: by 2002:a5d:4d4b:0:b0:33e:7fbc:caea with SMTP id a11-20020a5d4d4b000000b0033e7fbccaeamr9901956wru.34.1713881325174;
+        Tue, 23 Apr 2024 07:08:45 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:dfee:1061:7e39:bfff? ([2a01:e0a:982:cbb0:dfee:1061:7e39:bfff])
+        by smtp.gmail.com with ESMTPSA id q12-20020adfcd8c000000b00343cad2a4d3sm14625332wrj.18.2024.04.23.07.08.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 07:08:44 -0700 (PDT)
+Message-ID: <864063fb-eeae-4eb7-9089-0d98011a0343@linaro.org>
+Date: Tue, 23 Apr 2024 16:08:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1713523251.git.robin.murphy@arm.com>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Luca Weiss <luca.weiss@fairphone.com>, Bjorn Andersson <andersson@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
+ <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com>
+ <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org>
+ <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt>
+ <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org>
+ <D064242SMIVM.1GUC1I9GE9IGC@fairphone.com>
+ <963b60e5-6ab7-4d9f-885a-ba744c2b7991@linaro.org>
+ <D0C42YR1270X.23P9WCWWNB8XF@fairphone.com>
+ <f2d96f99-d8ac-4ff1-83fa-742e541565e4@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <f2d96f99-d8ac-4ff1-83fa-742e541565e4@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 19, 2024 at 05:55:58PM +0100, Robin Murphy wrote:
-> Hi All,
+On 23/04/2024 15:03, Konrad Dybcio wrote:
 > 
-> Building on top of the arch_setup_dma_ops() cleanup[1], the next step
-> down the chain is {acpi,of}_dma_configure()... There's plenty to do
-> here, but it may as well start with this fairly self-contained little
-> cleanup, pruning yet more redundancy and exposed API surface.
+> 
+> On 4/5/24 12:19, Luca Weiss wrote:
+>> On Fri Apr 5, 2024 at 10:08 AM CEST, Neil Armstrong wrote:
+>>> Hi Luca,
+>>>
+>>> On 29/03/2024 10:02, Luca Weiss wrote:
+>>>> On Tue Mar 26, 2024 at 10:02 PM CET, Konrad Dybcio wrote:
+>>>>> On 16.03.2024 5:01 PM, Bjorn Andersson wrote:
+>>>>>> On Fri, Mar 15, 2024 at 06:35:15PM +0100, Neil Armstrong wrote:
+>>>>>>> On 15/03/2024 18:19, Luca Weiss wrote:
+>>>>>>>> On Thu Feb 29, 2024 at 2:07 PM CET, Neil Armstrong wrote:
+>>>>>>>>> Register a typec mux in order to change the PHY mode on the Type-C
+>>>>>>>>> mux events depending on the mode and the svid when in Altmode setup.
+>>>>>>>>>
+>>>>>>>>> The DisplayPort phy should be left enabled if is still powered on
+>>>>>>>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
+>>>>>>>>> PHY is not powered off.
+>>>>>>>>>
+>>>>>>>>> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+>>>>>>>>> will be set in between of USB-Only, Combo and DisplayPort Only so
+>>>>>>>>> this will leave enough time to the DRM DisplayPort controller to
+>>>>>>>>> turn of the DisplayPort PHY.
+>>>>>>>>>
+>>>>>>>>> The patchset also includes bindings changes and DT changes.
+>>>>>>>>>
+>>>>>>>>> This has been successfully tested on an SM8550 board, but the
+>>>>>>>>> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
+>>>>>>>>> PD USB Hubs and PD Altmode Dongles to make sure the switch works
+>>>>>>>>> as expected.
+>>>>>>>>>
+>>>>>>>>> The DisplayPort 4 lanes setup can be check with:
+>>>>>>>>> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
+>>>>>>>>>     name = msm_dp
+>>>>>>>>>     drm_dp_link
+>>>>>>>>>         rate = 540000
+>>>>>>>>>         num_lanes = 4
+>>>>>>>>
+>>>>>>>> Hi Neil,
+>>>>>>>>
+>>>>>>>> I tried this on QCM6490/SC7280 which should also support 4-lane DP but I
+>>>>>>>> haven't had any success so far.
+>>>>>>>>
+>>>>>> [..]
+>>>>>>>> [ 1775.563969] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
+>>>>>>>> [ 1775.564031] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
+>>>>>>>
+>>>>>>> Interesting #1 means the 4 lanes are not physically connected to the other side,
+>>>>>>> perhaps QCM6490/SC7280 requires a specific way to enable the 4 lanes in the PHY,
+>>>>>>> or some fixups in the init tables.
+>>>>>>>
+>>>>>>
+>>>>>> I tested the same on rb3gen2 (qcs6490) a couple of weeks ago, with the
+>>>>>> same outcome. Looking at the AUX reads, after switching to 4-lane the
+>>>>>> link training is failing on all 4 lanes, in contrast to succeeding only
+>>>>>> on the first 2 if you e.g. forget to mux the other two.
+>>>>>>
+>>>>>> As such, my expectation is that there's something wrong in the QMP PHY
+>>>>>> (or possibly redriver) for this platform.
+>>>>>
+>>>>> Do we have any downstream tag where 4lane dp works? I'm willing to believe
+>>>>> the PHY story..
+>>>>
+>>>> Just tested on Fairphone 5 downstream and 4 lane appears to work there.
+>>>> This is with an USB-C to HDMI adapter that only does HDMI.
+>>>>
+>>>> FP5:/ # cat /sys/kernel/debug/drm_dp/dp_debug
+>>>>           state=0x20a5
+>>>>           link_rate=270000
+>>>>           num_lanes=4
+>>>>           resolution=2560x1440@60Hz
+>>>>           pclock=241500KHz
+>>>>           bpp=24
+>>>>           test_req=DP_LINK_STATUS_UPDATED
+>>>>           lane_count=4
+>>>>           bw_code=10
+>>>>           v_level=0
+>>>>           p_level=0
+>>>>
+>>>> Sources are here:
+>>>> https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-5.4/+/refs/heads/odm/rc/target/13/fp5
+>>>> And probably more importantly techpack/display:
+>>>> https://gerrit-public.fairphone.software/plugins/gitiles/platform/vendor/opensource/display-drivers/+/refs/heads/odm/rc/target/13/fp5
+>>>> Dts if useful:
+>>>> https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-extra/devicetree/+/refs/heads/kernel/13/fp5
+>>>
+>>> Could you retry with this applied ?
+>>>
+>>> https://lore.kernel.org/all/20240405000111.1450598-1-swboyd@chromium.org/
+>>
+>> Unfortunately I do not see any change with this on QCM6490 Fairphone 5
+>> and 4-lane DP.
+> 
+> Hm, could you like dump all the PHY regions up and downstream with the display
+> connected (and nothing connected) and compare them?
 
-Tested with QEMU: SMMUv3 DT/IORT, virtio-iommu builtin/module DT/VIOT arm64/x86
+Yes would be great, PHY regions and DP regions as well.
 
-Tested-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Neil
 
 > 
-> Thanks,
-> Robin.
-> 
-> [1] https://lore.kernel.org/linux-iommu/cover.1713523152.git.robin.murphy@arm.com
-> 
-> 
-> Robin Murphy (4):
->   iommu: Resolve fwspec ops automatically
->   ACPI: Retire acpi_iommu_fwspec_ops()
->   OF: Simplify of_iommu_configure()
->   iommu: Remove iommu_fwspec ops
-> 
->  drivers/acpi/arm64/iort.c             | 19 +++-------
->  drivers/acpi/scan.c                   | 38 +++++---------------
->  drivers/acpi/viot.c                   | 11 ++----
->  drivers/iommu/arm/arm-smmu/arm-smmu.c |  3 +-
->  drivers/iommu/iommu-priv.h            |  7 ++++
->  drivers/iommu/iommu.c                 | 20 +++++------
->  drivers/iommu/mtk_iommu_v1.c          |  2 +-
->  drivers/iommu/of_iommu.c              | 50 ++++++++++-----------------
->  drivers/iommu/tegra-smmu.c            |  2 +-
->  drivers/of/device.c                   | 30 ++++++----------
->  include/acpi/acpi_bus.h               |  3 +-
->  include/linux/iommu.h                 | 15 ++------
->  12 files changed, 66 insertions(+), 134 deletions(-)
-> 
-> -- 
-> 2.39.2.101.g768bb238c484.dirty
-> 
+> Konrad
+
 
