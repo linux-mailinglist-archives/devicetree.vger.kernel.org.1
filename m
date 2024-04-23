@@ -1,179 +1,225 @@
-Return-Path: <devicetree+bounces-62061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44B68AFC33
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 00:49:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2908AFC5F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D3021F23DA6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:49:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0F5A2853DA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB9C29429;
-	Tue, 23 Apr 2024 22:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1258D2E859;
+	Tue, 23 Apr 2024 23:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cBW+NGtN"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Ey2kgYal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF532C1AE;
-	Tue, 23 Apr 2024 22:49:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9EC1C6BE;
+	Tue, 23 Apr 2024 23:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713912553; cv=none; b=b7OokKEkPmnaxM8srujaUYlOBPx3lLkmNeHMHTYcAW6Jq+N51PhyMgVXH7MxIOnetMMCpZWkd17Yly0IgpdyWZ/PmzUAvHhYYnL3G7FpDZV+5GFeTXnZ1e/GT0OnSti2NAlVMdMAbNUk3iCRi/0A/VdRpNjLn9NeP+aVJKR3X0Q=
+	t=1713913229; cv=none; b=KYYHWbMTUHOO/5tm3ghhXQ02wbyHIFHGCUMLds2HaSNKkrICpFBF3Pny5scOTA3CxmS3izhb5blnjRaA4+QOGOJ43QlSngeDCX56HTrUA7kDacZVkaqe2UqesC5C0HIzD5h+9pvDuRY1lNx4jRG1X9hA109goMT58mCMM/0KF38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713912553; c=relaxed/simple;
-	bh=TRuX/tTAJzD7cSBZjxwlCUN8qWsw1eNS9r8xYN+qJVw=;
+	s=arc-20240116; t=1713913229; c=relaxed/simple;
+	bh=g2/HsqUrBh9Sgq2CvmzDNLX3ZRhUVGTx7iFVUGdteJg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=baLxLM0L8VDXWH/WXp4y2hLtmg7dzh8TkDdro9ynLsYSzNxopFtYDjcs2csxUpEuVZhM1O7LZ7P44FPHKq9eQVIxUGqxqpN2OPnnZOQKQfpVa3VQMuG24SApKxHPnKUrG5Hrpeujc147NUx1CqVTeLx2TTf+Oj/piJDYSFPJCHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cBW+NGtN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43NM5IQN015367;
-	Tue, 23 Apr 2024 22:48:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=DDXZUb9B2qp1xMWb0EroroBnTTf58sdaiaj+26UKu5I=; b=cB
-	W+NGtNYFM1GqoOmyCowtmgRlTJaC2dalqNTOCyIa1B4tBeynyAvca5C5fvTmmvcj
-	jDzKC/l6wzG/EaGZeQsMwjMqjAbaK9a0N4MG4gnHxZDdi2eiebpl/LPBKUtl1PcM
-	9g5x2oV6G1gZNpF8XFXy6R2n9vLcAClfUSksV36DkTDoWKgb7esBgqdxbKNqLSUP
-	HTuZby/22SS/haVSE4yq6RwshxKOOxWekycPAEqRmAgmFJiSI3Z0EH7cW3RF8OKS
-	vPGA3ZU5xoPc2Zc6ueVlzG8ZQcTFaWMYeNVcu3jR2SXFxsaEn+8AAMJizpXhg1xB
-	5hmtyvO22MVROv/Cgd9Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xpjp8gqp4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 22:48:45 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43NMmit4014980
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 22:48:44 GMT
-Received: from [10.110.64.215] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 23 Apr
- 2024 15:48:43 -0700
-Message-ID: <32ea2ffa-5ee4-5344-826d-3572085af705@quicinc.com>
-Date: Tue, 23 Apr 2024 15:48:43 -0700
+	 In-Reply-To:Content-Type; b=jcDcl/nMlFBzdqI0DBuUmkXkk0/Dq83yEn9L0vsVC4SLnwx4QF+yaI2vp/hLqCTL26B147FgjEnh2Owi6zXAW1HDAZURWFtYFiYUaIjcpJ1GyM/jIHl8IEL4ne/VsdXtZPG8GDrCqnsKqj+/eZ3tIfWDJtHJrYrZDI5nbs1k8nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Ey2kgYal; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 23725100004;
+	Wed, 24 Apr 2024 02:00:21 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 23725100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1713913221;
+	bh=tcVfNzm8I5LEMAd+H5pTx/XXdCO1zxNExqAEu+sh1rk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=Ey2kgYalHNsRgGMEO8gcRyn3v4qM3sybzmq8nLPF5QgoUxsadY+FbtMZ0/fPt6/sp
+	 kDgX9dxk+jdYtPfZQcWaax5+HH8QwHvpuG2+FgPMEi9A8fKwJXD5FUGSBexCT3xdm9
+	 5aGwvjIJqEe16Ep7Fbap0bnVS4+neN8mS/6BczYxn3VP7NYLyrZ3zGciNCXr323hfY
+	 i8wSdmMUrkOG1sKC/xLWOlvUcE6jX6Sx2JP5DaDDeihgnPLA8tNr8kGIkg5TlsqK8N
+	 D5m7oLk4CPJLiZgmQVayu00tjEACovLNRcwAGfyi+nFm82MuO6mwM41q3XSMyddk2q
+	 K1aNgUCRAT6Sg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 24 Apr 2024 02:00:20 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 24 Apr 2024 02:00:20 +0300
+Message-ID: <4feb8fe3-af72-4483-87b2-30503328cfe2@salutedevices.com>
+Date: Wed, 24 Apr 2024 02:00:20 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v19 41/41] ASoC: doc: Add documentation for SOC USB
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] pwm: meson: support meson A1 SoC family
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<thierry.reding@gmail.com>, <hkallweit1@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
+	<gnstark@sberdevices.ru>, Dmitry Rokosov <ddrokosov@salutedevices.com>
+References: <20240423161006.2522351-1-gnstark@salutedevices.com>
+ <20240423161006.2522351-3-gnstark@salutedevices.com>
+ <1jv848ezzo.fsf@starbuckisacylon.baylibre.com>
 Content-Language: en-US
-To: Bagas Sanjaya <bagasdotme@gmail.com>, <srinivas.kandagatla@linaro.org>,
-        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <konrad.dybcio@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240422224906.15868-1-quic_wcheng@quicinc.com>
- <20240422224906.15868-42-quic_wcheng@quicinc.com>
- <ZicSOzE8KyaYGi0v@archie.me>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <ZicSOzE8KyaYGi0v@archie.me>
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <1jv848ezzo.fsf@starbuckisacylon.baylibre.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: W15zYV3-qeG-OQ9c9nb1NdmLHuOGZuDd
-X-Proofpoint-ORIG-GUID: W15zYV3-qeG-OQ9c9nb1NdmLHuOGZuDd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-23_18,2024-04-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- priorityscore=1501 phishscore=0 spamscore=0 clxscore=1011 bulkscore=0
- impostorscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404230061
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184885 [Apr 23 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/23 19:04:00 #24945065
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Bagas,
+Hello Jerome
 
-On 4/22/2024 6:43 PM, Bagas Sanjaya wrote:
-> On Mon, Apr 22, 2024 at 03:49:06PM -0700, Wesley Cheng wrote:
->> +.. code-block:: rst
+Thanks for the review
+
+
+On 4/23/24 20:35, Jerome Brunet wrote:
+> 
+> On Tue 23 Apr 2024 at 19:10, George Stark <gnstark@salutedevices.com> wrote:
+> 
+>> From: George Stark <gnstark@sberdevices.ru>
+>>
+>> Add a compatible string and configuration for the meson A1 SoC family
+>> PWM. Additionally, provide an external clock initialization helper
+>> specifically designed for these PWM IPs.
+>>
+>> Signed-off-by: George Stark <gnstark@sberdevices.ru>
+>> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+>> ---
+>>   drivers/pwm/pwm-meson.c | 35 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 35 insertions(+)
+>>
+>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+>> index ea96c5973488..529a541ba7b6 100644
+>> --- a/drivers/pwm/pwm-meson.c
+>> +++ b/drivers/pwm/pwm-meson.c
+>> @@ -462,6 +462,33 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+>>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+>>   }
+>>   
+>> +static int meson_pwm_init_channels_ext_clock(struct pwm_chip *chip)
+> 
+> That kind on naming (ext) is almost sure to clash with whatever comes next.
+> Just use the name of the first SoC using the method, a1 for instance.
+
+It's true that pwm core in a1 s4, t7 etc is the same AFAWK.
+I just want to clarify your proposal:
+I add a1 compatible to the dt-bindings with s4 as fallback,
+t7 compatible will be added later in the same way.
+
+Here in the driver I don't mention a1 at all and use s4-centric naming e.g.:
+
+{
+	.compatible = "amlogic,meson-s4-pwm",
+	.data = &pwm_meson_s4_data
+},
+static const struct meson_pwm_data pwm_meson_s4_data = {
+	.channels_init = meson_pwm_init_channels_s4,
+};
+
+right?
+
+>> +{
+>> +	struct device *dev = pwmchip_parent(chip);
+>> +	struct meson_pwm *meson = to_meson_pwm(chip);
+>> +	struct meson_pwm_channel *channels = meson->channels;
+>> +	struct clk_bulk_data *clks = NULL;
+>> +	unsigned int i;
+>> +	int res;
 >> +
->> +int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
->> +					struct snd_soc_jack *jack)
->> +..
+>> +	res = devm_clk_bulk_get_all(dev, &clks);
+>> +	if (res < 0) {
+>> +		dev_err(dev, "can't get device clocks\n");
+>> +		return res;
+>> +	}
 > 
-> You forget to indent snd_soc_usb_setup_offload_jack() prototype:
+> I don't think allocating the 'clk_bulk_data *clks' is necessary or safe.
+> We know exactly how many clocks we expect, there is no need for a get all.
 > 
-> ---- >8 ----
-> diff --git a/Documentation/sound/soc/usb.rst b/Documentation/sound/soc/usb.rst
-> index 3f7c3ef6a0c03c..0b6da0be9f317f 100644
-> --- a/Documentation/sound/soc/usb.rst
-> +++ b/Documentation/sound/soc/usb.rst
-> @@ -218,8 +218,8 @@ state.
->   
->   .. code-block:: rst
->   
-> -int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
-> -					struct snd_soc_jack *jack)
-> +        int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
-> +        					struct snd_soc_jack *jack)
->   ..
->   
->     - ``component``: ASoC component to add the jack
+>> +
+>> +	if (res != MESON_NUM_PWMS) {
+>> +		dev_err(dev, "clock count must be %d, got %d\n",
+>> +			MESON_NUM_PWMS, res);
+>> +		return -EINVAL;
+>> +	}
 > 
->> +USB Offload Playback Route Select Kcontrol
->> +-----------------------------------
+> ... and this only catches the problem after the fact.
 > 
-> USB offload playback heading underlines are not long enough to cover heading
-> titles, so I have to extend them:
+> It is probably convinient but not necessary.
 > 
-> ---- >8 ----
-> diff --git a/Documentation/sound/soc/usb.rst b/Documentation/sound/soc/usb.rst
-> index 0b6da0be9f317f..5e0e9fad131b24 100644
-> --- a/Documentation/sound/soc/usb.rst
-> +++ b/Documentation/sound/soc/usb.rst
-> @@ -482,7 +482,7 @@ into the physical USB port and enumerated.  The kcontrols are defined as:
->       kcontrol exposed by the platform card.
->   
->   USB Offload Playback Route Select Kcontrol
-> ------------------------------------
-> +------------------------------------------
->   In order to allow for vendor specific implementations on audio offloading device
->   selection, the SOC USB layer exposes the following:
->   
-> @@ -545,7 +545,7 @@ along to the external DSP.
->   
->   
->   USB Offload Playback Route Status
-> --------------------
-> +---------------------------------
->   SOC USB exposes APIs for keeping track of the offloading state, and expects this
->   to be maintained by the BE DAI link that created/added the SOC USB device.
->   
-> @@ -573,7 +573,7 @@ When executing the kcontrol get callback, it will loop across the active_list ar
->   and report to the application for active USB sound card and USB PCM device indexes.
->   
->   USB Offload Playback Capable Card
-> --------------------------------
-> +---------------------------------
->   USB sound also creates a kcontrol for applications to help determine which platform
->   sound card USB offloading is linked to.  This will allow applications to further
->   query the platform sound card for specific information about the current USB offload
+>> +
+>> +	for (i = 0; i < MESON_NUM_PWMS; i++)
+>> +		channels[i].clk = clks[i].clk;
 > 
-> Thanks.
+> channels[i].clk could be assigned directly of_clk_get() using clock
+> indexes. No extra allocation needed.
+
+if we use of_clk_get then we'll have to free the clock objects in the
+end. Could we use devm_clk_bulk_get instead?
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static const struct meson_pwm_data pwm_meson8b_data = {
+>>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+>>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+>> @@ -500,11 +527,19 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+>>   	.channels_init = meson_pwm_init_channels_meson8b_v2,
+>>   };
+>>   
+>> +static const struct meson_pwm_data pwm_meson_ext_clock_data = {
+>> +	.channels_init = meson_pwm_init_channels_ext_clock,
+>> +};
+>> +
+>>   static const struct of_device_id meson_pwm_matches[] = {
+>>   	{
+>>   		.compatible = "amlogic,meson8-pwm-v2",
+>>   		.data = &pwm_meson8_v2_data
+>>   	},
+>> +	{
+>> +		.compatible = "amlogic,meson-a1-pwm",
+>> +		.data = &pwm_meson_ext_clock_data
+>> +	},
+>>   	/* The following compatibles are obsolete */
+>>   	{
+>>   		.compatible = "amlogic,meson8b-pwm",
+> 
 > 
 
-Thanks for the review.  Will fix these all in the next revision.
-
-Thanks
-Wesley Cheng
+-- 
+Best regards
+George
 
