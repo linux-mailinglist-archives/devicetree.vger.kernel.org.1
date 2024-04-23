@@ -1,328 +1,172 @@
-Return-Path: <devicetree+bounces-61775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72568AE155
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:51:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209CF8AE16C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:54:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE0D6B21BB6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:51:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0E3B1F214AC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BD55FB95;
-	Tue, 23 Apr 2024 09:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7DE5CDFA;
+	Tue, 23 Apr 2024 09:54:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="di/JyNso"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jOCOTKvJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881E55D8E4;
-	Tue, 23 Apr 2024 09:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB0858AC4
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 09:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713865860; cv=none; b=q9+gHU6Jljr9rnexsbQzmVgxUUspuwF3Q6eevltyST2pirp/KP4J9HuaSJChPUtfxIm79gOtcXhNAPuJO6HR8/7iZIfUXV+CQ/jR40BUsB1KHK+x/vPc9LCogvmtBEcvP/EFrLZVbzxSW1unNu1H4QoK2IHdkPIZnQM2wgFaw9s=
+	t=1713866090; cv=none; b=nkvMCSwKxFqF9pTnzOVb1Kh72IthBBccH/VNQ8bvi3SaI3A0EZ9g+BYHsgtAylg9/GTX2U+DFcNMUyST14//RhZTxh7HedXXewFVBxaLVShhEnctu0hEJE+VV4o+NK9mS4oPmkR+D/66ewdJQsWTSV0sEE012PcaTSVVq7rq5J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713865860; c=relaxed/simple;
-	bh=RonRZhOuFd4FZR72ZlEGahew6p/6xifPhjtBZhvCVw0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ENGu9Qe/WG5AtfQPEJoKOLfK+qmtUrOtokSm22hWWDvqdI0yWsuXxwYvq8ceD20yoK+72IT+C0mVMMaJqlSZpoSpECXwN9HUSqCjBY5cvMwRramb3pcnNFh7J1S0YOVTYX2obmprZ6aZDGKWAUcjMIZ1bwZzuD1n4lG7zNB55FA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=di/JyNso; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 313BBC4AF0F;
-	Tue, 23 Apr 2024 09:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713865860;
-	bh=RonRZhOuFd4FZR72ZlEGahew6p/6xifPhjtBZhvCVw0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=di/JyNsoxsIwgIOZTUCfH5Oc9I684En/J4R8V+inZmpuMhZbYVYZTsAqoewGy5mgx
-	 8uah7YllM/TX5uVnToZB7oarz4PW/J3ySlPgYofuznuyp0gprrNcwwUtIPPjnZLXi7
-	 Dfs3FM3pWpXBj4BIl0ksrzUJt2ex/+V+5LL9cLZqkz25GCL5FJXkp77LG5bwTiIzAI
-	 lWInihCOPFugSkSHFU7HD1t6Dr139fjskLyCA6MKFL4warXEq6pc/1y844D8S1+dK0
-	 As6Dg26oou6QwuNW0jcM5ebkhwyVP/gEq2WY4AMFbmhKqyBmLXLz2ddIlhwZWndp0c
-	 WbbKwxkA+QrJw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 231CFC16B13;
-	Tue, 23 Apr 2024 09:51:00 +0000 (UTC)
-From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL_via_B4_Relay?= <devnull+arinc.unal.arinc9.com@kernel.org>
-Date: Tue, 23 Apr 2024 12:50:49 +0300
-Subject: [PATCH v3 5/5] ARM: dts: BCM5301X: Conform to DTS Coding Style on
- ASUS RT-AC3100 & AC88U
+	s=arc-20240116; t=1713866090; c=relaxed/simple;
+	bh=TcvuEYLws2fboubCzoAXSrZP5EX/PhUVq3p1ipmW6hs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UQ5jrvE06WP0iAwEeaMR2Jkdq+TitXHOs945jjEIyqEjRlUFXUuYLa715r/BNeS22SEosbxvzsKAlJR/0UepiTdQi6DGHCGsz0aLZ24OUoGMjViR8ZUvJ69J3IeTxOogsRZFC7Ecw3YFR2EwWlqceB1x4UV5k/khbvAohutLb4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jOCOTKvJ; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41a4f291f9dso15147045e9.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 02:54:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713866087; x=1714470887; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=QGmqwrxoYYNL7ItgGfa16lOMAGRJ/1BRq31t1v+wXrE=;
+        b=jOCOTKvJ+bLfBsyZYST5YwRbTvwlEuWSL6OvOXFuCJDj0fvpSmmQ9DRRYFlgf4lajD
+         ONop6jnfZD02vX1x9oDW6GMwvVnipisRjdDeb/uWgFEIzkpNLFt/KUZVKaYWmRhBjn45
+         o3jmJS+sjTWnDqLXZA9YHliB25sbLthFd6aVFbY9oMmtOVHkzR7mjf2Ukt6fjwGeYBvC
+         lQ6qAd7QFwe1GCcLFZnHwJBo4dqvnoieglaDFXJPrMPzbWG/DGbv4WJ1Vj4b/6CpzA7x
+         hcJLufOaKZYLKeP4KgAIoXJd/1Xz+Fxdg6Jm5QWNZ7kh0V0mfDSPmoVKE4kjc8ClHFDT
+         rnlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713866087; x=1714470887;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QGmqwrxoYYNL7ItgGfa16lOMAGRJ/1BRq31t1v+wXrE=;
+        b=L0NP2/rfqJR07wgfZ4aq0uZFrzz8edlZ0H3mkc37Qmg4rLMY3nCzR/NnMtcXpW+cEL
+         Cswu9yRHPdgdW2iR/Xp9zYzM5aGlm/Bw9qdTLC7A46PAuEXRITYJBUl0f+O8Tdnj1tle
+         4vQAW5PeY7wcTX+CMLt1yhCfepoajoAdXV1u4LRtGat7bPV9yoN8cYz3qQfXv79avkGC
+         9uW3dlTu9ipat9xDTfFh/K/S0MI0oxWX76gtzlPV9/WDta1JEUlPA2gJPCSbFGy/12EY
+         DLmi2cLl5z0lXKsWIAc/7GGd4JeKg9iriTxnmhY0IF9v0P79SOjsmx8hApA7KH9+t42+
+         Y3OA==
+X-Forwarded-Encrypted: i=1; AJvYcCWAX4jI+Bakml4UgCKNKUsU+/W/o6+qsP9g59NjodWELnFbl5appugTiQU9Az8oXmFF3n6wER4I0Fo1z9QJOT4KVbfuv3daJyWE/Q==
+X-Gm-Message-State: AOJu0YxpO4Axifeuc6vmrhGQTBvsgjhtTa888BbNq3uatIAITsFVb5Vp
+	kv9gNzmgDjLUaBFLBLu3zndBuC4ILfZ8ypKsjh3H7MQqKxbXcFHfpsbdPuR7WOc=
+X-Google-Smtp-Source: AGHT+IE/LWXfsKNKZXdZV14oyl4JzTZ8tD01rfU3dW2+ZPhcML7vwZuDNPaGuU/TzZKO5imlcL/WGg==
+X-Received: by 2002:a5d:6743:0:b0:343:ab10:f31e with SMTP id l3-20020a5d6743000000b00343ab10f31emr8273049wrw.42.1713866087320;
+        Tue, 23 Apr 2024 02:54:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id u11-20020a5d434b000000b0034a2d0b9a4fsm13016234wrr.17.2024.04.23.02.54.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 02:54:46 -0700 (PDT)
+Message-ID: <10006d22-eaa7-4414-ae4b-d1c9d57f5a13@linaro.org>
+Date: Tue, 23 Apr 2024 11:54:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-5-23d33cfafe7a@arinc9.com>
-References: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-0-23d33cfafe7a@arinc9.com>
-In-Reply-To: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-0-23d33cfafe7a@arinc9.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713865858; l=5167;
- i=arinc.unal@arinc9.com; s=arinc9-Xeront; h=from:subject:message-id;
- bh=7L5W/7z1WpF8NCI8e+TnYZn6sscmCDy3pZyH1HtB4TY=;
- b=4cWPEzSSJNXKt801p2f2aFZ9J2U7DbqJ4jQ8ThzSDmM9xJDRIqCbAwmOM0n2jKuiLGogoEkL7
- f2X06SHj9LLCKUxF+booXR8f0cfre9vQuL/W7a6fF8aEuW51Rqovoe8
-X-Developer-Key: i=arinc.unal@arinc9.com; a=ed25519;
- pk=z49tLn29CyiL4uwBTrqH9HO1Wu3sZIuRp4DaLZvtP9M=
-X-Endpoint-Received: by B4 Relay for arinc.unal@arinc9.com/arinc9-Xeront
- with auth_id=137
-X-Original-From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Reply-To: arinc.unal@arinc9.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] dt-bindings: counter: Update TI eQEP binding
+To: Judith Mendez <jm@ti.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ William Breathitt Gray <william.gray@linaro.org>
+Cc: David Lechner <david@lechnology.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20240418221417.1592787-1-jm@ti.com>
+ <20240418221417.1592787-6-jm@ti.com>
+ <a0eee08b-17c0-4089-85eb-d645cbcafae3@linaro.org>
+ <e58ff9ee-b050-4ad8-a060-dc0e33cc4896@ti.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <e58ff9ee-b050-4ad8-a060-dc0e33cc4896@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
+On 23/04/2024 00:11, Judith Mendez wrote:
+>>>   
+>>>     interrupts:
+>>>       description: The eQEP event interrupt
+>>>       maxItems: 1
+>>>   
+>>>     clocks:
+>>> -    description: The clock that determines the SYSCLKOUT rate for the eQEP
+>>> +    description: The clock that determines the clock rate for the eQEP
+>>>         peripheral.
+>>>       maxItems: 1
+>>>   
+>>>     clock-names:
+>>> -    const: sysclkout
+>>> +    maxItems: 1
+>>
+>> NAK. That's just wrong, not explained at all either.
+>>
+> 
+> The intention was to make the binding a bit more generic, but I see
+> that is not the correct direction to go, thanks for the feedback.
 
-Reorder the nodes and properties to conform to the Devicetree Sources (DTS)
-Coding Style.
+Bindings must be specific, because they describe the hardware. Your
+hardware has exactly one clock input pin, not some superposition of pins
+which change depending on photon stream.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- .../boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi | 92 +++++++++++-----------
- .../boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts   | 69 ++++++++--------
- 2 files changed, 80 insertions(+), 81 deletions(-)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
-index 9c7efb1c44f1..2cfaaabc7a6a 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
-@@ -10,9 +10,9 @@
- 
- / {
- 	memory@0 {
--		device_type = "memory";
- 		reg = <0x00000000 0x08000000>,
- 		      <0x88000000 0x18000000>;
-+		device_type = "memory";
- 	};
- 
- 	nvram@1c080000 {
-@@ -20,6 +20,34 @@ nvram@1c080000 {
- 		reg = <0x1c080000 0x00180000>;
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-led {
-+			label = "Backlight";
-+			linux,code = <KEY_BRIGHTNESS_ZERO>;
-+			gpios = <&chipcommon 4 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-reset {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&chipcommon 11 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-wifi {
-+			label = "Wi-Fi";
-+			linux,code = <KEY_RFKILL>;
-+			gpios = <&chipcommon 18 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-wps {
-+			label = "WPS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&chipcommon 20 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -66,32 +94,29 @@ led-wps {
- 			gpios = <&chipcommon 19 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+};
- 
--	gpio-keys {
--		compatible = "gpio-keys";
--
--		button-led {
--			label = "Backlight";
--			linux,code = <KEY_BRIGHTNESS_ZERO>;
--			gpios = <&chipcommon 4 GPIO_ACTIVE_LOW>;
--		};
-+&nandcs {
-+	partitions {
-+		compatible = "fixed-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
- 
--		button-reset {
--			label = "Reset";
--			linux,code = <KEY_RESTART>;
--			gpios = <&chipcommon 11 GPIO_ACTIVE_LOW>;
-+		partition@0 {
-+			reg = <0x00000000 0x00080000>;
-+			label = "boot";
-+			read-only;
- 		};
- 
--		button-wifi {
--			label = "Wi-Fi";
--			linux,code = <KEY_RFKILL>;
--			gpios = <&chipcommon 18 GPIO_ACTIVE_LOW>;
-+		partition@80000 {
-+			reg = <0x00080000 0x00180000>;
-+			label = "nvram";
- 		};
- 
--		button-wps {
--			label = "WPS";
--			linux,code = <KEY_WPS_BUTTON>;
--			gpios = <&chipcommon 20 GPIO_ACTIVE_LOW>;
-+		partition@200000 {
-+			compatible = "brcm,trx";
-+			reg = <0x00200000 0x07e00000>;
-+			label = "firmware";
- 		};
- 	};
- };
-@@ -141,28 +166,3 @@ &usb2 {
- &usb3_phy {
- 	status = "okay";
- };
--
--&nandcs {
--	partitions {
--		compatible = "fixed-partitions";
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		partition@0 {
--			label = "boot";
--			reg = <0x00000000 0x00080000>;
--			read-only;
--		};
--
--		partition@80000 {
--			label = "nvram";
--			reg = <0x00080000 0x00180000>;
--		};
--
--		partition@200000 {
--			label = "firmware";
--			reg = <0x00200000 0x07e00000>;
--			compatible = "brcm,trx";
--		};
--	};
--};
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts
-index c78f0c7b137d..a197f447fd97 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts
-@@ -19,13 +19,34 @@ et1macaddr: et1macaddr {
- 
- 	switch {
- 		compatible = "realtek,rtl8365mb";
--		/* 7 = MDIO (has input reads), 6 = MDC (clock, output only) */
- 		mdc-gpios = <&chipcommon 6 GPIO_ACTIVE_HIGH>;
- 		mdio-gpios = <&chipcommon 7 GPIO_ACTIVE_HIGH>;
- 		reset-gpios = <&chipcommon 10 GPIO_ACTIVE_LOW>;
- 		realtek,disable-leds;
- 		dsa,member = <1 0>;
- 
-+		mdio {
-+			compatible = "realtek,smi-mdio";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			ethphy0: ethernet-phy@0 {
-+				reg = <0>;
-+			};
-+
-+			ethphy1: ethernet-phy@1 {
-+				reg = <1>;
-+			};
-+
-+			ethphy2: ethernet-phy@2 {
-+				reg = <2>;
-+			};
-+
-+			ethphy3: ethernet-phy@3 {
-+				reg = <3>;
-+			};
-+		};
-+
- 		ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -69,29 +90,21 @@ fixed-link {
- 				};
- 			};
- 		};
-+	};
-+};
- 
--		mdio {
--			compatible = "realtek,smi-mdio";
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			ethphy0: ethernet-phy@0 {
--				reg = <0>;
--			};
--
--			ethphy1: ethernet-phy@1 {
--				reg = <1>;
--			};
-+&gmac0 {
-+	status = "disabled";
-+};
- 
--			ethphy2: ethernet-phy@2 {
--				reg = <2>;
--			};
-+&gmac1 {
-+	nvmem-cells = <&et1macaddr 0>;
-+	nvmem-cell-names = "mac-address";
-+};
- 
--			ethphy3: ethernet-phy@3 {
--				reg = <3>;
--			};
--		};
--	};
-+&gmac2 {
-+	nvmem-cells = <&et1macaddr 1>;
-+	nvmem-cell-names = "mac-address";
- };
- 
- &srab {
-@@ -112,17 +125,3 @@ fixed-link {
- 		};
- 	};
- };
--
--&gmac0 {
--	status = "disabled";
--};
--
--&gmac1 {
--	nvmem-cells = <&et1macaddr 0>;
--	nvmem-cell-names = "mac-address";
--};
--
--&gmac2 {
--	nvmem-cells = <&et1macaddr 1>;
--	nvmem-cell-names = "mac-address";
--};
-
--- 
-2.40.1
-
+Best regards,
+Krzysztof
 
 
