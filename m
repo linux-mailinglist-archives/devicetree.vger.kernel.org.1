@@ -1,97 +1,130 @@
-Return-Path: <devicetree+bounces-61920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12CC78AEA10
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:02:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2CA8AEA24
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:05:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8BD91F22A06
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1E61F22F57
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195A913B78A;
-	Tue, 23 Apr 2024 15:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE5E13B7AB;
+	Tue, 23 Apr 2024 15:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iouqw4mQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E362D13B5BD;
-	Tue, 23 Apr 2024 15:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4735F12EBE7;
+	Tue, 23 Apr 2024 15:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713884572; cv=none; b=kQOfQWEG7wGW4HWuW0GZgJSsPX0rY+3Hkq573WmdpJg99cJXD3jbcckh2JhS+aNDhNKYl+lTKjkc1To8zLWzHorIR9+nxjwhmfJWziFpuEcJA1xynQ/WNdCRTsOwlSmzE65WlAlYjwI96mma2zhAuSnH/jA3m6uU5HFvjGXgTjw=
+	t=1713884733; cv=none; b=b3AyBeOlp3+g58tgDa/UooU2NboKC6DW47Aukq2sl68LOwCc5vHYQ02Shapnt+IpX5ewMyVm8NrKZbQvAlcyz5QoTaToiwMZvbGNFuGtN4CxR/lcwh07eRRqOyy6Jt/Xf1hVwj8AW9kpVV+iSlWXVuDLt0qMuATPI5RIdTnwlRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713884572; c=relaxed/simple;
-	bh=Nn/cBR6ymJ2MA5QONdG7bKZd99gxiK0LAjjwzA1qQBw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SmB+TaxgiPyrWnLo/NZjUruj7yIGQnTicOVRMi2Zvgel0RTL3IlN4sjBY/Z8XHeiJOg7free/5pKkUFo5jvC5U2SuwvHY9YggRIzPFDZjcnRIcP5y+03DLDNvLX0NKoGDgMN4F6I0/DAVrvj2XmY88gfkDXmQizpIOg2cVPC4yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e861d9e.versanet.de ([94.134.29.158] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rzHfF-0007Cj-Km; Tue, 23 Apr 2024 17:02:33 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Weizhao Ouyang <weizhao.ouyang@arm.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- sfr@canb.auug.org.au
-Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: Add ArmSom Sige7 board
-Date: Tue, 23 Apr 2024 17:02:32 +0200
-Message-ID: <2484736.irdbgypaU6@diego>
-In-Reply-To: <1a78e0e1-af0a-4bb9-8d2d-982e244a1ce1@arm.com>
-References:
- <20240420034300.176920-1-liujianfeng1994@gmail.com>
- <20240420034300.176920-4-liujianfeng1994@gmail.com>
- <1a78e0e1-af0a-4bb9-8d2d-982e244a1ce1@arm.com>
+	s=arc-20240116; t=1713884733; c=relaxed/simple;
+	bh=rhecxeD2cGyz50/rzIf8qdv6WpuU26577Z2AHZCuTww=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JVZmo0FfgCdKkzQNBCH+I82WAZJYWnZ3qCUVbF04P1c313ZgHZaxT+6Hj+1E6lw8RVVo23VCFwotT7VQ5UsQ+3yRKBVAFbzgongK2kkLSktSBITf/U1UFb4Ji1OMiFHQX6bSvWUQ9Epo2bPBQBAdW9sHXCf2WwISDQiE7hKWEnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iouqw4mQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3D6AC2BD10;
+	Tue, 23 Apr 2024 15:05:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713884732;
+	bh=rhecxeD2cGyz50/rzIf8qdv6WpuU26577Z2AHZCuTww=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Iouqw4mQZBJgFmb3LgZ98QJhyGYQvc+EInq511gxjyPNMtiaum2vNq2Bl+Mg4qHXk
+	 Ens6L+4d3LJ7hd+zWQCJaLT5DrWIFqiasL0rRDPLSEGmWCxVidMINn/MTcMgW5Q2Cu
+	 RGf/Kj7hBmo/dOIJI842Lz+RqBecO4Fa0SOseDLKHnYJY1Mn1/wiXg6lEOMPfVPv03
+	 WFA65VhAAb12rWp+V2bSkIzQQF6bLEP6T7d3S743Jo0auOzhv5OawT9x5btL8kC5Yw
+	 prpPY5s0WmWhGzwv2S5B6ZRNvPXnaWhn7II8vvJR1gvk6bWGd2Xzaj2sclfCpVFcZa
+	 rh5X9WIN6nOwQ==
+Date: Tue, 23 Apr 2024 10:05:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Maxime Ripard <maxime@cerno.tech>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	Rae Moar <rmoar@google.com>, linux-kselftest@vger.kernel.org,
+	David Gow <davidgow@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	kunit-dev@googlegroups.com, patches@lists.linux.dev,
+	linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Latypov <dlatypov@google.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 01/10] of: Add test managed wrappers for
+ of_overlay_apply()/of_node_put()
+Message-ID: <171388470076.215446.15104256542666415343.robh@kernel.org>
+References: <20240422232404.213174-1-sboyd@kernel.org>
+ <20240422232404.213174-2-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-
-Am Montag, 22. April 2024, 11:08:48 CEST schrieb Weizhao Ouyang:
->=20
-> On 2024/4/20 11:43, Jianfeng Liu wrote:
-> > Specification:
-> >         Rockchip Rk3588 SoC
-> >         4x ARM Cortex-A76, 4x ARM Cortex-A55
-> >         8/16/32GB Memory LPDDR4/LPDDR4x
-> >         Mali G610MP4 GPU
-> >         2=D7 MIPI-CSI Connector
-> >         1=D7 MIPI-DSI Connector
-> >         1x M.2 Key M (PCIe 3.0 4-lanes)
-> >         2x RTL8125 2.5G Ethernet
-> >         Onboard AP6275P for WIFI6/BT5
-> >         32GB/64GB/128GB eMMC
-> >         MicroSD card slot
-> >         1x USB2.0, 1x USB3.0 Type-A, 1x US3.0 Type-C
-> >         1x HDMI Output, 1x type-C DP Output
-> >
-> > Functions work normally:
-> >         USB2.0 Host
-> >         USB3.0 Type-A Host
-> >         M.2 Key M (PCIe 3.0 4-lanes)
-> >         2x RTL8125 2.5G Ethernet
-> >         eMMC
-> >         MicroSD card
-> >
-> > More information can be obtained from the following website
-> >         https://docs.armsom.org/armsom-sige7
-> >
-> > Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
->=20
-> Reviewed-by: Weizhao Ouyang <weizhao.ouyang@arm.com>
-
-thanks a lot for also sending this review from your @arm.com
-address, this alleviates all the naming concerns a bit for me :-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240422232404.213174-2-sboyd@kernel.org>
 
 
+On Mon, 22 Apr 2024 16:23:54 -0700, Stephen Boyd wrote:
+> Add test managed wrappers for of_overlay_apply() that automatically
+> removes the overlay when the test is finished. This API is intended for
+> use by KUnit tests that test code which relies on 'struct device_node's
+> and of_*() APIs.
+> 
+> KUnit tests will call of_overlay_apply_kunit() to load an overlay that's
+> been built into the kernel image. When the test is complete, the overlay
+> will be removed.
+> 
+> This has a few benefits:
+> 
+>  1) It keeps the tests hermetic because the overlay is removed when the
+>     test is complete. Tests won't even be aware that an overlay was
+>     loaded in another test.
+> 
+>  2) The overlay code can live right next to the unit test that loads it.
+>     The overlay and the unit test can be compiled into one kernel module
+>     if desired.
+> 
+>  3) We can test different device tree configurations by loading
+>     different overlays. The overlays can be written for a specific test,
+>     and there can be many of them loaded per-test without needing to jam
+>     all possible combinations into one DTB.
+> 
+>  4) It also allows KUnit to test device tree dependent code on any
+>     architecture, not just UML. This allows KUnit tests to test
+>     architecture specific device tree code.
+> 
+> There are some potential pitfalls though. Test authors need to be
+> careful to not overwrite properties in the live tree. The easiest way to
+> do this is to add and remove nodes with a 'kunit-' prefix, almost
+> guaranteeing that the same node won't be present in the tree loaded at
+> boot.
+> 
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  Documentation/dev-tools/kunit/api/index.rst | 11 +++
+>  Documentation/dev-tools/kunit/api/of.rst    | 13 +++
+>  drivers/of/Makefile                         |  1 +
+>  drivers/of/of_kunit.c                       | 99 +++++++++++++++++++++
+>  include/kunit/of.h                          | 94 +++++++++++++++++++
+>  5 files changed, 218 insertions(+)
+>  create mode 100644 Documentation/dev-tools/kunit/api/of.rst
+>  create mode 100644 drivers/of/of_kunit.c
+>  create mode 100644 include/kunit/of.h
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
