@@ -1,118 +1,99 @@
-Return-Path: <devicetree+bounces-62063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4838AFC6B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:08:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2B28AFC72
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:14:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41487283178
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:08:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC073B214D2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F94A36134;
-	Tue, 23 Apr 2024 23:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4300B36AFE;
+	Tue, 23 Apr 2024 23:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OZYv0w8X"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZyFFU/cH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7EB2E62F;
-	Tue, 23 Apr 2024 23:08:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191B5328DB;
+	Tue, 23 Apr 2024 23:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713913733; cv=none; b=BJge4SgdsVnEEJI3rnMbrdDLdbn5t3ZtbBiiLZogQHnH2LamTHLIKgf1g+UL3C04IU977CYG5bYCiZvC7YhRMmg82LmHa4mNpZwSLgAARcrDONZg652nw9t8GXmeteqjJuVulayBw4ooGnSOJc8s4zee9QMUTwX6/zirhh2yb0A=
+	t=1713914064; cv=none; b=DAp7AhxVnoJO++nlDcI1KFUi3l2iAR5ssR2hRU+ItooMhgQ50Q5gHank2PwrxiFzio1+fISnpHD/lv6OPRycsrhMTqlo58iq8xkDuUKA5bqNwel1hlwyYUoQV2zBX8oJNFgZn35eHLWDsWHU6JvNIaut7L7eagA7tCpuuwdgLZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713913733; c=relaxed/simple;
-	bh=mmRIkV2XMlCxj4R1CexxonFAsAeDGzYAWzEWtaDKnCM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AlqD3xW+CDbks0zu73CyQeoWGunbu6P35XhdIcEGk+nw71bxIRPSZ/yuEx9g6w+zOrtUOeApKykGPOrqhBCCC50xwTX9KSLViaucWHdKP9EZ2tq2To2Fqs0FClvFt+kwF5302BY22w5Ac5bMhzZ0/NWTB3IqsjcCdZ1IVzpbOQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OZYv0w8X; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a51a7d4466bso668791166b.2;
-        Tue, 23 Apr 2024 16:08:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713913730; x=1714518530; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mOubRUxsYQ+p5re1HJn2aIjhIuCSgEkL2WgxwHltP6c=;
-        b=OZYv0w8XtuZ6TJeD/K5yE29lji1bttgBU9DIC5TQ8kryzD3J7EFWV5iz4SRQ1iOMNO
-         r0amrFFXAT1mKCbK7MLJ9TdNUJ/BDKOOkIssSa91QTAwRJjjj1x7IioF3BytkpzeYawO
-         1eCiQ84rCJNa9VfDd9w5zKRxWpBTkMxB0f0gPB95sZfGrR33vT2NgJtxmwJITVLiZsCf
-         rHqU3i6QSg/TI5RUNooxDIJOxFdHahtBUcXmMwE6NeaaYO55G3SzYvdCLuBgyoSQVVJk
-         MzBLVG72vx47+JnGnGi0B4KHyS1BwR92iKrS59n1Wnreln21VGVxlU4Pdl16yHz00cL0
-         MjKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713913730; x=1714518530;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mOubRUxsYQ+p5re1HJn2aIjhIuCSgEkL2WgxwHltP6c=;
-        b=r9ScyCLfgMnC23Cim+z5DgUVMUJcg4jum3NH6Jget83KUdNe+5UQ8Y6PEVm/sFoA3w
-         gDfjNB/gy5C/LuoduolBwBV4LYcm5M33YR2t+rEjLN1FDn/BymA2MXgryYH8h49hSWVx
-         EGjkAc6lWSruJTwEElz2DlkFfs1UYSW4I1bxUiDRANXTB9fVzBr4FGbqBm94XWvSt2h6
-         dJglOl1Q8H1zabFrzn5/G9FUlnGJIzD96PVIwCYIJ9WjjrkT1/EL4QD5eLeuSJKD312s
-         uvm/0wEAIUm7SugCR7SDGNRHGBa81uVKwAjiju1EEO77pvpDojbCRRIov7vJCUDFFz4c
-         IQDw==
-X-Forwarded-Encrypted: i=1; AJvYcCWxYK3xUgdPYcDJKw8gBE+851rWHWqKASMfqWtzUNHlDdSAJL9JS2RrbvwrQV/05YtFfnh0xL1iJL8X4Pbq3hpNmEPQ/P/2HUcQEiUtHbADF2WjbBif0mjpoyGv5RsUr/MyoI8XY8MaP6grB/hcYzTYaIviFfcQSnUjNzGExvS+gzHlvSuXrNByJzpCiDh6FGb4DT7j5IjzVxuw/Isl3Ps4
-X-Gm-Message-State: AOJu0YwmfK0OnBve5ruObIdBdJBsDnsVe7MGM6MyGjoaQF7Jh9D5GX5V
-	bj30LssmgwjkG2Bn2m+HK4uL/5PnY68YuZCLoRUIW7UJImZ9c1nrWdUh8iwzv6SR4/WQ0+AaAXV
-	hyKP0z/Nr1XFESTLQxbRoatjEC7A=
-X-Google-Smtp-Source: AGHT+IH0I+fz392Yc9QQdmMfH48abnh5L/ReLRRQ4WhXNmBB/5ukEAf+sHnLvLjG5foXtSu/lNY/gm9SoFxlBu7Gy2s=
-X-Received: by 2002:a17:906:aace:b0:a55:552d:965e with SMTP id
- kt14-20020a170906aace00b00a55552d965emr467140ejb.6.1713913729829; Tue, 23 Apr
- 2024 16:08:49 -0700 (PDT)
+	s=arc-20240116; t=1713914064; c=relaxed/simple;
+	bh=eMAq++fZHnkcnvl/ND17FJyV1KXG5e/03zd0eFxYkw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hp6I/TtO5MQaWKttYqQvdKhdV9305LsyiJYWZnDJPlSldKRUj+Nq4IKqo09vZ//H4G5B1RQJlD7xd88YStlv42Nm7Db0Uy3lsGpA8VkAtKLuq4AKPMYRt3H/ZOe2jNC7vy4OkACHik6vKDcv5mu37K1zAHOYkcua+Bq4GwS4Kic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZyFFU/cH; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=t8avKwuQBf4895mG5LdY8jl8M9prfDm1cDn0sgalvio=; b=ZyFFU/cH8BSizjgfswmaRGHUqC
+	eqUjb+n0AF/c7bo+0cetDcLdPD64/afbLnOHb2bdDsxyVD7kvCVfJP0E6mp56Nx4g0p5TyKtqVv3n
+	2tg6LppQRNLZT2xqhE7w2Ja9XIo5AMLcz4knl3CGOu/p++R9huVQCqHVVFKO5Lj+qObg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rzPKu-00Dkzt-LL; Wed, 24 Apr 2024 01:14:04 +0200
+Date: Wed, 24 Apr 2024 01:14:04 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v4 02/12] net: ethernet: oa_tc6: implement
+ register write operation
+Message-ID: <c0ffd864-f85b-4dd7-942b-f9cc2c88f678@lunn.ch>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+ <20240418125648.372526-3-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423223309.1468198-2-aren@peacevolution.org> <20240423223309.1468198-5-aren@peacevolution.org>
-In-Reply-To: <20240423223309.1468198-5-aren@peacevolution.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 24 Apr 2024 02:08:13 +0300
-Message-ID: <CAHp75Vcp=-T2135s3rVbpQzcG=iiieit+L0BgnmoZet_AsbgcA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] iio: light: stk3310: Manage LED power supply
-To: Aren Moynihan <aren@peacevolution.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Ondrej Jirman <megi@xff.cz>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	linux-iio@vger.kernel.org, phone-devel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	Willow Barraco <contact@willowbarraco.fr>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418125648.372526-3-Parthiban.Veerasooran@microchip.com>
 
-On Wed, Apr 24, 2024 at 1:41=E2=80=AFAM Aren Moynihan <aren@peacevolution.o=
-rg> wrote:
->
-> The stk3310 and stk3310 chips have an input for power to the infrared
-> LED. Add support for managing it's state.
+On Thu, Apr 18, 2024 at 06:26:38PM +0530, Parthiban Veerasooran wrote:
+> Implement register write operation according to the control communication
+> specified in the OPEN Alliance 10BASE-T1x MACPHY Serial Interface
+> document. Control write commands are used by the SPI host to write
+> registers within the MAC-PHY. Each control write commands are composed of
+> a 32 bits control command header followed by register write data.
+> 
+> The MAC-PHY ignores the final 32 bits of data from the SPI host at the
+> end of the control write command. The write command and data is also
+> echoed from the MAC-PHY back to the SPI host to enable the SPI host to
+> identify which register write failed in the case of any bus errors.
+> Control write commands can write either a single register or multiple
+> consecutive registers. When multiple consecutive registers are written,
+> the address is automatically post-incremented by the MAC-PHY. Writing to
+> any unimplemented or undefined registers shall be ignored and yield no
+> effect.
+> 
+> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
 
-its
+Apart from the Return: issues:
 
-...
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
->         if (IS_ERR(data->vdd_reg))
->                 return dev_err_probe(&client->dev, ret, "get regulator vd=
-d failed\n");
->
-> +       data->led_reg =3D devm_regulator_get(&client->dev, "leda");
-> +       if (IS_ERR(data->led_reg))
-> +               return dev_err_probe(&client->dev, ret, "get regulator le=
-d failed\n");
-
-Can't you use a bulk regulator API instead?
-
---=20
-With Best Regards,
-Andy Shevchenko
+    Andrew
 
