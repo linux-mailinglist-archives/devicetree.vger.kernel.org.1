@@ -1,73 +1,60 @@
-Return-Path: <devicetree+bounces-61989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E108AF56D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C678AF578
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:25:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2F0A1C23E66
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:24:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3092E1C23E45
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A08813E04C;
-	Tue, 23 Apr 2024 17:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414D213DDB4;
+	Tue, 23 Apr 2024 17:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c+7lX35t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eriDnqXZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0872713D287;
-	Tue, 23 Apr 2024 17:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149631BC23;
+	Tue, 23 Apr 2024 17:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713893003; cv=none; b=GNQBy6BoygBF+mSVpA35ra3Q8YG3s3vzOHxzb4W5129XQ29g6LcCS2pFYrwNJR4l2eFBe67b5AuwIVPWoIscBBgufNHMDtXANIEppHcVZ4Usp5nTl+WF/LdFKBB6Cq3/1EynMNlxM3127kpLZDjhYlDiQoYC+yG27L+U1DLN0q0=
+	t=1713893150; cv=none; b=sbH1EXQYkfX+imaJaIVDeQ0qR7YaqGwXJV4My2vcGraBf/ozLFsTtWYQP1Mtl0BgJBwOp5/pji7Y/LG0N1dCEWamOatguKeI1FTcPW2H7GI7wdOZYC4CXd+FbQYdFryN0lFoHFIfzVkg5PeC6v8O3beJsvg1Pjjhfb0kPq7hs8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713893003; c=relaxed/simple;
-	bh=LNIkqN117CWF9zanEHE17vB3B3+2CNeQYopVecWmHeI=;
+	s=arc-20240116; t=1713893150; c=relaxed/simple;
+	bh=EF0yWbo4WiBBXL3dWcr/3LxSe7IVVaPwqZJ7quETboE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bmlwRq9CYnjun7PhdZkpum7kpH5oYTSV4o52Ktj4Jrl1+9g5fR7opMMFUgyKwFWThDxt+sV1CdyL397LjvWzLQCKShCsWylMuqJshDmUYRyEsFh9/99lfRARKOvct1Cx3gjls+drLvRqoOl05977HOUcjAnUT9/gyS6CNfIoVZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+7lX35t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A31C32781;
-	Tue, 23 Apr 2024 17:23:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EPs1ahVFSfG3+SLcCFGBRntOmsWJh5D7BPsLaNsoD+m9iG1GCljMqHStXu/QTuXe83vmmlyi7RzIHWPeYFrqkTd2J1wvqU/RAOZ7dYlxt9jm/DOWhXZV0l2ofo+IAiHNPB1e+vCg+/kCcvVCAur5C6b+HwW9H9nTmYN9KcLCJJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eriDnqXZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B53C6C116B1;
+	Tue, 23 Apr 2024 17:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713893002;
-	bh=LNIkqN117CWF9zanEHE17vB3B3+2CNeQYopVecWmHeI=;
+	s=k20201202; t=1713893149;
+	bh=EF0yWbo4WiBBXL3dWcr/3LxSe7IVVaPwqZJ7quETboE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c+7lX35tQMnGBj2ewu8z9oSTSqQeMf4Seo+ZmZnUCWoxo3+DKcsB53gBYHpLMvwWp
-	 1f8cAUpA3BJumfz2r+/t76yvkeczbcgQMKttml0pqszh9gjC6crKVL0yCNE5MvnKzp
-	 hpzBvnS+fQ2QH7NOxG0lcJ8/7ei/uXlcqegV6iZly+dnoSD6FnVJHV6ghMAIrFofWo
-	 LRfmFT9uzdiD+Vyb8ElaS5D0+SUiIopFBKaaFGJgmczqN0Tn9rwuygOnVQDrquVbUE
-	 NnXHoOqegvoiCOYeroGp0zqdUUlyW6zL2D7NuORkLauwS8UXdt9hjqnC6IsTUzL6tk
-	 O8ONK1DpjAfuw==
-Date: Tue, 23 Apr 2024 18:23:16 +0100
+	b=eriDnqXZpCfZ/tEJjVYj+Mi1ZFtRE8gkBeAFG7sQwG+MyCOGb26QxwnIWDjtIxSuL
+	 eWD4zJIlg98rxtB4aSKISfMwFYtn1Yoz7MTxlYGS81d5R17xJ/WOdE+X08H6fTUckD
+	 2JxQ2HX8smMXFv1PQxGkIwf7QzNbjraBax7+D2wspeatpDd/KV7x6gTSLnw7ZhszU4
+	 /4Ywx3F2pAsPJFU1L/TrjvXaWrHPpJ0U1X0urJTub+MMclR7UO0PlppV48orMA8y2X
+	 w4Ql5MOo+RHBMILQesT3Bo3jpFkE8AGk0+YV50PsfIAEnts7R812U0QjgRtQrWD0XP
+	 b0FvfdVARr63Q==
+Date: Tue, 23 Apr 2024 18:25:45 +0100
 From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Subject: Re: (subset) [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5
- support
-Message-ID: <20240423-epidemic-schedule-6fa9869b3e87@spud>
-References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
- <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
- <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
- <ZidAefc0Ejrklopf@finisterre.sirena.org.uk>
- <D0RF1AKWAEAE.44N64GHMV2ZY@bootlin.com>
- <3f891794-0083-4245-bad7-518b1c48bb7c@linaro.org>
- <D0RIXN4JG6ZA.4W4HN68M9U6I@bootlin.com>
+	Lucas Stach <l.stach@pengutronix.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH v3 1/1] dt-bindings: interrupt-controller: fsl, irqsteer:
+ Add imx8qxp support
+Message-ID: <20240423-velocity-italicize-c4f1f22c2ef4@spud>
+References: <20240422064949.70778-1-alexander.stein@ew.tq-group.com>
+ <20240422-channel-emission-d485dee6ae48@spud>
+ <6041240.lOV4Wx5bFT@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,62 +62,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dLUQzGTCWgy5qnxs"
+	protocol="application/pgp-signature"; boundary="eGhzn0VEzH+sEQMJ"
 Content-Disposition: inline
-In-Reply-To: <D0RIXN4JG6ZA.4W4HN68M9U6I@bootlin.com>
+In-Reply-To: <6041240.lOV4Wx5bFT@steina-w>
 
 
---dLUQzGTCWgy5qnxs
-Content-Type: text/plain; charset=iso-8859-1
+--eGhzn0VEzH+sEQMJ
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 23, 2024 at 03:08:05PM +0200, Th=E9o Lebrun wrote:
-> Hello,
+On Tue, Apr 23, 2024 at 08:26:55AM +0200, Alexander Stein wrote:
+> Hi Conor,
 >=20
-> On Tue Apr 23, 2024 at 12:25 PM CEST, Krzysztof Kozlowski wrote:
-> > On 23/04/2024 12:04, Th=E9o Lebrun wrote:
-> > > Hello,
-> > >=20
-> > > On Tue Apr 23, 2024 at 7:00 AM CEST, Mark Brown wrote:
-> > >> On Mon, Apr 22, 2024 at 06:52:47PM +0200, Th=E9o Lebrun wrote:
-> > >>> All commits tagged "(no commit info)" do not show up in your for-ne=
-xt
-> > >>> branch. Is that expected and is there anything I can do? There was =
-one
-> > >>> pending -Wunused-variable compiler warning to be addressed for
-> > >>> example, see [0].
-> > >>
-> > >> Please submit any patches you'd like to see included.  If there were
-> > >> outstanding issues that need fixing then fixing those prior to
-> > >> submitting would be sensible.
-> > >=20
-> > > Seeing "Applied" followed by a list of commits, with some of those not
-> > > being applied confused me.
-> >
-> > That's a standard output of b4 and maybe also Patchwork, if some parts
-> > are applied.
+> cc'ed imx@lists.linux.dev
 >=20
-> Thanks for the pointer. I've created an issue over at b4 to see what
-> people think about this matter. Current behavior is not intuitive as a
-> young contributor.
+> Am Montag, 22. April 2024, 17:48:20 CEST schrieb Conor Dooley:
+> > On Mon, Apr 22, 2024 at 08:49:49AM +0200, Alexander Stein wrote:
+> > > Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-spec=
+ific
+> > > compatible, which also requires a power-domain.
+> > >=20
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > Thanks for the feedback.
+> > >=20
+> > > Changes in v3:
+> > > * Move 'allOf' before 'additionalProperties'
+> > > * Remove superfluous 'minItems: 1'
+> > >=20
+> > >  .../interrupt-controller/fsl,irqsteer.yaml      | 17 +++++++++++++++=
++-
+> > >  1 file changed, 16 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/f=
+sl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/f=
+sl,irqsteer.yaml
+> > > index 20ad4ad82ad64..3d33b75d6ecfa 100644
+> > > --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqs=
+teer.yaml
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqs=
+teer.yaml
+> > > @@ -14,7 +14,9 @@ properties:
+> > >      oneOf:
+> > >        - const: fsl,imx-irqsteer
+> > >        - items:
+> > > -          - const: fsl,imx8m-irqsteer
+> > > +          - enum:
+> > > +              - fsl,imx8m-irqsteer
+> > > +              - fsl,imx8qxp-irqsteer
+> > >            - const: fsl,imx-irqsteer
+> > > =20
+> > >    reg:
+> > > @@ -42,6 +44,9 @@ properties:
+> > >    clock-names:
+> > >      const: ipg
+> > > =20
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > >    interrupt-controller: true
+> > > =20
+> > >    "#interrupt-cells":
+> > > @@ -70,6 +75,16 @@ required:
+> > >    - fsl,channel
+> > >    - fsl,num-irqs
+> > > =20
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: fsl,imx8qxp-irqsteer
+> > > +    then:
+> > > +      required:
+> > > +        - power-domains
+> >=20
+> > Provided the power domains are optional on the existing platforms,
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > otherwise,
+> > else:
+> >   properties:
+> >     power-domains: false
+>=20
+> A power-domain is used on imx8mp, but imx8mq does not.
 
-FWIW, given I see `having a more confident comment such as
-"(commit not applied)".` there, having (no commit info) doesn't mean
-that it wasn't applied always. Sometimes I've found that due to changes
-in the patch b4 could not detect that it was applied and reported (no
-commit info).
+So then make the contains be an enum with both of the one supporting it
+& add the else please.
 
---dLUQzGTCWgy5qnxs
+--eGhzn0VEzH+sEQMJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifuhAAKCRB4tDGHoIJi
-0l7bAQDnzDqSfwWn/wDBsIvN00NjQAGOFccnLtQcSDf6yj2z1gEA+DyINGJ3YxOM
-oaJn81egHe6ayRZEwloZJ8SXlXa8mgI=
-=nkkg
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifvGQAKCRB4tDGHoIJi
+0tskAP48o/+s5lq1jpc+7TE1+8Thqvqyi8lpX4xp9HbEQYDoeAD/aucpundN/HbF
+FwX9e75oP9cKObcaPj16TtFGFHbq8ww=
+=RUuj
 -----END PGP SIGNATURE-----
 
---dLUQzGTCWgy5qnxs--
+--eGhzn0VEzH+sEQMJ--
 
