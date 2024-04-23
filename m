@@ -1,136 +1,130 @@
-Return-Path: <devicetree+bounces-61867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6348AE6ED
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:50:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F148AE706
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F9161F23FB3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:50:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C790CB26284
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B022131BBD;
-	Tue, 23 Apr 2024 12:49:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQeMKzvv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8867712DDB4;
+	Tue, 23 Apr 2024 12:51:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D369C131BAA;
-	Tue, 23 Apr 2024 12:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B4B84A20;
+	Tue, 23 Apr 2024 12:51:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713876563; cv=none; b=tdn3JYxO8F+ELUKgDmUFE7lwUEHHJRK6yFqfZmN05KVLNEVXRtOy4acRe59/A8z9PJb01MVq0bsIa9eLtvMgqnuo364DF59+SD4d2UOBZ1mIoiVZ/0kDxadTBdx8J+mZGbsCPZMqIdEDf/wgOnNaFGtZHDHb4mym0VgOXKQNwmQ=
+	t=1713876673; cv=none; b=J0KuzuQ4DHwA2EYvHms8brR2Uf7ZNjPr/FjerA25pCNRyGlpcX1k3/AZZ5SLWAO0Cwoc3Fq5juWXeBdWehcF9Q/RE820xJK7t5UzIjuMTEiPoWzGSKvohw2p4TVD+MrBOFoMTaaeiuSPPreQ9nufOpGL9bsja7T9SqCg8ftEQCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713876563; c=relaxed/simple;
-	bh=f9NCOevLr4FT0lUYOrbKssqBjD7WPD7B9YwdZXrMtTk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NLkvy2RtXmekAbOk655s/F50BmutX/c3dhn5/GbTrw7al1uMRLNiR/yxF3sPGO94mL1OCR2QExdLGRG/fYmXdCy7fbTHuSBk4ODdheoMrzM8TihnYNonIjKZQjkmuwG5VO63GZ+UDHjR0Ihpv9JNrIF+dxgyzdzqnuNcuDIedYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQeMKzvv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E56C32782;
-	Tue, 23 Apr 2024 12:49:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713876563;
-	bh=f9NCOevLr4FT0lUYOrbKssqBjD7WPD7B9YwdZXrMtTk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HQeMKzvvI0vEdvCNtwx1OEB9E4E73jzWOhiCj79q4RHfDqRuBABJf18N7owbV+Cee
-	 dB0htYRr/aiyoNpY851XO8igK+NY0B1deeq3c+trEZp5IlIu3KCJkKgqGWVxqPB/LD
-	 AbNMmvwZPF2qqB361+EwkmJLFDaBNBPbZ1cE7L95iSRw10PBjWNWE453U8o4QSZeBI
-	 A7Ts5CP8J0QMsAX3J4mRLzwMxadkFi2MSvsTFjpYZWd0T+QrVo4rXXeqcIv4d76+bK
-	 iaoftgLLrWOgY9FLTMT6KBFAEoSEZRS8pY7R1Gu1WDHexS7RfnDFkqVUtyatdKJ2ho
-	 TuPl45wT1jmgA==
-Message-ID: <1d73ac93-5438-4e52-9498-1d0a4e450687@kernel.org>
-Date: Tue, 23 Apr 2024 14:49:17 +0200
+	s=arc-20240116; t=1713876673; c=relaxed/simple;
+	bh=2E6SRIyA73cjTpevRa1WmA6oQJTuq8bhZKn4jV3QIk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cZlv/ctKIL1Zvu034O8J5lkVwoGWJjUxAQZnaQp5k+UKggRdscvWXQC+jbj6osIzuCcC4MXebTnRsypTjWF5yYcxybqg7ZpHH+IdckgknAqv7h/UOWx2tzIrq12Ipz5OCgGKAfV+AXq+qV/ma+oIszdBksOEcKos5MEkB65h6jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A4272339;
+	Tue, 23 Apr 2024 05:51:38 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D6E3B3F64C;
+	Tue, 23 Apr 2024 05:51:08 -0700 (PDT)
+Date: Tue, 23 Apr 2024 13:51:06 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Hans de Goede <hdegoede@redhat.com>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, James
+ McGregor <jamcgregor@protonmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: input: sun4i-lradc-keys: Add H616
+ compatible
+Message-ID: <20240423135106.02ab4473@donnerap.manchester.arm.com>
+In-Reply-To: <f2021c5d-25fa-4bdf-8f8c-b0bc271eb54e@linaro.org>
+References: <20240422164511.2488261-1-andre.przywara@arm.com>
+	<20240422164511.2488261-2-andre.przywara@arm.com>
+	<20240423111502.6e068887@donnerap.manchester.arm.com>
+	<f2021c5d-25fa-4bdf-8f8c-b0bc271eb54e@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: renesas: Fix R-Car Gen4 SoC-specific
- compatibles
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <b3a6cf12c46b23a501b0d54c6892b969e2a55145.1713874657.git.geert+renesas@glider.be>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <b3a6cf12c46b23a501b0d54c6892b969e2a55145.1713874657.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 23/04/2024 14:19, Geert Uytterhoeven wrote:
-> make dtbs_check:
+On Tue, 23 Apr 2024 14:18:23 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+Hi,
+
+> On 23/04/2024 12:15, Andre Przywara wrote:
+> > On Mon, 22 Apr 2024 17:45:10 +0100
+> > Andre Przywara <andre.przywara@arm.com> wrote:
+> > 
+> > Hi,
+> >   
+> >> From: James McGregor <jamcgregor@protonmail.com>
+> >>
+> >> The Allwinner H616 SoC has an LRADC which is compatible with the
+> >> versions in existing SoCs.
+> >> Add a compatible string for H616, with the R329 fallback. This is the
+> >> same as the D1, so put them into an enum.
+> >>
+> >> Signed-off-by: James McGregor <jamcgregor@protonmail.com>
+> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>  
+> > 
+> > Compared the descriptions in the manual between the R392 and the H616, they
+> > look the same:
+> > 
+> > Reviewed-by: Andre Przywara <andre.przywara@arm.com>  
 > 
->     arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dtb: sound@ec5a0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	    ['renesas,rcar_sound-r8a779g0', 'renesas,rcar_sound-gen4'] is too short
-> 	    ...
-> 	    'renesas,rcar_sound-r8a779h0' was expected
-> 
-> The list of SoC-specific compatible values for R-Car Gen4 SoCs is
-> mutually-exclusive, just like for other R-Car SoC generations, so it
-> should use an enum.
-> 
-> Fixes: d6e792ed7dd022a1 ("ASoC: dt-bindings: renesas: add R8A779H0 V4M")
+> Why do you review your own patches? Does it mean that you contribute
+> code which you did not review before?
 
-Offending commit was never tested (testing means dtbs_check and
-dt_binding_check)... Just like many other patches from Kuninori
-regarding bindings, it was not sent for automation. I don't understand
-why. get_maintainers clearly asks for this...
+I just merely sent the code on behalf of James, because he had trouble
+with the email setup (Protonmail has no SMTP), but didn't want to delay
+the post any longer.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> This is odd process.
 
-Best regards,
-Krzysztof
+I agree, I would have liked it more if James would have sent it himself,
+and then my review would look more natural, but with my review I
+wanted to explicitly point out the technical correctness. Besides: I found
+this ordering issue in the other patch only after sending, so needed to
+somehow respond anyway.
+Also I wanted to make the process transparent: someone posts a patch (in
+this case via a proxy), then it gets reviewed.
 
+> Your Review is implied by sending the patch.
+
+Is that really true? I was under the impression that sending is
+independent from review. I mean I doubt that every maintainer sending
+patches up the chain (when they add their SoB) implies a *review*? Surely
+they do agree on the patch (also typically expressed by an Ack), otherwise
+they wouldn't send it, but a "review" is still a different thing.
+The Linux history has both Rb + SoB from the same person and just SoB
+signatures, so I assume that it's not implied.
+
+> And you have there SoB which indicates you sent it...
+
+Yes, but SoB just means I sign off on the legal aspects: that I got the
+patches legally, compliant with the GPL, and that I am fine with and
+allowed to release them under GPL conditions.
+That does not include any code review aspect, AFAICT.
+
+Happy to hear other opinions, but this is my interpretation.
+
+Cheers,
+Andre
 
