@@ -1,145 +1,118 @@
-Return-Path: <devicetree+bounces-62022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9128AF788
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:49:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2C58AF7A1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC3E9B25353
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:49:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8739028675C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E2D1420A2;
-	Tue, 23 Apr 2024 19:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117971420C4;
+	Tue, 23 Apr 2024 19:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vdu2aV+M"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="aoKEJdyi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA83F3EA76;
-	Tue, 23 Apr 2024 19:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB7413D510;
+	Tue, 23 Apr 2024 19:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713901753; cv=none; b=YTOQDW1lxCbcCuh7X2BBNactgysKXcJvbhnAHetpMjeUV/qVaTUMt4c6vhm2Qn8fIO8j+UjMdtb0vDAXWifWR/0JMzSnBXA9qNJDgK8uHAGhq4/LPXSstSIHLV5bBmfQNEK4XnwiJ55frS1hRA3+WB6GpvyVmM9j5b0LYAT8JOw=
+	t=1713902030; cv=none; b=MaruLUpTvxIyEntN5D0UPuXgF53nDZkWFSeV98p5nBYUYeIwI4W+qTwdbRBuSBB2JdZxw4Rdpeop8VpvD3CpyIeE7QQzDMUSBGQIg6lajvIiKFPS7rSpA86/HmatbrF+9iwPdizkRuSiYTQ4LPbT951vk4y54k4bCToiWKbpC3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713901753; c=relaxed/simple;
-	bh=R1ZURLb495Du3AxkRPzx1pKVdtAWJPLJaeRFU5Giv8k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cNB6VwLAx9MR5prNtxu4JG5+MJENblyNjpgPrvrU3fFzKb9+yyoz8J63LRywYaL+puBDqWpZtJgsJVjCWbL6hfDhPH/0gOgjyHhfjHLu0jnKoarWbMzqmRYyO7mUzUs0SNzZpFHcGjosyyQ9DJElQRd3wWxEAJNCs6DEut7icgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vdu2aV+M; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-617d411a6b3so51822637b3.3;
-        Tue, 23 Apr 2024 12:49:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713901751; x=1714506551; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J3IjpaYkptTljaPwPSsoUcmzfDh/fWSuLG2EX75WmRI=;
-        b=Vdu2aV+MQ69lsaQxT0vfeQYbaH5JFPpd6j7zMFUmLBJtGkDFM8pLVpmxCPNP1scfXr
-         FBQu+qe5UQW68bW7FEWusXUJRM2YA9buIxM1EuD1ePrXvWXmM2rvSNwTXGBwpqE/3zJg
-         ftmUljAsobXRXzkDYAXb6pTX1+GOUUxypA4kL3jJ6Bvl5Guv4hpkTmjoTLxoPn2RA1VU
-         OMncDGNxEiDrVvkn0rDNnGnYUMxtSAZGvCccC51yr4RWRre5mzy1sqeJxXBbQh1kPkHk
-         OEM1rST83/KrS5nijBF6EkZmet26CvnPsHBJ33iTv/r9i1YHZyYslC+2I5D5fQJ5KeNB
-         gTkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713901751; x=1714506551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J3IjpaYkptTljaPwPSsoUcmzfDh/fWSuLG2EX75WmRI=;
-        b=lsXAokmgKL8J+qwAhLlCrwcg9uIzYEVTGTfNY96rTTWSufmYW+bzXYhVFYzeKQX4DX
-         V+jhpI03EIawnGSADjCoRDlAB6VwfVHRXFkNo7RmCjy+8hBAiWD8AfA/prQwnrBuHK54
-         L5DXJPxMhl63wgrF9xnYft+L29v7qTAUA5yzqfkUFIBWzdhZ/tnU1Hxd6A6ODzSODr+9
-         bYIkQMKtlXn8PV7rIS/0qB4vbsXM5mTkrG/URKXbqHiix93OjmKvK9irKCjk2CVoi2OK
-         lVCzO09hyIn6Jm58Itr8mzrtHmbQF24MJ3W09Gogsx1lz8dMUEJSXZbday5RdLZ+gFO8
-         OQfg==
-X-Forwarded-Encrypted: i=1; AJvYcCXzmQgV57IPD5+qJ7yXvLwtdnyGljgeZG+uBmVTK5tIqkxlLAfc+Lm0THtvPyfZhsGlE6Dw2MJuTXftZq2whO8I8nIi9egmNWDmap+aYW3xq0EL5At0xNwXCWxGqOOutqPro4ONZFBCZw==
-X-Gm-Message-State: AOJu0YzAj5W8LeK8Gltz+62ARAJJBHzFofo2+aFn62sichg6fqYXGxWC
-	lyF3Xxf2BJOybbMUszhG0R01KtB5z611X0JqE1m4nQ/nshEUXBjefU/L6cKPUeCicEIZm+NoNq6
-	rE+cnNnkwptCoZy79UrSoX5/uYyI=
-X-Google-Smtp-Source: AGHT+IGapHT2J7yyfuG3DOtiPCDkiau57zJ2A3tToGUgURvaGTDd0iESNWmcwul6kB7LIQG45tpfY5VV/PITEgtr1TI=
-X-Received: by 2002:a25:bfc3:0:b0:de5:4a91:11c4 with SMTP id
- q3-20020a25bfc3000000b00de54a9111c4mr638758ybm.44.1713901750572; Tue, 23 Apr
- 2024 12:49:10 -0700 (PDT)
+	s=arc-20240116; t=1713902030; c=relaxed/simple;
+	bh=qfwhjJMFKdQZeALDm5qJB5ehGn+6Ra+DsPPuaufJ2fs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hTbQ5FI5g5ZMSez18KwitrqxinSU2OL9P0J923NbJfHrHAWKmDbIOwTapNzoFVjgARupkTs49XHmAibE8SNlViZdRFDXmLDfX+QdqsurG5UZNmDsr0P6xWghwOx/ooIbBkPaq8mWwlgz/DC0tSZl0QwFUwmYYsu3qRtSJ9Jd7Cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=aoKEJdyi; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1713902001; x=1714506801; i=wahrenst@gmx.net;
+	bh=qfwhjJMFKdQZeALDm5qJB5ehGn+6Ra+DsPPuaufJ2fs=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=aoKEJdyiVcdK4Hga9n1bxyxEhYvRtKXqesQowwm3/crdbvHaTfqOVIsjAaF15FuO
+	 7IvKmA07ax7PXUt8eKyNYAt8rRG4ZyLvrFVFmGpqakIZhqa9gfyHSQQK7prSw6hyW
+	 pMPCp4Eez2mtQrGu0TS/FtH9JwjDcYky7n/nHYe/CW1bUC76X0y+WjKzgTYUTSvWC
+	 dKmeZG4sBkJjefbPJ+mCw4BEl4s5OBTyDt0pZHpMR9+nAlf1JRUn6hU7auqVUAPE2
+	 5hvRm5Iy8klz6mvukCOgxVlgIoAQz+TQc0OtWqsJ9sVzRcJ7UBzAhkOHJtcEpuDmi
+	 /So3ocFFD/SztKyTpQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N3bX1-1siQ8Q2xjX-0114b6; Tue, 23
+ Apr 2024 21:53:21 +0200
+Message-ID: <709b1988-40e5-4f2b-a4a9-045e744708e2@gmx.net>
+Date: Tue, 23 Apr 2024 21:53:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240328191205.82295-1-robertcnelson@gmail.com> <1a5e719f-efa0-4c60-8add-ef7c0464d1ce@ti.com>
-In-Reply-To: <1a5e719f-efa0-4c60-8add-ef7c0464d1ce@ti.com>
-From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 23 Apr 2024 14:48:44 -0500
-Message-ID: <CAOCHtYjHhH2M_+7md-e2vh_d_3H2r66OhXEp2acd0D+6O+uwcg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add BeagleY-AI
-To: Andrew Davis <afd@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Jared McArthur <j-mcarthur@ti.com>, Jason Kridner <jkridner@beagleboard.org>, 
-	Deepak Khatri <lorforlinux@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm: dts: bcm2711: Describe Ethernet LEDs
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: andrew@lunn.ch, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Andre Przywara <andre.przywara@arm.com>, Nick Hawkins
+ <nick.hawkins@hpe.com>, Michal Simek <michal.simek@amd.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Paul Barker <paul.barker@sancloud.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:zkadWaOzduyBYGPWrts7cz3buqCll6KflBcBIOMFoMSCKO6NKoG
+ luBq23T/wMZNEOIyYvQKIbGowbLnyRUiDC993IKWfvlcV9aX5vbjDlQlAj9KzWn0Yh5eBM8
+ LKfqCoOaGuaprgsW5shZbPUksIRVOO7j4MUxMAwcJ0p83nbet4tGfuCWHbCskrqKT7lPnS1
+ GawEI6nutmr0SUryQM0dQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:+/x7emDlsRw=;6tyhClKk7HNZgPhgWSQarCu0aV8
+ HyArJw+pFbdAePSIeveLHT8KOUiTVOULbCPR6AaZNxrvUW89+A4R3JXdHzNvrCyg+VxV2R0KL
+ r8AyERhG/2xTxxlEN/5fxF1y3eUPNN8n87TvtnfN4/cr6+ZcJGMmbXus+YbGMP/6H6V0kLGEW
+ SbK6klPg2XTBSNVUc6fvTPhlg08Hc44lzKjHlsJ+2awwkfpG4nRg9nyl+tilEAWJoFJTf62g3
+ GbNbi4jQlaaZV8PBPk5II+GenHjnklDD08aOs9xGqv2KFigzD3GImRPHZ/ta4RWq42PxEHeA8
+ /Gxtlj5p833nO2SPFEhkSgTO9WxN4HDFVHQQV43/RLmZxB6QLITil49KuURLpxykIhu2pdDFe
+ Ok2UktwLYT2rVbzw1cum91bbbK5DCj/Y6uu+xcE9rG+bFiyO3/I5UGZhkctmEzY08uxPcBveJ
+ 29zEYhGBDY5PPAjhdX3DS5jvTW+om3qTMmp7jycUpLMzWmoNGL78kPizqGz9jx9hH4bpeuGwo
+ /seXIAYDoD+xRbo87vxDEgFZ5pt3sbUUeNHcAI8d8XWYSHH6vkmQkvRRZxY9O1gLC8iAzK8vx
+ yY+QQcMHGNs7gTsEzFV502UTMQvvUVOefyLnSMXJcni8F0kMVaLz61P2bEH+FgRMGVepoJ+IR
+ RHuW17XtFOtNHDACrG7efhv6ANrKwmBp+sAC93j8K6dQFcRRxjPBTzgZZEjttPJucHpKDafBT
+ tTrr/UxxLTdQhad5paTskXDFPWAH9TRiDvBvTC0hcpqJJ3fnHhU8XCTDj704B9vfqx1pujBIJ
+ e5WqCf3/SVRWpdpLzFZk5r6eaBOGjzwUJqx209j9pP/44=
 
-On Mon, Apr 22, 2024 at 3:57=E2=80=AFPM Andrew Davis <afd@ti.com> wrote:
+Am 23.04.24 um 21:14 schrieb Florian Fainelli:
+> Describe the Ethernet LEDs for the Raspberry Pi 4 model B board as well
+> as the Raspberry Pi 4 CM board. The Raspberry Pi 400 board does not
+> include RJ45 connector LEDs so the 'leds' node is deleted accordingly.
 >
-> On 3/28/24 2:12 PM, Robert Nelson wrote:
-> > This board is based on ti,j722s
-> >
-> > https://beagley-ai.org/
-> > https://openbeagle.org/beagley-ai/beagley-ai
-> >
-> > Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> > CC: Rob Herring <robh@kernel.org>
-> > CC: Nishanth Menon <nm@ti.com>
-> > CC: Jared McArthur <j-mcarthur@ti.com>
-> > CC: Jason Kridner <jkridner@beagleboard.org>
-> > CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> > ---
-> >   Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documen=
-tation/devicetree/bindings/arm/ti/k3.yaml
-> > index 52b51fd7044e..ca23b7e6a35e 100644
-> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > @@ -134,6 +134,7 @@ properties:
-> >         - description: K3 J722S SoC and Boards
-> >           items:
-> >             - enum:
-> > +              - beagle,j722s-beagley-ai
+> The Ethernet PHY LEDs are numbered in the PHY package/pin list from LED1
+> through LED4, however their address within the LED registers function
+> selector is 0-indexed.
 >
-> Recommend "beagle,am67-beagley-ai". The "J722s" is the family
-> name, the part used on this board is the AM67. We do the same
-> for the SK boards, for example, the SK-AM69 uses the AM69
-> part from the J784s4 family, so it is called k3-am69-sk.dts
-> with compatible =3D "ti,am69-sk", "ti,j784s4";
->
-> This would otherwise be the first board with a specific part
-> attached but uses the SoC family name instead of that specific
-> part name in the DT file/name. Only the EVMs should have the
-> family name since we sell versions of those with all the different
-> parts swapped onto it. I don't imagine you will be selling
-> BeagleY's with TDA4VEN, TDA4AEN, DRA82x, etc.. All your
-> docs and other collateral use "AM67", using the same here
-> would help avoid confusion.
->
-> Andrew
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
-Andrew, would you like us to model this just like the AM69-SK? and
-also rename the device tree? or just the bindings..
-
-k3-j722s-beagley-ai.dtb -> k3-am67-beagley-ai.dtb or even the am67a
-k3-am67a-beagley-ai.dtb ?
-
-Regards,
-
---=20
-Robert Nelson
-https://rcn-ee.com/
 
