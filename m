@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-61881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59CF8AE82B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:30:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99DDC8AE82F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:30:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BA931F22450
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:30:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC07D1C21C5E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3C61369BF;
-	Tue, 23 Apr 2024 13:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FDE135A6E;
+	Tue, 23 Apr 2024 13:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i5sk8Nfj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HwtN2iZy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54AB1369AA;
-	Tue, 23 Apr 2024 13:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2596A03F;
+	Tue, 23 Apr 2024 13:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713878986; cv=none; b=L2587U2wstsCe/CpNQyDt+DtJ6nZrb3BhmuHndBYQZFa4zbkTt2BwTWSONiZIc6DzWCQE6zPx5/x2xA/ck8NUg33matZNGPmOlzy4d+D2KwVczkb+IjR3VEhA07O2/FgAKD7iHrIYu63vqwTaDrEuFLU5I3eW4JfSnaQ5k9dKws=
+	t=1713879000; cv=none; b=GSU4iCllIHL0ZeStt+yhiKUa1z5e5UgCE6NsbmrrDJmN+Tz8XRbJJp21KULYHGvohCQQT01nH9UWGJGA/tu/BPZePX+KdYPV8aSDyx1+II0yXL+W0iUGXWxK/6aBHvu1I4x3/CoDkyaCqFYGc7sf1nXRnzh/b2sU0i4UX9nW5m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713878986; c=relaxed/simple;
-	bh=Fyu4b9RZe8mgVZwzTIzwaINuohtH8Odr5WusUgjVeuM=;
+	s=arc-20240116; t=1713879000; c=relaxed/simple;
+	bh=bsh/D2kZbJPyTCYtBGbj/9HCY1qI0zX4uxheWAjo2D8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kqM7aAT2Di0Nfu+dEHHJmTXB0/kUTqORg2V9/qYhEacCA04R2ZbW2A7VNlmvNumY8201NA3VpLpYkcOuKTLn6ThIEDYOzjbgpnNg6/FCwQ9LEB5vtQIHQdHmxSyXDhqOdLlcnB9vG0lMSJ23v41CZ7/fPRxrLQZ6PaejhusUgG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i5sk8Nfj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2896EC2BD11;
-	Tue, 23 Apr 2024 13:29:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hBxPQAo56owNNtNzFY7LutSFTUrx03CN+5I6CELORIek/Wftx4FYAj9owwFn+xwI+Xjl917MP+MHcTTvduA5Wd0HcItgVTFpNs4lc0IBa2/TkqCFd66IRd7QNslpyqkUmV9o3AMDSebGAgJZpDy9rmHYtTG2rF5eqiiv91V6kOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HwtN2iZy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 304BFC116B1;
+	Tue, 23 Apr 2024 13:30:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713878986;
-	bh=Fyu4b9RZe8mgVZwzTIzwaINuohtH8Odr5WusUgjVeuM=;
+	s=k20201202; t=1713879000;
+	bh=bsh/D2kZbJPyTCYtBGbj/9HCY1qI0zX4uxheWAjo2D8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i5sk8Nfj4L38+yWRrVpPVa/e/cD8jqo8d5KlnLblop/Ttc+Dym/arRxQvTrrjKzWc
-	 q3/BXk1UjeiuzfQ7CkA8T8/uZFKzHzLr5uJF+BaFChbVCdtDuV9Ni3t0+zf79IZr7T
-	 y6r/mM5GnyxETqt3hNOBfDAvS9mfK1G5yaD9dLzLG58xpHHUEti9C8RqKUIfpOTJ03
-	 cubC1vvx+kKkPXvhnO4SiK3FzV8/rjPKWbqxHRQdEZ0cRH+IdoGmni8CuXze1Xgywh
-	 0Xclk25rdRt3Jxa6N49QxSFowljnf0kQenH1K2MkRSKoP5qQXFDA/mN8v6EHV3JIE4
-	 eVmCIom28ZBAA==
-Date: Tue, 23 Apr 2024 08:29:44 -0500
+	b=HwtN2iZyQQHiIM38o9BL81d+Jc6qqv37TF65jS6sqojI84W1Ep3R7L9kH9/hnv0mK
+	 6kxXfnK/4UNHDXFoycyVYxxDMdfbYmkzH38cZaODYr/RhqoMPGHfpsuKG3WS1grqwF
+	 Zz20gk5n5hJs6LbSwyVrOYm6MHvIGoKIisV5q/EiLkRsDOFjoPL2NmHc8NS1LmTs8l
+	 1uKlrTiQcEo6Mr/q3Z0YuOXe3AEYebASmYSW6+1RSElkKqHBHnmuhLVWsKq1htxcZ2
+	 R/iX7Q4PclEfnvZl4+Q4pAFs13vEpqmEGR+WjIB+saiLuxGN9FrkB1ESOyA6A4juw3
+	 9qP/W0HJFA+Vw==
+Date: Tue, 23 Apr 2024 08:29:58 -0500
 From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: renesas,irqc: Add
- r8a779g0 support
-Message-ID: <171387894066.77572.6530621023538799384.robh@kernel.org>
-References: <264cffccfbb1f92657420f5f869236b06a97d958.1713280616.git.geert+renesas@glider.be>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, mripard@kernel.org, wens@csie.org,
+	jernej.skrabec@gmail.com, linux-sunxi@lists.linux.dev,
+	conor+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
+	tglx@linutronix.de, krzk+dt@kernel.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: irq: sun7i-nmi: Add binding for the
+ H616 NMI controller
+Message-ID: <171387896940.78253.12633573740719841038.robh@kernel.org>
+References: <20240418181615.1370179-1-macroalpha82@gmail.com>
+ <20240418181615.1370179-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,17 +61,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <264cffccfbb1f92657420f5f869236b06a97d958.1713280616.git.geert+renesas@glider.be>
+In-Reply-To: <20240418181615.1370179-2-macroalpha82@gmail.com>
 
 
-On Tue, 16 Apr 2024 17:18:59 +0200, Geert Uytterhoeven wrote:
-> Document support for the Interrupt Controller for External Devices
-> (INT-EX) in the Renesas R-Car V4M (R8A779H0) SoC.
+On Thu, 18 Apr 2024 13:16:14 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Add binding for the H616 NMI controller.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
->  1 file changed, 1 insertion(+)
+>  .../interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml  | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
 
 Applied, thanks!
