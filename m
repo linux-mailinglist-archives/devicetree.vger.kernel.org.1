@@ -1,292 +1,152 @@
-Return-Path: <devicetree+bounces-61992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860968AF5CB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:46:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171768AF5EB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:59:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C62428E489
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:46:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 482BC1C210F3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4024413E03B;
-	Tue, 23 Apr 2024 17:46:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B50D13E3F7;
+	Tue, 23 Apr 2024 17:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q5fQyOLn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VGh+QvQz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F210713DDD1
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E46E13E03B;
+	Tue, 23 Apr 2024 17:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713894366; cv=none; b=hTrDKMzd18oT/KuU2iM3lEaC46Pl/N5G6kvFeXtdNdQveqiog0kjR7xJvqXD2OAMuqt4m1jKluU0pOxiluYUPvbiTXp3L2476sfu1DIrxHKM+ASYP+7l1gBY5dgF1hP92p9njxoFuz5viS+MEY8g7e9ateSXTExVIsNy/zpi+0g=
+	t=1713895159; cv=none; b=UVQc+dEmhr30N29Ov0qlO4YTvIJbfNRXE2AM4gGxVU8wHHk3frVld1BFtrx/QYHjKlbTYMC7Kq7wVqzPCLwK0FP/OdwiNayDqqYgmWImlzdUgIkOshqFzXnhJqNEmAHwYCalvstahjqREfFt+dwoSI0h2ynvGEhuewk59OFwZxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713894366; c=relaxed/simple;
-	bh=jnAd/2sSEJ0WMtjOyYGX1bWKZAuyDHWJ/L9RphxwCAU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ty5JCMZA6aBhdM/KQGxaRmUU1T9RZL7jDeFQpulEPTLJWBPW2v0NjqCiEceiraDXNgTkihx7UNRqoXWejKFinl19JDoWb2aQEMYrkvM2OIId/1hwtuxv6JDat82OqJ7l3OmGslnYGUnWb9Ouv8oMm3KGGMN+NYbBPA0gl8XGR38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q5fQyOLn; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5af2d0a53f5so46798eaf.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:46:03 -0700 (PDT)
+	s=arc-20240116; t=1713895159; c=relaxed/simple;
+	bh=9NXPYc75mChmMlPS6LNmk0YKUT2rQDn5XxDadCwqG0A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ijjEesXhIC6SNZrPda5vF9o68NtPLfVT/9wLxmIdkHkOCOV8BzrQ1wEswA6cz9XIoZTwKRIVT8MqApCubnV0pFuFMzCUeX6Z3A2lTexoZNMGgi4PGd5ApZXDHAiOn3IquwPLfUExR2+9M2S8gIIELkfqm8MXQOdUSQLNREVE1mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VGh+QvQz; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41a5b68ed0aso17276545e9.2;
+        Tue, 23 Apr 2024 10:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713894363; x=1714499163; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o3mo6Mk3SX0kmzv/thEaB5W9SO6Cld9rTNEVyk3LNv4=;
-        b=q5fQyOLnyClGY2zV+51CCMidc5Ja2V25hkdC2ccWaMDTk450rOyzBHvFrrPCT5ASp0
-         bQrIzDRziKJYDhO/7KC6GZLKXJdBDTODasPF89JRY3saYOAXNkTyektOj/eWznqiuGeb
-         RDS7N8vRvkCkQvKOvNE1tXH0mkSP7Qmj3zeIllvYSHe9dSGk4gLY37tOKDWXJUcf1V6x
-         y7f56cKVLkr/rvi3xg4DslYDSRgfxlAOBKfLTy54ZWFKpMbh3kcq0MWUCyDb3FWVLaXo
-         cnTt+6SG7pItUFcR2cNIzslSUABRRzs6SZtxbOmNEVISLUuv6dLbbn//ribnPRFr112T
-         yKHw==
+        d=gmail.com; s=20230601; t=1713895156; x=1714499956; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sZBXeQeCnC4rqFfrrjzeZmrl/Ux913mz2QzkIHpqVxw=;
+        b=VGh+QvQzYjpvNPXk11CvykcSsRT1wa3Sh6Vy8iC9Hlh418Ie3H4oFkmQmKLdDjVzTX
+         vTGMTHZu3PCBumEiizLRdaj+84ClFk8yA5WoXVkXPMvjg20Cl1dLH3cB1o3gg3IXvvbk
+         bnN58UYVcGMXupoOVcbo3FR4Q+gWh6xtwF9mfmjTYTq/STV+vufnbhjI+tLs2CKEX0ps
+         ryHwfEUzS2seFG68FERb6gWw7ImbwP6agDtN+9fWi9xt1RIwnBPkAoa2QMA9DRRtCYzm
+         nVhMiPYyXY7c7uvFwePtpQiUFCPstexoAWpf1SrwXPz8TO4/DS8rx1zTdydFC3acmcMX
+         C6ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713894363; x=1714499163;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o3mo6Mk3SX0kmzv/thEaB5W9SO6Cld9rTNEVyk3LNv4=;
-        b=URPiOof+SN1BNeo/ecXdZfrLQwjuR5re7NFRjV0wtjHqn73XYhoKNX8nA2KVKY2WoQ
-         xYKnqKM2xeU6l6dd/z+UNYv9/rhAQJl1v8a9iJ+31r0ZiVNTk1XoL8LRLWOnNQ8AAMo8
-         oTBu0e20paTCC3Qs+X7jm1dvtUZx70r7OwqKnB37DO8rKWoszBznmsF3i2pRQQ8glxLY
-         RYkx7ASIPOqp7w8fawJnuquu+Y951gD+JEZ1nHQqxW+0UD09b2MoTHMRdYTdQZrJ1G4c
-         oLNUcPnlNq9VMQmsrjOPRjnNNZh6T04Av0OqOZ2FScSpjb8TtLyMuHUohUooDbr0ww3r
-         TNrA==
-X-Forwarded-Encrypted: i=1; AJvYcCViuCf7O82Tpn5zS7vs/T0DjA6ekzPUOLoZsFDrAQSMziOXOtYzTN1RAHXeKA8EoXLtoI5QYNQ6EyR1PlE4a6ya9Zea12QsLpuviQ==
-X-Gm-Message-State: AOJu0YxHn1Jn9lRxgAeTiVj4MEeEnFQWPDnc1dcw9AIiIPAPvWLg6pSY
-	dI6ZyjvFain/2sQjc1+874Fa4DRxzffZMA8vLJcDKncMIPSHIdIjptzktlGlYLDg3V6tH0AxqYs
-	amNAQUXcfDKXszYJ3MGPh3UdGttwF1p79//AFww==
-X-Google-Smtp-Source: AGHT+IFjQt3mfbwBR44wWtiV52Fvs+JYmX+pN7lhEf2mhrvRbg8R0D5V2WdJQGT9SPtHiTXEX5fgYqJFaSu9KML7oR8=
-X-Received: by 2002:a4a:8554:0:b0:5aa:22f5:a908 with SMTP id
- l20-20020a4a8554000000b005aa22f5a908mr1685739ooh.1.1713894362907; Tue, 23 Apr
- 2024 10:46:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713895156; x=1714499956;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sZBXeQeCnC4rqFfrrjzeZmrl/Ux913mz2QzkIHpqVxw=;
+        b=dtTF9tdv+5iE9Gn1sxfCoF7gLow4Qx79hQJjNGycoJ6VUOvpEx1OsYhxMrUCxjalMl
+         HIvHB7nu/kirhY1kOOvHnmkV37m9O+XPCBwAZL0dfYqd6qWgHiTwHomdbOpPmkyZmqB3
+         opiqi/UIv0Er8enCgRG4Y/sYfWn8cGdZreuyU8S2gXLKWEr5yXk4SQmDNOylngobDmSb
+         a+yrGPNW8WWOEfzkQZYf+jj+0SDMsbEUBFIvHeXAC0JknUAFHe4Iwpodw17VmxCG+pjf
+         Tn4JVhYxOS/rmqCpiJeA4+Omzr/knXL3y4vgZ+k9xDSWZl71BQNW850MaziusiDurmsG
+         xsUA==
+X-Forwarded-Encrypted: i=1; AJvYcCW1R2d39jFLsGJhkaMOcMZoSt1wyAY7KY7Ku4cMi0P/YVgXYLtbCB8w5m1i4bA6PyTrNDkXPHKj/4wL+APdvxcINnzbmb0qQAG1/xgYIRQecHSh0B57DYAjWCWDPutpOSHKegANaIlRx97GcSPXyMJIPWqpz9dLYV5H/D3lCVQqedh7EKksQefWNTDy
+X-Gm-Message-State: AOJu0Yy3i/+oY67Vb3VjXkqnY59uegugmIRtKHSI52ms+qlCpoqJ+gHf
+	fEA6b4C4Jpf2sUYmJTHxhvw+9s2vQm2NX8R7kDDP7FBHA15AlKid
+X-Google-Smtp-Source: AGHT+IEm8XTfYr7JFPTebKOQ1Jp9fpmnsV/4EY4/dp/36hmRIeQuUa1BfRfqz3254x9Hc1a0mami3g==
+X-Received: by 2002:a05:600c:1d14:b0:419:f27f:6b05 with SMTP id l20-20020a05600c1d1400b00419f27f6b05mr30686wms.8.1713895155659;
+        Tue, 23 Apr 2024 10:59:15 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:cef0:9ed3:1428:f85f])
+        by smtp.gmail.com with ESMTPSA id fl5-20020a05600c0b8500b0041abeaaf7f0sm2808145wmb.28.2024.04.23.10.59.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Apr 2024 10:59:14 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 00/13] Add PFC support for Renesas RZ/V2H(P) SoC
+Date: Tue, 23 Apr 2024 18:58:47 +0100
+Message-Id: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404122559.898930-1-peter.griffin@linaro.org>
- <20240404122559.898930-9-peter.griffin@linaro.org> <6c2b060b3b32b2da46bafbdc33236c319b6cec62.camel@linaro.org>
-In-Reply-To: <6c2b060b3b32b2da46bafbdc33236c319b6cec62.camel@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 23 Apr 2024 18:45:50 +0100
-Message-ID: <CADrjBPrNqJ6FNKZTgVxST1en-hRdyZFmJe42uwerSnDSmgifbg@mail.gmail.com>
-Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
-	martin.petersen@oracle.com, chanho61.park@samsung.com, ebiggers@kernel.org, 
-	linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Andr=C3=A9,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Mon, 8 Apr 2024 at 15:49, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
-wrote:
->
-> Hi Pete,
->
-> On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
-> > CMU_HSI2 is the clock management unit used for the hsi2 block.
-> > HSI stands for High Speed Interface and as such it generates
-> > clocks for PCIe, UFS and MMC card.
-> >
-> > This patch adds support for the muxes, dividers, and gates in
-> > cmu_hsi2.
-> >
-> > CLK_GOUT_HSI2_HSI2_CMU_HSI2_PCLK is marked as CLK_IS_CRITICAL
-> > as disabling it leads to an immediate system hang.
-> >
-> > CLK_GOUT_HSI2_SYSREG_HSI2_PCLK is also marked CLK_IS_CRITICAL.
-> > A hang is not observed with fine grained clock control, but
-> > UFS IP does not function with syscon controlling this clock
-> > just around hsi2_sysreg register accesses.
->
-> Would it make sense to add this clock to the &ufs_0 node in the DTS
-> instead? Seems more natural than a clock that's constantly enabled?
+Hi All,
 
-Will add this to ufs node in v2.
-
->
-> > [...]
-> >
-> > Updated regex for clock name mangling
-> >     sed \
-> >         -e 's|^PLL_LOCKTIME_PLL_\([^_]\+\)|fout_\L\1_pll|' \
-> >         \
-> >         -e 's|^PLL_CON0_MUX_CLKCMU_\([^_]\+\)_\(.*\)|mout_\L\1_\2|' \
-> >         -e 's|^PLL_CON0_PLL_\(.*\)|mout_pll_\L\1|' \
-> >         -e 's|^CLK_CON_MUX_MUX_CLK_\(.*\)|mout_\L\1|' \
-> >         -e '/^PLL_CON[1-4]_[^_]\+_/d' \
-> >         -e '/^[^_]\+_CMU_[^_]\+_CONTROLLER_OPTION/d' \
-> >         -e '/^CLKOUT_CON_BLK_[^_]\+_CMU_[^_]\+_CLKOUT0/d' \
-> >         \
-> >         -e 's|_IPCLKPORT||' \
-> >         -e 's|_RSTNSYNC||' \
-> >         -e 's|_G4X2_DWC_PCIE_CTL||' \
-> >         -e 's|_G4X1_DWC_PCIE_CTL||' \
-> >         -e 's|_PCIE_SUB_CTRL||' \
-> >         -e 's|_INST_0||g' \
-> >         -e 's|_LN05LPE||' \
-> >         -e 's|_TM_WRAPPER||' \
-> >         -e 's|_SF||' \
-> >         \
-> >         -e 's|^CLK_CON_DIV_DIV_CLK_\([^_]\+\)_\(.*\)|dout_\L\1_\2|' \
-> >         \
-> >         -e 's|^CLK_CON_BUF_CLKBUF_\([^_]\+\)_\(.*\)|gout_\L\1_\2|' \
-> >         -e 's|^CLK_CON_GAT_CLK_BLK_\([^_]\+\)_UID_\(.*\)|gout_\L\1_\2|'=
- \
-> >         -e 's|^gout_[^_]\+_[^_]\+_cmu_\([^_]\+\)_pclk$|gout_\1_\1_pclk|=
-' \
-> >         -e 's|^CLK_CON_GAT_GOUT_BLK_\([^_]\+\)_UID_\(.*\)|gout_\L\1_\2|=
-' \
-> >         -e 's|^CLK_CON_GAT_CLK_\([^_]\+\)_\(.*\)|gout_\L\1_clk_\L\1_\2|=
-' \
-> >         \
-> >         -e '/^\(DMYQCH\|PCH\|QCH\|QUEUE\)_/d'
->
-> Thank you for the updated regex.
->
-> > ---
-> >  drivers/clk/samsung/clk-gs101.c          | 558 +++++++++++++++++++++++
-> >  include/dt-bindings/clock/google,gs101.h |  63 +++
-> >  2 files changed, 621 insertions(+)
-> >
-> > diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-=
-gs101.c
-> > index d065e343a85d..b9f84c7d5c22 100644
-> > --- a/drivers/clk/samsung/clk-gs101.c
-> > +++ b/drivers/clk/samsung/clk-gs101.c
-> > @@ -22,6 +22,7 @@
-> >  #define CLKS_NR_MISC (CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
-> >  #define CLKS_NR_PERIC0       (CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
-> >  #define CLKS_NR_PERIC1       (CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
-> > +#define CLKS_NR_HSI2 (CLK_GOUT_HSI2_XIU_P_HSI2_ACLK + 1)
-> >
-> >  /* ---- CMU_TOP ------------------------------------------------------=
-------- */
-> >
-> > @@ -3409,6 +3410,560 @@ static const struct samsung_cmu_info peric1_cmu=
-_info __initconst =3D {
-> >       .clk_name               =3D "bus",
-> >  };
-> >
-> > +/* ---- CMU_HSI2 -----------------------------------------------------=
------ */
->
-> This comment is shorter that all the other similar comments in this file.
-
-Will fix
->
-> > [...]
-> > +
-> > +PNAME(mout_hsi2_bus_user_p)  =3D { "oscclk", "dout_cmu_hsi2_bus" };
-> > +PNAME(mout_hsi2_pcie_user_p) =3D { "oscclk", "dout_cmu_hsi2_pcie" };
-> > +PNAME(mout_hsi2_ufs_embd_user_p) =3D { "oscclk", "dout_cmu_hsi2_ufs_em=
-bd" };
-> > +PNAME(mout_hsi2_mmc_card_user_p) =3D { "oscclk", "dout_cmu_hsi2_mmc_ca=
-rd" };
->
-> Can you make these alphabetical, too, please, which would also match thei=
-r usage
-> below:
-
-Will fix
->
-> > +
-> > +static const struct samsung_mux_clock hsi2_mux_clks[] __initconst =3D =
-{
-> > +     MUX(CLK_MOUT_HSI2_BUS_USER, "mout_hsi2_bus_user", mout_hsi2_bus_u=
-ser_p,
-> > +         PLL_CON0_MUX_CLKCMU_HSI2_BUS_USER, 4, 1),
-> > +     MUX(CLK_MOUT_HSI2_MMC_CARD_USER, "mout_hsi2_mmc_card_user",
-> > +         mout_hsi2_mmc_card_user_p, PLL_CON0_MUX_CLKCMU_HSI2_MMC_CARD_=
-USER,
-> > +         4, 1),
-> > +     MUX(CLK_MOUT_HSI2_PCIE_USER, "mout_hsi2_pcie_user",
-> > +         mout_hsi2_pcie_user_p, PLL_CON0_MUX_CLKCMU_HSI2_PCIE_USER,
-> > +         4, 1),
-> > +     MUX(CLK_MOUT_HSI2_UFS_EMBD_USER, "mout_hsi2_ufs_embd_user",
-> > +         mout_hsi2_ufs_embd_user_p, PLL_CON0_MUX_CLKCMU_HSI2_UFS_EMBD_=
-USER,
-> > +         4, 1),
-> > +};
-> > +
-> > +static const struct samsung_gate_clock hsi2_gate_clks[] __initconst =
-=3D {
-> > +
->
-> Here and below: all these extra empty lines are not needed.
-
-Will fix
->
-> > +     GATE(CLK_GOUT_HSI2_PCIE_GEN4_1_PCIE_003_PHY_REFCLK_IN,
-> > +          "gout_hsi2_pcie_gen4_1_pcie_003_phy_refclk_in",
-> > +          "mout_hsi2_pcie_user",
-> > +          CLK_CON_GAT_CLK_BLK_HSI2_UID_PCIE_GEN4_1_IPCLKPORT_PCIE_003_=
-PCIE_SUB_CTRL_INST_0_PHY_REFCLK_IN,
-> > +          21, 0, 0),
-> > +
-> > +     GATE(CLK_GOUT_HSI2_PCIE_GEN4_1_PCIE_004_PHY_REFCLK_IN,
-> > +          "gout_hsi2_pcie_gen4_1_pcie_004_phy_refclk_in",
-> > +          "mout_hsi2_pcie_user",
-> > +          CLK_CON_GAT_CLK_BLK_HSI2_UID_PCIE_GEN4_1_IPCLKPORT_PCIE_004_=
-PCIE_SUB_CTRL_INST_0_PHY_REFCLK_IN,
-> > +          21, 0, 0),
-> > +
-> > +     GATE(CLK_GOUT_HSI2_SSMT_PCIE_IA_GEN4A_1_ACLK,
-> > +          "gout_hsi2_ssmt_pcie_ia_gen4a_1_aclk",
-> > +          "mout_hsi2_bus_user",
->
-> The two strings fit on the same line.
-
-Will fix
->
-> > +          CLK_CON_GAT_CLK_BLK_HSI2_UID_SSMT_PCIE_IA_GEN4A_1_IPCLKPORT_=
-ACLK,
-> > +          21, 0, 0),
-> > +
-> > +     GATE(CLK_GOUT_HSI2_SSMT_PCIE_IA_GEN4A_1_PCLK,
-> > +          "gout_hsi2_ssmt_pcie_ia_gen4a_1_pclk",
-> > +          "mout_hsi2_bus_user",
->
-> dito.
-
-Will fix
-
-regards,
-
-Peter
+This patch series aims to add PFC (Pin Function Controller) support for
+Renesas RZ/V2H(P) SoC. The PFC block on RZ/V2H(P) is almost similar to
+one found on the RZ/G2L family with couple of differences. To able to
+re-use the use the existing driver for RZ/V2H(P) SoC function pointers
+are introduced based on the SoC changes.
 
 
->
-> > [...]
-> > +     /* Disabling this clock makes the system hang. Mark the clock as =
-critical. */
-> > +     GATE(CLK_GOUT_HSI2_HSI2_CMU_HSI2_PCLK,
-> > +          "gout_hsi2_hsi2_cmu_hsi2_pclk", "mout_hsi2_bus_user",
-> > +          CLK_CON_GAT_GOUT_BLK_HSI2_UID_HSI2_CMU_HSI2_IPCLKPORT_PCLK,
-> > +          21, CLK_IS_CRITICAL, 0),
->
-> I have a similar clock in USB, which also causes a hang if off, I wonder =
-what we
-> could do better here.
->
->
-> Cheers,
-> Andre'
->
+RFC->v2
+- Fixed review comments pointed by Rob
+- Incorporated changes suggested by Claudiu
+- Fixed build error reported for m68K
+- Dropped IOLH groups as we will be passing register values
+- Fixed configs for dedicated pins
+- Added support for slew-rate and bias settings
+- Added support for OEN
+
+RFC: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (13):
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Remove the check from the
+    object
+  dt-bindings: pinctrl: renesas: Document RZ/V2H(P) SoC
+  pinctrl: renesas: pinctrl-rzg2l: Allow more bits for pin configuration
+  pinctrl: renesas: pinctrl-rzg2l: Allow parsing of variable
+    configuration for all architectures
+  pinctrl: renesas: pinctrl-rzg2l: Validate power registers for SD and
+    ETH
+  pinctrl: renesas: pinctrl-rzg2l: Add function pointers for
+    locking/unlocking the PFC register
+  pinctrl: renesas: pinctrl-rzg2l: Add function pointer for writing to
+    PMC register
+  pinctrl: renesas: pinctrl-rzg2l: Add function pointers for
+    reading/writing OEN register
+  pinctrl: renesas: pinctrl-rzg2l: Add support to configure the
+    slew-rate
+  pinctrl: renesas: pinctrl-rzg2l: Add support to set pulling up/down
+    the pins
+  pinctrl: renesas: pinctrl-rzg2l: Pass pincontrol device pointer to
+    pinconf_generic_parse_dt_config()
+  pinctrl: renesas: pinctrl-rzg2l: Add support for custom parameters
+  pinctrl: renesas: pinctrl-rzg2l: Add support for RZ/V2H SoC
+
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  40 +-
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 640 ++++++++++++++++--
+ 2 files changed, 617 insertions(+), 63 deletions(-)
+
+-- 
+2.34.1
+
 
