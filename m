@@ -1,109 +1,96 @@
-Return-Path: <devicetree+bounces-61915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14B18AE999
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6933C8AE994
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:32:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D2B9289353
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:32:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26AA028910E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02B684FC5;
-	Tue, 23 Apr 2024 14:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819A52D7A8;
+	Tue, 23 Apr 2024 14:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BIMc3oNX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiPqcHjD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E8C5103D;
-	Tue, 23 Apr 2024 14:32:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5644019470;
+	Tue, 23 Apr 2024 14:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713882769; cv=none; b=T3FOs7U9cRFe8LMqMiEf1K+XMGKxHx12t30194+NumCFoJgmBfi5713aE5sj+7ufRUYtPN5i3mGbUz7YXxl/qv3eLjGvOXtnCaR9BbzWAt/GyQTRCwEFkM81Mbk0tlM4Hp1U7W19RrPH1ZzKUIOWRRBOUBSnIiI6WMrjcZJnIzI=
+	t=1713882759; cv=none; b=tyFEtBM5my99/mi5SOxAW4dNVnj9tEel4lDonmJm+GZJDU2J+wPc6fHqksIdIZko0jw3pGxQI6wT7JJlmHxu/xUqCVg7Px2133pqZtvdGCrJ3Fws9MlUY925PBTLtvWFeb7dJv3MCqdip55v5XNbA5oW/HsLhNNHqOaVh/JnRkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713882769; c=relaxed/simple;
-	bh=tioOk9waW8zUZj6/WeQiRb7+mddkLAF9bGd372R4d6A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Tc9tH2UewgI/31hUd3/hLaBMQXEmAgb0qumpoDmjqvzgmlsDgDwCWm7GIypjw42A/uvDn7HISW1X02bti+RGR2MgTLvAzhr8RQr7PM+5GdfN7i19jgksD4OkGtccD+Zpnj0G4BWb5LVWp12kCdferu0BMHDgSiBZObX2IDJN6e0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BIMc3oNX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43N889eG006371;
-	Tue, 23 Apr 2024 14:32:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=EAvQrX4BSekjivlHtLJDsPcMwUtP1BkueQBEmSyAHkc=; b=BI
-	Mc3oNXUrWjdGgvz8iJyKK9L+QNRvigf5yKPf/flVVvgY9jRGh3SEoVWVL2aPcG5J
-	Aca279V67Pzc/R8owBoICXwv1dZ3SCBaNuF6Pyi68qBPboYB5rh91BbUcbjkfTs0
-	fD4TxZ3lsToNHpiB/nacCjjaFV5CZAU3QUdjI4et3FGz12/qAdoo8teGQyM/f3VA
-	IlIIQgx8o+D5laGXKCnEP0vZFUjxMdDAqorbwLAhjx0AxxQcVXyyh3NDaZDyMucv
-	Kpmvk1/HwrJBn964Z7nJvujmLK+0EMTH/sH7r+FupHX6YDgTWxdNDGCEN5T51ok3
-	8hVeEkiUvT004HnrmVQg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xp978s2p8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 14:32:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43NEWedO028273
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 14:32:40 GMT
-Received: from [10.110.61.159] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 23 Apr
- 2024 07:32:37 -0700
-Message-ID: <d024a0b0-46aa-4182-a8e8-8ff15f12c363@quicinc.com>
-Date: Tue, 23 Apr 2024 07:32:36 -0700
+	s=arc-20240116; t=1713882759; c=relaxed/simple;
+	bh=UG4Ckj0nMbH7B0JHsiJXAgvQNIVvA99ebpslMDJkG+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tXdGINRcu31sAFpYXQGyBABkJgnkyAIcHsjxUPR4t91BFzunnliv4JA3BTeME7QOKZFPjat+8131baFv9GIvLg6S0kFEOdN/Uh1SdJ4/wcxki49nKyRbaAgV0qekFw+/M0by3G/dm8jB0VeshjTxEsAiIUYMIxlnPdEwybuE3Us=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiPqcHjD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D1F4C2BD11;
+	Tue, 23 Apr 2024 14:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713882758;
+	bh=UG4Ckj0nMbH7B0JHsiJXAgvQNIVvA99ebpslMDJkG+k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OiPqcHjD5e4XHAkIvbr126NMpBXMcCjkBkTevTi7oTzIKohSkRGzfpAcW0VD+0Hnx
+	 WNIZcm45p8O5X+aX/Ir5QFFC6DVG2PCedaiOSLqXS8wzmMHX5lGtPbhhLsPaQf9eY6
+	 Vb/t8/i+KvhQiLNp1K+4DzYRMyUHrZfEZLw87+9oO0ths2/Yehk07HxaryZN16ktqt
+	 Jlo7P+y27aUzjKzX6+fPU310ZMVuybtQHRiYahbqnUpJCKgwEf4U8HCdFUUkBXHJaH
+	 kRg/2ifj3orAnEIDt70a+ZlSlJdFebXQ4RnI7g2cum1cjn47YJv7w7GJbgsZuxjnMp
+	 vj8psl1kLqvVw==
+Date: Tue, 23 Apr 2024 09:32:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, James McGregor <jamcgregor@protonmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Hans de Goede <hdegoede@redhat.com>, Chen-Yu Tsai <wens@csie.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 1/2] dt-bindings: input: sun4i-lradc-keys: Add H616
+ compatible
+Message-ID: <171388262405.158384.14488465462806439930.robh@kernel.org>
+References: <20240422164511.2488261-1-andre.przywara@arm.com>
+ <20240422164511.2488261-2-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of: reserved_mem: Remove the use of phandle from the
- reserved_mem APIs
-Content-Language: en-US
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, <robh@kernel.org>,
-        <saravanak@google.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20240422235243.2878536-1-quic_obabatun@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240422235243.2878536-1-quic_obabatun@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BtMjyA9RB0Z0TC52-uuRSxD3hHVR1mW2
-X-Proofpoint-GUID: BtMjyA9RB0Z0TC52-uuRSxD3hHVR1mW2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-23_12,2024-04-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 spamscore=0 mlxscore=0 bulkscore=0 lowpriorityscore=0
- suspectscore=0 impostorscore=0 mlxlogscore=564 adultscore=0 clxscore=1011
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404230035
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240422164511.2488261-2-andre.przywara@arm.com>
 
-On 4/22/2024 4:52 PM, Oreoluwa Babatunde wrote:
-> The __find_rmem() function is the only place that references the phandle
-> field of the reserved_mem struct. __find_rmem() is used to match a
-> device_node object to its corresponding entry in the reserved_mem array
-> using its phandle value. But, there is already a function called
-> of_reserved_mem_lookup() which carries out the same action using the
-> name of the node.
+
+On Mon, 22 Apr 2024 17:45:10 +0100, Andre Przywara wrote:
+> From: James McGregor <jamcgregor@protonmail.com>
 > 
-> Using the of_reserved_mem_lookup() function is more reliable because
-> every node is gauranteed to have a name, but not all nodes will have a
+> The Allwinner H616 SoC has an LRADC which is compatible with the
+> versions in existing SoCs.
+> Add a compatible string for H616, with the R329 fallback. This is the
+> same as the D1, so put them into an enum.
+> 
+> Signed-off-by: James McGregor <jamcgregor@protonmail.com>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  .../bindings/input/allwinner,sun4i-a10-lradc-keys.yaml        | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-s/gauranteed /guaranteed /
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-(jumped out at me while scanning the kernel patches)
+While the Reviewed-by from Andre was a bit unusual, the explanation 
+makes sense.
+
+Also note that b4 can proxy send patches for people with broken (or 
+non-existent) SMTP servers.
+
+Rob
 
