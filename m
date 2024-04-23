@@ -1,228 +1,122 @@
-Return-Path: <devicetree+bounces-61975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015DD8AF4CB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABAAA8AF4CD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:02:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5107B21697
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:02:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0186CB21849
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A58C13D635;
-	Tue, 23 Apr 2024 17:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC79613DBB6;
+	Tue, 23 Apr 2024 17:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="B9HV1gg7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r3n6swNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D85134725
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2162113D8BB
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713891716; cv=none; b=GCiGekFHqmxxdrlwNKuHfFX/NnMxBY6HDLNsblw+wnh6qI6wovw3AE2SjqasFASd36d3ukV+3QE3V9PQD3vurXRtZTjuiyGojeosuoypzBkj6b1m3euI1Si3/cGcWpi4EpyHyPtDVg8g7zK1oyq4ZI31uqBYm5z56YEXUUWMbZA=
+	t=1713891719; cv=none; b=GCfmIKMZcjOfKlbJezqhfDDNqGfr9HEewMXB1/yJNdmJmNMY2OoulHCO2t0iGgcb1x+YX/6IzwHGmyFlsNA9WWBBH91mSsmT0AAdjs+MDwEt8yU5zMuBGd/Jg/ANG4kAkCGLHmTsu5+w8qX01E/PwbFD2exxNvpiXPx08zzET9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713891716; c=relaxed/simple;
-	bh=/npKp6pnglhDyMQdA7wmpVX4vpQn8igvdQOoUdHXuFA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sawZfP5xe63jhCxmU1sOxi5KwDGD6HwpLlF08PQsDw2pYxV63WJPzYgpcvyKxYFnl9rdSUpPlHYgqgVl8Qz1yRB7s3ooUT/WMU2tYmqymAlHY8ZoR9Z6zwhkKZz320T/4yRKUdRX5qapGCTtqOtvQInXUUG7DIKnNzKPivJqSbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=B9HV1gg7; arc=none smtp.client-ip=209.85.219.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-69b40061bbeso30590406d6.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:01:54 -0700 (PDT)
+	s=arc-20240116; t=1713891719; c=relaxed/simple;
+	bh=cC+dErYbmnokudp3GhDMHIAy+gc8yV+HfdxgXByLeSo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fhOXEjLczjIUpG/kQraW1Yykvjdpn4P6EeVRwUTC+1PhkuM10f3/xz1AFYh3Cj9xNwGpZTBqqN0GRpk0RZJDkzekUbNO4WS72ym+hsGfM1/lpvx/aJInRChoS2/nxV8FuidVWRgWCg9ct7wwhnkhaBk4Xje53KKnvFwdOoVOj2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r3n6swNb; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-51967f75729so6936046e87.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:01:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1713891712; x=1714496512; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/npKp6pnglhDyMQdA7wmpVX4vpQn8igvdQOoUdHXuFA=;
-        b=B9HV1gg7ZBt12p7ZBwTSHBPmWIGhczUH3JLwR7u6+yidjbNUcOLN00X0k3aTO3Wmtm
-         hP15h3bLSlEMbGgx0P0qKzOmua80RDDTfAr+Y/z2H6pWVt75btVsFyo+o8GSrKI6DApv
-         8Ejq8NysslKnQin1JtuVMcLVwFc+2X09qdbKk=
+        d=linaro.org; s=google; t=1713891716; x=1714496516; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z9xHbZYIG5Mw8Eh9K4eptlqfJVILD/D23wlU1wrlp58=;
+        b=r3n6swNbxTyErIdOJHqK7cJ7IVAu/yw2jzhLaKK6mIt8PBSgA2KJ2ahI4olOgv8oTd
+         DzVbBeAOfMvs6OXytFCyTdOsRfZg/WFhhtr+3R3RhhhUOh8bc5/0M5FiuZ0jw/VUc2+1
+         wKBk+LPTrfrRbq3KYBdwAqhHvNzlRYw2TJsflB191P6h4Z7fEyUmNn+GZRegXhNpXXs8
+         aNpFKKYPkVgfmj1hBHdH19fQKVo4bqcB33CRD1jPcBBCxuCL6t7fIllO0/tH1/qQByba
+         c5N9sBC5o3lhfUIlaALjFqbzW8c02QTWZRVa8aW5/Q8kT+Z4XIYet5lw6ptd6UdWNjTy
+         QZHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713891712; x=1714496512;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/npKp6pnglhDyMQdA7wmpVX4vpQn8igvdQOoUdHXuFA=;
-        b=OP9elZFj2EqdLAnp0ZtIvDkdjdrdswu209RDv8UGwoPFgDq9OBOoUPw2NJORseFo7q
-         99D+scwRZr8w7nLTSJRwZSlYDsCuGEJ5Au20E/nKicWUr67lquB50l/ZN7T5Y84XfU+k
-         ibmNn6asBL0l/p1xGVLmyIB9yudiPOWPE/qwLSlPsJMJrxmZPbKktNQIKOUxDz0/k84o
-         LMA82VatNsiBFP9uz2xnULuxX50EUaPtlH4VEPeNJsUzLHQ3r8aFAt+51m3lltCi74Xd
-         PrqiCqcPWeWsNVyi0byLqrA+k+EbJH17JRrPLmY3oadUN9GPzDCgFR3XBHnEAJFOrwE2
-         0wuw==
-X-Forwarded-Encrypted: i=1; AJvYcCXKMTBrr6LAxL8Og15SDjLwzt75fY1X12nEjbtaUhS7fPWx98/X6CHleZYK+qddruwyb2mi21Xr8/+5maYzAAge1c6fTUorWUjUlQ==
-X-Gm-Message-State: AOJu0YyGLH6kzYb2YKZpFcbvK7oka/f5HgNHdOvY8v3sVSJ2KHMcKQxa
-	H3yRWKqGp9QvmJw8N+ONhLBNDG/XS/yva3pR8JxxIoVyXkH9gAJBzuPt4z1ElsVBffUQBbKxShU
-	kF/x8
-X-Google-Smtp-Source: AGHT+IENb7zk4C55SzSDRq0Vq8ugBH0ocxWZKOhSKUuBkNYkztcMhqznzhsQBjA7BO6iHEEnHs5mww==
-X-Received: by 2002:a0c:b549:0:b0:69b:ba0f:23db with SMTP id w9-20020a0cb549000000b0069bba0f23dbmr13235302qvd.42.1713891712313;
-        Tue, 23 Apr 2024 10:01:52 -0700 (PDT)
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com. [209.85.160.173])
-        by smtp.gmail.com with ESMTPSA id q3-20020a0c8cc3000000b0069947ad3b46sm1106613qvb.65.2024.04.23.10.01.51
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1713891716; x=1714496516;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z9xHbZYIG5Mw8Eh9K4eptlqfJVILD/D23wlU1wrlp58=;
+        b=Ef5Vrv0kf4tswuWp2u5kq/EAjSobQEemw/B0KaowbjYE5q5DfaqiRkaXHakWV8qj5w
+         V9r16xH8fmqYn78/Meycts1T8iwGTG54aR90cl/6yumJdL+NUdlFRfGjbfQ8YVeRALf7
+         JgoKeoTuE8jdRRbegob9Fk4+6fAkAyj9ilG53uhTWOoa5m8SbppiATeWkyQe5jgFlsaU
+         ADZ1hbpOpMLqinC+IDpLr8DTKrR5s9MAziyx+Faq+H+1Hy7gyRxF2+n7AWFG1vEnqDjx
+         r+JcPQ3uvtRjATEcIHNWwHfb/VMU7dt67oro9kkW0H4XgbIiKyhsZkng4CRmX/dFoEDM
+         /5Xw==
+X-Forwarded-Encrypted: i=1; AJvYcCUICIyHYA7HuKCvAaWHxX+ZQBmtBrICafM3qHoJwSl1fJxC+1QH7O4NF8CTbdIbwV1yYRaxBUFVyhUtdPhVnT0ve9fTQ2xZYbSA2g==
+X-Gm-Message-State: AOJu0YzdVwxnF8IU9HpWXEs/6tAWB7Zj48pZsu/lGrMSfCvL+X+ntsqJ
+	IHoGKPeu5ASHRTy94AmayOysAQdLR7Eg6G9XhTQ3LSCnyRlwzsgzNhVOYElIjGw=
+X-Google-Smtp-Source: AGHT+IFFgAqRTu0OiAHoCmMWpJsWpTFKQENMZbvbVW68Tnv0kqgDei+xKSGXPHh9KPd5kq4AudXVJA==
+X-Received: by 2002:ac2:58cf:0:b0:516:7738:bd5c with SMTP id u15-20020ac258cf000000b005167738bd5cmr102879lfo.4.1713891715686;
+        Tue, 23 Apr 2024 10:01:55 -0700 (PDT)
+Received: from [172.30.205.0] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id e17-20020ac24e11000000b0051bbb1031dfsm150689lfr.182.2024.04.23.10.01.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 10:01:52 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-436ed871225so7021cf.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:01:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXyTGj1Maw62Sk1y20fDJx5DEHKVPzCOa7C5v1eEK0kv6tF3G4sjV+rRWGz6WGt6a54OB/QyEw7ohVDYOOXv9YX4aJggAaJpsAtCA==
-X-Received: by 2002:ac8:646:0:b0:437:b429:cb0d with SMTP id
- e6-20020ac80646000000b00437b429cb0dmr287375qth.29.1713891710780; Tue, 23 Apr
- 2024 10:01:50 -0700 (PDT)
+        Tue, 23 Apr 2024 10:01:55 -0700 (PDT)
+Message-ID: <a6936f38-78d8-458b-8864-543a923ad1a1@linaro.org>
+Date: Tue, 23 Apr 2024 19:01:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422060811.670693-1-xuxinxiong@huaqin.corp-partner.google.com>
- <CAD=FV=WRLLuOkCJeM6RdAb6xLN-cPH+hfWbOv9-LujB-WMGEFw@mail.gmail.com> <CAGoogDB-mj8_xu04w3V2ZxOBTWoXcPKrVR1NRt6BFcpjHX3-7Q@mail.gmail.com>
-In-Reply-To: <CAGoogDB-mj8_xu04w3V2ZxOBTWoXcPKrVR1NRt6BFcpjHX3-7Q@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 23 Apr 2024 10:01:35 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WwsR9e-ZXJRY11FvdUZ66YPy9vqmY_=sGDw5Wqk1eV3w@mail.gmail.com>
-Message-ID: <CAD=FV=WwsR9e-ZXJRY11FvdUZ66YPy9vqmY_=sGDw5Wqk1eV3w@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel-edp: Add panel CSOT MNB601LS1-1
-To: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Mon, Apr 22, 2024 at 6:28=E2=80=AFPM Xuxin Xiong
-<xuxinxiong@huaqin.corp-partner.google.com> wrote:
->
-> Yes, I read the edid from the panels, one is CSO and the other is CSW.
-> The details are as follows, please help check. Thank you!
->
->
-> 1. MNC207QS1-1
-> edid-decode (hex):
-> 00 ff ff ff ff ff ff 00 0e 6f 00 12 e7 00 00 00
-> 1e 21 01 04 a5 1b 12 78 03 8a d5 9c 5e 59 90 25
-> 1b 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> 01 01 01 01 01 01 ae 3f 80 18 71 b0 23 40 30 20
-> 36 00 07 a4 10 00 00 1a 00 00 00 fd 00 28 3c 4b
-> 4b 11 01 0a 20 20 20 20 20 20 00 00 00 fe 00 43
-> 53 4f 54 20 54 39 0a 20 20 20 20 20 00 00 00 fe
-> 00 4d 4e 43 32 30 37 51 53 31 2d 31 0a 20 00 32
-> ----------------
-> Block 0, Base EDID:
-> EDID Structure Version & Revision: 1.4
-> Vendor & Product Identification:
-> Manufacturer: CSO
-> Model: 4608
-> Serial Number: 231
-> Made in: week 30 of 2023
-> Basic Display Parameters & Features:
-> Digital display
-> Bits per primary color channel: 8
-> DisplayPort interface
-> Maximum image size: 27 cm x 18 cm
-> Gamma: 2.20
-> Supported color formats: RGB 4:4:4
-> First detailed timing includes the native pixel format and preferred refr=
-esh rate
-> Display is continuous frequency
-> Color Characteristics:
-> Red : 0.6113, 0.3671
-> Green: 0.3496, 0.5644
-> Blue : 0.1474, 0.1064
-> White: 0.3134, 0.3291
-> Established Timings I & II: none
-> Standard Timings: none
-> Detailed Timing Descriptors:
-> DTD 1: 1920x1200 60.000 Hz 8:5 74.100 kHz 163.020 MHz (263 mm x 164 mm)
-> Hfront 48 Hsync 32 Hback 200 Hpol P
-> Vfront 3 Vsync 6 Vback 26 Vpol N
-> Display Range Limits:
-> Monitor ranges (Bare Limits): 40-60 Hz V, 75-75 kHz H, max dotclock 170 M=
-Hz
-> Alphanumeric Data String: 'CSOT T9'
-> Alphanumeric Data String: 'MNC207QS1-1'
-> Checksum: 0x32
->
-> 2. MNB601LS1-1
-> edid-decode (hex):
->
-> 00 ff ff ff ff ff ff 00 0e 77 00 11 00 00 00 00
-> 00 22 01 04 95 1a 0e 78 03 a1 35 9b 5e 58 91 25
-> 1c 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> 01 01 01 01 01 01 09 1e 56 dc 50 00 28 30 30 20
-> 36 00 00 90 10 00 00 1a 00 00 00 fd 00 28 3c 30
-> 30 08 01 0a 20 20 20 20 20 20 00 00 00 fe 00 43
-> 53 4f 54 20 54 39 0a 20 20 20 20 20 00 00 00 fe
-> 00 4d 4e 42 36 30 31 4c 53 31 2d 31 0a 20 00 37
-> ----------------
-> Block 0, Base EDID:
-> EDID Structure Version & Revision: 1.4
-> Vendor & Product Identification:
-> Manufacturer: CSW
-> Model: 4352
-> Made in: 2024
-> Basic Display Parameters & Features:
-> Digital display
-> Bits per primary color channel: 6
-> DisplayPort interface
-> Maximum image size: 26 cm x 14 cm
-> Gamma: 2.20
-> Supported color formats: RGB 4:4:4
-> First detailed timing includes the native pixel format and preferred refr=
-esh rate
-> Display is continuous frequency
-> Color Characteristics:
-> Red : 0.6074, 0.3691
-> Green: 0.3437, 0.5673
-> Blue : 0.1445, 0.1123
-> White: 0.3134, 0.3291
-> Established Timings I & II: none
-> Standard Timings: none
-> Detailed Timing Descriptors:
-> DTD 1: 1366x768 60.001 Hz 683:384 48.480 kHz 76.890 MHz (256 mm x 144 mm)
-> Hfront 48 Hsync 32 Hback 140 Hpol P
-> Vfront 3 Vsync 6 Vback 31 Vpol N
-> Display Range Limits:
-> Monitor ranges (Bare Limits): 40-60 Hz V, 48-48 kHz H, max dotclock 80 MH=
-z
-> Alphanumeric Data String: 'CSOT T9'
-> Alphanumeric Data String: 'MNB601LS1-1'
-> Checksum: 0x37
-
-OK. This made me look a little deeper. I believe that the three-letter
-code is managed by UEFI and I found:
-
-https://uefi.org/PNP_ID_List
-
-...as far as I can tell "CSW" is actually correct for CSOT but "CSO"
-was _not_. Looks as if CSO was supposed to be for "California
-Institute of Technology" (Caltech). :(
-
-We're probably OK with the recent work that Hsin-Yi did in commit
-bf201127c1b8 ("drm/panel-edp: Match edp_panels with panel identity")
-to match against the panel name even if Caltech does ship a "CSO"
-0x1200 in the future since it looks like the string you added matches
-the panel.
-
-That being said, is there any chance that it's not too late and you
-can get CSOT to fix the EDID on "MNC207QS1-1"? Can you also make sure
-that they're aware of this and don't make the same mistake in the
-future?
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: msm8976: Add WCNSS node
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240413170317.34553-1-a39.skl@gmail.com>
+ <20240413170317.34553-5-a39.skl@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240413170317.34553-5-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-In any case, given this investigation and the EDID I'm going to say
-that the panel you've added here is fine.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+On 4/13/24 19:03, Adam Skladowski wrote:
+> Add node describing wireless connectivity subsystem.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
 
-I've pushed your change to drm-misc-next:
+[...]
 
-a6325ad47bc8 drm/panel-edp: Add panel CSOT MNB601LS1-1
+> +					wcnss_wifi: wifi {
+> +						compatible = "qcom,wcnss-wlan";
+> +
+> +						interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +							     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+> +						interrupt-names = "tx", "rx";
+> +
+> +						qcom,smem-states = <&apps_smsm 10>, <&apps_smsm 9>;
+> +						qcom,smem-state-names = "tx-enable",
+> +									"tx-rings-empty";
 
--Doug
+Since you're already going to resend, please keep one entry per line,
+this fragment is very inconsistent
+
+looks good otherwise
+
+Konrad
 
