@@ -1,169 +1,169 @@
-Return-Path: <devicetree+bounces-61709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C51458ADD7D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:28:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5958ADD81
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:29:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ABBC1F21E5B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C8D11F21DF5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A9A22EE4;
-	Tue, 23 Apr 2024 06:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5440622EF0;
+	Tue, 23 Apr 2024 06:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="hcM4JGFF";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Bl73Wdja"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr62kshn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541F418AED;
-	Tue, 23 Apr 2024 06:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233A1225CB;
+	Tue, 23 Apr 2024 06:29:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713853697; cv=none; b=iIMatzk+cOruKfOy/W2v7IFg1nnQrDCSQ7m3tvFtvQ6YFdz2MspbM8ac9jSNvJjrxPGJqeXgoI6jFsWNyaQTJ0AGFE4v55xtW5wzG/wwdAr57tZBgpTnkJEuj/0GGSpGFNciypiT9Qi3zbH8jawAYt3KoUZ0hIER8Mn2Vj0DRzQ=
+	t=1713853757; cv=none; b=E0LyDTdIg006/7cKNH2AUMZYiyBuC6+vpKyVbVPwKORWDB6UWnKHniLlRiEpZtQkwbXaBZnS1Y47lSwlea410/ZRvqAzm4XC9hjjrKRvFNvwmwAwok15Bhu4zx1M1Qy4E25DzIvQXcl/1Rs3qPbmse9OBH8ZhXZg8MZGDu35Ky0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713853697; c=relaxed/simple;
-	bh=bTqOlJPxf19hbYZuRhpdOowyks9931C1XB8PhVGIDM8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mz6EshwfNvbVMV8fzNFFwUzVLY63/eLD+e+NaDDezaxFNPUPFZHp4dlFndH7f9vPIFpYeEEw44BHrtFdTgvx9yDC3rXkI1qRXZ5DZQoKBowPF8/fmD4mmUhRtYl+eXH6O7pHg6XaIWx1+5fuUwEceF4lvJzECZ7Awx4vqt3ts9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=hcM4JGFF; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Bl73Wdja reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1713853695; x=1745389695;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ekNGjMp4Zrx4F3nM7RoEMrNb3QuJRzTm83VI153eLUU=;
-  b=hcM4JGFFZA6iPkRzqPYgvma51DtKjY0NuGA6VIlkSKTnYBl9t7bUl8qU
-   p4oKViMMQHsFEeycJV3M/L7c1SzyCSKwrWRUoOADqkZMSW12L8R86SK6Y
-   q1l6oKjib6/BdB1H0fQD8ZCB380QwV2ueEz2SIFQAMCExYcknEwMTb7uD
-   tx53rtIrLdRP2kveizGv6aZKzke5CONySNtCHI6hmH1fqDHILKq3Avs8k
-   sFIF70wjdMjbtP8Mt5oA9tbbbCMJR66l5INGhH9cEJPTMZU8zOBvxPXRJ
-   jdvZTeck+Pb5n+vMwiPlzbg39edCj8gV17pZLRRKDBIxFqwdprbDOA5Cu
-   g==;
-X-IronPort-AV: E=Sophos;i="6.07,222,1708383600"; 
-   d="scan'208";a="36554990"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 23 Apr 2024 08:28:13 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C75CA17515A;
-	Tue, 23 Apr 2024 08:28:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1713853689;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ekNGjMp4Zrx4F3nM7RoEMrNb3QuJRzTm83VI153eLUU=;
-	b=Bl73WdjaVJUonUkmm6/VvfC9P8u9XubvvBXhguS429AKWdPK54G/hDvus7wElW/Yl+cpOV
-	RE2/R0VmrI5S8aW6pOD2p/fuc5jgWMTXfFPnzo30ZqxqZXar/RRFMgCFd4+Q7wNIc1Wp+X
-	DOhao5wykMaoHmWiz+gQQerzD7ZHt/f4SqnFbtg1jGRLAzM9hlAyC6bh/PCTWoUpEkRfTx
-	pKgPDBknvPlFmXG6Pmuccm00s9Snb/P5VSsI7/DknmIntXmlLYkXaFBFVRNQBT2RLAJYoJ
-	iwl/c3gi6TUSQw0Omz5w4TNeocK2e5XNGEdyxWsOQdOnZtibBZKMg4muS5mB/Q==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] dt-bindings: interrupt-controller: fsl, irqsteer: Add imx8qxp support
-Date: Tue, 23 Apr 2024 08:28:10 +0200
-Message-ID: <4564666.LvFx2qVVIh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <ZiaScfP5Ep81cPXJ@lizhi-Precision-Tower-5810>
-References: <20240422064949.70778-1-alexander.stein@ew.tq-group.com> <ZiaScfP5Ep81cPXJ@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1713853757; c=relaxed/simple;
+	bh=cBSsZ/h0qVJQL8CIvsXlAF52pPYuWnrnSHQgBo7++Eo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I3mGtnQ53NMPIZMSv4tbhlwiPPmPjZJblLUU0JaQtjbGr/GetRdj7uv1kwxXxgtqkUbAKg30vOkR9aDKxxYfZBnNLT+tsT7EBXNabLkkrvhXFSQyRq5IRaV1xvU9IKgNMczM1WzL/yBJw8yKs5pbuQXEfUbvaXlhJDYK/710l24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr62kshn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90422C116B1;
+	Tue, 23 Apr 2024 06:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713853756;
+	bh=cBSsZ/h0qVJQL8CIvsXlAF52pPYuWnrnSHQgBo7++Eo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tr62kshnCH3OiANlk31gTX5yxCHXZ2RBdkixaowPuERsd64X24gFL6itaYEtqYN29
+	 Iqq9cjtaAqhE9czsr/24ZTNCrMSvVoTDaH8mUdcvtY2JJaHeiLd1ZOue8vRmpDPRcM
+	 u+BTyqJYrnabaWKY1aFgu8cBwGao2ihCZz+VuCOBrlEo9BHiQPjtdkV4dEdF41LOhe
+	 H1FLMlAfJjTaqA8IatVavOhE5emm1Kp3B/UllhM3fT5B5NzPNvqfzwgNYRDIV4vTtt
+	 9qNmiBSaZtMyN5X5/B7G+5UWPNQcNdoXWBObY9NrFmWKsqwDvL6EjBpmCVprcUp7J8
+	 Qy3ycr76s47FQ==
+Message-ID: <2b422e9f-bd80-4c57-a3e1-8b463b25c834@kernel.org>
+Date: Tue, 23 Apr 2024 08:29:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: mmc: renesas,sdhi: Drop 'items' keyword
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-mmc@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240422213006.505576-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240422213006.505576-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240422213006.505576-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Frank,
+On 22/04/2024 23:30, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Drop 'items' keyword from compatible list which have single const value.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml  | 18 ++++++------------
+>  1 file changed, 6 insertions(+), 12 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index 29f2400247eb..90c8b1b727a8 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -12,16 +12,11 @@ maintainers:
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - items:
+> -          - const: renesas,sdhi-sh73a0  # R-Mobile APE6
+> -      - items:
+> -          - const: renesas,sdhi-r7s72100 # RZ/A1H
+> -      - items:
+> -          - const: renesas,sdhi-r7s9210 # SH-Mobile AG5
+> -      - items:
+> -          - const: renesas,sdhi-r8a73a4 # R-Mobile APE6
+> -      - items:
+> -          - const: renesas,sdhi-r8a7740 # R-Mobile A1
+> +      - const: renesas,sdhi-sh73a0  # R-Mobile APE6
+> +      - const: renesas,sdhi-r7s72100 # RZ/A1H
+> +      - const: renesas,sdhi-r7s9210 # SH-Mobile AG5
+> +      - const: renesas,sdhi-r8a73a4 # R-Mobile APE6
+> +      - const: renesas,sdhi-r8a7740 # R-Mobile A1
 
-Am Montag, 22. April 2024, 18:38:09 CEST schrieb Frank Li:
-> On Mon, Apr 22, 2024 at 08:49:49AM +0200, Alexander Stein wrote:
-> > Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-specif=
-ic
-> > compatible, which also requires a power-domain.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
->=20
-> Next time, please cc imx@lists.linux.dev
+That's just an enum.
 
-I use the addresses from ./scripts/get_maintainer.pl, maybe you want to
-add that to MAINTAINERS.
+>        - items:
+>            - enum:
+>                - renesas,sdhi-r8a7778 # R-Car M1
+> @@ -40,8 +35,7 @@ properties:
+>                - renesas,sdhi-r8a7793  # R-Car M2-N
+>                - renesas,sdhi-r8a7794  # R-Car E2
+>            - const: renesas,rcar-gen2-sdhi # R-Car Gen2 and RZ/G1
+> -      - items:
+> -          - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
+> +      - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
 
-Thanks and best regards,
-Alexander
-
-> Frank
->=20
-> > Thanks for the feedback.
-> >=20
-> > Changes in v3:
-> > * Move 'allOf' before 'additionalProperties'
-> > * Remove superfluous 'minItems: 1'
-> >=20
-> >  .../interrupt-controller/fsl,irqsteer.yaml      | 17 ++++++++++++++++-
-> >  1 file changed, 16 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl=
-,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl=
-,irqsteer.yaml
-> > index 20ad4ad82ad64..3d33b75d6ecfa 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqste=
-er.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqste=
-er.yaml
-> > @@ -14,7 +14,9 @@ properties:
-> >      oneOf:
-> >        - const: fsl,imx-irqsteer
-> >        - items:
-> > -          - const: fsl,imx8m-irqsteer
-> > +          - enum:
-> > +              - fsl,imx8m-irqsteer
-> > +              - fsl,imx8qxp-irqsteer
-> >            - const: fsl,imx-irqsteer
-> > =20
-> >    reg:
-> > @@ -42,6 +44,9 @@ properties:
-> >    clock-names:
-> >      const: ipg
-> > =20
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    interrupt-controller: true
-> > =20
-> >    "#interrupt-cells":
-> > @@ -70,6 +75,16 @@ required:
-> >    - fsl,channel
-> >    - fsl,num-irqs
-> > =20
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: fsl,imx8qxp-irqsteer
-> > +    then:
-> > +      required:
-> > +        - power-domains
-> > +
-> >  additionalProperties: false
-> > =20
-> >  examples:
->=20
+This as well
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
 
+Best regards,
+Krzysztof
 
 
