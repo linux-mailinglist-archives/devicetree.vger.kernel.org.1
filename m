@@ -1,116 +1,142 @@
-Return-Path: <devicetree+bounces-62069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63D18AFCA0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:33:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16968AFCD1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:48:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 424311F22FC1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:33:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E64F285842
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D259F3D575;
-	Tue, 23 Apr 2024 23:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6854243AB4;
+	Tue, 23 Apr 2024 23:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wzaxc9Rs"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EDfgkPum"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E84B1DFF5;
-	Tue, 23 Apr 2024 23:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F66367;
+	Tue, 23 Apr 2024 23:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713915229; cv=none; b=kvZ+ZtWsmhHPxRfz7UVCZAINwPHXZGxaYGuRfaalZphdF6o9uIe2NL+5rLi7EzkndYnOeiqqyhWLi9Z0tUIzjLOtvflw1f/344g6O3GBkBKq+nhtgyjPq8eSQ3x4KxzP5pR9BftDORQSIOh4dtrB8CyWcX0b57Tt3HwEY3LxqSI=
+	t=1713916107; cv=none; b=oa7VnEkxs4XlBC3Pu/PVZkvMh2KiZ/dTzQKRz3UapbsFzSnsv3BZhYdLYFHBy0N/Tvbsbq7pm3gPx3rrj54Ooem33mJGDpp7L2dYjh0OWIVh0J/PNLhASLekH7wfCFZU+JYbtP+F2bdnZzxw4UA0Wi/Gh2I1VzRLTMD+R9el5Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713915229; c=relaxed/simple;
-	bh=UhT05+SHXUDIfRetZSC879uPTe6jaust2zQku4q1KQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=N+uahqwUygGqs+qDdiiClWYKJK+7GFgtKPFhHGq0DRGZsFeK6gKkpfXAsccRc1dyRDOGgpqiQWsKX8KJmv+6gBNm5gH349+9T4l8WysokQSDzmKlsQeFiBLQ+oSTZ8cdReY2pH3rYYDaCG58D53gbcd8hZG66uP7PDZ+q82Oh0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wzaxc9Rs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43NNSFui023474;
-	Tue, 23 Apr 2024 23:33:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=UhT05+SHXUDIfRetZSC879uPTe6jaust2zQku4q1KQk=; b=Wz
-	axc9Rs/aY4eq7Yw9Wxoi1c7YH8PzSQYqQqP2mjDYmyDmP4zEV8dfgh5XKkkOeHs+
-	IYkzu1xETm7/gHQBWp9bw64xPesLAakgpUtjuACCI3lNhW2wJEKim6gvRdua586O
-	XhUktIcY9RCjoZ9Fbq0LuEJ/LgNlU+Qkxfa7j6jkAVn+Vq69LX4qYbum1d+8SC3S
-	4vco8Ja6qUiblQo2uzsUN8THHe6kTGZY9Bxvgyr+5dZnm1Z6fywCOOc8gNaaiowi
-	jI4jXjZ3wGK2t9Iv4nGFpV80blauhoyrKIpoU3MCX47dw192BA4D79prBRqx4zlo
-	DM0AhzK77D2O1IJHgdzA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xp9aa2q1p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 23:33:44 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43NNXgXV021080
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 23:33:42 GMT
-Received: from [10.71.110.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 23 Apr
- 2024 16:33:40 -0700
-Message-ID: <24c894ae-5c4a-4462-b036-5929db2fc5ac@quicinc.com>
-Date: Tue, 23 Apr 2024 16:33:29 -0700
+	s=arc-20240116; t=1713916107; c=relaxed/simple;
+	bh=YhOp2xWkA1R/3ZZdAEZTl894ZzRfvtitlTs3OwDHWv8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=khX00Ofh9bIgUIRobFzHDFMWQ1fuBuwJr/XmJPirx89LIku3c5RfkybviF42M3fqqFzCkbhMydzsURUtvYjPqWJ0Cw6nYTG+Ww2Mqftddvm5DjvOK6B7Q4p2QsKS1xhz0OGxaI5s7T99rrmjeze+oMVpbaf7qH17q5bnRTC05Hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EDfgkPum; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=zIv+aE6d9Tsxuf0ARD6E2PjXoytyfohuGEy0R9e1RqE=; b=ED
+	fgkPumRzS/0pzuFMI0QnPfL1n3gUdYyyOOW1G9f98lC9YUv64Bn0j77UK2RiKvei3TP3Buv9Q+RgJ
+	16IaNSEIJdGDkOd7TPXhOTDu8RzvxM+5whGpGOn2gsxzKWRl1+F6I5eVOUaq52Up/T9SfrV8QjqTc
+	exH1UhbdLy2Rrlc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rzPrx-00DlDm-K0; Wed, 24 Apr 2024 01:48:13 +0200
+Date: Wed, 24 Apr 2024 01:48:13 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v4 06/12] net: ethernet: oa_tc6: implement
+ internal PHY initialization
+Message-ID: <aae5f0be-7e1f-443e-831a-ab0b4df0b839@lunn.ch>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+ <20240418125648.372526-7-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of: reserved_mem: Remove the use of phandle from the
- reserved_mem APIs
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <robh@kernel.org>,
-        <saravanak@google.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20240422235243.2878536-1-quic_obabatun@quicinc.com>
- <d024a0b0-46aa-4182-a8e8-8ff15f12c363@quicinc.com>
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <d024a0b0-46aa-4182-a8e8-8ff15f12c363@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qlaKYsRXzo7aOhtVXPD5ZDxRLe6tu7Qg
-X-Proofpoint-ORIG-GUID: qlaKYsRXzo7aOhtVXPD5ZDxRLe6tu7Qg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-23_18,2024-04-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=613
- bulkscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
- impostorscore=0 adultscore=0 spamscore=0 suspectscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404230065
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240418125648.372526-7-Parthiban.Veerasooran@microchip.com>
 
+> +/* PHY Clause 22 and 29 registers base address and mask */
+> +#define OA_TC6_PHY_STD_REG_ADDR_BASE		0xFF00
+> +#define OA_TC6_PHY_STD_REG_ADDR_MASK		0x3F
 
-On 4/23/2024 7:32 AM, Jeff Johnson wrote:
-> On 4/22/2024 4:52 PM, Oreoluwa Babatunde wrote:
->> The __find_rmem() function is the only place that references the phandle
->> field of the reserved_mem struct. __find_rmem() is used to match a
->> device_node object to its corresponding entry in the reserved_mem array
->> using its phandle value. But, there is already a function called
->> of_reserved_mem_lookup() which carries out the same action using the
->> name of the node.
->>
->> Using the of_reserved_mem_lookup() function is more reliable because
->> every node is gauranteed to have a name, but not all nodes will have a
-> s/gauranteed /guaranteed /
->
-> (jumped out at me while scanning the kernel patches)
+Did you every find out why C29 is reference here? From the standard:
 
-ack.
+29. System considerations for multisegment 100BASE-T networks
 
-Thank you Jeff!
+NOTE—This clause relates to clauses that are not recommended for new
+installations. This clause is not recommended for new
+installations. Since March 2012, maintenance changes are no longer
+being considered for this clause.
 
+I don't think you should be referencing it in the code.
+
+> +static int oa_tc6_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
+> +{
+> +	struct oa_tc6 *tc6 = bus->priv;
+> +	u32 regval;
+> +	bool ret;
+> +
+> +	ret = oa_tc6_read_register(tc6, OA_TC6_PHY_STD_REG_ADDR_BASE |
+> +				   (regnum & OA_TC6_PHY_STD_REG_ADDR_MASK),
+> +				   &regval);
+> +	if (ret)
+> +		return -ENODEV;
+
+In general, you should not replace an error code from a lower level
+function with a different error code. If there is a good reason to do
+this, please add a comment.
+
+> diff --git a/drivers/net/phy/microchip_t1s.c b/drivers/net/phy/microchip_t1s.c
+> index 534ca7d1b061..769a88254285 100644
+> --- a/drivers/net/phy/microchip_t1s.c
+> +++ b/drivers/net/phy/microchip_t1s.c
+> @@ -268,6 +268,34 @@ static int lan86xx_read_status(struct phy_device *phydev)
+>  	return 0;
+>  }
+
+Please put this into a new patch.
+
+>  
+> +/* OPEN Alliance 10BASE-T1x compliance MAC-PHYs will have both C22 and
+> + * C45 registers space. If the PHY is discovered via C22 bus protocol it assumes
+> + * it uses C22 protocol and always uses C22 registers indirect access to access
+> + * C45 registers. This is because, we don't have a clean separation between
+> + * C22/C45 register space and C22/C45 MDIO bus protocols. Resulting, PHY C45
+> + * registers direct access can't be used which can save multiple SPI bus access.
+> + * To support this feature, set .read_mmd/.write_mmd in the PHY driver to call
+> + * .read_c45/.write_c45 in the OPEN Alliance framework
+> + * drivers/net/ethernet/oa_tc6.c
+> + */
+> +static int lan865x_phy_read_mmd(struct phy_device *phydev, int devnum,
+> +				u16 regnum)
+> +{
+> +	struct mii_bus *bus = phydev->mdio.bus;
+> +	int addr = phydev->mdio.addr;
+> +
+> +	return bus->read_c45(bus, addr, devnum, regnum);
+
+It is better to use __mdiobus_c45_read(). That will check you have the
+lock held, won't jump through a null pointer if the bus does not
+implement C45, does tracing, and increments the MDIO statistics.
+
+	  Andrew
 
