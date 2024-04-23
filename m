@@ -1,153 +1,105 @@
-Return-Path: <devicetree+bounces-61863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF7D8AE6C0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:47:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6002F8AE6CC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D431F21C44
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:47:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C069281F45
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907B613BAEC;
-	Tue, 23 Apr 2024 12:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D902F12DDB4;
+	Tue, 23 Apr 2024 12:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="c0HJG/46"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kKY/7MhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9681213AD3C
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 12:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC02D85C48;
+	Tue, 23 Apr 2024 12:44:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713876237; cv=none; b=SKcW1E8rQQZZ6ph/pHGgqP8UNUILPkUGXdOhbrIeJo4b963dneQKazyrC2mYfwuioSUQcm+xhN1LDEqt1JqrELsLSyPJiEfHrZbVQWit6dy6ylB+7UI821pb5turZMdhnPSUYzT9LfFZYaUUIEXg6njiqDyANv/vMzdEgR5unaw=
+	t=1713876299; cv=none; b=mTkTd0ajOYaMsKw8P/BJJGEIJacZ/YUt+wKUnvPX4VFXWBEowCMKhU8nkNeF5nLslbXNHHOsevuR81UiuYA1tsjrqqQjmBh0EqmC6YdfkFbIukfT2cR/mmWUfiZvsBZ/ZFP8Z0MNfQXe/DrJ9z5dwXvX6F4oIG+oKlUdnHyuJp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713876237; c=relaxed/simple;
-	bh=x/hf7mR8S0PaebbZDXn5tmxtag3p7rdZEs+HYwpAhAM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XL+YkpoRJ5M771R5ePLCykeOEOXzGAymewO/eHwXreJH2Sq66FA+dUnRnlUdHwBTL2CcR8EwsxTXZhY9KJruKKkChLCUXNCAZ4J5uSRLoWbTQuuP8tRh9f6brcfEgHkPiTr50zOoBUJSYeTr6GlhNaOy/iQOqs6s0hM9hfr818M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=c0HJG/46; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-346a5dea2f4so1223510f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 05:43:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713876234; x=1714481034; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OClMR/8Jm3sCmLbe455uZIaBUTeeLegIVNx5rAADYDc=;
-        b=c0HJG/46UEBYR5Z0n65OufLseuB50Uz2AZvU3SEDbWCQGScxpvbo5Vmnas64iByAr5
-         RBydDyNgdl2o1oUbrEKCRSmfIryW8X3h1DvjJwcIlJ01+CMxl/i/tVk2U63pVjq8LAAx
-         8viQNdeECkLLHJGUr2F8GIDCyEL0Mf11BWYx/ObTBe5/ukE0o9SrhQjQpSvgPkKm+CuC
-         ijTeTPLpb1r/RVP26LNIGlW3Eo1h5Lbk73T7o5m5h3e+Z5kMBRl0GRmjFePSnhssOXEu
-         HQoE49DXfuROY24ftH5Vv4zsRl8mUibu+BLoua2RZijgo3q3+jIoarDvlnM0ihqfpzgQ
-         U19g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713876234; x=1714481034;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OClMR/8Jm3sCmLbe455uZIaBUTeeLegIVNx5rAADYDc=;
-        b=YgeN1mVq0eTJCnxZY/FJuwn/5wnMg/6N/MQNLGZl9srts92CuJQytyVrTRO+rNY7l2
-         drJJ/7saVLVBSP3HhTnYK7D2pf35DCAWBb8Ko2Ub8fyNo9jl7dZScbERJkVzGxGOiJ6Y
-         x7xI1w+emPIjkK2KOhbS903b3SVjgx8+8Lwegw35A9pMzv+yJ9SOqKki+6W0YqNzCaE8
-         PRswPmhNZJ3qEIroKrAsEEKCk6TOrgmsHLIHgl60PCcu32l39QQfgrlBg0LnKjYk9ycn
-         d35U3lyAcxHm5g1k4LjXdQlBZHqXKq9MfH2/dhXgg3LcQL2a7K/d1PbpOsvblqe4fcYR
-         eOow==
-X-Forwarded-Encrypted: i=1; AJvYcCUpPrubBqfPJU5gN2uIrPij3xvZSVLzUZ+48SZ9FU7NLmwUuAS+bGw34wUstR+XpTVnND0onKZkEIpLgki6MdiPYF6ciA6vVOtZhg==
-X-Gm-Message-State: AOJu0YyuDa9C7/hRbalVmAB4EvdkHMq8vBwr7jz+eIONky1bipwWg7kR
-	Lcd+OTwYsb40zDeaZ26k3ToVspBNTjZse3HlZ9208M0nJ8trpNU7CykN3CU7abY=
-X-Google-Smtp-Source: AGHT+IGgrmGvVTGX++7wyp505WvQlZhf5R5sMKMBgP2fuHjYmGDsg8m8hdOu/tW6hNp+KAz9yWPf8g==
-X-Received: by 2002:a05:600c:1c27:b0:41a:c4fe:b0a6 with SMTP id j39-20020a05600c1c2700b0041ac4feb0a6mr1112594wms.4.1713876233977;
-        Tue, 23 Apr 2024 05:43:53 -0700 (PDT)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:71cb:1f75:7053:849c])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b00418a386c059sm19975709wmo.42.2024.04.23.05.43.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 05:43:52 -0700 (PDT)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Shuah Khan <shuah@kernel.org>
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
+	s=arc-20240116; t=1713876299; c=relaxed/simple;
+	bh=cTXx+iD2wmjxxov1qX3iubOa9Y20RoJrqWIrv/7Wz0U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lk16loD62knNnz5V3UlkUb6PBWeweXHcGotd5G2Tg70yu+2Kli9oP8m/oK3GaNxMBT5RFxps+29qcjirq7PsWHfWz79pYzGTTrai8m8a/Y6Z35a6pfspY+Zqt2FvIrk0+pLWngcG5vEu7fQcxQN+ysOvFUk+cJxniNQHgzo+rYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kKY/7MhB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E753EC116B1;
+	Tue, 23 Apr 2024 12:44:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713876299;
+	bh=cTXx+iD2wmjxxov1qX3iubOa9Y20RoJrqWIrv/7Wz0U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kKY/7MhBGou+3DqZ/lN9QH+aKZ7FDa9tbgHIKuxifPyXktA/MznLQJ1uuwRhwD2lB
+	 OmyXEgOTk60IOS1FJJrXEK1huQIM5Njl3G/q+fg3GtKaWH1Kz6tGsCsiJ42M43z0Lo
+	 QtZc/bPi71errt/8feNSEc1qXa2sQd3EPwoPzJmlDQVbmsEZwOtaaczeUP4rZAqUNr
+	 dyi7rVBAQN0aHCWrbllEil1GKKrufWjy28e/dnnNBB9g1bj3kKqtrSrzliOjuuiYwu
+	 vuCT6Am90rSjErLhmETtvcXPFOwHGQyoxUFJiN0B87fYFip+YA9uRq2wHtYlgMMNJa
+	 TKXfcsBb5u59A==
+Date: Tue, 23 Apr 2024 07:44:56 -0500
+From: Rob Herring <robh@kernel.org>
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-kselftest@vger.kernel.org
-Subject: [PATCH v3 11/11] KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
-Date: Tue, 23 Apr 2024 14:43:25 +0200
-Message-ID: <20240423124326.2532796-12-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240423124326.2532796-1-cleger@rivosinc.com>
-References: <20240423124326.2532796-1-cleger@rivosinc.com>
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: pci: xilinx-nwl: Add phys
+Message-ID: <20240423124456.GB4105016-robh@kernel.org>
+References: <20240422195904.3591683-1-sean.anderson@linux.dev>
+ <20240422195904.3591683-2-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240422195904.3591683-2-sean.anderson@linux.dev>
 
-The KVM RISC-V allows Zcmop extension for Guest/VM so add this
-extension to get-reg-list test.
+On Mon, Apr 22, 2024 at 03:58:58PM -0400, Sean Anderson wrote:
+> Add phys properties so Linux can power-on/configure the GTR
+> transcievers.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> ---
+> 
+>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> index 426f90a47f35..02315669b831 100644
+> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> @@ -61,6 +61,14 @@ properties:
+>    interrupt-map:
+>      maxItems: 4
+>  
+> +  phys:
+> +    maxItems: 4
+> +
+> +  phy-names:
+> +    maxItems: 4
+> +    items:
+> +      - pattern: '^pcie-phy[0-3]$'
 
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
-Acked-by: Anup Patel <anup@brainfault.org>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
- 1 file changed, 4 insertions(+)
+The names here are pointless and redundant. Names are local to the 
+device, so 'pcie' is redundant. They only refer to PHYs, so 'phy' is 
+redundant too. All you are left with is the index of the entry.
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index 61cad4514197..9604c8ece787 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -59,6 +59,7 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCD:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCF:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCMOP:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFH:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFHMIN:
-@@ -429,6 +430,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(ZCB),
- 		KVM_ISA_EXT_ARR(ZCD),
- 		KVM_ISA_EXT_ARR(ZCF),
-+		KVM_ISA_EXT_ARR(ZCMOP),
- 		KVM_ISA_EXT_ARR(ZFA),
- 		KVM_ISA_EXT_ARR(ZFH),
- 		KVM_ISA_EXT_ARR(ZFHMIN),
-@@ -957,6 +959,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(zca, ZCA),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcb, ZCB),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcd, ZCD),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcf, ZCF),
-+KVM_ISA_EXT_SIMPLE_CONFIG(zcmop, ZCMOP);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfa, ZFA);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfh, ZFH);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfhmin, ZFHMIN);
-@@ -1017,6 +1020,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_zcb,
- 	&config_zcd,
- 	&config_zcf,
-+	&config_zcmop,
- 	&config_zfa,
- 	&config_zfh,
- 	&config_zfhmin,
--- 
-2.43.0
+Now if PCIe can work on only lanes 2 and 3 or similar, then maybe 
+-names becomes useful.
 
+Rob
 
