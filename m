@@ -1,295 +1,228 @@
-Return-Path: <devicetree+bounces-62020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF7C8AF77A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:43:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E598AF781
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0787B22FD4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:42:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE831B24829
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135191419A1;
-	Tue, 23 Apr 2024 19:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7FAD1422C3;
+	Tue, 23 Apr 2024 19:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="F6SXbmbW"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="e2g9+Ulc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2042.outbound.protection.outlook.com [40.107.94.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3EA3EA76
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 19:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713901374; cv=none; b=IK72xgYLwcOokFj225yrl0FFezED9rpylDcP/tQc1bAvGBNZ9y2zWxXoSL86hW2BinqBtsakpVb3QL9HhdBpMX0OiqgjSNhga2Iivhx2xX9Okckn2hlyL9SyBX/GI3OXFV2AY0h6WcdO94bqsxE8YDCLRF7iSUSGXzQM7gPQk5g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713901374; c=relaxed/simple;
-	bh=d7juRE6UVjBQ19KkZKcNj/CSuTks2UiGq82TxjdFrnM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R8vIkPyIHYoKYMQoCZaSkUXsLVkHE9okbunMlk+ZW7TWiv66eezSyvjHWtOKxCgdWkEj4sxlja0wl9txhqn1Y7eDhtARhvpM94HTzMy+3dQ6GqN2JD3Szq7NuqF+jsndqr4jL1c9viyYmb0ayW1Nkr/m1UizCgftphEJCDjTDRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=F6SXbmbW; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-de45dba157cso4895814276.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 12:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713901370; x=1714506170; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XaYZhMiM4MntjcM5EX8X8Nr2sEG/Ld443mGOWMzp3xA=;
-        b=F6SXbmbW0SpfnFwxtWoZwgaAbWZ33jqyWvmW0Q2wXlJHBYlTKQDky6eZKPwsQKix2g
-         we2FjZo9DKoTbm31uK0mTP9RU9+/q9OmMZ486SzcRzXCau1vHvSyJBp/a8fOIm/hoedG
-         6vybMMv9MdYmNSzfI+dDq3TCvAdb3+3Gmtx7rXBVz6fsZ8ybZtluntm4mGH+bmakN2Uf
-         REOZxAf8/JyMZIaklW68Z/gkz9smWOWUSUn1+iNkNfNTvPt93oFSnM2RiVE7KAdVkHcJ
-         GZFGVr0GyCAddMse639mhcUXx+cYVH47iH49yQPrlhOqofod/A1ZCiMcgUrt6j1ePyWw
-         IVYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713901370; x=1714506170;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XaYZhMiM4MntjcM5EX8X8Nr2sEG/Ld443mGOWMzp3xA=;
-        b=G0pXcZ7PrIbzHcwHVofISwoPrp8RdCdPbAXzSEmokZMD3yicWVZqYimq+aeRW/e2Wh
-         cMu0if20ltGW7eobjAZKTkJ4CZFWeUCMBBFRFRTAxHzpFvsrwo0mXqZ/SA9KzV87tJVd
-         /ft2PjrkWxBr09aUgeGnNyf85M60ETopnnHLMoseWo7x2y2VS0QvMcGsASG/fyESkeLG
-         IQFcc+T+6l6jVMJu47DJvYIzzeEgD1LxFMJCjEvs23LQ2cmY79U8q21XxS39kYlbU2Le
-         nof1Eu6X4Z5BcdA+1EdM7W3MDi/FgAqQ0KiqHcDhgwl2n/LuO2RTjJilSkC3SjhHWqE9
-         nxMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxQ/teb9YyJCCa3ITdoFKGYUAnxXUK/qwUHn3GMpWEl/1wBx+j4GOuC0dAO5vUNR0AoE8dAFezVvHcMl2McCT0g3KZSLoH8/7QRA==
-X-Gm-Message-State: AOJu0YxPgcL0kXqk1Ge9QQ7wxbsDPfwyH0BhT9+V+MnjFx8+9tGznCPT
-	3kJrh9RMIMj0Fmd8ibbP589Wzyh6CbP5AIUBjFG8ZCgPr0S13m2cayQLKQMkBhs=
-X-Google-Smtp-Source: AGHT+IGASH0GLPuJ31mzppzwDBiIjS/1WAk85jfXgfijU/ui3qzj6Pg1T1LQ1Gx7eMFMqxoJpuWr8Q==
-X-Received: by 2002:a25:dc0e:0:b0:de5:53ed:bce9 with SMTP id y14-20020a25dc0e000000b00de553edbce9mr669506ybe.46.1713901370397;
-        Tue, 23 Apr 2024 12:42:50 -0700 (PDT)
-Received: from ghost ([50.146.0.2])
-        by smtp.gmail.com with ESMTPSA id y9-20020a2586c9000000b00dc9c5991ecdsm2591063ybm.50.2024.04.23.12.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 12:42:49 -0700 (PDT)
-Date: Tue, 23 Apr 2024 15:42:47 -0400
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
-	kvm-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	conor.dooley@microchip.com, anup@brainfault.org,
-	atishp@atishpatra.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	christoph.muellner@vrull.eu, heiko@sntech.de,
-	David.Laight@aculab.com, parri.andrea@gmail.com,
-	luxu.kernel@bytedance.com
-Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Add Zawrs ISA extension
- description
-Message-ID: <ZigPN/iJ/gLT4DOD@ghost>
-References: <20240419135321.70781-8-ajones@ventanamicro.com>
- <20240419135321.70781-10-ajones@ventanamicro.com>
- <20240419-chafe-leotard-e5daee19b1c8@spud>
- <20240419-8c6af6a169a7aa0b9aa5cac5@orel>
- <20240419-disdain-litmus-82874cc4872e@spud>
- <ZiKeYRnXxtLUtkkW@ghost>
- <20240421-f63f90c2146deb0695b84441@orel>
- <ZibmfbLnGCb9gmow@ghost>
- <20240423-ed9ddb701be1df4a25e29f31@orel>
- <Zif3VZALGtLtl3D3@ghost>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32E41422AC;
+	Tue, 23 Apr 2024 19:47:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713901655; cv=fail; b=PfYcd+cPd11wxA3lC6A1wmkM53SI6yCQwkjyGXe1CSIEHHz5BkRg/54Fut8m8kcw22vnHLdyXMbDJS0cTT3RJEOz4yEFg5f8Z91iCuTmH/LHa+uhB7tZEV9VpOtsjsFvteiCCkCdIpfbs7ktEJDZz7d34LB/Ve1OIk1jMpOHIIg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713901655; c=relaxed/simple;
+	bh=9Cn8QIREBO4T+AjLp7Hil+GyiKNBhjl2SeiACC6hDUo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Fbyge2Y1EHRwPfPV3eLIv2iiUqzgMlNgyKRWI76fCTeMppUw0iOCg9JfsGlSNo2Htmt9OsH+K+gPQdSc4SXaQ0aRES9gjAvsK3BktqOfVHr567QUiV1FA8tf/8T4feslcmC/klh0gSfGe6DXodrWFvtQnqTPMuXJ0j2LGnwOv60=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=e2g9+Ulc; arc=fail smtp.client-ip=40.107.94.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RXDPntDh0Fq/S/n7TXEkxFoeKaYsYNTwiwHZgkEAcEb6fmE/X+9P0EoH80Hc89yCWIknYxJFjGApWFx/ahgjO8ygP1LDsmd+ZgsglnfghlST92aYZw2I31oRIbvyDAYqJG3l+MQfxi40B9TjkjAjkqc1xgmDtYqmeGJl1mZUl2f1BBYwoIMDdwixLXjn4KS3BXPM2muZJcmK1kC/CiQwXUSHmGWOQeQpwp2afO9didFuFdDiVcJhOdYx3IY8b5SRcqSGT4wt3YDCGJjQkc6FYfE6+oYgWIolTXC9bPCzIMZgjT9niMvaESRtkbEBXdDP7oE4S7n7fBFCn9vykwa8ug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3KBBbdJIX5qdDHDo5jB2HUpPyGi8y7koVzbLrxLtcac=;
+ b=WYOMZztddsC/VdJAA8PJVYWEphzj/cJI6gnTwiEIDKDE/zQQy/Rsqosh8hNk37mKhk1YOdTgKtAofxRO6zkRonChO5TsOfMW0FxQeqSvXAQ8HX/NPKHiZjm96dm1HNPbYjJrgdu30BVBMsxYCAml+cibIe9/yHxcorPygk0ZRLP2BIvdmtivqhwQzczUDMesR5WlUs1nCRDIgc6lpHZTAB7IDAJRU24vCqZcXigrk3kSTZXj7mKWhQJadD5Ga06/Q1H70cZS2/Z2pLWbZsYkBqu0F8+NxTPxDLsgQhVR+Nk94dOVqjIlmbE25F5fLIJJO8A7ne+6aziox7ZDhtDytw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3KBBbdJIX5qdDHDo5jB2HUpPyGi8y7koVzbLrxLtcac=;
+ b=e2g9+UlcE63FYCmY842P0WLS14iCjYastMeKQ4BIptj0ZLX59EBph3xSobe3CqaoXsEurgId2yQ/3kffxZfx9rIMsDxOkVIERyN2hNAbgs0O59Zdg4anujZcMiSs8A/0uFTva0eshFl28tOLlMcF5/b42YZ/OEiev77cYpJFbA1RvCtGTre1w19VbiQ+5r63G86NoJKGtbrJuh5n3ZB6IvKoEdPaatMblGsUSU9yUOTyxltYWBKRZsL3MczfwKlUJisQvtxYpgJex5GChcsGG/tEJW5woUbhdXic6H4uad51MQ6ljrDJRI0/97CRV/Tu8vLfc2x9ijWnrbmU6uT3nw==
+Received: from SN7PR18CA0029.namprd18.prod.outlook.com (2603:10b6:806:f3::28)
+ by CYYPR12MB8704.namprd12.prod.outlook.com (2603:10b6:930:c2::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 19:47:13 +0000
+Received: from SN1PEPF00036F3E.namprd05.prod.outlook.com
+ (2603:10b6:806:f3:cafe::12) by SN7PR18CA0029.outlook.office365.com
+ (2603:10b6:806:f3::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.34 via Frontend
+ Transport; Tue, 23 Apr 2024 19:47:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SN1PEPF00036F3E.mail.protection.outlook.com (10.167.248.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7519.19 via Frontend Transport; Tue, 23 Apr 2024 19:47:13 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 23 Apr
+ 2024 12:46:50 -0700
+Received: from [10.41.21.79] (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 23 Apr
+ 2024 12:46:47 -0700
+Message-ID: <e1d4e915-08c9-c2e0-f882-6d7cd9500c96@nvidia.com>
+Date: Wed, 24 Apr 2024 01:16:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zif3VZALGtLtl3D3@ghost>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Patch v3 2/2] memory: tegra: make sid and broadcast regions
+ optional
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <maz@kernel.org>, <mark.rutland@arm.com>,
+	<treding@nvidia.com>, <jonathanh@nvidia.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <amhetre@nvidia.com>, <bbasu@nvidia.com>,
+	Sumit Gupta <sumitg@nvidia.com>
+References: <20240412130540.28447-1-sumitg@nvidia.com>
+ <20240412130540.28447-3-sumitg@nvidia.com>
+ <06849796-f896-4cff-842c-118d86e94a6b@linaro.org>
+ <1aab0272-85ea-e3a1-7d68-27ab4f1e1993@nvidia.com>
+ <6506b2e8-c7f2-460d-b17d-55b731fac1ac@linaro.org>
+From: Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <6506b2e8-c7f2-460d-b17d-55b731fac1ac@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3E:EE_|CYYPR12MB8704:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9650ff02-fa63-4b1b-766b-08dc63ce2c16
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cGgvVUVZRXlIbW5GK1czOUFtZ1dRMlRNN2dITjNXVm5oc09BZW8rL1ExZFpn?=
+ =?utf-8?B?QnlPbDk5NURVZllZcW9OYktTU1FLOFphU1ZzalIxaFVmWTVHVzFtZ0t5bzIw?=
+ =?utf-8?B?MnpscXVxVjlUcVhDbnZRVk1tTTRFaWNMYkx5MFJIQWNVMGN5R2M0cnk4VDNQ?=
+ =?utf-8?B?b1E1Wm5UUkNHMk5XZThBTXZCQmk1M3VzdlBmWE1WOU84ZzNrRVlDOVdRd3ND?=
+ =?utf-8?B?WGE4d01ERmhwVWJSeXc2bVgxeHN3SjZmREhLN0I2QjNNSEVLSWFXaWFiSkIx?=
+ =?utf-8?B?NTcxckNMODhUUHNpS2RYTFpzWHFqMDZDR0IyRHJJOFl5ZmNrMkZ4UUpXdWJG?=
+ =?utf-8?B?di9CNHQ5UDNRM3d4eE1sd0RlSjJjMGJyNUdFL3BHWU14SVptWHZuWVA2VTZJ?=
+ =?utf-8?B?bDFYS3V5ZnQxVzFVSEJDemdMUlh4WlNRbUE0ZmFySHIzalhYbUpGTDUrQnBa?=
+ =?utf-8?B?WE1YaHpvZkRtM3FoUm9XNzRLVnIveVJWTkZsWFIrVTZYUWpVQ3hlNDd3em9N?=
+ =?utf-8?B?bFRtVnQ0Yk51Z3l5S1FZaDBGdDRYcG9ZR2NnMmZFUk5FOVl4dU9QZkQ3dmEr?=
+ =?utf-8?B?cWhQZzI4azczQVZNTS9Bb1o0RExZbzZsNCt0UzZyNTdKZ3pPVitRbk5tUmRR?=
+ =?utf-8?B?MFpFVlZ0T1V4K0cxeTJUMTcrc2JrMUVlOFQrdkdIdVpEZGlpVVhXYmxmUnVP?=
+ =?utf-8?B?YTlsY1ROMmVZNUN0UDZyd2cySjVxY0I1QW5wRThnZjQxNS9JanJKQjA2YWh4?=
+ =?utf-8?B?eGNKbmwwVEowbFNleTN5bUw3ekFRaHMvMUNHMlhjWmVkMEhRWTBwMnhRYUtO?=
+ =?utf-8?B?Um5MSnU0bVRIVTlZWXVYOFNzV3B6VEY0T3hpTGZQRzYyODdsbzdlcTZNbVlt?=
+ =?utf-8?B?R1E2NXlzSXJEZlJjb3ptdmJGa3JKMzF4NUh5NVF6Y3IvNlBZMzVQN1Z6aWNV?=
+ =?utf-8?B?Y1d1emlhQk53Qm54RkdxMUZranpBcWVTWFZXSkVPQmpGbXVtSTFyRUxhRHVQ?=
+ =?utf-8?B?RitId2oxeFQrT2VvUVg5TDV3MUFYTDM1c1NSYXIvQkh6ZWNCM0tJRWtUMUlB?=
+ =?utf-8?B?eWZsSjJJdm9aNTNNYVY4VTlxS3V1WlNvd3ZRMkxDOFBpR1IzQlZKRzFTSnF5?=
+ =?utf-8?B?bDdWVzZsZ0VCUzZwWTlmVnlVR2JJM1BGeFFnbnZSMEVqWXpMMXUzM1JqQ0h0?=
+ =?utf-8?B?bE9STlZVcnlHbVQrbGZjVFhMaG5ZN2pVaVIyd0tlMGFQK2hiaHhBOHJ3dExN?=
+ =?utf-8?B?VU1LajM4Sm9sQU82ckVKQzRwemNGblkzYnFSQUV6SnVBRHNZRjlvKy9QMWs4?=
+ =?utf-8?B?Z3BCMG5QMWcwUGpjQjJMNmlEMDJHRlU5VHRKcXFoTjVDN2lBSUNNZHVWTS93?=
+ =?utf-8?B?SzlhZWZSMlFBK1hzNW9aTTQwSUs2UGp1QkR4ZytQdTVNKzVESzQrbHo3TDlK?=
+ =?utf-8?B?T21sWGYxS0RGeERhWnk1ejRrRCs0Vys4MUhReWVvZDJVZDByQjIxZ1lHU0FH?=
+ =?utf-8?B?TGhCY0hDTzE3TkFldmhYRCtnK2ZWdC91WnpMNURFbkEwNTFGWlBOUXQyYVVk?=
+ =?utf-8?B?UWdCZlFxZWUxZnVObnd1eWJRcEdLZEJ6b0VEeGwvbnVBMHc5ajlDbmk2L3JG?=
+ =?utf-8?B?ZGZOLzBqQXE4bzdTK3pndUJEN213QWRiVTUzb2MxeTZ0OWVnR2xtZDh2QTAr?=
+ =?utf-8?B?cnBtdTBWV0FmNDAybndqWHI3LytlNndaTWhYZkZjODJSRU9Ua2IrM04rdTMx?=
+ =?utf-8?B?b3VKS3VZd3RCc0w2ZEg3THhYaHNxeVpaUDRUWHkveFhBWUFXSm9WWGtkWWdh?=
+ =?utf-8?B?eHBTWDMxdzR4ZEl0bkgzR2lJK1JKZThlaVBOOUl2TFBaaG1Yd29SQVMyYldn?=
+ =?utf-8?Q?rsSZqeEzmipFN?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(376005)(36860700004)(82310400014)(1800799015);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 19:47:13.2444
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9650ff02-fa63-4b1b-766b-08dc63ce2c16
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF00036F3E.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8704
 
-On Tue, Apr 23, 2024 at 02:00:53PM -0400, Charlie Jenkins wrote:
-> On Tue, Apr 23, 2024 at 10:46:01AM +0200, Andrew Jones wrote:
-> > On Mon, Apr 22, 2024 at 06:36:45PM -0400, Charlie Jenkins wrote:
-> > > On Sun, Apr 21, 2024 at 12:20:03PM +0200, Andrew Jones wrote:
-> > > > On Fri, Apr 19, 2024 at 12:40:01PM -0400, Charlie Jenkins wrote:
-> > ...
-> > > > > What would be the purpose of a vendor implementing WRS.NTO (and putting
-> > > > > it in the DT) that never terminates? The spec says "Then a subsequent
-> > > > > WRS.NTO instruction would cause the hart to temporarily stall execution
-> > > > > in a low- power state until a store occurs to the reservation set or an
-> > > > > interrupt is observed." Why is this wording for WRS.NTO not sufficient
-> > > > > to assume that an implementation of this instruction would eventually
-> > > > > terminate?
-> > > > >
-> > > > 
-> > > > We can invoke smp_cond_load_relaxed(addr, VAL || anything_we_want()). This
-> > > > means we may not expect VAL ever to be written, which rules out "until a
-> > > > store occurs". As for "an interrupt is observed", we don't know which one
-> > > > to expect to arrive within a "reasonable" amount of time. We need to know
-> > > > which one(s), since, while wrs.nto will terminate even when interrupts are
-> > > > globally disabled, we still need to have the interrupt(s) we expect to be
-> > > > locally enabled. And, the interrupts should arrive in a "reasonable"
-> > > > amount of time since we want to poll anything_we_want() at a "reasonable"
-> > > > frequency.
-> > > > 
-> > > > So, we need firmware to promise to enable exceptions if there aren't any
-> > > > such interrupts. Or, we could require hardware descriptions to identify
-> > > > which interrupt(s) would be good to have enabled before calling wrs.nto.
-> > > > Maybe there's already some way to describe something like that?
-> > > > 
-> > > > Thanks,
-> > > > drew
-> > > 
-> > > Ahh okay I am caught up now. So the wording we are looking at in the
-> > > spec is:
-> > > 
-> > > "When executing in VS or VU mode, if the VTW bit is set in hstatus, the
-> > > TW bit in mstatus is clear, and the WRS.NTO does not complete within an
-> > > implementation-specific bounded time limit, the WRS.NTO instruction will
-> > > cause a virtual instruction exception."
-> > 
-> > That's what the hypervisor should promise to do when there's no other
-> > guarantee of wrs.nto terminating (but the hypervisor likely wants to
-> > anyway since it wants guests to trap on wrs.nto in order to potentially
-> > schedule the lock holding VCPU). The firmware of the host should likewise
-> > promise to set mstatus.TW when there's no guarantee of wrs.nto
-> > terminating, but that's likely _not_ something it normally would want to
-> > do, so hopefully there will always be implementation-specific "other
-> > reasons" which guarantee termination.
-> > 
-> > > 
-> > > With the concern being that it is possible for "implementation-specific
-> > > bounded time limit" to be infinite/never times out,
-> > 
-> > The implementation-defined short timeout cannot be infinite, but it only
-> > applies to wrs.sto. While using wrs.sto would relieve the concern, it
-> > cannot be configured to raise exceptions, which means it's not useful in
-> > guests. If we want to use wrs.sto in hosts and wrs.nto in guests then we
-> > need a paravirt channel which allows an "enlightened" guest to determine
-> > that it is a guest and that the hypervisor has configured wrs.nto to
-> > trap, which then indicates it's a good idea to patch wrs.sto to wrs.nto.
-> > But, adding paravirt stuff should be avoided whenever possible since it
-> > adds complexity we'd rather not maintain.
-> > 
-> 
-> That still wouldn't solve this issue, because the wrs.nto guest may still
-> never wakeup in the implementation-specific way?
-> 
-> > > and the kernel
-> > > enters a WRS where the reservation set is not required to be invalidated
-> > > for the condition we are waiting on to become true.
-> > > 
-> > > An option here would be to enforce in the spec that this time limit is
-> > > finite. If the original intention of the spec was to have it be finite,
-> > > then this would not be an issue. If the intention was to allow no time
-> > > limit, then this would probably have to be a new extension.
-> > 
-> > wrs.nto has been specified to never timeout.
-> > wrs.sto has been specified to never raise exceptions.
-> > 
-> > If we had an instruction which would timeout when mstatus.TW/hstatus.VTW
-> > is clear and raise exceptions when set, then that's the one we'd choose.
-> > 
-> 
-> Yes, this does seem like the ideal situtation.
-> 
-> > > 
-> > > We are also able to change the kernel to not allow these conditions that
-> > > would break this interpretation of WRS. I found three instances in the
-> > > kernel that contain a condition that is not dependent on the wrs
-> > > reservation.
-> > > 
-> > > 1.
-> > > # queued_spin_lock_slowpath() in kernel/locking/qspinlock.c
-> > > val = atomic_cond_read_relaxed(&lock->val,
-> > > 			       (VAL != _Q_PENDING_VAL) || !cnt--);
-> > > 
-> > > The first condition will only become true if lock->val changes which
-> > > should invalidate the reservation. !cnt-- on the otherhand is a counter
-> > > of the number of loops that happen under-the-hood in
-> > > atomic_cond_read_relaxed. This seems like an abuse of the function and
-> > > could be factored out into a new bounded-iteration cond_read macro.
-> > > 
-> > > 2.
-> > > # osq_lock() in kernel/locking/osq_lock.c
-> > > if (smp_cond_load_relaxed(&node->locked, VAL || need_resched() ||
-> > > 			  vcpu_is_preempted(node_cpu(node->prev))))
-> > > 
-> > > VAL is the first condition and won't be a problem here since changes to
-> > > it will cause the reservation to become invalid. arm64 has hard-coded
-> > > vcpu_is_preempted to be false for the same exact reason that riscv would
-> > > want to (the wait wouldn't be woken up). There is a comment that
-> > > points this out in arch/arm64/include/asm/spinlock.h. riscv currently
-> > > uses the default implementation which returns false.
-> > 
-> > The operative word is 'currently'. I plan to eventually get riscv's
-> > vcpu_is_preempted() working since we already laid the groundwork by
-> > adding a preempted flag to the SBI STA struct.
-> > 
-> > > 
-> > > need_resched() should not be a problem since this condition only changes
-> > > when the hart recieves an IPI, so as long as the hart is able to receive
-> > > an IPI while in WRS it will be fine.
-> > > 
-> > > 3.
-> > > # __arm_smmu_cmdq_poll_until_msi() in drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> > > smp_cond_load_relaxed(cmd, !VAL || (ret = queue_poll(&qp)));
-> > > 
-> > > arm driver, not relevant.
-> > > 
-> > > 
-> > > 
-> > > The only case that would cause a problem in the current implementation
-> > > of the kernel would be queued_spin_lock_slowpath() with the cnt check.
-> > > We are able to either change this definition, change the spec, or leave
-> > > it up to the vendor who would be hit by this issue to change it.
-> > 
-> > We could attempt to document restrictions on the condition given to
-> > smp_cond_load_relaxed() and then change the callers to honor those
-> > restrictions, but that doesn't sound too easy. How will we remove
-> > vcpu_is_preempted() on x86?
-> 
-> The solution here seems like it would be to not use wrs for riscv in
-> this case.  We really would need an alternate extension that allows wrs
-> in a guest to be guaranteed to trap into the host at some point. 
 
-Thinking about this a bit more, this is a performance penalty and not a
-correctness issue. This line is an optimization that allows the lock
-holder to jump the queue if the holder directly in front is a preempted
-vcpu. Eventually the vcpu will be scheduled again and give up the lock.
-So an implementation of WRS.NTO that does not have the
-"implementation-specific bounded time limit" that the spec calls out for
-WRS.NTO to raise a virtual instruction exception, would still function,
-just slower.
 
-I am not sure where the line we would draw here. Using WRS here would be
-very beneficial for most implementations, but will not be optimally
-efficient on some implementations of WRS in virtualization. We could
-make a note that for optimal efficiency Linux recommends that a virtual
-instruction exception is eventually thrown.
 
-We also wouldn't need to mess with the cnt variable since that can only
-increase during a loop by the thread that is doing the loop. It is an
-optimization to break out early. Again this is purely performance. If
-the implementation never breaks out without the lock variable being
-changed, it will just wait until the variable is changed rather than
-breaking out early.
+>>>>
+>>>>    static inline u32 mc_readl(const struct tegra_mc *mc, unsigned long offset)
+>>>> diff --git a/drivers/memory/tegra/tegra186.c b/drivers/memory/tegra/tegra186.c
+>>>> index 1b3183951bfe..716582255eeb 100644
+>>>> --- a/drivers/memory/tegra/tegra186.c
+>>>> +++ b/drivers/memory/tegra/tegra186.c
+>>>> @@ -26,20 +26,16 @@
+>>>>    static int tegra186_mc_probe(struct tegra_mc *mc)
+>>>>    {
+>>>>         struct platform_device *pdev = to_platform_device(mc->dev);
+>>>> +     struct resource *res;
+>>>>         unsigned int i;
+>>>> -     char name[8];
+>>>> +     char name[14];
+>>>
+>>> How is it relevant? I don't see this being used in your diff.
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> Did this change for below warning coming with 'W=1'.
+>>
+>> ../drivers/memory/tegra/tegra186.c: In function tegra186_mc_probe:
+>> ../drivers/memory/tegra/tegra186.c:51:49: warning: %u directive output
+>> may be truncated writing between 1 and 10 bytes into a region of size 6
+>> [8;;https://gc
+>> c.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-truncation=-Wformat-truncation=8;;]
+>>      51 |                 snprintf(name, sizeof(name), "ch%u", i);
+>>         |                                                 ^~
+>> ../drivers/memory/tegra/tegra186.c:51:46: note: directive argument in
+>> the range [0, 4294967294]
+>>      51 |                 snprintf(name, sizeof(name), "ch%u", i);
+>>         |                                              ^~~~~~
+>> ../drivers/memory/tegra/tegra186.c:51:17: note: snprintf output between
+>> 4 and 13 bytes into a destination of size 8
+>>      51 |                 snprintf(name, sizeof(name), "ch%u", i);
+>>         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> 
+> I asked how this is relevant to this change and you answer there is a
+> warning. If the warning was there, your answer is really just deflecting
+> the topic, so obviously this is new warning. Which part of code uses
+> longer name?
+> 
+> BTW, really, such answers do not make review of your code smoother.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-- Charlie
+Apologies for not explaining it earlier.
 
-> 
-> > 
-> > We should probably start the process of a new extension which has the
-> > hybrid wrs.sto/nto instruction, but I'm reluctant to, since, in practice,
-> > the current wrs.nto is probably fine. I don't really expect there to be
-> > implementations that never terminate, even though I'd rather we document
-> > that it's _required_ wrs.nto terminates, or that exceptions be raised.
-> > Maybe I'm attempting to document it in the wrong place though. Maybe this
-> > is more of a Documentation/arch/riscv/boot.rst type of thing.
-> > 
-> 
-> wrs.nto is most likely sufficient. A new extension will take a long
-> time. We could go ahead with wrs.nto, propose the extension, and when
-> the extension is ready switch over to it. In the meantime have this
-> behavior documented.
-> 
-> > Thanks,
-> > drew
-> 
-> - Charlie
-> 
+I increased the buffer size to suppress a static check warning in the
+existing code due to big range of 'unsigned int i', if copied to small
+name buffer.
+
+Seems like the warning is harmless as the maximum value of num_channels
+is 16. I will remove it and keep the buffer size as 8 in the next
+version.
+
+Thank you,
+Sumit Gupta
 
