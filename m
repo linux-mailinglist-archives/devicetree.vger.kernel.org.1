@@ -1,176 +1,199 @@
-Return-Path: <devicetree+bounces-62031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D148AF81C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E02B8AF844
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D496E1F22748
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:42:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16FE01F25C5B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC5E142E79;
-	Tue, 23 Apr 2024 20:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07D8142E8D;
+	Tue, 23 Apr 2024 20:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="kYMQRTu1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aoSFYmNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8438D142E65
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 20:42:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0D0142E60
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 20:50:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713904937; cv=none; b=hHc9qFlJYP0+VLvgbTaiGbX/vFG0iKj0Jugg3DhafwKC81zJaOsnVEy3/PuwEBqwiSB7+AZTc+OPUGeV41xCeEc5jizNMV8TKZlkftq9LbPE/VxOUCrG7ErLowECv2027LweW12uVD3LIQnQ5o/sdIUP8vOs2bQErx/8NIrJI+I=
+	t=1713905414; cv=none; b=a109edjBRK3wrPANkTZSqYOM/qh6mcv72QDnFWNrKmdePoJyQKrw4aCx/8YlXXWURgAqOL6SLPmp9i+ndb6aRMg4EIRVZ2/Yv3uHk/GfsmGy2fAXvbmwmoryKX4rHJWJY3wwc40R4KQf/Reyd7fggoc+PKS+lM4S1Fq0a/GtKH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713904937; c=relaxed/simple;
-	bh=D5BJ7O2Kt6zlpwHLoy0opognLmOElaFOtR6DOOQwoGk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eDJlHs27XaIQICZuGXohXcsGBI7gSd477YawtCmdtj4016zKqVK8Fw8ImZYOpdJuHEsWp8KtcHJu5REMfr+BByIDvqESwtx+8LmcMz0sRznQrfVG0d04SikdyFYcUIy0klTDDc2SoqcL/Je1XPbJ3UgIjbQ0NyORc/jq6fuE2DU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=kYMQRTu1; arc=none smtp.client-ip=209.85.160.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-439b1c72676so33591cf.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 13:42:15 -0700 (PDT)
+	s=arc-20240116; t=1713905414; c=relaxed/simple;
+	bh=lN0o2tlEgJg9kalVb74fI9+nLCmdUkqOjjcor3skRjw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cUjJia3G3eBGg9zajyDugBuQ6K+gazhjZnFuSvjyllNNgdPAmOD2IHauZU7HnNUVVYwhhPXw1uCcE98sAGReTIcsq7ggNKe5npU4h1myk90j9qcFR+fJ1uw22Umuc5bLEbc8C14veTkHMAX+y2TtdvfBrYTx33qCVnSo7ZmilxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aoSFYmNX; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4155819f710so51003205e9.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 13:50:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1713904934; x=1714509734; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gBaEPajCkSnKrTb2DDUtDRO7q5j6yIsYeUTfCcOrMGA=;
-        b=kYMQRTu15aTxa4Cdv/DvuzwZuIH35TsiPZV0MAtEnaYekPznFy3+ZaJ/s+2goONuaR
-         I/uHdO28dtkUovWhO7zYy6sIBQPd2J5MOSiqyFy5Qkx1nsJK+CoiAnGsKzymZuitT7vG
-         ANWVv0RyTBPGEb2BKz02dcEW0g7QcdfT6NZyAbtqn8SRhiz1D4/zOCZlDXbLgRbBVwxZ
-         vv+sKP4m0VlKdTq1eGipVaGRoWcMQFOdi1BLwxN3teMnfVczr989KHSts2ERnjR3+3wQ
-         /RurnZud9CCj6/f3DNAV2JPG/v+6ebr0ntZ9TE0hOeNFY/hp700Vs+grWFqx0LWtmLNH
-         ujbQ==
+        d=linaro.org; s=google; t=1713905411; x=1714510211; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iDTk5oDvvrRdQcAB/F+kDJkRJSv6Emu0SrjcMhqOn4I=;
+        b=aoSFYmNXC/ou/r57z+3a/IZgIYSX0U2P0m6TyNU3xqDDrzyoDwsR5sGSPumc/MfQGN
+         HacIoAIdI4eiBLJpBDaUnV+SpnUc64FAjmtWxom3SsFJqr9+HBdNVrTr9nuljy67noBh
+         w0vbUZrLYzM/YVmHKiSV0wvnGrwSH6HILedadpveV51j0NaPcJ/Eb65XL6vAVA5OUKF3
+         tRaFCvqL8Y2AYUJY6W6l+kwcDNXcFrbEoTE1jryFOcL9/2KkkVqmEdcbuTFsodesw9Sw
+         M8ZRxykmNNuJMPg9SK+j6foy4Cbi1m4YVzxU4x0XgCkuy26wH1q5pvWB2kZY8P1LneCZ
+         mH9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713904934; x=1714509734;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gBaEPajCkSnKrTb2DDUtDRO7q5j6yIsYeUTfCcOrMGA=;
-        b=f+T6S7T4yyrPh5iV0Ov9GfoR+bCCpRLf18wH0GnlQqw2klwm+b9euwcNEIz8quywU1
-         viw2H7phW2woh7+yLxGRlTy7YUHwuyn/Lm+mCktUIQePbqn/6P4T0jDAHaz+zgzdg6lq
-         +U032YM3XxbJcY3WGb3s7XELTTgx6rOcgOcxiw6YUg1EUxOh0loSX3ndVD48PYNr19b+
-         pXWibvcvgm9Jz2kJ569LEKfTVepDrKFgOT36I2fdyuJAn2WQOhSGHgmADld+X3fDxNaF
-         WjtOdVZvQ0nwrOwrUjhAL1GrJmdj5pAJv+cEh35pPeVmiJHpPyjhlhlhSRJhZPUokKCV
-         +Kig==
-X-Forwarded-Encrypted: i=1; AJvYcCXm11cfdmTqGH6xpYEA4ELpsoSClfp16+VrMeh6CltPFhkpUNrlMEhh8KV8bMWhuQf+tHBJ9McMRNXMbwI0idUBQDWSV2N7e1+alw==
-X-Gm-Message-State: AOJu0YwrVWY1cP5pqrzDksX47hDxqWFVkYFWeKbBncxwCH6KpxliiXfN
-	/EcUirh7aCABQz5rmVg3O6YNLb+zN2H2FoDbbXytxxNCnVrGiAyfQU7iGpznPG/EMKlElIolDjr
-	UkbNKDpQpBC3vEiWqH25dMwXGocuhGJPxO/Lo
-X-Google-Smtp-Source: AGHT+IHM5cqjg54cb9ro/IxJNIkES3D9cFrBeXaYCys/rrJyRDxCkf4sLwPEhC9IJaInYueqnzKY2005j/7L4KiVNz0=
-X-Received: by 2002:a05:622a:4402:b0:434:d055:5b00 with SMTP id
- ka2-20020a05622a440200b00434d0555b00mr63892qtb.20.1713904934205; Tue, 23 Apr
- 2024 13:42:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713905411; x=1714510211;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iDTk5oDvvrRdQcAB/F+kDJkRJSv6Emu0SrjcMhqOn4I=;
+        b=gA01L+BJT3rKoaSgyF4WL1u9ttkPg5FbK86YVIK5bBppUWeKY64ZzupewD6l6mg8+m
+         7gnULhsLXaTqUZ94p58r1MjBrgfJ7pyw/SK9NgeDOnJPswzV6vvfUa5V2Fvo9RPSBux3
+         h1tBhu5VLJYyx8wLKA+Np1dsCq8VeWta8nOT/WZPm8XSq4UgUNdEDDWMu+uCtPw6y+A/
+         HQUqAqU8GOn+CTAdBJZZqveyMsu7JUl8idMITt4dN6k+Pva/cI6ptyWQ8loETtrwD2Xt
+         GdocY4DCnJ4cI1hnl7j3uoBHFZHHhgUVop4wjjd6nBlivrP9NWyMyuna1mjaZKbHvMZ7
+         Pg8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVEFoK4QR/HRli7/IGMofnNhHyG2Jc8uYqPajt6VzOzeAdygkb5kFzWX9UlEKkeTmbi8mpcdrgIDyRMTzZuOA5mejV0AxySGVjKVw==
+X-Gm-Message-State: AOJu0YzNjF9jKHvMqvbEUUKWPiB3bkdN0tp4MJOMQt930o4oNOBL0JfW
+	OCNcSfHJXvSknqax0RQSHyFlF/4IOrCF6rtNlXmBHfcbcf0WBplgRcX1YE/YB+w=
+X-Google-Smtp-Source: AGHT+IH9twwrV4GDTD98S7Dg0JzPI6O8DIUuVeYEzvAw6xtx7WWc6EfOFfwcn0BmyTCvX/h+qFPVTQ==
+X-Received: by 2002:a05:600c:4f89:b0:41a:408b:dbd4 with SMTP id n9-20020a05600c4f8900b0041a408bdbd4mr257314wmq.7.1713905411055;
+        Tue, 23 Apr 2024 13:50:11 -0700 (PDT)
+Received: from gpeter-l.lan ([2a0d:3344:2e8:8510:4269:2542:5a09:9ca1])
+        by smtp.gmail.com with ESMTPSA id bg5-20020a05600c3c8500b00419f419236fsm13065443wmb.41.2024.04.23.13.50.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Apr 2024 13:50:10 -0700 (PDT)
+From: Peter Griffin <peter.griffin@linaro.org>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	alim.akhtar@samsung.com,
+	avri.altman@wdc.com,
+	bvanassche@acm.org,
+	s.nawrocki@samsung.com,
+	cw00.choi@samsung.com,
+	jejb@linux.ibm.com,
+	martin.petersen@oracle.com,
+	James.Bottomley@HansenPartnership.com,
+	ebiggers@kernel.org
+Cc: linux-scsi@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	tudor.ambarus@linaro.org,
+	andre.draszik@linaro.org,
+	saravanak@google.com,
+	willmcvicker@google.com,
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH v2 00/14] HSI2, UFS & UFS phy support for Tensor GS101
+Date: Tue, 23 Apr 2024 21:49:52 +0100
+Message-ID: <20240423205006.1785138-1-peter.griffin@linaro.org>
+X-Mailer: git-send-email 2.44.0.769.g3c40516874-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
- <zanx5y3obqmewnbooovf52hx6vh7tpi4zsbse2dyzcqzddmzhw@kewxoa6n3mja>
- <CACb=7PURWtS8bwT5EcAFHhu7deHd2Y8cNOattfdwyEYpOUcbnQ@mail.gmail.com>
- <vbt2nxddw2dc7hkreq4iybv5zv5xyp32oajybeqsphgfrhzmn7@tskvckljmxpe> <CACb=7PVTvV9nsFu1ZAXu7YTjSOAGZka+c__EJq3J3qgSJGEShw@mail.gmail.com>
-In-Reply-To: <CACb=7PVTvV9nsFu1ZAXu7YTjSOAGZka+c__EJq3J3qgSJGEShw@mail.gmail.com>
-From: Doug Anderson <dianders@google.com>
-Date: Tue, 23 Apr 2024 13:41:59 -0700
-Message-ID: <CAD=FV=VYAzqsGEBJai9b9n+HxHiG59L1vF73AEWcTwLS_ryjWw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
-To: Hsin-Yi Wang <hsinyi@google.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>, mripard@kernel.org, 
-	airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	cong yang <yangcong5@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hi James, Martin, Alim, Bart, Krzysztof, Vinod, all
 
-On Tue, Apr 23, 2024 at 11:10=E2=80=AFAM Hsin-Yi Wang <hsinyi@google.com> w=
-rote:
->
-> > > > > +#define _INIT_DCS_CMD(...) { \
-> > > > > +     .type =3D INIT_DCS_CMD, \
-> > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
-> > > > > +     .data =3D (char[]){__VA_ARGS__} }
-> > > > > +
-> > > > > +#define _INIT_DELAY_CMD(...) { \
-> > > > > +     .type =3D DELAY_CMD,\
-> > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
-> > > > > +     .data =3D (char[]){__VA_ARGS__} }
-> > > >
-> > > > This is the third panel driver using the same appoach. Can you use
-> > > > mipi_dsi_generic_write_seq() instead of the huge table? Or if you p=
-refer
-> > > > the table, we should extract this framework to a common helper.
-> > > > (my preference is shifted towards mipi_dsi_generic_write_seq()).
-> > > >
-> > > The drawback of mipi_dsi_generic_write_seq() is that it can cause the
-> > > kernel size grows a lot since every sequence will be expanded.
-> > >
-> > > Similar discussion in here:
-> > > https://lore.kernel.org/dri-devel/CAD=3DFV=3DWju3WS45=3DEpXMUg7FjYDh3=
--=3Dmvm_jS7TF1tsaAzbb4Uw@mail.gmail.com/
-> > >
-> > > This patch would increase the module size from 157K to 572K.
-> > > scripts/bloat-o-meter shows chg +235.95%.
-> > >
-> > > So maybe the common helper is better regarding the kernel module size=
-?
-> >
-> > Yes, let's get a framework done in a useful way.
-> > I'd say, drop the _INIT_DELAY_CMD. msleep() and usleep_range() should b=
-e
-> > used instead (and it's up to the developer to select correct delay
-> > function).
-> >
-> > >
-> > > > > +
-> > > > > +static const struct panel_init_cmd kingdisplay_kd101ne3_init_cmd=
-[] =3D {
-> > > > > +     _INIT_DELAY_CMD(50),
-> > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
-> >
-> > [skipped the body of the table]
-> >
-> > > > > +     _INIT_DCS_CMD(0x0E, 0x48),
-> > > > > +
-> > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
-> >
-> > > > > +     _INIT_DCS_CMD(0X11),
-> >
-> > Also, at least this is mipi_dsi_dcs_exit_sleep_mode().
-> >
-> > > > > +     /* T6: 120ms */
-> > > > > +     _INIT_DELAY_CMD(120),
-> > > > > +     _INIT_DCS_CMD(0X29),
-> >
-> > And this is mipi_dsi_dcs_set_display_on().
-> >
-> > Having a single table enourages people to put known commands into the
-> > table, the practice that must be frowned upon and forbidden.
-> >
-> > We have functions for some of the standard DCS commands. So, maybe
-> > instead of adding a single-table based approach we can improve
-> > mipi_dsi_generic_write_seq() to reduce the bloat. E.g. by moving the
-> > error handling to a common part of enable() / prepare() function.
-> >
->
-> For this panel, I think it can also refer to how
-> panel-kingdisplay-kd097d04.c does. Create the table for init cmd data,
-> not what operation to use, and use mipi_dsi_generic_write_seq() when
-> looping through the table.
+Firstly, many thanks to everyone who reviewed and tested v1.
 
-Even more similar discussion:
+This series adds support for the High Speed Interface (HSI) 2 clock
+management unit, UFS controller and UFS phy calibration/tuning for GS101
+found in Pixel 6.
 
-https://lore.kernel.org/r/CAD=3DFV=3DUGDbNvAMjzWSOvxybGikQcvW9JsRtbxHVg8_97=
-YPEQCA@mail.gmail.com
+With this series applied, UFS is now functional on gs101. The SKhynix
+HN8T05BZGKX015 can be enumerated, partitions mounted etc. This allows us to
+move away from the initramfs rootfs we have been using for development so far.
+
+Merge Strategy
+1) UFS driver/bindings via UFS/SCSI tree (James / Martin / Alim)
+2) GS101 DTS/DTSI should go via Krzysztofs Exynos SoC tree
+3) Clock driver/bindings via Clock tree (Krzysztof / Stephen)
+4) PHY driver/bindings via PHY tree (Vinod)
+
+The v2 series has been rebased on next-20240422, as such all the phy parts
+which were already queued by Vinod have been dropped. Two new phy patches
+are added to address review feedback received after the patches were queued.
+
+The series is broadly split into the following parts:
+1) dt-bindings documentation updates
+2) gs101/oriole dts & dtsi updates
+3) Prepatory patches for ufs-exynos driver
+4) GS101 ufs-exynos support
+5) gs101 phy fixes
+
+As well as the v1 review feedback some additional cmu_hsi2 clocks were marked
+as CLK_IGNORE_UNUSED in v2 so that all other remaining clocks in cmu_hsi2 can
+be disabled and UFS will still be functional.
+
+The sysreg clock was also moved from CLK_IS_CRITICAL in clk-gs101 to ufs node,
+as the system is still functional with that clock disabled, however fine grained
+clocking just around sysreg register accesses doesn't result in functional UFS.
+
+kind regards,
+
+Peter
+
+Changes since v1:
+ - collect up tags
+ - google,gs101-clock: alphabetical ordering (Andre)
+ - re-order samsung,exynos-ufs.yaml as per Krzysztof review
+ - Ensure google,gs101.h dt-bindings is contained with bindings patch (Andre / Krzysztof)
+ - fix google,gs101-hsi2-sysreg size (0x10000 not 0x1000) (Andre)
+ - drop blank lines in clk-gs101 (Andre)
+ - cmu-hsi2 alphabetical ordering (Andre / Krzysztof)
+ - use GPIO defines in DT and add TODO pmic comment (Krzysztof)
+ - Add sysreg clock to ufs node (Andre)
+ - Mark additional cmu_hsi2 clocks with CLK_IGNORE_UNUSED flag (Peter)
+
+lore v1: https://lore.kernel.org/linux-clk/20240404122559.898930-1-peter.griffin@linaro.org/
+
+Peter Griffin (14):
+  dt-bindings: clock: google,gs101-clock:  add HSI2 clock management
+    unit
+  dt-bindings: soc: google: exynos-sysreg: add dedicated hsi2 sysreg
+    compatible
+  dt-bindings: ufs: exynos-ufs: Add gs101 compatible
+  arm64: dts: exynos: gs101: enable cmu-hsi2 clock controller
+  arm64: dts: exynos: gs101: Add the hsi2 sysreg node
+  arm64: dts: exynos: gs101: Add ufs, ufs-phy and ufs regulator dt nodes
+  clk: samsung: gs101: add support for cmu_hsi2
+  scsi: ufs: host: ufs-exynos: Add EXYNOS_UFS_OPT_UFSPR_SECURE option
+  scsi: ufs: host: ufs-exynos: add EXYNOS_UFS_OPT_TIMER_TICK_SELECT
+    option
+  scsi: ufs: host: ufs-exynos: allow max frequencies up to 267Mhz
+  scsi: ufs: host: ufs-exynos: add some pa_dbg_ register offsets into
+    drvdata
+  scsi: ufs: host: ufs-exynos: Add support for Tensor gs101 SoC
+  phy: samsung-ufs: ufs: remove superfluous mfd/syscon.h header
+  phy: samsung-ufs: ufs: exit on first reported error
+
+ .../bindings/clock/google,gs101-clock.yaml    |  30 +-
+ .../soc/samsung/samsung,exynos-sysreg.yaml    |   2 +
+ .../bindings/ufs/samsung,exynos-ufs.yaml      |  38 +-
+ .../boot/dts/exynos/google/gs101-oriole.dts   |  18 +
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi  |  54 ++
+ drivers/clk/samsung/clk-gs101.c               | 508 +++++++++++++++++-
+ drivers/phy/samsung/phy-samsung-ufs.c         |  11 +-
+ drivers/ufs/host/ufs-exynos.c                 | 197 ++++++-
+ drivers/ufs/host/ufs-exynos.h                 |  24 +-
+ include/dt-bindings/clock/google,gs101.h      |  63 +++
+ 10 files changed, 921 insertions(+), 24 deletions(-)
+
+-- 
+2.44.0.769.g3c40516874-goog
+
 
