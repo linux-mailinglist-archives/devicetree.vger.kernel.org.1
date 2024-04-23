@@ -1,118 +1,145 @@
-Return-Path: <devicetree+bounces-62023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA2C58AF7A1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:53:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD368AF7B9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8739028675C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:53:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEBC028305C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117971420C4;
-	Tue, 23 Apr 2024 19:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10041422C2;
+	Tue, 23 Apr 2024 20:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="aoKEJdyi"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KhVPfI7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB7413D510;
-	Tue, 23 Apr 2024 19:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E1813DDB4;
+	Tue, 23 Apr 2024 20:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713902030; cv=none; b=MaruLUpTvxIyEntN5D0UPuXgF53nDZkWFSeV98p5nBYUYeIwI4W+qTwdbRBuSBB2JdZxw4Rdpeop8VpvD3CpyIeE7QQzDMUSBGQIg6lajvIiKFPS7rSpA86/HmatbrF+9iwPdizkRuSiYTQ4LPbT951vk4y54k4bCToiWKbpC3I=
+	t=1713902475; cv=none; b=Y9Og1y6iKnZrr/aWXbGssGpNKELPPsdE8pPI4KSWG44j0/WWG6OaQqWkd15E1hBdsMYhBxToV+QHI7kOdOEo/beeMvWfnyk+cw4Tf39TiCAxArP6In2jbVZlGjwYQNxE8jJo7Qvk77lNXs6JQR9/vfQ6dyGkhdnneCkV8/gLFG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713902030; c=relaxed/simple;
-	bh=qfwhjJMFKdQZeALDm5qJB5ehGn+6Ra+DsPPuaufJ2fs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hTbQ5FI5g5ZMSez18KwitrqxinSU2OL9P0J923NbJfHrHAWKmDbIOwTapNzoFVjgARupkTs49XHmAibE8SNlViZdRFDXmLDfX+QdqsurG5UZNmDsr0P6xWghwOx/ooIbBkPaq8mWwlgz/DC0tSZl0QwFUwmYYsu3qRtSJ9Jd7Cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=aoKEJdyi; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1713902001; x=1714506801; i=wahrenst@gmx.net;
-	bh=qfwhjJMFKdQZeALDm5qJB5ehGn+6Ra+DsPPuaufJ2fs=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=aoKEJdyiVcdK4Hga9n1bxyxEhYvRtKXqesQowwm3/crdbvHaTfqOVIsjAaF15FuO
-	 7IvKmA07ax7PXUt8eKyNYAt8rRG4ZyLvrFVFmGpqakIZhqa9gfyHSQQK7prSw6hyW
-	 pMPCp4Eez2mtQrGu0TS/FtH9JwjDcYky7n/nHYe/CW1bUC76X0y+WjKzgTYUTSvWC
-	 dKmeZG4sBkJjefbPJ+mCw4BEl4s5OBTyDt0pZHpMR9+nAlf1JRUn6hU7auqVUAPE2
-	 5hvRm5Iy8klz6mvukCOgxVlgIoAQz+TQc0OtWqsJ9sVzRcJ7UBzAhkOHJtcEpuDmi
-	 /So3ocFFD/SztKyTpQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N3bX1-1siQ8Q2xjX-0114b6; Tue, 23
- Apr 2024 21:53:21 +0200
-Message-ID: <709b1988-40e5-4f2b-a4a9-045e744708e2@gmx.net>
-Date: Tue, 23 Apr 2024 21:53:19 +0200
+	s=arc-20240116; t=1713902475; c=relaxed/simple;
+	bh=gO5lInamXWvVwcjXwapFzG1P6LElJDaUQgLFUsX3OeM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HP1auYT/GTe5dq04be15TVNCkrxkdgqYgSfTbfQKg6epCCPw81M5PGNbV8F7QDI3R9zFOMzjUZBU+UC1Qt8XIGTsLOB54GO4KGbnjjP+/ibp6MYObiONzaglkn8Tthr7XMCmyEaneF1FjYYBtRo5lMTGOrR9SBSihZHxO8CDaKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KhVPfI7u; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43NK0qRq029453;
+	Tue, 23 Apr 2024 15:00:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713902453;
+	bh=RhWga2NMvhF/Z3yJFrEOYdpiLpVUvGsPvXj1UVjFcxI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=KhVPfI7uktlq4ZJ2LQ70R+N7H1jvE7fZZdF7pd/o07tjpDkiUr6ptY1JP8FBrKDZl
+	 64O/wMl03Yv7q8ws/YUVOSSRP1+ecPECUeyMmGAmlhPHKsYkz4q4avXr9IB7nJNX4l
+	 FrylrwIW1WF3jPVXxfpGzmfTE3VNjVafSFAhTo7k=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43NK0qSa096891
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 23 Apr 2024 15:00:52 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
+ Apr 2024 15:00:52 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 23 Apr 2024 15:00:52 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43NK0qTX004163;
+	Tue, 23 Apr 2024 15:00:52 -0500
+Date: Tue, 23 Apr 2024 15:00:52 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Robert Nelson <robertcnelson@gmail.com>
+CC: Andrew Davis <afd@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring
+	<robh@kernel.org>, Jared McArthur <j-mcarthur@ti.com>,
+        Jason Kridner
+	<jkridner@beagleboard.org>,
+        Deepak Khatri <lorforlinux@beagleboard.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add BeagleY-AI
+Message-ID: <20240423200052.fmias3xcapm3t57r@bring>
+References: <20240328191205.82295-1-robertcnelson@gmail.com>
+ <1a5e719f-efa0-4c60-8add-ef7c0464d1ce@ti.com>
+ <CAOCHtYjHhH2M_+7md-e2vh_d_3H2r66OhXEp2acd0D+6O+uwcg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm: dts: bcm2711: Describe Ethernet LEDs
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- linux-arm-kernel@lists.infradead.org
-Cc: andrew@lunn.ch, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Andre Przywara <andre.przywara@arm.com>, Nick Hawkins
- <nick.hawkins@hpe.com>, Michal Simek <michal.simek@amd.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Paul Barker <paul.barker@sancloud.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:zkadWaOzduyBYGPWrts7cz3buqCll6KflBcBIOMFoMSCKO6NKoG
- luBq23T/wMZNEOIyYvQKIbGowbLnyRUiDC993IKWfvlcV9aX5vbjDlQlAj9KzWn0Yh5eBM8
- LKfqCoOaGuaprgsW5shZbPUksIRVOO7j4MUxMAwcJ0p83nbet4tGfuCWHbCskrqKT7lPnS1
- GawEI6nutmr0SUryQM0dQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+/x7emDlsRw=;6tyhClKk7HNZgPhgWSQarCu0aV8
- HyArJw+pFbdAePSIeveLHT8KOUiTVOULbCPR6AaZNxrvUW89+A4R3JXdHzNvrCyg+VxV2R0KL
- r8AyERhG/2xTxxlEN/5fxF1y3eUPNN8n87TvtnfN4/cr6+ZcJGMmbXus+YbGMP/6H6V0kLGEW
- SbK6klPg2XTBSNVUc6fvTPhlg08Hc44lzKjHlsJ+2awwkfpG4nRg9nyl+tilEAWJoFJTf62g3
- GbNbi4jQlaaZV8PBPk5II+GenHjnklDD08aOs9xGqv2KFigzD3GImRPHZ/ta4RWq42PxEHeA8
- /Gxtlj5p833nO2SPFEhkSgTO9WxN4HDFVHQQV43/RLmZxB6QLITil49KuURLpxykIhu2pdDFe
- Ok2UktwLYT2rVbzw1cum91bbbK5DCj/Y6uu+xcE9rG+bFiyO3/I5UGZhkctmEzY08uxPcBveJ
- 29zEYhGBDY5PPAjhdX3DS5jvTW+om3qTMmp7jycUpLMzWmoNGL78kPizqGz9jx9hH4bpeuGwo
- /seXIAYDoD+xRbo87vxDEgFZ5pt3sbUUeNHcAI8d8XWYSHH6vkmQkvRRZxY9O1gLC8iAzK8vx
- yY+QQcMHGNs7gTsEzFV502UTMQvvUVOefyLnSMXJcni8F0kMVaLz61P2bEH+FgRMGVepoJ+IR
- RHuW17XtFOtNHDACrG7efhv6ANrKwmBp+sAC93j8K6dQFcRRxjPBTzgZZEjttPJucHpKDafBT
- tTrr/UxxLTdQhad5paTskXDFPWAH9TRiDvBvTC0hcpqJJ3fnHhU8XCTDj704B9vfqx1pujBIJ
- e5WqCf3/SVRWpdpLzFZk5r6eaBOGjzwUJqx209j9pP/44=
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOCHtYjHhH2M_+7md-e2vh_d_3H2r66OhXEp2acd0D+6O+uwcg@mail.gmail.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Am 23.04.24 um 21:14 schrieb Florian Fainelli:
-> Describe the Ethernet LEDs for the Raspberry Pi 4 model B board as well
-> as the Raspberry Pi 4 CM board. The Raspberry Pi 400 board does not
-> include RJ45 connector LEDs so the 'leds' node is deleted accordingly.
->
-> The Ethernet PHY LEDs are numbered in the PHY package/pin list from LED1
-> through LED4, however their address within the LED registers function
-> selector is 0-indexed.
->
-> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+On 14:48-20240423, Robert Nelson wrote:
+> On Mon, Apr 22, 2024 at 3:57 PM Andrew Davis <afd@ti.com> wrote:
+> >
+> > On 3/28/24 2:12 PM, Robert Nelson wrote:
+> > > This board is based on ti,j722s
+> > >
+> > > https://beagley-ai.org/
+> > > https://openbeagle.org/beagley-ai/beagley-ai
+> > >
+> > > Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> > > CC: Rob Herring <robh@kernel.org>
+> > > CC: Nishanth Menon <nm@ti.com>
+> > > CC: Jared McArthur <j-mcarthur@ti.com>
+> > > CC: Jason Kridner <jkridner@beagleboard.org>
+> > > CC: Deepak Khatri <lorforlinux@beagleboard.org>
+> > > ---
+> > >   Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+> > >   1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > > index 52b51fd7044e..ca23b7e6a35e 100644
+> > > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > > @@ -134,6 +134,7 @@ properties:
+> > >         - description: K3 J722S SoC and Boards
+> > >           items:
+> > >             - enum:
+> > > +              - beagle,j722s-beagley-ai
+> >
+> > Recommend "beagle,am67-beagley-ai". The "J722s" is the family
+> > name, the part used on this board is the AM67. We do the same
+> > for the SK boards, for example, the SK-AM69 uses the AM69
+> > part from the J784s4 family, so it is called k3-am69-sk.dts
+> > with compatible = "ti,am69-sk", "ti,j784s4";
+> >
+> > This would otherwise be the first board with a specific part
+> > attached but uses the SoC family name instead of that specific
+> > part name in the DT file/name. Only the EVMs should have the
+> > family name since we sell versions of those with all the different
+> > parts swapped onto it. I don't imagine you will be selling
+> > BeagleY's with TDA4VEN, TDA4AEN, DRA82x, etc.. All your
+> > docs and other collateral use "AM67", using the same here
+> > would help avoid confusion.
+> >
+> > Andrew
+> 
+> Andrew, would you like us to model this just like the AM69-SK? and
+> also rename the device tree? or just the bindings..
+> 
+> k3-j722s-beagley-ai.dtb -> k3-am67-beagley-ai.dtb or even the am67a
+> k3-am67a-beagley-ai.dtb ?
+> 
 
+Will drop these patches off the queue for now. please respin as needed.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
