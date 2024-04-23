@@ -1,268 +1,305 @@
-Return-Path: <devicetree+bounces-62008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3AD98AF62D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:03:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F238AF651
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 20:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D1FC1F2848E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 18:03:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 738F41F24580
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 18:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C72F13FD7D;
-	Tue, 23 Apr 2024 18:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D527813E3F3;
+	Tue, 23 Apr 2024 18:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="EPeUfwYT"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0XYEkSbm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C33413E03B
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 18:00:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFBB339A8
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 18:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713895260; cv=none; b=SWrpVDKPNJUSZASktbplW2Ze+3F6gd85ZFYOodf3i9PiX1oAao1+kkSAJcOpIJfA/LEBT1b1+3XLvEFrgJWT/+zp7vnlXYEcAU6DqXwNVzAWF+Y59NLQJRjh6JGnVbiDeXKvDV8SilOiaX+FQ1qeFT6RswyIOdaIuy0TNLdZhqA=
+	t=1713895836; cv=none; b=kbvlz6jdxTlXqbXc5B/aqecf9lLMaYKd2bBXblNACQQk6efE4vBiAB5Gfv2oqaJaIJ6E5pNszYPHEdS00ED5KZWiOJc8LmwH04By19xxideeDXHch22JtcEoLKIQJn5biI3AYy9gK3wm/wPI0a9UelhrUcVQQ0ia4Jv+n5xY0+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713895260; c=relaxed/simple;
-	bh=6UPBrc50kudzP0E3j3aFN5KLRCoiqbDMmCOUC2z9cDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dmrxOR20ArnzXsLaUZTm3aKWE/Wi8vRtOQCDrkFMh+F0WGw2+zWdpAXLHUeHhmHW5v7RoksgNPFPCTF32+SqLpBLNrYpXWSyFUfwKEdeyNULGtbj3AhIAVQ1kTfcgc/Hopyltr9PWSPo4569QM0Aku/lkBxdx/c+pCef7FBKw5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=EPeUfwYT; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-de55708c616so817538276.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 11:00:58 -0700 (PDT)
+	s=arc-20240116; t=1713895836; c=relaxed/simple;
+	bh=/edRUH5Q80ijc8jy/8Xr8gxfMJ7nb85SBHRPUab3CGc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ruw+tnTL8+yYy+iwhr/0AC5gdxR6V7IPnR1eekQZHnUSa0n61kEhQD+2VTu9gqElgXvZkALyuq7nfbuH2ZZHP+0cwHbnlig+KptaGv5mgXUWgEmfYiudIkMMEELSZU55vgIDKhhXs8RvqhbyUuXf7Nu7+GCsEHHxBg8NAeUlgSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=0XYEkSbm; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-349545c3eb8so4343487f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 11:10:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713895257; x=1714500057; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ruXmLN/UvQwTr3oZGWnl8Qpluv6+VMewHhW300M9b8o=;
-        b=EPeUfwYTCfJSrX7QLr1HKuVMooK11CKTwchwCD6kramPWjubq91nkc84vtuDJpWkio
-         TibP3x5t8V5PnHTPoovoF7rEa9akulvdzQbYPPTBHBW+ssCEhHOOwoWjtEoc7aMZDJkm
-         E5wiIdK4FboNsIYi2bN1r6k5k2pVhXeHcXdIzD4xnn3tiBY4ui9tb3pu0bjHipQXR7ah
-         KdpgJjYeRC20KOEX/V2pVGO+9ohEYQYqPXjYKb/HIJS4Ixv5fUosMb/qG1UvzK8YSpKo
-         a4c4wgP4dJqeeaH9a7v6hTHpUotEDdUPHODL/bOYYERg3ihG6HPTfqC5yIgs9LC9yUZy
-         SGjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713895257; x=1714500057;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1713895832; x=1714500632; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ruXmLN/UvQwTr3oZGWnl8Qpluv6+VMewHhW300M9b8o=;
-        b=jbAEoUPbA60FOgnxdmcJwNuSYuTH8gSNTG+wS5lCUiFZD7JkS674S5nZN/iXRLPfpW
-         hNvqebC8RtV21U67FLkOrRolfS5G3cAoP/4jzThgubpLMK2ULiXAYJK4o76qiKKaI5CR
-         LMLrP3AggRugzF1i3hf39rJoUKBoJuqvgnff1cQN0PUQQbojZfsVNsaa+tFYrImnVecZ
-         HBlEpg5PxBCb15Sgd2F/KgrjFS6yPwGIyJWFmf/nJiiV899Aj8FMHAPnD+ehbSQgT3eT
-         xT+TFNpPHF9W9R1aKfrASa3BzGs6ZXVa/iGyZ05+pua7QbR2WI8hI/4OWAVb8MDggqFr
-         AL0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXU0weIWDTg/SdJSsAyk16vnBmjKeAfSB1r2OAGVmJNz2d4in6+/d1VptI4tJTsuyej9ChF/2+1RWb002D6++DoHdJdgiJixLaSJA==
-X-Gm-Message-State: AOJu0YyC8X8hBtINa9RylPcRjMWEIwFLPEtXsio3yh/9lSJBrURGZa98
-	1XcSm5frHaWyM5KC4iIoRaoBF8p4JFIQ4IUqEf3Hz+rDsBmxa+ee5rZCykgqSO0=
-X-Google-Smtp-Source: AGHT+IFeSayoJdfNCiZBWXKiMtSmsaH8Ne38oZHRgd3aBw8ywcYnlBz0y8Ts1iIsJ0n8+CYNFP1T3Q==
-X-Received: by 2002:a25:2b05:0:b0:de5:6a82:49dd with SMTP id r5-20020a252b05000000b00de56a8249ddmr69482ybr.13.1713895257306;
-        Tue, 23 Apr 2024 11:00:57 -0700 (PDT)
-Received: from ghost ([50.146.0.2])
-        by smtp.gmail.com with ESMTPSA id e196-20020a25d3cd000000b00dcda3959006sm2659558ybf.33.2024.04.23.11.00.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 11:00:56 -0700 (PDT)
-Date: Tue, 23 Apr 2024 14:00:53 -0400
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
-	kvm-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	conor.dooley@microchip.com, anup@brainfault.org,
-	atishp@atishpatra.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	christoph.muellner@vrull.eu, heiko@sntech.de,
-	David.Laight@aculab.com, parri.andrea@gmail.com,
-	luxu.kernel@bytedance.com
-Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Add Zawrs ISA extension
- description
-Message-ID: <Zif3VZALGtLtl3D3@ghost>
-References: <20240419135321.70781-8-ajones@ventanamicro.com>
- <20240419135321.70781-10-ajones@ventanamicro.com>
- <20240419-chafe-leotard-e5daee19b1c8@spud>
- <20240419-8c6af6a169a7aa0b9aa5cac5@orel>
- <20240419-disdain-litmus-82874cc4872e@spud>
- <ZiKeYRnXxtLUtkkW@ghost>
- <20240421-f63f90c2146deb0695b84441@orel>
- <ZibmfbLnGCb9gmow@ghost>
- <20240423-ed9ddb701be1df4a25e29f31@orel>
+        bh=wl2ct4hkdwUhx5/aeg9lOPHNV+QD++rylKxscdt/bF4=;
+        b=0XYEkSbm6UNX28P3bIswbPH5licid/1CbtJL4qGSGG5qAyRWEPBAGI3yXGOVu0eB9M
+         N8L1ehURDUx+PYVseFb7qtDV1SunlKs9v0xMFS9NKLEr9XdWWNiLwG7+YmgC/veQY+72
+         7bgkqo2AEDwItVtK7i2sBeKeiqdHQzYrpld8J1eA65CecnooHKQT2MSOfpeEKUC0Mgz1
+         v2jmWLSqY7dbM/rGd0q9LNUSA756Oh4s4V+IY8rIWa7Ay4f8Wjly0B+he3gc/Gr1vm4q
+         eHk6hVNwNbcbymFe+AmPhF/MTA5C/UxOHzf2U4W178c7dPQKZhf68wDvv+fBUXyaD0sV
+         y33Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713895832; x=1714500632;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wl2ct4hkdwUhx5/aeg9lOPHNV+QD++rylKxscdt/bF4=;
+        b=oinl5kPUodKQhqun++ErHxqB5kVKILMPFsBbs6PNTopA2ve7C8ZpoCcX2qatwb41Ra
+         snoqIoqdWrzwpFMI9520cj2ID2DEAzdjCQL/ngrXzo7AL8/UnYjqq8fXpFsF4yklI1kf
+         /xO26FbQjYCjNuyyZZ/9TQSRLTncDQPex4P70IPIufxZTlX52NwVVS2/x++5UpIhqAdB
+         hTMIfd6s5iFo7vyxULCqQTI/tqokKVteZruRs7yEIM+ctvgGrxd+s0PkewQXZFLUvaar
+         69voadzXhO6A59uX/VrBNop8U/HU+hXnJ01I5M0W1Tp5QekIKhUAAMboLYA5RUsW/Ezb
+         YC8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUEl8ybAC6bmkcW1HOT5h9qtv0tJl3w+/nEL8BRq5eR+ClWk9og6jsTPdzKqWt7xpxHejeGWCpojgqgqXHxvA4WbcqZPNlTK4tVDw==
+X-Gm-Message-State: AOJu0YyKnTUj+YMD80PdeX7sxqEznQIK/oGz80Vliy8RN1201Lp8yGqg
+	yAqUTSnvBLlvEZ4X2Gt/60qj6/dcslduTYIfAOqibyu7VsHIiOLdY4EOstgCc9KGw+w92GKzNwz
+	pfdWc3kkOX0fK+Evte79XuIp1UoDnquyhswHY
+X-Google-Smtp-Source: AGHT+IFFYQ6yDh91vFBzxgZW+1q5Z+Ylw9RzRb7kgpgzvmMuVBW1eUvQTyJzbETI8cyjFIL2yqPiZ1EjCyLfp9CT/Nc=
+X-Received: by 2002:a5d:590f:0:b0:34b:3374:bc26 with SMTP id
+ v15-20020a5d590f000000b0034b3374bc26mr3444655wrd.65.1713895831867; Tue, 23
+ Apr 2024 11:10:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240423-ed9ddb701be1df4a25e29f31@orel>
+References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <zanx5y3obqmewnbooovf52hx6vh7tpi4zsbse2dyzcqzddmzhw@kewxoa6n3mja>
+ <CACb=7PURWtS8bwT5EcAFHhu7deHd2Y8cNOattfdwyEYpOUcbnQ@mail.gmail.com> <vbt2nxddw2dc7hkreq4iybv5zv5xyp32oajybeqsphgfrhzmn7@tskvckljmxpe>
+In-Reply-To: <vbt2nxddw2dc7hkreq4iybv5zv5xyp32oajybeqsphgfrhzmn7@tskvckljmxpe>
+From: Hsin-Yi Wang <hsinyi@google.com>
+Date: Tue, 23 Apr 2024 11:10:03 -0700
+Message-ID: <CACb=7PVTvV9nsFu1ZAXu7YTjSOAGZka+c__EJq3J3qgSJGEShw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>, mripard@kernel.org, 
+	airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, dianders@google.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 23, 2024 at 10:46:01AM +0200, Andrew Jones wrote:
-> On Mon, Apr 22, 2024 at 06:36:45PM -0400, Charlie Jenkins wrote:
-> > On Sun, Apr 21, 2024 at 12:20:03PM +0200, Andrew Jones wrote:
-> > > On Fri, Apr 19, 2024 at 12:40:01PM -0400, Charlie Jenkins wrote:
-> ...
-> > > > What would be the purpose of a vendor implementing WRS.NTO (and putting
-> > > > it in the DT) that never terminates? The spec says "Then a subsequent
-> > > > WRS.NTO instruction would cause the hart to temporarily stall execution
-> > > > in a low- power state until a store occurs to the reservation set or an
-> > > > interrupt is observed." Why is this wording for WRS.NTO not sufficient
-> > > > to assume that an implementation of this instruction would eventually
-> > > > terminate?
+On Thu, Apr 18, 2024 at 7:11=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Thu, Apr 18, 2024 at 09:11:37PM +0800, Hsin-Yi Wang wrote:
+> > On Thu, Apr 18, 2024 at 7:46=E2=80=AFPM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On Thu, Apr 18, 2024 at 04:15:48PM +0800, lvzhaoxiong wrote:
+> > > > The kingdisplay panel is based on JD9365DA controller.
+> > > > Add a driver for it.
 > > > >
-> > > 
-> > > We can invoke smp_cond_load_relaxed(addr, VAL || anything_we_want()). This
-> > > means we may not expect VAL ever to be written, which rules out "until a
-> > > store occurs". As for "an interrupt is observed", we don't know which one
-> > > to expect to arrive within a "reasonable" amount of time. We need to know
-> > > which one(s), since, while wrs.nto will terminate even when interrupts are
-> > > globally disabled, we still need to have the interrupt(s) we expect to be
-> > > locally enabled. And, the interrupts should arrive in a "reasonable"
-> > > amount of time since we want to poll anything_we_want() at a "reasonable"
-> > > frequency.
-> > > 
-> > > So, we need firmware to promise to enable exceptions if there aren't any
-> > > such interrupts. Or, we could require hardware descriptions to identify
-> > > which interrupt(s) would be good to have enabled before calling wrs.nto.
-> > > Maybe there's already some way to describe something like that?
-> > > 
-> > > Thanks,
-> > > drew
-> > 
-> > Ahh okay I am caught up now. So the wording we are looking at in the
-> > spec is:
-> > 
-> > "When executing in VS or VU mode, if the VTW bit is set in hstatus, the
-> > TW bit in mstatus is clear, and the WRS.NTO does not complete within an
-> > implementation-specific bounded time limit, the WRS.NTO instruction will
-> > cause a virtual instruction exception."
-> 
-> That's what the hypervisor should promise to do when there's no other
-> guarantee of wrs.nto terminating (but the hypervisor likely wants to
-> anyway since it wants guests to trap on wrs.nto in order to potentially
-> schedule the lock holding VCPU). The firmware of the host should likewise
-> promise to set mstatus.TW when there's no guarantee of wrs.nto
-> terminating, but that's likely _not_ something it normally would want to
-> do, so hopefully there will always be implementation-specific "other
-> reasons" which guarantee termination.
-> 
-> > 
-> > With the concern being that it is possible for "implementation-specific
-> > bounded time limit" to be infinite/never times out,
-> 
-> The implementation-defined short timeout cannot be infinite, but it only
-> applies to wrs.sto. While using wrs.sto would relieve the concern, it
-> cannot be configured to raise exceptions, which means it's not useful in
-> guests. If we want to use wrs.sto in hosts and wrs.nto in guests then we
-> need a paravirt channel which allows an "enlightened" guest to determine
-> that it is a guest and that the hypervisor has configured wrs.nto to
-> trap, which then indicates it's a good idea to patch wrs.sto to wrs.nto.
-> But, adding paravirt stuff should be avoided whenever possible since it
-> adds complexity we'd rather not maintain.
-> 
+> > > > Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.=
+com>
+> > > > ---
+> > > >  drivers/gpu/drm/panel/Kconfig                 |   9 +
+> > > >  drivers/gpu/drm/panel/Makefile                |   1 +
+> > > >  .../drm/panel/panel-kingdisplay-kd101ne3.c    | 607 ++++++++++++++=
+++++
+> > > >  3 files changed, 617 insertions(+)
+> > > >  create mode 100644 drivers/gpu/drm/panel/panel-kingdisplay-kd101ne=
+3.c
+> > > >
+> > > > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/=
+Kconfig
+> > > > index 154f5bf82980..2c73086cf102 100644
+> > > > --- a/drivers/gpu/drm/panel/Kconfig
+> > > > +++ b/drivers/gpu/drm/panel/Kconfig
+> > > > @@ -297,6 +297,15 @@ config DRM_PANEL_KINGDISPLAY_KD097D04
+> > > >         24 bit RGB per pixel. It provides a MIPI DSI interface to
+> > > >         the host and has a built-in LED backlight.
+> > > >
+> > > > +config DRM_PANEL_KINGDISPLAY_KD101NE3
+> > > > +     tristate "Kingdisplay kd101ne3 panel"
+> > > > +     depends on OF
+> > > > +     depends on DRM_MIPI_DSI
+> > > > +     depends on BACKLIGHT_CLASS_DEVICE
+> > > > +     help
+> > > > +       Say Y if you want to enable support for panels based on the
+> > > > +       Kingdisplay kd101ne3 controller.
+> > > > +
+> > > >  config DRM_PANEL_LEADTEK_LTK050H3146W
+> > > >       tristate "Leadtek LTK050H3146W panel"
+> > > >       depends on OF
+> > > > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel=
+/Makefile
+> > > > index 24a02655d726..cbd414b98bb0 100644
+> > > > --- a/drivers/gpu/drm/panel/Makefile
+> > > > +++ b/drivers/gpu/drm/panel/Makefile
+> > > > @@ -30,6 +30,7 @@ obj-$(CONFIG_DRM_PANEL_JDI_LPM102A188A) +=3D pane=
+l-jdi-lpm102a188a.o
+> > > >  obj-$(CONFIG_DRM_PANEL_JDI_R63452) +=3D panel-jdi-fhd-r63452.o
+> > > >  obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) +=3D panel-khadas-ts050.o
+> > > >  obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD097D04) +=3D panel-kingdispla=
+y-kd097d04.o
+> > > > +obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD101NE3) +=3D panel-kingdispla=
+y-kd101ne3.o
+> > > >  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) +=3D panel-leadtek-lt=
+k050h3146w.o
+> > > >  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) +=3D panel-leadtek-lt=
+k500hd1829.o
+> > > >  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) +=3D panel-lg-lb035q02.o
+> > > > diff --git a/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c b/d=
+rivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
+> > > > new file mode 100644
+> > > > index 000000000000..dbf0992f8b81
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
+> > > > @@ -0,0 +1,607 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * Panels based on the JD9365DA display controller.
+> > > > + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.co=
+m>
+> > > > + */
+> > > > +
+> > > > +#include <linux/delay.h>
+> > > > +#include <linux/gpio/consumer.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of.h>
+> > > > +#include <linux/of_device.h>
+> > > > +#include <linux/regulator/consumer.h>
+> > > > +
+> > > > +#include <drm/drm_connector.h>
+> > > > +#include <drm/drm_crtc.h>
+> > > > +#include <drm/drm_mipi_dsi.h>
+> > > > +#include <drm/drm_panel.h>
+> > > > +
+> > > > +#include <video/mipi_display.h>
+> > > > +
+> > > > +struct panel_desc {
+> > > > +     const struct drm_display_mode *modes;
+> > > > +     unsigned int bpc;
+> > > > +
+> > > > +     /**
+> > > > +      * @width_mm: width of the panel's active display area
+> > > > +      * @height_mm: height of the panel's active display area
+> > > > +      */
+> > > > +     struct {
+> > > > +             unsigned int width_mm;
+> > > > +             unsigned int height_mm;
+> > >
+> > > Please move to the declared mode;
+> > >
+> > > > +     } size;
+> > > > +
+> > > > +     unsigned long mode_flags;
+> > > > +     enum mipi_dsi_pixel_format format;
+> > > > +     const struct panel_init_cmd *init_cmds;
+> > > > +     unsigned int lanes;
+> > > > +     bool discharge_on_disable;
+> > > > +     bool lp11_before_reset;
+> > > > +};
+> > > > +
+> > > > +struct kingdisplay_panel {
+> > > > +     struct drm_panel base;
+> > > > +     struct mipi_dsi_device *dsi;
+> > > > +
+> > > > +     const struct panel_desc *desc;
+> > > > +
+> > > > +     enum drm_panel_orientation orientation;
+> > > > +     struct regulator *pp3300;
+> > > > +     struct gpio_desc *enable_gpio;
+> > > > +};
+> > > > +
+> > > > +enum dsi_cmd_type {
+> > > > +     INIT_DCS_CMD,
+> > > > +     DELAY_CMD,
+> > > > +};
+> > > > +
+> > > > +struct panel_init_cmd {
+> > > > +     enum dsi_cmd_type type;
+> > > > +     size_t len;
+> > > > +     const char *data;
+> > > > +};
+> > > > +
+> > > > +#define _INIT_DCS_CMD(...) { \
+> > > > +     .type =3D INIT_DCS_CMD, \
+> > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
+> > > > +     .data =3D (char[]){__VA_ARGS__} }
+> > > > +
+> > > > +#define _INIT_DELAY_CMD(...) { \
+> > > > +     .type =3D DELAY_CMD,\
+> > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
+> > > > +     .data =3D (char[]){__VA_ARGS__} }
+> > >
+> > > This is the third panel driver using the same appoach. Can you use
+> > > mipi_dsi_generic_write_seq() instead of the huge table? Or if you pre=
+fer
+> > > the table, we should extract this framework to a common helper.
+> > > (my preference is shifted towards mipi_dsi_generic_write_seq()).
+> > >
+> > The drawback of mipi_dsi_generic_write_seq() is that it can cause the
+> > kernel size grows a lot since every sequence will be expanded.
+> >
+> > Similar discussion in here:
+> > https://lore.kernel.org/dri-devel/CAD=3DFV=3DWju3WS45=3DEpXMUg7FjYDh3-=
+=3Dmvm_jS7TF1tsaAzbb4Uw@mail.gmail.com/
+> >
+> > This patch would increase the module size from 157K to 572K.
+> > scripts/bloat-o-meter shows chg +235.95%.
+> >
+> > So maybe the common helper is better regarding the kernel module size?
+>
+> Yes, let's get a framework done in a useful way.
+> I'd say, drop the _INIT_DELAY_CMD. msleep() and usleep_range() should be
+> used instead (and it's up to the developer to select correct delay
+> function).
+>
+> >
+> > > > +
+> > > > +static const struct panel_init_cmd kingdisplay_kd101ne3_init_cmd[]=
+ =3D {
+> > > > +     _INIT_DELAY_CMD(50),
+> > > > +     _INIT_DCS_CMD(0xE0, 0x00),
+>
+> [skipped the body of the table]
+>
+> > > > +     _INIT_DCS_CMD(0x0E, 0x48),
+> > > > +
+> > > > +     _INIT_DCS_CMD(0xE0, 0x00),
+>
+> > > > +     _INIT_DCS_CMD(0X11),
+>
+> Also, at least this is mipi_dsi_dcs_exit_sleep_mode().
+>
+> > > > +     /* T6: 120ms */
+> > > > +     _INIT_DELAY_CMD(120),
+> > > > +     _INIT_DCS_CMD(0X29),
+>
+> And this is mipi_dsi_dcs_set_display_on().
+>
+> Having a single table enourages people to put known commands into the
+> table, the practice that must be frowned upon and forbidden.
+>
+> We have functions for some of the standard DCS commands. So, maybe
+> instead of adding a single-table based approach we can improve
+> mipi_dsi_generic_write_seq() to reduce the bloat. E.g. by moving the
+> error handling to a common part of enable() / prepare() function.
+>
 
-That still wouldn't solve this issue, because the wrs.nto guest may still
-never wakeup in the implementation-specific way?
+For this panel, I think it can also refer to how
+panel-kingdisplay-kd097d04.c does. Create the table for init cmd data,
+not what operation to use, and use mipi_dsi_generic_write_seq() when
+looping through the table.
 
-> > and the kernel
-> > enters a WRS where the reservation set is not required to be invalidated
-> > for the condition we are waiting on to become true.
-> > 
-> > An option here would be to enforce in the spec that this time limit is
-> > finite. If the original intention of the spec was to have it be finite,
-> > then this would not be an issue. If the intention was to allow no time
-> > limit, then this would probably have to be a new extension.
-> 
-> wrs.nto has been specified to never timeout.
-> wrs.sto has been specified to never raise exceptions.
-> 
-> If we had an instruction which would timeout when mstatus.TW/hstatus.VTW
-> is clear and raise exceptions when set, then that's the one we'd choose.
-> 
 
-Yes, this does seem like the ideal situtation.
-
-> > 
-> > We are also able to change the kernel to not allow these conditions that
-> > would break this interpretation of WRS. I found three instances in the
-> > kernel that contain a condition that is not dependent on the wrs
-> > reservation.
-> > 
-> > 1.
-> > # queued_spin_lock_slowpath() in kernel/locking/qspinlock.c
-> > val = atomic_cond_read_relaxed(&lock->val,
-> > 			       (VAL != _Q_PENDING_VAL) || !cnt--);
-> > 
-> > The first condition will only become true if lock->val changes which
-> > should invalidate the reservation. !cnt-- on the otherhand is a counter
-> > of the number of loops that happen under-the-hood in
-> > atomic_cond_read_relaxed. This seems like an abuse of the function and
-> > could be factored out into a new bounded-iteration cond_read macro.
-> > 
-> > 2.
-> > # osq_lock() in kernel/locking/osq_lock.c
-> > if (smp_cond_load_relaxed(&node->locked, VAL || need_resched() ||
-> > 			  vcpu_is_preempted(node_cpu(node->prev))))
-> > 
-> > VAL is the first condition and won't be a problem here since changes to
-> > it will cause the reservation to become invalid. arm64 has hard-coded
-> > vcpu_is_preempted to be false for the same exact reason that riscv would
-> > want to (the wait wouldn't be woken up). There is a comment that
-> > points this out in arch/arm64/include/asm/spinlock.h. riscv currently
-> > uses the default implementation which returns false.
-> 
-> The operative word is 'currently'. I plan to eventually get riscv's
-> vcpu_is_preempted() working since we already laid the groundwork by
-> adding a preempted flag to the SBI STA struct.
-> 
-> > 
-> > need_resched() should not be a problem since this condition only changes
-> > when the hart recieves an IPI, so as long as the hart is able to receive
-> > an IPI while in WRS it will be fine.
-> > 
-> > 3.
-> > # __arm_smmu_cmdq_poll_until_msi() in drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> > smp_cond_load_relaxed(cmd, !VAL || (ret = queue_poll(&qp)));
-> > 
-> > arm driver, not relevant.
-> > 
-> > 
-> > 
-> > The only case that would cause a problem in the current implementation
-> > of the kernel would be queued_spin_lock_slowpath() with the cnt check.
-> > We are able to either change this definition, change the spec, or leave
-> > it up to the vendor who would be hit by this issue to change it.
-> 
-> We could attempt to document restrictions on the condition given to
-> smp_cond_load_relaxed() and then change the callers to honor those
-> restrictions, but that doesn't sound too easy. How will we remove
-> vcpu_is_preempted() on x86?
-
-The solution here seems like it would be to not use wrs for riscv in
-this case.  We really would need an alternate extension that allows wrs
-in a guest to be guaranteed to trap into the host at some point. 
-
-> 
-> We should probably start the process of a new extension which has the
-> hybrid wrs.sto/nto instruction, but I'm reluctant to, since, in practice,
-> the current wrs.nto is probably fine. I don't really expect there to be
-> implementations that never terminate, even though I'd rather we document
-> that it's _required_ wrs.nto terminates, or that exceptions be raised.
-> Maybe I'm attempting to document it in the wrong place though. Maybe this
-> is more of a Documentation/arch/riscv/boot.rst type of thing.
-> 
-
-wrs.nto is most likely sufficient. A new extension will take a long
-time. We could go ahead with wrs.nto, propose the extension, and when
-the extension is ready switch over to it. In the meantime have this
-behavior documented.
-
-> Thanks,
-> drew
-
-- Charlie
-
+> > > > +     _INIT_DELAY_CMD(20),
+> > > > +     {},
+> > > > +};
+>
+> --
+> With best wishes
+> Dmitry
 
