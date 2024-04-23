@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-61769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866538AE141
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:46:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F4B8AE148
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:49:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA33A1C224DF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:46:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0439C1F226BB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:49:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763FD5A788;
-	Tue, 23 Apr 2024 09:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847E859151;
+	Tue, 23 Apr 2024 09:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QV9dkTFI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nIy9VsGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45BE59161
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 09:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDACB51016
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 09:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713865556; cv=none; b=N/AoppeVq0WRbtf2NNUOkOieavja1oD5Lwx4r2Tg30gkDG1AWrrs7DWjbp9D+M6mx6vU3W3dKN8ljEjFu3VMDhe1siPe7IKB1OMz2Qw2an9i4rQrXNbn3dv/pLlMbTQ/aobApuJhSuV2eYFCs03cuOn1CAeTAWk+uNjvIA5umHQ=
+	t=1713865776; cv=none; b=ULM/LI9/L+6lfBYKqz2uW4V5tRJ6UucH+16Cc9AQeQ9P7jBEJMAFXDocAbpoatU6tkdHdr2yWNfmCjTYXIE02T3ga2b2Qgyw9TyNrercpAPdN3h4Zfp20ylv/y+hB2cnTu7wYDQeqNFomeRCImo7JLOap0KBOQcM2ZoPKXAFY8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713865556; c=relaxed/simple;
-	bh=0OXawXezReq/pJRii8qLy/MIW9NlwSQfDqgM87a8Cyc=;
+	s=arc-20240116; t=1713865776; c=relaxed/simple;
+	bh=NwPBsU1LTEWXKuj15xiSO/1zVXaOkdb9/phHy+RmCfE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R62R64pK/EIYHtZjInqvnWAkIY1J/pWO8rGkM6/H6GrqlKPJN+zDLJ+oaE8bWUKEXv0fR+zfoCySlgDSHZ/jrNU2Rnsb2wmsz1TwNyZ+AXrOJ/DTQmeEQK5Rj4uwUjifhUjdcsgDLVHvRi//dgxQGTy/eT8lAOZeMSDE9famylg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QV9dkTFI; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=IdwqydU7MwGnS6TVNCxBr2vh9D6DJrZqvDaY3lRTiaNepVfw1CkhfzMpjwMBVJ7f4eAbqobDY5p1y36rHZ7smyJBQ+527wgTVFyZAVF9A24vUb3u/J428PgT9EWil3NkdcAFyr3bgM9bwBshyPD/XConTXsDb6eDqnBNYb8uf9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nIy9VsGk; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a58772187d8so94552166b.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 02:45:54 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-347c197a464so4031227f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 02:49:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713865553; x=1714470353; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713865773; x=1714470573; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0OXawXezReq/pJRii8qLy/MIW9NlwSQfDqgM87a8Cyc=;
-        b=QV9dkTFIBoSXGdispda3NjaYxHBNH3K25e/b7iwLWosGYMb6qpbAsGyXg+Hj5yOmG/
-         sGEv7f6K3tuk7I/alh67NZHC09qlrjWrOfXBdm8aCVHnyfX+crQ0RPgCR9CjxTlBjSUu
-         h+2Pqah4gtxVvIwieg0q6oB778bD0GQD3uga8T58/8RFldnAjYc1+QzUkVRbXcHGalvS
-         cQS97Z3n2pTCEjQUoQ9gvvypkPypNJLrLffILd2Wxsk+MCuHH2qKlBLxIXgOCOgitqbI
-         055NlysDytSqoorNithSIkq17f86XmUh6rl6BZ4n+b5w3ysR1GAEC8UhY05VG601Ot3I
-         pOEQ==
+        bh=Igu1DHe9/mbdgePnFlKk0Kt8J0+Ygp+bDiGAG2bpm6A=;
+        b=nIy9VsGkGvUCtPYD9yqOtpnLq7wefroEckWccWVvQXShHCU9uVSJ0sbgDtePyiB2wX
+         HOOiY3BAMBa/e/8CHYDicu/Fulz30OYhW7C5k8ZO/+RgwR7cwcbpfmcMxrDf72Lf+LOO
+         X89bPgoZQ90g3KU758hPPtzGXrSqCoV6Jxo/jdTqP51DN5Dg+A0Ni5mvwS2SMnTMcf/O
+         F5Wtg1NAcd87cM6SrqopldA9y/6t3aZeiI4udnrxlQYuv7mduFT31V3MLwGLH8QnyK7m
+         OQ5gqNgUQ3scNY1BW7ZnfCGyKMjDsr+cYXMzE6gjHuYtRXoikR3DcKSb/TJDH9khF13R
+         kqww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713865553; x=1714470353;
+        d=1e100.net; s=20230601; t=1713865773; x=1714470573;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0OXawXezReq/pJRii8qLy/MIW9NlwSQfDqgM87a8Cyc=;
-        b=rMPlxJMrd4Vwnzvr0wM++nNnTpsaGgTk9zD0GQczlB9Vs9WRLsayjj6QKDTkbSQHsy
-         06Z70USWvli+Am6wazXEuHnVYr77PPQme8GMzB2wLIFu6Gb9rKDvFk+xlinCJ9xlZMPI
-         kAOk7O61HPSCzHcgb+8XSMc97tm9yQVJUmlWKhQ04JXa8/QPsqxuHe3CNzJBfomgANhj
-         bdkkW+fxzIaoV6kJnC+V6Xmzvtp5Y18PmpJNTpTL6WWtaYMhwZ18J+Pjw05hDrc7GL7n
-         Jv+0WAeruhDR9v0AeH44/PenHoCXBSZ59H/kUkPGFOqZayyzGEgqCViyCaXKJZrSs62u
-         0nmg==
-X-Forwarded-Encrypted: i=1; AJvYcCW4ttp1sWZJAJ9stFyZgpPWhmDwpCM2lb+jeilx33TeMrzIZyUJhncHj228F+1FiXD9kj20/rGIinEnPfxKoeeDbNXCzhSoKbwWSQ==
-X-Gm-Message-State: AOJu0YzAt05ZwEhv5SpGj11TvR0JYKqyIf6YE4VjB1j0no9bC57Jyzcu
-	t/jM4J5MuqaifaYYedPgnlpHZVTsZzVouygsWxnxJf2LRa3C/EboMhaToF618ao=
-X-Google-Smtp-Source: AGHT+IEDNnvCIJghyjpAWJKdMY7UMuoZjbCNlqfphMG1kOwc/wCe7RDUjLqV7plqyEmjEjFqGTPORQ==
-X-Received: by 2002:a17:907:1115:b0:a58:7ea5:c49b with SMTP id qu21-20020a170907111500b00a587ea5c49bmr1395621ejb.42.1713865548776;
-        Tue, 23 Apr 2024 02:45:48 -0700 (PDT)
+        bh=Igu1DHe9/mbdgePnFlKk0Kt8J0+Ygp+bDiGAG2bpm6A=;
+        b=M6unnHK+jubGoQD+SH5gr6BAFirS35HgZxd5RZseyLSOvSavZjGxkHP7fA1754fkdR
+         CoUjRZek7EK3GzkLi/fLukHqW/EeyxpfZU88U1JaQ2HddxxxwgHkEIM6ltnQL+E3SRyN
+         iu5r/f9xUac1CO2ZHeBAH5hze0VHYpi2PLcx08Nfs/3JyZj7CQOi5A+/qV/e25U7+rJw
+         GHJ7OQuAbsRD+8Fqd6dgPMfTfiUXk68t/or/u6aYwFo8kUeMz7JKurBOscIz9Mdz3FC3
+         sK9nwHU2cO32A4ZWGb24PM7LnpPJbju6ZG8mH/QdvRWLBKqMtY2Aca/Gu96QNe1wLWwL
+         HgKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJ64y+li5H2PdY6LJPkVWzuyczvD/JlNoXlH7MWSZB//f2fD+Vbc3xxiMnCgH0LgBWcv8qACG4t6JrwMDJKScE3c+fWE9ch7+mUA==
+X-Gm-Message-State: AOJu0YzMuDOlmxvGNv8ys8l1UtBwDfI6I9t1N0l6psJql7X6besSYh9k
+	j7jF5IaL/06zk81zvwQ3fI1j2tzGBcViJz1BVmkThvNojrv24Xh2T0Ceow7XqFk=
+X-Google-Smtp-Source: AGHT+IHRgo8HGU7FZWnB41V7PjyatID5UWrOs8dLpeBKw2fehyBq06F7/Ka8YFaKJRJjS5uYDUGJxw==
+X-Received: by 2002:a5d:4082:0:b0:343:b5f0:f511 with SMTP id o2-20020a5d4082000000b00343b5f0f511mr7052352wrp.12.1713865771621;
+        Tue, 23 Apr 2024 02:49:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id gc24-20020a170906c8d800b00a55ac217235sm3076796ejb.90.2024.04.23.02.45.47
+        by smtp.gmail.com with ESMTPSA id j6-20020adff006000000b00349856b640bsm14183531wro.67.2024.04.23.02.49.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 02:45:48 -0700 (PDT)
-Message-ID: <605ebf52-a7d6-455b-9009-dad36b8cd8eb@linaro.org>
-Date: Tue, 23 Apr 2024 11:45:46 +0200
+        Tue, 23 Apr 2024 02:49:30 -0700 (PDT)
+Message-ID: <a5f8746f-14f8-4e56-9ac7-30c7ba6fad30@linaro.org>
+Date: Tue, 23 Apr 2024 11:49:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: iio: imu: Add docs for ADIS16545/47
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
- linux-kernel@vger.kernel.org, jic23@kernel.org, linux-iio@vger.kernel.org,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org, corbet@lwn.net,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh@kernel.org
-Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>
-References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
- <20240423084210.191987-4-ramona.gradinariu@analog.com>
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: Add PDM controller for the
+ StarFive JH8100 SoC
+To: Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+Cc: Walker Chen <walker.chen@starfivetech.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org
+References: <20240423083405.263912-1-xingyu.wu@starfivetech.com>
+ <20240423083405.263912-2-xingyu.wu@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,22 +136,95 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240423084210.191987-4-ramona.gradinariu@analog.com>
+In-Reply-To: <20240423083405.263912-2-xingyu.wu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/04/2024 10:42, Ramona Gradinariu wrote:
-> Update ADIS16480 existing documentation with documentation for
-> ADIS16545/47 devices.
+On 23/04/2024 10:34, Xingyu Wu wrote:
+> Add bindings about the PDM controller for the StarFive JH8100 SoC.
+> 
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
 
-Nothing in this commit msg explains me why they are not compatible,
-while driver suggests a bit they are.
+If there is going to be resend/new version, three nits. Anyway:
 
-A nit, subject: drop second/last, redundant "docs for". The
-"dt-bindings" prefix is already stating that these are bindings which is
-documentation.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+...
+
+> +
+> +title: StarFive JH8100 PDM controller
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  The Pulse Density Modulation (PDM) controller is a digital PDM out
+> +  microphone interface controller and decoder that supports both up to 4
+> +  channels, and an Inter-IC Sound (I2S) transmitter that outputs standard
+> +  stereo audio data to another device. The I2S transmitter can be
+> +  configured to operate either a master or a slave (default mode). The PDM
+> +  controller includes two PDM blocks, each PDM block can drive one
+> +  bitstream sampling clock and two bitstream coming data (mono/stereo)
+> +  with sampling clock rising and falling edge.
+> +
+> +maintainers:
+> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
+> +  - Walker Chen <walker.chen@starfivetech.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh8100-pdm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: DMIC output clock
+> +      - description: Main ICG clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: dmic
+> +      - const: icg
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  starfive,syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to System Register Controller sys_syscon_ne node.
+> +          - description: PDM source enabled control offset of SYS_SYSCON_NE register.
+> +          - description: PDM source enabled control mask
+> +    description:
+> +      The phandle to System Register Controller syscon node and the PDM source
+> +      from I2S enabled control offset and mask of SYS_SYSCON_NE register.
+
+This description duplicates items. Drop redundant parts (there is really
+never a need to say phandle is a phandle because it cannot be anything
+else). Instead say what is it used for.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - '#sound-dai-cells'
+
+Use consistent quotes, either ' or "
+
+
 
 Best regards,
 Krzysztof
