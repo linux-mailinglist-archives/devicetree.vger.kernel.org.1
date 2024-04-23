@@ -1,171 +1,171 @@
-Return-Path: <devicetree+bounces-61781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4413C8AE189
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:59:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F8F8AE1A8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 667B7B22A2A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:59:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83BB11F24467
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AC85FDD3;
-	Tue, 23 Apr 2024 09:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422E87E567;
+	Tue, 23 Apr 2024 10:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYaBeMbT"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ELCLA7TZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F0B5FDB5;
-	Tue, 23 Apr 2024 09:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81B75FB9B;
+	Tue, 23 Apr 2024 10:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713866371; cv=none; b=HhLT3ft8mHRP064NmFEomeDCyR1aVGskCi7WTm5QoIBzaCktK4KBhvBpItGvEN3w153xNgH85gChfC35Hb29mW8/EsEkxtT0xwkYNh29Rpb4Fi/6iRHjGiwNqVxNT64cFfS6rCHOKXPA1E+KMc0CVYctikgn7pQOrvAR+gEXMTw=
+	t=1713866518; cv=none; b=OCnKz1QNvbktkjq2jH25SPqe+zzqU0C+DALuVc7RRsv8OFn4qvQPpKfru/XiNScItgsMuRbl1d6m7d8x+bbWKjBy84W226HOdTBbgvZGUVtjyMNK5pEUYaZREjVYEuN9+lf+d+PDrv+Sfv6xhIrT+L0AeA5Pi58sByud0H04BpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713866371; c=relaxed/simple;
-	bh=oHbC2y82RY8ZSrVWmBLh/lcobyQjR/f3ec9ROiFotVU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aTCg0qKyA3QW6W74zl29qdQ2q5Ru8bpsuAo2hkH4Y+0kDDf1L2IdtwYIEOqLkhD5Iv0ZO8f7nYYYsp1Eja646U5JxZ+aDlkgqLO0WO7zw15M6tulmoj2iNlyl9By7fQqUeuxmC/2ILFW8F6Un15RnzuQ1yQzghDIs9W2iPODQUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYaBeMbT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6F3C116B1;
-	Tue, 23 Apr 2024 09:59:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713866370;
-	bh=oHbC2y82RY8ZSrVWmBLh/lcobyQjR/f3ec9ROiFotVU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lYaBeMbTWrYNsVWe2gpkDlAsFai0qqez7Bz85e33B3FcQRad+v/tnk+j3lxEMAyxK
-	 PxHt+jyzpSiVpQsQbXT+JGJ8HGBODOp9eAcO9pGhkwLR47l/S7pj41HWSXDrXinNq2
-	 qU074FLJJzxOV0WmIZ6yuPwYleMNtR7EV0SJl9CH3YaPyMV2kcv4qd240/l99QJh5T
-	 1wYAOEVAUfD+xA0xrzSUDAFSTfHeAKpl3QTuC28ksG2zdpMgNxvbrjFTzzVWcZq1xm
-	 OWoxacaoTrblY+tnjsvYckiDHr1erVUVglNzkMzmzSPfOsv2JMiPv79Kn5OI1C/r7q
-	 RUWZK8LywuYVA==
-Message-ID: <4c6d6957-3813-46d3-88de-ee64241bbe6f@kernel.org>
-Date: Tue, 23 Apr 2024 11:59:23 +0200
+	s=arc-20240116; t=1713866518; c=relaxed/simple;
+	bh=eIHtDlpwxsc3XWZW8iA1wFGI7oLW/lPGfnVuHIpBM0k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dF23cm1uHw5/+gqbkFfPQM0EqghJNrZic74MKQWc/YoJaKkHACgWMfR5oeVz0ww8DdVPIdzQ15oSfQGwBijHGWLg/bJHOSnB9VTAPAzEt8ygUdgXJF+qQQL1WAr+mt3bAjEadi+TbJ2mbnFDXIzJMq6XWPmfpw0Z2QnwLta5a64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ELCLA7TZ; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 18E001C0005;
+	Tue, 23 Apr 2024 10:01:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1713866508;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fTWKNBt1DmdiMdNDDF390iGqtyF7GrI4IgYrHS6Bp6M=;
+	b=ELCLA7TZnjfxTyZWJw2v9nMvXs5rfJNPpFqn7E5aHH7jBBqmFhmDJPJUrbcB5t5pknTUvF
+	hNtUfXlr/JVLfMCpoGaI4loOUk++YJShnqaspvqmN/IuO32HibjaM1tgg73Cjn1EwTYSK5
+	k4A8Ub+kSdBdB+hlFSLOJIt9yIh2EK1CmBORjiHyOV/VHt319Wh3Ovykmi42WHSkquC7yP
+	CFqkX0x3EVJI7wCNET/OYvr47VtgUKjHnj8MKQH6Fxavq+Z32n53UKoRyu56l6ndg/6B0O
+	PDii3s6BGVANW3sXVFHmwU/yyQHfPHmAukM1MkhxkWelrGo3TUgAJgO0hg0b/Q==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH v4 0/6] spi: cadence-qspi: add Mobileye EyeQ5 support
+Date: Tue, 23 Apr 2024 12:01:39 +0200
+Message-Id: <20240423-cdns-qspi-mbly-v4-0-3d2a7b535ad0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: mmc: renesas,sdhi: Drop 'items' keyword
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240422213006.505576-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240422213006.505576-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <2b422e9f-bd80-4c57-a3e1-8b463b25c834@kernel.org>
- <CA+V-a8s1xDT7sGMpz_n45v9QzhpWUdJv9eXmUJoxPaJ69MiY7A@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CA+V-a8s1xDT7sGMpz_n45v9QzhpWUdJv9eXmUJoxPaJ69MiY7A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAOHJ2YC/2XMyQ6CMBSF4VchXVtz6QS48j2Mi05IE6RISSMhv
+ LsFFw4s/5Ocb0bBDs4GdMpmNNjogvNdCnbIkG5kd7PYmdSIAGFAoMLadAE/Qu/wXbUTNpYQ4JI
+ xqShKp36wtXtu4OWaunFh9MO0+TFf1zdFofynYo4BSw605MKYpJ6V92PruqP2d7RikXwABnwHk
+ ARUXIiiKoUwwuwB+gXksANoAgpVAKeMVboufoFlWV4YSIqTMAEAAA==
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Rob Herring <robh@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.13.0
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 23/04/2024 09:21, Lad, Prabhakar wrote:
-> Hi Krzysztof,
-> 
-> Thank you for the review.
-> 
-> On Tue, Apr 23, 2024 at 7:29 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 22/04/2024 23:30, Prabhakar wrote:
->>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>>
->>> Drop 'items' keyword from compatible list which have single const value.
->>>
->>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>> ---
->>>  .../devicetree/bindings/mmc/renesas,sdhi.yaml  | 18 ++++++------------
->>>  1 file changed, 6 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
->>> index 29f2400247eb..90c8b1b727a8 100644
->>> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
->>> @@ -12,16 +12,11 @@ maintainers:
->>>  properties:
->>>    compatible:
->>>      oneOf:
->>> -      - items:
->>> -          - const: renesas,sdhi-sh73a0  # R-Mobile APE6
->>> -      - items:
->>> -          - const: renesas,sdhi-r7s72100 # RZ/A1H
->>> -      - items:
->>> -          - const: renesas,sdhi-r7s9210 # SH-Mobile AG5
->>> -      - items:
->>> -          - const: renesas,sdhi-r8a73a4 # R-Mobile APE6
->>> -      - items:
->>> -          - const: renesas,sdhi-r8a7740 # R-Mobile A1
->>> +      - const: renesas,sdhi-sh73a0  # R-Mobile APE6
->>> +      - const: renesas,sdhi-r7s72100 # RZ/A1H
->>> +      - const: renesas,sdhi-r7s9210 # SH-Mobile AG5
->>> +      - const: renesas,sdhi-r8a73a4 # R-Mobile APE6
->>> +      - const: renesas,sdhi-r8a7740 # R-Mobile A1
->>
->> That's just an enum.
->>
-> Are you suggesting to group them into a single enum instead...?
+Hi all,
 
-Yes. That's preferred form, easier to read, because it clearly documents
-that binding enumerates.
+V4 of this series adding octal SPI-NOR support to Mobileye EyeQ5
+platform. It has been tested on EyeQ5 hardware successfully. Patches
+have been taken over time, meaning series got smaller over time.
 
-But just in case you start changing all const to enums: don't. Comment
-is for this patch, since you already want to touch these things.
+Patches:
+ - Make cdns,fifo-depth optional by computing it from hardware.
+ - No-IRQ mode for indirect read operations. Behind a quirk flag.
+ - Busywait on commands and indirect reads; reduces hrtimeouts load.
+ - Add mobileye,eyeq5-ospi compatible.
+ - EyeQ5 devicetree:
+    - Add octal SPI-NOR node.
+    - Add SPI-NOR flash node on eval board.
+
+There is no dependency except if you want zero errors in devicetree:
+system-controller series [3] for <&clocks> phandle.
+
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20240216174227.409400-1-gregory.clement@bootlin.com/
+[1]: https://lore.kernel.org/linux-mips/20240209-regname-v1-0-2125efa016ef@flygoat.com/
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/mips/linux.git/log/
+[3]: https://lore.kernel.org/lkml/20240301-mbly-clk-v9-0-cbf06eb88708@bootlin.com/
+[4]: https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/log/
+[5]: https://lore.kernel.org/lkml/20240308-cdns-qspi-mbly-v1-0-a503856dd205@bootlin.com/
+[6]: https://lore.kernel.org/lkml/171259906078.120310.15397790336440498713.b4-ty@kernel.org/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v4:
+- Fix -Wunused-variable warning on patch "allow FIFO depth detection"
+  by dropping two unused local variables.
+- Rebase onto spi/for-next, drop three applied patches:
+  - spi: dt-bindings: cdns,qspi-nor: sort compatibles alphabetically
+  - spi: dt-bindings: cdns,qspi-nor: add mobileye,eyeq5-ospi compatible
+  - spi: dt-bindings: cdns,qspi-nor: make cdns,fifo-depth optional
+- Link to v3: https://lore.kernel.org/r/20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com
+
+Changes in v3:
+- dt-bindings:
+  - Patch "sort compatibles alphabetically":
+    - Moved first.
+    - Take Reviewed-By Krzysztof.
+  - Patch "add mobileye,eyeq5-ospi compatible":
+  - EyeQ5 no longer implies no cdns,fifo-depth prop. Patch now only adds
+    compatible, no more property conditional.
+  - New "make cdns,fifo-depth optional" patch, for all compatibles.
+- Driver:
+  - FIFO depth detection is no longer a quirk. It is for all compatibles
+    if no DT property is provided.
+  - Rebase onto spi-next [4] to drop three patches. No-IRQ mode patch is
+    mentioned in email saying a subset of patches got applied [6].
+    However, it is not in spi-next, so it is kept in series.
+  - Busywait is no longer behind a quirk; it applies to all compatibles.
+  - No-IRQ mode patch got modified to change its quirk index because
+    previous quirk got removed.
+  - As we removed some quirks, we no longer overflow u8 quirks.
+- Link to v2: https://lore.kernel.org/r/20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com
+
+Changes in v2:
+- Rebase upon v6.9-rc2.
+- Fix dt-bindings commit subject tags.
+- Take Reviewed-by: Krzysztof Kozlowski on dt-bindings commit.
+- Add dt-bindings commit to order compatibles alphabetically.
+  Krzysztof: unsure if you want this. It is second so that commit
+  adding EyeQ5 compatible can be taken alone easily.
+- Drop patch taken upstream:
+  spi: cadence-qspi: switch from legacy names to modern ones
+- Add To: Rob Herring, following get_maintainer.pl recommendation.
+- Link to v1: https://lore.kernel.org/r/20240308-cdns-qspi-mbly-v1-0-a503856dd205@bootlin.com
+
+---
+Théo Lebrun (6):
+      spi: cadence-qspi: allow FIFO depth detection
+      spi: cadence-qspi: add no-IRQ mode to indirect reads
+      spi: cadence-qspi: add early busywait to cqspi_wait_for_bit()
+      spi: cadence-qspi: add mobileye,eyeq5-ospi compatible
+      MIPS: mobileye: eyeq5: Add SPI-NOR controller node
+      MIPS: mobileye: eyeq5: add octal flash node to eval board DTS
+
+ arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 15 +++++
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi     | 15 +++++
+ drivers/spi/spi-cadence-quadspi.c          | 91 +++++++++++++++++++++++-------
+ 3 files changed, 102 insertions(+), 19 deletions(-)
+---
+base-commit: 9deae5003d0e89ec6ef15879a70ba6fb43e15029
+change-id: 20240209-cdns-qspi-mbly-de2205a44ab3
 
 Best regards,
-Krzysztof
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
 
 
