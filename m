@@ -1,192 +1,189 @@
-Return-Path: <devicetree+bounces-61679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608C58AD963
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 01:53:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C38558ADB04
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 02:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 146B6287D88
-	for <lists+devicetree@lfdr.de>; Mon, 22 Apr 2024 23:53:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79A86283CF0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 00:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D2E46435;
-	Mon, 22 Apr 2024 23:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA92517721;
+	Tue, 23 Apr 2024 00:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HRhCKKII"
+	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="sdTj0rJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5870746436;
-	Mon, 22 Apr 2024 23:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09B9DDB8
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 00:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713829988; cv=none; b=PGz2+sWWSnUpp/n0AyVbkBwHW3C87ERsKByodygroCWVE+gNVf4QFM2nZ51wW+0eouMB0RzGxcNnGJllUghx99uAyqDZ2LdVbFObmorwgHp6sGCeMW3TrGSOB8ipGFtlDhwFYTjJRtYnBMfAdPzaLjg7WwZ1osdxHiqLZz1W8O4=
+	t=1713831038; cv=none; b=GKK7+gPcSIIAX8e0iB78OejEywH2B25cyKnercq0LmrVedf7uiV2kuY2t5KjEFyrhidILJsqJNHpUpIG8Dg+MmEL7uo10reEhO/2rSiyjLiXCRueYZ2pUT3crc+6G0P8tjUAHySIco2PhGt9fQfBkTcDzNfrt+mAvTWqMKYxRnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713829988; c=relaxed/simple;
-	bh=ReEUZRtSW1NtsWR44K1jxu43AC533vf5fFJ2VNxO5Ok=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AVvP6pbia3G9y+Cdz8LGDFSge/pj3XzgK420pT/aGQbnLdMoBpZRXo7tlPjWptdZhNKqvEJ1NKzDs/QO1Va5xKHn7tQwFauV0KZi8nQCsmZLNL9SQ2orK2YTq7KXgdi0dzY6y9/o2RH01IOzdqWwBl3KHhnkqK/oqEAtkqJVm90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HRhCKKII; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43MLifbB016015;
-	Mon, 22 Apr 2024 23:53:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=FOagD4X
-	Nh0Xd0MMBJ0QnANM1e5Nwfj50Z0Ad7260JkQ=; b=HRhCKKIIHjxKdLcxn6i+lD5
-	Sa28qbPtpxRY4XJedAm2aiKBY517ktm3Ap49JZtQoQeKTzUxJgwYg6YFJ34GlD5s
-	Ui8xvQd4p9Qj7B3KfKB1t0BygVE/5zWSbEzbLLhksc2rjM2ab2dXKFe0Zna9fIRZ
-	wAZ5ZSKNICTDa3IdciogVByLK9ONb9rFOH3pl499L+mifK1ZHociMR7GLiua8mlq
-	AGwktpT7PKT5CgHfZE9R5VGi+PrAAzH0VrL56QqKUIWUXhpkXLjSnfrFn3/6o/N4
-	lsR2eOFOt44G0ifgu6anKcaTdKpKTdFYuo28HwBIVf6sRdUn9szaLQkxhpE06ag=
-	=
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xnn82sw2a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Apr 2024 23:53:03 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43MNr2hB004483
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Apr 2024 23:53:02 GMT
-Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 22 Apr 2024 16:52:58 -0700
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-To: <robh@kernel.org>, <saravanak@google.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Subject: [PATCH] of: reserved_mem: Remove the use of phandle from the reserved_mem APIs
-Date: Mon, 22 Apr 2024 16:52:43 -0700
-Message-ID: <20240422235243.2878536-1-quic_obabatun@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1713831038; c=relaxed/simple;
+	bh=DddfLvBrYl9mrWkgY8ASnmpcK/f4Mq5McEMvf2HvzZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c0rfVz8a8gTYGzEa0OUxHl9qUtKXd3Nxn5hHhCbS581yegcpEBKAk+M9TBZkwQIc7RjUwBqfIh815M4bVbHtimBotkNC5pdptHn2QuRIVIRXcBQ+2rwwVOKC+R1zy4jOHmcBt99v3p7SGWq3qiKlQnGqWDCqkLMuadaX8mkajBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org; spf=none smtp.mailfrom=jookia.org; dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b=sdTj0rJt; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jookia.org
+Date: Tue, 23 Apr 2024 10:09:12 +1000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
+	t=1713831034;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wxMsnwwgYTRpN+n1pAjIWgxOeAtkZF/bH9vNkvOLnY8=;
+	b=sdTj0rJtuoSGbqhR8idHk8Cp/R6XUfuuNCggnswID6iZ94iIvEg1Jb3xnE8uLJnj+vupOt
+	Vt91S+1GWsKuWilWbXyMaJ1m4SDb8y7swQ1H+cc3lvxvg6qk9NKP36U/hVFNNChssonsJD
+	D1CFHCxU734bS7q+2y5Q07z78DA7+yFvknKDRfaRMMBahqSk8YqdX6KY1Ys02tYPvTZcVj
+	BZWjbR98/9tth+DqrFcXCcRn6cCaTpKWWycqvSNuWPVvCuHb6pM4sdJejls3dp55y6xu9l
+	mFSFOvXUF3wF/Swfiq/o7ZyhoxbWvPIoUFXD8p9Ce6UpIBwslZ5EEFQYbc2AJA==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: John Watts <contact@jookia.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 2/5] regulator: axp20x: AXP717: fix LDO supply rails
+ and off-by-ones
+Message-ID: <Zib8KOXwqJT3ftHm@titan>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <20240418000736.24338-3-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: A_IOoqzBMNY9_vF4UKugrP7LNjpPArZa
-X-Proofpoint-ORIG-GUID: A_IOoqzBMNY9_vF4UKugrP7LNjpPArZa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-22_16,2024-04-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- suspectscore=0 adultscore=0 clxscore=1011 bulkscore=0 malwarescore=0
- spamscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=823
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404220100
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418000736.24338-3-andre.przywara@arm.com>
+X-Migadu-Flow: FLOW_OUT
 
-The __find_rmem() function is the only place that references the phandle
-field of the reserved_mem struct. __find_rmem() is used to match a
-device_node object to its corresponding entry in the reserved_mem array
-using its phandle value. But, there is already a function called
-of_reserved_mem_lookup() which carries out the same action using the
-name of the node.
+On Thu, Apr 18, 2024 at 01:07:33AM +0100, Andre Przywara wrote:
+> The X-Powers AXP717 PMIC has separate input supply pins for each group
+> of LDOs, so they are not all using the same DCDC1 input, as described
+> currently.
+> 
+> Replace the "supply" member of each LDO description with the respective
+> group supply name, so that the supply dependencies can be correctly
+> described in the devicetree.
+> 
+> Also fix two off-by-ones in the regulator macros, after some double
+> checking the numbers against the datasheet. This uncovered a bug in the
+> datasheet: add a comment to document this.
 
-Using the of_reserved_mem_lookup() function is more reliable because
-every node is gauranteed to have a name, but not all nodes will have a
-phandle.
+Hi,
 
-Nodes are only assigned a phandle if they are explicitly defined in the
-DT using "phandle = <phandle_number>", or if they are referenced by
-another node in the DT. Hence, If the phandle field is empty, then
-__find_rmem() will return a false negative.
+This looks a lot better with the comment.
 
-Hence, delete the __find_rmem() function and switch to using the
-of_reserved_mem_lookup() function to find the corresponding entry of a
-device_node in the reserved_mem array. Since the phandle field of the
-reserved_mem struct is now unused, delete that as well.
+John.
 
-Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
----
- drivers/of/of_reserved_mem.c    | 26 +++-----------------------
- include/linux/of_reserved_mem.h |  1 -
- 2 files changed, 3 insertions(+), 24 deletions(-)
+Reviewed-by: John Watts <contact@jookia.org>
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 8236ecae2953..bdf41b5b1ae5 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -437,18 +437,9 @@ void __init fdt_init_reserved_mem(void)
- 	for (i = 0; i < reserved_mem_count; i++) {
- 		struct reserved_mem *rmem = &reserved_mem[i];
- 		unsigned long node = rmem->fdt_node;
--		int len;
--		const __be32 *prop;
- 		int err = 0;
- 		bool nomap;
- 
--		nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
--		prop = of_get_flat_dt_prop(node, "phandle", &len);
--		if (!prop)
--			prop = of_get_flat_dt_prop(node, "linux,phandle", &len);
--		if (prop)
--			rmem->phandle = of_read_number(prop, len/4);
--
- 		if (rmem->size == 0)
- 			err = __reserved_mem_alloc_size(node, rmem->name,
- 						 &rmem->base, &rmem->size);
-@@ -457,6 +448,8 @@ void __init fdt_init_reserved_mem(void)
- 			if (err != 0 && err != -ENOENT) {
- 				pr_info("node %s compatible matching fail\n",
- 					rmem->name);
-+
-+				nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
- 				if (nomap)
- 					memblock_clear_nomap(rmem->base, rmem->size);
- 				else
-@@ -477,19 +470,6 @@ void __init fdt_init_reserved_mem(void)
- 	}
- }
- 
--static inline struct reserved_mem *__find_rmem(struct device_node *node)
--{
--	unsigned int i;
--
--	if (!node->phandle)
--		return NULL;
--
--	for (i = 0; i < reserved_mem_count; i++)
--		if (reserved_mem[i].phandle == node->phandle)
--			return &reserved_mem[i];
--	return NULL;
--}
--
- struct rmem_assigned_device {
- 	struct device *dev;
- 	struct reserved_mem *rmem;
-@@ -534,7 +514,7 @@ int of_reserved_mem_device_init_by_idx(struct device *dev,
- 		return 0;
- 	}
- 
--	rmem = __find_rmem(target);
-+	rmem = of_reserved_mem_lookup(target);
- 	of_node_put(target);
- 
- 	if (!rmem || !rmem->ops || !rmem->ops->device_init)
-diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
-index 4de2a24cadc9..e338282da652 100644
---- a/include/linux/of_reserved_mem.h
-+++ b/include/linux/of_reserved_mem.h
-@@ -11,7 +11,6 @@ struct reserved_mem_ops;
- struct reserved_mem {
- 	const char			*name;
- 	unsigned long			fdt_node;
--	unsigned long			phandle;
- 	const struct reserved_mem_ops	*ops;
- 	phys_addr_t			base;
- 	phys_addr_t			size;
--- 
-2.34.1
-
+> 
+> Fixes: d2ac3df75c3a ("regulator: axp20x: add support for the AXP717")
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  drivers/regulator/axp20x-regulator.c | 33 ++++++++++++++++------------
+>  1 file changed, 19 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> index 34fcdd82b2eaa..f3c447ecdc3bf 100644
+> --- a/drivers/regulator/axp20x-regulator.c
+> +++ b/drivers/regulator/axp20x-regulator.c
+> @@ -140,7 +140,7 @@
+>  
+>  #define AXP717_DCDC1_NUM_VOLTAGES	88
+>  #define AXP717_DCDC2_NUM_VOLTAGES	107
+> -#define AXP717_DCDC3_NUM_VOLTAGES	104
+> +#define AXP717_DCDC3_NUM_VOLTAGES	103
+>  #define AXP717_DCDC_V_OUT_MASK		GENMASK(6, 0)
+>  #define AXP717_LDO_V_OUT_MASK		GENMASK(4, 0)
+>  
+> @@ -763,10 +763,15 @@ static const struct linear_range axp717_dcdc1_ranges[] = {
+>  	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
+>  };
+>  
+> +/*
+> + * The manual says that the last voltage is 3.4V, encoded as 0b1101011 (107),
+> + * but every other method proves that this is wrong, so it's really 106 that
+> + * programs the final 3.4V.
+> + */
+>  static const struct linear_range axp717_dcdc2_ranges[] = {
+>  	REGULATOR_LINEAR_RANGE(500000,   0,  70,  10000),
+>  	REGULATOR_LINEAR_RANGE(1220000, 71,  87,  20000),
+> -	REGULATOR_LINEAR_RANGE(1600000, 88, 107, 100000),
+> +	REGULATOR_LINEAR_RANGE(1600000, 88, 106, 100000),
+>  };
+>  
+>  static const struct linear_range axp717_dcdc3_ranges[] = {
+> @@ -790,40 +795,40 @@ static const struct regulator_desc axp717_regulators[] = {
+>  	AXP_DESC(AXP717, DCDC4, "dcdc4", "vin4", 1000, 3700, 100,
+>  		 AXP717_DCDC4_CONTROL, AXP717_DCDC_V_OUT_MASK,
+>  		 AXP717_DCDC_OUTPUT_CONTROL, BIT(3)),
+> -	AXP_DESC(AXP717, ALDO1, "aldo1", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO1, "aldo1", "aldoin", 500, 3500, 100,
+>  		 AXP717_ALDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(0)),
+> -	AXP_DESC(AXP717, ALDO2, "aldo2", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO2, "aldo2", "aldoin", 500, 3500, 100,
+>  		 AXP717_ALDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(1)),
+> -	AXP_DESC(AXP717, ALDO3, "aldo3", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO3, "aldo3", "aldoin", 500, 3500, 100,
+>  		 AXP717_ALDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(2)),
+> -	AXP_DESC(AXP717, ALDO4, "aldo4", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO4, "aldo4", "aldoin", 500, 3500, 100,
+>  		 AXP717_ALDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(3)),
+> -	AXP_DESC(AXP717, BLDO1, "bldo1", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO1, "bldo1", "bldoin", 500, 3500, 100,
+>  		 AXP717_BLDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(4)),
+> -	AXP_DESC(AXP717, BLDO2, "bldo2", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO2, "bldo2", "bldoin", 500, 3500, 100,
+>  		 AXP717_BLDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(5)),
+> -	AXP_DESC(AXP717, BLDO3, "bldo3", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO3, "bldo3", "bldoin", 500, 3500, 100,
+>  		 AXP717_BLDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(6)),
+> -	AXP_DESC(AXP717, BLDO4, "bldo4", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO4, "bldo4", "bldoin", 500, 3500, 100,
+>  		 AXP717_BLDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(7)),
+> -	AXP_DESC(AXP717, CLDO1, "cldo1", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO1, "cldo1", "cldoin", 500, 3500, 100,
+>  		 AXP717_CLDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(0)),
+> -	AXP_DESC(AXP717, CLDO2, "cldo2", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO2, "cldo2", "cldoin", 500, 3500, 100,
+>  		 AXP717_CLDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(1)),
+> -	AXP_DESC(AXP717, CLDO3, "cldo3", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO3, "cldo3", "cldoin", 500, 3500, 100,
+>  		 AXP717_CLDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(2)),
+> -	AXP_DESC(AXP717, CLDO4, "cldo4", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO4, "cldo4", "cldoin", 500, 3500, 100,
+>  		 AXP717_CLDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+>  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(3)),
+>  	AXP_DESC(AXP717, CPUSLDO, "cpusldo", "vin1", 500, 1400, 50,
+> -- 
+> 2.35.8
+> 
 
