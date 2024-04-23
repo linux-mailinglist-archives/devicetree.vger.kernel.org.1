@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-61716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1DB8ADDE0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:54:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 569728ADDE3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE22F28122A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:54:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7295D1C2012B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EDD2575B;
-	Tue, 23 Apr 2024 06:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8C4025634;
+	Tue, 23 Apr 2024 06:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r7nI0ozn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/nHutF2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525DA24B28;
-	Tue, 23 Apr 2024 06:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A10821A06;
+	Tue, 23 Apr 2024 06:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713855266; cv=none; b=VU5QAVIuoA6WqJYQUMHnsSk2nDja/LkU2hSA5TZLJx/zLR1nspkn5rh/og3T3K+vcCMXdU4f6SmZNUdpJMr5BijSKhI2Z+P106zk8NJdwMkzrEh8YzsJDLNof5yFFfU3ZmRNEtPe3lX7UJovw/xa+UlRZ8Sf6rny3JKE5PUhuCk=
+	t=1713855330; cv=none; b=c1gAXA7l+2BuJvIJ1ivX0LwaRJnp1LpYXf++GDqyQAB9LWGbrcQwl6yfU54YZb3h5PqSDfAWgWN+CzNJsp204+7XQ2L/4C0ImQbH23B19gPYe3qysCuCGioqMiu/Wdh/dzcVdYIXxpqETStQlUJOlhhOCNkAob56tZcQfGhDfHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713855266; c=relaxed/simple;
-	bh=LgFa64X5wdZMZg0gaP1xBZQL/XQxGMGNZuY4jRygRw4=;
+	s=arc-20240116; t=1713855330; c=relaxed/simple;
+	bh=wTefqr58ukfsuJjV/i8trI4z1MR4gcJ9X4LiSA7ep1I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pE8q0uVmTnntDwp4Kt1SbbcPEvpXCWvF28NnreLcpH34iwwUVf9umcx0JG1lO/EyZb7mPR377x7JjWMsLCjVleLhAcGpgvYCoBEKjm24INmfPx7kTxVMdP8Ua9fKLzjBcFr/jIpBK1xiC7KL5NdP6d/zi7XpiZlzo/nc7Ru/UY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r7nI0ozn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE9DC2BD10;
-	Tue, 23 Apr 2024 06:54:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iFzhvtu1Jtf5HDRye5X9W4SCA84U+qE6otqzdGvIwJxa1fOzTEvxWFyljwiCyYNgYC2bFUAnufIojLCF730j8Oe0C+5vqLGhh9g+DYcWALpZvoBVpebmnGYWwyV8UCT9QxA3xfCyRiDy/KVDsKJElOJZbS155muscx+2uu/CfUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/nHutF2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6A5BC116B1;
+	Tue, 23 Apr 2024 06:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713855265;
-	bh=LgFa64X5wdZMZg0gaP1xBZQL/XQxGMGNZuY4jRygRw4=;
+	s=k20201202; t=1713855330;
+	bh=wTefqr58ukfsuJjV/i8trI4z1MR4gcJ9X4LiSA7ep1I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r7nI0ozn1hdOQh5bFitLbdeQvI/4qQgSR7dt7myQP8QStKw3ZPkSt92i/fhGRdD+t
-	 LnF/a6PpNcHCfPoKgu5pcBUWisLnbLNQWUlpjdDoGdXcZtC1Bcw9X/1esK5Tk6/uav
-	 B+l9cEOYCl2vs0i2Kb4ontM5jAlVWjCWCJu9KpmsLFKn9XsZT1b3NaDchWthTGxD+f
-	 37SJ9R0QkNFnCOvcfEojVb7Y8J4oPhTNFzSOflrQlaHmKsa6T8Rcxny1PPKZPT4d4A
-	 P7FpRFq2X8SvmUm4CwdEizRRGMJQiOe0K5Vz9CYKzaQ0PcVlkI8ti5SOql3sv3RWWt
-	 eRApzqyd3j85w==
-Message-ID: <7a43b05c-ca2e-4fa6-b1f9-cb1a12778da7@kernel.org>
-Date: Tue, 23 Apr 2024 08:54:21 +0200
+	b=h/nHutF2DdTRa0bRDtYuTClmB2B273RDC8+gAKWfxf2sNjiW2fYbPUTLmZS6hvU2k
+	 DAin8BE/km7gxnDqWmEMEw4oKVcgz33VuliBiCNSo0doBikNd6yjf5tkF9lepuZ76W
+	 tek42G7eBP6ZPE762EoclTBkPXQJYw4ZMw4JDeFayRCawSXv0vFFbjciQ6AdXIz9io
+	 b2OzCH5SvldDo5Vk9o8BXQD9mf5g+iP92A6k0GXdAQUPYY2Ab3AyXTodBbY+o+v5/e
+	 t7m2JAFXQOPzFCORaMiu0BNgVXBFtwtBv/f32PqNl5w7GT8y0TFh4cEKJsTQU4c7cc
+	 NlKYLlXm8BXVA==
+Message-ID: <eebd0540-5461-4e75-87dc-42ce47a89d18@kernel.org>
+Date: Tue, 23 Apr 2024 08:55:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: usb: uhci: convert to dt schema
-To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
+Subject: Re: [PATCH 05/11] dt-bindings: net: can: Add serdev LIN bus dt
+ bindings
+To: Christoph Fritz <christoph.fritz@hexdev.de>,
+ Oliver Hartkopp <socketcan@hartkopp.net>,
+ Marc Kleine-Budde <mkl@pengutronix.de>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+ Benjamin Tissoires <bentiss@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240422122125.455781-1-sheharyaar48@gmail.com>
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>,
+ Jonathan Corbet <corbet@lwn.net>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20240422065114.3185505-1-christoph.fritz@hexdev.de>
+ <20240422065114.3185505-6-christoph.fritz@hexdev.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,51 +115,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240422122125.455781-1-sheharyaar48@gmail.com>
+In-Reply-To: <20240422065114.3185505-6-christoph.fritz@hexdev.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/04/2024 14:21, Mohammad Shehar Yaar Tausif wrote:
-> Convert USB UHCI bindings to DT schema. Documenting aspeed compatibles
-> and missing properties. Adding aspeed/generic-uhci example and fix previous
-> incorrect example.
+On 22/04/2024 08:51, Christoph Fritz wrote:
+> Add documentation of device tree bindings for serdev UART LIN-Bus
+> devices equipped with LIN transceivers.
 > 
-> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> ---
 
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: generic-uhci
-> +    then:
-> +      $ref: usb-hcd.yaml
-
-Nothing improved here.
-
-> +      required:
-> +        - clocks
-
-And this was not tested.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    uhci@d8007b00 {
-> +        compatible = "platform-uhci";
-
-What happened here? This is deprecated!
-
-> +        reg = <0xd8007b00 0x200>;
-> +        interrupts = <43>;
-
+Please test patches before sending...
 
 Best regards,
 Krzysztof
