@@ -1,316 +1,207 @@
-Return-Path: <devicetree+bounces-61733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1A38ADF94
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:19:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60E88ADFA4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9072C1C2235A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:19:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62E3628858A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC18053399;
-	Tue, 23 Apr 2024 08:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF690502B3;
+	Tue, 23 Apr 2024 08:24:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KEK1GAWo"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="QSq4WAGa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2028.outbound.protection.outlook.com [40.92.20.28])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 017ED51C5B;
-	Tue, 23 Apr 2024 08:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713860334; cv=none; b=Vu3XVFtLt2WWK+9Vn+ZLfGN7a42cQ2bhmLWQYNeJ+FWF3HQ2EBbuSOAYiKoGYDUgfFvXQpQ5Q4FYpMWmhkKmqx0N+xHsEwAKdDy02vx+x5/JBug2i+Cipx2akoimmyrJeTwlKcCymNOtuGZBb7nlDmsCvQ85pX0LIorcV24gqc8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713860334; c=relaxed/simple;
-	bh=z56yj5ZVxshAPI8aKr0iK34hCkA5WInLmhYgGGIQp7w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HnxmXfgWza/nTT4gdPhR5N32McgzSZsfa9//ctwzWIzLgob4qIcFUjMKyP/0kc1RXOKg0JF+6FwXOQM0BFEKQ/pY8WZOrhdr+jCHgcwFUgPm6KVo5nv+trm1CbZ95CkdASMYlKL0E3+UrujYngxaRqfxTWJwruwwRrc9203zdXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KEK1GAWo; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-69943ef42b2so33606496d6.3;
-        Tue, 23 Apr 2024 01:18:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713860332; x=1714465132; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rePL8arm4LivdQFrFbW0CeWxONyu2nrt0vpkmUqCS20=;
-        b=KEK1GAWoha91Bkua79NtUGmfhG0gk1ecQPFPdwEVUQfL16f9GGCilKnu3/4KyNq5Bk
-         jFnUuoyUt6V4NtBL1ijA1nnNJFm252ySwPuTX3nnL3EoHA5C/YZ1T/Grv9yCVP9mWuLB
-         PdzSVdXFd7aRMaV3UzGZxbKcNzLZm0TV0N7BxoXN62mDblaupXWxX6vXQ/AoeN/6X7w4
-         THsaLqPbkR1Pnmz9wMsPuYF5mdwfo6OuBpSrOtK9NyWNrR0lKudPN+1Ld7PjlX4Ekrtc
-         WesFtVcVy8V/KNIS3dHMo3nwPCjjBT9pb45jcLmUxlvnSMSoJaPQGqnhsxASXeHeQ+/m
-         3nwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713860332; x=1714465132;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rePL8arm4LivdQFrFbW0CeWxONyu2nrt0vpkmUqCS20=;
-        b=NHGrZ0sdONeClOUw0RrA/qLwogWAoI/npdJmXfm/HVDKpNs6Ii49xgZ0SfwZi6Wm/B
-         Ne1nzu7pM6CeLwXXBz7DAIxk4V2VfDMGMX5NYIcSLxZMtAoVDIEelm6xhcgMwES22gGp
-         0szD90VS13Kx4H5jgAV7jz43Vs0mM+jULlR3wa6Ur+p3kM70BF+6Wvgh7aw4n5RnafOO
-         QFncI4ggYtTCdfN0VqDgDN8LJler3taF9Mb7ng+uROa+kguhWV7weeK20GJ5GJ3Sp/tM
-         1ew8+xC44rLxecuGcb9KVn0Wl9h2kdrbKAkhuugScr93sgrmyRl/mhsok983Rl6zm6hG
-         cgnw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbxvZ9pT5qohxBSrTsAQ3lu1ePzk+X077uzRaeGuEhL69ROW1DNiLG36D6uRgc/Rtl5F71WFcdEeDSHSbKFX9P+D4w+IkMLe+Oe9WcY9kEWsfMZWnYHJcQ/44IQq3FxbW8giBli6R4jQ4QpWIggtoxaIcgc+q3ONJnsHyqeSLZo9CDdQ==
-X-Gm-Message-State: AOJu0YwWg3C/vfB7R2IwoYqpoQgkuUtzb3sCZepFBF5Ei8eF4txvRaiN
-	/rLM+YkVOyiktJajrFkTMELm51487b3fO/Glq/fQVKE80GDOLF8M
-X-Google-Smtp-Source: AGHT+IHKUQ/D0/F3Y5jftvGNKvWZAzyEDw0VDEkZR0aE6k/dZN4+dM4bLU8kVk/dOE5F1rea/b/mzg==
-X-Received: by 2002:a05:6214:b2f:b0:6a0:8dc4:8174 with SMTP id w15-20020a0562140b2f00b006a08dc48174mr565824qvj.44.1713860331616;
-        Tue, 23 Apr 2024 01:18:51 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id i8-20020a0cf388000000b0069b7bc51271sm4930487qvk.123.2024.04.23.01.18.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 01:18:50 -0700 (PDT)
-Message-ID: <681f3bfb-76d0-41a8-82b5-6d27641c24b6@gmail.com>
-Date: Tue, 23 Apr 2024 11:18:47 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B8221A0B;
+	Tue, 23 Apr 2024 08:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.20.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713860649; cv=fail; b=m2VODMDUncBnisaNjwBBfFsma1OhHgzV5nje2ZOuer/KQ4YBe5OGMeuUcKOUx6Jj55C1KsKH/3ZWr0sUOoN2fAfQhJFlfn+1OrCQeRbE3Py/apjYY6eXzHmtQ11mulAUBXZUo9p1xGq08zNwGzdpiQJfYnCKA9WBE1WZNH2sc9M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713860649; c=relaxed/simple;
+	bh=vAwfCEVCw/c/VZjyKqXlS+/bvU0vYXRb7MjxubyHhjk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=k20ehg+22m7WpDgSjGDvq6pJupfMC9vl8hjus1FaAonG/KH1yrJCrN3EojBM83PXQUiMxf2kB+No84c/FM8C45ghbC3DnWZIzUGsuRCNAhWPv7x7NYH8H/P84m22JbglwqeitBXKRWqb3ncge0ZBvtF9MydS+qRa54n4ub2xoM0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=fail (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=QSq4WAGa reason="signature verification failed"; arc=fail smtp.client-ip=40.92.20.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EkwPOsYhESsX3Sq3nZUy4cvGFzhTep8UfYRjY8UcJi+BDoTv7wIUbCJ1wdlrDx1Wh/QhRNDOvtjouTgHllYwA0Yy5RWWqwjS/E5D1pJ4pZWYsFzvT9T4sqgpyQ9vzP8pEWryoK+QssqUtSNDxDgUsrkYf3sTF6LoID31TrfxvQV0wIoiWTZJylEtdISPUDfKzLh5Gdt51txk7DiIhLfrqahMWaZvxsujHIXStzmoRnSMG5U9fxnUAjTMm+tSYRolpj0Prd8KgJnDXC0mjxv3+xeYRszPP3d5rtUBrAxaUiYnVAYqUUPo9wU570eU6iQC3hjP3g3zoq0Hbvd/3BrwxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=M4Qjd01hVymGpeHKV0Ej3fXiVs1ANEMVNNN2gNYCYzQ=;
+ b=NSRdA/9s8qzp/j9Qmy1sjSA2yPK4IP4L6njwUBBlntYTco/03yr002MQwCVV5OXQW13dmhgNiXC8XRzaSRYrC3kB5cWvf1wHhfpG6dUaymJ9zOBUYJhCJYSPksVQUMFhcpBDG+8YfQWaYSS5UxIGLrvNt+O76OHMqMhQpelH4jP0ZE+y0If3dcNyS8YDFao3v/InwVQCfWqDyPnn0THInCyfUcfdQYzUKKxa81lGOLbLfmBfaSVe+qEFQKAv6S4w2yRAZ4VK0a1zRTlfHOTm0N/hFuKrhGawJC7aDQcRnslP+OwN+Ib5xVw5Ow8cr1OdiY2pbxYOYCOXnBf80UN9KA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M4Qjd01hVymGpeHKV0Ej3fXiVs1ANEMVNNN2gNYCYzQ=;
+ b=QSq4WAGa+SMzNgXMfS6EbL20BqOISRoVsSE8uvgt3WHy6tvJgKGz2VDN3xrg8uKCsrm3+8wLjk4+Jy0MMb0YV1kYC+Xx29jFlzy2HrI9NlZy03ljsKPuH8EZLXoQdIyrhR9+k8431cB5shi3yWSFIC4vXUiQOSFv3KkgTFLBEXKH0sAalaNItMNbvHxnzXQtXWM08d3u/AHdeDQYROQEvZesmxi/QGy0RqBtNT4sZuQclDOJn/FTpx06uBoBEpz39p/IBzxK7VOgNwCYVxAeeJAyW7XwLcu2TWBEAOWFmDwYrtTO9WizjSX8jFMoVInDOKCWSOcp4U1oA7RV9ofu+Q==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SN7PR20MB5412.namprd20.prod.outlook.com (2603:10b6:806:2a7::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 08:24:02 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
+ 08:24:02 +0000
+Date: Tue, 23 Apr 2024 16:24:29 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Michael Opdenacker <michael.opdenacker@bootlin.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] riscv: dts: sophgo: add initial Milk-V Duo S
+ board support
+Message-ID:
+ <IA1PR20MB495332310AE9596CF04493F4BB112@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <20240417065311.3881023-1-michael.opdenacker@bootlin.com>
+ <20240417065311.3881023-3-michael.opdenacker@bootlin.com>
+ <IA1PR20MB49539A380E44459ACE19DEB6BB0F2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <e457d5f6-3289-4049-b663-2ebcfe78dce4@bootlin.com>
+ <IA1PR20MB4953D0D45EB0EDB6E8046664BB132@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <fbdcc77e-eab4-41da-803c-d65405f37f02@bootlin.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fbdcc77e-eab4-41da-803c-d65405f37f02@bootlin.com>
+X-TMN: [r//28Cciv81t3jGs7aP7nCKLgx4Fne4iTaufuyheOG4=]
+X-ClientProxiedBy: TY2PR02CA0069.apcprd02.prod.outlook.com
+ (2603:1096:404:e2::33) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <s6tbjbwwfmavscrjc7w3qrf63sy5lqa6zd2f7cgzmz6xn2scca@dqq23tv2dauz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-1-34618a9cc502@analog.com>
- <CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com>
- <25cb3514-1281-49a8-9e9b-40ead9b050dc@gmail.com>
- <CAMknhBHu8DveBgV3cor8RP2Up4Zs-+QRx7S2aoHZ_3iKiErVjg@mail.gmail.com>
- <20240406155328.447b594f@jic23-huawei>
- <64b7fd83-f226-4b1f-a801-0fe1cf20f842@gmail.com>
- <20240413114825.74e7f3fa@jic23-huawei>
- <89e93f4d-e569-46ee-802d-a1668a01b882@gmail.com>
- <20240420153310.7876cb8a@jic23-huawei>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <20240420153310.7876cb8a@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SN7PR20MB5412:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef87dd17-be4a-4dfc-b1f4-08dc636ebb9e
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	A8cEpHH4Y/rsANnXRZfpXz13WJz+uG6hZlqbKPRNwgkw2T2MHXRjlqDJuV1h1ZkIR/SD1yCb2A6AGzdJKiJ5TahghKp70ffpfwZ/UT7VqKoPzfkBCMXkC1ZoZpQBpd4j5XjDFeMICcUqTmioIJZ8zw/1QQzwJwrEA7oQF7uzq+W67ieUkcw/SEOmtkoeK8Ok3bN+fD7C+xnBDWeqcVPy8WeHk/3gdl8MU3QeEtE/xkrHMpFpx5zObL532uJmVWEXgCArAQ1gby+jVuM4i+CaQsJwLO17/DsPtb0OE7HL+HSw9kGoVUrVzo7AOSLnZuVEQClAnD9J1hTAgwqEXDgMx0Dq14TyYuJ7WxTISAivsvCySxu3lGapOQleNwJfxSFKT4gYiNIJ2ShQXei3PCRP/qt+NBFdVuQHGpRrMV1hwCbN0xdkikqKRIpQbgj6O6sGjuct6/iIhHn0Ibod99YeqpgoI+fjVl1dpMxeWn2WdKVrLc+TfqLy469yi7Rgxu6vJebTA4MU2OE9Q78Y4XmNY1bWopqFsVIMZKHA0DGwfI/BCTN2XLx5MIJqmSm42LWoQj0cOW/27aztnAeVNXQGTVIPzh0Fv5IjwW0xnrfKXYXYQf4YSfgRdPH4pSMBUu/k54/4DLr2iAR4A8zhw4NC+KaFP45vae/4BjL6Ig1d4YLoSmJpzFWaZectg7kJfzzZoZJ981cj3nnHkFqSWBxmgg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?kL+eqdW/BWV2u83qYoFAL3UJjf8XMl+dy2zy878MemBuOzGPgKw5yhtjQ9?=
+ =?iso-8859-1?Q?pC6cg78wDbl1ygTSR+frR1kTm1y5Ff2QjjZwXyr2eehG1+yyNBtE+p2Rao?=
+ =?iso-8859-1?Q?I+Ea7OJg904Ns1wA2xL5PrAoAtjMIZ+m0MwnxaqyVsLTY+c5G+CKvwu/lS?=
+ =?iso-8859-1?Q?yCFex5pn22n9k1O8DM9KuDrvV3nt0hHXK/a9+jMG4OR6+GIXwVRTc09E+f?=
+ =?iso-8859-1?Q?+I13BlEgPIjelgkyZzHFJlgrTW6OzP5ThDA22/+YvjMWspaL1aVnMlwwD7?=
+ =?iso-8859-1?Q?HdBfLmc/4a2+jCTaKBfZs5Wzb69S1uKo47flhqLs+JvZW/ob6DdCzvP5C/?=
+ =?iso-8859-1?Q?NtKpZ057iTToA6JDVUVI/ejLbWFNcsXSmQJ8NgspB6oLiO/CiYrKsezRme?=
+ =?iso-8859-1?Q?pHWWVVq8wwKIeUZvITyD6ucD3kHLVwt/XU0OJ81x6w/UF5FoYwCObtlhrt?=
+ =?iso-8859-1?Q?33X599PDXVuqwbyfYd+A5CFM5ZANcz9GNFx58sxUYDzc4tkNoUYlMbDErE?=
+ =?iso-8859-1?Q?fF3aEGKANL3K4QaXMaxZAnxPypoCXKbYepzsCvqST3IapMNSfRzuUcmIea?=
+ =?iso-8859-1?Q?JxKw2rGHLzA1fkL5RaZiXLKicJyXz5MHt6RX1tnP8rV1rtIKmrG7V2lUxi?=
+ =?iso-8859-1?Q?KSEBGWV4m3kdW/TYjlXY9QCP+idmMWeMSGnqq8X02cwBxgTbkuy1Q9wyug?=
+ =?iso-8859-1?Q?veCR3tuQFohXLGZqEa2xa3Uj/Q/hGDFkdHSM4bnpOSKbd0TTNzVTdD+NvC?=
+ =?iso-8859-1?Q?E6aOxOqBRamcUueCa3TbBz7J59PeZv5MfRxcQAW5+sZ3dVXgQV/m9QlG1T?=
+ =?iso-8859-1?Q?3nL2augSEX0F8MvfJHFEJ1i6qGdiWiJu1Yiegh4QFsAL+MJhpVx0U0Bzsh?=
+ =?iso-8859-1?Q?azWsTnYyu3+ibhNCBZG42eA52DastbNyo6TWucGioll8a+cQqz7Al7cDj0?=
+ =?iso-8859-1?Q?+ItsA8HNODkfq9xYHX6flJan9ppDam6Q0iNvfhhN1LL/bQJnXPmBHRrh/W?=
+ =?iso-8859-1?Q?Ve5qUfSgmenWOG9ocP69b601vEMHz12IFKLJEwzZK0rTOnqKdbLQN9gDCg?=
+ =?iso-8859-1?Q?14Tw3A1bf6J3oEQ4NaVBGyqqx+6e6wtJekBmZLWIlbbQlynTXNw1HEziZn?=
+ =?iso-8859-1?Q?J+Re4Clux2mL4IPRCl7K31EcGAdU1U9VZcxLVLjd2l2DG2p7A4626K+FNy?=
+ =?iso-8859-1?Q?tA2ZQypSJ6+noH7WxaPbQesbdFe4Aau8ddxvyB5Qk56A2yBeaFlG4U/nZy?=
+ =?iso-8859-1?Q?FOlLmd6XysvgQnmnrZ1mW2i08rqnqOh+t/yMnD4zK9rtDvOOWogbBpS/ll?=
+ =?iso-8859-1?Q?XBzt?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef87dd17-be4a-4dfc-b1f4-08dc636ebb9e
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 08:24:02.7553
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR20MB5412
 
-On 20/04/2024 17:33, Jonathan Cameron wrote:
-> On Mon, 15 Apr 2024 21:42:50 +0300
-> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
+On Tue, Apr 23, 2024 at 08:11:29AM GMT, Michael Opdenacker wrote:
+> Hi Inochi,
 > 
->> On 13/04/2024 13:49, Jonathan Cameron wrote:
->>> On Tue, 9 Apr 2024 11:08:28 +0300
->>> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
->>>   
->>>> On 06/04/2024 17:53, Jonathan Cameron wrote:  
->>>>> On Wed, 3 Apr 2024 10:40:39 -0500
->>>>> David Lechner <dlechner@baylibre.com> wrote:
->>>>>     
->>>>>> On Wed, Apr 3, 2024 at 2:43 AM Ceclan, Dumitru <mitrutzceclan@gmail.com> wrote:    
->>>>>>>
->>>>>>> On 01/04/2024 22:37, David Lechner wrote:      
->>>>>>>> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
->>>>>>>> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:      
->>>>>>>>>
->>>>>>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>      
->>>>>>>  
-
-...
- 
->>>>
->>>> The AD717x family supports pseudo differential channels as well... should
->>>> this change be applied to them too? It is just the case that the documentation
->>>> does not mentions this use case.  
->>>
->>> Maybe you could argue that if we used the REF- for the negative input.
->>> Otherwise I think it falls into the category where there isn't a clearly defined
->>> pseudo differential mode.
->>>   
->>
->> While re-reading docs I've noticed that AD7176-2 mentions pseudo differential usage:
->> "Pseudo Differential Inputs
->>  The user can also choose to measure four different single-ended
->>  analog inputs. In this case, each of the analog inputs is converted
->>  as being the difference between the single-ended input to be
->>  measured and a set analog input common pin. Because there is
->>  a crosspoint multiplexer, the user can set any of the analog inputs
->>  as the common pin. An example of such a scenario is to connect
->>  the AIN4 pin to AVSS or to the REFOUT voltage (that is, AVSS
->>  + 2.5 V) and select this input when configuring the crosspoint
->>  multiplexer. When using the AD7176-2 with pseudo differential
->>  inputs, the INL specification is degraded."
->>
->> As the crosspoint mux is present on all models it really makes me think that this
->> paragraph applies to all models in the family
+> Thanks for the advice.
 > 
-> Interesting indeed.  So is your thinking that we need to support this
-> or take that "degraded" comment to imply that we should not bother
-> (at least until someone actually shouts that they want to do this?)
+> On 4/21/24 at 08:30, Inochi Amaoto wrote:
+> > On Sun, Apr 21, 2024 at 07:57:01AM GMT, Michael Opdenacker wrote:
+> > +++ b/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
+> > @@ -0,0 +1,34 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2024 Michael Opdenacker <michael.opdenacker@bootlin.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "cv1812h.dtsi"
+> > +
+> > +/ {
+> > +	model = "Milk-V Duo S";
+> > +	compatible = "milkv,duos", "sophgo,cv1812h";
+> > +
+> > +	aliases {
+> > +		serial0 = &uart0;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = "serial0:115200n8";
+> > +	};
+> > +
+> > +	memory@80000000 {
+> > +		device_type = "memory";
+> > +		reg = <0x80000000 0x20000000>;
+> > +	};
+> > > > Add a cpu specific file, and move this to it.
+> > > Now that I'm including "cv1812h.dtsi", which has the same structure, all I
+> > > need is to change the reg setting to have 512 MB of RAM instead of 256MB,
+> > > right? See the V6 I'm sending soon.
+> > > 
+> > No, Duo S does not use cv1812h, in any means. I just told you to use
+> > cv1812h for local test. If you want to upstream Duo S, you must add
+> > the right cpu compatibles and necessary nodes. These two are different
+> > things.
+> 
+> So, do you mean I should create a new "sophgo,sg2000" compatible, together
+> with� a new "sg2000.dtsi" (or "sg200x.dtsi"?) file? Could this file include
+> "cv18xx.dtsi"?
 > 
 
- My perspective is that support for this is already existent, the chips do not
-need any special configuration in that use-case. If we want to be correct in
-how the channel will be presented to the user, besides setting to false the IIO
-differential flag I do not see what else should be done.
+Right. For the second question, it must. "cv18xx.dtsi" is the common file
+for the whole series. You can check the existed cpu file in sophgo upstream 
+repository: https://github.com/sophgo/linux/tree/for-next.
 
->>
->>>>
->>>> I think that a distinction needs to be made here:
->>>> - When a device is only pseudo differential, sure, it is in a different category
->>>> - When a device is fully differential and you are using it as pseudo-differential
->>>>   you are having two inputs compared to one another
->>>>
->>>> I would need more clarification is why would supply-vincom be a requirement.
->>>> The voltage supplied to VINCOM will not be used in any computation within 
->>>> the driver. From the perspective of getting the data it doesn't matter if 
->>>> you are using the channel in a pseudo-differential, single ended or fully
->>>> differential manner.  
->>>
->>> I'd missed until now that the datasheet (I looked ad4114) says aincomm should be connected to analog
->>> ground so indeed nothing to turn on in this case and no offset to supply
->>> (the offset will be 0 so we don't present it).
->>>
->>> I'll note the datasheet describes the VINCOM as follows.
->>>
->>> Voltage-Input Copmmon. Voltage inputs are reference to VINCOM when the inputs are configured
->>> as single-ended.  Connect AINCOM to analog ground.
->>>
->>> The reference to single ended is pretty clear hint to me that this case
->>> is not a differential channel. The more complex case is the one David
->>> raised of the AD4116 where we have actual pseudo differential inputs.
->>>   
->>
->> Alright, from my perspective they all pass through the same mux but okay,
->> not differential. The only issue would differentiating cases in AD4116 where
->> the pair VIN10 - VINCOM is specified as single-ended or differential pair.
->>
->> Also, AD4116:
->> "0101101111 ADCIN11, ADCIN15. (pseudo differential or differential pair)
->>  0110001111 ADCIN12, ADCIN15. (pseudo differential or differential pair)
->>  0110101111 ADCIN13, ADCIN15. (pseudo differential or differential pair)
->>  0111001111 ADCIN14, ADCIN15. (pseudo differential or differential pair)"
->>
->> Not really sure where the "actual pseudo differential" sits.
->>
->> Would you agree with having device tree flags that specifies how is the
->> channel used: single-ended, pseudo-differential, differential.
->> For the first two, the differential flag will not be set in IIO.
+> By the way, where's the best source of information about the Sophgo sg2000
+> and sg2002 processors? Even the Sophgo website doesn't seem to have them :-/
+> . It just mentions the CV18xx ones.
 > 
-> Yes. I think that makes sense - though as you observe in some cases
-> the actual device settings end up the same (the ad4116 note above).
->
- This precisely why I suggest this approach, because a channel used as
-single-ended, pseudo or fully differential will have the same register
-configuration on all models. I do not see any other way to know from
-the driver this information.
 
-> If a given channel supports single-ended and pseudo-differential is
-> that really just a low reference change (I assume from an input to the
-> the IO ground)? Or is there more going on?
+In additional to the doc mentioned by Thomas, I think you may need to
+check Duo docs from milkv: https://github.com/milkv-duo/duo-files. It
+contains all you need for Duo S.
+
+> Thanks again
+> Cheers
+> Michael.
 > 
- I'm not sure if I understood what was said here. The reference specified
-in the channel setup does not need to change.
-
-> If it's the reference, then can we provide that as the binding control
-> signal?  We have other drivers that do that (though we could perhaps make
-> it more generic) e.g. adi,ad7124 with adi,reference-select
->  We already have adi,reference-select in the binding and driver, I do not
-see how it could help the driver differentiate between (single, pseudo...)
-
-> I don't like that binding because it always ends up have a local enum
-> of values, but can't really think of a better solution.
->
-
->>
->>>>
->>>> Regarding VINX VINX+1, it is not mandatory to respect those, from AD4111 page27:
->>>> "Due to the matching resistors on the analog front end, the
->>>>  differential inputs must be paired together in the following
->>>>  pairs: VIN0 and VIN1, VIN2 and VIN3, VIN4 and VIN5, and
->>>>  VIN6 and VIN7. If any two voltage inputs are paired in a
->>>>  configuration other than what is described in this data sheet,
->>>>  the accuracy of the device cannot be guaranteed."  
->>>
->>> OK, but I'll assume no 'good' customer of ADI will do that as any support
->>> engineer would grumpily point at that statement if they ever reported
->>> a problem :)
->>>   
->>>>
->>>> Tried the device and it works as fully differential when pairing any
->>>> VINx with VINCOM. Still works when selecting VINCOM as the positive
->>>> input of the ADC.
->>>>
->>>> I really see this as overly complicated and unnecessary. These families
->>>> of ADCs are fully differential. If you are using it to measure a single ended
->>>> (Be it compared to 0V or pseudo differential where you are comparing to Vref/2
->>>> and obtaining results [Vref/2 , -Vref/2]) the final result will not require knowing
->>>> the common voltage.  
->>>
->>> For single ended VINCOM should be tied to analog 0V.  If the chip docs allowed
->>> you to tie it to a different voltage then the single ended mode would be offset
->>> wrt to that value.
->>>
->>> For the AD4116 case in pseudo differential mode, You would need an ADCIN15 supply because
->>> that is not connected to analog 0V.  If the device is being used in a pseudo differential
->>> mode that provides a fixed offset voltage.
->>>
->>> So my preference (though I could maybe be convinced it's not worth the effort)
->>> is to treat pseudo differential as single ended channels where 'negative' pin is
->>> providing a fixed voltage (or 0V if that's relevant).  Thus measurements provided
->>> to userspace include the information of that offset.
->>>   
->>
->> What do you mean by offset? I currently understand that the user will have
->> a way of reading the voltage of that specific supply from the driver. 
+> -- 
+> Michael Opdenacker, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 > 
-> How?  We could do it that way, but we don't have existing ABI for this that
-> I can think of.
-> 
-Expose a voltage channel which is not reading from the device...but that is
-too much of a hack to be accepted here
->>
->> If you mean provide a different channel offset value when using it as
->> pseudo-differential then I would disagree
-> 
-> Provided to user space as _offset on the channel, userspace can either
-> incorporate it if it wants to compute absolute (relative to some 0V somewhere) value
-> or ignore it if it only wants the difference from the reference value.
-> 
-> I'm open to discussion other ABI options, but this is the one we most naturally have
-> available.
-_offset is already used when the bipolar coding is enabled on the channel
-and is computed along datasheet specifications of how data should be processed,
-this is why I disagree with this.
-
-This feels over-engineered, most of the times if a channel is pseudo
-differential, the relevant measurement will be the differences between
-those two inputs.
-
-If a user needs to know the voltage on the common input, he just needs to
-also configure a single ended channel with the common input where the
-negative AIN is connected to AVSS.
->>
->>
->>> We haven't handled pseudo differential channels that well in the past, but the
->>> recent discussions have lead to a cleaner overall solution and it would be good
->>> to be consistent going forwards.  We could deprecate the previous bindings in
->>> existing drivers, but that is a job for another day  (possibly never happens!)
->>>   
->>
->> I really hope that a clean solution could be obtained for this driver as well :) 
-> 
-> I bet you wish sometimes that you had easier parts to write drivers for! :)
-> These continue to stretch the boundaries which is good, but slow.
-> 
-> Jonathan
-
-Not easier, fewer crammed into the same driver :)
-
 
