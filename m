@@ -1,329 +1,152 @@
-Return-Path: <devicetree+bounces-61805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D118AE34B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:03:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 759E18AE34F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 13:03:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EC57B20ACF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:03:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A807A1C213D6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC8D64CE1;
-	Tue, 23 Apr 2024 11:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSbJVLKh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46BD6EB70;
+	Tue, 23 Apr 2024 11:03:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18144629E6;
-	Tue, 23 Apr 2024 11:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD67569944;
+	Tue, 23 Apr 2024 11:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713870168; cv=none; b=e7D/22qX9rqLjEdGxwCyhKPFOa1HtFohiLENH1l4RBvdJ9DFj/XOm+PbcVoOv/JwMpCNr4eLEVKEd9R/9A9niK8ZXlJrbwXgGTqWrIxsYvMsMbmH76T75PohdQ6/GeiIuKb94zE0f8iylnQy6nNAZboPRVGptoWjGcLNuzFUVDk=
+	t=1713870211; cv=none; b=ekzAxmeubfbNvAs5liulkrQKGpsUb1MD+ti3vYAFT0d3EUhrJTWAE14omPPOjRYjWaXAF2utOzCW2DZOLOW08Z+aQQ90s26M1zzlZW9aEXg15UcPV+w8xPRjYUo3UNthT4wTP1veOLtesQ94lidZZ0QVhNKGAztQ/pQnvoXHzX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713870168; c=relaxed/simple;
-	bh=xcoXCfxvjhF/nt99C36t2OZFcpIv/FKcNysmEtnwDvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aZeyNXzyEZXQBtwZKq3HEp8CaKYv6cQq/6C9kS67t326VugGNza2E1wtjkenHNr3ZttPqKRNyNBl05PYBfUA8I7yEbgaJ8hCQbMTuim7qhuBgKwBkR1fdIJGgfZ7nDILHCUJQLiXpHXEWOLNpUh+UuMoT3RASmTNLd0uAH2DtSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSbJVLKh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D1C5C2BD11;
-	Tue, 23 Apr 2024 11:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713870167;
-	bh=xcoXCfxvjhF/nt99C36t2OZFcpIv/FKcNysmEtnwDvw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iSbJVLKh8Uj6dmhnRaVQnM5hF52PSr/qRHgmiq8AMzPQ7Tdu5vQBby+HEq9hTLtPx
-	 zcuqvGiJa+qld2UUxNsNHUYFW4p7QMLxNiNg+rdV2lRmvBxXtYScPc+yjjlHiX1CL4
-	 A+NPe2rNoooyCBosf81BtwywAlak7Wh2opf3W4xQYSUhk0xM6DPrac7R4CYH+jb+cw
-	 EdB9JDAfIbj+3DZrHZR93k/hH/BOsAKT0E97q4VJy5dSBQDKRGp9nqRdxB+XFUJrJH
-	 rcd3cndf8VzrOayXRnbcO27lHiVP4vEsDC8hc9+SdHd5EtDbG5UlmjyVSb/3nlkCw1
-	 pVBREtla9pLtA==
-Date: Tue, 23 Apr 2024 13:02:43 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com
-Subject: Re: [PATCH v3 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <ZieVU8UVSI4-W0m9@lore-desk>
-References: <cover.1713866770.git.lorenzo@kernel.org>
- <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
- <d0e2918f-893a-4442-bdbf-36e95ffcd4d7@collabora.com>
+	s=arc-20240116; t=1713870211; c=relaxed/simple;
+	bh=2oE7qiEBTlPxS3EMJQmUOb6edRHb4fcMo/8D+mOUUF0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zm5KAKSZ/iCOKmjIAYVnmGIRUs0ep5HSl53KnLuWQjZ4heTzSmZ9k4mA6PVO5pfElOwIwjzEKHK7W9Vl+VqgxBLTfCxbUTgaeeODqTDyLfkpyl3Lmv75Gbdkmx+sYjZcKnQGhXeBgbjPv40eJ4avqmPwYZQRpsia1QUqxhOGLBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e861d9e.versanet.de ([94.134.29.158] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rzDvd-0005B9-6h; Tue, 23 Apr 2024 13:03:13 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
+ devicetree <devicetree@vger.kernel.org>
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: fix nodename warning on
+ wolfvision-pf5-display
+Date: Tue, 23 Apr 2024 13:03:12 +0200
+Message-ID: <5189813.GXAFRqVoOG@diego>
+In-Reply-To: <3f93ecb0-a649-4492-8798-a00de26236c8@wolfvision.net>
+References:
+ <20240423082941.2626102-1-heiko@sntech.de>
+ <3f93ecb0-a649-4492-8798-a00de26236c8@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xD3+S2z4fj3w0Tzy"
-Content-Disposition: inline
-In-Reply-To: <d0e2918f-893a-4442-bdbf-36e95ffcd4d7@collabora.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Am Dienstag, 23. April 2024, 11:39:26 CEST schrieb Michael Riesch:
+> On 4/23/24 10:29, Heiko Stuebner wrote:
+> > The dtbs check throws a warning about node naming with the recently
+> > added pf5-display-overlay:
+> > rockchip/rk3568-wolfvision-pf5-display.dtsi:113.6-121.3: Warning (graph_port): /fragment@4/__overlay__: graph port node name should be 'port'
+> > 
+> > This comes from the overlay just referencing the vp2-port-node via
+> > its phandle and then adding an endpoint beneath it.
+> > 
+> > While this is possible something to handle inside the dtbs check,
+> > carrying around the warning is not pretty, so change the description
+> > to go around it.
+> 
+> What is the rationale behind that check? Describing a port in a SoC dtsi
+> or board dts and using the reference in an overlay is quite convenient
+> and above all concise.
+
+I guess this is mainly a problem of the overlay thing.
+Also it does not change with or without the "-@" option to dtc.
+
+So I guess the main thing seems to be that overlays and the whole
+checks don't seem to be well-trodden paths yet.
 
 
---xD3+S2z4fj3w0Tzy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Cc: device tree list
+> > Starting from the vop_out phandle and then referencing the port
+> > via its generic port@2 nodename will satisfy the port<->endpoint
+> > naming dependency while keeping the same structure once the overlay
+> > is applied.
+> > 
+> > Reported-by: Arnd Bergmann <arnd@kernel.org>
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  .../rockchip/rk3568-wolfvision-pf5-display.dtsi    | 14 ++++++++------
+> >  1 file changed, 8 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi
+> > index b22bb543ecbb..18c807c39e56 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi
+> > @@ -110,12 +110,14 @@ &pwm10 {
+> >  	status = "okay";
+> >  };
+> >  
+> > -&vp2 {
+> > -	#address-cells = <1>;
+> > -	#size-cells = <0>;
+> > +&vop_out {
+> > +	port@2 {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> >  
+> > -	vp2_out_rgb: endpoint@ROCKCHIP_VOP2_EP_RGB0 {
+> > -		reg = <ROCKCHIP_VOP2_EP_RGB0>;
+> > -		remote-endpoint = <&panel_in_vp2>;
+> > +		vp2_out_rgb: endpoint@ROCKCHIP_VOP2_EP_RGB0 {
+> > +			reg = <ROCKCHIP_VOP2_EP_RGB0>;
+> > +			remote-endpoint = <&panel_in_vp2>;
+> > +		};
+> >  	};
+> >  };
+> 
+> With this patch applied the DTC warning "Warning (graph_port):
+> /fragment@4/__overlay__: graph port node name should be 'port'"
+> vanishes, but a different DTC warning "Warning (unit_address_vs_reg):
+> /fragment@4/__overlay__/port@2: node has a unit name, but no reg or
+> ranges property" appears. Can you reproduce this?
+> 
+> I tried to fix that by adding the reg property, but then DTC complained
+> about "Warning (graph_port): /fragment@9/__overlay__/ports/port@0: graph
+> node '#size-cells' is -1, must be 0"
+> 
+> Then, I added the #size-cells property to avoid this. However, DTC
+> complained about this property not being necessary as there is only one
+> port. I stopped at this point.
+> 
+> I would say the real question is how this hardware should look like in
+> the device tree (overlay). Then, the compiler and/or build scripts can
+> be adjusted to tolerate this.
 
-> Il 23/04/24 12:16, Lorenzo Bianconi ha scritto:
+When I checked, my "workaround" the check was silent, but I guess I
+need to update the schema python module again and would get that
+rabbit hole you went down.
 
-[...]
-> > +
-> > +	err =3D airoha_snand_nfi_config(as_ctrl);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	dma_sync_single_for_device(as_ctrl->dev, as_dev->dma_addr,
-> > +				   as_dev->buf_len, DMA_BIDIRECTIONAL);
-> > +	mb();
->=20
-> Are you sure you need this memory barrier here?
->=20
-> P.S.: Just in case... any other write or read will anyway add a barrier ;=
--)
->=20
+But yes definitly. Especially with those follow up problems you
+encountered, this makes it a problem to solve in the checker.
 
-ack, I will fix it in v4.
+So the original layout is the best one to represent the endpoint and
+I guess with the parent node being named "__overlay__" it should be
+somewhat ok for the checker going "nah, it'll be fine - we're an overlay"
 
-> > +
-> > +	/* set dma addr */
-> > +	err =3D regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_STRADDR,
-> > +			   as_dev->dma_addr);
-> > +	if (err)
-> > +		return err;
-> > +
->=20
-> ..snip..
->=20
-> > +
-> > +static ssize_t airoha_snand_dirmap_write(struct spi_mem_dirmap_desc *d=
-esc,
-> > +					 u64 offs, size_t len, const void *buf)
-> > +{
-> > +	struct spi_device *spi =3D desc->mem->spi;
-> > +	struct airoha_snand_dev *as_dev =3D spi_get_ctldata(spi);
-> > +	struct spi_mem_op *op =3D &desc->info.op_tmpl;
-> > +	struct airoha_snand_ctrl *as_ctrl;
-> > +	u32 wr_mode, val;
-> > +	int err;
-> > +
-> > +	as_ctrl =3D spi_controller_get_devdata(spi->controller);
-> > +	err =3D airoha_snand_set_mode(as_ctrl, SPI_MODE_MANUAL);
-> > +	if (err < 0)
-> > +		return err;
-> > +
-> > +	dma_sync_single_for_cpu(as_ctrl->dev, as_dev->dma_addr,
-> > +				as_dev->buf_len, DMA_BIDIRECTIONAL);
-> > +	memcpy(as_dev->txrx_buf + offs, buf, len);
-> > +	dma_sync_single_for_device(as_ctrl->dev, as_dev->dma_addr,
-> > +				   as_dev->buf_len, DMA_BIDIRECTIONAL);
-> > +	mb();
-> > +
-> > +	err =3D airoha_snand_set_mode(as_ctrl, SPI_MODE_DMA);
-> > +	if (err < 0)
-> > +		return err;
-> > +
-> > +	err =3D airoha_snand_nfi_config(as_ctrl);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	if (op->cmd.opcode =3D=3D SPI_NAND_OP_PROGRAM_LOAD_QUAD ||
-> > +	    op->cmd.opcode =3D=3D SPI_NAND_OP_PROGRAM_LOAD_RAMDON_QUAD)
-> > +		wr_mode =3D 2;
->=20
-> I'm mostly sure that this '2' is supposed to be BIT(1) instead
 
-ack, I will fix it in v4.
-
->=20
-> > +	else
-> > +		wr_mode =3D 0;
-> > +
-> > +	err =3D regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_STRADDR,
-> > +			   as_dev->dma_addr);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	val =3D as_ctrl->nfi_cfg.sec_size * as_ctrl->nfi_cfg.sec_num;
-> > +	val =3D FIELD_PREP(SPI_NFI_PROG_LOAD_BYTE_NUM, val);
->=20
-> val =3D FIELD_PREP(SPI_NFI_PROG_LOAD_BYTE_NUM,
->                  as_ctrl->nfi_cfg.sec_size * as_ctrl->nfi_cfg.sec_num);
->=20
-> Being this 100 cols eventually, you wouldn't even need two lines - but
-> if you don't want to go 100, it's still more readable (imo) like this,
-> even if in two lines.
-
-I prefer to be below 79 columns, so I will go for the 2 lines :)
-I will fix it in v4.
-
->=20
-> > +	err =3D regmap_update_bits(as_ctrl->regmap_nfi,
-> > +				 REG_SPI_NFI_SNF_MISC_CTL2,
-> > +				 SPI_NFI_PROG_LOAD_BYTE_NUM, val);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	err =3D regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_PG_CTL1,
-> > +			   FIELD_PREP(SPI_NFI_PG_LOAD_CMD,
-> > +				      op->cmd.opcode));
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	err =3D regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_SNF_MISC_CTL,
-> > +			   FIELD_PREP(SPI_NFI_DATA_READ_WR_MODE, wr_mode));
-> > +	if (err)
-> > +		return err;
-> > +
->=20
-> ..snip..
->=20
-> > +
-> > +#define SPI_NAND_CACHE_SIZE	(4096 + 256)
->=20
-> #include <linux/sizes.h>      <--- at the beginning
->=20
-> #define SPI_NAND_CACHE_SIZE (SZ_4K + SZ_256)
->=20
-> ...there are macros for that, might as well use them, right? :-)
-
-ack, I will fix it in v4.
->=20
-> > +
-> > +static int airoha_snand_setup(struct spi_device *spi)
-> > +{
-> > +	struct airoha_snand_dev *as_dev =3D spi_get_ctldata(spi);
-> > +	struct airoha_snand_ctrl *as_ctrl;
-> > +
-> > +	as_dev =3D kzalloc(sizeof(*as_dev), GFP_KERNEL);
-> > +	if (!as_dev)
-> > +		return -ENOMEM;
-> > +
-> > +	spi_set_ctldata(spi, as_dev);
-> > +	as_dev->data_need_update =3D true;
-> > +
-> > +	/* prepare device buffer */
-> > +	as_dev->buf_len =3D SPI_NAND_CACHE_SIZE;
-> > +	as_dev->txrx_buf =3D kzalloc(as_dev->buf_len, GFP_KERNEL);
-> > +	if (!as_dev->txrx_buf)
-> > +		goto error_dev_free;
-> > +
-> > +	as_ctrl =3D spi_controller_get_devdata(spi->controller);
-> > +	as_dev->dma_addr =3D dma_map_single(as_ctrl->dev, as_dev->txrx_buf,
-> > +					  as_dev->buf_len, DMA_BIDIRECTIONAL);
-> > +	if (dma_mapping_error(as_ctrl->dev, as_dev->dma_addr))
-> > +		goto error_buf_free;
-> > +
-> > +	return 0;
-> > +
-> > +error_buf_free:
-> > +	kfree(as_dev->txrx_buf);
-> > +error_dev_free:
-> > +	kfree(as_dev);
-> > +
-> > +	return -EINVAL;
-> > +}
-> > +
-> > +static void airoha_snand_cleanup(struct spi_device *spi)
-> > +{
-> > +	struct airoha_snand_dev *as_dev =3D spi_get_ctldata(spi);
-> > +	struct airoha_snand_ctrl *as_ctrl;
-> > +
-> > +	as_ctrl =3D spi_controller_get_devdata(spi->controller);
-> > +	dma_unmap_single(as_ctrl->dev, as_dev->dma_addr,
-> > +			 as_dev->buf_len, DMA_BIDIRECTIONAL);
-> > +	kfree(as_dev->txrx_buf);
-> > +
-> > +	spi_set_ctldata(spi, NULL);
-> > +}
-> > +
-> > +static int airoha_snand_nfi_setup(struct airoha_snand_ctrl *as_ctrl)
-> > +{
-> > +	u32 val, sec_size, sec_num;
-> > +	int err;
-> > +
-> > +	err =3D regmap_read(as_ctrl->regmap_nfi, REG_SPI_NFI_CON, &val);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	sec_num =3D FIELD_GET(SPI_NFI_SEC_NUM, val);
-> > +
-> > +	err =3D regmap_read(as_ctrl->regmap_nfi,
-> > +			  REG_SPI_NFI_SECCUS_SIZE, &val);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	sec_size =3D FIELD_GET(SPI_NFI_CUS_SEC_SIZE, val);
-> > +
-> > +	/* init default value */
-> > +	as_ctrl->nfi_cfg.sec_size =3D sec_size;
-> > +	as_ctrl->nfi_cfg.sec_num =3D sec_num;
-> > +	as_ctrl->nfi_cfg.page_size =3D rounddown(sec_size * sec_num, 1024);
-> > +	as_ctrl->nfi_cfg.spare_size =3D 16;
-> > +
-> > +	err =3D airoha_snand_nfi_init(as_ctrl);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	return airoha_snand_nfi_config(as_ctrl);
-> > +}
-> > +
-> > +static const struct regmap_config spi_ctrl_regmap_config =3D {
-> > +	.name		=3D "ctrl",
-> > +	.reg_bits	=3D 32,
-> > +	.val_bits	=3D 32,
-> > +	.reg_stride	=3D 4,
-> > +	.max_register	=3D REG_SPI_CTRL_NFI2SPI_EN,
-> > +};
-> > +
-> > +static const struct regmap_config spi_nfi_regmap_config =3D {
-> > +	.name		=3D "nfi",
-> > +	.reg_bits	=3D 32,
-> > +	.val_bits	=3D 32,
-> > +	.reg_stride	=3D 4,
-> > +	.max_register	=3D REG_SPI_NFI_SNF_NFI_CNFG,
-> > +};
-> > +
-> > +static const struct of_device_id airoha_snand_ids[] =3D {
-> > +	{ .compatible	=3D "airoha,en7581-snand" },
-> > +	{ }
->=20
-> { /* sentinel */ }
->=20
-> ...please!
-
-ack, I will fix it in v4.
-
-Regards,
-Lorenzo
-
->=20
-> > +};
-> > +MODULE_DEVICE_TABLE(of, airoha_snand_ids);
-> > +
->=20
-> Cheers,
-> Angelo
->=20
->=20
-
---xD3+S2z4fj3w0Tzy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZieVUwAKCRA6cBh0uS2t
-rMlJAQCAA0+G7cCKcpjsbeX0WvsK1X8kHUgDSLBZ4G6h/gAU4gD/THAvOlgJLEuK
-oKNUWuU34P1Usit4/OYjafXu6lSnrQM=
-=/jLX
------END PGP SIGNATURE-----
-
---xD3+S2z4fj3w0Tzy--
 
