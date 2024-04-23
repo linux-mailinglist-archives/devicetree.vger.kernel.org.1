@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-61825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8BC8AE542
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:01:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02A38AE547
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A33C2884C2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:01:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC0731C22DD9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AEF7139594;
-	Tue, 23 Apr 2024 11:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50CDF13AD0C;
+	Tue, 23 Apr 2024 11:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j/o6c8CF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xhZh6A87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0668138481
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 11:47:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D34E84FCB
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 11:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713872846; cv=none; b=AfUS2+c22rvIPMWM6IOdeqNxpBI+GHZViukt1CLriPILKS9nwsbbiA3jHxdmz3vA68hG+uQNqlSV8lDTERxrPxo0Fgy8IR0aWLDC2pgwHF/W7e4akURWadiaKMAb4vrWhPsN1d/e/fTFxr55ozVVKdBn/pc7sxBjx2sBnj4lhYI=
+	t=1713872931; cv=none; b=ivNBheH/T8ude1kc3jRrFOf/+e3YmEqp2sGCpDLu3p/fHVbSklL/ZhivzFSt5cA/mitFmtLZoaXqS+K5rFaGfSsZE7yVI6pFT4AIWLHi2xO7hSXCOdzLOpujvVjwvfGOqaW1ec7zlG48Lit+gussivQLn/oGdE1TgiGxCkvLMFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713872846; c=relaxed/simple;
-	bh=5zXXaSDHHLZNmipmrDXsZzK9DAc3oLYYNJml3DyaE0E=;
+	s=arc-20240116; t=1713872931; c=relaxed/simple;
+	bh=4Q8uM74lj69Nvqo3+Z4SD9KGTyZKkfeSzS/k4zb9cjM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=crRqr5jzE5x3StcWjLtF0csMHDE/X7eBddoaU4z130ZhDOBW+GUbEYIF07KLR9Sb/BTajb65+i9ulNWUVDjwfKfr+kxcQUCkmrDUy7NUJPvy2JlEWBAHyUySCd26Lj+qhMADPWaM2/lyVZEPrp+roEKiA2ot5NWu3d24DOEWmLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j/o6c8CF; arc=none smtp.client-ip=209.85.219.173
+	 To:Cc:Content-Type; b=ZSPSgQzRYLcj8MnzAfNpwZ3qnS59u0+qQGdf8+HcmXwVi9BbiIt3OAxdL5ZfCUXyp+l5gCzPgShZN0a81rJaXkPreeWdk4rhbRYcWTtDq96PkBIIEeZdRk7v8k9J42inBXsOVNnRnMTNyUGRRKJK8JKevD0P1inelI9cOncyYJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xhZh6A87; arc=none smtp.client-ip=209.85.219.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de467733156so5477275276.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 04:47:24 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-de466c64161so5829114276.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 04:48:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713872844; x=1714477644; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713872927; x=1714477727; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5zXXaSDHHLZNmipmrDXsZzK9DAc3oLYYNJml3DyaE0E=;
-        b=j/o6c8CFdBdfEW96EocgV4qMtZFKTFwHpUtuNWSeCLd8tEasG/T4995qxlu801Wyu4
-         S/HQM4cxJ257i+LXrh9gfHKFDPavaKecr/G7H0wYNVm23T4Yj/lwVdR8Xj+ZIn4epE7k
-         iIU6sVyMXVxhsS4Xxs4MBhfPVRxUezI6yGXIs/K85ld8/vfPKq2NxfSMh571G/yzIsOK
-         Zq1/HYW4Xtw95sGyf8rYjOeDSkNtjO0+2BPhRsAdLQBWzWWD9WrfaHkNXff2w2AXeZOW
-         RfxV36FOrNYMAKIgZXjFs30cBazElOsVCI/DhbOrgsAasypQOuGTkcKo/xSJy+9dWulV
-         o3lQ==
+        bh=4Q8uM74lj69Nvqo3+Z4SD9KGTyZKkfeSzS/k4zb9cjM=;
+        b=xhZh6A87+X5A27SwpR3gHSVmmes5NwfmOHOgUt4fjBTEm/HZk2EnDWxNU3bRF/hsWP
+         eT9xmRAphH2HIR8V4VauQ1j8Oyg5+UhabUjfYcqHlKZRtxKpzi0OZGeGk+GktHrt215C
+         rHt+HgWI7sCiCcLZ2M06xMeIDQHOU3SiIA/wpx7HTmsDgrK4CI0eLFmuyzY8Zuv15ItS
+         3iyj19+WgZT5dgeEuQGU9CzUIuhiHak8CZcBZZj8GWJSsYUyiOp29D/95FU7JfhLY1yI
+         2Rdb8CU+QGck664/rnTvREkRRcxZv72Rt6FOJzTq+kqKUUr20RoWTe4FpEVpgds91kqI
+         j6nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713872844; x=1714477644;
+        d=1e100.net; s=20230601; t=1713872927; x=1714477727;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5zXXaSDHHLZNmipmrDXsZzK9DAc3oLYYNJml3DyaE0E=;
-        b=PDy8N/qqUVLt4dvzXG0uGJVpGrii3Gwk8RXC3311dKMzN6j1cN092sd6rh4O2iEFCB
-         7phSTe8rlRebmVjY/GJa/qO03FUprLsZY4NXgneTk2dVoFxGAcsWE7NZUAioMiDdrUwn
-         WareDriwLS3bixMkj4u2eSE1nhAVAjPKnTXGV7xZOAO6fc1MlU1uzmfED5DbQns9lvFW
-         dBDbyg5FbTzVm/CLad1kYd7SdD8coET3cneOnQ5GJmiordagrqXEr/v/KxQSAm70Jybf
-         kS9d++p7f9U2qIDdEmXVSBl2NtG1G6EplNxtbq8kXZENH70tQbRCToWCeqvmuAxtBS1E
-         ZArQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV7Eu7hVug4+q/8thp6QR4j0mG+Quz8TWQ5HZTN00f9URToTdc3EOMM6ZVsh+JWRPUnFYtLiNXntm71tXz0xJbhJGt+nI6SJXXtFQ==
-X-Gm-Message-State: AOJu0YwviK6Zeih2jLwxMYPMCtVPoqJUBxUtHp51nyhVJGUaW9n1CRjL
-	/EGe2PJEkwNKiBNjYlSvxoVuICBUQspF7EEB7UnNP5YBn0lEtnI9YvDVmOl/9Tzuxe6uR+XZ6or
-	oEnlg7+KcwcaqeMnwe4C0Uan3Y+uGYb/QHRHiwA==
-X-Google-Smtp-Source: AGHT+IHntaLe6W6a9zZrdQp/NobtXyLalEiGhjsvJyg2CKkOy+q6UNrHqwWUkHv1SV9kpP87mRM7PtZ2WCmKIrFs8zs=
-X-Received: by 2002:a25:5f42:0:b0:de5:51dd:87da with SMTP id
- h2-20020a255f42000000b00de551dd87damr1858523ybm.32.1713872843745; Tue, 23 Apr
- 2024 04:47:23 -0700 (PDT)
+        bh=4Q8uM74lj69Nvqo3+Z4SD9KGTyZKkfeSzS/k4zb9cjM=;
+        b=pvTwOx60cBwnyKcvwXJQRJH5GW7k3Q1oWoIxT3sGT60Q+0bxnN1rCKJZeeezdPDyFV
+         TnXMYPl7uyPA8nZAodj42L72rINcNYF4QDO0R/KR+CqsapaCQCsL9EUqMTf7Ds4Tiyye
+         HmaVGoLTjj8Xw/VkIGG2bfgOBjeLqDjSUgu89PC5a+3y12YGG2BzNhoi5gwMGVa87wTO
+         gmENvMfzpXwgbXOiEHvkFONYWCbj4fBIdT3mJAjzO5Dq3DAKCnEqBkT/O9z0k3Hta7Sf
+         /ETvckwj2V3VvRlb59l2lc/0ca0JownSvs8aXzj1GeZnokq2kKfqhOZPwL4iNlZ8tcKa
+         W1jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCkuYUPxEb+bqRsle6uP62KCk/3ocAYMpjrCrr/97uNURuYW8wivhI+iyD6CHtx9zugSDzX4BZZ80vtvIDFel/bqs9dsX/HZdqSQ==
+X-Gm-Message-State: AOJu0YwhfW2PZkZQR9moenswJUGEdoa0nWpzxK5IkOUDM4RqQs+85i9P
+	Unv973YnKsArbD9AM0y6sS7pSDy3MnkUHc0rzVV2Z1vHNykozgmQthm1kbDilye5nXlfVRXUUTb
+	EfN/fJeqHO8f9SfQUpKrdyZM5U6ZCTa3sHhlVe6MonAxQ6YpyNxk=
+X-Google-Smtp-Source: AGHT+IHVF+iOlpUMyBf9xvEWIs8qs0LES453eMHrNJSIkEzeUXM7XFo6B+68AjGK0E/qvKsjnKnaGIOvh4ZScuge4wA=
+X-Received: by 2002:a25:9a41:0:b0:de5:4c1c:bbf5 with SMTP id
+ r1-20020a259a41000000b00de54c1cbbf5mr2096084ybo.22.1713872927582; Tue, 23 Apr
+ 2024 04:48:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,12 +72,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-0-23d33cfafe7a@arinc9.com>
- <20240423-for-soc-asus-rt-ac3200-ac5300-v3-2-23d33cfafe7a@arinc9.com>
-In-Reply-To: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-2-23d33cfafe7a@arinc9.com>
+ <20240423-for-soc-asus-rt-ac3200-ac5300-v3-3-23d33cfafe7a@arinc9.com>
+In-Reply-To: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-3-23d33cfafe7a@arinc9.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 23 Apr 2024 13:47:12 +0200
-Message-ID: <CACRpkdagwAD6KbCU0351rSUgqu6wimjREyfzGu06+aeSvM4fbA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: arm: bcm: add bindings for ASUS RT-AC5300
+Date: Tue, 23 Apr 2024 13:48:36 +0200
+Message-ID: <CACRpkdYfd+1udf1sUptSXTABVvodzGXoj+B11cSKF32RdcVZjQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
 To: arinc.unal@arinc9.com
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
@@ -85,8 +85,7 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Florian Fainelli <florian.fainelli@broadcom.com>, 
 	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
 	Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,11 +95,24 @@ elay
 
 > From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
 >
-> Add ASUS RT-AC5300 under BCM47094 based boards.
+> Add the device tree for ASUS RT-AC3200 which is an AC3200 router featurin=
+g
+> 5 Ethernet ports over the integrated Broadcom switch.
 >
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Hardware info:
+> * Processor: Broadcom BCM4709A0 dual-core @ 1.0 GHz
+> * Switch: BCM53012 in BCM4709A0
+> * DDR3 RAM: 256 MB
+> * Flash: 128 MB
+> * 2.4GHz: BCM43602 3x3 single chip 802.11b/g/n SoC
+> * 5GHz: BCM43602 3x3 two chips 802.11a/n/ac SoC
+> * Ports: 4 LAN Ports, 1 WAN Port
+>
+> Co-developed-by: Tom Brautaset <tbrautaset@gmail.com>
+> Signed-off-by: Tom Brautaset <tbrautaset@gmail.com>
 > Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
 
+Looks similar to others I've seen so:
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
