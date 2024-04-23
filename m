@@ -1,147 +1,165 @@
-Return-Path: <devicetree+bounces-61707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E008ADD76
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:25:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C3A8ADD7A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:27:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 063851F21B21
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:25:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 885B51C2129A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8135722611;
-	Tue, 23 Apr 2024 06:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019442261D;
+	Tue, 23 Apr 2024 06:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bDJ3xSvk"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZGJmTFvF";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="UAkiHRNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26B018AED;
-	Tue, 23 Apr 2024 06:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9E81C2AD;
+	Tue, 23 Apr 2024 06:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713853499; cv=none; b=ZdF6wC4MrfEOZmknSLFU+cnicSGgVS4vXDgGH402ZPy9f9IYhwLhibk4HE2oA/eWAcIwLtc52++ngTH+aNqa9gk1q01Pp+mp8fQ0YHDss/UlV3RTWVhuygYhVLR3jJxnOC5TkkCVwHJOmCbt2aJWxJJCFBQ4XsUi+cQokj6f9pM=
+	t=1713853638; cv=none; b=HlIs2JN6xjSrs0UA2v5i1fe7spfkpVafGRsboBiKj7sHuqqN37v7PLjr90HElxQFBkOob0+78JiXOsON9Y4ogiRlDW9kX3AWRNJvCXmMZtYWC12PzNuYKrh+LCXqZ1DeeuRUfMJaiPRt0EDIIwsQo+HXfsym90LmTdAG+q291oQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713853499; c=relaxed/simple;
-	bh=W2TMVZWUJbNFRxa8LN8et0fl4uaQ1TuJZNhbHUPmzA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PKAproC7LtEA8H7SO5My+4sZtS8HMSbCxzsgORCXQlxG7e8THnS9wY8rS3FY0OZ7NQooI5B/DaKCYtL7NLueLmvdrsHxMmmS0r5TppWXyqEDbDG9JwhA4PCXvNqow4D4Kx41scuML5ytLyhmTLSawQt3C/A7Nj524Btr5fLQB5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bDJ3xSvk; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a559b919303so305532566b.1;
-        Mon, 22 Apr 2024 23:24:57 -0700 (PDT)
+	s=arc-20240116; t=1713853638; c=relaxed/simple;
+	bh=BOTVxgdLvwkUKUp/KbDf4z2lDM2qZC92BYAnfam74oY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=s8LCc5LCd9nbFNnDFwTZ1eW9A4v38AmiKmrHe7JGC1NNGZdTo+j5YeyrjhY2xSGhpMUX5hmHby3Sv1oEGv0D8tftwTN/WKTUJs2lXdwq3B6JSBncVB6lBcHHslifbpxv9jy/G/T5CIOe+TjXRtcEQ6ncZBLOl0KMqDDCkb4vjk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ZGJmTFvF; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=UAkiHRNj reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713853496; x=1714458296; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=obB4jlV59abA/wNMxE4U5cZlxStQlUiG01gvsp/PbYA=;
-        b=bDJ3xSvkdZX+HnH1/KNz8Zb+jObUP+48X+fHJWpYeNJg2wta3hdKgKV6P5mie9o5yZ
-         xy/zMsMDXYmfiBkaLYJrALY5/fUzlCOd14nCOBiavTjOgIxFuv5Zc1jvjBjdBlN/fAbT
-         GreRFvqeVaNPJEE9bGS6KrNATr6V5HRWdEK7x08j7ITRQd1qN60pKlawc95FFxpFsBj1
-         j25FNI5a/0GC4gu1llmkDU3rMLg+ueAk9hEVHflgRj//CIFJy+y8Y8O+QCoFkZixBzmq
-         JHBqWH+567bT/+VtbEJfeoNKyUenOr0kOvPg9N877IZhKDDk7Wvngnqq2dTGpyKXiKX5
-         0Nrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713853496; x=1714458296;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=obB4jlV59abA/wNMxE4U5cZlxStQlUiG01gvsp/PbYA=;
-        b=Aa0pc0JQonqdxktV3YODbaQ16wbcbV1arfUhewd0GFYEzYp0DmgBrNxZHcdZzoRKFo
-         MxuiDDRiKcAeEluhcMnY6nG5iMfcWYsYVyJDkypscvEq6OP8kOc9ml3DItfdNWCwwFiR
-         bF8PC/s0wu410xijkLSJfX9wH81Q00CeIdeROLzzD5wjRKNkrAR39nrvaVJxeJyiqxiu
-         GrcSuEtL9/FEpZYRh1O9M+mXziBjtxz5F9mpduBTkJ5vgVIZJ1ezLqCHLp5MP8GCNc+A
-         lB5G7xZc33zmkzlRj2i/cgbQMIIlHtVywbG4pGXEas32EVLflbbKrANsAnnKId8VjOm+
-         lY+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVaxs54NI77yK7RIFudWOW+5mbnNm+8IiVJ0ZKgiGq6ieEIj0Qx63UiLiYh891nLzMvdiE1B+tF9oBLbnMvoVa6w5STZUeRNpQDVS28IT/kEa8x+SszBomcfHw0sgBw1GZ57FR1R/mCXw==
-X-Gm-Message-State: AOJu0YwZY8S33zcxCTcMTC/sh65JruBELY5YiLj4LF4h1lgnQI7LUcYl
-	0fOUXn26nT8hMQ+FcBiVIOn0nDBdcieEijr1ggFwo+T06ciHiSd+
-X-Google-Smtp-Source: AGHT+IHQ2kyt1szdhcEQk2QGUGAR/bJi4xRuNd8GavAbfvnOchMdo8396OvvSqo6YbIOygKYR18d9g==
-X-Received: by 2002:a17:906:395b:b0:a52:3ff7:744d with SMTP id g27-20020a170906395b00b00a523ff7744dmr8520159eje.4.1713853495933;
-        Mon, 22 Apr 2024 23:24:55 -0700 (PDT)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id 17-20020a170906329100b00a4ea067f6f8sm6628072ejw.161.2024.04.22.23.24.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 23:24:55 -0700 (PDT)
-Message-ID: <0395c3a1-1211-4962-bafd-fbf20be98ce4@gmail.com>
-Date: Tue, 23 Apr 2024 08:24:52 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1713853626; x=1745389626;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=s7RKTtO04TwlxnfzFc9siRRe1sN43bdKokqcoMESYdY=;
+  b=ZGJmTFvFnmT4AtORZSsLKN9lKxlxcHDDnT4V9BhNseCP++N3ya1ZpiWA
+   l9R0jBewbATt/TwDr6333snkOYqv8vOZh7tLzpr0qrErcdTb4gunG+MXI
+   za+lIUSinpnlbDmy5g8uw15BboFTag0Cxm1k7NGLwM5CSzuNL4lHoEdyJ
+   VnPE/rQ42JfCnhg8cJbJmaguGW3CUi1IIifi7On8bFZ5xizzJDemBrXGG
+   I59DSaeVTvPMLhRo5eEvTNu8BTKue/VuOGmGzxIlnlsbq7PAcVhRiJsw9
+   aPyh3ucG1A3rcwZQcTSJn4X6pCA31OAoizSgbXuMEeITrqljXEkcl8fxD
+   w==;
+X-IronPort-AV: E=Sophos;i="6.07,222,1708383600"; 
+   d="scan'208";a="36554964"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 23 Apr 2024 08:26:58 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C86B3173F3F;
+	Tue, 23 Apr 2024 08:26:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1713853614;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=s7RKTtO04TwlxnfzFc9siRRe1sN43bdKokqcoMESYdY=;
+	b=UAkiHRNjMPPyc0aoxi7sCbNJkWN4dzPCT/TtD2d4Ca+L9Cf2CMqH/q2MCpIyGF9RFQntm7
+	3EfpEN1GTF0ig6txR+/ictIsHJHX7yZETNMph2MzyROkh82Jw27lDG5Kiham8mfDw3Fmzs
+	7h1bveDOteAgmtqP/o2JBAgNcPth6yqNxCc4Dk3iHpDT8AdjuWasnadJn9OmUd/x5Y/XAJ
+	OTRC1/Xi04FXakyTnKeXE4Tt0eQhiaXaAI2TVsYVXFGVyoFKm8LMPTH1ZJg8RWgqcjqpi1
+	9SLI7W1Ms2kKYyEwBPb/+Ph6Z/48ydp+ZGB0tnFqr0C1jGHZEnBpfvix5mIVOw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH v3 1/1] dt-bindings: interrupt-controller: fsl, irqsteer: Add imx8qxp support
+Date: Tue, 23 Apr 2024 08:26:55 +0200
+Message-ID: <6041240.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240422-channel-emission-d485dee6ae48@spud>
+References: <20240422064949.70778-1-alexander.stein@ew.tq-group.com> <20240422-channel-emission-d485dee6ae48@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] Document ASUS RT-AC3200 and ASUS RT-AC5300 and add
- device trees
-To: arinc.unal@arinc9.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240419-for-soc-asus-rt-ac3200-ac5300-v2-0-f95ff50c2a4d@arinc9.com>
-Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20240419-for-soc-asus-rt-ac3200-ac5300-v2-0-f95ff50c2a4d@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Hi Conor,
 
-On 19.04.2024 09:22, Arınç ÜNAL via B4 Relay wrote:
-> This patch series documents the compatible strings for ASUS RT-AC3200 and
-> ASUS RT-AC5300, and adds the device trees for them.
+cc'ed imx@lists.linux.dev
 
-I was on holidays and couldn't reply earlier.
+Am Montag, 22. April 2024, 17:48:20 CEST schrieb Conor Dooley:
+> On Mon, Apr 22, 2024 at 08:49:49AM +0200, Alexander Stein wrote:
+> > Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-specif=
+ic
+> > compatible, which also requires a power-domain.
+> >=20
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Thanks for the feedback.
+> >=20
+> > Changes in v3:
+> > * Move 'allOf' before 'additionalProperties'
+> > * Remove superfluous 'minItems: 1'
+> >=20
+> >  .../interrupt-controller/fsl,irqsteer.yaml      | 17 ++++++++++++++++-
+> >  1 file changed, 16 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl=
+,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl=
+,irqsteer.yaml
+> > index 20ad4ad82ad64..3d33b75d6ecfa 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqste=
+er.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqste=
+er.yaml
+> > @@ -14,7 +14,9 @@ properties:
+> >      oneOf:
+> >        - const: fsl,imx-irqsteer
+> >        - items:
+> > -          - const: fsl,imx8m-irqsteer
+> > +          - enum:
+> > +              - fsl,imx8m-irqsteer
+> > +              - fsl,imx8qxp-irqsteer
+> >            - const: fsl,imx-irqsteer
+> > =20
+> >    reg:
+> > @@ -42,6 +44,9 @@ properties:
+> >    clock-names:
+> >      const: ipg
+> > =20
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> >    interrupt-controller: true
+> > =20
+> >    "#interrupt-cells":
+> > @@ -70,6 +75,16 @@ required:
+> >    - fsl,channel
+> >    - fsl,num-irqs
+> > =20
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: fsl,imx8qxp-irqsteer
+> > +    then:
+> > +      required:
+> > +        - power-domains
+>=20
+> Provided the power domains are optional on the existing platforms,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> otherwise,
+> else:
+>   properties:
+>     power-domains: false
 
-This patchset looks good to me, thanks for your work!
+A power-domain is used on imx8mp, but imx8mq does not.
 
-Bot warnings come from .dtsi so they are not directly caused by your changes.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Nitpicking:
-Try to put "reg" before "device_type" in future.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst?h=v6.8#n112
-
-
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
-> Changes in v2:
-> - Patch 3
->    - Remove the chosen node as earlycon is not for mainline use, and the
->      stdout-path property which should be used instead of bootargs =
->      "console=" is already described in bcm4708.dtsi with the same value.
->    - Remove MAC address assignment to switch ports. To explain why shortly,
->      on the switch with CPU port architecture, the LLC Entity associated
->      with each port can be accessed without a distinct MAC address assigned
->      to each port. Therefore, it is unnecessary.
-> - Patch 4
->    - Same as above.
-> - Link to v1: https://lore.kernel.org/r/20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com
-> 
-> ---
-> Arınç ÜNAL (4):
->        dt-bindings: arm: bcm: add bindings for ASUS RT-AC3200
->        dt-bindings: arm: bcm: add bindings for ASUS RT-AC5300
->        ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
->        ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300
-> 
->   .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml  |   2 +
->   arch/arm/boot/dts/broadcom/Makefile                |   2 +
->   .../boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts   | 150 ++++++++++++++++++++
->   .../boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts  | 156 +++++++++++++++++++++
->   4 files changed, 310 insertions(+)
-> ---
-> base-commit: 011d79ef1cfad701c2d8e7e80d8c77523af9c771
-> change-id: 20240408-for-soc-asus-rt-ac3200-ac5300-5d6efc2c497b
-> 
-> Best regards,
 
 
