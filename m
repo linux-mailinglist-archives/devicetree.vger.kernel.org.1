@@ -1,208 +1,134 @@
-Return-Path: <devicetree+bounces-61685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD8928ADB44
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 02:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 738208ADB5A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 03:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A38B1F226C8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 00:47:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 114391F224F3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 01:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227C229AB;
-	Tue, 23 Apr 2024 00:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94324F9D4;
+	Tue, 23 Apr 2024 01:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZ3SiHyu"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Z9oXWbiB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56D1802;
-	Tue, 23 Apr 2024 00:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062DAD26A;
+	Tue, 23 Apr 2024 01:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713833259; cv=none; b=av2/fr4LqitAezw9DGqYK9W6qp6jo0zFfI5yRIYBHZP3cTP/DmY206FI4v8ijCIvfBpd/1SudIJT0hOCT0BALzeVEgj3wMtq+tOA5Qohvv95fdOLiNOw0YXrDlLbm0Of7kP/IMhWhsPJsf2mOZlHcnRkaKcROMjD+2A0GIv7Epw=
+	t=1713834028; cv=none; b=JrkLOYibx/f02CBEa/yrk/t5jwLPUU7foKp+i5B+4nQwy/yJMxuk1YMZbb+/+5S982FCX3M0xrN/tY/aq1INfXEPoDRPebjEgVFsiYQ++LPOrt9bdHnQ6oxo23CaivLtQDI8LyNYOAu7yexIjT6aFxiQjehlVsz6qzycSdvdMoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713833259; c=relaxed/simple;
-	bh=LPMHQme1V8vDzMirJlOpLb0vftLJDLrVwcaPBuEO5Fo=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=jEegyCr7MmzbXKQjXNMFpFDTPdUFrnxBeINC17acnofXbEcJb43QQHqQCvI/luygp7DNQHOQAhEtmrrq6UvZL/mXCgpXai26oJXcCEXEbBQ94KdGKWGyXOOySrFk7lSRzLyjVUpXecQjfkeE/80ihCRI4KnbUKT2JZvfMTCxLgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZ3SiHyu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 675CBC113CC;
-	Tue, 23 Apr 2024 00:47:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713833258;
-	bh=LPMHQme1V8vDzMirJlOpLb0vftLJDLrVwcaPBuEO5Fo=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=SZ3SiHyuarYWB1F6tUkkzJzyu22t8hnVHWFlNGoRPoXlF7pH8kOwJUhYRe4QUK/8+
-	 JsVMSN0pt92WDOrwRouIEgBC9KwME4SGtqhrz3urJK3N0yH+pQdAeRAS2Jdajax+fv
-	 ezTpMm4VrCIa6YsUJnLeTUga7IcLYyWcviRWnb2VI17XAq46Kwm9W1olCg+vpLMe+k
-	 1WU/H0WoJ7QhZdXeFQt3NVyQ+LrE3aSdDJ4TI1fWoreR6UoiVw5PCMKZJnyV6AOcNn
-	 RvvxLGSH9+jyEU2G3HwSyJEFpRcVwJRb3i2Ebn7eZhQj/xS7col3kvATKlx7w/RcEw
-	 z93aSoFkhQYeg==
-Message-ID: <eca85d9094538b8713b556979e811b39.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1713834028; c=relaxed/simple;
+	bh=azzotw59+fIUctTzsp336N40GiSS/5h+GVjPdzV0YX4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NHrJjBGmJibbWW1eNiFoxinFvJ36IupSyC+/LIqGPCIHVTHjIqzor0q4v80Q/+Zn0k8cZN5o1HUhW5kt0gl55IfcX8o37aAArEG8xn2Z3qsaK/NZLSFFlVB0EOXXnDOOMjB5QvSvBmusx6dMmPhN9+on1zoXYMOxsVwMyGOKVLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Z9oXWbiB; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1713834025;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bo/IwqMdn2PyKSW/xDDhX0TDb5wE3TkJGLlooZNGiQY=;
+	b=Z9oXWbiB3ZDNO6H9HQmVypjp8rIzFHBSbSjy23n5y5kpSXxvCntecFqB1ZgeP9z5yOsm+d
+	785u5UGpt+cZb+SZtqGTRwVlE09nE+mKpSgDdWqmRWGGqh8zqKWmhadJR0HnHKiz6nx/jn
+	3bqixgl205iH/hJ0Wnkd1kWYEFGUcXjv9exyG330G1qHb+7qCs52C/Ar0rulpUImszKM0R
+	DXDXVRBSRMIxEBwiKjLcjPOgWuhRyFgfv4iRPck39Nb16soWtshkHI3/uHPnYaiqFsYZ7a
+	857jHjpyQ9q3k9U8m1HHQh/J8+Mc+X6G8Vn3q9sCjkR4yGJ2OkIkmNqJ7JAv4g==
+To: linux-sunxi@lists.linux.dev
+Cc: wens@csie.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	didi.debian@cknow.org,
+	Marek Kraus <gamiee@pine64.org>
+Subject: [PATCH 1/2] dt-bindings: arm: sunxi: Correct the descriptions for Pine64 boards
+Date: Tue, 23 Apr 2024 03:00:19 +0200
+Message-Id: <d2943d9f4c99a239f86188eaf45a73972685c255.1713833436.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <06f26e2f49a8423cb0122a08fb2d868484e2e0a4.1713164546.git.unicorn_wang@outlook.com>
-References: <cover.1713164546.git.unicorn_wang@outlook.com> <06f26e2f49a8423cb0122a08fb2d868484e2e0a4.1713164546.git.unicorn_wang@outlook.com>
-Subject: Re: [PATCH v14 4/5] clk: sophgo: Add SG2042 clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Chen Wang <unicorn_wang@outlook.com>
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org, haijiao.liu@sophgo.com, inochiama@outlook.com, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com, robh+dt@kernel.org, samuel.holland@sifive.com, xiaoguang.xing@sophgo.com
-Date: Mon, 22 Apr 2024 17:47:36 -0700
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Quoting Chen Wang (2024-04-15 00:23:27)
-> diff --git a/drivers/clk/sophgo/clk-sophgo-sg2042.c b/drivers/clk/sophgo/=
-clk-sophgo-sg2042.c
-> new file mode 100644
-> index 000000000000..0bcfaab52f51
-> --- /dev/null
-> +++ b/drivers/clk/sophgo/clk-sophgo-sg2042.c
-> @@ -0,0 +1,1645 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Sophgo SG2042 Clock Generator Driver
-> + *
-> + * Copyright (C) 2024 Sophgo Technology Inc. All rights reserved.
-> + */
-> +
-> +#include <asm/div64.h>
+Correct the descriptions of a few Pine64 boards and devices, according
+to their official names used on the Pine64 wiki.  This ensures consistency
+between the officially used names and the names in the source code.
 
-asm goes after linux includes...
+Cc: Marek Kraus <gamiee@pine64.org>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
 
-> +#include <linux/array_size.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/platform_device.h>
+Notes:
+    This completes the correction of the descriptions of the Pine64 boards
+    and devices, which was started with the Pine64 boards and devices based
+    on Rockchip SoCs. [1]
+    
+    [1] https://lore.kernel.org/linux-rockchip/ec124dab2b1a8776aa39177ecce34babca3a50e2.1713832790.git.dsimic@manjaro.org/
 
-here.
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-> +
-> +/*
-> + * The clock of SG2042 is composed of three parts.
-> + * The registers of these three parts of the clock are scattered in three
-> + * different memory address spaces:
-> + * - pll clocks
-> + * - gate clocks for RP subsystem
-> + * - div/mux, and gate clocks working for other subsystem than RP subsys=
-tem
-> + */
-> +#include <dt-bindings/clock/sophgo,sg2042-pll.h>
-> +#include <dt-bindings/clock/sophgo,sg2042-rpgate.h>
-> +#include <dt-bindings/clock/sophgo,sg2042-clkgen.h>
-> +
-> +/* Registers defined in SYS_CTRL */
-> +#define R_PLL_BEGIN            0xC0
-[...]
-> +
-> +#define SG2042_PLL(_id, _name, _parent_name, _r_stat, _r_enable, _r_ctrl=
-, _shift) \
-> +       {                                                               \
-> +               .hw.init =3D CLK_HW_INIT(                                =
- \
-> +                               _name,                                  \
-> +                               _parent_name,                           \
-
-This still uses a string. Please convert all parents described by
-strings to use clk_parent_data or clk_hw directly.
-
-> +                               &sg2042_clk_pll_ops,                    \
-> +                               CLK_GET_RATE_NOCACHE | CLK_GET_ACCURACY_N=
-OCACHE),\
-> +               .id =3D _id,                                             =
- \
-> +               .offset_ctrl =3D _r_ctrl,                                =
- \
-> +               .offset_status =3D _r_stat,                              =
- \
-> +               .offset_enable =3D _r_enable,                            =
- \
-> +               .shift_status_lock =3D 8 + (_shift),                     =
- \
-> +               .shift_status_updating =3D _shift,                       =
- \
-[...]
-> + * "clk_div_ddr01_1" is the name of Clock divider 1 control of DDR01, and
-> + * "clk_gate_ddr01_div1" is the gate clock in front of the "clk_div_ddr0=
-1_1",
-> + * they are both controlled by register CLKDIVREG28;
-> + * While for register value of mux selection, use Clock Select for DDR01=
-=E2=80=99s clock
-> + * as example, see CLKSELREG0, bit[2].
-> + * 1: Select in_dpll0_clk as clock source, correspondng to the parent in=
-put
-> + *    source from "clk_div_ddr01_0".
-> + * 0: Select in_fpll_clk as clock source, corresponding to the parent in=
-put
-> + *    source from "clk_div_ddr01_1".
-> + * So we need a table to define the array of register values correspondi=
-ng to
-> + * the parent index and tell CCF about this when registering mux clock.
-> + */
-> +static const u32 sg2042_mux_table[] =3D {1, 0};
-> +
-> +static const struct clk_parent_data clk_mux_ddr01_p[] =3D {
-> +       { .hw =3D &sg2042_div_clks[0].hw },
-> +       { .hw =3D &sg2042_div_clks[1].hw },
-
-Just use struct clk_init_data::parent_hws for this if you only have a
-clk_hw pointer for every element of the parent array.
-
-> +};
-> +
-> +static const struct clk_parent_data clk_mux_ddr23_p[] =3D {
-> +       { .hw =3D &sg2042_div_clks[2].hw },
-> +       { .hw =3D &sg2042_div_clks[3].hw },
-> +};
-> +
-[...]
-> +
-> +static int sg2042_pll_probe(struct platform_device *pdev)
-> +{
-> +       struct sg2042_clk_data *clk_data =3D NULL;
-> +       int i, ret =3D 0;
-> +       int num_clks =3D 0;
-> +
-> +       num_clks =3D ARRAY_SIZE(sg2042_pll_clks);
-> +
-> +       ret =3D sg2042_init_clkdata(pdev, num_clks, &clk_data);
-> +       if (ret < 0)
-> +               goto error_out;
-> +
-> +       ret =3D sg2042_clk_register_plls(&pdev->dev, clk_data, sg2042_pll=
-_clks,
-> +                                      num_clks);
-> +       if (ret)
-> +               goto cleanup;
-> +
-> +       return devm_of_clk_add_hw_provider(&pdev->dev,
-> +                                          of_clk_hw_onecell_get,
-> +                                          &clk_data->onecell_data);
-> +
-> +cleanup:
-> +       for (i =3D 0; i < num_clks; i++) {
-> +               if (clk_data->onecell_data.hws[i])
-> +                       clk_hw_unregister(clk_data->onecell_data.hws[i]);
-
-This should be unnecessary if devm is used throughout.
-
-> +       }
-> +
-> +error_out:
-> +       pr_err("%s failed error number %d\n", __func__, ret);
-> +       return ret;
-
-Just do this part in the one place the goto is. These two comments apply
-to all probes.
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 09d835db6db5..b66873ae2d71 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -709,17 +709,17 @@ properties:
+           - const: sochip,s3
+           - const: allwinner,sun8i-v3
+ 
+-      - description: Pine64 PineH64 model A
++      - description: Pine64 H64 Model A
+         items:
+           - const: pine64,pine-h64
+           - const: allwinner,sun50i-h6
+ 
+-      - description: Pine64 PineH64 model B
++      - description: Pine64 H64 Model B
+         items:
+           - const: pine64,pine-h64-model-b
+           - const: allwinner,sun50i-h6
+ 
+-      - description: Pine64 LTS
++      - description: Pine64 A64 LTS
+         items:
+           - const: pine64,pine64-lts
+           - const: allwinner,sun50i-r18
+@@ -748,17 +748,17 @@ properties:
+           - const: pine64,pinephone
+           - const: allwinner,sun50i-a64
+ 
+-      - description: Pine64 PineTab, Development Sample
++      - description: Pine64 PineTab Developer Sample
+         items:
+           - const: pine64,pinetab
+           - const: allwinner,sun50i-a64
+ 
+-      - description: Pine64 PineTab, Early Adopter's batch (and maybe later ones)
++      - description: Pine64 PineTab Early Adopter
+         items:
+           - const: pine64,pinetab-early-adopter
+           - const: allwinner,sun50i-a64
+ 
+-      - description: Pine64 SoPine Baseboard
++      - description: Pine64 SOPine
+         items:
+           - const: pine64,sopine-baseboard
+           - const: pine64,sopine
 
