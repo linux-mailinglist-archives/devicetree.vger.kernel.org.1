@@ -1,67 +1,52 @@
-Return-Path: <devicetree+bounces-62071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D4B48AFCDB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:49:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0D88AFCE5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:51:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5727A2854DA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:49:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B21431C224FB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C9F4437D;
-	Tue, 23 Apr 2024 23:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zpqagFdY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3BE44391;
+	Tue, 23 Apr 2024 23:51:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF2B10949;
-	Tue, 23 Apr 2024 23:49:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A550441746
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 23:51:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713916183; cv=none; b=LFrW1ZGdAo2mZ8zLdL0ANLkwp7BOy5VT6waJJxrAzF9LCetuht7YXE/BrTAEmV7CVaLW/PW9xz22UrtKe/dT54iRhC4aFGWvPZ4IqsM6z2sm9NrBJonZil/CVsBI+TY0XM4UxFneSNQUoxRgObXBsb1HuJu0ew5lDAi5V84Gibw=
+	t=1713916296; cv=none; b=YxCQAYq02dxoZNyWpn5qQi62F18clwud0UecVgpFNmMBV7hLhJqNX3eQ0vQEUYOfbMcnP18nsz1lXK6h+iDrA4+WeC9QcbPPIZSwEuayw5Lr9rE6EQSRsCgRC+wyuCjFe/fA/JdvnUyTwEaE3MHe9yEY31zsC1KYnHeNM+WUU+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713916183; c=relaxed/simple;
-	bh=i0T3iIuV6PoxWDJyBn/iZdSogce/hukTHjNMuRoBxzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A8VSBprVMZ7sMi82VBNGweZa30nf/a4Ce8tJc7gGkj70F3yXb32dG5XP8jgaFHciSupu8ZiZVfFAnWMKtndl6H3RGX8/H3zxZdxtKYYQNgo/8XLwZUdQvuMu8i3sqeWUtWfXePNKQegTjqqXhufD5oZzd1h/7T+9WoDtMcwBjpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zpqagFdY; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=9OOPH5bU5DXeITmtGQhGlq5vN3KlVC4zryvPwQK8Oo4=; b=zpqagFdYHBkIM/5JXfzx1DqerZ
-	4LJE0iiSEIntOgPBMGAEsybfrtgPBfwKbXOGY2DfGIX70hyLBWlKU1p26N3Oj6arAeqwEfoe44MMy
-	6aWwphGa7YiWhLa2LXKyo1Iqi4AjKgxXgffAyNSKa05kboNVwRMk7c+7SkvtiX/z1Ufo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rzPtE-00DlEr-1w; Wed, 24 Apr 2024 01:49:32 +0200
-Date: Wed, 24 Apr 2024 01:49:32 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 07/12] net: ethernet: oa_tc6: enable open
- alliance tc6 data communication
-Message-ID: <8b006123-695c-4cd3-8ee1-f62a1caef4c6@lunn.ch>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <20240418125648.372526-8-Parthiban.Veerasooran@microchip.com>
+	s=arc-20240116; t=1713916296; c=relaxed/simple;
+	bh=EAaY3X0XQewWtGYPMs954mCQEcRmHFcBBCFOcrbFz90=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f8vkaftj0KDYMP4Li+NnOKeIsEWX0deQIyBz8imTu0KnLVwtAjt7smQ5s0G7Sw3Mt2bK2+dojSqBEUblaXsL4XXADyWv3wzODrxa+AvphBUiGOVKsi7cY8KdDNDBjLI/Xl6pbozGzFmJzNkkTaqnbwJVyNkjoE2xkFSY6Kbsv5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+Received: from localhost (88-113-25-208.elisa-laajakaista.fi [88.113.25.208])
+	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
+	id 65415545-01cc-11ef-b3cf-005056bd6ce9;
+	Wed, 24 Apr 2024 02:51:26 +0300 (EEST)
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 24 Apr 2024 02:51:25 +0300
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
+	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v3 3/3] spi: airoha: add SPI-NAND Flash controller driver
+Message-ID: <ZihJfcmjoJZwLofz@surfacebook.localdomain>
+References: <cover.1713866770.git.lorenzo@kernel.org>
+ <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,16 +55,257 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240418125648.372526-8-Parthiban.Veerasooran@microchip.com>
+In-Reply-To: <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
 
-On Thu, Apr 18, 2024 at 06:26:43PM +0530, Parthiban Veerasooran wrote:
-> Enabling Configuration Synchronization bit (SYNC) in the Configuration
-> Register #0 enables data communication in the MAC-PHY. The state of this
-> bit is reflected in the data footer SYNC bit.
-> 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Tue, Apr 23, 2024 at 12:16:37PM +0200, Lorenzo Bianconi kirjoitti:
+> Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
+> found on Airoha ARM SoCs.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+...
 
-    Andrew
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/init.h>
+> +#include <linux/iopoll.h>
+
+> +#include <linux/kernel.h>
+
+Make sure you are using exact headers you need, this one seems "proxy" and not
+really in use here.
+
+(Quite likely you wanted minmax.h, types.h, and possible others.)
+
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/spi/spi-mem.h>
+
+...
+
+> +#define SPI_NFI_ALL_IRQ_EN			(SPI_NFI_RD_DONE_EN | \
+> +						 SPI_NFI_WR_DONE_EN | \
+> +						 SPI_NFI_RST_DONE_EN | \
+> +						 SPI_NFI_ERASE_DONE_EN | \
+> +						 SPI_NFI_BUSY_RETURN_EN | \
+> +						 SPI_NFI_ACCESS_LOCK_EN | \
+> +						 SPI_NFI_AHB_DONE_EN)
+
+What about writing this as
+
+#define SPI_NFI_ALL_IRQ_EN					\
+	(SPI_NFI_RD_DONE_EN | SPI_NFI_WR_DONE_EN |		\
+	 SPI_NFI_RST_DONE_EN | SPI_NFI_ERASE_DONE_EN |		\
+	 SPI_NFI_BUSY_RETURN_EN | SPI_NFI_ACCESS_LOCK_EN |	\
+	 SPI_NFI_AHB_DONE_EN)
+
+?
+
+...
+
+> +enum airoha_snand_mode {
+> +	SPI_MODE_AUTO,
+> +	SPI_MODE_MANUAL,
+> +	SPI_MODE_DMA,
+> +	SPI_MODE_NO
+
+Is _NO a termination entry? Meaning there always be only 3 modes no matter
+what. If not, leave the trailing comma as it helps to reduce a burden in case
+this list will be expanded.
+
+> +};
+
+...
+
+> +struct airoha_snand_dev {
+> +	size_t buf_len;
+> +
+> +	u8 *txrx_buf;
+> +	dma_addr_t dma_addr;
+> +
+> +	bool data_need_update;
+> +	u64 cur_page_num;
+> +};
+
+Most likely `pahole` shows better layout to save a few bytes in some cases.
+
+...
+
+> +struct airoha_snand_ctrl {
+> +	struct device *dev;
+> +	struct regmap *regmap_ctrl;
+> +	struct regmap *regmap_nfi;
+> +	struct clk *spi_clk;
+> +
+> +	struct {
+> +		size_t page_size;
+> +		size_t sec_size;
+
+> +		unsigned char sec_num;
+> +		unsigned char spare_size;
+
+Hmm... Why not u8 for both of these?
+
+> +	} nfi_cfg;
+> +};
+
+...
+
+> +static int airoha_snand_write_data(struct airoha_snand_ctrl *as_ctrl, u8 cmd,
+> +				   const u8 *data, int len)
+> +{
+> +	int i = 0;
+> +
+> +	while (i < len) {
+
+Seems nothing prevents you from using for-loop here as well.
+
+> +		int data_len = min(len, MAX_TRANSFER_SIZE);
+> +		int err;
+> +
+> +		err = airoha_snand_set_fifo_op(as_ctrl, cmd, data_len);
+> +		if (err)
+> +			return err;
+> +
+> +		err = airoha_snand_write_data_to_fifo(as_ctrl, &data[i],
+> +						      data_len);
+> +		if (err < 0)
+> +			return err;
+> +
+> +		i += data_len;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int airoha_snand_read_data(struct airoha_snand_ctrl *as_ctrl, u8 *data,
+> +				  int len)
+
+As per above.
+
+...
+
+> +	/* addr part */
+> +	for (i = 0; i < op->addr.nbytes; i++) {
+> +		u8 cmd = opcode == SPI_NAND_OP_GET_FEATURE ? 0x11 : 0x8;
+> +
+> +		data = op->addr.val >> ((op->addr.nbytes - i - 1) * 8);
+
+Seems like you wanted to have always the same endianess and hence can be done
+outside the loop via cpu_to_xxx()?
+
+> +		err = airoha_snand_write_data(as_ctrl, cmd, &data,
+> +					      sizeof(data));
+> +		if (err)
+> +			return err;
+> +	}
+
+...
+
+> +static int airoha_snand_setup(struct spi_device *spi)
+> +{
+> +	struct airoha_snand_dev *as_dev = spi_get_ctldata(spi);
+> +	struct airoha_snand_ctrl *as_ctrl;
+> +
+> +	as_dev = kzalloc(sizeof(*as_dev), GFP_KERNEL);
+> +	if (!as_dev)
+> +		return -ENOMEM;
+> +
+> +	spi_set_ctldata(spi, as_dev);
+> +	as_dev->data_need_update = true;
+> +
+> +	/* prepare device buffer */
+> +	as_dev->buf_len = SPI_NAND_CACHE_SIZE;
+> +	as_dev->txrx_buf = kzalloc(as_dev->buf_len, GFP_KERNEL);
+> +	if (!as_dev->txrx_buf)
+> +		goto error_dev_free;
+> +
+> +	as_ctrl = spi_controller_get_devdata(spi->controller);
+> +	as_dev->dma_addr = dma_map_single(as_ctrl->dev, as_dev->txrx_buf,
+> +					  as_dev->buf_len, DMA_BIDIRECTIONAL);
+> +	if (dma_mapping_error(as_ctrl->dev, as_dev->dma_addr))
+> +		goto error_buf_free;
+> +
+> +	return 0;
+> +
+> +error_buf_free:
+> +	kfree(as_dev->txrx_buf);
+> +error_dev_free:
+> +	kfree(as_dev);
+
+Why not utilising cleanup.h? (__free(), no_free_ptr(), etc)
+
+> +	return -EINVAL;
+> +}
+
+...
+
+> +	err = regmap_read(as_ctrl->regmap_nfi,
+> +			  REG_SPI_NFI_SECCUS_SIZE, &val);
+
+One line?
+
+> +	if (err)
+> +		return err;
+
+...
+
+> +	as_ctrl->nfi_cfg.page_size = rounddown(sec_size * sec_num, 1024);
+
+round_down() is optimised for power-of-2.
+You would need to include math.h IIRC.
+
+...
+
+> +	as_ctrl->regmap_ctrl = devm_regmap_init_mmio(&pdev->dev, base,
+> +						     &spi_ctrl_regmap_config);
+
+With help of
+
+	struct device *dev = &pdev->dev;
+
+at the top of the function the entire code will become neater.
+
+> +	if (IS_ERR(as_ctrl->regmap_ctrl)) {
+> +		dev_err(&pdev->dev, "failed to init spi ctrl regmap: %ld\n",
+> +			PTR_ERR(as_ctrl->regmap_ctrl));
+> +		return PTR_ERR(as_ctrl->regmap_ctrl);
+
+		return dev_err_probe(...);
+
+> +	}
+
+...
+
+> +		dev_err(&pdev->dev, "failed to init spi nfi regmap: %ld\n",
+> +			PTR_ERR(as_ctrl->regmap_nfi));
+> +		return PTR_ERR(as_ctrl->regmap_nfi);
+
+		return dev_err_probe(...);
+
+...
+
+> +		dev_err(&pdev->dev, "unable to get spi clk");
+> +		return PTR_ERR(as_ctrl->spi_clk);
+
+Ditto.
+
+...
+
+> +
+
+Unneeded blank line.
+
+> +module_platform_driver(airoha_snand_driver);
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
