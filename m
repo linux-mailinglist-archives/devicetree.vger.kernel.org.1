@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-61946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DB68AEB4E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:41:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245C48AF2E9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:54:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB85B1C224B6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:41:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5563285C93
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8587013C9D2;
-	Tue, 23 Apr 2024 15:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0CB13C9C7;
+	Tue, 23 Apr 2024 15:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XYgWBV7m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eHVcwrr3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1A513C9C5;
-	Tue, 23 Apr 2024 15:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217AD136652;
+	Tue, 23 Apr 2024 15:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713886897; cv=none; b=Fp6A93MiemDu3LLd/I9L6zq+WHQIpzEfWhNOP5pkZbujLCIGWhfNYfJ08q/aGhb/HiFwmTmleF5xJ0KqeqRgzUHMOe7/0JiHolOaKmo+F8CEEwdrNAm0vlwzIoBPXtLw5PqmeRcFGoKl9Tt22TgoNx5Is8XzD28e3CfiHL6StIo=
+	t=1713887669; cv=none; b=ue+lINhGCVFk1X7IE1ka231siTl4qR96WS1Bm01WVvJSi27JqGLpiiGvPmWW+xTNOav0UM2KBlKZTiEyVOCoXcUJCHwfPpUPuoxke88AmWn+B7BAQLMbWVSb8KvemYiFbO5o/0g1WxMcuSylru051kaF3kKqYk01p4fMMpFsgBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713886897; c=relaxed/simple;
-	bh=OnUR5ZTH3ib/xsiRvY5RaBExyt2bYFtPkTTCfjWrMAg=;
+	s=arc-20240116; t=1713887669; c=relaxed/simple;
+	bh=ygI09t554nLoyr6BkmW7OLrmKfZMJOQw1a4wokqN6Zw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oKY8t6vgnbxQfYl4jGs2i7AWD/xmIKcNqNxhFeA+XPysub+53eh3A7Vr8MR3qYjYOTuiU/M3EsdtJMpjQKL/ekCZQNDal2D6Rl+3YA4z4ZMAKYVwZPXCqxPcCrN7E3Z0XnrCvy/yG7SONbh4qowJy/lGilOKorW14gzZsfdMJrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XYgWBV7m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F4CC2BD11;
-	Tue, 23 Apr 2024 15:41:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=r7MdHZwIFqIP/42qN4zAz9SpqAn0meJy8mlL4UDHdU3y/oL7KET9HE0jCyirmFTWPAVoOyx4sJJzuwebdfXfW5eKXraXc1UjLXl95IlPnL8iQ5Mkq0g7hwPU7X8BBTFW93QCgu7ZnJu4PW6psAEm5IoN0RCVfX2NA4SQ5WwwoDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eHVcwrr3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E224C116B1;
+	Tue, 23 Apr 2024 15:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713886896;
-	bh=OnUR5ZTH3ib/xsiRvY5RaBExyt2bYFtPkTTCfjWrMAg=;
+	s=k20201202; t=1713887668;
+	bh=ygI09t554nLoyr6BkmW7OLrmKfZMJOQw1a4wokqN6Zw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XYgWBV7mbHOz6IiEf/2oGVM6dOLAgUp95qKZ0FXThv43HZCaYurXUVuPfVQUToy+x
-	 2D2NaLmd9J89DDEG8FBvHbcfvkwrJFTOO7YOR77PFIK7TArlllgIDJZ+VZLssU1V14
-	 tAQ7LZo6K9JtlbbvrsQX/5C0WoP5jkp0NCcFzaQ6b/pGo5ajDuth1v59215DDn0X0T
-	 UDuPLNjZsO0BwD/E4/Lplv3A314naJzdIZLcijPYFJ8xVsqybuuEfZokHoO0Yzapql
-	 g3d7ys4Ys81dCRsYyXeTPLEHU/Hwq/BQFKAMaEyYqxkEM1hh/5qgr3hWgHYVGb2g5b
-	 moHrTFuM1+NKQ==
-Date: Tue, 23 Apr 2024 16:41:32 +0100
+	b=eHVcwrr3RiJYhKjscVZo+51SROohKtrZd5sgQRoiG0GWmNdjLzMpcXdJnEyl5KSRe
+	 4X63eAqmtA8PT7Fvo6pRkUCuAEcjNq7jTdJpPQnV3u0ZRUynku/5beXpTvP8o3D9H6
+	 pJadn+GdCeRNfMYolqVjG71p5INF+GexAyzPmMyUwFWWC5fcSlybNdYFmADibv4NtA
+	 IcnpjjGTRofh+HFe6AuR+OIMXca1nPH2N1xFVMd6grvHanqWu+qcU28GqnPrUfmrUd
+	 3QU0qmHFEfT4kvvp5a2N5cftLxr5StDZ08py9RG3EEBNcQCZw2eJE9YVglE7kgHF6i
+	 okMJUfFaEx50Q==
+Date: Tue, 23 Apr 2024 16:54:24 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Joshua Yeong <joshua.yeong@starfivetech.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
@@ -49,11 +49,11 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 	leyfoon.tan@starfivetech.com, jeeheng.sia@starfivetech.com,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: cache: Add docs for StarFive
- Starlink cache controller
-Message-ID: <20240423-depravity-premium-b7ff778014f4@spud>
+Subject: Re: [PATCH v2 1/2] cache: Add StarFive StarLink cache management for
+ StarFive JH8100
+Message-ID: <20240423-clique-despair-ead97b78b186@spud>
 References: <20240423072639.143450-1-joshua.yeong@starfivetech.com>
- <20240423072639.143450-3-joshua.yeong@starfivetech.com>
+ <20240423072639.143450-2-joshua.yeong@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,34 +61,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dQ3vim3zqT9txeSW"
+	protocol="application/pgp-signature"; boundary="i/ONzq50GI9VXLjz"
 Content-Disposition: inline
-In-Reply-To: <20240423072639.143450-3-joshua.yeong@starfivetech.com>
+In-Reply-To: <20240423072639.143450-2-joshua.yeong@starfivetech.com>
 
 
---dQ3vim3zqT9txeSW
+--i/ONzq50GI9VXLjz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 23, 2024 at 03:26:39PM +0800, Joshua Yeong wrote:
-> Add DT binding documentation used by StarFive's
-> JH8100 SoC Starlink cache controller.
->=20
-> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
+On Tue, Apr 23, 2024 at 03:26:38PM +0800, Joshua Yeong wrote:
+> +
+> +#include <asm/dma-noncoherent.h>
+> +
+> +#define STARLINK_CACHE_FLUSH_START_ADDR			0x0
+> +#define STARLINK_CACHE_FLUSH_END_ADDR			0x8
+> +#define STARLINK_CACHE_FLUSH_CTL			0x10
+> +#define STARLINK_CACHE_CACHE_ALIGN			0x40
+> +
+> +#define STARLINK_CACHE_ADDRESS_RANGE_MASK		GENMASK(39, 0)
+> +#define STARLINK_CACHE_FLUSH_CTL_MODE_MASK		GENMASK(2, 1)
+> +#define STARLINK_CACHE_FLUSH_CTL_ENABLE_MASK		BIT(0)
+> +
+> +#define STARLINK_CACHE_FLUSH_CTL_CLEAN_INVALIDATE	0
+> +#define STARLINK_CACHE_FLUSH_CTL_MAKE_INVALIDATE	1
+> +#define STARLINK_CACHE_FLUSH_CTL_CLEAN_SHARED		2
+> +#define STARLINK_CACHE_FLUSH_TIMEOUT_US			5000000
+> +
+> +struct starlink_cache_priv {
+> +	void __iomem *base_addr;
+> +};
+> +
+> +static struct starlink_cache_priv starlink_cache_priv;
+> +
+> +static void starlink_cache_flush_complete(void)
+> +{
+> +	volatile void __iomem *_ctl = starlink_cache_priv.base_addr +
 
-Other than Rob's bot's report, this looks alight to me.
+Why does this variable have an _ prefix?
 
---dQ3vim3zqT9txeSW
+> +                                      STARLINK_CACHE_FLUSH_CTL;
+
+This link only has spaces, it should be tabs + < 8 spaces.
+
+> +	u64 v;
+> +
+> +	if (readq_poll_timeout_atomic((_ctl), v,
+> +	    !(v & STARLINK_CACHE_FLUSH_CTL_ENABLE_MASK), 1,
+> +	    STARLINK_CACHE_FLUSH_TIMEOUT_US))
+> +		WARN(1, "StarFive Starlink cache flush operation timeout\n");
+> +}
+
+I'd fine this easier to read as:
+
+static void starlink_cache_flush_complete(void)
+{
+	volatile void __iomem *_ctl = starlink_cache_priv.base_addr +
+				      STARLINK_CACHE_FLUSH_CTL;
+	u64 v;
+	int ret;
+
+	ret = readq_poll_timeout_atomic(_ctl, v, !(v & STARLINK_CACHE_FLUSH_CTL_ENABLE_MASK),
+					STARLINK_CACHE_FLUSH_POLL_DELAY_US,
+					STARLINK_CACHE_FLUSH_TIMEOUT_US);
+	if (ret)
+		WARN(1, "StarFive Starlink cache flush operation timeout\n");
+}
+
+Cheers,
+Conor.
+
+
+--i/ONzq50GI9VXLjz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifWrAAKCRB4tDGHoIJi
-0l5CAQDJLOQk3+8wxytgri/eE0jyCXIMubVtypxaKKSI8743DAD8C9SYRFeHe69e
-JpFhPVut94uUmk15b1Kznlz61Lpd5QM=
-=5LcH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifZsAAKCRB4tDGHoIJi
+0kwUAP9bkTUM8ATatR50WkFrHITbtXJUqI6lq/ynn3qCblRkwAD/UXOExyXwpn1X
+kW+/o0c8/SZKNz5wUqVXAWo0PcC+CQg=
+=gZdu
 -----END PGP SIGNATURE-----
 
---dQ3vim3zqT9txeSW--
+--i/ONzq50GI9VXLjz--
 
