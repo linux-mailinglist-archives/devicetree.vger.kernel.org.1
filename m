@@ -1,192 +1,232 @@
-Return-Path: <devicetree+bounces-61987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6FAD8AF51C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9508AF523
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F142283FFB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:10:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A044B2837C7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD3C13E031;
-	Tue, 23 Apr 2024 17:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4847213DBA8;
+	Tue, 23 Apr 2024 17:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fW2PF3qo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NoLQs1lS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FA7813DDDB
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9231BC23;
+	Tue, 23 Apr 2024 17:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713892067; cv=none; b=oHK/elMdu2AodIZ1zccKet3FV73R3M/KePdCZvAhyD5bAxtHWq6YtLlIM+hJ2QhIxTM4KtyvJP6S74fVIEHBKppUcFfEW/ebiYvV+KthO9lPMVEtKIheKbc190NVnhhnJDqT29qdfWU387Vx9P7QJlbdhsQufGGEmCa7AyV9ryk=
+	t=1713892246; cv=none; b=uXPPSQ2eM91MJ4xEZKFvmBbAWgdjVngRaylGI2Ro/Zsm9rH/vNlO2T/QICOAiopOg30FSAgP3mQFHwNR7FeQ+dbfbhJWWGOlr1EElriDA056a8tVsXMWmzDrMp51zj84ghKprITKx+QJDhHyh4obxZv1bGYPSc3YJSK/pmhQh6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713892067; c=relaxed/simple;
-	bh=OAHaHyyh2fhBZH5xqokk86R7KZUiwv6CRGGIa0SBRtw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nzoAg1vJZX4Oe8q0ieLdT/7IfquR9pCGDmaqIbIF42lFHd/vNCuCZbUhgPyAOPaE6T9mWtlfhnCY1VlC+PyJKFm3xSZXedvk74cwFRrcw3lSdHPT39WEonb3SgF9Aoq0rGcQ+9c7G3RP51/WOQxRHk0K5EmSckXZh9No9rAJbtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fW2PF3qo; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4187c47405aso40241035e9.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 10:07:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713892063; x=1714496863; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4HfFEhDy7wrc1JJ4JwN66dtF2lU/7GHQL5ceh8i2rCk=;
-        b=fW2PF3qoa74jX0ldC2Gm5OVz9ubizI4xKHnylwgv8n8oUrA6mB21P/5OBguxjXAUfv
-         SQ8T1oymQZFkwEs+I+Gia1EMjgOBH7VArmIFq6GSVg8qis0Bh/M8zGTi7SRL8tDYsizU
-         4aPa7bireHxPPbKzsVqMcOqV0pK061jnU/OAbdksMm/h+S+ZtvE5MsJoXZB3V/Ty38Fi
-         vHJalUlmFZ/IeQW2Js8nDPFsBoRLQoEoOGQCMyULZDiPzWx/+URU1OqHUmhVontQFO6L
-         ZjrxEdtAoeUTG6C/LOtFxh6ALiqegIuS82pdMGSdE9HRtAR4BijhP2jT9TnIQZ7pT59L
-         rCfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713892063; x=1714496863;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4HfFEhDy7wrc1JJ4JwN66dtF2lU/7GHQL5ceh8i2rCk=;
-        b=fzueh03dgqNMQHSbOT6PqcmcVCjAP0WWqPEN/bKUb/RuQCwN5o+Ke8TagE7Jzsr8uw
-         Kdq6XeqHltDja7U56fcfv66JC6owuFrdtyo5arE74HInb0sE/pidn4Q/mfzaRJ9qxCN0
-         XVxmPKeP240rj8yq1PubR1GR8r2+KZ9LdoPwdHE7k8JPg2MLsyWZfJtEj+SZ8M+e9rKD
-         wuRDj+DsgkkRHQVOZBCYayahQ2kUNKPfcJvK2ZXRKsUlBi4YKDV41rmvzJtsKH1IfwBA
-         Lw6pWsIURlVYJF4o0B0wEz1TTHFEqBkCJwVrU21GWcs+ojI5R/1yjo/XNQpokBhVRo1d
-         8sTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWNWJ1ekm3OXl9dGmIOZ4XXAE7hbJtJ5G/R4xLaEJekLJjyN/qoDGeUMpJYHrS1Udj6FAznuTdpv3gPdDJH7j6mnkIQ4vY6/bw9oA==
-X-Gm-Message-State: AOJu0YzMXSFhYhcg8Y77Uoq59ldci1lFVdEaAOmpbMm0V/lqjoAJmBEB
-	PcGbtnpGDnx/rnm8KWcdV+9p+Yg60SCI9MGuc73Yrjcjaij52mUawnZaW9xDiUk=
-X-Google-Smtp-Source: AGHT+IEeml7xlDPvKVEJlBPjkyqYO1K/a3UWyW6pbqsDEH7Dp3zHkT8MMXjVjKAP5avnRrImiMosWg==
-X-Received: by 2002:a05:600c:a001:b0:418:a7a7:9bd7 with SMTP id jg1-20020a05600ca00100b00418a7a79bd7mr8084322wmb.24.1713892063377;
-        Tue, 23 Apr 2024 10:07:43 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id h19-20020a05600c351300b00414659ba8c2sm20996935wmq.37.2024.04.23.10.07.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 10:07:42 -0700 (PDT)
-Message-ID: <a8730bb5-4f51-4c75-b049-6f00e3de5855@baylibre.com>
-Date: Tue, 23 Apr 2024 19:07:41 +0200
+	s=arc-20240116; t=1713892246; c=relaxed/simple;
+	bh=3iJsSjxbI0PNipnxd/KeM1DCk6cveiFrDgu3Xi+l1Og=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=s6gphxlWwj2aKIpXgCIEEWM13imqOqs2wPYO978x9eKgswKumrqoawrRmUkGJ/VBBzOxDqzDXKRx9NQZyLmaTwoH730pGV8vXj91EPxMsA/MCoKwDft15JED+mmNIFScW5doFF6mG5KDLDCQmOfxWe0S3qhal7FKTt49XB4JKBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NoLQs1lS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43NBI66Z007348;
+	Tue, 23 Apr 2024 17:10:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=iwfP7SYyKYAwAEtQZw+SpCrrNAmXiipoup29vOfLkR8=; b=No
+	LQs1lSuLQagIs4RxVZYijk6ekijLT9OH0KL0M8aq/0CX0vfJUdSlKCN9E810mwjS
+	Ls38RwaPpWWZbMAjQnAMRQlG70z0pLrKo7VjcBWHmBE7GBQgR55u7UCXxgQS3g+j
+	K3yIaw7qQwHCBRvV2H3tDZJ83GmKhqo5OI1qT3pKRcbZdzQRTIarrPeXxjFaKJuz
+	4uDFWCWEWAYW469lR/rrUh1UZmoqKLcGt6owboQDze261U7o5rKzACVpvsa2Y30M
+	zkSUhkKQYmd8Tseud6vibHhIxXxG+3YdggYTR3r3kLituAabN7DlkYkMv+FSx8n3
+	T/1CF85n7u8Hz5TXRFxg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xp8chsn2d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Apr 2024 17:10:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43NHAWY6008955
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Apr 2024 17:10:32 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 23 Apr
+ 2024 10:10:26 -0700
+Message-ID: <d5581614-71ad-5f7f-e948-bdbab3ef854e@quicinc.com>
+Date: Tue, 23 Apr 2024 22:40:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/18] ASoC: dt-bindings: mt6357: Add audio codec
- document
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-References: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
- <20240226-audio-i350-v3-3-16bb2c974c55@baylibre.com>
- <481abafd-33af-44a6-8460-068b4a85d764@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V4 2/5] mailbox: Add support for QTI CPUCP mailbox
+ controller
 Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <481abafd-33af-44a6-8460-068b4a85d764@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <sudeep.holla@arm.com>,
+        <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.baryshkov@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
+        <quic_gkohli@quicinc.com>, <quic_nkela@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <abel.vesa@linaro.org>
+References: <20240422164035.1045501-1-quic_sibis@quicinc.com>
+ <20240422164035.1045501-3-quic_sibis@quicinc.com>
+ <d6052413-5706-446b-b508-2a5ed839acc4@linaro.org>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <d6052413-5706-446b-b508-2a5ed839acc4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: upaUshkJipjEYvkzg4rZ8gJBqozeNrgc
+X-Proofpoint-ORIG-GUID: upaUshkJipjEYvkzg4rZ8gJBqozeNrgc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-23_14,2024-04-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 bulkscore=0
+ mlxlogscore=999 mlxscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404230039
 
 
 
-On 09/04/2024 17:55, Krzysztof Kozlowski wrote:
+On 4/23/24 04:47, Konrad Dybcio wrote:
+> 
+> 
+> On 4/22/24 18:40, Sibi Sankar wrote:
+>> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
+>> this driver enables communication between AP and CPUCP by acting as
+>> a doorbell between them.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+> 
+> [...]
+> 
 >> +
->> +additionalProperties: false
+>> +static int qcom_cpucp_mbox_send_data(struct mbox_chan *chan, void *data)
+>> +{
+>> +    struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct 
+>> qcom_cpucp_mbox, mbox);
+>> +    unsigned long chan_id = channel_number(chan);
+>> +    u32 *val = data;
 >> +
->> +examples:
->> +  - |
->> +    codec {
->> +        mediatek,micbias0-microvolt = <1900000>;
->> +        mediatek,micbias1-microvolt = <1700000>;
->> +        mediatek,vaud28-supply = <&mt6357_vaud28_reg>;
-> Sorry, this does not work. Change voltage to 1111111 and check the results.
+>> +    writel(*val, cpucp->tx_base + APSS_CPUCP_TX_MBOX_CMD(chan_id) + 
+>> APSS_CPUCP_MBOX_CMD_OFF);
+> 
 
-Actually it's worst ! I've removed the required property (vaud28-supply) but the dt check pass.
-Same behavior for some other docs like mt6359.yaml
+Hey Konrad,
 
-The at24.yaml doc works as expected, then I tried compare an find the issue, without success...
+Thanks for taking time to review the series.
 
-I've replaced "codec" by "audio-codec", according to [1].
-I've tried multiple manner to implement the example code, without success. I'm wondering if what I 
-try to do is the correct way or parse-able by the dt_check.
+> Just checking in, is *this access only* supposed to be 32b instead of 64 
+> like others?
 
-If I drop this file and implement all these new properties into the MFD PMIC documentation directly, 
-I've the expected dt_check result (function to good or wrong parameters)
+yeah, the readl and writely in the driver were used intentionally.
 
+> 
+> [...]
+> 
+>> +
+>> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+>> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
+>> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
+> 
+> If these writes are here to prevent a possible interrupt storm type 
+> tragedy,
+> you need to read back these registers to ensure the writes have left the 
+> CPU
+> complex and reached the observer at the other end of the bus (not to be
+> confused with barriers which only ensure that such accesses are ordered
+> *when still possibly within the CPU complex*).
 
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
-@@ -37,9 +37,32 @@ properties:
-    "#interrupt-cells":
-      const: 2
+I couldn't find anything alluding to ^^. This sequence was just
+meant to reset the mailbox. Looks like we do need to preserve the
+ordering so relaxed read/writes aren't an option.
 
--  codec:
-+  audio-codec:
-      type: object
--    $ref: /schemas/sound/mt6357.yaml
-+    properties:
-+      vaud28-supply:
-+        description: 2.8 volt supply phandle for the audio codec
-+
-+      mediatek,hp-pull-down:
-+        description:
-+          Earphone driver positive output stage short to
-+          the audio reference ground.
-+        type: boolean
-+
-+      mediatek,micbias0-microvolt:
-+        description: Selects MIC Bias 0 output voltage.
-+        enum: [1700000, 1800000, 1900000, 2000000,
-+               2100000, 2500000, 2600000, 2700000]
-+        default: 1700000
-+
-+      mediatek,micbias1-microvolt:
-+        description: Selects MIC Bias 1 output voltage.
-+        enum: [1700000, 1800000, 1900000, 2000000,
-+               2100000, 2500000, 2600000, 2700000]
-+        default: 1700000
-+
-+    required:
-+      - vaud28-supply
-      unevaluatedProperties: false
+-Sibi
 
-    regulators:
-@@ -88,6 +111,12 @@ examples:
-              interrupt-controller;
-              #interrupt-cells = <2>;
+> 
+> Moreover, if the order of them arriving (en/clear/mask) doesn't matter, you
+> can add _relaxed for a possible nanosecond-order perf gain
+> 
+>> +
+>> +    irq = platform_get_irq(pdev, 0);
+>> +    if (irq < 0)
+>> +        return irq;
+>> +
+>> +    ret = devm_request_irq(dev, irq, qcom_cpucp_mbox_irq_fn,
+>> +                   IRQF_TRIGGER_HIGH, "apss_cpucp_mbox", cpucp);
+>> +    if (ret < 0)
+>> +        return dev_err_probe(dev, ret, "Failed to register irq: 
+>> %d\n", irq);
+>> +
+>> +    writeq(APSS_CPUCP_RX_MBOX_CMD_MASK, cpucp->rx_base + 
+>> APSS_CPUCP_RX_MBOX_MAP);
+> 
+> Similarly here, unless read back, we may potentially miss some 
+> interrupts if
+> e.g. a channel is opened and that write "is decided" (by the silicon) to 
+> leave
+> the internal buffer first
 
-+            audio-codec {
-+                mediatek,micbias0-microvolt = <1700000>;
-+                mediatek,micbias1-microvolt = <1700000>;
-+                vaud28-supply = <&mt6357_vaud28_reg>;
-+            };
-+
-              regulators {
+At this point in time we don't expect any interrupts. They are expected
+only after channel activation. Also there were no recommendations for
+reading it back here as well.
 
+-Sibi
 
-Is the implementation above looks good for you ?
-
-
-[1] 
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
--- 
-Regards,
-Alexandre
+> 
+> 
+>> +
+>> +    mbox = &cpucp->mbox;
+>> +    mbox->dev = dev;
+>> +    mbox->num_chans = APSS_CPUCP_IPC_CHAN_SUPPORTED;
+>> +    mbox->chans = cpucp->chans;
+>> +    mbox->ops = &qcom_cpucp_mbox_chan_ops;
+>> +    mbox->txdone_irq = false;
+>> +    mbox->txdone_poll = false;
+> 
+> "false" == 0 is the default value (as you're using k*z*alloc)
+> 
+> 
+>> +
+>> +    ret = devm_mbox_controller_register(dev, mbox);
+>> +    if (ret)
+>> +        return dev_err_probe(dev, ret, "Failed to create mailbox\n");
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static const struct of_device_id qcom_cpucp_mbox_of_match[] = {
+>> +    { .compatible = "qcom,x1e80100-cpucp-mbox" },
+>> +    {}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, qcom_cpucp_mbox_of_match);
+>> +
+>> +static struct platform_driver qcom_cpucp_mbox_driver = {
+>> +    .probe = qcom_cpucp_mbox_probe,
+>> +    .driver = {
+>> +        .name = "qcom_cpucp_mbox",
+>> +        .of_match_table = qcom_cpucp_mbox_of_match,
+>> +    },
+>> +};
+>> +module_platform_driver(qcom_cpucp_mbox_driver);
+> 
+> That's turbo late. Go core_initcall.
+> 
+> Konrad
 
