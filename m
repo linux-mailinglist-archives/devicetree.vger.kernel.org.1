@@ -1,126 +1,116 @@
-Return-Path: <devicetree+bounces-61948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1AE78AF2EB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:54:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25CB8AF36F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 18:06:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9043B1F24AC2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:54:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D118281667
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3DE13C9D5;
-	Tue, 23 Apr 2024 15:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pcM7NGPg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4547A13CA88;
+	Tue, 23 Apr 2024 16:06:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DEA6136652
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 15:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFF813CA81;
+	Tue, 23 Apr 2024 16:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713887677; cv=none; b=nKCBI9DdmFH+SxK2viWXNDcfZc5NjKWl8GvXv/LOtTttlXlW3WFsfdTVVbG02xBqnm/+lXioJ/Xx8r0N9zBrQb+Ie/5ddkrf5rcEH9WR3QKiRARB7k71zf1Q2uCOx9HQyyjr13B1nn+UxLGpXN5NUQK3MFUzJhPb+jGlfy02MP0=
+	t=1713888366; cv=none; b=kl5gtGVjOcDhNgeq9PpTBT+t5J6WxzLNGX6Lrvk0dWRXeD8NTVKy2Whv6Tmk5wU8bzC+/yseRQGK+v1itIkRVDC5u8RHNjjAvyC/rLZHNFup7ThpoGbwnQRypIlBSQ4Ps1XsxYNf18H0GvveYQRF46ezq7eYkM3TWt8xFdZg7es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713887677; c=relaxed/simple;
-	bh=zOrR4N6W5yEjumIJlaR4j9bXUXeISdNMznsMzpCn11U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mxgCN5bkOKH3CRSu3hHBLgVAS4xVryoo8XKoAQGRdNBPPgGEKnd9E8Ffs1qsFnZcYCk9/JnTpoNG87lAUpjDgO3jKV6Mj3QbCqCmsxfz5VVsGmK8JsjipPvaRhtw8RiUjuwOBVzTLuNvWfYlSwlenICHIFKZCIQE4ey8po15fY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pcM7NGPg; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34665dd7744so4401981f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 08:54:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713887675; x=1714492475; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2CEYkFgPQbfSpwnnDo2x7Wyyhx+vsMBr1IYLJirdNPw=;
-        b=pcM7NGPgl6t3heodR31q4C67+0MXaF0krE/sfT/wnzAj20Dr5tcdWLlvJMkDdiWVLM
-         8PbxuXYUxaBMQCePfN7u+KFuy9MDtEXSQQ4rtrqzbmb7K4P1oN44alh/Ez/vEbFz9DwN
-         B5g3fL4gpcMZv28MMtq27hYQnrwn0VyvOsdiGCDsrmEvhmlxE2a5lxiZtiYDPoVTYYv8
-         yh+g+NnfM/TEM52XAeU2F7amgdxRmqfE4MDCu6zHqcJUtP2tGQAVa128+BGGhuLUj62o
-         McmhZwcz4NQ09eoNSX7jW+A8NOePdPJbCop8VFbgFFXYZYE25MOXsCVZK3nIEe5kICY3
-         Ys0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713887675; x=1714492475;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2CEYkFgPQbfSpwnnDo2x7Wyyhx+vsMBr1IYLJirdNPw=;
-        b=mweZ/BAB5iTxjNBtyzmTLip5oiUpJcPBw7npemhNDslnergVCfRsmSb7ASy1Ra85OM
-         MCbjYES9DnFjeXE9sxEchRccWuU9l6ugVwNcAJXL7BoYuPcvLwSehaYhkJt9e5xLuDGT
-         pmEFIpcrMjCbzqikyrjlAzp2cCMwlVOQ2o2v1JV/zgG6Qq1spdBAzavpEyNCQTgsFZ4U
-         WQrS0pdm/NOz2j2Bl7yuOrvncryOd9h09T9ThLzSz0HLUD+4EInRQmrurpT6XpyfcFEv
-         ru610fM2vmjnuym7sAD9FO6fJ21x1bdejsWAWw0L03VhTaZbmKvQiNL2nVSRDyBB2FO3
-         1AqA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7PkmYFO4E+9gDaAymqRf6bxqn1jLm2TllT24GJHW0YaR2AsipVO1PzRgNfFbXsMMg/BhVQjGg/s0tPeYQNaxDnYvyDw4AvkM8WQ==
-X-Gm-Message-State: AOJu0YyXjI1/iNmbUlmeD4RrfEq5GMa8T7gkLwCgK9h+3Boebxm+TeAa
-	uArMRWALHA3PKo09Cqo6z7u7OVGDNwfkVjzkOMYt/r6evFjuejEKNdYZIEqASqkuNwzRQV5Xd4y
-	L
-X-Google-Smtp-Source: AGHT+IE0M1tVNbSGH6P4H6A7BokfgioaPGrg79dTjBg1s3qdqWoF9FuBSbISRUuyZlebNkOM8fxysw==
-X-Received: by 2002:a05:6000:e81:b0:346:c0f6:8b6 with SMTP id dz1-20020a0560000e8100b00346c0f608b6mr9421964wrb.32.1713887674930;
-        Tue, 23 Apr 2024 08:54:34 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id y5-20020adfe6c5000000b003436cb45f7esm14854289wrm.90.2024.04.23.08.54.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 08:54:33 -0700 (PDT)
-Message-ID: <d1bf86bc-b561-47c6-999d-fb5e3c99663e@linaro.org>
-Date: Tue, 23 Apr 2024 17:54:33 +0200
+	s=arc-20240116; t=1713888366; c=relaxed/simple;
+	bh=QQMhOz7NDz+lNA87IQggc91wQxr/7XmKxGMbgJuvYo4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M3+0uU4/zxy9iHDfp/IRFT3GQpluJUfnXpBEQUkBzOtjhIBv9elaF1TdmiEQj3wV8Xiuv657gmI3sxz/lfwCd4Hgv817WX45fzRnQsaVzhoJo2V1SfDh4p2BsoTN1c6X+9VDBx1CjinUD8hevblW0PKDvMVkJHtE9L3yb2EVUrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: bnHsb/J5QQmV33n0UomTOg==
+X-CSE-MsgGUID: CEfvNxiNQdee9YHZBFb1TA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9312959"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="9312959"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 09:06:04 -0700
+X-CSE-ConnectionGUID: LYGEq/79Sa+qDtrCi/1Veg==
+X-CSE-MsgGUID: 65O88O6jRX2M92k6olZJSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="29058763"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 09:05:58 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rzIeX-00000000Nys-2y1l;
+	Tue, 23 Apr 2024 19:05:53 +0300
+Date: Tue, 23 Apr 2024 19:05:53 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	devicetree@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Olivia Mackall <olivia@selenic.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>, arm@kernel.org,
+	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>
+Subject: Re: [PATCH v6 00/11] Turris Omnia MCU driver
+Message-ID: <ZifcYXdJ7mSEJVfh@smile.fi.intel.com>
+References: <20240418121116.22184-1-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/4] thermal: loongson2: Add Loongson-2K0500 and
- Loongson-2K2000 thermal support
-Content-Language: en-US
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
- <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- Yinbo Zhu <zhuyinbo@loongson.cn>, WANG Xuerui <git@xen0n.name>,
- loongarch@lists.linux.dev
-References: <cover.1713837379.git.zhoubinbin@loongson.cn>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <cover.1713837379.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240418121116.22184-1-kabel@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 23/04/2024 03:58, Binbin Zhou wrote:
-> Hi all:
+On Thu, Apr 18, 2024 at 02:11:05PM +0200, Marek Behún wrote:
+> Hello Andy, Dan, Linus, Arnd, Gregory, and others,
 > 
-> This patchset introduce the Loongson-2K0500 and Loongson-2K2000
-> temperature sensors.
+> I am sending v6 of the series adding Turris Omnia MCU driver.
 > 
-> The temperature sensors of Loongson-2K series CPUs are similar, except
-> that the temperature reading method of the Loongson-2K2000 is
-> different.
-> 
-> Specifically, the temperature output register of the Loongson-2K2000 is
-> defined in the chip configuration domain. We need to define it in dts
-> and calculate it using different calculation methods.
-> 
-> Thanks.
-> 
-> ---
+> This series depends on the immutable branch between LEDs and locking,
+> introducing devm_mutex_init(), see the PR
+>   https://lore.kernel.org/linux-leds/20240412084616.GR2399047@google.com/
 
-Applied, thanks
+...
+
+>   devm-helpers: Add resource managed version of irq_create_mapping()
+>   devm-helpers: Add resource managed version of debugfs directory create
+>     function
+
+IIUC you created them as static inline, the header will become yet another
+cumbersome and messy "kernel.h". Can we prevent that?
 
 -- 
-<http://www.linaro.org/> Linaro.org â”‚ Open source software for ARM SoCs
+With Best Regards,
+Andy Shevchenko
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
 
