@@ -1,150 +1,116 @@
-Return-Path: <devicetree+bounces-62053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D808AFAB0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:50:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 133568AFBFC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 00:41:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBEB41C2339D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:50:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1C5C289FD0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 22:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1729414A0BC;
-	Tue, 23 Apr 2024 21:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BB236124;
+	Tue, 23 Apr 2024 22:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IdJnfCLh"
+	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="UbPW8/Oo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382D4148315;
-	Tue, 23 Apr 2024 21:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98ED11E898;
+	Tue, 23 Apr 2024 22:41:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713908749; cv=none; b=PZ5FqvwAYWkR8h8PDv5XIDqLDKeq2i4rLJdJRpyWrKx2DV137Fpj6sr46pI1pKt1EMMTQKehOCH/KljWW6vl5gS+Ebd8c4TIWzRc9DKq9V87itzqQ4qeRHcJD4nUcD5nrdLqs+aR03B6EhMjo6DIs2SAqjIMTcoHCOg+2kWTrtQ=
+	t=1713912079; cv=none; b=klBn0/JGfFLGGKBeLUfprQJMWBAstaxGpGfLE3lR4xqQI2gtJi03ofVqyEkHuDxcbmi2of4vZVKCMA9bi5HMLm7Qvfq1dGIQ5iSikNBrYk7gZtSDaJpYYXDCSXqhEpn4lit/S4+fl67LznMWnRUOcbkx/LIuBllO3cMYVUYTq+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713908749; c=relaxed/simple;
-	bh=25oEvb/uJC2kZD/+Y3JfUUxisf+IUQOCeL4y/WsXjyY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=s+mEJohbdHBmJDKbrzbpzSv7aziBhrKzOcBsyG+kLXiEMi8PjmgwQLkO9UAnlRhMrXER6CjcS16gJMLnibtX3LKSNfVSAblI89ye8PTCByTwwPDYAhkcY+9YWo7k1xCBvh3aBa6smFuQuyyMiUzERVSvspwTdhoUxlbzr3BwJVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IdJnfCLh; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43NLiKoT062866;
-	Tue, 23 Apr 2024 16:44:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713908660;
-	bh=rWREzdQPslSCnH1+XsYIGLoX2cePDbx5j1SDdTKRMYE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=IdJnfCLhfCWVBGbz1O32Y9B1qGc7/dyf1yttW0m6tQKHOdrjGG/fswzFNH/CzWTpY
-	 IhGxkp2Sp27c7QSu/Ux0kBzpwMKCHaYUVDPwQUlh+EW+JnGTUveNaM2+sJRYBUyai7
-	 OnutljaGt3H2jbvW5H45iKIqJD+JGdGR/iTrloqM=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43NLiKNR048023
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 23 Apr 2024 16:44:20 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
- Apr 2024 16:44:20 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 23 Apr 2024 16:44:20 -0500
-Received: from [128.247.81.8] (ula0226330.dhcp.ti.com [128.247.81.8])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43NLiKun073509;
-	Tue, 23 Apr 2024 16:44:20 -0500
-Message-ID: <fdfc78b4-611e-4491-9055-8ad3fbe67aae@ti.com>
-Date: Tue, 23 Apr 2024 16:44:20 -0500
+	s=arc-20240116; t=1713912079; c=relaxed/simple;
+	bh=VgV+qCaKdW6B3jmUvzPURLXsRQqGq9RRxeY0w6UalFg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GsGt1YDqPBH5scMb+JItP2nyrkevQ4RIFuFdEEZ5FMpKu/+XFANzcgSEWp8POXee9aqui2q3M00ZGZxUJaF2fCKKtQ4fQXi1BFgi5bAY4DZTIatxk0fgPSrgOzZGec3Vd5DG/HmV9Z7H2uIkFWv0kIv+UHgIsYqrTdWPSp7Dymw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=UbPW8/Oo; arc=none smtp.client-ip=206.189.193.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by a.peacevolution.org (Postfix) with ESMTPA id 5E54147A02;
+	Tue, 23 Apr 2024 22:41:08 +0000 (UTC)
+From: Aren Moynihan <aren@peacevolution.org>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: Aren Moynihan <aren@peacevolution.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Ondrej Jirman <megi@xff.cz>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-iio@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	Willow Barraco <contact@willowbarraco.fr>
+Subject: [PATCH v2 0/6] iio: light: stk3310: support powering off during suspend
+Date: Tue, 23 Apr 2024 18:33:03 -0400
+Message-ID: <20240423223309.1468198-2-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add BeagleY-AI
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Nishanth Menon
-	<nm@ti.com>, Jared McArthur <j-mcarthur@ti.com>,
-        Jason Kridner
-	<jkridner@beagleboard.org>,
-        Deepak Khatri <lorforlinux@beagleboard.org>
-References: <20240328191205.82295-1-robertcnelson@gmail.com>
- <1a5e719f-efa0-4c60-8add-ef7c0464d1ce@ti.com>
- <CAOCHtYjHhH2M_+7md-e2vh_d_3H2r66OhXEp2acd0D+6O+uwcg@mail.gmail.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <CAOCHtYjHhH2M_+7md-e2vh_d_3H2r66OhXEp2acd0D+6O+uwcg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
+X-Spam-Level: ****
+X-Spamd-Bar: ++++
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
+	s=dkim; t=1713912069;
+	h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+	bh=a7PU4WDv6YB/7pbWHelv2hIhCcSRKNyFO0apkn1vY0U=;
+	b=UbPW8/OogtAEjAnzCYyz7x4fhb0ccUmtFHS+FaUiEgQl2dvZqlxDNioLZAlOQdMLH11n0O
+	3mmaOoPG+U68t1SVf2nsljrqSyC4FkdDksSU+a9Dfg7I1+WT6swV830ha0br1xEmKE2hDX
+	EwF8D+s1kB33T4XVo6C3ICNK0XqKsEs=
 
-On 4/23/24 2:48 PM, Robert Nelson wrote:
-> On Mon, Apr 22, 2024 at 3:57 PM Andrew Davis <afd@ti.com> wrote:
->>
->> On 3/28/24 2:12 PM, Robert Nelson wrote:
->>> This board is based on ti,j722s
->>>
->>> https://beagley-ai.org/
->>> https://openbeagle.org/beagley-ai/beagley-ai
->>>
->>> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
->>> CC: Rob Herring <robh@kernel.org>
->>> CC: Nishanth Menon <nm@ti.com>
->>> CC: Jared McArthur <j-mcarthur@ti.com>
->>> CC: Jason Kridner <jkridner@beagleboard.org>
->>> CC: Deepak Khatri <lorforlinux@beagleboard.org>
->>> ---
->>>    Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
->>> index 52b51fd7044e..ca23b7e6a35e 100644
->>> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
->>> @@ -134,6 +134,7 @@ properties:
->>>          - description: K3 J722S SoC and Boards
->>>            items:
->>>              - enum:
->>> +              - beagle,j722s-beagley-ai
->>
->> Recommend "beagle,am67-beagley-ai". The "J722s" is the family
->> name, the part used on this board is the AM67. We do the same
->> for the SK boards, for example, the SK-AM69 uses the AM69
->> part from the J784s4 family, so it is called k3-am69-sk.dts
->> with compatible = "ti,am69-sk", "ti,j784s4";
->>
->> This would otherwise be the first board with a specific part
->> attached but uses the SoC family name instead of that specific
->> part name in the DT file/name. Only the EVMs should have the
->> family name since we sell versions of those with all the different
->> parts swapped onto it. I don't imagine you will be selling
->> BeagleY's with TDA4VEN, TDA4AEN, DRA82x, etc.. All your
->> docs and other collateral use "AM67", using the same here
->> would help avoid confusion.
->>
->> Andrew
-> 
-> Andrew, would you like us to model this just like the AM69-SK? and
-> also rename the device tree? or just the bindings..
-> 
-> k3-j722s-beagley-ai.dtb -> k3-am67-beagley-ai.dtb or even the am67a
-> k3-am67a-beagley-ai.dtb ?
-> 
+In the Pine64 PinePhone, the stk3310 chip is powered by a regulator that is
+disabled at system boot and can be shut off during suspend. To ensure that
+the chip properly initializes, both after boot and suspend, we need to
+manage this regulator.
 
-Yes, rename binding and dtb name would be great. Better now then have
-the name confuse folks forever.
+Additionally if the chip is shut off in suspend, we need to make sure that
+it gets reinitialized with the same parameters after resume.
 
-AM67A is more correct than AM67 (which is the spin without AI), given
-this is an AI focused device I'd imagine you'll be using the "a" version.
+Major changes in v2:
+ - Add handling of the IR LED. I was hesitant to include this as it is the
+   same as pull-up regulator for the i2c bus on the hardware I have, so I
+   can't test it well. I think leaving it out is more likely to cause
+   issues than including it.
+ - Convert stk3310 to use dev_err_probe for errors.
+ - Always enable / disable regulators and rely on dummy devices if they're
+   not specified.
+ - more listed in individual patches
 
-Andrew
+Aren Moynihan (4):
+  dt-bindings: iio: light: stk33xx: add vdd and leda regulators
+  iio: light: stk3310: Manage LED power supply
+  iio: light: stk3310: use dev_err_probe where possible
+  iio: light: stk3310: log error if reading the chip id fails
 
-> Regards,
-> 
+Ondrej Jirman (2):
+  iio: light: stk3310: Implement vdd supply and power it off during
+    suspend
+  arm64: dts: allwinner: pinephone: Add power supplies to stk3311
+
+ .../bindings/iio/light/stk33xx.yaml           |   4 +
+ .../dts/allwinner/sun50i-a64-pinephone.dtsi   |   2 +
+ drivers/iio/light/stk3310.c                   | 116 +++++++++++++-----
+ 3 files changed, 94 insertions(+), 28 deletions(-)
+
+-- 
+2.44.0
+
 
