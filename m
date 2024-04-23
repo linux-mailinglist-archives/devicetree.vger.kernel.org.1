@@ -1,232 +1,140 @@
-Return-Path: <devicetree+bounces-61770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F4B8AE148
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:49:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F93E8AE150
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:51:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0439C1F226BB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:49:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 818701C215B9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847E859151;
-	Tue, 23 Apr 2024 09:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABA35BAD7;
+	Tue, 23 Apr 2024 09:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nIy9VsGk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpY1pR0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDACB51016
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 09:49:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F2858ABF;
+	Tue, 23 Apr 2024 09:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713865776; cv=none; b=ULM/LI9/L+6lfBYKqz2uW4V5tRJ6UucH+16Cc9AQeQ9P7jBEJMAFXDocAbpoatU6tkdHdr2yWNfmCjTYXIE02T3ga2b2Qgyw9TyNrercpAPdN3h4Zfp20ylv/y+hB2cnTu7wYDQeqNFomeRCImo7JLOap0KBOQcM2ZoPKXAFY8U=
+	t=1713865860; cv=none; b=VRCRv0/FK9oDNuAwggxkyfny+0+Yl5RegoyB/QBhQX3ybHF3O3Tty/Lh1j6Hh1mSImiGdnq/lu4aalFaPSDwVOP4pE6vrhwfNB/Soo5yz01zOmt/Wapl3jwGXCAccbSPSnHvzHCr6cF/4dHbnK69Z5rfq2EmlcAaXbQgDhT1Om8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713865776; c=relaxed/simple;
-	bh=NwPBsU1LTEWXKuj15xiSO/1zVXaOkdb9/phHy+RmCfE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IdwqydU7MwGnS6TVNCxBr2vh9D6DJrZqvDaY3lRTiaNepVfw1CkhfzMpjwMBVJ7f4eAbqobDY5p1y36rHZ7smyJBQ+527wgTVFyZAVF9A24vUb3u/J428PgT9EWil3NkdcAFyr3bgM9bwBshyPD/XConTXsDb6eDqnBNYb8uf9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nIy9VsGk; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-347c197a464so4031227f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 02:49:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713865773; x=1714470573; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Igu1DHe9/mbdgePnFlKk0Kt8J0+Ygp+bDiGAG2bpm6A=;
-        b=nIy9VsGkGvUCtPYD9yqOtpnLq7wefroEckWccWVvQXShHCU9uVSJ0sbgDtePyiB2wX
-         HOOiY3BAMBa/e/8CHYDicu/Fulz30OYhW7C5k8ZO/+RgwR7cwcbpfmcMxrDf72Lf+LOO
-         X89bPgoZQ90g3KU758hPPtzGXrSqCoV6Jxo/jdTqP51DN5Dg+A0Ni5mvwS2SMnTMcf/O
-         F5Wtg1NAcd87cM6SrqopldA9y/6t3aZeiI4udnrxlQYuv7mduFT31V3MLwGLH8QnyK7m
-         OQ5gqNgUQ3scNY1BW7ZnfCGyKMjDsr+cYXMzE6gjHuYtRXoikR3DcKSb/TJDH9khF13R
-         kqww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713865773; x=1714470573;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Igu1DHe9/mbdgePnFlKk0Kt8J0+Ygp+bDiGAG2bpm6A=;
-        b=M6unnHK+jubGoQD+SH5gr6BAFirS35HgZxd5RZseyLSOvSavZjGxkHP7fA1754fkdR
-         CoUjRZek7EK3GzkLi/fLukHqW/EeyxpfZU88U1JaQ2HddxxxwgHkEIM6ltnQL+E3SRyN
-         iu5r/f9xUac1CO2ZHeBAH5hze0VHYpi2PLcx08Nfs/3JyZj7CQOi5A+/qV/e25U7+rJw
-         GHJ7OQuAbsRD+8Fqd6dgPMfTfiUXk68t/or/u6aYwFo8kUeMz7JKurBOscIz9Mdz3FC3
-         sK9nwHU2cO32A4ZWGb24PM7LnpPJbju6ZG8mH/QdvRWLBKqMtY2Aca/Gu96QNe1wLWwL
-         HgKg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJ64y+li5H2PdY6LJPkVWzuyczvD/JlNoXlH7MWSZB//f2fD+Vbc3xxiMnCgH0LgBWcv8qACG4t6JrwMDJKScE3c+fWE9ch7+mUA==
-X-Gm-Message-State: AOJu0YzMuDOlmxvGNv8ys8l1UtBwDfI6I9t1N0l6psJql7X6besSYh9k
-	j7jF5IaL/06zk81zvwQ3fI1j2tzGBcViJz1BVmkThvNojrv24Xh2T0Ceow7XqFk=
-X-Google-Smtp-Source: AGHT+IHRgo8HGU7FZWnB41V7PjyatID5UWrOs8dLpeBKw2fehyBq06F7/Ka8YFaKJRJjS5uYDUGJxw==
-X-Received: by 2002:a5d:4082:0:b0:343:b5f0:f511 with SMTP id o2-20020a5d4082000000b00343b5f0f511mr7052352wrp.12.1713865771621;
-        Tue, 23 Apr 2024 02:49:31 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id j6-20020adff006000000b00349856b640bsm14183531wro.67.2024.04.23.02.49.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 02:49:30 -0700 (PDT)
-Message-ID: <a5f8746f-14f8-4e56-9ac7-30c7ba6fad30@linaro.org>
-Date: Tue, 23 Apr 2024 11:49:28 +0200
+	s=arc-20240116; t=1713865860; c=relaxed/simple;
+	bh=FQLt1hmXPP3cDkvy4rTvlY0mMo/XhlZ354mwI3by6iM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hjT4Kf1LGSbo2a55xcttfHdyMZK7w6KuvQ+myKycJbLZp5iNGeTrJdfziIPLYgD6KUh3b1bv6EanJ8KgplABXpVquRJboW0oXiQX6Gqc8xKU5DBfHaq5g5BqNitOdrDCUS+gJqMxMt6oiBs7Rp4yyUGNj8ce/ICZefYog4MZnGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpY1pR0K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D96E2C116B1;
+	Tue, 23 Apr 2024 09:50:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713865859;
+	bh=FQLt1hmXPP3cDkvy4rTvlY0mMo/XhlZ354mwI3by6iM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=LpY1pR0KqRtOCUIUK07oiHmdmM3lbG4ve3myhPArvgGHZZNesmSNJ9IaxfpAKubYb
+	 pZrbkLj/4cJUTYBkd+XyhQy5GeSne+O+Fz0SnqCDHk0K/hrbjtwoeoZXkAUzypbc0Q
+	 znea+45G2wpg/yp6oOs7/4/WwccHMKaiWt/HtA0ajQ4V7AdLl0wWr133+7aulsFRXu
+	 QrQh7PDJqUuhgTMyXZlaME/C/wXl3QfTP4PCkLOruVDJwTInSSfBahrkgy8DZNIBiI
+	 M7EllTCAqk5K0GHVWbCt0mfgJwKlEYLgSZfiOV05a/OAU5ydBMYgfvky7M4DatNPvz
+	 Wc1WMfQNWHgiw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE177C4345F;
+	Tue, 23 Apr 2024 09:50:59 +0000 (UTC)
+From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL_via_B4_Relay?= <devnull+arinc.unal.arinc9.com@kernel.org>
+Subject: [PATCH v3 0/5] Document ASUS RT-AC3200 and ASUS RT-AC5300 and add
+ device trees
+Date: Tue, 23 Apr 2024 12:50:44 +0300
+Message-Id: <20240423-for-soc-asus-rt-ac3200-ac5300-v3-0-23d33cfafe7a@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: Add PDM controller for the
- StarFive JH8100 SoC
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: Walker Chen <walker.chen@starfivetech.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org
-References: <20240423083405.263912-1-xingyu.wu@starfivetech.com>
- <20240423083405.263912-2-xingyu.wu@starfivetech.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240423083405.263912-2-xingyu.wu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHSEJ2YC/4XNsQ7CIBDG8VcxzJ45KNTi5HsYB3oFy2AxUImm6
+ btLGwedOn353/C7iSUbvU3stJtYtNknH4YS1X7HqDfDzYLvSjOBQqLEBlyIkAKBSc8EcQRDlUA
+ so6oyqqutI0FSH1tWjEe0zr9W/3It3fs0hvhe32W+XL8ylxty5oDAeUMaW2Nrq84m+oH0gcKdL
+ XQWv5ze4kThnFbOKSRhZPfHzfP8AXFbRjwaAQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713865858; l=2295;
+ i=arinc.unal@arinc9.com; s=arinc9-Xeront; h=from:subject:message-id;
+ bh=FQLt1hmXPP3cDkvy4rTvlY0mMo/XhlZ354mwI3by6iM=;
+ b=qMdw1MUc3Tww2iXeIs464rNvG05CzXQzzZhWOaRk5Z6RaRjyuPZMdIWfOSsX9zQnfrtgh6GSp
+ Pc6+aAB53vfA14d6V+9kO2Fps6t46d9OGKpOk3YewVhmrbw3EybzSTX
+X-Developer-Key: i=arinc.unal@arinc9.com; a=ed25519;
+ pk=z49tLn29CyiL4uwBTrqH9HO1Wu3sZIuRp4DaLZvtP9M=
+X-Endpoint-Received: by B4 Relay for arinc.unal@arinc9.com/arinc9-Xeront
+ with auth_id=137
+X-Original-From: =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Reply-To: arinc.unal@arinc9.com
 
-On 23/04/2024 10:34, Xingyu Wu wrote:
-> Add bindings about the PDM controller for the StarFive JH8100 SoC.
-> 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+Hello.
 
-If there is going to be resend/new version, three nits. Anyway:
+This patch series documents the compatible strings for ASUS RT-AC3200 and
+ASUS RT-AC5300, and adds the device trees for them. The last patch makes
+the device tree files for ASUS RT-AC3100 and ASUS RT-AC88U conform to the
+Devicetree Sources (DTS) Coding Style.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+Changes in v3:
+- Add a new patch to the end.
+- Patch 3
+  - Reorder the nodes and properties to conform to the Devicetree Sources
+    (DTS) Coding Style.
+- Patch 4
+  - Same as above.
+- Link to v2: https://lore.kernel.org/r/20240419-for-soc-asus-rt-ac3200-ac5300-v2-0-f95ff50c2a4d@arinc9.com
 
-...
+Changes in v2:
+- Patch 3
+  - Remove the chosen node as earlycon is not for mainline use, and the
+    stdout-path property which should be used instead of bootargs =
+    "console=" is already described in bcm4708.dtsi with the same value.
+  - Remove MAC address assignment to switch ports. To explain why shortly,
+    on the switch with CPU port architecture, the LLC Entity associated
+    with each port can be accessed without a distinct MAC address assigned
+    to each port. Therefore, it is unnecessary.
+- Patch 4
+  - Same as above.
+- Link to v1: https://lore.kernel.org/r/20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com
 
-> +
-> +title: StarFive JH8100 PDM controller
-> +
-> +description: |
+---
+Arınç ÜNAL (5):
+      dt-bindings: arm: bcm: add bindings for ASUS RT-AC3200
+      dt-bindings: arm: bcm: add bindings for ASUS RT-AC5300
+      ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
+      ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300
+      ARM: dts: BCM5301X: Conform to DTS Coding Style on ASUS RT-AC3100 & AC88U
 
-Do not need '|' unless you need to preserve formatting.
-
-> +  The Pulse Density Modulation (PDM) controller is a digital PDM out
-> +  microphone interface controller and decoder that supports both up to 4
-> +  channels, and an Inter-IC Sound (I2S) transmitter that outputs standard
-> +  stereo audio data to another device. The I2S transmitter can be
-> +  configured to operate either a master or a slave (default mode). The PDM
-> +  controller includes two PDM blocks, each PDM block can drive one
-> +  bitstream sampling clock and two bitstream coming data (mono/stereo)
-> +  with sampling clock rising and falling edge.
-> +
-> +maintainers:
-> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
-> +  - Walker Chen <walker.chen@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh8100-pdm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: DMIC output clock
-> +      - description: Main ICG clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: dmic
-> +      - const: icg
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  starfive,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to System Register Controller sys_syscon_ne node.
-> +          - description: PDM source enabled control offset of SYS_SYSCON_NE register.
-> +          - description: PDM source enabled control mask
-> +    description:
-> +      The phandle to System Register Controller syscon node and the PDM source
-> +      from I2S enabled control offset and mask of SYS_SYSCON_NE register.
-
-This description duplicates items. Drop redundant parts (there is really
-never a need to say phandle is a phandle because it cannot be anything
-else). Instead say what is it used for.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - '#sound-dai-cells'
-
-Use consistent quotes, either ' or "
-
-
+ .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml  |   2 +
+ arch/arm/boot/dts/broadcom/Makefile                |   2 +
+ .../boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts   | 150 ++++++++++++++++++++
+ .../boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi |  92 ++++++------
+ .../boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts  | 156 +++++++++++++++++++++
+ .../boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts   |  69 +++++----
+ 6 files changed, 390 insertions(+), 81 deletions(-)
+---
+base-commit: dd5c56cd065e6f7ac5f87b939e8a3c499a62d463
+change-id: 20240408-for-soc-asus-rt-ac3200-ac5300-5d6efc2c497b
 
 Best regards,
-Krzysztof
+-- 
+Arınç ÜNAL <arinc.unal@arinc9.com>
+
 
 
