@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-61699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C23F58ADD02
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 07:00:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2448ADD16
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 07:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F39EA1C218E1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 05:00:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C97A1C21986
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 05:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B421200C7;
-	Tue, 23 Apr 2024 05:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761FD2032D;
+	Tue, 23 Apr 2024 05:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WEULjgGt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M10YeDSf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688961C2AD;
-	Tue, 23 Apr 2024 05:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4855D208A8;
+	Tue, 23 Apr 2024 05:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713848450; cv=none; b=V4Nv42J66zZLzjzweS8bcVCFKipIOKcWIPE29DV6sumZ8qUy+Ka5fDVE6rhelSxOl4PUINIvjLMV49DxykhbMLeYCqzwJS0gy6Gu+3sgXMYXYdj0HHhjOg+9UVuYU75yXbe7wIcHIPwKzxzm2Z15kdyUD9O3fdwBqn5MNaFEuHk=
+	t=1713849578; cv=none; b=RmMK48ezrsezoeicgSZ1rQksV6fRLdPjqLivg6nVriNrXr8OMuQLyaxB32FhmPDysqZj7PwQllxDis5mSm2GAjLtltXnTph77CoKgJdivqlbnG3pXJQPwNtJdQGvk6rbcE/s7iUzJUINl/2q2Gu2+58l5LX/fpWfOf1YyMNpsIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713848450; c=relaxed/simple;
-	bh=SOc+Ms3uALZsNMus4DrdwDpupnWEV4dkrH8W6cFGem4=;
+	s=arc-20240116; t=1713849578; c=relaxed/simple;
+	bh=KkfWec4DHXYOlCcz3ys8cVUPAo0wL2CfqmIIIG6Mu6E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j8FXFbbJ8kB0hzKC28NrhXnwOm7b2lB7qfbsq3aFhFwK6Tqfjxxs1prwqqTL/AYDcdUVU9VGUwOBHquYxWmfRXHc3bamO/BZNvkdsQKH2bDCSmzK2xVh74dGcou3x5BWc65CtrzHx9wXwk+cA84yBVvdvUtVz173SRCNUaOjnio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WEULjgGt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89593C116B1;
-	Tue, 23 Apr 2024 05:00:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tiXGGfqMmt6V4HOjBszETGzsDZ/qif2ocghN4qhcJEILlUjxqeTOOFctUrqN7ISLian2TVonX4x2BAqsp4IwyZxV9hhBvOT9Q1hyfF4oXwkkeX7EEE5ZWlLJmU96QkLV8feu9c+jfldLxxNAcIbY1Gk9x5TCxH3gIjXy4ifNTH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M10YeDSf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A2AFC116B1;
+	Tue, 23 Apr 2024 05:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713848450;
-	bh=SOc+Ms3uALZsNMus4DrdwDpupnWEV4dkrH8W6cFGem4=;
+	s=k20201202; t=1713849577;
+	bh=KkfWec4DHXYOlCcz3ys8cVUPAo0wL2CfqmIIIG6Mu6E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WEULjgGtG9pUusMHkzJio7CBtJzCX0wTPpniSFhg3esEUNDapT4wPGFrizt59zDK2
-	 /RhX4VV433oK4EC/gCzHKMTtQSkZyjUJbbcgRTs3oG13pl/0jXGuJkW3CJihcX0d23
-	 kJ4l/7mSDufEODc1mr+/jTp81U8YTKf/N+/LkVRD0QMBt69qz5Jz49XbDx2P+2robK
-	 QIjSXvwQc4Zl2DAGqsMj91X016Whkq9mKnuDC2rGQtus3C9ID5FCGo0UrcklkGdCUs
-	 P71KjbG/CVeU4SVx7sCV6+VCaI5VfeGDIyPNAqGidqdLhWrObhFiuk+FVdCn6qe5x8
-	 1ugOg495aisqg==
-Date: Tue, 23 Apr 2024 14:00:41 +0900
+	b=M10YeDSfihs5WeErjuPkQI43fpEKyw4McDp2QErbnMbV2ceFKquCa/cOP22VgtzFO
+	 AKHc+ftJv2CJ8N5nP22MfHyBLJF71E4AhA3UYpj4q4dUh6IJlpkGz7kMG7GBNiSqvy
+	 2qWes9nvtk2rh+uPXX4Y3RrzhhWc2KHxs6ciMkoukzNlPRmKRhqe8Qh1abLDDAuJGY
+	 6kURJwoApeSlQPwHTQFgP+zvWf7NmJ0L212gYE0m5BRICa8CqXIiITei1VGWwYH1pY
+	 x1FppOcNXILXMdJvHcMKm+pE/A6flno30P0SDgiQOWCEQl1eWkVXesvmfldVaEZ9YT
+	 HHYQLRMVXhtqA==
+Date: Tue, 23 Apr 2024 14:19:33 +0900
 From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5
- support
-Message-ID: <ZidAefc0Ejrklopf@finisterre.sirena.org.uk>
-References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
- <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
- <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
+Message-ID: <ZidE5UcQ6XSc0YBI@finisterre.sirena.org.uk>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,42 +63,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ulKGnILG9Yl7Nn+x"
+	protocol="application/pgp-signature"; boundary="gr/VhAjSITvMtMIF"
 Content-Disposition: inline
-In-Reply-To: <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
+In-Reply-To: <20240418000736.24338-1-andre.przywara@arm.com>
 X-Cookie: TANSTAAFL
 
 
---ulKGnILG9Yl7Nn+x
-Content-Type: text/plain; charset=iso-8859-1
+--gr/VhAjSITvMtMIF
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 22, 2024 at 06:52:47PM +0200, Th=E9o Lebrun wrote:
+On Thu, Apr 18, 2024 at 01:07:31AM +0100, Andre Przywara wrote:
+> This is v2 of the fixes to the AXP717 PMIC support series. Lee put the
+> original patches in an immutable branch already, so these here go on top.
+> Patch 1 is new in v2, and adds the IRQ status and acknowledge registers
 
-> All commits tagged "(no commit info)" do not show up in your for-next
-> branch. Is that expected and is there anything I can do? There was one
-> pending -Wunused-variable compiler warning to be addressed for
-> example, see [0].
+Lee, this looks like more of a regulator series than a MFD one (it's got
+a couple of small updates to the MFD but it's mainly focused on the
+regualtor functionality) so it probably makes sense to merge via the
+regulator tree?
 
-Please submit any patches you'd like to see included.  If there were
-outstanding issues that need fixing then fixing those prior to
-submitting would be sensible.
-
---ulKGnILG9Yl7Nn+x
+--gr/VhAjSITvMtMIF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYnQHgACgkQJNaLcl1U
-h9CiTQf+J6VV/3FJ2hxvA+80nH5z+mJ9Iwc/Kx5I/LUnP9UfIjsvyTdg6m1miSGY
-fJpY+P1GwtyJH1Vh0e8n8NrZ1m39dg4o0g3NwXH6S95rpAJcP7CXtO0/hEMIj8Ks
-q1l6E0J01/8oGfX0D9FlG/0h8srDNPe8E7CxQCibg/nN2XU3L1xnZ8wvOPGNSWMs
-oha6E/4yjhDFasrQr2PwxsCZLXSGY/DECIosUnvtJKEVLiuuvTnSOdcCn7krpdwm
-dZTzFdaQNXA82tmuRHkISObATy2ZJbEPypfx6BrH/PVO4ga6Yzy6TiQ0xUEKDRMP
-S6/8FJ/EozYzzvlQ9sKuOBu3oOTdQw==
-=OhHK
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYnROQACgkQJNaLcl1U
+h9B6dwf/WQ8Bv8qbVMbz0Gm7e/a/Wdgqm78Zlelv7iHv35hhBNwjhQSUvbVeeNd3
+SvE5wUjhGoH1/xngdoEnzEkiUCJUX7EoO1wA/rs3gf4dBOobonElLVnpcU+/3J/L
+DV3aAcxC/yz9a3UeJgPJovbCpGUQmE6VCDTPmwBddYNir9Cs8zKtadKLUxj2dJPi
+iZIGXUjk0bPmbRHl0qd7WqrMz9wlHe6I6vUT1AF7L1rp5qaCzgsKr3JREE+i9RrR
+2tmXPdb9s+vhhW39yVjxcIICpsEzCFSfsTDCgLSllEQ2pwO3RekFpoG+gpD8e+qN
+cq4MQuCfcflgP6Dlv0G3Duo5eUIqNA==
+=E4cf
 -----END PGP SIGNATURE-----
 
---ulKGnILG9Yl7Nn+x--
+--gr/VhAjSITvMtMIF--
 
