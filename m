@@ -1,57 +1,48 @@
-Return-Path: <devicetree+bounces-61866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1578AE6D7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:49:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6348AE6ED
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1375F2824D9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:49:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F9161F23FB3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC84135A46;
-	Tue, 23 Apr 2024 12:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B022131BBD;
+	Tue, 23 Apr 2024 12:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="rKzDmKTG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQeMKzvv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EAA129E95
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 12:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D369C131BAA;
+	Tue, 23 Apr 2024 12:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713876381; cv=none; b=L1qYiOuBGAJ4LxJ6VorqCCxeBMpXFdmD45L2SugTOAfIFsYps/IAvxSOhpeX+V4rXmjqheH/UUrMUrNAkDwaWSxqRoWjNp7qb0WwBIjj8n0qZjfpVLjSXzKDQ7G9ysOuYlu7tDrNR0Orgf+ijvchotG6favXvQFgSDWn4GIOCIM=
+	t=1713876563; cv=none; b=tdn3JYxO8F+ELUKgDmUFE7lwUEHHJRK6yFqfZmN05KVLNEVXRtOy4acRe59/A8z9PJb01MVq0bsIa9eLtvMgqnuo364DF59+SD4d2UOBZ1mIoiVZ/0kDxadTBdx8J+mZGbsCPZMqIdEDf/wgOnNaFGtZHDHb4mym0VgOXKQNwmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713876381; c=relaxed/simple;
-	bh=fv24otzIdbTkNmM/Iq3YiotlOhcVOcMFQNzMPnvNyKE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aqRntPNgANPzPPMwUaxzcbJwo5dzTjzpfm9y40x4b50qqNmwIFfm0PXtAkZJNFLgfxBqKcqIU/QXS4h7xzHOF65g7tXt+0pvajpCsOW3eKqjV7o5ny9MYSWN0/OW6ytuNXk9zzzlKDgmzxuiHpkgKTbge3T6HTNivWBxMRXjo2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=rKzDmKTG; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1713876376; x=1716468376;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=fv24otzIdbTkNmM/Iq3YiotlOhcVOcMFQNzMPnvNyKE=;
-	b=rKzDmKTG4XC1qz9bh8Fqkq1lpYte9+p7frI8ODwMMX+5cLxhk5ZP3L3a0XA9T5EZ
-	qt6LjpNtzEFY5z/oPSm/bHMp6J/737L0XQ8n5sPHsrNNrNF7RHS7olIwFTBHMyRl
-	MeUyffvBQ9VarUF3lQhh7+r8ZAwmDkftI596QpdCzTM=;
-X-AuditID: ac14000a-fadff7000000290d-a8-6627ad98fd30
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 01.44.10509.89DA7266; Tue, 23 Apr 2024 14:46:16 +0200 (CEST)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 23 Apr
- 2024 14:46:14 +0200
-Message-ID: <95022657-c82c-4e20-9a3d-f83acf9911d8@phytec.de>
-Date: Tue, 23 Apr 2024 14:46:14 +0200
+	s=arc-20240116; t=1713876563; c=relaxed/simple;
+	bh=f9NCOevLr4FT0lUYOrbKssqBjD7WPD7B9YwdZXrMtTk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NLkvy2RtXmekAbOk655s/F50BmutX/c3dhn5/GbTrw7al1uMRLNiR/yxF3sPGO94mL1OCR2QExdLGRG/fYmXdCy7fbTHuSBk4ODdheoMrzM8TihnYNonIjKZQjkmuwG5VO63GZ+UDHjR0Ihpv9JNrIF+dxgyzdzqnuNcuDIedYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQeMKzvv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E56C32782;
+	Tue, 23 Apr 2024 12:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713876563;
+	bh=f9NCOevLr4FT0lUYOrbKssqBjD7WPD7B9YwdZXrMtTk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HQeMKzvvI0vEdvCNtwx1OEB9E4E73jzWOhiCj79q4RHfDqRuBABJf18N7owbV+Cee
+	 dB0htYRr/aiyoNpY851XO8igK+NY0B1deeq3c+trEZp5IlIu3KCJkKgqGWVxqPB/LD
+	 AbNMmvwZPF2qqB361+EwkmJLFDaBNBPbZ1cE7L95iSRw10PBjWNWE453U8o4QSZeBI
+	 A7Ts5CP8J0QMsAX3J4mRLzwMxadkFi2MSvsTFjpYZWd0T+QrVo4rXXeqcIv4d76+bK
+	 iaoftgLLrWOgY9FLTMT6KBFAEoSEZRS8pY7R1Gu1WDHexS7RfnDFkqVUtyatdKJ2ho
+	 TuPl45wT1jmgA==
+Message-ID: <1d73ac93-5438-4e52-9498-1d0a4e450687@kernel.org>
+Date: Tue, 23 Apr 2024 14:49:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,133 +50,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: am64-phyboard-electra: Add overlay to
- enable a GPIO fan
-To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-References: <20240419193114.3090084-1-nmorrisson@phytec.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas: Fix R-Car Gen4 SoC-specific
+ compatibles
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <b3a6cf12c46b23a501b0d54c6892b969e2a55145.1713874657.git.geert+renesas@glider.be>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240419193114.3090084-1-nmorrisson@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <b3a6cf12c46b23a501b0d54c6892b969e2a55145.1713874657.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprIIsWRmVeSWpSXmKPExsWyRpKBR3fGWvU0g92f2C3W7D3HZDH/yDlW
-	i+WfZ7NbvJx1j81i0+NrrBaXd81hs3jz4yyTxYfGzWwW//fsYLfofqdu8f/sB3YHbo9NqzrZ
-	PDYvqffo725h9fhz8R2rx/Eb25k8Pm+SC2CL4rJJSc3JLEst0rdL4MpYtmIDU8EvmYoN2w+x
-	NjB2SHQxcnJICJhI3Lp6iaWLkYtDSGAJk8S89c9YIZy7jBL9+y6zg1TxCthIfL4xj6mLkYOD
-	RUBVYuICqLCgxMmZT1hAbFEBeYn7t2aAxYUF4iTOtdxhApkjIrCUUeLxqh1gDrNAG6PEk4cH
-	mEEGCQEN3bZZB6SBWUBc4taT+UwgNpuAusSdDd9YQUo4BWwlzm5RhCixkFj85iA7hC0vsf3t
-	HGYQWwjIfnFpOQvEM/IS0869ZoawQyW2ftnONIFReBaSU2ch2TYLydhZSMYuYGRZxSiUm5mc
-	nVqUma1XkFFZkpqsl5K6iREUbSIMXDsY++Z4HGJk4mA8xCjBwawkwvvrj0qaEG9KYmVValF+
-	fFFpTmrxIUZpDhYlcd7VHcGpQgLpiSWp2ampBalFMFkmDk6pBkYV3YdrlCrseT9zu5pufBVf
-	fH6PldjTWUm8e/iORNy+EbRB7/7PEscaxqcbqrxmrfjru+VGdnK7y9Ujc0LfqW9edGyR8aL7
-	Vz7HXeL7pFRx232LnofEhfAi5nfzH9cuMZjB+HP3RsYlLst3XV0gdLVH3SR+4V1PdT2dv3lV
-	Dnlr7k8R+jnzefJCJZbijERDLeai4kQAAx6pM6QCAAA=
 
-
-
-Am 19.04.24 um 21:31 schrieb Nathan Morrisson:
-> The phyBOARD-Electra has a GPIO fan header. This overlay enables the fan
-> header and sets the fan to turn on at 65C.
+On 23/04/2024 14:19, Geert Uytterhoeven wrote:
+> make dtbs_check:
 > 
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
-
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
-
-> ---
->   arch/arm64/boot/dts/ti/Makefile               |  4 ++
->   .../k3-am642-phyboard-electra-gpio-fan.dtso   | 50 +++++++++++++++++++
->   2 files changed, 54 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-gpio-fan.dtso
+>     arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dtb: sound@ec5a0000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	    ['renesas,rcar_sound-r8a779g0', 'renesas,rcar_sound-gen4'] is too short
+> 	    ...
+> 	    'renesas,rcar_sound-r8a779h0' was expected
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 9a722c2473fb..fd91cf40af6d 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -48,6 +48,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-gpio-fan.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
-> @@ -131,6 +132,8 @@ k3-am62p5-sk-csi2-tevi-ov5640-dtbs := k3-am62p5-sk.dtb \
->   	k3-am62x-sk-csi2-tevi-ov5640.dtbo
->   k3-am642-evm-icssg1-dualemac-dtbs := \
->   	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
-> +k3-am642-phyboard-electra-gpio-fan-dtbs := \
-> +	k3-am642-phyboard-electra-rdk.dtb k3-am642-phyboard-electra-gpio-fan.dtbo
->   k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
->   	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
->   k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
-> @@ -174,6 +177,7 @@ DTC_FLAGS_k3-am62-lp-sk += -@
->   DTC_FLAGS_k3-am62a7-sk += -@
->   DTC_FLAGS_k3-am62p5-sk += -@
->   DTC_FLAGS_k3-am642-evm += -@
-> +DTC_FLAGS_k3-am642-phyboard-electra-rdk += -@
->   DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
->   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
->   DTC_FLAGS_k3-am68-sk-base-board += -@
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-gpio-fan.dtso b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-gpio-fan.dtso
-> new file mode 100644
-> index 000000000000..5057658061b4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-gpio-fan.dtso
-> @@ -0,0 +1,50 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Copyright (C) 2024 PHYTEC America LLC
-> + * Author: Nathan Morrisson <nmorrisson@phytec.com>
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	fan: gpio-fan {
-> +		compatible = "gpio-fan";
-> +		gpio-fan,speed-map = <0 0 8600 1>;
-> +		gpios = <&main_gpio0 28 GPIO_ACTIVE_LOW>;
-> +		#cooling-cells = <2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_fan_pins_default>;
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	gpio_fan_pins_default: gpio-fan-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM64X_IOPAD(0x070, PIN_OUTPUT, 7) /* (V18) GPMC0_AD13.GPIO0_28 */
-> +		>;
-> +	};
-> +};
-> +
-> +&thermal_zones {
-> +	main0_thermal: main0-thermal {
-> +		trips {
-> +			main0_thermal_trip0: main0-thermal-trip {
-> +				temperature = <65000>;  /* millicelsius */
-> +				hysteresis = <2000>;    /* millicelsius */
-> +				type = "active";
-> +			};
-> +		};
-> +
-> +		cooling-maps {
-> +			map0 {
-> +				trip = <&main0_thermal_trip0>;
-> +				cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +		};
-> +	};
-> +};
+> The list of SoC-specific compatible values for R-Car Gen4 SoCs is
+> mutually-exclusive, just like for other R-Car SoC generations, so it
+> should use an enum.
+> 
+> Fixes: d6e792ed7dd022a1 ("ASoC: dt-bindings: renesas: add R8A779H0 V4M")
+
+Offending commit was never tested (testing means dtbs_check and
+dt_binding_check)... Just like many other patches from Kuninori
+regarding bindings, it was not sent for automation. I don't understand
+why. get_maintainers clearly asks for this...
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
