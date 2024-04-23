@@ -1,154 +1,111 @@
-Return-Path: <devicetree+bounces-61698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332808ADCF5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:55:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C23F58ADD02
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 07:00:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBCD71F22C7C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 04:55:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F39EA1C218E1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 05:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452661CA82;
-	Tue, 23 Apr 2024 04:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B421200C7;
+	Tue, 23 Apr 2024 05:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S0sh72l0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WEULjgGt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9214B1CFB5;
-	Tue, 23 Apr 2024 04:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688961C2AD;
+	Tue, 23 Apr 2024 05:00:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713848125; cv=none; b=IQ/sbblKdX7XV7KMVEfVry30dI8Vuu5RT7eeEjcFek5WM5WTPhlBx9sr3TTWgsR5WG6xqmGD6C9B8w3Sm+iu9F0voMHPvOEwO/ctua0Qf1zWGunR00U02UUiXGZ5Y9n3DUUqNIy4Bzf4O2Qsk4jDwJqZxG1rA78XMkM9VFxQzow=
+	t=1713848450; cv=none; b=V4Nv42J66zZLzjzweS8bcVCFKipIOKcWIPE29DV6sumZ8qUy+Ka5fDVE6rhelSxOl4PUINIvjLMV49DxykhbMLeYCqzwJS0gy6Gu+3sgXMYXYdj0HHhjOg+9UVuYU75yXbe7wIcHIPwKzxzm2Z15kdyUD9O3fdwBqn5MNaFEuHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713848125; c=relaxed/simple;
-	bh=IN72Blivl3xOjGqK+nwwshKHtKCRadrGPFUIrtVUOwA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dPeOk9G0FEVr2MX2HfiENg4Wp0d/8S3gfTigChciQryorw0Wly2WkDE9MWvF+2nqgVB9N5ah5ddg6tVF+Dx1RSU/1qBmksgspYooa2DjUjO6tp4Cxf34b5/lRX6BWgSK44WLKj1nyHh5K10+NLmCuHANjZXFnaOhI+BkhZnDANE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S0sh72l0; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-56e48d0a632so7729273a12.2;
-        Mon, 22 Apr 2024 21:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713848122; x=1714452922; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QZri1bj6pQ9QXHSvnyPN/Y1Q6Ds0162YmTBPPdNsJqU=;
-        b=S0sh72l0NkKuMff1/DOLzRpOcGbeWSM7w323u0Bc0tcjX7pSrT32bSww4GtzTWWbny
-         nahwseKHE5NEnZNWeU9+YXaCBU+YVIKVh3DejeU68eiil4pcPAzBpxdEw6cwYFdrEXua
-         A8NgIpKmwOHgToSctu9uUVlpTteHzdaLrvJq2iXtHZHFNNc29rvMCukpkXs5hXlPIn3C
-         eGT2JcvA68QKJ+vNF5gBBLCOMz2VRUIKln1TFn8rA4gfimT7vBCfu3ZKrDWNj7Yg2Oyn
-         COsHw9lt6DNu2xFT/DKeEDLqEV2HOQyhXAXSZnzOijb1bflCJXOoI90CwYFSS8xC48Yu
-         XL4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713848122; x=1714452922;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QZri1bj6pQ9QXHSvnyPN/Y1Q6Ds0162YmTBPPdNsJqU=;
-        b=kjAqyErtmmTfsvbYYO3Oiox4+JOxrSMsoJoIyfPqxpqO950bDpirGNMRmsp8db9BxS
-         oXJoUMLBCDlEpOWuU8lczMwNvZ1XIY5xWc5y24l/giFdT8jF/ZxbJrj9JDnNsjpP6gS+
-         Q7+n21p1RT118dEmjpk7ymhREBt7MJazGigz+X9UzNpCNJW6z4UAVcCP/V8fBkcfF0eu
-         lWhJ6EdQzdWQzfm0+/D+Zgs2sLQ19fUmMP+vHFtwH50rNRgyvge6T8AyDRtiskJDFBpK
-         YEpQ2nU2PLrSBFcgzRzY6wyjKVRBF+zx1w14JyXoeD4Cp765cSKZbs8IuzrEq2jbf7DV
-         jISg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8MbTKs13nTTy+VJ45Psj4bv55eHmsjGJ5i8EcUwsOPlXism9CDZu4GGTiPOlc8bcNiSO57KgVghBQUb4VGe3HdQP4Y+bGKGlSee2TktyYLFT0oi8eV/YsBLb0poKhXuU448ir3WY=
-X-Gm-Message-State: AOJu0YyV6bWivpErNEG0i1asZEezzFGd+2VglBNCkzwX7hJwzy7Iszzx
-	2+QMunG0K6AHitofAAEPLqdcZQUBpQSnLkO6GnZ0ZEuc9BeSI7lt
-X-Google-Smtp-Source: AGHT+IFSKe8jvyP1Ht4wpCuOFwYLEwvgWH0E5ppWlcON8JBGb/+WQ9+0qATSieF5kLfBtW8V9RnDTA==
-X-Received: by 2002:a17:906:915:b0:a51:c964:3cb7 with SMTP id i21-20020a170906091500b00a51c9643cb7mr10662587ejd.61.1713848121918;
-        Mon, 22 Apr 2024 21:55:21 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id rn2-20020a170906d92200b00a55a67a81c8sm3019557ejb.126.2024.04.22.21.55.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 21:55:21 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	linux-mediatek@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Chuanhong Guo <gch981213@gmail.com>
-Subject: [PATCH RESEND 2/2] dt-bindings: pinctrl: mediatek: mt7622: add "antsel" function
-Date: Tue, 23 Apr 2024 06:55:02 +0200
-Message-Id: <20240423045502.7778-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240423045502.7778-1-zajec5@gmail.com>
-References: <20240423045502.7778-1-zajec5@gmail.com>
+	s=arc-20240116; t=1713848450; c=relaxed/simple;
+	bh=SOc+Ms3uALZsNMus4DrdwDpupnWEV4dkrH8W6cFGem4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j8FXFbbJ8kB0hzKC28NrhXnwOm7b2lB7qfbsq3aFhFwK6Tqfjxxs1prwqqTL/AYDcdUVU9VGUwOBHquYxWmfRXHc3bamO/BZNvkdsQKH2bDCSmzK2xVh74dGcou3x5BWc65CtrzHx9wXwk+cA84yBVvdvUtVz173SRCNUaOjnio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WEULjgGt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89593C116B1;
+	Tue, 23 Apr 2024 05:00:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713848450;
+	bh=SOc+Ms3uALZsNMus4DrdwDpupnWEV4dkrH8W6cFGem4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WEULjgGtG9pUusMHkzJio7CBtJzCX0wTPpniSFhg3esEUNDapT4wPGFrizt59zDK2
+	 /RhX4VV433oK4EC/gCzHKMTtQSkZyjUJbbcgRTs3oG13pl/0jXGuJkW3CJihcX0d23
+	 kJ4l/7mSDufEODc1mr+/jTp81U8YTKf/N+/LkVRD0QMBt69qz5Jz49XbDx2P+2robK
+	 QIjSXvwQc4Zl2DAGqsMj91X016Whkq9mKnuDC2rGQtus3C9ID5FCGo0UrcklkGdCUs
+	 P71KjbG/CVeU4SVx7sCV6+VCaI5VfeGDIyPNAqGidqdLhWrObhFiuk+FVdCn6qe5x8
+	 1ugOg495aisqg==
+Date: Tue, 23 Apr 2024 14:00:41 +0900
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vaishnav Achath <vaishnav.a@ti.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5
+ support
+Message-ID: <ZidAefc0Ejrklopf@finisterre.sirena.org.uk>
+References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
+ <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
+ <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ulKGnILG9Yl7Nn+x"
+Content-Disposition: inline
+In-Reply-To: <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
+X-Cookie: TANSTAAFL
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-MT7622 pinctrl has ANTSEL* pins. Linux support for those was added in
-the commit 19f599e83ac5 ("pinctrl: mediatek: mt7622: add antsel
-pins/groups"). Include them in binding.
+--ulKGnILG9Yl7Nn+x
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Cc: Chuanhong Guo <gch981213@gmail.com>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Acked-by: Rob Herring <robh@kernel.org>
----
-RESEND without 3/3 that needs more work
+On Mon, Apr 22, 2024 at 06:52:47PM +0200, Th=E9o Lebrun wrote:
 
- .../pinctrl/mediatek,mt7622-pinctrl.yaml       | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+> All commits tagged "(no commit info)" do not show up in your for-next
+> branch. Is that expected and is there anything I can do? There was one
+> pending -Wunused-variable compiler warning to be addressed for
+> example, see [0].
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-index 60f30a59f385..a9ab623b2697 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-@@ -75,8 +75,8 @@ patternProperties:
-           function:
-             description:
-               A string containing the name of the function to mux to the group.
--            enum: [emmc, eth, i2c, i2s, ir, led, flash, pcie, pmic, pwm, sd,
--                   spi, tdm, uart, watchdog, wifi]
-+            enum: [antsel, emmc, eth, i2c, i2s, ir, led, flash, pcie, pmic, pwm,
-+                   sd, spi, tdm, uart, watchdog, wifi]
- 
-           groups:
-             description:
-@@ -90,6 +90,20 @@ patternProperties:
-           - function
- 
-         allOf:
-+          - if:
-+              properties:
-+                function:
-+                  const: antsel
-+            then:
-+              properties:
-+                groups:
-+                  items:
-+                    enum: [antsel0, antsel1, antsel2, antsel3, antsel4, antsel5,
-+                           antsel6, antsel7, antsel8, antsel9, antsel10,
-+                           antsel11, antsel12, antsel13, antsel14, antsel15,
-+                           antsel16, antsel17, antsel18, antsel19, antsel20,
-+                           antsel21, antsel22, antsel23, antsel24, antsel25,
-+                           antsel26, antsel27, antsel28, antsel29]
-           - if:
-               properties:
-                 function:
--- 
-2.35.3
+Please submit any patches you'd like to see included.  If there were
+outstanding issues that need fixing then fixing those prior to
+submitting would be sensible.
 
+--ulKGnILG9Yl7Nn+x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYnQHgACgkQJNaLcl1U
+h9CiTQf+J6VV/3FJ2hxvA+80nH5z+mJ9Iwc/Kx5I/LUnP9UfIjsvyTdg6m1miSGY
+fJpY+P1GwtyJH1Vh0e8n8NrZ1m39dg4o0g3NwXH6S95rpAJcP7CXtO0/hEMIj8Ks
+q1l6E0J01/8oGfX0D9FlG/0h8srDNPe8E7CxQCibg/nN2XU3L1xnZ8wvOPGNSWMs
+oha6E/4yjhDFasrQr2PwxsCZLXSGY/DECIosUnvtJKEVLiuuvTnSOdcCn7krpdwm
+dZTzFdaQNXA82tmuRHkISObATy2ZJbEPypfx6BrH/PVO4ga6Yzy6TiQ0xUEKDRMP
+S6/8FJ/EozYzzvlQ9sKuOBu3oOTdQw==
+=OhHK
+-----END PGP SIGNATURE-----
+
+--ulKGnILG9Yl7Nn+x--
 
