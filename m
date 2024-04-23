@@ -1,250 +1,202 @@
-Return-Path: <devicetree+bounces-62017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C1EE8AF703
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:04:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 022AA8AF714
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 21:15:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 609A81C22C55
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:04:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 966A01F23BF2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 19:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C89513FD67;
-	Tue, 23 Apr 2024 19:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3594413FD65;
+	Tue, 23 Apr 2024 19:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="VN+9FpPH"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="c30lD9Mp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0075B6A03F
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 19:03:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E86013DDB1;
+	Tue, 23 Apr 2024 19:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713899035; cv=none; b=HPyUWl/kGroy6Q6zDesjLn1ug1gpzt7SfU/jqcBpR0YXk4nunajGuq5wkB/o28u1mMjivUHVnfDP9hwvvzuFoDyQ+TAi3AxMcAF/GCo5APvRqcSLzy+WIOZomu0uUU7O4KKuZSZDHrSYycqwZpqTMFrQNNPX+YqkYtq9K9nQ8s8=
+	t=1713899710; cv=none; b=DjPMVgDwnao8FhbOTAU1LcWxR+tstwMZMNpIev5eSIFDXpr2FOE0GL7WpEoa4cYqF+SSDm34RQWVJR1AIghkXGXp7jnvyBIsYkvhUqya7sXFpKRDRVwL7gMj4omz5Xtu1lSxo7wYvWNr31OUetMf2zhPMu4Jv8j4r7hGbaJ11nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713899035; c=relaxed/simple;
-	bh=KK1Q4WCnuMRpDBt+Q/pZYPGYtfDZSBV8O6v25bAJ3xE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ioCNUOJQlRCWclJkUMq0zs6JQeG5SiiBqZgb9QjzYkJt7RhZnZKkhLKv962KmgB3SwhzFJOe3UMw12hWaufSALvDAs5zX5nX8kAYhV0dtVwyOELsxB2/Q3GQPTF/wUsDRwtKDSnwFYcAaFfgpT82iNm+hjqRKB5MwtyVOEOGZF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=VN+9FpPH; arc=none smtp.client-ip=209.85.222.171
+	s=arc-20240116; t=1713899710; c=relaxed/simple;
+	bh=R628G8zQMojH79aICvGqCZDzjRLX8Kqkqav9c0XP5PM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HP2YzMciKtrCYcHoZuz6YjNhF8cFmUPrQK9ObvP6bFUT3zgArC8PXkz153MX25bLKvbpFrTy2w8bU6lRiUPu6LglnqC1cutxpuF6gJK36bs49D2R11OqffcVmvhRjtObwRXaTtR2JZMEn1lkIY9IoJaVgP0eBG59hVImJnTZiHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=c30lD9Mp; arc=none smtp.client-ip=192.19.144.207
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-78efd1a0022so444435785a.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 12:03:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1713899033; x=1714503833; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ssvsGMAQieqjdP1qTwHaC2y3Sy6Sa4R1LtbkphxceGE=;
-        b=VN+9FpPHLFXT2kw93/4CjgZneL2gxBw/SKCAFV0LA3pqasSoavQtkmTq3t80xWsVjE
-         X9Jk0wFkimkJAEdfWPuTK7Id2O7aEVj8FmJow+B6V9QjT3hpkzKEJ5LqXI1gQysYyXAs
-         K4Ope4z+MzyjExPFehYsXJOnIb6voxHfyv5zc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713899033; x=1714503833;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ssvsGMAQieqjdP1qTwHaC2y3Sy6Sa4R1LtbkphxceGE=;
-        b=niMwyajYZSqcKDd4GakZ+vsT4Snpez+A2rFirB98E1Z4e/f1o3qQodsQxZKLzfI92m
-         8wnODZvMsykJqgZduMP3ladux/jewY60t3UIyPYNAajsqA4Tccavdb4k8eXuk3Z1KAfR
-         0+eKwa5gSCdu2QhR3jilKj1U/5SZgE7IgbqXE3QleHA2kn3UtU4LJ+OsA0geZ9SHRYUz
-         DIy1qFFsGwQkvDYYO1GvAw5eaMpDjvhRcgXjLyU6ixB53uVI218bJSklL1Ip3n2X1OUt
-         lmat82DA88Y/YxH4oAgt64Q5lef8x074lcaU6J7VdO6FiuEemx/u3FuMVOdZSXAJ9vkE
-         54AA==
-X-Forwarded-Encrypted: i=1; AJvYcCUy4jiAMkWVem03gJ07XvwkC4kJLnImeSBBW1pKq0/2cwdzoO0xXs/Rh+5WKUQguwNapY9ue/23vbP59W5YK9DTs2M1hhkeUiqXDw==
-X-Gm-Message-State: AOJu0YyHl89aTMWgfjNFD9/KOWuuYE3j+TB0GHL/iNtR8slFi8gc3qx6
-	3b4vtiq0EkB+CPPLj9l88sRwMnv9sNBR6y7Z5i5E8wMg7CGN40DpfQo8T7tGYT5YlyyQuNyNgJo
-	=
-X-Google-Smtp-Source: AGHT+IEfUJ6iCKd+MaQEIj10UeRQBN8/oxE8CmB/exftCVpP9juI+C1EDWMbtV9DOX5hHR/zySS+4g==
-X-Received: by 2002:a05:620a:1587:b0:790:841d:3ff7 with SMTP id d7-20020a05620a158700b00790841d3ff7mr437334qkk.32.1713899032812;
-        Tue, 23 Apr 2024 12:03:52 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m8-20020ae9e708000000b0078d60b8009csm5497621qka.42.2024.04.23.12.03.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 12:03:51 -0700 (PDT)
-Message-ID: <c619a7a6-c635-4fba-b9ad-d0c5664b541b@broadcom.com>
-Date: Tue, 23 Apr 2024 12:03:43 -0700
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 7C01BC0003DE;
+	Tue, 23 Apr 2024 12:15:07 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 7C01BC0003DE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1713899707;
+	bh=R628G8zQMojH79aICvGqCZDzjRLX8Kqkqav9c0XP5PM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=c30lD9MpeqzAc84Bwe+J6/nnPGRqbbkxMZ8xdDdxOJ1+njirzR++TZcvLEoCdigZL
+	 yWQpguIszDZ1/0sH68BiUJ5HhElX2cTphMXY1vkliUocww0wuhPuP8Xp88NakMcQ7G
+	 6Ukc464UouNEfxejxOBD5RZoMhr5JmfMNg37dpn8=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 86D6B18041CAC4;
+	Tue, 23 Apr 2024 12:15:05 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: andrew@lunn.ch,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Nick Hawkins <nick.hawkins@hpe.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Paul Barker <paul.barker@sancloud.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3] arm: dts: bcm2711: Describe Ethernet LEDs
+Date: Tue, 23 Apr 2024 12:14:55 -0700
+Message-Id: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Describe PCIe controllers fully
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-References: <20240423110238.32148-1-zajec5@gmail.com>
- <20240423110238.32148-2-zajec5@gmail.com>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240423110238.32148-2-zajec5@gmail.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000000d3eac0616c83784"
-
---0000000000000d3eac0616c83784
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 4/23/24 04:02, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This fixes:
-> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18012000: 'device_type' is a required property
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18012000: 'ranges' is a required property
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18013000: 'device_type' is a required property
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18013000: 'ranges' is a required property
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18014000: 'device_type' is a required property
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18014000: 'ranges' is a required property
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-> 
-> Cc: Arınç ÜNAL <arinc.unal@arinc9.com>
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Describe the Ethernet LEDs for the Raspberry Pi 4 model B board as well
+as the Raspberry Pi 4 CM board. The Raspberry Pi 400 board does not
+include RJ45 connector LEDs so the 'leds' node is deleted accordingly.
 
-OK, so this is the rationale for patch #1, because you are adding a 
-'ranges' property to each PCIe root complex node, and you need the 
-values in the 'ranges' property to be expressed relative to the global 
-address space, and not the axi@18000000 address space, you needed to 
-flatten the axi@18000000 range.
+The Ethernet PHY LEDs are numbered in the PHY package/pin list from LED1
+through LED4, however their address within the LED registers function
+selector is 0-indexed.
 
-Why not just bring those 3 nodes out of the axi@18000000 node into the 
-global address space then? That would greatly limit the amount of 
-changes in patch #1, some of which are just unfortunate noise.
+Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+---
+Changes in v3:
 
- From the chip diagram, each PCIe controller has its own separate AXI 
-interface to the NIC 301 AXI fabric, so having 3 independent nodes which 
-are not tied to the axi@18000000 would not be wrong IMHO.
+- explain LED numbering and add comments
+- rename individual LED DT nodes to led@<N>
 
-Thanks for doing this!
+Changes in v2:
+
+- added function = LED_FUNCTION_LAN
+- rebased against latest tree
+
+ .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts | 22 +++++++++++++++++
+ .../arm/boot/dts/broadcom/bcm2711-rpi-400.dts |  1 +
+ .../boot/dts/broadcom/bcm2711-rpi-cm4-io.dts  | 24 +++++++++++++++++++
+ 3 files changed, 47 insertions(+)
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+index cfc8cb5e10ba..353bb50ce542 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+@@ -5,6 +5,7 @@
+ #include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-peripheral.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
++#include <dt-bindings/leds/common.h>
+ 
+ / {
+ 	compatible = "raspberrypi,4-model-b", "brcm,bcm2711";
+@@ -204,6 +205,27 @@ &genet_mdio {
+ 	phy1: ethernet-phy@1 {
+ 		/* No PHY interrupt */
+ 		reg = <0x1>;
++
++		leds {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			/* LED1 */
++			led@0 {
++				reg = <0>;
++				color = <LED_COLOR_ID_GREEN>;
++				function = LED_FUNCTION_LAN;
++				default-state = "keep";
++			};
++
++			/* LED2 */
++			led@1 {
++				reg = <1>;
++				color = <LED_COLOR_ID_AMBER>;
++				function = LED_FUNCTION_LAN;
++				default-state = "keep";
++			};
++		};
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
+index 5a2869a18bd5..ca9be91b4f36 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
+@@ -30,6 +30,7 @@ &expgpio {
+ 
+ &genet_mdio {
+ 	clock-frequency = <1950000>;
++	/delete-node/ leds;
+ };
+ 
+ &led_pwr {
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
+index 7c6a5bdf48aa..6bc77dd48c0d 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
+@@ -1,5 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /dts-v1/;
++#include <dt-bindings/leds/common.h>
+ #include "bcm2711-rpi-cm4.dtsi"
+ #include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+@@ -110,6 +111,29 @@ rtc@51 {
+ 	};
+ };
+ 
++&phy1 {
++	leds {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		/* LED2 */
++		led@1 {
++			reg = <1>;
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_LAN;
++			default-state = "keep";
++		};
++
++		/* LED3 */
++		led@2 {
++			reg = <2>;
++			color = <LED_COLOR_ID_AMBER>;
++			function = LED_FUNCTION_LAN;
++			default-state = "keep";
++		};
++	};
++};
++
+ &led_act {
+ 	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+ };
 -- 
-Florian
+2.34.1
 
-
---0000000000000d3eac0616c83784
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF/0EIcccCsdl4P6
-yc1KJ9Xzns9kEo8CPf8WJLZlhIusMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDQyMzE5MDM1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDiQe3isuwXAwNXQR4cjr9tQXuVsiHA6fCh
-jM7C2WZSvdsAydO/ZOdwBrpMmzLIFs/dIrx1uZVs/8coIARs/YQ0SA312CMiC2zcdE2XoFlotIkR
-GZSfdIf8Oy+zSnHRCLTZ0dVULvPgkuTwZ6GGhoOoVU8em4AMGBf9wv84dSh3NCCn4nwo3sPcNLtA
-SSQknfTFE5Wlw3VGMU1HFwAbaZX69f1nbs/BajpSNbauJ9nHsKuEVM3YnvRw6IlJHpipVnZa8g6/
-j88tyqHJ3AxRz/Lgqx0tVGWdFUI8zdr3ffg4Y0MMC2mgsp2GU5DFN66eP9BusHcIbEQmHudHRsmP
-Lriu
---0000000000000d3eac0616c83784--
 
