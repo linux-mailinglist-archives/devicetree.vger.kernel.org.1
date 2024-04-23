@@ -1,252 +1,154 @@
-Return-Path: <devicetree+bounces-61768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 305008AE125
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:39:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 866538AE141
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 11:46:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEDB71F22830
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:39:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA33A1C224DF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 09:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3A056B91;
-	Tue, 23 Apr 2024 09:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763FD5A788;
+	Tue, 23 Apr 2024 09:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="D4tGC4qu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QV9dkTFI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2093.outbound.protection.outlook.com [40.107.20.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8FB1E863;
-	Tue, 23 Apr 2024 09:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.93
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713865175; cv=fail; b=SRaK94/PtDR6OutQCZU7OIB1Q95+MpcYWrWo/zvSqElU0+42TNksK274U/hRTftiCiiDTMc6FCYWH1LHPh4ojW4DTMITW3yG5dUd9e/36H9YOpLCcdQJ/YQ+78Drh8SiaOaMDkx4WliPKptGFC+isHb/7gxAZy4tl/u+hja1j0g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713865175; c=relaxed/simple;
-	bh=nmytv9FKT83uoeZi2O8cvnL2MSWPB/md0I+WFzSvuAc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=mAbb/buyhh0Ygfdy0dJU7gRiWMjR4toJwT2fisICih7Oy7iGEB/S5u/cJbRhpvwQruKuE0hbUFoAKFBrvQ1TaffVsHmT1T9b3sKinNEQ5hUfXcWgEYwJgK4Ex3m3cgMvKbVez9WEMe2ind7emGewgaP+NLf00frHEl1eArK92IU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=D4tGC4qu; arc=fail smtp.client-ip=40.107.20.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cwFcMyQD/pqUrt1nwyRR5vIFgMcDmfnKC5T1H2oGRftaOXzXyCCbZf8uOBtXETDDgJjTB138Dfk4Vik6F52c4y7MvMQRSJuMgU2u/16gCnCuxtWJu+HPpt6Sf/YQl4Y0QiJCXWd+v29+xWSM3JNSWqyb34bDYWlJ1rDdSjYlnwjNuGemrGrnAjrIwAH+ySKr3whYsMRvBMnNIe9SuXzRGt2qajsvv7uC919EbmnZfwZr6cEQ4WP1rQjn/PIpCHPaiXEtYXzSrDJZAnp8FAy6JSPtrWFx8JDzVweBblDf5SQNvb9SiSN6jvm354Y6XnQNj/DvhAVz3q9duD/pbTutOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iglarcSymAQ/s+SXFcIUFzuT/Iab7HVwkRoSu3j8u98=;
- b=k0rxM5uHnkauAxO0cDdiCpS36Tm8AfMjpQSWvHvQyEeQsP71WSj28vVoQemdo/o3iuL3TosdS2EtlwmdDXWhtHYsKJOglpJ7qNTocdthm0R0ABfBqRUVClEvW5c0FRgExTYKLvFR2iYrR61K+uPi6Y9Fh5/6JVRHMR8NOoaRfd6sVRNk5wZ/6C8K2I+L8tscO63xKMjaMNdL0UKi7YtiRB1Z06f6ZunXCcw1B2HHBNlsHUsvojF/BKx/uBZoTP09dvoze+YV6E/h7K0hhWuNgkICPlL9Cn0nzXOHYu9rcQHm2ALLekkcGqPu723tBl6T/0HwCxcQc1MvdfsU6bRZVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iglarcSymAQ/s+SXFcIUFzuT/Iab7HVwkRoSu3j8u98=;
- b=D4tGC4qukx7BD5ofs7NRNPn823VHqeL9AP+hnhiNEAH3tDuqVStBKwD+ycNjYDtVMCW6xEWIGFLuAy7Ba8J09uJrgdqjhXFXLaJXXoACVlLn23DC516Nxn29tQ5rP/kIstriXiO61Q4OjI2GvlugZoBNgKPF0TlvIT1Vy4U5q8M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by DB9PR08MB6730.eurprd08.prod.outlook.com (2603:10a6:10:2a2::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22; Tue, 23 Apr
- 2024 09:39:29 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::224e:39b5:5107:43de]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::224e:39b5:5107:43de%3]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
- 09:39:29 +0000
-Message-ID: <3f93ecb0-a649-4492-8798-a00de26236c8@wolfvision.net>
-Date: Tue, 23 Apr 2024 11:39:26 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: fix nodename warning on
- wolfvision-pf5-display
-Content-Language: en-US
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
- devicetree <devicetree@vger.kernel.org>
-References: <20240423082941.2626102-1-heiko@sntech.de>
-From: Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <20240423082941.2626102-1-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0102CA0034.eurprd01.prod.exchangelabs.com
- (2603:10a6:802::47) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45BE59161
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 09:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713865556; cv=none; b=N/AoppeVq0WRbtf2NNUOkOieavja1oD5Lwx4r2Tg30gkDG1AWrrs7DWjbp9D+M6mx6vU3W3dKN8ljEjFu3VMDhe1siPe7IKB1OMz2Qw2an9i4rQrXNbn3dv/pLlMbTQ/aobApuJhSuV2eYFCs03cuOn1CAeTAWk+uNjvIA5umHQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713865556; c=relaxed/simple;
+	bh=0OXawXezReq/pJRii8qLy/MIW9NlwSQfDqgM87a8Cyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R62R64pK/EIYHtZjInqvnWAkIY1J/pWO8rGkM6/H6GrqlKPJN+zDLJ+oaE8bWUKEXv0fR+zfoCySlgDSHZ/jrNU2Rnsb2wmsz1TwNyZ+AXrOJ/DTQmeEQK5Rj4uwUjifhUjdcsgDLVHvRi//dgxQGTy/eT8lAOZeMSDE9famylg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QV9dkTFI; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a58772187d8so94552166b.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 02:45:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713865553; x=1714470353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=0OXawXezReq/pJRii8qLy/MIW9NlwSQfDqgM87a8Cyc=;
+        b=QV9dkTFIBoSXGdispda3NjaYxHBNH3K25e/b7iwLWosGYMb6qpbAsGyXg+Hj5yOmG/
+         sGEv7f6K3tuk7I/alh67NZHC09qlrjWrOfXBdm8aCVHnyfX+crQ0RPgCR9CjxTlBjSUu
+         h+2Pqah4gtxVvIwieg0q6oB778bD0GQD3uga8T58/8RFldnAjYc1+QzUkVRbXcHGalvS
+         cQS97Z3n2pTCEjQUoQ9gvvypkPypNJLrLffILd2Wxsk+MCuHH2qKlBLxIXgOCOgitqbI
+         055NlysDytSqoorNithSIkq17f86XmUh6rl6BZ4n+b5w3ysR1GAEC8UhY05VG601Ot3I
+         pOEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713865553; x=1714470353;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0OXawXezReq/pJRii8qLy/MIW9NlwSQfDqgM87a8Cyc=;
+        b=rMPlxJMrd4Vwnzvr0wM++nNnTpsaGgTk9zD0GQczlB9Vs9WRLsayjj6QKDTkbSQHsy
+         06Z70USWvli+Am6wazXEuHnVYr77PPQme8GMzB2wLIFu6Gb9rKDvFk+xlinCJ9xlZMPI
+         kAOk7O61HPSCzHcgb+8XSMc97tm9yQVJUmlWKhQ04JXa8/QPsqxuHe3CNzJBfomgANhj
+         bdkkW+fxzIaoV6kJnC+V6Xmzvtp5Y18PmpJNTpTL6WWtaYMhwZ18J+Pjw05hDrc7GL7n
+         Jv+0WAeruhDR9v0AeH44/PenHoCXBSZ59H/kUkPGFOqZayyzGEgqCViyCaXKJZrSs62u
+         0nmg==
+X-Forwarded-Encrypted: i=1; AJvYcCW4ttp1sWZJAJ9stFyZgpPWhmDwpCM2lb+jeilx33TeMrzIZyUJhncHj228F+1FiXD9kj20/rGIinEnPfxKoeeDbNXCzhSoKbwWSQ==
+X-Gm-Message-State: AOJu0YzAt05ZwEhv5SpGj11TvR0JYKqyIf6YE4VjB1j0no9bC57Jyzcu
+	t/jM4J5MuqaifaYYedPgnlpHZVTsZzVouygsWxnxJf2LRa3C/EboMhaToF618ao=
+X-Google-Smtp-Source: AGHT+IEDNnvCIJghyjpAWJKdMY7UMuoZjbCNlqfphMG1kOwc/wCe7RDUjLqV7plqyEmjEjFqGTPORQ==
+X-Received: by 2002:a17:907:1115:b0:a58:7ea5:c49b with SMTP id qu21-20020a170907111500b00a587ea5c49bmr1395621ejb.42.1713865548776;
+        Tue, 23 Apr 2024 02:45:48 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id gc24-20020a170906c8d800b00a55ac217235sm3076796ejb.90.2024.04.23.02.45.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 02:45:48 -0700 (PDT)
+Message-ID: <605ebf52-a7d6-455b-9009-dad36b8cd8eb@linaro.org>
+Date: Tue, 23 Apr 2024 11:45:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DB9PR08MB6730:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e68c026-1160-4b7e-5ce1-08dc63794598
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?L2JRajg3dFh1eHowNEpaQjVXZkVGbVdXYnRUSkZYYWpMcExTZ2hzSnFvUFBQ?=
- =?utf-8?B?cWJVWTM3S09UdHZiUEJjNWNINHJYeVo3YjQyRlQrZ0VFMXVyeWtnRXY1T05s?=
- =?utf-8?B?eHo2VkZId3JuL0VRaGZsVFJ3a0pWQVNKQzZRbzF6YjAwQVV1bFFCZ3Uvd1pU?=
- =?utf-8?B?SVpzTTNXTms5UGlvZEtZeC9ITjI3N0ZLTHRDNVc1eEgyUGhka1BkOXR5Nkhh?=
- =?utf-8?B?emlCUGZMSGhKOHpHRVR1MW5BRFpsUS80d1NKNDR6R3JmaXNNYUJpMDNEWkdO?=
- =?utf-8?B?TUV6Q2htRTllaFQvNmRDdzdVbU9ITFdRRm8yeUhrR1U1TWxvYy9wNHlzbldw?=
- =?utf-8?B?UHl1QzV3RnRLTEQzd2VzTEE0cGx4R0pYcWFJbUJ6bUhZZzJ0UE8zNjEwY29r?=
- =?utf-8?B?Ly9pM3VuS1F4Yitvdkh3WGI2WCs1anZBRm1zT2djQjEzMEdOQ05oekpsMExY?=
- =?utf-8?B?VzA5U0RqbjdySnVOTDBVcU1lV01JVWdtSEt6c0RVNHdyK2pOclFxelhqMkpa?=
- =?utf-8?B?SkVqM0dWem0wWVI1amxvc3RFdW8wVHV0ZTNpVExSQ21wV2l0bFkzbVZ1dkV0?=
- =?utf-8?B?dmxoOXZadDQ3NHUrWWhjSnIrcWdzL3JZa2VqWUZ3L2RaTXh6LzU1Q0NyTUdn?=
- =?utf-8?B?aVVyUkVLeXNXSVcrc0llMm83Tm54SkFQcStJUG9uNG9JQndUUGpZMXR0Y2Ra?=
- =?utf-8?B?SlZWQ1k1UllIOEVheG1mMFdBbVNTMUZOZ1hncENmaW9aMTRrbnRJcmZkSkpm?=
- =?utf-8?B?b0tGR1d5bzBoMlgyK3gxeVJRZ1FUSmpGY2RCK1pmdEx6NkU3VGpPMFRDM3pz?=
- =?utf-8?B?MExodDFJaFRHTklJT2x5QURjV3ZSNklHNUpib1J5U2IvZGFmWDNaOE5OMW8z?=
- =?utf-8?B?K3lLZkxTNWp6aWZDZEhGbUJGU1NmdklZeE01UUVwWDBpNHE2YkNGTUgyNXdH?=
- =?utf-8?B?Y0NjL1QrbmVWaVFUSXlpVEIxMTVhblFOVWYxdTQvakVmcWMwaHFKNWpDdmFs?=
- =?utf-8?B?Mng1U3FzQUdHS2tFbSt4TStnRjdaQU5XZno2SnZ3U0c2WUdIajhxUFJ1eTE5?=
- =?utf-8?B?eWZZU1BuY3Y2R3VuYlE4WVAzcUc1bHltL0dNYWNTcmZIY25tNnNNelBtMStG?=
- =?utf-8?B?SFF5MGNSdThhYjhtMkZZQkprckxwdkJ3cGhBZkRYLzVON3RXeDNmRXp3ZHg0?=
- =?utf-8?B?cU83cjByQ3hGK3F5UXhpQUd4VWZKZ3RiVHlpTExiT3d5RkcxWHNHMkwrNW9a?=
- =?utf-8?B?ZzdnY09BVGVhaTR0bHBFTUpMMFBUZ0QwMUNtSkk0bmdoNFpiQzg2YjV2Ymhp?=
- =?utf-8?B?U2c3aFpHcXgyY2JpRUZiQ0lEckozSExpNm04ckMrNVhzVzAzRkFGekd6RmRr?=
- =?utf-8?B?ajBEWTBseHlUcVkxUitjbmxEanhZQ2dOcjhvR3Qwb2hEcHcvdXF2RTlsaStk?=
- =?utf-8?B?MWF6NWpjakVyZEloa2ZLb2FPcnNOaDRZcnFaa1dBNmppR3M0R2p1OHhnYmxS?=
- =?utf-8?B?UXBqRWovUFRWQlBBTVFVY1FNdVpoUmk0TFM3VXRaVU9Wc0JHTWpkSlpibWJV?=
- =?utf-8?B?MmtuaUx2MDRqTXQ0UEdXeXdqcm9Majdrd0U2QVJPQWU5K1ZSeHNUWXdvN0l1?=
- =?utf-8?B?QjVNN3JMTExRSkIvWXhtNGhWK0Z6SkhGcURSY3N5ZlF4N1FBNWF0N2lCMjBE?=
- =?utf-8?B?cDV5Tml6SzJTR1Y0SGxjZGI1UFNVSExpNTN1bVhiV2JHQUpMQ3BQT2F3PT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VDU0R2UyVS85N2JiV0J0VFVTWVQvN3lMYXdSY3lZUm1sYkt3cXV2aWZVMjE2?=
- =?utf-8?B?VEtTUXVJRVpZdzhYa2t3Y1loTWZaR0lXRlpDWTI5ejdoQnhxOTFMb3hFeG52?=
- =?utf-8?B?NjlielFWKzg5RkVtOWlHZmdwZElFc1RzYkpUVHp5dG5hdUd0bSt5U25oNW93?=
- =?utf-8?B?N05PMTRNd0VTTnNyLzVFV3NiNHBkbmFaNXhiOVUwaytNWmNOM2JkNEJTVk45?=
- =?utf-8?B?THc1ZW1RS09xV1Bnb1lRRFNyN2U4MTlSVHZCWDJhUHBiREIzRnZDdmdYcjkz?=
- =?utf-8?B?Z0VpNjErbFgxNCtSZE15SzZrZEJxU2FRRkxONkJ2STdKNHBiRXNXdW1Wcjgw?=
- =?utf-8?B?SldkYmw5djFDaW9NNUlGZ0xHQysxcnRRc25Na3VRd0RLdFc3WldubkJDeGg2?=
- =?utf-8?B?V1dXZ251bTJmT3JFQi9HSzYyTzZXbEhmUUhvbVhGVUxGbkljT0duYmo2SWJo?=
- =?utf-8?B?ZG9FNFhiSkE2b08vZmhmUmdHUE5veVhUak1lREhlazE4RXVuaXBIQU1OcktT?=
- =?utf-8?B?R0Qrb3UxZkQ2THcwTU84MWVFR2dZc2tieExHaFFvM3JRRHYzbVFrN09zODE3?=
- =?utf-8?B?NkNrUDR3eDRqbXdwZXR2bzFFNEg0YzRralI1eVAxOVRlZjhaYU8zbVNOeXRl?=
- =?utf-8?B?dURrNTYwd3RPQngzeGtYVk5OK3R6ODg4SXdSL1RkTEoweUVXUXllSVFzVCtY?=
- =?utf-8?B?QmREY3RJOEJ5NkoyOWhLSzdzSURYZWZKZTN6WFNCT2x4VHZYYTEvUklaYnlM?=
- =?utf-8?B?QWVTWW5mK1p3N2ZQdldZeG9WQkc4SVc0eFNKSERSZVVvVDJLZDd2bElod24r?=
- =?utf-8?B?TzFXN0xQN0gyeDFaT1ZUaG9lY0NGczV1NU16enplR0p3bzlDeUNIMnFNY1pY?=
- =?utf-8?B?STcyZGZONTlTdUR3SDh5YnBMam40cmt5OFVCOVJDN3N6VXdiNitMM0Z1VUVZ?=
- =?utf-8?B?VzlqTkRNTlExYndtcTFsYVd3OS9qWDBEOGd4d29JTG5SamYxdlM0b3hkYzdQ?=
- =?utf-8?B?bmdiVkpKY29RTFZIa1krUUZueDdGQklySGdDYXlRdjFWUzVSTFdtWDBNbnBT?=
- =?utf-8?B?Z2MxMjdMNDRjUm5WekZqci84NkNpc1M5UGowTExPVTdkZjFCM3hpeVhyendi?=
- =?utf-8?B?RmhFS0ozeEdtV3JUdzc2aWVuRDg5MThqMSswOHJzeExYY09hdTVBakVMSUdN?=
- =?utf-8?B?S0tmdEREQUJYT2l6UktlODI5eDVXTVlrclFaZzlrQU5CNkJmb004VEpvNWVu?=
- =?utf-8?B?aU80SmlneXJhRDRSdDJZR040aUNpVkFWdzhZY2lJd2pvWGxNT29OSEJnM2dk?=
- =?utf-8?B?RlZ1RjBSM2d3b3orTXB2cXVCeUtid3ZNTDV6clJsZFArTEoreGp3cm82M1dE?=
- =?utf-8?B?RmtwKzdFQlNUZysvaXYvMElIbUhTTFFrQWJDR1Z3QUlrbjl3L1JPL3prdzIx?=
- =?utf-8?B?aGRjMDNxMWdVMFRXaS85MHpaZXlpd1JmK3E0R0xNNk91VkU3K251ZEpYZ0M1?=
- =?utf-8?B?dGl1cUNEUGVSUzRmYXJ2Q2l0eUtpNmNZWG9iY1VEK0Jsb0Q3SThOZ0tPUmZR?=
- =?utf-8?B?MEtSUUVTMS9zamJPNGhWU0lsTGhINW9kTU9vMGVMZ05vK21WbnVrWDhyOXVG?=
- =?utf-8?B?M1JENnlnUVhtUzZTalczSC8yR21PODVkRk95L08vOThoOW0vUnFUd3VpcE9Q?=
- =?utf-8?B?ME9LUzVvSzVlR091czZVZ0JNcDBkRE9ORU9XTzF2L3Ric0xvK002TVk5cHg2?=
- =?utf-8?B?aTJhbDJNZmRGdExDbmRjNzNZclhWZkJQMUFCL1VoVjNBMjlXaGZxbjlrY0hv?=
- =?utf-8?B?MVBnQzJaQ0ZQQjNsNTloRU9IdkxJWU9kbkMxRHE1OVQzTW8zc0p3SkJQeERS?=
- =?utf-8?B?M0p4MEtUam5FSm1BVkYvdEZud2Z0NGRBMlRSelBXalRJYWgrT0c1T0RVdXda?=
- =?utf-8?B?eVZkUFVIaFA0VmR1bWVCWWcyVFhrblU3K2Q3Z0FvdHluM3k1eE1KbHVCMjRo?=
- =?utf-8?B?NzBIRFNNTU52VVVkRC9vRUtSK1lpY3Fab3AwQU5CLzlEY0xRUStweUQxRUpV?=
- =?utf-8?B?Y0RtRzRrY0xHZnppYUNWeWh5M2R5N2gvMnBpQjBsekVGa282cUpDMnVhWXh1?=
- =?utf-8?B?citZNGZNTWtRZVpDMDFrMnZOTmRSZzdaT1pZNXgxUjlVMDFseXdLRGlDN1Fm?=
- =?utf-8?B?Q1E9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e68c026-1160-4b7e-5ce1-08dc63794598
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 09:39:29.0615
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LfXCokUrISGTgHc5C4EueMsWf7mILqyc1RUmOaxjYDwKQRt3CcNDmGVQoA5lxSnzu2hOUjJqvg4kxBqDgaYBOb70+55SpYkDd6n+lOl0CIc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6730
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] dt-bindings: iio: imu: Add docs for ADIS16545/47
+To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
+ linux-kernel@vger.kernel.org, jic23@kernel.org, linux-iio@vger.kernel.org,
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, corbet@lwn.net,
+ conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh@kernel.org
+Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>
+References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
+ <20240423084210.191987-4-ramona.gradinariu@analog.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240423084210.191987-4-ramona.gradinariu@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Heiko,
+On 23/04/2024 10:42, Ramona Gradinariu wrote:
+> Update ADIS16480 existing documentation with documentation for
+> ADIS16545/47 devices.
 
-First of all, thanks a lot for doing this!
+Nothing in this commit msg explains me why they are not compatible,
+while driver suggests a bit they are.
 
-On 4/23/24 10:29, Heiko Stuebner wrote:
-> The dtbs check throws a warning about node naming with the recently
-> added pf5-display-overlay:
-> rockchip/rk3568-wolfvision-pf5-display.dtsi:113.6-121.3: Warning (graph_port): /fragment@4/__overlay__: graph port node name should be 'port'
-> 
-> This comes from the overlay just referencing the vp2-port-node via
-> its phandle and then adding an endpoint beneath it.
-> 
-> While this is possible something to handle inside the dtbs check,
-> carrying around the warning is not pretty, so change the description
-> to go around it.
+A nit, subject: drop second/last, redundant "docs for". The
+"dt-bindings" prefix is already stating that these are bindings which is
+documentation.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-What is the rationale behind that check? Describing a port in a SoC dtsi
-or board dts and using the reference in an overlay is quite convenient
-and above all concise.
+Best regards,
+Krzysztof
 
-Cc: device tree list
-> Starting from the vop_out phandle and then referencing the port
-> via its generic port@2 nodename will satisfy the port<->endpoint
-> naming dependency while keeping the same structure once the overlay
-> is applied.
-> 
-> Reported-by: Arnd Bergmann <arnd@kernel.org>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  .../rockchip/rk3568-wolfvision-pf5-display.dtsi    | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi
-> index b22bb543ecbb..18c807c39e56 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi
-> @@ -110,12 +110,14 @@ &pwm10 {
->  	status = "okay";
->  };
->  
-> -&vp2 {
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> +&vop_out {
-> +	port@2 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
->  
-> -	vp2_out_rgb: endpoint@ROCKCHIP_VOP2_EP_RGB0 {
-> -		reg = <ROCKCHIP_VOP2_EP_RGB0>;
-> -		remote-endpoint = <&panel_in_vp2>;
-> +		vp2_out_rgb: endpoint@ROCKCHIP_VOP2_EP_RGB0 {
-> +			reg = <ROCKCHIP_VOP2_EP_RGB0>;
-> +			remote-endpoint = <&panel_in_vp2>;
-> +		};
->  	};
->  };
-
-With this patch applied the DTC warning "Warning (graph_port):
-/fragment@4/__overlay__: graph port node name should be 'port'"
-vanishes, but a different DTC warning "Warning (unit_address_vs_reg):
-/fragment@4/__overlay__/port@2: node has a unit name, but no reg or
-ranges property" appears. Can you reproduce this?
-
-I tried to fix that by adding the reg property, but then DTC complained
-about "Warning (graph_port): /fragment@9/__overlay__/ports/port@0: graph
-node '#size-cells' is -1, must be 0"
-
-Then, I added the #size-cells property to avoid this. However, DTC
-complained about this property not being necessary as there is only one
-port. I stopped at this point.
-
-I would say the real question is how this hardware should look like in
-the device tree (overlay). Then, the compiler and/or build scripts can
-be adjusted to tolerate this.
-
-Thanks and best regards,
-Michael
 
