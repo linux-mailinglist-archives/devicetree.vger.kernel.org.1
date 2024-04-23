@@ -1,147 +1,126 @@
-Return-Path: <devicetree+bounces-61947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245C48AF2E9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:54:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1AE78AF2EB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5563285C93
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:54:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9043B1F24AC2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0CB13C9C7;
-	Tue, 23 Apr 2024 15:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3DE13C9D5;
+	Tue, 23 Apr 2024 15:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eHVcwrr3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pcM7NGPg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217AD136652;
-	Tue, 23 Apr 2024 15:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DEA6136652
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 15:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713887669; cv=none; b=ue+lINhGCVFk1X7IE1ka231siTl4qR96WS1Bm01WVvJSi27JqGLpiiGvPmWW+xTNOav0UM2KBlKZTiEyVOCoXcUJCHwfPpUPuoxke88AmWn+B7BAQLMbWVSb8KvemYiFbO5o/0g1WxMcuSylru051kaF3kKqYk01p4fMMpFsgBE=
+	t=1713887677; cv=none; b=nKCBI9DdmFH+SxK2viWXNDcfZc5NjKWl8GvXv/LOtTttlXlW3WFsfdTVVbG02xBqnm/+lXioJ/Xx8r0N9zBrQb+Ie/5ddkrf5rcEH9WR3QKiRARB7k71zf1Q2uCOx9HQyyjr13B1nn+UxLGpXN5NUQK3MFUzJhPb+jGlfy02MP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713887669; c=relaxed/simple;
-	bh=ygI09t554nLoyr6BkmW7OLrmKfZMJOQw1a4wokqN6Zw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r7MdHZwIFqIP/42qN4zAz9SpqAn0meJy8mlL4UDHdU3y/oL7KET9HE0jCyirmFTWPAVoOyx4sJJzuwebdfXfW5eKXraXc1UjLXl95IlPnL8iQ5Mkq0g7hwPU7X8BBTFW93QCgu7ZnJu4PW6psAEm5IoN0RCVfX2NA4SQ5WwwoDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eHVcwrr3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E224C116B1;
-	Tue, 23 Apr 2024 15:54:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713887668;
-	bh=ygI09t554nLoyr6BkmW7OLrmKfZMJOQw1a4wokqN6Zw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eHVcwrr3RiJYhKjscVZo+51SROohKtrZd5sgQRoiG0GWmNdjLzMpcXdJnEyl5KSRe
-	 4X63eAqmtA8PT7Fvo6pRkUCuAEcjNq7jTdJpPQnV3u0ZRUynku/5beXpTvP8o3D9H6
-	 pJadn+GdCeRNfMYolqVjG71p5INF+GexAyzPmMyUwFWWC5fcSlybNdYFmADibv4NtA
-	 IcnpjjGTRofh+HFe6AuR+OIMXca1nPH2N1xFVMd6grvHanqWu+qcU28GqnPrUfmrUd
-	 3QU0qmHFEfT4kvvp5a2N5cftLxr5StDZ08py9RG3EEBNcQCZw2eJE9YVglE7kgHF6i
-	 okMJUfFaEx50Q==
-Date: Tue, 23 Apr 2024 16:54:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Joshua Yeong <joshua.yeong@starfivetech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	leyfoon.tan@starfivetech.com, jeeheng.sia@starfivetech.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] cache: Add StarFive StarLink cache management for
- StarFive JH8100
-Message-ID: <20240423-clique-despair-ead97b78b186@spud>
-References: <20240423072639.143450-1-joshua.yeong@starfivetech.com>
- <20240423072639.143450-2-joshua.yeong@starfivetech.com>
+	s=arc-20240116; t=1713887677; c=relaxed/simple;
+	bh=zOrR4N6W5yEjumIJlaR4j9bXUXeISdNMznsMzpCn11U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mxgCN5bkOKH3CRSu3hHBLgVAS4xVryoo8XKoAQGRdNBPPgGEKnd9E8Ffs1qsFnZcYCk9/JnTpoNG87lAUpjDgO3jKV6Mj3QbCqCmsxfz5VVsGmK8JsjipPvaRhtw8RiUjuwOBVzTLuNvWfYlSwlenICHIFKZCIQE4ey8po15fY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pcM7NGPg; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34665dd7744so4401981f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 08:54:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713887675; x=1714492475; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2CEYkFgPQbfSpwnnDo2x7Wyyhx+vsMBr1IYLJirdNPw=;
+        b=pcM7NGPgl6t3heodR31q4C67+0MXaF0krE/sfT/wnzAj20Dr5tcdWLlvJMkDdiWVLM
+         8PbxuXYUxaBMQCePfN7u+KFuy9MDtEXSQQ4rtrqzbmb7K4P1oN44alh/Ez/vEbFz9DwN
+         B5g3fL4gpcMZv28MMtq27hYQnrwn0VyvOsdiGCDsrmEvhmlxE2a5lxiZtiYDPoVTYYv8
+         yh+g+NnfM/TEM52XAeU2F7amgdxRmqfE4MDCu6zHqcJUtP2tGQAVa128+BGGhuLUj62o
+         McmhZwcz4NQ09eoNSX7jW+A8NOePdPJbCop8VFbgFFXYZYE25MOXsCVZK3nIEe5kICY3
+         Ys0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713887675; x=1714492475;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2CEYkFgPQbfSpwnnDo2x7Wyyhx+vsMBr1IYLJirdNPw=;
+        b=mweZ/BAB5iTxjNBtyzmTLip5oiUpJcPBw7npemhNDslnergVCfRsmSb7ASy1Ra85OM
+         MCbjYES9DnFjeXE9sxEchRccWuU9l6ugVwNcAJXL7BoYuPcvLwSehaYhkJt9e5xLuDGT
+         pmEFIpcrMjCbzqikyrjlAzp2cCMwlVOQ2o2v1JV/zgG6Qq1spdBAzavpEyNCQTgsFZ4U
+         WQrS0pdm/NOz2j2Bl7yuOrvncryOd9h09T9ThLzSz0HLUD+4EInRQmrurpT6XpyfcFEv
+         ru610fM2vmjnuym7sAD9FO6fJ21x1bdejsWAWw0L03VhTaZbmKvQiNL2nVSRDyBB2FO3
+         1AqA==
+X-Forwarded-Encrypted: i=1; AJvYcCX7PkmYFO4E+9gDaAymqRf6bxqn1jLm2TllT24GJHW0YaR2AsipVO1PzRgNfFbXsMMg/BhVQjGg/s0tPeYQNaxDnYvyDw4AvkM8WQ==
+X-Gm-Message-State: AOJu0YyXjI1/iNmbUlmeD4RrfEq5GMa8T7gkLwCgK9h+3Boebxm+TeAa
+	uArMRWALHA3PKo09Cqo6z7u7OVGDNwfkVjzkOMYt/r6evFjuejEKNdYZIEqASqkuNwzRQV5Xd4y
+	L
+X-Google-Smtp-Source: AGHT+IE0M1tVNbSGH6P4H6A7BokfgioaPGrg79dTjBg1s3qdqWoF9FuBSbISRUuyZlebNkOM8fxysw==
+X-Received: by 2002:a05:6000:e81:b0:346:c0f6:8b6 with SMTP id dz1-20020a0560000e8100b00346c0f608b6mr9421964wrb.32.1713887674930;
+        Tue, 23 Apr 2024 08:54:34 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id y5-20020adfe6c5000000b003436cb45f7esm14854289wrm.90.2024.04.23.08.54.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 08:54:33 -0700 (PDT)
+Message-ID: <d1bf86bc-b561-47c6-999d-fb5e3c99663e@linaro.org>
+Date: Tue, 23 Apr 2024 17:54:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="i/ONzq50GI9VXLjz"
-Content-Disposition: inline
-In-Reply-To: <20240423072639.143450-2-joshua.yeong@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] thermal: loongson2: Add Loongson-2K0500 and
+ Loongson-2K2000 thermal support
+Content-Language: en-US
+To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
+ <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Yinbo Zhu <zhuyinbo@loongson.cn>, WANG Xuerui <git@xen0n.name>,
+ loongarch@lists.linux.dev
+References: <cover.1713837379.git.zhoubinbin@loongson.cn>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <cover.1713837379.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 23/04/2024 03:58, Binbin Zhou wrote:
+> Hi all:
+> 
+> This patchset introduce the Loongson-2K0500 and Loongson-2K2000
+> temperature sensors.
+> 
+> The temperature sensors of Loongson-2K series CPUs are similar, except
+> that the temperature reading method of the Loongson-2K2000 is
+> different.
+> 
+> Specifically, the temperature output register of the Loongson-2K2000 is
+> defined in the chip configuration domain. We need to define it in dts
+> and calculate it using different calculation methods.
+> 
+> Thanks.
+> 
+> ---
 
---i/ONzq50GI9VXLjz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks
 
-On Tue, Apr 23, 2024 at 03:26:38PM +0800, Joshua Yeong wrote:
-> +
-> +#include <asm/dma-noncoherent.h>
-> +
-> +#define STARLINK_CACHE_FLUSH_START_ADDR			0x0
-> +#define STARLINK_CACHE_FLUSH_END_ADDR			0x8
-> +#define STARLINK_CACHE_FLUSH_CTL			0x10
-> +#define STARLINK_CACHE_CACHE_ALIGN			0x40
-> +
-> +#define STARLINK_CACHE_ADDRESS_RANGE_MASK		GENMASK(39, 0)
-> +#define STARLINK_CACHE_FLUSH_CTL_MODE_MASK		GENMASK(2, 1)
-> +#define STARLINK_CACHE_FLUSH_CTL_ENABLE_MASK		BIT(0)
-> +
-> +#define STARLINK_CACHE_FLUSH_CTL_CLEAN_INVALIDATE	0
-> +#define STARLINK_CACHE_FLUSH_CTL_MAKE_INVALIDATE	1
-> +#define STARLINK_CACHE_FLUSH_CTL_CLEAN_SHARED		2
-> +#define STARLINK_CACHE_FLUSH_TIMEOUT_US			5000000
-> +
-> +struct starlink_cache_priv {
-> +	void __iomem *base_addr;
-> +};
-> +
-> +static struct starlink_cache_priv starlink_cache_priv;
-> +
-> +static void starlink_cache_flush_complete(void)
-> +{
-> +	volatile void __iomem *_ctl = starlink_cache_priv.base_addr +
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Why does this variable have an _ prefix?
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-> +                                      STARLINK_CACHE_FLUSH_CTL;
-
-This link only has spaces, it should be tabs + < 8 spaces.
-
-> +	u64 v;
-> +
-> +	if (readq_poll_timeout_atomic((_ctl), v,
-> +	    !(v & STARLINK_CACHE_FLUSH_CTL_ENABLE_MASK), 1,
-> +	    STARLINK_CACHE_FLUSH_TIMEOUT_US))
-> +		WARN(1, "StarFive Starlink cache flush operation timeout\n");
-> +}
-
-I'd fine this easier to read as:
-
-static void starlink_cache_flush_complete(void)
-{
-	volatile void __iomem *_ctl = starlink_cache_priv.base_addr +
-				      STARLINK_CACHE_FLUSH_CTL;
-	u64 v;
-	int ret;
-
-	ret = readq_poll_timeout_atomic(_ctl, v, !(v & STARLINK_CACHE_FLUSH_CTL_ENABLE_MASK),
-					STARLINK_CACHE_FLUSH_POLL_DELAY_US,
-					STARLINK_CACHE_FLUSH_TIMEOUT_US);
-	if (ret)
-		WARN(1, "StarFive Starlink cache flush operation timeout\n");
-}
-
-Cheers,
-Conor.
-
-
---i/ONzq50GI9VXLjz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifZsAAKCRB4tDGHoIJi
-0kwUAP9bkTUM8ATatR50WkFrHITbtXJUqI6lq/ynn3qCblRkwAD/UXOExyXwpn1X
-kW+/o0c8/SZKNz5wUqVXAWo0PcC+CQg=
-=gZdu
------END PGP SIGNATURE-----
-
---i/ONzq50GI9VXLjz--
 
