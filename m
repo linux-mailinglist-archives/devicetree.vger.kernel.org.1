@@ -1,82 +1,94 @@
-Return-Path: <devicetree+bounces-61945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A868AEB45
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:39:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79DB68AEB4E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 17:41:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A50991F21B80
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:39:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB85B1C224B6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 15:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DC513C817;
-	Tue, 23 Apr 2024 15:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8587013C9D2;
+	Tue, 23 Apr 2024 15:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XYgWBV7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99212136652;
-	Tue, 23 Apr 2024 15:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1A513C9C5;
+	Tue, 23 Apr 2024 15:41:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713886767; cv=none; b=qdjQEqeq1udG1XMouhXFw/eUchWoKpL6HC2hYKD2JZ36e5w15OQ2AatwUsAkSJfg0U1iZj26g7tr7IV3nmpSnBhKUa+/mHKHV5Db/Lt1Y9BT8FI4Gmm1Y5uojNIM+LGI3cG4smkVUEmtzFop8lCRSFRuSh5YWsv7ROkjtlkPNKw=
+	t=1713886897; cv=none; b=Fp6A93MiemDu3LLd/I9L6zq+WHQIpzEfWhNOP5pkZbujLCIGWhfNYfJ08q/aGhb/HiFwmTmleF5xJ0KqeqRgzUHMOe7/0JiHolOaKmo+F8CEEwdrNAm0vlwzIoBPXtLw5PqmeRcFGoKl9Tt22TgoNx5Is8XzD28e3CfiHL6StIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713886767; c=relaxed/simple;
-	bh=EtO6N+QrbNhbhs0KN/FYNqL+zuuZdE0DVI/R+Ug2GFo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o/mXr/akvQmnRM9WpooGVC/IfSzLDWtVY8pMTr2fCJfdxLhuLQFXXwNtaTJsrhTQd7/Y8S78yxiF3wwsxwq3+INa0J+PcSDa17HBiQZl/MrOT9rsov5Qc/Fy7wBHvAZg4zx7T5ypRiURQEW5EvWJ284TjFeOL0r6kM50+wI2yYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e861d9e.versanet.de ([94.134.29.158] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rzIEo-0007h9-3X; Tue, 23 Apr 2024 17:39:18 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Jing Luo <jing@jing.rocks>,
-	linux-rockchip@lists.infradead.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	sebastian.reichel@collabora.com,
-	jagan@edgeble.ai,
-	cfsworks@gmail.com,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: correct gpio_pwrctrl1 typos on rk3588(s) boards
-Date: Tue, 23 Apr 2024 17:39:15 +0200
-Message-Id: <171388674748.2655666.197923029393759084.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240420130355.639406-1-jing@jing.rocks>
-References: <20240420130355.639406-1-jing@jing.rocks>
+	s=arc-20240116; t=1713886897; c=relaxed/simple;
+	bh=OnUR5ZTH3ib/xsiRvY5RaBExyt2bYFtPkTTCfjWrMAg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oKY8t6vgnbxQfYl4jGs2i7AWD/xmIKcNqNxhFeA+XPysub+53eh3A7Vr8MR3qYjYOTuiU/M3EsdtJMpjQKL/ekCZQNDal2D6Rl+3YA4z4ZMAKYVwZPXCqxPcCrN7E3Z0XnrCvy/yG7SONbh4qowJy/lGilOKorW14gzZsfdMJrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XYgWBV7m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F4CC2BD11;
+	Tue, 23 Apr 2024 15:41:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713886896;
+	bh=OnUR5ZTH3ib/xsiRvY5RaBExyt2bYFtPkTTCfjWrMAg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XYgWBV7mbHOz6IiEf/2oGVM6dOLAgUp95qKZ0FXThv43HZCaYurXUVuPfVQUToy+x
+	 2D2NaLmd9J89DDEG8FBvHbcfvkwrJFTOO7YOR77PFIK7TArlllgIDJZ+VZLssU1V14
+	 tAQ7LZo6K9JtlbbvrsQX/5C0WoP5jkp0NCcFzaQ6b/pGo5ajDuth1v59215DDn0X0T
+	 UDuPLNjZsO0BwD/E4/Lplv3A314naJzdIZLcijPYFJ8xVsqybuuEfZokHoO0Yzapql
+	 g3d7ys4Ys81dCRsYyXeTPLEHU/Hwq/BQFKAMaEyYqxkEM1hh/5qgr3hWgHYVGb2g5b
+	 moHrTFuM1+NKQ==
+Date: Tue, 23 Apr 2024 16:41:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Joshua Yeong <joshua.yeong@starfivetech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	leyfoon.tan@starfivetech.com, jeeheng.sia@starfivetech.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: cache: Add docs for StarFive
+ Starlink cache controller
+Message-ID: <20240423-depravity-premium-b7ff778014f4@spud>
+References: <20240423072639.143450-1-joshua.yeong@starfivetech.com>
+ <20240423072639.143450-3-joshua.yeong@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dQ3vim3zqT9txeSW"
+Content-Disposition: inline
+In-Reply-To: <20240423072639.143450-3-joshua.yeong@starfivetech.com>
 
-On Sat, 20 Apr 2024 22:03:55 +0900, Jing Luo wrote:
-> gpio_pwrctrl2 gets duplicated by both rk806_dvs1_null and rk806_dvs2_null
-> gpio_pwrctrl1 is unset. This typo appears in multiple files. Let's fix them.
-> 
-> Note: I haven't had the chance to test them all because I don't own all
-> of these boards (obviously). Please test if it's needed.
-> 
-> 
-> [...]
 
-Applied, thanks!
+--dQ3vim3zqT9txeSW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1/1] arm64: dts: rockchip: correct gpio_pwrctrl1 typos on rk3588(s) boards
-      commit: d7f2039e5321636069baa77ef2f1e5d22cb69a88
+On Tue, Apr 23, 2024 at 03:26:39PM +0800, Joshua Yeong wrote:
+> Add DT binding documentation used by StarFive's
+> JH8100 SoC Starlink cache controller.
+>=20
+> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Other than Rob's bot's report, this looks alight to me.
+
+--dQ3vim3zqT9txeSW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZifWrAAKCRB4tDGHoIJi
+0l5CAQDJLOQk3+8wxytgri/eE0jyCXIMubVtypxaKKSI8743DAD8C9SYRFeHe69e
+JpFhPVut94uUmk15b1Kznlz61Lpd5QM=
+=5LcH
+-----END PGP SIGNATURE-----
+
+--dQ3vim3zqT9txeSW--
 
