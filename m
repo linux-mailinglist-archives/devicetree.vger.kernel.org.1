@@ -1,182 +1,155 @@
-Return-Path: <devicetree+bounces-61715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0818ADDD5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:53:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1DB8ADDE0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:54:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D1D91C21483
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:53:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE22F28122A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 06:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E502556E;
-	Tue, 23 Apr 2024 06:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EDD2575B;
+	Tue, 23 Apr 2024 06:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r7nI0ozn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0045B249F9;
-	Tue, 23 Apr 2024 06:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525DA24B28;
+	Tue, 23 Apr 2024 06:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713855223; cv=none; b=eeIfvWQGHB+pTjMQtwLrpgFfEpnS08D3wnDFNuAhCAyW3sCGeX0matmpUnuvs2pauKdHJGFfs4LifdAd+t92V787r6NUYUBCPPEw/mThGuuzacs8a76/Sizu8XyPW7Z8kjUy/BXJXC2ZjfD2DHmSDW4IYIKW392sNS6Vlz2wPwA=
+	t=1713855266; cv=none; b=VU5QAVIuoA6WqJYQUMHnsSk2nDja/LkU2hSA5TZLJx/zLR1nspkn5rh/og3T3K+vcCMXdU4f6SmZNUdpJMr5BijSKhI2Z+P106zk8NJdwMkzrEh8YzsJDLNof5yFFfU3ZmRNEtPe3lX7UJovw/xa+UlRZ8Sf6rny3JKE5PUhuCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713855223; c=relaxed/simple;
-	bh=IB24hhNHiq4eNMRwbY1E5hsdm8NutUn6FXOFJZvk3L8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t6jAeLisc52Ny9UtEOR2okJ3fThcNlZiYRMEEugsOBkEGhb2dnEARmOHclJ/+cBkrnVl5vw3L7R82Ari+kaeuJ2xxs14GCoOY896ixiQnf5e6ge3j+iATo1S4ped/hz4rq3JqNWkkXAPLWN7Fyf2B68LNrl9LOTsiu4ZpbrcNR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-618769020bcso56418407b3.3;
-        Mon, 22 Apr 2024 23:53:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713855219; x=1714460019;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GZ5EfW638x7TAtbwsyP2lwTKAYW7PkFolA3XCuVWREc=;
-        b=IvMzRmXSIdSDLTVJ+n7W/QxI4QP9Q025RpcKNt56t7Qww15baq/vtG8Gfyg+w107Oq
-         IwdSjaUgau87l/MTkeNEkVZSk7sKCht5EhIcwhdkXZXE71m32YI9S/UYyMgQ1Y950XTn
-         +tA/jo6BHGUuZaVtXnlzPzmwIxsVy0zlbC7Ob6j/9SrQjqaARvryWLCrWfVVQwLhzkgV
-         curBSQJIS3Ve/nVlKk6WtEgiSf48spAtMCYsY+kemNgtBSZPsL4L4hoR9mya/0yGv9+A
-         YteRgTdJfg7hvLy+Dp55AjqsEiAcr6CHmoc/aTB4pWKeInIRYb5O6GURLQeDu6xaM/7j
-         SUww==
-X-Forwarded-Encrypted: i=1; AJvYcCUFYk3tWuEiSI92V/TvS7o1Gj5YJPE0fJzgOZVJL3oh8XnR29RkV1TYNSynj82Wo2imKRFjXHhxFtcNmb+hQkAYyZRptiPYTLpXA6yCPmd1BdDaFe0k0PNsYf3Z4ZBtdCFUXJkFiX3TSUURMe/MiUl4rrmgnKiYc/1L8NuQF+AMIP7nPcEq72RQf/NExZV12U0IUFBqiLD+4pIOOvO0ODxP7ckVBR82
-X-Gm-Message-State: AOJu0Yw8gKZBmftpmiVxqz2PUMfKOSrfPxUrjbC4wSkqpIy7oU7466+4
-	aK6cqFQe6mZjd8fojUNCVAxmRIgObhbSaJMoa7RsYvo8gxcfrkj0Tsu4FIvN
-X-Google-Smtp-Source: AGHT+IGkf3p2iiW4ym9N8Q8DrtNkh9ztcDWLWg4vulScBDZxc1haKwbM82xVYBtYWDCrDwMpbavDVg==
-X-Received: by 2002:a05:690c:368e:b0:61b:111b:f0ba with SMTP id fu14-20020a05690c368e00b0061b111bf0bamr13390440ywb.36.1713855219218;
-        Mon, 22 Apr 2024 23:53:39 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id w63-20020a0dd442000000b0061ab76e5f4dsm2371068ywd.114.2024.04.22.23.53.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 23:53:39 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-de46da8ced2so5166250276.0;
-        Mon, 22 Apr 2024 23:53:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUJVX44UvwDtG737QpkBuk7zq8yOMUzA64maDhrzUFn4MdRa5OZ2AEtfZ6/8iBZRmd9+BRQqOQJfgw8IrZEepEiZtcDfNOfC3qslabAwQYPCA6xvE2R7kvuwAj9LGoKduZlsnfRe1/+Ig0sOcBCvsc61aCqUaVY1wWHV8wBKYodGcFNQe0IN+9wM4cn63Ddma/qZiBz3OqE5BaUD5DfUNxvZowzfYzW
-X-Received: by 2002:a25:f904:0:b0:dd0:c866:ec3a with SMTP id
- q4-20020a25f904000000b00dd0c866ec3amr1697417ybe.22.1713855218760; Mon, 22 Apr
- 2024 23:53:38 -0700 (PDT)
+	s=arc-20240116; t=1713855266; c=relaxed/simple;
+	bh=LgFa64X5wdZMZg0gaP1xBZQL/XQxGMGNZuY4jRygRw4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pE8q0uVmTnntDwp4Kt1SbbcPEvpXCWvF28NnreLcpH34iwwUVf9umcx0JG1lO/EyZb7mPR377x7JjWMsLCjVleLhAcGpgvYCoBEKjm24INmfPx7kTxVMdP8Ua9fKLzjBcFr/jIpBK1xiC7KL5NdP6d/zi7XpiZlzo/nc7Ru/UY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r7nI0ozn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE9DC2BD10;
+	Tue, 23 Apr 2024 06:54:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713855265;
+	bh=LgFa64X5wdZMZg0gaP1xBZQL/XQxGMGNZuY4jRygRw4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r7nI0ozn1hdOQh5bFitLbdeQvI/4qQgSR7dt7myQP8QStKw3ZPkSt92i/fhGRdD+t
+	 LnF/a6PpNcHCfPoKgu5pcBUWisLnbLNQWUlpjdDoGdXcZtC1Bcw9X/1esK5Tk6/uav
+	 B+l9cEOYCl2vs0i2Kb4ontM5jAlVWjCWCJu9KpmsLFKn9XsZT1b3NaDchWthTGxD+f
+	 37SJ9R0QkNFnCOvcfEojVb7Y8J4oPhTNFzSOflrQlaHmKsa6T8Rcxny1PPKZPT4d4A
+	 P7FpRFq2X8SvmUm4CwdEizRRGMJQiOe0K5Vz9CYKzaQ0PcVlkI8ti5SOql3sv3RWWt
+	 eRApzqyd3j85w==
+Message-ID: <7a43b05c-ca2e-4fa6-b1f9-cb1a12778da7@kernel.org>
+Date: Tue, 23 Apr 2024 08:54:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422213006.505576-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240422213006.505576-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240422213006.505576-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 23 Apr 2024 08:53:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUmSp1JTADtnsTqExssP1h1pQSLDeMd5NkC=uSXC+javA@mail.gmail.com>
-Message-ID: <CAMuHMdUmSp1JTADtnsTqExssP1h1pQSLDeMd5NkC=uSXC+javA@mail.gmail.com>
-Subject: Re: [PATCH 3/6] mmc: renesas_sdhi: Add compatible string for RZ/G2L
- family, RZ/G3S, and RZ/V2M SoCs
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: usb: uhci: convert to dt schema
+To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240422122125.455781-1-sheharyaar48@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240422122125.455781-1-sheharyaar48@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
+On 22/04/2024 14:21, Mohammad Shehar Yaar Tausif wrote:
+> Convert USB UHCI bindings to DT schema. Documenting aspeed compatibles
+> and missing properties. Adding aspeed/generic-uhci example and fix previous
+> incorrect example.
+> 
+> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
 
-On Mon, Apr 22, 2024 at 11:30=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> - RZ/G2UL and RZ/Five ("r9a07g043")
-> - RZ/G2L(C) ("r9a07g044")
-> - RZ/V2L ("r9a07g054")
-> - RZ/G3S ("r9a08g045")
-> - RZ/V2M ("r9a09g011")
->
-> The above SoCs have HS400 disabled and use fixed address mode. Add a
-> generic compatible 'renesas,rzg2l-sdhi' fallback string for these SoCs,
-> where fixed_addr_mode and hs400_disabled quirks are applied.
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: generic-uhci
+> +    then:
+> +      $ref: usb-hcd.yaml
 
-Thanks for your patch!
->
-> Note, 'renesas,sdhi-r9a09g011' is dropped as we will be using
-> 'renesas,rzg2l-sdhi' as a fallback string for RZ/V2M SoC.
+Nothing improved here.
 
-Doesn't that break backwards compatibility with existing DTBs?
+> +      required:
+> +        - clocks
 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/mmc/host/renesas_sdhi_internal_dmac.c b/drivers/mmc/=
-host/renesas_sdhi_internal_dmac.c
-> index 53d34c3eddce..1828c37e0198 100644
-> --- a/drivers/mmc/host/renesas_sdhi_internal_dmac.c
-> +++ b/drivers/mmc/host/renesas_sdhi_internal_dmac.c
-> @@ -210,7 +210,7 @@ static const struct renesas_sdhi_quirks sdhi_quirks_r=
-8a77990 =3D {
->         .manual_tap_correction =3D true,
->  };
->
-> -static const struct renesas_sdhi_quirks sdhi_quirks_r9a09g011 =3D {
-> +static const struct renesas_sdhi_quirks sdhi_quirks_rzg2l =3D {
->         .fixed_addr_mode =3D true,
->         .hs400_disabled =3D true,
->  };
-> @@ -255,9 +255,9 @@ static const struct renesas_sdhi_of_data_with_quirks =
-of_r8a77990_compatible =3D {
->         .quirks =3D &sdhi_quirks_r8a77990,
->  };
->
-> -static const struct renesas_sdhi_of_data_with_quirks of_r9a09g011_compat=
-ible =3D {
-> +static const struct renesas_sdhi_of_data_with_quirks of_rzg2l_compatible=
- =3D {
->         .of_data =3D &of_data_rcar_gen3,
-> -       .quirks =3D &sdhi_quirks_r9a09g011,
-> +       .quirks =3D &sdhi_quirks_rzg2l,
->  };
->
->  static const struct renesas_sdhi_of_data_with_quirks of_rcar_gen3_compat=
-ible =3D {
-> @@ -283,7 +283,7 @@ static const struct of_device_id renesas_sdhi_interna=
-l_dmac_of_match[] =3D {
->         { .compatible =3D "renesas,sdhi-r8a77970", .data =3D &of_r8a77970=
-_compatible, },
->         { .compatible =3D "renesas,sdhi-r8a77990", .data =3D &of_r8a77990=
-_compatible, },
->         { .compatible =3D "renesas,sdhi-r8a77995", .data =3D &of_rcar_gen=
-3_nohs400_compatible, },
-> -       { .compatible =3D "renesas,sdhi-r9a09g011", .data =3D &of_r9a09g0=
-11_compatible, },
+And this was not tested.
 
-Hence I think the above line should be kept, but changed to point
-to &of_rzg2l_compatible.
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    uhci@d8007b00 {
+> +        compatible = "platform-uhci";
 
-> +       { .compatible =3D "renesas,rzg2l-sdhi", .data =3D &of_rzg2l_compa=
-tible, },
->         { .compatible =3D "renesas,rcar-gen3-sdhi", .data =3D &of_rcar_ge=
-n3_compatible, },
->         { .compatible =3D "renesas,rcar-gen4-sdhi", .data =3D &of_rcar_ge=
-n3_compatible, },
->         {},
+What happened here? This is deprecated!
 
-Gr{oetje,eeting}s,
+> +        reg = <0xd8007b00 0x200>;
+> +        interrupts = <43>;
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Best regards,
+Krzysztof
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
