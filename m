@@ -1,197 +1,158 @@
-Return-Path: <devicetree+bounces-61736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2018ADFE8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:40:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 477308ADFEC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 10:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E246B1C21A59
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:40:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2D8F28225A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 08:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D51535D6;
-	Tue, 23 Apr 2024 08:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A9251037;
+	Tue, 23 Apr 2024 08:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GriJOJz/"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Yg3+oDS+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2105.outbound.protection.outlook.com [40.92.42.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1429B44C8F;
-	Tue, 23 Apr 2024 08:39:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713861599; cv=none; b=EfhnxzoU4H19h9z1tZof/SnlR/IxtSEpshVrWlsv6oQNcrdKhdk5O4wCbNrBJ3VEmljmTuBrbRWxyR/IrPQSnCB+78s0xNNs30eiUO71l+pVpdgCHyS3g3QtEVKXh8Rg4zOLWy3X4wnSie4mNxiIfyCKrHs+7uqM8ckizfVTl8Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713861599; c=relaxed/simple;
-	bh=1GAXvBfUdmcorOPFPYobTDf3jSQxvxmNWebVvkhe9iM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mx7h0oubmila7zOlpkBrsVR8XUCmZ5473flitrAPJ/lPVH+76Zaww+lpfLxRcHrdGmm25gA7RaBTH/Dvej5/bbHDQsl4tYTQdtxNhaZBOFNubPmyidD7aF29yOoeKWoTmj4ZeFy6ygj/lhlOr8N48BBMsasakOQLsAcscULJFOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GriJOJz/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EF03C116B1;
-	Tue, 23 Apr 2024 08:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713861598;
-	bh=1GAXvBfUdmcorOPFPYobTDf3jSQxvxmNWebVvkhe9iM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GriJOJz/zPb3DTyi67OOKC/rA3oFPFcV+Av1rmuzCsW56ZbpIInQkpInTRfJLDTQ9
-	 eeBz0KHPPLVFshq8JbBMxCew6IiBqoQ3dGy/e9GEeWW+zTYJtwcNpbP8cNbKNeHhwT
-	 V9exw0Adjf6YzLcJk+aApMbhbxfhLf7EqRGuQ5aJlFV2SRTNHl6i4kTda3QzMfgYW8
-	 /IYt0kErrIbgjUzxww3iJjDegKLgbZW3OZeUzJV5mQ/v3zpwXf1X6+nCJYa0iSaf5y
-	 LFmHQISZg2oZH/hL+J5MpWtPFl3ooRJxiLQ6ncowju+TKo4qYU/UKEUd7CmcMauKgd
-	 mg1DOh31vxNiQ==
-Message-ID: <5d8f8c79-5343-46b3-b706-e3eb541c6851@kernel.org>
-Date: Tue, 23 Apr 2024 10:39:54 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319F056B79;
+	Tue, 23 Apr 2024 08:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.105
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713861615; cv=fail; b=q4R+PicU/wW/GRnsJ4e435obIzXzLUDpYvhsGLtezD07azW+kc73b0ja4Mj9T2OUVMrVDkxi7YpUYzHH8OwM30F0nSA0Cj1FX8JlX7hlSVgSePmBjDeiBhTlgYW44JMQ9yg9y62hfedU7rCVAmJPef6GoxNnZHJEj+oqaUf+//4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713861615; c=relaxed/simple;
+	bh=9ecqAseZazkZOSp/DwoNVmlWLvP1iqroSQchSk8S6Ss=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pJiOVb2Qsm+w5jEQIcOb++AKDWr1N0ANyvHtKz/lm3EVHg+Qj+Z11QS46zZucFXy6tcjufiYOHxnXvCwmOepoGqAZctf3TLORoSjLTdx8nblHAQUPxukDCmewWqIX8MxSUri5/tN891ZCrhTSlFYtHEqudaLzmoDVuC8Ghl3/6g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Yg3+oDS+; arc=fail smtp.client-ip=40.92.42.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b1mMOT/cX09U3Uh+grUiFuYmbMe4zCmul/lJtpq8gXHvjCawRrpxipqLAomJVGgFrZRz0LKGkkgO8kMs2UijnAzIzzTxUnsKrSON0PvpwLW+vhwUchZ7GcmAjgPk5OykD+uIxXUEtS34MBNCKqkkahSvWkop71ovXpmnHQnP/uJD+LSZLPG6CowgovsI1UFgMktvXGwrx8zy6NfaprQtHgROvg3nzGmsU513OoYEf2u+mxF1cVbIf2AU5C9leTN+Z/Cec1qCdnS1uJNfcGCloWLlrF4C8QomSGyivWaZmF+OEXestoDeErtfGXbFyI0XhBOEVi6WmomhukrvpMEoMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QFSZ0vtxkwn16nyxP7zOjZRu5mD2GuA6Bfe08Gmsu50=;
+ b=cw7iaixiEWtxnIXv+Ykq82uEqgRIQ1Fl0cpqKGMQt7/qtNtLEyqeIysGqtcTg/WUGqRYNROOABdWbXlsOCa0Gdm078YHE8X7gdT0PLiFi2WAQqh0+brMJIuHrRKJZtcEhQ9XfZCQ+OUOyLuQ8uG3V4QBgl8DQhK8OwpfHvN3A2nI6sgONuNPl1aWdJnVhtDI2ssw9+R7bHq/2aoIFYaZMz7NAhiqDdnGMD9eCYL5Cvzk/O2w65zzrBJ1xtNKf6CGlnyW7S0J6DoBBhflxDb2RchuOyKd825inVywz7nMH8tY3STeWIKUtKcSWhJO/1b65pJZNVqL28M06MP5FrZwUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QFSZ0vtxkwn16nyxP7zOjZRu5mD2GuA6Bfe08Gmsu50=;
+ b=Yg3+oDS+Vd7zKYJ0w5kefXxCvhsTnV/p4irtXK/2san4dcuVxjfuJJErpRm58MfpTUNmEFLLp/CjJ01E7BGUDLU9Ok8Gt4yhDX5GJ5BCBf24T6oLdHvWUBKmKWQVB5Xwzzywm6q3VT7hexscKOoC1B1YM3iqQ85J9I+xfd/cLaC1bU6Gl/XmVBaFNlsS8Wz3/6GSqRhp5EXB3kt6xlybPvGiIJkp7SuZ5w+qI1NkyPqBhU7xKwVmZmdYXpHjKaznMvWSqZLvk8k2OgAUoz5htwa8M1AOTR4BI07DxyYbp/oGUqrKrVQi1qqiWJXpH2IkTJv7WCSBP7W4nQVWDOUqtA==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by MN2PR20MB3335.namprd20.prod.outlook.com (2603:10b6:208:265::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 08:40:11 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
+ 08:40:11 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Drew Fustini <dfustini@baylibre.com>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: sophgo: add reserved memory node for CV1800B
+Date: Tue, 23 Apr 2024 16:40:28 +0800
+Message-ID:
+ <IA1PR20MB49535871D139131CBC913036BB112@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <IA1PR20MB49531F274753B04A5547DB59BB052@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB49531F274753B04A5547DB59BB052@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-TMN: [IWhmVXR4aNR3H7qlrgSJGd+KDvij3eF6iHjzHsSeGjE=]
+X-ClientProxiedBy: KL1PR0401CA0024.apcprd04.prod.outlook.com
+ (2603:1096:820:e::11) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <171386151250.888417.16344348642120969607.b4-ty@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: usb: uhci: convert to dt schema
-To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240422122125.455781-1-sheharyaar48@gmail.com>
- <7a43b05c-ca2e-4fa6-b1f9-cb1a12778da7@kernel.org>
- <a97420fc-1fc3-4e85-9539-e1a74c711be0@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <a97420fc-1fc3-4e85-9539-e1a74c711be0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MN2PR20MB3335:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52e94995-7cbf-472d-4ea7-08dc6370fd07
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	0jY5PXmrAMa98EFNxkxFA3gwSn2HkdrJXBKphS5XPPg2stAn/5KOojiNKLEABGaTLS6s/kfIB/7PSE4mtJCGnGTs1HZ2/qRao/e29l0h5YYmQ8Y4h4E6ehslQLWfd6i1eg0GQB+vEaESNHcya2mfRpba3IsZNESTQPY6D0YaktFkmBq8kPhejiIj6EJ45kXUtAaCxZIGxv8hPPnFBO4oSbQX0UT7lE4j3qmyHp2hak5PqOMBdhZZu8WlWMzsWt8++KkfaPD3SJtqrxwpyGa0BA3vwZztCB2EC3RR1qD/HhuovHNdQZZ0rwv+fhMOKkFz4Zxs5w2oOx2jHL3ilwMCZS5QZvX9GxeleMZTXnIzqqLZ9tsOMDH0/zHdxs7lT9T5lS0dA57+CQK/4Z9nmklkA+QerdD6RAMs67i//0BKwqGbkEiGAwiX9xxRJQH5D+0sgrw4mJWV9FNbnMAv1Oc2QYZCmOyQPg5InmLCPgdk2pnDPZ/JVvrQH/FPYMxilmJDpCQEg61cDiGRDuhndSQ5QhLvGL2mYJXmgPdWCt1Q9zO12vTPSbN+q/zA1JuCFF0/JTRXSMHTmjB12DwOTZ08Bf35eamFshaTSC9c9uDf5h/upp6BRFDZrOCReypp8VadyB82IKWVXma81dKX7IvZ9EKO+6QVFv7GWjSVyzNfgepqC15+1qslddDP7/jwyWdR
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VFpXY3d2VnQ3aWhxOC9iTHhpK3JyNWFUSnpsblluYlgrSFJTbzJPRDdyOGlT?=
+ =?utf-8?B?dDZoWTZxVFFmK2tvbjkzaGd3em5ZOTBHNkxTRzBRM2oxckZRd3hKZnRiMGFt?=
+ =?utf-8?B?TDZxeXJ3Z1NpZDJ3bWFnRnk2cThZdzRuQ2NJM29aOUNpTVVnUmRNcTZuMmlS?=
+ =?utf-8?B?Q0NJcEFVSG9wcnVaQUVMeGFVM3RLdGNzVXV3TC9GeTdxM0RxWXpqYXZwOWlm?=
+ =?utf-8?B?WklsOXFVcmI2WThabUhtTHZQSW41NnB0TnNYb0xzbmhhdHlka1IwalZwVURr?=
+ =?utf-8?B?WTFvdi9mZUJZa3ZSSHNmSmhyR0tkQzVMd09XV09Qd3VXanVLYTBpdUxXK1hm?=
+ =?utf-8?B?UWNUcFFXaHNNSFJYdWlGSmNqcGpVMk5MUmNSYjM4WWw3RDFwdCtqbDl4Y2FC?=
+ =?utf-8?B?SnVMMFR2bjgzbXF4bzQwNXlnTy9oRXZzYVdMS3hLajlTTUJGYzJEa1dqeU5n?=
+ =?utf-8?B?dXV6dzJJZHRkZ3lXRVhGb2E0SW0yOTMyVkpoZTlDOW5Kb0ZYVjBnK05qaUlP?=
+ =?utf-8?B?bzlGU2drWlh1emVpeG9zdlREYUxMcEtnL2V4MGlESkRhSndKYVYvU0dDd1Ns?=
+ =?utf-8?B?ZWo4UUIxTlVpcnFXRk9TTHhkdlFja1VVSXhXWjcvQWNaR3FZeC81RWdQcEE4?=
+ =?utf-8?B?NW52cjVGWFpKVWdXWjBDeTkwbHdtUWNyMjJaRTdNQ05RWEF6NXRhbTlPTFJ1?=
+ =?utf-8?B?WUREYWpNdzdjMWcwSG5DR3ZwdytMQWNJTW80R0Q5emVFVlcrLzB3bEFNejJJ?=
+ =?utf-8?B?dzZxL2IvL0NsZ2JlMUYxTWt4LzBiMjhDb0VmbVhRSFdOdFZLRU8rT1pPMjB5?=
+ =?utf-8?B?c1pad053aEdMblhTRlNHcGJiakpwd3Bwd0F4Y3FMbzU4TjZhSHRvSmJTNkFJ?=
+ =?utf-8?B?UldRTUd2VEFnRDM3QXZzY0Y3SW5udzBYSlZVZzJnY3BQQVFzU0hkanZIUG9E?=
+ =?utf-8?B?RGxFRzcvRExLaHhJYnFhVWZuNSsyYThsVDc5Q0hJRWhFLzVtNFJkYXNiM2R1?=
+ =?utf-8?B?SzlERUNnMExyUVNjVXBjeWtjZlBYS1oxMkpVTHcyY2NKY0IweS96Q2psaDRD?=
+ =?utf-8?B?K2M4cWdDVVZkcStac29DUy9mb0NDVEZqcVBLTkZ3L2VXSDBSOFNDQlU2b3pp?=
+ =?utf-8?B?NmpxeG5laXRDR0Y1L3JUaEJpTmdjV2FjWTB6ZTRUcVh6TGtaZm5hSkdTYXdT?=
+ =?utf-8?B?OHUxQ1FVMVl0YjYrNHpyN09EeUFpTDVKVE5RQlAyaGk4RXJ6c2FPZ1VtTnM5?=
+ =?utf-8?B?NEZkdWF1bHE3bWJjcFJnOHlQMVpQRmliMFBHTHl3aWtlTWNPQ1hpZW9PRVpF?=
+ =?utf-8?B?c1NlYTVEZVhjRmdzVzdzYTU5d09EN3J5aDdkc05aVU1iSWk0VFpXRE4xN084?=
+ =?utf-8?B?VysvTUhXWU9jd2tSbG1naEloUU5sclg3ZHY0cTFZdnNBVXJCU3MveEl5QTRO?=
+ =?utf-8?B?R25zS2RmQ0dMa0NlRWEvQytnQWplNlBRcWNrc0hYeEl0YzNEM2lKaTNkWmta?=
+ =?utf-8?B?WjFQNzA4UzdGeXdnQ0t3cVo0VkVtZGs3R25jSkpSZjdmNUtSam8rNUNSckN6?=
+ =?utf-8?B?SjY4VElZN1B2c2x0Nk9WRlF2RzU2eHZ6RkVQdWF3TC9nQ1Bod1N6M2x0dFY5?=
+ =?utf-8?B?K2IxUXZ6MHJWZVpGaTZwbENRYjhUc3AyTnh5U3hBOWV1WXlVVUl5dTUvWVhO?=
+ =?utf-8?Q?2I1j+QFBqStsoWQqm1e+?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52e94995-7cbf-472d-4ea7-08dc6370fd07
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 08:40:11.4081
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR20MB3335
 
-On 23/04/2024 09:54, Mohammad Shehar Yaar Tausif wrote:
-> On 4/23/24 12:24 PM, Krzysztof Kozlowski wrote:
->> On 22/04/2024 14:21, Mohammad Shehar Yaar Tausif wrote:
->>> Convert USB UHCI bindings to DT schema. Documenting aspeed compatibles
->>> and missing properties. Adding aspeed/generic-uhci example and fix previous
->>> incorrect example.
->>>
->>> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
->>
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: generic-uhci
->>> +    then:
->>> +      $ref: usb-hcd.yaml
->>
->> Nothing improved here.
+On Thu, 11 Apr 2024 08:45:00 +0800, Inochi Amaoto wrote:
+> The original dts of CV1800B has a weird memory length as it
+> contains reserved memory for coprocessor. Make this area a
+> separate node so it can get the real memory length.
 > 
-> Sorry, I could not understand this, please guide me about the correction 
-> required here.
-> I added $ref inside the if-then block because it was raising errors when 
-> tested against
-> dts files that used "platform-uhci" as the compatible. Putting it above 
-> the if block did
-> not work.
-
-Where is it explained? The answer to such problem is not make bindings
-incorrect... I mean, the easiest to understand if you are doing
-something unusual is to check if you see such pattern. How many bindings
-reference other schema in if:then:? Is this common?
-
-
 > 
-> When I ref the usb-hcd.yaml, it also includes usb.yaml which requires 
-> the nodename to start with usb*,
 
-Yeah, because DTS should be fixed, not bindings made incorrect.
+Applied to sophgo/for-next, thanks!
 
-> but the dtsi that use the deprecated compatible 
-> (arch/arm/boot/dts/vt8500/wm8505.dtsi) have their nodename with
-> uhci*, which causes the tests to fail.
+[1/1] riscv: dts: sophgo: add reserved memory node for CV1800B
+      https://github.com/sophgo/linux/commit/1eba0b61be72506549e79dd11a132b5d73aed094
 
-So fix the DTS.
-
-> 
->>> +      required:
->>> +        - clocks
->>
->> And this was not tested.
->>> +
->>> +unevaluatedProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    uhci@d8007b00 {
->>> +        compatible = "platform-uhci";
->>
->> What happened here? This is deprecated!
-> 
-> The original example has the nodename as uhci* which causes the schema 
-> to fail as mentioned earlier.
-
-So the solution is to correct the name, not use deprecated compatible
-and incorrect name.
-
-> Should I just remove the example or should I rename the node here and 
-> add clock field to the original example ?
-
-I assume you understand the concept of bindings and went briefly through
-DT specification or some tutorials. So yes, you must fix the node name.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Best regards,
-Krzysztof
+Thanks,
+Inochi
 
 
