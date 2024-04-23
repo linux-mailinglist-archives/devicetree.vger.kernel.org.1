@@ -1,130 +1,127 @@
-Return-Path: <devicetree+bounces-61868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F148AE706
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7FBA8AE72C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:58:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C790CB26284
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:53:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D42BB22CB2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 12:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8867712DDB4;
-	Tue, 23 Apr 2024 12:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AFA12BF36;
+	Tue, 23 Apr 2024 12:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="STZkVB2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B4B84A20;
-	Tue, 23 Apr 2024 12:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B858986AE6
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 12:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713876673; cv=none; b=J0KuzuQ4DHwA2EYvHms8brR2Uf7ZNjPr/FjerA25pCNRyGlpcX1k3/AZZ5SLWAO0Cwoc3Fq5juWXeBdWehcF9Q/RE820xJK7t5UzIjuMTEiPoWzGSKvohw2p4TVD+MrBOFoMTaaeiuSPPreQ9nufOpGL9bsja7T9SqCg8ftEQCw=
+	t=1713877128; cv=none; b=NFdW1ILawp73qBS0OASP38Y/gILjeWQzWfk/mCINsLagpDxLOgFODf9f6kq4jXizrFMLgA5giqF1x/HM3YiWR2+yQfWxjRsF/JX+6ZcVPPOJp1jdP0pxoU63pnp4ZPZ6qbNfVYhpa2CkOn+ptq9R9R9T0sXx129SAe2SrQNaRmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713876673; c=relaxed/simple;
-	bh=2E6SRIyA73cjTpevRa1WmA6oQJTuq8bhZKn4jV3QIk8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cZlv/ctKIL1Zvu034O8J5lkVwoGWJjUxAQZnaQp5k+UKggRdscvWXQC+jbj6osIzuCcC4MXebTnRsypTjWF5yYcxybqg7ZpHH+IdckgknAqv7h/UOWx2tzIrq12Ipz5OCgGKAfV+AXq+qV/ma+oIszdBksOEcKos5MEkB65h6jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A4272339;
-	Tue, 23 Apr 2024 05:51:38 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D6E3B3F64C;
-	Tue, 23 Apr 2024 05:51:08 -0700 (PDT)
-Date: Tue, 23 Apr 2024 13:51:06 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Hans de Goede <hdegoede@redhat.com>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, James
- McGregor <jamcgregor@protonmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: input: sun4i-lradc-keys: Add H616
- compatible
-Message-ID: <20240423135106.02ab4473@donnerap.manchester.arm.com>
-In-Reply-To: <f2021c5d-25fa-4bdf-8f8c-b0bc271eb54e@linaro.org>
-References: <20240422164511.2488261-1-andre.przywara@arm.com>
-	<20240422164511.2488261-2-andre.przywara@arm.com>
-	<20240423111502.6e068887@donnerap.manchester.arm.com>
-	<f2021c5d-25fa-4bdf-8f8c-b0bc271eb54e@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1713877128; c=relaxed/simple;
+	bh=C38jNkPQIY9PbuFlXsBJRUbs0C33ZReaOCMWgYaSpZI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=k58jjb83nIVbES6/Uo1n3Osej+LYW+tB52eOICmTimDajIW0ICbhsRc816hyoArZtmvqfV1DHbxpHBKvs+kmB5e9DLCEaXxo5vCic4yz6F5ne3HTZN9KfygiAMlU08HlEVkTgreqx1sbdKeZKUnDgsbJir0qwFET74fzNW3GMUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=STZkVB2x; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-51aa6a8e49aso6146360e87.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 05:58:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713877124; x=1714481924; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=dfWMwHQIpw4zS3iFGNbv1FwxyBMpqPbqqndAtgdwOvo=;
+        b=STZkVB2xoG0zGbe9KBS4l7UH0vv9pJ3uqHQVktFP/nzt+wghIG27zyNGC56W9J9hmI
+         43DRQKtRQuosG2bct4YVMylVhh9nwYUWGUHEjKysZqPw/UHR0Uv92W6WkJ0VXYuc6Smt
+         BWaYwKmgUQqEtvxBpoVKqlqkHVk+h6/R8Wcg5q3JKvCZrO7Dt2NG9E9C1VGhlsxgHqtW
+         eM8gSV9mnZX/Wo+t5Y5LkTyZh04tvNZkxqBRol+vp/On7hTRtDhbhRnZ9Adk0t5xzTLP
+         eZCtyJhWnyfGsrra6IeeNbX8ocQs3AxL5W99M3RJo9TCZvLiWJFcoiJoH2DrkgU89iNR
+         HNNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713877124; x=1714481924;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dfWMwHQIpw4zS3iFGNbv1FwxyBMpqPbqqndAtgdwOvo=;
+        b=DWHbmNqt7DWkRIrvPNdWIpcSrCwhETX0G64qWR3YQ61TSmhvKJo9ak9BYLy3XrD+Iy
+         xiB2DzfP2IfmhedS0/ZHiUg1Myu7KOqsJ5aG91UbJNa23X6oB8rlxSFMdhU790BowbyV
+         yrrkkPP+MjJLAxYRFlPQX2qwD9qC443+SmQGXxtdAILx+Egzimuhyw4ISAUnqf3sXK1A
+         Ej+dqS2QcXZgj4IZ4AYbi9lx3umLYGquXonUHFVLdQwBkjO8hU3rmFpLssXW4yla0t80
+         zTRlOjgy8jo32ZL+DNnhEucB+4fPDVlVW5TC1Fp1UsKvKsGTogQk1M3RuV9cHQ5Ul2lK
+         tSSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVL77CUekffA5lzXRDvDGp4u/kIqEVdVr51AO4idwRWDi5sd07jpFJz2HMf7YReOF47WY+e3T3WtmtFunuIOowanLeUc/nAlpPErA==
+X-Gm-Message-State: AOJu0YwW9RWlaM6AG7rvG3c7aMHmDzDyPbzeCWDlwkI1fyPep2sSO61x
+	VucP8Diip0LPThdtKHNtv1Ply01E2RuDmI/4HQijU5qfFoKyxAod7Kp/RK5YajA=
+X-Google-Smtp-Source: AGHT+IHFPonFyfwcyDEJAcAqUSp9XGi8YlceLjdGzBOHf719wJg692YC5McvPpN7AvR2TgPu+w13Xw==
+X-Received: by 2002:a05:6512:3712:b0:516:c8e5:964e with SMTP id z18-20020a056512371200b00516c8e5964emr6801237lfr.21.1713877123745;
+        Tue, 23 Apr 2024 05:58:43 -0700 (PDT)
+Received: from [172.30.205.0] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id c12-20020ac2414c000000b0051ae53e9afbsm1148796lfi.92.2024.04.23.05.58.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 05:58:43 -0700 (PDT)
+Message-ID: <a7194edd-a2c8-46fc-bea1-f26b0960e535@linaro.org>
+Date: Tue, 23 Apr 2024 14:58:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 6/6] arm64: dts: qcom: ipq9574: Add icc provider
+ ability to gcc
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, djakov@kernel.org,
+ dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240418092305.2337429-1-quic_varada@quicinc.com>
+ <20240418092305.2337429-7-quic_varada@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240418092305.2337429-7-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Tue, 23 Apr 2024 14:18:23 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Hi,
 
-> On 23/04/2024 12:15, Andre Przywara wrote:
-> > On Mon, 22 Apr 2024 17:45:10 +0100
-> > Andre Przywara <andre.przywara@arm.com> wrote:
-> > 
-> > Hi,
-> >   
-> >> From: James McGregor <jamcgregor@protonmail.com>
-> >>
-> >> The Allwinner H616 SoC has an LRADC which is compatible with the
-> >> versions in existing SoCs.
-> >> Add a compatible string for H616, with the R329 fallback. This is the
-> >> same as the D1, so put them into an enum.
-> >>
-> >> Signed-off-by: James McGregor <jamcgregor@protonmail.com>
-> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>  
-> > 
-> > Compared the descriptions in the manual between the R392 and the H616, they
-> > look the same:
-> > 
-> > Reviewed-by: Andre Przywara <andre.przywara@arm.com>  
+On 4/18/24 11:23, Varadarajan Narayanan wrote:
+> IPQ SoCs dont involve RPM in managing NoC related clocks and
+> there is no NoC scaling. Linux itself handles these clocks.
+> However, these should not be exposed as just clocks and align
+> with other Qualcomm SoCs that handle these clocks from a
+> interconnect provider.
 > 
-> Why do you review your own patches? Does it mean that you contribute
-> code which you did not review before?
+> Hence include icc provider capability to the gcc node so that
+> peripherals can use the interconnect facility to enable these
+> clocks.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
 
-I just merely sent the code on behalf of James, because he had trouble
-with the email setup (Protonmail has no SMTP), but didn't want to delay
-the post any longer.
+If this is all you do to enable interconnect (which is not the case,
+as this patch only satisfies the bindings checker, the meaningful
+change happens in the previous patch) and nothing explodes, this is
+an apparent sign of your driver doing nothing.
 
-> This is odd process.
+The expected reaction to "enabling interconnect" without defining the
+required paths for your hardware would be a crash-on-sync_state, as all
+unused (from Linux's POV) resources ought to be shut down.
 
-I agree, I would have liked it more if James would have sent it himself,
-and then my review would look more natural, but with my review I
-wanted to explicitly point out the technical correctness. Besides: I found
-this ordering issue in the other patch only after sending, so needed to
-somehow respond anyway.
-Also I wanted to make the process transparent: someone posts a patch (in
-this case via a proxy), then it gets reviewed.
+Because you lack sync_state, the interconnects silently retain the state
+that they were left in (which is not deterministic), and that's precisely
+what we want to avoid.
 
-> Your Review is implied by sending the patch.
-
-Is that really true? I was under the impression that sending is
-independent from review. I mean I doubt that every maintainer sending
-patches up the chain (when they add their SoB) implies a *review*? Surely
-they do agree on the patch (also typically expressed by an Ack), otherwise
-they wouldn't send it, but a "review" is still a different thing.
-The Linux history has both Rb + SoB from the same person and just SoB
-signatures, so I assume that it's not implied.
-
-> And you have there SoB which indicates you sent it...
-
-Yes, but SoB just means I sign off on the legal aspects: that I got the
-patches legally, compliant with the GPL, and that I am fine with and
-allowed to release them under GPL conditions.
-That does not include any code review aspect, AFAICT.
-
-Happy to hear other opinions, but this is my interpretation.
-
-Cheers,
-Andre
+Konrad
 
