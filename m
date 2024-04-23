@@ -1,65 +1,75 @@
-Return-Path: <devicetree+bounces-61917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-61918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5368D8AE9D2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:48:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6F88AE9FA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 16:59:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 833B41C21D4A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:48:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 804A41C221D0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 14:59:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0A886252;
-	Tue, 23 Apr 2024 14:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C0313B7AB;
+	Tue, 23 Apr 2024 14:59:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="miK2/966"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="auyV/xM6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727508593A;
-	Tue, 23 Apr 2024 14:47:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2767D408
+	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 14:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713883675; cv=none; b=gjuNTMUNUuZbcxUkhRWBsjmDWIGC7E/eJnJhkFarRS6HZVZzDXfmS8zSyC/A41OlkZoxvj0KlRTC7TO6dNDkSpJCsyRfuATXN7mGZnb3UKGPyTWURMi1axuCdhadVXLDeTtMe0zHZ4WVBDdz7jgtvduoeYtK9Abj863TFfhQQtI=
+	t=1713884377; cv=none; b=B2d1uelcGxlZZy2ggqYr5XIqRbauZnQXQA5zw9UPKkfDUw/ZXh1e3VI8XJIMDEuU2O1kCKrpZywE1mpP2TceSP5jcvs1y+RRJfPBeEqdzxWfmjKBdCnCzDFu8QnBcSK0s118dykuppnPVZLei3o+Sj25UUI6rUwAAzVuZIj/QGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713883675; c=relaxed/simple;
-	bh=KbeP9FpbZs/zotQl9j7iRdG5MtyUxbPN6+XNceuQL5g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=slWTqYcV71u84X/kIm+z6njCeX8JoLrpoND0l6+Qke8mY1ScNm31MGdGYRPgckLn4AmuxQmSut3F3WusmS3XCWs/ayLjxOwvhf54x4kfBxgjk8n1oMf5/1QBTxe+ecquQ0uhf0reptTYuu6i/fDrfC423IP96CmLdMEDpdlZ8BQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=miK2/966; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43ND6DeN029735;
-	Tue, 23 Apr 2024 16:47:40 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=tsJ3O9D5pmdcFP8aKelU9b9B12GbBogw1A8qeP8d7fU=; b=mi
-	K2/9667VUERmzU2kC2m6eT0JPhU/vPE5POVystv72OjeoVs0OUxykrpdZpcJKHJA
-	i9srr2let0ZDydK5fY2jjxVNCjv1Jw4PBzTZhiH2dic2QvXIX3ejP6pN9585HyMk
-	gel1ZgTd5oPw/crxJ8iD9PDFiS0wDSlqkKZo12bPh+rkbNzi7ZFGvrL6OS5zr0iJ
-	ESTEUcj90Amq5fPCsSqCjEsjanNRPUA8tw3q94/gdjNoKI/g9onuf9iiPl88C8Ti
-	ovFrwG/8hFVRg5192XIaiLni8RK0O6z84I6JwkqoEsGseePZluRWLeeFE03q6P/i
-	nxliQfiePYWMS2S7TAWQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xmq90j1m9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Apr 2024 16:47:40 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6586940044;
-	Tue, 23 Apr 2024 16:47:35 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 88B6A2085D9;
-	Tue, 23 Apr 2024 16:46:45 +0200 (CEST)
-Received: from [10.48.86.143] (10.48.86.143) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 23 Apr
- 2024 16:46:44 +0200
-Message-ID: <19d55a2c-791a-4681-96ca-eb1137913e94@foss.st.com>
-Date: Tue, 23 Apr 2024 16:46:44 +0200
+	s=arc-20240116; t=1713884377; c=relaxed/simple;
+	bh=QouSukckyfgBKXDrWVjXbQQdsZEvjQ5swskjuKrz8ts=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C1my1uN75BLpEQ9nZEFd/ORPz0TKCBwsMOnJ+luSl+mWGL2u7gHC6LtMsOZxVi0YFOIhaEvxa2eth7AvMlXXvbP5e2vhPdtRodCR8FjEK4+UmOyRAAsbif1xrrCIkEbZ6khGzXexdiF6ycb8+CXQ+AyIZytb1ETe6bUYj77LULI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=auyV/xM6; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-41a7820620dso15130245e9.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 07:59:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713884374; x=1714489174; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=hNylIFVf8XBh22EaEBaD06CJe6GjUGn3xRATV9jc2go=;
+        b=auyV/xM6N8Ai7sxsiuPkXL/2oLZjCS769Xjb0HMrsEg+cFv9QR27+3YWV8pEzOyxqL
+         l2Y81bGU+8KZqjBmWAtOSNDRx6y9LhtY0wP/7C6YO/hDBZqD9ksyvtAeyudhEl+Jy8CQ
+         +BDkdU/vP/Id5XHTT5zbB6w4ySbOk0QftcgebX8ulRip1tHdaxg/nEkxjW6ryWXR5/nj
+         xxxjsBd0nbFqv9pxZuxaosL8XDAMpt9kS0tmSRm7v5GZTFe1kyaEdd2JhWtMw6F9QJ0v
+         hM8dgjksvZvoT/PCIfn8s6oUJ7B9x7LRDw3Jq9Gx/4++LjZC35VLNwJqTCTBGKTdPoj8
+         eOOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713884374; x=1714489174;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hNylIFVf8XBh22EaEBaD06CJe6GjUGn3xRATV9jc2go=;
+        b=MjNPEtcSQyr0ZpOJRQ5HNrOWaFEoGIEY0sxTSM+JT6IW1cJ67vB9vHaB2cu3ng2UZz
+         Lwt7c3oCfEm6B1cpBuxHep7vO/wdJqAlORR1UR85vKVgr4fMoCUoWrDAsz5NXPYLJg1R
+         pwq/cqG6e/MXSSzJLNczmsstbzLic+rt0Em9frsinGBuDkrwY4sTukRG4+uobyZKj5iS
+         AbSQRNaWsoIVpGn+6W9eVyWuhq3EaAwQviddYsZOo4PHY0CDKFRvEWQBRGsFSyOJmdf0
+         y33C7hm40JYaB9il9OntXmTmtTgUybDfD1LRl7Bbc9RQWODhQCoGSK0Bp3cyS0mwAC+e
+         Z5Ag==
+X-Forwarded-Encrypted: i=1; AJvYcCXRkLGNHqyXvEHvNBN2LW0KQq8o6Jjta8AFy5UCSoKXIMxRi+KPLvSAlMIXFFqKk29Z/Ypuv0xxoqM3boJnOcKUG745/1dTLbqQ0A==
+X-Gm-Message-State: AOJu0YxwrcYiV2uVr/p/3RHbKW1bOsumCcow+lr+U6uGQW5YRYHrAGIX
+	Z6IOu39wCVoUb20ML6/skaGEFfVzhaDwE6oMG5oqL5gQvc9truoEwKEj66q2PBY=
+X-Google-Smtp-Source: AGHT+IGWn/XnbjiN94q6KClBXQXuqeRES3TOlOesdyrN+8tE6QbyFe9XIYfTTlzKjhVTpRxyt7/c6w==
+X-Received: by 2002:a05:600c:1988:b0:418:bbb6:95b3 with SMTP id t8-20020a05600c198800b00418bbb695b3mr10055130wmq.0.1713884373801;
+        Tue, 23 Apr 2024 07:59:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id r16-20020a5d6950000000b003477d26736dsm14797515wrw.94.2024.04.23.07.59.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 07:59:33 -0700 (PDT)
+Message-ID: <1714205b-39cf-4803-b251-a35f6b9ab3e9@linaro.org>
+Date: Tue, 23 Apr 2024 16:59:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,82 +77,187 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] dt-bindings: dma: New directory for STM32 DMA
- controllers bindings
-To: Rob Herring <robh@kernel.org>
-CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Vinod Koul <vkoul@kernel.org>, <linux-hardening@vger.kernel.org>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20240423123302.1550592-1-amelie.delaunay@foss.st.com>
- <20240423123302.1550592-2-amelie.delaunay@foss.st.com>
- <171388024017.101826.4338039717721212935.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: input: sun4i-lradc-keys: Add H616
+ compatible
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Hans de Goede <hdegoede@redhat.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, James McGregor <jamcgregor@protonmail.com>
+References: <20240422164511.2488261-1-andre.przywara@arm.com>
+ <20240422164511.2488261-2-andre.przywara@arm.com>
+ <20240423111502.6e068887@donnerap.manchester.arm.com>
+ <f2021c5d-25fa-4bdf-8f8c-b0bc271eb54e@linaro.org>
+ <20240423135106.02ab4473@donnerap.manchester.arm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <171388024017.101826.4338039717721212935.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240423135106.02ab4473@donnerap.manchester.arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-23_12,2024-04-23_02,2023-05-22_02
 
-Hi Rob,
-
-On 4/23/24 15:50, Rob Herring wrote:
+On 23/04/2024 14:51, Andre Przywara wrote:
+> On Tue, 23 Apr 2024 14:18:23 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> On Tue, 23 Apr 2024 14:32:51 +0200, Amelie Delaunay wrote:
->> Gather the STM32 DMA controllers bindings under ./dma/stm32/
+> Hi,
+> 
+>> On 23/04/2024 12:15, Andre Przywara wrote:
+>>> On Mon, 22 Apr 2024 17:45:10 +0100
+>>> Andre Przywara <andre.przywara@arm.com> wrote:
+>>>
+>>> Hi,
+>>>   
+>>>> From: James McGregor <jamcgregor@protonmail.com>
+>>>>
+>>>> The Allwinner H616 SoC has an LRADC which is compatible with the
+>>>> versions in existing SoCs.
+>>>> Add a compatible string for H616, with the R329 fallback. This is the
+>>>> same as the D1, so put them into an enum.
+>>>>
+>>>> Signed-off-by: James McGregor <jamcgregor@protonmail.com>
+>>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>  
+>>>
+>>> Compared the descriptions in the manual between the R392 and the H616, they
+>>> look the same:
+>>>
+>>> Reviewed-by: Andre Przywara <andre.przywara@arm.com>  
 >>
->> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
->> ---
->>   .../devicetree/bindings/dma/{ => stm32}/st,stm32-dma.yaml     | 4 ++--
->>   .../devicetree/bindings/dma/{ => stm32}/st,stm32-dmamux.yaml  | 4 ++--
->>   .../devicetree/bindings/dma/{ => stm32}/st,stm32-mdma.yaml    | 4 ++--
->>   3 files changed, 6 insertions(+), 6 deletions(-)
->>   rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-dma.yaml (97%)
->>   rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-dmamux.yaml (89%)
->>   rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-mdma.yaml (96%)
->>
+>> Why do you review your own patches? Does it mean that you contribute
+>> code which you did not review before?
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> 
-> 
-> doc reference errors (make refcheckdocs):
-> Warning: Documentation/devicetree/bindings/spi/st,stm32-spi.yaml references a file that doesn't exist: Documentation/devicetree/bindings/dma/st,stm32-dma.yaml
-> Documentation/devicetree/bindings/spi/st,stm32-spi.yaml: Documentation/devicetree/bindings/dma/st,stm32-dma.yaml
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240423123302.1550592-2-amelie.delaunay@foss.st.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+> I just merely sent the code on behalf of James, because he had trouble
+> with the email setup (Protonmail has no SMTP), but didn't want to delay
+> the post any longer.
 
-Indeed. I'll wait for reviews of the whole series before sending a v2 
-fixing this warning.
+OK, thanks, I suggest using b4 relay in the future.
 
-Regards,
-Amelie
+> 
+>> This is odd process.
+> 
+> I agree, I would have liked it more if James would have sent it himself,
+> and then my review would look more natural, but with my review I
+> wanted to explicitly point out the technical correctness. Besides: I found
+> this ordering issue in the other patch only after sending, so needed to
+> somehow respond anyway.
+> Also I wanted to make the process transparent: someone posts a patch (in
+> this case via a proxy), then it gets reviewed.
+> 
+>> Your Review is implied by sending the patch.
+> 
+> Is that really true? I was under the impression that sending is
+
+For authorship, both tested and review are implied. You cannot send code
+which you do not think is correct, therefore your authorship fulfills
+entire Reviewer's statement of oversight. There is nothing new said in
+statement of oversight comparing to what authorship says.
+
+Now for testing, I think it is also kind of obvious that whenever we can
+test our own code, we test it.
+
+For sending other people patches, we could disagree. I stand that I
+would not ever send incorrect patch intentionally. Therefore reviewer's
+statement of oversight is entirely redundant as well. I just cannot send
+someone's patch without reviewing, thus without adhering to points
+expressed by statement of oversight.
+
+> independent from review. I mean I doubt that every maintainer sending
+> patches up the chain (when they add their SoB) implies a *review*? Surely
+
+Yes, every. This applies to mass-maintainers, like netdev, Greg, Andrew etc.
+
+Every patch I apply to my subsystems is reviewed by me. I cannot do
+else, because that is the requirement of maintainership.
+
+There are however maintainers (see i2c patches or Intel DRM) who accept
+patches and do not review them. When they review, they provide
+additional Rb tag + Sob. This is weird because it means when they accept
+patch, they take it unreviewed! Their SoB does not imply reviewing patch
+and this is in contrast to kernel process.
+
+BTW, Stephen Rothwell mentions this to every maintainer on adding their
+tree to linux-next ("You will need to ensure that ... reviewed by you
+(or another maintainer of your subsystem tree)").
+
+
+> they do agree on the patch (also typically expressed by an Ack), otherwise
+> they wouldn't send it, but a "review" is still a different thing.
+
+IMO, this would mean such maintainers accept code which they do not
+understand/review/care. They are just patch juggling monkeys who take
+something and push it further without doing actual work.
+
+That's not how maintainership should look like. Maintainer must take
+reviewed code and, if other maintainers do not review, then they must
+perform it.
+
+> The Linux history has both Rb + SoB from the same person and just SoB
+> signatures, so I assume that it's not implied.
+
+It depends on people. As I said, I2C and DRM provide Review tag. For me
+this is silly and suggest that all my work, that 1000 patches I took,
+was not reviewed.
+
+> 
+>> And you have there SoB which indicates you sent it...
+> 
+> Yes, but SoB just means I sign off on the legal aspects: that I got the
+> patches legally, compliant with the GPL, and that I am fine with and
+> allowed to release them under GPL conditions.
+> That does not include any code review aspect, AFAICT.
+
+So you want to say, that you are fine in sending intentionally buggy
+code, knowingly incorrect, because your SoB and your "git send-email"
+does not mean you reviewed it?
+
+Best regards,
+Krzysztof
+
 
