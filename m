@@ -1,199 +1,188 @@
-Return-Path: <devicetree+bounces-62510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF318B1643
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:37:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6D18B1647
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:40:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A854F284E06
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:37:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A3C71C21FD8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B555516DED7;
-	Wed, 24 Apr 2024 22:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4696216E86A;
+	Wed, 24 Apr 2024 22:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="xJ+Lt+/X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJWxc5b6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ADBA1EA80
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867EA16DEC1;
+	Wed, 24 Apr 2024 22:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713998248; cv=none; b=BMZmLqOFa1tRIWYfmYQmwxBX0U0/k6or9hNwr0iv5w2D7IUGXy9llpQe+ChCURpYr6FeFfpdU79//RwHoB+NSzpo6/2luKvE8hUKrYdTysg3nZGkJlOejX/ps5dBbcQUN17tA5PQoWCNexsDbPBeeYAU6lcJGEQt7YYpVbzQSeI=
+	t=1713998436; cv=none; b=VRsTaSmb4QDWQ7fusn2rK3eVpgLg10qrRMt4Xgg/7kMe8SCJN9sDOJ2TPn6KHhq5xyn1lxo7P0odPRqekfpKMLTADLZ2MN9u47eO5+1eG6yQz1XHUIHI8r3YSCVSOovyy94isCLaAYA1SzJOm9cLPDUpoybh/NJrqpJ1aW4BnBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713998248; c=relaxed/simple;
-	bh=qVRTzUA+MWdKY71cY09kaWnQVDV6+oWl0Dkhha0WLr4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uC89MKsOAAuQYuw0uWEIPQ0QK+ctI6OuvgTvxu0t3J+3Rq7SXZ+kq0sLiO0k42vIZvfilLnwiQyB24g1XhKqyg4io52K/vR8YE9g5XaWL31MqZFLQTuGZFzI3JKWjVZ9bfYHlBj0g7XphAQ1Ww/IlTQny4ZIee4+OPp1KsT1t+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=xJ+Lt+/X; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-5c66b093b86so1152768a12.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:37:26 -0700 (PDT)
+	s=arc-20240116; t=1713998436; c=relaxed/simple;
+	bh=yWTu+Ro0Q8pXAF+ytfHMy/NERfiA3bEuy3YTsdlZPSE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vrul4Z0oRWc5q/KbAtDDv2hQQ6E2tvrDCVZA9rZ518VAW61EUphai++03HT8c8eeutfJMVsvAqGsFZVBUW0F1QrZUICXccZSqhuQ+abiMLmh6iaMv17KAJ6tWS2Q4xqw+smTMkndEYNi6/nfHa0Xi4KweyfCcUaiMoXcEGkqWfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJWxc5b6; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3c70b652154so309327b6e.2;
+        Wed, 24 Apr 2024 15:40:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713998245; x=1714603045; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aO8Rp7JUgS7Xhpz5uMrLG4WHnD0bm/FTRd8cK1NaJfI=;
-        b=xJ+Lt+/X6MMZ5Q/Sut655bxWSIaz7RYlmkWVsX8IL4gr0y2D6XDI0AHBKu7H8Kzn/0
-         Qjcjkx96mOlaHi/tJYvCXC6kDKFCnsc81WArKY+aB6kaYvgpzLw9Oos9p6g9J2Jj9rvW
-         VgfQ8ywAvLxVBj+VSiWyI56uuFalTXq6TZ01TUlnahI/yImgBsjSuZscuFfftAKdGr1L
-         NUrKrgQ2uTtM1NSqeUwrRNfSxR7KSMvDTaGHBGiPimJSS5a7HgudZxiLiF6aMCGS8yH0
-         Pv9MNz4IoYNSmUR2N0hIDmjY7YVnzdghnvJtdbTXj7SkYnv27/fBIlq95kdrxJDU87Uh
-         tPvQ==
+        d=gmail.com; s=20230601; t=1713998433; x=1714603233; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=i9ydyggHonmZTeHDmQ1TqtlgRqFlGkx0UVffasxxkZE=;
+        b=HJWxc5b6iqytC6Lz/EqFVVosVhUCZ/41ylml3lYcJ21oPUxE4d/k5zeKRZgBGvSdV1
+         rqAvAWyH6j2iz/Z0PO0ByWXSy+xOPNeg0/R5vFcqOkg97LlYLgLccO7u1oM+eXENzWTW
+         o6puj0miTH8wH07AKyF6bGu7Q3z030NN9s+9lkztcTG3xAETCEKIUaksum9JDmyd7IFe
+         m24VsUzvErOr495PZcEwZvO+fzkB8v1w5Wt8WiS7BH+UC9Shvr8PKpUYsZJn2Maeroo6
+         D2q//b4EOPIT2OUJ03oRxrX9pVKOVmbj9KrIGt6iHVa2SY/oYk74YPE4IKwYYlGu6YJb
+         qy3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713998245; x=1714603045;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aO8Rp7JUgS7Xhpz5uMrLG4WHnD0bm/FTRd8cK1NaJfI=;
-        b=BWvf26LEKG6xb5iAOfcnTNNlwLkivv9Peiqjy5FM++QvOiV4N3CNeToweuKaoZxOU/
-         Z/K/+pD0ETQ6ZNBlPrFOJNXgp9vuoXxzEtCU4WxHdpu8k6lEpzalfvpQ+ctyV+4VvMhe
-         MILm6LEMt0DY7ZIYYfNkIto0qkbDWX47EmmFTuXq2Ht36Cck4JF8AMFQ4yy8LI46PFWp
-         EhUyzEE06ie1Mngc5OBEbWKLb+5zGwj0K8JO4oyo1ztxm8aCqeeIwyDUPxKsNjBgVYgL
-         Y78t4AxQAWVJ9hMNAK9727kjebLChX01R65JvRheS2LhN+ig2uNOCtOGwONtMrzgMigZ
-         U91w==
-X-Forwarded-Encrypted: i=1; AJvYcCXebyt1N1O8NB2gFqtNeoXYXbI9OgBEZc15a9DjDgSTpb+eDL97zQOvuaqAoxMFdllpQNEbqR6WV4lr+PW2jUgKOStO6todUHTnRQ==
-X-Gm-Message-State: AOJu0YxTg5e1btizDwtAUZCC6WjAmyq1z4OX1vB09n9ioSwwEmPjIrRg
-	mEbcRYwlNJSQVQRG+/30P7XPR5LpStkJxQ8HqjFdFCctpJGg9JbpjbrPjd4eSg0eVi6i4BV53V8
-	dcbA2uYYTwou+EEYCxKSJaqNj5VxKh8g7XPJBbQ==
-X-Google-Smtp-Source: AGHT+IGBdslP8DSVdWf46pAwH3oTFPa/IfzzcphPEMB4ixOB3ZSquD8oJqVuF7a4MYQGJ/zf/PV3za+kxLsvBdn4cjU=
-X-Received: by 2002:a17:90b:4d8d:b0:2af:c3ea:8122 with SMTP id
- oj13-20020a17090b4d8d00b002afc3ea8122mr338008pjb.7.1713998245527; Wed, 24 Apr
- 2024 15:37:25 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713998433; x=1714603233;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i9ydyggHonmZTeHDmQ1TqtlgRqFlGkx0UVffasxxkZE=;
+        b=Rvfv8Qkc3p/hWXiYIZ7y15Px5tPoZc7VEa2tnt+q0Nn1OurmzI3sapcKQ8PRko+zD7
+         Ljttq2CFwdJn/lOSJ8NGEzDhgBxEyDiy+Zf56La/OP1wR2jugU+ijOKBCKUDSv4Omkmc
+         Qz/TkpZry/CAH/dbNapz2PP3rfqMbNPWlq72eHzDX4QZ+/XPdanqCm/3M66ace41vHPr
+         6ydQFaFpiRwAn40cCF1T4p7xnaz8A2bTpqD9RsELZIamoL7WAIDQqz7wj6S3Zqm1ZYwp
+         uSBfLX0G/yDKEdaFHm1DhyETrvW9P8j6hSS5O6f47hh1f/ZCWcY7yKGrrZY0rlJ1V+bV
+         rTwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUp9Q08PTOTYclYRz9IAALiGLuaQJLCVExD4AJ43cBNGahL+Cerd0alY6WpSo93fBa+5+gQmwPThuFwDGcQPO+nDyDNEHKYHJDS+Q==
+X-Gm-Message-State: AOJu0YySsL98fgYc5N1i22bTGI/ziAd8C9N54Xz4fV+rP2JiSYbdGOeX
+	gwsn8DKtSHAh7zdtQJE1jMfRGqm/he3uJrVQRwH4hqq+qDGYeOoIAjTlNw==
+X-Google-Smtp-Source: AGHT+IFOVc8IW1H5hORIApL5jVVXT+BkCpW2raxwe+1njGBDv4NUi2qUNiDcTVh8Dbdg3IQb/9a5Cw==
+X-Received: by 2002:a05:6808:bcc:b0:3c7:351f:b3ff with SMTP id o12-20020a0568080bcc00b003c7351fb3ffmr4962364oik.14.1713998433520;
+        Wed, 24 Apr 2024 15:40:33 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 192-20020a6301c9000000b0060795a08227sm1200573pgb.37.2024.04.24.15.40.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 15:40:32 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b717da30-1d4c-4e09-b98c-4aa41a235234@roeck-us.net>
+Date: Wed, 24 Apr 2024 15:40:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1713456597.git.tjeznach@rivosinc.com> <c37cb93e7baa7042a3f82130bf30be6831b558dc.1713456598.git.tjeznach@rivosinc.com>
- <20240418-approach-liquefy-04551ddefbc4@spud>
-In-Reply-To: <20240418-approach-liquefy-04551ddefbc4@spud>
-From: Tomasz Jeznach <tjeznach@rivosinc.com>
-Date: Wed, 24 Apr 2024 15:37:14 -0700
-Message-ID: <CAH2o1u7_v=_GX5cnV5X14jggTycRTvGEJ1r_9tqtb-xgk=LEkA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: iommu: riscv: Add bindings for RISC-V IOMMU
-To: Conor Dooley <conor@kernel.org>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux@rivosinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document target-pwm
+ property
+To: Rob Herring <robh@kernel.org>, Peter Korsgaard <peter@korsgaard.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20240424090453.2292185-1-peter@korsgaard.com>
+ <20240424220417.GA782554-robh@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240424220417.GA782554-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 18, 2024 at 10:04=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Thu, Apr 18, 2024 at 09:32:19AM -0700, Tomasz Jeznach wrote:
-> > Add bindings for the RISC-V IOMMU device drivers.
-> >
-> > Co-developed-by: Anup Patel <apatel@ventanamicro.com>
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
-> > ---
-> >  .../bindings/iommu/riscv,iommu.yaml           | 149 ++++++++++++++++++
-> >  MAINTAINERS                                   |   7 +
-> >  2 files changed, 156 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iommu/riscv,iommu=
-.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml b=
-/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > new file mode 100644
-> > index 000000000000..d6522ddd43fa
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > @@ -0,0 +1,149 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iommu/riscv,iommu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V IOMMU Architecture Implementation
-> > +
-> > +maintainers:
-> > +  - Tomasz Jeznach <tjeznach@rivosinc.com>
-> > +
-> > +description: |+
->
-> FYI, the + here is probably not needed.
->
-> > +  The RISC-V IOMMU provides memory address translation and isolation f=
-or
-> > +  input and output devices, supporting per-device translation context,
-> > +  shared process address spaces including the ATS and PRI components o=
-f
-> > +  the PCIe specification, two stage address translation and MSI remapp=
-ing.
-> > +  It supports identical translation table format to the RISC-V address
-> > +  translation tables with page level access and protection attributes.
-> > +  Hardware uses in-memory command and fault reporting queues with wire=
-d
-> > +  interrupt or MSI notifications.
-> > +
-> > +  Visit https://github.com/riscv-non-isa/riscv-iommu for more details.
-> > +
-> > +  For information on assigning RISC-V IOMMU to its peripheral devices,
-> > +  see generic IOMMU bindings.
-> > +
-> > +properties:
-> > +  # For PCIe IOMMU hardware compatible property should contain the ven=
-dor
-> > +  # and device ID according to the PCI Bus Binding specification.
-> > +  # Since PCI provides built-in identification methods, compatible is =
-not
-> > +  # actually required. For non-PCIe hardware implementations 'riscv,io=
-mmu'
-> > +  # should be specified along with 'reg' property providing MMIO locat=
-ion.
->
-> I dunno, I'd like to see soc-specific compatibles for implementations of
-> the RISC-V IOMMU. If you need a DT compatible for use in QEMU, I'd
-> suggest doing what was done for the aplic and having a dedicated
-> compatible for that and disallow having "riscv,iommu" in isolation.
->
+On 4/24/24 15:04, Rob Herring wrote:
+> On Wed, Apr 24, 2024 at 11:04:52AM +0200, Peter Korsgaard wrote:
+>> Similar to target-rpm from fan-common.yaml but for the PWM setting
+>> (0..255).
+> 
+> IIRC, we have a map of RPMs to PWM duty cycle, so why can't you
+> use that plus target-rpm?
+> 
 
-Makes sense.  Will update to something like below:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - qemu,iommu
-          - const: riscv,iommu
-      - items:
-          - enum:
-              - pci1efd,edf1
-          - const: riscv,pci-iommu
+target-rpm is the target fan speed. The property defined here
+is the default pwm to set when the device is instantiated.
 
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: riscv,pci-iommu
-> > +          - const: pci1efd,edf1
-> > +      - items:
-> > +          - const: pci1efd,edf1
->
-> Why are both versions allowed? If the former is more understandable,
-> can't we just go with that?
->
-> > +      - items:
-> > +          - const: riscv,iommu
->
-> Other than the compatible setup I think this is pretty decent though,
-> Conor.
+The two values are also orthogonal. The fan rpm is fan dependent.
+Each fan will require a different pwm value to reach the target speed.
+Trying to use target-rpm to set a default pwm value would really
+not make much if any sense.
 
-ACK to other comments,
+Guenter
 
-Thanks for the review,
-- Tomasz
+> Anything new for existing fan bindings should ideally use what
+> fan-common.yaml defined or be added to it.
+> 
+>>
+>> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+>> ---
+>>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> index 4e5abf7580cc..58513ff732af 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> @@ -46,6 +46,14 @@ properties:
+>>   
+>>     "#cooling-cells": true
+>>   
+>> +  target-pwm:
+>> +    description:
+>> +      The default desired fan PWM.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 255
+>> +    default: 255
+>> +
+>>   required:
+>>     - compatible
+>>     - pwms
+>> -- 
+>> 2.39.2
+>>
+
 
