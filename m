@@ -1,75 +1,38 @@
-Return-Path: <devicetree+bounces-62319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA128B0C4C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:17:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0B68B0C66
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:22:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71A591C247FF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:17:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B87171F28805
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C3015ECD3;
-	Wed, 24 Apr 2024 14:17:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bbXe+mpU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDD615E5D1;
+	Wed, 24 Apr 2024 14:22:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D959115E812
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 14:17:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E78B15ECCB;
+	Wed, 24 Apr 2024 14:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713968223; cv=none; b=SMruuNyFYgTiKV7yLFsVmY4aah0QJS5pEh+bfTbs1KXhPaeLKHdainI3uyCjKsNYkNtcBGx5E/mtCaPr+V2AAzMwz8NcACP9zy9X8EByyUNO+KcmEwCCjIn+rNK342nJUvjtHCNbo3da5S1RmesHd6ttyAD35hE2VeeW0GpXxQU=
+	t=1713968532; cv=none; b=VbmSvt8fuAdSwYyS7wC3aKMAbSEIBE1SfB4fWYHYBLMImj9Zjb2Cfrudd4pxA8G9u/+kPnRRLEMslXgOsDj6w7vghDn/pKzmUvafTT7Lb90I7d9nqwgdY/1z0AQuKxIeYRkBo5jbkjpHOjCI1SCdm9hPpiYg5AZ3T78QBggOk2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713968223; c=relaxed/simple;
-	bh=+xPMvdpLmBFBT82L+2rB4j5nQBGY5IoRBac4o5nrhJ0=;
+	s=arc-20240116; t=1713968532; c=relaxed/simple;
+	bh=bKd7H00rDt0Or6kdVYu+lE7iFOzMdHEuVtRzVbC9rds=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gof90+U0iH0HIcGgBkkjLcbhrbZmriG612Rb1DXGP/2T9M9cGPcjM78gME/QPA9YdUG/J830Uq6oM+4lSSnZhMc7M5jlCKr9B+yQ4OegswLf9iVRT4fcMU4EIlqw/lx6uXPMMTTdEuGlTUBujkyshBT0emho7RyBxH75aiBt6Ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bbXe+mpU; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56e1f3462caso8867766a12.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 07:17:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713968220; x=1714573020; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=D+FFw7YxB1izHeLB8MpAI1EI5GFWFRCwf6sagsTPIHc=;
-        b=bbXe+mpUAsf0TGKiMviAyDUFR4+5YvHDmNvmHii1Ad5FL0SfH4MvSrTqe/KIZM5ZAw
-         Moby1IqqTPbKog6t2ORUzn0wf+5s+tc0zNNXBSthLE4fXLRvjZiAedVZ3Qvjw/QV1yHv
-         2j0tfLpgq65xptUvOO0KFdm6CINLUvfMSwIYZvyX1r+HVzANl9AoQcPl45HIcKpLDsBa
-         dC3Uy1glCz0hSh9Wci3Z0BCAoTjMOhALQhqCvEESjIxWeCa7EhBoY+lkoh7ZOi0tcamI
-         Tukbf9iSQfV2lCRh6JQsS6HsTMaiQ7nKPntUvwqR7ak/xprwftdhXVV2LsZG9D82TL5h
-         ZL+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713968220; x=1714573020;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D+FFw7YxB1izHeLB8MpAI1EI5GFWFRCwf6sagsTPIHc=;
-        b=gz5IhS1UM0yqxdenXuoJNtWUuTfKgnYWZ58TFcRsRt/jcpWZerZw+BdGHDdgQSv3Sw
-         ixRM+iYIYgnmZkfVzGryG1RouBgTQMMI1JKq8eUefLVPaMLKRZa5V+c7636DkHcMcN4F
-         Wabl+/kI0AEnbKcm5ojAWXUXapihaTGkbukBVausrhz6cqcgcQQufs4DWggKgVrsBEsx
-         ahtEhjiow0giKJkE81l9JzdGTcoi8BnKi2jtqNkIDz+nKPAv19jsLvXmMTdEIxZPyuRe
-         w1xibHlDg5aLzyPgy7oUrdwfdv4X/SrxwAC/ERxTqkb3+bmibZXbOyeAEMgDDRTXYaEi
-         pSsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQEKfiYhEaJY7c6Fgd2f2SMm7MCm05OT0A4gYhVEDlmiBnmV0/SIacRwth/Y8NwkTwf+wi7kJHaVVlD6DRkwvMvxtAaX4Trpzrrw==
-X-Gm-Message-State: AOJu0YxN/tHPR6xmo/xkKX7UNW52N/nlWGONeGCKOg0aUeTcZfx2I4Db
-	K7p/CYrkv2O8xCbpnWkbewz3AsAEj4TMd2V5GyuIJ7WBj9Yh2Y1dtGDs4W258h0=
-X-Google-Smtp-Source: AGHT+IEOfsPQ7/Z1yv4Amm4JeBXw+SM4KXxokpxSErr9FzwFJ3mVhgmaCYRo+hfuU1OSFUWH+7v8TA==
-X-Received: by 2002:a50:c356:0:b0:56e:2b1c:d013 with SMTP id q22-20020a50c356000000b0056e2b1cd013mr1585369edb.21.1713968220054;
-        Wed, 24 Apr 2024 07:17:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bf17-20020a0564021a5100b0056bf6287f32sm7886343edb.26.2024.04.24.07.16.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 07:16:59 -0700 (PDT)
-Message-ID: <2a3d928d-3e18-4e3a-9f5b-94dbbaaf3652@linaro.org>
-Date: Wed, 24 Apr 2024 16:16:58 +0200
+	 In-Reply-To:Content-Type; b=cz842Sd9IiINssqBB0lEvRCLC12pfAhBf8LKf2EFuqw9vrItBcCrsT8jPegCgc/alKVP4KWQlol0GasJWRED9fOZGpEL+6w4RhASbH+Ntten1mwGrf7dMtldjg4MWp/3KNjElw9TmAkYYkM8Qn7wASTO95wnquv9xijmYcIWUCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2E576FF809;
+	Wed, 24 Apr 2024 14:22:02 +0000 (UTC)
+Message-ID: <6c624361-a968-498b-a9fb-ea2aaec70ce8@ghiti.fr>
+Date: Wed, 24 Apr 2024 16:22:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,121 +40,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] dt-bindings: reset: Add binding constants for
- BLZP1600
-To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: James Cowgill <james.cowgill@blaize.com>,
- Matt Redfearn <matthew.redfearn@blaize.com>,
- Neil Jones <neil.jones@blaize.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+Subject: Re: [PATCH v3 06/17] riscv: Fix extension subset checking
+Content-Language: en-US
+To: Charlie Jenkins <charlie@rivosinc.com>, Conor Dooley <conor@kernel.org>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20240424133230.19179-1-nikolaos.pasaloukos@blaize.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240424133230.19179-1-nikolaos.pasaloukos@blaize.com>
-Content-Type: text/plain; charset=UTF-8
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Conor Dooley <conor.dooley@microchip.com>, Evan Green <evan@rivosinc.com>,
+ =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
+ <20240420-dev-charlie-support_thead_vector_6_9-v3-6-67cff4271d1d@rivosinc.com>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20240420-dev-charlie-support_thead_vector_6_9-v3-6-67cff4271d1d@rivosinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-GND-Sasl: alex@ghiti.fr
 
-On 24/04/2024 15:32, Niko Pasaloukos wrote:
-> Add SCMI reset numbers according to the Blaize BLZP1600 SoC
-> hardware specifications.
-> 
-> Reviewed-by: James Cowgill <james.cowgill@blaize.com>
-> Reviewed-by: Matt Redfearn <matt.redfearn@blaize.com>
-> Reviewed-by: Neil Jones <neil.jones@blaize.com>
-> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+Hi Charlie,
+
+On 21/04/2024 03:04, Charlie Jenkins wrote:
+> This loop is supposed to check if ext->subset_ext_ids[j] is valid, rather
+> than if ext->subset_ext_ids[i] is valid, before setting the extension
+> id ext->subset_ext_ids[j] in isainfo->isa.
+>
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Fixes: 0d8295ed975b ("riscv: add ISA extension parsing for scalar crypto")
 > ---
->  .../dt-bindings/reset/blaize,blzp1600-reset.h | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 include/dt-bindings/reset/blaize,blzp1600-reset.h
+>   arch/riscv/kernel/cpufeature.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 48874aac4871..b537731cadef 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -609,7 +609,7 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
+>   
+>   			if (ext->subset_ext_size) {
+>   				for (int j = 0; j < ext->subset_ext_size; j++) {
+> -					if (riscv_isa_extension_check(ext->subset_ext_ids[i]))
+> +					if (riscv_isa_extension_check(ext->subset_ext_ids[j]))
+>   						set_bit(ext->subset_ext_ids[j], isainfo->isa);
+>   				}
+>   			}
+>
 
-This goes with patch adding the binding doc.
+I think this should go into -fixes, let's check with Palmer if he wants 
+to take this patch only or if you should send the patch on its own.
 
-> 
-> diff --git a/include/dt-bindings/reset/blaize,blzp1600-reset.h b/include/dt-bindings/reset/blaize,blzp1600-reset.h
-> new file mode 100644
-> index 000000000000..c500c2b0690c
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/blaize,blzp1600-reset.h
-> @@ -0,0 +1,84 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright (C) 2023, Blaize, Inc.
-> + */
-> +
-> +#ifndef DT_BINDING_RESET_BLZP1600_H
-> +#define DT_BINDING_RESET_BLZP1600_H
-> +
-> +/* ARM SCMI resets */
-> +
-> +/* BLZP1600 reset numbers as defined in the hardware architecture */
-> +
-> +#define BLZP1600_A53_C0_HARD_RST 0
-> +#define BLZP1600_A53_C0_SOFT_RST 1
-> +#define BLZP1600_A53_C1_HARD_RST 2
-> +#define BLZP1600_A53_C1_SOFT_RST 3
-> +#define BLZP1600_A53_L2_CACHE_RST 4
-> +#define BLZP1600_A53_DBG_RST 5
-> +#define BLZP1600_GIC_RST 6
-> +#define BLZP1600_CRYPTO_RST 7
-> +/* reset 8 invalid */
+You can add:
 
-Same concerns.
+Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
 
-However another problem is lack of users of it. Your patchset looks
-random - this goes to subsustem, but there is no device binding, no
-driver, no DTS. Could be result of lack of threading. :/
+Thanks,
 
-Best regards,
-Krzysztof
+Alex
+
 
 
