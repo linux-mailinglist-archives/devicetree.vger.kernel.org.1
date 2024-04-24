@@ -1,254 +1,130 @@
-Return-Path: <devicetree+bounces-62465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342AA8B13A0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D5C98B13A6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58EA21C23120
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:37:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EB5C1C23253
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9425078C8A;
-	Wed, 24 Apr 2024 19:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B7278B4E;
+	Wed, 24 Apr 2024 19:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QHrIypZj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/sXKpHW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108D7134A8
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 19:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EEB45C614;
+	Wed, 24 Apr 2024 19:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713987453; cv=none; b=JLySUZK8YrPUqkNPM/jIko/b/6lawbX/vVr0DzDKynqqTr6wnh231dipgVaz7+cZ/BbrSfMyCfe4NMIbsB8hs4Rpd8i7Wachdzzg28UmP1NFcakd+xBd9FyjI8/BRVm4PPpVgNlxgv53QXdJ1qc/SWizVzBiYBKydl9dpWHOtyE=
+	t=1713987532; cv=none; b=oarMoAgwV23NgGvtvqgfOEfJO5LGrnBxKNVespPeVHfKqEBRHRAvONNlzm5khpnugxPnurG4eNL+pzmPv38kzlmSwxfbmbNkm20cCs9r2hP/CxRI0b6sFuMqQ67pMoE4DP0yy+E5797X6kFS9ts1xgOEbyMxTKAWazcUhanDw94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713987453; c=relaxed/simple;
-	bh=QuiGqNYK4cdps4RhJVDWFUWd1Kak+RK6M7PfXbL2cPk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QxTtVe2WPN1EsHfAhXnZakXVF51dV9eYcmYgYWS3KYyiaY4S0ib9Dj0MOzuZ53Phtw43UF4fF07J+wUUaRKC5EGarepXcDoTHxjXV5i11pzgW2u3iPWgnmiTZ6SbheOcb2KB3c4fXgvGxYCtzC8vSmOIfILSnyXmeKJV9t6AdFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QHrIypZj; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2dae975d0dcso13832971fa.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 12:37:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713987449; x=1714592249; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZRQMK46HDuhLKU1QrN81gmIGPmB/RJZ6AB3Yod7zVCo=;
-        b=QHrIypZj9zSuyv/DZI0WdaiIgaUAlvkX/02TG4Hdsu03m1Y7wQo2i+COqoXw388iI3
-         BhhTqUoh6n1k/CHM7pzUIwyCHo59GbKyBfcOqqGJU8+cZBs80rVT4u6mEwM6XHffyWcq
-         tZt/oZXT6ETNlcIGAEBkt4LS8jyaBVY+M4rqXeF9+UM/j46lnkIuPXdyFLAM2+LKsfKQ
-         uhFLn3CMlVtPHSoqEOOZq5vFXnkjjecTtEeMsWD5VkiihC5+vgKOUitGBjxxi4exmzcA
-         FkSbUCwOjzqOKA5sbkZcdTIfOGFKT+cMvgYKcXCrSBSxN8mpRSK0Az/X7vnaArvpxIgb
-         Vo0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713987449; x=1714592249;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZRQMK46HDuhLKU1QrN81gmIGPmB/RJZ6AB3Yod7zVCo=;
-        b=SnG6fxV2Jh1Sk8dv70DRrScMkBDntEbabcPP5p+G0tezjjgD+R99BRe3zkBiYZg8oJ
-         IUlQGW6mibjx5TuObv1ICbilKIZvsamqBxQxNURZGcV/SKEph+AHmd9MqvHHEGUlIz1B
-         ba6FneVgunineERMM7WTz79YSjV8+3glGSDSWtl8x7OOEs6UnIPN5fMFpmIeL1xBI/2p
-         b2fBOj0P9Xbfoe44QbQKSxKnnsL5kJqkVAykg3Xi5YRWwEpCvnfShPhJlZCxdJEzPlfh
-         Y+KQCOJhtO8vy/RroxwLZzs5eixbvRy50y4h5V4PoWLT7ck2Hwd/7C3IT/EofOuGTmzG
-         Yzew==
-X-Forwarded-Encrypted: i=1; AJvYcCVvSig6ezT+79JcxWvrOl3TR7llcdt55CxbS/Ww1WkzrVnvpjfqPD/3Rlf1VtlL3SowmOQdf0whM9GJN7cj7/369AUtgpuMwYfWEw==
-X-Gm-Message-State: AOJu0YwxD74CPVaumidBcgpaaJtLImdikMx05ejLlmsDKNRKzE1ftLiN
-	HtAZm4GnYnx4KMFcrBT4MjimcOH2Ct7g7Sj9fpnniExKg9VlRxZN2eLExQ4rmQA=
-X-Google-Smtp-Source: AGHT+IGiRoHTTiEuE65JavqIJ1EiDt4nqgFHQU16wmeKJ3TTmtXrar1F+DhjaKBxGWJDHzT3hwV9pw==
-X-Received: by 2002:a2e:3506:0:b0:2dc:f13f:8a96 with SMTP id z6-20020a2e3506000000b002dcf13f8a96mr187145ljz.5.1713987449211;
-        Wed, 24 Apr 2024 12:37:29 -0700 (PDT)
-Received: from [172.30.204.223] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id by7-20020a05651c1a0700b002dd2046afd8sm1361992ljb.97.2024.04.24.12.37.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 12:37:28 -0700 (PDT)
-Message-ID: <af62742c-8d6d-4fa9-b2e4-f83253e6e388@linaro.org>
-Date: Wed, 24 Apr 2024 21:37:25 +0200
+	s=arc-20240116; t=1713987532; c=relaxed/simple;
+	bh=l0ilri84SmnD9pNOTOslUkyhEiFOgPWIkUlWnz4KH2A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UEKQ2vooWw4BHcrmOgrJtUW05GWLJ1GM6u7NDL+fqk8YOS81hiBoPLJ2kVPYW4ClMS38ylrVdRekZ0h3Pdxm7QSlTDXWg6F5n7oFzi6cJZDmwjzHuIjqdiRnF76Brea7F0WAE3BiFduOB5RGUwVcu+ko2QD8GTztFQSrw54XOQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/sXKpHW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 835D0C113CD;
+	Wed, 24 Apr 2024 19:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713987531;
+	bh=l0ilri84SmnD9pNOTOslUkyhEiFOgPWIkUlWnz4KH2A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h/sXKpHWJlhlrcZk/Go6u/OG56s7UwL9BOt8s4r+0/LHTG6O46Bg8fAH5R1z4XkO5
+	 vIYWXRuuRcWeIA9MHiei9FN9QdrjgrP9DOI0W6GssiEnLgkNWOWYG8wjPooaXgTSob
+	 wgRzyJ9rTWKpSYX5AP3NTfsPqctXDgQVUaZME0RNxrj0oi8Mo+w6YFe+RuFSztioNK
+	 mMPvSohYCtwx7+7kuTA7t5cYQBRGQz+fqumYQh/hqjcH/Dd6CByLZJ2OMWrQX3eTJO
+	 xgbQehwHmby0fcpaupCAosIyM+F4Hmmu0hwGgPV/vPF74P1Aya8CquZzfqgmIFCRTs
+	 jbgW3ZJE85OVA==
+Date: Wed, 24 Apr 2024 14:38:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+	Will McVicker <willmcvicker@google.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: google,gs101-clock: add HSI0
+ clock management unit
+Message-ID: <171398751251.350681.17049753493384943747.robh@kernel.org>
+References: <20240423-hsi0-gs101-v1-0-2c3ddb50c720@linaro.org>
+ <20240423-hsi0-gs101-v1-1-2c3ddb50c720@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] pwm: Add SI-EN SN3112 PWM support
-To: wuxilin123@gmail.com, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Junhao Xie <bigfoot@classfun.cn>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Tengfei Fan <quic_tengfan@quicinc.com>,
- Molly Sophia <mollysophia379@gmail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org
-References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
- <20240424-ayn-odin2-initial-v1-2-e0aa05c991fd@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240424-ayn-odin2-initial-v1-2-e0aa05c991fd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240423-hsi0-gs101-v1-1-2c3ddb50c720@linaro.org>
 
 
-
-On 4/24/24 17:29, Xilin Wu via B4 Relay wrote:
-> From: Junhao Xie <bigfoot@classfun.cn>
+On Tue, 23 Apr 2024 15:31:03 +0100, André Draszik wrote:
+> Add dt-schema documentation and clock IDs for the high speed interface
+> 0 HSI0 clock management unit. This is used (amongst others) for USB.
 > 
-> Add a new driver for the SI-EN SN3112 12-channel 8-bit PWM LED controller.
+> While the usual (sed) script has been used to derive the linux clock
+> IDs from the data sheet, one manual tweak was applied to fix a typo
+> which we don't want to carry:
+>     HSI0_USPDPDBG_USER -> HSI0_USBDPDBG_USER (note USB vs USP).
 > 
-> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> 
 > ---
+> Note for future reference: To ensure consistent naming throughout this
+> driver, the IDs have been derived from the data sheet using the
+> following, with the expectation for all future additions to this file
+> to use the same:
+>     sed \
+>         -e 's|^PLL_LOCKTIME_PLL_\([^_]\+\)|CLK_FOUT_\1_PLL|' \
+>         \
+>         -e 's|^PLL_CON0_MUX_CLKCMU_\([^_]\+\)_|CLK_MOUT_\1_|' \
+>         -e 's|^PLL_CON0_PLL_\(.*\)|CLK_MOUT_PLL_\1|' \
+>         -e 's|^CLK_CON_MUX_MUX_CLK_\(.*\)|CLK_MOUT_\1|' \
+>         -e '/^PLL_CON[1-4]_[^_]\+_/d' \
+>         -e '/^[^_]\+_CMU_[^_]\+_CONTROLLER_OPTION/d' \
+>         -e '/^CLKOUT_CON_BLK_[^_]\+_CMU_[^_]\+_CLKOUT0/d' \
+>         \
+>         -e 's|_IPCLKPORT||' \
+>         -e 's|_RSTNSYNC||' \
+>         -e 's|_G4X2_DWC_PCIE_CTL||' \
+>         -e 's|_G4X1_DWC_PCIE_CTL||' \
+>         -e 's|_PCIE_SUB_CTRL||' \
+>         -e 's|_INST_0||g' \
+>         -e 's|_LN05LPE||' \
+>         -e 's|_TM_WRAPPER||' \
+>         -e 's|_SF||' \
+>         \
+>         -e 's|^CLK_CON_DIV_DIV_CLK_\([^_]\+\)_|CLK_DOUT_\1_|' \
+>         \
+>         -e 's|^CLK_CON_BUF_CLKBUF_\([^_]\+\)_|CLK_GOUT_\1_|' \
+>         -e 's|^CLK_CON_GAT_CLK_BLK_\([^_]\+\)_UID_|CLK_GOUT_\1_|' \
+>         -e 's|^CLK_GOUT_[^_]\+_[^_]\+_CMU_\([^_]\+\)_PCLK$|CLK_GOUT_\1_PCLK|' \
+>         -e 's|^CLK_CON_GAT_GOUT_BLK_\([^_]\+\)_UID_|CLK_GOUT_\1_|' \
+>         -e 's|^CLK_CON_GAT_CLK_\([^_]\+\)_\(.*\)|CLK_GOUT_\1_CLK_\1_\2|' \
+>         \
+>         -e '/^\(DMYQCH\|PCH\|QCH\|QUEUE\)_/d'
+> ---
+>  .../bindings/clock/google,gs101-clock.yaml         | 29 +++++++++++-
+>  include/dt-bindings/clock/google,gs101.h           | 54 ++++++++++++++++++++++
+>  2 files changed, 81 insertions(+), 2 deletions(-)
+> 
 
-[...]
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +static int sn3112_set_en_reg(struct sn3112 *priv, unsigned int channel,
-> +			     bool enabled, bool write)
-> +{
-> +	unsigned int reg, bit;
-> +
-> +	if (channel >= SN3112_CHANNELS)
-> +		return -EINVAL;
-> +
-> +	/* LED_EN1: BIT5:BIT3 = OUT3:OUT1 */
-> +	if (channel >= 0 && channel <= 2)
-> +		reg = 0, bit = channel + 3;
-> +	/* LED_EN2: BIT5:BIT0 = OUT9:OUT4 */
-> +	else if (channel >= 3 && channel <= 8)
-> +		reg = 1, bit = channel - 3;
-> +	/* LED_EN3: BIT2:BIT0 = OUT12:OUT10 */
-> +	else if (channel >= 9 && channel <= 11)
-> +		reg = 2, bit = channel - 9;
-> +	else
-> +		return -EINVAL;
-> +
-> +	dev_dbg(priv->pdev, "channel %u enabled %u\n", channel, enabled);
-> +	dev_dbg(priv->pdev, "reg %u bit %u\n", reg, bit);
-> +	if (enabled)
-> +		set_bit(bit, (ulong *)&priv->pwm_en_reg[reg]);
-> +	else
-> +		clear_bit(bit, (ulong *)&priv->pwm_en_reg[reg]);
-> +	dev_dbg(priv->pdev, "set enable reg %u to %u\n", reg,
-> +		priv->pwm_en_reg[reg]);
-> +
-> +	if (!write)
-> +		return 0;
-> +	return sn3112_write_reg(priv, SN3112_REG_PWM_EN + reg,
-> +				priv->pwm_en_reg[reg]);
-
-This looks like a weird reimplementation of regmap_update_bits
-
-
-> +}
-> +
-> +static int sn3112_set_val_reg(struct sn3112 *priv, unsigned int channel,
-> +			      uint8_t val, bool write)
-> +{
-> +	if (channel >= SN3112_CHANNELS)
-> +		return -EINVAL;
-> +	priv->pwm_val[channel] = val;
-> +	dev_dbg(priv->pdev, "set value reg %u to %u\n", channel,
-> +		priv->pwm_val[channel]);
-> +
-> +	if (!write)
-> +		return 0;
-
-There's only a single call, with write == true
-
-> +	return sn3112_write_reg(priv, SN3112_REG_PWM_VAL + channel,
-> +				priv->pwm_val[channel]);
-> +}
-> +
-> +static int sn3112_write_all(struct sn3112 *priv)
-> +{
-> +	int i, ret;
-> +
-> +	/* regenerate enable register values */
-> +	for (i = 0; i < SN3112_CHANNELS; i++) {
-> +		ret = sn3112_set_en_reg(priv, i, priv->pwm_en[i], false);
-> +		if (ret != 0)
-> +			return ret;
-> +	}
-> +
-> +	/* use random value to clear all registers */
-> +	ret = sn3112_write_reg(priv, SN3112_REG_RESET, 0x66);
-> +	if (ret != 0)
-
-if (ret) is the same as if (ret != 0)
-
-[...]
-
-> +
-> +	/* use random value to apply changes */
-> +	ret = sn3112_write_reg(priv, SN3112_REG_APPLY, 0x66);
-
-"a random value"? sounds suspicious..
-
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	dev_dbg(priv->pdev, "reinitialized\n");
-
-Please remove such "got here" messages once you're done with testing
-the driver locally
-
-[...]
-
-> +
-> +#if IS_ENABLED(CONFIG_GPIOLIB)
-
-I'm not sure this would be ever disabled on any embedded system nowadays.
-Especially with I2C.
-
-[...]
-
-> +
-> +	dev_info(&client->dev,
-> +		 "Found SI-EN SN3112 12-channel 8-bit PWM LED controller\n");
-
-This sort of message only makes sense if there's a CHIP_ID register that
-you can actually validate. If you bind this driver to a device at the same
-expected address, it will say it's there even if it's not.
-
-
-> +	return 0;
-> +}
-> +
-> +static void sn3112_pwm_remove(struct i2c_client *client)
-> +{
-> +	struct pwm_chip *chip = i2c_get_clientdata(client);
-> +	struct sn3112 *priv = pwmchip_get_drvdata(chip);
-> +
-> +	dev_dbg(priv->pdev, "remove\n");
-> +
-> +	/* set software enable register */
-> +	sn3112_write_reg(priv, SN3112_REG_ENABLE, 0);
-> +
-> +	/* use random value to apply changes */
-> +	sn3112_write_reg(priv, SN3112_REG_APPLY, 0x66);
-> +
-> +#if IS_ENABLED(CONFIG_GPIOLIB)
-> +	/* enable hardware shutdown pin */
-> +	if (priv->sdb)
-> +		gpiod_set_value(priv->sdb, 1);
-> +#endif
-> +
-> +	/* power-off sn5112 power vdd */
-> +	regulator_disable(priv->vdd);
-> +
-> +	pwmchip_remove(chip);
-
-devm_pwmchip_add?
-
-Konrad
 
