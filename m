@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-62117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0957E8B0065
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 06:09:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1EFC8B0086
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 06:28:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3E3B284A25
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 04:09:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB8E1F243CA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 04:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F92913C8F3;
-	Wed, 24 Apr 2024 04:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C128713B5A6;
+	Wed, 24 Apr 2024 04:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qtn1KNlS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IPEU6vip"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CED51F5E6
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 04:09:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15DD413DB88
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 04:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713931761; cv=none; b=c/yzm2Eg/+4b4pCraVoGdZFZebxwvVB3/GQ7lkaFwAlhCruYDRE7dnCYhYZdF7KkvOCANvpCh0QU/mV0uic7WBfxfWNVd6hICLVP36/DE3J3JxRh7VQyXj8wQC9hRzKzqaMdcwqhg7irJfQDJ925v4jVQwBqZ/yc5L10UhdSUJU=
+	t=1713932901; cv=none; b=ZROjmkLRR9q7wbQLvvOx2mXzqcTx/mppMgAcUZA4DOQl9w53ReurcyUrcBrODARDtx1DdGnhIFWfiBo7PSfKrho5+kVIA7AuYkglHmZp79+6mOBwy9Nypgox2QmJlSrADljLMMfnGnc1E7CIsP/xK9G2kK8rKFEtdyiVtm6da2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713931761; c=relaxed/simple;
-	bh=B0+9n9kfklJUp+Bq+2QRcRU36hSKiR+7AwwJ7Ov4Pq0=;
+	s=arc-20240116; t=1713932901; c=relaxed/simple;
+	bh=K2uPx8Z39cowyd3CKs/kv0/GPxaVvKugF3Okmkjpnuw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p0MZmznr8QgCSaDZL5uH1zU1JShUIAUYYhmAj4o2bC5BjZwht0PIZKhf3sAR2/svZ/4yuz/SKphzvzWQhCADV08JhlwL7ZiGUbK2KIYeTSN03xaHK8EZUBwyzVb5YqHlve1wTMWLNj4m8cwuE00SBO0C5b4apyJEhNeic9fyRSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qtn1KNlS; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=OxKcZiCv5yzFd9Y2NPy0VHY8DY1LrFmX57mwE6IjUlJTnVL0FISl7d3W/GVwojjyNjIbehhinJnHBeAsSAfLkHKQMwPxz7WzLmxAgwGC/5rZ6M9B2JYWpYdvSlYxg/DVnKX0NQo0+GGtnN2EiKu5tUHrE+K6ETTBcBCZwIs9oWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IPEU6vip; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a51addddbd4so655837966b.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 21:09:19 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a55911bff66so539770566b.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 21:28:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713931758; x=1714536558; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713932898; x=1714537698; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=VAq7kfJ8ARrYaoLEN91dMsAK0rawJWTCpFCeBUWPSWE=;
-        b=Qtn1KNlSM74SJAMf5kVmJj58vNWaPgP02+iRLaIuBsr9J9bMZVzxI9T8RZI3SVt4+O
-         6ChIWxjRBqO0xUDle1saws7S5sqjG7HGX6MnO8Co+DKeL4/hxvW/jELovMrlwGPkqJVQ
-         VC7+6IqvkQrrVZu0+I9cFV11KbX33+lP26zppeYNPXuLnTCjn7C2OaueDNwghf7eibmG
-         F/4XzdF0ht7hUQEn6olAS/uKHFYz2C15mU74AqPQJWPkzF0lA45GRM8I5UVJl2GNKzZJ
-         2P1lHTPslU9sinA8bs7uOUZVVZ/Giz2D+kalE2qQpABGzonDd9+XZXXgww7XwDcamE83
-         YuKA==
+        bh=R8Fs3EjOdj6derBzQe4RlSevlHJghueWR0mNYiVQCo8=;
+        b=IPEU6vipT+Xa7En49p+JNgPICicS70PpWZhTcU9qkqOUcGn6dXEImtS3aQ/R+/URtY
+         soActiicKwfRym0BFPKxltMPobDnunEP0RTFrC8ljNkvXULxUS0PErXtRMTfybdF9rqF
+         pnGxPpk2yUm7IDcxI0s0lIBRc5zQG3hgDvZJRuunDNByqpJ1oOKdq+VrPmgfRLC1qGw5
+         OhdsQTlaqIbwRyhT0jQi8V+WbGYPBIoy9sShYpCpRmLsX5qk32rylRjCqJWdpJiXep3C
+         yjf1LBEUrGFs9Yb6RKryi02mtkg8vPv0CA8wZ2wTpYTGMOLivV6X0aXvd8etoBvb3JR1
+         kvOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713931758; x=1714536558;
+        d=1e100.net; s=20230601; t=1713932898; x=1714537698;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VAq7kfJ8ARrYaoLEN91dMsAK0rawJWTCpFCeBUWPSWE=;
-        b=Okah8gsC9VJptu8KZsI8INJfSAKL0zpFSWZkpLfTGmN64+0y5neWP3HtXrXdbq4am/
-         MigI8o5fbYcMnUru0b3scXptNm9pSrmNxoT7PF/dxplKSpG5aTUAcu07UzdBDzBLJ1Ni
-         XVeuGqKne6jk08s0ottY1rcSEOdos6Iohk3ZZpgaKlsHmaz8WLjD1+F/jEe1Ujmsl2pc
-         Mty5PmA7R+Wu6KE1BFR/PZyRHMNvYOFlSIE3jlV1Y6RpoiEPl/HlcDDn/MPtljAnWOIU
-         HISL7QEERZkAm+Vo1c2sOx0isKmtVd2roG97KhchHxCAOIMAW/1vU55QxSGx4BWXmv45
-         NqGQ==
-X-Gm-Message-State: AOJu0YwepZoOkhBHzdmKoUs/HoaYXtR/+VPFPtcMMH8sHsSCUZhjeYjG
-	+PYwvVQ/EkiQxCjMS8FKosNDGoPLGBiuZ1Y+13X9jjEecBqwDbtMYlpqb+vKJEI=
-X-Google-Smtp-Source: AGHT+IHNCj4Lvc3KFejcaoQebvHzc4mJJUP6meYTGMDFVi3IoyOy+PPwXWJWFGhSjhvZRbUsMjtIgg==
-X-Received: by 2002:a17:906:2604:b0:a58:7554:b641 with SMTP id h4-20020a170906260400b00a587554b641mr746717ejc.73.1713931757838;
-        Tue, 23 Apr 2024 21:09:17 -0700 (PDT)
+        bh=R8Fs3EjOdj6derBzQe4RlSevlHJghueWR0mNYiVQCo8=;
+        b=j5n5BMGI7jgEZAQIsEyJdOtGREUp/nT5CMJk+KBWEYzAVwPtCbtf3M3Z9X+K2e25R4
+         RsIYLsbmc1xupubeEHA7fIhXArplACZbYHPkCjgGqBN5lo8FHCVHStW7rSY7Kp9v2//5
+         aJc8BP5sC87vvqFXdbUY7u1goAPAkb57kzfutvFmKd4zDEOR1EQWPQAtiuWqp0Q70pkW
+         qWdI4R1GAHx9wkCGRfXS/R3AGrvd/1JjTlgHwy5e467qvx+jRFusQdcP2Tb4mOYwllBk
+         YVO2cmFFfLXQDCsvGpcvaqnl+P9vCUwV5ZpfZk0AMc495D6/xGDpS8Mrdn7kIO4u8Lgo
+         8/yw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQRKLpwlfpyXnsvWg6JHGbZq46w/xlhsPGkFbIaaY0jUpWzrWzDdNeK/S7GlhTb3Z6rOpNEiza9avVhzKbftneTwaOtlQrega6LA==
+X-Gm-Message-State: AOJu0Yz3V2UBjv8puhgDsymKRshqTQJF38RVcdUMvRRDPIRcgQHn2p4r
+	O3YKkAZo7RYra9ltxK5f9Be1FCvq/e4fQHOV2380/IkC5qdJ264U35/m1ZZUZRY=
+X-Google-Smtp-Source: AGHT+IHhibC5y0u82AOKA3V0ahASy6QI1S46tkSYPwpI/AUogp7DUC0A/o5LtZczFgCVrCna43jbXg==
+X-Received: by 2002:a17:906:d206:b0:a4d:fcc9:905c with SMTP id w6-20020a170906d20600b00a4dfcc9905cmr657577ejz.20.1713932898280;
+        Tue, 23 Apr 2024 21:28:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id re27-20020a170906d8db00b00a521327b019sm7769663ejb.197.2024.04.23.21.09.16
+        by smtp.gmail.com with ESMTPSA id bb6-20020a1709070a0600b00a55b020a821sm3841045ejc.13.2024.04.23.21.28.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 21:09:17 -0700 (PDT)
-Message-ID: <d27d0784-7f88-4351-943e-5c464a7d95df@linaro.org>
-Date: Wed, 24 Apr 2024 06:09:16 +0200
+        Tue, 23 Apr 2024 21:28:17 -0700 (PDT)
+Message-ID: <7d08f521-bdc9-4122-a636-a0a2c5bc328b@linaro.org>
+Date: Wed, 24 Apr 2024 06:28:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +77,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch v3 2/2] memory: tegra: make sid and broadcast regions
- optional
-To: Sumit Gupta <sumitg@nvidia.com>, robh@kernel.org, conor+dt@kernel.org,
- maz@kernel.org, mark.rutland@arm.com, treding@nvidia.com,
- jonathanh@nvidia.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, amhetre@nvidia.com, bbasu@nvidia.com
-References: <20240412130540.28447-1-sumitg@nvidia.com>
- <20240412130540.28447-3-sumitg@nvidia.com>
- <06849796-f896-4cff-842c-118d86e94a6b@linaro.org>
- <1aab0272-85ea-e3a1-7d68-27ab4f1e1993@nvidia.com>
- <6506b2e8-c7f2-460d-b17d-55b731fac1ac@linaro.org>
- <e1d4e915-08c9-c2e0-f882-6d7cd9500c96@nvidia.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: iio: light: stk33xx: add vdd and leda
+ regulators
+To: Aren Moynihan <aren@peacevolution.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, Ondrej Jirman <megi@xff.cz>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ linux-iio@vger.kernel.org, phone-devel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Willow Barraco <contact@willowbarraco.fr>
+References: <20240423223309.1468198-2-aren@peacevolution.org>
+ <20240423223309.1468198-3-aren@peacevolution.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,78 +141,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e1d4e915-08c9-c2e0-f882-6d7cd9500c96@nvidia.com>
+In-Reply-To: <20240423223309.1468198-3-aren@peacevolution.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/04/2024 21:46, Sumit Gupta wrote:
+On 24/04/2024 00:33, Aren Moynihan wrote:
+> stk3310 and stk3311 are typically connected to power supplies for the
+> chip (vdd) and the infrared LED (leda). Add properties so we can power
+> these up / down appropriately.
 > 
-> 
-> 
->>>>>
->>>>>    static inline u32 mc_readl(const struct tegra_mc *mc, unsigned long offset)
->>>>> diff --git a/drivers/memory/tegra/tegra186.c b/drivers/memory/tegra/tegra186.c
->>>>> index 1b3183951bfe..716582255eeb 100644
->>>>> --- a/drivers/memory/tegra/tegra186.c
->>>>> +++ b/drivers/memory/tegra/tegra186.c
->>>>> @@ -26,20 +26,16 @@
->>>>>    static int tegra186_mc_probe(struct tegra_mc *mc)
->>>>>    {
->>>>>         struct platform_device *pdev = to_platform_device(mc->dev);
->>>>> +     struct resource *res;
->>>>>         unsigned int i;
->>>>> -     char name[8];
->>>>> +     char name[14];
->>>>
->>>> How is it relevant? I don't see this being used in your diff.
->>>>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>> Did this change for below warning coming with 'W=1'.
->>>
->>> ../drivers/memory/tegra/tegra186.c: In function tegra186_mc_probe:
->>> ../drivers/memory/tegra/tegra186.c:51:49: warning: %u directive output
->>> may be truncated writing between 1 and 10 bytes into a region of size 6
->>> [8;;https://gc
->>> c.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-truncation=-Wformat-truncation=8;;]
->>>      51 |                 snprintf(name, sizeof(name), "ch%u", i);
->>>         |                                                 ^~
->>> ../drivers/memory/tegra/tegra186.c:51:46: note: directive argument in
->>> the range [0, 4294967294]
->>>      51 |                 snprintf(name, sizeof(name), "ch%u", i);
->>>         |                                              ^~~~~~
->>> ../drivers/memory/tegra/tegra186.c:51:17: note: snprintf output between
->>> 4 and 13 bytes into a destination of size 8
->>>      51 |                 snprintf(name, sizeof(name), "ch%u", i);
->>>         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>
->> I asked how this is relevant to this change and you answer there is a
->> warning. If the warning was there, your answer is really just deflecting
->> the topic, so obviously this is new warning. Which part of code uses
->> longer name?
->>
->> BTW, really, such answers do not make review of your code smoother.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Apologies for not explaining it earlier.
-> 
-> I increased the buffer size to suppress a static check warning in the
-> existing code due to big range of 'unsigned int i', if copied to small
-> name buffer.
-> 
-> Seems like the warning is harmless as the maximum value of num_channels
-> is 16. I will remove it and keep the buffer size as 8 in the next
-> version.
+> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> ---
 > 
 
-That's not the point. For the third time: how is it relevant to this
-change here? Was or was not the warning before?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
