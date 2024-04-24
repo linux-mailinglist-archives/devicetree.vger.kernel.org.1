@@ -1,175 +1,114 @@
-Return-Path: <devicetree+bounces-62357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101A08B0DDC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:17:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDA68B0DE2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:18:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DACA1C23B17
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:17:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D92A6B29DB8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0243315F40B;
-	Wed, 24 Apr 2024 15:17:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkz80Otu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B491D15EFC2;
+	Wed, 24 Apr 2024 15:18:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03FE15F321;
-	Wed, 24 Apr 2024 15:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C5115ECC1;
+	Wed, 24 Apr 2024 15:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713971849; cv=none; b=bMxuDMsmmQQIAv6KVL6uaddVMy1mfmdHmw0fYQF0Wi/1aPhfA1a3cPx3+49BS83yKi+cpQGyYdSzRHErjAcZwj0oYAzsmLxosb/oK6KwfrVEtWbcPcfasEVWcrjdkIDqxW30cFHscxMnCBZKk5qt6DdzGhZghpZpFXu4AAVt1FA=
+	t=1713971907; cv=none; b=ACY69O0t2SM9/jVnHJf3Fswoff+8TiMylEMxumIAemf6ut5hVBBeHEzOW2PZGhIxMa/SuZl03Q60S69DpxuE/Yp30qQmOtjcOGk2DT5TMZzPJq20D7uMIpc0x6BhRxXMuK3DIwOdOeXBjIuyXeJ9gtGMsq5q8wexA29k4y5CaUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713971849; c=relaxed/simple;
-	bh=4qN66Ir2UFp9Lf/FY4N/yTmNKplsIfb7tfx/17jEJAs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E3enLnjMTnlv7XDzi8xHyDIPxF4rfSFzblXK8bdHoQx3wkGK5KuHRA4kcT7Och7w0/SuP6jdqAU3msa75xUJjUpDeCPMrP9Gvky05ap8xdHcEQzMxI4gJpCTs/3XjQ3k3wejcd7iqK0jYLaTunCbede0HUkfZNjBhAo3vuFjLXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkz80Otu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B49E0C2BBFC;
-	Wed, 24 Apr 2024 15:17:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713971849;
-	bh=4qN66Ir2UFp9Lf/FY4N/yTmNKplsIfb7tfx/17jEJAs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=tkz80Otu/qsk4gxkTDRhPCfxhw63mmqY7A580MlClCocRlvpjXlve5uCabx3CR1z3
-	 5swKXcHN4NxE7zIWEo0Xd/gzZfUB5imjV4H2vDdj8dPXJRqdt8FQrtWNJCyTge5fXF
-	 FXoqbFUX2/tCvp8GYJ6UOgrcoY8Pn101HuaCJRaIBvU46ItaubJtKGZDbaIYH7UEfn
-	 7tx94lEFiYU032Ef9SrVhSmltc2VPJYiAVPABEGBtRtFI7rECk14oY2Ms+EawxHhMg
-	 bbf4md1oxdjIf7+ccKvwXNLvkBJNDV9eRVHx85nTuuNWmvDpYGs2HjOv89hA9MRpEW
-	 iTja8a21M1TMQ==
-From: Niklas Cassel <cassel@kernel.org>
-Date: Wed, 24 Apr 2024 17:16:30 +0200
-Subject: [PATCH 12/12] arm64: dts: rockchip: Add rock5b overlays for PCIe
- endpoint mode
+	s=arc-20240116; t=1713971907; c=relaxed/simple;
+	bh=bnhphAm6zhNDVzfxC/1dDfXSqIf3i0rLm86SRDsEyJQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q7jFAANvHfqpkRan/FcJfHq+8YTUgBPnSykYVKV6XH0/0NMvjkDONGwK2gGsMSaL8COkehJOQHdNpE+Nn/yDPrOlgkCCc9vg9pyqC301r1T+ddevJTEgM/YQWmJ3YwdEhtjp6DtrUPviNfBRunul6Ki0MzVMh1Dio6dDr9pjhYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-61500da846fso47756047b3.1;
+        Wed, 24 Apr 2024 08:18:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713971904; x=1714576704;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o82wBBP7bxXXggrt8LbGr/5/eA1GfirSCOilCtZtYrw=;
+        b=PiS8KFIFfEZRIQcmpWZwDEnZl3RMqvkoFvWHBwDLy02axcLAZ/E2H9WrTIhi01aGb2
+         imYR8Ji2ek25juIH1JIBaigxQzssqf0qXYlhD7WUo320oYYf2P7AUCtD7UKwp5X9wf6G
+         cbGPpXUlwexqBYTFCZGy/7ZvbMSDA8tXAtc4eu/Yg8F2HxA3fkVPBsxMr9vaHQp8GDGP
+         xMu4KwMMLK30CrPaTkjClur6kBK1vVeYJ9+1XqMC4JyMEeAHTU1WHVMd/IQWm4MkUTmL
+         kn1cmhQOr/kHOdMVU7pmndYCAoG60e/jwFLUTfzvNi4nUlAU/+yfbAofoCjb7p+BArGh
+         Me9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUVNiE82wVZEJrXdSnf54pirlnI0xqEiETBQo/+8fr7xhnxjdpRHBrm7RG+1DGPfUqny2Q9RzJEtufZ6AkMowRGRxS/g1F2PfPNvABiO+w7N25J2jojJXI3JZr5V+Ig6QsGY2NwIJ8uKOO7qLvc
+X-Gm-Message-State: AOJu0YxLikOkn0omdDQ+LrJSeGwdhWXUVizbPzy/cjhk/n7zRSgccYOe
+	sQr73NUQ+SMoORVbG29iSD+ePR1r/3L466mpmL2x0hRMFGXrXdVn6AbNW5UeJfA=
+X-Google-Smtp-Source: AGHT+IFvhPRkXFnfwFQ/khPnMIZx6JVRCqGrrSrJ/H17pNDnDAdYH/6KsmjoO/mZvMkP7qSuNNfM2Q==
+X-Received: by 2002:a05:690c:74c6:b0:609:bfdf:8a32 with SMTP id jw6-20020a05690c74c600b00609bfdf8a32mr3062320ywb.44.1713971904197;
+        Wed, 24 Apr 2024 08:18:24 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id n3-20020a81bd43000000b0061b221afbe1sm2858701ywk.105.2024.04.24.08.18.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 08:18:24 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6153d85053aso56125077b3.0;
+        Wed, 24 Apr 2024 08:18:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUKe0suIdBpdD2fxIINbU1UF9t+23TtRQVFiBTCkj/dV9P2djJLhiJ04MOoVhWgJzbzWMpH7PnWmqPux+pwtFv0ijbUHMea0pJmtuf54ztUWwu1W1zaTBRhDDNvuRmxP086yhwcZWvs9j/8xqly
+X-Received: by 2002:a25:c78e:0:b0:de1:dcc:2a8b with SMTP id
+ w136-20020a25c78e000000b00de10dcc2a8bmr2947467ybe.59.1713971903735; Wed, 24
+ Apr 2024 08:18:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240424-rockchip-pcie-ep-v1-v1-12-b1a02ddad650@kernel.org>
-References: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
-In-Reply-To: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
-To: Jingoo Han <jingoohan1@gmail.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Niklas Cassel <cassel@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Damien Le Moal <dlemoal@kernel.org>, Jon Lin <jon.lin@rock-chips.com>, 
- Shawn Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-rockchip@lists.infradead.org
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3453; i=cassel@kernel.org;
- h=from:subject:message-id; bh=4qN66Ir2UFp9Lf/FY4N/yTmNKplsIfb7tfx/17jEJAs=;
- b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGNI0lYKcGwu8Yk92bqh/ENrLmLc5T12mcNMbk+OqR3ars
- 3OaL5jYUcrCIMbFICumyOL7w2V/cbf7lOOKd2xg5rAygQxh4OIUgIlURTP8L6vd/9XqcKvK4++3
- F5yclFv6aNn75wKvw1e6TZ7cPtkpaBEjQ0vT7OAbM6QLoibuk5q3TcIuYZ1cmkONuPV1ppms2zQ
- +cAIA
-X-Developer-Key: i=cassel@kernel.org; a=openpgp;
- fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
+References: <20240413141806.300989-1-niklas.soderlund+renesas@ragnatech.se> <20240413141806.300989-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240413141806.300989-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 24 Apr 2024 17:18:11 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXQTkYxF4X5wocZ83PM-6GtjYx2MGuEw-gjnFJatAA2fw@mail.gmail.com>
+Message-ID: <CAMuHMdXQTkYxF4X5wocZ83PM-6GtjYx2MGuEw-gjnFJatAA2fw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r8a779g0: Use MDIO node for
+ all AVB devices
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add rock5b overlays for PCIe endpoint mode support.
+On Sat, Apr 13, 2024 at 4:19=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Switch from defining the PHY inside the AVB node itself and create a
+> dedicated MDIO node for AVB0, the only AVB describing a PHY. This is
+> needed as adding PHYs to AVB1 and AVB2 will require setting MDIO bus
+> parapets and thus requires a dedicated node.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+> * Changes since v2
+> - New in v2.
 
-If using the rock5b as an endpoint against a normal PC, only the
-rk3588-rock-5b-pcie-ep.dtbo needs to be applied.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+As this has a hard dependency on commit 2c60c4c008d4b05b ("ravb: Add
+support for an optional MDIO mode") in net-next, this is postponed
+to v6.11.
 
-If using two rock5b:s, with one board as EP and the other board as RC,
-rk3588-rock-5b-pcie-ep.dtbo and rk3588-rock-5b-pcie-srns.dtbo has to
-be applied to the respective boards.
+Gr{oetje,eeting}s,
 
-Signed-off-by: Niklas Cassel <cassel@kernel.org>
----
- arch/arm64/boot/dts/rockchip/Makefile              |  5 +++++
- .../boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso  | 25 ++++++++++++++++++++++
- .../dts/rockchip/rk3588-rock-5b-pcie-srns.dtso     | 16 ++++++++++++++
- 3 files changed, 46 insertions(+)
+                        Geert
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index f906a868b71a..d827432d5111 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -117,6 +117,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
-@@ -127,3 +129,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
-+
-+# Enable support for device-tree overlays
-+DTC_FLAGS_rk3588-rock-5b += -@
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso
-new file mode 100644
-index 000000000000..672d748fcc67
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * DT-overlay to run the PCIe3_4L Dual Mode controller in Endpoint mode
-+ * in the SRNS (Separate Reference Clock No Spread) configuration.
-+ *
-+ * NOTE: If using a setup with two ROCK 5B:s, with one board running in
-+ * RC mode and the other board running in EP mode, see also the device
-+ * tree overlay: rk3588-rock-5b-pcie-srns.dtso.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&pcie30phy {
-+	rockchip,rx-common-refclk-mode = <0 0 0 0>;
-+};
-+
-+&pcie3x4 {
-+	status = "disabled";
-+};
-+
-+&pcie3x4_ep {
-+	vpcie3v3-supply = <&vcc3v3_pcie30>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtso b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtso
-new file mode 100644
-index 000000000000..1a0f1af65c43
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtso
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * DT-overlay to run the PCIe3_4L Dual Mode controller in Root Complex
-+ * mode in the SRNS (Separate Reference Clock No Spread) configuration.
-+ *
-+ * This device tree overlay is only needed (on the RC side) when running
-+ * a setup with two ROCK 5B:s, with one board running in RC mode and the
-+ * other board running in EP mode.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&pcie30phy {
-+	rockchip,rx-common-refclk-mode = <0 0 0 0>;
-+};
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
--- 
-2.44.0
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
