@@ -1,118 +1,170 @@
-Return-Path: <devicetree+bounces-62276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF49B8B08BE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 13:55:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BABC8B08DD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:04:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E4081F24842
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:55:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54A2D1C2137F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB19115A4B4;
-	Wed, 24 Apr 2024 11:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E7B15AAA7;
+	Wed, 24 Apr 2024 12:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fNKbxxd8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDE4158DDD
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 11:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A7A1598E6;
+	Wed, 24 Apr 2024 12:04:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713959710; cv=none; b=BnDi32GPnQQfF8KT7wnDZhTr8ymrPkIxIeJB0EbJ0mE2vCY6jA73IXXXqvO/NWBPP/j3wJtdrWxKhKMm4Mi6M4tbc6fvSs0uyOB6yfLimucTY9KTcrLfAKCKXjV8/L60h9L+ooBdv1SagLY/+DZoVcdn8EJJPJR/JxFJv8otAao=
+	t=1713960272; cv=none; b=e+2uWNYxYsUZUmN0biNCfHAlTzy/FDEmct/ZLxOcW89SOGNLvZG/VyboFu+LiQnzzUzmlQgfgLUm3vazUuxM1S3SgGyEt07RN/f0KlPz9AOv4ZrPGYd9oxzcMH4O6MyCoNXCX5xV6k7AzyPhmeoYJjbw396bVNy+nciB0QlP8dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713959710; c=relaxed/simple;
-	bh=laKzd3mIW3DWI5qUup3vRqxbLwrPRojH8Z7HJlY1Apc=;
+	s=arc-20240116; t=1713960272; c=relaxed/simple;
+	bh=pYYOLqQqvUPgIBFX7QGymQlQHxbe30l4/QeB1EAN03A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RFc0NBQflEFAsrS45kzVNvr4TYqJfCS0sMvECVY4UWU9wJaoOFwFgz9IcnLk4RtBrC8mmqTbcPpyEU2cM2PsSZJUFbfD0t+sGAP7oJtx4j1N6+oK52X/NwBZL5bhVQhtqTFNG3v9B+81NeirgnWuSKFmc3yKWEehqPgcfCdfoi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzbDD-00033t-Ou; Wed, 24 Apr 2024 13:54:55 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzbDD-00E4Rk-8O; Wed, 24 Apr 2024 13:54:55 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id C8B292BEDFC;
-	Wed, 24 Apr 2024 11:54:54 +0000 (UTC)
-Date: Wed, 24 Apr 2024 13:54:54 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux@ew.tq-group.com, alexander.stein@ew.tq-group.com
-Subject: Re: [PATCH 1/4] can: mcp251xfd: stop timestamp before sending chip
- to sleep
-Message-ID: <20240424-adaptable-zircon-badger-1fefd9-mkl@pengutronix.de>
-References: <20240417-mcp251xfd-gpio-feature-v1-0-bc0c61fd0c80@ew.tq-group.com>
- <20240417-mcp251xfd-gpio-feature-v1-1-bc0c61fd0c80@ew.tq-group.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nuwPnXgcHVk+5qjXckSPMRwZQPF3GZrVnkRvoenwFiqcj24l3hFvYxr6piaQ5NVwXbnU9eZ3uJdxw/r9Af++OnPKQIXJw86eu9nW5inWxmtp1rs2h06s6gNIqa4LiSxgmhaf4Qe/ZG64LZq5XqXuWq+k77G96gSi1Yx992nOYkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fNKbxxd8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE34C113CE;
+	Wed, 24 Apr 2024 12:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713960271;
+	bh=pYYOLqQqvUPgIBFX7QGymQlQHxbe30l4/QeB1EAN03A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fNKbxxd8hXnmn5DUGCaxpL6+4VAhvQIszoAWYHbgTsYPLSivwzvqolBSi99q+rY+T
+	 2cxBhivMbfFEhz8JK8evCD52NpidHF24ZNzdtzB1gGkUGVSXWYu3O7XDv5dGAZTffp
+	 d7yp+prjgdUwnq2GGbkFm/LL2Z1xSt4v2w4ELUnP+6O6UcNBA0iYgjl0u6gcmLkE4p
+	 2ZCrLikzHQ3TEaQErrELp2cORASIWSRpmoDhWmBdNQ9hiNwrjt/nLTsFKTA5kNqOnV
+	 n+/5HIZboWw/Fx1gqv6qDXel1GN7UOYss230u1QDPWk7sdKkIUl48aENrBxaksyixn
+	 dy9L9CaJbnijw==
+Date: Wed, 24 Apr 2024 13:04:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, frank.li@nxp.com,
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
+ binding
+Message-ID: <20240424-lustfully-region-826b9570bc38@spud>
+References: <1713939683-15328-1-git-send-email-hongxing.zhu@nxp.com>
+ <1713939683-15328-3-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="42zcn6qmd3zur5l3"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FnrRZ8qNOS4RlZZi"
 Content-Disposition: inline
-In-Reply-To: <20240417-mcp251xfd-gpio-feature-v1-1-bc0c61fd0c80@ew.tq-group.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1713939683-15328-3-git-send-email-hongxing.zhu@nxp.com>
 
 
---42zcn6qmd3zur5l3
-Content-Type: text/plain; charset=utf-8
+--FnrRZ8qNOS4RlZZi
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 17.04.2024 15:43:54, Gregor Herburger wrote:
-> MCP2518FD exits Low-Power Mode (LPM) when CS is asserted. When chip
-> is send to sleep and the timestamp workqueue is not stopped chip is
-> waked by SPI transfer of mcp251xfd_timestamp_read.
+On Wed, Apr 24, 2024 at 02:21:22PM +0800, Richard Zhu wrote:
+> Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
+> Introduce one HSIO configuration 'fsl,hsio-cfg', which need be set at
+> initialization according to board design.
+>=20
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  .../bindings/phy/fsl,imx8qm-hsio.yaml         | 146 ++++++++++++++++++
+>  1 file changed, 146 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio=
+=2Eyaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml b=
+/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> new file mode 100644
+> index 000000000000..3e2824d1616c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> @@ -0,0 +1,146 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8qm-hsio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8QM SoC series HSIO SERDES PHY
+> +
+> +maintainers:
+> +  - Richard Zhu <hongxing.zhu@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8qm-hsio
+> +      - fsl,imx8qxp-hsio
+> +  reg:
+> +    minItems: 4
+> +    maxItems: 4
+> +
+> +  "#phy-cells":
+> +    const: 3
+> +    description:
+> +      The first defines the type of the PHY refer to the include phy.h.
+> +      The second defines controller index.
+> +      The third defines the lane mask of the lane ID, indicated which
+> +      lane is used by the PHY. They are defined as HSIO_LAN* in
+> +      dt-bindings/phy/phy-imx8-pcie.h
+> +
+> +  reg-names:
+> +    items:
+> +      - const: reg
+> +      - const: phy
+> +      - const: ctrl
+> +      - const: misc
+> +
+> +  clocks:
+> +    minItems: 5
+> +    maxItems: 14
+> +
+> +  clock-names:
+> +    minItems: 5
+> +    maxItems: 14
+> +
+> +  fsl,hsio-cfg:
+> +    description: Refer macro HSIO_CFG* include/dt-bindings/phy/phy-imx8-=
+pcie.h.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  fsl,refclk-pad-mode:
+> +    description:
+> +      Specifies the mode of the refclk pad used. It can be UNUSED(PHY
+> +      refclock is derived from SoC internal source), INPUT(PHY refclock
+> +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
+> +      is derived from SoC internal source and provided on the refclk pad=
+).
+> +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
+> +      to be used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: IMX8_PCIE_REFCLK_PAD_OUTPUT
 
-How does the Low-Power Mode affect the GPIO lines? Is there a difference
-if the device is only in sleep mode?
+My comments on this are still not addressed. Please go back and read my
+comments about this property on v1.
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---42zcn6qmd3zur5l3
+--FnrRZ8qNOS4RlZZi
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmYo8wsACgkQKDiiPnot
-vG94AAf/fWp9nrOulZnq9/AdJQ9ZdkwwGBc1Y2so9ZSM9MUN1SAmlR5E67MpNdT5
-IUuME7nsewsFsKPeirJiFFP8Vi0c4+ID0GimQkD6XKlNPjtBzJPDW3LfwPzkYg9w
-Z2jizgKuBwrJvqRHxREhRuAzU0SSBSmb7kh9a0mE2JjC7ju6E5wqYQvbI+P7tnFK
-VaWIq75tHVWGIp6IhnQtudGoRi+YUVaqTeoHpfyEgnCosZ8b4vhN8EasSnA1S5si
-1vDZBgCHfVqQ4Losf9Z0zUQx5KSSGjpQJP6YirqqUXqUTbrd0g7ht59550jAT5JE
-aZXrBcZxYBPxliNx/Kg1HmJUxCP2uQ==
-=MLif
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZij1SwAKCRB4tDGHoIJi
+0sB9AQCUlEN4Y+iM2h4RLoTcf+CyW85JNz9s592IJ1e0LbfxeAD/daenH3uvdPSY
+R6e+lzBzHxm/BsOJDs7cEViLd9gIzQA=
+=wBaM
 -----END PGP SIGNATURE-----
 
---42zcn6qmd3zur5l3--
+--FnrRZ8qNOS4RlZZi--
 
