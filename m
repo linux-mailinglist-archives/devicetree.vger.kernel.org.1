@@ -1,174 +1,159 @@
-Return-Path: <devicetree+bounces-62376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37D78B0E8A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:37:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E068B0ED3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:42:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1143B1C25599
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:37:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3508DB21EC4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4DA16C874;
-	Wed, 24 Apr 2024 15:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146E716D4E3;
+	Wed, 24 Apr 2024 15:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CAtg5duC"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hCAi05SN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C331635C0;
-	Wed, 24 Apr 2024 15:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E9416078B
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713972959; cv=none; b=mkycMsVpJnm5r/XrhoHZB2/hfuBmqYLHF8dLOeK+7P6NhYcJBpLQwyhGjv860ako9/9/M3UqBt+0CApvKqxJcUNY0X5Gy0zANggd1kTljuYFAUj1dpcHFaFk1amPjUC364aT0gcAqcEpvrzrTA+nqmZIO/Jgr6Uq+9XO8j6SafU=
+	t=1713972985; cv=none; b=MO+6CJchpNPvdm4Phn68jZsh3xeuQWDwLuk92CGMK2H2hrG8joZE402ZMw46BHDsf/b/ym0B+EGWgW0J8qC8ySVIgot4DIn0nWfEYx02aZ0brrYAirjQzTBGfKfvoPpOmv8i9G+HbhW2m9z06jDjDwZFNTTxXsy0FOutS1pkdBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713972959; c=relaxed/simple;
-	bh=Xy6PMb0DzidrhaAriE7z1I98IIIOfbHE55qePyomcZg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UqNmEYMUMKHSbefHmwcUhsXaE0fcSLVxBdY4ASOq3iYymXn19TmMaiFmcqOE9R0lupOGH6S9Mlej6odtH3LxBxXNujNnSs4omNGDjYwb6oH4GXr+A83t7El/OwsztxVxxPt6WyTKcR7fq/MOS8KT1US+m5iB+7871KVclUSqcn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=CAtg5duC; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5532A11D6;
-	Wed, 24 Apr 2024 17:35:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1713972901;
-	bh=Xy6PMb0DzidrhaAriE7z1I98IIIOfbHE55qePyomcZg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CAtg5duCGId3uVnkjibgs1npdxGSFhrMACoFLdG7uzjg7Zxc9MgXL71hVIwMQs01b
-	 rA1ucfuyCx2axD8VPT5yLRaV8C6RtyD+eoGZxaYyR+80Xhy+pcw0jRRJiGA8z4c8nk
-	 G2gM353Mlqhhn4k2T41ZyJEwr1zL6ntGQW36ut2s=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com,
-	linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1713972985; c=relaxed/simple;
+	bh=H/kqbfAVoGFvlhHgdIzd+BSw/1qG8jsiW3DecnDx3PQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYBAcqvH7kiYq1i+Fzj8uoYk8hIV/t0l4+iyKi1C8uGP4WLfEQzKAtbftM/klHbJh7ww0MBIS6oTz7W1UfvXZmy1iCxLG/Isy+RzJ2nMJCYOU2O7KO22bSAJ0VlPirSdHsmuOt4TRpE11VjnWs7ZL/OZYe4A0zxjrsh9M82+69M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=hCAi05SN; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-61ab31d63edso258217b3.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 08:36:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713972982; x=1714577782; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UOeTFyyci3z7BUZ6gEboB6kicq7JHa28+x4pg4U/L9Q=;
+        b=hCAi05SNb+8TkDrnDyAe/wXX0NWLx6OklKVidskMgdFjS4xLcXFYnXphJtg2EvVGX4
+         u9X0Kh4oFwrnxJhh//qu/zUpiheZkopOxh7stL5laNJmOHuymr459On2lPTDIoZzT2nN
+         Q9vLczF4LkWJ9XrdPRMj4FfAgdaPkFzZK7plip3aXt/V+OL9VP26y4L9JKIrnOOKzqt3
+         hCuSXfr3hj1EejeYKkpFwspy0AX45CFJE0sUAu9lsbHplvU8O2wC8peZQjUH/m6LYrjG
+         retYszOgjeBcsq/GA+0tDxiExUppmYs57AZRJzGlhGYkuYIjoDaHWJjcZSFiJwpZMxDw
+         2UfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713972982; x=1714577782;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UOeTFyyci3z7BUZ6gEboB6kicq7JHa28+x4pg4U/L9Q=;
+        b=BET3Dj7usDpZDa8t5oMfnbuRs1ahjA8XWjD3xQ4iNiClbqoi3sFg8Z1QEYD9EvPYGe
+         0vy127RwJZQ/XEre4F2B+r9IXJ8Zr6fJkwaqkLT5hGz1aBhwBV/5uYpU52xIxbfCYj60
+         lPcoNHWSkMnzW3CT4q6KNtx3KWMKAmFbY3SVuPmJNQlB7adaCtcgSGiZbeD0QQB0L2zU
+         eTcSmHWMZoNzHBgBpcadlOZrP6VOsmRgvVCKuHxxLi/RIdlVmDgYZoragAJYDvEenT/G
+         NO9iTC1G9Hbf8YmPFMr8W+9EG9aT6QS4jDxqH34fXO9MqxxosGyI/wPpbBlIq4tfeXzL
+         hIqg==
+X-Forwarded-Encrypted: i=1; AJvYcCVjMML1BbE6qrMQDTtUsJzjMd4Ea6VA3v9lQG1ORXuWX12gm11VC01WoQSq09Cb/Of5P1oGmxUTKSXhd3CdhlDzmrElFzbL7ZfkFg==
+X-Gm-Message-State: AOJu0Yyu3Rkytk3I/C2ylbd9/ZkrhGNRtoEDevZe5uaXhLUh2QHFayT3
+	Vwoyp+ieMfFQ5ECdH0yeCYv2Ar7lgf+cOJaD8g63IY0lRwT+2QqkPptM/TlamY4=
+X-Google-Smtp-Source: AGHT+IGUqY1hEYLyvR7VYD34HR40H5BCTS3NDhpEtJYnVydiqbsmxy3Dkl9KuCGBuZqe3HcyqLC03w==
+X-Received: by 2002:a0d:cc12:0:b0:618:88d1:f15f with SMTP id o18-20020a0dcc12000000b0061888d1f15fmr73152ywd.0.1713972982354;
+        Wed, 24 Apr 2024 08:36:22 -0700 (PDT)
+Received: from ghost ([50.146.0.2])
+        by smtp.gmail.com with ESMTPSA id j82-20020a819255000000b0061ad72dd577sm2417745ywg.112.2024.04.24.08.36.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Apr 2024 08:36:21 -0700 (PDT)
+Date: Wed, 24 Apr 2024 11:36:19 -0400
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v11 5/5] ARM: dts: bcm2835: Add Unicam CSI nodes
-Date: Wed, 24 Apr 2024 18:35:41 +0300
-Message-ID: <20240424153542.32503-6-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240424153542.32503-1-laurent.pinchart@ideasonboard.com>
-References: <20240424153542.32503-1-laurent.pinchart@ideasonboard.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 06/17] riscv: Fix extension subset checking
+Message-ID: <Zikm80mmHFYoaAOF@ghost>
+References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
+ <20240420-dev-charlie-support_thead_vector_6_9-v3-6-67cff4271d1d@rivosinc.com>
+ <6c624361-a968-498b-a9fb-ea2aaec70ce8@ghiti.fr>
+ <20240424-wildly-goofy-c81aac6f8cd7@spud>
+ <ZikhpEgEoMX/rObu@ghost>
+ <20240424-gondola-cosmic-b7a02b2a8619@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240424-gondola-cosmic-b7a02b2a8619@spud>
 
-From: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+On Wed, Apr 24, 2024 at 04:21:05PM +0100, Conor Dooley wrote:
+> On Wed, Apr 24, 2024 at 11:13:40AM -0400, Charlie Jenkins wrote:
+> > On Wed, Apr 24, 2024 at 03:51:54PM +0100, Conor Dooley wrote:
+> > > On Wed, Apr 24, 2024 at 04:22:02PM +0200, Alexandre Ghiti wrote:
+> > > > Hi Charlie,
+> > > > 
+> > > > On 21/04/2024 03:04, Charlie Jenkins wrote:
+> > > > > This loop is supposed to check if ext->subset_ext_ids[j] is valid, rather
+> > > > > than if ext->subset_ext_ids[i] is valid, before setting the extension
+> > > > > id ext->subset_ext_ids[j] in isainfo->isa.
+> > > > > 
+> > > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > Fixes: 0d8295ed975b ("riscv: add ISA extension parsing for scalar crypto")
+> > > > > ---
+> > > > >   arch/riscv/kernel/cpufeature.c | 2 +-
+> > > > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > 
+> > > > > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> > > > > index 48874aac4871..b537731cadef 100644
+> > > > > --- a/arch/riscv/kernel/cpufeature.c
+> > > > > +++ b/arch/riscv/kernel/cpufeature.c
+> > > > > @@ -609,7 +609,7 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
+> > > > >   			if (ext->subset_ext_size) {
+> > > > >   				for (int j = 0; j < ext->subset_ext_size; j++) {
+> > > > > -					if (riscv_isa_extension_check(ext->subset_ext_ids[i]))
+> > > > > +					if (riscv_isa_extension_check(ext->subset_ext_ids[j]))
+> > > > >   						set_bit(ext->subset_ext_ids[j], isainfo->isa);
+> > > > >   				}
+> > > > >   			}
+> > > > > 
+> > > > 
+> > > > I think this should go into -fixes, let's check with Palmer if he wants to
+> > > > take this patch only or if you should send the patch on its own.
+> > > 
+> > > I think splitting out this and patch 1 into a new series targeting fixes
+> > > would probably make things clearer?
+> > 
+> > Okay I can do that. I will give it a bit more time before I send this
+> > series split into two to allow time for the rest of the patches to
+> > gather comments so I avoid sending too many duplicate patches.
+> 
+> Ye, I do hope to get back to this series later in the week when I have
+> time to actually read through all of the patches in detail.
+> 
+> However, you wouldn't have to resend both parts of the series - you can
+> just split out the fixes portion and send that, leaving the rest of the
+> series sitting on the list to gather comments.
 
-Add both MIPI CSI-2 nodes in the bcm283x tree and take care of the
-Raspberry Pi / BCM2711 specific in the related files.
+Oh cool, I will send those two patches out in their own series then.
 
-Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm/boot/dts/broadcom/bcm2711.dtsi     |  8 +++++++
- arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi | 14 ++++++++++++
- arch/arm/boot/dts/broadcom/bcm283x.dtsi     | 24 +++++++++++++++++++++
- 3 files changed, 46 insertions(+)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-index 22c7f1561344..1d8f9f80f935 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-@@ -1114,6 +1114,14 @@ &rmem {
- 	#address-cells = <2>;
- };
- 
-+&csi0 {
-+	interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&csi1 {
-+	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
- &cma {
- 	/*
- 	 * arm64 reserves the CMA by default somewhere in ZONE_DMA32,
-diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-index f0acc9390f31..9972782429b1 100644
---- a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-@@ -25,6 +25,20 @@ vchiq: mailbox@7e00b840 {
- 	};
- };
- 
-+&csi0 {
-+	clocks = <&clocks BCM2835_CLOCK_CAM0>,
-+		 <&firmware_clocks 4>;
-+	clock-names = "lp", "vpu";
-+	power-domains = <&power RPI_POWER_DOMAIN_UNICAM0>;
-+};
-+
-+&csi1 {
-+	clocks = <&clocks BCM2835_CLOCK_CAM1>,
-+		 <&firmware_clocks 4>;
-+	clock-names = "lp", "vpu";
-+	power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
-+};
-+
- &gpio {
- 	gpioout: gpioout {
- 		brcm,pins = <6>;
-diff --git a/arch/arm/boot/dts/broadcom/bcm283x.dtsi b/arch/arm/boot/dts/broadcom/bcm283x.dtsi
-index 2ca8a2505a4d..69b0919f1324 100644
---- a/arch/arm/boot/dts/broadcom/bcm283x.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm283x.dtsi
-@@ -454,6 +454,30 @@ dsi1: dsi@7e700000 {
- 			status = "disabled";
- 		};
- 
-+		csi0: csi@7e800000 {
-+			compatible = "brcm,bcm2835-unicam";
-+			reg = <0x7e800000 0x800>,
-+			      <0x7e802000 0x4>;
-+			reg-names = "unicam", "cmi";
-+			interrupts = <2 6>;
-+			brcm,num-data-lanes = <2>;
-+			status = "disabled";
-+			port {
-+			};
-+		};
-+
-+		csi1: csi@7e801000 {
-+			compatible = "brcm,bcm2835-unicam";
-+			reg = <0x7e801000 0x800>,
-+			      <0x7e802004 0x4>;
-+			reg-names = "unicam", "cmi";
-+			interrupts = <2 7>;
-+			brcm,num-data-lanes = <4>;
-+			status = "disabled";
-+			port {
-+			};
-+		};
-+
- 		i2c1: i2c@7e804000 {
- 			compatible = "brcm,bcm2835-i2c";
- 			reg = <0x7e804000 0x1000>;
--- 
-Regards,
-
-Laurent Pinchart
+- Charlie
 
 
