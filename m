@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-62520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A558B16E1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 01:12:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71F358B16F1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 01:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD910288E9D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 23:12:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98331B269A9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 23:15:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CE216F0D9;
-	Wed, 24 Apr 2024 23:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F253416F0E9;
+	Wed, 24 Apr 2024 23:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="OYYQbbQ8"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="I7rkrWQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A108316F0C1
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 23:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D59916F29E
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 23:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714000332; cv=none; b=m933vrkUHwOiYzQOziHpNaAg8HtFu9q4gZx7yqNmCY+lNTj07K/aUmHMGuccRqLKB+guphjDGRHheRim0HQR/82D5HR7Xl9sP2+nZYYf06QfA20EVkTUFxUAyBRpXKaYUdOr98iHY61ZvAhxsGEbJB2zNJ0nR3XZiNBqOWdjRfA=
+	t=1714000477; cv=none; b=RNm+BDooVdvnb6zfM2K5lkO7Z1Nssw8fzj52N5jE7KqwGVhhYNIpcGcYQjuApyYiXdLCRdwWZeGWICFEiWMxDQ9LSG76Jd+nClVvT/+IvomB3/zn8VSc6MCc4nk/RhYmhPQfR9rqrcULTZfviOt9ZK05oAGnHojp/2hUjdbrIfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714000332; c=relaxed/simple;
-	bh=nGOeEarlWh879lSk9lT3VGRurvIZGY9T9CCZUPOv7oo=;
+	s=arc-20240116; t=1714000477; c=relaxed/simple;
+	bh=g+d7wMD+Ka5o16A3NfqBqoRnWdYEE/B5ILEP3esGc1I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ttrsm7vgoiSWkIVmMee2hXlzFzqwT72eejlGqkjgGRc+yls7XRRhC13/+4pViO3Bl57z9tBauKzEkPZjtTgcUAVkSZXK5QYsTTtuucya2O6l/NF1s9x4FjgL38/pcR6kwM6vLnh0Fa8+QrCo+3Qu4SDgyULajv+iO5Ft7HgHxlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=OYYQbbQ8; arc=none smtp.client-ip=209.85.222.169
+	 In-Reply-To:Content-Type; b=VPKTyJd3smq0jD6MKZST5e0npOq/up8399499H5rUcgwvQHRO4+HyhzYeTNmAIXrqYNPif8Tq8JiGsSmxmTn7ZD+jkYJD8+80t+/uJYoHTFwcZqVgcP6YbgPvuRRcGEaLo2Wmv+R7yt30y603uJsLVyDnqxFbGZ1EbCb5H1yhL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=I7rkrWQ6; arc=none smtp.client-ip=209.85.160.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-78f043eaee9so19319685a.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 16:12:09 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-434c695ec3dso2134541cf.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 16:14:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1714000328; x=1714605128; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1714000475; x=1714605275; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=m/Bj97Z2RFx7hBkhrQq5vNx7thN6Y9cPVv9fdGH3nqk=;
-        b=OYYQbbQ82Si76Qm7t2VTk1nlOKtZ4MWjaK0OCHYG0vpopPFDoy+PQDaPbHZKWZHnMU
-         hTSFkuRmkLE7inDlq+AMMAxpS4UCxFWd8k9S0/v1dUQzHZaWBGbF8kE8urE73bfjSfO5
-         go27/upfj1oDoPbWvQnzRBo+/AbKPl4kuGG5Q=
+        bh=Yg201rA5kSc017YbKFqbL7r5b5Mn8vPODJHn5lMLpgs=;
+        b=I7rkrWQ6ZjZd3oHEzNdvsMJhRx42AcUKFVE+7+i6O8oCVeKMB2mDIAHoJq2T6/SFSe
+         A5VdKIVv0wGjn+IXdyu9/Ek/sJs8l3vDCUluBZgk2A8SuczyXxWDV8pOUDLs6FBpEsfO
+         3thsCS3ZpzIfmX/vzlHxhd7ZyDN1pTYAFMeMU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714000328; x=1714605128;
+        d=1e100.net; s=20230601; t=1714000475; x=1714605275;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=m/Bj97Z2RFx7hBkhrQq5vNx7thN6Y9cPVv9fdGH3nqk=;
-        b=j7ncsWlSYqpUJ2UxjT1gITgjrfnZvTLBE2w/UvPforLxauM2u8Ngpd6W/cevlnHn+A
-         L1e1bjeLKHdD71vfVTS5g0TSUa45RfsyGrILrLSSSpBPQE3enFxNzR9GnBM0/hfvLy3d
-         cQDAXuVQa9LYTow0W1SytkLScg5H/8GitD6+L6h8P625xuiuxJum8nDluvurYHqp6+fF
-         rPT44ykFRZU4EaLF6NEwMnoYzw2X8PoVnlDMxbQLycFtmvlkwB9HiTB5RBZvmULdgIea
-         34W8XKkU3gcKEqBRgnyNV6nVbjrZ/wQRH0wiqIOCWu2o8vO5uDBt28ZBxqpObCKj98Tp
-         lgTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX4l35gViI8F1V/sPaXb+GA5+ettU1Vyt2vGW6jY6RsOOgptz1+hNihfVDUR5gFKEqyOv/CMZzjQA3ukbEywKNZPE5JWnTI9Tk6oA==
-X-Gm-Message-State: AOJu0YxZpABcFh3GiUES+D2pkUiZqgQtxPy8Z6O3RRpHJAJHCI8PZ4Mk
-	+q2zaMpwfaPmFOsVQkFM0Vo8tVg3iwq5SdiapA1oZzFeXshmzz/ByhYbi2IaYA==
-X-Google-Smtp-Source: AGHT+IF4FHzUA/9Fag7f4ZUgODWy/fidy7gA0DALIdQ6yCqkpqiWQ5S1PXXceG2Jwxdm5sdc4f9lZA==
-X-Received: by 2002:a0c:fa0b:0:b0:6a0:424c:6eab with SMTP id q11-20020a0cfa0b000000b006a0424c6eabmr4422609qvn.47.1714000328454;
-        Wed, 24 Apr 2024 16:12:08 -0700 (PDT)
+        bh=Yg201rA5kSc017YbKFqbL7r5b5Mn8vPODJHn5lMLpgs=;
+        b=d40o77OehgdO5Kl9VD+867w063we50To1kCzsOE9LjIaCqaDxRjaDISov78cHlLSZh
+         I07A2MdHEeMJ0w2aHBejTTTcZWTjrYdPT2yhSWMlsucslBRCkAjsPdWKA9/Hikie6aWN
+         +DuJhkEdpyimc9gBJ44/PDqbHgFijcEY+rFhFmiF30bN4G99PRv56XQghO6qSWhacZMm
+         iKEI6vxoGGrJTDQydP1kRVtBR6DE9kMpV3+O6aXpVvr7KByhDYMLUDQe8lA4W63/utNS
+         z9VH9SlEmRbLqbC2N+pgs3Kns7Q8jFFr2vAiMAQm4ypvHp6DqUuHR6XGGvkx4AsMWfxC
+         LjwA==
+X-Forwarded-Encrypted: i=1; AJvYcCW86n664w4MTwumESl4elKHmifsTcKtMy8gxVUJiwE3o/gomahWBgIr/p9i2tlR7/vpzIuiTlNYthe7FgZO+iWO0dHFE/ZBtdz+7g==
+X-Gm-Message-State: AOJu0Yz5zIjseKsdTciXMZXbAKdI43a3GCIGDhkj3frFppIPHkzrXiyS
+	Jp7kKmSNIGNkBd+mu5AERC2na1JCFOxsNzeo4NYz0Bsd6Vxww+pirT/MhU16dg==
+X-Google-Smtp-Source: AGHT+IH7qHwW7iI7lAwOAhVCa5iUhdoP94nwg3/0LxCkelm4neYCh/wy16e3tsyUS3jT9NOPi+M37Q==
+X-Received: by 2002:ac8:7dc8:0:b0:43a:3620:f89 with SMTP id c8-20020ac87dc8000000b0043a36200f89mr2167879qte.50.1714000475423;
+        Wed, 24 Apr 2024 16:14:35 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id v3-20020ad45343000000b006a0404ce6afsm171080qvs.140.2024.04.24.16.12.06
+        by smtp.gmail.com with ESMTPSA id js7-20020a05622a808700b0043936ed09bfsm4955887qtb.27.2024.04.24.16.14.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 16:12:07 -0700 (PDT)
-Message-ID: <4ea3d3be-78d1-4d79-b1e8-dca448c4eaf6@broadcom.com>
-Date: Wed, 24 Apr 2024 16:12:05 -0700
+        Wed, 24 Apr 2024 16:14:34 -0700 (PDT)
+Message-ID: <eab34812-1c34-4880-aa4e-2e8e1aa5a63e@broadcom.com>
+Date: Wed, 24 Apr 2024 16:14:31 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,7 +73,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] gpio: brcmstb: add support for gpio-ranges
+Subject: Re: [PATCH 2/3] gpio: of: support gpio-ranges for multiple gpiochip
+ devices
 To: Doug Berger <opendmb@gmail.com>, Linus Walleij
  <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
 Cc: Phil Elwell <phil@raspberrypi.com>, Rob Herring <robh@kernel.org>,
@@ -82,7 +83,7 @@ Cc: Phil Elwell <phil@raspberrypi.com>, Rob Herring <robh@kernel.org>,
  linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240424185039.1707812-1-opendmb@gmail.com>
- <20240424185039.1707812-4-opendmb@gmail.com>
+ <20240424185039.1707812-3-opendmb@gmail.com>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -116,29 +117,35 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240424185039.1707812-4-opendmb@gmail.com>
+In-Reply-To: <20240424185039.1707812-3-opendmb@gmail.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000bf4d330616dfcc46"
+	boundary="0000000000008078880616dfd52f"
 
---000000000000bf4d330616dfcc46
+--0000000000008078880616dfd52f
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 4/24/24 11:50, Doug Berger wrote:
-> A pin controller device mapped with the gpio-ranges property
-> will need implementations of the .request and .free members of
-> the gpiochip.
+> Some drivers (e.g. gpio-mt7621 and gpio-brcmstb) have multiple
+> gpiochip banks within a single device. Unfortunately, the
+> gpio-ranges property of the device node was being applied to
+> every gpiochip of the device with device relative GPIO offset
+> values rather than gpiochip relative GPIO offset values.
+> 
+> This commit makes use of the gpio_chip offset value which can be
+> non-zero for such devices to split the device node gpio-ranges
+> property into GPIO offset ranges that can be applied to each
+> of the relevant gpiochips of the device.
 > 
 > Signed-off-by: Doug Berger <opendmb@gmail.com>
-> Tested-by: Phil Elwell <phil@raspberrypi.com>
 
 Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
 Florian
 
 
---000000000000bf4d330616dfcc46
+--0000000000008078880616dfd52f
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -209,15 +216,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGAkldLELlHtPWyi
-MtXUHn5Bi2EeCQEIsQ9Jho/s2lqSMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDQyNDIzMTIwOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOg51mVHLZ0X57D+
+wTGQ9Ye9DxgdJfvvuDFI0BJYV6phMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDQyNDIzMTQzNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQC9Un88icxGjBwQ6x+j+G092vC2MJtRVEfn
-Lf2fFn+R5zemJLhiVU6to9a2IDYGlc/CPNmHK3rhAP7vEOWI7ZPK2boJOohW7IGsCLwa4Ek4fkFL
-E94/vWS9XJNyOgfVQ+9hiXLl0SqOnuKYng/9TY0mVf9b76wqAOBudVU1IRRE23xmhmV6T/TV5gah
-ERzBA3cdPtYcp7KjcxUG+k+NkKeATa+PV8SkEjttARBWRRVLP8mXMG89xqmM7vNJzUM2CBM6arFr
-GZGZLUnAEmlfHJJzwh0dhxHXVH28ORWXyI7kjmkt+DCzgnMgwxPsALCx26dWAX37iXL2ol9tBdbN
-kT3T
---000000000000bf4d330616dfcc46--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBGuYEn/EupuuWh2obIajvJuaOgdEd2fPf1
+3WM0xb3vHcNO5Rv2IgEcRqACVJQZchdfZ2NgOofUiaiXRjDm/vzkpIgUNM9QMsomJa5ZkfOhf1vO
+YHsQjtibF7QRopP1bfZhjpzHyr8BLJF2nMwVtPtcQKcoR6aC0gW/bAaqp4fdy7BXEYg1hDH/ig/9
+hrrThSC+bGE3mSGhksXMp7VDOPPMfLMR9md3oYbLsKTkq8Bin339mcP2sEFQF5w4UTpjnFqcn7s6
+7ScZurmzUMpSS89iQNXido4jjb5j8wVFkRMerH5T7DV/sSNKW36oN0oOC7sd39cgmh4Bw/my/r9n
+iWMD
+--0000000000008078880616dfd52f--
 
