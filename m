@@ -1,180 +1,87 @@
-Return-Path: <devicetree+bounces-62477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C308B13EC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:01:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 541E38B1417
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:07:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D8BC2879B0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:01:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB0C0B28F65
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD2213BC20;
-	Wed, 24 Apr 2024 20:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381501442FD;
+	Wed, 24 Apr 2024 20:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LQXOtZW3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFF613BC19;
-	Wed, 24 Apr 2024 20:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D34143C7A;
+	Wed, 24 Apr 2024 20:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713988890; cv=none; b=L+fThRa4GfuxQMaYFVbP0lwPIwzhqUKFRAEFdJM989ihStM4gYv3mRS6GtMdsTwy+ke7JdBQAyDiAmF4n/BMmakVGye6F/GCnwfEdXnAVb18GkTqGMJZ/ApaFsVQ8QkEKeCnghq4cLgtx1CmhuTxIcOXMSq/pFieMQ9wfzHh5LE=
+	t=1713989202; cv=none; b=Dyt32PlChQPbkfzJQrk7yyjX1ACbnEKkT0PJJVOh9edcwtkCkQC3DE+k4YDRcUv89rSevnistuDZuYm26Roo3vDI59gqs1kT1MpP0UW8KCRqQtOz3B6rW/MU+q3Z1vsaYGhO18j77PvY5GGBiqkAhIAHyCHnxE2aXVafz3AG8Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713988890; c=relaxed/simple;
-	bh=lVUzeWoRGC6Liw5e4wRBgAQt06rT4cQ/EvqQQrQhdRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kH3HIrwRM5GG7/6uYDMevdzGK0ko9DhIer52eaU/eS17u4ySuWz+WjdxxaxeZWoLwb+NnRzpGM/BFcOo6IUeOVH+6hDq/9MKTBYH7vlzfq7E8NHhuqloT11vKeIFXXVmdCHIi7lq3gitX9P5KJfKuCRdSI+1NrL/AVLhoUI2+Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CB2E1240004;
-	Wed, 24 Apr 2024 20:01:15 +0000 (UTC)
-Message-ID: <4acc62d0-d62b-4d42-805b-0bc7f663a81c@ghiti.fr>
-Date: Wed, 24 Apr 2024 22:01:15 +0200
+	s=arc-20240116; t=1713989202; c=relaxed/simple;
+	bh=3QQAIZ0s4nvmQ6DvzguWJ0rhp8Fhy0GLTpNHl1lPOLk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dsCEGR5g+4iYEq1/fkJWnjFB8y9jBddcgTnVXBVZdq2REeFLp5RN+t/TVmaz2Tv3vNXFKfZNj0HaVqCRFZKsHPy0XHVdVzIjtgigvvvqQxsLP6QSfw+3JN0tD/ZS5GPwtxM3VQxggaT/86BKecc35WtOxJad+BoQGOT+QAPzqTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LQXOtZW3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C641C113CD;
+	Wed, 24 Apr 2024 20:06:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713989201;
+	bh=3QQAIZ0s4nvmQ6DvzguWJ0rhp8Fhy0GLTpNHl1lPOLk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LQXOtZW38nEGkTLID/XVwTTx6OIgTzHTdTnMfP9XE79DnO1xhe9xW/IKwLFKAi71K
+	 m55CT2LM9MPjQw8QGtPOa+tj7rTQwchVkLtYqt1uWEr7AqYFAmx/obA8atSrOJTyw6
+	 zrKsXAYYzQmV2kI7v0fnZyGMLb9v6JQRv94k90b6tM8vNBVZ/JHfTMTtD1N7jcqLib
+	 nxUGE93x/r+52RJd8OipeQhLr4cy5SrRjVl3X5Z2saAaOp+PLqga+r/lbE0eBwr97h
+	 /3ZxiN05xZcvCHTiu9j9HlVIgT9OjiEubk4N66DmW4L/rqNMEodCW6XyZWi7VWipGq
+	 1+1CCPrn4z+qA==
+Date: Wed, 24 Apr 2024 15:06:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Chuan Liu <chuan.liu@amlogic.com>, linux-amlogic@lists.infradead.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 2/5] dt-bindings: clock: add Amlogic C3 SCMI clock
+ controller support
+Message-ID: <171398916736.412339.6884561050040801002.robh@kernel.org>
+References: <20240424050928.1997820-1-xianwei.zhao@amlogic.com>
+ <20240424050928.1997820-3-xianwei.zhao@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/9] riscv: smp: fail booting up smp if inconsistent
- vlen is detected
-Content-Language: en-US
-To: Andy Chiu <andy.chiu@sifive.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley
- <conor.dooley@microchip.com>, Heiko Stuebner <heiko@sntech.de>,
- Guo Ren <guoren@kernel.org>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
- =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>,
- Shuah Khan <shuah@kernel.org>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Palmer Dabbelt <palmer@rivosinc.com>, Vincent Chen
- <vincent.chen@sifive.com>, Greentime Hu <greentime.hu@sifive.com>,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kselftest@vger.kernel.org
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-2-e0c45bb6b253@sifive.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20240412-zve-detection-v4-2-e0c45bb6b253@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240424050928.1997820-3-xianwei.zhao@amlogic.com>
 
-Hi Andy,
 
-On 12/04/2024 08:48, Andy Chiu wrote:
-> Currently we only support Vector for SMP platforms, that is, all SMP
-> cores have the same vlenb. If we happen to detect a mismatching vlen, it
-> is better to just fail bootting it up to prevent further race/scheduling
-> issues.
->
-> Also, move .Lsecondary_park forward and chage `tail smp_callin` into a
-> regular call in the early assembly. So a core would be parked right
-> after a return from smp_callin. Note that a successful smp_callin
-> does not return.
->
-> Fixes: 7017858eb2d7 ("riscv: Introduce riscv_v_vsize to record size of Vector context")
-> Reported-by: Conor Dooley <conor.dooley@microchip.com>
-> Closes: https://lore.kernel.org/linux-riscv/20240228-vicinity-cornstalk-4b8eb5fe5730@spud/
-> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+On Wed, 24 Apr 2024 13:09:25 +0800, Xianwei Zhao wrote:
+> Add the SCMI clock controller dt-bindings for Amlogic C3 SoC family
+> 
+> Co-developed-by: Chuan Liu <chuan.liu@amlogic.com>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
-> Changelog v4:
->   - update comment also in the assembly code (Yunhui)
-> Changelog v2:
->   - update commit message to explain asm code change (Conor)
-> ---
->   arch/riscv/kernel/head.S    | 19 ++++++++++++-------
->   arch/riscv/kernel/smpboot.c | 14 +++++++++-----
->   2 files changed, 21 insertions(+), 12 deletions(-)
->
-> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> index 4236a69c35cb..a00f7523cb91 100644
-> --- a/arch/riscv/kernel/head.S
-> +++ b/arch/riscv/kernel/head.S
-> @@ -165,9 +165,20 @@ secondary_start_sbi:
->   #endif
->   	call .Lsetup_trap_vector
->   	scs_load_current
-> -	tail smp_callin
-> +	call smp_callin
->   #endif /* CONFIG_SMP */
->   
-> +.align 2
-> +.Lsecondary_park:
-> +	/*
-> +	 * Park this hart if we:
-> +	 *  - have too many harts on CONFIG_RISCV_BOOT_SPINWAIT
-> +	 *  - receive an early trap, before setup_trap_vector finished
-> +	 *  - fail in smp_callin(), as a successful one wouldn't return
-> +	 */
-> +	wfi
-> +	j .Lsecondary_park
-> +
->   .align 2
->   .Lsetup_trap_vector:
->   	/* Set trap vector to exception handler */
-> @@ -181,12 +192,6 @@ secondary_start_sbi:
->   	csrw CSR_SCRATCH, zero
->   	ret
->   
-> -.align 2
-> -.Lsecondary_park:
-> -	/* We lack SMP support or have too many harts, so park this hart */
-> -	wfi
-> -	j .Lsecondary_park
-> -
->   SYM_CODE_END(_start)
->   
->   SYM_CODE_START(_start_kernel)
-> diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
-> index d41090fc3203..673437ccc13d 100644
-> --- a/arch/riscv/kernel/smpboot.c
-> +++ b/arch/riscv/kernel/smpboot.c
-> @@ -214,6 +214,15 @@ asmlinkage __visible void smp_callin(void)
->   	struct mm_struct *mm = &init_mm;
->   	unsigned int curr_cpuid = smp_processor_id();
->   
-> +	if (has_vector()) {
-> +		/*
-> +		 * Return as early as possible so the hart with a mismatching
-> +		 * vlen won't boot.
-> +		 */
-> +		if (riscv_v_setup_vsize())
-> +			return;
-> +	}
-> +
->   	/* All kernel threads share the same mm context.  */
->   	mmgrab(mm);
->   	current->active_mm = mm;
-> @@ -226,11 +235,6 @@ asmlinkage __visible void smp_callin(void)
->   	numa_add_cpu(curr_cpuid);
->   	set_cpu_online(curr_cpuid, 1);
->   
-> -	if (has_vector()) {
-> -		if (riscv_v_setup_vsize())
-> -			elf_hwcap &= ~COMPAT_HWCAP_ISA_V;
-> -	}
-> -
->   	riscv_user_isa_enable();
->   
->   	/*
->
+>  .../dt-bindings/clock/amlogic,c3-scmi-clkc.h  | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/amlogic,c3-scmi-clkc.h
+> 
 
-So this should go into -fixes, would you mind sending a single patch for 
-this fix?
-
-Your patch 8 is actually already fixed by Clement's patch 
-https://lore.kernel.org/linux-riscv/20240409143839.558784-1-cleger@rivosinc.com/ 
-and I already mentioned this one to Palmer.
-
-Thanks,
-
-Alex
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
