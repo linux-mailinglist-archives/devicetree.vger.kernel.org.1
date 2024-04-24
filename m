@@ -1,228 +1,179 @@
-Return-Path: <devicetree+bounces-62198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C09C8B0454
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 10:30:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8418B0463
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 10:33:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5513D281A3E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 08:30:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 541D71C23511
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 08:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1529A7E798;
-	Wed, 24 Apr 2024 08:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7587A156C6B;
+	Wed, 24 Apr 2024 08:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="n3HRYxEM";
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="ohi95WNK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m//bbYq6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8701CFB2;
-	Wed, 24 Apr 2024 08:30:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713947440; cv=pass; b=eL1yMNaZLD6/B1nwivlYkY4LjEU8y/wyFVSLAT66E70xH4iTbWfZZ4W77qmLucOWQpHz+SOs+feBSWjKPGyUYnhNjuhHjcj8YTZuJufkUe01vtt+ojvMmW3Ytcav+vdSjaCnF0MYBqr2UXKVQcr9NOx/AE7xxNAisEc3EkM0Yg4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713947440; c=relaxed/simple;
-	bh=HZRd5Sji4u0FknZd+UNKw8clHjJbnVk/ortExV5eoLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cQEXRfy6Bl2ojJN3+kDbhNdKiKaL+8k4dGzFN2IgkNMBfSJdmyYXdADi/f+EriKOs+xqMYNGx7QeldPaGyXSwhVz2Kq7R6TtCxqUuQj9bZMOJ/7+EZI+Qtan5EcsXwYgqhrXO64nJrredyiZ1k+Gwbb0+xNj6C/Kcik7mexGb1A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=n3HRYxEM; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=ohi95WNK; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPS id 4VPXHY4LXXz49PwQ;
-	Wed, 24 Apr 2024 11:30:33 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1713947433;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f2uP0HlkkcYb29qNNXKq5zn2KaY6EI9tc7pBq2JvLWs=;
-	b=n3HRYxEMr5gsA6Jse99M59u4CbpdUrsjtCYaDZD1FFPU97S80E1oSXQxrf+rHTnJ3gkTlk
-	+luLdjyOMvdc9A9SOS+0YZ6udW1XcuFY7lgWTtra6BYbl+LcYxLAhchjpdoLcLbWnW9Gvy
-	HT3sfaxKKL629Sl012EDwOplI1rvtTuyEBzJbwyr7DPE62uwrsqACXbHTjM3ZAmM8YgEDx
-	+jMQn5yXxIRdKxZS5tO8+wb/pCAhBWyrEJ42nt3ULilVEC54H9ca4L98PHa9Jast9ezLRf
-	sd8GzWWbBDoEkomG6d/pCTaKOnbasbxgcIJD9jWcV6e9NMXeXBzj3Eim0CWOiQ==
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4VPXHM3jJwzyRf;
-	Wed, 24 Apr 2024 11:30:23 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1713947425;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f2uP0HlkkcYb29qNNXKq5zn2KaY6EI9tc7pBq2JvLWs=;
-	b=ohi95WNKy80W5wW9eqwfUNGyGFYZcnzuILf9KpCGEk3qN0qVzAr7r3csb6+3Upn2gFMg+0
-	J6r+iSFiERY+ZT6sQJrg8qnFFQTMz2YqggZoHxWH8GJmRtqhV2SVutKBXkKh/LrLFypPHH
-	u4/iO7KC+8y5sTd1/dfYBWM+8VnLEH0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1713947425;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f2uP0HlkkcYb29qNNXKq5zn2KaY6EI9tc7pBq2JvLWs=;
-	b=rW+mDMGuAXr3HfmYkMR+bJcZRdrA6MbFzuxTFcgAfgeG1PjYc9EGw0fIzRhmKKUzpbgRU3
-	4H0vBIx3MRWZ5dSR04VYbT7qfi7RuucF1gaJQ0omUfqd/jKn9j/g4acv1TGaFPrdU+0wBt
-	N78oyrRZ72L1ZuII97xBLTzuer55k1Y=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1713947425; a=rsa-sha256; cv=none;
-	b=AO0Q8clkqabsZbtUXpjAC4q8pFkI66Ilwf64XSo/EoSMnV9QfTmDdEvy2WVHH5b+nm32AP
-	GAVY14YgKqvsFnNOWgz1hSWyyIMnKcOldhh7Q6gMKOoyfLlS384VAdZOP3L7J5Gcsd8I35
-	K0h7wFDLUgtEZG618mSN74HNqMnELH8=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id C006F634C96;
-	Wed, 24 Apr 2024 11:30:22 +0300 (EEST)
-Date: Wed, 24 Apr 2024 08:30:22 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, linux-kernel@vger.kernel.org,
-	mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Subject: Re: [PATCH v6 4/4] media: i2c: add MAX96714 driver
-Message-ID: <ZijDHtSa2vACgBjl@valkosipuli.retiisi.eu>
-References: <20240325131634.165361-1-julien.massot@collabora.com>
- <20240325131634.165361-5-julien.massot@collabora.com>
- <ZhkaR-83uciNFi2b@valkosipuli.retiisi.eu>
- <a70e3792-b938-4c20-840d-5dfa9bdc4b9c@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5E7158A36
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 08:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713947566; cv=none; b=q26uUu+wEBw+fmZSnUpKDOpvjRIppJfr5oGeRlZWPcppvrCDkVBaNjsmNDIM9smMnIakGoFkUju5Gj6WLW8XLu3CvavYqUyG59PKS3peOOKo38DTO0J3n+L+eiyPxtCm2tZVQM5ffwuWiFz98pMEugB81Gb5QkiqyeYfMa9AObM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713947566; c=relaxed/simple;
+	bh=xR9byxaAebG6l/9BPavcQ6ZRngFgOvtD9K7ifUUigYU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=saS3PkxcjCrU0q+1/d9DSSiEZacYp1Qw4CWt1zuco95k8OW+DMLiJq4/NjC2ShXfR7bY0mhTBy9JAMtgA2fp7bzV9fpQe1W/1Hl99UKqbFcd8APZhHcgCD758+0cx+bCPIaSgYyRvBjS+WgYK79n1+SV6zilfF0/sQH2da2awLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m//bbYq6; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-41ae95468efso6566685e9.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 01:32:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713947563; x=1714552363; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pt2/IRWCetn93UD+4EyUBeJAaqUzcCQnHTha+UeKn04=;
+        b=m//bbYq6Diu0WN7OinqaLZybjkOW/prP6sqd8ewJxWKdfpMcKyLwOQttkBNoFeManZ
+         V/kTTd5bZVZXy2vUbzcheG10bviJ8BmZr0ugy7yX632hlIPjHmfzRI1/RJd6K7Df1y9O
+         LTc5ZPYDW9LDtxlOxrrQiKXsgxQC+BbsUbU5N0P2roRbyEHdqyKXASCwDZrvE4z+Yl7T
+         1gKQz725APe6lR6uR1NlhV8hdZP70i+F1aeqxz5qCBBlJX/+uUH0TTCfguefNybFTkzo
+         x7xegHM2RrtXP7ADCb4E2unBVQ83MfHn2ic6nd3nRc2SWgc6GOp3yUTSc3h26pIGz+k8
+         DUfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713947563; x=1714552363;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pt2/IRWCetn93UD+4EyUBeJAaqUzcCQnHTha+UeKn04=;
+        b=Pk9SGiMuU5Vme5rbclq/nGFzRPesQWEIacSD2w84lsLhQ1XV1KJi7U5cddCgu8f1BB
+         2D/nWmd0SCU15RfBSNbr84hnPjgRT/AdadsAl/A1WPdcFlw3dt37REUEiZTY0dw+HHcI
+         yQK9NPlvhV16aoj6pp0fS1kONB0DQT6E2+FufdyvGBprHULX8oqxgsxRBL2rmJEefZy1
+         QSMfXNwsViOyZYwVtY7FDGw6dDs+HPAwhh4nGkdXSmbDnMWIGt5vnnSYTWWqD1voAYcz
+         bOsN+Q41qhsbI2iF23oNyImNT01Q+16h4GJkgSbUXT8fJzz6jMTy7lZPOKF4KJLy+F4R
+         yO7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUwuSBZC6ns0vPep5ylFDjpvg1qrMPsnTwT+1RbDSZXU7FEG4ylUHbQ7lm3GGUce7VATxF/q2x9IvqzkYy1SIeBV09upwUDJMv7VA==
+X-Gm-Message-State: AOJu0Yyg+XG/mz72tGn+Tmu/pGG2VijsSj211oUdMW08huHetUZWPynr
+	ci/0DcUADYlGJ1kXUKp/xfIpdhKrETop/6t8WkvoxuXFkB4FdQaRyFD5QqHjMho=
+X-Google-Smtp-Source: AGHT+IFOA4RdfLQcLQOhmj5hYE9KaYxir5zgDAMTptNSxrgYHje90MrprIAfoJoxvY1IFlXyhsi5WA==
+X-Received: by 2002:a05:600c:1d11:b0:41a:a81e:441 with SMTP id l17-20020a05600c1d1100b0041aa81e0441mr1652785wms.25.1713947563253;
+        Wed, 24 Apr 2024 01:32:43 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id w17-20020a05600c475100b004162d06768bsm26840103wmo.21.2024.04.24.01.32.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 01:32:42 -0700 (PDT)
+Message-ID: <ca7797c8-c341-479b-bcba-8a41f830c391@linaro.org>
+Date: Wed, 24 Apr 2024 10:32:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a70e3792-b938-4c20-840d-5dfa9bdc4b9c@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: HID: i2c-hid: elan: add Elan eKTH5015M
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+ Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Douglas Anderson <dianders@chromium.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240423134611.31979-1-johan+linaro@kernel.org>
+ <20240423134611.31979-3-johan+linaro@kernel.org>
+ <1dc47644-56c9-4fdc-80cf-756cf4cea54c@linaro.org>
+ <ZiiuxI3GfJQIjxAG@hovoldconsulting.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZiiuxI3GfJQIjxAG@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Julien,
-
-On Tue, Apr 23, 2024 at 04:01:16PM +0200, Julien Massot wrote:
-
-...
-
-> > > +static int max96714_enable_streams(struct v4l2_subdev *sd,
-> > > +				   struct v4l2_subdev_state *state,
-> > > +				   u32 source_pad, u64 streams_mask)
-> > > +{
-> > > +	struct max96714_priv *priv = sd_to_max96714(sd);
-> > > +	u64 sink_streams;
-> > > +	int ret;
-> > > +
-> > > +	if (!priv->enabled_source_streams)
-> > > +		max96714_enable_tx_port(priv);
-> > > +
-> > > +	ret = max96714_apply_patgen(priv, state);
-> > > +	if (ret)
-> > > +		goto err;
-> > > +
-> > > +	if (!priv->pattern) {
-> > > +		if (!priv->rxport.source.sd) {
-> > > +			ret = -ENODEV;
-> > > +			goto err;
-> > > +		}
-> > > +
-> > > +		sink_streams =
-> > > +			v4l2_subdev_state_xlate_streams(state,
-> > > +							MAX96714_PAD_SOURCE,
-> > > +							MAX96714_PAD_SINK,
-> > > +							&streams_mask);
-> > > +
-> > > +		ret = v4l2_subdev_enable_streams(priv->rxport.source.sd,
-> > > +						 priv->rxport.source.pad,
-> > > +						 sink_streams);
-> > > +		if (ret)
-> > > +			goto err;
-> > > +	}
-> > > +
-> > > +	priv->enabled_source_streams |= streams_mask;
-> > > +
-> > > +	return 0;
-> > > +
-> > > +err:
-> > > +	if (!priv->enabled_source_streams)
-> > > +		max96714_disable_tx_port(priv);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int max96714_disable_streams(struct v4l2_subdev *sd,
-> > > +				    struct v4l2_subdev_state *state,
-> > > +				    u32 source_pad, u64 streams_mask)
-> > > +{
-> > > +	struct max96714_priv *priv = sd_to_max96714(sd);
-> > > +	u64 sink_streams;
-> > > +	int ret;
-> > > +
-> > > +	if (!priv->pattern && priv->rxport.source.sd) {
-> > 
-> > When will priv->rxport.source.sd be NULL here?
+On 24/04/2024 09:03, Johan Hovold wrote:
+> On Tue, Apr 23, 2024 at 06:24:39PM +0200, Krzysztof Kozlowski wrote:
+>> On 23/04/2024 15:46, Johan Hovold wrote:
+>  
+>>>  properties:
+>>>    compatible:
+>>> -    items:
+>>> -      - const: elan,ekth6915
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - enum:
+>>> +              - elan,ekth5015m
+>>> +          - const: elan,ekth6915
+>>> +      - items:
+>>
+>> Don't re-add the items for this entry. Just const.
 > 
-> Indeed it should not, the priv->rxport.source.sd can only be null if:
-> - There is no serializer
-> - The stream has been started with pattern generator and the pattern
-> generator
-> has been disabled while streaming.
-
-It seems priv->rxport.source.sd is also accessed in
-max96714_enable_streams() without such a check.
-
+> Sure. But note that the example schema uses 'items' like this (e.g. for
+> 'compatible' and 'clock-names'):
 > 
-> In V7 I will drop this check and add another one to prevent disabling the
-> pattern
-> generator while streaming.
-
-Sounds good.
-
-> > > +static void max96714_v4l2_notifier_unregister(struct max96714_priv *priv)
-> > > +{
-> > > +	v4l2_async_nf_unregister(&priv->notifier);
-> > > +	v4l2_async_nf_cleanup(&priv->notifier);
-> > 
-> > It'd be nicer to call these directly IMO. Maybe we could introduce
-> > v4l2_async_nf_unregister_cleanup()? Feel free to post a patch. :-)
-> Ok, I will call these directly, and I will do the same for the MAX96717
-> serializer.
+> 	https://docs.kernel.org/devicetree/bindings/writing-schema.html#annotated-example-schema
 > 
-> I will post a patchset later introducing the
-> `v4l2_async_nf_unregister_cleanup`
-> and converting all the drivers calling these two functions.
 
-That would be nice. :-) It should be easy to do that with Coccinelle.
+Yes, that's the inconsistency we keep. The point is that clocks usually
+have just one list, so one "items:". For compatible there can be many
+and it leads to less readable code, e.g.:
 
-...
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml?h=v6.9-rc5#n15
 
-> > > +	ret = max96714_enable_core_hw(priv);
-> > 
-> > Please switch to runtime PM.
-> 
-> Ok, the v7 will use runtime PM and I will use the powerdown gpio
-> to poweroff the device. However it implies to move some functions arround
-> e.g initialize the tx or the pattern generator ..
-> So it it will be done as separate patches.
-> 
-> Playing with the pm_runtime operation also showed up that the connection
-> doesn't always resume properly, I will extra patches to fix that.
 
-Ack.
+Best regards,
+Krzysztof
 
--- 
-Kind regards,
-
-Sakari Ailus
 
