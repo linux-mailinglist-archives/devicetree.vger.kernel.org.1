@@ -1,113 +1,116 @@
-Return-Path: <devicetree+bounces-62171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DCD8B02E1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:08:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D958B02F3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:17:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D0471F2363C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:08:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22A051C22BDB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B532157491;
-	Wed, 24 Apr 2024 07:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="JUGgeN2e"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A16157A6B;
+	Wed, 24 Apr 2024 07:17:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+Received: from szxga07-in.huawei.com (szxga07-in.huawei.com [45.249.212.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B3A1426F;
-	Wed, 24 Apr 2024 07:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A476F13D886;
+	Wed, 24 Apr 2024 07:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.35
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713942516; cv=none; b=H7Jj4yojL7VbW7o7uMxlhCC5jDkU3K1q6o4zOtaw94Uy1Abx6Oj/7OgrBpj4AzDdpBJ2S+5HOqEk+prVthPVBG+8bdoyo8iC5ZgJ1AOQetkBm0ej/CgZFgUJGBRAY4JODqV421Xb5nd4HiRmcOM+x5vOOpZSDoUZ0rFtSlfSBaU=
+	t=1713943026; cv=none; b=iDSCSqPTbB0shWWSy1vK9OxRzrVCGVtL7vTe73V3XigQu9DS+i48YroedXtqobhVI9TbTlxUX75ZjRK6/EngYyV8XGyixIx65l/NT+Dl94rfx1BgnemBep5kaJiRmBi38/9oCxDga8RVd+lOz7zAqGmZTPdWWglqagDh/tcmzXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713942516; c=relaxed/simple;
-	bh=kV6bt9MVCBDrWZ2MIsEdFT+u/Y+Kdv74iX/cKWP5UzY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PQormqZd3Tv5sVH25nlrWtjLkOexyqRFAo8y00NbCDIDirFX0aH4WDm2M2Cc7INKdH0/29VysAOQQzbAJqLm+xzglnQLi5fYZxZjLjXHmgeDJk8RF4eUGZRNqRj+I7XyLSSpmvMliXjAX2yNFfUZrIa761h8Gw2sEb1x7HCRu6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=JUGgeN2e; arc=none smtp.client-ip=130.133.4.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Vyxos/vEvitTxZQEE9q6g2NbgtilZPAvA7YmJTUsvKI=; t=1713942513; x=1714547313; 
-	b=JUGgeN2eSv2WOqLRmjr/SbhnN7Juz+uUqhXtNZDXwlK9cfUY/TIqTBjLfzLwfQSGo3e7zkod1js
-	Cz1mRiN75sZASqAipEB+Wk6PMPmVnHEpp0Gb7/GdfN2E/QdnwZczX7JxsKRlLpPgv8HdKPQa10ZGN
-	EaN41mbpI5L42BX32rUMC/lU2iRh7+YEmvRjxm9OIxJKNeXs1ylxBQ/Wtut8kTPmMNAMlFa2KkBMX
-	elJ6AYQvP6VNl2m/JKWmBjYnc+0ZsfVZNOFKlBArPsnXwmkvGv+pZIVOU7LY56aPXz1mC9ANz3DVS
-	vuS8ahvo7sEVqvRcNGiWUMIdT+Y0pu+ue+KA==;
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.97)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1rzWjx-00000002tFP-3XeK; Wed, 24 Apr 2024 09:08:25 +0200
-Received: from [80.95.105.245] (helo=[172.16.2.143])
-          by inpost2.zedat.fu-berlin.de (Exim 4.97)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1rzWjx-000000018gM-2bLz; Wed, 24 Apr 2024 09:08:25 +0200
-Message-ID: <dc7797641f9b9a2e5581ac8396ac75260b691e6c.camel@physik.fu-berlin.de>
-Subject: Re: [PATCH] sh: j2: drop incorrect SPI controller max frequency
- property
-From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Conor Dooley <conor+dt@kernel.org>, Yoshinori Sato
- <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, 
- devicetree@vger.kernel.org, linux-sh@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Kousik Sanagavarapu <five231003@gmail.com>
-Date: Wed, 24 Apr 2024 09:08:24 +0200
-In-Reply-To: <171394121882.41568.17609347008268237958.b4-ty@linaro.org>
-References: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
-	 <171394121882.41568.17609347008268237958.b4-ty@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0 
+	s=arc-20240116; t=1713943026; c=relaxed/simple;
+	bh=K6m+iz3u8NxFxDy/IZv/WjFWFnBXtXfL2AxNjjSg5wA=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=q/3fdkW+vEVoSrrA8o9RZ4swFfVYtWLLXMgT6chMn93kwZYqKk6HWf9+TYqiU8G3FwyKFH180IaGb8+7YwrmRt3F7u4oFsoalnP1Iqg43QYTGAxeEyAIGbYpL7G6IMA2ZCsewdOGnj0K1e1IRQ8JJdlpRT8HgikwsUkURj2h9sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.88.163])
+	by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4VPVb6277zz1RDGb;
+	Wed, 24 Apr 2024 15:13:54 +0800 (CST)
+Received: from kwepemd500014.china.huawei.com (unknown [7.221.188.63])
+	by mail.maildlp.com (Postfix) with ESMTPS id B439218005F;
+	Wed, 24 Apr 2024 15:16:58 +0800 (CST)
+Received: from [10.67.121.2] (10.67.121.2) by kwepemd500014.china.huawei.com
+ (7.221.188.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Wed, 24 Apr
+ 2024 15:16:58 +0800
+Message-ID: <6628B1E9.1050300@hisilicon.com>
+Date: Wed, 24 Apr 2024 15:16:57 +0800
+From: Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-ZEDAT-Hint: PO
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <xuwei5@hisilicon.com>
+Subject: Re: [PATCH 1/9] arm64: dts: hisilicon: hip05: move non-MMIO node
+ out of soc
+References: <20240402193148.62323-1-krzk@kernel.org> <171394159880.43787.12383182687947213751.b4-ty@linaro.org>
+In-Reply-To: <171394159880.43787.12383182687947213751.b4-ty@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemd500014.china.huawei.com (7.221.188.63)
 
-On Wed, 2024-04-24 at 08:48 +0200, Krzysztof Kozlowski wrote:
-> On Fri, 22 Mar 2024 07:42:21 +0100, Krzysztof Kozlowski wrote:
-> > The J2 SPI controller bindings never allowed spi-max-frequency property
-> > in the controller node.  Neither old spi-bus.txt bindings, nor new DT
-> > schema allows it.  Linux driver does not parse that property from
-> > controller node, thus drop it from DTS as incorrect hardware
-> > description.  The SPI child device has already the same property with
-> > the same value, so functionality should not be affected.
-> >=20
-> > [...]
->=20
-> Month passed, no replies from maintainers about picking it up. Dunno, loo=
-ks
-> abandoned, so let me grab this. If anyone else wants to pick it up, let m=
-e
-> know.
+Hi Krzysztof,
 
-I'll pick it up this weekend.
+On 2024/4/24 14:54, Krzysztof Kozlowski wrote:
+> 
+> On Tue, 02 Apr 2024 21:31:40 +0200, Krzysztof Kozlowski wrote:
+>> Non-MMIO devices, which are BTW not really part of the SoC, should not
+>> be within simple-bus, as reported by dtc W=1 warning:
+>>
+>>   hip05.dtsi:301.30-305.5: Warning (simple_bus_reg): /soc/refclk200mhz: missing or empty reg/ranges property
+>>
+>>
+> 
+> Almost a month passed, no replies from maintainers about picking it up. Dunno,
+> looks abandoned, so let me grab this. If anyone else wants to pick it up, let
+> me know.
+> 
 
-Sorry, I have been quite busy the past weeks with my dayjob.
+Sorry for the late reply!
+I am applying these patches which are in the following git repo.
+  https://github.com/hisilicon/linux-hisi/tree/next/dt64
 
-Adrian
+And it is fine to me to go through your git tree.
+Thanks!
 
---=20
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+Best Regards,
+Wei
+
+> Applied, thanks!
+> 
+> [1/9] arm64: dts: hisilicon: hip05: move non-MMIO node out of soc
+>       https://git.kernel.org/krzk/linux-dt/c/8ff69c1d04c8f2381164c5f97781d9fe79f71761
+> [2/9] arm64: dts: hisilicon: hip05-d02: correct local-bus unit addresses
+>       https://git.kernel.org/krzk/linux-dt/c/4e0e9c0b311e599c78f63942256ccf03e5ebb0f5
+> [3/9] arm64: dts: hisilicon: hip06: move non-MMIO node out of soc
+>       https://git.kernel.org/krzk/linux-dt/c/2283b9afc1b43ec941c66665cdc86dd32f9c2295
+> [4/9] arm64: dts: hisilicon: hip06: correct unit addresses
+>       https://git.kernel.org/krzk/linux-dt/c/6c55978774fd66c720e20e1f88a2af7daaa382df
+> [5/9] arm64: dts: hisilicon: hip07: move non-MMIO node out of soc
+>       https://git.kernel.org/krzk/linux-dt/c/5e607ec42116e0ecb387e2db79a662333f789fa2
+> [6/9] arm64: dts: hisilicon: hip07: correct unit addresses
+>       https://git.kernel.org/krzk/linux-dt/c/76dce22bc7ec9483ef37899a617f2dfde2a382c0
+> [7/9] arm64: dts: hisilicon: hi6220-hikey: add missing port@0 reg
+>       https://git.kernel.org/krzk/linux-dt/c/d6fcc43f764630863e3888d0b5c3ff4a09a4f094
+> [8/9] arm64: dts: hisilicon: hi6220-hikey: drop unit addresses from fixed regulators
+>       https://git.kernel.org/krzk/linux-dt/c/e6a91e9f20058629dca4f0c264de092049bd8e74
+> [9/9] arm64: dts: hisilicon: hi6220: correct tsensor unit addresses
+>       https://git.kernel.org/krzk/linux-dt/c/83d4c5e2a529e3eebde5b4d75e3ec0fe2fc92440
+> 
+> Best regards,
+> 
 
