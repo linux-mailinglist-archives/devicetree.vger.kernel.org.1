@@ -1,135 +1,155 @@
-Return-Path: <devicetree+bounces-62300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D8F8B0B55
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:42:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B93568B0B65
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:44:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54C651F2673D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 13:42:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77498288DAC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 13:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F31C15E7FD;
-	Wed, 24 Apr 2024 13:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF5315CD7F;
+	Wed, 24 Apr 2024 13:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="J39LvF+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3ACC15AABA;
-	Wed, 24 Apr 2024 13:40:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCC315B0EE;
+	Wed, 24 Apr 2024 13:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713966045; cv=none; b=P+kauMyBiF5enpF/tSSAY/WNM+TejZnZfRa7ItqiW39UqXU+BEKC/+2+y342/RVlufp0VqXEKMeI4LSoaQBHFO3dfZUuOq6zyxC3eLZnk0F8RWGgLCzj2/am0MSpUIrfXtgxhnMIMb20ecRV2/pS9Zg7MQVc9SSI8aZuYkbyLLE=
+	t=1713966250; cv=none; b=tlfMkySDi4y9rj9j0A7vtko9EHeUOakJSyJ152E3EhLcHjPue/fF7aaKFdOYr/KFflZuJG9qrb92bxq9vuEW+5b6gs3l+GnI3Kyc7OfaydfBFv5dSJ9bklfPrMRkj9wSlXUpVBK0/o+TgDHm7yoTQh07QIpmYOayI7wYWPlMGts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713966045; c=relaxed/simple;
-	bh=9DK4QJ/TCi2B/QX3H6PXVhRwQNGSFim3Fn/8J5m5l5g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PHJrBij8k4EuKhZmNY88fvWlDWbFUYQuVYXs7Wv0grlNVwPRUPHXjTQeB5hyLrtJQymChKj0ci7pduG44TAEggGn2J7l8/5CAtPKMIvdyMvKsnCShy7jU/X74/HlK1gWLumz5qGwv4o/Ppf+Ukzkn2QaO8oADiaxjkzi+camc0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51bae805c56so2162391e87.0;
-        Wed, 24 Apr 2024 06:40:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713966040; x=1714570840;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fZ9CwMK3wqk6+/Yp2Zsm6M08mayo4fMD+34z+UfTXVA=;
-        b=jkLGLrh436xNDxsmCX2JckyWBinR2TyqTNY0oRJHceDjdi6B34SJoBk72ZvST4l170
-         A8EHyhl0qcpcB9BGkVm6laKTqiZCCWJ6BxVxkZ69S7owNt4XSQHdhxT4a5maK/SiaU/2
-         yDag7s5/CFenbuYa6vJce3F81h08eGFBHoMSfm5olbCcD8IMFMWL6unkPyIulr4oNUQc
-         z/kc+nBnYXXEIA8wiqe1383nt+bqlE0mKAtlOxSFtjUFTifzaGShahUZ2T62xJWWWvRR
-         TxNbGrFDm2Ep1zcMVAaEWfGEMnlXWChwQLWrINOhOziQtbALWfNnavZBlN42/ICivKjL
-         jgtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUdCCaLCoqmbJK8m3WiQHMuV4/NHCxNDoRfv/ds/ccfJ7YdlCWw64A8kOtmX5UncZKFgEh81xqBfaejmG+znSSwPe73w+fHlWdDShf6cDOTMZPBw6KiNXFlIqXwwaNrLUuh0WcyBW9ddMlHpJRrJMs7tzg+52pCcT2UwsKGqNDMxyz6yDQ4Q+irxjC6T6h23pxOHPTj4auU31dzz2d/ODQLkJ+UJDEha6cVaK6ym2Q00Ox35B2R1weah3M=
-X-Gm-Message-State: AOJu0Yx1MCGIhLptptQIs/A8WSC3BMjGMYUCIT9PRtKWi9a/k+CZIYuL
-	gKL3sH7kmM0Vh9yvztjWJu4AMF9anuXrd2R7ion0VCuHQcrw3GXxqf3pYn9bvHc=
-X-Google-Smtp-Source: AGHT+IHYWH4+Gq2S646E7ld6OHN9XiwFpf56LVUY9UItsluc4weuVEZwZSnSoPv8gOpE9IcXGaMKPA==
-X-Received: by 2002:ac2:58cc:0:b0:51b:9254:91e2 with SMTP id u12-20020ac258cc000000b0051b925491e2mr1561096lfo.55.1713966039887;
-        Wed, 24 Apr 2024 06:40:39 -0700 (PDT)
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
-        by smtp.gmail.com with ESMTPSA id c7-20020a197607000000b00516c51b3e29sm2423139lff.143.2024.04.24.06.40.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 06:40:39 -0700 (PDT)
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-516d2b9cd69so8518967e87.2;
-        Wed, 24 Apr 2024 06:40:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX2fDZ0yQSj/nK3P+z/h79/2EOSA1gs417apj8Uh5FTPidqkbZWS8ybHmGkomhsDiBSVeHERhrqCZthH/VhCT9iydqSjikgVvDinHW90DeB6cS4SGRO+v17iQ1cvOwz1a3qHIYgib4E//vbS7VNnKuoBnI45qVwG/ibLNQqUJgVMu8h3PGibcHRPOWPBJGnkxQtzUzGHuzePbzVvoWVjGc4zmhBEICqGbs04fJImto3ZBmoJRasgDHqbUQ=
-X-Received: by 2002:a05:6512:3253:b0:516:dd4f:d9ea with SMTP id
- c19-20020a056512325300b00516dd4fd9eamr1661058lfr.5.1713966039011; Wed, 24 Apr
- 2024 06:40:39 -0700 (PDT)
+	s=arc-20240116; t=1713966250; c=relaxed/simple;
+	bh=Ucq2BSmkL5zSlPBzg282tu4WZOkfAlJeYB6yCzltLbg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qXiZThx39iR2cSx+JoMG0ZXKvh6JHqDWNnqCKNahsOBYBvB7DeTP8wCWfa29mj2acUL0JEksMZvcL28UFedRmr4uHaTKkd2d5sHA4al6rPzVdk1J7o/vEEwkUrchANciDvE/74G/1oFd2rkqGEEHemlOXWjT6BNk5MSxP90k214=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=J39LvF+0; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43OCIRVk003998;
+	Wed, 24 Apr 2024 15:43:37 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=aq6HJzenYCPlUr4ZBUMBSoIBJyV/GLFc2LlLruqkb7c=; b=J3
+	9LvF+0jClr6GkGQngcwrN0W8PrRZ4Cg0DSlUgTMKk/GeUi1K4W1WpLxLbNDkfj1b
+	TaYIiYvTtsORfSkbMUc2qlyqAh25B7hRsa6OoOK8NDMvpI70P5krWonKF1gw8uVJ
+	f10V1EPGTAbY0V2BZWm/xlnMPrhw86EAlKoUzZYMsYPGd9kchWUGI4G+8loXN55n
+	uBlcpucSkQ5Wnr7yBPUdbMhQfBi1QSDQRreVimhHeXVoGAOlAeHaw+5zCr/VB4wJ
+	8WGxUOldG9cQrPVPFu2Yoqeu/28o3ChNwHa2ExxlDgeULl6jisD5rZzI/0bppzYo
+	8lxDQ2V9HZLohZubdALg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4ee08k9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Apr 2024 15:43:37 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7D44640044;
+	Wed, 24 Apr 2024 15:43:33 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8F5EA220B5F;
+	Wed, 24 Apr 2024 15:42:51 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 24 Apr
+ 2024 15:42:50 +0200
+Message-ID: <b89d0531-067f-4356-91b0-ed7434cee3d7@foss.st.com>
+Date: Wed, 24 Apr 2024 15:42:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240411235623.1260061-1-saravanak@google.com>
-In-Reply-To: <20240411235623.1260061-1-saravanak@google.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 24 Apr 2024 15:40:24 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUS-YX7tTEF0216wk+DdCbWCJ0z1huSj8cjRXp8GxJ5gg@mail.gmail.com>
-Message-ID: <CAMuHMdUS-YX7tTEF0216wk+DdCbWCJ0z1huSj8cjRXp8GxJ5gg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] fw_devlink overlay fix
-To: Saravana Kannan <saravanak@google.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	kernel-team@android.com, Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: add PWR regulators support on stm32mp131
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@dh-electronics.com>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240319040528.104932-1-marex@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240319040528.104932-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-24_11,2024-04-24_01,2023-05-22_02
 
-Hi Saravana,
+Hi Marek
 
-On Fri, Apr 12, 2024 at 1:56=E2=80=AFAM Saravana Kannan <saravanak@google.c=
-om> wrote:
-> Overlays don't work correctly with fw_devlink. This patch series fixes
-> it. This series is now ready for review and merging once Geert and Herve
-> give they Tested-by.
->
-> Geert and Herve,
->
-> This patch series should hopefully fix both of your use cases [1][2][3].
-> Can you please check to make sure the device links created to/from the
-> overlay devices are to/from the right ones?
+On 3/19/24 05:05, Marek Vasut wrote:
+> This patch adds STM32 PWR regulators DT support on stm32mp131.
+> This requires TFA to clear RCC_SECCFGR, is disabled by default
+> and can only be enabled on board DT level.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>   arch/arm/boot/dts/st/stm32mp131.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
+> index 3900f32da797b..58b8ae759998d 100644
+> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+> @@ -1092,6 +1092,30 @@ rcc: rcc@50000000 {
+>   				 <&scmi_clk CK_SCMI_LSI>;
+>   		};
+>   
+> +		pwr_regulators: pwr@50001000 {
+> +			compatible = "st,stm32mp1,pwr-reg";
+> +			reg = <0x50001000 0x10>;
+> +			status = "disabled";
+> +
+> +			reg11: reg11 {
+> +				regulator-name = "reg11";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +			};
+> +
+> +			reg18: reg18 {
+> +				regulator-name = "reg18";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
+> +
+> +			usb33: usb33 {
+> +				regulator-name = "usb33";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +		};
+> +
+>   		exti: interrupt-controller@5000d000 {
+>   			compatible = "st,stm32mp13-exti", "syscon";
+>   			interrupt-controller;
 
-Unfortunately it doesn't, and the result is worse than v2.
+Applied on stm32-next.
 
-After applying the first patch (the revert), the issue reported in
-[1] is back, as expected.
-
-After applying both patches, that issue is not fixed, i.e. I still
-need an add/rm/add cycle to instantiate the devices from the overlay.
-
-/sys/class/devlink shows one extra link after the first add:
-platform:e6060000.pinctrl--platform:e6e90000.spi ->
-../../devices/virtual/devlink/platform:e6060000.pinctrl--platform:e6e90000.=
-spi
-
-> [1] - https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=
-=3D9F9rZ+-KzjOg@mail.gmail.com/
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Cheers
+Alex
 
