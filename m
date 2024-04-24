@@ -1,215 +1,241 @@
-Return-Path: <devicetree+bounces-62336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 854338B0D3F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:53:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC36D8B0D50
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:55:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF9301C250B6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:53:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE48CB2754B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA5D15EFBC;
-	Wed, 24 Apr 2024 14:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D18AB16078B;
+	Wed, 24 Apr 2024 14:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rrpzs9vH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2107.outbound.protection.partner.outlook.cn [139.219.146.107])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB6D15ECF9;
-	Wed, 24 Apr 2024 14:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.107
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713970349; cv=fail; b=LLCL7Esj2QgLsVGRazkz9CfbVYicqRLKCkUFftWqSxaK9w7Lqyel/ndY0ZxsRlxyuJgaf9tsLW6PAvRq8nfPwsXWTZ/bJ+MK93EDtBenIp0sun+oC9vQk6TJJV8ryA4ri9zPdYwEuXdc0Ce/1q+bVrxfVTYHc771LDuNpeNtFwE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713970349; c=relaxed/simple;
-	bh=psfozWF1j154RUelUZXACBziUeN3zSPn6NumkG1oHhs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=RXDAsOwCqId03WU+UQFV4wr0EBY7x2ci3mniTzieuRpFpep4wkTOPjWViZmpOwzVILhgA0bOsCt+Gg1I/MOZm4Fil1eFXu9aWXPCqFDYGagOGVOsaNKt6Ei9+GT3Sfe8apWS54b+QhsPvUrYmEZPclHDthszK3kreuvVPhtx4s0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gKKM+uYIOW1wGTZijP72PxgrjWMG4aP527lWxguEkL+9JDGSK9r26bfbFAYE6r5EvE6DxpKlqa8p6x+GvaScZy+kiZubvvFT2/K/4NoeimzdS3n5qE0Jcoy96GxdxDbOEjzObjqgafmXhp4WCz4V1p4gKqAQzhgcCtdxxiuzAyF/LilCpIwKx6yy7+Ot0tO273SaLbhdR3FtOBS/TQ+sHEGpQTQbR53QsgC/Air3T/TZobbiez1McslFOspDKU7e25wA8Soc8aSmM/+79JpxPPf8/d1xd+MwFNK3IFyigtUSFUSBKwB/qa4aDzwP9h2ohdMNShVgIUc8INcz1p2IiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=psfozWF1j154RUelUZXACBziUeN3zSPn6NumkG1oHhs=;
- b=UWfLxwFIeOkSLe23FFqlWZa9ufQpbjWu2NKL+UNdHD6LOn1VAtYwmXFtdFNYucBItGpIj00wYXxeZZi1O0Q86FLVt02sy4wm15XQjCcBBqLNRy2GFprVAbSjSfFByRp7HIhH9a8KZO7I9nI1i05FMGFem8G8219VlQKOup5XWTDSsiM4GRk2eeQgeBAsDEbGjn5v9Qf+HeW4Odg62L4V8zOQvzsvPkSHEwZ2rV968oT1TF1J7DyRgXICi/Wq/KDukzJTqIzqIhcPVofE6tIyGuB612VoIAevgDMCEDraJmKleUA+H2hu4y8+NVb9zN8TMwSGdz0u5k1A5hjJkAHeVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:20::14) by SH0PR01MB0570.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:7::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 24 Apr
- 2024 14:52:15 +0000
-Received: from SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
- ([fe80::e0a:f88a:cad1:dc1c]) by SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
- ([fe80::e0a:f88a:cad1:dc1c%7]) with mapi id 15.20.7472.044; Wed, 24 Apr 2024
- 14:52:15 +0000
-From: Joshua Yeong <joshua.yeong@starfivetech.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"conor@kernel.org" <conor@kernel.org>, "paul.walmsley@sifive.com"
-	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Leyfoon Tan
-	<leyfoon.tan@starfivetech.com>, JeeHeng Sia <jeeheng.sia@starfivetech.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v3 1/2] cache: Add StarFive StarLink cache management for
- StarFive JH8100
-Thread-Topic: [PATCH v3 1/2] cache: Add StarFive StarLink cache management for
- StarFive JH8100
-Thread-Index:
- AQHalh1PRoL0YjHNUEq+ss3l976a9rF3N0uAgAA4OgCAAAhagIAAAw4wgAAEmwCAAAByQA==
-Date: Wed, 24 Apr 2024 14:52:15 +0000
-Message-ID:
- <SH0PR01MB08410B2FCAE1D9AA754865BFF910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
-References: <20240424075856.145850-1-joshua.yeong@starfivetech.com>
- <20240424075856.145850-2-joshua.yeong@starfivetech.com>
- <CAJM55Z-C7XkFo4STk3rdLG4kvPfed-AfrHB1QJ-Tzt1LDoKw9w@mail.gmail.com>
- <SH0PR01MB0841F8C45091E4A08020ADF2F910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
- <CAJM55Z9NAeRb_3ZBJksXt+4fJMdcYw55bfAs0EpSnM8VWBKQag@mail.gmail.com>
- <SH0PR01MB08415B9CDDFB1A4FAB0FC4A9F910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
- <CAJM55Z_G5EKSjHztCQ+gXDGwfpziZTE=HsHmwydJWB-uorMOqA@mail.gmail.com>
-In-Reply-To:
- <CAJM55Z_G5EKSjHztCQ+gXDGwfpziZTE=HsHmwydJWB-uorMOqA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SH0PR01MB0841:EE_|SH0PR01MB0570:EE_
-x-ms-office365-filtering-correlation-id: 9e41947f-6e67-4569-bf9f-08dc646e2185
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- tRXSMw3sQ3FuwM2WQmfsFTnvpw2HNzJIIHMn5FSL0f9FOeSq+oJKGhWp2OP3qq1l7pIyCckAnKv9guHxZ/N5+xhdjncRahX2BGRQaMz7oDxY6Go/HTnAYUSxjjCQaBv8TAtr8tjdGDA615Ngwq+HgxIn6Ffo6w16SLS/e2PJQQC5gKF9wXqz1qATMvDhToS9+BkYVL/diu2pmRlRmX6fEE2M5UAdJgKD7dVxpEfeqa+pR1H0aN1TrRfgWoZc+y8SGLKYyfLzGXftGeM4j7B9KpaTM057l1LdQz74kH80WcvjtkcVtFffr2198IRwDelHMUdfVtX7Zg8u14oCyffKg5d8JJ0TShlun5QvY5JwRqzcL8aCyHiMSIxTaKbIvtupGtKx3IxRiAFBZCl9eydFhPIiOmM2Xb0KXTcKvUzjLBHEbGH4hYMuRR49+0XvOmsVDpshH9XRKhkUlcuSeDdaff8nXr4pXEgfotj6HFgWrilPO0gwTz8r7qq9is6eDmwRVNToQHhD87BqjWs5upeJvvMyWgYJTlJLysW6wb82LpQsPRv3R4UH5q2nKTG9tRaIsqSHIW6/6c7SXebBo/YaAsFzR1ZzKWw6IHd1jIcmDkWhhMn1Tfht+/RDS6/I8Oe71euEcPcc/SrzEpEMjQ69MQ==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(41320700004)(366007)(921011)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?ejdWNVR6S1dEdk5GN0w1dEhNd0x1am1YZFgzbEY4VkZXa3pFTm1pV3JMWXhF?=
- =?utf-8?B?ckJRTWZEUjE3R1NoZktmUCt4TTZKbzJZSmVxZnlsYkwrdGdhSzdaMi8wc1d6?=
- =?utf-8?B?eHQ4N2VpWWFIWGlVUEVsekhKS1pGeUc3NE9zMHBRTFBlSjRSZW9wRVJxTDRF?=
- =?utf-8?B?U1I2cTBzRisrSTc2T2p0SzI1anJ2RTBiY1YxRzVGYlVmSHVIaCtLVWdaM0hK?=
- =?utf-8?B?NVozRkFCQkFyUWh0RkxoVG1EVVlRS3NWcTREOHZZQnJSWXRwOFdLczNrTWY5?=
- =?utf-8?B?aVNoNlJsMFVtdTUwbnUvYm5mYUM1S3FJai9ONjNiWVBLOE55MFN3Mm9RcGVG?=
- =?utf-8?B?SDlZNHdsM3VlWnhGSFlYZEQ3SG9Sc2NLTWU4RWx0MmZTU1pMbHl0bkoyYTEx?=
- =?utf-8?B?MWtpNkNLaVdOMVl4ZWZHc2VMMG8vTUxia1Jlbm1pV29lYU0vblhEbDNCOGla?=
- =?utf-8?B?em43OS9PNmRpVWVxd3pWQy8zZXJUTEQ1Mmd6QVMwcmJvYWFER0dyYUc3UDZt?=
- =?utf-8?B?azYyTlJHeHJNbXNBUTZuaXhlZm5yMnVTUmJ0T09TSzBKYzlaS3grb0RXcFRP?=
- =?utf-8?B?blRsZHovai9nT3N5VGhWUWtuc2lTc3NmVExMdzJlMUYxQnFyanZLeTJvQ0VG?=
- =?utf-8?B?ZnNiRlNKK09Qc0JMNUV6TnZ2RFIwcTNWbUpYcWZBMkhxK1FzODk2SHBGNjlU?=
- =?utf-8?B?YXZiMzFqb3U3RDROU2l2SXlVMktDSjMrMWUwRUQvRHlBS1AvL2I5N1M3RmNF?=
- =?utf-8?B?eFY1ZDBRSU1SeWFWRGc2NzlNYXYzWlBna3lld01mK0FxcVVrcU9ib3JKQUNL?=
- =?utf-8?B?NmFXWDZyT1VoZERoRFdkNnoxWHg2UWdyVlpmNlNXZXhlcU1odzZOUHZ2eWFG?=
- =?utf-8?B?TmJTWHQxV1pSQkpxZHN6ZjgyMnpzWGh5TnRldENGbFRCY3dwTDJEL2hWdUsx?=
- =?utf-8?B?VWVaa1dGUFZLVjVCR3NJL1Vwc0F0TGVxejlKTTBUSy9hSkdUalJocC9ta1FT?=
- =?utf-8?B?U3lrMzQ2djE3bXY4R3JPc2NwbXJmaUQxQjEvQlBRSU5pSjBTQjFhVWFaY1RM?=
- =?utf-8?B?SkhreWUvR3V3cVZWOEFNeTRBMTRKV0dBRFM5VGJ6aDNPZUl3NnVhNWVUMG5S?=
- =?utf-8?B?WEZrNFdWNGZGUFdEQmo4d1JyYlBWNWw1VmdETUE3SmZVY05IZHIrMENTU081?=
- =?utf-8?B?U0tuRU9IZEJsUjBTN0Zmcm9pVmUrRjBhQ0VTc2NKdHJmZ1FtTnFLUVlFTzZ5?=
- =?utf-8?B?Y3NnWTdIaldjL3lwMG40UUE2WDFoK0JIdVhZZ2E1RS9RYm05UTg0ZUZxbXhB?=
- =?utf-8?B?U3BFMW1iQ1hlUzJZYXlCVXVNZFhVbGJyTDJHa2hEaklPRWJXWThTZmlLTnN1?=
- =?utf-8?B?QnFPTUw4U3RqcitOVHdHTHArWVRheldQTXBZcGN5QjZ6bWFOOEMvQTlXYUxy?=
- =?utf-8?B?cUlrUGM1VThWcnVsbG9lQmVsMCtTM2ltUWVxUVg5b1d2dXFGSThLcmFLYlJM?=
- =?utf-8?B?amxsSWsxU29wRWROelBGcFRQb3A5WGJWWTVzTzJWemgxQlRZaU5zV0xxRDBI?=
- =?utf-8?B?QXh5ZUdtNytOWXJ1QkJoV24wYWt6V3V5Y2poVGVPN3NYclNsSFFLSGtjV0tY?=
- =?utf-8?B?aTJiSzRqYkdzRFFHalhVa1pSYi9EOU1JWlYwSzVGTnRqMVB2Y2VybWpaWHlS?=
- =?utf-8?B?L0VlWDlOVkJRZDV0RE10S0NxQjZneTAzQWV0RVdWRmRjRFVHWkp0VGhtWmRp?=
- =?utf-8?B?TjdrQXRmcHhTRHRhQVh0WGZBM2lYck4xdHBNMTdRaWJFUkxpb0JCci9XaW91?=
- =?utf-8?B?NUR6bFNtbTB6Z3Bqd09ReWxzcDBNR1Vuc1B0OXU5RTNuckVxVlBWY3J2NVB6?=
- =?utf-8?B?NUNLR2RqWmp4dXlwaFB3RWtOTlR3QXRZYzhiVS9abVlZRm5CTGFxa3E2R0Ft?=
- =?utf-8?B?QlRzTUtxUFN4UmlqODg0NVVBdHVaamphZUFWdGhGVWROMkpVTk5TM2N3RHkw?=
- =?utf-8?B?a2VVV1plcVkvcG5IWDdvZFlweEl5NXZDZFFSN2FnN0lHeUZwWWFJQW9PZ01D?=
- =?utf-8?B?eWdyb205MThRZDgwbG15SG5GZ3FTRTJHRWdSSW1tdHJ2eXV0L001bU5vaHho?=
- =?utf-8?B?bEprL28zbnZ2Y2llRXRzenVzcEFPMnk5ajI4T2x1dC90Q0ZkNmNPdlFrTnhG?=
- =?utf-8?B?WVE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A308915FCED;
+	Wed, 24 Apr 2024 14:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713970465; cv=none; b=r5ps0lTfVMiF1HPieJ/htcxy5sfPq9Su4W6tRVsgk7LVZpqfyhH0MGMq64xjdUZa9SXKQV0X/inq/Dac5F8AZS+bUnEWi7pTTIsdSxhNTFsHqOQpd0bJ11dWDqFvxuTC1pHE+Nt9qa63TXCV/uU5v8VMqSxkiNMKWajO1wx/NWE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713970465; c=relaxed/simple;
+	bh=7A00nw+fZh+BCPaM9SVqEEy0Z0BVu4u19Cb3geQl+o0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dg5DeX6K7qg++bzo21dpJb9mZG/YAvtDvtey6Khbw2b+hFA/e/ON/Y/Hn/75paZ0aWOf37H84c3EHhroZ4vOgXd2FlEs9C2w/9Wv6SBdiACb66QF115ZOXwkOwEZ7R09xk0xT6Pe3dWjnr41hsAPWyhcdcvQ5wepWn/oEu81zyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=rrpzs9vH; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 68B8E66B;
+	Wed, 24 Apr 2024 16:53:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1713970409;
+	bh=7A00nw+fZh+BCPaM9SVqEEy0Z0BVu4u19Cb3geQl+o0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rrpzs9vHJZ2VZMhFMNT1EtKNQKjBw0Ay/qh2jIz7PkTNCVHaH70Kj6R2cgNWaqowh
+	 pT6wQD+iXBrDcM9kyo1NoCqf7uUblTq9yNa7kV7pm3bCXDsHDs6sU5LQkVa68zNESK
+	 1NtlbFnQqY45u5ZUZKAYpjvv478CBPCUqCikJ4kg=
+Message-ID: <b179953c-5a08-4149-80c4-8610f7c9778a@ideasonboard.com>
+Date: Wed, 24 Apr 2024 17:54:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e41947f-6e67-4569-bf9f-08dc646e2185
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2024 14:52:15.0868
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bCGhR5I2K0/MYupoWLx3ac4tx0z2rvchOQ9DD2RDkPINxfpFHWGerMQ96Mblw4lvAroK3mrOI6vwfVBAnFy/34rfwmUyWjMmBSLqSelGIaU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SH0PR01MB0570
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] Managing live video input format for ZynqMP DPSUB
+To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Michal Simek <michal.simek@amd.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <20240416-dp-live-fmt-v4-0-c7f379b7168e@amd.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240416-dp-live-fmt-v4-0-c7f379b7168e@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-RW1pbCBSZW5uZXIgQmVydGhpbmcgd3JvdGU6DQo+IEpvc2h1YSBZZW9uZyB3cm90ZToNCj4gPg0K
-PiA+DQo+ID4gRW1pbCBSZW5uZXIgQmVydGhpbmcgd3JvdGU6DQo+ID4gPiBKb3NodWEgWWVvbmcg
-d3JvdGU6DQo+ID4gPiA+IEVtaWwgUmVubmVyIEJlcnRoaW5nIHdyb3RlOg0KPiA+ID4gPiA+IEpv
-c2h1YSBZZW9uZyB3cm90ZToNCj4gPiA+ID4gPiA+IEFkZCBTdGFyRml2ZSBTdGFybGluayBjYWNo
-ZSBtYW5hZ2VtZW50IGRyaXZlciBmb3INCj4gPiA+ID4gPiA+IEpIODEwMCBTb0MuIFRoaXMgZHJp
-dmVyIGVuYWJsZXMgUklTQy1WIG5vbi1zdGFuZGFyZCBjYWNoZQ0KPiA+ID4gPiA+ID4gb3BlcmF0
-aW9uIG9uDQo+ID4gPiA+ID4gPiBKSDgxMDAgdGhhdCBkb2VzIG5vdCBzdXBwb3J0IFppY2JvbSBl
-eHRlbnNpb24gaW5zdHJ1Y3Rpb25zLg0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IFNpZ25lZC1v
-ZmYtYnk6IEpvc2h1YSBZZW9uZyA8am9zaHVhLnllb25nQHN0YXJmaXZldGVjaC5jb20+DQo+ID4g
-PiA+ID4gPiAtLS0NCj4gPiA+ID4gPiA+ICBkcml2ZXJzL2NhY2hlL0tjb25maWcgICAgICAgICAg
-ICAgICAgICAgfCAgIDkgKysNCj4gPiA+ID4gPiA+ICBkcml2ZXJzL2NhY2hlL01ha2VmaWxlICAg
-ICAgICAgICAgICAgICAgfCAgIDUgKy0NCj4gPiA+ID4gPiA+ICBkcml2ZXJzL2NhY2hlL3N0YXJm
-aXZlX3N0YXJsaW5rX2NhY2hlLmMgfCAxMzUNCj4gPiA+ID4gPiA+ICsrKysrKysrKysrKysrKysr
-KysrKysrKw0KPiA+ID4gPiA+ID4gIDMgZmlsZXMgY2hhbmdlZCwgMTQ3IGluc2VydGlvbnMoKyks
-IDIgZGVsZXRpb25zKC0pICBjcmVhdGUNCj4gPiA+ID4gPiA+IG1vZGUNCj4gPiA+ID4gPiA+IDEw
-MDY0NCBkcml2ZXJzL2NhY2hlL3N0YXJmaXZlX3N0YXJsaW5rX2NhY2hlLmMNCj4gPiA+ID4gPiA+
-DQo+ID4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jYWNoZS9LY29uZmlnIGIvZHJpdmVy
-cy9jYWNoZS9LY29uZmlnDQo+ID4gPiA+ID4gPiBpbmRleA0KPiA+ID4gPiA+ID4gOTM0NWNlNDk3
-NmQ3Li45MTgxY2QzOTFmNTMgMTAwNjQ0DQo+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2NhY2hl
-L0tjb25maWcNCj4gPiA+ID4gPiA+ICsrKyBiL2RyaXZlcnMvY2FjaGUvS2NvbmZpZw0KPiA+ID4g
-PiA+ID4gQEAgLTE0LDQgKzE0LDEzIEBAIGNvbmZpZyBTSUZJVkVfQ0NBQ0hFDQo+ID4gPiA+ID4g
-PiAgCWhlbHANCj4gPiA+ID4gPiA+ICAJICBTdXBwb3J0IGZvciB0aGUgY29tcG9zYWJsZSBjYWNo
-ZSBjb250cm9sbGVyIG9uIFNpRml2ZQ0KPiBwbGF0Zm9ybXMuDQo+ID4gPiA+ID4gPg0KPiA+ID4g
-PiA+ID4gK2NvbmZpZyBTVEFSRklWRV9TVEFSTElOS19DQUNIRQ0KPiA+ID4gPiA+ID4gKwlib29s
-ICJTdGFyRml2ZSBTdGFyTGluayBDYWNoZSBjb250cm9sbGVyIg0KPiA+ID4gPiA+ID4gKwlkZXBl
-bmRzIG9uIFJJU0NWDQo+ID4gPiA+ID4gPiArCWRlcGVuZHMgb24gQVJDSF9TVEFSRklWRQ0KPiA+
-ID4gPiA+ID4gKwlzZWxlY3QgUklTQ1ZfRE1BX05PTkNPSEVSRU5UDQo+ID4gPiA+ID4gPiArCXNl
-bGVjdCBSSVNDVl9OT05TVEFOREFSRF9DQUNIRV9PUFMNCj4gPiA+ID4gPiA+ICsJaGVscA0KPiA+
-ID4gPiA+ID4gKwkgIFN1cHBvcnQgZm9yIHRoZSBTdGFyTGluayBjYWNoZSBjb250cm9sbGVyIG9u
-IFN0YXJGaXZlDQo+IHBsYXRmb3Jtcy4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IFRoaXMgaXMgYSBi
-aXQgbWlzbGVhZGluZy4gVGhlIEpINzF4MHMgZG9uJ3QgaGF2ZSB0aGlzLiBJdCdzIG9ubHkNCj4g
-PiA+ID4gPiBvbiB0aGUgSkg4MTAwIHNvIGZhciwgYW5kIGhvcGVmdWxseSBsYXRlciBTb0NzIHdp
-bGwganVzdA0KPiA+ID4gPiA+IGltcGxlbWVudCBSSVNDLVYNCj4gPiA+IHN0YW5kYXJkcyBmb3Ig
-dGhpcy4NCj4gPiA+ID4gPiBTbyBtYXliZSBzb21ldGhpbmcgbGlrZQ0KPiA+ID4gPiA+DQo+ID4g
-PiA+ID4gIlN1cHBvcnQgZm9yIHRoZSBTdGFyTGluayBjYWNoZSBjb250cm9sbGVyIG9uIHRoZSBT
-dGFyRml2ZSBKSDgxMDAgU29DLiINCj4gPiA+ID4gPg0KPiA+ID4gPg0KPiA+ID4gPiBIaSBFbWls
-LA0KPiA+ID4gPg0KPiA+ID4gPiBUaGUgU3RhckxpbmstNTAwIGNhY2hlIGNvbnRyb2xsZXIgaXMg
-bm90IGRlc2lnbmVkIGV4Y2x1c2l2ZWx5IGZvciBKSDgxMDANCj4gU29DLg0KPiA+ID4gPiBXaGls
-ZSBpdCBpcyB0cnVlIHRoYXQgaXQgY3VycmVudGx5IGV4aXN0cyBvbiB0aGUgU3RhckZpdmUNCj4g
-PiA+ID4gcGxhdGZvcm0sIENQVS9Tb0MgdGhhdCBkb2VzIG5vdCBjb21lIHdpdGggWmljYm9tIGV4
-dGVuc2lvbnMNCj4gPiA+ID4gc3VwcG9ydGVkIHdvdWxkIG5lZWQgdG8gcmVseSBvbiB0aGlzIGNh
-Y2hlIGRyaXZlIHRvIGRvIGNhY2hlDQo+ID4gPiA+IG1hbmFnZW1lbnQgb3BlcmF0aW9ucy4gSSB0
-aGluayB3ZSBkb27igJl0IG5lZWQgdG8gbWVudGlvbmVkICdKSDgxMDANCj4gU29DJyBoZXJlLg0K
-PiA+ID4NCj4gPiA+IFdhaXQsIGluIHRoZSBwcmV2aW91cyBtYWlsIHlvdSBzYWlkIHRoYXQgZnV0
-dXJlIGRlc2lnbnMgd2lsbA0KPiA+ID4gaW1wbGVtZW50IFppY2JvbSBhbmQgbm90IG5lZWQgdGhp
-cyB3b3JrLWFyb3VuZCwgYnV0IGhlcmUgeW91J3JlDQo+ID4gPiB0YWxraW5nIGFib3V0IG90aGVy
-IFNvQ3MgdGhhdCBkbyBuZWVkIGl0LiBTbyB3aGljaCBpcyBpdD8NCj4gPg0KPiA+IElmIHlvdSB2
-aXNpdCB0aGUgY29tcGFueSB3ZWJzaXRlIGFuZCBsb29rIGZvciBTdGFyTGluay01MDAsIHlvdSB3
-aWxsDQo+ID4gZmluZCB0aGF0IGl0IGlzIGEgc3RhbmRhbG9uZSBJUCB0aGF0IHRoZSBjb21wYW55
-IGlzIHNlbGxpbmcgYXMgYW4NCj4gPiBpbnRlcmNvbm5lY3QuIEFueW9uZSB3aG8gaW50ZWdyYXRl
-cyBTdGFyTGluayB3aXRob3V0IFppY2JvbSBleHRlbnNpb25zDQo+ID4gbWF5IHV0aWxpemUgdGhl
-IGNhY2hlIG1hbmFnZW1lbnQgb3BlcmF0aW9uIGZyb20gdGhpcyBJUC4NCj4gDQo+IFNvIHRoZW4g
-dGhlICJvbiBTdGFyRml2ZSBwbGF0Zm9ybXMiIHBhcnQgaXMgd3Jvbmc/IE9yIHdpbGwgdGhpcyBh
-bHdheXMgZ28NCj4gdG9nZXRoZXIgd2l0aCB0aGUgRHViaGUgY29yZXM/DQoNCkl0IHdvdWxkIGJl
-ICdvbiBTdGFyRml2ZSBwbGF0Zm9ybScgd2l0aG91dCAnSkg4MTAwIFNvQycgdGhhdCB5b3Ugc3Vn
-Z2VzdGVkLg0KU3RhckZpdmUncyBuZXdlciBjb3JlcyB0aGF0IHdpbGwgaGF2ZSBaaWNib20gZXh0
-ZW5zaW9ucyBzdXBwb3J0ZWQuIFRob3NlDQpDUFUgY29yZSB3aWxsIG5vdCBuZWVkIHRvIGhhdmUg
-dGhpcyBjYWNoZSBjb250cm9sbGVyIGVuYWJsZWQuDQogDQo+IA0KPiA+DQo+ID4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBsaW51eC1yaXNjdiBt
-YWlsaW5nIGxpc3QNCj4gPiBsaW51eC1yaXNjdkBsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1yaXNjdg0K
+Hi,
+
+On 16/04/2024 23:31, Anatoliy Klymenko wrote:
+> Implement live video input format setting for ZynqMP DPSUB.
+> 
+> ZynqMP DPSUB can operate in 2 modes: DMA-based and live.
+> 
+> In the live mode, DPSUB receives a live video signal from FPGA-based CRTC.
+> DPSUB acts as a DRM encoder bridge in such a scenario. To properly tune
+> into the incoming video signal, DPSUB should be programmed with the proper
+> media bus format. This patch series addresses this task.
+> 
+> Patch 1/7: Set the DPSUB layer mode of operation prior to enabling the
+> layer. Allows to use layer operational mode before its enablement.
+> 
+> Patch 2/7: Update some IP register defines.
+> 
+> Patch 3/7: Factor out some code into a helper function.
+> 
+> Patch 4/7: Announce supported input media bus formats via
+> drm_bridge_funcs.atomic_get_input_bus_fmts callback.
+> 
+> Patch 5/7: Minimize usage of a global flag. Minor improvement.
+> 
+> Patch 6/7: Program DPSUB live video input format based on selected bus
+> config in the new atomic bridge state.
+> 
+> Patch 7/7: New optional CRTC atomic helper proposal that will allow to
+> negotiate video signal format between CRTC and connected encoder.
+> Incorporate this callback into the DRM bridge format negotiation process.
+> Save negotiated output format in drm_crtc_state. Reference usage of this
+> API is available here:
+> https://github.com/onotole/linux/tree/dpsub-live-in
+
+The patches up to and including patch 6 look ready to me. I'll pick them 
+up to drm-misc.
+
+  Tomi
+
+
+> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> To: Maxime Ripard <mripard@kernel.org>
+> To: Thomas Zimmermann <tzimmermann@suse.de>
+> To: David Airlie <airlied@gmail.com>
+> To: Daniel Vetter <daniel@ffwll.ch>
+> To: Michal Simek <michal.simek@amd.com>
+> To: Andrzej Hajda <andrzej.hajda@intel.com>
+> To: Neil Armstrong <neil.armstrong@linaro.org>
+> To: Robert Foss <rfoss@kernel.org>
+> To: Jonas Karlman <jonas@kwiboo.se>
+> To: Jernej Skrabec <jernej.skrabec@gmail.com>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+> 
+> Changes in v4:
+> - Replace controversial reference driver patches with the private
+>    repository link.
+> - Split display layer format manipulation functions into 2 separate cases
+>    for diferet layer modes.
+> - Address misc review comments (typos, comments, etc.)
+> 
+> Link to v3: https://lore.kernel.org/r/20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com
+> 
+> Changes in v3:
+> - Add connected live layer helper
+> - Include reference DRM format in zynqmp_disp_format for live layerss.
+> - Add default bus format list for non-live case.
+> - Explain removal of redundant checks in the commit message.
+> - Minor fixes and improvements from review comments.
+> 
+> Link to v2: https://lore.kernel.org/r/20240312-dp-live-fmt-v2-0-a9c35dc5c50d@amd.com
+> 
+> Changes in v2:
+> - Factor out register defines update into separate patch.
+> - Add some improvements minimizing ithe usage of a global flag.
+> - Reuse existing format setting API instead of introducing new versions.
+> - Add warning around NULL check on new bridge state within atomic enable
+>    callback.
+> - Add drm_helper_crtc_select_output_bus_format() that wraps
+>    drm_crtc_helper_funcs.select_output_bus_format().
+> - Update API comments per review recommendations.
+> - Address some minor review comments.
+> - Add reference CRTC driver that demonstrates the usage of the proposed
+>    drm_crtc_helper_funcs.select_output_bus_format() API.
+> 
+> - Link to v1: https://lore.kernel.org/r/20240226-dp-live-fmt-v1-0-b78c3f69c9d8@amd.com
+> 
+> ---
+> Anatoliy Klymenko (7):
+>        drm: xlnx: zynqmp_dpsub: Set layer mode during creation
+>        drm: xlnx: zynqmp_dpsub: Update live format defines
+>        drm: xlnx: zynqmp_dpsub: Add connected live layer helper
+>        drm: xlnx: zynqmp_dpsub: Anounce supported input formats
+>        drm: xlnx: zynqmp_dpsub: Minimize usage of global flag
+>        drm: xlnx: zynqmp_dpsub: Set input live format
+>        drm/atomic-helper: Add select_output_bus_format callback
+> 
+>   drivers/gpu/drm/drm_bridge.c             |  14 +-
+>   drivers/gpu/drm/drm_crtc_helper.c        |  38 +++++
+>   drivers/gpu/drm/xlnx/zynqmp_disp.c       | 231 +++++++++++++++++++++++++++----
+>   drivers/gpu/drm/xlnx/zynqmp_disp.h       |  17 +--
+>   drivers/gpu/drm/xlnx/zynqmp_disp_regs.h  |   8 +-
+>   drivers/gpu/drm/xlnx/zynqmp_dp.c         |  81 ++++++++---
+>   drivers/gpu/drm/xlnx/zynqmp_kms.c        |   2 +-
+>   include/drm/drm_crtc.h                   |  11 ++
+>   include/drm/drm_crtc_helper.h            |   5 +
+>   include/drm/drm_modeset_helper_vtables.h |  30 ++++
+>   10 files changed, 372 insertions(+), 65 deletions(-)
+> ---
+> base-commit: bfa4437fd3938ae2e186e7664b2db65bb8775670
+> change-id: 20240226-dp-live-fmt-6415773b5a68
+> 
+> Best regards,
+
 
