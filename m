@@ -1,173 +1,145 @@
-Return-Path: <devicetree+bounces-62458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8928B1338
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:07:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 966398B1380
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:24:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D32B1B2263E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:06:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43199B29ADD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7435D23746;
-	Wed, 24 Apr 2024 19:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF422D05E;
+	Wed, 24 Apr 2024 19:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xVHvpTX/"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="GfMxPo1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9A91EB36;
-	Wed, 24 Apr 2024 19:06:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601955CDF0;
+	Wed, 24 Apr 2024 19:20:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713985599; cv=none; b=YUZtucQobOoe+KLFBav58BZ3Te7khR63VFGbPoMz92QnZJ0SPzyOggsCYxavN8rFjFPMPdum6Kpfvp0Ej6bFxgLZiTxJDpFUiGq0IEJVq9JRY8niUAPdjKIaYFr2afBVHOpW6bymEbivfIi3j8ymXyBCjwYHOn3uQbZNLErtRss=
+	t=1713986429; cv=none; b=jEcZ/31SLVSvs2n+oLDmAkbA/qPj7SeXcq1x9r2VqmB9nU0MVXqMvs1k9NzGkDEmN3WqatXUQCOTtIjYntAXie3THPLYNaXTolAHzeHR3O8yVUEqRiu4ULRajZHjbtGg1NUJ1V0OFed6Q5L4BCc4jD6hNFSFNA/sFzyQYyaH3nY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713985599; c=relaxed/simple;
-	bh=lXgdA1VYXOVAo664jkOGVLzSIAQ7tosy7CcWVdpPwAk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OWoG72DCufl8Vy8ILuNmaN9F6euU+QGbcV3YTTJPXRyUrp19IyRsN5/0543rpoMm/64nsqRDlX1EPymjpWhMW3nmNhMaPa+9nBikwNrzqiv4LONlSJd0HRCu7Q+2jISo/xevoP/HRD5qFOV8FXHebhmUSLmzGdF15FhKPx+gt2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xVHvpTX/; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43OJ6FBk022632;
-	Wed, 24 Apr 2024 14:06:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713985575;
-	bh=WpM9LZ1mafWCjjoPr9/TU74EPFXo8BshGHxAWjtGkx0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xVHvpTX/UdbE0culkKSjpf6GfCTzexC0OPzt9OvRo4ZHKud8mwBilDP6CVZC4gDQq
-	 nXynYIjEhl/eeqsqwRnpiVhZavJwe9pDJ87ocHfzPvS/tG5V9b7hethF4av11Z87DI
-	 /tJd5q47+dsehnC0EbIAR2tISmKPRksNOt04Bj7k=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43OJ6FWV106515
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 24 Apr 2024 14:06:15 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
- Apr 2024 14:06:14 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 24 Apr 2024 14:06:14 -0500
-Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [10.219.51.241])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43OJ6DqR067070;
-	Wed, 24 Apr 2024 14:06:14 -0500
-From: Andrew Davis <afd@ti.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth
- Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hari Nagalla
-	<hnagalla@ti.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH v8 4/4] arm64: dts: ti: k3-am62: Add M4F remoteproc node
-Date: Wed, 24 Apr 2024 14:06:12 -0500
-Message-ID: <20240424190612.17349-5-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240424190612.17349-1-afd@ti.com>
-References: <20240424190612.17349-1-afd@ti.com>
+	s=arc-20240116; t=1713986429; c=relaxed/simple;
+	bh=rZXk3f2UucFu56G21+BcQ5j5xPzD1bSO6jfq4L1h4MI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FUmyf4QgaPpRDkeoI/t2ukZGrO8FrwBpbEvRO4VDyZUQRi3X9vq9i0XeUqanfnHhW190BzHELb3xHoDe4HFJ94FqeQqFKJnAKS4xIeAIWgQ2XtTbWHTN5CDTk0JdOIUAmoiZqfc4pFsii2z8JGMCwt6DGeNsa4ADqPm5+7hWDzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=GfMxPo1X; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from classfun.cn (unknown [129.204.178.38])
+	by node2.classfun.cn (Postfix) with ESMTP id C6130100C66;
+	Thu, 25 Apr 2024 03:09:39 +0800 (CST)
+Received: from [192.168.0.160] (unknown [220.162.71.180])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id AF86178910;
+	Thu, 25 Apr 2024 03:09:35 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn AF86178910
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1713985778;
+	bh=d/BoO25/KtfZ3Yh1f6DO8rsPKA20e+M+yd8Hwd1i7sM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GfMxPo1XfOXfDQ7tKPi5Kk481vMw2IlAjpyvrroy769NxFg1EA0DsOn/WYuqw3zN5
+	 W61ibhG4x40Jst5zrp5Jfa+8rW639Rposs1+kkIMSYuylvWFzViZeOfvkMV/FHYpSr
+	 ns4KqQAOybwyR/zWU3rmcujhxBr76QFzLGk1VI78=
+Message-ID: <478366f4-cc4f-4343-99c4-87827159b10b@classfun.cn>
+Date: Thu, 25 Apr 2024 03:09:21 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/10] pwm: Add SI-EN SN3112 PWM support
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, wuxilin123@gmail.com,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>,
+ Molly Sophia <mollysophia379@gmail.com>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org
+References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
+ <20240424-ayn-odin2-initial-v1-2-e0aa05c991fd@gmail.com>
+ <17d36836-67cb-4d5a-a8b4-ecf1517a0020@linaro.org>
+Content-Language: en-US
+From: BigfootACA <bigfoot@classfun.cn>
+Autocrypt: addr=bigfoot@classfun.cn; keydata=
+ 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
+In-Reply-To: <17d36836-67cb-4d5a-a8b4-ecf1517a0020@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Hari Nagalla <hnagalla@ti.com>
+On 24/4/2024 23:55, Bryan O'Donoghue wrote:
+> On 24/04/2024 16:29, Xilin Wu via B4 Relay wrote:
+>> From: Junhao Xie <bigfoot@classfun.cn>
+>>
+>> Add a new driver for the SI-EN SN3112 12-channel 8-bit PWM LED controller.
+>>
+>> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+>> ---
+>>   drivers/pwm/Kconfig      |  10 ++
+>>   drivers/pwm/Makefile     |   1 +
+>>   drivers/pwm/pwm-sn3112.c | 336 +++++++++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 347 insertions(+)
+[...]
+> 
+> CHECK: Prefer kernel type 'u8' over 'uint8_t'
+> #145: FILE: drivers/pwm/pwm-sn3112.c:91:
+> +                  uint8_t val, bool write)
+> 
 
-The AM62x SoCs of the TI K3 family have a Cortex M4F core in the MCU
-domain. This core can be used by non safety applications as a remote
-processor. When used as a remote processor with virtio/rpmessage IPC,
-two carveout reserved memory nodes are needed. The first region is used
-as a DMA pool for the rproc device, and the second region will furnish
-the static carveout regions for the firmware memory.
-
-The current carveout addresses and sizes are defined statically for
-each rproc device. The M4F processor do not have an MMU, and as such
-require the exact memory used by the firmware to be set-aside.
-
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi        | 12 ++++++++++++
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 18 ++++++++++++++++++
- 2 files changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-index e66d486ef1f21..0c6ee801f35fc 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -173,4 +173,16 @@ mcu_mcan1: can@4e18000 {
- 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
- 		status = "disabled";
- 	};
-+
-+	mcu_m4fss: m4fss@5000000 {
-+		compatible = "ti,am64-m4fss";
-+		reg = <0x00 0x5000000 0x00 0x30000>,
-+		<0x00 0x5040000 0x00 0x10000>;
-+		reg-names = "iram", "dram";
-+		ti,sci = <&dmsc>;
-+		ti,sci-dev-id = <9>;
-+		ti,sci-proc-ids = <0x18 0xff>;
-+		resets = <&k3_reset 9 1>;
-+		firmware-name = "am62-mcu-m4f0_0-fw";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 3c45782ab2b78..bda9fb2e33eec 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -48,6 +48,18 @@ ramoops@9ca00000 {
- 			pmsg-size = <0x8000>;
- 		};
- 
-+		mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9cb00000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_m4fss_memory_region: m4f-memory@9cc00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9cc00000 0x00 0xe00000>;
-+			no-map;
-+		};
-+
- 		secure_tfa_ddr: tfa@9e780000 {
- 			reg = <0x00 0x9e780000 0x00 0x80000>;
- 			alignment = <0x1000>;
-@@ -457,6 +469,12 @@ mbox_m4_0: mbox-m4-0 {
- 	};
- };
- 
-+&mcu_m4fss {
-+	mboxes = <&mailbox0_cluster0>, <&mbox_m4_0>;
-+	memory-region = <&mcu_m4fss_dma_memory_region>,
-+			<&mcu_m4fss_memory_region>;
-+};
-+
- &usbss0 {
- 	bootph-all;
- 	status = "okay";
--- 
-2.39.2
-
+I'll fix the commit and resend v2 later, thanks for your reply!
 
