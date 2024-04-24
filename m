@@ -1,150 +1,255 @@
-Return-Path: <devicetree+bounces-62327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA698B0CC0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:39:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0D18B0CC3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:40:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C76C1C2336D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:39:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8ACE1F2191F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3AE15ECE9;
-	Wed, 24 Apr 2024 14:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7904815ECD4;
+	Wed, 24 Apr 2024 14:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k84crXgk"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="K89jbApV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2042.outbound.protection.outlook.com [40.107.7.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562CC15E802;
-	Wed, 24 Apr 2024 14:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713969486; cv=none; b=QY/3hm3N3vnDHOGiqqHtzZZK3ASieGSV3uixxpk4UL501J/NrE8RZi9zLHE/Q0h0MIQkOXn3QILs013lqgEYSkXsuZFn4/ry8iNX2GZXf5ZN2kzpc9sdD7LDwtdL5IgMg6btRDR5LxO4YnOPPEQt+FJ5YjMYQHPsD+pkVUE7fy8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713969486; c=relaxed/simple;
-	bh=unw30XBcP+yo/4XQdedsYzC3CosP/sGpCtqgeHeUPKQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=INlDniFFZKUGFYD/jEB59Ey7OLy+J4Nr1BLL41EPUFpR91v2of7bYc0GJ0u6GKARG0p4izKWAbQQHrFoCn4b+wv5sR56HXpzbYtieloqsU+Oc2B7BbYiqwsyBNgiCqPDECIHR3L27Do4xNJ+yBSdHJeeil6Vc1zAGb5yFX++l84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k84crXgk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2DEC113CD;
-	Wed, 24 Apr 2024 14:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713969485;
-	bh=unw30XBcP+yo/4XQdedsYzC3CosP/sGpCtqgeHeUPKQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k84crXgkiHJ8utgOVxnb6effLWOQN/89JT7R1HOuKj3+267Vsu3pjQk9Ow0mJQD1n
-	 59lmHacf95DKd5iM3jFFnQw/QiTPqhgmZcuCueQIFgtziZUuf3nukC6GvhF37jr9+7
-	 Pg3wEXbClaZsKLmXKwOc9w7JY30IsVNh/S0/up9/fBh6TwLsOenD4/H6tAhS3/qjHG
-	 IVBbiNMCUjNw14H++AiDXxqXJw1CjOdd0TfvUL+uA9PEYntEAbbstO+Kw9QZjBKYHX
-	 k6N2U3AXc+0o+Rg6JAaOI/N1xg6w+PNG6igyc3oLKs3TgQ3Xy8IgyyJs8kJ89QiNAn
-	 6/rDATaqYz6tQ==
-Date: Wed, 24 Apr 2024 16:38:02 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74DC15E5CB;
+	Wed, 24 Apr 2024 14:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713969577; cv=fail; b=iBAZ6CzH9g9BLfWTTE3hFwZ27uB5pK/Pf+IdTSaTpL+l1uYXvsLv4TYv/91wU5W9bGZHxjABunkiVnBp+a+n8VOEeuTWdKBr9saUTjHc/5YIpuBxTLi3mA/rdPRtfOKWKvtM0n99szXurg2VaSXxA50h2e82sXr2SYbHWZCYxN8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713969577; c=relaxed/simple;
+	bh=IXe0o7aHjDhP7b57jGh12HIHVJwtNk7Cd3/aLn/Hd/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=HEaf+D2amwPk5qDNCsEXFpFQriQWXoLcPJq4vgYQD1sYpkFEOBVYgHDQPMPmh5SRFjJl5awxh5fU8/wwnoIa6hDIfTV9GuTFok3a7dLpSNs4uT+EI3NqJiinAkNzvFkCVOm3vDlOywOcFyViC4FkoX/XXFspkp0okdCgugwiCYc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=K89jbApV; arc=fail smtp.client-ip=40.107.7.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QE69dY0jFvutYIgCnzOAztqhaDK6gwNed5iehetrLISQT3nizCjbV/jMcOM9GJeom815+MY55VZoFd36hlg0h5Rdu0v/VwtwtFo+uDd3/Ic66pzICp+27OR3GBckzxtmEFXKe3vPPtyGd6x7ueSPoJ6RlvsSj4pcjR/G7HTc8J2BH9J3WuvELL7OpUB0U2s2Dx+gplfRsveB4mamMgg+3XlR79PbNtlLFhwbeWZM5haikB3iY4dpb9G+HRoFU817qwyXvlo0sMK6xOIPkaL9Y6wPLHUEoSiiBu+jKE6NmnOWKWxFZZS1di1B9RRdHMTj0WC31kvZ8+FnE0oGIy3iiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZXU511AQf5kMI1PsSDJkHhJ14JiSmVUY/R2f3smwCOo=;
+ b=Pzk7yE8/nyTTq31lG0xRU2CGFxe4JoGi95WEYY/l8dJZhzY4ge02MQBrxnzsxvTO+MLePNLDU7C666LDE6Nl1KhKEEUsIawmXKQHxZNIg/ctHqqEqkBLvPQN32n5ltv+f2Df1shp8JKbN7YpTIKqwO0oClNKdGQyr16K34pN+bdO9PkF5MpffTWoMVpzf7uXhRzylAIsygUadg2apKVANgWfLzwImK6Ag8xELROlu7r/zH0ricSZQ7EIDg1fgyQ2HiLiEPKi0pT2awxviQbUvkhI6Lgm2e10Pq4TyPxgUWXPVmMb9gjN6KRPo0jPY5CKcHUFGtgw33UC1eVbSZXiYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZXU511AQf5kMI1PsSDJkHhJ14JiSmVUY/R2f3smwCOo=;
+ b=K89jbApV4FccVWOUDQogYkdsdB/D4GqsDKrcyyvSeYyevI0vnSRPNFDYSMGR8yN8YmXi824mR375WJXe8jxNbCd1jEUVAp6I91ssgOpZM08NJHtP4tj+RGx7/gdvUCHiMvQ6e1tr0hucGosgQjiXzdTJzjTJqvTM/bcYJodz4tw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS1PR04MB9453.eurprd04.prod.outlook.com (2603:10a6:20b:4da::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.23; Wed, 24 Apr
+ 2024 14:39:31 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.044; Wed, 24 Apr 2024
+ 14:39:31 +0000
+Date: Wed, 24 Apr 2024 10:39:22 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
 	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v3 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <ZikZSkxKh0OYCjqY@lore-desk>
-References: <cover.1713866770.git.lorenzo@kernel.org>
- <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
- <ZihJfcmjoJZwLofz@surfacebook.localdomain>
- <ZijZwXCHbaSEyAQL@lore-desk>
- <CAHp75Vdf9_-KDLkm2jmkpM=pw=U4nnwYf4dKn8xg=N+DpFYXTQ@mail.gmail.com>
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
+ binding
+Message-ID: <ZikZmo3420wqx16E@lizhi-Precision-Tower-5810>
+References: <1713939683-15328-1-git-send-email-hongxing.zhu@nxp.com>
+ <1713939683-15328-3-git-send-email-hongxing.zhu@nxp.com>
+ <20240424-lustfully-region-826b9570bc38@spud>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240424-lustfully-region-826b9570bc38@spud>
+X-ClientProxiedBy: SJ0PR13CA0065.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o4U3+WsMGnukPqCb"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vdf9_-KDLkm2jmkpM=pw=U4nnwYf4dKn8xg=N+DpFYXTQ@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS1PR04MB9453:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0a6aad5-1b79-4030-ea6a-08dc646c5a26
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|7416005|1800799015|376005|366007|52116005|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9MuXpyukn3MwyWPXMvNTUxA/a3G+LZFIv1kuUkUHgvDbgJ6l5o6KK/Yf0rbB?=
+ =?us-ascii?Q?cV2efsbSZTKWDK3EL4k9zqSpFCzRezGIT9CSvHtxNl19b4171xQkQS/tm0A4?=
+ =?us-ascii?Q?/LkhlUrEsBfF6255TQ/U7g9dXSuM2RPnLAuvigI8LQRFioYGfCZrEOvR+RgG?=
+ =?us-ascii?Q?p4JByX4X4DQ10BfllaCxh06mC0z86A3Rt34GZcebmqlhVm3UavtD5mCm6Tlx?=
+ =?us-ascii?Q?J60MCGB/55CMguEwgkOcrWYfdDGAmuwi2bhA9TZ5kvcwbni0EYd0w2a20fso?=
+ =?us-ascii?Q?VvdQ5ptEH5C5ZQb4+4WvoBLjphdokRwC6LUlSbovrTgAxcUyw1TSg9+14GQE?=
+ =?us-ascii?Q?x8y2CfziIVXo/bUKtruedklq3Ka4MIMZVqQx0Sjn7TxiUJ2pzM96Wxw5DY2E?=
+ =?us-ascii?Q?9WmVqbgRR4NgPj5BIzTqN9HIg69XcGU1Tmxa3utUQ++U3HD04HY1Igk1wqXL?=
+ =?us-ascii?Q?2Z5HD0ZKaruiBzbNo9CwgZC1InkYirCe0Rr+VPQX3fmXpkmXIEyU74beyXxh?=
+ =?us-ascii?Q?CMTrnmkJ9lM9uZJTbmTN+KhGLsVdZT/eKaSkoXCGzKe4TcxbOjk5rSAnx/b8?=
+ =?us-ascii?Q?PBdXvx97rx2rl6zhvdLgN8qftezuisiEdZ8p3sfRXutC9rGTe3hkd+DN5Kvs?=
+ =?us-ascii?Q?WGQ8aOvKKxmEyNVt6eg6oDAAeQPHAQGCmRnUZYUyTU0MxwH91ESCb34YMC8l?=
+ =?us-ascii?Q?En9oZnIDPTSYuubVAV29rG6V/YVCnTcaEFopgJsGfJqKOBDqb+XlNWxWYj96?=
+ =?us-ascii?Q?bcRSbioapXrVqFhmNl9OUZIqCeP1cFRHVpsdEnJkabLy1bhCSUDG2e8I8oyt?=
+ =?us-ascii?Q?BbaDP41DwCxq98abOgRNF67bH7GSCZdhxdkdYVDfDLgTyIQB7b1d87mumu5s?=
+ =?us-ascii?Q?Y0LG5NX7aSZkmKwYgycGMlCajinN8cf4LJBADlcyVDcwajqYbjm/0ZO4furl?=
+ =?us-ascii?Q?9bM0EQTucWdoaUKHSpPgoHi5oWxk+S7G/cF9tyP4h+1MDUVEe4DLA7hzw3+v?=
+ =?us-ascii?Q?6S3x0qFzQWxixktv3kqmpx8KT8aavsfMrAHlSBGYciJT/F0/u6OM81zXDaAF?=
+ =?us-ascii?Q?khusQHmrfb2qNn6rYiMR/brmWDtDpVCR0jwaWMO4l8j6/8yL5mfq1Hd4LHi9?=
+ =?us-ascii?Q?1CwDuHdvPF32e4o4YVLGxC0rI/qRkuGTFNNL0c8kbL/6R2BbAJDxiMV/hD3o?=
+ =?us-ascii?Q?XUqfVfcpt/iOR94QfMkyS3bCvx/w0wCsPF9TKE/R2ojAGeCV+9CXrTmXbBX0?=
+ =?us-ascii?Q?Wfjm5SN2AEKCymKMIVTi6jRasCgvS6SfqYoRFVzdfY7uCfIYBGtMUw/Mcv9a?=
+ =?us-ascii?Q?qak=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005)(366007)(52116005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Gze8w4ilMGlTssjKdJDuPpWjCMdszE5bK9sW8ts1OF12xn0jB4jFBozoaY6X?=
+ =?us-ascii?Q?0DK783NDUEfn3VRFFzwAI7xtwLhfgNOINakKkf8ypktXLA8XLqwnPfBPrxKO?=
+ =?us-ascii?Q?CRuaElKMFoLIXB0ThM+ae8o97fLqXVFEvOlTGte0I5q0AoX5Bv8G+LcJxUoA?=
+ =?us-ascii?Q?RjmhnvtshqTawyPTsgU2eItE6/jSVWNFkck4SyJ8sZy0K6sv0d7wT3df90Mg?=
+ =?us-ascii?Q?Y9XyyxmqBPV3/rmsYeN+OXW+Lx70km1XWeG/vXGi9mgr8iz2edSq53wREq7k?=
+ =?us-ascii?Q?yW7FmnwimMt4CDBZy58SSBADqFHwYHFxrdZ2riKfaZF03Xxl8JDD7XKTCEZF?=
+ =?us-ascii?Q?ZyZnFRXM3MPUEe9kglxFRMeDZV+4eS7/4RSxVeUUtnDZwNurZ3dfCpRBZDBH?=
+ =?us-ascii?Q?D7nVfe+YvpW0UFbZIZsGC9GyJ5GQJ/gwTSxWSi/pDuldY4mO4MwgN31aXjRp?=
+ =?us-ascii?Q?80DHAxII+xWZDxFPu5HPM1fCDyo4/1lpf04OjdBK0XD8S/k75f2W1d6ZJhX/?=
+ =?us-ascii?Q?pY9rwUekHr6xm+/Gymzz+vvAYnEUgzZNbLTrTL0+imm2n85Uty3EGLzACQA2?=
+ =?us-ascii?Q?uzvdNYm7tu+IRGAv+V2jkh8e5C3wnQpGzqB6XUzONvgnJBCHHHz4F0pXU4/n?=
+ =?us-ascii?Q?XPZUODjoJapRaTZ2J7HFdq25LlUFlUzkzxWlfPfbjpDHLDZMMAAfQOJCdUXl?=
+ =?us-ascii?Q?xgsC4qQwBIkDp3ZNQEQ+e4/7p6d/dPnphyGq2AzBlUiITssDhaAIlCFa93NO?=
+ =?us-ascii?Q?LeClULVB2aWmcafZs0q+OkkoQmsF192n+EWgJZTw+NkCau5Utu6NZXtRYipr?=
+ =?us-ascii?Q?044T/dHsNX5O4jJOQDwOu/ZRLGlJLQ4aSLZqWTqX9T4hRnHtrnX8lKUKG8OT?=
+ =?us-ascii?Q?6X8Cc5MejE8uEg1J9jda8b6M6vDkuUfhmeAAxCCxbugCZYeGqhIuG1gWSsdC?=
+ =?us-ascii?Q?IVyw/vTZBTAHrjVv1uzkSkozQz/BtxkOme54WVTSRjeWN2iX8msqDI8gXYyx?=
+ =?us-ascii?Q?vQi8UOV6nPHZ4LeFtxSLGMHoar8ozP6628qx1n4wXPJ1TdaMWtB2NdKrA9oK?=
+ =?us-ascii?Q?Mh9CuxtMjACfh4PIWMjUIGpSsUJhvtG8zT5WpHznnv4ah7FAle3y2O50DlPV?=
+ =?us-ascii?Q?/rYC35dkMOsSKtYNzN+6Yab8I2Iq+mKqkSm8M5I+c/tFv8TPDZRsoVv5famD?=
+ =?us-ascii?Q?D2pxuGooQHv+Pi3piOF3XOYaKKI5CRAkF2yZtGoQL8DgM6QlewB2KRJ8fhsA?=
+ =?us-ascii?Q?VjmP6+Km37zPfIvXUOJ1FeuxZ1Xw/qeLPvXs2GflfUrQ0c+zgrCxdtV3xCck?=
+ =?us-ascii?Q?Tn6bBNltzL7skuq84Kk1hlR35i3BlkxMGt1i8LynED0YR7ajkK3/7ZbdIp/3?=
+ =?us-ascii?Q?PPswItn0B4ixnJSlE+le8mP58zo4NKcDa8qUHMgp92Zax+D7CFRf7MUtix9f?=
+ =?us-ascii?Q?XfDkaahN0m+Ias67brLCPPIvTacvLpWD+c70JthQKml887+R/MpvhoEy0lSL?=
+ =?us-ascii?Q?yraoSwXOd5n91bJ4/1hFUubpRGqwTioYPPLpoitPSfzL4cTFjmfOHiABgUs/?=
+ =?us-ascii?Q?0M1VWpFO5UYNGjXRP44+JEvwvtjFNReonkCEleV3?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0a6aad5-1b79-4030-ea6a-08dc646c5a26
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 14:39:31.4091
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tEk5SIIpzYs+t6nEVH2swLVc/E+r4tRRk1zIJAJRssKY8vkS35pyviiPSDO/cOxj3ZtpYvLj+SAfVZz3ZN/i0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9453
 
+On Wed, Apr 24, 2024 at 01:04:27PM +0100, Conor Dooley wrote:
+> On Wed, Apr 24, 2024 at 02:21:22PM +0800, Richard Zhu wrote:
+> > Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
+> > Introduce one HSIO configuration 'fsl,hsio-cfg', which need be set at
+> > initialization according to board design.
+> > 
+> > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > ---
+> >  .../bindings/phy/fsl,imx8qm-hsio.yaml         | 146 ++++++++++++++++++
+> >  1 file changed, 146 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> > new file mode 100644
+> > index 000000000000..3e2824d1616c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> > @@ -0,0 +1,146 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/fsl,imx8qm-hsio.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale i.MX8QM SoC series HSIO SERDES PHY
+> > +
+> > +maintainers:
+> > +  - Richard Zhu <hongxing.zhu@nxp.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx8qm-hsio
+> > +      - fsl,imx8qxp-hsio
+> > +  reg:
+> > +    minItems: 4
+> > +    maxItems: 4
+> > +
+> > +  "#phy-cells":
+> > +    const: 3
+> > +    description:
+> > +      The first defines the type of the PHY refer to the include phy.h.
+> > +      The second defines controller index.
+> > +      The third defines the lane mask of the lane ID, indicated which
+> > +      lane is used by the PHY. They are defined as HSIO_LAN* in
+> > +      dt-bindings/phy/phy-imx8-pcie.h
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: reg
+> > +      - const: phy
+> > +      - const: ctrl
+> > +      - const: misc
+> > +
+> > +  clocks:
+> > +    minItems: 5
+> > +    maxItems: 14
+> > +
+> > +  clock-names:
+> > +    minItems: 5
+> > +    maxItems: 14
+> > +
+> > +  fsl,hsio-cfg:
+> > +    description: Refer macro HSIO_CFG* include/dt-bindings/phy/phy-imx8-pcie.h.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  fsl,refclk-pad-mode:
+> > +    description:
+> > +      Specifies the mode of the refclk pad used. It can be UNUSED(PHY
+> > +      refclock is derived from SoC internal source), INPUT(PHY refclock
+> > +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
+> > +      is derived from SoC internal source and provided on the refclk pad).
+> > +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
+> > +      to be used.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    default: IMX8_PCIE_REFCLK_PAD_OUTPUT
+> 
+> My comments on this are still not addressed. Please go back and read my
+> comments about this property on v1.
 
---o4U3+WsMGnukPqCb
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Richard: I think we missunderstand conor's means at v1.
 
-> On Wed, Apr 24, 2024 at 1:07=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.=
-org> wrote:
-> > > Tue, Apr 23, 2024 at 12:16:37PM +0200, Lorenzo Bianconi kirjoitti:
->=20
-> ...
->=20
-> > > > +   /* addr part */
-> > > > +   for (i =3D 0; i < op->addr.nbytes; i++) {
-> > > > +           u8 cmd =3D opcode =3D=3D SPI_NAND_OP_GET_FEATURE ? 0x11=
- : 0x8;
-> > > > +
-> > > > +           data =3D op->addr.val >> ((op->addr.nbytes - i - 1) * 8=
-);
-> > >
-> > > Seems like you wanted to have always the same endianess and hence can=
- be done
-> > > outside the loop via cpu_to_xxx()?
-> >
-> > sorry, I did not get what you mean here, data value relies on the loop
-> > iteration.
->=20
->   u8 byte_stream[8];
->   u8 cmd;
->=20
->   cmd =3D ...;
->=20
->   // find what suits your case(s)
->   put_unaligned_be64(op->addr.val, byte_stream);
->   for-loop {
->      err =3D _write_data();
->      ...
->   }
+"Why do we need numbers and a header here at all? The enum should be an
+enum of strings input, output & unused. Oh and "unused" can just be
+dropped, and not having the property at all would mean "unused"."
 
-ack, I will fix it in v4.
+fsl,refclk-pad-mode:
+  description:
+    ...
+  enum: ["input", "output"].
 
-Rregards,
-Lorenzo
+If not exist "fsl,refclk-pad-mode" means "unused".
 
->=20
->=20
-> > > > +           err =3D airoha_snand_write_data(as_ctrl, cmd, &data,
-> > > > +                                         sizeof(data));
-> > > > +           if (err)
-> > > > +                   return err;
-> > > > +   }
->=20
-> ...
->=20
-> > > Why not utilising cleanup.h? (__free(), no_free_ptr(), etc)
-> >
-> > I guess we can just allocate as_dev and as_dev->txrx_buf with devm_kzal=
-loc()
-> > here, agree?
->=20
-> If this is a solely part of ->probe() stage, yes.
->=20
-> --=20
-> With Best Regards,
-> Andy Shevchenko
+Frank
 
---o4U3+WsMGnukPqCb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZikZSgAKCRA6cBh0uS2t
-rGU2AQDvbdXTZ+P+0LBWXD8icCgFhTk0QUDrZ/0gXTrvN2W8+QEAkkcFdBJ4/6RQ
-rccGnh3Wf0RGprTGjIa+gGbG09ffwgg=
-=2aL4
------END PGP SIGNATURE-----
-
---o4U3+WsMGnukPqCb--
 
