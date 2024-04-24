@@ -1,1550 +1,720 @@
-Return-Path: <devicetree+bounces-62373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BD58B0E56
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:30:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61E7D8B0E83
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:36:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0CC0BB263EE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:30:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE5001F26811
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672941635C0;
-	Wed, 24 Apr 2024 15:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE82160862;
+	Wed, 24 Apr 2024 15:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IZrH0XCb"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bWFifaMr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E39116133F;
-	Wed, 24 Apr 2024 15:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88AE515FA82;
+	Wed, 24 Apr 2024 15:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713972571; cv=none; b=NmxnKLr4UVG5SUPWv+MrfwNjLSOYBEdV6mAtSfZGnVGI/bk2AecCcYW9THMWXLjJlHZkc9Ftmo1pyy5B3RoWvN6lvSyKSSiNYRtzp9czaOnUWkp9svHS0Ad0sCvhkbx4ji6B7UbfkfNUzSPR1suq18XuW/10yZbG8yyK2k7rSDc=
+	t=1713972952; cv=none; b=jUz09Vi9+Eq1OfrbszvwA94X56fuSeucmvCZqDce2JjYTIc3oghP8nlvHsTJtm+jzPsQmnNN9DP4+PlB+E9ydNCGJNByHKKSsRj06061tHEmnw2YYqInCgvz8D81e+OlySyFo7y7gdvmd85kkCqLOnokNI8Or06SUXh9GnwZnkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713972571; c=relaxed/simple;
-	bh=wO1mlouIkGphlwZEnYXnwsuEldgA+TbsXDjNHC3vXbc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=k8V+QDsKvPMM3oRVfjDypcA+TiRMdGWpOqRBMX+UDiZ6daG1FKVlk+4iEIHK1IRF3fxRPs5W1Me0DFe/dKmeqhPbUHYa5LXvuCRDuePTDFeWokzMm5EbK599eWYJbUzG+8pVhnAW8kJe3BOFswyzUKk6IZ8ReqL2/9WfSpZQQOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IZrH0XCb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C0729C4AF64;
-	Wed, 24 Apr 2024 15:29:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713972570;
-	bh=wO1mlouIkGphlwZEnYXnwsuEldgA+TbsXDjNHC3vXbc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=IZrH0XCbpYhHiUQqnaB/pmznMUu3mDyUBF/iIVh9m/I/sCVSeO14wRSLa8xJf2VBC
-	 ObKNShjtBOvQvxAgA/G7esfXc0zWItW+anrRyndwqbDAFpZFjq1a+jC3lOGg+qC1Cc
-	 1cYWsSsrVpTJwO51LTOrN9fQYd04gX9Zej8rUl5Ud81y6vtTXxB3Rvl40TcxttWu7u
-	 5yj+SpteBgO/aLI5mEHaZFc7lRJhsgEFf+jKlxgss4Sxa+BXX1lDtAGa45RrfHPQiK
-	 zmNBhE+Fe0Kv5DoE+wj6SRLa+fULfWXK/xHG23Xlsq7e1rmDKCQSKD5SaeC3tLtlM3
-	 DSEOoVEUkJ4/g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B88CEC07E8E;
-	Wed, 24 Apr 2024 15:29:30 +0000 (UTC)
-From: Xilin Wu via B4 Relay <devnull+wuxilin123.gmail.com@kernel.org>
-Date: Wed, 24 Apr 2024 23:29:15 +0800
-Subject: [PATCH 10/10] arm64: dts: qcom: Add AYN Odin 2
+	s=arc-20240116; t=1713972952; c=relaxed/simple;
+	bh=AFKzMxATkCVszvR8xeCAXPHB2c6LYg/PD6zWlGuX/+c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pfCtNCH0g7o+jSixQZOxnsBpmvPrfrezbWugYJUQyINEYFdPgZQ/AxCkTOtyIG5vpwXyn+LBZkj245Gik8/qsE4w4HS4vuWFAvEkd85/vsd6At5l//PGiTbVtzF8U7HpuQe7qhatdvZT6hBAG7Vxqm0yNyG3IN67+vDkyJBxxCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bWFifaMr; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 15784674;
+	Wed, 24 Apr 2024 17:34:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1713972897;
+	bh=AFKzMxATkCVszvR8xeCAXPHB2c6LYg/PD6zWlGuX/+c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=bWFifaMrXNYdpZIQJPVzP6/SaO88DuyfN6gbtw4sNf8m9LbwMI5CH307gtzBmTbuJ
+	 ay71Xqyqr8yk62W+oE62jyIF3MulUHGcYACjWrlNZdZL8TV61eTQr3BxlZLRxyxKXV
+	 PzZ4QmT0vf1XU5qeeq/O74tPK8WeUBHCMNflpuh0=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com,
+	linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v11 0/5]  media: Add driver for the Raspberry Pi <5 CSI-2 receiver
+Date: Wed, 24 Apr 2024 18:35:36 +0300
+Message-ID: <20240424153542.32503-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240424-ayn-odin2-initial-v1-10-e0aa05c991fd@gmail.com>
-References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
-In-Reply-To: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Junhao Xie <bigfoot@classfun.cn>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Tengfei Fan <quic_tengfan@quicinc.com>, 
- Molly Sophia <mollysophia379@gmail.com>, Junhao Xie <bigfoot@classfun.cn>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, Xilin Wu <wuxilin123@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713972563; l=34888;
- i=wuxilin123@gmail.com; s=20240424; h=from:subject:message-id;
- bh=5jhsQku4cVI7cM86CfiA0phdO7isJxAGMe4tWG1ivmw=;
- b=ub7i4HAtTGxx4iWn9joPzgCUOnOL7MkU4T653B1J6/armSE3Ti5qEXuw2Cjzt/sTOyJU4pXy1
- MX28jRaTYwgDD2OkY3UJlMwR93MugtcQIYbWnzcS1iuS7G+6zF0F24G
-X-Developer-Key: i=wuxilin123@gmail.com; a=ed25519;
- pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
-X-Endpoint-Received: by B4 Relay for wuxilin123@gmail.com/20240424 with
- auth_id=157
-X-Original-From: Xilin Wu <wuxilin123@gmail.com>
-Reply-To: wuxilin123@gmail.com
+Content-Transfer-Encoding: 8bit
 
-From: Xilin Wu <wuxilin123@gmail.com>
+Hello everybody,
 
-AYN Odin 2 is a gaming handheld based on QCS8550, which is derived
-from SM8550 but without modem RF system.
+This patch series adds a new driver for the BCM2835 (and derivative)
+CCP2/CSI2 camera interface named Unicam. This IP core is found in the
+VC4-based Raspberry Pi, namely the Pi Zero, Pi 3 and Pi 4.
 
-This commit brings support for:
-* Remoteprocs
-* UFS storage
-* SD Card
-* Type-C with USB3 10Gbps and DisplayPort (4-lane requires a pending
-  patch)
-* PCIe0 (Wi-Fi requires the pending pwrseq series)
-* Bluetooth
-* Regulators
-* Integrated fan with automatic speed control based on CPU temperature
-* Power and volume keys
-* M1, M2 buttons
-* HDMI output up to 1080p 60hz
-* four groups of RGB lights
-* GPU
-* Internal DSI display with touchscreen
+Camera support for Raspberry Pi 4 currently relies on a downstream
+Unicam driver that lives in the Raspberry Pi kernel tree ([1]). The
+driver uses the V4L2 API, but works around the lack of features in V4L2
+to properly support sensor embedded data. Since the Unicam driver
+development by Raspberry Pi, some of those features have been merged in
+the kernel (namely the V4L2 streams API) or are being developed (namely
+generic metadata formats and subdev internal pads), with patches posted
+for review on the linux-media mailing list ([2], [3]).
 
-Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile              |    1 +
- arch/arm64/boot/dts/qcom/qcs8550-ayn-odin2.dts | 1410 ++++++++++++++++++++++++
- 2 files changed, 1411 insertions(+)
+This new upstream driver is based on the downstream code, extensively
+reworked to use the new V4L2 APIs.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index c46c10d85697..070c0d996059 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -97,6 +97,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-ayn-odin2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs8550-ayn-odin2.dts b/arch/arm64/boot/dts/qcom/qcs8550-ayn-odin2.dts
-new file mode 100644
-index 000000000000..bfe353d3c53e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs8550-ayn-odin2.dts
-@@ -0,0 +1,1410 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Xilin Wu <wuxilin123@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include "qcs8550.dtsi"
-+#include "pm8550.dtsi"
-+#include "pm8550b.dtsi"
-+#define PMK8550VE_SID 5
-+#include "pm8550ve.dtsi"
-+#include "pm8550vs.dtsi"
-+#include "pmk8550.dtsi"
-+
-+/*
-+ * The SoC being used on this product doesn't feature modem
-+ * and camera subsystem.
-+ * Variant: 202-AB
-+ * FEATURE_ID: 0x8
-+ */
-+
-+/delete-node/ &mpss_mem;
-+/delete-node/ &q6_mpss_dtb_mem;
-+/delete-node/ &ipa_fw_mem;
-+/delete-node/ &ipa_gsi_mem;
-+/delete-node/ &camera_mem;
-+/delete-node/ &mpss_dsm_mem;
-+/delete-node/ &camcc;
-+/delete-node/ &remoteproc_mpss;
-+
-+/ {
-+	model = "AYN Odin 2";
-+	compatible = "ayn,odin2", "qcom,qcs8550", "qcom,sm8550";
-+	chassis-type = "handset";
-+
-+	qcom,msm-id = <QCOM_ID_QCS8550 0x20000>;
-+	qcom,board-id = <0x1001f 0>;
-+
-+	aliases {
-+		serial0 = &uart7;
-+		serial1 = &uart14;
-+		serial2 = &uart15;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pmk8550_pwm 0 860000>;
-+		brightness-levels = <1023 0>;
-+		num-interpolated-steps = <1023>;
-+		default-brightness-level = <600>;
-+		power-supply = <&vph_pwr>;
-+		enable-gpios = <&pmk8550_gpios 5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pwm_backlight_default>;
-+		status = "okay";
-+	};
-+
-+	fan_pwr: fan-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fan_pwr";
-+
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&tlmm 109 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&fan_pwr_en>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&volume_up_n>, <&m1_m2_keys_default>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		m1-button {
-+			label = "M1";
-+			linux,code = <BTN_TRIGGER_HAPPY1>;
-+			gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		m2-button {
-+			label = "M2";
-+			linux,code = <BTN_TRIGGER_HAPPY2>;
-+			gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+		hpd-gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&lt8912_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi_pwr: hdmi-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "hdmi_pwr";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		gpio = <&tlmm 10 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vdd_lcm_2p8: vdd-lcm-2p8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_lcm_2p8";
-+
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+
-+		gpio = <&tlmm 142 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	led_left_side: led-controller-1 {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			label = "left-side";
-+			color = <LED_COLOR_ID_RGB>;
-+			max-brightness = <255>;
-+
-+			led-red {
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm_rgb_left 0>;
-+			};
-+
-+			led-green {
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm_rgb_left 1>;
-+			};
-+
-+			led-blue {
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm_rgb_left 2>;
-+			};
-+		};
-+	};
-+
-+	led_left_joystick: led-controller-2 {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			label = "left-joystick";
-+			color = <LED_COLOR_ID_RGB>;
-+			max-brightness = <255>;
-+
-+			led-red {
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm_rgb_left 6>;
-+			};
-+
-+			led-green {
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm_rgb_left 7>;
-+			};
-+
-+			led-blue {
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm_rgb_left 8>;
-+			};
-+		};
-+	};
-+
-+	led_right_side: led-controller-3 {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			label = "right-side";
-+			color = <LED_COLOR_ID_RGB>;
-+			max-brightness = <255>;
-+
-+			led-red {
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm_rgb_right 0>;
-+			};
-+
-+			led-green {
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm_rgb_right 1>;
-+			};
-+
-+			led-blue {
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm_rgb_right 2>;
-+			};
-+		};
-+	};
-+
-+	led_right_joystick: led-controller-4 {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			label = "right-joystick";
-+			color = <LED_COLOR_ID_RGB>;
-+			max-brightness = <255>;
-+
-+			led-red {
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm_rgb_right 6>;
-+			};
-+
-+			led-green {
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm_rgb_right 7>;
-+			};
-+
-+			led-blue {
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm_rgb_right 8>;
-+			};
-+		};
-+	};
-+
-+	mcu_3v3: mcu-3v3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "mcu_3v3";
-+
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		enable-active-high;
-+	};
-+
-+	pmic-glink {
-+		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in: endpoint {
-+						remote-endpoint = <&usb_dp_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					pmic_glink_sbu: endpoint {
-+						remote-endpoint = <&usb0_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-levels = <0 40 65 75 90 100 120 150>;
-+		#cooling-cells = <2>;
-+		fan-supply = <&fan_pwr>;
-+		pwms = <&pm8550_pwm 3 100000>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pwm_out_default &fan_int>;
-+
-+		pulses-per-revolution = <4>;
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+
-+	thermal-zones {
-+		cpuss0-thermal {
-+			trips {
-+				cpuss0_active0: trip-point2 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+
-+				cpuss0_active1: trip-point3 {
-+					temperature = <55000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+
-+				cpuss0_active2: trip-point4 {
-+					temperature = <60000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+
-+				cpuss0_active3: trip-point5 {
-+					temperature = <65000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+
-+				cpuss0_active4: trip-point6 {
-+					temperature = <70000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+
-+				cpuss0_active5: trip-point7 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+
-+				cpuss0_active6: trip-point8 {
-+					temperature = <80000>;
-+					hysteresis = <4000>;
-+					type = "active";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpuss0_active0>;
-+					cooling-device = <&fan 0 1>;
-+				};
-+				map1 {
-+					trip = <&cpuss0_active1>;
-+					cooling-device = <&fan 1 2>;
-+				};
-+				map2 {
-+					trip = <&cpuss0_active2>;
-+					cooling-device = <&fan 2 3>;
-+				};
-+				map3 {
-+					trip = <&cpuss0_active3>;
-+					cooling-device = <&fan 3 4>;
-+				};
-+				map4 {
-+					trip = <&cpuss0_active4>;
-+					cooling-device = <&fan 4 5>;
-+				};
-+				map5 {
-+					trip = <&cpuss0_active5>;
-+					cooling-device = <&fan 5 6>;
-+				};
-+				map6 {
-+					trip = <&cpuss0_active6>;
-+					cooling-device = <&fan 6 7>;
-+				};
-+			};
-+		};
-+	};
-+
-+	usb0-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		enable-gpios = <&tlmm 140 GPIO_ACTIVE_LOW>;
-+		select-gpios = <&tlmm 141 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb0_sbu_default>;
-+
-+		mode-switch;
-+		orientation-switch;
-+
-+		port {
-+			usb0_sbu_mux: endpoint {
-+				remote-endpoint = <&pmic_glink_sbu>;
-+			};
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm8550-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-bob1-supply = <&vph_pwr>;
-+		vdd-bob2-supply = <&vph_pwr>;
-+		vdd-l1-l4-l10-supply = <&vreg_s6g_1p86>;
-+		vdd-l2-l13-l14-supply = <&vreg_bob1>;
-+		vdd-l3-supply = <&vreg_s4g_1p25>;
-+		vdd-l5-l16-supply = <&vreg_bob1>;
-+		vdd-l6-l7-supply = <&vreg_bob1>;
-+		vdd-l8-l9-supply = <&vreg_bob1>;
-+		vdd-l11-supply = <&vreg_s4g_1p25>;
-+		vdd-l12-supply = <&vreg_s6g_1p86>;
-+		vdd-l15-supply = <&vreg_s6g_1p86>;
-+		vdd-l17-supply = <&vreg_bob2>;
-+
-+		vreg_bob1: bob1 {
-+			regulator-name = "vreg_bob1";
-+			regulator-min-microvolt = <3296000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_bob2: bob2 {
-+			regulator-name = "vreg_bob2";
-+			regulator-min-microvolt = <2720000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1b_1p8: ldo1 {
-+			regulator-name = "vreg_l1b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2b_3p0: ldo2 {
-+			regulator-name = "vreg_l2b_3p0";
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5b_3p1: ldo5 {
-+			regulator-name = "vreg_l5b_3p1";
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6b_1p8: ldo6 {
-+			regulator-name = "vreg_l6b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7b_1p8: ldo7 {
-+			regulator-name = "vreg_l7b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8b_1p8: ldo8 {
-+			regulator-name = "vreg_l8b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9b_2p9: ldo9 {
-+			regulator-name = "vreg_l9b_2p9";
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10b_1p8: ldo10 {
-+			regulator-name = "vreg_l10b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11b_1p2: ldo11 {
-+			regulator-name = "vreg_l11b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12b_1p8: ldo12 {
-+			regulator-name = "vreg_l12b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13b_3p0: ldo13 {
-+			regulator-name = "vreg_l13b_3p0";
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14b_3p2: ldo14 {
-+			regulator-name = "vreg_l14b_3p2";
-+			regulator-min-microvolt = <3200000>;
-+			regulator-max-microvolt = <3200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15b_1p8: ldo15 {
-+			regulator-name = "vreg_l15b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l16b_2p8: ldo16 {
-+			regulator-name = "vreg_l16b_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* Setting regulator-allow-set-load here will crash the device */
-+		vreg_l17b_2p5: ldo17 {
-+			regulator-name = "vreg_l17b_2p5";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-l1-supply = <&vreg_s4g_1p25>;
-+		vdd-l2-supply = <&vreg_s4e_0p95>;
-+		vdd-l3-supply = <&vreg_s4e_0p95>;
-+
-+		vreg_l1c_1p2: ldo1 {
-+			regulator-name = "vreg_l1c_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c_0p9: ldo3 {
-+			regulator-name = "vreg_l3c_0p9";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "d";
-+
-+		vdd-l1-supply = <&vreg_s4e_0p95>;
-+		vdd-l2-supply = <&vreg_s4e_0p95>;
-+		vdd-l3-supply = <&vreg_s4e_0p95>;
-+
-+		vreg_l1d_0p88: ldo1 {
-+			regulator-name = "vreg_l1d_0p88";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <920000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* ldo2 supplies SM8550 VDD_LPI_MX */
-+	};
-+
-+	regulators-3 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "e";
-+
-+		vdd-l1-supply = <&vreg_s4e_0p95>;
-+		vdd-l2-supply = <&vreg_s4e_0p95>;
-+		vdd-l3-supply = <&vreg_s4g_1p25>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+
-+		vreg_s4e_0p95: smps4 {
-+			regulator-name = "vreg_s4e_0p95";
-+			regulator-min-microvolt = <904000>;
-+			regulator-max-microvolt = <984000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5e_1p08: smps5 {
-+			regulator-name = "vreg_s5e_1p08";
-+			regulator-min-microvolt = <1010000>;
-+			regulator-max-microvolt = <1120000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1e_0p88: ldo1 {
-+			regulator-name = "vreg_l1e_0p88";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2e_0p9: ldo2 {
-+			regulator-name = "vreg_l2e_0p9";
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <970000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3e_1p2: ldo3 {
-+			regulator-name = "vreg_l3e_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-4 {
-+		compatible = "qcom,pm8550ve-rpmh-regulators";
-+		qcom,pmic-id = "f";
-+
-+		vdd-l1-supply = <&vreg_s4e_0p95>;
-+		vdd-l2-supply = <&vreg_s4e_0p95>;
-+		vdd-l3-supply = <&vreg_s4e_0p95>;
-+		vdd-s4-supply = <&vph_pwr>;
-+
-+		vreg_s4f_0p5: smps4 {
-+			regulator-name = "vreg_s4f_0p5";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <700000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1f_0p9: ldo1 {
-+			regulator-name = "vreg_l1f_0p9";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2f_0p88: ldo2 {
-+			regulator-name = "vreg_l2f_0p88";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3f_0p88: ldo3 {
-+			regulator-name = "vreg_l3f_0p88";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-5 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "g";
-+
-+		vdd-l1-supply = <&vreg_s4g_1p25>;
-+		vdd-l2-supply = <&vreg_s4g_1p25>;
-+		vdd-l3-supply = <&vreg_s4g_1p25>;
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+
-+		vreg_s1g_1p25: smps1 {
-+			regulator-name = "vreg_s1g_1p25";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s2g_0p85: smps2 {
-+			regulator-name = "vreg_s2g_0p85";
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1036000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s3g_0p8: smps3 {
-+			regulator-name = "vreg_s3g_0p8";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <1004000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s4g_1p25: smps4 {
-+			regulator-name = "vreg_s4g_1p25";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_RET>;
-+		};
-+
-+		vreg_s5g_0p85: smps5 {
-+			regulator-name = "vreg_s5g_0p85";
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1004000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s6g_1p86: smps6 {
-+			regulator-name = "vreg_s6g_1p86";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1g_1p2: ldo1 {
-+			regulator-name = "vreg_l1g_1p2";
-+			regulator-min-microvolt = <1144000>;
-+			regulator-max-microvolt = <1256000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2g_1p1: ldo2 {
-+			regulator-name = "vreg_l2g_1p1";
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3g_1p2: ldo3 {
-+			regulator-name = "vreg_l3g_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		firmware-name = "qcom/sm8550/ayn/odin2/a740_zap.mbn";
-+	};
-+};
-+
-+&hub_i2c0_data_clk {
-+	/delete-property/ bias-pull-up;
-+	bias-disable;
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	pwm_rgb_left: pwm@54 {
-+		compatible = "si-en,sn3112-pwm";
-+		reg = <0x54>;
-+		sdb-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&mcu_3v3>;
-+		#pwm-cells = <1>;
-+	};
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	touchscreen@20 {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x20>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		interrupts-extended = <&tlmm 25 0x2008>;
-+
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&ts_int_default>;
-+		pinctrl-1 = <&ts_int_sleep>;
-+
-+		vio-supply = <&vreg_l12b_1p8>;
-+
-+		syna,startup-delay-ms = <200>;
-+		syna,reset-delay-ms = <200>;
-+
-+		rmi4-f01@1 {
-+			syna,nosleep-mode = <0x1>;
-+			reg = <0x1>;
-+		};
-+
-+		rmi4-f12@12 {
-+			reg = <0x12>;
-+			syna,rezero-wait-ms = <20>;
-+			syna,clip-x-low = <0>;
-+			syna,clip-y-low = <0>;
-+			syna,clip-x-high = <1080>;
-+			syna,clip-y-high = <1920>;
-+			syna,sensor-type = <1>;
-+			touchscreen-inverted-x;
-+		};
-+	};
-+};
-+
-+&i2c12 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	pwm_rgb_right: pwm@54 {
-+		compatible = "si-en,sn3112-pwm";
-+		reg = <0x54>;
-+		sdb-gpios = <&tlmm 56 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&mcu_3v3>;
-+		#pwm-cells = <1>;
-+	};
-+};
-+
-+&i2c_master_hub_0 {
-+	status = "okay";
-+};
-+
-+&i2c_hub_0 {
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	hdmi-bridge@48 {
-+		compatible = "lontium,lt8912b";
-+		reg = <0x48> ;
-+		reset-gpios = <&tlmm 7 GPIO_ACTIVE_LOW>;
-+
-+		vdd-supply = <&hdmi_pwr>;
-+		vccmipirx-supply = <&hdmi_pwr>;
-+		vccsysclk-supply = <&hdmi_pwr>;
-+		vcclvdstx-supply = <&hdmi_pwr>;
-+		vcchdmitx-supply = <&hdmi_pwr>;
-+		vcclvdspll-supply = <&hdmi_pwr>;
-+		vcchdmipll-supply = <&hdmi_pwr>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hdmi_out_in: endpoint {
-+					data-lanes = <1 2 3 4>;
-+					remote-endpoint = <&mdss_dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				lt8912_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c_hub_2 {
-+	status = "okay";
-+
-+    /* Awinic AW88166 audio amplifier @ 34, 35 */
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dp0 {
-+	status = "okay";
-+};
-+
-+&mdss_dp0_out {
-+	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l3e_1p2>;
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&hdmi_out_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l1e_0p88>;
-+	status = "okay";
-+};
-+
-+&mdss_dsi1 {
-+	vdda-supply = <&vreg_l3e_1p2>;
-+	status = "okay";
-+
-+	panel: panel@0 {
-+		compatible = "syna,td4328";
-+		reg = <0>;
-+
-+		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
-+		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
-+		pinctrl-names = "default", "sleep";
-+
-+		vdd-supply = <&vdd_lcm_2p8>;
-+		vddio-supply = <&vreg_l12b_1p8>;
-+
-+		backlight = <&backlight>;
-+		/* touchscreen and display panel share the same reset gpio! */
-+		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			panel0_in: endpoint {
-+				remote-endpoint = <&mdss_dsi1_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi1_out {
-+	remote-endpoint = <&panel0_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi1_phy {
-+	vdds-supply = <&vreg_l1e_0p88>;
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-+
-+	max-link-speed = <2>;
-+
-+	pinctrl-0 = <&pcie0_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l1e_0p88>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pm8550_gpios {
-+	pwm_out_default: pwm-out-default-state {
-+		pins = "gpio8";
-+		function = "func1";
-+		input-disable;
-+		output-enable;
-+		output-low;
-+		bias-disable;
-+		power-source = <1>;
-+	};
-+
-+	sdc2_card_det_n: sdc2-card-det-state {
-+		pins = "gpio12";
-+		function = "normal";
-+		input-enable;
-+		output-disable;
-+		bias-pull-up;
-+		power-source = <1>; /* 1.8 V */
-+	};
-+
-+	volume_up_n: volume-up-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&pm8550_pwm {
-+	status = "okay";
-+
-+	multi-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_CHARGING;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@3 {
-+			reg = <3>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+};
-+
-+&pm8550b_eusb2_repeater {
-+	qcom,tune-usb2-disc-thres = /bits/ 8 <0x6>;
-+	qcom,tune-usb2-amplitude = /bits/ 8 <0xb>;
-+	qcom,tune-usb2-preem = /bits/ 8 <0x3>;
-+	vdd18-supply = <&vreg_l15b_1p8>;
-+	vdd3-supply = <&vreg_l5b_3p1>;
-+};
-+
-+&pmk8550_gpios {
-+	pwm_backlight_default: pwm-backlight-default-state {
-+		pins = "gpio5";
-+		function = "func3";
-+		input-disable;
-+		output-enable;
-+		output-low;
-+		bias-disable;
-+		power-source = <0>;
-+		qcom,drive-strength = <2>;
-+	};
-+};
-+
-+&pmk8550_pwm {
-+	status = "okay";
-+};
-+
-+&pmk8550_rtc {
-+	nvmem-cells = <&rtc_offset>;
-+	nvmem-cell-names = "offset";
-+
-+	status = "okay";
-+};
-+
-+&pmk8550_sdam_2 {
-+	status = "okay";
-+
-+	rtc_offset: rtc-offset@bc {
-+		reg = <0xbc 0x4>;
-+	};
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8550/ayn/odin2/adsp.mbn",
-+			"qcom/sm8550/ayn/odin2/adsp_dtb.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8550/ayn/odin2/cdsp.mbn",
-+			"qcom/sm8550/ayn/odin2/cdsp_dtb.mbn";
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	cd-gpios = <&pm8550_gpios 12 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
-+	vmmc-supply = <&vreg_l9b_2p9>;
-+	vqmmc-supply = <&vreg_l8b_1p8>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+
-+	/* SDR104 does seem to be working on this device*/
-+	/delete-property/ sdhci-caps-mask;
-+	qcom,dll-config = <0x0007442c>;
-+
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32000>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <32 8>;
-+
-+	fan_int: fan-int-state {
-+		pins = "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	fan_pwr_en: fan-pwr-en-state {
-+		pins = "gpio109";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	m1_m2_keys_default: m1-m2-keys-default-state {
-+		pins = "gpio57", "gpio58";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
-+
-+	ts_int_default: ts-int-default-state {
-+		pins = "gpio25";
-+		function = "gpio";
-+		bias-pull-up;
-+		drive-strength = <8>;
-+	};
-+
-+	ts_int_sleep: ts-int-sleep-state {
-+		pins = "gpio25";
-+		function = "gpio";
-+		bias-pull-down;
-+		drive-strength = <2>;
-+	};
-+
-+	bt_default: bt-default-state {
-+		bt-en-pins {
-+			pins = "gpio81";
-+			function = "gpio";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		sw-ctrl-pins {
-+			pins = "gpio82";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+	};
-+
-+	usb0_sbu_default: usb0-sbu-state {
-+		oe-n-pins {
-+			pins = "gpio140";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <16>;
-+			output-high;
-+		};
-+
-+		sel-pins {
-+			pins = "gpio141";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <16>;
-+		};
-+	};
-+
-+	sde_dsi_active: sde-dsi-active-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	sde_dsi_suspend: sde-dsi-suspend-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	sde_te_active: sde-te-active-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	sde_te_suspend: sde-te-suspend-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+};
-+
-+&uart7 {
-+	status = "okay";
-+};
-+
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+
-+		vddio-supply = <&vreg_l15b_1p8>;
-+		vddaon-supply = <&vreg_s4e_0p95>;
-+		vdddig-supply = <&vreg_s4e_0p95>;
-+		vddrfa0p8-supply = <&vreg_s4e_0p95>;
-+		vddrfa1p2-supply = <&vreg_s4g_1p25>;
-+		vddrfa1p9-supply = <&vreg_s6g_1p86>;
-+
-+		max-speed = <3200000>;
-+
-+		enable-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 82 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&bt_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&uart15 {
-+	status = "okay";
-+
-+    /* Gamepad controlled by onboard MCU */
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l17b_2p5>;
-+	vcc-max-microamp = <1300000>;
-+	vccq-supply = <&vreg_l1g_1p2>;
-+	vccq-max-microamp = <1200000>;
-+	vdd-hba-supply = <&vreg_l3g_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l1d_0p88>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	maximum-speed = "super-speed-plus-gen2x1";
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in>;
-+};
-+
-+&usb_1_dwc3_ss {
-+	remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&vreg_l1e_0p88>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	phys = <&pm8550b_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_dp_qmpphy {
-+	vdda-phy-supply = <&vreg_l3e_1p2>;
-+	vdda-pll-supply = <&vreg_l3f_0p88>;
-+
-+	orientation-switch;
-+
-+	status = "okay";
-+};
-+
-+&usb_dp_qmpphy_dp_in {
-+	remote-endpoint = <&mdss_dp0_out>;
-+};
-+
-+&usb_dp_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss_in>;
-+};
-+
-+&usb_dp_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_dwc3_ss>;
-+};
-+
-+&xo_board {
-+	clock-frequency = <76800000>;
-+};
+The series is based on the generic metadata ([2]) and internal pads
+([3], v9) APIs. It can be found in my tree in [4]. Testing it requires
+extra branches, which are also pushed to the same tree, and organized as
+follows:
 
+- rpi/v6.9/base: The mainline tag that all the work is based on
+  (currently v6.9-rc2)
+- rpi/v6.9/backports: DT integration fixes for bcm238x, backported from
+  linux-next
+- rpi/v6.9/isp/v2: The ISP driver, which is getting upstreamed
+  separately
+- rpi/v6.9/metadata/v10/base: The V4L2 embedded data patches
+- rpi/v6.9/metadata/v10/sensors: The V4L2 internal pads patches
+- rpi/v6.9/unicam/next: The Unicam driver, based on the
+  rpi/v6.9/metadata/v10/base branch that it depends on
+- rpi/v6.9/imx219: Embedded data support for the imx219 driver, based on
+  the rpi/v6.9/metadata/v10/sensors branch that it depends on
+- rpi/v6.9/merge: A merge of the backports, isp/v2, unicam/next and
+  imx219 branches
+- rpi/v6.9/overlays: A sample overlay for the imx219 camera sensor
+  connected to a Raspberry Pi 4
+
+The series starts with two patches that add new V4L2 pixel formats (1/5
+and 2/5), followed by the Unicam DT bindings (3/5) and driver (4/5).
+Finally, it ends with DT integration for the Unicam devices (5/5).
+
+Compared to v10, I have rebased the patches on top of the latest version
+of the generic metadata series ([2]), to prepare for a merge in
+(hopefully) v6.10.
+
+The patches have been tested on a Raspberry Pi 4 using an IMX219 camera
+module (the Raspberry Pi camera v2), with libcamera. Updates are needed
+to libcamera to use the new V4L2 APIs, patches have been posted to [5].
+For manual testing with media-ctl, corresponding API updates to
+v4l-utils have been posted to the linux-media mailing list ([6]) and
+pushed to [7].
+
+With this version I believe we are ready to merge the driver upstream.
+Sensor driver changes, which require more work, with their corresponding
+V4L2 API extensions, have been split out. The Unicam driver now depends
+only on the core part of the embedded data API extensions, which I
+believe is ready. Corresponding updates for v4l-utils have been
+developed and submitted. This series, along with the libcamera support,
+helps validating the new kernel APIs.
+
+Sakari, please feel free to apply this on top of your generic metadata
+branch and include it in your pull request for v6.10.
+
+Below you will find the mandatory v4l2-compliance reports. It requires
+the v4l-utils updates from [7]. There is a total of 4 warnings, all
+related to the imx219 driver. They will be addressed separately, as part
+of the effort to add embedded data support to the imx219 driver.
+
+[1] https://github.com/raspberrypi/linux/tree/rpi-6.1.y/drivers/media/platform/bcm2835
+[3] https://lore.kernel.org/linux-media/20240424122237.875000-1-sakari.ailus@linux.intel.com/
+[4] https://lore.kernel.org/linux-media/20240416193319.778192-1-sakari.ailus@linux.intel.com/
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/unicam/next
+[5] https://lists.libcamera.org/pipermail/libcamera-devel/2024-March/040711.html
+[6] https://lore.kernel.org/linux-media/20240424152230.31923-1-laurent.pinchart@ideasonboard.com/
+[7] https://git.linuxtv.org/pinchartl/v4l-utils.git/log/?h=metadata
+
+v4l2-compliance 1.27.0-5195, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 9356d44374db 2024-04-24 11:58:36
+
+Compliance test for unicam device /dev/media0:
+
+Media Driver Info:
+	Driver name      : unicam
+	Model            : unicam
+	Serial           :
+	Bus info         : platform:fe801000.csi
+	Media version    : 6.9.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.9.0
+
+Required ioctls:
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/media0 open: OK
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test for unlimited opens: OK
+
+Media Controller ioctls:
+	test MEDIA_IOC_G_TOPOLOGY: OK
+	Entities: 4 Interfaces: 4 Pads: 8 Links: 7
+	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+	test MEDIA_IOC_SETUP_LINK: OK
+
+Total for unicam device /dev/media0: 8, Succeeded: 8, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for unicam device /dev/video0:
+
+Driver Info:
+	Driver name      : unicam
+	Card type        : unicam
+	Bus info         : platform:fe801000.csi
+	Driver version   : 6.9.0
+	Capabilities     : 0xa4a00001
+		Video Capture
+		Metadata Capture
+		I/O MC
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x24200001
+		Video Capture
+		I/O MC
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : unicam
+	Model            : unicam
+	Serial           :
+	Bus info         : platform:fe801000.csi
+	Media version    : 6.9.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.9.0
+Interface Info:
+	ID               : 0x0300000d
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x0000000b (11)
+	Name             : unicam-image
+	Function         : V4L2 I/O
+	Flags            : default
+	Pad 0x0100000c   : 0: Sink
+	  Link 0x0200000f: from remote pad 0x1000003 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls (Input 0):
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls (Input 0):
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Total for unicam device /dev/video0: 48, Succeeded: 48, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for unicam device /dev/video1:
+
+Driver Info:
+	Driver name      : unicam
+	Card type        : unicam
+	Bus info         : platform:fe801000.csi
+	Driver version   : 6.9.0
+	Capabilities     : 0xa4a00001
+		Video Capture
+		Metadata Capture
+		I/O MC
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x24a00000
+		Metadata Capture
+		I/O MC
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : unicam
+	Model            : unicam
+	Serial           :
+	Bus info         : platform:fe801000.csi
+	Media version    : 6.9.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.9.0
+Interface Info:
+	ID               : 0x03000013
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000011 (17)
+	Name             : unicam-embedded
+	Function         : V4L2 I/O
+	Pad 0x01000012   : 0: Sink
+	  Link 0x02000015: from remote pad 0x1000004 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls (Input 0):
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls (Input 0):
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Total for unicam device /dev/video1: 48, Succeeded: 48, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for unicam device /dev/v4l-subdev0:
+
+Driver Info:
+	Driver version   : 6.9.0
+	Capabilities     : 0x00000002
+		Streams Support
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which Media Driver Info:
+	Driver name      : unicam
+	Model            : unicam
+	Serial           :
+	Bus info         : platform:fe801000.csi
+	Media version    : 6.9.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.9.0
+Interface Info:
+	ID               : 0x03000017
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000001 (1)
+	Name             : unicam
+	Function         : Video Interface Bridge
+	Pad 0x01000002   : 0: Sink
+	  Link 0x02000009: from remote pad 0x1000006 of entity 'imx219 5-0010' (Camera Sensor): Data, Enabled, Immutable
+	Pad 0x01000003   : 1: Source
+	  Link 0x0200000f: to remote pad 0x100000c of entity 'unicam-image' (V4L2 I/O): Data, Enabled, Immutable
+	Pad 0x01000004   : 2: Source
+	  Link 0x02000015: to remote pad 0x1000012 of entity 'unicam-embedded' (V4L2 I/O): Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev0 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device routing ioctls:
+	test Try VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+	test Active VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+
+Sub-Device ioctls (Sink Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 2):
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for unicam device /dev/v4l-subdev0: 62, Succeeded: 62, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for unicam device /dev/v4l-subdev1:
+
+Driver Info:
+	Driver version   : 6.9.0
+	Capabilities     : 0x00000002
+		Streams Support
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which Media Driver Info:
+	Driver name      : unicam
+	Model            : unicam
+	Serial           :
+	Bus info         : platform:fe801000.csi
+	Media version    : 6.9.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.9.0
+Interface Info:
+	ID               : 0x03000019
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000005 (5)
+	Name             : imx219 5-0010
+	Function         : Camera Sensor
+	Pad 0x01000006   : 0: Source
+	  Link 0x02000009: to remote pad 0x1000002 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
+	Pad 0x01000007   : 1: Sink, 00000008
+	Pad 0x01000008   : 2: Sink, 00000008
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev1 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device routing ioctls:
+	test Try VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+	test Active VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+
+Sub-Device ioctls (Source Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+		warn: v4l2-test-subdevs.cpp(566): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Try Stream 1
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+		warn: v4l2-test-subdevs.cpp(566): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+	Active Stream 1
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 1):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+		warn: v4l2-test-subdevs.cpp(566): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+		warn: v4l2-test-subdevs.cpp(566): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 2):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 20 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for unicam device /dev/v4l-subdev1: 76, Succeeded: 76, Failed: 0, Warnings: 4
+
+Grand Total for unicam device /dev/media0: 242, Succeeded: 242, Failed: 0, Warnings: 4
+
+
+Dave Stevenson (2):
+  dt-bindings: media: Add bindings for bcm2835-unicam
+  media: bcm2835-unicam: Add support for CCP2/CSI2 camera interface
+
+Jean-Michel Hautbois (3):
+  media: v4l: Add V4L2-PIX-FMT-Y12P format
+  media: v4l: Add V4L2-PIX-FMT-Y14P format
+  ARM: dts: bcm2835: Add Unicam CSI nodes
+
+ .../bindings/media/brcm,bcm2835-unicam.yaml   |  127 +
+ .../media/v4l/pixfmt-yuv-luma.rst             |   48 +
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi       |    8 +
+ arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi   |   14 +
+ arch/arm/boot/dts/broadcom/bcm283x.dtsi       |   24 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/broadcom/Kconfig       |   23 +
+ drivers/media/platform/broadcom/Makefile      |    3 +
+ .../platform/broadcom/bcm2835-unicam-regs.h   |  246 ++
+ .../media/platform/broadcom/bcm2835-unicam.c  | 2741 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
+ include/uapi/linux/videodev2.h                |    2 +
+ 14 files changed, 3247 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+ create mode 100644 drivers/media/platform/broadcom/Kconfig
+ create mode 100644 drivers/media/platform/broadcom/Makefile
+ create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+ create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+
+
+base-commit: 47120f3da814440058a9823bf9ac3a660b2ce9c0
 -- 
-2.44.0
+Regards,
 
+Laurent Pinchart
 
 
