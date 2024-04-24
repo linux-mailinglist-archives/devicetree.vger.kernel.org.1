@@ -1,233 +1,281 @@
-Return-Path: <devicetree+bounces-62407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF9D28B1058
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 18:56:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F409E8B1066
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 18:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FA511F25037
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:56:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48341B2A2B0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:57:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847C016C86E;
-	Wed, 24 Apr 2024 16:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F15165FDE;
+	Wed, 24 Apr 2024 16:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HNC8fc1d"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BsDiZC56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C30613DBB2;
-	Wed, 24 Apr 2024 16:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E9F16C423
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 16:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713977752; cv=none; b=f+aLTBrAoUp9KNRaP5QwMQ+1b4DWTLY6/5ajevDXpVSD5aA+3CvTb2krWVikXHRb8dWTqT6dvSlq9KBgrxQ5rlH6qfFNkRKbkbaze7GQZCwEiV3OM9C1Plf7LY4gsIw6TBOYI9HkoT2Q9yqFyHld0517kGvkBkuLQxvp2R28Lg0=
+	t=1713977854; cv=none; b=fTA0hv19HYvRGspG+esWc9/A7cmkCPTv358K41E1Pg0/4aqc0o5okS8fI6/VxiJU9E+utbn9oyY8knhzXhZZ+3EotsKZMg31H0L9dkxjuUVNudC2iH0FoH6cnU8oD4JnCMtvJfV9nKzB1Ye9IazivX3FApJEuatfd5n3wWxE0ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713977752; c=relaxed/simple;
-	bh=XcBcA9wSG/hJqeu2uO50hcTfxZb6NSTZgAUm+I1++nY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GSB5yyRTWoVjCdepqiipGLsHJ+E4YoRpmgFRKPU8S3WTrZ7CcbTC1v2TZVBy3Pww+o8p+QYa/i+rYS5cGIKRTs2E0PiDh5eb8Pa1vNCBKn2nvV3J1i1v8lWntSSVLy/at/+iAmdg/6pGIz4axplZnxfK4GeVAq1C3mO5lCi+wq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HNC8fc1d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A43C113CD;
-	Wed, 24 Apr 2024 16:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713977752;
-	bh=XcBcA9wSG/hJqeu2uO50hcTfxZb6NSTZgAUm+I1++nY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HNC8fc1dGCQBoAHHhdVOJtKeyApmqtVbNNuW6qLJgKphsscgz7l97oYolAN18RgzN
-	 X8WYFrZzikxmCz7NL0qeaGalJAZ5jQNK8gUgKsn5H1Z3PYEFOalGOnXFrSVIYbSrGX
-	 kbcf9513A+QXDgxB55zm0Sq15uyVVq7IMsVG3DbJTXPR+ORsYmWbLDmOyq86wT8c6K
-	 LKHbgYPtYyiGdLIl2qI2lkROy6qlDVj3h/IjId47UQ/iSub4blTTfIaJ5LRalDeVZU
-	 n5OK0F1Is3nUpC5UmnKHg/vK9oI2wd+ge3ok/OQyqpswlDGW5fs/lNby+JtnNu4c+C
-	 2nLvliZyH8T1A==
-Date: Wed, 24 Apr 2024 17:55:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
-	dianders@chromium.org, linus.walleij@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, airlied@gmail.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	xuxinxiong@huaqin.corp-partner.google.com
-Subject: Re: [PATCH v3 1/7] dt-bindings: display: panel: Add himax hx83102
- panel bindings
-Message-ID: <20240424-spelling-float-9b881cb80992@spud>
-References: <20240424023010.2099949-1-yangcong5@huaqin.corp-partner.google.com>
- <20240424023010.2099949-2-yangcong5@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1713977854; c=relaxed/simple;
+	bh=N1f+FIzgfcDqTEwWe14An7YwwT6pFdxxmeQU9xor3zk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sqKKXKnjVotEvKUzISs4oB2/zUPjwL0F8yYFcvYIl778rkOGs3F8A1AXYNMxNiWcPXbbFC7Y1L6Q08BIYTiHbMKxROVVQ5QW6AoBh84ecpcP+qFxET/WvHwD0LJ579YaM6J8bk0E8D7izA/qk8b5f0SC09ln0qhN+fbcAbDcClA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BsDiZC56; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-78ecd752a7cso634885a.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 09:57:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1713977852; x=1714582652; darn=vger.kernel.org;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GMncZ2v1CSQFG2OPOH0aaJioZCQ0cC3hwE7u2MMt9mo=;
+        b=BsDiZC56VYsHh2HT1frO2p8SmN8565fr6yXaVp4IP4IHj5Sny6AKgWk+KLX52qf5so
+         hPkD111nOfBgKExaxcypCtUuZdkGH64ev0qcZ2lQ+ZqQ/ga8GEbcJTjbEx75rxfGOLut
+         hO+TNNcpUdrK70WHoFkGzUZ0j3f9oH1kesIuo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713977852; x=1714582652;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GMncZ2v1CSQFG2OPOH0aaJioZCQ0cC3hwE7u2MMt9mo=;
+        b=QGyG2bQoMIB5HhHVL0P5VMg1/Q2YKCzXs8TfNrNqDrR/acTHSNoqRNrxPEvGtB32Du
+         SYgdQ/UdZHf7+4oU0dW0u7swALw3j3+7/zHY3j/MWoRvd83bbyYGbjm7x8GHcSXoC5S2
+         8layqBRx19Qw80J5GGTNMEM4xilI/+zbn9FCrorR/JcQz92IYAfUp0ZXQeN45evZgVAs
+         93qE6V4ovUUb99Xugfc42QMQhn30DbJj6nBP8Imxks9jPniIUhSuJMYsKw7ud39cCObe
+         vTJpzxM0qi5OKJgMmQ1eg2byIv0b7rW0v1aF5GyI6RrL0gy7iEAuAbwKw935nVocpDNn
+         KmDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUooCZakZI61hZo0JlWXtIvEIcU4jtA0w5iehq2jmCzSOq/cBAZdoGG3s10v7DwskRvTRDdK/YqRLscQam4Is/uj001j/HD60Qpow==
+X-Gm-Message-State: AOJu0Ywnpk6/TmGEbF8UDu7/UwX9CQYhlUZiy3dMU8AOj/4WeDlNJfQu
+	HASuVyMrAk8c3p/XvjFnzkN/bxnWvI8Rsb12dw4Fyp0KE5BdbixDcOw9uTNGBA==
+X-Google-Smtp-Source: AGHT+IFdvCs2QMQE3T1sLhjllf5wPDjMgLT+qcnw0SwcMBguJvcF3iqtU97yaenUfoXvqI9D6w5azw==
+X-Received: by 2002:a05:620a:2a0b:b0:790:96d4:7bba with SMTP id o11-20020a05620a2a0b00b0079096d47bbamr482594qkp.14.1713977851947;
+        Wed, 24 Apr 2024 09:57:31 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id c12-20020a05620a134c00b0078f0ee3fcfbsm6157608qkl.46.2024.04.24.09.57.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 09:57:31 -0700 (PDT)
+Message-ID: <e309c28e-8e1c-4863-893b-dc0ee68f6d3f@broadcom.com>
+Date: Wed, 24 Apr 2024 09:57:29 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Pj/RbvYXrqipqoo5"
-Content-Disposition: inline
-In-Reply-To: <20240424023010.2099949-2-yangcong5@huaqin.corp-partner.google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Describe PCIe controllers fully
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+References: <20240423110238.32148-1-zajec5@gmail.com>
+ <20240423110238.32148-2-zajec5@gmail.com>
+ <c619a7a6-c635-4fba-b9ad-d0c5664b541b@broadcom.com>
+ <77471436-9969-4125-ba6b-0d7aeedb2949@gmail.com>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <77471436-9969-4125-ba6b-0d7aeedb2949@gmail.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="00000000000009d1e10616da9194"
+
+--00000000000009d1e10616da9194
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 4/23/24 23:43, Rafał Miłecki wrote:
+> On 23.04.2024 21:03, Florian Fainelli wrote:
+>> On 4/23/24 04:02, Rafał Miłecki wrote:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> This fixes:
+>>> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18012000: 
+>>> 'device_type' is a required property
+>>>          from schema $id: 
+>>> http://devicetree.org/schemas/pci/pci-bus.yaml#
+>>> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18012000: 
+>>> 'ranges' is a required property
+>>>          from schema $id: 
+>>> http://devicetree.org/schemas/pci/pci-bus.yaml#
+>>> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18013000: 
+>>> 'device_type' is a required property
+>>>          from schema $id: 
+>>> http://devicetree.org/schemas/pci/pci-bus.yaml#
+>>> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18013000: 
+>>> 'ranges' is a required property
+>>>          from schema $id: 
+>>> http://devicetree.org/schemas/pci/pci-bus.yaml#
+>>> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18014000: 
+>>> 'device_type' is a required property
+>>>          from schema $id: 
+>>> http://devicetree.org/schemas/pci/pci-bus.yaml#
+>>> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@18014000: 
+>>> 'ranges' is a required property
+>>>          from schema $id: 
+>>> http://devicetree.org/schemas/pci/pci-bus.yaml#
+>>>
+>>> Cc: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> OK, so this is the rationale for patch #1, because you are adding a 
+>> 'ranges' property to each PCIe root complex node, and you need the 
+>> values in the 'ranges' property to be expressed relative to the global 
+>> address space, and not the axi@18000000 address space, you needed to 
+>> flatten the axi@18000000 range.
+>>
+>> Why not just bring those 3 nodes out of the axi@18000000 node into the 
+>> global address space then? That would greatly limit the amount of 
+>> changes in patch #1, some of which are just unfortunate noise.
+>>
+>>  From the chip diagram, each PCIe controller has its own separate AXI 
+>> interface to the NIC 301 AXI fabric, so having 3 independent nodes 
+>> which are not tied to the axi@18000000 would not be wrong IMHO.
+> 
+> I got impression that memory mapped blocks should preferably go into a
+> "soc" node. It's what I seen in some other platforms and what is also
+> present (thought not directly documented) in the dts-coding-style.rst .
+> 
+> We don't have "soc" node but "axi@18000000" seems like our substitute.
+> 
+> So I thought we should keep PCIe controllers nodes in axi@ (soc@).
+
+PCIe Host Bridges are sort of special because they are bridges but also 
+have a configuration interface via the MMIO register space. Tying them 
+to a particular bus node in the .dts(i) that accurately describes how 
+they are interfaced to the host CPU might be a tad difficult sometimes.
+
+My preference as a maintainer would be to minimize the amount of node(s) 
+being changed and just isolate the 3 PCIe host bridges directly under 
+the root node.
+
+Krysztof, any objection to that?
+-- 
+Florian
 
 
---Pj/RbvYXrqipqoo5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--00000000000009d1e10616da9194
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-On Wed, Apr 24, 2024 at 10:30:04AM +0800, Cong Yang wrote:
-> In V1, discussed with Doug and Linus [1], we need break out as separate
-> driver for the himax83102-j02 controller. Beacuse "starry,himax83102-j02"
-> and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
-> controller, they have some common CMDS. So add new documentation for
-> this panels.
-
-It'd be good to note in the commit message that the 3v3 supply is not
-present on these panels, given it was present in the other binding and
-not here.
-
-> [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=3DzBQJUC4CB2wj4s1h6n6aSAZ=
-QvdMV95r3zRUw@mail.gmail.com
->=20
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
-> Chage since V3:
->=20
-> - Update commit message.
->=20
-> V2: https://lore.kernel.org/all/20240422090310.3311429-2-yangcong5@huaqin=
-=2Ecorp-partner.google.com
->=20
-> ---
->  .../display/panel/boe,tv101wum-nl6.yaml       |  2 -
->  .../bindings/display/panel/himax,hx83102.yaml | 73 +++++++++++++++++++
->  2 files changed, 73 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/himax=
-,hx83102.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum=
--nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl=
-6.yaml
-> index 906ef62709b8..53fb35f5c9de 100644
-> --- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.ya=
-ml
-> @@ -32,8 +32,6 @@ properties:
->        - innolux,hj110iz-01a
->          # STARRY 2081101QFH032011-53G 10.1" WUXGA TFT LCD panel
->        - starry,2081101qfh032011-53g
-> -        # STARRY himax83102-j02 10.51" WUXGA TFT LCD panel
-> -      - starry,himax83102-j02
->          # STARRY ili9882t 10.51" WUXGA TFT LCD panel
->        - starry,ili9882t
-> =20
-> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8310=
-2.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
-> new file mode 100644
-> index 000000000000..2e0cd6998ba8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
-
-Filename matching a compatible please. What you've done here makes it
-seem like there's a fallback compatible missing, given this looks like
-the LCD panel controller and the starry compatible below is an LCD panel.
-
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/himax,hx83102.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax HX83102 MIPI-DSI LCD panel controller
-> +
-> +maintainers:
-> +  - Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +        # STARRY himax83102-j02 10.51" WUXGA TFT LCD panel
-> +      - starry,himax83102-j02
-> +
-> +  reg:
-> +    description: the virtual channel number of a DSI peripheral
-> +
-> +  enable-gpios:
-> +    description: a GPIO spec for the enable pin
-> +
-> +  pp1800-supply:
-> +    description: core voltage supply
-> +
-> +  avdd-supply:
-> +    description: phandle of the regulator that provides positive voltage
-> +
-> +  avee-supply:
-> +    description: phandle of the regulator that provides negative voltage
-> +
-> +  backlight:
-> +    description: phandle of the backlight device attached to the panel
-
-I'm not sure why this was given a description when port or rotation
-was not.
-
-Otherwise, this looks fine to me.
-
-Cheers,
-Conor.
-
-> +
-> +  port: true
-> +  rotation: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +  - pp1800-supply
-> +  - avdd-supply
-> +  - avee-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dsi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        panel@0 {
-> +            compatible =3D "starry,himax83102-j02";
-> +            reg =3D <0>;
-> +            enable-gpios =3D <&pio 45 0>;
-> +            avdd-supply =3D <&ppvarn_lcd>;
-> +            avee-supply =3D <&ppvarp_lcd>;
-> +            pp1800-supply =3D <&pp1800_lcd>;
-> +            backlight =3D <&backlight_lcd0>;
-> +            port {
-> +                panel_in: endpoint {
-> +                    remote-endpoint =3D <&dsi_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> --=20
-> 2.25.1
->=20
-
---Pj/RbvYXrqipqoo5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZik5kgAKCRB4tDGHoIJi
-0vQEAQCABxeP8C4PVO0oy7rmAnyax20mxLqgK/83cR+wn6PwTQD+MyzcuAspe9+N
-QVbJuxD7LhSAFPIPTocJGhAi2aFUpAY=
-=uy9b
------END PGP SIGNATURE-----
-
---Pj/RbvYXrqipqoo5--
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEINwDrWl4CB/C3BbT
+ycyZVPQ8V2NcoiZ2SAxS1ALKdNclMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDQyNDE2NTczMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCLlUkoS1PKliqSJg5AQHvL17p8enaExxyn
+SRw/p1Vyz1xxhegVR9O1Enps1gZtiTom9S32Dd32rpyZMYSJVttjUTe5qVKsfo7cujz3OVuI4wyT
+Z7U5gEffrFO4RYpv7of8asf7e3W83V2RIgZAApM58Nmce86Fw16DoA0obDlgXm24Rw8uF3oIfYBG
+TO0bo1NBfBCOS6hm1Wg6oTDnvHuvXxUGDziiTZKa0BywFJP87Og1Le8mwdCfSIKvrBkSWU7nObSa
+ooFX3nEkxSKWsonx6imi8laRifMLmIWmUZDU0Wps9ENayCO+pyJrhux6WjFDWSYpCnPehMNsaF5O
+Lhm2
+--00000000000009d1e10616da9194--
 
