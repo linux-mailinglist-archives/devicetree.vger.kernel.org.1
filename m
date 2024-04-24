@@ -1,142 +1,141 @@
-Return-Path: <devicetree+bounces-62225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F718B0620
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:36:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B198A8B063A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:40:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DFF2284338
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:36:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E75ACB25737
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEE9158D9B;
-	Wed, 24 Apr 2024 09:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BF6158DAE;
+	Wed, 24 Apr 2024 09:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pbWQxf3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B938282EE
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 09:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D118A158DA8;
+	Wed, 24 Apr 2024 09:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713951385; cv=none; b=t8xOmxKamhW/Z0sspf75OL05LrBzQCps3q23vQGzytkvGwOmi83uCKgZPOWnahSW0lquNy3uZ4S+WOsIRy+gD5tG0AVGcB1VF4Ayc5BBA07UTv13vH/WeQrPpZ0LPBO5ulmatS2G3n2HSoEwyrDE37Rr4JH6jMjF65ojR9zw5HU=
+	t=1713951638; cv=none; b=HNDJmORJxP5XQbGldExLXazruI4VJcuUzQjjwaaSTYY0l+FquiXyLY2dlrCl+p8Z3+oWBzZWsy62mL4BR/LJCN8AXnuSi5he3FIgesmKIuMjVsOhFspYR7/05hP7TK0UbY95I85Fz3WHEs0pokt4UsSLqPX1eSzo1v6bZ0Pa4vU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713951385; c=relaxed/simple;
-	bh=XYUSje7s+vIF31JkBL5OE6mbhV5TbJ4IkrpChsZMHWQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uDLbn9/3mvAmfu0zUyq9YY9oGlRQcYyw+PSoRJ49J934sq1W/XTy1ZJYUJsA2dJRm5bbTKMvLg2dmBSWDmOUY39FV2a4rxryen6uPsS53MP17flepS1qELw/nkzqnJ6kvXQ5Vf6JDhrNRQO/78/QUe1w1WVY9RsfDCIlsBMviJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzZ2o-0004t5-F1; Wed, 24 Apr 2024 11:36:02 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzZ2m-00E3Pa-Ji; Wed, 24 Apr 2024 11:36:00 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 27E402BECD3;
-	Wed, 24 Apr 2024 09:36:00 +0000 (UTC)
-Date: Wed, 24 Apr 2024 11:35:59 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux@ew.tq-group.com, alexander.stein@ew.tq-group.com
-Subject: Re: [PATCH 3/4] can: mcp251xfd: add gpio functionality
-Message-ID: <20240424-notorious-roadrunner-of-will-0c55ce-mkl@pengutronix.de>
-References: <20240417-mcp251xfd-gpio-feature-v1-0-bc0c61fd0c80@ew.tq-group.com>
- <20240417-mcp251xfd-gpio-feature-v1-3-bc0c61fd0c80@ew.tq-group.com>
+	s=arc-20240116; t=1713951638; c=relaxed/simple;
+	bh=mNayW+VecV2dc9vrrmAV27oQDPaUWep+d6YIBhCY27A=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bCP1EvPNqFIxDbfzPOS1BrXcqdLLdD6kWdNTPMSr6NyJ7wQ7hjtus8klbTUyxMvE0aghUAZncmrtSicBFnPUUWvvOz2o5C+YoRsOdD/BGamV1+xriWc36jOIGQUGt9JXd9Dc+h18k3bgSA8PoLDdrWcKC60E6t2O03NG3lwSVwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pbWQxf3y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43O7aedI025191;
+	Wed, 24 Apr 2024 09:40:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:reply-to:references
+	:mime-version:content-type:in-reply-to; s=qcppdkim1; bh=W2zEB8HQ
+	4tTQ0a1nADzmO6g2Mci2r9l3DcHJICevofY=; b=pbWQxf3yYXquwvvyxi2w+bTw
+	PtZW5sWRsQd2RFfedYbVIo/yM3AuLFx4D98oB5+xPLboCBWALmfz0qtNPiMKhXZU
+	lsYp+5xo830zYl17oEMadZeJeSEdZeTfib5GSiqOwp+8ZkaM50CqCgWWf+Z0VGxS
+	0GtPL2MQjkfZX0JBkAdulMKumQYod2VFqWzLWNLWxmwIS3kXxTgVUIOqng4kWxDK
+	ODUSuyyP9IhziqGKGbCnvW0TTJf/SGTB+Tp2mBwyLyjCC3g6dwXcb2XYkYqDj3SW
+	k3zEHcbAVk+D9i9DvxeuA8m7vV2Ra9eLmyZkHY9i5TGKojMDW5q5Sfg353WpNg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xpv9e0f3q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Apr 2024 09:40:10 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43O9e97n008033
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Apr 2024 09:40:09 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 24 Apr
+ 2024 02:40:01 -0700
+Date: Wed, 24 Apr 2024 15:09:57 +0530
+From: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To: Elliot Berman <quic_eberman@quicinc.com>
+CC: Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Murali Nalajal <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik
+	<quic_cvanscha@quicinc.com>,
+        Philip Derrin <quic_pderrin@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet
+	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Fuad
+ Tabba" <tabba@google.com>,
+        Sean Christopherson <seanjc@google.com>,
+        "Andrew
+ Morton" <akpm@linux-foundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
+Subject: Re: [PATCH v17 15/35] virt: gunyah: Add proxy-scheduled vCPUs
+Message-ID: <20240424093957.GY440762@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-15-1e9da6763d38@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7mrp4odhvvzy4nqr"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20240417-mcp251xfd-gpio-feature-v1-3-bc0c61fd0c80@ew.tq-group.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240222-gunyah-v17-15-1e9da6763d38@quicinc.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XLbgIb0Y_-CpZ9y5rvGSoXb-QMYlvkEG
+X-Proofpoint-ORIG-GUID: XLbgIb0Y_-CpZ9y5rvGSoXb-QMYlvkEG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-24_07,2024-04-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 clxscore=1011
+ spamscore=0 priorityscore=1501 mlxlogscore=825 lowpriorityscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404240041
 
+* Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:38]:
 
---7mrp4odhvvzy4nqr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> +/**
+> + * struct gunyah_vm_exit_info - Reason for VM exit as reported by Gunyah
+> + * See Gunyah documentation for values.
+> + * @type: Describes how VM exited
+> + * @padding: padding bytes
+> + * @reason_size: Number of bytes valid for `reason`
+> + * @reason: See Gunyah documentation for interpretation. Note: these values are
+> + *          not interpreted by Linux and need to be converted from little-endian
+> + *          as applicable.
+> + */
+> +struct gunyah_vm_exit_info {
+> +	__u16 type;
 
-On 17.04.2024 15:43:56, Gregor Herburger wrote:
-> The mcp251xfd devices allow two pins to be configured as gpio. Add this
-> functionality to driver.
->=20
-> Signed-off-by: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-> ---
->  drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c   | 138 +++++++++++++++++=
-+++++-
->  drivers/net/can/spi/mcp251xfd/mcp251xfd-regmap.c |  21 +++-
->  drivers/net/can/spi/mcp251xfd/mcp251xfd.h        |   4 +
->  3 files changed, 159 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/net=
-/can/spi/mcp251xfd/mcp251xfd-core.c
-> index eb699288c076..5ba9fd0af4b6 100644
-> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+Pls add an enum to describe the various exit types.
 
-[...]
+> +	__u16 padding;
+> +	__u32 reason_size;
+> +	__u8 reason[GUNYAH_VM_MAX_EXIT_REASON_SIZE];
+> +};
 
-> +static int mcp251fdx_gpio_setup(struct mcp251xfd_priv *priv)
-> +{
-> +	struct gpio_chip *gc =3D &priv->gc;
-> +
-> +	if (!device_property_present(&priv->spi->dev, "gpio-controller"))
-> +		return 0;
-> +
-> +	if (priv->rx_int)
-> +		return dev_err_probe(&priv->spi->dev, -EINVAL,
-> +				     "Can't configure gpio-controller with RX-INT!\n");
-
-Can you enhance the DT binding to reflect this?
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---7mrp4odhvvzy4nqr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmYo0nwACgkQKDiiPnot
-vG8jwwf8C78MKwbC/RCbrV/cNcA+Z+3H66miJLcSjDg7A0mLZEjmJGCd6sDt9swW
-9ZusbKULy3vRQh8aOIf7zLkU3CuJbigbqfJO8e33B9nhN5SOJ0huOFssog5M24LI
-8k+L6Q6/bAkcC0SPuvCP1F/2+o3gYyjciEzfENA1yTBtvHvXHiJfc8JVTUkxrjan
-pfeZmgA2+hPXQUEuoxO3FMIzeiTe8l80Dxmrn6CdJSIfJsfm+rPnSaKY+bNdU4o+
-GP2VPfEds8yew+72uP7XgXmeZNVlnbAngGp82f8NxmCtvjBlTHkrjFE6/6+ZiuYw
-T5U6eqYVSFiHHWztQV81KACO+XZOsA==
-=Gi+/
------END PGP SIGNATURE-----
-
---7mrp4odhvvzy4nqr--
+- vatsa
 
