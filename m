@@ -1,59 +1,64 @@
-Return-Path: <devicetree+bounces-62506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2DD68B15D0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:08:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 551C78B15D7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:09:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92A032831CB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:08:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 814CB1C21CCC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C303C15D5CC;
-	Wed, 24 Apr 2024 22:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82E315CD7C;
+	Wed, 24 Apr 2024 22:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTrXFdtp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApFuSyjN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93AFC745CB;
-	Wed, 24 Apr 2024 22:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80744745CB;
+	Wed, 24 Apr 2024 22:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713996499; cv=none; b=gS8a0KzLHnBgsHVBTqeu1QKskWaIyXulCgXuKijqQmHRoNEw1js7GxqqDr7xnT2ks8YLN2AZoNvhzy+RXFVzJDlMCpsdsuupYe+oFSYfFKV9BkKtrnFBnLGJbViVpfC+caYGWvl/fXq0PL8dAkZCbYLjsEm5QsHnxCXmG/4hG2o=
+	t=1713996581; cv=none; b=leZg3Tshnp4HZ1OgFb5glIFRGxX2AtDvLhcKyna4iVtDkhhsyEOqGW1gYDWHTGDdVu15GYsmyNcn0MEQTxJylpEmeCWfJc63iN5v9C/9y3EU9ZrFyQPz9KHIEGGQsDNj08TnH9CfOcb3cS/FK9V4wtApQRMjFm/Ue6fDaZS2ehU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713996499; c=relaxed/simple;
-	bh=XCPu6L2ArYdQ0BX15tTorcNCtrjXqi1BMPW5jn42dKU=;
+	s=arc-20240116; t=1713996581; c=relaxed/simple;
+	bh=ExYTNrxfugrhIWVYfNvtgskoCvyzSUXyHaRHNzgT6cM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rEREijpuZuekZZuxvugBmyOAcsVRCAyb8zYor5QnpyvdJSkEOGMqHLE69uS7fQax1b6UuirzJ1yCx3NX0x9DkLxtOuI3A1tUvJB56uR83Obmrc4yH7sq9J1H30U6OxOeU1BrEOmfbdGN0qjZ7jFbGMh1NuQAkG45wb+DZebYZoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTrXFdtp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7DC8C113CD;
-	Wed, 24 Apr 2024 22:08:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RXqrou8VPk/qIema3zI3/Byydz2tMPVYGuLDVKUAGBvxJzycY0waAWsRQeOLW+olZKNPjewuBjrPw+ptSa+Dy08Q3bF+AFyYH9u5unF5SnorfWCdpr1Oc6H08TOU8aRykqZT3JMkLhz2uG15gqY4O+aVZiBkSSEYi45rb1S1+bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApFuSyjN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 238BBC113CD;
+	Wed, 24 Apr 2024 22:09:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713996499;
-	bh=XCPu6L2ArYdQ0BX15tTorcNCtrjXqi1BMPW5jn42dKU=;
+	s=k20201202; t=1713996581;
+	bh=ExYTNrxfugrhIWVYfNvtgskoCvyzSUXyHaRHNzgT6cM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aTrXFdtpYcLtwz+Zb4QVNlscGac2KAfJm2LTWLpeV2XTqNwiHr1/PKYPh4O2Q51Pk
-	 z6mk3ml2UHM/RyWE31eHOHRJHn11f6T7rOGyjAtqiK9oiBYqRpxotdSV8SQ9qMhZ1d
-	 NI7TX2m+EdAPDH3HusEovEDrXNQK7JHHNmCvDHmeH1fLtbMi4jHtdBZaPlEvGykoRC
-	 JWrtMA3tC/YtoIbAEDey+5tUwg1JOCkX57eH5KGpHBuCxhSy0VmGJVHEZ6KjG1wr1q
-	 anKaWQl5LhYLy65v7OCaH39s0Z21cQDWETYT4pGUyKWcs6fM3QPmqmddsC4qn6Go6n
-	 cOhtfitMh45Ww==
-Date: Wed, 24 Apr 2024 17:08:16 -0500
+	b=ApFuSyjNVPdocS/7StT99K5TtfZqnnwZQegHWaTaixUwynKV5imy4C98u+3EFQPfU
+	 WtHQVF551P8TlCqbX+xqG/EMnr+0yHvatoFkT635hS2mj56TyfPt4xhLcJRdGJZuiI
+	 c+dYKK4XDdsmUtMcUiKKKKaC0OtrZFzAnJCMwucDRWXl3zQoATpNpGIViIKIOqxPEb
+	 JY3/tNENaCojjthoYJL2w+DD9gpm7Rt50lTxuseZ3C41nTU0eBnxSqKO+atnry9aUD
+	 /5Nj8q3y+Xbu6+LT8Zej/5l+ai+loBG47wsY8s77knRaCCpUAUIH4r8J9eFfFiMr5s
+	 TDuqu7oRUGlog==
+Date: Wed, 24 Apr 2024 17:09:39 -0500
 From: Rob Herring <robh@kernel.org>
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, rafael@kernel.org,
-	linux-kernel@vger.kernel.org, viresh.kumar@linaro.org,
-	konrad.dybcio@linaro.org, linux-pm@vger.kernel.org,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SM4450
- compatibles
-Message-ID: <171399647317.796485.8186698309001803718.robh@kernel.org>
-References: <20240424101503.635364-1-quic_tengfan@quicinc.com>
- <20240424101503.635364-2-quic_tengfan@quicinc.com>
+To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
+Cc: "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Sebastian Reichel <sre@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/7] dt-bindings: Add Blaize vendor prefix
+Message-ID: <20240424220939.GA796655-robh@kernel.org>
+References: <20240424133124.19101-1-nikolaos.pasaloukos@blaize.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +67,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240424101503.635364-2-quic_tengfan@quicinc.com>
+In-Reply-To: <20240424133124.19101-1-nikolaos.pasaloukos@blaize.com>
 
+On Wed, Apr 24, 2024 at 01:31:28PM +0000, Niko Pasaloukos wrote:
+> Blaize, Inc. (www.blaize.com) is a SoC manufacturer with integrated
+> programmable Graph-Streaming-Processors for AI and ML.
 
-On Wed, 24 Apr 2024 18:15:01 +0800, Tengfei Fan wrote:
-> Add compatible for EPSS CPUFREQ-HW on SM4450.
+Something is wrong with the threading of your series as lore only gives 
+me this patch. It looks fine, but I need to see the user. Maybe that's 
+next up in my queue...
+
 > 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
 > ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
 >  1 file changed, 2 insertions(+)
 > 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index b97d298b3eb6..746ff14028d1 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -214,6 +214,8 @@ patternProperties:
+>      description: Shenzhen BigTree Tech Co., LTD
+>    "^bitmain,.*":
+>      description: Bitmain Technologies
+> +  "^blaize,.*":
+> +    description: Blaize, Inc.
+>    "^blutek,.*":
+>      description: BluTek Power
+>    "^boe,.*":
+> -- 
+> 2.34.1
+> 
 
