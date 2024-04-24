@@ -1,241 +1,201 @@
-Return-Path: <devicetree+bounces-62337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC36D8B0D50
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:55:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E818B0D5E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:58:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE48CB2754B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:55:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65BD71C233F4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D18AB16078B;
-	Wed, 24 Apr 2024 14:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD9715F413;
+	Wed, 24 Apr 2024 14:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rrpzs9vH"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="DA021eMb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A308915FCED;
-	Wed, 24 Apr 2024 14:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58E815F3E9
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 14:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713970465; cv=none; b=r5ps0lTfVMiF1HPieJ/htcxy5sfPq9Su4W6tRVsgk7LVZpqfyhH0MGMq64xjdUZa9SXKQV0X/inq/Dac5F8AZS+bUnEWi7pTTIsdSxhNTFsHqOQpd0bJ11dWDqFvxuTC1pHE+Nt9qa63TXCV/uU5v8VMqSxkiNMKWajO1wx/NWE=
+	t=1713970670; cv=none; b=jLL/mF+Avr0pbubhOM6+ik1k9+sfjzHCifg64EFxAtTWE8Wh7w1zuf5NIpOws6A8AIfc7SlMmmxGxu4eYHZNZiFY4J0RHoc63cU/hIL5DUX5yKK/8c9nsweMqpxZna5A66LqblxiU9w1tmQOvgUYLv0y74Zuo+25Fz/1rKtWnnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713970465; c=relaxed/simple;
-	bh=7A00nw+fZh+BCPaM9SVqEEy0Z0BVu4u19Cb3geQl+o0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dg5DeX6K7qg++bzo21dpJb9mZG/YAvtDvtey6Khbw2b+hFA/e/ON/Y/Hn/75paZ0aWOf37H84c3EHhroZ4vOgXd2FlEs9C2w/9Wv6SBdiACb66QF115ZOXwkOwEZ7R09xk0xT6Pe3dWjnr41hsAPWyhcdcvQ5wepWn/oEu81zyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=rrpzs9vH; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 68B8E66B;
-	Wed, 24 Apr 2024 16:53:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1713970409;
-	bh=7A00nw+fZh+BCPaM9SVqEEy0Z0BVu4u19Cb3geQl+o0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rrpzs9vHJZ2VZMhFMNT1EtKNQKjBw0Ay/qh2jIz7PkTNCVHaH70Kj6R2cgNWaqowh
-	 pT6wQD+iXBrDcM9kyo1NoCqf7uUblTq9yNa7kV7pm3bCXDsHDs6sU5LQkVa68zNESK
-	 1NtlbFnQqY45u5ZUZKAYpjvv478CBPCUqCikJ4kg=
-Message-ID: <b179953c-5a08-4149-80c4-8610f7c9778a@ideasonboard.com>
-Date: Wed, 24 Apr 2024 17:54:17 +0300
+	s=arc-20240116; t=1713970670; c=relaxed/simple;
+	bh=QMslz113vv9u8rbbuaQqQeBM4KeubIHYp+3TNEFioH4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GglNOcDVi8W1Btcy4PDH40yEYqmzxMvzYeJ2Q9mvxxEDdzLT9aVauHS+bF9rgsMSh8Hk1AvhIc3gO5GtFOyauxsgoTzAHcwm3lm2pRixtOGV7Su3DVc82z8fxtjtLRrhmEOzHo/urJo+hio9sGD7muib40f9YNDuuiuK6Oel3dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=DA021eMb; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com [209.85.128.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DC19E3FE10
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 14:57:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1713970664;
+	bh=5esocC9ZFW0Dfcow+sGknBU1wI/0vCj6NFX+zWkQdjU=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=DA021eMbB/XsGVtLKMIMG1mKtATTf63AUeW8Lt7+LvgkjAHISZm3JwefjHtBM0H/i
+	 qSqXIZdulN2d2BUMAaxs8t7v4xqrKHa3Y8R/Ip/+qfN9otkde3ASQZz/WuUtz3FRkK
+	 nGsWCwKXm5bybhYdQsmbsp6SjRONllK815yO0yGLODAgp/FNunveRRRttpzMLf1Kt1
+	 ofhkg+UJAa2TYjZmLyFfGJTSw+360rGIGvmL8unD0q9lzqewXSe2JIN8Jcm8iCyugq
+	 n6bJ+5afDhLXHDjSDSjc6DQQAd7y2qfyfXbYwEBaIIj9u7DD4Sk+zWur+W0SpX7INQ
+	 +Dl6pccMipFcQ==
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-6150e36ca0dso114861097b3.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 07:57:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713970663; x=1714575463;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5esocC9ZFW0Dfcow+sGknBU1wI/0vCj6NFX+zWkQdjU=;
+        b=irPU175levjR0Z5DgKcFaW5r61DBDRpPIcYFagN+0f6ebd5acRQrRTfUsN/kMI3Qoe
+         IBN7z8685WVF83F+yh7cz7O083WFyj8NFqtAomL+93do8fWlwubl2DYJUIzkhfybG33K
+         MbrWzmRYJjhuEmBi3QH1i7A0Lvw5lXFtJo1S3nbbzEXxFJkojGmUZjXUri6OwiRcKVO+
+         1KYFKcYQVeKp7I3B8rzVG6SaVP3pmmJfQvmbWBOp8F80YLOCW+dG4hGbwZ7bBBit+5+Y
+         veiFuk6EelTGGsvRnCIwZK1tFjCxcYaYPbeFzHaY+BZ0XBx5HhDcskNsy3bj2t8rpuBh
+         70Nw==
+X-Gm-Message-State: AOJu0YykD2eLGJRCg6ulOosHPqSmAbTOFun2KuW3rNTwmRrCHPBvgnLg
+	60FTcDjqkNE4MD8f+DnMID0uPYnCLAWirNKPDow9QmHhx2GzasL1tjcD+yqm8LouYnqgdnVq3OI
+	vTuvg90T05NhSyuE5aHU1xzA3pxEuX5bGf78J6FtxZwdT3GD/f3W7XldNCTXX5ce5xTm0prD5GP
+	y2uXluY1qmmiIGrk0YRJt5WCTmU7Rg8CuXk5ugfecQihd1LaFq/g==
+X-Received: by 2002:a05:690c:3612:b0:609:ff22:1a88 with SMTP id ft18-20020a05690c361200b00609ff221a88mr3109055ywb.44.1713970663313;
+        Wed, 24 Apr 2024 07:57:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGLj6vN82/lNMO93VtWofH8pTU6lK+eyGAXCYtefLHp0CWoW2WPTI12S+Ss5a+rfru0ns+AgDrPBoEFC+mLT9w=
+X-Received: by 2002:a05:690c:3612:b0:609:ff22:1a88 with SMTP id
+ ft18-20020a05690c361200b00609ff221a88mr3109036ywb.44.1713970662973; Wed, 24
+ Apr 2024 07:57:42 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 24 Apr 2024 07:57:42 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <SH0PR01MB08410B2FCAE1D9AA754865BFF910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
+References: <20240424075856.145850-1-joshua.yeong@starfivetech.com>
+ <20240424075856.145850-2-joshua.yeong@starfivetech.com> <CAJM55Z-C7XkFo4STk3rdLG4kvPfed-AfrHB1QJ-Tzt1LDoKw9w@mail.gmail.com>
+ <SH0PR01MB0841F8C45091E4A08020ADF2F910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
+ <CAJM55Z9NAeRb_3ZBJksXt+4fJMdcYw55bfAs0EpSnM8VWBKQag@mail.gmail.com>
+ <SH0PR01MB08415B9CDDFB1A4FAB0FC4A9F910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
+ <CAJM55Z_G5EKSjHztCQ+gXDGwfpziZTE=HsHmwydJWB-uorMOqA@mail.gmail.com> <SH0PR01MB08410B2FCAE1D9AA754865BFF910A@SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Managing live video input format for ZynqMP DPSUB
-To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Michal Simek <michal.simek@amd.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20240416-dp-live-fmt-v4-0-c7f379b7168e@amd.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20240416-dp-live-fmt-v4-0-c7f379b7168e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Date: Wed, 24 Apr 2024 07:57:42 -0700
+Message-ID: <CAJM55Z-6vqSjL3GPT7GqC1k01zH8+zexSpcOFFUpuZELAQxARw@mail.gmail.com>
+Subject: RE: [PATCH v3 1/2] cache: Add StarFive StarLink cache management for
+ StarFive JH8100
+To: Joshua Yeong <joshua.yeong@starfivetech.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"conor@kernel.org" <conor@kernel.org>, "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, 
+	"palmer@dabbelt.com" <palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, 
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>, JeeHeng Sia <jeeheng.sia@starfivetech.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Joshua Yeong wrote:
+> Emil Renner Berthing wrote:
+> > Joshua Yeong wrote:
+> > >
+> > >
+> > > Emil Renner Berthing wrote:
+> > > > Joshua Yeong wrote:
+> > > > > Emil Renner Berthing wrote:
+> > > > > > Joshua Yeong wrote:
+> > > > > > > Add StarFive Starlink cache management driver for
+> > > > > > > JH8100 SoC. This driver enables RISC-V non-standard cache
+> > > > > > > operation on
+> > > > > > > JH8100 that does not support Zicbom extension instructions.
+> > > > > > >
+> > > > > > > Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
+> > > > > > > ---
+> > > > > > >  drivers/cache/Kconfig                   |   9 ++
+> > > > > > >  drivers/cache/Makefile                  |   5 +-
+> > > > > > >  drivers/cache/starfive_starlink_cache.c | 135
+> > > > > > > ++++++++++++++++++++++++
+> > > > > > >  3 files changed, 147 insertions(+), 2 deletions(-)  create
+> > > > > > > mode
+> > > > > > > 100644 drivers/cache/starfive_starlink_cache.c
+> > > > > > >
+> > > > > > > diff --git a/drivers/cache/Kconfig b/drivers/cache/Kconfig
+> > > > > > > index
+> > > > > > > 9345ce4976d7..9181cd391f53 100644
+> > > > > > > --- a/drivers/cache/Kconfig
+> > > > > > > +++ b/drivers/cache/Kconfig
+> > > > > > > @@ -14,4 +14,13 @@ config SIFIVE_CCACHE
+> > > > > > >  	help
+> > > > > > >  	  Support for the composable cache controller on SiFive
+> > platforms.
+> > > > > > >
+> > > > > > > +config STARFIVE_STARLINK_CACHE
+> > > > > > > +	bool "StarFive StarLink Cache controller"
+> > > > > > > +	depends on RISCV
+> > > > > > > +	depends on ARCH_STARFIVE
+> > > > > > > +	select RISCV_DMA_NONCOHERENT
+> > > > > > > +	select RISCV_NONSTANDARD_CACHE_OPS
+> > > > > > > +	help
+> > > > > > > +	  Support for the StarLink cache controller on StarFive
+> > platforms.
+> > > > > >
+> > > > > > This is a bit misleading. The JH71x0s don't have this. It's onl=
+y
+> > > > > > on the JH8100 so far, and hopefully later SoCs will just
+> > > > > > implement RISC-V
+> > > > standards for this.
+> > > > > > So maybe something like
+> > > > > >
+> > > > > > "Support for the StarLink cache controller on the StarFive JH81=
+00 SoC."
+> > > > > >
+> > > > >
+> > > > > Hi Emil,
+> > > > >
+> > > > > The StarLink-500 cache controller is not designed exclusively for=
+ JH8100
+> > SoC.
+> > > > > While it is true that it currently exists on the StarFive
+> > > > > platform, CPU/SoC that does not come with Zicbom extensions
+> > > > > supported would need to rely on this cache drive to do cache
+> > > > > management operations. I think we don=E2=80=99t need to mentioned=
+ 'JH8100
+> > SoC' here.
+> > > >
+> > > > Wait, in the previous mail you said that future designs will
+> > > > implement Zicbom and not need this work-around, but here you're
+> > > > talking about other SoCs that do need it. So which is it?
+> > >
+> > > If you visit the company website and look for StarLink-500, you will
+> > > find that it is a standalone IP that the company is selling as an
+> > > interconnect. Anyone who integrates StarLink without Zicbom extension=
+s
+> > > may utilize the cache management operation from this IP.
+> >
+> > So then the "on StarFive platforms" part is wrong? Or will this always =
+go
+> > together with the Dubhe cores?
+>
+> It would be 'on StarFive platform' without 'JH8100 SoC' that you suggeste=
+d.
+> StarFive's newer cores that will have Zicbom extensions supported. Those
+> CPU core will not need to have this cache controller enabled.
 
-On 16/04/2024 23:31, Anatoliy Klymenko wrote:
-> Implement live video input format setting for ZynqMP DPSUB.
-> 
-> ZynqMP DPSUB can operate in 2 modes: DMA-based and live.
-> 
-> In the live mode, DPSUB receives a live video signal from FPGA-based CRTC.
-> DPSUB acts as a DRM encoder bridge in such a scenario. To properly tune
-> into the incoming video signal, DPSUB should be programmed with the proper
-> media bus format. This patch series addresses this task.
-> 
-> Patch 1/7: Set the DPSUB layer mode of operation prior to enabling the
-> layer. Allows to use layer operational mode before its enablement.
-> 
-> Patch 2/7: Update some IP register defines.
-> 
-> Patch 3/7: Factor out some code into a helper function.
-> 
-> Patch 4/7: Announce supported input media bus formats via
-> drm_bridge_funcs.atomic_get_input_bus_fmts callback.
-> 
-> Patch 5/7: Minimize usage of a global flag. Minor improvement.
-> 
-> Patch 6/7: Program DPSUB live video input format based on selected bus
-> config in the new atomic bridge state.
-> 
-> Patch 7/7: New optional CRTC atomic helper proposal that will allow to
-> negotiate video signal format between CRTC and connected encoder.
-> Incorporate this callback into the DRM bridge format negotiation process.
-> Save negotiated output format in drm_crtc_state. Reference usage of this
-> API is available here:
-> https://github.com/onotole/linux/tree/dpsub-live-in
+No, what I meant was that if you're selling the "StarLink-500" IP to other =
+SoC
+manufacturors then it will not be restricted to StarFive platforms. So then
+"Support for the StarLink cache controller _on StarFive platforms_" is no l=
+onger
+true, right?
 
-The patches up to and including patch 6 look ready to me. I'll pick them 
-up to drm-misc.
-
-  Tomi
-
-
-> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> To: Maxime Ripard <mripard@kernel.org>
-> To: Thomas Zimmermann <tzimmermann@suse.de>
-> To: David Airlie <airlied@gmail.com>
-> To: Daniel Vetter <daniel@ffwll.ch>
-> To: Michal Simek <michal.simek@amd.com>
-> To: Andrzej Hajda <andrzej.hajda@intel.com>
-> To: Neil Armstrong <neil.armstrong@linaro.org>
-> To: Robert Foss <rfoss@kernel.org>
-> To: Jonas Karlman <jonas@kwiboo.se>
-> To: Jernej Skrabec <jernej.skrabec@gmail.com>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-> 
-> Changes in v4:
-> - Replace controversial reference driver patches with the private
->    repository link.
-> - Split display layer format manipulation functions into 2 separate cases
->    for diferet layer modes.
-> - Address misc review comments (typos, comments, etc.)
-> 
-> Link to v3: https://lore.kernel.org/r/20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com
-> 
-> Changes in v3:
-> - Add connected live layer helper
-> - Include reference DRM format in zynqmp_disp_format for live layerss.
-> - Add default bus format list for non-live case.
-> - Explain removal of redundant checks in the commit message.
-> - Minor fixes and improvements from review comments.
-> 
-> Link to v2: https://lore.kernel.org/r/20240312-dp-live-fmt-v2-0-a9c35dc5c50d@amd.com
-> 
-> Changes in v2:
-> - Factor out register defines update into separate patch.
-> - Add some improvements minimizing ithe usage of a global flag.
-> - Reuse existing format setting API instead of introducing new versions.
-> - Add warning around NULL check on new bridge state within atomic enable
->    callback.
-> - Add drm_helper_crtc_select_output_bus_format() that wraps
->    drm_crtc_helper_funcs.select_output_bus_format().
-> - Update API comments per review recommendations.
-> - Address some minor review comments.
-> - Add reference CRTC driver that demonstrates the usage of the proposed
->    drm_crtc_helper_funcs.select_output_bus_format() API.
-> 
-> - Link to v1: https://lore.kernel.org/r/20240226-dp-live-fmt-v1-0-b78c3f69c9d8@amd.com
-> 
-> ---
-> Anatoliy Klymenko (7):
->        drm: xlnx: zynqmp_dpsub: Set layer mode during creation
->        drm: xlnx: zynqmp_dpsub: Update live format defines
->        drm: xlnx: zynqmp_dpsub: Add connected live layer helper
->        drm: xlnx: zynqmp_dpsub: Anounce supported input formats
->        drm: xlnx: zynqmp_dpsub: Minimize usage of global flag
->        drm: xlnx: zynqmp_dpsub: Set input live format
->        drm/atomic-helper: Add select_output_bus_format callback
-> 
->   drivers/gpu/drm/drm_bridge.c             |  14 +-
->   drivers/gpu/drm/drm_crtc_helper.c        |  38 +++++
->   drivers/gpu/drm/xlnx/zynqmp_disp.c       | 231 +++++++++++++++++++++++++++----
->   drivers/gpu/drm/xlnx/zynqmp_disp.h       |  17 +--
->   drivers/gpu/drm/xlnx/zynqmp_disp_regs.h  |   8 +-
->   drivers/gpu/drm/xlnx/zynqmp_dp.c         |  81 ++++++++---
->   drivers/gpu/drm/xlnx/zynqmp_kms.c        |   2 +-
->   include/drm/drm_crtc.h                   |  11 ++
->   include/drm/drm_crtc_helper.h            |   5 +
->   include/drm/drm_modeset_helper_vtables.h |  30 ++++
->   10 files changed, 372 insertions(+), 65 deletions(-)
-> ---
-> base-commit: bfa4437fd3938ae2e186e7664b2db65bb8775670
-> change-id: 20240226-dp-live-fmt-6415773b5a68
-> 
-> Best regards,
-
+/Emil
 
