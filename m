@@ -1,172 +1,178 @@
-Return-Path: <devicetree+bounces-62120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4913A8B00A4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 06:42:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B438B00B8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 06:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763981C21D8E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 04:42:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C83621F250DB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 04:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644EA152E0B;
-	Wed, 24 Apr 2024 04:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2E35154BE8;
+	Wed, 24 Apr 2024 04:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XeNGPjLz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PB4HwtaL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A351685C59
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 04:42:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA745152E0B
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 04:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713933722; cv=none; b=rFq4ztU4o/VakeGnogc7Js9WVI43FNMFN0zARgnPIIliou+FhnC4QObBygbKGyhiiK9FvOcc/eofUcs3lMB2LGWQjMtgwIagYt0mi5N++W+dtvYEKeRw8dJKevTE2w7wZJE58rVYofVo5dtB4gUhqsDkiusMdg+BAYkXzZzsq8A=
+	t=1713934573; cv=none; b=YQQ2ufw8O/XvH3LSoqFYi4xgcJbmUVtR4C/dCv/ubtSa7ITwkIOHXTJVHeOz/ig160wTMxkHSxMtSffWTAoU3O4Fdv17hasv9kbDpNNq+MU69EhrEJ15wgKyHs4O3b8QCubAzPY9vJw51dyIoIc17hLThtPh0zKFFZi96d6fQhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713933722; c=relaxed/simple;
-	bh=JM2B4kYxrGaJc2NKMceh1oRnw+RaynWIsgZzr48AKAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BRV5KOKJDksyq/Wz4sOJXs1OtZEUM+f1FjsqB3qGMuTiqmawEueicGMwtmj1lle/ZslSxo8m1ue1vktjD1tHG+k+0ymx1QQIdIRTXbhUgQZn3ulvVlTvMOBWLgump8yS0t2Uwfw7hN5scAqbfiVgDcOz8Jd7N5MRbAUaEwHGWl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XeNGPjLz; arc=none smtp.client-ip=209.85.208.51
+	s=arc-20240116; t=1713934573; c=relaxed/simple;
+	bh=6mib2j9Tqix0TaZXohSBIbKHbCUlawrXg7W6KyigNSw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AUP6ArhWywS/jhGTgsRDoHBnGlcP5ieqeNZgRs92/+D67NpvC8OQELhQp6aBL5lJQoeJtBw21/zXovpAhiq4wRMfomVijwYtwSDgcHHrO68EyKxmbbsJUWpZ0ulD99qW6nySO0X3uOjWrannsvxpeZ8fr7bEHPrjtcSPiRwKQJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PB4HwtaL; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-572040691c9so918625a12.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 21:42:00 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41aa15ae26dso15521585e9.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 21:56:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713933719; x=1714538519; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=T612ryKrlD1lLpjfSdxqiGKjKbEdGbmwSDBv0V/5m2o=;
-        b=XeNGPjLzK67DOMpWaZbqEl91TlqlBSHDvlZCjUra1lP8hkghdCKvswdK/asksspNSA
-         Bc+9uLiLvDkZuYjNUnMYsng7IwAMx7901nRM0PmnraOLKE+WoyN9zpmaQ1kpKeeFBQfE
-         qxg9KYVzlCcK+f/CyfJi3s/Xq/lJHqAhsKg2iqe9YukvJ07YPhbMeya51nqmRJg5bnuT
-         TBHkRCUxiCl0Q0MGa+wDD4xeRDQ7Nxxl4kNobmCgjOLaP3Zt0C2PVz/oBY4biFQdVHJy
-         AzvqJCmuoOcQo1LlOBYeOiJ1PL/XBCNnbsSWAusZsrMT/dWIWX8cbkKcG1F6qGtE7U0C
-         SNRg==
+        d=linaro.org; s=google; t=1713934569; x=1714539369; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zwJb8zBIwU1qwrSJtAlaHALtfn+UoOXAgTY/Ygz1F0c=;
+        b=PB4HwtaLxwQuDAJ1+4S6Hh0f3R9pSQgD9j4bouQ7/8tkP2kNldm7ADdNkwhct/otUn
+         pMniQwo1pll6SZ3QhbksTV/wDktKPTRT9A3Dc+cvjx0i4dA2ZSxbzADfawhOwc7RaArM
+         uz4LrY+2kT4ZyHAX4bi42Do+gFLFQRFmuqMdEL2fU195fCIZXo2FpbQE5xsQY0FPWmL3
+         NaMuHkUG1cq3c6ZKbKXw2gZJPOI6DDysFp8ImTR4EOR/E6Us/CfZlWDLfbBAbvQlHbHk
+         7Rhh/Rxa6/Uy9F9lsCsU1Lz4t7O3fo4WPpTgDxgvDmUwR+SqflPe2vAo4/sSWO9eXcGb
+         cuwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713933719; x=1714538519;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1713934569; x=1714539369;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=T612ryKrlD1lLpjfSdxqiGKjKbEdGbmwSDBv0V/5m2o=;
-        b=VJa5cGwpWTdp6fiHbnGQ1Cb5ngh4ehx/3AprWFjY//E3ofm3D4Eh2vEeYf7g3ydvRC
-         ED7CEuZaYupESHnCHP2tfcO4mTEj+x1Fdl4WJ33F2IDiRnPw7wCdf/BFRGRYD5mpCA0F
-         dAjkuZdQqMySwjIuECJmYgM8JiGX5Wk6DqWqxmLD6wUV9NtMf5xuvOkMeIPeuS2qJ8HP
-         65rLccc/AhPUEKyDghXdnoMtbNp8l2d773GMFT0jrIv98/A6I4xSK+qXdiWJ0vQvnJ15
-         nMA5Y1CHAokD1FNvuuvlLi1Za8IKVCVF2x6XV7l5GhYLBcfgluLpSpesnnLI0lpO7Eb+
-         +cqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXOcUNn3IIvCRJB4AyTqxgVGIkYy1EFab9oQ12dK4U6QueNiFir60kc/xURIljYt62Fz4nqw1ChGGbOB0RpMdDo7ky3lKAr46SiIg==
-X-Gm-Message-State: AOJu0YwD+wui5bxCG3WP4zXBpUx7k0qGjtYrwZz56HaA7iQkkwwnvkpI
-	FuTHhUQ9q+LqZRC3R1wfoO+Ny5VGoc+3gXP0iE6u5hpqi2Sc5elG9+xIkeanbYA=
-X-Google-Smtp-Source: AGHT+IEWv2JsYX9rqRAcHeowDL82ULxOjn8wnAPDfjrZp9nCUz2OxSDSf4uSTZAXJ6WLLd6R3+ndew==
-X-Received: by 2002:a05:6402:c05:b0:570:1fc5:72f6 with SMTP id co5-20020a0564020c0500b005701fc572f6mr4650224edb.0.1713933718812;
-        Tue, 23 Apr 2024 21:41:58 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id g1-20020aa7c841000000b0056e718795f8sm7351315edt.36.2024.04.23.21.41.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Apr 2024 21:41:58 -0700 (PDT)
-Message-ID: <1d2412d5-a05d-4d1e-8d50-53a068b90931@linaro.org>
-Date: Wed, 24 Apr 2024 06:41:56 +0200
+        bh=zwJb8zBIwU1qwrSJtAlaHALtfn+UoOXAgTY/Ygz1F0c=;
+        b=AOChiko+Rx73lT6iz2Gemw2BnaqOl3lEkvyG04IPk4Pl4UbjrSARznQuYoeprMWkb+
+         jCgPU34QAm5FeklpgkWtaztRnhtJ1W29y9MfL8WA9Ki7ajcBzDagVUzBmDY4DT79bRxa
+         ySwNW790IRCh2nIoz018MnXJdOgC6YIyjBOHCVSie61m5CuqSdlX0HsRB56VBp+JAtj7
+         497HSormCm7RtdTpZazm18evt2m4clfvBVF9TXHWmbynMZRTtgWbcM/bxznJp/kuUGcc
+         msnMHAZSm9NI3u9x0FyWPN/ArDKPzPJmiaqohmZNMTs0XrxV1Y716kZ4mim4hOh150A7
+         ULXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWaqrSTpW720OvUYk14nHXFpJnvkaq7E/uPbUicWKMFIJ5rbpwORhvQ7SN21oFW4KEgRBLtM5FuN+zFGE6iWGW5Xbw1qLi53GMpiA==
+X-Gm-Message-State: AOJu0YyDldmvIfMfR5VeV6b9gdi+ZZII6iBASBO1lMCeiL4GB1BM0JKQ
+	hQisv1mPLIK3Fx2RENH6FRepDPbbZHcIynChhTRabsH/QI2OhMvKhquIw1/23RY=
+X-Google-Smtp-Source: AGHT+IECbaRpCw/YzRjoEkY/lxmPUGgnBF70hzYQWKqS+HctwjDv6uyR/KMGlR/d7ELDLk1akbjCRQ==
+X-Received: by 2002:a5d:4c82:0:b0:346:85a0:20af with SMTP id z2-20020a5d4c82000000b0034685a020afmr705374wrs.35.1713934568774;
+        Tue, 23 Apr 2024 21:56:08 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id j6-20020adff006000000b00349856b640bsm16124704wro.67.2024.04.23.21.56.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Apr 2024 21:56:08 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: mfd: allwinner,sun6i-a31-prcm: Use hyphens in node names
+Date: Wed, 24 Apr 2024 06:55:21 +0200
+Message-ID: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm: dts: allwinner: drop underscore in node names
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Corentin Labbe <clabbe@baylibre.com>,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20240317184130.157695-1-krzysztof.kozlowski@linaro.org>
- <20240317184130.157695-4-krzysztof.kozlowski@linaro.org>
- <CAL_JsqJfT-jui5P56CO4Fr37kr5iNN8dpxt8ecKeFmdVGnRYbA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAL_JsqJfT-jui5P56CO4Fr37kr5iNN8dpxt8ecKeFmdVGnRYbA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 23/04/2024 23:23, Rob Herring wrote:
-> On Sun, Mar 17, 2024 at 1:41 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Underscores should not be used in node names (dtc with W=2 warns about
->> them), so replace them with hyphens.  Use also generic name for pwrseq
->> node, because generic naming is favored by Devicetree spec.  All the
->> clocks affected by this change use clock-output-names, so resulting
->> clock name should not change.  Functional impact checked with comparing
->> before/after DTBs with dtx_diff and fdtdump.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> This adds warnings:
-> 
-> 13  prcm@1f01400: 'ahb0-clk', 'apb0-clk', 'apb0-gates-clk',
-> 'apb0-rst', 'ar100-clk', 'ir-clk' do not match any of the regexes:
-> '^.*_(clk|rst)$', 'pinctrl-[0-9]+'
-> 
-> Since we documented it with underscores, I'd say just leave these at
-> least until if/when we define some standard names. I'd prefer we spend
-> time reducing warnings from the common schema. I'm looking at
-> root-node.yaml. simple-bus.yaml generates a lot too.
+Underscores should not be used in node names (dtc with W=2 warns about
+them), so replace them with hyphens.  This should have no impact on
+known users: Linux MFD driver does not care about children node names.
+DTS was already adjusted in commit 0f47ef3ff1bd ("arm: dts: allwinner: drop
+underscore in node names"), so without this change, we observe
+dtbs_check warnings:
 
-Uh, this was already picked up. I will send patch for schema, thanks for
-the report.
+  sun6i-a31s-colorfly-e708-q1.dtb: prcm@1f01400: 'ahb0-clk', 'apb0-clk', 'apb0-gates-clk', 'apb0-rst', 'ar100-clk', 'ir-clk' do not match any of the regexes: '^.*_(clk|rst)$', 'pinctrl-[0-9]+'
 
-Best regards,
-Krzysztof
+Reported-by: Rob Herring <robh@kernel.org>
+Closes: https://lore.kernel.org/all/CAL_JsqJfT-jui5P56CO4Fr37kr5iNN8dpxt8ecKeFmdVGnRYbA@mail.gmail.com/
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/mfd/allwinner,sun6i-a31-prcm.yaml     | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml b/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml
+index 8789e3639ff7..ca0e9f1f2354 100644
+--- a/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml
++++ b/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml
+@@ -20,7 +20,7 @@ properties:
+     maxItems: 1
+ 
+ patternProperties:
+-  "^.*_(clk|rst)$":
++  "^.*-(clk|rst)$":
+     type: object
+     unevaluatedProperties: false
+ 
+@@ -171,7 +171,7 @@ examples:
+         compatible = "allwinner,sun6i-a31-prcm";
+         reg = <0x01f01400 0x200>;
+ 
+-        ar100: ar100_clk {
++        ar100: ar100-clk {
+             compatible = "allwinner,sun6i-a31-ar100-clk";
+             #clock-cells = <0>;
+             clocks = <&rtc 0>, <&osc24M>,
+@@ -180,7 +180,7 @@ examples:
+             clock-output-names = "ar100";
+         };
+ 
+-        ahb0: ahb0_clk {
++        ahb0: ahb0-clk {
+             compatible = "fixed-factor-clock";
+             #clock-cells = <0>;
+             clock-div = <1>;
+@@ -189,14 +189,14 @@ examples:
+             clock-output-names = "ahb0";
+         };
+ 
+-        apb0: apb0_clk {
++        apb0: apb0-clk {
+             compatible = "allwinner,sun6i-a31-apb0-clk";
+             #clock-cells = <0>;
+             clocks = <&ahb0>;
+             clock-output-names = "apb0";
+         };
+ 
+-        apb0_gates: apb0_gates_clk {
++        apb0_gates: apb0-gates-clk {
+             compatible = "allwinner,sun6i-a31-apb0-gates-clk";
+             #clock-cells = <1>;
+             clocks = <&apb0>;
+@@ -206,14 +206,14 @@ examples:
+                                  "apb0_i2c";
+         };
+ 
+-        ir_clk: ir_clk {
++        ir_clk: ir-clk {
+             #clock-cells = <0>;
+             compatible = "allwinner,sun4i-a10-mod0-clk";
+             clocks = <&rtc 0>, <&osc24M>;
+             clock-output-names = "ir";
+         };
+ 
+-        apb0_rst: apb0_rst {
++        apb0_rst: apb0-rst {
+             compatible = "allwinner,sun6i-a31-clock-reset";
+             #reset-cells = <1>;
+         };
+-- 
+2.43.0
 
 
