@@ -1,153 +1,153 @@
-Return-Path: <devicetree+bounces-62361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBEC8B0E02
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:21:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7497B8B0E27
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D176B2A723
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:21:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F38521F21703
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8654115FA9C;
-	Wed, 24 Apr 2024 15:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFA0015FA81;
+	Wed, 24 Apr 2024 15:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R2AJakrR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IIDpgYUI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5009415FA81;
-	Wed, 24 Apr 2024 15:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED8615F400;
+	Wed, 24 Apr 2024 15:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713972072; cv=none; b=NYNsUA0jlKP7RjOIeQlmgk/kAVLVaHtsuGbO0hkS95PzmWFKPnxIoMKpFy5JYeGSUII/hSxpb+rez1s5sGumN27umtOinhFjOxsf9SiH6Y3XOXKEdFkgVt/YTTqsI2F6BYlcN9KSU28DAwN/8M9JZ3JsiQxQQrFs0MlEqCfEo68=
+	t=1713972570; cv=none; b=Fsp4Evk4l6EVRzseBq6CmTC68kEeZk7baFUqITQ8nd5tZujF6dADkDIPt/lg03yGi7hYl5nu5STVfLp0ZTW6hYx5eJCDlCaeI3udGkLwupZRGIopfNak0a8tWCofwioTtA11Z4dvPFqi8i1WXRoiJOyAE1Fis+2JCrd5BU8odOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713972072; c=relaxed/simple;
-	bh=/l+aim4eVg3tD558UYuMgrS+4aCm5cbypDJqLdx1Ryo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uka7YQ905MykVcu3uSWyk9BQOvyIb853lraystCGowUb589dWsiuFokGaB6xgbPgtJAyzgL/Efz206/mDcNG8MFw1yUDKY5HuJfVFBBvNWbwc5kAkxryVUdlZOhhn5btQi3w38+2mrrh80f9YXnTz/PjDGb/bfWhnwSXi5nIsh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R2AJakrR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47571C113CD;
-	Wed, 24 Apr 2024 15:21:07 +0000 (UTC)
+	s=arc-20240116; t=1713972570; c=relaxed/simple;
+	bh=Vu6DELfonvw9lHN74NiHvN61NDGymX7hh/EgpU943Z8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fBhxwX2oI5vggLznoy9AY34GRQu1z/f3kGRv6nOP1q1I7m52/c7UIUS5qjMepk4I+qiNqvb5xDntN6q2PqmppCps32AujiLJILhPZYe+r62Cv84w5F1NPw0AvbjrIoMVKpt5WvCJfig4aiLa/wUqAY/0WOOTes/d+uoaXwZqDYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IIDpgYUI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1C28FC2BBFC;
+	Wed, 24 Apr 2024 15:29:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713972071;
-	bh=/l+aim4eVg3tD558UYuMgrS+4aCm5cbypDJqLdx1Ryo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R2AJakrRhQHhabOh9W1Vw+yqbESBngO0TMYtLJnyWOv19ax40paV12wwc6oj5/+BO
-	 qlRJZXShH3g+SFh6RW0ypVY3Odj0hOV7KMOAsbC8Xeo2N63RyCfez+DYIpcKI60MxD
-	 P2IqNhRaeyZq5E+AShy9ScmlGUfsFSagCh1u8gc28uOs7ftBm90e+R9aWF3QJiCrSh
-	 m9cIHGmBp5UXh5d/nR6O2mhRdWn28PdwL3MSVlF3QBImuHxRPxfNUZDb9K1q8TNDPf
-	 zuGg6RP0A+91LHr4NDr+Bk1b/QTHOQTfzJUSYb45m94KLqIlgDi1OfLYcYLSUMubFE
-	 rMeaZRK3J2Pgw==
-Date: Wed, 24 Apr 2024 16:21:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v3 06/17] riscv: Fix extension subset checking
-Message-ID: <20240424-gondola-cosmic-b7a02b2a8619@spud>
-References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
- <20240420-dev-charlie-support_thead_vector_6_9-v3-6-67cff4271d1d@rivosinc.com>
- <6c624361-a968-498b-a9fb-ea2aaec70ce8@ghiti.fr>
- <20240424-wildly-goofy-c81aac6f8cd7@spud>
- <ZikhpEgEoMX/rObu@ghost>
+	s=k20201202; t=1713972570;
+	bh=Vu6DELfonvw9lHN74NiHvN61NDGymX7hh/EgpU943Z8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=IIDpgYUIYDxVPYwvmFfvmYTPmf2rzD8RFT+xcM0lc7K4VMHzEbuJC0404e8CSqBph
+	 bXHXQvM8674Rfh4yJAp5qkeMY7y6vtieYL/0NemLVdCJ3HLSVn2AebAwh3o/jiD6fp
+	 ZJFKsIcXHVvDmwvYN0Y4qmRdijtxkTMIM89GTTZBhFhIZR8eJouqrFeT8Av+pnAL3n
+	 8HYkJf4gTSb88T2Lzn3BbHnSQX0I9LxNgDM/6dnyfVCSrhcyllqENkasrcSS2K8yqm
+	 xqcj3OK7AIiP/QW5JzDjFIjOwj4kfFJmVoy/bMNA6lGViVp4hN5TK1yrY9QuOHTKkV
+	 6Q2kRDXcQGHoQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F1A98C4345F;
+	Wed, 24 Apr 2024 15:29:29 +0000 (UTC)
+From: Xilin Wu via B4 Relay <devnull+wuxilin123.gmail.com@kernel.org>
+Subject: [PATCH 00/10] AYN Odin 2 support
+Date: Wed, 24 Apr 2024 23:29:05 +0800
+Message-Id: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nD+3DKOIzzyPJcNe"
-Content-Disposition: inline
-In-Reply-To: <ZikhpEgEoMX/rObu@ghost>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEElKWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDEyMT3cTKPN38lMw8I93MvMySzMQcXUvTJPNkAzOD5BQDYyWgvoKi1LT
+ MCrCZ0bG1tQCEsBlwYwAAAA==
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Junhao Xie <bigfoot@classfun.cn>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Tengfei Fan <quic_tengfan@quicinc.com>, 
+ Molly Sophia <mollysophia379@gmail.com>, Junhao Xie <bigfoot@classfun.cn>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, Xilin Wu <wuxilin123@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713972563; l=2387;
+ i=wuxilin123@gmail.com; s=20240424; h=from:subject:message-id;
+ bh=Vu6DELfonvw9lHN74NiHvN61NDGymX7hh/EgpU943Z8=;
+ b=XA7dmSSQgwlHKJcd7j3RMyizgYSyuIyC12qzPEZzPft0iV8Pp7Rfl5ki1fbT8Bdw6JOL6UExt
+ iQdQLO/Vjk+CrumZWFFtdE2wE1xqX6UcD6C+rqW72OO3ExlyiiYCM/N
+X-Developer-Key: i=wuxilin123@gmail.com; a=ed25519;
+ pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
+X-Endpoint-Received: by B4 Relay for wuxilin123@gmail.com/20240424 with
+ auth_id=157
+X-Original-From: Xilin Wu <wuxilin123@gmail.com>
+Reply-To: wuxilin123@gmail.com
+
+AYN Odin 2 is a gaming handheld based on QCS8550, which is derived
+from SM8550 but without modem RF system.
+
+This series bring support for:
+* Remoteprocs
+* UFS storage
+* SD Card
+* Type-C with USB3 10Gbps and DisplayPort (4-lane requires a pending
+  patch)
+* PCIe0 (Wi-Fi requires the pending pwrseq series)
+* Bluetooth
+* Regulators
+* Integrated fan with automatic speed control based on CPU temperature
+* Power and volume keys
+* M1, M2 buttons
+* HDMI output up to 1080p 60hz
+* four groups of RGB lights
+* GPU
+* Internal DSI display with touchscreen
+
+Depends: [1]
+
+[1] https://lore.kernel.org/all/20240424024508.3857602-1-quic_tengfan@quicinc.com/
+
+Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+---
+Junhao Xie (2):
+      dt-bindings: pwm: Add SI-EN SN3112 PWM support
+      pwm: Add SI-EN SN3112 PWM support
+
+Xilin Wu (8):
+      dt-bindings: display: panel: Add Synaptics TD4328
+      drm/panel: Add driver for Synaptics TD4328 LCD panel
+      arm64: dts: qcom: pmk8550: Add PWM controller
+      arm64: dts: qcom: sm8550: Add UART15
+      arm64: dts: qcom: sm8550: Update EAS properties
+      dt-bindings: vendor-prefixes: Add AYN Technologies
+      dt-bindings: arm: qcom: Add AYN Odin 2
+      arm64: dts: qcom: Add AYN Odin 2
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ .../bindings/display/panel/synaptics,td4328.yaml   |   69 +
+ .../devicetree/bindings/pwm/si-en,sn3112-pwm.yaml  |   55 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi              |   10 +
+ arch/arm64/boot/dts/qcom/qcs8550-ayn-odin2.dts     | 1410 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               |   54 +-
+ drivers/gpu/drm/panel/Kconfig                      |   10 +
+ drivers/gpu/drm/panel/Makefile                     |    1 +
+ drivers/gpu/drm/panel/panel-synaptics-td4328.c     |  246 ++++
+ drivers/pwm/Kconfig                                |   10 +
+ drivers/pwm/Makefile                               |    1 +
+ drivers/pwm/pwm-sn3112.c                           |  336 +++++
+ 14 files changed, 2190 insertions(+), 16 deletions(-)
+---
+base-commit: 90388b2f9fa5f332289335f99996e252697c0242
+change-id: 20240424-ayn-odin2-initial-95b7c060cd03
+
+Best regards,
+-- 
+Xilin Wu <wuxilin123@gmail.com>
 
 
---nD+3DKOIzzyPJcNe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Apr 24, 2024 at 11:13:40AM -0400, Charlie Jenkins wrote:
-> On Wed, Apr 24, 2024 at 03:51:54PM +0100, Conor Dooley wrote:
-> > On Wed, Apr 24, 2024 at 04:22:02PM +0200, Alexandre Ghiti wrote:
-> > > Hi Charlie,
-> > >=20
-> > > On 21/04/2024 03:04, Charlie Jenkins wrote:
-> > > > This loop is supposed to check if ext->subset_ext_ids[j] is valid, =
-rather
-> > > > than if ext->subset_ext_ids[i] is valid, before setting the extensi=
-on
-> > > > id ext->subset_ext_ids[j] in isainfo->isa.
-> > > >=20
-> > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > Fixes: 0d8295ed975b ("riscv: add ISA extension parsing for scalar c=
-rypto")
-> > > > ---
-> > > >   arch/riscv/kernel/cpufeature.c | 2 +-
-> > > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >=20
-> > > > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpu=
-feature.c
-> > > > index 48874aac4871..b537731cadef 100644
-> > > > --- a/arch/riscv/kernel/cpufeature.c
-> > > > +++ b/arch/riscv/kernel/cpufeature.c
-> > > > @@ -609,7 +609,7 @@ static int __init riscv_fill_hwcap_from_ext_lis=
-t(unsigned long *isa2hwcap)
-> > > >   			if (ext->subset_ext_size) {
-> > > >   				for (int j =3D 0; j < ext->subset_ext_size; j++) {
-> > > > -					if (riscv_isa_extension_check(ext->subset_ext_ids[i]))
-> > > > +					if (riscv_isa_extension_check(ext->subset_ext_ids[j]))
-> > > >   						set_bit(ext->subset_ext_ids[j], isainfo->isa);
-> > > >   				}
-> > > >   			}
-> > > >=20
-> > >=20
-> > > I think this should go into -fixes, let's check with Palmer if he wan=
-ts to
-> > > take this patch only or if you should send the patch on its own.
-> >=20
-> > I think splitting out this and patch 1 into a new series targeting fixes
-> > would probably make things clearer?
->=20
-> Okay I can do that. I will give it a bit more time before I send this
-> series split into two to allow time for the rest of the patches to
-> gather comments so I avoid sending too many duplicate patches.
-
-Ye, I do hope to get back to this series later in the week when I have
-time to actually read through all of the patches in detail.
-
-However, you wouldn't have to resend both parts of the series - you can
-just split out the fixes portion and send that, leaving the rest of the
-series sitting on the list to gather comments.
-
---nD+3DKOIzzyPJcNe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZikjYQAKCRB4tDGHoIJi
-0vMQAP9maA50ULDUWJSbR/H0kPheLWbahRSLOt4mOCRfE2UuSwD/bKM2SV4XWfF6
-LnzrLv6vAQLZ4EwZ5d4MDmnjwTGjMwU=
-=ENki
------END PGP SIGNATURE-----
-
---nD+3DKOIzzyPJcNe--
 
