@@ -1,140 +1,143 @@
-Return-Path: <devicetree+bounces-62282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68FD08B09F7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:46:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC9F68B0A0D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BA471C21D03
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:46:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 221A2B26CEE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D960B15A4AA;
-	Wed, 24 Apr 2024 12:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FCD142E70;
+	Wed, 24 Apr 2024 12:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LcPtxt4b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFQxEJcz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE66156C68
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 12:46:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9730B134A5;
+	Wed, 24 Apr 2024 12:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713962812; cv=none; b=FG/uNhyApCoxRV0HdgHx7Q6GFo38hnJzlkl783ZbYF35H98KKxQgSOeF833Kuou2nZYujUPeE4akTpsD+GIqY7uXoJmfD8LjkdQdQIXU4jyJc9E2QdOyPMtGZJzJ1v1aJzNmV80JrmNK4LilJVGSX83c4NA3qThs8kyrEWbYkwg=
+	t=1713963102; cv=none; b=LExkI2TdTUARP9KwMyb4OQ476xeFNZ12+gjY26V7ZelwKJInzEk9y7h0L092P03vDd5bQ6A0mFGOPV0hgvcHlnEL/flShTNwbSaDbozkt/yP+U+1Y3TaBuGs0K7B4Q9jAkADwp1sRAYXeDallh06P2laQZR+nl26sBAdJB0cBlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713962812; c=relaxed/simple;
-	bh=zM8sR5orAuQQ4cxTB/D5fYnLFqtLGuq1kFg7hhQqLsQ=;
+	s=arc-20240116; t=1713963102; c=relaxed/simple;
+	bh=8k9h/fB4ObhnXmP5vlzLNrzghznfwOtBlHsG8iBsKYk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NxPiErMAmEgXw5nl6XDZwtTRO4SwkRuUd/dN21Fq/01SZQ7sZ2Z+h0+ARTNJ5bapMLlJwsyg1e7Er0kzb7CEG0fQNezqTNvIFHBgAq+6itTynB2uJvplNQ0+NW9vhLU6QbdoyHGVL2SwdaVXen/IiMboYvCXs4GZAROrOyoLSRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LcPtxt4b; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-de54c2a4145so2229358276.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 05:46:51 -0700 (PDT)
+	 To:Cc:Content-Type; b=poIemnNI7P0cbbv/lZBUpa8IRXLnx0kmTU6goWELCgoTpEENCbi7r7QM/tCz7gIcQmy/8f5olhK1r1GYH55FqjctDQri9yteaTCwtmoNF0dsxOJJla0e4dwAuJPpyvh0O1z9S8FhE17AkTWE9ahvIIeD6EVGeaBkIa4Gu2El9q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFQxEJcz; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57225322312so1903003a12.1;
+        Wed, 24 Apr 2024 05:51:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713962810; x=1714567610; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KrXYASI9NEzYia3x8Ig4KvMmkyEG5SofFlBDhZ//oC8=;
-        b=LcPtxt4b33cYrPdx3CIRXpjdXWUjT78C/PjdeLpiug8UCKPqIcdOglPHsuV2YUjPW8
-         Te903LSzQJTSD7uT2dzNn+lg85EWU30gaisyDnj2/VT6X1cYs6vUxS2KsbmkKpomi7gS
-         c3i5tc79qyT0leqS+pCkNo1/R5MONVFi2uHKXBCXWWbWrytKXXU14Nz+3cbaZlvfZmNh
-         fBtechV7fjRD+923uahXi878ASAjkgjG+MwM/6vJNT1CdCgSwWHY+3mRBqDMTAF03xpp
-         eM5Ray9mAHJKT65WMoA1XrMZl0277+JOP1FoIku36mcb6QK1nvwAcAgbRVWIoZWzeiES
-         GQMQ==
+        d=gmail.com; s=20230601; t=1713963099; x=1714567899; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lrSDGxIcCbhabTE8LlgRMA3a1B1b0WUwAReVcV5t1RA=;
+        b=BFQxEJczg3VE/hVUYFmq6+BZqst7iQzqkBkOt3ThPVl6EwTOOgBZmJHQwiBlECQ6Wr
+         AcNn4aOVX6BZ6zFXoj1piGRlW972UfOS2VruKgUmBKNo1nCi1djbGP2w0iV1Uetlzmr+
+         Xf4dEN7hE+PaA1vMRtN00pQ/NT2/uU1gFBqiFIN6hMw/X2LoeMYo59+HQLNb5Yi+8nZB
+         M/96JTi7W6E0OH5VqRCj+aB3H7NNkC4ItDncmAVS8983EN/1i9VaJPPlYDhKFZZGMfuv
+         lRee9VZRY6iNF0j04fftoA7mVSbR9KkfA6mTyifZ5XJJgVD1YwuJxia6Rv2UT30GkRAz
+         /G4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713962810; x=1714567610;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KrXYASI9NEzYia3x8Ig4KvMmkyEG5SofFlBDhZ//oC8=;
-        b=GlOVQHJvUn6HsKUFAuZjH4r/rdlsDsqVR+ImWSbgMH4kekFDAY6T6OeC3zhriZiJHz
-         cHnTfPxg03YI4FqgJS2oBwjguaOoF2q2v/RrSdfOwWJ+gRDrCrk5fGu9VC3ZYDGrgwU9
-         oH+Q9Eu4Kp5OWGi4iAh+JDumZ+CJxC7FOGIhREqVNkCaJ11MyaJS9dIuppFrYNKCuA1W
-         TWN+cpCwPgXrsWiY7CJ+ZqCdS7+yE+XGWK9yrqcBPNZgg55lVUuHyyPaPxZdssmupgYb
-         booJKsKEn7kzzVJ05tALhJ0wOk3A/xgS6PLzymJvDVovNk9YqNU683g/ZcgxPkMaPYJi
-         WA+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWGhqAae0hUIrBHoTzy0A8sHSBA739f1Y+gDK3Z6HbM3t77aGfGVkzW7OlNMJMBRq65rPfZJNVBr2FnCsEv2zJrrImi9MJFUNVuJg==
-X-Gm-Message-State: AOJu0Yx9P7rkmS3yLpS+fkWPdE+pDQoseY+sc7rERMgOjMjAOsLfCLMO
-	Otq4emUvL3phcAe0e/QUiADlp0fmrffKizwNVMMavGB7wEIhmnBRrNrL5EO4DGrid++hn57VQO2
-	nradJH8kRT+L01Fxxn7H1mjDng9opquqIgOtC+g==
-X-Google-Smtp-Source: AGHT+IEx71tun5t5E76UunWIPX06WRdVSlCvojyV6lcnuKs5nx7eNpkieeUAZ+aH8KQvmyHUlsLHPhwiU8grk8etkRM=
-X-Received: by 2002:a25:838c:0:b0:dce:1285:e9a5 with SMTP id
- t12-20020a25838c000000b00dce1285e9a5mr2494534ybk.11.1713962810353; Wed, 24
- Apr 2024 05:46:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713963099; x=1714567899;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lrSDGxIcCbhabTE8LlgRMA3a1B1b0WUwAReVcV5t1RA=;
+        b=MeoYYuKOWj/V+IrhXaoFKRrWtQGgJLT/HZqQi3uMY5JoyypuirkhuHmwU9Z23r8E+q
+         OFLk1sj0ji7OrrcfurYabfcUUAIdoILQKwwmxOk4ehKTEqsHszDSthNl4YA7VJ9nY1Qt
+         HCPqItw15qmyP6bGMvmaZMrDEPy4RTWHFLlXocPPi/lwqUH8FXH6FqLfA6xZxcN3QFJt
+         z2BAQQvBQ4JFgbgCH+CqvANXbrYf+pChpLQWo3GZinxdSl61pahLShSTGim4zwVMHcT0
+         hRmKLgf5MKfU5HFtRxuESrJsMmDPVEZ/UAUuiRBcsSL93bLrReQOfJJSvak3ow/J+akY
+         t95A==
+X-Forwarded-Encrypted: i=1; AJvYcCULjf9yPt0xKTaWgPfOneM3FzpIl9n07djI6gNvWqJdAxWjdKya5+yiAz6Od6kmAc5AviCdORo+DvWfiZmlHtUF8/6ZnHEuG9XNIA==
+X-Gm-Message-State: AOJu0YyxAf+sO7hjf+aj8tZQ5jQaBkmoRH6h0ndk0xj7mjP5bDl3iUdq
+	MQNvoNwzPTJSU1rm7Y8BYcPi6ob5Ttxym7e9pN7NyYk60UxUTz2174jKOEcnkTFN8MqCe6y38SD
+	gbXAOXySxZRvn0Z/L4LMCKW2IlC/lmHKG
+X-Google-Smtp-Source: AGHT+IHypYiwjw+HCvMDz/EgTlrL70fJ1Vb5av54OYHFAqNBkcq/KZ4fkWMkewMbZcksCFK2PXCZrc2lutlg5zgUk0E=
+X-Received: by 2002:a17:906:5ace:b0:a51:adac:d6e0 with SMTP id
+ x14-20020a1709065ace00b00a51adacd6e0mr1408519ejs.62.1713963098783; Wed, 24
+ Apr 2024 05:51:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
- <20240401-typec-fix-sm8250-v3-8-604dce3ad103@linaro.org> <d57ab72d-2604-4115-9973-1ce0f24b159f@linaro.org>
-In-Reply-To: <d57ab72d-2604-4115-9973-1ce0f24b159f@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 24 Apr 2024 15:46:39 +0300
-Message-ID: <CAA8EJprdLB3+30wvVZjpC5pWKUzgw+Mg54YkN3SvU-Ovc25Qpg@mail.gmail.com>
-Subject: Re: [PATCH v3 8/9] arm64: dts: qcom: x1e80100: describe USB signals properly
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Luca Weiss <luca.weiss@fairphone.com>
+References: <cover.1713866770.git.lorenzo@kernel.org> <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
+ <ZihJfcmjoJZwLofz@surfacebook.localdomain> <ZijZwXCHbaSEyAQL@lore-desk>
+In-Reply-To: <ZijZwXCHbaSEyAQL@lore-desk>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 24 Apr 2024 15:51:02 +0300
+Message-ID: <CAHp75Vdf9_-KDLkm2jmkpM=pw=U4nnwYf4dKn8xg=N+DpFYXTQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] spi: airoha: add SPI-NAND Flash controller driver
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org, 
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com, 
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
+	angelogioacchino.delregno@collabora.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2 Apr 2024 at 17:41, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+On Wed, Apr 24, 2024 at 1:07=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.or=
+g> wrote:
+> > Tue, Apr 23, 2024 at 12:16:37PM +0200, Lorenzo Bianconi kirjoitti:
+
+...
+
+> > > +   /* addr part */
+> > > +   for (i =3D 0; i < op->addr.nbytes; i++) {
+> > > +           u8 cmd =3D opcode =3D=3D SPI_NAND_OP_GET_FEATURE ? 0x11 :=
+ 0x8;
+> > > +
+> > > +           data =3D op->addr.val >> ((op->addr.nbytes - i - 1) * 8);
+> >
+> > Seems like you wanted to have always the same endianess and hence can b=
+e done
+> > outside the loop via cpu_to_xxx()?
 >
-> On 1.04.2024 10:33 PM, Dmitry Baryshkov wrote:
-> > Follow example of other platforms. Rename HS graph nodes to contain
-> > 'dwc3_hs' and link SS lanes from DWC3 controllers to QMP PHYs.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 149 +++++++++++++++++++++++++++++++--
-> >  1 file changed, 141 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index f5a3b39ae70e..3213eccc3a3a 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -2543,6 +2543,33 @@ usb_1_ss0_qmpphy: phy@fd5000 {
-> >                       #phy-cells = <1>;
-> >
-> >                       status = "disabled";
-> > +
-> > +                     ports {
-> > +                             #address-cells = <1>;
-> > +                             #size-cells = <0>;
-> > +
-> > +                             port@0 {
-> > +                                     reg = <0>;
-> > +
-> > +                                     usb_1_ss0_qmpphy_out: endpoint {
-> > +                                     };
-> > +                             };
-> > +
-> > +                             port@1 {
-> > +                                     reg = <1>;
-> > +
-> > +                                     usb_1_ss0_qmpphy_usb_ss_in: endpoint {
-> > +                                             remote-endpoint = <&usb_1_ss0_dwc3_ss>;
-> > +                                     };
-> > +                             };
-> > +
-> > +                             port@2 {
-> > +                                     reg = <2>;
-> > +
-> > +                                     usb_1_ss0_qmpphy_dp_in: endpoint {
+> sorry, I did not get what you mean here, data value relies on the loop
+> iteration.
+
+  u8 byte_stream[8];
+  u8 cmd;
+
+  cmd =3D ...;
+
+  // find what suits your case(s)
+  put_unaligned_be64(op->addr.val, byte_stream);
+  for-loop {
+     err =3D _write_data();
+     ...
+  }
+
+
+> > > +           err =3D airoha_snand_write_data(as_ctrl, cmd, &data,
+> > > +                                         sizeof(data));
+> > > +           if (err)
+> > > +                   return err;
+> > > +   }
+
+...
+
+> > Why not utilising cleanup.h? (__free(), no_free_ptr(), etc)
 >
-> This is more than just DP AFAIU, please call it SBU
+> I guess we can just allocate as_dev and as_dev->txrx_buf with devm_kzallo=
+c()
+> here, agree?
 
-This is not the SBU lane. This is for the SS signals. We are not fully
-modelling the SBU signals yet anyway.
+If this is a solely part of ->probe() stage, yes.
 
--- 
-With best wishes
-Dmitry
+--=20
+With Best Regards,
+Andy Shevchenko
 
