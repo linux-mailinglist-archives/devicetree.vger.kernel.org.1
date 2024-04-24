@@ -1,195 +1,131 @@
-Return-Path: <devicetree+bounces-62222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0158A8B05D5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:16:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BAE58B05E0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC13328A47F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:16:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 315891F21FE6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B98158D96;
-	Wed, 24 Apr 2024 09:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16E2158DB7;
+	Wed, 24 Apr 2024 09:17:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from szxga07-in.huawei.com (szxga07-in.huawei.com [45.249.212.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE75158D79
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 09:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A971158D87;
+	Wed, 24 Apr 2024 09:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.35
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713950156; cv=none; b=M41ncYvk1sJl2/Bkh6rvPohhQnKM6G/iRbBwg5Rn/wv1vyG4mKuHTPsNHpsYO63FhZZ1MKvhncQ08by2ptipyar5wPM31m/t5tudQ2R1uCPkV4nQ9k7tF+Rt0auQl00jVafzNuUCi0Yv9EsN6+6inFy9JsrQiZPrv6I2GvYvNaw=
+	t=1713950220; cv=none; b=DPEvspKdsCK6SmNQmBc44gVFQ6jmsdAEchf8P7gOa+Uc6kVrYMYf34cBvjRuKFuO2bTGRGQePxfDQldp0QDdrFNnQ1mCcRTmt/i8D72UYy2n3DKv4GTEajubNPKKIEvykj4KlUdGON0YN9tzr8hmf8AJt3yPTouImZd150FSsG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713950156; c=relaxed/simple;
-	bh=NUJHTVDyXWUBLS9fMjJ9yqahqHrA5hMzPCLeMYQT6pY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Edqz1Q94+J+GPSreqMZLwFCh9ma/b7okinVvoog05x/f1wgULAR8yHVz0zIZUA7NtjQdVLyvNS5G8cnYvfRGWeWhNR2KRCFlHcmqn1mLmdD3KocOmtFcMYopxtf5Tm3NmRPCMrCF63IYU23rm9LGtTZrxVcOSWSUT18hHUZEXc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzYj8-0001Uv-OK; Wed, 24 Apr 2024 11:15:42 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzYj8-00E3KS-4a; Wed, 24 Apr 2024 11:15:42 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id AFC012BECBE;
-	Wed, 24 Apr 2024 09:15:41 +0000 (UTC)
-Date: Wed, 24 Apr 2024 11:15:40 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux@ew.tq-group.com, alexander.stein@ew.tq-group.com
-Subject: Re: [PATCH 3/4] can: mcp251xfd: add gpio functionality
-Message-ID: <20240424-convivial-flawless-sturgeon-976592-mkl@pengutronix.de>
-References: <20240417-mcp251xfd-gpio-feature-v1-0-bc0c61fd0c80@ew.tq-group.com>
- <20240417-mcp251xfd-gpio-feature-v1-3-bc0c61fd0c80@ew.tq-group.com>
+	s=arc-20240116; t=1713950220; c=relaxed/simple;
+	bh=2kFrP6usDj5u4s7STZ+gSu3x3Vy8NjbK0EDKL6B6GBo=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=QRtuXB4IkkXo7t2PEhZvMfzD5yLyhxl3hZi/2rInvow6cO+LCWCnoXwjvfXIu9N+sDik9Aiq9m3DPZUx1aAcBdPXGg3ewOF8c1Lf1UgjCD3hAEgXs0eBdm2fwsrvdzQERbdtSJuNLg/pzQMdvlFc0+VgjavttD1sqMUrLCxTmMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.163.17])
+	by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4VPYFV5Ptjz1RDHV;
+	Wed, 24 Apr 2024 17:13:50 +0800 (CST)
+Received: from kwepemd500014.china.huawei.com (unknown [7.221.188.63])
+	by mail.maildlp.com (Postfix) with ESMTPS id 42C9F1A0188;
+	Wed, 24 Apr 2024 17:16:55 +0800 (CST)
+Received: from [10.67.121.2] (10.67.121.2) by kwepemd500014.china.huawei.com
+ (7.221.188.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Wed, 24 Apr
+ 2024 17:16:54 +0800
+Message-ID: <6628CE06.2060901@hisilicon.com>
+Date: Wed, 24 Apr 2024 17:16:54 +0800
+From: Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yiaol2clinc7dqpe"
-Content-Disposition: inline
-In-Reply-To: <20240417-mcp251xfd-gpio-feature-v1-3-bc0c61fd0c80@ew.tq-group.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/9] arm64: dts: hisilicon: hip05: move non-MMIO node
+ out of soc
+References: <20240402193148.62323-1-krzk@kernel.org> <171394159880.43787.12383182687947213751.b4-ty@linaro.org> <6628B1E9.1050300@hisilicon.com> <7adfe10b-cfb6-4242-9520-dd9819bf7f43@linaro.org> <6ce7bc63-1c47-4e3d-a3af-8f229f1c36f7@linaro.org>
+In-Reply-To: <6ce7bc63-1c47-4e3d-a3af-8f229f1c36f7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemd500014.china.huawei.com (7.221.188.63)
 
+Hi Krzysztof, 
 
---yiaol2clinc7dqpe
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2024/4/24 16:37, Krzysztof Kozlowski wrote:
+> On 24/04/2024 09:23, Krzysztof Kozlowski wrote:
+>> On 24/04/2024 09:16, Wei Xu wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 2024/4/24 14:54, Krzysztof Kozlowski wrote:
+>>>>
+>>>> On Tue, 02 Apr 2024 21:31:40 +0200, Krzysztof Kozlowski wrote:
+>>>>> Non-MMIO devices, which are BTW not really part of the SoC, should not
+>>>>> be within simple-bus, as reported by dtc W=1 warning:
+>>>>>
+>>>>>   hip05.dtsi:301.30-305.5: Warning (simple_bus_reg): /soc/refclk200mhz: missing or empty reg/ranges property
+>>>>>
+>>>>>
+>>>>
+>>>> Almost a month passed, no replies from maintainers about picking it up. Dunno,
+>>>> looks abandoned, so let me grab this. If anyone else wants to pick it up, let
+>>>> me know.
+>>>>
+>>>
+>>> Sorry for the late reply!
+>>> I am applying these patches which are in the following git repo.
+>>>   https://github.com/hisilicon/linux-hisi/tree/next/dt64
+>>>
+>>> And it is fine to me to go through your git tree.
+>>> Thanks!
+>>
+>> So you picked them up? Why you did not notify anyone? b4 does it almost
+>> automatically. How anyone can know what is happening with the patches?
+>>
+>> I will drop them from my tree.
 
-On 17.04.2024 15:43:56, Gregor Herburger wrote:
-> The mcp251xfd devices allow two pins to be configured as gpio. Add this
-> functionality to driver.
->=20
-> Signed-off-by: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-> ---
->  drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c   | 138 +++++++++++++++++=
-+++++-
->  drivers/net/can/spi/mcp251xfd/mcp251xfd-regmap.c |  21 +++-
->  drivers/net/can/spi/mcp251xfd/mcp251xfd.h        |   4 +
->  3 files changed, 159 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/net=
-/can/spi/mcp251xfd/mcp251xfd-core.c
-> index eb699288c076..5ba9fd0af4b6 100644
-> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+OK.
+I will pick up them.
 
-[...]
+> 
+> One more thing:
+> 
+> Even though you applied these patches few days ago, they are still not
+> in linux-next (as of next-20240423), which suggests your tree is not in
+> next.
+> 
+> Please read entire presentation "Beginner Linux kernel maintainer's
+> toolbox" from LPC 2023 and improve your workflow by:
+> 1. Properly notifying patch status.
+> 2. Being part of the integration tree.
+> 3. ... and more, as explained in above talk.
+> 
+> There is a link to video and slides:
+> https://lpc.events/event/17/contributions/1498/
 
-> +static int mcp251fdx_gpio_setup(struct mcp251xfd_priv *priv)
-> +{
-> +	struct gpio_chip *gc =3D &priv->gc;
-> +
-> +	if (!device_property_present(&priv->spi->dev, "gpio-controller"))
-> +		return 0;
-> +
-> +	if (priv->rx_int)
-> +		return dev_err_probe(&priv->spi->dev, -EINVAL,
-> +				     "Can't configure gpio-controller with RX-INT!\n");
-> +
-> +	gc->label =3D dev_name(&priv->spi->dev);
-> +	gc->parent =3D &priv->spi->dev;
-> +	gc->owner =3D THIS_MODULE;
-> +	gc->request =3D mcp251xfd_gpio_request;
-> +	gc->get_direction =3D mcp251xfd_gpio_get_direction;
-> +	gc->direction_output =3D mcp251xfd_gpio_direction_output;
-> +	gc->direction_input =3D mcp251xfd_gpio_direction_input;
-> +	gc->get =3D mcp251xfd_gpio_get;
-> +	gc->set =3D mcp251xfd_gpio_set;
+Got it.Thanks!
+I will go through it.
 
-Please also implement the get_multiple and set_multiple callbacks.
+Best Regards,
+Wei
 
-> +	gc->base =3D -1;
-> +	gc->can_sleep =3D true;
-> +	gc->ngpio =3D ARRAY_SIZE(mcp251xfd_gpio_names);
-> +	gc->names =3D mcp251xfd_gpio_names;
-> +
-> +	return devm_gpiochip_add_data(&priv->spi->dev, gc, priv);
-> +}
-> +
->  static int
->  mcp251xfd_register_get_dev_id(const struct mcp251xfd_priv *priv, u32 *de=
-v_id,
->  			      u32 *effective_speed_hz_slow,
-> @@ -2142,6 +2270,12 @@ static int mcp251xfd_probe(struct spi_device *spi)
-
-[...]
-
-> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd.h b/drivers/net/can/=
-spi/mcp251xfd/mcp251xfd.h
-> index 24510b3b8020..e2ab486862d8 100644
-> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-> @@ -14,6 +14,7 @@
->  #include <linux/can/core.h>
->  #include <linux/can/dev.h>
->  #include <linux/can/rx-offload.h>
-> +#include <linux/gpio/driver.h>
-
-please keep the includes alphabetically sorted.
-
->  #include <linux/gpio/consumer.h>
->  #include <linux/kernel.h>
->  #include <linux/netdevice.h>
-> @@ -660,6 +661,9 @@ struct mcp251xfd_priv {
-> =20
->  	struct mcp251xfd_devtype_data devtype_data;
->  	struct can_berr_counter bec;
-> +#ifdef CONFIG_GPIOLIB
-> +	struct gpio_chip gc;
-> +#endif
->  };
-> =20
->  #define MCP251XFD_IS(_model) \
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---yiaol2clinc7dqpe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmYozbkACgkQKDiiPnot
-vG+JlQf/Z0y+ItFFGkL6UKJDn/wg8EonNLO7KkpG/pw9rOiZGFxGjyz6g6idzKx2
-u/wsIGYj0LzUxzxwLQqoNwlxmSfuiD7rtuhf+IuT2/6XZVy0FNlzrw32f2A+TsUm
-n0fAgKCTIVOlaoFIMaH9zn62M4A1PKffs4xYS4AvSWIGxUrNg5DJCPuZPl1vjujc
-FDrv2D+yqHaDCYsKTtL5PUjf5pm1Cq5UFMrpPM7rFQ4Oz77LV50rSGsqXhr5bB1M
-NjbIef/HNxJlFtOgVTV0a4LP3Y05yV2nTN73nSOfhWnHnmHg7j3kNsi0UVZ+RMho
-kdEUjwLD5cqAeHowEM+McBo47JriXg==
-=4O7L
------END PGP SIGNATURE-----
-
---yiaol2clinc7dqpe--
+> 
+> Best regards,
+> Krzysztof
+> 
+> .
+> 
 
