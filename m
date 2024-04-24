@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-62175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3CB8B031F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:24:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7578B0323
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:25:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51BEBB25FFB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:24:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FCFB1C24215
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:25:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8D115884D;
-	Wed, 24 Apr 2024 07:23:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270D7157478;
+	Wed, 24 Apr 2024 07:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KjiLHxaW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BPpR8FD/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64290157A6B
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 07:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80695157A6B
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 07:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713943404; cv=none; b=eNb45+uBZ3qFSbyhr9o2LhQc470gG4Xc1T9fJzTNPv/v7+t+Ret6yYe9RngBt9LLTQMMMCPCBTfgZrJp155cCBzEIaBqyywCL20yUiz6HNO3Xb/TdGqv0MeOjB521tCTJz0Is80VHApJVtJI5ls0UW0lZYpKM1YqkdYC4FlqLPI=
+	t=1713943504; cv=none; b=fXgcSAzXOmzwOXRkeQ1/1Q4alg0VYhetB7BMcFo4mYhaRkISPca4pN3ntIcX52FfQAfJsotcUmhyIGZ9LcTu5BdnEKb9+9HEzL59+2PJJGyAX9Jd6TrdbxB2BpO5bL8LllmfqhNuvz4TPqnGC+F4AgUyUmNTRZ+oG7i4a9QYL94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713943404; c=relaxed/simple;
-	bh=xxbCaBc95Z+Z+7XM5Kj5BsqZk7VsT9hZrQe/N57hIpg=;
+	s=arc-20240116; t=1713943504; c=relaxed/simple;
+	bh=9qsghQEv080Etp/W4UImhMBwboB0C5Y9PvBnphwRfqk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vmp6QbI4RBiAplOqIMK8C/TnGq2etVZYvIZs2hibw2PyxfmE3aDpn7Ip3IFGOoGbogbZdnjuVSggrgsld7xkZZrAmRKrVH6sCqufGu51Mxy/nW/s0AtzFFhi55jYh/AnhiSC+HnmVPvmFfiMCaEWoE4jdCk87ep3jAeYgzoO+jM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KjiLHxaW; arc=none smtp.client-ip=209.85.167.54
+	 In-Reply-To:Content-Type; b=sM3FkwtgJvR867j4FL1tCnGtZjDsE/vuJnX23yFS47b+C6fO/OkxTEXsT+oMQuHKSuuw1EbNtoEt52kbNZ6k0ZRtnTSHlRPhUxRJJaiaU3x5Lsgt0TUvRHAte5vDMeV7cP8ynGO6RjiCIegWhd55jXZ9LALkB0oUin/1OW3uWlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BPpR8FD/; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-51aa6a8e49aso7261582e87.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 00:23:23 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a589eca7f39so8008966b.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 00:25:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713943401; x=1714548201; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713943501; x=1714548301; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=eH5hTGqBaVmQ4QxFz7/DMtOsuiwt9fPf1HS+xP5aISM=;
-        b=KjiLHxaWhVHm1alFdMVuRPmZNe5PdZaC6VgQHGvVTAWo2zTCGA7BS8uxMUEjPpKwbl
-         Gp5+qRXl1Z2Ji/LLHjPxZ3D9qswvvL3stQA0IL0ub07fYzhqUv2Vsdu8AfMbjFYUZWcA
-         SRRYNI8UdnD0YOuHI8zeWI9PjGdrR1q66FAbmcoPhIa5LvHt0+tQNM1YjMCxjfOFuZQy
-         OY1yZu3Rp+9DfZIVox4wWXCxTBugXEvnlKGuCagaOgGnDg5O6QbWHhTvPH9ER4aTx+Bm
-         uR2EW1lkumXaaUak/fQO/wdohkC9q9SrM1xXfXURAjkXntArPjQu7zK/xqmoOyl/950D
-         5MKg==
+        bh=rM7v+TE2AJ80wGR9AkeIyyAb5sKBhg/DWR3W2WKT+Qo=;
+        b=BPpR8FD/XJQlQncT6mPjESl2Cc0mBiLgqsLpSH62eszPmNNrwLLuhmNWW7FHD+SiCQ
+         w1W35MFqd+ByFaxy/K/kLgWDjLjGx25EvJS/6KdvszDVDaFpYlhrI7rWtCgT4RZrFTbs
+         4nUk3Bfiva7DMvbhuT6OOwLgj4pl1jv+c74aPFtzGjrz2n9ik9cpPqsjcncbe71UV+FH
+         46T1+TlkfFtCcV8g3l8SDFsWGyyhlYIFcEDFfV2RlTdtJGwx7Zx9m8iuoZh4RWSuqbhk
+         qrcrUT+iJ0y1u+2XJy3RP5IjzkT677SucVzZZyCd6Eqyg1AJAe6HXqg5bjiiDVlgrATb
+         Mn1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713943401; x=1714548201;
+        d=1e100.net; s=20230601; t=1713943501; x=1714548301;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eH5hTGqBaVmQ4QxFz7/DMtOsuiwt9fPf1HS+xP5aISM=;
-        b=rIHIvPy8HnEVLhrZvG/vjewA4M8F5KKZS7Fn8vCqH+WrgAYT5h4FL2smTyYWExWtax
-         B7o0rT9TUw4p2NqD8auxHQjldIgRpYss3c5zvMI9/hEVWLL55a/tTRIKhY5VsPInd+TV
-         smvV0FzW7WNFMLioWsIdlDFlYUxrG8Gb2UnbkiKNSUEbLS+nt2VqYwigtMNFQAOa3yJo
-         86a70eQj9GnaS0AMaUAWej+YNR7Zkb9b85obXk/9tA2JAP56fYwwjFGUfw4jHmxHQBSn
-         wVWsjjPcV/aaPsfQgE9YSzm64G0e/2VfSwhoSuSe2y+Sj2qSdqGNs8F01ODhtXleabsz
-         PxUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUzqW4qf6A7C6Sp4vh8o70w70CPZBnQ/HReGXNVE0uThcSpvrVoUHWnesuBrHsM7p3xV7TSiD5KzeqVMSlFM1H5dr7fz+lCD8hFkw==
-X-Gm-Message-State: AOJu0YyBa/CgPREERqzrybLNWjUDM8mFhG8NtWwzydjmEoVO6boZQvj2
-	6HKFipSFBM0eqdrkQSIN/N2ZpOKZrYeKl+8sdln2g3ExAPEXJwgXLrben1wObYkPi6u3GIMlYAb
-	ZrlA=
-X-Google-Smtp-Source: AGHT+IGqo+H29o4iRcT5EnnqV/XVSKwzVeBUziqEaVmTYL+5Iogt2R+hnXOSJF4St9+K8Rt6G40iyg==
-X-Received: by 2002:a05:6512:b88:b0:51b:5f9c:ac1b with SMTP id b8-20020a0565120b8800b0051b5f9cac1bmr1691883lfv.37.1713943401541;
-        Wed, 24 Apr 2024 00:23:21 -0700 (PDT)
+        bh=rM7v+TE2AJ80wGR9AkeIyyAb5sKBhg/DWR3W2WKT+Qo=;
+        b=SEnl/EX4LbHU007PzPC6ab1d6/j99VAQNlxxqWNjhKwR3xr4sPDOBxY5eDP+FXd/0d
+         HF9gbR4tQC02mLpThlCK2CEnXRctgzmQ+EEF4zTTIdLy0S0QKE4Acs7O3IQhbPWIy2wn
+         yj109bAO65airXZYfC68SMRM6gTDZE5YkH/MQ2GyBM0t0c4B9jLMti9A1jCW+UV3MLqB
+         h3ApU1WjdiNK1LVHF+KPDXJtEB8lCzQGIH/73LKMUOUB/Sypg+gbSsu62jhlyzG2/aU5
+         WpCWTTnjAFn4vVfCwbcmJSIuq51250Jqgl2A/BTwDCNJynpAI4xHu8AkJROnmL3IoTB/
+         cEMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW14ALsSGgvBgR9ArlfhtSD/v47g4izW+HGm00bWn3zXMxkbILsludnPzCqBBh8IrZ6+jurCMFknuayuVwvDKbjXYeuIsMlFcQphQ==
+X-Gm-Message-State: AOJu0YwQwDYqvKnAdUlj/0Y0B2GVV4iOvS2/0AU7kl9TYznemajbCSDT
+	810bAEwgP1jR1yJlt0gnajfVoiwjsW1QNVD/mXaOU2EspatfD5edMib8XJh5sSg=
+X-Google-Smtp-Source: AGHT+IETcPsgz1HGmBXMTSsSANWRtO69+EIuxtuOVne8hU7ngteU/5b3zdGqDH/gK8uVACQYKnsX1g==
+X-Received: by 2002:a17:906:cb8f:b0:a52:6bbd:595d with SMTP id mf15-20020a170906cb8f00b00a526bbd595dmr1032795ejb.7.1713943500762;
+        Wed, 24 Apr 2024 00:25:00 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q23-20020a50c357000000b0056e672573e5sm7846910edb.88.2024.04.24.00.23.20
+        by smtp.gmail.com with ESMTPSA id s24-20020a170906355800b00a524e3f2f9esm7984643eja.98.2024.04.24.00.24.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 00:23:21 -0700 (PDT)
-Message-ID: <7adfe10b-cfb6-4242-9520-dd9819bf7f43@linaro.org>
-Date: Wed, 24 Apr 2024 09:23:19 +0200
+        Wed, 24 Apr 2024 00:25:00 -0700 (PDT)
+Message-ID: <830cc6e5-44e5-4088-97c6-49d7a7fa8b38@linaro.org>
+Date: Wed, 24 Apr 2024 09:24:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,16 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] arm64: dts: hisilicon: hip05: move non-MMIO node out
- of soc
-To: Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] sh: j2: drop incorrect SPI controller max frequency
+ property
+To: "D. Jeff Dionne" <djeffdionne@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240402193148.62323-1-krzk@kernel.org>
- <171394159880.43787.12383182687947213751.b4-ty@linaro.org>
- <6628B1E9.1050300@hisilicon.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Yoshinori Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ devicetree@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Kousik Sanagavarapu <five231003@gmail.com>
+References: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
+ <171394121882.41568.17609347008268237958.b4-ty@linaro.org>
+ <A9A1C6C4-2B40-4769-9C9D-3A4DB2C27C95@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,39 +136,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6628B1E9.1050300@hisilicon.com>
+In-Reply-To: <A9A1C6C4-2B40-4769-9C9D-3A4DB2C27C95@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/04/2024 09:16, Wei Xu wrote:
-> Hi Krzysztof,
+On 24/04/2024 08:59, D. Jeff Dionne wrote:
+> Adrian,
 > 
-> On 2024/4/24 14:54, Krzysztof Kozlowski wrote:
->>
->> On Tue, 02 Apr 2024 21:31:40 +0200, Krzysztof Kozlowski wrote:
->>> Non-MMIO devices, which are BTW not really part of the SoC, should not
->>> be within simple-bus, as reported by dtc W=1 warning:
->>>
->>>   hip05.dtsi:301.30-305.5: Warning (simple_bus_reg): /soc/refclk200mhz: missing or empty reg/ranges property
->>>
->>>
->>
->> Almost a month passed, no replies from maintainers about picking it up. Dunno,
->> looks abandoned, so let me grab this. If anyone else wants to pick it up, let
->> me know.
->>
-> 
-> Sorry for the late reply!
-> I am applying these patches which are in the following git repo.
->   https://github.com/hisilicon/linux-hisi/tree/next/dt64
-> 
-> And it is fine to me to go through your git tree.
-> Thanks!
+> IMHO, this driver should go through the SH tree.  Thanks Rob, for testing the patch.
 
-So you picked them up? Why you did not notify anyone? b4 does it almost
-automatically. How anyone can know what is happening with the patches?
-
-I will drop them from my tree.
+Of course it should go via SH tree, that's not the point here. I don't
+want to take sh patches.
 
 Best regards,
 Krzysztof
