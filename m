@@ -1,215 +1,104 @@
-Return-Path: <devicetree+bounces-62307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F698B0BCF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:02:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74CA8B0BD3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E00DB28C8D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:02:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AB801F27BD0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F7515D5C3;
-	Wed, 24 Apr 2024 14:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6470F15E211;
+	Wed, 24 Apr 2024 14:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ORTp6RQJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ix6QGTVr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796F415D5A9;
-	Wed, 24 Apr 2024 14:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3601315D5D8;
+	Wed, 24 Apr 2024 14:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713967323; cv=none; b=TDLa72aR+wIyPQFsGuCj/oR9fV22p72h2EgbbKlwcphN9+M373Pm0PN0R5YLgEupZ6HUaMzqAyUBBsZDhv3yLowgQmg5N0qbttTrsQf8XV9PQOgSKgJeND/y9541CsLoCehywoYcE+bRDZjrivbMSxU+F00nv8B6A6sSBB7rrTU=
+	t=1713967343; cv=none; b=m1sMDPxN9qYqy4cyhj/rx5qxTzjtm2TiEdu6b/9IpFsld5Wou4iNU+0oWxQtm4St6WJXrsLOd82BSdPd4EZI9uwfy9DJlHLr2wavIhlHZpBvJZdy9CCd4j1W5+bfOc7nOBn2uvxyEv6DdrBN/V5Wm8tUsGNbiZEVOIO6DskT5L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713967323; c=relaxed/simple;
-	bh=6sfW+rHI73ncQAqxE90g+oqkdmJQlIRbyJ7KnewT+zI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ec3dxBKgjP75URl1V5DBM/PZDU5T9tZ5jB9c1PPa8zRsipj/DdA/kGoySsTMGdSlTrNd4WhWBllOceuHm5Wp5dz9u0gDgu3dI9uBRXKAgTXNvSLL0cvCeeUW4Tn8eteCzpEHCZYLgYhSDT5Vxj3y7BaCfQquhuwI1UcLZ0PfGtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=ORTp6RQJ; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 95438100015;
-	Wed, 24 Apr 2024 17:01:56 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 95438100015
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713967316;
-	bh=c0tvRHNhIPOucYy+SUb1D0ewQT21Q1vf1NUKNTm0+Fg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=ORTp6RQJpfHoKfWS4IxbQjlL6v/yBLTH2wwIldOZBXzwgNTR0cohcMojPjZxlBU9j
-	 tqGTmZLw7ygcFeavKzBiyVgjx+7oX8ElqcFRZMmCeE5nxK8nLPyeMcdR3KuP13NmEb
-	 up9zumtVEUAt57SkD2LAqaFRaRomMKwuBOTsp2x5yhExkiX+UbkrTh+NONSOEKwss5
-	 RqyNGAVYAqZKbxrZRhbAh6w9HhAAQQi6uyLc08lU16vwGTHy0ZSIMLBKjmCmAcJY74
-	 sANlGwou2AGNLspTivxIOViDMQfvJrVGtJG/eZKCAz1ZfV2lJdzIlqXRNJinxUX+1y
-	 w+rDbEP/D2VLw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 24 Apr 2024 17:01:56 +0300 (MSK)
-Received: from [172.28.226.27] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 24 Apr 2024 17:01:56 +0300
-Message-ID: <712f0acd-4741-4e69-a12d-6fe659333b42@salutedevices.com>
-Date: Wed, 24 Apr 2024 17:01:55 +0300
+	s=arc-20240116; t=1713967343; c=relaxed/simple;
+	bh=Fh5MCAn/CD6jBI814D1jnEu75NoL8cNXPO4vwBfUu/A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZLuYbiBFEV7TBRCG9af+ZSANDdZuVvA9mZsKK+XJiPJya6ymYufQx1Lw2wVr/74HPzCYC4+00gRDwQiI1kWQJCzhZBJz/P6CmI1Oon/puW3X+qx/hx3s8U/6WDNn1ednxq32JMtxExZ9tJpzXKAw6yQbf0+f66Zvv3+1GYrhZkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ix6QGTVr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D00FC2BBFC;
+	Wed, 24 Apr 2024 14:02:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713967342;
+	bh=Fh5MCAn/CD6jBI814D1jnEu75NoL8cNXPO4vwBfUu/A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ix6QGTVrgjY824PwxrRwDye4DpweBSEsMd+APji9fFffzBQ6SvWkbub4lb4tHZvow
+	 aaq+F2YkHFz8roTKYMwo74WP/8DLWLDN7NCXVIcfg8l7BlB3iNSLNeFxwrUj7HtdUW
+	 kzS61XMTnckY8oorjbMd/GrgvRYDASjpA8F433a+iSyDSAQirsRjF2t0XmlrfoKLa1
+	 O7igBzDcbljb6yfFkzB3tu9Ig99ZRbelYFFaHnm0qgdjsj3bro4rPhDoizPfYDkgV0
+	 fo6/TiMUSc5AYJ9Gq0lzx2a3dmuJ2IunCVFSRRuRlTh3goYAkwaNqphMDSxDahDMGs
+	 6D2C+hpyuYwkw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+Cc: Thierry Reding <treding@nvidia.com>, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240423115749.15786-1-sheharyaar48@gmail.com>
+References: <20240423115749.15786-1-sheharyaar48@gmail.com>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: tegra20-ac97: convert to dt
+ schema
+Message-Id: <171396733863.1799261.10850188731294136998.b4-ty@kernel.org>
+Date: Wed, 24 Apr 2024 23:02:18 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] pwm: meson: Add support for Amlogic S4 PWM
-To: Jerome Brunet <jbrunet@baylibre.com>, <kelvin.zhang@amlogic.com>
-CC: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, <linux-pwm@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Junyi Zhao
-	<junyi.zhao@amlogic.com>
-References: <20240424-s4-pwm-v4-0-ee22effd40d0@amlogic.com>
- <20240424-s4-pwm-v4-1-ee22effd40d0@amlogic.com>
- <1jil07f3ps.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <1jil07f3ps.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184899 [Apr 24 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/24 08:29:00 #24954596
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Mailer: b4 0.14-dev
 
-Hello Jerome
-
-On 4/24/24 13:32, Jerome Brunet wrote:
-> 
-> On Wed 24 Apr 2024 at 18:28, Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org> wrote:
-> 
->> From: Junyi Zhao <junyi.zhao@amlogic.com>
->>
->> This patch adds support for Amlogic S4 PWM.
->>
->> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
->> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->> ---
->>   drivers/pwm/pwm-meson.c | 37 +++++++++++++++++++++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>
->> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
->> index ea96c5973488..6abc823745e4 100644
->> --- a/drivers/pwm/pwm-meson.c
->> +++ b/drivers/pwm/pwm-meson.c
->> @@ -462,6 +462,35 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->>   }
->>   
->> +static int meson_pwm_init_channels_meson_s4(struct pwm_chip *chip)
->> +{
->> +	int i, ret;
->> +	struct device *dev = pwmchip_parent(chip);
->> +	struct device_node *np = dev->of_node;
->> +	struct meson_pwm *meson = to_meson_pwm(chip);
->> +	struct meson_pwm_channel *channel;
->> +
->> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
->> +		channel = &meson->channels[i];
->> +		channel->clk = of_clk_get(np, i);
->> +		if (IS_ERR(channel->clk)) {
->> +			ret = PTR_ERR(channel->clk);
->> +			dev_err_probe(dev, ret, "Failed to get clk\n");
->> +			goto err;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +
->> +err:
->> +	while (--i >= 0) {
->> +		channel = &meson->channels[i];
->> +		clk_put(channel->clk);
-> 
-> Fine on error but leaks on module unload.
-> 
-> Same as George,
-> 
-> Add the devm variant of of_clk_get() if you must.
-> Use devm_add_action_or_reset() otherwise
-> 
-> Could please synchronize this series with George and deal with all the
-> supported SoCs ? a1, s4, t7, c3 ...
-
-If the chipmaker eagers to support s4 himself we're ok :)
-But since I sent my patch first I think it'd be fair if this
-single patch have my tag:
-Co-Developed-by: George Stark <gnstark@salutedevices.com>
-
-I'll help to review the patch too.
-
-Jerome could we split support for all mentioned socs into different series?
-e.g.
-1. Junyi finishes the driver's base patch and s4 dtsi patch
-2. I send a1 dt-bindings and a1 dtsi patches
-3. Someone later sends t7/c3 dt-bindings + dtsi
-
-The reason is to apply what we have on hand now due to meson-pwm is 
-under heavy development more than a year already.
-
-> 
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->>   static const struct meson_pwm_data pwm_meson8b_data = {
->>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
->> @@ -500,6 +529,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->>   	.channels_init = meson_pwm_init_channels_meson8b_v2,
->>   };
->>   
->> +static const struct meson_pwm_data pwm_meson_s4_data = {
->> +	.channels_init = meson_pwm_init_channels_meson_s4,
->> +};
->> +
->>   static const struct of_device_id meson_pwm_matches[] = {
->>   	{
->>   		.compatible = "amlogic,meson8-pwm-v2",
->> @@ -538,6 +571,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->>   		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->>   		.data = &pwm_g12a_ao_cd_data
->>   	},
->> +	{
->> +		.compatible = "amlogic,meson-s4-pwm",
->> +		.data = &pwm_meson_s4_data
->> +	},
->>   	{},
->>   };
->>   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+On Tue, 23 Apr 2024 17:27:47 +0530, Mohammad Shehar Yaar Tausif wrote:
+> Convert NVIDIA Tegra20 AC97 binding to DT schema.
+> Change -gpio to -gpios in schema as "gpio" suffix is deprecated.
 > 
 > 
 
--- 
-Best regards
-George
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: tegra20-ac97: convert to dt schema
+      commit: 701a22fd9ffaa409bbd45c2936870341b3ad9fdb
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
