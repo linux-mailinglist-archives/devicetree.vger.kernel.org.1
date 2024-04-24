@@ -1,93 +1,104 @@
-Return-Path: <devicetree+bounces-62471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A7468B13C7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:51:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED138B13D0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:53:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF1921F21B4E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:51:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF432B2608A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96E613AD06;
-	Wed, 24 Apr 2024 19:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BCD13B582;
+	Wed, 24 Apr 2024 19:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="db4GSOgl"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cXq6ERfA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DC81F5E6;
-	Wed, 24 Apr 2024 19:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4441848;
+	Wed, 24 Apr 2024 19:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713988307; cv=none; b=fwsRyXwm+0CH+K5uO9Z3I3teIhqmnYHhFGAVfJnvRObDQofrf2GUh3bx2134A7XCfmDSZEMpmU9RaieoAGjm33UFLX/053zYddxV2IESQqG6L2FeXh7Epmg4cS0htLKrc8kVv308X4qbqyQl4VqwxNrD/rYrraBRSwcCuVujMZQ=
+	t=1713988385; cv=none; b=OGQTYP8HEl7FYC0Wvn6attQEcqmitNb+WN69ZlcZ2Sh+MbwP1VWWUCG17o6BK/yuoMrfvGjyy2r3DPNp2tOqtkKYLihvm2DGhRv9D838yj3CC+UkXEoWLhosb6Z+NubO7XkFm6IDteuBMSPGEyrDUgsuOkRKa6bfykLqUD8dUCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713988307; c=relaxed/simple;
-	bh=jtmAwDifDGJc40Ti3DRzPkHknfQW48k+SMlypzp4lZs=;
+	s=arc-20240116; t=1713988385; c=relaxed/simple;
+	bh=GjKZEcEZNz517Hib5vIHPrJfExb6oo/SGzk4kdrUJ2Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GAE3izWFWBbHVtnhALdJA1WhZxb44GfR3RUlPq4X2KfScn/gHoR+1+UY/M3JCYUoHwm51+b3S/qwUAxKqvho+no9lOHJO+2bchiITayiPTEJeunQDyUf6iaThkBV1tkdlnFpks8pQjL7RdAEo+nesB6XMcngw3pGRjML3NXBGTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=db4GSOgl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA47BC113CD;
-	Wed, 24 Apr 2024 19:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713988307;
-	bh=jtmAwDifDGJc40Ti3DRzPkHknfQW48k+SMlypzp4lZs=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCdrfEY29TAJg2ZnLfvrcGSsjl4HrIoA9kyXt4Qos3kzXRFiNYDWI/grR/Mvwl+J2kkSlh8a60qc17cm+PSu7BCtp/kOYyzSQ1z9z2rTwKRrkc/McrS5IF1PvHmO+YtHFu8PSeEYlxclVxW639pgnith3AZmBA0WCqO38UraDIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=cXq6ERfA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBD6CC113CD;
+	Wed, 24 Apr 2024 19:53:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1713988385;
+	bh=GjKZEcEZNz517Hib5vIHPrJfExb6oo/SGzk4kdrUJ2Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=db4GSOglHvJENshh/vuBu/MLHkqgfDPrR2ydUtSVPJW1JBWLfYzHD1EI/2jFTjMFU
-	 0qKcqROUzsG5HeNOHNV0wC+nNbhxA1OjgvPLxNoER+83PNobrfSjTsfoTsXjTnbKH2
-	 Hxvc7HvrRGU6Sp/ghYnWzpcWIyOSBxBsWa64WEEVFSi08Lm9tcpfYbFdEOjuTd/FsW
-	 AWhlGaFX6Najj/9S/Lm5mhtUdQ73nsUJjp6HhavsN+3rzArL3v5KBaQHyGiwzSR7Pu
-	 LgcQHjxXucVDpuy6qa3wcDJEFVrlfIuJkzCMaM9+3ryonnulvfCNMgqky3vx+lELhP
-	 55v+0hyja4Wrw==
-Date: Wed, 24 Apr 2024 14:51:44 -0500
-From: Rob Herring <robh@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com,
-	martin.petersen@oracle.com, James.Bottomley@hansenpartnership.com,
-	ebiggers@kernel.org, linux-scsi@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
-	saravanak@google.com, willmcvicker@google.com
-Subject: Re: [PATCH v2 01/14] dt-bindings: clock: google,gs101-clock:  add
- HSI2 clock management unit
-Message-ID: <20240424195144.GA360683-robh@kernel.org>
-References: <20240423205006.1785138-1-peter.griffin@linaro.org>
- <20240423205006.1785138-2-peter.griffin@linaro.org>
+	b=cXq6ERfA4ce7lVmRFDaE/b5ubkDHXq11uWlYLVa6opZhMrQcZfRLSTyvwJWeaDbAi
+	 MI5pOHbzlf16nVefraWLp1/AzyM+6JrIK9pSZJX3V/YLTdFFnda/pjxgtRDGfnqjwX
+	 tAMXhPyCIg4o0/akMSlsZObBkNYLaOMwokHvPwSw=
+Date: Wed, 24 Apr 2024 15:53:03 -0400
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, 
+	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: (subset) [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5
+ support
+Message-ID: <20240424-calm-wolverine-of-drama-0349dc@lemur>
+References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
+ <171283699002.32012.7629247540689477794.b4-ty@kernel.org>
+ <D0QT350IJHFH.36EXE1UT9QM10@bootlin.com>
+ <ZidAefc0Ejrklopf@finisterre.sirena.org.uk>
+ <D0RF1AKWAEAE.44N64GHMV2ZY@bootlin.com>
+ <3f891794-0083-4245-bad7-518b1c48bb7c@linaro.org>
+ <D0RIXN4JG6ZA.4W4HN68M9U6I@bootlin.com>
+ <20240423-epidemic-schedule-6fa9869b3e87@spud>
+ <ZihaBGwVRpI9hV0B@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240423205006.1785138-2-peter.griffin@linaro.org>
+In-Reply-To: <ZihaBGwVRpI9hV0B@finisterre.sirena.org.uk>
 
-On Tue, Apr 23, 2024 at 09:49:53PM +0100, Peter Griffin wrote:
-> Add dt schema documentation and clock IDs for the High Speed Interface
-> 2 (HSI2) clock management unit. This CMU feeds high speed interfaces
-> such as PCIe and UFS.
+On Wed, Apr 24, 2024 at 10:01:56AM +0900, Mark Brown wrote:
+> > > Thanks for the pointer. I've created an issue over at b4 to see what
+> > > people think about this matter. Current behavior is not intuitive as a
+> > > young contributor.
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> Reviewed-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  .../bindings/clock/google,gs101-clock.yaml    | 30 ++++++++-
->  include/dt-bindings/clock/google,gs101.h      | 63 +++++++++++++++++++
->  2 files changed, 91 insertions(+), 2 deletions(-)
+> > FWIW, given I see `having a more confident comment such as
+> > "(commit not applied)".` there, having (no commit info) doesn't mean
+> > that it wasn't applied always. Sometimes I've found that due to changes
+> > in the patch b4 could not detect that it was applied and reported (no
+> > commit info).
+> 
+> Right, it can't prove a negative - if it can't find the patch it could
+> be because it wasn't sent against current code and got changed
+> sufficiently in application to cause issues.
 
-This collides with André's work adding HSI0. Perhaps combine the series 
-or even the patches and just send clocks as a series. Then it is clear 
-who should merge it.
+We can also be a bit more relaxed. For example, we can look at 
+consecutive commits and compare the subjects to see if there's a match.  
+I'll see if that's something I can add in.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+In general, though, I prefer to push people in a different direction -- 
+we really shouldn't be fixing up people's patches, because this 
+misattributes the code to the wrong author. Instead, we really should 
+either ask senders to send an updated revision, or make the changes in 
+merge commits instead.
 
-Rob
+Merge commits can be created using "b4 shazam -M", but I must admit that 
+editing the contents of the merge commit isn't really that 
+straightforward, unfortunately.
+
+-K
 
