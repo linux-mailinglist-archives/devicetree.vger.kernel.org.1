@@ -1,154 +1,127 @@
-Return-Path: <devicetree+bounces-62260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 324928B07C8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:56:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0018B0825
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 13:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AB0B1C22E7A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 10:56:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6561A2822FE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D861598F6;
-	Wed, 24 Apr 2024 10:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848F815A48B;
+	Wed, 24 Apr 2024 11:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PN2VIcZa"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="kGbm765Q";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="YJ+9zZnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262591598EA;
-	Wed, 24 Apr 2024 10:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506AE15991C
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 11:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713956201; cv=none; b=qodBm91Tfr3qZWEehP+Lwooe5U+mNZT9cmKsB1ui/f2HOMeAuU9r0iZXRijUBY0aCenBuZBQ4q7CLCDM4I93xS/gWR+AJlc0MCpQtQDS2JnvhbO2VfQqKlwD15llqhLLZLeABOFLZ3wgaZgYnpnPso8VEuVE5Vwjl3O5bVR9BK4=
+	t=1713957195; cv=none; b=SqtF8vGZruW0u+W2HStuOE1GDzbRndFfEJ86FL7IavkXqYxY0kYRtE8wDqWDY4HgNjTuAWl/e8MNJrVJRzJfkZo9xVd/DXjTAURcLqY6io5zLsK4UL+kVxD75X5W9l4B7ek0zhXpbogp36fB6cKQJx+/9RGgCk/7kcBWUzybQ/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713956201; c=relaxed/simple;
-	bh=VlCUYJjJMdo3gKgoD+v70kTIJeDoxTMF1EJ27Rbviz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mXJYjmpCRCWuapQPbFCS8XBFQZLjZHVwt0PUJYou5TWSDa/ivow5pGpjHpe4PP/Sf+c82Qx9KI33d7nzsnsaseOBS+pajFxjvV1fH3Sf36URQnqSMxtlXcnWxw6FhrPQeP14un6IP4lTZOMP6eCYOOzBIrITjsN4AD1YzqkBnxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PN2VIcZa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3999C113CE;
-	Wed, 24 Apr 2024 10:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713956201;
-	bh=VlCUYJjJMdo3gKgoD+v70kTIJeDoxTMF1EJ27Rbviz8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PN2VIcZaLKC7POnmPWKv/9Dg7rlkUALbhBAqV6Ud2rVxTNG4y7aqR2/9zw6l90Wzd
-	 B7y4YYxIjtEQD8LEHVSRwpQG6pCLsX2F2PVFa2RD4OkwUT/0zpeJqdfNk2LzjgQLSO
-	 C5/RXeNSdIvYyps+F/5mhZs2fnYKV6QidjRJKq/gkXP/9Sdu2qYBAc0jSJ7fgQt2O0
-	 xKMN4AEx7gLlg3wdzVNhLYhfSIDR7+eNBVZ3EhoXdKjg99jaiAMHxml14Be7P73I/m
-	 ZBt7bJtlDUaN29PFj+UhAI5vDel/ufQDjXvddyuPmynMrYpCo4mQOgjzITp9Vav2Sd
-	 rmt5enLCOR0WA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rzaIp-0000000035o-3MJZ;
-	Wed, 24 Apr 2024 12:56:39 +0200
-Date: Wed, 24 Apr 2024 12:56:39 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	s=arc-20240116; t=1713957195; c=relaxed/simple;
+	bh=5QtpETQHfDqy4Njsq0/QoVngfLuPqIrRsUoNKQGGB6k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Tg47r+S2NB6VQ4NtUBZ7BYvmz1CF2PkFbIxax9pMX7gMn4YOqHgFofuvev3UHM96QxTQYndGG9k0lNmBAjCm/pzbqZ1WG0mFdFMvsYnbeZnzSnY+8xIlUEct1kIb1S9bkkK4dOFKaQekM1/bvDoZOiGZlViFYTeD6Yxfi1oEszU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=kGbm765Q; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=YJ+9zZnu; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 5E60211400C2;
+	Wed, 24 Apr 2024 07:13:11 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute7.internal (MEProxy); Wed, 24 Apr 2024 07:13:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm3; t=1713957191; x=1714043591; bh=QazeUXh9vO
+	h+aFkUkwhC9G2kKZ94QlmnP+cxUtfTD0U=; b=kGbm765QzczKfKP3Zaq3ZudZuK
+	1d6WPKXSCoTybKcvRcqA+/SR9j1pXxFzrefY9qESDe/YJDUzDvooLREttRIFN0U8
+	SU4SX1vVeE74jWPk6ETPhE5dzpJDhuD0Hn5QityLOJDtei2/Slly1yobxaqbPEu0
+	sMLyMIp5i47yJaHyU8sk3Sq0w9lgThVN7Z6DRerz6hufS6snXDLY2jjZ9GIVHv3x
+	pyIZwasvAcDLtJ5WfkBQufOB1cbhYhd/8G+wsI4meMuabme+qqiJuR5Rx3wP76qm
+	6+6iM2pW8VntyC9+UBtqML5RxUqt9yKKDM45M6vSD5DXw66uLwn9zWa3ZKFQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1713957191; x=1714043591; bh=QazeUXh9vOh+aFkUkwhC9G2kKZ94
+	QlmnP+cxUtfTD0U=; b=YJ+9zZnuNLt0qvf/3snfDl+CPQJylZjUZDMIRhT+YAwC
+	s1bADO649rsrSJoLOlRf2tjdwOoJk4kTY5ZS7Etj0vtALFGVQGu0aQqnqWelxJrS
+	vFSy178ea0Qkvo2wdowo/H4jDRF6vYITd/7/YK26jQP4rZVvy0jgdietiVrrS2rF
+	3UHDjNMGWjj9mw+HrEjh6TbrO9Li3mUTNF0WN8XLZfCAuW7j6IPYqi0bM1rj7yb5
+	NjSDcdRgLDn5jWExDkqjF33yJiB1OXRbc21Ty3mwO6nQpZVO43FegsWmAqJ9R7x4
+	WsTa8gDQqEyFqB2y834LhDmWRmtDG/6dA7B6/XJPQA==
+X-ME-Sender: <xms:RukoZkPbvDWBb-aWXFdHeZEPCNGOvZYN-a54zgg9jxjuC5W2qR5iQQ>
+    <xme:RukoZq-pIRJdX7HHeHtwBGP0GCaRgheRdwUhaIfPW8Fj31KIFm8hQtiqe5G5zZr7M
+    7NChhdB8eps5PqfZw>
+X-ME-Received: <xmr:RukoZrTRfB1bLqOkvfv5dvRxZD7H6Yz_Y-ICKB0G__WLkVCQzDbiwHHMO89FNeLcCv5Irh4NvRDaFz7lxWm06VSIA-nwKuQrWiOB3_RRcR-0oTVQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudelgedgudefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
+    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
+    gvrhhnpeduvdeuudeugedtueffteevveegheehvdfhfeduudevkefggfeftdehgeethffh
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhi
+    grnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:RukoZsttYGEYlvwCO7S0Knkp5HppV-0PXmHyx5nqzzhjQu96YCFk3w>
+    <xmx:RukoZsflGpb9Bt3m5qcxIhSQMRGd0ntRoorYNkivr4xI2lI65OFEyQ>
+    <xmx:RukoZg08P_r3nokyLagjSyl5S6m-Cf-Gx-sRir3QSjorpgbAFWKvNw>
+    <xmx:RukoZg_ReXGvOnBzzssdqirWnp18yVmU6t1g4qFnMFcfypyY-aLZlQ>
+    <xmx:R-koZg1sAF3ys4vZB4a9oITzLeeN8j4zmwfkIxft2IHoIC22Kl3x1olP>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 24 Apr 2024 07:13:07 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 4/6] HID: i2c-hid: elan: fix reset suspend current leakage
-Message-ID: <ZijlZw6zm4R9ULBU@hovoldconsulting.com>
-References: <20240423134611.31979-1-johan+linaro@kernel.org>
- <20240423134611.31979-5-johan+linaro@kernel.org>
- <CAD=FV=XP8aCjwE3LfgMy4oBL4xftFg5NkgUFso__54zNp_ZWiA@mail.gmail.com>
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v3 0/4] *** SUBJECT HERE ***
+Date: Wed, 24 Apr 2024 23:09:43 +1200
+Message-ID: <20240424110947.9057-1-ryan@testtoast.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=XP8aCjwE3LfgMy4oBL4xftFg5NkgUFso__54zNp_ZWiA@mail.gmail.com>
 
-On Tue, Apr 23, 2024 at 01:37:14PM -0700, Doug Anderson wrote:
-> On Tue, Apr 23, 2024 at 6:46 AM Johan Hovold <johan+linaro@kernel.org> wrote:
+*** BLURB HERE ***
 
-> > @@ -87,12 +104,14 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
-> >         ihid_elan->ops.power_up = elan_i2c_hid_power_up;
-> >         ihid_elan->ops.power_down = elan_i2c_hid_power_down;
-> >
-> > -       /* Start out with reset asserted */
-> > -       ihid_elan->reset_gpio =
-> > -               devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
-> > +       ihid_elan->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-> > +                                                       GPIOD_ASIS);
-> 
-> I'm not a huge fan of this part of the change. It feels like the GPIO
-> state should be initialized by the probe function. Right before we
-> call i2c_hid_core_probe() we should be in the state of "powered off"
-> and the reset line should be in a consistent state. If
-> "no_reset_on_power_off" then it should be de-asserted. Else it should
-> be asserted.
+Ryan Walklin (4):
+  dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
+    device variants
+  arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+  arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+  arm64: dts: allwinner: h700: Add RG35XX-H DTS
 
-First, the reset gpio will be set before probe() returns, just not
-immediately when it is requested.
+ .../devicetree/bindings/arm/sunxi.yaml        |  15 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   3 +
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      | 347 ++++++++++++++++++
+ .../sun50i-h700-anbernic-rg35xx-h.dts         |  46 +++
+ .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
+ 5 files changed, 464 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
 
-[ Sure, your panel follower implementation may defer the actual probe of
-the touchscreen even further but I think that's a design flaw in the
-current implementation. ]
+-- 
+2.44.0
 
-Second, the device is not necessarily in the "powered off" state as the
-driver leaves the power supplies in whatever state that the boot
-firmware left them in.
-
-Not immediately asserting reset and instead leaving it in the state that
-the boot firmware left it in is also no different from what happens when
-a probe function bails out before requesting the reset line.
-
-> I think GPIOD_ASIS doesn't actually do anything useful for you, right?
-> i2c_hid_core_probe() will power on and the first thing that'll happen
-> there is that the reset line will be unconditionally asserted.
-
-It avoids asserting reset before we need to and thus also avoid the need
-to deassert it on early probe failures (e.g. if one of the regulator
-lookups fails).
-
-We also don't need to worry about timing requirements, which can all be
-handled in one place (i.e. in the power up and power down callbacks).
- 
-> Having this as "GPIOD_ASIS" makes it feel like the kernel is somehow
-> able to maintain continuity of this GPIO line from the BIOS state to
-> the kernel, but I don't think it can. I've looked at the "GPIOD_ASIS"
-> property before because I've always wanted the ability to have GPIOs
-> that could more seamlessly transition their firmware state to their
-> kernel state. I don't think the API actually allows it. The fact that
-> GPIO regulators don't support this seamless transition (even though it
-> would be an obvious feature to add) supports my theory that the API
-> doesn't currently allow it. It may be possible to make something work
-> on some implementations but I think it's not guaranteed.
-> 
-> Specifically, the docs say:
-> 
-> * GPIOD_ASIS or 0 to not initialize the GPIO at all. The direction must be set
->   later with one of the dedicated functions.
-> 
-> So that means that you can't read the pin without making it an input
-> (which might change the state if it was previously driving a value)
-> and you can't write the pin without making it an output and choosing a
-> value to set it to. Basically grabbing a pin with "asis" doesn't allow
-> you to do anything with it--it just claims it and doesn't let anyone
-> else have it.
-
-These properties may prevent it from being used by the regulator
-framework, but GPIOD_ASIS works well in the case of a reset gpio where
-we simply leave it in whatever state the firmware left it in if probe
-fails before we get to powering on the device.
-
-Johan
 
