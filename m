@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-62147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573F38B0240
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 08:40:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B92188B0244
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 08:41:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C9CB1F23AA6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 06:40:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA291C227CE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 06:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BD11581F4;
-	Wed, 24 Apr 2024 06:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A5A1586C5;
+	Wed, 24 Apr 2024 06:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="o4xwe88O"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DiOyv9zD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA3C1581F2;
-	Wed, 24 Apr 2024 06:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1531A36D;
+	Wed, 24 Apr 2024 06:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713940670; cv=none; b=foiBs1ss3fZAq03S4AQeBWOh8VO+15wfUox9iVEtHgX4LAILsgFkDspZ4Hwt4p/23Z4gQvvYgO3bYxwgztCbH2Nx1S5gHM3yW8cEc5/+3gWFNC2QogoGwJ1YwcVOq34hhps60LglwjdWTgA1an8QEB+0a4fXcAUpToqQ4Dau3Nc=
+	t=1713940733; cv=none; b=Fcn6l1Hq/k1V0R3E5xe+/k6Pin7/NCjCI0c+K2GX4vuipLV4XPin8+04sXdRmJW3kpqskkBfdF8LSe28BCNNh0VGrJKyFg2XFxUa/t9B3ztM8htRB1S9CwPnf75OfJCgnr4xzu2c4IzxN3EivJ/ZvavjXc85Fqf68CQ7E8VMZ7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713940670; c=relaxed/simple;
-	bh=JpRmySToucWzmNU3GW0RewtThBM4eo0oW5oq/VEQNzY=;
+	s=arc-20240116; t=1713940733; c=relaxed/simple;
+	bh=rC5tzq4Cf7BvDJ7FwCyol72j79dOirBMRNP7eb69s6c=;
 	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=nJm4XUZrA2nGC2/X7gD1uONoHEE7ewyThp+VbgTSzXMrlUDLjRTNaXzozl2UCjtvxfIBz4AbYR5d3O+4rhSzhA+s49oLfL9BlmLwD/JFrlZz9VaBmopyFXbIgpV9ljeCW4wmTSmASlRrADImLTF0Pe/DhwelY/uhvuvwAOUmlrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=o4xwe88O; arc=none smtp.client-ip=116.203.91.91
+	 Message-ID:Content-Type; b=MqXDdUxz0SqN9QBYyIiPwZkXwyldEgkMnPuFbt2+2MJVelpeC5L5TxMQrW7uFj4FjsaJowEr6QBCHy5Rp/atMAPghg2eaV2k1vUa2DXufD0l24KWd5qYMf/L2AZn8hx7sLvg5KzE5U5lz5UZdBdYcqbRitRiWwHEN53/wyWoiQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DiOyv9zD; arc=none smtp.client-ip=116.203.91.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
@@ -38,30 +38,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1713940659;
+	t=1713940730;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=pHwmy+JfTUfK+F37enKJhkifnhbbytVW3ZSkIuXP+d8=;
-	b=o4xwe88OAwCuuUcZUdhVy8jNxXYrWI9nHW05eYN2hbhKohgLfPxOcDX3YcPJlZvHO2Mh5a
-	/SxLddEzYDrrtA3UPSUVNIGAt/zk3cdD8KxVE47sb3sJiEjAfQ3uF1aJ0fZD5aHhhQ2iy6
-	yEekLyzQO8ED4r54r4PbCa9KQJXhzWxElna8LpJsiW3lz6ngGPUNAILRF8+PJQnnRQtTwD
-	+ubfEPX+NXLLB92iEqVh45op2a4PFIEKUNHBV6i56e1MxDfQImAakgLPyY2HlcP+3247TC
-	YF2TgMF40rX8+lBHAduvsXRRo+wZhyj3IJ1IsTSIBZZiZYWeTLHnQRdTusf6AA==
-Date: Wed, 24 Apr 2024 08:37:39 +0200
+	bh=l1Vyu63Q32QupR65EIJSgXlEhYqlOuM5tRxkdyCNnd0=;
+	b=DiOyv9zDyJ/aamVdfT4tePMfcY2KersMVVY9qgLWqzG2BYz4ldDtGia/O9Ed4yyuGg+B07
+	+3+Y4fuhKHWpnfj5vRCXecc+ToniL6+1nF/0OHnHtrW9rbTmuHKFgyr7fJaW1NE7MpADTd
+	uHjKIXmhQH6WR1nfBdBaaW/crpNTCG+SbWOV2LS4+pjUtX7IffjMUMFhuRy3X5f+jWLhE0
+	Gx9halomoRA1gQKLmMNkRG+ejrHxj1DyaALcYMrA7ttfp5fWY21qrP1WNMnAumbib2+wor
+	Mq6t2YNo5NPA1E8AqAs1kT9g5h1BuNspcwIcFjzlA8AghJsHR01ktbWVYLyOag==
+Date: Wed, 24 Apr 2024 08:38:49 +0200
 From: Dragan Simic <dsimic@manjaro.org>
 To: Rob Herring <robh@kernel.org>
-Cc: Marek Kraus <gamiee@pine64.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, didi.debian@cknow.org, robh+dt@kernel.org,
- linux-rockchip@lists.infradead.org, krzk+dt@kernel.org, heiko@sntech.de
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Correct the descriptions
- for Pine64 boards
-In-Reply-To: <171388492373.250779.3280449198658307048.robh@kernel.org>
-References: <ec124dab2b1a8776aa39177ecce34babca3a50e2.1713832790.git.dsimic@manjaro.org>
- <171388492373.250779.3280449198658307048.robh@kernel.org>
-Message-ID: <f1419f4b2003df69a3cd04d36de8000f@manjaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, samuel@sholland.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, robh+dt@kernel.org,
+ jernej.skrabec@gmail.com, wens@csie.org, Marek Kraus <gamiee@pine64.org>,
+ didi.debian@cknow.org, krzk+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Correct the descriptions for
+ Pine64 boards
+In-Reply-To: <171388501868.266715.5097987585598723774.robh@kernel.org>
+References: <d2943d9f4c99a239f86188eaf45a73972685c255.1713833436.git.dsimic@manjaro.org>
+ <171388501868.266715.5097987585598723774.robh@kernel.org>
+Message-ID: <23b4798c1e116706f6b48cdd4e05e9ef@manjaro.org>
 X-Sender: dsimic@manjaro.org
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -69,8 +70,8 @@ Content-Transfer-Encoding: 7bit
 Authentication-Results: ORIGINATING;
 	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 2024-04-23 17:09, Rob Herring wrote:
-> On Tue, 23 Apr 2024 02:43:43 +0200, Dragan Simic wrote:
+On 2024-04-23 17:10, Rob Herring wrote:
+> On Tue, 23 Apr 2024 03:00:19 +0200, Dragan Simic wrote:
 >> Correct the descriptions of a few Pine64 boards and devices, according
 >> to their official names used on the Pine64 wiki.  This ensures 
 >> consistency
@@ -81,15 +82,17 @@ On 2024-04-23 17:09, Rob Herring wrote:
 >> ---
 >> 
 >> Notes:
->>     This continues the description cleanup started with Radxa boards. 
->> [1]
+>>     This completes the correction of the descriptions of the Pine64 
+>> boards
+>>     and devices, which was started with the Pine64 boards and devices 
+>> based
+>>     on Rockchip SoCs. [1]
 >> 
 >>     [1] 
->> https://lore.kernel.org/linux-rockchip/1e148d6cd4486b31b5e7f3824cf6bccf536b74c0.1713457260.git.dsimic@manjaro.org/
+>> https://lore.kernel.org/linux-rockchip/ec124dab2b1a8776aa39177ecce34babca3a50e2.1713832790.git.dsimic@manjaro.org/
 >> 
->>  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->> 
+>>  Documentation/devicetree/bindings/arm/sunxi.yaml | 12 ++++++------
+>>  1 file changed, 6 insertions(+), 6 deletions(-)
 > 
 > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
