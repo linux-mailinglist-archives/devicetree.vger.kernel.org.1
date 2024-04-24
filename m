@@ -1,159 +1,139 @@
-Return-Path: <devicetree+bounces-62378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E068B0ED3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:42:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED818B0EE8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 17:44:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3508DB21EC4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:38:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEB9029476A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 15:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146E716D4E3;
-	Wed, 24 Apr 2024 15:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D92160794;
+	Wed, 24 Apr 2024 15:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hCAi05SN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wo9bEsve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E9416078B
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0FE15EFDB
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:43:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713972985; cv=none; b=MO+6CJchpNPvdm4Phn68jZsh3xeuQWDwLuk92CGMK2H2hrG8joZE402ZMw46BHDsf/b/ym0B+EGWgW0J8qC8ySVIgot4DIn0nWfEYx02aZ0brrYAirjQzTBGfKfvoPpOmv8i9G+HbhW2m9z06jDjDwZFNTTxXsy0FOutS1pkdBw=
+	t=1713973442; cv=none; b=nuOgu2EM9EaT2mlsm8ZyYAQ6NnGMGM17y6Bw+bmlrE0u8EsooJDsTrq+RHcBCYqIGaonLRKpccPT50G4Pe+r4NWUg76NnJ+sSwR3xF5Y041CnK9wXXfxUO4NHxWerB8D/aTEU1vAkWVYPl7uBvlO0Ycdqnw/+IbHkuxzsRL2U8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713972985; c=relaxed/simple;
-	bh=H/kqbfAVoGFvlhHgdIzd+BSw/1qG8jsiW3DecnDx3PQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYBAcqvH7kiYq1i+Fzj8uoYk8hIV/t0l4+iyKi1C8uGP4WLfEQzKAtbftM/klHbJh7ww0MBIS6oTz7W1UfvXZmy1iCxLG/Isy+RzJ2nMJCYOU2O7KO22bSAJ0VlPirSdHsmuOt4TRpE11VjnWs7ZL/OZYe4A0zxjrsh9M82+69M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=hCAi05SN; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-61ab31d63edso258217b3.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 08:36:23 -0700 (PDT)
+	s=arc-20240116; t=1713973442; c=relaxed/simple;
+	bh=Smn1thELJe6H8Hi4QwFeVCA2i/KhGRWxi/C3KjKLf4A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T1DgNT/dbx9g7O0QrnSFzvLolYXfCdOG/F+t6NlpObH7HCNdwTSNskmXXGsWxMz/n+82eJM29WbXEo2KbyZi8mz6kcF6Ar9/UxZHyVa0uQkOOofOmXbLIYP1X9FhWXneNlOUF6297aQi96W3AdGv0G6rbi63nLY8UaXBwvcZ1nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wo9bEsve; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a58772187d8so690966b.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 08:43:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713972982; x=1714577782; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UOeTFyyci3z7BUZ6gEboB6kicq7JHa28+x4pg4U/L9Q=;
-        b=hCAi05SNb+8TkDrnDyAe/wXX0NWLx6OklKVidskMgdFjS4xLcXFYnXphJtg2EvVGX4
-         u9X0Kh4oFwrnxJhh//qu/zUpiheZkopOxh7stL5laNJmOHuymr459On2lPTDIoZzT2nN
-         Q9vLczF4LkWJ9XrdPRMj4FfAgdaPkFzZK7plip3aXt/V+OL9VP26y4L9JKIrnOOKzqt3
-         hCuSXfr3hj1EejeYKkpFwspy0AX45CFJE0sUAu9lsbHplvU8O2wC8peZQjUH/m6LYrjG
-         retYszOgjeBcsq/GA+0tDxiExUppmYs57AZRJzGlhGYkuYIjoDaHWJjcZSFiJwpZMxDw
-         2UfA==
+        d=linaro.org; s=google; t=1713973438; x=1714578238; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VNhQouszyO4G6x+Wog6/QhRAtYiInd0o+cfFBd5MkXo=;
+        b=Wo9bEsvel6gVXBdrRm/0gns+ED6qsGq/tHfvU6D5JBELEi14+W6uJvYHz7wZxo2iDu
+         1rFHFOVnKd27FchUAkkOzQWESOrnFOvAf1zr9bRxdb8soAqyI7BQ4gizGDOoaNteGEPA
+         ch/n1NM9ZZ9AmEamq0S3Cu/RPfjjMOVy++dyXucakLK0sJ49NWzwRLvnq+N2P7SNpjiF
+         VvNVH31SmriJeXI1g8tJbq/pKKJmHF7BLQ86FZx3LMtqM48Cxr1B2WSmqGXXg0T+9l06
+         E9XwjCAVY1lVBS/c2lR+aEJnh7YYCCnyd1W2p7Z7nQU+JedRCEx59TpB2GOf+JCwko9a
+         hhvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713972982; x=1714577782;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UOeTFyyci3z7BUZ6gEboB6kicq7JHa28+x4pg4U/L9Q=;
-        b=BET3Dj7usDpZDa8t5oMfnbuRs1ahjA8XWjD3xQ4iNiClbqoi3sFg8Z1QEYD9EvPYGe
-         0vy127RwJZQ/XEre4F2B+r9IXJ8Zr6fJkwaqkLT5hGz1aBhwBV/5uYpU52xIxbfCYj60
-         lPcoNHWSkMnzW3CT4q6KNtx3KWMKAmFbY3SVuPmJNQlB7adaCtcgSGiZbeD0QQB0L2zU
-         eTcSmHWMZoNzHBgBpcadlOZrP6VOsmRgvVCKuHxxLi/RIdlVmDgYZoragAJYDvEenT/G
-         NO9iTC1G9Hbf8YmPFMr8W+9EG9aT6QS4jDxqH34fXO9MqxxosGyI/wPpbBlIq4tfeXzL
-         hIqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVjMML1BbE6qrMQDTtUsJzjMd4Ea6VA3v9lQG1ORXuWX12gm11VC01WoQSq09Cb/Of5P1oGmxUTKSXhd3CdhlDzmrElFzbL7ZfkFg==
-X-Gm-Message-State: AOJu0Yyu3Rkytk3I/C2ylbd9/ZkrhGNRtoEDevZe5uaXhLUh2QHFayT3
-	Vwoyp+ieMfFQ5ECdH0yeCYv2Ar7lgf+cOJaD8g63IY0lRwT+2QqkPptM/TlamY4=
-X-Google-Smtp-Source: AGHT+IGUqY1hEYLyvR7VYD34HR40H5BCTS3NDhpEtJYnVydiqbsmxy3Dkl9KuCGBuZqe3HcyqLC03w==
-X-Received: by 2002:a0d:cc12:0:b0:618:88d1:f15f with SMTP id o18-20020a0dcc12000000b0061888d1f15fmr73152ywd.0.1713972982354;
-        Wed, 24 Apr 2024 08:36:22 -0700 (PDT)
-Received: from ghost ([50.146.0.2])
-        by smtp.gmail.com with ESMTPSA id j82-20020a819255000000b0061ad72dd577sm2417745ywg.112.2024.04.24.08.36.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Apr 2024 08:36:21 -0700 (PDT)
-Date: Wed, 24 Apr 2024 11:36:19 -0400
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v3 06/17] riscv: Fix extension subset checking
-Message-ID: <Zikm80mmHFYoaAOF@ghost>
-References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
- <20240420-dev-charlie-support_thead_vector_6_9-v3-6-67cff4271d1d@rivosinc.com>
- <6c624361-a968-498b-a9fb-ea2aaec70ce8@ghiti.fr>
- <20240424-wildly-goofy-c81aac6f8cd7@spud>
- <ZikhpEgEoMX/rObu@ghost>
- <20240424-gondola-cosmic-b7a02b2a8619@spud>
+        d=1e100.net; s=20230601; t=1713973438; x=1714578238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VNhQouszyO4G6x+Wog6/QhRAtYiInd0o+cfFBd5MkXo=;
+        b=JRoAPud/wZ9yTUdJiKw/scPUJeZ+OJHInksLFKjqYu/jcd4oEYNa7whCmPa68fWfrc
+         rxkYqA+gqqb9eUnIspCeCdAssQlHjBetpORVnKwou8OHdudU3VREsXd+IxA5ZkMwAuqh
+         tq70rbJ3r06Tx2PxYjnoi7YJ6QsaM+2fe/OZPdPdqKxo0nXkM4Vk96EFfpzDPEHvZuGA
+         E8DJdP8JwgXvBLIu5EolysM6b44Lte6ZkbmYDkOQoETMQjNnvl3UKYdHrfRV67IjyOBs
+         Ok1i5py1iN5Yh/somUHAGzrIeCuVGG4+bz9MQpT+/wS7GA/66PQHydnPIMAririEu0YL
+         SEvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUS22MF0A3Kx+1wYzfIW+oadeXkcsIV8kmtXBkRQIyngdcKU06JY6bSCX63DwgtDVf8EGgcguozUf0/D1FPF3ZVx5uIkl78j/FJBQ==
+X-Gm-Message-State: AOJu0YzXVGqS+7qjJXviN+sASn0tz5aUmHoMw3geclj0rC1Adgj6CKC3
+	r1vVe5w6/8h2Qz8Vqb6rXCVfUktimE+UNhJjjHNLW7JkQuejnA5J9u2ASg7PlI4=
+X-Google-Smtp-Source: AGHT+IGbXGrpnubvU3fB+twJxorCJaNpth47KfqOPWrUQ5JuHE+TeN75cbmD+qlTh6lLqPPbiQHdkA==
+X-Received: by 2002:a17:906:a996:b0:a58:8662:1f06 with SMTP id jr22-20020a170906a99600b00a5886621f06mr2463128ejb.56.1713973437807;
+        Wed, 24 Apr 2024 08:43:57 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id i9-20020a170906090900b00a55b05c4598sm4459714ejd.133.2024.04.24.08.43.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 08:43:57 -0700 (PDT)
+Message-ID: <aad0e811-28ff-4bbc-b5fa-691701d35f01@linaro.org>
+Date: Wed, 24 Apr 2024 16:43:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240424-gondola-cosmic-b7a02b2a8619@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/10] dt-bindings: arm: qcom: Add AYN Odin 2
+To: wuxilin123@gmail.com, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Junhao Xie <bigfoot@classfun.cn>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>,
+ Molly Sophia <mollysophia379@gmail.com>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org
+References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
+ <20240424-ayn-odin2-initial-v1-9-e0aa05c991fd@gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240424-ayn-odin2-initial-v1-9-e0aa05c991fd@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 24, 2024 at 04:21:05PM +0100, Conor Dooley wrote:
-> On Wed, Apr 24, 2024 at 11:13:40AM -0400, Charlie Jenkins wrote:
-> > On Wed, Apr 24, 2024 at 03:51:54PM +0100, Conor Dooley wrote:
-> > > On Wed, Apr 24, 2024 at 04:22:02PM +0200, Alexandre Ghiti wrote:
-> > > > Hi Charlie,
-> > > > 
-> > > > On 21/04/2024 03:04, Charlie Jenkins wrote:
-> > > > > This loop is supposed to check if ext->subset_ext_ids[j] is valid, rather
-> > > > > than if ext->subset_ext_ids[i] is valid, before setting the extension
-> > > > > id ext->subset_ext_ids[j] in isainfo->isa.
-> > > > > 
-> > > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > Fixes: 0d8295ed975b ("riscv: add ISA extension parsing for scalar crypto")
-> > > > > ---
-> > > > >   arch/riscv/kernel/cpufeature.c | 2 +-
-> > > > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> > > > > index 48874aac4871..b537731cadef 100644
-> > > > > --- a/arch/riscv/kernel/cpufeature.c
-> > > > > +++ b/arch/riscv/kernel/cpufeature.c
-> > > > > @@ -609,7 +609,7 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
-> > > > >   			if (ext->subset_ext_size) {
-> > > > >   				for (int j = 0; j < ext->subset_ext_size; j++) {
-> > > > > -					if (riscv_isa_extension_check(ext->subset_ext_ids[i]))
-> > > > > +					if (riscv_isa_extension_check(ext->subset_ext_ids[j]))
-> > > > >   						set_bit(ext->subset_ext_ids[j], isainfo->isa);
-> > > > >   				}
-> > > > >   			}
-> > > > > 
-> > > > 
-> > > > I think this should go into -fixes, let's check with Palmer if he wants to
-> > > > take this patch only or if you should send the patch on its own.
-> > > 
-> > > I think splitting out this and patch 1 into a new series targeting fixes
-> > > would probably make things clearer?
-> > 
-> > Okay I can do that. I will give it a bit more time before I send this
-> > series split into two to allow time for the rest of the patches to
-> > gather comments so I avoid sending too many duplicate patches.
+On 24/04/2024 16:29, Xilin Wu via B4 Relay wrote:
+> From: Xilin Wu <wuxilin123@gmail.com>
 > 
-> Ye, I do hope to get back to this series later in the week when I have
-> time to actually read through all of the patches in detail.
+> This documents AYN Odin 2 which is a gaming handheld by AYN based on
+> the QCS8550 SoC.
 > 
-> However, you wouldn't have to resend both parts of the series - you can
-> just split out the fixes portion and send that, leaving the rest of the
-> series sitting on the list to gather comments.
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 090fc5fda9b0..8e991f2bd9d8 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -1003,6 +1003,7 @@ properties:
+>   
+>         - items:
+>             - enum:
+> +              - ayn,odin2
+>                 - qcom,qcs8550-aim300-aiot
+>             - const: qcom,qcs8550-aim300
+>             - const: qcom,qcs8550
+> 
 
-Oh cool, I will send those two patches out in their own series then.
+Doesn't apply to -next
 
-- Charlie
+Patch failed at 0009 dt-bindings: arm: qcom: Add AYN Odin 2
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+error: patch failed: Documentation/devicetree/bindings/arm/qcom.yaml:1003
+error: Documentation/devicetree/bindings/arm/qcom.yaml: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
 
 
