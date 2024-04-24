@@ -1,113 +1,152 @@
-Return-Path: <devicetree+bounces-62528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5052C8B174D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 01:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEEC98B1749
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 01:40:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E462A1F220B3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 23:40:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E0441F220B3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 23:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDCD516F28D;
-	Wed, 24 Apr 2024 23:40:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF5C16F0EF;
+	Wed, 24 Apr 2024 23:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g1dLJazu"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="mTSeKG3O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D1F16F27F
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 23:39:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC7416F0CF
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 23:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714002000; cv=none; b=rYaH6HRUpl/DZVmf/foVnVLSMzlPafhqR3a5pDeXF1Qn2npxeTCWqUiKQLOHf1MeERUNVC0pAhILnyo8Z9uOJdYura3c6NiZruPNZcCC8p4YhYybxkM8dQb0VNoWxNzgfK4w+DPug/iMzRxTraUHN9WkLT/OtAYSXiYer8Jxa/0=
+	t=1714001994; cv=none; b=fFohVc6ddvLMT1QHiiXse389LDpdtBRu/ZrhMR4aubaz2ACb+j35RFAvYjdVuIhopGzq5I3Jtz5kDy/gJ/mCGEluvhlYEz+9epfT2GFRm4pX5bxDvshKoFplTVYfAuH/vaytYeLtximhgvHjfCydzFF0FY3XWbu9nJSVP1TFPr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714002000; c=relaxed/simple;
-	bh=S333S4sIPV+E0xMd8ucx9SmBeKuTCXKxVi0OsYUitzI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DRP5E1DwcJ8JvYmBW53K7JD6gBK97fLsk8OWZvsRGaQ5OS4juO8Wl7yUsRigHCRcYPuqAt4jCUNs4GdiSaBs+PUjqJD78Rn+xM6Sok5ao9a/1jtQaXVs2Ezsz3kMqcmc5JAQtqHrMK/+ryvgpZct3utOP+afSYG9cGjiM5gXDk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g1dLJazu; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dcc6fc978ddso449296276.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 16:39:58 -0700 (PDT)
+	s=arc-20240116; t=1714001994; c=relaxed/simple;
+	bh=2O0o98ggkAQaDI7rP6itKxJY1fyhiAPS6wTogNwU5hg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=msOW+A/podwaPgKG1O8LWu7w5PNTUl+KW0GTAKsoqCIVWAvjl4U6uWWkVuOhI8jyRTWFpmyLB959Atis1olUgNQdDX75Uw7aLMaygw9rfCjb3w9wwu2zH+2SyUPN+WLd8hA4+erYRtPrcN88ysiscaHfNuvc3Tx6xEgMYG3jVkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=mTSeKG3O; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6ebc92079b5so283878a34.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 16:39:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714001998; x=1714606798; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4lbiDAQdRMQUnTwkJFNqDelP8XC5ywPFYlZpytL71Sk=;
-        b=g1dLJazu1CFtSqM0QQvvJ4p2y2NZv6pcjxhWVOlMEKcy8jKpk7uFslZJUoIgjvIP3o
-         opyqK+tv/sToA5osY3JxwmSGsGImu9fn8aKys52uSiBSO1xquqsHPCmIERFY+XhIvq2T
-         sbuAQgqEkX7x/PfcmAGXNjCT0rBpWAS8KpvcDSchr5HRXEyi+r3p9mkgztN4QaWP3T0t
-         zI2SnUfzUBk2uQMzxVvsaH3Y4adtdHP1h99SedZyqV0MX/yVwlPM4nTZcKZJ9NRp1pwR
-         D1dG+GPa98Q+5lyr8JbBOyZtwNBugoJ5aZKdFmkaA9VHkr6qxYnAyXWQomM9Gfy3MSwa
-         0+EQ==
+        d=ziepe.ca; s=google; t=1714001992; x=1714606792; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pu6etYv5ocPJpDTio+T7Fs2/aD2ssrnDfuoC/AGwC3E=;
+        b=mTSeKG3OB6ztab6ECA7dehoBN5pZIBhzN4mW8PzumBU+iO+9fA5LcuTqcSNryCkEK9
+         JZhGzJXb2QOZ2f8IUMjSxOaNDT+XhUIdVUcORKhViXkw3/QSpvk8WTSjNdgosV4r0Nbt
+         MUJCYaTM/IbpI+NfqUVCvCpZ7TuXewAPvjG4RfcB768UPa9FOjuLAxnvopEGFZCJEvu0
+         Cxk4s/PxiZqBd0C/ZfoJD7p0jkgNr5gDtrsS/wmoEJX5hgnt7oFUCk6QT96k/CqBsdg2
+         e8p34X+AwDDLoUkQo0bkoIQAkL9+P3rZf7uiGtyG3En0zPV9apxUNl4nq2gMD/Y7rR3g
+         6acA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714001998; x=1714606798;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4lbiDAQdRMQUnTwkJFNqDelP8XC5ywPFYlZpytL71Sk=;
-        b=dUWx0ELHAWkZdvjcvv6ZqtecChDEAoclvKPFpEON+PjooXmjpr0TKl+4Vq2o8XuSNJ
-         Hzm2Cc6tvCit/PskSSVQXxNAKEdUPzpOKNNkdYs4QRZAg7bIAPxFrodYWiM1pSdMZWks
-         G8q7j/e3U4bIqNJJD9sFwWVPQBnEeM9ZWDdOx7uLwvTgfaFZlagvMmpgccinBS4Fkxfj
-         5wtcDcWT2IUZgsvdUgy/wZ49TbJDxBhrBYMedtWxWQYM2FKQcMs6b05ehy1ZRj6zQZSh
-         QzCo+8na+lpoOTE72m6wMcK16641rJwnha670a9whnoZ+cA0ZjFEAfxNbo+99/oOKZmK
-         i+sg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqYjc0A54t5PcvKxq7+/opbvPtBq9DX0gtS3UmSrFEXOJeA6LxEi0pptmfk4LUmt3bJxW6YI1/h/j3EQwfISWNWmu5rG/6e1I6cg==
-X-Gm-Message-State: AOJu0YzZUg1j0j2L6XNSqYnnCUSFOpUckUFWvjn2USFUsP9Q9YWfT4vA
-	xTGvuzW7E9lJ8CYDRpFSAFHPfsy96v2smmWdQow4WzZY7N8xcgQ1u2OotNicFyU4u1iyY4WaXMH
-	UARoOJf6AvKUc7C4GgGO7aQfGfaBSzAxlxCqI1A==
-X-Google-Smtp-Source: AGHT+IFbCEKpEBJRqFVkfoarP6YfnOgjBQGtumnt+gwnMFyhoUY0mANCP/DL9e2l0oGwk5Nf7M7RID79c6RIpYBEm9M=
-X-Received: by 2002:a25:c7ca:0:b0:de5:8427:d66f with SMTP id
- w193-20020a25c7ca000000b00de58427d66fmr1166099ybe.4.1714001997820; Wed, 24
- Apr 2024 16:39:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714001992; x=1714606792;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pu6etYv5ocPJpDTio+T7Fs2/aD2ssrnDfuoC/AGwC3E=;
+        b=tZ2bCTIwxWj7VUnomWNQSYuaCr0XIYBH/Lzionw5OzSncs3UDS8i9qx20Uut+FKK9B
+         OKzzs7rniHEKsooEhyxVUx32C04cTJs+crIJnI2La5qK6StFfggkp5TESq7U2chaHqtw
+         PMdPQ4p7n4qFyHtgo78yb+hcqnJdKuq+ReCkY8BJ0OkrhFyCpEnlflUoGZR4eGbeFMlF
+         /v4WmPH7TucLTf6TACnJDYiB/2ZmuFFU6qSc8N+3545BALjmYSf8Lz2J4pyGdQ6KUwaA
+         UCTC8XcPO+VMKg4Lib1AQwc4TJPTOy5tIJI4ga1Ew6AOFSg4fxVF08ZuPknGtQW7hqKd
+         YNEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0InVc+6I9dd/31y96vuKsZrZVw9QLxzgG28Jgl2Wj/zJxekEKCbWhouKuNd3jrv3zPHoyV0alLg3wb2mpBiSFz10mLXllg707RA==
+X-Gm-Message-State: AOJu0Yy7XfxkGK/yhHPPff5EoqUlOOkJ1XuAGdXeUhUIAzAr67RkcDu8
+	35/7KvpjA5P5GZu1Iazxp1l3Wx2XN80fGYdZ68Zkd4OZ2GGTl3aia333eh5BQRQ=
+X-Google-Smtp-Source: AGHT+IFHSoQmOFvkIt4UdS9vVvm/+9LOICy267nTOZxeYgmuzEs2JusAIDrqy2AljxZbMWh+yyg/Lg==
+X-Received: by 2002:a05:6870:9602:b0:22e:bc50:3492 with SMTP id d2-20020a056870960200b0022ebc503492mr4335970oaq.47.1714001992183;
+        Wed, 24 Apr 2024 16:39:52 -0700 (PDT)
+Received: from ziepe.ca ([12.97.180.36])
+        by smtp.gmail.com with ESMTPSA id pv10-20020a0568709d8a00b0023b50a85913sm78072oab.38.2024.04.24.16.39.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Apr 2024 16:39:51 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1rzmDO-00A1fN-HT;
+	Wed, 24 Apr 2024 20:39:50 -0300
+Date: Wed, 24 Apr 2024 20:39:50 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com
+Subject: Re: [PATCH v2 7/7] iommu/riscv: Paging domain support
+Message-ID: <20240424233950.GJ231144@ziepe.ca>
+References: <cover.1713456597.git.tjeznach@rivosinc.com>
+ <301244bc3ff5da484b46d3fecc931cdad7d2806f.1713456598.git.tjeznach@rivosinc.com>
+ <20240419125627.GD223006@ziepe.ca>
+ <CAH2o1u5+XD9YN=gdMVtfkyhKoKha0UpwKgOVbCAwOQa+saPfRw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com> <20240424-ayn-odin2-initial-v1-6-e0aa05c991fd@gmail.com>
-In-Reply-To: <20240424-ayn-odin2-initial-v1-6-e0aa05c991fd@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 25 Apr 2024 02:39:47 +0300
-Message-ID: <CAA8EJppXj=DyT0hEW05mAjgzHS+H2iiJ-M=MfJPgkWfztX=V8g@mail.gmail.com>
-Subject: Re: [PATCH 06/10] arm64: dts: qcom: sm8550: Add UART15
-To: wuxilin123@gmail.com
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Junhao Xie <bigfoot@classfun.cn>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Tengfei Fan <quic_tengfan@quicinc.com>, 
-	Molly Sophia <mollysophia379@gmail.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAH2o1u5+XD9YN=gdMVtfkyhKoKha0UpwKgOVbCAwOQa+saPfRw@mail.gmail.com>
 
-On Wed, 24 Apr 2024 at 18:30, Xilin Wu via B4 Relay
-<devnull+wuxilin123.gmail.com@kernel.org> wrote:
->
-> From: Xilin Wu <wuxilin123@gmail.com>
->
-> Add uart15 node for UART bus present on sm8550 SoC.
->
-> Signed-off-by: Molly Sophia <mollysophia379@gmail.com>
-> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+On Wed, Apr 24, 2024 at 04:30:45PM -0700, Tomasz Jeznach wrote:
+> > > @@ -46,6 +46,10 @@ MODULE_LICENSE("GPL");
+> > >  #define dev_to_iommu(dev) \
+> > >       container_of((dev)->iommu->iommu_dev, struct riscv_iommu_device, iommu)
+> > >
+> > > +/* IOMMU PSCID allocation namespace. */
+> > > +static DEFINE_IDA(riscv_iommu_pscids);
+> > > +#define RISCV_IOMMU_MAX_PSCID                BIT(20)
+> > > +
+> >
+> > You may consider putting this IDA in the riscv_iommu_device() and move
+> > the pscid from the domain to the bond?
+> >
+> 
+> I've been considering containing IDA inside riscv_iommu_device at some
+> point,  but it made PCSID management more complicated.  In the follow
+> up patches it is desired for PSCID to be unique across all IOMMUs in
+> the system (within guest's GSCID), as the protection domains might
+> (and will) be shared between more than single IOMMU device.
 
+The PCSID isn't scoped under the GSCID? That doesn't sound very good,
+it means VM's can't direct issue invalidation with their local view of
+the PCSID space?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > This seems suboptimal, you probably want to copy the new design that
+> > Intel is doing where you allocate "bonds" that are already
+> > de-duplicated. Ie if I have 10 devices on the same iommu sharing the
+> > domain the above will invalidate the PSCID 10 times. It should only be
+> > done once.
+> >
+> > ie add a "bond" for the (iommu,pscid) and refcount that based on how
+> > many devices are used. Then another "bond" for the ATS stuff eventually.
+> >
+> 
+> Agree, not perfect to send duplicate invalidations.
+> This should improve with follow up patchsets introducing of SVA
+> (reusing the same, extended bond structure) and update to send IOTLB
+> range invalidations.
+> 
+> For this change I've decided to go with as simple as possible
+> implementation and over-invalidate for domains with multiple devices
+> attached. Hope this makes sense.
 
+It is fine as long as you do fix it..
 
--- 
-With best wishes
-Dmitry
+Jason
 
