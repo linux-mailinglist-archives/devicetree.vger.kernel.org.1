@@ -1,188 +1,125 @@
-Return-Path: <devicetree+bounces-62453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E347B8B1309
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:58:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F05B88B1324
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:04:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BA41287139
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 18:58:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 910D61F2829D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9F91BF40;
-	Wed, 24 Apr 2024 18:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CEF31CD23;
+	Wed, 24 Apr 2024 19:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yprv+1+e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AOqJHgg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3D522EE8;
-	Wed, 24 Apr 2024 18:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EE61D53C;
+	Wed, 24 Apr 2024 19:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713985099; cv=none; b=LtRL7/VMjNhN/sw+hTgiZ1Kkqyk8v5pupSa1ZmOqHq1kXeWgYdIiBpCqWDutSmfuKYfZfvtfuWPqp7sTe2WOXxmBwCfASfECRp1EFGwEJLJLenXgVYqkV856wTbRvj7lGeSGoCa/kb3APM/gjKLS4v5+7041CIdDuOQ8PwQOISU=
+	t=1713985449; cv=none; b=AiKpI3evK+lAmAqZL9wKc9oWIIpU/qEWPC5V8/xKodWRvJmkrF5DoRBTsMszzEutk7Wi+ngYYnXKEAlyrvVxDRaqg5N76Qt3KC6EN/ll6THS6B04tliVnjdZrAr+Gjb6frkiHS4rFi7FevN/N5mA+u+RKR4d8wUcmkusNVT1z0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713985099; c=relaxed/simple;
-	bh=HCt7b5jZVpt+S9X/iE7IN+XtRTt3TR+LfOAu0uJIZiY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JVfKRYAJQRHl+fLk8WVwbXmSf84HYBSs+FJLb0epcOUhG6O4v2bSaW+utWFV7mujjMFGDKhdvAcsTz2Xj/YM56lsMmI6koVXhNrsUk+elRAXhc5/0WX0tlo5jrjiepZw6qm+JQ2fKrjbKwdoFldd1jDbmgZIM5K8qZWInnFnVqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yprv+1+e; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-572250b7704so118310a12.2;
-        Wed, 24 Apr 2024 11:58:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713985095; x=1714589895; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DwvbZeXK2LmNo0b/liHJV6gTDtg1IGPQpDm4DyK4ylU=;
-        b=Yprv+1+e8+ujPy0aDRTmZO9DAzufwGqegg/fuXgCSsSf5zAADwVFulJ5NMtwgitUyL
-         9B+4JHOee3LgYQmx8mVRDpScREdeRsAfBu7219tz1c5clLpKBk7uZczUcdC/bBlfqy6e
-         82uIeDXCyw3q5dYF/fBq+Cn9X0YYrTrMKfXFdJskJ5oEh8PUuSPSw6jPhjVRxIdUOSkP
-         VNqQjQIZPoVvzo2X420t+q9FI1MMvMXoncSB+DNPKsQgfqHHcgaLK0cUwjbBOT5o/A7p
-         Cw21VSHEtWBw8/8/2LYVlxC8NnLhzWBTzzCrqJIMNl4MTrqLiNf4gXdv9+qfuz0sy+CV
-         8Q8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713985095; x=1714589895;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DwvbZeXK2LmNo0b/liHJV6gTDtg1IGPQpDm4DyK4ylU=;
-        b=A4G61tfoSsxsxKvbYYN5cZJWNg/rNcJllq7lleNeQpZtmcOh3KEKR3w7VMlWFgI/Px
-         sFvlkdvJPwfu+MRb64BpErXKLCMNkUSzYB0fNP9SONOc/ED40ArxW9CkK/wZbGL2zUVI
-         WyGD3GhP6E4TvgU7gO+l4R5GGKm+qrApLjYH6FPhdkxvdl9EChaDuC50pAwOYp+f0xpD
-         GMe8viogl9o/ei5GWU2cGttWE37pue+Qvakui5bJManxcOTBjrK/fPBm261NfwTs4wTQ
-         CpGIK85mBSCBIfWwzoFgeH8wPhBhIzCv9TmmW7jjr+/XRf2rilzorhvIrL8tAug3akFD
-         HBHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbCXhXlr5EfVVvjVxfO7t+WXT+5nvnD+xRm/0Grr7phvWXXhCNWYm4o25vMluhIYURjTTegdBvizEyy7SYJVQdjUzb44UD27g7ho+hIYszbxd6wMNlF56mmPL8dtjSj+MNZhAHOmvEOA==
-X-Gm-Message-State: AOJu0YxtV/azBbPUfXhqwjrh33Uw5/KecZTwxvsa84UbPMetyD8Rs7+G
-	rPSBBgaoeaamLXiWqOr2MF24pbJYo+R6qw9xfG2Ibrp59AnXYV0bDRZ8ERbs
-X-Google-Smtp-Source: AGHT+IFFeaRzMd/7Smdm00f104rcu/P7ErgzU3rDoChCfzP3EQsfV2DOJK5NtUDrizGxdpXgYZNMBQ==
-X-Received: by 2002:a50:c90a:0:b0:572:3cc4:2dcf with SMTP id o10-20020a50c90a000000b005723cc42dcfmr95098edh.14.1713985094787;
-        Wed, 24 Apr 2024 11:58:14 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ij6-20020a056402158600b005705bfeeb27sm8103284edb.66.2024.04.24.11.58.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Apr 2024 11:58:14 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH] dt-bindings: mfd: allwinner,sun6i-a31-prcm: Use hyphens in node
- names
-Date: Wed, 24 Apr 2024 20:58:13 +0200
-Message-ID: <2320577.ElGaqSPkdT@jernej-laptop>
-In-Reply-To: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
-References: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1713985449; c=relaxed/simple;
+	bh=lf3gUKAZg+5HWPL/HBuxTOwojliXLX/XwXpqq85sjDU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oDIpBLCGkSFP634GdQqI8dkZxbEce9aAANgzfcsrPwMBMV8jWelnyhSctmt2BqF0Fj01OMnm4LC2yjcXvovyYfAJzYZ5dnoZSdt5SAioOF3m9HSza4IBrwC8zyamjnZiUaWcsvG02J615TX7z006qXoa6Nw3iwMAWOKNq1drwtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AOqJHgg7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88102C113CD;
+	Wed, 24 Apr 2024 19:04:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713985448;
+	bh=lf3gUKAZg+5HWPL/HBuxTOwojliXLX/XwXpqq85sjDU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AOqJHgg7/rdvu8eCspTWBEqD70ZnfT8SNhnp/IZYYQTTarBB4oqAw/KnEO338S/4f
+	 OzZ3G/GoLvNy55uIm6S3UrKwdJEPyvOlC70Cm0tHmxoTvCNpPYMYuodz4HCgYtYzZd
+	 yPXWHDKaLmyuhUeADnLTMucGYePF9piKD2Y47rfj7e2tcDPuLP5gjWMwuawWDcQHoM
+	 FnVZSdIZEX+3DdyJoySR3+EIBTKiAGXFVoEWpdbESZuuiqkJSXSvB8pQOhtWTbxxtK
+	 aUij5Wxps3qvVBIUB+MHizJDaj2O0r/9m1RWN2Vv52tDJX0QkP77TVo+jFk2fUYwC3
+	 FukUwxLvHsYFw==
+Date: Wed, 24 Apr 2024 12:04:05 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: djakov@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+	broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
+	henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com,
+	wenst@chromium.org, amergnat@baylibre.com,
+	Dawei Chien <dawei.chien@mediatek.com>
+Subject: Re: [PATCH v5 4/7] soc: mediatek: Add MediaTek DVFS Resource
+ Collector (DVFSRC) driver
+Message-ID: <20240424190405.GA2803128@dev-arch.thelio-3990X>
+References: <20240424095416.1105639-1-angelogioacchino.delregno@collabora.com>
+ <20240424095416.1105639-5-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240424095416.1105639-5-angelogioacchino.delregno@collabora.com>
 
-Dne sreda, 24. april 2024 ob 06:55:21 GMT +2 je Krzysztof Kozlowski napisal(a):
-> Underscores should not be used in node names (dtc with W=2 warns about
-> them), so replace them with hyphens.  This should have no impact on
-> known users: Linux MFD driver does not care about children node names.
-> DTS was already adjusted in commit 0f47ef3ff1bd ("arm: dts: allwinner: drop
-> underscore in node names"), so without this change, we observe
-> dtbs_check warnings:
+Hi Angelo,
+
+On Wed, Apr 24, 2024 at 11:54:13AM +0200, AngeloGioacchino Del Regno wrote:
+> The Dynamic Voltage and Frequency Scaling Resource Collector (DVFSRC) is a
+> Hardware module used to collect all the requests from both software and the
+> various remote processors embedded into the SoC and decide about a minimum
+> operating voltage and a minimum DRAM frequency to fulfill those requests in
+> an effort to provide the best achievable performance per watt.
 > 
->   sun6i-a31s-colorfly-e708-q1.dtb: prcm@1f01400: 'ahb0-clk', 'apb0-clk', 'apb0-gates-clk', 'apb0-rst', 'ar100-clk', 'ir-clk' do not match any of the regexes: '^.*_(clk|rst)$', 'pinctrl-[0-9]+'
+> This hardware IP is capable of transparently performing direct register R/W
+> on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Closes: https://lore.kernel.org/all/CAL_JsqJfT-jui5P56CO4Fr37kr5iNN8dpxt8ecKeFmdVGnRYbA@mail.gmail.com/
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-> ---
->  .../bindings/mfd/allwinner,sun6i-a31-prcm.yaml     | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
+> This driver includes support for MT8183, MT8192 and MT8195.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml b/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml
-> index 8789e3639ff7..ca0e9f1f2354 100644
-> --- a/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/allwinner,sun6i-a31-prcm.yaml
-> @@ -20,7 +20,7 @@ properties:
->      maxItems: 1
->  
->  patternProperties:
-> -  "^.*_(clk|rst)$":
-> +  "^.*-(clk|rst)$":
->      type: object
->      unevaluatedProperties: false
->  
-> @@ -171,7 +171,7 @@ examples:
->          compatible = "allwinner,sun6i-a31-prcm";
->          reg = <0x01f01400 0x200>;
->  
-> -        ar100: ar100_clk {
-> +        ar100: ar100-clk {
->              compatible = "allwinner,sun6i-a31-ar100-clk";
->              #clock-cells = <0>;
->              clocks = <&rtc 0>, <&osc24M>,
-> @@ -180,7 +180,7 @@ examples:
->              clock-output-names = "ar100";
->          };
->  
-> -        ahb0: ahb0_clk {
-> +        ahb0: ahb0-clk {
->              compatible = "fixed-factor-clock";
->              #clock-cells = <0>;
->              clock-div = <1>;
-> @@ -189,14 +189,14 @@ examples:
->              clock-output-names = "ahb0";
->          };
->  
-> -        apb0: apb0_clk {
-> +        apb0: apb0-clk {
->              compatible = "allwinner,sun6i-a31-apb0-clk";
->              #clock-cells = <0>;
->              clocks = <&ahb0>;
->              clock-output-names = "apb0";
->          };
->  
-> -        apb0_gates: apb0_gates_clk {
-> +        apb0_gates: apb0-gates-clk {
->              compatible = "allwinner,sun6i-a31-apb0-gates-clk";
->              #clock-cells = <1>;
->              clocks = <&apb0>;
-> @@ -206,14 +206,14 @@ examples:
->                                   "apb0_i2c";
->          };
->  
-> -        ir_clk: ir_clk {
-> +        ir_clk: ir-clk {
->              #clock-cells = <0>;
->              compatible = "allwinner,sun4i-a10-mod0-clk";
->              clocks = <&rtc 0>, <&osc24M>;
->              clock-output-names = "ir";
->          };
->  
-> -        apb0_rst: apb0_rst {
-> +        apb0_rst: apb0-rst {
->              compatible = "allwinner,sun6i-a31-clock-reset";
->              #reset-cells = <1>;
->          };
-> 
+> Co-Developed-by: Dawei Chien <dawei.chien@mediatek.com>
+> [Angelo: Partial refactoring and cleanups]
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+...
+>  drivers/soc/mediatek/mtk-dvfsrc.c        | 551 +++++++++++++++++++++++
+...
+> +#define KBPS_TO_MBPS(x)			((x) / 1000)
+...
+> +static void __dvfsrc_set_dram_bw_v1(struct mtk_dvfsrc *dvfsrc, u32 reg,
+> +				    u16 max_bw, u16 min_bw, u64 bw)
+> +{
+> +	u32 new_bw = (u32)div_u64(KBPS_TO_MBPS(bw), 100);
+> +
+> +	/* If bw constraints (in mbps) are defined make sure to respect them */
+> +	if (max_bw)
+> +		new_bw = min(new_bw, max_bw);
+> +	if (min_bw && new_bw > 0)
+> +		new_bw = max(new_bw, min_bw);
+> +
+> +	dvfsrc_writel(dvfsrc, reg, new_bw);
+> +}
 
+Using KBPS_TO_MBPS here results in
 
+  ERROR: modpost: "__aeabi_uldivmod" [drivers/soc/mediatek/mtk-dvfsrc.ko] undefined!
 
+when building ARCH=arm allmodconfig with clang. I did not check to see
+if this is visible with GCC but if it is not, it is only because GCC
+implements certain transformations for constant division that clang may
+or may not have implemented (there was some work on getting all
+transformations that GCC has supported in clang as well but I do not
+think was ever completed). Perhaps KBPS_TO_MBPS() should be dropped and
+the new_bw assignement turned into
 
+  u32 new_bw = (u32)div_u64(bw, 100 * 1000); /* Multiply divisor by 1000 to convert bw from Kbps to Mbps */
+
+or something like that.
+
+Cheers,
+Nathan
 
