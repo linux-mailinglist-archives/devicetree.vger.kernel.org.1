@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-62170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 270B08B02D0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:03:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5DCD8B02E1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D87FB2834AF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:03:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D0471F2363C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:08:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314C0157489;
-	Wed, 24 Apr 2024 07:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B532157491;
+	Wed, 24 Apr 2024 07:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6sjQLiN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="JUGgeN2e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F371315442D;
-	Wed, 24 Apr 2024 07:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B3A1426F;
+	Wed, 24 Apr 2024 07:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713942215; cv=none; b=WE9IkW5M+wI5BZDrUCJl/7VhH2olLQZfeMvJBY7RS1SwLSQicd5HlZhE7chgVeaG3vKhdod+ZN4hZTnEzduLY8QyrmTOm4NvKZnNPAX1TdZ3q7Jjcw6T6GFOp6Fxo1sQmhM63T156BUjuC1xfqX+HFzLldVNWeSkKw8C9NFnmYI=
+	t=1713942516; cv=none; b=H7Jj4yojL7VbW7o7uMxlhCC5jDkU3K1q6o4zOtaw94Uy1Abx6Oj/7OgrBpj4AzDdpBJ2S+5HOqEk+prVthPVBG+8bdoyo8iC5ZgJ1AOQetkBm0ej/CgZFgUJGBRAY4JODqV421Xb5nd4HiRmcOM+x5vOOpZSDoUZ0rFtSlfSBaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713942215; c=relaxed/simple;
-	bh=VdK8Fuzd/eYU2FHWOzvzIXTwl7D2F6yWLkUOsvGwFSQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UV7JZHg5ut2mVfvTMjgyoAWjZEdgr+n6d6i+zY/2aZrC+/A3ipVYgsHEN6usM96qXZu4WApUqqSn1deJacWlStCOphkRY22UlqVlXPLBI2Bkhf+aZFq1Wu5Tc2ulJNT60LcFR+ZbGTtOqPXJtL2CmLyU9hEzy/x0QL0OgZzA5Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6sjQLiN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F015C113CE;
-	Wed, 24 Apr 2024 07:03:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713942214;
-	bh=VdK8Fuzd/eYU2FHWOzvzIXTwl7D2F6yWLkUOsvGwFSQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H6sjQLiNYE34dpjw/kyqceO8MU+Yrdzy9ZYgThdr0DNfKUhAeF4i7SBiEb6LjlFfd
-	 AN3AMukrTFLph/AQsL1Dk3xSMHoggcbH32/UZP0lxpj/X6J4morHHyPIEM2MVnH1N0
-	 s1HQ0jWJAyeQW3qHeXxaVbMnBZLwvtZ3rrAad+1NWmykk6aIXqudZ9jqTShb/PZX0g
-	 U5jPs12w39/la+LQ8uiNcVvFZVrU3B3/4v7rbgUUT85CQ609i1I1tsLO/CI7cF2liL
-	 pWPyCmBSARuPchROm2eKsw00kZgDn9DrDJyyC5XljF3xiioQsLbRAJjZDFdgm/+wFP
-	 4gUHLLssdHlIg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rzWfE-0000000009x-3KM7;
-	Wed, 24 Apr 2024 09:03:32 +0200
-Date: Wed, 24 Apr 2024 09:03:32 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: HID: i2c-hid: elan: add Elan eKTH5015M
-Message-ID: <ZiiuxI3GfJQIjxAG@hovoldconsulting.com>
-References: <20240423134611.31979-1-johan+linaro@kernel.org>
- <20240423134611.31979-3-johan+linaro@kernel.org>
- <1dc47644-56c9-4fdc-80cf-756cf4cea54c@linaro.org>
+	s=arc-20240116; t=1713942516; c=relaxed/simple;
+	bh=kV6bt9MVCBDrWZ2MIsEdFT+u/Y+Kdv74iX/cKWP5UzY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PQormqZd3Tv5sVH25nlrWtjLkOexyqRFAo8y00NbCDIDirFX0aH4WDm2M2Cc7INKdH0/29VysAOQQzbAJqLm+xzglnQLi5fYZxZjLjXHmgeDJk8RF4eUGZRNqRj+I7XyLSSpmvMliXjAX2yNFfUZrIa761h8Gw2sEb1x7HCRu6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=JUGgeN2e; arc=none smtp.client-ip=130.133.4.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Vyxos/vEvitTxZQEE9q6g2NbgtilZPAvA7YmJTUsvKI=; t=1713942513; x=1714547313; 
+	b=JUGgeN2eSv2WOqLRmjr/SbhnN7Juz+uUqhXtNZDXwlK9cfUY/TIqTBjLfzLwfQSGo3e7zkod1js
+	Cz1mRiN75sZASqAipEB+Wk6PMPmVnHEpp0Gb7/GdfN2E/QdnwZczX7JxsKRlLpPgv8HdKPQa10ZGN
+	EaN41mbpI5L42BX32rUMC/lU2iRh7+YEmvRjxm9OIxJKNeXs1ylxBQ/Wtut8kTPmMNAMlFa2KkBMX
+	elJ6AYQvP6VNl2m/JKWmBjYnc+0ZsfVZNOFKlBArPsnXwmkvGv+pZIVOU7LY56aPXz1mC9ANz3DVS
+	vuS8ahvo7sEVqvRcNGiWUMIdT+Y0pu+ue+KA==;
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+          by outpost.zedat.fu-berlin.de (Exim 4.97)
+          with esmtps (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@zedat.fu-berlin.de>)
+          id 1rzWjx-00000002tFP-3XeK; Wed, 24 Apr 2024 09:08:25 +0200
+Received: from [80.95.105.245] (helo=[172.16.2.143])
+          by inpost2.zedat.fu-berlin.de (Exim 4.97)
+          with esmtpsa (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@physik.fu-berlin.de>)
+          id 1rzWjx-000000018gM-2bLz; Wed, 24 Apr 2024 09:08:25 +0200
+Message-ID: <dc7797641f9b9a2e5581ac8396ac75260b691e6c.camel@physik.fu-berlin.de>
+Subject: Re: [PATCH] sh: j2: drop incorrect SPI controller max frequency
+ property
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+  Conor Dooley <conor+dt@kernel.org>, Yoshinori Sato
+ <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, 
+ devicetree@vger.kernel.org, linux-sh@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Cc: Kousik Sanagavarapu <five231003@gmail.com>
+Date: Wed, 24 Apr 2024 09:08:24 +0200
+In-Reply-To: <171394121882.41568.17609347008268237958.b4-ty@linaro.org>
+References: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
+	 <171394121882.41568.17609347008268237958.b4-ty@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1dc47644-56c9-4fdc-80cf-756cf4cea54c@linaro.org>
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-ZEDAT-Hint: PO
 
-On Tue, Apr 23, 2024 at 06:24:39PM +0200, Krzysztof Kozlowski wrote:
-> On 23/04/2024 15:46, Johan Hovold wrote:
- 
-> >  properties:
-> >    compatible:
-> > -    items:
-> > -      - const: elan,ekth6915
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - elan,ekth5015m
-> > +          - const: elan,ekth6915
-> > +      - items:
-> 
-> Don't re-add the items for this entry. Just const.
+On Wed, 2024-04-24 at 08:48 +0200, Krzysztof Kozlowski wrote:
+> On Fri, 22 Mar 2024 07:42:21 +0100, Krzysztof Kozlowski wrote:
+> > The J2 SPI controller bindings never allowed spi-max-frequency property
+> > in the controller node.  Neither old spi-bus.txt bindings, nor new DT
+> > schema allows it.  Linux driver does not parse that property from
+> > controller node, thus drop it from DTS as incorrect hardware
+> > description.  The SPI child device has already the same property with
+> > the same value, so functionality should not be affected.
+> >=20
+> > [...]
+>=20
+> Month passed, no replies from maintainers about picking it up. Dunno, loo=
+ks
+> abandoned, so let me grab this. If anyone else wants to pick it up, let m=
+e
+> know.
 
-Sure. But note that the example schema uses 'items' like this (e.g. for
-'compatible' and 'clock-names'):
+I'll pick it up this weekend.
 
-	https://docs.kernel.org/devicetree/bindings/writing-schema.html#annotated-example-schema
+Sorry, I have been quite busy the past weeks with my dayjob.
 
-Johan
+Adrian
+
+--=20
+ .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
 
