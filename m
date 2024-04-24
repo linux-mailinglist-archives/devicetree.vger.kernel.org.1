@@ -1,125 +1,134 @@
-Return-Path: <devicetree+bounces-62454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05B88B1324
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:04:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01FFB8B1336
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 910D61F2829D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:04:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3E6E282363
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CEF31CD23;
-	Wed, 24 Apr 2024 19:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531D422EE8;
+	Wed, 24 Apr 2024 19:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AOqJHgg7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="zF0wSj5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EE61D53C;
-	Wed, 24 Apr 2024 19:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42AE1DDF4;
+	Wed, 24 Apr 2024 19:06:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713985449; cv=none; b=AiKpI3evK+lAmAqZL9wKc9oWIIpU/qEWPC5V8/xKodWRvJmkrF5DoRBTsMszzEutk7Wi+ngYYnXKEAlyrvVxDRaqg5N76Qt3KC6EN/ll6THS6B04tliVnjdZrAr+Gjb6frkiHS4rFi7FevN/N5mA+u+RKR4d8wUcmkusNVT1z0Q=
+	t=1713985599; cv=none; b=YftVP/lRm1HrPoYvv1rmroDOl1dAHeKGFvVUr3lMIG9XLc0DO6NhmDtf0O/dKsFaetJct1mHLcfOcQ2ECsVpgwK3p1WwTZjfWorkOhYB++XWzdjtwsX0Dmpyk89BlpVw2pcOjoJb8O67kjUjzplYewYAgN+ldM4DQQtde7aMP5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713985449; c=relaxed/simple;
-	bh=lf3gUKAZg+5HWPL/HBuxTOwojliXLX/XwXpqq85sjDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oDIpBLCGkSFP634GdQqI8dkZxbEce9aAANgzfcsrPwMBMV8jWelnyhSctmt2BqF0Fj01OMnm4LC2yjcXvovyYfAJzYZ5dnoZSdt5SAioOF3m9HSza4IBrwC8zyamjnZiUaWcsvG02J615TX7z006qXoa6Nw3iwMAWOKNq1drwtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AOqJHgg7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88102C113CD;
-	Wed, 24 Apr 2024 19:04:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713985448;
-	bh=lf3gUKAZg+5HWPL/HBuxTOwojliXLX/XwXpqq85sjDU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AOqJHgg7/rdvu8eCspTWBEqD70ZnfT8SNhnp/IZYYQTTarBB4oqAw/KnEO338S/4f
-	 OzZ3G/GoLvNy55uIm6S3UrKwdJEPyvOlC70Cm0tHmxoTvCNpPYMYuodz4HCgYtYzZd
-	 yPXWHDKaLmyuhUeADnLTMucGYePF9piKD2Y47rfj7e2tcDPuLP5gjWMwuawWDcQHoM
-	 FnVZSdIZEX+3DdyJoySR3+EIBTKiAGXFVoEWpdbESZuuiqkJSXSvB8pQOhtWTbxxtK
-	 aUij5Wxps3qvVBIUB+MHizJDaj2O0r/9m1RWN2Vv52tDJX0QkP77TVo+jFk2fUYwC3
-	 FukUwxLvHsYFw==
-Date: Wed, 24 Apr 2024 12:04:05 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: djakov@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
-	henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com,
-	Dawei Chien <dawei.chien@mediatek.com>
-Subject: Re: [PATCH v5 4/7] soc: mediatek: Add MediaTek DVFS Resource
- Collector (DVFSRC) driver
-Message-ID: <20240424190405.GA2803128@dev-arch.thelio-3990X>
-References: <20240424095416.1105639-1-angelogioacchino.delregno@collabora.com>
- <20240424095416.1105639-5-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713985599; c=relaxed/simple;
+	bh=WYoh90sRIRI9un9UAfYGHEtVzQuEF9n+z1X1OknWuN4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IX3i1e5Xzs8gkmJohRtvKyk3QupUR9QiVKU8b2reacBWA2/7uo/5CDn04S0U+CThY5Uvl1KWI+Dok5A3ovBUkjhJCKXJrGl5omynbomCenCMKojtBvhp6w4yOdrD/AgZK8gY86sa1JHRuy8FfhGsC7nf8LkX7fo0AGY0eKwfSaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=zF0wSj5k; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43OJ6DGk004439;
+	Wed, 24 Apr 2024 14:06:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713985573;
+	bh=x032eyrn6hQaOAO3LEFL1lvrOVjn5YoaEkDcNs3WXGA=;
+	h=From:To:CC:Subject:Date;
+	b=zF0wSj5k2gqtemLwsYM2rMIDDm3JyZ3SPrvzrvFui9v3xLy83ZrdRgaZoX1SM8qPk
+	 RKVpfFPStKxdB57ULywBkGhv3If8dEJqV0R6BBWnI6Xz98VIMFPo6O9ISGIZlrtrSW
+	 LhOM8qB2L2X7/bm+1fCSHVL32ntlGlvL5A9VmG1s=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43OJ6Dsr017950
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 24 Apr 2024 14:06:13 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
+ Apr 2024 14:06:13 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 24 Apr 2024 14:06:13 -0500
+Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [10.219.51.241])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43OJ6DqN067070;
+	Wed, 24 Apr 2024 14:06:13 -0500
+From: Andrew Davis <afd@ti.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth
+ Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hari Nagalla
+	<hnagalla@ti.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH v8 0/4] TI K3 M4F support on AM62 SoCs
+Date: Wed, 24 Apr 2024 14:06:08 -0500
+Message-ID: <20240424190612.17349-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240424095416.1105639-5-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Angelo,
+Hello all,
 
-On Wed, Apr 24, 2024 at 11:54:13AM +0200, AngeloGioacchino Del Regno wrote:
-> The Dynamic Voltage and Frequency Scaling Resource Collector (DVFSRC) is a
-> Hardware module used to collect all the requests from both software and the
-> various remote processors embedded into the SoC and decide about a minimum
-> operating voltage and a minimum DRAM frequency to fulfill those requests in
-> an effort to provide the best achievable performance per watt.
-> 
-> This hardware IP is capable of transparently performing direct register R/W
-> on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
-> 
-> This driver includes support for MT8183, MT8192 and MT8195.
-> 
-> Co-Developed-by: Dawei Chien <dawei.chien@mediatek.com>
-> [Angelo: Partial refactoring and cleanups]
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-...
->  drivers/soc/mediatek/mtk-dvfsrc.c        | 551 +++++++++++++++++++++++
-...
-> +#define KBPS_TO_MBPS(x)			((x) / 1000)
-...
-> +static void __dvfsrc_set_dram_bw_v1(struct mtk_dvfsrc *dvfsrc, u32 reg,
-> +				    u16 max_bw, u16 min_bw, u64 bw)
-> +{
-> +	u32 new_bw = (u32)div_u64(KBPS_TO_MBPS(bw), 100);
-> +
-> +	/* If bw constraints (in mbps) are defined make sure to respect them */
-> +	if (max_bw)
-> +		new_bw = min(new_bw, max_bw);
-> +	if (min_bw && new_bw > 0)
-> +		new_bw = max(new_bw, min_bw);
-> +
-> +	dvfsrc_writel(dvfsrc, reg, new_bw);
-> +}
+This is the continuation of the M4F RProc support series from here[0].
+I'm helping out with the upstream task for Hari and so this version(v8)
+is a little different than the previous(v7) postings[0]. Most notable
+change I've introduced being the patches factoring out common support
+from the current K3 R5 and DSP drivers have been dropped. I'd like
+to do that re-factor *after* getting this driver in shape, that way
+we have 3 similar drivers to factor out from vs trying to make those
+changes in parallel with the series adding M4 support.
 
-Using KBPS_TO_MBPS here results in
+Anyway, details on our M4F subsystem can be found the
+the AM62 TRM in the section on the same:
 
-  ERROR: modpost: "__aeabi_uldivmod" [drivers/soc/mediatek/mtk-dvfsrc.ko] undefined!
+AM62x Technical Reference Manual (SPRUIV7A – MAY 2022)
+https://www.ti.com/lit/pdf/SPRUIV7A
 
-when building ARCH=arm allmodconfig with clang. I did not check to see
-if this is visible with GCC but if it is not, it is only because GCC
-implements certain transformations for constant division that clang may
-or may not have implemented (there was some work on getting all
-transformations that GCC has supported in clang as well but I do not
-think was ever completed). Perhaps KBPS_TO_MBPS() should be dropped and
-the new_bw assignement turned into
+Thanks,
+Andrew
 
-  u32 new_bw = (u32)div_u64(bw, 100 * 1000); /* Multiply divisor by 1000 to convert bw from Kbps to Mbps */
+[0] https://lore.kernel.org/linux-arm-kernel/20240202175538.1705-5-hnagalla@ti.com/T/
 
-or something like that.
+Hari Nagalla (3):
+  dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+  arm64: defconfig: Enable TI K3 M4 remoteproc driver
+  arm64: dts: ti: k3-am62: Add M4F remoteproc node
 
-Cheers,
-Nathan
+Martyn Welch (1):
+  remoteproc: k3-m4: Add a remoteproc driver for M4F subsystem
+
+ .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 126 +++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       |  12 +
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  18 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/remoteproc/Kconfig                    |  13 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/ti_k3_m4_remoteproc.c      | 785 ++++++++++++++++++
+ 7 files changed, 956 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_m4_remoteproc.c
+
+-- 
+2.39.2
+
 
