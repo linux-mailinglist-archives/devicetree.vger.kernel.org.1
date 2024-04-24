@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-62508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5D58B15FE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:15:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29BF8B162B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E7F282D84
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:15:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 639C6281D65
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326E11607A2;
-	Wed, 24 Apr 2024 22:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6410B16C856;
+	Wed, 24 Apr 2024 22:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="QrLaSbT8"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Tc0XUlQ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6850B1607A7
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D1113A40F
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713996950; cv=none; b=giMrFsqBwQYRhPcg4M5VbFBpPH632opY5In90nT4OUIKeSu8Nn40oAuAEPY01sdFraNmEcW9p7DzXOupIxnKZXU+/C6wosD7auXI01e9nXKxoiNZVrx9WrJ7Zo1rHl+MfX++gOQjeD1ccvrF5QyHjevQ1HivjuWAqtyXwPlgQlA=
+	t=1713997696; cv=none; b=ONY7wVRx5BbuHFxc1abiZYMxS+bG86Aao3CGuNS8kW8Da+xzNsOYLQ4zPPlN/n6Yza6L6hdIASOCrINxXDXx4m9btJ8i7gc2A7ouhyJkN1hrM3LyVeif6X7/ftRxCWqtJxjn73u0IsRL8G60lWOuVmUgZdJIkLyCpXk4dZMzI0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713996950; c=relaxed/simple;
-	bh=BTzlFaaUWyBZ/0avVLQeurEPKx5+Gs28mKWdbs+QSVA=;
+	s=arc-20240116; t=1713997696; c=relaxed/simple;
+	bh=HDw8GF0DFOUJjF67ppt5NlR35N3FU7s6J0Xu9TDmfZc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tpSP38LuX3u/YmPJNWEQJ6F68uWboz0N9KQbPC88rZW9yznCnh8Q/nWQzEArEigeyqj+Kj6vii0i4VARYHX0n0v0PGAcA5ows7WYXZie9iabb0DmaplSNkDtCuMjgECLTK/jVCD/P4K2O8v9LzdR1EsmBAgbRoC5GcXGm8jr1DQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=QrLaSbT8; arc=none smtp.client-ip=209.85.128.48
+	 To:Cc:Content-Type; b=svXigVerWwjtV4UJOS+YQ/oMDPXD7a7F3wX+5gtk+R93jkR7z8inVosvySJixDJQXfmfX47Xaoihqf2rOvbBrvV4QXhWfvgmLx1hc0maQFnbR6Ftast1F8NA2HN7nS9wOPpKopm8zmQIrHI5uvn9C1+Th3ZDyD1c7HalZZH+s/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Tc0XUlQ9; arc=none smtp.client-ip=209.85.160.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41b39d38cf6so1679625e9.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:15:48 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-436ed871225so56711cf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:28:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1713996946; x=1714601746; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1713997694; x=1714602494; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9PwX26yDrbphgPlomUbRviwGBYrIb66VEMHKXPwN1t8=;
-        b=QrLaSbT8hi2hSaeSsk8f45Mqln3omSoq7Gb1Wxe4TrOA+WLE1vFyy+jS6/osf3LxOJ
-         1jP30i59pwj1VpxqLWOXbP2W7OUeUbaxYYxyZKhb0DZQhFeivkFMAkoZD9zdH54DW0rm
-         DBVQ94I1EsTcxOPScku/vKaqgblRqSuW0nfoTuV+BqFZzbrGH5Rx1T9urTEou5jgZCbP
-         Y2gxM9IkdFhlAzZUiPlm7SFzKsFi6k75djKMzAjjSeI8WrZjZRYapYmQ1U+/aDp1xdxx
-         HLj71v62pHYo1Odd2Du3a7R6kBWOVP+rKI21wq6Ojc2qtmGdGu7nJLFojPrgTary+cf2
-         gH2A==
+        bh=IJLLyGyNYSIJ2mqOOEmdvcNKVMG9G7qW3Ws/lvIO5iY=;
+        b=Tc0XUlQ9kupfzVTaPHAMOUINprCbPAt7tD5I0buGc2/yEDz+1sF33W6kFC+2D9o4kK
+         TajjSiC1VdEiCd1/iv1yjaa1u+7Qg/eK7ck87O7yfjf5wqAoFbZiw6Y3QTp0mrRBylOn
+         ghr+4VkFyC2oV7xrg5AU87IMXhrFZPr/YTOcuaX/82zEH68hvtvd2NkrADU8qw2vqqXy
+         8/cM7h6YLaM9/5qbS4Xfp16itFGJ+OIxuDttFXRBTkUnt2c3RL/WHTuuMCEpNWnQvbhD
+         KMSwBY0oPPi1mpWYTV4SLHXR+s6XnMLnISBqhhfxkp+mh8L2mTNNAQAxV+39cmix7Mey
+         F9sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713996946; x=1714601746;
+        d=1e100.net; s=20230601; t=1713997694; x=1714602494;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9PwX26yDrbphgPlomUbRviwGBYrIb66VEMHKXPwN1t8=;
-        b=vFmBrDKDawkpuFD7vQUMrmyCboQEPzOnJh2bYZaoSViOdZbxxKSFAFOYu9PQY8PiFe
-         /NjGyQd6e65BoO7ihN7732y8K4yV+CE90uquBMll552S1P8MggoBhmhd+j4jn4lCl68t
-         EhvNRzMo4r6uSivo84x++mvKuyfH1jt5kL0tV9ZJupTTtk9eod8tfL5z4lX5mPplVZKM
-         U+dT772FRres6EXs1RYyXajGYAiH41QyIHJMprmkxZKrabiwENiwkTAjY7rA2qmWA/u8
-         etnCy9Re+BB8/fJhMrwhVm44TGxZa+WF1eCLxXxgA41A5fC48P8ULVHHohTirbBzS1jo
-         4AGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFt0yXhmlslQ8T8fD8gimMbu3oreErM96PNdwYYnntXCnEdx+fLFGYhbPC/wz/EhStXrMPgGd4mr4MlKAK2L3sdZxmnV8PdHBOag==
-X-Gm-Message-State: AOJu0YwfmCm83tMCvynrZ2YU+wBUBnsgTeKkm63LkxEwTB2ZuYHIHtfW
-	2xkFQLU+Iyd/A1l6UmM0Q+vIvde5ihfWdyAd323+WfHC8mLAej3dT75I73g2mnpkC/S7MaQMV2f
-	P81Fc0sVY3K9vxQQH4FFh+0lY/D/XNVJbVTOi
-X-Google-Smtp-Source: AGHT+IHkboif/00IgRcoNKYbKyjHQwpzFRhV06M+te63W8KYhcpbAeVE+PqnNH2rpK8rFGBlds+W+jojcHREsdyxFyE=
-X-Received: by 2002:a05:600c:5247:b0:414:273:67d4 with SMTP id
- fc7-20020a05600c524700b00414027367d4mr2632403wmb.30.1713996946437; Wed, 24
- Apr 2024 15:15:46 -0700 (PDT)
+        bh=IJLLyGyNYSIJ2mqOOEmdvcNKVMG9G7qW3Ws/lvIO5iY=;
+        b=RKdaATOAkMYEMTHYdiZWGVG4vEpP49QgvOtXt27KvXxPeXUirdUkcN9b3f3By6Z7sL
+         DSZVvktHytSZfscX6LR38groe9RXXRPUQrZkZxZ6ctiSSfUUN1vkHFjm2Q6NwbTulko8
+         EN92oVgrdGdAFLm8cvNwMhi5qJxGJBZcKorDiXowFxJtEkB+gOsMa44ZYgNHrmpEX86d
+         Vsnx/tP6YMiHDAYupnWK63DALKkYJdPJeH0Xd36Wxv4vkVg4zFjiE5ohtCgUVSwc6NLj
+         qrPQG8jr/GN35MDoMt251QHTezswisM7p+/62qZEpV42G73XgXQhusn1FBNklD0DKtbB
+         mvgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2QzJ61HoAHkHtMsE7qwQfTpB6/mqsJSNuXIFPjY+TyvoELOSUuGO5TqrUsdb/gcC67vOggDM7Cj1QyxsLJP3qlljJiGrNCeGpiw==
+X-Gm-Message-State: AOJu0YwD9F1rQtxOTyp9jfDM1L44HoRGINZWiforsltaOsbjBaQX5KpA
+	MJ77lAn5w4qI0ywPGMVdXHj7WXlbxoBZLZu9P7T0KFw8bEVf2EXxo8+csJB40l5BfJUFj3mKAcn
+	jYA2Pr5LTnSE+Hf20DflJXpegXAABA+iZ+uwP
+X-Google-Smtp-Source: AGHT+IHd7tmiOysDGaUNRDpOFNHo8FgH+ESPpffL4dbRJeqnASsPciIA15vaqfOd1oBkupDoEvg5mHMF7XcWnyQe91o=
+X-Received: by 2002:a05:622a:44c3:b0:439:aa2d:40b1 with SMTP id
+ kc3-20020a05622a44c300b00439aa2d40b1mr36136qtb.27.1713997693565; Wed, 24 Apr
+ 2024 15:28:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,12 +81,12 @@ References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
  <an2k3vgynq4as2sd5dy6ccmdiqedmo7qjsab5qyfhesd333i2a@235sqph3bze5>
  <CAD=FV=VQ8rbwKk4WpHRER9p4cZp7UrrHRpgnErqbQxyxp4sg5w@mail.gmail.com> <CAA8EJprv3qBd1hfdWHrfhY=S0w2O70dZnYb6TVsS6AGRPxsYdw@mail.gmail.com>
 In-Reply-To: <CAA8EJprv3qBd1hfdWHrfhY=S0w2O70dZnYb6TVsS6AGRPxsYdw@mail.gmail.com>
-From: Hsin-Yi Wang <hsinyi@google.com>
-Date: Wed, 24 Apr 2024 15:15:18 -0700
-Message-ID: <CACb=7PVEpCFWf_aysRkeR0yWAXR5sTaXhNbi3TV3ffKj866+EQ@mail.gmail.com>
+From: Doug Anderson <dianders@google.com>
+Date: Wed, 24 Apr 2024 15:27:59 -0700
+Message-ID: <CAD=FV=U-1A4N5aMeRpx1sC6TsG_hdOOpstzirVrA-=oPoLeg3A@mail.gmail.com>
 Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Doug Anderson <dianders@google.com>, 
+Cc: Hsin-Yi Wang <hsinyi@google.com>, 
 	lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>, mripard@kernel.org, 
 	airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
@@ -96,120 +96,11 @@ Cc: Doug Anderson <dianders@google.com>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
 On Wed, Apr 24, 2024 at 2:49=E2=80=AFPM Dmitry Baryshkov
 <dmitry.baryshkov@linaro.org> wrote:
 >
-> On Thu, 25 Apr 2024 at 00:04, Doug Anderson <dianders@google.com> wrote:
-> >
-> > Hi,
-> >
-> > On Tue, Apr 23, 2024 at 2:20=E2=80=AFPM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > On Tue, Apr 23, 2024 at 01:41:59PM -0700, Doug Anderson wrote:
-> > > > Hi,
-> > > >
-> > > > On Tue, Apr 23, 2024 at 11:10=E2=80=AFAM Hsin-Yi Wang <hsinyi@googl=
-e.com> wrote:
-> > > > >
-> > > > > > > > > +#define _INIT_DCS_CMD(...) { \
-> > > > > > > > > +     .type =3D INIT_DCS_CMD, \
-> > > > > > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
-> > > > > > > > > +     .data =3D (char[]){__VA_ARGS__} }
-> > > > > > > > > +
-> > > > > > > > > +#define _INIT_DELAY_CMD(...) { \
-> > > > > > > > > +     .type =3D DELAY_CMD,\
-> > > > > > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
-> > > > > > > > > +     .data =3D (char[]){__VA_ARGS__} }
-> > > > > > > >
-> > > > > > > > This is the third panel driver using the same appoach. Can =
-you use
-> > > > > > > > mipi_dsi_generic_write_seq() instead of the huge table? Or =
-if you prefer
-> > > > > > > > the table, we should extract this framework to a common hel=
-per.
-> > > > > > > > (my preference is shifted towards mipi_dsi_generic_write_se=
-q()).
-> > > > > > > >
-> > > > > > > The drawback of mipi_dsi_generic_write_seq() is that it can c=
-ause the
-> > > > > > > kernel size grows a lot since every sequence will be expanded=
-.
-> > > > > > >
-> > > > > > > Similar discussion in here:
-> > > > > > > https://lore.kernel.org/dri-devel/CAD=3DFV=3DWju3WS45=3DEpXMU=
-g7FjYDh3-=3Dmvm_jS7TF1tsaAzbb4Uw@mail.gmail.com/
-> > > > > > >
-> > > > > > > This patch would increase the module size from 157K to 572K.
-> > > > > > > scripts/bloat-o-meter shows chg +235.95%.
-> > > > > > >
-> > > > > > > So maybe the common helper is better regarding the kernel mod=
-ule size?
-> > > > > >
-> > > > > > Yes, let's get a framework done in a useful way.
-> > > > > > I'd say, drop the _INIT_DELAY_CMD. msleep() and usleep_range() =
-should be
-> > > > > > used instead (and it's up to the developer to select correct de=
-lay
-> > > > > > function).
-> > > > > >
-> > > > > > >
-> > > > > > > > > +
-> > > > > > > > > +static const struct panel_init_cmd kingdisplay_kd101ne3_=
-init_cmd[] =3D {
-> > > > > > > > > +     _INIT_DELAY_CMD(50),
-> > > > > > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
-> > > > > >
-> > > > > > [skipped the body of the table]
-> > > > > >
-> > > > > > > > > +     _INIT_DCS_CMD(0x0E, 0x48),
-> > > > > > > > > +
-> > > > > > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
-> > > > > >
-> > > > > > > > > +     _INIT_DCS_CMD(0X11),
-> > > > > >
-> > > > > > Also, at least this is mipi_dsi_dcs_exit_sleep_mode().
-> > > > > >
-> > > > > > > > > +     /* T6: 120ms */
-> > > > > > > > > +     _INIT_DELAY_CMD(120),
-> > > > > > > > > +     _INIT_DCS_CMD(0X29),
-> > > > > >
-> > > > > > And this is mipi_dsi_dcs_set_display_on().
-> > > > > >
-> > > > > > Having a single table enourages people to put known commands in=
-to the
-> > > > > > table, the practice that must be frowned upon and forbidden.
-> > > > > >
-> > > > > > We have functions for some of the standard DCS commands. So, ma=
-ybe
-> > > > > > instead of adding a single-table based approach we can improve
-> > > > > > mipi_dsi_generic_write_seq() to reduce the bloat. E.g. by movin=
-g the
-> > > > > > error handling to a common part of enable() / prepare() functio=
-n.
-> > > > > >
-> > > > >
-> > > > > For this panel, I think it can also refer to how
-> > > > > panel-kingdisplay-kd097d04.c does. Create the table for init cmd =
-data,
-> > > > > not what operation to use, and use mipi_dsi_generic_write_seq() w=
-hen
-> > > > > looping through the table.
-> > > >
-> > > > Even more similar discussion:
-> > > >
-> > > > https://lore.kernel.org/r/CAD=3DFV=3DUGDbNvAMjzWSOvxybGikQcvW9JsRtb=
-xHVg8_97YPEQCA@mail.gmail.com
-> > >
-> > > It seems I skipped that thread.
-> > >
-> > > I'd still suggest a code-based solution compared to table-based one, =
-for
-> > > the reasons I've outlined before. Having a tables puts a pressure on =
-the
-> > > developer to put commands there for which we already have a
-> > > command-specific function.
-> >
 > > The problem is that with these panels that need big init sequences the
 > > code based solution is _a lot_ bigger. If it were a few bytes or a
 > > 1-2KB then fine, but when Hsin-Yi measured Linus W's attempt to move
@@ -251,13 +142,6 @@ the
 >         return ret;
 > }
 >
-
-I'm not sure about the coding style rule here, would it be considered
-unclear that caller of mipi_dsi_dcs_write_cmd_seq() needs to have err
-block, but the block may not be directly used in that caller and is
-only jumped from the macro?
-
-
 > Size comparison:
 >    text    data     bss     dec     hex filename
 > before
@@ -276,15 +160,21 @@ place.
 > than going through the sequence.
 >
 > WDYT? I can turn this into a proper patch if you think this makes sense.
->
-> >
-> >
-> > [1] https://lore.kernel.org/r/CAD=3DFV=3DUFa_AoJQvUT3BTiRs19WCA2xLVeQOU=
-=3D+nYu_HaE0_c6Q@mail.gmail.com
->
->
->
-> --
-> With best wishes
-> Dmitry
+
+Ah, so what you're saying is that the big bloat from using the
+existing mipi_dsi_dcs_write_seq() is the error printing. That makes
+sense. ...and by relying on the caller to provide an error handling
+label we can get rid of the overhead and still get the error prints.
+
+Yes, that seems pretty reasonable to me. I guess I'd perhaps make the
+error label a parameter to the macro (so it's obvious that the caller
+needs to define it) and maybe name it in such a way to make it obvious
+the difference between this macro and mipi_dsi_dcs_write_seq().
+
+With that and your measurements then this seems perfectly reasonable
+to me and I'm good with fully moving away from the table-based
+approach. I'd be happy if you sent a patch for it and happy to review
+it.
+
+-Doug
 
