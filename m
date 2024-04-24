@@ -1,221 +1,141 @@
-Return-Path: <devicetree+bounces-62122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4568B00C7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:04:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65EA08B00F3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 07:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 707E8B22D57
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 05:04:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCA26B22274
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 05:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ECA315444D;
-	Wed, 24 Apr 2024 05:04:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YvNsIbv9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB6D154BFC;
+	Wed, 24 Apr 2024 05:25:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-sh.amlogic.com (unknown [58.32.228.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708FB328DB;
-	Wed, 24 Apr 2024 05:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB2C15445E;
+	Wed, 24 Apr 2024 05:25:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=58.32.228.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713935046; cv=none; b=CZrI+9l71vSwZnPS1JHjnrTVnU32LGRy1U6jdKsjx/JewJ6x+sKWdL1xEIG5T6tBvuTHWjsbpxoxPGa0skf7c9LVS0qaLwk5zFODuTqArZSpO/q7kBjkuhAY5RaP7Gko0ebwC8GRywEXFQgZMzo6Cg7UcwscnKqlIzJKrCbQHYk=
+	t=1713936325; cv=none; b=HjozlvTuS/hty5rgjktxUL8zzAPPomNnyxKtdiNJ5u1UIqx3m8K2uM5OkVYbc0JUgVwEWiMxfudkdQ0iz7F2VYgLBexMOX+n+HurYhbhxyVsrOx9w2amjFzvCGeMexDIZgoPZfkk+S3k+/vVvlAY/pU18woGnfTPUvkhPVd/F6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713935046; c=relaxed/simple;
-	bh=Sa+pwedhqK7zbwcOMl4PDUIP9usEgvzK4TfQqOq9ndc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mFTzaE8JfkI85LVadA6bn45U42qhmiJ6U/3xZVx7ZTyXX7wNB9dHCVW0NNoeaewslgRgHnYMhYZDbdcj6bgaZEpdmdqS/KlDqNtzWtKyB4r5QPmzzzlXyJUC+VjS0WSYGlmxaiRS6kXtsuokzx9JEjf0SrWWJ5b0raza1Y2iM1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YvNsIbv9; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713935044; x=1745471044;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Sa+pwedhqK7zbwcOMl4PDUIP9usEgvzK4TfQqOq9ndc=;
-  b=YvNsIbv9nH2D27+F4+d1Q2OHy/5CNFc0JqDYwKz0Ip2hIiP7Le/7BvWf
-   WZul6MT6n+lwDnZrW0b9Ooc15KIS1npvDb4XuXmPfsvSCE727F9iar+wb
-   hi4U+BtEHJZN/INZuMIc9olb5iFni8M4tQ1JkiieH4qdq0cmLVzsBg8hB
-   rLnGpliYkgAU6GfdmwExZFA/Y4Hm+MuGQmhetBpG5czvKf9kO626L8BHq
-   ShcIFNNzesNCNRCz+/RWkzvvyhTEpMDvd9usQtv9eNFjcIZxuHkcKKkIN
-   yZMN7pZ6zCBzybAM3u4za3cRVxHI0U8FBQu9IiGCTSkMKoiKV4uNn+R5f
-   w==;
-X-CSE-ConnectionGUID: 7yX27tH/QC61BGAXmf2MVg==
-X-CSE-MsgGUID: kinJfxcjQwWGNlXWxdwG+g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27062050"
-X-IronPort-AV: E=Sophos;i="6.07,225,1708416000"; 
-   d="scan'208";a="27062050"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 22:04:03 -0700
-X-CSE-ConnectionGUID: lKywX25nTL2GHttoopxsjA==
-X-CSE-MsgGUID: 15mZKhYgSG29vP307jN2nA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,225,1708416000"; 
-   d="scan'208";a="62045622"
-Received: from lkp-server01.sh.intel.com (HELO e434dd42e5a1) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 23 Apr 2024 22:03:58 -0700
-Received: from kbuild by e434dd42e5a1 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rzUnT-0000se-1S;
-	Wed, 24 Apr 2024 05:03:55 +0000
-Date: Wed, 24 Apr 2024 13:03:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Roy Luo <royluo@google.com>, kernel-team@android.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Subject: Re: [PATCH 4/7] phy: exynos5-usbdrd: set ref clk freq in
- exynos850_usbdrd_utmi_init()
-Message-ID: <202404241238.E14kFCXA-lkp@intel.com>
-References: <20240423-usb-phy-gs101-v1-4-ebdcb3ac174d@linaro.org>
+	s=arc-20240116; t=1713936325; c=relaxed/simple;
+	bh=QZe4eGpysrGx8fOJIszyYdVuaxeat9XeJ/upJuzcPqw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fNMW43n6WFWT9QRdhMZRffOPO2K91olKoCpbzOQJWpSy3aDFxAHm2nAnTO4GQK/F3/zOXYMGZID5DCvqdrzqVIKFD8+X9cjtyplwcQzwe1u9ZMSkdaunVWJUssQVQUklat5SXfH0wTfzbUnZkPEx1qcbVCYB9XBdq41MTHCifm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=58.32.228.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.6; Wed, 24 Apr 2024
+ 13:10:12 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH v7 0/5] Add C3 SoC PLLs and Peripheral clock
+Date: Wed, 24 Apr 2024 13:09:23 +0800
+Message-ID: <20240424050928.1997820-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240423-usb-phy-gs101-v1-4-ebdcb3ac174d@linaro.org>
+Content-Type: text/plain
 
-Hi André,
+The patchset adds support for the peripheral and PLL clock controller
+found on the Amlogic C3 SoC family, such as C302X or C308L.
 
-kernel test robot noticed the following build errors:
+Some clocks are provided by security zones. These clock accessed
+througth SCMI driver in linux, inlcuding DDR_PLL,DDR_PHY, TOP_PLL,  
+USB_PLL, MIPIISP_VOUT, MCLK_PLL, USB_CTRL, ETH_PLL, OSC, SYS_CLK,
+AXI_CLK, CPU_CLK, FIXED_PLL, GP1_PLL, SYS_PLL_DIV16, CPU_CLK_DIV14.
 
-[auto build test ERROR on a59668a9397e7245b26e9be85d23f242ff757ae8]
+Changes since V6 [12]:
+ - Add pad src for rtc clock.
+ - Add SCMI clock controller support, move some clock node in SCMI,such as GP1 PLL DDR USB etc.
+ - Fix some spelling mistake.
+ - Use lower case for bindings and update some input clocks desc.
+ - Update some clock comments.
+ - Delete prefix "AML_" for macro definition.
+ - Addd some clock annotation and some clock flag CRITICAL.
+ - Add maximum for regmap_config.
+ - Delete some unused register definition and unused clock inputs. 
+ - Drop patch subject redundant "bindings". Suggested by Krzysztof.
+ - Not reference header file "clk.h" and replace comment. Suggested by Jerome.
+ - Modify description about board in Kconfig file help item. Suggested by Jerome.
+ - Link to v6: https://lore.kernel.org/all/20231106085554.3237511-1-xianwei.zhao@amlogic.com
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andr-Draszik/dt-bindings-phy-samsung-usb3-drd-phy-add-gs101-compatible/20240424-011137
-base:   a59668a9397e7245b26e9be85d23f242ff757ae8
-patch link:    https://lore.kernel.org/r/20240423-usb-phy-gs101-v1-4-ebdcb3ac174d%40linaro.org
-patch subject: [PATCH 4/7] phy: exynos5-usbdrd: set ref clk freq in exynos850_usbdrd_utmi_init()
-config: arc-randconfig-002-20240424 (https://download.01.org/0day-ci/archive/20240424/202404241238.E14kFCXA-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240424/202404241238.E14kFCXA-lkp@intel.com/reproduce)
+Changes since V5 [3]:
+ - Fix some typo and modify formart for MARCO. Suggested by Jerome.
+ - Add pad clock for peripheral input clock in bindings.
+ - Add some description for explaining why ddr_dpll_pt_clk and cts_msr_clk are out of tree.
+Changes since V4 [10]:
+ - Change some fw_name of clocks. Suggested by Jerome.
+ - Delete minItem of clocks.
+ - Add CLk_GET_RATE_NOCACHE flags for gp1_pll
+ - Fix some format. and fix width as 8 for mclk_pll_dco.
+ - exchange gate and divder for fclk_50m clock.
+ - add CLK_SET_RATE_PARENT for axi_a_divder & axi_b_divder.
+ - add CLK_IS_CRITICAL for axi_clk
+ - Optimized macro define for pwm clk.
+ - add cts_oscin_clk mux between 24M and 32k
+ - add some missing gate clock, such as ddr_pll.
+Changes since V3 [7]:
+ - Modify Kconfig desc and PLL yaml clk desc.
+ - Fix some format.Suggested by Yixun and Jerome.
+ - Add flag CLK_GET_RATE_NOCACHE for sys_clk.
+ - Optimized macro define for pwm clk.
+ - Use flag CLK_IS_CRITICAL for axi_clk.
+ - Add some description for some clocks.
+ - Use FCLK_50M instead of FCLK_DIV40.
+Changes since V2 [4]:
+ - Modify some format, include clk name & inline, and so on.
+ - Define marco for pwm clock.
+ - Add GP1_PLL clock.
+ - Modify yaml use raw instead of macro.
+Changes since V1 [2]:
+ - Fix errors when check binding by using "make dt_binding_check".
+ - Delete macro definition.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404241238.E14kFCXA-lkp@intel.com/
+Xianwei Zhao (5):
+  dt-bindings: clock: add Amlogic C3 PLL clock controller
+  dt-bindings: clock: add Amlogic C3 SCMI clock controller support
+  dt-bindings: clock: add Amlogic C3 peripherals clock controller
+  clk: meson: c3: add support for the C3 SoC PLL clock
+  clk: meson: c3: add c3 clock peripherals controller driver
 
-All errors (new ones prefixed by >>):
+ .../clock/amlogic,c3-peripherals-clkc.yaml    |  120 +
+ .../bindings/clock/amlogic,c3-pll-clkc.yaml   |   59 +
+ drivers/clk/meson/Kconfig                     |   29 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/c3-peripherals.c            | 2366 +++++++++++++++++
+ drivers/clk/meson/c3-pll.c                    |  747 ++++++
+ .../clock/amlogic,c3-peripherals-clkc.h       |  212 ++
+ .../dt-bindings/clock/amlogic,c3-pll-clkc.h   |   40 +
+ .../dt-bindings/clock/amlogic,c3-scmi-clkc.h  |   27 +
+ 9 files changed, 3602 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/c3-peripherals.c
+ create mode 100644 drivers/clk/meson/c3-pll.c
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-scmi-clkc.h
 
-   drivers/phy/samsung/phy-exynos5-usbdrd.c: In function 'exynos850_usbdrd_utmi_init':
->> drivers/phy/samsung/phy-exynos5-usbdrd.c:798:24: error: implicit declaration of function 'FIELD_PREP_CONST' [-Werror=implicit-function-declaration]
-     798 |                 reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 7);
-         |                        ^~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
 
-
-vim +/FIELD_PREP_CONST +798 drivers/phy/samsung/phy-exynos5-usbdrd.c
-
-   750	
-   751	static void exynos850_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
-   752	{
-   753		void __iomem *regs_base = phy_drd->reg_phy;
-   754		u32 reg;
-   755	
-   756		/*
-   757		 * Disable HWACG (hardware auto clock gating control). This will force
-   758		 * QACTIVE signal in Q-Channel interface to HIGH level, to make sure
-   759		 * the PHY clock is not gated by the hardware.
-   760		 */
-   761		reg = readl(regs_base + EXYNOS850_DRD_LINKCTRL);
-   762		reg |= LINKCTRL_FORCE_QACT;
-   763		writel(reg, regs_base + EXYNOS850_DRD_LINKCTRL);
-   764	
-   765		/* Start PHY Reset (POR=high) */
-   766		reg = readl(regs_base + EXYNOS850_DRD_CLKRST);
-   767		reg |= CLKRST_PHY_SW_RST;
-   768		writel(reg, regs_base + EXYNOS850_DRD_CLKRST);
-   769	
-   770		/* Enable UTMI+ */
-   771		reg = readl(regs_base + EXYNOS850_DRD_UTMI);
-   772		reg &= ~(UTMI_FORCE_SUSPEND | UTMI_FORCE_SLEEP | UTMI_DP_PULLDOWN |
-   773			 UTMI_DM_PULLDOWN);
-   774		writel(reg, regs_base + EXYNOS850_DRD_UTMI);
-   775	
-   776		/* Set PHY clock and control HS PHY */
-   777		reg = readl(regs_base + EXYNOS850_DRD_HSP);
-   778		reg |= HSP_EN_UTMISUSPEND | HSP_COMMONONN;
-   779		writel(reg, regs_base + EXYNOS850_DRD_HSP);
-   780	
-   781		/* Set VBUS Valid and D+ pull-up control by VBUS pad usage */
-   782		reg = readl(regs_base + EXYNOS850_DRD_LINKCTRL);
-   783		reg |= LINKCTRL_BUS_FILTER_BYPASS(0xf);
-   784		writel(reg, regs_base + EXYNOS850_DRD_LINKCTRL);
-   785	
-   786		reg = readl(regs_base + EXYNOS850_DRD_UTMI);
-   787		reg |= UTMI_FORCE_BVALID | UTMI_FORCE_VBUSVALID;
-   788		writel(reg, regs_base + EXYNOS850_DRD_UTMI);
-   789	
-   790		reg = readl(regs_base + EXYNOS850_DRD_HSP);
-   791		reg |= HSP_VBUSVLDEXT | HSP_VBUSVLDEXTSEL;
-   792		writel(reg, regs_base + EXYNOS850_DRD_HSP);
-   793	
-   794		reg = readl(regs_base + EXYNOS850_DRD_SSPPLLCTL);
-   795		reg &= ~SSPPLLCTL_FSEL;
-   796		switch (phy_drd->extrefclk) {
-   797		case EXYNOS5_FSEL_50MHZ:
- > 798			reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 7);
-   799			break;
-   800		case EXYNOS5_FSEL_26MHZ:
-   801			reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 6);
-   802			break;
-   803		case EXYNOS5_FSEL_24MHZ:
-   804			reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 2);
-   805			break;
-   806		case EXYNOS5_FSEL_20MHZ:
-   807			reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 1);
-   808			break;
-   809		case EXYNOS5_FSEL_19MHZ2:
-   810			reg |= FIELD_PREP_CONST(SSPPLLCTL_FSEL, 0);
-   811			break;
-   812		default:
-   813			dev_warn(phy_drd->dev, "unsupported ref clk: %#.2x\n",
-   814				 phy_drd->extrefclk);
-   815			break;
-   816		}
-   817		writel(reg, regs_base + EXYNOS850_DRD_SSPPLLCTL);
-   818	
-   819		/* Power up PHY analog blocks */
-   820		reg = readl(regs_base + EXYNOS850_DRD_HSP_TEST);
-   821		reg &= ~HSP_TEST_SIDDQ;
-   822		writel(reg, regs_base + EXYNOS850_DRD_HSP_TEST);
-   823	
-   824		/* Finish PHY reset (POR=low) */
-   825		udelay(10); /* required before doing POR=low */
-   826		reg = readl(regs_base + EXYNOS850_DRD_CLKRST);
-   827		reg &= ~(CLKRST_PHY_SW_RST | CLKRST_PORT_RST);
-   828		writel(reg, regs_base + EXYNOS850_DRD_CLKRST);
-   829		udelay(75); /* required after POR=low for guaranteed PHY clock */
-   830	
-   831		/* Disable single ended signal out */
-   832		reg = readl(regs_base + EXYNOS850_DRD_HSP);
-   833		reg &= ~HSP_FSV_OUT_EN;
-   834		writel(reg, regs_base + EXYNOS850_DRD_HSP);
-   835	}
-   836	
-
+base-commit: ba535bce57e71463a86f8b33a0ea88c26e3a6418
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.2
+
 
