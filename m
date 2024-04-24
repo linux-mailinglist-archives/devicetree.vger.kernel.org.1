@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-62283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9F68B0A0D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:51:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D608B0A16
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:53:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 221A2B26CEE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:51:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 240E01C2469B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FCD142E70;
-	Wed, 24 Apr 2024 12:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B93715ADA0;
+	Wed, 24 Apr 2024 12:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFQxEJcz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LBcehXwz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9730B134A5;
-	Wed, 24 Apr 2024 12:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CE33398A;
+	Wed, 24 Apr 2024 12:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713963102; cv=none; b=LExkI2TdTUARP9KwMyb4OQ476xeFNZ12+gjY26V7ZelwKJInzEk9y7h0L092P03vDd5bQ6A0mFGOPV0hgvcHlnEL/flShTNwbSaDbozkt/yP+U+1Y3TaBuGs0K7B4Q9jAkADwp1sRAYXeDallh06P2laQZR+nl26sBAdJB0cBlg=
+	t=1713963187; cv=none; b=YE1BsOuteflJiT7gDIuBymF7J4K/oNpptgWgPyLLXVcvomZ65TB4pw9kF7aS96je6H5zYIbLYLu/+xg3/V51BDP+dDKxS4KYFbzy/uTVl/Op7NsKmmsJDC8fDzDINVNL5qbQNsDVmDzYEioBEN/1BqyzgoXoqAcCRggLfPwWeKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713963102; c=relaxed/simple;
-	bh=8k9h/fB4ObhnXmP5vlzLNrzghznfwOtBlHsG8iBsKYk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=poIemnNI7P0cbbv/lZBUpa8IRXLnx0kmTU6goWELCgoTpEENCbi7r7QM/tCz7gIcQmy/8f5olhK1r1GYH55FqjctDQri9yteaTCwtmoNF0dsxOJJla0e4dwAuJPpyvh0O1z9S8FhE17AkTWE9ahvIIeD6EVGeaBkIa4Gu2El9q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFQxEJcz; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57225322312so1903003a12.1;
-        Wed, 24 Apr 2024 05:51:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713963099; x=1714567899; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lrSDGxIcCbhabTE8LlgRMA3a1B1b0WUwAReVcV5t1RA=;
-        b=BFQxEJczg3VE/hVUYFmq6+BZqst7iQzqkBkOt3ThPVl6EwTOOgBZmJHQwiBlECQ6Wr
-         AcNn4aOVX6BZ6zFXoj1piGRlW972UfOS2VruKgUmBKNo1nCi1djbGP2w0iV1Uetlzmr+
-         Xf4dEN7hE+PaA1vMRtN00pQ/NT2/uU1gFBqiFIN6hMw/X2LoeMYo59+HQLNb5Yi+8nZB
-         M/96JTi7W6E0OH5VqRCj+aB3H7NNkC4ItDncmAVS8983EN/1i9VaJPPlYDhKFZZGMfuv
-         lRee9VZRY6iNF0j04fftoA7mVSbR9KkfA6mTyifZ5XJJgVD1YwuJxia6Rv2UT30GkRAz
-         /G4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713963099; x=1714567899;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lrSDGxIcCbhabTE8LlgRMA3a1B1b0WUwAReVcV5t1RA=;
-        b=MeoYYuKOWj/V+IrhXaoFKRrWtQGgJLT/HZqQi3uMY5JoyypuirkhuHmwU9Z23r8E+q
-         OFLk1sj0ji7OrrcfurYabfcUUAIdoILQKwwmxOk4ehKTEqsHszDSthNl4YA7VJ9nY1Qt
-         HCPqItw15qmyP6bGMvmaZMrDEPy4RTWHFLlXocPPi/lwqUH8FXH6FqLfA6xZxcN3QFJt
-         z2BAQQvBQ4JFgbgCH+CqvANXbrYf+pChpLQWo3GZinxdSl61pahLShSTGim4zwVMHcT0
-         hRmKLgf5MKfU5HFtRxuESrJsMmDPVEZ/UAUuiRBcsSL93bLrReQOfJJSvak3ow/J+akY
-         t95A==
-X-Forwarded-Encrypted: i=1; AJvYcCULjf9yPt0xKTaWgPfOneM3FzpIl9n07djI6gNvWqJdAxWjdKya5+yiAz6Od6kmAc5AviCdORo+DvWfiZmlHtUF8/6ZnHEuG9XNIA==
-X-Gm-Message-State: AOJu0YyxAf+sO7hjf+aj8tZQ5jQaBkmoRH6h0ndk0xj7mjP5bDl3iUdq
-	MQNvoNwzPTJSU1rm7Y8BYcPi6ob5Ttxym7e9pN7NyYk60UxUTz2174jKOEcnkTFN8MqCe6y38SD
-	gbXAOXySxZRvn0Z/L4LMCKW2IlC/lmHKG
-X-Google-Smtp-Source: AGHT+IHypYiwjw+HCvMDz/EgTlrL70fJ1Vb5av54OYHFAqNBkcq/KZ4fkWMkewMbZcksCFK2PXCZrc2lutlg5zgUk0E=
-X-Received: by 2002:a17:906:5ace:b0:a51:adac:d6e0 with SMTP id
- x14-20020a1709065ace00b00a51adacd6e0mr1408519ejs.62.1713963098783; Wed, 24
- Apr 2024 05:51:38 -0700 (PDT)
+	s=arc-20240116; t=1713963187; c=relaxed/simple;
+	bh=JSqiDgDbyjkgKn+XJMpRiyYF7Ww8VBzY6JarthfyaiE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G1WxAxqD288FlgdNXcKoqKtPU7BgX48kQx3IOCNx+GwZKyPLJ7r2r9ZrG7iYuV6knXQTSz8kaPOwvuGlZ1mzLanda9Grr0qsC/Hl8dee8Pko47ax0hEBXivwRXH12jRXtj/STiKFiHCknnxBhVlFrXdqO876FAXrekJfJ+ccv/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LBcehXwz; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713963183;
+	bh=JSqiDgDbyjkgKn+XJMpRiyYF7Ww8VBzY6JarthfyaiE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LBcehXwzofAel3lzY+NnDkrkkkQrbfH2otP/FBGJwq5UniuYmJCgcuciYq/mPhC6j
+	 BZJUmJoEKBUGCOWvs+8VDn09IJo2GagaeKicgotOgdRDBOMmtRmzZH+u/Kdg8RFdtA
+	 0zvZU8WEAlu5Hc7XjWZZimdl0nQYSDXsnAH8Y8LFCuRcY7y1N4CZ36Jo88ZmNc/c+0
+	 tZlrYl2fB3zgqaviTQe0zDpdymxdU+4aGcPmZGveVk7vrILViZggA68fbEeDoFZ/Ad
+	 M/7GVTHBED4ss4LKoF/fmYWk7/BV8CjmkhRFTwshN8TX4aa3FUYJfp/6oTmcgIOTpx
+	 Hv88iwW+Odv0A==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CBC3937820F9;
+	Wed, 24 Apr 2024 12:53:02 +0000 (UTC)
+Message-ID: <6bd66ba2-7fcc-4981-a2cd-d4500540da76@collabora.com>
+Date: Wed, 24 Apr 2024 14:53:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1713866770.git.lorenzo@kernel.org> <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
- <ZihJfcmjoJZwLofz@surfacebook.localdomain> <ZijZwXCHbaSEyAQL@lore-desk>
-In-Reply-To: <ZijZwXCHbaSEyAQL@lore-desk>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 24 Apr 2024 15:51:02 +0300
-Message-ID: <CAHp75Vdf9_-KDLkm2jmkpM=pw=U4nnwYf4dKn8xg=N+DpFYXTQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] spi: airoha: add SPI-NAND Flash controller driver
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org, 
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com, 
-	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
-	angelogioacchino.delregno@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/7] regulator: Add refactored mtk-dvfsrc-regulator
+ driver
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: amergnat@baylibre.com, broonie@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, djakov@kernel.org, gustavoars@kernel.org,
+ henryc.chen@mediatek.com, keescook@chromium.org, kernel@collabora.com,
+ krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+ matthias.bgg@gmail.com, robh@kernel.org, wenst@chromium.org
+References: <20240424095416.1105639-1-angelogioacchino.delregno@collabora.com>
+ <20240424095416.1105639-7-angelogioacchino.delregno@collabora.com>
+ <93c12354-2e4d-4b21-bc96-eeb55442e365@wanadoo.fr>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <93c12354-2e4d-4b21-bc96-eeb55442e365@wanadoo.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 24, 2024 at 1:07=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.or=
-g> wrote:
-> > Tue, Apr 23, 2024 at 12:16:37PM +0200, Lorenzo Bianconi kirjoitti:
+Il 24/04/24 12:35, Christophe JAILLET ha scritto:
+> Le 24/04/2024 à 11:54, AngeloGioacchino Del Regno a écrit :
+>> The previous driver never worked, and never got even compiled because
+>> it was missing the DVFSRC driver entirely, including needed neaders.
+>>
+>> This is a full (or nearly full) refactoring of the MediaTek DVFSRC
+>> controlled Regulators driver, retaining support for the MT6873, MT8183
+>> and MT8192 SoC, and adding MT8195.
+>>
+>> As part of the refactoring, this driver is now probed using its own
+>> devicetree compatible, as this is a child of the main DVFSRC driver
+>> and gets probed as a subnode of that.
+>>
+>> Reviewed-by: Mark Brown <broonie-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+>> Signed-off-by: AngeloGioacchino Del Regno 
+>> <angelogioacchino.delregno-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>
+>> ---
+>>   drivers/regulator/mtk-dvfsrc-regulator.c | 196 +++++++++++++++++++++++
+>>   1 file changed, 196 insertions(+)
+>>   create mode 100644 drivers/regulator/mtk-dvfsrc-regulator.c
+>>
+> 
+> ...
+> 
+>> +static int dvfsrc_vcore_regulator_probe(struct platform_device *pdev)
+>> +{
+>> +    struct regulator_config config = { .dev = &pdev->dev };
+>> +    const struct dvfsrc_regulator_pdata *pdata;
+>> +    int i;
+>> +
+>> +    pdata = device_get_match_data(&pdev->dev);
+>> +    if (!pdata)
+>> +        return -EINVAL;
+>> +
+>> +    for (i = 0; i < pdata->size; i++) {
+>> +        struct regulator_desc *vrdesc = &pdata->descs[i];
+>> +        struct regulator_dev *rdev;
+>> +
+>> +        rdev = devm_regulator_register(&pdev->dev, vrdesc, &config);
+>> +        if (IS_ERR(rdev)) {
+>> +            dev_err(&pdev->dev, "failed to register %s\n", vrdesc->name);
+>> +            return PTR_ERR(rdev);
+> 
+> Hi,
+> 
+> Nit: (in case of v6)
+> 
+>      dev_err_probe()?
+> 
 
-...
+I don't think there's going to be any v6, as there's nothing else to do on
+this series.
 
-> > > +   /* addr part */
-> > > +   for (i =3D 0; i < op->addr.nbytes; i++) {
-> > > +           u8 cmd =3D opcode =3D=3D SPI_NAND_OP_GET_FEATURE ? 0x11 :=
- 0x8;
-> > > +
-> > > +           data =3D op->addr.val >> ((op->addr.nbytes - i - 1) * 8);
-> >
-> > Seems like you wanted to have always the same endianess and hence can b=
-e done
-> > outside the loop via cpu_to_xxx()?
->
-> sorry, I did not get what you mean here, data value relies on the loop
-> iteration.
+Mark, if you want to fix this up before applying, that should then be, exactly
 
-  u8 byte_stream[8];
-  u8 cmd;
+		rdev = devm_regulator_register(&pdev->dev, vrdesc, &config);
+		if (IS_ERR(rdev))
+			dev_err_probe(&pdev->dev, PTR_ERR(rdev),
+				      "failed to register %s\n", vrdesc->name);
 
-  cmd =3D ...;
+Otherwise, nevermind I guess..?
 
-  // find what suits your case(s)
-  put_unaligned_be64(op->addr.val, byte_stream);
-  for-loop {
-     err =3D _write_data();
-     ...
-  }
+Cheers,
+Angelo
 
 
-> > > +           err =3D airoha_snand_write_data(as_ctrl, cmd, &data,
-> > > +                                         sizeof(data));
-> > > +           if (err)
-> > > +                   return err;
-> > > +   }
-
-...
-
-> > Why not utilising cleanup.h? (__free(), no_free_ptr(), etc)
->
-> I guess we can just allocate as_dev and as_dev->txrx_buf with devm_kzallo=
-c()
-> here, agree?
-
-If this is a solely part of ->probe() stage, yes.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
