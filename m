@@ -1,183 +1,167 @@
-Return-Path: <devicetree+bounces-62269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3463F8B0841
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 13:23:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B93878B084B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 13:29:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2C50289184
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:23:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC1861C21FAB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3924A15A4AA;
-	Wed, 24 Apr 2024 11:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C814915A48D;
+	Wed, 24 Apr 2024 11:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ULMeqJtG"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="T0N/p32k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2078.outbound.protection.outlook.com [40.107.244.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61988158DBE
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 11:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713957816; cv=none; b=nOZRG3TWY5ZcVt4RxVeLwOcpgIW+k+i5SJ9XmCdt9TWbMPdTVphrIgJU0oWB3zwzUXc0LvNa+5X4UWy2n8sOl29amlYCZZxrxlWqQBGSwWVioYYbtRm/jsiQw1M7SOL1UPN0HdSADFQxcnB1QNCiMK9b/V4DGIQiQNd0+6k4q9Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713957816; c=relaxed/simple;
-	bh=jO1+xmcyT5I9v4tZVZ1d96pbFPmBoJZzFcDtl1zowAU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kfgcANsSiNjeXxH10WaYjSTiH4dAOIHmbB311SAzV9E5G5IxQS9qRtE90y0ImSb6pHLw0LD8yX8of80Ee5lIqexhadx3Ha0K+6mEU8UaBBGXl9EbxNDVdf4N2zdkOzBds3QrsHoAc5B87QQL4ArQZKh+W01X3ozySNBovsCK3Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ULMeqJtG; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-61af74a010aso70155857b3.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 04:23:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713957812; x=1714562612; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ln9+pg397axOqdZ8donOOoy2lTHgumZvva3u8wpOyis=;
-        b=ULMeqJtGGk8VtJdWNpblq5XHhxwlHRSxkvm9vTS14PXWx0aDNlx1yvPv0+GKtYAe1L
-         OkK/bKR8Xio/TZbXLDPug643BFq3lyWyNXkfiTp5t2kZP/ulS5inDET5ubv00bOAeuYr
-         hyJEpPQKem+3gupTwXAkqs9jk1QhnWz9BNISy9RDsrAEhveAQi80gTUtyxAKPHtp3xiB
-         bS9kDaNpdL15NOPwaUuXmrNZhggS2LTK3wyKUXFcgTnG5Y+hHUGRTMMQjodZohyZymBZ
-         w2FZeiKruxaS4jf59XIvI0CeTmW1yrfp9xFN5oV4jKlmMC1Ox9lD7skVZtYQRzJQqwp7
-         k6bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713957812; x=1714562612;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ln9+pg397axOqdZ8donOOoy2lTHgumZvva3u8wpOyis=;
-        b=A7Oyd37rYBiIGfxnkiCkbtRfRExEPIRy0TxIrCDfGftSvpZUYMUrb/qGMGpvDRexaC
-         M2kotMZAcTrXMOxyJMeJKZft8+6Rp9oW8UHW0DccWDdTemDLJ6i0c10t360uv8GqdeX2
-         pwhwob2NRFRb78RBqkibjrOZ8i7FJH8DRcCb7sn7lu+TGvifJfeu1wNtdY+tOcewOgnG
-         +B6PazF4LEDZcF3oN3v0NOVNj59D56SgGWWVjNCXm2BG7Eu7Vsy8LpJjiL2aHYRd5L9C
-         q+ZoS1KNT8hSPy26h2YdvrutbXh/VeD5yYWFtffi7y75rdG0eQ/6bh0ZkiDlUb55eg4D
-         0I7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVeE9VKbVwPDy64FiEKOMioxBe5e1vvJCxzq4Z0dX0Y8RqWo49U8tzPT6go1HfVRoQvd5ln9TFoCka7US/lXIEkcdiqnE49fJYQTg==
-X-Gm-Message-State: AOJu0Yz03t60Oqsy6cw9/hfYFYcsTHIDzTUu6TbJtG1n+SsN2PoB8W61
-	TGu18Bljbq0vogF4PPq60zi0gWrVWJR9uWMo0Ydbns5NmfMSHaX7uSDB05rs6XvoLZd/4HPMmk9
-	l6WsfusHQF9yRgf8IyklNHWLbfxo7i+VxVP27gA==
-X-Google-Smtp-Source: AGHT+IGyMvZRrFQqm2rU9lrkFEVJeFfiWq/kBNzRzDGPLliI2awpe//wjMSlt7lzbgaKuWjFkR6/B06yPkXjykP9pGQ=
-X-Received: by 2002:a25:6841:0:b0:ddd:696a:8656 with SMTP id
- d62-20020a256841000000b00ddd696a8656mr2219684ybc.41.1713957812276; Wed, 24
- Apr 2024 04:23:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7205213DDD9;
+	Wed, 24 Apr 2024 11:29:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713958194; cv=fail; b=n17x5JPvK8CWONi8JT78cnFJ/IzKJxTQbW6A6x4hFNK7jOvJ0pIM/3XGI8UiMXxenAuFEfM17cIud9Gtwa/PP0Fsbl0sOUJ+MLjB1wBQk546ywSjQNepYyW1hP337tEHuAQ24ky4vr9ArR4PdIEGbKelGpvlL4bL7fdcWGIA+jc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713958194; c=relaxed/simple;
+	bh=jsamBX08jd1EraLOdiflxD8v4642xFN8xqYfMQ78JG0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dpwZWRdJDG27NDSAPOk8suotuklMvBlMz3qGiqmQid5XNUxD4Ki3pU6//l59/x2O5aDJBCL0AugifakxDOfF/yWk67k9oT5yMH1vkVFDvinbiylqPPkvFdhwmK/Zb36pKDbsRDk4Og4KHhk5WVwM5BJIIqWuCzeLBnwkDP0KmQ8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=T0N/p32k; arc=fail smtp.client-ip=40.107.244.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RrMe4rep1EsvBPfhjrhjAxVsM+IMKZwECUKnSjF0TkQnyhKbatmsrmtafI1vBanwliFeXZf0QnmFyhSfbv75ZNFmp4ExtgFJHpSVYRvkIrM71vGNey2XpLz6YQSYfMjE74700nvEDvlON8Xy5ccfxiTyMm3WeBySvfIoCWbW7cFswW92ppU3DeQ7OFKI8zJRAnvs+mvrSRv60SiUiIXJ8ybMnC9VopemyaXWY864obcaQmflf1clyk96+FRUdp88FZk5rhS1kubWuC9rD9s+rECzbwI3MNv6prbpL2n7S3ptJyxhT9Nn2gEt2lRuQFBBPumX+za8010zkKaZ/EDhQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wt5pI4ikjk89DRKN6vnI4USyoQ7HwxtUQYLxNZhCGc4=;
+ b=bscoDnQVyYBC6SZQ+xoSeKJEsI46oB+YTrV3rjtGClVM3omUFxjgjYi9uDJd4AjEtAp+XoSADawksgj4d5Xi8WkmAnuBQWTZ5Niv6NdtoxcAeE+pfCe44g4/Shnh8HDafWCi8sHE13P0/Z9+D04oTQ6th10DGZgGjcNpQhKxlH7g984e7kLtTxNS5LLJnKNlBs7lTVuS30u82BuyM8fEI3uEGfLImFFUsNpxMJsX5W7ASXOMk3y/6w28DZl7qmFKnny5z0e/ltjs6CWQgcgVK2j63s8GQFAgEyZj8qO/tl8QDo9dJXozSCjTCSRqR5iOF/ntXxH7sBqYo1QjmUdtJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wt5pI4ikjk89DRKN6vnI4USyoQ7HwxtUQYLxNZhCGc4=;
+ b=T0N/p32kqKRqsYtBuT7F2sOdH+d1gziX9HowYDqsE0hyAxaPWi6oDbevyjqfyDkEZi7g54SfVr7gz4UCMlah0SsGrGyQzxi0LXBMkJqsCe/fYw5hMQ4iggmI02ozhGTxHzlZQTgPXLASXvM0D6ppGrjkKrlGbC852a+NA2fE7PU=
+Received: from BN9PR03CA0181.namprd03.prod.outlook.com (2603:10b6:408:f9::6)
+ by MW6PR12MB7087.namprd12.prod.outlook.com (2603:10b6:303:238::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 24 Apr
+ 2024 11:29:44 +0000
+Received: from BN2PEPF000044A6.namprd04.prod.outlook.com
+ (2603:10b6:408:f9:cafe::69) by BN9PR03CA0181.outlook.office365.com
+ (2603:10b6:408:f9::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.32 via Frontend
+ Transport; Wed, 24 Apr 2024 11:29:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN2PEPF000044A6.mail.protection.outlook.com (10.167.243.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7519.19 via Frontend Transport; Wed, 24 Apr 2024 11:29:44 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 24 Apr
+ 2024 06:29:43 -0500
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 24 Apr 2024 06:29:37 -0500
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <p.zabel@pengutronix.de>,
+	<laurent.pinchart@ideasonboard.com>, <radhey.shyam.pandey@amd.com>,
+	<parth.gajjar@amd.com>, <u.kleine-koenig@pengutronix.de>,
+	<tglx@linutronix.de>, <julien.malik@unseenlabs.fr>, <ruanjinjie@huawei.com>,
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <srinivas.goud@amd.com>, <shubhrajyoti.datta@amd.com>,
+	<manion05gk@gmail.com>, Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: [PATCH V2 0/3] Add support for uartps controller reset
+Date: Wed, 24 Apr 2024 16:59:30 +0530
+Message-ID: <20240424112933.3528590-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240424101503.635364-1-quic_tengfan@quicinc.com> <20240424101503.635364-4-quic_tengfan@quicinc.com>
-In-Reply-To: <20240424101503.635364-4-quic_tengfan@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 24 Apr 2024 14:23:21 +0300
-Message-ID: <CAA8EJpqiXqsNq0B6EHnqubPcUzwJ0bc0y3rJ4RfrRimKifPf0Q@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm4450: Supply clock from cpufreq
- node to CPUs
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: rafael@kernel.org, viresh.kumar@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, manivannan.sadhasivam@linaro.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: manikanta.guntupalli@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044A6:EE_|MW6PR12MB7087:EE_
+X-MS-Office365-Filtering-Correlation-Id: c16bc185-0f14-44f4-44de-08dc6451d746
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?C/w90pwK22rEehZ7XiyctMJfdOToXu8ftQsYzoeejUApKeMpMNonCDyQxSGb?=
+ =?us-ascii?Q?KjvEeFJDHemWvtCloeglzYC/0vZ79gf+NHraLlzf3OenhThJftwlmzKrUthK?=
+ =?us-ascii?Q?FHilErKNMEo7X6DCkALtr8QaHOfcN6jtZry08rijLnnS0dT5fpsaqv3EAw0A?=
+ =?us-ascii?Q?QasiREoNdHRlCG9q8eCQLecif4Kzd5CPDAkSv8nZ3ctqpdA0wS9F/rs1a6CC?=
+ =?us-ascii?Q?T2yrernvjm2Odsox6DSdMdWq86pvD6Qa/KV85OfREiPY/5dnWlAxGMKtUASw?=
+ =?us-ascii?Q?q+lfg42fD8XSBUoMAbm0P28RjXtk1EYZsU4DhDlW4aMYiXkYQHJWUv3XJLg8?=
+ =?us-ascii?Q?HmvyWZcAWpFm69ZOkhlAev3I6BKu2jAba3FWCRSxcqDytdi2XCltMuxsI8UJ?=
+ =?us-ascii?Q?jfgrBAwQlcBVPOB5hwW6gkpzGJPdl/Te9Do3zNW/tDdMnXnaEYKyETI9cTP3?=
+ =?us-ascii?Q?IxYQLQOjEkzFLs+IJzHzHBUnr94FtALDQH7GZQ+NRmsrky55cj0e3O4S6iGG?=
+ =?us-ascii?Q?oRCnp9Sh2nI6ujPMgjfXNXb9afpHshtAvqEasJx+lPzv9FgxoRnbghiUuc0k?=
+ =?us-ascii?Q?xNP6WZfVrlWlrcXPSNy/xDGDRuj/AGVaiqDN4Avzxh9DQX/bkNeVWzpWrPlZ?=
+ =?us-ascii?Q?LSIcsoyk1s0XNNnH2z08nQB8nMtriRRPIRBzdphPVpJeD16YTEnwYfcrRqjK?=
+ =?us-ascii?Q?UxjV5SQXJct53XIigco+6okspoLfq2wtS136H6NWhrZdZ3sVeHkvy7YFNvaG?=
+ =?us-ascii?Q?Bicjwq9EezR72OeLhEDMOhdrFuhpViUMWPHAUzaTfFiq3ZK/u4bfHruF5lDC?=
+ =?us-ascii?Q?+EKLWqjZhbCFZgWXDsETHDcoHEQ7CIthQsb8LhIDfIYD06FUWnH8Hjq+tMbb?=
+ =?us-ascii?Q?X3d1bzIHgl5f5kJhfxluL/GKSkRSy2iLFF+dgA57rUmzTdSWtpzv0Jy4MSBM?=
+ =?us-ascii?Q?dqkcwILFQqaOh1420q5+z5a4mPQiaBb+Elbua5f34LQmXMz5kbpRpPz8UvhK?=
+ =?us-ascii?Q?tBvM7KMmvSe/Zg5Q55urNSlzmasosNJtidcJl9uwJriWrMRh5EgYMRMLHxKd?=
+ =?us-ascii?Q?+xGusmfzbjIku+nOCM51HlBluKvkEIt9jv2e78RjwWFOgMoGmljYZ9FNKPjO?=
+ =?us-ascii?Q?MlGq/E2Zky2AkD2WVjEOlSHl9kL309g+zJTpQ6e4eDsyoYxmrsndbesl9p8N?=
+ =?us-ascii?Q?PpcY1fSOAm7qzy7EiuDttqOF9bpRwkhUaTPNnBxitwAfb5VUTo+nY1YEcXOO?=
+ =?us-ascii?Q?iO/eZtqAPEwshCkY7CHu0PCpUmgvRNgU1dqigq3zJU4NxVWShiosOLESMQlk?=
+ =?us-ascii?Q?VtulpTp5XIdS+wfnrS4b3o01oLtm6t+u9ggM1afq46OG8iIsyNps9u527jZZ?=
+ =?us-ascii?Q?c5h/70YkAcV+PbulAT+9rJGJZ5gR?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005)(36860700004)(82310400014)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 11:29:44.6134
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c16bc185-0f14-44f4-44de-08dc6451d746
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000044A6.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7087
 
-On Wed, 24 Apr 2024 at 13:17, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->
-> Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
-> clocks to the CPU cores. But this relationship is not represented in DTS
-> so far.
->
-> So let's make cpufreq node as the clock provider and CPU nodes as the
-> consumers. The clock index for each CPU node is based on the frequency
-> domain index.
+Add optional resets property for UART nodes.
+Add support for uartps controller reset.
+---
+Changes for V2:
+Added ack signature for binding patch.
+Remove check for reset_control_deassert, as reset_control_deassert
+function internally has NULL check.
 
-Is there any reason why this is not a part of the previous patch?
+Manikanta Guntupalli (3):
+  dt-bindings: serial: cdsn,uart: Add optional reset property
+  arm64: zynqmp: Add resets property for UART nodes
+  tty: serial: uartps: Add support for uartps controller reset
 
->
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm4450.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> index 92badfd5b0e1..8d75c4f9731c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> @@ -47,6 +47,7 @@ CPU0: cpu@0 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a55";
->                         reg = <0x0 0x0>;
-> +                       clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_0>;
->                         power-domains = <&CPU_PD0>;
-> @@ -72,6 +73,7 @@ CPU1: cpu@100 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a55";
->                         reg = <0x0 0x100>;
-> +                       clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_100>;
->                         power-domains = <&CPU_PD0>;
-> @@ -91,6 +93,7 @@ CPU2: cpu@200 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a55";
->                         reg = <0x0 0x200>;
-> +                       clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_200>;
->                         power-domains = <&CPU_PD0>;
-> @@ -110,6 +113,7 @@ CPU3: cpu@300 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a55";
->                         reg = <0x0 0x300>;
-> +                       clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_300>;
->                         power-domains = <&CPU_PD0>;
-> @@ -129,6 +133,7 @@ CPU4: cpu@400 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a55";
->                         reg = <0x0 0x400>;
-> +                       clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_400>;
->                         power-domains = <&CPU_PD0>;
-> @@ -148,6 +153,7 @@ CPU5: cpu@500 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a55";
->                         reg = <0x0 0x500>;
-> +                       clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_500>;
->                         power-domains = <&CPU_PD0>;
-> @@ -167,6 +173,7 @@ CPU6: cpu@600 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a78";
->                         reg = <0x0 0x600>;
-> +                       clocks = <&cpufreq_hw 1>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_600>;
->                         power-domains = <&CPU_PD0>;
-> @@ -186,6 +193,7 @@ CPU7: cpu@700 {
->                         device_type = "cpu";
->                         compatible = "arm,cortex-a78";
->                         reg = <0x0 0x700>;
-> +                       clocks = <&cpufreq_hw 1>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_700>;
->                         power-domains = <&CPU_PD0>;
-> --
-> 2.25.1
->
->
-
+ .../devicetree/bindings/serial/cdns,uart.yaml     |  3 +++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi            |  2 ++
+ drivers/tty/serial/xilinx_uartps.c                | 15 +++++++++++++++
+ 3 files changed, 20 insertions(+)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
