@@ -1,109 +1,119 @@
-Return-Path: <devicetree+bounces-62490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94AC98B1485
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:25:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D488B149A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34EB41F240B1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:25:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1DD42824B2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76DD813E8B2;
-	Wed, 24 Apr 2024 20:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF40156672;
+	Wed, 24 Apr 2024 20:32:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FB813A3E6;
-	Wed, 24 Apr 2024 20:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FC415665C;
+	Wed, 24 Apr 2024 20:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713990306; cv=none; b=a/TFxABhQwSBLQxzPtrL9/MYab9f19b7a14OdzDMTSeVLEvbhoEYT1T0R9D+u3Xis4LpwZ50f3IswOuV9kN28i4/EX+Gr9A6VmCWmYzHjkwPxYV1zJzWfYEuN5Vy7mYehHUbQdi7zZA7ILVGhMUil9W3DOLjDmaRPRL+gFt9O7o=
+	t=1713990756; cv=none; b=YL113ddPN+s0emQ1Jk1Sr/YwhldBfv5PzmWy2oV/0TX8tnrjoH4YmgKvakSebVsylBZCdsdf72jhy8dOxyS6GXEA4s0pS/iDLWUviCMvp+DB33G39YMZnjAbV0ZgU1LfB8PgRh0YUwBL/w9mXUlkRjTODc4WyjhxbbzBpzY1/K8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713990306; c=relaxed/simple;
-	bh=FgSrIgxlzRAd49SPrh+f45sBIvkB5Nvm5cWP+UdpNpA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Cak9WTGuFqvvSlRDwCUqH11BTogpj2XTgaFj1sy9C5fZ521Xe0B5mcCqsb7tjxqFY+2ofSiYaW529B39sFKbSiBkuAjbX9+Jjwjtl1MEbUG7E6QBMKgxl5psaV86e+PDJ3YH97z+S7BpJzbFKv79ZybNbSDfi4SXKeFXFZyuARU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=48ers.dk; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=48ers.dk
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 54B6E1BF206;
-	Wed, 24 Apr 2024 20:25:00 +0000 (UTC)
-Received: from peko by dell.be.48ers.dk with local (Exim 4.96)
-	(envelope-from <peko@48ers.dk>)
-	id 1rzjAn-0004xT-32;
-	Wed, 24 Apr 2024 22:24:57 +0200
-From: Peter Korsgaard <peter@korsgaard.com>
-To: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Korsgaard <peter@korsgaard.com>
-Subject: [PATCH v2 2/2] hwmon: (pwm-fan): support default-pwm property to set default PWM value
-Date: Wed, 24 Apr 2024 22:24:48 +0200
-Message-Id: <20240424202448.19033-2-peter@korsgaard.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240424202448.19033-1-peter@korsgaard.com>
-References: <20240424202448.19033-1-peter@korsgaard.com>
+	s=arc-20240116; t=1713990756; c=relaxed/simple;
+	bh=SMmWu0O4kiOeIE8+kMaBKKvSrZyE8uK+V6ffxp7Bn5A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k+7AgTPokbpQjO3yj5JuCLidXIXHrXXUVHNktb9YPmJNNeUQEaYyCkl44n5cn/rmJBjZBtBnlViSE8AgSEW2AsH2KVo/oy1r5uOnj87DbP9Y0Ei7BxWQKkQGY8NKuSkI/N5V3PeO4hF5cXUgZmHGnPJFCT6Rs8PngheIOs7FXhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D3D3240002;
+	Wed, 24 Apr 2024 20:32:29 +0000 (UTC)
+Message-ID: <41835766-b7d7-4f81-aca7-4a8136ba9971@ghiti.fr>
+Date: Wed, 24 Apr 2024 22:32:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: peter@korsgaard.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Content-Language: en-US
+To: Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Hal Feng <hal.feng@starfivetech.com>, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20240410033148.213991-1-xingyu.wu@starfivetech.com>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20240410033148.213991-1-xingyu.wu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: alex@ghiti.fr
 
-For some use cases defaulting the PWM to full fan speed is not ideal
-(noise, power consumption, ..), so support an optional default-pwm
-property (0..255) to override the default PWM value.
+Hi Xingyu,
 
-Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
----
-Changes since v1:
-- Rename property to default-pwm
-- Drop u32 cast
+On 10/04/2024 05:31, Xingyu Wu wrote:
+> This patch is to add the notifier for PLL0 clock and set the PLL0 rate
+> to 1.5GHz to fix the lower rate of CPUfreq on the JH7110 SoC.
+>
+> The first patch is to add the notifier for PLL0 clock. Setting the PLL0
+> rate need the son clock (cpu_root) to switch its parent clock to OSC
+> clock and switch it back after setting PLL0 rate. It need to use the
+> cpu_root clock from SYSCRG and register the notifier in the SYSCRG
+> driver.
+>
+> The second patch is to set cpu_core rate to 500MHz and PLL0 rate to
+> 1.5GHz to fix the problem about the lower rate of CPUfreq on the
+> visionfive board. The cpu_core clock rate is set to 500MHz first to
+> ensure that the cpu frequency will not suddenly become high and the cpu
+> voltage is not enough to cause a crash when the PLL0 is set to 1.5GHz.
+> The cpu voltage and frequency are then adjusted together by CPUfreq.
+>
+> Changes since v3:
+> - Added the notifier for PLL0 clock.
+> - Set cpu_core rate in DTS
+>
+> v3: https://lore.kernel.org/all/20240402090920.11627-1-xingyu.wu@starfivetech.com/
+>
+> Changes since v2:
+> - Made the steps into the process into the process of setting PLL0 rate
+>
+> v2: https://lore.kernel.org/all/20230821152915.208366-1-xingyu.wu@starfivetech.com/
+>
+> Changes since v1:
+> - Added the fixes tag in the commit.
+>
+> v1: https://lore.kernel.org/all/20230811033631.160912-1-xingyu.wu@starfivetech.com/
+>
+> Xingyu Wu (2):
+>    clk: starfive: jh7110-sys: Add notifier for PLL clock
+>    riscv: dts: starfive: visionfive-2: Fix lower rate of CPUfreq by
+>      setting PLL0 rate to 1.5GHz
+>
+>   .../jh7110-starfive-visionfive-2.dtsi         |  6 ++++
+>   .../clk/starfive/clk-starfive-jh7110-sys.c    | 31 ++++++++++++++++++-
+>   drivers/clk/starfive/clk-starfive-jh71x0.h    |  2 ++
+>   3 files changed, 38 insertions(+), 1 deletion(-)
 
- drivers/hwmon/pwm-fan.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
-index b67bc9e833c0..a2a309f8e3ee 100644
---- a/drivers/hwmon/pwm-fan.c
-+++ b/drivers/hwmon/pwm-fan.c
-@@ -482,6 +482,7 @@ static int pwm_fan_probe(struct platform_device *pdev)
- 	const struct hwmon_channel_info **channels;
- 	u32 *fan_channel_config;
- 	int channel_count = 1;	/* We always have a PWM channel. */
-+	u32 default_pwm = MAX_PWM;
- 	int i;
- 
- 	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-@@ -527,11 +528,17 @@ static int pwm_fan_probe(struct platform_device *pdev)
- 
- 	ctx->enable_mode = pwm_disable_reg_enable;
- 
-+	of_property_read_u32(dev->of_node, "default-pwm", &default_pwm);
-+	if (default_pwm > MAX_PWM) {
-+		dev_err(dev, "Invalid default-pwm: %u > %d\n", default_pwm, MAX_PWM);
-+		return -EINVAL;
-+	}
-+
- 	/*
--	 * Set duty cycle to maximum allowed and enable PWM output as well as
-+	 * Set duty cycle to default and enable PWM output as well as
- 	 * the regulator. In case of error nothing is changed
- 	 */
--	ret = set_pwm(ctx, MAX_PWM);
-+	ret = set_pwm(ctx, default_pwm);
- 	if (ret) {
- 		dev_err(dev, "Failed to configure PWM: %d\n", ret);
- 		return ret;
--- 
-2.39.2
+I only took a quick look so I'm not sure: does patch 2 depend on patch 
+1? In that case, I think the Fixes tag should be applied to both patches.
+
+And as this is a fix, will you respin a new version soon for 6.9?
+
+Thanks,
+
+Alex
 
 
