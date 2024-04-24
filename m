@@ -1,60 +1,66 @@
-Return-Path: <devicetree+bounces-62277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BABC8B08DD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:04:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F5E8B08EB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54A2D1C2137F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:04:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79AB71C2224D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 12:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E7B15AAA7;
-	Wed, 24 Apr 2024 12:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D4315AADC;
+	Wed, 24 Apr 2024 12:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fNKbxxd8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DdnEjJzj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A7A1598E6;
-	Wed, 24 Apr 2024 12:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4F413DDD9;
+	Wed, 24 Apr 2024 12:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713960272; cv=none; b=e+2uWNYxYsUZUmN0biNCfHAlTzy/FDEmct/ZLxOcW89SOGNLvZG/VyboFu+LiQnzzUzmlQgfgLUm3vazUuxM1S3SgGyEt07RN/f0KlPz9AOv4ZrPGYd9oxzcMH4O6MyCoNXCX5xV6k7AzyPhmeoYJjbw396bVNy+nciB0QlP8dk=
+	t=1713960495; cv=none; b=IjroSLY1uKJ+jeh0rg1mDfrTigp1WSudXz4A5bQDhcW7vQ7krADpucEaaB1NDwyKJjOTU+eNBxvKIQ0EJ6yvwfXXGt81luKrRZP5AKeBGgQBkWFdyoW/Qf1AiiX+G1hSFsR3MPd6FcWTmqFy23CTgiLlILbwUbH14z+2UJxpHaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713960272; c=relaxed/simple;
-	bh=pYYOLqQqvUPgIBFX7QGymQlQHxbe30l4/QeB1EAN03A=;
+	s=arc-20240116; t=1713960495; c=relaxed/simple;
+	bh=XIDRIdvM6seDLp5rS9urHwiVla14vdnVG5FbNeLWF9E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nuwPnXgcHVk+5qjXckSPMRwZQPF3GZrVnkRvoenwFiqcj24l3hFvYxr6piaQ5NVwXbnU9eZ3uJdxw/r9Af++OnPKQIXJw86eu9nW5inWxmtp1rs2h06s6gNIqa4LiSxgmhaf4Qe/ZG64LZq5XqXuWq+k77G96gSi1Yx992nOYkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fNKbxxd8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE34C113CE;
-	Wed, 24 Apr 2024 12:04:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mVQDkI+es4Q2x0ejhvCdiYV1aCZtPxEzD1Viqdn2O/+PrJsIOxtG/KSWbCrWbDfhm2g93CSeTiQYtFpneHukdhY+kdGTYW/jwjqOI1eUkTWNlqIyip6BQVMFkkhAtP8qI9Bv720nRmCNij4snbO69+liBh1xvNTvtphAnYiWFqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DdnEjJzj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF6BC113CE;
+	Wed, 24 Apr 2024 12:08:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713960271;
-	bh=pYYOLqQqvUPgIBFX7QGymQlQHxbe30l4/QeB1EAN03A=;
+	s=k20201202; t=1713960494;
+	bh=XIDRIdvM6seDLp5rS9urHwiVla14vdnVG5FbNeLWF9E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fNKbxxd8hXnmn5DUGCaxpL6+4VAhvQIszoAWYHbgTsYPLSivwzvqolBSi99q+rY+T
-	 2cxBhivMbfFEhz8JK8evCD52NpidHF24ZNzdtzB1gGkUGVSXWYu3O7XDv5dGAZTffp
-	 d7yp+prjgdUwnq2GGbkFm/LL2Z1xSt4v2w4ELUnP+6O6UcNBA0iYgjl0u6gcmLkE4p
-	 2ZCrLikzHQ3TEaQErrELp2cORASIWSRpmoDhWmBdNQ9hiNwrjt/nLTsFKTA5kNqOnV
-	 n+/5HIZboWw/Fx1gqv6qDXel1GN7UOYss230u1QDPWk7sdKkIUl48aENrBxaksyixn
-	 dy9L9CaJbnijw==
-Date: Wed, 24 Apr 2024 13:04:27 +0100
+	b=DdnEjJzjaMwTbabFNNrhDkLC6z+lrldg8wq05SR18LT/OPdT+SBJv18zIMYA5oQoh
+	 8bqLo0v2AUKxk2Xf6hxwemSumoEw7mTEi6gDi4dsOpBhgv5ruNuI+Z5P5fvCu1BXgd
+	 FRzVQpfR4F4krOtS0TIXQ2LTJhWDMmNTYC1wiyaADjzjZHTYPmS53Rwe9D2GjLQjIa
+	 owmB5lI8GfRTrovkXwakF/TxkeNHNVp+UZHAMkFMgJ91rZLo0FIbIxGNup+DEtSk1f
+	 e8yO/0jXDCe0jMwH9d14bJDYJ+ENpU8ziiGkCL8rpq+Oq4G0o3HCJ306GBrTWVMnPL
+	 HrOnskZccep1w==
+Date: Wed, 24 Apr 2024 13:08:09 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, frank.li@nxp.com,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
- binding
-Message-ID: <20240424-lustfully-region-826b9570bc38@spud>
-References: <1713939683-15328-1-git-send-email-hongxing.zhu@nxp.com>
- <1713939683-15328-3-git-send-email-hongxing.zhu@nxp.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: George Stark <gnstark@salutedevices.com>,
+	u.kleine-koenig@pengutronix.de, neil.armstrong@linaro.org,
+	khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+	thierry.reding@gmail.com, hkallweit1@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@salutedevices.com,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: amlogic: Add new bindings for
+ meson A1 pwm
+Message-ID: <20240424-word-scoring-830983094ff5@spud>
+References: <20240423161006.2522351-1-gnstark@salutedevices.com>
+ <20240423161006.2522351-2-gnstark@salutedevices.com>
+ <20240423-wildcard-smoking-90b50f00da50@spud>
+ <1jr0ewezvc.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,109 +68,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FnrRZ8qNOS4RlZZi"
+	protocol="application/pgp-signature"; boundary="47Y2FJ9ZWeX1qYH+"
 Content-Disposition: inline
-In-Reply-To: <1713939683-15328-3-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <1jr0ewezvc.fsf@starbuckisacylon.baylibre.com>
 
 
---FnrRZ8qNOS4RlZZi
+--47Y2FJ9ZWeX1qYH+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 24, 2024 at 02:21:22PM +0800, Richard Zhu wrote:
-> Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
-> Introduce one HSIO configuration 'fsl,hsio-cfg', which need be set at
-> initialization according to board design.
+On Tue, Apr 23, 2024 at 07:44:35PM +0200, Jerome Brunet wrote:
 >=20
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  .../bindings/phy/fsl,imx8qm-hsio.yaml         | 146 ++++++++++++++++++
->  1 file changed, 146 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio=
-=2Eyaml
+> On Tue 23 Apr 2024 at 17:56, Conor Dooley <conor@kernel.org> wrote:
 >=20
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml b=
-/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
-> new file mode 100644
-> index 000000000000..3e2824d1616c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
-> @@ -0,0 +1,146 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,imx8qm-hsio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8QM SoC series HSIO SERDES PHY
-> +
-> +maintainers:
-> +  - Richard Zhu <hongxing.zhu@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8qm-hsio
-> +      - fsl,imx8qxp-hsio
-> +  reg:
-> +    minItems: 4
-> +    maxItems: 4
-> +
-> +  "#phy-cells":
-> +    const: 3
-> +    description:
-> +      The first defines the type of the PHY refer to the include phy.h.
-> +      The second defines controller index.
-> +      The third defines the lane mask of the lane ID, indicated which
-> +      lane is used by the PHY. They are defined as HSIO_LAN* in
-> +      dt-bindings/phy/phy-imx8-pcie.h
-> +
-> +  reg-names:
-> +    items:
-> +      - const: reg
-> +      - const: phy
-> +      - const: ctrl
-> +      - const: misc
-> +
-> +  clocks:
-> +    minItems: 5
-> +    maxItems: 14
-> +
-> +  clock-names:
-> +    minItems: 5
-> +    maxItems: 14
-> +
-> +  fsl,hsio-cfg:
-> +    description: Refer macro HSIO_CFG* include/dt-bindings/phy/phy-imx8-=
-pcie.h.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  fsl,refclk-pad-mode:
-> +    description:
-> +      Specifies the mode of the refclk pad used. It can be UNUSED(PHY
-> +      refclock is derived from SoC internal source), INPUT(PHY refclock
-> +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
-> +      is derived from SoC internal source and provided on the refclk pad=
-).
-> +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
-> +      to be used.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: IMX8_PCIE_REFCLK_PAD_OUTPUT
+> > [[PGP Signed Part:Undecided]]
+> > On Tue, Apr 23, 2024 at 07:10:05PM +0300, George Stark wrote:
+> >> The chip has 3 dual channel PWM modules AB, CD, EF.
+> >>=20
+> >> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> >> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> >
+> > a would sort before s.
+> >
+> > With the re-order,
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > Thanks,
+> > Conor.
+> >
+> >> ---
+> >>  Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >>=20
+> >> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/=
+Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> index 1d71d4f8f328..ef6daf1760ff 100644
+> >> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> @@ -37,6 +37,7 @@ properties:
+> >>        - enum:
+> >>            - amlogic,meson8-pwm-v2
+> >>            - amlogic,meson-s4-pwm
+> >> +          - amlogic,meson-a1-pwm
+>=20
+> AFAICT, the a1 interface is exactly as the s4 interface.
+> So a1 should list s4 as a fallback and the driver should match on the s4.
 
-My comments on this are still not addressed. Please go back and read my
-comments about this property on v1.
+Crap, I should have checked. Please make use of the fallback :)
 
---FnrRZ8qNOS4RlZZi
+--47Y2FJ9ZWeX1qYH+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZij1SwAKCRB4tDGHoIJi
-0sB9AQCUlEN4Y+iM2h4RLoTcf+CyW85JNz9s592IJ1e0LbfxeAD/daenH3uvdPSY
-R6e+lzBzHxm/BsOJDs7cEViLd9gIzQA=
-=wBaM
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZij2KQAKCRB4tDGHoIJi
+0gnuAP0b+BgwJoXOj4siqxBf/5EczpoJGS7AHdX0u3bkL+a90gEA0jrhT5vIgfb0
+hE7m80/W2o2Z0D7i7qG2yePTa/lmwAA=
+=2KkJ
 -----END PGP SIGNATURE-----
 
---FnrRZ8qNOS4RlZZi--
+--47Y2FJ9ZWeX1qYH+--
 
