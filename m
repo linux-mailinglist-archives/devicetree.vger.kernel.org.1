@@ -1,141 +1,212 @@
-Return-Path: <devicetree+bounces-62226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B198A8B063A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:40:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 191568B067B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 11:54:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E75ACB25737
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:40:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BFCF1C22D51
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 09:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BF6158DAE;
-	Wed, 24 Apr 2024 09:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253BB158DD6;
+	Wed, 24 Apr 2024 09:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pbWQxf3y"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="l6OvnA1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D118A158DA8;
-	Wed, 24 Apr 2024 09:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68113158D9A;
+	Wed, 24 Apr 2024 09:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713951638; cv=none; b=HNDJmORJxP5XQbGldExLXazruI4VJcuUzQjjwaaSTYY0l+FquiXyLY2dlrCl+p8Z3+oWBzZWsy62mL4BR/LJCN8AXnuSi5he3FIgesmKIuMjVsOhFspYR7/05hP7TK0UbY95I85Fz3WHEs0pokt4UsSLqPX1eSzo1v6bZ0Pa4vU=
+	t=1713952467; cv=none; b=bfAKkSZcdJGMtGXIT52vVB7iFCTBg9kUh/b8CkikG+7aHtg2UO61u21kkK02OcdvyCyw91X1VUOaTAuRaLVcjPseVIzwKkrfDW9xicxDdgMOR61cEOu037xEU57i68AihNWUPGBWyO33siv+4m5cscdfUuyEX6dx7fJzrXXXnUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713951638; c=relaxed/simple;
-	bh=mNayW+VecV2dc9vrrmAV27oQDPaUWep+d6YIBhCY27A=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bCP1EvPNqFIxDbfzPOS1BrXcqdLLdD6kWdNTPMSr6NyJ7wQ7hjtus8klbTUyxMvE0aghUAZncmrtSicBFnPUUWvvOz2o5C+YoRsOdD/BGamV1+xriWc36jOIGQUGt9JXd9Dc+h18k3bgSA8PoLDdrWcKC60E6t2O03NG3lwSVwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pbWQxf3y; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43O7aedI025191;
-	Wed, 24 Apr 2024 09:40:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:reply-to:references
-	:mime-version:content-type:in-reply-to; s=qcppdkim1; bh=W2zEB8HQ
-	4tTQ0a1nADzmO6g2Mci2r9l3DcHJICevofY=; b=pbWQxf3yYXquwvvyxi2w+bTw
-	PtZW5sWRsQd2RFfedYbVIo/yM3AuLFx4D98oB5+xPLboCBWALmfz0qtNPiMKhXZU
-	lsYp+5xo830zYl17oEMadZeJeSEdZeTfib5GSiqOwp+8ZkaM50CqCgWWf+Z0VGxS
-	0GtPL2MQjkfZX0JBkAdulMKumQYod2VFqWzLWNLWxmwIS3kXxTgVUIOqng4kWxDK
-	ODUSuyyP9IhziqGKGbCnvW0TTJf/SGTB+Tp2mBwyLyjCC3g6dwXcb2XYkYqDj3SW
-	k3zEHcbAVk+D9i9DvxeuA8m7vV2Ra9eLmyZkHY9i5TGKojMDW5q5Sfg353WpNg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xpv9e0f3q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Apr 2024 09:40:10 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43O9e97n008033
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Apr 2024 09:40:09 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 24 Apr
- 2024 02:40:01 -0700
-Date: Wed, 24 Apr 2024 15:09:57 +0530
-From: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To: Elliot Berman <quic_eberman@quicinc.com>
-CC: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik
-	<quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: [PATCH v17 15/35] virt: gunyah: Add proxy-scheduled vCPUs
-Message-ID: <20240424093957.GY440762@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-15-1e9da6763d38@quicinc.com>
+	s=arc-20240116; t=1713952467; c=relaxed/simple;
+	bh=GJQT/3O6iiaaVo32e8EBgerLbeFHb7WTjEivwkwCAog=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p7BOoo9q/JS8K1nA7oGwvyjn542CSQxdbVpay7D2byX/UzBQlx7ntGcBYGPbEa+xZcqKV2Ah12a9+p0UP2CE5tO61Q+1zJhtMmmPGa8fouAfmOs6vJNh81bNQlj3nMfr0meaWkvSkktpdxkBaAtLyW1g04U0EflUESlFOTTK7zI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=l6OvnA1F; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713952463;
+	bh=GJQT/3O6iiaaVo32e8EBgerLbeFHb7WTjEivwkwCAog=;
+	h=From:To:Cc:Subject:Date:From;
+	b=l6OvnA1F94qHKJTKV5+pWP4gDH8lTrJgjVcp083dttDTu3r1tDQvprSEoExOwCKvH
+	 OqrfMyI9FRJe7ZzBZmvw2+dVjGYRf7buCaH5FpdH2yUT7lDC/W5vdi8PbB9PzYy40+
+	 4FMV8QbMH8lPxuBK+F6qk01Zvc9yJKcN3TZY5XCDKiQLX8x6uQzyy961BwGmDRw8/y
+	 aO4fnowW7xu6eE9bjwrAsdAOxG+od8TqX0DzUSvbsGClWt6Lqg5bcps+ccOScrIhVG
+	 stW1XmoKHaRT4Ebo8EeqzCJcFKzkZxQj1oDzHc+w3l1PhN60fqbQmnKNDVhS1AkWql
+	 QhqbY8Oh/b2nw==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 37FD0378107C;
+	Wed, 24 Apr 2024 09:54:22 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: djakov@kernel.org
+Cc: robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	keescook@chromium.org,
+	gustavoars@kernel.org,
+	henryc.chen@mediatek.com,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com,
+	wenst@chromium.org,
+	amergnat@baylibre.com
+Subject: [PATCH v5 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
+Date: Wed, 24 Apr 2024 11:54:09 +0200
+Message-ID: <20240424095416.1105639-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-In-Reply-To: <20240222-gunyah-v17-15-1e9da6763d38@quicinc.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XLbgIb0Y_-CpZ9y5rvGSoXb-QMYlvkEG
-X-Proofpoint-ORIG-GUID: XLbgIb0Y_-CpZ9y5rvGSoXb-QMYlvkEG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-24_07,2024-04-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 clxscore=1011
- spamscore=0 priorityscore=1501 mlxlogscore=825 lowpriorityscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404240041
+Content-Transfer-Encoding: 8bit
 
-* Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:38]:
+Changes in v5:
+ - Fixed Kconfig dependencies in interconnect
+ - Fixed module build for dvfsrc and interconnect
 
-> +/**
-> + * struct gunyah_vm_exit_info - Reason for VM exit as reported by Gunyah
-> + * See Gunyah documentation for values.
-> + * @type: Describes how VM exited
-> + * @padding: padding bytes
-> + * @reason_size: Number of bytes valid for `reason`
-> + * @reason: See Gunyah documentation for interpretation. Note: these values are
-> + *          not interpreted by Linux and need to be converted from little-endian
-> + *          as applicable.
-> + */
-> +struct gunyah_vm_exit_info {
-> +	__u16 type;
+Changes in v4:
+ - Updated patch [3/7] to actually remove address/size cells
+   as the old version got unexpectedly pushed in v3.
 
-Pls add an enum to describe the various exit types.
+Changes in v3:
+ - Removed examples from interconnect and regulator bindings
+   and kept example node with interconnect and regulator in
+   the main DVFSRC binding as suggested
+ - Removed 'reg' from interconnect and regulator, removed both
+   address and size cells from the main DVFSRC binding as that
+   was not really needed
+ - Added anyOf-required entries in the regulator binding as it
+   doesn't make sense to probe it without any regulator subnode
 
-> +	__u16 padding;
-> +	__u32 reason_size;
-> +	__u8 reason[GUNYAH_VM_MAX_EXIT_REASON_SIZE];
-> +};
+Changes in v2:
+ - Fixed issues with regulator binding about useless quotes and
+   wrong binding path (oops)
+ - Removed useless 'items' from DVFSRC main binding
+ - Allowed address/size cells to DVFSRC main binding to resolve
+   validation issues on the regulator and interconnect bindings
+ - Changed dvfsrc node name to `system-controller`, as the DVFSRC
+   is actually able to control multiple system components.
+ - Added a commit to remove mtk-dvfs-regulator.c before adding the
+   new, refactored regulator driver
 
-- vatsa
+
+This series adds support for the MediaTek Dynamic Voltage and Frequency
+Scaling Resource Controller (DVFSRC), found on many MediaTek SoCs.
+
+This hardware collects requests from both software and the various remote
+processors embededd into the SoC, and decides about a minimum operating
+voltage and a minimum DRAM frequency to fulfill those requests, in an
+effort to provide the best achievable performance per watt.
+
+Such hardware IP is capable of transparently performing direct register
+R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
+
+Summarizing how the DVFSRC works for Interconnect:
+
+             ICC provider         ICC Nodes
+                              ----          ----
+             _________       |CPU |   |--- |VPU |
+    _____   |         |-----  ----    |     ----
+   |     |->|  DRAM   |       ----    |     ----
+   |DRAM |->|scheduler|----- |GPU |   |--- |DISP|
+   |     |->|  (EMI)  |       ----    |     ----
+   |_____|->|_________|---.   -----   |     ----
+               /|\         `-|MMSYS|--|--- |VDEC|
+                |             -----   |     ----
+                |                     |     ----
+                | change DRAM freq    |--- |VENC|
+             --------                 |     ----
+    SMC --> | DVFSRC |                |     ----
+             --------                 |--- |IMG |
+                                      |     ----
+                                      |     ----
+                                      |--- |CAM |
+                                            ----
+
+...and for regulators, it's simply...
+   SMC -> DVFSRC -> Regulator voltage decider -> (vreg) Registers R/W
+
+Please note that this series is based on an old (abandoned) series from
+MediaTek [1], and reuses some parts of the code found in that.
+
+Besides, included in this series, there's also a refactoring of the
+mtk-dvfsrc-regulator driver, which never got compiled at all, and would
+not build anyway because of missing headers and typos: that commit did
+not get any Fixes tag because, well, backporting makes no sense at all
+as the DVFSRC support - which is critical for that driver to work - is
+introduced with *this series*! :-)
+
+P.S.: The DVFSRC regulator is a requirement for the MediaTek UFSHCI
+      controller's crypto boost feature, which is already upstream but
+      lacking the actual regulator to work....... :-)
+
+[1]: https://lore.kernel.org/all/20210812085846.2628-1-dawei.chien@mediatek.com/
+
+
+AngeloGioacchino Del Regno (7):
+  dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
+  dt-bindings: interconnect: Add MediaTek EMI Interconnect bindings
+  dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
+  soc: mediatek: Add MediaTek DVFS Resource Collector (DVFSRC) driver
+  regulator: Remove mtk-dvfsrc-regulator.c
+  regulator: Add refactored mtk-dvfsrc-regulator driver
+  interconnect: mediatek: Add MediaTek MT8183/8195 EMI Interconnect
+    driver
+
+ .../interconnect/mediatek,mt8183-emi.yaml     |  51 ++
+ .../mediatek,mt6873-dvfsrc-regulator.yaml     |  43 ++
+ .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  |  83 +++
+ drivers/interconnect/Kconfig                  |   1 +
+ drivers/interconnect/Makefile                 |   1 +
+ drivers/interconnect/mediatek/Kconfig         |  29 +
+ drivers/interconnect/mediatek/Makefile        |   5 +
+ drivers/interconnect/mediatek/icc-emi.c       | 153 +++++
+ drivers/interconnect/mediatek/icc-emi.h       |  40 ++
+ drivers/interconnect/mediatek/mt8183.c        | 143 +++++
+ drivers/interconnect/mediatek/mt8195.c        | 339 +++++++++++
+ drivers/regulator/mtk-dvfsrc-regulator.c      | 242 ++++----
+ drivers/soc/mediatek/Kconfig                  |  11 +
+ drivers/soc/mediatek/Makefile                 |   1 +
+ drivers/soc/mediatek/mtk-dvfsrc.c             | 551 ++++++++++++++++++
+ .../interconnect/mediatek,mt8183.h            |  23 +
+ .../interconnect/mediatek,mt8195.h            |  44 ++
+ include/linux/soc/mediatek/dvfsrc.h           |  36 ++
+ include/linux/soc/mediatek/mtk_sip_svc.h      |   3 +
+ 19 files changed, 1669 insertions(+), 130 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.yaml
+ create mode 100644 drivers/interconnect/mediatek/Kconfig
+ create mode 100644 drivers/interconnect/mediatek/Makefile
+ create mode 100644 drivers/interconnect/mediatek/icc-emi.c
+ create mode 100644 drivers/interconnect/mediatek/icc-emi.h
+ create mode 100644 drivers/interconnect/mediatek/mt8183.c
+ create mode 100644 drivers/interconnect/mediatek/mt8195.c
+ create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
+ create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
+ create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
+ create mode 100644 include/linux/soc/mediatek/dvfsrc.h
+
+-- 
+2.44.0
+
 
