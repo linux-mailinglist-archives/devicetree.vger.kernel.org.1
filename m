@@ -1,117 +1,198 @@
-Return-Path: <devicetree+bounces-62461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6248B1377
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:21:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3F48B138A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 21:30:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C078B28EDD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:20:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3E0728A322
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 19:30:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED8A82D72;
-	Wed, 24 Apr 2024 19:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069A2757FC;
+	Wed, 24 Apr 2024 19:30:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b="gql0upej"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eX9+L10y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward502b.mail.yandex.net (forward502b.mail.yandex.net [178.154.239.146])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1417A724;
-	Wed, 24 Apr 2024 19:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6661CD23;
+	Wed, 24 Apr 2024 19:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713986377; cv=none; b=uzXOFC5fyGct3CLk2ebS+KtvyGi5B11JMkOFN71CalISVpJ0WD18MNHjLvbuZrKTpvzAZ0BgnwAq+EKieIF45LbrYvQFvCfZq8Cvr+3grrtccUYDXMWgGOkkv92RPm92J8u/cvGijCQ5vstwzC0ZB6IZquF6hUxhO3OzgWHcUQ8=
+	t=1713987009; cv=none; b=rq+bENb13ckjqj1aPf4O5rwCS3XsO5TXSeHOf0asiJ2XIuK+9B6fkNC7n/rK8CGdbe9rVFvQIrMvrb8TDOu9/0N4YlbNrrVXNpzVo3A7WjmMDEtCdlzL1ILAfhdd9+h0X00cW78UHSDKIFzUpzhB1lyviJFKe9meA7ddLzp6Hk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713986377; c=relaxed/simple;
-	bh=VpIb6fiZHXg3hmoKwHeP+v2+KBpzLJeKOmUqlXSWq20=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WJVKEJta9WrKkIzs2DAqNqPyhHohl8QxDd+dTH8YrsewiR0oDqwxdD6JDFsBsudlTlyALE3RQ/cGr0qMIgN5JVcJEdPXz24VVNao+rFt6dyZvi3/H+7DKNhYiz1uEbDdUXBbfcTargo/dVN/MbkRQRUskWFytb6wrZIrOlGJ6Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru; spf=pass smtp.mailfrom=ya.ru; dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b=gql0upej; arc=none smtp.client-ip=178.154.239.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ya.ru
-Received: from mail-nwsmtp-smtp-production-main-54.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-54.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:332e:0:640:784d:0])
-	by forward502b.mail.yandex.net (Yandex) with ESMTPS id 2EF3A5F319;
-	Wed, 24 Apr 2024 22:19:27 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-54.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id IJRtcgXMoCg0-8inZL3gi;
-	Wed, 24 Apr 2024 22:19:26 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ya.ru; s=mail;
-	t=1713986366; bh=71sGgVUD37SmuBxuzEyimvQaUN299mPg9mVqN5q3vsQ=;
-	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=gql0upejeI58UAiRkmcIK92e9xyvEfD42LnXccpHFphaORaD1/CYhMD/kvGLfVyLt
-	 VhKz+70cOWygz8Tq+dNQ1fa5I1z6Dn9hocsd2KNKGDVxsDceYyPSqubZQg+gaZGHS0
-	 H0XcgnK/xoYny0QBe0uOxelDZUTPUsUFfeL9eLIY=
-Authentication-Results: mail-nwsmtp-smtp-production-main-54.iva.yp-c.yandex.net; dkim=pass header.i=@ya.ru
-From: Konstantin Pugin <rilian.la.te@ya.ru>
-To: 
-Cc: krzk@kernel.org,
-	conor@kernel.org,
-	lkp@intel.com,
-	vz@mleia.com,
-	robh@kernel.org,
-	jcmvbkbc@gmail.com,
-	nicolas.ferre@microchip.com,
-	manikanta.guntupalli@amd.com,
-	corbet@lwn.net,
-	ychuang3@nuvoton.com,
-	u.kleine-koenig@pengutronix.de,
-	Maarten.Brock@sttls.nl,
-	Konstantin Pugin <ria.freelander@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
+	s=arc-20240116; t=1713987009; c=relaxed/simple;
+	bh=Wk+gwE5ehkKwjW4/Y27fgFajy225vRzlpOwadmoSOKs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eai8p0OgqeWlEnRtN3CEWRNfPewlojJUSDGAeU34y8HpHPGM0piFprTNOouCnaPJcP0NjUTuu+JYxzf2QFXPe8BERV2Uwsqj7wOe0qL6Y6LDnl2Z6bCgUmy5pkbWTeRn7cqUPi1jSlI+F8ZIfPic1Oo3O0V3FsOjqX62EajfXUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eX9+L10y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C089C113CD;
+	Wed, 24 Apr 2024 19:30:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713987009;
+	bh=Wk+gwE5ehkKwjW4/Y27fgFajy225vRzlpOwadmoSOKs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eX9+L10yAooMM4/Cvm95YwxgpjJkB+reJYSrqqlKxztC2/tWDoFDE9RMuzL37f5pN
+	 3YdGsUohZZ/gStHYQEXxVQlDXpUs6dCmd2hhDtrwA36+bav+jIBhREKECzxGxMDrqX
+	 MJGDP1EVmXM4DrGinfbB/2DMoC9G2IjDKzM48O0OrxVaIhsJxWt80YL3bcF08XL+H8
+	 /xEdCBWlMR7KDFe2bUviG5eHyRwmdbftEknYbtyzltZZzPvvgUSoDDDvQnlATCgaR0
+	 1GyfhLIj7NHw5o2nAuzqaGyUl4XbdnQrDU3WTgSyJjY4jJIQXYvifbrRIclKIvQuwG
+	 djSkO89fBcRVQ==
+Date: Wed, 24 Apr 2024 14:30:07 -0500
+From: Rob Herring <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Lech Perczak <lech.perczak@camlingroup.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v8 2/3] dt-bindings: sc16is7xx: Add compatible line for XR20M1172 UART
-Date: Wed, 24 Apr 2024 22:18:53 +0300
-Message-ID: <20240424191908.32565-3-rilian.la.te@ya.ru>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240424191908.32565-1-rilian.la.te@ya.ru>
-References: <20240424191908.32565-1-rilian.la.te@ya.ru>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: Add properties
+ for i.MX95 Pinctrl OEM extensions
+Message-ID: <20240424193007.GA329896-robh@kernel.org>
+References: <20240418-pinctrl-scmi-oem-v1-v2-0-3a555a3c58c3@nxp.com>
+ <20240418-pinctrl-scmi-oem-v1-v2-1-3a555a3c58c3@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418-pinctrl-scmi-oem-v1-v2-1-3a555a3c58c3@nxp.com>
 
-From: Konstantin Pugin <ria.freelander@gmail.com>
+On Thu, Apr 18, 2024 at 10:53:17AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX95 Pinctrl is managed by SCMI firmware using OEM extensions. This
+> patch is to add i.MX95 Pinctrl OEM extensions properties.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/firmware/arm,scmi.yaml     |  9 ++-
+>  .../bindings/firmware/nxp,imx95-scmi-pinctrl.yaml  | 66 ++++++++++++++++++++++
+>  2 files changed, 72 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index e9d3f043c4ed..e530bfff141a 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -262,9 +262,12 @@ properties:
+>      patternProperties:
+>        '-pins$':
+>          type: object
+> -        allOf:
+> -          - $ref: /schemas/pinctrl/pincfg-node.yaml#
+> -          - $ref: /schemas/pinctrl/pinmux-node.yaml#
+> +        anyOf:
+> +          - $ref: /schemas/firmware/nxp,imx95-scmi-pinctrl.yaml
+> +          - allOf:
+> +              - $ref: /schemas/pinctrl/pincfg-node.yaml#
+> +              - $ref: /schemas/pinctrl/pinmux-node.yaml#
+> +
+>          unevaluatedProperties: false
+>  
+>          description:
+> diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi-pinctrl.yaml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..f6c18e9fafec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi-pinctrl.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/nxp,imx95-scmi-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX System Control and Management Interface (SCMI) Pinctrl Protocol
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@arm.com>
+> +
+> +patternProperties:
+> +  '[a-f0-9]+$':
+> +    type: object
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      pins:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description: name of the pin
+> +        items:
+> +          enum: [ daptdi, daptmsswdio, daptclkswclk, daptdotraceswo,
+> +                  gpioio00, gpioio01, gpioio02, gpioio03, gpioio04,
 
-EXAR XR20M1172 UART is mostly register-compatible with NXP SPI UARTs.
-It will be handled by same driver, so, it makes sense to add DT
-definition for these block into driver's documentation.
+ioio?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
-Signed-off-by: Konstantin Pugin <ria.freelander@gmail.com>
----
- Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> +                  gpioio05, gpioio06, gpioio07, gpioio08, gpioio09,
+> +                  gpioio10, gpioio11, gpioio12, gpioio13, gpioio14,
+> +                  gpioio15, gpioio16, gpioio17, gpioio18, gpioio19,
+> +                  gpioio20, gpioio21, gpioio22, gpioio23, gpioio24,
+> +                  gpioio25, gpioio26, gpioio27, gpioio28, gpioio29,
+> +                  gpioio30, gpioio31, gpioio32, gpioio33, gpioio34,
+> +                  gpioio35, gpioio36, gpioio37, ccmclko1, ccmclko2,
+> +                  ccmclko3, ccmclko4, enet1mdc, enet1mdio, enet1td3,
+> +                  enet1td2, enet1td1, enet1td0, enet1txctl, enet1txc,
+> +                  enet1rxctl, enet1rxc, enet1rd0, enet1rd1, enet1rd2,
+> +                  enet1rd3, enet2mdc, enet2mdio, enet2td3, enet2td2,
+> +                  enet2td1, enet2td0, enet2txctl, enet2txc, enet2rxctl,
+> +                  enet2rxc, enet2rd0, enet2rd1, enet2rd2, enet2rd3,
+> +                  sd1clk, sd1cmd, sd1data0, sd1data1, sd1data2, sd1data3,
+> +                  sd1data4, sd1data5, sd1data6, sd1data7, sd1strobe,
+> +                  sd2vselect, sd3clk, sd3cmd, sd3data0, sd3data1,
+> +                  sd3data2, sd3data3, xspi1data0, xspi1data1, xspi1data2,
+> +                  xspi1data3, xspi1data4, xspi1data5, xspi1data6,
+> +                  xspi1data7, xspi1dqs, xspi1sclk, xspi1ss0b, xspi1ss1b,
+> +                  sd2cdb, sd2clk, sd2cmd, sd2data0, sd2data1, sd2data2,
+> +                  sd2data3, sd2resetb, i2c1scl, i2c1sda, i2c2scl, i2c2sda,
+> +                  uart1rxd, uart1txd, uart2rxd, uart2txd, pdmclk,
+> +                  pdmbitstream0, pdmbitstream1, sai1txfs, sai1txc,
+> +                  sai1txd0, sai1rxd0, wdogany, fccuerr0 ]
+> +
+> +      nxp,func-id:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Indicates the PAD connections which function module
 
-diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-index 5dec15b7e7c3..c4bedf23368b 100644
---- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-+++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-@@ -12,6 +12,7 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - exar,xr20m1172
-       - nxp,sc16is740
-       - nxp,sc16is741
-       - nxp,sc16is750
--- 
-2.44.0
+The description makes no sense...
 
+> +
+> +      nxp,pin-conf:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: The PAD configuration
+
+PAD stands for? Or is it pin configuration as the property name says?
+
+This is just a raw register values? Why can't standard pinctrl 
+properties be used here. What's the point of using SCMI pinctrl if you 
+are just shuttling register values to SCMI?
+
+> +
+> +      nxp,daisy-id:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: The select input register ID
+> +
+> +      nxp,daisy-conf:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: The select input register value
+
+I remember some daisy chaining stuff in iomuxc, but otherwise 
+
+What's the relationship between these 2 properties? Is it valid if only 
+1 is present? I doubt it. Looks like an address and value pair. Either 
+the schema needs to define allowed combinations or design the properties 
+in a way you don't have too. IOW, make a single property that's a tuple 
+of register ID and value.
+
+Rob
 
