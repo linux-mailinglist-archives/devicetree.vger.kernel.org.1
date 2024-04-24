@@ -1,231 +1,198 @@
-Return-Path: <devicetree+bounces-62087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFEA28AFE13
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 03:55:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0870D8AFE34
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 04:12:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E45B81C22F28
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:55:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1102E1C21E5D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 02:12:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0CB6DDA0;
-	Wed, 24 Apr 2024 01:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hexhyh8x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A76F1101F2;
+	Wed, 24 Apr 2024 02:12:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2118.outbound.protection.partner.outlook.cn [139.219.17.118])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403748836
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 01:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713923738; cv=none; b=q2jKEFk6Ecghx7e6D+3BKpdyRDf7Yg68okwlDdlD2C2fShZ16Apxjj6YAreEQQ5nX7Dy94pPrFIBqcUym1jlMrYOFzhfSqGzHuVDFzrcdIFZT4eDAkshZYW3ZqCnZrFg7WXEf7OAH7hwkzXIEnlor/k0FFk59CH6uH+dWgHR3Qw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713923738; c=relaxed/simple;
-	bh=dJ8KHPb1K0T0HL7uck76kf0jIQnZoTF13YWbmRrszFQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GFC5DxF7rK3wV7iHWyA0tm42w7xAExBqFS86n4P0eXU9LUI54gNoIBFD0h6eYdHuFSTot+IXPOXUJj0+KlZ1z2ukHvchKTHW3cMCBY0pqjvNLwP0UkWjTzk4TCmlSqeJQcNtzAScjlI3N5f6JE5jREYK6Sp8okyz/qGPlV1jcgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hexhyh8x; arc=none smtp.client-ip=209.85.219.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-69b5dae6a64so3885526d6.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 18:55:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1713923735; x=1714528535; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dJ8KHPb1K0T0HL7uck76kf0jIQnZoTF13YWbmRrszFQ=;
-        b=hexhyh8xcZ0ZFYkpPp6/AD7cxHlzBUcqwX7d7hlK63qcJbPz+oPMuf2PRnW8iv9Xp/
-         A7Zn2RFIC1smf3jZiG/U8FKcyMhNnHzXdsh3t5Jcl5aj8qV9U7yhkIRYisG3D7fO2J6F
-         cDEudocpsXjJA0ZJ90aqCVj4Ea7/CgtFGnxWJE/HME5JBOrKDax6zxAPnK1T1VJdknVw
-         +5JqPa2fQHuXYAOIiH+pgaxkvJMsOs0OCKKedBeGeW2QAkqxxcbmYQ0g1ODxtdUeaSOZ
-         g4zrUmYDUweDqEGqYKZGnLOdrM8jRvnyecRWPM0UGUGXlDI3m44bTdTvmS+CXX+dfIW8
-         v0Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713923735; x=1714528535;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dJ8KHPb1K0T0HL7uck76kf0jIQnZoTF13YWbmRrszFQ=;
-        b=MOp2XEPqg/ek7rXbFEt/jISvgwSQdwLZut8N8qt0jl7wH5cQb3d8eOARatjuoftI8W
-         9ox9P/IgcGVM9cV0oeZ2AjBq2AWv2CoYiNdNdyFHMNWnMtLADd4AUpXF3uV21RKM2Z16
-         3hhzSZ4NisGXOPnW/o05QbOyOGsaEQkECBPU0X8bf0kamL7WxasDpWQEWD0BvXEPBfCI
-         y2O4Cx1DUcyQXZtyKjqKMk0wR3HPjbXW5Tenq42OQap1dgiiDXfNHLFhV1Ptc4LYNeiI
-         ZTTxuB1R/1Y5d4wyFxoDKthng/If75gCZv20FAkoPkIQP3VdPd0AeRSv1Y4BI68Xnt6O
-         knvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwojFum0DSlExIGYBxGlszzqt44GASUrWy1QSy3HEjdYhRhPWWgEcE3PGRI+NKSfM2KztHcUxM+TjaEdIhrPxoqaeqxEhNKd1zRQ==
-X-Gm-Message-State: AOJu0Yw06CM72ieaH9+OL0mGyDipXBtHgvsp7BU8Nyj01349HP40mu/j
-	U9k2ZOg0vwf6tzCIQxSj+yAvbKpCPN2CF8BcIzmy9R0MZpFOEc5gjY4SlOLF2BBkWXDpiv8HnL1
-	JRWyxB5S0sZlACB8ZnYXUK/3D0mIgZmJA6wbYiA==
-X-Google-Smtp-Source: AGHT+IG8v5tfIrvn8fxObpffuM620VUlRCBGMnFCE00GJ3FwLxmlptq8yaXk3f7Ff5Nt5Z+1L+yQIK3lS+SnBB4wIos=
-X-Received: by 2002:a05:6214:f2a:b0:6a0:7f43:eb1 with SMTP id
- iw10-20020a0562140f2a00b006a07f430eb1mr8789131qvb.19.1713923735084; Tue, 23
- Apr 2024 18:55:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F6E568A;
+	Wed, 24 Apr 2024 02:12:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713924764; cv=fail; b=pzSPrGpMvyCDAE+OyYKyJoEloR4ktVrfu/gZNCTs5iulZf2iTRNVz3a+ODkjjIh2ZC565MIiWQa0JeKMBpXKVoIss9ZuXtamcj3KhbKs4Iz0Of1RW/Qf7Vq68keTguMCP3qwucl7ak+5gmN0D9idKcsRGx3B4K2GM0LiLQ4BUyw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713924764; c=relaxed/simple;
+	bh=4WkCkTy8Z2u0nbmuuoLAI4WdL13klQMv3lwCHyD/PhI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=o9YxJHtCkPTMMqSvGRjZIExHPSZx7qXca5kv/DgsOqEj34zSDIHQ6veugj1lyeYB3aFgiAH2DDqsT/r3SN2pL5AH8uuBwtjfdOSLyEMhTgiQKvAqMlezKQAyQElghregqgflMM6stGkh4ULmXTp+XIHfyDooO6n5SChbeVjMg7Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FrcSUIu9+PJVYgNmfGFCyPF7ks0O0luGdt0QbPqRarIO0f1tu2pKknCOCwOsIhpbBSyepk5lZh5+I+fkEPmDAFiBMw1AJPD0HXd06cVyVgOhEA80kHghJuIquYlFq17ZC7V3OE248xFNhImF47VnQIbWeZdg+vSGQ3jhtcGU47RAOyREsB7khozwoKFeAECZqM55RK4UqeVaw5lRtDQg8s6bTqEViUfxA1AKME0WNKcY6Kd4aAcfpQoivjc7HwWKCUe6prPFstEMaLCnTD8qntemgjVFz1OBB8aBWOVFXEuH7YkNosOrm3KG7YlkiO6YR4oci0SW2OEoHHZyo1eGWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4WkCkTy8Z2u0nbmuuoLAI4WdL13klQMv3lwCHyD/PhI=;
+ b=PmISNVIDhVW1yhaorYiagJH/8d4j1XbolteIB3nyhLymZSBMb2nNea/X64DofXizVA70dCWaELZCFIyHGpF9YxOPF6JMw8I47bbQ5qfGThqiQSo+A05twSnAirVqbbKO3ZSqwftd6CUXa2vOYLMWlimRb9S1dFuwn6cJmjUVn3u3AlDe8/gEaorG3vVk5MPN/C0cTXaKcCJoP2/Vencrm/E2it7Dsr2CUzjPJ4AspG5CEl0rthd2RRnk341t6ItTfneF7QSC2aK1rM5AxX2aU/04qFLNWu9hV75YiS3uZxXUtOP2JRfzP+/N7gRi3ynKCdTC+uF1Z3FLsT1GpCrrjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10) by NTZPR01MB1129.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:a::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 24 Apr
+ 2024 02:12:37 +0000
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e903:99a6:10b7:304d]) by
+ NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::e903:99a6:10b7:304d%6])
+ with mapi id 15.20.7472.044; Wed, 24 Apr 2024 02:12:37 +0000
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Takashi Iwai
+	<tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor.dooley@microchip.com>
+CC: Walker Chen <walker.chen@starfivetech.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>, "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] ASoC: dt-bindings: Add PDM controller for the
+ StarFive JH8100 SoC
+Thread-Topic: [PATCH v2 1/2] ASoC: dt-bindings: Add PDM controller for the
+ StarFive JH8100 SoC
+Thread-Index: AQHalVkH07xuCGa5y0qrTe+ETpKiv7F1nF4AgAEPpvA=
+Date: Wed, 24 Apr 2024 02:12:36 +0000
+Message-ID:
+ <NTZPR01MB09562FCBC2D9F5CB4C5729A79F10A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+References: <20240423083405.263912-1-xingyu.wu@starfivetech.com>
+ <20240423083405.263912-2-xingyu.wu@starfivetech.com>
+ <a5f8746f-14f8-4e56-9ac7-30c7ba6fad30@linaro.org>
+In-Reply-To: <a5f8746f-14f8-4e56-9ac7-30c7ba6fad30@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: NTZPR01MB0956:EE_|NTZPR01MB1129:EE_
+x-ms-office365-filtering-correlation-id: 4182fe87-69b1-4acd-5783-08dc640402da
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ xWWuS3PYnuLHnaKxbsmv97v7+zbFsLpOD/FrES2h/gUu4+9qr06ZrJZl6G80aucv27u3l9c0tQ3emlsO8ul+HywI/7VvuDFdFwKLqsLyfbiMQIkKk42G8guMA6kt9SQ9GQW+087TqIV4UsMu0F6pKQeBJAR/coi+EWrmgxmja8GlmkuivZeJHr980qrdonkU5V4KYgxaKyoPDJKNvwr2YHAt6G0usYibLdRjEu63+mqsGH10HKLb6oRs6ynAwdwXToKh5/IwEU/KTx2a+8JQayUUL2EOEw9+sTLwTcym+hG6VlXCdK8AyJpG/0LPQwk7E0psPRsb8ua3UWnDkemYFHDy9z3v+CFs7+wvp+xnHjtqUH6Bf8mfjOBSgnWuUUkruY5Jy3yWDHsF0/o+j7rIVKaWKBMWfa0gnIwmMna5EnGXmXPkuneSlJznF11t0EWLNPyAeCQXT8fCrF5uSwsWb4UgsYeXPq1ygWsXy/v3S6aUQiEPKgrghiojnRV71gP6CKJbD7bp/h8IGOwBPXmAzUxs+zlskC4AgZT3thxTWNXXay4oS90aICJUwg3Wp/ykeLxogERPdb2cM7GTIzitkVNtEzy8r3fL+Xt8wb6JdpT8vUPJNkmLQrJYSrdZB9o7
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(7416005)(41320700004)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?ZkpNQjFTelhTTjVwVlBjRmJSYWkwbFpDcm1pbnJlVlBMbzdsR0k2ZVhTbTVp?=
+ =?utf-8?B?em5oSkZxNWdDdmhPaWZHVFNvYlJzTkdKbUFVc1FueXFQaU05ZnNPVlVuOVhG?=
+ =?utf-8?B?a29Dc0JWU1ovS2NaS21iSS93U09lNmdYWE9NZ3Foc2d5UHVpWXdTRDJlMUt1?=
+ =?utf-8?B?Y2g2bFZ2OHBRSWJQZ2FVOW44U2tjNENJekVlUGhyUVNtUXdsN01RVGpSa1l5?=
+ =?utf-8?B?ajh1ZlRLM3VBK3VWUHJWeDB3VHl5MWxNN0JNZDNSNmZJZGx0N2hrNjZCVDBx?=
+ =?utf-8?B?TlVXTVhJeFUrUDlWZnJDclZUVWNZZUdYekFGTEZTVEtpQkY2YmplUldZTkRx?=
+ =?utf-8?B?T2JIeTYvd2ZJYUo0UEZIakI1eFA3aFNxZklOYmNpclordU1hSkdTdkRRZlBU?=
+ =?utf-8?B?YzFIZWJPeUZXRGJVdWFqR0tPQUhTZlhNSW54bXFrR3hLRENFbi9mMFJ3eEVx?=
+ =?utf-8?B?YWRnZU1maUxuSlR3Vy9wWkFmY3Y1K0hZWHNMSzU4eUNValhPUUJWUWJFdG4v?=
+ =?utf-8?B?TTQ4aUFHaDNuVXh6QkhYRWtFdVNpeWltd3FlOGtIcnlobmhLSWFnN3hrTlZu?=
+ =?utf-8?B?a0E0ekRSR2NNNWRCNkJWSWh4dUdjdHZ6LytoSVBUZGxFa1JGYU5BZWFQem9p?=
+ =?utf-8?B?WlNKREp3TFlhNldKQ0hGeHczeFlhY3AwSGxPTFZOZFp0OXRuQWxFR0x3TGpy?=
+ =?utf-8?B?VTNvVnN0VS8rMFJpZkMxSDQ1enJWWXRhR2VTcmZJRGZIOFlDVVFrS3NyQjhp?=
+ =?utf-8?B?TVJpbDhaRm9hVk5CZUZFc2UveEg4TDhPeUxjR0ZmaUZjWHArSVk0RWN3Q29a?=
+ =?utf-8?B?Z3FaY1Z2MmNCVm4vSU1tMzY2djVCU1l0M2NOYkgzYUt1MmUySXZDQlpDS04v?=
+ =?utf-8?B?UExtKzFhUVFzaTA0SlVVb3I3QXdzVHJIaEdJdE9MVEV1RTJFc2RIRVhCcndp?=
+ =?utf-8?B?cmV1UExxZE8veis4RjFKeFJwcFlNVU5UZDZBNldaQWZ1UEpENGR3cXlRU211?=
+ =?utf-8?B?OWludVVKNTFXdDZHZ1I5MTFzQjUya01FRjRaZ3dPcVRtMUlyMUY2TzFFZU5p?=
+ =?utf-8?B?N2VjVXpHd1Z5NyswTGxKSHVmQmE1N1BTc2pEcm9OdGxvTmFhL2NtVVUwdDBQ?=
+ =?utf-8?B?eDAyZVl2dUE3T2dma3AyZ0YvK0syT3lUVXJKSHlhUTV5eDVtbUQ3d050ZnJS?=
+ =?utf-8?B?amV4M05SZkdFVFdscVhOOW9GUTNHRjBMUnE3dVpkWDA1TDhOa2Roa21SWkZn?=
+ =?utf-8?B?WnZOY2pDUHQ5VDhNMjB2WnI0bkZaVEZSd1M3QTNIMmFTMHMrdXU4R2FRT2ox?=
+ =?utf-8?B?QVVFQktBVkJEMllzRXVKVW9vM2t6NnUyVnpHRXAvL2pTeTNGaklLdW9XTVE4?=
+ =?utf-8?B?anZGdk5TSjY3anNQbU5sMUtOWXI3MzM4cnRwMTBMd29nVjZtUmhkbHl3Wk02?=
+ =?utf-8?B?MEpXb0twbDJzTmdib2wwSW5VdHptUDBBNDdzVnlIWWk2VlVreVJHZHhhNjc1?=
+ =?utf-8?B?d05QZ0dwOXlseWI2bkU1My93bkcydm1PeEl5SnVDWHJCcVZCdm9ucHNPdGFV?=
+ =?utf-8?B?cVh1QVppVGtRN0ZlQTM0eHVCU2lMQUp3NmF4WFhmWUxkR0JVK3RSTGJ3SXZM?=
+ =?utf-8?B?K3REdkxQY1ZKb2NTMUxoQjVFdE9kZTA5T2h0am9YNDZXaXBSQ3htY0EyVDBQ?=
+ =?utf-8?B?UHhUeHRoWVFJZzBSZU5FTjNHSG83VytnMzdFUDVuMVM5Y09MTml3MGI5bE5r?=
+ =?utf-8?B?RjFxSWZmZnZqMnR6Slc2LzBhb3gwalpYaHRucWNHUFNiMEdQakEvM0FYeitt?=
+ =?utf-8?B?THExV0o5UnJlWDF1UURGM1JhTytlSFdDUGNqR2RLYTh0c29oV0dXYlh3Z3VY?=
+ =?utf-8?B?LzlJaDl4OFUrNitiWCtMcFpoYmMzTW51TlVIT3N2Tm5JeklvQ3ZLY1Y4OFFS?=
+ =?utf-8?B?MGI2MllKZURYMFU2VzFQeHF0eWZMZmpkRTY2ODlHd0NjeTVBUlZUYzJ4UGpv?=
+ =?utf-8?B?Qi8rSVFNWTd3K2Y2aElraWd5ZTB0ZnAvNTJUK3VLN1VPVTNVQzdTaCt0Ty9D?=
+ =?utf-8?B?cm9UZnMxMGZBcFhhamhIakxwVjdCcDNzM1RsaFduUW1JZHJORUZwNTdOcUJJ?=
+ =?utf-8?Q?NTGZ8o6GiryR/OUVHKdiby0F/?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422060811.670693-1-xuxinxiong@huaqin.corp-partner.google.com>
- <CAD=FV=WRLLuOkCJeM6RdAb6xLN-cPH+hfWbOv9-LujB-WMGEFw@mail.gmail.com>
- <CAGoogDB-mj8_xu04w3V2ZxOBTWoXcPKrVR1NRt6BFcpjHX3-7Q@mail.gmail.com> <CAD=FV=WwsR9e-ZXJRY11FvdUZ66YPy9vqmY_=sGDw5Wqk1eV3w@mail.gmail.com>
-In-Reply-To: <CAD=FV=WwsR9e-ZXJRY11FvdUZ66YPy9vqmY_=sGDw5Wqk1eV3w@mail.gmail.com>
-From: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-Date: Wed, 24 Apr 2024 09:55:24 +0800
-Message-ID: <CAGoogDBCzfKwkAA-VAs3_Cdw_4oFO94mt7yjy47Sp2RAtqtPxA@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel-edp: Add panel CSOT MNB601LS1-1
-To: Doug Anderson <dianders@chromium.org>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4182fe87-69b1-4acd-5783-08dc640402da
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2024 02:12:36.9711
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mBTzlUHLP9ohjay8CnyZpEwZMKqL75neQHB1nv1/ke9tc32w103bYMxnEX+1/Awc8hur05THBAUNC80hGoWHyxHQ6Tk78SnqyV5YJZTXDgo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1129
 
-Hi Doug, thank you!
-We had reported this info to the CSOT to correct the vendor id.
-If they confirm to fix this with the same product ID, we will submit a
-patch to fix this.
-
-
-Doug Anderson <dianders@chromium.org> =E4=BA=8E2024=E5=B9=B44=E6=9C=8824=E6=
-=97=A5=E5=91=A8=E4=B8=89 01:01=E5=86=99=E9=81=93=EF=BC=9A
->
-> Hi,
->
-> On Mon, Apr 22, 2024 at 6:28=E2=80=AFPM Xuxin Xiong
-> <xuxinxiong@huaqin.corp-partner.google.com> wrote:
-> >
-> > Yes, I read the edid from the panels, one is CSO and the other is CSW.
-> > The details are as follows, please help check. Thank you!
-> >
-> >
-> > 1. MNC207QS1-1
-> > edid-decode (hex):
-> > 00 ff ff ff ff ff ff 00 0e 6f 00 12 e7 00 00 00
-> > 1e 21 01 04 a5 1b 12 78 03 8a d5 9c 5e 59 90 25
-> > 1b 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> > 01 01 01 01 01 01 ae 3f 80 18 71 b0 23 40 30 20
-> > 36 00 07 a4 10 00 00 1a 00 00 00 fd 00 28 3c 4b
-> > 4b 11 01 0a 20 20 20 20 20 20 00 00 00 fe 00 43
-> > 53 4f 54 20 54 39 0a 20 20 20 20 20 00 00 00 fe
-> > 00 4d 4e 43 32 30 37 51 53 31 2d 31 0a 20 00 32
-> > ----------------
-> > Block 0, Base EDID:
-> > EDID Structure Version & Revision: 1.4
-> > Vendor & Product Identification:
-> > Manufacturer: CSO
-> > Model: 4608
-> > Serial Number: 231
-> > Made in: week 30 of 2023
-> > Basic Display Parameters & Features:
-> > Digital display
-> > Bits per primary color channel: 8
-> > DisplayPort interface
-> > Maximum image size: 27 cm x 18 cm
-> > Gamma: 2.20
-> > Supported color formats: RGB 4:4:4
-> > First detailed timing includes the native pixel format and preferred re=
-fresh rate
-> > Display is continuous frequency
-> > Color Characteristics:
-> > Red : 0.6113, 0.3671
-> > Green: 0.3496, 0.5644
-> > Blue : 0.1474, 0.1064
-> > White: 0.3134, 0.3291
-> > Established Timings I & II: none
-> > Standard Timings: none
-> > Detailed Timing Descriptors:
-> > DTD 1: 1920x1200 60.000 Hz 8:5 74.100 kHz 163.020 MHz (263 mm x 164 mm)
-> > Hfront 48 Hsync 32 Hback 200 Hpol P
-> > Vfront 3 Vsync 6 Vback 26 Vpol N
-> > Display Range Limits:
-> > Monitor ranges (Bare Limits): 40-60 Hz V, 75-75 kHz H, max dotclock 170=
- MHz
-> > Alphanumeric Data String: 'CSOT T9'
-> > Alphanumeric Data String: 'MNC207QS1-1'
-> > Checksum: 0x32
-> >
-> > 2. MNB601LS1-1
-> > edid-decode (hex):
-> >
-> > 00 ff ff ff ff ff ff 00 0e 77 00 11 00 00 00 00
-> > 00 22 01 04 95 1a 0e 78 03 a1 35 9b 5e 58 91 25
-> > 1c 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> > 01 01 01 01 01 01 09 1e 56 dc 50 00 28 30 30 20
-> > 36 00 00 90 10 00 00 1a 00 00 00 fd 00 28 3c 30
-> > 30 08 01 0a 20 20 20 20 20 20 00 00 00 fe 00 43
-> > 53 4f 54 20 54 39 0a 20 20 20 20 20 00 00 00 fe
-> > 00 4d 4e 42 36 30 31 4c 53 31 2d 31 0a 20 00 37
-> > ----------------
-> > Block 0, Base EDID:
-> > EDID Structure Version & Revision: 1.4
-> > Vendor & Product Identification:
-> > Manufacturer: CSW
-> > Model: 4352
-> > Made in: 2024
-> > Basic Display Parameters & Features:
-> > Digital display
-> > Bits per primary color channel: 6
-> > DisplayPort interface
-> > Maximum image size: 26 cm x 14 cm
-> > Gamma: 2.20
-> > Supported color formats: RGB 4:4:4
-> > First detailed timing includes the native pixel format and preferred re=
-fresh rate
-> > Display is continuous frequency
-> > Color Characteristics:
-> > Red : 0.6074, 0.3691
-> > Green: 0.3437, 0.5673
-> > Blue : 0.1445, 0.1123
-> > White: 0.3134, 0.3291
-> > Established Timings I & II: none
-> > Standard Timings: none
-> > Detailed Timing Descriptors:
-> > DTD 1: 1366x768 60.001 Hz 683:384 48.480 kHz 76.890 MHz (256 mm x 144 m=
-m)
-> > Hfront 48 Hsync 32 Hback 140 Hpol P
-> > Vfront 3 Vsync 6 Vback 31 Vpol N
-> > Display Range Limits:
-> > Monitor ranges (Bare Limits): 40-60 Hz V, 48-48 kHz H, max dotclock 80 =
-MHz
-> > Alphanumeric Data String: 'CSOT T9'
-> > Alphanumeric Data String: 'MNB601LS1-1'
-> > Checksum: 0x37
->
-> OK. This made me look a little deeper. I believe that the three-letter
-> code is managed by UEFI and I found:
->
-> https://uefi.org/PNP_ID_List
->
-> ...as far as I can tell "CSW" is actually correct for CSOT but "CSO"
-> was _not_. Looks as if CSO was supposed to be for "California
-> Institute of Technology" (Caltech). :(
->
-> We're probably OK with the recent work that Hsin-Yi did in commit
-> bf201127c1b8 ("drm/panel-edp: Match edp_panels with panel identity")
-> to match against the panel name even if Caltech does ship a "CSO"
-> 0x1200 in the future since it looks like the string you added matches
-> the panel.
->
-> That being said, is there any chance that it's not too late and you
-> can get CSOT to fix the EDID on "MNC207QS1-1"? Can you also make sure
-> that they're aware of this and don't make the same mistake in the
-> future?
->
->
-> In any case, given this investigation and the EDID I'm going to say
-> that the panel you've added here is fine.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->
-> I've pushed your change to drm-misc-next:
->
-> a6325ad47bc8 drm/panel-edp: Add panel CSOT MNB601LS1-1
->
-> -Doug
+T24gMjMvMDQvMjAyNCAxNzo0OSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gDQo+IE9u
+IDIzLzA0LzIwMjQgMTA6MzQsIFhpbmd5dSBXdSB3cm90ZToNCj4gPiBBZGQgYmluZGluZ3MgYWJv
+dXQgdGhlIFBETSBjb250cm9sbGVyIGZvciB0aGUgU3RhckZpdmUgSkg4MTAwIFNvQy4NCj4gPg0K
+PiA+IFNpZ25lZC1vZmYtYnk6IFhpbmd5dSBXdSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+
+DQo+IA0KPiBJZiB0aGVyZSBpcyBnb2luZyB0byBiZSByZXNlbmQvbmV3IHZlcnNpb24sIHRocmVl
+IG5pdHMuIEFueXdheToNCj4gDQo+IFJldmlld2VkLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxr
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+IA0KDQpUaGFua3MuDQoNCj4gLi4uDQo+
+IA0KPiA+ICsNCj4gPiArdGl0bGU6IFN0YXJGaXZlIEpIODEwMCBQRE0gY29udHJvbGxlcg0KPiA+
+ICsNCj4gPiArZGVzY3JpcHRpb246IHwNCj4gDQo+IERvIG5vdCBuZWVkICd8JyB1bmxlc3MgeW91
+IG5lZWQgdG8gcHJlc2VydmUgZm9ybWF0dGluZy4NCg0KV2lsbCBkcm9wLg0KDQo+IA0KPiA+ICsg
+IFRoZSBQdWxzZSBEZW5zaXR5IE1vZHVsYXRpb24gKFBETSkgY29udHJvbGxlciBpcyBhIGRpZ2l0
+YWwgUERNIG91dA0KPiA+ICsgbWljcm9waG9uZSBpbnRlcmZhY2UgY29udHJvbGxlciBhbmQgZGVj
+b2RlciB0aGF0IHN1cHBvcnRzIGJvdGggdXAgdG8NCj4gPiArIDQgIGNoYW5uZWxzLCBhbmQgYW4g
+SW50ZXItSUMgU291bmQgKEkyUykgdHJhbnNtaXR0ZXIgdGhhdCBvdXRwdXRzDQo+ID4gKyBzdGFu
+ZGFyZCAgc3RlcmVvIGF1ZGlvIGRhdGEgdG8gYW5vdGhlciBkZXZpY2UuIFRoZSBJMlMgdHJhbnNt
+aXR0ZXINCj4gPiArIGNhbiBiZSAgY29uZmlndXJlZCB0byBvcGVyYXRlIGVpdGhlciBhIG1hc3Rl
+ciBvciBhIHNsYXZlIChkZWZhdWx0DQo+ID4gKyBtb2RlKS4gVGhlIFBETSAgY29udHJvbGxlciBp
+bmNsdWRlcyB0d28gUERNIGJsb2NrcywgZWFjaCBQRE0gYmxvY2sNCj4gPiArIGNhbiBkcml2ZSBv
+bmUgIGJpdHN0cmVhbSBzYW1wbGluZyBjbG9jayBhbmQgdHdvIGJpdHN0cmVhbSBjb21pbmcNCj4g
+PiArIGRhdGEgKG1vbm8vc3RlcmVvKSAgd2l0aCBzYW1wbGluZyBjbG9jayByaXNpbmcgYW5kIGZh
+bGxpbmcgZWRnZS4NCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gWGluZ3l1IFd1
+IDx4aW5neXUud3VAc3RhcmZpdmV0ZWNoLmNvbT4NCj4gPiArICAtIFdhbGtlciBDaGVuIDx3YWxr
+ZXIuY2hlbkBzdGFyZml2ZXRlY2guY29tPg0KPiA+ICsNCj4gPiArYWxsT2Y6DQo+ID4gKyAgLSAk
+cmVmOiBkYWktY29tbW9uLnlhbWwjDQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNv
+bXBhdGlibGU6DQo+ID4gKyAgICBjb25zdDogc3RhcmZpdmUsamg4MTAwLXBkbQ0KPiA+ICsNCj4g
+PiArICByZWc6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICBjbG9ja3M6DQo+
+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogRE1JQyBvdXRwdXQgY2xv
+Y2sNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogTWFpbiBJQ0cgY2xvY2sNCj4gPiArDQo+ID4g
+KyAgY2xvY2stbmFtZXM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogZG1p
+Yw0KPiA+ICsgICAgICAtIGNvbnN0OiBpY2cNCj4gPiArDQo+ID4gKyAgcmVzZXRzOg0KPiA+ICsg
+ICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgIiNzb3VuZC1kYWktY2VsbHMiOg0KPiA+ICsg
+ICAgY29uc3Q6IDANCj4gPiArDQo+ID4gKyAgc3RhcmZpdmUsc3lzY29uOg0KPiA+ICsgICAgJHJl
+ZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZS1hcnJheQ0KPiA+ICsg
+ICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gaXRlbXM6DQo+ID4gKyAgICAgICAgICAtIGRlc2NyaXB0
+aW9uOiBwaGFuZGxlIHRvIFN5c3RlbSBSZWdpc3RlciBDb250cm9sbGVyIHN5c19zeXNjb25fbmUg
+bm9kZS4NCj4gPiArICAgICAgICAgIC0gZGVzY3JpcHRpb246IFBETSBzb3VyY2UgZW5hYmxlZCBj
+b250cm9sIG9mZnNldCBvZiBTWVNfU1lTQ09OX05FDQo+IHJlZ2lzdGVyLg0KPiA+ICsgICAgICAg
+ICAgLSBkZXNjcmlwdGlvbjogUERNIHNvdXJjZSBlbmFibGVkIGNvbnRyb2wgbWFzaw0KPiA+ICsg
+ICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIFRoZSBwaGFuZGxlIHRvIFN5c3RlbSBSZWdpc3Rl
+ciBDb250cm9sbGVyIHN5c2NvbiBub2RlIGFuZCB0aGUgUERNDQo+IHNvdXJjZQ0KPiA+ICsgICAg
+ICBmcm9tIEkyUyBlbmFibGVkIGNvbnRyb2wgb2Zmc2V0IGFuZCBtYXNrIG9mIFNZU19TWVNDT05f
+TkUgcmVnaXN0ZXIuDQo+IA0KPiBUaGlzIGRlc2NyaXB0aW9uIGR1cGxpY2F0ZXMgaXRlbXMuIERy
+b3AgcmVkdW5kYW50IHBhcnRzICh0aGVyZSBpcyByZWFsbHkgbmV2ZXIgYQ0KPiBuZWVkIHRvIHNh
+eSBwaGFuZGxlIGlzIGEgcGhhbmRsZSBiZWNhdXNlIGl0IGNhbm5vdCBiZSBhbnl0aGluZyBlbHNl
+KS4gSW5zdGVhZCBzYXkNCj4gd2hhdCBpcyBpdCB1c2VkIGZvci4NCg0KV2lsbCBmaXguDQoNCj4g
+DQo+IA0KPiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAg
+LSByZWcNCj4gPiArICAtIGNsb2Nrcw0KPiA+ICsgIC0gY2xvY2stbmFtZXMNCj4gPiArICAtIHJl
+c2V0cw0KPiA+ICsgIC0gJyNzb3VuZC1kYWktY2VsbHMnDQo+IA0KPiBVc2UgY29uc2lzdGVudCBx
+dW90ZXMsIGVpdGhlciAnIG9yICINCg0KTm90ZWQuDQoNCkJlc3QgcmVnYXJkcywNClhpbmd5dSBX
+dQ0KDQo=
 
