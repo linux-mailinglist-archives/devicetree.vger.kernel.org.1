@@ -1,117 +1,302 @@
-Return-Path: <devicetree+bounces-62492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3BE78B14BD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:39:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C978B14DA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:46:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F6BCB27A6C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:39:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B261C28402D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 20:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2931F15749F;
-	Wed, 24 Apr 2024 20:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B17F15689B;
+	Wed, 24 Apr 2024 20:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmnTXxNb"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="GAav2AQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF23115697C;
-	Wed, 24 Apr 2024 20:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713991001; cv=none; b=TGkHmVNbpqCY9iaSqR23OECTk1RCBD8aQnRKyptPe4jF2Wi0ix5P8QhXLxudQMy0CRwfBlziY2azqDGDorcUXak0zLY+Tu3/9OXSce2GKWf6f2JS24IehaUKvIfCvgSY/utL5fkZUKEGo7OerG2TyyHFAOT1LPKks4E5VIeVC1U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713991001; c=relaxed/simple;
-	bh=UEgXZYAvAoXydEPAsKWLpvLdEps8+VNW/bTxW6GL48Q=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=F2gZuuVJ5ewvMZSRnzn662aH02psKA7vku3NLSMsAyrcPfT3+r947VEReSomlah6ALyox4w1X5DSUW+CtjNf2sN+VoLAf8c93PXH35+3kQL1XsAzmej4SGnDdP6dQ/KMtzGH4J4mFQ92uX3+JzNdWpJBYG6uxu6fAUNnsXnulUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmnTXxNb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79479C2BD11;
-	Wed, 24 Apr 2024 20:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713991000;
-	bh=UEgXZYAvAoXydEPAsKWLpvLdEps8+VNW/bTxW6GL48Q=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=VmnTXxNbqN8kryduvL4VwlkwONiI33c3dkmk3fq69bO/O4Wo6P3yC8OwE6d+lcA/r
-	 UHz8wdD8gvoIk2EefN5xKUtZERsYZr03gutChcHXVRIE3YznyepTqY7bhT2Bmvr/xB
-	 xdh2cU7+xGMiIep3JrOrvWABxaLmeaZZPrKtNfRfqQmqZCmjkfFkTEt1CZLYrSenT2
-	 sZr5RfS3uKdTLD5lxekFbIhNoGm2aQPmj7LeR1Z8+s1IHTto8k+lgSgAJVZHZnN5Mu
-	 kxDZC+Qi+70sN2x5exaHfQnmFPkPzu8frFTGaq75d01E+pMetSgSo2ehK1MfMT2TVT
-	 9+Vt1zYmkD3xA==
-Date: Wed, 24 Apr 2024 15:36:39 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D26E1772F;
+	Wed, 24 Apr 2024 20:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713991586; cv=pass; b=NUNJ1r0PQk4W2QnQ+JcvMdgNiwMh1vM5YntjoUkC4EnRprIKHORN4RqD6hQ0COnyajTbuSeVVSi3eszTx3RN9Ir+RvyDxL9f3Ih623HUKF34oJshQK76iVncouNv/+/qxywHDBR/J4nGYAKeKfk2FvZYzVfzs8X6oVWvncmbw68=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713991586; c=relaxed/simple;
+	bh=Za8essE1jwdIXvxMhQKUOCruzXPmu9sSKRXZnQaC/04=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U4rIjBBcDz/s/oh21wOsnsaTWeVMlOzpjgsqyM6Q7TkDqswWEKxpTW06gjZ1hYIkzd5w4PDI9O5AmbZtf/ah+GlPtZX6s9v2XUtWzLte978Y0MjMXPryuY2FFcq43MN+fRDaIkRiZs6mQ5Y4IvSfup84J7Ds9Gpdu0hEx6WQrlw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=GAav2AQv; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4VPrcY0Z8bzyS9;
+	Wed, 24 Apr 2024 23:46:20 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1713991581;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ueBAWNliVb+VwYWcNCW4oPB3DbovNowk0vSZn5YeC5A=;
+	b=GAav2AQvk6wp8UACJNAfTGeZW/rfzYBrZmfq2WWWciDYQyXGEzRpy1LPzeNmxwlmsOWCow
+	s8EfObeDmqa90y4MpGXnD+v7NtOBzH2ejmF+928zPpgBz+ovCku59IQoU4KLwnOzf7lTjg
+	attx6CtUUBz6IEE0hQ2X5B+8geP5ihk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1713991581;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ueBAWNliVb+VwYWcNCW4oPB3DbovNowk0vSZn5YeC5A=;
+	b=bDBs9eWWpWFJtV6jjgNZPGPuyBuJ1aCgoVHhhQ5C+B1dEet8lvWYy1DSkiDd5BvH+rMdR0
+	Hzb+foAtADbqM1Qx3lfTJ5gv1PnnfwGKmrvPSqozruqjXiu/KCqEKYuIe9umxkAGTXNuFw
+	7IXfQP7tR/O4Vy8bf0s23w9bAd7i1og=
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1713991581; a=rsa-sha256; cv=none;
+	b=oy5IIIBDtP7A1QwyhL++/T72Z1qleI+b3YkrxI2v1CJ8itMIjoCJ1PX9NxTZYSe/VGKQFJ
+	ZfVJx0kwK1ueA7bgaZs3fREY9oTQqHXh6nUTGS+AZASizoh17MgJcGCHxkxbstR6kqPIZT
+	4tC0n5mlFeg85M6US4uRMJLbNP9vQgk=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B596B634C96;
+	Wed, 24 Apr 2024 23:46:19 +0300 (EEST)
+Date: Wed, 24 Apr 2024 20:46:19 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Sylvain Petinot <sylvain.petinot@foss.st.com>
+Cc: benjamin.mugnier@foss.st.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
+ binding
+Message-ID: <Zilvm98FNzWoGFL_@valkosipuli.retiisi.eu>
+References: <20240417133453.17406-1-sylvain.petinot@foss.st.com>
+ <20240417133453.17406-2-sylvain.petinot@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Bjorn Andersson <andersson@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Hari Nagalla <hnagalla@ti.com>, 
- linux-kernel@vger.kernel.org, Tero Kristo <kristo@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-remoteproc@vger.kernel.org, 
- Vignesh Raghavendra <vigneshr@ti.com>, linux-arm-kernel@lists.infradead.org, 
- Mathieu Poirier <mathieu.poirier@linaro.org>
-In-Reply-To: <20240424190612.17349-2-afd@ti.com>
-References: <20240424190612.17349-1-afd@ti.com>
- <20240424190612.17349-2-afd@ti.com>
-Message-Id: <171399099843.670532.4326365049493230346.robh@kernel.org>
-Subject: Re: [PATCH v8 1/4] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x
- SoCs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417133453.17406-2-sylvain.petinot@foss.st.com>
 
+Hi Sylvain,
 
-On Wed, 24 Apr 2024 14:06:09 -0500, Andrew Davis wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
+Thanks for the patch.
+
+On Wed, Apr 17, 2024 at 03:34:52PM +0200, Sylvain Petinot wrote:
+> Add devicetree bindings Documentation for ST VD56G3 & ST VD66GY camera
+> sensors. Update MAINTAINERS file.
 > 
-> K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
-> The remote processor's life cycle management and IPC mechanisms are
-> similar across the R5F and M4F cores from remote processor driver
-> point of view. However, there are subtle differences in image loading
-> and starting the M4F subsystems.
-> 
-> The YAML binding document provides the various node properties to be
-> configured by the consumers of the M4F subsystem.
-> 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Andrew Davis <afd@ti.com>
+> Signed-off-by: Sylvain Petinot <sylvain.petinot@foss.st.com>
 > ---
->  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 126 ++++++++++++++++++
->  1 file changed, 126 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+>  .../bindings/media/i2c/st,st-vd56g3.yaml      | 143 ++++++++++++++++++
+>  MAINTAINERS                                   |   9 ++
+>  2 files changed, 152 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+> new file mode 100644
+> index 000000000000..6792c02fea5c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2024 STMicroelectronics SA.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/st,st-vd56g3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics VD56G3 Global Shutter Image Sensor
+> +
+> +maintainers:
+> +  - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> +  - Sylvain Petinot <sylvain.petinot@foss.st.com>
+> +
+> +description: |-
 
-My bot found errors running 'make dt_binding_check' on your patch:
+> +  The STMicroelectronics VD56G3 is a 1.5 M pixel global shutter image sensor
+> +  with an active array size of 1124 x 1364 (portrait orientation).
+> +  It is programmable through I2C, the address is fixed to 0x10.
+> +  The sensor output is available via CSI-2, which is configured as either 1 or
+> +  2 data lanes.
 
-yamllint warnings/errors:
+The flow of the text could be improved by wrapping the text before 80
+columns (not earlier). Most editors can do this.
 
-dtschema/dtc warnings/errors:
+> +  The sensor provides 8 GPIOS that can be used for either
+> +    - frame synchronization (Master: out-sync or Slave: in-sync)
+> +    - external LED signal (synchronized with sensor integration periods)
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,st-vd56g3
+> +      - st,st-vd66gy
+> +    description:
+> +      Two variants are availables; VD56G3 is a monochrome sensor while VD66GY
+> +      is a colour variant.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  VCORE-supply:
+> +    description: Digital core power supply (1.15V)
+> +
+> +  VDDIO-supply:
+> +    description: Digital IO power supply (1.8V)
+> +
+> +  VANA-supply:
+> +    description: Analog power supply (2.8V)
+> +
+> +  reset-gpios:
+> +    description: Sensor reset active low GPIO (XSHUTDOWN)
+> +    maxItems: 1
+> +
+> +  st,leds:
+> +    description:
+> +      Sensor's GPIOs used for external LED control.
+> +      Signal being the enveloppe of the integration time.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +      minimum: 0
+> +      maximum: 7
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          clock-lanes:
+> +            const: 0
 
+If the clock lane is always zero, you can drop the property.
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml: Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              enum: [1, 2]
+> +
+> +          link-frequencies:
+> +            minItems: 1
+> +            maxItems: 1
+> +            items:
+> +              enum: [402000000, 750000000]
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240424190612.17349-2-afd@ti.com
+Is this a property of the sensor or the driver? Presumably the driver?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+What about the input clock frequency?
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +
+> +          lane-polarities:
+> +            minItems: 1
+> +            maxItems: 3
+> +            items:
+> +              enum: [0, 1]
 
-pip3 install dtschema --upgrade
+The items are already in video-interfaces.yaml.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> +            description: Any lane can be inverted or not.
+> +
+> +        required:
+> +          - clock-lanes
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - VCORE-supply
+> +  - VDDIO-supply
+> +  - VANA-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        vd56g3: camera-sensor@10 {
+> +            compatible = "st,st-vd56g3";
+> +            reg = <0x10>;
+> +
+> +            clocks = <&camera_clk_12M>;
+> +
+> +            VCORE-supply = <&camera_vcore_v1v15>;
+> +            VDDIO-supply = <&camera_vddio_v1v8>;
+> +            VANA-supply = <&camera_vana_v2v8>;
+> +
+> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
+> +            st,leds = <6>;
+> +
+> +            port {
+> +                vd56g3_ep: endpoint {
+> +                    clock-lanes = <0>;
+> +                    data-lanes = <1 2>;
+> +                    link-frequencies =
+> +                      /bits/ 64 <402000000>;
 
+No need for a newline after "=".
+
+> +                    remote-endpoint = <&csiphy0_ep>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7c121493f43d..991e65627e18 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20868,6 +20868,15 @@ S:	Maintained
+>  F:	Documentation/hwmon/stpddc60.rst
+>  F:	drivers/hwmon/pmbus/stpddc60.c
+>  
+> +ST VD56G3 DRIVER
+> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+> +F:	drivers/media/i2c/st-vd56g3.c
+> +
+>  ST VGXY61 DRIVER
+>  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
