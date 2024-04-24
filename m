@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-62314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014BD8B0C1A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47ADD8B0C26
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 16:13:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE076B213C2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:12:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64744B22D45
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 14:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8671D15E209;
-	Wed, 24 Apr 2024 14:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254ED15E213;
+	Wed, 24 Apr 2024 14:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ifBkrygN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OGHyWzxC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2497E15E1F5;
-	Wed, 24 Apr 2024 14:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895C915B0E2
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 14:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713967937; cv=none; b=fMrRy7gSkaGq3/rApT0b/FXQM5wdWy4vRxBKeRaB8uVXpHw+ynE4XFC1myjo86FVC9Ibc/wHSDyL08RlOnF6DP5ZEwBsWGpmUHgzYcdPu97toc5+enZPde21r4QGlEd2shJhOi2NDjCXZt9qjAnQZ0+7hhjlhFPvjP//5Rt+JqE=
+	t=1713968013; cv=none; b=RKAFBPjUETvzB39IR0nxzs5rkJfM+F6lZ9kU8Og1hq0LpYHnXM7fbggEW2z7f/91sSBR6dpLs7JnZbvmvr+zFEAKeYuIf+/Xzl7W9e1rYwq5aq5Kwpfa96oH/2OZGcIEhLSmaugjXpAVqyfKAqR+GnqLI5J41L2sCpDqXIxyXio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713967937; c=relaxed/simple;
-	bh=BkoSw4tGuar7CXsLZT7eKEGFqwiIddvRL9J3/8CekEM=;
+	s=arc-20240116; t=1713968013; c=relaxed/simple;
+	bh=MHXJFG9R5z4UIBlsq3Q0t7pBbsb1GrwHCN4cLP+nv7g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iaojPhbx7Vs+aPFA+jbG2thYlK2hRu2Gqo/o6fTk9gMy59UGQHk3BupLCCHkJDDZuspyTxNlzQnn9u35ciMCxp/DiiaQsDX/nP8DVFJZkmeozjPj/uGkTpKMdkZRFxzazZu0cAxXpfqrOEOnEGsXiULBXGf1TZTAAlNFWykvdNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ifBkrygN; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1e3f17c6491so55946815ad.2;
-        Wed, 24 Apr 2024 07:12:15 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=kGJCTLhCgcohGmLrDOjxPjTGiQf6C8Ex1j+jG5V+ZRus8wSW6xTtHJjJcrNAIAUcTQY5x/d3vKHiJMv4ksc6g1RiHL94GZA0/XF+3/0T/TYbeUdpZSaqJgB5uRZV8U/35Mf6+S8zNelGPVG+VKx20xfTtSwkmqlUZ2Yo+MpqUII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OGHyWzxC; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-343b7c015a8so5831163f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 07:13:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713967935; x=1714572735; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=lsll10wHk4U4Q7zcObMGDIonOVp1PFgzxwRb4AuAL2k=;
-        b=ifBkrygNtB3HFBnjw2huZ2aYc/Vpd8irdiolu+asTJ2+Z+Y/a8s3dc2Dj9fmePnBHY
-         UNX9Co3uE32DFAn1faziOI9DN3UbLEgk/6ZdMRDNsYMggmoWN8vOaQuCN8oYEgJ3Hm9A
-         ffBMDjBKp4K29I4ytu+OmJIksDRt8If9f7u8OETNePRyJ8bHg+hvxUXnmt9NyKxnVSyn
-         Pfg+3noyQybizU5LhKN2qvhbfCRksoaznB/AiaYiOAorsdygwQiBebR1HZsR5DiPhJq5
-         QIpoAwcHbwnSpBzItUUuHlXXdP73ly5YXJf9m0woJlEt7jDO2rc2hP6M/BUpQlEDO4Hk
-         ukbw==
+        d=linaro.org; s=google; t=1713968009; x=1714572809; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=upFSzmkQo8CgsapbEeLrrhLTa3hAx19iRLmed+yVuy0=;
+        b=OGHyWzxCS4378pHSnpTDBvy5vHEqOnx8Dgip3otVfJx7fF8itfYVC6q3IeiayRCkVq
+         ANnGgQwC5LSOJCAF3McyFQDNwin299FLfHvlFedkRBiIzmSQ7zUoMKcwqaoOyFIRgYh8
+         g54nFmW7IXVxaRkyuW6C29naARonyibAychfeD+QjnUu7CI46D/2t8VSid+wgvS6egZj
+         cJcNcX83wKi49KZda+xXmYROigOPyoqTeNQYu2+EVp4sH4ZhGaRpMBWf3XHBZsefJIUQ
+         TJClg/IDVeO6PHlQBUNfaUEIhBKfTPAGMR2eO6Z+TGXl7r6SQpSQxPoAB9ybAdrdhi3B
+         3bBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713967935; x=1714572735;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lsll10wHk4U4Q7zcObMGDIonOVp1PFgzxwRb4AuAL2k=;
-        b=WFSGEXwUnVn6dHJjHMhtH1HApPvsjHsNyxLKGJOW0Tl3YXIA5n+FhY4zL70nUeNCPE
-         P9UPU+uC56dcGU0lmm++aG/Ve9BpnV/q5EZrs6g5NKW4j0xlldRcdjqOKt+79Kgimm4a
-         AtcO/Lpdg6StMNU/aecJVmi5ooI0PO5ItDDEKExpbmVDlvTTgAKDZk5kfPGlgJJM5jNK
-         xfjMVXgeTF+fXNYTHkusa3QQ0YWeGNhm7yHkUZBilBK9MECxHUyprLuuZ+E76phzOb+s
-         RuHVfUWjYFmC9kJ28vO0FZHK4mJu+CdeAXcymkV6g13MYKFj+P3kEN3+ubs+WRyDfVGf
-         xcww==
-X-Forwarded-Encrypted: i=1; AJvYcCWLoAX0qzganTwMRuG5CmGSiJQYcPU4jOrUO+Qi575X9VGj6x5GEGv6/lKlTwbPwNC9JhKjOUwKkLvqUC7urcymtf05KHyRPryCrZzqWl4Asf4/ASC3a15U7r/D8Hbkk1yM9sXvWc1d
-X-Gm-Message-State: AOJu0YwlxDWuijJNzqZxcvCGUWoekjs+R2w/LFxBenUUIXJwmT9L0f3p
-	0LvTm0ru97Qoj9KGnUewqp6eREydsuBirpbyDceZ4FEl2VbNBdP3eelMQw==
-X-Google-Smtp-Source: AGHT+IFWdPVchjkqrgW4fxVWp1t9FnmxxyuZwv9cRN3HitesqbC5e4SQlaKRLnOYbZSOyzqR16QSXQ==
-X-Received: by 2002:a17:903:1209:b0:1e4:471f:2fa1 with SMTP id l9-20020a170903120900b001e4471f2fa1mr2676949plh.24.1713967935268;
-        Wed, 24 Apr 2024 07:12:15 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y24-20020a1709027c9800b001e0d62e077esm11970291pll.247.2024.04.24.07.12.14
+        d=1e100.net; s=20230601; t=1713968009; x=1714572809;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=upFSzmkQo8CgsapbEeLrrhLTa3hAx19iRLmed+yVuy0=;
+        b=M45w0BlRCbIe4QwuGr6zgDSQEx5lwBMFXFOMKWHgzmTvT1Eg8rcvNR3jle517pOSYf
+         /Ca50iJ0IlCa5uT+R/TyVQViC91MxN9o+R24iDWt/0IdGzCNOSKaLH77dIsDMaHq4VPZ
+         ew6jfDKZpphJHh67z3DLoL+rciN6KLwoLJivI/sqbvuznVElmKn4OkY09NUteaTQXAjd
+         xo0jm3V78eJOXoFeXXFPcxUoKzHckQrgmmRS9nxQsQuYcyZLp8kqUljEeMYE83k4BAwg
+         QQxzppM4tunWERcz/M9oBO7V42sAiSogKAnDwV4oStR2dj0hTVQ7SLYl6S6eq6k4cPTa
+         EJQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWbJP8uYJLt29A6c2LwxIsba+5Yxz1bEb+8shgxSmB69eo8XQWFi6WPvn4HiwWaGOKd7qZazP3JRQ/7YYwqnCBvTLugXxuvZcLE6g==
+X-Gm-Message-State: AOJu0YzIhaTGz1gU25vijtmqqaQuE2PZ8gkt4BIFo7T2EZuI35v7/wYa
+	pkCBbhISdu54sHGdpB3YLohuuiJHN3UKgt4BA5hb8TfU1rdw3g9OAo+WdbFEWu4=
+X-Google-Smtp-Source: AGHT+IHEiUahRPYhpIwJapnRuhEnrBG7idILvKUBZXtAjNt+HU6ad3qEBAoDyUdtHUs6Ct0FJspW1Q==
+X-Received: by 2002:adf:e28f:0:b0:34a:ce8b:7b79 with SMTP id v15-20020adfe28f000000b0034ace8b7b79mr1857054wri.1.1713968008891;
+        Wed, 24 Apr 2024 07:13:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id k29-20020a05600c1c9d00b00418948a5eb0sm27885519wms.32.2024.04.24.07.13.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 07:12:14 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <05e5e502-f135-4fa6-b457-cdcb7b246282@roeck-us.net>
-Date: Wed, 24 Apr 2024 07:12:13 -0700
+        Wed, 24 Apr 2024 07:13:28 -0700 (PDT)
+Message-ID: <fd4072dc-7cd3-4d13-a15b-d63c675a5994@linaro.org>
+Date: Wed, 24 Apr 2024 16:13:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,109 +77,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: (pwm-fan): support target-pwm property to set
- default PWM value
-To: Peter Korsgaard <peter@korsgaard.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20240424090453.2292185-1-peter@korsgaard.com>
- <20240424090453.2292185-2-peter@korsgaard.com>
+Subject: Re: [PATCH v2 4/7] dt-bindings: clock: Add binding constants for
+ BLZP1600
+To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: James Cowgill <james.cowgill@blaize.com>,
+ Matt Redfearn <matthew.redfearn@blaize.com>,
+ Neil Jones <neil.jones@blaize.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20240424133241.19210-1-nikolaos.pasaloukos@blaize.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240424090453.2292185-2-peter@korsgaard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240424133241.19210-1-nikolaos.pasaloukos@blaize.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4/24/24 02:04, Peter Korsgaard wrote:
-> For some use cases defaulting the PWM to full fan speed is not ideal
-> (noise, power consumption, ..), so support an optional target-pwm
-> property (0..255) to override the default PWM value.
+On 24/04/2024 15:32, Niko Pasaloukos wrote:
+> Add SCMI clock numbers according to the Blaize BLZP1600
+> SoC hardware specifications.
 > 
-> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+> Reviewed-by: James Cowgill <james.cowgill@blaize.com>
+> Reviewed-by: Matt Redfearn <matt.redfearn@blaize.com>
+> Reviewed-by: Neil Jones <neil.jones@blaize.com>
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+
+This goes to the patch introducing binding doc.
+
 > ---
->   drivers/hwmon/pwm-fan.c | 11 +++++++++--
->   1 file changed, 9 insertions(+), 2 deletions(-)
+>  .../dt-bindings/clock/blaize,blzp1600-clk.h   | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/blaize,blzp1600-clk.h
 > 
-> diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
-> index b67bc9e833c0..ebdefbd5789c 100644
-> --- a/drivers/hwmon/pwm-fan.c
-> +++ b/drivers/hwmon/pwm-fan.c
-> @@ -482,6 +482,7 @@ static int pwm_fan_probe(struct platform_device *pdev)
->   	const struct hwmon_channel_info **channels;
->   	u32 *fan_channel_config;
->   	int channel_count = 1;	/* We always have a PWM channel. */
-> +	u32 target_pwm = MAX_PWM;
->   	int i;
->   
->   	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> @@ -527,11 +528,17 @@ static int pwm_fan_probe(struct platform_device *pdev)
->   
->   	ctx->enable_mode = pwm_disable_reg_enable;
->   
-> +	of_property_read_u32(dev->of_node, "target-pwm", &target_pwm);
-> +	if (target_pwm > (u32)MAX_PWM) {
-
-Unnecessary type cast.
-
-Guenter
-
-> +		dev_err(dev, "Invalid target-pwm: %u > %d\n", target_pwm, MAX_PWM);
-> +		return -EINVAL;
-> +	}
+> diff --git a/include/dt-bindings/clock/blaize,blzp1600-clk.h b/include/dt-bindings/clock/blaize,blzp1600-clk.h
+> new file mode 100644
+> index 000000000000..f1d59849a6e5
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/blaize,blzp1600-clk.h
+> @@ -0,0 +1,77 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Copyright (C) 2023, Blaize, Inc.
+> + */
 > +
->   	/*
-> -	 * Set duty cycle to maximum allowed and enable PWM output as well as
-> +	 * Set duty cycle to target and enable PWM output as well as
->   	 * the regulator. In case of error nothing is changed
->   	 */
-> -	ret = set_pwm(ctx, MAX_PWM);
-> +	ret = set_pwm(ctx, target_pwm);
->   	if (ret) {
->   		dev_err(dev, "Failed to configure PWM: %d\n", ret);
->   		return ret;
+> +#ifndef DT_BINDING_CLK_BLZP1600_H
+> +#define DT_BINDING_CLK_BLZP1600_H
+> +
+> +/* ARM SCMI clocks */
+> +
+> +/* BLZP1600 clock-gate numbers as defined in the hardware architecture */
+> +
+> +#define BLZP1600_CPU_CLK 0
+> +/* clock-gates 1-6 invalid */
+
+No, they cannot be invalid. IDs start from 0 and are incremented by one.
+If you have holes, it is not a binding.
+
+Drop the header or use it properly, so as virtual IDs.
+
+Best regards,
+Krzysztof
 
 
