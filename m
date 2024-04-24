@@ -1,311 +1,133 @@
-Return-Path: <devicetree+bounces-62072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E0D88AFCE5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 01:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8958AFD07
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 02:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B21431C224FB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Apr 2024 23:51:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F44D1C221E1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 00:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3BE44391;
-	Tue, 23 Apr 2024 23:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D432CAB;
+	Wed, 24 Apr 2024 00:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JbuNX78n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A550441746
-	for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 23:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55E9363
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 00:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713916296; cv=none; b=YxCQAYq02dxoZNyWpn5qQi62F18clwud0UecVgpFNmMBV7hLhJqNX3eQ0vQEUYOfbMcnP18nsz1lXK6h+iDrA4+WeC9QcbPPIZSwEuayw5Lr9rE6EQSRsCgRC+wyuCjFe/fA/JdvnUyTwEaE3MHe9yEY31zsC1KYnHeNM+WUU+I=
+	t=1713916880; cv=none; b=syPZhBUO+v/G0hZQ7y+FYnLlSerDyg6JFquyYMMoCcD3aWw7xcmzZ92U2FkqqSVtm34HdR+iMMNUK5tvEhlsJzNkVZA69obCMJCnKajoOFdSwKNthfV8p+th+QHnFcYxtK2Ow7Sr8oDWM72gJBeydRi31UMGzZUQ232aDy+NKk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713916296; c=relaxed/simple;
-	bh=EAaY3X0XQewWtGYPMs954mCQEcRmHFcBBCFOcrbFz90=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f8vkaftj0KDYMP4Li+NnOKeIsEWX0deQIyBz8imTu0KnLVwtAjt7smQ5s0G7Sw3Mt2bK2+dojSqBEUblaXsL4XXADyWv3wzODrxa+AvphBUiGOVKsi7cY8KdDNDBjLI/Xl6pbozGzFmJzNkkTaqnbwJVyNkjoE2xkFSY6Kbsv5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-25-208.elisa-laajakaista.fi [88.113.25.208])
-	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-	id 65415545-01cc-11ef-b3cf-005056bd6ce9;
-	Wed, 24 Apr 2024 02:51:26 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 24 Apr 2024 02:51:25 +0300
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v3 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <ZihJfcmjoJZwLofz@surfacebook.localdomain>
-References: <cover.1713866770.git.lorenzo@kernel.org>
- <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1713916880; c=relaxed/simple;
+	bh=FlGCPz9SGenILdhF8xtuorosJuisz2ItVng/S0g5r6E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dMXQjA9HqBcQY95GDtZn3bx2XR/Ghcq5xriQ/tQvdUMneCd22tPUR6Kx8L/N6HZS56QZrf3VfKHlZds3AM2BrEMxxY89ARTioz7kTTHgQkUlwr8HfAQZn7ONwMtvBjDctH5VdTqpq+rIcfnAbPWAXB9EZEyygmHALiPkKeTF2to=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JbuNX78n; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41af670185fso2460145e9.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Apr 2024 17:01:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713916876; x=1714521676; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zsaJN6SDatJpYxGO39STEsAbfE+Fwe8phzl0Lbv9X/w=;
+        b=JbuNX78nqH0mAfNc9nLQragiII5hZiROcV/E4YP8bqSBEnHiD9yXMxZ3ytXORm+96E
+         ursuaGKu+aRrFBx5ByVKn2U5ExrGycoKB6X2Y6GuUZUcAhuTwdb7mcXEl6Y4Owb0RybQ
+         LL3hSmUk/hLNFHPqcEZ/pFNqkA7CqPSJtoO0R5hWYCPu4GVPWsyfhFFQ6r8c3GW2SraU
+         btj+sEWk703LwN97dgqfhhCjqd9nLBVFnmvqdEdN868ITlo5ZAK8XLHrGoPhyFtMDDnj
+         r3dAfPTJZO2pn/KZ/y99JUUtMqmWCL+0JMvR5sE1Xll/RIaifyzHWZXkCSsJ80Xo66g9
+         9qFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713916876; x=1714521676;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zsaJN6SDatJpYxGO39STEsAbfE+Fwe8phzl0Lbv9X/w=;
+        b=wW5vrxKfvlXf5pRgxM8Hu7errRJ1epz5WAbFUOw50bAFn2i1ul9RAC+hGqm7FbCiBZ
+         kWLhCSN6895Mv6+Ociku9scp5SH3NoXptQFhkeXm8e3Tc4QpiaampZ99Aq9PNcpkRdnZ
+         rs3KbX3yYa1ycwz/fgydoKoqGq4vH1XQnHA+meAbvYeLoHWMf96/X5vzPla2q2Syo9AJ
+         VaNL9GcZFCp6PJMMBf6GgHZ2uh6XH5XoyuYhsUgFwnWq11P+i0dMcynAgyNv8APzLnSc
+         h3bOhMwjJoPCInu1KP4GqvekmdJ68YRDoGifKkoTkWKzrRM+krPlZZsSXJUOG63wJeTO
+         CxfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ6m/ePwhSeAPGe//UY0q4aJ078c8vCJoPaC8+Poxe6hy94IvgKkHv0NMi8nJnvGe7Ye4stP81Fw6MIjmSxY0rpQ1vQNn1W6Z6Gw==
+X-Gm-Message-State: AOJu0YySWmb+7TdpNXFZd5SQLUUaE4gZbSusy2XfdryWoMFjADj4yMg7
+	cXLholJc9HHaGrWcnMHHxytTOok8Gd1JqL3wY4nwXl0jAg5uQ5ykYj9MVVX8IZ8=
+X-Google-Smtp-Source: AGHT+IELghywWCMPx0pelmAeEjjnEwDnuikrcmKL/8eSocRVR4XO2UIGCfF62Wk+H62jE6je6spPjg==
+X-Received: by 2002:a05:600c:4fd0:b0:418:d68d:f1fb with SMTP id o16-20020a05600c4fd000b00418d68df1fbmr674433wmq.31.1713916876258;
+        Tue, 23 Apr 2024 17:01:16 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id l16-20020a05600c4f1000b0041a1fee2854sm11231876wmq.17.2024.04.23.17.01.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Apr 2024 17:01:15 -0700 (PDT)
+Message-ID: <4028de21-33ea-4172-904f-e6809ef9a878@linaro.org>
+Date: Wed, 24 Apr 2024 01:01:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <497dc9dad823fcd1403ed62ba164dd7d70f31f90.1713866770.git.lorenzo@kernel.org>
-
-Tue, Apr 23, 2024 at 12:16:37PM +0200, Lorenzo Bianconi kirjoitti:
-> Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
-> found on Airoha ARM SoCs.
-
-...
-
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/init.h>
-> +#include <linux/iopoll.h>
-
-> +#include <linux/kernel.h>
-
-Make sure you are using exact headers you need, this one seems "proxy" and not
-really in use here.
-
-(Quite likely you wanted minmax.h, types.h, and possible others.)
-
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/spi/spi-mem.h>
-
-...
-
-> +#define SPI_NFI_ALL_IRQ_EN			(SPI_NFI_RD_DONE_EN | \
-> +						 SPI_NFI_WR_DONE_EN | \
-> +						 SPI_NFI_RST_DONE_EN | \
-> +						 SPI_NFI_ERASE_DONE_EN | \
-> +						 SPI_NFI_BUSY_RETURN_EN | \
-> +						 SPI_NFI_ACCESS_LOCK_EN | \
-> +						 SPI_NFI_AHB_DONE_EN)
-
-What about writing this as
-
-#define SPI_NFI_ALL_IRQ_EN					\
-	(SPI_NFI_RD_DONE_EN | SPI_NFI_WR_DONE_EN |		\
-	 SPI_NFI_RST_DONE_EN | SPI_NFI_ERASE_DONE_EN |		\
-	 SPI_NFI_BUSY_RETURN_EN | SPI_NFI_ACCESS_LOCK_EN |	\
-	 SPI_NFI_AHB_DONE_EN)
-
-?
-
-...
-
-> +enum airoha_snand_mode {
-> +	SPI_MODE_AUTO,
-> +	SPI_MODE_MANUAL,
-> +	SPI_MODE_DMA,
-> +	SPI_MODE_NO
-
-Is _NO a termination entry? Meaning there always be only 3 modes no matter
-what. If not, leave the trailing comma as it helps to reduce a burden in case
-this list will be expanded.
-
-> +};
-
-...
-
-> +struct airoha_snand_dev {
-> +	size_t buf_len;
-> +
-> +	u8 *txrx_buf;
-> +	dma_addr_t dma_addr;
-> +
-> +	bool data_need_update;
-> +	u64 cur_page_num;
-> +};
-
-Most likely `pahole` shows better layout to save a few bytes in some cases.
-
-...
-
-> +struct airoha_snand_ctrl {
-> +	struct device *dev;
-> +	struct regmap *regmap_ctrl;
-> +	struct regmap *regmap_nfi;
-> +	struct clk *spi_clk;
-> +
-> +	struct {
-> +		size_t page_size;
-> +		size_t sec_size;
-
-> +		unsigned char sec_num;
-> +		unsigned char spare_size;
-
-Hmm... Why not u8 for both of these?
-
-> +	} nfi_cfg;
-> +};
-
-...
-
-> +static int airoha_snand_write_data(struct airoha_snand_ctrl *as_ctrl, u8 cmd,
-> +				   const u8 *data, int len)
-> +{
-> +	int i = 0;
-> +
-> +	while (i < len) {
-
-Seems nothing prevents you from using for-loop here as well.
-
-> +		int data_len = min(len, MAX_TRANSFER_SIZE);
-> +		int err;
-> +
-> +		err = airoha_snand_set_fifo_op(as_ctrl, cmd, data_len);
-> +		if (err)
-> +			return err;
-> +
-> +		err = airoha_snand_write_data_to_fifo(as_ctrl, &data[i],
-> +						      data_len);
-> +		if (err < 0)
-> +			return err;
-> +
-> +		i += data_len;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int airoha_snand_read_data(struct airoha_snand_ctrl *as_ctrl, u8 *data,
-> +				  int len)
-
-As per above.
-
-...
-
-> +	/* addr part */
-> +	for (i = 0; i < op->addr.nbytes; i++) {
-> +		u8 cmd = opcode == SPI_NAND_OP_GET_FEATURE ? 0x11 : 0x8;
-> +
-> +		data = op->addr.val >> ((op->addr.nbytes - i - 1) * 8);
-
-Seems like you wanted to have always the same endianess and hence can be done
-outside the loop via cpu_to_xxx()?
-
-> +		err = airoha_snand_write_data(as_ctrl, cmd, &data,
-> +					      sizeof(data));
-> +		if (err)
-> +			return err;
-> +	}
-
-...
-
-> +static int airoha_snand_setup(struct spi_device *spi)
-> +{
-> +	struct airoha_snand_dev *as_dev = spi_get_ctldata(spi);
-> +	struct airoha_snand_ctrl *as_ctrl;
-> +
-> +	as_dev = kzalloc(sizeof(*as_dev), GFP_KERNEL);
-> +	if (!as_dev)
-> +		return -ENOMEM;
-> +
-> +	spi_set_ctldata(spi, as_dev);
-> +	as_dev->data_need_update = true;
-> +
-> +	/* prepare device buffer */
-> +	as_dev->buf_len = SPI_NAND_CACHE_SIZE;
-> +	as_dev->txrx_buf = kzalloc(as_dev->buf_len, GFP_KERNEL);
-> +	if (!as_dev->txrx_buf)
-> +		goto error_dev_free;
-> +
-> +	as_ctrl = spi_controller_get_devdata(spi->controller);
-> +	as_dev->dma_addr = dma_map_single(as_ctrl->dev, as_dev->txrx_buf,
-> +					  as_dev->buf_len, DMA_BIDIRECTIONAL);
-> +	if (dma_mapping_error(as_ctrl->dev, as_dev->dma_addr))
-> +		goto error_buf_free;
-> +
-> +	return 0;
-> +
-> +error_buf_free:
-> +	kfree(as_dev->txrx_buf);
-> +error_dev_free:
-> +	kfree(as_dev);
-
-Why not utilising cleanup.h? (__free(), no_free_ptr(), etc)
-
-> +	return -EINVAL;
-> +}
-
-...
-
-> +	err = regmap_read(as_ctrl->regmap_nfi,
-> +			  REG_SPI_NFI_SECCUS_SIZE, &val);
-
-One line?
-
-> +	if (err)
-> +		return err;
-
-...
-
-> +	as_ctrl->nfi_cfg.page_size = rounddown(sec_size * sec_num, 1024);
-
-round_down() is optimised for power-of-2.
-You would need to include math.h IIRC.
-
-...
-
-> +	as_ctrl->regmap_ctrl = devm_regmap_init_mmio(&pdev->dev, base,
-> +						     &spi_ctrl_regmap_config);
-
-With help of
-
-	struct device *dev = &pdev->dev;
-
-at the top of the function the entire code will become neater.
-
-> +	if (IS_ERR(as_ctrl->regmap_ctrl)) {
-> +		dev_err(&pdev->dev, "failed to init spi ctrl regmap: %ld\n",
-> +			PTR_ERR(as_ctrl->regmap_ctrl));
-> +		return PTR_ERR(as_ctrl->regmap_ctrl);
-
-		return dev_err_probe(...);
-
-> +	}
-
-...
-
-> +		dev_err(&pdev->dev, "failed to init spi nfi regmap: %ld\n",
-> +			PTR_ERR(as_ctrl->regmap_nfi));
-> +		return PTR_ERR(as_ctrl->regmap_nfi);
-
-		return dev_err_probe(...);
-
-...
-
-> +		dev_err(&pdev->dev, "unable to get spi clk");
-> +		return PTR_ERR(as_ctrl->spi_clk);
-
-Ditto.
-
-...
-
-> +
-
-Unneeded blank line.
-
-> +module_platform_driver(airoha_snand_driver);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] MSM8976 MDSS/GPU/WCNSS support
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240413170317.34553-1-a39.skl@gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240413170317.34553-1-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 13/04/2024 18:03, Adam Skladowski wrote:
+> This patch series provide support for display subsystem, gpu
+> and also adds wireless connectivity subsystem support.
+> 
+> Changes since v2
+> ================
+> 1. Disabled mdss_dsi nodes by default
+> 2. Changed reg size of mdss_dsi0 to be equal on both
+> 3. Added operating points to second mdss_dsi
+> 4. Brought back required opp-supported-hw on adreno
+> 5. Moved status under operating points on adreno
+> 
+> Changes since v1
+> ================
+> 1. Addressed feedback
+> 2. Dropped already applied dt-bindings patches
+> 3. Dropped sdc patch as it was submitted as part of other series
+> 4. Dropped dt-bindings patch for Adreno, also separate now
+> 
+> Adam Skladowski (4):
+>    arm64: dts: qcom: msm8976: Add IOMMU nodes
+>    arm64: dts: qcom: msm8976: Add MDSS nodes
+>    arm64: dts: qcom: msm8976: Add Adreno GPU
+>    arm64: dts: qcom: msm8976: Add WCNSS node
+> 
+>   arch/arm64/boot/dts/qcom/msm8976.dtsi | 536 +++++++++++++++++++++++++-
+>   1 file changed, 532 insertions(+), 4 deletions(-)
+> 
+
+I remembered you pinged me in IRC about my previous review feedback.
+
+Would appreciate if you could add a response email to your cover letter 
+explaining why that's not done.
+
+I'm sure you're probably right but, good practice is to state in your 
+log what was and wasn't done and why.
+
+---
+bod
 
