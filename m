@@ -1,316 +1,257 @@
-Return-Path: <devicetree+bounces-62515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A708D8B1674
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:51:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 255B98B16B7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 01:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B781FB23B39
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:51:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A717AB21223
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 23:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C57816E87B;
-	Wed, 24 Apr 2024 22:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CEA416EC05;
+	Wed, 24 Apr 2024 23:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lm1/qTA/"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="R29ygqel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089AF16D9DE
-	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D83A15A4BA
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 23:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713999067; cv=none; b=SsMGSlSX/TIleTeuaDRAbSaOpm+QH/jdG5+qQjmVGUEbMe1yIVl+pOqhFWlzTCWqNIIA9Nq/bZQDVX9FDVotGdthg8HmSs3t37e1gqBfJeugc+i7CL52qrgOJ/Z/7U7SteJs2Y2CPGyAxF3shWp6IY6uY6iP4fiincj+K4A4f+A=
+	t=1713999677; cv=none; b=TykR8WybQMyppgUJq3wzYuc0K/y5rZ9rXXJwmqPt6FRN5Sf6v7duEp45nx4OzDmNL3Cc75gtKcg3avlg89Coo2u/aPf8n2IO4qscAHSqd9fAiLNIlUGgO5QWbTL2PthjlySXMaInW/ZP4+orVuH5942MDuWVmnM8fXXs+jpvaN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713999067; c=relaxed/simple;
-	bh=qqd1zB8UQojIx8Ao/aNnMFZ4CF7YZC9OadhVYG1ei70=;
+	s=arc-20240116; t=1713999677; c=relaxed/simple;
+	bh=yhLMzqp1hYPnPOJrBVjp3bIJ258YYrgLvoWNmxB+Rg0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TyN4lUNWD8Zh9CH+/7ZXWod+XhX0Y2TKQrzP3pczg+Su1jPGIrswosXccOiaAS0eseKR5YUsuajhmJkwqs6lxamf6dcX192kiapoR0PA4Bofzc9q2pOulY+e7Z1GjqSTC6tCHiqXjD72f5HqF3YsmLukPRaoP43kG136fM4hPYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lm1/qTA/; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcc71031680so443295276.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:51:04 -0700 (PDT)
+	 To:Cc:Content-Type; b=TQ3zdOPQyxgTJ2e689VmXrBli0VquwevlpQ65ayCPokO8VUjxEog+L+ctEP3h/duHXnXYHM+ja5/g1KuRsif40VA4TO93Ua/FeEaF6qJnxGck0Acp9efGkLJ/+y/7zns/xaPDQ6wwHUakwmWgV36/1ZSDFIFHhYC7O1r1bdVwh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=R29ygqel; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5ce2aada130so282774a12.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 16:01:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713999064; x=1714603864; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713999676; x=1714604476; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GLM/Gzp3LttpkW6eOimYma73Nk3MMLdnbj7i6AMnYdM=;
-        b=lm1/qTA/DwZLtWXT3iIXpHzGEEiqymd1ZdxZKdbFC/f5gEFXwizWcHe7gna4XOQNbl
-         +stTU1oQWe9x1KH5ic6nk4cWETQQF2d03UO+hzyLazrCAgppk232Y+UqQ8VXsUK3bNP6
-         eV5niTICj68VDkSEZOUOFJVLf7J0zy/qum5ONEs4YEiOZiZ+S8UQzraR4DKce6JD6moS
-         m0IavXiWfPLKvTpoOVoo1c7c0dpxPsRgoXkyGXosBP0GtSJQCAVL+2Dzv7LmM0b2fR8i
-         VOKQDZrv/FaKJnzSN5aNIVT5EEyaQ5UnxbPHh4gvjJOvMKG89mAbE8dMCEX2997HB+na
-         dt3A==
+        bh=o5eYQv4SEnPtJtu5rV+wjwKaumy6GBL26odmvclmovo=;
+        b=R29ygqelxXYFuuMzG9YqGELsJIEHno4a6nT3ArLPJr6YrWg8JaJgwYF8Ly+sfXbWq6
+         kcmy88Rj8zxQIcNgE/t/gxdAlnnJkgbUjHPOgt4qCqXrZVLMEXAEKYK4wN6RHbLKuv9n
+         0g/Y6NNB/pq3q3+s+FMGVsYsQRN5waWRymadnzhxYWmUWOKaSVLxauKItDiiqncoz0Li
+         4kKI+OOru2hK2zCh18baCyDNBUOpW4JFypL+Uvd+qtGyYbVZwr/lJLHBrP8QIvBarwoT
+         b0GlUDPB5t2iKxrHwjtkCpDfiX8NTM3CFbGtDHgOOrEVzCEgNf6TjYD1MY2hgfvRtCXZ
+         GLrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713999064; x=1714603864;
+        d=1e100.net; s=20230601; t=1713999676; x=1714604476;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GLM/Gzp3LttpkW6eOimYma73Nk3MMLdnbj7i6AMnYdM=;
-        b=C0o+nYfoNAHOudDAPpoauAcvSoEUM3liBTLR8hmrGZZKbvtof89oqeiYcEtNN8nXBW
-         R/UUrf1dhCfEwrKQwzhcb4oBvfTk9CcK+1HvzAQWzP0BJdA3ZfiasfnkAZU0gbtmn+Vy
-         NPo3F7O26tB+oGRQdC2cL4gvKml22wdN4e+QNQpqbn37uf32u0ZpLc/iFTKDTMNpILBl
-         nXwM2XxOpUiK0qDRjOAyOP+pDeko+4QOH/CXo5qV40hbLV3jFLJPXl9V1jyQ1x0VMf0S
-         NOU3hApEIVgDE7j2AASOl31h0LTcQaj81GOpYOe8HQh5C02g2hTfuWa+kiq/CQ+ArLOO
-         vaJw==
-X-Forwarded-Encrypted: i=1; AJvYcCXZdurV897YNEXtgUXI8oWMmMCYtracr5ZqNlZDzmCOGd+muHDwUa1akcHAm3fd9QMRtbkIrnj9hgIJ9fI1imqWz+F32wnDEWeWyw==
-X-Gm-Message-State: AOJu0YwnDfH84N79JkyZKrhfILa8s6zZgvRyLyn+un5la2ZzpnjNM1Oy
-	aWskU4jJIdWrASusfjrqKIoi6GE1GwKfa00UVny46ATproTE0Z+VFsVSzlVIk+Gug9HZ8A44ipC
-	nt9HIQjEO+59QpSSxhWWZPZG9VLz7SFaIJK24gw==
-X-Google-Smtp-Source: AGHT+IGiX/LOl5CjzBrqEzFnH8RKtGfmEb83wb3BnKjqyTxL+6W4MeCexMwQDpNg/EZ4gLdw0prFXxeZA5XWL/LuoRw=
-X-Received: by 2002:a25:a509:0:b0:dca:59a7:896b with SMTP id
- h9-20020a25a509000000b00dca59a7896bmr4173378ybi.50.1713999063835; Wed, 24 Apr
- 2024 15:51:03 -0700 (PDT)
+        bh=o5eYQv4SEnPtJtu5rV+wjwKaumy6GBL26odmvclmovo=;
+        b=P9wQ3Q4skBORXpR7c07RqcpuIUyRrgA2bWwxzE3XKMPW4eeL1LMh2LS8pnDZAPA1r1
+         iwVTmx6lKFNtQhDIKrUW0p8jrIv/HyPE3Ug1GaZ8sjZISFNfSY5C/isNNZYOhYVv+lhe
+         6Jv410QfmxehTVrT+qo2AjaD6V6d+WHeauTDhQ+P3ya6/aDkbxSvM+NqkBDmDOQvmyJn
+         qK5iiIE8T3F14ZEyxot72/AwOY4tGzu8LqHv1FDTqZjChC82BKOUOOuPYZHObKduoN5o
+         EIQyWkmT1UsK322hIlXYbUDi/ObKBl2AIFlrsJduG2IlZGk/COYPO/WsMrIyfL1TsKuJ
+         fmrg==
+X-Forwarded-Encrypted: i=1; AJvYcCURndz5aC1RhqaKtkHCyOYckI3DZJQqL+2oaqeK/qJ/hJVJHBHP8tiqEQuwidz1GB7YKcbTc710+glXAl2RPmXc/3BgsmBPGvv56g==
+X-Gm-Message-State: AOJu0Yxf0hx9a7X00mApJ9H3ZNuQ9mOMfbf6xj+HgoOjrIbEiHKh9saf
+	QN/ZFryNXBZjiIx7xvF6mAvU4mGMsecmUGvkupbBR7eNz846Hndnz4Dz1HzZNiABcKHQdniqcuV
+	fqppJi1MzD9OS46xUVyiUQxnAUcqiVuVRlf/Gmw==
+X-Google-Smtp-Source: AGHT+IEmZmY0a/pcbMjVZ7zbn5k9LdZezmxUS44Gf63fTy4Sf2HGSXWIH1nVc43qJR8VXcBqXhgqPnmKQIhIOfhQbP0=
+X-Received: by 2002:a17:90b:1e0a:b0:2ae:e1e0:3d8f with SMTP id
+ pg10-20020a17090b1e0a00b002aee1e03d8fmr3623341pjb.2.1713999675753; Wed, 24
+ Apr 2024 16:01:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
- <zanx5y3obqmewnbooovf52hx6vh7tpi4zsbse2dyzcqzddmzhw@kewxoa6n3mja>
- <CACb=7PURWtS8bwT5EcAFHhu7deHd2Y8cNOattfdwyEYpOUcbnQ@mail.gmail.com>
- <vbt2nxddw2dc7hkreq4iybv5zv5xyp32oajybeqsphgfrhzmn7@tskvckljmxpe>
- <CACb=7PVTvV9nsFu1ZAXu7YTjSOAGZka+c__EJq3J3qgSJGEShw@mail.gmail.com>
- <CAD=FV=VYAzqsGEBJai9b9n+HxHiG59L1vF73AEWcTwLS_ryjWw@mail.gmail.com>
- <an2k3vgynq4as2sd5dy6ccmdiqedmo7qjsab5qyfhesd333i2a@235sqph3bze5>
- <CAD=FV=VQ8rbwKk4WpHRER9p4cZp7UrrHRpgnErqbQxyxp4sg5w@mail.gmail.com>
- <CAA8EJprv3qBd1hfdWHrfhY=S0w2O70dZnYb6TVsS6AGRPxsYdw@mail.gmail.com> <CACb=7PVEpCFWf_aysRkeR0yWAXR5sTaXhNbi3TV3ffKj866+EQ@mail.gmail.com>
-In-Reply-To: <CACb=7PVEpCFWf_aysRkeR0yWAXR5sTaXhNbi3TV3ffKj866+EQ@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 25 Apr 2024 01:50:52 +0300
-Message-ID: <CAA8EJprLvEt_pt4XzACQG7pU8KYagKbQ71xwtRF9KrLygTT3ow@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
-To: Hsin-Yi Wang <hsinyi@google.com>
-Cc: Doug Anderson <dianders@google.com>, 
-	lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>, mripard@kernel.org, 
-	airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	cong yang <yangcong5@huaqin.corp-partner.google.com>
+References: <cover.1713456597.git.tjeznach@rivosinc.com> <232b2824d5dfd9b8dcb3553bfd506444273c3305.1713456598.git.tjeznach@rivosinc.com>
+ <20240419124017.GC223006@ziepe.ca>
+In-Reply-To: <20240419124017.GC223006@ziepe.ca>
+From: Tomasz Jeznach <tjeznach@rivosinc.com>
+Date: Wed, 24 Apr 2024 16:01:04 -0700
+Message-ID: <CAH2o1u7_YBtS6m1-T56tmxud1mda2gb6tLGVpbBSs15FPcjaGQ@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] iommu/riscv: Device directory management.
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux@rivosinc.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 25 Apr 2024 at 01:15, Hsin-Yi Wang <hsinyi@google.com> wrote:
+On Fri, Apr 19, 2024 at 5:40=E2=80=AFAM Jason Gunthorpe <jgg@ziepe.ca> wrot=
+e:
 >
-> On Wed, Apr 24, 2024 at 2:49=E2=80=AFPM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
+> On Thu, Apr 18, 2024 at 09:32:23AM -0700, Tomasz Jeznach wrote:
+> > @@ -31,13 +32,350 @@ MODULE_LICENSE("GPL");
+> >  /* Timeouts in [us] */
+> >  #define RISCV_IOMMU_DDTP_TIMEOUT     50000
 > >
-> > On Thu, 25 Apr 2024 at 00:04, Doug Anderson <dianders@google.com> wrote=
-:
-> > >
-> > > Hi,
-> > >
-> > > On Tue, Apr 23, 2024 at 2:20=E2=80=AFPM Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
-> > > >
-> > > > On Tue, Apr 23, 2024 at 01:41:59PM -0700, Doug Anderson wrote:
-> > > > > Hi,
-> > > > >
-> > > > > On Tue, Apr 23, 2024 at 11:10=E2=80=AFAM Hsin-Yi Wang <hsinyi@goo=
-gle.com> wrote:
-> > > > > >
-> > > > > > > > > > +#define _INIT_DCS_CMD(...) { \
-> > > > > > > > > > +     .type =3D INIT_DCS_CMD, \
-> > > > > > > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
-> > > > > > > > > > +     .data =3D (char[]){__VA_ARGS__} }
-> > > > > > > > > > +
-> > > > > > > > > > +#define _INIT_DELAY_CMD(...) { \
-> > > > > > > > > > +     .type =3D DELAY_CMD,\
-> > > > > > > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
-> > > > > > > > > > +     .data =3D (char[]){__VA_ARGS__} }
-> > > > > > > > >
-> > > > > > > > > This is the third panel driver using the same appoach. Ca=
-n you use
-> > > > > > > > > mipi_dsi_generic_write_seq() instead of the huge table? O=
-r if you prefer
-> > > > > > > > > the table, we should extract this framework to a common h=
-elper.
-> > > > > > > > > (my preference is shifted towards mipi_dsi_generic_write_=
-seq()).
-> > > > > > > > >
-> > > > > > > > The drawback of mipi_dsi_generic_write_seq() is that it can=
- cause the
-> > > > > > > > kernel size grows a lot since every sequence will be expand=
-ed.
-> > > > > > > >
-> > > > > > > > Similar discussion in here:
-> > > > > > > > https://lore.kernel.org/dri-devel/CAD=3DFV=3DWju3WS45=3DEpX=
-MUg7FjYDh3-=3Dmvm_jS7TF1tsaAzbb4Uw@mail.gmail.com/
-> > > > > > > >
-> > > > > > > > This patch would increase the module size from 157K to 572K=
-.
-> > > > > > > > scripts/bloat-o-meter shows chg +235.95%.
-> > > > > > > >
-> > > > > > > > So maybe the common helper is better regarding the kernel m=
-odule size?
-> > > > > > >
-> > > > > > > Yes, let's get a framework done in a useful way.
-> > > > > > > I'd say, drop the _INIT_DELAY_CMD. msleep() and usleep_range(=
-) should be
-> > > > > > > used instead (and it's up to the developer to select correct =
-delay
-> > > > > > > function).
-> > > > > > >
-> > > > > > > >
-> > > > > > > > > > +
-> > > > > > > > > > +static const struct panel_init_cmd kingdisplay_kd101ne=
-3_init_cmd[] =3D {
-> > > > > > > > > > +     _INIT_DELAY_CMD(50),
-> > > > > > > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
-> > > > > > >
-> > > > > > > [skipped the body of the table]
-> > > > > > >
-> > > > > > > > > > +     _INIT_DCS_CMD(0x0E, 0x48),
-> > > > > > > > > > +
-> > > > > > > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
-> > > > > > >
-> > > > > > > > > > +     _INIT_DCS_CMD(0X11),
-> > > > > > >
-> > > > > > > Also, at least this is mipi_dsi_dcs_exit_sleep_mode().
-> > > > > > >
-> > > > > > > > > > +     /* T6: 120ms */
-> > > > > > > > > > +     _INIT_DELAY_CMD(120),
-> > > > > > > > > > +     _INIT_DCS_CMD(0X29),
-> > > > > > >
-> > > > > > > And this is mipi_dsi_dcs_set_display_on().
-> > > > > > >
-> > > > > > > Having a single table enourages people to put known commands =
-into the
-> > > > > > > table, the practice that must be frowned upon and forbidden.
-> > > > > > >
-> > > > > > > We have functions for some of the standard DCS commands. So, =
-maybe
-> > > > > > > instead of adding a single-table based approach we can improv=
-e
-> > > > > > > mipi_dsi_generic_write_seq() to reduce the bloat. E.g. by mov=
-ing the
-> > > > > > > error handling to a common part of enable() / prepare() funct=
-ion.
-> > > > > > >
-> > > > > >
-> > > > > > For this panel, I think it can also refer to how
-> > > > > > panel-kingdisplay-kd097d04.c does. Create the table for init cm=
-d data,
-> > > > > > not what operation to use, and use mipi_dsi_generic_write_seq()=
- when
-> > > > > > looping through the table.
-> > > > >
-> > > > > Even more similar discussion:
-> > > > >
-> > > > > https://lore.kernel.org/r/CAD=3DFV=3DUGDbNvAMjzWSOvxybGikQcvW9JsR=
-tbxHVg8_97YPEQCA@mail.gmail.com
-> > > >
-> > > > It seems I skipped that thread.
-> > > >
-> > > > I'd still suggest a code-based solution compared to table-based one=
-, for
-> > > > the reasons I've outlined before. Having a tables puts a pressure o=
-n the
-> > > > developer to put commands there for which we already have a
-> > > > command-specific function.
-> > >
-> > > The problem is that with these panels that need big init sequences th=
-e
-> > > code based solution is _a lot_ bigger. If it were a few bytes or a
-> > > 1-2KB then fine, but when Hsin-Yi measured Linus W's attempt to move
-> > > from a table to code it was 100K difference in code [1]. I would also
-> > > say that having these long init sequences done as separate commands
-> > > encourages people to skip checking the return values of each of the
-> > > transfer functions and I don't love that idea.
-> > >
-> > > It would be ideal if these panels didn't need these long init
-> > > sequences, but I don't have any inside knowledge here saying that the=
-y
-> > > could be removed. So assume we can't get rid of the init sequences it
-> > > feels like we have to find some way to make the tables work for at
-> > > least the large chunks of init code and encourage people to make the
-> > > tables readable...
-> >
-> >
-> > I did a quick check on the boe-tv101wum-nl6 driver by converting the
-> > writes to use the following macro:
-> >
-> > #define mipi_dsi_dcs_write_cmd_seq(dsi, cmd, seq...)
-> >              \
-> >         do {                                                           =
-        \
-> >                 static const u8 d[] =3D { cmd, seq };                  =
-      \
-> >                 ret =3D mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)=
-);    \
-> >                 if (ret < 0)                                           =
-        \
-> >                         goto err;                                      =
-        \
-> >         } while (0)
-> >
-> > And then at the end of the init funciton having
-> >
-> > err:
-> >         dev_err(panel->dev,
-> >                 "failed to write command %d\n", ret);
-> >         return ret;
-> > }
-> >
+> > -static int riscv_iommu_attach_identity_domain(struct iommu_domain *dom=
+ain,
+> > -                                           struct device *dev)
+> > +/* RISC-V IOMMU PPN <> PHYS address conversions, PHYS <=3D> PPN[53:10]=
+ */
+> > +#define phys_to_ppn(va)  (((va) >> 2) & (((1ULL << 44) - 1) << 10))
+> > +#define ppn_to_phys(pn)       (((pn) << 2) & (((1ULL << 44) - 1) << 12=
+))
+> > +
+> > +#define dev_to_iommu(dev) \
+> > +     container_of((dev)->iommu->iommu_dev, struct riscv_iommu_device, =
+iommu)
 >
-> I'm not sure about the coding style rule here, would it be considered
-> unclear that caller of mipi_dsi_dcs_write_cmd_seq() needs to have err
-> block, but the block may not be directly used in that caller and is
-> only jumped from the macro?
-
-I'm also not sure here. It was a quick and dirty test.
-We might as well do something like
-
-ret =3D mipi_dsi_dcs_write_cmd_seq(dsi, ...);
-if (ret)
-    goto err;
-
-all over the place.
-
-
+> We have iommu_get_iommu_dev() now
 >
+> > +static unsigned long riscv_iommu_get_pages(struct riscv_iommu_device *=
+iommu, unsigned int order)
+> > +{
+> > +     struct riscv_iommu_devres *devres;
+> > +     struct page *pages;
+> > +
+> > +     pages =3D alloc_pages_node(dev_to_node(iommu->dev),
+> > +                              GFP_KERNEL_ACCOUNT | __GFP_ZERO, order);
+> > +     if (unlikely(!pages)) {
+> > +             dev_err(iommu->dev, "Page allocation failed, order %u\n",=
+ order);
+> > +             return 0;
+> > +     }
 >
-> > Size comparison:
-> >    text    data     bss     dec     hex filename
-> > before
-> >   34109   10410      18   44537    adf9
-> > ../build-64/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.o
-> > making init data const
-> >   44359     184       0   44543    adff
-> > ../build-64/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.o
-> > with new macros
-> >   44353     184       0   44537    adf9
-> > ../build-64/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.o
-> >
-> > As you can see, there is literally no size difference with this macro i=
-n place.
-> > The only drawback is that the init stops on the first write rather
-> > than going through the sequence.
-> >
-> > WDYT? I can turn this into a proper patch if you think this makes sense=
-.
-> >
-> > >
-> > >
-> > > [1] https://lore.kernel.org/r/CAD=3DFV=3DUFa_AoJQvUT3BTiRs19WCA2xLVeQ=
-OU=3D+nYu_HaE0_c6Q@mail.gmail.com
-> >
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+> This needs adjusting for the recently merged allocation accounting
+>
+> > +static int riscv_iommu_attach_domain(struct riscv_iommu_device *iommu,
+> > +                                  struct device *dev,
+> > +                                  struct iommu_domain *iommu_domain)
+> > +{
+> > +     struct iommu_fwspec *fwspec =3D dev_iommu_fwspec_get(dev);
+> > +     struct riscv_iommu_dc *dc;
+> > +     u64 fsc, ta, tc;
+> > +     int i;
+> > +
+> > +     if (!iommu_domain) {
+> > +             ta =3D 0;
+> > +             tc =3D 0;
+> > +             fsc =3D 0;
+> > +     } else if (iommu_domain->type =3D=3D IOMMU_DOMAIN_IDENTITY) {
+> > +             ta =3D 0;
+> > +             tc =3D RISCV_IOMMU_DC_TC_V;
+> > +             fsc =3D FIELD_PREP(RISCV_IOMMU_DC_FSC_MODE, RISCV_IOMMU_D=
+C_FSC_MODE_BARE);
+> > +     } else {
+> > +             /* This should never happen. */
+> > +             return -ENODEV;
+> > +     }
+>
+> Please don't write it like this. This function is already being called
+> by functions that are already under specific ops, don't check
+> domain->type here.
+>
+> Instead have the caller compute and pass in the ta/tc/fsc
+> values. Maybe in a tidy struct..
+>
+> > +     /* Update existing or allocate new entries in device directory */
+> > +     for (i =3D 0; i < fwspec->num_ids; i++) {
+> > +             dc =3D riscv_iommu_get_dc(iommu, fwspec->ids[i], !iommu_d=
+omain);
+> > +             if (!dc && !iommu_domain)
+> > +                     continue;
+> > +             if (!dc)
+> > +                     return -ENODEV;
+>
+> But if this fails some of the fwspecs were left in a weird state ?
+>
+> Drivers should try hard to have attach functions that fail and make no
+> change at all or fully succeed.
+>
+> Meaning ideally preallocate any required memory before doing any
+> change to the HW visable structures.
+>
 
+Good point. Done.
+Looking at the fwspec->ids[] I'm assuming nobody will add/modify the
+IDs after iommu_probe_device() completes.
 
+> > +
+> > +             /* Swap device context, update TC valid bit as the last o=
+peration */
+> > +             xchg64(&dc->fsc, fsc);
+> > +             xchg64(&dc->ta, ta);
+> > +             xchg64(&dc->tc, tc);
+>
+> This doesn't loook right? When you get to adding PAGING suport fsc has
+> the page table pfn and ta has the cache tag, so this will end up
+> tearing the data for sure, eg when asked to replace a PAGING domain
+> with another PAGING domain? That will create a functional/security
+> problem, right?
+>
+> I would encourage you to re-use the ARM sequencing code, ideally moved
+> to some generic helper library. Every iommu driver dealing with
+> multi-quanta descriptors seems to have this same fundamental
+> sequencing problem.
+>
 
---
-With best wishes
-Dmitry
+Good point. Reworked.
+
+> > +static void riscv_iommu_release_device(struct device *dev)
+> > +{
+> > +     struct riscv_iommu_device *iommu =3D dev_to_iommu(dev);
+> > +
+> > +     riscv_iommu_attach_domain(iommu, dev, NULL);
+> > +}
+>
+> The release_domain has landed too now. Please don't invent weird NULL
+> domain types that have special meaning. I assume clearing the V bit is
+> a blocking behavior? So please implement a proper blocking domain and
+> set release_domain =3D &riscv_iommu_blocking and just omit this release
+> function.
+>
+
+Updated to use release_domain, should be cleaner now.
+Clearing TC.V is a blocking (but noisy) behavior, should be fine for
+release domain where devices should be quiesced already.
+
+> > @@ -133,12 +480,14 @@ int riscv_iommu_init(struct riscv_iommu_device *i=
+ommu)
+> >       rc =3D riscv_iommu_init_check(iommu);
+> >       if (rc)
+> >               return dev_err_probe(iommu->dev, rc, "unexpected device s=
+tate\n");
+> > -     /*
+> > -      * Placeholder for a complete IOMMU device initialization.
+> > -      * For now, only bare minimum: enable global identity mapping mod=
+e and register sysfs.
+> > -      */
+> > -     riscv_iommu_writeq(iommu, RISCV_IOMMU_REG_DDTP,
+> > -                        FIELD_PREP(RISCV_IOMMU_DDTP_MODE, RISCV_IOMMU_=
+DDTP_MODE_BARE));
+> > +
+> > +     rc =3D riscv_iommu_ddt_alloc(iommu);
+> > +     if (WARN(rc, "cannot allocate device directory\n"))
+> > +             goto err_init;
+>
+> memory allocation failure already makes noisy prints, more prints are
+> not needed..
+>
+> > +     rc =3D riscv_iommu_set_ddtp_mode(iommu, RISCV_IOMMU_DDTP_MODE_MAX=
+);
+> > +     if (WARN(rc, "cannot enable iommu device\n"))
+> > +             goto err_init;
+>
+> This is not a proper use of WARN, it should only be used for things
+> that cannot happen not undesired error paths.
+>
+> Jason
+
+Thanks, ack to all. Will push updated v3 shortly.
+- Tomasz
 
