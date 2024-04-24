@@ -1,188 +1,226 @@
-Return-Path: <devicetree+bounces-62511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6D18B1647
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:40:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 662888B1657
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A3C71C21FD8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:40:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89B551C222F5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4696216E86A;
-	Wed, 24 Apr 2024 22:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2724716E86E;
+	Wed, 24 Apr 2024 22:43:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJWxc5b6"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LtNK1GaJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867EA16DEC1;
-	Wed, 24 Apr 2024 22:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7817116D9AF
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:43:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713998436; cv=none; b=VRsTaSmb4QDWQ7fusn2rK3eVpgLg10qrRMt4Xgg/7kMe8SCJN9sDOJ2TPn6KHhq5xyn1lxo7P0odPRqekfpKMLTADLZ2MN9u47eO5+1eG6yQz1XHUIHI8r3YSCVSOovyy94isCLaAYA1SzJOm9cLPDUpoybh/NJrqpJ1aW4BnBU=
+	t=1713998612; cv=none; b=LNU05ECTlVHo1JJtfL74roKwmhk3maiBD6xycfdL5/iDAIuHsf1M8YUywoOd162HRQB9bnv04p59OwelRBj2UmrhI3WkVAXXjHNV123yyEM/053fE5P194MyaFVEobO4pCgvv4wT5D3TA+g9kREqT+7WQC3uW84xL1yhUiBcjSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713998436; c=relaxed/simple;
-	bh=yWTu+Ro0Q8pXAF+ytfHMy/NERfiA3bEuy3YTsdlZPSE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vrul4Z0oRWc5q/KbAtDDv2hQQ6E2tvrDCVZA9rZ518VAW61EUphai++03HT8c8eeutfJMVsvAqGsFZVBUW0F1QrZUICXccZSqhuQ+abiMLmh6iaMv17KAJ6tWS2Q4xqw+smTMkndEYNi6/nfHa0Xi4KweyfCcUaiMoXcEGkqWfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJWxc5b6; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3c70b652154so309327b6e.2;
-        Wed, 24 Apr 2024 15:40:34 -0700 (PDT)
+	s=arc-20240116; t=1713998612; c=relaxed/simple;
+	bh=MEKcpxKvyFyt6gXvf1rl3IVTfewAZXKh6RKdA7b7/Vw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tkcHaXKjgGO7Dkroc/Tk2FKOmxBL0geWmQdbmdUw4ZofpGcg9uavml5htWK9I2UQCsqh5R1P9SfSs8t9i/RokpqEoGUElOT5thxc/VxnfdRmbsoq5bLTPl3sC76G6i/gCuPoe4H0UO780XXa1zDWaVoE0DuIwa+EdTZBLTjoEYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LtNK1GaJ; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6a073f10e25so2401966d6.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:43:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713998433; x=1714603233; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=i9ydyggHonmZTeHDmQ1TqtlgRqFlGkx0UVffasxxkZE=;
-        b=HJWxc5b6iqytC6Lz/EqFVVosVhUCZ/41ylml3lYcJ21oPUxE4d/k5zeKRZgBGvSdV1
-         rqAvAWyH6j2iz/Z0PO0ByWXSy+xOPNeg0/R5vFcqOkg97LlYLgLccO7u1oM+eXENzWTW
-         o6puj0miTH8wH07AKyF6bGu7Q3z030NN9s+9lkztcTG3xAETCEKIUaksum9JDmyd7IFe
-         m24VsUzvErOr495PZcEwZvO+fzkB8v1w5Wt8WiS7BH+UC9Shvr8PKpUYsZJn2Maeroo6
-         D2q//b4EOPIT2OUJ03oRxrX9pVKOVmbj9KrIGt6iHVa2SY/oYk74YPE4IKwYYlGu6YJb
-         qy3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713998433; x=1714603233;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1713998608; x=1714603408; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i9ydyggHonmZTeHDmQ1TqtlgRqFlGkx0UVffasxxkZE=;
-        b=Rvfv8Qkc3p/hWXiYIZ7y15Px5tPoZc7VEa2tnt+q0Nn1OurmzI3sapcKQ8PRko+zD7
-         Ljttq2CFwdJn/lOSJ8NGEzDhgBxEyDiy+Zf56La/OP1wR2jugU+ijOKBCKUDSv4Omkmc
-         Qz/TkpZry/CAH/dbNapz2PP3rfqMbNPWlq72eHzDX4QZ+/XPdanqCm/3M66ace41vHPr
-         6ydQFaFpiRwAn40cCF1T4p7xnaz8A2bTpqD9RsELZIamoL7WAIDQqz7wj6S3Zqm1ZYwp
-         uSBfLX0G/yDKEdaFHm1DhyETrvW9P8j6hSS5O6f47hh1f/ZCWcY7yKGrrZY0rlJ1V+bV
-         rTwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUp9Q08PTOTYclYRz9IAALiGLuaQJLCVExD4AJ43cBNGahL+Cerd0alY6WpSo93fBa+5+gQmwPThuFwDGcQPO+nDyDNEHKYHJDS+Q==
-X-Gm-Message-State: AOJu0YySsL98fgYc5N1i22bTGI/ziAd8C9N54Xz4fV+rP2JiSYbdGOeX
-	gwsn8DKtSHAh7zdtQJE1jMfRGqm/he3uJrVQRwH4hqq+qDGYeOoIAjTlNw==
-X-Google-Smtp-Source: AGHT+IFOVc8IW1H5hORIApL5jVVXT+BkCpW2raxwe+1njGBDv4NUi2qUNiDcTVh8Dbdg3IQb/9a5Cw==
-X-Received: by 2002:a05:6808:bcc:b0:3c7:351f:b3ff with SMTP id o12-20020a0568080bcc00b003c7351fb3ffmr4962364oik.14.1713998433520;
-        Wed, 24 Apr 2024 15:40:33 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 192-20020a6301c9000000b0060795a08227sm1200573pgb.37.2024.04.24.15.40.31
+        bh=nMrRFrfAkMBHNdCwNPCMk+6Pc/CQ0PrT4pRXz9no6XU=;
+        b=LtNK1GaJMpytif9kIdreY1U0fIgCYUvTUrNGo3ebrCdBVeRcmBRJpXgk6fIF8FB19h
+         6cl6ZwzlFSPi89U0ipfssd48M2lKVtlVg94iRUuzcSfQ+UT12lhqaI8m4Lt8qhP7XLLX
+         nVj4Kcmpjjn2/CNNI8vZTQ+tW77KDq3bW+uH8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713998608; x=1714603408;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nMrRFrfAkMBHNdCwNPCMk+6Pc/CQ0PrT4pRXz9no6XU=;
+        b=Ey9gce0kcmtk6QbCjF9dBzlS3UAOzRNdvVSpy81207z751kTiV+9i/AWzQNKH+cFns
+         YY7r6TWcN0qszr22Y3hNou+0O8XWHRCkkzkQKyCZDomWdkrFcuLntFpfC33LUGdtha7s
+         L8vrj+g/AXt3Xnq2ZXmXWMPE8O8tjF/V68lOxXX7Caq+VXdUUSt3UH4uqvbHjAbxTxzs
+         Ax286bpT4cSe0Qh00DjqmeJBMAosVTj7Y9GGd92hFxV8BWp0nYkxvbT+NGQt2PPOXKcl
+         rg/HVQcOJbZo0dYVPlBx3X/rdCQ/HNrAWp11/CShtGytnZ6NPwOTPSLIlPPA4N2MgI6P
+         Rflg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrcYtYmG7UNVa8FMTvj2WglorSMzunruAQWqzpbDZJfkZNpYyWYQIzE91wlfn7urh6bL0Tq4isb6vvdWvq+2YI/LcaDGJw2ASRIg==
+X-Gm-Message-State: AOJu0Yy4Hk5G6+pPIZWR0/2pz3h5sA16MtOjy9qTO0W/8meyd7LC7nUp
+	2jwcPOC/ojHPz49t4d6R8jQWZpTAXvPs5uZ0zIzz2FS4tWTlT+ticCB2NaYGPy+IPLBdYFs/2PE
+	=
+X-Google-Smtp-Source: AGHT+IHG3Tb57VTIa9F6BztZFRltOQFxC046DsUG3zqvRZTfETRpi47bRlyZwZVPWVKepTigU/Lz6g==
+X-Received: by 2002:a0c:ed33:0:b0:6a0:8132:cd8a with SMTP id u19-20020a0ced33000000b006a08132cd8amr4369573qvq.7.1713998607455;
+        Wed, 24 Apr 2024 15:43:27 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
+        by smtp.gmail.com with ESMTPSA id x4-20020a0cc504000000b0069b5e92350bsm5364113qvi.96.2024.04.24.15.43.26
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Apr 2024 15:40:32 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b717da30-1d4c-4e09-b98c-4aa41a235234@roeck-us.net>
-Date: Wed, 24 Apr 2024 15:40:30 -0700
+        Wed, 24 Apr 2024 15:43:26 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-436ed871225so60941cf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:43:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVqKMUkmg6qXk8SuCmmHHixWowDc/yGA719EVfodWdHXIXsEdi1pvAs9ytnW+ysRc/HVW9U6xc6Z1EBqZ9iWFnUsPDxZpRRDA3VuQ==
+X-Received: by 2002:ac8:795a:0:b0:437:b572:6a with SMTP id r26-20020ac8795a000000b00437b572006amr43473qtt.23.1713998605986;
+ Wed, 24 Apr 2024 15:43:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document target-pwm
- property
-To: Rob Herring <robh@kernel.org>, Peter Korsgaard <peter@korsgaard.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20240424090453.2292185-1-peter@korsgaard.com>
- <20240424220417.GA782554-robh@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240424220417.GA782554-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240422090310.3311429-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240422090310.3311429-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=V2O2aFDVn5CjbXfgcOLkmNp-G3ChVqQKouB2mDB+NZug@mail.gmail.com>
+ <CAHwB_NJsDsTc=gjP8TJ+6ipo10uMYFLmuf+tKGVgxnznhuAcUQ@mail.gmail.com>
+ <CAD=FV=UGDbNvAMjzWSOvxybGikQcvW9JsRtbxHVg8_97YPEQCA@mail.gmail.com> <CAHwB_N+e4E8uZe3YpfNyemPyW-Rj1RLR5kKA3SDiBygOPYrmVQ@mail.gmail.com>
+In-Reply-To: <CAHwB_N+e4E8uZe3YpfNyemPyW-Rj1RLR5kKA3SDiBygOPYrmVQ@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 24 Apr 2024 15:43:10 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XHmkVbU7RqvOPLpknWWTPAMWu_-EApWdcuPRRDMOim8g@mail.gmail.com>
+Message-ID: <CAD=FV=XHmkVbU7RqvOPLpknWWTPAMWu_-EApWdcuPRRDMOim8g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] drm/panel: himax-hx83102: Break out as separate driver
+To: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
+	robh+dt@kernel.org, conor+dt@kernel.org, airlied@gmail.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/24/24 15:04, Rob Herring wrote:
-> On Wed, Apr 24, 2024 at 11:04:52AM +0200, Peter Korsgaard wrote:
->> Similar to target-rpm from fan-common.yaml but for the PWM setting
->> (0..255).
-> 
-> IIRC, we have a map of RPMs to PWM duty cycle, so why can't you
-> use that plus target-rpm?
-> 
+Hi,
 
-target-rpm is the target fan speed. The property defined here
-is the default pwm to set when the device is instantiated.
+On Tue, Apr 23, 2024 at 7:42=E2=80=AFPM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Hi,
+>  Thanks reply.
+>
+> Doug Anderson <dianders@chromium.org> =E4=BA=8E2024=E5=B9=B44=E6=9C=8824=
+=E6=97=A5=E5=91=A8=E4=B8=89 00:26=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > Hi,
+> >
+> > On Tue, Apr 23, 2024 at 2:37=E2=80=AFAM cong yang
+> > <yangcong5@huaqin.corp-partner.google.com> wrote:
+> > >
+> > > > > +static int starry_init_cmd(struct hx83102 *ctx)
+> > > > > +{
+> > > > > +       struct mipi_dsi_device *dsi =3D ctx->dsi;
+> > > > > +
+> > > > > +       mipi_dsi_dcs_write_seq(dsi, HX83102_SETEXTC, 0x83, 0x10, =
+0x21, 0x55, 0x00);
+> > > > > +
+> > > > > +       mipi_dsi_dcs_write_seq(dsi, HX83102_SETPOWER, 0x2C, 0xB5,=
+ 0xB5, 0x31, 0xF1, 0x31, 0xD7, 0x2F,
+> > > > > +                                                 0x36, 0x36, 0x3=
+6, 0x36, 0x1A, 0x8B, 0x11, 0x65, 0x00, 0x88, 0xFA, 0xFF,
+> > > > > +                                                 0xFF, 0x8F, 0xF=
+F, 0x08, 0x74, 0x33);
+> > > >
+> > > > I know this is a sticking point between Linus W. and me, but I'm
+> > > > really not a fan of all the hardcoded function calls since it bloat=
+s
+> > > > the code so much. I think we need to stick with something more tabl=
+e
+> > > > based at least for the majority of the commands. If I understand
+> > > > correctly, Linus was OK w/ something table based as long as it was =
+in
+> > > > common code [1]. I think he also wanted the "delay" out of the tabl=
+e,
+> > > > but since those always seem to be at the beginning or the end it se=
+ems
+> > > > like we could still have the majority of the code as table based. D=
+o
+> > > > you want to make an attempt at that? If not I can try to find some
+> > > > time to write up a patch in the next week or so.
+> > >
+> > > Do you mean not add "delay" in the table?  However, the delay
+> > > required by each panel may be different. How should this be handled?
+> >
+> > In the case of the "himax-hx83102" driver, it looks as if all the
+> > delays are at the beginning or end of the init sequence. That means
+> > you could just make those extra parameters that are set per-panel and
+> > you're back to having a simple sequence without delays.
+>
+> Do you mean add msleep  in hx83102_enable()?
+>
+> @@ -612,12 +604,15 @@ static int hx83102_enable(struct drm_panel *panel)
+>         struct device *dev =3D &dsi->dev;
+>         int ret;
+>
+> +       msleep(60);
+>         ret =3D ctx->desc->init_cmds(ctx);
+>         if (ret) {
+>                 dev_err(dev, "Panel init cmds failed: %d\n", ret);
+>                 return ret;
+>         }
+>
+> +       msleep(60);
+> +
+>         ret =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
+>
+> >
+> > If you had panels that needed delays in a more complicated way, you
+> > could keep the per-panel functions but just make the bulk of the
+> > function calls apply a sequence. For instance:
+> >
+> > static int my_panel_init_cmd(...)
+> > {
+> >   ret =3D mipi_dsi_dcs_write_cmd_seq(dsi, my_panel_init_cmd_seq);
+> >   if (ret)
+> >     return ret;
+> >   mdelay(100);
+> >   ret =3D mipi_dsi_dcs_write(dsi, ...);
+> >   if (ret)
+> >     return ret;
+> >   mdelay(50);
+> >   ret =3D mipi_dsi_dcs_write_cmd_seq(dsi, ...);
+> >   if (ret)
+> >     return ret;
+> > }
+> >
+> > The vast majority of the work is still table driven so it doesn't
+> > bloat the code, but you don't have the "delay" in the command sequence
+> > since Linus didn't like it. I think something like the above would
+> > make Linus happy and I'd be OK w/ it as well. Ideally you should still
+> > make your command sequence as easy to understand as possible, kind of
+> > like how we did with _INIT_SWITCH_PAGE_CMD() in
+> > "panel-ilitek-ili9882t.c"
+> >
+> > As part of this, you'd have to add a patch to create
+> > mipi_dsi_dcs_write_cmd_seq(), but hopefully that shouldn't be too
+> > complicated?
+> >
+> >
+> > > It would be great if you could help provide a patch. Thank you so muc=
+h.
+> >
+> > Sure, I can, though maybe you want to give it a shot with the above des=
+cription?
+>
+> Sorry, I still don't seem to understand. How to encapsulate the parameter=
+s of
+> "HX83102_SETDISP, HX83102_SETCYC,....."? Different parameters for each pa=
+nel.
+> I have sent my V3 but it does not contain the patch you want.
 
-The two values are also orthogonal. The fan rpm is fan dependent.
-Each fan will require a different pwm value to reach the target speed.
-Trying to use target-rpm to set a default pwm value would really
-not make much if any sense.
+It sounds as if Dmitry has come up with a solution that allows us to
+keep using the functions like you've been using but avoid the code
+bloat problems. ...so let's go with that. It sounds as if he's going
+to send a patch before too long and then it should be pretty easy to
+convert your patches over to use his new function.
 
-Guenter
-
-> Anything new for existing fan bindings should ideally use what
-> fan-common.yaml defined or be added to it.
-> 
->>
->> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
->> ---
->>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> index 4e5abf7580cc..58513ff732af 100644
->> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> @@ -46,6 +46,14 @@ properties:
->>   
->>     "#cooling-cells": true
->>   
->> +  target-pwm:
->> +    description:
->> +      The default desired fan PWM.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 255
->> +    default: 255
->> +
->>   required:
->>     - compatible
->>     - pwms
->> -- 
->> 2.39.2
->>
-
+[1] https://lore.kernel.org/r/CAA8EJprv3qBd1hfdWHrfhY=3DS0w2O70dZnYb6TVsS6A=
+GRPxsYdw@mail.gmail.com
 
