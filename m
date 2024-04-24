@@ -1,102 +1,290 @@
-Return-Path: <devicetree+bounces-62507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551C78B15D7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:09:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5D58B15FE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:15:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 814CB1C21CCC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:09:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E7F282D84
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 22:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82E315CD7C;
-	Wed, 24 Apr 2024 22:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326E11607A2;
+	Wed, 24 Apr 2024 22:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApFuSyjN"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="QrLaSbT8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80744745CB;
-	Wed, 24 Apr 2024 22:09:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6850B1607A7
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713996581; cv=none; b=leZg3Tshnp4HZ1OgFb5glIFRGxX2AtDvLhcKyna4iVtDkhhsyEOqGW1gYDWHTGDdVu15GYsmyNcn0MEQTxJylpEmeCWfJc63iN5v9C/9y3EU9ZrFyQPz9KHIEGGQsDNj08TnH9CfOcb3cS/FK9V4wtApQRMjFm/Ue6fDaZS2ehU=
+	t=1713996950; cv=none; b=giMrFsqBwQYRhPcg4M5VbFBpPH632opY5In90nT4OUIKeSu8Nn40oAuAEPY01sdFraNmEcW9p7DzXOupIxnKZXU+/C6wosD7auXI01e9nXKxoiNZVrx9WrJ7Zo1rHl+MfX++gOQjeD1ccvrF5QyHjevQ1HivjuWAqtyXwPlgQlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713996581; c=relaxed/simple;
-	bh=ExYTNrxfugrhIWVYfNvtgskoCvyzSUXyHaRHNzgT6cM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RXqrou8VPk/qIema3zI3/Byydz2tMPVYGuLDVKUAGBvxJzycY0waAWsRQeOLW+olZKNPjewuBjrPw+ptSa+Dy08Q3bF+AFyYH9u5unF5SnorfWCdpr1Oc6H08TOU8aRykqZT3JMkLhz2uG15gqY4O+aVZiBkSSEYi45rb1S1+bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApFuSyjN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 238BBC113CD;
-	Wed, 24 Apr 2024 22:09:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713996581;
-	bh=ExYTNrxfugrhIWVYfNvtgskoCvyzSUXyHaRHNzgT6cM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ApFuSyjNVPdocS/7StT99K5TtfZqnnwZQegHWaTaixUwynKV5imy4C98u+3EFQPfU
-	 WtHQVF551P8TlCqbX+xqG/EMnr+0yHvatoFkT635hS2mj56TyfPt4xhLcJRdGJZuiI
-	 c+dYKK4XDdsmUtMcUiKKKKaC0OtrZFzAnJCMwucDRWXl3zQoATpNpGIViIKIOqxPEb
-	 JY3/tNENaCojjthoYJL2w+DD9gpm7Rt50lTxuseZ3C41nTU0eBnxSqKO+atnry9aUD
-	 /5Nj8q3y+Xbu6+LT8Zej/5l+ai+loBG47wsY8s77knRaCCpUAUIH4r8J9eFfFiMr5s
-	 TDuqu7oRUGlog==
-Date: Wed, 24 Apr 2024 17:09:39 -0500
-From: Rob Herring <robh@kernel.org>
-To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
-Cc: "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Sebastian Reichel <sre@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/7] dt-bindings: Add Blaize vendor prefix
-Message-ID: <20240424220939.GA796655-robh@kernel.org>
-References: <20240424133124.19101-1-nikolaos.pasaloukos@blaize.com>
+	s=arc-20240116; t=1713996950; c=relaxed/simple;
+	bh=BTzlFaaUWyBZ/0avVLQeurEPKx5+Gs28mKWdbs+QSVA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tpSP38LuX3u/YmPJNWEQJ6F68uWboz0N9KQbPC88rZW9yznCnh8Q/nWQzEArEigeyqj+Kj6vii0i4VARYHX0n0v0PGAcA5ows7WYXZie9iabb0DmaplSNkDtCuMjgECLTK/jVCD/P4K2O8v9LzdR1EsmBAgbRoC5GcXGm8jr1DQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=QrLaSbT8; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41b39d38cf6so1679625e9.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 15:15:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1713996946; x=1714601746; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9PwX26yDrbphgPlomUbRviwGBYrIb66VEMHKXPwN1t8=;
+        b=QrLaSbT8hi2hSaeSsk8f45Mqln3omSoq7Gb1Wxe4TrOA+WLE1vFyy+jS6/osf3LxOJ
+         1jP30i59pwj1VpxqLWOXbP2W7OUeUbaxYYxyZKhb0DZQhFeivkFMAkoZD9zdH54DW0rm
+         DBVQ94I1EsTcxOPScku/vKaqgblRqSuW0nfoTuV+BqFZzbrGH5Rx1T9urTEou5jgZCbP
+         Y2gxM9IkdFhlAzZUiPlm7SFzKsFi6k75djKMzAjjSeI8WrZjZRYapYmQ1U+/aDp1xdxx
+         HLj71v62pHYo1Odd2Du3a7R6kBWOVP+rKI21wq6Ojc2qtmGdGu7nJLFojPrgTary+cf2
+         gH2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713996946; x=1714601746;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9PwX26yDrbphgPlomUbRviwGBYrIb66VEMHKXPwN1t8=;
+        b=vFmBrDKDawkpuFD7vQUMrmyCboQEPzOnJh2bYZaoSViOdZbxxKSFAFOYu9PQY8PiFe
+         /NjGyQd6e65BoO7ihN7732y8K4yV+CE90uquBMll552S1P8MggoBhmhd+j4jn4lCl68t
+         EhvNRzMo4r6uSivo84x++mvKuyfH1jt5kL0tV9ZJupTTtk9eod8tfL5z4lX5mPplVZKM
+         U+dT772FRres6EXs1RYyXajGYAiH41QyIHJMprmkxZKrabiwENiwkTAjY7rA2qmWA/u8
+         etnCy9Re+BB8/fJhMrwhVm44TGxZa+WF1eCLxXxgA41A5fC48P8ULVHHohTirbBzS1jo
+         4AGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVFt0yXhmlslQ8T8fD8gimMbu3oreErM96PNdwYYnntXCnEdx+fLFGYhbPC/wz/EhStXrMPgGd4mr4MlKAK2L3sdZxmnV8PdHBOag==
+X-Gm-Message-State: AOJu0YwfmCm83tMCvynrZ2YU+wBUBnsgTeKkm63LkxEwTB2ZuYHIHtfW
+	2xkFQLU+Iyd/A1l6UmM0Q+vIvde5ihfWdyAd323+WfHC8mLAej3dT75I73g2mnpkC/S7MaQMV2f
+	P81Fc0sVY3K9vxQQH4FFh+0lY/D/XNVJbVTOi
+X-Google-Smtp-Source: AGHT+IHkboif/00IgRcoNKYbKyjHQwpzFRhV06M+te63W8KYhcpbAeVE+PqnNH2rpK8rFGBlds+W+jojcHREsdyxFyE=
+X-Received: by 2002:a05:600c:5247:b0:414:273:67d4 with SMTP id
+ fc7-20020a05600c524700b00414027367d4mr2632403wmb.30.1713996946437; Wed, 24
+ Apr 2024 15:15:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240424133124.19101-1-nikolaos.pasaloukos@blaize.com>
+References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <zanx5y3obqmewnbooovf52hx6vh7tpi4zsbse2dyzcqzddmzhw@kewxoa6n3mja>
+ <CACb=7PURWtS8bwT5EcAFHhu7deHd2Y8cNOattfdwyEYpOUcbnQ@mail.gmail.com>
+ <vbt2nxddw2dc7hkreq4iybv5zv5xyp32oajybeqsphgfrhzmn7@tskvckljmxpe>
+ <CACb=7PVTvV9nsFu1ZAXu7YTjSOAGZka+c__EJq3J3qgSJGEShw@mail.gmail.com>
+ <CAD=FV=VYAzqsGEBJai9b9n+HxHiG59L1vF73AEWcTwLS_ryjWw@mail.gmail.com>
+ <an2k3vgynq4as2sd5dy6ccmdiqedmo7qjsab5qyfhesd333i2a@235sqph3bze5>
+ <CAD=FV=VQ8rbwKk4WpHRER9p4cZp7UrrHRpgnErqbQxyxp4sg5w@mail.gmail.com> <CAA8EJprv3qBd1hfdWHrfhY=S0w2O70dZnYb6TVsS6AGRPxsYdw@mail.gmail.com>
+In-Reply-To: <CAA8EJprv3qBd1hfdWHrfhY=S0w2O70dZnYb6TVsS6AGRPxsYdw@mail.gmail.com>
+From: Hsin-Yi Wang <hsinyi@google.com>
+Date: Wed, 24 Apr 2024 15:15:18 -0700
+Message-ID: <CACb=7PVEpCFWf_aysRkeR0yWAXR5sTaXhNbi3TV3ffKj866+EQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Doug Anderson <dianders@google.com>, 
+	lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>, mripard@kernel.org, 
+	airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	cong yang <yangcong5@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 24, 2024 at 01:31:28PM +0000, Niko Pasaloukos wrote:
-> Blaize, Inc. (www.blaize.com) is a SoC manufacturer with integrated
-> programmable Graph-Streaming-Processors for AI and ML.
+On Wed, Apr 24, 2024 at 2:49=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Thu, 25 Apr 2024 at 00:04, Doug Anderson <dianders@google.com> wrote:
+> >
+> > Hi,
+> >
+> > On Tue, Apr 23, 2024 at 2:20=E2=80=AFPM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On Tue, Apr 23, 2024 at 01:41:59PM -0700, Doug Anderson wrote:
+> > > > Hi,
+> > > >
+> > > > On Tue, Apr 23, 2024 at 11:10=E2=80=AFAM Hsin-Yi Wang <hsinyi@googl=
+e.com> wrote:
+> > > > >
+> > > > > > > > > +#define _INIT_DCS_CMD(...) { \
+> > > > > > > > > +     .type =3D INIT_DCS_CMD, \
+> > > > > > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
+> > > > > > > > > +     .data =3D (char[]){__VA_ARGS__} }
+> > > > > > > > > +
+> > > > > > > > > +#define _INIT_DELAY_CMD(...) { \
+> > > > > > > > > +     .type =3D DELAY_CMD,\
+> > > > > > > > > +     .len =3D sizeof((char[]){__VA_ARGS__}), \
+> > > > > > > > > +     .data =3D (char[]){__VA_ARGS__} }
+> > > > > > > >
+> > > > > > > > This is the third panel driver using the same appoach. Can =
+you use
+> > > > > > > > mipi_dsi_generic_write_seq() instead of the huge table? Or =
+if you prefer
+> > > > > > > > the table, we should extract this framework to a common hel=
+per.
+> > > > > > > > (my preference is shifted towards mipi_dsi_generic_write_se=
+q()).
+> > > > > > > >
+> > > > > > > The drawback of mipi_dsi_generic_write_seq() is that it can c=
+ause the
+> > > > > > > kernel size grows a lot since every sequence will be expanded=
+.
+> > > > > > >
+> > > > > > > Similar discussion in here:
+> > > > > > > https://lore.kernel.org/dri-devel/CAD=3DFV=3DWju3WS45=3DEpXMU=
+g7FjYDh3-=3Dmvm_jS7TF1tsaAzbb4Uw@mail.gmail.com/
+> > > > > > >
+> > > > > > > This patch would increase the module size from 157K to 572K.
+> > > > > > > scripts/bloat-o-meter shows chg +235.95%.
+> > > > > > >
+> > > > > > > So maybe the common helper is better regarding the kernel mod=
+ule size?
+> > > > > >
+> > > > > > Yes, let's get a framework done in a useful way.
+> > > > > > I'd say, drop the _INIT_DELAY_CMD. msleep() and usleep_range() =
+should be
+> > > > > > used instead (and it's up to the developer to select correct de=
+lay
+> > > > > > function).
+> > > > > >
+> > > > > > >
+> > > > > > > > > +
+> > > > > > > > > +static const struct panel_init_cmd kingdisplay_kd101ne3_=
+init_cmd[] =3D {
+> > > > > > > > > +     _INIT_DELAY_CMD(50),
+> > > > > > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
+> > > > > >
+> > > > > > [skipped the body of the table]
+> > > > > >
+> > > > > > > > > +     _INIT_DCS_CMD(0x0E, 0x48),
+> > > > > > > > > +
+> > > > > > > > > +     _INIT_DCS_CMD(0xE0, 0x00),
+> > > > > >
+> > > > > > > > > +     _INIT_DCS_CMD(0X11),
+> > > > > >
+> > > > > > Also, at least this is mipi_dsi_dcs_exit_sleep_mode().
+> > > > > >
+> > > > > > > > > +     /* T6: 120ms */
+> > > > > > > > > +     _INIT_DELAY_CMD(120),
+> > > > > > > > > +     _INIT_DCS_CMD(0X29),
+> > > > > >
+> > > > > > And this is mipi_dsi_dcs_set_display_on().
+> > > > > >
+> > > > > > Having a single table enourages people to put known commands in=
+to the
+> > > > > > table, the practice that must be frowned upon and forbidden.
+> > > > > >
+> > > > > > We have functions for some of the standard DCS commands. So, ma=
+ybe
+> > > > > > instead of adding a single-table based approach we can improve
+> > > > > > mipi_dsi_generic_write_seq() to reduce the bloat. E.g. by movin=
+g the
+> > > > > > error handling to a common part of enable() / prepare() functio=
+n.
+> > > > > >
+> > > > >
+> > > > > For this panel, I think it can also refer to how
+> > > > > panel-kingdisplay-kd097d04.c does. Create the table for init cmd =
+data,
+> > > > > not what operation to use, and use mipi_dsi_generic_write_seq() w=
+hen
+> > > > > looping through the table.
+> > > >
+> > > > Even more similar discussion:
+> > > >
+> > > > https://lore.kernel.org/r/CAD=3DFV=3DUGDbNvAMjzWSOvxybGikQcvW9JsRtb=
+xHVg8_97YPEQCA@mail.gmail.com
+> > >
+> > > It seems I skipped that thread.
+> > >
+> > > I'd still suggest a code-based solution compared to table-based one, =
+for
+> > > the reasons I've outlined before. Having a tables puts a pressure on =
+the
+> > > developer to put commands there for which we already have a
+> > > command-specific function.
+> >
+> > The problem is that with these panels that need big init sequences the
+> > code based solution is _a lot_ bigger. If it were a few bytes or a
+> > 1-2KB then fine, but when Hsin-Yi measured Linus W's attempt to move
+> > from a table to code it was 100K difference in code [1]. I would also
+> > say that having these long init sequences done as separate commands
+> > encourages people to skip checking the return values of each of the
+> > transfer functions and I don't love that idea.
+> >
+> > It would be ideal if these panels didn't need these long init
+> > sequences, but I don't have any inside knowledge here saying that they
+> > could be removed. So assume we can't get rid of the init sequences it
+> > feels like we have to find some way to make the tables work for at
+> > least the large chunks of init code and encourage people to make the
+> > tables readable...
+>
+>
+> I did a quick check on the boe-tv101wum-nl6 driver by converting the
+> writes to use the following macro:
+>
+> #define mipi_dsi_dcs_write_cmd_seq(dsi, cmd, seq...)
+>              \
+>         do {                                                             =
+      \
+>                 static const u8 d[] =3D { cmd, seq };                    =
+    \
+>                 ret =3D mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d));=
+    \
+>                 if (ret < 0)                                             =
+      \
+>                         goto err;                                        =
+      \
+>         } while (0)
+>
+> And then at the end of the init funciton having
+>
+> err:
+>         dev_err(panel->dev,
+>                 "failed to write command %d\n", ret);
+>         return ret;
+> }
+>
 
-Something is wrong with the threading of your series as lore only gives 
-me this patch. It looks fine, but I need to see the user. Maybe that's 
-next up in my queue...
+I'm not sure about the coding style rule here, would it be considered
+unclear that caller of mipi_dsi_dcs_write_cmd_seq() needs to have err
+block, but the block may not be directly used in that caller and is
+only jumped from the macro?
 
-> 
-> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index b97d298b3eb6..746ff14028d1 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -214,6 +214,8 @@ patternProperties:
->      description: Shenzhen BigTree Tech Co., LTD
->    "^bitmain,.*":
->      description: Bitmain Technologies
-> +  "^blaize,.*":
-> +    description: Blaize, Inc.
->    "^blutek,.*":
->      description: BluTek Power
->    "^boe,.*":
-> -- 
-> 2.34.1
-> 
+
+> Size comparison:
+>    text    data     bss     dec     hex filename
+> before
+>   34109   10410      18   44537    adf9
+> ../build-64/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.o
+> making init data const
+>   44359     184       0   44543    adff
+> ../build-64/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.o
+> with new macros
+>   44353     184       0   44537    adf9
+> ../build-64/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.o
+>
+> As you can see, there is literally no size difference with this macro in =
+place.
+> The only drawback is that the init stops on the first write rather
+> than going through the sequence.
+>
+> WDYT? I can turn this into a proper patch if you think this makes sense.
+>
+> >
+> >
+> > [1] https://lore.kernel.org/r/CAD=3DFV=3DUFa_AoJQvUT3BTiRs19WCA2xLVeQOU=
+=3D+nYu_HaE0_c6Q@mail.gmail.com
+>
+>
+>
+> --
+> With best wishes
+> Dmitry
 
