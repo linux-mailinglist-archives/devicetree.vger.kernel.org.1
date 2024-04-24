@@ -1,170 +1,334 @@
-Return-Path: <devicetree+bounces-62207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5AA8B04C5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 10:50:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62748B0523
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 10:56:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D339F1C2278C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 08:50:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68431B24A46
+	for <lists+devicetree@lfdr.de>; Wed, 24 Apr 2024 08:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5027158A0C;
-	Wed, 24 Apr 2024 08:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26855158D79;
+	Wed, 24 Apr 2024 08:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B7bkm6bh"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="qr3TRuik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA471581EB;
-	Wed, 24 Apr 2024 08:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7F2A158A38
+	for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 08:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713948651; cv=none; b=cDl9deSNScDwn10spnRDq43DmGwRIX9xrffnk++3TBvUfhguXoAZNCI/KbIk0RAdrULdK9m8XNRW2dAh4x4j6vCCU2vPivQlZ5o63ehJqSmswaMhWEOF66vB3Aq0MbJq+p785ZuA0nOFQ4z6w/jy9rHTApBcpw5TpTOODyyzKww=
+	t=1713948981; cv=none; b=oNa002xDM/wrdUjg+1pkG1yj1XsmPOEG+Hajd4RYuBgRDKiptt64rcguAmit2achPMP3IrHVNQe9LKD83ee82GOjeEyGyFSZJH7h816LVs5iWbuP7Qh4R6pUAA7/prjMuOE34StzGiLOuozd0Sq+/qQt4EQLEsAxhteqk+HH5qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713948651; c=relaxed/simple;
-	bh=SoCDPr8M1Fw4mP+EiUCPkaLfHhVVC2cfI+W6y4qffnY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bvabJxCsBllBV2FXjmmLQBga2VZXv781KGvMdn93LC8C5q3YV02m2WMxR7ftgMYtgv692eOKNQvpCgGnksA6lmvLCgKCzkmtHSNez1HqEOi0Q8992NU5Ok1m0XB9TGQyNwJrdoo37FrKHKNJMkG7hVy4HbgU4MSr7DpaDHxdv28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B7bkm6bh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F16C32781;
-	Wed, 24 Apr 2024 08:50:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713948651;
-	bh=SoCDPr8M1Fw4mP+EiUCPkaLfHhVVC2cfI+W6y4qffnY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B7bkm6bhC8IaAkHMDShhEZjGha+KoTqWGZ9El8Be30qGpo1JnySegNBj8FAicVDI+
-	 5jyQugWsInwMRMtUsW2ba1a5XJqeEC0SvVsXMSLRlJhyUP/tHG5mYPlgTI1W/a4HCw
-	 mWbv2Zf90cIs7Nd4DDQo5L9d7urNboMJrCZetwN7ejf+rfHbeafJcKI/WxQYgdTUmi
-	 JCY7FGsfVB5wYlOKrUFwiE//3El1Nwx86FLBMI5kl/NVVL29mOJM6KnXamqh7nn5sf
-	 WmkmLrlslwAAnlYuD9rmKE8eNqSpif4DtUIVzw6tJL8f4YHeM1OykfCuDWIcc0FVem
-	 5ovZULSNc1Vkw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rzYL2-000000001ZJ-3WVh;
-	Wed, 24 Apr 2024 10:50:49 +0200
-Date: Wed, 24 Apr 2024 10:50:48 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/6] HID/arm64: dts: qcom: sc8280xp-x13s: fix touchscreen
- power on
-Message-ID: <ZijH6EaqWKHWRcdK@hovoldconsulting.com>
-References: <20240423134611.31979-1-johan+linaro@kernel.org>
- <CAD=FV=W2Y=Sr-=YkKb01XLQsbQJr2b981c9kcfvAc4_5E9XD7g@mail.gmail.com>
+	s=arc-20240116; t=1713948981; c=relaxed/simple;
+	bh=VDeJMW+E6PCPD2mNnnPuo+B6yy6W430PriFbVenp578=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tOnqPVFFTKD/E9MwT33JqKbxlYTBQRhFzPq6p5v9zeNo9yWOtMSZ1PLFzGZrTt0dBgnNbRj8gGpPBlBAPNrtyybh/3/pbYv3lGhqHtXi0hAdrwAjoH1rBfY6AGE1vu0aMNLk4oZoq9ehfml/xlWAY5IhPKBZ1hW8GuMiuG4M0DY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=qr3TRuik; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-346407b8c9aso1731985f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 01:56:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713948976; x=1714553776; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=suMY4XPa/kbnbsuNKp6g91hkITSOa8LGQNMIO3m9tW4=;
+        b=qr3TRuikr0iFBs1AVRNmVX+IEFNeXB4c7CkmF50HNQDCaLEWNrEbKTWPdDexDn7POg
+         zm1+0JGNFhyrP1yYuRUlBUu5nNR77R0s7+uKLktWGVaYEea/k9DvRvrUEwH78QvjjnVk
+         Gal0dp+Ud0BE0SQPmob5xoZcho1uHjTjXntNccJ6kuuGyQw8VcqoBorZ7VC8USoy4mCJ
+         F2E2NMSf9dOQhtTxZOv8Gt6kTnS1R+m4WAUsuYXI9nqZvMC2w1SDwNPw5Dy6MvylrCZI
+         3D3f8rnnJZn2owb7NmrPX/LCo+oddw4sM+YNZsbNZ4+zuuZe/bJ9x8zTyzNfEQ0WF6j0
+         68oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713948976; x=1714553776;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=suMY4XPa/kbnbsuNKp6g91hkITSOa8LGQNMIO3m9tW4=;
+        b=a2GFDahhLAdDwG7aX8HTncrqlN1WYZnNU0fnRbsT5jV2TayiDh4lDZnucWm1GnOuHO
+         zGEgftixpR5wsjhyhlKh/dP6/xs1uXKB29RhLRK+TbUm5VTrHrvOL5rAnW4xRxTpjXc3
+         eufgDGkW99lBvm9e7V4GrLocioMp+WW7rQyY6qsKGVsbe5bghf4fCVJbDK/6OFOhvOxT
+         Qx6NCQ4rfDTNAoPCDgoxuYTl54OgBDUBrhVff2R6R5YbIBuhbi7FJyFM+SaZ+UROkwUZ
+         WpQlMkMpR8s3BvA+lT25GN2c+nd8MuqKJKIsFSJQGlveUe1inFI9vs/WzXUor8N1pKlJ
+         DIOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCjM+9sFDjTSW/TghsLZ9CoZRRf0BZDS1fmQpX9tvMbCzORgTN8BjuSfX4khUnA0vBlzl5Lxt8Ur422u/pelSPUy3l+/lRadiBNA==
+X-Gm-Message-State: AOJu0Yx5HxmlPCABHgTXT/uHLe6oUrnPtub/HtGsuElL/gesXX/HtqRG
+	aaFVTGJK+e3l4c3bdlTNc2LWvTIUV05Ao1zpwYCe+lArALIY+HEfQiJUUEaMAT3MTIg1fydkL7M
+	vP1Y=
+X-Google-Smtp-Source: AGHT+IHnTgfP+JDtD0YJ4PuDZHL4ehlhBpneum41qUwKsi79yBLH+oHzokV5rqNn+u3SkD6GnzG1Ig==
+X-Received: by 2002:adf:dd8a:0:b0:34a:a754:eb51 with SMTP id x10-20020adfdd8a000000b0034aa754eb51mr1004111wrl.3.1713948975675;
+        Wed, 24 Apr 2024 01:56:15 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:6057:6f32:d1e5:d4d7? ([2a01:e0a:999:a3a0:6057:6f32:d1e5:d4d7])
+        by smtp.gmail.com with ESMTPSA id l16-20020a05600c4f1000b0041a1fee2854sm12481710wmq.17.2024.04.24.01.56.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 01:56:15 -0700 (PDT)
+Message-ID: <5b3f9017-b107-4de1-ab0d-854de160a5f6@rivosinc.com>
+Date: Wed, 24 Apr 2024 10:56:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 5/7] riscv: add double trap driver
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, Ved Shanbhogue <ved@rivosinc.com>
+References: <20240418142701.1493091-1-cleger@rivosinc.com>
+ <20240418142701.1493091-6-cleger@rivosinc.com>
+ <20240423-headsman-arrival-16a2d13342b2@spud>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20240423-headsman-arrival-16a2d13342b2@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=W2Y=Sr-=YkKb01XLQsbQJr2b981c9kcfvAc4_5E9XD7g@mail.gmail.com>
 
-On Tue, Apr 23, 2024 at 01:36:18PM -0700, Doug Anderson wrote:
-> On Tue, Apr 23, 2024 at 6:46 AM Johan Hovold <johan+linaro@kernel.org> wrote:
-> > The Elan eKTH5015M touch controller on the X13s requires a 300 ms delay
-> > before sending commands after having deasserted reset during power on.
-> >
-> > This series switches the X13s devicetree to use the Elan specific
-> > binding so that the OS can determine the required power-on sequence and
-> > make sure that the controller is always detected during boot. [1]
-> >
-> > The Elan hid-i2c driver currently asserts reset unconditionally during
-> > suspend, which does not work on the X13s where the touch controller
-> > supply is shared with other peripherals that may remain powered. Holding
-> > the controller in reset can increase power consumption and also leaks
-> > current through the reset circuitry pull ups.
+
+
+On 23/04/2024 18:39, Conor Dooley wrote:
+> On Thu, Apr 18, 2024 at 04:26:44PM +0200, Clément Léger wrote:
+>> Add a small driver to request double trap enabling as well as
+>> registering a SSE handler for double trap. This will also be used by KVM
+>> SBI FWFT extension support to detect if it is possible to enable double
+>> trap in VS-mode.
+>>
+>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>> ---
+>>  arch/riscv/include/asm/sbi.h    |  1 +
+>>  drivers/firmware/Kconfig        |  7 +++
+>>  drivers/firmware/Makefile       |  1 +
+>>  drivers/firmware/riscv_dbltrp.c | 95 +++++++++++++++++++++++++++++++++
+>>  include/linux/riscv_dbltrp.h    | 19 +++++++
+>>  5 files changed, 123 insertions(+)
+>>  create mode 100644 drivers/firmware/riscv_dbltrp.c
+>>  create mode 100644 include/linux/riscv_dbltrp.h
+>>
+>> diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
+>> index 744aa1796c92..9cd4ca66487c 100644
+>> --- a/arch/riscv/include/asm/sbi.h
+>> +++ b/arch/riscv/include/asm/sbi.h
+>> @@ -314,6 +314,7 @@ enum sbi_sse_attr_id {
+>>  #define SBI_SSE_ATTR_INTERRUPTED_FLAGS_SPIE	(1 << 2)
+>>  
+>>  #define SBI_SSE_EVENT_LOCAL_RAS		0x00000000
+>> +#define SBI_SSE_EVENT_LOCAL_DOUBLE_TRAP	0x00000001
+>>  #define SBI_SSE_EVENT_GLOBAL_RAS	0x00008000
+>>  #define SBI_SSE_EVENT_LOCAL_PMU		0x00010000
+>>  #define SBI_SSE_EVENT_LOCAL_SOFTWARE	0xffff0000
+>> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+>> index 59f611288807..a037f6e89942 100644
+>> --- a/drivers/firmware/Kconfig
+>> +++ b/drivers/firmware/Kconfig
+>> @@ -197,6 +197,13 @@ config RISCV_SSE_TEST
+>>  	  Select if you want to enable SSE extension testing at boot time.
+>>  	  This will run a series of test which verifies SSE sanity.
+>>  
+>> +config RISCV_DBLTRP
+>> +	bool "Enable Double trap handling"
+>> +	depends on RISCV_SSE && RISCV_SBI
+>> +	default n
+>> +	help
+>> +	  Select if you want to enable SSE double trap handler.
+>> +
+>>  config SYSFB
+>>  	bool
+>>  	select BOOT_VESA_SUPPORT
+>> diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
+>> index fb7b0c08c56d..ad67a1738c0f 100644
+>> --- a/drivers/firmware/Makefile
+>> +++ b/drivers/firmware/Makefile
+>> @@ -18,6 +18,7 @@ obj-$(CONFIG_RASPBERRYPI_FIRMWARE) += raspberrypi.o
+>>  obj-$(CONFIG_FW_CFG_SYSFS)	+= qemu_fw_cfg.o
+>>  obj-$(CONFIG_RISCV_SSE)		+= riscv_sse.o
+>>  obj-$(CONFIG_RISCV_SSE_TEST)	+= riscv_sse_test.o
+>> +obj-$(CONFIG_RISCV_DBLTRP)	+= riscv_dbltrp.o
 > 
-> Can you provide more details about which devices exactly it shares
-> power with? I'm worried that you may be shooting yourself in the foot
-> to avoid shooting yourself in the arm.
+> As previously mentioned, I'd like to see all of these riscv specific
+> things in a riscv directory.
+
+Acked, I was not aware of that.
+
 > 
-> Specifically, if those other peripherals that may remain powered ever
-> power themselves off then you'll end up back-driving the touchscreen
-> through the reset line, won't you? Since reset is active low then not
-> asserting reset drives the reset line high and, if you power it off,
-> it can leach power backwards through the reset line. The
-> "goodix,no-reset-during-suspend" property that I added earlier
-> specifically worked on systems where the rail was always-on so I could
-> guarantee that didn't happen.
+>>  obj-$(CONFIG_SYSFB)		+= sysfb.o
+>>  obj-$(CONFIG_SYSFB_SIMPLEFB)	+= sysfb_simplefb.o
+>>  obj-$(CONFIG_TI_SCI_PROTOCOL)	+= ti_sci.o
+>> diff --git a/drivers/firmware/riscv_dbltrp.c b/drivers/firmware/riscv_dbltrp.c
+>> new file mode 100644
+>> index 000000000000..72f9a067e87a
+>> --- /dev/null
+>> +++ b/drivers/firmware/riscv_dbltrp.c
+>> @@ -0,0 +1,95 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2023 Rivos Inc.
+>> + */
+>> +
+>> +#define pr_fmt(fmt) "riscv-dbltrp: " fmt
+>> +
+>> +#include <linux/cpu.h>
+>> +#include <linux/init.h>
+>> +#include <linux/riscv_dbltrp.h>
+>> +#include <linux/riscv_sse.h>
+>> +
+>> +#include <asm/sbi.h>
+>> +
+>> +static bool double_trap_enabled;
+>> +
+>> +static int riscv_sse_dbltrp_handle(uint32_t evt, void *arg,
+>> +				   struct pt_regs *regs)
+>> +{
+>> +	__show_regs(regs);
+>> +	panic("Double trap !\n");
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +struct cpu_dbltrp_data {
+>> +	int error;
+>> +};
+>> +
+>> +static void
+>> +sbi_cpu_enable_double_trap(void *data)
 > 
-> From looking at your dts patch it looks like your power _is_ on an
-> always-on rail so you should be OK, but it should be documented that
-> this only works for always-on rails.
+> This should easily fit on one line.
 > 
-> ..also, from your patch description it sounds as if (maybe?) you
-> intend to eventually let the rail power off if the trackpad isn't a
-> wakeup source. If you eventually plan to do that then you definitely
-> need something more complex here...
-
-No, that's the whole point: the hardware is designed so that the reset
-line can be left deasserted by the CPU also when the supply is off.
-
-The supply in this case is shared with the keyboard and touchpad, but
-also some other devices which are not yet fully described. As you
-rightly noted, the intention is to allow the supply to eventually be
-disabled when none of these devices are enabled as wakeup sources.
-
-I did not want to get in to too much details on exactly how this
-particular reset circuit is designed, but basically you have a pull up
-to an always-on 1.8 V rail on the CPU side, a FET level shifter, and a
-pull up to the supply voltage on the peripheral side.
-
-With this design, the reset line can be left deasserted by the CPU
-(tri-stated or driven high), but the important part is that the reset
-signal that goes into the controller will be pulled to 3.3 V only when
-the supply is left on and otherwise it will be connected to ground.
-
-> > Note that the latter also affects X13s variants where the touchscreen is
-> > not populated as the driver also exits probe() with reset asserted.
+>> +{
+>> +	struct sbiret ret;
+>> +	struct cpu_dbltrp_data *cdd = data;
+>> +
+>> +	ret = sbi_ecall(SBI_EXT_FWFT, SBI_EXT_FWFT_SET,
+>> +			SBI_FWFT_DOUBLE_TRAP_ENABLE, 1, 0, 0, 0, 0);
+>> +
+>> +	if (ret.error) {
+>> +		cdd->error = 1;
 > 
-> I assume driving against an external pull is _probably_ not a huge
-> deal (should be a pretty small amount of power), but I agree it would
-> be nice to fix.
+> If this is a boolean, make it a boolean please. All the code in this
+> patch treats it as one.
 > 
-> I'm a bit leery of actively driving the reset pin high (deasserting
-> the reset) just to match the pull. It feels like in your case it would
-> be better to make it an input w/ no pulls. It almost feels like
-> something in the pinctrl system should handle this. Something where
-> the pin is default "input no pull" at the board level and when the
-> driver exits it should go back to the pinctrl default...
+>> +		pr_err("Failed to enable double trap on cpu %d\n", smp_processor_id());
+>> +	}
+>> +}
+>> +
+>> +static int sbi_enable_double_trap(void)
+>> +{
+>> +	struct cpu_dbltrp_data cdd = {0};
+>> +
+>> +	on_each_cpu(sbi_cpu_enable_double_trap, &cdd, 1);
+>> +	if (cdd.error)
+>> +		return -1;
+> 
+> Can this be an errno please?
+> 
+>> +
+>> +	double_trap_enabled = true;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +bool riscv_double_trap_enabled(void)
+>> +{
+>> +	return double_trap_enabled;
+>> +}
+>> +EXPORT_SYMBOL(riscv_double_trap_enabled);
+> 
+> Can we just use double_trap everywhere? dbltrp reads like sound that a
+> beatboxer would make and this looks a lot nicer than the other functions
+> in the file...
 
-If you look at the DT patch that's essentially what I'm doing by
-describing the reset pin as open-drain so that it will be configured as
-an input (tristated) when reset is deasserted and only driven low when
-reset is asserted.
+Ahah you gave me a good laugh :D
 
-> I guess one last thought is: what do we do if/when someone needs the
-> same solution but they want multiple sources of touchscreens, assuming
-> we ever get the second-sourcing problem solved well. In that case the
-> different touchscreen drivers might have a different idea of how the
-> GPIO should be left when the driver exits...
+> 
+>> +
+>> +static int __init riscv_dbltrp(void)
+> 
+> I think this function is missing an action work - init or probe?
+> 
+>> +{
+>> +	struct sse_event *evt;
+>> +
+>> +	if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SSDBLTRP)) {
+>> +		pr_err("Ssdbltrp extension not available\n");
+>> +		return 1;
+>> +	}
+>> +
+>> +	if (!sbi_probe_extension(SBI_EXT_FWFT)) {
+>> +		pr_err("Can not enable double trap, SBI_EXT_FWFT is not available\n");
+>> +		return 1;
+>> +	}
+>> +
+>> +	if (sbi_enable_double_trap()) {
+>> +		pr_err("Failed to enable double trap on all cpus\n");
+>> +		return 1;
+> 
+> Why do we return 1s here, but an errno via PTR_ERR() below?
+> Shouldn't all of these be returning a negative errono?
+> This particular one should probably propagate the error it got from
+> sbi_enable_double_trap().
 
-The second-source problem is arguable a separate one, and as we've
-discussed in the past, the current approach of describing both devices
-in the devicetree only works when the devices are truly compatible in
-terms of external resources (supplies, gpios, pinconfig). For anything
-more complex, we need a more elaborate implementation.
+Indeed, I'll use some errno everywhere.
 
-In this case it should not be a problem, though, as the reset circuit
-should have the same properties regardless of which controller you
-connect (e.g. both nodes would have the 'no-reset-on-power-off'
-property).
+Thanks,
 
-Johan
+Clément
+
+> 
+> Cheers,
+> Conor.
+> 
+>> +	}
+>> +
+>> +	evt = sse_event_register(SBI_SSE_EVENT_LOCAL_DOUBLE_TRAP, 0,
+>> +				 riscv_sse_dbltrp_handle, NULL);
+>> +	if (IS_ERR(evt)) {
+>> +		pr_err("SSE double trap register failed\n");
+>> +		return PTR_ERR(evt);
+>> +	}
+>> +
+>> +	sse_event_enable(evt);
+>> +	pr_info("Double trap handling registered\n");
+>> +
+>> +	return 0;
+>> +}
+>> +device_initcall(riscv_dbltrp);
+>> diff --git a/include/linux/riscv_dbltrp.h b/include/linux/riscv_dbltrp.h
+>> new file mode 100644
+>> index 000000000000..6de4f43fae6b
+>> --- /dev/null
+>> +++ b/include/linux/riscv_dbltrp.h
+>> @@ -0,0 +1,19 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (C) 2023 Rivos Inc.
+>> + */
+>> +
+>> +#ifndef __LINUX_RISCV_DBLTRP_H
+>> +#define __LINUX_RISCV_DBLTRP_H
+>> +
+>> +#if defined(CONFIG_RISCV_DBLTRP)
+>> +bool riscv_double_trap_enabled(void);
+>> +#else
+>> +
+>> +static inline bool riscv_double_trap_enabled(void)
+>> +{
+>> +	return false;
+>> +}
+>> +#endif
+>> +
+>> +#endif /* __LINUX_RISCV_DBLTRP_H */
+>> -- 
+>> 2.43.0
+>>
 
