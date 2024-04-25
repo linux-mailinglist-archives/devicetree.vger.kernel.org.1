@@ -1,127 +1,105 @@
-Return-Path: <devicetree+bounces-62778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB448B26B2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:40:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F298B26AF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93B3FB284A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:40:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA08A283F22
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DBB14D2A2;
-	Thu, 25 Apr 2024 16:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0281E149C62;
+	Thu, 25 Apr 2024 16:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpCGPsNP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CGgY6OGw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3457614C5BD;
-	Thu, 25 Apr 2024 16:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFACD14EC4F;
+	Thu, 25 Apr 2024 16:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714063204; cv=none; b=e4Wnc9E3m4Al/9Mdx3Qdd8JnBEihjkwbsPDPX9PGAphjgHZrn438Y9zlykmaL5kOw5ljErLBBH6gy66uilH5ez5Do5zjS87t0V2TM0jT9D7Yy6aoZnrZBrSgld7M0E7IkFe7jOLpnUeRrLpP27oYrPo4Hf48yQZTmQN5pN0NauM=
+	t=1714063182; cv=none; b=V49+CzrbmtdaVhuou7hEnvR46FUYFi7qI+dj0vM9dE/NW7XO7fK8ag+XDMy+MfrrA1LZhk6A0Vz2i4xpqbw6a6W4rtXNB0GFmSVlgKel5G96Yr4SxSveVmertyQKRBV1q1hwhoOAMiGOJO7qgkml2401+brtKr7xt2sFqxVJKZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714063204; c=relaxed/simple;
-	bh=LbSqadMzoFjsuXSnWvEu/tPbSTkv0wSi5qeCjW/x/YA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=VeeOicCbLAAJnbbNXKmZRI5riOdl2+y904docYXmg2XLA6KR+IbMsGmZtNCtMkeyIPrxvslHOZfnZ3iM/J3uhcHsuDhTKQi3VB+b7YO8Hr7XqmKmaugYqaDEzGGgfo1q5PiZAn3xHWbEUvylstOe0imVKEIShr32zSV35qT7vAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpCGPsNP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AFEEC113CE;
-	Thu, 25 Apr 2024 16:39:40 +0000 (UTC)
+	s=arc-20240116; t=1714063182; c=relaxed/simple;
+	bh=reXQCxjwgVF/vSZVFWzLCBgG6BHAY7X83818MVuU3B4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sb4xI3deFlpCpTcLQDMniw/xzpULJuODQMWluwgJxSiPH2W3XP8JicJ5GNGx7xLONz1ZaHOidKYPeRgxIDEeLpAVlGsCoO1MnDwZQvKnFk5+Y0z7xpeuDSuHAOZ5KEeX3zQ0y+OrWYh0NSV9QtL6zG4JWBMdFYfRXdJ8Fwxasn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CGgY6OGw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A19C113CC;
+	Thu, 25 Apr 2024 16:39:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714063204;
-	bh=LbSqadMzoFjsuXSnWvEu/tPbSTkv0wSi5qeCjW/x/YA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=kpCGPsNPtizwkRXzbbBOisqIxYXAYDvBURByNuPNU7j+hAZaM3rY4zD9QvWJosW68
-	 iC0L8DM0TP4KnXEx4C3MICMMVEH9a6cqbEgZ7ANWMYOYB6nyRMCg2jexrQAtQQNaO4
-	 sS+tAVTrBYCPA95XjLgyBzehFuUM7HqoFrvJ4I1FAjXyN03+BjI2hp4QK/8bHTh7sz
-	 CA0JgVVrA7XGz3fZ5GjYINhkpDAI3n3XxKqZtHGVMLXXrpq0YuSbeaa7K2SaZn/zPI
-	 ed2bP4EbknrklmiDXJLJCsNer2VxtXL2JV3xQkOXT7D3dMuzr4kwowbBdy2W06/FNN
-	 Re8OsFDjeHi7w==
-From: Kalle Valo <kvalo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>,  Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>,  Konrad Dybcio <konrad.dybcio@linaro.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
-  wireless <linux-wireless@vger.kernel.org>,  DT
- <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
- Herring <robh+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
- <avrac@freebox.fr>,  Bjorn Andersson <andersson@kernel.org>,  Jami
- Kettunen <jamipkettunen@gmail.com>,  Marijn Suijten
- <marijn.suijten@somainline.org>,  Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-References: <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
-	<0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
-	<CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
-	<87ttkh49xi.fsf@kernel.org>
-	<e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
-	<87h6gh406w.fsf@kernel.org>
-	<ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
-	<871q6tu6bn.fsf@kernel.org>
-	<de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr>
-	<87msphsb3b.fsf@kernel.org> <20240425-monopoly-barn-45608dae0996@spud>
-Date: Thu, 25 Apr 2024 19:39:34 +0300
-In-Reply-To: <20240425-monopoly-barn-45608dae0996@spud> (Conor Dooley's
-	message of "Thu, 25 Apr 2024 17:02:56 +0100")
-Message-ID: <87il05s8ft.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1714063182;
+	bh=reXQCxjwgVF/vSZVFWzLCBgG6BHAY7X83818MVuU3B4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CGgY6OGwP8j5o0gXQ5YBFCAx0dtvyMnXPn6O/Ay4ELwGgXDtMS4+y9uaoGkixv6BV
+	 /3tcMzjQxV4dczr26rO6F8V62Sx/JhLVrDflNufIsiflIRWEmAzdoREKtz8uT6tOJp
+	 Y6E58kfQVvu8cQLTBRXFtznjdlup7xq6sh/FZFFkJJvbQQ5ZrD3uQEzzoJxElhm3zg
+	 Kv4hMKbLr/90KpPDftAIZvMUI113nZEjbWj4Qt7Md+aVuqldoY3m4emQKskj6OEx4p
+	 fxC7ZErw6M3JTA/bMBSHsYAiBtmMpvKZRK0aqwsGa/6AAaZNTXBjo75YLzI0vrWDnT
+	 O2ep8AALwLF/A==
+Date: Thu, 25 Apr 2024 17:39:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, jszhang@kernel.org,
+	guoren@kernel.org, wefu@redhat.com, andi.shyti@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	miquel.raynal@bootlin.com, thomas.petazzoni@bootlin.com,
+	linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu
+Subject: Re: [PATCH 2/4] riscv: boot: dts: thead: Fix node ordering in TH1520
+ device tree
+Message-ID: <20240425-mouse-unfair-1e0d9b19c713@spud>
+References: <20240425082138.374445-1-thomas.bonnefille@bootlin.com>
+ <20240425082138.374445-3-thomas.bonnefille@bootlin.com>
+ <bc69023d-5e70-4d5d-96d1-f298cec5b59d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="s+/8stqRgDeN0Bg6"
+Content-Disposition: inline
+In-Reply-To: <bc69023d-5e70-4d5d-96d1-f298cec5b59d@kernel.org>
 
-Conor Dooley <conor@kernel.org> writes:
 
-> On Thu, Apr 25, 2024 at 06:42:16PM +0300, Kalle Valo wrote:
->
->> Marc Gonzalez <mgonzalez@freebox.fr> writes:
->> 
->> > On 25/04/2024 11:42, Kalle Valo wrote:
->> >
->> >> Marc Gonzalez wrote:
->> >> 
->> >>> Do you prefer:
->> >>>
->> >>> Option A = never waiting for the MSA_READY indicator for ANYONE
->> >>> Option B = not waiting for the MSA_READY indicator when
->> >>> qcom,no-msa-ready-indicator is defined
->> >>> Option C = not waiting for the MSA_READY indicator for certain
->> >>> platforms (based on root compatible)
->> >>> Option D = some other solution not yet discussed
->> >> 
->> >> After firmware-N.bin solution didn't work (sorry about that!) my
->> >> preference is option B.
->> >
->> > Actually, Option B is this patch series.
->> > Could you formally review it?
->> 
->> I'm happy with this series and would take it to ath.git, just need an
->> ack from DT maintainers:
->
-> As far as I can tell, Krzysztof wanted a commit message update for
-> 1/3.
+--s+/8stqRgDeN0Bg6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That's my understanding as well, I assume Marc will submit v3. I marked
-this patchset as 'Changes Requested' in patchwork.
+On Thu, Apr 25, 2024 at 11:49:10AM +0200, Krzysztof Kozlowski wrote:
+> On 25/04/2024 10:21, Thomas Bonnefille wrote:
+> > According to the device tree coding style, nodes shall be ordered by
+> > unit address in ascending order.
+> >=20
+> > Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+>=20
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
 
-> Usually this dts patch would go via the qcom dts tree, so presumably
-> there's a need for an Ack from Bjorn or Konrad?
+Ye, odd when the rest of the commits don't have it :)
+I picked up this patch cos I'm prob gonna finalise what I'm sending
+for 6.10 by the end of the week and saw no reason to not take the
+cleanup.
 
-Thanks pointing this out. What I meant to say earlier that I'm happy to
-take patches 1-2 to ath.git but I prefer that patch 3 goes via qcom dts
-tree.
+--s+/8stqRgDeN0Bg6
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+-----BEGIN PGP SIGNATURE-----
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiqHSQAKCRB4tDGHoIJi
+0vqrAQCSXRqNkEyrhHeiXz2NM/l7Al4/TFpt6Oz2uAWFe6CoJgD+PG9g8oooPxrF
+aPl3LhX8ZNU0ceFECdkMYDfzEIhTWQ8=
+=0yNn
+-----END PGP SIGNATURE-----
+
+--s+/8stqRgDeN0Bg6--
 
