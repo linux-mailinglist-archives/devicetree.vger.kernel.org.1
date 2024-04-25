@@ -1,145 +1,156 @@
-Return-Path: <devicetree+bounces-62779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565498B26C1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:45:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D3B8B26D2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:49:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2D2E1F22F2C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:45:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B3BA1C23093
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C140A14D44F;
-	Thu, 25 Apr 2024 16:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB68314D6ED;
+	Thu, 25 Apr 2024 16:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XthInoz8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vwaP65CK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7908014D439
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 16:45:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46CA15338C
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 16:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714063537; cv=none; b=sLIOjlPJy+02nZkHcuSg0D3sbGzwg/araXglVLggDMdoe1xZfB5spnKVZ8bFbKxhvSSAvRE1MJwKcZz7il4bMxp5vtsTAmPM4/Z7Som4xUZ8eCryBsblXADcDHrApbgmgHaJezTQVBvTbZzVzQS98YJUBq7imvlUdslqMiWIQO0=
+	t=1714063768; cv=none; b=fjsLgMO9MuZBr9obJpHb4I+dRF1NDpKKXne0giLqckiheqyqcLwWZ3MJKQpJ4OS0912D7zOw+u5rXd+AZc2yN5MQQbkRnQfgt0N9Px34EdyF+Cm7NoNOM6D+opRMlESQ++jf2XyKUe3bxhYDq7mZ8XJnh8xulYJhbIzoiCa0ps8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714063537; c=relaxed/simple;
-	bh=Amc/VhCaPuRfNE4c/UsFD95U+kTr2gWqvp2bPp82p24=;
+	s=arc-20240116; t=1714063768; c=relaxed/simple;
+	bh=MKvfwVZ3VjEw+spXFJ1a2UjO6QfAGuRev73DVWZbaUM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SH9d1ioITJyaENcySKcnObiBDfGsOO1U5Gszmw4Qkz2BREFyw4du5JlWmHPlEpHJET6CN8lZS7CP5Y2CaBhxZFmjupzEkWosyTmqLNDI76vuJBD8CqYhrjjL/pKksO19j8p/iNnmeNc6zS6c7u71v3hjrsZxOPqsX8sKCHnrw4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XthInoz8; arc=none smtp.client-ip=209.85.219.176
+	 To:Cc:Content-Type; b=I7xGmvqG/77MYuYL5y7GizLIu57JhrutrUI4UUgr0Uky7EDsEZ0aRoTAD9UhHEwIDMXcS3mB2+MIMwou2bo+07tUT3tLpC/4RGuL0iJSw2pxYWpvPn+7P3rmhYhASGhNn5Cpr2+WvryxIha5TyMXakNcF3y95XegRCUF2lN5Yu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vwaP65CK; arc=none smtp.client-ip=209.85.160.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dc236729a2bso1238718276.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 09:45:35 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-23a9d3c9153so621306fac.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 09:49:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714063534; x=1714668334; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eWQqHUbAAiSySnIsemSx25Y73dqsXlz6lqamDtL75KQ=;
-        b=XthInoz889q19LIYnd4dxHxjC10noyEEpacYxXANDNN8IDP5XeQXBOtc65TCU7iY9C
-         ZFOdnN9B5DejP/TG0tddktvVu7n9LlH+yFRdVgQBLRcErJF6YaI0HGu5Hyb1hNuQ7Z2W
-         zyZHNFFLmYZH+kKRw2NvM6mfnPh4HZF0CRgpoPKlyIc/96vPx/wKcxHdrhxkwVai5X57
-         8XAmABXiGn+yK2oLWmsr1cWTlYVngSOKUkZll41jNiQRJFxtd2Nj6FZo5k/NA6Eo3sRa
-         LII7x5cyW0/5XOb94tM3OWqlC156LUHRKoUZDUbXRQvkRkYacPFUL4l6hEefmDw4m41V
-         eupQ==
+        d=linaro.org; s=google; t=1714063765; x=1714668565; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ukGEv4eef9O4oU5FT2ArMRccMeqiVjOsIZWttkttWM=;
+        b=vwaP65CKWUR3Hgjrge/MD9U3FiR0QCLRSgkkd6qnbHpKwaqwezALAMIrPNLr4PO6Th
+         2UuTdThPNxET3UfZsx3QG0bleJjXqL45JtT0a4C8LsomG1e/UGuU6tTEbIjxWXlmO4fc
+         eKq40JXudTgJNVjUX8AY24dKyzSIQEw1I0Gevxx+oCAojID+5Gwi2hriLKsbX1mt1881
+         x75IB2RaRGMiNbyjK4p8FLdgZB+Sr4Uco0EafENGEjJahSFGQjL8KdgBTCno5uCfmm8z
+         lTteC30TYtJggxSSy6Iep4KPkoQKjdR62UhCogPpFW6zZA5MgHlIPX+oyK1lQG8y6hE/
+         Q2vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714063534; x=1714668334;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eWQqHUbAAiSySnIsemSx25Y73dqsXlz6lqamDtL75KQ=;
-        b=MN1bq1RQ1ekseaSPRasEG5qn2YoILVeLm+x/CmkeMe7+FSog9lihc0tUha6w4SPTsy
-         ufeKfCe6s6/LvJvBPg1N8FpdwfSJh3afNzqnoHGX53Zt8FgXTwWvRSHh7F710m5qOlwX
-         NVqJUu8SNUSaRg76t8/cwo4Dkrp3n3PdxJyV9fe/NZ+Zm77D52qjcMphBHMeVHAIcU8p
-         lrR3R9C/Fw6w7JrMRiPPx10C6Zdbmlf+B5RRBcJ6zTfn1aNmoiAT3P+gI4NfbqFv3h2e
-         J1T9ZVmXi1bYrvubcxly54WYNyUAE2lYyDGAMvMG2+SNFyFkYVXPyKMr8ICijhNqrdNA
-         Epgw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvMmFC9kFbm4IYwkhUHJYd1nrMWv23aH0A8BzzfWZs0z28PrLY652t42w5Qzu72jYiHwkLi6XlsYRPMTng3xzRjJgTIsHJzm6t/w==
-X-Gm-Message-State: AOJu0Yx7gu+Y3/2CIsUWT5SLvyrIv2m+HwZSLzZG7bzGNpmbz+Cv6mGh
-	m3GDFULVEk+8g2bwoNYwewuMFBaaR2Kfj659YSYkHTq4cQwEBNRofuECzlsMSUQa6FV1P+0hGTm
-	VbZLiep0bm1T/5slCnFV4zA6eIQrLPAaybS7lpwW1uY34hHTI
-X-Google-Smtp-Source: AGHT+IE6E0yGMivLHEIzi4cVQrlqrcgIk/WXjie4Wzsi6F0u2PMmSvmweB2JnuzBk12npMsW/6HfizfFtt+TW3hNbCM=
-X-Received: by 2002:a25:fc11:0:b0:de5:5706:b955 with SMTP id
- v17-20020a25fc11000000b00de55706b955mr243062ybd.4.1714063534487; Thu, 25 Apr
- 2024 09:45:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714063765; x=1714668565;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5ukGEv4eef9O4oU5FT2ArMRccMeqiVjOsIZWttkttWM=;
+        b=P43PRupHN3rdoyqrpsaCPYc0ZcQf6j2fvAj+GB4+nJMiM3825hWaqzrTK7BRC/RTRd
+         zJ3PFQ7TczdSnm2/60g5YbD8myENHnqc/BCWh+wI3KUP3O/obXfvKajwnTjwCT7WFs8y
+         yHyGlrIkFGCNdaiiNvawQ15HCN50DDzih8BYj5H4IhX40AmjSpDkUBpyUyxTIWRBGwBB
+         JuOdKjmNRwNJ/iovXZXbyYhSUgXs409Q1xJvhhOB5+VOg3v1qeyeVo3YNY0q9cU5RSRE
+         EqTWe9jzkixLTyX92ocf3JkGzzrKodrbVhIbVTBGstPHIeC5D/a5UQjYrDHwfZms8fkz
+         MIkw==
+X-Forwarded-Encrypted: i=1; AJvYcCXqTgpUXyA0bpGYdtyXSh5/98sSvMiWRyMjUM+F6W9wLLBb66D9HV5DeFop2DJtBVO0AhjsmOOpmn14/1iWaVANSraDrNywwsyugw==
+X-Gm-Message-State: AOJu0YwncG7XVPoB6plv9uaExdekEWkZifJ+qmZnpXgFqFurOxC3JtO0
+	minzejQDpgq81djgDgpha0qFzWBcu7WKxhxv3CYbUHikbXbGUcbmHqz91yZxUE4H+Cms9sXet07
+	6St+LcrkcuQ5JGwNN5IHDitFxM5nhQeUju2IJvQ==
+X-Google-Smtp-Source: AGHT+IHZ1YGe8mBmpi+s6MNal/Tnn6pc3qt4P8KtR6rNBxE+ojMFISn6UD+3xJRSRmAITd10pNraylhnueFfb1V3Mzo=
+X-Received: by 2002:a05:6870:4201:b0:22e:e26e:73ad with SMTP id
+ u1-20020a056870420100b0022ee26e73admr6867939oac.58.1714063765265; Thu, 25 Apr
+ 2024 09:49:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422105355.1622177-1-claudiu.beznea.uj@bp.renesas.com> <CAMuHMdXHhsdOgTiDdqMwAMvb-m_VBqOcTRPURx_upc2AtmBTfA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXHhsdOgTiDdqMwAMvb-m_VBqOcTRPURx_upc2AtmBTfA@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 25 Apr 2024 18:44:58 +0200
-Message-ID: <CAPDyKFrhPjuOR5iC+zy+SCJv5yoWU0fX8FfDbt9nrM6VRCjmNw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] clk: renesas: rzg2l: Add support for power domains
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240423205006.1785138-1-peter.griffin@linaro.org>
+ <20240423205006.1785138-4-peter.griffin@linaro.org> <20240424195318.GA367166-robh@kernel.org>
+In-Reply-To: <20240424195318.GA367166-robh@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 25 Apr 2024 17:49:11 +0100
+Message-ID: <CADrjBPpQE2bMkVUHQHmBBZfRO8Hjb86xPvLQgSvn4BN0guY9xQ@mail.gmail.com>
+Subject: Re: [PATCH v2 03/14] dt-bindings: ufs: exynos-ufs: Add gs101 compatible
+To: Rob Herring <robh@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
+	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, James.Bottomley@hansenpartnership.com, 
+	ebiggers@kernel.org, linux-scsi@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, 24 Apr 2024 at 16:34, Geert Uytterhoeven <geert@linux-m68k.org> wro=
-te:
+Hi Rob,
+
+Thanks for the review.
+
+On Wed, 24 Apr 2024 at 20:53, Rob Herring <robh@kernel.org> wrote:
 >
-> Hi Ulf,
+> On Tue, Apr 23, 2024 at 09:49:55PM +0100, Peter Griffin wrote:
+> > Add dedicated google,gs101-ufs compatible for Google Tensor gs101
+> > SoC.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  .../bindings/ufs/samsung,exynos-ufs.yaml      | 38 +++++++++++++++++--
+> >  1 file changed, 35 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+> > index b2b509b3944d..1179527d29d1 100644
+> > --- a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+> > +++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+> > @@ -12,12 +12,10 @@ maintainers:
+> >  description: |
+> >    Each Samsung UFS host controller instance should have its own node.
+> >
+> > -allOf:
+> > -  - $ref: ufs-common.yaml
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > +      - google,gs101-ufs
+> >        - samsung,exynos7-ufs
+> >        - samsung,exynosautov9-ufs
+> >        - samsung,exynosautov9-ufs-vh
+> > @@ -38,14 +36,24 @@ properties:
+> >        - const: ufsp
+> >
+> >    clocks:
+> > +    minItems: 2
+> >      items:
+> >        - description: ufs link core clock
+> >        - description: unipro main clock
+> > +      - description: fmp clock
+> > +      - description: ufs aclk clock
+> > +      - description: ufs pclk clock
+> > +      - description: sysreg clock
+> >
+> >    clock-names:
+> > +    minItems: 2
+> >      items:
+> >        - const: core_clk
+> >        - const: sclk_unipro_main
+> > +      - const: fmp
+> > +      - const: ufs_aclk
+> > +      - const: ufs_pclk
 >
-> On Mon, Apr 22, 2024 at 12:54=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.de=
-v> wrote:
-> > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > Series adds support for power domains on rzg2l driver.
-> >
-> > RZ/G2L kind of devices support a functionality called MSTOP (module
-> > stop/standby). According to hardware manual the module could be switch
-> > to standby after its clocks are disabled. The reverse order of operatio=
-n
-> > should be done when enabling a module (get the module out of standby,
-> > enable its clocks etc).
-> >
-> > In [1] the MSTOP settings were implemented by adding code in driver
-> > to attach the MSTOP state to the IP clocks. But it has been proposed
-> > to implement it as power domain. The result is this series.
-> >
-> > The DT bindings were updated with power domain IDs (plain integers
-> > that matches the DT with driver data structures). The current DT
-> > bindings were updated with module IDs for the modules listed in tables
-> > with name "Registers for Module Standby Mode" (see HW manual) exception
-> > being RZ/G3S where, due to the power down functionality, the DDR,
-> > TZCDDR, OTFDE_DDR were also added.
-> >
-> > Domain IDs were added to all SoC specific bindings.
-> >
-> > Thank you,
-> > Claudiu Beznea
-> >
-> > Changes in v4:
-> > - dropped the pwrdn functionality until it is better understanded
-> > - dropped patch "clk: renesas: rzg2l-cpg: Add suspend/resume
-> >   support for power domains" from v3; this will be replaced
-> >   by propertly calling device_set_wakup_path() in serial console
-> >   driver
-> > - instantiated the watchdog domain in r8a08g045 clock driver; this
-> >   allow applying r9a08g045 clock patch w/o affecting watchdog and later=
-,
-> >   after all good with watchdog patches series at [2], only patch
-> >   "arm64: dts: renesas: r9a08g045: Update #power-domain-cells =3D <1>"
-> >   will need to be applied
->
-> Are you happy with this series?  I would like to queue patches 1-7 in
-> renesas-clk for v6.10 (i.e. this week).
+> 'ufs_' is redundant.
 
-Yes, the series looks good to me! For the series, feel free to add:
+Will fix.
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+Thanks,
 
-Kind regards
-Uffe
+Peter.
 
