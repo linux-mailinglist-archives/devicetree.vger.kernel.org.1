@@ -1,197 +1,303 @@
-Return-Path: <devicetree+bounces-62723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 870038B2375
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:05:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 712758B2421
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:31:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A70261C204F6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 14:05:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29B36288083
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 14:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27637149DED;
-	Thu, 25 Apr 2024 14:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A53F14A090;
+	Thu, 25 Apr 2024 14:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="moNxw8Nf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jLH72VqO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810DB1494B4;
-	Thu, 25 Apr 2024 14:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF8512C47C;
+	Thu, 25 Apr 2024 14:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714053937; cv=none; b=bxVfPXKVBtUOlq2rYXAdh8dioHDj6L4JIe08evO9w98+fOrbTsUyY0wT+drhuRXyJu4ve10uwK4vKIMU4a1flyCELjLEBt7zNFhi/JV0/ckKU8VdJZ/C0pIBHustMHBXaJBJykiEE+rIoqg+mXZPtZY0gstIsc9ZuNf9v0dr5Iw=
+	t=1714055477; cv=none; b=pdf8aTD0efttSyTBc30F73nn4Zw18SvI57KvQ5mx5rnkZhklwlzWAKItLBQuDpGqQy1hsD15lBELRmuPd1vO7Du0R9rEW94+1ZVVYvR1DojdGnKPoNPw/FB3oOON+BV2TCYyUhFlLZjhtarxkqIJQtDKZzR1xHKQp2jDDCvYQwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714053937; c=relaxed/simple;
-	bh=0vqbBfgQWOvB9SnNZ1mor6HTYreVHgeMs3CGoKbk32k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CRVkANKQemrkCIXNS15dFBURlX+tNznWGV9mQPzRjtNQmz82YL4r6LJE1lQ8+b9FbU6DvGg6MzcJUN5MXm/EDNVECR8GB582q8hQ+Mk0+Cr+hWc0hZa3C4b9NsDimt/dCD50Fv6+PCbzOTpdfmmHiDktK1afIUHEgWConsEfKAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=moNxw8Nf; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6ed04c91c46so1022717b3a.0;
-        Thu, 25 Apr 2024 07:05:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714053935; x=1714658735; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=S3XUJ4ZkZdcpoZK51QtoI2+/sb3WV/5m1K1ccq4PQ4Y=;
-        b=moNxw8NfnkdbWdnO2iAbB9u4YHlLwza1lul/1nfmL04wCmkdcW6Hmu1ACQpB6YN7cJ
-         yuhd2mj+cRktq0GzByHVaMHwjiGVMmI0e3oYVDEgXSrbMri+P3hDSNLMvCIOu9ERDeQ+
-         kKn6HxjCTTfdO/l4AEw3whd8Wnuz2i+2BKpK2swPFQInGRz9nX8BUUl+/YFfJ8Ai88xB
-         YaqMBgN6hmMqwHNjbFRUb89IcDcXC2AptRzuv/aNCq3xTjuGTzmddPhAPri0HwjZyCmZ
-         VdYpwUqCuVIDtXtuB1EEqpWAnQfAUp//YeLTQzauTlZokOT3xUjfubL26I9jldmp7G4O
-         QmKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714053935; x=1714658735;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S3XUJ4ZkZdcpoZK51QtoI2+/sb3WV/5m1K1ccq4PQ4Y=;
-        b=ElHLYFLMOhL16UuyOshNql224MEZleHNFO2dW1PcsR7msrLDlpb//PKRJR2NRK24CP
-         szMilW+3b5ggHXpwUFfVIBLXhaYfW17u+Nh+bplYj3FveFamEgYpsYSMsp+6NJcMES+O
-         9nNBksTioVYIG7oCFLjSlHHLJzt4mpA5cUFWRG6Kw6JxsRDMfuHPi2TTpYaS/ACJehfw
-         nvhELqNUyuOfqTMxjQ5hIG+GBXF/Nk5WlpXyhe431y6WKsFwrI5YjqcahlU9l2rSMvgv
-         LyzJx2tTGvWASJcjsvtiY1LRxjjk2oqiD/Va/vmFFNKroKsSX8w2NKHJCvXSqvy+K28s
-         fVUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoJMA7zEjkNWJhcT/ePm5J5lDlFA1lVLRSU8fvD3UnGAma94DSQTKT2h/kvuA3Hd/flN3omF1e6Lb3de03eEHCdpmGh0+dQR1t7qm5bXfi4TEDxSEs+BHwVUy41pyKQayh/bztcMvn/DAzP68MX1Zb6JQ7oioPObFYRWVOKM/u/J8Az6mS
-X-Gm-Message-State: AOJu0YxUa6B6PVouhNhxlqx0/T51+U9/meJH4DvbBiL5VMywqLzmR3gY
-	xieHNQnfgtdOy1ORlhg+WNtukgQri1FXQRAma0SYs5wzqcZMj8AF+jZQmA==
-X-Google-Smtp-Source: AGHT+IE4RCWjv9M5BaI+OBlowRa6R/nT2SWuFZptzbIad0Jvy9Ml4EA6aIBgCoSeWh+3H1bO86q8Ew==
-X-Received: by 2002:a05:6a21:626:b0:1ad:94d6:3c38 with SMTP id ll38-20020a056a21062600b001ad94d63c38mr1971702pzb.53.1714053934719;
-        Thu, 25 Apr 2024 07:05:34 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r13-20020a63d90d000000b005f750c31cf4sm12999810pgg.32.2024.04.25.07.05.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 07:05:33 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <396b47f5-9604-44ab-881f-94d0664bcab8@roeck-us.net>
-Date: Thu, 25 Apr 2024 07:05:31 -0700
+	s=arc-20240116; t=1714055477; c=relaxed/simple;
+	bh=XNDONZ50zkNw24VHGSrLtBVRo25TyhBYrvxwY6adhPA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=huMQSaWQt86n6eHp4G82uX/osamrxeoz8+ZwFLomUFexmCK/TOBa7t8kmNUcUI2aCMmFsDHWU4Y/EXYN2oAGPKgoXfxXlpCN5h4XkF2JiVXsLD3mMsE9Y9COR9SOWLMAn5AnBX8m7BNTF1VU3WrKRlGco5Ur/8ZlqcAWy82wIVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=jLH72VqO; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=bhEOlHPHwzer5w9ZMmE08QQPlZ3NpIRrXVu+LpBumv4=; b=jLH72VqOH3gpURD01C2ne9BQzQ
+	vEWyeN+NPnbnu9rYbatMXdAw8ipHOyXtQ3jDk8Fp5vCppyACBIitFV4SsNvQzO/6LjE82J4cBIc7O
+	tesZD3ULKMHXIlVheHZuB96S3iZ0xubXxt6mkZyCDQfmTe2Bv93Smty/RhFLom3JekduJ7WUuFPow
+	jvowSjItxO6DtyotKyAm7HLiJFUJxxRG3HIuXFMYJe3cKLysaTNsjoFg51oRC7Q+GOrRzrcZJl0ST
+	NJ+QAABshwCgu8JVyQeD5/JW9Heij6jENzc/kvGkLq/spz3WUvmpcOUGLjEzyfJFUPUnubWPOISqb
+	8vN+3Npw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44198)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1s007j-0007WW-1L;
+	Thu, 25 Apr 2024 15:30:55 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1s007g-0005ea-OW; Thu, 25 Apr 2024 15:30:52 +0100
+Date: Thu, 25 Apr 2024 15:30:52 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lxu@maxlinear.com, hkallweit1@gmail.com, michael@walle.cc,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 2/2] net: phy: mxl-gpy: add new device tree property
+ to disable SGMII autoneg
+Message-ID: <ZippHJrnvzXsTiK4@shell.armlinux.org.uk>
+References: <5ed39628-4ac0-4c4e-9a16-fd4bf9a6db29@lunn.ch>
+ <Zh6mIv1Ee+1h21Xo@shell.armlinux.org.uk>
+ <Zh6z90iCpLqF4fla@eichest-laptop>
+ <Zh6/oVHUvnOVtHaC@shell.armlinux.org.uk>
+ <Zh94yqo2EHRq8eEq@eichest-laptop>
+ <ZiE156+BPpx/ciL6@shell.armlinux.org.uk>
+ <Zikd+GxuwMRC+5Ae@shell.armlinux.org.uk>
+ <Zikrv5UOWvSGjgcv@eichest-laptop>
+ <ZilLz8f6vQQCg4NB@shell.armlinux.org.uk>
+ <Zio9g9+wsFX39Vkx@eichest-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: max31790: Add
- maxim,pwmout-pin-as-tach-input property
-To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
- <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Justin Ledford
- <justinledford@google.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>,
- Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>
-References: <20240414042246.8681-1-chanh@os.amperecomputing.com>
- <20240414042246.8681-4-chanh@os.amperecomputing.com>
- <13b195e6-cbbd-4f74-a6fa-d874cb4aaa45@linaro.org>
- <065243cc-09cf-4087-8842-bd4394fb324f@amperemail.onmicrosoft.com>
- <d549cf2b-a7fa-4644-8fcb-3c420503ee01@amperemail.onmicrosoft.com>
- <20240423-gallantly-slurp-24adbfbd6f09@spud>
- <ab5cfd8c-0e88-4194-a77e-5ffbb6890319@amperemail.onmicrosoft.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <ab5cfd8c-0e88-4194-a77e-5ffbb6890319@amperemail.onmicrosoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zio9g9+wsFX39Vkx@eichest-laptop>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 4/25/24 03:33, Chanh Nguyen wrote:
+On Thu, Apr 25, 2024 at 01:24:51PM +0200, Stefan Eichenberger wrote:
+> On Wed, Apr 24, 2024 at 07:13:35PM +0100, Russell King (Oracle) wrote:
+> > On Wed, Apr 24, 2024 at 05:56:47PM +0200, Stefan Eichenberger wrote:
+> > > On Wed, Apr 24, 2024 at 03:58:00PM +0100, Russell King (Oracle) wrote:
+> > > > On Thu, Apr 18, 2024 at 04:01:59PM +0100, Russell King (Oracle) wrote:
+> > > > > On Wed, Apr 17, 2024 at 09:22:50AM +0200, Stefan Eichenberger wrote:
+> > > > > > I also checked the datasheet and you are right about the 1000base-X mode
+> > > > > > and in-band AN. What worked for us so far was to use SGMII mode even for
+> > > > > > 2.5Gbps and disable in-band AN (which is possible for SGMII). I think
+> > > > > > this works because as you wrote, the genphy just multiplies the clock by
+> > > > > > 2.5 and doesn't care if it's 1000base-X or SGMII. With your patches we
+> > > > > > might even be able to use in-band autonegoation for 10,100 and 1000Mbps
+> > > > > > and then just disable it for 2.5Gbps. I need to test it, but I have hope
+> > > > > > that this should work.
+> > > > > 
+> > > > > There is another way we could address this. If the querying support
+> > > > > had a means to identify that the endpoint supports bypass mode, we
+> > > > > could then have phylink identify that, and arrange to program the
+> > > > > mvpp2 end to be in 1000base-X + x2.5 clock + AN bypass, which would
+> > > > > mean it wouldn't require the inband 16-bit word to be present.
+> > > > > 
+> > > > > I haven't fully thought it through yet - for example, I haven't
+> > > > > considered how we should indicate to the PCS that AN bypass mode
+> > > > > should be enabled or disabled via the pcs_config() method.
+> > > > 
+> > > > Okay, I've been trying to put more effort into this, but it's been slow
+> > > > progress (sorry).
+> > > > 
+> > > > My thoughts from a design point of view were that we could just switch
+> > > > to PHYLINK_PCS_NEG_OUTBAND instead of PHYLINK_PCS_NEG_INBAND_* and
+> > > > everything at the PCS layer should be able to cope, but this is not the
+> > > > case, especially with mvneta/mvpp2.
+> > > > 
+> > > > The problem is that mvneta/mvpp2 (and probably more) expect that
+> > > > 
+> > > > 1) MLO_AN_INBAND means that the PCS will be using inband, and that
+> > > >    means the link up/down state won't be forced. This basically implies
+> > > >    that only PHYLINK_PCS_NEG_INBAND_* can be used can be used for the
+> > > >    PCS.
+> > > > 
+> > > > 2) !MLO_AN_INBAND means that an out-of-band mechanism will be used and
+> > > >    that means that the link needs to be forced (since there's no way
+> > > >    for the hardware to know whether the link should be up or down.)
+> > > >    It's therefore expected that only PHYLINK_PCS_NEG_OUTBAND will be
+> > > >    used for the PCS.
+> > > > 
+> > > > So, attempting to put a resolution of the PHY and PCS abilities into
+> > > > phylink_pcs_neg_mode() and select the appropriate PHYLINK_PCS_NEG_*
+> > > > mode alone just doesn't work. Yet... we need to do that in there when
+> > > > considering whether inband can be enabled or not for non-PHY links.
+> > > > 
+> > > > Basically, it needs a re-think how to solve this...
+> > > 
+> > > Today I was playing around with my combination of mxl-gpy and mvpp2 and
+> > > I got it working again with your patches applied. However, I hacked the
+> > > phylink driver to only rely on what the phy and pcs support. I know this
+> > > is not a proper solution, but it allowed me to verify the other changes.
+> > > My idea was if the phy and pcs support inband then use it, otherwise use
+> > > outband and ignore the rest.
+> > > 
+> > > Here is how my minimal phylink_pcs_neg_mode test function looks like:
+> > > 
+> > > static unsigned int phylink_pcs_neg_mode(struct phylink *pl,
+> > > 					 struct phylink_pcs *pcs,
+> > > 					 unsigned int mode,
+> > > 					 phy_interface_t interface,
+> > > 					 const unsigned long *advertising)
+> > > {
+> > > 	unsigned int phy_link_mode = 0;
+> > > 	unsigned int pcs_link_mode;
+> > > 
+> > > 	pcs_link_mode = phylink_pcs_query_inband(pcs, interface);
+> > > 	if (pl->phydev)
+> > > 		phy_link_mode = phy_query_inband(pl->phydev, interface);
+> > > 
+> > > 	/* If the PCS or PHY can not provide inband, then use
+> > > 	 * outband.
+> > > 	 */
+> > > 	if (!(pcs_link_mode & LINK_INBAND_VALID) ||
+> > > 	    !(phy_link_mode & LINK_INBAND_VALID))
+> > > 		return PHYLINK_PCS_NEG_OUTBAND;
+> > > 
+> > > 	return PHYLINK_PCS_NEG_INBAND_ENABLED;
+> > > }
+> > 
+> > Note that I've changed the flags that get reported to be disable (bit 0)/
+> > enable (bit 1) rather than valid/possible/required because the former
+> > makes the resolution easier.
+> > 
+> > The problem is that merely returning outband doesn't cause mvneta/mvpp2
+> > to force the link up. So for example, here's a SFP module which doesn't
+> > support any inband for 2500base-X nor SGMII:
+> > 
+> > mvneta f1034000.ethernet eno2: copper SFP: interfaces=[mac=4,9-12,19,22-23, sfp=
+> > 4,23,27]
+> > mvneta f1034000.ethernet eno2: copper SFP: chosen 2500base-x interface
+> > mvneta f1034000.ethernet eno2: PHY i2c:sfp:16 uses interfaces 4,23,27, validatin
+> > g 4,23
+> > mvneta f1034000.ethernet eno2:  interface 4 (sgmii) rate match none supports 2-3
+> > ,5-6,13
+> > mvneta f1034000.ethernet eno2:  interface 23 (2500base-x) rate match none suppor
+> > ts 6,13,47
+> > mvneta f1034000.ethernet eno2: PHY [i2c:sfp:16] driver [Broadcom BCM84881] (irq=
+> > POLL)
+> > mvneta f1034000.ethernet eno2: phy: 2500base-x setting supported 00,00000000,000
+> > 08000,0000206c advertising 00,00000000,00008000,0000206c
+> > mvneta f1034000.ethernet eno2: copper SFP: PHY link in-band modes 0x1
+> > mvneta f1034000.ethernet eno2: major config 2500base-x
+> > mvneta f1034000.ethernet eno2: link modes: pcs=02 phy=01
+> > mvneta f1034000.ethernet eno2: phylink_mac_config: mode=inband/2500base-x/none a
+> > dv=00,00000000,00008000,0000206c pause=04
+> > mvneta f1034000.ethernet eno2: phylink_sfp_module_start()
+> > mvneta f1034000.ethernet eno2: phylink_sfp_link_up()
+> > mvneta f1034000.ethernet eno2: phy link down 2500base-x/Unknown/Unknown/none/off
+> > mvneta f1034000.ethernet eno2: phy link up sgmii/1Gbps/Full/none/off
+> > mvneta f1034000.ethernet eno2: major config sgmii
+> > mvneta f1034000.ethernet eno2: link modes: pcs=03 phy=01
+> > mvneta f1034000.ethernet eno2: phylink_mac_config: mode=inband/sgmii/none adv=00,00000000,00008000,0000206c pause=00
+> > mvneta f1034000.ethernet eno2: pcs link down
+> > mvneta f1034000.ethernet eno2: pcs link down
+> > mvneta f1034000.ethernet eno2: can LPI, EEE enabled, active
+> > mvneta f1034000.ethernet eno2: enabling tx_lpi, timer 250us
+> > mvneta f1034000.ethernet eno2: Link is Up - 1Gbps/Full - flow control off
+> > 
+> > This looks like the link is up, but it isn't - note "pcs link down".
+> > If we look at the value of the GMAC AN status register:
+> > 
+> > Value at address 0xf1036c10: 0x0000600a
+> > 
+> > which indicates that the link is down, so no packets will pass.
 > 
+> What I changed in mvpp2 is to allow turing off inband in 2500base-x. The
+> mvpp2 driver can handle this use case in pcs_config, it will turn off AN
+> and force the link up.
+
+pcs_config can't force the link up.
+
+> I think it should also work for mvneta, at least
+> the code looks almost the same. I get the following for the Port
+> Auto-Negotiation Configuration Register:
 > 
-> On 24/04/2024 00:02, Conor Dooley wrote:
->> [EXTERNAL EMAIL NOTICE: This email originated from an external sender. Please be mindful of safe email handling and proprietary information protection practices.]
->>
+> For 1Gbit/s it switches to SGMII and enables inband AN:
+> Memory mapped at address 0xffffa0112000.
+> Value at address 0xF2132E0C (0xffffa0112e0c): 0xB0C6
+
+So here the link is forced up which is wrong for inband, because then
+we have no way to detect the link going down.
+
+> For 2.5Gbit/s it disables inband AN and forces the link to be up:
+> Memory mapped at address 0xffffaff88000.
+> Value at address 0xF2132E0C (0xffffaff88e0c): 0x9042
 > 
-
-The quote doesn't make much sense.
-
-> Sorry Conor, there may be confusion here. I mean the mapping of the PWM output to the TACH input, which is on the MAX31790, and it is not sure a common feature on all fan controllers.
+> Then the status register shows also link up for 2.5Gbit/s:
+> Memory mapped at address 0xffffa5fe2000.
+> Value at address 0xF2132E10 (0xffffa5fe2e10): 0x683B
 > 
+> What might be confusing is that the port type, bit 1 in MAC Control
+> Register0, is set to SGMII for 2.5Gbit/s, because we can only turn off
+> autonegotiation for SGMII:
+> Memory mapped at address 0xffff8c26c000.
+> Value at address 0xF2132E00 (0xffff8c26ce00): 0x8BFD
 
-I think the term "mapping" is a bit confusing here.
+Control register 0 bit 1 is the port type bit, which controls whether
+the port is in "1000base-X" mode or SGMII mode. This has no effect on
+the interpretation of the inband control word.
 
-tach-ch, as I understand it, is supposed to associate a tachometer input
-with a pwm output, meaning the fan speed measured with the tachometer input
-is expected to change if the pwm output changes.
+Control register 2 bit 0 controls whether the port uses 802.3z
+format control words or SGMII format control words.
 
-On MAX31790, it is possible to configure a pwm output pin as tachometer input pin.
-That is something completely different. Also, the association is fixed.
-If the first pwm channel is used as tachometer channel, it would show up as 7th
-tachometer channel. If the 6th pwm channel is configured to be used as tachometer
-input, it would show up as 12th tachometer channel.
-
-Overall, the total number of channels on MAX31790 is always 12. 6 of them
-are always tachometer inputs, the others can be configured to either be a
-pwm output or a tachometer input.
-
-pwm outputs on MAX31790 are always tied to the matching tachometer inputs
-(pwm1 <--> tach1 etc) and can not be reconfigured, meaning tach-ch for
-channel X would always be X.
-
-> I would like to open a discussion about whether we should use the tach-ch property on the fan-common.yaml
+> My example patch still uses the old macros:
 > 
-> I'm looking forward to hearing comments from everyone. For me, both tach-ch and vendor property are good.
-> 
+> diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> index 97e38f61ac65..15fadfd61313 100644
+> --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> @@ -6223,9 +6223,12 @@ static unsigned int mvpp2_gmac_pcs_query_inband(struct phylink_pcs *pcs,
+>  	 * When <PortType> = 1 (1000BASE-X) this field must be set to 1.
+>  	 * Therefore, inband is "required".
+>  	 */
+> -	if (phy_interface_mode_is_8023z(interface))
+> +	if (interface == PHY_INTERFACE_MODE_1000BASEX)
+>  		return LINK_INBAND_VALID | LINK_INBAND_REQUIRED;
+>  
+> +	if (interface == PHY_INTERFACE_MODE_2500BASEX)
+> +		return LINK_INBAND_VALID | LINK_INBAND_POSSIBLE;
 
-I am not even sure how to define tach-ch to mean "use the pwm output pin
-associated with this tachometer input channel not as pwm output
-but as tachometer input". That would be a boolean, not a number.
+This is not correct though. If we set PortType = 1, then this applies:
 
-Guenter
+  Bit   Field        Type / InitVal   Description
 
+  2     InBandAnEn   RW               In-band Auto-Negotiation enable.
+...
+                                      When <PortType> = 1 (1000BASE-X)
+                                      this field must be set to 1.
+                                                                                                                      When <PortType> = 0 (SGMII) and this
+                                      field is 1, in-band Flow Control not
+				      supported.
+
+So, if we have the port in 1000base-X mode (PortType = 1) then bit 2
+of the Autoneg configuration register needs to be set to be compliant
+with the documentation. Therefore, since we set PortType = 1 for
+2500BASE-X (and note that I _do_ run 2500BASE-X with inband AN enabled
+over fibre transceivers here, so this is needed), we also need to
+enable InBandAnEn.
+
+This is exactly where the difficulty comes - because what you're
+suggesting will break currently working setups such as what I have
+here.
+
+Switching the port to SGMII mode for 2500base-X doesn't sound like a
+sensible thing to do.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
