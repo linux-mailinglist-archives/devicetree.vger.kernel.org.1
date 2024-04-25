@@ -1,119 +1,128 @@
-Return-Path: <devicetree+bounces-62719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C6F68B2312
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:44:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D588B2332
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:55:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0977128545C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:44:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A77241F22631
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C18149DE3;
-	Thu, 25 Apr 2024 13:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97687149C7B;
+	Thu, 25 Apr 2024 13:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cd46CN/5"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Y0bJFXvP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD720149C7B;
-	Thu, 25 Apr 2024 13:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CDB1494D2;
+	Thu, 25 Apr 2024 13:55:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714052688; cv=none; b=aKFuV4H5xI6KRJHPqkOF6bQuldbzFf9hvsWqsZ6/AOQjitcRJyUnANY75DvSnoC4K8OBs77Gg6Ny2WGxnvgjE4lHeWtR/nUqDfi9tTSzlcExBduBW9eCaYUUyiHy2SAS4GOOBa1NSsxr2ETPx9JpK/MQuVi9XvtqDZuHbBmAM3U=
+	t=1714053315; cv=none; b=MvOubfZ4ti/3vNix/Z8jVLmcTtk6rabBpSIlvQhSmx9KcGFu1tXAgAsqr8SdUmzebXGg2F4HIqtq8fBfbcLwqWJpLCNf+HkSS0df/YGgvboq1W6jJbpEv63keBdX761sZp3UA7qDEZNhydGWR+oi1SnmqvRPgJ6pRTfpkxEFkB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714052688; c=relaxed/simple;
-	bh=mfhXTx63YRyQApal1fduEVtcjwLjVBk/NUOJZpUC24g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fw+DIly9uHW9Fa5BddOGqggAqhpZWHxCb1bTVlOTJeXBF414um6mewV3ML/WjYoyjOaXVfHXPbdBs32cpnjEol5xj7HhgvE5BESTqyzuNrgs1EIB1lr3B9pP+YhLsV8jFdtmVViGLqTVw/PIEbUehfahxSfbcQrjaoAvHcazfRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cd46CN/5; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41b39d38cf6so7270435e9.1;
-        Thu, 25 Apr 2024 06:44:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714052685; x=1714657485; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bMHh8dl+jDwLvcv5T+6QyHvrz8jMqsBP3Ls5hViJrBM=;
-        b=Cd46CN/5XnZmH3HoJ6b1FGaKIDVGZwtu6+NCL6uKJSCcFXwtEZm7fFBXTBSEvrXI93
-         8fEPUdbTZvMb4z4Jz3JYCVdRT66sd0STCyEdyHEmgyuNm94o3zZ9DZQkc503S7lEifES
-         3OYDrpyYU/XmhgGJGSP667Fd5pBOJaz8f5rIZqzzgiiB++ZJ/7gQUsDWXAM7dE8oUiSB
-         ZVu9Jm+2z8xokL8P+ccQzt9c9ucOLpM5BbX71XIlTwgj4xttEdeEHQ8E9g6OpqL06s9C
-         I9wNwelTu0Y9FjE9GkBDbl9LPKmT8Gr4ric06c0N3Bv9K8AU4+gDy7Wjlv9efunudsob
-         4foQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714052685; x=1714657485;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bMHh8dl+jDwLvcv5T+6QyHvrz8jMqsBP3Ls5hViJrBM=;
-        b=MvronXpNcoZZLWDO10VfXsRhKWm0bodPUCV0AUNfhxswp/FyXgbBwKQw/dUbxMPUsf
-         SACh7xsZ3npLKBTJoPaljBViXxqFFEN1bCJVXAl8dZXTakTPBH8TLNoP+6fehR+uMOnt
-         foLj1m21Gzmu/eD230dOKISq9Um1u9pSWRxOfiEnRAC157O92wm2GjvtHSzx6sCTYuTb
-         kOrISGHdT17+vQdAF9CbLQm9HjJaELCZEEDZvXBTWRqrasHaj53pGywLkAFXuGh2iH9y
-         8YtTd2WDZeTrCX5b5erWsk/e9671yiB3PDn5U7OxhTkMS7GwHclf7Yx0ErQR6TtqBQTr
-         ZMog==
-X-Forwarded-Encrypted: i=1; AJvYcCXwWP/1kky4p+GkuCHbTgIuYpE2OW83xaJBMLwzfwaX755145rBTVSJ6Y6XU3YXiVigDNpFX9Q67gZCiDx96wwHQfYS1Zz9Ty+wAambQwerF1dBgQftt+uzMGJ845cZnCzLNsZk59ZQejo=
-X-Gm-Message-State: AOJu0YxKsKMCrxptZJ4EgUFN5mBj09+9FxTQtgAP6dvaFBYiOcXAcmFK
-	wMa5K+BRfJnkdhQ6KvXDBl5oXpUW4TKKVTCl7vZTp8R9MclXnRhlcddW8VcK
-X-Google-Smtp-Source: AGHT+IE3IcNocrc6Z6xvaosFO1Ai3/6XvgFlHEDAllMt9fsY8O54B7Mmf9WoO6o7NZGzI7CdHWyt5A==
-X-Received: by 2002:a05:600c:1e0e:b0:41b:285:8417 with SMTP id ay14-20020a05600c1e0e00b0041b02858417mr3434944wmb.40.1714052685116;
-        Thu, 25 Apr 2024 06:44:45 -0700 (PDT)
-Received: from lucy.. (cpc115152-dals23-2-0-cust532.20-2.cable.virginm.net. [86.12.82.21])
-        by smtp.gmail.com with ESMTPSA id bg11-20020a05600c3c8b00b0041a9c3444a6sm11235579wmb.28.2024.04.25.06.44.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Apr 2024 06:44:44 -0700 (PDT)
-From: Connor Abbott <cwabbott0@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Connor Abbott <cwabbott0@gmail.com>
-Subject: [PATCH 1/6] arm64: dts: qcom: sm8650: Fix GPU cx_mem size
-Date: Thu, 25 Apr 2024 14:43:49 +0100
-Message-Id: <20240425134354.1233862-2-cwabbott0@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20240425134354.1233862-1-cwabbott0@gmail.com>
-References: <20240425134354.1233862-1-cwabbott0@gmail.com>
+	s=arc-20240116; t=1714053315; c=relaxed/simple;
+	bh=DMy17TiCyjh/k8annerxF/kUrrwnYDuM432VfQVIIjg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LQ+IThiHKFW8c+dxSSR2dcrWqLCOk62ETxaBYRf/o2vwEEbi9JuLNXaO0F8jNRxpTNLxPT6rCjv21ge/8IafeTXLwJAI/kDG9wl26EfC36fkvesqy93tT3g9qRn8GjGdwFjZJ0+SDY2FOrATtFX9h+L4HRW0j3QXvZJIPXSv6RI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Y0bJFXvP; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43PDZjKu032412;
+	Thu, 25 Apr 2024 15:54:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=qQMU7VYo5fU0zpRtzK2tuitYtZnTvgB4cuzbACisKiA=; b=Y0
+	bJFXvPbZDB44bmNvch6hUZSAAQxVZkqpbz+emUz5lnClsGLFE648hfukePk/lD/D
+	ufuLBuAAjfD70FvnIrTEBx4gK1PX3lpJq1u+vPGcQEXJoGbbDBRSGt/+3tF6LKsO
+	Mq1kdAxih2o/FTgzZ5gDeKSgO2rH6ipw0vKOKGnLSrwZbbZXb88av6Uv2ZCTN3Oz
+	w6skHbWWiVsIGiAn1Kblwnqj7c+azlTgKSt/Y6g/9GKm9sofl7Nl8PqfehxCXqiD
+	VlekJ6Q2thdJ93XbyBYg0JdXaxRh2KE7mqlJa/sbMe1nLSbBqyvgBnWxhFdduXaC
+	lGxChjD1bQyNqg3wHetw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4kbdmmf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 15:54:50 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 83AD640044;
+	Thu, 25 Apr 2024 15:54:46 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A6D00221E9F;
+	Thu, 25 Apr 2024 15:54:08 +0200 (CEST)
+Received: from [10.48.86.112] (10.48.86.112) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 15:54:08 +0200
+Message-ID: <c5d14ef4-15a3-40f1-b9f8-780525b0b172@foss.st.com>
+Date: Thu, 25 Apr 2024 15:54:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] ARM: dts: st: update the pwr compatible for stm32mp15
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre TORGUE
+	<alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240425074835.760134-1-patrick.delaunay@foss.st.com>
+ <20240425094829.3.I493dfe2bde7f40beb48455f8ff8368cc8a869cdc@changeid>
+ <b4e60272-cd79-417a-9028-fee243951f4a@kernel.org>
+Content-Language: en-US
+From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <b4e60272-cd79-417a-9028-fee243951f4a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_13,2024-04-25_01,2023-05-22_02
 
-This is doubled compared to previous GPUs. We can't access the new
-SW_FUSE_VALUE register without this.
+Hi,
 
-Fixes: db33633b05c0 ("arm64: dts: qcom: sm8650: add GPU nodes")
-Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 4/25/24 10:57, Krzysztof Kozlowski wrote:
+> On 25/04/2024 09:48, Patrick Delaunay wrote:
+>> Remove the unexpected comma in the compatible "st,stm32mp1,pwr-reg",
+>> and use the new supported compatible "st,stm32mp1-pwr-reg" in STM3MP15
+>> SoC dtsi.
+>>
+>> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+>> ---
+>>
+>>   arch/arm/boot/dts/st/stm32mp151.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+> This will break the users and is not bisectable, so patch should wait at
+> least one cycle. This will preserve bisectability, although users will
+> be affected anyway.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 658ad2b41c5a..78b8944eaab2 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -2607,7 +2607,7 @@ tcsr: clock-controller@1fc0000 {
- 		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-43051401", "qcom,adreno";
- 			reg = <0x0 0x03d00000 0x0 0x40000>,
--			      <0x0 0x03d9e000 0x0 0x1000>,
-+			      <0x0 0x03d9e000 0x0 0x2000>,
- 			      <0x0 0x03d61000 0x0 0x800>;
- 			reg-names = "kgsl_3d0_reg_memory",
- 				    "cx_mem",
--- 
-2.31.1
+
+Sorry, I didn't know this constraint
+
+But Ok, I remove this patch in serie V2 and push it later.
+
+
+>
+> Best regards,
+> Krzysztof
+
+Regards,
+
+Patrick
 
 
