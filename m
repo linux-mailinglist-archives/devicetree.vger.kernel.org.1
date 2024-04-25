@@ -1,141 +1,169 @@
-Return-Path: <devicetree+bounces-62706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F65D8B20D7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 14:03:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0098B2272
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:23:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9C13283BB9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:03:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 459451F24338
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8D812BE86;
-	Thu, 25 Apr 2024 12:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bzEEEkKb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146DD149C5E;
+	Thu, 25 Apr 2024 13:23:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2113.outbound.protection.partner.outlook.cn [139.219.17.113])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB2612AAF8
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 12:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714046580; cv=none; b=KoG/8YAP1W1qamVKX6CRnhb3bC61pG9BQOl7P8dNP4DCI49097jsE4BrIxxc35dbBkUNDiqEhmCLQUVHVolvlivnHxX/pFvPCB0BGYyT0jVskOSYEwWxU+d4ii7fu9wtffSiTvEEuIfLNVcbKMDHLXTC4lFezE9eUylOC3leank=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714046580; c=relaxed/simple;
-	bh=jphqvKLIukinGvb9JMFC352rTpP7/8VXNF6oX6moPJg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rXDPa4H/LXxOZq1Lhx5OFP78JDBCPn0fFXRmAmxPaMe8Blf+X24bZmLuNumZU5GthQb5P/8ZfR5OoE6VlJXNX4w/inQq34syx2duCsQyMuHeh31mA1yWD5wG91ZWwDUJehqfvoh8hPlU54+jeQVb2oU/z57Sbmxfbg9NzQuNi8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bzEEEkKb; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-34c2e765bc6so98736f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 05:02:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714046578; x=1714651378; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=AZtgfXbbk2xQsw1Lmj4dmQHGao3EmNipVbMSfwpwCWw=;
-        b=bzEEEkKbvW6eGqugSTDMMWOARDxCjrBsB73AuYu3mBKufCDyBoIybIf87+O8o/cYlo
-         8dnUdZWz7hHWcsuR391z2Ojkb/pqqxZqlQCHdC9bYZibdNsvuloWttCqT6b+XqmLs4Uv
-         48OkKDEBz208iJOfdVhxV5zKokj68aeJKRxLGZ6kpVaNuokK5jDs2vFgsAlG3QyMuBq5
-         VwKvIsDJBDYPid3YjzSDE2MX8GJsE1DbbKcCmdBGjKYCi93pw9si3bzybCHJJSzcPQ9a
-         WcWzOPre5zrY/q+I0opcdwYUupRIXZA/bVJR06FpAjSm/HHD48shBQnHYzjWRnbAbEMz
-         2zFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714046578; x=1714651378;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AZtgfXbbk2xQsw1Lmj4dmQHGao3EmNipVbMSfwpwCWw=;
-        b=cCIVgGI8qgUN4mVfR4eh2/eHUaf9LbqQnf4VaTvspB6GntaGYsKiBxbhQN0RYj1SbU
-         BN9aMHUXZHZwL2s9Wr7LuBjMXyXmHIn+M402sYS6RVDDtbejo9WpuZe8HdmaCHxtjTwC
-         +UDnjX8U9l48NY+3SbLWJ4P6RqqLQIEBfXnEQUcAvB5ewuFmhyqM7GLt85m6Ufr8qAPS
-         VfVwdMxJ01oO0JrQidDM13xRN+62K6oCuK/C8uVMTXn9eCCamUHW57DNcJxhOQwTwRlo
-         ES0942JhzJboReD5LKTVE0fm7vIowh6eCJ0sJXOKAg1UbxAfLyq7NpArOxmSKGOK9+Ky
-         zHlg==
-X-Forwarded-Encrypted: i=1; AJvYcCX4fcvDLjddycNibz9agDSRLGRk9cTg89hVLdsjPykDKsDN4qKSCYsGiZAVbyH2C4zy4mofliOt/AZCHYZXkma8G9hG0k1pkxG/dw==
-X-Gm-Message-State: AOJu0YxgB1S3yjoD8goJEXR+brqFdsRPFyaFoZ+eiZicuGhgbaMRQrNy
-	TzorHrVuVIoTC919zC4OtP0zAIqhBs1INnlnoQQ0mcrEz1lu6UeHhdUVRPTMZOo=
-X-Google-Smtp-Source: AGHT+IEzZdSed4XOrE4rETuECmfdaxcVqf4C7+1LXgTcZDv2J71RTHhX+CpK/z2WbiePkXS0N6SWDw==
-X-Received: by 2002:adf:eeca:0:b0:34b:147f:df67 with SMTP id a10-20020adfeeca000000b0034b147fdf67mr3840631wrp.53.1714046577733;
-        Thu, 25 Apr 2024 05:02:57 -0700 (PDT)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id w20-20020adfe054000000b0034a366f26b0sm18062178wrh.87.2024.04.25.05.02.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Apr 2024 05:02:57 -0700 (PDT)
-Message-ID: <52403f522a4f7513c5ee5dae48856988f7141825.camel@linaro.org>
-Subject: Re: [PATCH v2 06/14] arm64: dts: exynos: gs101: Add ufs, ufs-phy
- and ufs regulator dt nodes
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com, 
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-  vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
- avri.altman@wdc.com,  bvanassche@acm.org, s.nawrocki@samsung.com,
- cw00.choi@samsung.com,  jejb@linux.ibm.com, martin.petersen@oracle.com, 
- James.Bottomley@HansenPartnership.com, ebiggers@kernel.org
-Cc: linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com
-Date: Thu, 25 Apr 2024 13:02:55 +0100
-In-Reply-To: <20240423205006.1785138-7-peter.griffin@linaro.org>
-References: <20240423205006.1785138-1-peter.griffin@linaro.org>
-	 <20240423205006.1785138-7-peter.griffin@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4441494CA;
+	Thu, 25 Apr 2024 13:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.113
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714051386; cv=fail; b=h/WLcc3r9kq3EwFYGjs42hvpVc/VN1Y2sgdqWyQxBCuZ25D8vEjynZJMvvksvrFtSrBbo4l9Tk1U2oYI+OYH2X5Jfj6tv52utfx6UEH4THF0WVAdN2wN2KiSkeNwLcWVdPnrIkocGXiISNw/U54/sRiq2tvLZz1+K2Ac/OClfaU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714051386; c=relaxed/simple;
+	bh=mJtK3H9awnZNnuBREuluVaHJZfuUt6HWLYgginDbU1E=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=eRTruxAOW1m9LSiOpWr+mdW8Yu2Z+1GbLAqXNn6pj6X1SlTNGsD6MvK88MO9djAmKXTCKG/Mu1UlYz2hJtoNc91IFSXmGImsPgsmtLLMOKJ2LikVl6vcUycTlFrc1deC/81qTHOAnnDKlJwpPec/VbHb9K1hys6wR9RLbheVtJo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CloMHaO0qfiujrKCAssoepeUsLFV2hffdgXi6a8O868x2Z/CbsImRk7QOlhefGXh4wYrZf0aMDEgfExCGjJd90ZmIlQxEXU4+nh/lNtaicVvnHtnXi/P69yDNh5nkoTf4NrSu2U6qc03kwDoK0CQwzM+ZznRbqqZI4U5s6WGn3E9ed44SqcNhXXT/OzcpeX/UZ8VgW68LLBoW6YA5I/Pq5Zjn8Y6ZhMIcjwqSbe9zJAdshV/QyJY60AVjPRIABrYVm/hG753CeMtsel6UArzT/Q6agXfMfzZroOxCQpUulXyugnGj6TthUehJbibVLQ0whgRpU7N2XM1XEtOY4uoKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z26SQYXXM7aqkVaWv8SVjN1n2EP0zi4jOnPPszLLW90=;
+ b=DukNqB+5ENdXx0Z4G7yYaoZNoUpoPf3oY++d8hezXmlsInMt3vvrwukPfymvX9KmdrPP2iqGSO/J4b2vl0bSE0ugGvVuXfJGEuxX8aV8E8x+Wp7ENtY/QJ6MV8Of8jgXtJDIvsLnNHxbscHOzxVgHtzYkv0UgxQnCfw0lIxbYDEhOOJbPRROslZGer9jpWu0zLMETRsL2+Dl3rIHIBgUaXngh5jTrrULUyO52g4UvjTKyuP6UQ4PaPxPzfGJ6CKAaobFxkr/qq13ox/vcXaQaJkdqAc19JQxNq/a/P1p5Os7xaG2oAhRCcAsYJtojZAXMYRpOVUQ4a20OfpN/XPcbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:20::14) by SH0PR01MB0491.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:7::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Thu, 25 Apr
+ 2024 10:48:58 +0000
+Received: from SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e0a:f88a:cad1:dc1c]) by SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e0a:f88a:cad1:dc1c%7]) with mapi id 15.20.7472.044; Thu, 25 Apr 2024
+ 10:48:58 +0000
+From: Joshua Yeong <joshua.yeong@starfivetech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	conor@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	joshua.yeong@starfivetech.com,
+	leyfoon.tan@starfivetech.com,
+	jeeheng.sia@starfivetech.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v4 0/2] Add StarFive's StarLink Cache Controller
+Date: Thu, 25 Apr 2024 18:48:39 +0800
+Message-Id: <20240425104841.72379-1-joshua.yeong@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0023.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:c::19) To SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:20::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SH0PR01MB0841:EE_|SH0PR01MB0491:EE_
+X-MS-Office365-Filtering-Correlation-Id: a51ad521-c5ba-4b84-4ab1-08dc65154f22
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	/N2e3Q34vsiCkTR0sashG/JOUQewiLv0YwoPyXLrpn/kCqISOM4pbC2UZTiSoRofcV/9XWcPIWpAsjWtrrkeZ/osPeqSa4SYRH+FvVKgVl0tLN+f1CsBIvB2hqCANFlxO3Nmoq+3/gEqODwW6IKHdeZ20sT0OkkZLzPPwo4CBv+yJXBh0LJeY6RCUER2EQyW32C/0k3fDG8KBDAhORy93I/hq9BFlj5jtENUbpWio5mSv5QNOmbMhXQyCqmd4U+LKSXEheTtY/TRPM4+CI9hzXwOk3kpBDOjPid7eq2S9CrlochkJQ3ev9k2LsXnLfoBTqjByDpaFolq5cBh9v7FjwsZznr4ryKsn73L7gY+13aeA3mK4baZXupB+R62SJ8GPLT3e3U4u5Kxhrl3zdHPrVcBu7s2YDUxm98UWyflzTLNB0QiJ96Pi5LUoYRBrhTyJUifeI03NlBcc6UPGNBRV4wLyga9maWbH0UIF1K77GsiGhPV7+Eq0t/xh6YoFDEwv6Bo0QmViGNXEH6wi7FF7lbYquKUaOx8c29KhP6YmeZL7dTNX88cI61tq8Dca4Hfur4U2CWphKRKEazYxMtDT3JFx+TM4RMyUTN/l3ui9ns5evX91m+7n5LvEk1xF8aknu6yWTA/fnDlisNdQbfXow==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(52116005)(366007)(41320700004)(1800799015)(7416005)(38350700005)(921011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?BASsA5gDkVA7knwjQnlik7rzOm5T+bxTTX6qZKipjbSN/b1h45DIdnP/B+XL?=
+ =?us-ascii?Q?GqigR/0rIUHyT7BERpKqcZUDFtxLr9jYCplFvzD9+MJkKWMGHw15pXmT5GR9?=
+ =?us-ascii?Q?ITITzgSUtJCHh19ykPb53gd7j6Rw1gya63WD2iXugWjF5HVq7G0NA0Ny6YnG?=
+ =?us-ascii?Q?i9JM0gdle6mW703RI44MvhSpDGEYPRzN/tEN3q+ozCras1f7822Bf35CLTfQ?=
+ =?us-ascii?Q?EG6uEalNXUXi1wlJQlHvJjPTDubJgHx2O44fo9gKK/5GtBeFdwmM2GrH4FK3?=
+ =?us-ascii?Q?BCIodB+kkuU8tyWnTe3pOF56kQZlBVDfd/mKXN9QdVSkcdaJ6OEHVB1Hx/vA?=
+ =?us-ascii?Q?228Odpe05jI+I1xyz9rxKNrha0q2r3uxWsX9MYkMSGwwbw1WamSKIhI4bzOE?=
+ =?us-ascii?Q?ictc+OfFMjRe1a+sfWrQqJGvLt95Yt2X11oT5JSUY+0YaDk7U/C/4fl09POK?=
+ =?us-ascii?Q?E6TZ4KecJDE2Vy7WrbVlStI9i2JvCxi1YTQWldWdLBuNLSF/5f8vvzbWSEJK?=
+ =?us-ascii?Q?8y8E6fphtnWfUvAeCBWfSCYLTSh4HiBlEifD/UHZqBLXz6o5pOPbX0r9WmQX?=
+ =?us-ascii?Q?FNSA6bOzl0D6Uq1nKnjlgBM4qdBryi/Esf88+nyx27msi3gfY9B8j4fbHDG0?=
+ =?us-ascii?Q?uc2UZ68zIOtxSYV9Ce08gjgtixQEZDAWNiLkdyW9AG/E2gh2KyPb8QxFkZPP?=
+ =?us-ascii?Q?NvnuRa+W/VExHXCLbvmFC0qq8uuTB5vuOKng5lkS0r+5IXx9PmorSArA9e6O?=
+ =?us-ascii?Q?NFJf2MnQoqHunADHvq5ovUm/f4VzZcTuGavfNzTj2jtXWQlfhhP3bMAcJMPr?=
+ =?us-ascii?Q?x4fA5ref7ImLwd+20dF4u15ynJNjb900qq+jOj5OtyPBiiYHfiNL5LM0ZEGq?=
+ =?us-ascii?Q?eMLdMePixbJJ7Fs5J8ecOtJe43Fjb/d3eDv/cuDH0EawasdhiVJ0Gg7DvU9F?=
+ =?us-ascii?Q?a1uTkwP51DxFqWQ9O+X3c/dJ5DecQ2tVpKb6GDzWN0DXBeV/yW1wL5U0TFU5?=
+ =?us-ascii?Q?Kr44bjf9DDMliU12Rwu2SqxUjBoRTQ1el88HuQXisKE84Jafkb3NLi0yTkqD?=
+ =?us-ascii?Q?Y62eOIzHQ3RDN8H/4X/UOuk9HOlBmOosgZh7r5RAsDWicEtfssbKaIy0e0YU?=
+ =?us-ascii?Q?nRdL86//e4dTTXpNHLmTBNF4n86yNTxWtFEcVNwojvhYxIdrA6l+fI/fp8zL?=
+ =?us-ascii?Q?iLev/MYkrzEm++MRexqpDtQo/gIzg4V/lGOaP+KQpaUThGBQTxq+o9V6BN8V?=
+ =?us-ascii?Q?wDNZe8DJNrmW1I47dYph/QyU1juJme5X7LOm4G+JP0Jcs03vc1Vvf6PNC31u?=
+ =?us-ascii?Q?PNkwOVNGhqqOKeN5Kba40KGr8FX6KxBtr4oKGqelUbKawbxzWSDZm59WmvDX?=
+ =?us-ascii?Q?OJGihlrHqvjRYlkhT8QdKF70A79X2Er92IXDDQ7Ncr0tTVA6TXvgu0WPafn/?=
+ =?us-ascii?Q?KeUFzDEJV5Y6l9m2qrwUuSEy3BxB5bL6+ZYWmIK3sCVz6QF0begO/157P9Rb?=
+ =?us-ascii?Q?ycTUySJ7BFxP+TEcWPmsbSdM+Q9q21GXCcbIeuHSOhYjC4OLeNQ7CDyaiq81?=
+ =?us-ascii?Q?dtyft2yXoEAvoXXlrypIwdk9rsAGQtXmWSSeIkHBNXB/IIokJfLS8Oclu/vn?=
+ =?us-ascii?Q?tA=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a51ad521-c5ba-4b84-4ab1-08dc65154f22
+X-MS-Exchange-CrossTenant-AuthSource: SH0PR01MB0841.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2024 10:48:58.2247
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 30EOpDCKskbcrG59U0ZLGl8uX/X4vLHmQ/xk3NtvtjLHDQg+vX2L7UDO3qwhe7gKtcm02dXlMoAGWqpO4gQYr1C05y7rzPyxoDghUrxoAiQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SH0PR01MB0491
 
-On Tue, 2024-04-23 at 21:49 +0100, Peter Griffin wrote:
-> Enable the ufs controller, ufs phy and ufs regulator in device tree.
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> =C2=A0.../boot/dts/exynos/google/gs101-oriole.dts=C2=A0=C2=A0 | 18 ++++++=
-++++
-> =C2=A0arch/arm64/boot/dts/exynos/google/gs101.dtsi=C2=A0 | 36 +++++++++++=
-++++++++
-> =C2=A02 files changed, 54 insertions(+)
->=20
+StarFive's StarLink Cache Controller flush/invalidates cache using non-
+conventional RISC-V Zicbom extension instructions. This driver provides the
+cache handling on StarFive RISC-V SoC.
 
-[...]
+Changes in v4:
+- Move cache controller initialization to arch_initcall()
+- Link to v3: https://lore.kernel.org/all/20240424075856.145850-1-joshua.yeong@starfivetech.com/
 
-> +
-> +		ufs_0: ufs@14700000 {
-> +			compatible =3D "google,gs101-ufs";
-> +			reg =3D <0x14700000 0x200>,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x14701100 0x200>,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x14780000 0xa000>,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x14600000 0x100>;
-> +			reg-names =3D "hci", "vs_hci", "unipro", "ufsp";
-> +			interrupts =3D <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks =3D <&cmu_hsi2 CLK_GOUT_HSI2_UFS_EMBD_I_ACLK>,
-> +				 <&cmu_hsi2 CLK_GOUT_HSI2_UFS_EMBD_I_CLK_UNIPRO>,
-> +				 <&cmu_hsi2 CLK_GOUT_HSI2_UFS_EMBD_I_FMP_CLK>,
-> +				 <&cmu_hsi2 CLK_GOUT_HSI2_QE_UFS_EMBD_HSI2_ACLK>,
-> +				 <&cmu_hsi2 CLK_GOUT_HSI2_QE_UFS_EMBD_HSI2_PCLK>,
-> +				 <&cmu_hsi2 CLK_GOUT_HSI2_SYSREG_HSI2_PCLK>;
-> +			clock-names =3D "core_clk", "sclk_unipro_main", "fmp",
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "ufs_aclk", "ufs_pclk", "sysreg";
-> +			freq-table-hz =3D <0 0>, <0 0>, <0 0>, <0 0>, <0 0>, <0 0>;
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&ufs_rst_n &ufs_refclk_out>;
+Changes in v3:
+- Fix code syntax
+- Link to v2: https://lore.kernel.org/all/20240423072639.143450-1-joshua.yeong@starfivetech.com/
 
-The preferred order is pinctrl-0 before pinctrl-names (similar to clock-nam=
-es and reg-names).
+Changes in v2:
+- Change patch title from 'Add StarFive's StarLink-500 Cache Controller'
+- Remove StarFive alternative from errata framework
+- Fixes warning from https://lore.kernel.org/oe-kbuild-all/202403151625.boKDjHGr-lkp@intel.com/
+- Flush completion through atomic timeout function
+- Link to v1: https://lore.kernel.org/lkml/20240314061205.26143-1-joshua.yeong@starfivetech.com/
 
-Other than that,
+Joshua Yeong (2):
+  cache: Add StarFive StarLink cache management for StarFive JH8100
+  dt-bindings: cache: Add docs for StarFive Starlink cache controller
 
-Acked-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+Joshua Yeong (2):
+  cache: Add StarFive StarLink cache management
+  dt-bindings: cache: Add docs for StarFive Starlink cache controller
 
+ .../cache/starfive,jh8100-starlink-cache.yaml |  66 +++++++++
+ drivers/cache/Kconfig                         |   9 ++
+ drivers/cache/Makefile                        |   5 +-
+ drivers/cache/starfive_starlink_cache.c       | 130 ++++++++++++++++++
+ 4 files changed, 208 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/cache/starfive,jh8100-starlink-cache.yaml
+ create mode 100644 drivers/cache/starfive_starlink_cache.c
+
+--
+2.25.1
 
