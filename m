@@ -1,116 +1,145 @@
-Return-Path: <devicetree+bounces-62795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65DAE8B2833
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 20:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C91B8B283A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 20:35:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A4F61F21706
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:34:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF3F21F216AC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A7182D82;
-	Thu, 25 Apr 2024 18:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18AC939AEC;
+	Thu, 25 Apr 2024 18:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b="PhJ+wQeI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZAbPlPRQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward501a.mail.yandex.net (forward501a.mail.yandex.net [178.154.239.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0175235280;
-	Thu, 25 Apr 2024 18:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA07335280;
+	Thu, 25 Apr 2024 18:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714070052; cv=none; b=TpAzHhWyBF7zIn9q9IC/79PF7SSAITxpVKBNRNSA3+uoC0BaNkFTLyDfYT86Ilwu1eXZXk+fapad50OvQUyqn/7hJ8KENQks5pne7nFKbAkupX+FZMXrGPyST3XDMThTUNqzq6eJ8L+FoRDt6wbYqh07zuFLURyKA6yRtYON+5s=
+	t=1714070125; cv=none; b=JEK/ZDBIJiwdVGnFOVU4wkh7Rzu8CsrGr6uGGs8ROgLEiIlioWUupUY2w+O2JgFO6oHQwmpnyaTboKDuCXMdhMBU6naow07HiMaq2LPXKY074JefbBrdyJOMdCbs7rFFEJMTOL+caBXGzMK7yja/wriiBUbPop1UQl+GAXThPPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714070052; c=relaxed/simple;
-	bh=+NLyQZeymksJv+UdhdpGq+UF4BkKRM/TdxoGx9KLh/E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bz1YYJj4zc2UJoF7gPapL+H1pxbEddrMshKAaga6HiQ+REFu7Hw45Fquc8fB9ag9WXD9WKfi+t8cV1vxENe+uICBZmN7pZ03CQhRL69YCzptAu5NzVsKtKYLe4rnNwl/YgnnkYfWjTks3t7iW20XuRoSHhFlXUjabG0zaC2TYAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru; spf=pass smtp.mailfrom=ya.ru; dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b=PhJ+wQeI; arc=none smtp.client-ip=178.154.239.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ya.ru
-Received: from mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:5408:0:640:72fa:0])
-	by forward501a.mail.yandex.net (Yandex) with ESMTPS id 6A4E76147F;
-	Thu, 25 Apr 2024 21:34:06 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id sXRDEK0m5mI0-RfeiK5Cn;
-	Thu, 25 Apr 2024 21:34:05 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ya.ru; s=mail;
-	t=1714070045; bh=DsOxzxzCfZeBqcxKPCWjPBT8YlJh1q1TN/5DSawsLCs=;
-	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=PhJ+wQeIpXnDcYJpNL0EjkSeuovnNX+8X/hfuQlWz8wnNb4sbmuIXKRdSYqccsBaI
-	 XTqY5JULI8FUnjxHxYo3Yk3p3cttkkMxDySecZdZOsqMiVK9wV2XudV0DHo3+D/zvX
-	 AWRShMHNvBYK5NHEoq1aQonZQa95d4u9s6bbz/Go=
-Authentication-Results: mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net; dkim=pass header.i=@ya.ru
-From: Konstantin Pugin <rilian.la.te@ya.ru>
-To: 
-Cc: krzk@kernel.org,
-	conor@kernel.org,
-	lkp@intel.com,
-	vz@mleia.com,
-	robh@kernel.org,
-	jcmvbkbc@gmail.com,
-	nicolas.ferre@microchip.com,
-	manikanta.guntupalli@amd.com,
-	corbet@lwn.net,
-	ychuang3@nuvoton.com,
-	u.kleine-koenig@pengutronix.de,
-	Maarten.Brock@sttls.nl,
-	Konstantin Pugin <ria.freelander@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lech Perczak <lech.perczak@camlingroup.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v9 2/3] dt-bindings: sc16is7xx: Add compatible line for XR20M1172 UART
-Date: Thu, 25 Apr 2024 21:32:34 +0300
-Message-ID: <20240425183251.174412-3-rilian.la.te@ya.ru>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240425183251.174412-1-rilian.la.te@ya.ru>
-References: <20240425183251.174412-1-rilian.la.te@ya.ru>
+	s=arc-20240116; t=1714070125; c=relaxed/simple;
+	bh=Gn88odIypI2Ikg7RZchNDFyeKbAbgU61axWYS83v+6g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oS2iE4QDDMkECnOf3EaHmGYh+v1O6bZrxP4tzxut7vUh403coh59mLC431qilufh9ppP8lX3i7gXC5/NIj6LjURE2g6w2eNIIWvXnwyByGgEVPaI5DM4fepqBcrZnQVgWXfLGm/H0RThJTvC+HVAxSuAmkx5gqUTpECFlwNn2Hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZAbPlPRQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6014C113CC;
+	Thu, 25 Apr 2024 18:35:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714070124;
+	bh=Gn88odIypI2Ikg7RZchNDFyeKbAbgU61axWYS83v+6g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZAbPlPRQ9ExkilsAiDqf9QalfmqoRCWezm6Ezl++payZJB+8+2rByYc2rfylZoLvq
+	 Fb6fTjqDE2mQNBkG1o1zMjARHnhwNgaVeZ9uQuQKQdpVinmz4givGfTLKegiW7vGPe
+	 x5Yqsz89k4ZyzABHLpqdXn7mgz4+vLMhuyWBbsw2lEhqbeFm/xGD7xgEdqPMtpBU51
+	 vw6cUiCYKZrr9u4rFyY6nHpVqBHwkVYHotS4ZYGmFzbxefJRTy6OCStQ1hwH2Mhksb
+	 keb4ky4tsOV4lDrZ9SpwmuYt9MDaALc3Ed2b2ER3zXH/mzfjxDrYS9FcLg9ug3qQdA
+	 11VD3TzEWTuow==
+Message-ID: <cec3a862-82a9-4f79-985a-d29816e520c2@kernel.org>
+Date: Thu, 25 Apr 2024 20:35:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: renesas,sdhi: Group single const
+ value items into an enum list
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240423182428.704159-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240423182428.704159-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <7a3d4b8a-e89e-499e-92b7-9f63fbc84011@kernel.org>
+ <CA+V-a8uz0OrsM1AxqtpeHB0f1+F6aEqHGp_t3_OPhh0ZqJ26HQ@mail.gmail.com>
+ <CAMuHMdV=CTUQNm6OZN0Ck-nXKme8vZ2Ld2rDxHfQZkP2VdnNeQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAMuHMdV=CTUQNm6OZN0Ck-nXKme8vZ2Ld2rDxHfQZkP2VdnNeQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Konstantin Pugin <ria.freelander@gmail.com>
+On 25/04/2024 19:11, Geert Uytterhoeven wrote:
+>>
+>>>> +              - renesas,sdhi-sh73a0  # R-Mobile APE6
+>>>> +              - renesas,sdhi-r7s72100 # RZ/A1H
+>>>> +              - renesas,sdhi-r7s9210 # SH-Mobile AG5
+>>>> +              - renesas,sdhi-r8a73a4 # R-Mobile APE6
+>>>> +              - renesas,sdhi-r8a7740 # R-Mobile A1
+>>>> +              - renesas,sdhi-mmc-r8a77470 # RZ/G1C
+>>>
+>>> Keep list alphabetically ordered.
+>>>
+>> This list is sorted based on SoC, I will sort it  alphabetically.
+>>
+>> Geert is that OK with you?
+> 
+> Usually we sort alphabetically by compatible value.
 
-EXAR XR20M1172 UART is mostly register-compatible with NXP SPI UARTs.
-It will be handled by same driver, so, it makes sense to add DT
-definition for these block into driver's documentation.
+BTW, it is also fine if you keep some other sorting rule there, which is
+in general known to interested parties. Although I would argue that most
+people adding new entries are not aware of such rules, thus they add
+things to the end increasing the chances for conflicts.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-Signed-off-by: Konstantin Pugin <ria.freelander@gmail.com>
----
- Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-index 5dec15b7e7c3..c4bedf23368b 100644
---- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-+++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-@@ -12,6 +12,7 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - exar,xr20m1172
-       - nxp,sc16is740
-       - nxp,sc16is741
-       - nxp,sc16is750
--- 
-2.44.0
+Best regards,
+Krzysztof
 
 
