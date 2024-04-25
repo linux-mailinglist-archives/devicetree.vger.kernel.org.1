@@ -1,105 +1,127 @@
-Return-Path: <devicetree+bounces-62776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B0F38B26A2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:38:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB448B26B2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9DF0284112
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:38:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93B3FB284A5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45472149E0E;
-	Thu, 25 Apr 2024 16:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DBB14D2A2;
+	Thu, 25 Apr 2024 16:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OlKxe4EI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpCGPsNP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C5FA2B9D9;
-	Thu, 25 Apr 2024 16:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3457614C5BD;
+	Thu, 25 Apr 2024 16:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714063091; cv=none; b=kQe+Lytv/6RGKJN+SI8FuYMYwHWr/wlE+09czez5PhE1mjrqsdrYPD+k1TYO/fkuvoOMQgHUr2KW3znP3UrB1Baf7H2wsQjigg5A2FSc673s87e7Fz3CYAY1iUAuzmSqYu8qWsLbXCbvOQ58z4QtkpEK1e01nVYeB+EScYdkLTE=
+	t=1714063204; cv=none; b=e4Wnc9E3m4Al/9Mdx3Qdd8JnBEihjkwbsPDPX9PGAphjgHZrn438Y9zlykmaL5kOw5ljErLBBH6gy66uilH5ez5Do5zjS87t0V2TM0jT9D7Yy6aoZnrZBrSgld7M0E7IkFe7jOLpnUeRrLpP27oYrPo4Hf48yQZTmQN5pN0NauM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714063091; c=relaxed/simple;
-	bh=Hr42VLVkDSczruHp17DxXitKoNznJEPjrm7oGuJmEA4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yg2TP6qmtlkMc0Hs+pFfbmx2ce4Ie5mNmYnN9KwZL8xGAT5SKukriZJBspE+myn0h/8beePBsQvGh42s4nqsUkOae5LXnzMhhN2SYYh23bppnh6fw/xIq/3p/yL+1X254vOxg+QBqod7BDOj5in5H0DhSn3+OruwVQvfxI/9j0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OlKxe4EI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB88C113CC;
-	Thu, 25 Apr 2024 16:38:06 +0000 (UTC)
+	s=arc-20240116; t=1714063204; c=relaxed/simple;
+	bh=LbSqadMzoFjsuXSnWvEu/tPbSTkv0wSi5qeCjW/x/YA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=VeeOicCbLAAJnbbNXKmZRI5riOdl2+y904docYXmg2XLA6KR+IbMsGmZtNCtMkeyIPrxvslHOZfnZ3iM/J3uhcHsuDhTKQi3VB+b7YO8Hr7XqmKmaugYqaDEzGGgfo1q5PiZAn3xHWbEUvylstOe0imVKEIShr32zSV35qT7vAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpCGPsNP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AFEEC113CE;
+	Thu, 25 Apr 2024 16:39:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714063089;
-	bh=Hr42VLVkDSczruHp17DxXitKoNznJEPjrm7oGuJmEA4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=OlKxe4EIHto/OHkpLtJHEIlErhfZL/nM6DCLpK/HCQdsvhJzEQRKyrcivpIL3EjeA
-	 oZstCNFKKheT830H7KGKTXNqWAppl/AMr9Uo2aT4MlQhJA7nFF8HnirqJ1ujKrZOoa
-	 UvSWrND5rG+r6S0LteWJn/KRd+ZTTmnrF5bt7wVBTABymal1tSoHv6sIOXVg1p/Io7
-	 bMh4kO1cY/rVEnfO+teZ4qau2dIXfx1vxygOS6YI3ZYIzDgI4Fjs9eI10z4iv1Yq8+
-	 VMarle5m3SnA6eN0tRlMz4t28OHNqpDAAU9TtiHZMVh35s6S/A1MK1VlniO5Bsq2Mg
-	 jaKz6iwm6x0JA==
-From: Conor Dooley <conor@kernel.org>
-To: jszhang@kernel.org,
-	guoren@kernel.org,
-	wefu@redhat.com,
-	andi.shyti@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	miquel.raynal@bootlin.com,
-	thomas.petazzoni@bootlin.com,
-	linux-riscv@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Subject: Re: (subset) [PATCH 0/4] Add I2C support on TH1520
-Date: Thu, 25 Apr 2024 17:37:36 +0100
-Message-ID: <20240425-amplify-fedora-7a632dfddf62@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240425082138.374445-1-thomas.bonnefille@bootlin.com>
-References: <20240425082138.374445-1-thomas.bonnefille@bootlin.com>
+	s=k20201202; t=1714063204;
+	bh=LbSqadMzoFjsuXSnWvEu/tPbSTkv0wSi5qeCjW/x/YA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=kpCGPsNPtizwkRXzbbBOisqIxYXAYDvBURByNuPNU7j+hAZaM3rY4zD9QvWJosW68
+	 iC0L8DM0TP4KnXEx4C3MICMMVEH9a6cqbEgZ7ANWMYOYB6nyRMCg2jexrQAtQQNaO4
+	 sS+tAVTrBYCPA95XjLgyBzehFuUM7HqoFrvJ4I1FAjXyN03+BjI2hp4QK/8bHTh7sz
+	 CA0JgVVrA7XGz3fZ5GjYINhkpDAI3n3XxKqZtHGVMLXXrpq0YuSbeaa7K2SaZn/zPI
+	 ed2bP4EbknrklmiDXJLJCsNer2VxtXL2JV3xQkOXT7D3dMuzr4kwowbBdy2W06/FNN
+	 Re8OsFDjeHi7w==
+From: Kalle Valo <kvalo@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Marc Gonzalez <mgonzalez@freebox.fr>,  Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>,  Konrad Dybcio <konrad.dybcio@linaro.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,  Jeff Johnson
+ <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
+  wireless <linux-wireless@vger.kernel.org>,  DT
+ <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
+ Herring <robh+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
+ <avrac@freebox.fr>,  Bjorn Andersson <andersson@kernel.org>,  Jami
+ Kettunen <jamipkettunen@gmail.com>,  Marijn Suijten
+ <marijn.suijten@somainline.org>,  Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+References: <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+	<0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+	<CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+	<87ttkh49xi.fsf@kernel.org>
+	<e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+	<87h6gh406w.fsf@kernel.org>
+	<ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
+	<871q6tu6bn.fsf@kernel.org>
+	<de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr>
+	<87msphsb3b.fsf@kernel.org> <20240425-monopoly-barn-45608dae0996@spud>
+Date: Thu, 25 Apr 2024 19:39:34 +0300
+In-Reply-To: <20240425-monopoly-barn-45608dae0996@spud> (Conor Dooley's
+	message of "Thu, 25 Apr 2024 17:02:56 +0100")
+Message-ID: <87il05s8ft.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=801; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=bJxc87ZNEk362nkKg2nRaOFgtTkAl1SGbkD4frpyflQ=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGlabedYs18IXejeeysgQ2bLY72N9iyXeqdyt/zSM3JPY bD8ufFJRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACZiMpuRoSn+UliF38sVDzZL 3ztTf/TZvclJqvszzzyN0jpkr370/xRGho8GOf5Gz2bJO6xgybG9KrBnvYB1Q39Q7Y7ZTTf+BH1 N4gcA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Conor Dooley <conor@kernel.org> writes:
 
-On Thu, 25 Apr 2024 10:21:31 +0200, Thomas Bonnefille wrote:
-> This adds I2C support in the device tree of the T-Head TH1520 RISCV-SoC
-> and a default configuration for the BeagleV-Ahead. It appears that the
-> TH1520 I2C is already supported in the upstream kernel through the
-> Synopsis Designware I2C adapter driver.
-> As there is no clock driver for this board as of today, this patch
-> series uses a fixed-clock named i2c_ic_clk.
-> There is also no pinctrl driver yet so pinmux must be handled manually
-> for now.
-> It also fixes the order of the nodes in the device tree to comply with
-> device-tree coding-style.
-> 
-> [...]
+> On Thu, Apr 25, 2024 at 06:42:16PM +0300, Kalle Valo wrote:
+>
+>> Marc Gonzalez <mgonzalez@freebox.fr> writes:
+>> 
+>> > On 25/04/2024 11:42, Kalle Valo wrote:
+>> >
+>> >> Marc Gonzalez wrote:
+>> >> 
+>> >>> Do you prefer:
+>> >>>
+>> >>> Option A = never waiting for the MSA_READY indicator for ANYONE
+>> >>> Option B = not waiting for the MSA_READY indicator when
+>> >>> qcom,no-msa-ready-indicator is defined
+>> >>> Option C = not waiting for the MSA_READY indicator for certain
+>> >>> platforms (based on root compatible)
+>> >>> Option D = some other solution not yet discussed
+>> >> 
+>> >> After firmware-N.bin solution didn't work (sorry about that!) my
+>> >> preference is option B.
+>> >
+>> > Actually, Option B is this patch series.
+>> > Could you formally review it?
+>> 
+>> I'm happy with this series and would take it to ath.git, just need an
+>> ack from DT maintainers:
+>
+> As far as I can tell, Krzysztof wanted a commit message update for
+> 1/3.
 
-Applied to riscv-dt-for-next, thanks!
+That's my understanding as well, I assume Marc will submit v3. I marked
+this patchset as 'Changes Requested' in patchwork.
 
-[2/4] riscv: boot: dts: thead: Fix node ordering in TH1520 device tree
-      (no commit info)
+> Usually this dts patch would go via the qcom dts tree, so presumably
+> there's a need for an Ack from Bjorn or Konrad?
 
-I removed the "boot:" so b4 is probably confused.
+Thanks pointing this out. What I meant to say earlier that I'm happy to
+take patches 1-2 to ath.git but I prefer that patch 3 goes via qcom dts
+tree.
 
-Thanks,
-Conor.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
