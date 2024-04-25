@@ -1,139 +1,103 @@
-Return-Path: <devicetree+bounces-62889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503528B2D85
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 01:21:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A088E8B2DA8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 01:40:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC01C1F22CA3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 23:21:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 565201F22FC8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 23:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3490156654;
-	Thu, 25 Apr 2024 23:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B507A157492;
+	Thu, 25 Apr 2024 23:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Vu9PR72t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8NJRlYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E15A15664A;
-	Thu, 25 Apr 2024 23:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748D1156647;
+	Thu, 25 Apr 2024 23:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714087265; cv=none; b=LSmvEdLySDOe9EnRqfRUxxLr4jl0UL6bzQJ5MY8WQkcTDVOsXakTunCEHQyvjmkmHabqXmfa3JT4nZqVRUW/7wZNWXFWKigOy+I3dNCv1dxNIfq2j9Va5P7G0V6La89b1Ap/lFv3X6rDcnlX7Mfx1ox2Jp1GpaQPrHTcSEtpLMQ=
+	t=1714088399; cv=none; b=gX5tTu9Ah7rw1qcmmqH0RwQ5MCcCUkRNhy8uQgJZv0voMCyoEme9J8ayjjotxYnI3mcZ8k5UzldBUZP/f1bS5lbM/UsMmT1quNVMKrcSTWz5ZFBCnCjYHUzCq8PCpVbTX7m5y52HqOTiMEGdzK81sURxN9aOg0LvC8NY0+htE7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714087265; c=relaxed/simple;
-	bh=pFLOWFAKLZl326kN1M3nfbqivRN7E2erUMVpSWctlPo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=vCvMcN8+8pEnuM4uXVCCupYqL361uHQL028HV882VtFntpPjznVe0fsLSFG5SGLUeLLSmLVvnbXG/UMJWduhBWsmbDKSHOIq0xhHOSXXJb1siF426kBcadT85dXCOlknOhBYhFjfvm3HzvmISfSFK+wEdc+gkItHdyMBH27Gbig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Vu9PR72t; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43PN3jcJ025178;
-	Thu, 25 Apr 2024 23:21:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Z3/6zU11FTdUX6G1mY0fYoZwfDYlLT+dxZNI6+urIMI=; b=Vu
-	9PR72th1kbrclW8KWDktYPQTRUQzTdMXlGraqCCzVqUOAMKuQeALSLAe2XMAOlhb
-	ZN30oC193axfnABF3t4XLvPer9tv4J//Rw0ISSJXM1AHEcl/PI6z/GQqUTekLGox
-	CEWv7rnyf1YlHTdxnj6DcgebT7gK030Ea3SohMozneqsuv7FCsPMuFwXAW88FBy1
-	SeW6+AYckv6/2HYwtppOlKuSvO/eN4QP5z4uZVJkZI8qBDDFgLc7RaD6bUJxvam8
-	blUSnv3MkDA/dCFlpPU7SFxZqSLdqIdeQxpkKkM/VxJNuT5P98W22Ch+NW+nbEik
-	WgAwnMTZDpNtnJsc0KUw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xqenh3wcx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Apr 2024 23:20:59 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43PNKxde028896
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Apr 2024 23:20:59 GMT
-Received: from [10.46.19.239] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 25 Apr
- 2024 16:20:55 -0700
-Message-ID: <c5329e9a-6947-4070-a24b-8985724b9981@quicinc.com>
-Date: Thu, 25 Apr 2024 16:20:54 -0700
+	s=arc-20240116; t=1714088399; c=relaxed/simple;
+	bh=/oN2iGCiL+NicvCJAspV+Q8NPoc1Br/lYrDCPGBMVNM=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=MuXe4UCXdApURbcNhgzlxNL14VzY5cf324o6kkD+gI3P0euEd8HwqhEODdQ7MlRCu+W3c1ldqsDyuBFPS0ugs6wv7/ooaylfizChptMNBhehARg1aTd5LDnrx0dw+UneT77VRYkWk8LJNNnmyh0Lv8qxaVKrjQ2z0OcfXlrUcf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q8NJRlYV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE7D7C113CC;
+	Thu, 25 Apr 2024 23:39:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714088399;
+	bh=/oN2iGCiL+NicvCJAspV+Q8NPoc1Br/lYrDCPGBMVNM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=Q8NJRlYVdYooFr1LJ/zQYNSD6DtJ+hQ5FyOs+/6W/ul3ud90x5zt6Ex1RbYGoZKV3
+	 qukqvWj3AjRmAlVs0x6RbdfjulyPHFvJCcKppdTVfIL7ZnRUB8FhhOkpv8c+lwDg1q
+	 IywI4SQ8AxQr3gtPN9Cc2b8e0grCqC11wf7zb7LXbHxOJ4Zrb5w40lRnNpWLR4kXjR
+	 uZLkWrEKMZN9puXb0XDvWNXd/PCsRadQS9OT70dxVerVy/1IT70IZqn6v/Y2Cf5CAq
+	 KSLOCn3d3botO3EfDUBR48FzAupB01ttVy8VqmXrc7DVrac4MHI/LyqwTlHvSXsqXx
+	 vOz9P3QoGeSeA==
+Date: Thu, 25 Apr 2024 18:39:57 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: mark ethernet devices as
- DMA-coherent
-Content-Language: en-US
-To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240425-mark_ethernet_devices_dma_coherent-v1-1-ad0755044e26@quicinc.com>
-From: "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com>
-In-Reply-To: <20240425-mark_ethernet_devices_dma_coherent-v1-1-ad0755044e26@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5tN3PmuJ0LIL42exdfcKXM6qZdzo9NLR
-X-Proofpoint-GUID: 5tN3PmuJ0LIL42exdfcKXM6qZdzo9NLR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-25_21,2024-04-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 impostorscore=0 spamscore=0 priorityscore=1501 mlxscore=0
- mlxlogscore=758 bulkscore=0 clxscore=1011 suspectscore=0 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404250171
+From: Rob Herring <robh@kernel.org>
+To: Eddie James <eajames@linux.ibm.com>
+Cc: linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org, 
+ andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, joel@jms.id.au, 
+ krzk+dt@kernel.org, linux-fsi@lists.ozlabs.org, lakshmiy@us.ibm.com, 
+ linux-aspeed@lists.ozlabs.org
+In-Reply-To: <20240425213701.655540-2-eajames@linux.ibm.com>
+References: <20240425213701.655540-1-eajames@linux.ibm.com>
+ <20240425213701.655540-2-eajames@linux.ibm.com>
+Message-Id: <171408839602.3902645.11975304379095234562.robh@kernel.org>
+Subject: Re: [PATCH v3 01/14] dt-bindings: spi: Document the IBM Power SPI
+ controller
 
 
-
-On 4/25/2024 4:07 PM, Sagar Cheluvegowda wrote:
-> Ethernet devices are cache coherent, mark it as such in the dtsi.
+On Thu, 25 Apr 2024 16:36:48 -0500, Eddie James wrote:
+> The IBM Power chips have a basic SPI controller. Document it.
 > 
-> Change-Id: Id180fae617f2e348c0a80c6664b131cc57fcb4d6
-Remove internal change id. 
-Not required for upstreaming any changes. 
-> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/spi/ibm,p10-spi.yaml  | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/ibm,p10-spi.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 231cea1f0fa8..5ab4ca978837 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2504,6 +2504,7 @@ ethernet1: ethernet@23000000 {
->  			phy-names = "serdes";
->  
->  			iommus = <&apps_smmu 0x140 0xf>;
-> +			dma-coherent;
->  
->  			snps,tso;
->  			snps,pbl = <32>;
-> @@ -2538,6 +2539,7 @@ ethernet0: ethernet@23040000 {
->  			phy-names = "serdes";
->  
->  			iommus = <&apps_smmu 0x120 0xf>;
-> +			dma-coherent;
->  
->  			snps,tso;
->  			snps,pbl = <32>;
-> 
-> ---
-> base-commit: a93289b830ce783955b22fbe5d1274a464c05acf
-> change-id: 20240425-mark_ethernet_devices_dma_coherent-6c6154b84165
-> 
-> Best regards,
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/ibm,p10-spi.example.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240425213701.655540-2-eajames@linux.ibm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
