@@ -1,116 +1,104 @@
-Return-Path: <devicetree+bounces-62556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C2E8B1A44
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:17:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66BD8B1A4A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5256028197D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 05:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24A4D1C2131C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 05:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A503A1BF;
-	Thu, 25 Apr 2024 05:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BC03BB48;
+	Thu, 25 Apr 2024 05:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="j46R/NrE";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="m41kyz8+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="suBrA2gp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25653A268;
-	Thu, 25 Apr 2024 05:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116743A29C
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 05:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714022243; cv=none; b=RpPjCsqdDYlvqSVl1ruCcpzEegrTb2uaMHQRNQvuBYan/lx2a/xBuOn2XoiQbBG6ytqtGXX9Hnx71ypyGU/69BYp8S2jxSFV5azBAlt/GmXFN1nbmyRSo4jIVUiBNlCN2nELpe6D0ZMerZWrGMBNQuWdt2864XRXgVFUy8jLDcw=
+	t=1714022485; cv=none; b=pdORiBnsYt/XyZglGBkEdFoODRJITILq3M6iU8YXIhEpg4mIIf4+PyxYzEiAjKIyRv2mPQ862oPOnkGRD/WhFrO6FNcO+svRLXbvytJk6Ep7qK8I/2jMDBVKSIgJhXnsze85U4j1X8TfSskCRl/O+kbN/1/BRFMASb5yg9Fyhew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714022243; c=relaxed/simple;
-	bh=RK2YlCh2s9KnyoLCc1jJ8rRT18CZqFxUXklyFFkdZSE=;
-	h=Subject:Date:From:To:Cc:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qk1RY6Su6VY//iBE02DqXVnVpJ7UO7pJVIrPZze+INMIssNBEWawApFY9u2DEkIGX2vfynEb2BqM9OWQg76z9hGXPPETXZ5q5ZiMC/RFfyBrbVJm8lbHR0H6lecZG+QpnXxn91X6NSrCtrcofSp675BiGxvdmHjOZObS+IHW8IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=j46R/NrE; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=m41kyz8+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1714022485; c=relaxed/simple;
+	bh=a/Ze0XaYIX82SEU6e5VyR23SvkdBDxsyR/DAhqj7Vy8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KpKfxxntHjhT1RWCphj9EsQglNB79rVjfsGCDbcB2gpQOz+LJikGEIKkuupLWJ3nVap6z7RlXYWJh20OjE6IcHbg7EeBPL2mSWsICF3rROLes3oxiXDesCx2D/napJDgPBWjYLjPlV7L0I17jykSydyItanzx8h5HXtw0FrZkPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=suBrA2gp; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1e65b29f703so4955715ad.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 22:21:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1714022240; x=1745558240;
-  h=date:from:to:cc:message-id:references:mime-version:
-   content-transfer-encoding:in-reply-to:subject;
-  bh=/xj/OOBC3+MsFiy3PYCAgX5GBgEu3yvNZiuEeiuPbtE=;
-  b=j46R/NrErrdUiQne0KGY6LkJUm8xy0dvpDMvOMdPmnadVgoNjXg9InM7
-   cU4tq6CdOUI0cHabWkK26YtKGn3QcXSWg8nWGy2w5ZxauXAXWF+0Y0pbT
-   VD0OgEEZ3OxehwiHNIvggFsERSiebIqdBah+vnDGo2KLNh43+AIiKqWRs
-   ISl4DfgWH8Wo/foxLq873fde+FmG9lREKggLNjnyPIySWpJYd161xhLw9
-   pNzwhL1X5QxMqcziKHzV5GWKSLZXp5Bq1e41/z5AAT/5ohZFwRLMcQC7r
-   OSebZrEeCAw0Yy4pr+HSOunDO7oAs5qQY3GQdJAMWWuGESlBvgPycefOP
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.07,228,1708383600"; 
-   d="scan'208";a="36602300"
-Subject: Re: Re: [PATCH 1/4] can: mcp251xfd: stop timestamp before sending chip to
- sleep
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Apr 2024 07:17:17 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 07567170DA8;
-	Thu, 25 Apr 2024 07:17:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1714022233;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=/xj/OOBC3+MsFiy3PYCAgX5GBgEu3yvNZiuEeiuPbtE=;
-	b=m41kyz8+Hl86bU/LuB0roKPfJ9HH4G9cxaI4h2qJX9AcbSqdCzSz6kMRfbfHehajlTMlpW
-	ydzEgEhr15jSo6TSkOtWyrqtlzHnKC1hsxNWp/LdKQyyFWuw5Q9vdE4gOU3CATG+Q1BhzA
-	Tm9vDm7aiTFYbMgR6ErSiVRZ52ZmyvEFw/RVxpSZdp1UyCtgp9xPBT0HqGlLF69N4iM7We
-	235dcejgD5CPqcCUHy6BqnRDNh9eoouOXyqnnlqNHLDf38Sxr6vqhk7OiOfni1IVD5S4+S
-	utTCAVEktHx5HRJE14DzJ21/TCuSUlCNg5nQ0ys94OsknXoOho3ddYJLPDMZQQ==
-Date: Thu, 25 Apr 2024 07:17:11 +0200
-From: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Thomas Kopp <thomas.kopp@microchip.com>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux@ew.tq-group.com,
-	alexander.stein@ew.tq-group.com
-Message-ID: <ZinnV+GA20LWGUOV@herburgerg-w2>
-References: <20240417-mcp251xfd-gpio-feature-v1-0-bc0c61fd0c80@ew.tq-group.com>
- <20240417-mcp251xfd-gpio-feature-v1-1-bc0c61fd0c80@ew.tq-group.com>
- <20240424-adaptable-zircon-badger-1fefd9-mkl@pengutronix.de>
+        d=linaro.org; s=google; t=1714022482; x=1714627282; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hfPEYMjCse3hc+5i+GB80yGJpW4zA31MSrCQZzYF+HI=;
+        b=suBrA2gpIFGxodgAuFQ4enXYFu7G9fw3HJ7UoGyB/1Ookm28P/aKzT2EBkKtuIR430
+         MAXu9v4OAcrB1jhGKMFvIwCMELhYoSrY3z/efn76hDp4DxdCI5mKPJ0wSoRvqgYEJKLp
+         Tr5urlQyDSL0ehhlRZ4FQmQDwckU+D9B6eKY0IHDyHjBNTQ9tCpOXhz1CuAp+evCbMHg
+         mhhWpwZSjloAdcyfxCKNH2AtEIuLncaAqHGsb/XrPwl2QpYWdFQMCoKq7UovARpDnjyg
+         f4KqSeZgj0ANm0tOcKhe2gqZshWgD9rHmFSdLqRaeVFMu2VpfHYKWTClLBVzmNbsl8nb
+         kpxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714022482; x=1714627282;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hfPEYMjCse3hc+5i+GB80yGJpW4zA31MSrCQZzYF+HI=;
+        b=BQPUC2kaD5Sh5UEloa+elWui6nim+xOxBbZ6YI/QtQhNtkDF3CwCKXNlkeck7iGCfI
+         rtGuSJlK0aKtUAWjfO+AgaaHI6c63S9FYQ6qvh3wuk+bedp01uLoSvqFUhJdIVwIrJGu
+         MopdFVnfs0kG2aqEYLPAhgv70G0FdMboxTvN6OksbVMmOGofA9cV7l/60FLlIXsROiDQ
+         Yaqxomi6NZayTVb8E8VttmF490Y+4vnrTD24KF5LVONOKgC7MzFYFvRGjPAyX+QSUO/f
+         zEIq0mD5ZHccZQY4RMoyJPHwE5u+3N7DrCTv2D/xzW4tEsVkXDH1noyrM+ZUk5V2DIyG
+         pEnw==
+X-Forwarded-Encrypted: i=1; AJvYcCVmS2x1JuFeO6zxne/ffKLklouzH68KHGkC50NBKd8FqoY2Ts356mCFDaPAT9V/4XO3vWg4Lo4BYx32oo41C2CbQixlCuXq+8yc3g==
+X-Gm-Message-State: AOJu0YwzCyTthh+NhwLbb7NwKYlpjeyIOdAnYbMAvYt5pgmEOn4+BhYA
+	2M4zCG4X5a7hQE4dPnqYcqveGqt2qExyf1Ezkc3SiRiU9MH+FoGAxeKH70tAmpY=
+X-Google-Smtp-Source: AGHT+IHsjEPrL6/F99lSPpofK2eJpm83AjyY8IbLEp7TdKZ8z822eApg7+tOx98XayD4XYnylEbyaQ==
+X-Received: by 2002:a17:903:2985:b0:1e5:2883:6ff6 with SMTP id lm5-20020a170903298500b001e528836ff6mr5973817plb.11.1714022482116;
+        Wed, 24 Apr 2024 22:21:22 -0700 (PDT)
+Received: from localhost ([122.172.87.52])
+        by smtp.gmail.com with ESMTPSA id l8-20020a170903244800b001ea9580e6a0sm1140996pls.20.2024.04.24.22.21.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Apr 2024 22:21:21 -0700 (PDT)
+Date: Thu, 25 Apr 2024 10:51:19 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: rafael@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	manivannan.sadhasivam@linaro.org, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SM4450
+ compatibles
+Message-ID: <20240425052119.3hsibpa4to6nzll6@vireshk-i7>
+References: <20240424101503.635364-1-quic_tengfan@quicinc.com>
+ <20240424101503.635364-2-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240424-adaptable-zircon-badger-1fefd9-mkl@pengutronix.de>
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <20240424101503.635364-2-quic_tengfan@quicinc.com>
 
-On Wed, Apr 24, 2024 at 01:54:54PM +0200, Marc Kleine-Budde wrote:
-> On 17.04.2024 15:43:54, Gregor Herburger wrote:
-> > MCP2518FD exits Low-Power Mode (LPM) when CS is asserted. When chip
-> > is send to sleep and the timestamp workqueue is not stopped chip is
-> > waked by SPI transfer of mcp251xfd_timestamp_read.
+On 24-04-24, 18:15, Tengfei Fan wrote:
+> Add compatible for EPSS CPUFREQ-HW on SM4450.
 > 
-> How does the Low-Power Mode affect the GPIO lines? Is there a difference
-> if the device is only in sleep mode?
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-The MCP251XFD_REG_IOCON is cleared when leaving Low-Power Mode. This is
-why I implemented regcache.
+Applied. Thanks.
 
-Best regards
-Gregor
 -- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-https://www.tq-group.com/
+viresh
 
