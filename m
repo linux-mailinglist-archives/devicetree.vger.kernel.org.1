@@ -1,197 +1,584 @@
-Return-Path: <devicetree+bounces-62560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31D688B1A62
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:40:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8BA8B1A8F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E40FA282270
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 05:39:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FC701C21051
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:03:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7CE53BBF6;
-	Thu, 25 Apr 2024 05:39:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="N8PVrIr0";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="hAMh3WM/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674D53FBB7;
+	Thu, 25 Apr 2024 06:02:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh6-smtp.messagingengine.com (wfhigh6-smtp.messagingengine.com [64.147.123.157])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8643BBEA
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 05:39:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0872B3D0A4
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 06:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714023595; cv=none; b=smNCX8tWa1esPjYqAAVdkvBF2U0em3KScebOezc3gkQN8AJFoHyKnXrerfXhT946+lg5NPkpb85iLI4tZoEU93r7dfGu8WFCKHUxwOKeZK1kd90sTajG+1St4kfSwdArS+gMK7Q9lWAOTYUng3+Zm6e0oSD35q1W94XHj24NahU=
+	t=1714024975; cv=none; b=KjS99iZtIZdpMKxT5HtK1YCAZ4lmhsqPT2p8mgXz7aVZr0dxEqAAI6g0DzdoL8PCuUdWTXaeYiX7OmvR8o+vOjD8GyTFM3EuKA1inhPKg3NJhounpo42+EQIUSQTP4diYJVSgsvxk1mLSzniNaR9LimtuUXZ7NUF4Olmdd5XmJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714023595; c=relaxed/simple;
-	bh=G+Pq9WK+Pf3AsXknbqoKgSyofmS2y1qL8CXJIT+xHcI=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=cMRtfJJn7BhDzlm/2z8Zr28I9OT2bztXnObPPmKgZhHA1AeNqfoAJVzBWS4tjYmK/chvfaFmdUyqaoVObiVPXnn06VSEPABZCWLyQd5tF8gHys9eHFOuV7DBLtOeEBsso8TgKTTTqP0gPAwJ6SeAiG+Ku+rNg6//+zid2+Y8FAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=N8PVrIr0; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=hAMh3WM/; arc=none smtp.client-ip=64.147.123.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.west.internal (Postfix) with ESMTP id B632B180014E;
-	Thu, 25 Apr 2024 01:39:52 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Thu, 25 Apr 2024 01:39:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1714023592; x=
-	1714109992; bh=8CrF5G9B7rbf4ywUM/FE/UWCnhlsJxP5TcR1bLPuTww=; b=N
-	8PVrIr0RDlNz+hVpwsiqMQEbY9v0XkWjGEccBHNdTo1PUcp2LmxJcNCA76K9hylN
-	hjMGZZPAcWL84sdqim0dSJ1r0njVFq7VSdyiypTL+UCgi5AgLoHjhGpk9qY5C+Ek
-	BHXn5AKIrLo9BweY3vd/1nclLYTdkKOyhtoXUSHAhEknfzBOhyYi/JicuN9x83Ol
-	QJvKEhhHsl8qizNWOR458MzgWQzE5qot+BB6g1sd+Njr6rjchpc8YPizl60Xq2oB
-	0fUzbtUIqeOpD7d6id3l56IaFpSI4SoEFh0slL40sP9vP5foHNSLdYNsIbyByw5y
-	qjDCU9E793KwvcOpSJY/Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1714023592; x=1714109992; bh=8CrF5G9B7rbf4ywUM/FE/UWCnhls
-	JxP5TcR1bLPuTww=; b=hAMh3WM/ROdjXX0Spdbkz4uBo+qjh3m2Ud9y5ARpkZmt
-	EGdM6fESOMYGT3AsLS6el+lbSZzfdU85qP8LRbedda1gQtfVCw2P5J5k3FS1woXt
-	TSXrboInUcAFQvKdfx3oqRCNPIlFFQaHFzipO6BFkoJu5chW6exlyNawN9NUMoHE
-	7aksvuVaYicLOgo1H4T6Djcm6o8noEflYcpwJFiXAg1bKig7Stnd21PhjjIMJh/3
-	0LYzi+3gt52BBVh9Rhf3yNDeAfd/e05eb6Ml15Wvw1bVznS4wBBlyfe4lfwtJWmx
-	a42VCrOac0lcJFr0wthvMM7p1PN+bf5xAlToUhGYlA==
-X-ME-Sender: <xms:p-wpZi5zLL0j5Wd7ClYP2Pysa1sngz0kW0b7PT2pg-BwLUVqnopzig>
-    <xme:p-wpZr56xtUUknIGfc8R1UnfDY_GqjK0bU2Wq7MSy_UQh3AWZMCXuaw69s0CFNSSK
-    3oMdBg97HL4SkddVw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudeliedguddtudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdft
-    higrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenuc
-    ggtffrrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefg
-    teeuveeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomh
-X-ME-Proxy: <xmx:p-wpZhdPUTruPxbM1DpQ9GsoBCaHNjP_PwScaK1gDvVcnRNhTRDqFw>
-    <xmx:p-wpZvLCxAGSQzizPxAuUYbSdVQjU1zpgd2tQrKSR2DQJVWPaNLD-w>
-    <xmx:p-wpZmIxSFf_l1IZ49rlZrnQxkKClYbWMbNOluzKhW4LyS549wI-Ew>
-    <xmx:p-wpZgyvWQkqnjE8-jZv_GHf8ey0m0QEeeij78-UBpJ8pI7JiDBwPw>
-    <xmx:qOwpZl8rXh-3Z1oIvihcYGTsnOCS6nEpAtc6Pyd4o9li_QamkdsTaCFe>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id A6FF4A60078; Thu, 25 Apr 2024 01:39:51 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-386-g4cb8e397f9-fm-20240415.001-g4cb8e397
+	s=arc-20240116; t=1714024975; c=relaxed/simple;
+	bh=X260nqXkj01Crp6UcW+UrZ9fcM3WyshZ7Bw8QQui1DM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U1i4VmjjB6pLgpf8upGcNhtYz0IjJgcA6Y+wPIkD6A+EntRE4dlKQ8VqBFtggaZZUiA596lNpb/BlFSLQt6YDA1frHYb0kr45MG6x0Ht+zta8ehz0KGeVvpUK8ruI+IexQOEd6PbvwCQ6ZRrZIXz5WCjOKs2WCQaLEuXFMhbbUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rzsBa-0001Th-HB; Thu, 25 Apr 2024 08:02:22 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rzsBU-00ECvV-2D; Thu, 25 Apr 2024 08:02:16 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rzsBT-008M1e-37;
+	Thu, 25 Apr 2024 08:02:15 +0200
+Date: Thu, 25 Apr 2024 08:02:15 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Xilin Wu <wuxilin123@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Junhao Xie <bigfoot@classfun.cn>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Tengfei Fan <quic_tengfan@quicinc.com>, 
+	Molly Sophia <mollysophia379@gmail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 02/10] pwm: Add SI-EN SN3112 PWM support
+Message-ID: <rzxzqgx65m7yo2btzh5dzcxuqquszujdvffq2dippdak2qdx7c@g77efrhjyure>
+References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
+ <20240424-ayn-odin2-initial-v1-2-e0aa05c991fd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <429b3f1e-c42e-481b-adee-56852243535a@app.fastmail.com>
-In-Reply-To: 
- <DM4PR05MB9229EE6BE60831DFD6C37A62A5172@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240424110947.9057-1-ryan@testtoast.com>
- <20240424110947.9057-3-ryan@testtoast.com>
- <20240425012559.44528ee9@minigeek.lan>
- <DM4PR05MB9229EE6BE60831DFD6C37A62A5172@DM4PR05MB9229.namprd05.prod.outlook.com>
-Date: Thu, 25 Apr 2024 17:39:31 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Andre Przywara" <andre.przywara@arm.com>
-Cc: "Chen-Yu Tsai" <wens@csie.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 2/4] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-Content-Type: text/plain
-
-On Thu, 25 Apr 2024, at 1:58 PM, Chris Morgan wrote:
-> On Thu, Apr 25, 2024 at 01:25:59AM +0100, Andre Przywara wrote:
->> On Wed, 24 Apr 2024 23:09:45 +1200
->> Ryan Walklin <ryan@testtoast.com> wrote:
->> 
->> Hi Ryan (and Chris),
->> 
->> many thanks for the changes, that looks really close now. Only a few
->> smaller comments this time.
->> 
-Thanks both for the review.
-
->> > +&mmc2 {
->> > +	vmmc-supply = <&reg_cldo4>;
->> > +	vqmmc-supply = <&reg_aldo1>;
->> 
->> This is now fixed to 1.8V, which doesn't look right. Either it's not
->> the right regulator, or you should extend its range to cover 3.3V as
->> well.
->
-> The IO is fixed at 1.8v (both the SDIO pins and the UART1 pins for
-> bluetooth). If you raise this regulator too high the system becomes
-> unstable.
->
-Ideally LV signalling would work for UHS but unsure if that is achievable. FWIW the vendor BSP does refer to the vqmmc supply being ALDO1 but allows a range up to 3.5v. Will test out a 3.3v max and confirm it is unstable.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="be7227a7w5ahl2v7"
+Content-Disposition: inline
+In-Reply-To: <20240424-ayn-odin2-initial-v1-2-e0aa05c991fd@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
->> > +&r_rsb {
->> > +   status = "okay";
->> 
->> This is indented with spaces, not a tab.
-Fixed, ta.
+--be7227a7w5ahl2v7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> > +		regulators {
->> > +			reg_dcdc1: dcdc1 {
->> > +				regulator-always-on;
->> > +				regulator-boot-on;
->> 
->> boot-on doesn't make much sense here: that allows it to be turned off,
->> which we don't want. Also the binding documentation in regulator.yaml
->> says that it's only intended "where software cannot read the state of
->> the regulator", which is not true here.
->> regulator-always-on is all we need - technically speaking not even
->> that, since cpu0 is a consumer, but we need to play safe here.
+Hello,
 
-Thanks for the explanation, this and others fixed.
+On Wed, Apr 24, 2024 at 11:29:07PM +0800, Xilin Wu via B4 Relay wrote:
+> From: Junhao Xie <bigfoot@classfun.cn>
+>=20
+> Add a new driver for the SI-EN SN3112 12-channel 8-bit PWM LED controller.
+>=20
+> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
 
->> > +			reg_aldo3: aldo3 {
->> > +				regulator-always-on;
->> > +				regulator-min-microvolt = <1800000>;
->> > +				regulator-max-microvolt = <1800000>;
->> > +				regulator-name = "axp717-aldo3";
->> 
->> So do we know for sure that's critical? And do we have any clue what
->> this supplies?
->> There is AVCC, VCC_HDMI, VCC_TV, VCC_RTC, all at 1.8V. The middle two
->> are not critical.
->> 
-Unsure currently, but can try with the HDMI patchset and see if I can identify VCC_HDMI at least. At least one of the audio-codec-connected regulators is presumably AVCC for the amp.
+Missing S-o-b for patch sender.
 
->> > +			};
->> > +
->> > +			reg_aldo4: aldo4 { /* 5096000.codec */
->> > +				regulator-always-on;
->> 
->> Is that necessary? What happens if that is turned off? Looks like only
->> the WiFi and potentially audio is affected? I think it can go then,
->> also pg-supply would reference it, so it would effectively be enabled
->> anyways.
->
-> I think this does something critical, as in my testing tinkering with
-> this regulator or turning it off locks up the system.
+> ---
+>  drivers/pwm/Kconfig      |  10 ++
+>  drivers/pwm/Makefile     |   1 +
+>  drivers/pwm/pwm-sn3112.c | 336 +++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 347 insertions(+)
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 1dd7921194f5..e21c37c7991e 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -553,6 +553,16 @@ config PWM_SL28CPLD
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-sl28cpld.
+> =20
+> +config PWM_SN3112
+> +	tristate "SI-EN SN3112 PWM driver"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  Generic PWM framework driver for SI-EN SN3112 LED controller.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-sn3112.
+> +
+>  config PWM_SPEAR
+>  	tristate "STMicroelectronics SPEAr PWM support"
+>  	depends on PLAT_SPEAR || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 90913519f11a..6aab2d113159 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -50,6 +50,7 @@ obj-$(CONFIG_PWM_RZ_MTU3)	+=3D pwm-rz-mtu3.o
+>  obj-$(CONFIG_PWM_SAMSUNG)	+=3D pwm-samsung.o
+>  obj-$(CONFIG_PWM_SIFIVE)	+=3D pwm-sifive.o
+>  obj-$(CONFIG_PWM_SL28CPLD)	+=3D pwm-sl28cpld.o
+> +obj-$(CONFIG_PWM_SN3112)	+=3D pwm-sn3112.o
+>  obj-$(CONFIG_PWM_SPEAR)		+=3D pwm-spear.o
+>  obj-$(CONFIG_PWM_SPRD)		+=3D pwm-sprd.o
+>  obj-$(CONFIG_PWM_STI)		+=3D pwm-sti.o
+> diff --git a/drivers/pwm/pwm-sn3112.c b/drivers/pwm/pwm-sn3112.c
+> new file mode 100644
+> index 000000000000..38ef948602a3
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-sn3112.c
+> @@ -0,0 +1,336 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for SN3112 12-channel 8-bit PWM LED controller
+> + *
+> + * Copyright (c) 2024 Junhao Xie <bigfoot@classfun.cn>
+> + *
+Please document here some hardware features in the same format as e.g.
+pwm-sl28cpld.c such that
 
-Agreed, unclear what else it is powering but at least the G-bank of GPIOs and also possibly VCC18_DRAM for the DRAM controller?
+	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/*.c
 
+can easily extract it. Interesting facts that I want to have documented
+are:
 
->> > +			reg_cldo1: cldo1 { /* 5096000.codec */
->> > +				/* unused */
->> > +				regulator-min-microvolt = <3300000>;
->> > +				regulator-max-microvolt = <3300000>;
->> 
->> Looks a bit odd to have an "unused" comment, but also a voltage range
->> specified. Judging from the comment this might be supplying some audio
->> circuitry, which we don't need at the moment?
+ - How does the HW behave on reconfiguration, i.e. does it complete the
+   active period or is it aborted and can it happen that the signal
+   gliches (e.g. because it emits for a moment a signal using the old
+   period but the new duty cycle).
 
-Thanks, have removed the range for now.
+ - How does the HW behave on disable? Does it complete the active
+   period? Does it emit low? Or the inactive level? Or does it freeze?
 
-Ryan
+ - "Doesn't support read-back of configured output" belongs here.
+
+ - Only supports a single fixed period and normal polarity.
+
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#define SN3112_CHANNELS 12
+> +#define SN3112_REG_ENABLE 0x00
+> +#define SN3112_REG_PWM_VAL 0x04
+> +#define SN3112_REG_PWM_EN 0x13
+> +#define SN3112_REG_APPLY 0x16
+> +#define SN3112_REG_RESET 0x17
+> +
+> +struct sn3112 {
+> +	struct device *pdev;
+
+pdev is a usual name for pointers to struct platform_device or struct
+pci_device. For struct device please use "dev".
+
+> +	struct regmap *regmap;
+> +	struct mutex lock;
+> +	struct regulator *vdd;
+> +	uint8_t pwm_val[SN3112_CHANNELS];
+> +	uint8_t pwm_en_reg[3];
+> +	bool pwm_en[SN3112_CHANNELS];
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+> +	struct gpio_desc *sdb;
+> +#endif
+> +};
+> +
+> +static int sn3112_write_reg(struct sn3112 *priv, unsigned int reg,
+> +			    unsigned int val)
+> +{
+> +	int err;
+> +
+> +	dev_dbg(priv->pdev, "request regmap_write 0x%x 0x%x\n", reg, val);
+> +	err =3D regmap_write(priv->regmap, reg, val);
+> +	if (err)
+> +		dev_warn_ratelimited(
+> +			priv->pdev,
+> +			"regmap_write to register 0x%x failed: %pe\n", reg,
+> +			ERR_PTR(err));
+> +
+> +	return err;
+> +}
+> +
+> +static int sn3112_set_en_reg(struct sn3112 *priv, unsigned int channel,
+> +			     bool enabled, bool write)
+> +{
+> +	unsigned int reg, bit;
+> +
+> +	if (channel >=3D SN3112_CHANNELS)
+> +		return -EINVAL;
+> +
+> +	/* LED_EN1: BIT5:BIT3 =3D OUT3:OUT1 */
+> +	if (channel >=3D 0 && channel <=3D 2)
+> +		reg =3D 0, bit =3D channel + 3;
+> +	/* LED_EN2: BIT5:BIT0 =3D OUT9:OUT4 */
+> +	else if (channel >=3D 3 && channel <=3D 8)
+> +		reg =3D 1, bit =3D channel - 3;
+> +	/* LED_EN3: BIT2:BIT0 =3D OUT12:OUT10 */
+> +	else if (channel >=3D 9 && channel <=3D 11)
+> +		reg =3D 2, bit =3D channel - 9;
+Please use ; instead of , and proper { }.
+
+And huh, this is inconsitent. Is it possible to renumber somehow such
+that this simplifies to
+
+	reg =3D channel / 3;
+	bit =3D channel % 3;
+
+?=20
+> +	else
+> +		return -EINVAL;
+> +
+> +	dev_dbg(priv->pdev, "channel %u enabled %u\n", channel, enabled);
+> +	dev_dbg(priv->pdev, "reg %u bit %u\n", reg, bit);
+> +	if (enabled)
+> +		set_bit(bit, (ulong *)&priv->pwm_en_reg[reg]);
+> +	else
+> +		clear_bit(bit, (ulong *)&priv->pwm_en_reg[reg]);
+> +	dev_dbg(priv->pdev, "set enable reg %u to %u\n", reg,
+> +		priv->pwm_en_reg[reg]);
+
+Even for dev_dbg this seems excessive. I guess now that the driver works
+at least for you, you can drop several of them.
+
+> +	if (!write)
+> +		return 0;
+> +	return sn3112_write_reg(priv, SN3112_REG_PWM_EN + reg,
+> +				priv->pwm_en_reg[reg]);
+> +}
+> +
+> +static int sn3112_set_val_reg(struct sn3112 *priv, unsigned int channel,
+> +			      uint8_t val, bool write)
+> +{
+> +	if (channel >=3D SN3112_CHANNELS)
+> +		return -EINVAL;
+> +	priv->pwm_val[channel] =3D val;
+> +	dev_dbg(priv->pdev, "set value reg %u to %u\n", channel,
+> +		priv->pwm_val[channel]);
+> +
+> +	if (!write)
+> +		return 0;
+> +	return sn3112_write_reg(priv, SN3112_REG_PWM_VAL + channel,
+> +				priv->pwm_val[channel]);
+> +}
+> +
+> +static int sn3112_write_all(struct sn3112 *priv)
+> +{
+> +	int i, ret;
+> +
+> +	/* regenerate enable register values */
+> +	for (i =3D 0; i < SN3112_CHANNELS; i++) {
+> +		ret =3D sn3112_set_en_reg(priv, i, priv->pwm_en[i], false);
+> +		if (ret !=3D 0)
+> +			return ret;
+> +	}
+> +
+> +	/* use random value to clear all registers */
+> +	ret =3D sn3112_write_reg(priv, SN3112_REG_RESET, 0x66);
+> +	if (ret !=3D 0)
+> +		return ret;
+> +
+> +	/* set software enable register */
+> +	ret =3D sn3112_write_reg(priv, SN3112_REG_ENABLE, 1);
+> +	if (ret !=3D 0)
+> +		return ret;
+> +
+> +	/* rewrite pwm value register */
+> +	for (i =3D 0; i < SN3112_CHANNELS; i++) {
+> +		ret =3D sn3112_write_reg(priv, SN3112_REG_PWM_VAL + i,
+> +				       priv->pwm_val[i]);
+> +		if (ret !=3D 0)
+> +			return ret;
+> +	}
+> +
+> +	/* rewrite pwm enable register */
+> +	for (i =3D 0; i < 3; i++) {
+> +		ret =3D sn3112_write_reg(priv, SN3112_REG_PWM_EN + i,
+> +				       priv->pwm_en_reg[i]);
+> +		if (ret !=3D 0)
+> +			return ret;
+> +	}
+> +
+> +	/* use random value to apply changes */
+> +	ret =3D sn3112_write_reg(priv, SN3112_REG_APPLY, 0x66);
+> +	if (ret !=3D 0)
+> +		return ret;
+> +
+> +	dev_dbg(priv->pdev, "reinitialized\n");
+> +	return 0;
+> +}
+> +
+> +static int sn3112_pwm_request(struct pwm_chip *chip, struct pwm_device *=
+pwm)
+> +{
+> +	struct sn3112 *priv =3D pwmchip_get_drvdata(chip);
+> +
+> +	if (pwm->hwpwm >=3D SN3112_CHANNELS)
+> +		return -EINVAL;
+
+You don't need to handle that, the pwm core cares for only passing sane
+values.
+
+> +
+> +	dev_dbg(priv->pdev, "sn3112 request channel %u\n", pwm->hwpwm);
+> +	pwm->args.period =3D 1000000;
+
+No, that yields too much surprises. Just handle that in .apply()
+
+> +	return 0;
+> +}
+> +
+> +static int sn3112_pwm_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	u64 val =3D 0;
+> +	struct sn3112 *priv =3D pwmchip_get_drvdata(chip);
+> +
+> +	if (pwm->hwpwm >=3D SN3112_CHANNELS)
+> +		return -EINVAL;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -EINVAL;
+> +
+> +	if (state->period <=3D 0)
+> +		return -EINVAL;
+
+Drop sanity checking. Only do:
+
+	if (state->period < MY_FIXED_PERIOD)
+		return -EINVAL;
+
+	duty_cycle =3D min(state->duty_cycle, MY_FIXED_PERIOD);
+
+> +
+> +	val =3D mul_u64_u64_div_u64(state->duty_cycle, 0xff, state->period);
+> +	dev_dbg(priv->pdev, "duty_cycle %llu period %llu\n", state->duty_cycle,
+> +		state->period);
+> +	dev_dbg(priv->pdev, "set channel %u value to %llu\n", pwm->hwpwm, val);
+> +	dev_dbg(priv->pdev, "set channel %u enabled to %u\n", pwm->hwpwm,
+> +		state->enabled);
+> +
+> +	mutex_lock(&priv->lock);
+> +	sn3112_set_en_reg(priv, pwm->hwpwm, state->enabled, true);
+> +	sn3112_set_val_reg(priv, pwm->hwpwm, val, true);
+> +	sn3112_write_reg(priv, SN3112_REG_APPLY, 0x66);
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops sn3112_pwm_ops =3D {
+> +	.apply =3D sn3112_pwm_apply,
+> +	.request =3D sn3112_pwm_request,
+> +};
+> +
+> +static const struct regmap_config sn3112_regmap_i2c_config =3D {
+> +	.reg_bits =3D 8,
+> +	.val_bits =3D 8,
+> +	.max_register =3D 24,
+> +	.cache_type =3D REGCACHE_NONE,
+> +};
+> +
+> +static int sn3112_pwm_probe(struct i2c_client *client)
+> +{
+> +	struct pwm_chip *chip;
+> +	struct sn3112 *priv;
+> +	int ret, i;
+> +
+> +	dev_dbg(&client->dev, "probing\n");
+> +	chip =3D devm_pwmchip_alloc(&client->dev, SN3112_CHANNELS, sizeof(*priv=
+));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	priv =3D pwmchip_get_drvdata(chip);
+> +	priv->pdev =3D &client->dev;
+> +
+> +	/* initialize sn3112 (chip does not support read command) */
+> +	for (i =3D 0; i < SN3112_CHANNELS; i++)
+> +		priv->pwm_en[i] =3D false;
+> +	for (i =3D 0; i < SN3112_CHANNELS; i++)
+> +		priv->pwm_val[i] =3D 0;
+> +	for (i =3D 0; i < 3; i++)
+> +		priv->pwm_en_reg[i] =3D 0;
+
+*priv is already zerod.
+
+> +	/* enable sn5112 power vdd */
+> +	priv->vdd =3D devm_regulator_get(priv->pdev, "vdd");
+> +	if (IS_ERR(priv->vdd)) {
+> +		ret =3D PTR_ERR(priv->vdd);
+> +		dev_err(priv->pdev, "Unable to get vdd regulator: %d\n", ret);
+
+Please use dev_err_probe()
+
+> +		return ret;
+> +	}
+> +
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+> +	/* sn5112 hardware shutdown pin */
+> +	priv->sdb =3D devm_gpiod_get_optional(priv->pdev, "sdb", GPIOD_OUT_LOW);
+> +	if (PTR_ERR(priv->sdb) =3D=3D -EPROBE_DEFER)
+> +		return -EPROBE_DEFER;
+
+devm_gpiod_get_optional has a dummy implementation, so please drop the
+#ifdef. Also handle all errors, not only EPROBE_DEFER.
+
+> +#endif
+> +
+> +	/* enable sn5112 power vdd */
+> +	ret =3D regulator_enable(priv->vdd);
+> +	if (ret < 0) {
+> +		dev_err(priv->pdev, "Unable to enable regulator: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	priv->regmap =3D devm_regmap_init_i2c(client, &sn3112_regmap_i2c_config=
+);
+> +	if (IS_ERR(priv->regmap)) {
+> +		ret =3D PTR_ERR(priv->regmap);
+> +		dev_err(priv->pdev, "Failed to initialize register map: %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	i2c_set_clientdata(client, chip);
+> +	mutex_init(&priv->lock);
+> +
+> +	chip->ops =3D &sn3112_pwm_ops;
+> +	ret =3D pwmchip_add(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+> +	/* disable hardware shutdown pin */
+> +	if (priv->sdb)
+> +		gpiod_set_value(priv->sdb, 0);
+> +#endif
+> +
+> +	/* initialize registers */
+> +	ret =3D sn3112_write_all(priv);
+> +	if (ret !=3D 0) {
+> +		dev_err(priv->pdev, "Failed to initialize sn3112: %d\n", ret);
+> +		return ret;
+> +	}
+
+This happens too late? Once pwmchip_add() returns the hardware must be
+ready.
+
+> +
+> +	dev_info(&client->dev,
+> +		 "Found SI-EN SN3112 12-channel 8-bit PWM LED controller\n");
+
+Please degrade that to dev_dbg (or drop completely).
+
+> +	return 0;
+> +}
+> +
+> +static void sn3112_pwm_remove(struct i2c_client *client)
+> +{
+> +	struct pwm_chip *chip =3D i2c_get_clientdata(client);
+> +	struct sn3112 *priv =3D pwmchip_get_drvdata(chip);
+> +
+> +	dev_dbg(priv->pdev, "remove\n");
+> +
+> +	/* set software enable register */
+> +	sn3112_write_reg(priv, SN3112_REG_ENABLE, 0);
+
+hardware silencing has to happen only after pwmchip_remove().
+
+> +
+> +	/* use random value to apply changes */
+> +	sn3112_write_reg(priv, SN3112_REG_APPLY, 0x66);
+> +
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+> +	/* enable hardware shutdown pin */
+> +	if (priv->sdb)
+> +		gpiod_set_value(priv->sdb, 1);
+> +#endif
+> +
+> +	/* power-off sn5112 power vdd */
+> +	regulator_disable(priv->vdd);
+> +
+> +	pwmchip_remove(chip);
+> +}
+> +
+> +static const struct i2c_device_id sn3112_id[] =3D {
+> +	{ "sn3112", 0 },
+
+Drop the 0, and please use named initializers.
+
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, sn3112_id);
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id sn3112_dt_ids[] =3D {
+> +	{ .compatible =3D "si-en,sn3112-pwm", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sn3112_dt_ids);
+> +#endif
+> +
+> +static struct i2c_driver sn3112_i2c_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "sn3112-pwm",
+> +		.of_match_table =3D of_match_ptr(sn3112_dt_ids),
+> +	},
+> +	.probe =3D sn3112_pwm_probe,
+> +	.remove =3D sn3112_pwm_remove,
+
+Please use .remove_new
+
+> +	.id_table =3D sn3112_id,
+> +};
+> +
+> +module_i2c_driver(sn3112_i2c_driver);
+> +
+> +MODULE_AUTHOR("BigfootACA <bigfoot@classfun.cn>");
+
+I'd prefer the realname here matching the patch author.
+
+> +MODULE_DESCRIPTION("PWM driver for SI-EN SN3112");
+> +MODULE_LICENSE("GPL");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--be7227a7w5ahl2v7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYp8eYACgkQj4D7WH0S
+/k4W1wf+J3R0px05E6JPq1gOpY4R/Zsz9DlGI3EHGDlgZecWgqbO6V5DNPdeLNK9
+tlVKYVa6SQ1BI7zVFvEG8svZ3vdViPgA4D6n6Lbn4pvtXM1PQjaTW81JoiOHYHoL
+0PPuRp82S5CEqLZ1P+qlunyGOhsA8GJSgl0fGCwmbSE8UcMpPjlyCMvGZuGfBa6q
+B1lqNA7EQ05fFCHD6IPyah3Z/CpAE9TuyekE2fqBjEUGkvmNAwnGNNtIH7aIoT4P
+tvVZYOVx/iSVRHIfLaI6vZH6QtHQ3y31uRhNGjvqkoS2E0KyG6dHxA26rvgdoJR3
+rOCTeCr1iPCA+MSt3mIp7ZMrmbYy5A==
+=vghj
+-----END PGP SIGNATURE-----
+
+--be7227a7w5ahl2v7--
 
