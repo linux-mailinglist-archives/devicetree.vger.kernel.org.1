@@ -1,180 +1,106 @@
-Return-Path: <devicetree+bounces-62702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976EB8B20B1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:49:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8448B20B8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EF5228AA4C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:49:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0FE9286A66
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D02E12AAF3;
-	Thu, 25 Apr 2024 11:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F5B12AAE7;
+	Thu, 25 Apr 2024 11:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="dTyOCpXn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kyi2H011"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5439084FD6
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 11:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECCB012AAD5
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 11:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714045736; cv=none; b=IOcOAUjjvju6YCli8wlI2eMoz4bKhcu4x4f4dbHZEZartGdmTIiLxuSyYfsezpmHc/fp6sBzNvLZJeSpE3VTw5b2hVWy4xjVau1GfOazfa86xsbdHUGOObDF+ybd9ncsr6TaeoCzh3cwOwwAe1N/Io86HdG7y12CglJbc4DA7YU=
+	t=1714045825; cv=none; b=SMi6pjgaTb825F89/VHRVMZP7Lm3V/c4r6JtHuSU+Ow1Nyu1zUtzVBTCdx76k1D9uCn3iaI3jSNNOJIWA/3CWll0brnCYvH2tsyUHTAUKXDnTVPk2eAJGx77Ru6dwWgLHTG/EFCSzJ467VU0SFRw79cuzovhlaSrh8JFduQuIoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714045736; c=relaxed/simple;
-	bh=iRqZJGzbLO7immaT4nudfgfXnI3zAGjQPmg5oNwp8Jg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Eq1od+Y4i5bGD1ySznGhrEHW1pH/c5NE+26VtKX/7IqgpPPFElberB6/jszeKBkL6fBblIAaKZ49tEvvDS8Zhg0XjOc94YqPinGINw8ZWIDKWxohStqo7fVOEyZEHdPTwVocDAEoV4gP1hlsMbUJcfsEgBDtkm+DWIwBwK3Y6c8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=dTyOCpXn; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-34b3374ae22so860822f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 04:48:53 -0700 (PDT)
+	s=arc-20240116; t=1714045825; c=relaxed/simple;
+	bh=6X90SrMENmPj2F8E+j2MRnzGgHoMOcwnFY9jZAuri3U=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XZiXdkNAg5ea4seq5iSSYS0AB1MXec7S0pgcwFiBsF/Ze5zLNPyJMmtYG0xcWuhHsgdur0AGoC/gS2Rqwj7Qk8uw+4dux5+Yf/3dG8SwigulFDtyXZMTJHDlkOq/dY3c96dQc5/A0ris91UZvAGrNouPUzFMDeOEYwHi7fFl8gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kyi2H011; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-34af8b880e8so560289f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 04:50:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714045732; x=1714650532; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HaiwvUlPF7WAHLG6FS4I2jCzZYZaAZS8Db4/cIEwfh4=;
-        b=dTyOCpXnj5OIawdlvw+4hKKvxtK2Lv8kA3qTHHWaPQ2ygYnudRZ2Smpo0El6KIIndF
-         24nVoGpAVJoOZRs9rloecX4UyAJzDmzRIIXH4FEIqrDuLkQ2QJJi+MqxszhiyjcKFm/0
-         doX/WjCWimogxslA8Ba+wjKTmbP76ZV9kn0F70ur+AILRDzGS+9b8Yq25WBRLeoHVWfx
-         wWXMgkCDbi80LSrRH2Ee48jPkL+81GR6J0MAR5oQ+mapHGQUFbPCgVTEv1SNz4IDmamf
-         8ynCc/K0KRWfgwyuEoW1KrNFv2LEX7TR/8E3B3M7fkQzqoFBvfZxwalrWMwW/Kabj5lN
-         IkBw==
+        d=linaro.org; s=google; t=1714045822; x=1714650622; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6X90SrMENmPj2F8E+j2MRnzGgHoMOcwnFY9jZAuri3U=;
+        b=Kyi2H0117xIsE8cvv7in4YmWqDUx33JTPlWpOsXzJ7clB2o8iFYfwTBa64+ZJKmIS6
+         kAYT1YvUKsWbZT7K9k48W8dDGAFDDC7Dm8aWJek+6nmIVLwfrH32pkTNSEnKHHBgb/Xm
+         LBFpet4OqALHQefnHOd1hCx0XLSxnJXC0WsDhy9W8Y+ByveTjcwgnf6WbDrm/Ecqszf1
+         lBo9dCOSr+/X4WxieS/r+RG0cls+B7e7yGU1h83p3tMgGtR51zA4JH1GK/9OaIoTqALY
+         Mzr85czlf/JGYe1HAtgnVrZMl4Nm0HDxpR1o5+5Xbw7OvMpt6EkWv6yfm9+Ys1T47UbR
+         IGUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714045732; x=1714650532;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HaiwvUlPF7WAHLG6FS4I2jCzZYZaAZS8Db4/cIEwfh4=;
-        b=MMcLz+ZhxzrywmkFCAzcs/I8Jro5xLGsT+/ve7WhY3HIWj2f+MEPEhko5nNnhuKvQN
-         WMvAlpEADa7g10G0SgO4okD77WahDbTxEbPeVUDrsxP7Q/ChnUJZnQZaJldfwWRRLGMn
-         8zN7mR5WY5KulgD54FSBrnch7M9hH7XJyJJ5djv/NtVg05dkZVFR/mlFucAQcj/l3nt+
-         5SsYm9FfFXatERmv9GOuNZN8mi4jQD+w6/hq7VZx4lpsoTuWR7u0KnthzIU7PrCE1jWg
-         q9kMYXzMnYbwmhwT2546gsP1sywA/tKIYNxdsWVD9Ha7fiAoktZ1h1bT11j/2CiTpa5e
-         z4Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCX1rykPHW4mYntQtJpyR0UNV6SiX/xLHerWByelLw90kzz11QztZ5VAC14g7AWvINuCIRyIUu9SbDwoVSw2/u/EfoYFA0q2KmZy/g==
-X-Gm-Message-State: AOJu0Ywou5FOmKAaez/LjTIHva68ZWEiDgSpTsjpo7yugCTveesLteMh
-	0pRZ0iwCeURQWMMEVleAiKFojbNmYi68ConfRu1Y7kpPOTmZpXH076MFcnbGOA0=
-X-Google-Smtp-Source: AGHT+IEQKdEXXjmwHYjGtrZx+A4ntpBLtbov3wrDvOhIJp7CrXwZrZ9Zsbj80j2w2j8dI4s5T//PLA==
-X-Received: by 2002:a05:6000:12c3:b0:34a:d130:611b with SMTP id l3-20020a05600012c300b0034ad130611bmr4607478wrx.17.1714045731749;
-        Thu, 25 Apr 2024 04:48:51 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id p17-20020a5d4591000000b0034658db39d7sm19844255wrq.8.2024.04.25.04.48.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 04:48:51 -0700 (PDT)
-Message-ID: <de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr>
-Date: Thu, 25 Apr 2024 13:48:50 +0200
+        d=1e100.net; s=20230601; t=1714045822; x=1714650622;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6X90SrMENmPj2F8E+j2MRnzGgHoMOcwnFY9jZAuri3U=;
+        b=GY5E1oRxq4mXDKzl9YLLZEEQHQCInWMk4eSstq+o7G6N5MdythFgWcUkAUTPa8kcOA
+         7w4ZuGcdFml73k5NKjjOhjeWRMOgldORKhQqMP1qpX9ZcPIFT4mQOrbqAVingdUrCIiH
+         BjIHy9nVO8MiHyttVg0ZzLnGvQ0vD2oZNyinD64tTI7fLYcu8qzT3hae+3OKMCUdZCkf
+         HQPCUQ5tzQpLcgdg/KOODKUxU3KYUjmYRzqgJYqJO7del6a2N7q+QSiF9Eu2JMeiahn5
+         lcdaRYqXiazzzarXiJ4wEEU2btfNb/1IWDg6vF7sJDSIQi9JTBMZ4+S1obkvcmkHk/2/
+         6ixQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvJ20s2M6Cd+6oKPmXMcmQ60RR/kCxsM1PX87L+XhKijksGSrfQS7mj6aFaxFX+C+VHmA4e1MtUaKR6dg7QcSPmiUWyeE1FMackQ==
+X-Gm-Message-State: AOJu0YwfYtx7vMHRK+BE3eio7ldN3qzmdAXVRKwPo0N3uPhDZvIaZPsK
+	jhgdI7mh38+vJh5rw4lyQAGjf0p7+yTs4AVLxbBqYgouWhZYPoo+NyQo1gzmNrY=
+X-Google-Smtp-Source: AGHT+IFd3IUrl2RhAWqNwz+jhkozMToyJuHkmRsv7L8RtAZdqq/rmyIrab8etOh0MMSjsigMRTo70g==
+X-Received: by 2002:a05:6000:789:b0:349:bb17:6e60 with SMTP id bu9-20020a056000078900b00349bb176e60mr2805121wrb.2.1714045822352;
+        Thu, 25 Apr 2024 04:50:22 -0700 (PDT)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id he5-20020a05600c540500b00418e3c5bc8esm26152587wmb.18.2024.04.25.04.50.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Apr 2024 04:50:22 -0700 (PDT)
+Message-ID: <db857c14d2463f643dc602012329b75df8146c0b.camel@linaro.org>
+Subject: Re: [PATCH v2 05/14] arm64: dts: exynos: gs101: Add the hsi2 sysreg
+ node
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com, 
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+  vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
+ avri.altman@wdc.com,  bvanassche@acm.org, s.nawrocki@samsung.com,
+ cw00.choi@samsung.com,  jejb@linux.ibm.com, martin.petersen@oracle.com, 
+ James.Bottomley@HansenPartnership.com, ebiggers@kernel.org
+Cc: linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com
+Date: Thu, 25 Apr 2024 12:50:20 +0100
+In-Reply-To: <20240423205006.1785138-6-peter.griffin@linaro.org>
+References: <20240423205006.1785138-1-peter.griffin@linaro.org>
+	 <20240423205006.1785138-6-peter.griffin@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
- <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
- DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
- <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
- <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
- <87ttkh49xi.fsf@kernel.org> <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
- <87h6gh406w.fsf@kernel.org> <ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
- <871q6tu6bn.fsf@kernel.org>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <871q6tu6bn.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 25/04/2024 11:42, Kalle Valo wrote:
+On Tue, 2024-04-23 at 21:49 +0100, Peter Griffin wrote:
+> This has some configuration bits such as sharability that
+> are required by UFS.
+>=20
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 
-> Marc Gonzalez wrote:
-> 
->> Do you prefer:
->>
->> Option A = never waiting for the MSA_READY indicator for ANYONE
->> Option B = not waiting for the MSA_READY indicator when
->> qcom,no-msa-ready-indicator is defined
->> Option C = not waiting for the MSA_READY indicator for certain
->> platforms (based on root compatible)
->> Option D = some other solution not yet discussed
-> 
-> After firmware-N.bin solution didn't work (sorry about that!) my
-> preference is option B.
-
-Actually, Option B is this patch series.
-Could you formally review it?
-
-Perhaps one thing I could do slightly differently is to NOT call
-ath10k_qmi_event_msa_ready() a second time if we DO receive the
-indicator later.
-
-
->> Dmitry has tested Option A on 5 platforms, where it does not induce regressions.
->> I worked on msm8998, where Option A (or any equivalent) unbreaks WiFi.
-> 
-> What do you mean here? Are you saying that option A works on all
-> devices? I'm guessing I'm misunderstanding something.
-
-No one serious would ever claim "this works on all devices".
-
-Dmitry and I tested the following patch:
-
-diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-index 38e939f572a9e..fd9ac9717488a 100644
---- a/drivers/net/wireless/ath/ath10k/qmi.c
-+++ b/drivers/net/wireless/ath/ath10k/qmi.c
-@@ -1040,6 +1040,8 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
-                switch (event->type) {
-                case ATH10K_QMI_EVENT_SERVER_ARRIVE:
-                        ath10k_qmi_event_server_arrive(qmi);
-+                       printk(KERN_NOTICE "NOT WAITING FOR MSA_READY INDICATOR");
-+                       ath10k_qmi_event_msa_ready(qmi);
-                        break;
-                case ATH10K_QMI_EVENT_SERVER_EXIT:
-                        ath10k_qmi_event_server_exit(qmi);
-@@ -1048,7 +1050,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
-                        ath10k_qmi_event_fw_ready_ind(qmi);
-                        break;
-                case ATH10K_QMI_EVENT_MSA_READY_IND:
--                       ath10k_qmi_event_msa_ready(qmi);
-+                       printk(KERN_NOTICE "IGNORING ACTUAL MSA_READY INDICATOR");
-                        break;
-                default:
-                        ath10k_warn(ar, "invalid event type: %d", event->type);
-
-
-Dmitry tested several platforms:
-
-> For reference, I tested this patch on sdm845 (db845c), qcm2290 aka
-> qrb2210 (rb1), sm6115 aka qrb4210 (rb2) and sm8150 platforms.
-> I was not able to fully test it on sda660, modem crashes without this
-> patch (there is no MSA_READY indication) and with the patch applied
-> the device hangs, most likely because of the IOMMU or clocking issue.
-
-I tested on apq8098 (msm8998 sibling).
-Patch makes adapter work on my msm8998 platform.
-
-Regards
-
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
