@@ -1,203 +1,119 @@
-Return-Path: <devicetree+bounces-62602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6F168B1C1F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:47:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D698B1C2D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA2211C22976
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:47:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6524B232FC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D71D6DD1D;
-	Thu, 25 Apr 2024 07:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF6E6D1B0;
+	Thu, 25 Apr 2024 07:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V6s9EG8u"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="lHSbkGyj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDE16CDBF
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 07:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B588B67A1A;
+	Thu, 25 Apr 2024 07:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714031250; cv=none; b=Hy/jC+wpnLmxdyenF1Y6AAg8beiGapqqRvd80291d7B3mYUoFxsosN/+gFFmLeEO8TtipM4mEMJ7xTzfKwfIMo549Cxc8QLYBWBNhSoCA8Y1WvNSqFnffEqYjn68SAGWdGjVeQNRmHxjP0QYAMRq/lJZDEhc47h2g3YSdDp+iIk=
+	t=1714031391; cv=none; b=j1uQizkqyrKpPWar4x1ftoQG/AvrSOb49UPEcX06LAsodTdJlMOfr/P9XtVpNZwPw3P/1n54SQTBXmcCt6/JZzdzO3l4kzs4YbrIS+R1XeI9ZoNjTuYEO822+t2rRcsgFt7YNsMC/GhIrpiitU8sSv9B2ueNsUfShw9WudZ4Ly8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714031250; c=relaxed/simple;
-	bh=qiKGRSHdGdyXnEluj1bfHE3GLYCMmIz+vDxNZnqQIb4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XpS+Qp0ybV8VRCk6OHfxcbhK937OJT/VCiWh9vw1FBi0L7RJ+0tMWiHbBbHUL/tULO7AcmnnlqRZ/+iNMVW82IZRZy7D+09rYbNCG+pJdRoxatEVAfrUFdKyakI2HaUcTUi/nc6m/mCqJ5e12lVfAVEQlg5O8Hscv+8oOjRdkqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V6s9EG8u; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-34be34b3296so632228f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 00:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714031246; x=1714636046; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KO8qMaMD1WGtlgcA7W/Jq2+QozvRzg9eops1qALAJHY=;
-        b=V6s9EG8uXmBZDqBecGLqi7qYQbTg6SxWipNyH+mll/EqQfaeKTNK3gJzTOXJgv6hF1
-         klppAPqCi9wcOk8p/HryAeDcDPoPHi/cx2vM15ZAYVdyBqNNk6px5sXJg4eqwGhqSUxw
-         WE54y7VAYly73ipEsBUNr0WK4uPm+ru4R6GqjGHOAaQ4152EksQsPdLKuviFRb5vKobU
-         vQsK+TqE5HAY5aqr2OyfjsFJWsPZyX4qFVAMAp2ios2CO/0Kdwxj6SMShkFh4DUHlbRi
-         G9DLCBO1c1zoWN7+7i6ZpHdXKYoS7+CPvCN/zKxySENsGW2p7EVuOvRRK2sZtHITHnEy
-         XReA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714031246; x=1714636046;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KO8qMaMD1WGtlgcA7W/Jq2+QozvRzg9eops1qALAJHY=;
-        b=K7BcWqBaxoWPB1rvDhRJ3vmjk/D2RIKEuaOd4TLH6BYIQDCv+YniryOhoZHLCVsjoJ
-         soiahn1ioorPyONAttQ8WEzaPH9OYF+PRqI42Mq0XKoI29ZtKDZ5+gV/WqRYbkcPxfcl
-         RvEMR2MLFvVVQA9VXY9uoeHFvcB0w9BeZfL97IrQw5kpYmRX8zyQkX9qu8l4QX0UMNYw
-         wGsQ5GbjEwea/VqVNQo3D98Xt5l/1Rhb+JVx2UcIjDOMz36i20HMa9M9b8niynTeuvFo
-         w82Cya3488GIalegLi7lINVrRXnWeXZiu6nJXiy6YhnlTAXa3F7jZ99oxgZ4lXSGiKpp
-         +CGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXhI7qQN+zSLtf1OEg/T50RB+N+isa6pw6zCOsPtWKuAf+SXVCnxjKZhWfeHNWY0XIqxxAcOoLGh37OPGsLhw2iWWpTHEewVcDY+w==
-X-Gm-Message-State: AOJu0YzKZoLpcp5jZGuutycTHGvX+B4lYuO8pcIk2IhJUoKQvPnTfG2C
-	ecrbIpb75JwZZ8rWvZrqgCY2oOW1wAG0Ej/RgeQ/EtN95rB6ZpluxwELkuug+U8=
-X-Google-Smtp-Source: AGHT+IHNJWEoIupqYCqnrknBlU5kEwSAVatdxAbl9PzA1MI4fM4js5TgSQnEtljhjy8byIOgYS3ezQ==
-X-Received: by 2002:a5d:410e:0:b0:34a:4ad9:a93f with SMTP id l14-20020a5d410e000000b0034a4ad9a93fmr3909203wrp.55.1714031246146;
-        Thu, 25 Apr 2024 00:47:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id j6-20020a5d5646000000b0034b19cb1531sm9426224wrw.59.2024.04.25.00.47.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 00:47:25 -0700 (PDT)
-Message-ID: <cf7200d3-f60a-446b-b9cc-1f63e3c90740@linaro.org>
-Date: Thu, 25 Apr 2024 09:47:23 +0200
+	s=arc-20240116; t=1714031391; c=relaxed/simple;
+	bh=ZaH5Y+5K4+LetM1zlsUQzT+6eYAidDXHlw0BoqJXgxc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UksYPtDUBZHCprORBk8KwwRbXLDC0xOQ5n4W6Kf4qJG4dxYjkcmBjDXVw4TOgBvp6jiOFGp6bJ+3rzqVjjNx9I/8vcNye9lRL4/se4e/0LWEtRCbih7ow8RA14UprtCZAFQNIrtZ9wjPnUO/3siGTFbSkg/06yfXw1/rHGseh9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=lHSbkGyj; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P5kYQs018290;
+	Thu, 25 Apr 2024 09:49:37 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=37REsQ2
+	FIwtIHcuFXf9WH6rSdUEg9FqQ4fkZiZRMvHk=; b=lHSbkGyjPRhga+SPcpoHitc
+	PP270bH2xydSDknnFzA7E2oOQ3ZenAWl9PHI0y3oJXFxsqXEnCbgnbZQPuNeli1k
+	dZCyyBdtHgtcGD38csJEKE53N3GO6PbiMGcyuyPWSsXcErSuYyF9Dv7eBHu1lqeo
+	BjG/keNpuifVGltVeJTKoRZl7BqMKnJIUKUh1tV6Bvfy6gevDWvEBQDPBbMs2m2/
+	IZ0o3v225ZsWJKvCJt6lzaDCxL7kUThYgTbct60cjhPHgloDukGVWU+yuJbXJk15
+	iUQ/XasKvdpKK1biABBJszXBftCtu2wmVd/snwCrOPJKPu8fYHjJZ8gAwtl6EDg=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4cnmupb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 09:49:37 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8CFDB4002D;
+	Thu, 25 Apr 2024 09:49:33 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B4F4C212FD7;
+	Thu, 25 Apr 2024 09:48:51 +0200 (CEST)
+Received: from localhost (10.48.86.112) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 09:48:51 +0200
+From: Patrick Delaunay <patrick.delaunay@foss.st.com>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Olivier
+ Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen
+	<arnaud.pouliquen@foss.st.com>,
+        Pascal Paillet <p.paillet@foss.st.com>
+CC: Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH 0/3] ARM: st: use a correct pwr compatible for stm32mp15
+Date: Thu, 25 Apr 2024 09:48:31 +0200
+Message-ID: <20240425074835.760134-1-patrick.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] phy: exynos5-usbdrd: use
- exynos_get_pmu_regmap_by_phandle() for PMU regs
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
- kernel-team@android.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20240423-usb-phy-gs101-v1-0-ebdcb3ac174d@linaro.org>
- <20240423-usb-phy-gs101-v1-2-ebdcb3ac174d@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240423-usb-phy-gs101-v1-2-ebdcb3ac174d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_06,2024-04-25_01,2023-05-22_02
 
-On 23/04/2024 19:06, André Draszik wrote:
-> Some Exynos based SoCs like Tensor gs101 protect the PMU registers for
-> security hardening reasons so that they are only write accessible in
-> EL3 via an SMC call.
-> 
-> The Exynos PMU driver handles this transparently when using
-> exynos_get_pmu_regmap_by_phandle().
-> 
-> Switch to using that API to support such SoCs. As this driver now no
-> longer depends on mfd syscon remove that header and Kconfig dependency.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  drivers/phy/samsung/Kconfig              | 1 -
->  drivers/phy/samsung/phy-exynos5-usbdrd.c | 4 ++--
->  2 files changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/phy/samsung/Kconfig b/drivers/phy/samsung/Kconfig
-> index f10afa3d7ff5..bb63fa710803 100644
-> --- a/drivers/phy/samsung/Kconfig
-> +++ b/drivers/phy/samsung/Kconfig
-> @@ -82,7 +82,6 @@ config PHY_EXYNOS5_USBDRD
->  	depends on HAS_IOMEM
->  	depends on USB_DWC3_EXYNOS
->  	select GENERIC_PHY
-> -	select MFD_SYSCON
->  	default y
->  	help
->  	  Enable USB DRD PHY support for Exynos 5 SoC series.
-> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> index 04171eed5b16..ac208b89f5a6 100644
-> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -18,9 +18,9 @@
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/mutex.h>
-> -#include <linux/mfd/syscon.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/soc/samsung/exynos-pmu.h>
->  #include <linux/soc/samsung/exynos-regs-pmu.h>
 
-This is getting out of hand: shall we expect to convert all the drivers
-from generic syscon to Exynos-specific API? What if one driver is some
-shared IP, like DWC USB3 controller?
+This patchset removes the unexpected comma in the PWR compatible
+"st,stm32mp1,pwr-reg" and uses a new compatible "st,stm32mp1-pwr-reg"
+in STM3MP15 device trees.
 
-I already commented on Google hwrng driver: I prefer to keep the syscon
-API and change the syscon driver to expose proper regmap. IOW, use
-generic API syscon_regmap_lookup_by_phandle() and the type of regmap
-returned is defined by the provider (so node pointed by phandle).
+The support of old compatible is keep to avoid ABI break.
 
-Best regards,
-Krzysztof
+
+
+Patrick Delaunay (3):
+  dt-bindings: regulator: st,stm32mp1-pwr-reg: add correct compatible
+  regulator: stm32-pwr: add support of correct compatible
+  ARM: dts: st: update the pwr compatible for stm32mp15
+
+ .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml  | 6 ++++--
+ arch/arm/boot/dts/st/stm32mp151.dtsi                        | 2 +-
+ drivers/regulator/stm32-pwr.c                               | 1 +
+ 3 files changed, 6 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
 
 
