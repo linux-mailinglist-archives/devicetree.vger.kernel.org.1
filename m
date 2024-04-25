@@ -1,154 +1,167 @@
-Return-Path: <devicetree+bounces-62744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCA38B2576
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:44:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2648B2593
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:48:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09B781C20B90
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:44:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2A481F2145E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779B814BFBC;
-	Thu, 25 Apr 2024 15:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E76E14BF89;
+	Thu, 25 Apr 2024 15:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jy7Tb4TZ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="p0D3vHvY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB80414BF90;
-	Thu, 25 Apr 2024 15:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3361494BF;
+	Thu, 25 Apr 2024 15:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714059852; cv=none; b=eydTmPku6QQ8EFtGs95CLoBruAseEA+6gMVIhPGApfzm94yS4gz3ufKBHlNSW9kYm2XwinvcMPBYZaQFF4HXMUeYwGuzb2S+zqEx9a+bHBUlawWz3rdR36hfPHlSQHBzJ9TBkB80KW0E65hxJbTSnDKAyiPwI+C0OyvqtMkQAao=
+	t=1714060094; cv=none; b=WQ1gF2jkPxfmCd0TEe/Tmvwkd6IgF+SHU8zCk+zCL8cHa/BKv69TWaETP8noxVduWGx6vrJY+zQwvPohYaepdWPWZURNpiiKbFF3d9z+nokU2rrbQ0CfsCfws0pefuTezZ3jnxbAfqSM4wnql+CqaEqfzsG/0Et1arDS6cEqwhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714059852; c=relaxed/simple;
-	bh=kA/D6zVPXYWszEjkvYSf0smpFm+zOmzsl5H0CAhJfi0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SS2ePyuRoSJ31A6I0AQdAz6KgPFcHr/mLm027hGv83Z7c7A+0f6TZbBQGxbJGZsmdJrDmaneFEFlBvRH0zx3F/GIVaL6J7WT2H2pJSgVkXZEuy/DXa5kq/jQg2NKQQQhwhRs1GRwwYhiWvUwehQjA8DDvD+8SzzVAawn6nvcmGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jy7Tb4TZ; arc=none smtp.client-ip=209.85.217.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-479de34dc36so437506137.1;
-        Thu, 25 Apr 2024 08:44:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714059850; x=1714664650; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iR/AyfcnU5bia8L6mI9WG+m8xZ5cR1LfRzpwQN9yZhM=;
-        b=Jy7Tb4TZ3plaBKNRou6OAt6K1d/cyc63bV4OKR4GlkzrcvcUtiVTYKk/2SJADwB2bg
-         EaF8yatdbsewdhJpwiSJdqqyGxMvfGAZgo07ros0jH3qAKMBz3AtBL2ziWS7B0vfi9JZ
-         +abpzwwIScZ21hSB94XHAturTZNhZlGFGR/q0HEk+4Ryed+f5Fhg5B5RRq0+loxreBPh
-         Fj5mZvC3cVI76ANQ9YC/GI4NHsqa315hachBA14UaEMbeM2r4qCCb4GzF3CnTRxP/5xx
-         1ZQ6MrAXpMx1eV5S6XVniItC6z0nj2m/zwieZUvQmdZZ6nMyo9CyOCOQUR/z03OnjXev
-         S7Ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714059850; x=1714664650;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iR/AyfcnU5bia8L6mI9WG+m8xZ5cR1LfRzpwQN9yZhM=;
-        b=eQFerOCUEW7cBYHJMzitf+DgVxjk8NVrF5GZu2/KcftqQXuSbIRCvxZgtEkZhxSly7
-         54tAJnRbarNNRIpxPI/C7sFbMvObH6LNI9GUBk8w5dd1OOJ77jrca+kP8KWCOxRovxaW
-         6YtfIrF/ChwyR4Sd44ol10MuQAzhkNTegJ8Z30srKT7+61gF73dfA3NvvJniN3gSjTM3
-         H9tubieJzejolIZv89n6ikaUrcRFpI/8Lc6i0L4hZWGgTzioMIudghdDmH4yYLQWZl4Z
-         h+2pxxoUrK3Z/zKLzZ5hV/ZbLMBIGDesh1MaIcDtCdr9MrYIwJqPn4NT9lSAHMqyRf+q
-         XB0w==
-X-Forwarded-Encrypted: i=1; AJvYcCURDHHdN4x6iYPZbM3fCsKnJAg1OwPeO5kKMTIOWImWm/NK89qyf5ozEBWokvsJBuZMCbgJz2x2PQ35AFKNdEM5EDyF2OscmPrrkkb/2wRZqxk1tqILpKBFgegGeDMe5r6Jelr6E7cz7yUUeivPyyCrI+HhGgBR6g2P+/Vstbz+cZ5vHenOCorAoKaioojmSS7gm7DbZwLQIRMwj12wW2GQbPVAg526
-X-Gm-Message-State: AOJu0Yx6sMi1kdwGjoziNiyo1JLDXpnPRnwvkJq8WfhIm3Hv6+bLiJ3p
-	4Y1t59Mmitk7YK1QLvI/zBJTGVKFnC97Z8kuCfdjL4n1HKKOO5jKT3pGig5g9819jSwwcRoy5Ak
-	TcAeJNT8xLZO+aSEzLnRJNYkD+Jk=
-X-Google-Smtp-Source: AGHT+IFxZFKxyvkvDsztzyBVqo6Z2bFHlhiyFlQQf6hu37wkpPlB+vINFBMirYxG2K7XXSgfChsLzeevVqM7rx5Erkg=
-X-Received: by 2002:a05:6122:552:b0:4cb:fc25:7caa with SMTP id
- y18-20020a056122055200b004cbfc257caamr7129680vko.14.1714059849704; Thu, 25
- Apr 2024 08:44:09 -0700 (PDT)
+	s=arc-20240116; t=1714060094; c=relaxed/simple;
+	bh=IsAL6MSVVb0st0Jwbse2d6xJSQLj/y4fLVjgYoKxfLw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZTyuQNKHNt3YpVAGuXkxD8QpkcCKZWVsA1ogFIKOnmpYYtGXNAgdj+5I0xo/3I4rbLJaPBW8uulMBI87fFrIK3F4uOCbRim/lYHqpJ4n/7B0nSiXdnyLO49V6iMxjlD35fS4OWXrOJWOqVWwdUpUUZFlEPvNNzcYcSLOyGHqKwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=p0D3vHvY; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43PDESOr021448;
+	Thu, 25 Apr 2024 17:46:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=4NMVoNz
+	2ja0mKMA3zgF7rxaTumBVu43eHSfBqn+yggE=; b=p0D3vHvYlFwZHcf7hV/v3de
+	Uc5+XgJ57P+DbpLWYQACVBnDzPoKmDmPoAlc3NJ38Ps5ez2VBy12W24CUp9/IbaL
+	ZQAWrOuTMjma+2AD9rc3FSxD5HOG9aOM4u3Pm8qnMoaAYDaVZnMsFfJCbHYFM4zM
+	qCAdfhYCG8fjNHXDpi2gn2vNS7KxnsSsawOsBHElZutUZ1kMufedlb25+cOPXk6S
+	9SWQ7XgnX2F36BXQbZbUCRiHYzpBmjjSIX9tvEyF5Kjs9psIcVc3DToH6fPEsX4P
+	OpYs3fy5KiO86yrx2+rU/od5VVi8KwCSoW0H8bBxoGb//zTGO/Ksqy1tZpCXlLg=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm51wen46-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 17:46:51 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A1F5E4002D;
+	Thu, 25 Apr 2024 17:46:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 43D512258BA;
+	Thu, 25 Apr 2024 17:46:04 +0200 (CEST)
+Received: from localhost (10.48.86.112) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 17:46:03 +0200
+From: Patrick Delaunay <patrick.delaunay@foss.st.com>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH] arm64: dts: st: add power domain on stm32mp25
+Date: Thu, 25 Apr 2024 17:45:55 +0200
+Message-ID: <20240425174519.1.I443a218decda670093bc621165e3052db14d4c02@changeid>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423182428.704159-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240423182428.704159-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <7a3d4b8a-e89e-499e-92b7-9f63fbc84011@kernel.org>
-In-Reply-To: <7a3d4b8a-e89e-499e-92b7-9f63fbc84011@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 25 Apr 2024 16:43:28 +0100
-Message-ID: <CA+V-a8uz0OrsM1AxqtpeHB0f1+F6aEqHGp_t3_OPhh0ZqJ26HQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: renesas,sdhi: Group single const
- value items into an enum list
-To: Krzysztof Kozlowski <krzk@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_15,2024-04-25_01,2023-05-22_02
 
-Hi Krzysztof,
+Add power domains on STM32MP25x SoC for supported low power modes:
+- CPU_PD0/1: domain for idle of each core Cortex A35 (CStop)
+- CLUSTER_PD: D1 domain with Stop1 and LP-Stop1 modes support when
+  the Cortex A35 cluster and each device assigned to CPU1=CA35
+  are deactivated
+- RET_PD: D1 domain retention (VDDCore is reduced) to support
+          the LPLV-Stop1 mode
 
-Thank you for the review.
+Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+---
 
-On Wed, Apr 24, 2024 at 6:42=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 23/04/2024 20:24, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Group single const value items into an enum list.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2
-> > - Updated commit message
-> > - Grouped single const value items into an enum list.
-> > ---
-> >  .../devicetree/bindings/mmc/renesas,sdhi.yaml  | 18 +++++++-----------
-> >  1 file changed, 7 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/=
-Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > index 29f2400247eb..2bf90095742b 100644
-> > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > @@ -13,15 +13,13 @@ properties:
-> >    compatible:
-> >      oneOf:
-> >        - items:
-> > -          - const: renesas,sdhi-sh73a0  # R-Mobile APE6
-> > -      - items:
-> > -          - const: renesas,sdhi-r7s72100 # RZ/A1H
-> > -      - items:
-> > -          - const: renesas,sdhi-r7s9210 # SH-Mobile AG5
-> > -      - items:
-> > -          - const: renesas,sdhi-r8a73a4 # R-Mobile APE6
-> > -      - items:
-> > -          - const: renesas,sdhi-r8a7740 # R-Mobile A1
-> > +          - enum:
->
-> You wanted to drop the items, but I still see it here.
->
-Ah, I missed that.
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp253.dtsi |  9 +++++++++
+ 2 files changed, 25 insertions(+)
 
-> > +              - renesas,sdhi-sh73a0  # R-Mobile APE6
-> > +              - renesas,sdhi-r7s72100 # RZ/A1H
-> > +              - renesas,sdhi-r7s9210 # SH-Mobile AG5
-> > +              - renesas,sdhi-r8a73a4 # R-Mobile APE6
-> > +              - renesas,sdhi-r8a7740 # R-Mobile A1
-> > +              - renesas,sdhi-mmc-r8a77470 # RZ/G1C
->
-> Keep list alphabetically ordered.
->
-This list is sorted based on SoC, I will sort it  alphabetically.
+diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+index af1444bf9442..4beb0a0bef4f 100644
+--- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+@@ -18,6 +18,8 @@ cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			reg = <0>;
+ 			enable-method = "psci";
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 		};
+ 	};
+ 
+@@ -104,6 +106,20 @@ intc: interrupt-controller@4ac00000 {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++		};
++
++		CLUSTER_PD: power-domain-cluster {
++			#power-domain-cells = <0>;
++			power-domains = <&RET_PD>;
++		};
++
++		RET_PD: power-domain-retention {
++			#power-domain-cells = <0>;
++		};
+ 	};
+ 
+ 	timer {
+diff --git a/arch/arm64/boot/dts/st/stm32mp253.dtsi b/arch/arm64/boot/dts/st/stm32mp253.dtsi
+index af48e82efe8a..79c02ef2e51e 100644
+--- a/arch/arm64/boot/dts/st/stm32mp253.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp253.dtsi
+@@ -12,6 +12,8 @@ cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			reg = <1>;
+ 			enable-method = "psci";
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 		};
+ 	};
+ 
+@@ -20,4 +22,11 @@ arm-pmu {
+ 			     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-affinity = <&cpu0>, <&cpu1>;
+ 	};
++
++	psci {
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++		};
++	};
+ };
+-- 
+2.25.1
 
-Geert is that OK with you?
-
-Cheers,
-Prabhakar
 
