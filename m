@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-62629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA0198B1D1D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:52:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD9E8B1D2C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:57:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DE332892CB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:52:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A579E1F21016
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B37C7FBA3;
-	Thu, 25 Apr 2024 08:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A152584D0A;
+	Thu, 25 Apr 2024 08:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JZmqsF4J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LWboScoi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8BAD1E4A6;
-	Thu, 25 Apr 2024 08:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7311D84A41;
+	Thu, 25 Apr 2024 08:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714035134; cv=none; b=WBYQ0gm+Ipd1TEpKiG0ppC32Y+8ymvIDdfr1A8S9Syub1zZNY9SyzE5+U4yY4pA4defCU96o9zAeb6zkxOJLbcwhr/xsRBtpx6yWIrmx1HMkBWwk8MZo1t3vTDD0cCDymKSqY7wUopmtpEllLjxEb0DZTXC4EbBzFN4wylQGsVo=
+	t=1714035437; cv=none; b=CEKguTY8YOyM4FK4R/DrNJUjvJuBSMH3Ek7MefX/qbBDKYKtW00Mio/p4THFMEzTMeMcxraRXL+dRatutluxzpUyDBKq6obtpofInaV6KewAxlXRmTd9M10DxWnNyTeQtTDfXTm5xqROtvvthwsmReuBCqSI+iJkk3oNSnPaQPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714035134; c=relaxed/simple;
-	bh=chBR9FB2ZAl9HdeLR0mWAhYHpEkxBgAv2aOwNJJd82c=;
+	s=arc-20240116; t=1714035437; c=relaxed/simple;
+	bh=EEvXnikoBn+RdB68U2wCclnZ/LvAPgUSR4XWxN8GCOQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RirRg0+VUE2Ziz7cZOI+i+b7BWWm93ExwUkZAMTbDKfTBkH63tnEESrqbzye2wvHknOiTQpaZzKWiyPO9V7vc4bzJ0U4pTXznU0pATAEIa1bbBj/lxF+xqwZXPcm34OSh7Rf/r/4xNrCmfhxTZsHetgswdEWQkzavHJwhE0tLfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JZmqsF4J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 636F2C2BD10;
-	Thu, 25 Apr 2024 08:52:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Nes8Uf7XaoMncCS/wAVBVC+ABscgeCcn4OkyMmiK+HxOrVjNAbLBLA61nm0wqbCAy3AeWJgojbr3ywQcFwkqGj3xeH7LOx8knxJDcqcfPqxENmOPcXy4o4rdN3XnRHJdl0YI+DZ7MPzd36DR8PzpG/Vxd5hgPORKLp+3KOg8/6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LWboScoi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 729B8C2BBFC;
+	Thu, 25 Apr 2024 08:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714035133;
-	bh=chBR9FB2ZAl9HdeLR0mWAhYHpEkxBgAv2aOwNJJd82c=;
+	s=k20201202; t=1714035437;
+	bh=EEvXnikoBn+RdB68U2wCclnZ/LvAPgUSR4XWxN8GCOQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JZmqsF4JYZtSEX7nRTxnFTX41Otk1vJ00X4APhwdPw3z3Yb6RZSQkuyhDSYJ8v3jO
-	 pAud1T0OL9XzKTBRJ1dCIRJfyHy73jhRf1JkeDgEEEVuQ2+t2OzFUYpmHewYm0Vovp
-	 8AtzLVTO8itMeAlad5BWBuoyuH47XCAMJUS4pk5kB57B9mlSdQUsAaPvrrokfPimUi
-	 9X1E/NId9ckBg9LRdWtgo+gsDYSeLtgTHFAYvl2A8FU9qJLIlza+TLasQbrMNoJSLb
-	 UQxePnp/fpY5GR5OycMYZ2cEGg4RXBicUeU2whf9CEgy796tL1UJC29M9BFWDFdW58
-	 S/rx+xvVR9Biw==
-Message-ID: <2b78be92-08a5-4bf8-a1e1-477ecbbe73da@kernel.org>
-Date: Thu, 25 Apr 2024 10:52:08 +0200
+	b=LWboScoi3Cow/nE0joXyUvyEmIkuyUsPVMoqUQySZAQ0+zF1Lmd6ADhUJ8UbdhCGx
+	 roNm6FVl+0hGbX440RrhCANE6PkFdG5wixCDLBqYqAkdy624+bbUpr27Wu59TeKsce
+	 bxaQNNnMxz8TX6iuZxybFzjWMo8MUs/jDxszPrRchUU8t7zW7TlnBIE8EZKcCN6TNy
+	 5JsVBF7FS7WOa7f27YbsCIpmG0zb+HJ9AAYi+wxE4LpVjHiPHaDhqtCU1ey8dXkVmr
+	 e0jsnDSITmgWb+/tUBTkaOefhr+zctEX2HvpNDH/Qj9vocQfOmv1XTBwdmu4QCz0mR
+	 YPKj2AwYnuvMg==
+Message-ID: <b4e60272-cd79-417a-9028-fee243951f4a@kernel.org>
+Date: Thu, 25 Apr 2024 10:57:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
- correct compatible
+Subject: Re: [PATCH 3/3] ARM: dts: st: update the pwr compatible for stm32mp15
 To: Patrick Delaunay <patrick.delaunay@foss.st.com>,
  Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Pascal Paillet <p.paillet@foss.st.com>
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
 References: <20240425074835.760134-1-patrick.delaunay@foss.st.com>
- <20240425094829.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+ <20240425094829.3.I493dfe2bde7f40beb48455f8ff8368cc8a869cdc@changeid>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,38 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240425094829.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+In-Reply-To: <20240425094829.3.I493dfe2bde7f40beb48455f8ff8368cc8a869cdc@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/04/2024 09:48, Patrick Delaunay wrote:
-> Remove the unexpected comma in the compatible "st,stm32mp1,pwr-reg"
-> and define the new compatible "st,stm32mp1-pwr-reg".
-> The old compatible is only keep for compatibility with old device trees.
+> Remove the unexpected comma in the compatible "st,stm32mp1,pwr-reg",
+> and use the new supported compatible "st,stm32mp1-pwr-reg" in STM3MP15
+> SoC dtsi.
 > 
 > Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 > ---
 > 
->  .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml  | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml b/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
-> index c9586d277f41..2a52f9e769c2 100644
-> --- a/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: st,stm32mp1,pwr-reg
-> +    enum:
-> +      - st,stm32mp1-pwr-reg
-> +      - st,stm32mp1,pwr-reg
+>  arch/arm/boot/dts/st/stm32mp151.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Please make it oneOf:
- - const: new one
- - const: old one
-   deprecated: true
+This will break the users and is not bisectable, so patch should wait at
+least one cycle. This will preserve bisectability, although users will
+be affected anyway.
 
 Best regards,
 Krzysztof
