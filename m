@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-62628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E878B1D14
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:51:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0198B1D1D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:52:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7FE51C22664
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:51:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DE332892CB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D6C84D3E;
-	Thu, 25 Apr 2024 08:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B37C7FBA3;
+	Thu, 25 Apr 2024 08:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YF3Uz8TO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JZmqsF4J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0253983CD2;
-	Thu, 25 Apr 2024 08:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8BAD1E4A6;
+	Thu, 25 Apr 2024 08:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714035055; cv=none; b=ftrHWC7YYWA4FoXrTXCAZhKkuPuaf9xJArWcZn0h9KGv7F0fbcxyffyDAb1MXrRJskkrwizBg4hpFbpdN2+5JbHx7RmVQF+8GvZd676JEn5DMUdlDJFr4XBvf4UvXPrgC97B5rywBGJzhwx5bTa7I7VDB+aQPx3Wrx4GmgaW9+U=
+	t=1714035134; cv=none; b=WBYQ0gm+Ipd1TEpKiG0ppC32Y+8ymvIDdfr1A8S9Syub1zZNY9SyzE5+U4yY4pA4defCU96o9zAeb6zkxOJLbcwhr/xsRBtpx6yWIrmx1HMkBWwk8MZo1t3vTDD0cCDymKSqY7wUopmtpEllLjxEb0DZTXC4EbBzFN4wylQGsVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714035055; c=relaxed/simple;
-	bh=fXQExCvNLtHW5hj8xDuSAVdpyMbbhjWi52wu8FzeoTI=;
+	s=arc-20240116; t=1714035134; c=relaxed/simple;
+	bh=chBR9FB2ZAl9HdeLR0mWAhYHpEkxBgAv2aOwNJJd82c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bUhjFZZfazFR2U8izBD/d8GEmLF+gOi0OzkgjJin+rYjU/UJomAZniphMheTLdDL1ucdEQdWyMxj4UXXYEOwXEmCRgWQQWaZgcc7LdghYMWvBERNKgPjRRlusseQSAoEs9SzvyxJApGyr8v8fpgH2knBlhrlU2qpyavLvsuhFwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YF3Uz8TO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F652C2BD10;
-	Thu, 25 Apr 2024 08:50:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RirRg0+VUE2Ziz7cZOI+i+b7BWWm93ExwUkZAMTbDKfTBkH63tnEESrqbzye2wvHknOiTQpaZzKWiyPO9V7vc4bzJ0U4pTXznU0pATAEIa1bbBj/lxF+xqwZXPcm34OSh7Rf/r/4xNrCmfhxTZsHetgswdEWQkzavHJwhE0tLfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JZmqsF4J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 636F2C2BD10;
+	Thu, 25 Apr 2024 08:52:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714035054;
-	bh=fXQExCvNLtHW5hj8xDuSAVdpyMbbhjWi52wu8FzeoTI=;
+	s=k20201202; t=1714035133;
+	bh=chBR9FB2ZAl9HdeLR0mWAhYHpEkxBgAv2aOwNJJd82c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YF3Uz8TOLUzBXxCgyeRn0ureRNqEhOV6lzoThZrM4BbwTcYWrF+z2PxatcAOMjTf7
-	 +7hltNZUY7VeAqt5IDmsWZmYs8EG3m1Be482djAz9YNLI5udo7wjZll2uo/01T8TpF
-	 JMH7fAm2wx9c/Seautr1br+upLP8EJQEGuIrG/xF68M7d/i2hoyV6H/QZynm5pnZYP
-	 fPtl6/GR7xVq1MBOlyPpZmsDMzcEToW7XHu4aqpXHo/baGtV27qTyE7CGvP9lvTz/G
-	 e5+GWilOj+EKH9HK+6ns/5vUv+sjPkhBorhbW53qBkN47W737vQgf+jAd2GK0gTNm5
-	 EtbPXeSoZ7dCw==
-Message-ID: <9e16f81b-9ec9-4cf5-bf44-9d4bf7bf0e02@kernel.org>
-Date: Thu, 25 Apr 2024 10:50:48 +0200
+	b=JZmqsF4JYZtSEX7nRTxnFTX41Otk1vJ00X4APhwdPw3z3Yb6RZSQkuyhDSYJ8v3jO
+	 pAud1T0OL9XzKTBRJ1dCIRJfyHy73jhRf1JkeDgEEEVuQ2+t2OzFUYpmHewYm0Vovp
+	 8AtzLVTO8itMeAlad5BWBuoyuH47XCAMJUS4pk5kB57B9mlSdQUsAaPvrrokfPimUi
+	 9X1E/NId9ckBg9LRdWtgo+gsDYSeLtgTHFAYvl2A8FU9qJLIlza+TLasQbrMNoJSLb
+	 UQxePnp/fpY5GR5OycMYZ2cEGg4RXBicUeU2whf9CEgy796tL1UJC29M9BFWDFdW58
+	 S/rx+xvVR9Biw==
+Message-ID: <2b78be92-08a5-4bf8-a1e1-477ecbbe73da@kernel.org>
+Date: Thu, 25 Apr 2024 10:52:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: samsung,exynos-dwc3: add gs101
- compatible
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
+ correct compatible
+To: Patrick Delaunay <patrick.delaunay@foss.st.com>,
+ Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
- kernel-team@android.com, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240423-usb-dwc3-gs101-v1-0-2f331f88203f@linaro.org>
- <20240423-usb-dwc3-gs101-v1-1-2f331f88203f@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Pascal Paillet <p.paillet@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20240425074835.760134-1-patrick.delaunay@foss.st.com>
+ <20240425094829.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,21 +108,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240423-usb-dwc3-gs101-v1-1-2f331f88203f@linaro.org>
+In-Reply-To: <20240425094829.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/04/2024 22:19, André Draszik wrote:
-> The Exynos-based Google Tensor gs101 SoC has a DWC3 compatible USB
-> controller and can reuse the existing Exynos glue. Update the dt schema
-> to include the google,gs101-dwusb3 compatible for it.
+On 25/04/2024 09:48, Patrick Delaunay wrote:
+> Remove the unexpected comma in the compatible "st,stm32mp1,pwr-reg"
+> and define the new compatible "st,stm32mp1-pwr-reg".
+> The old compatible is only keep for compatibility with old device trees.
 > 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 > ---
->  .../devicetree/bindings/usb/samsung,exynos-dwc3.yaml   | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> 
+>  .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml  | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml b/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
+> index c9586d277f41..2a52f9e769c2 100644
+> --- a/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: st,stm32mp1,pwr-reg
+> +    enum:
+> +      - st,stm32mp1-pwr-reg
+> +      - st,stm32mp1,pwr-reg
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please make it oneOf:
+ - const: new one
+ - const: old one
+   deprecated: true
 
 Best regards,
 Krzysztof
