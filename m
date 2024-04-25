@@ -1,127 +1,121 @@
-Return-Path: <devicetree+bounces-62742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A86C8B2547
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:37:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0182C8B2570
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:43:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF7C91F21ABF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:37:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91632286520
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 502D314C59C;
-	Thu, 25 Apr 2024 15:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D874214B086;
+	Thu, 25 Apr 2024 15:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KQYc4p2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UeQ9XnqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18A314C585;
-	Thu, 25 Apr 2024 15:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0121494BF;
+	Thu, 25 Apr 2024 15:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714059410; cv=none; b=aNfz2sr7EhLoCTKKa2LPxrLBVY1lJZ9N0YF5izehFshIsQc19R0+YiKzsPi1Wy/JJd7iHSlLjkZH7g04zmIkH8sKhemzZO498Hm0qiVoP00vEXNVwBeBHQ1sbkebyF/9ThH3CPOL9IIK1qmxudf98k09ZET3uR/GTfWjEbfVXWo=
+	t=1714059786; cv=none; b=PDINsYWVYjI0pxVpVdpRPTZ2DASHLDy81KoAWiL1bpGedFmGH5sZ2c6jgx842vv1QfXSPTTIp4Itix9VVqQrWUv1BdweAMGOZmqn+tWTMrjAfmVMlwcFymCZCAqXguyVLbVipA5v263tEoKEXXGCA6ilBvb9J/gGWOQJbQPzSlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714059410; c=relaxed/simple;
-	bh=PDmEGB3SrxvZUBnjCVzoTIhpoJVzwszchmK2bG/LP+Q=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EEYSInf7j6NltNi4Td2s0fBFxq+W9cBilANsTmIdkY/kqhoG3XVdiO7i44ouz172bVRnyv0koGLC4mjck3VfQg4ttdPhUSE8W05WFnpO5fjqWsSZBFLxJidllN1XTHxrTdos8oaWvGrP8maM1/MbSMWWFTw0TSGKMXhuF4QAbgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KQYc4p2Y; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e9451d8b71so9945615ad.0;
-        Thu, 25 Apr 2024 08:36:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714059408; x=1714664208; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uuLAiBXQO6duyX3a2t5j57OCCXewrqZUvzn6yKvBMNk=;
-        b=KQYc4p2YAXN8z/1agMot8kT8/9udqC3lXLnbJiVXSaC4cp+lERi2t7rXD1ybBWfJ9t
-         r2UI1/qhNogb4zw4afN/oX5gFn5/zULGJXfoXH6vkiFXWo4GYffiER1MIiCUhXcH7vto
-         iOQDVPxMhCMatGuNS4RdHxs3AmwHpKT4NL3fwEGY27iK/mppFiR+59EnMFLOX5qkM74d
-         MzMjQxiomBcW4FNB6gudgT1mBBG95ZKrVcZQTILO7928lZVQAPks3pJnV50R3VwOHxOz
-         iZhj6i3xE3WeACYVDP3JfkGlaPw4HUkNW1yEFxvChYEd1W4SIEHQ5sxSu43Yk9b8cyfY
-         Tzsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714059408; x=1714664208;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uuLAiBXQO6duyX3a2t5j57OCCXewrqZUvzn6yKvBMNk=;
-        b=Yztu6eUBCCFgLfsYKbAUWuoOvl8m9kftoG6M+7L311A8Bl8Rci+/n5cKdtsjBaJTXk
-         7Dp7Ph55jorNYrUZ097OJNlyrgvbEzxaaVG0fZXCwa8FZxS5+xeMVezj07Q5M//Do3M5
-         w4lcxdYtJAM6bslw2kTRsSw//zzBTLedXNe8jAzycNweEkyon5D9Qa7r9ojv5qtBNDA9
-         vkf/GdFzADycz/jqfkjyv9SnAZ5ZWp8NJNNcb3oMYj/rHJmAsJUe4PqG5Cwo547fWv1a
-         s+T7FO5AbS1FhOKcNzEeNh8WGdMEforXYbmj4zjfsFyQZLGsrHTvUOpggY/YqEzGqvRC
-         269Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU9epNtEuA+Ak4F5kyr6EZS2EZPiDA65isE0vP2nCiNNBInsvPEBmjhBNLR12n/yBA2NwcFRarx+cZ/l7UhmmzqISizv3+FAA4Iro82BlajpW8Ngiz7sQN5XFVH+POxGqP1ZIOnmO/x/kdbWrS6hb/YzMhCZZd7RX3cv5D0+hfqoWMbzTG/jp/MBqZTcAyr81kF2NuFWGtKCgk9n1BJk8/gt2CvidrHPzi7iI/9XAeq1FFFgMoR+8hC9vHT
-X-Gm-Message-State: AOJu0YxOSMuhpGqRaFNTI++Z6eIxsqBtoVV3sWVF4vZeoJV3SfpKSO1O
-	3JPIjiG7RPA7If+pWr4RXdHfdjeawfvHpJX2cfCjA3LULeKIXGue
-X-Google-Smtp-Source: AGHT+IE9vJ8m+kjIx4Dc4HB0h4UKfRc6/ZD+hpDo/CuJ9kwLGxcrYF/dOl57soHdoWkmxhG5AbU+Fg==
-X-Received: by 2002:a17:902:f70a:b0:1e8:2c8d:b749 with SMTP id h10-20020a170902f70a00b001e82c8db749mr8602039plo.30.1714059407830;
-        Thu, 25 Apr 2024 08:36:47 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id bi2-20020a170902bf0200b001e27ad5199csm13852586plb.281.2024.04.25.08.36.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Apr 2024 08:36:47 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Charles Hsu <ythsu0511@gmail.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-i2c@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: hwmon: Add infineon xdp710 driver bindings
-Date: Thu, 25 Apr 2024 23:36:02 +0800
-Message-Id: <20240425153608.4003782-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240425153608.4003782-1-peteryin.openbmc@gmail.com>
-References: <20240425153608.4003782-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1714059786; c=relaxed/simple;
+	bh=We7CJBcpFiTtuiJw0bxly1Y/yD2hktd8wy5CjSTeJeU=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=HcyDwmIZDvLLrNZc0O99ULeybayLJABAYvX8d6hYxTmqMHmS+Feqd6ptAfIclMzZvzZaSHlo4ihxXjWIL0En65AkH5oFjwcBhFvoZmy0CXvethA0oJQZRHuUYRWl3PdLwl9MJ1MLWdjbHEB9pq4gKkz1LcxQ/JmFhffkniy3qPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UeQ9XnqB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76D18C113CC;
+	Thu, 25 Apr 2024 15:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714059786;
+	bh=We7CJBcpFiTtuiJw0bxly1Y/yD2hktd8wy5CjSTeJeU=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=UeQ9XnqBfcEo2PV4stOWd1PCCqh5xB4NHBt3bBNcHrIBiaG8peGRoBKHDpPaZ5xLG
+	 NI7BEOx1O/wrU9eUXBEGrvT1XJbP5FUsfd74cNbqEJ3sSwC09/OHxJMvx0QU3u83tt
+	 NsxCbA3FhIq7gI/MOXnZ7M3MB+ny7HXB+OI7r9qHNpJd+cPl/k9QsOpSN0OzjnQXve
+	 Yss8pXytw1pkIIDvisiQmOR1ykgmeX0nD9mRfN24NjAJ28AQDwXpzjTlSsllLJSnYw
+	 t1/6J8VUrHyfEcTzpwzTTa4uB0+H+FGlwpwRAJvONsx997XLo4so9htaP7J88B+MPP
+	 ZQkwHvkzZFSqA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,  Konrad Dybcio
+ <konrad.dybcio@linaro.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>,  Jeff Johnson
+ <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
+  wireless <linux-wireless@vger.kernel.org>,  DT
+ <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
+ Herring <robh+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
+ <avrac@freebox.fr>,  Bjorn Andersson <andersson@kernel.org>,  Jami
+ Kettunen <jamipkettunen@gmail.com>,  Marijn Suijten
+ <marijn.suijten@somainline.org>,  Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+	<5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+	<252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+	<502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+	<0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+	<CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+	<87ttkh49xi.fsf@kernel.org>
+	<e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+	<87h6gh406w.fsf@kernel.org>
+	<ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
+	<871q6tu6bn.fsf@kernel.org>
+	<de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr>
+Date: Thu, 25 Apr 2024 18:42:16 +0300
+In-Reply-To: <de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr> (Marc
+	Gonzalez's message of "Thu, 25 Apr 2024 13:48:50 +0200")
+Message-ID: <87msphsb3b.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add a device tree bindings for xdp710 device
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> On 25/04/2024 11:42, Kalle Valo wrote:
+>
+>> Marc Gonzalez wrote:
+>> 
+>>> Do you prefer:
+>>>
+>>> Option A = never waiting for the MSA_READY indicator for ANYONE
+>>> Option B = not waiting for the MSA_READY indicator when
+>>> qcom,no-msa-ready-indicator is defined
+>>> Option C = not waiting for the MSA_READY indicator for certain
+>>> platforms (based on root compatible)
+>>> Option D = some other solution not yet discussed
+>> 
+>> After firmware-N.bin solution didn't work (sorry about that!) my
+>> preference is option B.
+>
+> Actually, Option B is this patch series.
+> Could you formally review it?
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index e07be7bf8395..f982de168c4c 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -134,6 +134,8 @@ properties:
-           - infineon,irps5401
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-+            # Infineon Hot-swap controller xdp710
-+          - infineon,xdp710
-             # Infineon Multi-phase Digital VR Controller xdpe11280
-           - infineon,xdpe11280
-             # Infineon Multi-phase Digital VR Controller xdpe12254
+I'm happy with this series and would take it to ath.git, just need an
+ack from DT maintainers:
+
+https://patchwork.kernel.org/project/linux-wireless/patch/84f20fb5-5d48-419c-8eff-d7044afb81c0@freebox.fr/
+
+> Perhaps one thing I could do slightly differently is to NOT call
+> ath10k_qmi_event_msa_ready() a second time if we DO receive the
+> indicator later.
+
+Good point. And maybe add an ath10k_warn() message so that we notice if
+there's a mismatch.
+
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
