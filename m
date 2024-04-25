@@ -1,217 +1,89 @@
-Return-Path: <devicetree+bounces-62643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E788B1D9A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:17:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D7548B1D9E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:18:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 132291F25272
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:17:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1023E283B48
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81CC84D0D;
-	Thu, 25 Apr 2024 09:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB51A85262;
+	Thu, 25 Apr 2024 09:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yzh3o42j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvKF1S/6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B7182D82
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 09:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847D38286B;
+	Thu, 25 Apr 2024 09:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714036609; cv=none; b=qyXqd7LMwv3tT1MiaIrHJ3ABcUQjHvyHojPbqN5ir8+c0QVwyYq7B/S+C5kzSxFNJIEnuyj2GP2kVOLTt57TfrvjrNKOWPT/ueXiAOgIxrJeKmy15hwQPKbUz7WxWBeVQPHRVuOBU4NI/luOHu7llPLjyqXSkd0qfT/fSHKbfFw=
+	t=1714036641; cv=none; b=CyhWXy35/V6nVj0J1cEC4ADeEaoYu9dwKvF0K7GdEBxQd2oJep3NCpFtNPYv1jXzkRQ8DdalwoDqN6SdtsMXbgaqSnSr8dksxltPgcr3vOeWtCQPjanZpHhZkvDb28fVhg2G/iHQQY3qwpVy2pIXna2XOaMxj90MOYbucbP3Gec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714036609; c=relaxed/simple;
-	bh=f3133uqFv4RXCOMEFhCG0DPHJZPjuMDDykb0W1SZ6oU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PJziij/n3OLaMN6DWQFbiHPek1DbKqbL4gVermV7eLXViC1F5MbuGnRiXBEOteoI6SU4NEPCnHOtf3tR9DkiLAx2nsYQ5b9f9GaxLdOXvBm2eORw/9XHLw1ndwRmigWa5aWPnrKOjb0f+iFAe6vQfpd2U/Tpr4PTHfBnq8iCfSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yzh3o42j; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41b34d344a0so5943905e9.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 02:16:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714036605; x=1714641405; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=AYDzBhKtpm+egzgFtB4HtgBcIwuui9EZnOvvgEKNBgs=;
-        b=Yzh3o42j8rhw3tdPPq/BR106A7ibm7ZlDffAW73faVJc4NkfzessUv6wlTqRGDfTmU
-         NHAnQbY4bRxTRj+E958+62IFa9aqNz9um0BCCZ5J47fmEV6bOKFBQWIJYeCkfwWzh+03
-         JWPSmX3fkyUDnDKi5cp+G4gTPu7UEJyrHbOrJgisdEBFbYEa/hGOSVToK8uHL1lYKLcH
-         /ZgPc8zB+0XM/HQ4E72YYdX5+hBY/XBj6h7HMzRbWR0Y3y+WAkk78ni0C46/3r9az1b+
-         6JVYnKa0sjv4H49RThB5RE1HR8h4ubrESjLEsq49Ay5ihLWuE8NXWN9wIb+QexPXR+9o
-         mHLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714036605; x=1714641405;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AYDzBhKtpm+egzgFtB4HtgBcIwuui9EZnOvvgEKNBgs=;
-        b=VVkX/B3+tz2ZBV/5Xii//9xEBe0sAzSdzMiipxANJu5PYUlzTEIcGUbhZ+dXnUmDAO
-         2U0J1Q52SCHE8UGwJxZCEh3VrT8jesi1lNLlqBqNRrQ5d2u5dafNj8thgKSjMO8tBQ6L
-         NL60ggR/f1sJneNsNhSaqWPmPBINNbXzXFVwPRiTJp1REy+kxE1V0aaItPNnjSEvsWSP
-         I3xfPSYPxhoOtHYnXb4zywv9WqMhLDG/tZzBHGl7xz5jOb6YYcvbbOFHnLC6kSSRtyH4
-         ClVH3FxMnPeTHQCtvjy2cEJz4o5XiWvP1g6tsfvAgY08AC4ErVQISUSokeKKaOxaAcuV
-         DwcA==
-X-Gm-Message-State: AOJu0Yz22WPHNZMxcHa71qHzo+/uZajJwVSSkbjQXr8pALUjDIgsMKOY
-	9LEWlHAaPLgiSkD9Q/e2SocVZHcI0SM5ysLiIrr2FfEnpHHpXjiLjNVjvsiz0j8=
-X-Google-Smtp-Source: AGHT+IFb+m8jFDSt8hUeNKrGm9liMRSXWx/YeCr7s2ouSLC7zhPY05EJh/Uh0z/U4sbYCNIueDt78w==
-X-Received: by 2002:a05:600c:5119:b0:418:c1a3:8521 with SMTP id o25-20020a05600c511900b00418c1a38521mr3935713wms.26.1714036605078;
-        Thu, 25 Apr 2024 02:16:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id t4-20020a5d4604000000b00343826878e8sm19297903wrq.38.2024.04.25.02.16.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 02:16:44 -0700 (PDT)
-Message-ID: <f45a76b3-996f-4204-9b9c-289d40767708@linaro.org>
-Date: Thu, 25 Apr 2024 11:16:42 +0200
+	s=arc-20240116; t=1714036641; c=relaxed/simple;
+	bh=RGX/DdMGDDuE1tp0jOp+5wSbZExkujiXoie6YdJkOD0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=RlgMhGEKwVMMT+ne8RJEa9cLBk74uES5857833YYd2oZZLrEoTnqUm2CWNcgnSyM1GybPDlmtOQliKylP1g4pe4ZpOzSTEfMPes1rjjelBEsuR7losFMNRNe07pDOUTvbTto+4K50qRTolz5zrN2Sr+9okZAO2+/SZhQVhXS24o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AvKF1S/6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE121C113CC;
+	Thu, 25 Apr 2024 09:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714036641;
+	bh=RGX/DdMGDDuE1tp0jOp+5wSbZExkujiXoie6YdJkOD0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=AvKF1S/6gtoXUv4PzyxQ1C0WVOiwNUK1Eb5Si8BYXRGF1imdQBhKFABUvFUmhIrNv
+	 o/OuEsamc7+qsQZ9Mg6bwdMmHiGJ5wcbDUKc9AvbS4Rvp+zN4cDKFg6V1Mg6HO502a
+	 dpcZpo9gDBqoMjb+YGczYw7K3cRZKpIUxcAehedpPGHYLv8ppEK94XkbclXImpR9Yn
+	 SZCQe2tG3+VcnVecgnjn+CXNijE3K/me3z5FIfHjrrgiZeqOveoTMru61nA5+yMA9f
+	 MkvP/24IjTELCl23B+xMxgRTyu5dos3NrrhDvEjBsYhrE5wykJMIins1XqRQD+1Tuu
+	 Rdec9whJVAW+g==
+From: Vinod Koul <vkoul@kernel.org>
+To: Sinan Kaya <okaya@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240423161413.481670-1-robh@kernel.org>
+References: <20240423161413.481670-1-robh@kernel.org>
+Subject: Re: [PATCH 1/2] dmaengine: qcom: Drop hidma DT support
+Message-Id: <171403663749.79852.6031928118459897049.b4-ty@kernel.org>
+Date: Thu, 25 Apr 2024 14:47:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] dt-bindings: arm: blaize: Add Blaize BLZP1600 SoC
-To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "olof@lixom.net" <olof@lixom.net>, Neil Jones <neil.jones@blaize.com>,
- Matt Redfearn <matthew.redfearn@blaize.com>,
- James Cowgill <james.cowgill@blaize.com>,
- "heiko.stuebner@cherry.de" <heiko.stuebner@cherry.de>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "macromorgan@hotmail.com" <macromorgan@hotmail.com>,
- "sre@kernel.org" <sre@kernel.org>,
- "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
- "andre.przywara@arm.com" <andre.przywara@arm.com>,
- "rafal@milecki.pl" <rafal@milecki.pl>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "andersson@kernel.org" <andersson@kernel.org>,
- "konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- "u-kumar1@ti.com" <u-kumar1@ti.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
- <20240425091403.17483-3-nikolaos.pasaloukos@blaize.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240425091403.17483-3-nikolaos.pasaloukos@blaize.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 25/04/2024 11:15, Niko Pasaloukos wrote:
-> Add device tree bindings for the Blaize BLZP1600 CB2
-> development board (carrier board), which uses the
-> BLZP1600 SoM.
+
+On Tue, 23 Apr 2024 11:14:11 -0500, Rob Herring (Arm) wrote:
+> The DT support in hidma has been broken since commit 37fa4905d22a
+> ("dmaengine: qcom_hidma: simplify DT resource parsing") in 2018. The
+> issue is the of_address_to_resource() calls bail out on success rather
+> than failure. This driver is for a defunct QCom server platform where
+> DT use was limited to start with. As it seems no one has noticed the
+> breakage, just remove the DT support altogether.
 > 
-> Reviewed-by: James Cowgill <james.cowgill@blaize.com>
-> Reviewed-by: Matt Redfearn <matt.redfearn@blaize.com>
-> Reviewed-by: Neil Jones <neil.jones@blaize.com>
-> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-> ---
->  .../devicetree/bindings/arm/blaize.yaml       | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/blaize.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/blaize.yaml b/Documentation/devicetree/bindings/arm/blaize.yaml
-> new file mode 100644
-> index 000000000000..8034aeb7a2b4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/blaize.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/blaize.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Blaize Platforms
-> +
-> +maintainers:
-> +  - James Cowgill <james.cowgill@blaize.com>
-> +  - Matt Redfearn <matt.redfearn@blaize.com>
-> +  - Neil Jones <neil.jones@blaize.com>
-> +  - Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-> +
-> +description: |
-> +  Blaize Platforms using SoCs designed by Blaize Inc.
-> +
-> +  The products currently based on the BLZP1600 SoC:
-> +
-> +  - BLZP1600-SoM: SoM module
-> +  - BLZP1600-CB2: Development board CB2 based on BLZP1600-SoM
-> +
-> +  The compatible property should follow the format:
-> +
-> +  compatible = "blaize,blzp1600-cb2", "blaize,blzp1600";
+> [...]
 
-This is a friendly reminder during the review process.
+Applied, thanks!
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
+[1/2] dmaengine: qcom: Drop hidma DT support
+      commit: d100ffe5048ef10065a2dac426d27dc458d9a94a
+[2/2] dt-bindings: dma: Drop unused QCom hidma binding
+      commit: e83cd59df0959bd9fbec76b7cff0b717ff8bc16f
 
 Best regards,
-Krzysztof
+-- 
+~Vinod
+
 
 
