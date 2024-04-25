@@ -1,135 +1,133 @@
-Return-Path: <devicetree+bounces-62579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D7F8B1B10
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:29:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5D88B1B21
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:37:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB432B228EF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:29:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19BD51C20E1E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF94E41757;
-	Thu, 25 Apr 2024 06:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6BC758203;
+	Thu, 25 Apr 2024 06:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="kvIZc6X1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 916483D0C2
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 06:29:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5663E22EF3;
+	Thu, 25 Apr 2024 06:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714026574; cv=none; b=GQ/Vwxb7Ya6pZkrDg9WbD1IGb0Duvt/gFB1WdmpdHsrmpseHFZbqRaSlq6MMYjlKYefGSj889Atj74j4Igzz4tyPcBFideD5gZK9mkdtomggSC/pJu9j3aqYP+V3djpf3f68oFmlpUd+sNfWeRq/wEtqB9xE8DPrAy7BDQ/l4zU=
+	t=1714027041; cv=none; b=Bhi29k7zuoUutVgyWlgFN3F7r7oxUHLidfpR/kkxVtt5js6j6zHuBcsqS9nD+T3Qhpo+xs2p8sC8EtLVhoiq5ypvBG4sIyySgB8tUjthpl6ofUv76MbKZlMthUkNYuhz/+yyNjZZO2IPJa1WUPjNAX8lxyZGhs38YysjaG5iWoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714026574; c=relaxed/simple;
-	bh=p0rpfcBvfX5VRHEn5gsxoCCeeNRXh0O+2772eFV+Sck=;
+	s=arc-20240116; t=1714027041; c=relaxed/simple;
+	bh=ELfe8WckxF8eVSgyC8i2jrnzs1KvA10s4ckP/UnNsCY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eU5AK7T95kLVORCaaIxA9/cT5fPT8Fc+gqfQU/qPEjIO27RzjYsxZiodPEprLbGjy75p6BEfeJsLkX+2SAni5OOYlBYurQceKPxGSYUbZLJvUBmwQ+XWe7hXL8UihJHMbgsbbPsdnwZoW6uDrJi5SXu1XHWP/CCqTT+sd9ZioJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzsbe-00029Q-C6; Thu, 25 Apr 2024 08:29:18 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rzsba-00EDHo-OY; Thu, 25 Apr 2024 08:29:14 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 4CAF72BF682;
-	Thu, 25 Apr 2024 06:29:14 +0000 (UTC)
-Date: Thu, 25 Apr 2024 08:29:13 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux@ew.tq-group.com, alexander.stein@ew.tq-group.com
-Subject: Re: [PATCH 1/4] can: mcp251xfd: stop timestamp before sending chip
- to sleep
-Message-ID: <20240425-tall-quiet-wren-f00e44-mkl@pengutronix.de>
-References: <20240417-mcp251xfd-gpio-feature-v1-0-bc0c61fd0c80@ew.tq-group.com>
- <20240417-mcp251xfd-gpio-feature-v1-1-bc0c61fd0c80@ew.tq-group.com>
- <20240424-adaptable-zircon-badger-1fefd9-mkl@pengutronix.de>
- <ZinnV+GA20LWGUOV@herburgerg-w2>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gd95wXkJjrcFcxXfWlGRftBnQgWvWpeQTKGK1Hg2z8AUtY1rchn6kf4UgCgdQRzI/oZQuTSunuK1+yfkjPl/txdHv5ndE7oLSEWcDpdyUB6BBDYlTjOjGI129JwnIxl10s7oZnBd8JzDmDkPIUTagnPKjfTLmVxB0JQ+2uh2+rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=kvIZc6X1; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=znCW4xJn3QRey/3PtwEkZuygD9e6UvUN/Gc1h2x4hsE=;
+	b=kvIZc6X16kU5qE9Nuaji67kho/47nX8LfmMXf0m+xCMikIJAnqJClKpQwTuH2S
+	d6QgxtMeaWpdDwT+/ahxHaFmSNlQoBR9Rz5WkJQ/kNuhh728cefs82EuINbNsYrJ
+	UBqC0xmfCv9okKiUBVV+IfS15/wxqi6XnFVpz9g43K6FU=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp2 (Coremail) with SMTP id C1UQrADHLhiS+SlmRJRzBA--.45238S3;
+	Thu, 25 Apr 2024 14:34:59 +0800 (CST)
+Date: Thu, 25 Apr 2024 14:34:57 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: soc@kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+	Antoine Tenart <atenart@kernel.org>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Robert Richter <rric@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+	Heiko Stuebner <heiko@sntech.de>, Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michal Simek <michal.simek@amd.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v2] arm/arm64: dts: Drop "arm,armv8-pmuv3" compatible
+ usage
+Message-ID: <Zin4+9mv1oIAewHH@dragon>
+References: <20240417203853.3212103-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jl5hounf2hkrpaap"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZinnV+GA20LWGUOV@herburgerg-w2>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240417203853.3212103-1-robh@kernel.org>
+X-CM-TRANSID:C1UQrADHLhiS+SlmRJRzBA--.45238S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZrWUWF45KryrtFW7uw45KFg_yoW8Xr1rp3
+	WUuw45Cr18Wr1rCasFgw1IvF90kw4rArW3uF9rGr9xtrn0va4UtF1Svr4fuw4DZ3WrCa1I
+	qF4DZryjg3WYqFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UBrWOUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFRPLZV6NnF3JSgAAs5
 
+On Wed, Apr 17, 2024 at 03:38:47PM -0500, Rob Herring (Arm) wrote:
+> The "arm,armv8-pmuv3" compatible is intended only for s/w models. Primarily,
+> it doesn't provide any detail on uarch specific events.
+> 
+> There's still remaining cases for CPUs without any corresponding PMU
+> definition and for big.LITTLE systems which only have a single PMU node
+> (there should be one per core type).
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+> Acked-by: Dinh Nguyen <dinguyen@kernel.org>
+> Acked-by: Heiko Stuebner <heiko@sntech.de>
+> Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
+> Acked-by: Bjorn Andersson <andersson@kernel.org>
+> Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Acked-by: Alim Akhtar <alim.akhtar@samsung.com>
+> ---
+> SoC Maintainers, Can you please apply this directly.
+> 
+> v2:
+>  - Drop QCom sdm630 change
+> ---
+...
+>  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi       | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi       | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi       | 7 +++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi       | 7 +++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi       | 5 -----
+>  arch/arm64/boot/dts/freescale/imx8dxl.dtsi           | 2 +-
 
---jl5hounf2hkrpaap
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Acked-by: Shawn Guo <shawnguo@kernel.org>
 
-On 25.04.2024 07:17:11, Gregor Herburger wrote:
-> On Wed, Apr 24, 2024 at 01:54:54PM +0200, Marc Kleine-Budde wrote:
-> > On 17.04.2024 15:43:54, Gregor Herburger wrote:
-> > > MCP2518FD exits Low-Power Mode (LPM) when CS is asserted. When chip
-> > > is send to sleep and the timestamp workqueue is not stopped chip is
-> > > waked by SPI transfer of mcp251xfd_timestamp_read.
-> >=20
-> > How does the Low-Power Mode affect the GPIO lines? Is there a difference
-> > if the device is only in sleep mode?
->=20
-> The MCP251XFD_REG_IOCON is cleared when leaving Low-Power Mode. This is
-> why I implemented regcache.
-
-But that means you have to power the chip if a GPIO is requested. You
-have to power up the chip in the request() callback and power it down in
-the free() callback.
-
-I've 2 patches laying around, one that moves the timestamp
-init/start/stop into the chip_start/stop. And another one that moves the
-soft reset and basic configuration of the chip into the runtime pm
-functions. I have to make both patches compatible and send them to the
-list. Feel free to pick them up and integrate them into your series.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---jl5hounf2hkrpaap
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmYp+DYACgkQKDiiPnot
-vG+1vAgAl+G4ZfcqA1NGRKoDMVijFXRucCXAiJK55nBv/76cLqp/96ab3XAOeKRK
-OZMN8El/e/F0nj5LbKpkITaVAtUgIikru2MVx6GxIH1dOQ4YfLqJFABHaXznIDxL
-I9NcwSmkeFZyoVZy6ZmZ+AjV3IbAM+41cZBCgI41SpvzeWs38uBYt5RrB+VXrbOE
-6l/O9SI8DZ5cwvqHt10SeHhrMbZ8b/n+pyXze1RBVnVrFVp0n9rIC3gyfnVyyAhS
-5r5hhS3U4xxRcyyCTLP8f8qZ7HwltvcbW4hXoT5Nv/HOuz0hgAIktyugX2Gqhid7
-+2wUEuxF5DWNDB5qcIDXGB5LZVB4Qw==
-=jpnY
------END PGP SIGNATURE-----
-
---jl5hounf2hkrpaap--
 
