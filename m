@@ -1,107 +1,114 @@
-Return-Path: <devicetree+bounces-62676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A218B1F04
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:20:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0FE8B1F08
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50300B2AF5B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:20:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81C881C21A88
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC3786151;
-	Thu, 25 Apr 2024 10:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6016E86264;
+	Thu, 25 Apr 2024 10:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ox8ZjBmf"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pQrMK/mE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C61F86AE2
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 10:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0ECD84E19;
+	Thu, 25 Apr 2024 10:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714040422; cv=none; b=ZEy1ZR2/3PvT+KGD8Mm05vjYHCkTr8NwnYSKsXHahXoE4fJc3SqN3xlcZJOrclFkGvgePqmSL58Iaa/EndMYFQ3EzpmBVmrK7i20G5dp95w4ikY8zcM4UNEfU2Ng0kWvYn/Ow6G0sB7hpcDxPO0ndgAvWq5FRwOi/Vpvjt3aUz0=
+	t=1714040448; cv=none; b=gZKQcZfFm0MaZY56W0LfPciBc7W99cG3se6m1rFSenuzovjXn0cD7Tziqa82Eq5qjcQqerUnaGudSU4QnFZ8F9X158qmyDZSC5m2OtQnDz1KJxtZsrLo9/NTemFlkywoZI3nu1ODf02sgIqKnBEZhq0C/ruZxkAVcKtQtq23XUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714040422; c=relaxed/simple;
-	bh=coFlk6vpPoKDKE/eIhdn/SGcytlX8UEWgALPdd7bzSA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VhMqaPc8NJ9l9KJw9R75Pl7Ziu8SMKSxWVAQ5yKnvj7l0df7AhgOJ2p8Gsl/xmdIodPnRv1BL2MC94agmoCDE9uimJDHAjDkijtRukyRcXZgncI4DdsUbN54qwvs/9yRbcF7C5ubZ2M5dN4HRnV83Tx6GXCj0wrnlL4ZmTecB7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ox8ZjBmf; arc=none smtp.client-ip=209.85.161.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5aa28cde736so492706eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 03:20:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714040420; x=1714645220; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nRSofvBWjZnGCZ5wbNW26krjGAh8HH8TfOlAU+v/yzI=;
-        b=ox8ZjBmfO9AOovTLTWvrjxlwhgBGPybbXZNvExFbbjE+a375pKjhEViUTzvodj0WMA
-         H2lDOAQyGJQIRi68ZlOONtnGVVFaiZm2/T+0er1Vf2YGkS+C2AP4wSWRYYgzB/+8hTOQ
-         LsXwyG8gn5a7PrXC1k6OXjdUXcZlV89cqEsz8wM/d/Jiqgdw8z2eFVrLF8P9cBJoSOFu
-         334DsL+H5moQo5MU32uxpGI2wgWrGKSBnWB9ryC2UgSpoWl6qYwUiBuhbL4UA2zqjeWg
-         Zhbz2W3K5sC0q+DqF/0iVW+G1aqFQtXpVeJ2WHFtsWoilsOBIQx+GTRh6DXhC7GJJWIF
-         mY6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714040420; x=1714645220;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nRSofvBWjZnGCZ5wbNW26krjGAh8HH8TfOlAU+v/yzI=;
-        b=Q4qm/NZMUxWvYcSjGVqmffJmMg3o+cxLKJgY3eTKrT5krQYdhAfCKhxFBV0yyuWl3E
-         MtkDIMQShbBrvE8D0AK3Cd3jbFP764lpvKIl0DsOlf3Fn9aJCB9+tyyX8hHHXrm1Pd0i
-         VGo26mmGeCXjoOdF/OYKtJlyBLZf6uOnR3t8V5xrqtcsfnHl/kq2gTNNIIdavXx1ZpMy
-         M65vvOm4EUBqkD2qBSKu+L0HszandRytnMRipDpxJF3DJ11MQQaxbs+6uUyCmFX0G/P7
-         T1ZN4ltlHDzi/Pe3eLjmR70q4YiVLu+TUdv8+9ZmorTtXk4Vip3givykufz9Z5Enu/ug
-         RtZw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVn92ViZpqhKvdh+96Ule4g4NwV35uC1qYAiUUAHtDBSdxRLg0pBJBqQI2D2w+g9GyIH7tKoJ2G0G8E1Kp5x4UPYRxjYKSkexp6g==
-X-Gm-Message-State: AOJu0Yx4boiMPA2y2Z041/MosLC7hUfXCQIfasFwFB3hvwkP5yPA5mBc
-	s6RwlJxq91vNB3mc/G4SRiZGGjRGmcnERb4Ndf4ZeIPKEeXDpGZxVwP5g6VpzkTQaN7asjlUIYh
-	vEPSrT7wE6Alrvx6pmLioBWPRHggqsSAYwPdcUw==
-X-Google-Smtp-Source: AGHT+IGzXdN9jQkTN93JYhF62J2Q05oiVeNPbJR1v4bCLwPIyAnVTqlzGOk52nsCy6ZOkF0HDDyk+nkA/ctDRVoz/ms=
-X-Received: by 2002:a4a:98c9:0:b0:5a4:aea7:8066 with SMTP id
- b9-20020a4a98c9000000b005a4aea78066mr6630741ooj.5.1714040420650; Thu, 25 Apr
- 2024 03:20:20 -0700 (PDT)
+	s=arc-20240116; t=1714040448; c=relaxed/simple;
+	bh=hh3Kw6YahM6tTCYxpSRjyLVkH6XMqAqyxT4fZak8Pc4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jrH34eDJ1EnpVyYqMyAJdDTyROkZqZpsDobMf43plBNs/1+BMy4S0ACFRss+Ris4XGKD91troIwDZJ8K42WiHUt7L+GCPuW4Yv7x2ctn9xAPWvD6tAen40m3gxdanfhGuT+QfoBkQxqkN3sAFJUuHGATwlRLjVqG9fcx/nNI3I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pQrMK/mE; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43PAKfqL122853;
+	Thu, 25 Apr 2024 05:20:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714040441;
+	bh=jx0wZ+Xj9hfZLPL5M0DAVCFD8HH/8ENzF9Ty3x44gcs=;
+	h=From:To:CC:Subject:Date;
+	b=pQrMK/mEB2Yf2073TCol9SbE/uBrkElKHiIOJpLr68UBdDzBLQWabdXgkqnzGHBpg
+	 8vKr1wy7jxodX26dBTzEE+VwdFd/uciXgzp+KDWBJXyImyuN6pKVlQZG/oAvHkef4L
+	 X0jm6x1XjrAW0ID0mmldPsYZFpp80w7CowSgA/34=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43PAKf1q021883
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Apr 2024 05:20:41 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ Apr 2024 05:20:40 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 25 Apr 2024 05:20:40 -0500
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43PAKeax002339;
+	Thu, 25 Apr 2024 05:20:40 -0500
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
+	<nm@ti.com>,
+        <s-vadapalli@ti.com>, <srk@ti.com>, <danishanwar@ti.com>,
+        <r-gunasekaran@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Chintan Vankar <c-vankar@ti.com>
+Subject: [PATCH v2 0/2] Add support for CPSW3G port 2 on AM62A7-SK
+Date: Thu, 25 Apr 2024 15:50:36 +0530
+Message-ID: <20240425102038.1995252-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423-usb-dwc3-gs101-v1-0-2f331f88203f@linaro.org> <20240423-usb-dwc3-gs101-v1-1-2f331f88203f@linaro.org>
-In-Reply-To: <20240423-usb-dwc3-gs101-v1-1-2f331f88203f@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 25 Apr 2024 11:20:06 +0100
-Message-ID: <CADrjBPofpRiYc9hqOmBWXRKC7G7LYpLZfdDC4PRw9hmgV3in2g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: samsung,exynos-dwc3: add gs101 compatible
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, kernel-team@android.com, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, 23 Apr 2024 at 21:19, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
- wrote:
->
-> The Exynos-based Google Tensor gs101 SoC has a DWC3 compatible USB
-> controller and can reuse the existing Exynos glue. Update the dt schema
-> to include the google,gs101-dwusb3 compatible for it.
->
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> ---
+Hello,
 
-Reviewed-by:  Peter Griffin <peter.griffin@linaro.org>
+This series adds support for CPSW3G MAC port 2 with the SK-Ethernet-DC01
+Add-On daughtercard. Also, the missing alias for CPSW3G MAC Port 1 is
+added to the am62a7-sk board file in order to allow kernel to fetch MAC
+address populated by U-Boot for CPSW3G MAC Port 1.
 
-regards,
+This series is based on linux-next tagged next-20240424.
 
-Peter
+Link to v1:
+https://lore.kernel.org/r/20230424111945.3865240-1-s-vadapalli@ti.com/
+
+Changes from v1 to v2:
+- Since support for device tree overlays for am62a7-sk is already enabled
+  by commit "635ed9715194", it is removed from this series.
+
+Siddharth Vadapalli (2):
+  arm64: dts: ti: k3-am62a7-sk: Add alias for CPSW3G MAC port 1
+  arm64: dts: ti: k3-am62a7: Add overlay for second CPSW3G Port
+
+ arch/arm64/boot/dts/ti/Makefile               |  3 +
+ .../dts/ti/k3-am62a7-sk-ethernet-dc01.dtso    | 61 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       |  1 +
+ 3 files changed, 65 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+
+-- 
+2.34.1
+
 
