@@ -1,72 +1,83 @@
-Return-Path: <devicetree+bounces-62707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A3A8B215A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 14:08:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B52C8B216D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 14:10:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A51B1C21D94
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:08:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DD051C20A65
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:10:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E8312CDA8;
-	Thu, 25 Apr 2024 12:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E241E12BE9F;
+	Thu, 25 Apr 2024 12:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dA7fJRgS"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="iAaz8KO3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E0912CDAE;
-	Thu, 25 Apr 2024 12:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5576F12AAD5;
+	Thu, 25 Apr 2024 12:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714046801; cv=none; b=kwR19ijU/HiUMB/g/GgQC3BGq+mTVwi0MhkiEwfgQWYx48Dj+9hv+AbtaaVFMI23QvhRDUFUPfeHwvPMxmeZVdDEIEQBts8sO6fEfGgh/Y+Mw5ldAjK942zWwTQxzHKaX02Z+Q1WYmEiUXzqkSqGw2mr4ROAzkWjyO9OYxXqvGs=
+	t=1714047052; cv=none; b=FdeMfqkL9RomReMVHnzP3nK5pN4qcR/if00ZpklaJjljPrUfMfl+evS+nHOEWCHbS1doJnsPxmRsmKx+GyIMesats9rLT2Fyu7KcaeAF3w/C/7eal8dJpIAvkeaYtOyqKUQeB1lgD+qxAtreWiM1AcVlifAYF3XEa4M8NKU5pE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714046801; c=relaxed/simple;
-	bh=4jOnxjjtXjkmUlIHjxkZtfD/gWWCPtWUS2GdtYJdUEI=;
+	s=arc-20240116; t=1714047052; c=relaxed/simple;
+	bh=HdZ2QnA7U2oMaAFrgywXWMXD05CJWf4ARPk2tQv0ZA0=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d0znyvvFbwHxVuXK5jeguCpiTWbGTouP9OQkukJd7giVMtkwHqClPCRTuIshT8wurXpauFayAObMoVHDbVMO73kuX4ezfqIVRKZtXUFiYslnMfsWDM/PK2XhA4vvSbW3S0f4dmE6uy5ZP8SafepOx9iZw+Scw8v6VdWTZ9FJxbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dA7fJRgS; arc=none smtp.client-ip=198.47.19.142
+	 Content-Type:Content-Disposition:In-Reply-To; b=T/kJhKzP9TwG8EfiPaJt0c1YoVK6cCcviU0bUeweZok+y2jAZlY5Z4VDEt20y31IvmhT76XaAL+h1KQ7XtNxE8QzcryJgqsrItOGctzDMjiYpmY144Q0xzHqJNh/UnE76s/hs6MDZ43rvbynE17et/hA3rJ94xY4jTJlpJS5D8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=iAaz8KO3; arc=none smtp.client-ip=198.47.23.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43PC6Wke040261;
-	Thu, 25 Apr 2024 07:06:32 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43PCAeRk024096;
+	Thu, 25 Apr 2024 07:10:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714046792;
-	bh=lyHC/hKqFn4jdVZHq91Jj5fOmrUXRr1HXnaZQElx23c=;
+	s=ti-com-17Q1; t=1714047040;
+	bh=20RMvqPeKimzlfIcpbZ/jDK1eyJlbn4Lto3iHRS0I+c=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=dA7fJRgSM8iSmIJqNuqx3+vdLUsF5WZux0a3sltsj3SwmRoWiQHou6z26D92e3u/Y
-	 h+oLTemj3jT3EIsd5BBVfwvEqeVsv5/99R54KBenpUULjHTf+9ATIHWZzPrbaVsda2
-	 RrUunOQWDJeMnRsQ3drYebumfF+ZzlJZ215iJXxs=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43PC6WLp010056
+	b=iAaz8KO3mq1BoTNcTCvQizGESg7K6BExwxKzQBq53xfQPx2aXsbLx5b6YfHxRVxP/
+	 yBEh3mOHgceFWW4OqXp15nScHCP+sqVAuoPNjpL8mGQZU692UPEKi/TRtrfj/vz4ZP
+	 yrxGu6qtYYZvN5tGOorMVfUjOwmp4bW2Z7AafSIA=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43PCAe5k013375
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 25 Apr 2024 07:06:32 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 25 Apr 2024 07:10:40 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
- Apr 2024 07:06:32 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 07:10:40 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 25 Apr 2024 07:06:32 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43PC6WHA032962;
-	Thu, 25 Apr 2024 07:06:32 -0500
-Date: Thu, 25 Apr 2024 07:06:32 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ Frontend Transport; Thu, 25 Apr 2024 07:10:40 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43PCAdV1065347;
+	Thu, 25 Apr 2024 07:10:39 -0500
+Date: Thu, 25 Apr 2024 17:40:38 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, <lee@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-am62p: use eFuse MAC Address for
- CPSW3G Port 1
-Message-ID: <20240425120632.wshj2hflo3weq222@parsley>
-References: <20240404124614.891416-1-s-vadapalli@ti.com>
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+Message-ID: <8a64294a-df1e-4331-aca5-0b23b637b9e1@ti.com>
+References: <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+ <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+ <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+ <eb7a0d5c-c197-44b9-baea-e9b54792b447@kernel.org>
+ <af61424e-7006-49f5-b614-3caa3674685a@ti.com>
+ <083e50de-1c99-4a58-8b55-4dec26d97c1b@kernel.org>
+ <9bca7d94-142e-4717-aea7-437805717a00@ti.com>
+ <a895ddc8-5c18-49d7-86c4-b995bb946914@ti.com>
+ <94bae793-ba4f-467f-917d-213fa3cd6faa@ti.com>
+ <20489a1e-51d1-42b3-9014-fc1c00b087db@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,27 +86,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240404124614.891416-1-s-vadapalli@ti.com>
+In-Reply-To: <20489a1e-51d1-42b3-9014-fc1c00b087db@linaro.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 18:16-20240404, Siddharth Vadapalli wrote:
-> Add the "ethernet-mac-syscon" node within "wkup_conf" node corresponding to
-> the CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the
-> compatible "ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations
-> on these registers. The MAC Address programmed in the eFuse is accessible
-> through the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree
-> property points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver
-> to fetch the MAC Address and assign it to the network interface associated
-> with CPSW3G MAC Port 1.
+On Fri, Apr 05, 2024 at 08:55:18AM +0200, Krzysztof Kozlowski wrote:
+> On 05/04/2024 07:21, Siddharth Vadapalli wrote:
+> >>>> bindings in the changelog or cover letter.
+> >>>
+> >>> Thank you for clarifying. I will post the DTS patches corresponding to
+> >>> this patch and reference this patch in the DTS patch series.
+> >>
+> >> I have posted the DTS patch at:
+> >> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404081845.622707-1-s-vadapalli@ti.com/
+> >> indicating the dependency on this bindings patch.
+> > 
+> > Hello Krzysztof,
+> > 
+> > Do I have to post a v2 for this patch? You had Acked it initially but I
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> No, I acked it. All this unnecessary talk was because you did not post a
+> user, but it is not a requirement, at least when we expect such user.
 
-Please rebase this patch. This no longer applies to  next-20240424
-(possibly due to dependencies integrated) - will be good to rebase it
-once tomorrow's next is applied.
+Lee,
 
--- 
+Could you please merge this patch? It applies cleanly on the latest
+linux-next tagged next-20240424.
+
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Siddharth.
 
