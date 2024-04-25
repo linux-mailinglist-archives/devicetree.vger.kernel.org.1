@@ -1,74 +1,40 @@
-Return-Path: <devicetree+bounces-62656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568708B1DE5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:25:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D95EC8B1E0D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F55F1C23F51
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:25:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B59A28248D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601648627E;
-	Thu, 25 Apr 2024 09:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r08SoTYT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDBC84D12;
+	Thu, 25 Apr 2024 09:32:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9655685942
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 09:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951F528F7;
+	Thu, 25 Apr 2024 09:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714036892; cv=none; b=LP4W79E/eRCytSKsVWdCFRRXFSfk1TI1cryOZVCUzwmM9LBlsq9HkSOulBV1F3V+4PbK2+mgkJz/tvccYHYmQ/zUW2Ec8Z23RznkKmcRwpOxukClexYpctXOs1QwWtDp8BEtoVI0kBW9gFS1tGvbs3h2GfQmWypgJZGCKFdRSpk=
+	t=1714037558; cv=none; b=Hu439UqBATg02B8PDPyW6G9oxuqMn4ZG8hDWedtaT8bGzrLT81fklduBYwNcOpSF9MjkCI55YHwkTZeJLK0eSXi09cFXiq/XcokpOZD2RIIEXrdLHlzr/UXuNrHYr46D5IGbWtg3lfykhCS/ECC1ilGNHzptYBzCB8tAtWpBRcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714036892; c=relaxed/simple;
-	bh=DIxCZWTbT9ex1eNUW7EVfiV9rPgE5SIJK7MAesGyx5E=;
+	s=arc-20240116; t=1714037558; c=relaxed/simple;
+	bh=vAAPcR08Lfk7tNRCkcxaWVf2F2/2MEJYOvGihhU5akI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RDcKLf93JmhUmUgBrbCye44BCPV70p0DHqA3R6ApImAJhNjd7F3A5rfo7xqCaodO+L2W+aXaYgYavT4MKYgtgltmdvp6cukRWnu87Tgo9M5moQgRCXTgySF/1uzyVDytaQJJ7Z7za8RarTMbuyRi+s17X49UlKZXAGEdu1qp7Kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r08SoTYT; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a58bd410f92so31290666b.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 02:21:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714036889; x=1714641689; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ycKgQHtAUZ6lcTtJlqIOpE7h07r0Jxh/0W84BnG1/MY=;
-        b=r08SoTYTFtb8XWjGUeXbyuX7J+DeZKgE2jtOWljojkoVTR1GSOUbKZWw/Te34r7dSX
-         i39RqyhTl/M2zSLQmOO4oduoCV/VtWblgvtXFldwWE9K6yJQFupWrwylALEsJJ5YHP/a
-         20G2vbCFgeMEjhsrJQ8Gl/FB1psPlTEl9C0guMuABmG7bqcAOzwjrgedv2j0MamPenuH
-         scUVEICiay6M8pHadia4f1ct4wkuv1bOJORhZUX/+N8RY9aWjo18L2ywrToBaZFWGrnQ
-         7GwUqa1fP9yFQ1OphJGNmxyUQJB/wuXUWvLj5XR0xNbpPDm/hqDrB4FlzEs9iq7QnDZ3
-         4SCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714036889; x=1714641689;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ycKgQHtAUZ6lcTtJlqIOpE7h07r0Jxh/0W84BnG1/MY=;
-        b=OAezj+HkX3+wyPGLK7I/sg0WJkFDW3lz8SIR0l8nUW5+6u04AEMSdeohOdyxFUBl0T
-         GqACSTkLG40+OLd3qnzVMj2cuzyiJPh0A3FLIoDM/732l3phJaScpgo4RcGuWWDzBLWM
-         OsHRVOxxa/FHjK09awPYiLk3kYpOM0XUtqWS2icHc4oXlwiX9LyCJHL2fO+N1+sCvBXb
-         VFWzGdBshmeVQ3drwDGdBGJR92kPBeSymBOL9FPwHvsDkKX5EShMJl6Y47g7A2aegVkJ
-         /+D4DnMSGi3StvNdQWiF/NMg1ZBhzBZ/49vQb43exUk5XHX6bB/N5WZYMOKkqHpIe2dj
-         d15Q==
-X-Gm-Message-State: AOJu0Yy+RkocKQxMjV16SHJoSDNHIHW02zE8PmlDiBnqWkkQcVVV9Suo
-	VTdzMbl23ub86oo0OyyU6M2sJ2XYNtNOtzTf/EITpzqr8XGhvBSSyjFX4BksZFQ=
-X-Google-Smtp-Source: AGHT+IHX6Ld8omjwoxmOsJRoaL6fZBX83GKBvunq+KDlYXea3OdkfPFVRVe4eNBADH/SwCVfspxiZQ==
-X-Received: by 2002:a17:906:2786:b0:a55:bfdf:937c with SMTP id j6-20020a170906278600b00a55bfdf937cmr3319563ejc.32.1714036888764;
-        Thu, 25 Apr 2024 02:21:28 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id i21-20020a170906a29500b00a526a992d82sm9355428ejz.4.2024.04.25.02.21.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 02:21:28 -0700 (PDT)
-Message-ID: <9b24ffdf-1247-4164-9841-6063106d76ea@linaro.org>
-Date: Thu, 25 Apr 2024 11:21:25 +0200
+	 In-Reply-To:Content-Type; b=q91twtLFLShnWtTkVkpeu1fv9ZJ2rzagpPOHLDmYItSicRtyJlynM9LV6xUS2Z+V8zwJM0Vh8V6uFMdHBPd2Ur6oBnomFWedo+VadzUuc6L4SnB0PW86EIBk6nuHq6IlaL9UGIoR9Cz4oPYPMomEZf2rGN3JnOnxMes7aH21Xkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A12E1007;
+	Thu, 25 Apr 2024 02:32:58 -0700 (PDT)
+Received: from [192.168.1.216] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3232C3F64C;
+	Thu, 25 Apr 2024 02:32:27 -0700 (PDT)
+Message-ID: <1d360b13-ea7a-4d13-bb16-ab3d0688ddd2@arm.com>
+Date: Thu, 25 Apr 2024 10:32:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,209 +42,249 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] arm64: Add initial support for Blaize BLZP1600 CB2
-To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>,
- "robh@kernel.org" <robh@kernel.org>,
+Subject: Re: [EXTERNAL] Re: [PATCH v7 5/7] coresight: tmc: Add support for
+ reading crash data
+To: Linu Cherian <lcherian@marvell.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
  "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
  "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "olof@lixom.net" <olof@lixom.net>, Neil Jones <neil.jones@blaize.com>,
- Matt Redfearn <matthew.redfearn@blaize.com>,
- James Cowgill <james.cowgill@blaize.com>,
- "heiko.stuebner@cherry.de" <heiko.stuebner@cherry.de>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "macromorgan@hotmail.com" <macromorgan@hotmail.com>,
- "sre@kernel.org" <sre@kernel.org>,
- "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
- "andre.przywara@arm.com" <andre.przywara@arm.com>,
- "rafal@milecki.pl" <rafal@milecki.pl>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "andersson@kernel.org" <andersson@kernel.org>,
- "konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- "u-kumar1@ti.com" <u-kumar1@ti.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
- <20240425091403.17483-5-nikolaos.pasaloukos@blaize.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+ George Cherian <gcherian@marvell.com>,
+ Anil Kumar Reddy H <areddy3@marvell.com>, Tanmay Jagdale
+ <tanmay@marvell.com>, "mike.leach@linaro.org" <mike.leach@linaro.org>,
+ "leo.yan@linaro.org" <leo.yan@linaro.org>
+References: <20240307033625.325058-1-lcherian@marvell.com>
+ <20240307033625.325058-6-lcherian@marvell.com>
+ <d707430f-00ee-4427-a9e4-6e42bc5b6aa9@arm.com>
+ <PH0PR18MB5002D42E980EDF6317051B77CE092@PH0PR18MB5002.namprd18.prod.outlook.com>
+ <a7b8d15f-5bcf-4774-a5b2-eb95d6174c43@arm.com>
+ <PH0PR18MB5002CFB5DD77312CE0337896CE132@PH0PR18MB5002.namprd18.prod.outlook.com>
+ <02191345-7048-4839-aecf-0e34479d49ef@arm.com>
+ <PH0PR18MB5002E428481F88D92EA9FA22CE172@PH0PR18MB5002.namprd18.prod.outlook.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240425091403.17483-5-nikolaos.pasaloukos@blaize.com>
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <PH0PR18MB5002E428481F88D92EA9FA22CE172@PH0PR18MB5002.namprd18.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 25/04/2024 11:15, Niko Pasaloukos wrote:
-> Adds support for the Blaize CB2 development board based on
-> BLZP1600 SoC. This consists of a Carrier-Board-2 and a SoM.
-
-Subject: missing dts prefix.
+Content-Transfer-Encoding: 8bit
 
 
-...
 
+On 25/04/2024 03:07, Linu Cherian wrote:
+> Hi James,
+> 
+>> -----Original Message-----
+>> From: James Clark <james.clark@arm.com>
+>> Sent: Monday, April 22, 2024 1:48 PM
+>> To: Linu Cherian <lcherian@marvell.com>; Suzuki K Poulose
+>> <suzuki.poulose@arm.com>
+>> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org; linux-
+>> kernel@vger.kernel.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
+>> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>; Anil
+>> Kumar Reddy H <areddy3@marvell.com>; Tanmay Jagdale
+>> <tanmay@marvell.com>; mike.leach@linaro.org; leo.yan@linaro.org
+>> Subject: [EXTERNAL] Re: [PATCH v7 5/7] coresight: tmc: Add support for
+>> reading crash data
+>>
+>> Prioritize security for external emails: Confirm sender and content safety
+>> before clicking links or opening attachments
+>>
+>> ----------------------------------------------------------------------
+>>
+>>
+>> On 21/04/2024 03:49, Linu Cherian wrote:
+>>> Hi James,
+>>>
+>>>> -----Original Message-----
+>>>> From: James Clark <james.clark@arm.com>
+>>>> Sent: Monday, April 15, 2024 2:59 PM
+>>>> To: Linu Cherian <lcherian@marvell.com>; Suzuki K Poulose
+>>>> <suzuki.poulose@arm.com>
+>>>> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org;
+>>>> linux- kernel@vger.kernel.org; robh+dt@kernel.org;
+>>>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>>>> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
+>>>> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>;
+>> Anil
+>>>> Kumar Reddy H <areddy3@marvell.com>; Tanmay Jagdale
+>>>> <tanmay@marvell.com>; mike.leach@linaro.org; leo.yan@linaro.org
+>>>> Subject: Re: [EXTERNAL] Re: [PATCH v7 5/7] coresight: tmc: Add
+>>>> support for reading crash data
+>>>>
+>>>>
+>>>>
+>>>> On 15/04/2024 05:01, Linu Cherian wrote:
+>>>>> Hi James,
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: James Clark <james.clark@arm.com>
+>>>>>> Sent: Friday, April 12, 2024 3:36 PM
+>>>>>> To: Linu Cherian <lcherian@marvell.com>; Suzuki K Poulose
+>>>>>> <suzuki.poulose@arm.com>
+>>>>>> Cc: linux-arm-kernel@lists.infradead.org;
+>>>>>> coresight@lists.linaro.org;
+>>>>>> linux- kernel@vger.kernel.org; robh+dt@kernel.org;
+>>>>>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>>>>>> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
+>>>>>> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>;
+>>>> Anil
+>>>>>> Kumar Reddy H <areddy3@marvell.com>; Tanmay Jagdale
+>>>>>> <tanmay@marvell.com>; mike.leach@linaro.org; leo.yan@linaro.org
+>>>>>> Subject: [EXTERNAL] Re: [PATCH v7 5/7] coresight: tmc: Add support
+>>>>>> for reading crash data
+>>>>>>
+>>>>>> Prioritize security for external emails: Confirm sender and content
+>>>>>> safety before clicking links or opening attachments
+>>>>>>
+>>>>>> -------------------------------------------------------------------
+>>>>>> --
+>>>>>> -
+>>>>>>
+>>>>>>
+>>>>>> On 07/03/2024 03:36, Linu Cherian wrote:
+>>>>>>> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading
+>> trace
+>>>>>>>   captured in previous crash/watchdog reset.
+>>>>>>>
+>>>>>>> * Add special device files for reading ETR/ETF crash data.
+>>>>>>>
+>>>>>>> * User can read the crash data as below
+>>>>>>>
+>>>>>>>   For example, for reading crash data from tmc_etf sink
+>>>>>>>
+>>>>>>>   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
+>>>>>>>
+>>>>>>> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
+>>>>>>> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
+>>>>>>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+>>>>>>> ---
+>>>>>>> Changelog from v6:
+>>>>>>> * Removed read_prevboot flag in sysfs
+>>>>>>> * Added special device files for reading crashdata
+>>>>>>> * Renamed CS mode READ_PREVBOOT to READ_CRASHDATA
+>>>>>>> * Setting the READ_CRASHDATA mode is done as part of file open.
+>>>>>>>
+>>>>>>
+>>>>>> [...]
+>>>>>>
+>>>>>>> @@ -619,6 +740,19 @@ static int tmc_probe(struct amba_device
+>>>>>>> *adev,
+>>>>>> const struct amba_id *id)
+>>>>>>>  		coresight_unregister(drvdata->csdev);
+>>>>>>>  	else
+>>>>>>>  		pm_runtime_put(&adev->dev);
+>>>>>>> +
+>>>>>>> +	if (!is_tmc_reserved_region_valid(dev))
+>>>>>>> +		goto out;
+>>>>>>> +
+>>>>>>> +	drvdata->crashdev.name =
+>>>>>>> +		devm_kasprintf(dev, GFP_KERNEL, "%s_%s",
+>> "crash",
+>>>>>> desc.name);
+>>>>>>> +	drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
+>>>>>>> +	drvdata->crashdev.fops = &tmc_crashdata_fops;
+>>>>>>> +	ret = misc_register(&drvdata->crashdev);
+>>>>>>> +	if (ret)
+>>>>>>> +		pr_err("%s: Failed to setup dev interface for
+>> crashdata\n",
+>>>>>>> +		       desc.name);
+>>>>>>> +
+>>>>>>
+>>>>>> Is this all optional after the is_tmc_reserved_region_valid()?
+>>>>>> Skipping to out seems to be more like an error condition, but in
+>>>>>> this case it's not? Having it like this makes it more difficult to
+>>>>>> add extra steps to the probe function. You could move it to a
+>>>>>> function and flip
+>>>> the condition which would be clearer:
+>>>>>>
+>>>>>
+>>>>> Ack.
+>>>>>
+>>>>>>    if (is_tmc_reserved_region_valid(dev))
+>>>>>>       register_crash_dev_interface(drvdata);
+>>>>>>
+>>>
+>>> Did you meant changing the condition of "is_tmc_reserved_region_valid"
+>> by "flip the condition".
+>>> If yes, that’s not required IMHO, since the reserved region is still valid.
+>>>
+>>
+>> By flip I mean remove the !. You had this:
+>>
+>>   	if (!is_tmc_reserved_region_valid(dev))
+>> 		goto out;
+>>
+>> But instead you should put your registration code in a function, remove the !
+>> and replace the goto with a function:
+>>
+>>     if (is_tmc_reserved_region_valid(dev))
+>>         ret = register_crash_dev_interface(drvdata);
+>>
+>> Where register_crash_dev_interface() is everything you added in between
+>> the goto and the out: label. The reason is that you've made it impossible to
+>> extend the probe function with new behavior without having to understand
+>> that this new bit must always come last. Otherwise new behavior would also
+>> be skipped over if the reserved region doesn't exist.
+>>
+> 
+> Thanks. That’s clear to me.
+> 
+>>> IIUC, the idea here is to not to fail the tmc_probe due to an error
+>>> condition in register_crash_dev_interface,  so that the normal condition is
+>> not affected. Also the error condition can be notified to the user using a
+>> pr_dbg / pr_err.
+>>>
+>>> Thanks.
+>>>
+>>
+>> I'm not sure I follow exactly what you mean here, but for the one error
+>> condition you are checking for on the call to misc_register() you can still
+>> return that from the new function and check it in the probe.
+> 
+> Actually was trying to clarify that we may not want to fail the probe due to a failure in the register_crash_dev_interface, since the normal trace operations could continue without crash_dev interface.(Tracing with or without the reserved region doesn’t get affected as well).
+>  Please see the changes below. That way the changes are simpler. 
+> 
+> 
+> @@ -507,6 +628,18 @@ static u32 tmc_etr_get_max_burst_size(struct device *dev)
+>         return burst_size;
+>  }
+> 
+> +static void register_crash_dev_interface(struct tmc_drvdata * drvdata,
+> +                                        const char *name)
+> +{
+> +       drvdata->crashdev.name =
+> +               devm_kasprintf(&drvdata->csdev->dev, GFP_KERNEL, "%s_%s", "crash", name);
+> +       drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
+> +       drvdata->crashdev.fops = &tmc_crashdata_fops;
+> +       if (misc_register(&drvdata->crashdev))
+> +               dev_dbg(&drvdata->csdev->dev,
+> +                       "Failed to setup user interface for crashdata\n");
+> +}
 > +
-> +/ {
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <1>;
+>  static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+>  {
+>         int ret = 0;
+> @@ -619,6 +752,10 @@ static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+>                 coresight_unregister(drvdata->csdev);
+>         else
+>                 pm_runtime_put(&adev->dev);
 > +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
+> +       if (is_tmc_reserved_region_valid(dev))
+> +               register_crash_dev_interface(drvdata, desc.name);
 > +
-> +		cpu0: cpu@0 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			reg = <0x0 0x0>;
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			reg = <0x0 0x1>;
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		l2: l2-cache0 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = /* Physical Secure PPI */
-> +			     <GIC_PPI 13 (GIC_CPU_MASK_RAW(0x3) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     /* Physical Non-Secure PPI */
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0x3) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     /* Hypervisor PPI */
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0x3) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     /* Virtual PPI */
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0x3) |
-> +					  IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0", "arm,psci-0.2";
-> +		method = "smc";
-> +	};
-> +
-> +	pmu {
+>  out:
+>         return ret;
+>  }
+> 
+> Thanks.
+> Linu Cherian.
 
-Nodes in top-level look randomly ordered. Any reason why not using DTS
-coding style in this regard?
-
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>, <&cpu1>;
-> +	};
-> +
-> +	sram@0 {
-> +		/*
-> +		 * On BLZP1600 there is no general purpose (non-secure) SRAM.
-> +		 * A small DDR memory space has been reserved for general use.
-> +		 */
-> +		compatible = "mmio-sram";
-> +		reg = <0x0 0x00000000 0x00001000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x0 0x00000000 0x1000>;
-
-ranges follow reg
-
-> +
-> +		/* SCMI reserved buffer space on DDR space */
-> +		scmi0_shm: scmi-sram@800 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x800 0x80>;
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0x82002000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			shmem = <&scmi0_shm>;
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			scmi_rst: protocol@16 {
-> +				reg = <0x16>;
-> +				#reset-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	soc {
-
-This does not cause dtbs_check W=1 warnings? Surprising a bit... This
-should cause big fat warning, so I have doubts patchset was tested.
-
-
-Best regards,
-Krzysztof
-
+Looks good to me!
 
