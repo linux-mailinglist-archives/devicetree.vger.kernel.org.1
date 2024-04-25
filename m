@@ -1,309 +1,167 @@
-Return-Path: <devicetree+bounces-62700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC218B208A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:41:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5167A8B20AC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36CDD289B79
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:41:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8031F25B31
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D721D12AAF6;
-	Thu, 25 Apr 2024 11:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF06E12BEBC;
+	Thu, 25 Apr 2024 11:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZJhVCzex"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aW501Lv9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C48D8528D;
-	Thu, 25 Apr 2024 11:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D211A12BEB6;
+	Thu, 25 Apr 2024 11:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714045229; cv=none; b=DLR4uVpFd90ROtkj5KzwKQl763n6nexXeKXjBIT6r6yw3s6lTcfhAF8x9TDUqrWzfECaz2DcaBE/GSaOANChJFobdB+M7TkP7bk9VknqSvnDQR1Ohxsm4iV7vbO0JresTAtdt02wKwwrlpqrowOy0x6B/XzfBOUA+2ikpeepPwE=
+	t=1714045694; cv=none; b=qy8OePd/RwEtoBPt6MVYQRJDT4FeWaQuNjPX0Nmrc61NgymN4y3nWh+dreuwf8OVwz7bqO2BOrvXnadsmfX7lPA6c+PcmlDuywrUt19gb0W7cqBb20vVbBAivM+00CeSHrIvRGkGDkDkLuXsL9z2MW64OBS0SHtUzZ8Men7JRGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714045229; c=relaxed/simple;
-	bh=P2bBCQSt7jxNjqJbsUjBZaYMNZKXq0ftcL7j1Mc1Msk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oIwpomjWYUCchb5vGTixS2W+f6GCM+I0C1xd3zMI1cQ7iJK0Bj0YtZNXSkyw6Ise1vb3rZhiJKhgcEfiYUSu+ja/S4iy0MelDHNtzsIEp0m7QpiV+ujxecm0RABMAx16ex0C9lVfM/BRg0hodHiad6ec0U0GH1rU37V2baJEFkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZJhVCzex; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-4db27d21a22so309413e0c.3;
-        Thu, 25 Apr 2024 04:40:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714045227; x=1714650027; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+2j3MigI8NH+d9tQkVlNYjGUfIdSi+E3EDQqvgjTKO4=;
-        b=ZJhVCzex4IZfvqX2kzS4mrEYWIGaB4nyNtfwFsje0GKIgrKGjBT0kiLc10yfNTfvw2
-         ohza30tyIlT2ICHjY95dbs38/R9pLPsOiRPORfZ8xca50sWC2/X38XHagCqT3cFHJ1IR
-         bkTDP5IMuLyP5qMU5P1nYg2HTT+KeCO7h0vfRn8Yq7zH7kqhF2sPk0L9oTg4+6PjkYRX
-         t2wxQhJ7mty2VEMyhtHilFj3np1pwrMqLBas3m8eL8drppRgdYmGDjE4ghVhrTry1QXl
-         1e+UB9ul6iOsZLI2BHj2B5+TS1JDqcrWbZFgdG5f6NF72i6d0WOOtF43KqoDw/wdyBij
-         3BPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714045227; x=1714650027;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+2j3MigI8NH+d9tQkVlNYjGUfIdSi+E3EDQqvgjTKO4=;
-        b=YcqomU2QudKFLPm66okUI1ghQ89o6CrRIfTy0qidhBq77DaJzS2oe+JJtNrgOGHtfk
-         9GjNK7Mu2DuxkOr9Ker2v2GwcL1Yk1oeD1GeIrjtPrG9KUpNsKVrZwyCxf95bD+rFKEO
-         XGOG+YVyi9nBwd+yAXfq6hUzTQslJy6F5/OEzD9IE0CdSXB668UnyRzhONJDMrplq2oA
-         5muvDfEpWAoNZ37iUeyAhqu7BD4MNJZOuy8Qt21Or6mLk2nf32g4lgskTSaZhei6wdqd
-         qVsFsNyCa6K4ZwJkecuYMgou3a/NbR2qewLTbkvE3pg7B7oXOG/0HHQx1fWbQWVx/4d8
-         wWJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUumNXfGJkSfBE+rHL/n0GOM4fGjTk73lAc9uDiYVCR5ebKbagxj445iZZQg1GB9ptRX0Bpa4pTqPWQHBYwr1lkbddVahQMkU4eIuch2TUt1sFAR8X+meEJ9jOAlHgtPbxLBINu9KodLY47kONGnYb5JJvcvIH51/TebnL23GCQZmBaiF85LqifquKAbxeuwYfI3WALzUfgm6LeO67zU0MJuEMDj1aXSA==
-X-Gm-Message-State: AOJu0YwWqBJOTwVXrsb9fAOIWbRlLSoj/BNnaC0duC9IFl2RIgnE62WZ
-	a1rVgNv1S3N/OyNj6rTtaNS2A5Uy8m68AnGqIgVw1V6vIaOtyuIPoJX87h40dqiyAj+JwB+qS6T
-	Zyt9M5mXc8HuqhLRSrUeFCSZZMcs=
-X-Google-Smtp-Source: AGHT+IHH+ElMXgp262UJLi2quqWfhPISWmMGS1bNCcZPUrybLQLRCO3bDBycNVluIG56q7wZ7IqSOIETxhbJbn1ZFpw=
-X-Received: by 2002:a05:6122:1da7:b0:4d3:4aad:1b9c with SMTP id
- gg39-20020a0561221da700b004d34aad1b9cmr6810330vkb.0.1714045226911; Thu, 25
- Apr 2024 04:40:26 -0700 (PDT)
+	s=arc-20240116; t=1714045694; c=relaxed/simple;
+	bh=HwCUhii1v+UVg/w9fnfv1IVtkJsyAJk/WRu0RrIN9fg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ngttJ6BNJLtQ7dCW+KWN9K01iJo6FfKsTv+PXjkvENJ5+ibZK9cBLmr78TkwR9GOKtRMEXgmcgJukIe1hNPLb+G+Wy3pLmyMUOeyfrW3lpn5SP1VEccLMywBz5qBy93tKTbd6o23h+1Aao6WIv6HCaX4yAk6IZHp/xBXPuzFNw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aW501Lv9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P9wuFT032483;
+	Thu, 25 Apr 2024 11:47:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=lU20Dpc0Wn36bS3HRI03h5cXxSl5AqSMPuJYeo3zz2Q=; b=aW
+	501Lv9eGYZN6Q/nqLPxyBLz9jiqiR2OSSF3ajSYhm7Biw23Idog4oiBm9iz05+vJ
+	mjY6KgQthlPSJ16rJQfMTrCyaHxrXb0beoTT5mKa/BhnZ3a256Rhf4uSGOfc4SLV
+	ebM53eqD/RM93G4NbRVt9/lFSp4bv22WGUvWRmpu0uLl2hSZL17aQP9SJv71ntIt
+	X7IOpSxBdVY3RhyY1jquzS2uaNAM5MLMQcPsLvfoWbISvzHub+qAHLngSLa/UZtz
+	aLHgOXHCslUu5qXvhLMQxPv3ixNuZj4bJ3qNGMwGsFnQi373DYuQMqBvebWPUEPL
+	8BnW20qWpKaGWFtmbuGQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xqn0wgfx2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 11:47:56 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43PBluGN004162
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 11:47:56 GMT
+Received: from [10.216.8.145] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 25 Apr
+ 2024 04:47:50 -0700
+Message-ID: <89c29d6c-173d-5b19-ce7d-9c2b7cec40f2@quicinc.com>
+Date: Thu, 25 Apr 2024 17:17:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240423175900.702640-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 25 Apr 2024 12:40:00 +0100
-Message-ID: <CA+V-a8sxu0eqSY1CsftHjU5mUmLAhKfApNpwEc3o=BjT23h_AQ@mail.gmail.com>
-Subject: Re: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function
- pointers for locking/unlocking the PFC register
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 1/7] ASoC: dt-bindings: document wcd937x Audio Codec
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>
+CC: <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <quic_pkumpatl@quicinc.com>
+References: <20240425091857.2161088-1-quic_mohs@quicinc.com>
+ <20240425091857.2161088-2-quic_mohs@quicinc.com>
+ <3f961aca-6dff-4d51-bb0b-c974ed80b646@kernel.org>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <3f961aca-6dff-4d51-bb0b-c974ed80b646@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WAC75izVg2jaJXu22yxmMqVvbJbvqI1R
+X-Proofpoint-GUID: WAC75izVg2jaJXu22yxmMqVvbJbvqI1R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_11,2024-04-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ impostorscore=0 malwarescore=0 phishscore=0 suspectscore=0 mlxscore=0
+ mlxlogscore=999 lowpriorityscore=0 bulkscore=0 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404250085
 
-Hi Biju,
+On 4/25/2024 4:31 PM, Krzysztof Kozlowski wrote:
+> On 25/04/2024 11:18, Mohammad Rafi Shaik wrote:
+>> From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>>
+>> Document the Qualcomm WCD9370/WCD9375 Audio Codec and the soundwire
+>> devices can be found on Qualcomm QCM6490 based platforms.
+>>
+>> The Qualcomm WCD9370/WCD9375 Audio Codec communicates
+>> with the host SoC over 2 Soundwire links to provide:
+>> - 3 TX ADC paths with 4 differential AMIC inputs
+>> - 6 DMIC inputs that are shared with AMIC input
+>> - 4 Microphone BIAS
+>> - RX paths with 4 PAs – HPHL/R, EAR and AUX
+>> - Stereo Headphone output
+>> - MBHC engine for Headset Detection
+>>
+>> Co-developed-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+> 
+> 1. That's odd order of tags. Who created the first patch?
 
-Thank you for the review.
+    First patch is created by : Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+> 
+> 2. Last time you received report that this was not tested. Now there is
+> again report.
+> Are you sure you test patches before sending?
+> 
+   Yes i have tested patches multiple times before sending.
 
-On Tue, Apr 23, 2024 at 7:12=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for the patch.
->
-> > -----Original Message-----
-> > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: Tuesday, April 23, 2024 6:59 PM
-> > Subject: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function=
- pointers for
-> > locking/unlocking the PFC register
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > On the RZ/G2L SoC, the PFCWE bit controls writing to PFC registers.
-> > However, on the RZ/V2H(P) SoC, the PFCWE (REGWE_A on RZ/V2H) bit contro=
-ls writing to both PFC and
-> > PMC registers. Additionally, BIT(7) B0WI is undocumented for the PWPR r=
-egister on RZ/V2H(P) SoC. To
-> > accommodate these differences across SoC variants, introduce the set_pf=
-c_mode() and
-> > pm_set_pfc() function pointers.
-> >
-> > Note, in rzg2l_pinctrl_set_pfc_mode() the pwpr_pfc_unlock() call is now=
- called before PMC
-> > read/write and pwpr_pfc_lock() call is now called after PMC read/write =
-this is to keep changes
-> > minimal for RZ/V2H(P).
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > RFC->v2
-> > - Introduced function pointer for (un)lock
-> > ---
-> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 51 ++++++++++++++++---------
-> >  1 file changed, 34 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/=
-renesas/pinctrl-rzg2l.c
-> > index bec4685b4681..0840fda7ca69 100644
-> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > @@ -246,6 +246,8 @@ struct rzg2l_variable_pin_cfg {
-> >       u64 pin:3;
-> >  };
-> >
-> > +struct rzg2l_pinctrl;
-> > +
-> >  struct rzg2l_pinctrl_data {
-> >       const char * const *port_pins;
-> >       const u64 *port_pin_configs;
-> > @@ -256,6 +258,8 @@ struct rzg2l_pinctrl_data {
-> >       const struct rzg2l_hwcfg *hwcfg;
-> >       const struct rzg2l_variable_pin_cfg *variable_pin_cfg;
-> >       unsigned int n_variable_pin_cfg;
-> > +     void (*pwpr_pfc_unlock)(struct rzg2l_pinctrl *pctrl);
-> > +     void (*pwpr_pfc_lock)(struct rzg2l_pinctrl *pctrl);
-> >  };
-> >
-> >  /**
-> > @@ -462,7 +466,6 @@ static const struct rzg2l_variable_pin_cfg r9a07g04=
-3f_variable_pin_cfg[] =3D
-> > {  static void rzg2l_pinctrl_set_pfc_mode(struct rzg2l_pinctrl *pctrl,
-> >                                      u8 pin, u8 off, u8 func)
-> >  {
-> > -     const struct rzg2l_register_offsets *regs =3D &pctrl->data->hwcfg=
-->regs;
-> >       unsigned long flags;
-> >       u32 reg;
-> >
-> > @@ -473,27 +476,23 @@ static void rzg2l_pinctrl_set_pfc_mode(struct rzg=
-2l_pinctrl *pctrl,
-> >       reg &=3D ~(PM_MASK << (pin * 2));
-> >       writew(reg, pctrl->base + PM(off));
-> >
-> > +     pctrl->data->pwpr_pfc_unlock(pctrl);
-> > +
-> >       /* Temporarily switch to GPIO mode with PMC register */
-> >       reg =3D readb(pctrl->base + PMC(off));
-> >       writeb(reg & ~BIT(pin), pctrl->base + PMC(off));
-> >
-> > -     /* Set the PWPR register to allow PFC register to write */
-> > -     writel(0x0, pctrl->base + regs->pwpr);          /* B0WI=3D0, PFCW=
-E=3D0 */
-> > -     writel(PWPR_PFCWE, pctrl->base + regs->pwpr);   /* B0WI=3D0, PFCW=
-E=3D1 */
-> > -
-> >       /* Select Pin function mode with PFC register */
-> >       reg =3D readl(pctrl->base + PFC(off));
-> >       reg &=3D ~(PFC_MASK << (pin * 4));
-> >       writel(reg | (func << (pin * 4)), pctrl->base + PFC(off));
-> >
-> > -     /* Set the PWPR register to be write-protected */
-> > -     writel(0x0, pctrl->base + regs->pwpr);          /* B0WI=3D0, PFCW=
-E=3D0 */
-> > -     writel(PWPR_B0WI, pctrl->base + regs->pwpr);    /* B0WI=3D1, PFCW=
-E=3D0 */
-> > -
-> >       /* Switch to Peripheral pin function with PMC register */
-> >       reg =3D readb(pctrl->base + PMC(off));
-> >       writeb(reg | BIT(pin), pctrl->base + PMC(off));
-> >
-> > +     pctrl->data->pwpr_pfc_lock(pctrl);
-> > +
-> >       spin_unlock_irqrestore(&pctrl->lock, flags);  };
-> >
-> > @@ -2519,12 +2518,8 @@ static void rzg2l_pinctrl_pm_setup_dedicated_reg=
-s(struct rzg2l_pinctrl
-> > *pctrl, b  static void rzg2l_pinctrl_pm_setup_pfc(struct rzg2l_pinctrl =
-*pctrl)  {
-> >       u32 nports =3D pctrl->data->n_port_pins / RZG2L_PINS_PER_PORT;
-> > -     const struct rzg2l_hwcfg *hwcfg =3D pctrl->data->hwcfg;
-> > -     const struct rzg2l_register_offsets *regs =3D &hwcfg->regs;
-> >
-> > -     /* Set the PWPR register to allow PFC register to write. */
-> > -     writel(0x0, pctrl->base + regs->pwpr);          /* B0WI=3D0, PFCW=
-E=3D0 */
-> > -     writel(PWPR_PFCWE, pctrl->base + regs->pwpr);   /* B0WI=3D0, PFCW=
-E=3D1 */
-> > +     pctrl->data->pwpr_pfc_unlock(pctrl);
-> >
-> >       /* Restore port registers. */
-> >       for (u32 port =3D 0; port < nports; port++) { @@ -2567,9 +2562,7 =
-@@ static void
-> > rzg2l_pinctrl_pm_setup_pfc(struct rzg2l_pinctrl *pctrl)
-> >               }
-> >       }
-> >
-> > -     /* Set the PWPR register to be write-protected. */
-> > -     writel(0x0, pctrl->base + regs->pwpr);          /* B0WI=3D0, PFCW=
-E=3D0 */
-> > -     writel(PWPR_B0WI, pctrl->base + regs->pwpr);    /* B0WI=3D1, PFCW=
-E=3D0 */
-> > +     pctrl->data->pwpr_pfc_lock(pctrl);
-> >  }
-> >
-> >  static int rzg2l_pinctrl_suspend_noirq(struct device *dev) @@ -2631,6 =
-+2624,24 @@ static int
-> > rzg2l_pinctrl_resume_noirq(struct device *dev)
-> >       return 0;
-> >  }
-> >
-> > +static void rzg2l_pwpr_pfc_unlock(struct rzg2l_pinctrl *pctrl) {
-> > +     const struct rzg2l_register_offsets *regs =3D &pctrl->data->hwcfg=
-->regs;
-> > +
-> > +     /* Set the PWPR register to allow PFC register to write */
-> > +     writel(0x0, pctrl->base + regs->pwpr);          /* B0WI=3D0, PFCW=
-E=3D0 */
-> > +     writel(PWPR_PFCWE, pctrl->base + regs->pwpr);   /* B0WI=3D0, PFCW=
-E=3D1 */
-> > +}
-> > +
-> > +static void rzg2l_pwpr_pfc_lock(struct rzg2l_pinctrl *pctrl) {
-> > +     const struct rzg2l_register_offsets *regs =3D &pctrl->data->hwcfg=
-->regs;
-> > +
-> > +     /* Set the PWPR register to be write-protected */
-> > +     writel(0x0, pctrl->base + regs->pwpr);          /* B0WI=3D0, PFCW=
-E=3D0 */
-> > +     writel(PWPR_B0WI, pctrl->base + regs->pwpr);    /* B0WI=3D1, PFCW=
-E=3D0 */
-> > +}
-> > +
-> >  static const struct rzg2l_hwcfg rzg2l_hwcfg =3D {
-> >       .regs =3D {
-> >               .pwpr =3D 0x3014,
-> > @@ -2688,6 +2699,8 @@ static struct rzg2l_pinctrl_data r9a07g043_data =
-=3D {
-> >       .variable_pin_cfg =3D r9a07g043f_variable_pin_cfg,
-> >       .n_variable_pin_cfg =3D ARRAY_SIZE(r9a07g043f_variable_pin_cfg),
-> >  #endif
-> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> >  };
-> >
-> >  static struct rzg2l_pinctrl_data r9a07g044_data =3D { @@ -2699,6 +2712=
-,8 @@ static struct
-> > rzg2l_pinctrl_data r9a07g044_data =3D {
-> >       .n_dedicated_pins =3D ARRAY_SIZE(rzg2l_dedicated_pins.common) +
-> >               ARRAY_SIZE(rzg2l_dedicated_pins.rzg2l_pins),
-> >       .hwcfg =3D &rzg2l_hwcfg,
-> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> >  };
-> >
-> >  static struct rzg2l_pinctrl_data r9a08g045_data =3D { @@ -2709,6 +2724=
-,8 @@ static struct
-> > rzg2l_pinctrl_data r9a08g045_data =3D {
-> >       .n_port_pins =3D ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_PINS_=
-PER_PORT,
-> >       .n_dedicated_pins =3D ARRAY_SIZE(rzg3s_dedicated_pins),
-> >       .hwcfg =3D &rzg3s_hwcfg,
-> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
->
-> Some memory can be saved by avoiding duplication of data by using
-> a single pointer for structure containing function pointers??
->
-> struct rzg2l_pinctrl_fns {
->         void (*pwpr_pfc_unlock)(struct rzg2l_pinctrl *pctrl);
->         void (*pwpr_pfc_lock)(struct rzg2l_pinctrl *pctrl);
-> }
->
-Ok makes sense, I will do that in the next version.
+   In my setup the "make dt_binding_check"  became success, there is no 
+errors.
 
-Cheers,
-Prabhakar
+   log:
+
+   DTC     Documentation/devicetree/bindings/sound/zl38060.example.dtb
+   DTEX 
+Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.example.dts
+   DTC 
+Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.example.dtb
+   DTEX    Documentation/devicetree/bindings/sound/qcom,wcd937x.example.dts
+   DTC     Documentation/devicetree/bindings/sound/qcom,wcd937x.example.dtb
+   DTEX 
+Documentation/devicetree/bindings/soundwire/qcom,soundwire.example.dts
+   DTC 
+Documentation/devicetree/bindings/soundwire/qcom,soundwire.example.dtb
+
+   Not sure why errors not coming in my setup,
+   Will check in different Machine.
+
+> Best regards,
+> Krzysztof
+
+Thanks and regards,
+Rafi
+> 
+
+
 
