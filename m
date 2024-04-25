@@ -1,95 +1,86 @@
-Return-Path: <devicetree+bounces-62766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 028AA8B265D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:26:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D548B2668
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2540F1C21E44
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:26:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB6521F24054
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C7E14D422;
-	Thu, 25 Apr 2024 16:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF6114D29A;
+	Thu, 25 Apr 2024 16:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ml5U5uNP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bep3hvd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1224500E;
-	Thu, 25 Apr 2024 16:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2934500E;
+	Thu, 25 Apr 2024 16:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714062362; cv=none; b=qkS+9/ty32MGBZM8vwqQQDDPT0HkNceF5ZAeJsYvHtrpQasRTHMvpMEX8E6dq4E/n8pkPEv7G8jk1+psXkpolibnQghKPut5QsCIorjWESy48p6JKMsKcQ0YMjlXtUUWSuN7ppGusWDNPd8sFgYYnshgZEMqNpRfOQldYKpgTF4=
+	t=1714062515; cv=none; b=iSaV8y+QWIucIBfGOa7w8HAdVAS+NmL0vJrs4cuv4/KiL4B3euKheiDCtnyvXSquUd9w0OKeNHhqUaMIkKD7SUzBM2u2EqKuYm1wTdzXhs8AyqE1iOKkfw1gNinjYvex2J9H4tRvyiEldB+YkWpjkHnymkN8fGcXJT1PBv7ezBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714062362; c=relaxed/simple;
-	bh=TxvnLVnHCzLYr5N2HFp/nczLdov6mGmacGR7PuTbNPY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Xxxfz7cq/PqV/fUK8OsMOpZtE2b2oDsAey2S3EQuYUVYZ3hzQ/caWBwgPMk7zEGpioCHE4ssK2iLANLM/Dd4oIT5uLVyJewUAwwZhGiJUnQKR5UB+B1FUoaz+44vEVEs6B6NDj4fjQPkTfGC2I9jD+lKrW0/3H6O5+9asxQM7H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ml5U5uNP; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1714062515; c=relaxed/simple;
+	bh=zYklsoUISlYvKcyat4IXY/FAxqT4drqQLM3RObkFEns=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BtioOXg/aIlw4v/J/uxN3J/RmThVrmN9K8ri+uG6oUJu3WitJEQdxjTqnWzQyFO4uX/8iVJT+WY7gmY0oJOrx68HOdVhwtIA4S5ngpXxZbL8ff/7fzuFweIfnAS6G1ur0ehaVnL+qMv8Hor853cuw3DEfTw11fjr8Ievr4I+V4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bep3hvd3; arc=none smtp.client-ip=209.85.166.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-516d264d0e4so2090504e87.0;
-        Thu, 25 Apr 2024 09:26:00 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7de9261da9bso52992839f.0;
+        Thu, 25 Apr 2024 09:28:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714062359; x=1714667159; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1714062513; x=1714667313; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DxO2oNlSzGM7kBMrDEAxbo8f0S+NuBcTPULwJPIkD1w=;
-        b=Ml5U5uNPQww9OYEpahZSaB2jGYWNLeYhwnj1QGjDvMt2x5IyEC+vbmD/H3WpK45aqc
-         kPzCzNJndHTnuuPUgjkhqaLafkobbGtWbk9ch0cl1LH81ofT1U34CcNoR6621FjPORae
-         S41S8ukklPG9hAZNwi45L6Sy3XqXfcViK3apWQVnE5TSmBSQLBM0eFzwfSq/btfaIhs6
-         9/oZTCNbm9cTqOrBWOrlb15WFXu8j2MTnXAqLn11TP8S4eru8v+eaGFEyRJODaNXvPCN
-         5zj5NNsZYgguNYu1J9q/yKMMLaJ5yHCJICh2q5if+4pJ53F+ZFfli3Rwc0d56zmlh+9x
-         EZ/Q==
+        bh=mM4rXzzAkJW7swm4RgUC3JddyT33k2sAHq9gnK5IRxE=;
+        b=Bep3hvd3Aac4AVAme8+hIk+OJpKdNRGlWdo4uKtDuTrHpL0wrLkKB+fFBoXNvsJY9V
+         VaxkgAkcOcLL9aF0PAVBCkG8zPu/BYvkoLwd3qw+vWrU+6t1fFwSb0Ab2+3Sh5CXwbL0
+         8r2ugCTEZJm5zdcBwm/PB8n2ReVZm4v4ivhHBXAsIU00+CUP2jTbnY5v8q8GxbNvDLwc
+         ff42Y45xnY0z+BGWhB763d3zliY06l1WDZqFY3kp1jKAEDwMYbHvMSTgJO51HEYC61rf
+         nxG3qA0Q0WVoLwOU+uTtXB7Sg4Mzw/R9Y3HWEmfDFTsnU36EwCYkOrrJ8UPJklR0GOAU
+         NOpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714062359; x=1714667159;
+        d=1e100.net; s=20230601; t=1714062513; x=1714667313;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DxO2oNlSzGM7kBMrDEAxbo8f0S+NuBcTPULwJPIkD1w=;
-        b=p2h49kQh4sTGnMngxoQAiKg/a4aJxrj7bmMvZPLjIrAypjYQvW9yV0YaSWWTDwRQsw
-         mEYHTwvE1ENkm4u3nWga97TkqOMpTapAaD17c9VT3JVbV91gdigb8JOImVBYlRNCnJK5
-         b7kfowedbGBkZ7XoDyQ8y8NbmBHLoeX7g9Nlf0nYAtKD2qbltKL/GDcAOw663p2H/tBC
-         NNtJEjejkL68Atfk7KaXxLS5Somawv9+XlOTtQFR4Bh7ZHqSkbaG3/7ZFI1DOEn62eHr
-         hHZLrPuZakQXjck3J4ZOpGyaneq4+cP7CoZcrkF9NoPKCEVv2a8WyPavjko2m65XT3dc
-         uIfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX001Yhv30dMVq+ujqH118JxM4ldXWJ+aj+8b7/RvHJY2Oyu5uNJtygaYnt+uVENQ5cS/sk3GIxIP522cKE2vJU9p8aVpArySy04bAPVngGbunXrW5G58NIGB/nscB5ABWRchinG2SQLfykMa11vFQmqi8su/bPevgWxQmDZzyH5K9V0WjoFA==
-X-Gm-Message-State: AOJu0YytzBmstKK5Lyjz0PW5Qpy63XOAdS1R6ZwglMYW5p5TnUGqPmA9
-	zmtFJRX9Rmw7dNz2xgPIKUSHscPBxpxcifrMzc/pKaM9wYhU4Myv
-X-Google-Smtp-Source: AGHT+IFpUL/ltxk0Un9ie7MK4i1cxn3QTf0qOcrWXxoJLk4IsyJxBA+VOMT+7HF1zDbPrQmBhSjPiA==
-X-Received: by 2002:a19:3855:0:b0:518:f4e9:201c with SMTP id d21-20020a193855000000b00518f4e9201cmr1093178lfj.16.1714062358954;
-        Thu, 25 Apr 2024 09:25:58 -0700 (PDT)
-Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
-        by smtp.googlemail.com with ESMTPSA id d42-20020a0565123d2a00b0051aef948b0asm1893471lfv.201.2024.04.25.09.25.57
+        bh=mM4rXzzAkJW7swm4RgUC3JddyT33k2sAHq9gnK5IRxE=;
+        b=FSvZp8wa3WZ7LkaehBuWbhkOyYXd7ZPU4K5WO+U0udl5ORfS26fiNwhP2LRGz7e0Gk
+         0KzBIJpS2hJEMM05C33RM3TGsN0y6O+tl1cuNzsuTFxcYnSL4PS3z6jesiAD+PTIqMvh
+         BP95QWe22loNPP18kW9uDm7uoi01eSuVSjgUq/FgihRjhs1H4CSumgWufGlYWAzdk3f8
+         JzO0IafQ+/izISxBnLYFb6bT3b65QV3UhVMrcs7JO9qzeeBPcQfPRX+HMKIeIelyqnGn
+         rwzPUsPNGkaZPgk+KX+IKMFvknPLQ9hdvUwVu+D7noLdRZQALz0FT4tRdM6ts0czagHe
+         H7Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNTbUV0Xd7AgBla5rQNGOM9JWJbvKEykJw4ZSWm/+JlEeGEFwP1Cqoty1+4HKOjNv6JSmNA7crDxAmSfz/sESJqchJjHHQ92bsM7mI2Rb34gWu4SSsV/0RYeNerTvMGgRe+wAUi3Cbmw==
+X-Gm-Message-State: AOJu0YzcKzNbbLwQj38GcThE1nsuCKHZhIh9ha3ySZBTrRxNSkGH/siN
+	1fvIEpqQkbcgN5lBk1N/OZ+X8fSE8n5u216nin4vQMdJHollXVkriSs/dA==
+X-Google-Smtp-Source: AGHT+IHsi7KLteoETH3HlQjP/C9ySCjZ4hp/t0fU8NHdy2orc+ybHiNJPYqiZOqo92itEM0lY7nL2g==
+X-Received: by 2002:a6b:5c08:0:b0:7d5:d997:dd5 with SMTP id z8-20020a6b5c08000000b007d5d9970dd5mr196489ioh.6.1714062513638;
+        Thu, 25 Apr 2024 09:28:33 -0700 (PDT)
+Received: from hestia.. (208-107-161-31-static.midco.net. [208.107.161.31])
+        by smtp.gmail.com with ESMTPSA id g21-20020a056602151500b007da63ce9a48sm3386171iow.49.2024.04.25.09.28.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Apr 2024 09:25:58 -0700 (PDT)
-From: Pratik Farkase <pratikfarkase94@gmail.com>
-X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
-To: 
-Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Pratik Farkase <pratikfarkase94@gmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
+        Thu, 25 Apr 2024 09:28:32 -0700 (PDT)
+From: Robert Nelson <robertcnelson@gmail.com>
+To: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4] dt-bindings: serial: brcm,bcm2835-aux-uart: convert to dtschema
-Date: Thu, 25 Apr 2024 18:25:50 +0200
-Message-Id: <20240425162554.13576-1-pratik.farkase@wsisweden.com>
-X-Mailer: git-send-email 2.34.1
+	devicetree@vger.kernel.org
+Cc: Robert Nelson <robertcnelson@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Andrew Davis <afd@ti.com>,
+	Nishanth Menon <nm@ti.com>,
+	Jared McArthur <j-mcarthur@ti.com>,
+	Jason Kridner <jkridner@beagleboard.org>,
+	Deepak Khatri <lorforlinux@beagleboard.org>,
+	Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH v2 1/2] dt-bindings: arm: ti: Add BeagleY-AI
+Date: Thu, 25 Apr 2024 11:28:28 -0500
+Message-Id: <20240425162829.2370614-1-robertcnelson@gmail.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,114 +89,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the Broadcom BCM2835 Auxiliary UART to newer DT schema.
-Created DT schema based on the .txt file which had
-`compatible`, `reg` `clocks` and `interrupts` as the
-required properties. This binding is used by Broadcom BCM2835
-SOC used in some Raspberry PI boards.
-Changes from original file:
-Implemented complete example which the original txt binding lacked.
+This board is based on ti,j722s family using the am67a variation.
 
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
----
-Changes in v4
-- Added Acked-by flag
----
-Changes in v3
-- Removed unecessary headers from example
-- Removed the `uart1` label
-- Added Reviewed-by flag
----
-Changes in v2
-- Updated Maintainers list according to feedback
-- Fixed typo `Auxiliar` to `Auxiliary`
----
----
- .../bindings/serial/brcm,bcm2835-aux-uart.txt | 18 --------
- .../serial/brcm,bcm2835-aux-uart.yaml         | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
+https://beagley-ai.org/
+https://openbeagle.org/beagley-ai/beagley-ai
 
-diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
-deleted file mode 100644
-index b5cc6297cd1b..000000000000
---- a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* BCM2835 AUXILIAR UART
--
--Required properties:
--
--- compatible: "brcm,bcm2835-aux-uart"
--- reg: The base address of the UART register bank.
--- interrupts: A single interrupt specifier.
--- clocks: Clock driving the hardware; used to figure out the baud rate
--  divisor.
--
--Example:
--
--	uart1: serial@7e215040 {
--		compatible = "brcm,bcm2835-aux-uart";
--		reg = <0x7e215040 0x40>;
--		interrupts = <1 29>;
--		clocks = <&aux BCM2835_AUX_CLOCK_UART>;
--	};
-diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
-new file mode 100644
-index 000000000000..8a31eb56b865
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/brcm,bcm2835-aux-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: BCM2835 AUXILIARY UART
-+
-+maintainers:
-+  - Pratik Farkase <pratikfarkase94@gmail.com>
-+  - Florian Fainelli <florian.fainelli@broadcom.com>
-+  - Stefan Wahren <wahrenst@gmx.net>
-+
-+allOf:
-+  - $ref: serial.yaml
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm2835-aux-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835-aux.h>
-+    serial@7e215040 {
-+        compatible = "brcm,bcm2835-aux-uart";
-+        reg = <0x7e215040 0x40>;
-+        interrupts = <1 29>;
-+        clocks = <&aux BCM2835_AUX_CLOCK_UART>;
-+    };
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>
+CC: Jared McArthur <j-mcarthur@ti.com>
+CC: Jason Kridner <jkridner@beagleboard.org>
+CC: Deepak Khatri <lorforlinux@beagleboard.org>
+CC: Drew Fustini <drew@beagleboard.org>
+---
+Changes since v1:
+ - switched to the TI model am67a over the family name j722s
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 52b51fd7044e..201378cdbd93 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -134,6 +134,7 @@ properties:
+       - description: K3 J722S SoC and Boards
+         items:
+           - enum:
++              - beagle,am67a-beagley-ai
+               - ti,j722s-evm
+           - const: ti,j722s
+ 
 -- 
-2.34.1
+2.39.2
 
 
