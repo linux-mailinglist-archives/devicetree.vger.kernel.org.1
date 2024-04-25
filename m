@@ -1,121 +1,154 @@
-Return-Path: <devicetree+bounces-62743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0182C8B2570
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:43:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBCA38B2576
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:44:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91632286520
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:43:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09B781C20B90
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D874214B086;
-	Thu, 25 Apr 2024 15:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779B814BFBC;
+	Thu, 25 Apr 2024 15:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UeQ9XnqB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jy7Tb4TZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0121494BF;
-	Thu, 25 Apr 2024 15:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB80414BF90;
+	Thu, 25 Apr 2024 15:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714059786; cv=none; b=PDINsYWVYjI0pxVpVdpRPTZ2DASHLDy81KoAWiL1bpGedFmGH5sZ2c6jgx842vv1QfXSPTTIp4Itix9VVqQrWUv1BdweAMGOZmqn+tWTMrjAfmVMlwcFymCZCAqXguyVLbVipA5v263tEoKEXXGCA6ilBvb9J/gGWOQJbQPzSlY=
+	t=1714059852; cv=none; b=eydTmPku6QQ8EFtGs95CLoBruAseEA+6gMVIhPGApfzm94yS4gz3ufKBHlNSW9kYm2XwinvcMPBYZaQFF4HXMUeYwGuzb2S+zqEx9a+bHBUlawWz3rdR36hfPHlSQHBzJ9TBkB80KW0E65hxJbTSnDKAyiPwI+C0OyvqtMkQAao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714059786; c=relaxed/simple;
-	bh=We7CJBcpFiTtuiJw0bxly1Y/yD2hktd8wy5CjSTeJeU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=HcyDwmIZDvLLrNZc0O99ULeybayLJABAYvX8d6hYxTmqMHmS+Feqd6ptAfIclMzZvzZaSHlo4ihxXjWIL0En65AkH5oFjwcBhFvoZmy0CXvethA0oJQZRHuUYRWl3PdLwl9MJ1MLWdjbHEB9pq4gKkz1LcxQ/JmFhffkniy3qPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UeQ9XnqB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76D18C113CC;
-	Thu, 25 Apr 2024 15:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714059786;
-	bh=We7CJBcpFiTtuiJw0bxly1Y/yD2hktd8wy5CjSTeJeU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=UeQ9XnqBfcEo2PV4stOWd1PCCqh5xB4NHBt3bBNcHrIBiaG8peGRoBKHDpPaZ5xLG
-	 NI7BEOx1O/wrU9eUXBEGrvT1XJbP5FUsfd74cNbqEJ3sSwC09/OHxJMvx0QU3u83tt
-	 NsxCbA3FhIq7gI/MOXnZ7M3MB+ny7HXB+OI7r9qHNpJd+cPl/k9QsOpSN0OzjnQXve
-	 Yss8pXytw1pkIIDvisiQmOR1ykgmeX0nD9mRfN24NjAJ28AQDwXpzjTlSsllLJSnYw
-	 t1/6J8VUrHyfEcTzpwzTTa4uB0+H+FGlwpwRAJvONsx997XLo4so9htaP7J88B+MPP
-	 ZQkwHvkzZFSqA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,  Konrad Dybcio
- <konrad.dybcio@linaro.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
-  wireless <linux-wireless@vger.kernel.org>,  DT
- <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
- Herring <robh+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
- <avrac@freebox.fr>,  Bjorn Andersson <andersson@kernel.org>,  Jami
- Kettunen <jamipkettunen@gmail.com>,  Marijn Suijten
- <marijn.suijten@somainline.org>,  Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
-	<5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
-	<252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
-	<502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
-	<0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
-	<CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
-	<87ttkh49xi.fsf@kernel.org>
-	<e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
-	<87h6gh406w.fsf@kernel.org>
-	<ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
-	<871q6tu6bn.fsf@kernel.org>
-	<de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr>
-Date: Thu, 25 Apr 2024 18:42:16 +0300
-In-Reply-To: <de65290c-0f67-4499-ba28-a460e6d6e419@freebox.fr> (Marc
-	Gonzalez's message of "Thu, 25 Apr 2024 13:48:50 +0200")
-Message-ID: <87msphsb3b.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1714059852; c=relaxed/simple;
+	bh=kA/D6zVPXYWszEjkvYSf0smpFm+zOmzsl5H0CAhJfi0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SS2ePyuRoSJ31A6I0AQdAz6KgPFcHr/mLm027hGv83Z7c7A+0f6TZbBQGxbJGZsmdJrDmaneFEFlBvRH0zx3F/GIVaL6J7WT2H2pJSgVkXZEuy/DXa5kq/jQg2NKQQQhwhRs1GRwwYhiWvUwehQjA8DDvD+8SzzVAawn6nvcmGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jy7Tb4TZ; arc=none smtp.client-ip=209.85.217.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-479de34dc36so437506137.1;
+        Thu, 25 Apr 2024 08:44:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714059850; x=1714664650; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iR/AyfcnU5bia8L6mI9WG+m8xZ5cR1LfRzpwQN9yZhM=;
+        b=Jy7Tb4TZ3plaBKNRou6OAt6K1d/cyc63bV4OKR4GlkzrcvcUtiVTYKk/2SJADwB2bg
+         EaF8yatdbsewdhJpwiSJdqqyGxMvfGAZgo07ros0jH3qAKMBz3AtBL2ziWS7B0vfi9JZ
+         +abpzwwIScZ21hSB94XHAturTZNhZlGFGR/q0HEk+4Ryed+f5Fhg5B5RRq0+loxreBPh
+         Fj5mZvC3cVI76ANQ9YC/GI4NHsqa315hachBA14UaEMbeM2r4qCCb4GzF3CnTRxP/5xx
+         1ZQ6MrAXpMx1eV5S6XVniItC6z0nj2m/zwieZUvQmdZZ6nMyo9CyOCOQUR/z03OnjXev
+         S7Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714059850; x=1714664650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iR/AyfcnU5bia8L6mI9WG+m8xZ5cR1LfRzpwQN9yZhM=;
+        b=eQFerOCUEW7cBYHJMzitf+DgVxjk8NVrF5GZu2/KcftqQXuSbIRCvxZgtEkZhxSly7
+         54tAJnRbarNNRIpxPI/C7sFbMvObH6LNI9GUBk8w5dd1OOJ77jrca+kP8KWCOxRovxaW
+         6YtfIrF/ChwyR4Sd44ol10MuQAzhkNTegJ8Z30srKT7+61gF73dfA3NvvJniN3gSjTM3
+         H9tubieJzejolIZv89n6ikaUrcRFpI/8Lc6i0L4hZWGgTzioMIudghdDmH4yYLQWZl4Z
+         h+2pxxoUrK3Z/zKLzZ5hV/ZbLMBIGDesh1MaIcDtCdr9MrYIwJqPn4NT9lSAHMqyRf+q
+         XB0w==
+X-Forwarded-Encrypted: i=1; AJvYcCURDHHdN4x6iYPZbM3fCsKnJAg1OwPeO5kKMTIOWImWm/NK89qyf5ozEBWokvsJBuZMCbgJz2x2PQ35AFKNdEM5EDyF2OscmPrrkkb/2wRZqxk1tqILpKBFgegGeDMe5r6Jelr6E7cz7yUUeivPyyCrI+HhGgBR6g2P+/Vstbz+cZ5vHenOCorAoKaioojmSS7gm7DbZwLQIRMwj12wW2GQbPVAg526
+X-Gm-Message-State: AOJu0Yx6sMi1kdwGjoziNiyo1JLDXpnPRnwvkJq8WfhIm3Hv6+bLiJ3p
+	4Y1t59Mmitk7YK1QLvI/zBJTGVKFnC97Z8kuCfdjL4n1HKKOO5jKT3pGig5g9819jSwwcRoy5Ak
+	TcAeJNT8xLZO+aSEzLnRJNYkD+Jk=
+X-Google-Smtp-Source: AGHT+IFxZFKxyvkvDsztzyBVqo6Z2bFHlhiyFlQQf6hu37wkpPlB+vINFBMirYxG2K7XXSgfChsLzeevVqM7rx5Erkg=
+X-Received: by 2002:a05:6122:552:b0:4cb:fc25:7caa with SMTP id
+ y18-20020a056122055200b004cbfc257caamr7129680vko.14.1714059849704; Thu, 25
+ Apr 2024 08:44:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240423182428.704159-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240423182428.704159-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <7a3d4b8a-e89e-499e-92b7-9f63fbc84011@kernel.org>
+In-Reply-To: <7a3d4b8a-e89e-499e-92b7-9f63fbc84011@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 25 Apr 2024 16:43:28 +0100
+Message-ID: <CA+V-a8uz0OrsM1AxqtpeHB0f1+F6aEqHGp_t3_OPhh0ZqJ26HQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: renesas,sdhi: Group single const
+ value items into an enum list
+To: Krzysztof Kozlowski <krzk@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Marc Gonzalez <mgonzalez@freebox.fr> writes:
+Hi Krzysztof,
 
-> On 25/04/2024 11:42, Kalle Valo wrote:
+Thank you for the review.
+
+On Wed, Apr 24, 2024 at 6:42=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
->> Marc Gonzalez wrote:
->> 
->>> Do you prefer:
->>>
->>> Option A = never waiting for the MSA_READY indicator for ANYONE
->>> Option B = not waiting for the MSA_READY indicator when
->>> qcom,no-msa-ready-indicator is defined
->>> Option C = not waiting for the MSA_READY indicator for certain
->>> platforms (based on root compatible)
->>> Option D = some other solution not yet discussed
->> 
->> After firmware-N.bin solution didn't work (sorry about that!) my
->> preference is option B.
+> On 23/04/2024 20:24, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Group single const value items into an enum list.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v1->v2
+> > - Updated commit message
+> > - Grouped single const value items into an enum list.
+> > ---
+> >  .../devicetree/bindings/mmc/renesas,sdhi.yaml  | 18 +++++++-----------
+> >  1 file changed, 7 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/=
+Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > index 29f2400247eb..2bf90095742b 100644
+> > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > @@ -13,15 +13,13 @@ properties:
+> >    compatible:
+> >      oneOf:
+> >        - items:
+> > -          - const: renesas,sdhi-sh73a0  # R-Mobile APE6
+> > -      - items:
+> > -          - const: renesas,sdhi-r7s72100 # RZ/A1H
+> > -      - items:
+> > -          - const: renesas,sdhi-r7s9210 # SH-Mobile AG5
+> > -      - items:
+> > -          - const: renesas,sdhi-r8a73a4 # R-Mobile APE6
+> > -      - items:
+> > -          - const: renesas,sdhi-r8a7740 # R-Mobile A1
+> > +          - enum:
 >
-> Actually, Option B is this patch series.
-> Could you formally review it?
+> You wanted to drop the items, but I still see it here.
+>
+Ah, I missed that.
 
-I'm happy with this series and would take it to ath.git, just need an
-ack from DT maintainers:
+> > +              - renesas,sdhi-sh73a0  # R-Mobile APE6
+> > +              - renesas,sdhi-r7s72100 # RZ/A1H
+> > +              - renesas,sdhi-r7s9210 # SH-Mobile AG5
+> > +              - renesas,sdhi-r8a73a4 # R-Mobile APE6
+> > +              - renesas,sdhi-r8a7740 # R-Mobile A1
+> > +              - renesas,sdhi-mmc-r8a77470 # RZ/G1C
+>
+> Keep list alphabetically ordered.
+>
+This list is sorted based on SoC, I will sort it  alphabetically.
 
-https://patchwork.kernel.org/project/linux-wireless/patch/84f20fb5-5d48-419c-8eff-d7044afb81c0@freebox.fr/
+Geert is that OK with you?
 
-> Perhaps one thing I could do slightly differently is to NOT call
-> ath10k_qmi_event_msa_ready() a second time if we DO receive the
-> indicator later.
-
-Good point. And maybe add an ath10k_warn() message so that we notice if
-there's a mismatch.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Cheers,
+Prabhakar
 
