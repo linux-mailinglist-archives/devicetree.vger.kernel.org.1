@@ -1,145 +1,143 @@
-Return-Path: <devicetree+bounces-62611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B84A8B1C65
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:01:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDABE8B1C76
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:07:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69999282A6C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:01:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 190B01C2138D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FC46EB40;
-	Thu, 25 Apr 2024 08:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742406F076;
+	Thu, 25 Apr 2024 08:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="0ZYKrry4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zdUR7JT7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8AD67A1A;
-	Thu, 25 Apr 2024 08:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5BA1EB48
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 08:07:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714032074; cv=none; b=Xe7pX8zL+5ZVmD8rs9ayZV4UH29Kx72KoZ0jy8/P/aV5/oF/voMBwEnBwkgCoiwY4dKo9LPfRNu5szSN1CMUuV9gVrg35leumqv2tzpgr6riFJ3VH1mA3YxO2jOZUAlDSseJdhxlfUppt4gwcBqBDnCsVYYzPPRdbd1J/8q2MsU=
+	t=1714032450; cv=none; b=LX/KiW+Hdv3wjKPwDRAvTfNEHs2VGKQGq9SYB+ZWe2umZ5Xif8ePD7GOKe20ZSDBM4LV/0Rha+QOn3GM6uGamdSS4jGinhhVBHyfkT3PTMGKgzynf2Zv5PuUl7WPeC3iupoPTsseEC5Aw1SpCtlTWbD3G2ncyIOSG5u9cKoo/ZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714032074; c=relaxed/simple;
-	bh=UzPMGSUJtT+RInEMFbaQI5Sl0HTJ8lUHorsleo6mKZY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pnv+xhv26xGFvUXXJ/owBp01zFt7ZHuN5PcWrogqpyikGegHNtSpKdxwN0baA3FzpPjOTTLIuHRvQXx9QXGc06Uogo69dhtdLkGM+vgl5+Tfe6IFz7liGOLqjVr5LdxSIXcE7FZStqMNboneKlS8WtCDiVYHKcNhUW3ZzJFY1UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=0ZYKrry4; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P6kBGS012219;
-	Thu, 25 Apr 2024 10:00:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=YOtHCuQVgrYDXWdRuWwEP3mcQFoNJIbnwBuetJ2gNNU=; b=0Z
-	YKrry4yGKBct1MDuCBybElqQy5KsACTBj6pKJ8yGTVCB/ZnT0/hHZZFXYLnOVxgl
-	7v7CnCZO2tRSiutP5IB6jIIO8obG8/HYUy1qjWw5fZNQCfbqk73598+quodjDTXa
-	SMpvDz4NaeI8cwVQ27xByeMeWCHbhMCH6HUJiXKLFBqFwcfAzRnkFTMijypBchvj
-	VRXe2YiIZDiD1QODBx85QtPqSH4EPwcCtxUkLyU8TtdeNLihKNOrZwogeJfbzuEO
-	anmZMT8yRMYw5oIF5DSHNKwPpX139M0IIUX0crVLeCUQgKUqcPnVtp3YCQu44RdO
-	9C64JBJMgTEi2hnL70og==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xmq90th7w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Apr 2024 10:00:55 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F3AE54002D;
-	Thu, 25 Apr 2024 10:00:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 153102132C0;
-	Thu, 25 Apr 2024 10:00:07 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
- 2024 10:00:06 +0200
-Message-ID: <a78007e1-ebc9-433d-9685-7e79dfa37b96@foss.st.com>
-Date: Thu, 25 Apr 2024 10:00:05 +0200
+	s=arc-20240116; t=1714032450; c=relaxed/simple;
+	bh=fc3Tt26AuhRfC8lt6Xad8GbuqDghssQi4g9bwtH5BAQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ejjoNGxMueqUnE5zvCn9KN9TzvQrTOugayku37jNSBXqhWlXZBOrs2ekANw4CmoAQlle+envmm4BhKaEXooD0+nyCl+Zl7wMEU8Y++3vWPl481XeAkTRA5n00qyfPhnmFC7p2kPr56txaz4VjUDFoIldbDFbRQ3ej433NL3dGvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zdUR7JT7; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-41b5e74f7d1so616685e9.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 01:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714032446; x=1714637246; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LyUoEeLBK0Y7y3XYOS3H0VfeNoTOYEFbRWEhtJbr/Mk=;
+        b=zdUR7JT75ZfiSt7/6iGY2G28BVa5sQ4pmBvVlAW/B6Px3ffYz9kVb8S399PltYm2nc
+         169RBOcSjaKUxj3rNeE14GdFC8jr493Rk1F80rEVmcXEwukyX+LiYaP7bjiukvPLUBDp
+         hRCEtvi+dNjiMSqtt0/jdTPvdz9wOep+lUmL+QoJeH+vfjwVL/TqHEelWIGp4JZcZun3
+         L0eaV/e6QM3DfXXuYgnR2CbOUKmFN/t7I9OjSGr2hMJgDAcvuCcdYLPTVcO73e57FbSm
+         02eFeGKWNsJtiULBzekAVYoxtDJquI4zowhCRVd3a/toZkvTvaBXjJYVFhy3xxTF/ca1
+         0/AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714032446; x=1714637246;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LyUoEeLBK0Y7y3XYOS3H0VfeNoTOYEFbRWEhtJbr/Mk=;
+        b=XshYg0Lsjiv2RBL/EEwlWPEJYOc1I3bXAYfsQpf8lM4ek62XvXj7/N499XI3nTdvJk
+         nRNSUJJ1lVCpNANwGKDBy65oLJCD6+jci5yjfpIZKATavutUY7oPRBVwKq/nDaaUQoqI
+         Ma6eQDoQxU7orVNIfMqQ74EYDoIDSEUNnGo+Ok3SuTrMZohO5RaRZgsCSoARZcS+UjNZ
+         1ZBAbt5zntz2Gde+oBynkFs4T02h39m8F4TMZf8kQSF0i6vwGylxDdi1syAG/T4b7Qn2
+         6jESNhGBiSMR/VaibX3zrFsAo2lkyJQayI8mEw/9bXE49I8Bx81otIOvM2aZ2zWtR6Uo
+         CdJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJWyTVxuZ71qyUnb71QA80IcIcVc43sj29gl3l5JHcdZ2O+vUNA8L7ivxlTRRNWh/p68NjIxEKRpr0imwDUngX810ZNJpznJkTnA==
+X-Gm-Message-State: AOJu0YwKjGAlpwsmmZ4fr+WQIxs1e/Z4Qn2ZWMinDeOjuDL0t0Q8tNTP
+	zVhrii28iitPx3rhcb1WC6WdUTGJyy6YOGe3wcuQsTEluERI3RbrycBr7BFvisEMlUS2ACMPpV8
+	9a78=
+X-Google-Smtp-Source: AGHT+IFEEiaeJBP5tSVIm+XL5n2eKQ7it2z6ik/js0SokRwDh5hxpeu/0xuqugetal8Z7LDdJEEp+w==
+X-Received: by 2002:a05:600c:4e94:b0:41a:f9db:88ac with SMTP id f20-20020a05600c4e9400b0041af9db88acmr3490397wmq.14.1714032445510;
+        Thu, 25 Apr 2024 01:07:25 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id fc9-20020a05600c524900b0041ac5f19213sm8042321wmb.8.2024.04.25.01.07.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Apr 2024 01:07:20 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Thu, 25 Apr 2024 10:07:16 +0200
+Subject: [PATCH] arm64: dts: qcom: sm8650-hdk: enable GPU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] i2c: stm32f7: enhancements and support for
- stm32mp25
-To: Alain Volmat <alain.volmat@foss.st.com>,
-        Andi Shyti
-	<andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
-CC: Conor Dooley <conor@kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20231215170617.95868-1-alain.volmat@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20231215170617.95868-1-alain.volmat@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-25_07,2024-04-25_01,2023-05-22_02
+Message-Id: <20240425-topic-sm8650-upstream-hdk-gpu-v1-1-465a11af7441@linaro.org>
+X-B4-Tracking: v=1; b=H4sIADMPKmYC/x3MzQpAQBAA4FfRnE2taf3kVeRgGUzCtoOUvLvN8
+ bt8DygHYYU6eSDwJSr7FpGlCfRzt02MMkQDGbLGUo7H7qVHXasiN3h6PQJ3K87DgpM/kayz5Ep
+ yGZUQDx94lPv/m/Z9P6yykClvAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=893;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=fc3Tt26AuhRfC8lt6Xad8GbuqDghssQi4g9bwtH5BAQ=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmKg81nLaJCVWiTo+CX1gaOg+Bd9umwn4yB+udmxjt
+ 28lnJjuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZioPNQAKCRB33NvayMhJ0ZHRD/
+ 4vgLKi25J8V17H0CfCxmJAa0Kyc6XpmPEeRx7qoCScAavG7Jk8NvgcNoVXxaitfTqwQJP2NVCF4c8M
+ MIxvsCapRiZCRhDhQc/GQI1iEkLeLUiyax7FXbNsoE2ePeSrnoC9f3zH2d6pl/ndaMTGEi95PoZFK9
+ L1SWMiU6zATMoUOmxxULYfvUjjMEHI0cqDrttZYuMTV7DjsTaQHolRApqY+WPs0oEWP/7s25kSV8nv
+ xapKMMRTkWhxWnE2fCBoHswe/wrNx5KmbRLpM4ZVmV2yZVEebn6CPo48PoH/0WZVNXwVmd1DxNblKJ
+ 3eRYn8v/04YLZGevd0G6unwrjxzxbZCQUuIfupzesvxvxrq+6V8XEQJUOc4o1xOhDLBxLp/hkvxdb0
+ MIqX/eYmkMK+n/cQw5eBgEDL0YioxJ2AUj8Ft4lfD5OG9Qbuy94SVAoXWJnqkrgWWcIIgkhvmgN5sb
+ oUE99TfXfL0Nt3/IR3CzRMhFS0PLVtOZYFiNZvDfG6vIVm5mDY+2GmFxb0kARtqihucbpu2FMoBlCY
+ FU5cEXqmZax/vrYo5SrxdU51NkFwUKEp0dkV4Y5o010xU0OxUhSZFEQtOiMtNAkqBgY4wBykEvW8kF
+ 7U6oVhiery02DePGmLkFe8GYiASfFny+ZTCYhocLFDlFFdc9qYbdAGZUntOw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hi Alain
+Add path of the GPU firmware for the SM8650-HDK board
 
-On 12/15/23 18:06, Alain Volmat wrote:
-> This series first perform enhancements in the way interrupt are handled
-> and cleanup in messages.
-> Then it adds support for the stm32mp25 which differs in that
-> it only has a single irq line for both event/error and has a
-> different handling of the FastModePlus.
-> Support is then enabled within the stm32mp25 related device-trees.
-> 
-> Changelog:
-> v3: - addition of 2 commits dealing with readl_relaxed(I2C_ISR) in
->        isr handler and a second one to use dev_err_probe during probe
->      - correction of SOB in commit
-> 
-> v2: - correct st,stm32-i2c.yaml.  Use if then else scheme to indicate
->        number of interrupts / interrupt-names depending on the
->        compatible while keeping the description within the common part
-> 
->      - correct 2 maybe-uninitialized warnings
->            * ret in stm32f7_i2c_write_fm_plus_bits
->            * irq_error in stm32f7_i2c_probe, move the platform_get_irq
->              within the same if block as devm_request_threaded_irq
-> 
-> Alain Volmat (9):
->    i2c: stm32f7: use dev_err_probe upon calls of devm_request_irq
->    i2c: stm32f7: perform most of irq job in threaded handler
->    i2c: stm32f7: simplify status messages in case of errors
->    dt-bindings: i2c: document st,stm32mp25-i2c compatible
->    i2c: stm32f7: perform I2C_ISR read once at beginning of event isr
->    i2c: stm32f7: add support for stm32mp25 soc
->    arm64: dts: st: add all 8 i2c nodes on stm32mp251
->    arm64: dts: st: add i2c2/i2c8 pins for stm32mp25
->    arm64: dts: st: add i2c2 / i2c8 properties on stm32mp257f-ev1
-> 
->   .../devicetree/bindings/i2c/st,stm32-i2c.yaml |  28 ++
->   arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  36 ++
->   arch/arm64/boot/dts/st/stm32mp251.dtsi        |  96 +++++
->   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  20 +
->   drivers/i2c/busses/i2c-stm32f7.c              | 342 +++++++++---------
->   5 files changed, 358 insertions(+), 164 deletions(-)
-> 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-DT patches applied on stm32-next. Not that I added acces-controller 
-bindings for all I2C nodes.
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+index 3791c36579be..7f2dbada63b5 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+@@ -836,6 +836,14 @@ &ipa {
+ 	status = "okay";
+ };
+ 
++&gpu {
++	status = "okay";
++
++	zap-shader {
++		firmware-name = "qcom/sm8650/gen70900_zap.mbn";
++	};
++};
++
+ &lpass_tlmm {
+ 	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
+ 		pins = "gpio21";
 
-Thanks!
-Alex
+---
+base-commit: 3a01487d6106128530737d62f28c6a7833ff5ccf
+change-id: 20240425-topic-sm8650-upstream-hdk-gpu-24b42b72b127
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
