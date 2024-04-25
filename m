@@ -1,110 +1,76 @@
-Return-Path: <devicetree+bounces-62670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C008B1E8B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:55:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D428B1E9A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:59:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB9BEB23841
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:55:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEF5D28903D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3092785939;
-	Thu, 25 Apr 2024 09:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D927F85C52;
+	Thu, 25 Apr 2024 09:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vm4yrkwm"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HJ4ikIuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED77A84FD8;
-	Thu, 25 Apr 2024 09:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3D884E0D;
+	Thu, 25 Apr 2024 09:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714038910; cv=none; b=ES7vN5y2+43EtLopW565R1IvOefZtXPaF6N2s53xneLeGlCvGTZGs4p2ZrQYkm1SHO/dixBH57Omo9U5tGWUud6VSCIhbXLRJm9vyZrSH24KJoJYr6PfbkPxmdc56nXcmFzPLLs00kvygH4ziuEF4U8FRgEHWZ0hcgMfWttbm7k=
+	t=1714039146; cv=none; b=aA37vEX1yCrphN68devF+K/0eNpsnzpcBhQPic20fKE2/qPSHAcZYmeYqfpYqTggg7ggeU+70xkVuYHLz187L01D/36Q9WZ3vt+/kH1LEljehuqQBHiRm0aoXUAxSN1sOOC4T7et8pCSA1qAbPfocXnhdcTaViLQRQHGvqc2tfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714038910; c=relaxed/simple;
-	bh=mhOkXnvrTd9m6bVk8OVaKio+gIm5KOT79yVBQ+kv0As=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NXOtdLqRW6lbjdk9f+ETXaz2nhKPJdcEb4Juq3T4urltFW7xnT4KIY/GX86lDp/+3FwwpGaJ1CpXTPGw+r/KaUsq7bEkjciCDrAwL3Fyv3ogGuxrTZdmtKDpxzKvnWFlmB5K/S71RwmHzLKS3iA6KZszWYiRHzgC67WctAsHJqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vm4yrkwm; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43P9svdP118051;
-	Thu, 25 Apr 2024 04:54:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714038897;
-	bh=Oqd8Va/9Fi8Jy6gIQECgrEIS3w2R/1uHYRB1svh8mvY=;
-	h=From:To:CC:Subject:Date;
-	b=Vm4yrkwmfaJyMYI9zG81IC+low9cTk4OL1RNzCg+Ywx47odxn/hZrVcSYaU84teCh
-	 imYafNAilsAJjfTjgw+HjCS8jbWB1YDsO0cuzGRK0BR+c6aMXufr025ch9/1ByG7h9
-	 YrezXsiY0VQlfgXfgIp0zpROUJNmiPeQsMaW2ykM=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43P9svGU070263
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 25 Apr 2024 04:54:57 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
- Apr 2024 04:54:57 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 25 Apr 2024 04:54:57 -0500
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43P9suIP083249;
-	Thu, 25 Apr 2024 04:54:56 -0500
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        <s-vadapalli@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Chintan Vankar <c-vankar@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62-main: Add bootph-all property in phy_gmii_sel node
-Date: Thu, 25 Apr 2024 15:24:48 +0530
-Message-ID: <20240425095448.1946293-1-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1714039146; c=relaxed/simple;
+	bh=bS5vRZgCepqsfybsuZmUFrGIxQpeiKXaE4I15xitOig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nkfA3epl81sHXT+L88dWuC95LV+OUhH3Z82wkn0MMyoksLp8fMQU9y55sh4ujzrWrfFxEug9833/3t4x8V7jgX8yKti/ge0pf/Hu2yP8YoWdP3iPdkYbMaDutoyFPpLkd/2VFUSRsrDEmV2Zb52Uj7HB3pjnR4Ir6ynHVbkL6z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HJ4ikIuF; arc=none smtp.client-ip=123.58.177.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=SUK3KiYsAjXmz1lQMFlWpM7cirHy3HazgSFNWJvitho=;
+	b=HJ4ikIuFN43ZQXNjGc2sJM00WaIucvlYOZNwkAcJ6WDdd2evjqUe+8s456JNYl
+	fgOe1CD+H0VRnuqB7vlSLlvyJMY1unn7IxuqAqJhVv3bAjt5EtYM3Oe9aBdbgfSx
+	l6xaxrK2Mo+6ZQyh0PzsA2GTit/2HRCzLWqdsIaDpCpyQ=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp1 (Coremail) with SMTP id ClUQrADXHyFKKSpmwUBvAw--.20945S3;
+	Thu, 25 Apr 2024 17:58:36 +0800 (CST)
+Date: Thu, 25 Apr 2024 17:58:34 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: m.felsch@pengutronix.de, frank.li@nxp.com, ping.bai@nxp.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/1] arm64: dts: imx93-11x11-evk: add RTC PCF2131
+ support
+Message-ID: <ZiopSiXqkZ3H7Dhv@dragon>
+References: <20240425013507.2840128-1-joy.zou@nxp.com>
+ <20240425013507.2840128-2-joy.zou@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240425013507.2840128-2-joy.zou@nxp.com>
+X-CM-TRANSID:ClUQrADXHyFKKSpmwUBvAw--.20945S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsyCJDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFQzLZV6NnF5h7QAAsq
 
-Add missing bootph-all property for CPSW MAC's PHY node
-phy_gmii_sel.
+On Thu, Apr 25, 2024 at 09:35:07AM +0800, Joy Zou wrote:
+> Support RTC PCF2131 on imx93-11x11-evk.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
----
-
-This patch is based on linux-next tagged next-20240424.
-
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index e9cffca073ef..7a6f7cdc4cbe 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -52,6 +52,7 @@ phy_gmii_sel: phy@4044 {
- 			compatible = "ti,am654-phy-gmii-sel";
- 			reg = <0x4044 0x8>;
- 			#phy-cells = <1>;
-+			bootph-all;
- 		};
- 
- 		epwm_tbclk: clock-controller@4130 {
--- 
-2.34.1
+Applied, thanks!
 
 
