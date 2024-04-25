@@ -1,144 +1,205 @@
-Return-Path: <devicetree+bounces-62682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E48B8B1F33
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:31:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532818B1F46
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 12:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F199B217EA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:31:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09AA5282499
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D027FF;
-	Thu, 25 Apr 2024 10:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD2B1D54B;
+	Thu, 25 Apr 2024 10:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dxlnf/mo"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="zHHGQKhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2099.outbound.protection.outlook.com [40.107.244.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD833208A8
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 10:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714041074; cv=none; b=YNZbeOU2v+HX3NgbJ1uGwgLW4ZMznaHsKUsfbmEOZ+KpWW11anSwYG6NNGbSXTbst52pLuP8cUBrjQ6bB3PJHSpNnwsdV94ZWuiwCT33Xl09nfUVAZQuGzc9BhWvbs1Qd8tc5GkHWinH0dP3AHANn0sctxE58CqdZRl1mbQmESw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714041074; c=relaxed/simple;
-	bh=xN9PtKBvyMktmSfmEeNUmxWtUYxk59jPOkkFgsg7R2o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SRx2U5Z2NU/Ug5EBRM5gZURQ2MWHISZA1Fxjs1FpEjygfQQ5SccVTWecORHNkr3o8AgVTGUXBopGXreN4NjhSlGmm40jik8iGGHcpsYQQmiITy70s9aUPV7jtbjgFfFh5YgxUA2RQxwhJ5DKx5RP9lTt/UM01qHH1RbSOHwv2v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dxlnf/mo; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5aa2551d33dso552840eaf.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 03:31:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9AE1CD23;
+	Thu, 25 Apr 2024 10:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.99
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714041238; cv=fail; b=gtTv4WWjognvdHzWnOZ/FIow/UWMSdCGCn2DGBfSP3/JUtijIEC5Jiel+E4b/7LGFXrMZ8K3w19MXwu/WDBqWEZfypwAbuVH0ZnRJNq7sCsrUfqtE92IiHdWbDWq43B7hfpksshBEPVmhg2guEa5a/M7xGnQ2bo+lgrcOiB+y1M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714041238; c=relaxed/simple;
+	bh=dZATtCd49cZxCGMGwjKplynDYaWT7HYtM/YkD1scZPk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=THEmFoMA9HrW0J+/d2xfXpf6i32kRiHeTz+1v7pTr1kgrdT3OPPQTnZD3JhPgKa9x9ZJMP1NqJjWqlZImDLPDO18pjAAz6Q+fmLDBIb810lFsvQgBsDxYyB/uJqGzwFQZp5y22SICkMKiZ0ElDUqeKLHA9RrCpGVuNcl5g+xWXE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=zHHGQKhc reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.244.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Yc2+7Us/D/rS6ssDQSvLDXnatcOoUfMByz5HjxmfXMc4uh99ra61pYs0a9bph214sIi0YJzEyfx1RCwxTeQzVFVZdDe4IoeqOGdNDw815n/Xq27tx16VXXg+EQZjMFu7w+vsOIuQ7FwMVkZksguoexQP+2rPukJFSB/UEIwsQptEgV7FVDjhD6stOc7D1EoViqMQQGWC5kR8rcMV88znAZIQey1pWFnmMVY+ER62I7SO2vExqYk2kfHQVeBxmLGiLBo9CNdhV9Y1DHw+2Xug4rp5uw3EWkW5B8NVzZZMD8DlmQ5QL5ZNchOUbf60zSexStOy64LESL6sl6L/VpjK7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZI+bf0kWcnWgxNFXbiMstJyltN7bmNlIJQ9bhzftue0=;
+ b=lTqMBziI6VG+fQ29yxecc/LGZN6zgUyv1AZ05IGCAQFPOc4sn0sV+sYGb4zIsvGSWMLo3kuL/ojXNrJByrZ9yfqqtOM/cd+nQccW/P/LgyMCla/KZLoVI/1OtdrwoHG+c7kevSUNJND0nCOeF9pWVVAOBisqtpbv1dx3bXja/+IQ+ie2Qk1HOrY4jgLAx6qMw/9g/02czSTVuimfkBFG1w3wMr2wKidx3vP6uo/oCi0tofIiq05OtXYPhGoIv7mK8BBSMOrskIBaqW3u+cx+WHOdMY7oCQJwKDfEn2GNqw/pBkjJ1eXM7rgDX9g1E4hCeoZkalfgDDj/14DpcjwNcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714041072; x=1714645872; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xN9PtKBvyMktmSfmEeNUmxWtUYxk59jPOkkFgsg7R2o=;
-        b=Dxlnf/moo14SsVqyHA/PQOXlfZmr6ZihgMMXZPQbNsoq6DN2Uw5TkRu5yWnmVqCTxo
-         FGoxjlTiKTsVJs3Aq5aa+7dVDc8/zccq6VGlmkr4h4AHurD+f/iE/FtYWabLYbfCYEie
-         tosakCbp8T9AVkLbF+chNAd7rjaljSRRgHyMoBS/ASn+HllLnCgWGddcUlbJfDFzRtQM
-         JY7HS4YvSH+XC3m+5tR7RU20VLsfwgKnSp9nYNOim+zlYMq8LPW7BF2s9jTueNbj5WFW
-         8wkLWIOdyXyMQUyWGMTrLwp1Vd4albeZpOq5/Z53mL9kCZ4H2QX7S8pgLJ7/0VVJpwkm
-         VGbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714041072; x=1714645872;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xN9PtKBvyMktmSfmEeNUmxWtUYxk59jPOkkFgsg7R2o=;
-        b=Lx14YKOU50E6cwxO1nyj8ilcinHGdWkvJkovb1jV5P0ZuqiA9sHo/bqvdzvX2T1j3Q
-         IjICcL2pgHZv5iCRt4XPcIcKjFLDIz1sEtTwX0v8WF/KJit4LLy8XMhiivaCP+4L6euB
-         lTIp5l8+0w/PWFh6cWmsfUN4AoVE55gW2KNBD2QkSxNMpt8t6hxXjrxltfftBbTSIc16
-         PbB8zK5FwWIqn/yrFN53HktMSfBm53/yZrMSd2G3kS7gtTYApfWo2rhG1DudPLy+9DxG
-         i2nsFTb1oh+cl5GzLkl/QuPEGaw/6ER49H2wwHiVMc6Dl3TKuRexTVqP6UTXPVG9QGTr
-         Og5g==
-X-Forwarded-Encrypted: i=1; AJvYcCWiiYuObW3Vbr4hVt2QxaNGmhrJN8JfQWEgTo6VYkBBAMNT+AIN9qa9aPzUHqewJiP8FQtPC4nxc8iZP/P81IM4pTiXhjYK69agzg==
-X-Gm-Message-State: AOJu0YwRKtN6EKklsfPKfMrSbR18F5RnE1jZBGBnts4xx2vN4VV+l4Ah
-	DVnQnqKQpStrVL/PeeOspocegb8eMgnFNL/HPb0Jh0WqDoPqDrfPx99mbYG3A5b9TNdRqubGPxe
-	vTbAm8OUxLVzrQ3BBcLA5ytjpQxwsDqc0O8jUPQ==
-X-Google-Smtp-Source: AGHT+IGO/471Mzvi/y2z1aDjn5L+UJBxWcuj8IJK6cDIoDb05k6uE4IKvnf9QACW7GCx8TFESueCWiwBoN73OQOn6LA=
-X-Received: by 2002:a4a:ab82:0:b0:5ac:bdbf:8a31 with SMTP id
- m2-20020a4aab82000000b005acbdbf8a31mr5448764oon.8.1714041071820; Thu, 25 Apr
- 2024 03:31:11 -0700 (PDT)
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZI+bf0kWcnWgxNFXbiMstJyltN7bmNlIJQ9bhzftue0=;
+ b=zHHGQKhcGTZpM518Z9pWQSvjZRPSq8pLo/W9shjaoaCwp7DC3dSmYp4g+zz/QOOmqQDAHAQoGWioFWQAlePbG9HFsYAroin/gCMj67hPmAr3vmOVU/7ouojKyNFUUmQUrAtGkyPE4dFYITskTf7vq7pwL9aL4lAS4e3NkRZX0RU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from DM6PR01MB5947.prod.exchangelabs.com (2603:10b6:5:1dd::12) by
+ LV2PR01MB7600.prod.exchangelabs.com (2603:10b6:408:17b::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7472.44; Thu, 25 Apr 2024 10:33:52 +0000
+Received: from DM6PR01MB5947.prod.exchangelabs.com
+ ([fe80::b557:13cd:8a29:ae08]) by DM6PR01MB5947.prod.exchangelabs.com
+ ([fe80::b557:13cd:8a29:ae08%4]) with mapi id 15.20.7519.021; Thu, 25 Apr 2024
+ 10:33:51 +0000
+Message-ID: <ab5cfd8c-0e88-4194-a77e-5ffbb6890319@amperemail.onmicrosoft.com>
+Date: Thu, 25 Apr 2024 17:33:38 +0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: max31790: Add
+ maxim,pwmout-pin-as-tach-input property
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Justin Ledford
+ <justinledford@google.com>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>,
+ Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>
+References: <20240414042246.8681-1-chanh@os.amperecomputing.com>
+ <20240414042246.8681-4-chanh@os.amperecomputing.com>
+ <13b195e6-cbbd-4f74-a6fa-d874cb4aaa45@linaro.org>
+ <065243cc-09cf-4087-8842-bd4394fb324f@amperemail.onmicrosoft.com>
+ <d549cf2b-a7fa-4644-8fcb-3c420503ee01@amperemail.onmicrosoft.com>
+ <20240423-gallantly-slurp-24adbfbd6f09@spud>
+Content-Language: en-US
+From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <20240423-gallantly-slurp-24adbfbd6f09@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR02CA0038.apcprd02.prod.outlook.com
+ (2603:1096:4:196::22) To DM6PR01MB5947.prod.exchangelabs.com
+ (2603:10b6:5:1dd::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423205006.1785138-1-peter.griffin@linaro.org> <1c6f5984-7f9f-47e3-98c3-3c3671512675@kernel.org>
-In-Reply-To: <1c6f5984-7f9f-47e3-98c3-3c3671512675@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 25 Apr 2024 11:31:00 +0100
-Message-ID: <CADrjBPq_0nUYRABKpskRF_dhHu+4K=duPVZX==0pr+cjSL_caQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/14] HSI2, UFS & UFS phy support for Tensor GS101
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
-	martin.petersen@oracle.com, James.Bottomley@hansenpartnership.com, 
-	ebiggers@kernel.org, linux-scsi@vger.kernel.org, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR01MB5947:EE_|LV2PR01MB7600:EE_
+X-MS-Office365-Filtering-Correlation-Id: db8759cf-795e-497d-f799-08dc651332b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZzdReCtxYUFwTTcwbFlHaXNEV0wrNGlZWGFscUZDZlVYV21sZ0xRb1hOeUV5?=
+ =?utf-8?B?c2tQenA3cXRQUUFONk5qV3QxNDVZYXRLQUFsTmhsQlgvOVVLZnBZeVNPeUFH?=
+ =?utf-8?B?eU4rVlF0RnlkYzJYd2hHTFZudGlSVnVxSFBpd0F3dFppcnR6d1dobzNpUk1V?=
+ =?utf-8?B?ODJhZFVQY0ZOOERPU0xkN3RuMGd4Y21tdUF0RTJDTjFYem9zUnJTTjVNUE5n?=
+ =?utf-8?B?Ny96OVJxaVo1S3RmWVJhNzB2OGdvNzZ5a2ZMSVZEMEVvcWJNbWtnU01CTldi?=
+ =?utf-8?B?b1JQV3c0Z2pNM20rdk80UE1zcG1IRVNBTlFBdTBpMkcxVTNJQkhPK1lKK0Vk?=
+ =?utf-8?B?SW95ZnFoTE1lblp0WGtHL3M2cUlhaVE0bWJuUXFhSmhja0wydngzRjMxaFd2?=
+ =?utf-8?B?ZG9TY2wyUi91K1o2bjBhMm9JZzRsZGRwYmJoK2hsRGdHSE1uUEhoMFQrRWNn?=
+ =?utf-8?B?R2psdlFBS0dnMkFnVS9RNmJLVXVJNHB4MEkxZ29IOXNtN3drY2NBdnlxWUJL?=
+ =?utf-8?B?SWIya1J4WTZlZ2V5eWJGSUdwb3c3Wm92WmxuLzNBRG4wck9lUXlHSVpzUXEw?=
+ =?utf-8?B?eUhEVFBNZ09HMG8zUVpVRzJ2eHdrY0crdTdjZ0RKZVIzck81MjV3L0tkRTds?=
+ =?utf-8?B?d2NHSTE0dzRMazN0TU56SEpSZUtzbXBDRFRRbitMTHc5blYvWDJjdk9zSkdI?=
+ =?utf-8?B?Vm5KQ0kyRER1M0NkOVRRTHJBZ2pGelNYeFBJbmlFY1dQT21SakQ1UmNTU0pT?=
+ =?utf-8?B?N2crc3lFbzEyV1hIWEkvZ0NZR3E0K3RtdzBQMW9hNFl0d25UUWFScVZNdEE3?=
+ =?utf-8?B?bW1mcFhFS1F4TU15S01ZWTJlamd3eU5MVzVUcmltYXhiMDQxRUoyeHhXTWhW?=
+ =?utf-8?B?c21HdHc4aWtzK0VSMVRxd2lYM3Y2SjcvMEdvV2tLU1FBdUxYWis5b0RvOWp1?=
+ =?utf-8?B?bEw5cE9RRTJZb3BPNCtKb2Rlbys2K1VGNFNsNVA1WEhqcWZWeEp5Tk11b2J1?=
+ =?utf-8?B?L3RoNm9MY3pkeVBRdXNZdjdibElCUm5UWmlPUElJQ2xlbk95MGFQZmJCekJ3?=
+ =?utf-8?B?Qjg0cjRhalMzclZ5ZEVxYXEwN08vNk8xR0M4U2R0SXhKT1NvZnFxUVVkNnRp?=
+ =?utf-8?B?bTA3ZCttME4rVkRITC9UQlUzaGdwakxpdUpVZ3NpY0tRSmF5VnRtSFBnOTJq?=
+ =?utf-8?B?WkdrNmIxelRscHZDQ2ZwUGh5V0lLa2prbm5lSlRYUVMrNUJmdHBORDVSZENa?=
+ =?utf-8?B?aGZNdTIrR3VXeGtIMllKem1jNzdxVVB0ZGNzZG40ZVM0K1Z6SzVBWmFVc3Zw?=
+ =?utf-8?B?TG9jeVpZY25PaFFIem02ZHJyeFFQelY5Z09TSS8vb3dvZmVIUFBqaEpkdWNo?=
+ =?utf-8?B?VDg5eW1jdG9MbVhhbTA4LzhrdUZrbkRCc0Z1TEhKQjFKbkZTZlNJaUh5Vmpz?=
+ =?utf-8?B?RVVHOW5pRlZlbm52L1NFTWQ1dkFBUVRqYzA0eEQ0WXJubDhta2lPaDVYbnk1?=
+ =?utf-8?B?WFdUMUhialVpaWlKRjRQWFhaZFUrQlhoMlJWL09rVUp3N1BIQ1NQeWRwRFMy?=
+ =?utf-8?B?cUlXMlE4S1lMblY2UjBHSGNaRUJTNGhpR3RNS0FjeDJ3QkpRYmNoc1hUSlRw?=
+ =?utf-8?B?QUpJRWZxQ3M0ODBXMEt6YWNvK0QyQW5KYnVjaGR4WGpIeDQxYThnMHZ2Kytn?=
+ =?utf-8?B?Q2pMOXpnNUFZakJTTytFRm8xMS9VRG9hdjVhRGlGaXRhMTgxOVBHUWpRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR01MB5947.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(366007)(376005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N3diR0RRWU05blFHY05VS01uK2EwTjNNcTFsa0Nublp6ZGJCTnpCRUg0b0JJ?=
+ =?utf-8?B?MWFpeXVFQ1hLMitkaWpFM001Y0FZbmRIL0hubnpBQlFUazlRbG91eG1BUjZI?=
+ =?utf-8?B?eXE5ZjAzTDQ1azlsa3FyTnVGN0VxSUlVclRpN3RtdGxqRHpNYVVHVGxyV2pE?=
+ =?utf-8?B?UStQQnlNeUcyT2tmelpiMnBmbDNCeU9sWVBJdXp4WXRzUVluVjRrYUJWRkhL?=
+ =?utf-8?B?anhJN21MbkhqUlBSeE5lMUxaSnc0ZXl5WUxRMU5hd0wzVm1hRlpIRk5LT09S?=
+ =?utf-8?B?UHRaVHpqcjgweEprZTRmRlFOcTNVWU5zZzh2SW55K2dqSG5RdEYxb21OZXVF?=
+ =?utf-8?B?YlluNmxybTVVd1laNDRrTHdLNkVLK241VEdHc29EbEtzLytML0JpZjFsSEN0?=
+ =?utf-8?B?MDYvTndMa0lOWU9sQzZzOWViMmZkSGlFb1RDRDFMVVVPN01DUHBJMll0cDhC?=
+ =?utf-8?B?MVpaSzh4MjFzdnVyb0wxSmlNQ2QzaG5hbnYrZVh6SWlvQy9oMmt1NnhCMjNs?=
+ =?utf-8?B?WFJzbnFJNG0rS2tXbGgvczZNcFRKbnNIaEIzVVBLNU90VUFSd1R2N2N5cXdO?=
+ =?utf-8?B?TGtNSWFQRGpiVGRIKzZkcmVQdUlZbUlZYVNTZms0bzVGbDJSemUxeGJTQzNv?=
+ =?utf-8?B?eGp4TkZYRFp0TkVITGI4ZndPdjdwUnNvMkZmT09wK3U2MHAzcnBLOHVUVFNr?=
+ =?utf-8?B?VXdxYTFWUEkwWXJ6V251RXhtSHdpQ214N3ZrYUFISVRJemI3UjR2UmVwK3RJ?=
+ =?utf-8?B?Y0U3MlFQWXNLM1U5eElqb3lxaHhrSVFPQVlDbXphYTc2M3VFR2xOK3pTT0Q2?=
+ =?utf-8?B?TElIZ2w3OVlndmpMQXBZWGIxU0N0SWI5U1hNZ2dQOWVCeGlxODBBZ2NzQWhq?=
+ =?utf-8?B?M3FOMFRTU2RvUnBzdUJQVzYyWDNBT1hLczAxb0dzQjNpMlEzbmlaSklhYXRw?=
+ =?utf-8?B?WksyR1NaL0FoNzI0WlJKaVd2WHdVOU9YQVpSdEl1YVpza1E2WWthZkZJc1Fu?=
+ =?utf-8?B?TDdKaUtaMDJPaXRtYnFQSXJ4eU9jMmxNVXhpblF1bExpOU51QkVLU21ST0RV?=
+ =?utf-8?B?a1lHakFmREM5RFQzZ1BYR2hRbmFnLyt5a25pSStYRnNoRkNZT2RiYWorSHFi?=
+ =?utf-8?B?NUxsWktUdWNIeThlV0swcWxwQlVMN1Z4U1pYclJaNVV3N1Q5blk5aE9rNmIx?=
+ =?utf-8?B?ZVNWdGpzdkU1K0R3SmVGSDhvUk9TandZQ1F5NWltYmdoRVE2emJNc3RlT1Nm?=
+ =?utf-8?B?eW1XNG9ZRmJuRXVuYktWbGFLZzllSzNjcHpIWmdEcW1ZVVlCMjNlMGkzMEI4?=
+ =?utf-8?B?V2ZxTmpVaW5BQ2NjWGFINzZTdHYrTGk2eVprMGNiWVN4aEpIeFp0MHhINnho?=
+ =?utf-8?B?cTQ1bi82WXd4cklxejdjRVBIR0RRMDgvREVFMUJGZjVoOUd0N3VYNXc3b2M4?=
+ =?utf-8?B?MVZ0aHl5MkV1ZlhtcFIwNlNXZDBPTFAzQTlta3YxdVI4VHZOelk2YTd2c21k?=
+ =?utf-8?B?WVA0cEM1VnZKOW5rbU1PWkhOdHhZck5HOXFvanFHM0pYeWpFeWQwNU1ZOGRE?=
+ =?utf-8?B?OTFvcGlwRzgzZ251a0trL21XYUZhTHRhS2tzYThHdTE3ai9hb3VCaHh5TldK?=
+ =?utf-8?B?N1N0S1ZVTzJlZUsrOXpWTFhpZ09oNFJVRWVvNmFGOWlwSmVQUk4wN1FidWxC?=
+ =?utf-8?B?ZkxKZEpPUXozV3d0VVhNUkNuQ1RyNHNwWnhJUmJ5Yk9Ub2Y1aWtJOERpdW1E?=
+ =?utf-8?B?MXBSaHMzNWhnTUdNZGVWRW5sbkdzemxQdGtPWWxTZ3hMSythbTNZeDZ5aVdj?=
+ =?utf-8?B?MEQ4MldFeVFzQkRUczlFUXlES1lEbXBiODllV2hXQVI2ak9TdVdSeE5PMDdm?=
+ =?utf-8?B?aHlsSGt1djNlaTR1SDY3c05uWlhHSEhSVUFIVk9aUXovdzhuU1MwckI2U2RR?=
+ =?utf-8?B?RmREWnpSZHFnS0liMVJrMVZUejFqSFZmcUgvU3Nsb1dPcnpuT2FIZ0huSE5Y?=
+ =?utf-8?B?dzhVYXZqd1J0ZDZDRGZHTjFyYTNqRzg5WUtrOWxoMExJT1RqWTRWNmR2alow?=
+ =?utf-8?B?SHh5azFCZkJwYndTcEFsd3FFTnZiZllPeTZaeVROWjZ2VllxUkZxcXdNdHZF?=
+ =?utf-8?B?TXA5QXNSa3ArRmNVbmVuam5LWmtjQkk0MElnT2xrbDgyT0JJYjlPc09IcjFr?=
+ =?utf-8?Q?8TWvXP1vUOcCazY3CBnag5w=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db8759cf-795e-497d-f799-08dc651332b6
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR01MB5947.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2024 10:33:51.4939
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kxPyNfo7cMTxnl1SNdzS2QJnb5S7DQ2c0MxhE2ZPP6VwT50GZl+pMfEEyqm5e2d/pDucTJT9wN3fGaVWtZPVEclWlB5XbD4MKDuze8ildkUYrB8sGFr9gAAUpCFL02+l
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR01MB7600
 
-Hi Krzysztof,
 
-On Thu, 25 Apr 2024 at 08:08, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 23/04/2024 22:49, Peter Griffin wrote:
-> > Hi James, Martin, Alim, Bart, Krzysztof, Vinod, all
-> >
-> > Firstly, many thanks to everyone who reviewed and tested v1.
-> >
-> > This series adds support for the High Speed Interface (HSI) 2 clock
-> > management unit, UFS controller and UFS phy calibration/tuning for GS101
-> > found in Pixel 6.
-> >
-> > With this series applied, UFS is now functional on gs101. The SKhynix
-> > HN8T05BZGKX015 can be enumerated, partitions mounted etc. This allows us to
-> > move away from the initramfs rootfs we have been using for development so far.
-> >
-> > Merge Strategy
-> > 1) UFS driver/bindings via UFS/SCSI tree (James / Martin / Alim)
-> > 2) GS101 DTS/DTSI should go via Krzysztofs Exynos SoC tree
-> > 3) Clock driver/bindings via Clock tree (Krzysztof / Stephen)
-> > 4) PHY driver/bindings via PHY tree (Vinod)
-> >
-> > The v2 series has been rebased on next-20240422, as such all the phy parts
-> > which were already queued by Vinod have been dropped. Two new phy patches
-> > are added to address review feedback received after the patches were queued.
-> >
-> > The series is broadly split into the following parts:
-> > 1) dt-bindings documentation updates
-> > 2) gs101/oriole dts & dtsi updates
-> > 3) Prepatory patches for ufs-exynos driver
-> > 4) GS101 ufs-exynos support
-> > 5) gs101 phy fixes
-> >
->
-> I asked to split, otherwise please explain why PHY and UFS depends on
-> DTS and clk.
 
-Seems I misunderstood your feedback. I thought you just want me to
-make clear who was merging what from the series via which tree. But
-you want separate series?
+On 24/04/2024 00:02, Conor Dooley wrote:
+> [EXTERNAL EMAIL NOTICE: This email originated from an external sender. Please be mindful of safe email handling and proprietary information protection practices.]
+> 
 
-1) ufs host dt bindings & driver
-2) minor phy fixes series (most patches got applied already for phy)
+Sorry Conor, there may be confusion here. I mean the mapping of the PWM 
+output to the TACH input, which is on the MAX31790, and it is not sure a 
+common feature on all fan controllers.
 
-What do you want for cmu_hsi2 clocks and dts/dtsi? The device tree
-depends on the clock bindings to compile
+I would like to open a discussion about whether we should use the 
+tach-ch property on the fan-common.yaml
 
-Thanks,
+I'm looking forward to hearing comments from everyone. For me, both 
+tach-ch and vendor property are good.
 
-Peter.
+Thank you, Conor!
 
