@@ -1,73 +1,81 @@
-Return-Path: <devicetree+bounces-62827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729E38B2A8A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 23:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 823FE8B2AD1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 23:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024641F21825
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 21:14:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05FE61F22113
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 21:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA9A155738;
-	Thu, 25 Apr 2024 21:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40D5155A2B;
+	Thu, 25 Apr 2024 21:37:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SkeZfCMz"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="sOQ7fJ4y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06572153821;
-	Thu, 25 Apr 2024 21:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13799153812;
+	Thu, 25 Apr 2024 21:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714079600; cv=none; b=r962CDKLMC2NASYRcNj1S/xDaGn1zLJx52CNXhOmEHnwiesfxGGCBTgvaUveFN3aJs2hg0gRebjErJEXQvA+JWl72RG+yq61dzJ1NOQqdP+4WoGQ6d5hFCvy8geTF/yGldlh859IDVgSXpkr++hBqdbZ/sc4upToNOUjp2DbUHI=
+	t=1714081043; cv=none; b=TQDkvduebbNc1EZYgjq2DDJ0yNx+vFhhXSlTz6M/U3ru0rK6humNklBpxAm89vbbKlE71+RgRy9M7ovKafakFQcHoZABC9kzOocqupI13bLKvmf12CT3tOoexLsRn+KgCbbb+Xrz3+vX3xLnNETZwBtN9h9J9A4iOhSQg1cgT1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714079600; c=relaxed/simple;
-	bh=yOKS8YZV/ybtzb2iS5zih1gwklhOMr+sQWecVjYkRXo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tjJWn8FZWhblGfwSdRzc0545xDjr4ZgpNI0pYs40YAqdcwQrM1BtQZJKmDXnsTUSpj+iTwIm4Hf0YsFjXIk28TCZcaLX6mB7I76lEqALsTy2VVNcXxGFQgyyzvfG3OObislrUOtMZzk81AVfDtIXeTmIbc29xC6bCdmpQ0KoT8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SkeZfCMz; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43PLCwLt047734;
-	Thu, 25 Apr 2024 16:12:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714079578;
-	bh=FBAmrRWmRQ6wUPzz5WQOYydNI4nfgOmhde5mQvluM/E=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=SkeZfCMzMvtJOEZAww70XLZMZ0di0a+IXruZPZ/eaOBEZq5KJm5189q4Sr9H10yM/
-	 yY7m5aUeZOfyVzn5Op/oONjD9BKMba6Obm+eeZno99dWMotKxpSWmpXkK7serciGX/
-	 sKAiepMxcOBuf4o9LIHjL8oP5Oj0U8ZVdwCGFsRI=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43PLCwPE031324
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 25 Apr 2024 16:12:58 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
- Apr 2024 16:12:58 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 25 Apr 2024 16:12:58 -0500
-Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43PLCYHI038718;
-	Thu, 25 Apr 2024 16:12:55 -0500
-From: Neha Malcom Francis <n-francis@ti.com>
-To: <robh@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>, <nm@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kristo@kernel.org>, <u-kumar1@ti.com>,
-        <n-francis@ti.com>
-Subject: [PATCH v4 6/6] arm64: dts: ti: k3-j7*-main: Add bootph-pre-ram to main_esm
-Date: Fri, 26 Apr 2024 02:42:33 +0530
-Message-ID: <20240425211233.2006233-7-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240425211233.2006233-1-n-francis@ti.com>
-References: <20240425211233.2006233-1-n-francis@ti.com>
+	s=arc-20240116; t=1714081043; c=relaxed/simple;
+	bh=zWNzu3vC/L6cywh5f2sm/RFQYgF4qxudHzlb0ZpsGRY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fXccR1QJBIJeV3gT0/SoCrXP8SZBmMwSP7JR7UypRI7v3SinGzXVSM6lDbKhA5bsGaUS27ATLs3qb4B3EtZaiRtOTX516sqsrgoObWsr6c/mZX2GvqUsZl95w1XyE+1QJ2wNykETvdnxq2sofcJcdXfI1a/M1aHeRudMg5nCJ6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=sOQ7fJ4y; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43PLXAcP009121;
+	Thu, 25 Apr 2024 21:37:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=bCX+HklUSQAeEPRI2uM06FpOeqoNmDjqmZeTZLpAINg=;
+ b=sOQ7fJ4yMQHC1thOQovP88AF6IOR+nsbc4kWD1asM4x7h9l6uDnyVOJ9C+7C5E8U1QN4
+ xFWIs7ozJ+BeDE/u8U/6i1DVJR2nfDTmeFjfv3LcVvaa8KRxK3MmR7cZTEKaVxmxJIrF
+ L94+QTt6BueGFzODpVjSix63DnpyXOnLI2+LpRvQi4gKpjMuH8QHDNj+w4BrXARUJ9yp
+ DJGsi8uAdcz3Va1PhGdRYZEGK5v9uI+DAn/3FJ7QiI83eWiBRogrw49HxPciXs5CGyQb
+ MksIyrZzz3eUOn+FZl4w37arSSuA5f+cko4MIvdSnfSuELyIseUh56G5c++aPCRthA9R xQ== 
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xqy66r06p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 21:37:07 +0000
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43PKtDqF020886;
+	Thu, 25 Apr 2024 21:37:06 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xmre0c9ub-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 21:37:06 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com [10.39.53.231])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43PLb3bA43188650
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 25 Apr 2024 21:37:05 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id E6CE058056;
+	Thu, 25 Apr 2024 21:37:02 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 3DF3658050;
+	Thu, 25 Apr 2024 21:37:02 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.133.34])
+	by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 25 Apr 2024 21:37:02 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: eajames@linux.ibm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        linux-spi@vger.kernel.org, linux-i2c@vger.kernel.org,
+        lakshmiy@us.ibm.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au
+Subject: [PATCH v3 00/14] ARM: dts: aspeed: Add IBM P11 BMC Boards
+Date: Thu, 25 Apr 2024 16:36:47 -0500
+Message-Id: <20240425213701.655540-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.39.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,41 +83,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: iBqmoEe0BOw1ccHXKf33Ao58oqNwxgPw
+X-Proofpoint-ORIG-GUID: iBqmoEe0BOw1ccHXKf33Ao58oqNwxgPw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_21,2024-04-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ mlxscore=0 lowpriorityscore=0 mlxlogscore=693 phishscore=0 impostorscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 suspectscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2404010000
+ definitions=main-2404250157
 
-Add bootph-pre-ram to main_esm as R5 bootloader configures MAIN domain
-watchdog interrupts to generate the ESM pin events.
+Add the Blueridge and Fuji BMC systems. Document many missing FSI related
+properties, and fix existing warnings.
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 1 +
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 +
- 2 files changed, 2 insertions(+)
+Changes since v2:
+ - Split up the DTS patches
+ - Add documentation patches
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index b24a6333563a..30ec36ce4ce7 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -1565,5 +1565,6 @@ main_esm: esm@700000 {
- 		compatible = "ti,j721e-esm";
- 		reg = <0x0 0x700000 0x0 0x1000>;
- 		ti,esm-pins = <656>, <657>;
-+		bootph-pre-ram;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 0dd5005b34aa..a5dc1e1bc1a9 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -2957,5 +2957,6 @@ main_esm: esm@700000 {
- 		compatible = "ti,j721e-esm";
- 		reg = <0x0 0x700000 0x0 0x1000>;
- 		ti,esm-pins = <344>, <345>;
-+		bootph-pre-ram;
- 	};
- };
+Eddie James (14):
+  dt-bindings: spi: Document the IBM Power SPI controller
+  dt-bindings: fsi: fsi2spi: Document SPI controller child nodes
+  dt-bindings: fsi: Document the FSI2PIB engine
+  dt-bindings: fsi: p9-occ: Switch to yaml format
+  dt-bindings: fsi: Document the IBM SBEFIFO engine
+  dt-bindings: fsi: Document the FSI controller common properties
+  dt-bindings: fsi: ibm,i2cr-fsi-master: Reference common FSI controller
+  dt-bindings: fsi: ast2600-fsi-master: Switch to yaml format
+  dt-bindings: fsi: Document the FSI Hub Controller
+  dt-bindings: i2c: i2c-fsi: Switch to yaml format
+  dt-bindings: arm: aspeed: add IBM P11 BMC boards
+  ARM: dts: aspeed: Add IBM P11 FSI devices
+  ARM: dts: aspeed: Add IBM P11 Blueridge BMC system
+  ARM: dts: aspeed: Add IBM P11 Fuji BMC system
+
+ .../bindings/arm/aspeed/aspeed.yaml           |    2 +
+ .../fsi/aspeed,ast2600-fsi-master.yaml        |   72 +
+ .../bindings/fsi/fsi-controller.yaml          |   65 +
+ .../bindings/fsi/fsi-master-aspeed.txt        |   36 -
+ .../devicetree/bindings/fsi/ibm,fsi2pib.yaml  |   38 +
+ .../devicetree/bindings/fsi/ibm,fsi2spi.yaml  |   11 +
+ .../bindings/fsi/ibm,hub-fsi-controller.yaml  |   44 +
+ .../bindings/fsi/ibm,i2cr-fsi-master.yaml     |    5 +-
+ .../devicetree/bindings/fsi/ibm,p9-occ.txt    |   16 -
+ .../devicetree/bindings/fsi/ibm,p9-occ.yaml   |   41 +
+ .../bindings/fsi/ibm,p9-sbefifo.yaml          |   50 +
+ .../devicetree/bindings/i2c/i2c-fsi.txt       |   40 -
+ .../devicetree/bindings/i2c/ibm,i2c-fsi.yaml  |   59 +
+ .../devicetree/bindings/spi/ibm,p10-spi.yaml  |   56 +
+ arch/arm/boot/dts/aspeed/Makefile             |    2 +
+ .../dts/aspeed/aspeed-bmc-ibm-blueridge.dts   | 1711 +++++++
+ .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   | 3984 +++++++++++++++++
+ .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 1696 +++++++
+ 18 files changed, 7835 insertions(+), 93 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
+ create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,fsi2pib.yaml
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,hub-fsi-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-sbefifo.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-fsi.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/ibm,p10-spi.yaml
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts
+ create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-quad.dtsi
+
 -- 
-2.34.1
+2.39.3
 
 
