@@ -1,207 +1,105 @@
-Return-Path: <devicetree+bounces-62745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF7C8B2585
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:46:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF728B259D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70AD51C220DF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:46:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF3AB1C2093D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D05D14C5A9;
-	Thu, 25 Apr 2024 15:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C520114AD36;
+	Thu, 25 Apr 2024 15:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yXP2Ic6W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g++mn+dY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3E114BF86
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 15:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1461CF8A;
+	Thu, 25 Apr 2024 15:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714059968; cv=none; b=jJuSjS+E34PRqSWfrKBY/4wFOxlJgc9/pAcmVkJHOw3kHZQlPOz6AXjTNpqNYb7LqoRbadbqihYS611Tv6jgNW+zbZxhjfRMemcrRGcrE/sSKvzPQBI3qld0CpwsxnQx7ZtiVUPtfd92J1OAf4ZfAkJNLfBMFUdME7xRs7BQmJU=
+	t=1714060171; cv=none; b=tqff6NZNg0lJlTN4aHNqtMQzWVn2a2GvaY5nQZq+F8iXHPX0Lb4/ccic6/PG/rjycA6bAdkMfNNHiej52gMMiAa4pxsQVyqk8qrZcQNSxGBqJwWYIKUpOqOWxAgylK3adBV1tcc3+z7sfTw0vdKZsXgPIb/v7KgWa3JY3SYzjSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714059968; c=relaxed/simple;
-	bh=ARPhOPhDgTEQgJncPtrsgbR8sVcAO1VcNK+RH2Rvv7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hZm7Ff8a3Lufj3cxmLNC4sXt2JFCJPSVZE1GYu6m5hJlo3K00Zvg5+y+pqrnaV8C6hBcgEsRsyAk0aINrpFzshOt5SKxwoZEAKu/Tvki46H9l5VTnbZLWuCNDoTjOMLma2DPUYhNgnw6hJ1iCtuXIKSCPmG/w3XB1OYgWSoxIHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yXP2Ic6W; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57225322312so1551166a12.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 08:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714059965; x=1714664765; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wCdxJ+q4o3pPwabMdF8nZZpueZWNvS6ScA7rit1v9g4=;
-        b=yXP2Ic6Wim+7n8MwPWojLInIF7f+vLFEv1td5ZrUzAT4WQeiqfzxriEoWPdihzaNDt
-         2VGTXp3x6ap8HyC+TbM5qRZVAwafwT/F6F428bYaEA8t+BbG1OXQ673A9MDs5izSSJ7t
-         CU/PVttdVqZc1ayqGPx4czgQN2q6PDXqpAeWaEyZSs6iAwTSbXDY7yIYKdEPXrXOZXV+
-         DMoa2fwc0+TTvIII1rCKl48t8FNJKjya9IASn4h75qKgL+pw3CuMI9IHHD9Vgbr5FV/e
-         ZmLUcg5NygOyAre8/nPEBVAwZFq1+h2WXYwuixBxMsGGj8DNv5hZf1wjEfbYs2TU2NBf
-         DWOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714059965; x=1714664765;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wCdxJ+q4o3pPwabMdF8nZZpueZWNvS6ScA7rit1v9g4=;
-        b=liBg3sK+m/zeHyj20qf1yJTYxn097Mg9OgmuAru/DN02PabrHeeY4orUjT2mbMpbnD
-         eCyduYaXOhoUwDTFpl1+wnt1fPX05ujMBNBn6kCpMxX8rqV9FoQFwQz/z7jPwGgb7zSt
-         xjYJuYDUQYFtxERD70hbXUnemar1hvdeA9VVMeKj7jGx3LG4YMfROoPNhHxFhW6H7YnF
-         l8Ovc8M37H3abu9srxDkaXuLfywSaZiJg6QRfrf0Dh8k7Gre18unH//MW8ypEtfvmqw4
-         vgGOuCvO7doKEfOH95dNAC9xTWHdliRE85r8mN0pBMXfclhQ9+ZIslEcQfKRv/qDbmLt
-         HfBg==
-X-Forwarded-Encrypted: i=1; AJvYcCXKtaj9A1DxUGyvebcj3gCD/LFoDttPWXMcmxkiFKMG3E7Vlg1cuS96OOPBoat9DLd343/T2U6VD97CqArnL0aGu9ot2wdQuFP5Dg==
-X-Gm-Message-State: AOJu0YxadpyfRGURdd3OrTUrrgaIinQiMU4upEUaAennUUIb1fOjO1YE
-	NI/P0lhZ+ITRX6WI/LRl7K56W9qiRD1SiFjoqx8i6YqmhS7Nsg7nrsJiLsI8Mz8=
-X-Google-Smtp-Source: AGHT+IGjb9BIma2IPdK9VWrOvvIht6IG4eG7JsAANZbuKMobxKYONjCipGocbaFdCGFyQRQnFZaCew==
-X-Received: by 2002:a50:d4d2:0:b0:56d:e6f6:f73c with SMTP id e18-20020a50d4d2000000b0056de6f6f73cmr3670436edj.42.1714059965005;
-        Thu, 25 Apr 2024 08:46:05 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id i19-20020a50fc13000000b0056fed8e7817sm8916217edr.20.2024.04.25.08.46.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 08:46:04 -0700 (PDT)
-Message-ID: <b79b5323-196f-41bc-b47a-d350c49d769a@linaro.org>
-Date: Thu, 25 Apr 2024 17:46:02 +0200
+	s=arc-20240116; t=1714060171; c=relaxed/simple;
+	bh=5YBMbBgmJq7CbTxFHE0N9JXI6gpr/AGXcaI74d6pkxs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lMzRRNHx2hvmJ0K5d27Bf7Ycsdg7Et4PvM5/Uv3bTrORU+Jo7q9hgiQMXeVhn69dxN5pJgUrdObt8FmV5ocpbZpVf/3atHKd9/OuvWtHWpx6bT0HdxYyufZaP9qdHqq/W1wScpJRJ9jh4wFKB6Rdt2/wTjk5bLGk65M/PYDHueo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g++mn+dY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 365C7C113CC;
+	Thu, 25 Apr 2024 15:49:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714060170;
+	bh=5YBMbBgmJq7CbTxFHE0N9JXI6gpr/AGXcaI74d6pkxs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g++mn+dYfTbUVEDSLMzG4azF7CrCj+5myw18jIjhJzBWGNv5oyvChIhV2Lp/VebHa
+	 ahptCo6Nt3L2GlW7OuXlkzkVHXjHmtf62xX2xBErYu9dbj7dbc9UY2uXAu5XyVcR5D
+	 t12IfN+g8uUPiHyMmQyeWKnSyfYc4pZ52BFAAHfs3lxzaj2jy2j08ARmNM0fk+S8wB
+	 tnCedI8hs7byei1z8DwszsIiayc3AuodHn5D3k8pguGNi+xYXdf7Ue2YhvJUw2f21c
+	 E78iKaHd2ntNwHIa7/R0GDwDDd/EOK6l9wSgL6rsK1KAvWGMZl86hLh+ouOb1WA9zi
+	 v20W42zf7zlIA==
+Date: Thu, 25 Apr 2024 10:49:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 01/12] dt-bindings: PCI: snps,dw-pcie-ep: Add vendor
+ specific reg-name
+Message-ID: <20240425154928.GA2600809-robh@kernel.org>
+References: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
+ <20240424-rockchip-pcie-ep-v1-v1-1-b1a02ddad650@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: max31790: Add
- maxim,pwmout-pin-as-tach-input property
-To: Guenter Roeck <linux@roeck-us.net>,
- Chanh Nguyen <chanh@amperemail.onmicrosoft.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Chanh Nguyen <chanh@os.amperecomputing.com>,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Justin Ledford
- <justinledford@google.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>,
- Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>
-References: <20240414042246.8681-1-chanh@os.amperecomputing.com>
- <20240414042246.8681-4-chanh@os.amperecomputing.com>
- <13b195e6-cbbd-4f74-a6fa-d874cb4aaa45@linaro.org>
- <065243cc-09cf-4087-8842-bd4394fb324f@amperemail.onmicrosoft.com>
- <d549cf2b-a7fa-4644-8fcb-3c420503ee01@amperemail.onmicrosoft.com>
- <20240423-gallantly-slurp-24adbfbd6f09@spud>
- <ab5cfd8c-0e88-4194-a77e-5ffbb6890319@amperemail.onmicrosoft.com>
- <396b47f5-9604-44ab-881f-94d0664bcab8@roeck-us.net>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <396b47f5-9604-44ab-881f-94d0664bcab8@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240424-rockchip-pcie-ep-v1-v1-1-b1a02ddad650@kernel.org>
 
-On 25/04/2024 16:05, Guenter Roeck wrote:
-> On 4/25/24 03:33, Chanh Nguyen wrote:
->>
->>
->> On 24/04/2024 00:02, Conor Dooley wrote:
->>> [EXTERNAL EMAIL NOTICE: This email originated from an external sender. Please be mindful of safe email handling and proprietary information protection practices.]
->>>
->>
+On Wed, Apr 24, 2024 at 05:16:19PM +0200, Niklas Cassel wrote:
+> Considering that some drivers (e.g. pcie-dw-rockchip.c) already use the
+> reg-name "apb" for the device tree binding in Root Complex mode
+> (snps,dw-pcie.yaml), it doesn't make sense that those drivers should use a
+> different reg-name when running in Endpoint mode (snps,dw-pcie-ep.yaml).
 > 
-> The quote doesn't make much sense.
+> Therefore, since "apb" is already defined in snps,dw-pcie.yaml, add it
+> also for snps,dw-pcie-ep.yaml.
 > 
->> Sorry Conor, there may be confusion here. I mean the mapping of the PWM output to the TACH input, which is on the MAX31790, and it is not sure a common feature on all fan controllers.
->>
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> I think the term "mapping" is a bit confusing here.
-> 
-> tach-ch, as I understand it, is supposed to associate a tachometer input
-> with a pwm output, meaning the fan speed measured with the tachometer input
-> is expected to change if the pwm output changes.
-> 
-> On MAX31790, it is possible to configure a pwm output pin as tachometer input pin.
-> That is something completely different. Also, the association is fixed.
-> If the first pwm channel is used as tachometer channel, it would show up as 7th
-> tachometer channel. If the 6th pwm channel is configured to be used as tachometer
-> input, it would show up as 12th tachometer channel.
-> 
-> Overall, the total number of channels on MAX31790 is always 12. 6 of them
-> are always tachometer inputs, the others can be configured to either be a
-> pwm output or a tachometer input.
-> 
-> pwm outputs on MAX31790 are always tied to the matching tachometer inputs
-> (pwm1 <--> tach1 etc) and can not be reconfigured, meaning tach-ch for
-> channel X would always be X.
-> 
->> I would like to open a discussion about whether we should use the tach-ch property on the fan-common.yaml
->>
->> I'm looking forward to hearing comments from everyone. For me, both tach-ch and vendor property are good.
->>
-> 
-> I am not even sure how to define tach-ch to mean "use the pwm output pin
-> associated with this tachometer input channel not as pwm output
-> but as tachometer input". That would be a boolean, not a number.
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> index bbdb01d22848..00dec01f1f73 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> @@ -100,7 +100,7 @@ properties:
+>              for new bindings.
+>            oneOf:
+>              - description: See native 'elbi/app' CSR region for details.
+> -              enum: [ link, appl ]
+> +              enum: [ apb, link, appl ]
 
-Thanks for explanation. So this is basically pin controller function
-choice - kind of output or input, although not in terms of GPIO.
+This section is for existing bindings. IOW, don't use or add to them 
+for new users. New users should "See native 'elbi/app' CSR region".
 
-Shouldn't we have then fan children which will be consumers of PWMs?
-Having a consumer makes pin PWM output. Then tach-ch says which pins are
-tachometer for given fan? Just like aspeed,g6-pwm-tach.yaml has?
-
-Best regards,
-Krzysztof
-
+Rob
 
