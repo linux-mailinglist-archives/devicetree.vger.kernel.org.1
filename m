@@ -1,114 +1,134 @@
-Return-Path: <devicetree+bounces-62887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2266E8B2D5F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 01:00:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA8F8B2D6E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 01:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42B5BB2391E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 23:00:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C33071F21DD6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 23:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8240D15623B;
-	Thu, 25 Apr 2024 23:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EC7156223;
+	Thu, 25 Apr 2024 23:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LNd/HjNR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BVwmB6G8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FC9155A5B;
-	Thu, 25 Apr 2024 23:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E062F5B697;
+	Thu, 25 Apr 2024 23:07:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714086032; cv=none; b=Qvvd7sPNubpmqmDPypMTdGeXwnJHN/f12iW2UA/1DQ3w8kQ5dTD6YdqlGpd2v4WyNq+EdgoPOOa1xtOmyO+QinFnPLC4Xjbo6t/ewzuOnWJdcbLwMeSla+wBmU5Y0zORKAm/fHbflE+TBwK64KvSLq3yq8BAkY9WxUUyLBeEA/k=
+	t=1714086461; cv=none; b=WgzdS2zHBdZS0eGADYb/XUwR04/5RlQYqlPypQopcCH56ByMfTAGRk3MiXn/PeqgoiGJ8R/Zqs0iLv6kCeDjh3OY2+zPZpr4F6Pv6aFH2+odEwn2he0EpgS+O+bnf3P+1ASZdbHAGOx1+hZc4ijzaLv1a0rm9O8powBSVzfBmxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714086032; c=relaxed/simple;
-	bh=D8k06gnsNVMRGTY9SPsw6z9e/n7ev10N005gew8GPJA=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=jHbX5u7XLRwRCdjXja3NzGZrza1p2BpAUbOMJsF6F8FdqE6RlZd2DbnYo1q06vz+XuixUHMczcF2TVYrmJW+qTp6bYXlhRX40UARAxQT6wgVm9nLKO8qoQMPE3NjqlZpf0kS6uzYC0I2zkbb9UPHmYKOKPFUfPrTPo20n74EwnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LNd/HjNR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DCDD7C2BD11;
-	Thu, 25 Apr 2024 23:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714086031;
-	bh=D8k06gnsNVMRGTY9SPsw6z9e/n7ev10N005gew8GPJA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=LNd/HjNR/1Te60bNVBgQcAnpWBWzfg7bb5NEuteLpBWJKlP+ByjhJ9INjWMb6g3Dv
-	 LJY2K7mqA6hshg1ZxNiumMtbcFEqWsZ6XwdentsDMp9ESQIFfvmJASU2GfBWQ9YHN8
-	 CEFPOdiUwE+2zEgeW6PD/HSQr+SXuxVuz5ytKYw0bgQNeCw1fgtZzIFktG/ZRcyOiA
-	 vf82m3WFWwVTRP0DNdryNzDUZpQMGf4MKxlF3qxHxyT0R5nPbOwW2PbVeYav3U6cOB
-	 2dseTEtIXMshBhduqoGp9OvXbZlSwbt/ssVXTxoF7ttNKFbbgofjgqYl5rQ6OWik+w
-	 XfGILvaMWOA0w==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C89D4CF21C0;
-	Thu, 25 Apr 2024 23:00:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1714086461; c=relaxed/simple;
+	bh=kJYpqm/gCQ0iz0NW+AYmPRY4ELdBOlpMYuluXkwNCxs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=n/Zrph3DyHBuET5BBUxM5tXW0z54HC3na58SPRmVw9RRNjm0LXMHCJo+imNtPD1PhVySxU8jgltduK5KzsB6u6iyWmp3BkNfJp6JrrJ479dMmBVRBFf8GzpknfiRcT/i6TBB0WgKz14slcYQQxw+PP+60tuRkXhKIxvNGx8M9P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BVwmB6G8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43PMgnDT032316;
+	Thu, 25 Apr 2024 23:07:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:date:subject:mime-version:content-type
+	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=/jY
+	1qs5mMC+eRfgrFIRUP6sHK/rSTNm1uWk71fRvDFA=; b=BVwmB6G8O/bWLC3XvYI
+	uhMAKkCjM92fnqoCiECihr63oEu3cyvBzwHU/KuZFOAXdZE70IGyNkQR4w4LJHpp
+	uUXLJXB+x0EQHOwMe2KPd85n1hC3o6JjdFDPhZ82ODgLBkvYnRfpWyB/1vHEG3Mr
+	lLEd3NWLiqZkP7u6nE/1Ph5M/R4ZVmUVlyxXfk/bDDAj7VU4Vp6XCA7Q/zuq83Y7
+	qFnytyidrpKJrDO+BWtmpTGc/e79kM0xQOxzHz4QxKbIvFBOUONCrdQDpSdp8OAY
+	gxvBGh3xnR8mpwJNFaWdewmqUYexruCe/fJEHCOX7T/0LpfPEyI8nARPiOWnsDBA
+	ZGg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xqn0wj21v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 23:07:24 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43PN7Ngg011600
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 23:07:23 GMT
+Received: from hu-scheluve-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 25 Apr 2024 16:07:20 -0700
+From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Date: Thu, 25 Apr 2024 16:07:10 -0700
+Subject: [PATCH] arm64: dts: qcom: sa8775p: mark ethernet devices as
+ DMA-coherent
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/9] Support Zve32[xf] and Zve64[xfd] Vector
- subextensions
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <171408603081.8761.8620733679475942661.git-patchwork-notify@kernel.org>
-Date: Thu, 25 Apr 2024 23:00:30 +0000
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
-In-Reply-To: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
-To: Andy Chiu <andy.chiu@sifive.com>
-Cc: linux-riscv@lists.infradead.org, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, conor.dooley@microchip.com,
- heiko@sntech.de, guoren@kernel.org, conor@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, evan@rivosinc.com,
- cleger@rivosinc.com, shuah@kernel.org, linux-kernel@vger.kernel.org,
- palmer@rivosinc.com, vincent.chen@sifive.com, greentime.hu@sifive.com,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kselftest@vger.kernel.org, j.granados@samsung.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240425-mark_ethernet_devices_dma_coherent-v1-1-ad0755044e26@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAB3iKmYC/x2NUQrCMBAFr1L220ATkiBeRSTE5GkXaSqbIELp3
+ V38nAfzZqcOYXS6TDsJPtx5awr2NFFZcnvCcFUmNzs/exfMmuWVMBZIw0hVlYKe6ppT2XREGya
+ WaIO/n72NgfToLXjw9x+53o7jB3il1Kh0AAAA
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Sagar
+ Cheluvegowda" <quic_scheluve@quicinc.com>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _AMgoMKTSRzr01XZx8sBeP9bPMfdqNFw
+X-Proofpoint-GUID: _AMgoMKTSRzr01XZx8sBeP9bPMfdqNFw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_21,2024-04-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ impostorscore=0 malwarescore=0 phishscore=0 suspectscore=0 mlxscore=0
+ mlxlogscore=594 lowpriorityscore=0 bulkscore=0 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404250169
 
-Hello:
+Ethernet devices are cache coherent, mark it as such in the dtsi.
 
-This series was applied to riscv/linux.git (fixes)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+Change-Id: Id180fae617f2e348c0a80c6664b131cc57fcb4d6
+Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Fri, 12 Apr 2024 14:48:56 +0800 you wrote:
-> The series composes of two parts. The first part provides a quick fix for
-> the issue on a recent thread[1]. The issue happens when a platform has
-> ununified vector register length across multiple cores. Specifically,
-> patch 1 adds a comment at a callsite of riscv_setup_vsize to clarify how
-> vlenb is observed by the system. Patch 2 fixes the issue by failing the
-> boot process of a secondary core if vlenb mismatches.
-> 
-> [...]
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 231cea1f0fa8..5ab4ca978837 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -2504,6 +2504,7 @@ ethernet1: ethernet@23000000 {
+ 			phy-names = "serdes";
+ 
+ 			iommus = <&apps_smmu 0x140 0xf>;
++			dma-coherent;
+ 
+ 			snps,tso;
+ 			snps,pbl = <32>;
+@@ -2538,6 +2539,7 @@ ethernet0: ethernet@23040000 {
+ 			phy-names = "serdes";
+ 
+ 			iommus = <&apps_smmu 0x120 0xf>;
++			dma-coherent;
+ 
+ 			snps,tso;
+ 			snps,pbl = <32>;
 
-Here is the summary with links:
-  - [v4,1/9] riscv: vector: add a comment when calling riscv_setup_vsize()
-    (no matching commit)
-  - [v4,2/9] riscv: smp: fail booting up smp if inconsistent vlen is detected
-    (no matching commit)
-  - [v4,3/9] riscv: cpufeature: call match_isa_ext() for single-letter extensions
-    (no matching commit)
-  - [v4,4/9] riscv: cpufeature: add zve32[xf] and zve64[xfd] isa detection
-    (no matching commit)
-  - [v4,5/9] dt-bindings: riscv: add Zve32[xf] Zve64[xfd] ISA extension description
-    (no matching commit)
-  - [v4,6/9] riscv: hwprobe: add zve Vector subextensions into hwprobe interface
-    (no matching commit)
-  - [v4,7/9] riscv: vector: adjust minimum Vector requirement to ZVE32X
-    (no matching commit)
-  - [v4,8/9] hwprobe: fix integer promotion in RISCV_HWPROBE_EXT macro
-    https://git.kernel.org/riscv/c/5ea6764d9095
-  - [v4,9/9] selftest: run vector prctl test for ZVE32X
-    (no matching commit)
+---
+base-commit: a93289b830ce783955b22fbe5d1274a464c05acf
+change-id: 20240425-mark_ethernet_devices_dma_coherent-6c6154b84165
 
-You are awesome, thank you!
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Sagar Cheluvegowda <quic_scheluve@quicinc.com>
 
 
