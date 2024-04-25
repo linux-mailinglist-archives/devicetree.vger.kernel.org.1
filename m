@@ -1,147 +1,169 @@
-Return-Path: <devicetree+bounces-62758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B17D8B2603
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 696668B260D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5A9B2827E3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:09:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 262E428287E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C0E14C5A9;
-	Thu, 25 Apr 2024 16:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D8A14D281;
+	Thu, 25 Apr 2024 16:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMWkQFx+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j9jx071Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102A214C5A1;
-	Thu, 25 Apr 2024 16:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2448614C5BF;
+	Thu, 25 Apr 2024 16:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714061346; cv=none; b=TpuFpwYP6jsIxXbiuvKhCcQcttRPeMC/YEPE9YUEZ6kV36tlrTjoNHodQMPNXFnNH7uHiymtCR6W87Lm+YA1I70381UUUaPwTDv0wDLylJJWQoaDxx4QBM42Naf5WhZRHkVrD1whq8JHTCpIwWBcQsL/PdDLp0jNjHF3eAzuMLU=
+	t=1714061497; cv=none; b=aCI8nm5GJipqYJ3XEljGM229NfaLB0p3IMHTUZDPrH0WEmWf/CvyCELgGdlMqVCIK43dFrv580H2Q7mnrKiXaCyK6A5oKypebfphW9uWW6xJmnwzwuMo103WbYfbhE0H3lQPsy5LQuLUoeCOuKR9YwuTXWpsfSeYllTv+IkCKVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714061346; c=relaxed/simple;
-	bh=FTrKsEK9u+1f+WVvM2+molxlrqj0kgxFuQGWcVqqr7o=;
+	s=arc-20240116; t=1714061497; c=relaxed/simple;
+	bh=ho12mLf87MAZYvf64xJHQvB9LOeFouGnTfDbUPjBnlc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eQPmyddEFe/BS41uqtUCz/YXRe9tA4ahHRPGw48lfdGAtvStKoUHysxwK+FkppraKt+GxHKLjsYhSobM5/W0rih58jfq72bBDH0vBOjd4Im0dHsEz8gOzk0REiRl6tq9HbpCLB3pQJ+QmRVXp5d03e6NXeQBQv5f8q92cO8J+aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMWkQFx+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DC1CC113CC;
-	Thu, 25 Apr 2024 16:09:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VVny7zPyM2an7MNRL3VaNXx6M8asck4H+t1yG2DvJrXJ1qEWxyyLetDyNnr8lv0N4pUCQXx5FZYhuvU47RDjiIQjRJ3K8JbEfrm2iEaFUdEgfqbPBjfplzauclRwu6JxaLEmMA1L5UoDFmQpwbnEfMKCl6IRj5Pnt2qkYMr929s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j9jx071Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ABE8C113CC;
+	Thu, 25 Apr 2024 16:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714061345;
-	bh=FTrKsEK9u+1f+WVvM2+molxlrqj0kgxFuQGWcVqqr7o=;
+	s=k20201202; t=1714061496;
+	bh=ho12mLf87MAZYvf64xJHQvB9LOeFouGnTfDbUPjBnlc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WMWkQFx+x/CCWQeoUDVJPUbbOgW4mPlz09ekJzbhigPPuGd6Atk2xoiLq1+m6hFjN
-	 TDf0FMt7LkHtPRYpQmTcXErgNoscc2Hig9jimJ32RyxG2wAc+rlBbqlNgeNs7d366S
-	 va1LfGEmKf6S5ulBmUbbo4PWoZBAfqkM68q97SGAbnkrlvXF6TlFJRo6nyz4Dm0SWZ
-	 HLwBPde9lFS9C4gVm6lIOszZxTFgXG978zL6ITa2UI3mU7DXrJfZHX3JxMFy14J3Am
-	 lcqa+L5wpn+Lz1ONTxRaEcuNubfOichSvrGBMXf6RTKilkZoiDJmVPoYUa4W+WyMZZ
-	 rRefHBz9rP/uA==
-Date: Thu, 25 Apr 2024 17:08:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-	"will@kernel.org" <will@kernel.org>,
-	"arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>,
-	Neil Jones <neil.jones@blaize.com>,
-	Matt Redfearn <matthew.redfearn@blaize.com>,
-	James Cowgill <james.cowgill@blaize.com>,
-	"heiko.stuebner@cherry.de" <heiko.stuebner@cherry.de>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"macromorgan@hotmail.com" <macromorgan@hotmail.com>,
-	"sre@kernel.org" <sre@kernel.org>,
-	"hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
-	"andre.przywara@arm.com" <andre.przywara@arm.com>,
-	"rafal@milecki.pl" <rafal@milecki.pl>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-	"andersson@kernel.org" <andersson@kernel.org>,
-	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
-	"geert+renesas@glider.be" <geert+renesas@glider.be>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
-	"nfraprado@collabora.com" <nfraprado@collabora.com>,
-	"u-kumar1@ti.com" <u-kumar1@ti.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 0/5] Add support for Blaize BLZP1600 SoC
-Message-ID: <20240425-purity-sniff-e17c1bcae41e@spud>
-References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
+	b=j9jx071QsFWrW3XHntMLgzQJpPLY6JtJxBxjwcMn3XrjyxGciv8cAY3zY7azsgZF8
+	 OZAubVoWj+tHQxw7TilPa1OGCxI4t+STVuEOVn4QYOYfEfszslIkEcGSzj81xGCbhY
+	 g1RFk1oqlxhXZBtYDu68IODgvXXTc21m0MgRk3rReFOxi/ptErGI8XnNfIXRiVUY04
+	 kcKRBSHkVfjNcgnC2fcjpSkOCycEIt1JGGxd38cIluYciDBAdztxnhSpl0BPuXd3GO
+	 lsdAPpgXvvCZEV03auyx5q+1dL3mKJtCCDsTsomA7nkWnat1g+z6bdfd6lhbpJjWuA
+	 vr3IbtzSMPUJQ==
+Date: Thu, 25 Apr 2024 11:11:34 -0500
+From: Rob Herring <robh@kernel.org>
+To: Xilin Wu <wuxilin123@gmail.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Tengfei Fan <quic_tengfan@quicinc.com>,
+	Molly Sophia <mollysophia379@gmail.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 03/10] dt-bindings: display: panel: Add Synaptics TD4328
+Message-ID: <20240425161134.GA2695912-robh@kernel.org>
+References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
+ <20240424-ayn-odin2-initial-v1-3-e0aa05c991fd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t3SiQWMSb1DFPZBL"
-Content-Disposition: inline
-In-Reply-To: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
-
-
---t3SiQWMSb1DFPZBL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240424-ayn-odin2-initial-v1-3-e0aa05c991fd@gmail.com>
 
-On Thu, Apr 25, 2024 at 09:15:02AM +0000, Niko Pasaloukos wrote:
-> Adds basic support for the Blaize BLZP1600 SoC.
-> This SoC contains two cores of Cortex-A53 CPUs, one Blaize
-> Graph Streaming Processor (GSP) and several other IPs.
->=20
-> V3 changes:
->  * Removed unnecessary dt-bindings
->  * Update SoBs
->=20
-> V2 changes:
->  * Update SoBs
->  * `make dtbs_check` has no warnings
->  * Fix dts names and removed dead code
->  * DTS is separated from anything else
->=20
-> Nikolaos Pasaloukos (5):
->   dt-bindings: Add Blaize vendor prefix
->   dt-bindings: arm: blaize: Add Blaize BLZP1600 SoC
->   arm64: Add Blaize BLZP1600 SoC family
->   arm64: Add initial support for Blaize BLZP1600 CB2
->   arm64: defconfig: Enable ARCH_BLAIZE_BLZP1600
->=20
->  .../devicetree/bindings/arm/blaize.yaml       |  40 ++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/Kconfig.platforms                  |   5 +
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/blaize/Makefile           |   2 +
->  .../boot/dts/blaize/blaize-blzp1600-cb2.dts   |  84 +++++++
->  .../boot/dts/blaize/blaize-blzp1600-som.dtsi  |  23 ++
->  .../boot/dts/blaize/blaize-blzp1600.dtsi      | 209 ++++++++++++++++++
->  arch/arm64/configs/defconfig                  |   1 +
+On Wed, Apr 24, 2024 at 11:29:08PM +0800, Xilin Wu wrote:
+> Synaptics TD4328 is a display driver IC used to drive LCD DSI panels.
+> 
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+> ---
+>  .../bindings/display/panel/synaptics,td4328.yaml   | 69 ++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/synaptics,td4328.yaml b/Documentation/devicetree/bindings/display/panel/synaptics,td4328.yaml
+> new file mode 100644
+> index 000000000000..216f2fb22b88
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/synaptics,td4328.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/synaptics,td4328.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synaptics TD4328-based DSI display panels
+> +
+> +maintainers:
+> +  - Xilin Wu <wuxilin123@gmail.com>
+> +
+> +description:
+> +  The Synaptics TD4328 is a generic DSI Panel IC used to control
+> +  LCD panels.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      const: syna,td4328
 
-I dunno if you've yet had any comment from Arnd on this series, but I'd
-expect that the blaize patches follow the same path via the soc tree as
-any other platform. I presume either you or one of the other Blaize guys
-on this patchset will be taking care of that, so it would be a good idea
-to add a MAINTAINERs entry covering the new arch/arm64/boot/dts/blaize
-directory. There should be some more info about some of the expectations
-at:
-https://docs.kernel.org/process/maintainer-soc.html
+You need a compatible specific to a panel. This can be a fallback 
+though.
 
---t3SiQWMSb1DFPZBL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiqAGQAKCRB4tDGHoIJi
-0r/KAQDcecWoUKa9ZVb67zgNMKGcUaACpAVq/7o/0yGK05aTCgD/SxtOa05ISKUg
-UkKxK6lXzfAPkCs9yRyq0dJFOAEDcg0=
-=9uV6
------END PGP SIGNATURE-----
-
---t3SiQWMSb1DFPZBL--
+> +
+> +  vdd-supply:
+> +    description: Digital voltage rail
+> +
+> +  vddio-supply:
+> +    description: Digital I/O voltage rail
+> +
+> +  reg: true
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - vdd-supply
+> +  - vddio-supply
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@0 {
+> +            compatible = "syna,td4328";
+> +            reg = <0>;
+> +
+> +            backlight = <&backlight>;
+> +            reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
+> +
+> +            vdd-supply = <&vdd_lcm_2p8>;
+> +            vddio-supply = <&vreg_l12b_1p8>;
+> +
+> +            port {
+> +                panel_in_0: endpoint {
+> +                    remote-endpoint = <&dsi0_out>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> 
+> -- 
+> 2.44.0
+> 
 
