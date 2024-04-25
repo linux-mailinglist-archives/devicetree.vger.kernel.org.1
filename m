@@ -1,250 +1,191 @@
-Return-Path: <devicetree+bounces-62634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D16C8B1D72
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:07:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93ED28B1D79
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:08:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47ABAB2513C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:07:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DB5E1F26A5C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:08:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B62384D2C;
-	Thu, 25 Apr 2024 09:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UGCL9toV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE1C81AC6;
+	Thu, 25 Apr 2024 09:08:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2118.outbound.protection.partner.outlook.cn [139.219.146.118])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1246A7FBB0;
-	Thu, 25 Apr 2024 09:07:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714036045; cv=none; b=b/jPi9bi5gnt0lRn7J43O+RhzH7IPsYoBPkIu8X86kfyaZUmVE4xppQM483ekssCMA5Vlt8wXSORqwuxj4RFQugo2hz+kQEn9GfQHv/c3NsoX5y1Vjo/FjcSOHuYwGi5XHjCauzN0P27Oonlyri9K7i1LMW0exwxDZhqHrk/twQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714036045; c=relaxed/simple;
-	bh=mMZvfoqcQBTuRChmieZa5D5b5PaDayZKxY7BssiNplg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oljQc1NmSaZhKm/xwjo/82cgYCbINpkrEcYpDPy9uaabwYOPdOo6lKugI4dgvUlYimUMZ6jd0fSfuwPXA97GGG9i27OuHx5WUEmSPnZJ+ZyLn+lSJPRU4QSk9fFXUpZSM32d23PMYt9rBk6Q4/K7CCXoR6m98/Iher/wJToYXtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UGCL9toV; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e8b03fa5e5so6346405ad.1;
-        Thu, 25 Apr 2024 02:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714036043; x=1714640843; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FJ9FQCx0e5TdFMZpfO8erltXPtH4u8W7h6Ha1qbTBNM=;
-        b=UGCL9toVQVKAYq+/uta99VX9a4SVCobCbUdvnad9S+SFA5eyS6Zm2HsfTd4kq36kYK
-         1GRg4I4KUTWrxoBG8KdfsA3IDhYxs4rUIJw2Qcgpz/90uhzHGI9LKQiBXGzaxyMzFNTB
-         U8i5PUKVcGzIGcf/Ll5YJmR008xfluwmBDnhBowtLkJ6yyfYfFbSpMaj3N8barM0iA9M
-         v43H2phExDdLHZPptFor3glKVunuO2R1/Wq0fpcTxsUeD4IqN4qPbrlwdxhcrcNckkDZ
-         I2UJIgE+/6Tbb2xBHTtsv45kv+uddpPZk7JlW8sbV+EkXXJrfBk6OdAm4Mz6ZO1XMKOJ
-         gJ4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714036043; x=1714640843;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FJ9FQCx0e5TdFMZpfO8erltXPtH4u8W7h6Ha1qbTBNM=;
-        b=g8WRSZXCA3MRz2+f4DwsSbhOnmsTo7LPBIf1Ujrx4B32GoTN6njR8NVzj/5y+NH54+
-         nRKFpFY9MufqOmatV/oZtx0s6CgA9qEj9SkJZIJ96vrNR57+4lRibVfN6Esb3JV54ddW
-         VisbPqKJ26R55ezd4e1e50nYYRzSzVIPjK38uTwCjI7VvCgKq6PkHCPwv/CjGnfZq6m7
-         ES9V1SnSxs2hCBU5N5jkEAEZ1jskYqyLBZTlwXeoi1pjJZrViDaWFnznExqk1UEt1NSD
-         g4AjsZGvieh1WM+DFKye+444v5z3SC4t9IxOoFRb2bCA8UDnsbvuF30OAtJDwSdvdt5r
-         e31A==
-X-Forwarded-Encrypted: i=1; AJvYcCUHrCngptbi3PXZz/CBMb/AChozBPaPVx+/y2vtibkRSbi8s88vpnVHVi5Nm731idSogNyg8jLq2U5MfOJrunDHUFdv7ciCIwYc46aSVR9TRYOXEWECrOiR6XQCUyi/4n/vDu4jf1s+Bo7ZHPDJapckIZUiFHqUpP1emg6+6f77gzrz4u3ZxM6pdeLd6ksZxb2+mhoM9svYi1G6REtbyz+N4VU=
-X-Gm-Message-State: AOJu0YzttbahK7wYDfQeS18W241Vskx7gaz8Q3er2IBV0ZuB1LhS7XMX
-	+2EtgqjnypMAV2jf+ciLMbxJYDw5CH9Nz9u0xdx02afi23uEw88l
-X-Google-Smtp-Source: AGHT+IEw0+L7Uo9RJkt0QNIEhz/BNr5odMWcoZTgSX9rieBovsk+suyD7cQDqYRF1qTh9d7WIF0l2g==
-X-Received: by 2002:a17:902:efc2:b0:1e3:e1d5:c680 with SMTP id ja2-20020a170902efc200b001e3e1d5c680mr5453428plb.63.1714036043165;
-        Thu, 25 Apr 2024 02:07:23 -0700 (PDT)
-Received: from localhost (ec2-3-111-32-5.ap-south-1.compute.amazonaws.com. [3.111.32.5])
-        by smtp.gmail.com with UTF8SMTPSA id t10-20020a170902e84a00b001e5a5ea5287sm13251722plg.208.2024.04.25.02.07.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 02:07:22 -0700 (PDT)
-From: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] ASoC: dt-bindings: tegra30-i2s: convert to dt schema
-Date: Thu, 25 Apr 2024 14:37:14 +0530
-Message-ID: <20240425090716.176818-1-sheharyaar48@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7726EB4D;
+	Thu, 25 Apr 2024 09:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714036112; cv=fail; b=kIHfuoxHlOkKpZHxq8zUSc2UWUGrFXnZaAaE+TJrPFpG8eRTJVF2PJge0HPMLsktxQeoGVoqPl2QY2XHBVuHiU+onsNxxpF9UMKGi2gn/jumjfHD65ai/LiAL2aer2H5e6HUZlYUkW6ORAMhq+o1+iojRWWeWu1ghlVtWsSQ0zk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714036112; c=relaxed/simple;
+	bh=WkrlDEOdCdv02uY5YzsN7twTCir4pdnjca+sqQJd08E=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=SMoiV6d2e07/95pxgiqE+g1OjBoSHVeJfSLPz29rSeTeVyBY9NhAxUjSSzvAnHOr2GI9XKrJ4KMFnUB/wsfJq/R89oBRSgVMhG/FDz33A5WLS5doV4VVERY/UlmrFeVz/d9r2YiYBhPIZ6GGAMrRvIJacD3Wu7UuQrgpbOMJtvg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PQ0Y77D4Q5b39j+dwwu7fXQsFIm/ak0vL7hQEXBLDrL+6G0CM6eoO/yePzoZNyGFicQ9fwBQXm1aF3LNFvEYyhF0w9Jz2tb4ftPKIdnhMbYBU1QyUPXqL2xZCfEoiZql9sd8pQWSg8tchXdhimGm+KbXAKVjwqcr3Ib1p9AQtb5xFvHNZ0aKobslZ2Q5d1HF1vfTaCCcXDN2n6hbK83kYeG+5jazdVr4nT9TDnIv9CHIZljtSFJqv+oAUPce5tdnMDtmxR9OX8d10Ab4/QKbqIci4Zyi3MBOsa0Fno2w8XmK21RoCPhU2+z2dncB8LFUdXpC7uOxm+59D5GLA3l+Ew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WkrlDEOdCdv02uY5YzsN7twTCir4pdnjca+sqQJd08E=;
+ b=ddbJ3QevVzxZ7X0kKei+Mp+jW1a02qxFkezg9UHuamikywy0IA+9IIkZmEd3x/lUnSpfdcnUuXZRn/TO0hSq+u7zxZFAjnGWtQ5osAP4bn4e4GsF7KRzYjUA8FnwJ7Dr7GlOdo+fliVKNbniaunjv7WF5NVunj271kttCw8LJ0v/COBswhPDwZ4pgL1f0HcTKRaQNPdRnHdKRJYh2IUV2lW/s5U5DH0plIfQw2ndEVx7Yh+2xxW2oLD+WOoI/zeEtqejYVn/K/I7nIjR0M64bIll04Blt7FFYIJ6HoX54SZSx860M8ZDcIWB7ww5Pq7hKmVwTWgJtQXUOug68opswg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10) by NTZPR01MB0985.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:a::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.33; Thu, 25 Apr
+ 2024 09:08:19 +0000
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e903:99a6:10b7:304d]) by
+ NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::e903:99a6:10b7:304d%6])
+ with mapi id 15.20.7472.044; Thu, 25 Apr 2024 09:08:19 +0000
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Alexandre Ghiti <alex@ghiti.fr>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Conor Dooley
+	<conor@kernel.org>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Emil Renner Berthing <kernel@esmil.dk>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starfivetech.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v4 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Thread-Topic: [PATCH v4 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Thread-Index: AQHaiveiGH+bVC0OIUmk/t+RfIuugLF39x6AgAC7tCA=
+Date: Thu, 25 Apr 2024 09:08:19 +0000
+Message-ID:
+ <NTZPR01MB0956902DF5CB459302BA263F9F17A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+References: <20240410033148.213991-1-xingyu.wu@starfivetech.com>
+ <41835766-b7d7-4f81-aca7-4a8136ba9971@ghiti.fr>
+In-Reply-To: <41835766-b7d7-4f81-aca7-4a8136ba9971@ghiti.fr>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: NTZPR01MB0956:EE_|NTZPR01MB0985:EE_
+x-ms-office365-filtering-correlation-id: 1acda268-120e-419f-8476-08dc65074044
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ p2x5JhL73xGoJGo4hbMCfo6P1/rDivRFOItKfIvnhF1aMBatzZBwcRHu7tqIrI1pIfp7IYShb+F0oYObsM8OG3j3J+W74J+hk5UDUvZngvk3LNrBi3NE0hLGPHiYd++gOWs30jh75mLJDJIBzPIPfUGc9Ue83JQTS8auGTijxZx1WLR8LWVWxCruvUlidzV2N9JHin+aH2SV/S8ceyF3XkH/Ga6JCYI19bcnbPyY9/a05LN6nYSLVMO8/cZv4DmGLsLK+4wckq28bNSfS6HKicspPyustJWZLmE0pajSDK+JZiN7WhC3HssHizPqIm9tpJOksRdVKajW8uHn4owqqy1C7leyEBgnoK+fOwzriFZR6Vbdb2lW8m3marD97Hqud2NDeJQYKnnKAVXpKsea+4FLQVTcj3vcuKITf3tK4fyrAbGpaDtxKWdIMe3RgTlduGe5u9kIPOJhzHSyRymRvf8lheiMJZI6fMo6EMld5v/SkCZhX1yYmU4oSkLFD1SXsdbiL+RyqHDdQm8bZ9OF2vWfYNUal0UGH43ZBzdFCGK08WH15k4soMHPkA8vPFCXAMmUki2nitpWcNmPg4ceP47GhNwKeeRdZFJi4Hf3e81z0oJEl8jyTh7sFpOGtnN3
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(41320700004)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Zkkra3VaTnFNTjRTNUFhNmRHM0E2eXZmc0VpekVoVEYrMzRnY2l1cXVOT2t6?=
+ =?utf-8?B?SFFvVjJqV0RoWlpKU3F2NUw2VnduY2VhRmUxTTlJWVNscWlVNTZoSUZTck5k?=
+ =?utf-8?B?QjN2MzZZM2ZSdko0c2MwSlhXMVFYN2hpMVExWk1sMkRVT2JrdmZoRFk4V0Vu?=
+ =?utf-8?B?YWxMZENCdFJzQWlVQUlCWjY2OUNSNktIVmFuWGJCclFEUDg1NExIR3NKZzlR?=
+ =?utf-8?B?aFZyZXBIWmJLOERkK0tiMjgwSmtnaWFZamtqSGthZ2VybkY1Vlo0cVlkNGhz?=
+ =?utf-8?B?cERlZSt4bkIvMUx5ZkJneUlCUVJIeE1oS2F4bTlvbW1UcjF6ZzhJcjBQSmhn?=
+ =?utf-8?B?VWN6VnluSDJjNWxrOEtTOFRPUU0yR1lQekk0VGhNSUh4NlRXRXdwc3lKRlZV?=
+ =?utf-8?B?NzFhK2NnV0NMUWlrcVhlaU5PZFEwSXpBNVlTYW1LcWpqY2lQNjB3OFpJWEVH?=
+ =?utf-8?B?dlZPODgvVTY3QkJtMXBnbko1aDR1MzJ4aXpkM2VmQ0ZBN2ZhdkRCMVZ4OHlI?=
+ =?utf-8?B?UnNYcEtyemhvTllyMWt2ckdSanhaNDhUdnpqZjVCTU5LRklLL1dsOUlXN1R1?=
+ =?utf-8?B?WmtyUFBkS3FaemMwc1h6ZU9rckUvUjZ5V3lwL0wzdDUrMlhhYXNiOXVNVlVP?=
+ =?utf-8?B?QS9BQlYrbDgweGFrb1p6VTh0ak5pczZReVJ4eS9rVm5TZkdQM3ZIN2k5aEZS?=
+ =?utf-8?B?c040M1RVVDlCcVZJTnR3dTNncFhsVjZHN1pocDQzV0NPd2FtemNRa21WUm4x?=
+ =?utf-8?B?SWhNNHRKaWNnV3liOVZWZ2xWa25UbUs4WDRmb0VBNEUvaHNVdHdzRnNoYUth?=
+ =?utf-8?B?TzByU202NTRPcGJuSXVkN3F1OU1SQ2RIYytVYUJVMnJOUDFVUlUwYVhreklU?=
+ =?utf-8?B?RzFEa3JIQXMvUjR3bGZRVGp1SWE5dTc2OW10NEFMcFJ2QS9CR1QyeHhXdSsx?=
+ =?utf-8?B?eUkzdlh2cTJ0ZmtEa1Bmd29qUEQvT2Q3Q0NpQUFOaGZtT21lMnY3WHZDNEc0?=
+ =?utf-8?B?WFVFV0s3Z1VKY3R0ODAzQ2dva1Bqa1RVMndKcXpOcDQvQnV1clNkdWlrMEdG?=
+ =?utf-8?B?WU9OZEtIV3ZRNk92aTJoNW4zMkFQR0laN29pNG5UQXdsM090MUJqcGk3WW5q?=
+ =?utf-8?B?M0tnbk1zZXFtL3A4MmkydXIvVGdhMldJSm5RalNSbkpJT3hmOFZQTzU0R1BJ?=
+ =?utf-8?B?OTU4N3UwYUhyVWFQWnFRYUN3ZlVyMlIyZWpjVG5KV3dwY05SNG55Y1BDQVBa?=
+ =?utf-8?B?dittUVpMRG0yc3FwOFBDTzd5eVFwNWZkL0dqSis1cTlKWkd6a0tIOGt1V09Q?=
+ =?utf-8?B?aFFRSmx3MHdTeE85UlRhNzEySWp4WHpHYmNzWUNSMHhVUDZ2cXU4YS9ZM1l2?=
+ =?utf-8?B?aUhmMURMZlVxZHpyMzRrR1diREowdHoxQjBpVUVsRTdZUEREM1dxc21YZUR2?=
+ =?utf-8?B?UFdlSDRKWW9MTytpSlRtc3BHUVJsVitoRWR6eXNkdUk3NFE2M0FpelJiTmMz?=
+ =?utf-8?B?T29vZnZmOG9scjVkM0k0ZWFXS0NuQUt2cDNDYzNLc2RYTll0MjV6U1EvV0ps?=
+ =?utf-8?B?cEgrOC9UWXd5SVZSajZ1bjdrREpnZkk1R3N2a0VhYWUrZmNhei8rSWxsUkFE?=
+ =?utf-8?B?NUVsSmlLeEoySExhTDVZbVl5K05FREx1S1VVU2hKbURUK1JhakZVVVF2NW1a?=
+ =?utf-8?B?MDRhZEVZYWpTcFdCNFI0Ri9OcW4xQ3dEMVgwcW5seHUwdTFzZitJRE84K0h2?=
+ =?utf-8?B?YThJc1VKWTdQWUVQcjN3SDFGclZBaUI0UGxPUk5QRjdvejFRNmdQZXhFNDBE?=
+ =?utf-8?B?cUJDR3NORFVPWVQ0Uzc3a2YyOHBLMm1ZdmppcVN2clhSNitCdmxRNWNEb2RZ?=
+ =?utf-8?B?KzFybnQ2K2FRNzNyMzFuVlVPUGdUOUFNTnU4Y0hRSmFRY1JZQXR4eGltZk05?=
+ =?utf-8?B?QTlsYkR0NDBTMTJhVEFCVWNONXVNT09SZ0VRUzRnbVBjbDRaUDRGSy9Odmp4?=
+ =?utf-8?B?V0pPM1FKYlpQS3FFZzEwZEVBMXBSN0VLM2ZSekFrRTFPR1hyL2pGMzZBcjJO?=
+ =?utf-8?B?RXQva1lWTGJWMlpBbUU4SWxKVzJFcW9jczN1dzFvWCttSWRDZG1MSEJtNElm?=
+ =?utf-8?Q?SBtmMjsrgRYk8Vme6I9NF/uXr?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1acda268-120e-419f-8476-08dc65074044
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2024 09:08:19.6843
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IYoLAtJR23Y8Rf94nZlWRe9rvKDewQ7ArOgXDdips/O61sQ8FVQbl/hNiCLE8btSEdzKRH+ghDVEcFngsvu6XQj7ond2P8Ns3W6nvQCnpHs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB0985
 
-Convert NVIDIA Tegra30 I2S binding to DT schema and
-add new examples.
-
-Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
----
-Changes v2->v3:
-- Fixed example indentation
-- Fix compatible logic
-- Add new examples from existing dts
-- Add clock-names in properties
-
-v2:
-https://lore.kernel.org/all/20240421123037.75680-1-sheharyaar48@gmail.com/
----
- .../bindings/sound/nvidia,tegra30-i2s.txt     | 27 ------
- .../bindings/sound/nvidia,tegra30-i2s.yaml    | 94 +++++++++++++++++++
- 2 files changed, 94 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
- create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
-deleted file mode 100644
-index 38caa936f6f8..000000000000
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--NVIDIA Tegra30 I2S controller
--
--Required properties:
--- compatible : For Tegra30, must contain "nvidia,tegra30-i2s".  For Tegra124,
--  must contain "nvidia,tegra124-i2s".  Otherwise, must contain
--  "nvidia,<chip>-i2s" plus at least one of the above, where <chip> is
--  tegra114 or tegra132.
--- reg : Should contain I2S registers location and length
--- clocks : Must contain one entry, for the module clock.
--  See ../clocks/clock-bindings.txt for details.
--- resets : Must contain an entry for each entry in reset-names.
--  See ../reset/reset.txt for details.
--- reset-names : Must include the following entries:
--  - i2s
--- nvidia,ahub-cif-ids : The list of AHUB CIF IDs for this port, rx (playback)
--  first, tx (capture) second. See nvidia,tegra30-ahub.txt for values.
--
--Example:
--
--i2s@70080300 {
--	compatible = "nvidia,tegra30-i2s";
--	reg = <0x70080300 0x100>;
--	nvidia,ahub-cif-ids = <4 4>;
--	clocks = <&tegra_car 11>;
--	resets = <&tegra_car 11>;
--	reset-names = "i2s";
--};
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
-new file mode 100644
-index 000000000000..3d8d56c666d7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/nvidia,tegra30-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra30 I2S controller
-+
-+maintainers:
-+  - Thierry Reding <treding@nvidia.com>
-+  - Jon Hunter <jonathanh@nvidia.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - nvidia,tegra124-i2s
-+          - nvidia,tegra30-i2s
-+      - items:
-+          - enum:
-+              - nvidia,tegra114-i2s
-+              - nvidia,tegra132-i2s
-+          - enum:
-+              - nvidia,tegra124-i2s
-+              - nvidia,tegra30-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: i2s
-+
-+  nvidia,ahub-cif-ids:
-+    description: list of AHUB CIF IDs
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      - description: rx (playback)
-+      - description: tx (capture)
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - resets
-+  - reset-names
-+  - nvidia,ahub-cif-ids
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra30-car.h>
-+
-+    i2s@70080300 {
-+        compatible = "nvidia,tegra30-i2s";
-+        reg = <0x70080300 0x100>;
-+        nvidia,ahub-cif-ids = <4 4>;
-+        clocks = <&tegra_car TEGRA30_CLK_I2S0>;
-+        resets = <&tegra_car 30>;
-+        reset-names = "i2s";
-+    };
-+  - |
-+    #include <dt-bindings/clock/tegra124-car.h>
-+
-+    i2s@70301100 {
-+        compatible = "nvidia,tegra124-i2s";
-+        reg = <0x70301100 0x100>;
-+        nvidia,ahub-cif-ids = <5 5>;
-+        clocks = <&tegra_car TEGRA124_CLK_I2S1>;
-+        clock-names = "i2s";
-+        resets = <&tegra_car 11>;
-+        reset-names = "i2s";
-+    };
-+  - |
-+    #include <dt-bindings/clock/tegra114-car.h>
-+
-+    i2s@70080500 {
-+        compatible = "nvidia,tegra114-i2s", "nvidia,tegra30-i2s";
-+        reg = <0x70080500 0x100>;
-+        nvidia,ahub-cif-ids = <6 6>;
-+        clocks = <&tegra_car TEGRA114_CLK_I2S2>;
-+        resets = <&tegra_car 18>;
-+        reset-names = "i2s";
-+    };
-+...
--- 
-2.44.0
-
+T24gMjUvMDQvMjAyNCAwNDozMiwgQWxleGFuZHJlIEdoaXRpIHdyb3RlOg0KPiANCj4gSGkgWGlu
+Z3l1LA0KPiANCj4gT24gMTAvMDQvMjAyNCAwNTozMSwgWGluZ3l1IFd1IHdyb3RlOg0KPiA+IFRo
+aXMgcGF0Y2ggaXMgdG8gYWRkIHRoZSBub3RpZmllciBmb3IgUExMMCBjbG9jayBhbmQgc2V0IHRo
+ZSBQTEwwIHJhdGUNCj4gPiB0byAxLjVHSHogdG8gZml4IHRoZSBsb3dlciByYXRlIG9mIENQVWZy
+ZXEgb24gdGhlIEpINzExMCBTb0MuDQo+ID4NCj4gPiBUaGUgZmlyc3QgcGF0Y2ggaXMgdG8gYWRk
+IHRoZSBub3RpZmllciBmb3IgUExMMCBjbG9jay4gU2V0dGluZyB0aGUNCj4gPiBQTEwwIHJhdGUg
+bmVlZCB0aGUgc29uIGNsb2NrIChjcHVfcm9vdCkgdG8gc3dpdGNoIGl0cyBwYXJlbnQgY2xvY2sg
+dG8NCj4gPiBPU0MgY2xvY2sgYW5kIHN3aXRjaCBpdCBiYWNrIGFmdGVyIHNldHRpbmcgUExMMCBy
+YXRlLiBJdCBuZWVkIHRvIHVzZQ0KPiA+IHRoZSBjcHVfcm9vdCBjbG9jayBmcm9tIFNZU0NSRyBh
+bmQgcmVnaXN0ZXIgdGhlIG5vdGlmaWVyIGluIHRoZSBTWVNDUkcNCj4gPiBkcml2ZXIuDQo+ID4N
+Cj4gPiBUaGUgc2Vjb25kIHBhdGNoIGlzIHRvIHNldCBjcHVfY29yZSByYXRlIHRvIDUwME1IeiBh
+bmQgUExMMCByYXRlIHRvDQo+ID4gMS41R0h6IHRvIGZpeCB0aGUgcHJvYmxlbSBhYm91dCB0aGUg
+bG93ZXIgcmF0ZSBvZiBDUFVmcmVxIG9uIHRoZQ0KPiA+IHZpc2lvbmZpdmUgYm9hcmQuIFRoZSBj
+cHVfY29yZSBjbG9jayByYXRlIGlzIHNldCB0byA1MDBNSHogZmlyc3QgdG8NCj4gPiBlbnN1cmUg
+dGhhdCB0aGUgY3B1IGZyZXF1ZW5jeSB3aWxsIG5vdCBzdWRkZW5seSBiZWNvbWUgaGlnaCBhbmQg
+dGhlDQo+ID4gY3B1IHZvbHRhZ2UgaXMgbm90IGVub3VnaCB0byBjYXVzZSBhIGNyYXNoIHdoZW4g
+dGhlIFBMTDAgaXMgc2V0IHRvIDEuNUdIei4NCj4gPiBUaGUgY3B1IHZvbHRhZ2UgYW5kIGZyZXF1
+ZW5jeSBhcmUgdGhlbiBhZGp1c3RlZCB0b2dldGhlciBieSBDUFVmcmVxLg0KPiA+DQo+ID4gQ2hh
+bmdlcyBzaW5jZSB2MzoNCj4gPiAtIEFkZGVkIHRoZSBub3RpZmllciBmb3IgUExMMCBjbG9jay4N
+Cj4gPiAtIFNldCBjcHVfY29yZSByYXRlIGluIERUUw0KPiA+DQo+ID4gdjM6DQo+ID4gaHR0cHM6
+Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjQwNDAyMDkwOTIwLjExNjI3LTEteGluZ3l1Lnd1QHN0
+YXJmaXZldA0KPiA+IGVjaC5jb20vDQo+ID4NCj4gPiBDaGFuZ2VzIHNpbmNlIHYyOg0KPiA+IC0g
+TWFkZSB0aGUgc3RlcHMgaW50byB0aGUgcHJvY2VzcyBpbnRvIHRoZSBwcm9jZXNzIG9mIHNldHRp
+bmcgUExMMA0KPiA+IHJhdGUNCj4gPg0KPiA+IHYyOg0KPiA+IGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2FsbC8yMDIzMDgyMTE1MjkxNS4yMDgzNjYtMS14aW5neXUud3VAc3RhcmZpdmUNCj4gPiB0
+ZWNoLmNvbS8NCj4gPg0KPiA+IENoYW5nZXMgc2luY2UgdjE6DQo+ID4gLSBBZGRlZCB0aGUgZml4
+ZXMgdGFnIGluIHRoZSBjb21taXQuDQo+ID4NCj4gPiB2MToNCj4gPiBodHRwczovL2xvcmUua2Vy
+bmVsLm9yZy9hbGwvMjAyMzA4MTEwMzM2MzEuMTYwOTEyLTEteGluZ3l1Lnd1QHN0YXJmaXZlDQo+
+ID4gdGVjaC5jb20vDQo+ID4NCj4gPiBYaW5neXUgV3UgKDIpOg0KPiA+ICAgIGNsazogc3RhcmZp
+dmU6IGpoNzExMC1zeXM6IEFkZCBub3RpZmllciBmb3IgUExMIGNsb2NrDQo+ID4gICAgcmlzY3Y6
+IGR0czogc3RhcmZpdmU6IHZpc2lvbmZpdmUtMjogRml4IGxvd2VyIHJhdGUgb2YgQ1BVZnJlcSBi
+eQ0KPiA+ICAgICAgc2V0dGluZyBQTEwwIHJhdGUgdG8gMS41R0h6DQo+ID4NCj4gPiAgIC4uLi9q
+aDcxMTAtc3RhcmZpdmUtdmlzaW9uZml2ZS0yLmR0c2kgICAgICAgICB8ICA2ICsrKysNCj4gPiAg
+IC4uLi9jbGsvc3RhcmZpdmUvY2xrLXN0YXJmaXZlLWpoNzExMC1zeXMuYyAgICB8IDMxICsrKysr
+KysrKysrKysrKysrKy0NCj4gPiAgIGRyaXZlcnMvY2xrL3N0YXJmaXZlL2Nsay1zdGFyZml2ZS1q
+aDcxeDAuaCAgICB8ICAyICsrDQo+ID4gICAzIGZpbGVzIGNoYW5nZWQsIDM4IGluc2VydGlvbnMo
+KyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IA0KPiBJIG9ubHkgdG9vayBhIHF1aWNrIGxvb2sgc28g
+SSdtIG5vdCBzdXJlOiBkb2VzIHBhdGNoIDIgZGVwZW5kIG9uIHBhdGNoIDE/IEluIHRoYXQNCj4g
+Y2FzZSwgSSB0aGluayB0aGUgRml4ZXMgdGFnIHNob3VsZCBiZSBhcHBsaWVkIHRvIGJvdGggcGF0
+Y2hlcy4NCg0KSGkgQWxleCwNCg0KWWVzLCBQYXRjaCAyIGlzIGRlcGVuZGVudCBvbiBwYXRjaCAx
+LiBJZiBwYXRjaCAyIGlzIGFwcGxpZWQgYWxvbmUsIGl0IGRvZXMgbm90IHdvcmsuDQpJIHdpbGwg
+YWRkIHRoZSBGaXhlcyB0YWcgYm90aCBwYXRjaGVzLg0KDQo+IA0KPiBBbmQgYXMgdGhpcyBpcyBh
+IGZpeCwgd2lsbCB5b3UgcmVzcGluIGEgbmV3IHZlcnNpb24gc29vbiBmb3IgNi45Pw0KDQpZZXMu
+IEkgd2lsbCBzZW5kIGEgbmV3IHZlcnNpb24gb2YgdGhpcyBwYXRjaGVzLg0KDQpCZXN0IHJlZ2Fy
+ZHMsDQpYaW5neXUgV3UNCg==
 
