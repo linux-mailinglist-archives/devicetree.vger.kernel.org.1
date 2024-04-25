@@ -1,369 +1,216 @@
-Return-Path: <devicetree+bounces-62731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92CE18B24D7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:16:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66938B2509
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:26:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21F9E1F22E35
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:16:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F46D288FA2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B915314A62E;
-	Thu, 25 Apr 2024 15:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ADEA14AD32;
+	Thu, 25 Apr 2024 15:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t9e4rQt1"
+	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="blM82wgY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2093.outbound.protection.outlook.com [40.107.92.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF843BBE5
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 15:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714058181; cv=none; b=ufubHSv578olYDLhMbJMHUcUM2ZUnax5urkLEdAfpMHt0eb4r+UvpC8wNrXSGkrhhZUgBZewCv6CC0/qc/wFDT5smi3Fqi1iM3Dbh0H9P+s+p2tB/aTPlrP0+eXnns738syGPgNhaTnFIOKnxIjvoF3/XlDyTUhG1OwjWVhaSJo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714058181; c=relaxed/simple;
-	bh=5yxhYykwugKSH3LzzWOU0n0bbIEo1Q8ay/PBp5JY8Pc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bo3Iv2oTzDhyqswPq4hFuhjeuyNUIw/oXgrxQRxeYdCySA4PZuzBzRrehF5YhwHjo+MzsrccT/nGIQgqyW7N/G2X/seqaqXi+oPghqk+1VOBeJGvOz36pBD4y64EDLaHerj80JG3SlxMnbXL6sxbeqi7wXsRsE/DMmTJI9QYMXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t9e4rQt1; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a5200afe39eso122736666b.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 08:16:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714058178; x=1714662978; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CyrXcSnM/MfOVZ3XMl41JkXc30kPx3wxBN2F1+zdXXg=;
-        b=t9e4rQt1aRIur5CMQojLglcZ+ldhcztsQ5PiRYx5uHM7DZRfCe0aiefrtq5ZudedKm
-         A5dsXCjsN7USbugtY8TumURKGJwB9EttkXinXHD5VIrfMr1bREvPp46J2RKPJ19jRecG
-         +Cjnxvqr/R0MUmFx/vEY1feh1wrAXGzxTkJD3wcUGj1jOxzhFv49p/DrllhNOe+aBzlO
-         EpJarK4EOoM85YVgBwcw5O+MANMKCfky0fKW9kt7DeVI7UsFUigThM5cPwfpNdcs/40k
-         csAj1DpiimT+UHKJ8RBMKUEn7mG/6yUf8p8QFx5O5A/FXNf2o7Cc78GaIhbo0QEqgz8w
-         TlOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714058178; x=1714662978;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CyrXcSnM/MfOVZ3XMl41JkXc30kPx3wxBN2F1+zdXXg=;
-        b=T4REQJq9ETfaowY2SAsOX/H78odFQTgPQ6SINtGcQNl1bU1lKljTa3HhjTrAbXOjba
-         LQi+CkvGB4s6R3lb7faVuEA8MWEks4hVjB8oSWEbXaCCfjer3Qfv9ocuNaOW+hN+3FCX
-         sAZnrd4B0nm/V+7ir4jnTNMRSIY0cVVqbn1Y35VpwinVU+aazyXkdEPKq2ZBp5KhraUo
-         c5wnQbnSc6TVt02a8fK2F7viukgkkPQNneQIjPGej+BIZgp/59KkF2OJyvpo9c5iOcHa
-         csz65DAeJM7Pgfl+8tZ6+ItEyVsDw4gZ9h1nzN5sH74U5FINuH9ZFIyQMSdBVjKDPZ4i
-         fImA==
-X-Gm-Message-State: AOJu0YyGS0hOewMlWVxRAo+S5rDtaYZcW4YkMl1E+ULySxRuZzcMRkGX
-	tpgatlkxKm8cn/LLza+BKxrdi5kAZkh8VXGaQWl9c8V4HJiG3gi12GaXs3JLQGg=
-X-Google-Smtp-Source: AGHT+IGqu80UeP2zZXNY3+qIMygrtn8SShEVi35k8vcUYyHt6Hg47hFykQyDe9+iZi2t5jjCeMYQQw==
-X-Received: by 2002:a17:906:c202:b0:a52:5493:a0b9 with SMTP id d2-20020a170906c20200b00a525493a0b9mr27837ejz.39.1714058177950;
-        Thu, 25 Apr 2024 08:16:17 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id i21-20020a170906a29500b00a526a992d82sm9663042ejz.4.2024.04.25.08.16.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Apr 2024 08:16:17 -0700 (PDT)
-Message-ID: <524f0bd3-1912-4a06-8c68-fea7ca563d68@linaro.org>
-Date: Thu, 25 Apr 2024 17:16:15 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F93114A4F7;
+	Thu, 25 Apr 2024 15:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714058776; cv=fail; b=guiSZtHKojybcaqspO5MiGzlIjZwYsJaeyQm6mMIYBSAcK0yMZvxRMcQx20+4XfIa5BZWXSYbNDD4Hpmbh0mc/4pxrEDyd7GRK5vr7Llnprz+rIA122h4fXT9BWe2RBap7bgfE7Q5miHhV5ONJH8epwpuhqkNouXTIsDtg9ebvE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714058776; c=relaxed/simple;
+	bh=pkjtqfLKZ/M1HzJllzbtu27Ea2w2/Qsqp98pM5e5+bU=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Qn4E8sptp4L97gEeqtJVXLlLgYdeOsbf4240xilPWzCGo/CZItdCmJAOD4zQMsB8OSJHB41+CF+w04D+WUvlGvN/zyeddANDVGadT5d6k3ufvdi6bAZbX4Ai6rV5Y62H+Vw5yizW+7qnjJYLOjuAlQyvK40hK4182/LItQDg+bM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=blM82wgY; arc=fail smtp.client-ip=40.107.92.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nnKq8F1AAHayFb0M4XWTFSMQwY0a3utQKNuW5z9KxRAjUxNTBXmcCr2XX0+gXOFkz9+lY8QLQTbe/gdTs5L7C2KO76MFr+Xe17V95rrh/yJgy6iaJLLTD0nIJZPHFIIhfoh4/KZhNkUicmdMSveSUDYNw1+rXKYHkCCE5M0/d48sWe52Vo22KerxXPD5RysRbEX0UqpKVAFo+er6MHP67A8s6Y8c9ptOd29/0fsTFrnR8j/yOTyev7fbNqfcQN6jCksS6gcV55pC3prmsc3E049L5Xfnm61Wlu6TwFdS54fz0bk2rgicaXeOc+MLmNH7vX8+b0L2k6S9yGumQB3gsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QzpgJguvS9t5ftKKgsfIiqm73J4+MH2QQVJWbMfNMHM=;
+ b=XQuAVm08s6MvdFGglP29hJtxdt2QBSQRglmw9zJDPT4CEyaCIiS2cke876kMOEUj+LRsSf+U4xVqfNCrxn+0908c68opaQB1kiRJzEkuN+uHSHnGMBw1klemgEAkGCyPsQz4R/tC0zoxNqPqgoenvX5kAF6YO8wGoNEAEYdXcvTCb74dE/yWxlUFFY+eJBjnAMnzk4/gooQk8FQqhfPV8RGpAhNsNUNjxcmew9tKc5Opzxtyg8tpBXb9BKQDDMbT0dqFzVNAOYio5maA5kRYnuOymA1v5Yn0YqiLdThmEqZxcwKou1VTeC2TWcvs/WinrrY02GPBZ9LnpqIezJBPGw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
+ dkim=pass header.d=phytec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QzpgJguvS9t5ftKKgsfIiqm73J4+MH2QQVJWbMfNMHM=;
+ b=blM82wgYAMCfc3Ab0fbkzlRw0JXfxT3wlXDcEmGwO+L3AJ4f0KIVbbjzhNnm6f2H4ODLIvczm5YhYdbQkp3qbiap5GGAWMyOlhdxFdYO5OmA43gWNTNB7cYijXzygo5Iff4SfvS8OATfi7HlXX+RQq/SBjQNMlgAG9Kr+HaJ2XY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.com;
+Received: from SJ2PR22MB4354.namprd22.prod.outlook.com (2603:10b6:a03:537::8)
+ by CYYPR22MB4364.namprd22.prod.outlook.com (2603:10b6:930:b8::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Thu, 25 Apr
+ 2024 15:26:10 +0000
+Received: from SJ2PR22MB4354.namprd22.prod.outlook.com
+ ([fe80::789c:e41e:1367:383d]) by SJ2PR22MB4354.namprd22.prod.outlook.com
+ ([fe80::789c:e41e:1367:383d%6]) with mapi id 15.20.7472.044; Thu, 25 Apr 2024
+ 15:26:10 +0000
+From: Garrett Giordano <ggiordano@phytec.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	w.egorov@phytec.de
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH] arm64: dts: ti: k3-am625-phyboard-lyra-rdk: Add USB-C
+Date: Thu, 25 Apr 2024 08:25:58 -0700
+Message-Id: <20240425152558.485763-1-ggiordano@phytec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH0PR03CA0420.namprd03.prod.outlook.com
+ (2603:10b6:610:11b::25) To SJ2PR22MB4354.namprd22.prod.outlook.com
+ (2603:10b6:a03:537::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch v3 1/2] dt-bindings: make sid and broadcast reg optional
-To: Thierry Reding <thierry.reding@gmail.com>, Sumit Gupta
- <sumitg@nvidia.com>, robh@kernel.org, conor+dt@kernel.org, maz@kernel.org,
- mark.rutland@arm.com, treding@nvidia.com, jonathanh@nvidia.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, amhetre@nvidia.com, bbasu@nvidia.com
-References: <20240412130540.28447-1-sumitg@nvidia.com>
- <20240412130540.28447-2-sumitg@nvidia.com>
- <d26f9661-3e50-4a72-9097-fe63a27503f1@linaro.org>
- <D0SHRQVCGJBY.2DPLX9K6VXEYM@gmail.com> <D0SILCYU98EV.1XW7NZFC9013K@gmail.com>
- <9561dede-37d0-4183-8742-448058803f8e@linaro.org>
- <D0T3R7UPFO07.2VR2436TG4N8B@gmail.com>
- <d8eb6652-18b5-4ed6-9a44-7c2a0f3bc3bb@linaro.org>
- <D0TANBDMJHH2.5XTXRZ09K4OU@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <D0TANBDMJHH2.5XTXRZ09K4OU@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR22MB4354:EE_|CYYPR22MB4364:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c909165-4683-4f5e-8473-08dc653c08a4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?M5YqUV46hJqliNZfm/97yqvnb+sqHMI4+p7NYLNMI1xI2Pw4mJbI7A9l5YdW?=
+ =?us-ascii?Q?mNoilJu7EtWfUDnC99DsWAsIETvr8mHQ2Q8gBkvMoVWmYEYpMWBxvhzVycXz?=
+ =?us-ascii?Q?XCjNIze+VzEG/JEttjrDYOwBZUFTLXmPMoQAhRPr1/mi3Sxkr6v06qDDk7kh?=
+ =?us-ascii?Q?QCHYlkUuWuPxvjRnbFRu0SGYgGtn6gi89LOG1GvWbh4umHg5qL+8mcJUTgOv?=
+ =?us-ascii?Q?/jJGTlLdu5L0ZRhc7DztruwLcWCzoTFGFQ3cjq0B4GNGXX+n3P1t/2t0WWXD?=
+ =?us-ascii?Q?yxGGx9h0HmCQC44JMkqgFcCy6Li9oDAxdtmtYVVIA7Zxh5cBIwI6VqA0SOsV?=
+ =?us-ascii?Q?amG2/E0nXHii2fFR6Bb1dR5iqMgKz0u5exu6uXc8cz/ukYQz9PnWH75QUxdp?=
+ =?us-ascii?Q?hWjQLDqoO3IrvaSMmbGqBTuSb2ahfWLRyPUUYSThPWmETsPIVDot0eKTF2CJ?=
+ =?us-ascii?Q?IVun1FF4noHAVThnajBQfBodTgDbQzvOUg9KHyIDjfTzkpE4XAySry86Z6Dk?=
+ =?us-ascii?Q?97CFbTNvpsUK+oylQG5Obs6Mr0zJmZgSUxbWdZr8IGF7cHJKmnr0YDO3efqC?=
+ =?us-ascii?Q?q9xOiJFPzDFBYSw2cZJWvnIyws+uCzruUbf9kTlXC7U/dSPiKgfOgHYIxsRj?=
+ =?us-ascii?Q?ntsalFCbHfGhF0GVXJt92D7VifWUgCBb0P6LywiESpmkT9+GnVSk1i8EYvcG?=
+ =?us-ascii?Q?gLjOfF7jWJ+w7Kkj4hZjsCs69mUOVEUkdtaQXIyCqos0df8aB0iRzTlu+vSs?=
+ =?us-ascii?Q?TRw3b5I305oe5fc3T+4sreDv3//oeJBFoPH7OaFnqNVzebDUvnRY3hia1dSC?=
+ =?us-ascii?Q?wTAZ06e87kxPFtzmxz64uVrFmkdCvqMbK7krAXr0UlKnV7itPML0iyQaBeXW?=
+ =?us-ascii?Q?oPxW1RJ5NJ7OPDQaz+9Ny/dRaTq4eeOjsaXJ/XIm2L3x1IeL+uUZnqcW/WYC?=
+ =?us-ascii?Q?br8uK8hUXY1lp87j2QUhotqdk9ocYh+xS6RVt2YV6DFIcUkiBVjRbnnlbl7o?=
+ =?us-ascii?Q?wDIUMkwD3e+T+sQ6CAJaHGEkPeU5Ei0sFt9F1ZtXdr+UwlNvjd+SM/dbHxOI?=
+ =?us-ascii?Q?qL+/6cHjYiSdXM3hHVS3Se9B5krmYohSmJx9fwIM2NNMTiE35YRym45RtBRP?=
+ =?us-ascii?Q?qZhT/XWz/HL+a+zmMEXUOQtbFvuYyZLw+j/4lRYdQbt2/iw3rbC4v01xPcVS?=
+ =?us-ascii?Q?1oOlnDriMTazPdNTvbPNc/GQcu5giTSZjE4AhlD2uSXiTQX75t54ypGcEQbq?=
+ =?us-ascii?Q?NyAMLRAcqP539mZw84Wy4xQtdsQkl0Dw0lmfThemZur6GwuuMTNBP3nO5Qlq?=
+ =?us-ascii?Q?CiRrgqSa4e3h23aiKdRLpKmFLOdDDQf+MfL4b6YYj2rZeg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR22MB4354.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(1800799015)(52116005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Iw1FTnyqRM2V1xYUePyty2dVRLfR8qEVjlCbAbwUf4Cyg34IkWpa4YHdHQbR?=
+ =?us-ascii?Q?iSFF4s0wNJJNPiuKdTJLUInmUu5eTz4wEG6Z0LVt9qqgLPVnGZO6cimkqcyH?=
+ =?us-ascii?Q?oeBDiJc7T+Z4IFa0Ee4TCJ91LKKrumhtNmvUTLVRPbFkxKBWnpt6DIGzKTBD?=
+ =?us-ascii?Q?K0Qf64oaXrg9545q9c4ZUfGzq9o5q4CgVJ3Gxk3Ost9ZR1myze9g+zqBPj0z?=
+ =?us-ascii?Q?k/knXEaaQdao1FvUL6ludY3gHRm+u9TayvPlyl1zfuqE+LMxgu7ji439h5EX?=
+ =?us-ascii?Q?ba8V6NdsLWKf6y2+/2SPwlV9ueDJfu4lfjxER+8SKza/yQOfqcUG9+ZbuLpJ?=
+ =?us-ascii?Q?vL+2Q0IVHlgGqtrQw/de6nr14EVuA++LTEORofIoLP4dpVanKOMWIQXGXGu6?=
+ =?us-ascii?Q?vpUepj0uSJPXBMT8g/wU+XBzA8lEmlmnBAbf6svqVwtyZubu7SjMwLMO7Nq0?=
+ =?us-ascii?Q?99mpi8gSkZOdCFzLBCLYBooU62wrhkmMrqodRBGaV361QDOuC8Hm2ys+shRX?=
+ =?us-ascii?Q?xLZxovRnVoWf1G8hTJIZ/feNVPqaPVI8qWTuSRYS5q4PPIE0B/+5NOTpac+z?=
+ =?us-ascii?Q?JtId9ZIKcQGi/NJ8jElaQGOVv3X0GxWtnZOWoCiRxZ7aD89FtoCzj9QZ6JZn?=
+ =?us-ascii?Q?RnUarXCgnsW64O7w4wpICc0/Qt+NNA139NVcxi5FzxiFiUyut5F5/U98BzKF?=
+ =?us-ascii?Q?VbU3zu9plKCu20wJ6Jbkpfiw7t65UShOkf0SW95HZzvVxt9ALRe4irxGBJ6X?=
+ =?us-ascii?Q?L4chxxQ99WNgQ/eZl+uedt6h5VZzcWrh1/BBPvPXPokNXe2cIuNO/u3V0iMf?=
+ =?us-ascii?Q?MmkrznL1KLNooaSjYNhywjGdyryng9xkHf0/1jMw6/jz9dpqp43mNTBa0YeR?=
+ =?us-ascii?Q?GKctei+TsY8nN1WTdHgQftdbUjU3d1MvtTI5K6H4j3E5CA+cmayxSs/om/hs?=
+ =?us-ascii?Q?07CAxSRzZaaBEGvopeKl8pyfNFW4eOryULJ7nQNmnX9M0Q/yAKh/7jYk8LaI?=
+ =?us-ascii?Q?5Qmt0e3V32cDxElh+f+mAjGCovSYPOKIDlXZLV2j0mGYlWHzJEdsWwObDcME?=
+ =?us-ascii?Q?DsVEF4mjM3flsHSiuH9HAQODXKzplAaRAD+Hs9FP/4oyTvdr7RjRTA/RIM/l?=
+ =?us-ascii?Q?hJvwXrBYLS5IKPQl/roo+dyeZU8+V0PvU6xpvD4NBYYZiaTqukI62JujJ2Ml?=
+ =?us-ascii?Q?wwxIk70YD7jTpVnYvkON9B4O0Z4lsPrFVvOmXg67xuRHOmSC1WtdN1o7zaGR?=
+ =?us-ascii?Q?Ln33ZcAZinxs9bMshB0K98vcaJoYHxtsdo7htLObVLk9+O+VIEU+00peMxMs?=
+ =?us-ascii?Q?PmjOKd9nWPx1j11EQ1ZZAbmJZnWlfpmNXePi1+hSeqDBsR4iSofQdgB8uCOZ?=
+ =?us-ascii?Q?mEiAso1jhw2zSYl7uu5aoSsXWXrea985q9ntJ9GfGh3QGn2PvTRAPbmjid28?=
+ =?us-ascii?Q?srI6lcBdVsEQqajtIjMxdkG7pCo88C/XXamm6UK8tQVPp3dTpYaNdWYeijPM?=
+ =?us-ascii?Q?QXOnwKGo9BsPmWXuobYXeOiqoxs4NlS2vPVAIHWop9NcIcpUHy984GIjaQQM?=
+ =?us-ascii?Q?GCbWsdpdCkYxipbtHyADT2Md8Zkc7DPCMsbipjHt?=
+X-OriginatorOrg: phytec.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c909165-4683-4f5e-8473-08dc653c08a4
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR22MB4354.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2024 15:26:09.9179
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z+9XC0yGwO0HHwrT8OSo9tVpS1Kblmqmrxvm99budV+V8IDGRlAh9dLcB0k9zH+cYtKBUMawkpSQkftTUp9cxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR22MB4364
 
-On 25/04/2024 17:03, Thierry Reding wrote:
-> On Thu Apr 25, 2024 at 11:45 AM CEST, Krzysztof Kozlowski wrote:
->> On 25/04/2024 11:39, Thierry Reding wrote:
->>> On Thu Apr 25, 2024 at 9:52 AM CEST, Krzysztof Kozlowski wrote:
->>>> On 24/04/2024 19:04, Thierry Reding wrote:
->>>>> On Wed Apr 24, 2024 at 6:26 PM CEST, Thierry Reding wrote:
->>>>>> On Mon Apr 22, 2024 at 9:02 AM CEST, Krzysztof Kozlowski wrote:
->>>>>>> On 12/04/2024 15:05, Sumit Gupta wrote:
->>>>>>>> MC SID and Broadbast channel register access is restricted for Guest VM.
->>>>>>>
->>>>>>> Broadcast
->>>>>>>
->>>>>>>> Make both the regions as optional for SoC's from Tegra186 onwards.
->>>>>>>
->>>>>>> onward?
->>>>>>>
->>>>>>>> Tegra MC driver will skip access to the restricted registers from Guest
->>>>>>>> if the respective regions are not present in the memory-controller node
->>>>>>>> of Guest DT.
->>>>>>>>
->>>>>>>> Suggested-by: Thierry Reding <treding@nvidia.com>
->>>>>>>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
->>>>>>>> ---
->>>>>>>>  .../nvidia,tegra186-mc.yaml                   | 95 ++++++++++---------
->>>>>>>>  1 file changed, 49 insertions(+), 46 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>>> index 935d63d181d9..e0bd013ecca3 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>>> @@ -34,11 +34,11 @@ properties:
->>>>>>>>            - nvidia,tegra234-mc
->>>>>>>>  
->>>>>>>>    reg:
->>>>>>>> -    minItems: 6
->>>>>>>> +    minItems: 4
->>>>>>>>      maxItems: 18
->>>>>>>>  
->>>>>>>>    reg-names:
->>>>>>>> -    minItems: 6
->>>>>>>> +    minItems: 4
->>>>>>>>      maxItems: 18
->>>>>>>>  
->>>>>>>>    interrupts:
->>>>>>>> @@ -151,12 +151,13 @@ allOf:
->>>>>>>>  
->>>>>>>>          reg-names:
->>>>>>>>            items:
->>>>>>>> -            - const: sid
->>>>>>>> -            - const: broadcast
->>>>>>>> -            - const: ch0
->>>>>>>> -            - const: ch1
->>>>>>>> -            - const: ch2
->>>>>>>> -            - const: ch3
->>>>>>>> +            enum:
->>>>>>>> +              - sid
->>>>>>>> +              - broadcast
->>>>>>>> +              - ch0
->>>>>>>> +              - ch1
->>>>>>>> +              - ch2
->>>>>>>> +              - ch3
->>>>>>>
->>>>>>> I understand why sid and broadcast are becoming optional, but why order
->>>>>>> of the rest is now fully flexible?
->>>>>>
->>>>>> The reason why the order of the rest doesn't matter is because we have
->>>>>> both reg and reg-names properties and so the order in which they appear
->>>>>> in the list doesn't matter. The only thing that matters is that the
->>>>>> entries of the reg and reg-names properties match.
->>>>>>
->>>>>>> This does not even make sid/broadcast optional, but ch0!
->>>>>>
->>>>>> Yeah, this ends up making all entries optional, which isn't what we
->>>>>> want. I don't know of a way to accurately express this in json-schema,
->>>>>> though. Do you?
->>>>>>
->>>>>> If not, then maybe we need to resort to something like this and also
->>>>>> mention explicitly in some comment that it is sid and broadcast that are
->>>>>> optional.
->>>>>
->>>>> Actually, here's another variant that is a bit closer to what we want:
->>>>>
->>>>> --- >8 ---
->>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>> index 935d63d181d9..86f1475926e4 100644
->>>>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>> @@ -34,11 +34,11 @@ properties:
->>>>>            - nvidia,tegra234-mc
->>>>>  
->>>>>    reg:
->>>>> -    minItems: 6
->>>>> +    minItems: 4
->>>>>      maxItems: 18
->>>>>  
->>>>>    reg-names:
->>>>> -    minItems: 6
->>>>> +    minItems: 4
->>>>>      maxItems: 18
->>>>>  
->>>>>    interrupts:
->>>>> @@ -146,17 +146,21 @@ allOf:
->>>>>      then:
->>>>>        properties:
->>>>>          reg:
->>>>> +          minItems: 4
->>>>>            maxItems: 6
->>>>>            description: 5 memory controller channels and 1 for stream-id registers
->>>>>  
->>>>>          reg-names:
->>>>> -          items:
->>>>> -            - const: sid
->>>>> -            - const: broadcast
->>>>> -            - const: ch0
->>>>> -            - const: ch1
->>>>> -            - const: ch2
->>>>> -            - const: ch3
->>>>> +          anyOf:
->>>>> +            - items:
->>>>> +                enum: [ sid, broadcast, ch0, ch1, ch2, ch3 ]
->>>>> +              uniqueItems: true
->>>>> +              minItems: 6
->>>>> +
->>>>> +            - items:
->>>>> +                enum: [ ch0, ch1, ch2, ch3 ]
->>>>> +              uniqueItems: true
->>>>> +              minItems: 4
->>>>>  
->>>>>    - if:
->>>>>        properties:
->>>>> @@ -165,29 +169,22 @@ allOf:
->>>>>      then:
->>>>>        properties:
->>>>>          reg:
->>>>> -          minItems: 18
->>>>> +          minItems: 16
->>>>>            description: 17 memory controller channels and 1 for stream-id registers
->>>>>  
->>>>>          reg-names:
->>>>> -          items:
->>>>> -            - const: sid
->>>>> -            - const: broadcast
->>>>> -            - const: ch0
->>>>> -            - const: ch1
->>>>> -            - const: ch2
->>>>> -            - const: ch3
->>>>> -            - const: ch4
->>>>> -            - const: ch5
->>>>> -            - const: ch6
->>>>> -            - const: ch7
->>>>> -            - const: ch8
->>>>> -            - const: ch9
->>>>> -            - const: ch10
->>>>> -            - const: ch11
->>>>> -            - const: ch12
->>>>> -            - const: ch13
->>>>> -            - const: ch14
->>>>> -            - const: ch15
->>>>> +          anyOf:
->>>>> +            - items:
->>>>> +                enum: [ sid, broadcast, ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7,
->>>>> +                        ch8, ch9, ch10, ch11, ch12, ch13, ch14, ch15 ]
->>>>> +              minItems: 18
->>>>> +              uniqueItems: true
->>>>> +
->>>>> +            - items:
->>>>> +                enum: [ ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch10,
->>>>> +                        ch11, ch12, ch13, ch14, ch15 ]
->>>>> +              minItems: 16
->>>>> +              uniqueItems: true
->>>>
->>>> No, because order is strict.
->>>
->>> Why? I realize that prior to this the order was indeed strict and it's
->>
->> That's the policy for entire Devicetree. I said why in other email:
->> because any bindings consumer can take it via indices.
->>
->>> common to have these listed in strict order in the DTS files. However,
->>> this is an arbitrary restriction that was introduced in the patch that
->>> added reg-names. However, */*-names properties have always assumed the
->>> ordering to be non-strict because each entry from the * property gets
->>> matched up with the corresponding entry in the *-names property, so the
->>> ordering is completely irrelevant.
->>
->> This was raised so many times... reg-names is just a helper. It does not
->> change the fact that order should be strict and if binding defined the
->> order, it is an ABI.
-> 
-> Sorry, but that's not how we've dealt with this in the past. Even though
-> this was now ten or more years ago, I distinctly recall that when we
-> started adding these *-names properties and at the time it was very much
-> implied that the order didn't matter.
+The USB-C PD manages plug orientation, power delivery, and our endpoint
+for the USB interface. Add this node and include its endpoint.
 
-Then you added it wrong and Rob was expressing the purpose of names
-multiple times. The names were for cases when you could not determine
-the order.
+Configure USB0 for role-switching and wire it to our USB-C PD endpoint.
 
-The strict order was repeated so many times in the mailing list, I lost
-track.
+Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
+---
+ .../dts/ti/k3-am625-phyboard-lyra-rdk.dts     | 26 ++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-> The only use-case that I know of where order was always meant to matter
-> is backwards-compatibility for devices that used to have a single entry
-> (hence drivers couldn't rely on *-names to resolve the index) and then
-> had additional entries added. The *-names entry for that previously
-> single entry would now obviously have to always be first in the list to
-> preserve backwards-compatibility.
-> 
-> Besides, if reg-names was really only a helper, then it would also be
-> completely redundant. Many device tree bindings have *-names properties
-> marked as "required" precisely because of the role that they serve.
-
-For most of the cases, so ones which do not have flexible order, it is
-redundant and for that reason Qualcomm has been switching away from
-xxx-names in several drivers.
-
-However it is not entirely redundant, because it allows bindings
-consumers to choose either index or name. Both are ABI, when documented
-in the binding with strict order.
-
-https://lore.kernel.org/all/CAL_JsqJSYAsotjzvOUy_f7ZRfsSrfZyuEzq7eRwwKk12FBgxYg@mail.gmail.com/
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
+index dfc78995d30a..fb3bc914a018 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
+@@ -348,6 +348,24 @@ gpio_exp: gpio-expander@21 {
+ 				  "GPIO6_ETH1_USER_RESET", "GPIO7_AUDIO_USER_RESET";
+ 	};
+ 
++	usb-pd@22 {
++		compatible = "ti,tps6598x";
++		reg = <0x22>;
++
++		connector {
++			compatible = "usb-c-connector";
++			label = "USB-C";
++			self-powered;
++			data-role = "dual";
++			power-role = "sink";
++			port {
++				usb_con_hs: endpoint {
++					remote-endpoint = <&typec_hs>;
++				};
++			};
++		};
++	};
++
+ 	sii9022: bridge-hdmi@39 {
+ 		compatible = "sil,sii9022";
+ 		reg = <0x39>;
+@@ -449,7 +467,13 @@ &usbss1 {
+ };
+ 
+ &usb0 {
+-	dr_mode = "peripheral";
++	usb-role-switch;
++
++	port {
++		typec_hs: endpoint {
++			remote-endpoint = <&usb_con_hs>;
++		};
++	};
+ };
+ 
+ &usb1 {
+-- 
+2.25.1
 
 
