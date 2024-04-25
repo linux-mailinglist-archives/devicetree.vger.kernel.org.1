@@ -1,123 +1,222 @@
-Return-Path: <devicetree+bounces-62589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081938B1B82
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:10:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCDE68B1BAA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:14:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCE18286311
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:10:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07D4B1F21D43
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14136BB48;
-	Thu, 25 Apr 2024 07:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E666BB48;
+	Thu, 25 Apr 2024 07:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w10Qpr/b"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NkFkTG2A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BE96AFB6
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 07:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD4F3CF5E;
+	Thu, 25 Apr 2024 07:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714029003; cv=none; b=LxKFcFxezpypjhhaC00q2Xq2iptCGyIs7miTCwLOvHRAry3pnbRejYSjB2+Q/+USEUFvJsVVV7R8QbuCeGUsUa6aOdBM8Jivg/cvp16CSRLy+9WlNWTbHbfW4lqKpj1KJoaGdkkLl/KsKsm+Zybm+bilEsh0P3dFqsRhCvJY6gg=
+	t=1714029254; cv=none; b=dAx52MDaa94sqdngmsr4p/5DnEPnH1fdWswlk8sJCeS7ACx1Gxjp/1jYp3P0iGAsk8Auctth0sucfi01YMrBctAEhNYvWc0r5Gk1oECy+DRSIJYVz58t6W5IFshxJMqevOFokJx14Ntm0CSYmdmAuvNz7y23qhfiIj3AUQeQu0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714029003; c=relaxed/simple;
-	bh=kFy2c2MMRc7/mbY6XyHT0rM8BuRQOTFXPjjUtO+dJqw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=C9OrffgkxObqOks9d0pdZT9TJP+wcsSqFT/AVZ53tJfp6N0zI4Qj9e5RSoYNBPUX6/qarPOAcHOVR/hmP96hjs02ecQCku2FhTviJM2K64NyPFNdPaVeBk7jvzAdXRgwpItBFQVqMh3Ykj8Isfi1H/buf+CRL8aqXECYYQ7Vbbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w10Qpr/b; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a55ab922260so82959166b.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 00:10:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714029000; x=1714633800; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pKbtdaZh3aa5WKKWvhlJ2SkTdhHq3DflemRgyxWAUJY=;
-        b=w10Qpr/baTrdev26UCwAElEdXPrUBSkYufqNP5zfAEBPRP7y9riJj519ad6u9vEIiT
-         uJXlUC7az14fnUo9PUgtJYkMo3sFq7KOIef3WcvR42FRgoAaWeaaBazrBgCs1SkWsXt9
-         wdiK/zmH3zine7A6vms5+7DI8RvBpZyludQ6i2R0jiIFAOsHTyqM6QvfYfDBhT9nzLpS
-         i/Hofu/VxHWSkj0fMl2l6vvS3jEt4R0qS9VdvZ5267NkOhNVH6sZVgSuiO+t1YQ71C9F
-         G9HMg5zuV7RGo5BLWsMAOURV7+ODBeOe9vDpj0qEO93B0S4Nt65tyNSKlrXEQpAQ1esO
-         ATZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714029000; x=1714633800;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pKbtdaZh3aa5WKKWvhlJ2SkTdhHq3DflemRgyxWAUJY=;
-        b=AEWjC0Hq2z+2uzmDfzx31REqAxFiu71FKXAfYqqLTRDE+fCN04BF/qckJYmpxlh8wT
-         YaHeOm0oN6oeC4nWhPAEsG2pCHI8uPMiJTZOnfyR7jtE1FGfWwUxarS3glZp7hV6pyjY
-         fYT87CZ7sPkTKn3Zv57rm2nClDAs7w2gHerJk4XMPKpeujHheEIuirtndOsaWCm+CZN5
-         lQS6wU5JkOEIB5x4nQOozz362KHrddpoVZpY6zLVkgs+HL+oabxBmrYDVd23pf+miE+J
-         47OnKoLAIfmxyIOzS3ejEDq5dlhMMf51Ml1hvHaPAOdYziUj6KHsWGL8tbEM5+BE52br
-         TQvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHaAHbzQ3OwRPWy2o1V0zS6h1hPKuQkvulRNOXxV7NhImdFzqdhnGnza/VcSHB+bwo+FaeQSiCwQBR3HpcMSiFnE1wvqvrs21fAw==
-X-Gm-Message-State: AOJu0YztGaQ2Wp4md1+z/L9bRYJwYdrmn0n+HB32XIFp2h/BhYLgzzLI
-	XN1zeFNC5qR7pKY/FfKGTk2ReXyVYCy5qzGoRyQIja/YACw54KaIVPmMQTjU2Sk=
-X-Google-Smtp-Source: AGHT+IEs7Co328LLOzTBckFT/nv1oG4AADn4/nugSXCSJvSnYFZ91QkC3IWACxkGxn3XSoA8+ThZGQ==
-X-Received: by 2002:a17:906:e0c7:b0:a51:f463:cfa6 with SMTP id gl7-20020a170906e0c700b00a51f463cfa6mr3235443ejb.29.1714029000353;
-        Thu, 25 Apr 2024 00:10:00 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id z6-20020a170906434600b00a518c69c4e3sm9136727ejm.23.2024.04.25.00.09.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Apr 2024 00:09:59 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240423-hsi0-gs101-v1-1-2c3ddb50c720@linaro.org>
-References: <20240423-hsi0-gs101-v1-0-2c3ddb50c720@linaro.org>
- <20240423-hsi0-gs101-v1-1-2c3ddb50c720@linaro.org>
-Subject: Re: (subset) [PATCH 1/3] dt-bindings: clock: google,gs101-clock:
- add HSI0 clock management unit
-Message-Id: <171402899869.8385.7722233712941698013.b4-ty@linaro.org>
-Date: Thu, 25 Apr 2024 09:09:58 +0200
+	s=arc-20240116; t=1714029254; c=relaxed/simple;
+	bh=Uw5k8snV45DhizBJ9JPEOBZducDLygG+f5i+Ls5pmA0=;
+	h=Date:From:To:CC:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=YtvB6+aTUEVk8COFrm6DG4OfKsX2ZAf2keugh72V6sw4JEZy+cPpHTj4bj3mD0tM/QI4WX1JxqlJzxicreUjkFWu+Qjt0OuHpsXMXIyZsV5751TFhcDhTXyXkGEYvW9BfXrE8DuO4+jHwPl6VCZPfw0eJtAMUw8XbkSxODHks5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NkFkTG2A; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P2jExE001827;
+	Thu, 25 Apr 2024 07:14:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=OPIXK7D3p+DrH1TF2OY64X+UHr1QtuBR8aKkWrFHsYA=; b=Nk
+	FkTG2Aedng8VcjMQArU8om7cPPYPXKikWSYwljzfjA68F++N8PdAcxRqusvVsVJp
+	D8g2RTf/WaimUkzMniGrtW1/G4/QBAmG64yhLbtjqbtXf7TshkiU9kuBVksNN6LD
+	m8DEc3NrzO3uhKT1e75g2Ggy9jaY5TMXGSd0HooyKFUi06ZiYe8EJ93Mc5cnoXBD
+	3veRZGcijGiigQ1+KuCOMCdAESaNd0KFuTZqezv4QRImqDmpaNGIwuWgnWZIWdyb
+	5efG+6+fvjDq0qLxfPlbMxY7sUulhEQepDPSwr+AJE7aRiNcl9RHjIrVVIQ0NCu/
+	f6XJY9UihSsI0UW5SO7w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xqenhrsuy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 07:14:02 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43P7E1x4021022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 07:14:02 GMT
+Received: from hu-vvalluru-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 25 Apr 2024 00:13:58 -0700
+Date: Thu, 25 Apr 2024 12:43:54 +0530
+From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_abhinavk@quicinc.com>,
+        <quic_nankam@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+Message-ID: <20240425071354.GA12900@hu-vvalluru-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Yl6rC1WRpP1-43TSVpgpoTTrp5ghBaXr
+X-Proofpoint-GUID: Yl6rC1WRpP1-43TSVpgpoTTrp5ghBaXr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_06,2024-04-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 adultscore=1 clxscore=1011
+ priorityscore=1501 phishscore=0 mlxlogscore=999 suspectscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404250050
 
+Enable lt9611uxc bridge for qcs6490 rb3 gen2 platform.
 
-On Tue, 23 Apr 2024 15:31:03 +0100, André Draszik wrote:
-> Add dt-schema documentation and clock IDs for the high speed interface
-> 0 HSI0 clock management unit. This is used (amongst others) for USB.
-> 
-> While the usual (sed) script has been used to derive the linux clock
-> IDs from the data sheet, one manual tweak was applied to fix a typo
-> which we don't want to carry:
->     HSI0_USPDPDBG_USER -> HSI0_USBDPDBG_USER (note USB vs USP).
-> 
-> [...]
+Signed-off-by: Prahlad Valluru <quic_vvalluru@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 86 ++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
-Applied, thanks!
-
-[1/3] dt-bindings: clock: google,gs101-clock: add HSI0 clock management unit
-      https://git.kernel.org/krzk/linux/c/dbf76c0d3da8d18a46f75130bdfae7b3b54407c5
-
-Best regards,
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index a085ff5b5fb2..ff963f94c0e3 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -51,6 +51,18 @@
+ 			};
+ 		};
+ 	};
++	
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		label = "HDMI";
++		type = "a";
++
++		port {
++			hdmi_con: endpoint {
++				remote-endpoint = <&lt9611_out>;
++			};
++		};
++	};
+ 
+ 	reserved-memory {
+ 		xbl_mem: xbl@80700000 {
+@@ -530,6 +542,45 @@
+ 			   <GCC_WPSS_RSCP_CLK>;
+ };
+ 
++&i2c0 {
++	clock-frequency = <400000>;
++	status = "okay";
++
++	lt9611_codec: hdmi-bridge@2b {
++		compatible = "lontium,lt9611uxc";
++		reg = <0x2b>;
++
++		interrupts-extended = <&tlmm 24 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
++
++		vcc-supply = <&vreg_l11c_2p8>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt9611_a: endpoint {
++					remote-endpoint = <&mdss_dsi0_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				lt9611_out: endpoint {
++					remote-endpoint = <&hdmi_con>;
++				};
++			};
++		};
++	};
++};
++
+ &i2c1 {
+ 	status = "okay";
+ 
+@@ -602,6 +653,21 @@
+ 	status = "okay";
+ };
+ 
++&mdss_dsi {
++        vdda-supply = <&vreg_l6b_1p2>;
++        status = "okay";
++};
++
++&mdss_dsi0_out {
++        remote-endpoint = <&lt9611_a>;
++        data-lanes = <0 1 2 3>;
++};
++
++&mdss_dsi_phy {
++        vdds-supply = <&vreg_l10c_0p88>;
++        status = "okay";
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -711,3 +777,23 @@
+ 	function = "gpio";
+ 	bias-disable;
+ };
++
++&pm7250b_gpios {
++        lt9611_rst_pin: lt9611-rst-state {
++                pins = "gpio2";
++                function = "normal";
++
++                output-high;
++                input-disable;
++                power-source = <0>;
++        };
++};
++
++&tlmm {
++        lt9611_irq_pin: lt9611-irq {
++                pins = "gpio24";
++                function = "gpio";
++                drive-strength = <8>;
++                bias-disable;
++        };
++};
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.17.1
 
 
