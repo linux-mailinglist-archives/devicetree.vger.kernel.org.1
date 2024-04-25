@@ -1,124 +1,101 @@
-Return-Path: <devicetree+bounces-62616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BDD8B1CB6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:22:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62D38B1CBA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85F35281DBA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:22:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7751A281DCF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD306EB68;
-	Thu, 25 Apr 2024 08:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAE16EB7C;
+	Thu, 25 Apr 2024 08:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Z7bNRD/T"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EJMEXnQK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6324205D;
-	Thu, 25 Apr 2024 08:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A196A6EB5C;
+	Thu, 25 Apr 2024 08:22:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714033338; cv=none; b=A4e9evh9f5k4wvqpn5wEagsYJhMbs9cm6700EwfNm0hIL2F6WF8NQXM+doOtsJrmD0KFqBXimwWwP1VqBubPzWD6TQwCH1KZndXFye4XHTFX5fz5CJ3DBO8xjgikSD3fNSsh3dHP4HFzunqC5yDoug/KeLqgzjsoRpX0hiRUfjU=
+	t=1714033379; cv=none; b=gCwGPDD7B7EVILN+i3Le1eD+5/+OrSypPTYOCvLKAicwqxKA1oRlv+itPLJZa43iQcFYZYWs8Vu4E4pMlhEx/w0dOohMJgQDmtozPGPdmB9iGNC9A7zqfc/DRvHeHD6pxD8uQdFFIvEGJQu1Pjxa1//EiDBzTsRFnpYUVN1lKDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714033338; c=relaxed/simple;
-	bh=65uS8QK637r5AEkeZi5BHkJu+vtvg1RJSMsNHk/A9oo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AGt2DGuukUoboO8HXDIXlRA93kNpH1E0lTaGZNFQHcP9TxMpjh52c9a/RfoL2umvI5Vxm/6SSngDHNPKv3qKYmCJcMlZ7SSK9SZ1PGnswj3Z8ZmUO3nPCSWN62JwD9GtITma/NN2yG/ScjAicC7vm0zzxPeQ/6njsGP8vvxb8IE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Z7bNRD/T; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P7eqUk026286;
-	Thu, 25 Apr 2024 10:22:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=i2xvSKGi0kduhQpp0jPnnSJVZO3fv1dsJElSbwSfge8=; b=Z7
-	bNRD/T75coGR0wnv1ucjcEhcgQl/dfOAUul54AdY6QvnqmpAO2Z2gHItsg1gJIP4
-	DaeeF6FKZx3FvlLyXaIDVXkY/Xpguo55Kw0taSszYSqEnV03bKGlquTO5AX4gRD3
-	yIS2Yh3LmltmXQCVlF48IGxiFb5Qp9EQypAjXV6d3jpw3J8Tcq0d8HqiStEH33tM
-	sLpnhh33C8m3j0nXNshfuhKIe3YZM5aZf1OW+gsXCz10g6qJ8tX7mvdIv6ZZQ60V
-	RqaDvTZlkId0S/PovorxYAUvhbzOjBqKzrSFxdLxE5NTtKMznzlc2t0PBGTLipuc
-	u2wStV67X1JFeylNuRNw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xmq90tnf0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Apr 2024 10:22:04 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B41A84002D;
-	Thu, 25 Apr 2024 10:21:59 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 92D01210F60;
-	Thu, 25 Apr 2024 10:21:18 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
- 2024 10:21:17 +0200
-Message-ID: <c217117d-6388-4230-8afa-d26226bb11ce@foss.st.com>
-Date: Thu, 25 Apr 2024 10:21:17 +0200
+	s=arc-20240116; t=1714033379; c=relaxed/simple;
+	bh=SC5dhArJMp08AR75DC4kH+qKbPEF9nR9+mT6/IyIGeU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dJfiBofyG+F9Io9kZ58Ii2TmSdhkjdfw+s8sdK/P/MSGd/NgCsicjI+a1dCq0KrL8E6GQN4fDMTkKkgTZAtBy0fGb0AmiTCuZAieWfIr9vYnzVLfSY5ITnSonFGHgHv81JubmXkStV5SaqMvb1PTPUMULlBweH/sZ4do5aeh58c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EJMEXnQK; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B5C3120009;
+	Thu, 25 Apr 2024 08:22:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1714033374;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ua2r4iaJ4jH2x5xhCdB8EYqrV44YpWPYcR6DtftsZiY=;
+	b=EJMEXnQKbA1ozjlJYHJ921LXaUfFUUhtrXxfDVodzrVKHmkTL/JIblbVe7iF5iKCg8vF+k
+	0pPJ7Hpy0XLntZVM0XuZEAgHB/aovVLlq5am+yibMIOUAPyNSgZO0e1FHglmaIbHjsHfJU
+	cjQaiGWr0oIk6z/AqKbrAoWnUFiBvbSjefU0GwfV41T8YlxnF309ITVJVYcqCAJSwG7RsA
+	T5pnrxU38wL4RJftP2iJh4v1cQNJDU7iJajgP/vX7KmMUKY0+c2QjwhULr05SZSQcODkwB
+	YMlpd71QP7uLEZ9gHCHz1s+tj+BSdu88iG56N7la9EW/PbysvE97C2crV2+7hA==
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+To: jszhang@kernel.org,
+	guoren@kernel.org,
+	wefu@redhat.com,
+	andi.shyti@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: miquel.raynal@bootlin.com,
+	thomas.petazzoni@bootlin.com,
+	linux-riscv@lists.infradead.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Subject: [PATCH 0/4] Add I2C support on TH1520
+Date: Thu, 25 Apr 2024 10:21:31 +0200
+Message-ID: <20240425082138.374445-1-thomas.bonnefille@bootlin.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] spi: stm32: add support for stm32mp25
-To: Alain Volmat <alain.volmat@foss.st.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Erwan Leray
-	<erwan.leray@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20231218155721.359198-1-alain.volmat@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20231218155721.359198-1-alain.volmat@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-25_07,2024-04-25_01,2023-05-22_02
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-Hi Alain
+This adds I2C support in the device tree of the T-Head TH1520 RISCV-SoC
+and a default configuration for the BeagleV-Ahead. It appears that the
+TH1520 I2C is already supported in the upstream kernel through the
+Synopsis Designware I2C adapter driver.
+As there is no clock driver for this board as of today, this patch
+series uses a fixed-clock named i2c_ic_clk.
+There is also no pinctrl driver yet so pinmux must be handled manually
+for now.
+It also fixes the order of the nodes in the device tree to comply with
+device-tree coding-style.
 
-On 12/18/23 16:57, Alain Volmat wrote:
-> This series adds support for spi bus found on the stm32mp25 and add
-> all instances within device-trees.
-> 
-> Alain Volmat (4):
->    spi: stm32: use dma_get_slave_caps prior to configuring dma channel
->    arm64: dts: st: add all 8 spi nodes on stm32mp251
->    arm64: dts: st: add spi3/spi8 pins for stm32mp25
->    arm64: dts: st: add spi3 / spi8 properties on stm32mp257f-ev1
-> 
-> Valentin Caron (2):
->    dt-bindings: spi: stm32: add st,stm32mp25-spi compatible
->    spi: stm32: add st,stm32mp25-spi compatible supporting STM32MP25 soc
-> 
->   .../devicetree/bindings/spi/st,stm32-spi.yaml |   1 +
->   arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  46 ++++++
->   arch/arm64/boot/dts/st/stm32mp251.dtsi        |  88 +++++++++++
->   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 ++
->   drivers/spi/spi-stm32.c                       | 145 ++++++++++++++++--
->   5 files changed, 280 insertions(+), 14 deletions(-)
-> 
+Thomas Bonnefille (4):
+  dt-bindings: i2c: dw: Document compatible thead,th1520-i2c
+  riscv: boot: dts: thead: Fix node ordering in TH1520 device tree
+  riscv: dts: thead: Add TH1520 I2C nodes
+  riscv: dts: thead: Enable I2C on the BeagleV-Ahead
 
-DT patches applied on stm32-next.
-I added "access-controller" bindings for all SPI nodes.
+ .../bindings/i2c/snps,designware-i2c.yaml     |  12 ++
+ .../boot/dts/thead/th1520-beaglev-ahead.dts   |  22 ++++
+ arch/riscv/boot/dts/thead/th1520.dtsi         | 120 ++++++++++++++----
+ 3 files changed, 127 insertions(+), 27 deletions(-)
 
-Cheers
-Alex
+-- 
+2.44.0
+
 
