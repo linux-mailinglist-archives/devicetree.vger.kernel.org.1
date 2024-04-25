@@ -1,236 +1,225 @@
-Return-Path: <devicetree+bounces-62806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9B38B28EB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 21:17:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 065228B2988
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 22:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23CFF2849D9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 19:17:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AA641C2149A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 20:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5BF15099C;
-	Thu, 25 Apr 2024 19:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8B5153504;
+	Thu, 25 Apr 2024 20:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="A1IyiVgR"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="nJhedPiH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2082.outbound.protection.outlook.com [40.107.6.82])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981152135A;
-	Thu, 25 Apr 2024 19:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.82
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714072628; cv=fail; b=HWnI6GFs04k6rBZO0TjFPSdw1kcnIl/3BkFE4VzHW2D7dcABLRC6f5ySTfPg0iOfrQ+lAMPXi3N2WMZbN+DQc5+gHvkGFPRzHfWnsjhjpvwwuE4Apr2+B8XHiaQhdaI8z0opSGI8Jig0XaRRzBr8psdf6+Ra8tcTuhbpVEBcz9k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714072628; c=relaxed/simple;
-	bh=QpmUBmmGOxqOw5CqTh0eqLj7NaGFPVH4ZlgLh1HWMyk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=tnaGTav1rllnHxagmbvmDWWeDaSKPhnSonuy+hLrAThPJwSHBWAhBDa58G/sr2qjFaqFo42v6kkzIY/YJxd6LrI4w0EmR/L8xJi2AmmDomq3zNMacTBMD+3v1IB2CJ82VIJoAh3gXzakAYUbNPHqBAaIgSR+gCtSuTDhx2pzsco=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=A1IyiVgR; arc=fail smtp.client-ip=40.107.6.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T2qyWU4Kx+i1yu72SiQuZ4/jpbohCVlT7IjVrnHI2/SjSPFpkFWePMxookKHomJCpVppjzqReV+eLzZVnQJOirYAowMfLLNRBIwYiTZX5O5+Fj/gmVcaBtugnbho712KUhWI201/fnYQ/+6qFMNmplW5+dE+0fj6uIG8uuVUkrcyIcnsWNVBI1pkOt5gcFWvXO5DkNt7tLKStYgH7r+2M9Tso50x6mQr6XGFpdcSV0SaFN8LJgEIL4PkYDbrAt3+SigVkJoZX/cNvTyd1phoyXoLpHM+U16tjcU0V2UoqiFLxJwlazKPkyM3AyDAKSE5TqJRa/RInCPT7BX0vtdKCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3zygh8rTAtyEej1NzheUKejvVC7z1W/Vpvhydk4Qpb4=;
- b=HJzfFWFyq81E8SotLLMyxY2X+XLzqkKizx5UUXmqSgqv/J479ZYnZF4qVOAVUi4H44mP8iB/9few6J+BC6CXr8UPTaySubDuDEAFXZaGCLma2LRBswD+luowKOge8ACHOw5h6JZ9uQcr53G+5w6LT5t6sdMEC8Yslksohfe0QhBCjLVARsk0nI9Lg88uVxm8NXfLfl9fUbZ0TphXMfhXm1UNZmz6YINL4/5hYDpaPQBpOihK/W1B7wy8DrDsqzfdS1PCibUGAlV48LM40mmPMbD6Vdgp3PYy5yk6CvZgi7kHvhK43qGFMETm1rA5ktfPfv0iOB69RwlIY6jUvsr8gw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3zygh8rTAtyEej1NzheUKejvVC7z1W/Vpvhydk4Qpb4=;
- b=A1IyiVgRl5vwXvRirGZzIz5k43VXeHnSqrN+bMve5oylL+/uvQJNAPY1I0r2S1VePMeJOTQe84RUbg6Hz3r4BxrZeJHg3VjQm8s/FhE3Q69eQocol41u4eapjVfquW4UaBLzeZsOCs1nRif7Uqncu26dEBrmNHUBNirR7B2aw8Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA4PR04MB7965.eurprd04.prod.outlook.com (2603:10a6:102:c9::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22; Thu, 25 Apr
- 2024 19:17:03 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.044; Thu, 25 Apr 2024
- 19:17:03 +0000
-Date: Thu, 25 Apr 2024 15:16:53 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 10/12] misc: pci_endpoint_test: Add support for rockchip
- rk3588
-Message-ID: <ZiqsJZh5SV6q33Fz@lizhi-Precision-Tower-5810>
-References: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
- <20240424-rockchip-pcie-ep-v1-v1-10-b1a02ddad650@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240424-rockchip-pcie-ep-v1-v1-10-b1a02ddad650@kernel.org>
-X-ClientProxiedBy: BY5PR17CA0044.namprd17.prod.outlook.com
- (2603:10b6:a03:167::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E731534FD;
+	Thu, 25 Apr 2024 20:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714076177; cv=none; b=Ntf6qYSPvUW6abUgg6JNAsPOVKb4RC9ZUaq+81jthxars3wNxFFaaU1yf64tb4oWrBdV0QzwdTB5N2iA5z3Gk2p9+3gthIizUbx77pJahxUEM2HMSjC+zoV9zvK1E61B4Yv+l1Pqr+ioM4OmJXfeE/mS3ly5i8CJiCDxRZQzMho=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714076177; c=relaxed/simple;
+	bh=K81+tA4eHurm+LtgiRStXLsxrTRQZz08hGj/EWeB+ik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qyEbScivQMiOCGSHb/zpY+oQOZEWMqAisyIRDnPfanSxa6asfvsofo/8aHKmY7C1rCW7RuAITVcm8mFFFEdcWTpiWFfCl08dGoNA7o1A4cEBsnJFvafrYDNn+zFqIjV3utDLWH+nX4UcugTukUMsjJcdk+EDLoySXI0bIzx2e7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=nJhedPiH; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=elu4sjaKrKGg5mM6SIUrWQhAoZsJ922o9SojYoxFNkg=; b=nJhedPiHAWOTMqyxOiP4bSL9A4
+	1Q23PSsMWnLXfe/kNPXGuTmlweS2d0XZdlFaV1Uk8LB44wPBCOm5iLXduHDPVyydcObvtynGVC+Yn
+	/nn9PRJ95+UuY8K5xhHuVshJpaJWlfPCxNTxd3U7rHai/3uP43dr569zJTOexEY/NZusenqkbewCZ
+	F8F1+Fd068DzXbMf+bZuusDbCherckPQfZe/d2XVGAx3zpQxPBQlpZ+odGphvvxidfEhVhd1S7Tqy
+	XUtRbqi2qpfgr1jYuPRmsqbOedacI0FaAR4S8nN4ItkW1FG02f+hYRJTS5a1wC9WG/SLQP/vUglm4
+	VxDZT4lQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54552)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1s05Vc-0007qW-2b;
+	Thu, 25 Apr 2024 21:15:56 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1s05Vb-0005sC-1A; Thu, 25 Apr 2024 21:15:55 +0100
+Date: Thu, 25 Apr 2024 21:15:54 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lxu@maxlinear.com, hkallweit1@gmail.com, michael@walle.cc,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 2/2] net: phy: mxl-gpy: add new device tree property
+ to disable SGMII autoneg
+Message-ID: <Ziq5+gRXGmqt9bXM@shell.armlinux.org.uk>
+References: <Zh94yqo2EHRq8eEq@eichest-laptop>
+ <ZiE156+BPpx/ciL6@shell.armlinux.org.uk>
+ <Zikd+GxuwMRC+5Ae@shell.armlinux.org.uk>
+ <Zikrv5UOWvSGjgcv@eichest-laptop>
+ <ZilLz8f6vQQCg4NB@shell.armlinux.org.uk>
+ <Zio9g9+wsFX39Vkx@eichest-laptop>
+ <ZippHJrnvzXsTiK4@shell.armlinux.org.uk>
+ <Zip8Hd/ozP3R8ASS@eichest-laptop>
+ <ZiqFOko7zFjfTdz4@shell.armlinux.org.uk>
+ <ZiqUB0lwgw7vIozG@eichest-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB7965:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b136651-ce48-43cb-b727-08dc655c4a07
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|376005|7416005|366007|52116005|1800799015|38350700005;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?/6mPRHmqT9NO+D/9nYEGzf1JQqB47a+wu3i3uZRiv4Y8LLElIlktWVfPla6a?=
- =?us-ascii?Q?wFjImKZHgdKjCGrIt3/EXZPw84/HQs3f4cT0XjCGQuclLMOnC6ZBIplOCwRN?=
- =?us-ascii?Q?B8GfgsvYxxrO42/NB5P15zOeBBWX8KYEv7a8/c3Fkn8RhAIk8GXpAyw6DBk6?=
- =?us-ascii?Q?pWu0mhIkiR0Lq5x7eME7/LLFizt0TEvkvR+DlHc8D6mdw0uawsTSPZrZZkup?=
- =?us-ascii?Q?ZD9F8vCzIAjwqF7W5KsgG7nNR94vSFY/MfhKFjCQrb3CKs7S7PT55zZFsdCL?=
- =?us-ascii?Q?nE26RTGbe5uFktLZ3Ldfs+Nef6gA7CciAmM5LWEjCVDPeRoG1H2DF3Ons09A?=
- =?us-ascii?Q?5p6P1JSqtwlAvSz21TQbV2Oc7GJ6X/0w6HLg6rpHqmj7kDadOuND7jU4vfkd?=
- =?us-ascii?Q?DswOEmP+eYs2ZFT8pJzIhWzOR+PciMmtFQRfsPjUMnVVOQi5YLloAih6mBjF?=
- =?us-ascii?Q?cX32yJDLdqtFWUgpXXvzQVUg+55usg1jM6KDP8yv0L3gezuismtauWRwta+N?=
- =?us-ascii?Q?97DY0WxQBWLF4enH21+6JSOVHAvDXY7aOG9XAMnc0GYi/d0330vChBuxNxwR?=
- =?us-ascii?Q?BycVxLEEOW6AdYk3n0OqUZM1EzltYtSAHWYWDqjn6ZohK8bQ04+J4SKye1eC?=
- =?us-ascii?Q?ZNQb2YSbViyfJNHL/A4+Vl2zsdkJSQdbcHjTvP+xpMcN1H7034Gnj2+eksWa?=
- =?us-ascii?Q?8SbhQVQCFribyjIf+Laoz6Xf9T8TXcYe9VqPDlZszr0dh7dA+BFpGSviTz1B?=
- =?us-ascii?Q?SPysu6QYjogmCJ8ykyqjBMY/3xBz2Bd7YDJaGii4gb4AppOEDrjGrV+1GoM3?=
- =?us-ascii?Q?/RYdghoPGuP1DQyjI0oh6QNA0lfWj9q+ygJWdZptSfcHaQtXAZaotAMrfOn7?=
- =?us-ascii?Q?SI4XrWeBaw3MUaQkM6woYJyw0PpxQFJY8pfDreKvP74hj65JjsiGkp3pPaUE?=
- =?us-ascii?Q?Eeeqr9aKg07Tl8ImEoYR2wpb7br6AS6FSwkQzfNhdt/tfEWN31DRckJBLv1Q?=
- =?us-ascii?Q?5tqzGBzCUw6shTDAiozwHfEvPpWoBpgBY9MbJ+XbZ6cFbG/HWjcFOqV0OpoE?=
- =?us-ascii?Q?/TD8b1IOc61cBGABfhEmtglKiGPGY9BO3hJ3YgKWI37wEh1XyU6kuJGiaY/R?=
- =?us-ascii?Q?419NIkVvLDnVfbvYT5nFGMAxGXrdHzJqbokR7jhop5szvXXDAtYYIoHja9zq?=
- =?us-ascii?Q?F0sw4SJ62VYAbQ3aLhnXtgvmfIJyYI7WQ52FA9j+XBlORoIyxw+HxIECFK/M?=
- =?us-ascii?Q?X0OS+33NVXD8eZRRM8GyKfuHeN3v3nh3QNlYWvyAY2YK7RmzBPvzR3ATo+++?=
- =?us-ascii?Q?6dNg9sKyIF8W0i1Uat7lo7gZACkQiaQjnu8ExFWMf7kXTA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Z2xU8Ongyf+TB7c6oLUr9zHlMfEuGMTC0OBMIe/09lcEXI/51M+XynRg+B0V?=
- =?us-ascii?Q?PBi7PCvo7V/ecnyjlnsQzPfNm9Kpm/ECczd/L/Te7H4AXH8Geu9Fqy+ZHJ/F?=
- =?us-ascii?Q?wUo3QgqrugBn+IcpjAA0qNofKMiPJgKHuJh3fTKApxC2dFAbBbcpKTJyP6tP?=
- =?us-ascii?Q?ZerBIrRTmQny32seZ+2yAsBGQx5GsqymF30vVoyZ+RzABbL0UPXNrA4eGrfY?=
- =?us-ascii?Q?J5P7h+N3Gs6/sRYZGZlYS166n0loMPDPHVSwKJNZ+t68PlSdpZn4TD03/i8B?=
- =?us-ascii?Q?FBGopO04D95Xe55zsJ6KvwPfJhDsMXGKo/o1qMjIdip+7E4/VRw+qu+bKsFZ?=
- =?us-ascii?Q?bJIbW9ZGpKwvywgBsnNwXGUcHvmhe5KqH+45+e0OeTwevjXiLfVD9rkLstjF?=
- =?us-ascii?Q?OLotoMt431VQYMWDrevip5Kp/zlfyxw4ZGrUhbKMbwcYGPF4Js2D+xuShiG6?=
- =?us-ascii?Q?JHDvietfvk/0nqSo5vKf0Tl+UEb88NPKDiBHjuGjE+n3JzgPUdcjGuFZpEbs?=
- =?us-ascii?Q?TPLFJL6+vrx37luYXXbsCi8q5x0K7D9AHwlUyag9DmkTznkl4WMdEGXjbwCX?=
- =?us-ascii?Q?sDVVSXxUM29IU0MyaiT7mvJtthBEeKg4G7Uy3CzdJnXv2wvbwNulxT+gCMyg?=
- =?us-ascii?Q?jXDUaw+Pe79E01TVTaSkyb7smRzziBr1o69mx6hJLzoyzUAFCHFfTKRNoW7Q?=
- =?us-ascii?Q?8dcBmfQcm0ZtaiphGXAmF20esQ88mCJoCXE22ypvGw+IXcAwcP/sZUJPcvMK?=
- =?us-ascii?Q?DROhRJPGxXnpIotnFl1w2vOqWMqOUUm300s9iPyZg58x6pBeYgZvuctRNIi1?=
- =?us-ascii?Q?WEgi9LcD0n6j7kbvOWkCk+6xY3CGg9Z1FjotLEMVxmOz73OaLneSN/05vMQP?=
- =?us-ascii?Q?L8ByfGcupY1y7/AQUc/LVXmaxp56M5vHFczgGT67pWJk59ywm1akFVyWxo9G?=
- =?us-ascii?Q?DIA06rShSeqFMWlj5iaZ44pyBP8k0MdtD2vlq8LXzX6natDjDXSGJ+PZRBTO?=
- =?us-ascii?Q?AJbYutj4OdffMjZBpXq8BFC9E3RYUA7yZsEor/B8AB7tYJpbbkWIZ511CdDU?=
- =?us-ascii?Q?Wzs8cs1UbMjH07iSw/f1dN5glwkiesz5kIynaNh44U8YQ1f4D1yT2vAThGDe?=
- =?us-ascii?Q?jsXNkbP6Jm3FPswibrmm7hcORECII6c3GqWdJg1UT/bRaghM5f1SF9oGNmly?=
- =?us-ascii?Q?akqyY41Tt5TkzMg5D8/zayAbbJYrRVBiGUpJFTCSBR4eZb9EHl7yHr8BZ1ko?=
- =?us-ascii?Q?ralxp5sdUaAMRbwZAdBARipGrmiJmbG0MEKr75httuC0kfn1OikthUICg41b?=
- =?us-ascii?Q?6vmPxqp/lRV/j4ZdqucY2dkaq8ftVfmxssC1ZGEETsVXIsTRDQ8jA8RqcdNc?=
- =?us-ascii?Q?OQO55FaFIsq7Acd/HqMFREJpx09WxLsuYWgqprblhaG5XcBOiGmzFRHPeAIo?=
- =?us-ascii?Q?Z0ChoY90tXy78ABMWPFgzioMxAvXPk4R8EyCz8BvOEx28zLEDPD2HTDmHS+6?=
- =?us-ascii?Q?WzZwuIsglfMrZn5b7SsGiZ6yACLd/8xELa+IluU5ejcfEnDhXDvTpmDe0rbK?=
- =?us-ascii?Q?BdVTIb9qG40iJLlyf59f5yTw7kuO+RZB26jjRP4p?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b136651-ce48-43cb-b727-08dc655c4a07
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2024 19:17:03.4076
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sHzLcomHtvRpD3HaeqQWTchmq5c6bfXsNNT4mrxQnbHmOdYAPea8i08V9Yu/fuVJrZWmYPOEro0qcbpxLCVe3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7965
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZiqUB0lwgw7vIozG@eichest-laptop>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Wed, Apr 24, 2024 at 05:16:28PM +0200, Niklas Cassel wrote:
-> Rockchip rk3588 requires 64k alignment.
-> While there is an existing device_id:vendor_id in the driver with 64k
-> alignment, that device_id:vendor_id is am654, which uses BAR2 instead of
-> BAR0 as the test_reg_bar, and also has special is_am654_pci_dev() checks
-> in the driver to disallow BAR0. In order to allow testing all BARs, add a
-> new rk3588 entry in the driver.
-> 
-> We intentionally do not add the vendor id to pci_ids.h, since the policy
-> for that file is that the vendor id has to be used by multiple drivers.
-> 
-> Hopefully, this new entry will be short-lived, as there is a series on the
-> mailing list which intends to move the address alignment restrictions from
-> this driver to the endpoint side.
-> 
-> Add a new entry for rk3588 in order to allow us to test all BARs.
-> 
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
-> ---
->  drivers/misc/pci_endpoint_test.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index c38a6083f0a7..a7f593b4e3b3 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -84,6 +84,9 @@
->  #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
->  #define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
->  
-> +#define PCI_VENDOR_ID_ROCKCHIP			0x1d87
-> +#define PCI_DEVICE_ID_ROCKCHIP_RK3588		0x3588
-> +
+On Thu, Apr 25, 2024 at 07:33:59PM +0200, Stefan Eichenberger wrote:
+> Now I got it, thanks a lot for the explanation. So the issue is that
+> MLO_AN_INBAND + PHYLINK_PCS_NEG_OUTBAND is happening in my use case and
+> therefore the link is not forced up because for that MLO_AN_PHY would be
+> needed. I will also try to think about it.
 
-Did you make sure 0x3588 will not used by other production with vendor id
-0x1d87?
+Now that I've moved the setting of PortType and InBandAutoNegMode into
+the pcs_config() method, I now have (on mvneta):
 
-Frank
+Value at address 0xf1036c00: 0x00008bfd	- PortType = 0
+					  (SGMII, necessary to be able
+					   to set InBandAnEn=0 below)
 
->  static DEFINE_IDA(pci_endpoint_test_ida);
->  
->  #define to_endpoint_test(priv) container_of((priv), struct pci_endpoint_test, \
-> @@ -980,6 +983,11 @@ static const struct pci_endpoint_test_data j721e_data = {
->  	.irq_type = IRQ_TYPE_MSI,
->  };
->  
-> +static const struct pci_endpoint_test_data rk3588_data = {
-> +	.alignment = SZ_64K,
-> +	.irq_type = IRQ_TYPE_MSI,
-> +};
-> +
->  static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA74x),
->  	  .driver_data = (kernel_ulong_t)&default_data,
-> @@ -1017,6 +1025,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721S2),
->  	  .driver_data = (kernel_ulong_t)&j721e_data,
->  	},
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_ROCKCHIP, PCI_DEVICE_ID_ROCKCHIP_RK3588),
-> +	  .driver_data = (kernel_ulong_t)&rk3588_data,
-> +	},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(pci, pci_endpoint_test_tbl);
-> 
-> -- 
-> 2.44.0
-> 
+Value at address 0xf1036c08: 0x0000c018 - InBandAutoNegMode = 0
+					  (1000Base-X mode)
+
+Value at address 0xf1036c0c: 0x00009240	- 1000M, FD, unforced link
+					  InBandAnEn = 0
+
+Value at address 0xf1036c10: 0x0000600a - Sync, 1000M, FD, but no link
+
+The reason that the link isn't being forced is because
+mvneta_mac_link_up() is being called with mode = MLO_AN_INBAND
+which expects the link to be controlled as a result of autoneg,
+but we've configured autoneg to be off.
+
+I'm wondering whether we need pl->cur_link_an_mode to be the desired
+mode for selecting the result from phylink_pcs_neg_mode(), but also
+maintain a separate pl->act_link_an_mode which phylink_pcs_neg_mode()
+chooses, dependent on whether the PCS is using inband or outband
+mode - and pl->act_link_an_mode is what gets passed to the MAC layer.
+That would at least keep the MAC MLO_AN_* consistent with what the
+PCS layer is using - and also has the advantage that it makes it
+clear that pl->act_link_an_mode only gets updated in the "major
+config" path.
+
+A quick test of that... seems to work:
+
+mvneta f1034000.ethernet eno2: PHY [i2c:sfp:16] driver [Broadcom BCM84881] (irq=POLL)
+mvneta f1034000.ethernet eno2: phy: 2500base-x setting supported 00,00000000,00008000,0000206c advertising 00,00000000,00008000,0000206c
+mvneta f1034000.ethernet eno2: major config 2500base-x
+mvneta f1034000.ethernet eno2: link modes: pcs=02 phy=01
+mvneta f1034000.ethernet eno2: phylink_mac_config: mode=inband/2500base-x/none adv=00,00000000,00008000,0000206c pause=04
+mvneta f1034000.ethernet eno2: phylink_sfp_module_start()
+mvneta f1034000.ethernet eno2: phylink_sfp_link_up()
+mvneta f1034000.ethernet eno2: phy link down 2500base-x/Unknown/Unknown/none/off
+mvneta f1034000.ethernet eno2: phy link up sgmii/1Gbps/Full/none/off
+mvneta f1034000.ethernet eno2: major config sgmii
+mvneta f1034000.ethernet eno2: link modes: pcs=03 phy=01
+mvneta f1034000.ethernet eno2: phylink_mac_config: mode=phy/sgmii/none adv=00,00000000,00008000,0000206c pause=00
+mvneta f1034000.ethernet eno2: pcs link down
+mvneta f1034000.ethernet eno2: pcs link down
+mvneta f1034000.ethernet eno2: can LPI, EEE enabled, active
+mvneta f1034000.ethernet eno2: enabling tx_lpi, timer 250us
+mvneta f1034000.ethernet eno2: Link is Up - 1Gbps/Full - flow control off
+
+Value at address 0xf1036c00: 0x00008bfd
+Value at address 0xf1036c08: 0x0000c018
+Value at address 0xf1036c0c: 0x00009242
+Value at address 0xf1036c10: 0x0000600b
+
+So we can see in the two phylink_mac_config calls that the mode has
+switched from "inband" to "phy" with this PHY (BCM84881) which
+doesn't support inband in any interface modes.
+
+However, there's still the issue with:
+
+link modes: pcs=02 phy=01
+phylink_mac_config: mode=inband/2500base-x/none adv=00,00000000,00008000,0000206c pause=04
+
+and this is because of the missing code in this part:
+
+	/* PHY present, inband mode depends on the capabilities
+	 * of both.
+	 */
+
+but there's also the issue that the PCS and PHY capabilities like that
+are incompatible. In this case, we're saved by the fact that if we do
+this act_link_an_mode thing:
+
+        pl->act_link_an_mode = pl->cur_link_an_mode;
+        if (pl->pcs_neg_mode == PHYLINK_PCS_NEG_OUTBAND &&
+            pl->act_link_an_mode == MLO_AN_INBAND)
+                pl->act_link_an_mode = MLO_AN_PHY;
+
+coupled with the new _behaviour_ of mvneta/mvpp2, we don't actually
+end up in the "1000base-X must have AN enabled" trap... but that is
+no basis to basing decisions at the phylink layer on.
+
+So, I'm wondering whether we need to be a little more creative here.
+Instead of simply passing a few bits, maybe something like:
+
+	31-24: bitfield of "partner" capabilities that are supported
+		for inband enabled mode
+	23-16: bitfield of "partner" capabilities that are supported
+		for inband disabled mode
+	15-8: bitfield of "partner" capabilities that are supported
+		for outband mode
+	2: bypass mode supported
+	1: inband enabled mode supported
+	0: inband disabled mode supported
+
+Now, a question will come up... what is different between inband
+disabled and outband mode?
+
+Consider 1000base-X fibre. 1000base-X is the media interface, and we
+need to be able to configure autoneg there, enabling or disabling it.
+If we don't support disabling autoneg (as is the case with mvneta
+et.al. over fibre) then being able to use ethtool to disable autoneg
+can't be used. In both these modes, the 1000base-X is the media side.
+
+However, 1000base-X can be used to connect to a PHY, and the PHY
+could do rate matching, so the we need to use an outband way to
+access the media side (we need to talk to the PHY.)
+
+Hence why PCS have a distinction between OUTBAND and INBAND_DISABLED.
+
+Now, with 2500base-X we run into the problem that e.g. mvneta
+operating in 1000base-X mode upclocked to 2.5G can only support
+INBAND_ENABLED and not INBAND_DISABLED (we can't just turn off the
+InBandAnEn bit). The change between INBAND_ENABLED and INBAND_DISABLED
+can happen with the link up.
+
+However, it can support OUTBAND by disabling the PortType bit and then
+turning off InBandAnEn (which can only be done with the link *down*
+and that is only guaranteed during a "major config" not through the
+ethtool settings API - which is why pcs_config() can't do this for 
+INBAND_DISABLED.)
+
+So, a little bit of progress but not at a usable solution yet.
+
+I'm afraid my current tree is in a hacky mess at the moment, I'll see
+about updating the published patches as soon as I can.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
