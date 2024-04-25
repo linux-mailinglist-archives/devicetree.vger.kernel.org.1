@@ -1,117 +1,119 @@
-Return-Path: <devicetree+bounces-62718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDD48B2307
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:44:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6F68B2312
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 15:44:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EBEC1F21F72
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:44:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0977128545C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 13:44:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FC6149DFF;
-	Thu, 25 Apr 2024 13:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C18149DE3;
+	Thu, 25 Apr 2024 13:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hW2IKNrm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cd46CN/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2CC149DE9;
-	Thu, 25 Apr 2024 13:44:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD720149C7B;
+	Thu, 25 Apr 2024 13:44:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714052655; cv=none; b=FKuO+b5T0ikJhYyS0p3SoC6LGOIpH91mIYVTlxbgYkZnseypCG77XmgisEn3oyinuKNj9BtZyDAOpAgUrADh6XqDpWgG6sTY3mFwN9KKOCKThpwc9f0tzrVJvyH10UkvYDLnIlw7KE94N5ZLWxQym9WyY0ZjJbXywNphTeTmaqc=
+	t=1714052688; cv=none; b=aKFuV4H5xI6KRJHPqkOF6bQuldbzFf9hvsWqsZ6/AOQjitcRJyUnANY75DvSnoC4K8OBs77Gg6Ny2WGxnvgjE4lHeWtR/nUqDfi9tTSzlcExBduBW9eCaYUUyiHy2SAS4GOOBa1NSsxr2ETPx9JpK/MQuVi9XvtqDZuHbBmAM3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714052655; c=relaxed/simple;
-	bh=sevXQPHqwt+0Ww7Ab9Mk8uFLSxt6KOf9Ig3smUYioLc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YINRKJnckh3veK/aW7alfPojaW50ieI0N0Z4T4I/xaxP/UzlUK9bHNpohnUhB41hHn/3GbNcugEOlUEs9uprc0hNVezCLYlWI44Y3RL6dk8NGDsRkCf6LBX3LZfzYYk9kNKEKtH+KGo8g9cfmMUnkPCkLTgGWT8solKMOjVi2jU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hW2IKNrm; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1714052654; x=1745588654;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=sevXQPHqwt+0Ww7Ab9Mk8uFLSxt6KOf9Ig3smUYioLc=;
-  b=hW2IKNrmAL43jO5tc892Tml9io+6se4xF3gpOR50e3k3wGUukp1CSCJG
-   CcJTK3PtHeKR9PCxqYlp+Pr3WPZSjd7P8tIUx7aR9x9y+5S+GxJ612oee
-   NWnnvVYZwynouoEM0B1PpDNXoM8YvVNLL4PqU0o4lvGoZrNHtOcSGvL2x
-   ePQZITJT/bOcU1IDl6Otnnj4Ygw478fauIb7/sNWV+5sS6NS1NrILSlOI
-   dQK4GtToslDuFczXxjp6hpn57L47EXDINybb5Wo8UNisu3JDo0s55Ja+A
-   wNh1FpBcaPgQPXecxF1ntsoCRjiEeA8kAtqWlatDw0VMITSmDOFsGvxmb
-   Q==;
-X-CSE-ConnectionGUID: M7HVa8i8QQ6IIdJWx2Asgg==
-X-CSE-MsgGUID: +LlEjvW1QHS1GFfI7TAIiw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="9587385"
-X-IronPort-AV: E=Sophos;i="6.07,229,1708416000"; 
-   d="scan'208";a="9587385"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2024 06:44:13 -0700
-X-CSE-ConnectionGUID: 7OVoDDweRre70A69GO9ozQ==
-X-CSE-MsgGUID: mlJfMqBPSgudVBltKqVGDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,229,1708416000"; 
-   d="scan'208";a="25564915"
-Received: from shivapri-mobl.amr.corp.intel.com (HELO [10.209.176.73]) ([10.209.176.73])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2024 06:44:12 -0700
-Message-ID: <59f78ca7-ea09-41d7-9e6e-b0ce1af484e4@linux.intel.com>
-Date: Thu, 25 Apr 2024 08:43:20 -0500
+	s=arc-20240116; t=1714052688; c=relaxed/simple;
+	bh=mfhXTx63YRyQApal1fduEVtcjwLjVBk/NUOJZpUC24g=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fw+DIly9uHW9Fa5BddOGqggAqhpZWHxCb1bTVlOTJeXBF414um6mewV3ML/WjYoyjOaXVfHXPbdBs32cpnjEol5xj7HhgvE5BESTqyzuNrgs1EIB1lr3B9pP+YhLsV8jFdtmVViGLqTVw/PIEbUehfahxSfbcQrjaoAvHcazfRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cd46CN/5; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41b39d38cf6so7270435e9.1;
+        Thu, 25 Apr 2024 06:44:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714052685; x=1714657485; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bMHh8dl+jDwLvcv5T+6QyHvrz8jMqsBP3Ls5hViJrBM=;
+        b=Cd46CN/5XnZmH3HoJ6b1FGaKIDVGZwtu6+NCL6uKJSCcFXwtEZm7fFBXTBSEvrXI93
+         8fEPUdbTZvMb4z4Jz3JYCVdRT66sd0STCyEdyHEmgyuNm94o3zZ9DZQkc503S7lEifES
+         3OYDrpyYU/XmhgGJGSP667Fd5pBOJaz8f5rIZqzzgiiB++ZJ/7gQUsDWXAM7dE8oUiSB
+         ZVu9Jm+2z8xokL8P+ccQzt9c9ucOLpM5BbX71XIlTwgj4xttEdeEHQ8E9g6OpqL06s9C
+         I9wNwelTu0Y9FjE9GkBDbl9LPKmT8Gr4ric06c0N3Bv9K8AU4+gDy7Wjlv9efunudsob
+         4foQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714052685; x=1714657485;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bMHh8dl+jDwLvcv5T+6QyHvrz8jMqsBP3Ls5hViJrBM=;
+        b=MvronXpNcoZZLWDO10VfXsRhKWm0bodPUCV0AUNfhxswp/FyXgbBwKQw/dUbxMPUsf
+         SACh7xsZ3npLKBTJoPaljBViXxqFFEN1bCJVXAl8dZXTakTPBH8TLNoP+6fehR+uMOnt
+         foLj1m21Gzmu/eD230dOKISq9Um1u9pSWRxOfiEnRAC157O92wm2GjvtHSzx6sCTYuTb
+         kOrISGHdT17+vQdAF9CbLQm9HjJaELCZEEDZvXBTWRqrasHaj53pGywLkAFXuGh2iH9y
+         8YtTd2WDZeTrCX5b5erWsk/e9671yiB3PDn5U7OxhTkMS7GwHclf7Yx0ErQR6TtqBQTr
+         ZMog==
+X-Forwarded-Encrypted: i=1; AJvYcCXwWP/1kky4p+GkuCHbTgIuYpE2OW83xaJBMLwzfwaX755145rBTVSJ6Y6XU3YXiVigDNpFX9Q67gZCiDx96wwHQfYS1Zz9Ty+wAambQwerF1dBgQftt+uzMGJ845cZnCzLNsZk59ZQejo=
+X-Gm-Message-State: AOJu0YxKsKMCrxptZJ4EgUFN5mBj09+9FxTQtgAP6dvaFBYiOcXAcmFK
+	wMa5K+BRfJnkdhQ6KvXDBl5oXpUW4TKKVTCl7vZTp8R9MclXnRhlcddW8VcK
+X-Google-Smtp-Source: AGHT+IE3IcNocrc6Z6xvaosFO1Ai3/6XvgFlHEDAllMt9fsY8O54B7Mmf9WoO6o7NZGzI7CdHWyt5A==
+X-Received: by 2002:a05:600c:1e0e:b0:41b:285:8417 with SMTP id ay14-20020a05600c1e0e00b0041b02858417mr3434944wmb.40.1714052685116;
+        Thu, 25 Apr 2024 06:44:45 -0700 (PDT)
+Received: from lucy.. (cpc115152-dals23-2-0-cust532.20-2.cable.virginm.net. [86.12.82.21])
+        by smtp.gmail.com with ESMTPSA id bg11-20020a05600c3c8b00b0041a9c3444a6sm11235579wmb.28.2024.04.25.06.44.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Apr 2024 06:44:44 -0700 (PDT)
+From: Connor Abbott <cwabbott0@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Connor Abbott <cwabbott0@gmail.com>
+Subject: [PATCH 1/6] arm64: dts: qcom: sm8650: Fix GPU cx_mem size
+Date: Thu, 25 Apr 2024 14:43:49 +0100
+Message-Id: <20240425134354.1233862-2-cwabbott0@gmail.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20240425134354.1233862-1-cwabbott0@gmail.com>
+References: <20240425134354.1233862-1-cwabbott0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] ASoC: codecs: wcd937x: add wcd937x codec driver
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
- quic_pkumpatl@quicinc.com
-References: <20240425091857.2161088-1-quic_mohs@quicinc.com>
- <20240425091857.2161088-3-quic_mohs@quicinc.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20240425091857.2161088-3-quic_mohs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+This is doubled compared to previous GPUs. We can't access the new
+SW_FUSE_VALUE register without this.
 
-> +struct wcd937x_priv {
-> +	struct sdw_slave *tx_sdw_dev;
-> +	struct sdw_slave *rx_sdw_dev;
+Fixes: db33633b05c0 ("arm64: dts: qcom: sm8650: add GPU nodes")
+Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Does this mean that the codec has 2 SoundWire interfaces?
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 658ad2b41c5a..78b8944eaab2 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -2607,7 +2607,7 @@ tcsr: clock-controller@1fc0000 {
+ 		gpu: gpu@3d00000 {
+ 			compatible = "qcom,adreno-43051401", "qcom,adreno";
+ 			reg = <0x0 0x03d00000 0x0 0x40000>,
+-			      <0x0 0x03d9e000 0x0 0x1000>,
++			      <0x0 0x03d9e000 0x0 0x2000>,
+ 			      <0x0 0x03d61000 0x0 0x800>;
+ 			reg-names = "kgsl_3d0_reg_memory",
+ 				    "cx_mem",
+-- 
+2.31.1
 
-If yes, aren't there merits in splitting the implementation in two
-separate drivers, one for each interface and probing on the relevant partID?
-
-This is how the RT713 was handled. The mic function was exposed as the
-RT1713.
-
-By representing the device as a single entity, things could be fun
-because the two interfaces are really independent. things like clock
-stop are handled at the interface level.
-
-The code in this driver is difficult to review, for example in the probe
-you wait for the TX part to complete the enumeration/initialization, but
-there's nothing mentioned or stated on the RX part, and there's really
-nothing related to the detection of this device. I don't actually see a
-sdw_driver at all, it's a platform driver.
-
-Would you mind adding a paragraph on how the SoundWire interfaces are
-handled and how the SoundWire bus is involved if there's no sdw_driver?
-
-Thanks!
 
