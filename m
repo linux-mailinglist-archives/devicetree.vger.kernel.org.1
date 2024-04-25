@@ -1,164 +1,158 @@
-Return-Path: <devicetree+bounces-62539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971108B1815
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 02:36:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F1B8B182A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 02:48:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBE2AB2450D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:36:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB2F11F25A55
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 00:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24B480C;
-	Thu, 25 Apr 2024 00:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6197E17FE;
+	Thu, 25 Apr 2024 00:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="kI1TqP1B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2677EF
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 00:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4FBF816
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 00:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714005379; cv=none; b=iCKFR/RW7ZMjTKhUyXv8NAiG/UzOpWwsYHzc5WxieJAO8ZuQNjk+soVDfo+Xv/yLXefqkqHTr3UM/PEInhrY//FQTiFczjKtWRpRXI6+pGdQvr03iin/A0VeYQijIBsz7nOcz7IIJ0UxVmIFJXgxPQLYUKVEEmSQAQ0CzHQ3HA0=
+	t=1714006089; cv=none; b=sgMxZBM9/+xEbmxUomm65zpK3DKxM+usHO57IDRNH5cprINlQ0grhSUFz9ItGDLbGdE9yA0WiLuP3vs0PCJHsSFLZp9oJamJhnr+jfoc/KWOkb+s48t9Z9qWOXyF+Obat9pyJdlTQDTGCBdj/IClTeC/5f1OqrWaEyozf9s09lI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714005379; c=relaxed/simple;
-	bh=Pk/sHrPl6C3mqNZupy8ctRKT5NWa/ZiuI+NX9d52oUY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZKTwP9Yr8Hv7fUs8BvX2kOADJgvFIJ4wb/pGgin2t4aO3MItZMQAXhn6E8zUkBlmkbw631FGdUcbV7y6A4bMWLIIXcn8+nav2VU9lq4tzdovMHUDx/LfH7Ky7G39AksCcJImyuDvAa91rp+3OK766scYM703Mdq7sCahJEK4GIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1B4401007;
-	Wed, 24 Apr 2024 17:36:45 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AB4E13F7BD;
-	Wed, 24 Apr 2024 17:36:15 -0700 (PDT)
-Date: Thu, 25 Apr 2024 01:35:59 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Chris Morgan <macromorgan@hotmail.com>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 4/4] arm64: dts: allwinner: h700: Add RG35XX-H DTS
-Message-ID: <20240425013559.5b5d1fe4@minigeek.lan>
-In-Reply-To: <20240424110947.9057-5-ryan@testtoast.com>
-References: <20240424110947.9057-1-ryan@testtoast.com>
-	<20240424110947.9057-5-ryan@testtoast.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1714006089; c=relaxed/simple;
+	bh=1FwFfqE9i616o1VTvMvnmB0Vi4XGdpO5ENmkg5Y9C+c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PdQ7DPOLj4TJsJ+UxSHKMzJfzs4T+iggx8mKD+swnGdqbfmTT4SYkhOz0Ry8lQcBXUQ/HeeTgADUMzH7VWe1nQ621FImu2B2YCCNaDzhSgOuf9O/jICjeyywIzvKjeCciGfLpVgdgyoB4bznh6zmEILsPSUqlyQuAlULRYfxhFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=kI1TqP1B; arc=none smtp.client-ip=209.85.161.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5aa400b917dso315998eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Apr 2024 17:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1714006086; x=1714610886; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vuFHLVEWRvr8nT3POIEE+NeoEX4x7+oc0ycZrONvMnY=;
+        b=kI1TqP1BGfOUW+3TMPE2uwIyxhjc6xbmnjQ/Bml9DCoM58rWHuW38/NzytIPAEw+VD
+         AuFw06pEqUad5GJh8iWDM5PFc3PlqJAhvuUAu1SoFtneOqQR2DoCDJvLhywErXTl/tCS
+         kbY3mImmilGRW+yv9zmSuXbvpClVYJGCJHC5et054lL/FrXqTEgjrIB4kRBj3hRWvm2t
+         9aL04cWPSwEl0Wu/ibi0yL8zA8jRSnBSiCcJlHDuKA/cw0HPyqzfRMzzWSaFD5T+Wf3f
+         ZWadrqFY0YCYKLfKOf+uK4uX6xsI1QXntw2jUhtbFINQ7Q0QzfURvxlNxB16nt5kzb7A
+         sTXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714006086; x=1714610886;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vuFHLVEWRvr8nT3POIEE+NeoEX4x7+oc0ycZrONvMnY=;
+        b=v4V1zBWbji7GmCfoVvjusqxmbhjKOicMKt1guoTh/XpW/1j1cRVKEzBAKzIOvLc+3I
+         CGoFknUzG/3rQJQqRouVna2kkns2bUcLCRNZ7f35D0MOlZ5D8YNj3lvH1mc9Qq6aOvMG
+         oT3xGTEb/yCW/IDZfNF2fhc4hqJa61srvkk34F8kjs1NIDiDaoda+GraSAq4iThD6Cyg
+         wRJ2oi2iK8+3Vf698DIhDYlxEf3GQl2PjF7skczJ5JM1quI4kVU2SfTdf8f45xCp8Dow
+         HmQyBKiOr5ogZ9pwBV0WLDHxtk+EzqznGUUIhOAoECI5QDB47kn/StxdMR+4TnapbnGf
+         glIA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZk8IBaRhpdonIh94BNjOQUZCabpt8y/0Ycqk29K+OveaK3IXTPeq0nlGzzp+fVgLp3MGPETjDyFG4l1pq5z5H3GWltnCc2FFWhQ==
+X-Gm-Message-State: AOJu0YxzR0FdCSVX6f+0asd/14+SVEga97IHM7UkhdFWGltM6nHnDOGq
+	Q54Zkh2Va3/aZiAVkIDRBdf/cnFws0AyjhFVTv/764NPK6Zu04AyduzLskVb56o=
+X-Google-Smtp-Source: AGHT+IEPuZwS/Tkiq24z8ESvoiDOcfXfHtKEsJScRX3bkfnzRD6SNCxN7/xPfUqfYppgfpYVzUwNDQ==
+X-Received: by 2002:a05:6870:b527:b0:22e:9792:97ed with SMTP id v39-20020a056870b52700b0022e979297edmr5451364oap.38.1714006085784;
+        Wed, 24 Apr 2024 17:48:05 -0700 (PDT)
+Received: from ziepe.ca ([12.97.180.36])
+        by smtp.gmail.com with ESMTPSA id xi9-20020a0568704f0900b002392041da7dsm2726725oab.48.2024.04.24.17.48.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Apr 2024 17:48:05 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1rznHP-00AEjV-Rj;
+	Wed, 24 Apr 2024 21:48:03 -0300
+Date: Wed, 24 Apr 2024 21:48:03 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com
+Subject: Re: [PATCH v2 7/7] iommu/riscv: Paging domain support
+Message-ID: <20240425004803.GK231144@ziepe.ca>
+References: <cover.1713456597.git.tjeznach@rivosinc.com>
+ <301244bc3ff5da484b46d3fecc931cdad7d2806f.1713456598.git.tjeznach@rivosinc.com>
+ <20240419125627.GD223006@ziepe.ca>
+ <CAH2o1u5+XD9YN=gdMVtfkyhKoKha0UpwKgOVbCAwOQa+saPfRw@mail.gmail.com>
+ <20240424233950.GJ231144@ziepe.ca>
+ <CAH2o1u4eZ-mRO7hiJzA-pwYDOo0+3vObpBZT3_MXW=zC9mXRbA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH2o1u4eZ-mRO7hiJzA-pwYDOo0+3vObpBZT3_MXW=zC9mXRbA@mail.gmail.com>
 
-On Wed, 24 Apr 2024 23:09:47 +1200
-Ryan Walklin <ryan@testtoast.com> wrote:
-
-> The RG35XX-H adds thumbsticks, a stereo speaker, and a second USB port to the RG35XX-Plus, and has a horizontal form factor.
+On Wed, Apr 24, 2024 at 04:54:01PM -0700, Tomasz Jeznach wrote:
+> On Wed, Apr 24, 2024 at 4:39 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
+> >
+> > On Wed, Apr 24, 2024 at 04:30:45PM -0700, Tomasz Jeznach wrote:
+> > > > > @@ -46,6 +46,10 @@ MODULE_LICENSE("GPL");
+> > > > >  #define dev_to_iommu(dev) \
+> > > > >       container_of((dev)->iommu->iommu_dev, struct riscv_iommu_device, iommu)
+> > > > >
+> > > > > +/* IOMMU PSCID allocation namespace. */
+> > > > > +static DEFINE_IDA(riscv_iommu_pscids);
+> > > > > +#define RISCV_IOMMU_MAX_PSCID                BIT(20)
+> > > > > +
+> > > >
+> > > > You may consider putting this IDA in the riscv_iommu_device() and move
+> > > > the pscid from the domain to the bond?
+> > > >
+> > >
+> > > I've been considering containing IDA inside riscv_iommu_device at some
+> > > point,  but it made PCSID management more complicated.  In the follow
+> > > up patches it is desired for PSCID to be unique across all IOMMUs in
+> > > the system (within guest's GSCID), as the protection domains might
+> > > (and will) be shared between more than single IOMMU device.
+> >
+> > The PCSID isn't scoped under the GSCID? That doesn't sound very good,
+> > it means VM's can't direct issue invalidation with their local view of
+> > the PCSID space?
+> >
 > 
-> Enabled in this DTS:
-> - Thumbsticks
-> - Second USB port
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> ---
-> Changelog v1..v2:
-> - Update copyright
-> - Spaces -> Tabs
-> - Add GP ADC joystick axes and mux [1]
-> - Add EHCI/OHCI1 for second USB port and add vbus supply
-> 
-> Changelog v2..v3:
-> - Add DTB to Makefile
-> - Remove USB vbus supply
-> - Remove GPADC joysticks until required patches land [1]
-> - Move thumbsticks into existing gpio gamepad node
-> - Move changelog and links below fold-line
-> 
-> [1]: https://lore.kernel.org/linux-sunxi/20240417170423.20640-1-macroalpha82@gmail.com/T/#t
-> 
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
->  .../sun50i-h700-anbernic-rg35xx-h.dts         | 46 +++++++++++++++++++
->  2 files changed, 47 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 4217328b1889..c2c871d8b71e 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -49,3 +49,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-> new file mode 100644
-> index 000000000000..3f4435ff9b71
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-> @@ -0,0 +1,46 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-> + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-> + */
-> +
-> +#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-> +
-> +/ {
-> +	model = "Anbernic RG35XX H";
-> +	compatible = "anbernic,rg35xx-h", "allwinner,sun50i-h700";
-> +};
-> +
-> +&gpio_keys_gamepad {
-> +
-> +	button-thumbl {
-> +		label = "GPIO Thumb Left";
-> +		gpios = <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
-> +		linux,input-type = <EV_KEY>;
-> +		linux,code = <BTN_THUMBL>;
-> +	};
-> +
-> +	button-thumbr {
-> +		label = "GPIO Thumb Right";
-> +		gpios = <&pio 4 9 GPIO_ACTIVE_LOW>; /* PE9 */
-> +		linux,input-type = <EV_KEY>;
-> +		linux,code = <BTN_THUMBR>;
-> +	};
-> +};
-> +
-> +&ehci1 {
-> +	status = "okay";
-> +};
-> +
-> +&ohci1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	status = "okay";
-> +};
+> To clarify: PSCID namespace is per GSCID.
+> However there might be more than one IOMMU in a single system sharing
+> the same GSCID
 
-Those two nodes look redundant, since they exist already in the base
-.dts. I guess &usbphy needs to be adjusted later, but &usbotg is likely
-to stay the same? Anyway, it doesn't really hurt, so:
+I assume this is because GSCID ends up shared with kvm?
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> and with e.g. SVA domains attached to more than one
+> IOMMU. It was simpler to manage PCSID globally.
 
-Cheers,
-Andre
+If the PSCID is moved into the invalidation list like Intel structured
+it then it doesn't matter for SVA, or really anything.
 
+AFAIK the only reason to do otherwise is if you have a reason to share
+the ID with the CPU/MM and the IOMMU probably to coordinate
+invalidations. But if you do this then you really just always want to
+use the MM's global ID space in the first place...
 
+So I'm not sure :)
+
+Jason
 
