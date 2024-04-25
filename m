@@ -1,139 +1,80 @@
-Return-Path: <devicetree+bounces-62569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10458B1AC0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:15:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1325F8B1AE1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 448201F224E0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:15:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9721B1F23817
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F673CF7E;
-	Thu, 25 Apr 2024 06:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094FA3FE2A;
+	Thu, 25 Apr 2024 06:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="J0Qlka3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F2327473
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 06:15:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F31249F9
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 06:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714025702; cv=none; b=U0DnSQoI3o7YGxaw0g2zM2vJLssSKKakOUL0ygD4zG8TwD1GDyJ30MOAQbCqJYtfoQ86ODXEqzJHpztnXPhXJ1s4hxW7znZveK2Hr0n/Q/Nq+9A/YbXvjQP/yjf0D/fjmkHuuNYjQWBcDsBKPgLxEoUgbJzefJjZfb4gxUobzUU=
+	t=1714026174; cv=none; b=toxXeDeo3YJ8GEh4VPgQI1dNhlLomTEsSsuRIlTcOkpF8M/GGnUc51rD3eq6Wn2hM+m9Sb/7pCI5RGxh7Osd1sdfmhtJ2UeSBTa/X/IguYwmgY1r2w2RjppRt+T49ql/hIGQcoWKELOwCbuLowUJqO+woeDgxh0wDHM6yilM97s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714025702; c=relaxed/simple;
-	bh=KsjKRFHHKQ+0GZOnUi9xLCWM4ubx9cXXQiLPw7we0eA=;
+	s=arc-20240116; t=1714026174; c=relaxed/simple;
+	bh=Ue4DWi0QD52B1nKNAzf4PVh+IQ4I0X4KROOINeGW2bs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BIpPWTlRaNS6ZstlwCUARFvuOEvP8Konugghx5ugsg79/LBq6spIFXaRUM3RwC1ySVFp5UAZ7I7Wu/gKvPycElAEMHx2JdvpPHYJgx2sBM+h7UWs0rUizwM+I+e5fD6OHvTI98Frt4EIAjxnZB6jqtU/Trs/rJGE1q0JL+9qGnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rzsNW-0005pe-V0; Thu, 25 Apr 2024 08:14:42 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rzsNT-00EDGW-EW; Thu, 25 Apr 2024 08:14:39 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rzsNT-008Mht-17;
-	Thu, 25 Apr 2024 08:14:39 +0200
-Date: Thu, 25 Apr 2024 08:14:39 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Xilin Wu <wuxilin123@gmail.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Junhao Xie <bigfoot@classfun.cn>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Tengfei Fan <quic_tengfan@quicinc.com>, Molly Sophia <mollysophia379@gmail.com>, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 02/10] pwm: Add SI-EN SN3112 PWM support
-Message-ID: <nuq56pinjqonlo4crfibtb2ddlwvldurkphomsyyqp6iupqpbk@u6kun3qvstw2>
-References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
- <20240424-ayn-odin2-initial-v1-2-e0aa05c991fd@gmail.com>
- <af62742c-8d6d-4fa9-b2e4-f83253e6e388@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=H4vGfueC9V7VVE/17El4q/O2NKWVFTssvNVi46XcqLm5EU/Ntx4HR++xGPiZoKK6sANyM5t2m1svLO355cpw5y8qVZqU2Qwy4H25xsw+Cuzka6LaKbR/J7GSMmXO847a9FmU5OMfChXxWlGHeUR6whOauHhl9LX2lM3ozMR2Rs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=J0Qlka3k; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=SDHGiDEJmLvzRYT3TaLtU3T7lep9rxFUwhCFeg6kHtw=;
+	b=J0Qlka3kTVlTFb8uiCxic55R3RBtEYwhMf4GMtVm4zZF1hdPRGR+4HEwLjxjxo
+	V4XFkDSIWL2PFu/p7c5BTQ7GLodguJWLFkto8QvqB1zH8aQkfe/DI7RZ/yuvGTLD
+	QqxjSR38R02fhrWM8AM8zCrYTxfpPunQ4R7GA5VYc2xXM=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp2 (Coremail) with SMTP id C1UQrADXPhiB9ilmE2pzBA--.45333S3;
+	Thu, 25 Apr 2024 14:21:55 +0800 (CST)
+Date: Thu, 25 Apr 2024 14:21:53 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/2] ARM: dts: imx6ull-tarragon: Minor changes
+Message-ID: <Zin2get3gcS8+AQe@dragon>
+References: <20240416190659.15430-1-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rl24wix7isqmyofu"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <af62742c-8d6d-4fa9-b2e4-f83253e6e388@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240416190659.15430-1-wahrenst@gmx.net>
+X-CM-TRANSID:C1UQrADXPhiB9ilmE2pzBA--.45333S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxtxhDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDwPLZVnxcqq3tAAAsR
 
+On Tue, Apr 16, 2024 at 09:06:57PM +0200, Stefan Wahren wrote:
+> This small series contains 2 changes for the chargebyte Tarragon
+> boards.
+> 
+> Michael Heimpold (1):
+>   ARM: dts: imx6ull-tarragon: fix USB over-current polarity
+> 
+> Stefan Wahren (1):
+>   ARM: dts: imx6ull-tarragon: Reduce SPI clock for QCA7000
 
---rl24wix7isqmyofu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied both, thanks!
 
-Hello,
-
-On Wed, Apr 24, 2024 at 09:37:25PM +0200, Konrad Dybcio wrote:
-> On 4/24/24 17:29, Xilin Wu via B4 Relay wrote:
-> > +
-> > +	/* use random value to apply changes */
-> > +	ret =3D sn3112_write_reg(priv, SN3112_REG_APPLY, 0x66);
->=20
-> "a random value"? sounds suspicious..
-
-I smiled about that one, too, remembering https://xkcd.com/221/
-
-> [...]
-> > +#if IS_ENABLED(CONFIG_GPIOLIB)
-> > +	/* enable hardware shutdown pin */
-> > +	if (priv->sdb)
-> > +		gpiod_set_value(priv->sdb, 1);
-> > +#endif
-> > +
-> > +	/* power-off sn5112 power vdd */
-> > +	regulator_disable(priv->vdd);
-> > +
-> > +	pwmchip_remove(chip);
->=20
-> devm_pwmchip_add?
-
-Note using devm_xyz only works if all requests before are also using
-devm. (There are a few exceptions, but these need proper thinking and
-extensive commenting.)
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---rl24wix7isqmyofu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYp9M4ACgkQj4D7WH0S
-/k5jTgf+JqJAnfN3fXmdz5yWJWeCDGj4DZTK3E0EJ2lu7asHWc+Pp6fM19DKN/F0
-dsr14eDwjo1po1ptkFeRa04QeB7yeqMay3j0d5X4XUOm/SIHEI2Mn/ky5ZlVOwr7
-ciorY8ICvuZ4YI/4306YGVmlbcndaA9ubGwykp0c9JYUqdSMWgwBGy4dVqHoKPmR
-RiM2SBTJAVd5Qw2LmSMMZ+uU25dWYCiM4eHrkbphTMhYItgqvTWkZhiTEdDVmU/p
-2RqsoyKgfJKcMfW8eF31vZd7qkRjPErqQU76uzhW0Cm9nPDJERrXkkB+fGEzOcAh
-6ros37wvCLEtFIp5fA2kOsh/PhCMeQ==
-=Hs3D
------END PGP SIGNATURE-----
-
---rl24wix7isqmyofu--
 
