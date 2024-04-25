@@ -1,234 +1,217 @@
-Return-Path: <devicetree+bounces-62641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED3D8B1D92
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:16:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E788B1D9A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 430DB1C23BDC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:16:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 132291F25272
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439BE84FC8;
-	Thu, 25 Apr 2024 09:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81CC84D0D;
+	Thu, 25 Apr 2024 09:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=BLAIZE.COM header.i=@BLAIZE.COM header.b="ZW/mUDN2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yzh3o42j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-0063e101.pphosted.com (mx08-0063e101.pphosted.com [185.183.31.155])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73BC584E0B;
-	Thu, 25 Apr 2024 09:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.183.31.155
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714036558; cv=fail; b=a/mGt0O3/ik2/bvFKk91KoomaHrdrFOF9ithVZu/TOHStlS4WD2ZtNqAwbJRaUsV3UNFLSYXmqAPKu0zSc4OtQw5rYCW86InzYQmmOioYXTbRijqQw8n0KA4UsRpYA6A1n2NNaWBjzudO8VIamuHUUhoChIvPg5n+4g5cyEPvBs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714036558; c=relaxed/simple;
-	bh=MlfRmIuGRiTyr3pFbKo2pBgzrPelpB5jNhm6CCx4vIE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=dOrskuvQhQP7kpJ6RHJ9K+PYiPgXjyY9joNIdoSaaHRKVHMEsJAAktEFrIq9dsajFFAODR9F7VAProajML+jhYJ/lcnvwALCKo1bfNLFTcfVWkZCpMqkQsxHWb6yZbouRWLzCU4gjygjqnPGBT+UHCiL5re1qiOEGlVhT1TqEQQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blaize.com; spf=pass smtp.mailfrom=blaize.com; dkim=pass (1024-bit key) header.d=BLAIZE.COM header.i=@BLAIZE.COM header.b=ZW/mUDN2; arc=fail smtp.client-ip=185.183.31.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blaize.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blaize.com
-Received: from pps.filterd (m0247494.ppops.net [127.0.0.1])
-	by mx08-0063e101.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P9FHIT011746;
-	Thu, 25 Apr 2024 10:15:21 +0100
-Received: from pnzpr01cu001.outbound.protection.outlook.com (mail-centralindiaazlp17011007.outbound.protection.outlook.com [40.93.132.7])
-	by mx08-0063e101.pphosted.com (PPS) with ESMTPS id 3xnxsfs3k5-4
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Apr 2024 10:15:20 +0100 (BST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h+PMHhidIjeOX2Db12KhhfVTQKI/z5ziVtSNe8bxyDyKVIyP8yChL52onNBgzCm6A3F+CAwe2p+hZaZDZOCcJgRNE1xg1n7TRQTsmW+PvRMz0u3zugNKSIEdqEq9m1E0fgHYacUclvHJ7WiA3m97BBO3U/mDbWs0cRUwLoNEAFw9lhSFti7svDVBCAXlPh/uqahM7BcEYhjrn3oiQiL5rnOQ/SXt/WrKNxurx4S8FPXXnnaqaFMdpuuPDwF+SF+3S3CJKlg4eIba//8WYPfb9WMX/mAyYRWSzK7HlDtFuC85w2caW0jhbF2FJnMUOjrMD6o1j/6Pco50c1p3x8GQeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MlfRmIuGRiTyr3pFbKo2pBgzrPelpB5jNhm6CCx4vIE=;
- b=Jnx/4a+VvfWhpDu+xoBqcy1M5oF1BOn1Y0ZrrbuUFyreMPwWU1MBkAO40vLz5hULajLXv2sKgDH1qpXrgZ1m5EKFukL6ybfL6Gayv8qRUD6Qk0tQ65Uhhq/whSHzyOIN5iRqoGVS4E1Jv67JoIDpwIKqW5g8VckjTW5+rFSF+pLizWHfvzyN4H7T03Yl/uueDiYNwmX5jkluSRmRvCb6gU678MADGj+dfS6Nb80LlAgyITA9V7j/lrnlKZfoTp3VqrQiQ1pU97UIWvyVA1REpzDincCtCz2MFhLLeCwvlFdP78mMp7K7vUAcg375LN4f0jCyygbygbkpKZLR5AcUnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=blaize.com; dmarc=pass action=none header.from=blaize.com;
- dkim=pass header.d=blaize.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=BLAIZE.COM;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MlfRmIuGRiTyr3pFbKo2pBgzrPelpB5jNhm6CCx4vIE=;
- b=ZW/mUDN2ZXvJUKgLGeUw6AvsijWwvCnnMfN+eUD6xrou5HnH5VBo1LGGELXYO9QRx5iDbY4bdwThmDM30NFexbJW5EvZjfYMi77Y8Vib6BNSO7c9l9EW8U3Z7SQuonQhNVtTVGvACCb+mcQPlJG/KQ+xthS/SEmjYx8rS4xzfXY=
-Received: from MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:12a::5)
- by PN0PR01MB9905.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:14c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.46; Thu, 25 Apr
- 2024 09:15:06 +0000
-Received: from MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::309a:12cf:74a4:5655]) by MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::309a:12cf:74a4:5655%3]) with mapi id 15.20.7472.044; Thu, 25 Apr 2024
- 09:15:06 +0000
-From: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
-To: "robh@kernel.org" <robh@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
-        "olof@lixom.net" <olof@lixom.net>,
-        Niko Pasaloukos
-	<nikolaos.pasaloukos@blaize.com>,
-        Neil Jones <neil.jones@blaize.com>,
-        Matt
- Redfearn <matthew.redfearn@blaize.com>,
-        James Cowgill
-	<james.cowgill@blaize.com>,
-        "heiko.stuebner@cherry.de"
-	<heiko.stuebner@cherry.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "macromorgan@hotmail.com" <macromorgan@hotmail.com>,
-        "sre@kernel.org"
-	<sre@kernel.org>,
-        "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "rafal@milecki.pl"
-	<rafal@milecki.pl>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "konrad.dybcio@linaro.org"
-	<konrad.dybcio@linaro.org>,
-        "geert+renesas@glider.be"
-	<geert+renesas@glider.be>,
-        "neil.armstrong@linaro.org"
-	<neil.armstrong@linaro.org>,
-        "m.szyprowski@samsung.com"
-	<m.szyprowski@samsung.com>,
-        "nfraprado@collabora.com"
-	<nfraprado@collabora.com>,
-        "u-kumar1@ti.com" <u-kumar1@ti.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 5/5] arm64: defconfig: Enable ARCH_BLAIZE_BLZP1600
-Thread-Topic: [PATCH v3 5/5] arm64: defconfig: Enable ARCH_BLAIZE_BLZP1600
-Thread-Index: AQHalvEQwh7JmTo580aZc0gDdFDHsA==
-Date: Thu, 25 Apr 2024 09:15:06 +0000
-Message-ID: <20240425091403.17483-6-nikolaos.pasaloukos@blaize.com>
-References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
-In-Reply-To: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MA0PR01MB10184:EE_|PN0PR01MB9905:EE_
-x-ms-office365-filtering-correlation-id: 495bc1bb-ff3a-40b0-485e-08dc650832ca
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- =?iso-8859-1?Q?IQMr5h/DeubhYyqXtKGstT1Hc6BpqhEwZTj7LWngASxqRPmWKlPg5Ve06r?=
- =?iso-8859-1?Q?+nDidrO1zgtPbCbNLeErz6GDW74cGvuwBa+hBD2QMhZZaIRS+qsMDYjXWD?=
- =?iso-8859-1?Q?tJOLW7zEX41QiJRS7PtWl6DO0Ux8AI1oAykvn0ep9NL4SPAepSnAcgz5SN?=
- =?iso-8859-1?Q?F2nLtvj7L7NrpfYnAxGZf+z0f7AMa3dIvvbPXzXgTONOl+Btn+5hGzN9uy?=
- =?iso-8859-1?Q?bWSiYZLL9AQKUoHGHwRzSERNKsB6seYysOjHIiDzkSS4Xl/EFpCwUcDGMF?=
- =?iso-8859-1?Q?seGJgu4f1BwxPanAyLa7cwAShKvUmeVgeIRuzhs8x3lHVmnT+6in6xfk4G?=
- =?iso-8859-1?Q?cTLU6wp1fmfvt5IYxFzQd3rDqRrDZfQ6YQDuze9UAvxfbL5q/DIOuv58Cr?=
- =?iso-8859-1?Q?aQEAP7nCRVx9r0l3YuTuZfHG3OvK8Gk43XB1A96Mjt63X3BIUVH4AEWOVB?=
- =?iso-8859-1?Q?mt5FHLweP3g5UmoJuwaRhfaH7Fd0wl9OhbnotUZNJGoz7JM55k3glnjXPP?=
- =?iso-8859-1?Q?xSQko65tIkPFRxVk1vx1hrpkyCFF1v15q1CGyQjdl6WFgzW8/3vXWnIrb9?=
- =?iso-8859-1?Q?HW2wbdtUb1snfMkphk8Zr5r0U7Kx8j1U2mUnVEyMxlnU55q/tjHLrsDijV?=
- =?iso-8859-1?Q?zF3SC9TFa7XVxyYINAFSJbA4vf5pC5F9abJ6/wY++Ad0Of//+adaphG3ZX?=
- =?iso-8859-1?Q?laQSgifRsuHxd2vNHKG1CqTbA+QrfT8mZAv9eJgTB+OBpeGxGNV/oVrggW?=
- =?iso-8859-1?Q?HyMiCLM3pd4nrwbkBh2fUgH93Xy67Ajrq6vEvJ+rOSESRXxGes6rhiUmmT?=
- =?iso-8859-1?Q?KDEVTBYUq/7j8Cy09f7EZIMXb3v1ThUL+2mUTkkLzQM5jJP2A1ePPijRpB?=
- =?iso-8859-1?Q?S4ZbRuYxx5/n2/NLkgceHbqHPYe/oAtTdUli3jYAtoY9uPsDdeO78C1fGj?=
- =?iso-8859-1?Q?J93w0NAt2uRmyvYCWeKkw+J26UDCI5b8weJttcOi1knnGOGBqBrPk3dgF9?=
- =?iso-8859-1?Q?QTzeAFbTuvfLNtSa43YSQMffQyj8xXqq5WA4xiKpzTqN9GHEYk2qS/bMDO?=
- =?iso-8859-1?Q?AlIJpAl1bnun0+zBMjW4IkNftGv0WqArt4ZC8FOA2aREtzH7ltCvyEbsol?=
- =?iso-8859-1?Q?hDmz2PW92RDvQhliAAmErxESqYcoIY3WVCtIdoAp5pZ3V8mdlURpxrFLm/?=
- =?iso-8859-1?Q?efRV0rML1LMrYk9GGbjX5waS3ogQicSjlBZ8+4iK/dvTssbaITHTYfCjqP?=
- =?iso-8859-1?Q?+knxwohbbg83UHgRmSaL7Ekd6y6MSApZ3KGfMn8jul6fSWf2YVUTZQoIRu?=
- =?iso-8859-1?Q?V8zJ7YJhoIEHX1TP9zpdPLlQQaN3skf2mogZNkci6tia38HrhujD1eTUie?=
- =?iso-8859-1?Q?OPRoPr6sSa5J7RcWC0xtKzQwKX9FzKfGw1YDZxBGUh/J+ib2RHwmc=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(7416005)(921011)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?Y+2XvBI7geboykKv6pp2s2VU8bfkZXdq7ix0XPoY8Ca2iem9Z7kXV7Xm5m?=
- =?iso-8859-1?Q?b7jhjDoQD0cijtuVxUfCkdukmw6gaClG6PWs5CC976tKJV4B2XHMpDoY3X?=
- =?iso-8859-1?Q?W5gJ0RWe+G/u2LKQC9K2uA2Cy4vT59bdMYynRixUE2KBWq+0azAuIMoDTn?=
- =?iso-8859-1?Q?cZ5W9cr6hOiaD+r3/MRWdL+2K6Ht8ya3MSyUHyaRzvpjJtiPrQQkAInxds?=
- =?iso-8859-1?Q?t4fXopKtDXDehtJptAoUyvO9RPoTGYzvdyGN/uYtPp087GuJ9GwZ+uhs/+?=
- =?iso-8859-1?Q?nRGhYoxP+ARTtJuZcYMF6S7vZM7KP78gP/ULRgsDFfi5WvVusCQMqs95Bs?=
- =?iso-8859-1?Q?FnNSnz63ujAt8R5g0q50DAA1KFsnmnb7nuZaRrZy6/5KxH7t1L0rL9QJel?=
- =?iso-8859-1?Q?la2Qiol7XSw2tafoa5RIzdE1DmQWqOhJL+0JJ+njG9IXRnUMmLdfsUloM+?=
- =?iso-8859-1?Q?/sdLbo6stxX8h3UDmYIgn+9JRaNWTe6ZKkoaIN7fVl/pGB82y3fr51VsPA?=
- =?iso-8859-1?Q?jnJ/TdHduFp1ea7ray2ijtwbfxLU07VgUetEIDJ6gp40abKWnTtMsRXFWh?=
- =?iso-8859-1?Q?ChOfci/sLWE1RrPPqSeuXcTW44PZ9zHAwIMN1DRdgR6l+vyKUXtIDHK3mz?=
- =?iso-8859-1?Q?tclGjxcQjlhxeAJ01XPRCHWSLoIUgDkEtVO9ZVCSTvKWCK+dKTlekmHMDa?=
- =?iso-8859-1?Q?wWjsumZgO4g64968gOIKe8zK6lAZQUsmIpqzy01mVETz3gN7GXXHpCAhl6?=
- =?iso-8859-1?Q?uPg4nIP12Gvksw1OLfYxuUBhW3z0s+EpnUxPJneCFfz8rFEDoBgm2M+A0q?=
- =?iso-8859-1?Q?rV31Sb7sgvo4ovQWbM33MQEIMaISDE4qLS7LjaPFAVuSDpU4KYa0sYh5py?=
- =?iso-8859-1?Q?UfruGrFUfmZhtpyXMZqKf3zd6k7GZWl2uH68hr5FQkk/bEBEuhjFHhNBjT?=
- =?iso-8859-1?Q?+6kM8ff+MccHB/8kBEHCcc0KL+CYfjyqhjJcHmDeq1G4dn2vBEnW+aTbX6?=
- =?iso-8859-1?Q?2axpi+9g9aKyq9kGEOcf0RYvM4vkTMHud6RZcAoxQpNUlyHYcgd9mETyUa?=
- =?iso-8859-1?Q?V4IR/FVTxwqZkg4tJ7ot+vxFRQSqdGxskYWeAULUJwLU+q2wcIsmMpmtiM?=
- =?iso-8859-1?Q?J+kAPgWQsgSCBTj3JGgi3hiN7wD03bpNkggWLzKDogzAcLONpOn1IWGDWb?=
- =?iso-8859-1?Q?zyPjl7g754bUld9/32Iro0mcJqaFzlxSY0t+GH629IllRta4P4cmsuQ0sp?=
- =?iso-8859-1?Q?e3rQDcHfwH0QwmLe+dCvekFJ4zllaY55kCLXmArqBFGr7JaXW9An+JLJLO?=
- =?iso-8859-1?Q?SYbyWHhc/ibcX8Eq4qE7fFWtYggqvz2ar4PsGHd3MpYGrirEyZjH6AVA/L?=
- =?iso-8859-1?Q?BBc7JOmqywwVtlOdN/zGN8mFDa5j51yZ0tDKlUumCZgMMZWuKl0y9JalyF?=
- =?iso-8859-1?Q?rp9pNsb7RIusW2/ipyNyz7akmrjtJls2ntqZa/pjJ71uwVlDYomyjPCvuE?=
- =?iso-8859-1?Q?ZIOYVJ9kj9uDdXMq+CDN4NV9vFC08QF13o7xPirtXRD4o8xmG09TBQyY+c?=
- =?iso-8859-1?Q?6A1FAnHowOYX7VcOn/pk/IrO3xAHtWN+R49003AP9iApfV+SGVX/0LIX7F?=
- =?iso-8859-1?Q?qPfNZdwFgdh8pgYVWV3HkyjzDS+zNlWYVXi+AQrFj24yqsC01xG31PHQ?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B7182D82
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 09:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714036609; cv=none; b=qyXqd7LMwv3tT1MiaIrHJ3ABcUQjHvyHojPbqN5ir8+c0QVwyYq7B/S+C5kzSxFNJIEnuyj2GP2kVOLTt57TfrvjrNKOWPT/ueXiAOgIxrJeKmy15hwQPKbUz7WxWBeVQPHRVuOBU4NI/luOHu7llPLjyqXSkd0qfT/fSHKbfFw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714036609; c=relaxed/simple;
+	bh=f3133uqFv4RXCOMEFhCG0DPHJZPjuMDDykb0W1SZ6oU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PJziij/n3OLaMN6DWQFbiHPek1DbKqbL4gVermV7eLXViC1F5MbuGnRiXBEOteoI6SU4NEPCnHOtf3tR9DkiLAx2nsYQ5b9f9GaxLdOXvBm2eORw/9XHLw1ndwRmigWa5aWPnrKOjb0f+iFAe6vQfpd2U/Tpr4PTHfBnq8iCfSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yzh3o42j; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41b34d344a0so5943905e9.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 02:16:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714036605; x=1714641405; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AYDzBhKtpm+egzgFtB4HtgBcIwuui9EZnOvvgEKNBgs=;
+        b=Yzh3o42j8rhw3tdPPq/BR106A7ibm7ZlDffAW73faVJc4NkfzessUv6wlTqRGDfTmU
+         NHAnQbY4bRxTRj+E958+62IFa9aqNz9um0BCCZ5J47fmEV6bOKFBQWIJYeCkfwWzh+03
+         JWPSmX3fkyUDnDKi5cp+G4gTPu7UEJyrHbOrJgisdEBFbYEa/hGOSVToK8uHL1lYKLcH
+         /ZgPc8zB+0XM/HQ4E72YYdX5+hBY/XBj6h7HMzRbWR0Y3y+WAkk78ni0C46/3r9az1b+
+         6JVYnKa0sjv4H49RThB5RE1HR8h4ubrESjLEsq49Ay5ihLWuE8NXWN9wIb+QexPXR+9o
+         mHLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714036605; x=1714641405;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AYDzBhKtpm+egzgFtB4HtgBcIwuui9EZnOvvgEKNBgs=;
+        b=VVkX/B3+tz2ZBV/5Xii//9xEBe0sAzSdzMiipxANJu5PYUlzTEIcGUbhZ+dXnUmDAO
+         2U0J1Q52SCHE8UGwJxZCEh3VrT8jesi1lNLlqBqNRrQ5d2u5dafNj8thgKSjMO8tBQ6L
+         NL60ggR/f1sJneNsNhSaqWPmPBINNbXzXFVwPRiTJp1REy+kxE1V0aaItPNnjSEvsWSP
+         I3xfPSYPxhoOtHYnXb4zywv9WqMhLDG/tZzBHGl7xz5jOb6YYcvbbOFHnLC6kSSRtyH4
+         ClVH3FxMnPeTHQCtvjy2cEJz4o5XiWvP1g6tsfvAgY08AC4ErVQISUSokeKKaOxaAcuV
+         DwcA==
+X-Gm-Message-State: AOJu0Yz22WPHNZMxcHa71qHzo+/uZajJwVSSkbjQXr8pALUjDIgsMKOY
+	9LEWlHAaPLgiSkD9Q/e2SocVZHcI0SM5ysLiIrr2FfEnpHHpXjiLjNVjvsiz0j8=
+X-Google-Smtp-Source: AGHT+IFb+m8jFDSt8hUeNKrGm9liMRSXWx/YeCr7s2ouSLC7zhPY05EJh/Uh0z/U4sbYCNIueDt78w==
+X-Received: by 2002:a05:600c:5119:b0:418:c1a3:8521 with SMTP id o25-20020a05600c511900b00418c1a38521mr3935713wms.26.1714036605078;
+        Thu, 25 Apr 2024 02:16:45 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id t4-20020a5d4604000000b00343826878e8sm19297903wrq.38.2024.04.25.02.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Apr 2024 02:16:44 -0700 (PDT)
+Message-ID: <f45a76b3-996f-4204-9b9c-289d40767708@linaro.org>
+Date: Thu, 25 Apr 2024 11:16:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: blaize.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 495bc1bb-ff3a-40b0-485e-08dc650832ca
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2024 09:15:06.5488
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9d1c3c89-8615-4064-88a7-bb1a8537c779
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RzGQQn3WK38tQVvWbInCGz0AxcwCMJM5bXZZzlGrk8klASHUySbjuNgZA/dl9jg7q79lf562giKx2Wq67+bwZQJTzZW1AOR11xfLrCdk3wU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB9905
-X-Proofpoint-GUID: s2Pauj-U6oIzFgNRO2qlb3iC2L4Py8AO
-X-Proofpoint-ORIG-GUID: s2Pauj-U6oIzFgNRO2qlb3iC2L4Py8AO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-25_09,2024-04-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0
- spamscore=0 bulkscore=0 mlxlogscore=800 malwarescore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.21.0-2404010002 definitions=main-2404250066
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] dt-bindings: arm: blaize: Add Blaize BLZP1600 SoC
+To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ "olof@lixom.net" <olof@lixom.net>, Neil Jones <neil.jones@blaize.com>,
+ Matt Redfearn <matthew.redfearn@blaize.com>,
+ James Cowgill <james.cowgill@blaize.com>,
+ "heiko.stuebner@cherry.de" <heiko.stuebner@cherry.de>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "macromorgan@hotmail.com" <macromorgan@hotmail.com>,
+ "sre@kernel.org" <sre@kernel.org>,
+ "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
+ "andre.przywara@arm.com" <andre.przywara@arm.com>,
+ "rafal@milecki.pl" <rafal@milecki.pl>,
+ "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+ "andersson@kernel.org" <andersson@kernel.org>,
+ "konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
+ "nfraprado@collabora.com" <nfraprado@collabora.com>,
+ "u-kumar1@ti.com" <u-kumar1@ti.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
+ <20240425091403.17483-3-nikolaos.pasaloukos@blaize.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240425091403.17483-3-nikolaos.pasaloukos@blaize.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable ARCH_BLAIZE_BLZP1600 to get proper build coverage.
+On 25/04/2024 11:15, Niko Pasaloukos wrote:
+> Add device tree bindings for the Blaize BLZP1600 CB2
+> development board (carrier board), which uses the
+> BLZP1600 SoM.
+> 
+> Reviewed-by: James Cowgill <james.cowgill@blaize.com>
+> Reviewed-by: Matt Redfearn <matt.redfearn@blaize.com>
+> Reviewed-by: Neil Jones <neil.jones@blaize.com>
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+> ---
+>  .../devicetree/bindings/arm/blaize.yaml       | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/blaize.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/blaize.yaml b/Documentation/devicetree/bindings/arm/blaize.yaml
+> new file mode 100644
+> index 000000000000..8034aeb7a2b4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/blaize.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/blaize.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Blaize Platforms
+> +
+> +maintainers:
+> +  - James Cowgill <james.cowgill@blaize.com>
+> +  - Matt Redfearn <matt.redfearn@blaize.com>
+> +  - Neil Jones <neil.jones@blaize.com>
+> +  - Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+> +
+> +description: |
+> +  Blaize Platforms using SoCs designed by Blaize Inc.
+> +
+> +  The products currently based on the BLZP1600 SoC:
+> +
+> +  - BLZP1600-SoM: SoM module
+> +  - BLZP1600-CB2: Development board CB2 based on BLZP1600-SoM
+> +
+> +  The compatible property should follow the format:
+> +
+> +  compatible = "blaize,blzp1600-cb2", "blaize,blzp1600";
 
-Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This is a friendly reminder during the review process.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 2c30d617e180..7d368a8911bf 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -43,6 +43,7 @@ CONFIG_ARCH_BCM_IPROC=3Dy
- CONFIG_ARCH_BCMBCA=3Dy
- CONFIG_ARCH_BRCMSTB=3Dy
- CONFIG_ARCH_BERLIN=3Dy
-+CONFIG_ARCH_BLAIZE_BLZP1600=3Dy
- CONFIG_ARCH_EXYNOS=3Dy
- CONFIG_ARCH_SPARX5=3Dy
- CONFIG_ARCH_K3=3Dy
---=20
-2.34.1
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+
+Best regards,
+Krzysztof
 
 
