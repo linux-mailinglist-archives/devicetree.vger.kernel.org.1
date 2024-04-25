@@ -1,205 +1,110 @@
-Return-Path: <devicetree+bounces-62669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014418B1E6D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:50:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C008B1E8B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 11:55:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15A36B281DD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:50:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB9BEB23841
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:55:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95CE785942;
-	Thu, 25 Apr 2024 09:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3092785939;
+	Thu, 25 Apr 2024 09:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YcOLyJdQ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vm4yrkwm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021B57FBA3;
-	Thu, 25 Apr 2024 09:49:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED77A84FD8;
+	Thu, 25 Apr 2024 09:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714038597; cv=none; b=RS3pQ3w3FGCZTwYINwc0eq9Q7Zzc5gtZ2wxaQzRuMkQMFCb+PPxG9dsuC7prrv6ObyZ2oNHKPwx04dWDkRpoyb1tdxuPJcDgX0U3weVQ+8Q1KHc8EH39WIWcws3eXPpr495NiXPqkZbm203EoAAhwFAbXzttVDogvYB8XrvulH4=
+	t=1714038910; cv=none; b=ES7vN5y2+43EtLopW565R1IvOefZtXPaF6N2s53xneLeGlCvGTZGs4p2ZrQYkm1SHO/dixBH57Omo9U5tGWUud6VSCIhbXLRJm9vyZrSH24KJoJYr6PfbkPxmdc56nXcmFzPLLs00kvygH4ziuEF4U8FRgEHWZ0hcgMfWttbm7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714038597; c=relaxed/simple;
-	bh=5tSa+XdwxUr52EMnOTzzY6vvsf0op3MWmklMQ6k9rJk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FJfN3+pKlcwRmnL9moPRwgQBSoi+Ry9/bz2gJn8DNEmaQwkCatIFGcqQWP5FT19di2vwv/uI5KeJputhoXoBX8eLz88paxHfYuegD9V1sdsFlvs+FF1L3IgLmo1WdguP4saUDO6v1dIsLR7uMtqyZEGAVUzpCS5BIx1PjHdORJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YcOLyJdQ; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-4dabbd69c71so279221e0c.1;
-        Thu, 25 Apr 2024 02:49:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714038595; x=1714643395; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ErPvQkF/vljb/tkpyDkrkIQkzNQ5+ZowyjVhUrEcQ1c=;
-        b=YcOLyJdQKJPhl83QoyxyUB700s43e3TojFlO+wZUsds55SJ5SbODVDKFMatgLEJN/P
-         cXcOzQBPsiw49kfmcob2cc7vXINn/VEnNc3zP4rp/JUJ9XHyFOyvFczt8/qfnPQFFFt9
-         hf83cJYnwGQSlw6VJfmMJAuKSLTQT/FfAMV271CmyhNKV9STXwDDVt3Cr/LPmzhReNCz
-         pbOgtDmq8ohFKmhz6VzzDkoXKoCD/IwR0d9CHuCS4U2roIiNOGmbSqf+wn6UxWlNuvP3
-         DR9wQ7JGzIsH4WUScux171JWWhRoZA3CmG0CtdIhgklairXSPBJ3vgxBjBJ1mnPZzqlV
-         HwlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714038595; x=1714643395;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ErPvQkF/vljb/tkpyDkrkIQkzNQ5+ZowyjVhUrEcQ1c=;
-        b=ltcLU5+cLgZGpsxg2ap+zmXOgkaPbHKSl5s1ptsWy0sVAKbCBC1LIw22EeUpgLkNqq
-         /qgJxUAgEc+fdbqYFJUM0NxtF4SXs6z8mEG2WJQHEo2RkOpxxDwKzvVfwJMgTXj0gT1M
-         WKKNmu3wjZZS+D1GD9pmV6O/8nWkUXXkV227W0RB2EAW53dbSwOGICJe1CKHMRkfMNhW
-         hzDJjM+Rc/xcGVTLUir3EbCW1GnSPUNhn2Am5cWYl01Lg/i90l/NZNaBi0nduxG63YD4
-         ualwb/bGSUeLJN3TGCXons8StGleRKiwJxpOiZI5m3RuNVbC37rKPKdrYl9RbSBYaF9z
-         bJKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrXkcXoXZaEq/niOCIsz09HD2pqQ0+Tt4WdTbK/GWcQQEOdYbU84Vpq76Dxf89EmssnFoExjDxGGCy6WgrCgfBuFKRAkhsXCnQazXYLWBpFLIt6fC/ZbBiHF73vrlbWGIkDhWugXYs8miYvzelUVipRoaPdHxxxF4JEKoaZv1/q+Qylm+sqpNkKgw/c9fl3f95sTfy5RrbEblUflp2Y9wFU2fgv/X6yA==
-X-Gm-Message-State: AOJu0YzhoSQASw45KH6WRukkcWpnl625FIk5Hcb/smCXDx9bQTxQe6S9
-	pXHycNTvHyM00bKClJjSaAbLO3w4aZ5nhz7lPU5qMun/0E+SFCZf+KgkWDWJqUVPC57tHHBIT9p
-	YeqKLOFiyWPWBb2dLyQPmwn9lxO7GCIGDLFk=
-X-Google-Smtp-Source: AGHT+IHmM5kDrFVI8C6I07r53yrfEvNBU/EG602s+W8jo02QwdWvmMuOWGNCILCK/W+ekuHnEWNUypLit3y7lZIy7B8=
-X-Received: by 2002:a05:6122:17a3:b0:4ca:80c5:753d with SMTP id
- o35-20020a05612217a300b004ca80c5753dmr6203687vkf.4.1714038593423; Thu, 25 Apr
- 2024 02:49:53 -0700 (PDT)
+	s=arc-20240116; t=1714038910; c=relaxed/simple;
+	bh=mhOkXnvrTd9m6bVk8OVaKio+gIm5KOT79yVBQ+kv0As=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NXOtdLqRW6lbjdk9f+ETXaz2nhKPJdcEb4Juq3T4urltFW7xnT4KIY/GX86lDp/+3FwwpGaJ1CpXTPGw+r/KaUsq7bEkjciCDrAwL3Fyv3ogGuxrTZdmtKDpxzKvnWFlmB5K/S71RwmHzLKS3iA6KZszWYiRHzgC67WctAsHJqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vm4yrkwm; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43P9svdP118051;
+	Thu, 25 Apr 2024 04:54:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714038897;
+	bh=Oqd8Va/9Fi8Jy6gIQECgrEIS3w2R/1uHYRB1svh8mvY=;
+	h=From:To:CC:Subject:Date;
+	b=Vm4yrkwmfaJyMYI9zG81IC+low9cTk4OL1RNzCg+Ywx47odxn/hZrVcSYaU84teCh
+	 imYafNAilsAJjfTjgw+HjCS8jbWB1YDsO0cuzGRK0BR+c6aMXufr025ch9/1ByG7h9
+	 YrezXsiY0VQlfgXfgIp0zpROUJNmiPeQsMaW2ykM=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43P9svGU070263
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Apr 2024 04:54:57 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ Apr 2024 04:54:57 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 25 Apr 2024 04:54:57 -0500
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43P9suIP083249;
+	Thu, 25 Apr 2024 04:54:56 -0500
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
+	<nm@ti.com>,
+        <s-vadapalli@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Chintan Vankar <c-vankar@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62-main: Add bootph-all property in phy_gmii_sel node
+Date: Thu, 25 Apr 2024 15:24:48 +0530
+Message-ID: <20240425095448.1946293-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240423175900.702640-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV+oVFNUJse0th_PXKhtsUzXa7Mk7ozq5cKZoYX12AMRw@mail.gmail.com>
-In-Reply-To: <CAMuHMdV+oVFNUJse0th_PXKhtsUzXa7Mk7ozq5cKZoYX12AMRw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 25 Apr 2024 10:49:26 +0100
-Message-ID: <CA+V-a8t=fAmMRsxwkXX7KBV=jdSVZ-twpN-yQp1Eb7M+X5T-ng@mail.gmail.com>
-Subject: Re: [PATCH v2 02/13] dt-bindings: pinctrl: renesas: Document
- RZ/V2H(P) SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Geert,
+Add missing bootph-all property for CPSW MAC's PHY node
+phy_gmii_sel.
 
-Thank you for the review.
+Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+---
 
-On Wed, Apr 24, 2024 at 10:06=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for your patch!
->
-> On Tue, Apr 23, 2024 at 7:59=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add documentation for the pin controller found on the Renesas RZ/V2H(P)
-> > (R9A09G057) SoC. The RZ/V2H PFC varies slightly compared to the RZ/G2L
-> > family:
-> > - Additional bits need to be set during pinmuxing.
-> > - The GPIO pin count is different.
-> >
-> > Hence, a SoC-specific compatible string, 'renesas,r9a09g057-pinctrl', i=
-s
-> > added for the RZ/V2H(P) SoC.
-> >
-> > Also, add the 'renesas,output-impedance' property. The drive strength
-> > setting on RZ/V2H(P) depends on the different power rails coming out fr=
-om
-> > the PMIC (connected via I2C). These power rails (required for drive
-> > strength) can be 1.2V, 1.8V, or 3.3V.
-> >
-> > Pins are grouped into 4 groups:
-> >
-> > Group 1: Impedance
-> > - 150/75/38/25 ohms (at 3.3V)
-> > - 130/65/33/22 ohms (at 1.8V)
-> >
-> > Group 2: Impedance
-> > - 50/40/33/25 ohms (at 1.8V)
-> >
-> > Group 3: Impedance
-> > - 150/75/37.5/25 ohms (at 3.3V)
-> > - 130/65/33/22 ohms (at 1.8V)
-> >
-> > Group 4: Impedance
-> > - 110/55/30/20 ohms (at 1.8V)
-> > - 150/75/38/25 ohms (at 1.2V)
-> >
-> > The 'renesas,output-impedance' property, as documented, can be
-> > [0, 1, 2, 3], indicating x1/x2/x3/x4 drive strength.
->
-> The documentation says "x1/x2/x4/x6" for all but Group 4 (P20/P21).
-> Still, the actual values don't seem to match the magnification factors...
->
-> > As power rail information may not be available very early in the boot
-> > process, the 'renesas,output-impedance' property is added instead of
-> > reusing the 'output-impedance-ohms' property.
-> >
-> > Also, allow bias-disable, bias-pull-down and bias-pull-up properties
-> > as these can be used to configure the pins.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> > --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.y=
-aml
-> > @@ -111,6 +116,18 @@ additionalProperties:
-> >          output-high: true
-> >          output-low: true
-> >          line-name: true
-> > +        bias-disable: true
-> > +        bias-pull-down: true
-> > +        bias-pull-up: true
-> > +        renesas,output-impedance:
-> > +          description: |
-> > +            Output impedance for pins on RZ/V2H(P) SoC.
-> > +            0: Corresponds to x1
-> > +            1: Corresponds to x2
-> > +            2: Corresponds to x3
-> > +            3: Corresponds to x4
->
-> Hence I'd drop the multiplication factors, and just say the meaning
-> of the value is pin-dependent?
->
-Agreed, I will update the description "Output impedance for pins on
-RZ/V2H(P) SoC. 0/1/2/3 corresponds to register bit values that can be
-set in PFC_IOLH_mn register which adjusts the drive strength value and
-is pin-dependent"
+This patch is based on linux-next tagged next-20240424.
 
-Cheers,
-Prabhakar
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > +          $ref: /schemas/types.yaml#/definitions/uint32
-> > +          enum: [0, 1, 2, 3]
-> >
-> >      - type: object
-> >        additionalProperties:
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index e9cffca073ef..7a6f7cdc4cbe 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -52,6 +52,7 @@ phy_gmii_sel: phy@4044 {
+ 			compatible = "ti,am654-phy-gmii-sel";
+ 			reg = <0x4044 0x8>;
+ 			#phy-cells = <1>;
++			bootph-all;
+ 		};
+ 
+ 		epwm_tbclk: clock-controller@4130 {
+-- 
+2.34.1
+
 
