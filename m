@@ -1,80 +1,172 @@
-Return-Path: <devicetree+bounces-62570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1325F8B1AE1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:23:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01E68B1AE7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9721B1F23817
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:22:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE8861C21118
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 06:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094FA3FE2A;
-	Thu, 25 Apr 2024 06:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC1C3FE2A;
+	Thu, 25 Apr 2024 06:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="J0Qlka3k"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="hIDayZ4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F31249F9
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 06:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714026174; cv=none; b=toxXeDeo3YJ8GEh4VPgQI1dNhlLomTEsSsuRIlTcOkpF8M/GGnUc51rD3eq6Wn2hM+m9Sb/7pCI5RGxh7Osd1sdfmhtJ2UeSBTa/X/IguYwmgY1r2w2RjppRt+T49ql/hIGQcoWKELOwCbuLowUJqO+woeDgxh0wDHM6yilM97s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714026174; c=relaxed/simple;
-	bh=Ue4DWi0QD52B1nKNAzf4PVh+IQ4I0X4KROOINeGW2bs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H4vGfueC9V7VVE/17El4q/O2NKWVFTssvNVi46XcqLm5EU/Ntx4HR++xGPiZoKK6sANyM5t2m1svLO355cpw5y8qVZqU2Qwy4H25xsw+Cuzka6LaKbR/J7GSMmXO847a9FmU5OMfChXxWlGHeUR6whOauHhl9LX2lM3ozMR2Rs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=J0Qlka3k; arc=none smtp.client-ip=123.58.177.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=SDHGiDEJmLvzRYT3TaLtU3T7lep9rxFUwhCFeg6kHtw=;
-	b=J0Qlka3kTVlTFb8uiCxic55R3RBtEYwhMf4GMtVm4zZF1hdPRGR+4HEwLjxjxo
-	V4XFkDSIWL2PFu/p7c5BTQ7GLodguJWLFkto8QvqB1zH8aQkfe/DI7RZ/yuvGTLD
-	QqxjSR38R02fhrWM8AM8zCrYTxfpPunQ4R7GA5VYc2xXM=
-Received: from dragon (unknown [223.68.79.243])
-	by smtp2 (Coremail) with SMTP id C1UQrADXPhiB9ilmE2pzBA--.45333S3;
-	Thu, 25 Apr 2024 14:21:55 +0800 (CST)
-Date: Thu, 25 Apr 2024 14:21:53 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] ARM: dts: imx6ull-tarragon: Minor changes
-Message-ID: <Zin2get3gcS8+AQe@dragon>
-References: <20240416190659.15430-1-wahrenst@gmx.net>
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2060.outbound.protection.outlook.com [40.107.95.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CE93EA86;
+	Thu, 25 Apr 2024 06:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714026255; cv=fail; b=Q5QbzZxabIxgE8eX42tAetZ5J1Bq6WLrAZgZ32HzRDEk0IRrofkBNKsUS6o5hq6pLWqFGrirgIikPfwVyLL9yeV8HZEkyRrD+JeevwC3aaPqfHeSF2ZK0DaMV1Y7zHJazv1oZrsdiwfk5umkBrKxqsitSAzAt2Lkg4zUkAPbJv4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714026255; c=relaxed/simple;
+	bh=Tp6XguxhKaj42RT9RnmzL1MQNLuE1wtbx1gBpcXC0m0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uINJ4tgv/6ID96rlgUh19iJriqKFYypimJbEdG03EOI/cAm+T87N5NHieWOZz3GiUmAEwxYLR3ALxTN3rSs9A2KMikiAIN0zxhbUbJU/vPoLxCZB33vdzfs9ilu9FH56zzrnsE5XLNTjMXxMNa7gmyYjDvHS7EZwCuditwwwL+U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=hIDayZ4U; arc=fail smtp.client-ip=40.107.95.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cD4J2KIKclonDiQPpQ98CLWla8Pv1RX1zdTn7V3AJliDccRsg8VqhGI4jV67eWKFCtrCpgunutr4zvK0OUROqoNFYQIphYkNdA1w5QBt/IbbBqtPF+re7xuakLBWMBOefgX6jPnn47QvWmcu9q8njnA/c/KxDkfvcBy67otn8tuqN1a08X13AuNQIRsbv5Vao6qNkxA2SdPt6wmTW8OFcF+LUPsaN+QgLHRDTv1bWlo/pCIFscknLDCQQKYYQtYP8excQJRHis68zuFn2j9NsvYxp7VHD+TFjwLY94w+yC/ReuP+r8hhpbZdn/SPrFgzXGfs8qX50ld7f35/1oQKnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6MXYMXALXCRlDvlVA0r1J9RnGVeFpBttlnPZnxmBSYY=;
+ b=MI7cQuXag0TOv8cj4wPe8jyMyhX3uzgJj39fnqdXaw1yHA0PGFJkCeZvsPouc33mYKuhH4exrNhH1HX2mo00S2Tj4QvhY7k10A+GYL/HMHNJ+EFuJG6haz7VsqyECFPPr4KBZKjj8xFDBuHNouE0lFlA2dJjNh0hiHU9F0GkYtj7Jmi5zQpdm9XaUgrTStEps+gSfA143bjFa263HhilvlC39fxkpEwyNeRYl2VdLjUtLqvC44DCYXw2aw+AoNYSpcwEg6t/tgK/EDwCF3WMuMXCbTweGkLVbOYn4RFmuHrX881IBWU4HXfZaVLj2vjMhPF9utSERQGXTIKp5W31aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6MXYMXALXCRlDvlVA0r1J9RnGVeFpBttlnPZnxmBSYY=;
+ b=hIDayZ4U8mU7fcQowviWuQ1kHI5iH47j2Xrd1BXuRLfUfnEJTsaYa6SRZSeAmqgkAXowlgcxO5q6wF6byJ7cyhSyx53c52ePM+ibHIWVySbh3jWbLootybAq74PKx0pYN4Se3yWGJbvHTnc+UgFPsDC9cJPeVy87QG8YqpKOvLk=
+Received: from DM6PR06CA0015.namprd06.prod.outlook.com (2603:10b6:5:120::28)
+ by SJ2PR12MB8807.namprd12.prod.outlook.com (2603:10b6:a03:4d0::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Thu, 25 Apr
+ 2024 06:24:07 +0000
+Received: from DS2PEPF00003444.namprd04.prod.outlook.com
+ (2603:10b6:5:120:cafe::5c) by DM6PR06CA0015.outlook.office365.com
+ (2603:10b6:5:120::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.25 via Frontend
+ Transport; Thu, 25 Apr 2024 06:24:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS2PEPF00003444.mail.protection.outlook.com (10.167.17.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7519.19 via Frontend Transport; Thu, 25 Apr 2024 06:24:07 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 01:24:07 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 01:24:06 -0500
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 25 Apr 2024 01:24:01 -0500
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <p.zabel@pengutronix.de>,
+	<laurent.pinchart@ideasonboard.com>, <radhey.shyam.pandey@amd.com>,
+	<parth.gajjar@amd.com>, <u.kleine-koenig@pengutronix.de>,
+	<tglx@linutronix.de>, <julien.malik@unseenlabs.fr>, <ruanjinjie@huawei.com>,
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <srinivas.goud@amd.com>, <shubhrajyoti.datta@amd.com>,
+	<manion05gk@gmail.com>, Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: [PATCH V3 0/3] Add support for uartps controller reset
+Date: Thu, 25 Apr 2024 11:53:55 +0530
+Message-ID: <20240425062358.1347684-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240416190659.15430-1-wahrenst@gmx.net>
-X-CM-TRANSID:C1UQrADXPhiB9ilmE2pzBA--.45333S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxtxhDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDwPLZVnxcqq3tAAAsR
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003444:EE_|SJ2PR12MB8807:EE_
+X-MS-Office365-Filtering-Correlation-Id: 943acd8a-0a49-4c75-7ef9-08dc64f05016
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9emTQqJBFFHobgEOYDnwLsc+XfZTgdia8/GXMKGTQ7IXlgvqJVrv/kzF40Xj?=
+ =?us-ascii?Q?Ws+KZygbqqIo03aLqhbGoCiIQVddF+A4D1a7Y3oRuT9z+fX66BtBIFfNcpd8?=
+ =?us-ascii?Q?Q7REEWU2HpK+oN4+2x4aEnBmZMzusOlYiPXYhesY8ZoF72WQF0nbiYStGDfX?=
+ =?us-ascii?Q?qBG2b2ZrLSQXncaY3Cy+twYNRB57tzUu94NBVjugXfoNS4lp3cV+oQopPElF?=
+ =?us-ascii?Q?NR/7eqFA9h+QpLGP3ElpoZiFuAHMiq6N3Phgs2roIacIdAxqMdORT7k7HPE0?=
+ =?us-ascii?Q?7l9hbwvxLnurWJe0mxkZl/CtzNa1dc8sxZKQ83ouo66UjQFk9HK/4xp+YqHk?=
+ =?us-ascii?Q?B8WCHGv54bCB1KuV1YyU/g9qs62A+VJzHN9iW3h029JLqb0pkwKS8pDADDSn?=
+ =?us-ascii?Q?F+Ay1kE8J+EirUY0CyxTygJfeoB4OpF0wPpKTzM9TrgNejZl4jB+LLR9zIOC?=
+ =?us-ascii?Q?UVJtXsnPwpRNPlYbycNjN4o73L/thOwLncNVw4wNDh4kcYxs/jSbntGEt972?=
+ =?us-ascii?Q?kOuTNNdt+kO0K5h5al0swSaxMHrwSC2/xKAtQTVuWU1gsRzeU2zs36y7Km5I?=
+ =?us-ascii?Q?Sv+/vqmbdq6wmS1zUosjta0+xcD4EUFrj8e/Kl60erFj5eYtMabvQrSc8XBq?=
+ =?us-ascii?Q?0a2gWZp7kOG6U8ddFQqNiUwMxplCHz1zi/pjzBDrT6+jIdLERhMY4Xn3SN91?=
+ =?us-ascii?Q?jsJuauQCO0ouoSBQCLzKF04J5fbT+CewEI+t9t9wgzeM9xI92NWu3gmH72EF?=
+ =?us-ascii?Q?y6fd9W5X4bg9ANyjYg3WDmwYU+9Fg5LGnlRrBOyqbMj/BnwP7CH5abeyEwkS?=
+ =?us-ascii?Q?1Cxs+nNuh2QXXdUZBom1gvidx4N7IjCVi/G+egciK9aPxIzyPUuJMjSOvonL?=
+ =?us-ascii?Q?AJnjd+GOegxXMiQFdpapAiBmOnrm3UBFfLVAyaZW1mwZcGs1Rfw5vhq6u145?=
+ =?us-ascii?Q?/m9tqg3aDgedpiwuAhfYQAvJQQlONtlYfHUQAki5iJCqkIj7XwgsxYgQk7ly?=
+ =?us-ascii?Q?b0hQEmdkJsJMdU0yaoXpSURhurtDYkxUOHoe/Fp/+ud5d4fY+quAVwpeJpCx?=
+ =?us-ascii?Q?C0gDKv6NBGOQmXv1aEZGshmN2wp3OfxjugAuINNAS45wy8ndovno8ja9vtvp?=
+ =?us-ascii?Q?LID/fW9dobkj+Oyp94vwdjcKVroxFHq8VxWd+l7+WNInZkEgeEMowZ0LOBNu?=
+ =?us-ascii?Q?8036bKBZWBk0A31tdG5GPO05OXdTnQ5HoaxoathZk477rd5/2b7EuBJ+Cnzf?=
+ =?us-ascii?Q?rVoBufPCe1YbCdS4V3eaweQYbGQ9yT+ZCoWlkA5ZU7QAWiJWGI0jQGD9zVgG?=
+ =?us-ascii?Q?f/qu+zFrty8doE1OFMBwAcyn4XYELAF7UUiic732O8j050MWqav855z9YuUr?=
+ =?us-ascii?Q?C0Zr2dWDFcYrJLS/USQ8Vt9eGe65?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005)(36860700004)(82310400014)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2024 06:24:07.7410
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 943acd8a-0a49-4c75-7ef9-08dc64f05016
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF00003444.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8807
 
-On Tue, Apr 16, 2024 at 09:06:57PM +0200, Stefan Wahren wrote:
-> This small series contains 2 changes for the chargebyte Tarragon
-> boards.
-> 
-> Michael Heimpold (1):
->   ARM: dts: imx6ull-tarragon: fix USB over-current polarity
-> 
-> Stefan Wahren (1):
->   ARM: dts: imx6ull-tarragon: Reduce SPI clock for QCA7000
+Add optional resets property for UART nodes.
+Add support for uartps controller reset.
+---
+Changes for V2:
+Added ack signature for binding patch.
+Remove check for reset_control_deassert, as reset_control_deassert
+function internally has NULL check.
 
-Applied both, thanks!
+Changes for V3:
+Corrected typo in subject of binding patch.
+
+Manikanta Guntupalli (3):
+  dt-bindings: serial: cdns,uart: Add optional reset property
+  arm64: zynqmp: Add resets property for UART nodes
+  tty: serial: uartps: Add support for uartps controller reset
+
+ .../devicetree/bindings/serial/cdns,uart.yaml     |  3 +++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi            |  2 ++
+ drivers/tty/serial/xilinx_uartps.c                | 15 +++++++++++++++
+ 3 files changed, 20 insertions(+)
+
+-- 
+2.25.1
 
 
