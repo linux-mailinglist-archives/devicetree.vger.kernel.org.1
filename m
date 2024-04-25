@@ -1,57 +1,68 @@
-Return-Path: <devicetree+bounces-62762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C8B8B262B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D83918B2635
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D88702817C7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:18:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97EDB281BD4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B95C14C581;
-	Thu, 25 Apr 2024 16:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A58114D28F;
+	Thu, 25 Apr 2024 16:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hnt1FSvY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3wi4UNr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F5C4500E;
-	Thu, 25 Apr 2024 16:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 318A014D281;
+	Thu, 25 Apr 2024 16:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714061919; cv=none; b=FQc0ntFWWjIJVk0iusEYJpIHXnjukA3X4ZocngqY+L356ye4HYMXCKtZSc4RfPsZigkmIOlO82MUih1QA6aM8AuAwqp3z+336sDaSyIaFcgg/ziy329nxmhy7m5hoq9kXr9wvKTwfV8qzczW6OB/bD+o8J66aPC5+Bh1ZnatvO8=
+	t=1714062022; cv=none; b=VnCqgzPd7PiBY/BMX6OJ3stL/Hh71oCct2MCNSR0cd1AZ0jzUHQoU/udHi4ZCNkHS8skowftBWcBlSDNvTPZTf5LpC9wyuBJwnNTi+fegyWJovZc2vLHTMsLVLdq7OAM6g5Ni/nw6uif3fVSC84b3zUGbL50Sx5ecOQI04CrvBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714061919; c=relaxed/simple;
-	bh=j5K+XWcl0chvZ7/dqCKO6yG3g+3qdI7sBq8eARToBW0=;
+	s=arc-20240116; t=1714062022; c=relaxed/simple;
+	bh=rwsM3i04LbhwVLUCa72hPszIQ6ASQXF3hyZn6D35G3Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZBIMm4bIf+GykmF0EVmqk90tqwL7uarfzzVV2owCy4mTT9LLJdCiZtZaEJlQb3P+rDbtBjejv9eUPuKVs8eA++F9RPGWDk4eEI54ssqErD9rVfs3QQrkkbW3MN4mJ7xLwYwg1ya+Q85G5hdZdtK8Ec+2+U0M2smRdXFZZgxW3fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hnt1FSvY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF468C113CE;
-	Thu, 25 Apr 2024 16:18:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=H/e6HJY1KH8FYpqwGtsPpWn6UGztuTf5eni68vCnKpBJU2P2JXZfONvZlhUWzWdiTwgqRUGJ9uXY+ZmsdJmHl9hI0XKIi8sDAZJK5dLDdrzwh0vqmhTHxZc6goHQsvTxqREVsjzK+KarghmKx/JMsB49Jw9z8KOK6IRZDEKHNeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3wi4UNr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88598C113CC;
+	Thu, 25 Apr 2024 16:20:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714061919;
-	bh=j5K+XWcl0chvZ7/dqCKO6yG3g+3qdI7sBq8eARToBW0=;
+	s=k20201202; t=1714062021;
+	bh=rwsM3i04LbhwVLUCa72hPszIQ6ASQXF3hyZn6D35G3Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hnt1FSvYKGAmhiiYtEr7fD13FTD0a7HWso0JT0JgQw5iA88j+QgLx6ZS45KiWbgJx
-	 lZAJSS+ZM3IUz2eDvgAlQ+mI5e0CZmTpYSRqkNhoW+Z+K7WvqAnanO2GvRvOXOQHW6
-	 IB46BhLxV13slFDvqtSftNQGLhawKhBWhsJzeC/G1b2/qZxRxU6Rz3eIeD0zN6qWXr
-	 TXc0TWGghB4eqgJkcXCorNR5LGvlt7tB/GlvPaun8K98nnglNYAWo23XHgkO5LSoTO
-	 F+sfLgfUkfj7NLK8mZrSQUl8c+eoYIVI2GGPd5Zr1XkFiMIvSMzHPLSHyFgFg22ZJJ
-	 huClX5crPo0Mw==
-Date: Thu, 25 Apr 2024 11:18:36 -0500
+	b=i3wi4UNrntxXihjyFAvmrFIpLsJU1Bs6tt+OYwG9NWAYn7Enlt1kzVJjgIlOnRCTo
+	 OESkUb/MIs4BLtdxgZW7vjUf4ES8HY/ku3R8Yxr7JLn01uw+jc6+lsVOlDanfv9CoI
+	 xeJp+gwgIQiy23LFijnYRsesV+ggaWE7lQkfxf6HqT+DJjrp+nV00160QoP51giFSM
+	 vrp2lrk6h5siKhd60tpCUxdyQ0UB5ppWqAkFyerLuJsiZ2DmJLkvoS6TzuO/JjdHn1
+	 6V413pjt89uiinhiE1nlNorMsWco7UxrtGTSMFC+emQtZVgQGfeubS/f6cX3yC2QYM
+	 cqvrSXMxXkEfA==
+Date: Thu, 25 Apr 2024 11:20:19 -0500
 From: Rob Herring <robh@kernel.org>
-To: Peter Korsgaard <peter@korsgaard.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>,
+To: Niklas Cassel <cassel@kernel.org>
+Cc: linux-pci@vger.kernel.org, Simon Xue <xxm@rock-chips.com>,
+	linux-rockchip@lists.infradead.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-Message-ID: <20240425161836.GA2779509-robh@kernel.org>
-References: <20240424202448.19033-1-peter@korsgaard.com>
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Arnd Bergmann <arnd@arndb.de>,
+	Jon Lin <jon.lin@rock-chips.com>
+Subject: Re: [PATCH 03/12] dt-bindings: PCI: snps,dw-pcie-ep: Add
+ tx_int{a,b,c,d} legacy irqs
+Message-ID: <171406054785.2613758.8157419905998918218.robh@kernel.org>
+References: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
+ <20240424-rockchip-pcie-ep-v1-v1-3-b1a02ddad650@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,38 +71,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240424202448.19033-1-peter@korsgaard.com>
+In-Reply-To: <20240424-rockchip-pcie-ep-v1-v1-3-b1a02ddad650@kernel.org>
 
-On Wed, Apr 24, 2024 at 10:24:47PM +0200, Peter Korsgaard wrote:
-> Similar to target-rpm from fan-common.yaml but for the default PWM setting
-> (0..255).
+
+On Wed, 24 Apr 2024 17:16:21 +0200, Niklas Cassel wrote:
+> The DWC core has four interrupt signals: tx_inta, tx_intb, tx_intc, tx_intd
+> that are triggered when the PCIe controller (when running in Endpoint mode)
+> has sent an Assert_INTA Message to the upstream device.
 > 
-> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+> Some DWC controllers have these interrupt in a combined interrupt signal.
+> 
+> Add the description of these interrupts to the device tree binding.
+> 
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
 > ---
-> Changes since v1:
-> - Rename to default-pwm
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
->  Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> index 4e5abf7580cc..70f062b30985 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> @@ -46,6 +46,14 @@ properties:
->  
->    "#cooling-cells": true
->  
-> +  default-pwm:
-> +    description:
-> +      The default fan PWM to use.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 255
-> +    default: 255
 
-See my comments on v1. Please give time for other reviewers a chance to 
-comment.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
