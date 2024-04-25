@@ -1,155 +1,124 @@
-Return-Path: <devicetree+bounces-62614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C30E8B1C9B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3BDD8B1CB6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 10:22:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F32E285146
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:11:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85F35281DBA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 08:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B65A074421;
-	Thu, 25 Apr 2024 08:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD306EB68;
+	Thu, 25 Apr 2024 08:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Ulb28jPk"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Z7bNRD/T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA47A6EB4D;
-	Thu, 25 Apr 2024 08:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6324205D;
+	Thu, 25 Apr 2024 08:22:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714032600; cv=none; b=Vx7eWUrbtPSTtB/Kn0Lgsmx9eb4Y3WEs0f3dTllww3vZH6tobouGRAdxfUwcDxnM9zpgDKfDLNhLZD5AjLIrm9I1r3qS9DYjnyvPNjsftrC1HKjH64zS0BUp/cPg8GxcZki0GNrc4mRwg2syENyxNqI3piMOuP0/Xn/l43G/zkE=
+	t=1714033338; cv=none; b=A4e9evh9f5k4wvqpn5wEagsYJhMbs9cm6700EwfNm0hIL2F6WF8NQXM+doOtsJrmD0KFqBXimwWwP1VqBubPzWD6TQwCH1KZndXFye4XHTFX5fz5CJ3DBO8xjgikSD3fNSsh3dHP4HFzunqC5yDoug/KeLqgzjsoRpX0hiRUfjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714032600; c=relaxed/simple;
-	bh=3pH9BI+mmlAYKS5yzMrgsCLtEZ/uEG/QYW/gdUS91Bc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fU943mhL5Uof78WgYoHCsJ8tMO7YwRaQSgjbalYpuEcr1inWqW3O7TXOxp+jmoYVViR1oq8gngcuIsac7DhzFBlPinx+g1IWXLQzdGnpJ9SCTktZrrr8MRiRzq5YGfQRMVQtePZUZN65f8DdptqIj2dxUenV5dRGP1bPY1ajKm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Ulb28jPk; arc=none smtp.client-ip=123.58.177.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=hhIHs+++PP0WLQlgo22/+Sat6DJyqVSqCbFqSFZstCo=;
-	b=Ulb28jPkDiZlNFVgGvgt8/JLdOQ7HLSIlJZpgD3bLO3AtPPju5WtO+8scuG/1f
-	beBMrkNELiqbSTGMdebscziZHPwBiT/OjZIKxqW13u3sSaVq+fc8ipJTHH+QRuLd
-	byXwcu2NrghChiECnpUscS7oGcFQBX3GhrsTBk+YepkgQ=
-Received: from dragon (unknown [223.68.79.243])
-	by smtp1 (Coremail) with SMTP id ClUQrAC3f_muDypmRaZtAw--.40896S3;
-	Thu, 25 Apr 2024 16:09:20 +0800 (CST)
-Date: Thu, 25 Apr 2024 16:09:18 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 10/10] arm64: dts: imx8qm-mek: add fec2 support
-Message-ID: <ZioPrhKPWBrTdLUS@dragon>
-References: <20240422-dts_8qm_audio-v3-0-680cee731ced@nxp.com>
- <20240422-dts_8qm_audio-v3-10-680cee731ced@nxp.com>
+	s=arc-20240116; t=1714033338; c=relaxed/simple;
+	bh=65uS8QK637r5AEkeZi5BHkJu+vtvg1RJSMsNHk/A9oo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AGt2DGuukUoboO8HXDIXlRA93kNpH1E0lTaGZNFQHcP9TxMpjh52c9a/RfoL2umvI5Vxm/6SSngDHNPKv3qKYmCJcMlZ7SSK9SZ1PGnswj3Z8ZmUO3nPCSWN62JwD9GtITma/NN2yG/ScjAicC7vm0zzxPeQ/6njsGP8vvxb8IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Z7bNRD/T; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P7eqUk026286;
+	Thu, 25 Apr 2024 10:22:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=i2xvSKGi0kduhQpp0jPnnSJVZO3fv1dsJElSbwSfge8=; b=Z7
+	bNRD/T75coGR0wnv1ucjcEhcgQl/dfOAUul54AdY6QvnqmpAO2Z2gHItsg1gJIP4
+	DaeeF6FKZx3FvlLyXaIDVXkY/Xpguo55Kw0taSszYSqEnV03bKGlquTO5AX4gRD3
+	yIS2Yh3LmltmXQCVlF48IGxiFb5Qp9EQypAjXV6d3jpw3J8Tcq0d8HqiStEH33tM
+	sLpnhh33C8m3j0nXNshfuhKIe3YZM5aZf1OW+gsXCz10g6qJ8tX7mvdIv6ZZQ60V
+	RqaDvTZlkId0S/PovorxYAUvhbzOjBqKzrSFxdLxE5NTtKMznzlc2t0PBGTLipuc
+	u2wStV67X1JFeylNuRNw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xmq90tnf0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 10:22:04 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B41A84002D;
+	Thu, 25 Apr 2024 10:21:59 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 92D01210F60;
+	Thu, 25 Apr 2024 10:21:18 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 10:21:17 +0200
+Message-ID: <c217117d-6388-4230-8afa-d26226bb11ce@foss.st.com>
+Date: Thu, 25 Apr 2024 10:21:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240422-dts_8qm_audio-v3-10-680cee731ced@nxp.com>
-X-CM-TRANSID:ClUQrAC3f_muDypmRaZtAw--.40896S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCFW7Aw1rtw1DCFWrGFWruFg_yoW5Xr1Dpr
-	W5JrWFgrs7AF1rGw13ur17JFy5Jr409aykW3srJry8uFsxuFnrGa4Fvr4qkrykGrW5Xw4a
-	qFWjgF1293WSg3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jzc_fUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFRDLZV6NnF4SGwAAsz
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] spi: stm32: add support for stm32mp25
+To: Alain Volmat <alain.volmat@foss.st.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Erwan Leray
+	<erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20231218155721.359198-1-alain.volmat@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20231218155721.359198-1-alain.volmat@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_07,2024-04-25_01,2023-05-22_02
 
-On Mon, Apr 22, 2024 at 03:50:12PM -0400, Frank Li wrote:
-> Add fec2 support.
+Hi Alain
+
+On 12/18/23 16:57, Alain Volmat wrote:
+> This series adds support for spi bus found on the stm32mp25 and add
+> all instances within device-trees.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8qm-mek.dts | 40 ++++++++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
+> Alain Volmat (4):
+>    spi: stm32: use dma_get_slave_caps prior to configuring dma channel
+>    arm64: dts: st: add all 8 spi nodes on stm32mp251
+>    arm64: dts: st: add spi3/spi8 pins for stm32mp25
+>    arm64: dts: st: add spi3 / spi8 properties on stm32mp257f-ev1
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> index cef395e919395..570a9bf583132 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> @@ -40,6 +40,15 @@ reg_usdhc2_vmmc: usdhc2-vmmc {
->  		enable-active-high;
->  	};
->  
-> +	reg_fec2_supply: fec2_nvcc {
-
-regulator-fec2-nvcc for node name?
-
-Shawn
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fec2_nvcc";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		gpio = <&max7322 0 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  	reg_can01_en: regulator-can01-gen {
->  		compatible = "regulator-fixed";
->  		regulator-name = "can01-en";
-> @@ -381,6 +390,19 @@ ethphy1: ethernet-phy@1 {
->  	};
->  };
->  
-> +&fec2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec2>;
-> +	phy-mode = "rgmii-txid";
-> +	phy-handle = <&ethphy1>;
-> +	phy-supply = <&reg_fec2_supply>;
-> +	nvmem-cells = <&fec_mac1>;
-> +	nvmem-cell-names = "mac-address";
-> +	rx-internal-delay-ps = <2000>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +};
-> +
->  &usdhc1 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_usdhc1>;
-> @@ -500,6 +522,24 @@ IMX8QM_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B     0x06000021
->  		>;
->  	};
->  
-> +	pinctrl_fec2: fec2grp {
-> +		fsl,pins = <
-> +			IMX8QM_COMP_CTL_GPIO_1V8_3V3_ENET_ENETA_PAD		0x000014a0
-> +			IMX8QM_ENET1_RGMII_TX_CTL_CONN_ENET1_RGMII_TX_CTL	0x00000060
-> +			IMX8QM_ENET1_RGMII_TXC_CONN_ENET1_RGMII_TXC		0x00000060
-> +			IMX8QM_ENET1_RGMII_TXD0_CONN_ENET1_RGMII_TXD0		0x00000060
-> +			IMX8QM_ENET1_RGMII_TXD1_CONN_ENET1_RGMII_TXD1		0x00000060
-> +			IMX8QM_ENET1_RGMII_TXD2_CONN_ENET1_RGMII_TXD2		0x00000060
-> +			IMX8QM_ENET1_RGMII_TXD3_CONN_ENET1_RGMII_TXD3		0x00000060
-> +			IMX8QM_ENET1_RGMII_RXC_CONN_ENET1_RGMII_RXC		0x00000060
-> +			IMX8QM_ENET1_RGMII_RX_CTL_CONN_ENET1_RGMII_RX_CTL	0x00000060
-> +			IMX8QM_ENET1_RGMII_RXD0_CONN_ENET1_RGMII_RXD0		0x00000060
-> +			IMX8QM_ENET1_RGMII_RXD1_CONN_ENET1_RGMII_RXD1		0x00000060
-> +			IMX8QM_ENET1_RGMII_RXD2_CONN_ENET1_RGMII_RXD2		0x00000060
-> +			IMX8QM_ENET1_RGMII_RXD3_CONN_ENET1_RGMII_RXD3		0x00000060
-> +		>;
-> +	};
-> +
->  	pinctrl_flexcan1: flexcan0grp {
->  		fsl,pins = <
->  			IMX8QM_FLEXCAN0_TX_DMA_FLEXCAN0_TX			0x21
+> Valentin Caron (2):
+>    dt-bindings: spi: stm32: add st,stm32mp25-spi compatible
+>    spi: stm32: add st,stm32mp25-spi compatible supporting STM32MP25 soc
 > 
-> -- 
-> 2.34.1
+>   .../devicetree/bindings/spi/st,stm32-spi.yaml |   1 +
+>   arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  46 ++++++
+>   arch/arm64/boot/dts/st/stm32mp251.dtsi        |  88 +++++++++++
+>   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 ++
+>   drivers/spi/spi-stm32.c                       | 145 ++++++++++++++++--
+>   5 files changed, 280 insertions(+), 14 deletions(-)
 > 
 
+DT patches applied on stm32-next.
+I added "access-controller" bindings for all SPI nodes.
+
+Cheers
+Alex
 
