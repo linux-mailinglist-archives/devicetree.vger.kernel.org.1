@@ -1,110 +1,122 @@
-Return-Path: <devicetree+bounces-62600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EFCF8B1C07
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DBA8B1C03
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2FFC1C21476
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:38:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 479E01C21A0D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E066CDCF;
-	Thu, 25 Apr 2024 07:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455E26CDC8;
+	Thu, 25 Apr 2024 07:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="A00fBTDh"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="tJkKK90P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpcmd12131.aruba.it (smtpcmd12131.aruba.it [62.149.156.131])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F421A535A5
-	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 07:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0704D3D388;
+	Thu, 25 Apr 2024 07:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714030695; cv=none; b=XbHVmBKKfFYOr3wbPG5hj7YUyENC2ladkRxM9TyoHhY+mlBFwL/vC+gDq98Dbi2KjatLf+E+WF+3pcDbeRiUCqanXnWfKb1rD5jcw6c7X0HWhd2Rvv/FC9BK9HS2tPX44kFNQMizwvCW6vYrPq9EcpIVFK0iUpDuOcGskgzICVU=
+	t=1714030622; cv=none; b=V3yFOixVtDxnoAc3LSevb/VRBDV5i9NLCJz/E2Pmpz30BVrBboOLkV/ztjY+CwRshuWKlN3X40MWjfWARfW/ISQRaMYuL2GgYU3afJbC55sTRxF50J6mHu1B2GfeJHllq0BCJMx38uo1FlEkhtVt7PF2ejEDYt5HyzfbCnholmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714030695; c=relaxed/simple;
-	bh=POh6DGR1npxv4cI/95gDfs4EK4FCh7xmdJxnsnYyC4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nyyrFlkXg7ii2h+BbfBpgQfY1Rrsu0YxaNrEbf8g8S3NubBMhx3ZFPh9TxsucPBsCtSpyg+nhVJP5Aqov18Z/WokwVzjSJQK+HyWHxghD/86hh7q2IQOQtWloh26AmdkEfA6BU67BnfdwgsGxSCKzMOcE/IcPYzGo7sZCN6WtsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=A00fBTDh; arc=none smtp.client-ip=62.149.156.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
-Received: from engicam ([77.32.5.97])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id ztZDrKsmITSwmztZErYHig; Thu, 25 Apr 2024 09:30:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1714030255; bh=POh6DGR1npxv4cI/95gDfs4EK4FCh7xmdJxnsnYyC4A=;
-	h=Date:From:To:Subject:MIME-Version:Content-Type;
-	b=A00fBTDh68ZUE/kDsxWFk0KAhPmfzKkHmPT1rrd6wR5vYB+bxIwpy1hhu4eEDT+aX
-	 WU8R9RkKtb1kGWWMLmUde+VI2BA5QrglUZtx6jQ6keh1j6yVQ8zRgU2iKDpf6RK0Rv
-	 9TThcrcwLDZ618KRmqMwECtpeV/eGiUQm5y7nyrSOM6lnqYX+MgFYrbv+ZB8FDk4Qu
-	 STdTZ8nBFnjeTldkSx9L7PPuPqQJDQJE9IY52mjmjAGqE/jJUMQQzbjhUSHfQZLU3H
-	 xUuNMUT6BLIDSdSrYzSJImfchTk5TRbl4wxuTQVWTt4UOhL7w89i7TxBpRrHJEoixo
-	 2SKQeAKT2J/Vg==
-Date: Thu, 25 Apr 2024 09:30:51 +0200
-From: Fabio Aiuto <fabio.aiuto@engicam.com>
-To: Shawn Guo <shawnguo2@yeah.net>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Matteo Lisi <matteo.lisi@engicam.com>,
-	Mirko Ardinghi <mirko.ardinghi@engicam.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: imx93: add Engicam i.Core MX93 SoM
-Message-ID: <ZioGq1/zlRP1o7dj@engicam>
-References: <20240419144953.8700-1-fabio.aiuto@engicam.com>
- <20240419144953.8700-3-fabio.aiuto@engicam.com>
- <ZioFaJtxYsUlchfW@dragon>
+	s=arc-20240116; t=1714030622; c=relaxed/simple;
+	bh=AzVF3YThY59VDeTlYIRWSwq+3dTtAAfUMzvX48Hc4Tk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=arhT/4pFWvpUKZ+HiGlFF/S3hgV+qJxnBmYVy9O6e2z4kqDMUWXY+1dMpTdMz5SfvrhE/+66gtS1vkMqvoafImch2TUlBb67JLInf+1hBoYuK92Okr6E19cXvcNBGnMK7mVLkMPq9tyedjnJjK5j6RzfQ6utsDdxDi8wYEbfzxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=tJkKK90P; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43P7VAer021460;
+	Thu, 25 Apr 2024 09:36:35 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=zcKEXefoMz98bSSERpP3RE1+JT4NimZBmrhz03/9OP4=; b=tJ
+	kKK90Pn2fAScqFQfw1fcuyiL7t9gZEOt/gOvZzzOwPgP5BRriBkPIYHIBt0kDMRK
+	QWAlcIIcKoecNYkjz5f28o6M/8bdcyYFhxJJlfF5BirAOGVP+X7ilHRvX5yd7yDq
+	6+l2vQINEpWp0blJ1rukMUNDp5urdY+2BqQ8TbNnhH/GhBBjd9f+X2O/+y7Lfx50
+	l2pVAi6+45JQAwIAW31oDNe3MV4ia8G39qWr3MP+UMgGZwJ921T3PCYS9fx2h8RP
+	EityAxmed9W1TDkwEnvRPXTiZAFcg46Zteqy2m/X8IVbew2pQeKhmErb0RChRyiw
+	YiCaG/gd9o5dYATFqLnA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm51wckfg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Apr 2024 09:36:35 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3A77640044;
+	Thu, 25 Apr 2024 09:36:29 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A3AEB2128C1;
+	Thu, 25 Apr 2024 09:36:04 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 25 Apr
+ 2024 09:36:03 +0200
+Message-ID: <d2721aad-b17d-4b40-908c-238d02c52a0f@foss.st.com>
+Date: Thu, 25 Apr 2024 09:36:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZioFaJtxYsUlchfW@dragon>
-X-CMAE-Envelope: MS4xfOQWB1BSUo/PFP/F0yaa0ZoNYNDwofTChEHlBDRgFN5BH3HrLSVlIU7RetjGhX/lddbtefa0HqPQfnOBkhsTi2FAHSKOICqeu06p9oCBjcS4AjYeQ+tB
- vdVMUEZajEbyw4wBdXt5Nmgb1yOUREK2DilvR1p43gs3AYiVF+1ZCvlQvunFKZw0bewR7GVhSNoLd/VNIYTLuYvruukoNhKCFFnKUWF2YkPwgJmQDJBfZmDt
- qIS53Zxh/IV7ytZ5erh7ImwTmmP8WI8CkBcoCd4BIyg2UY38b7alkmHdcWRSDLLWw4WFkK7tkGUi4BAwEfXOjOhS3BlclBt0VE7Vz+AV7hsy8uorVMyVBL9s
- /tRl5L3YmZsuB2gaG1TVgylyG0wrzQUytUdwbFfjf6bSTa9110ie9XRfiVEs9HNcS7W8FSR86XI/+LqpCrzkD3o4SM614aFhilyXWrKF/S8T4Nep6Ns4enh2
- ObVOK6YiymmkEwPSWdWhdBborByOMY7+OuZ0CY+GtpjhSsGIFhvEGQHTp1oWrCRHLbhpVKPR8mEjvFsLW5H4EZ/1AlQRqDs1VNZ4c2Y8lXlMLmxs2xWShYXc
- ScQ=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 4/4] arm64: dts: st: add rcc support for STM32MP25
+To: <gabriel.fernandez@foss.st.com>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240411092453.243633-1-gabriel.fernandez@foss.st.com>
+ <20240411092453.243633-5-gabriel.fernandez@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240411092453.243633-5-gabriel.fernandez@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-25_06,2024-04-25_01,2023-05-22_02
 
-Dear Shawn,
+Hi Gabriel
 
-Il Thu, Apr 25, 2024 at 03:25:28PM +0800, Shawn Guo ha scritto:
-> On Fri, Apr 19, 2024 at 04:49:52PM +0200, Fabio Aiuto wrote:
-<snip>
-> > +			MX93_PAD_SD2_DATA3__USDHC2_DATA3        0x130e
-> > +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+On 4/11/24 11:24, gabriel.fernandez@foss.st.com wrote:
+> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 > 
-> Could you try to align the indents, so that those hex values appear at
-> the same column?
-
-thanks for your review, I will send a v5.
-
-kr,
-
-fabio
-
+> Add RCC support to manage clocks and resets on the STM32MP25.
 > 
-> Shawn
+> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> ---
+>   arch/arm64/boot/dts/st/stm32mp251.dtsi | 144 ++++++++++++++++++-------
+>   arch/arm64/boot/dts/st/stm32mp255.dtsi |   4 +-
+>   2 files changed, 110 insertions(+), 38 deletions(-)
 > 
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> > +		fsl,pins = <
-> > +			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-> > +		>;
-> > +	};
-> > +};
-> > -- 
-> > 2.34.1
-> > 
-> 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> index 5dd4f3580a60..15b79d26d1c6 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+
+Patch applied on stm32-next.
+
+thanks!!
+Alex
+
+
 
