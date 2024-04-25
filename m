@@ -1,305 +1,147 @@
-Return-Path: <devicetree+bounces-62757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C918B2601
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:08:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B17D8B2603
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:09:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00EC71F2169D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:08:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5A9B2827E3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17DB914C594;
-	Thu, 25 Apr 2024 16:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C0E14C5A9;
+	Thu, 25 Apr 2024 16:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pGc5UEd7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMWkQFx+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B2314C58E;
-	Thu, 25 Apr 2024 16:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102A214C5A1;
+	Thu, 25 Apr 2024 16:09:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714061292; cv=none; b=EWzjlVTdQPpZJi+mVZd8MfHdBQc/z3UAAy3AabC3j8x0El2t9KsXOWdWlcf+MXwPy6WnKSxiuBrtvEqGHBAj+qRuJaI2OPvhfgDpzhU1yVMqfYchVocO97H9g+DbOjPCvFTbAN6Jqn3We9SawJ+B0WaVMG51bA2tOZynyRmVMFI=
+	t=1714061346; cv=none; b=TpuFpwYP6jsIxXbiuvKhCcQcttRPeMC/YEPE9YUEZ6kV36tlrTjoNHodQMPNXFnNH7uHiymtCR6W87Lm+YA1I70381UUUaPwTDv0wDLylJJWQoaDxx4QBM42Naf5WhZRHkVrD1whq8JHTCpIwWBcQsL/PdDLp0jNjHF3eAzuMLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714061292; c=relaxed/simple;
-	bh=oIgWqDe6+nieD7h1CLyTm0mDgOApEatpXGoBJXAWIJo=;
+	s=arc-20240116; t=1714061346; c=relaxed/simple;
+	bh=FTrKsEK9u+1f+WVvM2+molxlrqj0kgxFuQGWcVqqr7o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EUpufCGIaHqsv7R7UNfr2ggIiRuMzYP1ugNJB8RvdeEZe8kVwNqNentz3MAGY+sP8bmc0EXPs4B9Cx72dQFK7JLG8AjNylw+Lr40V1WeewU41UI2UcBXVUWUkhDtITWJQClofFTi12mD3awK3VK9K7EUrFKbax63zSSnNw/TQGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pGc5UEd7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C9DCC113CC;
-	Thu, 25 Apr 2024 16:08:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eQPmyddEFe/BS41uqtUCz/YXRe9tA4ahHRPGw48lfdGAtvStKoUHysxwK+FkppraKt+GxHKLjsYhSobM5/W0rih58jfq72bBDH0vBOjd4Im0dHsEz8gOzk0REiRl6tq9HbpCLB3pQJ+QmRVXp5d03e6NXeQBQv5f8q92cO8J+aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMWkQFx+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DC1CC113CC;
+	Thu, 25 Apr 2024 16:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714061291;
-	bh=oIgWqDe6+nieD7h1CLyTm0mDgOApEatpXGoBJXAWIJo=;
+	s=k20201202; t=1714061345;
+	bh=FTrKsEK9u+1f+WVvM2+molxlrqj0kgxFuQGWcVqqr7o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pGc5UEd7PUsxYbMazTYm6EfUQGBt013WyZPHhyUdnjGlUG4dp9+xxZ6WZAYIUIOHQ
-	 0h4KrxvhHNot1z9iLEgFlIMArOHzsONYUmpUpjJjEBuzunAgR10uWhyju/ygH71lGM
-	 xbE41drSISXbD4WqMdMdRSkTdvDDzSOXhOBl8JXU3lKX/abUNnA1xXclgbjtg9EDHT
-	 Ibra4HkK4KBJrFxKuOPF5vdGzEgeUB7JLl1m1iZb2Czb61h+iSsTD0bxlVPzwuqu6s
-	 koh4kGVKAsTwdhkX53SVDF0Eh1cCJOmc1WYCL/qCcKy4y0p9ANNo9nF7Utvndp+/jb
-	 oICjWdFdEJDdw==
-Date: Thu, 25 Apr 2024 11:08:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 04/12] dt-bindings: rockchip: Add DesignWare based PCIe
- Endpoint controller
-Message-ID: <20240425160809.GA2613935-robh@kernel.org>
-References: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
- <20240424-rockchip-pcie-ep-v1-v1-4-b1a02ddad650@kernel.org>
+	b=WMWkQFx+x/CCWQeoUDVJPUbbOgW4mPlz09ekJzbhigPPuGd6Atk2xoiLq1+m6hFjN
+	 TDf0FMt7LkHtPRYpQmTcXErgNoscc2Hig9jimJ32RyxG2wAc+rlBbqlNgeNs7d366S
+	 va1LfGEmKf6S5ulBmUbbo4PWoZBAfqkM68q97SGAbnkrlvXF6TlFJRo6nyz4Dm0SWZ
+	 HLwBPde9lFS9C4gVm6lIOszZxTFgXG978zL6ITa2UI3mU7DXrJfZHX3JxMFy14J3Am
+	 lcqa+L5wpn+Lz1ONTxRaEcuNubfOichSvrGBMXf6RTKilkZoiDJmVPoYUa4W+WyMZZ
+	 rRefHBz9rP/uA==
+Date: Thu, 25 Apr 2024 17:08:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+	"will@kernel.org" <will@kernel.org>,
+	"arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>,
+	Neil Jones <neil.jones@blaize.com>,
+	Matt Redfearn <matthew.redfearn@blaize.com>,
+	James Cowgill <james.cowgill@blaize.com>,
+	"heiko.stuebner@cherry.de" <heiko.stuebner@cherry.de>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"macromorgan@hotmail.com" <macromorgan@hotmail.com>,
+	"sre@kernel.org" <sre@kernel.org>,
+	"hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
+	"andre.przywara@arm.com" <andre.przywara@arm.com>,
+	"rafal@milecki.pl" <rafal@milecki.pl>,
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+	"andersson@kernel.org" <andersson@kernel.org>,
+	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
+	"nfraprado@collabora.com" <nfraprado@collabora.com>,
+	"u-kumar1@ti.com" <u-kumar1@ti.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 0/5] Add support for Blaize BLZP1600 SoC
+Message-ID: <20240425-purity-sniff-e17c1bcae41e@spud>
+References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="t3SiQWMSb1DFPZBL"
+Content-Disposition: inline
+In-Reply-To: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com>
+
+
+--t3SiQWMSb1DFPZBL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240424-rockchip-pcie-ep-v1-v1-4-b1a02ddad650@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 24, 2024 at 05:16:22PM +0200, Niklas Cassel wrote:
-> Document DT bindings for PCIe Endpoint controller found in Rockchip SoCs.
-> 
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
-> ---
->  .../bindings/pci/rockchip-dw-pcie-ep.yaml          | 192 +++++++++++++++++++++
->  1 file changed, 192 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml
-> new file mode 100644
-> index 000000000000..57a6c542058f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml
-> @@ -0,0 +1,192 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie-ep.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DesignWare based PCIe Endpoint controller on Rockchip SoCs
-> +
-> +maintainers:
-> +  - Niklas Cassel <cassel@kernel.org>
-> +
-> +description: |+
-> +  RK3588 SoC PCIe Endpoint controller is based on the Synopsys DesignWare
-> +  PCIe IP and thus inherits all the common properties defined in
-> +  snps,dw-pcie-ep.yaml.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: rockchip,rk3588-pcie-ep
+On Thu, Apr 25, 2024 at 09:15:02AM +0000, Niko Pasaloukos wrote:
+> Adds basic support for the Blaize BLZP1600 SoC.
+> This SoC contains two cores of Cortex-A53 CPUs, one Blaize
+> Graph Streaming Processor (GSP) and several other IPs.
+>=20
+> V3 changes:
+>  * Removed unnecessary dt-bindings
+>  * Update SoBs
+>=20
+> V2 changes:
+>  * Update SoBs
+>  * `make dtbs_check` has no warnings
+>  * Fix dts names and removed dead code
+>  * DTS is separated from anything else
+>=20
+> Nikolaos Pasaloukos (5):
+>   dt-bindings: Add Blaize vendor prefix
+>   dt-bindings: arm: blaize: Add Blaize BLZP1600 SoC
+>   arm64: Add Blaize BLZP1600 SoC family
+>   arm64: Add initial support for Blaize BLZP1600 CB2
+>   arm64: defconfig: Enable ARCH_BLAIZE_BLZP1600
+>=20
+>  .../devicetree/bindings/arm/blaize.yaml       |  40 ++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm64/Kconfig.platforms                  |   5 +
+>  arch/arm64/boot/dts/Makefile                  |   1 +
+>  arch/arm64/boot/dts/blaize/Makefile           |   2 +
+>  .../boot/dts/blaize/blaize-blzp1600-cb2.dts   |  84 +++++++
+>  .../boot/dts/blaize/blaize-blzp1600-som.dtsi  |  23 ++
+>  .../boot/dts/blaize/blaize-blzp1600.dtsi      | 209 ++++++++++++++++++
+>  arch/arm64/configs/defconfig                  |   1 +
 
-3568 doesn't support endpoint mode? It would be good to keep the 
-bindings aligned.
+I dunno if you've yet had any comment from Arnd on this series, but I'd
+expect that the blaize patches follow the same path via the soc tree as
+any other platform. I presume either you or one of the other Blaize guys
+on this patchset will be taking care of that, so it would be a good idea
+to add a MAINTAINERs entry covering the new arch/arm64/boot/dts/blaize
+directory. There should be some more info about some of the expectations
+at:
+https://docs.kernel.org/process/maintainer-soc.html
 
-> +
-> +  reg:
-> +    items:
-> +      - description: Data Bus Interface (DBI) registers
-> +      - description: Data Bus Interface (DBI) shadow registers
-> +      - description: Rockchip designed configuration registers
-> +      - description: Memory region used to map remote RC address space
-> +      - description: Address Translation Unit (ATU) registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: dbi2
-> +      - const: apb
-> +      - const: addr_space
-> +      - const: atu
-> +
-> +  clocks:
-> +    minItems: 6
-> +    items:
-> +      - description: AHB clock for PCIe master
-> +      - description: AHB clock for PCIe slave
-> +      - description: AHB clock for PCIe dbi
-> +      - description: APB clock for PCIe
-> +      - description: Auxiliary clock for PCIe
-> +      - description: PIPE clock
-> +      - description: Reference clock for PCIe
-> +
-> +  clock-names:
-> +    minItems: 6
-> +    items:
-> +      - const: aclk_mst
-> +      - const: aclk_slv
-> +      - const: aclk_dbi
-> +      - const: pclk
-> +      - const: aux
-> +      - const: pipe
-> +      - const: ref
-> +
-> +  interrupts:
-> +    items:
-> +      - description:
-> +          Combined system interrupt, which is used to signal the following
-> +          interrupts - phy_link_up, dll_link_up, link_req_rst_not, hp_pme,
-> +          hp, hp_msi, link_auto_bw, link_auto_bw_msi, bw_mgt, bw_mgt_msi,
-> +          edma_wr, edma_rd, dpa_sub_upd, rbar_update, link_eq_req, ep_elbi_app
-> +      - description:
-> +          Combined PM interrupt, which is used to signal the following
-> +          interrupts - linkst_in_l1sub, linkst_in_l1, linkst_in_l2,
-> +          linkst_in_l0s, linkst_out_l1sub, linkst_out_l1, linkst_out_l2,
-> +          linkst_out_l0s, pm_dstate_update
-> +      - description:
-> +          Combined message interrupt, which is used to signal the following
-> +          interrupts - ven_msg, unlock_msg, ltr_msg, cfg_pme, cfg_pme_msi,
-> +          pm_pme, pm_to_ack, pm_turnoff, obff_idle, obff_obff, obff_cpu_active
-> +      - description:
-> +          Combined legacy interrupt, which is used to signal the following
-> +          interrupts - tx_inta, tx_intb, tx_intc, tx_intd
-> +      - description:
-> +          Combined error interrupt, which is used to signal the following
-> +          interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
-> +          tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
-> +          nf_err_rx, f_err_rx, radm_qoverflow
-> +      - description:
-> +          eDMA write channel 0 interrupt
-> +      - description:
-> +          eDMA write channel 1 interrupt
-> +      - description:
-> +          eDMA read channel 0 interrupt
-> +      - description:
-> +          eDMA read channel 1 interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: sys
-> +      - const: pmc
-> +      - const: msg
-> +      - const: legacy
-> +      - const: err
-> +      - const: dma0
-> +      - const: dma1
-> +      - const: dma2
-> +      - const: dma3
-> +
-> +  num-lanes: true
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: pcie-phy
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: pwr
-> +      - const: pipe
+--t3SiQWMSb1DFPZBL
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Most of this is all duplicated from rockchip-dw-pcie.yaml. Pull out the 
-common bits to a separate schema file and reference it from the RC and 
-endpoint schemas.
+-----BEGIN PGP SIGNATURE-----
 
-You'll need to add to interrupts/interrupt-names in the common schema 
-and then restrict the number of items here and in the RC schema.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiqAGQAKCRB4tDGHoIJi
+0r/KAQDcecWoUKa9ZVb67zgNMKGcUaACpAVq/7o/0yGK05aTCgD/SxtOa05ISKUg
+UkKxK6lXzfAPkCs9yRyq0dJFOAEDcg0=
+=9uV6
+-----END PGP SIGNATURE-----
 
-> +
-> +  vpcie3v3-supply: true
-
-This doesn't make sense for endpoint mode. At least in the sense this 
-is supposed to be a standard slot voltage driven from the host side.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - num-lanes
-> +  - phys
-> +  - phy-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-
-A bunch or all? of these can be in the common schema too.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/power/rk3588-power.h>
-> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie3x4_ep: pcie-ep@fe150000 {
-> +            compatible = "rockchip,rk3588-pcie-ep";
-> +            clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
-> +                     <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
-> +                     <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>;
-> +            clock-names = "aclk_mst", "aclk_slv",
-> +                          "aclk_dbi", "pclk",
-> +                          "aux", "pipe";
-> +            interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                         <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            interrupt-names = "sys", "pmc", "msg", "legacy", "err",
-> +                              "dma0", "dma1", "dma2", "dma3";
-> +            max-link-speed = <3>;
-> +            num-lanes = <4>;
-> +            phys = <&pcie30phy>;
-> +            phy-names = "pcie-phy";
-> +            power-domains = <&power RK3588_PD_PCIE>;
-> +            reg = <0xa 0x40000000 0x0 0x00100000>,
-> +                  <0xa 0x40100000 0x0 0x00100000>,
-> +                  <0x0 0xfe150000 0x0 0x00010000>,
-> +                  <0x9 0x00000000 0x0 0x40000000>,
-> +                  <0xa 0x40300000 0x0 0x00100000>;
-> +            reg-names = "dbi", "dbi2", "apb", "addr_space", "atu";
-> +            resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
-> +            reset-names = "pwr", "pipe";
-> +        };
-> +    };
-> +...
-> 
-> -- 
-> 2.44.0
-> 
+--t3SiQWMSb1DFPZBL--
 
