@@ -1,147 +1,405 @@
-Return-Path: <devicetree+bounces-62785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C24338B2762
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 19:14:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B268B26F4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 18:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FCFD286154
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 17:14:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 206921C20F48
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 16:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77AF14D714;
-	Thu, 25 Apr 2024 17:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8526D14E2F0;
+	Thu, 25 Apr 2024 16:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="BF09zJII"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I+2bBlbp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D8614D715;
-	Thu, 25 Apr 2024 17:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDD014E2D4;
+	Thu, 25 Apr 2024 16:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714065226; cv=none; b=s5WGckP6PqTNN7cluaDtCmbDyZRyrwSZ9kGyH2hvS4FsXFGzeNKis7vRjNzs0X/eCAKJDJLGbijhOziyTntnPkTpGvmQu6/vGPMurnAMpagu7eE9ZNxDIirkalo3O441IS2zsfrbhCOzeuaGZClSoxOvyVYyjY7MZrB/GIjQArk=
+	t=1714064185; cv=none; b=adXx+PFDQDqDi5yZ+owZ36u9i7EUyfSj5OuAjdzUq8lhXMsbYI2+9guDqB8u1CPM/8U+jIETKPsauiYTWlhm2m1/CYKyDhpmJ8Z2aVuxj02kSr/ohrgE8o77TuD/HcV6NNLcmRcUao4Qz65l8RGkI/I+Oo6bHjYmZy3vWzdxU6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714065226; c=relaxed/simple;
-	bh=6foYH7QWE2i5RWLOdtEMwKdsb2KccYTN2Q/k4s5TAV0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=csfUj3q6qKrnAA0fMe3TVWcBVY3aqY0tGIoOHtUQemZ4Uinoicn13fDqYcT77GV35Pz+7MVFRhv8eaoBf+c6f3goVSOlqCYbDkvHsdBUnrlzJwMsqZWRnqYCl+m+5+TKtx1RE075EXyUR3VcgnA31iQ35jM6VW8e+v4rewzEVwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=BF09zJII; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1s02MW-000ZvV-2b;
-	Thu, 25 Apr 2024 18:54:21 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tiBrh8Wfbv/jy2lIqssR5GnzyzHFN9L4ULdDhyCPprk=; b=BF09zJIItbQMvEhpMdlWf3E8C0
-	JXoGZzZXjql074j600DVKUvMXesGkXx1Hoc1orZo2Bc68sp+DNB77gDM3H4nLdC9j1W/jCw83MSdw
-	zAZZ47RtPN89pHe4xcnuzg9ENcOrEs2Nqw723CCcgelqCFrGrgcnxALBOcmmtYUJt2LGlCpN2x5i5
-	ByadWtvFh7/fsn1wGHy/KjSCtfSSw3XDWq4ggOPt9j7czgGa1MxxpzDc0R1om9PwZwcatdgfT2JuR
-	S0nh5vN6V1XTz308JYoAWPm7pdkpD0fTKy2hIJQ6n34tIe6k3w8RchR/7kklYGVrtKEHWn7xMVLun
-	PD/tzQ5A==;
-Received: from p200300c2071a02001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:71a:200:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1s02MU-0001dn-1K;
-	Thu, 25 Apr 2024 18:54:19 +0200
-Date: Thu, 25 Apr 2024 18:54:17 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- o.rempel@pengutronix.de, u.kleine-koenig@pengutronix.de,
- hdegoede@redhat.com, ye.xingchen@zte.com.cn, p.puschmann@pironex.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, caleb.connolly@linaro.org
-Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add ft5426
-Message-ID: <20240425185417.0a5f9c19@aktux>
-In-Reply-To: <CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
-References: <20240404222009.670685-1-andreas@kemnade.info>
-	<20240404222009.670685-3-andreas@kemnade.info>
-	<CAHp75VeZ9U_+1rJQjr4KvvzjYQGzfKtk+BK00vqvKcVn2-yP3g@mail.gmail.com>
-	<20240405182832.4e457695@aktux>
-	<CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1714064185; c=relaxed/simple;
+	bh=Atp8C0xu28D1QHhbI+/+kdM/y7paXO13iMBXxeH1mio=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c9jSqf7VfmAbGE5gJlTVdWf629EhCBMnZteMsv+57+6gXoflLRw6KCXiPDkyQiO0YNx/w4nPsoOgZV7NZ4I9Cdgj9dXv3XchyEMByxd4VEFUOqZ3aDYm4zuZERdFM2NqMh08LiY1K3o1k1PrBeDSR4yABwN1VsYwFti6279xZGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+2bBlbp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E60BC2BD11;
+	Thu, 25 Apr 2024 16:56:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714064185;
+	bh=Atp8C0xu28D1QHhbI+/+kdM/y7paXO13iMBXxeH1mio=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=I+2bBlbpL2K3sB0dWqKbW0KQfb2IzQPEX5hqGNNJqrBN/zYVee98UFMadRfUxr4O0
+	 MhhMnj4Hq165xgullAd5Zdt310Uu2fzyUxUlAKum5btv9PZnaZmiMuYfb/kijQnZji
+	 Vk5VlvFjAYJxGgLpEkOeVIqmav6W0meYNDAyJhXnsQ/t6QqXlQloDQTdsAyJpfiU7m
+	 TtMPLSYuTdlz/QKg6FhttG8qrr+gkwsxAbWF3Btw9CPArc42wmWNX+phP+gsQrMKKH
+	 ro+OGtnZ+SfQqjd9kDtlTzhcaD1lMMCZhTFgkfTO6s2o2/0ZIMtyQHjPQyoJl8GLpj
+	 KLasmAGQIktmw==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2dd19c29c41so14276451fa.3;
+        Thu, 25 Apr 2024 09:56:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWiHM7Kq7i7Hb+pcjUjV70rw+2q3hscJjejEcCwEC14bCYPj4IULU/LAlX9C0fx5Mos8h4T6O3bkwnQ69eMJNALtO7PyOOKweuqrk4n2+1aADpTo5laRiI42b1DJRJbNhD8RmTZQMn44A==
+X-Gm-Message-State: AOJu0YxmkBaQpr9xON7VcyK0KEXUpJ5abvQlaTMpRJdDuRufKaeWTMb2
+	9EvAS4ouTBE1v/lZ9+pDyH69t0WtcgUP6iqfphx0YxzEx2QvlP5WjnXG/8Qmpi3CikRkZpxJbSb
+	pbDkte1M8bRc2WdK6Z2f4Jp7/OQ==
+X-Google-Smtp-Source: AGHT+IH7YfbmVhza2t6tUTycBo8DCokXEg7YYW8Q+9NWxtxjdzxdEjMKAXck7iiq7K7XPtBsRZhxcaXy0YjHPFrw/yI=
+X-Received: by 2002:a05:651c:2116:b0:2de:d48a:953b with SMTP id
+ a22-20020a05651c211600b002ded48a953bmr2463543ljq.23.1714064183502; Thu, 25
+ Apr 2024 09:56:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20240425091403.17483-1-nikolaos.pasaloukos@blaize.com> <20240425091403.17483-5-nikolaos.pasaloukos@blaize.com>
+In-Reply-To: <20240425091403.17483-5-nikolaos.pasaloukos@blaize.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 25 Apr 2024 11:56:10 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJG3NuUcfK3CGhUa1g1eHEpjmmkWQtJoiWimiCsUwhq+Q@mail.gmail.com>
+Message-ID: <CAL_JsqJG3NuUcfK3CGhUa1g1eHEpjmmkWQtJoiWimiCsUwhq+Q@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] arm64: Add initial support for Blaize BLZP1600 CB2
+To: Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
+Cc: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "catalin.marinas@arm.com" <catalin.marinas@arm.com>, 
+	"will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>, 
+	Neil Jones <neil.jones@blaize.com>, Matt Redfearn <matthew.redfearn@blaize.com>, 
+	James Cowgill <james.cowgill@blaize.com>, 
+	"heiko.stuebner@cherry.de" <heiko.stuebner@cherry.de>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"macromorgan@hotmail.com" <macromorgan@hotmail.com>, "sre@kernel.org" <sre@kernel.org>, 
+	"hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>, 
+	"andre.przywara@arm.com" <andre.przywara@arm.com>, "rafal@milecki.pl" <rafal@milecki.pl>, 
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, "andersson@kernel.org" <andersson@kernel.org>, 
+	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>, 
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
+	"m.szyprowski@samsung.com" <m.szyprowski@samsung.com>, 
+	"nfraprado@collabora.com" <nfraprado@collabora.com>, "u-kumar1@ti.com" <u-kumar1@ti.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 5 Apr 2024 20:21:19 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Thu, Apr 25, 2024 at 4:15=E2=80=AFAM Niko Pasaloukos
+<nikolaos.pasaloukos@blaize.com> wrote:
+>
+> Adds support for the Blaize CB2 development board based on
+> BLZP1600 SoC. This consists of a Carrier-Board-2 and a SoM.
+>
+> The blaize-blzp1600.dtsi is the common part for the SoC,
+> blaize-blzp1600-som.dtsi is the common part for the SoM and
+> blaize-blzp1600-cb2.dts is the board specific file.
+>
+> Co-developed-by: James Cowgill <james.cowgill@blaize.com>
+> Signed-off-by: James Cowgill <james.cowgill@blaize.com>
+> Co-developed-by: Matt Redfearn <matt.redfearn@blaize.com>
+> Signed-off-by: Matt Redfearn <matt.redfearn@blaize.com>
+> Co-developed-by: Neil Jones <neil.jones@blaize.com>
+> Signed-off-by: Neil Jones <neil.jones@blaize.com>
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+> ---
+>  arch/arm64/boot/dts/Makefile                  |   1 +
+>  arch/arm64/boot/dts/blaize/Makefile           |   2 +
+>  .../boot/dts/blaize/blaize-blzp1600-cb2.dts   |  84 +++++++
+>  .../boot/dts/blaize/blaize-blzp1600-som.dtsi  |  23 ++
+>  .../boot/dts/blaize/blaize-blzp1600.dtsi      | 209 ++++++++++++++++++
+>  5 files changed, 319 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/blaize/Makefile
+>  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
+>  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600-som.dtsi
+>  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 30dd6347a929..601b6381ea0c 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -9,6 +9,7 @@ subdir-y +=3D apm
+>  subdir-y +=3D apple
+>  subdir-y +=3D arm
+>  subdir-y +=3D bitmain
+> +subdir-y +=3D blaize
+>  subdir-y +=3D broadcom
+>  subdir-y +=3D cavium
+>  subdir-y +=3D exynos
+> diff --git a/arch/arm64/boot/dts/blaize/Makefile b/arch/arm64/boot/dts/bl=
+aize/Makefile
+> new file mode 100644
+> index 000000000000..595e7a350300
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/blaize/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_BLAIZE_BLZP1600) +=3D blaize-blzp1600-cb2.dtb
+> diff --git a/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts b/arch/ar=
+m64/boot/dts/blaize/blaize-blzp1600-cb2.dts
+> new file mode 100644
+> index 000000000000..0bdec7e81380
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
+> @@ -0,0 +1,84 @@
+> +// SPDX-License-Identifier: GPL-2.0
 
-> On Fri, Apr 5, 2024 at 7:28=E2=80=AFPM Andreas Kemnade <andreas@kemnade.i=
-nfo> wrote:
-> > On Fri, 5 Apr 2024 18:13:45 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote: =20
-> > > On Fri, Apr 5, 2024 at 1:20=E2=80=AFAM Andreas Kemnade <andreas@kemna=
-de.info> wrote: =20
->=20
-> ...
->=20
-> > > > @@ -1484,6 +1484,7 @@ static const struct of_device_id edt_ft5x06_o=
-f_match[] =3D {
-> > > >         { .compatible =3D "edt,edt-ft5206", .data =3D &edt_ft5x06_d=
-ata },
-> > > >         { .compatible =3D "edt,edt-ft5306", .data =3D &edt_ft5x06_d=
-ata },
-> > > >         { .compatible =3D "edt,edt-ft5406", .data =3D &edt_ft5x06_d=
-ata },
-> > > > +       { .compatible =3D "focaltech,ft5426", .data =3D &edt_ft5506=
-_data }, =20
-> > >
-> > > Why a different vendor prefix?
-> > > In case you need to use this one, keep the list sorted, currently this
-> > > splits the edt,* ones.
-> > > =20
-> > How do I know whether to use evervision or edt instead? =20
->=20
-> Ask DT people, the vendor-prefixes lists both...
->=20
-> > I sorted by the numbers. Looking at datasheets for other controllers I =
-see
-> > https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf
-> > it only mentions FocalTech Systems Co., Ltd. =20
->=20
-> But does the driver use that? AFAICS it uses edt. Perhaps it's due to
-> a business split, not to my knowledge anyway.
->=20
-Well, lets cite edt-ft5x06.rst:
+Preferred license is GPL-2.0 plus a permissive license.
 
-"The edt-ft5x06 driver is useful for the EDT "Polytouch" family of capaciti=
-ve
-touch screens. Note that it is *not* suitable for other devices based on the
-focaltec ft5x06 devices, since they contain vendor-specific firmware. In
-particular this driver is not suitable for the Nook tablet."
+> +/*
+> + * Copyright (c) 2023 Blaize, Inc. All rights reserved.
 
-So chips from focaltech which can be equipped with different firmware? So
-edt prefix means EDT firmware?
+2024 now.
 
-Looking around I found this:
-            if (tsdata->version =3D=3D EV_FT)
-                        swap(x, y);
-...
-               case 0x59:  /* Evervision Display with FT5xx6 TS */
-                        tsdata->version =3D EV_FT;
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "blaize-blzp1600-som.dtsi"
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +
+> +/ {
+> +       model =3D "Blaize BLZP1600 SoM1600P CB2 Development Board";
+> +
+> +       compatible =3D "blaize,blzp1600-cb2", "blaize,blzp1600";
+> +
+> +       aliases {
+> +               serial0 =3D &uart0;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path =3D "serial0:115200";
+> +       };
+> +};
+> +
+> +&i2c0 {
+> +       clock-frequency =3D <100000>;
+> +       status =3D "okay";
+> +};
+> +
+> +&i2c1 {
+> +       clock-frequency =3D <100000>;
+> +       status =3D "okay";
+> +};
+> +
+> +&i2c3 {
+> +       clock-frequency =3D <100000>;
+> +       status =3D "okay";
+> +
+> +       gpio_expander: gpio@74 {
+> +               compatible =3D "ti,tca9539";
+> +               reg =3D <0x74>;
+> +               gpio-controller;
+> +               #gpio-cells =3D <2>;
+> +               gpio-line-names =3D "RSP_PIN_7",  /* GPIO_0 */
+> +                                 "RSP_PIN_11", /* GPIO_1 */
+> +                                 "RSP_PIN_13", /* GPIO_2 */
+> +                                 "RSP_PIN_15", /* GPIO_3 */
+> +                                 "RSP_PIN_27", /* GPIO_4 */
+> +                                 "RSP_PIN_29", /* GPIO_5 */
+> +                                 "RSP_PIN_31", /* GPIO_6 */
+> +                                 "RSP_PIN_33", /* GPIO_7 */
+> +                                 "RSP_PIN_37", /* GPIO_8 */
+> +                                 "RSP_PIN_16", /* GPIO_9 */
+> +                                 "RSP_PIN_18", /* GPIO_10 */
+> +                                 "RSP_PIN_22", /* GPIO_11 */
+> +                                 "RSP_PIN_28", /* GPIO_12 */
+> +                                 "RSP_PIN_32", /* GPIO_13 */
+> +                                 "RSP_PIN_36", /* GPIO_14 */
+> +                                 "TP31";       /* GPIO_15 */
+> +       };
+> +
+> +       gpio_expander_m2: gpio@75 {
+> +               compatible =3D "ti,tca9539";
+> +               reg =3D <0x75>;
+> +               gpio-controller;
+> +               #gpio-cells =3D <2>;
+> +               gpio-line-names =3D "M2_W_DIS1_N",        /* GPIO_0 */
+> +                                 "M2_W_DIS2_N",        /* GPIO_1 */
+> +                                 "M2_UART_WAKE_N",     /* GPIO_2 */
+> +                                 "M2_COEX3",           /* GPIO_3 */
+> +                                 "M2_COEX_RXD",        /* GPIO_4 */
+> +                                 "M2_COEX_TXD",        /* GPIO_5 */
+> +                                 "M2_VENDOR_PIN40",    /* GPIO_6 */
+> +                                 "M2_VENDOR_PIN42",    /* GPIO_7 */
+> +                                 "M2_VENDOR_PIN38",    /* GPIO_8 */
+> +                                 "M2_SDIO_RST_N",      /* GPIO_9 */
+> +                                 "M2_SDIO_WAKE_N",     /* GPIO_10 */
+> +                                 "M2_PETN1",           /* GPIO_11 */
+> +                                 "M2_PERP1",           /* GPIO_12 */
+> +                                 "M2_PERN1",           /* GPIO_13 */
+> +                                 "UIM_SWP",            /* GPIO_14 */
+> +                                 "UART1_TO_RSP";       /* GPIO_15 */
+> +       };
+> +};
+> diff --git a/arch/arm64/boot/dts/blaize/blaize-blzp1600-som.dtsi b/arch/a=
+rm64/boot/dts/blaize/blaize-blzp1600-som.dtsi
+> new file mode 100644
+> index 000000000000..efac0d6b3d60
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/blaize/blaize-blzp1600-som.dtsi
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Blaize, Inc. All rights reserved.
+> + */
+> +
+> +#include "blaize-blzp1600.dtsi"
+> +
+> +/ {
+> +       memory@1000 {
+> +               device_type =3D "memory";
+> +               reg =3D <0x0 0x00001000 0xfffff000>;
 
-I need swap(x.y), I am using touchscreen-swapped-x-y property now.
-So evervision prefix?
+Memory starting at 4K. That's odd. I suspect you have something
+reserved there and memory really starts at 0? If so, it is preferred
+that you describe memory including that 4KB and then reserve it in
+/memreserve/ section or /reserved-memory node.
 
-Regards,
-Andreas
+
+> +       };
+> +};
+> +
+> +/* i2c4 bus is available only on the SoM, not on the board */
+> +&i2c4 {
+> +       clock-frequency =3D <100000>;
+> +       status =3D "okay";
+> +};
+> +
+> +&uart0 {
+> +       status =3D "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/blaize/blaize-blzp1600.dtsi b/arch/arm64=
+/boot/dts/blaize/blaize-blzp1600.dtsi
+> new file mode 100644
+> index 000000000000..26d8943d60ab
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/blaize/blaize-blzp1600.dtsi
+> @@ -0,0 +1,209 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Blaize, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +       interrupt-parent =3D <&gic>;
+> +       #address-cells =3D <2>;
+> +       #size-cells =3D <1>;
+> +
+> +       cpus {
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <0>;
+> +
+> +               cpu0: cpu@0 {
+> +                       compatible =3D "arm,cortex-a53";
+> +                       device_type =3D "cpu";
+> +                       enable-method =3D "psci";
+> +                       reg =3D <0x0 0x0>;
+> +                       next-level-cache =3D <&l2>;
+> +               };
+> +
+> +               cpu1: cpu@1 {
+> +                       compatible =3D "arm,cortex-a53";
+> +                       device_type =3D "cpu";
+> +                       enable-method =3D "psci";
+> +                       reg =3D <0x0 0x1>;
+> +                       next-level-cache =3D <&l2>;
+> +               };
+> +
+> +               l2: l2-cache0 {
+> +                       compatible =3D "cache";
+> +                       cache-level =3D <2>;
+> +                       cache-unified;
+> +               };
+> +       };
+> +
+> +       timer {
+> +               compatible =3D "arm,armv8-timer";
+> +               interrupts =3D /* Physical Secure PPI */
+> +                            <GIC_PPI 13 (GIC_CPU_MASK_RAW(0x3) |
+> +                                         IRQ_TYPE_LEVEL_LOW)>,
+> +                            /* Physical Non-Secure PPI */
+> +                            <GIC_PPI 14 (GIC_CPU_MASK_RAW(0x3) |
+> +                                         IRQ_TYPE_LEVEL_LOW)>,
+> +                            /* Hypervisor PPI */
+> +                            <GIC_PPI 10 (GIC_CPU_MASK_RAW(0x3) |
+> +                                         IRQ_TYPE_LEVEL_LOW)>,
+> +                            /* Virtual PPI */
+> +                            <GIC_PPI 11 (GIC_CPU_MASK_RAW(0x3) |
+> +                                         IRQ_TYPE_LEVEL_LOW)>;
+> +       };
+> +
+> +       psci {
+> +               compatible =3D "arm,psci-1.0", "arm,psci-0.2";
+> +               method =3D "smc";
+> +       };
+> +
+> +       pmu {
+> +               compatible =3D "arm,cortex-a53-pmu";
+> +               interrupts =3D <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
+> +               interrupt-affinity =3D <&cpu0>, <&cpu1>;
+> +       };
+> +
+> +       sram@0 {
+> +               /*
+> +                * On BLZP1600 there is no general purpose (non-secure) S=
+RAM.
+> +                * A small DDR memory space has been reserved for general=
+ use.
+> +                */
+> +               compatible =3D "mmio-sram";
+> +               reg =3D <0x0 0x00000000 0x00001000>;
+
+Ah, there it is. This isn't mmio-sram.
+
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+> +               ranges =3D <0 0x0 0x00000000 0x1000>;
+> +
+> +               /* SCMI reserved buffer space on DDR space */
+> +               scmi0_shm: scmi-sram@800 {
+> +                       compatible =3D "arm,scmi-shmem";
+> +                       reg =3D <0x800 0x80>;
+> +               };
+
+Just put this node into /reserved-memory.
+
+> +       };
+> +
+> +       firmware {
+> +               scmi {
+> +                       compatible =3D "arm,scmi-smc";
+> +                       arm,smc-id =3D <0x82002000>;
+> +                       #address-cells =3D <1>;
+> +                       #size-cells =3D <0>;
+> +
+> +                       shmem =3D <&scmi0_shm>;
+> +
+> +                       scmi_clk: protocol@14 {
+> +                               reg =3D <0x14>;
+> +                               #clock-cells =3D <1>;
+> +                       };
+> +
+> +                       scmi_rst: protocol@16 {
+> +                               reg =3D <0x16>;
+> +                               #reset-cells =3D <1>;
+> +                       };
+> +               };
+> +       };
+> +
+> +       soc {
+> +               compatible =3D "simple-bus";
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <1>;
+> +               ranges;
+
+It is preferred if you limit this to actual ranges needed. Looks like
+nothing below 0x200000000, but I imagine this is incomplete.
+
+Rob
 
