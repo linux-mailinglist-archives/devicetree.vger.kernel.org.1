@@ -1,123 +1,110 @@
-Return-Path: <devicetree+bounces-62596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 816038B1BD2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:23:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFCF8B1C07
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 09:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 436C328649B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:23:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2FFC1C21476
+	for <lists+devicetree@lfdr.de>; Thu, 25 Apr 2024 07:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0068D6BFBB;
-	Thu, 25 Apr 2024 07:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E066CDCF;
+	Thu, 25 Apr 2024 07:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i/G+iImO"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="A00fBTDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpcmd12131.aruba.it (smtpcmd12131.aruba.it [62.149.156.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDEC3A268;
-	Thu, 25 Apr 2024 07:23:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F421A535A5
+	for <devicetree@vger.kernel.org>; Thu, 25 Apr 2024 07:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714029808; cv=none; b=UZuO/1dhYzjRIoDQqY/lR8GXKO3I1sSWRU/ohEVX0RMgQsWkoPChWg+GpX9TYREbRccApl7J2rGITy6kNUqtR3ClR2yGHbM62MAa9UfCNHBBgbZqrJlw2h28myjQZah3Nhbkz135NqzGjWEW+n2HNz0tIzViuaWeRBsPOxAaJxI=
+	t=1714030695; cv=none; b=XbHVmBKKfFYOr3wbPG5hj7YUyENC2ladkRxM9TyoHhY+mlBFwL/vC+gDq98Dbi2KjatLf+E+WF+3pcDbeRiUCqanXnWfKb1rD5jcw6c7X0HWhd2Rvv/FC9BK9HS2tPX44kFNQMizwvCW6vYrPq9EcpIVFK0iUpDuOcGskgzICVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714029808; c=relaxed/simple;
-	bh=A/4Kk+ecoj6p93X8Ek2vHbx5mGDcRoxKNP+8wWGtgUc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aCzh5LAr4YKTJW03VKIDdrt5gl2aLmZuGuUaUnmd1fc5Fm7r1Nx60D83pWiByvl63cwbUp52pSrGFe/0t86HzFj0ydAFj9DZcnJQQNMcdjHvl59VY9Xoow6FIqms7WS+95XYI+F+fVkHmTHugULJ62Rd/DarN691HAHVx/ifjFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i/G+iImO; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-572347c2ba8so607043a12.3;
-        Thu, 25 Apr 2024 00:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714029805; x=1714634605; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A/4Kk+ecoj6p93X8Ek2vHbx5mGDcRoxKNP+8wWGtgUc=;
-        b=i/G+iImO/wcySpB33jryMD1918BsOJNH/eETO/BgrOyXUOgJivQ7Yu3Y/nOpAWv62K
-         AYKvsnHchc/gCL62toK/EV+g1GsMFYpuemBLPFjTdy4AOYWDal+CAdJ8pIQrpMKjgwzo
-         X0wvPRnT8f2z01/SaAEnJQt4aBRS+kNDBIy8aOrchLLdVagYA990KWLSkbsYMnW2PCvt
-         uVRoHL3iuZOwd+STQjbOAkBdjR6YTsTGX7OkmW4Va90usLDZunbG3nCD54B8ePZ5izzK
-         GrBE4lTG4tFnCI42Bb4XqDgLQiJCF8+6e6Ymg4EwKbb2LKMHsrUsyNL+rxHsm0s4mZTX
-         BaRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714029806; x=1714634606;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A/4Kk+ecoj6p93X8Ek2vHbx5mGDcRoxKNP+8wWGtgUc=;
-        b=R9DbzWctnESvYQtXGHdEr/YvrG/SKRlRnr+xlyE7Uuw079EGILMnsd4kwW2f6Mx2hr
-         VUplqJu1TWxLWtfqEX46nxmpzkMJ/pd39V82hW/XUbD25nbqGkQcthEnBpJrpnaakFhd
-         wUau6aKD5UnS2vmVj0UtXC8Hda8wMJODS2unKfJKuWqhEmUVLVRrqHYjnf2zs5mCTq87
-         DGSdaGIv92bBIVVDcVAJu71+pfXzlr1i4ybYXzCFEpW0oiruPihxI6VsM7SBn3xxpGLp
-         w818nfr7pOkqPlSJRfZ4qlxYVYoa9wekvz/45oJInWFV7ZYc52iwBgAeh8oG9lSNvCbf
-         vh1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUbw4FWCuuUEQ7VkSYXKsUny225LzBBGx9mNthuYp59Yso6dc1CWGjh2DoG6JZoC6ak6hwbOMGfs+hU2ISQVWlh4gn9x4orKJWzyzfdNzmFerMsgIABLnWBlnZCJ+tpE7Pfe8kXb8jCuka03RQKBvgDXjHn4/wYGTG+uyj7CTHgwsaSXKUmgA==
-X-Gm-Message-State: AOJu0YxL9bCyLLZPTxIHw2wSdSplNGEkqguUbg/7GX3uGHcUOwi4D1Lk
-	VPDqixnVratcP2KYupd8eVrgHx6hP7Pkor0ye975yNHse5G+0ASCCF1ghPvFvXZ02qLMICZhu+E
-	QgHnwQcC5UZ6ZaNkpebKK2Bf2w2A=
-X-Google-Smtp-Source: AGHT+IEnj6asV4dQ7pWNGOS519gonypRgW5g4IX/Ggz2tgJLhFLFeVhxInVks58EbeT6yPIr6CPGr7NzMG46lDt6/Pg=
-X-Received: by 2002:a17:907:700c:b0:a55:9a35:5e9d with SMTP id
- wr12-20020a170907700c00b00a559a355e9dmr3083273ejb.42.1714029805371; Thu, 25
- Apr 2024 00:23:25 -0700 (PDT)
+	s=arc-20240116; t=1714030695; c=relaxed/simple;
+	bh=POh6DGR1npxv4cI/95gDfs4EK4FCh7xmdJxnsnYyC4A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nyyrFlkXg7ii2h+BbfBpgQfY1Rrsu0YxaNrEbf8g8S3NubBMhx3ZFPh9TxsucPBsCtSpyg+nhVJP5Aqov18Z/WokwVzjSJQK+HyWHxghD/86hh7q2IQOQtWloh26AmdkEfA6BU67BnfdwgsGxSCKzMOcE/IcPYzGo7sZCN6WtsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=A00fBTDh; arc=none smtp.client-ip=62.149.156.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam ([77.32.5.97])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id ztZDrKsmITSwmztZErYHig; Thu, 25 Apr 2024 09:30:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1714030255; bh=POh6DGR1npxv4cI/95gDfs4EK4FCh7xmdJxnsnYyC4A=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=A00fBTDh68ZUE/kDsxWFk0KAhPmfzKkHmPT1rrd6wR5vYB+bxIwpy1hhu4eEDT+aX
+	 WU8R9RkKtb1kGWWMLmUde+VI2BA5QrglUZtx6jQ6keh1j6yVQ8zRgU2iKDpf6RK0Rv
+	 9TThcrcwLDZ618KRmqMwECtpeV/eGiUQm5y7nyrSOM6lnqYX+MgFYrbv+ZB8FDk4Qu
+	 STdTZ8nBFnjeTldkSx9L7PPuPqQJDQJE9IY52mjmjAGqE/jJUMQQzbjhUSHfQZLU3H
+	 xUuNMUT6BLIDSdSrYzSJImfchTk5TRbl4wxuTQVWTt4UOhL7w89i7TxBpRrHJEoixo
+	 2SKQeAKT2J/Vg==
+Date: Thu, 25 Apr 2024 09:30:51 +0200
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Matteo Lisi <matteo.lisi@engicam.com>,
+	Mirko Ardinghi <mirko.ardinghi@engicam.com>
+Subject: Re: [PATCH v3 2/3] arm64: dts: imx93: add Engicam i.Core MX93 SoM
+Message-ID: <ZioGq1/zlRP1o7dj@engicam>
+References: <20240419144953.8700-1-fabio.aiuto@engicam.com>
+ <20240419144953.8700-3-fabio.aiuto@engicam.com>
+ <ZioFaJtxYsUlchfW@dragon>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240424191908.32565-1-rilian.la.te@ya.ru> <20240424191908.32565-3-rilian.la.te@ya.ru>
- <CAHp75VfpRBDTjnZCdOKK+YWZKJ+wbjsg-n4wxjA7qVE0L1WSxw@mail.gmail.com>
-In-Reply-To: <CAHp75VfpRBDTjnZCdOKK+YWZKJ+wbjsg-n4wxjA7qVE0L1WSxw@mail.gmail.com>
-From: "Konstantin P." <ria.freelander@gmail.com>
-Date: Thu, 25 Apr 2024 10:25:41 +0300
-Message-ID: <CAF1WSuxAFHbSVAV1r2cDzZms=T_Qg6y3qbgU5rrjySuAd3FUNw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] dt-bindings: sc16is7xx: Add compatible line for
- XR20M1172 UART
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Konstantin Pugin <rilian.la.te@ya.ru>, krzk@kernel.org, conor@kernel.org, lkp@intel.com, 
-	vz@mleia.com, robh@kernel.org, jcmvbkbc@gmail.com, 
-	nicolas.ferre@microchip.com, manikanta.guntupalli@amd.com, corbet@lwn.net, 
-	ychuang3@nuvoton.com, u.kleine-koenig@pengutronix.de, Maarten.Brock@sttls.nl, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andy Shevchenko <andy@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Lech Perczak <lech.perczak@camlingroup.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZioFaJtxYsUlchfW@dragon>
+X-CMAE-Envelope: MS4xfOQWB1BSUo/PFP/F0yaa0ZoNYNDwofTChEHlBDRgFN5BH3HrLSVlIU7RetjGhX/lddbtefa0HqPQfnOBkhsTi2FAHSKOICqeu06p9oCBjcS4AjYeQ+tB
+ vdVMUEZajEbyw4wBdXt5Nmgb1yOUREK2DilvR1p43gs3AYiVF+1ZCvlQvunFKZw0bewR7GVhSNoLd/VNIYTLuYvruukoNhKCFFnKUWF2YkPwgJmQDJBfZmDt
+ qIS53Zxh/IV7ytZ5erh7ImwTmmP8WI8CkBcoCd4BIyg2UY38b7alkmHdcWRSDLLWw4WFkK7tkGUi4BAwEfXOjOhS3BlclBt0VE7Vz+AV7hsy8uorVMyVBL9s
+ /tRl5L3YmZsuB2gaG1TVgylyG0wrzQUytUdwbFfjf6bSTa9110ie9XRfiVEs9HNcS7W8FSR86XI/+LqpCrzkD3o4SM614aFhilyXWrKF/S8T4Nep6Ns4enh2
+ ObVOK6YiymmkEwPSWdWhdBborByOMY7+OuZ0CY+GtpjhSsGIFhvEGQHTp1oWrCRHLbhpVKPR8mEjvFsLW5H4EZ/1AlQRqDs1VNZ4c2Y8lXlMLmxs2xWShYXc
+ ScQ=
 
-On Wed, Apr 24, 2024 at 10:34=E2=80=AFPM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Wed, Apr 24, 2024 at 10:19=E2=80=AFPM Konstantin Pugin <rilian.la.te@y=
-a.ru> wrote:
-> >
-> > From: Konstantin Pugin <ria.freelander@gmail.com>
-> >
-> > EXAR XR20M1172 UART is mostly register-compatible with NXP SPI UARTs.
-> > It will be handled by same driver, so, it makes sense to add DT
-> > definition for these block into driver's documentation.
->
-> blocks
->
-> ...
->
-> > Reviewed-by: Andy Shevchenko <andy@kernel.org>
->
-> Hmm... Did I? IIRC I only reviewed patches 1 and 3. Am I mistaken?
+Dear Shawn,
 
-I think it is my mistake, not yours. If you want, I can do a new
-version without a tag.
+Il Thu, Apr 25, 2024 at 03:25:28PM +0800, Shawn Guo ha scritto:
+> On Fri, Apr 19, 2024 at 04:49:52PM +0200, Fabio Aiuto wrote:
+<snip>
+> > +			MX93_PAD_SD2_DATA3__USDHC2_DATA3        0x130e
+> > +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+> 
+> Could you try to align the indents, so that those hex values appear at
+> the same column?
 
-> --
-> With Best Regards,
-> Andy Shevchenko
+thanks for your review, I will send a v5.
+
+kr,
+
+fabio
+
+> 
+> Shawn
+> 
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+> > +		fsl,pins = <
+> > +			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
+> > +		>;
+> > +	};
+> > +};
+> > -- 
+> > 2.34.1
+> > 
+> 
 
