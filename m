@@ -1,166 +1,111 @@
-Return-Path: <devicetree+bounces-63052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F908B38FC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:52:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1448B8B3908
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:54:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A20F2827D1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:52:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD9591F236EB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EABE148304;
-	Fri, 26 Apr 2024 13:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBA8148312;
+	Fri, 26 Apr 2024 13:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UahOrDm7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QuhOv9UJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009B5147C99;
-	Fri, 26 Apr 2024 13:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD201482EB;
+	Fri, 26 Apr 2024 13:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714139559; cv=none; b=CN6k/fc9PQjLrAdu/AJFszdPs9lFyNHiVlJad47NBaxgyxnc7aTaBuM847cZ84/idH3lKKi2kutVi2yE3c5XzQB2Iqw0+Cf5V8EtMt8kYHmtzDjK3bj2MHXr0e50+J+V5O5ss82noQKUyRr2NJGTrbaan1SUaE+ldk/Et/R+9I8=
+	t=1714139629; cv=none; b=etbS8W0zHvIAbqmlRQDmyQ78rMAf/vqeGMpCYHR6thgAqwaAgESvS7dPOPa48xdzqyjwDPUpGh7Ixf7ScxNdKurXBbKzOe1ohUUyRqs6pwDlB1qt3TXV+DNqdpa5X5In70ZGvFHUxLd9ZAuteQtZjBqoMYtH3kKXBRuY5KIZXow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714139559; c=relaxed/simple;
-	bh=gMtHGUb4M5s/DcbVs8UWDKiLf+2lO+ad/+QYz4lqtIg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cQcy5feRDrlqWjBYYJp0nAMjLIYKaJkqe1+irVQzu+UOG84/uEpzeSL4oRv/G6M6asc3APPpN5EBYQAGGV5qygoKSZ763t+vKNDDBOfqRP49JSPvYhYDeXRO/WZmnx+9gQM0zJqeuKqWLK7LJc7naU3Q04vPRkCQ7Vi1xA4dgP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UahOrDm7; arc=none smtp.client-ip=209.85.208.46
+	s=arc-20240116; t=1714139629; c=relaxed/simple;
+	bh=2diDGfXgoqGZPV0weeNRZMPINUbCViSW6NuyJ9qT79o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=G2nelvFRxFmk8iFxcpsMJm9YQh+03x2k54/rFTOlnCCX7sVkposvmr57Oq7M8n3PU4N+JmyMar4GBNFzhX7lKTtsccXFsdTiSJmVIKjNhe3OzA9sbrbvpoMNXr5dMENZg3FqgHX94eORYCfK3oEdv/OrK69ub9Rsu1whMgrQMUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QuhOv9UJ; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-56e78970853so5643036a12.0;
-        Fri, 26 Apr 2024 06:52:36 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-343e46ec237so1731259f8f.2;
+        Fri, 26 Apr 2024 06:53:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714139555; x=1714744355; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vdC/8U1Kxz1mEJxl3Cf8RJ3ZSt5Qcg4msblYJFG7Ecg=;
-        b=UahOrDm7I27KO8ZNv/bI1dltnxpFzf20FGUhMmFjnvGXooh9sPdLgcj9c/kLiX9XCg
-         DIMy2/I2lZNoA6z9WupBtvJ534IoKNsNORtXN1U/nR9QsGWq5BMOM5XsP2Hugcs3cPUL
-         hrlJib5kvNd93NXL54D/EkcdvLRScx6Wz9igp2aBAh6f5TJrY1j61HAXNwZ0NjsXz2Ck
-         Q99vpl0Y8Cnv08zyso6TVFW0iHsEcuztUNXr4RleIzSWYHi7/b1d8n5VctfnRg9RQHz7
-         QswzLfbwJZvqfuBslUAP9kyR4/1gYvFcH7sl1NnZHFhFEc2H1zv78GL1OrLDaAQjpLmp
-         56oA==
+        d=gmail.com; s=20230601; t=1714139625; x=1714744425; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZwRPVp4IQMXqt/6idnRqfFQtuAI0tlXLTfnP1hSTCQM=;
+        b=QuhOv9UJG5tMvISuMKrzF6RmEaT8HlfjLFxXssjVlCtlTLkka/pNpE6Vk0FT3fT5tc
+         ZeCtuyOK8Qvk+mKJoQV25G/gnq0OaTgTpuMqpI0iFBuWnCNZ7yqKAB/ZhjPq6GhdPLDj
+         K1rmbiq7/WhOyied/5dFJ9Dt8rYyB1rUjoRk7LVjyo7XGJPrV1YEhTNwJ8+mkqmYB2LF
+         DfIn0FofiXdzd+jUnLPmlcUFMxKka6gbCHnn8CGnu9BAsYhn4xdbLuVoGPpyLOcCL4jr
+         dQYNV8dbA1D2+p4px25r5QGWVuC/YCaQr2533FmmyqbOJu5fahXQudjqr/Y95pRFqbPw
+         QOUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714139555; x=1714744355;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vdC/8U1Kxz1mEJxl3Cf8RJ3ZSt5Qcg4msblYJFG7Ecg=;
-        b=Xbv1UY2M67QQsSiUWWfhAsKC9PjnS9mL9Mrj/PFpQm36FK/uIlXuXWAp2yOgScpoAU
-         lF9kwB0BO8kIfTfHRMzIpoV6FjNLf21j8mZJvyMVLhjQCKTM3ZIhMzgu+Ae3dueA9MR4
-         c5l+hNIoQ012WjMhX1UePRJsBCCOzOED5KlhYC2xVfO9VP/g6/SMgZVJumPY1wAaJuud
-         2rk6d9O80Qjhpw+hDykF8ijnLxGRozJmLoR39PzhbSidV6MfoU/07Fx12WZ9vQsWaVlq
-         8/JQiGuqZTz1JaLFynVMfQi/OzUzggLFic90HNAhzoQ/GA4icp4FN57z3qsxL1KHTT8e
-         FcSw==
-X-Forwarded-Encrypted: i=1; AJvYcCWyxTipuDaXprWw4W8rvf1P/PEgEZ4QHF0i0j5IEfhgNHPi8OfcM8TA4DCv781al+gDGne+E4Cb2qxo7OPJkzgGKF1LhX4uI2zbj4w6XhfPWhzh6icgR3wr/uamg8IYLcpgCNESOa2KWXPvVClcs0AnWPnrLZwuj3YldIkpe/q0g9YmtLzy
-X-Gm-Message-State: AOJu0Yzcr+BHj/MJR/13ndsLt5GFsz+vhw1I5/L0uB2KoInEfZImGa26
-	q3kpBJt7lwZqaXb5UWRJC8OiXj+e0Fx2zoIK1c8g5y0sVNX7fG0jkq/9pfUPsZ8l6yJAAXbwEeZ
-	wfwrguiHMruF+mb61sYg5F+pjxeo=
-X-Google-Smtp-Source: AGHT+IHXG0x9JABiG3fS/W399UgGKpb+PNo0PDtz+cJyxFStDFH5E0ooy9h6KyWG0L0HmW6tLrPDFwGQ90Prtx1rfq8=
-X-Received: by 2002:a17:906:d107:b0:a4e:24e6:9880 with SMTP id
- b7-20020a170906d10700b00a4e24e69880mr6030876ejz.33.1714139555199; Fri, 26 Apr
- 2024 06:52:35 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714139625; x=1714744425;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZwRPVp4IQMXqt/6idnRqfFQtuAI0tlXLTfnP1hSTCQM=;
+        b=MA4z2b294LNB3PElGFb/Sv+EQyQTRnfxj2bSFXPLVtw6BK9JZJb586KRI7c6KWLF/L
+         8jkrBLGjrCjz8HAJ3NljsBd9hDd3iNC6+w04J0W3DvWHnz7ExxYJNciW7bFGqGY1knSH
+         SqnDH+Nf0J+UUUe1sGF5xqSQypRmipsVNsmR0JrM/4XkpBHBvbmz/m7PL0y+PTMiZldD
+         DQP0ECAUm+lgTkssFpBD2FF9rFsnlDgDCBsHA3H1UItcAKxYcHaJgOSjDPKhQ56SL2HG
+         jlyrDVqo8di0FLkKzAt+5BB4LCDvFf967A6dxs5gGtiMwMexKXk6bo0gMOnLqWjPmjvE
+         cN0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVfsoRrFJD8XuDETZipU0SWJVib5jE4YUb1cagEeoWpD6gFcCJTmIBlFojoOoZCqxMLmpnbspBA9AcKqsJ6hQSL4GC5s3PLcFT6wKSeiGSxYCp26rw6MrtBPdE4J44G01lz+fWL6Q==
+X-Gm-Message-State: AOJu0YwiMv8iMlRMbPzNm7dRzxu3ljooLa3keC20oMSERhSxDS7TjV0d
+	xGbLnOvwaWVKpr4QfcBcAt7jn5dXHOrPsT285E80waLzM65R8MtMzzteJ0vL
+X-Google-Smtp-Source: AGHT+IFs9eB77Zr2ZWpQ6HgnBNShWFrml09IBs/i7NOnwkTqdsCCAu4hDuP7h2aRXvx1yNEvyFT6Zw==
+X-Received: by 2002:a5d:66c3:0:b0:34a:2d0c:4463 with SMTP id k3-20020a5d66c3000000b0034a2d0c4463mr2410851wrw.4.1714139625439;
+        Fri, 26 Apr 2024 06:53:45 -0700 (PDT)
+Received: from rbolboac.. ([2a02:2f0e:320d:e800:f4f8:b5e1:d7d4:bf65])
+        by smtp.gmail.com with ESMTPSA id k6-20020a5d6d46000000b003434f526cb5sm22302919wri.95.2024.04.26.06.53.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Apr 2024 06:53:45 -0700 (PDT)
+From: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	jic23@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh@kernel.org,
+	nuno.sa@analog.com
+Cc: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+Subject: [PATCH 0/7] adis16501 and adis1657x support
+Date: Fri, 26 Apr 2024 16:53:32 +0300
+Message-Id: <20240426135339.185602-1-ramona.bolboaca13@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404222009.670685-1-andreas@kemnade.info> <20240404222009.670685-3-andreas@kemnade.info>
- <CAHp75VeZ9U_+1rJQjr4KvvzjYQGzfKtk+BK00vqvKcVn2-yP3g@mail.gmail.com>
- <20240405182832.4e457695@aktux> <CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
- <20240425185417.0a5f9c19@aktux> <7dd1eb70-b011-4247-aea9-173ddcd17dc7@kaechele.ca>
- <20240426095617.4e442681@aktux>
-In-Reply-To: <20240426095617.4e442681@aktux>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 26 Apr 2024 16:51:59 +0300
-Message-ID: <CAHp75VdA_peJBWXFWSs-vDxA86y6MG0J7ixzXExqDxJJzfJ7mA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add ft5426
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Felix Kaechele <felix@kaechele.ca>, dmitry.torokhov@gmail.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	o.rempel@pengutronix.de, u.kleine-koenig@pengutronix.de, hdegoede@redhat.com, 
-	ye.xingchen@zte.com.cn, p.puschmann@pironex.com, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	caleb.connolly@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 26, 2024 at 10:56=E2=80=AFAM Andreas Kemnade <andreas@kemnade.i=
-nfo> wrote:
-> On Thu, 25 Apr 2024 22:54:13 -0400
-> Felix Kaechele <felix@kaechele.ca> wrote:
-> > On 2024-04-25 12:54, Andreas Kemnade wrote:
-> > > On Fri, 5 Apr 2024 20:21:19 +0300
-> > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > >> On Fri, Apr 5, 2024 at 7:28=E2=80=AFPM Andreas Kemnade <andreas@kemn=
-ade.info> wrote: >>> On Fri, 5 Apr 2024 18:13:45 +0300
-> > >>> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+Add adis16501 and adis1657x support in adis16475.
 
-...
+Ramona Gradinariu (7):
+  dt-bindings: iio: imu: Add ADIS16501 compatibles
+  drivers: iio: imu: Add support for ADIS16501
+  iio: imu: adis16475: Re-define ADIS16475_DATA
+  iio: imu: adis_buffer: Add buffer setup API with buffer attributes
+  iio: imu: adis16475: Create push single sample API
+  dt-bindings: iio: imu: Add ADIS1657X family devices compatibles
+  drivers: iio: imu: Add support for adis1657x family
 
-> > >>>> Why a different vendor prefix?
-> >
-> > >>> I sorted by the numbers. Looking at datasheets for other controller=
-s I see >>> https://www.displayfuture.com/Display/datasheet/controller/FT5x=
-06.pdf
-> > >>> it only mentions FocalTech Systems Co., Ltd.
-> > >>
-> > >> But does the driver use that? AFAICS it uses edt. Perhaps it's due t=
-o
-> > >> a business split, not to my knowledge anyway.
-> >
-> > I've been looking into this over the past few weeks as I was working on
-> > mainline support for an Android device.
-> > And please forgive me if any of the following is not fully accurate, I'=
-m
-> > not an industry expert.
-> >
-> > After some research, my understanding of this is as follows:
-> >
-> > - There are companies that make touch ICs, LCD driver ICs and sometimes
-> > even ICs that are both. Focaltech or Himax are examples of such compani=
-es.
-> >
-> > - There are companies that make LCMs. These are complete assemblies of
-> > panel, backlight, touch layer and driver circuitry PCBs. This is what
-> > OEMs generally purchase when they design a consumer device. Emerging
-> > Display Technologies Corp. (EDT) is such a LCM manufacturing company.
-> > More often than not LCM manufacturers do not make their own driver ICs.
-> >
-> > LCM manufacturers include ICs from Focaltech in their LCMs.
-> > To my knowledge Focaltech is not a manufacturer of LCMs.
-> >
-> > As such, an interpretation of the compatible string "edt,edt-ft5406"
-> > could be: Unspecified EDT LCM with Focaltech FT5406 IC.
-> >
-> >  From my perspective, more correct would either be something like
-> > "edt,etm070001bdh6" (the LCM by EDT that contains this IC, especially i=
-f
-> > it had model specific quirks) or "focaltech,ft5406".
-> > But "edt,edt-ft5406" is incorrect if being specific is the goal here.
-> > Given that the driver predates much of the DT binding rigour it's what
-> > we have now though.
-> >
-> I think focaltech,ft5406 is better because it is consistent with other dr=
-ivers/
-> bindings. We do not specify the display it is used on on other touchscree=
-n
-> bindings. We do not specify the actual LEDs behind a LED interface chip.
-> And often the chip name is more easily to find out than the name of a
-> display.
+ .../bindings/iio/imu/adi,adis16475.yaml       |  31 +
+ drivers/iio/imu/Kconfig                       |   4 +-
+ drivers/iio/imu/adis16475.c                   | 698 ++++++++++++++++--
+ drivers/iio/imu/adis_buffer.c                 |  32 +-
+ include/linux/iio/imu/adis.h                  |  18 +-
+ 5 files changed, 681 insertions(+), 102 deletions(-)
 
-I'm _not_ a DT person, you should clarify this with them. I just
-pointed out the possible mistake (from Linux / DT perspective), and
-not hardware / business related one. If they are fine with focaltech
-prefix, then it's fine to me as well!
+--
+2.34.1
 
---=20
-With Best Regards,
-Andy Shevchenko
 
