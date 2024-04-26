@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-63169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8C18B3F12
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:15:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A5E8B3F23
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:18:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F24E81F236CD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:15:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63D3A1F24861
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE0116FF39;
-	Fri, 26 Apr 2024 18:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A145816D307;
+	Fri, 26 Apr 2024 18:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PhFLJSfq"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hTuCAS+Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF40916F839;
-	Fri, 26 Apr 2024 18:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3862230C;
+	Fri, 26 Apr 2024 18:18:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714155291; cv=none; b=qgcKJsIUFrqv7Nc2kRmZAO2ez7yo8tf2gFSnmht3rp3yVIXvyJl1yQTUp9sYmxZd/XzWbbqq8GEOl3W5Sb1PMvXQrruMjWPJ1cgAu+EpEtl5j3xaG3AJ/UuPdAC4IBvpMLVrxH+2fu494GUBgHCTvlK7PCaH6bPg6SEA7J1RYuU=
+	t=1714155492; cv=none; b=fxt4YNT4yDJi7+De9o5anB1NP+iEea9hrLpCHfwhrgc63fIW+FKehkZxLJ3vPYqF4NvitBouEW6QAqNJfYKvP8e/IRxfkw8B7DRQ5LzR/tVScMryXbYO7u4o5jH2Y3lLUaTjgDENF+fX94sYAe7L2bQcyepo2LMa5gJvl9/yAhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714155291; c=relaxed/simple;
-	bh=aL+AOy98y7p7r4a4ubMyOvDKADw2J3V43gkZpKNu/YU=;
+	s=arc-20240116; t=1714155492; c=relaxed/simple;
+	bh=O9XSwSp510W6WOyoXgJ1ualqTyt8QGmV84/lupByN3g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e7ptNUn7Ab3rdoSuRlpbM+ZUeIN0Kg8pfq4ta5GnD4f9XN/+GSGU8sfrijeTMEp9oNTgWXHZdH8RLPqqZYaOqtBdr1FcehvUkLrHxgFfjGcz1fE8aVt+2G8axokctBM+7vAu6JzNsgsdF/qXDEfrmGNKO+bE4ogL2YVv3kEXe6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=PhFLJSfq; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZxdEza9oVYQFWb90III5+k/ZIVCKJjUwILQc26ceFDPCOFBwriMef9LfdTLPWsIW8m23LyGPOd4bU+CrbE2DpBRYaF0LQS3DwDiJ3nGEWt8+fOcldJ5anVb73Y08FY9vtCD2rgLfU19eDJ96rc9H9+wWOQVu0MAH+0GN5Iib0FY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=hTuCAS+Y; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,34 +36,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=9Ns3sujM0QwOg09c35vecWwkpRlwfLNAqtRcHWhWbTM=; b=PhFLJSfqTf0Z0MWkRMYyV+tLm6
-	usldLZoaXjGgadC8qgt5l5vlBisDy2uBuskWtFyN/1C8b7HjC/017h/vCGKfN/O43vrAq6TSUEmsS
-	WVbUR0/Sa87dATDSPUYFVb9GkVslX6LNyWhE+UmeoShNGKsyXSG39pu6p7/7O57jVKVk=;
+	bh=scI06n3r0oxha4J8FtQmpFEaYl4EwJiQYGgGjaGKA/k=; b=hTuCAS+YH9+3J1v1Ga2yWSCxzh
+	au6G1rD9EPaUKXdsK9GlhcOVjkt0L60gLi9Ui4U4SL/nthYiGr0nYo0yl8meyBRzGRe2G6GNaiaEF
+	vap4duzUFl2pUk9Dj0UCX21lW+utyuFAZMPg0u3GsSzyg3xrSkww0pEAlBgP/P+uz6kc=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1s0Q5n-00E636-6R; Fri, 26 Apr 2024 20:14:39 +0200
-Date: Fri, 26 Apr 2024 20:14:39 +0200
+	id 1s0Q95-00E65B-Oi; Fri, 26 Apr 2024 20:18:03 +0200
+Date: Fri, 26 Apr 2024 20:18:03 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 11/12] microchip: lan865x: add driver support
- for Microchip's LAN865X MAC-PHY
-Message-ID: <4f6bac89-d6bb-43d8-8675-58a290fb8d5f@lunn.ch>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <20240418125648.372526-12-Parthiban.Veerasooran@microchip.com>
- <231ce196-6a68-4f09-8f9a-976c5ce1495d@lunn.ch>
- <9909d4c4-b3b9-4c4e-9923-64945b6c7bb3@microchip.com>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 4/4] arm64: dts: add description for solidrun cn9131
+ solidwan board
+Message-ID: <d0426bb3-1f40-48ed-9032-6ffdce455cd4@lunn.ch>
+References: <20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com>
+ <20240414-cn9130-som-v3-4-350a67d44e0a@solid-run.com>
+ <3958052d-fc09-4c4c-a9e3-4923871cff44@solid-run.com>
+ <fd466583-3221-4b94-b66b-18840615fb71@lunn.ch>
+ <15b79794-41f4-43e0-888e-286ca1fc4321@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,13 +70,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9909d4c4-b3b9-4c4e-9923-64945b6c7bb3@microchip.com>
+In-Reply-To: <15b79794-41f4-43e0-888e-286ca1fc4321@solid-run.com>
 
-> OK, I will implement this helper function as oa_tc6_enable_zarfe() in 
-> the oa_tc6.c. Also do you want me to move this helper function 
-> implementation to a new patch?
+> >> Colours are similar to RJ45 connectors (yellow, green),
+> >> and are intended for the same purpose: link, activity.
+> > For the switch LEDs you used label = "LED10"; Does the silk screen
+> > have similar numbers for these LEDs?
+> Correct, on CN9130 Clearfog Pro DSA switch, all LEDs are labeled
+> individually on the silk screen.
+> 
+> The SolidWAN SFP leds are dual-colour leds with 3 terminals:
+> anode to 3.3V, 2x cathode to gpio-controlled transistors.
+> They are labeled on the silk-screen as "LED9", "LED10".
+> 
+> Duplicate labels are not great, is there a better way?
+> old style "LED9:green" e.g. ...?
 
-Yes please.
+So you have copper LEDs and SFP LEDs, each with the same silk screen
+label? Maybe put 'copper' and 'sfp' as a prefix into the label?
 
-    Andrew
+       Andrew
 
