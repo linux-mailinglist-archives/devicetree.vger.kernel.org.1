@@ -1,155 +1,312 @@
-Return-Path: <devicetree+bounces-63124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5068B3C97
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:16:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E24B68B3CA4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:19:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42CCD1F211E8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:16:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94F51289E5A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C257145358;
-	Fri, 26 Apr 2024 16:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1005155A24;
+	Fri, 26 Apr 2024 16:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bffgmvXF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bWXjn+TS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08E11FC4
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 16:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDFD15358A;
+	Fri, 26 Apr 2024 16:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714148190; cv=none; b=GNuzxOZGtzDcXj7XPqz3RgLvxqQxS/VTe1P6Q7tradg0ZajZT1qKgWI+BmbDizHySCYi4kiYhGt7+3AzIU5hQKC4yvCisnbyaeYLwUaI7wveYuhvtzlzsBjA0HbO5SHkXmENohSG+iGlEAVwjCtRFX/NqA6HvoNuHar2BctuRu4=
+	t=1714148357; cv=none; b=C17XyOL2+hViGSoZyXTjyQmJgVhsfflcxyYfdtU5w43HSgw/Ju+f4uQQfHn/7i/ZnbIuN07RPUP2qZdwJzz2tbscez8RMnk3apt8ocWYIzqjPnQBxzVqpUo8KaKq6iSMN+CR0VI7KFeYdfKfRjUgaj1tT9qdM4vaRbLyoSzhUgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714148190; c=relaxed/simple;
-	bh=YlgomcczVIMyRSOYOyR831S+Vzj64QGTEr2HnBDhr0U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V+5R1UyPh6hfW4sm9+qojO3PS2eAx+oS7UEHlLMFT/JIGDIO5UdqKx2tDHF8UuimJ5bLfgfv0lCYt+20gfFLdJSGcPNAl5x9at7XZdyEtDl/7S2TB4sMEJWMsdDMkNXqm575Xy7Iq17zzSMcAXjcjeaerTMIMgl3roYLnOu0OQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bffgmvXF; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2dd6c160eaaso29250801fa.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 09:16:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714148183; x=1714752983; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VGfOy4DaO5gS8kNNeFIezxzCvy3uX2BGixV57btaRag=;
-        b=bffgmvXFQ6BgOVKDlN4VAlbP/3YFTTqYZ+sxHd3V2QTMdeWdh2+iJWujni5yBN+eh9
-         soaFrqYpb3p+VeMzZL2srdCoR8TpXdfL/IlDJHu8js3WOEq/13cBZ2ipcrznxu0q3r5U
-         PErHCemGHcDGBpJw561xP1e+pPd45M6JpMDT/E1XRAOz/tVMWMH29TCUa4Qoc+RBYfu/
-         hTnp7czdUQotH8ddtqdfmAX1cfDibA2GrD+bNCmBKsC9rvufnaO/nxPEdM/2iF1dvOlC
-         JnRLKJpjQ5TfMmv98SCSFXhjCrdB+QwNtTDMCBK0bWe0+9sUN7cpEN+Uy22uNqujFvym
-         zskw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714148183; x=1714752983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VGfOy4DaO5gS8kNNeFIezxzCvy3uX2BGixV57btaRag=;
-        b=vg01JYnbPNceiyCUFFCxsKxI3uTAjaLt9LJz2nRFTs6VMK9fRoMofWO5dbbDGvE45j
-         x1WJTgHqavdxFrBP/Vw4yZ1lvbtvgZpmoT7cBQgEzSEiNwyTRqhfk0ev/z+DK4HVwW3k
-         fa4xaZN30wAmOMSr0JTIbJztDs0xoHiuox3RiSn9z+yHenHc5IIuu2OErU7ubzbPDMqQ
-         01pManbbV4y3qkTvR38a4I1whkYLn4CdIrnFsfy7Qn9zTvC29qBYUYr8Q/uEbK6AmiVU
-         Uezy/vWREyxperaU7J2zziOs//3x4Kvre5OZ/C26c6uHv838pfLX0gh0so88b4FLtt7V
-         4buw==
-X-Gm-Message-State: AOJu0YyQWkXi7AdR8hMyIoNR0Dasc3CCSjYRa7XUiLRO1yyVU2H5hAOd
-	YccjECWMN3DBC7vwqNVi4Ygb3kU4nvxMVtPC/ugLfMBsrjbYNvJAAYkBGfB0
-X-Google-Smtp-Source: AGHT+IEaY/5PF1O3GKLX2UijPlZzPUU2Lk/ybUXnsz5xFF4VbiGCQZUO64eVlapQZuD4NBGT+Oskyg==
-X-Received: by 2002:a05:651c:10ab:b0:2d9:fde0:86e2 with SMTP id k11-20020a05651c10ab00b002d9fde086e2mr2468610ljn.15.1714148182574;
-        Fri, 26 Apr 2024 09:16:22 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id v13-20020a05600c444d00b0041a3f700ccesm19542085wmn.40.2024.04.26.09.16.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 09:16:22 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- Ryan Walklin <ryan@testtoast.com>
-Subject:
- Re: [PATCH v4 0/4] arm64: dts: allwinner: Add Anbernic RG35XX (Plus/H/2024)
- support
-Date: Fri, 26 Apr 2024 18:16:21 +0200
-Message-ID: <3743928.MHq7AAxBmi@jernej-laptop>
-In-Reply-To: <20240426095141.13602-2-ryan@testtoast.com>
-References: <20240426095141.13602-2-ryan@testtoast.com>
+	s=arc-20240116; t=1714148357; c=relaxed/simple;
+	bh=DHuoJm0eBZR9q50qciAmM9YlONSJlsoA+mOZEcCTj/Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lQ9k6d6lZExMbMqBnqoUjrwLaWO8HnAREMRcy4BrVPovC2tI6i4WHux9W6ggw/dxr5WSI9gyAS4VDQp3ybbpPk5BXpJyYRTFnnHDMr83KoJmNGdQz4Mk+v6zGnMA+l/I8epyDSJuvzRVAHEfiYu1C4gRHlgIDnqBi4Xoh4gTWpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bWXjn+TS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 986D7C113CD;
+	Fri, 26 Apr 2024 16:19:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714148357;
+	bh=DHuoJm0eBZR9q50qciAmM9YlONSJlsoA+mOZEcCTj/Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bWXjn+TSpDKyZjwX/zY5TvCtVCTlNBlrcUdVPGTSM1NYNxauM7Bo6Bvyvnhb8283x
+	 lHluR1EOZSHXQyCkJZnQu0T4fq2FnBKVj/iNEHMU25VUIbBy0LKt6vPdtHLDn8zV0i
+	 6CVgZWGt90d9JLip6Now60Cz2H+Au1n6vn3leP7DNuFeM0ODsGlxdWk8VDYF/PevvH
+	 vMI5Ohcuvh4kUkZ6P/hSJWwBSgS2S6YoxNjNTtrhp/TnuqRhxD+ejy+0rc/8VqnRq6
+	 nbd75YBEx7NeyqbvFQWuJ4n56jmdP1H8/nxwn4LPVw1+Z+CKEWXhQCbwXUfAwIErTs
+	 R8TWqg6RgogYw==
+Date: Fri, 26 Apr 2024 18:19:13 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
+	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v4 3/3] spi: airoha: add SPI-NAND Flash controller driver
+Message-ID: <ZivUAZ2SKRJsESKF@lore-desk>
+References: <cover.1714119615.git.lorenzo@kernel.org>
+ <2047e9c8372b51dc263178a12e194b8826f1abe7.1714119615.git.lorenzo@kernel.org>
+ <CAHp75Vd5VSMNy-bYQmcmRA47uTn567QiKmvDJGEkRUgVCk5PAQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-
-Dne petek, 26. april 2024 ob 11:51:38 GMT +2 je Ryan Walklin napisal(a):
-> Further revised patchset based on review with many more corrections to regulators and formatting. Thanks to all reviewers.
-> Changelog inline, original cover below.
-> 
-> --
-> 
-> The Anbernic RG35XX is a family of handheld gaming devices. There are 4 variants, of which 3 using the Allwinner H700 chip are covered by this patchset. The fourth (released first and named simply RG35XX) uses an Actions Semiconductor ATM7039s which is a 32-bit Cortex-A9 chip with no mainline support and is not covered.
-> 
-> Common features (RG35XX-2024):
-> - Allwinner H700 @ 1.5GHz (H616 variant exposing RGB LCD and NMI pins, with 4x Cortex-A53 Cores and a Mali G31 GPU)
-> - 1 GB LPDDR4 DRAM
-> - AXP717 PMIC (patches accepted in mfd-next [1])
-> - 3.5" 640x480 RGB LCD
-> - Mini-HDMI, 3.5mm audio jack, mono speaker, two microSD slots and USB-C (USB 2.0) for power.
-> 
-> RG35XX-Plus adds:
-> - RTL8821CS SDIO Wifi/BT chip
-> 
-> RG35XX-H (Horizontal form-factor) adds:
-> - RTL8821CS SDIO Wifi/BT chip
-> - Two analog thumbsticks
-> - Second USB-C port
-> - Stereo speaker
-> 
-> Patch 1 adds the DT bindings for the board names, Patch 2 adds the -2024 device as a common base, Patch 3 adds Wifi/BT support for the -Plus (and -H), and Patch 3 adds the second USB and thumbsticks for the -H. The -H is a strict superset of the -Plus, which is in turn a strict superset of the -2024, so this translates quite neatly.
-> 
-> LCD, HDMI, audio, and GPU support are not yet ready and relying on out-of-tree patches currently, so will be added once these drivers are mainlined.
-> 
-> Ryan
-
-If all remarks are addressed till tomorrow, it might make this cycle.
-
-Best regards,
-Jernej
-
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> 
-> [1]: https://kernel.googlesource.com/pub/scm/linux/kernel/git/lee/mfd/+/d2ac3df75c3a995064cfac0171e082a30d8c4c66
-> 
-> Ryan Walklin (4):
->   dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
->     device variants
->   arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
->   arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
->   arm64: dts: allwinner: h700: Add RG35XX-H DTS
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |  15 +
->  arch/arm64/boot/dts/allwinner/Makefile        |   3 +
->  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 347 ++++++++++++++++++
->  .../sun50i-h700-anbernic-rg35xx-h.dts         |  37 ++
->  .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
->  5 files changed, 455 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
-> 
-> 
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="LykAaqEnqTHChxLF"
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vd5VSMNy-bYQmcmRA47uTn567QiKmvDJGEkRUgVCk5PAQ@mail.gmail.com>
 
 
+--LykAaqEnqTHChxLF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+> On Fri, Apr 26, 2024 at 11:31=E2=80=AFAM Lorenzo Bianconi <lorenzo@kernel=
+=2Eorg> wrote:
+> >
+> > Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
+> > found on Airoha ARM SoCs.
+>=20
+> ...
+>=20
+> > +#include <asm-generic/unaligned.h>
+>=20
+> No driver should include asm-generic, basically 99.9% of the kernel
+> code must not do that. I.o.w. asm-generic is very special.
+>=20
 
+ack we can use <asm/unaligned.h> instead
+
+> > +#include <linux/bitfield.h>
+> > +#include <linux/clk.h>
+>=20
+> + delay.h
+>=20
+> > +#include <linux/device.h>
+> > +#include <linux/dma-mapping.h>
+>=20
+> + errno.h
+>=20
+> > +#include <linux/types.h>
+>=20
+> Can you make it ordered (I noticed this after a while)?
+>=20
+> + limits.h
+>=20
+> > +#include <linux/math.h>
+>=20
+> + minmax.h
+>=20
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/sizes.h>
+> > +#include <linux/spi/spi.h>
+> > +#include <linux/spi/spi-mem.h>
+>=20
+> + types.h
+>=20
+> Also note, we usually place headers from more generic to less, hence
+> linux/* followed by asm/* and not vice versa.
+
+ack, I will fix it.
+
+>=20
+> ...
+>=20
+> > +struct airoha_snand_dev {
+> > +       size_t buf_len;
+> > +
+> > +       u8 *txrx_buf;
+> > +       dma_addr_t dma_addr;
+> > +
+> > +       u64 cur_page_num;
+> > +       bool data_need_update;
+> > +};
+>=20
+> ...
+>=20
+> > +               /* quad io / quad out */
+>=20
+> io --> in ?
+
+ack, I will fix it.
+
+>=20
+> ...
+>=20
+> > +               /* dual io / dual out */
+>=20
+> Ditto.
+>=20
+> ...
+>=20
+> > +       case SPI_MEM_DATA_OUT:
+> > +               /* check dummy cycle first */
+> > +               if (op->dummy.nbytes)
+> > +                       return false;
+> > +
+> > +               /* program load quad out */
+> > +               if (op->addr.buswidth =3D=3D 1 && op->data.buswidth =3D=
+=3D 4)
+> > +                       return true;
+> > +
+> > +               /* standard spi */
+> > +               if (op->addr.buswidth =3D=3D 1 && op->data.buswidth =3D=
+=3D 1)
+> > +                       return true;
+>=20
+> > +       default:
+> > +               break;
+> > +       }
+> > +
+> > +       return false;
+>=20
+> Why not return false directly from the default case?
+
+it is because we still need the 'return false' at the end of routine for the
+other cases due to SPI_MEM_DATA_IN and SPI_MEM_DATA_OUT.
+
+>=20
+> ...
+>=20
+> > +               op->data.nbytes =3D min_t(size_t, op->data.nbytes, 160 =
+- len);
+>=20
+> You probably wanted clamp(). It's discouraged to use min_t() for unsigned=
+ types.
+
+do you mean doing something like:
+
+op->data.nbytes =3D clamp(op->data.nbytes, op->data.nbytes, 160 - len);
+
+maybe an 'if' condition is more readable, what do you think?
+
+>=20
+> ...
+>=20
+> > +       err =3D regmap_read_poll_timeout(as_ctrl->regmap_nfi, REG_SPI_N=
+FI_INTR,
+> > +                                      val, (val & SPI_NFI_AHB_DONE), 0,
+> > +                                      USEC_PER_SEC);
+>=20
+> Perhaps
+>   1 * USEC_PER_SEC
+> ?
+>=20
+> Easy to read plain numbers like this to get the idea "this is 1 SEC
+> timeout". Also editors highlight plain integers with a different
+> colour.
+>=20
+> ...
+>=20
+> > +       /* addr part */
+> > +       cmd =3D opcode =3D=3D SPI_NAND_OP_GET_FEATURE ? 0x11 : 0x8;
+> > +       put_unaligned_be64(op->addr.val, data);
+>=20
+> > +       for (i =3D 0; i < op->addr.nbytes; i++) {
+> > +               err =3D airoha_snand_write_data(as_ctrl, cmd,
+> > +                                             &data[8 - op->addr.nbytes=
+ + i],
+>=20
+> Now you can update a for loop to make this prettier, right?
+>=20
+> > +                                             sizeof(data[0]));
+> > +               if (err)
+> > +                       return err;
+> > +       }
+>=20
+>        for (i =3D 8 - op->addr.nbytes; i < 8; i++) {
+>                err =3D airoha_snand_write_data(as_ctrl, cmd, &data[i],
+>                                              sizeof(data[0]));
+>                ...
+>        }
+>=20
+> Note, 8 can be replaced by sizeof() / ARRAY_SIZE() but I'm not insisting.
+
+ack, I agree. I will fix it.
+
+>=20
+> ...
+>=20
+> > +       devm_kfree(as_ctrl->dev, as_dev->txrx_buf);
+> > +       devm_kfree(as_ctrl->dev, as_dev);
+>=20
+> Why?! Using devm_*free() explicitly hints about either
+> misunderstanding of devm concept, or object's lifetime.
+
+ack, I agree, we can get rid of them.
+
+>=20
+> ...
+>=20
+> > +       spi_set_ctldata(spi, NULL);
+>=20
+> Seems there is no consensus on NULLifying this (when, if even needed),
+> but it's fine.
+>=20
+> ...
+>=20
+> > +       base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+>=20
+> How is 'res' being used exactly?
+
+right, we can pass NULL here to devm_platform_get_and_ioremap_resource()
+
+>=20
+> > +       if (IS_ERR(base))
+> > +               return PTR_ERR(base);
+>=20
+> ...
+>=20
+> > +       base =3D devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+>=20
+> Ditto.
+>=20
+> > +       if (IS_ERR(base))
+> > +               return PTR_ERR(base);
+>=20
+>=20
+> ...
+>=20
+> > +       ctrl->dev.of_node =3D dev->of_node;
+>=20
+> Use device_set_node() instead.
+> You might need dev_fwnode() from property.h.
+
+ack, I will fix it.
+
+Regards,
+Lorenzo
+
+>=20
+> --=20
+> With Best Regards,
+> Andy Shevchenko
+
+--LykAaqEnqTHChxLF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZivUAQAKCRA6cBh0uS2t
+rICzAP9ek0ugGc+6vVGU6OUSIHPYCmrh6Xsx0GriI+27vMdKUgD+Jp6uEr6BzhCc
+wxkmky2hnY+tUvxFF8G59BVhuCrLDAY=
+=blsC
+-----END PGP SIGNATURE-----
+
+--LykAaqEnqTHChxLF--
 
