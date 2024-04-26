@@ -1,158 +1,141 @@
-Return-Path: <devicetree+bounces-63061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B365B8B398B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:12:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A504D8B39B2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:21:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 689691F219A5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:12:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309EA288731
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B944D1487FF;
-	Fri, 26 Apr 2024 14:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF1F1474D1;
+	Fri, 26 Apr 2024 14:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="a0yWg0xY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IfoGYlID"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3168147C79;
-	Fri, 26 Apr 2024 14:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A585142A99;
+	Fri, 26 Apr 2024 14:21:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714140728; cv=none; b=o1vKSy/OW8gmKyyYE3bD2lHj2qMzrIMLqJepyiPIgrB/GLDepZeWX0cDk6coN7FaubWq5iGaDA7/ow6YrfFL6wW2i4H6I0n/Apqhj38Oj08w9I0jCYG09NroO0P70i9X/v+GyuzeXscIZl1lIupYUMlmGcX4r8BZshFtMBGpR5M=
+	t=1714141264; cv=none; b=tCk6TqikGXHo5JJMOJ0O8hnbNYGMKt7t3FWOrGG9SV/f9bWYDoJ60VRLznUo6YeU+5lP9vl8u6kvLIgtClmBXUIhjmNXbDKg9ySY8pY6uplmB465muXg2Wnvb+YWYdKOTUofdLnKXP/wbcltaUUgu1tPfiZzeDj+l2psDIDmxQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714140728; c=relaxed/simple;
-	bh=3rw5uMBpx6jKewvUC7jKYAqLMpc6PkGw5Jje2sPYdeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fdzer4rrAarGsS5ZEIP6zAFfFdYVoEhkZVNnCwOLzIzMlF+aSb+5SldJUNssxF9K7OfmsabP+8m+sZf4rE6iPi2LSFJICKQs29y6Y1xN2fYugOPwm31A9bxqKdkEEY1jpUzSUVlTRu99Sr27OdWceLzKRgeDW+br1XxG5O8ehTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=a0yWg0xY; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E27BEE0003;
-	Fri, 26 Apr 2024 14:12:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1714140723;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LBlZZhqUOxK1WoIWgNjoVopQORRPwTRwg+7z5lKrffc=;
-	b=a0yWg0xYVg+XK1+iP6vP7DJO22dF3t4BkE6I6QKK6Rq9EuigqqJaFPj1HsaaR865AuKmXQ
-	LHmeUfc95oT+8LXjdjqgH0AmroqFqID86RaE+N7CmcCZ+oh3dW1nbid41OGlx4oYgmNMb/
-	lZGZor6r/fj5FCfIKd8FyxbGGP02MOLA9KmQo0te+2SRNIInAOikCTVjkdWIOU9QlPDNBe
-	vvGEgCqKBFDkQJoTOyQxawYzZRgxCpWCLOD6VEifIZK/Wb5AIjKzwzsTHA1+9j26IWCuVr
-	XChAt9ui+M12CY2V5HeIdOu4lE9gkHms8h6z9GhNWXKVUbYf8kK3DSLmdjGHTg==
-Message-ID: <3eb27570-4a53-47f6-8e36-e25fc1063124@bootlin.com>
-Date: Fri, 26 Apr 2024 16:12:00 +0200
+	s=arc-20240116; t=1714141264; c=relaxed/simple;
+	bh=HtaE9K5koiwN6wG3R9aBkT6Go6kjdIeW/lsuxiuyX9I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Kx+WpIJ1wj5mJDGG32YDJQ8f0NbTVu8W16UtwDcMluxfgWOuRB5JrpLNgoPd+z39oN4KkPV9+cjkVyq9S8400hnCdffAgt9MayXyoqOFPIyZDYjw1vTmEDMTThTXbt79Nn2O3qfqiKFW+csETRw3IJLUSadU3OAV/UtXSirUiwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IfoGYlID; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41b5e74fa2fso10579365e9.1;
+        Fri, 26 Apr 2024 07:21:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714141261; x=1714746061; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rcSYxBKA+TZoPvet+d86+0v1ZeIYTYUADrPblLGoYOs=;
+        b=IfoGYlIDcc3yboKQC+JhfLliuBOi1D4IJzg1iWyo6nfqWaPTXH958kT4B7A/IDTgO3
+         tMr3m3RkoU3K8BVWDLEG1PtdkJ1ymAqB32/KPbE2kty/xnGrr/mKfIUWRLoCXz/NLxfe
+         ZzpOA3CIDSldAC/0v0LJ01bG94qLiua0rv/RK/Gz3fvSZF+TmLANjplthnpxbcrch5oQ
+         dXIKctuFXqSALoJL/ZtE6mNpq5NwN4W+6LQ+jk2CzWpeOBAc6TWoTLbMFm5ko1A4plz8
+         p2OqtRplzlqiQcYZs9bYLumoQ5R/O3BxxbzYf2hOkAsRgmKKZUvScss2ly8ftd47taiK
+         1nUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714141261; x=1714746061;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rcSYxBKA+TZoPvet+d86+0v1ZeIYTYUADrPblLGoYOs=;
+        b=RxNg55cwCVsqiEfC8dG1kPHBj8DcAhe58M7KJEEl4/Obpyh9/MWhvveHJKHrpLH0ef
+         zdvIGcoAytKOedPvFNuZcnfOX7d9O/1WAKNcwQBszAqIib7hKVK+6qXr/npiJQdWQ2nZ
+         1Y1SnqMhSWtjUuFm7wyRbLbNiNUILaMyO7Tcct7YCupAjPwykKoM3rniqqqpyy8E/aOP
+         Q5lFAoEL/n5D6W81wWyPbEoKSlVYsfkbWLtkHY4f8iTuajPU8grXO66YjcX3Wd+QEDMP
+         jCe6okTTfA7ViQzt2/4ElWFfFhFyDpNY1XKN5vTeGeH6+DNYgOpwAvpRp+Fhj9t1yciL
+         yS/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWCEPUXF+UGwyPxmMSOqS/h3vlJbLI7zg/hMG+cTLUTXzXb0tikgK0So/PwSNVAp1nnQAuVgzvtR5TTfXxFQU5kfJ3r3+JEoq7Znw==
+X-Gm-Message-State: AOJu0YzOZDbWsNKSJJcp9EnDE4F3Uju9rGNgAYBVH1aCTV0yHQwNIT/A
+	97chkylavB6YcF/DFhOVIwfb/MeA6E1Mm4RYYTMgILcPlh7rZp7W
+X-Google-Smtp-Source: AGHT+IHK9nY7Tv7ih36ZXaVgFvH1aWTsjGgKFE5p3b1QCazf/uW3rKdX92rte5HJY7Ee1W4pAMhazg==
+X-Received: by 2002:a05:600c:4e93:b0:418:e88b:92c3 with SMTP id f19-20020a05600c4e9300b00418e88b92c3mr2139031wmq.2.1714141260741;
+        Fri, 26 Apr 2024 07:21:00 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id h13-20020a05600c314d00b0041ac4aafd3dsm12701566wmo.12.2024.04.26.07.20.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Apr 2024 07:21:00 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Hans de Goede <hdegoede@redhat.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>,
+ James McGregor <jamcgregor@protonmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 2/2] ARM: dts: sun50i: Add LRADC node
+Date: Fri, 26 Apr 2024 16:20:51 +0200
+Message-ID: <2931402.e9J7NaK4W3@jernej-laptop>
+In-Reply-To: <20240426092924.15489-3-jamcgregor@protonmail.com>
+References:
+ <20240426092924.15489-1-jamcgregor@protonmail.com>
+ <20240426092924.15489-3-jamcgregor@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add I2C support on TH1520
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: andi.shyti@kernel.org, jszhang@kernel.org, miquel.raynal@bootlin.com,
- linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
- thomas.petazzoni@bootlin.com, guoren@kernel.org, wefu@redhat.com,
- conor+dt@kernel.org, devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
- krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com
-References: <20240425082138.374445-1-thomas.bonnefille@bootlin.com>
- <171405653346.2527762.16827325392956038580.robh@kernel.org>
- <20240425-script-fondness-0e80bfa31615@spud>
-Content-Language: en-US
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-In-Reply-To: <20240425-script-fondness-0e80bfa31615@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
+Dne petek, 26. april 2024 ob 11:29:48 GMT +2 je James McGregor napisal(a):
+> Add a DT node for the Allwinner H616 LRADC describing the base address,
+> interrupt, reset and clock gates.
+>=20
+> Signed-off-by: James McGregor <jamcgregor@protonmail.com>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-
-On 4/25/24 6:35 PM, Conor Dooley wrote:
-> On Thu, Apr 25, 2024 at 09:51:26AM -0500, Rob Herring wrote:
->>
->> On Thu, 25 Apr 2024 10:21:31 +0200, Thomas Bonnefille wrote:
->>> This adds I2C support in the device tree of the T-Head TH1520 RISCV-SoC
->>> and a default configuration for the BeagleV-Ahead. It appears that the
->>> TH1520 I2C is already supported in the upstream kernel through the
->>> Synopsis Designware I2C adapter driver.
->>> As there is no clock driver for this board as of today, this patch
->>> series uses a fixed-clock named i2c_ic_clk.
->>> There is also no pinctrl driver yet so pinmux must be handled manually
->>> for now.
->>> It also fixes the order of the nodes in the device tree to comply with
->>> device-tree coding-style.
->>>
->>> Thomas Bonnefille (4):
->>>    dt-bindings: i2c: dw: Document compatible thead,th1520-i2c
->>>    riscv: boot: dts: thead: Fix node ordering in TH1520 device tree
->>>    riscv: dts: thead: Add TH1520 I2C nodes
->>>    riscv: dts: thead: Enable I2C on the BeagleV-Ahead
->>>
->>>   .../bindings/i2c/snps,designware-i2c.yaml     |  12 ++
->>>   .../boot/dts/thead/th1520-beaglev-ahead.dts   |  22 ++++
->>>   arch/riscv/boot/dts/thead/th1520.dtsi         | 120 ++++++++++++++----
->>>   3 files changed, 127 insertions(+), 27 deletions(-)
->>>
->>> --
->>> 2.44.0
->>>
->>>
->>>
->>
->>
->> My bot found new DTB warnings on the .dts files added or changed in this
->> series.
->>
->> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->> are fixed by another series. Ultimately, it is up to the platform
->> maintainer whether these warnings are acceptable or not. No need to reply
->> unless the platform maintainer has comments.
->>
->> If you already ran DT checks and didn't see these error(s), then
->> make sure dt-schema is up to date:
->>
->>    pip3 install dtschema --upgrade
->>
->>
->> New warnings running 'make CHECK_DTBS=y thead/th1520-beaglev-ahead.dtb' for 20240425082138.374445-1-thomas.bonnefille@bootlin.com:
->>
->> arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dtb: i2c-clock: clock-frequency:0:0: 50000000 is greater than the maximum of 5000000
-> 
-> The bot is not freaking out here, 50 MHz is indeed more than 5 MHz :)
-
-5MHz is the maximum clock-frequency, ie. the I2C bus frequency.
-This is actually set to 100kHz for I2C0 in the DT:
-
-&i2c0 {
-     status = "okay";
-     clock-frequency = <100000>; <----
-...
-};
-
-50MHz is the "fixed-clock" frequency, that is the clock feeding the I2C
-IP block:
-
-i2c_ic_clk: i2c-clock {
-     compatible = "fixed-clock";
-     clock-frequency = <50000000>; <-----
-     #clock-cells = <0>;
-};
-
-My guess is that the bot confused the clock-frequency parameter for the 
-bus clock (SCL) with the i2c-ic-clock value for the controller itself 
-during the checks.
-
-Do you agree with this or am I misunderstanding the error ?
-
-If I lower the fixed-clock frequency to eg. 100kHz, the error is gone. 
-But I guess the 5MHz limit should probably not apply to the input clock?
+Reviewed-by: Jernej =C5=A0krabec <jernej.skrabec@gmail.com>
 
 Best regards,
-Thomas
+Jernej
+
+> ---
+> V1 -> V2: Moved DT node to correct place in tree order
+>=20
+>  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/=
+boot/dts/allwinner/sun50i-h616.dtsi
+> index a061b69c07c2..1e8538ca7db0 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> @@ -594,6 +594,16 @@ ths: thermal-sensor@5070400 {
+>  			#thermal-sensor-cells =3D <1>;
+>  		};
+> =20
+> +		lradc: lradc@5070800 {
+> +			compatible =3D "allwinner,sun50i-h616-lradc",
+> +				     "allwinner,sun50i-r329-lradc";
+> +			reg =3D <0x05070800 0x400>;
+> +			interrupts =3D <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&ccu CLK_BUS_KEYADC>;
+> +			resets =3D <&ccu RST_BUS_KEYADC>;
+> +			status =3D "disabled";
+> +		};
+> +
+>  		usbotg: usb@5100000 {
+>  			compatible =3D "allwinner,sun50i-h616-musb",
+>  				     "allwinner,sun8i-h3-musb";
+>=20
+
+
+
+
 
