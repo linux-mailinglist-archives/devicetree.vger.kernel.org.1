@@ -1,205 +1,225 @@
-Return-Path: <devicetree+bounces-63069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1AD8B3A01
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:29:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D935B8B3A25
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E11CF1C23E4F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:29:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 132F81C23E02
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA04E14882E;
-	Fri, 26 Apr 2024 14:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB9E34CD8;
+	Fri, 26 Apr 2024 14:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wjQ6mG0y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mkVPE603"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9232145B0F;
-	Fri, 26 Apr 2024 14:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2706EB5C;
+	Fri, 26 Apr 2024 14:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714141764; cv=none; b=JOSX5qAjOWRvjl1chl6s6kW9k0KT+owN2jnThQyjVFT3jWjCdWP6F3HRzOcTMmp2txkAVPuTPcRBpNR3D27YiAzjCcpaLAp+TdGiK7aVTM9sB/disSwRAkvD534UBtlPUBZfoWcqJfaqGI35czL6N+SDPVekGsWvzHfrr4+2rNg=
+	t=1714142159; cv=none; b=MdGthb8527tv746ZJQveQabsg00mUD+fgqvsQIy5lJvZx4VQYo9wyFnpwCq9+Jf6FGNO3MU4BU04hHHSvO8Z+nYutg/zsWs/Pjt3W9uRnn6O4I8JRqayXE01x8supMnsKPEzx7bCcLKQNJZW/VHqoDR3+hoq5rn6BKtjYsLz0YU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714141764; c=relaxed/simple;
-	bh=Znb1xj0wp3j9wu2S5+km0Zr7gTv3WKNdqmf0fG5IRu4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=c3ggKsocyRlqbpbspI9G9lomc/BCw4p3nbmy6H5Kkx3zzsDTBy1q6ulVJyaDSPipwLvlLFxFsG+vPOb61fHPYAKW4m4ZYmS+osb4tf1S38Jk+osVSEYUj9z613pNd7biw/5iwOA5q0rmSmWNs/p3z/rlZVGJx2yBfCxprfR8OWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wjQ6mG0y; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43QDIXEs017548;
-	Fri, 26 Apr 2024 16:29:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=moqXTB1lv5GnDsCg4JCgVgGRj4Dtsh3+19cxb1K9VLU=; b=wj
-	Q6mG0yMk0mpbsc57DiRqHjh3zMUBXwhAhlXzP+RS2uo7xqnd5duaHfBPnBn6Cgnz
-	ZBfa4z4w90BzGbovCO67RPYWggMHi5OhM+2nS6y1dFDKnLyBH8BHJznndsa1IVho
-	Vs2bnPamSybmhTWlaBfmtKz87wGsuuU9gAL62q0KlhbHWli7rY07Mgy1SwVAtzjr
-	bd0MNwDDHPTUlKA2hxKD78S89ilQvRbxs8XOkA3yZlbMRe3vQWUVnAXiczqrHfmJ
-	eH5XHeVLhxZdbu466gls1B6SYQPmHgEd4ZlsacUcSvKjt8fYAkLEt0aQCg6OQFv/
-	Htj998zGCQZv4vZfVhvA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4cntxpu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 16:29:02 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 20BFD40044;
-	Fri, 26 Apr 2024 16:28:57 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6450C223661;
-	Fri, 26 Apr 2024 16:28:11 +0200 (CEST)
-Received: from [10.48.86.112] (10.48.86.112) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 26 Apr
- 2024 16:28:10 +0200
-Message-ID: <574df1fe-7562-40a2-b7bf-7b4b5d3901ba@foss.st.com>
-Date: Fri, 26 Apr 2024 16:28:09 +0200
+	s=arc-20240116; t=1714142159; c=relaxed/simple;
+	bh=fvWCKMof3QYNLsCaCCHiN9bivg7kkxwrQ3p10OT8TKs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W962lbnOi8JTdTUsp6/9fieP4vrkcJiUV539mmxo3S78IJAM6DAmB/lv/px+ijmLKyarXkHWCmdq8fBDPl1Vm7BqgIkdbD4yfO2T1vOOLKT+fzz0WswYO0zkvVsHOLBYARa6UMMLlKSQaGWL1m5IVMQHog+3VH2/xFD47rUsFLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mkVPE603; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C42C4C113CD;
+	Fri, 26 Apr 2024 14:35:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714142159;
+	bh=fvWCKMof3QYNLsCaCCHiN9bivg7kkxwrQ3p10OT8TKs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mkVPE603ro8SVcnyj5gfGayGqBckvi1U15SCiOUS2p//vLtPWOVe4qbxdd/SxRdD3
+	 F0lOcZnmAURdDAddOnOSBLUrPTVdi3bXVcThWbLxddt4hIP5wlYIvn7YXZko3iet54
+	 QH/EeM++arDAydol9fkd3A6Btb173CrgPYfdI5qg6Ojz3h374XKfdj1Hr6hqfYld0i
+	 Hs7amcRkVntlK/wfR/CEUZDafyZUzWL+RO+ffQvOyK10410R/a9k9caOvLFUMBRjGG
+	 9J6ydOQMya87VMl8k3SBZvaGwvzu13gPIH+wkXrGioDhsH8RtKCC2F/ZHk3eFZ+Hu9
+	 rKOyl5d/HxeQQ==
+Date: Fri, 26 Apr 2024 15:35:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 03/11] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+Message-ID: <20240426-pusher-bartender-9a1eddd9a422@spud>
+References: <20240423124326.2532796-1-cleger@rivosinc.com>
+ <20240423124326.2532796-4-cleger@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ARM: st: use a correct pwr compatible for stm32mp15
-To: Rob Herring <robh@kernel.org>, Marek Vasut <marex@denx.de>
-CC: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Pascal Paillet
-	<p.paillet@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240425074835.760134-1-patrick.delaunay@foss.st.com>
- <20240425163035.GA2783061-robh@kernel.org>
- <28aeb8b1-72f1-4dd9-b433-f5b693150475@foss.st.com>
- <CAL_Jsq+KGd2tumATzhJu0aZDZ0C1k9VGm5_xxTiE1RE2KHs0hA@mail.gmail.com>
-Content-Language: en-US
-From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
-In-Reply-To: <CAL_Jsq+KGd2tumATzhJu0aZDZ0C1k9VGm5_xxTiE1RE2KHs0hA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-26_12,2024-04-26_02,2023-05-22_02
-
-Hi,
-
-On 4/26/24 14:51, Rob Herring wrote:
-> On Fri, Apr 26, 2024 at 6:42 AM Patrick DELAUNAY
-> <patrick.delaunay@foss.st.com> wrote:
->> Hi,
->>
->> On 4/25/24 18:30, Rob Herring wrote:
->>> On Thu, Apr 25, 2024 at 09:48:31AM +0200, Patrick Delaunay wrote:
->>>> This patchset removes the unexpected comma in the PWR compatible
->>>> "st,stm32mp1,pwr-reg" and uses a new compatible "st,stm32mp1-pwr-reg"
->>>> in STM3MP15 device trees.
->>> Why? I don't see any warnings from this. Yes, we wouldn't new cases
->>> following this pattern, but I don't think it is worth maintaining
->>> support for both strings. We're stuck with it. And the only way to
->>> maintain forward compatibility is:
->>
->> Yes, no warning because the compatible string are not yet checked by tools.
-> What do you mean? There's a schema for it, so it is checked. I ran the
-> tools and there's no warning. If there was a warning, I'd fix the
-> tools in this case.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ROz/llGSkBkozfg7"
+Content-Disposition: inline
+In-Reply-To: <20240423124326.2532796-4-cleger@rivosinc.com>
 
 
-Sorry, I am  no clear
+--ROz/llGSkBkozfg7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Apr 23, 2024 at 02:43:17PM +0200, Cl=E9ment L=E9ger wrote:
+> The Zc* standard extension for code reduction introduces new extensions.
+> This patch adds support for Zca, Zcf, Zcd and Zcb. Zce, Zcmt and Zcmp
+> are left out of this patch since they are targeting microcontrollers/
+> embedded CPUs instead of application processors.
+>=20
+> Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
 
-the tools (dts check or check patch) don't check the recommendation for 
-compatible name:
+The potential split aside, I think what's here makes sense.
 
-     vendor specific string in the form|<vendor>,[<device>-]<usage>|
+Thanks,
+Conor.
 
-|   => for me: compatible should have only one comma,
-               used as separator between vendor prefix end the device 
-identifier.|
+> ---
+>  arch/riscv/include/asm/hwcap.h |  4 +++
+>  arch/riscv/kernel/cpufeature.c | 47 +++++++++++++++++++++++++++++++++-
+>  2 files changed, 50 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index 543e3ea2da0e..b7551bad341b 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -82,6 +82,10 @@
+>  #define RISCV_ISA_EXT_ZACAS		73
+>  #define RISCV_ISA_EXT_XANDESPMU		74
+>  #define RISCV_ISA_EXT_ZIMOP		75
+> +#define RISCV_ISA_EXT_ZCA		76
+> +#define RISCV_ISA_EXT_ZCB		77
+> +#define RISCV_ISA_EXT_ZCD		78
+> +#define RISCV_ISA_EXT_ZCF		79
+> =20
+>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+> =20
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 6d238c8dbccf..24bf3fbc0578 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -107,6 +107,29 @@ static bool riscv_ext_zicboz_validate(const struct r=
+iscv_isa_ext_data *data,
+>  	return true;
+>  }
+> =20
+> +static bool riscv_ext_zca_depends(const struct riscv_isa_ext_data *data,
+> +				   const unsigned long *isa_bitmap)
+> +{
+> +	return __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA);
+> +}
+> +static bool riscv_ext_zcd_validate(const struct riscv_isa_ext_data *data,
+> +				   const unsigned long *isa_bitmap)
+> +{
+> +	return __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
+> +	       __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d);
+> +}
+> +
+> +static bool riscv_ext_zcf_validate(const struct riscv_isa_ext_data *data,
+> +				   const unsigned long *isa_bitmap)
+> +{
+> +#ifdef CONFIG_64BIT
+> +	return false;
+> +#else
+> +	return __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
+> +	       __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_f);
+> +#endif
+> +}
+> +
+>  #define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, _subset_exts_size,=
+ _validate) {	\
+>  	.name =3D #_name,									\
+>  	.property =3D #_name,								\
+> @@ -118,6 +141,9 @@ static bool riscv_ext_zicboz_validate(const struct ri=
+scv_isa_ext_data *data,
+> =20
+>  #define __RISCV_ISA_EXT_DATA(_name, _id) _RISCV_ISA_EXT_DATA(_name, _id,=
+ NULL, 0, NULL)
+> =20
+> +#define __RISCV_ISA_EXT_DATA_VALIDATE(_name, _id, _validate) \
+> +			_RISCV_ISA_EXT_DATA(_name, _id, NULL, 0, _validate)
+> +
+>  /* Used to declare pure "lasso" extension (Zk for instance) */
+>  #define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
+>  	_RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, \
+> @@ -209,6 +235,21 @@ static const unsigned int riscv_xlinuxenvcfg_exts[] =
+=3D {
+>  	RISCV_ISA_EXT_XLINUXENVCFG
+>  };
+> =20
+> +/*
+> + * Zc* spec states that:
+> + * - C always implies Zca
+> + * - C+F implies Zcf (RV32 only)
+> + * - C+D implies Zcd
+> + *
+> + * These extensions will be enabled and then validated depending on the
+> + * availability of F/D RV32.
+> + */
+> +static const unsigned int riscv_c_exts[] =3D {
+> +	RISCV_ISA_EXT_ZCA,
+> +	RISCV_ISA_EXT_ZCF,
+> +	RISCV_ISA_EXT_ZCD,
+> +};
+> +
+>  /*
+>   * The canonical order of ISA extension names in the ISA string is defin=
+ed in
+>   * chapter 27 of the unprivileged specification.
+> @@ -255,7 +296,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D {
+>  	__RISCV_ISA_EXT_DATA(f, RISCV_ISA_EXT_f),
+>  	__RISCV_ISA_EXT_DATA(d, RISCV_ISA_EXT_d),
+>  	__RISCV_ISA_EXT_DATA(q, RISCV_ISA_EXT_q),
+> -	__RISCV_ISA_EXT_DATA(c, RISCV_ISA_EXT_c),
+> +	__RISCV_ISA_EXT_SUPERSET(c, RISCV_ISA_EXT_c, riscv_c_exts),
+>  	__RISCV_ISA_EXT_DATA(v, RISCV_ISA_EXT_v),
+>  	__RISCV_ISA_EXT_DATA(h, RISCV_ISA_EXT_h),
+>  	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicbom, RISCV_ISA_EXT_ZICBOM, riscv_x=
+linuxenvcfg_exts,
+> @@ -274,6 +315,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D {
+>  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+>  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
+>  	__RISCV_ISA_EXT_DATA(zfhmin, RISCV_ISA_EXT_ZFHMIN),
+> +	__RISCV_ISA_EXT_DATA(zca, RISCV_ISA_EXT_ZCA),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(zcb, RISCV_ISA_EXT_ZCB, riscv_ext_zca_dep=
+ends),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(zcd, RISCV_ISA_EXT_ZCD, riscv_ext_zcd_val=
+idate),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(zcf, RISCV_ISA_EXT_ZCF, riscv_ext_zcf_val=
+idate),
+>  	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
+>  	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+>  	__RISCV_ISA_EXT_DATA(zbc, RISCV_ISA_EXT_ZBC),
+> --=20
+> 2.43.0
+>=20
 
+--ROz/llGSkBkozfg7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-But it is normal because existing device tree have a already lot a 
-strange compatible
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiu7yQAKCRB4tDGHoIJi
+0gh5AP0cbGNts8eoVZeDItSxQA5RKNgG88ExrmtRhfQLSdNEUwD/b5VaqUNBUM6U
+7zMWwwWvojpz7oLhHEntm9Ys+IamPwE=
+=wMBZ
+-----END PGP SIGNATURE-----
 
->> I propose this patch to avoid the usage of this compatible for other SoC
->> in STM32MP1 family.
->>
->>
->> I see the invalid compatible string when I reviewed the U-Boot patch to
->> add the PWR node for STM32MP13 family:
->>
->> https://patchwork.ozlabs.org/project/uboot/patch/20240319024534.103299-1-marex@denx.de/
->>
-> Perhaps you should add SoC specific compatible string instead.
-
-
-yes it is a solution.
-
-
->
->> So I prefer change the PWR binding before to have the same patch applied
->> on Linux device tree
->>
->>> compatible = "st,stm32mp1-pwr-reg", "st,stm32mp1,pwr-reg";
->>
->> Yes, I will update the SoC patch with you proposal.
-> NO! We don't want to support that.
-
-
-Even mark the old binding deprecated is not acceptable:
-
-  properties:
-    compatible:
--    const: st,stm32mp1,pwr-reg
-+    oneOf:
-+    - const: st,stm32mp1-pwr-reg
-+    - items:
-+      - const: st,stm32mp1-pwr-reg
-+      - const: st,stm32mp1,pwr-reg
-+      deprecated: true
-
-
-I understood.
-
-
->
-> We have *tons* of examples in DT which don't follow recommended
-> patterns and we're stuck with them. This is no different. We can get
-> away with changing node names, but that's about it.
-
-
-Ok,  I am stucked with this compatible for STM32MP15 = "st,stm32mp1,pwr-reg"
-
-and I have no elegant solution to solved it.
-
-So I will change my serie to add a new compatible for STM32MP13
-
-"st,stm32mp13-pwr-reg"
-
-
->
-> Rob
-
-
-Regards
-
-Patrick
-
+--ROz/llGSkBkozfg7--
 
