@@ -1,337 +1,154 @@
-Return-Path: <devicetree+bounces-63225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7DF8B4138
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 23:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 157248B4172
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 23:41:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 723A4286662
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:31:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1878280209
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:41:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3553D374DB;
-	Fri, 26 Apr 2024 21:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065F52D03D;
+	Fri, 26 Apr 2024 21:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="P+ZFL7BC"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="V8J3aoOC";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VY0bHUN+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh8-smtp.messagingengine.com (fhigh8-smtp.messagingengine.com [103.168.172.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B67940BE6
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 21:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112A73613E
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 21:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714166987; cv=none; b=orsQivXIcBTYbNUew+0kdiz1Mhj5XI7sgQI4C2Y04q3mpLKtFTWA6ka0EIOc93h+h0OU616oGIIi5JchD/seEhT6H6ErjuYpAgJrkLFNTWyDFfGIjr6f9V8nbhDYwpXVS/unsO2w56CdFNGebumlImBjp30OSHlKxInpONcOaG0=
+	t=1714167665; cv=none; b=fCW03uZWZc8vq0/2+oBEvWCvFzKF+U5ZKHGHfI7xP4fA+6/38SVi+DEYk1EqLiJMHPLJFXVePh8jbgdrE/vijMzpXInfGoTO0gwQ0wgaBzzvLs35+afzpi4VOK+ATvvIsszQa2iot+ZeqZubOTDS0p/YGkl9eJPgh+H3ZQ00RPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714166987; c=relaxed/simple;
-	bh=xeqJIwHgg7hD2jKSz84QKxwBuWWYOka1Bl9jLn+Zfjo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s9rB6ojG7CSGAPXOHMnmo6q8kBf/and+mJ7sbhj/amHsD67HfU+5xBbqLLqikQxvcDK2alJZVupDQEW9X8+2tAFw0D+9AE5+N5cwQRPA9JfWcqPXv0P0dlsd1N9nxQorVxERZNGIr1VaBs/gyIup1zMLdUQOElC9/MV5bvHhZPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=P+ZFL7BC; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1eab699fcddso19726465ad.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 14:29:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714166985; x=1714771785; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pOMs4h32AkZXkWKzzhZnFPMyLuFsGIiFaMimgT9NIKQ=;
-        b=P+ZFL7BCufl024FPAlCCG0MCLtlJId6rLs7EehxJa14jEfbWY6DaImxWPQAvHFpFdp
-         g2kLxf1XIiwouCFNrN44qiOXIEfBM26v3gfh9e4wHG5xjsxDSZLdrs6f8DFcyR2sViPJ
-         er2GmFNSPoOJbZj6l+4e+qr5VWa7IStExAgDsVWXV0R5R0KKF8KS22qw6LNeenTo8ew+
-         x5PNwHzglpcpoP0E0uuBGAjZFO0DHG01HVDY2h6Mk9gc9U8JidAY+CslV30cLZtBtGYJ
-         I0hnvDs4apKXJLRg8emCiDnlQ0siPrIoBLJFL2Jj86/bgenePw9XTO9eoSMk+h4Is1Vd
-         iVWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714166985; x=1714771785;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pOMs4h32AkZXkWKzzhZnFPMyLuFsGIiFaMimgT9NIKQ=;
-        b=Zua22a/AnWlwcbG8RHhqx5a/UwGRFH0y4cpQcQce4cTXQ4h1DL1MMOH3we+aAxpXf1
-         NfgAAdJfYwENdTfN31+u5Y82QO6Y0QCQJiEh+HtCrRfDfLDNqaNZRl7ftQAJ4xUxaPc9
-         vxGqV3yPWx3FZrMqoNSU0/AhMtLoT67ja38HF7dyiZdA2y4E7QpAgkG+5BGVD5megMcT
-         U2dnBiTosO3wh40cTo2G+7DIeeBSSGsZsduyQ961RIj/ZSu5U8vlmPf10v6jMDZp9bM1
-         /Th8BvuVlQ5s0C6irCupPq3P7ynMtBAFoVAnvV0KLRJWfxsNvOVPEcfdIRkrLyaOl5ci
-         F1eA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRrKLQ+kvntAp+H0p43SaC3RmKcNN5EGp99vJAXUqyeKBZeChG9KjKhSkVekSXRen34g3Apx45Ml8lHZeDsePC4/YVckHxeleQ5w==
-X-Gm-Message-State: AOJu0YzfFQAjqxINXrEC6LLmpYF3FxILiCfYjYuEjk/rfUazyNz7JhDy
-	e0RU7nqsI0HHONQ+Rm+teaQq+lyCEGK13d0BwlE2gsV6R9KljfWWkJhTycMcn9s=
-X-Google-Smtp-Source: AGHT+IE4HRO2HvWPKWCsaUl05qCSHyEqF1FhN3eAiIk/SiGVJKE5JJUCtiWopLF1klv+Rz4K2Ni3eA==
-X-Received: by 2002:a17:903:2445:b0:1e4:17e4:3a49 with SMTP id l5-20020a170903244500b001e417e43a49mr5024754pls.12.1714166984775;
-        Fri, 26 Apr 2024 14:29:44 -0700 (PDT)
-Received: from charlie.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id b3-20020a170902650300b001ea2838fa5dsm7226720plk.76.2024.04.26.14.29.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 14:29:42 -0700 (PDT)
-From: Charlie Jenkins <charlie@rivosinc.com>
-Date: Fri, 26 Apr 2024 14:29:22 -0700
-Subject: [PATCH v4 08/16] riscv: Convert xandespmu to use the vendor
- extension framework
+	s=arc-20240116; t=1714167665; c=relaxed/simple;
+	bh=BYAn1+upc72Kzq6ZYL/g16tJ+pXOZMq/28+IH2qS4uA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hOl9+CLOn1FdCA8S69KQqjCPID3BjgskhoyRi7089QV0iVAAK9IGFwf3F+hDBi+DkWbJldXCG84smOTHVPvbMPsvbOgNAqC2j1HazhHYkws2IbDGGQVohRbas0pJIZsTkkvoEcX8hZDNoccblDVrr3MVRkMREl5iYf3jLupr/jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=V8J3aoOC; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VY0bHUN+; arc=none smtp.client-ip=103.168.172.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 1C14211400C7;
+	Fri, 26 Apr 2024 17:41:03 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 26 Apr 2024 17:41:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm3; t=1714167663; x=1714254063; bh=Ox7f6qTqrJ
+	IAkOnrlwDKrIkNTRswfvTwANeL0iZjMWE=; b=V8J3aoOCFHViApWdtIqT/i8GiA
+	CSXV8Z3HOerY/JHTzpYPrejZSIPy8nosEroN2UvYTC8fGry0T1M1L+LmykKjjuxM
+	pSZlc1Bg5VjjCng3UOmgUe5kAkmr+e1m4l/mYt1/hYWjqsVu746TzaXrRv5PXF5q
+	lV5RKknphfRYSvpNJKTIKTT0SbB4d/SCiSCjjaX7ev+rT4Gk6W6zhzOXRNBj8vv9
+	L/UBrN+mQXoLotyymBhmJcpN/Z0yE+N8GfkFePPyLk8fCVCmq68ejT/xBO1lrV+D
+	ypEoeClObcXMbeDRylr3dmmh7nhhIsyDtWJiUmOFv6LkpZOHZ3tNXuGybgfQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1714167663; x=1714254063; bh=Ox7f6qTqrJIAkOnrlwDKrIkNTRsw
+	fvTwANeL0iZjMWE=; b=VY0bHUN+MkuMZZubC43KEeVKuPjdHPFsUFCjM/PAslLW
+	CXbDd1UV50v0jCHpP4o+31UFV+FbVw6vjB8FHDvDhgO62wS0oak8shvntFzP2L17
+	bk5HbdVrJUawLKGjXv8uahH4Xxchehb8fTzncDZaDTJl2vjuuoDQwVQH3gcm1Py9
+	L6zn2wGUKA6MfElE8ry326E/3GLE9NboRYBXyed6OylcQy5XmNVO1PnsyW5wJK2m
+	Z8YJvWVTjx4rm+I8QKkO81e4Kps8BnZT9tQlvuBLR3JpGCBWpiT1hBgWP2fO6V+m
+	iiYfuMvSPyj+B0G+Oa0pc6c/VY+MK8eUON23Hwj4Fw==
+X-ME-Sender: <xms:bh8sZtpUWWgmqZ44ExDk3tG5R1Aye3aUH-gTaJP_pMlsiJT6jtU9CA>
+    <xme:bh8sZvoYMz2338fKN4xFXTcY0_Iv7PMCJ22EQRGeCZFolUGFjVB_UNoxP8YptKS_m
+    Q9530RLMulba94rHg>
+X-ME-Received: <xmr:bh8sZqOWCsEaBITXXd7M8sduwX8X4e0GdeNHgvdRSCZT2xt281sC7wPshn7nJ3VrZLWpv8uJP9KDMrJj7n1joiBTkxsurLvkkGd_mCrhiEaDNyiN>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddttddgtddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
+    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
+    gvrhhnpeduvdeuudeugedtueffteevveegheehvdfhfeduudevkefggfeftdehgeethffh
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhi
+    grnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:bh8sZo4BADL_H5kkIM9ktGQUT0AkVMrGrrJV5MpEDRgG6WSGvSougw>
+    <xmx:bh8sZs4BkhpwblTYudITcfwwkRbDcpw0y1LL-Al4ANwEJyXD9yrzGw>
+    <xmx:bh8sZgh1mEzLIPCeoDLXvm77PFNhQVFqaUCMY6K9v8kXM_8MGkgQng>
+    <xmx:bh8sZu6VDNzInJUeDw3rN8fOfFw9mLk0_fdpm_HU2StNLgEkJjLaTA>
+    <xmx:bx8sZsjZ1emh4JP4Tq0QfmWVBtpDc1AZ-kHJqQlDRSi46rBLkjFRigf8>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 26 Apr 2024 17:40:59 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v5 0/4] arm64: dts: allwinner: Add Anbernic RG35XX (Plus/H/2024) support
+Date: Sat, 27 Apr 2024 09:35:05 +1200
+Message-ID: <20240426213505.69273-5-ryan@testtoast.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240426-dev-charlie-support_thead_vector_6_9-v4-8-b692f3c516ec@rivosinc.com>
-References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
-In-Reply-To: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Guo Ren <guoren@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Conor Dooley <conor.dooley@microchip.com>, Evan Green <evan@rivosinc.com>, 
- =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <cleger@rivosinc.com>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- Charlie Jenkins <charlie@rivosinc.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1714166962; l=8762;
- i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
- bh=xeqJIwHgg7hD2jKSz84QKxwBuWWYOka1Bl9jLn+Zfjo=;
- b=udCuM5AcqxC71KiPQVbM297gYikFWih/fHpQHVIS2JWfbqsIAe+lQenpnq+Buqd3naQueOwpJ
- 63pmjJV6AvZC/6b3bhzQkX94DSlbv2hVZCTMBNQQfNIrnBgu4Q5FCgY
-X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
- pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
+Content-Transfer-Encoding: 8bit
 
-Migrate xandespmu out of riscv_isa_ext and into a new Andes-specific
-vendor namespace.
+Thanks again for additional reviews. Have made the requested changes, and added some commentary about the SD2 low-voltage signalling, which will require a GPIO-switched regulator for the 3.3v->1.8v transition. This is not yet implemented/modeled, so for now a fixed 3.3v supply is used, and noted that an additional regulator define is required for SD2 operation and stable Bluetooth. However SD2, Wifi and BT are all working with the current state.
 
-Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
----
- arch/riscv/Kconfig.vendor                        | 12 ++++++++
- arch/riscv/errata/andes/errata.c                 |  2 ++
- arch/riscv/include/asm/hwcap.h                   |  1 -
- arch/riscv/include/asm/vendor_extensions/andes.h | 19 +++++++++++++
- arch/riscv/kernel/cpufeature.c                   |  1 -
- arch/riscv/kernel/vendor_extensions.c            | 11 ++++++++
- arch/riscv/kernel/vendor_extensions/Makefile     |  1 +
- arch/riscv/kernel/vendor_extensions/andes.c      | 35 ++++++++++++++++++++++++
- drivers/perf/riscv_pmu_sbi.c                     |  9 ++++--
- 9 files changed, 86 insertions(+), 5 deletions(-)
+Original cover below.
+--
 
-diff --git a/arch/riscv/Kconfig.vendor b/arch/riscv/Kconfig.vendor
-index 4fc86810af1d..d47c0e7a250f 100644
---- a/arch/riscv/Kconfig.vendor
-+++ b/arch/riscv/Kconfig.vendor
-@@ -16,4 +16,16 @@ config RISCV_ISA_VENDOR_EXT_THEAD
- 	  If you don't know what to do here, say Y.
- endmenu
- 
-+menu "Andes"
-+config RISCV_ISA_VENDOR_EXT_ANDES
-+	bool "Andes vendor extension support"
-+	default y
-+	help
-+	  Say N here if you want to disable all Andes vendor extension
-+	  support. This will cause any Andes vendor extensions that are
-+	  requested by hardware probing to be ignored.
-+
-+	  If you don't know what to do here, say Y.
-+endmenu
-+
- endmenu
-diff --git a/arch/riscv/errata/andes/errata.c b/arch/riscv/errata/andes/errata.c
-index f2708a9494a1..a5d96a7a4682 100644
---- a/arch/riscv/errata/andes/errata.c
-+++ b/arch/riscv/errata/andes/errata.c
-@@ -65,6 +65,8 @@ void __init_or_module andes_errata_patch_func(struct alt_entry *begin, struct al
- 					      unsigned long archid, unsigned long impid,
- 					      unsigned int stage)
- {
-+	BUILD_BUG_ON(ERRATA_ANDES_NUMBER >= RISCV_VENDOR_EXT_ALTERNATIVES_BASE);
-+
- 	if (stage == RISCV_ALTERNATIVES_BOOT)
- 		errata_probe_iocp(stage, archid, impid);
- 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index e17d0078a651..1f2d2599c655 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -80,7 +80,6 @@
- #define RISCV_ISA_EXT_ZFA		71
- #define RISCV_ISA_EXT_ZTSO		72
- #define RISCV_ISA_EXT_ZACAS		73
--#define RISCV_ISA_EXT_XANDESPMU		74
- 
- #define RISCV_ISA_EXT_XLINUXENVCFG	127
- 
-diff --git a/arch/riscv/include/asm/vendor_extensions/andes.h b/arch/riscv/include/asm/vendor_extensions/andes.h
-new file mode 100644
-index 000000000000..54b0ad1a409d
---- /dev/null
-+++ b/arch/riscv/include/asm/vendor_extensions/andes.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef _ASM_RISCV_VENDOR_EXTENSIONS_ANDES_H
-+#define _ASM_RISCV_VENDOR_EXTENSIONS_ANDES_H
-+
-+#include <asm/vendor_extensions.h>
-+
-+#include <linux/types.h>
-+
-+#define RISCV_ISA_VENDOR_EXT_XANDESPMU		0
-+
-+/*
-+ * Extension keys should be strictly less than max.
-+ * It is safe to increment this when necessary.
-+ */
-+#define RISCV_ISA_VENDOR_EXT_MAX_ANDES			32
-+
-+extern const struct riscv_isa_vendor_ext_data_list riscv_isa_vendor_ext_list_andes;
-+
-+#endif
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index dd7e8e0c0af1..0e2d77775e6b 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -289,7 +289,6 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
- 	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
- 	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
- 	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
--	__RISCV_ISA_EXT_DATA(xandespmu, RISCV_ISA_EXT_XANDESPMU),
- };
- 
- const size_t riscv_isa_ext_count = ARRAY_SIZE(riscv_isa_ext);
-diff --git a/arch/riscv/kernel/vendor_extensions.c b/arch/riscv/kernel/vendor_extensions.c
-index eced93eec5a6..e31f16b8cec9 100644
---- a/arch/riscv/kernel/vendor_extensions.c
-+++ b/arch/riscv/kernel/vendor_extensions.c
-@@ -5,6 +5,7 @@
- 
- #include <asm/vendorid_list.h>
- #include <asm/vendor_extensions.h>
-+#include <asm/vendor_extensions/andes.h>
- #include <asm/vendor_extensions/thead.h>
- 
- #include <linux/array_size.h>
-@@ -14,6 +15,9 @@ const struct riscv_isa_vendor_ext_data_list *riscv_isa_vendor_ext_list[] = {
- #ifdef CONFIG_RISCV_ISA_VENDOR_EXT_THEAD
- 	&riscv_isa_vendor_ext_list_thead,
- #endif
-+#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_ANDES
-+	&riscv_isa_vendor_ext_list_andes,
-+#endif
- };
- 
- const size_t riscv_isa_vendor_ext_list_size = ARRAY_SIZE(riscv_isa_vendor_ext_list);
-@@ -42,6 +46,13 @@ bool __riscv_isa_vendor_extension_available(int cpu, unsigned long vendor, unsig
- 		cpu_bmap = riscv_isa_vendor_ext_list_thead.per_hart_vendor_bitmap;
- 		bmap_size = riscv_isa_vendor_ext_list_thead.bitmap_size;
- 		break;
-+#endif
-+#ifdef CONFIG_RISCV_VENDOR_EXT_ANDES
-+	case ANDES_VENDOR_ID:
-+		bmap = riscv_isa_vendor_ext_list_andes.vendor_bitmap;
-+		cpu_bmap = riscv_isa_vendor_ext_list_andes.per_hart_vendor_bitmap;
-+		bmap_size = riscv_isa_vendor_ext_list_andes.bitmap_size;
-+		break;
- #endif
- 	default:
- 		return false;
-diff --git a/arch/riscv/kernel/vendor_extensions/Makefile b/arch/riscv/kernel/vendor_extensions/Makefile
-index 3383066baaab..8f1c5a4dc38f 100644
---- a/arch/riscv/kernel/vendor_extensions/Makefile
-+++ b/arch/riscv/kernel/vendor_extensions/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
- obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)	+= thead.o
-+obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_ANDES)	+= andes.o
-diff --git a/arch/riscv/kernel/vendor_extensions/andes.c b/arch/riscv/kernel/vendor_extensions/andes.c
-new file mode 100644
-index 000000000000..8451106d2e07
---- /dev/null
-+++ b/arch/riscv/kernel/vendor_extensions/andes.c
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <asm/cpufeature.h>
-+#include <asm/vendor_extensions.h>
-+#include <asm/vendor_extensions/andes.h>
-+
-+#include <linux/array_size.h>
-+#include <linux/types.h>
-+
-+const struct riscv_isa_ext_data riscv_isa_vendor_ext_andes[] = {
-+	__RISCV_ISA_EXT_DATA(xandespmu, RISCV_ISA_VENDOR_EXT_XANDESPMU),
-+};
-+
-+/*
-+ * The first member of this struct must be a bitmap named isa so it can be
-+ * compatible with riscv_isainfo even though the sizes of the bitmaps may be
-+ * different.
-+ */
-+struct riscv_isavendorinfo_andes {
-+	DECLARE_BITMAP(isa, RISCV_ISA_VENDOR_EXT_MAX_ANDES);
-+};
-+
-+/* Hart specific T-Head vendor extension support */
-+static struct riscv_isavendorinfo_andes hart_vendorinfo_andes[NR_CPUS];
-+
-+/* Set of T-Head vendor extensions supported on all harts */
-+DECLARE_BITMAP(vendorinfo_andes, RISCV_ISA_VENDOR_EXT_MAX_ANDES);
-+
-+const struct riscv_isa_vendor_ext_data_list riscv_isa_vendor_ext_list_andes = {
-+	.ext_data = riscv_isa_vendor_ext_andes,
-+	.per_hart_vendor_bitmap = (struct riscv_isainfo *)hart_vendorinfo_andes,
-+	.vendor_bitmap = vendorinfo_andes,
-+	.ext_data_count = ARRAY_SIZE(riscv_isa_vendor_ext_andes),
-+	.bitmap_size = RISCV_ISA_VENDOR_EXT_MAX_ANDES
-+};
-diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-index 8cbe6e5f9c39..d39b01372fa5 100644
---- a/drivers/perf/riscv_pmu_sbi.c
-+++ b/drivers/perf/riscv_pmu_sbi.c
-@@ -24,6 +24,8 @@
- #include <asm/errata_list.h>
- #include <asm/sbi.h>
- #include <asm/cpufeature.h>
-+#include <asm/vendorid_list.h>
-+#include <asm/vendor_extensions/andes.h>
- 
- #define ALT_SBI_PMU_OVERFLOW(__ovl)					\
- asm volatile(ALTERNATIVE_2(						\
-@@ -32,7 +34,7 @@ asm volatile(ALTERNATIVE_2(						\
- 		THEAD_VENDOR_ID, ERRATA_THEAD_PMU,			\
- 		CONFIG_ERRATA_THEAD_PMU,				\
- 	"csrr %0, " __stringify(ANDES_CSR_SCOUNTEROF),			\
--		0, RISCV_ISA_EXT_XANDESPMU,				\
-+		ANDES_VENDOR_ID, RISCV_ISA_VENDOR_EXT_XANDESPMU,	\
- 		CONFIG_ANDES_CUSTOM_PMU)				\
- 	: "=r" (__ovl) :						\
- 	: "memory")
-@@ -41,7 +43,7 @@ asm volatile(ALTERNATIVE_2(						\
- asm volatile(ALTERNATIVE(						\
- 	"csrc " __stringify(CSR_IP) ", %0\n\t",				\
- 	"csrc " __stringify(ANDES_CSR_SLIP) ", %0\n\t",			\
--		0, RISCV_ISA_EXT_XANDESPMU,				\
-+		ANDES_VENDOR_ID, RISCV_ISA_VENDOR_EXT_XANDESPMU,	\
- 		CONFIG_ANDES_CUSTOM_PMU)				\
- 	: : "r"(__irq_mask)						\
- 	: "memory")
-@@ -837,7 +839,8 @@ static int pmu_sbi_setup_irqs(struct riscv_pmu *pmu, struct platform_device *pde
- 		   riscv_cached_mimpid(0) == 0) {
- 		riscv_pmu_irq_num = THEAD_C9XX_RV_IRQ_PMU;
- 		riscv_pmu_use_irq = true;
--	} else if (riscv_isa_extension_available(NULL, XANDESPMU) &&
-+	} else if (riscv_has_vendor_extension_unlikely(ANDES_VENDOR_ID,
-+						       RISCV_ISA_VENDOR_EXT_XANDESPMU) &&
- 		   IS_ENABLED(CONFIG_ANDES_CUSTOM_PMU)) {
- 		riscv_pmu_irq_num = ANDES_SLI_CAUSE_BASE + ANDES_RV_IRQ_PMOVI;
- 		riscv_pmu_use_irq = true;
+The Anbernic RG35XX is a family of handheld gaming devices. There are 4 variants, of which 3 using the Allwinner H700 chip are covered by this patchset. The fourth (released first and named simply RG35XX) uses an Actions Semiconductor ATM7039s which is a 32-bit Cortex-A9 chip with no mainline support and is not covered.
+
+Common features (RG35XX-2024):
+- Allwinner H700 @ 1.5GHz (H616 variant exposing RGB LCD and NMI pins, with 4x Cortex-A53 Cores and a Mali G31 GPU)
+- 1 GB LPDDR4 DRAM
+- AXP717 PMIC (patches accepted in mfd-next [1])
+- 3.5" 640x480 RGB LCD
+- Mini-HDMI, 3.5mm audio jack, mono speaker, two microSD slots and USB-C (USB 2.0) for power.
+
+RG35XX-Plus adds:
+- RTL8821CS SDIO Wifi/BT chip
+
+RG35XX-H (Horizontal form-factor) adds:
+- RTL8821CS SDIO Wifi/BT chip
+- Two analog thumbsticks
+- Second USB-C port
+- Stereo speaker
+
+Patch 1 adds the DT bindings for the board names, Patch 2 adds the -2024 device as a common base, Patch 3 adds Wifi/BT support for the -Plus (and -H), and Patch 3 adds the second USB and thumbsticks for the -H. The -H is a strict superset of the -Plus, which is in turn a strict superset of the -2024, so this translates quite neatly.
+
+LCD, HDMI, audio, and GPU support are not yet ready and relying on out-of-tree patches currently, so will be added once these drivers are mainlined.
+
+Ryan
+
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+
+Ryan Walklin (4):
+  dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
+    device variants
+  arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+  arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+  arm64: dts: allwinner: h700: Add RG35XX-H DTS
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  15 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   3 +
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      | 346 ++++++++++++++++++
+ .../sun50i-h700-anbernic-rg35xx-h.dts         |  36 ++
+ .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
+ 5 files changed, 453 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
 
 -- 
 2.44.0
