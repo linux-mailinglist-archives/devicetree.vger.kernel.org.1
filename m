@@ -1,104 +1,150 @@
-Return-Path: <devicetree+bounces-63185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D037E8B3F7C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:39:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6888B3F7E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03C27B22487
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:39:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04C66283A8E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFFE4A23;
-	Fri, 26 Apr 2024 18:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8A563A9;
+	Fri, 26 Apr 2024 18:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qH4hxjX7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W8B0GEuL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792C663B8
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E6211879;
+	Fri, 26 Apr 2024 18:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714156737; cv=none; b=M13FYlv+SHisUsvAai9P+MKGMgBvv7zWtCtrzCZ9hRYWcBgE4o0A91zUTfqIwdH/qZh03WyBo5B7IvU66xvTm6F2WA08qPLOQSAR9Z9ZtAaJYOfRxUwIsaWxpuJtEWcN9JvGoVWeWU7DNTk4yUeG4zNzdX9z7hMtNZ2M+EfKkiw=
+	t=1714156857; cv=none; b=HA284Skdg/TgV3r7adRnaEr1tYVp1R5WbEwruMFmJCHLHftCgaTWdMqU0uMLs0Gv4iopZY/5CcESyWDEnLfCZ9pZ/7v1BaZT80sOKNKiD/dK5KfxXrEc4zWeI4v5LVdKzfhS5WtVfmO4dr8C/y99oIX7jfzgI6LecvNT/lrTqJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714156737; c=relaxed/simple;
-	bh=FOisfRur5zgcKB27eKdkujvgE9ZnTwtO991LBci8F90=;
+	s=arc-20240116; t=1714156857; c=relaxed/simple;
+	bh=rvrNC3JFwPV29Kb72PvC4nm2Zcfi4a+rQfPKPb10BJY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ja12Iftiph50w7d/jz2uGVeZlCgnR646qOG8sGIoVNBEP61YUCBFLOFygD4S1Ot9xWQqeyTXGtXR9bcBdochsgosyaz1uTIxG+R2iAT4Oico9F/xhl+urbUIsCZj013HcK6pRRq6p0oqyswQmajS5h0HuN3I1vVQI/vYLPQwqdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qH4hxjX7; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de56d4bb72bso2896757276.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 11:38:56 -0700 (PDT)
+	 To:Cc:Content-Type; b=mit+DsnadQIs1mQHZTRBDeHmes+GH0ZsuvlmvyhPwmV+s1cV12WmXCeeJF4P+KApcAl1jL5HvGnFjFg+s+mOKm1JfhxoWnG0+XgC7OFsGGVTOsrT1ldLh5ULo0ONtvYnSThAwL9XA0qP9p/jJb6cqvaLVWLcejewXHlzFc3g8Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W8B0GEuL; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a58989cd1f8so323827566b.1;
+        Fri, 26 Apr 2024 11:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714156735; x=1714761535; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gv1XMYqj7FlbfLTbilE5kRRG0y9JWfghI0WKM8XxsyY=;
-        b=qH4hxjX7zCPXSrAV6w7OxC0WetPo5XtM+MwnzqAzm6iR7KKLpEDSJbSXEmi9zCGtfw
-         hbpypuPDaFSXdQSrA+ZvRBk0LOSqrefba2xJwWecrK5GJWTT++SS4zPuByNnP1wXDtZW
-         87qy1zDvC51sLkCDIJUX0nxjsJw+F6ONUm08MphshG1s0wPY3Ha4tV0pINttrMsWg3UV
-         sGloAzbbNJ6kbV0TzCgU9FXY+MTqH1XU8lrZV14+ekvNkm6eXmeqd/xJ1RIT+FKPz0kp
-         JAdp+I9+zuJipLhsNcMZJCpwU65c0msdCUi/fKC4EqQYxpUjH7Cn6Cjcd9DymOE3UPWz
-         Qojw==
+        d=gmail.com; s=20230601; t=1714156854; x=1714761654; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XkrwWPKztMVNwrPeKwp9PKqeKIiGVRFaropmsH2a0TQ=;
+        b=W8B0GEuLcjMhxg3jvENwOsQ6UDAEcSLFX4HLfOA42q0tHXOB/LqeyAGIotZasG638C
+         sdJ3kCeo4LPEIVDu9njnZQ3uGJYxLFb0CWp6YpfzOhphK2E2L/6rhIKYxeeiYsljG7/X
+         aLEQH5U6kjS8W8VNkrWKt+gTh29WXQLFWW4IluHYsh9wQ1TXGT0RucV0UtUaQ8PndjC3
+         kTzvrxhPtOitqXrbyM9J4bsI7zuwhbOYkxrt05qJPfV5cQNwpOSg1PYVCF5bgFoJC1/3
+         /0mXjj5LrVmpXvRdIhSHAkXTFki4zmKmXyl4QPCVDeWwpx5ITODMAkIK+uRsSoua+bTM
+         gcYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714156735; x=1714761535;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Gv1XMYqj7FlbfLTbilE5kRRG0y9JWfghI0WKM8XxsyY=;
-        b=EfsID1eulwfGSmv1sXfdaKxwhEIri7pNmqatbsFS6tAqZGNYVywJRflwBOxX9mahzM
-         0REbG11iUlJHc8MTcdhpwBZL/lSQ0BW1yaVe73d/ORCRXaY2o+PqvUGuWugZlmVyp/1n
-         puu+3wwqCXxGgVWj5AlfINbGvpf4SUNTjVardT/KT9mlokTzl+scpEqbdiL4UV/lXIUY
-         fWZfFdhmU3Rw8BDr+OQos9cP/GBB2sfsPrSDlnGFPlIWFXrimA0MXelZ33esKbJONdeW
-         etNiD7snTLFvQve24mLcc5/iA0mxHJ7L3F2Y6ADQsZlL4JjRjK65etsZOR1fN0vDMlpI
-         BJ0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVuZP6Gvr1bEk3RG+PQeSssRbm98tdf9NvARVApo4nT4CX/htwoLMWjEY7jxZMaAlnLhmNy1Qo2FaODVDerYWJJq0a7A9J+bhE4UQ==
-X-Gm-Message-State: AOJu0YwegoFemRvvHWWODN8t1syKJwTgD+NMzofG3lAMIx2FQq0V4Xxv
-	13gmh/9726v0MMgIW5mEZrjIJcXv7TjVtPJgjcCv4uSAfyw3FN4s8FM3EjaY2mBkxOAsuXy+KWl
-	AOBZSHtxrg4LOWTMatDGDcEsYCij4WkQuKjRtmg==
-X-Google-Smtp-Source: AGHT+IG3IsyEOycBc7qulLoEu9IiRmWCqVyqNrLDpmeg9cQ457zZD8N3srGvP0qs68zCmdPTZI0p/dKAsd7wuoQG5rc=
-X-Received: by 2002:a25:83c6:0:b0:dcc:6d85:586a with SMTP id
- v6-20020a2583c6000000b00dcc6d85586amr3741728ybm.49.1714156735527; Fri, 26 Apr
- 2024 11:38:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714156854; x=1714761654;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XkrwWPKztMVNwrPeKwp9PKqeKIiGVRFaropmsH2a0TQ=;
+        b=lfq5edFIl275GZINrwCX/l3BSgJkFc0bJSkHcMLuCpkchmYJil09XudjPNqT5ArhQr
+         qmpCyOuxPY6qysdUD0YTcp9RkGH5SsSCwM5JY1S4lnhp2k3zQ/HnPfDothX+gcmxoDIl
+         +HfNoJb8R+pLcSWFxoQMPvt+27DV1awf01M5U3iY4m+HTMi9YyMILXVhrQ7vzW4vYc3y
+         il03NrUW2JyPr78gw67l2ynaNTzO40Sk8Q7GyW0XsFvZDxm3mgyJoRO9y9o+LYsBRbah
+         je2iqgaANu4pqLuVTfzMo+JMYf/GRwKTKZs8XO9nw8KyHTshUO0cRmUjLreka3Gchc37
+         pn2A==
+X-Forwarded-Encrypted: i=1; AJvYcCVmiG5Lyqwfz40al/ertz4VO59BkCsWEhIYLYSwCn06paoc5Hq3wue48UQVIlt5VjGmG+HoZkjiQONap1NST15gdt5U1fazQequHQ==
+X-Gm-Message-State: AOJu0Yytll1frtukJ7KFNBCekvExsHwtF6kSQ1mlb3ln97SF4qoND0HL
+	cxexl9jBpv/XOnbmDG4hA7Sf9umL4nyKT8YSZzoAbPxdcIfuucRfQsONIT+MIHEVQ4BVFgpP5Kp
+	EWoZOamj5cfgHpMycnMJB9mDKvhM=
+X-Google-Smtp-Source: AGHT+IE0xvli7hIPgIvifIqZD/OZw4V0JOTk/ZnSUiwkPN05lsv0DsC5yjcZFm+tfgQ+V2NJEEgMV9jhIAD4q2mywGs=
+X-Received: by 2002:a17:906:b798:b0:a4d:fcc9:905c with SMTP id
+ dt24-20020a170906b79800b00a4dfcc9905cmr257538ejb.20.1714156854157; Fri, 26
+ Apr 2024 11:40:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com> <20240426-a750-raytracing-v2-3-562ac9866d63@gmail.com>
-In-Reply-To: <20240426-a750-raytracing-v2-3-562ac9866d63@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 26 Apr 2024 21:38:44 +0300
-Message-ID: <CAA8EJppoK4XAt1ARugvKvW2mYjuRJcuvJ-bhFh+cQMr3zmvx_Q@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] drm/msm: Update a6xx registers
-To: Connor Abbott <cwabbott0@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jun Nie <jun.nie@linaro.org>, 
-	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	freedreno@lists.freedesktop.org
+References: <cover.1714119615.git.lorenzo@kernel.org> <2047e9c8372b51dc263178a12e194b8826f1abe7.1714119615.git.lorenzo@kernel.org>
+ <CAHp75Vd5VSMNy-bYQmcmRA47uTn567QiKmvDJGEkRUgVCk5PAQ@mail.gmail.com> <ZivUAZ2SKRJsESKF@lore-desk>
+In-Reply-To: <ZivUAZ2SKRJsESKF@lore-desk>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 26 Apr 2024 21:40:17 +0300
+Message-ID: <CAHp75Vci=xupfi8zt-cB6dOFDhFntp7qvCqz8ZJ-2ucHXd4xhA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] spi: airoha: add SPI-NAND Flash controller driver
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org, 
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com, 
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
+	angelogioacchino.delregno@collabora.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 26 Apr 2024 at 21:34, Connor Abbott <cwabbott0@gmail.com> wrote:
+On Fri, Apr 26, 2024 at 7:19=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.or=
+g> wrote:
+> > On Fri, Apr 26, 2024 at 11:31=E2=80=AFAM Lorenzo Bianconi <lorenzo@kern=
+el.org> wrote:
+
+...
+
+> > > +       default:
+> > > +               break;
+> > > +       }
+> > > +
+> > > +       return false;
+> >
+> > Why not return false directly from the default case?
 >
-> Update to mesa commit ff155f46a33 ("freedreno/a7xx: Register updates
-> from kgsl").
+> it is because we still need the 'return false' at the end of routine for =
+the
+> other cases due to SPI_MEM_DATA_IN and SPI_MEM_DATA_OUT.
+
+Hmm... Can it be refactored? I think it would still be possible to
+slightly reduce the amount of LoCs.
+
+...
+
+> > > +               op->data.nbytes =3D min_t(size_t, op->data.nbytes, 16=
+0 - len);
+> >
+> > You probably wanted clamp(). It's discouraged to use min_t() for unsign=
+ed types.
 >
-> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
-> ---
->  drivers/gpu/drm/msm/registers/adreno/a6xx.xml | 28 ++++++++++++++++++++++++---
->  1 file changed, 25 insertions(+), 3 deletions(-)
+> do you mean doing something like:
+>
+> op->data.nbytes =3D clamp(op->data.nbytes, op->data.nbytes, 160 - len);
+>
+> maybe an 'if' condition is more readable, what do you think?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Yes, since we have only one branch of change.
 
--- 
-With best wishes
-Dmitry
+...
+
+> > > +       base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res=
+);
+> >
+> > How is 'res' being used exactly?
+>
+> right, we can pass NULL here to devm_platform_get_and_ioremap_resource()
+
+No, just use another call that doesn't require this parameter at all.
+
+...
+
+> > > +       base =3D devm_platform_get_and_ioremap_resource(pdev, 1, &res=
+);
+> >
+> > Ditto.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
