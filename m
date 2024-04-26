@@ -1,135 +1,114 @@
-Return-Path: <devicetree+bounces-62988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DE98B357C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:45:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 685258B360D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:52:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2879B1F21252
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:45:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20FED281F01
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A390143882;
-	Fri, 26 Apr 2024 10:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1E7147C9A;
+	Fri, 26 Apr 2024 10:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X8cp6vmN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AYsKy8SH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D9F29CEC;
-	Fri, 26 Apr 2024 10:45:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C535D147C94
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 10:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714128320; cv=none; b=gU255tEgVVXTaP5nIrRJwRSBb2twhj1Ls6CQ3cPEt30kMaZ/xcXfMhtfw98BN8u8iM9EJzwbnfZqkEhGzcGFmrCPArbLRvjYu2ZlYF/+983PwhbI3Diehi/zG91wVrL/lowjwwhDvqBaA0x6Kc5t8WJyygz33vUPq5sDHnCkMgk=
+	t=1714128620; cv=none; b=L8f16ZgdTr0jOKk/USm5CMj03qGE2kg3DATDNpyebEUhIBryx1DtS2VXiuiPtblUK/uCBNzBxDxQDlMMJ1AxJPtVf0wdJoSCZsPdDfb2fvQOVDGzLPA2WZ5h9fLHCXnQ55eGfMGApPB3JMVZDoias8y6NtgXGZl5+ax/pf7/gm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714128320; c=relaxed/simple;
-	bh=1GPTVzQ3RYu+uPM1fHOsgJyMAZBfR2SYv+4tP9n5U+g=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=G99ba6Hn33lSuMzS4sRDdhjuEUvuksOonhMHj2Q/m/QT+vt0NuTfg8rc9228qK3z69BBqybSenmMD1GkdWhVEWEN8t8a4pQrcWbpgWg8NtkeF1Jnn2GX7m4145IvSgJtjfEVOatdrs6IyqTx6Y1vdoSGLzodpNny2C94BUBXQKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=X8cp6vmN; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43QAj8lt022035;
-	Fri, 26 Apr 2024 05:45:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714128308;
-	bh=+G7hsmNHlWKp3MAGArQvL4SERCA89ndaYO3wLVxnObY=;
-	h=From:To:CC:Subject:Date;
-	b=X8cp6vmNJa9NwO2efNpAA82fO+z0oMnNhH3ZecU0SxbHtSFQ/hiQHlmeJMioI28IB
-	 Wh2sZTytfzzZW9P2woIjLhvYxK/1VzfOB/9aRevj1g7weAv/DfARGZegNi5zipM0zk
-	 HuiBmETAC5nQmWJ3xxaMBAGIS/Bwi8t0Fq3Twi8c=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43QAj8bf002628
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 26 Apr 2024 05:45:08 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
- Apr 2024 05:45:07 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 26 Apr 2024 05:45:08 -0500
-Received: from localhost ([10.249.129.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43QAj790098712;
-	Fri, 26 Apr 2024 05:45:07 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j722s-evm: Enable main_uart5 node
-Date: Fri, 26 Apr 2024 16:15:06 +0530
-Message-ID: <20240426104506.29990-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.40.1
+	s=arc-20240116; t=1714128620; c=relaxed/simple;
+	bh=FuzOVXheiVv7xE1rNAxDrlXsKwwbB9QAEj4QR2FTsPQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oTW3qX/ZfKfJWF2vVgq0VtuYgxFwpJG3rmeL2SMZZUwAu2lDzY+tbe3eOoJbyjNeztC0iAEw2KbwB+2jcxTsOA4cLP5m40K5sCBs/G/6552P6KQLvAg209aakqjqOeTUkHgtfzuCY6+A5siStLYqPwZWQWxPPMvH9x4UjgeYPRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AYsKy8SH; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2df848f9325so1409831fa.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 03:50:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714128617; x=1714733417; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HYVEhcdcodZToII5Jgm0JuBVl2Djk/tDBTwMQ5vfKAc=;
+        b=AYsKy8SHyUO1HmRqz6uQmqEUo60chnpifDYFJT4xn5gckTWOGwWyo9a06z+M8rvE+T
+         qI4q+5kLvBd8xEOG9yuScGpxH0xXe8epzFQey0D0VMI/00XBQwkqZ8fQJZ4mhg8GOzMx
+         QUtvqnSKstIhvn82SJkOEOMi4W7fPlU0GJqYexzhZLiiT9/IN0lFOmxFZweuL5CWOawy
+         SaRfAlBny4M99Nn2hL0bV5ZiKwXFDKTlLqsCy2FBlrjc9XgOebddWcL9+AlCSDXhoZog
+         PpTqDYXX6aWhofQ5/ob3Vs25gaeSeZD6v4NTChICNC8IsT08Vmu2+EJ+eEMujRg+qyNB
+         d0nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714128617; x=1714733417;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HYVEhcdcodZToII5Jgm0JuBVl2Djk/tDBTwMQ5vfKAc=;
+        b=oMxWT6EVt/NAjMFDbV+DtsMK63QwHi/hjMoZd/BPit/XFWqxZLfQP1DXrCJ9CbUG/K
+         iwD/LMEpYuijIOMsUTu4KiEyLSfYoKr6RnTYYoA5H1m2zCGbJXrMzsddM/aRfzIZ5wVY
+         TxBYALCWH1WmLsfU4CrPq2vW26scgVzVW2O8gpg7yEOIorc7nEMxpX2pY/xx9Y2H/AQD
+         VqkvJ2ipLnjwaSu7zjdTceQznB22x1xL482rxoZJpUdCK409mtviJyqqgzI3zrq40IAG
+         8g5FL16g7QATQml1Bl/MMcCu3+0FaVwexxbSIFEjkRR31vJEzaZ8VStP/tonFCanmkdt
+         0YXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW/rSbW3oi70umC+rFzORjBiiL3Jkn9xew1j0EJyJ2oc4MkdOMRruwTNEHhahXkCGkulM+Gr4UfN+bUCTZ95+LuWvTk7oiyARbtBg==
+X-Gm-Message-State: AOJu0YxrRmLEKz1UDWDL3EtD++4+fquFsuCXFCwbxLmmOyZdpR5DOlXq
+	PY6+wmDqK1PmbCEZN29+Lx0Gcv2KbCPt+NawCUYlB7lsUHQLMAO/OEdJjr3CUQQ=
+X-Google-Smtp-Source: AGHT+IE4JW1izzJ5u7fX0sAs2CaHdt0F4q9Sx8DVfzdc22pNB1/b5brFPMK4wZu1LsSKe3QahTXkaw==
+X-Received: by 2002:a2e:bc1e:0:b0:2db:6bf5:2991 with SMTP id b30-20020a2ebc1e000000b002db6bf52991mr1846002ljf.20.1714128616906;
+        Fri, 26 Apr 2024 03:50:16 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.100])
+        by smtp.gmail.com with ESMTPSA id r30-20020adfb1de000000b00343e392829dsm22272972wra.97.2024.04.26.03.50.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Apr 2024 03:50:16 -0700 (PDT)
+Message-ID: <1db611ee-b02c-4b40-8e35-70bbbcba7165@linaro.org>
+Date: Fri, 26 Apr 2024 11:50:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: google,gs101-clock: add HSI2
+ clock management unit
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240426-hsi0-gs101-v2-0-2157da8b63e3@linaro.org>
+ <20240426-hsi0-gs101-v2-1-2157da8b63e3@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240426-hsi0-gs101-v2-1-2157da8b63e3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Main_uart5 node defined in the top-level J722S SoC dtsi file is
-incomplete and may not be functional unless it is extended
-with pinmux information.
 
-As the pinmux is only known at the board integration level, main_uart5
-node should only be enabled when provided with this information.
 
-Thus, add pinmux for main_uart5 and enable it in the board dts file.
+On 4/26/24 11:03, André Draszik wrote:
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: bus
+> +            - const: pcie
+> +            - const: ufs_embd
+> +            - const: mmc_card
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index cee3a8661d5e..b92d5c385f13 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -18,6 +18,7 @@ / {
- 	aliases {
- 		serial0 = &wkup_uart0;
- 		serial2 = &main_uart0;
-+		serial3 = &main_uart5;
- 		mmc0 = &sdhci0;
- 		mmc1 = &sdhci1;
- 	};
-@@ -142,6 +143,14 @@ J722S_IOPAD(0x01cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
- 		bootph-all;
- 	};
- 
-+	main_uart5_pins_default: main-uart5-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0108, PIN_INPUT, 3)	/* (J27) UART5_RXD */
-+			J722S_IOPAD(0x010c, PIN_OUTPUT, 3)	/* (H27) UART5_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
- 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
- 		pinctrl-single,pins = <
- 			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
-@@ -243,6 +252,13 @@ &main_uart0 {
- 	bootph-all;
- };
- 
-+&main_uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart5_pins_default>;
-+	status = "okay";
-+	bootph-all;
-+};
-+
- &mcu_pmx0 {
- 
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
--- 
-2.40.1
-
+I wonder whether we can get rid of the _embd and _card.
 
