@@ -1,102 +1,74 @@
-Return-Path: <devicetree+bounces-62956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FD58B3402
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:30:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1FD88B340D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:32:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45BBA1F221F0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:30:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 001261C2247D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BF913F42B;
-	Fri, 26 Apr 2024 09:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="X5BgBOH+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FD013F45E;
+	Fri, 26 Apr 2024 09:32:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7897513F422;
-	Fri, 26 Apr 2024 09:29:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE95C13EFFB;
+	Fri, 26 Apr 2024 09:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714123797; cv=none; b=D9k1t0ISSlhdggCjxnJmwS0hneCA/c1nFjrLlWyM7/p776ttwEqzPUmqCmgc0hCGPKeIG32b9M2xhdfPsVzAMb+XUggC+tOonFW110dF39G2SsPvNi6iQXrbe8h7CefkTgqVy8JFFtHzpzfNIBS1JzuAu8lHqVceLEkMTGa2Sws=
+	t=1714123929; cv=none; b=l8P1PDaxpnyRDJhqbPbuEFE8OZQG0nV5ce1LhThmDUPHXCKbR+1DY96GPYExMARsaXzUkR+jwEGtL0IxbOwjndFxHPxO726zvCkqeYlxjxOo9rbEaSqbhr2BLdtHWuwn9stxbPfJfYuagUIabj+1eBrBLFBAcjt24s8plQzY14M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714123797; c=relaxed/simple;
-	bh=sx8Pxj3Yd+hfnhbKFAeUw/Vd9gJg8B/6v/pp8znps4M=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ejNy1ycn+vLtWRbQzpOhjQhwmTr8T0Tg925twK9W/0/IRj6p1yMzp/eMZhYKl6mJUUM8j5yZo3gcPWPit1OQwaTRYlOs+7bOz8o9fXT1/oVRgARvqpNDMrUIT0Gi3f3GtsvVewk2TZR5VpB74nLfj7acYf4qYogjOlgFIcCFPc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=X5BgBOH+; arc=none smtp.client-ip=185.70.43.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1714123794; x=1714382994;
-	bh=7WxpZMdg3EZmGrATmPvkRyZYicG/SWQxlQq7eqn29DQ=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=X5BgBOH+5p2Lg/t2MgOl4lqwnHbXTJNi1VegpmoXOecJOYuzCfxyj+jLKxsVJ4rFE
-	 r1xnPZlbCCOwYQFhspgf6fBrxLzWEc7zdZLnmOvKJPaDOHH6QAAHNKApZQuDHduyyz
-	 w9NBGz6KssNwUWK+bry1XJ1F5h8DmciaJFisKe1R4vZBrAIYsuXp7Zk0xRuKhDPZTy
-	 0CmhodEfJ00JIY4GQWT3qpuDWvqPpANo/V8TjmMUPOJf1voX4t7OENhHE23nVsmYO3
-	 LK8Xixt/JK+Xxf3Awk8cq0ak79lW76PkwGEllFpD28aKhcJQgBCzFAGBUm8G9sPSde
-	 sbaviabnWqabw==
-Date: Fri, 26 Apr 2024 09:29:48 +0000
-To: Hans de Goede <hdegoede@redhat.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-From: James McGregor <jamcgregor@protonmail.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH v2 2/2] ARM: dts: sun50i: Add LRADC node
-Message-ID: <20240426092924.15489-3-jamcgregor@protonmail.com>
-In-Reply-To: <20240426092924.15489-1-jamcgregor@protonmail.com>
-References: <20240426092924.15489-1-jamcgregor@protonmail.com>
-Feedback-ID: 83670259:user:proton
-X-Pm-Message-ID: 000efd86400ecf223551e437dab467ed1dc8ad71
+	s=arc-20240116; t=1714123929; c=relaxed/simple;
+	bh=pwGoOCEqKkv+f3OCZ4qmdhgBMIK+ooWfHZcGOZErUK8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MgGtbKsQAH4J35siz8tIHIE3bWwg5XG2gfpx7kvrRZjCMnq9wsWXeCa7hCo24jJ99AtWI1GKrPkwdc5GfBiWBmiAkEtcYo14TKcpyWfK4vIMihx/gxxO6+aO4kSMV9dUUlcNk71ZawmEAliER3aDLmLI4Li+xmgXsZhi8WB+23k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+	id 1s0Hvr-006eOC-02; Fri, 26 Apr 2024 17:31:52 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 26 Apr 2024 17:32:09 +0800
+Date: Fri, 26 Apr 2024 17:32:09 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Jia Jie Ho <jiajie.ho@starfivetech.com>,
+	William Qiu <william.qiu@starfivetech.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: crypto: starfive: Restore sort order
+Message-ID: <Zit0mewmCl3fPV68@gondor.apana.org.au>
+References: <1b1bb24987409fcd7ea80940e92be2e9aa67ea49.1713282603.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1b1bb24987409fcd7ea80940e92be2e9aa67ea49.1713282603.git.geert+renesas@glider.be>
 
-Add a DT node for the Allwinner H616 LRADC describing the base address,
-interrupt, reset and clock gates.
+On Tue, Apr 16, 2024 at 05:51:49PM +0200, Geert Uytterhoeven wrote:
+> Restore alphabetical sort order of the list of supported compatible
+> values.
+> 
+> Fixes: 2ccf7a5d9c50f3ea ("dt-bindings: crypto: starfive: Add jh8100 support")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../devicetree/bindings/crypto/starfive,jh7110-crypto.yaml      | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Signed-off-by: James McGregor <jamcgregor@protonmail.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
----
-V1 -> V2: Moved DT node to correct place in tree order
-
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/bo=
-ot/dts/allwinner/sun50i-h616.dtsi
-index a061b69c07c2..1e8538ca7db0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -594,6 +594,16 @@ ths: thermal-sensor@5070400 {
- =09=09=09#thermal-sensor-cells =3D <1>;
- =09=09};
-=20
-+=09=09lradc: lradc@5070800 {
-+=09=09=09compatible =3D "allwinner,sun50i-h616-lradc",
-+=09=09=09=09     "allwinner,sun50i-r329-lradc";
-+=09=09=09reg =3D <0x05070800 0x400>;
-+=09=09=09interrupts =3D <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+=09=09=09clocks =3D <&ccu CLK_BUS_KEYADC>;
-+=09=09=09resets =3D <&ccu RST_BUS_KEYADC>;
-+=09=09=09status =3D "disabled";
-+=09=09};
-+
- =09=09usbotg: usb@5100000 {
- =09=09=09compatible =3D "allwinner,sun50i-h616-musb",
- =09=09=09=09     "allwinner,sun8i-h3-musb";
---=20
-2.34.1
-
-
+Patch applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
