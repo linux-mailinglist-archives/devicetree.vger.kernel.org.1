@@ -1,1291 +1,191 @@
-Return-Path: <devicetree+bounces-62951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E1F8B32C8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:34:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F14D8B33C3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1C71B23614
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 08:34:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D12F0284080
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C0713E8A5;
-	Fri, 26 Apr 2024 08:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21BB13E05A;
+	Fri, 26 Apr 2024 09:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f6wF2Zxh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NtUEw5A+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65DF13CFBA;
-	Fri, 26 Apr 2024 08:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BFB13C90F;
+	Fri, 26 Apr 2024 09:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714120276; cv=none; b=m7rWYCvJSAJnfAbPXrjUL03qXCmWCd9Ygp6LQxJTnDZayHZyfvU/vOvABmQK0sPVE0KPC5ylx8Z5Vp97b9G9rnA8a7NI5KuEoz/mgsPU8qrFR779a2gaZ8rit5mqHqkh0RUMyj4ys3YrGYjpQFvxRQKSwoQRhvQppTNfGET+1oM=
+	t=1714123234; cv=none; b=SSBKXWP22zCQQmkiKsCY9mIYD5jyOrIZM3RZx+2fvavpUo8EK61ZVWxe2RwuQnYb3WMk9dmS/N/PwlyiL+NAUKDW+HOvv6u5sbVrDWcpeR2tDyG2sXZvo2Lqk8UUsRcIOSkC/ug0OWGanoxbpN6RVkcn1+ldhiTsNwgYfxGBJJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714120276; c=relaxed/simple;
-	bh=0rzNYIzRfy7ke2Zbe5+LSvu+DPsMsvYLnYCYgG2eai8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NiwZ63x3GpF6z5jUDo7z66ZIU3/K6RrCsqOKfp01mbXsqTHTU6gWOxccGmvprPYF19vA88Uy8a48/IxDYORluKmkhVtAuNY2S9mCztXKoS8Uky7H+OYtnGKGiyZCxG1enp1MbGdmD6yqq4SlR/E2Y05997r1afSL5rG47jQZUqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f6wF2Zxh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C21E6C113CD;
-	Fri, 26 Apr 2024 08:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714120276;
-	bh=0rzNYIzRfy7ke2Zbe5+LSvu+DPsMsvYLnYCYgG2eai8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=f6wF2ZxhiuRlkOZ+l3YOprV/HhcWNLb7xOXemkG7pFsUUtHrrPcBf3ozQXKE9Pqag
-	 rcHgeVr4HNO/x9V3IDcZMrKqYdfGhsqOpATimFrvBsFzLP9JYdEjcgbTTj681wRvtf
-	 LGtcdvPy4ZWI2soQVjRo4nVaQdf0ZMra5ueaqgZjwYNRvUj+pX1IaCFjWRCCF7FZyQ
-	 Rg+06pd/hZpsl4vpuHaUFXDMBWvS6gnJEf+ImlWalz8j0yiBdqTbL9euhzYMhnYOmf
-	 2cXDt8QzE5lj6DAFifLnwg1+Kp9FtSMphq+QtlEEpjv5O26DlucJNpoLK3WIhG1lIV
-	 7jzsNn7m7AOWg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-spi@vger.kernel.org
-Cc: conor@kernel.org,
-	broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	andy.shevchenko@gmail.com
-Subject: [PATCH v4 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Date: Fri, 26 Apr 2024 10:30:53 +0200
-Message-ID: <2047e9c8372b51dc263178a12e194b8826f1abe7.1714119615.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1714119615.git.lorenzo@kernel.org>
-References: <cover.1714119615.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1714123234; c=relaxed/simple;
+	bh=xBUpP3VAjhJdXrYIjPZD0CAQ4mXC99ueDEdcVvn0xbY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YrKe4UIejjFyVfWqUAzzwO57LvdthVhT1vokVOVHr4fGjiiPkyPyM0ClPx/Vf77x4nVx2Ot++okCL/YWSA4SqmbfpRYgbUQM+/OKrjbf9mhiTL5CaaK7+A6AMrvGj+9PAkuB95sYVLOJAH+b3LheM8HJntYIoim96VTb70GEgy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NtUEw5A+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43Q41YLU012981;
+	Fri, 26 Apr 2024 09:20:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=BUIIFoA4N2ESIijEp2JWqnWgumg1YcDccO7inyej7yI=; b=Nt
+	UEw5A+H8vL4iSQmfnMTb8OIaAEu9zI1irjgkP9JL4s5QPos/EMOutuHwvoBn0uRx
+	ZpR4MsWd/7ksqCHDctVXN/KUFWeO3JLKDxgW2o7gBSpy0ZngQWbCVTGdGRs8n08y
+	SD/atlbO/HLr/HaJUkJRWvb6XMUcnm8Auf4+0zJgblHtTaZue42rbquYLaEPH+gd
+	rhawsOCZiCiW1MAI1t5tdu0Ap2n41fbrfNuYX6bEPbkx6ptiNQ6RNQSTFaEYKm/q
+	ucUzvhf05Jl6IRfgdGr32Jq81Fb6jYPvVzwz8b7WB/qzRW6VT4NYG4bJoaTqo0pO
+	HUarX30L6YOVDZL/BWow==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xr3591ctd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Apr 2024 09:20:25 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43Q9KMaN025356
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Apr 2024 09:20:22 GMT
+Received: from [10.218.10.146] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Apr
+ 2024 02:20:16 -0700
+Message-ID: <ca017ebf-c099-b436-f062-1341f765a08c@quicinc.com>
+Date: Fri, 26 Apr 2024 14:50:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH V2 7/8] clk: qcom: Add GPUCC driver support for SM4450
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Vladimir Zapolskiy
+	<vladimir.zapolskiy@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        "Satya Priya Kakitapalli"
+	<quic_skakitap@quicinc.com>
+References: <20240416182005.75422-1-quic_ajipan@quicinc.com>
+ <20240416182005.75422-8-quic_ajipan@quicinc.com>
+ <CAA8EJpqwrKcgm7c57=LpxS7+CfrN2UxNg8k_46auBrdZG7vQnA@mail.gmail.com>
+Content-Language: en-US
+From: Ajit Pandey <quic_ajipan@quicinc.com>
+In-Reply-To: <CAA8EJpqwrKcgm7c57=LpxS7+CfrN2UxNg8k_46auBrdZG7vQnA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3uiw9dIqgbCoJcFFm8PKZL3HkWEE3PTx
+X-Proofpoint-ORIG-GUID: 3uiw9dIqgbCoJcFFm8PKZL3HkWEE3PTx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-26_09,2024-04-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 mlxscore=0 suspectscore=0 phishscore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404260060
 
-Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
-found on Airoha ARM SoCs.
 
-Tested-by: Rajeev Kumar <Rajeev.Kumar@airoha.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- MAINTAINERS                   |    9 +
- drivers/spi/Kconfig           |   10 +
- drivers/spi/Makefile          |    1 +
- drivers/spi/spi-airoha-snfi.c | 1140 +++++++++++++++++++++++++++++++++
- 4 files changed, 1160 insertions(+)
- create mode 100644 drivers/spi/spi-airoha-snfi.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aa3b947fb080..ce9fac46f741 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -653,6 +653,15 @@ S:	Supported
- F:	fs/aio.c
- F:	include/linux/*aio*.h
- 
-+AIROHA SPI SNFI DRIVER
-+M:	Lorenzo Bianconi <lorenzo@kernel.org>
-+M:	Ray Liu <ray.liu@airoha.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-spi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
-+F:	drivers/spi/spi-airoha.c
-+
- AIRSPY MEDIA DRIVER
- L:	linux-media@vger.kernel.org
- S:	Orphan
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index bc7021da2fe9..6fa91775f334 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -57,6 +57,16 @@ config SPI_MEM
- 
- comment "SPI Master Controller Drivers"
- 
-+config SPI_AIROHA_SNFI
-+	tristate "Airoha SPI NAND Flash Interface"
-+	depends on ARCH_AIROHA || COMPILE_TEST
-+	depends on SPI_MASTER
-+	select REGMAP_MMIO
-+	help
-+	  This enables support for SPI-NAND mode on the Airoha NAND
-+	  Flash Interface found on Airoha ARM SoCs. This controller
-+	  is implemented as a SPI-MEM controller.
-+
- config SPI_ALTERA
- 	tristate "Altera SPI Controller platform driver"
- 	select SPI_ALTERA_CORE
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 4ff8d725ba5e..e694254dec04 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_SPI_SPIDEV)		+= spidev.o
- obj-$(CONFIG_SPI_LOOPBACK_TEST)		+= spi-loopback-test.o
- 
- # SPI master controller drivers (bus)
-+obj-$(CONFIG_SPI_AIROHA_SNFI)		+= spi-airoha-snfi.o
- obj-$(CONFIG_SPI_ALTERA)		+= spi-altera-platform.o
- obj-$(CONFIG_SPI_ALTERA_CORE)		+= spi-altera-core.o
- obj-$(CONFIG_SPI_ALTERA_DFL)		+= spi-altera-dfl.o
-diff --git a/drivers/spi/spi-airoha-snfi.c b/drivers/spi/spi-airoha-snfi.c
-new file mode 100644
-index 000000000000..bb4360a2ca30
---- /dev/null
-+++ b/drivers/spi/spi-airoha-snfi.c
-@@ -0,0 +1,1140 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2024 AIROHA Inc
-+ * Author: Lorenzo Bianconi <lorenzo@kernel.org>
-+ * Author: Ray Liu <ray.liu@airoha.com>
-+ */
-+
-+#include <asm-generic/unaligned.h>
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/types.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/sizes.h>
-+#include <linux/spi/spi.h>
-+#include <linux/spi/spi-mem.h>
-+
-+/* SPI */
-+#define REG_SPI_CTRL_BASE			0x1FA10000
-+
-+#define REG_SPI_CTRL_READ_MODE			0x0000
-+#define REG_SPI_CTRL_READ_IDLE_EN		0x0004
-+#define REG_SPI_CTRL_SIDLY			0x0008
-+#define REG_SPI_CTRL_CSHEXT			0x000c
-+#define REG_SPI_CTRL_CSLEXT			0x0010
-+
-+#define REG_SPI_CTRL_MTX_MODE_TOG		0x0014
-+#define SPI_CTRL_MTX_MODE_TOG			GENMASK(3, 0)
-+
-+#define REG_SPI_CTRL_RDCTL_FSM			0x0018
-+#define SPI_CTRL_RDCTL_FSM			GENMASK(3, 0)
-+
-+#define REG_SPI_CTRL_MACMUX_SEL			0x001c
-+
-+#define REG_SPI_CTRL_MANUAL_EN			0x0020
-+#define SPI_CTRL_MANUAL_EN			BIT(0)
-+
-+#define REG_SPI_CTRL_OPFIFO_EMPTY		0x0024
-+#define SPI_CTRL_OPFIFO_EMPTY			BIT(0)
-+
-+#define REG_SPI_CTRL_OPFIFO_WDATA		0x0028
-+#define SPI_CTRL_OPFIFO_LEN			GENMASK(8, 0)
-+#define SPI_CTRL_OPFIFO_OP			GENMASK(13, 9)
-+
-+#define REG_SPI_CTRL_OPFIFO_FULL		0x002c
-+#define SPI_CTRL_OPFIFO_FULL			BIT(0)
-+
-+#define REG_SPI_CTRL_OPFIFO_WR			0x0030
-+#define SPI_CTRL_OPFIFO_WR			BIT(0)
-+
-+#define REG_SPI_CTRL_DFIFO_FULL			0x0034
-+#define SPI_CTRL_DFIFO_FULL			BIT(0)
-+
-+#define REG_SPI_CTRL_DFIFO_WDATA		0x0038
-+#define SPI_CTRL_DFIFO_WDATA			GENMASK(7, 0)
-+
-+#define REG_SPI_CTRL_DFIFO_EMPTY		0x003c
-+#define SPI_CTRL_DFIFO_EMPTY			BIT(0)
-+
-+#define REG_SPI_CTRL_DFIFO_RD			0x0040
-+#define SPI_CTRL_DFIFO_RD			BIT(0)
-+
-+#define REG_SPI_CTRL_DFIFO_RDATA		0x0044
-+#define SPI_CTRL_DFIFO_RDATA			GENMASK(7, 0)
-+
-+#define REG_SPI_CTRL_DUMMY			0x0080
-+#define SPI_CTRL_CTRL_DUMMY			GENMASK(3, 0)
-+
-+#define REG_SPI_CTRL_PROBE_SEL			0x0088
-+#define REG_SPI_CTRL_INTERRUPT			0x0090
-+#define REG_SPI_CTRL_INTERRUPT_EN		0x0094
-+#define REG_SPI_CTRL_SI_CK_SEL			0x009c
-+#define REG_SPI_CTRL_SW_CFGNANDADDR_VAL		0x010c
-+#define REG_SPI_CTRL_SW_CFGNANDADDR_EN		0x0110
-+#define REG_SPI_CTRL_SFC_STRAP			0x0114
-+
-+#define REG_SPI_CTRL_NFI2SPI_EN			0x0130
-+#define SPI_CTRL_NFI2SPI_EN			BIT(0)
-+
-+/* NFI2SPI */
-+#define REG_SPI_NFI_CNFG			0x0000
-+#define SPI_NFI_DMA_MODE			BIT(0)
-+#define SPI_NFI_READ_MODE			BIT(1)
-+#define SPI_NFI_DMA_BURST_EN			BIT(2)
-+#define SPI_NFI_HW_ECC_EN			BIT(8)
-+#define SPI_NFI_AUTO_FDM_EN			BIT(9)
-+#define SPI_NFI_OPMODE				GENMASK(14, 12)
-+
-+#define REG_SPI_NFI_PAGEFMT			0x0004
-+#define SPI_NFI_PAGE_SIZE			GENMASK(1, 0)
-+#define SPI_NFI_SPARE_SIZE			GENMASK(5, 4)
-+
-+#define REG_SPI_NFI_CON				0x0008
-+#define SPI_NFI_FIFO_FLUSH			BIT(0)
-+#define SPI_NFI_RST				BIT(1)
-+#define SPI_NFI_RD_TRIG				BIT(8)
-+#define SPI_NFI_WR_TRIG				BIT(9)
-+#define SPI_NFI_SEC_NUM				GENMASK(15, 12)
-+
-+#define REG_SPI_NFI_INTR_EN			0x0010
-+#define SPI_NFI_RD_DONE_EN			BIT(0)
-+#define SPI_NFI_WR_DONE_EN			BIT(1)
-+#define SPI_NFI_RST_DONE_EN			BIT(2)
-+#define SPI_NFI_ERASE_DONE_EN			BIT(3)
-+#define SPI_NFI_BUSY_RETURN_EN			BIT(4)
-+#define SPI_NFI_ACCESS_LOCK_EN			BIT(5)
-+#define SPI_NFI_AHB_DONE_EN			BIT(6)
-+#define SPI_NFI_ALL_IRQ_EN					\
-+	(SPI_NFI_RD_DONE_EN | SPI_NFI_WR_DONE_EN |		\
-+	 SPI_NFI_RST_DONE_EN | SPI_NFI_ERASE_DONE_EN |		\
-+	 SPI_NFI_BUSY_RETURN_EN | SPI_NFI_ACCESS_LOCK_EN |	\
-+	 SPI_NFI_AHB_DONE_EN)
-+
-+#define REG_SPI_NFI_INTR			0x0014
-+#define SPI_NFI_AHB_DONE			BIT(6)
-+
-+#define REG_SPI_NFI_CMD				0x0020
-+
-+#define REG_SPI_NFI_ADDR_NOB			0x0030
-+#define SPI_NFI_ROW_ADDR_NOB			GENMASK(6, 4)
-+
-+#define REG_SPI_NFI_STA				0x0060
-+#define REG_SPI_NFI_FIFOSTA			0x0064
-+#define REG_SPI_NFI_STRADDR			0x0080
-+#define REG_SPI_NFI_FDM0L			0x00a0
-+#define REG_SPI_NFI_FDM0M			0x00a4
-+#define REG_SPI_NFI_FDM7L			0x00d8
-+#define REG_SPI_NFI_FDM7M			0x00dc
-+#define REG_SPI_NFI_FIFODATA0			0x0190
-+#define REG_SPI_NFI_FIFODATA1			0x0194
-+#define REG_SPI_NFI_FIFODATA2			0x0198
-+#define REG_SPI_NFI_FIFODATA3			0x019c
-+#define REG_SPI_NFI_MASTERSTA			0x0224
-+
-+#define REG_SPI_NFI_SECCUS_SIZE			0x022c
-+#define SPI_NFI_CUS_SEC_SIZE			GENMASK(12, 0)
-+#define SPI_NFI_CUS_SEC_SIZE_EN			BIT(16)
-+
-+#define REG_SPI_NFI_RD_CTL2			0x0510
-+#define REG_SPI_NFI_RD_CTL3			0x0514
-+
-+#define REG_SPI_NFI_PG_CTL1			0x0524
-+#define SPI_NFI_PG_LOAD_CMD			GENMASK(15, 8)
-+
-+#define REG_SPI_NFI_PG_CTL2			0x0528
-+#define REG_SPI_NFI_NOR_PROG_ADDR		0x052c
-+#define REG_SPI_NFI_NOR_RD_ADDR			0x0534
-+
-+#define REG_SPI_NFI_SNF_MISC_CTL		0x0538
-+#define SPI_NFI_DATA_READ_WR_MODE		GENMASK(18, 16)
-+
-+#define REG_SPI_NFI_SNF_MISC_CTL2		0x053c
-+#define SPI_NFI_READ_DATA_BYTE_NUM		GENMASK(12, 0)
-+#define SPI_NFI_PROG_LOAD_BYTE_NUM		GENMASK(28, 16)
-+
-+#define REG_SPI_NFI_SNF_STA_CTL1		0x0550
-+#define SPI_NFI_READ_FROM_CACHE_DONE		BIT(25)
-+#define SPI_NFI_LOAD_TO_CACHE_DONE		BIT(26)
-+
-+#define REG_SPI_NFI_SNF_STA_CTL2		0x0554
-+
-+#define REG_SPI_NFI_SNF_NFI_CNFG		0x055c
-+#define SPI_NFI_SPI_MODE			BIT(0)
-+
-+/* SPI NAND Protocol OP */
-+#define SPI_NAND_OP_GET_FEATURE			0x0f
-+#define SPI_NAND_OP_SET_FEATURE			0x1f
-+#define SPI_NAND_OP_PAGE_READ			0x13
-+#define SPI_NAND_OP_READ_FROM_CACHE_SINGLE	0x03
-+#define SPI_NAND_OP_READ_FROM_CACHE_SINGLE_FAST	0x0b
-+#define SPI_NAND_OP_READ_FROM_CACHE_DUAL	0x3b
-+#define SPI_NAND_OP_READ_FROM_CACHE_QUAD	0x6b
-+#define SPI_NAND_OP_WRITE_ENABLE		0x06
-+#define SPI_NAND_OP_WRITE_DISABLE		0x04
-+#define SPI_NAND_OP_PROGRAM_LOAD_SINGLE		0x02
-+#define SPI_NAND_OP_PROGRAM_LOAD_QUAD		0x32
-+#define SPI_NAND_OP_PROGRAM_LOAD_RAMDOM_SINGLE	0x84
-+#define SPI_NAND_OP_PROGRAM_LOAD_RAMDON_QUAD	0x34
-+#define SPI_NAND_OP_PROGRAM_EXECUTE		0x10
-+#define SPI_NAND_OP_READ_ID			0x9f
-+#define SPI_NAND_OP_BLOCK_ERASE			0xd8
-+#define SPI_NAND_OP_RESET			0xff
-+#define SPI_NAND_OP_DIE_SELECT			0xc2
-+
-+#define SPI_NAND_CACHE_SIZE			(SZ_4K + SZ_256)
-+#define SPI_MAX_TRANSFER_SIZE			511
-+
-+enum airoha_snand_mode {
-+	SPI_MODE_AUTO,
-+	SPI_MODE_MANUAL,
-+	SPI_MODE_DMA,
-+};
-+
-+enum airoha_snand_cs {
-+	SPI_CHIP_SEL_HIGH,
-+	SPI_CHIP_SEL_LOW,
-+};
-+
-+struct airoha_snand_dev {
-+	size_t buf_len;
-+
-+	u8 *txrx_buf;
-+	dma_addr_t dma_addr;
-+
-+	u64 cur_page_num;
-+	bool data_need_update;
-+};
-+
-+struct airoha_snand_ctrl {
-+	struct device *dev;
-+	struct regmap *regmap_ctrl;
-+	struct regmap *regmap_nfi;
-+	struct clk *spi_clk;
-+
-+	struct {
-+		size_t page_size;
-+		size_t sec_size;
-+		u8 sec_num;
-+		u8 spare_size;
-+	} nfi_cfg;
-+};
-+
-+static int airoha_snand_set_fifo_op(struct airoha_snand_ctrl *as_ctrl,
-+				    u8 op_cmd, int op_len)
-+{
-+	int err;
-+	u32 val;
-+
-+	err = regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_OPFIFO_WDATA,
-+			   FIELD_PREP(SPI_CTRL_OPFIFO_LEN, op_len) |
-+			   FIELD_PREP(SPI_CTRL_OPFIFO_OP, op_cmd));
-+	if (err)
-+		return err;
-+
-+	err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-+				       REG_SPI_CTRL_OPFIFO_FULL,
-+				       val, !(val & SPI_CTRL_OPFIFO_FULL),
-+				       0, 250 * USEC_PER_MSEC);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_OPFIFO_WR,
-+			   SPI_CTRL_OPFIFO_WR);
-+	if (err)
-+		return err;
-+
-+	return regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-+					REG_SPI_CTRL_OPFIFO_EMPTY,
-+					val, (val & SPI_CTRL_OPFIFO_EMPTY),
-+					0, 250 * USEC_PER_MSEC);
-+}
-+
-+static int airoha_snand_set_cs(struct airoha_snand_ctrl *as_ctrl, u8 cs)
-+{
-+	return airoha_snand_set_fifo_op(as_ctrl, cs, sizeof(cs));
-+}
-+
-+static int airoha_snand_write_data_to_fifo(struct airoha_snand_ctrl *as_ctrl,
-+					   const u8 *data, int len)
-+{
-+	int i;
-+
-+	for (i = 0; i < len; i++) {
-+		int err;
-+		u32 val;
-+
-+		/* 1. Wait until dfifo is not full */
-+		err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-+					       REG_SPI_CTRL_DFIFO_FULL, val,
-+					       !(val & SPI_CTRL_DFIFO_FULL),
-+					       0, 250 * USEC_PER_MSEC);
-+		if (err)
-+			return err;
-+
-+		/* 2. Write data to register DFIFO_WDATA */
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_DFIFO_WDATA,
-+				   FIELD_PREP(SPI_CTRL_DFIFO_WDATA, data[i]));
-+		if (err)
-+			return err;
-+
-+		/* 3. Wait until dfifo is not full */
-+		err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-+					       REG_SPI_CTRL_DFIFO_FULL, val,
-+					       !(val & SPI_CTRL_DFIFO_FULL),
-+					       0, 250 * USEC_PER_MSEC);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_snand_read_data_from_fifo(struct airoha_snand_ctrl *as_ctrl,
-+					    u8 *ptr, int len)
-+{
-+	int i;
-+
-+	for (i = 0; i < len; i++) {
-+		int err;
-+		u32 val;
-+
-+		/* 1. wait until dfifo is not empty */
-+		err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-+					       REG_SPI_CTRL_DFIFO_EMPTY, val,
-+					       !(val & SPI_CTRL_DFIFO_EMPTY),
-+					       0, 250 * USEC_PER_MSEC);
-+		if (err)
-+			return err;
-+
-+		/* 2. read from dfifo to register DFIFO_RDATA */
-+		err = regmap_read(as_ctrl->regmap_ctrl,
-+				  REG_SPI_CTRL_DFIFO_RDATA, &val);
-+		if (err)
-+			return err;
-+
-+		ptr[i] = FIELD_GET(SPI_CTRL_DFIFO_RDATA, val);
-+		/* 3. enable register DFIFO_RD to read next byte */
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_DFIFO_RD, SPI_CTRL_DFIFO_RD);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_snand_set_mode(struct airoha_snand_ctrl *as_ctrl,
-+				 enum airoha_snand_mode mode)
-+{
-+	int err;
-+
-+	switch (mode) {
-+	case SPI_MODE_MANUAL: {
-+		u32 val;
-+
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_NFI2SPI_EN, 0);
-+		if (err)
-+			return err;
-+
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_READ_IDLE_EN, 0);
-+		if (err)
-+			return err;
-+
-+		err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-+					       REG_SPI_CTRL_RDCTL_FSM, val,
-+					       !(val & SPI_CTRL_RDCTL_FSM),
-+					       0, 250 * USEC_PER_MSEC);
-+		if (err)
-+			return err;
-+
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_MTX_MODE_TOG, 9);
-+		if (err)
-+			return err;
-+
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_MANUAL_EN, SPI_CTRL_MANUAL_EN);
-+		if (err)
-+			return err;
-+		break;
-+	}
-+	case SPI_MODE_DMA:
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_NFI2SPI_EN,
-+				   SPI_CTRL_MANUAL_EN);
-+		if (err < 0)
-+			return err;
-+
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_MTX_MODE_TOG, 0x0);
-+		if (err < 0)
-+			return err;
-+
-+		err = regmap_write(as_ctrl->regmap_ctrl,
-+				   REG_SPI_CTRL_MANUAL_EN, 0x0);
-+		if (err < 0)
-+			return err;
-+		break;
-+	case SPI_MODE_AUTO:
-+	default:
-+		break;
-+	}
-+
-+	return regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_DUMMY, 0);
-+}
-+
-+static int airoha_snand_write_data(struct airoha_snand_ctrl *as_ctrl, u8 cmd,
-+				   const u8 *data, int len)
-+{
-+	int i, data_len;
-+
-+	for (i = 0; i < len; i += data_len) {
-+		int err;
-+
-+		data_len = min(len, SPI_MAX_TRANSFER_SIZE);
-+		err = airoha_snand_set_fifo_op(as_ctrl, cmd, data_len);
-+		if (err)
-+			return err;
-+
-+		err = airoha_snand_write_data_to_fifo(as_ctrl, &data[i],
-+						      data_len);
-+		if (err < 0)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_snand_read_data(struct airoha_snand_ctrl *as_ctrl, u8 *data,
-+				  int len)
-+{
-+	int i, data_len;
-+
-+	for (i = 0; i < len; i += data_len) {
-+		int err;
-+
-+		data_len = min(len, SPI_MAX_TRANSFER_SIZE);
-+		err = airoha_snand_set_fifo_op(as_ctrl, 0xc, data_len);
-+		if (err)
-+			return err;
-+
-+		err = airoha_snand_read_data_from_fifo(as_ctrl, &data[i],
-+						       data_len);
-+		if (err < 0)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_snand_nfi_init(struct airoha_snand_ctrl *as_ctrl)
-+{
-+	int err;
-+
-+	/* switch to SNFI mode */
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_SNF_NFI_CNFG,
-+			   SPI_NFI_SPI_MODE);
-+	if (err)
-+		return err;
-+
-+	/* Enable DMA */
-+	return regmap_update_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_INTR_EN,
-+				  SPI_NFI_ALL_IRQ_EN, SPI_NFI_AHB_DONE_EN);
-+}
-+
-+static int airoha_snand_nfi_config(struct airoha_snand_ctrl *as_ctrl)
-+{
-+	int err;
-+	u32 val;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_CON,
-+			   SPI_NFI_FIFO_FLUSH | SPI_NFI_RST);
-+	if (err)
-+		return err;
-+
-+	/* auto FDM */
-+	err = regmap_clear_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+				SPI_NFI_AUTO_FDM_EN);
-+	if (err)
-+		return err;
-+
-+	/* HW ECC */
-+	err = regmap_clear_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+				SPI_NFI_HW_ECC_EN);
-+	if (err)
-+		return err;
-+
-+	/* DMA Burst */
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+			      SPI_NFI_DMA_BURST_EN);
-+	if (err)
-+		return err;
-+
-+	/* page format */
-+	switch (as_ctrl->nfi_cfg.spare_size) {
-+	case 26:
-+		val = FIELD_PREP(SPI_NFI_SPARE_SIZE, 0x1);
-+		break;
-+	case 27:
-+		val = FIELD_PREP(SPI_NFI_SPARE_SIZE, 0x2);
-+		break;
-+	case 28:
-+		val = FIELD_PREP(SPI_NFI_SPARE_SIZE, 0x3);
-+		break;
-+	default:
-+		val = FIELD_PREP(SPI_NFI_SPARE_SIZE, 0x0);
-+		break;
-+	}
-+
-+	err = regmap_update_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_PAGEFMT,
-+				 SPI_NFI_SPARE_SIZE, val);
-+	if (err)
-+		return err;
-+
-+	switch (as_ctrl->nfi_cfg.page_size) {
-+	case 2048:
-+		val = FIELD_PREP(SPI_NFI_PAGE_SIZE, 0x1);
-+		break;
-+	case 4096:
-+		val = FIELD_PREP(SPI_NFI_PAGE_SIZE, 0x2);
-+		break;
-+	default:
-+		val = FIELD_PREP(SPI_NFI_PAGE_SIZE, 0x0);
-+		break;
-+	}
-+
-+	err = regmap_update_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_PAGEFMT,
-+				 SPI_NFI_PAGE_SIZE, val);
-+	if (err)
-+		return err;
-+
-+	/* sec num */
-+	val = FIELD_PREP(SPI_NFI_SEC_NUM, as_ctrl->nfi_cfg.sec_num);
-+	err = regmap_update_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CON,
-+				 SPI_NFI_SEC_NUM, val);
-+	if (err)
-+		return err;
-+
-+	/* enable cust sec size */
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_SECCUS_SIZE,
-+			      SPI_NFI_CUS_SEC_SIZE_EN);
-+	if (err)
-+		return err;
-+
-+	/* set cust sec size */
-+	val = FIELD_PREP(SPI_NFI_CUS_SEC_SIZE, as_ctrl->nfi_cfg.sec_size);
-+	return regmap_update_bits(as_ctrl->regmap_nfi,
-+				  REG_SPI_NFI_SECCUS_SIZE,
-+				  SPI_NFI_CUS_SEC_SIZE, val);
-+}
-+
-+static bool airoha_snand_is_page_ops(const struct spi_mem_op *op)
-+{
-+	if (op->addr.nbytes != 2)
-+		return false;
-+
-+	if (op->addr.buswidth != 1 && op->addr.buswidth != 2 &&
-+	    op->addr.buswidth != 4)
-+		return false;
-+
-+	switch (op->data.dir) {
-+	case SPI_MEM_DATA_IN:
-+		/* check dummy cycle first */
-+		if (op->dummy.nbytes * BITS_PER_BYTE / op->dummy.buswidth > 0xf)
-+			return false;
-+
-+		/* quad io / quad out */
-+		if ((op->addr.buswidth == 4 || op->addr.buswidth == 1) &&
-+		    op->data.buswidth == 4)
-+			return true;
-+
-+		/* dual io / dual out */
-+		if ((op->addr.buswidth == 2 || op->addr.buswidth == 1) &&
-+		    op->data.buswidth == 2)
-+			return true;
-+
-+		/* standard spi */
-+		if (op->addr.buswidth == 1 && op->data.buswidth == 1)
-+			return true;
-+		break;
-+	case SPI_MEM_DATA_OUT:
-+		/* check dummy cycle first */
-+		if (op->dummy.nbytes)
-+			return false;
-+
-+		/* program load quad out */
-+		if (op->addr.buswidth == 1 && op->data.buswidth == 4)
-+			return true;
-+
-+		/* standard spi */
-+		if (op->addr.buswidth == 1 && op->data.buswidth == 1)
-+			return true;
-+	default:
-+		break;
-+	}
-+
-+	return false;
-+}
-+
-+static int airoha_snand_adjust_op_size(struct spi_mem *mem,
-+				       struct spi_mem_op *op)
-+{
-+	struct airoha_snand_ctrl *as_ctrl;
-+	size_t len;
-+
-+	as_ctrl = spi_controller_get_devdata(mem->spi->controller);
-+	if (airoha_snand_is_page_ops(op)) {
-+		len = as_ctrl->nfi_cfg.sec_size;
-+		len += as_ctrl->nfi_cfg.spare_size;
-+		len *= as_ctrl->nfi_cfg.sec_num;
-+		op->data.nbytes = min_t(size_t, op->data.nbytes, len);
-+	} else {
-+		len = 1 + op->addr.nbytes + op->dummy.nbytes;
-+		if (len >= 160)
-+			return -EOPNOTSUPP;
-+
-+		op->data.nbytes = min_t(size_t, op->data.nbytes, 160 - len);
-+	}
-+
-+	return 0;
-+}
-+
-+static bool airoha_snand_supports_op(struct spi_mem *mem,
-+				     const struct spi_mem_op *op)
-+{
-+	if (!spi_mem_default_supports_op(mem, op))
-+		return false;
-+
-+	if (op->cmd.buswidth != 1)
-+		return false;
-+
-+	if (airoha_snand_is_page_ops(op))
-+		return true;
-+
-+	return (!op->addr.nbytes || op->addr.buswidth == 1) &&
-+	       (!op->dummy.nbytes || op->dummy.buswidth == 1) &&
-+	       (!op->data.nbytes || op->data.buswidth == 1);
-+}
-+
-+static int airoha_snand_dirmap_create(struct spi_mem_dirmap_desc *desc)
-+{
-+	struct airoha_snand_dev *as_dev = spi_get_ctldata(desc->mem->spi);
-+
-+	if (!as_dev->txrx_buf)
-+		return -EINVAL;
-+
-+	if (desc->info.offset + desc->info.length > U32_MAX)
-+		return -EINVAL;
-+
-+	if (!airoha_snand_supports_op(desc->mem, &desc->info.op_tmpl))
-+		return -EOPNOTSUPP;
-+
-+	return 0;
-+}
-+
-+static ssize_t airoha_snand_dirmap_read(struct spi_mem_dirmap_desc *desc,
-+					u64 offs, size_t len, void *buf)
-+{
-+	struct spi_device *spi = desc->mem->spi;
-+	struct airoha_snand_dev *as_dev = spi_get_ctldata(spi);
-+	struct spi_mem_op *op = &desc->info.op_tmpl;
-+	struct airoha_snand_ctrl *as_ctrl;
-+	u32 val, rd_mode;
-+	int err;
-+
-+	if (!as_dev->data_need_update)
-+		return len;
-+
-+	as_dev->data_need_update = false;
-+
-+	switch (op->cmd.opcode) {
-+	case SPI_NAND_OP_READ_FROM_CACHE_DUAL:
-+		rd_mode = 1;
-+		break;
-+	case SPI_NAND_OP_READ_FROM_CACHE_QUAD:
-+		rd_mode = 2;
-+		break;
-+	default:
-+		rd_mode = 0;
-+		break;
-+	}
-+
-+	as_ctrl = spi_controller_get_devdata(spi->controller);
-+	err = airoha_snand_set_mode(as_ctrl, SPI_MODE_DMA);
-+	if (err < 0)
-+		return err;
-+
-+	err = airoha_snand_nfi_config(as_ctrl);
-+	if (err)
-+		return err;
-+
-+	dma_sync_single_for_device(as_ctrl->dev, as_dev->dma_addr,
-+				   as_dev->buf_len, DMA_BIDIRECTIONAL);
-+
-+	/* set dma addr */
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_STRADDR,
-+			   as_dev->dma_addr);
-+	if (err)
-+		return err;
-+
-+	/* set cust sec size */
-+	val = as_ctrl->nfi_cfg.sec_size * as_ctrl->nfi_cfg.sec_num;
-+	val = FIELD_PREP(SPI_NFI_READ_DATA_BYTE_NUM, val);
-+	err = regmap_update_bits(as_ctrl->regmap_nfi,
-+				 REG_SPI_NFI_SNF_MISC_CTL2,
-+				 SPI_NFI_READ_DATA_BYTE_NUM, val);
-+	if (err)
-+		return err;
-+
-+	/* set read command */
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_RD_CTL2,
-+			   op->cmd.opcode);
-+	if (err)
-+		return err;
-+
-+	/* set read mode */
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_SNF_MISC_CTL,
-+			   FIELD_PREP(SPI_NFI_DATA_READ_WR_MODE, rd_mode));
-+	if (err)
-+		return err;
-+
-+	/* set read addr */
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_RD_CTL3, 0x0);
-+	if (err)
-+		return err;
-+
-+	/* set nfi read */
-+	err = regmap_update_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+				 SPI_NFI_OPMODE,
-+				 FIELD_PREP(SPI_NFI_OPMODE, 6));
-+	if (err)
-+		return err;
-+
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+			      SPI_NFI_READ_MODE | SPI_NFI_DMA_MODE);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_CMD, 0x0);
-+	if (err)
-+		return err;
-+
-+	/* trigger dma start read */
-+	err = regmap_clear_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CON,
-+				SPI_NFI_RD_TRIG);
-+	if (err)
-+		return err;
-+
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CON,
-+			      SPI_NFI_RD_TRIG);
-+	if (err)
-+		return err;
-+
-+	err = regmap_read_poll_timeout(as_ctrl->regmap_nfi,
-+				       REG_SPI_NFI_SNF_STA_CTL1, val,
-+				       (val & SPI_NFI_READ_FROM_CACHE_DONE),
-+				       0, USEC_PER_SEC);
-+	if (err)
-+		return err;
-+
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_SNF_STA_CTL1,
-+			      SPI_NFI_READ_FROM_CACHE_DONE);
-+	if (err)
-+		return err;
-+
-+	err = regmap_read_poll_timeout(as_ctrl->regmap_nfi, REG_SPI_NFI_INTR,
-+				       val, (val & SPI_NFI_AHB_DONE), 0,
-+				       USEC_PER_SEC);
-+	if (err)
-+		return err;
-+
-+	/* DMA read need delay for data ready from controller to DRAM */
-+	udelay(1);
-+
-+	dma_sync_single_for_cpu(as_ctrl->dev, as_dev->dma_addr,
-+				as_dev->buf_len, DMA_BIDIRECTIONAL);
-+	err = airoha_snand_set_mode(as_ctrl, SPI_MODE_MANUAL);
-+	if (err < 0)
-+		return err;
-+
-+	memcpy(buf, as_dev->txrx_buf + offs, len);
-+
-+	return len;
-+}
-+
-+static ssize_t airoha_snand_dirmap_write(struct spi_mem_dirmap_desc *desc,
-+					 u64 offs, size_t len, const void *buf)
-+{
-+	struct spi_device *spi = desc->mem->spi;
-+	struct airoha_snand_dev *as_dev = spi_get_ctldata(spi);
-+	struct spi_mem_op *op = &desc->info.op_tmpl;
-+	struct airoha_snand_ctrl *as_ctrl;
-+	u32 wr_mode, val;
-+	int err;
-+
-+	as_ctrl = spi_controller_get_devdata(spi->controller);
-+	err = airoha_snand_set_mode(as_ctrl, SPI_MODE_MANUAL);
-+	if (err < 0)
-+		return err;
-+
-+	dma_sync_single_for_cpu(as_ctrl->dev, as_dev->dma_addr,
-+				as_dev->buf_len, DMA_BIDIRECTIONAL);
-+	memcpy(as_dev->txrx_buf + offs, buf, len);
-+	dma_sync_single_for_device(as_ctrl->dev, as_dev->dma_addr,
-+				   as_dev->buf_len, DMA_BIDIRECTIONAL);
-+
-+	err = airoha_snand_set_mode(as_ctrl, SPI_MODE_DMA);
-+	if (err < 0)
-+		return err;
-+
-+	err = airoha_snand_nfi_config(as_ctrl);
-+	if (err)
-+		return err;
-+
-+	if (op->cmd.opcode == SPI_NAND_OP_PROGRAM_LOAD_QUAD ||
-+	    op->cmd.opcode == SPI_NAND_OP_PROGRAM_LOAD_RAMDON_QUAD)
-+		wr_mode = BIT(1);
-+	else
-+		wr_mode = 0;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_STRADDR,
-+			   as_dev->dma_addr);
-+	if (err)
-+		return err;
-+
-+	val = FIELD_PREP(SPI_NFI_PROG_LOAD_BYTE_NUM,
-+			 as_ctrl->nfi_cfg.sec_size * as_ctrl->nfi_cfg.sec_num);
-+	err = regmap_update_bits(as_ctrl->regmap_nfi,
-+				 REG_SPI_NFI_SNF_MISC_CTL2,
-+				 SPI_NFI_PROG_LOAD_BYTE_NUM, val);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_PG_CTL1,
-+			   FIELD_PREP(SPI_NFI_PG_LOAD_CMD,
-+				      op->cmd.opcode));
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_SNF_MISC_CTL,
-+			   FIELD_PREP(SPI_NFI_DATA_READ_WR_MODE, wr_mode));
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_PG_CTL2, 0x0);
-+	if (err)
-+		return err;
-+
-+	err = regmap_clear_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+				SPI_NFI_READ_MODE);
-+	if (err)
-+		return err;
-+
-+	err = regmap_update_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+				 SPI_NFI_OPMODE,
-+				 FIELD_PREP(SPI_NFI_OPMODE, 3));
-+	if (err)
-+		return err;
-+
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CNFG,
-+			      SPI_NFI_DMA_MODE);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(as_ctrl->regmap_nfi, REG_SPI_NFI_CMD, 0x80);
-+	if (err)
-+		return err;
-+
-+	err = regmap_clear_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CON,
-+				SPI_NFI_WR_TRIG);
-+	if (err)
-+		return err;
-+
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_CON,
-+			      SPI_NFI_WR_TRIG);
-+	if (err)
-+		return err;
-+
-+	err = regmap_read_poll_timeout(as_ctrl->regmap_nfi, REG_SPI_NFI_INTR,
-+				       val, (val & SPI_NFI_AHB_DONE), 0,
-+				       USEC_PER_SEC);
-+	if (err)
-+		return err;
-+
-+	err = regmap_read_poll_timeout(as_ctrl->regmap_nfi,
-+				       REG_SPI_NFI_SNF_STA_CTL1, val,
-+				       (val & SPI_NFI_LOAD_TO_CACHE_DONE),
-+				       0, USEC_PER_SEC);
-+	if (err)
-+		return err;
-+
-+	err = regmap_set_bits(as_ctrl->regmap_nfi, REG_SPI_NFI_SNF_STA_CTL1,
-+			      SPI_NFI_LOAD_TO_CACHE_DONE);
-+	if (err)
-+		return err;
-+
-+	err = airoha_snand_set_mode(as_ctrl, SPI_MODE_MANUAL);
-+	if (err < 0)
-+		return err;
-+
-+	return len;
-+}
-+
-+static int airoha_snand_exec_op(struct spi_mem *mem,
-+				const struct spi_mem_op *op)
-+{
-+	struct airoha_snand_dev *as_dev = spi_get_ctldata(mem->spi);
-+	u8 data[8], cmd, opcode = op->cmd.opcode;
-+	struct airoha_snand_ctrl *as_ctrl;
-+	int i, err;
-+
-+	as_ctrl = spi_controller_get_devdata(mem->spi->controller);
-+	if (opcode == SPI_NAND_OP_PROGRAM_EXECUTE &&
-+	    op->addr.val == as_dev->cur_page_num) {
-+		as_dev->data_need_update = true;
-+	} else if (opcode == SPI_NAND_OP_PAGE_READ) {
-+		if (!as_dev->data_need_update &&
-+		    op->addr.val == as_dev->cur_page_num)
-+			return 0;
-+
-+		as_dev->data_need_update = true;
-+		as_dev->cur_page_num = op->addr.val;
-+	}
-+
-+	/* switch to manual mode */
-+	err = airoha_snand_set_mode(as_ctrl, SPI_MODE_MANUAL);
-+	if (err < 0)
-+		return err;
-+
-+	err = airoha_snand_set_cs(as_ctrl, SPI_CHIP_SEL_LOW);
-+	if (err < 0)
-+		return err;
-+
-+	/* opcode */
-+	err = airoha_snand_write_data(as_ctrl, 0x8, &opcode, sizeof(opcode));
-+	if (err)
-+		return err;
-+
-+	/* addr part */
-+	cmd = opcode == SPI_NAND_OP_GET_FEATURE ? 0x11 : 0x8;
-+	put_unaligned_be64(op->addr.val, data);
-+
-+	for (i = 0; i < op->addr.nbytes; i++) {
-+		err = airoha_snand_write_data(as_ctrl, cmd,
-+					      &data[8 - op->addr.nbytes + i],
-+					      sizeof(data[0]));
-+		if (err)
-+			return err;
-+	}
-+
-+	/* dummy */
-+	data[0] = 0xff;
-+	for (i = 0; i < op->dummy.nbytes; i++) {
-+		err = airoha_snand_write_data(as_ctrl, 0x8, &data[0],
-+					      sizeof(data[0]));
-+		if (err)
-+			return err;
-+	}
-+
-+	/* data */
-+	if (op->data.dir == SPI_MEM_DATA_IN) {
-+		err = airoha_snand_read_data(as_ctrl, op->data.buf.in,
-+					     op->data.nbytes);
-+		if (err)
-+			return err;
-+	} else {
-+		err = airoha_snand_write_data(as_ctrl, 0x8, op->data.buf.out,
-+					      op->data.nbytes);
-+		if (err)
-+			return err;
-+	}
-+
-+	return airoha_snand_set_cs(as_ctrl, SPI_CHIP_SEL_HIGH);
-+}
-+
-+static const struct spi_controller_mem_ops airoha_snand_mem_ops = {
-+	.adjust_op_size = airoha_snand_adjust_op_size,
-+	.supports_op = airoha_snand_supports_op,
-+	.exec_op = airoha_snand_exec_op,
-+	.dirmap_create = airoha_snand_dirmap_create,
-+	.dirmap_read = airoha_snand_dirmap_read,
-+	.dirmap_write = airoha_snand_dirmap_write,
-+};
-+
-+static int airoha_snand_setup(struct spi_device *spi)
-+{
-+	struct airoha_snand_ctrl *as_ctrl;
-+	struct airoha_snand_dev *as_dev;
-+
-+	as_ctrl = spi_controller_get_devdata(spi->controller);
-+
-+	as_dev = devm_kzalloc(as_ctrl->dev, sizeof(*as_dev), GFP_KERNEL);
-+	if (!as_dev)
-+		return -ENOMEM;
-+
-+	/* prepare device buffer */
-+	as_dev->buf_len = SPI_NAND_CACHE_SIZE;
-+	as_dev->txrx_buf = devm_kzalloc(as_ctrl->dev, as_dev->buf_len,
-+					GFP_KERNEL);
-+	if (!as_dev->txrx_buf)
-+		return -ENOMEM;
-+
-+	as_dev->dma_addr = dma_map_single(as_ctrl->dev, as_dev->txrx_buf,
-+					  as_dev->buf_len, DMA_BIDIRECTIONAL);
-+	if (dma_mapping_error(as_ctrl->dev, as_dev->dma_addr))
-+		return -ENOMEM;
-+
-+	as_dev->data_need_update = true;
-+	spi_set_ctldata(spi, as_dev);
-+
-+	return 0;
-+}
-+
-+static void airoha_snand_cleanup(struct spi_device *spi)
-+{
-+	struct airoha_snand_dev *as_dev = spi_get_ctldata(spi);
-+	struct airoha_snand_ctrl *as_ctrl;
-+
-+	as_ctrl = spi_controller_get_devdata(spi->controller);
-+	dma_unmap_single(as_ctrl->dev, as_dev->dma_addr,
-+			 as_dev->buf_len, DMA_BIDIRECTIONAL);
-+	devm_kfree(as_ctrl->dev, as_dev->txrx_buf);
-+	devm_kfree(as_ctrl->dev, as_dev);
-+
-+	spi_set_ctldata(spi, NULL);
-+}
-+
-+static int airoha_snand_nfi_setup(struct airoha_snand_ctrl *as_ctrl)
-+{
-+	u32 val, sec_size, sec_num;
-+	int err;
-+
-+	err = regmap_read(as_ctrl->regmap_nfi, REG_SPI_NFI_CON, &val);
-+	if (err)
-+		return err;
-+
-+	sec_num = FIELD_GET(SPI_NFI_SEC_NUM, val);
-+
-+	err = regmap_read(as_ctrl->regmap_nfi, REG_SPI_NFI_SECCUS_SIZE, &val);
-+	if (err)
-+		return err;
-+
-+	sec_size = FIELD_GET(SPI_NFI_CUS_SEC_SIZE, val);
-+
-+	/* init default value */
-+	as_ctrl->nfi_cfg.sec_size = sec_size;
-+	as_ctrl->nfi_cfg.sec_num = sec_num;
-+	as_ctrl->nfi_cfg.page_size = round_down(sec_size * sec_num, 1024);
-+	as_ctrl->nfi_cfg.spare_size = 16;
-+
-+	err = airoha_snand_nfi_init(as_ctrl);
-+	if (err)
-+		return err;
-+
-+	return airoha_snand_nfi_config(as_ctrl);
-+}
-+
-+static const struct regmap_config spi_ctrl_regmap_config = {
-+	.name		= "ctrl",
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+	.max_register	= REG_SPI_CTRL_NFI2SPI_EN,
-+};
-+
-+static const struct regmap_config spi_nfi_regmap_config = {
-+	.name		= "nfi",
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+	.max_register	= REG_SPI_NFI_SNF_NFI_CNFG,
-+};
-+
-+static const struct of_device_id airoha_snand_ids[] = {
-+	{ .compatible	= "airoha,en7581-snand" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, airoha_snand_ids);
-+
-+static int airoha_snand_probe(struct platform_device *pdev)
-+{
-+	struct airoha_snand_ctrl *as_ctrl;
-+	struct device *dev = &pdev->dev;
-+	struct spi_controller *ctrl;
-+	struct resource *res;
-+	void __iomem *base;
-+	int err;
-+
-+	ctrl = devm_spi_alloc_host(dev, sizeof(*as_ctrl));
-+	if (!ctrl)
-+		return -ENOMEM;
-+
-+	as_ctrl = spi_controller_get_devdata(ctrl);
-+	as_ctrl->dev = dev;
-+
-+	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	as_ctrl->regmap_ctrl = devm_regmap_init_mmio(dev, base,
-+						     &spi_ctrl_regmap_config);
-+	if (IS_ERR(as_ctrl->regmap_ctrl))
-+		return dev_err_probe(dev, PTR_ERR(as_ctrl->regmap_ctrl),
-+				     "failed to init spi ctrl regmap\n");
-+
-+	base = devm_platform_get_and_ioremap_resource(pdev, 1, &res);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	as_ctrl->regmap_nfi = devm_regmap_init_mmio(dev, base,
-+						    &spi_nfi_regmap_config);
-+	if (IS_ERR(as_ctrl->regmap_nfi))
-+		return dev_err_probe(dev, PTR_ERR(as_ctrl->regmap_nfi),
-+				     "failed to init spi nfi regmap\n");
-+
-+	as_ctrl->spi_clk = devm_clk_get_enabled(dev, "spi");
-+	if (IS_ERR(as_ctrl->spi_clk))
-+		return dev_err_probe(dev, PTR_ERR(as_ctrl->spi_clk),
-+				     "unable to get spi clk\n");
-+
-+	err = dma_set_mask(as_ctrl->dev, DMA_BIT_MASK(32));
-+	if (err)
-+		return err;
-+
-+	ctrl->num_chipselect = 2;
-+	ctrl->mem_ops = &airoha_snand_mem_ops;
-+	ctrl->bits_per_word_mask = SPI_BPW_MASK(8);
-+	ctrl->mode_bits = SPI_RX_DUAL;
-+	ctrl->dev.of_node = dev->of_node;
-+	ctrl->setup = airoha_snand_setup;
-+	ctrl->cleanup = airoha_snand_cleanup;
-+
-+	err = airoha_snand_nfi_setup(as_ctrl);
-+	if (err)
-+		return err;
-+
-+	return devm_spi_register_controller(dev, ctrl);
-+}
-+
-+static struct platform_driver airoha_snand_driver = {
-+	.driver = {
-+		.name = "airoha-spi",
-+		.of_match_table = airoha_snand_ids,
-+	},
-+	.probe = airoha_snand_probe,
-+};
-+module_platform_driver(airoha_snand_driver);
-+
-+MODULE_DESCRIPTION("Airoha SPI-NAND Flash Controller Driver");
-+MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
-+MODULE_AUTHOR("Ray Liu <ray.liu@airoha.com>");
-+MODULE_LICENSE("GPL");
+On 4/17/2024 11:35 AM, Dmitry Baryshkov wrote:
+> On Tue, 16 Apr 2024 at 21:23, Ajit Pandey <quic_ajipan@quicinc.com> wrote:
+>>
+>> Add Graphics Clock Controller (GPUCC) support for SM4450 platform.
+>>
+>> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/Kconfig        |   9 +
+>>   drivers/clk/qcom/Makefile       |   1 +
+>>   drivers/clk/qcom/gpucc-sm4450.c | 805 ++++++++++++++++++++++++++++++++
+>>   3 files changed, 815 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/gpucc-sm4450.c
+> 
+> [skipped]
+> 
+>> +
+>> +static int gpu_cc_sm4450_probe(struct platform_device *pdev)
+>> +{
+>> +       struct regmap *regmap;
+>> +
+>> +       regmap = qcom_cc_map(pdev, &gpu_cc_sm4450_desc);
+>> +       if (IS_ERR(regmap))
+>> +               return PTR_ERR(regmap);
+>> +
+>> +       clk_lucid_evo_pll_configure(&gpu_cc_pll0, regmap, &gpu_cc_pll0_config);
+>> +       clk_lucid_evo_pll_configure(&gpu_cc_pll1, regmap, &gpu_cc_pll1_config);
+>> +
+>> +       /* Keep some clocks always enabled */
+>> +       qcom_branch_set_clk_en(regmap, 0x93a4); /* GPU_CC_CB_CLK */
+>> +       qcom_branch_set_clk_en(regmap, 0x9004); /* GPU_CC_CXO_AON_CLK */
+>> +       qcom_branch_set_clk_en(regmap, 0x900c); /* GPU_CC_DEMET_CLK */
+> 
+> My main concern here is the AON clocks. If we don't model
+> gpu_cc_demet_clk as a leaf clock, then gpu_cc_demet_div_clk_src
+> becomes a clock without children and can be disabled by Linux.
+> Likewise not modelling gpu_cc_cxo_aon_clk removes one of the voters on
+> gpu_cc_xo_clk_src, which can now be turned off by Linux.
+> Our usual recommendation is to model such clocks properly and to use
+> CLK_IS_CRITICAL or CLK_IGNORE_UNUSED to mark then as aon.
+> 
+Thanks for review, actually if leaf (branch) clock is ON, hardware will 
+take care of enabling and keeping the parent ON. So parent clocks won't 
+get turned OFF in HW as long as branch clock is enabled.
+
+For clocks which are fixed rate (19.2MHz) and recommended to be kept ON 
+forever from HW design, modelling and exposing clock structure in kernel 
+will be a redundant code in kernel memory, hence as per earlier 
+suggestion in previous thread such clocks are recommended to be kept 
+enabled from probe.
+>> +
+>> +       return qcom_cc_really_probe(pdev, &gpu_cc_sm4450_desc, regmap);
+>> +}
+>> +
+>> +static struct platform_driver gpu_cc_sm4450_driver = {
+>> +       .probe = gpu_cc_sm4450_probe,
+>> +       .driver = {
+>> +               .name = "gpucc-sm4450",
+>> +               .of_match_table = gpu_cc_sm4450_match_table,
+>> +       },
+>> +};
+>> +
+>> +module_platform_driver(gpu_cc_sm4450_driver);
+>> +
+>> +MODULE_DESCRIPTION("QTI GPUCC SM4450 Driver");
+>> +MODULE_LICENSE("GPL");
+>> --
+>> 2.25.1
+>>
+>>
+> 
+> 
+
 -- 
-2.44.0
-
+Thanks, and Regards
+Ajit
 
