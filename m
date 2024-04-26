@@ -1,113 +1,224 @@
-Return-Path: <devicetree+bounces-63081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B3A8B3B11
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:20:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443A48B3B16
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FCCB2884C3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:20:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0206289F02
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CE9152539;
-	Fri, 26 Apr 2024 15:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1512B149011;
+	Fri, 26 Apr 2024 15:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MSjkDyos"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I8EO8pjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF90714884A;
-	Fri, 26 Apr 2024 15:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D396214885A;
+	Fri, 26 Apr 2024 15:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714144601; cv=none; b=Cas5utPMB7k4lKvAtzmO1D3VPoc404j3NWradILp7/l/g4G8JHugtf0a+qahiY9yjd7j0giZCEb4Fh/9D9r9aDXeDNcut7vYY07JP4UlMyz/yaid2OrSb9bFOUruRRwO6xH563NRs1dk3Ra1etBNjD3bMwq6Y7IYHyigSv60jRg=
+	t=1714144679; cv=none; b=ffmI1f6syOOBMW9PFBfnGxZiiMqxKcBCQSAWk+mN/U287IFPXUvxXJQFEQHnJDWwesEFe2IigiiGAnRrfIjDuqEOudrYQiTeR0xE3TcX/j+auq7NjXrTePzY91s7Q7Tb0ols1aSdwj9X62mpfTIhVdAggVt4is/pBGM9UZfEAb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714144601; c=relaxed/simple;
-	bh=qP6pqzuqSZBOAgFlOAo1lLR1TvGuL4gXEIOzqdXxLUA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CzDBD80EdGDZoEe2dTpCopCW+J6QDi+ImA8yQLISQJw3IwAd+SvLMGZuM/PDcudAqu8SrRAhjput62Ejm36456PKjHzbprB/oLErFJ4TgJLj413scYbpdRLq9h3ig5sAv5ZY4bR2AtwnpeX0h93QOLfgxFawZKfInsBP5N1iVaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MSjkDyos; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56e78970853so5788064a12.0;
-        Fri, 26 Apr 2024 08:16:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714144598; x=1714749398; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cwWeHv7sOd5BZg+rt0KI1JoN1amvg+ZyKMVqvEKfLZo=;
-        b=MSjkDyosjyptNpEx4Jo5Kupdb3eOqh+c/4OwXRvrnsqhB5Ep2XgMGh1dSUdip1Pf+x
-         I2K53t6MV7XBjNkIId3XPPgjx2aBM5y4P5VKiw/o+v4f2LectV2bJM/cyb2TYJKU+X6c
-         amfq4FGjDe/o5dJkiip75P3jstusrc2JUNy70z8KsqR2LIh7gD24Y+RDb1CyM/exa22M
-         6I/q5rXacK53Ts3Ku4LV7Azhvzu3GJPn6FmxcpfqGdt9/KD0rymOBh6OONnA4LhW21Wj
-         EpPuBvLggERPyidTf59FyLrB/wx7pgW9Ea0YbjzeB8vUjzx9mY2q1HJzVOMoaNKPlNDi
-         xONg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714144598; x=1714749398;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cwWeHv7sOd5BZg+rt0KI1JoN1amvg+ZyKMVqvEKfLZo=;
-        b=whckFDJRboVaE0gCCQAvxBIGcdgyTIamtxCI4wq9U3BowHKwcQUtCpNAUw9Sr//t9v
-         XPcRC2/gaCukgnjkPqJy3urB8w+Hf/HdrHQBw6dPzZn9gfjHozMzUnphVoySbGOs0lTL
-         KbQ5G2adzaweCkPqkHiFFM4QAz7Ff0EVxSUf6MwLq28s0ZsJh2L1Dh+mGBHq2ayktWt6
-         QkyN+zSs4wQroJggWM/waZf4DTOqC40TEHxTDSy6bW3RYFes60Xfb9gAYlNmlSxXtc6f
-         ksqRb/LJPz50R1jzooRsZyTThTDhUph19FBacIlR+JFsl+i9GJ9mOevdkMDh99tQQnWo
-         VJDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNqQ3y9pesbGlK0EbwiH90AtSIjF+qT+7DIeTI3hWammWqiytDmFZwWAcFMlv1rUk7Z2u0cjetjFx1BI2eI9Z5wPyLQPhwu74v8w==
-X-Gm-Message-State: AOJu0YxnlvYwkngXcGBi28/WflwhuFxCs4SGsw8l07nePxOt+/Z7b/kF
-	4+H7pSvBmx/OGMo/HaIKnrJJdcWx7mOj5JB1MDb4Ws+PhmsUnr9y
-X-Google-Smtp-Source: AGHT+IGcQa70aHZBefWDpV2b+m2720hiuuwhBpFvSJHK/vj9ZXyYxeaBn6LgqXefT+ktvR3GULMyEw==
-X-Received: by 2002:a17:906:2292:b0:a55:adf5:e698 with SMTP id p18-20020a170906229200b00a55adf5e698mr12684eja.28.1714144597668;
-        Fri, 26 Apr 2024 08:16:37 -0700 (PDT)
-Received: from localhost (p200300e41f162000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f16:2000:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id jr13-20020a170906a98d00b00a4e03823107sm10626735ejb.210.2024.04.26.08.16.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 08:16:37 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Marc Dietrich <marvin24@gmx.de>,
-	Nicolas Chauvet <kwizart@gmail.com>
-Cc: linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] ARM: tegra: paz00: Add emc-tables for ram-code 1
-Date: Fri, 26 Apr 2024 17:16:33 +0200
-Message-ID: <171414457816.2296048.16440856886619328129.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240222202142.129807-1-kwizart@gmail.com>
-References: <20240222202142.129807-1-kwizart@gmail.com>
+	s=arc-20240116; t=1714144679; c=relaxed/simple;
+	bh=+/fENaK5cFg3kscakPUFAoJIJiT0bv1e6mPEpyZqBr4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IL4Nt4afOKo6tps3zKxNVeZ1YsAcocj2J+Lx9e2YcYGzxvk5V9sxyX2p5m8Jeb/cA7W0YNFMASpJiMtEVRbv2xw8FnH+oaFNbMOJr160rDVhxNKoMxISnfm5coX3m6qykocon0/OuXjh83MlpQfjhC6ygCi7U86xip5AxdQNJfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I8EO8pjG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41F55C113CD;
+	Fri, 26 Apr 2024 15:17:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714144678;
+	bh=+/fENaK5cFg3kscakPUFAoJIJiT0bv1e6mPEpyZqBr4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I8EO8pjGnbGSXuuL1OtXwdhfm6ZO1hYNJiCIWrOD5+TidBHDEMBP2H0XXK6sAx1Gh
+	 WRzI/hZ/FmVRPe+Wkqh/qUndVxQzUVqVpFJoqgLl8wcBGuIDpLpR3eby3yVgqBIFyM
+	 kW0vR+6LUOdFfT1y7Gkf4pCcLS7IU3WoiNzYs7YI12ZnvE7+EyNhL1szux/vBuPkuP
+	 JAU3Di1GeehfGa6RK3a/MEoOkxTSzZ26u5+DN9ywvyA8fPJ5gjQ/mFK0ItEa/toO6w
+	 EgMH3tl6aH9y931UT5HWsC9po8EpwU0UPR8QdZzH/XrnEq+5ufni1qcQzAfzDSXyFc
+	 8Ml/rFYdMuJ+Q==
+Date: Fri, 26 Apr 2024 16:17:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 04/17] riscv: vector: Use vlenb from DT
+Message-ID: <20240426-unfocused-amount-e4e74e66962f@spud>
+References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
+ <20240420-dev-charlie-support_thead_vector_6_9-v3-4-67cff4271d1d@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/f82oMmmh2jh87go"
+Content-Disposition: inline
+In-Reply-To: <20240420-dev-charlie-support_thead_vector_6_9-v3-4-67cff4271d1d@rivosinc.com>
 
-From: Thierry Reding <treding@nvidia.com>
 
+--/f82oMmmh2jh87go
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 22 Feb 2024 21:21:42 +0100, Nicolas Chauvet wrote:
-> The same table as ram-code 0 operates correctly on ram-code 1
-> 
-> v2: rebase on current kernel
-> 
-> 
+On Sat, Apr 20, 2024 at 06:04:36PM -0700, Charlie Jenkins wrote:
+> If vlenb is provided in the device tree, prefer that over reading the
+> vlenb csr.
+>=20
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/cpufeature.h |  2 ++
+>  arch/riscv/kernel/cpufeature.c      | 26 ++++++++++++++++++++++++++
+>  arch/riscv/kernel/vector.c          | 13 +++++++++----
+>  3 files changed, 37 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
+/cpufeature.h
+> index 347805446151..809f61ffb667 100644
+> --- a/arch/riscv/include/asm/cpufeature.h
+> +++ b/arch/riscv/include/asm/cpufeature.h
+> @@ -31,6 +31,8 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+>  /* Per-cpu ISA extensions. */
+>  extern struct riscv_isainfo hart_isa[NR_CPUS];
+> =20
+> +extern u32 riscv_vlenb_dt[NR_CPUS];
+> +
+>  void riscv_user_isa_enable(void);
+> =20
+>  #if defined(CONFIG_RISCV_MISALIGNED)
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index c6e27b45e192..48874aac4871 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -35,6 +35,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __r=
+ead_mostly;
+>  /* Per-cpu ISA extensions. */
+>  struct riscv_isainfo hart_isa[NR_CPUS];
+> =20
+> +u32 riscv_vlenb_dt[NR_CPUS];
+> +
+>  /**
+>   * riscv_isa_extension_base() - Get base extension word
+>   *
+> @@ -656,6 +658,28 @@ static int __init riscv_isa_fallback_setup(char *__u=
+nused)
+>  early_param("riscv_isa_fallback", riscv_isa_fallback_setup);
+>  #endif
+> =20
+> +static void riscv_set_vlenb_from_dt(void)
 
-Applied, thanks!
+I'd expect to see a name here that had "of" in it, not "dt".
 
-[1/1] ARM: tegra: paz00: Add emc-tables for ram-code 1
-      (no commit info)
+> +{
+> +	int cpu;
+> +
+> +	for_each_possible_cpu(cpu) {
+> +		struct device_node *cpu_node;
+> +
+> +		cpu_node =3D of_cpu_device_node_get(cpu);
+> +		if (!cpu_node) {
+> +			pr_warn("Unable to find cpu node\n");
+> +			continue;
+> +		}
+> +
+> +		if (!of_property_read_u32(cpu_node, "riscv,vlenb", &riscv_vlenb_dt[cpu=
+])) {
+> +			of_node_put(cpu_node);
+> +			continue;
+> +		}
+> +
+> +		of_node_put(cpu_node);
+> +	}
+> +}
+> +
+>  void __init riscv_fill_hwcap(void)
+>  {
+>  	char print_str[NUM_ALPHA_EXTS + 1];
+> @@ -675,6 +699,8 @@ void __init riscv_fill_hwcap(void)
+>  	} else {
+>  		int ret =3D riscv_fill_hwcap_from_ext_list(isa2hwcap);
+> =20
+> +		riscv_set_vlenb_from_dt();
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+Hmm, I think we can go a step further here. We know all of the CPUs
+widths by the time we get to the first call to riscv_v_setup_vsize(), can
+we examine the whole list and decide not to enable vector if they do
+not match, rather than continuing and failing to online CPUs that having
+the mismatched size?
+
+I guess that can go into the `if (elf_hwcap & COMPAT_HWCAP_ISA_V)`
+condition we already have, and would require clearing the bit from the
+mask we have at the moment.
+
+Cheers,
+Conor.
+
+> +
+>  		if (ret && riscv_isa_fallback) {
+>  			pr_info("Falling back to deprecated \"riscv,isa\"\n");
+>  			riscv_fill_hwcap_from_isa_string(isa2hwcap);
+> diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
+> index 6727d1d3b8f2..fb7f3ca80d9e 100644
+> --- a/arch/riscv/kernel/vector.c
+> +++ b/arch/riscv/kernel/vector.c
+> @@ -32,11 +32,16 @@ EXPORT_SYMBOL_GPL(riscv_v_vsize);
+>  int riscv_v_setup_vsize(void)
+>  {
+>  	unsigned long this_vsize;
+> +	int cpu =3D smp_processor_id();
+> =20
+> -	/* There are 32 vector registers with vlenb length. */
+> -	riscv_v_enable();
+> -	this_vsize =3D csr_read(CSR_VLENB) * 32;
+> -	riscv_v_disable();
+> +	if (riscv_vlenb_dt[cpu]) {
+> +		this_vsize =3D riscv_vlenb_dt[cpu];
+
+> +	} else {
+> +		/* There are 32 vector registers with vlenb length. */
+> +		riscv_v_enable();
+> +		this_vsize =3D csr_read(CSR_VLENB) * 32;
+> +		riscv_v_disable();
+> +	}
+> =20
+>  	if (!riscv_v_vsize) {
+>  		riscv_v_vsize =3D this_vsize;
+>=20
+> --=20
+> 2.44.0
+>=20
+
+--/f82oMmmh2jh87go
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZivFoAAKCRB4tDGHoIJi
+0lF6AP0ehEsfxARMlCxOz5UMGtGRXyOJbr5gWiVUL5P1faiZAQD+NLZW+R2Tboo5
+nIrNrSxgWYbJVCV/sCH9Gny0THVwGg0=
+=jRyL
+-----END PGP SIGNATURE-----
+
+--/f82oMmmh2jh87go--
 
