@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-63049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B518B38A3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:39:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECF68B38A1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:39:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F335288C09
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:39:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 608331C21FBA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA50148835;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65FEC148831;
 	Fri, 26 Apr 2024 13:38:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S1rhvupy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D6K88qWU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45601148307
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 13:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40B61487E3
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 13:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714138718; cv=none; b=hF0d3GXBGo8ZAGAInDF9n7lTuHiEAo9nYJE3NAUCVxOUwkV0u/C3OTt2ubPqUvUhkm6jkxrVPqXSZYLH7r/BuAESeERLeoK9ak+qGzgQlYuojtUeNQ+R7IdIwBzDdOzXvuh8IHCehgAYbtHVNYs6sB3Ad6oQoG51LuRYHrNDD3I=
+	t=1714138718; cv=none; b=uzxMIBX/o6HgAHa10S5UehT0/OaBwJ6tS3QZu/PZj79K20k7G+IJZTk1PNA3nAhSrRA56/3t8989wcbL0IwIfEzmXAB8LjtT/R6hc+HtLlp/0aQfGMs6u8aKv54MnV1oHSCTPCsTX8ys2vpEO9vEQtXJqwf9zF8PzX6Xks3mlIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1714138718; c=relaxed/simple;
-	bh=MnvkoP96ETwyzM7/zS913M9b2W7iLYDRzbOwtkS5MV8=;
+	bh=ZmIYYUt0QcbC0Veeq4Fmo5dE3JV8iq7sEVsLahwG0es=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U/yr3L//PxenDW44vrh9jD2ZoJWYz9xsyuXLhl+5ndNHeZhUm6NBUBQo8WTd32V+N4PDbJHm72nbwd3WaZpvMPvCPfgSlnN01tnx1vo/p/CSmEmiILVoOCLEJG6ZbsOMLi1UXFonFs4Xo9SeJlqY13xWBpr/KbGRRWZGdy8QoaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S1rhvupy; arc=none smtp.client-ip=209.85.221.53
+	 MIME-Version; b=fGvh3e2PiToav5Tg3sqqvyfCFzUwaq9BiTf/PrZpZaPS2akk5SpO0E1uLWBpYxO63Rtcb7omf5mY0b4uvJNUyfF8uMge4Ll9xHevMEaYOmLqeeUods6bsDU8XAqW76DMiIEGe34Ggnp/ul3fw16RRpcIekaLfGYstvZ+OIHlyx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D6K88qWU; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3499f1bed15so1928121f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 06:38:35 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-34a7e47d164so1559845f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 06:38:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714138714; x=1714743514; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714138715; x=1714743515; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uH+qHwJN2mCxyTFNfSJEDrH1StJ86nloa+of3UztIac=;
-        b=S1rhvupyupesRYfdEI3MwlW+cDozOdLDCIwcTOg/OggL1KJYUMYSMi1ZDuy3WHhx5P
-         2G4hpCwKShLk6uRuIgUACegh66jYBf2nkRVuo3bwGGKuSsry9L60BtCioTRvt7WGVDdK
-         KE+uTDvOXE/+5ox2h0Q44kDWmCaJpcTQJqVkYgryafz3AnydA2J9hxxHTOCBp9o6fAIM
-         EQpHTZRPbMH59bvKLQNNofXZidSF3H7jTiZ9O5rG0XjK39Imx4j59pU1Gke2pmU4ZgU3
-         MMjXtuuJsF65hAaH9PeQGINa+8+TWDen9Xhoht0LDZU8iGiX/3NgwfGBqmiWBjiFcyxy
-         sN/g==
+        bh=AX1t+YE1cBl5MQLmH5bPrWGcz0Ebchp9QnAASzx5oG4=;
+        b=D6K88qWUQqxBT2SQHLvY7BaEfoHioMxCa4hmYyR56N+mKgP0idkJZR72KjxG3YpymT
+         3rO5cr3GOyJTdtbyD8b9A//Wg+646WPKM/de4/c0ggLPHpfYnIA5I5P/fDaSnanwTwwz
+         0sxVZBcJnNTzYP48NAGXwfPHUsAkQmSiDGnQboqPzQ3bI/LUf843eyekZebmbxmQIFcy
+         yMceTfxB/bxk9ftkVyeZiUoKei58uSWsekZVJhWBWknDS+bNgdWLx+pczrnGXmoGJY6R
+         qunCMF+mNRDoHe+i1fChVZYKhY3c7FXfgCVay8Pr2NO6cYqbJfFQ2i3yu6Tv1/CJBxXA
+         WpVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714138714; x=1714743514;
+        d=1e100.net; s=20230601; t=1714138715; x=1714743515;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uH+qHwJN2mCxyTFNfSJEDrH1StJ86nloa+of3UztIac=;
-        b=o0MzPGesu3M7RaMqaI6YAhaPh8KdiDEDPS5DuoZ4LsfeTe3Uzr24Z082nFcPM771CK
-         FkgKRXY/uGzj3mqRaan8+LuVGxz9xQLZ4zDh5zUcXMBCHRDdMgrzkINGOFR0f1QHwCSX
-         l6YYHxZ8TWv8NP2V2/oXptLCu9KNiKEl5M26HD1SRwsWxjTNJvJBWReQL+y1hoffaBCA
-         IuoiAhyrj8p1MrOHKjvWBVqrpwNw3bg4CV6/nbqI1q99JXLOLojwbKqgo4xmReLn3P4t
-         y8EbzS42zqYSebJAoI9QfaBM/jywv4BUvkCc2nYdndWMW6X97mHDL0z+S4T7KXyWf1ip
-         laDw==
-X-Gm-Message-State: AOJu0YzEYf2TgOHA+BTHlne2nf7R15OLJ03k4c5dYTOrlTapapcYj/1h
-	RpeaABkPS2ptSs7Iv+daEf4BiHSlR7Zxhp5D/nJk1I8o93kB+exC5gaVzoahXOI=
-X-Google-Smtp-Source: AGHT+IFm+sPiQDs7FxsoddzmGcb5i4tZc2v1N/h+hnpqJdNZnJd4NgTvZqKCbojGXOgRYrkPQiVqiQ==
-X-Received: by 2002:a5d:47a3:0:b0:346:41a7:2fc2 with SMTP id 3-20020a5d47a3000000b0034641a72fc2mr2953583wrb.32.1714138713599;
-        Fri, 26 Apr 2024 06:38:33 -0700 (PDT)
+        bh=AX1t+YE1cBl5MQLmH5bPrWGcz0Ebchp9QnAASzx5oG4=;
+        b=LhqYysu0KLEPLfHHJ+BNZBWN/iqZZv891aszyjv9dS0OAIthPdRaQn9UIlL0PbK4Lw
+         58mQHoSCYz/+NvdpPSY5VZT3b6R6YNRld3lXhfTfsFAUY13ro6hhQkC48Ax6pneD5EuE
+         Jti52IukPRDHqoI0ftxKK99/m6BuRlL/K0KSJLzRa3IU5ELqsjlH2ZashoThj+VayHsm
+         4aagl9OmSya1tm+EJ6ThHVcat6eYL04NZx5YgH1FLbYu5bXFKSJ2o50kNXtWPEUlK6nC
+         iZjv3dV8p6DMHd8SzF5ir4MyveYK2DMWMPv8GPCGPryWeOyeZ9uxRIL1h1sVeMnsD8NF
+         b7CQ==
+X-Gm-Message-State: AOJu0YwwHabLyfgJlVhvKI/FPN4OIslUiKe8SB2TNlyMTZj4n/mBYVEO
+	tbKUdfcbOQtEd7EgFs0E3qZ4nduoBEYAIcfWG6m7EC0ZIinUGly4II1OeWUykyQ=
+X-Google-Smtp-Source: AGHT+IFTTh4iakkkfqbFYU7oLhsNchB50w3aO7hEduSjteZTlE4Y7Y4KaHOlWbEsAZDxFgk08i6IsQ==
+X-Received: by 2002:adf:fcd2:0:b0:343:7fa6:4393 with SMTP id f18-20020adffcd2000000b003437fa64393mr1870301wrs.38.1714138715070;
+        Fri, 26 Apr 2024 06:38:35 -0700 (PDT)
 Received: from gpeter-l.lan ([2a0d:3344:2e8:8510:63cc:9bae:f542:50e4])
-        by smtp.gmail.com with ESMTPSA id p3-20020a5d6383000000b00341b451a31asm22327689wru.36.2024.04.26.06.38.32
+        by smtp.gmail.com with ESMTPSA id p3-20020a5d6383000000b00341b451a31asm22327689wru.36.2024.04.26.06.38.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 06:38:33 -0700 (PDT)
+        Fri, 26 Apr 2024 06:38:34 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -81,9 +81,9 @@ Cc: devicetree@vger.kernel.org,
 	willmcvicker@google.com,
 	kernel-team@android.com,
 	Peter Griffin <peter.griffin@linaro.org>
-Subject: [PATCH v3 3/4] arm64: dts: exynos: gs101: Add ufs and ufs-phy dt nodes
-Date: Fri, 26 Apr 2024 14:38:23 +0100
-Message-ID: <20240426133824.2283144-4-peter.griffin@linaro.org>
+Subject: [PATCH v3 4/4] arm64: dts: exynos: gs101: enable ufs, phy on oriole & define ufs regulator
+Date: Fri, 26 Apr 2024 14:38:24 +0100
+Message-ID: <20240426133824.2283144-5-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.44.0.769.g3c40516874-goog
 In-Reply-To: <20240426133824.2283144-1-peter.griffin@linaro.org>
 References: <20240426133824.2283144-1-peter.griffin@linaro.org>
@@ -93,64 +93,55 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add the ufs controller node and phy node for gs101.
+Enable ufs & ufs phy nodes for Oriole. Also define the ufs regulator node.
+
+ufs regulator is a stub until full s2mpg11 slave pmic support is added.
+The gpio defined is for the BOOTLD0 (gs101) signal connected to
+UFS_EN(s2mpg11) gpio enabled voltage rail for UFS.
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-Acked-by: André Draszik <andre.draszik@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 36 ++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ .../boot/dts/exynos/google/gs101-oriole.dts    | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 09044deede63..4679ca33c6a0 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -1277,6 +1277,42 @@ pinctrl_hsi2: pinctrl@14440000 {
- 			interrupts = <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH 0>;
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+index 6be15e990b65..fb32f6ce2a4d 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
++++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+@@ -53,6 +53,15 @@ button-power {
+ 			wakeup-source;
  		};
+ 	};
++
++	/* TODO: Remove this once S2MPG11 slave PMIC is implemented  */
++	ufs_0_fixed_vcc_reg: regulator-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "ufs-vcc";
++		gpio = <&gpp0 1 GPIO_ACTIVE_HIGH>;
++		regulator-boot-on;
++		enable-active-high;
++	};
+ };
  
-+		ufs_0_phy: phy@17e04000 {
-+			compatible = "google,gs101-ufs-phy";
-+			reg = <0x14704000 0x3000>;
-+			reg-names = "phy-pma";
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			#phy-cells = <0>;
-+			clocks = <&ext_24_5m>;
-+			clock-names = "ref_clk";
-+			status = "disabled";
-+		};
+ &ext_24_5m {
+@@ -106,6 +115,15 @@ &serial_0 {
+ 	status = "okay";
+ };
+ 
++&ufs_0 {
++	status = "okay";
++	vcc-supply = <&ufs_0_fixed_vcc_reg>;
++};
 +
-+		ufs_0: ufs@14700000 {
-+			compatible = "google,gs101-ufs";
-+			reg = <0x14700000 0x200>,
-+			      <0x14701100 0x200>,
-+			      <0x14780000 0xa000>,
-+			      <0x14600000 0x100>;
-+			reg-names = "hci", "vs_hci", "unipro", "ufsp";
-+			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&cmu_hsi2 CLK_GOUT_HSI2_UFS_EMBD_I_ACLK>,
-+				 <&cmu_hsi2 CLK_GOUT_HSI2_UFS_EMBD_I_CLK_UNIPRO>,
-+				 <&cmu_hsi2 CLK_GOUT_HSI2_UFS_EMBD_I_FMP_CLK>,
-+				 <&cmu_hsi2 CLK_GOUT_HSI2_QE_UFS_EMBD_HSI2_ACLK>,
-+				 <&cmu_hsi2 CLK_GOUT_HSI2_QE_UFS_EMBD_HSI2_PCLK>,
-+				 <&cmu_hsi2 CLK_GOUT_HSI2_SYSREG_HSI2_PCLK>;
-+			clock-names = "core_clk", "sclk_unipro_main", "fmp",
-+				      "aclk", "pclk", "sysreg";
-+			freq-table-hz = <0 0>, <0 0>, <0 0>, <0 0>, <0 0>, <0 0>;
-+			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
-+			pinctrl-names = "default";
-+			phys = <&ufs_0_phy>;
-+			phy-names = "ufs-phy";
-+			samsung,sysreg = <&sysreg_hsi2 0x710>;
-+			status = "disabled";
-+		};
++&ufs_0_phy {
++	status = "okay";
++};
 +
- 		cmu_apm: clock-controller@17400000 {
- 			compatible = "google,gs101-cmu-apm";
- 			reg = <0x17400000 0x8000>;
+ &usi_uart {
+ 	samsung,clkreq-on; /* needed for UART mode */
+ 	status = "okay";
 -- 
 2.44.0.769.g3c40516874-goog
 
