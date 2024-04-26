@@ -1,128 +1,136 @@
-Return-Path: <devicetree+bounces-63027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA998B37D7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:03:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4548B37F9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:10:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80F1D1C2284A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:03:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD1331C2275C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C451474AF;
-	Fri, 26 Apr 2024 13:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20041146D64;
+	Fri, 26 Apr 2024 13:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="JiA16M8U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mYtsuPaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A16B146D47;
-	Fri, 26 Apr 2024 13:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FBD146A88
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 13:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714136533; cv=none; b=oxBPGI/9BQQXWI+2cE/dFAYkzXYVf8j4bhXY9rfeWvBzuy2uWK+tIyzTa46wJjBq7pin3s2zd+x/xHq9BtIPLc114ROdmb+0Wr64Bnmb5zaH9Sjq4XbYrz6B2uZg3VXMfV6YyFpi2lBmZr+8CBu9/kez8arQpwnnIs1tEHnNaZE=
+	t=1714137053; cv=none; b=fsAxD6mHtPHht1vrxZbs/8+VcPHOqfwX4PoYo2K/qDXujZb4YT+TpgJmj8DuafqNv4cbmL6Hr2ifoYZyQ43eA8tCikpr68M2+v8EcRerh9ejLpl+w2T4EtoxI2GVaWJg7IjD7FsiGxgxpGcjYEfN2kMF8Cr11kyKSIlsTDrJUbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714136533; c=relaxed/simple;
-	bh=QZ1jVNYFCjB2s44u+LZOvrIyLKhTU/k/vuakYy5vPmY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dVoIFQ1M8tURk4d9AatPLLwERGuFoAqylDAyCZy6UbCRWe6YyN/2LqfoHlJnDkAP05zsMLOJgL053GS/1EN6GAgoc9WVogfwSf55mLvGx42+RcK8/6jLXKIYhcQwlnK/ed9q24DN9qGwieSnqZqwIp5U/2ZfmzHbI0cr6Vj1zFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=JiA16M8U; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43Q9HsU5029966;
-	Fri, 26 Apr 2024 15:01:49 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=q2kYHv8uYrF72tA2YfB8ZxbNq7F2BQFGQbxWsGzIXLo=; b=Ji
-	A16M8UpHE9m/J0dGGQuoWk9L+f8T59Bh52Pb4DddBUAVngRhF7V369TtugJ9QPSY
-	hqzCbsEhBXsYuIqdBEeirQhe+/wwE+WchpsriSiorRoCcP0LMj4TyQVdO20iZrOu
-	FDiJ1+H9O/MM+V4/AXeP37Zu59sKuYLWLXzeXlFAy7ABa3n6BJzEasGU3W9IHi7n
-	LbbxAJ/Y/15QJPIAIqAW6ZZWV5IWHcJjsRJCPfkGTqrqJgRsayhS3mNVgJzLNlAu
-	eLI5P0s+630bInuLm4RqrRIG3c6kBzXZrV7yRHsEIVeOoDMcWeQU7bwvsflW+B61
-	fDDVYexZ7HgPn+SKHwBg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xmrnjfk2v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 15:01:49 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D0CC240044;
-	Fri, 26 Apr 2024 15:01:45 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F3D15222CB2;
-	Fri, 26 Apr 2024 15:00:31 +0200 (CEST)
-Received: from localhost (10.252.17.191) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 26 Apr
- 2024 15:00:31 +0200
-From: Christophe Roullier <christophe.roullier@foss.st.com>
-To: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>,
-        Marek Vasut <marex@denx.de>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 11/11] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
-Date: Fri, 26 Apr 2024 14:57:07 +0200
-Message-ID: <20240426125707.585269-12-christophe.roullier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240426125707.585269-1-christophe.roullier@foss.st.com>
-References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+	s=arc-20240116; t=1714137053; c=relaxed/simple;
+	bh=VE7wD8KokW+7zCXO0HYd2htMwnpzd+jqE5ppA5VzXgs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g0PSqT6AShnJNvBZoSfYPGn2E/BO206+Mlvr6LF2MoKZGGaT7R3G2qCz+EJuFSm8rL2MH6TxnpnBxoRSslhbSpPGliSb96CBtfyq+XrByI5z3ShvoWtpeehk1zU/QA6+tnGW+8pRqt6ZiDYY6YUSuwOwW3Xyi9QgidlNMGHLPSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mYtsuPaQ; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-51967f75763so2505428e87.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 06:10:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714137049; x=1714741849; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=up/TvhMZAZY6yPkfNvqYk9mm7CB0BvgIE99o7dPUwOo=;
+        b=mYtsuPaQ0gH2j5OLE9kTsQa5Xi7g8G06kk+9t8fADcEYyG8rjWqsD4SLF6GX8I58a1
+         dL+Ad6SCcG8zEwVqAcI3QHpF6ZE+UStNK1Ur1eZT5pxnJaNhf4WK+XoHmoQm5TR5vo5f
+         6BPQPRPRCL5XQ/RturGRVMC7C9+caBID225aLif00Ss/hFgAmElJzikih2cRQFvVp6V3
+         U3Bw8e+eONY6XhGKgXuSOilr8K+WulprjFJxc81KYDOyU5RAdkDYzAE1KeRjTc19LhoG
+         3tsB6NZ1D2QGSSjjygnW6yOCxOVZnO7Y0sSB1fYSwso9VJypiNNjzPVfE0s2dJ8R3Hjl
+         nREQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714137049; x=1714741849;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=up/TvhMZAZY6yPkfNvqYk9mm7CB0BvgIE99o7dPUwOo=;
+        b=elNaSNIM6/JCdiXOigqEA7OtwBY181EjWPqqpXKbteuFFwzWAWYwg2FVf3gRi/UCAg
+         m8Ovp91BYV51m6o5DSD+NQhhUqSCPe14BMyHidq3pTBwQW+jgswz1MrXUwy9FDYE+mlN
+         AeBHSIhrXqURut+mZ4VcYfcpzWDQzHqvgIOF79Z0WSmam9xZ6PtWA1ogE4UihNAhlZ/K
+         ALgETea2hv3u73RGI/GYe9cRddE0qa6s1e6kBmb30eeERpex1+0FouOmJPnf/AlAfkwD
+         eA1pbE3mDsl11st5VtrJr7B6foFKgfEhEjJt6lnN9VP5J4TFWw1eH/IKDOQVyQq8dB8C
+         SRuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUrRSVpyWmKoht9LyuoeGoKvHs9xinS2jIMUI3B3JZP2pA9R/AlCQUQOXH9yh4XFMjKUh58/ySaCDGY05DRjv/ni5dnvpe7Q0VHeg==
+X-Gm-Message-State: AOJu0Ywu69HM3QH2FtVzwTS9ko2VjcXMi0poT2UO3uVoAKMDDsz+RnES
+	fzOWx38bQJe0KbnXU1+bf/o7CUP6OrxfhYg7MmAzBMMzWF3qb3D2IG/tSs5qJrI=
+X-Google-Smtp-Source: AGHT+IHL9UxI1NEY1QMkE6e22sU+Za46bYeedUI48dL8mkZVuEGHt9uH/8OUBtMER64Ua4ymrFeFUw==
+X-Received: by 2002:ac2:4248:0:b0:51a:90dd:698b with SMTP id m8-20020ac24248000000b0051a90dd698bmr1749320lfl.65.1714137049284;
+        Fri, 26 Apr 2024 06:10:49 -0700 (PDT)
+Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
+        by smtp.gmail.com with ESMTPSA id u18-20020a170906c41200b00a58bec2ae2bsm1396948ejz.39.2024.04.26.06.10.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Apr 2024 06:10:48 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v2 0/2] clock support for Samsung Exynos pin controller
+ (Google Tensor gs101)
+Date: Fri, 26 Apr 2024 14:10:45 +0100
+Message-Id: <20240426-samsung-pinctrl-busclock-v2-0-8dfecaabf020@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-26_12,2024-04-26_02,2023-05-22_02
+X-B4-Tracking: v=1; b=H4sIANWnK2YC/42NQQ6CMBBFr0K6dkxbAasr72FYlFJhIrZkBoiG9
+ O5WTuDyveS/vwn2hJ7FtdgE+RUZY8igD4Vwgw29B+wyCy11KUtdAdsXL6GHCYObaYR2YTdG9wR
+ VKadP3bk2tRR5PpF/4HtP35vMA/Ic6bM/repn/4iuCiSYi7FaStv62txGDJbiMVIvmpTSF6gIH
+ 9fBAAAA
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, 
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, 
+ Sam Protsenko <semen.protsenko@linaro.org>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.12.4
 
-Need to enable MCP23S08 I/O expanders to manage Ethernet phy
-reset in STM32MP135F-DK board
-STMMAC driver defer is not silent, need to put this config in
-built-in to avoid huge of Ethernet messages
+This series enables clock support on the Samsung Exynos pin controller
+driver.
 
-Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+This is required on Socs like Google Tensor gs101, which implement
+fine-grained clock control / gating, and as such a running bus clock is
+required for register access to work.
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- propagate clk_enable() errors in samsung_pinmux_setup(), i.e.
+  struct pinmux_ops::set_mux()
+- move clk_enable()/disable() outside bank->slock lock, to avoid
+  possible deadlocks due to locking inversion (Krzysztof)
+- fix some comments (Krzysztof)
+- use 'ret' instead of 'i' in samsung_pinctrl_resume() (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20240425-samsung-pinctrl-busclock-v1-0-898a200abe68@linaro.org
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index b2955dcb5a53..0abbe00372df 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -469,6 +469,7 @@ CONFIG_SPI_XILINX=y
- CONFIG_SPI_SPIDEV=y
- CONFIG_SPMI=y
- CONFIG_PINCTRL_AS3722=y
-+CONFIG_PINCTRL_MCP23S08=y
- CONFIG_PINCTRL_MICROCHIP_SGPIO=y
- CONFIG_PINCTRL_OCELOT=y
- CONFIG_PINCTRL_PALMAS=y
+---
+André Draszik (2):
+      dt-bindings: pinctrl: samsung: google,gs101-pinctrl needs a clock
+      pinctrl: samsung: support a bus clock
+
+ .../bindings/pinctrl/samsung,pinctrl.yaml          |  17 ++++
+ drivers/pinctrl/samsung/pinctrl-exynos.c           | 112 +++++++++++++++++++++
+ drivers/pinctrl/samsung/pinctrl-samsung.c          |  95 ++++++++++++++++-
+ drivers/pinctrl/samsung/pinctrl-samsung.h          |   2 +
+ 4 files changed, 223 insertions(+), 3 deletions(-)
+---
+base-commit: a59668a9397e7245b26e9be85d23f242ff757ae8
+change-id: 20240425-samsung-pinctrl-busclock-151c23d76860
+
+Best regards,
 -- 
-2.25.1
+André Draszik <andre.draszik@linaro.org>
 
 
