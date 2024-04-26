@@ -1,137 +1,110 @@
-Return-Path: <devicetree+bounces-62935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04B978B3159
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:31:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F468B3163
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:32:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 361C81C2206A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 07:31:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9068E2811DE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 07:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962D313C3C4;
-	Fri, 26 Apr 2024 07:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F2513C3D9;
+	Fri, 26 Apr 2024 07:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="VZNS7CzH"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="u9exqb7n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8295913BC2B;
-	Fri, 26 Apr 2024 07:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F9613BC2B
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 07:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714116681; cv=none; b=if1D0EF0SAq3Ow8CINIO7iuRFuA+o2jRScUr69X9wKzUYjO4nYcR2dWrJNJ8Dkmd68KCMB0rxSSWt6xcCTqfH3hqc7GVsjE8H4l6R3PM+nCPDnYr0fvAMmMfZ0noyxQ5+9F/EG16WzbpAa5ueyZvGf6fKpb6JOFHKZbLgsv9NBc=
+	t=1714116755; cv=none; b=a+VddGMQs1470n3SwoZvLYRVhOdoxn+G6nhFcU7ynO5OsHDh4VLL6t/7wyxqA/7GGwdpgU+Kc6gETIr+MXFMGd0/74iPIhLj74ms2oRjDU84anTYfgrBgLMHftl8BOeF7dj/W2njO8lnH0QLV50qfzPjvW2PHdP74fkOfJ6SyZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714116681; c=relaxed/simple;
-	bh=bu5G/FK54u1pJ/J+TA5ReeZ6pPyfUo9bcJmqrR9GqrU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YSTeELJ0TXfWvcIEkTMC+1BtnWE/HFUnTg3trV0g2LgpNOvygCzK6tAQw4zxq77EhAZJWg3jKuIQQZhNvxGehAi/DNctTEW1IXz4CmUk33RTqSuffx6Pomyx3SeHd3oy5jin70qL0IFE26FyfoKuT+7//GQSeY/aoYPmiAL1D/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=VZNS7CzH; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6A933100003;
-	Fri, 26 Apr 2024 10:31:07 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6A933100003
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1714116667;
-	bh=1oOjBRwahzipflI9HVMGrMYwyUxQIzND3/Gm6BB3fCE=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=VZNS7CzH0eVFZrgEc/d7px8hOqwLpYdDOuDyBpOsR0Ps9I+KgQGbqColp8rLO1rI8
-	 BDrTaXF7mVomrXocSLkhnAWJtvCe2+aN4J/ToGC+nGQiWn2pbQQsFUBXZWlW9ufdYx
-	 zQhqSPDpuTgmyixpLHfcikym+cYsjWl+Xwa7zeKaStj9Tfy/FjXbBATI8Zrll2002r
-	 HsDDMt1lz0P64YymnTbVhDpYW4Wm0BiJXBYtPRJWwi0FkBHDlAGqTaxicXNZPq0/WH
-	 Lk1+p5dWeEzxZ4mTwU3XYt4n2LHk+njJ8AeJF1JefqhAPtB29xpLrhVzRxaSE07Zjh
-	 Pe6PQpvnIv3Ag==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 26 Apr 2024 10:31:07 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 26 Apr
- 2024 10:31:07 +0300
-Date: Fri, 26 Apr 2024 10:31:06 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, <neil.armstrong@linaro.org>
-CC: <jbrunet@baylibre.com>, <mturquette@baylibre.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
-	<rafael@kernel.org>, <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 0/2] thermal: amlogic: introduce A1 SoC family Thermal
- Sensor controller
-Message-ID: <20240426073106.3yl2dplvauper3lg@CAB-WSD-L081021>
-References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
- <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
- <20240417084007.uzg2uc7gwb6mi7bi@CAB-WSD-L081021>
+	s=arc-20240116; t=1714116755; c=relaxed/simple;
+	bh=N+K4RoNFc+zB+X+QmQp6JiIrBFtjE+TzhQnlD2BBvMQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AMdHQdoLJ9/+J58xvBU+opWj+qfi6nJHS9hgIMQ5yMpOZrEpTsbw9moGuBu1OcRU8o1t93u55GQbJUG4cr/8i3LdjbniDRWysjnAM6Kof2gQB9YqDyeti6h6qzGskpnLBuZyiOJfdv+MzRbprfziTa7GuGnW0/d9SVokazBEzIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=u9exqb7n; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2dae975d0dcso30190821fa.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 00:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1714116751; x=1714721551; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N+K4RoNFc+zB+X+QmQp6JiIrBFtjE+TzhQnlD2BBvMQ=;
+        b=u9exqb7nBakiSvecNO+dmYaK7oBLCtP3JSYaZivMWqMQvmNL7RPRQXkOmTSB0fy9o8
+         uMvQ5cQjOuHqraXto91UAZC+rRNfnlTIb1ifCYN2OFNQAeFXN28UHd5lUYXlhSQIlNgk
+         nKLgTua/wbVkLqzcfA+l3jnfvepyDmuHC4Gy+kYTVZm4h8mcNW2J9rCz763t35/uWK4C
+         9NqtOqazEfiO0UC2++H19zZWOi2kFmQK95ELl4tY3ianwjsq6DV8B//tjr+4XinIjCnb
+         JIVs29Uh3htIpLt38/+BGtJfrphW1k+mCtDxXiUftRHuSNggwqrVGKJrLuftpvJEQeFS
+         d/lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714116751; x=1714721551;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N+K4RoNFc+zB+X+QmQp6JiIrBFtjE+TzhQnlD2BBvMQ=;
+        b=o8U/acOlMuXzDUhEa5r5kSUIm1pcJkaTMVRGoUqi1UIGkAZZ9eLok32jSRUykXakif
+         RWzHxvnbN/OcI71KCfiT6+eIDcKjyj7rpgDFF70rnKf8rXvrZJ5yUaumaxIFL83tU09z
+         9A26QXqPrxYQVT4dTnn3wZft9w5aDU0fCdkM+zWGxNKLuxQM8ByfF9OGZA4fAGpyGkPt
+         2IpMcNfrAJq9ipfQC4henysQ3pqjrRAIYEhEl8DBJC1ltj3XPDKekuaVIuUkAoFIUh5J
+         bZoRViVBKMukPm2jUBOOvTmjiWC8k+hzAT3eW8hY5vOK84TQoRE/3LuMoJ8t9TXTBZNC
+         NqAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFAXX5xk/XVwkgf0yFhe6N8cqDryh5kFalj0X0t+vlra2Q+dABbs6Bk31doOlPIoJQM6iu2MvhzpYwkkvDRi1JD6bEf6CR77Futg==
+X-Gm-Message-State: AOJu0YyyzjgSPI4ZW+9e4kHnoLK6ipjjz9x2pM1+05sA/W5GVSF82WKk
+	ElKyeloQd1446GF68NmC4gGzr9d5uoWktCz3pIIdY4D6xZTfwvuT11ibSiADqzNwudq+cStnPBk
+	Fs2tl++2CKIbln4rFfH8nIlY7ViJKZXLNM81y9w==
+X-Google-Smtp-Source: AGHT+IFYGegiQeOjrbC7jab8L44FbjsL8B+Dm+eXafoa/lYhYMDXPnVhjneMaXH+VDajJaBZTMTFwcHDO4cfrTiAxXo=
+X-Received: by 2002:a2e:b163:0:b0:2de:6f52:5c8d with SMTP id
+ a3-20020a2eb163000000b002de6f525c8dmr645023ljm.21.1714116751252; Fri, 26 Apr
+ 2024 00:32:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240417084007.uzg2uc7gwb6mi7bi@CAB-WSD-L081021>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184944 [Apr 26 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/26 01:49:00 #24972266
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240424185039.1707812-1-opendmb@gmail.com> <20240424185039.1707812-3-opendmb@gmail.com>
+In-Reply-To: <20240424185039.1707812-3-opendmb@gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 26 Apr 2024 09:32:20 +0200
+Message-ID: <CAMRc=Mc4kreNL9Zu3Hfd02Nm8WK0x6yb3rfCgPebGi1GGygcNw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] gpio: of: support gpio-ranges for multiple gpiochip devices
+To: Doug Berger <opendmb@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Phil Elwell <phil@raspberrypi.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Neil,
+On Wed, Apr 24, 2024 at 8:51=E2=80=AFPM Doug Berger <opendmb@gmail.com> wro=
+te:
+>
+> Some drivers (e.g. gpio-mt7621 and gpio-brcmstb) have multiple
+> gpiochip banks within a single device. Unfortunately, the
+> gpio-ranges property of the device node was being applied to
+> every gpiochip of the device with device relative GPIO offset
+> values rather than gpiochip relative GPIO offset values.
+>
+> This commit makes use of the gpio_chip offset value which can be
+> non-zero for such devices to split the device node gpio-ranges
+> property into GPIO offset ranges that can be applied to each
+> of the relevant gpiochips of the device.
+>
+> Signed-off-by: Doug Berger <opendmb@gmail.com>
+> ---
 
-I hope you're doing well. I was wondering if you could assist me with
-below problem.
+This is a good improvement, thanks!
 
-I'm a bit confused about which kernel repository the series was applied
-to. I asked Daniel about it, but unfortunately, I didn't receive any
-feedback from him. Could you provide some clarification on this matter?
-
-Thank you in advance for your help.
-
-On Wed, Apr 17, 2024 at 11:40:07AM +0300, Dmitry Rokosov wrote:
-> Hello Daniel,
-> 
-> Could you please let me know in which repository you have applied this
-> change? I am trying to cherry-pick the original applied commit and apply
-> it to our internal mainline branch instead of the internal commit.
-> However, I am unable to find the applied series in any of the
-> repositories on git.kernel.org.
-> 
-> On Thu, Apr 04, 2024 at 02:23:21PM +0200, Daniel Lezcano wrote:
-> > On 28/03/2024 20:13, Dmitry Rokosov wrote:
-> > > It is primarily based on the G12A thermal controller, with only a slight
-> > > variation in the offset value of the efuse parameters. Therefore, this
-> > > patch series provides appropriate platform data and dt-bindings to
-> > > ensure proper support.
-> > 
-> > 
-> > Applied, thanks
-> 
-
--- 
-Thank you,
-Dmitry
+Bart
 
