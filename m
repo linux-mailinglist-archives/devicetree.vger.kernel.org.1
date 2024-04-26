@@ -1,187 +1,312 @@
-Return-Path: <devicetree+bounces-62898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86758B2ECA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 04:54:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C48B68B2EF2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 05:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C0081F22395
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 02:54:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 545E61F23115
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 03:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69431C06;
-	Fri, 26 Apr 2024 02:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD438768E7;
+	Fri, 26 Apr 2024 03:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b="fVBOUnvp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="In/E4U0Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.kaechele.ca (mail.kaechele.ca [54.39.219.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABB81879;
-	Fri, 26 Apr 2024 02:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.39.219.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009E9763E7;
+	Fri, 26 Apr 2024 03:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714100073; cv=none; b=suNJd5ZeGdzRQV+Jdtg7o2I1PD/s8QMp1/TphP/KzjuI9MBJ5O7KZQDk32sKs/cIyNGBXsXMZHyXFCEuLtJ80v0FSObVku45LQLjGn1b9yO18NWwNCcLuRQtX20BQ26xQ+1TdobyyRQcyNqLVkD/8i1pfW06dNqgnCUlsTEYCEQ=
+	t=1714102365; cv=none; b=gJiiqghXyD2U/djDxkF+vmJm6b+j2GJyVNlT4saIf6Wbt+SOa4RTtGTb3gJZ0OAX0Zs/gEBxvbnVJYt7/4yvqj4wfG2rEQUjXIRlWWPXHNyOpl97k9lYuu14qgTtvmnQK5fFqKGZ8UyNgUJpX3SfMxYIyeNVy5KDyOl83Hf4SiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714100073; c=relaxed/simple;
-	bh=vTSrCZbh96Ko4At3SJct0APLwL1NkC7AYO7d2RMk4kY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UzqNxy52vawY8KKVXpYhTfA4Ih3dSzocNnPY7ywKj3k/8Z5LtR6JkkwjjYYWkCp6KGuv/H1b7irqGFW3xKAVSw7mc6H5+cNSuhkxT/wvTfTySUDrXttedzPtMgPFtuFfEGFY/PEcVJ0T2hq8B99O81PfaVX2izUc4gOA6SirSFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca; spf=pass smtp.mailfrom=kaechele.ca; dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b=fVBOUnvp; arc=none smtp.client-ip=54.39.219.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaechele.ca
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 22D34C005F;
-	Thu, 25 Apr 2024 22:55:45 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaechele.ca; s=201907;
-	t=1714100152; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=VFioysH9yUyQGrVMiRg1acctlzy9aYmlvYtITBCcttQ=;
-	b=fVBOUnvp29N1+NYfkHg2qnlzmqbD8LYpev8TUnKXdjTwalMPJZUxYnKskfweuGx2phUGsV
-	DQm8k0tPjZpC0TzuPajmvZSrZaK4aFmC9jY/Titp9PWFMQICub6BIoIErY5QvNqcGRkME+
-	7SARytKt8tYNsKyFMgmFo8TW09ZmDHU=
-Message-ID: <7dd1eb70-b011-4247-aea9-173ddcd17dc7@kaechele.ca>
-Date: Thu, 25 Apr 2024 22:54:13 -0400
+	s=arc-20240116; t=1714102365; c=relaxed/simple;
+	bh=rlkA8Tfx1kftGAWS+XPCa0fGOyYABYDLFZL4x1JQvZY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k7qmPnEYxgW6EdGk781D+O2M+yWclTSv0fikOAI4EWJ5rrJvE1Q65tBCjI7KidbUHhpt5HG4UcGFYKUUCILAcyTFVKNtUzGwFxScfsUFzgO4YfOcWT4XLKA1jGW7R9v7LefN2SLtummjQfZ4QqfyK/DkDJTQhZbastn2nmdpzhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=In/E4U0Z; arc=none smtp.client-ip=209.85.161.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5af23552172so1146933eaf.1;
+        Thu, 25 Apr 2024 20:32:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714102363; x=1714707163; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IhN+m9mbeX2bFTUshrw4dILYPw0aJ0lvZPzzuPSng2A=;
+        b=In/E4U0Z/1/P3qIr1lhyyuz+0LsdCtEPQLgjQ+/GXcNNRa8pXPWfvKqZF1YmE6Kbgq
+         qgMnmIdlzQPdj3HGTtFMqNIazTdhcEHHx1VDiMRfsboq6JBXC1krCYuyqDz70VoEpZYZ
+         Noz9cTO7cieA/99QQaP9X+eFQvqsV49WDWFhir5sizl7SBCGE8kMlOOnQ1tiDwONHDzE
+         wgZV7MtQRDRZmkvBZXIzmBZXjIsoMxl/uZOV35q/ymB9u64LAOyiQB6aaSnBwKWb4wwH
+         4q61ggllNeFdb2Wdsz5c0B4MgpCcabk2ZJ9qOA0eOMA2u3UbAqlAC9I3PUJFY8w23OgV
+         GhrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714102363; x=1714707163;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IhN+m9mbeX2bFTUshrw4dILYPw0aJ0lvZPzzuPSng2A=;
+        b=GDk81vrP7976BXAw1YLM932Vdco9PwbiCaNHdYIOfqKruLF1HOpqge+ddEwpU6r5E3
+         z3TXJ4g5EpGslrkWvkWXDuIFXdrRjGKdanHerDcMcgXqtyudpsHwcsYXGYSCP332TKbO
+         fCO04QKIQdCfalP2v6D51MCnrlBw6AnsUn2XfZwUO2KJ48h0j8O7qwVMU4F4sMFfxY8y
+         behj5k7G7fmN4XMXRlPXgjaCD9qeqp27IPWgshvNQqdsmMmv2iYCCAbu7q1vwrMHwbuP
+         npHU4ZuswPZJALdRhOy3dSErDnyoq/RaXwNj+HHBSk9CL9n0UI21ErhnzHswWyXWzXjP
+         DbsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSRyig7ghe2OCzit2HWD3dNfr/saxxcIlUX8qMTDJHzBcQky6tL3ahuKuYvxIyqHdCUeg2PGQVQ9TPH7qqlV1bOPfwhXKGpwqBXHX5+pVgT9wl40eH3b44/ldboCXyHbeN+Q2bIGDRqMrCxzOD2TD21ZN83xUl0UurRXEZHCdH2pJB/A==
+X-Gm-Message-State: AOJu0YyeNcnWio4zZ98R40jV8V4PPYxTEd+y18irkeF9tgCYIW4hdjuv
+	cEy00xkhLIuMjGqOTuPMKSDgbsTh5n4aueeCzD+OyIl8nNEs4SIy
+X-Google-Smtp-Source: AGHT+IHlikMW///E/9Hm0yA56rtputQLFo5jE10m2/JOEoKL5I5l2ew7SRNTQJM2oVWY1NoweE2KBg==
+X-Received: by 2002:a4a:8c42:0:b0:5ac:5c89:2d08 with SMTP id v2-20020a4a8c42000000b005ac5c892d08mr1805345ooj.1.1714102362839;
+        Thu, 25 Apr 2024 20:32:42 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id a13-20020a4a988d000000b005aa769c0c2csm3688127ooj.0.2024.04.25.20.32.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Apr 2024 20:32:42 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	richardcochran@gmail.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	guoren@kernel.org,
+	jszhang@kernel.org,
+	inochiama@outlook.com,
+	samuel.holland@sifive.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v15 0/5] riscv: sophgo: add clock support for sg2042
+Date: Fri, 26 Apr 2024 11:32:34 +0800
+Message-Id: <cover.1714101547.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Felix Kaechele <felix@kaechele.ca>
-Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add ft5426
-To: Andreas Kemnade <andreas@kemnade.info>,
- Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- o.rempel@pengutronix.de, u.kleine-koenig@pengutronix.de,
- hdegoede@redhat.com, ye.xingchen@zte.com.cn, p.puschmann@pironex.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, caleb.connolly@linaro.org
-References: <20240404222009.670685-1-andreas@kemnade.info>
- <20240404222009.670685-3-andreas@kemnade.info>
- <CAHp75VeZ9U_+1rJQjr4KvvzjYQGzfKtk+BK00vqvKcVn2-yP3g@mail.gmail.com>
- <20240405182832.4e457695@aktux>
- <CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
- <20240425185417.0a5f9c19@aktux>
-Content-Language: en-US
-In-Reply-To: <20240425185417.0a5f9c19@aktux>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-On 2024-04-25 12:54, Andreas Kemnade wrote:
-> On Fri, 5 Apr 2024 20:21:19 +0300
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->
->> On Fri, Apr 5, 2024 at 7:28 PM Andreas Kemnade <andreas@kemnade.info> wrote: >>> On Fri, 5 Apr 2024 18:13:45 +0300
->>> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+From: Chen Wang <unicorn_wang@outlook.com>
 
-...
+This series adds clock controller support for sophgo sg2042.
 
->>>> Why a different vendor prefix?
+Thanks,
+Chen
 
-...
+---
 
->>> I sorted by the numbers. Looking at datasheets for other controllers I see >>> https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf
->>> it only mentions FocalTech Systems Co., Ltd.
->>
->> But does the driver use that? AFAICS it uses edt. Perhaps it's due to
->> a business split, not to my knowledge anyway.
+Changes in v15:
 
-I've been looking into this over the past few weeks as I was working on 
-mainline support for an Android device.
-And please forgive me if any of the following is not fully accurate, I'm 
-not an industry expert.
+  The patch series is based on v6.9-rc5.
 
-After some research, my understanding of this is as follows:
+  Improved the dirvier code as per 3rd review comments from Stephen Boyd.
+  - Converted all parents described by strings to use clk_parent_data or
+    clk_hw directly.
+  - Just use struct clk_init_data::parent_hws when only have a clk_hw.
+  - Removed extra cleanup when use devm.
+  - Some misc code improvements.
 
-- There are companies that make touch ICs, LCD driver ICs and sometimes 
-even ICs that are both. Focaltech or Himax are examples of such companies.
+Changes in v14:
 
-- There are companies that make LCMs. These are complete assemblies of 
-panel, backlight, touch layer and driver circuitry PCBs. This is what 
-OEMs generally purchase when they design a consumer device. Emerging 
-Display Technologies Corp. (EDT) is such a LCM manufacturing company. 
-More often than not LCM manufacturers do not make their own driver ICs.
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [15].
 
-LCM manufacturers include ICs from Focaltech in their LCMs.
-To my knowledge Focaltech is not a manufacturer of LCMs.
+  Improved the dirvier code as per 2nd review comments from Stephen Boyd.
+  - Inline the header file into source file.
+  - Use devm_xxx functions for pll/div/gate registeration.
+  - Use clk_parent_data for mux clocks initialization.
+  - Use u32 for registers readl/writel.
+  - Use devm_platform_ioremap_resource instead of devm_of_iomap.
+  - Cleanup some dead code and add definitions for some magic numbers.
+  - Add include files missed.
+  - Use kernel-doc to improve comments for some structure and functions.
+  - Other misc code cleanup work as per input from reviewers.
 
-As such, an interpretation of the compatible string "edt,edt-ft5406" 
-could be: Unspecified EDT LCM with Focaltech FT5406 IC.
+Changes in v13:
 
- From my perspective, more correct would either be something like 
-"edt,etm070001bdh6" (the LCM by EDT that contains this IC, especially if 
-it had model specific quirks) or "focaltech,ft5406".
-But "edt,edt-ft5406" is incorrect if being specific is the goal here.
-Given that the driver predates much of the DT binding rigour it's what 
-we have now though.
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [14].
 
-> Well, lets cite edt-ft5x06.rst:
->
-> "The edt-ft5x06 driver is useful for the EDT "Polytouch" family of capacitive > touch screens. Note that it is *not* suitable for other devices based 
-on the
-> focaltec ft5x06 devices, since they contain vendor-specific firmware. In
-> particular this driver is not suitable for the Nook tablet."
+  Just added a minor fix for clk driver which was missed in v12.
 
-That contradicts my experience with this driver. It works fine on a BOE 
-TV080WXM-LL4 LCM with a FT8201 without modifications.
+Changes in v12:
 
-> So chips from focaltech which can be equipped with different firmware?
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [13].
 
-Firmware can change, the vendor drivers support handling firmware transfers.
-Apparently firmware is handled differently, depending on how a 
-manufacturer designs their LCM.
-They can be shipped without flash, with flash but no firmware programmed 
-or complete with firmware.
+  Improved the dirvier code as per review comments from Stephen Boyd.
+  - Remove default y for CLK_SOPHGO_SG2042.
+  - Optimize sg2042_pll_get_postdiv_1_2, move postdiv1_2 to the function.
+    scope and add more explaniation.
+  - Optimize sg2042_get_pll_ctl_setting.
+  - Switch to platform driver.
+  - Use clk_hw for initialization of struct clks.
+  - Don't use ignore_unused when using critical.
+  - Other code cleanup as per input form the reviewers.
 
-In all but the last scenario the driver would have to load (and possibly 
-program to flash) the firmware for the LCM to be fully operational to 
-specifications. Today, this driver doesn't do that. As such the 
-behaviour is unlikely to change and could as well be described in the 
-devicetree instead of having the driver try guessing.
+Changes in v11:
 
-I personally would rather trust whoever is performing the integration 
-work to properly describe the hardware in the devicetree if the firmware 
-doesn't allow for a definitive way to identify how it would like to be 
-treated.
-If the driver ever gained firmware handling features I'd expect the 
-filename for the firmware to be defined in the devicetree together with 
-the properties describing the treatment it expects.
+  The patch series is based on v6.8-rc5. You can simply review or test the
+  patches at the link [12].
 
-> So edt prefix means EDT firmware?
+  Quick fixed some dt_binding_check errors reported by Rob.
 
-I don't think that's how the compatible strings are used today, but it 
-is what would make sense in my opinion.
+Changes in v10:
 
-> Looking around I found this:
->              if (tsdata->version == EV_FT)
->                          swap(x, y);
-> ...
->                 case 0x59:  /* Evervision Display with FT5xx6 TS */
->                          tsdata->version = EV_FT;
->
-> I need swap(x.y), I am using touchscreen-swapped-x-y property now.
-> So evervision prefix?
+  The patch series is based on v6.8-rc4. You can simply review or test the
+  patches at the link [11].
 
-The compatible string doesn't have any bearing on whether x and y are 
-swapped. The driver relies on its device detection heuristic for that 
-determination.
-Ideally, the driver would allow describing this property
+  Add input clocks for rpgate & clkgen.
 
-   1. in the devicetree using the "touchscreen-swapped-x-y" property 
-from the common touchscreen bindings
+Changes in v9:
+  The patch series is based on v6.8-rc2. You can simply review or test the
+  patches at the link [10].
 
-   2. by extending the edt_i2c_chip_data struct to hold that property 
-and set it based on the compatible string if it is, in fact, a property 
-of that specific IC
+  From this version, drop the system-controller node due to there is no actual
+  device corresponding to it in IC design. SYS_CTRL is just a registers segment
+  defined on TRM for misc functions. Now three clock-controllers are defined for
+  SG2042, the control registers of the three clock-controllers are scattered in
+  different memory address spaces:
+  - the first one is for pll clocks;
+  - the second one is for gate clocks for RP subsystem;
+  - the third one is for div/mux, and gate clocks working for other subsystem
+    than RP subsystem.
 
-The only reason I created this wall of text is because I am intending to 
-submit a very similar patch, using the "focaltech,ft8201" string. So 
-getting a decision on this would be helpful for my efforts as well.
+Changes in v8:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [9].
+  
+  In this version, the main change is to split one clock provider into two.
+  Strictly follow the hardware instructions, in the memoymap, the control
+  registers of some clocks are defined in the SYS_CTRL segment, and the
+  control registers of other clocks are defined in the CLOCK segment.
+  Therefore, the new design defines two clock controllers, one as a child
+  node of the system control and the other as an independent clock controller
+  node.
 
-Regards,
-Felix
+  This modification involves a major modification to the binding files, so
+  the reviewed-by tags has been deleted.
+
+Changes in v7:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [8].
+  - fixed initval issue.
+  - fixed pll clk crash issue.
+  - fixed warning reported by <lkp@intel.com>
+  - code optimization as per review comments.
+  - code cleanup and style improvements as per review comments and checkpatch
+    with "--strict"
+
+Changes in v6:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [7].
+  - fixed some warnings/errors reported by kernel test robot <lkp@intel.com>.
+
+Changes in v5:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [6].
+  - dt-bindings: improved yaml, such as:
+    - add vendor prefix for system-ctrl property for clock generator.
+    - Add explanation for system-ctrl property.
+  - move sophgo,sg2042-clkgen.yaml to directly under clock folder.
+  - fixed bugs for driver Makefile/Kconfig
+  - continue cleaning-up debug print for driver code.
+
+Changes in v4:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [5].
+  - dt-bindings: fixed a dt_binding_check error.
+
+Changes in v3:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [3].
+  - DTS: don't use syscon but define sg2042 specific system control node. More
+    background info can read [4].
+  - Updating minor issues in dt-bindings as per input from reviews.
+
+Changes in v2:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [2].
+  - Squashed the patch adding clock definitions with the patch adding the
+    binding for the clock controller.
+  - Updating dt-binding for syscon, remove oneOf for property compatible;
+    define clock controller as child of syscon.
+  - DTS changes: merge sg2042-clock.dtsi into sg2042.dtsi; move clock-frequency
+    property of osc to board devicethree due to the oscillator is outside the
+    SoC.
+  - Fixed some bugs in driver code during testing, including removing warnings
+    for rv32_defconfig.
+  - Updated MAINTAINERS info.
+
+Changes in v1:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1699879741.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1701044106.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1701691923.git.unicorn_wang@outlook.com/ [3]
+Link: https://lore.kernel.org/linux-riscv/MA0P287MB03329AE180378E1A2E034374FE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/ [4]
+Link: https://lore.kernel.org/linux-riscv/cover.1701734442.git.unicorn_wang@outlook.com/ [5]
+Link: https://lore.kernel.org/linux-riscv/cover.1701938395.git.unicorn_wang@outlook.com/ [6]
+Link: https://lore.kernel.org/linux-riscv/cover.1701997033.git.unicorn_wang@outlook.com/ [7]
+Link: https://lore.kernel.org/linux-riscv/cover.1704694903.git.unicorn_wang@outlook.com/ [8]
+Link: https://lore.kernel.org/linux-riscv/cover.1705388518.git.unicorn_wang@outlook.com/ [9]
+Link: https://lore.kernel.org/linux-riscv/cover.1706854074.git.unicorn_wang@outlook.com/ [10]
+Link: https://lore.kernel.org/linux-riscv/cover.1708223519.git.unicorn_wang@outlook.com/ [11]
+Link: https://lore.kernel.org/linux-riscv/cover.1708397315.git.unicorn_wang@outlook.com/ [12]
+Link: https://lore.kernel.org/linux-riscv/cover.1711527932.git.unicorn_wang@outlook.com/ [13]
+Link: https://lore.kernel.org/linux-riscv/cover.1711692169.git.unicorn_wang@outlook.com/ [14]
+Link: https://lore.kernel.org/linux-riscv/cover.1713164546.git.unicorn_wang@outlook.com/ [15]
+
+---
+
+Chen Wang (5):
+  dt-bindings: clock: sophgo: add pll clocks for SG2042
+  dt-bindings: clock: sophgo: add RP gate clocks for SG2042
+  dt-bindings: clock: sophgo: add clkgen for SG2042
+  clk: sophgo: Add SG2042 clock driver
+  riscv: dts: add clock generator for Sophgo SG2042 SoC
+
+ .../bindings/clock/sophgo,sg2042-clkgen.yaml  |   61 +
+ .../bindings/clock/sophgo,sg2042-pll.yaml     |   53 +
+ .../bindings/clock/sophgo,sg2042-rpgate.yaml  |   49 +
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   12 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   55 +-
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/sophgo/Kconfig                    |    8 +
+ drivers/clk/sophgo/Makefile                   |    2 +
+ drivers/clk/sophgo/clk-sophgo-sg2042.c        | 1870 +++++++++++++++++
+ .../dt-bindings/clock/sophgo,sg2042-clkgen.h  |  111 +
+ include/dt-bindings/clock/sophgo,sg2042-pll.h |   14 +
+ .../dt-bindings/clock/sophgo,sg2042-rpgate.h  |   58 +
+ 13 files changed, 2294 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml
+ create mode 100644 drivers/clk/sophgo/Kconfig
+ create mode 100644 drivers/clk/sophgo/Makefile
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-pll.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-rpgate.h
+
+
+base-commit: ed30a4a51bb196781c8058073ea720133a65596f
+-- 
+2.25.1
+
 
