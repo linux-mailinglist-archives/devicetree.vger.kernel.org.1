@@ -1,116 +1,154 @@
-Return-Path: <devicetree+bounces-63001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91D38B36FF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:16:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D22C48B3709
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26E9C1C2192A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:16:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D7161F225F2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD7B145B14;
-	Fri, 26 Apr 2024 12:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4008E145B30;
+	Fri, 26 Apr 2024 12:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="jUAcl225"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SOX0o0z6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D12D2144D12;
-	Fri, 26 Apr 2024 12:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5CA41C6D
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 12:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714133782; cv=none; b=AR9OYl9SYUGFuOOMCt72pEO6/UNeSIWM2LztZxZRXBhLanb23ajGEB1M/byIxkJBFH/isK2fzRstOVtM5Xx5GIi/geBxYh7o3f902rMxARaQpWZ2h9+G6GgJoRmqsWCFLZm3tK7ZlJ+j5Ty0R5eA5FLca+xGlf7bO80VLCLf9Do=
+	t=1714134012; cv=none; b=RRvTGthq8nI+DTQc4gO3zLU7jVn3v4SZBDVU4bD9kG2B7g/Ucfsr2C0s5QXNytdTvqywWZRuGbYEc1cGPgKzdR9WHHKfFvKGIwGw5NNo0E5E+ur7yJ4T8U24ADZ6Az4gDbwz5dOXZZe4b79r7BnpU2vP90isW3SRRPiH4xJj3dA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714133782; c=relaxed/simple;
-	bh=UMlQaK/5MNgWMKRYoDEUTT/B1NefwRCqD1vtAVtPAsY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=eZS4ur0lV39Y1+wVLptpTq6RORGYeMlaLsUvIATZn2PAYeI0CE9EGL3QUr/xhPScN5Dn8NVEhe1S3WV894RZwlV8LieGEtibcaO2mjtgGMAgeY8pk5coMbH3NGxS18F3EBD6PR09UlB42ePaNdXV8EzLIQrLI4zZdJlozndFozo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=jUAcl225; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 677131BF203;
-	Fri, 26 Apr 2024 12:16:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1714133776;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iKKtm36SBTWsbDXzRyPwPacxtTX+fdl2bBrbOBDwJoM=;
-	b=jUAcl225gOyeJ08AulAYmoy2CFU+zi+HTn0Njr2U5MjRjPgTzeGSPgV5kMX9NQ0q3ipbdN
-	kwO2c/cq0yHvyWt1nVOx0r2P0NwSgn0Uz8mvnsiXzkOXcw20WTfEXQXDHL+pW8LPStfetd
-	422bbzHf7xIhCyMDZjZa6jHgSPPH/hCQIf/CfK6HxxPiqtDlBu3DCPzpa8wBCmTUtFVH9k
-	A4dSJotdzHs7Czt41crDAPrFDF1mTrRKmb2fgnybIopJJTw+EQ6JCFcp/pwNUEc9zTFL2V
-	TydqSpE1FxZNkXf+OXkiS392iMHiKPid4fsK2JtzIva5tNivT+/9f50Jy1l/7Q==
-Message-ID: <44e366ea-964a-4515-9027-2a2edfe12512@arinc9.com>
-Date: Fri, 26 Apr 2024 15:15:51 +0300
+	s=arc-20240116; t=1714134012; c=relaxed/simple;
+	bh=Dy1L4klZ6E+fyZtM7GjTA+qKnPaR5xUfnO2DtXSeshA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZHn0Fvl+ScACrNBqkJv+eeLiR3gtPPJgRq2yW0ZKUFoeezYV5ka5sYd/ZfX9UC22dMrDwGKoFcMYRDz6UXq+kvBRlqDJ/ekELKGaAwyJAaDBnk1nYA2XHc+PGdQhnnVzti1VuYaJlHmXQcFTGL5l4cI4OW72arVrCTrBJEfUtKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SOX0o0z6; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41b782405d5so8709575e9.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 05:20:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714134008; x=1714738808; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BvGxGr2jzc7HNRAdQ7sDWvGQAeqzlPRu9vORrfxhJ08=;
+        b=SOX0o0z61zdV4+fgRNnMGR2E7G7JnOCaf65es7OJ1W5qMnBXhdGWDzV/gsOe/ZbV5g
+         3FDDmeB58fPGLyT79m71TjRl1yclzXAlR/yzz20VvInyt0vxKYcWm36gbWYgp4npqcNF
+         yVDDUeiy1TDUBD1mXqtQsuBrlW6lBhs2pscX0P77rFWhb0HB2icyw+zeN78h+4iR70hx
+         9QaoO2UjGHKXSco4IwkaGqupDmpca9v25XW6yDcjx8BAf6hAF6mlq4jCfmkJATzEK0MR
+         rhQmfswkaAXRAds4LphvvkHuZ3vnFXR7qEsi612seypUmG2l8iEYtOZiw/0UDvxOqHuz
+         nwxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714134008; x=1714738808;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BvGxGr2jzc7HNRAdQ7sDWvGQAeqzlPRu9vORrfxhJ08=;
+        b=ikz3yTkn1LI66qqz1mk2S31v9ngZMBk9uC93+ZEUAhHFx4u+evzk2N7nMNrbxOKNJo
+         E+in8TkW77mRBDoLOit7m4ThpOh1l26L2IdxD9BgvkoFuEq3U4g1mA07Wi9/aAFTfPc/
+         FHZkVif1mVcarFMfwkyxfPTI6vaGpUwYs4s5MscUCHkH55wW6DHIJu+xEja+QBu6zpwQ
+         39BVbArMlZhmae9l5qLfeW1n+Nc2WmYSNLdaFTLQqhdpmkQaM3bi4m+WzaqQePhhp044
+         ngOR4D+vAUlFDNjvqWz31jSFEmN+Q03E5kSDeiYlZ4XDwz76tWQxY139qv8G587keMg9
+         PtDw==
+X-Forwarded-Encrypted: i=1; AJvYcCWyC/YcabLmOVSojLj65iPoffLZnRMrMGEnvuCMPS0wOmuonodTUch4Z0w6ttwyYQoyBFE6f+muL/s5kgcGcp5AAXH7O9/liiRiqA==
+X-Gm-Message-State: AOJu0YzMT+vjAd9eCxov3oOcYSDspQStldr42osu8Bt9tUhVc1Lb8Ufp
+	+ck5bPmSLpHH/JJKYTEsur6H2nBZX8LN7okid1gkjiUv4o1Wg8GxLmEwlxv3ias=
+X-Google-Smtp-Source: AGHT+IEsg35qRGx7lt+VkeY9EjpUvvgqNyRCP2x9AyOQiNHCiXlefq3poByoLhtygl/AAoAgySNIAQ==
+X-Received: by 2002:adf:a457:0:b0:34a:4f1c:3269 with SMTP id e23-20020adfa457000000b0034a4f1c3269mr2072375wra.0.1714134008049;
+        Fri, 26 Apr 2024 05:20:08 -0700 (PDT)
+Received: from gpeter-l.lan ([2a0d:3344:2e8:8510:63cc:9bae:f542:50e4])
+        by smtp.gmail.com with ESMTPSA id q2-20020adff942000000b00346bda84bf9sm22478146wrr.78.2024.04.26.05.20.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Apr 2024 05:20:07 -0700 (PDT)
+From: Peter Griffin <peter.griffin@linaro.org>
+To: alim.akhtar@samsung.com,
+	avri.altman@wdc.com,
+	bvanassche@acm.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	James.Bottomley@HansenPartnership.com,
+	martin.petersen@oracle.com
+Cc: linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	tudor.ambarus@linaro.org,
+	andre.draszik@linaro.org,
+	saravanak@google.com,
+	willmcvicker@google.com,
+	kernel-team@android.com,
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH v3 0/6] ufs-exynos support for Tensor GS101
+Date: Fri, 26 Apr 2024 13:19:58 +0100
+Message-ID: <20240426122004.2249178-1-peter.griffin@linaro.org>
+X-Mailer: git-send-email 2.44.0.769.g3c40516874-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Set PHY address of MT7531 switch to 0x1f on MediaTek
- arm64 boards
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com>
- <ff196055-ecd8-4563-bc01-ff2533a07109@arinc9.com>
- <a60fc16d-4236-427c-b4a8-ec6fdf62d9f0@arinc9.com>
- <facb8204-c2b3-4084-a2e3-4fbf3a3fdc9d@arinc9.com>
-Content-Language: en-US
-In-Reply-To: <facb8204-c2b3-4084-a2e3-4fbf3a3fdc9d@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
 
-On 23.04.2024 12:16, Arınç ÜNAL wrote:
-> On 08/04/2024 10:22, Arınç ÜNAL wrote:
->> On 31.03.2024 12:28, arinc.unal@arinc9.com wrote:
->>> On 14.03.2024 15:20, Arınç ÜNAL via B4 Relay wrote:
->>>> Hello.
->>>>
->>>> This is a small patch series setting the PHY address of MT7531 to 0x1f on
->>>> all boards that have the switch.
->>>>
->>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>> ---
->>>> Arınç ÜNAL (2):
->>>>        arm64: dts: mediatek: mt7622: set PHY address of MT7531 switch to 0x1f
->>>>        arm64: dts: mediatek: mt7986: set PHY address of MT7531 switch to 0x1f
->>>>
->>>>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++--
->>>>   arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts             | 4 ++--
->>>>   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 4 ++--
->>>>   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts             | 4 ++--
->>>>   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts             | 4 ++--
->>>>   5 files changed, 10 insertions(+), 10 deletions(-)
->>>> ---
->>>> base-commit: ba90af39ba57b3fe3ecfdba0c87a80d20c7b788d
->>>> change-id: 20240314-for-mediatek-mt7531-phy-address-9d0b4cfeca21
->>>>
->>>> Best regards,
->>>
->>> Reminder that this patch series is waiting.
->>
->> Another reminder that this patch series is waiting to be applied.
-> 
-> Here's the third reminder for someone to apply this. From now on, I am
-> going to reply to this thread once every day until this patch series is
-> applied.
+Hi Martin, James & Alim,
 
-Fourth.
+This series adds support to the ufs-exynos driver for Tensor gs101 found
+in Pixel 6. It was send previously in [1] and [2] but included the other
+clock, phy and DTS parts. This series has been split into just the
+ufs-exynos part to hopefully make things easier.
 
-Arınç
+With this series, plus the phy, clock and dts changes UFS is functional
+upstream for Pixel 6. The SKhynix HN8T05BZGKX015 can be enumerated,
+partitions mounted etc.
+
+The series is split into some prepatory patches for ufs-exynos and a final
+patch that adds the gs101 support.
+
+Note the sysreg clock has been moved to ufs node as fine grained clock
+control around the syscon sysreg register accesses doesn't result in
+functional UFS.
+
+regards,
+
+Peter
+
+Changes since v2:
+ - Split into separate per subsystem/maintainer series
+   (ufs, phy, clock, dts)
+ - Remove ufs_ prefix on clock names (Rob)
+
+Changes since v1:
+ - collect up tags
+ - re-order samsung,exynos-ufs.yaml as per Krzysztof review
+ - Add sysreg clock to ufs node (Andre)
+
+lore v1: https://lore.kernel.org/linux-clk/20240404122559.898930-1-peter.griffin@linaro.org/
+lore v2: https://lore.kernel.org/linux-kernel/20240423205006.1785138-1-peter.griffin@linaro.org/
+
+
+Peter Griffin (6):
+  dt-bindings: ufs: exynos-ufs: Add gs101 compatible
+  scsi: ufs: host: ufs-exynos: Add EXYNOS_UFS_OPT_UFSPR_SECURE option
+  scsi: ufs: host: ufs-exynos: add EXYNOS_UFS_OPT_TIMER_TICK_SELECT
+    option
+  scsi: ufs: host: ufs-exynos: allow max frequencies up to 267Mhz
+  scsi: ufs: host: ufs-exynos: add some pa_dbg_ register offsets into
+    drvdata
+  scsi: ufs: host: ufs-exynos: Add support for Tensor gs101 SoC
+
+ .../bindings/ufs/samsung,exynos-ufs.yaml      |  38 +++-
+ drivers/ufs/host/ufs-exynos.c                 | 197 ++++++++++++++++--
+ drivers/ufs/host/ufs-exynos.h                 |  24 ++-
+ 3 files changed, 241 insertions(+), 18 deletions(-)
+
+-- 
+2.44.0.769.g3c40516874-goog
+
 
