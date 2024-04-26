@@ -1,119 +1,114 @@
-Return-Path: <devicetree+bounces-63187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9075F8B3F83
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:43:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D40D68B3F8A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C27F91C21E0E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:43:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FFE3282CDF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF58663B8;
-	Fri, 26 Apr 2024 18:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD4F6FA8;
+	Fri, 26 Apr 2024 18:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEpZMXqu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X+/PgrX/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0FF4A23;
-	Fri, 26 Apr 2024 18:43:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D62363AE
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:44:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714157002; cv=none; b=kspB0dbJ9nkkwYCcEsbu7mRWEyG4fVEeDbQIIV7grsVGuz3Dz63gxUyrYxT7snQnowxfBt1fm1HW1zkzeF28wNcnXoBBtYyPpk/2G/xA3AyaLzjRw0cHBP2tW7taeiACgIwNEBkuBmn2RjzGDEIgVXAwbhyxF6CAkE5m1aC2njY=
+	t=1714157060; cv=none; b=JjysGclNdTD66CtBJc16cfC85nOwHYZGeQ7/VfXUfr21Wl6B3ZQ/rL0FlQjaW79OSlwrxenGtGa4WsE0+vr+L/zND5/snL6A8d5hjRwDTD+BJecmdbVAYEO9z2tXQuUcnh/UMN83g1d6dgK8MNCOP1m2azQcFAkN087xniBaT0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714157002; c=relaxed/simple;
-	bh=//roZ7d56KeyEoiiQbKnxou+fpOtupIebykulRJaAnk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LAjx++ZR7WLEjmoTnCSR/QE01XoLaS5rUkwSIS8EUHcoU62Z4raSFyl8gLOeVdyecAn0+eKCujBr0043wrzcWDlDb1RVSZUoQfGGqJH7qKkm78TYl/SP4nP5JaMeDvCXfdVWqC48DL3Y0XQrw3jfzl0+70JVFfIKdfLzDt/7+II=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEpZMXqu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E04B0C113CD;
-	Fri, 26 Apr 2024 18:43:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714157002;
-	bh=//roZ7d56KeyEoiiQbKnxou+fpOtupIebykulRJaAnk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pEpZMXquU9zZvYVZjS04pb+WnKxoGkbsYMhf9/TGM5BvUTar3e6Lvy52Q748UiPXi
-	 +YMQeYBpomVn/1IK01fDbkBHSwj9PEbMomSkc1J0HisKywT/2EHN6jEPmlQCM0DD5U
-	 y48DtWApNH3E3nHltE3hWBZErpw92MHtOvP/TVTYrxQcbufqXZEdzZcqbQqdG8JniR
-	 vlQQoapcuHOqFyaged4CjkUOwro5cofI1yDjSbICZ7+2TysZw1F6CJp7d/38MsFFAX
-	 rG7xFLtvuKBUcY8ZBh2yWPjubCehAQlfrJOGRB0Vet5TkWuFDEKiP14HcEY96EqFAY
-	 ydH4x1g3aF2Dw==
-Date: Fri, 26 Apr 2024 13:43:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
-	linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au
-Subject: Re: [PATCH v3 08/14] dt-bindings: fsi: ast2600-fsi-master: Switch to
- yaml format
-Message-ID: <20240426184319.GA2558853-robh@kernel.org>
-References: <20240425213701.655540-1-eajames@linux.ibm.com>
- <20240425213701.655540-9-eajames@linux.ibm.com>
- <5822e000-01d3-442c-bb52-04fab87cb3da@kernel.org>
- <24e7644e-f9ff-4a4b-8883-33b2f69b36cf@linux.ibm.com>
+	s=arc-20240116; t=1714157060; c=relaxed/simple;
+	bh=VO6FRrG21n/ml/pdIIwEve7aGeOZZBBkoQGNlRY0wdE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ATliY9XqpjXgIgR724rnK2WOV7qF4XEIimFeBbK+VJCXOUI6arnpNnvV/BsUCHl+CTn4FVlq4teS5UfmwzyZguw3VMavd1gpEZkx53Hti8JhnTyYMe5pVqi+Ary28fQwyqTp1d/zZ/zrwZVU3M/5eWbGEBJIBG74JP7NLh9kBVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X+/PgrX/; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-de56d4bb72bso2902503276.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 11:44:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714157058; x=1714761858; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WiA1UHPkUJSpPMTheghbL/TTPsSdmUdeU6jtU/WQ82c=;
+        b=X+/PgrX/ZisgeqDkFiODYRd1fluO+R9DGxAf2/mGFNxANSs4nByRec3MdzDAJWeRpA
+         7eYrrSVI7FlQKZj2sS/68FkKrfwKJQ1BF6RiC3+u14BOqwOHUXH9T5fa3wTdopt0vqrC
+         8q955VZdXL0NCEtDXskXUbPbcR19Hmlmp/ZMb4dz1188fmXR21nDThQtlJ1TbNSNauF8
+         ft99bBHfxv+MHiRkH7bFU/wi87dWGo3YOdtSAjbE9CrfQCK3lX7DwCmWy2lY0LQWPesL
+         r0mIzl1HbGnZBuklNflLjs5FEwFSfOMhRvtE+xZ6jjz6dsOmMuQeaVvrfOK+PZvkXhwy
+         houQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714157058; x=1714761858;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WiA1UHPkUJSpPMTheghbL/TTPsSdmUdeU6jtU/WQ82c=;
+        b=plQz3N0HLRyK4qxZBpFxcufE6F9e4eHyLaEq4+YX7bHvmXQU6Pv5SBO0ye6jFgaAfW
+         XLFxuHLerVfeNVpMnQdCZAUcXIWTYrBW2UJvK1qKJds9WmomDsju3/tj3Y31EfruQGOU
+         rRp8qwWLT5u786rds8y9M460SeOPg9Ni0ApYCQw0Gz7EoLyZfgvWAikK/LGDzXOiBm25
+         rhpwkGblA6MmUQ+q2OOXq0bM/c8wwW9ulz11S3rRM0XyLvbLvKO0q0Pyln1PGWaX6krD
+         A0lK9TSRF3RXt8F0hLF8zTRQ0JYSm8YMXeEMr5ZEZCmBQBWQdRPlkwjMV5nVz+U98p+g
+         dBUg==
+X-Forwarded-Encrypted: i=1; AJvYcCXS73V3ZGEUagIB6CTr9csArY/Trk+Abftry84gaXp7/JvgUz3zTiDvJx0GuZKw5eONP1/RnwdmnwCnm8gTEeTdvI2dtxZeEAQVeg==
+X-Gm-Message-State: AOJu0YzMIRo+aPRqmaa/J+/lXV83PWXcQJCCe9JayGGZTO0YKvBofr69
+	KlOzkmna97Rja5/UXqtUSGjLuPWTpRU/xmOo2z+QbCPoUXnw/wHPqRFiIeTIdnXfiTLveUiHA3v
+	uHE0VLHTd6x1/rP6nSfuuX04PxcHD9+i/YKJuGA==
+X-Google-Smtp-Source: AGHT+IH7mi4gG3qx/p/7EOM36O+F7q1UlF4E1n+3QC/o3z4uwxHQybEDslseHLh/YyOCPM7gvMVPXGWCUmmpBIpCQmY=
+X-Received: by 2002:a25:5f05:0:b0:dcc:245b:690e with SMTP id
+ t5-20020a255f05000000b00dcc245b690emr3787471ybb.40.1714157058089; Fri, 26 Apr
+ 2024 11:44:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <24e7644e-f9ff-4a4b-8883-33b2f69b36cf@linux.ibm.com>
+References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com> <20240426-a750-raytracing-v2-4-562ac9866d63@gmail.com>
+In-Reply-To: <20240426-a750-raytracing-v2-4-562ac9866d63@gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 26 Apr 2024 21:44:07 +0300
+Message-ID: <CAA8EJprn3P4CKABJcepGTthsASLEqiU4Es06YEoP-PmMRBrv4w@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] drm/msm/a7xx: Initialize a750 "software fuse"
+To: Connor Abbott <cwabbott0@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jun Nie <jun.nie@linaro.org>, 
+	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Apr 26, 2024 at 10:13:52AM -0500, Eddie James wrote:
-> 
-> On 4/26/24 01:25, Krzysztof Kozlowski wrote:
-> > On 25/04/2024 23:36, Eddie James wrote:
-> > > Switch to yaml for the AST2600 FSI master documentation.
-> > > 
-> > > Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> > > ---
-> > >   .../fsi/aspeed,ast2600-fsi-master.yaml        | 72 +++++++++++++++++++
-> > >   .../bindings/fsi/fsi-master-aspeed.txt        | 36 ----------
-> > >   2 files changed, 72 insertions(+), 36 deletions(-)
-> > >   create mode 100644 Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
-> > >   delete mode 100644 Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml b/Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
-> > > new file mode 100644
-> > > index 000000000000..f053e3e1d259
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
-> > > @@ -0,0 +1,72 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Aspeed FSI master
-> > > +
-> > > +maintainers:
-> > > +  - Eddie James <eajames@linux.ibm.com>
-> > > +
-> > > +description:
-> > > +  The AST2600 and later contain two identical FSI masters. They share a
-> > > +  clock and have a separate interrupt line and output pins.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - "aspeed,ast2600-fsi-master"
-> > > +      - "aspeed,ast2700-fsi-master"
-> > This wasn't tested. No quotes. Do you see any other example like this?
-> 
-> 
-> Strangely this passes make dt_binding_check for me... And Rob's bot didn't
-> seem to catch it either. Just an oversight, I'll fix it.
+On Fri, 26 Apr 2024 at 21:34, Connor Abbott <cwabbott0@gmail.com> wrote:
+>
+> On all Qualcomm platforms with a7xx GPUs, qcom_scm provides a method to
+> initialize cx_mem. Copy this from downstream (minus BCL which we
+> currently don't support). On a750, this includes a new "fuse" register
+> which can be used by qcom_scm to fuse off certain features like
+> raytracing in software. The fuse is default off, and is initialized by
+> calling the method. Afterwards we have to read it to find out which
+> features were enabled.
+>
+> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
+> ---
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 88 ++++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.h |  2 +
+>  2 files changed, 89 insertions(+), 1 deletion(-)
+>
 
-Disabled due to yamllint bug. The fix is now released, so that reminds 
-me to go enable it.
+I didn't check the register bits, but the rest looks fine
 
-Rob
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+
+-- 
+With best wishes
+Dmitry
 
