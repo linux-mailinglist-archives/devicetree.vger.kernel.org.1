@@ -1,112 +1,91 @@
-Return-Path: <devicetree+bounces-63104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA7348B3BFC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 641468B3C44
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C6E028159C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:46:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EBAA283692
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D35149C64;
-	Fri, 26 Apr 2024 15:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53BA115F400;
+	Fri, 26 Apr 2024 16:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jkGIqNYL"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="FDYTfffN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB783146D4B;
-	Fri, 26 Apr 2024 15:46:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB07215A4BE;
+	Fri, 26 Apr 2024 16:00:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714146395; cv=none; b=jNNKki/UsFt+8cWfj8gkRppgDnUOPVwiXun+naGKD1yxVmf4a7/YVqcrsWGHpXSmMpHEc5txwRi6+UkrTXpozyg+kEaQGdXw9NeJUNDt+dVgY/K+/YerridKFi+/Ix6CFcgJUH2qAd3EkSq8KvUa18AwprHbUZMn7BzG3LOwxx4=
+	t=1714147260; cv=none; b=DpgFe/8exPKqlOEm64IWCR1qhRm/0Gw9KuiKYehKVfnX//LqT3gpD7Z4Qm7Z7Cf+rVztlO3KKnwRtWxOEfRdcDcpiM1y6i5ALdoR7waNvl+fh/1vys51/HwIz7aBRlawZweQmrbz/1nR6KSz7fZpraEAP6RqOP/jdjItsN3FyWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714146395; c=relaxed/simple;
-	bh=2UtRjw7d/gSUbQgwTtdM8Mdk81nwUGAZVscFer9sTJ8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T2+wzP+QcwMYeRJrlbImC/HU9PK7gJ/yfGmG9+T3fMfos56cy8BnNEtDdKzzSK7Pq8BIzoK8dZj7+2mK7eqrzHN0e3xJAgyvNkVu4rdwE1XzXPdlYg6InWm4po52tnlkaF9fxhD52CEf+zD5VbfbYEGGQ9om6+YJXyhYoXEBT3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jkGIqNYL; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a4702457ccbso312725066b.3;
-        Fri, 26 Apr 2024 08:46:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714146392; x=1714751192; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gXbTa+KajuTLrUP4WiAbVHIOdIZw5ZWXUZLSW6mrWPw=;
-        b=jkGIqNYLVQ4tu9hw5pl9eUDcglQhprzdCwXUDFIkOVSDAWgR6A6Iu0xlADsS0XDutV
-         NBB+emdKR8oTejV1pYtoqpwHfP3DxPpO4KYJfyFVq0g4Dlu2kvRsHJSHofvmmHI2L/mH
-         xh0OqLw+jbWbSrSvDw340wQFkqqRZ5vMGQQEpF+qJh8b3jhQRbXUbXL3fPn/yeh4AMrP
-         0wzndGi+KpBP9yNcipAAPdhVChTHOFNdBYqgHf1FqRWfLAvCcBv1S/2ewCXY62/wNUjI
-         FgeY4+BS3CPsMKsghmh5uNczPL69wVga3Sdvlty/1qlz5A+0HZAEEdaaMSXPvBCeaWDF
-         t4zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714146392; x=1714751192;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gXbTa+KajuTLrUP4WiAbVHIOdIZw5ZWXUZLSW6mrWPw=;
-        b=OFEJzRWWviyM40YzU24URzLKFTkRrs32Uf8eXblbVr9tDdcO2rmkkgNp/2mv4ez6+s
-         70Pd5/f2ey1eRHUKmQvHl3H1f4TSvg07tsiAMVdMXrWDbtIAzwbHycQUb5wDRy3nSQAS
-         n9+oi2HujeBmBYLZdPHcg1roygrclWNKiDTO/GQgEs6q2qCOw77F/lTjLOJNDARfP+xB
-         V6T6RKU6YE1nWNTQ6OQrbIxGtyIsqZy4fgQ8/TweU7lM8aj3wbjNd2cSXnVDdQ4ajH+B
-         gexlWuBHB/c6glxM705N+pvRUrwljA4wIEox66bN/cLDEh2aWUv4oQPUkMzzKLg0mvjJ
-         821g==
-X-Forwarded-Encrypted: i=1; AJvYcCXsy0AVmZdnvIfcVeII8/Rtmh4o7ZVFaTtKWFwW+V8ugara56uIeU2zkhocK6aGDWOei8PCyK2MGAD16Qmn+0FowAIKbZQKhMs5tbFjBhfD//DziN2D0jwyTFgGuUVGMW43pWU/6YkggE0=
-X-Gm-Message-State: AOJu0Yyty04BVMYZIwt1cYfx7InSY46/qSkUPjPWtgPubl86OfaxWPdY
-	45I4NXObvGWB0DXzw2wup5Tp9rZN9G1EEPNIfXAAiYdG8T5A/TIxHhpwUg==
-X-Google-Smtp-Source: AGHT+IHxfreGP7FO7+xHHu3l4Dz/DEVwOBePXHKsqR2tdwPTL8o49Zw2EMAh/HhvuAgnryGPnU5yEQ==
-X-Received: by 2002:a17:906:138d:b0:a58:b5b8:5805 with SMTP id f13-20020a170906138d00b00a58b5b85805mr2297574ejc.39.1714146392001;
-        Fri, 26 Apr 2024 08:46:32 -0700 (PDT)
-Received: from localhost (p200300e41f162000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f16:2000:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id l18-20020a1709065a9200b00a58a4ccf970sm2378527ejq.103.2024.04.26.08.46.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 08:46:31 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: tegra20-ac97: replace deprecated gpio suffix
-Date: Fri, 26 Apr 2024 17:46:29 +0200
-Message-ID: <171414637918.2300234.4054459462425570866.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240423120630.16974-1-sheharyaar48@gmail.com>
-References: <20240423120630.16974-1-sheharyaar48@gmail.com>
+	s=arc-20240116; t=1714147260; c=relaxed/simple;
+	bh=fCADD2dHSi+1tKZaQFs2hqkpmbPHOa9MHnJF49LhTq8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PuL+pgcK7TzLhRNL+FbgjaVyr98Gt5AO2OgOFwV0Skqec4j4VmUrizL6y0W+XVa6optUHlAPtCEuAKcl9KJ+GPpQQ3wbi1xFt3zoagDTYyc+Ui9lO6SX6pYhtdE07j4F8Zrikwg+h7DkWB/MjIJIgw9mA9TNalSs+npdJl4sfqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=FDYTfffN; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id D1A33885B4;
+	Fri, 26 Apr 2024 18:00:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1714147257;
+	bh=5qHEEgpwiFG2miTn8xs8E50XdPfGPzJ7ckT/98Ml6KI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FDYTfffNnOsIYfIN/TAx3FFrkDQnw1I8GBbZWMvr2/CplSFxq/wLQrKT56lNi3K77
+	 FmqOYxSUeX6GFs3ACYcGFuiXr+Nht2FaYMS1mfIOq7RVUyeUSaViJGzayhX4xfh9Is
+	 QywbKZ0B1AvIQJcF2yswf37FBgrQ3REALG8CnSwMogGqMOncWyISYFYM2/OqnAEZr0
+	 CYdXhRHO/CFjhkHGRCfc1W+N/JbNJPAYvgn2UjfQS2KqWQoXFxkKNVu7+Ab4DvrNf+
+	 5xahBNU8S1ajBZAQkmf90vqYDKiB23J0OWFHDHumcFe3oLP2bPe4RDA0nc/jPDh3rj
+	 J6uv3NNmNZDXw==
+Message-ID: <efee3462-e72b-48c0-81ee-a1f38f4791c7@denx.de>
+Date: Fri, 26 Apr 2024 17:48:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/11] net: stmmac: dwmac-stm32: support the phy-supply
+ regulator binding
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-8-christophe.roullier@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20240426125707.585269-8-christophe.roullier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Thierry Reding <treding@nvidia.com>
-
-
-On Tue, 23 Apr 2024 17:36:29 +0530, Mohammad Shehar Yaar Tausif wrote:
-> Replace "gpio" suffix with "gpios" for tegra20-ac97 dts as gpio
-> suffix is deprecated.
+On 4/26/24 2:57 PM, Christophe Roullier wrote:
+> Configure the phy regulator if defined by the "phy-supply" DT phandle.
 > 
-> 
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
 
-Applied, thanks!
-
-[1/1] ARM: dts: tegra20-ac97: replace deprecated gpio suffix
-      (no commit info)
-
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+Maybe this should be separate from this series ?
 
