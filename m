@@ -1,90 +1,102 @@
-Return-Path: <devicetree+bounces-63172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6E08B3F2B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:22:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 859B08B3F29
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCD3A28865F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:22:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F6C2288509
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9550E16F262;
-	Fri, 26 Apr 2024 18:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70BE316D307;
+	Fri, 26 Apr 2024 18:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Lkd4kQSl"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="nl4E27/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81AA16DEDA
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26AD45037;
+	Fri, 26 Apr 2024 18:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714155718; cv=none; b=MZzJjjXvUAixqv01OP5OI34tali1j1LbcROrnqbD2FvR2EQ7ezLQB/jM9XnHmsaoaHnz6Y3ov7Yw7BwF7EJamENmiQdiXSF6f7wH8FFYTIeYjqVnZ0InX+qwNQK6Ceabi8eb/FnIUR/m0ClJ/aa12I4my0Ogu2spE331FSrML0I=
+	t=1714155716; cv=none; b=fR1wZUZQeeNNpyeTWLYkrXvJ7iCDZkkwGzW2JnjOsFYN4zjKPoy+peLAeAJD60nqgpqFqCJpXdl5XVeIAtpxV6SkixXwU9Or6kWLWG66wgLiLg/TBaWDxjh2wQc3SmzS2/RwfcNFRIg0/cdSPJ+BvnEtYHcqaNwHyi1OSdZu8x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714155718; c=relaxed/simple;
-	bh=P+gSEuJhLmHXoUBLRYik0l8ilAjNoxXVGvdX2fUdmDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kJHoAwD0/tNyN+trAU5xW01m6lf82N0rha0f3Eu2TCCXyqKE4CNeCreXcYECZKgGPbW3MffuYgzGIgvS7M7B/zInjo+bgDzONcZZaBo9ZNAAgM/nsM58KB6h1mMqoLZ1otSoE7bhV09ZI2W1AibelPz/jklYo3oaq50ytWln2rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Lkd4kQSl; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=APx8CNyepfOybgKgsGIZF2EVtiy+hTSLRQRf/E9nabU=; b=Lkd4kQSlimcG5lR+SZQuW7x4KN
-	PZ32NgZ7oaNfZktV7lUzWd6fZynuAB/CSVMfPhvJDY8SjHDfTLPg7Rqy+mxyz2m/N7OdiAkfpraX1
-	sOAOmTUxR5Qkj/NirZOw8Hn1XLi4T5/+9opyOV5lI41mlpQBVYK06cQwmtvTHNGP7MXE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1s0QCd-00E66x-Qz; Fri, 26 Apr 2024 20:21:43 +0200
-Date: Fri, 26 Apr 2024 20:21:43 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	s=arc-20240116; t=1714155716; c=relaxed/simple;
+	bh=+rY3/lx41ZeUHmpMN3pJXo/hx1ZdE2dNW5kkVDSOidw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Vbd/Z1H9Fdz9lwSHdFfkHUvBvii5OoxL9JNGgsslqHz39WSY7p6gO8ZBqjFdxpHFnTBuf5wJPRZLJNj9/Y/1pRHeSwHCzeJkuLBMS2RB08x21T0FaxudvyGrGVnkdU+zX3KNXJGI8jiRfZM5BWtqbLbMI34cbParLxag+1XEO2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=nl4E27/l; arc=none smtp.client-ip=192.19.144.209
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id BE1A4C0000F6;
+	Fri, 26 Apr 2024 11:21:47 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com BE1A4C0000F6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1714155707;
+	bh=+rY3/lx41ZeUHmpMN3pJXo/hx1ZdE2dNW5kkVDSOidw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nl4E27/lddLEWA/cpJOj8l47wlmdAPMcpbJBAFF9nWJ2dtNSYrGT0MJYZRB2K1OZB
+	 3qMVa/DFHDgJNj/spaJEj9CdXO5mvsWmtqXx7EfJakgMKkY7/R7FOTk+ILc5H4mb8s
+	 cE4EzfAVhZYqvS1IjYaxJ86fs83bQvpUp4TMTuCs=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id B85BF18041CAC4;
+	Fri, 26 Apr 2024 11:21:45 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	linux-arm-kernel@lists.infradead.org
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	andrew@lunn.ch,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 8/9] ARM: dts: turris-omnia: Add MCU system-controller
- node
-Message-ID: <4c5993d2-a75b-4f52-a0c7-cbbb153b1e28@lunn.ch>
-References: <20240424173809.7214-1-kabel@kernel.org>
- <20240424173809.7214-9-kabel@kernel.org>
- <87bk5w5d0v.fsf@BLaptop.bootlin.com>
- <20240426184004.2456f2e6@dellmb>
+	Andre Przywara <andre.przywara@arm.com>,
+	Nick Hawkins <nick.hawkins@hpe.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Paul Barker <paul.barker@sancloud.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Uwe =?iso-8859-1?q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] arm: dts: bcm2711: Describe Ethernet LEDs
+Date: Fri, 26 Apr 2024 11:21:46 -0700
+Message-Id: <20240426182146.2131789-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
+References: <20240423191500.1443636-1-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240426184004.2456f2e6@dellmb>
+Content-Transfer-Encoding: 8bit
 
-> But I am guessing it might be because of what new U-Boot does: if it
-> finds the MCU node in the device-tree, it will add a reset gpio property
-> for ethernet PHY, linking it to the MCU node. So if this
-> patch got backported to older kernel where the MCU driver is not
-> present, and the board had this new U-Boot, the kernel would not create
-> the eth2 interface, because it would be waiting for a driver providing
-> the GPIO.
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-You should make this clear in the commit message. There is a danger
-the ML algorithm which picks patches for back porting decides this is
-a candidate. Hopefully a human will read the commit message and then
-reject it.
+On Tue, 23 Apr 2024 12:14:55 -0700, Florian Fainelli <florian.fainelli@broadcom.com> wrote:
+> Describe the Ethernet LEDs for the Raspberry Pi 4 model B board as well
+> as the Raspberry Pi 4 CM board. The Raspberry Pi 400 board does not
+> include RJ45 connector LEDs so the 'leds' node is deleted accordingly.
+> 
+> The Ethernet PHY LEDs are numbered in the PHY package/pin list from LED1
+> through LED4, however their address within the LED registers function
+> selector is 0-indexed.
+> 
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
 
-       Andrew
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
