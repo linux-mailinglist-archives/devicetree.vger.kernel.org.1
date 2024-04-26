@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-62973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4308B34EF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:08:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C228B34F0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:08:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23C4C288E5D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:08:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C33891F21F0F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1798142645;
-	Fri, 26 Apr 2024 10:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931C71428F8;
+	Fri, 26 Apr 2024 10:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="keisWsME"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="kOoY92y3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA1213FD9B
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 10:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9845B13F42F
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 10:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714126104; cv=none; b=WiaGolTuVOWrt7WCjMuDx6PIV4FusZzW2qh7Y0gCUfuY3l2BiqqaMScSsb53k5W+lhf7h5l62YoQdS5WLMVhe9vYHEmsjhoyJVbVuscaG+OyVNnrAyQaSzBq8PcxY0qLjdMBkKV7a5tCVjkz+NfnZOqfd0/+5rVTDout3kyGWtk=
+	t=1714126106; cv=none; b=e789AUjmurzXFCZLYIdNp5QlwrOmFrmRvHYi3IjSIQIwopBnPuGtSmOkEiGuMCbj/BQw1QF09sh6DYYzF4h6MJEBmFVzmuJaKS/tlZfFqreZd2ri8x91hRdWujwSCmWeiD0pgIyYRvp/jpUbHVW9yL9V3NjZvV79fQAsR7JE7IQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714126104; c=relaxed/simple;
-	bh=Gbm4/zroMd4mBc682eWK1OQCnvXQa9585z8cjx9AtrI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
-	 Content-type; b=TwBmW6epf+DnOPmcl9EaTOSDvq7MHcaPA50vXoY21mURzA+PminYn0dosKLOn5nWCt5ZQy9B4H8hUSmpBJByV3b1MLmwWDIKe12EZCgFUY2RAKzkPWBauAcTez4zEICsabgbNlWda94uZOn44HB1pn9EFaxeJmyUOkXP6nHEvAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=keisWsME; arc=none smtp.client-ip=209.85.221.54
+	s=arc-20240116; t=1714126106; c=relaxed/simple;
+	bh=UG3w3CKx71vwz4rgaPNoTq+O5tD0e6A5tdxXCt37LE0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-type; b=EDlmCEgjBWHi5eFMXJ9dxcKw1lz43LP7+WWG4UB5bdx1VT66AGVPlAxRDQoG9gFv7XexCZ6dOSVJPhqOMNAE8NHOvv3p4iIn9JAyDU+gxh01rX20wBbKNNLCBRcI9eYEG1WJBHqYtg/BWiVGnKtWXWKXEt1Q3mCxGlot6yZeXfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=kOoY92y3; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-346b96f1483so1028400f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 03:08:22 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-516d4d80d00so2629270e87.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 03:08:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1714126101; x=1714730901; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hbx1On+TTYqeoURSkZkCrdGwttFNEWRGbinjc3HE+Hk=;
-        b=keisWsMEP1apsuukqGqBfYHdUw2oPGVp1iVV7jdls5fBjDiqEriybo4TvWAcscIV8x
-         sTLZ4kVVsNySMt980I5kaoMZHoVXq3QdRIDPgeTUC2ngbEf1ayfmFxghertp9rIac5xT
-         KhfDAXaewykBQmZ5CQ1gINQPKIXjfzb/g55EMpdCurJV86l1YZxjTGpKxY+SNu+YO3Ji
-         ihRh4xmA9g38MP3smOaVCr7FcT2NctUiWErEGeBHyS6SogW1Q7MwTfsfRcCyqPq53kqe
-         fG8cAewOKF6QPFAZsuAVkmEfMFLBC3ejNgeRouHQk5exDGkZ8W7etfI8nnfumhD0yuj+
-         H0nQ==
+        d=ventanamicro.com; s=google; t=1714126103; x=1714730903; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gDRrILn2Yb0nV2jBuOcECI8z5zE7jmWeMbNRJOqe+pg=;
+        b=kOoY92y34yED7cte7JWOxm7GbBam7xj1NsRsggj5qbllbYSAWPMn0ROLcXI3bpDXQY
+         iYNuFrrmj+SqQAgyheQgCInej+brZtPTQdwHor5sLaH9yCDvCnORjh6N+eQboea8nqX0
+         AgOFWENcKxC12DAedruN4qlBKfV+qTvfD7R6UIz3n6MuGqjg4uezjq7OQd0RAesRL8KD
+         Ws/Nk/uH83tG1/MSoiRfILf/1A60CwH2cZGhC5N9qzOV7i/gxcHnEWGi0BEjIf4C9xj7
+         83ufxPn0W+gn2WIlmKb7Tew+A+lP1ip2NRdFn/APsGkWUlURrVS/wDTiKnMtvx0Sbvct
+         hE4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714126101; x=1714730901;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hbx1On+TTYqeoURSkZkCrdGwttFNEWRGbinjc3HE+Hk=;
-        b=N4I2w+oj6uwpsUFHSDI/LH5N3YjcGC25G7ljCsAPfoAgXValZMsILC+4j39/64GTkL
-         44VdBQM8HSsh0lZDlyWU4y1tm5pmgQVZoOTxDDa5oS6OItwa0JLtss3RrgZ1FjEbKjCl
-         5Idaf5v6W1K5WV949dA1BCdiv9Ob0CIS4tXLDLz4TNPSKq4K0X6Dc32HUfbj+dqnTrJo
-         CkbrAevJHtB6AwNC+Jh4u7AcZv2QP2ClzQn2Cv+KVANM5atKrMn9fmyv0diE3CYN8vr2
-         hsCkKgdfaNgzCE5naAT6sLJyNKqWIZV2ko5cqdIqNt7EGkl50RT6EjsWUCe1hfSwKxSt
-         JAJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVqghBTU4j7GD74p1NjjlWqGjea1Se8WLXICT3GwAt3wth/dwYJ6ON5hGjrxewpB8h3wPMvapB3iA9m2sEZlPtTvS+uBmknp+33iA==
-X-Gm-Message-State: AOJu0YzaHW0+TzbduZmTPdns4OEcqpNRAd/qTRAt/fzql5targ5iEwFM
-	cqkUQ7IZiLoZTI/oPF0TJRn8yhjN0TxDiDC3WX4/8Y0CjnS6daa2iAFTJ7FAxhE=
-X-Google-Smtp-Source: AGHT+IFq1PBLGeh1M4r+k/wSmDqxEHo8VdDIM9MYkH3T6k1cJcTZz/q7QYNfgMeHr+ScXMDq7gOpIw==
-X-Received: by 2002:a5d:6b0d:0:b0:34c:4c67:c798 with SMTP id v13-20020a5d6b0d000000b0034c4c67c798mr1551849wrw.4.1714126101328;
-        Fri, 26 Apr 2024 03:08:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714126103; x=1714730903;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gDRrILn2Yb0nV2jBuOcECI8z5zE7jmWeMbNRJOqe+pg=;
+        b=Fu1aVOQmrQ/pGn/PC+oaQj6ew93CpCjpvu7l4yDWtDt+/87AoNExK3lwOyacaHkhI3
+         ztUbgHFqqoSOM3CDp6bnHDDaxH/bEOpWiVzUsRw4SCW6Nj0ILF2cuIvPj1VJHxAwMVlx
+         jK4gR9kmTWrJ0dqV14iL/DYgprs5Jg3hjy6GmfwHeTHR085vvnTH/+ZfCLHfU6eATY9Y
+         9GnT5p6t5b0eng35Fm8OgqJxiLIRNReJ7AJdcs+q86+jjyEdT95qLuzENBZwqV+4cB7Z
+         pBQXAhHATsHHbbj5WIRjxIdtUoeLr4ovNmOjPruCg05Gu72N+Xi7V5Tg1eOKwzeP2tLL
+         34/w==
+X-Forwarded-Encrypted: i=1; AJvYcCXxaZh7cr52NDFSeaBbeHogHPXWslbhxLZxMSEdP0bMLeFWti54gee7rZk5dGKi82hXu6vf033xJ1Z4Q02Sd5aibIwKuDA1oWTnkA==
+X-Gm-Message-State: AOJu0Yyj/ATwG7LXCqEG9j25TltEEUabGto/anEGoq3q1oeViwOju4h4
+	Kiyf9vrbyxoCVSwQkF2iJsAqtXFOaBIVlquBQZzf1AP/yd3ijbCB5/24dIb0z4c=
+X-Google-Smtp-Source: AGHT+IHaD1VcRg+G2d6oDu3yQ2MU2lFuL72a9rslNopWREUEuF0Qk9e1stsspq4ExuKqi3Q2okHOQA==
+X-Received: by 2002:ac2:5dd4:0:b0:51c:b95c:910c with SMTP id x20-20020ac25dd4000000b0051cb95c910cmr991564lfq.29.1714126102613;
+        Fri, 26 Apr 2024 03:08:22 -0700 (PDT)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id j13-20020a056000124d00b0034b7906c716sm8823766wrx.106.2024.04.26.03.08.20
+        by smtp.gmail.com with ESMTPSA id iv19-20020a05600c549300b004186c58a9b5sm30019533wmb.44.2024.04.26.03.08.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 03:08:20 -0700 (PDT)
+        Fri, 26 Apr 2024 03:08:22 -0700 (PDT)
 From: Andrew Jones <ajones@ventanamicro.com>
 To: linux-riscv@lists.infradead.org,
 	kvm-riscv@lists.infradead.org,
@@ -85,118 +86,111 @@ Cc: paul.walmsley@sifive.com,
 	David.Laight@ACULAB.COM,
 	parri.andrea@gmail.com,
 	luxu.kernel@bytedance.com
-Subject: [PATCH v3 0/6] riscv: Apply Zawrs when available
-Date: Fri, 26 Apr 2024 12:08:20 +0200
-Message-ID: <20240426100820.14762-8-ajones@ventanamicro.com>
+Subject: [PATCH v3 1/6] riscv: Provide a definition for 'pause'
+Date: Fri, 26 Apr 2024 12:08:21 +0200
+Message-ID: <20240426100820.14762-9-ajones@ventanamicro.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240426100820.14762-8-ajones@ventanamicro.com>
+References: <20240426100820.14762-8-ajones@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-type: text/plain
 Content-Transfer-Encoding: 8bit
 
-Zawrs provides two instructions (wrs.nto and wrs.sto), where both are
-meant to allow the hart to enter a low-power state while waiting on a
-store to a memory location. The instructions also both wait an
-implementation-defined "short" duration (unless the implementation
-terminates the stall for another reason). The difference is that while
-wrs.sto will terminate when the duration elapses, wrs.nto, depending on
-configuration, will either just keep waiting or an ILL exception will be
-raised. Linux will use wrs.nto, so if platforms have an implementation
-which falls in the "just keep waiting" category (which is not expected),
-then it should _not_ advertise Zawrs in the hardware description.
+If we're going to provide the encoding for 'pause' in cpu_relax()
+anyway, then we can drop the toolchain checks and just always use
+it. The advantage of doing this is that other code that need
+pause don't need to also define it (yes, another use is coming).
+Add the definition to insn-def.h since it's an instruction
+definition and also because insn-def.h doesn't include much, so
+it's safe to include from asm/vdso/processor.h without concern for
+circular dependencies.
 
-Like wfi (and with the same {m,h}status bits to configure it), when
-wrs.nto is configured to raise exceptions it's expected that the higher
-privilege level will see the instruction was a wait instruction, do
-something, and then resume execution following the instruction. For
-example, KVM does configure exceptions for wfi (hstatus.VTW=1) and
-therefore also for wrs.nto. KVM does this for wfi since it's better to
-allow other tasks to be scheduled while a VCPU waits for an interrupt.
-For waits such as those where wrs.nto/sto would be used, which are
-typically locks, it is also a good idea for KVM to be involved, as it
-can attempt to schedule the lock holding VCPU.
+Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+---
+ arch/riscv/Kconfig                      | 7 -------
+ arch/riscv/Makefile                     | 3 ---
+ arch/riscv/include/asm/insn-def.h       | 2 ++
+ arch/riscv/include/asm/vdso/processor.h | 8 ++------
+ 4 files changed, 4 insertions(+), 16 deletions(-)
 
-This series starts with Christoph's addition of the riscv
-smp_cond_load_relaxed function which applies wrs.sto when available.
-That patch has been reworked to use wrs.nto and to use the same approach
-as Arm for the wait loop, since we can't have arbitrary C code between
-the load-reserved and the wrs. Then, hwprobe support is added (since the
-instructions are also usable from usermode), and finally KVM is
-taught about wrs.nto, allowing guests to see and use the Zawrs
-extension.
-
-We still don't have test results from hardware, and it's not possible to
-prove that using Zawrs is a win when testing on QEMU, not even when
-oversubscribing VCPUs to guests. However, it is possible to use KVM
-selftests to force a scenario where we can prove Zawrs does its job and
-does it well. [4] is a test which does this and, on my machine, without
-Zawrs it takes 16 seconds to complete and with Zawrs it takes 0.25
-seconds.
-
-This series is also available here [1]. In order to use QEMU for testing
-a build with [2] is needed. In order to enable guests to use Zawrs with
-KVM using kvmtool, the branch at [3] may be used.
-
-[1] https://github.com/jones-drew/linux/commits/riscv/zawrs-v3/
-[2] https://lore.kernel.org/all/20240312152901.512001-2-ajones@ventanamicro.com/
-[3] https://github.com/jones-drew/kvmtool/commits/riscv/zawrs/
-[4] https://github.com/jones-drew/linux/commit/cb2beccebcece10881db842ed69bdd5715cfab5d
-
-Thanks,
-drew
-
-v3:
- - Moved comment about expected termination from the DT binding text
-   to a code comment.
-
-v2:
- - Added DT bindings patch with additional Linux specifications due
-   to wrs.nto potentially never terminating, as suggested by Palmer
- - Added patch to share pause insn definition
- - Rework main Zawrs support patch to use Arm approach (which is
-   also the approach that Andrea Parri suggested)
- - Dropped the riscv implementation of smp_cond_load_acquire().
-   afaict, the generic implementation, which will use the riscv
-   implementation of smp_cond_load_relaxed() is sufficient for riscv.
- - The rework was large enough (IMO) to drop Heiko's s-o-b and to
-   add myself as a co-developer
-
-
-Andrew Jones (5):
-  riscv: Provide a definition for 'pause'
-  dt-bindings: riscv: Add Zawrs ISA extension description
-  riscv: hwprobe: export Zawrs ISA extension
-  KVM: riscv: Support guest wrs.nto
-  KVM: riscv: selftests: Add Zawrs extension to get-reg-list test
-
-Christoph Müllner (1):
-  riscv: Add Zawrs support for spinlocks
-
- Documentation/arch/riscv/hwprobe.rst          |  4 ++
- .../devicetree/bindings/riscv/extensions.yaml |  7 +++
- arch/riscv/Kconfig                            | 20 ++++---
- arch/riscv/Makefile                           |  3 -
- arch/riscv/include/asm/barrier.h              | 45 +++++++++-----
- arch/riscv/include/asm/cmpxchg.h              | 58 +++++++++++++++++++
- arch/riscv/include/asm/hwcap.h                |  1 +
- arch/riscv/include/asm/insn-def.h             |  4 ++
- arch/riscv/include/asm/kvm_host.h             |  1 +
- arch/riscv/include/asm/vdso/processor.h       |  8 +--
- arch/riscv/include/uapi/asm/hwprobe.h         |  1 +
- arch/riscv/include/uapi/asm/kvm.h             |  1 +
- arch/riscv/kernel/cpufeature.c                |  1 +
- arch/riscv/kernel/sys_hwprobe.c               |  1 +
- arch/riscv/kvm/vcpu.c                         |  1 +
- arch/riscv/kvm/vcpu_insn.c                    | 15 +++++
- arch/riscv/kvm/vcpu_onereg.c                  |  2 +
- .../selftests/kvm/riscv/get-reg-list.c        |  4 ++
- 18 files changed, 146 insertions(+), 31 deletions(-)
-
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index be09c8836d56..7427d8088337 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -639,13 +639,6 @@ config RISCV_ISA_ZICBOZ
+ 
+ 	   If you don't know what to do here, say Y.
+ 
+-config TOOLCHAIN_HAS_ZIHINTPAUSE
+-	bool
+-	default y
+-	depends on !64BIT || $(cc-option,-mabi=lp64 -march=rv64ima_zihintpause)
+-	depends on !32BIT || $(cc-option,-mabi=ilp32 -march=rv32ima_zihintpause)
+-	depends on LLD_VERSION >= 150000 || LD_VERSION >= 23600
+-
+ config TOOLCHAIN_NEEDS_EXPLICIT_ZICSR_ZIFENCEI
+ 	def_bool y
+ 	# https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=aed44286efa8ae8717a77d94b51ac3614e2ca6dc
+diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+index 252d63942f34..f1792ac03335 100644
+--- a/arch/riscv/Makefile
++++ b/arch/riscv/Makefile
+@@ -75,9 +75,6 @@ else
+ riscv-march-$(CONFIG_TOOLCHAIN_NEEDS_EXPLICIT_ZICSR_ZIFENCEI) := $(riscv-march-y)_zicsr_zifencei
+ endif
+ 
+-# Check if the toolchain supports Zihintpause extension
+-riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) := $(riscv-march-y)_zihintpause
+-
+ # Remove F,D,V from isa string for all. Keep extensions between "fd" and "v" by
+ # matching non-v and non-multi-letter extensions out with the filter ([^v_]*)
+ KBUILD_CFLAGS += -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+diff --git a/arch/riscv/include/asm/insn-def.h b/arch/riscv/include/asm/insn-def.h
+index e27179b26086..64dffaa21bfa 100644
+--- a/arch/riscv/include/asm/insn-def.h
++++ b/arch/riscv/include/asm/insn-def.h
+@@ -196,4 +196,6 @@
+ 	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
+ 	       RS1(base), SIMM12(4))
+ 
++#define RISCV_PAUSE	".4byte 0x100000f"
++
+ #endif /* __ASM_INSN_DEF_H */
+diff --git a/arch/riscv/include/asm/vdso/processor.h b/arch/riscv/include/asm/vdso/processor.h
+index 96b65a5396df..8f383f05a290 100644
+--- a/arch/riscv/include/asm/vdso/processor.h
++++ b/arch/riscv/include/asm/vdso/processor.h
+@@ -5,6 +5,7 @@
+ #ifndef __ASSEMBLY__
+ 
+ #include <asm/barrier.h>
++#include <asm/insn-def.h>
+ 
+ static inline void cpu_relax(void)
+ {
+@@ -14,16 +15,11 @@ static inline void cpu_relax(void)
+ 	__asm__ __volatile__ ("div %0, %0, zero" : "=r" (dummy));
+ #endif
+ 
+-#ifdef CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE
+ 	/*
+ 	 * Reduce instruction retirement.
+ 	 * This assumes the PC changes.
+ 	 */
+-	__asm__ __volatile__ ("pause");
+-#else
+-	/* Encoding of the pause instruction */
+-	__asm__ __volatile__ (".4byte 0x100000F");
+-#endif
++	__asm__ __volatile__ (RISCV_PAUSE);
+ 	barrier();
+ }
+ 
 -- 
 2.44.0
 
