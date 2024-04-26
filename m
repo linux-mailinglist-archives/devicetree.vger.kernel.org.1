@@ -1,119 +1,110 @@
-Return-Path: <devicetree+bounces-63200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81CA48B4004
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:18:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F4B8B401B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:23:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44421287289
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:18:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25E6E1F23338
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508F61EB5E;
-	Fri, 26 Apr 2024 19:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DBA1173F;
+	Fri, 26 Apr 2024 19:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u7guXwcG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuXXwib5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55AA208D6;
-	Fri, 26 Apr 2024 19:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D492A14A96;
+	Fri, 26 Apr 2024 19:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714159120; cv=none; b=HoGgpzF+drTpAsDZ5Zwj2vx40cbQgVJyP2U6UvspG/VvEW+Gh9VjEsxVNYytzgPsXW1Zby0SkCBc7/rv80hE8fVDvUy6WilXfFre2A3nNSeZf5cXAkM2tqpnPEAlq/uCRlObA87cjHc2yZYrp9VQeyxPNmXZH6oOE588RYFeVTo=
+	t=1714159380; cv=none; b=Hp4ldS0B34Rt2oIE3EWVtAAqCXBADwkA4HZezyFDlDEZE58mil4jY94roOGciG6SAq6U5VQ/wfKvfLtwOcJCBcJFyOyVY2LUhlD2ba2QUMPkUbkAn+4vrO/vHWzd2TnQrm8HEgy8jYXtyHjQ3D9lGNfk5XCHvQefQ6H+AoAWZUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714159120; c=relaxed/simple;
-	bh=LjOOh654N028PKm9hKjjINIwDhnYd4OGHM8FU+b5J68=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z3C5JdsdJNZ0yn8O6lDR9bOCymFztCYsREKBXIFxJX73OMUDgQFPottHr/rJgT64OrsOrW90TM4Qv2jGkILVJl1xHzSB+3QbhozzB6MfGaPdUDaqSsL5As6vZJgJymOvF86rLHpjoWZlRvecEiaGxhcbeFxi9H1WoBqG/EMOpmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u7guXwcG; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43QJICTW099384;
-	Fri, 26 Apr 2024 14:18:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714159092;
-	bh=EeEnTqm3oLoWS+b5dZcuC693obg0Ef8ytBl/uzoDfOk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=u7guXwcGuzEUdmIcJoD4OGP2xPPre4gy/A53rrjjC1D21VJC4b/HaVTkXACnY0i91
-	 4Zgy1B9IsUDt1c9+FCg+BnOz9hPYi1V/VKk8huCjmArWis6AmsiZrAxpvgVlLa4OR5
-	 vI4JVqkPP4ipji1TivS6kq4dTgPHf6g7APbEaET8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43QJICLE040924
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 26 Apr 2024 14:18:12 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
- Apr 2024 14:18:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 26 Apr 2024 14:18:12 -0500
-Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [128.247.81.8])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43QJIB7O028593;
-	Fri, 26 Apr 2024 14:18:12 -0500
-From: Andrew Davis <afd@ti.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth
- Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hari Nagalla
-	<hnagalla@ti.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH v9 5/5] arm64: defconfig: Enable TI K3 M4 remoteproc driver
-Date: Fri, 26 Apr 2024 14:18:11 -0500
-Message-ID: <20240426191811.32414-6-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240426191811.32414-1-afd@ti.com>
-References: <20240426191811.32414-1-afd@ti.com>
+	s=arc-20240116; t=1714159380; c=relaxed/simple;
+	bh=OVSV+SEbfc1zfz8pX7msAmdgQGOL8Hi8WJYW9BAU2nE=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=B8D17R8v+E5+KfEUhwr1uoytK4HgzvZFuEIcnR9GA6fDtghTNaLTIZqgtuCCMC5W2yZbQxULckd6K4a/T/vEoinGpiuyIzGF8foklePi1waKs8oUtJ7Lj8UOs1K6NoXIO5eLqrItuFItbkhUsbtMpWXhRaJEqlM6+324Cv0ococ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuXXwib5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F7ECC113CD;
+	Fri, 26 Apr 2024 19:23:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714159380;
+	bh=OVSV+SEbfc1zfz8pX7msAmdgQGOL8Hi8WJYW9BAU2nE=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=FuXXwib59Ax8JB6ZoL3eNtEqvuZOmWn8LSE502+HTxnWty4srsSsbymxgckesNsc5
+	 EJVSYuzSMp4X144+as44CQavQyCxyCtaoyX5l7YTFA/9lEGA48ML4ohyshbUOQkAE7
+	 o8NAJtUAtfpCFlnpRwawwpBiUJc5ku/V6WmIsVSoU4fsdzLHEULYulqfDpSu5ICRTD
+	 yJJIRyJN6w/4vxb1AhJNzbkHP5Iq4CHQUImy0z/+qYNwCYa3QGeY19e7YC3pyB2UrQ
+	 5nX/zHDoAV1BUZxUIj1gKEtBOVBE38hgoE+YqRzpEJShq+2bm2kD7qkhkZJdUNhLy/
+	 ik9D6unUNlMQw==
+Date: Fri, 26 Apr 2024 14:22:58 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: Rob Herring <robh@kernel.org>
+To: Patrick Delaunay <patrick.delaunay@foss.st.com>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ Alexandre TORGUE <alexandre.torgue@foss.st.com>, devicetree@vger.kernel.org, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, Mark Brown <broonie@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Pascal Paillet <p.paillet@foss.st.com>, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+References: <20240426183253.1360098-1-patrick.delaunay@foss.st.com>
+ <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+Message-Id: <171415937701.2720387.9777987349037944096.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg:
+ add compatible for STM32MP13
 
-From: Hari Nagalla <hnagalla@ti.com>
 
-Some K3 platform devices (AM64x, AM62x) have a Cortex M4 core. Build
-the M4 remote proc driver as a module for these platforms.
+On Fri, 26 Apr 2024 20:32:50 +0200, Patrick Delaunay wrote:
+> Add new compatible "st,stm32mp13-pwr-reg" for STM32MP13 SoC family.
+> 
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> ---
+> 
+> Changes in v2:
+> - update for Rob review, only add compatible for STM32MP13 family
+> 
+>  .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml    | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 2c30d617e1802..04e8e2ca4aa10 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1352,6 +1352,7 @@ CONFIG_QCOM_Q6V5_PAS=m
- CONFIG_QCOM_SYSMON=m
- CONFIG_QCOM_WCNSS_PIL=m
- CONFIG_TI_K3_DSP_REMOTEPROC=m
-+CONFIG_TI_K3_M4_REMOTEPROC=m
- CONFIG_TI_K3_R5_REMOTEPROC=m
- CONFIG_RPMSG_CHAR=m
- CONFIG_RPMSG_CTRL=m
--- 
-2.39.2
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml:15:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml: properties:compatible:oneOf: [{'const': 'st,stm32mp1,pwr-reg'}, {'const': 'st,stm32mp13-pwr-reg'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
+	hint: Use 'enum' rather than 'oneOf' + 'const' entries
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
