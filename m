@@ -1,312 +1,513 @@
-Return-Path: <devicetree+bounces-63125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24B68B3CA4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:19:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04EB78B3CA8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94F51289E5A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:19:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F78628A82B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1005155A24;
-	Fri, 26 Apr 2024 16:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4D6155A24;
+	Fri, 26 Apr 2024 16:20:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bWXjn+TS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DprtpMxP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDFD15358A;
-	Fri, 26 Apr 2024 16:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6DA152DED;
+	Fri, 26 Apr 2024 16:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714148357; cv=none; b=C17XyOL2+hViGSoZyXTjyQmJgVhsfflcxyYfdtU5w43HSgw/Ju+f4uQQfHn/7i/ZnbIuN07RPUP2qZdwJzz2tbscez8RMnk3apt8ocWYIzqjPnQBxzVqpUo8KaKq6iSMN+CR0VI7KFeYdfKfRjUgaj1tT9qdM4vaRbLyoSzhUgQ=
+	t=1714148407; cv=none; b=OFMl1G0iLydeRBz9gKcUwVucJrMAZkLz37SEEEGM5scKru4eSCx0Y3h7Xu0ae/GXZNglLViMtyK6qseCIaU8VckLQHJDD2CFuoYN7TQi9oEhT3OpNZs5hEiiQJ7UO9NQCESSj9ZDVMEXA+2FyNy08nLeqfBJMIuaGhqA9Mbb5aQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714148357; c=relaxed/simple;
-	bh=DHuoJm0eBZR9q50qciAmM9YlONSJlsoA+mOZEcCTj/Q=;
+	s=arc-20240116; t=1714148407; c=relaxed/simple;
+	bh=56WtMGJIJ3UiLYSPbEWuCS3RnlwoCWtrcwQxOAteTrc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lQ9k6d6lZExMbMqBnqoUjrwLaWO8HnAREMRcy4BrVPovC2tI6i4WHux9W6ggw/dxr5WSI9gyAS4VDQp3ybbpPk5BXpJyYRTFnnHDMr83KoJmNGdQz4Mk+v6zGnMA+l/I8epyDSJuvzRVAHEfiYu1C4gRHlgIDnqBi4Xoh4gTWpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bWXjn+TS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 986D7C113CD;
-	Fri, 26 Apr 2024 16:19:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fPRDSZ4660hwZjG8MohhJEoDUsEXRyB3VLaeyAoujIx11l0VdKe1tyHGxyBpEaXIgHoLTn8MLyqB9pbBLDaErrTiUYGHV1l02rD9djHftYoJ3ZhQV4/zMChGC5kA/ihKJ0tIhR4meZzsAtqXw/5lpeCKCS1AyG+bwrEIHX7/1ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DprtpMxP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C1ABC113CD;
+	Fri, 26 Apr 2024 16:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714148357;
-	bh=DHuoJm0eBZR9q50qciAmM9YlONSJlsoA+mOZEcCTj/Q=;
+	s=k20201202; t=1714148406;
+	bh=56WtMGJIJ3UiLYSPbEWuCS3RnlwoCWtrcwQxOAteTrc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bWXjn+TSpDKyZjwX/zY5TvCtVCTlNBlrcUdVPGTSM1NYNxauM7Bo6Bvyvnhb8283x
-	 lHluR1EOZSHXQyCkJZnQu0T4fq2FnBKVj/iNEHMU25VUIbBy0LKt6vPdtHLDn8zV0i
-	 6CVgZWGt90d9JLip6Now60Cz2H+Au1n6vn3leP7DNuFeM0ODsGlxdWk8VDYF/PevvH
-	 vMI5Ohcuvh4kUkZ6P/hSJWwBSgS2S6YoxNjNTtrhp/TnuqRhxD+ejy+0rc/8VqnRq6
-	 nbd75YBEx7NeyqbvFQWuJ4n56jmdP1H8/nxwn4LPVw1+Z+CKEWXhQCbwXUfAwIErTs
-	 R8TWqg6RgogYw==
-Date: Fri, 26 Apr 2024 18:19:13 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v4 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <ZivUAZ2SKRJsESKF@lore-desk>
-References: <cover.1714119615.git.lorenzo@kernel.org>
- <2047e9c8372b51dc263178a12e194b8826f1abe7.1714119615.git.lorenzo@kernel.org>
- <CAHp75Vd5VSMNy-bYQmcmRA47uTn567QiKmvDJGEkRUgVCk5PAQ@mail.gmail.com>
+	b=DprtpMxPygU6R7BOsk2YdZI27XPNWjnfXegOoEGNNlvmV5p5CczZ20ydwv0I0Wn+E
+	 Miq1qmoQXUV6UXpQ2j+qfK/eIx5NbnX2uI1c3xFrBaJN1gic3VA2L1fGS7dUcnoxXr
+	 xgUXfnibUDEFmawZ3BQHQJMFPWC586yQkKIKqYlaZP4pccOiQX8y5jxvQQ5O9HrPT2
+	 e+LKmYPHdv9/SpZSY8VQfxbkOS/0ZMhk3Sb0RGImN6heeOF9WOwHjFYlk5A+wVkHGy
+	 1xWjUPHHxTHyRylskSCuE9/YFTPAPaTR6BC+2fRER1cklgJ6r8h1kZ5oFvKAA91ilQ
+	 MSvSZ/nFsXkSA==
+Date: Fri, 26 Apr 2024 17:19:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 08/17] riscv: Introduce vendor variants of extension
+ helpers
+Message-ID: <20240426-myself-crowbar-99dc0a080cd9@spud>
+References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
+ <20240420-dev-charlie-support_thead_vector_6_9-v3-8-67cff4271d1d@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LykAaqEnqTHChxLF"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jv693WyFbu4Wa/qC"
 Content-Disposition: inline
-In-Reply-To: <CAHp75Vd5VSMNy-bYQmcmRA47uTn567QiKmvDJGEkRUgVCk5PAQ@mail.gmail.com>
+In-Reply-To: <20240420-dev-charlie-support_thead_vector_6_9-v3-8-67cff4271d1d@rivosinc.com>
 
 
---LykAaqEnqTHChxLF
-Content-Type: text/plain; charset=utf-8
+--jv693WyFbu4Wa/qC
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> On Fri, Apr 26, 2024 at 11:31=E2=80=AFAM Lorenzo Bianconi <lorenzo@kernel=
-=2Eorg> wrote:
-> >
-> > Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
-> > found on Airoha ARM SoCs.
->=20
-> ...
->=20
-> > +#include <asm-generic/unaligned.h>
->=20
-> No driver should include asm-generic, basically 99.9% of the kernel
-> code must not do that. I.o.w. asm-generic is very special.
->=20
+On Sat, Apr 20, 2024 at 06:04:40PM -0700, Charlie Jenkins wrote:
+> Vendor extensions are maintained in per-vendor structs (separate from
+> standard extensions which live in riscv_isa). Create vendor variants for
+> the existing extension helpers to interface with the riscv_isa_vendor
+> bitmaps.
 
-ack we can use <asm/unaligned.h> instead
+> There is a good amount of overlap between these functions, so
+> the alternative checking code can be factored out.
 
-> > +#include <linux/bitfield.h>
-> > +#include <linux/clk.h>
->=20
-> + delay.h
->=20
-> > +#include <linux/device.h>
-> > +#include <linux/dma-mapping.h>
->=20
-> + errno.h
->=20
-> > +#include <linux/types.h>
->=20
-> Can you make it ordered (I noticed this after a while)?
->=20
-> + limits.h
->=20
-> > +#include <linux/math.h>
->=20
-> + minmax.h
->=20
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/sizes.h>
-> > +#include <linux/spi/spi.h>
-> > +#include <linux/spi/spi-mem.h>
->=20
-> + types.h
->=20
-> Also note, we usually place headers from more generic to less, hence
-> linux/* followed by asm/* and not vice versa.
-
-ack, I will fix it.
+Can you please split this out?
 
 >=20
-> ...
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  arch/riscv/errata/sifive/errata.c          |  3 ++
+>  arch/riscv/errata/thead/errata.c           |  3 ++
+>  arch/riscv/include/asm/cpufeature.h        | 86 +++++++++++++++++-------=
+------
+>  arch/riscv/include/asm/vendor_extensions.h | 56 +++++++++++++++++++
+>  arch/riscv/kernel/cpufeature.c             | 20 ++++---
+>  arch/riscv/kernel/vendor_extensions.c      | 40 ++++++++++++++
+>  6 files changed, 164 insertions(+), 44 deletions(-)
 >=20
-> > +struct airoha_snand_dev {
-> > +       size_t buf_len;
-> > +
-> > +       u8 *txrx_buf;
-> > +       dma_addr_t dma_addr;
-> > +
-> > +       u64 cur_page_num;
-> > +       bool data_need_update;
-> > +};
->=20
-> ...
->=20
-> > +               /* quad io / quad out */
->=20
-> io --> in ?
+> diff --git a/arch/riscv/errata/sifive/errata.c b/arch/riscv/errata/sifive=
+/errata.c
+> index 3d9a32d791f7..b29b6e405ff2 100644
+> --- a/arch/riscv/errata/sifive/errata.c
+> +++ b/arch/riscv/errata/sifive/errata.c
+> @@ -12,6 +12,7 @@
+>  #include <asm/alternative.h>
+>  #include <asm/vendorid_list.h>
+>  #include <asm/errata_list.h>
+> +#include <asm/vendor_extensions.h>
+> =20
+>  struct errata_info_t {
+>  	char name[32];
+> @@ -99,6 +100,8 @@ void sifive_errata_patch_func(struct alt_entry *begin,=
+ struct alt_entry *end,
+>  	for (alt =3D begin; alt < end; alt++) {
+>  		if (alt->vendor_id !=3D SIFIVE_VENDOR_ID)
+>  			continue;
+> +		if (alt->patch_id >=3D RISCV_VENDOR_EXT_ALTERNATIVES_BASE)
+> +			continue;
+>  		if (alt->patch_id >=3D ERRATA_SIFIVE_NUMBER) {
+>  			WARN(1, "This errata id:%d is not in kernel errata list", alt->patch_=
+id);
+>  			continue;
+> diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/e=
+rrata.c
+> index b1c410bbc1ae..d8e78cc687bc 100644
+> --- a/arch/riscv/errata/thead/errata.c
+> +++ b/arch/riscv/errata/thead/errata.c
+> @@ -18,6 +18,7 @@
+>  #include <asm/io.h>
+>  #include <asm/patch.h>
+>  #include <asm/vendorid_list.h>
+> +#include <asm/vendor_extensions.h>
+> =20
+>  static bool errata_probe_pbmt(unsigned int stage,
+>  			      unsigned long arch_id, unsigned long impid)
+> @@ -163,6 +164,8 @@ void thead_errata_patch_func(struct alt_entry *begin,=
+ struct alt_entry *end,
+>  	for (alt =3D begin; alt < end; alt++) {
+>  		if (alt->vendor_id !=3D THEAD_VENDOR_ID)
+>  			continue;
+> +		if (alt->patch_id >=3D RISCV_VENDOR_EXT_ALTERNATIVES_BASE)
+> +			continue;
 
-ack, I will fix it.
+>  		if (alt->patch_id >=3D ERRATA_THEAD_NUMBER)
 
->=20
-> ...
->=20
-> > +               /* dual io / dual out */
->=20
-> Ditto.
->=20
-> ...
->=20
-> > +       case SPI_MEM_DATA_OUT:
-> > +               /* check dummy cycle first */
-> > +               if (op->dummy.nbytes)
-> > +                       return false;
-> > +
-> > +               /* program load quad out */
-> > +               if (op->addr.buswidth =3D=3D 1 && op->data.buswidth =3D=
-=3D 4)
-> > +                       return true;
-> > +
-> > +               /* standard spi */
-> > +               if (op->addr.buswidth =3D=3D 1 && op->data.buswidth =3D=
-=3D 1)
-> > +                       return true;
->=20
-> > +       default:
-> > +               break;
-> > +       }
-> > +
-> > +       return false;
->=20
-> Why not return false directly from the default case?
+This number is 2, how does the patching actually work for vendor stuff
+when the base is always greater than 2?
 
-it is because we still need the 'return false' at the end of routine for the
-other cases due to SPI_MEM_DATA_IN and SPI_MEM_DATA_OUT.
+>  			continue;
+> =20
+> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
+/cpufeature.h
+> index db6a6d7d6b2e..83e1143db9ad 100644
+> --- a/arch/riscv/include/asm/cpufeature.h
+> +++ b/arch/riscv/include/asm/cpufeature.h
+> @@ -103,22 +103,13 @@ bool __riscv_isa_extension_available(const unsigned=
+ long *isa_bitmap, unsigned i
+>  	__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_##ext)
+> =20
+>  static __always_inline bool
+> -riscv_has_extension_likely(const unsigned long ext)
+> +__riscv_has_extension_likely_alternatives(const unsigned long vendor, co=
+nst unsigned long ext)
+>  {
+> -	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> -			   "ext must be < RISCV_ISA_EXT_MAX");
+> -
+> -	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE)) {
+> -		asm goto(
+> -		ALTERNATIVE("j	%l[l_no]", "nop", 0, %[ext], 1)
+> -		:
+> -		: [ext] "i" (ext)
+> -		:
+> -		: l_no);
+> -	} else {
+> -		if (!__riscv_isa_extension_available(NULL, ext))
+> -			goto l_no;
+> -	}
+> +	asm goto(ALTERNATIVE("j	%l[l_no]", "nop", %[vendor], %[ext], 1)
+> +	:
+> +	: [vendor] "i" (vendor), [ext] "i" (ext)
+> +	:
+> +	: l_no);
+> =20
+>  	return true;
+>  l_no:
+> @@ -126,42 +117,65 @@ riscv_has_extension_likely(const unsigned long ext)
+>  }
+> =20
+>  static __always_inline bool
+> -riscv_has_extension_unlikely(const unsigned long ext)
+> +__riscv_has_extension_unlikely_alternatives(const unsigned long vendor, =
+const unsigned long ext)
 
->=20
-> ...
->=20
-> > +               op->data.nbytes =3D min_t(size_t, op->data.nbytes, 160 =
-- len);
->=20
-> You probably wanted clamp(). It's discouraged to use min_t() for unsigned=
- types.
+ngl, I think you could drop the _alternatives from these - the
+likely/unlikely is only actually a thing because of the alternatives in
+the first place & just retain the __ as a differentiator. That'd help
+you with some of the long-line wrangling you've been doing below.
 
-do you mean doing something like:
+>  {
+> -	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> -			   "ext must be < RISCV_ISA_EXT_MAX");
+> -
+> -	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE)) {
+> -		asm goto(
+> -		ALTERNATIVE("nop", "j	%l[l_yes]", 0, %[ext], 1)
+> -		:
+> -		: [ext] "i" (ext)
+> -		:
+> -		: l_yes);
+> -	} else {
+> -		if (__riscv_isa_extension_available(NULL, ext))
+> -			goto l_yes;
+> -	}
+> +	asm goto(ALTERNATIVE("nop", "j	%l[l_yes]", %[vendor], %[ext], 1)
+> +	:
+> +	: [vendor] "i" (vendor), [ext] "i" (ext)
+> +	:
+> +	: l_yes);
+> =20
+>  	return false;
+>  l_yes:
+>  	return true;
+>  }
+> =20
+> +static __always_inline bool
+> +riscv_has_extension_likely(const unsigned long ext)
 
-op->data.nbytes =3D clamp(op->data.nbytes, op->data.nbytes, 160 - len);
+Can you format this so that its on one line & wrap the arguments if
+needs be?
 
-maybe an 'if' condition is more readable, what do you think?
+> +{
+> +	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> +			   "ext must be < RISCV_ISA_EXT_MAX");
+> +
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
+> +		return __riscv_has_extension_likely_alternatives(0, ext);
+> +	else
 
->=20
-> ...
->=20
-> > +       err =3D regmap_read_poll_timeout(as_ctrl->regmap_nfi, REG_SPI_N=
-FI_INTR,
-> > +                                      val, (val & SPI_NFI_AHB_DONE), 0,
-> > +                                      USEC_PER_SEC);
->=20
-> Perhaps
->   1 * USEC_PER_SEC
-> ?
->=20
-> Easy to read plain numbers like this to get the idea "this is 1 SEC
-> timeout". Also editors highlight plain integers with a different
-> colour.
->=20
-> ...
->=20
-> > +       /* addr part */
-> > +       cmd =3D opcode =3D=3D SPI_NAND_OP_GET_FEATURE ? 0x11 : 0x8;
-> > +       put_unaligned_be64(op->addr.val, data);
->=20
-> > +       for (i =3D 0; i < op->addr.nbytes; i++) {
-> > +               err =3D airoha_snand_write_data(as_ctrl, cmd,
-> > +                                             &data[8 - op->addr.nbytes=
- + i],
->=20
-> Now you can update a for loop to make this prettier, right?
->=20
-> > +                                             sizeof(data[0]));
-> > +               if (err)
-> > +                       return err;
-> > +       }
->=20
->        for (i =3D 8 - op->addr.nbytes; i < 8; i++) {
->                err =3D airoha_snand_write_data(as_ctrl, cmd, &data[i],
->                                              sizeof(data[0]));
->                ...
->        }
->=20
-> Note, 8 can be replaced by sizeof() / ARRAY_SIZE() but I'm not insisting.
+I'm almost certain I said this before, but none of the else branches are
+needed here, there's a return in the if branch, so the remainder of the
+function becomes unconditionally executed.
 
-ack, I agree. I will fix it.
+> +		return __riscv_isa_extension_available(NULL, ext);
+> +}
+> +
+> +static __always_inline bool
+> +riscv_has_extension_unlikely(const unsigned long ext)
+> +{
+> +	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> +			   "ext must be < RISCV_ISA_EXT_MAX");
+> +
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
+> +		return __riscv_has_extension_unlikely_alternatives(0, ext);
+> +	else
+> +		return __riscv_isa_extension_available(NULL, ext);
+> +}
+> +
+>  static __always_inline bool riscv_cpu_has_extension_likely(int cpu, cons=
+t unsigned long ext)
+>  {
+> -	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) && riscv_has_extension_likely(=
+ext))
+> -		return true;
+> +	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> +			   "ext must be < RISCV_ISA_EXT_MAX");
+> =20
+> -	return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) &&
+> +	    __riscv_has_extension_likely_alternatives(0, ext))
 
->=20
-> ...
->=20
-> > +       devm_kfree(as_ctrl->dev, as_dev->txrx_buf);
-> > +       devm_kfree(as_ctrl->dev, as_dev);
->=20
-> Why?! Using devm_*free() explicitly hints about either
-> misunderstanding of devm concept, or object's lifetime.
+0 is meaningless, please make this more understandable using a define of
+some sort.
 
-ack, I agree, we can get rid of them.
+> +		return true;
+> +	else
+> +		return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+>  }
+> =20
+>  static __always_inline bool riscv_cpu_has_extension_unlikely(int cpu, co=
+nst unsigned long ext)
+>  {
+> -	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) && riscv_has_extension_unlikel=
+y(ext))
+> -		return true;
+> +	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> +			   "ext must be < RISCV_ISA_EXT_MAX");
+> =20
+> -	return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) &&
+> +	    __riscv_has_extension_unlikely_alternatives(0, ext))
+> +		return true;
+> +	else
+> +		return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+>  }
+> =20
+>  #endif
+> diff --git a/arch/riscv/include/asm/vendor_extensions.h b/arch/riscv/incl=
+ude/asm/vendor_extensions.h
+> index 0af1ddd0af70..3e676a96016e 100644
+> --- a/arch/riscv/include/asm/vendor_extensions.h
+> +++ b/arch/riscv/include/asm/vendor_extensions.h
+> @@ -23,4 +23,60 @@ extern const struct riscv_isa_vendor_ext_data_list *ri=
+scv_isa_vendor_ext_list[];
+> =20
+>  extern const size_t riscv_isa_vendor_ext_list_size;
+> =20
+> +/*
+> + * The alternatives need some way of distinguishing between vendor exten=
+sions
+> + * and errata. Incrementing all of the vendor extension keys so they are=
+ at
+> + * least 0x8000 accomplishes that.
+> + */
+> +#define RISCV_VENDOR_EXT_ALTERNATIVES_BASE	0x8000
+> +
+> +bool __riscv_isa_vendor_extension_available(int cpu, unsigned long vendo=
+r, unsigned int bit);
+> +#define riscv_cpu_isa_vendor_extension_available(cpu, vendor, ext)	\
+> +	__riscv_isa_vendor_extension_available(cpu, vendor, RISCV_ISA_VENDOR_EX=
+T_##ext)
+> +#define riscv_isa_vendor_extension_available(vendor, ext)	\
+> +	__riscv_isa_vendor_extension_available(-1, vendor, RISCV_ISA_VENDOR_EXT=
+_##ext)
+> +
+> +static __always_inline bool
+> +riscv_has_vendor_extension_likely(const unsigned long vendor, const unsi=
+gned long ext)
+> +{
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
+> +		return __riscv_has_extension_likely_alternatives(vendor,
+> +								 ext + RISCV_VENDOR_EXT_ALTERNATIVES_BASE);
+> +	else
+> +		return __riscv_isa_vendor_extension_available(-1, vendor, ext);
+> +}
+> +
+> +static __always_inline bool
+> +riscv_has_vendor_extension_unlikely(const unsigned long vendor, const un=
+signed long ext)
+> +{
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
+> +		return __riscv_has_extension_unlikely_alternatives(vendor,
+> +								   ext + RISCV_VENDOR_EXT_ALTERNATIVES_BASE);
+> +	else
+> +		return __riscv_isa_vendor_extension_available(-1, vendor, ext);
+> +}
+> +
+> +static __always_inline bool riscv_cpu_has_vendor_extension_likely(const =
+unsigned long vendor,
+> +								  int cpu, const unsigned long ext)
+> +{
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) &&
+> +	    __riscv_has_extension_likely_alternatives(vendor,
+> +						      ext + RISCV_VENDOR_EXT_ALTERNATIVES_BASE))
+> +		return true;
+> +	else
+> +		return __riscv_isa_vendor_extension_available(cpu, vendor, ext);
+> +}
+> +
+> +static __always_inline bool riscv_cpu_has_vendor_extension_unlikely(cons=
+t unsigned long vendor,
+> +								    int cpu,
+> +								    const unsigned long ext)
+> +{
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) &&
+> +	    __riscv_has_extension_unlikely_alternatives(vendor,
+> +							ext + RISCV_VENDOR_EXT_ALTERNATIVES_BASE))
+> +		return true;
+> +	else
+> +		return __riscv_isa_vendor_extension_available(cpu, vendor, ext);
+> +}
+> +
+>  #endif /* _ASM_VENDOR_EXTENSIONS_H */
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index c9f36822e337..17371887abcc 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -833,25 +833,29 @@ void __init_or_module riscv_cpufeature_patch_func(s=
+truct alt_entry *begin,
+>  {
+>  	struct alt_entry *alt;
+>  	void *oldptr, *altptr;
+> -	u16 id, value;
+> +	u16 id, value, vendor;
+> =20
+>  	if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+>  		return;
+> =20
+>  	for (alt =3D begin; alt < end; alt++) {
+> -		if (alt->vendor_id !=3D 0)
+> -			continue;
+> -
+>  		id =3D PATCH_ID_CPUFEATURE_ID(alt->patch_id);
+> +		vendor =3D PATCH_ID_CPUFEATURE_ID(alt->vendor_id);
+> =20
+> -		if (id >=3D RISCV_ISA_EXT_MAX) {
+> +		if (id < RISCV_ISA_EXT_MAX) {
 
->=20
-> ...
->=20
-> > +       spi_set_ctldata(spi, NULL);
->=20
-> Seems there is no consensus on NULLifying this (when, if even needed),
-> but it's fine.
->=20
-> ...
->=20
-> > +       base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->=20
-> How is 'res' being used exactly?
+I think any reliance on the standard ext max requires a comment
+explaining what the interaction is between it and the vendor stuff.
 
-right, we can pass NULL here to devm_platform_get_and_ioremap_resource()
+> +			if (alt->vendor_id !=3D 0)
+> +				continue;
 
->=20
-> > +       if (IS_ERR(base))
-> > +               return PTR_ERR(base);
->=20
-> ...
->=20
-> > +       base =3D devm_platform_get_and_ioremap_resource(pdev, 1, &res);
->=20
-> Ditto.
->=20
-> > +       if (IS_ERR(base))
-> > +               return PTR_ERR(base);
->=20
->=20
-> ...
->=20
-> > +       ctrl->dev.of_node =3D dev->of_node;
->=20
-> Use device_set_node() instead.
-> You might need dev_fwnode() from property.h.
+If this happens, it's a bug, should we be continuing silently?
 
-ack, I will fix it.
+Cheers,
+Conor.
 
-Regards,
-Lorenzo
-
+> +
+> +			if (!__riscv_isa_extension_available(NULL, id))
+> +				continue;
+> +		} else if (id >=3D RISCV_VENDOR_EXT_ALTERNATIVES_BASE) {
+> +			if (!__riscv_isa_vendor_extension_available(-1, vendor, id))
+> +				continue;
+> +		} else {
+>  			WARN(1, "This extension id:%d is not in ISA extension list", id);
+>  			continue;
+>  		}
+> =20
+> -		if (!__riscv_isa_extension_available(NULL, id))
+> -			continue;
+> -
+>  		value =3D PATCH_ID_CPUFEATURE_VALUE(alt->patch_id);
+>  		if (!riscv_cpufeature_patch_check(id, value))
+>  			continue;
+> diff --git a/arch/riscv/kernel/vendor_extensions.c b/arch/riscv/kernel/ve=
+ndor_extensions.c
+> index f76cb3013c2d..eced93eec5a6 100644
+> --- a/arch/riscv/kernel/vendor_extensions.c
+> +++ b/arch/riscv/kernel/vendor_extensions.c
+> @@ -3,6 +3,7 @@
+>   * Copyright 2024 Rivos, Inc
+>   */
+> =20
+> +#include <asm/vendorid_list.h>
+>  #include <asm/vendor_extensions.h>
+>  #include <asm/vendor_extensions/thead.h>
+> =20
+> @@ -16,3 +17,42 @@ const struct riscv_isa_vendor_ext_data_list *riscv_isa=
+_vendor_ext_list[] =3D {
+>  };
+> =20
+>  const size_t riscv_isa_vendor_ext_list_size =3D ARRAY_SIZE(riscv_isa_ven=
+dor_ext_list);
+> +
+> +/**
+> + * __riscv_isa_vendor_extension_available() - Check whether given vendor
+> + * extension is available or not.
+> + *
+> + * @cpu: check if extension is available on this cpu
+> + * @vendor: vendor that the extension is a member of
+> + * @bit: bit position of the desired extension
+> + * Return: true or false
+> + *
+> + * NOTE: When cpu is -1, will check if extension is available on all cpus
+> + */
+> +bool __riscv_isa_vendor_extension_available(int cpu, unsigned long vendo=
+r, unsigned int bit)
+> +{
+> +	unsigned long *bmap;
+> +	struct riscv_isainfo *cpu_bmap;
+> +	size_t bmap_size;
+> +
+> +	switch (vendor) {
+> +#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_THEAD
+> +	case THEAD_VENDOR_ID:
+> +		bmap =3D riscv_isa_vendor_ext_list_thead.vendor_bitmap;
+> +		cpu_bmap =3D riscv_isa_vendor_ext_list_thead.per_hart_vendor_bitmap;
+> +		bmap_size =3D riscv_isa_vendor_ext_list_thead.bitmap_size;
+> +		break;
+> +#endif
+> +	default:
+> +		return false;
+> +	}
+> +
+> +	if (cpu !=3D -1)
+> +		bmap =3D cpu_bmap[cpu].isa;
+> +
+> +	if (bit >=3D bmap_size)
+> +		return false;
+> +
+> +	return test_bit(bit, bmap) ? true : false;
+> +}
+> +EXPORT_SYMBOL_GPL(__riscv_isa_vendor_extension_available);
 >=20
 > --=20
-> With Best Regards,
-> Andy Shevchenko
+> 2.44.0
+>=20
 
---LykAaqEnqTHChxLF
+--jv693WyFbu4Wa/qC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZivUAQAKCRA6cBh0uS2t
-rICzAP9ek0ugGc+6vVGU6OUSIHPYCmrh6Xsx0GriI+27vMdKUgD+Jp6uEr6BzhCc
-wxkmky2hnY+tUvxFF8G59BVhuCrLDAY=
-=blsC
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZivULwAKCRB4tDGHoIJi
+0rmCAQDxNUjTxzCWO2yTbBkX3ka4wFcFw+0BDHYBrwHlnxqvlQD9FA7aNnLm2V74
+TE1rCjoHG207NtXTni6g+A9QL2Ua8AA=
+=JuwY
 -----END PGP SIGNATURE-----
 
---LykAaqEnqTHChxLF--
+--jv693WyFbu4Wa/qC--
 
