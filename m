@@ -1,160 +1,127 @@
-Return-Path: <devicetree+bounces-63240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A16638B4189
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 23:55:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60AC8B422F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 00:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5414F283653
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:55:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB94CB21A3C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B83376E7;
-	Fri, 26 Apr 2024 21:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD082C85C;
+	Fri, 26 Apr 2024 22:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UB1c/KyQ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="v/0qTFl7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D470125AE;
-	Fri, 26 Apr 2024 21:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA7425569;
+	Fri, 26 Apr 2024 22:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714168536; cv=none; b=C7aZq+tPx/zjr2ASyFMDBVAZsjRI2YtuLr7q3OsB4XRlbIeGH3P02+TwXh3Lzn6x0CNpZQE7p2wRaTaLZKshavasVSwZwNnNAyeRWMm8VfGI/dBAK5uU1cC7V/HVJcMbv+zO9BuB/2jK+kAwxEMDZGTLXBcX7sHuIviwRGi3GM4=
+	t=1714171055; cv=none; b=ZUTQJJ7eeZU6rurKZS3G0LV2aFjRmxZnb44TfffXJsHIBTvN1t9bS0mMYkVZ+BFuvC/TWcvztohGKv0eKL+sW+L1Wo8JQ3ihJeRqHr3lhTD2BqbffvRksyqdg0JcXlppEqDBnj5ie2b2lMcvq0W+OndnuMxGvv6Y+KR93IwRm9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714168536; c=relaxed/simple;
-	bh=7/12lQ8m5ACp3C54KCnXpyWNuV5AkXC4wJVhYXCnf8Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HX1VSI8KBPyevNrW23YUZstXijuSaF1qK/9x2YAjEwTgcv8/kcAhXeKpJ0rOnaPoizE3iZBAAYWc6DmsBTVF6Wgqu1J0vB7xzZxLiiX7wKkQFx9mfKbeHQoEHOIBJKgh4K3icm3isOjI9vBHktCOfLDwAWL5vZIYFFhO4Oo/ECI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UB1c/KyQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43QLqmWU024490;
-	Fri, 26 Apr 2024 21:55:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=CoaUWkpf4ziyf5/z5HH9Em0tl4jcL6HqmjBiVk7KXP0=; b=UB
-	1c/KyQ8V2QkCCL7+hSWaN1MmFJUooEw7xjJQRzhC+Qia9tFlPoljc5Q45qI97+xe
-	ApPCubZg1MjaYW3I7gUECUXYIJXaOQOt8dmuKb3G9KTmKLJwYVVf4aR+9z2OpahB
-	vU8rZdBpCsv+KdJUXkMj8zX8XnEKsg2tf2RDVxQjp1ikFadKI4YeSHk3S3YXYC4n
-	eemk8dc0DeTuaOlo3MtyQVf7LpZn+IRf7o3bVb8qprvPF6nAK+GZ4QhbdFaNy84+
-	oQZ07TDe/IU6q9FqCH2cQyuN+PvTYvo3gwRD8qoRGNBVh880QEnsTK+RLx4GJ09j
-	m6VX/Pkudy5y7M2cijYw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xr35eu06j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 21:55:14 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43QLtBOi024640
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 21:55:11 GMT
-Received: from [10.110.6.235] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Apr
- 2024 14:55:10 -0700
-Message-ID: <f128feb6-4be2-2f14-b4cb-8bf1d0908892@quicinc.com>
-Date: Fri, 26 Apr 2024 14:55:09 -0700
+	s=arc-20240116; t=1714171055; c=relaxed/simple;
+	bh=VJzg7/h/ntIWDkImbv1wTuAUtG3sd15UK9WYzlWmpC4=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o143I955PkiacrbskObdqWEzTFG4/c0WcMWvCvCmtQuse5LjUCZaPoxGAQm4g0uPsPp209IqFZhOO0JSCOyyGp+7++WKEpeh6Qr9w71I14bdRSyZAv0MJV0TEVdIzkNiSg1A2cBSXC3IoDuJ2TWyDdQqGu8gHcw80K72s/jmwxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=v/0qTFl7; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43QMbNGk027708;
+	Fri, 26 Apr 2024 17:37:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714171043;
+	bh=jbZZHwVA4fpz6fvWH6qyS6P9uF7QISLrln3DtabcjCY=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=v/0qTFl7es7ffKVZU0YTIPpHQ7+fYzwoApk+VikZHQfm9YmET23n/f19N+BF/Yh5x
+	 imfGbhBUH4/zLI+SqaDjwptR0q24WbzfcTvlh1gv203vOOP3b3Yy8btZZWtj2kZ2PT
+	 ioUG3amlOVtSaB1bebtl75TGKiW9bEjn7Gm/I83I=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43QMbNpC058594
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 26 Apr 2024 17:37:23 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
+ Apr 2024 17:37:23 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 26 Apr 2024 17:37:23 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43QMbNUJ076651;
+	Fri, 26 Apr 2024 17:37:23 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am65: Use exact ranges for FSS node
+Date: Fri, 26 Apr 2024 17:37:21 -0500
+Message-ID: <171417102550.3482062.1616101241058926180.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240326205920.40147-1-afd@ti.com>
+References: <20240326205920.40147-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v20 09/41] ASoC: Add SOC USB APIs for adding an USB
- backend
-Content-Language: en-US
-To: =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?=
-	<amadeuszx.slawinski@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <konrad.dybcio@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240425215125.29761-1-quic_wcheng@quicinc.com>
- <20240425215125.29761-10-quic_wcheng@quicinc.com>
- <b8ff8777-6bcb-4fd7-9480-231536d23759@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <b8ff8777-6bcb-4fd7-9480-231536d23759@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: R74DSglKBDCBfnJ5wNDAeCcJ3-qNHc_Q
-X-Proofpoint-ORIG-GUID: R74DSglKBDCBfnJ5wNDAeCcJ3-qNHc_Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-26_18,2024-04-26_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- lowpriorityscore=0 malwarescore=0 spamscore=0 bulkscore=0 impostorscore=0
- phishscore=0 priorityscore=1501 clxscore=1015 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404260154
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Amadeusz,
+Hi Andrew Davis,
 
-On 4/26/2024 6:25 AM, Amadeusz Sławiński wrote:
-> On 4/25/2024 11:50 PM, Wesley Cheng wrote:
->> Some platforms may have support for offloading USB audio devices to a
->> dedicated audio DSP.  Introduce a set of APIs that allow for 
->> management of
->> USB sound card and PCM devices enumerated by the USB SND class driver.
->> This allows for the ASoC components to be aware of what USB devices are
->> available for offloading.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
+On Tue, 26 Mar 2024 15:59:17 -0500, Andrew Davis wrote:
+> The FSS bus contains several register ranges. Using an empty
+> ranges property works but causes a DT warning when we give
+> this node an address. Fix this by explicitly defining the
+> memory ranges in use.
 > 
-> (...)
-> 
->> +const char *snd_soc_usb_get_components_tag(bool playback)
->> +{
->> +    if (playback)
->> +        return "usbplybkoffld: 1";
->> +    else
->> +        return "usbcapoffld: 1";
->> +}
->> +EXPORT_SYMBOL_GPL(snd_soc_usb_get_components_tag);
-> 
-> Is this used to expose some information to userspace?
-> Can those be some more readable strings if so, like:
-> usbplaybackoffload, usbcaptureoffload
 > 
 
-Sure we can make it a bit more complete.  Was trying to keep it short, 
-but if the intention isn't clear on the tag, then we can keep the full form.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-> (...)
-> 
->> +
->> +    node = snd_soc_find_phandle(usbdev);
->> +    if (IS_ERR(node))
->> +        return -ENODEV;
->> +
->> +    ctx = snd_soc_find_usb_ctx(node);
->> +    of_node_put(node);
->> +    if (!ctx)
->> +        return -ENODEV;
-> 
-> Perhaps introduce some helper function, you do this 
-> snd_soc_find_phandle() followed by snd_soc_find_usb_ctx() in few places...
-> 
+[1/4] arm64: dts: ti: k3-am65: Use exact ranges for FSS node
+      commit: 8ec19dbe9217edbb564b16a5f68465b8cd42a167
+[2/4] arm64: dts: ti: k3-j7200: Use exact ranges for FSS node
+      commit: 98b939a9b3204120bd3a96015d74cbe818a3a2e9
+[3/4] arm64: dts: ti: k3-j721e: Use exact ranges for FSS node
+      commit: 74904fc1f1f1c802eaed10edc3744f0997c154ff
+[4/4] arm64: dts: ti: k3-j784s4: Use exact ranges for FSS node
+      commit: b3f629482cade3a6ada44d2e83dd65f0f1ed1293
 
-Will do.  Will make a helper and replace instances with this.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Thanks
-Wesley Cheng
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
 
