@@ -1,143 +1,236 @@
-Return-Path: <devicetree+bounces-62944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F3D8B31CB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:57:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27318B321C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:15:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04CE31C215CD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 07:57:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19C221F21FD9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 08:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B8913C8FD;
-	Fri, 26 Apr 2024 07:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F91313C9AD;
+	Fri, 26 Apr 2024 08:15:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U+Ug5mSE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a8BJ/5Su"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC26213C8E0
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 07:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547BE1E885;
+	Fri, 26 Apr 2024 08:15:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714118255; cv=none; b=Kcc3qGl4rUCe82dNy3HAgeeUW6hyXuJXjq3xvRK5xI7+g87r0gyhwUu27XZXkC1iH66j76LrkDAZznEOVWmnPrUosuUwXcPKAsc9L34KrNU6/JNe+0sw0qHMXq5qfJwU68xuAHPPbBCNxfSwbwlsAXEBZZVu7xuUXgseQZAacRg=
+	t=1714119339; cv=none; b=EOsW5Wcyd07day8nWD/cG5glZU15QOu+gXnqZtu7LSz9c65FKSUyFeqLiu+wcA9xMbQjiUU1Ns9NVkZzoyL8KMuUgwMqc+687AtAexVUhdNW7yKJhpNh6bnJRUx7lMDwA3p5i6BLJ+kXzB1LHXOECM5RV+4UD+B7jC7ymJQcRvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714118255; c=relaxed/simple;
-	bh=wCiBODES6hYe6uSEsz1rgi057khv4znYREqrSw4IVQM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YpIqMeut72Z04fJvWoyjXiipmk+WmB98bF8sfMrirWrQYNYOjzIisC88haXLSV1Mohld/is+BPXMUpc49LKGcsdFvZnXP91rzuA39rpVA+6x5FtlmGhpui4QIB4F3pqpHnestAcMmyFbCI6QlVbZXqawMlrsCaCubWtXkmyQHwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U+Ug5mSE; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-41a72f3a20dso12499595e9.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 00:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714118251; x=1714723051; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=392YvKHUy01C2ane9PlBGjbFseGqGwG2sSPnV1+h06o=;
-        b=U+Ug5mSEWLo0n7L40UGxbwAXnimvCa1dlFUN0LYaqh6jbnK5PP+Jqpff7A/Gxe782f
-         mYsAcx+aPgfP/5Cq/QiiitK9T5+b8Hch8ZAO0DF31ZehIhsVyMeioxk8/B6FvY1KfCLb
-         BMp/kIt9C/lSDQkqekr1kz7TSdpxxSacbRO5mVvz3qnRXo1nudbN6WOIXBM2oNRgowOc
-         nlJHszEAbKJnN2TlN2UNyp8UtFaK0/hOhp2pv6eFhQJMKVdxo8UfOFMSzrHkDFRqy8OL
-         88gGp6m2vG0Z0Z7Nq25hqQZTKyDXnWA9kFNm0chhmKQ0oSJ/9crtzYVibBOgc+702h/D
-         u5WQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714118251; x=1714723051;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=392YvKHUy01C2ane9PlBGjbFseGqGwG2sSPnV1+h06o=;
-        b=ZswBk6EWBkIeIKozLTPby+vDgR772GR0UGpXesFCx1q5rf+Vwtu4NK/G6PuAwcUQHr
-         F2FSJcSxnEcDZk2PvUhpYjY7pLrr15H8+97PTqmZfMHdHR4gZmAonCR7jWA2HMs+WZ/0
-         SS6jmrnasGiGLY4rTKpWLWTlqPe3WHSpGhKJQoDqdxlDC3hzfBhFD/gMz2CzqhoEOBLq
-         XbdqG+u6SETDnw+ydH2TvR2y5I2STFV8bCyN9RfQOxMHmik/7/fNIm2NRhkuu2cV+jO5
-         fjp7R6Up6KHf4OarF5SjN+/CWeK6RzCafIBExGHUfERIFIvvSSq7cItl9M9tgWRj9g0w
-         poew==
-X-Forwarded-Encrypted: i=1; AJvYcCVN3oB5/VpCKVHU5JA3gDZjk98zhZjkU29pGqkF9agaFmMt6pFmHc389Ae1SnEx/xer/sv0G4d/2zMvjuRzDNQvDopn0an3ILkDRw==
-X-Gm-Message-State: AOJu0YwGsn8T3sWCifvXY60N2KhpNwpFL/c01HgMU/Just8kh14klYnF
-	GKuKwieU4hVs4BPcTL4AwqSU5qJvTzo2iuFzRZs2lJi5golKnTVhqCa79HZais4=
-X-Google-Smtp-Source: AGHT+IHIONkocekx1Nn0xgOaZLdkdZ6ZhZ+MdaNtdhL8VruI6qSiOgyFn8JkOr6Ws3rcaZt3necsIA==
-X-Received: by 2002:a05:600c:19d1:b0:419:f126:a46d with SMTP id u17-20020a05600c19d100b00419f126a46dmr1373777wmq.30.1714118250865;
-        Fri, 26 Apr 2024 00:57:30 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id f7-20020a05600c154700b004190d7126c0sm25350832wmg.38.2024.04.26.00.57.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Apr 2024 00:57:30 -0700 (PDT)
-Message-ID: <35c9dbe9-9166-4358-bfa9-99f205acd8de@linaro.org>
-Date: Fri, 26 Apr 2024 09:57:29 +0200
+	s=arc-20240116; t=1714119339; c=relaxed/simple;
+	bh=1yC+gB+RH39a11ZICGlu8ThPKI65Pnf3tzMu4N3kPwg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f6PyBXqNw32aZlJDj2UmiaUo05RYg6YidFN3zOWjFSsMM13zSRNwIqWRX632+CbIWCkV11OamtJ56eAYW86rfAkxG3z+lnOLgw1R267yzSUljHse1PCd4FTrTx/uuV6TjuFZGVkmotvRVcfhlcBYwwfH1TvsaukaI8wRAYjupFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a8BJ/5Su; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD633C4AF08;
+	Fri, 26 Apr 2024 08:15:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714119338;
+	bh=1yC+gB+RH39a11ZICGlu8ThPKI65Pnf3tzMu4N3kPwg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=a8BJ/5SucEzuTdrZqKCG21lvJi6LtydPBKHQyO2DEukgWJy5HlA/UJSlxqazfk/43
+	 U6am5yWh6X1UqC5Q6dcn4wxluaIrZyify2W50hZ2XOf7vEwsvqufhDZcSR2eC9KLXe
+	 959zTu6qscNiUWLet+jJaLJ9b9OFKhs5F9pmGt5OVz8OVPr3j+gfcEQF9uYlJLQeSs
+	 CG7a2XjGU5p8751sD7i0M5uxo993BU3sqOcaVePnrqvXXn7EPKXL+uRUmvUu9kJoE3
+	 M5MpXo+WR/+VyaBwYNvw3/+o7+qQSvjx9hrAAvq4l0/U8Yr+CMjvQtd5/NkC7SpPj8
+	 IbauGQRZVS/PQ==
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5725cfa2434so81436a12.2;
+        Fri, 26 Apr 2024 01:15:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV2peKlD0BC4adYUoDwIM3tyMv8l9DagYNfbJA/6yMsbheCAdhxV05rnNG3D47qBGmZDJw//AFqTPe2vsdkf2ogNLM78Hab8VLjV+lkRKOvzWm5BG6QUJRJHTYzqVHiiypCw7rikajLnOxg0aX8rONeTmjC/f0BfOKBc9AVFJwSqKrX4UU7nvcLwF//L7iwJS7mccGTt/WMhcYVDS1pVfLTStg1fg==
+X-Gm-Message-State: AOJu0YwGYQkBGiTU6qJCtNGn1Smb2Xjjwc21Se9MFmSzi0aHfKOPHwDt
+	WiqYt/i02t7CsxWy4nU5NpbK8TYHgN5xhxTYf1k0axBoAjygVVKbvbu8rY3E7VpJGFEnfYC95LM
+	Vpf5BhDCaSMlT0WRPoKGqmG1vYck=
+X-Google-Smtp-Source: AGHT+IFdWL+1rtvTdjZLYM58Wr/hUAPW6s+thTjch0dqfysVmrhP+T23KFGnV1/pBKaELJeFZArRbXJifhaQCJxXF9c=
+X-Received: by 2002:a50:99c7:0:b0:572:3f41:25aa with SMTP id
+ n7-20020a5099c7000000b005723f4125aamr1644329edb.11.1714119337224; Fri, 26 Apr
+ 2024 01:15:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] thermal: amlogic: introduce A1 SoC family Thermal
- Sensor controller
-Content-Language: en-US
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>, neil.armstrong@linaro.org
-Cc: jbrunet@baylibre.com, mturquette@baylibre.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, glaroque@baylibre.com,
- rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- kernel@salutedevices.com, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
- <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
- <20240417084007.uzg2uc7gwb6mi7bi@CAB-WSD-L081021>
- <20240426073106.3yl2dplvauper3lg@CAB-WSD-L081021>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240426073106.3yl2dplvauper3lg@CAB-WSD-L081021>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com>
+ <20240420-dev-charlie-support_thead_vector_6_9-v3-1-67cff4271d1d@rivosinc.com>
+In-Reply-To: <20240420-dev-charlie-support_thead_vector_6_9-v3-1-67cff4271d1d@rivosinc.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Fri, 26 Apr 2024 16:15:25 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTeGBuL4S3cKV87w-TJTa+ZmOaPiT=+uor-PzL9jYTWAg@mail.gmail.com>
+Message-ID: <CAJF2gTTeGBuL4S3cKV87w-TJTa+ZmOaPiT=+uor-PzL9jYTWAg@mail.gmail.com>
+Subject: Re: [PATCH v3 01/17] riscv: cpufeature: Fix thead vector hwcap removal
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Conor Dooley <conor.dooley@microchip.com>, 
+	Evan Green <evan@rivosinc.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Palmer Dabbelt <palmer@rivosinc.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Apr 21, 2024 at 9:04=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.c=
+om> wrote:
+>
+> The riscv_cpuinfo struct that contains mvendorid and marchid is not
+> populated until all harts are booted which happens after the DT parsing.
+> Use the vendorid/archid values from the DT if available or assume all
+> harts have the same values as the boot hart as a fallback.
+>
+> Fixes: d82f32202e0d ("RISC-V: Ignore V from the riscv,isa DT property on =
+older T-Head CPUs")
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/include/asm/sbi.h   |  2 ++
+>  arch/riscv/kernel/cpu.c        | 40 ++++++++++++++++++++++++++++++++++++=
+----
+>  arch/riscv/kernel/cpufeature.c | 12 ++++++++++--
+>  3 files changed, 48 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
+> index 6e68f8dff76b..0fab508a65b3 100644
+> --- a/arch/riscv/include/asm/sbi.h
+> +++ b/arch/riscv/include/asm/sbi.h
+> @@ -370,6 +370,8 @@ static inline int sbi_remote_fence_i(const struct cpu=
+mask *cpu_mask) { return -1
+>  static inline void sbi_init(void) {}
+>  #endif /* CONFIG_RISCV_SBI */
+>
+> +unsigned long riscv_get_mvendorid(void);
+> +unsigned long riscv_get_marchid(void);
+>  unsigned long riscv_cached_mvendorid(unsigned int cpu_id);
+>  unsigned long riscv_cached_marchid(unsigned int cpu_id);
+>  unsigned long riscv_cached_mimpid(unsigned int cpu_id);
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index d11d6320fb0d..c1f3655238fd 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -139,6 +139,34 @@ int riscv_of_parent_hartid(struct device_node *node,=
+ unsigned long *hartid)
+>         return -1;
+>  }
+>
+> +unsigned long __init riscv_get_marchid(void)
+> +{
+> +       struct riscv_cpuinfo *ci =3D this_cpu_ptr(&riscv_cpuinfo);
+> +
+> +#if IS_ENABLED(CONFIG_RISCV_SBI)
+> +       ci->marchid =3D sbi_spec_is_0_1() ? 0 : sbi_get_marchid();
+> +#elif IS_ENABLED(CONFIG_RISCV_M_MODE)
+> +       ci->marchid =3D csr_read(CSR_MARCHID);
+> +#else
+> +       ci->marchid =3D 0;
+> +#endif
+> +       return ci->marchid;
+> +}
+> +
+> +unsigned long __init riscv_get_mvendorid(void)
+> +{
+> +       struct riscv_cpuinfo *ci =3D this_cpu_ptr(&riscv_cpuinfo);
+> +
+> +#if IS_ENABLED(CONFIG_RISCV_SBI)
+> +       ci->mvendorid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mvendorid();
+> +#elif IS_ENABLED(CONFIG_RISCV_M_MODE)
+> +       ci->mvendorid =3D csr_read(CSR_MVENDORID);
+> +#else
+> +       ci->mvendorid =3D 0;
+> +#endif
+> +       return ci->mvendorid;
+> +}
+> +
+>  DEFINE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+>
+>  unsigned long riscv_cached_mvendorid(unsigned int cpu_id)
+> @@ -170,12 +198,16 @@ static int riscv_cpuinfo_starting(unsigned int cpu)
+>         struct riscv_cpuinfo *ci =3D this_cpu_ptr(&riscv_cpuinfo);
+>
+>  #if IS_ENABLED(CONFIG_RISCV_SBI)
+> -       ci->mvendorid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mvendorid();
+> -       ci->marchid =3D sbi_spec_is_0_1() ? 0 : sbi_get_marchid();
+> +       if (!ci->mvendorid)
+> +               ci->mvendorid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mvendor=
+id();
+> +       if (!ci->marchid)
+> +               ci->marchid =3D sbi_spec_is_0_1() ? 0 : sbi_get_marchid()=
+;
+>         ci->mimpid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mimpid();
+>  #elif IS_ENABLED(CONFIG_RISCV_M_MODE)
+> -       ci->mvendorid =3D csr_read(CSR_MVENDORID);
+> -       ci->marchid =3D csr_read(CSR_MARCHID);
+> +       if (!ci->mvendorid)
+> +               ci->mvendorid =3D csr_read(CSR_MVENDORID);
+> +       if (!ci->marchid)
+> +               ci->marchid =3D csr_read(CSR_MARCHID);
+>         ci->mimpid =3D csr_read(CSR_MIMPID);
+>  #else
+>         ci->mvendorid =3D 0;
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 3ed2359eae35..c6e27b45e192 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -490,6 +490,8 @@ static void __init riscv_fill_hwcap_from_isa_string(u=
+nsigned long *isa2hwcap)
+>         struct acpi_table_header *rhct;
+>         acpi_status status;
+>         unsigned int cpu;
+> +       u64 boot_vendorid;
+> +       u64 boot_archid;
+>
+>         if (!acpi_disabled) {
+>                 status =3D acpi_get_table(ACPI_SIG_RHCT, 0, &rhct);
+> @@ -497,6 +499,13 @@ static void __init riscv_fill_hwcap_from_isa_string(=
+unsigned long *isa2hwcap)
+>                         return;
+>         }
+>
+> +       /*
+> +        * Naively assume that all harts have the same mvendorid/marchid =
+as the
+> +        * boot hart.
+> +        */
+> +       boot_vendorid =3D riscv_get_mvendorid();
+> +       boot_archid =3D riscv_get_marchid();
+> +
+>         for_each_possible_cpu(cpu) {
+>                 struct riscv_isainfo *isainfo =3D &hart_isa[cpu];
+>                 unsigned long this_hwcap =3D 0;
+> @@ -544,8 +553,7 @@ static void __init riscv_fill_hwcap_from_isa_string(u=
+nsigned long *isa2hwcap)
+>                  * CPU cores with the ratified spec will contain non-zero
+>                  * marchid.
+>                  */
+> -               if (acpi_disabled && riscv_cached_mvendorid(cpu) =3D=3D T=
+HEAD_VENDOR_ID &&
+> -                   riscv_cached_marchid(cpu) =3D=3D 0x0) {
+> +               if (acpi_disabled && boot_vendorid =3D=3D THEAD_VENDOR_ID=
+ && boot_archid =3D=3D 0x0) {
+LGTM!
+Reviewed-by: Guo Ren <guoren@kernel.org>
+
+>                         this_hwcap &=3D ~isa2hwcap[RISCV_ISA_EXT_v];
+>                         clear_bit(RISCV_ISA_EXT_v, isainfo->isa);
+>                 }
+>
+> --
+> 2.44.0
+>
 
 
-Hi Dmitry,
-
-On 26/04/2024 09:31, Dmitry Rokosov wrote:
-> Hello Neil,
-> 
-> I hope you're doing well. I was wondering if you could assist me with
-> below problem.
-> 
-> I'm a bit confused about which kernel repository the series was applied
-> to. I asked Daniel about it, but unfortunately, I didn't receive any
-> feedback from him. Could you provide some clarification on this matter?
-> 
-> Thank you in advance for your help.
-
-I was OoO the last two weeks.
-
-Your series is in my tree [1], which is pulled automatically by the 
-linux-pm tree in its bleeding-edge branch.
-
-Today, this branch will move to the linux-next branch [2] which will 
-also be pulled by the linux-pm/next branch automatically.
-
-Hope that helps and sorry for the delay to answer
-
-   -- Daniel
-
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/bleeding-edge
-
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/linux-next
-
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+--=20
+Best Regards
+ Guo Ren
 
