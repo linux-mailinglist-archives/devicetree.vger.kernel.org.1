@@ -1,171 +1,104 @@
-Return-Path: <devicetree+bounces-63073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E348B3A7F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:01:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68DAD8B3A96
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C121F21688
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:00:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E79F6281A1F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88DFD14884A;
-	Fri, 26 Apr 2024 15:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0627B148856;
+	Fri, 26 Apr 2024 15:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="rqAdKPnn"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="xr8vjMSk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4127824B3;
-	Fri, 26 Apr 2024 15:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48ABE1E504;
+	Fri, 26 Apr 2024 15:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714143654; cv=none; b=fmjiYr3Rp08u3+xWk0w6etixV+26IQLAm8GU0TXkUTTdgAjcLsa8WUv9bBmwXKfuxWmtdn4HcaQit7MvcpnFl8QUOPAHH/KjTz+ZoSC+xlSjjkM+S2O5TQlcnhSqsxyqP52d1imw5R+5QbwBrpDHj20LdprJTFsnK+qUFrG+dxM=
+	t=1714143993; cv=none; b=G1thVUR5fDiOqg+Yd92MU5DBYiRZgRcR2ihMclQ3IPgQdmJjFgMzqSkKoeCiGrdEeFGc8Wqx0BsBD6g/Y5eMUR0ffcI4Wf1bm2nGOzo5oT8KPufSSZphoWvTwyqzc/8FHPWnKlGcvS7sG4CZDGxym39yDnvJZyJcI1EGBzOkE2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714143654; c=relaxed/simple;
-	bh=Krp0ixMO8Z7FJrpDXir2sn7ZJLY3AzyiosM0Mm20ZLU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=pfNN1ARb0vrcOGshLtMnVvRCmxFoEKvcpPLheYxQzL5+hE6EWEcBD0VSbUasel7zJOWSiCe+Btsh7RSd06dvyeU7TcSBPPQRGLLzGeQ45YxrTVpV8y3tIZS/pukHaKECOsjX2BgNfitdyq97MKxIB7Tt9MSfHGFnqA/JDEdu9eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=rqAdKPnn; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43QEpvwN028494;
-	Fri, 26 Apr 2024 15:00:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=qr+2iUUPDNYgObLxDLeS1JVLJzKYCjSVzJhiz1bDJ7Y=;
- b=rqAdKPnn8E+iUHckboXCI1403tWg3F+KFttV21ra8Ohy7COQG9D77t1qvyPMe26of9MW
- wiIlplwT+4/tI1Q0Ln6fXpdIuj1hdvq9Vi8VE7h5ZiCT+xfCunbTbtg5gZZxa6wYh/fH
- Bvno5jFKCbabEpWDJRb1vmuzQBnbufSIpWMgXmrEIqWphoBLSzMmKIc0QjxXvsAAxKIC
- g/s1QWn5iwTTOx37g7CmYX2cAC7nsJEbnxWZk5NAtsC+5HoprCyFI9pujUM0wJ1ffAJa
- /LSC5FJnRO//vZBzVBhUFPP0lR3vPBiMOS2xdAY9IuWVMjriRl0EnZFvdtpFuyL5qUJP FA== 
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xredf80vk-1
+	s=arc-20240116; t=1714143993; c=relaxed/simple;
+	bh=sEtypbArG4SiU/AUEn52RhRKG31JlSlAuh3Zf62iJj0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eXBZi8O9Kqu0/AcFd1QJTXdYOaw5w1jU5F+cJzsIbcJ9CfREcHhvo3ZdBhOuEYPmPKXTCjofVKx2EDsfjAxRfkSojs9asEtLnNP5yvp0e3llYI5L2YKsoddVEJDzuO6uOLEyBymAFQf/E5Fb2SPrqNZuZpZFIve/b5Ma3eIZwpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=xr8vjMSk; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43QDJ35s019021;
+	Fri, 26 Apr 2024 17:06:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=E0FfjvT
+	J8EE6qRQgLPxGMJaY0peaJk9VEhJQyyJY68Q=; b=xr8vjMSkI1DmVxH77Q7w0MY
+	W8weouV37KhjwgCNXfmHg98/70P50O9PlLeVbWdJe5+j4y1zb3yKDfkXC7/IDG7U
+	szkqb+ArzbTzCrDjA9GqSUV7EqOgC1+Uxxwwtnmb4fcU9XgaVMVGUmqof1N1zGsU
+	Yy7f+PKF9lxDLZhKJIKBPRwWTwdc97r0taMeTyAR1tBlCQEjOiIw4LluyFJftyh7
+	ORpzGthicfK0tupWftzkdUWEkvxoaIrC88EmCMaYkv4msd3Uu/ChLGPSx9QFL1cL
+	SHuyVRP34/wyKHgr0uMd+0SFJxl12e/x24dsjdJPCO4sYp2yWfE3UYctY4udEGA=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4cnu1xd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 15:00:38 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43QDe2ck015430;
-	Fri, 26 Apr 2024 15:00:37 GMT
-Received: from smtprelay03.wdc07v.mail.ibm.com ([172.16.1.70])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xmshmr6t2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 15:00:37 +0000
-Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
-	by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43QF0YZJ9044632
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 26 Apr 2024 15:00:36 GMT
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 520E258069;
-	Fri, 26 Apr 2024 15:00:32 +0000 (GMT)
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 0AD7458060;
-	Fri, 26 Apr 2024 15:00:32 +0000 (GMT)
-Received: from [9.61.156.17] (unknown [9.61.156.17])
-	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 26 Apr 2024 15:00:31 +0000 (GMT)
-Message-ID: <b89d39d2-ec54-4a88-aee5-7b5c95b3fca7@linux.ibm.com>
-Date: Fri, 26 Apr 2024 10:00:31 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/14] dt-bindings: fsi: Document the FSI2PIB engine
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au
-References: <20240425213701.655540-1-eajames@linux.ibm.com>
- <20240425213701.655540-4-eajames@linux.ibm.com>
- <3f822b56-8e6a-43e4-afb0-15c964f9474e@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <3f822b56-8e6a-43e4-afb0-15c964f9474e@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: -v8pjlEPK1p_sMN1TL5NRtVbH9UJS6rn
-X-Proofpoint-GUID: -v8pjlEPK1p_sMN1TL5NRtVbH9UJS6rn
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	Fri, 26 Apr 2024 17:06:13 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6B7E340045;
+	Fri, 26 Apr 2024 17:06:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 09554227EFC;
+	Fri, 26 Apr 2024 17:05:35 +0200 (CEST)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 26 Apr
+ 2024 17:05:34 +0200
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: Alain Volmat <alain.volmat@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] ARM: dts: stm32: enable camera on stm32mp135f-dk
+Date: Fri, 26 Apr 2024 17:05:23 +0200
+Message-ID: <20240426150526.3094607-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
  definitions=2024-04-26_12,2024-04-26_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 adultscore=0
- mlxscore=0 bulkscore=0 phishscore=0 mlxlogscore=990 suspectscore=0
- impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2404010000 definitions=main-2404260100
 
+This serie enable the camera on the stm32mp135f-dk board.
+It adds pinctrl configuration for dcmipp parallel input and add
+gc2145/st-mipid02/dcmipp nodes within stm32mp135f-dk.dts
 
-On 4/26/24 01:18, Krzysztof Kozlowski wrote:
-> On 25/04/2024 23:36, Eddie James wrote:
->> The FSI2PIB or SCOM engine provides an interface to the POWER processor
->> PIB (Pervasive Interconnect Bus).
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   .../devicetree/bindings/fsi/ibm,fsi2pib.yaml  | 38 +++++++++++++++++++
->>   1 file changed, 38 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,fsi2pib.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/fsi/ibm,fsi2pib.yaml b/Documentation/devicetree/bindings/fsi/ibm,fsi2pib.yaml
->> new file mode 100644
->> index 000000000000..4d557150c2e3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fsi/ibm,fsi2pib.yaml
->> @@ -0,0 +1,38 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/fsi/ibm,fsi2pib.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: IBM FSI-attached SCOM engine
->> +
->> +maintainers:
->> +  - Eddie James <eajames@linux.ibm.com>
->> +
->> +description:
->> +  The SCOM engine is an interface to the POWER processor PIB (Pervasive
->> +  Interconnect Bus). This node will always be a child of an FSI CFAM node;
->> +  see fsi.txt for details on FSI slave and CFAM nodes.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ibm,fsi2pib
->> +      - ibm,i2cr-scom
-> Sometimes you call these p9, sometimes p10... what is the system or SoC
-> here? Aren't you adding some generic compatibles? writing-bindings and
-> numerous guides are clear on that.
+Alain Volmat (2):
+  ARM: dts: stm32: add DCMIPP pinctrl on STM32MP13x SoC family
+  ARM: dts: stm32: enable camera support on stm32mp135f-dk board
 
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 33 ++++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 87 +++++++++++++++++++++
+ 2 files changed, 120 insertions(+)
 
-Open source FSI support started with P9 chips so we initially added 
-p9-sbefifo, p9-occ, etc. P10 has all of the same engines as P9 plus the 
-SPI controller, so that's why SPI is p10-spi. P11 has the same engines 
-as P10. For scom/fsi2pib we could call it p9-scom I suppose... This 
-series isn't just documentation for a new system, I'm adding 
-documentation that should have been added for P9. Anyway I'm not sure 
-what you mean about generic compatibles? You mean just add a "scom" or 
-"fsi2pib" compatible? writing-bindings says "DO make 'compatible' 
-properties specific"
+-- 
+2.34.1
 
-
-Thanks,
-
-Eddie
-
-
->
-> Best regards,
-> Krzysztof
->
 
