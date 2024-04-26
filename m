@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-62895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E608B2E25
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 02:51:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F92F8B2E2D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 02:59:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 890E228130E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 00:51:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A975283A81
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 00:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47A0620;
-	Fri, 26 Apr 2024 00:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9544690;
+	Fri, 26 Apr 2024 00:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="b6a2416l"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="jZHya2SQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93BB812;
-	Fri, 26 Apr 2024 00:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C3D4685;
+	Fri, 26 Apr 2024 00:59:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714092710; cv=none; b=HgIfmA8pH3bTuyn6lGMWtFLyEtVVjJU5mQUhllIJKHSRv02STTtj3Y9XQVus9KY3+TWgi8wxzxLNGi69k1Eji+MSWNQbDCYcLRh6ZcnZ6yr+XSWFL+Ixaf7sM3FBeIr3wTHJdTwpxuk8xKgdJTPajihV3kemth1jtgVmuvCwE4o=
+	t=1714093153; cv=none; b=JdevuRNCuOm4skXg+hJfcrEZl8gw88+wqAz8sksKEz3AaQG/t2UMs7+pi+uatpkv6FksPz7RQ0chgxtJmv7QxMhezieM0ZXjn0Vz4o9kQWCrdcw6FaHP9rlrelBBKFHZNGRA93OXTB2ui/T3Pl8oTQMJXWb9RPkOjEQzDbCXBg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714092710; c=relaxed/simple;
-	bh=QieyTwN068YvvfCTCYbSnLm9E5U8HCWgeL9luSKfy7w=;
+	s=arc-20240116; t=1714093153; c=relaxed/simple;
+	bh=yOCDZvzSiMgXT1+ANWimx5Yi1spr4PiVR1sfXFbNTcg=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qXrI0uOiNbx+LJPlI4Quon+cj9rqKQlCvM9zXNqDX+PZHjZZ+s3bRaoBNauZw0d3P4Y7LuFlS8T/FZjS7/2Y8h5eTRtFaqz3IqpesDqJTv1T+hugTiYaZVNgFr7PBnYFiNUFJmt3ThOY3WllEpC7oH+zUR7egMUNYuwptfsH64A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=b6a2416l; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=kUhoXYCf7w2o+EYrMFCtSJaQ3rZvyYVXveHUcN+lqLQuTSbA9Lz7HyPQRdkqLKbk3Z4DUKhocEwrfPD2k8L85T5WmenaXJTdZFOlNpkpAm2DWhGbWXKtJHhI9rVpvuNty2Mjx5nkS37jJEJg5WI+CgxE1dKdEi9ikHaY9bqteMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=jZHya2SQ; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp14-2-127-66.adl-apt-pir-bras32.tpg.internode.on.net [14.2.127.66])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 24E3520075;
-	Fri, 26 Apr 2024 08:51:45 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7711320075;
+	Fri, 26 Apr 2024 08:59:09 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1714092706;
-	bh=NjN94PFfnv6THIE12/NBk/TDDVzgTTDfDSVQBicYRvE=;
+	d=codeconstruct.com.au; s=2022a; t=1714093150;
+	bh=MAnTooQ3NWgoEkJO0tXSf39pJZ1lMIpBC5h/JQHXvew=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=b6a2416lbz7mwL8wx+7sgO3FUkis1MId3UUgDxuD6EpdYUYxhzohbdYxqPn5+2xQR
-	 WjVOC05Ss/4rHEkaDG3gpIOED+vJpUI/0EL83bN8wCWRXK9TJnI/Ybs+sSewfMlL9B
-	 boHOJauKugnsic95tjgZfArNMpp/nzVIjVSKSuyxq7I3RvqrOw3B3r3T5NXmxwCsFg
-	 YyzdayD7A87o3QwP2A4oDjC0nWHoEovlOdR3+cftfHxjNOk51SZseM7sdVQVSx/zB0
-	 s91YIj4gKRCsYrM5SszT4SA5SAnAIs9CfTy2+UZqU2fVmnGBmM27d9GluFrRzER9Lv
-	 mb5CwqvpsPtNw==
-Message-ID: <f355ad1adb96cd8398c4ac81d1c72df289a2aaf0.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1 1/2] Revise mux and hardware in yosemite4 dts
+	b=jZHya2SQ6YJ7VWUlGZbqB0aMCTZfYXBAsGHhVoMIGiACDXu8l7aI9qVxqPF6RStCa
+	 /trLlmZPQAPAeGw9kVikC96f+Ur0+azQhWR3z3lXgosxtyh/Igijl0xzPTHjX/mv/z
+	 kK77IgFgLZkNAWpa0x+wsDuh0CfA1sbFWhtVczMiwjd1dEYlIfFAJNZZQ6OZV9O/YP
+	 t1CBaTlDYVgRgk1wNcq0eAuw39LeRq8KIl3Pdj7k5fEjGzdl0WJQTs+r92bEuDtBiV
+	 jgAiObK3rdJKlKiRnv6qm98UTa9rW+OnY/rU1VIpEH5P6lET5M70qLCaXpVPPq4sab
+	 oS/3+SJ8rYPWg==
+Message-ID: <cfa6d4071f3789ee6ddef302f685c63d4de0ba36.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1 2/2] Add nct7363 in yosemite4 dts
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
  Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Fri, 26 Apr 2024 10:21:45 +0930
-In-Reply-To: <20240425060626.2558515-2-Delphine_CC_Chiu@wiwynn.com>
+Date: Fri, 26 Apr 2024 10:29:08 +0930
+In-Reply-To: <20240425060626.2558515-3-Delphine_CC_Chiu@wiwynn.com>
 References: <20240425060626.2558515-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240425060626.2558515-2-Delphine_CC_Chiu@wiwynn.com>
+	 <20240425060626.2558515-3-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,97 +69,48 @@ MIME-Version: 1.0
 On Thu, 2024-04-25 at 14:06 +0800, Delphine CC Chiu wrote:
 > ARM: dts: aspeed: yosemite4:
 
-This should be in the patch subject, not the body of the commit
-message.
+This should be in the patch subject, not the commit message body.
 
-> Change hardware configuration, consequently modifying the mux in the dts.
-
-Perhaps "We have a new iteration of the hardware design, so update the
-devicetree to match."?
-
+> Add nct7363(0x21 and 0x23) in yosemite4.dts
 >=20
 > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-
-Overall it feels a bit untidy updating the description of distinct
-devices in the one patch.
-
 > ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 78 ++++++++++++++-----
->  1 file changed, 58 insertions(+), 20 deletions(-)
+>  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 144 ++++++++++++++++++
+>  1 file changed, 144 insertions(+)
 >=20
 > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
 /arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index 64075cc41d92..e45293762316 100644
+> index e45293762316..06b709b0a706 100644
 > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
 > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -433,16 +433,14 @@ eeprom@51 {
->  		reg =3D <0x51>;
->  	};
-> =20
-> -	i2c-mux@71 {
-> -		compatible =3D "nxp,pca9846";
-> +	i2c-mux@74 {
-> +		compatible =3D "nxp,pca9546";
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> -
-> -		idle-state =3D <0>;
->  		i2c-mux-idle-disconnect;
-> -		reg =3D <0x71>;
-> +		reg =3D <0x74>;
-> =20
-> -		i2c@0 {
-> +		inux30: i2c@0{
-
-'inux'? 'imux'?
-
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
->  			reg =3D <0>;
-> @@ -450,26 +448,46 @@ i2c@0 {
->  			adc@1f {
->  				compatible =3D "ti,adc128d818";
->  				reg =3D <0x1f>;
-> -				ti,mode =3D /bits/ 8 <2>;
-> +				ti,mode =3D /bits/ 8 <1>;
+> @@ -467,6 +467,42 @@ channel@5 {
+>                                  };
 >  			};
 > =20
->  			pwm@20{
-> -				compatible =3D "max31790";
-> -				reg =3D <0x20>;
-> +				compatible =3D "maxim,max31790";
+> +			hwmon0: hwmon@21 {
 
-This looks like a change motivated by binding validation or a driver
-change rather than hardware design :)
+I feel hwmon describes a subsystem in linux more than it does hardware,
+and using it for a node name feels a bit off to me. It's not listed in
+the devicetree spec (v0.4) as a recommended generic name, and is only
+used in a handful of devicetrees - two of which are ancient BMC
+devicetrees:
 
->  				#address-cells =3D <1>;
->  				#size-cells =3D <0>;
-> +				reg =3D <0x20>;
-> +				channel@4 {
-> +					reg =3D <4>;
-> +					sensor-type =3D "TACH";
-> +				};
-> +
-> +				channel@5 {
-> +					reg =3D <5>;
-> +					sensor-type =3D "TACH";
-> +				};
->  			};
-> =20
->  			gpio@22{
->  				compatible =3D "ti,tca6424";
->  				reg =3D <0x22>;
-> +				gpio-controller;
-> +				#gpio-cells =3D <2>;
->  			};
-> =20
-> -			pwm@23{
-> -				compatible =3D "max31790";
-> -				reg =3D <0x23>;
-> +			pwm@2f{
-> +				compatible =3D "maxim,max31790";
+((v6.9-rc5)) $ git grep -l hwmon@ -- arch/arm/boot/dts/
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-palmetto.dts
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-vesnin.dts
+arch/arm/boot/dts/intel/ixp/intel-ixp42x-freecom-fsg-3.dts
+arch/arm/boot/dts/intel/ixp/intel-ixp42x-gateworks-gw2348.dts
+arch/arm/boot/dts/intel/ixp/intel-ixp43x-gateworks-gw2358.dts
+arch/arm/boot/dts/marvell/armada-370-c200-v2.dts
+arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
+arch/arm/boot/dts/microchip/lan966x.dtsi
+arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval-v1.2.dts
+arch/arm/boot/dts/xilinx/zynq-zc702.dts
 
-Again here
+> +				compatible =3D "nuvoton,nct7363";
+
+This compatible seems to be undocumented as of v6.9-rc5? Should you
+also send a binding patch?
 
 Andrew
 
