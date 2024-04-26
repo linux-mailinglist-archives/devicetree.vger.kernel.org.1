@@ -1,132 +1,203 @@
-Return-Path: <devicetree+bounces-63210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6092D8B40A7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:04:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 433B68B40B1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:11:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12C7E1F21336
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:04:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF147282E85
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C00208AF;
-	Fri, 26 Apr 2024 20:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA99E20B0E;
+	Fri, 26 Apr 2024 20:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LTutAkMA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LKz5p9fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8254E171A5;
-	Fri, 26 Apr 2024 20:04:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60903125AE
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 20:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714161869; cv=none; b=QJCEvAfFrB6lh70p5v4FHjZ74Ga263QwYQIpL4Hq9JdheIWyl+ncL7iFiAW8W0nSTmCxbJY7RQo17LZ7hUpg9ijGyYWF/hmjvHRPudx1uJou/Awza1z3SqmHW4pc0W8jQBn8gqbinlemNzEngmuPd/69g38uCDyuBrbmJunRzsE=
+	t=1714162279; cv=none; b=gQszUl51Leq3djRdRN77+t2D9YfSa32tS5Y6S2Q/f04sixvVogZDjgv3bD0MJIROwLBWrH/QtP6GWHkxsz9MPAE3eKxA57A5+d75koOOEb/EQhM/jvj6ySaNd5hqMnqNrnQWrxByzRNy4BexwoH/1OtTtcctsbLxWYYf2PLJ5IQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714161869; c=relaxed/simple;
-	bh=4Y/1SNbJpP6Iq6bpaDNDG2do5EqjdK+s/ofDm4Cz0GM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=K1nW0SrFmx3MZLpY9PxpYwquDMhLnn4Cd3309/U2rhHMOhjJ8xE6eTYaspn4RqZP405mIjV4qh+L8Mdm+T25L4HedyJg7I/HoYm+eTmrJqiyLFbAdc51QPR9TDdm5SJzHgWbvCqywt3zBhRn650S/KlQMfdD/xU0Q/oGzWVM7LE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LTutAkMA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43QCBwdj013759;
-	Fri, 26 Apr 2024 20:03:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=CVAZFTsLc+ZUqoicJEH8S6rIGArbQdqBeftallr55BM=; b=LT
-	utAkMA83j3mmHOC5EsZVXQFScJhAWIiDmS8EZZ4zx+ionvatYbvZqsiDHEfColcc
-	7kCdPpAoqcqMyi/cELiDp7YnXq5mKUSf9pFl/VQ+68TA1K2PDLZq14FrAsdZ+sRc
-	5I1uSrAgY4z0vN/tS46aJGRrZPqzUNRhGPORUtSInegHg7NHitHelXU6yuFRRa7O
-	slbqL4ICvyNl4k9ruQfB6OGdpY9qYtwxiITczJ+mBsayfGrEqrVO/u7akFNr/c15
-	w9OA2Gv8q9x0tF4yvDw54aMxyIEqQjy8rk+zm79qCigYm90O6E38t9ED39FwJ7aV
-	s4VUIExgbu0B8W4k2QJA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xr35ettv5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 20:03:19 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43QK3Hd7016370
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 20:03:18 GMT
-Received: from [10.110.6.235] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Apr
- 2024 13:03:17 -0700
-Message-ID: <a24aac59-961f-0a1a-4558-61e333c6fa7f@quicinc.com>
-Date: Fri, 26 Apr 2024 13:03:11 -0700
+	s=arc-20240116; t=1714162279; c=relaxed/simple;
+	bh=CCtrDmowOfUzSRgAL6a/caO428RWP0SEeDG7dtLDLu0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZOdsxa7WvXTpDx/YRzrPo2Jhnp2aOuX1Z56xgJtyl63avHIZDCaYCjtv/rJ/RsaLwqD+/gAbmd8C9d3f5ZvzQkb/DkdzSWqcUUbX69kQpoDYym0ei5ZKxrq3yw3JbfmFl4ofIW94yifgpmTZFpyiB/kckNKbCuUSt/yqmhV+0V8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LKz5p9fq; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3c85a9b9143so493446b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 13:11:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714162276; x=1714767076; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6CwGplRyVlrAojs0p2Bji7yf6qM7XioPGpQcoYE219Y=;
+        b=LKz5p9fqrQuDYdCfGxq7VMw3zzd2k+fVYbrPnBE49UogwCka8EC7lu+/RyKUFawqJ+
+         XcpN2obHhLp9watFnRtosuTZU8UI+mUktNgiH+1jo4mhs7bcrAp2k+YzV3EMDLh7St8N
+         5uB/cHn7Ab0Cu6ITrxmkSDQLCa++u5cwAHJcRTqCOXspQWBOQCOJRhx8Xr08n/ao+72o
+         Rjwo/psXVmMYnKo30ev5Bl2GSeiyHEs1POHRM2RQYu63R6VYNMn/NXk755+Qf8eWPmsZ
+         kleXOhfKluaqe1pUVvikyNn0y1ovkU98uakFMMxC9N0Ydle9i4ZwjF7Twr86384UYLQ7
+         Le/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714162276; x=1714767076;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6CwGplRyVlrAojs0p2Bji7yf6qM7XioPGpQcoYE219Y=;
+        b=I39mhxJigvj4wnO3b8PiDTilGRjZP9UlwBCTYar2Q6K2gtt2jhm5W9yEAGgPg+pTyt
+         LbwSQ05kZhHTYMoLbZucC9udSP1mKuZf8P06yu9eeV7aZWXFkQJUx14/Jv9wYH9g7BCg
+         sdx5O6XSGbFMafyTbIotkcUdHIDlRJ/wQsuy6D4HSAOxVDiU5DpogMmIG0pgxB2nxxK1
+         5qYkBpEHL+aNf3WS8o4iwL611s5riS8xssH/4EOmsEGXDtNqLdtSVbOkqAS+yQNEQbNL
+         8+uufbGs4ZHtNk33ma3x3zsTIKxTrpHOuvlRcW4HbT9lSvbkkQg+K1k2n1XEGeOkNJox
+         +fFA==
+X-Forwarded-Encrypted: i=1; AJvYcCXKEGWUoksI+6uJxtZOrohtYgAW16OOI5ESy/KbPoHQvY9yCLYtSclJa7AiLSDNr8toHyYnuHl/qLst3KoJnUXh31CQipbTT8FrXA==
+X-Gm-Message-State: AOJu0YztKWzM1mfQH4cqaxea4TnG9DiwgHTpXD3o52A90Awfs7jLGRTm
+	V9SK4XZLhCTu7GVQZnNl8Njkl6ROICe/5JHz68EIWbLBjX49/p+KQJvDbHkig6o=
+X-Google-Smtp-Source: AGHT+IGmGPMXguo4qOP7xmoYacLCC657AcV/qNocAoxOLQZB8ATEhQX5SkqofkF+5cuwjvIkYsjtUA==
+X-Received: by 2002:a05:6808:628e:b0:3c7:546a:33b4 with SMTP id du14-20020a056808628e00b003c7546a33b4mr3467736oib.20.1714162276318;
+        Fri, 26 Apr 2024 13:11:16 -0700 (PDT)
+Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id a7-20020a0cca87000000b006969f5d3159sm8227068qvk.50.2024.04.26.13.11.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Apr 2024 13:11:16 -0700 (PDT)
+Message-ID: <8bc13253-db16-4801-9f69-b06ba4e129be@baylibre.com>
+Date: Fri, 26 Apr 2024 16:11:14 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v20 08/41] usb: host: xhci-mem: Allow for interrupter
- clients to choose specific index
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2 v5] dt-bindings: pwm: Add AXI PWM generator
+To: linux-pwm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+ michael.hennerich@analog.com, nuno.sa@analog.com, dlechner@baylibre.com,
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org
+References: <20240424125850.4189116-1-tgamblin@baylibre.com>
+ <20240424125850.4189116-2-tgamblin@baylibre.com>
 Content-Language: en-US
-To: =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?=
-	<amadeuszx.slawinski@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <konrad.dybcio@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240425215125.29761-1-quic_wcheng@quicinc.com>
- <20240425215125.29761-9-quic_wcheng@quicinc.com>
- <60c17b0c-8069-4019-b062-3b3cb892297b@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <60c17b0c-8069-4019-b062-3b3cb892297b@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Trevor Gamblin <tgamblin@baylibre.com>
+In-Reply-To: <20240424125850.4189116-2-tgamblin@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: g6oaGlBmz1dhPebrOegIfxkgZhb6mMgK
-X-Proofpoint-ORIG-GUID: g6oaGlBmz1dhPebrOegIfxkgZhb6mMgK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-26_17,2024-04-26_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=718
- lowpriorityscore=0 malwarescore=0 spamscore=0 bulkscore=0 impostorscore=0
- phishscore=0 priorityscore=1501 clxscore=1011 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404260139
 
-Hi Amadeusz,
 
-On 4/26/2024 6:24 AM, Amadeusz Sławiński wrote:
-> On 4/25/2024 11:50 PM, Wesley Cheng wrote:
->> Some clients may operate only on a specific XHCI interrupter instance.
->> Allow for the associated class driver to request for the interrupter that
->> it requires.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
-> 
-> (...)
-> 
->> -
->> -    /* Find available secondary interrupter, interrupter 0 is 
->> reserved for primary */
->> +    /* Find available secondary interrupter, interrupter 0 is 
->> reserverd for primary */
-> 
-> You introduce a typo in here.
+On 2024-04-24 8:58 a.m., Trevor Gamblin wrote:
+> From: Drew Fustini <dfustini@baylibre.com>
+>
+> Add Analog Devices AXI PWM generator.
+>
+> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+Note that I missed the following two acks from the v4 series when 
+preparing v5:
 
-Thanks for the review!  Will fix it.
+Acked-by: Michael Hennerich<michael.hennerich@analog.com>
+Acked-by: Nuno Sa<nuno.sa@analog.com>
 
-Thanks
-Wesley Cheng
+Trevor
+
+> ---
+> v5 changes:
+> * Modify to list only the supported axi-pwmgen-2.00.a version
+>
+> v4 changes: None (rebased, added maintainer's previous Reviewed-by)
+> v3 changes: None (rebased, added maintainer's previous Reviewed-by)
+>
+> v2 changes:
+> * Address feedback for driver and device tree in v1:
+>    * Relocate "unevaluatedProperties" in device tree binding
+>    * Remove redundant "bindings for" in description
+>
+> ---
+>   .../bindings/pwm/adi,axi-pwmgen.yaml          | 48 +++++++++++++++++++
+>   MAINTAINERS                                   |  8 ++++
+>   2 files changed, 56 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> new file mode 100644
+> index 000000000000..ec6115d3796b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/adi,axi-pwmgen.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AXI PWM generator
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description:
+> +  The Analog Devices AXI PWM generator can generate PWM signals
+> +  with variable pulse width and period.
+> +
+> +  https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,axi-pwmgen-2.00.a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pwm@44b00000 {
+> +       compatible = "adi,axi-pwmgen-2.00.a";
+> +       reg = <0x44b00000 0x1000>;
+> +       clocks = <&spi_clk>;
+> +       #pwm-cells = <2>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ebf03f5f0619..d02ece54ccf6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3465,6 +3465,14 @@ W:	https://ez.analog.com/linux-software-drivers
+>   F:	Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+>   F:	drivers/spi/spi-axi-spi-engine.c
+>   
+> +AXI PWM GENERATOR
+> +M:	Michael Hennerich <michael.hennerich@analog.com>
+> +M:	Nuno Sá <nuno.sa@analog.com>
+> +L:	linux-pwm@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> +
+>   AXXIA I2C CONTROLLER
+>   M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
+>   L:	linux-i2c@vger.kernel.org
 
