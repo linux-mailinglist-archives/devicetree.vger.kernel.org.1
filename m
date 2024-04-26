@@ -1,110 +1,124 @@
-Return-Path: <devicetree+bounces-63204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F4B8B401B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:23:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0948B4033
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25E6E1F23338
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:23:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 450FC285D67
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DBA1173F;
-	Fri, 26 Apr 2024 19:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuXXwib5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B338171A5;
+	Fri, 26 Apr 2024 19:40:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D492A14A96;
-	Fri, 26 Apr 2024 19:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A9320B0E
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 19:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714159380; cv=none; b=Hp4ldS0B34Rt2oIE3EWVtAAqCXBADwkA4HZezyFDlDEZE58mil4jY94roOGciG6SAq6U5VQ/wfKvfLtwOcJCBcJFyOyVY2LUhlD2ba2QUMPkUbkAn+4vrO/vHWzd2TnQrm8HEgy8jYXtyHjQ3D9lGNfk5XCHvQefQ6H+AoAWZUU=
+	t=1714160447; cv=none; b=QJmeFBSlJqEHzYHUeayKhlAP3pNcvn/TK1pmjCvXGtpmP07wrScLBhU8rQVn2pGI09rtwYTfz51RVD3/MHcJGOzkfeR+Nup8ytL6OdIVgER0mKBhfbwIBLCkv8RhC5rl7c+oRLqF35MfmKD5t1Uz9TvEgPB7YdsvSc5G/Lb9IJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714159380; c=relaxed/simple;
-	bh=OVSV+SEbfc1zfz8pX7msAmdgQGOL8Hi8WJYW9BAU2nE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=B8D17R8v+E5+KfEUhwr1uoytK4HgzvZFuEIcnR9GA6fDtghTNaLTIZqgtuCCMC5W2yZbQxULckd6K4a/T/vEoinGpiuyIzGF8foklePi1waKs8oUtJ7Lj8UOs1K6NoXIO5eLqrItuFItbkhUsbtMpWXhRaJEqlM6+324Cv0ococ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuXXwib5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F7ECC113CD;
-	Fri, 26 Apr 2024 19:23:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714159380;
-	bh=OVSV+SEbfc1zfz8pX7msAmdgQGOL8Hi8WJYW9BAU2nE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=FuXXwib59Ax8JB6ZoL3eNtEqvuZOmWn8LSE502+HTxnWty4srsSsbymxgckesNsc5
-	 EJVSYuzSMp4X144+as44CQavQyCxyCtaoyX5l7YTFA/9lEGA48ML4ohyshbUOQkAE7
-	 o8NAJtUAtfpCFlnpRwawwpBiUJc5ku/V6WmIsVSoU4fsdzLHEULYulqfDpSu5ICRTD
-	 yJJIRyJN6w/4vxb1AhJNzbkHP5Iq4CHQUImy0z/+qYNwCYa3QGeY19e7YC3pyB2UrQ
-	 5nX/zHDoAV1BUZxUIj1gKEtBOVBE38hgoE+YqRzpEJShq+2bm2kD7qkhkZJdUNhLy/
-	 ik9D6unUNlMQw==
-Date: Fri, 26 Apr 2024 14:22:58 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1714160447; c=relaxed/simple;
+	bh=MJhoBOcKvcAfCqXZ27Dow0kPxI2bLjrCHZ1BhmTfiUs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L2IyR1sjkXa6F60jTML/3ZnkIeENZRybb2BHnCf0HbV/jHEXXJAsay7ggzk6PY2OkSE7KbcvMsmvtUkbx6SIoQgo5UXwRGVVRL4rBtWQjsGm4shI+YLAHsrHfxvra43wg8QKNlEYh2B0ukT1BSwgoMzSaeEkKjf8ipw7T7BYtgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s0RQo-0006P0-27; Fri, 26 Apr 2024 21:40:26 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s0RQn-00EV0n-4J; Fri, 26 Apr 2024 21:40:25 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s0RQn-009ZX2-08;
+	Fri, 26 Apr 2024 21:40:25 +0200
+Date: Fri, 26 Apr 2024 21:40:24 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, linux-kernel@vger.kernel.org, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 00/49] ARM: dts: imx: Use #pwm-cells = <3> for
+ imx27-pwm device
+Message-ID: <oy4mnbkskyrw5dwkq3rebe2yh4i3fy44rubhvesug7pedzws46@472pzktn5t22>
+References: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Patrick Delaunay <patrick.delaunay@foss.st.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Alexandre TORGUE <alexandre.torgue@foss.st.com>, devicetree@vger.kernel.org, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- linux-stm32@st-md-mailman.stormreply.com, Mark Brown <broonie@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Pascal Paillet <p.paillet@foss.st.com>, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
-References: <20240426183253.1360098-1-patrick.delaunay@foss.st.com>
- <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
-Message-Id: <171415937701.2720387.9777987349037944096.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg:
- add compatible for STM32MP13
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6qlyaxmagn4lyfzd"
+Content-Disposition: inline
+In-Reply-To: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-On Fri, 26 Apr 2024 20:32:50 +0200, Patrick Delaunay wrote:
-> Add new compatible "st,stm32mp13-pwr-reg" for STM32MP13 SoC family.
-> 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
-> ---
-> 
-> Changes in v2:
-> - update for Rob review, only add compatible for STM32MP13 family
-> 
->  .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml    | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+--6qlyaxmagn4lyfzd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hello,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml:15:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
+On Fri, Apr 05, 2024 at 11:41:47PM +0200, Uwe Kleine-K=F6nig wrote:
+> this series addresses many warnings of the type:
+>=20
+> 	arch/arm/boot/dts/nxp/imx/imx6ul-pico-dwarf.dtb: pwm@2088000: #pwm-cells=
+:0:0: 3 was expected
+> 	        from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
+>=20
+> that is emitted when building with CHECK_DTBS=3D1.
+>=20
+> This completes the conversion started with
+>=20
+> 	fa28d8212ede ("ARM: dts: imx: default to #pwm-cells =3D <3> in the SoC d=
+tsi files")
+> 	4c6f19ab2aed ("dt-bindings: pwm: imx-pwm: Unify #pwm-cells for all compa=
+tibles")
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml: properties:compatible:oneOf: [{'const': 'st,stm32mp1,pwr-reg'}, {'const': 'st,stm32mp13-pwr-reg'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+Gentle ping! I would expect that Shawn picks up this series.
 
-doc reference errors (make refcheckdocs):
+Best regards
+Uwe
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+--6qlyaxmagn4lyfzd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYsAycACgkQj4D7WH0S
+/k76+gf/RTd50w5R0hfdfG8xkZOBeH3rPK6SXQs8zpgJ+/lgFxqquJi95MpCrQiG
+3JRo4kCmPkPbUNjhTGORzRBeh9Gi8uI7FZ1TFEMgiytsVDuJV/lC/CbWAhI/BebL
+N+vBHG3188lpfsfzgbuUnCQk1TxLEeyWrdV/sG5pGR1JaalCudQxwTVODqvRX8T3
+qiuNqZmHG3HWkGVZ21ibdkdfVcArWphKeB2GUpss3MQJDNR8zYPkMgFYWYy3TYie
+ic2z6+LEP/9IA2E5eKz6prVC/zgOjsUMktzs5aNy01uRxiUe1iQ3IPhPuBu/qner
+qlkpR97+TFM8ZGuypO4fRp0bVIG3Aw==
+=sPqb
+-----END PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--6qlyaxmagn4lyfzd--
 
