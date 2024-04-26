@@ -1,103 +1,101 @@
-Return-Path: <devicetree+bounces-63132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3472A8B3D02
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4098B3D03
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:41:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6610E1C211E8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:40:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81D631C211E8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4200F14900B;
-	Fri, 26 Apr 2024 16:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFB514900B;
+	Fri, 26 Apr 2024 16:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dCWxMZMq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jv3UJZBI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6D2146A6B
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 16:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D476BFB1
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 16:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714149614; cv=none; b=isVVZ1qaT2LuYNVsBMNmnRh4TTxUI7fVio0uRw5veVFZuDt3yRNflWLNn/COkxJeRP2BQnez0JjzzTGn/eLe5bESay/uU6aI90juqUoOZkeRaYCnenJxMdtdzKHGy8Wx8cWUqbYQtvF6mLpvL/owoM69ic3068tdCHcdsdfGVx4=
+	t=1714149684; cv=none; b=VIaBrdubFHvnEoC258AVsH+iftpJ6kXKNrh3lgL+hTGQvtEL0GKgbb/lIQ0VA4YC1Le9WxpYc+8gnQDyDZ+XdbNydQL1q90yA397ECXCKTEE+1fia7q3V5Tgg8N1lVHnts2nYU/uS3ILvQvYneFEmSSMTsdqHrLyGP0DPrsoT10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714149614; c=relaxed/simple;
-	bh=9nlNpjXl2tclRLBwf7U2c3+7suexJGgJHSSMR5Q3zxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V/8yyrefWaZAyfQ30L8hY5ztB2VTBii3lBFELnX9AXwuWVIfZrNwOiEtnZrnpL9nVHxG2x5j27upFcOXENHb9AxYJiXL9s9BsrW3BAc9sq+SsAq9oH86/PQFWaB2KjXIllhf1wvm5URoNv9col0qGqO4BuDmTzzvDllU6jRsI9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dCWxMZMq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5570C113CD;
-	Fri, 26 Apr 2024 16:40:10 +0000 (UTC)
+	s=arc-20240116; t=1714149684; c=relaxed/simple;
+	bh=k1HP50/EGRsUos+ckzgu46eFkX2MgzeubV1KZsHe06A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gg0fZE/aKRA8wkm+Q/63I061yZXuvy8C8VJuGJRYDZx2MU+5tROzvoC6EzL2LedL2houPvBpGVrj+GTInUacw0hGUzIbtXCxTEMA9n3MFdg7c5lixEzFWaelg2HyUyjXb1yyR+43cqXB4WuhWmadm0BIc3x5aLOAVP20sVkGml8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jv3UJZBI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A804AC113CD;
+	Fri, 26 Apr 2024 16:41:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714149613;
-	bh=9nlNpjXl2tclRLBwf7U2c3+7suexJGgJHSSMR5Q3zxM=;
-	h=Date:From:To:List-Id:Cc:Subject:In-Reply-To:References:From;
-	b=dCWxMZMqrnYjsFMLJd4hWadH2UkfHRPpcOKTV9JmQqVgSg4+n2KdMaVNqCjvSPyAB
-	 D+bSRM+tDfCbIyb3MyVCzHopupyN3JMmBAUT8DUrLvHXt1BDOsexBQ0IaXHQQmm2ji
-	 8UoVjaaBSFZEm3F1/ZPoY8W+7hZd0+LEQB1XacfqZxbZ0lsKQC6/NSVf7axKv6ChEB
-	 N/0yF8uSbseVxg/s65iYt9ILGYye/IyECbGA5f/6ePwWEc+K5foPciLeMPQZQAMB6o
-	 seN+SbCWuWC5fFpod3qkv1vrbEu9ZGqtaEnmL/g7eGZpRESsGfLrmYgXPmYYqqTEpV
-	 4OWKvNmlN2q9w==
-Date: Fri, 26 Apr 2024 18:40:04 +0200
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org, Andy
- Shevchenko <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo
- =?UTF-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Andrew Lunn
- <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
- <uwe@kleine-koenig.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 8/9] ARM: dts: turris-omnia: Add MCU
- system-controller node
-Message-ID: <20240426184004.2456f2e6@dellmb>
-In-Reply-To: <87bk5w5d0v.fsf@BLaptop.bootlin.com>
-References: <20240424173809.7214-1-kabel@kernel.org>
-	<20240424173809.7214-9-kabel@kernel.org>
-	<87bk5w5d0v.fsf@BLaptop.bootlin.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1714149684;
+	bh=k1HP50/EGRsUos+ckzgu46eFkX2MgzeubV1KZsHe06A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jv3UJZBI8EoQD+MY42q6VH09SsEWWd86AtEWK6oq2dbKKL/e4hjPAgFOKJVhMJb0D
+	 ab0cUjJurgPmRoYwy6jUnWb4pgALss3IOkwhRj2k9ZEii5h0JSzoRYqyzh+6cQxhmS
+	 ZmQ8EOvuuUMqSqkrOC7Y45dMBoF4YBKqgOBJ+pTk9CjB/vHCkejVWD47er79laTXFK
+	 shybO0cUNhpwWUDcaD0gpO+7ycX7ftLcqppMQVQ0UUTZD7/IcE2Z/dEoKbwkGSI9uZ
+	 mTOqN/kNmkgeZaMajFaYM4ILOWADLr+FLfiI77m04kLzGoBQDMkFprvIvDV8tnoCX0
+	 t534ELXVIfd3w==
+Date: Fri, 26 Apr 2024 17:41:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	conor.dooley@microchip.com, anup@brainfault.org,
+	atishp@atishpatra.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	christoph.muellner@vrull.eu, heiko@sntech.de, charlie@rivosinc.com,
+	David.Laight@aculab.com, parri.andrea@gmail.com,
+	luxu.kernel@bytedance.com
+Subject: Re: [PATCH v3 2/6] dt-bindings: riscv: Add Zawrs ISA extension
+ description
+Message-ID: <20240426-cogwheel-levers-948f454caa7e@spud>
+References: <20240426100820.14762-8-ajones@ventanamicro.com>
+ <20240426100820.14762-10-ajones@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6r9tvAN/HBvHKqJ2"
+Content-Disposition: inline
+In-Reply-To: <20240426100820.14762-10-ajones@ventanamicro.com>
 
-On Fri, 26 Apr 2024 18:01:20 +0200
-Gregory CLEMENT <gregory.clement@bootlin.com> wrote:
 
-> Hello Marek,
-> 
-> > Turris Omnia's MCU provides various features that can be configured over
-> > I2C at address 0x2a. Add device-tree node.
-> >
-> > Fixes: 26ca8b52d6e1 ("ARM: dts: add support for Turris Omnia")  
-> 
-> Is it really a fix ?
-> 
-> It seems that the node you add depends on the firmware support that was
-> not yet added.
-> 
-> Gregory
+--6r9tvAN/HBvHKqJ2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It is a fix in the sense that Omnia always had the MCU, and so
-device-tree without the MCU node was incorrect.
+On Fri, Apr 26, 2024 at 12:08:22PM +0200, Andrew Jones wrote:
+> Add description for the Zawrs (Wait-on-Reservation-Set) ISA extension
+> which was ratified in commit 98918c844281 of riscv-isa-manual.
+>=20
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
 
-Since device-trees should be (if possible) backwards and forwards
-compatible, this should not be a problem.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-But I am guessing it might be because of what new U-Boot does: if it
-finds the MCU node in the device-tree, it will add a reset gpio property
-for ethernet PHY, linking it to the MCU node. So if this
-patch got backported to older kernel where the MCU driver is not
-present, and the board had this new U-Boot, the kernel would not create
-the eth2 interface, because it would be waiting for a driver providing
-the GPIO.
+Cheers,
+Conor.
 
-So hmm, maybe I should drop the Fixes tag.
+--6r9tvAN/HBvHKqJ2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZivZLgAKCRB4tDGHoIJi
+0tnVAP95swoPxTiUUB+e1S5YEyOC7kzvWJ+sufF+uu4Vca84zgD/YgIAtt5fP8z/
+L2jhiF5CyTzyCR7zuNLSwkcta5XVEA0=
+=z0CS
+-----END PGP SIGNATURE-----
+
+--6r9tvAN/HBvHKqJ2--
 
