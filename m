@@ -1,149 +1,148 @@
-Return-Path: <devicetree+bounces-62997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13728B3682
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:29:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1038B36A3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:42:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 966981F22BD6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:29:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93DF81F21C60
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647E6144D26;
-	Fri, 26 Apr 2024 11:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309AD145338;
+	Fri, 26 Apr 2024 11:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="METmOIPG"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="EFbrcrlS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910C313C9A7;
-	Fri, 26 Apr 2024 11:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05805144D3F;
+	Fri, 26 Apr 2024 11:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714130989; cv=none; b=b1cMT6rSTjb+HJ3CVGI1OldBr8TRxWggimd2+RYg6naSOow2iMgvsbbWeqfSVfGkYZKXmgoeYIV9t3bsSI/Edl9svtqtdXaBhZIAo/2TDKm14D4y5viWNIQnOe985bZLiXv/HADzwhGA0Zzk+X7CDnH0debIdj59G5NnB9tIRJs=
+	t=1714131743; cv=none; b=KCkK2XEEjW6/WgUfQ/cd8uwSL4Ur3HHDYOlnmFSNL0HkKeRjQsTXzLSCWs/1IfJWLmhoKvUr/56JtnKB+1nE1EybuUlp3KVxDiTnEkhFq+8keItuhXgOS8SAEDKF6+7fQpt9spig+WF9a5b+yy1YdSrzWvLJHDP4knwW3a1w0fI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714130989; c=relaxed/simple;
-	bh=7uH01oNQfg0uWOj1guEY3yI5YYNX3XHX79FJGcwjXt0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZUS7WsGEA0onDXD8GusOfugQ7NfW9TfrFvzDqzZrsWciKoaZZm7blwntzKDid/kjBWz4HZ8REUZibiKkmPIzG/wlPomlPuB7rI/U3rCSLhPFimrphQ7fK6qnuVfAJHZjgWD5Oor+XdJ8d68XD7AnmaPXJ4pEEvlItMtITLHhze8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=METmOIPG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43QAoBKP013574;
-	Fri, 26 Apr 2024 11:29:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	qcppdkim1; bh=Wg3YvD6fPxXrEy9zgAjx7T8S8noK1qDhEngP+GsQamE=; b=ME
-	TmOIPGw87oZHBi5P+o+4VpLkiNyM/kNmb2CgQmVQTjbxcwITxCiOA1wUv4yGLy6S
-	Cu9rXZJM7nED7HJAxZIfslFxI87hh88OWGInsXCEpClsxKejM4cf1xUWc1KPprsW
-	5bH9sHEwsl8CBzLP6pj4pheFkGzW+2UX3jRoKhHbAknts9m7PSzk732fUk8ET3n9
-	KVMW4ssbN9QgDy+/5AWUli/D5YKW7Z1soB/2cyKwBzhmPs11xGghi6uHiaC0Whs7
-	xJwtBl5xrWOeOWph6bSLjeMOasXmO6fGU7wCKOinS7Nr9KK4/rXkefjSOS//BZfq
-	Cv8qlw7wwcvFG8+AHTjA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xqx03a7p8-1
+	s=arc-20240116; t=1714131743; c=relaxed/simple;
+	bh=r1LBvcN21bnCsvNbCvInEtP2axcREmP/1hM9yXgtm84=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ePoKPudbpX0ajvf9ZMP1pvD/zQlv90909eedXEsmZF55A0B73BfkN6gt1yzdp8kcQPTAyCaE352YQmz88p6Zca2ZCtlRvMLMVmtQrxxjMLoerMCIbDvxIaDNBwFh0RVqCQOGghHaJulgOjcJ5vLPOIv3Zjn5n2iorRecIZiIFLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=EFbrcrlS; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43Q9YZbQ003998;
+	Fri, 26 Apr 2024 13:42:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=xlp/k6NhfJf0MqxY61zVVi1EscMRkgrov08pc3xWnOQ=; b=EF
+	brcrlSp46O1V38x7aimygEW9OOem1rrJnfo1JuqJegCGR9OogPSz7VKupSeL3T3V
+	pqW7mazob116524aoeNUmLKrH81SIFt/gMORjwOOnDBMPj45kg4fxwz7PSGEB6V0
+	FZs8g/JUmBmjNQ4e6HCH+OM8aGMeEehZIfM36OGF8c3hy4xxkyPdFbKnTBWQK7Eq
+	KeyCgtmpqjif0ai204Bywn5alXego3R9uiCHICxdmCvwg0eBkq1+HbdCkD5zRSBp
+	RdCeVJOEkbpwDRrXZeFRq7yfQ4kDfECoax2q7coLWPA8FrMM5TWYtlK8FW1inqBb
+	frfX0FIJ7nKaVXbLAzCA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4ee9jx4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 11:29:43 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43QBTfmN014242
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 11:29:41 GMT
-Received: from hu-kaushalk-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 26 Apr 2024 04:29:38 -0700
-From: Kaushal Kumar <quic_kaushalk@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Kaushal Kumar <quic_kaushalk@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: sdx75: Add modem SMP2P node
-Date: Fri, 26 Apr 2024 16:58:37 +0530
-Message-ID: <20240426112837.17478-1-quic_kaushalk@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	Fri, 26 Apr 2024 13:42:01 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F36D74002D;
+	Fri, 26 Apr 2024 13:41:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AF31E2194CC;
+	Fri, 26 Apr 2024 13:41:14 +0200 (CEST)
+Received: from [10.48.86.112] (10.48.86.112) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 26 Apr
+ 2024 13:41:13 +0200
+Message-ID: <28aeb8b1-72f1-4dd9-b433-f5b693150475@foss.st.com>
+Date: Fri, 26 Apr 2024 13:41:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7j7PoHPOCjwMdsXJk7hWy94m3GkEGtTQ
-X-Proofpoint-ORIG-GUID: 7j7PoHPOCjwMdsXJk7hWy94m3GkEGtTQ
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] ARM: st: use a correct pwr compatible for stm32mp15
+To: Rob Herring <robh@kernel.org>
+CC: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Pascal Paillet
+	<p.paillet@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240425074835.760134-1-patrick.delaunay@foss.st.com>
+ <20240425163035.GA2783061-robh@kernel.org>
+Content-Language: en-US
+From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <20240425163035.GA2783061-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
  definitions=2024-04-26_12,2024-04-26_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- spamscore=0 phishscore=0 mlxlogscore=623 clxscore=1011 adultscore=0
- lowpriorityscore=0 malwarescore=0 suspectscore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404260076
 
-Add SMP2P node for the SDX75 platform to communicate with the modem.
+Hi,
 
-Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
----
-This patch is dependent on the series published [1].
+On 4/25/24 18:30, Rob Herring wrote:
+> On Thu, Apr 25, 2024 at 09:48:31AM +0200, Patrick Delaunay wrote:
+>> This patchset removes the unexpected comma in the PWR compatible
+>> "st,stm32mp1,pwr-reg" and uses a new compatible "st,stm32mp1-pwr-reg"
+>> in STM3MP15 device trees.
+> Why? I don't see any warnings from this. Yes, we wouldn't new cases
+> following this pattern, but I don't think it is worth maintaining
+> support for both strings. We're stuck with it. And the only way to
+> maintain forward compatibility is:
 
-[1]: https://lore.kernel.org/all/20240426055326.3141727-1-quic_rohiagar@quicinc.com/
 
- arch/arm64/boot/dts/qcom/sdx75.dtsi | 35 +++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Yes, no warning because the compatible string are not yet checked by tools.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-index 96e3eec57008..536f41f856c8 100644
---- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-@@ -406,6 +406,41 @@
- 		};
- 	};
 
-+	smp2p-modem {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
-+		interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
-+					     IPCC_MPROC_SIGNAL_SMP2P
-+					     IRQ_TYPE_EDGE_RISING>;
-+		mboxes = <&ipcc IPCC_CLIENT_MPSS
-+				IPCC_MPROC_SIGNAL_SMP2P>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
-+
-+		smp2p_modem_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		smp2p_modem_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		ipa_smp2p_out: ipa-ap-to-modem {
-+			qcom,entry-name = "ipa";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		ipa_smp2p_in: ipa-modem-to-ap {
-+			qcom,entry-name = "ipa";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
- 	smem: qcom,smem {
- 		compatible = "qcom,smem";
- 		memory-region = <&smem_mem>;
---
-2.17.1
+I propose this patch to avoid the usage of this compatible for other SoC 
+in STM32MP1 family.
+
+
+I see the invalid compatible string when I reviewed the U-Boot patch to 
+add the PWR node for STM32MP13 family:
+
+https://patchwork.ozlabs.org/project/uboot/patch/20240319024534.103299-1-marex@denx.de/
+
+
+So I prefer change the PWR binding before to have the same patch applied 
+on Linux device tree
+
+> compatible = "st,stm32mp1-pwr-reg", "st,stm32mp1,pwr-reg";
+
+
+Yes, I will update the SoC patch with you proposal.
+
+it is the only way to have compatibility of OLD Linux kernel (with old 
+driver) with NEW device tree.
+
+I miss this compatibility issue.
+
+
+>
+> Rob
+>
+>
+>
+Regards
+
+Patrick
 
 
