@@ -1,222 +1,161 @@
-Return-Path: <devicetree+bounces-63145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D0678B3D89
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:03:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 882B48B3D94
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:06:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43CAEB22C57
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:03:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EB29281F34
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFB815A4BE;
-	Fri, 26 Apr 2024 17:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A981B15AACD;
+	Fri, 26 Apr 2024 17:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B9ZPMW0G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzEUC8Cf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6763924B21;
-	Fri, 26 Apr 2024 17:03:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE0E15623B;
+	Fri, 26 Apr 2024 17:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714151025; cv=none; b=p9nFLPZJ/RBPjps0TYxJv1wauMWGhVM66tfiUNyEdFjUZqSlqPxOsN/gjDZACeLS5whR9sftCYUiHiaXVWC3YgF0Av1IcNcBhZj2iz06+jBpLfEi/DXiAqNLMHnTc75I7xtx1r2Pt12ONy84IEYx9+lNSYZZRcyC48fuWiOJG+Q=
+	t=1714151190; cv=none; b=RoeFlE6g+ArXCGA5PZv9tzwkRxrNcp5H6fqwbBtOC81L2dKapde2VkR+g9ii6GypfXPaGFz6H6f69EN5MvBjRkv2F0/UQQI//hSiArPiEa2LQao7mZX7q7bDnyCnk7Mz4du2asz5nLMLG5ajVTV3OQ+CJtyYQdvotdx3EyfHvKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714151025; c=relaxed/simple;
-	bh=E5Zo0clvt55KvUvDKEImazN2BO8g7JyqxoRuWQ3jSVo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CVRCvGA8/7uC9OxkHSlvoWbERd/4Ly7+5VDzAase0MiWZzIrQS1ZyAjbokaQs3rsw2+KOHfhJXzed5f/JLEXuutNzhRpIv9jz+hRdJNk1/+bKCzsG38Uc91U+GV226fvQPnwrV3ozQXM5IGsAU0xRb1OVqB3IgoNhJQR3RuwD0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B9ZPMW0G; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5c229dabbb6so1634284a12.0;
-        Fri, 26 Apr 2024 10:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714151023; x=1714755823; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sv58Qd5ksYyhASH2QCPLwEVVVgnFfv8OH/VM1sHFeck=;
-        b=B9ZPMW0GDTQCMIRczKzxuPN6HXJWO+R+c0htN3vLm6cBgWCrPOvREXurOSjwpa4nZ+
-         GP52eVtWC+PlvkGEgCU1x3IlHpgNIbXz9xh6MfsUFqX0VCdp0rgu/biS8GXTzY5U6Fsa
-         dChdgXU3eFkW2GlNui5KBYnYqhz+oWaC8ZGQJHvY5thWX6U3G4Jx4InwLWkTlKOrr0iL
-         XsZSPP2ndKf8vuHxHNAvZ6HSErVYzrHvv5XkPDHBaovwzUcDjJRrNhORos0mnuXXmWSk
-         32HOvaksHtkc4WqHUWfIdG54juvY/47/s6VDKzEyacN63JnXNUHg9de4b/iBA6E4I0DL
-         4r9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714151023; x=1714755823;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sv58Qd5ksYyhASH2QCPLwEVVVgnFfv8OH/VM1sHFeck=;
-        b=t7aGaMVbTozerWNrMI3U8cSC3EI5VP3RitR8K0+QAsO8S/L4s0vQ3g2Z4MaDHfHsYa
-         m/iZqiwjhqEtjTUAZswA+gPjOuECMBHUV+KvKwa2hSjBr9CPNHAtftWJWE6xtgmF6GWm
-         WoXIaJLFV0Kryj8DtGe64y0Y3sVKgTJNUvX9f2qUNapHk67Ktxd1AXnWZpPTDzXJmiL6
-         owBaZQNMvGbe44GppV+epcKYTrTfXa0KQvjrG63t/spdXgKuOz66mf3eAoTW2kbtk7X6
-         HrDzrxkwoqg2Zi/lJSL6+2LAOD8RpmV5BzD0id2JYhw9BMo1t5tZ1CyXOima9uHFRRW/
-         8a8g==
-X-Forwarded-Encrypted: i=1; AJvYcCU7qB7/bIeUA4UXwCfs2Ef+ZnJ5gu4U57pJ1T+6CsgYtuSHbsN9aAcg4uaFRiWAGNOT5Js5AQjKeBmQaJ0VS7/BN5O3WR9hGr1YARn6YFNL1JIQYp4+ZIJ5PTQ4PLWgbquYzbPEOsYeC78YnMpQHjN/zwLR3VNKacsQiaNoH1sxOKAcCxABLiQf8Z8CkTymRiCdO6iCqzsBvHlx06hig1oJC2A=
-X-Gm-Message-State: AOJu0YyViMM7Y2n8JLuW3ebdMGceOkJXnZ8SiIHt2PGhMO+TIn7UXlUz
-	mcnOPIbA6Qi85Ev5yRL95leMfChGxw7HGfth7rQtWCIOTHvZnC7Q
-X-Google-Smtp-Source: AGHT+IFMceCZFif0B91YDqZNtx0yyR5xJSzTuZu5RE4WXIT/MpFQHon3MPffBxjB1nXZzggujq4OYw==
-X-Received: by 2002:a17:90b:3614:b0:2a3:acc:a97e with SMTP id ml20-20020a17090b361400b002a30acca97emr3427120pjb.20.1714151023400;
-        Fri, 26 Apr 2024 10:03:43 -0700 (PDT)
-Received: from localhost (ec2-3-111-32-5.ap-south-1.compute.amazonaws.com. [3.111.32.5])
-        by smtp.gmail.com with UTF8SMTPSA id x6-20020a17090ad68600b002a20c0dcebbsm14976192pju.31.2024.04.26.10.03.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Apr 2024 10:03:43 -0700 (PDT)
-From: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5] ASoC: dt-bindings: tegra30-i2s: convert to dt schema
-Date: Fri, 26 Apr 2024 22:33:18 +0530
-Message-ID: <20240426170322.36273-1-sheharyaar48@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1714151190; c=relaxed/simple;
+	bh=PUvdK8u/2qpExymDyazsbUcMYN5noyr63G0MyAIPnt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T78JijpnXC7+9YScm+5ACGmf+q6CDfW7259fHhBXxOQqxCCpbjWNQaBqHByNuDFClM8tWrsHzHoXLR0/GCxpkaUTDmrCW7LWRX/ecTeDmBV58GL6FmfmEZnAKZTiRTj4ljvAD65mt5c7UVYxj20VHUFiNdd4alU/kRCh6R6MNsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzEUC8Cf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FAEDC116B1;
+	Fri, 26 Apr 2024 17:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714151190;
+	bh=PUvdK8u/2qpExymDyazsbUcMYN5noyr63G0MyAIPnt8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bzEUC8CfAGruTab+Ero+oPa2C4hcsEfY5Y14Ue4PVxzfaP3qcYo430Qs8xnewvQvt
+	 qivIEQPZ0zU2mAosG7clQ4wSitDZnHqfDHB6DIly77EgD/va7P8HgnzS1d5cZ1idg3
+	 0i4mhil3cBDrFHnaZMtyuon85lc92QQQanngzusp2iqraWLlJhFs/FWHPlWMBwMpCE
+	 YjiPxj4cW7+VZ/Fas0Wc1gfaW/tJnnG00zvuJhI91GSH5JNaTJhar4MkE9wP9J1MuQ
+	 nYqPO/E6zTWFiDiX7+0n2FqKdkpf1wnaW+aXuIAwE8l1jdIlrW4G1mqeeFL218FKOR
+	 v+QnG5TKIREfQ==
+Date: Fri, 26 Apr 2024 18:06:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
+	dianders@chromium.org, linus.walleij@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, airlied@gmail.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	xuxinxiong@huaqin.corp-partner.google.com
+Subject: Re: [PATCH v3 1/7] dt-bindings: display: panel: Add himax hx83102
+ panel bindings
+Message-ID: <20240426-fifteen-random-ff4a535ab40d@spud>
+References: <20240424023010.2099949-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240424023010.2099949-2-yangcong5@huaqin.corp-partner.google.com>
+ <20240424-spelling-float-9b881cb80992@spud>
+ <CAHwB_NLb9ENfCj-oJ2mV_DwFJ0h6TGSi1byUdd6Bri3gDsCo5Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KG4VLxjx13klv+v0"
+Content-Disposition: inline
+In-Reply-To: <CAHwB_NLb9ENfCj-oJ2mV_DwFJ0h6TGSi1byUdd6Bri3gDsCo5Q@mail.gmail.com>
 
-Convert NVIDIA Tegra30 I2S binding to DT schema and
-add "clock-names" property used by multiple tegra i2s blocks
-in arch/arm64/boot/dts/nvidia/tegra132.dtsi. This is not a
-required property by the binding.
 
-Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
----
-Changes v4->v5:
-- removed redundant example
-- removed redundant compatible
+--KG4VLxjx13klv+v0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-v4 : https://lore.kernel.org/all/20240425153045.49939-1-sheharyaar48@gmail.com/
----
- .../bindings/sound/nvidia,tegra30-i2s.txt     | 27 --------
- .../bindings/sound/nvidia,tegra30-i2s.yaml    | 67 +++++++++++++++++++
- 2 files changed, 67 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
- create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
+On Thu, Apr 25, 2024 at 02:03:24PM +0800, cong yang wrote:
+> Conor Dooley <conor@kernel.org> =E4=BA=8E2024=E5=B9=B44=E6=9C=8825=E6=97=
+=A5=E5=91=A8=E5=9B=9B 00:55=E5=86=99=E9=81=93=EF=BC=9A
+> > On Wed, Apr 24, 2024 at 10:30:04AM +0800, Cong Yang wrote:
 
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
-deleted file mode 100644
-index 38caa936f6f8..000000000000
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--NVIDIA Tegra30 I2S controller
--
--Required properties:
--- compatible : For Tegra30, must contain "nvidia,tegra30-i2s".  For Tegra124,
--  must contain "nvidia,tegra124-i2s".  Otherwise, must contain
--  "nvidia,<chip>-i2s" plus at least one of the above, where <chip> is
--  tegra114 or tegra132.
--- reg : Should contain I2S registers location and length
--- clocks : Must contain one entry, for the module clock.
--  See ../clocks/clock-bindings.txt for details.
--- resets : Must contain an entry for each entry in reset-names.
--  See ../reset/reset.txt for details.
--- reset-names : Must include the following entries:
--  - i2s
--- nvidia,ahub-cif-ids : The list of AHUB CIF IDs for this port, rx (playback)
--  first, tx (capture) second. See nvidia,tegra30-ahub.txt for values.
--
--Example:
--
--i2s@70080300 {
--	compatible = "nvidia,tegra30-i2s";
--	reg = <0x70080300 0x100>;
--	nvidia,ahub-cif-ids = <4 4>;
--	clocks = <&tegra_car 11>;
--	resets = <&tegra_car 11>;
--	reset-names = "i2s";
--};
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
-new file mode 100644
-index 000000000000..89c3c6414ab1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra30-i2s.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/nvidia,tegra30-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra30 I2S controller
-+
-+maintainers:
-+  - Thierry Reding <treding@nvidia.com>
-+  - Jon Hunter <jonathanh@nvidia.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - nvidia,tegra124-i2s
-+          - nvidia,tegra30-i2s
-+      - items:
-+          - const: nvidia,tegra114-i2s
-+          - const: nvidia,tegra30-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: i2s
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: i2s
-+
-+  nvidia,ahub-cif-ids:
-+    description: list of AHUB CIF IDs
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      - description: rx (playback)
-+      - description: tx (capture)
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - resets
-+  - reset-names
-+  - nvidia,ahub-cif-ids
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra30-car.h>
-+
-+    i2s@70080300 {
-+        compatible = "nvidia,tegra30-i2s";
-+        reg = <0x70080300 0x100>;
-+        nvidia,ahub-cif-ids = <4 4>;
-+        clocks = <&tegra_car TEGRA30_CLK_I2S0>;
-+        resets = <&tegra_car 30>;
-+        reset-names = "i2s";
-+    };
-+...
--- 
-2.44.0
+> > > +++ b/Documentation/devicetree/bindings/display/panel/himax,hx83102.y=
+aml
+> >
+> > Filename matching a compatible please. What you've done here makes it
+> > seem like there's a fallback compatible missing, given this looks like
+> > the LCD panel controller and the starry compatible below is an LCD pane=
+l.
+>=20
+> So change the filename to starry,himax83102-j02.yaml?
 
+IDK chief, are you missing a fallback or not?
+
+>=20
+> >
+> > > @@ -0,0 +1,73 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/display/panel/himax,hx83102.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Himax HX83102 MIPI-DSI LCD panel controller
+
+Because the title here makes it seem like there should be.
+
+> > > +maintainers:
+> > > +  - Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> > > +
+> > > +allOf:
+> > > +  - $ref: panel-common.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +        # STARRY himax83102-j02 10.51" WUXGA TFT LCD panel
+> > > +      - starry,himax83102-j02
+> > > +
+> > > +  reg:
+> > > +    description: the virtual channel number of a DSI peripheral
+> > > +
+> > > +  enable-gpios:
+> > > +    description: a GPIO spec for the enable pin
+> > > +
+> > > +  pp1800-supply:
+> > > +    description: core voltage supply
+> > > +
+> > > +  avdd-supply:
+> > > +    description: phandle of the regulator that provides positive vol=
+tage
+> > > +
+> > > +  avee-supply:
+> > > +    description: phandle of the regulator that provides negative vol=
+tage
+> > > +
+> > > +  backlight:
+> > > +    description: phandle of the backlight device attached to the pan=
+el
+> >
+> > I'm not sure why this was given a description when port or rotation
+> > was not.
+>=20
+> So change it to backlight: true ?
+
+Sure? It is just a repeat of something already described in
+panel-common.
+
+--KG4VLxjx13klv+v0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZivfEQAKCRB4tDGHoIJi
+0ovXAQDGJnOsSMKJRaP2aIy/+907+rwA/s57l0E2Q/EA3qWPMAD6Aj4ASUzuPYHm
+GRj7CsG1KnQPHUX0R43Qysud1+OLcQ4=
+=hib7
+-----END PGP SIGNATURE-----
+
+--KG4VLxjx13klv+v0--
 
