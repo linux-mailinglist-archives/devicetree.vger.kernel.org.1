@@ -1,217 +1,213 @@
-Return-Path: <devicetree+bounces-62959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D978B3479
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:51:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CC48B3495
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A8F11C22066
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:51:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75B0B1F229D9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6566113F453;
-	Fri, 26 Apr 2024 09:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B9B14036A;
+	Fri, 26 Apr 2024 09:53:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cSA0QZqk"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="dlCHVOjB";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NV04D+3P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from fhigh1-smtp.messagingengine.com (fhigh1-smtp.messagingengine.com [103.168.172.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5086C13F01A;
-	Fri, 26 Apr 2024 09:51:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F81C142E64
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 09:53:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714125108; cv=none; b=XaB+UbsVrImRamRM0dMMQtrC0zq2O8NG7UWfe7mu8994QwWK6rTDJZ7g5/aUoJlOldxy19H39nf8KD2iDIaWl4LTGQr4A50bqXfIcuRD+dRP89NxncORp+QdMk84ejT4k3JKRAb6hw/qZkCq5d/ld7aBFGz01nOeU9yC9DtPlq4=
+	t=1714125221; cv=none; b=KwnCHY58NmR9qj25fizXV0XodL/r3YKPOM+Ljn6rnmgEmstLUHaduQIalAHOplfZw8ty1NrXV1uFKxiCuRfCIIyKkPiBD6Inji+54U2hGoUgHDwq+z8Ms0aq2NM1CoOMze9EA7EpqpD/B8aYnE1DntE7XMoQMk8V9WiexSJKX9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714125108; c=relaxed/simple;
-	bh=E8qgf4m07XvrYTj9eR33JxTb531hlL+Mt9Butlmfk3Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=BxAm+Palhpi4/3ZzUmhzeCSSRTFa8xv45qb/1szvJvDNUFV0gxmfEVyAUTC2dS3872k7f1hoduYJBIWW1JR9d/DR0fqdb5XJutOiLLvh91BV56DpbXayVOyIwBxBwFT+9lEm5OWagAK2pGZ071EMqVrHw8dhBE4GxyQePcHKmOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cSA0QZqk; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6C1132000C;
-	Fri, 26 Apr 2024 09:51:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1714125103;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=0BgDb0k9EC97zEdXZnKosPq8NNnoO+ShOw0Y/xj2auw=;
-	b=cSA0QZqkfpkijLDCqFGRrkVRUipTHcGuNx2t+VtzHDcXq4+4KFbmWq+MjDjKWEtxEUX613
-	AQgaThFLDlWdZsueWfULGgMQL78XAF4HIdXbkr0O0rth7uP1wE/ij6XMVijpIII6I6Tkgh
-	sKbFcDs05LlrixbrUas28+czy2AEf/cigmozqfTVgQVva2Uv5XdBqBRkod2E+sd2Tp0rXe
-	HCLv+CCiW4xK0saR3REGGFcAKZhTLJTSQXZpxJ9iqMdLP4lE4JYmIAQjfTkI3ntQrVJnNP
-	YyVmCX9TBMqACJOKjL24EoA1JZF4GdZ4AeVtFSlUiDNkiQCqZw+yNDbJMIZXxw==
-Date: Fri, 26 Apr 2024 11:51:41 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>, Doug Anderson <dianders@chromium.org>, Chen-Yu
- Tsai <wenst@chromium.org>, Matt Coster <Matt.Coster@imgtec.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Maxime Chevallier
- <maxime.chevallier@bootlin.com>, =?UTF-8?Q?Herv=C3=A9?= Codina
- <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>, Conor Dooley
- <conor@kernel.org>, Saravana Kannan <saravanak@google.com>,
- linux-kernel@vger.kernel.org
-Subject: Hotplug hardware with (un)loadable DT overlays - unconference
- meeting notes
-Message-ID: <20240426115141.201f257a@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1714125221; c=relaxed/simple;
+	bh=WmFpmly6qyaC723Q3j2BsDA3mX56paBYzEw6pN+Ih9g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=IkdF5pctPtwcUIXqi0tpX627xSHouUQn5jNMOhuubasjKR0imOvoPcRquRKa0lI+yevAZKaSZXWgGvAkmKjIPdrz6q0vH2zaqtb66HAWQ/SZL+Z6cuMg3usOg57snUyL3aGGeZIB9S3fEGl/tCD8SHNuDABpIXAUAE8YbParD/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=dlCHVOjB; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NV04D+3P; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id A6F8E11400DB;
+	Fri, 26 Apr 2024 05:53:39 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Fri, 26 Apr 2024 05:53:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm3; t=1714125219; x=
+	1714211619; bh=+fz3wsY8omns20LEEBePergQs7gUwsS+LOB1ixHF3zk=; b=d
+	lCHVOjBskE86jFnl9zohfcJb6jv3GAiRQRGASiUQpDFTdPpJ0XOXU1R3+OdrvisH
+	oJ/w3GFxKy9RD5L5B1SKRbqJPY06N+Zvc8bJicZAtMVSmFb6NXvCbq88xy9yhCVM
+	VlNWGLo5uv6Iej5FTe9aKBzfunp8VX/QTo8zpIRTcbV+lW6tCwyehvKKUKYYDeFn
+	KAM3Vs9XljZAsYzFQqk3j4j+OG7qYSpt9JFd4Cx2qpR9G1A7zoqdp6c0AF8culQQ
+	tjUu068UY26Xuu+yuu9YWeUDV5FlIlS0p6hhkBmZNgZISHiyGMrjJRlBXLitIwVz
+	tP7cMXgfWk6xaFG5MUKzg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1714125219; x=
+	1714211619; bh=+fz3wsY8omns20LEEBePergQs7gUwsS+LOB1ixHF3zk=; b=N
+	V04D+3PfNk0c/x7Ivg0u1dZG3A04ze9hH9BP4XSdUd5r4qVo8Ku/IRm1Y939foI7
+	tVyv+dNVbgM0uEByl5n76wo6irQjlbGIGQngtx2oHjb2kBANLkLqDRijlF0CHjJM
+	HYGv722V4bpKPERS/+hcZDICi464z/dxWvCD68h3eRCQYLXMs7G7VTcHyXE5WAGK
+	IhfH1zs8n3yMgemaSzmig/7AQxcuwJHv+YtwbHJJNqsA8LTEFHFJXyG9qMm4e+/0
+	U3U0xxdzOv2kuvT11KUurTTwake9UuoEfKirBLQjJtZNYvyjZK2qQDRstI4u2Eup
+	oapk1JcoAq9Hzs74j0cOw==
+X-ME-Sender: <xms:o3krZpLlXo6UGmJ-N6X7kKr-KwcGZWF7xx_Wr1-teF57WuuEhv3DSw>
+    <xme:o3krZlIHN2d8diduWLyDcv_RXFT-W-QDHaQHJCa0nynV1EARSe_3-LCiPHHBtPyLy
+    xaxp7kzFJBa4pDzVQ>
+X-ME-Received: <xmr:o3krZhsi-jVDYa2Fz6n1BSzdem_Y7IdnaBjUazCMfrbO4Gxuah7_Sdh92ApUFGMlXDpoUnIBemNTZ8NRYiwNI2-RmKO5SfwnjBjV7gybX-ZVCgZ2>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudelledgvddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomheptfihrghn
+    ucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrg
+    htthgvrhhnpeffheeiffegtdfgffejteevgeefkeelieelkeevueetffetteduffevgeei
+    ieehteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hrhigrnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:o3krZqYz7NXk05sTRh4tWiqAGQVXfx_dubofd2QxNOzOfe0j_E4rbw>
+    <xmx:o3krZgbmRBn7JPf7SAp2OkAlDjaY6d14Uz61BlVK0BBzwpqLCtPXFw>
+    <xmx:o3krZuDwbWuiO9JTryWwvME_tbosR-Ny0Su7-4FRxlPISGW9vDDeqg>
+    <xmx:o3krZuZgVkVoKkLzPbb01VXjW334PZCQ4cMLmsp_9tdP26AaEENXRg>
+    <xmx:o3krZqD74YYKUCuCYp2KTHxNm-SCqWPPxrVRHz-G8d4BgkslWc1zN76F>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 26 Apr 2024 05:53:36 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v4 3/4] arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+Date: Fri, 26 Apr 2024 21:51:41 +1200
+Message-ID: <20240426095141.13602-5-ryan@testtoast.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240426095141.13602-2-ryan@testtoast.com>
+References: <20240426095141.13602-2-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hello,
+The RG35XX-Plus adds a RTL8221CS SDIO Wifi/BT chip to the RG35XX (2024).
 
-Last week at the Embedded Linux Conference in Seattle we had an
-"unconference session", which is a free discussion about a topic. The
-topic I had proposed is "Hot-Pluggable Hardware with Device Tree
-Overlays Runtime Loading and Unloading (yes, at runtime)". As suggested
-by Saravana, here is a brief summary of the discussion.
+Enabled in this DTS:
+- WiFi
+- Bluetooth
+- Supporting power sequence and GPIOs
 
-15 people were present:
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+---
+Changelog v1..v2:
+- Update copyright
+- Spaces -> Tabs
+- Remove redundant &uart0 node and DTS version tag
+- Add GPIO bank comments
+- Use generic pwrseq name
 
-Luca Ceresoli (Bootlin)
-Thomas Petazzoni (Bootlin)
-Alexandre Belloni (Bootlin)
-Maxime Chevallier (Bootlin)
-Krzysztof Kozlowski (Linaro)
-Bartosz Golaszewski (Linaro)
-Doug Anderson (Google)
-Chen-Yu Tsai (Google)
-Matt Coster (Imagination Technologies)
-Martino Facchin (Arduino)
-(5 more, I don't know the names)
+Changelog v2..v3:
+- Add DTB to Makefile
+- Correct Wifi vqmmc-supply to ALDO4
+- Move changelog below fold-line
 
-The topic is how to implement in Linux using device tree overlays
-runtime (un)loading any hardware add-on that:
+Changelog v3..v4:
+- Fix sdio_wifi node indent
 
- - can be plugged and unplugged to a base board at runtime, without
-   notice
- - adds hardware on non-discoverable busses
- - provides a way to detect the add-on model that gets attached.
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+---
+ arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+ .../sun50i-h700-anbernic-rg35xx-plus.dts      | 53 +++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
 
-Cold-plug and discoverable busses (e.g. USB) are not in topic.
-
-We described 2 use cases we are working on at Bootlin.
-
-One use case is for the LAN966x, a classic SoC that can be however be
-started in "endpoint mode", i.e. with the CPU cores deactivated and a
-PCI endpoint that allows an external CPU to access all the peripherals
-over PCIe. In practice the whole SoC would be used as a peripheral chip
-providing lots of devices for another SoC where the OS runs. This use
-case has been described by Rob Herring and Lizhi Hou at LPC 2023 [4][5].
-
-The other use case, which was discussed in more detail, is for an
-industrial product under development by a Bootlin customer, which is a
-regular, self-standing embedded Linux system with a connector allowing
-to connect an add-on with additional peripherals. The add-on
-peripherals are on I2C, MIPI DSI and potentially other non-discoverable
-busses (there are also peripherals on natively hot-pluggable busses
-such as USB and Ethernet, but by their nature they don't need special
-work).
-
-For both use cases (and perhaps others we are unaware of) runtime
-loading/unloading DT overlays appears as the most fitting technique.
-Except it is not yet ready for real usage.
-
-For it to work, we highlighted 3 main areas in need of work in the
-Linux kernel:
-
- 1. how to describe the connector and the add-ons in device tree
-    (bindings etc) -- only relevant for the 2nd use case
- 2. implementation of DT overlays for adding/removing the add-on
-    peripherals
- 3. fixing issues with various subsystems and drivers that don't react
-    well on device removal
-
-* Topic 1: DT description *
-
-I mentioned the DT structure I proposed in [0] which allows decoupling
-the bus segments, so supporting both different add-on models and
-different base boards with different SoCs around the same connector
-definition (think of the Beaglebone family). No objection was raised
-about this approach.
-
-Some mentioned the recently posted patches for Mikrobus support on the
-Beagle Play [1], which I was unaware of. The proposed connector
-description appears similar to our proposal. However I later checked
-the e-mail thread and although the connector description appears
-similar, there is a big difference: in the Beagle Play proposal the
-add-on is not described via DT but rather via a greybus manifest, and
-the connector driver has code to parse it and populate the various
-devices mentioned in the manifest.
-
-* Topic 2: Implementation of the connector and overlay (un)loading *
-
-The proposed idea is to have a connector driver that reacts to plug
-events in two stages.
- - Stage 1: load a "small" overlay common to all add-on models which
-   describes enough to get the add-on model ID, e.g. from an EEPROM on
-   the add-on itself.
- - Stage 2: after getting the model ID, load the model-specific overlay
-   that describes everything else.
-
-Stage 1 could be unnecessary if the model can be detected without
-loading any add-on device drivers, e.g. is defined by pulling some
-GPIOs on the connector.
-
-Overlay (un)loading is well known for triggering several issues, the
-largest one (in terms of lines of code involved) is the memory leaks or
-use-after-free [6] of nodes and especially properties that happen when
-an overlay is removed.
-
-* Topic 3: fixing drivers/subsystems not handling removal correctly *
-
-Bartosz raised the concern that many subsystems crash or hang or are
-otherwise buggy when a device is removed (I think the quote was "are
-you guys going to fix them all?") -- a sound concern indeed.
-
-We plan to address issues as they appear on the busses we use, which is
-already a relevant work and is already in progress here. The
-others (e.g. SPI) can be addressed by whoever needs to hotplug them
-anytime in the future. It's worth mentioning that Bartosz gave a BoF
-[2] and talk [3] on the following day, both with useful information for
-those needing to make a subsystem safe against removals.
-
-* Status *
-
-In the end there are 3 main areas in need of work: DT description, DT
-overlay implementation, fixing drivers and subsystems that don't work
-correctly.
-
-Bootlin is actively working on all of these topics and already sent a
-few patches to fix some issues that were found [7][8][9]. More is under
-work and will be sent as it is ready.
-
-That's all. For those present, please feel free to add any relevant
-details I have missed.
-
-[0] https://lore.kernel.org/all/20240403213327.36d731ec@booty/
-[1] https://lore.kernel.org/all/20240317193714.403132-2-ayushdevel1325@gmail.com/
-[2] https://sched.co/1aBGK
-[3] https://sched.co/1aBGf
-[4] https://www.youtube.com/watch?v=MVGElnZW7BQ
-[5] https://lpc.events/event/17/contributions/1421/
-[6] https://elinux.org/Frank%27s_Evolving_Overlay_Thoughts#issues_and_what_needs_to_be_completed_--_Not_an_exhaustive_list
-[7] https://lore.kernel.org/all/20240325152140.198219-1-herve.codina@bootlin.com
-[8] https://lore.kernel.org/all/20240227113426.253232-1-herve.codina@bootlin.com
-[9] https://lore.kernel.org/all/20240220133950.138452-1-herve.codina@bootlin.com
-
-Best regards,
-Luca
-
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+index 6f997157968e..4217328b1889 100644
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -48,3 +48,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
++dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+new file mode 100644
+index 000000000000..60a8e4922103
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
++ */
++
++#include "sun50i-h700-anbernic-rg35xx-2024.dts"
++
++/ {
++	model = "Anbernic RG35XX Plus";
++	compatible = "anbernic,rg35xx-plus", "allwinner,sun50i-h700";
++
++	wifi_pwrseq: pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		clocks = <&rtc CLK_OSC32K_FANOUT>;
++		clock-names = "ext_clock";
++		pinctrl-0 = <&x32clk_fanout_pin>;
++		pinctrl-names = "default";
++		post-power-on-delay-ms = <200>;
++		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
++	};
++};
++
++/* SDIO WiFi RTL8821CS */
++&mmc1 {
++	vmmc-supply = <&reg_cldo4>;
++	vqmmc-supply = <&reg_aldo4>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	sdio_wifi: wifi@1 {
++		reg = <1>;
++		interrupt-parent = <&pio>;
++		interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
++		interrupt-names = "host-wake";
++	};
++};
++
++/* Bluetooth RTL8821CS */
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "realtek,rtl8821cs-bt", "realtek,rtl8723bs-bt";
++		device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>; /* PG17 */
++		enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>; /* PG19 */
++		host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>; /* PG16 */
++	};
++};
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.44.0
+
 
