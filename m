@@ -1,124 +1,115 @@
-Return-Path: <devicetree+bounces-63205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0948B4033
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:40:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A8A8B403C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 21:44:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 450FC285D67
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:40:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C76E0286202
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 19:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B338171A5;
-	Fri, 26 Apr 2024 19:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB70918EA5;
+	Fri, 26 Apr 2024 19:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="09/7GHIC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A9320B0E
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 19:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D5018C19;
+	Fri, 26 Apr 2024 19:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714160447; cv=none; b=QJmeFBSlJqEHzYHUeayKhlAP3pNcvn/TK1pmjCvXGtpmP07wrScLBhU8rQVn2pGI09rtwYTfz51RVD3/MHcJGOzkfeR+Nup8ytL6OdIVgER0mKBhfbwIBLCkv8RhC5rl7c+oRLqF35MfmKD5t1Uz9TvEgPB7YdsvSc5G/Lb9IJc=
+	t=1714160635; cv=none; b=g3riy1gPEAqbOkFDDjLsxdCEJhEcjWgRHHdVzSg9ALY9I777wgMEsoaZWeVnnEOj4uEbt8Rrq75LhFJrBp8vPoWCuxcq2b00BfSSrmEtNOHoAdjgJcUZazgHtku3KYWLB6MrjQHOgqpssIGvj6pGKEg6jvTe0P+nkqb2ygk4ExU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714160447; c=relaxed/simple;
-	bh=MJhoBOcKvcAfCqXZ27Dow0kPxI2bLjrCHZ1BhmTfiUs=;
+	s=arc-20240116; t=1714160635; c=relaxed/simple;
+	bh=1m2KZnSkE8Z9rLOvusGPzukGeEbYzq7AQEGoOjvrcvg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L2IyR1sjkXa6F60jTML/3ZnkIeENZRybb2BHnCf0HbV/jHEXXJAsay7ggzk6PY2OkSE7KbcvMsmvtUkbx6SIoQgo5UXwRGVVRL4rBtWQjsGm4shI+YLAHsrHfxvra43wg8QKNlEYh2B0ukT1BSwgoMzSaeEkKjf8ipw7T7BYtgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s0RQo-0006P0-27; Fri, 26 Apr 2024 21:40:26 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s0RQn-00EV0n-4J; Fri, 26 Apr 2024 21:40:25 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s0RQn-009ZX2-08;
-	Fri, 26 Apr 2024 21:40:25 +0200
-Date: Fri, 26 Apr 2024 21:40:24 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, linux-kernel@vger.kernel.org, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 00/49] ARM: dts: imx: Use #pwm-cells = <3> for
- imx27-pwm device
-Message-ID: <oy4mnbkskyrw5dwkq3rebe2yh4i3fy44rubhvesug7pedzws46@472pzktn5t22>
-References: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=T5UnbClfUb8oYoHTGxjAQI2kqS/ogeMaW8MDlCeHgxj5dCdx4D6O2YUl1CXfxrdyF9jXuFAWD5WDRqx8ZHKNx//lDgUOpwnlhTc2CfgadiVgYRAJF6dLZ868zOOsHOVfxWd3B9J1hMUKhNJsmq762uD0U9TixvNuI++uy1cwnJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=09/7GHIC; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=o6y2LJ14txpTdXHbp38HomD5dRIYV/HuQPJ4h1ryQbI=; b=09/7GHICi894+Vn1EAB+6+3+A4
+	tQBIFsrsvyf9k1FIR7QcIBJXkc3Gz3u6pitSWD94UQiGtqeY12M2u9AbwMgslV8VAlNw/OPqqN7kg
+	oKOVYcTEFHay4kevOmcCxx0QGPhMT4zca1Z+b3eU+R3c6MBoUicpECCv/JVukM4Ey4tc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1s0RTy-00E6Pj-I9; Fri, 26 Apr 2024 21:43:42 +0200
+Date: Fri, 26 Apr 2024 21:43:42 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 4/4] arm64: dts: add description for solidrun cn9131
+ solidwan board
+Message-ID: <053fff95-4a7d-4d00-ad38-17ffe76a4525@lunn.ch>
+References: <20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com>
+ <20240414-cn9130-som-v3-4-350a67d44e0a@solid-run.com>
+ <3958052d-fc09-4c4c-a9e3-4923871cff44@solid-run.com>
+ <fd466583-3221-4b94-b66b-18840615fb71@lunn.ch>
+ <15b79794-41f4-43e0-888e-286ca1fc4321@solid-run.com>
+ <d0426bb3-1f40-48ed-9032-6ffdce455cd4@lunn.ch>
+ <32ec3ef4-0ecc-4ae2-bf76-c7b10f54a583@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6qlyaxmagn4lyfzd"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <32ec3ef4-0ecc-4ae2-bf76-c7b10f54a583@solid-run.com>
 
+On Fri, Apr 26, 2024 at 06:51:02PM +0000, Josua Mayer wrote:
+> Am 26.04.24 um 20:18 schrieb Andrew Lunn:
+> >>>> Colours are similar to RJ45 connectors (yellow, green),
+> >>>> and are intended for the same purpose: link, activity.
+> >>> For the switch LEDs you used label = "LED10"; Does the silk screen
+> >>> have similar numbers for these LEDs?
+> >> Correct, on CN9130 Clearfog Pro DSA switch, all LEDs are labeled
+> >> individually on the silk screen.
+> >>
+> >> The SolidWAN SFP leds are dual-colour leds with 3 terminals:
+> >> anode to 3.3V, 2x cathode to gpio-controlled transistors.
+> >> They are labeled on the silk-screen as "LED9", "LED10".
+> >>
+> >> Duplicate labels are not great, is there a better way?
+> >> old style "LED9:green" e.g. ...?
+> > So you have copper LEDs and SFP LEDs, each with the same silk screen
+> > label? Maybe put 'copper' and 'sfp' as a prefix into the label?
+> 
+> No, not quite.
+> 
+> We have 2x SFP Connectors.
+> On the bottom side of PCB immediately below each connector is
+> a single LED (as in physical component), each with a silk-screen label.
+> 
+> "J28"/"SFP 0": "LED10"
+> "J42"/"SFP 1": "LED9"
+> 
+> The problem is that these leds are each two leds in single-package,
 
---6qlyaxmagn4lyfzd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ah! Sorry, you clearly said they were dual-colour.
 
-Hello,
+> which is why I put 4 led nodes in dts, two labeled "sfp-0",
+> other two "sfp-1".
+> But I don't think this duplication of label in dts is a good idea.
 
-On Fri, Apr 05, 2024 at 11:41:47PM +0200, Uwe Kleine-K=F6nig wrote:
-> this series addresses many warnings of the type:
->=20
-> 	arch/arm/boot/dts/nxp/imx/imx6ul-pico-dwarf.dtb: pwm@2088000: #pwm-cells=
-:0:0: 3 was expected
-> 	        from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
->=20
-> that is emitted when building with CHECK_DTBS=3D1.
->=20
-> This completes the conversion started with
->=20
-> 	fa28d8212ede ("ARM: dts: imx: default to #pwm-cells =3D <3> in the SoC d=
-tsi files")
-> 	4c6f19ab2aed ("dt-bindings: pwm: imx-pwm: Unify #pwm-cells for all compa=
-tibles")
+Agreed. Then i would use the colour as a postfix.
 
-Gentle ping! I would expect that Shawn picks up this series.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---6qlyaxmagn4lyfzd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYsAycACgkQj4D7WH0S
-/k76+gf/RTd50w5R0hfdfG8xkZOBeH3rPK6SXQs8zpgJ+/lgFxqquJi95MpCrQiG
-3JRo4kCmPkPbUNjhTGORzRBeh9Gi8uI7FZ1TFEMgiytsVDuJV/lC/CbWAhI/BebL
-N+vBHG3188lpfsfzgbuUnCQk1TxLEeyWrdV/sG5pGR1JaalCudQxwTVODqvRX8T3
-qiuNqZmHG3HWkGVZ21ibdkdfVcArWphKeB2GUpss3MQJDNR8zYPkMgFYWYy3TYie
-ic2z6+LEP/9IA2E5eKz6prVC/zgOjsUMktzs5aNy01uRxiUe1iQ3IPhPuBu/qner
-qlkpR97+TFM8ZGuypO4fRp0bVIG3Aw==
-=sPqb
------END PGP SIGNATURE-----
-
---6qlyaxmagn4lyfzd--
+	Andrew
 
