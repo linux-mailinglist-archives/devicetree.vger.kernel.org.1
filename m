@@ -1,99 +1,143 @@
-Return-Path: <devicetree+bounces-63111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2C78B3C38
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:01:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF4F8B3BE1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 17:43:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D5EC1F21D1F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:01:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A2321F21360
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F623155A24;
-	Fri, 26 Apr 2024 16:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A86414C5BF;
+	Fri, 26 Apr 2024 15:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="OlxJiBA4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GULybcCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DE714AD26;
-	Fri, 26 Apr 2024 16:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DF514AD26;
+	Fri, 26 Apr 2024 15:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714147256; cv=none; b=ezGVwY4X0u+AsZS8vgIPVpiXaxypaCdv4A9N8pVXxiubYT6J208K9p1gqWSDf66oQtfjDUsjbENs5hGNpg239kR212dWIUf8tJNQadDRJUlnzU3w3bqH/ibbWAe1HVTsnV0VqlZVZaXlPses9gqR88yDRSh+TjSrhyAJptddONM=
+	t=1714146149; cv=none; b=HEjfIlQrP6IcPNhHq71BIN4A4EZ19qHmiSIPZUq5M5tr8B4WpF/frpzpb/vHbBH7Hci7GIhfjdq3vsI07XDkw6SgHmXrDO8/8S7/FxFlEiaosPFDfaTka2TRjFJMK5XrhYpyx4ySKeKyAehNwbK4pDhdF+pyzn/HrzRwq1wKf8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714147256; c=relaxed/simple;
-	bh=e/e/CkS2lyAv5dcyu8k8+s7I4g7ycYx06SZTbh0t75k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dt5LptFg8rk9xenoiocMy1GVrIsJ1dYPjVaJFPO0nl+VdXUH19d8UoD9rSbDz/UXJpqbu1vYs/1RI2AhXnQlWdC0kV2Fxdnavew6Dk/bj6S5zsX1QXhtbxBqqAnE68ZRwG0plNy9S0hiXvC0QJOlVZpwy7fKkFAqQ5isUyd/5Q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=OlxJiBA4; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id F101F885A2;
-	Fri, 26 Apr 2024 18:00:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1714147253;
-	bh=KntFSRKKJlXDI5nElDgSk47qflI7G4WWVDhKzJ36saw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OlxJiBA4JqiSkPep5+//Fab0HwkAzF4JpRmBY7MmnztFaBs1CPhfiiJg0ggs186tS
-	 FUPEmouTIVHsld25mVu1cdwPn6C0rqtoPLMk+EYPLrP4ynWAXJuYgAsk7V+AS8/p/O
-	 lQzAOvhn6cmgSjN1NDjb3KFLd27GSD7fp54cDaBx7GfSLF3d7/W5Bthlr66buqjQKX
-	 AtWFuDl14vhYxmjFdnSsEa/4q0BwZp/MfnRAlMtMwF0Hjm35xnePRM2FnAKfRiUvnz
-	 SLFwOy2aphZnlwRhiXWW5PtwXL/WXKdqAWyqe/bx5cR8CBugtQGiJb3WDHRm3kGsYN
-	 FZuYqDTShKRjA==
-Message-ID: <5b8b52cf-bd43-40c0-962a-c6936637b7de@denx.de>
-Date: Fri, 26 Apr 2024 17:40:21 +0200
+	s=arc-20240116; t=1714146149; c=relaxed/simple;
+	bh=YZ6VXyeY39Amd3aJX1bAsPKuxCkd4qcZJwMJ/B4JMxM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bqnZCrkDFqtHko3eIi9W/xUXdjlEdQTn5rovsymrdqg5/wfELqZWRNhD+Y9521+0H+EXVWeoVGqS7XzrLsyM2NMHPB0d6KZTZI5fN28CFTK4HI+5NrTK5k8brT8n6+x7+jCkStN1CHfp1MoW/uwPVq8deBjPoE1tthE69ZVdiJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GULybcCC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 652CEC113CD;
+	Fri, 26 Apr 2024 15:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714146149;
+	bh=YZ6VXyeY39Amd3aJX1bAsPKuxCkd4qcZJwMJ/B4JMxM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=GULybcCCQey5wNu+9sEdy7orCoH6vNv09YS3Pp8EY7n1HFhbjZjWgDE2Eh7+/pj+p
+	 PW/wozPfxJj/Hes3AbAJINQDMelM8YvVNl7vFybd3GrDmBMNGlTUst03zTbQ4ruSAn
+	 mFO8DMgSIWERtcyiel/mCYSbfxb1HS//FKbrMaW6UeATT/4gFIjjNOVKDbTqE8UZgz
+	 Ck5XuyKxNTGOEaZuzWGjufEMH/WwwwklIhVcJOExyHzkrtip8pGk8pTbAnPCWQb1d8
+	 rWZRS8CpukwSqY+muJvAv84gMZ8L/J9LoKR/GwLy8Qmt8lAHZObHx6O4kj6vrVBh/Q
+	 O5F0Aeg0rteOQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 590A9C04FFE;
+	Fri, 26 Apr 2024 15:42:29 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v2 0/7] iio: ad9467: support interface tuning
+Date: Fri, 26 Apr 2024 17:42:09 +0200
+Message-Id: <20240426-ad9467-new-features-v2-0-6361fc3ba1cc@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/11] net: stmmac: dwmac-stm32: clean the way to
- manage wol irqwake
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
- <20240426125707.585269-7-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240426125707.585269-7-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFHLK2YC/32NQQ6CMBBFr0Jm7ZhSoagr72FYDHQGmmhrWkQN4
+ e5WDuDyveS/v0Di6DjBuVgg8uySCz6D3hXQj+QHRmczg1a6UlV5QrKnyjTo+YXCND0jJ5ROOqK
+ arSgDefmILO69Va9t5tGlKcTPdjKXP/u/N5eo8MCN0UcRY2u+kKdbGPZ9uEO7rusXFM/mSbcAA
+ AA=
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ Alexandru Ardelean <alexandru.ardelean@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>, Nuno Sa <nuno.sa@analog.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714146147; l=1945;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=YZ6VXyeY39Amd3aJX1bAsPKuxCkd4qcZJwMJ/B4JMxM=;
+ b=TQICWzuVJ91VffhN/LdgZDj7U8z3Xq+4v7Yufhtr1yBwoX6V/EnxpP4ZZ9Nhv/kgfAZawurYa
+ i5iNnv56ubVDSUkF60Z6YO7t235BqicbAk/AnIUmcqfniuPiJdkAaXZ
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-On 4/26/24 2:57 PM, Christophe Roullier wrote:
-> On STM32 platforms it is no longer needed to use a dedicated wakeup to
-> wake up system from CStop.
+Hi Jonathan,
 
-This really needs more clarification.
+Here it goes v2. Some points were still left open on v1 but this should
+already include most of the things you asked for. 
 
-Why was the code needed before ? Maybe because it was used by some of 
-the older STM32F4/F7/H7 SoCs ? Is it still needed by those SoCs ? Will 
-this patch break those older SoCs ?
+---
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20240419-ad9467-new-features-v1-0-3e7628ff6d5e@analog.com
 
-> This patch removes the dedicated wake up usage
-> and clean the way to register the wake up irq.
+- Patch 1:
+  * New patch;
+  
+- Patch 2:
+  * Added IIO_BACKEND_NO_TESTPATERN to stop the pattern (may be a no-op);
+  * Drop struct iio_backend_chan_status and use a bool pointer;
+  * Rename tap -> taps;
+  * Improved commit message.
+  
+- Patch 3 & 4:
+  * Added fixes tag;
+  * Imporved commit message (so one can better decide for backporting).
 
-[...]
+- Patch 6:
+  * Add comment on the sleep before checking for error;
+  * Use switch case in axi_adc_data_sample_trigger();
+  * Add IIO_BACKEND_NO_TEST_PATTERN.
+
+- Patch 7:
+  * Instead of caching the sample_rate, use clk_get_rate() "in place";
+  * Added comment clarifying dco (data clock output);
+  * Remove shadow ret;
+  * Moved the tuning table dump into debugfs.
+
+---
+Nuno Sa (7):
+      iio: backend: change docs padding
+      iio: backend: add API for interface tuning
+      dt-bindings: adc: axi-adc: add clocks property
+      iio: adc: axi-adc: make sure AXI clock is enabled
+      iio: adc: adi-axi-adc: remove regmap max register
+      iio: adc: adi-axi-adc: support digital interface calibration
+      iio: adc: ad9467: support digital interface calibration
+
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   5 +
+ drivers/iio/adc/ad9467.c                           | 374 ++++++++++++++++++---
+ drivers/iio/adc/adi-axi-adc.c                      | 127 ++++++-
+ drivers/iio/industrialio-backend.c                 | 162 ++++++---
+ include/linux/iio/backend.h                        |  74 ++--
+ 5 files changed, 643 insertions(+), 99 deletions(-)
+---
+base-commit: cd84b21017b5f7b993341ee8b5c5bf10ddba37ab
+change-id: 20240419-ad9467-new-features-fbfbaa5edf06
+--
+
+Thanks!
+- Nuno Sá
+
+
 
