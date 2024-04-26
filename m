@@ -1,154 +1,135 @@
-Return-Path: <devicetree+bounces-63015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD0A8B378D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:54:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 294EF8B37A1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 15:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E8801C22233
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:54:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D906E283F1C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 13:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4E8146D4F;
-	Fri, 26 Apr 2024 12:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7FB146D60;
+	Fri, 26 Apr 2024 12:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="aJ1kbKMr"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="2OVL/9e+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1966146A94
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 12:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ADAB146A8E;
+	Fri, 26 Apr 2024 12:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714136089; cv=none; b=hiPtbDb27j9xHHF59T7QkwcwtMpy0cgMlQ1/TwTTAzWsrooDtM9rJLDSyEHZkNyPPM0Dv16do68iSudwVUOJrHQtPAzEc01l6XcTRi5JOcyAngE1Ch9qRcNIR7nvxM0azDd0jkWrfJu7BWjIjZ0+RX7GwkQPObil5lAbdBkMk6k=
+	t=1714136391; cv=none; b=t46V31ML+lWUeeSRohcSNvn/KM/CyTye6CVL9v9uaDtWEP7I9XXZVSwpq6Vm/4degs67IfWMiGJ7cLbWAEtcMtPrsHwXGsMBDN0Ec40kB536/r8NGQ/MivC+h7WWWn+XBJI/AMV+OnRDtqnI3gPPR+JRggbyE4g7B6iCyq3x4oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714136089; c=relaxed/simple;
-	bh=kxF2Dn/2+RT2PyPXlDva2okUem+fGodZnf9w7kPdU/o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FEy3wxIsCpBCQqjdPjagBzFGX2yaii4nB5Uca+TL6tMbt0bV3JKLZlWF2VAJLz5wh+NAwk7bYdNSWhWou5IxCWYMRkB94HuPhtaXh/QtJATtEhWhotf2msIZc/jl4QkjoGajXUE3/eEjE4r776Fe3RCR86eh9yFFC4Kl0W51gI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=aJ1kbKMr; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1714136075; x=1716728075;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=kxF2Dn/2+RT2PyPXlDva2okUem+fGodZnf9w7kPdU/o=;
-	b=aJ1kbKMrzRn0Dzm9x3Q8jzjUxdi3gsqCkuCJRNFBhl2dA9p0F3GrCqKJOLmMf/xK
-	n/Sdt8FDQ8f5QKzqUK1w60W3MWpyDJw22j13sNVf++9uuILyMv4mw8mtuGuUZWge
-	IKIRm5HauH4dQ2EVfcyxgCstID/SDNTQW8WivEGbXP4=;
-X-AuditID: ac14000a-fbefe7000000290d-af-662ba40bcf64
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id B6.13.10509.B04AB266; Fri, 26 Apr 2024 14:54:35 +0200 (CEST)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+	s=arc-20240116; t=1714136391; c=relaxed/simple;
+	bh=ZxFJUIWX4TvIfLdPim81/AwMqb2DbXINuDtV5oNr/Lo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=olzAv5Jl5ORv1cAOWhF6H7mrkqNW0rlTmko+rQkGSWJCg4yYpg11qv75KYitePl5lSW8ePGYfPf3Z/sYWjjsXtwY/Egsc7lgvR6VfD4IRB4nJye5QvgcS0TaBQCMrgRwZ6Do4PmWW3KT4TI5k6k4dWQ54+4v7oZrYuOZtIIzgQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=2OVL/9e+; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43Q9bYBw032401;
+	Fri, 26 Apr 2024 14:59:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=82TTePM
+	YeUp1fhEV5NgGPQLSJ7G6ou259POq1elrSMY=; b=2OVL/9e+vSzyhA5HF0B/8Iq
+	xe3L1jK8NSsvNDWRSO97bVSs5e1V62MzdPGWiLy2RKqJXfqyegKXmCZNhDROnj7c
+	Xitw6HLGG8t06OicTiBIMRSEb4ca11dqX5tbmgsIYD/iIscoZssnXHP5iN9IF5+Q
+	JPqz0X84+xB7fL16PqgztpuMaT/1hIVF6b8OQjrjpT8ifXg5NO8kzwJY6QuwiShI
+	71BrRnAfeSp35eKAUgtU1n5n4weFZCTOZsXlDlOTcrXNst1CqIwE2EbUt4DECacE
+	WYy2PIZETzito+gTgaqrSXDZ4WWXrvXBd0yxF719nTNn8eN3tbQ2X2JEym72WTA=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xm4kbhs8v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Apr 2024 14:59:24 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 70A5140046;
+	Fri, 26 Apr 2024 14:59:18 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1A53B222C9E;
+	Fri, 26 Apr 2024 14:58:04 +0200 (CEST)
+Received: from localhost (10.252.17.191) by SHFDAG1NODE2.st.com (10.75.129.70)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Apr
- 2024 14:54:33 +0200
-Message-ID: <1b87b00f-9fc2-47b2-9e81-4a391458f031@phytec.de>
-Date: Fri, 26 Apr 2024 14:54:33 +0200
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 26 Apr
+ 2024 14:58:01 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/11] Series to deliver Ethernets for STM32MP13
+Date: Fri, 26 Apr 2024 14:56:56 +0200
+Message-ID: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am625-phyboard-lyra-rdk: Add USB-C
-To: Garrett Giordano <ggiordano@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-References: <20240425152558.485763-1-ggiordano@phytec.com>
-Content-Language: en-US
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240425152558.485763-1-ggiordano@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR5d7iXaawe39EhZr9p5jsph/5Byr
-	xfotv9ksln+ezW7xctY9NotNj6+xWlzeNYfN4s2Ps0wW//fsYLfofqdu8f/sB3YHbo9NqzrZ
-	PDYvqffo725h9fhz8R2rx/Eb25k8Pm+SC2CL4rJJSc3JLEst0rdL4MrYvX4PY8FP3orGnlfs
-	DYxPuLoYOTgkBEwkOm+wdTFycQgJLGGSOPr7NTuEc5dR4t+/Y0xdjJwcvAI2Ek9vL2cBsVkE
-	VCVav95ihYgLSpyc+QQsLiogL3H/1gx2EFtYwEti1ofFYINEBJYwSkzqXAi2glmgjVHiycMD
-	zCCrhQSsJC4eNwBpYBYQl7j1ZD7YMjYBdYk7G76BLeAUsJaY29DPDFFjIbH4zUF2CFteYvvb
-	OWBxISD7xSWI4ySA7GnnXjND2KESRzatZprAKDwLya2zkKybhWTsLCRjFzCyrGIUys1Mzk4t
-	yszWK8ioLElN1ktJ3cQIijcRBq4djH1zPA4xMnEwHmKU4GBWEuHdNEc7TYg3JbGyKrUoP76o
-	NCe1+BCjNAeLkjjv6o7gVCGB9MSS1OzU1ILUIpgsEwenVAPj1kd3y7Osnkqd566zj7pm+ILz
-	760Fu7hdf2xnPPXoQZX7tQvFi7b9Pn95ge35I+dvMDkfvSW1K3ydVZe67rnyVS1bU89+r9Ms
-	a9Zan18ZsJJpy9WNWW0Mab9ntQkxXtCpdOCbx7tsF+Old8ItN5dunP/0oOXrcxKCXYwSnWUv
-	dTae/B4kpC7DpcRSnJFoqMVcVJwIAHSER+elAgAA
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-26_12,2024-04-26_02,2023-05-22_02
 
-Hi Garrett,
+STM32MP13 is STM32 SOC with 2 GMACs instances
+This board have 2 RMII phy:
+  -Ethernet1: RMII with crystal
+  -Ethernet2: RMII without crystal
+Rework dwmac glue to simplify management for next stm32
+Add support for PHY regulator
 
-thanks for sending!
+V2: - Remark from Rob Herring (add Krzysztof's ack in patch 02/11, update in yaml)
+      Remark from Serge Semin (upate commits msg)
 
-It seems like this patch completes the board's support. Every 
-interface/component is now fully supported.
+Christophe Roullier (11):
+  dt-bindings: net: add STM32MP13 compatible in documentation for stm32
+  dt-bindings: net: add phy-supply property for stm32
+  net: stmmac: dwmac-stm32: rework glue to simplify management
+  net: stmmac: dwmac-stm32: add management of stm32mp13
+  net: stmmac: dwmac-stm32: update config management for phy wo cristal
+  net: stmmac: dwmac-stm32: clean the way to manage wol irqwake
+  net: stmmac: dwmac-stm32: support the phy-supply regulator binding
+  ARM: dts: stm32: add ethernet1 and ethernet2 support on stm32mp13
+  ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
+  ARM: dts: stm32: add ethernet1 and ethernet2 for STM32MP135F-DK board
+  ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
 
-Am 25.04.24 um 17:25 schrieb Garrett Giordano:
-> The USB-C PD manages plug orientation, power delivery, and our endpoint
-> for the USB interface. Add this node and include its endpoint.
-> 
-> Configure USB0 for role-switching and wire it to our USB-C PD endpoint.
-> 
-> Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
+ .../devicetree/bindings/net/stm32-dwmac.yaml  |  79 +++++-
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi   |  71 ++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi          |  31 +++
+ arch/arm/boot/dts/st/stm32mp133.dtsi          |  30 +++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts       |  48 ++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 235 ++++++++++++------
+ 7 files changed, 416 insertions(+), 79 deletions(-)
 
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
+-- 
+2.25.1
 
-> ---
->   .../dts/ti/k3-am625-phyboard-lyra-rdk.dts     | 26 ++++++++++++++++++-
->   1 file changed, 25 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> index dfc78995d30a..fb3bc914a018 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> @@ -348,6 +348,24 @@ gpio_exp: gpio-expander@21 {
->   				  "GPIO6_ETH1_USER_RESET", "GPIO7_AUDIO_USER_RESET";
->   	};
->   
-> +	usb-pd@22 {
-> +		compatible = "ti,tps6598x";
-> +		reg = <0x22>;
-> +
-> +		connector {
-> +			compatible = "usb-c-connector";
-> +			label = "USB-C";
-> +			self-powered;
-> +			data-role = "dual";
-> +			power-role = "sink";
-> +			port {
-> +				usb_con_hs: endpoint {
-> +					remote-endpoint = <&typec_hs>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->   	sii9022: bridge-hdmi@39 {
->   		compatible = "sil,sii9022";
->   		reg = <0x39>;
-> @@ -449,7 +467,13 @@ &usbss1 {
->   };
->   
->   &usb0 {
-> -	dr_mode = "peripheral";
-> +	usb-role-switch;
-> +
-> +	port {
-> +		typec_hs: endpoint {
-> +			remote-endpoint = <&usb_con_hs>;
-> +		};
-> +	};
->   };
->   
->   &usb1 {
 
