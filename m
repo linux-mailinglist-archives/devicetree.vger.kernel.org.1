@@ -1,192 +1,179 @@
-Return-Path: <devicetree+bounces-63072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF88F8B3A61
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:49:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE0F8B3C47
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:02:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2B691C2107A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 14:49:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 066592837BD
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 16:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493DB1487C3;
-	Fri, 26 Apr 2024 14:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002EB16DEA6;
+	Fri, 26 Apr 2024 16:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="j2gtIC2r"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="F7Byt8J4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46173610A;
-	Fri, 26 Apr 2024 14:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71065157463;
+	Fri, 26 Apr 2024 16:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714142987; cv=none; b=SzfH9Zr3JWn9vLlsB3F15MFV0cZGeT6TJgrJxQQ1F3FTyTSSZs+SkY+wlw/qm/xB4HGsrc2FSNri5NUD91j17Zl16Ih1vlDEdY0bnHCvUTq6M+YVw6A75A3wrOTCG+xeC75gP8uHpXBnkrTZKyogbh/HH1+6EE61oViOf/lESmM=
+	t=1714147262; cv=none; b=hCoFxeO5mRBE7HieDriLrI5l23l4vZHpRwF8sEL8/R6UtE/+uE+7tLAimrFAkEr/i7v3mvrcT+yHRn5UlQ0uKndKrUouIXCIBh0HV1oYAuzEh5Z6SJayZoi0FASY1x4HKIjoReUj43jZS62xRep9KxPXZ2+scftINFVWnzfIEIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714142987; c=relaxed/simple;
-	bh=nKwWji5nlEK8ia8SrQahrumjx4dp1LCCpfuNn2NHs8E=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ShkBH6sa3tejhj/tvn/X/dZWbBZSKaW5inAJlPCzo9aAcr6pFq4SgcJk9Xs3V3nf1QXAX68zHtcgIt1AjXfhiJElwiKdfGhkDaY7/mdxCFQm3V4oHHdbkysI80CFyRmoET5fJrU71/29ikaODe2kbBIIg9acGQU2jqPHGPwkNk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=j2gtIC2r; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43QEgQK5009060;
-	Fri, 26 Apr 2024 14:49:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=0D97D6dvdOnAFJYpvyHmXiXE4CxOnc/rwEu/3nEji9w=;
- b=j2gtIC2roT7WYDm9+55wWV1uHMiC0guYFmm/WsCtJjZEzhTuC6bgDOoIo6nAJ6PFvrvY
- 6fFjgnfZCoDADcEcYVb21AQFffAGcPcq6G2wfdqiSYr05X4/cRpG5luCnlabgKKznEQi
- H38ME/srmN67uDkzdaLGQhGZi53joouNgqt1qcE3JgizWrfM7xYvhPGWXQRL2rdplZBt
- jxz9IWQLy0G/+/5pFhCKVPn4AekIIir5pcn9WtRDy4GSrszpbajxNYzecNMjT6x54IYR
- l7sQJ8HsEG1pCW8XbnkZm4imw277ITBWR+GwWBtmFB4lqsdwfGZP6Mv2S/vQWjeMZKL7 Uw== 
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xre90g0f2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 14:49:31 +0000
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43QE5aPr028319;
-	Fri, 26 Apr 2024 14:49:30 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 3xmtr2ytm8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Apr 2024 14:49:30 +0000
-Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43QEnRbE45941412
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 26 Apr 2024 14:49:29 GMT
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id BDE015805E;
-	Fri, 26 Apr 2024 14:49:27 +0000 (GMT)
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 7735858055;
-	Fri, 26 Apr 2024 14:49:27 +0000 (GMT)
-Received: from [9.61.156.17] (unknown [9.61.156.17])
-	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 26 Apr 2024 14:49:27 +0000 (GMT)
-Message-ID: <f1c3947c-e1c8-4dac-bbf7-e9c0dc9c27e9@linux.ibm.com>
-Date: Fri, 26 Apr 2024 09:49:27 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/14] dt-bindings: spi: Document the IBM Power SPI
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au
-References: <20240425213701.655540-1-eajames@linux.ibm.com>
- <20240425213701.655540-2-eajames@linux.ibm.com>
- <e2b52bfb-0742-4baf-8269-86075b5cc54e@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <e2b52bfb-0742-4baf-8269-86075b5cc54e@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: gpMXEoHosCbBa5Bhpd174zAYOLaPHlnx
-X-Proofpoint-ORIG-GUID: gpMXEoHosCbBa5Bhpd174zAYOLaPHlnx
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1714147262; c=relaxed/simple;
+	bh=uulYlAkCUz11COWeZOP+CzKbGlqVCgeSXf4Xrw39bQg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rCtjNqSPBG7nxl2u8kQJms9rha1WwbmZ6tacZ2Zx176ORTmvLyzjR4mbbaJQdgHFSbUZ88uBBEFnDG30789fqBHgwFM6JdjX98P4Gx7eQe2MOwUv9S5UfqzZyJYha6AUG7Pp7eMrRgifcpkzfsoVPuBs11VB5444GMxq0u3lA/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=F7Byt8J4; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 37FCC884F3;
+	Fri, 26 Apr 2024 18:00:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1714147250;
+	bh=dLpoxPvvgiNhLq6wWoquSG/kLA+2IkGrgHtcMPVbqTg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F7Byt8J41Nr3+ZuOu+e1nlotRJfZKjoMWnH9uY/GvbLcAwtiQHyUxRzAPgoIq23rl
+	 9NSY1IuO/1boW/8uMSl3ZaxFLmhB/lixjFmp6YUJxuGI06fKzQE2+v4pAKt9BmcGhL
+	 k5gO/9+czmd5py0AjXJBdYvhQTBtHInv7dxMsmbxGVcnoW0t8GV/O5hFEp+5r8i2Qq
+	 wOkhW80/CgojCeuewAaqVl0i0qmmxP2Nr9v2xh1iawpBamunc4ZThBN6UuH/zTFVFJ
+	 b/Fpo/URooZLlUBh9J6yN32sdCVrx3EOO1XBBLoH18vMe5lWLA0/Z+4W+zSQrgCTTU
+	 CyyQ/RJ3oToQQ==
+Message-ID: <56f2d023-82d5-4910-8c4e-68e9d62bd1fe@denx.de>
+Date: Fri, 26 Apr 2024 16:53:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-26_12,2024-04-26_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- mlxlogscore=999 phishscore=0 impostorscore=0 bulkscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 lowpriorityscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2404010000 definitions=main-2404260099
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/11] net: stmmac: dwmac-stm32: rework glue to
+ simplify management
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-4-christophe.roullier@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20240426125707.585269-4-christophe.roullier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+On 4/26/24 2:56 PM, Christophe Roullier wrote:
+> Change glue to be more generic and manage easily next stm32 products.
+> The goal of this commit is to have one stm32mp1_set_mode function which
+> can manage different STM32 SOC. SOC can have different SYSCFG register
+> bitfields. so in pmcsetr we defined the bitfields corresponding to the SOC.
+> 
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> ---
+>   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 76 +++++++++++++------
+>   1 file changed, 51 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+> index c92dfc4ecf57..68a02de25ac7 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+> @@ -23,10 +23,6 @@
+>   
+>   #define SYSCFG_MCU_ETH_MASK		BIT(23)
+>   #define SYSCFG_MP1_ETH_MASK		GENMASK(23, 16)
+> -#define SYSCFG_PMCCLRR_OFFSET		0x40
+> -
+> -#define SYSCFG_PMCR_ETH_CLK_SEL		BIT(16)
+> -#define SYSCFG_PMCR_ETH_REF_CLK_SEL	BIT(17)
+>   
+>   /* CLOCK feed to PHY*/
+>   #define ETH_CK_F_25M	25000000
+> @@ -46,9 +42,6 @@
+>    * RMII  |   1	 |   0	  |   0	   |  n/a  |
+>    *------------------------------------------
+>    */
+> -#define SYSCFG_PMCR_ETH_SEL_MII		BIT(20)
+> -#define SYSCFG_PMCR_ETH_SEL_RGMII	BIT(21)
+> -#define SYSCFG_PMCR_ETH_SEL_RMII	BIT(23)
+>   #define SYSCFG_PMCR_ETH_SEL_GMII	0
+>   #define SYSCFG_MCU_ETH_SEL_MII		0
+>   #define SYSCFG_MCU_ETH_SEL_RMII		1
+> @@ -90,19 +83,33 @@ struct stm32_dwmac {
+>   	int eth_ref_clk_sel_reg;
+>   	int irq_pwr_wakeup;
+>   	u32 mode_reg;		 /* MAC glue-logic mode register */
+> +	u32 mode_mask;
+>   	struct regmap *regmap;
+>   	u32 speed;
+>   	const struct stm32_ops *ops;
+>   	struct device *dev;
+>   };
+>   
+> +struct stm32_syscfg_pmcsetr {
+> +	u32 eth1_clk_sel;
+> +	u32 eth1_ref_clk_sel;
+> +	u32 eth1_selmii;
+> +	u32 eth1_sel_rgmii;
+> +	u32 eth1_sel_rmii;
+> +	u32 eth2_clk_sel;
+> +	u32 eth2_ref_clk_sel;
+> +	u32 eth2_sel_rgmii;
+> +	u32 eth2_sel_rmii;
+> +};
 
-On 4/26/24 01:15, Krzysztof Kozlowski wrote:
-> On 25/04/2024 23:36, Eddie James wrote:
->> The IBM Power chips have a basic SPI controller. Document it.
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
+[...]
 
+> @@ -487,8 +502,19 @@ static struct stm32_ops stm32mp1_dwmac_data = {
+>   	.suspend = stm32mp1_suspend,
+>   	.resume = stm32mp1_resume,
+>   	.parse_data = stm32mp1_parse_data,
+> -	.syscfg_eth_mask = SYSCFG_MP1_ETH_MASK,
+> -	.clk_rx_enable_in_suspend = true
+> +	.clk_rx_enable_in_suspend = true,
+> +	.syscfg_clr_off = 0x44,
+> +	.pmcsetr = {
+> +		.eth1_clk_sel		= BIT(16),
+> +		.eth1_ref_clk_sel	= BIT(17),
+> +		.eth1_selmii		= BIT(20),
+> +		.eth1_sel_rgmii		= BIT(21),
+> +		.eth1_sel_rmii		= BIT(23),
+> +		.eth2_clk_sel		= 0,
+> +		.eth2_ref_clk_sel	= 0,
+> +		.eth2_sel_rgmii		= 0,
+> +		.eth2_sel_rmii		= 0
+> +	}
+>   };
 
-Isn't spi the right subsystem here?
+Is this structure really necessary ?
 
+It seems the MP15 single ethernet config bitfield is at offset 16.
+MP13 has two bitfields, one at offset 16, the other at offset 24 .
 
->
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   .../devicetree/bindings/spi/ibm,p10-spi.yaml  | 56 +++++++++++++++++++
->>   1 file changed, 56 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/spi/ibm,p10-spi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/spi/ibm,p10-spi.yaml b/Documentation/devicetree/bindings/spi/ibm,p10-spi.yaml
->> new file mode 100644
->> index 000000000000..9bf57b621c1f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/spi/ibm,p10-spi.yaml
->> @@ -0,0 +1,56 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/spi/ibm,p10-spi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: IBM SPI Controller
-> IBM P10 SPI Controller
+All you need to do is figure out which of the two MACs you are 
+configuring, and then shift the bitfield mask by 16 or 24, since the 
+bits are at the same offset for both bitfields.
 
+See the matching upstream U-Boot commit for how this shift can be done:
+a440d19c6c91 ("net: dwc_eth_qos: Add DT parsing for STM32MP13xx platform")
 
-Ack.
-
-
->
->> +
->> +maintainers:
->> +  - Eddie James <eajames@linux.ibm.com>
->> +
->> +description:
->> +  A basic SPI controller found on IBM Power chips, accessed over FSI. This
->> +  node will always be a child node of an ibm,fsi2spi node.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ibm,p10-spi
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +allOf:
->> +  - $ref: spi-controller.yaml#
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    fsi2spi@1c00 {
->> +        compatible = "ibm,fsi2spi";
->> +        reg = <0x1c00 0x400>;
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
-> Use rather some simple wrapper instead of node causing warnings, e.g.
-> fsi {} with only address/size cells.
-
-
-Will do, thanks.
-
-
->
->
->
-> Best regards,
-> Krzysztof
->
 
