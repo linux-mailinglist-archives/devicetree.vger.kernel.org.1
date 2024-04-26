@@ -1,74 +1,77 @@
-Return-Path: <devicetree+bounces-63244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7478B4236
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 00:39:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF3F8B4235
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 00:39:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFF1FB21B25
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:38:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC2F81C2243B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:39:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A8C2E636;
-	Fri, 26 Apr 2024 22:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8958838398;
+	Fri, 26 Apr 2024 22:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JJb9EJEw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BT8uT+2C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9DA3BBEB
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 22:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4C034545;
+	Fri, 26 Apr 2024 22:38:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714171134; cv=none; b=ug6zntPmfxOaCkUxrUr3011YueObYgGD1PzntbBYqOzr5/GPe1FG6gGyItmaIcwLOnVtRae3+jzG5Fpfisb4QcqP8mmpAU3wCKBfsqofvS30t2S9gh3wxssG/dtn0i0KjO9ec4v3JV/LUJ/FRycQDYd/vi6lkwjtETKsFellSuQ=
+	t=1714171136; cv=none; b=EvWyX89sl1ALb3tmEWi8DQBS1KWOWgIwE4U8rm9/Ewz6X+0q8E1qvHFSHRV+zQEGmAskghVwFE4n/FUXxRK4ytdHMSn8ncjyaCPml9hTInYL4thjsjwKu3trAUe+joJz4GUEk2iRwP2m7Re8fj56X4AMwa59h+DDorewUI34vVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714171134; c=relaxed/simple;
-	bh=osfKozBDJvV7kmpHRmcbHCyN8eOMJnrjL7FtCix08KY=;
+	s=arc-20240116; t=1714171136; c=relaxed/simple;
+	bh=qJ9rw2GU0e1gRvWiEFeq92YCHmCMgPMhYIg1Yr1Xr1I=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZhFtBod5k5RqXOc8N9MMp4OOqGTIiw7yy9qredDkx73l2gU2GhXrO+IYNoPbHumhQnJFxM5rZz5IghyhqWPPXJnYFrrOjAjCSiphRZ/GFAYfe27R2HkFo6AAA1ZZkO0uHGCGV4abA4KQSv4cz4BIFj2/n6PVd67+WDJdcKEKcao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JJb9EJEw; arc=none smtp.client-ip=198.47.23.248
+	 MIME-Version:Content-Type; b=Mpwfe0DRYM6YBrUE50DfIZtRo6Qwp5CV/p1oA2aalNTvLau9bAiUg3faDJLWqsoQn1oo/PUqRHWxmU/09aAje08LrVT00NGu+3RtsF4HjgfY7ndl213PtIIcKJ9P1FEe9D8DhigZPU61cNod03t4Q+iX6LhWvw8fuyJFuCP/s/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BT8uT+2C; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43QMcTCm017923;
-	Fri, 26 Apr 2024 17:38:29 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43QMchgS009482;
+	Fri, 26 Apr 2024 17:38:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714171109;
-	bh=8YqpZ+34ZDJ3BHIt3GKmrdiqp3bArPcMsSyawOpGUGk=;
+	s=ti-com-17Q1; t=1714171123;
+	bh=chaxr6tVE54gEOSPdHPLfgKOoXUaqZ5tQUQrRMi8FNI=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=JJb9EJEwpjvH7qPUU2ryaWKjSfwjaKYxZg3jtdtq3Sp7UIRgEwTuT5+vfg7ppknrM
-	 MuNvML6r+3jGWdtKAdtzbzGOMtS6H3JEFLhPTTAqfOpIsR8F0JggeICsOGMwi2YFN2
-	 Oo+E1nmhvxf9b5Xqi2EGka3EX/i9KbW+StGHJapg=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43QMcTss003824
+	b=BT8uT+2C8YgrBX2CjH4HSyXvulizNIQdrD7TGoOmdtov00WcZvRKf8BvDTLG0dRd9
+	 MxgX1636kbZ1DZxGgPaITyX0VzFWSb337h3n7+wIiRdz2LB2B5B1QQ5Vwk7LzPG6Rk
+	 ehbG9qJf8SKuBAkTL8GIrNWA2MQ4e0iTCaB1CEKU=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43QMch3Z024237
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 26 Apr 2024 17:38:29 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 26 Apr 2024 17:38:43 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
- Apr 2024 17:38:29 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 17:38:42 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 26 Apr 2024 17:38:29 -0500
+ Frontend Transport; Fri, 26 Apr 2024 17:38:42 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43QMcThW078249;
-	Fri, 26 Apr 2024 17:38:29 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43QMcgtH078499;
+	Fri, 26 Apr 2024 17:38:42 -0500
 From: Nishanth Menon <nm@ti.com>
-To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>
+CC: Nishanth Menon <nm@ti.com>, <afd@ti.com>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>, <b-liu@ti.com>, <francesco@dolcini.it>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Diogo
- Ivo <diogo.ivo@siemens.com>
-CC: Nishanth Menon <nm@ti.com>, Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH] arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG1 devices
-Date: Fri, 26 Apr 2024 17:38:26 -0500
-Message-ID: <171417109885.3482592.16150269865310448034.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62*: Add PHY2 region to USB wrapper node
+Date: Fri, 26 Apr 2024 17:38:40 -0500
+Message-ID: <171417111578.3482723.5915664375435778473.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240409164314.157602-1-diogo.ivo@siemens.com>
-References: <20240409164314.157602-1-diogo.ivo@siemens.com>
+In-Reply-To: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
+References: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,18 +82,19 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Diogo Ivo,
+Hi Roger Quadros,
 
-On Tue, 09 Apr 2024 17:43:14 +0100, Diogo Ivo wrote:
-> Add the required nodes to enable ICSSG SR1.0 based prueth networking.
+On Fri, 12 Apr 2024 14:52:14 +0300, Roger Quadros wrote:
+> Add PHY2 register space to USB wrapper node. This is required
+> to deal with Errata i2409.
 > 
 > 
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG1 devices
-      commit: 02b4967cf4ec544ba911404c150e9bc75f38f4b1
+[1/1] arm64: dts: ti: k3-am62*: Add PHY2 region to USB wrapper node
+      commit: d4fbe9bfc7a110c6700be7fc1484c3ea22b6401d
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
