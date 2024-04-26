@@ -1,203 +1,276 @@
-Return-Path: <devicetree+bounces-63211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 433B68B40B1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:11:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893138B40C3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 22:23:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF147282E85
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:11:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F51284AF4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA99E20B0E;
-	Fri, 26 Apr 2024 20:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31AB224D2;
+	Fri, 26 Apr 2024 20:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LKz5p9fq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BDt7XFC5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60903125AE
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 20:11:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB542562E;
+	Fri, 26 Apr 2024 20:23:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714162279; cv=none; b=gQszUl51Leq3djRdRN77+t2D9YfSa32tS5Y6S2Q/f04sixvVogZDjgv3bD0MJIROwLBWrH/QtP6GWHkxsz9MPAE3eKxA57A5+d75koOOEb/EQhM/jvj6ySaNd5hqMnqNrnQWrxByzRNy4BexwoH/1OtTtcctsbLxWYYf2PLJ5IQ=
+	t=1714162981; cv=none; b=VneV8+tDepOzUPiTOV9Dh35ldG0QJtlAW5vdutevNRf3OOT8z+B2W0cZ6JGz9t3sNNrbuBiHer3Kar7Q+WMZhCPaKvqt+CCCSRQhGipyKRBqccnVbNs2ErW2v3PfR9pH3DPcKzTvmSWhD+u1K/MqHLmKBxG8PwLr/pC7N1wQELI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714162279; c=relaxed/simple;
-	bh=CCtrDmowOfUzSRgAL6a/caO428RWP0SEeDG7dtLDLu0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZOdsxa7WvXTpDx/YRzrPo2Jhnp2aOuX1Z56xgJtyl63avHIZDCaYCjtv/rJ/RsaLwqD+/gAbmd8C9d3f5ZvzQkb/DkdzSWqcUUbX69kQpoDYym0ei5ZKxrq3yw3JbfmFl4ofIW94yifgpmTZFpyiB/kckNKbCuUSt/yqmhV+0V8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LKz5p9fq; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3c85a9b9143so493446b6e.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 13:11:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714162276; x=1714767076; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6CwGplRyVlrAojs0p2Bji7yf6qM7XioPGpQcoYE219Y=;
-        b=LKz5p9fqrQuDYdCfGxq7VMw3zzd2k+fVYbrPnBE49UogwCka8EC7lu+/RyKUFawqJ+
-         XcpN2obHhLp9watFnRtosuTZU8UI+mUktNgiH+1jo4mhs7bcrAp2k+YzV3EMDLh7St8N
-         5uB/cHn7Ab0Cu6ITrxmkSDQLCa++u5cwAHJcRTqCOXspQWBOQCOJRhx8Xr08n/ao+72o
-         Rjwo/psXVmMYnKo30ev5Bl2GSeiyHEs1POHRM2RQYu63R6VYNMn/NXk755+Qf8eWPmsZ
-         kleXOhfKluaqe1pUVvikyNn0y1ovkU98uakFMMxC9N0Ydle9i4ZwjF7Twr86384UYLQ7
-         Le/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714162276; x=1714767076;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6CwGplRyVlrAojs0p2Bji7yf6qM7XioPGpQcoYE219Y=;
-        b=I39mhxJigvj4wnO3b8PiDTilGRjZP9UlwBCTYar2Q6K2gtt2jhm5W9yEAGgPg+pTyt
-         LbwSQ05kZhHTYMoLbZucC9udSP1mKuZf8P06yu9eeV7aZWXFkQJUx14/Jv9wYH9g7BCg
-         sdx5O6XSGbFMafyTbIotkcUdHIDlRJ/wQsuy6D4HSAOxVDiU5DpogMmIG0pgxB2nxxK1
-         5qYkBpEHL+aNf3WS8o4iwL611s5riS8xssH/4EOmsEGXDtNqLdtSVbOkqAS+yQNEQbNL
-         8+uufbGs4ZHtNk33ma3x3zsTIKxTrpHOuvlRcW4HbT9lSvbkkQg+K1k2n1XEGeOkNJox
-         +fFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKEGWUoksI+6uJxtZOrohtYgAW16OOI5ESy/KbPoHQvY9yCLYtSclJa7AiLSDNr8toHyYnuHl/qLst3KoJnUXh31CQipbTT8FrXA==
-X-Gm-Message-State: AOJu0YztKWzM1mfQH4cqaxea4TnG9DiwgHTpXD3o52A90Awfs7jLGRTm
-	V9SK4XZLhCTu7GVQZnNl8Njkl6ROICe/5JHz68EIWbLBjX49/p+KQJvDbHkig6o=
-X-Google-Smtp-Source: AGHT+IGmGPMXguo4qOP7xmoYacLCC657AcV/qNocAoxOLQZB8ATEhQX5SkqofkF+5cuwjvIkYsjtUA==
-X-Received: by 2002:a05:6808:628e:b0:3c7:546a:33b4 with SMTP id du14-20020a056808628e00b003c7546a33b4mr3467736oib.20.1714162276318;
-        Fri, 26 Apr 2024 13:11:16 -0700 (PDT)
-Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id a7-20020a0cca87000000b006969f5d3159sm8227068qvk.50.2024.04.26.13.11.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Apr 2024 13:11:16 -0700 (PDT)
-Message-ID: <8bc13253-db16-4801-9f69-b06ba4e129be@baylibre.com>
-Date: Fri, 26 Apr 2024 16:11:14 -0400
+	s=arc-20240116; t=1714162981; c=relaxed/simple;
+	bh=GbaTYwdZ8id3LPa579gAi+LysdGAYbNVBDYDNoM7P+o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YxrmpfOEDSE46hUS2NRU6RnvK/2qwzfg6MKm94FDv7SMHW3bG2SjVrsJCRrbJjZfol0fhcxlor+fR7YXpb1CcF0Wz4nSI/MvdPSMVAS5PsuApcVzUYTjYyjkryW3v64eopUdOyuDG3N0XG2ZhnzMsnTgxwKSkMoMn69fceAS5ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BDt7XFC5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA3D1C113CD;
+	Fri, 26 Apr 2024 20:23:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714162981;
+	bh=GbaTYwdZ8id3LPa579gAi+LysdGAYbNVBDYDNoM7P+o=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BDt7XFC5+ZlqbRPkXwezHFzXgsKBQ233OU/DL9YQ4CO8IvTo1gw/IpfQXQ2kyd6g7
+	 9Ms/jBsIMGaVM2n7UsxElrXKY+ChUQsNPLXBWXN1suiLlr0KQYBdPYBweG6fVFUja+
+	 zyKACwTXpGSZTjSOkd8B0ob4kTLQBV3TK+vaAXHgB1vZXo4WldQmBM7I4GVTFiZRQH
+	 y/uRsqc2XcZ7OjqpGyV8U9RA+7CRi1E3hlLwXucNJmX4njy26oSR0YpHauNSMcdoEW
+	 aVy3/SoitHOWufMcdRUft+hv6eYaTzPvWyOOKw1/8GBN9Q002HWo5k71l41zLqm8xd
+	 HT2AgHiysMayQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH] dt-bindings: Drop unnecessary quotes on keys
+Date: Fri, 26 Apr 2024 15:22:37 -0500
+Message-ID: <20240426202239.2837516-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2 v5] dt-bindings: pwm: Add AXI PWM generator
-To: linux-pwm@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de,
- michael.hennerich@analog.com, nuno.sa@analog.com, dlechner@baylibre.com,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org
-References: <20240424125850.4189116-1-tgamblin@baylibre.com>
- <20240424125850.4189116-2-tgamblin@baylibre.com>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <20240424125850.4189116-2-tgamblin@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+The yamllint quoted-strings check wasn't checking keys for quotes, but
+support for checking keys was added in 1.34 release. Fix all the errors
+found when enabling the check.
 
-On 2024-04-24 8:58 a.m., Trevor Gamblin wrote:
-> From: Drew Fustini <dfustini@baylibre.com>
->
-> Add Analog Devices AXI PWM generator.
->
-> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-Note that I missed the following two acks from the v4 series when 
-preparing v5:
+Clean-up the xilinx-versal-cpm formatting while we're here.
 
-Acked-by: Michael Hennerich<michael.hennerich@analog.com>
-Acked-by: Nuno Sa<nuno.sa@analog.com>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/net/sff,sfp.yaml   | 12 ++++++------
+ .../devicetree/bindings/pci/xilinx-versal-cpm.yaml   |  7 +++++--
+ .../devicetree/bindings/pci/xlnx,nwl-pcie.yaml       |  2 +-
+ .../devicetree/bindings/phy/brcm,sata-phy.yaml       |  8 ++++----
+ .../devicetree/bindings/regulator/ti,tps62864.yaml   |  2 +-
+ .../bindings/soc/tegra/nvidia,tegra20-pmc.yaml       |  6 +++---
+ Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml  |  4 ++--
+ 7 files changed, 22 insertions(+), 19 deletions(-)
 
-Trevor
+diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+index bf6cbc7c2ba3..90611b598d2b 100644
+--- a/Documentation/devicetree/bindings/net/sff,sfp.yaml
++++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+@@ -29,39 +29,39 @@ properties:
+       allowable by a module in the slot, in milli-Watts. Presently, modules can
+       be up to 1W, 1.5W or 2W.
+ 
+-  "mod-def0-gpios":
++  mod-def0-gpios:
+     maxItems: 1
+     description:
+       GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS) module
+       presence input gpio signal, active (module absent) high. Must not be
+       present for SFF modules
+ 
+-  "los-gpios":
++  los-gpios:
+     maxItems: 1
+     description:
+       GPIO phandle and a specifier of the Receiver Loss of Signal Indication
+       input gpio signal, active (signal lost) high
+ 
+-  "tx-fault-gpios":
++  tx-fault-gpios:
+     maxItems: 1
+     description:
+       GPIO phandle and a specifier of the Module Transmitter Fault input gpio
+       signal, active (fault condition) high
+ 
+-  "tx-disable-gpios":
++  tx-disable-gpios:
+     maxItems: 1
+     description:
+       GPIO phandle and a specifier of the Transmitter Disable output gpio
+       signal, active (Tx disable) high
+ 
+-  "rate-select0-gpios":
++  rate-select0-gpios:
+     maxItems: 1
+     description:
+       GPIO phandle and a specifier of the Rx Signaling Rate Select (AKA RS0)
+       output gpio signal, low - low Rx rate, high - high Rx rate Must not be
+       present for SFF modules
+ 
+-  "rate-select1-gpios":
++  rate-select1-gpios:
+     maxItems: 1
+     description:
+       GPIO phandle and a specifier of the Tx Signaling Rate Select (AKA RS1)
+diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+index 4734be456bde..c41344f8a242 100644
+--- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
++++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+@@ -48,13 +48,16 @@ properties:
+   interrupt-controller:
+     description: Interrupt controller node for handling legacy PCI interrupts.
+     type: object
++    additionalProperties: false
++
+     properties:
+       "#address-cells":
+         const: 0
++
+       "#interrupt-cells":
+         const: 1
+-      "interrupt-controller": true
+-    additionalProperties: false
++
++      interrupt-controller: true
+ 
+ required:
+   - reg
+diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+index 426f90a47f35..cbe832c23dae 100644
+--- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+@@ -84,7 +84,7 @@ properties:
+       "#interrupt-cells":
+         const: 1
+ 
+-      "interrupt-controller": true
++      interrupt-controller: true
+ 
+     required:
+       - "#address-cells"
+diff --git a/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
+index 8467c8e6368c..439bda142764 100644
+--- a/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
+@@ -59,14 +59,14 @@ patternProperties:
+       "#phy-cells":
+         const: 0
+ 
+-      "brcm,enable-ssc":
++      brcm,enable-ssc:
+         $ref: /schemas/types.yaml#/definitions/flag
+         description: |
+           Use spread spectrum clocking (SSC) on this port
+           This property is not applicable for "brcm,iproc-ns2-sata-phy",
+           "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
+ 
+-      "brcm,rxaeq-mode":
++      brcm,rxaeq-mode:
+         $ref: /schemas/types.yaml#/definitions/string
+         description:
+           String that indicates the desired RX equalizer mode.
+@@ -75,7 +75,7 @@ patternProperties:
+           - auto
+           - manual
+ 
+-      "brcm,rxaeq-value":
++      brcm,rxaeq-value:
+         $ref: /schemas/types.yaml#/definitions/uint32
+         description: |
+             When 'brcm,rxaeq-mode' is set to "manual", provides the RX
+@@ -83,7 +83,7 @@ patternProperties:
+         minimum: 0
+         maximum: 63
+ 
+-      "brcm,tx-amplitude-millivolt":
++      brcm,tx-amplitude-millivolt:
+         description: |
+             Transmit amplitude voltage in millivolt.
+         $ref: /schemas/types.yaml#/definitions/uint32
+diff --git a/Documentation/devicetree/bindings/regulator/ti,tps62864.yaml b/Documentation/devicetree/bindings/regulator/ti,tps62864.yaml
+index 0f29c75f42ea..dddea27596e9 100644
+--- a/Documentation/devicetree/bindings/regulator/ti,tps62864.yaml
++++ b/Documentation/devicetree/bindings/regulator/ti,tps62864.yaml
+@@ -24,7 +24,7 @@ properties:
+     type: object
+ 
+     properties:
+-      "SW":
++      SW:
+         type: object
+         $ref: regulator.yaml#
+         unevaluatedProperties: false
+diff --git a/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml
+index b86f6f53ca95..7140c312d898 100644
+--- a/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml
++++ b/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml
+@@ -365,9 +365,9 @@ allOf:
+ additionalProperties: false
+ 
+ dependencies:
+-  "nvidia,suspend-mode": ["nvidia,core-pwr-off-time", "nvidia,cpu-pwr-off-time"]
+-  "nvidia,core-pwr-off-time": ["nvidia,core-pwr-good-time"]
+-  "nvidia,cpu-pwr-off-time": ["nvidia,cpu-pwr-good-time"]
++  nvidia,suspend-mode: ["nvidia,core-pwr-off-time", "nvidia,cpu-pwr-off-time"]
++  nvidia,core-pwr-off-time: ["nvidia,core-pwr-good-time"]
++  nvidia,cpu-pwr-off-time: ["nvidia,cpu-pwr-good-time"]
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml b/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
+index 50a3fd31241c..8b0d3d4be5d8 100644
+--- a/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
++++ b/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
+@@ -33,13 +33,13 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  'ibm,#dma-address-cells':
++  ibm,#dma-address-cells:
+     description:
+       number of cells that are used to encode the physical address field of
+       dma-window properties
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+ 
+-  'ibm,#dma-size-cells':
++  ibm,#dma-size-cells:
+     description:
+       number of cells that are used to encode the size field of
+       dma-window properties
+-- 
+2.43.0
 
-> ---
-> v5 changes:
-> * Modify to list only the supported axi-pwmgen-2.00.a version
->
-> v4 changes: None (rebased, added maintainer's previous Reviewed-by)
-> v3 changes: None (rebased, added maintainer's previous Reviewed-by)
->
-> v2 changes:
-> * Address feedback for driver and device tree in v1:
->    * Relocate "unevaluatedProperties" in device tree binding
->    * Remove redundant "bindings for" in description
->
-> ---
->   .../bindings/pwm/adi,axi-pwmgen.yaml          | 48 +++++++++++++++++++
->   MAINTAINERS                                   |  8 ++++
->   2 files changed, 56 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> new file mode 100644
-> index 000000000000..ec6115d3796b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/adi,axi-pwmgen.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AXI PWM generator
-> +
-> +maintainers:
-> +  - Michael Hennerich <Michael.Hennerich@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
-> +
-> +description:
-> +  The Analog Devices AXI PWM generator can generate PWM signals
-> +  with variable pulse width and period.
-> +
-> +  https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,axi-pwmgen-2.00.a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - reg
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm@44b00000 {
-> +       compatible = "adi,axi-pwmgen-2.00.a";
-> +       reg = <0x44b00000 0x1000>;
-> +       clocks = <&spi_clk>;
-> +       #pwm-cells = <2>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ebf03f5f0619..d02ece54ccf6 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3465,6 +3465,14 @@ W:	https://ez.analog.com/linux-software-drivers
->   F:	Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
->   F:	drivers/spi/spi-axi-spi-engine.c
->   
-> +AXI PWM GENERATOR
-> +M:	Michael Hennerich <michael.hennerich@analog.com>
-> +M:	Nuno Sá <nuno.sa@analog.com>
-> +L:	linux-pwm@vger.kernel.org
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> +
->   AXXIA I2C CONTROLLER
->   M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
->   L:	linux-i2c@vger.kernel.org
 
