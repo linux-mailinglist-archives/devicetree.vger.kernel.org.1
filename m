@@ -1,200 +1,147 @@
-Return-Path: <devicetree+bounces-62964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-62966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0648B3496
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 11:54:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE9A8B34D3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 12:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 920871C20C80
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 09:54:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97662286703
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 10:03:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3884A140362;
-	Fri, 26 Apr 2024 09:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778E3142621;
+	Fri, 26 Apr 2024 10:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="ZQkz0Vqn";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="A7C4BX3t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="USJDmzH4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout5-smtp.messagingengine.com (fout5-smtp.messagingengine.com [103.168.172.148])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E6713C9A7
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 09:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EFF01422B9
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 10:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714125227; cv=none; b=XhwDmFyOzUxtpFb5gqdAFytd1owwnOABb8DaR3FK1vtzU8jIwL9t7rLGyhtGKNVOflRBYT1/QXgrpLggDIXcm9txD6XSALtcXIUUhRrtwWUTBWquo+l0td4zWyCqk8xSrayhEsv2QubgOIh0vae1xoq10qk6Uvw4pc0mBL4yNIQ=
+	t=1714125791; cv=none; b=dT5qN//38t1Q9UeiMAhJXQiYQOT2FLDN++hORcjrSTYLvCaeJPkK4gGkV0ZqiEPVzhujKw1JzMyBYz/6GlWo0MdV2dAHv/XUhNnIoAWOaSInd2QYIAp1abLF591puk0YXTxKHfyYQMMNCQSYiJ8buK4Iw637DST/YDV2Lv8B8EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714125227; c=relaxed/simple;
-	bh=W5v2Fbnmeb3oYapw1GbAmXBUybnkEa2yBoBJ55T+qzI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jykeH5qweF9/8H4f73w6Nr2MVEnXM0joIYGYH/lzvckNo9CLMXLMmzuP3ClfB6AN4L2S69vxZ0zCjhu7g4gOAqIHt7Bwb2EIYpb/mH0gcnA19+m5bEVhBHEWBHjebUGirBk+7PtSfJG1tourN2xPTMxdGTg7x0Cw5+JtmK0y/9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=ZQkz0Vqn; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=A7C4BX3t; arc=none smtp.client-ip=103.168.172.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailfout.nyi.internal (Postfix) with ESMTP id EBDB3138197D;
-	Fri, 26 Apr 2024 05:53:44 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Fri, 26 Apr 2024 05:53:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1714125224; x=
-	1714211624; bh=yUrou0lZVWRqImzMa9lWK7pQpNJ03bYKor+gmE6axpo=; b=Z
-	Qkz0VqncFi3DITDx7CcCIcbOHwLleg/iZi6GJDrFYaJWaDn0UHxteNz4eljYS+NB
-	uj7iiC+CrcLW+BhCCPGO2g+Xn16G6n/6wmElF2mh+Z9EFdvQxDwfM6XjKtWRJj+T
-	iHT9i6UxSlh4w9rKPi2G0yBw/dSYSrkWpmhgKMolRESkC80zZV4l0inqrnfL8xQp
-	ZHblwBcuMUCh28KRyjdHZtDX//X5qIgqvxdxBA5zyGUol3jINKJzGDIXRl1u5yuK
-	rXmKRukAxDItXVDe6IK0GSqCCQ3ChTlfOyHvni9re+0vj1RBUxAw0VFvi6IzjA9a
-	AZHTp4+z4rNNEUHe8qG+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1714125224; x=
-	1714211624; bh=yUrou0lZVWRqImzMa9lWK7pQpNJ03bYKor+gmE6axpo=; b=A
-	7C4BX3tsKtUILeQ6PrYDujs2E7IHXoISqCbHjFYXcU3Iw+Zi6o68SvcojEqoE1rA
-	gNY3vSmKs4zNkiVxogJ6m1qc5tKvaJz/WfqEfu/IP42kDFs4jyWaxoWT6gUeyCpH
-	CNPJNkNZ4v7F2zByzGn4d8MTiSAqICpITGqh4bZgFVYoX4ykb6RitWXTMs0IJcAp
-	pEfwJxceaNrMP8fJq3pnIvgKgNRkK9F10gM/56W5wll5WpoLi9NLqHnTaUqGW40u
-	4VsN+uWBaCHcv3MNq9KRjiJ2AiH2QDeKwB7GnMIqsDUCeYLx+QxXIFt1Q/ERq+eA
-	X11HlUa9g+uipUdiyrRPA==
-X-ME-Sender: <xms:qHkrZiABoHzAZRmSpjwuweeZebLI8N3w-rm9DiofgccnJyD2FqoSdQ>
-    <xme:qHkrZshWmeIMcnpZtQ8Yg0AruAy_B6wUuHxhlsPJlCZATVdWXKVCkFFXCuovpTrUz
-    cuWAi9PR8C34JoQAg>
-X-ME-Received: <xmr:qHkrZln7AadYBnKc4l3BHR41K4c3cT5LDUNOkDQd96FX_P7lVue5EyIVL3jP1QzOkYideG8kl9JgnallFutOInBtdaILFQIxNMVboMJATug4IjQ4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudelledgvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomheptfihrghn
-    ucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrg
-    htthgvrhhnpeehgeduffeiveeiuddufeelffeuteeiiedulefhteevgefgffehheeuudff
-    veejvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgt
-    ohhm
-X-ME-Proxy: <xmx:qHkrZgxnmQy-UPYN1CIScQNI-p78nodTE_WJeJFAh-SzNgbn2Q9r7w>
-    <xmx:qHkrZnRsOdPr3vi0i8SE1EigbRaoIVY7vEUWyp6fjs1AMCf8IRPUJg>
-    <xmx:qHkrZrYBupoKzyRflXJeg2oWaURUTJx2c89wLRBAxRyp1_0Kihz0kA>
-    <xmx:qHkrZgTQIdlpfSVrHH-o4o3LVVtM-k2KUvFyjj9P9K3Ovd-0t-opBg>
-    <xmx:qHkrZvbtSwKc_4_PD_7mGIuh8UUQPlDRDMBWVErCYicfenfEIay95Xhf>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 26 Apr 2024 05:53:41 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Andre Przywara <andre.przywara@arm.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v4 4/4] arm64: dts: allwinner: h700: Add RG35XX-H DTS
-Date: Fri, 26 Apr 2024 21:51:42 +1200
-Message-ID: <20240426095141.13602-6-ryan@testtoast.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240426095141.13602-2-ryan@testtoast.com>
-References: <20240426095141.13602-2-ryan@testtoast.com>
+	s=arc-20240116; t=1714125791; c=relaxed/simple;
+	bh=ryP7QOTYlztIm8nqNij3nVjhL1SYpQUIEozyw+/HVzI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bOlbXqM44I1OSO6iJBgWn3/2mmZOqH0N2Q7ZATsRMGjhfV5n0OPZPdDY5AVZiky0Li2Knnj2hTS++OxLr77FBVZGh1m7n4jKkN/Ry6X7F1L3Us1mdl0FDLLHTvqyDCYdIu8pwimkpp5t+yMPtBaoWrx/rqKrTvMg4p9gBzjMX+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=USJDmzH4; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-572347c2c16so2459036a12.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 03:03:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714125787; x=1714730587; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NZroSo8iMfP3vk8OTX3L1wntYEviDHYNgM+pqywM7tQ=;
+        b=USJDmzH4BOdZ6ax+cjfpiOwTi+m9lMHO0XVE7I3E6se0sNEPhlcPMxunC5fmMKIc4E
+         PG3J6uqniXgd/OclOplVVK9YU28MQbRZJ5fzgYfdelfod3Q/axuJioQIvbd/YmCt4NeL
+         AF2T1jlvKwtRct08LvN26GoorbOcMt2y++kfeSwO/WPFFJs42Yshec115ZIOgPHtgblg
+         aWCLyA87IRKwwQMD4vDWhDNLeVotJYdfTcz+oSR4q1HcYSke0/Mn8HZyycfo7BrEp4js
+         W3szRXeQDGt3TglDIta8ZpL87Rt0VIQfk6KoqIArUImMzgTFqqPDU1V80mVCQJms2gmv
+         pVJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714125787; x=1714730587;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NZroSo8iMfP3vk8OTX3L1wntYEviDHYNgM+pqywM7tQ=;
+        b=s2Yfd6fbw5M49pybbSYMZkP9ICkANx83QqtZ2+2wZxvgHHFzXp99GuDOAOyhVHOOaL
+         ivTLrarvr88NFT+ryDzmNQPufjLQhi1hBTvONSer8PxbpxP4jrhbIQq2kv+IJLfTcx85
+         elUU0m1Sn6iJCXLI1riSkbPD+SFztcBGZWmrLHmJbgK06FN48CYuiYAC1ldJZi1yk1gA
+         CZz1Kq2eSZPVf0wjqPaX0ld8M2O1oTflsNookcj5skygjECpE2hdd6Dv6bgnQw4SAEKE
+         +Pft78qFIYvU2g4zIDQ1gIOXD8IBNMOQxvbFzLc/dEMk+qY7vZ9Mm5yl1Tqr+qLbD42s
+         Sveg==
+X-Forwarded-Encrypted: i=1; AJvYcCXtl5H9IFBxG9wcrJ6j6YmWzn+jmFV5TEEBYH9mrJUTUpsi6tFfKomlU2dIf3I7XIUt7xUbSX5M9TVjC+tnvhXXyr+cWuXoiiV2Aw==
+X-Gm-Message-State: AOJu0Yw9NLXug0RibjBuPdbEd+lwPuja+uxqiE3hI2+E1uSf49+6ObUj
+	iwFa8tdBhX81lhpHfzx404ijPslTJ5vVqry9b3qyNuXGYfPOJXSef9ouMi8n+lo=
+X-Google-Smtp-Source: AGHT+IFqZI2EX6TGMrhgOaiItUVC4QA3lp6lQjXgOmzliiIzZJRkthk8yLel6nW0qHdN359C7X9+Sg==
+X-Received: by 2002:a17:906:16d7:b0:a58:86c0:1275 with SMTP id t23-20020a17090616d700b00a5886c01275mr1579547ejd.30.1714125786723;
+        Fri, 26 Apr 2024 03:03:06 -0700 (PDT)
+Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
+        by smtp.gmail.com with ESMTPSA id r20-20020a170906705400b00a555ef55ab5sm10417289ejj.218.2024.04.26.03.03.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Apr 2024 03:03:06 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v2 0/5] HSI0 and HSI2 support for Google Tensor gs101
+Date: Fri, 26 Apr 2024 11:03:03 +0100
+Message-Id: <20240426-hsi0-gs101-v2-0-2157da8b63e3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANd7K2YC/23MQQ7CIBCF4as0sxYzQBXjynuYLqaFwiQGDBiia
+ bi72LXL/yXv26C4zK7Addggu8qFU+yhDgMsgaJ3gm1vUKhGHJUWoTAKXyRKQWTMRZ/lvBJBPzy
+ zW/m9Y/epd+DySvmz21X+1r9MlQKFWrS18wkXo/D24Eg5HVP2MLXWvrUuOfelAAAA
+To: Peter Griffin <peter.griffin@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.12.4
 
-The RG35XX-H adds thumbsticks, a stereo speaker, and a second USB port to the RG35XX-Plus, and has a horizontal form factor.
+This patch series enables the HSI0 and HSI2 (high speed interfaces) for
+gs101:
 
-Enabled in this DTS:
-- Thumbsticks
-- Second USB port
+- HSI0 feeds the USB block and is a prerequisite to get USB working.
+- HSI2 feeds PCIe and UFS
 
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+The parts added here have been verified to work OK without the
+clk_ignore_unused kernel command line option.
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
-Changelog v1..v2:
-- Update copyright
-- Spaces -> Tabs
-- Add GP ADC joystick axes and mux [1]
-- Add EHCI/OHCI1 for second USB port and add vbus supply
+Changes in v2:
+- My v1 just contained HSI0, but due due to changing similar areas in the
+  code, I've also added Peter's HSI2 clock patches from
+  https://lore.kernel.org/all/20240423205006.1785138-1-peter.griffin@linaro.org
+  to this series so as to preempt any merge conflicts. Namely:
+  * hsi2 bindings
+  * hsi2 DT
+  * hsi2 cmu clock driver
+- drop patch 'dt-bindings: clock: google,gs101-clock: add HSI0 clock
+  management unit' as already applied
+- cometic updates to patch 4: 'clk: samsung: gs101: add support for
+  cmu_hsi0' (macro name, a whitespace, subject line)
+- Link to v1: https://lore.kernel.org/r/20240423-hsi0-gs101-v1-0-2c3ddb50c720@linaro.org
 
-Changelog v2..v3:
-- Add DTB to Makefile
-- Remove USB vbus supply
-- Remove GPADC joysticks until required patches land [1]
-- Move thumbsticks into existing gpio gamepad node
-- Move changelog and links below fold-line
-
-Changelog v3..v4:
-- Remove redundant USB OTG and PHY nodes.
-
-[1]: https://lore.kernel.org/linux-sunxi/20240417170423.20640-1-macroalpha82@gmail.com/T/#t
-
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 ---
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../sun50i-h700-anbernic-rg35xx-h.dts         | 37 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
+André Draszik (2):
+      arm64: dts: exynos: gs101: enable cmu-hsi0 clock controller
+      clk: samsung: gs101: add support for cmu_hsi0
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 4217328b1889..c2c871d8b71e 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -49,3 +49,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-new file mode 100644
-index 000000000000..fd581360e987
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-+ * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-+ */
-+
-+#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-+
-+/ {
-+	model = "Anbernic RG35XX H";
-+	compatible = "anbernic,rg35xx-h", "allwinner,sun50i-h700";
-+};
-+
-+&gpio_keys_gamepad {
-+
-+	button-thumbl {
-+		label = "GPIO Thumb Left";
-+		gpios = <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
-+		linux,input-type = <EV_KEY>;
-+		linux,code = <BTN_THUMBL>;
-+	};
-+
-+	button-thumbr {
-+		label = "GPIO Thumb Right";
-+		gpios = <&pio 4 9 GPIO_ACTIVE_LOW>; /* PE9 */
-+		linux,input-type = <EV_KEY>;
-+		linux,code = <BTN_THUMBR>;
-+	};
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
+Peter Griffin (3):
+      dt-bindings: clock: google,gs101-clock: add HSI2 clock management unit
+      arm64: dts: exynos: gs101: enable cmu-hsi2 clock controller
+      clk: samsung: gs101: add support for cmu_hsi2
+
+ .../bindings/clock/google,gs101-clock.yaml         |  26 +
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       |  26 +
+ drivers/clk/samsung/clk-gs101.c                    | 976 +++++++++++++++++++++
+ include/dt-bindings/clock/google,gs101.h           |  62 ++
+ 4 files changed, 1090 insertions(+)
+---
+base-commit: bb7a2467e6beef44a80a17d45ebf2931e7631083
+change-id: 20240423-hsi0-gs101-aa778361bfaa
+
+Best regards,
 -- 
-2.44.0
+André Draszik <andre.draszik@linaro.org>
 
 
