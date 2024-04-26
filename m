@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-63184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097BC8B3F78
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:38:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D037E8B3F7C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 20:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09EC11C2381B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:38:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03C27B22487
+	for <lists+devicetree@lfdr.de>; Fri, 26 Apr 2024 18:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7E03D8E;
-	Fri, 26 Apr 2024 18:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFFE4A23;
+	Fri, 26 Apr 2024 18:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gonUJ9nr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qH4hxjX7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E4C4A23
-	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:38:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792C663B8
+	for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714156709; cv=none; b=rjZaAoUK55rrwYOHkj2hg+MG9RSSyIFk54x7BjUJEiHsLJjANt4lFd9OcaCLEVFuqy4sYu7vU7sGbaJrC6hd4Ppi4FfG1M9bgWBy6OR6+73xz0BaSG1sYjRjM/BRJX2yj9JFnoFxCkmDEZaYu8qtfUKactJBrKrAgS0BzHEdJ2s=
+	t=1714156737; cv=none; b=M13FYlv+SHisUsvAai9P+MKGMgBvv7zWtCtrzCZ9hRYWcBgE4o0A91zUTfqIwdH/qZh03WyBo5B7IvU66xvTm6F2WA08qPLOQSAR9Z9ZtAaJYOfRxUwIsaWxpuJtEWcN9JvGoVWeWU7DNTk4yUeG4zNzdX9z7hMtNZ2M+EfKkiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714156709; c=relaxed/simple;
-	bh=EROl0h+lX0UEVOQ3jXAf6uS8dnPQHx/VO43DC0quFrQ=;
+	s=arc-20240116; t=1714156737; c=relaxed/simple;
+	bh=FOisfRur5zgcKB27eKdkujvgE9ZnTwtO991LBci8F90=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gd+tHp0JPSYwGB9zRDYbQIwrgzH3Db7XqhHyD844U7iZLFNvmRKIrp44OkUJZjkq+kKQKNK2gAqFTnNZweXV5vcGwvTNRu3DfDpzyuE6XQunw4Aj/8wwYje15Jahw573389iunRg84U81nIvr2f797cQWnuvOLD8dEVqSGxcgak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gonUJ9nr; arc=none smtp.client-ip=209.85.219.174
+	 To:Cc:Content-Type; b=Ja12Iftiph50w7d/jz2uGVeZlCgnR646qOG8sGIoVNBEP61YUCBFLOFygD4S1Ot9xWQqeyTXGtXR9bcBdochsgosyaz1uTIxG+R2iAT4Oico9F/xhl+urbUIsCZj013HcK6pRRq6p0oqyswQmajS5h0HuN3I1vVQI/vYLPQwqdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qH4hxjX7; arc=none smtp.client-ip=209.85.219.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-de5b1e6beceso923578276.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 11:38:26 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de56d4bb72bso2896757276.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 11:38:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714156706; x=1714761506; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714156735; x=1714761535; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LCD0O0mksG8o2F+MvGZO/EX3h5H/t77oNaw9Qg2ltc8=;
-        b=gonUJ9nrsYAk/tfle7bRtlD98dd3RXksVkO82PSbqLX9lzbaU5yP+9P5V6Xiou/zj5
-         TNiPoZqNb3uvnz5nS9CRvTUbtYohjKfnXLngYLbkR/hzFhKJh8HZFRBpb46VTvX1ZADH
-         jheJuSB0g9NPVVkOJFBvMB5NqDPNHU322QPM34uKo3oamfRHE/gXDSbcVapqNZXuSPl7
-         I82fDh7gTOXepG1XW4hbcpvgVnXGxaq94py8szzoQC2BkvL9ljBtp9wKx57OgkXhOSA6
-         HF1S8NeCxRy8Kvv0UuiNDncUTnV5/7emL2fQow+DeqmXGq5dxKG4YCd2wnvPj3SNdQ3X
-         jxlw==
+        bh=Gv1XMYqj7FlbfLTbilE5kRRG0y9JWfghI0WKM8XxsyY=;
+        b=qH4hxjX7zCPXSrAV6w7OxC0WetPo5XtM+MwnzqAzm6iR7KKLpEDSJbSXEmi9zCGtfw
+         hbpypuPDaFSXdQSrA+ZvRBk0LOSqrefba2xJwWecrK5GJWTT++SS4zPuByNnP1wXDtZW
+         87qy1zDvC51sLkCDIJUX0nxjsJw+F6ONUm08MphshG1s0wPY3Ha4tV0pINttrMsWg3UV
+         sGloAzbbNJ6kbV0TzCgU9FXY+MTqH1XU8lrZV14+ekvNkm6eXmeqd/xJ1RIT+FKPz0kp
+         JAdp+I9+zuJipLhsNcMZJCpwU65c0msdCUi/fKC4EqQYxpUjH7Cn6Cjcd9DymOE3UPWz
+         Qojw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714156706; x=1714761506;
+        d=1e100.net; s=20230601; t=1714156735; x=1714761535;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LCD0O0mksG8o2F+MvGZO/EX3h5H/t77oNaw9Qg2ltc8=;
-        b=c2jeSpfVqYzR88lTzXSntg/35cwkc54F4Vksdu8NDviX5Rj77lccg7LE6MH+zBb3it
-         JcOJPrUNRL5FvOLkRx1BULiclPbuZhvDZO9DchDlgenoKU+jhDTPlJjy+X6MA+nTIM2W
-         nko6HXVVirQUUOv5gSFAFfWjRbu8YLxdIaf3UmCyOMw/FRs2HxwjkRa7UCYooMNR3TZN
-         qPIMUjZkSL+rZWAdGcn2S3a3EV8TR/tNKakCIb26H3og5BsbhipvBKW+EqoqfKaunT9N
-         wcOF0LXrhgO9jXhFtbFCASrdo96FC3/Cp3dlerZybU1vn/n2geChU4374VsUtuzKIRP/
-         Vn1w==
-X-Forwarded-Encrypted: i=1; AJvYcCVabcOEL0A6ln4dBLg3BYmgcjSd/sRig4TGo7FZNBvQmHxg4MIai7cDCYaGTvYV8ggRaR1ESLMCUpVjeb76R4OlqJG2st3kWPWDYQ==
-X-Gm-Message-State: AOJu0YzjSliYZx/DZKIJ45QA5mcrjMa4wwxi25Euz3U/hyyLyOqjT7I+
-	KwevhNYarxJO5GqLMQwphiB8mvVLXkn5G3tNZWn+Lntxw57QDJ2MhGN8T1l2cpaY7ewTX7zN9Mq
-	JvuoM+keyPRW7uQf33zYtQnhoAwQQvTehIoIKIw==
-X-Google-Smtp-Source: AGHT+IFAGdtoxtMF2BQTf0jLN/bVVJboZUORk+tAcFQhd1qw6HVqAVGEQ/MHq4a2scbHXirClF7DoJbhhB5lfiXMorc=
-X-Received: by 2002:a25:ce8f:0:b0:de4:8b7:7bbd with SMTP id
- x137-20020a25ce8f000000b00de408b77bbdmr4064532ybe.15.1714156705913; Fri, 26
- Apr 2024 11:38:25 -0700 (PDT)
+        bh=Gv1XMYqj7FlbfLTbilE5kRRG0y9JWfghI0WKM8XxsyY=;
+        b=EfsID1eulwfGSmv1sXfdaKxwhEIri7pNmqatbsFS6tAqZGNYVywJRflwBOxX9mahzM
+         0REbG11iUlJHc8MTcdhpwBZL/lSQ0BW1yaVe73d/ORCRXaY2o+PqvUGuWugZlmVyp/1n
+         puu+3wwqCXxGgVWj5AlfINbGvpf4SUNTjVardT/KT9mlokTzl+scpEqbdiL4UV/lXIUY
+         fWZfFdhmU3Rw8BDr+OQos9cP/GBB2sfsPrSDlnGFPlIWFXrimA0MXelZ33esKbJONdeW
+         etNiD7snTLFvQve24mLcc5/iA0mxHJ7L3F2Y6ADQsZlL4JjRjK65etsZOR1fN0vDMlpI
+         BJ0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVuZP6Gvr1bEk3RG+PQeSssRbm98tdf9NvARVApo4nT4CX/htwoLMWjEY7jxZMaAlnLhmNy1Qo2FaODVDerYWJJq0a7A9J+bhE4UQ==
+X-Gm-Message-State: AOJu0YwegoFemRvvHWWODN8t1syKJwTgD+NMzofG3lAMIx2FQq0V4Xxv
+	13gmh/9726v0MMgIW5mEZrjIJcXv7TjVtPJgjcCv4uSAfyw3FN4s8FM3EjaY2mBkxOAsuXy+KWl
+	AOBZSHtxrg4LOWTMatDGDcEsYCij4WkQuKjRtmg==
+X-Google-Smtp-Source: AGHT+IG3IsyEOycBc7qulLoEu9IiRmWCqVyqNrLDpmeg9cQ457zZD8N3srGvP0qs68zCmdPTZI0p/dKAsd7wuoQG5rc=
+X-Received: by 2002:a25:83c6:0:b0:dcc:6d85:586a with SMTP id
+ v6-20020a2583c6000000b00dcc6d85586amr3741728ybm.49.1714156735527; Fri, 26 Apr
+ 2024 11:38:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com> <20240426-a750-raytracing-v2-2-562ac9866d63@gmail.com>
-In-Reply-To: <20240426-a750-raytracing-v2-2-562ac9866d63@gmail.com>
+References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com> <20240426-a750-raytracing-v2-3-562ac9866d63@gmail.com>
+In-Reply-To: <20240426-a750-raytracing-v2-3-562ac9866d63@gmail.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 26 Apr 2024 21:38:15 +0300
-Message-ID: <CAA8EJppF_Xhv_itPOAwbeey0Fh-V=Wd5SoOxNmGZpOUjYkLgNw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] firmware: qcom_scm: Add gpu_init_regs call
+Date: Fri, 26 Apr 2024 21:38:44 +0300
+Message-ID: <CAA8EJppoK4XAt1ARugvKvW2mYjuRJcuvJ-bhFh+cQMr3zmvx_Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] drm/msm: Update a6xx registers
 To: Connor Abbott <cwabbott0@gmail.com>
 Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -88,20 +88,13 @@ Content-Type: text/plain; charset="UTF-8"
 
 On Fri, 26 Apr 2024 at 21:34, Connor Abbott <cwabbott0@gmail.com> wrote:
 >
-> This will used by drm/msm.
-
-Can we have some description please?
-
+> Update to mesa commit ff155f46a33 ("freedreno/a7xx: Register updates
+> from kgsl").
 >
 > Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
 > ---
->  drivers/firmware/qcom/qcom_scm.c       | 14 ++++++++++++++
->  drivers/firmware/qcom/qcom_scm.h       |  3 +++
->  include/linux/firmware/qcom/qcom_scm.h | 23 +++++++++++++++++++++++
->  3 files changed, 40 insertions(+)
->
-
-With the commit message improved:
+>  drivers/gpu/drm/msm/registers/adreno/a6xx.xml | 28 ++++++++++++++++++++++++---
+>  1 file changed, 25 insertions(+), 3 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
