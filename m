@@ -1,158 +1,156 @@
-Return-Path: <devicetree+bounces-63304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE2C8B45A3
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F258B45B1
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:06:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EDC51C20EAB
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 10:56:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBBB51C20FE4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B3B4644E;
-	Sat, 27 Apr 2024 10:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F121845009;
+	Sat, 27 Apr 2024 11:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="M4KUxJ7U"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="VkFqTkuX";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="appwYFtV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout4-smtp.messagingengine.com (fout4-smtp.messagingengine.com [103.168.172.147])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A7D43AA2
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 10:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E3C4AEF7
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 11:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714215361; cv=none; b=SdS0wp5BKQuLRvEx9GhhxVqOLF2Nh6mQZoiHcuwli9/GGbG4DNNPrDvdsJPTTQF69WaMO92ul8Cr7I1e/b1V69fWVLy+YpgVs9cNfJDns6WKmhLqSU0QVPqbDDHgkwZPmMo1RDtpA17l6CEyTEk4AYjyet5EkAwSc35C7QJwX8U=
+	t=1714215965; cv=none; b=KKaqGMo+EM44wqyvr8BWD/DAkS2QScRb7zH9URcMUM72ONSI8tNDIunDzYkWkrGSeSC9lKZi3pFq/lrr8J29EXD+GZYotd6nHw3Yny8yGTlmXjP+VL3ZyJQDuiJCiPpmXTToxktvz7d3qCga8ATZkxdhTtqmttqRW2BA9zGEvLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714215361; c=relaxed/simple;
-	bh=30Y0vDFTIC+GZ4kILAnfrxpQKyxIfE0SN088Unsl+Ao=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CP8onsN471ebCR8pdwHLkcqAs7nVGJMrCWkBgA7xfm81uTe57a7ZuVA57OJE7gk8wuX9lx050SXfeV9gA1cXSWq+RCzz0MViCD//X7E94eNOoTxtBY5tBl1fR5HOeePhwrPoMqEiGH3TR+8mvSBxJmlOU2p5BWLwPN0TZmJqQCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=M4KUxJ7U; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5176f217b7bso5040449e87.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 03:55:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1714215357; x=1714820157; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AVy+Y3fQ+ZL5eTtoRlGJR4TNBIR1UBCGRhefmZftvMw=;
-        b=M4KUxJ7UOZz4VX2NoiS+se6iptl8tDexJH5RdwaGrt9ANLLx+HwZ7ECBLS8UdKGbL3
-         mdFVDsXRI6Unub6iyvenM5bt0lnOKrzQCl21RPGMmrUgC7xJeljhZhCYsHkAVntbRkTd
-         01o3ncEnSLrlZLxROFkYSpSo8JdCMKBepg3O+Zd3aoFuLrhW2M6MWMROh28/HuSTTj5f
-         OlAPQNV4XrzxKM9uhyd4VsmF1ItZHbiH+AyraT9twOAyFa31Xlmm+wdQuP+i65IwAxKz
-         CU5AtVkDxBgMVX4DcNlxmNo1EkxBJrwiM4hidscO2IXdeQF6avCBuA1ivjeJlJSEf3Qw
-         0X1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714215357; x=1714820157;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AVy+Y3fQ+ZL5eTtoRlGJR4TNBIR1UBCGRhefmZftvMw=;
-        b=k+KiiNo4IDDpOZxQstq6lFTMCmidC9l7pmEw/qG4keib6FtWh5bWOtFbb8USN1yIXg
-         9Cxs9edum5qzEMaEpY0ruLMrtzJzrs0iSvREl+z5+GFQDIALROzxg5F5/bOOuxwypd4w
-         q38g1SCQtiyXW3kgykU98/TBl3YrvmEq3klVzf441NiqBC2ChkH+ClCBLFkDmitv5q++
-         pwRPc4elPxSK3xGkFpII0yvSGi7mFhRRoIPbp0xwwSEliWRLTPRIXkaOIjekLbLgosOE
-         IdgQG56kAKI8xdFg+T/5cF2IIxWulwsr73QXlxYd1bcxbpoSxz6gD34vdKSs9d4Cfelh
-         g7VA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdtt9iEJqSvw2i9mvGN5K70dfXlR/T5HiNYl1t7pZmtjXwEd4aflog8lnbBP7Vyn5EZQwdR9gM1+2KL+l4BZSl1D5BSi/5w0Z1zA==
-X-Gm-Message-State: AOJu0Yzn6JK03Q8D+DEfC6QCf3G5YE131TP7JOlpJxV0EGIQpcaLEY/a
-	A1sosjHz4kvnC1LlrbRlpVIGHteYOnCmGpfJ+CvE7+sdTSbg8rCE3QptXJ95Lhk=
-X-Google-Smtp-Source: AGHT+IFbYDgaYUGXxbXGJ4orAbrnlEp+fN+SYD4kxVugbNaLRY0H7Dzfacf9J7Mf14vZwL/Y6Mmgew==
-X-Received: by 2002:a05:6512:329c:b0:51c:778f:b569 with SMTP id p28-20020a056512329c00b0051c778fb569mr4049642lfe.29.1714215356833;
-        Sat, 27 Apr 2024 03:55:56 -0700 (PDT)
-Received: from localhost (host-87-1-234-99.retail.telecomitalia.it. [87.1.234.99])
-        by smtp.gmail.com with ESMTPSA id i13-20020a170906090d00b00a588dab605dsm4285140ejd.88.2024.04.27.03.55.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Apr 2024 03:55:56 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Sat, 27 Apr 2024 12:55:58 +0200
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1714215965; c=relaxed/simple;
+	bh=0WIsLHiOcqVF84HqvvxsDerfX2xR7P399LZdvJ+LvMY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QDHceCSua2yCUfs5UHWlaa+S4p51/sBhp8pobbrQOFnefTEyLcwSSdUiiwODD+rbs7wsu6Ro2hcbnMIaYg9TcYJA6RiilhTf2to2ugZpVgvbKWXs9nW9HR8VNX6AAVgswL0P2l8Z3ilAVfclR/aUgraHoOnXJV4xQsG0tGlNmwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=VkFqTkuX; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=appwYFtV; arc=none smtp.client-ip=103.168.172.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 2A2111380234;
+	Sat, 27 Apr 2024 07:06:03 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Sat, 27 Apr 2024 07:06:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm3; t=1714215963; x=1714302363; bh=XOhe84Yemf
+	o172hmmyy3200OP2PXy1AwHTL2VyQHaBk=; b=VkFqTkuX1IBT8HGy0RKehzuwcA
+	8n3W7IBmsQB08W6tP8PPYNUeGSQ1XKJy6HLuWFoydZf/nHcmqB6aQsrhqmSSc8wg
+	jbETxzLXAJVBVsLFu67uDtRHMO+wioby/sqRgNj31k0WJSfSofUkD8uJxW+CExio
+	4k/omM8drD33hOTdSFpyQCjnwxeDNhu1QzcGI9/Tjh7HOzynSNOXGIrGPkVlThvs
+	2cSbPjTcebNhJGBKxv0BPfBu8xqrTQ0sYquSFUr5qsxpQAnfel76XOiMl+nzzUUZ
+	qGKOcNvLbI+4VOJP9u/oVHkOEfWn1iDgAO0BLb4oSYY3sJXGucPkWBmXVDzA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1714215963; x=1714302363; bh=XOhe84Yemfo172hmmyy3200OP2PX
+	y1AwHTL2VyQHaBk=; b=appwYFtVS+SsSiWoPrXXaWjOVggFajDFq1xNCIC0JaxQ
+	0JhH8kRSVlYKWkuiK5lAxblthUEROGtHh+gFNuplemAi559gJgAsvhBHVdUZYjw5
+	1nCoSPS/BmUKyyzKWAqyVHp0UfAEiOgryTT6kvy4oNG9VOp/Y0DJGacmXcAbtagA
+	YR7wJUZa+kE/6AVPKll2Fp6SzTiEE04otBGTbobkOXQieQKn1aoYi9iPDWAZXo9R
+	DtJgnFHeyOI1LnK8FwRiZeOSFHqP5S6Ymc4pZ2t4xAgkyHhc+e39d7EiXNLMu4q6
+	ahkgIQJFXCBa0NdzL3KwI5gSFFuEZZhCZTJ6riXqjQ==
+X-ME-Sender: <xms:GtwsZh4omE4IDIC7Kl7FOBRiLIlN4CLRCre4y4SHvUVV2-7SPntgpw>
+    <xme:GtwsZu4kcnJOxZFmgDX-dTU8pJQukMFeVRSjvlYa53COVulvhZ1Ivq4HLNWo45eer
+    0TzIncM6kquXpgM2g>
+X-ME-Received: <xmr:GtwsZoflj66LHfB-hFkHeDH1bL4CU4UQxfrvJFXmo-HatUMt6J--OKCjW7DM_lrRljZOQE0boPb9dK0YqMwr-3_eBScwRlxCcLC218qA6AR-u2y4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddtuddgfeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
+    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
+    gvrhhnpeduvdeuudeugedtueffteevveegheehvdfhfeduudevkefggfeftdehgeethffh
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhi
+    grnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:GtwsZqJw04qo4b_GvwAODCW1rFKNUcinL4pnD1xhK4lxDRn7y8rNIg>
+    <xmx:GtwsZlJF1KA0kHaeUaGIJWQpGviEJvukH3lro-QtJHNO86czYP35Cw>
+    <xmx:GtwsZjzMJ7XiOUs-kxnZZYC394i7zTjltG9c8r50ruQR-uWWOEy0sA>
+    <xmx:GtwsZhJvXaXdPojfN0iqm8kTktgMMb5LQh1EQv8BGYKUxU3zx5sX7A>
+    <xmx:G9wsZvxleZj5yLKq0SZDMJsmbMNlpTGA4xo5_vuhIE0I2LLZPS1HL57p>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 27 Apr 2024 07:05:59 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Kamal Dasu <kamal.dasu@broadcom.com>,
-	Al Cooper <alcooperx@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>
-Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: Add support for BCM2712 pin
- controller
-Message-ID: <ZizZvpv3yomm0L3i@apocalypse>
-Mail-Followup-To: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Kamal Dasu <kamal.dasu@broadcom.com>,
-	Al Cooper <alcooperx@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>
-References: <cover.1713036964.git.andrea.porta@suse.com>
- <2d1272cad92ad618297a6683e9264e31b8f2df73.1713036964.git.andrea.porta@suse.com>
- <f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com>
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v6 0/4] arm64: dts: allwinner: Add Anbernic RG35XX (Plus/H/2024) support
+Date: Sat, 27 Apr 2024 23:02:22 +1200
+Message-ID: <20240427110225.727472-2-ryan@testtoast.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com>
+Content-Transfer-Encoding: 8bit
 
-On 08:45 Sun 14 Apr     , Florian Fainelli wrote:
-> 
-> 
-> On 4/13/2024 3:14 PM, Andrea della Porta wrote:
-> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > ---
-> >   .../pinctrl/brcm,bcm2712-pinctrl.yaml         | 99 +++++++++++++++++++
-> >   1 file changed, 99 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml
-> > new file mode 100644
-> > index 000000000000..2908dfe99f3e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml
-> > @@ -0,0 +1,99 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/brcm,bcm2712-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom BCM2712 pin controller
-> 
-> This is not strictly speaking BCM2712 specific, the pin controller you
-> describe is a Broadcom STB product line pin controller.
-> 
-> Please describe it as such as and make BCM2712 a specific instance of the
-> chip using that pin controller, see more comments on patch #4.
+Further revision with a further few small formatting fixes. Major v5..v6 change is removal of the SD2 card node, given the requirements for low-voltage signalling are not fully elucidated and 3.3v operation, although working, was reliant on incorrect regulator node definitions.
 
-Ack. It turned out that the pin controller is not strictly need for a bare minimum
-support of sd card booting, so it will be drop in patchset V2. A future patchset 
-will re-introduce it when needed.
+Original cover below.
+--
 
-Many thanks,
-Andrea
- 
-> -- 
-> Florian
+The Anbernic RG35XX is a family of handheld gaming devices. There are 4 variants, of which 3 using the Allwinner H700 chip are covered by this patchset. The fourth (released first and named simply RG35XX) uses an Actions Semiconductor ATM7039s which is a 32-bit Cortex-A9 chip with no mainline support and is not covered.
 
+Common features (RG35XX-2024):
+- Allwinner H700 @ 1.5GHz (H616 variant exposing RGB LCD and NMI pins, with 4x Cortex-A53 Cores and a Mali G31 GPU)
+- 1 GB LPDDR4 DRAM
+- AXP717 PMIC (patches accepted in mfd-next [1])
+- 3.5" 640x480 RGB LCD
+- Mini-HDMI, 3.5mm audio jack, mono speaker, two microSD slots and USB-C (USB 2.0) for power.
+
+RG35XX-Plus adds:
+- RTL8821CS SDIO Wifi/BT chip
+
+RG35XX-H (Horizontal form-factor) adds:
+- RTL8821CS SDIO Wifi/BT chip
+- Two analog thumbsticks
+- Second USB-C port
+- Stereo speaker
+
+Patch 1 adds the DT bindings for the board names, Patch 2 adds the -2024 device as a common base, Patch 3 adds Wifi/BT support for the -Plus (and -H), and Patch 3 adds the second USB and thumbsticks for the -H. The -H is a strict superset of the -Plus, which is in turn a strict superset of the -2024, so this translates quite neatly.
+
+LCD, HDMI, audio, and GPU support are not yet ready and relying on out-of-tree patches currently, so will be added once these drivers are mainlined.
+
+Ryan
+
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+
+Ryan Walklin (4):
+  dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
+    device variants
+  arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+  arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+  arm64: dts: allwinner: h700: Add RG35XX-H DTS
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  15 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   3 +
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      | 327 ++++++++++++++++++
+ .../sun50i-h700-anbernic-rg35xx-h.dts         |  36 ++
+ .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
+ 5 files changed, 434 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+
+-- 
+2.44.0
 
 
