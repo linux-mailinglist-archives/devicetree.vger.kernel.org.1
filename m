@@ -1,334 +1,129 @@
-Return-Path: <devicetree+bounces-63300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EFB8B4583
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:20:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30748B4585
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:20:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FF461F21E7A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 10:20:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 426C5282856
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 10:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E85482CD;
-	Sat, 27 Apr 2024 10:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F27F47F69;
+	Sat, 27 Apr 2024 10:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bVobT105"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="exYMyUU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144AF47F6A
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 10:20:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFBC47F45
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 10:20:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714213206; cv=none; b=HwO7VPplBrISkFavubceQVY+wbToy9a4Nw901BKOWLSrp6I/ICxqoFulzXzxu/uI3ltBbyE0z3oSpu87mEoLoB5GSDjvw8kCQIRF7GyUjmfzLM7wS0J/gthXbnYI2r7vLbzUbEj/tFhTFhkZwaAuNjKIbqA/TQHMAhi8drLrwS0=
+	t=1714213222; cv=none; b=b/itMp4vi0qkGx3XGk80yprQTa3OlVg688mcNu0WxbduEEFP2D41V9jfJMzdkpQZ/p914Mkppx/DThbA+KBMuPdy/Km9w9qjyqzwPuDXqOdsmWZ0PhVVFEzdsPchsAttlprFeoVrfsOroIE08XdW9yuvK+3o0xMCpfCyCm/Y2CU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714213206; c=relaxed/simple;
-	bh=JWA6+ZKwW4Es+WCjLsw/Bewv+NoSaEScYh68o7FE5Gc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tXbqxmEFJVMLq7X7v3zqYLJ3XrKT2m1Z2RBQFtU8+D+fyYG1dPQsA66T5YHs4bu4dcuAumuPMdaMaPHXLKemW9Nvjw8wJY/pkF0durdNxc0BZE2AG0yPDXHn3s4MNHijdEjD+ixglokqLMfIKyDQvczDUigLegdUDaV/9VsQnoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bVobT105; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2a2da57ab3aso2582325a91.3
-        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 03:20:03 -0700 (PDT)
+	s=arc-20240116; t=1714213222; c=relaxed/simple;
+	bh=/Ov3HxWoUq28WJk09V7518F+JgaY60ThUTskN5tFB+w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dUg85BWVg2COLv07CvUsLzesmaybYZd+wZQG8F8IwTYCUyWbJ/W78XuvBuN1RhNhown7aZmDB5Qo5cNuyZgfJPViTH/oWkqsQbyqR6yax7IIch8USAWMY5utbC74iLS8UnxsYcNln11bp8mVIsdq4gpTrrt+5FIvGDYWJaOcBI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=exYMyUU2; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34af8b880e8so1808788f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 03:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714213203; x=1714818003; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=f7+iFYpps1zeYEBYcKhOBHRNG0fMT263PpJq0n4u0EE=;
-        b=bVobT105MOR23WJztzNbcBOJDermDa88yZnDdtNPRDpG+U/1JMuCGw1MCA7AbW3EaH
-         QfwqM/nnbZKfDajiMyEyapSr9t92gRXXVfdlxw+2sgJs5cAAixLXBX2o6ogiW5js0v1b
-         BOjE4aytDnCXSddi2t8ySYbs1HOw9qJfEwzOqLadYhpT2KPZdyqiKb4bxpynVeDxK0xD
-         smt+v2JQ+vtefSknFfK608FWXCPvKyO6quQ+uXmNHDnqevBxugvkdivFvwsMixC+Y/XA
-         8fVSG0z9NhxejwFWzvQAL8hUiPNlbTJUBN1sG1zSyYw8yHQ/BAAWmbHkKL/kZkMmjjMi
-         FS3A==
+        d=gmail.com; s=20230601; t=1714213219; x=1714818019; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YHJd5Ub+zNiNQnkR29UpgThMCfp9nBVMMGF9iCNGC/g=;
+        b=exYMyUU29freRON2j0DViD6GGAjPkcE77ZJoGc6Gb5HDIC4VgxSPNH9jLSov2gUYz4
+         dbVQVZx1PFWxXagmC0CQ/cKydjEFmqbtC0WLaUjnGR9ZOX1xM7HkU4Wd6qlcTufUxH9T
+         dyWlGob1iIHyTfdNml7pLDYX8+EaW4g9oychSFnGVuhHuIWutb8sP2tQssXXOMGE6njG
+         uJB2TC/P4avNrLClHhq6NCcrYdmpkbbMxjWC/RVznDfcP9AZYqnLq80dVMd7NWAKEsjb
+         PVcS+JRYXGzwiDLYL7063l+eGRNq7MJ+gqd/odx/Yg9i6ABCGXErhoY7St4hc6fBsbLw
+         NnlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714213203; x=1714818003;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f7+iFYpps1zeYEBYcKhOBHRNG0fMT263PpJq0n4u0EE=;
-        b=EzEUxUqQKy6oTiwdnX5e9dmicN3QQ37RIdZvlE6IwLEWsuJBTULhVp6PkgDb3J1I3+
-         xkbGkCZl3eZyqii15t1tkN2YyRWeEEs9e/EUE/NhBxlR+EFdfC2Flt8vpe7Slo/iJ4W2
-         WT0V6FwP7hd4WmaPHR4CfCzArZPO81OtphpwdBhXRRuahYDrVP1+TqPRCnMot5/e9JL3
-         ef16LNR0zSSUsw7WD9Mk/5UuBV4peV/HQmQiT+xeaOUruMzl99w6ZldlVoOdAC5yyRsn
-         pg5Qr7Qv2a9JWGU3clfYQwKBMCihlwrnTVaUilXt5ADHxvPPL6b/XFR26uOTlVbUzu/V
-         7pLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUehQmYWf1xGVJBR8vvEcF/7RcEH8x+qNNqPR9nXn1CGaLDe9Tm3pSbEi6rBmTCftiVaA85nc53TiiBj+iNTxRCd/1A116+LSnCg==
-X-Gm-Message-State: AOJu0Yw866Hqp/JZ3qgwnHpYnyqq8/+UOAPX2bDHqrQV3MvKEsa50sqp
-	O/t4CGa3Rwta2NNle8CA+TPLAihtCMsYzYU48oWae3anhqBxK/a+ONDrqWtl3Q==
-X-Google-Smtp-Source: AGHT+IEYOZapJrU/m4SmvbbkI2Rqw/VHSc6hVCsBseOgu88lyFU9KKkSvde7eKI7fVNOcnbI0UpRCA==
-X-Received: by 2002:a17:90b:1d89:b0:2af:53c6:5fb0 with SMTP id pf9-20020a17090b1d8900b002af53c65fb0mr4651141pjb.28.1714213202995;
-        Sat, 27 Apr 2024 03:20:02 -0700 (PDT)
-Received: from thinkpad ([117.213.97.210])
-        by smtp.gmail.com with ESMTPSA id e7-20020a17090a7c4700b002ad6b1e5b6fsm11013594pjl.56.2024.04.27.03.19.54
+        d=1e100.net; s=20230601; t=1714213219; x=1714818019;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YHJd5Ub+zNiNQnkR29UpgThMCfp9nBVMMGF9iCNGC/g=;
+        b=ln8LXcy6HEuojZE9vWjQ2MyJ+u/SBLk28ljk1kc0F1Yik9qt2I49m43keB8g5C+yxi
+         qcAw/HDIteLelbvIkUyKMH4A9u90bDxvhVbCXBAEUpxJTwNPpcDWPAU7WLhvjFJ0N/uv
+         GXPP4XkmGQP0H5VAr6wd77W6srKd/wSgaST06B8Mj+2IALi//zwTWY3CClh29JrcV1SK
+         XhKjUEA9zq3dCZOeVdVqcBm0Q87h0piNofOPLlX69chh2lrIJdWrnQTpiaTtYAd9bB5e
+         rhTLQE5b7yaR71zUtxZKjWUVBDyILbHzPIu+ZaTjwNhbq8JuMLxeOyNDLCvqTpG+TVNy
+         09Rw==
+X-Gm-Message-State: AOJu0Ywy8FbgQ/VHT9qV0k71p2rcR8JC8pbyrdw1MVkCT7NQhH+2xAR0
+	rUMhE7yrI2KKbJZRk+rxcJPameIZFKXvNJg80NgrkWqngQRMXpZq
+X-Google-Smtp-Source: AGHT+IFL9pmwago60lsjtM31ujCqiGalMdnj/9GkMZCkdytk+HPgG5MXpKDQddtrnSdu/GUykTlYRw==
+X-Received: by 2002:a05:6000:18af:b0:34c:765:7657 with SMTP id b15-20020a05600018af00b0034c07657657mr4831986wri.24.1714213218824;
+        Sat, 27 Apr 2024 03:20:18 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id g4-20020adff3c4000000b00343c1cd5aedsm24475445wrp.52.2024.04.27.03.20.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Apr 2024 03:20:02 -0700 (PDT)
-Date: Sat, 27 Apr 2024 15:49:50 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 07/11] PCI: imx: Simplify switch-case logic by involve
- core_reset callback
-Message-ID: <20240427101950.GL1981@thinkpad>
-References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
- <20240402-pci2_upstream-v3-7-803414bdb430@nxp.com>
+        Sat, 27 Apr 2024 03:20:18 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ Ryan Walklin <ryan@testtoast.com>
+Subject: Re: [PATCH v5 2/4] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+Date: Sat, 27 Apr 2024 12:20:17 +0200
+Message-ID: <1856456.atdPhlSkOF@jernej-laptop>
+In-Reply-To: <20240426213505.69273-10-ryan@testtoast.com>
+References:
+ <20240426213505.69273-5-ryan@testtoast.com>
+ <20240426213505.69273-10-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240402-pci2_upstream-v3-7-803414bdb430@nxp.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, Apr 02, 2024 at 10:33:43AM -0400, Frank Li wrote:
-> Instead of using the switch case statement to assert/dassert the core reset
-> handled by this driver itself, let's introduce a new callback core_reset()
-> and define it for platforms that require it. This simplifies the code.
+Dne petek, 26. april 2024 ob 23:35:10 GMT +2 je Ryan Walklin napisal(a):
+> The base model RG35XX (2024) is a handheld gaming device based on an
+> Allwinner H700 chip.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pcie-imx.c | 131 ++++++++++++++++++----------------
->  1 file changed, 68 insertions(+), 63 deletions(-)
+> The H700 is a H616 variant (4x ARM Cortex-A53 cores @ 1.5Ghz with Mali G31
+> GPU) which exposes RGB LCD and NMI pins.
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-imx.c b/drivers/pci/controller/dwc/pcie-imx.c
-> index 77dae5c3f7057..af0f960f28757 100644
-> --- a/drivers/pci/controller/dwc/pcie-imx.c
-> +++ b/drivers/pci/controller/dwc/pcie-imx.c
-> @@ -104,6 +104,7 @@ struct imx_pcie_drvdata {
->  	const struct pci_epc_features *epc_features;
->  	int (*init_phy)(struct imx_pcie *pcie);
->  	int (*set_ref_clk)(struct imx_pcie *pcie, bool enable);
-> +	int (*core_reset)(struct imx_pcie *pcie, bool assert);
->  };
->  
->  struct imx_pcie {
-> @@ -671,35 +672,72 @@ static void imx_pcie_clk_disable(struct imx_pcie *imx_pcie)
->  	clk_bulk_disable_unprepare(imx_pcie->drvdata->clks_cnt, imx_pcie->clks);
->  }
->  
-> +static int imx6sx_pcie_core_reset(struct imx_pcie *imx_pcie, bool assert)
-> +{
-> +	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12, IMX6SX_GPR12_PCIE_TEST_POWERDOWN,
-> +			   assert ? IMX6SX_GPR12_PCIE_TEST_POWERDOWN : 0);
-
-Earlier, this register was not cleared during deassert. Is if fine?
-
-> +	/* Force PCIe PHY reset */
-> +	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR5, IMX6SX_GPR5_PCIE_BTNRST_RESET,
-> +			   assert ? IMX6SX_GPR5_PCIE_BTNRST_RESET : 0);
-> +	return 0;
-> +}
-> +
-> +static int imx6qp_pcie_core_reset(struct imx_pcie *imx_pcie, bool assert)
-> +{
-> +	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_SW_RST,
-> +			   assert ? IMX6Q_GPR1_PCIE_SW_RST : 0);
-> +	if (!assert)
-> +		usleep_range(200, 500);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx6q_pcie_core_reset(struct imx_pcie *imx_pcie, bool assert)
-> +{
-> +	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_TEST_PD,
-> +			   assert ? IMX6Q_GPR1_PCIE_TEST_PD : 0);
-> +
-> +	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_REF_CLK_EN,
-> +			   assert ? 0 : IMX6Q_GPR1_PCIE_REF_CLK_EN);
-> +
-
-Same comment as above.
-
-> +	return 0;
-> +}
-> +
-> +static int imx7d_pcie_core_reset(struct imx_pcie *imx_pcie, bool assert)
-> +{
-> +	struct dw_pcie *pci = imx_pcie->pci;
-> +	struct device *dev = pci->dev;
-> +
-> +	if (assert)
-> +		return 0;
-> +
-> +	/*
-> +	 * Workaround for ERR010728, failure of PCI-e PLL VCO to oscillate, especially when cold.
-
-What does 'especially when cold' means? I know it is an old comment, but still
-it is not very clear.
-
-> +	 * This turns off "Duty-cycle Corrector" and other mysterious undocumented things.
-
-Same comment as previous patch.
-
-> +	 */
-> +
-> +	if (likely(imx_pcie->phy_base)) {
-> +		/* De-assert DCC_FB_EN */
-> +		writel(PCIE_PHY_CMN_REG4_DCC_FB_EN, imx_pcie->phy_base + PCIE_PHY_CMN_REG4);
-> +		/* Assert RX_EQS and RX_EQS_SEL */
-> +		writel(PCIE_PHY_CMN_REG24_RX_EQ_SEL | PCIE_PHY_CMN_REG24_RX_EQ,
-> +		       imx_pcie->phy_base + PCIE_PHY_CMN_REG24);
-> +		/* Assert ATT_MODE */
-> +		writel(PCIE_PHY_CMN_REG26_ATT_MODE, imx_pcie->phy_base + PCIE_PHY_CMN_REG26);
-
-Why does this workaround a part of core_reset handling? This function doesn't
-look like performing reset at all.
-
-- Mani
-
-> +	} else {
-> +		dev_warn(dev, "Unable to apply ERR010728 workaround. DT missing fsl,imx7d-pcie-phy phandle ?\n");
-> +	}
-> +	imx7d_pcie_wait_for_phy_pll_lock(imx_pcie);
-> +	return 0;
-> +}
-> +
->  static void imx_pcie_assert_core_reset(struct imx_pcie *imx_pcie)
->  {
->  	reset_control_assert(imx_pcie->pciephy_reset);
->  	reset_control_assert(imx_pcie->apps_reset);
->  
-> -	switch (imx_pcie->drvdata->variant) {
-> -	case IMX6SX:
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> -				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN,
-> -				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN);
-> -		/* Force PCIe PHY reset */
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR5,
-> -				   IMX6SX_GPR5_PCIE_BTNRST_RESET,
-> -				   IMX6SX_GPR5_PCIE_BTNRST_RESET);
-> -		break;
-> -	case IMX6QP:
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
-> -				   IMX6Q_GPR1_PCIE_SW_RST,
-> -				   IMX6Q_GPR1_PCIE_SW_RST);
-> -		break;
-> -	case IMX6Q:
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
-> -				   IMX6Q_GPR1_PCIE_TEST_PD, 1 << 18);
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
-> -				   IMX6Q_GPR1_PCIE_REF_CLK_EN, 0 << 16);
-> -		break;
-> -	default:
-> -		break;
-> -	}
-> +	if (imx_pcie->drvdata->core_reset)
-> +		imx_pcie->drvdata->core_reset(imx_pcie, true);
->  
->  	/* Some boards don't have PCIe reset GPIO. */
->  	if (gpio_is_valid(imx_pcie->reset_gpio))
-> @@ -709,47 +747,10 @@ static void imx_pcie_assert_core_reset(struct imx_pcie *imx_pcie)
->  
->  static int imx_pcie_deassert_core_reset(struct imx_pcie *imx_pcie)
->  {
-> -	struct dw_pcie *pci = imx_pcie->pci;
-> -	struct device *dev = pci->dev;
-> -
->  	reset_control_deassert(imx_pcie->pciephy_reset);
->  
-> -	switch (imx_pcie->drvdata->variant) {
-> -	case IMX7D:
-> -		/* Workaround for ERR010728, failure of PCI-e PLL VCO to
-> -		 * oscillate, especially when cold.  This turns off "Duty-cycle
-> -		 * Corrector" and other mysterious undocumented things.
-> -		 */
-> -		if (likely(imx_pcie->phy_base)) {
-> -			/* De-assert DCC_FB_EN */
-> -			writel(PCIE_PHY_CMN_REG4_DCC_FB_EN,
-> -			       imx_pcie->phy_base + PCIE_PHY_CMN_REG4);
-> -			/* Assert RX_EQS and RX_EQS_SEL */
-> -			writel(PCIE_PHY_CMN_REG24_RX_EQ_SEL
-> -				| PCIE_PHY_CMN_REG24_RX_EQ,
-> -			       imx_pcie->phy_base + PCIE_PHY_CMN_REG24);
-> -			/* Assert ATT_MODE */
-> -			writel(PCIE_PHY_CMN_REG26_ATT_MODE,
-> -			       imx_pcie->phy_base + PCIE_PHY_CMN_REG26);
-> -		} else {
-> -			dev_warn(dev, "Unable to apply ERR010728 workaround. DT missing fsl,imx7d-pcie-phy phandle ?\n");
-> -		}
-> -
-> -		imx7d_pcie_wait_for_phy_pll_lock(imx_pcie);
-> -		break;
-> -	case IMX6SX:
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR5,
-> -				   IMX6SX_GPR5_PCIE_BTNRST_RESET, 0);
-> -		break;
-> -	case IMX6QP:
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
-> -				   IMX6Q_GPR1_PCIE_SW_RST, 0);
-> -
-> -		usleep_range(200, 500);
-> -		break;
-> -	default:
-> -		break;
-> -	}
-> +	if (imx_pcie->drvdata->core_reset)
-> +		imx_pcie->drvdata->core_reset(imx_pcie, false);
->  
->  	/* Some boards don't have PCIe reset GPIO. */
->  	if (gpio_is_valid(imx_pcie->reset_gpio)) {
-> @@ -1447,6 +1448,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
->  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
->  		.init_phy = imx_pcie_init_phy,
->  		.set_ref_clk = imx6q_pcie_set_ref_clk,
-> +		.core_reset = imx6q_pcie_core_reset,
->  	},
->  	[IMX6SX] = {
->  		.variant = IMX6SX,
-> @@ -1462,6 +1464,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
->  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
->  		.init_phy = imx6sx_pcie_init_phy,
->  		.set_ref_clk = imx6sx_pcie_set_ref_clk,
-> +		.core_reset = imx6sx_pcie_core_reset,
->  	},
->  	[IMX6QP] = {
->  		.variant = IMX6QP,
-> @@ -1478,6 +1481,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
->  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
->  		.init_phy = imx_pcie_init_phy,
->  		.set_ref_clk = imx6q_pcie_set_ref_clk,
-> +		.core_reset = imx6qp_pcie_core_reset,
->  	},
->  	[IMX7D] = {
->  		.variant = IMX7D,
-> @@ -1491,6 +1495,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
->  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
->  		.init_phy = imx7d_pcie_init_phy,
->  		.set_ref_clk = imx7d_pcie_set_ref_clk,
-> +		.core_reset = imx7d_pcie_core_reset,
->  	},
->  	[IMX8MQ] = {
->  		.variant = IMX8MQ,
+> Device features:
+> - Allwinner H700 @ 1.5GHz
+> - 1GB LPDDR4 DRAM
+> - X-Powers AXP717 PMIC
+> - 3.5" 640x480 RGB LCD
+> - Two microSD slots
+> - Mini-HDMI out
+> - GPIO keypad
+> - 3.5mm headphone jack
+> - USB-C charging port
 > 
-> -- 
-> 2.34.1
+> Enabled in this DTS:
+> - AXP717 PMIC with RSB serial interface, regulators and NMI interrupt
+>   controller
+> - Power LED (charge LED on device controlled directly by PMIC)
+> - Serial UART (accessible from headers on the board)
+> - MMC slots (SD2 appears to have a GPIO-switched regulator for 1.8v
+>   low-voltage signalling, this is not yet modeled so a fixed-regulator and
+>   3.3v and 1.8v rails from the PMIC are used. A switched regulator will be
+>   confirmed and posted in a follow-up patch)
 > 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 
--- 
-மணிவண்ணன் சதாசிவம்
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+
 
