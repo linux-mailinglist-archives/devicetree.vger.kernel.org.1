@@ -1,204 +1,139 @@
-Return-Path: <devicetree+bounces-63312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209DB8B45BA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:07:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5872A8B45A8
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:02:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3AC1B21445
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:07:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A3271C2104E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A062A481D3;
-	Sat, 27 Apr 2024 11:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287D4481D0;
+	Sat, 27 Apr 2024 11:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="BSVIVIcS";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="AJU6A/tf"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="L8Jv+9da"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout4-smtp.messagingengine.com (fout4-smtp.messagingengine.com [103.168.172.147])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25161482E1
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 11:06:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2B145009
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 11:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714216018; cv=none; b=SlXn2IGSYirSYkeoyDIFtYqhsFAYUtqqp180K+1jxYO7LeU/9tIlTnmo81Xxurdpjhd5D8BugJIqRW6D+CJgS22/69i08ZX46cpJH1D2OlYXz6Piay8r185wIu3rGnKEsdkqaIlFi+RNvQnwvF25APZpM7PcRL47G2mosdMZYL8=
+	t=1714215763; cv=none; b=SgyWxSvFuM4GQBw1MjMvSzTKkikG0WcrocPKoEWxMvvSoHqESa3zakzHiQ3CcpGbdmEhoIWY/MnWoM0Kne+LPqjJxGjDiuP6HEiwwMDNejAJudgzJ9JNzrWvNhzNsQoYrLFYB6fPKXMHVts+e226ITTXeo6mzh2tXGUPmFcw8Po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714216018; c=relaxed/simple;
-	bh=fdnynBB7gTBHRy1V35JHx+dSspzWoejQL/R4WcC7bf8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NUVMFd4tRRihNICnSfHp2T17TBKyCZ4yLOwzBFdyyFkfFyjS30fjYHYlJYKgIsfLa2v+BXD9+SDXTDsIxZu5J3gUDT4RJVwFjh9zr0QRxw6Z6OAQac79ThS0lI2N8BEU0gyDflMsELjnKKdKYe6QVUH+Z7/jl6o1JE9WHzOg53A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=BSVIVIcS; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=AJU6A/tf; arc=none smtp.client-ip=103.168.172.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 55E0213800E8;
-	Sat, 27 Apr 2024 07:06:56 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sat, 27 Apr 2024 07:06:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1714216016; x=
-	1714302416; bh=97C0vLSBI2B2TQFO45snXmZYrerkHt80unosa9/oom4=; b=B
-	SVIVIcS1QwJhrshE8cZQyHrIq1jSJBYa6jls8/INH/EG/YGB8HwUAyT+NDPM/O8v
-	0fXNFaoOUcaxFOogPNYTH9bfEBgUvhTTQEfBRl7Owlj9R5JY4luaplaWo9xNpNIC
-	yiUw4rTw3CUfue1c0ShNxVld+Zgvb8/TrEtR0edJ/RNWBY2smggOMAfw87XHdPWC
-	JJTMNA/WQfWjmB/E6ZX7XiXr4ehHtXiXqw7ZsiwYfrP2Sad03u1iBL90Oucuf4Z/
-	axGuWVhSXXBWoX1ABzH4hc5u4FzhgvER6ng6FmPjNCvGczuMYzUK4N2B1okQEOI2
-	Z3jyS/OLKqmVUaddUAxuA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1714216016; x=
-	1714302416; bh=97C0vLSBI2B2TQFO45snXmZYrerkHt80unosa9/oom4=; b=A
-	JU6A/tf0RwduVjfRVlQdGZTPbDGrqSMkY3NA4zpv4Qb9JlLD92h8Pw6hcf7gPUxa
-	QUDtodXX1TkEGZO2NzLlFAgI5uguc/0EDdVUBZWG+m0dIogGnbgAEU2cQvD1pdfn
-	7xSbzkZ/7ox1qInqBcGxo2BLo1wJAdLV9gkPUuSvbLsNl7BSELn6DQUB5+tFxuWc
-	i+vugX5lHcKZiqkDU8JOnWi6/895lhQATEgXrbZCiDQj6p5sHHPTHNP0iQ7YRfWJ
-	p/UjDVh95Q6CAFqNF3eXkbTSHw2vT3nkukh5rP20u8rdcukky2KGrPwQofHaNLZ5
-	vvKH5Fd9NbnweKdqUejLA==
-X-ME-Sender: <xms:UNwsZgO0PFSutIj-fB2tXxK-Of-yUatlpsBYp1VjmmDM7VQ6U-6Fiw>
-    <xme:UNwsZm9zTTy4oYptu3p2tauPtePi4Io2YTcSV2V32QKOjK01BF0-mOvU0n_IVSceo
-    dVfmuZDVOecdbX92A>
-X-ME-Received: <xmr:UNwsZnQ4ZOYACSHxavKKimIRM1G0tYhuaCCU6dFwvu-rR5fUy_Xkm_uNZknS6uIpHawj22jzBTSMxzdUf3FrTSKaEbwXlYrZPwejlZKD553axon5>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddtuddgfeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomheptfihrghn
-    ucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrg
-    htthgvrhhnpeehgeduffeiveeiuddufeelffeuteeiiedulefhteevgefgffehheeuudff
-    veejvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgt
-    ohhm
-X-ME-Proxy: <xmx:UNwsZoutNwulYuDKAu07tLFZq4vNKbU5ipMwwdeZq_HY-QjQSZxAOg>
-    <xmx:UNwsZoeKB4_aKSsrQkFPNk_plrM-8WEbcY05US_eXMbChag_-T70sg>
-    <xmx:UNwsZs3hBfRG0dRy-c1S_r8wRF0YF7ueHifZSWVlnyd2c_I24COcpA>
-    <xmx:UNwsZs_j-JCVpPxpzQgc7_QVGSIwLQeBOMYfWDEilWw6cOUFK2oJJg>
-    <xmx:UNwsZs0BvHDzY3nV6IB8F27W-YtQ-2iFXtCD4JveSwnImRILXrDmVOju>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 27 Apr 2024 07:06:52 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Andre Przywara <andre.przywara@arm.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1714215763; c=relaxed/simple;
+	bh=SdVWyGuDCcQrIJ7fzWwR31HxNpM16sH3dH4YrTuBW6s=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GnQOsPX2kp6r6P4IX0iVadHQgMMHDDin4/z7obgCfCBlcNC8Z9UZ70Y42ajZZ6cHOrma5J9QuwfcvgM4a97gLclUxka14fUsfJaB0tD/8G4dRZVzwx0VkYQkIXXDRhLqPC4bvNMlNZU2SQkx3y4iFCA+GIfX4gHUd0zvLcMQfPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=L8Jv+9da; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a58a36008ceso373004066b.0
+        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 04:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1714215759; x=1714820559; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vw7YIWRgewiIjaQbILnrrX2snAdB7TalnWcaho2WU3o=;
+        b=L8Jv+9daB332PLjvd4UFkr+9PNEDKLJtxZf85f4qL6T0VNvTHsQylSdlFHM/Wc0vva
+         D/21lb9dpPSTM+DfwM2sdIY95boCtHze3kggayx0ysSeyg3Ylq6PNW1q4uQVVdc7LSxz
+         R0tToW1r65zDtuswtPAXYhT2im59oTsVU2tvM55KGQAec6GNkZGD2rQczSjvPNcBW/ra
+         YNQPLGpL3RO7fAPPWw8SvyXVcmgLIZF8ASmJy4/lvyK9S41pTif5VnAL6PHTTaK0m5/H
+         vkGdOTIb6VMo8/+HBYYcZkILELGSh/BOQEEHeccfyX/Isvq01+MLMYCsefpdZuGCSFT0
+         zrMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714215759; x=1714820559;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vw7YIWRgewiIjaQbILnrrX2snAdB7TalnWcaho2WU3o=;
+        b=qy0XP72pfbzmGMjOSs9uhg2HQIBA+NReTINfq99q5I6plQdClvbsbRsEhN4jjIpOig
+         d09NLK828tr9W6GWe6+iDbErmVcvnFM6oGOVTFOoGWY83KjkV+eAgEyokRy2KroR3zes
+         oNCotcj9maeQP9B6cj/GQktynKmRKKvo8iENJLJo055jYqh+IJjoWNN0rweaDY215Lhf
+         SXeBExGK3rNKKFrpE3B3ngA7Sr9xV2aOfO/M5Ckjkb3WUMth3SvSbSc1ESp+ctd3Ezxw
+         HAY0sGSu+RsUD9P4R4LLgCFEC/eukR17bBHCrbPmkWtro1fdGtzbJyJWlWdr807ixtlk
+         91Kw==
+X-Forwarded-Encrypted: i=1; AJvYcCUGPzhmjsxrb7t2y7x+IM8FYICQGnyQ5Lfg1uPxuJDue2auJblKs16aBcfsVyj/RhJWavNeaD9ayKlQ7+cFk3DgAwqS1v0Qanf6/g==
+X-Gm-Message-State: AOJu0Yy1Le1N8DlvBDWtzC+KQZRlTlC9cYrgpkz5qEUlZtNa7Ud40l6g
+	tXpRJwmiWwR3eXDkPvlUyNw2KZnVFsdNcP67WzQuhweLcemyKY92XfpR8ZaEqj0=
+X-Google-Smtp-Source: AGHT+IGD03B2i7PKMy6HkJBPlBDJAzn/QclUOnQKtoK3JDSXtq9G1ETAVHvABI1pCX1NQAJQ0I3ePA==
+X-Received: by 2002:a17:906:1759:b0:a58:7f48:18c4 with SMTP id d25-20020a170906175900b00a587f4818c4mr3406243eje.68.1714215758684;
+        Sat, 27 Apr 2024 04:02:38 -0700 (PDT)
+Received: from localhost (host-87-1-234-99.retail.telecomitalia.it. [87.1.234.99])
+        by smtp.gmail.com with ESMTPSA id le23-20020a170906ae1700b00a4e4c944e77sm11516281ejb.40.2024.04.27.04.02.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Apr 2024 04:02:38 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Sat, 27 Apr 2024 13:02:39 +0200
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v6 4/4] arm64: dts: allwinner: h700: Add RG35XX-H DTS
-Date: Sat, 27 Apr 2024 23:02:28 +1200
-Message-ID: <20240427110225.727472-8-ryan@testtoast.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240427110225.727472-2-ryan@testtoast.com>
-References: <20240427110225.727472-2-ryan@testtoast.com>
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH 3/6] arm64: dts: broadcom: Add support for BCM2712
+Message-ID: <ZizbT4Qo0XFB2m4A@apocalypse>
+Mail-Followup-To: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+References: <cover.1713036964.git.andrea.porta@suse.com>
+ <0ab5a768d686cb634f7144da266c9246e9e90cb4.1713036964.git.andrea.porta@suse.com>
+ <198793bf-5ec8-4f33-aae7-75c635f900ec@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <198793bf-5ec8-4f33-aae7-75c635f900ec@broadcom.com>
 
-The RG35XX-H adds thumbsticks, a stereo speaker, and a second USB port to
-the RG35XX-Plus, and has a horizontal form factor.
+On 09:01 Sun 14 Apr     , Florian Fainelli wrote:
+> 
+> 
+> On 4/13/2024 3:14 PM, Andrea della Porta wrote:
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> 
+> No commit message given the amount of lines changed?
 
-Enabled in this DTS:
-- Thumbsticks
-- Second USB port
+Ack. Patchset V2 will have a commit message.
 
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
-Changelog v1..v2:
-- Update copyright
-- Spaces -> Tabs
-- Add GP ADC joystick axes and mux [1]
-- Add EHCI/OHCI1 for second USB port and add vbus supply
+> 
+> Please split this patch into multiple series that add basic 2712 support to
+> the mainline kernel.
 
-Changelog v2..v3:
-- Add DTB to Makefile
-- Remove USB vbus supply
-- Remove GPADC joysticks until required patches land [1]
-- Move thumbsticks into existing gpio gamepad node
-- Move changelog and links below fold-line
+Please, can you elaborate a bit further on this?
 
-Changelog v3..v4:
-- Remove redundant USB OTG and PHY nodes.
+Many thanks,
+Andrea
 
-Changelog v4..v5:
-- Remove empty line.
+> -- 
+> Florian
 
-[1]: https://lore.kernel.org/linux-sunxi/20240417170423.20640-1-macroalpha82@gmail.com/T/#t
-
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../sun50i-h700-anbernic-rg35xx-h.dts         | 36 +++++++++++++++++++
- 2 files changed, 37 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 4217328b1889..c2c871d8b71e 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -49,3 +49,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-new file mode 100644
-index 000000000000..63036256917f
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-+ * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-+ */
-+
-+#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-+
-+/ {
-+	model = "Anbernic RG35XX H";
-+	compatible = "anbernic,rg35xx-h", "allwinner,sun50i-h700";
-+};
-+
-+&gpio_keys_gamepad {
-+	button-thumbl {
-+		label = "GPIO Thumb Left";
-+		gpios = <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
-+		linux,input-type = <EV_KEY>;
-+		linux,code = <BTN_THUMBL>;
-+	};
-+
-+	button-thumbr {
-+		label = "GPIO Thumb Right";
-+		gpios = <&pio 4 9 GPIO_ACTIVE_LOW>; /* PE9 */
-+		linux,input-type = <EV_KEY>;
-+		linux,code = <BTN_THUMBR>;
-+	};
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
--- 
-2.44.0
 
 
