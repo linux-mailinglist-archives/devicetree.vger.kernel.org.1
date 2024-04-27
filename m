@@ -1,206 +1,141 @@
-Return-Path: <devicetree+bounces-63343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51438B486A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 23:55:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BF18B48CB
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 00:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C64031C20A87
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 21:55:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16764281CAA
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 22:11:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A7E146586;
-	Sat, 27 Apr 2024 21:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2200B1465BA;
+	Sat, 27 Apr 2024 22:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="AZs/6L0V"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="rG4MOmno"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E426723A6
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 21:55:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E77A1DA53
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 22:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714254918; cv=none; b=a1UTDujeHu3Q4JWvvwW+q/2E7vm8B1cXeX7qYmRfUv4ZLJxyyf6jd004+V4+hmyG6ysU/qlYJseqA79VZYjA7exQnA+MIz+HTjB8Uv+g7viOgNBDinUsh74O3iCr7YhhcOIkRPy46bXid9Vph2E3fDIHlPQZ0t2CoOnehYIQXh4=
+	t=1714255886; cv=none; b=D4/OYotq71rtr5YuljVgEZpgHLVxVUz8xBRw6jmFEDsxkgiI6XPluWhs8Xn5gA4dz6LFvQJiA5zWHuiV8vYJqadYaLSoGlpt/Ovop7KMACt/2peSB9GD02q3OemX4zSzZIT/84wIXBCS3dCEt2YF9Hl090R6MpwFp1IjOrEt8g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714254918; c=relaxed/simple;
-	bh=qTuigNDdiHEJoWocTvujjWAtm0BR7RewD/9z6NMtGVA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dZTqVhxz43nzqaVME88xqkfVULpDaqtY0KKJ3n3QAWDRqWYsUJwcNDR7Tfg5owjjvQ5r+r90fCSUlS0sel7ZsNF7rA86GhzOfuqSnExT2cJF/38BBPCG2rBTfO6CClFswdz2z8D0qOYyMy8O10Rh4EfjfcStJshbb+mpMQI0NYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se; spf=pass smtp.mailfrom=ferroamp.se; dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b=AZs/6L0V; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ferroamp.se
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2def3637f88so31442531fa.1
-        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 14:55:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1714254915; x=1714859715; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vLlP8BQFTBi5+r04P6ikzCsGSqpejVR29HttdqjKMoM=;
-        b=AZs/6L0VKdX+VNy1x+r2Gu4DNGy0TFGBOQl8aCj9DNehRcK3jMgzuEL3U49u8IfnPl
-         iTFZy7avAw68JQlS44+YDDfvJF/LyRrj+WRkPlgFsnJQHkJH5cVKOLYGeJiCq1/WFCXy
-         ijVaAqGQlgO0IDYTl83z7cphUrMVBfFeGdObesXjumUc80mJ8xecNK3s9N7CW7rlfURw
-         uadPbjJMcTHMY2e0ZT3EgpgKbZi8jSYfYgrS640qeKtBgA+WitkdBYPH0imc+jGJeDuV
-         XXbxzYRrf+EICUAYS3JTwzzdDmM3cQqctMgVsQiN1jZq520wSvKh/wI8E84RppPc3yP4
-         ALSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714254915; x=1714859715;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vLlP8BQFTBi5+r04P6ikzCsGSqpejVR29HttdqjKMoM=;
-        b=icrp2tCYYTeBQ3MaTIxWyJKJD3R9yAwbTNilZwiTGFzZKdd9R+x1uJVLaMniSiHFyQ
-         yyUXgw4mIY7ZMYexbnT4toApEgKPXKxYSn62HLoHxPSR0RR4kgcIzqB8SWpgu029vFrN
-         siGrS9SSt7jXYiAazjNhgAMf4cUABys+G/sTugrIctWk64ejX+KVAdeXM4jlhSUQVarM
-         WBA2MNaxg47z+zX8zjbsFypxk+M8FG+khG2/ZWiUajf5CjRjtfAp3WcAc5mMt1XePx/8
-         a/Pg+840ujqOP6rYTFUgAZU4Is+bMVNUs2R+RJURc7TyDninDwdfBqqOlzZ1vonJ4j+f
-         n5Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCXK8YRP5wzNHlsMgFc8Vt62LHEdyKDlySap7iC8eyCi6xlM6NIRTy8LynbpIZXL/o56UzeO7OV4HLa3NGqe8OaK3EvVckOih02Kqg==
-X-Gm-Message-State: AOJu0YxkqZZmaEMtpr5DVYWtkdqD7BbF9Og7QeWhOBbP7elphN3U0A5m
-	WMmOLlo3JS8j+bfzE++1h0a6QMISa2w6JcskoJbAb+YwOonhGrcdEontCM80IQg=
-X-Google-Smtp-Source: AGHT+IEkK6xoPaL6AbQGT5BbsmF2Hzb/99RIByBNxh6oxjLHRWnJqaoDT3kxQEGfmN/14L+wPO5Z8w==
-X-Received: by 2002:a05:6512:3b91:b0:519:5fb9:832b with SMTP id g17-20020a0565123b9100b005195fb9832bmr1201223lfv.12.1714254915122;
-        Sat, 27 Apr 2024 14:55:15 -0700 (PDT)
-Received: from builder (c188-149-135-220.bredband.tele2.se. [188.149.135.220])
-        by smtp.gmail.com with ESMTPSA id e7-20020a05651236c700b0051b81ab0002sm1825348lfs.45.2024.04.27.14.55.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Apr 2024 14:55:14 -0700 (PDT)
-Date: Sat, 27 Apr 2024 23:55:13 +0200
-From: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 05/12] net: ethernet: oa_tc6: implement error
- interrupts unmasking
-Message-ID: <Zi10QS6UGGaNVRaB@builder>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <20240418125648.372526-6-Parthiban.Veerasooran@microchip.com>
- <Zi1Xbz7ARLm3HkqW@builder>
- <77d7d190-0847-4dc9-8fc5-4e33308ce7c8@lunn.ch>
+	s=arc-20240116; t=1714255886; c=relaxed/simple;
+	bh=CGgmAMZuIq5sNf+wYoEXqrXUiZ3Ivayh7jSXf7NNAJk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nQ62rW1Am5VlFmQRsNYXjrmEUZPtnUyWaCqLb5sDl91nNIm4Oiq+M707XkDxwfSdXNHUd3ZWnq93qtsuD5QSrVmxXFN0FnAoEOYGQVuPx0Zxttcv56bZqxi7kBqQOm4cFUEsnmUz+eV0bTDj0Dlrspdjo2xwgP0gPWOt0275wP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=rG4MOmno; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 35D7A881F8;
+	Sun, 28 Apr 2024 00:11:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1714255882;
+	bh=QX5wg8H03Y76/IAFbub0DZS+NBRtA7iEmj/2mDAVlrU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rG4MOmno0jXHM7mHYCQnRDwDFOu5AqEW1JW3gxw5KJC8dymaYU8ijCukrh0EIptN0
+	 xx0Q8+4VP1tcG5PvRlzdYIve8C1RN5vyr1ApHPljEhz/JSwP9SQYCyKUK8dTBEaKMV
+	 zMCuqk2NGZDFgxAce1fH2TCciZfu8QS57DTdZAaC+kkCfblzoIsbhQ5BkEiJfWwRTB
+	 xS1tosVcBp5WK5c/yKPUcjUQiDytDITfAIphRhY2AC3+vfCxPfk3Ne2rRxYKY1PY9d
+	 aNTGnFqzsBFVRxKT8dHqJrDc1ed+Fsdhvhu/jm6UfyGaE27uDXchp6VQvVNWkzy+kj
+	 pBGoKKrHPGcBw==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Sean Nyekjaer <sean@geanix.com>,
+	Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	kernel@dh-electronics.com,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v2 1/3] dt-bindings: arm: stm32: Add compatible string for DH electronics STM32MP13xx DHCOR DHSBC board
+Date: Sun, 28 Apr 2024 00:10:10 +0200
+Message-ID: <20240427221048.65392-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <77d7d190-0847-4dc9-8fc5-4e33308ce7c8@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-> How fast is your SPI bus? Faster than the link speed? Or slower?
-> 
-> It could be different behaviour is needed depending on the SPI bus
-> speed. If the SPI bus is faster than the link speed, by some margin,
-> the receiver buffer should not overflow, since the CPU can empty the
-> buffer faster than it fills.
+Add DT compatible string for DH electronics STM32MP13xx DHCOR SoM and
+DHSBC carrier board. This stm32mp135f-dhcor-dhsbc board is a stack of
+DHCOR SoM based on STM32MP135F SoC (900MHz / crypto capabilities)
+populated on DHSBC carrier board.
 
-I'm running at 25MHz, I'm guessing that should translate to fast enough
-for the 10MBit half duplex link.
-But I'm not sure how the spi clock translates to bps here.
+The SoM contains the following peripherals:
+- STPMIC (power delivery)
+- 512MB DDR3L memory
+- eMMC and SDIO WiFi module
 
-> 
-> If however, the SPI bus is slower than the link speed, there will be
-> buffer overflows, and a reliance on TCP backing off and slowing down.
-> The driver should not be spamming the log, since it is going to happen
-> and there is nothing that can be done about it.
-> 
+The DHSBC carrier board contains the following peripherals:
+- Two RGMII Ethernet ports
+- USB-A Host port, USB-C peripheral port, USB-C power supply plug
+- Expansion connector
 
-I agree, I think the print could be a DBG if deemed necessary, but there
-is also the dropped counter to look at.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: "Leonard Göhrs" <l.goehrs@pengutronix.de>
+Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Andre Przywara <andre.przywara@arm.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sean Nyekjaer <sean@geanix.com>
+Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+---
+V2: Fix the bindings to list the right SoC/SoM/Board compatibles
+---
+ Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> > I tried this patch
-> > 
-> > diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-> > index 9f17f3712137..bd7bd3ef6897 100644
-> > --- a/drivers/net/ethernet/oa_tc6.c
-> > +++ b/drivers/net/ethernet/oa_tc6.c
-> > @@ -615,21 +615,9 @@ static int oa_tc6_sw_reset_macphy(struct oa_tc6 *tc6)
-> >         return oa_tc6_write_register(tc6, OA_TC6_REG_STATUS0, regval);
-> >  }
-> > 
-> > -static int oa_tc6_unmask_macphy_error_interrupts(struct oa_tc6 *tc6)
-> > +static int oa_tc6_disable_imask0_interrupts(struct oa_tc6 *tc6)
-> >  {
-> > -       u32 regval;
-> > -       int ret;
-> > -
-> > -       ret = oa_tc6_read_register(tc6, OA_TC6_REG_INT_MASK0, &regval);
-> > -       if (ret)
-> > -               return ret;
-> > -
-> > -       regval &= ~(INT_MASK0_TX_PROTOCOL_ERR_MASK |
-> > -                   INT_MASK0_RX_BUFFER_OVERFLOW_ERR_MASK |
-> > -                   INT_MASK0_LOSS_OF_FRAME_ERR_MASK |
-> > -                   INT_MASK0_HEADER_ERR_MASK);
-> > -
-> > -       return oa_tc6_write_register(tc6, OA_TC6_REG_INT_MASK0, regval);
-> > +       return oa_tc6_write_register(tc6, OA_TC6_REG_INT_MASK0, (u32)-1);
-> 
-> So this appears to be disabling all error interrupts?
+diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+index bc2f43330ae42..58099949e8f3a 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
++++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+@@ -59,6 +59,12 @@ properties:
+               - prt,prtt1s   # Protonic PRTT1S
+           - const: st,stm32mp151
+ 
++      - description: DH STM32MP135 DHCOR SoM based Boards
++        items:
++          - const: dh,stm32mp135f-dhcor-dhsbc
++          - const: dh,stm32mp135f-dhcor-som
++          - const: st,stm32mp135
++
+       - description: DH STM32MP151 DHCOR SoM based Boards
+         items:
+           - const: dh,stm32mp151a-dhcor-testbench
+-- 
+2.43.0
 
-Yes, and I think you are right in that it's an overcorrection. There is
-a secondary interrupt mask register as well that is not touched by the
-driver, so that's left at whatever the chip defaults to on reset.
-
-> 
-> This is maybe going too far. Overflow errors are going to happen if
-> you have a slow SPI bus. So i probably would not enable that. However,
-> are the other errors actually expected in normal usage? If not, leave
-> them enabled, because they might indicate real problems.
-
-I'm guessing you are right and that the others actually would be
-meningful to log.
-There is a nested question here as well, and that is wheter to keep or
-drop the code that drops the rx buffer on overflow interrupt.
-I think not dropping the full buffer could be one of the reasons for the
-perf change.
-
-> 
-> > Which results in no log spam, ~5-10% higher throughput and no dropped
-> > packets when I look at /sys/class/net/eth0/statistics/rx_dropped
-> 
-> You cannot trust rx_dropped because you just disabled the code which
-> increments it! The device is probably still dropping packets, and they
-> are no longer counted.
-
-I'll curb my enthusiasm a bit :)
-
-> 
-> It could be the performance increase comes from two places:
-> 
-> 1) Spending time and bus bandwidth dealing with the buffer overflow
-> interrupt
-> 
-> 2) Printing out the serial port.
-> 
-
-I think it's possible that the buffer cleanup triggered after the
-overflow interrupt hits could be cause 3) here, but just a guess.
-
-> Please could you benchmark a few things:
-> 
-> 1) Remove the printk("Receive buffer overflow error"), but otherwise
-> keep the code the same. That will give us an idea how much the serial
-> port matters.
-> 
-> 2) Disable only the RX buffer overflow interrupt
-> 
-> 3) Disable all error interrupts.
-> 
-
-Thanks for layout it out so clearly. I'll run through the scenarios!
-
-R
 
