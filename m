@@ -1,230 +1,142 @@
-Return-Path: <devicetree+bounces-63266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D97D8B436F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 03:17:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6780B8B4374
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 03:26:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EADC21F21B5F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 01:17:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E2BB282DA8
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 01:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5B82C6B0;
-	Sat, 27 Apr 2024 01:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556D02E852;
+	Sat, 27 Apr 2024 01:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="GWRkU0Qr"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GiYjisLu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15FC3383A1
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 01:17:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214D42570;
+	Sat, 27 Apr 2024 01:26:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714180634; cv=none; b=kfwwaqNfvEvcHW1rHgHYFmJoX6DmHasoy8ch2QavaMXmspBy0wTfuFzl8IC6nTEN9TDVE3xuXLaPhycfjIqnwsZWYa0KSYrvQibabNkDaTi7WlWA2LNkb3Qje7MGGavzjQmfNltFbjiIbsyBOCnsjCWfJPgI6nLTkY1dN3bvZQI=
+	t=1714181198; cv=none; b=uYayljmEgb8uviRu1rRFqFmsNwiJqPjfluIZlsgT1SMnAfRArJm76NQQj5vzE1HrynbpFfob5lilueEDa9zOWrluIBqrB8tibhRzTQbmbM9sXCkoJ7ztH0rjqqi0HkvDIkkJSBC5JwXXVQpb9/we0ErNTy3iF+yMhhIQn8dxcb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714180634; c=relaxed/simple;
-	bh=wJNk9kr2TzKyrGXJeG1VDeeDuXeeF1deBgQLxDjI94I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SJMBDl0Fn46KhV9zDftwuSi7qbzLIkxlmrB+BIuwHHT5USzhkz0mFlRn/GSwVlR/DE/ZNwVANF0UZEX8/mjEUyblqnY8ZPUKN1ytrTW2zsNX9M7jzp35YpGoaQxtQWC33zmZI1m2A/1UpZQqq1QMgyd5zMXnvvcM88brt2nSzJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=GWRkU0Qr; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e834159f40so22226185ad.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:17:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714180631; x=1714785431; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gFg92GezPFh0mv6IYrarbWQAPQNkfvXf7+vfg6UWTLc=;
-        b=GWRkU0Qr+iY+PtykxFJC9cRKyiBvuEeaZoKyJtmNkY807WV0bhGG6iTSGmFUwwfx8Y
-         xlqRMbdkuJjCu0OkJUrzJuRjZWN7tt71v792uml0x9srP0XpFooEuqPXFMhibsOIouye
-         VA7Sy+eduQRBkxCTO7Nmpz4tH0m6FNwXLRIuY1K5O2eQ4Xni3HaDmAmDO0yLKfISQjoq
-         0SI3+0GrLysD2JZ2BVTAq3x8n/iuI+5q1lf2ScEkYfZguuiX7oQ9EjUTtFeo2LUCssmu
-         cZATIOlf5eHtM/++Bh+SSbmlPNID1KE0jZQOcpnZsONfpEb62Unk1lr19fy3QyJWum7q
-         VRBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714180631; x=1714785431;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gFg92GezPFh0mv6IYrarbWQAPQNkfvXf7+vfg6UWTLc=;
-        b=Pm/fDCbNrcbmtuZ2OJcIsGRiptnBTDFt4Cwwof+DdOBSfo0/bKwFy6BfF/YoBa0FoW
-         BEwuLoffM4Xa0slRr7E83WiMyHJOzOfQ8wHb9p39fT3YZDAee5Ut3+LonDJVrM4fNSsj
-         BIkA2im+OB6TtFvF9YDr7xhAuFWEjtG+ai2W6AbsM/q6Yf6Bwx0sK27P3n8pferd0Mbq
-         q/VSQ6OThNpIrRfIhCPP1k1LGXe+IAVnalzo6rX+ULGd4A5lPMbH3h8GFe42oE+3+Oui
-         y4+mW6ALvzzTWwLlUqI9mlU9VSta6/DUvUa406kPVPDj4v/ZVPHudmYx9KJu6O+2at0i
-         yD4A==
-X-Forwarded-Encrypted: i=1; AJvYcCXaH1tjBS8rrXQ9WcJIFZQjUIb63XA6ntxjG29cY1/jy3IUFrWe97230UnuHIy6x9GxOnkHFSA5aWIqNt28b6pcpW5Yjlwf3NPN7A==
-X-Gm-Message-State: AOJu0Yz60y9yAwVSk8Div4CNoNH6fkXTxh+w4MpxGBpYcCEm9RxXdvY3
-	GbsEJ4SVKhx5J/heKXpLZ3Rbr4KL5QX4lxx/rtp7+Mvxw5dk0/GQiix1gUqcG5Y=
-X-Google-Smtp-Source: AGHT+IFShfk0g+JEaLyl2jF/RXq/ZXlGfv0o6Yy5A1krdr9Ne2WG7D/ikaciV2cGwvKkdC2eOZn6Qg==
-X-Received: by 2002:a17:903:11c8:b0:1eb:7dc:7097 with SMTP id q8-20020a17090311c800b001eb07dc7097mr3484408plh.48.1714180631148;
-        Fri, 26 Apr 2024 18:17:11 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id im15-20020a170902bb0f00b001e3e081d07esm16424391plb.179.2024.04.26.18.17.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 18:17:10 -0700 (PDT)
-Date: Fri, 26 Apr 2024 18:17:08 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, Ved Shanbhogue <ved@rivosinc.com>
-Subject: Re: [RFC PATCH 6/7] riscv: kvm: add SBI FWFT support for
- SBI_FWFT_DOUBLE_TRAP_ENABLE
-Message-ID: <ZixSFLZYZaf8BKHP@debug.ba.rivosinc.com>
-References: <20240418142701.1493091-1-cleger@rivosinc.com>
- <20240418142701.1493091-7-cleger@rivosinc.com>
+	s=arc-20240116; t=1714181198; c=relaxed/simple;
+	bh=ecCTW0Np4az1GDooEM9K5T4Wf2Pdlo/BYYVp+btKGew=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MVFIJi35uk00Hrd2BLzc6KiOJ6CfOlyFcazcSTMuDdzKHICB6qC9e9D5laH3V46ZecMtmZHcZk0sftHHLkYJq+VHtUkbMFO/GxB+quE4EjoeeA4FIznwVnsZGeYa+E4aiiGMAE73nPFipKhp7SkD9eYgFHxCn1vC7LgsKE+gFBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=GiYjisLu; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 2c91bd78043511ef8065b7b53f7091ad-20240427
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=7Y4hXZVXbTEkPR4cCFHEBR55hGJrDqCDArvwkQjxBQo=;
+	b=GiYjisLuWyBza2WbQ9K0yQTIggArSW0itM6oBdzxenQWnwi0p9939kq6v0Sdf6Qjksxs2qJDVwgGrcpHwJ4YxoV24hNhKe63n83jBWxO0vtkaYGk6gf+iWry9TfdWM0XXl1z4nrf6RsoktnRslllbaqdEuSSVX0EJeQW0WwQ/7U=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38,REQID:099d540d-2e7a-4366-bfc7-f28d43fff2e6,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:82c5f88,CLOUDID:2f9d67fb-ed05-4274-9204-014369d201e8,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 2c91bd78043511ef8065b7b53f7091ad-20240427
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 685798841; Sat, 27 Apr 2024 09:26:29 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sat, 27 Apr 2024 09:26:26 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sat, 27 Apr 2024 09:26:25 +0800
+From: Zhi Mao <zhi.mao@mediatek.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Zhi Mao <zhi.mao@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Laurent Pinchart
+	<laurent.pinchart+renesas@ideasonboard.com>, Heiko Stuebner
+	<heiko@sntech.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, Hans de Goede <hdegoede@redhat.com>, "Tomi
+ Valkeinen" <tomi.valkeinen@ideasonboard.com>, Alain Volmat
+	<alain.volmat@foss.st.com>, Paul Elder <paul.elder@ideasonboard.com>, "Mehdi
+ Djait" <mehdi.djait@bootlin.com>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, Bingbu Cao <bingbu.cao@intel.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <shengnan.wang@mediatek.com>,
+	<yaya.chang@mediatek.com>, <yunkec@chromium.org>, <10572168@qq.com>
+Subject: [PATCH v2 0/2] media: i2c: Add support for GT97xx VCM
+Date: Sat, 27 Apr 2024 09:26:11 +0800
+Message-ID: <20240427012613.6621-1-zhi.mao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240418142701.1493091-7-cleger@rivosinc.com>
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--0.994900-8.000000
+X-TMASE-MatchedRID: lpk7+cih7u+uhCBFl/b63m3NvezwBrVmwlZ2GSFD7LgGW3hFnC9N1Zg1
+	FOMOQofR/3dN/c325otYXsJ+nWY7U2GN6M1vhJ4HnVTWWiNp+v8oUVkB7ifJnkYvSDWdWaRh5ym
+	1cSfxndgf7I0n0nPgmhEDxWyR0o1w0YRMm/X9bI7uykw7cfAoICoTaU3L23VCmyiLZetSf8mfop
+	0ytGwvXiq2rl3dzGQ1NZUO7I4U77G2E9Z8Xt3x1m4/XbB7QDM08NNZ3gvDJuiTg/SxOb1RkL/p6
+	fATk3/mps857/V1yTmjhQ++Yq0mfrMADF+wG8K7js0+30OcemTzYaPZALfIbSyZdUr8fx4fMbuy
+	vvGhtIDNwMS8lpRKBQ==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--0.994900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	53D9ACFF09AC5D5F0B61D020EA0B2910A5294ABA315F4ED34E9C71352FB5C4062000:8
+X-MTK: N
 
-On Thu, Apr 18, 2024 at 04:26:45PM +0200, Clément Léger wrote:
->Add support in KVM SBI FWFT extension to allow VS-mode to request double
->trap enabling. Double traps can then be generated by VS-mode, allowing
->M-mode to redirect them to S-mode.
->
->Signed-off-by: Clément Léger <cleger@rivosinc.com>
->---
-> arch/riscv/include/asm/csr.h               |  1 +
-> arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h |  2 +-
-> arch/riscv/kvm/vcpu_sbi_fwft.c             | 41 ++++++++++++++++++++++
-> 3 files changed, 43 insertions(+), 1 deletion(-)
->
->diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
->index 905cdf894a57..ee1b73655bec 100644
->--- a/arch/riscv/include/asm/csr.h
->+++ b/arch/riscv/include/asm/csr.h
->@@ -196,6 +196,7 @@
-> /* xENVCFG flags */
-> #define ENVCFG_STCE			(_AC(1, ULL) << 63)
-> #define ENVCFG_PBMTE			(_AC(1, ULL) << 62)
->+#define ENVCFG_DTE			(_AC(1, ULL) << 59)
-> #define ENVCFG_CBZE			(_AC(1, UL) << 7)
-> #define ENVCFG_CBCFE			(_AC(1, UL) << 6)
-> #define ENVCFG_CBIE_SHIFT		4
->diff --git a/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h b/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
->index 7dc1b80c7e6c..a9e20d655126 100644
->--- a/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
->+++ b/arch/riscv/include/asm/kvm_vcpu_sbi_fwft.h
->@@ -11,7 +11,7 @@
->
-> #include <asm/sbi.h>
->
->-#define KVM_SBI_FWFT_FEATURE_COUNT	1
->+#define KVM_SBI_FWFT_FEATURE_COUNT	2
->
-> struct kvm_sbi_fwft_config;
-> struct kvm_vcpu;
->diff --git a/arch/riscv/kvm/vcpu_sbi_fwft.c b/arch/riscv/kvm/vcpu_sbi_fwft.c
->index b9b7f8fa6d22..9e8e397eb02f 100644
->--- a/arch/riscv/kvm/vcpu_sbi_fwft.c
->+++ b/arch/riscv/kvm/vcpu_sbi_fwft.c
->@@ -9,10 +9,19 @@
-> #include <linux/errno.h>
-> #include <linux/err.h>
-> #include <linux/kvm_host.h>
->+#include <linux/riscv_dbltrp.h>
-> #include <asm/sbi.h>
-> #include <asm/kvm_vcpu_sbi.h>
-> #include <asm/kvm_vcpu_sbi_fwft.h>
->
->+#ifdef CONFIG_32BIT
->+# define CSR_HENVCFG_DBLTRP	CSR_HENVCFGH
->+# define DBLTRP_DTE	(ENVCFG_DTE >> 32)
->+#else
->+# define CSR_HENVCFG_DBLTRP	CSR_HENVCFG
->+# define DBLTRP_DTE	ENVCFG_DTE
->+#endif
->+
-> #define MIS_DELEG (1UL << EXC_LOAD_MISALIGNED | 1UL << EXC_STORE_MISALIGNED)
->
-> static int kvm_sbi_fwft_set_misaligned_delegation(struct kvm_vcpu *vcpu,
->@@ -36,6 +45,33 @@ static int kvm_sbi_fwft_get_misaligned_delegation(struct kvm_vcpu *vcpu,
-> 	return SBI_SUCCESS;
-> }
->
->+static int kvm_sbi_fwft_set_double_trap(struct kvm_vcpu *vcpu,
->+					struct kvm_sbi_fwft_config *conf,
->+					unsigned long value)
->+{
->+	if (!riscv_double_trap_enabled())
->+		return SBI_ERR_NOT_SUPPORTED;
+This series add YAML DT binding and V4L2 sub-device driver for Giantec's GT9768&GT9769.
+GT9768&GT9769 is a 10-bit DAC with 100mA output current sink capability, designed
+for voice coil motor(VCM) with I2C control bus.
 
-Why its required to check whether host has enabled double trap for itself ?
-It's orthogonal to guest asking hypervisor to enable double trap.
+This driver supports:
+ - support pm runtime function for suspend/resume
+ - support camera lens focus position by V4L2_CID_FOCUS_ABSOLUTE CMD
+ - used in camera features on ChromeOS application
 
-Probably you need a check here whether underlying FW supports handling double
-trap.
+Previous versions of this patch-set can be found here:
+v1: https://lore.kernel.org/all/20240420011840.23148-1-zhi.mao@mediatek.com/
+v0: https://lore.kernel.org/all/20240410104002.1197-1-zhi.mao@mediatek.com/
 
-Am I missing something here?
+This series is based on linux-next, tag: next-20240424
+Changes in v2:
+- dts-binding files:
+-- remove "|-" after description node, and remove a blank line
 
->+
->+	if (value)
->+		csr_set(CSR_HENVCFG_DBLTRP, DBLTRP_DTE);
->+	else
->+		csr_clear(CSR_HENVCFG_DBLTRP, DBLTRP_DTE);
+Thanks
 
-I think vcpu->arch.cfg has `henvcfg` field. Can we reflect it there as well so that current
-`henvcfg` copy in vcpu arch specifci config is consistent? Otherwise it'll be lost when vCPU
-is scheduled out and later scheduled back in (on vcpu load)
+Zhi Mao (2):
+  media: dt-bindings: i2c: add Giantec GT97xx VCM
+  media: i2c: Add GT97xx VCM driver
 
-Furthermore, lets not do feature specific alias names for CSR.
+ .../bindings/media/i2c/giantec,gt9769.yaml    |  55 +++
+ drivers/media/i2c/Kconfig                     |  13 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/gt97xx.c                    | 436 ++++++++++++++++++
+ 4 files changed, 505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/giantec,gt9769.yaml
+ create mode 100644 drivers/media/i2c/gt97xx.c
 
-Instead let's keep consistent 64bit image of henvcfg in vcpu->arch.cfg.
+-- 
+2.25.1
 
-And whenever it's time to pick up the setting, pick up logic either perform the writes in
-henvcfg. And if required it'll perform henvcfgh too (as `kvm_arch_vcpu_load` already does)
 
->+
->+	return SBI_SUCCESS;
->+}
->+
->+static int kvm_sbi_fwft_get_double_trap(struct kvm_vcpu *vcpu,
->+					struct kvm_sbi_fwft_config *conf,
->+					unsigned long *value)
->+{
->+	if (!riscv_double_trap_enabled())
->+		return SBI_ERR_NOT_SUPPORTED;
->+
->+	*value = (csr_read(CSR_HENVCFG_DBLTRP) & DBLTRP_DTE) != 0;
->+
->+	return SBI_SUCCESS;
->+}
->+
-> static struct kvm_sbi_fwft_config *
-> kvm_sbi_fwft_get_config(struct kvm_vcpu *vcpu, enum sbi_fwft_feature_t feature)
-> {
->@@ -111,6 +147,11 @@ static const struct kvm_sbi_fwft_feature features[] = {
-> 		.id = SBI_FWFT_MISALIGNED_DELEG,
-> 		.set = kvm_sbi_fwft_set_misaligned_delegation,
-> 		.get = kvm_sbi_fwft_get_misaligned_delegation,
->+	},
->+	{
->+		.id = SBI_FWFT_DOUBLE_TRAP_ENABLE,
->+		.set = kvm_sbi_fwft_set_double_trap,
->+		.get = kvm_sbi_fwft_get_double_trap,
-> 	}
-> };
->
->-- 
->2.43.0
->
->
+
 
