@@ -1,506 +1,145 @@
-Return-Path: <devicetree+bounces-63319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC188B463F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9968B464D
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 14:04:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17C7B1F25A27
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:50:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 208341F25A35
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340934C626;
-	Sat, 27 Apr 2024 11:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C684CB5B;
+	Sat, 27 Apr 2024 12:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="giuNdlYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F3A481A6
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 11:50:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B51C4B5C1
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 12:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714218604; cv=none; b=U4BhxD45N0rkTrK1hdjZwZonS3iy5yQoj48Z2r2RXG9TtJMJUuv0fn3OqLEAqlaS6SuEiIH2KOZMl9WQR0N0OMuNTVdznTP7dqP56lY7mUqanKRZ9F3Lhh8zh2jjKlKSJqRkLXSH1aXgVi29fjCwM46Q2O4jBOtDEnwE4g7VYCY=
+	t=1714219469; cv=none; b=kFZM1mHAeRZvB0hrTOwJaBl7DfIpgVzYrcTpL+0AiKsmkdvGDhS3eeGQyXrGCELnEjRA9+vcc6/acbS15gTdvRZa+2+8fpyeyFpa2CtKZr1cuJ5CXgDtuaBO6mbAl8N6kQAAf8zZ/oRi0OLJLKLkPiGY+mJdxwTnmRq5+AD6oug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714218604; c=relaxed/simple;
-	bh=5OoGWjjbxIswOPYT/dEX1L8HLyQ8Bjhjh/GzifR/EtI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d6X57wu0GCInJyUg+G2nyV6O2h2tn0B06wqQQ7FXGaJMSLkG4Ah5qEH5oi8i0AT6MOmZTjr3dRMqwQqnCBmCNlIUL9gstjvqfZL+hs8IXp8WIE1HndqG52JFgszOB6iU82VdPWixbJsmL8IdZjReq+2twdS9crdMRabM7lmLVRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E2782F4;
-	Sat, 27 Apr 2024 04:50:23 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E4F613F64C;
-	Sat, 27 Apr 2024 04:49:53 -0700 (PDT)
-Date: Sat, 27 Apr 2024 12:49:33 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Chris Morgan <macromorgan@hotmail.com>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v6 2/4] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-Message-ID: <20240427124933.749a4b70@minigeek.lan>
-In-Reply-To: <20240427110225.727472-6-ryan@testtoast.com>
-References: <20240427110225.727472-2-ryan@testtoast.com>
-	<20240427110225.727472-6-ryan@testtoast.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1714219469; c=relaxed/simple;
+	bh=Qx77eECX6fGK3s5WuyBlmq41aaHW8MGDy0OjhYwrv4c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YCZljmsxqFpng+kiE07WzJI0zEDsikJzUz6t8Jk/ar6fTL72Ij10CXiM0AOLI/Iwix14Z1+nDvmWG5MTMqvujETEwB9IFL/OjXIX4Wq+2cRbrdPkkLYoAC3nG2L+Id7c4xO5Yl/rUu0wu4oOl6X4oWYYljn8J4Crawum99De5/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=giuNdlYV; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51bafbe7509so4270791e87.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 05:04:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714219466; x=1714824266; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=M4KxbMOPobKw+zVu4l+AkGDBH5YIiQ/czS+4EyOwms4=;
+        b=giuNdlYVYVjFLpqYxoBnM1INZ5GDDFGqxWugHQzYagxWyv+wZriClYocwQcQswaOLL
+         ug8rAd+uGOu+To1ZnEVbh1OBmNiTZyR1idovSC3k+UGoC88fthAQM5fn6dlq1RCaa/km
+         2bAUadQIsiab/cuLeS7dxpsiBuMmaBCAr+1+91eQVUOe1qphYsNRrHylOSoim6sFc0hw
+         JjuPhynmvo1xvwWyyx6nFp0mraaq1ThNM1bb4spi+LqF4D+YhUCVSwVoVtUdhsb3hPVD
+         IMPl7yvmjThgOiu/2Y2HCA0V80lNe8aGtkYct3sJiVt/bnenIeAz5npv+nxkzdunfRvU
+         jzWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714219466; x=1714824266;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M4KxbMOPobKw+zVu4l+AkGDBH5YIiQ/czS+4EyOwms4=;
+        b=rIHLua283wWgvcrF+eHjot1+kZiJ4bDkRTutGA9o2ulCiz2h1zxXyAbkYMcZNVXO/V
+         vbeo8+nT3IYzBcNvjWFhrfqkQ0S12qmWl2QdEaRkz8O3oJYPomKdhbQXLWYTtFVUWEx1
+         rojijehk2B4da29Zntot4+Nau6uWOJS2YcflBvGY2AIo9y9RkC6HVOqEXxwodDYjJJOl
+         NKbL92q+5GAqWQ6eWfDlicuf/3baXh7dMGHTfGM75/v3kxa6K5S6YfaZvljC1540Z3fV
+         IDQY2vVo8RakpJr7t3I+3K28//DByY/hat8z+nIW3pCKbVMHH0c524iGKYgg3+hs4wht
+         prgA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfrxUTgx60fWy8OrvgVBrjVuR6YRPstPYexA1uB2FLy3DNh4UNPMxXVilcfxrtSv2pTJOxdKl3t02CmBapBst7I18q1+pla/HcvA==
+X-Gm-Message-State: AOJu0Yx8icONwj6Y5+4eG8ZXwyWsq3qmpCOeMNYLltgeJS4rh3mGQ7X8
+	5b0Vpz6k+vlli8D6+gvG3RVENGOPUkLbl73RuqpVwIdpICUmXt02k1zvNgfCbLo=
+X-Google-Smtp-Source: AGHT+IEytJFGQjtwOxzIenWUWdx9Erl3wSRSnG9KvGAsEhPAFwre3TbJM0qJUskI40ZTRdqS9feVLg==
+X-Received: by 2002:ac2:4ec7:0:b0:516:b07a:5b62 with SMTP id p7-20020ac24ec7000000b00516b07a5b62mr3657405lfr.54.1714219466162;
+        Sat, 27 Apr 2024 05:04:26 -0700 (PDT)
+Received: from [192.168.114.15] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id d42-20020a056402402a00b00571d5c4a220sm9600710eda.7.2024.04.27.05.04.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 27 Apr 2024 05:04:25 -0700 (PDT)
+Message-ID: <e8f08fb2-2ad7-4078-8db3-6acb6569497d@linaro.org>
+Date: Sat, 27 Apr 2024 14:04:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] arm64: dts: qcom: sm8650: Fix GPU cx_mem size
+To: Connor Abbott <cwabbott0@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jun Nie <jun.nie@linaro.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com>
+ <20240426-a750-raytracing-v2-1-562ac9866d63@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240426-a750-raytracing-v2-1-562ac9866d63@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Sat, 27 Apr 2024 23:02:26 +1200
-Ryan Walklin <ryan@testtoast.com> wrote:
-
-Hi,
-
-thanks for the changes, looks good now!
-
-> The base model RG35XX (2024) is a handheld gaming device based on an
-> Allwinner H700 chip.
+On 26.04.2024 8:33 PM, Connor Abbott wrote:
+> This is doubled compared to previous GPUs. We can't access the new
+> SW_FUSE_VALUE register without this.
 > 
-> The H700 is a H616 variant (4x ARM Cortex-A53 cores @ 1.5Ghz with Mali G31
-> GPU) which exposes RGB LCD and NMI pins.
-> 
-> Device features:
-> - Allwinner H700 @ 1.5GHz
-> - 1GB LPDDR4 DRAM
-> - X-Powers AXP717 PMIC
-> - 3.5" 640x480 RGB LCD
-> - Two microSD slots
-> - Mini-HDMI out
-> - GPIO keypad
-> - 3.5mm headphone jack
-> - USB-C charging port
-> 
-> Enabled in this DTS:
-> - AXP717 PMIC with RSB serial interface, regulators and NMI interrupt
->   controller
-> - Power LED (charge LED on device controlled directly by PMIC)
-> - Serial UART (accessible from headers on the board)
-> - First SD slot (SD2 appears to have a GPIO-switched regulator for 1.8v
->   low-voltage signalling, this is not yet modeled. Enablement with a
->   switched regulator will be confirmed and posted in a follow-up patch).
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
+> Fixes: db33633b05c0 ("arm64: dts: qcom: sm8650: add GPU nodes")
+> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
 > ---
-> Changelog v1..v2:
-> - Update copyright
-> - Spaces -> Tabs
-> - Add cpufreq support
-> - Remove MMC aliases
-> - Fix GPIO button and regulator node names
-> - Note unused AXP717 regulators
-> - Update regulators for SD slots
-> - Remove unused I2C3 device
-> - Update NMI interrupt controller for AXP717, requires H616 support patch in dt-next [1]
-> - Add chassis-type
-> - Address USB EHCI/OHCI0 correctly and add usb vbus supply
-> - Add PIO vcc-pg-supply
-> - Correct boost regulator voltage and name
-> 
-> Changelog v2..v3:
-> - Remove cpufreq support (patch still pending for 6.10, will followup with enablement patch once opp table merged)
-> - Add dtb to Makefile
-> - Remove unnecessary duplicated PLL regulator
-> - Remove unimplemented/not-present drive-vbus feature from AXP717
-> - Rename CLDO3 to "vcc-io", inferring function from board testing by Chris Morgan
-> - Correct MMC1 vmmc-supply to CLDO3 and MMC2 to CLDO4
-> - Reduce DCDC1 "vdd-cpu" supply voltage range to 0.9v-1.1v to match lowest OPP voltage
-> - Identify DCDC2 as GPU supply - rename to "vdd-gpu-sys", remove always-on and use fixed 0.94v voltage
-> - Fix indentation
-> - Correct boot/always-on states and voltages for various regulators from vendor BSP
-> - Change USB-OTG mode to "peripheral" and correct comment
-> - Correct and add remaining PIO supplies
-> - Move volume key GPIOs to separate block to allow key repeat
-> - Alphabetically orrder gamepad GPIOs
-> - Move changelog and links below fold-line
-> - Remove USB 3.3v VCC-USB and VCC-SD2 regulators pending further hardware investigation (to be submitted as subsequent patch)
-> - Constrain boost regulator voltage to 5.0v to 5.2v to capture default voltage of 5.126v
-> 
-> Changelog v3..v4:
-> - Cluster USB nodes
-> - Do not define voltage range for currently unused CLDO1 (connected to audio codec according to vendor BSP - driver not yet implemented) and ALDO3 (1.8v).
-> - Note voltages set for currently unused regulators from vendor BSP in comments to aid identification
-> - Remove regulator-boot-on from several regulators where it was not required
-> - Fix indentation
-> - Add "disable-wp" for SD2 as for SD1 (doesn't make sense for micro-SD)
-> - Restore fixed 3.3v regulator for SD2 (vcc_3v3_sd2), which is required for SD2 to function. ALDO1 appears to be the 1.8v supply required for low-voltage UHS-I signalling, however a GPIO pin to switch between the supplies is not yet confirmed (likely PE4) and will be implemented in a subsequent patch.
-> 
-> Changelog v4..v5:
-> - Remove comment referencing vendor BSP node
-> - Reorder nodes alphabetically and remove empty lines
-> - Add note to commit message about SD2 regulators, rename vcc_3v3_sd2
-> 
-> Changelog v5..v6:
-> - Remove SD2 slot and regulator definitions until confirmation of regulator/GPIO states required for LV signalling switching
-> - Re-sort nodes
-> 
-> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=dt/next&id=d47bca77bf3ab475c33b3929c33c80aeb49df35c
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 327 ++++++++++++++++++
->  2 files changed, 328 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 21149b346a60..6f997157968e 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -47,3 +47,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> new file mode 100644
-> index 000000000000..ee30584b6ad7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> @@ -0,0 +1,327 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "Anbernic RG35XX 2024";
-> +	chassis-type = "handset";
-> +	compatible = "anbernic,rg35xx-2024", "allwinner,sun50i-h700";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio_keys_gamepad: gpio-keys-gamepad {
-> +		compatible = "gpio-keys";
-> +
-> +		button-a {
-> +			label = "Action-Pad A";
-> +			gpios = <&pio 0 0 GPIO_ACTIVE_LOW>; /* PA0 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_EAST>;
-> +		};
-> +
-> +		button-b {
-> +			label = "Action-Pad B";
-> +			gpios = <&pio 0 1 GPIO_ACTIVE_LOW>; /* PA1 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_SOUTH>;
-> +		};
-> +
-> +		button-down {
-> +			label = "D-Pad Down";
-> +			gpios = <&pio 4 0 GPIO_ACTIVE_LOW>; /* PE0 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_DPAD_DOWN>;
-> +		};
-> +
-> +		button-l1 {
-> +			label = "Key L1";
-> +			gpios = <&pio 0 10 GPIO_ACTIVE_LOW>; /* PA10 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_TL>;
-> +		};
-> +
-> +		button-l2 {
-> +			label = "Key L2";
-> +			gpios = <&pio 0 11 GPIO_ACTIVE_LOW>; /* PA11 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_TL2>;
-> +		};
-> +
-> +		button-left {
-> +			label = "D-Pad left";
-> +			gpios = <&pio 0 8 GPIO_ACTIVE_LOW>; /* PA8 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_DPAD_LEFT>;
-> +		};
-> +
-> +		button-menu {
-> +			label = "Key Menu";
-> +			gpios = <&pio 4 3 GPIO_ACTIVE_LOW>; /* PE3 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_MODE>;
-> +		};
-> +
-> +		button-r1 {
-> +			label = "Key R1";
-> +			gpios = <&pio 0 12 GPIO_ACTIVE_LOW>; /* PA12 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_TR>;
-> +		};
-> +
-> +		button-r2 {
-> +			label = "Key R2";
-> +			gpios = <&pio 0 7 GPIO_ACTIVE_LOW>; /* PA7 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_TR2>;
-> +		};
-> +
-> +		button-right {
-> +			label = "D-Pad Right";
-> +			gpios = <&pio 0 9 GPIO_ACTIVE_LOW>; /* PA9 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_DPAD_RIGHT>;
-> +		};
-> +
-> +		button-select {
-> +			label = "Key Select";
-> +			gpios = <&pio 0 5 GPIO_ACTIVE_LOW>; /* PA5 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_SELECT>;
-> +		};
-> +		button-start {
-> +			label = "Key Start";
-> +			gpios = <&pio 0 4 GPIO_ACTIVE_LOW>; /* PA4 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_START>;
-> +		};
-> +
-> +		button-up {
-> +			label = "D-Pad Up";
-> +			gpios = <&pio 0 6 GPIO_ACTIVE_LOW>; /* PA6 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_DPAD_UP>;
-> +		};
-> +
-> +		button-x {
-> +			label = "Action-Pad X";
-> +			gpios = <&pio 0 3 GPIO_ACTIVE_LOW>; /* PA3 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_NORTH>;
-> +		};
-> +
-> +		button-y {
-> +			label = "Action Pad Y";
-> +			gpios = <&pio 0 2 GPIO_ACTIVE_LOW>; /* PA2 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <BTN_WEST>;
-> +		};
-> +	};
-> +
-> +	gpio-keys-volume {
-> +		compatible = "gpio-keys";
-> +		autorepeat;
-> +
-> +		button-vol-up {
-> +			label = "Key Volume Up";
-> +			gpios = <&pio 4 1 GPIO_ACTIVE_LOW>; /* PE1 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +
-> +		button-vol-down {
-> +			label = "Key Volume Down";
-> +			gpios = <&pio 4 2 GPIO_ACTIVE_LOW>; /* PE2 */
-> +			linux,input-type = <EV_KEY>;
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&pio 8 12 GPIO_ACTIVE_HIGH>; /* PI12 */
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	reg_vcc5v: regulator-vcc5v { /* USB-C power input */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +};
-> +
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdc1>;
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_cldo3>;
-> +	disable-wp;
-> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&ohci0 {
-> +	status = "okay";
-> +};
-> +
-> +&pio {
-> +	vcc-pa-supply = <&reg_cldo3>;
-> +	vcc-pc-supply = <&reg_cldo3>;
-> +	vcc-pe-supply = <&reg_cldo3>;
-> +	vcc-pf-supply = <&reg_cldo3>;
-> +	vcc-pg-supply = <&reg_aldo4>;
-> +	vcc-ph-supply = <&reg_cldo3>;
-> +	vcc-pi-supply = <&reg_cldo3>;
-> +};
-> +
-> +&r_rsb {
-> +	status = "okay";
-> +
-> +	axp717: pmic@3a3 {
-> +		compatible = "x-powers,axp717";
-> +		reg = <0x3a3>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +		interrupt-parent = <&nmi_intc>;
-> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vin1-supply = <&reg_vcc5v>;
-> +		vin2-supply = <&reg_vcc5v>;
-> +		vin3-supply = <&reg_vcc5v>;
-> +		vin4-supply = <&reg_vcc5v>;
-> +
-> +		regulators {
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <940000>;
-> +				regulator-max-microvolt = <940000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1100000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +
-> +			reg_aldo1: aldo1 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_aldo2: aldo2 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_aldo3: aldo3 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_aldo4: aldo4 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc-pg";
-> +			};
-> +
-> +			reg_bldo1: bldo1 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_bldo2: bldo2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc-pll";
-> +			};
-> +
-> +			reg_bldo3: bldo3 {
-> +				/* 2.8v - unused */
-> +			};
-> +
-> +			reg_bldo4: bldo4 {
-> +				/* 1.2v - unused */
-> +			};
-> +
-> +			reg_cldo1: cldo1 {
-> +				/* 3.3v - audio codec - not yet implemented */
-> +			};
-> +
-> +			reg_cldo2: cldo2 {
-> +				/* 3.3v - unused */
-> +			};
-> +
-> +			reg_cldo3: cldo3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-io";
-> +			};
-> +
-> +			reg_cldo4: cldo4 {
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-wifi";
-> +			};
-> +
-> +			reg_boost: boost {
-> +				regulator-min-microvolt = <5000000>;
-> +				regulator-max-microvolt = <5200000>;
-> +				regulator-name = "boost";
-> +			};
-> +
-> +			reg_cpusldo: cpusldo {
-> +				/* unused */
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> +
-> +/* the AXP717 has USB type-C role switch functionality, not yet described by the binding */
-> +&usbotg {
-> +	dr_mode = "peripheral";   /* USB type-C receptable */
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	status = "okay";
-> +};
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
