@@ -1,129 +1,154 @@
-Return-Path: <devicetree+bounces-63301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30748B4585
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:20:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDEDC8B4586
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:24:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 426C5282856
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 10:20:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7467B1F21DD9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 10:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F27F47F69;
-	Sat, 27 Apr 2024 10:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2284347F6A;
+	Sat, 27 Apr 2024 10:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="exYMyUU2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EDFe72rW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFBC47F45
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 10:20:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFDC44C8B;
+	Sat, 27 Apr 2024 10:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714213222; cv=none; b=b/itMp4vi0qkGx3XGk80yprQTa3OlVg688mcNu0WxbduEEFP2D41V9jfJMzdkpQZ/p914Mkppx/DThbA+KBMuPdy/Km9w9qjyqzwPuDXqOdsmWZ0PhVVFEzdsPchsAttlprFeoVrfsOroIE08XdW9yuvK+3o0xMCpfCyCm/Y2CU=
+	t=1714213479; cv=none; b=DX6z/zxDBLUyoki9+DAtEmXlPfDxhR+FdimH/jWfHXaIB2ibPQQQF7KXcO+CFpu9ACdShobMlAIkBCt4ArLF8CWgkn4AAvDUaYeKXKxMB9xjC9sD5oC4exeQpFgXasMnnlDUyxjTNNm0mQf6fKgVrst7Qakh+9jqRepoytWcS9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714213222; c=relaxed/simple;
-	bh=/Ov3HxWoUq28WJk09V7518F+JgaY60ThUTskN5tFB+w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dUg85BWVg2COLv07CvUsLzesmaybYZd+wZQG8F8IwTYCUyWbJ/W78XuvBuN1RhNhown7aZmDB5Qo5cNuyZgfJPViTH/oWkqsQbyqR6yax7IIch8USAWMY5utbC74iLS8UnxsYcNln11bp8mVIsdq4gpTrrt+5FIvGDYWJaOcBI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=exYMyUU2; arc=none smtp.client-ip=209.85.221.45
+	s=arc-20240116; t=1714213479; c=relaxed/simple;
+	bh=l2oCs009FNTFic+6/Bn8POOKtUyuT0t/au2Vi8nWiyk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BqFlsanCn+ALH/HyVdp6VF/yJhQCI1im7cv5XsTRnQe1dNw3FEwoCgy92RMRJZPNsWEoNnF4R8aMiAlQPM4mQK1fgUezcfmbcJQQNqf1ybp4zDm8TLeyotM65QUV0iLTPgbsUTZ1Spt03kVUTcwfaNKm4I7ua+P6wRWOdNTFpVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EDFe72rW; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34af8b880e8so1808788f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 03:20:20 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-349c4505058so2158466f8f.3;
+        Sat, 27 Apr 2024 03:24:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714213219; x=1714818019; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1714213476; x=1714818276; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YHJd5Ub+zNiNQnkR29UpgThMCfp9nBVMMGF9iCNGC/g=;
-        b=exYMyUU29freRON2j0DViD6GGAjPkcE77ZJoGc6Gb5HDIC4VgxSPNH9jLSov2gUYz4
-         dbVQVZx1PFWxXagmC0CQ/cKydjEFmqbtC0WLaUjnGR9ZOX1xM7HkU4Wd6qlcTufUxH9T
-         dyWlGob1iIHyTfdNml7pLDYX8+EaW4g9oychSFnGVuhHuIWutb8sP2tQssXXOMGE6njG
-         uJB2TC/P4avNrLClHhq6NCcrYdmpkbbMxjWC/RVznDfcP9AZYqnLq80dVMd7NWAKEsjb
-         PVcS+JRYXGzwiDLYL7063l+eGRNq7MJ+gqd/odx/Yg9i6ABCGXErhoY7St4hc6fBsbLw
-         NnlQ==
+        bh=l2oCs009FNTFic+6/Bn8POOKtUyuT0t/au2Vi8nWiyk=;
+        b=EDFe72rWHUOT/z5QCFJznssUdeFLdS6GBnSg3ouPbn7X5YggRAkT5vtsoP4Mch0u2c
+         iRPdEEDf20/0SFKYVerR52w5LvkoMtcOjvMOLgtm7gkJUBSawNKuCfbCBOBwo2kjHGv5
+         cPRU6BjS55Ki5wOYRjdbwYy8e9m3nN3td2BTvbZ3c0pY1inYIG/CZMz6faEryE3bM+Nw
+         DziI8qvs7t6sMYwZcqQEKhdmcJg3NMZ3shUMaNshLoZyZZJt9tAW0D+JpS/CJ6GVWjng
+         +8hpVajPc8YFr+j4hl0fDIZUFe5MH7it5FaKY4Ei6hCve/s7z1I8Nzof4M/9FLBRYa7D
+         bCYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714213219; x=1714818019;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1714213476; x=1714818276;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YHJd5Ub+zNiNQnkR29UpgThMCfp9nBVMMGF9iCNGC/g=;
-        b=ln8LXcy6HEuojZE9vWjQ2MyJ+u/SBLk28ljk1kc0F1Yik9qt2I49m43keB8g5C+yxi
-         qcAw/HDIteLelbvIkUyKMH4A9u90bDxvhVbCXBAEUpxJTwNPpcDWPAU7WLhvjFJ0N/uv
-         GXPP4XkmGQP0H5VAr6wd77W6srKd/wSgaST06B8Mj+2IALi//zwTWY3CClh29JrcV1SK
-         XhKjUEA9zq3dCZOeVdVqcBm0Q87h0piNofOPLlX69chh2lrIJdWrnQTpiaTtYAd9bB5e
-         rhTLQE5b7yaR71zUtxZKjWUVBDyILbHzPIu+ZaTjwNhbq8JuMLxeOyNDLCvqTpG+TVNy
-         09Rw==
-X-Gm-Message-State: AOJu0Ywy8FbgQ/VHT9qV0k71p2rcR8JC8pbyrdw1MVkCT7NQhH+2xAR0
-	rUMhE7yrI2KKbJZRk+rxcJPameIZFKXvNJg80NgrkWqngQRMXpZq
-X-Google-Smtp-Source: AGHT+IFL9pmwago60lsjtM31ujCqiGalMdnj/9GkMZCkdytk+HPgG5MXpKDQddtrnSdu/GUykTlYRw==
-X-Received: by 2002:a05:6000:18af:b0:34c:765:7657 with SMTP id b15-20020a05600018af00b0034c07657657mr4831986wri.24.1714213218824;
-        Sat, 27 Apr 2024 03:20:18 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id g4-20020adff3c4000000b00343c1cd5aedsm24475445wrp.52.2024.04.27.03.20.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Apr 2024 03:20:18 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- Ryan Walklin <ryan@testtoast.com>
-Subject: Re: [PATCH v5 2/4] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-Date: Sat, 27 Apr 2024 12:20:17 +0200
-Message-ID: <1856456.atdPhlSkOF@jernej-laptop>
-In-Reply-To: <20240426213505.69273-10-ryan@testtoast.com>
-References:
- <20240426213505.69273-5-ryan@testtoast.com>
- <20240426213505.69273-10-ryan@testtoast.com>
+        bh=l2oCs009FNTFic+6/Bn8POOKtUyuT0t/au2Vi8nWiyk=;
+        b=pBRuWj/wqhV30NCDcA8lSgy8u4T4mqrb2+DEFvk9BmIAwP6r01YEwluIwZmKo1gnOA
+         0kyZD1lfGgjRO5ZbFaWMBNU3/NYOiPB4hWJO1eeSqaUqPH2pIIYyuWps+Z8J5xTjoex+
+         wR2J77q5nUhYdf+6KbQfj+G/TMIYAuqZkHi+n5HXeNwzwPIAhhXKBflwvEe1FgYGnQbo
+         GExyddLyAj7qrwD1A77/a5ZsQS0naSQEHqOiUoJ1YXLqBkqBqOIOZ8Th7jEvzFMFiqpE
+         1FQGcwlAmzi1cnZoJU+O+/IHoO9QGmgMSfTrt7bGSWLGg4B6UMMMRwlDzMjuSVd7VmUt
+         +/lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUT2f6rP0ybfMeml4V+OKKPcDfEWPAOJ0Bb8KiqONouUpQh8SBG21cRef3WI40zBIquGZvad9UABBfllcFq2ZLsBeUZ6AeAGRNIsnW/0gNV0tgztJ+5waqE+vTj3aN24a9YJutEcQNaWw==
+X-Gm-Message-State: AOJu0YwKmisxhNUY+tAzttEJ4nfn6jTtKlDWwKbAoSe2vK+7xcmBJ2Nx
+	XehRb+X1pWE8sz9tYWhvmD/TR0qrdjwOMtLJQV6d4fIEkdSm0jgKRemb0ILvGEG+/wF/XaM8Uet
+	d76+EPmGW5aUlEacgF/mavyFU0vM=
+X-Google-Smtp-Source: AGHT+IEpODtrHOY9y5XiFObx7A01K4CsUREu8unoiWY37KTSNvNOkosI6RMW7bnuRGPZWGVYRcGG1WgD5YuRs0mx3mU=
+X-Received: by 2002:a5d:58d8:0:b0:34a:1cc5:ee0c with SMTP id
+ o24-20020a5d58d8000000b0034a1cc5ee0cmr312655wrf.26.1714213475436; Sat, 27 Apr
+ 2024 03:24:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+References: <linux-mm@kvack.org> <20240416120635.361838-1-skseofh@gmail.com>
+ <20240416120635.361838-2-skseofh@gmail.com> <Zh9l_LpThq9aFUR7@kernel.org>
+ <CAATEi5kywwC2yUaYjgs+Gm=4HM5o=KHTqH1ALKJijWE_gge0=g@mail.gmail.com>
+ <ZiFgYWydIwvnpIIY@kernel.org> <CAATEi5kFt8iUeWSkrj_bVTyPO_tfQzG77D719P5dLsr2j6Zkzw@mail.gmail.com>
+ <CAATEi5ksY-v7-LEqNZWFV5hsHiegNEtrh4LpMWOQ=vT7hC0Rng@mail.gmail.com> <Ziy8AsAGZyKCyXX_@kernel.org>
+In-Reply-To: <Ziy8AsAGZyKCyXX_@kernel.org>
+From: DaeRo Lee <skseofh@gmail.com>
+Date: Sat, 27 Apr 2024 19:24:23 +0900
+Message-ID: <CAATEi5=Z0qirM-fyGJL_UPcr7-iyCFtOW9d3XsdN50Tkhpm0iA@mail.gmail.com>
+Subject: Re: [PATCH v2] memblock: add no-map alloc functions
+To: Mike Rapoport <rppt@kernel.org>
+Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
+	Daero Lee <daero_le.lee@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dne petek, 26. april 2024 ob 23:35:10 GMT +2 je Ryan Walklin napisal(a):
-> The base model RG35XX (2024) is a handheld gaming device based on an
-> Allwinner H700 chip.
-> 
-> The H700 is a H616 variant (4x ARM Cortex-A53 cores @ 1.5Ghz with Mali G31
-> GPU) which exposes RGB LCD and NMI pins.
-> 
-> Device features:
-> - Allwinner H700 @ 1.5GHz
-> - 1GB LPDDR4 DRAM
-> - X-Powers AXP717 PMIC
-> - 3.5" 640x480 RGB LCD
-> - Two microSD slots
-> - Mini-HDMI out
-> - GPIO keypad
-> - 3.5mm headphone jack
-> - USB-C charging port
-> 
-> Enabled in this DTS:
-> - AXP717 PMIC with RSB serial interface, regulators and NMI interrupt
->   controller
-> - Power LED (charge LED on device controlled directly by PMIC)
-> - Serial UART (accessible from headers on the board)
-> - MMC slots (SD2 appears to have a GPIO-switched regulator for 1.8v
->   low-voltage signalling, this is not yet modeled so a fixed-regulator and
->   3.3v and 1.8v rails from the PMIC are used. A switched regulator will be
->   confirmed and posted in a follow-up patch)
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+2024=EB=85=84 4=EC=9B=94 27=EC=9D=BC (=ED=86=A0) =EC=98=A4=ED=9B=84 5:50, M=
+ike Rapoport <rppt@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> On Fri, Apr 19, 2024 at 10:59:52AM +0900, DaeRo Lee wrote:
+> > 2024=EB=85=84 4=EC=9B=94 19=EC=9D=BC (=EA=B8=88) =EC=98=A4=EC=A0=84 10:=
+46, DaeRo Lee <skseofh@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+> > >
+> > > In memmap_init_reserved_pages, we mark memblock.reserved as
+> > > PageReserved first and mark the memblock.reserved with nomap flag
+> > > also.
+> > Sorry. This is my mistake. 'memblock.memory with nomap flag' is right.
+> >
+> > > -> Isn't this duplicated work? (If we add no-map region to
+> > > memblock.reserved 'and' mark in memblock.memory..)
+> > > So, I think that for the no-map region, we don't need to add to the
+> > > memblock.reserved.
+> > > This is what we do now in early_init_dt_reserve_memory. the nomap
+> > > region is not added to the memblock.reserved.
+> > >
+> > > In early_init_dt_alloc_reserved_memory_arch, if 'nomap' is true, we
+> > > mark the memblock.memory region as _NOMAP. And if the return value
+> > > 'err' is not zero(which is '-ENOMEM' from memblock_isolate_range), we
+> > > free the region.
+> > > - 'nomap' is true -> memblock_mark_nomap : success -> not free the re=
+gion
+> > >
+> > > : fail -> free the region
+> > > And it can be said that we add the region to the memblock.reserved
+> > > using memblock_phys_alloc_range and if the region is nomap, then we
+> > > can free the region from memblock.reserved. But is it necessary to ad=
+d
+> > > it to memblock.reserved? We just need the region in memblock.memory t=
+o
+> > > mark nomap.
+> > >
+> > > So, here is what I think:
+> > > - reserved-memory w/ nomap region -> mark only to memblock.memory
+> > > - reserved-memory w/o nomap region -> add to the memblock.reserved
+>
+> NOMAP and memblock.reserved are semantically different, and at makes sens=
+e
+> to have a "reserved nomap" node in fdt recorded in both memblock.memory a=
+nd
+> memblock.reserved.
+>
+> memblock.reserved represents the memory that is used by firmware or early
+> kernel allocation, so reserved memory in fdt should be reserved in memblo=
+ck
+> as well. I believe it's an oversight that early_init_dt_reserve_memory()
+> does not call memblock_reserve() for nomap memory.
+>
+> NOMAP is a property of a memory region that says that that region should
+> not be mapped in the linear map, it's not necessarily in use.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+I agree that the NOMAP region should be added to memblock.reserved.
 
-Best regards,
-Jernej
+So, I think we need to clean-up memmap_init_reserved_pages, because in
+this function we call reserve_bootmem_region for memblock.reserved and
+memblock.memory with nomap. We don't need to call
+reserve_bootmem_region for nomap.
 
-
+Regards,.
+DaeRo Lee
 
