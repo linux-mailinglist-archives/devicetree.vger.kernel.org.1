@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-63317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5ED48B4631
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:38:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4CC8B463B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:47:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A4F01F2654F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:38:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 199F61C22744
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032234D5AC;
-	Sat, 27 Apr 2024 11:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5114D9EC;
+	Sat, 27 Apr 2024 11:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WHmyZQ/y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kLyEM9zr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9306844C9D
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 11:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD6243176
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 11:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714217910; cv=none; b=fICdSeC36m8QBkPCd5f2jC9CKtgFHwgMDIiE8MmRCgecaDRvEUL6RBOkDUE/cznOySnhH0Zfclux8kPW732jVNrVuaAo3KhAqWhoYAtfx/cp/MAxoUxfyNOTX+/nGHy34U78qlKl5Aw+OgMElYp2A9r7EiOBIS8Bje/z9QqlZLQ=
+	t=1714218470; cv=none; b=I8LXYGhl5/zRWHQKGQcskFywQDn3SaetYK1zRPBX2C9X8osVPNm7SC6GQyzeevasBALYBnNyteMLyEb8YzOUAo9hBupus877c4h6QRFsTG5qjEmMASfTIhwyHh6rtDhhmTKyid/DrV00JKqph6FVWyHHn+MvWKRRehL9ecosaIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714217910; c=relaxed/simple;
-	bh=p8O2sAM2IxpLXYnB4aXc6lDvtD3kwwkCCZ0i/MQiGKg=;
+	s=arc-20240116; t=1714218470; c=relaxed/simple;
+	bh=m64OPA49saGqYh5NGoDkpU02HfGnplA/FI6YB5a3TLM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LQg6G4oqXaxDvZLh7945j9xmERKNJnrqtpdHZ/0bzn1TFJX2vCWnuKHAJa6w4JIGL14j7yy13zahw1JgaQQSPtoqm9mLOOiSXe+/HGcH4sl4bwzEe/3yHHnwSRYTL18wvq72ctnZi3+UzigAJFzbIbHx5udUGNW5ZLDoXEZtEEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WHmyZQ/y; arc=none smtp.client-ip=209.85.215.175
+	 Content-Type:Content-Disposition:In-Reply-To; b=jAkAsOZ09EfypqWBwlBWh3DbsAQXzOO4Mx9HBewWTQi0mRN2jwzal/6YLDV86x8DzqOEFSoefK3wxNC3nTKi0a/sxPmPhM/HwRrAESiylswylLzN2eSwN5jzh8nYMn5Rqln8YQW6dGJs+shERO0DUmcTQK7Q02wW7UbNOMDM3WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kLyEM9zr; arc=none smtp.client-ip=209.85.216.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5dcc4076c13so2211210a12.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 04:38:28 -0700 (PDT)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2a526803fccso2076259a91.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 04:47:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714217908; x=1714822708; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714218467; x=1714823267; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Np//FY4PRW7HBHaV5Y9xc/c4l4DQaCwD4Awtz2s21Ww=;
-        b=WHmyZQ/yM1AjGbOsKmFc2eXmnX2Heg+JZEZmebwLAGilKJr49+I4ZGkdWOFYiAeYI9
-         MXg2KymXYFUta7riUD5r2zwR+koPDCAY6NXpXEx2/7aSP0o/JHFIsuxmMkJRVgk1E7E9
-         kW1gJmAYGpgE7pjjd249mJwU0WBjG2jXet2Dd7FHc+7FN8GbBWMPW7q+KDQVoAxecHOs
-         WaZfkx7uREGEO8Q5xolXeUGdywH/5DUbQ5OcOZDs2u0mKwt7B5o1N0eZR7vYYuDtpPkU
-         4XaDTGN8jX2IteQ3o7c38N9B8qOkU/smw+yZ6v2K4S32T/GFUnlfR6qdHIAeGYC/IYVF
-         s1Og==
+        bh=HcfbaR8kZq8OLnUAT2pXDqoM8fNnWHLJf3IpXP9uecY=;
+        b=kLyEM9zrTI5eK+RrsFYCyZNfXnKslK8ea/a25GIFfydplVvzKyR0Md5/lP5ykk5oSN
+         Jla/CYOtU4BRZGno2UpHQDiNlYhZlV6BywABDhxhycRQN1ho/RwspwP662vtNSeBLfN7
+         MtOdtSd9Kwmv0bn+MkrK4N6TAVoxN+JJaD72cOW532e/nzTSz8PBGN+bYJRnzYKuigq3
+         KbMAGZyKFeLq5EFtDWMpO97KFib46La12GRkhe1eOoZ0oywWmauBCz77xD/WwsqCLtMt
+         3fRrX7QsZ8z5R4AsVq/V3VUMTKZEB5WlUgLkw2JVc130GynaS7xDR8W/YgX1wtHEo/rj
+         HeVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714217908; x=1714822708;
+        d=1e100.net; s=20230601; t=1714218467; x=1714823267;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Np//FY4PRW7HBHaV5Y9xc/c4l4DQaCwD4Awtz2s21Ww=;
-        b=OS91ZdIkczHqoUWatB38voZf6+XxGrqpIgp3FGZHq2+hIKDpWTzRsOxMtMLWFbDcH6
-         XKYmf6GtLmj9t+mKG5+zN7t+TvdjlRjGSNfucEwL7kbLXAZ6gizRipWD5ZKvwvu50Dk5
-         iuGIFCciAre1XkaY0Zgi2M/uxUqgyXwlsoWaXS+DEfSLP9JDiwzIHceskrI2+zFo5Y2D
-         /UJtA/Vm0yA6aU3DE5qxpFffpiwTKTDi4TGVi1ov1xoAdDDmL+Nex5wSruduw8wyeU+O
-         AkuvPInrYvVSo9WMeBjkyWiW9+06pBIMwo3U9jqCtVVuWyI3M3eEHF5S5i8JHhsYKXA4
-         xaiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX/D7j2Ei3ASxN11lR2CWKHQiHm5yqFv9CAWiL6OhdX6p1HRynb5yGS7YqwhgXZZNXW1ukV+tEQvSAz5cwnOkWfa3buziSUaxmFtg==
-X-Gm-Message-State: AOJu0YytgEUBBiHM3/ozC0AcQh5EPWIVQWBpMD3EVNpoVxRe6c2dKb7A
-	I/iAQ0NDQUqkye+F7IuGlwSnJxuwUdLc/Rr0Uq3xY1ed41F5YnWvMI7mULVkjg==
-X-Google-Smtp-Source: AGHT+IEF55H/1kS+Cfrgsn1sJ6Q8f7kM2jkzMm6mfROP3v0+pv0LxPc83s4Ah40q/gygS+pPW4uANg==
-X-Received: by 2002:a17:90a:c687:b0:2b0:763b:370e with SMTP id n7-20020a17090ac68700b002b0763b370emr3311655pjt.18.1714217907747;
-        Sat, 27 Apr 2024 04:38:27 -0700 (PDT)
+        bh=HcfbaR8kZq8OLnUAT2pXDqoM8fNnWHLJf3IpXP9uecY=;
+        b=Ikmw2LC9POeub7JLtdo5h5jMjKDU+Q+fZZhlb66WwN2NWoi2DSVVKyY9G5V5LOTqyt
+         qxCny15YVPszRgNFKWrrqM1X19msWmS94WVRAUasF4Y/4TswMaholPt9Sw+L5Ou+8P0d
+         hNTt+A2z4vxMnBc1OWJYEhqaua1fDusH4bjndpA0IAcg54d6FTCp7zYG3ArpUxTh6eDW
+         4W4+auldF5KoD+Kg8hG1ozEb6k3qXdMfrq9zeVxcISSpkTnENoMXfB3QHHKIAT+ooPwA
+         olsKhEunwc5U1ykVOEjTkqCZ27ftEEHGBcXltsbN/t9ijJMrDylw14Iuhen5rVAiFsiY
+         BbDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0dkzJNslrj6SDYgWGfdUQC3dDDHXzKbsFHkKW24fwscjW6wMsbjuEyi0HdZJc93rcUJpB66ytopy6Lyt94F7VIYJ1+qVS4EtYvA==
+X-Gm-Message-State: AOJu0Yxsw3q/UaOOfAlXMrcH+rRni3ZH7ScjvbpnKClJufKZkP0fl5v3
+	2WzaxQVleQShVpkcUbx+lFUZqi0pGROomlZ/ZI3zXPqWu33RHlPnELXKKTi8RQ==
+X-Google-Smtp-Source: AGHT+IGeS2NJ9XxwhqftWfQ5PmQrFQpYK3kdhK248fghwiiRxIGhENovfD8acLiKv+RBllo0edUJtw==
+X-Received: by 2002:a17:90a:5d0e:b0:2af:f382:158b with SMTP id s14-20020a17090a5d0e00b002aff382158bmr4524138pji.49.1714218466853;
+        Sat, 27 Apr 2024 04:47:46 -0700 (PDT)
 Received: from thinkpad ([117.213.97.210])
-        by smtp.gmail.com with ESMTPSA id s11-20020a17090ae68b00b002adb62b633bsm10608534pjy.43.2024.04.27.04.38.22
+        by smtp.gmail.com with ESMTPSA id l9-20020a17090a070900b002a528a1f907sm19257945pjl.56.2024.04.27.04.47.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Apr 2024 04:38:27 -0700 (PDT)
-Date: Sat, 27 Apr 2024 17:08:17 +0530
+        Sat, 27 Apr 2024 04:47:46 -0700 (PDT)
+Date: Sat, 27 Apr 2024 17:17:36 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Frank Li <Frank.Li@nxp.com>
 Cc: Richard Zhu <hongxing.zhu@nxp.com>,
@@ -88,10 +88,10 @@ Cc: Richard Zhu <hongxing.zhu@nxp.com>,
 	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 09/11] PCI: imx: Consolidate redundant if-checks
-Message-ID: <20240427113817.GN1981@thinkpad>
+Subject: Re: [PATCH v3 11/11] PCI: imx6: Add i.MX8Q PCIe support
+Message-ID: <20240427114736.GO1981@thinkpad>
 References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
- <20240402-pci2_upstream-v3-9-803414bdb430@nxp.com>
+ <20240402-pci2_upstream-v3-11-803414bdb430@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,55 +101,160 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240402-pci2_upstream-v3-9-803414bdb430@nxp.com>
+In-Reply-To: <20240402-pci2_upstream-v3-11-803414bdb430@nxp.com>
 
-On Tue, Apr 02, 2024 at 10:33:45AM -0400, Frank Li wrote:
-> Consolidated redundant if-checks pertaining to imx_pcie->phy. Instead of
-> two separate checks, merged them into one to improve code readability.
+On Tue, Apr 02, 2024 at 10:33:47AM -0400, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
 > 
-> if (imx_pcie->phy) {
-> 	... code 1
-> }
+> Add i.MX8Q (i.MX8QM, i.MX8QXP and i.MX8DXL) PCIe support.
 > 
-> if (imx_pcie->phy) {
-> 	... code 2
-> }
-> 
-> Merge into one if block.
-> 
-> if (imx_pcie->phy) {
-> 	... code 1
-> 	... code 2
-> }
-> 
+
+Add some info like IP version, PCIe Gen, how different the code support
+comparted to previous SoCs etc...
+
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
 > ---
->  drivers/pci/controller/dwc/pcie-imx.c | 2 --
->  1 file changed, 2 deletions(-)
+>  drivers/pci/controller/dwc/pcie-imx.c | 54 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
 > 
 > diff --git a/drivers/pci/controller/dwc/pcie-imx.c b/drivers/pci/controller/dwc/pcie-imx.c
-> index 653d8e8ee1abc..378808262d16b 100644
+> index 378808262d16b..af7c79e869e70 100644
 > --- a/drivers/pci/controller/dwc/pcie-imx.c
 > +++ b/drivers/pci/controller/dwc/pcie-imx.c
-> @@ -1103,9 +1103,7 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
->  			dev_err(dev, "pcie PHY power up failed\n");
+> @@ -30,6 +30,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/reset.h>
+>  #include <linux/phy/phy.h>
+> +#include <linux/phy/pcie.h>
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+>  
+> @@ -81,6 +82,7 @@ enum imx_pcie_variants {
+>  	IMX8MQ,
+>  	IMX8MM,
+>  	IMX8MP,
+> +	IMX8Q,
+>  	IMX95,
+>  	IMX8MQ_EP,
+>  	IMX8MM_EP,
+> @@ -96,6 +98,7 @@ enum imx_pcie_variants {
+>  #define IMX_PCIE_FLAG_HAS_PHY_RESET		BIT(5)
+>  #define IMX_PCIE_FLAG_HAS_SERDES		BIT(6)
+>  #define IMX_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
+> +#define IMX_PCIE_FLAG_CPU_ADDR_FIXUP		BIT(8)
+>  
+>  #define imx_check_flag(pci, val)     (pci->drvdata->flags & val)
+>  
+> @@ -132,6 +135,7 @@ struct imx_pcie {
+>  	struct regmap		*iomuxc_gpr;
+>  	u16			msi_ctrl;
+>  	u32			controller_id;
+> +	u32			local_addr;
+>  	struct reset_control	*pciephy_reset;
+>  	struct reset_control	*apps_reset;
+>  	struct reset_control	*turnoff_reset;
+> @@ -402,6 +406,10 @@ static void imx_pcie_configure_type(struct imx_pcie *imx_pcie)
+>  	if (!drvdata->mode_mask[id])
+>  		id = 0;
+>  
+> +	/* If mode_mask is 0, means use phy driver to set mode */
+> +	if (!drvdata->mode_mask[id])
+> +		return;
+
+There is already a check above for 0 mode_mask. Please consolidate.
+
+> +
+>  	mask = drvdata->mode_mask[id];
+>  	val = mode << (ffs(mask) - 1);
+>  
+> @@ -957,6 +965,7 @@ static void imx_pcie_ltssm_enable(struct device *dev)
+>  	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
+>  	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
+>  
+> +	phy_set_speed(imx_pcie->phy, PCI_EXP_LNKCAP_SLS_2_5GB);
+>  	if (drvdata->ltssm_mask)
+>  		regmap_update_bits(imx_pcie->iomuxc_gpr, drvdata->ltssm_off, drvdata->ltssm_mask,
+>  				   drvdata->ltssm_mask);
+> @@ -969,6 +978,7 @@ static void imx_pcie_ltssm_disable(struct device *dev)
+>  	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
+>  	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
+>  
+> +	phy_set_speed(imx_pcie->phy, 0);
+>  	if (drvdata->ltssm_mask)
+>  		regmap_update_bits(imx_pcie->iomuxc_gpr, drvdata->ltssm_off,
+>  				   drvdata->ltssm_mask, 0);
+> @@ -1104,6 +1114,12 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
 >  			goto err_clk_disable;
 >  		}
-> -	}
 >  
-> -	if (imx_pcie->phy) {
+> +		ret = phy_set_mode_ext(imx_pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+> +		if (ret) {
+> +			dev_err(dev, "unable to set pcie PHY mode\n");
+> +			goto err_phy_off;
+> +		}
+
+This is not i.MX8Q specific. Please add it in a separate patch.
+
+> +
 >  		ret = phy_power_on(imx_pcie->phy);
 >  		if (ret) {
 >  			dev_err(dev, "waiting for PHY ready timeout!\n");
-> 
-> -- 
-> 2.34.1
-> 
+> @@ -1154,6 +1170,28 @@ static void imx_pcie_host_exit(struct dw_pcie_rp *pp)
+>  		regulator_disable(imx_pcie->vpcie);
+>  }
+>  
+> +static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
+> +{
+> +	struct imx_pcie *imx_pcie = to_imx_pcie(pcie);
+> +	struct dw_pcie_ep *ep = &pcie->ep;
+> +	struct dw_pcie_rp *pp = &pcie->pp;
+> +	struct resource_entry *entry;
+> +	unsigned int offset;
+> +
+> +	if (!(imx_pcie->drvdata->flags & IMX_PCIE_FLAG_CPU_ADDR_FIXUP))
+
+This flag should be documented in the commit message.
+
+> +		return cpu_addr;
+> +
+> +	if (imx_pcie->drvdata->mode == DW_PCIE_EP_TYPE) {
+> +		offset = ep->phys_base;
+> +	} else {
+> +		entry = resource_list_first_type(&pp->bridge->windows,
+> +						 IORESOURCE_MEM);
+
+Check for NULL entry.
+
+> +		offset = entry->res->start;
+> +	}
+> +
+> +	return (cpu_addr + imx_pcie->local_addr - offset);
+> +}
+> +
+>  static const struct dw_pcie_host_ops imx_pcie_host_ops = {
+>  	.init = imx_pcie_host_init,
+>  	.deinit = imx_pcie_host_exit,
+> @@ -1162,6 +1200,7 @@ static const struct dw_pcie_host_ops imx_pcie_host_ops = {
+>  static const struct dw_pcie_ops dw_pcie_ops = {
+>  	.start_link = imx_pcie_start_link,
+>  	.stop_link = imx_pcie_stop_link,
+> +	.cpu_addr_fixup = imx_pcie_cpu_addr_fixup,
+>  };
+>  
+>  static void imx_pcie_ep_init(struct dw_pcie_ep *ep)
+> @@ -1481,6 +1520,12 @@ static int imx_pcie_probe(struct platform_device *pdev)
+>  					     "Failed to get PCIEPHY reset control\n");
+>  	}
+>  
+> +	if (imx_check_flag(imx_pcie, IMX_PCIE_FLAG_CPU_ADDR_FIXUP)) {
+> +		ret = of_property_read_u32(node, "fsl,local-address", &imx_pcie->local_addr);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to get local-address");
+
+Is it OK to continue?
+
+- Mani
 
 -- 
 மணிவண்ணன் சதாசிவம்
