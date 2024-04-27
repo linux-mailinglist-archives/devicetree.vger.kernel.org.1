@@ -1,432 +1,248 @@
-Return-Path: <devicetree+bounces-63271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E988B4384
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 03:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3DE8B4399
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 03:54:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B1C9282E03
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 01:33:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8145283275
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 01:54:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5484C2E403;
-	Sat, 27 Apr 2024 01:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6F5383A0;
+	Sat, 27 Apr 2024 01:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="YhnCVyVp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UdYVLNYY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DD13BBCE
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 01:33:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 990714C63;
+	Sat, 27 Apr 2024 01:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714181604; cv=none; b=K3wv4NkYeuO7N+Zb38VIzgEiK+DU1QXpgiQRxjmGG6Cv9WtNNuTQMveQj76nPldUsXi7rUc2ayG8Y3a7LJYzNPzeufKHkq9dijZf2ZxUfVcIhc+TalRLCjoENOwFnw7qLpOAXRUJjKykjEpuQaFIV0J4r70GiBSv7Ws3oF97s5I=
+	t=1714182841; cv=none; b=DEVyr8BcQgxJgBQ317bobof3HiluglkAqu8Q6Zuz1XZzgqbtXWsji5v83JbfihAA98+1qvjOj2A4mr+dwrOZ96eqQ9/6Rmve9Z3zFvcLqTd5xgjraQqR+oNimvTPEUQ4wy+Apt9JtR+0NRwih15zLp8slOY7KuedPiRI6ZxzYxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714181604; c=relaxed/simple;
-	bh=i59/ujEJMNnCg7gi/40daSIU/Bj4KauqTOsX3ixwd70=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QzRT3XdGEQt/hfk/V6wUy5kBiMWI5SLnwiNnPZkJ91ndp06qe8KoHetGjclo+ghKxl8xfm9rRtbR8ffjhcjbVTRaItqXZGUhCgd2p7FuPTO2Sz+3ubM21cqcmoRiuZ7phYfpV8fEJY+gnU/dZ4VTlck2ApEYnn2pq3N1OKgahL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=YhnCVyVp; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-2348a5d1584so1391548fac.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Apr 2024 18:33:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714181601; x=1714786401; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JQpt6297aHfVvE4nT7VnKeCEcale8WPc/TTW64rkQYo=;
-        b=YhnCVyVpdLDbJU5aUgjFRianGfhgrmLaCVuSsl1Y3UeiFKJsyRtAo6Sn1AIWGvscEd
-         VOl2b38f1ZOt4bVlSqQ2hvfUHwGGORvLoex5dodLTum8qJI2jW4ZuzZIn5RviZHqjQXi
-         mV3UsrOkY0JtcGhWVnxBA4o2Xq7RUYzCcHwLWOX/c3ZUltsg/QCY0f8TQEPfBKg5myrR
-         lNCb9zpV793qWtTiMl/C3n3jz0dnZhrzHRcPBRhgHBTJc4K1wd5c45Fkb6vJ9W2dJmUC
-         N54FdeODrr86XsUxu4keoLHo0NWbLzuATkicgb3i6YwfMlbhBg3NMx9CiAlDSCR1G+yQ
-         99Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714181601; x=1714786401;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JQpt6297aHfVvE4nT7VnKeCEcale8WPc/TTW64rkQYo=;
-        b=Nf0bKqegd5ss6L0I4wWloBn8YUWa/vqmQ6avBibHPYodpfxvuTg9IjhmiD4I0rov41
-         hCeuGqETDQ56ANIGSDV1FWlPrAX+aPoXOIozSlUOpiT+r+Jk20NLe69WHID7A1PsT6zY
-         wOHe+tUEV1N9MYVQRvKc1ZYk/ITDq6i9cy0L1Q5tOgjVvTz+/uHhUYA5prd9puFb4p07
-         CHOHG593hq7p0g1ObTEsuQfIHfYbRxR4zy4sBDh+9bEMFMnAaZ9IA+5SWFUQ7U5m5cZd
-         RuOdDexqITnzAI1l/eR5D7gt3LCgWWgl9LRrJzE/Ac38GvsxMjqRfG9D/SdyvzFBGrm6
-         QkMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWF1XUfmQJ6TrX3zYDH7z7u/tYLYtSe4nnFTHoIPSA5mnefw6424GRjH9RnRaai1fBrUtM3AoOFIX0aTA0x4DbkBAFBwgdkT9YnRg==
-X-Gm-Message-State: AOJu0YwMXvTRO1h78t1odiW9Z0CejTac7LDsEUpB7Cpwd0bC/7F714Ki
-	KsL+aBUv0vVGe9FVZHwc7f2G6BCBx9JHIC40lwn9cI0xYGGFR3AIv+2J/QuIOT4=
-X-Google-Smtp-Source: AGHT+IFKPghsjZLurC4EQwLfRUO+CkR+Zm3QBKflvDaBl342rGaCxptKAb76eL5uFB+LD8nIQWO/NA==
-X-Received: by 2002:a05:6870:724b:b0:22e:ddde:adab with SMTP id y11-20020a056870724b00b0022edddeadabmr4780625oaf.36.1714181600802;
-        Fri, 26 Apr 2024 18:33:20 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id h17-20020a62b411000000b006edd05e3751sm16003458pfn.176.2024.04.26.18.33.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 18:33:20 -0700 (PDT)
-Date: Fri, 26 Apr 2024 18:33:18 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, Ved Shanbhogue <ved@rivosinc.com>
-Subject: Re: [RFC PATCH 7/7] RISC-V: KVM: add support for double trap
- exception
-Message-ID: <ZixV3lCe3jYQN3Qx@debug.ba.rivosinc.com>
-References: <20240418142701.1493091-1-cleger@rivosinc.com>
- <20240418142701.1493091-8-cleger@rivosinc.com>
+	s=arc-20240116; t=1714182841; c=relaxed/simple;
+	bh=ws9kDSCXhP/j0zDNe5K30ull+cRQqEqRkm3CaRmK7Kk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=FEg0eJcpr4tf5Q6HwSreOcr8oCcrc59kWqDesN/gR4i5NVDa8fXOfPj6Jxpvm0c7DPwK01398G9q+WGPvwHNkXRIsTz47zazSk5mm1Ihb8/1JMJzdryx9mtxaAl4CqQU1dzozPupb2gqu1VB8uih+6u0qUUWGAoAW8ZLC9usTUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UdYVLNYY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43R1o27n019390;
+	Sat, 27 Apr 2024 01:53:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=6qVY2QHU4ftEp7
+	G936IjsFXoiOAitJv527DRnnUNNPk=; b=UdYVLNYYWYVDF7YbF4j8rsZMUaLH0H
+	HbmfkKvPJau/zNw6omNLK2UgoKTuuvF69XK7GkPKVXuh8aMY/0qD9/T0juJ/zsrG
+	+41PCHDoLNI5L6BkhV2DcoGwSHuNaWNry4e2s3EzKHwZ2B/P75DGnDxwItWCAMWS
+	PXC416KuEiUNwmuF1Lbe7pOo/KqONA8TTXHDJfoa3vNYdyIUhzjekF+dpRpFcu9u
+	Ugwr7GcXhsdiKJA9l/HrIbF7GXMS/gWS97kX2EL/GVLF+ycBwmhE4E44odQnvSf4
+	xjDEJHYHm/AkoIzfltMuJlp7zKipLuNyrwtVUGQwTN2fDYedwXCSpRfw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xranmhn7u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 27 Apr 2024 01:53:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43R1rjwF003269
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 27 Apr 2024 01:53:45 GMT
+Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 26 Apr 2024 18:53:38 -0700
+From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: [PATCH v12 0/6] PCI: qcom: Add support for OPP
+Date: Sat, 27 Apr 2024 07:22:33 +0530
+Message-ID: <20240427-opp_support-v12-0-f6beb0a1f2fc@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240418142701.1493091-8-cleger@rivosinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGNaLGYC/23M3wqCMByG4VuJHbf4bW7aOuo+IsL9yx3k1qZSi
+ PfeFAKNDr8PnndEyURnEjrtRhTN4JLzbR6E7ndINXV7N9jpfCAKlAGDEvsQbqkPwccOqxoENxI
+ KKhnKIkRj3WvJXa55Ny51Pr6X+iDm99upNp1BYMBMlOTItGJcV+dn75Rr1UH5B5pLA4E1F1tOI
+ HsieGlKaQpW2D+erDwtfjyZPbdaM5BgBd/6aZo+/FXBaikBAAA=
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, <johan+linaro@kernel.org>,
+        <bmasney@redhat.com>, <djakov@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_parass@quicinc.com>, <quic_krichai@quicinc.com>,
+        <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714182817; l=6284;
+ i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
+ bh=ws9kDSCXhP/j0zDNe5K30ull+cRQqEqRkm3CaRmK7Kk=;
+ b=0jbUKvsz9762zw1R5lJ59W1j9trPMpYTMfIzxhcclPG3sXO3cYE1jK2YWUay9QjaiC2xsiWwe
+ qdJ7NosM9HHB4Bn2mfuTea5gijifYag2eWTq/+9n+dvdLwICJkVv4Ka
+X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8qLpTmi0wxEL0opbpuFOQ2sv5XLOhrYa
+X-Proofpoint-ORIG-GUID: 8qLpTmi0wxEL0opbpuFOQ2sv5XLOhrYa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-26_22,2024-04-26_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 phishscore=0 clxscore=1015
+ malwarescore=0 adultscore=0 impostorscore=0 spamscore=0 priorityscore=1501
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404270012
 
-On Thu, Apr 18, 2024 at 04:26:46PM +0200, Clément Léger wrote:
->When a double trap exception is generated from VS-mode, it should be
->delivered to M-mode which might redirect it to S-mode. Currently, the
->kvm double trap exception handling simply prints an error and returns
->-EOPNOTSUPP to stop VM execution. In future, this might use KVM SBI SSE
->extension implementation to actually send an SSE event to the guest VM.
->
->Signed-off-by: Clément Léger <cleger@rivosinc.com>
->---
-> arch/riscv/include/asm/kvm_host.h |  7 ++++---
-> arch/riscv/include/uapi/asm/kvm.h |  1 +
-> arch/riscv/kvm/vcpu.c             | 23 +++++++++------------
-> arch/riscv/kvm/vcpu_exit.c        | 33 +++++++++++++++++++++++++------
-> arch/riscv/kvm/vcpu_insn.c        | 15 +++++---------
-> arch/riscv/kvm/vcpu_onereg.c      |  2 ++
-> arch/riscv/kvm/vcpu_sbi.c         |  4 +---
-> arch/riscv/kvm/vcpu_switch.S      | 19 +++++++++++++++---
-> 8 files changed, 65 insertions(+), 39 deletions(-)
->
->diff --git a/arch/riscv/include/asm/kvm_host.h b/arch/riscv/include/asm/kvm_host.h
->index be60aaa07f57..1d699bf44c45 100644
->--- a/arch/riscv/include/asm/kvm_host.h
->+++ b/arch/riscv/include/asm/kvm_host.h
->@@ -358,12 +358,13 @@ unsigned long kvm_riscv_vcpu_unpriv_read(struct kvm_vcpu *vcpu,
-> 					 bool read_insn,
-> 					 unsigned long guest_addr,
-> 					 struct kvm_cpu_trap *trap);
->-void kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
->-				  struct kvm_cpu_trap *trap);
->+int kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
->+				 struct kvm_cpu_trap *trap);
-> int kvm_riscv_vcpu_exit(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 			struct kvm_cpu_trap *trap);
->
->-void __kvm_riscv_switch_to(struct kvm_vcpu_arch *vcpu_arch);
->+void __kvm_riscv_switch_to(struct kvm_vcpu_arch *vcpu_arch,
->+			   struct kvm_cpu_trap *trap);
->
-> void kvm_riscv_vcpu_setup_isa(struct kvm_vcpu *vcpu);
-> unsigned long kvm_riscv_vcpu_num_regs(struct kvm_vcpu *vcpu);
->diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
->index fa3097da91c0..323f4e8380d2 100644
->--- a/arch/riscv/include/uapi/asm/kvm.h
->+++ b/arch/riscv/include/uapi/asm/kvm.h
->@@ -166,6 +166,7 @@ enum KVM_RISCV_ISA_EXT_ID {
-> 	KVM_RISCV_ISA_EXT_ZVFH,
-> 	KVM_RISCV_ISA_EXT_ZVFHMIN,
-> 	KVM_RISCV_ISA_EXT_ZFA,
->+	KVM_RISCV_ISA_EXT_SSDBLTRP,
-> 	KVM_RISCV_ISA_EXT_MAX,
-> };
->
->diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
->index 461ef60d4eda..89e663defe14 100644
->--- a/arch/riscv/kvm/vcpu.c
->+++ b/arch/riscv/kvm/vcpu.c
->@@ -121,6 +121,8 @@ int kvm_arch_vcpu_create(struct kvm_vcpu *vcpu)
-> 	/* Setup reset state of shadow SSTATUS and HSTATUS CSRs */
-> 	cntx = &vcpu->arch.guest_reset_context;
-> 	cntx->sstatus = SR_SPP | SR_SPIE;
->+	if (riscv_isa_extension_available(vcpu->arch.isa, SSDBLTRP))
->+		cntx->sstatus |= SR_SDT;
-> 	cntx->hstatus = 0;
-> 	cntx->hstatus |= HSTATUS_VTW;
-> 	cntx->hstatus |= HSTATUS_SPVP;
->@@ -579,6 +581,9 @@ void kvm_arch_vcpu_put(struct kvm_vcpu *vcpu)
-> 	csr->hvip = csr_read(CSR_HVIP);
-> 	csr->vsatp = csr_read(CSR_VSATP);
-> 	cfg->hedeleg = csr_read(CSR_HEDELEG);
->+	cfg->henvcfg = csr_read(CSR_HENVCFG);
->+	if (IS_ENABLED(CONFIG_32BIT))
->+		cfg->henvcfg = csr_read(CSR_HENVCFGH) << 32;
-> }
->
-> static void kvm_riscv_check_vcpu_requests(struct kvm_vcpu *vcpu)
->@@ -670,11 +675,12 @@ static __always_inline void kvm_riscv_vcpu_swap_in_host_state(struct kvm_vcpu *v
->  * This must be noinstr as instrumentation may make use of RCU, and this is not
->  * safe during the EQS.
->  */
->-static void noinstr kvm_riscv_vcpu_enter_exit(struct kvm_vcpu *vcpu)
->+static void noinstr kvm_riscv_vcpu_enter_exit(struct kvm_vcpu *vcpu,
->+					      struct kvm_cpu_trap *trap)
-> {
-> 	kvm_riscv_vcpu_swap_in_guest_state(vcpu);
-> 	guest_state_enter_irqoff();
->-	__kvm_riscv_switch_to(&vcpu->arch);
->+	__kvm_riscv_switch_to(&vcpu->arch, trap);
-> 	vcpu->arch.last_exit_cpu = vcpu->cpu;
-> 	guest_state_exit_irqoff();
-> 	kvm_riscv_vcpu_swap_in_host_state(vcpu);
->@@ -789,22 +795,11 @@ int kvm_arch_vcpu_ioctl_run(struct kvm_vcpu *vcpu)
->
-> 		guest_timing_enter_irqoff();
->
->-		kvm_riscv_vcpu_enter_exit(vcpu);
->+		kvm_riscv_vcpu_enter_exit(vcpu, &trap);
->
-> 		vcpu->mode = OUTSIDE_GUEST_MODE;
-> 		vcpu->stat.exits++;
->
->-		/*
->-		 * Save SCAUSE, STVAL, HTVAL, and HTINST because we might
->-		 * get an interrupt between __kvm_riscv_switch_to() and
->-		 * local_irq_enable() which can potentially change CSRs.
->-		 */
->-		trap.sepc = vcpu->arch.guest_context.sepc;
->-		trap.scause = csr_read(CSR_SCAUSE);
->-		trap.stval = csr_read(CSR_STVAL);
->-		trap.htval = csr_read(CSR_HTVAL);
->-		trap.htinst = csr_read(CSR_HTINST);
->-
-> 		/* Syncup interrupts state with HW */
-> 		kvm_riscv_vcpu_sync_interrupts(vcpu);
->
->diff --git a/arch/riscv/kvm/vcpu_exit.c b/arch/riscv/kvm/vcpu_exit.c
->index 2415722c01b8..892c6df97eaf 100644
->--- a/arch/riscv/kvm/vcpu_exit.c
->+++ b/arch/riscv/kvm/vcpu_exit.c
->@@ -126,17 +126,34 @@ unsigned long kvm_riscv_vcpu_unpriv_read(struct kvm_vcpu *vcpu,
-> 	return val;
-> }
->
->+static int kvm_riscv_double_trap(struct kvm_vcpu *vcpu,
->+				 struct kvm_cpu_trap *trap)
->+{
->+	pr_err("Guest double trap");
->+	/* TODO: Implement SSE support */
->+
->+	return -EOPNOTSUPP;
->+}
->+
-> /**
->  * kvm_riscv_vcpu_trap_redirect -- Redirect trap to Guest
->  *
->  * @vcpu: The VCPU pointer
->  * @trap: Trap details
->  */
->-void kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
->-				  struct kvm_cpu_trap *trap)
->+int kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
->+				 struct kvm_cpu_trap *trap)
-> {
-> 	unsigned long vsstatus = csr_read(CSR_VSSTATUS);
->
->+	if (riscv_isa_extension_available(vcpu->arch.isa, SSDBLTRP)) {
->+		if (vsstatus & SR_SDT)
->+			return kvm_riscv_double_trap(vcpu, trap);
->+
->+		/* Set Double Trap bit to enable double trap detection */
->+		vsstatus |= SR_SDT;
+This patch adds support for OPP to vote for the performance state of RPMH
+power domain based upon PCIe speed it got enumerated.
 
-I didn't get it.
-Why do this without checking if current config allows us to do so ?
-I am imagining we do this only when henvcfg for current vcpu says that DTE=1
-for this this guest, right?
+QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
+maintains hardware state of a regulator by performing max aggregation of
+the requests made by all of the processors.
 
->+	}
->+
-> 	/* Change Guest SSTATUS.SPP bit */
-> 	vsstatus &= ~SR_SPP;
-> 	if (vcpu->arch.guest_context.sstatus & SR_SPP)
->@@ -163,6 +180,8 @@ void kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
->
-> 	/* Set Guest privilege mode to supervisor */
-> 	vcpu->arch.guest_context.sstatus |= SR_SPP;
->+
->+	return 1;
-> }
->
-> /*
->@@ -185,10 +204,8 @@ int kvm_riscv_vcpu_exit(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 	case EXC_INST_ILLEGAL:
-> 	case EXC_LOAD_MISALIGNED:
-> 	case EXC_STORE_MISALIGNED:
->-		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV) {
->-			kvm_riscv_vcpu_trap_redirect(vcpu, trap);
->-			ret = 1;
->-		}
->+		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
->+			ret = kvm_riscv_vcpu_trap_redirect(vcpu, trap);
-> 		break;
-> 	case EXC_VIRTUAL_INST_FAULT:
-> 		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
->@@ -204,6 +221,10 @@ int kvm_riscv_vcpu_exit(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
-> 			ret = kvm_riscv_vcpu_sbi_ecall(vcpu, run);
-> 		break;
->+	case EXC_DOUBLE_TRAP:
->+		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
->+			ret = kvm_riscv_double_trap(vcpu, trap);
->+		break;
-> 	default:
-> 		break;
-> 	}
->diff --git a/arch/riscv/kvm/vcpu_insn.c b/arch/riscv/kvm/vcpu_insn.c
->index 7a6abed41bc1..050e811204f2 100644
->--- a/arch/riscv/kvm/vcpu_insn.c
->+++ b/arch/riscv/kvm/vcpu_insn.c
->@@ -159,9 +159,8 @@ static int truly_illegal_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 	utrap.stval = insn;
-> 	utrap.htval = 0;
-> 	utrap.htinst = 0;
->-	kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
->
->-	return 1;
->+	return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
-> }
->
-> static int truly_virtual_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
->@@ -175,9 +174,8 @@ static int truly_virtual_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 	utrap.stval = insn;
-> 	utrap.htval = 0;
-> 	utrap.htinst = 0;
->-	kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
->
->-	return 1;
->+	return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
-> }
->
-> /**
->@@ -422,8 +420,7 @@ int kvm_riscv_vcpu_virtual_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 							  &utrap);
-> 			if (utrap.scause) {
-> 				utrap.sepc = ct->sepc;
->-				kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
->-				return 1;
->+				return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
-> 			}
-> 		}
-> 		if (INSN_IS_16BIT(insn))
->@@ -478,8 +475,7 @@ int kvm_riscv_vcpu_mmio_load(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 		if (utrap.scause) {
-> 			/* Redirect trap if we failed to read instruction */
-> 			utrap.sepc = ct->sepc;
->-			kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
->-			return 1;
->+			return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
-> 		}
-> 		insn_len = INSN_LEN(insn);
-> 	}
->@@ -604,8 +600,7 @@ int kvm_riscv_vcpu_mmio_store(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> 		if (utrap.scause) {
-> 			/* Redirect trap if we failed to read instruction */
-> 			utrap.sepc = ct->sepc;
->-			kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
->-			return 1;
->+			return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
-> 		}
-> 		insn_len = INSN_LEN(insn);
-> 	}
->diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
->index 5f7355e96008..fece0043871c 100644
->--- a/arch/riscv/kvm/vcpu_onereg.c
->+++ b/arch/riscv/kvm/vcpu_onereg.c
->@@ -36,6 +36,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
-> 	/* Multi letter extensions (alphabetically sorted) */
-> 	KVM_ISA_EXT_ARR(SMSTATEEN),
-> 	KVM_ISA_EXT_ARR(SSAIA),
->+	KVM_ISA_EXT_ARR(SSDBLTRP),
-> 	KVM_ISA_EXT_ARR(SSTC),
-> 	KVM_ISA_EXT_ARR(SVINVAL),
-> 	KVM_ISA_EXT_ARR(SVNAPOT),
->@@ -153,6 +154,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
-> 	case KVM_RISCV_ISA_EXT_ZVKSED:
-> 	case KVM_RISCV_ISA_EXT_ZVKSH:
-> 	case KVM_RISCV_ISA_EXT_ZVKT:
->+	case KVM_RISCV_ISA_EXT_SSDBLTRP:
-> 		return false;
-> 	/* Extensions which can be disabled using Smstateen */
-> 	case KVM_RISCV_ISA_EXT_SSAIA:
->diff --git a/arch/riscv/kvm/vcpu_sbi.c b/arch/riscv/kvm/vcpu_sbi.c
->index 76901f0f34b7..b839d578dc26 100644
->--- a/arch/riscv/kvm/vcpu_sbi.c
->+++ b/arch/riscv/kvm/vcpu_sbi.c
->@@ -456,10 +456,8 @@ int kvm_riscv_vcpu_sbi_ecall(struct kvm_vcpu *vcpu, struct kvm_run *run)
->
-> 	/* Handle special error cases i.e trap, exit or userspace forward */
-> 	if (sbi_ret.utrap->scause) {
->-		/* No need to increment sepc or exit ioctl loop */
->-		ret = 1;
-> 		sbi_ret.utrap->sepc = cp->sepc;
->-		kvm_riscv_vcpu_trap_redirect(vcpu, sbi_ret.utrap);
->+		ret = kvm_riscv_vcpu_trap_redirect(vcpu, sbi_ret.utrap);
-> 		next_sepc = false;
-> 		goto ecall_done;
-> 	}
->diff --git a/arch/riscv/kvm/vcpu_switch.S b/arch/riscv/kvm/vcpu_switch.S
->index 0c26189aa01c..94d5eb9da788 100644
->--- a/arch/riscv/kvm/vcpu_switch.S
->+++ b/arch/riscv/kvm/vcpu_switch.S
->@@ -154,7 +154,6 @@ SYM_FUNC_START(__kvm_riscv_switch_to)
-> 	REG_L	t2, (KVM_ARCH_HOST_SSCRATCH)(a0)
-> 	REG_L	t3, (KVM_ARCH_HOST_SCOUNTEREN)(a0)
-> 	REG_L	t4, (KVM_ARCH_HOST_HSTATUS)(a0)
->-	REG_L	t5, (KVM_ARCH_HOST_SSTATUS)(a0)
->
-> 	/* Save Guest SEPC */
-> 	csrr	t0, CSR_SEPC
->@@ -171,8 +170,8 @@ SYM_FUNC_START(__kvm_riscv_switch_to)
-> 	/* Save Guest and Restore Host HSTATUS */
-> 	csrrw	t4, CSR_HSTATUS, t4
->
->-	/* Save Guest and Restore Host SSTATUS */
->-	csrrw	t5, CSR_SSTATUS, t5
->+	/* Save Guest SSTATUS */
->+	csrr	t5, CSR_SSTATUS
->
-> 	/* Store Guest CSR values */
-> 	REG_S	t0, (KVM_ARCH_GUEST_SEPC)(a0)
->@@ -206,6 +205,20 @@ SYM_FUNC_START(__kvm_riscv_switch_to)
-> 	REG_L	s10, (KVM_ARCH_HOST_S10)(a0)
-> 	REG_L	s11, (KVM_ARCH_HOST_S11)(a0)
->
->+	csrr	t1, CSR_SCAUSE
->+	csrr	t2, CSR_STVAL
->+	csrr	t3, CSR_HTVAL
->+	csrr	t4, CSR_HTINST
->+	REG_S	t0, (KVM_ARCH_TRAP_SEPC)(a1)
->+	REG_S	t1, (KVM_ARCH_TRAP_SCAUSE)(a1)
->+	REG_S	t2, (KVM_ARCH_TRAP_STVAL)(a1)
->+	REG_S	t3, (KVM_ARCH_TRAP_HTVAL)(a1)
->+	REG_S	t4, (KVM_ARCH_TRAP_HTINST)(a1)
->+
->+	/* Restore Host SSTATUS */
->+	REG_L	t5, (KVM_ARCH_HOST_SSTATUS)(a0)
->+	csrw	CSR_SSTATUS, t5
->+
-> 	/* Return to C code */
-> 	ret
-> SYM_FUNC_END(__kvm_riscv_switch_to)
->-- 
->2.43.0
->
->
+PCIe controller can operate on different RPMh performance state of power
+domain based up on the speed of the link. And this performance state varies
+from target to target.
+
+It is manadate to scale the performance state based up on the PCIe speed
+link operates so that SoC can run under optimum power conditions.
+
+Add Operating Performance Points(OPP) support to vote for RPMh state based
+upon GEN speed link is operating.
+
+Before link up PCIe driver will vote for the maximum performance state.
+
+As now we are adding ICC BW vote in OPP, the ICC BW voting depends both
+GEN speed and link width using opp-level to indicate the opp entry table
+will be difficult.
+
+In PCIe certain gen speeds like 2.5GT/s x2 & 5.0 GT/s X1 or 8.0 GT/s x2 &
+16GT/s x1 use same ICC bw if we use freq in the OPP table to represent the
+PCIe speed number of PCIe entries can reduced.
+
+So going back to use freq in the OPP table instead of level.
+
+To access PCIe registers of the host controller and endpoint PCIe
+BAR space, config space the CPU-PCIe ICC (interconnect) path should
+be voted otherwise it may lead to NoC (Network on chip) timeout.
+We are surviving because of other driver voting for this path.
+
+As there is less access on this path compared to PCIe to mem path
+add minimum vote i.e 1KBps bandwidth always which is sufficient enough
+to keep the path active and is recommended by HW team.
+
+In suspend to ram case there can be some DBI access. Except in suspend
+to ram case disable CPU-PCIe ICC path after register space access
+is done.
+
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+Changes from v11:
+	- added nicpicks suggested by mani.
+	- Link to v11: https://lore.kernel.org/r/20240423-opp_support-v11-0-15fdd40b0f95@quicinc.com
+Changes from v10:
+	- Updated comments and logs as suggested by mani.
+	- Link to v10: https://lore.kernel.org/r/20240409-opp_support-v10-0-1956e6be343f@quicinc.com
+Changes from v9:
+	- Disable interconnect CPU-PCIe path only system is not suspend to ram case.
+	- If opp find freq fails in the probe fail the probe as suggested by mani.
+	- Modify comments as suggested by mani
+	- Link to v9: https://lore.kernel.org/r/20240407-opp_support-v9-0-496184dc45d7@quicinc.com
+Changes from v8:
+	- Removed the ack-by and reviewed by on dt-bindings as dt-bindings moved to new files.
+	- Removed dt-binding patch for interconnects as it is added in the common file.
+	- Added tags for interconnect as suggested by konrad
+	- Added the comments as suggested by mani
+	- In ICC BW vote for CPU to PCIe path if icc_disable() fails log error and return instead of re-init.
+	- Link to v8: https://lore.kernel.org/linux-arm-msm/20240302-opp_support-v8-0-158285b86b10@quicinc.com/
+Changes from v7:
+	- Fix the compilation issue in patch3
+	- Change the commit text and wrap the comments to 80 columns as suggested by bjorn
+	- remove PCIE_MBS2FREQ macro as this is being used by only qcom drivers.
+	- Link to v7: https://lore.kernel.org/r/20240223-opp_support-v7-0-10b4363d7e71@quicinc.com
+Changes from v6:
+	- change CPU-PCIe bandwidth to 1KBps as suggested by HW team.
+	- Create a new API to get frequency based upon PCIe speed as suggested
+	  by mani.
+	- Updated few commit texts and comments.
+	- Setting opp to NULL in suspend to remove any votes.
+	- Link for v6: https://lore.kernel.org/linux-arm-msm/20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com/
+Changes from v5:
+	- Add ICC BW voting as part of OPP, rebase the latest kernel, and only
+	- either OPP or ICC BW voting will supported we removed the patch to
+	- return error for icc opp update patch.
+	- As we added the icc bw voting in opp table I am not including reviewed
+	- by tags given in previous patch.
+	- Use opp freq to find opp entries as now we need to include pcie link
+	- also in to considerations.
+	- Add CPU-PCIe BW voting which is not present till now.
+	- Drop  PCI: qcom: Return error from 'qcom_pcie_icc_update' as either opp or icc bw
+	- only one executes and there is no need to fail if opp or icc update fails.
+	- Link for v5: https://lore.kernel.org/linux-arm-msm/20231101063323.GH2897@thinkpad/T/
+Changes from v4:
+	- Added a separate patch for returning error from the qcom_pcie_upadate
+	  and moved opp update logic to icc_update and used a bool variable to 
+	  update the opp.
+	- Addressed comments made by pavan.
+changes from v3:
+	- Removing the opp vote on suspend when the link is not up and link is not
+	  up and add debug prints as suggested by pavan.
+	- Added dev_pm_opp_find_level_floor API to find the highest opp to vote.
+changes from v2:
+	- Instead of using the freq based opp search use level based as suggested
+	  by Dmitry Baryshkov.
+Changes from v1:
+        - Addressed comments from Krzysztof Kozlowski.
+        - Added the rpmhpd_opp_xxx phandle as suggested by pavan.
+        - Added dev_pm_opp_set_opp API call which was missed on previous patch.
+---
+
+---
+Krishna chaitanya chundru (6):
+      arm64: dts: qcom: sm8450: Add interconnect path to PCIe node
+      PCI: qcom: Add ICC bandwidth vote for CPU to PCIe path
+      dt-bindings: pci: qcom: Add OPP table
+      arm64: dts: qcom: sm8450: Add OPP table support to PCIe
+      PCI: Bring the PCIe speed to MBps logic to new pcie_link_speed_to_mbps()
+      PCI: qcom: Add OPP support to scale performance
+
+ .../devicetree/bindings/pci/qcom,pcie-sm8450.yaml  |   4 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               |  89 +++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             | 123 ++++++++++++++++++---
+ drivers/pci/pci.c                                  |  19 +---
+ drivers/pci/pci.h                                  |  22 ++++
+ 5 files changed, 222 insertions(+), 35 deletions(-)
+---
+base-commit: 6c6e47d69d821047097909288b6d7f1aafb3b9b1
+change-id: 20240406-opp_support-ca095eb032b4
+
+Best regards,
+-- 
+Krishna chaitanya chundru <quic_krichai@quicinc.com>
+
 
