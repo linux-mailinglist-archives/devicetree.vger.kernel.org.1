@@ -1,62 +1,98 @@
-Return-Path: <devicetree+bounces-63293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9BD8B4538
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 10:50:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C8DC8B453F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 11:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 550CA1F226C1
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 08:50:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E52BB1F22466
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 09:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F12444C8B;
-	Sat, 27 Apr 2024 08:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F85F45959;
+	Sat, 27 Apr 2024 09:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGoAfMZ5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pl0qkU7o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24DD064C;
-	Sat, 27 Apr 2024 08:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48FD38DF9
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 09:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714207829; cv=none; b=QOqwH+Hc3SY4/R9vjeyWLh3soX2DZdgDOIFGd5hDf+7tbsCOxjoBu9CxF/SRIM6DXU9PKn42Ot8mDszIFIc/g50kB64lFRolQwtJ9wzhRjAIezFGnNqb1y2SkskQ2KLveJdVdWvErazWXr6QPjCrne1UXQXC1HphN12aTGoDQZY=
+	t=1714208469; cv=none; b=lEMMv/mEFUIcBpWcDhgPmpraQkb0vFqrdqnDaKEEgajfcFmXvvA55hOqi5FASrio50+3kha4hr17+nVjWMY6EZE2qQJnaXnjdIyoB7VQ/UxsmOIwD1u0ogma3DncmCGN6McKVuiGsGrFluZlg/gdRfwCiAryNImbGlaU6P91VXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714207829; c=relaxed/simple;
-	bh=BuSVg2sIQz4rUwdjp1HPjb4SufNjrq2om93BcT+qtzg=;
+	s=arc-20240116; t=1714208469; c=relaxed/simple;
+	bh=QKT7BbT0qdBcKFjzr1eNmhMAp51nbEYUTEgPS9pJd/c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kZYYiDI+/7xic2zN3cxyjUJFyNdCQeyTaeLmmiArsnNkI22S+Viq36/FPtwBahhTofuBfGsGpIIJ9vFMCaK3QAXdxCkXbVMa1+gjtobW0hlZ8yDVqBSqCQFtpQqKs49g1Rt7Q8/8AVXa1auNacaid9vZaORrXMjXLfSfKkdW0/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGoAfMZ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9C8FC113CE;
-	Sat, 27 Apr 2024 08:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714207828;
-	bh=BuSVg2sIQz4rUwdjp1HPjb4SufNjrq2om93BcT+qtzg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rGoAfMZ57VcQEZ97fpBbcG+4RpLHAML9bNmDtpwcyadHjOAb3icpzNDVkwdRy49zs
-	 YXoxSKWHsqbiRYz96MbkBHuZRyXJQnu2g6GgOmFYPf1/1m8J4QywBx/uupsu7lXAo1
-	 1fEeRl4PCJHjHanWu6BD7EjGWsoK8ZaVUwhh/VT12lbj1Rmd3shOkh8AmR3cqDnCry
-	 wn+miUXqUubLMNPl9c5mVDUx7Swx5wfvM4XcKfe10OOrwUARzz/q35o2P2My95v0qB
-	 l+brZsPmkYieLL2cBSoU7YRmRfgMKd6ZY2HIn/1WD681Gw0NlGRTsiSxUzBbsnu+ki
-	 Bg58ogmNj9GzA==
-Date: Sat, 27 Apr 2024 11:49:06 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: DaeRo Lee <skseofh@gmail.com>
-Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org, Daero Lee <daero_le.lee@samsung.com>
-Subject: Re: [PATCH v2] memblock: add no-map alloc functions
-Message-ID: <Ziy8AsAGZyKCyXX_@kernel.org>
-References: <linux-mm@kvack.org>
- <20240416120635.361838-1-skseofh@gmail.com>
- <20240416120635.361838-2-skseofh@gmail.com>
- <Zh9l_LpThq9aFUR7@kernel.org>
- <CAATEi5kywwC2yUaYjgs+Gm=4HM5o=KHTqH1ALKJijWE_gge0=g@mail.gmail.com>
- <ZiFgYWydIwvnpIIY@kernel.org>
- <CAATEi5kFt8iUeWSkrj_bVTyPO_tfQzG77D719P5dLsr2j6Zkzw@mail.gmail.com>
- <CAATEi5ksY-v7-LEqNZWFV5hsHiegNEtrh4LpMWOQ=vT7hC0Rng@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sl9ND/FOsLGxrhHcpIqSzf8on20IjxNpZDzglwvvU1sBNXmucQ6ra8P1RVdGjcKiygVCmpYtpdIKqzhpLW6HSW5rH2wYp9+3veyk6EXDN1uQKFfcTnYQOO82LzUYgl6sQDNkNucqCWMoeBb8arQpuOWJRPjbawpIIsTeMxwikuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pl0qkU7o; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1e3ca546d40so24597965ad.3
+        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 02:01:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714208466; x=1714813266; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8Vr7JWEB2T4GWYXcygc/EdGZmH7vUwdeKPTcNVaexOg=;
+        b=Pl0qkU7oeaDmIiRWWY5jRf6WfYYn1jbkwJ32SVPZzHZGJGBwk1C1oPQ+XCq8lGntJ/
+         R73Lv5z0HoWntj5NJ2i7yDJudOF+TmCJ2AHtZmQ70mvs4extWUToWt6IvqEiwEJaEnuz
+         NbNlB+PRPDV7vQeSNaGuqH/vbtvmL+STcOmzCshb6mhiaFZZG+wcD5oBhrtifoz1PyDc
+         abOv26ligdQCuipvgzpLpujw5YgydBxA9buh9GkDGjJDdaRoNTanZrVoUkwdnHmrO8ID
+         HJdQudCCe02/g9G15Xw594mtYcYOHg0tmQetibfY2hkyoUyERiJ4tdfyHQGwEyUwyqph
+         Bhzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714208466; x=1714813266;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Vr7JWEB2T4GWYXcygc/EdGZmH7vUwdeKPTcNVaexOg=;
+        b=l64asGyHbXvWS0foskwNEo9TxIW3RKAu735goFf6nDJldDIYtl80UIrRGfxxCcCckh
+         fiAshPrIpXB0q/9CB1AP2hog11mDZ/R02DyxaCrNz4K0kuCbKJJ/+DQIQr8NHyL7FAWT
+         FYb1u2WKKTOfFMQ4ZEBiNFHn5SCHTmaRk4+cZH7PUuNjBHvzMlQEE5KOxzwA58guFurZ
+         gSkJ/7Vwq3hUtmcQNfv9eej7KR9TCCP3MWzVc9ao7TD7QlmwqpZWEx9FZPV5hq3jyzsW
+         lKNkIlLduJP3aRLyY9nkmhw1+mttfCxyHOh1txL9RDYIGGqzpV0THbsUCDCUltc8Ar+S
+         ILTw==
+X-Forwarded-Encrypted: i=1; AJvYcCV6Ff5+NbRdN9gyccds5LA1AYZ013LgV+HANBHXhFu24uHxl0oojhpsuSBQhnr3Rq7xca8oqzXz2hbgJrejU3dL1g+GXI3/QJSTsQ==
+X-Gm-Message-State: AOJu0YxGA5VMCNWwxyRp8KCFpz0xjLd1SqLpfVk8uS3bRMi6m6YK9JTL
+	Iidemt34n4lGNj3618zsfDzHZCyzkHIg0AzqyROZkDE9MiQBYnquttEi+LH1/Q==
+X-Google-Smtp-Source: AGHT+IHkIXGWPg97/VUL48rQXl/r6tasTmDAIegAIO6ujBMNWegRRUnBy7wEvErIfoXUBhtG5bde6A==
+X-Received: by 2002:a17:903:234b:b0:1e7:d482:9e32 with SMTP id c11-20020a170903234b00b001e7d4829e32mr5854001plh.7.1714208465952;
+        Sat, 27 Apr 2024 02:01:05 -0700 (PDT)
+Received: from thinkpad ([120.60.53.237])
+        by smtp.gmail.com with ESMTPSA id h15-20020a170902680f00b001e89e7b2b74sm16138858plk.235.2024.04.27.02.00.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Apr 2024 02:01:05 -0700 (PDT)
+Date: Sat, 27 Apr 2024 14:30:57 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/11] PCI: imx6: Fix PCIe link down when i.MX8MM and
+ i.MX8MP PCIe is EP mode
+Message-ID: <20240427090057.GF1981@thinkpad>
+References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
+ <20240402-pci2_upstream-v3-1-803414bdb430@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,56 +102,62 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAATEi5ksY-v7-LEqNZWFV5hsHiegNEtrh4LpMWOQ=vT7hC0Rng@mail.gmail.com>
+In-Reply-To: <20240402-pci2_upstream-v3-1-803414bdb430@nxp.com>
 
-On Fri, Apr 19, 2024 at 10:59:52AM +0900, DaeRo Lee wrote:
-> 2024년 4월 19일 (금) 오전 10:46, DaeRo Lee <skseofh@gmail.com>님이 작성:
-> >
-> > In memmap_init_reserved_pages, we mark memblock.reserved as
-> > PageReserved first and mark the memblock.reserved with nomap flag
-> > also.
-> Sorry. This is my mistake. 'memblock.memory with nomap flag' is right.
+On Tue, Apr 02, 2024 at 10:33:37AM -0400, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
 > 
-> > -> Isn't this duplicated work? (If we add no-map region to
-> > memblock.reserved 'and' mark in memblock.memory..)
-> > So, I think that for the no-map region, we don't need to add to the
-> > memblock.reserved.
-> > This is what we do now in early_init_dt_reserve_memory. the nomap
-> > region is not added to the memblock.reserved.
-> >
-> > In early_init_dt_alloc_reserved_memory_arch, if 'nomap' is true, we
-> > mark the memblock.memory region as _NOMAP. And if the return value
-> > 'err' is not zero(which is '-ENOMEM' from memblock_isolate_range), we
-> > free the region.
-> > - 'nomap' is true -> memblock_mark_nomap : success -> not free the region
-> >
-> > : fail -> free the region
-> > And it can be said that we add the region to the memblock.reserved
-> > using memblock_phys_alloc_range and if the region is nomap, then we
-> > can free the region from memblock.reserved. But is it necessary to add
-> > it to memblock.reserved? We just need the region in memblock.memory to
-> > mark nomap.
-> >
-> > So, here is what I think:
-> > - reserved-memory w/ nomap region -> mark only to memblock.memory
-> > - reserved-memory w/o nomap region -> add to the memblock.reserved
+> Both IMX8MM_EP and IMX8MP_EP have the "IMX6_PCIE_FLAG_HAS_APP_RESET"
+> set indeed. Otherwise, the LTSSM_EN bit wouldn't be asserted anymore.
+> That's the root cause that PCIe link is down when i.MX8MM and i.MX8MP
+> PCIe are in the EP mode.
+> 
 
-NOMAP and memblock.reserved are semantically different, and at makes sense
-to have a "reserved nomap" node in fdt recorded in both memblock.memory and
-memblock.reserved.
+This commit message is difficult to understand. I think the issue you are fixing
+is that these 2 SoCs do not control the 'apps_reset', due to which the LTSSM
+state is not configured properly.
 
-memblock.reserved represents the memory that is used by firmware or early
-kernel allocation, so reserved memory in fdt should be reserved in memblock
-as well. I believe it's an oversight that early_init_dt_reserve_memory()
-does not call memblock_reserve() for nomap memory.
+Referring Link Down is confusing at its best. Is the link training happens first
+of all?
 
-NOMAP is a property of a memory region that says that that region should
-not be mapped in the linear map, it's not necessarily in use.
+- Mani
 
-> > Regards,
-> > DaeRo Lee
+> Fixes: 0c9651c21f2a ("PCI: imx6: Simplify reset handling by using *_FLAG_HAS_*_RESET")
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 99a60270b26cd..e43eda6b33ca7 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -1568,7 +1568,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MM_EP] = {
+>  		.variant = IMX8MM_EP,
+> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
+> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+>  		.clk_names = imx8mm_clks,
+> @@ -1579,7 +1580,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MP_EP] = {
+>  		.variant = IMX8MP_EP,
+> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
+> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+>  		.clk_names = imx8mm_clks,
+> 
+> -- 
+> 2.34.1
+> 
 
 -- 
-Sincerely yours,
-Mike.
+மணிவண்ணன் சதாசிவம்
 
