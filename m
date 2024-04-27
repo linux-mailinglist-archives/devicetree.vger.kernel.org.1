@@ -1,127 +1,115 @@
-Return-Path: <devicetree+bounces-63289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF6B8B44BC
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 09:17:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F5528B4500
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 09:54:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C21E3B2291E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 07:17:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CE071C22840
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 07:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FBDE42049;
-	Sat, 27 Apr 2024 07:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1745B4438F;
+	Sat, 27 Apr 2024 07:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a8SSWuAY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XjNqsYMT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 286063BB22;
-	Sat, 27 Apr 2024 07:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3C641A89;
+	Sat, 27 Apr 2024 07:54:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714202257; cv=none; b=lSx0gstTx/wZ5IeuFCxplLkzlHGkNNn75UqzP+TWZFfNSzwiEaGiwjHQ4+hWgqdWKlRmx5lwe4sqtB+MffnMCNO2bF7M/LCLJT+Klpo+F0E2DJrtmSwO2iKRtigyQBtWacumf+BaRtPo3FQS2OhrifPXA4Egmwgbvg0uysXXJoY=
+	t=1714204473; cv=none; b=hhGxxoVTGjInmc0WOzZVyhsfsrY54i+RFL/JfcgGtwD8za5pp5eJvM4PMnVaR2Fa0t4muRxvAnDgCJVGnGyNG0E0rFnwywKgq0tKdk6uQYp8mmCIN6VLcHv07HJVytag5NHkzurMEGuihMND4vCOwHurmP3GTP5PXzSeaIG6ny4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714202257; c=relaxed/simple;
-	bh=KsZOuxYIuzP2B3Mk5ljXHJfuM1664KIpR3QMseySPms=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aVO21Opim6vnE1gn16Yt2ef73dtCUJ5CylG44Npe/kVyCoqdhKriuouLos0Br+cWmnLc5kncYUw3cB1JGbHqXpGfzuAaC3JcNGsI1z2pAlOTjK4B/YIHZhg7JzfPyhdPnTfIN48Yvm4ho+d88W1JiTeKh0rSetVOAbs01ksZAL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a8SSWuAY; arc=none smtp.client-ip=209.85.215.172
+	s=arc-20240116; t=1714204473; c=relaxed/simple;
+	bh=EBvbsaXetNJYdVZkRWkDhH/zk9BDKCOwz/QHuOw94OM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KOfzn2mNQEGmKmEFQYa9yuJ53puHm8cXv7mtpFzvgc3/witieXsldqTzMI+eMN76cC3dZufVeFmkWToDTLYVHB1KRWjgM7niwsKkhGZFxbJ/sFbZziYOcEldq9yYTd4kkci5qaITvk4ebdBZDB15s7zlmBGGS/Frkp+T5cfH4VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XjNqsYMT; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso2021906a12.3;
-        Sat, 27 Apr 2024 00:17:35 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6ed627829e6so3486221b3a.1;
+        Sat, 27 Apr 2024 00:54:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714202255; x=1714807055; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X8kCB3I1nqc74i13dcnZcbSCBOzeY8bK9si08l2dEgE=;
-        b=a8SSWuAYqRuXEx22RhpRtfrvlHQaZvbzdtq3Mkma6aOnzk5K3Ylxrgv/+DK2A9vfYi
-         vDLYLNbtDMYCVE9cbOWkflf2k/0N5Nw7pWme4XctuWDIrKZA9sOja0WSK2Ac9jzlHHbK
-         2qod/aivwscMbfFLonW0QbxxJ+JN/jCl0KdtqzqrLmOEMufBV4kW2lnLQSLmBvY0q16x
-         LG4ZYKVEZD2Icaz22+SLqTKuygEjORYo7ZiGq1FIhRuPj6+CIAz3fZ+AIr2Ql8ZRaDhj
-         VdDYt75pR5ZDOjgdNhp6FmNZ0fPgZQ84l85xdKNQFssnCkMFFpKtDnofldiefoC4sf4G
-         DHOg==
+        d=gmail.com; s=20230601; t=1714204471; x=1714809271; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LryMUWSXWSPRxaQIt2IMtBO24PQkNlmC6gXH6D1bj+M=;
+        b=XjNqsYMTk0HzbgKCVUqPTuV52lnC1m0WBwv7cSs2hm9hwB8s3zdsvUYYjtLix/gDwu
+         IBdbf0lY07DeV/XRE28Sv7PFuPuHMVyv2nx/pLvXb914eF6XA2M6Zv5PKAFAWEXkpQIf
+         ieiz3P+nIWIT4jqQ0nyCoBfyyOiy1zIAAt12O2yPbC6vpNPUD6SyGpXwnCGK2nqFysG1
+         7sWy/KEXErhSOiO4Y8VUPtOdeF3Gjk+asjHP46Yc3Fxlz2XS4U6gw8zNan6l7f6hLGZn
+         6B+WJKNp3CCOIxkaC7Sp/oX6Ig9JL15B+USWxHfnD+/MF188bs+mI372YeMisnVGIHEt
+         ZN9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714202255; x=1714807055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X8kCB3I1nqc74i13dcnZcbSCBOzeY8bK9si08l2dEgE=;
-        b=VpuD5QQjTQtMJEFBb6Qmxl45HiyzCPPXRMPIn1ghWfVJZBfTz/9QcCr/IlEa2rqdae
-         aUnR3wPhxXxiis346o5DOr0SAtgSI96ghbg4Y3gjkS6DOMnD9tSwsidx8xfx+oV7o22/
-         v7EZFGcdT7ge+4foQODTho9Mcta2O6ksMNcyTCvWIhXc/VArT2ZcVfNko/wYW+HCM7Au
-         Gl8GpdZehGhiFTj2gxS8uIqqnMMNRGaAt+gxzVEHRSGyF29fYo/qZCZanmG/dcxWE2WV
-         1p/ZP/INShiIkeNcgnmavhf90WhYUiMI7rfG9YqwfY16vI9ZY36nWwYk5VUzK1xJn7d8
-         g5VA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzNyMjWs/ZYESzTLoJbAWcPz/FJej7d5JoOPk4znQ4b+pxNTQGOmyQMnRbveCp0N/wIFXnRtEUJV8HA2/ENDR3GYBpOTOMCiKNhqGIlJzKHRX6yyNJb75HBAl1Srx6quLyao5diA3TPEholykHeQ8hr74FNaWdBA0QCp9xXFyOAZc1Wk2y
-X-Gm-Message-State: AOJu0Ywhb1JW9JfuVE79gnwUsdkzifL21v/WR4fSTHnP+ydKuLbbJta3
-	LGt9i/jfLD0smjoL2M8IpBPADJYyTbiq8LQdDJY/BvCnMCpjr+8O
-X-Google-Smtp-Source: AGHT+IHWfWgdcQqxoTVmFJIu2SLzNm3A0qQRERzEXLa7neH1QrNrTJ0T8DF6bh4XJ6eY6mQO553c/Q==
-X-Received: by 2002:a17:90b:1d01:b0:2a2:bd4b:764f with SMTP id on1-20020a17090b1d0100b002a2bd4b764fmr4481541pjb.3.1714202255374;
-        Sat, 27 Apr 2024 00:17:35 -0700 (PDT)
-Received: from toyko-2.5 ([45.32.55.39])
-        by smtp.gmail.com with ESMTPSA id e14-20020a17090ab38e00b002a03456ccabsm17233086pjr.30.2024.04.27.00.16.52
+        d=1e100.net; s=20230601; t=1714204471; x=1714809271;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LryMUWSXWSPRxaQIt2IMtBO24PQkNlmC6gXH6D1bj+M=;
+        b=k9qC6Uj/fxlmfaUq3uTWHhUWCtvXoJnlCfOvocTjC9P/M/xzYQ65OgKV+7/M+rUHEw
+         dvbj0+JuJzRIyLZGiSKkPhhmpYWR/rbf34gYtDI8gmEK8AWlFBTDDsOkCbqM3hpoli2/
+         KbTJVudufTx99Zm6TNRPvg/Jtq+WPI2dhSajTRqB62lxp1Mr/lM7emS+P0qrmN+mPBiI
+         h9fVOUwTfNWnEld/twewSztuEeAukfBDbuM4AG/feDEWWjWxOuY0bwo17mJaBAh7wz3+
+         bwsJgZSRhkr4mBlIgH7LqmTPxzjZ4nPOB8N1Db6zuRAw8i8JJd3Yaak3mugG8Ff3IRTd
+         ftMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUwL4pFILjB1JaMbyD/aY3ws2RLCTbnDZn1/1hkLmKioqBSmLXdBfqAcFNmwtrXqZeG3MW+z642oo33gE65+8eG3IF/056sWOSBshr1o/tBICrq/Gb6L5tbtvSdlkfO5DfjV2fhzX1f0PSBBfO9GptdSChXqHYJwTEIUP7kUemztHyV2g==
+X-Gm-Message-State: AOJu0Yz56gpdflP19di/dIymhw9AyntHL8W3y3swQ0R2utyR8Cdn+Zs6
+	wi65UKPRrJDRUrQ+li+PVD3N7mVORMzdO/EHBouwIwBX529pfxVY
+X-Google-Smtp-Source: AGHT+IHwdCsHr6JoQr3UpVGreocmmdoL7npjKTt7RGk906UWUDf90Xrt08F1iukUPLp2fEIKYTRf4Q==
+X-Received: by 2002:a05:6a00:1906:b0:6ea:e2d8:468 with SMTP id y6-20020a056a00190600b006eae2d80468mr6341330pfi.26.1714204470669;
+        Sat, 27 Apr 2024 00:54:30 -0700 (PDT)
+Received: from localhost ([46.3.240.103])
+        by smtp.gmail.com with ESMTPSA id m12-20020a63710c000000b005f77b2c207dsm13608057pgc.12.2024.04.27.00.54.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Apr 2024 00:17:34 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: linkmauve@linkmauve.fr
-Cc: andy.yan@rock-chips.com,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	devicetree@vger.kernel.org,
-	dsimic@manjaro.org,
-	ezequiel@vanguardiasur.com.ar,
-	frattaroli.nicolas@gmail.com,
-	heiko@sntech.de,
-	iommu@lists.linux.dev,
-	joro@8bytes.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	macromorgan@hotmail.com,
-	mchehab@kernel.org,
-	p.zabel@pengutronix.de,
+        Sat, 27 Apr 2024 00:54:30 -0700 (PDT)
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+To: broonie@kernel.org,
 	robh@kernel.org,
-	robin.murphy@arm.com,
-	sebastian.reichel@collabora.com,
-	shreeya.patel@collabora.com,
-	will@kernel.org,
-	sigmaris@gmail.com,
-	nicolas@ndufresne.ca
-Subject: Re: [PATCH v4 0/2] Enable JPEG encoding on rk3588
-Date: Sat, 27 Apr 2024 15:16:38 +0800
-Message-Id: <20240427071638.79915-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240418141509.2485053-1-linkmauve@linkmauve.fr>
-References: <20240418141509.2485053-1-linkmauve@linkmauve.fr>
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	unicorn_wang@outlook.com,
+	inochiama@outlook.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu
+Cc: dlan@gentoo.org,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Subject: [PATCH v1 0/2] riscv: sophgo: add spi nor support for cv1800 series
+Date: Sat, 27 Apr 2024 15:54:24 +0800
+Message-Id: <20240427075426.662671-1-qiujingbao.dlmu@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi Emmanuel,
+add spi nor support for cv1800 series
 
-On Thu, 18 Apr 2024 16:15:04 +0200, Emmanuel Gil Peyrot wrote:
->- Only expose a single VEPU121, since the driver doesn’t yet support
->  exposing them all as a single video node to userspace.
-I'm also doing work with the hantro node on rk3588 which has both vdpu
-and vepu. Discussions can be found here[1]. If I enable the jpeg encoder
-at feb50000, would it cause any side effects if other jpeg encoders in
-your patch are enabled? And what's the disadvantage of enabling multi
-jpeg endoers in devicetree?
+Jingbao Qiu (2):
+  dt-bindings: mtd: add sophgo spi-nor-controller
+  spi: add support for sophgo spi-nor controller
 
-[1] https://patchwork.kernel.org/project/linux-rockchip/patch/20240418111002.83015-3-liujianfeng1994@gmail.com/
+ .../bindings/spi/sophgo,spi-cv1800-nor.yaml   |  33 ++
+ drivers/spi/Kconfig                           |   9 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-sophgo-cv1800.c               | 370 ++++++++++++++++++
+ 4 files changed, 413 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/sophgo,spi-cv1800-nor.yaml
+ create mode 100644 drivers/spi/spi-sophgo-cv1800.c
 
-Best regards,
-Jianfeng
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
+-- 
+2.25.1
+
 
