@@ -1,169 +1,153 @@
-Return-Path: <devicetree+bounces-63324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E268B465E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 14:23:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A16A8B466F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 15:24:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3332CB231F0
-	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 12:23:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F36381F24383
+	for <lists+devicetree@lfdr.de>; Sat, 27 Apr 2024 13:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DDB4DA19;
-	Sat, 27 Apr 2024 12:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E760D4EB41;
+	Sat, 27 Apr 2024 13:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GVJqzh9M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J82B/pT4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9606E1DFD2
-	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 12:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEAD4EB3A
+	for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 13:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714220606; cv=none; b=rqe4hXHRAdm8L1wFIHJcEaex5rANprtsWAMC4AdjIwxZD52RG9JyAyLBKbFjUNTcAdJNIuM8lPUUoN2uYrNpEh76j4SYlBzUj72B63IazAQYjun7aZc5BA7L2EgNfcl3TC9EXpLo9fK35ai9UuLA5Z+gVoxXFgF7zdXs56nqtQw=
+	t=1714224283; cv=none; b=BidYQ71XbVqX+Lpy28jP58HsB2yK5voge5zeJfqtjrPFYhip44qUoRM8cyypcDXUnXaK73uKoK/k5OD64eFfP6CUlCC09t7GLKYJsbLbFv/zFGqx8PnHPjeQ+toL+RCKsyCpYak6G9tGIvgZTE3rJUGepWrCaXuxycWc4xZSzOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714220606; c=relaxed/simple;
-	bh=L+G/eFtlWn2Tkg4iusFXtz29f8dsg/bTqYv8Dv4yX+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JmRbCPXLxrJToAt9LpfuIZcb+7QY2T6vBuUEOttDKchYvol+0K9DQacTZa5wRQB3fgZUm1ZeO9RPxYTRMw/SMmCJjVxeiILHqXZ2F3qCRgXD9XJc70P9MycD3and3NdSWVbDUsFHckM9Qv9ObTCCqD5USygR6CQ0se9ifDpSoDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GVJqzh9M; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a58d0aea14cso194675966b.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 05:23:24 -0700 (PDT)
+	s=arc-20240116; t=1714224283; c=relaxed/simple;
+	bh=6pdt+T8bpD1MDg0TA6iWRgozMYW2wNvimQanYEUaB1w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=S4Vp04IGRlPFl3JF33ZS1i3QPXJxqr7dFXcnLIaud/mysbY0NJhPd6UXvmg7ErbuCHA+QKkKuqEcZ4d2ws9wrBKJv981fSWGXrqrsKKd10nGcS2QkdR38MhIrYHsAGId4e9qjB2T5nd738UqDYjBstl6li+MrSUgeSNBrctDBFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J82B/pT4; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-343b7c015a8so2302270f8f.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Apr 2024 06:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714220603; x=1714825403; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=q7feFsI4WVcCZqt8j1/zezoxOfm4nxdXTKy0SLTOZx4=;
-        b=GVJqzh9MK1+BwC9OmDgGL+OMq98G7z+wU2rFJ6Wm+/A2rU4isA9qAvlby+3S/YkBFy
-         KutHgQ2JbrP/E2L2UijgYcP84Bx1aa2vdW6q6KcP6wWdORvtkmiWv4KtkQVOg3VeSCd2
-         dBeuoCsy6Vf/YE3P1xxrN7PcKq8WMqM8KXmzOMQ83j3n99jVRficc40jWSivGnZyED9g
-         pLdgeZHU6mpuTe8eA66jrBPgkVzeGwRxkbUARNRtcEJT6LdlFwp9kjxtsc7b6dDEkD1G
-         qNW/rVmLqhwq4tTkQja/o+jzNcp+9Cau7RDKug5/kDlw7IpDKslZEi7OuJp0uFWvrL+J
-         yj3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714220603; x=1714825403;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1714224280; x=1714829080; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=q7feFsI4WVcCZqt8j1/zezoxOfm4nxdXTKy0SLTOZx4=;
-        b=mXpPz/5YTcIaaGscKlFKo+Jnv4C3RZi2h8nn0S18ZJeyWB+tbuKLu8h3Khs3R5qqJh
-         2kexU9zrX+yv/dhTD0SQhtdLzGcKM8PBaxNGbK1r3LKRvZ7j/WcQNsNJg7AY4UUqg8zP
-         +RvGJ3gPv2IgFnwgQaR/Q3P1HjxR5kHxDoAPAVlx1MpYOB6O7JBVWCGHbJQoaGAso0bp
-         7Erhfs4l2/mt0RY7WvhkRJ+wRkzfk70+foNnpwHKdeGBD7/tltTcmc9JlTBS/L8jKCC5
-         6+HHTLfBjwkEXYo583w5ocPOOAHp2WuFVcp9KUZtJnpS4jqLyCWx0s4zisnFQcbHUNUq
-         DnAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWijQjfq64pNWaTUnCu2CTc2n7nL+ewTk2C+usSSfKG0RpIMluGcvN5p7MEcnaS/uX+W7OWJM/8Kx4+gxhBx4OEtZ4DoKmfXKi/IA==
-X-Gm-Message-State: AOJu0YxlEmsj4xcyZiBU2eLglYYa2dgpJtcM/1SwQnI22ZmtL5wX+Tdv
-	5SRTXc20U8XQ0FWIMgNr3298CaOWn8eTbUJoJR+bH/Iko/F1FLdOKdnLncPCwtE=
-X-Google-Smtp-Source: AGHT+IFbaj5sBTaVsCJGlICozBDXoIZ8kRg1Q7t9/iGxTf3ZXwP9MONYauqbj6euuh8E7QsT22Aieg==
-X-Received: by 2002:a17:906:71d4:b0:a58:f143:b458 with SMTP id i20-20020a17090671d400b00a58f143b458mr74637ejk.62.1714220602983;
-        Sat, 27 Apr 2024 05:23:22 -0700 (PDT)
-Received: from [192.168.114.15] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id x21-20020a1709060a5500b00a521891f8cbsm11630570ejf.224.2024.04.27.05.23.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Apr 2024 05:23:22 -0700 (PDT)
-Message-ID: <b1c4f42d-c730-438b-be96-bacb84c38547@linaro.org>
-Date: Sat, 27 Apr 2024 14:23:19 +0200
+        bh=whVmypuOpLk7I4u5rt/r4BWdd+BmAj46VZDNr5x9rv0=;
+        b=J82B/pT4l258msQKVYPFP1D6YCmfOGm8M5sTQHg3Yf9jMZx0S/YwND5DqTuJfjPJoC
+         pwr67WkQ1S5+QKxZZXVc+ob4mmK2Uku/CUtpm+YxRisbd6Bz+PfvXySpebNsnF67Ke5F
+         bHspuUXFZTJcYf93AUr3rrTrNo0q7pymfxDa2DoSKy62FsiYoarecC9ZbPrAPqejDBI4
+         fHZOaL8mLFk6vNlJJ7W9hernXWpRhROHCrFRYxzFwkeX1mQwLaYxmjQAM2miZmqxCRQ1
+         GF0OUrpMMYIe5hDcpXReoTQ0nd05CxAwkCaLhpZYZbYE1FNNVgPKZQfi8pvtSrtKfWtz
+         01og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714224280; x=1714829080;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=whVmypuOpLk7I4u5rt/r4BWdd+BmAj46VZDNr5x9rv0=;
+        b=D3t/34kohYGbYbFdhW9ik0Z9nkvIDTindUcO/N8AFfighdzl/QNOPC/W6F1tYgcK3Q
+         t4Zbxvppb6ER0USJI+H5/oIxm8yl1FVIwLugsrVYFFTrQQVHPTxrYQ3EQNAyJAVC/vzz
+         zzcvwhibyjaY3pLI0gMedLRpm5LIH9Nzv+ZK3Fa4UZRLNLv0wxMtR1kYtO2g0Mm6zNpO
+         zU1FDyHFzdf+sLGCwiNeHe9xuOENlwpEg2mjnu/A9yN6YA0/uFv9Vx/4KxNJXEpsXtuA
+         CM78ZRjL0okx19WJxe201LlymGglVOc+wYyt8wrR5CpgjWihmwdiz0dxEYdsb54Ntpi0
+         o2SQ==
+X-Gm-Message-State: AOJu0YwyGcFisj6yoy4utELjkIBB4vp1lRXhA++j7dIxTSI3nrfjGqnY
+	MjDbSxmbPjCMttY/hygy/E2iS/Xg1i07NWoBZGxl9kg0cM9dCGpO
+X-Google-Smtp-Source: AGHT+IF9veGmn5mWc7/pnlDQ2Q+jyxBIhhiU5FYMdBkgYjxlDRD83RgzEs+g1eI4UrqQvNDoU4kdWQ==
+X-Received: by 2002:adf:e104:0:b0:33e:c924:5486 with SMTP id t4-20020adfe104000000b0033ec9245486mr3780495wrz.46.1714224280364;
+        Sat, 27 Apr 2024 06:24:40 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id d9-20020adfe2c9000000b00349a5b8eba6sm24999482wrj.34.2024.04.27.06.24.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Apr 2024 06:24:40 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ Ryan Walklin <ryan@testtoast.com>
+Subject:
+ Re: [PATCH v6 0/4] arm64: dts: allwinner: Add Anbernic RG35XX (Plus/H/2024)
+ support
+Date: Sat, 27 Apr 2024 15:24:38 +0200
+Message-ID: <2385425.NG923GbCHz@jernej-laptop>
+In-Reply-To: <20240427110225.727472-2-ryan@testtoast.com>
+References: <20240427110225.727472-2-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] drm/msm/a7xx: Add missing register writes from
- downstream
-To: Connor Abbott <cwabbott0@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jun Nie <jun.nie@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- freedreno@lists.freedesktop.org
-References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com>
- <20240426-a750-raytracing-v2-6-562ac9866d63@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240426-a750-raytracing-v2-6-562ac9866d63@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On 26.04.2024 8:34 PM, Connor Abbott wrote:
-> This isn't known to fix anything yet, but it's a good idea to add it.
+Dne sobota, 27. april 2024 ob 13:02:22 GMT +2 je Ryan Walklin napisal(a):
+> Further revision with a further few small formatting fixes. Major v5..v6 change is removal of the SD2 card node, given the requirements for low-voltage signalling are not fully elucidated and 3.3v operation, although working, was reliant on incorrect regulator node definitions.
 > 
-> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
-> ---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Original cover below.
+> --
 > 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> index 4a3b12b20802..d88ec857f1cb 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> @@ -1953,6 +1953,14 @@ static int hw_init(struct msm_gpu *gpu)
->  				  BIT(6) | BIT(5) | BIT(3) | BIT(2) | BIT(1));
->  	}
->  
-> +	if (adreno_is_a750(adreno_gpu)) {
-> +		gpu_rmw(gpu, REG_A6XX_RB_CMP_DBG_ECO_CNTL, BIT(19), BIT(19));
+> The Anbernic RG35XX is a family of handheld gaming devices. There are 4 variants, of which 3 using the Allwinner H700 chip are covered by this patchset. The fourth (released first and named simply RG35XX) uses an Actions Semiconductor ATM7039s which is a 32-bit Cortex-A9 chip with no mainline support and is not covered.
+> 
+> Common features (RG35XX-2024):
+> - Allwinner H700 @ 1.5GHz (H616 variant exposing RGB LCD and NMI pins, with 4x Cortex-A53 Cores and a Mali G31 GPU)
+> - 1 GB LPDDR4 DRAM
+> - AXP717 PMIC (patches accepted in mfd-next [1])
+> - 3.5" 640x480 RGB LCD
+> - Mini-HDMI, 3.5mm audio jack, mono speaker, two microSD slots and USB-C (USB 2.0) for power.
+> 
+> RG35XX-Plus adds:
+> - RTL8821CS SDIO Wifi/BT chip
+> 
+> RG35XX-H (Horizontal form-factor) adds:
+> - RTL8821CS SDIO Wifi/BT chip
+> - Two analog thumbsticks
+> - Second USB-C port
+> - Stereo speaker
+> 
+> Patch 1 adds the DT bindings for the board names, Patch 2 adds the -2024 device as a common base, Patch 3 adds Wifi/BT support for the -Plus (and -H), and Patch 3 adds the second USB and thumbsticks for the -H. The -H is a strict superset of the -Plus, which is in turn a strict superset of the -2024, so this translates quite neatly.
+> 
+> LCD, HDMI, audio, and GPU support are not yet ready and relying on out-of-tree patches currently, so will be added once these drivers are mainlined.
+> 
+> Ryan
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 
-"/* Disable ubwc merged UFC request feature */"
+Merged, thanks!
 
-> +
-> +		gpu_write(gpu, REG_A6XX_TPL1_DBG_ECO_CNTL1, 0xc0700);
+Best regards,
+Jernej
 
-"/* Enable TP flaghint and other performance settings */"
+> 
+> Ryan Walklin (4):
+>   dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming
+>     device variants
+>   arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+>   arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+>   arm64: dts: allwinner: h700: Add RG35XX-H DTS
+> 
+>  .../devicetree/bindings/arm/sunxi.yaml        |  15 +
+>  arch/arm64/boot/dts/allwinner/Makefile        |   3 +
+>  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 327 ++++++++++++++++++
+>  .../sun50i-h700-anbernic-rg35xx-h.dts         |  36 ++
+>  .../sun50i-h700-anbernic-rg35xx-plus.dts      |  53 +++
+>  5 files changed, 434 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-h.dts
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+> 
+> 
 
-> +	} else if (adreno_is_a7xx(adreno_gpu)) {
-> +		gpu_rmw(gpu, REG_A6XX_RB_CMP_DBG_ECO_CNTL, BIT(19), BIT(19));
 
-This is supposed to be bit(11) on !A750:
 
-"/* Disable non-ubwc read reqs from passing write reqs */"
 
-Konrad
 
