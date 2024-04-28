@@ -1,396 +1,283 @@
-Return-Path: <devicetree+bounces-63354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12E48B4983
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 05:54:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3228B49A5
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 07:00:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7736E1F213B4
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 03:54:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4B69281F97
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 05:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361532905;
-	Sun, 28 Apr 2024 03:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DD72907;
+	Sun, 28 Apr 2024 05:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxJm0xxG"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="WMyZgSBf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2042.outbound.protection.outlook.com [40.107.6.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F86B1876;
-	Sun, 28 Apr 2024 03:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714276457; cv=none; b=CJbWO+12Llszlw8Qk2sBySkk16jUznx4MVJgzShh9q/STaNHqX/2mKyoiOb6MHtlaiIA8/GV7J/+T3U8xvCbAThWPHGZ/FSqgpqwN4NxFBnO6m6C6ygJGZAItMAbqit1udlqMtfw8ujwXyXiVnclZIw3o3p5Fjz8S3kvacVighY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714276457; c=relaxed/simple;
-	bh=aNjB07W8U36J0nUWbKqxP/4UyrwGwcvrCUmVtPtMEdM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ebRkkGr6LDlp5Dv6br4kmYZ5HZEnq3e1lJTacqmScKKBrFcjpbOkVAUDDzEFzyona3b9yRox1ZSPpfZJqN8M8hvTCSDum8PMa34O5JVX1UR0e9O3t8690A+BXUbaw+pvimtXd6nDhFh9jyhts4yRIeJ19Aw7ZA06BtXBFnMfxcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxJm0xxG; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-23319017c4cso2199686fac.2;
-        Sat, 27 Apr 2024 20:54:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714276454; x=1714881254; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CLpY/XhI5HbcFTKFtWlC5rSdt0Q9kJF4aY4r/ezxW9w=;
-        b=TxJm0xxGFzwYdxIThSqm0tYBGLao7SajxxxXLJB0XBrFQ8oADrZ7rhZ4iOzswJEOJA
-         ipuiXTbevALWbruTbW8wqcMAMRhCaagP4E8hW7yxqeI8bEy/QkF8THlU26X0z+7j1bil
-         7Pe+Q1ATKgA3SoQZgG5K7xpy2XcDALwVD1zo5qJeSLIJo0ylAZTOGBYXHrLTUQ0atLx/
-         abWlyYSIzKP7xS6lo8LyGQXQmfJvaQLI6BWg59jWzjSe2k+ZlQLz7hN52fmoFdzsZHym
-         wdugt96xGh1IU7vqG6ZOUBSM1Md+wjOAxJp0O/aYzN/K6E333TLaVzH4BC7jf0osLTV/
-         Rw/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714276454; x=1714881254;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CLpY/XhI5HbcFTKFtWlC5rSdt0Q9kJF4aY4r/ezxW9w=;
-        b=R1wIGwi9DdQfUkGCR/gIn6Tf13Bt8QZTheX6y7QAg4ddKyrNZwYKBOw5LLX8gxvRvJ
-         u5pWR97jCVU8+TezQFvlbFz+BhUt7ZgkxoLo7ZUqAJeWWb/O89HP6yzq2xKvRQhNgV1j
-         HfE/JVPca0lb/rjoqi7erm94YSXRvXxsHOHd6F3l5tgKJfLkQ8M4c0e0oWDOljEB+FuC
-         iqGVPNd5FsRlp0FLX6BGPNydnOumKFFH2Urpk/4rDN68YotKOV3jKb301Q8p/oCgSbAc
-         05a1ZH3AQqDfr11TZDExmI5UCz80sNKPBsibeohfzxy+WfrxR5SyRnwPWeRb1KfajDAY
-         OA6A==
-X-Forwarded-Encrypted: i=1; AJvYcCVPOxxvI6XWBGaejOUti9ojih4kCb4c6C6EBQWu4w+4PCuOOc6iWXndEJ2HtTO3IVtRcjZlq8+6E3Eak6fzrCMWEi2QTHzyPSJPmqIocQD18yLQyn5F6k2eeiWCIYsWCpiw/i5IOBe00k1G75wz5MD2hhm9LLCY4hcEsK/tLi0aEMp7p7DX9ZQ=
-X-Gm-Message-State: AOJu0Yw0rZvq343bRQi+n6OSod/4+zhnPrhuVyIJ06WeP1HZKpVPPyXG
-	5QlR9E4CwZgNQBIu56O5ICIG4x/GSsRSsrfORJ7MGHe8PL6H+2VO
-X-Google-Smtp-Source: AGHT+IECFoxzkYPE9JmOaGsxWZcrK5Todisg8/d+PBvt5Xw6UOu42wHTOHTWW5/gCiRYyLITGDlz4w==
-X-Received: by 2002:a05:6870:f22a:b0:22e:c787:5fa2 with SMTP id t42-20020a056870f22a00b0022ec7875fa2mr7294645oao.58.1714276454353;
-        Sat, 27 Apr 2024 20:54:14 -0700 (PDT)
-Received: from [0.0.0.0] (42-3-109-144.ptr.netvigator.com. [42.3.109.144])
-        by smtp.gmail.com with ESMTPSA id fb12-20020a056a002d8c00b006f3ec69bc09sm1968853pfb.75.2024.04.27.20.54.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Apr 2024 20:54:13 -0700 (PDT)
-Message-ID: <f80384eb-d7eb-4a68-952d-529230ec51a6@gmail.com>
-Date: Sun, 28 Apr 2024 11:54:07 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A109C1FA5;
+	Sun, 28 Apr 2024 05:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714280403; cv=fail; b=uwdMtRc8j0/jicq++nZ+GB7sG7qpE9FgGdyQ2gcZzBOX9f6/osLp1JRiNsVZeotg5Qk0JtfQcAet03AXEyR08mSs7k8V7wnJJsGN/31GPNDk2WLPlWNQ4iVix2cfLZ31tHjsN0hpIOOxcTzi1XoW0ii2/0al2rUgKl+aC5+07oc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714280403; c=relaxed/simple;
+	bh=vOKo7/odR8hekhkyhiWX0k9Gmh7OQi14krTibbn3X7s=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=VIHo4zGO4dyWNTHW+wBIdEESuA7aD63oX2hfFeOQ6rrQtp85NhaX9gI1hRB8MnXeSz8uoXjibZnU8PDAHdduxBAZCN98bBBmN/pwdFlu0s7IS4XxLswrJI9LpG9y+rtsT+XMu2wtnt105i4S1dmAQpSD5fRPEJVLVuzV4ApZkRs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=WMyZgSBf; arc=fail smtp.client-ip=40.107.6.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ESaptvpZpSZnz8OmboQnqTn9GAmwemj4lvvWA2bsN997FqNsqzQ9Dw33gRIyHtdojB63ZIIwwIItTPtP1I/mWn9qwrvW7ow5Hf0prxDj8AwDuFVSTTqNEB+F3WJ+mYZ9KC+HZT7UOrN53AbM+5/Gdj4Vn4PQwbDHyjVYsL7v3Y4azUHgkXY6qwnK6aO53QL4G2JwsmXKUng7ol7TrUWjZYazi0qzfOSgt5Qo/r4CzXTXs3kPJdWrnpDkTqCT8mhOQW80rgMQXsj2vhd+sWbrjGuMoQZCIk6w+BS4zZ5UF6+GD8K5OkIXPNdMurC4hF2nbzeyYXaBmvDH3A56wM9gvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3KDJYz/RaM7+x0Uj5LtEf7dYd8i1b80eON+juDLerWA=;
+ b=N6pHmge8m26Yr/pUXEyKiwS2aSESmqc9Iq4XOFy1ynAkXHDqv9cQ0br/Sfoh9twkvYpFbdMY/qOkKTrfxqWTNCmSOujk/hV3T2vmjc+qsT3AXgIDh22Az0Na3ckGFAPOpOSGl+/4/XMJO4HEsyDvizSEMuGvhxbxyjCBObZQzULl5XtTLkaT8fg42q2IktLVYHCGhJ9daynjbM+Pi738ADTX8sTsojfAXRF++r5c2t188QwimGuh0ybvIYD/yUlFwZt/+5/ZU4Yjwds+hvUaN/mEzMJmttDXCzrC/e1saVc6jBXdrgmWgij04nCyB5IAuQUjqI1kPqMrc5In6wlYkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3KDJYz/RaM7+x0Uj5LtEf7dYd8i1b80eON+juDLerWA=;
+ b=WMyZgSBfHv8JOkIX3Y7PQyLen2d/7yeQKmeI9EBNGqPGie1exweZxFsKZ67gYDon+qwthuVD5mQVrtZXaDBLNoiPdyP8pkW8PGzTse86ZlyO/dIM8QvjR9qrNpN2S1E9Xf9+hfLCt6iDO3A4dNJaCdoJdcuwPrO+H3bBD3DFO4Q=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DU2PR04MB8552.eurprd04.prod.outlook.com (2603:10a6:10:2d7::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.32; Sun, 28 Apr
+ 2024 04:59:57 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7519.031; Sun, 28 Apr 2024
+ 04:59:56 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v3 0/6] pinctrl: scmi: support i.MX95 OEM extensions
+Date: Sun, 28 Apr 2024 13:07:46 +0800
+Message-Id: <20240428-pinctrl-scmi-oem-v3-v3-0-eda341eb47ed@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKPZLWYC/x3MTQqAIBBA4avErBvwD4quEi1EpxooCw0JxLsnL
+ b/FewUSRaYEU1cgUubEV2jQfQdut2EjZN8MSigjjBrx5uCeeGByJ+NFJ2aNUkkthJZ2MB5aeUd
+ a+f2v81LrBxXHCO9lAAAA
+To: Sudeep Holla <sudeep.holla@arm.com>, 
+ Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714280885; l=3915;
+ i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
+ bh=vOKo7/odR8hekhkyhiWX0k9Gmh7OQi14krTibbn3X7s=;
+ b=mgHPmv0Apm6V1enrdtwj8U0J2a41tRJDvI1ly6q9PcBk+KF4vdQEarKOCEx15x+g8jhifOm+x
+ 7Rc13a3b5HXBgDqMLgyfe8AiRQUv3JgZdCcYL9bEBwCDDLX4RiAB5pJ
+X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
+ pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
+X-ClientProxiedBy: SG2PR06CA0245.apcprd06.prod.outlook.com
+ (2603:1096:4:ac::29) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: Add AYN Odin 2
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Junhao Xie <bigfoot@classfun.cn>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Tengfei Fan <quic_tengfan@quicinc.com>,
- Molly Sophia <mollysophia379@gmail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org
-References: <20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com>
- <20240424-ayn-odin2-initial-v1-10-e0aa05c991fd@gmail.com>
- <0d1c6ed9-0c20-4b0e-876d-4b0adf5aa75d@kernel.org>
-Content-Language: en-US
-From: Xilin Wu <wuxilin123@gmail.com>
-In-Reply-To: <0d1c6ed9-0c20-4b0e-876d-4b0adf5aa75d@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DU2PR04MB8552:EE_
+X-MS-Office365-Filtering-Correlation-Id: b90c64fc-118e-4499-756f-08dc67400c75
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|1800799015|376005|52116005|7416005|366007|921011|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NjJocTNqOThrWUdySE9LMkY2czRzTFVNclNsbk5pOEIyQjB5bVhFWkZEWVph?=
+ =?utf-8?B?VTFnMlg1eUdlSzRzanVhOTUrNDgwWEx3aklsOEdnWmpZK0x1TUFuVExmQkNY?=
+ =?utf-8?B?N0xDenVYVm83STVBdlF0VHpiZWtCYjJQV0k0ZmdhbmdYRWdKOHY4a0xueWJL?=
+ =?utf-8?B?WTlwL1hoSzJ0di9sMjJtdjR0d3NpR3FSbnRaVFpYSWg3eGdVV2l1M3FxRnk3?=
+ =?utf-8?B?ZFM4ODJpYlZ5aUp5OTh6bWVHVWVXZVBZQ21qWVFaV2dpNTdwMENYMXcwQjBD?=
+ =?utf-8?B?SVYzMmtudW1Za3Vubk84Syt3Q3RqVGZhMW9GVmZpK2ZHT25rNng1ZFVDVEpX?=
+ =?utf-8?B?SkNTOHByajhoRW1QbjNvZGZGMjFiQ0VkREJqWi9wd2ZpVjJnOTNuTE9hVThl?=
+ =?utf-8?B?MFRSRkdXSENJYmF0TkxIdWVid09UWWI0L1ZvWFgrMDdQQW9ISEtxYUpHYnJo?=
+ =?utf-8?B?bUV0ckdrODhnSlpWZ21keXYyUDhLWTNQclVoRmhoSkNRU05wMklBOFhCanRL?=
+ =?utf-8?B?VVpMa3dQaVM2SFZzeHVzb1FiYlozcFhCMXJ2dmJaZ2lUelRIWHJvV2tOT1hX?=
+ =?utf-8?B?NjFNOU9KVjFtMEFsam1pRXFrdkcyWUY3MEhqSTJhYmpQeThlL1BFLy94clRV?=
+ =?utf-8?B?cDVFMWRNZlBISWI5NVlhRk5GUnhjYjk1VWIzcDM0VTBVdjdWaWEzSVFEMVB2?=
+ =?utf-8?B?QXY2MHNNS2l6Q2EyYmJIWktJa2YyL2Z4aDhkRHR1bW42dzBLWERNQ1E4N2Jq?=
+ =?utf-8?B?Tis0MlhCWDFsSWtvZE1EcjFRalhFUTV3Q3NRRWowZE42aVdVQ3hBTGRkUUNp?=
+ =?utf-8?B?TWFNOUQ3UHYycWdpQWpKOXVRdU1aSU5pUTZ6OWVTTXJYWWJZTDNsZUVDVnlY?=
+ =?utf-8?B?Y3g4VDFtbDlsSzF0VGhxaElXenl2ZXlzTGhBeVh2V3diN2YxQnEzNFd5ekRB?=
+ =?utf-8?B?LzlEUjRpUFljb3JEUkt0SWIzMkdaMm1QMjV0bmo4dytjR201WUxKNk1nVnFH?=
+ =?utf-8?B?bmdpaHFDWE9QZzQ5cVF2dVJsMi9kcE5nQ1N1TzYxU24wNDRNcHVYL0hYd1Fh?=
+ =?utf-8?B?NVA4OE55bGdwQWRnMEd4czY0Q2N2QjN4M3Zhb0hlS0FiSG9YQ21lZkZubll5?=
+ =?utf-8?B?YkhwT3VDWFNaanRFY1puNFRHRXJGL21mb0MzTytVcUtKa2ptelJtNE5UN1JF?=
+ =?utf-8?B?aGRUeTRlODIwYVFJdHlLQ00xRGt2QmpNc3lrOTAxTmNKT0s4RnZmRmttSE12?=
+ =?utf-8?B?WDRjYzlvYXVYdFQ4cmJ5NzFIMWNMOXZOY3RESFBGbHZERXdnMlU1QUpwY05s?=
+ =?utf-8?B?cElYNTVtWnBRdkk2N1pYbGp4YStLLzNPN0JIVjRIUGZjbUorVkRlTndrVXYy?=
+ =?utf-8?B?ZEJPOFI1NGhNWUN2V3RHczlVbTdPb0F3bi90UVZ5UzdXUi9aenhVbjRCZ1hM?=
+ =?utf-8?B?bzBkeTYvRWlZb0xmYWEwYzlLYmFPdmJlbk1QZnhCV08xdVRWMVdPbFp0Qmk3?=
+ =?utf-8?B?T2xvaDZRdG8zdTEwRWRjZWFQWkgreTltUldjdUdOYzhwZWhQNDFUK1l5ck5G?=
+ =?utf-8?B?ckFzczRiclR3RU1wdVFRL3RLbTFSOERlcVE4WURnZkNabDNOcFdxUFEzV200?=
+ =?utf-8?B?RXducjgzZWt5RCtsKytnb0dMMTEzKzVtNnJzdC9DMnlLWkYzVDdzTCtxK09t?=
+ =?utf-8?B?NGRiQ0RyN0xpZG5UcFlNNkRwc21hdS9XVVl0RnZDdWF0Smd0a0MzanM5L1dh?=
+ =?utf-8?Q?KIRv74uCWXAXvJ0Ulk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(52116005)(7416005)(366007)(921011)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VTdwOGo0ZGJ1Q21pTlhWckM5RFJXMGlJelRGTStSL0tYT3lGRFFsUDRBUFhm?=
+ =?utf-8?B?VnFlOHh5NGdSMlkrZ2lCdXg1UmM1SlMxb1FNZWpnOUxYeHY1S1J4NUtFQnc4?=
+ =?utf-8?B?ZzNCQlREUEtmY2RWQVM3M0dxekZhcEFmMnhHNVVFK3FOOEFnRTE1aW5vS0FI?=
+ =?utf-8?B?VHYxd001ZEh1alYxWFVnc0owT0N5ODRLanJRLzJmUWpJanFFeHg3YU5EOHlJ?=
+ =?utf-8?B?TC9kalY5L2Z3Y0FvbVVpbEY4L3E3ckJuZU9zR3dPNUhXaFg4amUwWkZzT2Nk?=
+ =?utf-8?B?OE5lc1o0RVNBWHFITTVZRmxWZDBkd2NZTjhSVWlWUk1iZDY1UEcwTmVDRWQv?=
+ =?utf-8?B?ZFJMSCtNR2N4cEptV1p6NisvNTc1MFZWbnNETlZWR3VsWEJXWkdybHcrdDFU?=
+ =?utf-8?B?QTV0QlFnaFMxdHVPWjFUSjlrVkdDY3kyRkNXaTJ1emdnYUxRcVlKbXkxWjhW?=
+ =?utf-8?B?OUdUMUx4T2dOQklYSmgxMGRtYzV3NTRCRUZaTEtFN1RGbXJhRkN6NXdwTnFi?=
+ =?utf-8?B?cnh0M1hnMGpSU3FvUHRMTkkvUFR5YWhJdEUyUyszL254Z2JaWTludDl6K2gx?=
+ =?utf-8?B?UGNWcFhkQ2hKRTgrVE91SnFZTmJiMlhEbTVWRXN0NC8xZjdMQWxWM2ZyOUYw?=
+ =?utf-8?B?aFB1K1lraDIxWlFCbWNXV1R2dmtjMmZCZDhjMVFaNFFkZ1JWa3VmVmtXdDNu?=
+ =?utf-8?B?ZGtmYVE2WFF3R3BuNGpSb1VFMGNGZVUxUVQ3V2dPY0xKVzZ6UU1GSk9lWXda?=
+ =?utf-8?B?NTBpMmEzbEFsQmFIWUdFbnc2Ump3Z2QxL1ZGRUg1UXVlanNIQlZreVBtNHhD?=
+ =?utf-8?B?UWlMSGFKbTZRdkVkRmNnazMrZkJud1cvNUtEOVN5cXlDVlZzVlVPNjF3OGJm?=
+ =?utf-8?B?UnREbGd2bUpFRU1LWHQrWllJT1g3NS95OTFXMDV5dEoyajdPMGFOTmJDSFgy?=
+ =?utf-8?B?bUM5ekZNU3pxY21kQnJJaU0rMENkNTRJUkhpb0hVallwQUhYMURaNVFYS0ds?=
+ =?utf-8?B?bHM1R2Y4UWFjbVRKaFNLOEdnZUVBRXNNUEIwNXVhdWRsZkROcUNiRzduZGNh?=
+ =?utf-8?B?cHFQNUEwYXlyV0pUK3ZEOExvNSswYzZKMzRWdnpGaHR2algzLzZJUW53ZWg3?=
+ =?utf-8?B?REhNdzYzNk5pam9HNzhjWmlJOE9NT0VQRWMyQ3Vtek93MFM4STFKT0x1V0Zw?=
+ =?utf-8?B?cGwxb2s3UElWc09zV1BjRGJGcVpJb0Z3ZXE3VlA2bVZvTUVtZXlqaEFKalQ2?=
+ =?utf-8?B?YjVpRGRjaXVPYUpjOWhCUXE1QjdkRWtacndITTk0Z3hQTHFjbCt3R0kxZEgr?=
+ =?utf-8?B?cWY0bFVWSjlVVCtHSHVKZkM0WnM4MXZLc1Y0eStSM0h5UkZIYWZFMXJnczRJ?=
+ =?utf-8?B?K1VjNzhGeDdMTk13djdxS0d1bHo1bGlDVVRHdnlmblJOV2Y3S0FIWVlwRDky?=
+ =?utf-8?B?RUNjT2ErUnV0OFptN1ZXazVCUTJ6S0ZZczY0WFJhQ3hYNENwbU01S2dmd3BW?=
+ =?utf-8?B?eGJHaWRwaWdzajFiTHlIZ0N4b00wOVQ5T0NIQVpBNFdFMm1EN0FZK0ZDWjg4?=
+ =?utf-8?B?WGVSUVNPYVpmR2J5K0ttaVRySUVDclRXeUFzTm1sdk5zaHhiVXIySFBuWTV1?=
+ =?utf-8?B?QU5HRTF5TkdHdEp2WWk5aGJ5YlF0M3ZGVG5HQ3NuazlhZ3krT2luL0RVaWpr?=
+ =?utf-8?B?bFZUVWlYcVQ4VkJzcGVFVHR1UDRVWWZTVGsya3pZaFUrZ1VHamVCZWhnR1dM?=
+ =?utf-8?B?RXpzdWNrblh2cFNNYzlFVGxuOGVDWm9FWEhWVlUreE9UTFBVVG9SNnVqTlpz?=
+ =?utf-8?B?aEZjY3pta2gvNWFnMFIrNkc3TzR6a1pHMWl2K0JnUDdUZkhmdFhkVjlBR21a?=
+ =?utf-8?B?VkVudWR1dVNaeWkyc1BLY0NoMllYZXU0K2xqWDN4ZUJ5NmNoTVhxZ0VYZHdF?=
+ =?utf-8?B?bWFUTTJRZ01PeWVJczV4YTVmWGwzL2VZcVBzR1lPMVlBTnFHVG56bG1sREts?=
+ =?utf-8?B?RFJyRmE1TGU3d3BIY1JEcDVPU0R6emRxSmVjVkxtbVJqNWlrUmYzWkRTY3Vj?=
+ =?utf-8?B?eVRKaGthekl1RDlkK3pPZzFQUS9ydjZsc2FlVytSMThvNHdMUUt2N2M4UGtK?=
+ =?utf-8?Q?mKj1Z193GMobj8btn70Xh7HLZ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b90c64fc-118e-4499-756f-08dc67400c75
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2024 04:59:56.7778
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WE891r9i5KZkKgzSvFgrVb2yGBGH1Uc9NrvVXCNvB6DwC8PHwMvgM1Jbl23gWtp1PTtkpgyggWj40ovU8SuPTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8552
 
-On 2024/4/25 14:28, Krzysztof Kozlowski wrote:
-> On 24/04/2024 17:29, Xilin Wu via B4 Relay wrote:
->> From: Xilin Wu <wuxilin123@gmail.com>
->>
->> AYN Odin 2 is a gaming handheld based on QCS8550, which is derived
->> from SM8550 but without modem RF system.
->>
-> 
-> 
-> 
->> +
->> +/ {
->> +	model = "AYN Odin 2";
->> +	compatible = "ayn,odin2", "qcom,qcs8550", "qcom,sm8550";
->> +	chassis-type = "handset";
->> +
->> +	qcom,msm-id = <QCOM_ID_QCS8550 0x20000>;
->> +	qcom,board-id = <0x1001f 0>;
-> 
-> No, these are not allowed. You did not test your dts.
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> 
->> +
->> +	aliases {
->> +		serial0 = &uart7;
->> +		serial1 = &uart14;
->> +		serial2 = &uart15;
->> +	};
->> +
->> +	backlight: backlight {
->> +		compatible = "pwm-backlight";
->> +		pwms = <&pmk8550_pwm 0 860000>;
->> +		brightness-levels = <1023 0>;
->> +		num-interpolated-steps = <1023>;
->> +		default-brightness-level = <600>;
->> +		power-supply = <&vph_pwr>;
->> +		enable-gpios = <&pmk8550_gpios 5 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pwm_backlight_default>;
->> +		status = "okay";
-> 
-> Drop, why do you need it? Do you see it anywhere else in the backlight
-> nodes in DTS?
-> 
-> 
->> +	};
->> +
->> +	fan_pwr: fan-pwr-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "fan_pwr";
->> +
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +
->> +		gpio = <&tlmm 109 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&fan_pwr_en>;
->> +
->> +		regulator-state-mem {
->> +			regulator-off-in-suspend;
->> +		};
->> +	};
->> +
->> +	gpio-keys {
->> +		compatible = "gpio-keys";
->> +
->> +		pinctrl-0 = <&volume_up_n>, <&m1_m2_keys_default>;
->> +		pinctrl-names = "default";
->> +
->> +		key-volume-up {
->> +			label = "Volume Up";
->> +			linux,code = <KEY_VOLUMEUP>;
->> +			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
->> +			debounce-interval = <15>;
->> +			linux,can-disable;
->> +			wakeup-source;
->> +		};
->> +
->> +		m1-button {
->> +			label = "M1";
->> +			linux,code = <BTN_TRIGGER_HAPPY1>;
->> +			gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
->> +		};
->> +
->> +		m2-button {
->> +			label = "M2";
->> +			linux,code = <BTN_TRIGGER_HAPPY2>;
->> +			gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
->> +		};
->> +	};
->> +
->> +	hdmi-out {
->> +		compatible = "hdmi-connector";
->> +		type = "d";
->> +		hpd-gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
->> +
->> +		port {
->> +			hdmi_con: endpoint {
->> +				remote-endpoint = <&lt8912_out>;
->> +			};
->> +		};
->> +	};
->> +
->> +	hdmi_pwr: hdmi-pwr-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "hdmi_pwr";
->> +
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <1800000>;
->> +
->> +		gpio = <&tlmm 10 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +
->> +	vdd_lcm_2p8: vdd-lcm-2p8-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vdd_lcm_2p8";
->> +
->> +		regulator-min-microvolt = <2800000>;
->> +		regulator-max-microvolt = <2800000>;
->> +
->> +		gpio = <&tlmm 142 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +
->> +	led_left_side: led-controller-1 {
->> +		compatible = "pwm-leds-multicolor";
->> +
->> +		multi-led {
->> +			label = "left-side";
->> +			color = <LED_COLOR_ID_RGB>;
->> +			max-brightness = <255>;
->> +
->> +			led-red {
->> +				color = <LED_COLOR_ID_RED>;
->> +				pwms = <&pwm_rgb_left 0>;
->> +			};
->> +
->> +			led-green {
->> +				color = <LED_COLOR_ID_GREEN>;
->> +				pwms = <&pwm_rgb_left 1>;
->> +			};
->> +
->> +			led-blue {
->> +				color = <LED_COLOR_ID_BLUE>;
->> +				pwms = <&pwm_rgb_left 2>;
->> +			};
->> +		};
->> +	};
->> +
->> +	led_left_joystick: led-controller-2 {
->> +		compatible = "pwm-leds-multicolor";
->> +
->> +		multi-led {
->> +			label = "left-joystick";
->> +			color = <LED_COLOR_ID_RGB>;
->> +			max-brightness = <255>;
->> +
->> +			led-red {
->> +				color = <LED_COLOR_ID_RED>;
->> +				pwms = <&pwm_rgb_left 6>;
->> +			};
->> +
->> +			led-green {
->> +				color = <LED_COLOR_ID_GREEN>;
->> +				pwms = <&pwm_rgb_left 7>;
->> +			};
->> +
->> +			led-blue {
->> +				color = <LED_COLOR_ID_BLUE>;
->> +				pwms = <&pwm_rgb_left 8>;
->> +			};
->> +		};
->> +	};
->> +
->> +	led_right_side: led-controller-3 {
->> +		compatible = "pwm-leds-multicolor";
->> +
->> +		multi-led {
->> +			label = "right-side";
->> +			color = <LED_COLOR_ID_RGB>;
->> +			max-brightness = <255>;
->> +
->> +			led-red {
->> +				color = <LED_COLOR_ID_RED>;
->> +				pwms = <&pwm_rgb_right 0>;
->> +			};
->> +
->> +			led-green {
->> +				color = <LED_COLOR_ID_GREEN>;
->> +				pwms = <&pwm_rgb_right 1>;
->> +			};
->> +
->> +			led-blue {
->> +				color = <LED_COLOR_ID_BLUE>;
->> +				pwms = <&pwm_rgb_right 2>;
->> +			};
->> +		};
->> +	};
->> +
->> +	led_right_joystick: led-controller-4 {
->> +		compatible = "pwm-leds-multicolor";
->> +
->> +		multi-led {
->> +			label = "right-joystick";
->> +			color = <LED_COLOR_ID_RGB>;
->> +			max-brightness = <255>;
->> +
->> +			led-red {
->> +				color = <LED_COLOR_ID_RED>;
->> +				pwms = <&pwm_rgb_right 6>;
->> +			};
->> +
->> +			led-green {
->> +				color = <LED_COLOR_ID_GREEN>;
->> +				pwms = <&pwm_rgb_right 7>;
->> +			};
->> +
->> +			led-blue {
->> +				color = <LED_COLOR_ID_BLUE>;
->> +				pwms = <&pwm_rgb_right 8>;
->> +			};
->> +		};
->> +	};
->> +
->> +	mcu_3v3: mcu-3v3-regulator {
-> 
-> Name all regulators regulator-n, where n is decimal number. Then order
-> the nodes by name.
-> 
-> 
-> ...
-> 
->> +
->> +&i2c4 {
->> +	clock-frequency = <400000>;
->> +	status = "okay";
->> +
->> +	touchscreen@20 {
->> +		compatible = "syna,rmi4-i2c";
->> +		reg = <0x20>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		interrupts-extended = <&tlmm 25 0x2008>;
->> +
->> +		pinctrl-names = "default", "sleep";
->> +		pinctrl-0 = <&ts_int_default>;
->> +		pinctrl-1 = <&ts_int_sleep>;
->> +
->> +		vio-supply = <&vreg_l12b_1p8>;
->> +
->> +		syna,startup-delay-ms = <200>;
->> +		syna,reset-delay-ms = <200>;
->> +
->> +		rmi4-f01@1 {
->> +			syna,nosleep-mode = <0x1>;
->> +			reg = <0x1>;
->> +		};
->> +
->> +		rmi4-f12@12 {
->> +			reg = <0x12>;
->> +			syna,rezero-wait-ms = <20>;
->> +			syna,clip-x-low = <0>;
->> +			syna,clip-y-low = <0>;
->> +			syna,clip-x-high = <1080>;
->> +			syna,clip-y-high = <1920>;
->> +			syna,sensor-type = <1>;
->> +			touchscreen-inverted-x;
->> +		};
->> +	};
-> 
-> Please confirm the status of dtbs_check for your board. I am pretty sure
-> it fails.
-> 
-> Best regards,
-> Krzysztof
-> 
+ARM SCMI v3.2 Table 24 Pin Configuration Type and Enumerations:
+'192 -255 OEM specific units'.
 
-I will correct all the mistakes in v2. Thanks for catching them!
+i.MX95 System Manager FW supports SCMI PINCTRL protocol, but it has zero
+functions, groups. So pinctrl-scmi.c could not be reused for i.MX95.
+Because nxp,pin-func, nxp,pin-conf properties are rejected by dt
+maintainers, so use generic property 'pinmux' which requires a new driver
+pinctrl-imx-scmi.c
 
+The node will be as below:
+ pinctrl_usdhc1: usdhc1-pins {
+         sd1-grp0 {
+                 pinmux = <IMX95_PAD_SD1_CLK__USDHC1_CLK
+                           IMX95_PAD_SD1_STROBE__USDHC1_STROBE>;
+                 drive-strength = <0xe>;
+                 input-schmitt-enable;
+                 bias-pull-down;
+                 slew-rate = <0x3>;
+         };
+         sd1-grp1 {
+                 pinmux = <IMX95_PAD_SD1_CMD__USDHC1_CMD
+                           IMX95_PAD_SD1_DATA0__USDHC1_DATA0
+                           IMX95_PAD_SD1_DATA1__USDHC1_DATA1
+                           IMX95_PAD_SD1_DATA2__USDHC1_DATA2
+                           IMX95_PAD_SD1_DATA3__USDHC1_DATA3
+                           IMX95_PAD_SD1_DATA4__USDHC1_DATA4
+                           IMX95_PAD_SD1_DATA5__USDHC1_DATA5
+                           IMX95_PAD_SD1_DATA6__USDHC1_DATA6
+                           IMX95_PAD_SD1_DATA7__USDHC1_DATA7>;
+                 drive-strength = <0xe>;
+                 input-schmitt-enable;
+                 bias-pull-up;
+                 slew-rate = <0x3>;
+         };
+ };
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+Changes in v3:
+- patch 2,3,4,5 are new.
+- Rewrite the binding, drop nxp,pin-x properties, use generic properties
+  as Rob commented.
+- Switch to using pinmux means pinctrl-scmi.c could not be reused, so
+  add a new driver in patch 6 for i.MX95. But pinctrl_scmi_get_pins and
+  scmi_pinctrl are exported for i.MX95 usage.
+- Link to v2: https://lore.kernel.org/r/20240418-pinctrl-scmi-oem-v1-v2-0-3a555a3c58c3@nxp.com
+
+Changes in v2:
+- Rename nxp,imx95-pinctrl.yaml  to nxp,imx95-scmi-pinctrl.yaml and move
+  to firmware
+- Merged patch [1,2]/3 v1 into patch 1/2 v2.
+- nxp,imx95-scmi-pinctrl.yaml only has patterProperties for subnode
+  The pinctrl will be as below for i.MX95.
+        pinctrl_usdhc1: usdhc1-pins {
+                sd1cmd {
+                        pins = "sd1cmd";
+                        nxp,func-id = <0>;
+                        nxp,pin-conf = <0x138e>;
+                };
+                sd1data {
+                        pins = "sd1data";
+                        nxp,func-id = <0>;
+                        nxp,pin-conf = <0x138e>;
+                };
+        };
+- Add pins enum, correct description.
+- Link to v1: https://lore.kernel.org/r/20240412-pinctrl-scmi-oem-v1-v1-0-704f242544c1@nxp.com
+
+---
+Peng Fan (6):
+      dt-bindings: firmware: arm,scmi: Add properties for i.MX95 Pinctrl OEM extensions
+      pinctrl: scmi: move pinctrl_ops to scmi_pinctrl
+      pinctrl: core: guard with __PINCTRL_CORE_H
+      pinctrl: scmi: export pinctrl_scmi_get_pins
+      pinctrl: scmi: add blocklist
+      pinctrl: imx: support SCMI pinctrl protocol for i.MX95
+
+ .../devicetree/bindings/firmware/arm,scmi.yaml     |   9 +-
+ .../bindings/firmware/nxp,imx95-scmi-pinctrl.yaml  |  37 ++
+ drivers/pinctrl/core.h                             |   4 +
+ drivers/pinctrl/freescale/Kconfig                  |   7 +
+ drivers/pinctrl/freescale/Makefile                 |   1 +
+ drivers/pinctrl/freescale/pinctrl-imx-scmi.c       | 574 +++++++++++++++++++++
+ drivers/pinctrl/pinctrl-scmi.c                     |  60 +--
+ drivers/pinctrl/pinctrl-scmi.h                     |  30 ++
+ 8 files changed, 689 insertions(+), 33 deletions(-)
+---
+base-commit: bb7a2467e6beef44a80a17d45ebf2931e7631083
+change-id: 20240428-pinctrl-scmi-oem-v3-12130031a74d
+
+Best regards,
 -- 
-Thanks,
-Xilin Wu
+Peng Fan <peng.fan@nxp.com>
 
 
