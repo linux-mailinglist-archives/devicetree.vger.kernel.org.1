@@ -1,138 +1,142 @@
-Return-Path: <devicetree+bounces-63418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E7A8B4CD8
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 18:43:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B018B4CDE
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 18:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D672CB21261
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 16:43:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F7742816E6
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 16:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76CF71748;
-	Sun, 28 Apr 2024 16:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCEB71B3A;
+	Sun, 28 Apr 2024 16:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OUUQwcDH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lX/FJlg4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F0510F1;
-	Sun, 28 Apr 2024 16:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9E410F1;
+	Sun, 28 Apr 2024 16:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714322590; cv=none; b=TDAzHsbHBulFJfXS+31MMQJtG5IxWgIvBasq8s321rUsWAtLvsiylMjwl8WkT1evVkyqkzb78RimYT7b4YOG0aXOp3rogU5hsD3GNp4HROPeH7ZNpj/mJLSTs2CwqA4egsirHQzJV5f7mH+cWYxPuYRP+VyRuORVPcT+DIBMyhE=
+	t=1714322725; cv=none; b=Cqo4Hh+UBJSWmlLnVSkaKRt+gsMKm64O+5jB+QQwsQQuYTjIEqm5sCrjXlEvnPRIkqPlg9Cqq4rrmWRWcR/Y/sImLRwQZZ7qFudwal8SX5Ogoj7oiKeMIBlxaS8fAulNSBo8EPlRaxvfBhF3rYE9O7QG+ml11g0wAiSPMr+QUPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714322590; c=relaxed/simple;
-	bh=EidOxFX6H2GZOFLTNNJUTaIKPaa8OC8IwITYAUrn7Lc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JRQWZFfNLby2rZUnXrgwClLIYk+IKf3SD7KoDvH60kS9VNLTJ5L1g7PvFnkIQ/4SH7lqGImjZ+7BXmt/4tsYFl7i10GH67DJs7qtQ5wYvoZEBOel4PWNXJnxAhLUBTiEeOcBjW8GmQj1GbBgLY97guo6lf/5mpYwUaeT6QlgSGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OUUQwcDH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E3DBC113CC;
-	Sun, 28 Apr 2024 16:43:06 +0000 (UTC)
+	s=arc-20240116; t=1714322725; c=relaxed/simple;
+	bh=5kYP3pmRZkJtkUEFsEYFM/NTR8a+xkpPppKIoM24f7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HfztS3GdYLvuNHoHnEw1ka9XA+abUWllWNc8spzYdTbW6A7qGqiOrTwRRAy3t3vJGJZ4Ji8tHjKWB6VWtAOq5ZKRElXIFJYa4XPBkmKYkvMZcvgBZNo6l0nNUjpJuQWOCeGigzb+Ra6zMTeISHSCY+Yo4DrOsOtm1BecVtWGIdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lX/FJlg4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4545FC113CC;
+	Sun, 28 Apr 2024 16:45:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714322590;
-	bh=EidOxFX6H2GZOFLTNNJUTaIKPaa8OC8IwITYAUrn7Lc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OUUQwcDHolMknNA+zY9AnQ/wqlLo6QJLaPM/2wnvz4/svnjt8Lp2faCbPazb0H8Id
-	 rM7ylT0MZWsBwXU6JhYDQH2hvrKcP24hU4S5IXdTIbwCvJRSnzqeQayeYv6LOTJac7
-	 zPQ3bqmbSm3QFq1Dx5dqh9P4CGFZZwBPNpf2CqeVcMqzssImJ8qavlM/96gtjr+2th
-	 veReb8rwtOa7xIUwRB/2oZ4AwLEmZpJfaQGgNCTZQkEXu/RRAPrC3TeYPZTw+HNJNz
-	 QlnUeP+6iZlXrzEncA3gZqJSRYC2SB2y+FlNG1onCLGDSOZ5nCIfNUxOk5dMKuEO/S
-	 i5sh6vxbMKfpQ==
-Message-ID: <7c475cf3-1f76-4be9-8461-946293bb4f15@kernel.org>
-Date: Sun, 28 Apr 2024 18:43:04 +0200
+	s=k20201202; t=1714322724;
+	bh=5kYP3pmRZkJtkUEFsEYFM/NTR8a+xkpPppKIoM24f7M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=lX/FJlg4IpPctey9rwJ5G71OlFBAyAGflEF2JWbzPkYVdFa2eAGLCUuxXDzuyC51U
+	 EQG48mWWgUpvPUUcNKuKLcrZZNNvkWmZ+4Qhcmtwsgm1dP3AUioxs/vXmCq8CILtD4
+	 69ih+C2EZ9BiIeVUbXKJWsmqz6mKaz1TjpCAI745GXZXz0KJBOZQlQFx4eMd7/xxrM
+	 tqkO9mx4TM8zJd75bOeoyxxrnTvUQow7vtK1CoSp0Sspl10td6BINSsZ6Z3S5W58kY
+	 exKRWup/Hg1PG4eqJ3XMLi82kg53EptCw/8Ey6s8RoZn/YA3KHxBGMsPwkWuhM8waE
+	 IXREY/XBX+adg==
+Date: Sun, 28 Apr 2024 17:45:09 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: =?UTF-8?B?T25kxZllag==?= Jirman <megi@xff.cz>, Aren Moynihan
+ <aren@peacevolution.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>,
+ linux-iio@vger.kernel.org, phone-devel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, Willow
+ Barraco <contact@willowbarraco.fr>
+Subject: Re: [PATCH v2 2/6] iio: light: stk3310: Implement vdd supply and
+ power it off during suspend
+Message-ID: <20240428174509.6de97d54@jic23-huawei>
+In-Reply-To: <CAHp75VdR9HtWbSif+j8QHX5zG9xPF1GzUFY2s-0OjD3RAWD9-Q@mail.gmail.com>
+References: <20240423223309.1468198-2-aren@peacevolution.org>
+	<20240423223309.1468198-4-aren@peacevolution.org>
+	<CAHp75VeRDSPvpmSbUyZPp0RMoTOE193U2ma18qxv_qZQKLCq8g@mail.gmail.com>
+	<5qqil7ltqhdeabml6toqpcy773uhjxgwaz3txpy4kv4sz55o2y@hmar674eey7s>
+	<CAHp75VdR9HtWbSif+j8QHX5zG9xPF1GzUFY2s-0OjD3RAWD9-Q@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/14] dt-bindings: fsi: Document the FSI Hub
- Controller
-To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
- linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au
-References: <20240425213701.655540-1-eajames@linux.ibm.com>
- <20240425213701.655540-10-eajames@linux.ibm.com>
- <91d5683b-17a2-466c-ab3d-baf216c97fa3@kernel.org>
- <8d5cca29-2b4d-40a7-a7dd-c3eff625af95@linux.ibm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <8d5cca29-2b4d-40a7-a7dd-c3eff625af95@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 26/04/2024 17:19, Eddie James wrote:
->>
->>> +  The FSI Hub Controller is an FSI controller, providing a number of FSI links,
->>> +  located on a CFAM. Therefore this node will always be a child of an FSI CFAM
->>> +  node.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - ibm,hub-fsi-controller
->> Again, is it for specific chip? SoC? Aren't you using generic
->> compatibles (not allowed)?
-> 
-> 
-> This one is fairly universally supported on FSI (any POWER chip will 
-> have it) so I didn't add a specific chip... Should i? Do you mean 
-> generic compatibles are not allowed? How generic do you mean?
+On Wed, 24 Apr 2024 18:20:41 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Maybe IBM is different here, but for every regular SoC the blocks of
-that SoC should carry SoC model name/number.
+> On Wed, Apr 24, 2024 at 3:59=E2=80=AFPM Ond=C5=99ej Jirman <megi@xff.cz> =
+wrote:
+> > On Wed, Apr 24, 2024 at 02:16:06AM GMT, Andy Shevchenko wrote: =20
+> > > On Wed, Apr 24, 2024 at 1:41=E2=80=AFAM Aren Moynihan <aren@peacevolu=
+tion.org> wrote: =20
+>=20
+> ...
+>=20
+> > > >         ret =3D stk3310_init(indio_dev);
+> > > >         if (ret < 0)
+> > > > -               return ret;
+> > > > +               goto err_vdd_disable; =20
+> > >
+> > > This is wrong. You will have the regulator being disabled _before_
+> > > IRQ. Note, that the original code likely has a bug which sets states
+> > > before disabling IRQ and removing a handler. =20
+> >
+> > How so? stk3310_init is called before enabling the interrupt. =20
+>=20
+> Exactly, IRQ is registered with devm and hence the error path and
+> remove stages will got it in a wrong order.
+>=20
+> > Original code has a bug that IRQ is enabled before registering the
+> > IIO device, =20
+>=20
+> Indeed, but this is another bug.
 
-Best regards,
-Krzysztof
+It shouldn't be.  A device that produces interrupts before we have
+told it to is a) buggy, b) almost certainly already had it's interrupt
+masked due to spurious interrupt detection.
+
+Definitely don't want to do it in the opposite order where userspace
+could turn the device on and have it start generating interrupts before
+the irq is registered.  I'd rather assume non buggy hardware (and
+that if there are bugs, the normal protections kick in) than
+introduce a race into the software.=20
+
+>=20
+> > so if IRQ is triggered before registration, iio_push_event
+> > from IRQ handler may be called on a not yet registered IIO device.
+> >
+> > Never saw it happen, though. :) =20
+>=20
+> Because nobody cares enough to enable DEBUG_SHIRQ
+
+In most devices there is a status register and we should be
+doing nothing unless that is set.  Interestingly this device either
+doesn't have one or the driver doesn't read it - it reads a flag only
+and so will always push an event.  Such a register read doesn't require
+the IIO device registration to be complete.
+
+There are corner cases where that isn't true that need to manually
+mask at the host but they are rare.
+
+There is also a basic level of defense in iio_push_event() against
+that being called when the event interface is not registered.
+
+Jonathan
+
+
+>=20
 
 
