@@ -1,99 +1,128 @@
-Return-Path: <devicetree+bounces-63369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2F78B4A91
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 09:59:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 849FE8B4ABE
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 10:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FD67B212B2
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 07:59:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D4EE1F21707
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 08:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800B451004;
-	Sun, 28 Apr 2024 07:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA22753E0C;
+	Sun, 28 Apr 2024 08:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="eofGzXtg"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="HxZkDkvp";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="HvzgjPbQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F76EED0;
-	Sun, 28 Apr 2024 07:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from fhigh6-smtp.messagingengine.com (fhigh6-smtp.messagingengine.com [103.168.172.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1B04F894;
+	Sun, 28 Apr 2024 08:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714291169; cv=none; b=WJ5ESVCeJuHcDpkaGdKSoCvfUzcQ82NOBEmpGDabC2/e3nQYelV9690A4iwy9ZcDMMdtqmSm6AK/mklDjaYMhajGCty0f7HRYQJi7ThmctjLNaCK2QB5ATFnJNlP/2sp2J5OK5BVzNq3INzx43fX0Tcp25GNxbxxV6ZY3pGN14o=
+	t=1714293695; cv=none; b=VG643VHwYTUxcX6S1ND/avtYQtIWAl+bMPkaG2FA2ZgGJUdDB4YJM9RjPdH2ZKQ/H2S73qqOXPsaQRdgIA1rfmGYQpLDMhUFLJNMWbO+JeY8hj2pydBRvj6nUo/F1/vfIJsZcmIJ33Adu8oaG1LjhaqGT1e69Jwb8rNvcwbJlK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714291169; c=relaxed/simple;
-	bh=sJweSO7ymb4LO1Afes/fz5qes9jXjF77aWOkkBcE/LM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pWibhsOnbVcpEB3XgnoUzq53cHRMhXIwPbQ8C/7PH4Vid71oudPAVEDDtpGV/xkN5d7ECYxXW5tHdhf62/jUdF5uZTh/ZZNDzs/etg04unNocs7OAkfic7ZWBWjDdKpex0WYtvA8ZdQNPUpeZYF1zjfnmlJRZIHmphFnY1vFBk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=eofGzXtg; arc=none smtp.client-ip=123.58.177.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=N/5F1F5Rz7AAM3iNROhjX8YnjpmKVMOyfv0VpHrRf74=;
-	b=eofGzXtgvx2EtQ8WNM5a6W0OgTp5A7nGRgZioPZR2v+VBgg0/pxA3DI4SCNfOy
-	FytTEGmQ0huPOU61KPTWV5YKF8CgF2UTAUKPGuvJBmi/v8P/CMoRn54Hkk2QD6Ex
-	TOwozFBoQfXXxJxSOgj/t/2ccZvvZAlRV/F+wzkNCtyVI=
-Received: from dragon (unknown [114.216.210.46])
-	by smtp1 (Coremail) with SMTP id ClUQrAD3f3VwAS5mp07GAw--.21974S3;
-	Sun, 28 Apr 2024 15:57:39 +0800 (CST)
-Date: Sun, 28 Apr 2024 15:57:36 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 00/49] ARM: dts: imx: Use #pwm-cells = <3> for
- imx27-pwm device
-Message-ID: <Zi4BcG+1d5LEdbms@dragon>
-References: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
- <oy4mnbkskyrw5dwkq3rebe2yh4i3fy44rubhvesug7pedzws46@472pzktn5t22>
+	s=arc-20240116; t=1714293695; c=relaxed/simple;
+	bh=lkK4uPbqGbrBOS0JE9U2l/zksGsHzDvqTknalrJj0Fs=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=g3lMqpwADXwMC1D1eBXBwKoxnoQIyx8Ch/f+ACDwqt4zdvI/pJjFDwQOSpfLrwf1gDWfKjdO/+/a2cw/guQTU10hzS5YRh5tHhk9wE974t2XG1z+T9UuPHfKb+9jqZTylM1utYx3pb/sAFtqFKYutXRE6o60Y+Zk75PKCpmoiiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=HxZkDkvp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=HvzgjPbQ; arc=none smtp.client-ip=103.168.172.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 4D3D111400B2;
+	Sun, 28 Apr 2024 04:41:32 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Sun, 28 Apr 2024 04:41:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm3; t=1714293692; x=
+	1714380092; bh=HLOUbLQEM816UDtN/Z+3niss/HQf6m2iH7S3MerGxMU=; b=H
+	xZkDkvpPbYOcwgcgz6S2ONRuilhMMukIvZFzCHfkQziCb+7IAQnhRjomeB9rXdR9
+	1B2e8ZAqI2e0h86cpU9Gz5ZrHUKWyJo+lIV0lzbEkZdolFVQi5yfJ2fCrMl847SP
+	ZcGSdpVxz+lYV/T4xhKjOyQKz3mEBOedEvjxn6P2k8FVQpN6Oy83x6JtPre6ye6f
+	wQ+Cve1KMLwiUpZm/UGRcZpAOSmvvAIlgwAWrCDLfAmenCPOyVw1KRt6q0dfyJZR
+	ICCWSFnYTNFn9UvEbc0dwivcyzAkvWu+Z/HLWtZhRluRQ0XT03+MUlqkFjoI6tPI
+	J8c9ARQjUkMaGFHfDEApg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1714293692; x=1714380092; bh=HLOUbLQEM816UDtN/Z+3niss/HQf
+	6m2iH7S3MerGxMU=; b=HvzgjPbQstttBLtvZ+IeOVlyGpj1Yaza9Mqg2Q38qbsu
+	iPs5dirPK00X5zJdW5VrW7aFfLgTf0/Z5u61DXVJhqhxHvVb5V7db5FssDIrnX1f
+	Iuhf5s2ZjxCPERJpF5mKPBYi/2rcVy1DKLSvf7eN6mJ4QIS0fy5S9ZHakhXEhsZV
+	HbqZCXCvSV8RJVIZjRbOHADcX3cFvy7viJObAIHdCF6SSbf33j7r9ORqiNVWFPrg
+	U9RtiwFngaSWzWsK1LUUKg06UHBc+KQu/T+cJPAvT/T8HLjoGFuPBHWF8l3Fsmwr
+	s+HYSGuLLV5troz/uWA9OWUKK0mF3zwiwO0lY/FP1A==
+X-ME-Sender: <xms:ugsuZvrK1-NBWIB2JyCyh9ADluVaQZiIdC6BCF-O6QhNzynrL4DH4g>
+    <xme:ugsuZpokrBWOvW5PbwLDzyqoU2k9kkKPQPP-UGBsu3p74HBNErCali7fCIKw9hOcm
+    o0yZlUT4JWVidrzzg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddtgedgfeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
+    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
+    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
+    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
+X-ME-Proxy: <xmx:ugsuZsNJhiToTnooM0xGudYXA9Cm9LBjP2IHNQlfgI0k4EEhIhDi8w>
+    <xmx:ugsuZi4GGpLLEw3zTk3Bhu8PBwuLQLwrG8kJcbddTYvbIacwqrFsug>
+    <xmx:ugsuZu65TWkG1d_8NTDBM9VfxLysf25u1r2H4qhvmcqDA1WQgJ4qmQ>
+    <xmx:ugsuZqiacvcWDndtGaIgbyx-T1Jl2t_S9rRZSOYu_s_TJHgFaHequw>
+    <xmx:vAsuZhKagxFAON1L0uCORbG4aieX2zyruBqPyBxWslAPBld9zBsOUR2g>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 9CEF4A60078; Sun, 28 Apr 2024 04:41:30 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-386-g4cb8e397f9-fm-20240415.001-g4cb8e397
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <oy4mnbkskyrw5dwkq3rebe2yh4i3fy44rubhvesug7pedzws46@472pzktn5t22>
-X-CM-TRANSID:ClUQrAD3f3VwAS5mp07GAw--.21974S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Gw4xXr47Xw4kGw18tFyfCrg_yoW3ArgE93
-	W293WDCa95AFWkGas0yw45t343KrWUt3y3try7Wrn29Fn3Cas8Ca4kKrWrtw13ur4rtas7
-	KFZ3t3WUX34Y9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8qYLPUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBRTOZVsVCgQLwwAAsy
+Message-Id: <c17d163e-29cc-4049-985e-d1ef91d764cb@app.fastmail.com>
+In-Reply-To: <20240418000736.24338-1-andre.przywara@arm.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+Date: Sun, 28 Apr 2024 20:41:10 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Andre Przywara" <andre.przywara@arm.com>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Lee Jones" <lee@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
+ "Mark Brown" <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>,
+ "Chris Morgan" <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
+Content-Type: text/plain
 
-On Fri, Apr 26, 2024 at 09:40:24PM +0200, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Fri, Apr 05, 2024 at 11:41:47PM +0200, Uwe Kleine-König wrote:
-> > this series addresses many warnings of the type:
-> > 
-> > 	arch/arm/boot/dts/nxp/imx/imx6ul-pico-dwarf.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
-> > 	        from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
-> > 
-> > that is emitted when building with CHECK_DTBS=1.
-> > 
-> > This completes the conversion started with
-> > 
-> > 	fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3> in the SoC dtsi files")
-> > 	4c6f19ab2aed ("dt-bindings: pwm: imx-pwm: Unify #pwm-cells for all compatibles")
-> 
-> Gentle ping! I would expect that Shawn picks up this series.
+On Thu, 18 Apr 2024, at 12:07 PM, Andre Przywara wrote:
+> This is v2 of the fixes to the AXP717 PMIC support series. 
+<snip>
+> I don't know if that's still feasible, but those two patches would be a
+> good candidate to squash into the patches that they fix.
+>
+> The other three patches add the "boost" regulator, which is meant to
+> provide the 5V USB VBUS power when operating from the battery. It's the
+> usual trinity of binding/mfd/regulator patches.
+> Again this could be squashed into the respective patches from the
+> original series, if people agree.
+>
+> Please have a look and test!
+>
+> Based on mfd/ib-mfd-regulator-6.10, as detailed below.
 
-Thanks for reminding!  Applied all, thanks!
+Looks good here, RSB communication, regulator and 5v boost support configured via DT working well on my H700 board, established by a combination of successful device bringup and kernel reporting. Concur with the request to be squashed into the mfd-next tree for 6.10 if possible, thanks!
 
-Shawn
+Ryan
 
+Tested-by: Ryan Walklin <ryan@testtoast,com>
 
