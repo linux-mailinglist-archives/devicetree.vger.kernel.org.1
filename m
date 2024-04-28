@@ -1,128 +1,149 @@
-Return-Path: <devicetree+bounces-63370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849FE8B4ABE
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 10:41:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F468B4AFF
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 11:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D4EE1F21707
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 08:41:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 677BA281A10
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 09:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA22753E0C;
-	Sun, 28 Apr 2024 08:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96AB054BFC;
+	Sun, 28 Apr 2024 09:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="HxZkDkvp";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="HvzgjPbQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EXgk+ZaC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh6-smtp.messagingengine.com (fhigh6-smtp.messagingengine.com [103.168.172.157])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1B04F894;
-	Sun, 28 Apr 2024 08:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39AD554904;
+	Sun, 28 Apr 2024 09:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714293695; cv=none; b=VG643VHwYTUxcX6S1ND/avtYQtIWAl+bMPkaG2FA2ZgGJUdDB4YJM9RjPdH2ZKQ/H2S73qqOXPsaQRdgIA1rfmGYQpLDMhUFLJNMWbO+JeY8hj2pydBRvj6nUo/F1/vfIJsZcmIJ33Adu8oaG1LjhaqGT1e69Jwb8rNvcwbJlK4=
+	t=1714296825; cv=none; b=Dj7Wy7HTABvquxg31CJRD5AvQk7Imw1YVJE1imLbuKkamETOrO/1ByMGdZP23fz5rhU+Yri95RZnP5EXp1OzOejCCjpQisaT8Q0SPtTT5grbUkWBSokU4GXYBatAdZjg3G6SgXjeyiE/CUJNbbfMu/8nAiyEYnTlE6QArtctp7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714293695; c=relaxed/simple;
-	bh=lkK4uPbqGbrBOS0JE9U2l/zksGsHzDvqTknalrJj0Fs=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=g3lMqpwADXwMC1D1eBXBwKoxnoQIyx8Ch/f+ACDwqt4zdvI/pJjFDwQOSpfLrwf1gDWfKjdO/+/a2cw/guQTU10hzS5YRh5tHhk9wE974t2XG1z+T9UuPHfKb+9jqZTylM1utYx3pb/sAFtqFKYutXRE6o60Y+Zk75PKCpmoiiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=HxZkDkvp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=HvzgjPbQ; arc=none smtp.client-ip=103.168.172.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 4D3D111400B2;
-	Sun, 28 Apr 2024 04:41:32 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sun, 28 Apr 2024 04:41:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1714293692; x=
-	1714380092; bh=HLOUbLQEM816UDtN/Z+3niss/HQf6m2iH7S3MerGxMU=; b=H
-	xZkDkvpPbYOcwgcgz6S2ONRuilhMMukIvZFzCHfkQziCb+7IAQnhRjomeB9rXdR9
-	1B2e8ZAqI2e0h86cpU9Gz5ZrHUKWyJo+lIV0lzbEkZdolFVQi5yfJ2fCrMl847SP
-	ZcGSdpVxz+lYV/T4xhKjOyQKz3mEBOedEvjxn6P2k8FVQpN6Oy83x6JtPre6ye6f
-	wQ+Cve1KMLwiUpZm/UGRcZpAOSmvvAIlgwAWrCDLfAmenCPOyVw1KRt6q0dfyJZR
-	ICCWSFnYTNFn9UvEbc0dwivcyzAkvWu+Z/HLWtZhRluRQ0XT03+MUlqkFjoI6tPI
-	J8c9ARQjUkMaGFHfDEApg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1714293692; x=1714380092; bh=HLOUbLQEM816UDtN/Z+3niss/HQf
-	6m2iH7S3MerGxMU=; b=HvzgjPbQstttBLtvZ+IeOVlyGpj1Yaza9Mqg2Q38qbsu
-	iPs5dirPK00X5zJdW5VrW7aFfLgTf0/Z5u61DXVJhqhxHvVb5V7db5FssDIrnX1f
-	Iuhf5s2ZjxCPERJpF5mKPBYi/2rcVy1DKLSvf7eN6mJ4QIS0fy5S9ZHakhXEhsZV
-	HbqZCXCvSV8RJVIZjRbOHADcX3cFvy7viJObAIHdCF6SSbf33j7r9ORqiNVWFPrg
-	U9RtiwFngaSWzWsK1LUUKg06UHBc+KQu/T+cJPAvT/T8HLjoGFuPBHWF8l3Fsmwr
-	s+HYSGuLLV5troz/uWA9OWUKK0mF3zwiwO0lY/FP1A==
-X-ME-Sender: <xms:ugsuZvrK1-NBWIB2JyCyh9ADluVaQZiIdC6BCF-O6QhNzynrL4DH4g>
-    <xme:ugsuZpokrBWOvW5PbwLDzyqoU2k9kkKPQPP-UGBsu3p74HBNErCali7fCIKw9hOcm
-    o0yZlUT4JWVidrzzg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddtgedgfeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
-    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
-    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
-    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:ugsuZsNJhiToTnooM0xGudYXA9Cm9LBjP2IHNQlfgI0k4EEhIhDi8w>
-    <xmx:ugsuZi4GGpLLEw3zTk3Bhu8PBwuLQLwrG8kJcbddTYvbIacwqrFsug>
-    <xmx:ugsuZu65TWkG1d_8NTDBM9VfxLysf25u1r2H4qhvmcqDA1WQgJ4qmQ>
-    <xmx:ugsuZqiacvcWDndtGaIgbyx-T1Jl2t_S9rRZSOYu_s_TJHgFaHequw>
-    <xmx:vAsuZhKagxFAON1L0uCORbG4aieX2zyruBqPyBxWslAPBld9zBsOUR2g>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 9CEF4A60078; Sun, 28 Apr 2024 04:41:30 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-386-g4cb8e397f9-fm-20240415.001-g4cb8e397
+	s=arc-20240116; t=1714296825; c=relaxed/simple;
+	bh=9/H4hIcmfu3JjOnIknoqVVHVuWndxPUkScSTTOjWtG4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rW0PxVdwZz3+lN679IMlUBpHHU41f/63cNBWc3ly6DSXzq49NrD9PC/7JcedrhyAhdMAZSUtWk9KHlSnJPfoIxRqASmsaNkZ+KHTWTs364Q3dLYY6YxiwXruJCcmpJak70Yv6Ql7R1FBd8Plb4Mr1qkrHetfgtcY8nyMR4fv250=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EXgk+ZaC; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1e5715a9ebdso29934785ad.2;
+        Sun, 28 Apr 2024 02:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714296823; x=1714901623; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8y4J2jKG4zMmITnzKwBDxurX5+DaqJx/4k4xBWp5hO0=;
+        b=EXgk+ZaCl+3bGpJ2C7A0ZIR8drscLI/4k97m8HeskipOVmmbf8SqmWNc31qCC508m7
+         3Y7YbqWiYZ2OINXnufQ5LSkiYsplF/Xf03193/DkTciTbe1F7AWbyNzLSHfNh41+P9MU
+         LtUAu796OO3rT3OOF+CVJ3jhdUhDR89ZZ4noscO57r71bFmjO0V+rx6MphyCJyIkHDHG
+         QLentiqDwocZM4vTBOF3yKGbCfzuChl4D6zw45HbB7KLSXfsMKqehV4QfxrNbCOkNaQf
+         bqygTaGSMStwOCg2vUuDt0NJVpgYswIHqVNxENokl8wC6aswB24ytHBdywH6mY3MWut4
+         9GMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714296823; x=1714901623;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8y4J2jKG4zMmITnzKwBDxurX5+DaqJx/4k4xBWp5hO0=;
+        b=JQV6oHQORGkn3zzQIyAIxvJ7/dk9wSYnMTiKlihRqKfJwkRSxWkvO7hg9hyCY8aN1K
+         OP8ltKqvOBXlpr1UQQjNntk+4HB6SQlim5LKiHeahiBrg28nouC5xCOqQBYoa/ki2p03
+         GfjYTO9dqxXl0FJNG3UckbX3S4c/BWws4JJQARUC/p1PMvd6GB+Jm82+ddDFp1HvE15k
+         nsWIcYjXWNSZY5/L2ZZOKMIv5fITR2bY1N6Umtsb4Kv386SrGF5prLz5hUJc1Udztm2A
+         3vMwwr0KcLXs9HtZb39u5RTbapu16vd/U5XKSpXsraIUf6Qa7p/BvFc/GDRAJU83M4dM
+         tPYg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHhXQe/e13LyOGTfM4/rtKMvKEYY7/MKyilp0bhodmfemOeGTfkQSybJ26mOCUSzVQIxW/8/QzJOmJlK52jr+HfGBHBpy+0pS1AWvY/+PxEdHKrj2s31NtZMVflbRbh2YmqagW6UMNDuIPdrq8grcJ0fk554A0xxsafn72zAQ4TkA/b1vtY9EaE4JzFtUVmY/XSe/lkw8C1zQQhg==
+X-Gm-Message-State: AOJu0YyJzGg3y6J34AN4SlFX64rZKMWPkHIhUXIlA7WQBPnlNNO5jv3a
+	3LOULX57KB/aMULPGt8DoD1U2tRdNPA1eYdEcTqNxQsHLjF2gzIx
+X-Google-Smtp-Source: AGHT+IGY8wQOviArarfgPhxPvt9bnQiBDGjv4NNlhGEdkQKoEG2Trea3tp+JYSu9ILqwtee0EG7LMA==
+X-Received: by 2002:a17:902:bb83:b0:1de:fbc8:53af with SMTP id m3-20020a170902bb8300b001defbc853afmr3761373pls.25.1714296823253;
+        Sun, 28 Apr 2024 02:33:43 -0700 (PDT)
+Received: from archie.me ([103.124.138.155])
+        by smtp.gmail.com with ESMTPSA id l18-20020a170903005200b001e85cf937ffsm18171609pla.101.2024.04.28.02.33.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Apr 2024 02:33:42 -0700 (PDT)
+Received: by archie.me (Postfix, from userid 1000)
+	id A981B184692DC; Sun, 28 Apr 2024 16:33:36 +0700 (WIB)
+Date: Sun, 28 Apr 2024 16:33:36 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, andrew@lunn.ch, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com
+Cc: UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com,
+	Pier.Beruto@onsemi.com, Selvamani.Rajagopal@onsemi.com,
+	Nicolas.Ferre@microchip.com, benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v4 01/12] Documentation: networking: add OPEN
+ Alliance 10BASE-T1x MAC-PHY serial interface
+Message-ID: <Zi4X8NO9SkhffJ98@archie.me>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+ <20240418125648.372526-2-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <c17d163e-29cc-4049-985e-d1ef91d764cb@app.fastmail.com>
-In-Reply-To: <20240418000736.24338-1-andre.przywara@arm.com>
-References: <20240418000736.24338-1-andre.przywara@arm.com>
-Date: Sun, 28 Apr 2024 20:41:10 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Andre Przywara" <andre.przywara@arm.com>, "Chen-Yu Tsai" <wens@csie.org>,
- "Lee Jones" <lee@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
- "Mark Brown" <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-sunxi@lists.linux.dev, "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>,
- "Chris Morgan" <macroalpha82@gmail.com>
-Subject: Re: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5Fqs5imMNEU2vqXw"
+Content-Disposition: inline
+In-Reply-To: <20240418125648.372526-2-Parthiban.Veerasooran@microchip.com>
 
-On Thu, 18 Apr 2024, at 12:07 PM, Andre Przywara wrote:
-> This is v2 of the fixes to the AXP717 PMIC support series. 
-<snip>
-> I don't know if that's still feasible, but those two patches would be a
-> good candidate to squash into the patches that they fix.
->
-> The other three patches add the "boost" regulator, which is meant to
-> provide the 5V USB VBUS power when operating from the battery. It's the
-> usual trinity of binding/mfd/regulator patches.
-> Again this could be squashed into the respective patches from the
-> original series, if people agree.
->
-> Please have a look and test!
->
-> Based on mfd/ib-mfd-regulator-6.10, as detailed below.
 
-Looks good here, RSB communication, regulator and 5v boost support configured via DT working well on my H700 board, established by a combination of successful device bringup and kernel reporting. Concur with the request to be squashed into the mfd-next tree for 6.10 if possible, thanks!
+--5Fqs5imMNEU2vqXw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ryan
+On Thu, Apr 18, 2024 at 06:26:37PM +0530, Parthiban Veerasooran wrote:
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 04e5f7c20e30..79fa7abb4ec9 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16400,6 +16400,12 @@ L:	linux-rdma@vger.kernel.org
+>  S:	Supported
+>  F:	drivers/infiniband/ulp/opa_vnic
+> =20
+> +OPEN ALLIANCE 10BASE-T1S MACPHY SERIAL INTERFACE FRAMEWORK
+> +M:	Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+> +L:	netdev@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/networking/oa-tc6-framework.rst
+> +
+>  OPEN FIRMWARE AND FLATTENED DEVICE TREE
+>  M:	Rob Herring <robh+dt@kernel.org>
+>  M:	Frank Rowand <frowand.list@gmail.com>
 
-Tested-by: Ryan Walklin <ryan@testtoast,com>
+I can't apply this series on top of current net-next due to MAINTAINERS diff
+above (on context line 16400 I have Omnivision entries). Care to reroll?
+(Hint: also specify --base=3D to git-send-email(1) so that I and other
+reviewers know where to apply this series.)
+
+Confused...
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--5Fqs5imMNEU2vqXw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZi4X5gAKCRD2uYlJVVFO
+o1AvAP4nLo1+SkG4LHoDx0UG7x2GO8EAVGWa2xA0bfEy+LmYZwD+Nkv8oXNIABg7
+t7tyeXn5/fcA0D6fn+xGvTd0RKT37g0=
+=jFZ9
+-----END PGP SIGNATURE-----
+
+--5Fqs5imMNEU2vqXw--
 
