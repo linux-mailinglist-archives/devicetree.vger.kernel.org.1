@@ -1,180 +1,181 @@
-Return-Path: <devicetree+bounces-63373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0756D8B4B44
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 12:37:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5468B4B8A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 13:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3F70B20FFA
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 10:36:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A127628167F
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 11:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07A42AF01;
-	Sun, 28 Apr 2024 10:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB6A58ACB;
+	Sun, 28 Apr 2024 11:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="guWRDSzT"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="SlJ1ct7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3561521101;
-	Sun, 28 Apr 2024 10:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A886E573;
+	Sun, 28 Apr 2024 11:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714300615; cv=none; b=pjKX2WjZgL8iIOn/kLRk/ByO6NVSgQKTVws1JKuMWcewZoENRu8NKQdo7eFDQmNEsVUbtK+jdFp4E+daDrHVlgJsNruSO5IETk32ajju/Cfss/88cMmJT6vro7cpuu7IRUAWaQe/KD4h038TaRCNXoGDDWbqcq+WtacViIeeXGo=
+	t=1714304452; cv=none; b=Wk2nCSPSY6s59n3w1N6k+igLiBBiRWDUlp9kCrLkuEM+Zhe7vR8le16CgCzYmeiZaCGs31b03c23ny1ED2uoVQlzEeIgQhvsvbHEqY+KbHqW1go4BM9fV3EOtcm0fdIDgVXwBg3FkOjOvvLkAdz7PR6x1/YlSurL/5hizp1aYWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714300615; c=relaxed/simple;
-	bh=A3nivpRe23n35pamaYeQ0NQo4GANL/bYE1cAUfQv3ns=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TTQI0LxrwOvTiJkEp4OuOlWIhRul7DccageVG/tvqHBW2OLQBBkXTDadS8bjohG7UFLNTwrLU4lL5BAk645HMQz6qRB9yJJB1jaxPhED3SNJVHr4jdkyRmHJ4RXV3O36wzKjCLL1LGTF+M/Nt0pIpiWsQWZPEewJf7MQ4jPxeFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=guWRDSzT; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51ae315bb20so4261914e87.1;
-        Sun, 28 Apr 2024 03:36:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714300612; x=1714905412; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A3nivpRe23n35pamaYeQ0NQo4GANL/bYE1cAUfQv3ns=;
-        b=guWRDSzT/woGVEnn+h3lmqSXzjFX/Pg9Sbm54hzK54t7GgabRQV6mlt7v2UAmEule3
-         Zehw+4gpd1joqkf5sGQ8hFVdy1/IuCjYq6zwTYfk0jrK6mhLZ8flFU59mESrGwBjkmX7
-         WTY3ZgTj9WMnoLCPELqL91cXJDuq0e/MhNMX9T3Ij4722CZV+3j70IxqWCFqLkSlURAC
-         U6TNI+oe8B0naC7rjCt6Tib18TGnEY/qETrkplEsKYicLf+VTBojzgta/uYC9CfAro1l
-         M4QQmn2MZZDh0SS//zyxETEKdRy71HM87RpQ4tBQuIvYz3KruJoStXFyTtmVVQLmCaVu
-         os7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714300612; x=1714905412;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A3nivpRe23n35pamaYeQ0NQo4GANL/bYE1cAUfQv3ns=;
-        b=iT7TCvbTDavCXq8NQb1WmTKS64sJIfLgydvFmV87j7scA+QaaUMKlTpvVZxRwUN2iL
-         UR0kfkPMpu8vPKUDbT0eolZAx3kxhQLMUb2FbwVQ6OSCb7U8/T9Hpbp+XwbJ+bNxiv0G
-         Quu/z2NgqPHFugiwcUkc7pWpvsD/PiJIk6pDnQoj5YtnO2ATZhcPucwNv2z2d9P1KSru
-         IpJObcdCNYXFgyKUpKehsuIoK9IbpcVuvt1y3c5+iFFQmLw5g7CPcmA+CV4OaeJCpNjz
-         JToTrAH+lWc6cTs8UCdyUkFPPkcmW+wZTl3k5hn9EbldjRkWcRQjllJomGue13YWrgQ1
-         O8AQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWUoHr9OMZpZtp9bSLJd04sDXzUeWwn4jVBrMqkYimUz1HeJmGKwOdzu7LuEBQDT9kz9N3sk3nWeXVcUzY4rCiF96IZWkgytWNz9Jf5lpfgMr0IEpf/daM+COjwaN6eP+jtaY874C8Rfg==
-X-Gm-Message-State: AOJu0Yz4OQmDRoamemydAxfrObXx0WaN7YGouVUxRI2auH670q6eF5YT
-	MJET/sDrS8/luK0kcsh39NK8FSXxJViBSLsiM0xVXeo+GQ+Q27MioXPHTaSgRQYtdG22CdD/U8Z
-	tS6LPjGgjatPK1aijQMMwNNBAVeSRFVfl
-X-Google-Smtp-Source: AGHT+IH/DaS669Bmyaz9/X/48TD9TThgeNs7jYyoIAffpLAI+oq1Xd0RSZ+Q9R5j/jQkIkEOPbhalxhibL/MZSvUjXQ=
-X-Received: by 2002:a05:6512:3f17:b0:51a:a400:785e with SMTP id
- y23-20020a0565123f1700b0051aa400785emr5299909lfa.43.1714300612066; Sun, 28
- Apr 2024 03:36:52 -0700 (PDT)
+	s=arc-20240116; t=1714304452; c=relaxed/simple;
+	bh=38qZybaFIbJJQUgyJkChPDujC2+Dkdv/fBlW/vsmtsQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GSJ0vmdDZ7PWANLJL0ou+x/NsebPf/q2fuqE4WA6dFLxnFvZg0IjoWT1JmiAa0LOMk9TOH4GQRhXSnRGaF+aGtyWAXqvb4kdS75M8q1a377fRwSineXJ90D13stX5LxMGFgA+ZO8Fv1shKfmoDolvQoy/HetZIGIhj1rhzryV48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=SlJ1ct7Q; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1714304444;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fUUlO8nSkAmh0ieyYyxQ3T6zIAKTL4UZHOPVrkuWOnQ=;
+	b=SlJ1ct7Qbmgs/iRfAlf0K+hPxDYtqovcTVLtZoJUXu7iPQxNtw2vyh4VPwNfkmgoNJ1oby
+	fRbsxecxQpE/TgsXDHSM1/ZCpXlFR0mXnfg1DFRk+kRfQaxjoCrFUDPhTaUU1stRMZ2iVw
+	tK0iearS6rjrwl5oELDxFKl6WAFMO6ryubceAJx5HnKJ7n5YF2L3De4N0Oa/YXzCNofYKv
+	/nPKzUdRm05Ds9+cGNRoj6aLghOw3r+p2D87+Y+5ZC4M8gX8KOvadRGpIVKUxdwnwRxkCX
+	U+Ua4OO3Jx9D6R0Em1JcDP9qcH0DLqJrgBiitjLnXDf2FWaJSzF7dA4FGEBYGw==
+To: linux-sunxi@lists.linux.dev
+Cc: wens@csie.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: allwinner: Add cache information to the SoC dtsi for A64
+Date: Sun, 28 Apr 2024 13:40:35 +0200
+Message-Id: <6a772756c2c677dbdaaab4a2c71a358d8e4b27e9.1714304058.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <linux-mm@kvack.org> <20240416120635.361838-1-skseofh@gmail.com>
- <20240416120635.361838-2-skseofh@gmail.com> <Zh9l_LpThq9aFUR7@kernel.org>
- <CAATEi5kywwC2yUaYjgs+Gm=4HM5o=KHTqH1ALKJijWE_gge0=g@mail.gmail.com>
- <ZiFgYWydIwvnpIIY@kernel.org> <CAATEi5kFt8iUeWSkrj_bVTyPO_tfQzG77D719P5dLsr2j6Zkzw@mail.gmail.com>
- <CAATEi5ksY-v7-LEqNZWFV5hsHiegNEtrh4LpMWOQ=vT7hC0Rng@mail.gmail.com>
- <Ziy8AsAGZyKCyXX_@kernel.org> <CAATEi5=Z0qirM-fyGJL_UPcr7-iyCFtOW9d3XsdN50Tkhpm0iA@mail.gmail.com>
- <Zi3twYLGvhtJa9Yh@kernel.org>
-In-Reply-To: <Zi3twYLGvhtJa9Yh@kernel.org>
-From: DaeRo Lee <skseofh@gmail.com>
-Date: Sun, 28 Apr 2024 19:36:40 +0900
-Message-ID: <CAATEi5nOQE7xi5ztV0BFO6MRqSGwUPT4V9dqpMT+p4r7iZQwRQ@mail.gmail.com>
-Subject: Re: [PATCH v2] memblock: add no-map alloc functions
-To: Mike Rapoport <rppt@kernel.org>
-Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
-	Daero Lee <daero_le.lee@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-2024=EB=85=84 4=EC=9B=94 28=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 3:35, M=
-ike Rapoport <rppt@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> On Sat, Apr 27, 2024 at 07:24:23PM +0900, DaeRo Lee wrote:
-> > 2024=EB=85=84 4=EC=9B=94 27=EC=9D=BC (=ED=86=A0) =EC=98=A4=ED=9B=84 5:5=
-0, Mike Rapoport <rppt@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
-> > >
-> > > On Fri, Apr 19, 2024 at 10:59:52AM +0900, DaeRo Lee wrote:
-> > > > 2024=EB=85=84 4=EC=9B=94 19=EC=9D=BC (=EA=B8=88) =EC=98=A4=EC=A0=84=
- 10:46, DaeRo Lee <skseofh@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
-> > > > >
-> > > > > In memmap_init_reserved_pages, we mark memblock.reserved as
-> > > > > PageReserved first and mark the memblock.reserved with nomap flag
-> > > > > also.
-> > > > Sorry. This is my mistake. 'memblock.memory with nomap flag' is rig=
-ht.
-> > > >
-> > > > > -> Isn't this duplicated work? (If we add no-map region to
-> > > > > memblock.reserved 'and' mark in memblock.memory..)
-> > > > > So, I think that for the no-map region, we don't need to add to t=
-he
-> > > > > memblock.reserved.
-> > > > > This is what we do now in early_init_dt_reserve_memory. the nomap
-> > > > > region is not added to the memblock.reserved.
-> > > > >
-> > > > > In early_init_dt_alloc_reserved_memory_arch, if 'nomap' is true, =
-we
-> > > > > mark the memblock.memory region as _NOMAP. And if the return valu=
-e
-> > > > > 'err' is not zero(which is '-ENOMEM' from memblock_isolate_range)=
-, we
-> > > > > free the region.
-> > > > > - 'nomap' is true -> memblock_mark_nomap : success -> not free th=
-e region
-> > > > >
-> > > > > : fail -> free the region
-> > > > > And it can be said that we add the region to the memblock.reserve=
-d
-> > > > > using memblock_phys_alloc_range and if the region is nomap, then =
-we
-> > > > > can free the region from memblock.reserved. But is it necessary t=
-o add
-> > > > > it to memblock.reserved? We just need the region in memblock.memo=
-ry to
-> > > > > mark nomap.
-> > > > >
-> > > > > So, here is what I think:
-> > > > > - reserved-memory w/ nomap region -> mark only to memblock.memory
-> > > > > - reserved-memory w/o nomap region -> add to the memblock.reserve=
-d
-> > >
-> > > NOMAP and memblock.reserved are semantically different, and at makes =
-sense
-> > > to have a "reserved nomap" node in fdt recorded in both memblock.memo=
-ry and
-> > > memblock.reserved.
-> > >
-> > > memblock.reserved represents the memory that is used by firmware or e=
-arly
-> > > kernel allocation, so reserved memory in fdt should be reserved in me=
-mblock
-> > > as well. I believe it's an oversight that early_init_dt_reserve_memor=
-y()
-> > > does not call memblock_reserve() for nomap memory.
-> > >
-> > > NOMAP is a property of a memory region that says that that region sho=
-uld
-> > > not be mapped in the linear map, it's not necessarily in use.
-> >
-> > I agree that the NOMAP region should be added to memblock.reserved.
-> >
-> > So, I think we need to clean-up memmap_init_reserved_pages, because in
-> > this function we call reserve_bootmem_region for memblock.reserved and
-> > memblock.memory with nomap. We don't need to call
-> > reserve_bootmem_region for nomap.
->
-> Read the comment about memblock_mark_nomap()
-I read the comment about memblock_mark_nomap() and understood that
-regions with nomap flags should be treated as PageReserved.
-But, if we add this nomap region to memblock.reserved, the region with
-nomap flag will be processed in the first for-loop in
-memmap_init_reserved_pages.
+Add missing cache information to the Allwinner A64 SoC dtsi, to allow
+the userspace, which includes lscpu(1) that uses the virtual files provided
+by the kernel under the /sys/devices/system/cpu directory, to display the
+proper A64 cache information.
 
-Am I thinking wrong?
+While there, use a more self-descriptive label for the L2 cache node, which
+also makes it more consistent with other SoC dtsi files.
 
-Regards,
-DaeRo Lee
+The cache parameters for the A64 dtsi were obtained and partially derived
+by hand from the cache size and layout specifications found in the following
+datasheets and technical reference manuals:
+
+  - Allwinner A64 datasheet, version 1.1
+  - ARM Cortex-A53 revision r0p3 TRM, version E
+
+For future reference, here's a brief summary of the documentation:
+
+  - All caches employ the 64-byte cache line length
+  - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative instruction
+    cache and 32 KB of L1 4-way, set-associative data cache
+  - The entire SoC has 512 KB of unified L2 16-way, set-associative cache
+
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 37 ++++++++++++++++---
+ 1 file changed, 32 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 57ac18738c99..86074d03afa9 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -51,49 +51,76 @@ cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			reg = <0>;
+ 			enable-method = "psci";
+-			next-level-cache = <&L2>;
+ 			clocks = <&ccu CLK_CPUX>;
+ 			clock-names = "cpu";
+ 			#cooling-cells = <2>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu1: cpu@1 {
+ 			compatible = "arm,cortex-a53";
+ 			device_type = "cpu";
+ 			reg = <1>;
+ 			enable-method = "psci";
+-			next-level-cache = <&L2>;
+ 			clocks = <&ccu CLK_CPUX>;
+ 			clock-names = "cpu";
+ 			#cooling-cells = <2>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu2: cpu@2 {
+ 			compatible = "arm,cortex-a53";
+ 			device_type = "cpu";
+ 			reg = <2>;
+ 			enable-method = "psci";
+-			next-level-cache = <&L2>;
+ 			clocks = <&ccu CLK_CPUX>;
+ 			clock-names = "cpu";
+ 			#cooling-cells = <2>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu3: cpu@3 {
+ 			compatible = "arm,cortex-a53";
+ 			device_type = "cpu";
+ 			reg = <3>;
+ 			enable-method = "psci";
+-			next-level-cache = <&L2>;
+ 			clocks = <&ccu CLK_CPUX>;
+ 			clock-names = "cpu";
+ 			#cooling-cells = <2>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+-		L2: l2-cache {
++		l2_cache: l2-cache {
+ 			compatible = "cache";
+ 			cache-level = <2>;
+ 			cache-unified;
++			cache-size = <0x80000>;
++			cache-line-size = <64>;
++			cache-sets = <512>;
+ 		};
+ 	};
+ 
 
