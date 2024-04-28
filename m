@@ -1,147 +1,128 @@
-Return-Path: <devicetree+bounces-63390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C0D8B4BE8
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 15:10:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA828B4C09
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 15:50:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 251521F214B5
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 13:10:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A5811F21443
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 13:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341026BFBD;
-	Sun, 28 Apr 2024 13:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771D86D1C8;
+	Sun, 28 Apr 2024 13:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="md3BQSOT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRbtsykE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8519222064;
-	Sun, 28 Apr 2024 13:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426866CDA9;
+	Sun, 28 Apr 2024 13:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714309832; cv=none; b=nFK8kWHh6QbKGNkA8TGeSayZo9EXCDnsc6DpNyKV9b2HnG9PNwseFmH3DvsWeXL1Nm+io7dI0rDJzEXtT3kOMxv9WpiJ+mMteN68iV710A5zSis9vo9XyZPbq5WZapdvaHDVMMKeAE2pq0pIbMj9tXz8kwUHCLhIiWDaDZ5O9RI=
+	t=1714312206; cv=none; b=GTDUqi7YPSZOblF8/yU6qXQJinS87MSLnQOJJMZleakkV+HBq4iT9LJQ1D/WrqquDW9AXp6rGLOou8mh65NgqdLemtT9zA3UP2lGik886FJ9DSLyoRaefScKpG0JVra5+4soNSwPwjnhUIPyu28NJ2VtIFZr1apDUchguaWzVGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714309832; c=relaxed/simple;
-	bh=lpiHaZYM8+2Y3uyoOmqD9y7aDSEx9LkyS3ICJpEoe0U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aaiDtaOMAoinVS9fe/KRCi/OILnKtHHLPyI2nie8lSbyR00PeVSXbW0AsM+qat3G6cerIfK7kZyP2lt4VxYLid1MWOsSyLCxB6h6GvrZqwaa6CQezEJpk24Suotpx/mEeDSlOF2t1Lr/XGkTZNdhF0Acp0SUZpjvVxZrLrQUO70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=md3BQSOT; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41adf155cffso26701745e9.2;
-        Sun, 28 Apr 2024 06:10:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714309829; x=1714914629; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NhgCnJKPmb4AsGDiMaLDS91P6nngDSMLvYORDn1dWMg=;
-        b=md3BQSOT/BuhGAqsgYYNRT5/NUfQH+SRm8msLIx0eKf3Yicg9jnJzaAhGu2WeLzx3J
-         rwItg2ee2ZTiFTDNqZlLi9+f3CgRr5S00WZb4FJWp+K14Sd6kT+R5VajGLYlfmHHyYxb
-         SBvPaZ2N3VY6mw++dhl8TGTGSz0OV2AD2mpJGpmtR/mjw+m2r6zRBvRYt1RikE0/Fjtp
-         6eS3r8Ik1e8bVw6q09jKE9uf+XqtqIArEaoG0XfnjbvaMG9iMcI2uP5L9kIk4ejoyT3h
-         sv74Wl5FR0+L0kqvfayxRiQkB0yzDrNq3Pu/AxzbA2ur3WnevrharB68oUwjrPn+saaH
-         OFNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714309829; x=1714914629;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NhgCnJKPmb4AsGDiMaLDS91P6nngDSMLvYORDn1dWMg=;
-        b=h3Wnzl68GZxTGPhnFV53ZpJNOts4TQISFZyemRQWAk/6i3nb3EmYn30ktJwXFV029U
-         ZaedUfn5IkONhEdZ/M7Uqy/F50sNTFk6nyv6RAn0IPTYScg5KEe3cjgUWLwHcez5xbN+
-         pRzIsm31iXbIZk5RsqiwuHKwj2+AGHT6wvDO6VynDOTPLysQsH5vmQPiX10ET8XTpJpD
-         2rnAa5Kcemdk+jCgvS6xUvsCsW4jW7xeM+NRpd7P69V5w9TVxjPWzUx+zlvZl4pziaLF
-         6i0FDkgBs+4yZU6M3IZLBkOG/dzSgsG+apVEB68KURbF4xWfNBxSrGwI5ql0Z6afBxf5
-         558g==
-X-Forwarded-Encrypted: i=1; AJvYcCVD7Qeq1aBQGjfeH0F4bi0ldTU/RLakzZ2kaS9RRGwSFQWTPJe+Hb0C87Gk8SVbR1eIIpOMxNejA6YGOK6ADrVyI5RrlNB63GmBKVlN
-X-Gm-Message-State: AOJu0YzKtlkyhlKBKlXwOQIUyBYC3AD65HUXeiaKsdBZeqKpD0zHfluR
-	a3DD5gP1bU+cw1ZLEIBhuWp2gkyuxemBgh8Rbgi4keMaMat5DlX9RgdBWdCxo9LW/VqVj4OmLws
-	AgHzB1iDjp7RGC+x4C3g5VTzjYGcZA0FVLfI=
-X-Google-Smtp-Source: AGHT+IGEr1rIQGPa8PZm/eTLozJ+byjMjb58FS8WqwrAqnBspFu22WHkm6gbo6Q6KFIu3tcLzDtyiYk7OLnU3UHsU0U=
-X-Received: by 2002:a05:600c:1988:b0:418:f826:58c3 with SMTP id
- t8-20020a05600c198800b00418f82658c3mr6752323wmq.15.1714309828506; Sun, 28 Apr
- 2024 06:10:28 -0700 (PDT)
+	s=arc-20240116; t=1714312206; c=relaxed/simple;
+	bh=GzXNV2+6fujuS9z/eEQVtBqOWZlr/UHD92MQ+jbSz1M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Bi9evQ4chJlmiHPkvRYBM5QTCBYE5zT/hvdO75f7CmWbRQhgEwWQp8VIU6YhnbWHQYEvbEji1mnPW/BG9wPrI2yJ5yqPEtdn3SjTZTVVKXlcdpD84xX9b9ZAwKKU0EO3u1+UIgt3U2QQpj3sbRMF0fdy7chI3p3Fc5BaDQzZgVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRbtsykE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC11C113CC;
+	Sun, 28 Apr 2024 13:50:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714312205;
+	bh=GzXNV2+6fujuS9z/eEQVtBqOWZlr/UHD92MQ+jbSz1M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=KRbtsykEpqyA+5jvtbu5T1xBhEVuA0m6B1xUcvSbuEGO3IPUwg7hCAJ7oW++DSNYB
+	 DQqPkh29dezgoZ5YUTBSmKZsNKTPkpDJ9PoSUOyLF2FCn7AHBBkVcesO8D2BbrtnQ8
+	 Cjv4H19AC0mdezi9hjVdFM7YsFroUdGWwpPHWWcfZfkurb4ikKbGoExCVLcEx/IlSW
+	 l5IMi5Qo/CKbbF/G1HMgCS2Gul7lJbbiEqdYT0hLTlHE8FZSNonIIsTf8v8czpcrBO
+	 RzRcKE1+Oj46CkW6eiAE1P3W9xR+Tu0nNaBMAA1vEcmXnSqp1FnGIST3RDLwPk0UHx
+	 fU7VtfQKVbATw==
+Date: Sun, 28 Apr 2024 14:49:53 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, nuno.sa@analog.com,
+ oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 3/7] iio: imu: adis16475: Re-define ADIS16475_DATA
+Message-ID: <20240428144953.1486da0d@jic23-huawei>
+In-Reply-To: <202404270958.43fSMp4J-lkp@intel.com>
+References: <20240426135339.185602-4-ramona.bolboaca13@gmail.com>
+	<202404270958.43fSMp4J-lkp@intel.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240428125505.434962-1-skseofh@gmail.com>
-In-Reply-To: <20240428125505.434962-1-skseofh@gmail.com>
-From: DaeRo Lee <skseofh@gmail.com>
-Date: Sun, 28 Apr 2024 22:10:17 +0900
-Message-ID: <CAATEi5kd-XeZ359De36oLJeVvALsEM7oJ9zez_M=zivwrQw5yA@mail.gmail.com>
-Subject: Re: [PATCH] of: of_reserved_mem: clean-up reserved memory with no-map
-To: robh@kernel.org, saravanak@google.com, rppt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Daero Lee <daero_le.lee@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-2024=EB=85=84 4=EC=9B=94 28=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 9:55, <=
-skseofh@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> From: Daero Lee <daero_le.lee@samsung.com>
->
-> In early_init_dt_reserve_memory we only add memory w/o no-map flag to
-> memblock.reserved. But we need to add memory w/ no-map flag to
-> memblock.reserved, because NOMAP and memblock.reserved are semantically
-> different.
->
-> Signed-off-by: Daero Lee <daero_le.lee@samsung.com>
-> ---
->  drivers/of/of_reserved_mem.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 8236ecae2953..1c916da8adaf 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -91,7 +91,8 @@ static int __init early_init_dt_reserve_memory(phys_add=
-r_t base,
->                     memblock_is_region_reserved(base, size))
->                         return -EBUSY;
->
-> -               return memblock_mark_nomap(base, size);
-> +               if (memblock_mark_nomap(base, size))
-> +                       return;
-Sorry. The return value is wrong.
+On Sat, 27 Apr 2024 10:00:49 +0800
+kernel test robot <lkp@intel.com> wrote:
 
-Here is what I want to do:
+> Hi Ramona,
+>=20
+> kernel test robot noticed the following build warnings:
+>=20
+> [auto build test WARNING on jic23-iio/togreg]
+> [also build test WARNING on linus/master v6.9-rc5 next-20240426]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>=20
+> url:    https://github.com/intel-lab-lkp/linux/commits/Ramona-Gradinariu/=
+dt-bindings-iio-imu-Add-ADIS16501-compatibles/20240426-215728
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git tog=
+reg
+> patch link:    https://lore.kernel.org/r/20240426135339.185602-4-ramona.b=
+olboaca13%40gmail.com
+> patch subject: [PATCH 3/7] iio: imu: adis16475: Re-define ADIS16475_DATA
+> config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/202404=
+27/202404270958.43fSMp4J-lkp@intel.com/config)
+> compiler: m68k-linux-gcc (GCC) 13.2.0
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20240427/202404270958.43fSMp4J-lkp@intel.com/reproduce)
+>=20
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202404270958.43fSMp4J-lkp=
+@intel.com/
+>=20
+> All warnings (new ones prefixed by >>):
+>=20
+> >> drivers/iio/imu/adis16475.c:734:34: warning: 'adis1650x_timeouts' defi=
+ned but not used [-Wunused-const-variable=3D] =20
+>      734 | static const struct adis_timeout adis1650x_timeouts =3D {
+>          |                                  ^~~~~~~~~~~~~~~~~~
+>=20
 
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -81,6 +81,7 @@ static void __init
-fdt_reserved_mem_save_node(unsigned long node, const char *un
- static int __init early_init_dt_reserve_memory(phys_addr_t base,
-                                               phys_addr_t size, bool nomap=
-)
- {
-+       int err =3D 0;
-        if (nomap) {
-                /*
-                 * If the memory is already reserved (by another region), w=
-e
-@@ -91,7 +92,10 @@ static int __init
-early_init_dt_reserve_memory(phys_addr_t base,
-                    memblock_is_region_reserved(base, size))
-                        return -EBUSY;
+I missed that entirely when reading.  Indeed, looks like a cut and paste
+issue where some entries should still be using this structure and got
+accidentally modified.
 
--               return memblock_mark_nomap(base, size);
-+
-+               err =3D memblock_mark_nomap(base, size);
-+               if (err)
-+                       return err;
-        }
-        return memblock_reserve(base, size);
- }
+A case of robots saving the day :)
 
+Jonathan
+>=20
+> vim +/adis1650x_timeouts +734 drivers/iio/imu/adis16475.c
+>=20
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  733 =20
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13 @734  static const struct adis_tim=
+eout adis1650x_timeouts =3D {
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  735  	.reset_ms =3D 260,
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  736  	.sw_reset_ms =3D 260,
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  737  	.self_test_ms =3D 30,
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  738  };
+> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  739 =20
+>=20
 
-Regards,
-DaeRo Lee
 
