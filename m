@@ -1,241 +1,180 @@
-Return-Path: <devicetree+bounces-63372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A4B8B4B0D
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 11:54:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0756D8B4B44
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 12:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 794F5281A8C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 09:54:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3F70B20FFA
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 10:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735F755E49;
-	Sun, 28 Apr 2024 09:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07A42AF01;
+	Sun, 28 Apr 2024 10:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="uZwkVbrQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="guWRDSzT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9585954FA5
-	for <devicetree@vger.kernel.org>; Sun, 28 Apr 2024 09:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3561521101;
+	Sun, 28 Apr 2024 10:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714298066; cv=none; b=DrrozY6UcFOX9ejjyYxn5gmgoulC65DGIs2vIqkcMGTY0lCSDsEmS7qijWe/SRllxHdKIEKi9VcjQMMlcK2aLoS5ztdhg+/ZHXxcIkYo81Xaq+MqiC6pVCMqqmcLshggNt0UFHkGV90i8JuEfsigbztv7yhZ7ZxrvwdjCsSEhR8=
+	t=1714300615; cv=none; b=pjKX2WjZgL8iIOn/kLRk/ByO6NVSgQKTVws1JKuMWcewZoENRu8NKQdo7eFDQmNEsVUbtK+jdFp4E+daDrHVlgJsNruSO5IETk32ajju/Cfss/88cMmJT6vro7cpuu7IRUAWaQe/KD4h038TaRCNXoGDDWbqcq+WtacViIeeXGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714298066; c=relaxed/simple;
-	bh=XfwPvtFVa37rQ9j0JNfy5Q8xawgeFhod/zhdXWAvcW0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gUbtOuE6t5OInrx5ijljPo1qD4tRzuwQS170h3DEV7/BUrZ84f9PX+FJgVQAcFkN2/sQJEmrr+YJ4TPl93UU9sJepUKsnadl7k2FUnuJK3ZdbHWNiaodcqtHt2+DOb8Sk+DYEq/pqZlwOKxTa5MMmJ2BxKOmg7sPkkQ4NMtk4Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se; spf=pass smtp.mailfrom=ferroamp.se; dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b=uZwkVbrQ; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ferroamp.se
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-518f8a69f82so3984775e87.2
-        for <devicetree@vger.kernel.org>; Sun, 28 Apr 2024 02:54:24 -0700 (PDT)
+	s=arc-20240116; t=1714300615; c=relaxed/simple;
+	bh=A3nivpRe23n35pamaYeQ0NQo4GANL/bYE1cAUfQv3ns=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TTQI0LxrwOvTiJkEp4OuOlWIhRul7DccageVG/tvqHBW2OLQBBkXTDadS8bjohG7UFLNTwrLU4lL5BAk645HMQz6qRB9yJJB1jaxPhED3SNJVHr4jdkyRmHJ4RXV3O36wzKjCLL1LGTF+M/Nt0pIpiWsQWZPEewJf7MQ4jPxeFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=guWRDSzT; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51ae315bb20so4261914e87.1;
+        Sun, 28 Apr 2024 03:36:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1714298063; x=1714902863; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lMrhY6/jdHr+5rbk2vYpIblfqORgrZnbq6o4kFL2leY=;
-        b=uZwkVbrQlvguK8Wt+X9Ta4u9WiSuOKwvIgRL4/CiWxXVEke52BTXTXSIemT64bhvpC
-         d6XYuSg+af72JcIQ3uE6oKGT8E/pX8fhgU1NQUGYUAytvvZzePh6+UiizmfVRQg/Sj4b
-         /6Nqrd1U2CkFqSv2cdwXsigAX83Uj9/42SetQazhsqg/9Z5rJYrVV6J6m5iZv1vLuLgD
-         4srN3znNw7yh2lCcUfQ9pHMP3qFrNmQ/TqBYtrQcYUM+YBRYTVm9DdPCISsKPymw4nRP
-         RrBy1CTaRvEzJdc36zwjDjFRRnsuH+qa2NWk7jFKViEYZjxELTplcuGbbg8MAdNd4Hzv
-         GP5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714298063; x=1714902863;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1714300612; x=1714905412; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lMrhY6/jdHr+5rbk2vYpIblfqORgrZnbq6o4kFL2leY=;
-        b=sGwx/gK9gzU9CnSAl/D2TIkQdtGqg+1a8Vin22dNOi5I6Atle8ceb8KCcUedTTVGsJ
-         HY4NmfO6inV30rn23l6NS6e9qNtSO7lwE+CKV9lcbhJIr8wIUTL2uh9fHcrgNaPmyBZA
-         Zoly54MXiUy8hLIJzoaBJLgc2FAcnXEHiNaAIl9FZFPrav/pOvTyyD/wYsMrIwdXCslG
-         wFx5bfHnJDYCJSTnUUAGys6NY47qCw10/7elj3CsXJ/xtyDw7hlVYevalqupSFzRBJu5
-         GlvnAj6EVhPZQxk5Gxvl34wm5d9EpsUVgLiRk5ADs5csdo5G5Gi3YA+1MwyVDb6XdTeY
-         oIAg==
-X-Forwarded-Encrypted: i=1; AJvYcCXeLS6azHWNcN+AerEOjU//pyCG6E94khrbGDJIAM1LIiNW6lAlHJwBgVWPH8aREqv7oj3iDVK+HFq1dz++u4C6On3xkU8TPE8DNA==
-X-Gm-Message-State: AOJu0YzXFky1AetSEStE5v2qvUw87I6tQeIPm6M9uqD24LCJs35HQDqI
-	Wny6LdrdQfqPXmvst23NU9lEJ3lfd3IltqXyuxOTLwfx78KEoTGMlkeABygkgns=
-X-Google-Smtp-Source: AGHT+IGn32KqwhwvFwaFNH1nncKg1jRLmaHfbV2LvHlzEopH2e+yZMzEFTLRlpSlHe3WAJQd/h2+Lw==
-X-Received: by 2002:a05:6512:46c:b0:518:ce4b:17ef with SMTP id x12-20020a056512046c00b00518ce4b17efmr2768833lfd.60.1714298062439;
-        Sun, 28 Apr 2024 02:54:22 -0700 (PDT)
-Received: from builder (c188-149-135-220.bredband.tele2.se. [188.149.135.220])
-        by smtp.gmail.com with ESMTPSA id l17-20020ac24a91000000b005196e3e8a84sm3719795lfp.177.2024.04.28.02.54.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Apr 2024 02:54:22 -0700 (PDT)
-Date: Sun, 28 Apr 2024 11:54:20 +0200
-From: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 05/12] net: ethernet: oa_tc6: implement error
- interrupts unmasking
-Message-ID: <Zi4czGX8jlqSdNrr@builder>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <20240418125648.372526-6-Parthiban.Veerasooran@microchip.com>
- <Zi1Xbz7ARLm3HkqW@builder>
- <77d7d190-0847-4dc9-8fc5-4e33308ce7c8@lunn.ch>
+        bh=A3nivpRe23n35pamaYeQ0NQo4GANL/bYE1cAUfQv3ns=;
+        b=guWRDSzT/woGVEnn+h3lmqSXzjFX/Pg9Sbm54hzK54t7GgabRQV6mlt7v2UAmEule3
+         Zehw+4gpd1joqkf5sGQ8hFVdy1/IuCjYq6zwTYfk0jrK6mhLZ8flFU59mESrGwBjkmX7
+         WTY3ZgTj9WMnoLCPELqL91cXJDuq0e/MhNMX9T3Ij4722CZV+3j70IxqWCFqLkSlURAC
+         U6TNI+oe8B0naC7rjCt6Tib18TGnEY/qETrkplEsKYicLf+VTBojzgta/uYC9CfAro1l
+         M4QQmn2MZZDh0SS//zyxETEKdRy71HM87RpQ4tBQuIvYz3KruJoStXFyTtmVVQLmCaVu
+         os7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714300612; x=1714905412;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A3nivpRe23n35pamaYeQ0NQo4GANL/bYE1cAUfQv3ns=;
+        b=iT7TCvbTDavCXq8NQb1WmTKS64sJIfLgydvFmV87j7scA+QaaUMKlTpvVZxRwUN2iL
+         UR0kfkPMpu8vPKUDbT0eolZAx3kxhQLMUb2FbwVQ6OSCb7U8/T9Hpbp+XwbJ+bNxiv0G
+         Quu/z2NgqPHFugiwcUkc7pWpvsD/PiJIk6pDnQoj5YtnO2ATZhcPucwNv2z2d9P1KSru
+         IpJObcdCNYXFgyKUpKehsuIoK9IbpcVuvt1y3c5+iFFQmLw5g7CPcmA+CV4OaeJCpNjz
+         JToTrAH+lWc6cTs8UCdyUkFPPkcmW+wZTl3k5hn9EbldjRkWcRQjllJomGue13YWrgQ1
+         O8AQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUoHr9OMZpZtp9bSLJd04sDXzUeWwn4jVBrMqkYimUz1HeJmGKwOdzu7LuEBQDT9kz9N3sk3nWeXVcUzY4rCiF96IZWkgytWNz9Jf5lpfgMr0IEpf/daM+COjwaN6eP+jtaY874C8Rfg==
+X-Gm-Message-State: AOJu0Yz4OQmDRoamemydAxfrObXx0WaN7YGouVUxRI2auH670q6eF5YT
+	MJET/sDrS8/luK0kcsh39NK8FSXxJViBSLsiM0xVXeo+GQ+Q27MioXPHTaSgRQYtdG22CdD/U8Z
+	tS6LPjGgjatPK1aijQMMwNNBAVeSRFVfl
+X-Google-Smtp-Source: AGHT+IH/DaS669Bmyaz9/X/48TD9TThgeNs7jYyoIAffpLAI+oq1Xd0RSZ+Q9R5j/jQkIkEOPbhalxhibL/MZSvUjXQ=
+X-Received: by 2002:a05:6512:3f17:b0:51a:a400:785e with SMTP id
+ y23-20020a0565123f1700b0051aa400785emr5299909lfa.43.1714300612066; Sun, 28
+ Apr 2024 03:36:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <77d7d190-0847-4dc9-8fc5-4e33308ce7c8@lunn.ch>
+References: <linux-mm@kvack.org> <20240416120635.361838-1-skseofh@gmail.com>
+ <20240416120635.361838-2-skseofh@gmail.com> <Zh9l_LpThq9aFUR7@kernel.org>
+ <CAATEi5kywwC2yUaYjgs+Gm=4HM5o=KHTqH1ALKJijWE_gge0=g@mail.gmail.com>
+ <ZiFgYWydIwvnpIIY@kernel.org> <CAATEi5kFt8iUeWSkrj_bVTyPO_tfQzG77D719P5dLsr2j6Zkzw@mail.gmail.com>
+ <CAATEi5ksY-v7-LEqNZWFV5hsHiegNEtrh4LpMWOQ=vT7hC0Rng@mail.gmail.com>
+ <Ziy8AsAGZyKCyXX_@kernel.org> <CAATEi5=Z0qirM-fyGJL_UPcr7-iyCFtOW9d3XsdN50Tkhpm0iA@mail.gmail.com>
+ <Zi3twYLGvhtJa9Yh@kernel.org>
+In-Reply-To: <Zi3twYLGvhtJa9Yh@kernel.org>
+From: DaeRo Lee <skseofh@gmail.com>
+Date: Sun, 28 Apr 2024 19:36:40 +0900
+Message-ID: <CAATEi5nOQE7xi5ztV0BFO6MRqSGwUPT4V9dqpMT+p4r7iZQwRQ@mail.gmail.com>
+Subject: Re: [PATCH v2] memblock: add no-map alloc functions
+To: Mike Rapoport <rppt@kernel.org>
+Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
+	Daero Lee <daero_le.lee@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> It could be the performance increase comes from two places:
-> 
-> 1) Spending time and bus bandwidth dealing with the buffer overflow
-> interrupt
-> 
-> 2) Printing out the serial port.
-> 
-> Please could you benchmark a few things:
-> 
-> 1) Remove the printk("Receive buffer overflow error"), but otherwise
-> keep the code the same. That will give us an idea how much the serial
-> port matters.
-> 
-> 2) Disable only the RX buffer overflow interrupt
-> 
-> 3) Disable all error interrupts.
-> 
+2024=EB=85=84 4=EC=9B=94 28=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 3:35, M=
+ike Rapoport <rppt@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> On Sat, Apr 27, 2024 at 07:24:23PM +0900, DaeRo Lee wrote:
+> > 2024=EB=85=84 4=EC=9B=94 27=EC=9D=BC (=ED=86=A0) =EC=98=A4=ED=9B=84 5:5=
+0, Mike Rapoport <rppt@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+> > >
+> > > On Fri, Apr 19, 2024 at 10:59:52AM +0900, DaeRo Lee wrote:
+> > > > 2024=EB=85=84 4=EC=9B=94 19=EC=9D=BC (=EA=B8=88) =EC=98=A4=EC=A0=84=
+ 10:46, DaeRo Lee <skseofh@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+> > > > >
+> > > > > In memmap_init_reserved_pages, we mark memblock.reserved as
+> > > > > PageReserved first and mark the memblock.reserved with nomap flag
+> > > > > also.
+> > > > Sorry. This is my mistake. 'memblock.memory with nomap flag' is rig=
+ht.
+> > > >
+> > > > > -> Isn't this duplicated work? (If we add no-map region to
+> > > > > memblock.reserved 'and' mark in memblock.memory..)
+> > > > > So, I think that for the no-map region, we don't need to add to t=
+he
+> > > > > memblock.reserved.
+> > > > > This is what we do now in early_init_dt_reserve_memory. the nomap
+> > > > > region is not added to the memblock.reserved.
+> > > > >
+> > > > > In early_init_dt_alloc_reserved_memory_arch, if 'nomap' is true, =
+we
+> > > > > mark the memblock.memory region as _NOMAP. And if the return valu=
+e
+> > > > > 'err' is not zero(which is '-ENOMEM' from memblock_isolate_range)=
+, we
+> > > > > free the region.
+> > > > > - 'nomap' is true -> memblock_mark_nomap : success -> not free th=
+e region
+> > > > >
+> > > > > : fail -> free the region
+> > > > > And it can be said that we add the region to the memblock.reserve=
+d
+> > > > > using memblock_phys_alloc_range and if the region is nomap, then =
+we
+> > > > > can free the region from memblock.reserved. But is it necessary t=
+o add
+> > > > > it to memblock.reserved? We just need the region in memblock.memo=
+ry to
+> > > > > mark nomap.
+> > > > >
+> > > > > So, here is what I think:
+> > > > > - reserved-memory w/ nomap region -> mark only to memblock.memory
+> > > > > - reserved-memory w/o nomap region -> add to the memblock.reserve=
+d
+> > >
+> > > NOMAP and memblock.reserved are semantically different, and at makes =
+sense
+> > > to have a "reserved nomap" node in fdt recorded in both memblock.memo=
+ry and
+> > > memblock.reserved.
+> > >
+> > > memblock.reserved represents the memory that is used by firmware or e=
+arly
+> > > kernel allocation, so reserved memory in fdt should be reserved in me=
+mblock
+> > > as well. I believe it's an oversight that early_init_dt_reserve_memor=
+y()
+> > > does not call memblock_reserve() for nomap memory.
+> > >
+> > > NOMAP is a property of a memory region that says that that region sho=
+uld
+> > > not be mapped in the linear map, it's not necessarily in use.
+> >
+> > I agree that the NOMAP region should be added to memblock.reserved.
+> >
+> > So, I think we need to clean-up memmap_init_reserved_pages, because in
+> > this function we call reserve_bootmem_region for memblock.reserved and
+> > memblock.memory with nomap. We don't need to call
+> > reserve_bootmem_region for nomap.
+>
+> Read the comment about memblock_mark_nomap()
+I read the comment about memblock_mark_nomap() and understood that
+regions with nomap flags should be treated as PageReserved.
+But, if we add this nomap region to memblock.reserved, the region with
+nomap flag will be processed in the first for-loop in
+memmap_init_reserved_pages.
 
+Am I thinking wrong?
 
-
-Test setup
-- Server side - 
-PC with a lan8670 usb eval board running a http server that serves
-a 10MB binary blob. The http server is just python3 -m http.server
-
-- Client side -
-iMX8mn board (quad core arm64) with lan8650 mac-phy (25MHz spi)
-running curl to download the blob from the server and writing to
-a ramfs (ddr4 1.xGHz, so should not be a bottleneck)
-
-Below are a collection of samples of different test runs. All of the
-test runs have run a minor patch for hw reset (else nothing works for me).
-Using curl is not the most scientific approach here, but iperf has
-not exposed any problems for me earlier with overflows.
-So sticking with curl since it's easy and definetly gets the overflows.
-
-n  |  name     |  min  |  avg  |  max  |  rx dropped  |  samples
-1  |  no mod   |  827K |  846K |  891K |      945     |     5
-2  |  no log   |  711K |  726K |  744K |      562     |     5
-3  |  less irq |  815K |  833K |  846K |      N/A     |     5
-4  |  no irq   |  914K |  924K |  931K |      N/A     |     5
-5  |  simple   |  857K |  868K |  879K |      615     |     5
-
-Description of each scenario
-
-1 - no mod
-So this just runs a hw reset to get the chip working (described in earlier posts)
-
-2 - no log
-This scenario just removes the logging when handling the irq state
---- a/drivers/net/ethernet/oa_tc6.c
-+++ b/drivers/net/ethernet/oa_tc6.c
-@@ -688,8 +688,6 @@ static int oa_tc6_process_extended_status(struct oa_tc6 *tc6)
-        if (FIELD_GET(STATUS0_RX_BUFFER_OVERFLOW_ERROR, value)) {
-                tc6->rx_buf_overflow = true;
-                oa_tc6_cleanup_ongoing_rx_skb(tc6);
--               net_err_ratelimited("%s: Receive buffer overflow error\n",
--                                   tc6->netdev->name);
-                return -EAGAIN;
-        }
-        if (FIELD_GET(STATUS0_TX_PROTOCOL_ERROR, value)) {
-
-3 - less irq
-This scenario disables the overflow interrupt but keeps the others
-
---- a/drivers/net/ethernet/oa_tc6.c
-+++ b/drivers/net/ethernet/oa_tc6.c
-@@ -625,10 +625,10 @@ static int oa_tc6_unmask_macphy_error_interrupts(struct oa_tc6 *tc6)
-                return ret;
-
-        regval &= ~(INT_MASK0_TX_PROTOCOL_ERR_MASK |
--                   INT_MASK0_RX_BUFFER_OVERFLOW_ERR_MASK |
-                    INT_MASK0_LOSS_OF_FRAME_ERR_MASK |
-                    INT_MASK0_HEADER_ERR_MASK);
-
-+       regval |= INT_MASK0_RX_BUFFER_OVERFLOW_ERR_MASK;
-        return oa_tc6_write_register(tc6, OA_TC6_REG_INT_MASK0, regval);
- }
-
-4 - no irq
-This scenario disables all imask0 interrupts with the following change
-
-diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-index 9f17f3712137..88a9c6ccb37a 100644
---- a/drivers/net/ethernet/oa_tc6.c
-+++ b/drivers/net/ethernet/oa_tc6.c
-@@ -624,12 +624,7 @@ static int oa_tc6_unmask_macphy_error_interrupts(struct oa_tc6 *tc6)
-        if (ret)
-                return ret;
-
--       regval &= ~(INT_MASK0_TX_PROTOCOL_ERR_MASK |
--                   INT_MASK0_RX_BUFFER_OVERFLOW_ERR_MASK |
--                   INT_MASK0_LOSS_OF_FRAME_ERR_MASK |
--                   INT_MASK0_HEADER_ERR_MASK);
--
--       return oa_tc6_write_register(tc6, OA_TC6_REG_INT_MASK0, regval);
-+       return oa_tc6_write_register(tc6, OA_TC6_REG_INT_MASK0, (u32)-1);
- }
-
- static int oa_tc6_enable_data_transfer(struct oa_tc6 *tc6)
-
-
-5 - simple
-This keeps the interrupt but does not log or drop the socket buffer on irq
-Moving the rx dropped increment here makes it more of a irq counter I guess,
-so maybe not relevant.
-
-diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-index 9f17f3712137..cbc20a725ad0 100644
---- a/drivers/net/ethernet/oa_tc6.c
-+++ b/drivers/net/ethernet/oa_tc6.c
-@@ -687,10 +687,7 @@ static int oa_tc6_process_extended_status(struct oa_tc6 *tc6)
-
-        if (FIELD_GET(STATUS0_RX_BUFFER_OVERFLOW_ERROR, value)) {
-                tc6->rx_buf_overflow = true;
--               oa_tc6_cleanup_ongoing_rx_skb(tc6);
--               net_err_ratelimited("%s: Receive buffer overflow error\n",
--                                   tc6->netdev->name);
--               return -EAGAIN;
-+               tc6->netdev->stats.rx_dropped++;
-        }
-        if (FIELD_GET(STATUS0_TX_PROTOCOL_ERROR, value)) {
-                netdev_err(tc6->netdev, "Transmit protocol error\n");
-
-
-- postamble -
-
-Removing the logging made things considerably slower which probably
-indicates that there is a timing dependent behaviour in the driver.
-
-I have a hard time explaining why there is a throughput difference
-between scenario 3 and 4 since I did not get the logs that any of the
-other interrupts happened.
-Maybe the irq handling adds some unexpected context switching overhead.
-
-My recommendation going forward would be to disable the rx buffer
-overlow interrupt and removing any code related to handling of it.
-
-R
+Regards,
+DaeRo Lee
 
