@@ -1,138 +1,124 @@
-Return-Path: <devicetree+bounces-63428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 176978B4D38
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 19:30:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A038B4D3E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 19:31:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B115028154A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 17:30:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79EA1B208F5
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 17:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CEA73500;
-	Sun, 28 Apr 2024 17:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886A073505;
+	Sun, 28 Apr 2024 17:31:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GqIaZeoJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTE8BI/8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E26D6F086;
-	Sun, 28 Apr 2024 17:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB1D7317F;
+	Sun, 28 Apr 2024 17:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714325444; cv=none; b=QmM+czafCyJd1exJcOrTkzlM3gJK9AyL1iADqRdreTv6kBLvWr7/HMYp94bz+jK9izF/7q4Qvq6LmGiXwk2qFhEeuSTFioMl+TSPywfN6YUeA6BbNcLy7MRILdMbcEYLjPv2IXx4u+2ws/gLW5TdluE1inbDKHO0KZIUcE1HC1A=
+	t=1714325502; cv=none; b=bzICi5jH8zePFM2EDb+ZPR7iBo7cmJHP1+ZiEwdS8Fu9rQGV64dp2fPqYbb5QYbCfFoijU7mthiCNmeQ0wDmWbGjJqWZIpCipzkIiVCbc58qfAY7KT6klgqg8xqMFwM7dw84GFES/hmmJdFXF5XuZZQT/bAC7uAj/XPuOpArybk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714325444; c=relaxed/simple;
-	bh=6C4iC5ro3NJyO5M+1IwRkJQ4c+Kk2vhMSEHiWNEkb7A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A4nOh5mZawDvb0BJJBdnRYuO7GYZI6ZBYkZH3nc74/+GIO25kjZn7C/oLIeSd2TCvHmXa5aFp08DiUQ/vF8/T5MCpTIMXjVVKxjKeWkkde+dL3pdELUvJlj2mQFJk2/QjImsJJngTe/43F8pcMqJCjepCjoEJJNhc1QutBaFWIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GqIaZeoJ; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-6123726725eso513360a12.3;
-        Sun, 28 Apr 2024 10:30:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714325442; x=1714930242; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6C4iC5ro3NJyO5M+1IwRkJQ4c+Kk2vhMSEHiWNEkb7A=;
-        b=GqIaZeoJ+L8WmspzlZM74m4dgxAoGtOv8UixRLJMpGSVfokGjl+CdZmQCjYEOlZuBl
-         8TDltN0shuZcTg3/eerCnthk3gWhCfw+Q69UIn0eI5MKm44Ix4kAisY54BE3HvgWX2oN
-         hNtOwboaXUufqIr9h67xhI1UFQ33NuB70CT+dCJCATz9ukVH5dcU7PjFv9Zqlyg1xDg3
-         S0jQgvWTO+OaoXu3Jy9U3BvYW5Rpw9DohV04+K/vu6r31yUxns+Cai9xC93CriULY6Ua
-         FwdS0nFZJIUOZi9SXTt+hl4f1rgRMuKeF4RWK4KRF1wahtPX6WBvLfciN3N/M99f+ypZ
-         ROxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714325442; x=1714930242;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6C4iC5ro3NJyO5M+1IwRkJQ4c+Kk2vhMSEHiWNEkb7A=;
-        b=OJOqfDHMDg5KYRbnnfS23HNWmFWQZ8W3UKvcmHAXZ13QKdy94/Z58n3ytDGnGdZ96T
-         BDAq1spy/nD3oyPVzGg4MNVWd/3R68eNvYsbOFiaht8nfamXRV9ywC706XVQ33gtmQVu
-         rQRfsv6hBAQEEXWKWZmTnt2YA1lkictkYUe3GDDNtyEw0ewjkr583nifZ+g2OFEGaVYS
-         UNChN/28t1EBJE9zNUooaJnYEixIdy5Ntbpy5Pl0tfIQnpQsVp07i6WBohbhAekHjhYm
-         MfkH7VF/Ayn+CHwTVk/RamH0azsJ0C/duKr0lXWBDP0f/7JrhM0aOYNa8nCoRMdMTL7t
-         cCUg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1QXELZQiMHOfnkZRPHT+oHxraKNIRhGgDG9CI+/RvHG3ENxc5/J+IrmgVWCgfu/NwG5gN1P65POJIZWogj8dwd4QS6Kok3nqUdgpWxleql5DFE8XXFVdywGRkVZHuDb0DUiaNUgAGxya4LbMhax3eHLI/nbbp2PX9iyZztI2OenHqOFCb
-X-Gm-Message-State: AOJu0Yy348kyN5QkgXszbp3nNkqlRqYC1R1FmvFNjq8Fk7yRz+jxtUTN
-	mT9pEj1EtPsxGNRUImykmzTWeUrw4JrVefG2z6ezxV4MxFj7d+MyCyLuUCGYWkaDJA==
-X-Google-Smtp-Source: AGHT+IEAHcZT2hqdPXrUrD9utnViKm/pFwS+gPtcpridRGIUu3is+jGvfjVMNz/1yOUWrCv/AUnT2A==
-X-Received: by 2002:a05:6a20:430c:b0:1a7:73ed:7f8d with SMTP id h12-20020a056a20430c00b001a773ed7f8dmr6549978pzk.38.1714325442453;
-        Sun, 28 Apr 2024 10:30:42 -0700 (PDT)
-Received: from toyko-2.5 ([45.32.55.39])
-        by smtp.gmail.com with ESMTPSA id b186-20020a62cfc3000000b006ecf56cb55fsm19089266pfg.96.2024.04.28.10.30.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Apr 2024 10:30:42 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: heiko@sntech.de
-Cc: andy.yan@rock-chips.com,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	devicetree@vger.kernel.org,
-	dsimic@manjaro.org,
-	ezequiel@vanguardiasur.com.ar,
-	frattaroli.nicolas@gmail.com,
-	iommu@lists.linux.dev,
-	joro@8bytes.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linkmauve@linkmauve.fr,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	macromorgan@hotmail.com,
-	mchehab@kernel.org,
-	nicolas@ndufresne.ca,
-	p.zabel@pengutronix.de,
-	robh@kernel.org,
-	robin.murphy@arm.com,
-	sebastian.reichel@collabora.com,
-	shreeya.patel@collabora.com,
-	sigmaris@gmail.com,
-	will@kernel.org
-Subject: Re: [PATCH v4 0/2] Enable JPEG encoding on rk3588
-Date: Mon, 29 Apr 2024 01:29:19 +0800
-Message-Id: <20240428172919.691602-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <3784322.QJadu78ljV@diego>
-References: <3784322.QJadu78ljV@diego>
+	s=arc-20240116; t=1714325502; c=relaxed/simple;
+	bh=hFZjQo/dh+Ie3EsIHfVDyM8xgyYcKVep0AXZkaRSMS4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Xewk38/L68xeaj5nnK5CIVLpsDR4wqDYVSgWyyG5yZnlgVQNG8rpA33JpU4/puIZQfNsc+fi+UTEFRl2aXhZwDPVuz0FbsDRTEN+JgTUu8COnt4sXnzVPkSC/tYAE4EkBfLzx3zl4xvNsjaS5qWRS+GW2GpQfr7TLShtgXnfZF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTE8BI/8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A37C113CC;
+	Sun, 28 Apr 2024 17:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714325501;
+	bh=hFZjQo/dh+Ie3EsIHfVDyM8xgyYcKVep0AXZkaRSMS4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YTE8BI/8WbD/9OahnkT8iszK7h+2CtYJZieJkxckD3Pdi05GUGjkkX8h0AhRl8tbb
+	 NATEgGQ1GZ85nifzLF9j4iNzEqkZd/ATqviX/uf0fBW017JcRsjIXkpXnRn3vxvoVg
+	 mmaLbdZh0uVFiPoVkKl0mPQvqUCITf04VWeNvr0QQsnTGVO2+SYZpeyuxoggYSHvZX
+	 C/yfBF4WkxwWR0IuE+QTj4mOHkhmcrz6iiR5zsYvbYClYIVhYXIi9wnhLrlLkcMF/N
+	 xv3rDy7SlGuaua1PXG90PMuN4uDt4EQJOATde2CX7/LLjPEFV3OkPWlm9jcVoJN87S
+	 pdQjPrw0jiqfg==
+Date: Sun, 28 Apr 2024 18:31:23 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Alexandru Ardelean <alexandru.ardelean@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v2 4/7] iio: adc: axi-adc: make sure AXI clock is
+ enabled
+Message-ID: <20240428183123.622eac07@jic23-huawei>
+In-Reply-To: <20240426-ad9467-new-features-v2-4-6361fc3ba1cc@analog.com>
+References: <20240426-ad9467-new-features-v2-0-6361fc3ba1cc@analog.com>
+	<20240426-ad9467-new-features-v2-4-6361fc3ba1cc@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Heiko,
+On Fri, 26 Apr 2024 17:42:13 +0200
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-On Sun, 28 Apr 2024 19:01:38 +0200, Heiko Stübner wrote:
->the basic problem is that exposing multiple jpeg encoders would require
->userspace to do the scheduling. Which is bad.
->I.e. all userspace programms would need to know the existence of
->all jpeg encoders and then somehow negotiate how to use all of them
->most efficiently.
->
->Think multiple different programs that would need to negotiate to
->spread across all of them in the best way.
->
->Doing this in the kernel, we just expose one encoder (and queue) all
->programs would just pile onto that one encoder and the kernel then
->would be on the hook to do the scheduling - which the kernel can do
->better (with relevant code implemented)
+> From: Nuno Sa <nuno.sa@analog.com>
+> 
+> We can only access the IP core registers if the bus clock is enabled. As
+> such we need to get and enable it and not rely on anyone else to do it.
+> 
+> Note this clock is a very fundamental one that is typically enabled
+> pretty early during boot. Independently of that, we should really rely on
+> it to be enabled.
+> 
+> Fixes: ef04070692a2 ("iio: adc: adi-axi-adc: add support for AXI ADC IP core")
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+Queued up this and the previous one.
 
-Yeah let kernel do the scheduling is indeed better. And I'm happy to
-hear this method.
+If the rest doesn't quite make the merge window I'd like these two fixed
+to do so anyway.
 
-So I will keep the vpu at feb50000 with jpeg endoder disabled until
-multi encoder scheduling is implemented.
+Also marked for stable.
 
-Best regards,
-Jianfeng
+Thanks,
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/adi-axi-adc.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
+> index a543b91124b0..e3b215882941 100644
+> --- a/drivers/iio/adc/adi-axi-adc.c
+> +++ b/drivers/iio/adc/adi-axi-adc.c
+> @@ -175,6 +175,7 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
+>  	struct adi_axi_adc_state *st;
+>  	void __iomem *base;
+>  	unsigned int ver;
+> +	struct clk *clk;
+>  	int ret;
+>  
+>  	st = devm_kzalloc(&pdev->dev, sizeof(*st), GFP_KERNEL);
+> @@ -195,6 +196,10 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
+>  	if (!expected_ver)
+>  		return -ENODEV;
+>  
+> +	clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return PTR_ERR(clk);
+> +
+>  	/*
+>  	 * Force disable the core. Up to the frontend to enable us. And we can
+>  	 * still read/write registers...
+> 
+
 
