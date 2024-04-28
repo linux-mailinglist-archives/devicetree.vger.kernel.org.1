@@ -1,232 +1,96 @@
-Return-Path: <devicetree+bounces-63421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FDB8B4CEB
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 18:53:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92DD28B4CF6
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 19:02:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E90C02815AA
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 16:53:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33B601F212EC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 17:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D44F71B44;
-	Sun, 28 Apr 2024 16:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LjR61GuM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCDB71B50;
+	Sun, 28 Apr 2024 17:01:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE2110F1;
-	Sun, 28 Apr 2024 16:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564E873163;
+	Sun, 28 Apr 2024 17:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714323231; cv=none; b=VsQ4pxQ1a8AC6kh0BueKaKqqtjAxFDYxcBhQDS+BV5dnP8m51emS9J5PB/yvbfxgwKKscEpEZDDt1KrDUUiF8aeOuq7T6KRiDQUUlA3Yr1ZWtJ597+Tv/Y4G4BlXBYkYId8i3Y1ifbIIb8tY9wjGS6AKogekhZBGxPIpRNzcdn4=
+	t=1714323718; cv=none; b=nWKhRIiyVG5MFC0doSmG+bRHyO1wB85N4H88Xh9MRNVB12HUqxEe5A6idJ9r0pftRJBH15WTwQhDTrOSJWZXU/81EsGXiK2mTCrj9SJVXNFf2NkA0t7KJxyu2OyevR1VN5ZgrPVV40JPf1axppVr1wu2iv/xx/T98ukIMPA+Wu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714323231; c=relaxed/simple;
-	bh=vKlq852Mkt2LdjN+6R/Og0QA2JGqOCAcs1MaQ4RQDnc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iq9N/Ne1ywXDDTybXZqiX1MuUj2jg3uKbOtoyn2f58ICtJHnLKGTo5whViKxenyAvqRMb5gSVkhsuLwoB8L6Jr53kfpwEPSHicf1jXrvTQM/M1nwvQNvJ43lxaxy1kN2DTUQfKPolD6j4DLAomzavLdQGYEHKBy7WlkmWQHgck8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LjR61GuM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A048C113CC;
-	Sun, 28 Apr 2024 16:53:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714323231;
-	bh=vKlq852Mkt2LdjN+6R/Og0QA2JGqOCAcs1MaQ4RQDnc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LjR61GuMEFGAu419qGiabMclqWpfYwDouS36biVw7/fRhxjf2g4HgGKM8NUteeSZz
-	 JLeRT6vNf70R+Uvx7Ke8EzX01G8z5BwsfRDVnblc2Mx5uH/GhL/g+6QK0bVoasYoa3
-	 scxwyecrhm9CLsnpZsVtalzmmNDr0HTP/vpeT8iyiq/cYnKgFfpRj5RF0zdL3LKtty
-	 aLWyMXoNDTbCC3DUBkJE3wHHgSX5AlhrwS8J1q3m72uJYJpEbDBFTXJWG93QS0JvDp
-	 LcU0xG+a1b0MM8xJepL9Fdlj50PP8nSrQzI1C5o8MtP7Uwg9/CdG78Pmxx5L8YvIau
-	 aM85Mca+qEjzw==
-Date: Sun, 28 Apr 2024 17:53:37 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Aren Moynihan <aren@peacevolution.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Andy
- Shevchenko <andy.shevchenko@gmail.com>, Ondrej Jirman <megi@xff.cz>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>,
- linux-iio@vger.kernel.org, phone-devel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, Willow
- Barraco <contact@willowbarraco.fr>
-Subject: Re: [PATCH v2 2/6] iio: light: stk3310: Implement vdd supply and
- power it off during suspend
-Message-ID: <20240428175337.61850e2a@jic23-huawei>
-In-Reply-To: <20240423223309.1468198-4-aren@peacevolution.org>
-References: <20240423223309.1468198-2-aren@peacevolution.org>
-	<20240423223309.1468198-4-aren@peacevolution.org>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1714323718; c=relaxed/simple;
+	bh=Po1NSWnLvUFuIzM7E7i739862Xt2hBqwStVAwBSv2So=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NL/GiMHEVmeKuymKRvu1ssqQX099v/8rhDJmxFBsTjYeuBQtQ0R5Ud4oOMN2ErtkinqHfSDvNz1WtDbrfNZrLOWwo32KdLRhKAEzxAKiUBBJ8aV0Vk2nyLV0iQiOP82BWE9Y45Wg/9zrSq6YjB90ztk1AN4niHw1as5CBUk3BYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b01.versanet.de ([83.135.91.1] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1s17uF-0006wg-Pn; Sun, 28 Apr 2024 19:01:39 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linkmauve@linkmauve.fr, Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: andy.yan@rock-chips.com, conor+dt@kernel.org,
+ cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
+ dsimic@manjaro.org, ezequiel@vanguardiasur.com.ar,
+ frattaroli.nicolas@gmail.com, iommu@lists.linux.dev, joro@8bytes.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
+ mchehab@kernel.org, p.zabel@pengutronix.de, robh@kernel.org,
+ robin.murphy@arm.com, sebastian.reichel@collabora.com,
+ shreeya.patel@collabora.com, will@kernel.org, sigmaris@gmail.com,
+ nicolas@ndufresne.ca
+Subject: Re: [PATCH v4 0/2] Enable JPEG encoding on rk3588
+Date: Sun, 28 Apr 2024 19:01:38 +0200
+Message-ID: <3784322.QJadu78ljV@diego>
+In-Reply-To: <20240427071638.79915-1-liujianfeng1994@gmail.com>
+References:
+ <20240418141509.2485053-1-linkmauve@linkmauve.fr>
+ <20240427071638.79915-1-liujianfeng1994@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 23 Apr 2024 18:33:05 -0400
-Aren Moynihan <aren@peacevolution.org> wrote:
+Hi Jianfeng,
 
-> From: Ondrej Jirman <megi@xff.cz>
-> 
-> VDD power input can be used to completely power off the chip during
-> system suspend. Do so if available.
-> 
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+Am Samstag, 27. April 2024, 09:16:38 CEST schrieb Jianfeng Liu:
+> Hi Emmanuel,
+>=20
+> On Thu, 18 Apr 2024 16:15:04 +0200, Emmanuel Gil Peyrot wrote:
+> >- Only expose a single VEPU121, since the driver doesn=E2=80=99t yet sup=
+port
+> >  exposing them all as a single video node to userspace.
+> I'm also doing work with the hantro node on rk3588 which has both vdpu
+> and vepu. Discussions can be found here[1]. If I enable the jpeg encoder
+> at feb50000, would it cause any side effects if other jpeg encoders in
+> your patch are enabled? And what's the disadvantage of enabling multi
+> jpeg endoers in devicetree?
 
-Suggestions inline.  Key thing is take the whole thing devm_ managed
-and your life gets much easier.  It is mixing the two approaches that
-causes problems and often the best plan is to do everything in probe/remove
-with devm_ calls to do the cleanup for you.
+the basic problem is that exposing multiple jpeg encoders would require
+userspace to do the scheduling. Which is bad.
+I.e. all userspace programms would need to know the existence of
+all jpeg encoders and then somehow negotiate how to use all of them
+most efficiently.
 
-> ---
-> 
-> Notes:
->     Changes in v2:
->      - always enable / disable regulators and rely on a dummy regulator if
->        one isn't specified
->      - replace usleep_range with fsleep
->      - reorder includes so iio headers are last
->      - add missing error handling to resume
-> 
->  drivers/iio/light/stk3310.c | 49 ++++++++++++++++++++++++++++++++++---
->  1 file changed, 46 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/iio/light/stk3310.c b/drivers/iio/light/stk3310.c
-> index 7b71ad71d78d..a0547eeca3e3 100644
-> --- a/drivers/iio/light/stk3310.c
-> +++ b/drivers/iio/light/stk3310.c
-> @@ -13,6 +13,8 @@
->  #include <linux/module.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +
->  #include <linux/iio/events.h>
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
-> @@ -117,6 +119,7 @@ struct stk3310_data {
->  	struct regmap_field *reg_int_ps;
->  	struct regmap_field *reg_flag_psint;
->  	struct regmap_field *reg_flag_nf;
-> +	struct regulator *vdd_reg;
->  };
->  
->  static const struct iio_event_spec stk3310_events[] = {
-> @@ -607,6 +610,10 @@ static int stk3310_probe(struct i2c_client *client)
->  
->  	mutex_init(&data->lock);
->  
-> +	data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
-> +	if (IS_ERR(data->vdd_reg))
-> +		return dev_err_probe(&client->dev, ret, "get regulator vdd failed\n");
-> +
->  	ret = stk3310_regmap_init(data);
->  	if (ret < 0)
->  		return ret;
-> @@ -617,9 +624,17 @@ static int stk3310_probe(struct i2c_client *client)
->  	indio_dev->channels = stk3310_channels;
->  	indio_dev->num_channels = ARRAY_SIZE(stk3310_channels);
->  
-> +	ret = regulator_enable(data->vdd_reg);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "regulator vdd enable failed\n");
-> +
-> +	/* we need a short delay to allow the chip time to power on */
-> +	fsleep(1000);
-> +
->  	ret = stk3310_init(indio_dev);
->  	if (ret < 0)
-> -		return ret;
-> +		goto err_vdd_disable;
->  
->  	if (client->irq > 0) {
->  		ret = devm_request_threaded_irq(&client->dev, client->irq,
-> @@ -645,32 +660,60 @@ static int stk3310_probe(struct i2c_client *client)
->  
->  err_standby:
->  	stk3310_set_state(data, STK3310_STATE_STANDBY);
+Think multiple different programs that would need to negotiate to
+spread across all of them in the best way.
 
-Move this handling to a devm_add_action_or_reset() callback in a precursor patch.
-That will fix the current ordering issue wrt to the irq registration.
+Doing this in the kernel, we just expose one encoder (and queue) all
+programs would just pile onto that one encoder and the kernel then
+would be on the hook to do the scheduling - which the kernel can do
+better (with relevant code implemented)
 
-Then use devm_iio_device_register() in that precursor patch.
-
-> +err_vdd_disable:
-> +	regulator_disable(data->vdd_reg);
-
-Add a devm_add_action_or_reset() callback to disable this regulator in this patch.
-Register that just after the enable.
-
-That way the ordering will be maintained for all calls.
->  	return ret;
->  }
->  
->  static void stk3310_remove(struct i2c_client *client)
->  {
->  	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-> +	struct stk3310_data *data = iio_priv(indio_dev);
->  
->  	iio_device_unregister(indio_dev);
->  	stk3310_set_state(iio_priv(indio_dev), STK3310_STATE_STANDBY);
-> +	regulator_disable(data->vdd_reg);
-
-With above suggested changes, you can drop the remove function entirely.
-
->  }
->  
->  static int stk3310_suspend(struct device *dev)
->  {
->  	struct stk3310_data *data;
-> +	int ret;
->  
->  	data = iio_priv(i2c_get_clientdata(to_i2c_client(dev)));
->  
-> -	return stk3310_set_state(data, STK3310_STATE_STANDBY);
-> +	ret = stk3310_set_state(data, STK3310_STATE_STANDBY);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regcache_mark_dirty(data->regmap);
-> +	regulator_disable(data->vdd_reg);
-> +
-> +	return 0;
->  }
->  
->  static int stk3310_resume(struct device *dev)
->  {
-> -	u8 state = 0;
->  	struct stk3310_data *data;
-> +	u8 state = 0;
-> +	int ret;
->  
->  	data = iio_priv(i2c_get_clientdata(to_i2c_client(dev)));
-> +
-> +	ret = regulator_enable(data->vdd_reg);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to re-enable regulator vdd\n");
-> +		return ret;
-> +	}
-> +
-> +	fsleep(1000);
-> +
-> +	ret = regcache_sync(data->regmap);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to restore registers: %d\n", ret);
-> +		return ret;
-> +	}
-> +
->  	if (data->ps_enabled)
->  		state |= STK3310_STATE_EN_PS;
->  	if (data->als_enabled)
 
 
