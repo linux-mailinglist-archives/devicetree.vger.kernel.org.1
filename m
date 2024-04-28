@@ -1,128 +1,108 @@
-Return-Path: <devicetree+bounces-63391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA828B4C09
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 15:50:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55118B4C1E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 16:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A5811F21443
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 13:50:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38832B21064
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 14:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771D86D1C8;
-	Sun, 28 Apr 2024 13:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBAB6E614;
+	Sun, 28 Apr 2024 14:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRbtsykE"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GOg3ME0z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426866CDA9;
-	Sun, 28 Apr 2024 13:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D09A1C32;
+	Sun, 28 Apr 2024 14:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714312206; cv=none; b=GTDUqi7YPSZOblF8/yU6qXQJinS87MSLnQOJJMZleakkV+HBq4iT9LJQ1D/WrqquDW9AXp6rGLOou8mh65NgqdLemtT9zA3UP2lGik886FJ9DSLyoRaefScKpG0JVra5+4soNSwPwjnhUIPyu28NJ2VtIFZr1apDUchguaWzVGI=
+	t=1714313941; cv=none; b=dpizvktWWvwvoOMxVHxiCZ8lfO1ZJ1X4CoRbcNqiJRIy8qC9A1LR8zOByhsFEIoXQb46yREhHeij7W6xNmaG0rGZ7fif9V6HjMjC5h4wlhZxEqStksOfFi0pXGbbjvpwsaPYZhWEpW8P6W7fm6ffXSDSrWWf6Sfjv4m7zlMIo6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714312206; c=relaxed/simple;
-	bh=GzXNV2+6fujuS9z/eEQVtBqOWZlr/UHD92MQ+jbSz1M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bi9evQ4chJlmiHPkvRYBM5QTCBYE5zT/hvdO75f7CmWbRQhgEwWQp8VIU6YhnbWHQYEvbEji1mnPW/BG9wPrI2yJ5yqPEtdn3SjTZTVVKXlcdpD84xX9b9ZAwKKU0EO3u1+UIgt3U2QQpj3sbRMF0fdy7chI3p3Fc5BaDQzZgVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRbtsykE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC11C113CC;
-	Sun, 28 Apr 2024 13:50:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714312205;
-	bh=GzXNV2+6fujuS9z/eEQVtBqOWZlr/UHD92MQ+jbSz1M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KRbtsykEpqyA+5jvtbu5T1xBhEVuA0m6B1xUcvSbuEGO3IPUwg7hCAJ7oW++DSNYB
-	 DQqPkh29dezgoZ5YUTBSmKZsNKTPkpDJ9PoSUOyLF2FCn7AHBBkVcesO8D2BbrtnQ8
-	 Cjv4H19AC0mdezi9hjVdFM7YsFroUdGWwpPHWWcfZfkurb4ikKbGoExCVLcEx/IlSW
-	 l5IMi5Qo/CKbbF/G1HMgCS2Gul7lJbbiEqdYT0hLTlHE8FZSNonIIsTf8v8czpcrBO
-	 RzRcKE1+Oj46CkW6eiAE1P3W9xR+Tu0nNaBMAA1vEcmXnSqp1FnGIST3RDLwPk0UHx
-	 fU7VtfQKVbATw==
-Date: Sun, 28 Apr 2024 14:49:53 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: kernel test robot <lkp@intel.com>
-Cc: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, nuno.sa@analog.com,
- oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 3/7] iio: imu: adis16475: Re-define ADIS16475_DATA
-Message-ID: <20240428144953.1486da0d@jic23-huawei>
-In-Reply-To: <202404270958.43fSMp4J-lkp@intel.com>
-References: <20240426135339.185602-4-ramona.bolboaca13@gmail.com>
-	<202404270958.43fSMp4J-lkp@intel.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1714313941; c=relaxed/simple;
+	bh=JbWX6i63EYM5psOXDzYgilWhkDBrAtxvEknNfrhURvE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jReCmNBn2Ge0dw2Dfq8bx2CEKpChOMvfYx8cv4oNQtGAcwbyUc3aihsD1+Pvlxmck8c9R5Y51XBTUGoUNZCTrOcZV0zrtwXL6dDrqOzJT1sbYo43Lf0UgCFgTdfX0EjTdNv/v9x5PoUVvd68yQhxxJwlRi64ykrvrONxrgymcag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GOg3ME0z; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=j6mO3t3hnXaOiB5ZOyq1t92l086TzpvYq+MdS6plQWk=; b=GOg3ME0zdqZ2wRfYjLhv72GDsS
+	QX6SQfH3KClLIVVi9Hzd8OZdGlRsAg+zPs7VzTZB46j9ii3g0TZU3PTtIEkdSupe7QBNOTre7J66T
+	EmNrxiOxOvMxlMuR87WP1xfEgb2+N5op8rmRmUIsyomN95x+YHyAjONt2+PzryHBqGv4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1s15MV-00EBuz-MR; Sun, 28 Apr 2024 16:18:39 +0200
+Date: Sun, 28 Apr 2024 16:18:39 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
+Cc: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v4 11/12] microchip: lan865x: add driver support
+ for Microchip's LAN865X MAC-PHY
+Message-ID: <23f8b4a1-97fd-4d24-9486-3319d432d6e2@lunn.ch>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+ <20240418125648.372526-12-Parthiban.Veerasooran@microchip.com>
+ <Zi1PxgANUWh1S0sO@builder>
+ <e89272b1-7780-4a91-888d-27ae7242f881@lunn.ch>
+ <Zi1o0SilOZ5gWMlT@builder>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zi1o0SilOZ5gWMlT@builder>
 
-On Sat, 27 Apr 2024 10:00:49 +0800
-kernel test robot <lkp@intel.com> wrote:
+> but just compatible = "lan8650" does not work.
 
-> Hi Ramona,
->=20
-> kernel test robot noticed the following build warnings:
->=20
-> [auto build test WARNING on jic23-iio/togreg]
-> [also build test WARNING on linus/master v6.9-rc5 next-20240426]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->=20
-> url:    https://github.com/intel-lab-lkp/linux/commits/Ramona-Gradinariu/=
-dt-bindings-iio-imu-Add-ADIS16501-compatibles/20240426-215728
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git tog=
-reg
-> patch link:    https://lore.kernel.org/r/20240426135339.185602-4-ramona.b=
-olboaca13%40gmail.com
-> patch subject: [PATCH 3/7] iio: imu: adis16475: Re-define ADIS16475_DATA
-> config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/202404=
-27/202404270958.43fSMp4J-lkp@intel.com/config)
-> compiler: m68k-linux-gcc (GCC) 13.2.0
-> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
-ve/20240427/202404270958.43fSMp4J-lkp@intel.com/reproduce)
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202404270958.43fSMp4J-lkp=
-@intel.com/
->=20
-> All warnings (new ones prefixed by >>):
->=20
-> >> drivers/iio/imu/adis16475.c:734:34: warning: 'adis1650x_timeouts' defi=
-ned but not used [-Wunused-const-variable=3D] =20
->      734 | static const struct adis_timeout adis1650x_timeouts =3D {
->          |                                  ^~~~~~~~~~~~~~~~~~
->=20
+The device tree binding says that is valid, so this needs fixing.
 
-I missed that entirely when reading.  Indeed, looks like a cut and paste
-issue where some entries should still be using this structure and got
-accidentally modified.
+Maybe copy max1111.c in hwmon:
 
-A case of robots saving the day :)
+static const struct spi_device_id max1111_ids[] = {
+        { "max1110", max1110 },
+        { "max1111", max1111 },
+        { "max1112", max1112 },
+        { "max1113", max1113 },
+        { },
+};
+MODULE_DEVICE_TABLE(spi, max1111_ids);
 
-Jonathan
->=20
-> vim +/adis1650x_timeouts +734 drivers/iio/imu/adis16475.c
->=20
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  733 =20
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13 @734  static const struct adis_tim=
-eout adis1650x_timeouts =3D {
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  735  	.reset_ms =3D 260,
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  736  	.sw_reset_ms =3D 260,
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  737  	.self_test_ms =3D 30,
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  738  };
-> fff7352bf7a3ce Nuno S=C3=A1 2020-04-13  739 =20
->=20
+static struct spi_driver max1111_driver = {
+        .driver         = {
+                .name   = "max1111",
+        },
+        .id_table       = max1111_ids,
+        .probe          = max1111_probe,
+        .remove         = max1111_remove,
+};
 
+Interestingly, there is no compatible table. So the device tree
+binding probably should change, not require two compatibles for
+lan8651.
+
+	Andrew
 
