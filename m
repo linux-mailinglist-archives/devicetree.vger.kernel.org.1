@@ -1,64 +1,83 @@
-Return-Path: <devicetree+bounces-63374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F208B4B88
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 13:40:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC098B4B97
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 13:59:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F5A11C209D2
-	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 11:40:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 590792819F4
+	for <lists+devicetree@lfdr.de>; Sun, 28 Apr 2024 11:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C214D58105;
-	Sun, 28 Apr 2024 11:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F70657D2;
+	Sun, 28 Apr 2024 11:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="jEsaHxT+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LXT0KNyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A93A57876;
-	Sun, 28 Apr 2024 11:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9572F29;
+	Sun, 28 Apr 2024 11:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714304450; cv=none; b=P6NvslyIbWffUiJXAxrOPIhXmRSnrzChaoL5zFAOfM84msx8330bYymgqnx890VVH6Yy86cUJiN8qpqiGVgFpJdAwiBg6/opzBZQNmvFwXS1i7ihEdVvGK6blEKZlDzwxc0HvrKhl9Dx/3WpHu0cNZRGBEbr+R3HZBvJw0s9TyE=
+	t=1714305550; cv=none; b=IP1otd5V7lDPJXKoilff7X0L5350aUw5/MvUr/PwriVPLO/KDuwQrwivhYEFcUvfizA0b9M8jC984jbXm0efSpiyGl5Dor0OfwTHIYlE63EjyLg3XNQBwBFflbfV62WOyXsKeJ/DjliIORcE1SqaxsCjQsrU64qwtMLbmXp3HL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714304450; c=relaxed/simple;
-	bh=4qMEkoFsIAMskrIOxbExs0rTAt41YA8CssKoQ++e7tI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=n9mT+qQhHcBCWYYqAewO7uh5Wki2kAoGUvSegFX83oy0Xq5vxmyjiKkRS/lcuOEj0mlcBvaGPhwWavNfP7lCIXfaiCCE6RurPnE6fqquZAHIGKb/srKvGJqd9AgYV8mV5hrutnxpqOCB/qgL/3BgV7mt+rjPL8oZofg5eTTX+uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=jEsaHxT+; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1714304445;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=s+4FNoNxkXA3lHy8/kRgdBQW+poGAHHKvQpgJQdlQzY=;
-	b=jEsaHxT+V7ZWLuIP9v2cO19KyNFujzleqGJpnDYNHiyJob6YQ7BzSsV7/N395OiVCfIAq1
-	2hSNW7wP8AnRvx89AWDIw+V85XW16UeM7V2yNgk2CBznDIPjWUHsSaTzdKScuD+Syu54Oy
-	pygVa0IRc7R4gJOIIGZZHvODzQFKxvFGR2csicLxLPPiLTvYQWan+mTxAmz6L3/MurqVid
-	+vI1qM0VfMBMv+Oqnt+Ytyz9oVrWZTHonr0OJrPxQ6JIu2YhugOGrikKt9u04pj0SqIGfB
-	HCX+F3TjtNjN/Iy/CToO6eygIDfRf34M/id8Gs5to+pBSXbwQAEAdARXI2i2IA==
-To: linux-sunxi@lists.linux.dev
-Cc: wens@csie.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: allwinner: Add cache information to the SoC dtsi for H6
-Date: Sun, 28 Apr 2024 13:40:36 +0200
-Message-Id: <49abb93000078c692c48c0a65ff677893909361a.1714304071.git.dsimic@manjaro.org>
-In-Reply-To: <6a772756c2c677dbdaaab4a2c71a358d8e4b27e9.1714304058.git.dsimic@manjaro.org>
-References: <6a772756c2c677dbdaaab4a2c71a358d8e4b27e9.1714304058.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1714305550; c=relaxed/simple;
+	bh=7dEusFxZFJ1Y5U18wib9rq2M+q9J2wbC2q2//EWKbio=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pAbHWp78wV8/VB9c+sJD3cDhITD9ccOVKcpIBixa68u5CRYKd+pnxZExEA69SI+zbBWe+zhsIiS/30rf3pFsMQnN90jY/Pv/kY54tlD4H6suq4SLcn+iLnrWVrJoS7zQTxJ6jc+LjibOBXqAg+KVjuMW/VuVEay4FARg+2bvb9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LXT0KNyV; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6ed9fc77bbfso2866132b3a.1;
+        Sun, 28 Apr 2024 04:59:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714305548; x=1714910348; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BOsaocwjFT1pz2ngVnKxeRZbtnK8Ubq+Yt8uQGBS4j4=;
+        b=LXT0KNyVpGzwDhjg5IvqjJV5H/LqzItNwyp9SC0b/CBTt1eRnQPzKM8dpKCeEOVsHQ
+         DO4n++YGw2mKyVvznULeSPWxRXpKIq5uviuC9gsKFzbxOE/HOdygq9CTtyk90YdeFgI5
+         U6iAcHM/rjF4y7tuaowUzmfZdOlTEoH4Vg7mQKSmjYSUpB0Da+urc0rXIIU2/CTZQ/DR
+         NiG/ZwU18pvHztNzJlNs87833yqW1143xp6RRMelXNuaJ5jooAYAOE4UqzUHrsDX7Bd9
+         RHDFjXHIrYnyuD5qX5MQZ2KZam1BtYm/Fp1t55hSWBkHXDMzwLXwP3UhBHMC50xKDH7u
+         QF+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714305548; x=1714910348;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BOsaocwjFT1pz2ngVnKxeRZbtnK8Ubq+Yt8uQGBS4j4=;
+        b=DjQedJ03+elgdVaREMsdd0wB4C5bltsobTqqJKqE46eyDhGNDWLh3JlVyzBa1amCk4
+         TI4cMrv9I9yLC1H6fGATAbQ54yxkzgdEO+bWCxeC8V4rRKzJIAxj49MpXgGP/c1SvkeV
+         bhppd41dBIhJ12vUSD+EjkvK4U1fxqNQfcXsRUr8DqLRqcU0G+eEWa2Oy4Sk3JCyzlMF
+         RZCzeNfcjp+KJBUViTm0rlzIUlFF0xzOHav5QHrVI3YB5jbGqHeSC1otQ8VgZNWhd0JQ
+         kIAij/UiGGwCRFRuasoUzZyEe0WxIJvRtofWR3Uf1g+Xz4c0lmzL6jSRJh9mdPePXFT4
+         dALQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/qdiVB4lQ3XKNZRg3zzGEuOmSkiKgTrrALLH9UfHGMUPHxA0w+fbCrnuK2UHOIYrYgX4EsgqBuckTh6wkZ73H9ZyVcopzOwaEsYUu
+X-Gm-Message-State: AOJu0YxyRtGfpNbtyTLSWb9mUQs7ThcMTPCECoPl72bE6iZRqfxMTAK3
+	W2+IsfPxGNBdFI+AeZuUWz8XN7+uNJ0dm+eLwGMuMHp3mKC9P4Nz
+X-Google-Smtp-Source: AGHT+IF1zETYOo1e1RYilJpjwP/DCPA3/FY8ol+QqaxDXzQmLI6VS8l1ku1pJ7AlQg1Mbu5xEsqsUA==
+X-Received: by 2002:a05:6a20:979a:b0:1a9:c3ac:c6d4 with SMTP id hx26-20020a056a20979a00b001a9c3acc6d4mr7078163pzc.62.1714305548036;
+        Sun, 28 Apr 2024 04:59:08 -0700 (PDT)
+Received: from localhost.localdomain ([122.161.51.221])
+        by smtp.gmail.com with ESMTPSA id k9-20020a170902c40900b001e431fb1336sm18341187plk.31.2024.04.28.04.59.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Apr 2024 04:59:07 -0700 (PDT)
+From: Shresth Prasad <shresthprasad7@gmail.com>
+To: robh@kernel.org,
+	saravanak@google.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	javier.carrasco.cruz@gmail.com,
+	skhan@linuxfoundation.org,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Julia Lawall <julia.lawall@inria.fr>
+Subject: [PATCH][next] of: property: Use scope based cleanup on port_node
+Date: Sun, 28 Apr 2024 17:22:27 +0530
+Message-ID: <20240428115226.41345-2-shresthprasad7@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,114 +85,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Add missing cache information to the Allwinner H6 SoC dtsi, to allow
-the userspace, which includes lscpu(1) that uses the virtual files provided
-by the kernel under the /sys/devices/system/cpu directory, to display the
-proper H6 cache information.
+Use __free cleanup handler which ensures that the resource is freed when
+it goes out of scope, thus removing the need to manually clean it up
+using of_node_put.
 
-Adding the cache information to the H6 SoC dtsi also makes the following
-warning message in the kernel log go away:
-
-  cacheinfo: Unable to detect cache hierarchy for CPU 0
-
-The cache parameters for the H6 dtsi were obtained and partially derived
-by hand from the cache size and layout specifications found in the following
-datasheets and technical reference manuals:
-
-  - Allwinner H6 V200 datasheet, version 1.1
-  - ARM Cortex-A53 revision r0p3 TRM, version E
-
-For future reference, here's a brief summary of the documentation:
-
-  - All caches employ the 64-byte cache line length
-  - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative instruction
-    cache and 32 KB of L1 4-way, set-associative data cache
-  - The entire SoC has 512 KB of unified L2 16-way, set-associative cache
-
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+Suggested-by: Julia Lawall <julia.lawall@inria.fr>
+Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 37 ++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Rob Herring <robh@kernel.org> sent a patch fixing similar cases in
+property.c but seems to have missed this one. Please let me know if this
+is mistake, or if it was left unchanged for a reason.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index d11e5041bae9..1a63066396e8 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -29,36 +29,73 @@ cpu0: cpu@0 {
- 			clocks = <&ccu CLK_CPUX>;
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			#cooling-cells = <2>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
- 		};
+ drivers/of/property.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 6d5ae58a7ac9..abc8613b471f 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -576,7 +576,8 @@ EXPORT_SYMBOL_GPL(of_prop_next_string);
+ int of_graph_parse_endpoint(const struct device_node *node,
+ 			    struct of_endpoint *endpoint)
+ {
+-	struct device_node *port_node = of_get_parent(node);
++	struct device_node *port_node __free(device_node) =
++			    of_get_parent(node);
  
- 		cpu1: cpu@1 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			reg = <1>;
- 			enable-method = "psci";
- 			clocks = <&ccu CLK_CPUX>;
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			#cooling-cells = <2>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
- 		};
+ 	WARN_ONCE(!port_node, "%s(): endpoint %pOF has no parent node\n",
+ 		  __func__, node);
+@@ -591,8 +592,6 @@ int of_graph_parse_endpoint(const struct device_node *node,
+ 	of_property_read_u32(port_node, "reg", &endpoint->port);
+ 	of_property_read_u32(node, "reg", &endpoint->id);
  
- 		cpu2: cpu@2 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			reg = <2>;
- 			enable-method = "psci";
- 			clocks = <&ccu CLK_CPUX>;
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			#cooling-cells = <2>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
- 		};
- 
- 		cpu3: cpu@3 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			reg = <3>;
- 			enable-method = "psci";
- 			clocks = <&ccu CLK_CPUX>;
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			#cooling-cells = <2>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+		};
-+
-+		l2_cache: l2-cache {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x80000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
- 		};
- 	};
- 
+-	of_node_put(port_node);
+-
+ 	return 0;
+ }
+ EXPORT_SYMBOL(of_graph_parse_endpoint);
+-- 
+2.44.0
+
 
