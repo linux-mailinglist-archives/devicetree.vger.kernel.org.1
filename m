@@ -1,124 +1,112 @@
-Return-Path: <devicetree+bounces-63687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657FD8B5EAB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 667978B5ED3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:21:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95044B218F3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:14:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEFC5B227F0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28AB584A2B;
-	Mon, 29 Apr 2024 16:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C2E85922;
+	Mon, 29 Apr 2024 16:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULmvL0e+"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="y6lw+iVL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B4E83CB9;
-	Mon, 29 Apr 2024 16:13:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817E884FD2
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 16:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714407239; cv=none; b=A9gc0p84xbGQYp2uXwjNL+O0Emn7NiuPwuXPjecqIls+B3aoFXAxC8mKjGsij5m3/6/tI7fRntap2BEiH2iOBTbtzdgtDCeo5jBJ49b5XpwnOoMEk42dU5JGQEyQ40d4C+Fw5DlyK+Rr7iO5/ZeEnrXA76YzZAfA+AkZDyCSKC0=
+	t=1714407677; cv=none; b=YjSPqK+sYaVgFA9QZD7w/cMUYBFNo0b/TU9MqIEYi5SO4DF57Xy8Q1toI/yFs0II3OonBNSwv84+/AfUpicY15UawQOMoeDfAp9W8y3ut9Z6f/Mef7hXW6zqMpoT9PQH5O+zP+//WxjJn5Geq2cO+a1uKGghHlJyEww7TRKAB6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714407239; c=relaxed/simple;
-	bh=2oFLRsAgw53HjrPHJfiYkkbK08cBxJ1ZVH2NeS3iJU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YI+K4WbMpx18Y71bKZ9qee8KIaFFYG8HSOtuunRE0r/a3AqeiUgR0UFKVBC5RUGJob4IDly6P/NiYMgHg/wV3pSPPAYbzkko7YfyboUdSKzagSsPOnzA6GzCN9CiW6xzUk2becD1gpBk5tUs/2WSVQVtYHbX88QVcaU2Gtw1pzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ULmvL0e+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35538C113CD;
-	Mon, 29 Apr 2024 16:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714407238;
-	bh=2oFLRsAgw53HjrPHJfiYkkbK08cBxJ1ZVH2NeS3iJU8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ULmvL0e+8/UYbIjh1UWsrEwtwqrgUyH65IYS1AHQwX59qHb6amZBYOpM5rKV4mluO
-	 /Fr4t+AUoowzReyDVQoT3UP1ZWS+hFnEr06ra8uWkh+DudjprANd7gJKudBV1sfxOj
-	 uItLx0EN9snwEZNV0l8IQXP11f049XWOPKbuXHS8vIjOVaQpVr5H3tiPPhSACP/K2J
-	 ExgIdiDKOUqs4Eo03ZdEy8SQiO39grXQ8iOfuH2W51j4PyOOVvN/KIIAzCua3PJV8j
-	 11oi+jn0ViRGIVhAREs5OZjg04HHZvKAIIhpTDtGHggtTJbpuRQsf5qcyvP/pm4x1A
-	 schkbqt4UBxbQ==
-Date: Tue, 30 Apr 2024 01:13:56 +0900
-From: Mark Brown <broonie@kernel.org>
-To: Alina Yu <alina_yu@richtek.com>
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	johnny_lai@richtek.com, cy_huang@richtek.com
-Subject: Re: [PATCH 2/2] regulator: rtq2208: Fix RTQ2208 buck ramp delay and
- ldo vout setting and segmentaion fault when devm_of_regulator_put_matches is
- called
-Message-ID: <Zi_HRJ6xJ8cEhKAy@finisterre.sirena.org.uk>
-References: <1714385807-22393-1-git-send-email-alina_yu@richtek.com>
- <1714385807-22393-3-git-send-email-alina_yu@richtek.com>
+	s=arc-20240116; t=1714407677; c=relaxed/simple;
+	bh=nIrks+Ns9HxaEjV9ZLnzMist9Es01w3yeYlb5qgeX8g=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=do84iItNxW5gRoTd4h0MWKGe2cKAE8rx4IVz2jVU253RWaPMIBhCv6cOMqqMDI5uZGlfjenu/vbNqsIO20XObQaUm4HlJ29ZvFPaaZOftdreGFCXrnBUtS8PVLiqlGAV+C1wpLszlw0XHjqRlDrdKikO1n6ipyArjAJmOnC6LQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=y6lw+iVL; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-41c1b75ca31so10533395e9.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 09:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714407674; x=1715012474; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+2BcbVArzY6zw+uR+A3Mh0nCmPdKwCyYyWXxfmv6vto=;
+        b=y6lw+iVLEwMuEagpIVpueRehXZHrPMz1tklE5ZY8xI/rEtmF1YR8Aos58O2vS1egcv
+         o9D3m9r+SRm5xB3s5FvnMBVTJYqN3qwk0KThKUpZt39LjSMm6BZsCnDXRLeUN6RylxlJ
+         5VjiEgL9MUoTWurO5RAOva9g9kaWFiihFaru9vCA0oh5K5vOczAZNvWBfvG8WUiRTw8Z
+         zr4YaVW43QZJyubmz63qoF5l4FRjXobTJOwql86JTlbx07NZP7zTA/2QZZXfaqX91/GS
+         iL1yuKv37RfRq3RZYx53gWdvGQOimY7+C/Waz9zznY6WbgpQrwod29SCGTEVj4ue643l
+         H0JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714407674; x=1715012474;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+2BcbVArzY6zw+uR+A3Mh0nCmPdKwCyYyWXxfmv6vto=;
+        b=sGDU5uV+pxyabiPKrnltTu9ByVY6byotDeolXjSXrxKNbJf3AAPX6n34+a37pMy0vy
+         f3UL6CcJwk0ytPJfsLIWItx9eUhXS2P9z/YkB+ZP3HMBgwDPypGFx7+uQ0Wz0NbPqbjM
+         R14CO0muRss4qJcsHOOhbJtzgahb+mDR7gqQCne0x5kBYDD+//eYuSWdJf/K9lUPqoYW
+         P5d9wvJli6A/Fg9Lbezd9zLp2FHYxbaKKoUCJX5IZeJFo1MmDkdhc4yh0fQMMkPmQ5qZ
+         9a6CHiOGZx6a1Cpiursd456KgZSPgxBUVSMJxtd7BHbvn+7IDUnmBi+gVvv2RWwibxBd
+         4D2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWsnHiZF9n+KV3E6/a7WhJPfHDBqYDpsbQQZ0xLhyvyCDzY2se5qs4KZT03i/E61nXruH+qc5nSVd6fBCfPfZFEGSowSCFkaQ3q1A==
+X-Gm-Message-State: AOJu0YyrlEIJaO9dVLgxCVuuZIBv16dMvZ0pRnx84zCTdr0B4krKxGss
+	y8Ml8xskxp2RP+3773eM2ZI3obRQrC+kLp6Hk73OrKibCrniZ+32wvl1a4EAGoc=
+X-Google-Smtp-Source: AGHT+IFqURGq1IifXOfFAqZ8zQVNwljEvclvzb6xxbOaGp93XZh555vs3Sufcn/4UG9y855eUXTbkw==
+X-Received: by 2002:a05:600c:4f47:b0:41a:f936:5326 with SMTP id m7-20020a05600c4f4700b0041af9365326mr9975883wmq.15.1714407673735;
+        Mon, 29 Apr 2024 09:21:13 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id t20-20020a05600c199400b0041c012ca327sm7469761wmq.45.2024.04.29.09.21.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Apr 2024 09:21:13 -0700 (PDT)
+Message-ID: <2b21b160-a530-486a-9404-c5bf8863ffed@freebox.fr>
+Date: Mon, 29 Apr 2024 18:14:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CMFEKwFL0XCdxy2X"
-Content-Disposition: inline
-In-Reply-To: <1714385807-22393-3-git-send-email-alina_yu@richtek.com>
-X-Cookie: lisp, v.:
+User-Agent: Mozilla Thunderbird
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v1 0/3] Add support for qcom msm8998-venus (HW vdec / venc)
+To: Bjorn Andersson <andersson@kernel.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Nothing to declare.
 
---CMFEKwFL0XCdxy2X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Marc Gonzalez (3):
+  dt-bindings: media: add qcom,msm8998-venus
+  arm64: dts: qcom: msm8998: add venus node
+  media: venus: add MSM8998 support
 
-On Mon, Apr 29, 2024 at 06:16:47PM +0800, Alina Yu wrote:
+ Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml | 155 ++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi                           |  48 +++++++++
+ drivers/media/platform/qcom/venus/core.c                        |  42 ++++++++
+ 3 files changed, 245 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml
 
-> ramp_delay range of bucks is changed.
-> The maximum ramp up and down range is shorten from 64mVstep/us tor 16mVstep/us/.
-> The LDO's Vout is adjustable if the haardware setting allow it, and it can be set either 1800mv or 3300mv.
-> Additionally, the discharge register is chaned to other position.
-> The discharge register has been moved to another position.
-> In this version, a software bug has been fixed. rtq2208_ldo_match is no longer a local variable,
-> which prevents invalid memory access when devm_of_regulator_put_matches is called.
+-- 
+2.34.1
 
-As covered in submitting-patches.rst since this is a bunch of different
-changes that don't really overlap it should be split into multiple
-patches, for example the change of the ramp time for the DCDCs should be
-separate to all the LDO stuff.
-
-> -		if (init_data->constraints.min_uV == init_data->constraints.max_uV)
-> -			rdesc->desc.fixed_uV = init_data->constraints.min_uV;
-> +		fixed_uV = of_property_read_bool(match->of_node, "richtek,use-fix-dvs");
-> +
-> +		if (fixed_uV) {
-> +			desc->n_voltages = 1;
-> +			desc->fixed_uV = init_data->constraints.min_uV;
-> +			desc->ops = &rtq2208_regulator_ldo_fix_ops;
-> +		} else {
-> +			desc->n_voltages = ARRAY_SIZE(rtq2208_ldo_volt_table);
-> +			desc->volt_table = rtq2208_ldo_volt_table;
-> +			desc->ops = &rtq2208_regulator_ldo_adj_ops;
-> +		}
-
-The driver shouldn't need to look at the constraints to set up the
-operations for the hardware, if the regulator can be configured for
-multiple voltages just register it that way and let the core figure out
-if we ever actually want to change the voltage.
-
---CMFEKwFL0XCdxy2X
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYvx0MACgkQJNaLcl1U
-h9A9ygf/b3X8dbsjTS9LgrAuYbruOGAJnJaScqP+1gX0zNEp0EFUHrtJPJ4T4mZU
-QqwtkJWQgMcw/9pt62Av3woKE2P684R4nExzH0rUOxdchYNHQN71NB8BingBqX+a
-NZp5iqeorVGrRBdSjbDmI6w0UYS0cRbGhxn6gZ4HCtkC+9THf0N6YFdrA6RuhwRx
-BUWG6LZbDxdPD/B9ePz5R8OIy7W3u/sGf5iy5KIc/KoLTh+EGnHrM6Ldr2s+ZoEn
-fv5pyBI0ZgzsvKxhtPhEkxvZTJMIA30cpYm3sxzoTj9Pjz9lJPs/iddRu04N+RMU
-81nq1XlHyqNRI7o8eE5HFb4cQP4jeg==
-=BqI3
------END PGP SIGNATURE-----
-
---CMFEKwFL0XCdxy2X--
 
