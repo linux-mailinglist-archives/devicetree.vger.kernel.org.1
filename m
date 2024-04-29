@@ -1,399 +1,258 @@
-Return-Path: <devicetree+bounces-63647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10EE8B5BD5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3705D8B5BFD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:53:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E49871C21640
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:48:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5437B1C21F54
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7428C7FBC1;
-	Mon, 29 Apr 2024 14:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3D37FBCE;
+	Mon, 29 Apr 2024 14:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="nrJRJhwv"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="h+bE41xu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2074.outbound.protection.outlook.com [40.107.20.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC357F7DB;
-	Mon, 29 Apr 2024 14:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.148.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A74D745C5;
+	Mon, 29 Apr 2024 14:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.74
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714402054; cv=fail; b=JSDatF5MYTxsm2A11qvQq3/QrZSSTlxsborpiN8wJ95qVaJHVvSECyU01cNrIUi+0etq0ARRT9S8bXzF0ZofsrBYRNeepK5SXtGqRjae1lXGWD35A8/RDNNwCIj7rggg5ZKgXLY2Xjs+d8l/2penCtyvRzbgcHo+Bh5+TdzqhOU=
+	t=1714402419; cv=fail; b=IenmHkjiuVVcjrVqug1GN3kVUvIhHeSX492qRNIej4FQThHzwkDy5LrYPCjg5u63JXk6NLP9eZj55EC2SB8seh0+V9VN/DMNrfk4Ar5g4DhuOE0eId6rrdOOprItkart4tt/UdDi7uQYC6/Maw7xhkPCrkOPpb5iRcgH2GPbMUA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714402054; c=relaxed/simple;
-	bh=RkJq7zzAqCaFJnTjg7EZoLX+sxU89GjdpU38TIq4tW0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=C+ZnLcEg8eaXEgovA4x9ephfeI2Ea/jqA46lAq8aQX4mJqL6MvMuwYXjVfbAWds4TvopE/bz3HOwFxxfGSyY218b7zQhFUks26bBAnZmQlXjgjQfbpZ998ooqKHSfSk2qtU8nxrauJyiGgQ/G4pTN8GRSJQLcBS00MR+qGP9Zu4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=nrJRJhwv; arc=fail smtp.client-ip=67.231.148.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43TEVkpr000923;
-	Mon, 29 Apr 2024 07:47:27 -0700
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2041.outbound.protection.outlook.com [104.47.66.41])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3xtdcn85jf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Apr 2024 07:47:26 -0700 (PDT)
+	s=arc-20240116; t=1714402419; c=relaxed/simple;
+	bh=6iwZtktwNi5GwAUHukB6UGOGaFML4ql5Jn9IqpwDfSI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Yz8ZN0SZLD/v2LIOLrgVUK5c9QlHJyrsKXJuZlckFZm0PlducJUhIF4WgUUuBg5NfqaQApH35oZyTy+jIe8f9brwBkpmasHb9imUHL0ZyMRyPPPy9VoX6+Gfbbo2bVqcFeaKm3HMPICqSDUkNaTzdLCC1wnd26AB+RwQOqX2BJw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=h+bE41xu; arc=fail smtp.client-ip=40.107.20.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AC864XzP6PQUPh6iA1eptUgpTl8DUhbofPFs/MO7lOymSUGBgqKXoH98GhT/yNWn0f9gqvjUSGv+LoydR/bJCqo3qifDsGypc9rUn2Jl9AZovP+0ZKpalc+UffqWUj5zr0gsTguybw43eaUVeIs/ebb7o8E+nufR0AMwoy07ceJ8fD+wFrITZxdTycklDIYfhzUvz6XcF/KqjMSJwiEL2/uJvkNs4Ln0LecF2xYyLx5uiyh6yojeuxU5HZyQeuz5bA9lIfdrp8Y327T0Z4X23RM2T3RtPGVc8m77uQFaKL3BiEHuUMoujq90UfFEZ5nvT9sshGG4Q0xtv7fBJOBxZA==
+ b=MlMIufFbyJWb75jWtZNXEtBK2sAvM4yvtSWmHL+axlBVbqdkY2VxR5eveCDpn8S3l5XRp7M4GvyXlRrgJAfnuwJVyceEB+8wvapHlnnDGhtWt3gR9emdXliuAOl6ct9IazahFyJN0XVlbgDCwO1bgSXGRml7m4cWLFUGvcyCU9LUuckL5q8OWfzxWPbfg9i7mMpQQNOceYM5GcK67qFgsCLy7Vv1hU5pBAGY4ZYxV6ObHOuXOI4fU0ifYsjBHyiyww6Cu+JdwB300ScYfe1ibjw18lckbFz/6O/M6Y276Kgdi35cXs0GGZAqUMvubL6lmfNB1ML6hV6KjnSV4AYZKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NJtx6q9hsu1K+E3tGOL0UyndyJDtSuuDuzKtyFnjOBU=;
- b=SCnA7tCQv05R4UbLsV61wgbAmkLTJ2a1fl+qI+uxIRnMiQ0niSNQV5pgRRM9LvmcZaYUS7lc67FkwLeZtfyW1nBIfm61B3v4iAODF/AAz6kzX8mEj4UDaTJ5nzmL9xZVpzYviUuYWore7t7dmBNR19wUtVDK23yEcoE/AfUR36KDIaFA4u2ATD87sGqp/cEzCm7DKkHX6T3PCo8SpahHeFsn/4A7tLsOSWDzd0Gn+cQSq5EbzT0wN6twXN4yq9Ma5M5OUv5gKBHr45HGc7zsAFc1a8V7X29CWRaT0LgCC+a7A6ajspk7JCp/xbm3JIBCKd8lBPW+RXuPAGbCWejDwA==
+ bh=WTv3s8R4gGV8eA5SgAMN9mmpzdrZxMMikCAiNKuSIiY=;
+ b=mK7EoDN4yTsoQZL32TCKlF8tv40Urj/qz1B64+kBRZc9WziQ7XIJUpygrCqidzj5rZKMPJ82jgY9x5LbgIKJ3ulgqigRXFNkCTvfBsm32MDemZBhnbNWNW/Ij9qpZjLEpTANwYTkxFbtWAc/a9n9OgWO6CsfBcAusO8XubkjzSYELIJCcwJWk52u045JCHInfHgTSMhwi4FZByFcMzfagyUtb/PecN8A8qiv9t5YEzVzEBj2GJTZt5V/9VeUfZpl+OPbyu1e0UyZo8B+l3qFa2ZW6ODFdiRKvW9hu1vnPT/Q8iV9KsqeDe9TcR+IHeEJ9OHFZW2wkrOfV1gZOvEc5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NJtx6q9hsu1K+E3tGOL0UyndyJDtSuuDuzKtyFnjOBU=;
- b=nrJRJhwvn5AGcIjkdVn/INGI/udNXJ4pBLpRdl3+N7dRPOHxxjnyUnTgfrb84UXOFoyBvBa+z4Thjf/W0VNMLPq8CaaRPP1GcWWq5e4x/EnOV3NcNO9mLNlteQrSES9j59mbltzqt+fMiBmGyJAP/66g7hABEyamH48Et45MGxk=
-Received: from CO6PR18MB4098.namprd18.prod.outlook.com (2603:10b6:5:34b::5) by
- MW4PR18MB5134.namprd18.prod.outlook.com (2603:10b6:303:1b5::15) with
+ bh=WTv3s8R4gGV8eA5SgAMN9mmpzdrZxMMikCAiNKuSIiY=;
+ b=h+bE41xuIIa0YQS4fUp/QzogNXOM4ZNTt/ixikHTTg9BGKyv33m+DLkh4+mA16FscbNwbHI+6HhvmIUlpwHkpbE7NfEd01ox0bhecAe1DYz7pYxG+86n2tnwYRgTVvAWLoLhYaxkNjbZX4z/XIIw2ybjJ9ZvrTp62zg50ZRe8h4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM0PR04MB7108.eurprd04.prod.outlook.com (2603:10a6:208:19e::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
- 2024 14:47:23 +0000
-Received: from CO6PR18MB4098.namprd18.prod.outlook.com
- ([fe80::5dc7:7d9d:2619:191d]) by CO6PR18MB4098.namprd18.prod.outlook.com
- ([fe80::5dc7:7d9d:2619:191d%5]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
- 14:47:23 +0000
-From: Witold Sadowski <wsadowski@marvell.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh@kernel.org"
-	<robh@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "pthombar@cadence.com" <pthombar@cadence.com>
-Subject: RE: [EXTERNAL] Re: [PATCH v3 2/5] spi: cadence: Add MRVL overlay
- bindings documentation for Cadence XSPI
-Thread-Topic: [EXTERNAL] Re: [PATCH v3 2/5] spi: cadence: Add MRVL overlay
- bindings documentation for Cadence XSPI
-Thread-Index: AQHakS28W/KzCqcstE+2q5E6FRh8o7FuNt8AgBEr6pA=
-Date: Mon, 29 Apr 2024 14:47:23 +0000
-Message-ID: 
- <CO6PR18MB4098C815325699975B1BD794B01B2@CO6PR18MB4098.namprd18.prod.outlook.com>
-References: <20240329194849.25554-1-wsadowski@marvell.com>
- <20240418011353.1764672-1-wsadowski@marvell.com>
- <20240418011353.1764672-3-wsadowski@marvell.com>
- <20240418-sacrament-cornea-fd6fd569827e@spud>
-In-Reply-To: <20240418-sacrament-cornea-fd6fd569827e@spud>
-Accept-Language: en-US, pl-PL
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO6PR18MB4098:EE_|MW4PR18MB5134:EE_
-x-ms-office365-filtering-correlation-id: 83de240f-356a-448f-5949-08dc685b47cb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230031|376005|1800799015|366007|38070700009;
-x-microsoft-antispam-message-info: 
- =?us-ascii?Q?fO7M6gEy2ZizFxWpEwi62d8Q4Q760YxuX79pyZciCz5KxjLNOE872xU44nEh?=
- =?us-ascii?Q?t+OYNR+NXVsmWNn0oV6nBT2UXgRtzDOQ7FlS7uKjdgQhRcAZYNeNS2aNNLA+?=
- =?us-ascii?Q?XqVtngkTgUG5aURIunvQIE4dg+bmXnJilHs8PKp9TGtSqX6QZHPRN5eBYmEJ?=
- =?us-ascii?Q?70bCfsGg3cqy5j3Pbp6b8WAWTq+HzHMUUqFuxfLMONQ4C5uX31+aYHA7gc9i?=
- =?us-ascii?Q?p+lhMcUgUzCyULnePAmbdCjksR6I5JOAkVnCcw/TIOUqqzAf+npmMRJQr7oN?=
- =?us-ascii?Q?ZlSDB4sFYBJ+iw9MzRXFtdqQOjOGYbRdKAdcDCVKy70MJVkfepMJ7hf25gyj?=
- =?us-ascii?Q?TF7eVssxQSh8FforgD9FExcKc/cm+U56ZNTJtKilGPPevy+Zt0HeGlvrV+8R?=
- =?us-ascii?Q?nMhw5Ug6CaZa9oVF8juckMQOJp+qCt/98I+a6/iNFziyE874zTwwVbv8ATo8?=
- =?us-ascii?Q?I7e2UV1I59pEhzJTE54LjeRas+mOuYZH3vHDhGhwqQAPReIpWvfFNJqzCI8n?=
- =?us-ascii?Q?i9sZZ89X3jdSJ3WAevrj7FsPsBc+sRr3Zl81K0gA0kL5fQuk82Y66YkD7Nuw?=
- =?us-ascii?Q?b6SXkROR1VnMacIoWCJ+TGtRfYlVBjt5+hbu20y7BtBW7vhrMyal/N6cFXvX?=
- =?us-ascii?Q?E9XgFqEehiDt8LarbLkcJuL3WE1pQJob9uHTAfrryCY0REYXYzev2MBbmP1Z?=
- =?us-ascii?Q?Eqhy+ljqE48uTXvmkbo7Gzhm9Q4fKqDF/wYh+3lNCx8a9UEgvO1m3o0XnKRR?=
- =?us-ascii?Q?bdU0gdCNEM0cO5Lfqike+Dw3BXBi5YKs+l12E9czJmTRkpyNFhwGH2d9iRFv?=
- =?us-ascii?Q?TmfWjIKbG7j11S4RWambmC2E65puhMRaGbeWLe+3br+qwcVnXGQUJGH7o/eW?=
- =?us-ascii?Q?Yq3ddMTuaq79oMXoNc1fV2ymevpO2KU1Dd0ct9aIq2V6aPmxyRxUzIqvsiFY?=
- =?us-ascii?Q?oK7zuQx6BrB6Csm3BZzqges8vWE3REKZ8om420NHGa6uDrs91vmU5G6yVKqJ?=
- =?us-ascii?Q?Kd8vdSS4lywqp+VBPTlIgS7mNFyDaBHrj4I397SYuxE46cK95zmnRCc1qfWG?=
- =?us-ascii?Q?5YwnjXb5NIuj+N98ElWRz3JZaVfEbswwK1iSrK7vmaM28oNicKmGwfytdpS2?=
- =?us-ascii?Q?Qt9SqXZBKaMQfhbdPRYBRnD8Th/mZUou5sOGJ0H6r3JUL9+9T7I0A3fXSUCf?=
- =?us-ascii?Q?6TL6ugLWylWhy1/l/Ob+MV49/6XYTvdpRYn9qAPhPF+JP5WzuUKasCWNBieM?=
- =?us-ascii?Q?lvIcuvqX07jD0JqCzY9M3bZXLn/lHNILs9TQJtzSxSbsR9lqix/U8+FL+zXn?=
- =?us-ascii?Q?ohn92ASlMVbSVl/agvfiZAZoyLwd2t2nZmCHPt66ipr7Fw=3D=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4098.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?3EnlJFvIG4lkNkV3FXd1A9AK5ofw/iKAfI5iQ4CqBt1U4m2pPj4zmC6a7KBT?=
- =?us-ascii?Q?cF/y0J8amvB+zJEmRTPSARreuIbVI2txW5cxT9GAIOXHp1l0lE/qAnGbPA2D?=
- =?us-ascii?Q?n2r+iQqtK3EekVamEiIxv4bqrzp3ehhPVuu2wZkRKx0r8B9OQ7GFCq0rUjG1?=
- =?us-ascii?Q?EdS35Z1eoYQGdnw2VNUyQzbiA+PC3fdAULNcMck8v1k6GZGIrMM5jh16J0/P?=
- =?us-ascii?Q?VvMX6dqEVOBnsO658H6rOF5woiiZEAcHBPK8s2aJJ9WfKOIMdxXLmDxUCrTa?=
- =?us-ascii?Q?etM0wPAx4NP31C1udAE3gxRZQujYY/hyArN3OIdRAerCGNPCruk6r+unNgyQ?=
- =?us-ascii?Q?8NaEnfD7d29Luo5CjSeU9yDY/Chq8Xq+My82NfZg2FgvMdLeLp9rRadjPRfL?=
- =?us-ascii?Q?K1CZnGo3PChRBsMkplIA2NUPfzNd006l7ljbacL67PjJiZzNULK+vDGyl9Xb?=
- =?us-ascii?Q?jGPAMeVfUJH6N65OMNzCcmiiPHQh+rxvr3y0swyyiW2pgM/+QvlG3sZQBfek?=
- =?us-ascii?Q?2yGyGYepQp05yILUf/lFT3xLdrTSmJm05Lh0F7ouSXdfs3m9NPwOy1s902KU?=
- =?us-ascii?Q?8I5qSql4jfXr7EyQ/dTT5D3T+9t4iTPMgMGGZYWpR/LlQ8pnkimo47ZpDWSg?=
- =?us-ascii?Q?zb3j/T1ujN0SZplSxAi/dJVnf4OIPd9xb8ij8NExthVC14UM6JQ+vWsc4QbQ?=
- =?us-ascii?Q?THgflnaHyChO3dxNwNnP/ek1hoJTdaLk1g4L71OX9GHcLBR9kkAtfHDQMHDa?=
- =?us-ascii?Q?vyDqHu6mXzs9ZGi6vo9jfWXLNKjrIB86BoHy04FlWxQo+F/y7bJ3ihpfsMUv?=
- =?us-ascii?Q?EEZIyyC0ZdpdU6JtNCenvFC0DeB7LmKi8RPlFpPGJZdpLoiALeAXPY/mEv/7?=
- =?us-ascii?Q?KBF3mxepiO196P4w8Kfi5kE1VJEia/WwQlQxuT8ohv80MgAvMQieOaWTcpZQ?=
- =?us-ascii?Q?3ZdvBhoKOJzXqM7gTlqwZA6VV167w2KDDRob7+zdiUexDgdBVtvggAmCEzCp?=
- =?us-ascii?Q?64zTUNxHI8DzJN/RRfIM7n17ShUw0D+lvTfGq+OmqoSKofOtvf8IZ5ZcrnOT?=
- =?us-ascii?Q?VgdjEkaIaeHRtHmZPogJj18kd1UoidAdGZHL/OXIACee2JEuxhYLVoZ62M9c?=
- =?us-ascii?Q?7vdPIW7Y+4fPGr0PQ4cNC7/tBCVrDkA4HEkERPhLO4T3lVRWabPDbeLnMv+B?=
- =?us-ascii?Q?2jS9LDtubZeoBgcJ6wo8B7huAShjO/YHnUf3BeV23Y5O0NvmTlsjDMAYTKzV?=
- =?us-ascii?Q?Pcv2BTgCNgg+RpDyxfdjMWzMJoNjzmc/Go1FViMUSXQ49HSeAVZweOn0DO8z?=
- =?us-ascii?Q?IFzBOjphxyLXweCWtPkMjR4kemjdai4VoQDQBqcYzhT2FsCCrcU7u1Y8FW/p?=
- =?us-ascii?Q?BXy6b7teLL/VL4z5dIi+QJIxIL6RaYDV2aTcmb7JsLoFzlc32E6l+fy+HrF/?=
- =?us-ascii?Q?cGwUIzHtGO3CzWz0WKMMZ/juu8+3Foad4iwiFm8Qno43Ic26A0OtKORd/xnE?=
- =?us-ascii?Q?3wAuwo9yXfG7yiD74tiVVwl8mmvLRGuWd5uBvcRa1zxQ+RV6QWeWZPhO/PQZ?=
- =?us-ascii?Q?XbwWzHTmNVPi9XGqKTJNJSm9JTS8EhqS70rHvESM?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2024 14:53:34 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
+ 14:53:34 +0000
+Date: Mon, 29 Apr 2024 10:53:23 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/11] PCI: imx6: Fix PCIe link down when i.MX8MM and
+ i.MX8MP PCIe is EP mode
+Message-ID: <Zi+0Y+BhPqIw7PeL@lizhi-Precision-Tower-5810>
+References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
+ <20240402-pci2_upstream-v3-1-803414bdb430@nxp.com>
+ <20240427090057.GF1981@thinkpad>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240427090057.GF1981@thinkpad>
+X-ClientProxiedBy: SJ0PR05CA0117.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::32) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB7108:EE_
+X-MS-Office365-Filtering-Correlation-Id: d94fe8eb-7e04-4f42-4d11-08dc685c24b3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|376005|7416005|1800799015|52116005|366007|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?b2lLS3M4RDZCZkFhRVJIVFNTZlBqa01qOGlEa2RFYVZWU014SGtHejEzZldW?=
+ =?utf-8?B?anBncHBuUy9YQlIvVTU4SzVTMEFQcUwwT3pnTGZoeFVsNzZRSUFGVnNMSUR3?=
+ =?utf-8?B?eDRiazF3M0F6Z1Z5SXViVVlMdzlzbldHYTNTSVdMWXBRMk5ySHlqek9kanQ1?=
+ =?utf-8?B?a3NSelNUVGNRV0VjZGlnajVHWnA2c2tkSHcrbVI2NmYrb3lhWTdabDQ4Skgy?=
+ =?utf-8?B?YlhsSjVDNVRmU3lLNlRWOXhBcEUwbkFSRnZUMFkrb01BenRpM2Zrak01aCtj?=
+ =?utf-8?B?UVMrQlNTbjdtaElHRXVHNEpJRkxRWnIrYjJiUm5BR2hDeGNpYXUvUnlNUGRN?=
+ =?utf-8?B?SmdQaFBZNHR3bndiSk5tZDZsRXFwd2VNQm5Na2t6V0xFSU05ajAzRlRJUGxq?=
+ =?utf-8?B?MjNkZ1BjMVZEa0drL2cxbTM5dG90ckZMYnF5Mm5XWmJMMiszRXpBN2lUS0tX?=
+ =?utf-8?B?c3BvaXdzMEpQUWgwMGNuWThVM3A0WWFZSEowL3N4aUNDNko3MEwrQkQveE9U?=
+ =?utf-8?B?SGdVUEtuby9lcmpHVDVNYWZzWEhyWXl1c1ZwVjEvMTJmekZqVUpBc29SdTN1?=
+ =?utf-8?B?eVNzbWppZ3NveXVsYUt5UWtpWWxXc213ZnN0eWVOTk80aTdRVU9wMzJuWVIw?=
+ =?utf-8?B?bjRBeFNlRklxRFgzZ1k1VE15QjZxajN4bi9VRXhWb0o2QlFwZjlSZTNtWW1G?=
+ =?utf-8?B?czNsQTFyYkJySWs5RGxzRXkrS2MxTW5qeHYvNTJpTHJjdTkxWE1JSWRPSkhK?=
+ =?utf-8?B?cTNSOGdaM21qVVpDeFJLOWJlckJ3cEI0b3RFalQ4ZmlVL3htcWtaTy8xbzVY?=
+ =?utf-8?B?b3MxOWhDVjhTTlRtOXRXMUk5bWs5QnRTZThESDFKcjNIaWwxOXdRbDZENm5i?=
+ =?utf-8?B?SC8weEc1T09VdHdBSWxPLzlJbVhpd084THNQelpXWDFQSVYxcDhOZTluclNu?=
+ =?utf-8?B?eS9TbFpNeDBJTjZPK1BZdnBpK3NmUDFSWGV6ajJqSlBCcVVmQ3BEU2N3MzlO?=
+ =?utf-8?B?YVZxc0VGbDFRbFgwdzNjWnovRm1nalJGRDRZY3NvbS90MEFGNEJwekJJSmJa?=
+ =?utf-8?B?ZkcrUlI4Skh3WlR3U0dGNEtlaEEzT0hZRFlrVFBrRHcvUVBsTS82RVlHNlEw?=
+ =?utf-8?B?OFY4RmFYTFFGRXZORmdYSUR6QXJhTHBueVl2WWJ5RnBuTlhSbDVkL0NlTDV5?=
+ =?utf-8?B?bW9Va2tCTFlDcENNN3BYTU9Fb2ExOVZLb085M1ZsUzF1RjBUSk44ejFjdUdy?=
+ =?utf-8?B?NjZOZ21BeG12dkZFOHRaY2NiTzc5RE85Y2VpV1c2S0FOckNQZTh2cWs3bDFs?=
+ =?utf-8?B?bWl0a01tYTlsZkdXYUx0bms3UzVvUWhCVXUzbXBGazFoNEY4K284UXh0eTNz?=
+ =?utf-8?B?ZmJQQ2RJWFF4RElRZE9OTWtXVHFvK3U4aVh2RXBNU3Y1dE5vNWFwU2NVZFVw?=
+ =?utf-8?B?Z21QdGcxU2VibElIY0FOZU5HRHNDNGVaS1RxdVhNaElTaUhBc0pNeFRjeGZX?=
+ =?utf-8?B?TXdnNDE3MWdWWWt6R0c2UEVPNmNyM3c3dTlTM2hBTkNmMmhieU8xNWtPMElX?=
+ =?utf-8?B?TTZ0M1k5Wjd0UzMzYUUrTE1Fc21lNHFGNm1lbDlDMHBGQkFhMWw4dmxJT1VR?=
+ =?utf-8?B?d0JEK3d4ZzliU21EL29oZFNRbUYwU0JWdDBlUld1VHduWnhveWkwN3p3SkVF?=
+ =?utf-8?B?aS8vK1Z4TjZkUWJCTm9ON2lTdFJVb0FwcGZpREtlWXRnODNqK3ZqRG5ZK0Vl?=
+ =?utf-8?B?NWt3TWJ0ZnFQUm9UbUxvS3NtMlozekw2TmtFUHVrVC91eUduY3ZIRlRnYnZV?=
+ =?utf-8?B?WXU0R25BaGQ5VU85NXBRQT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(52116005)(366007)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aWUwVEQ1VjhCVVNpeWRidmIzdUEzUmp4ZlBrYnBWdkRXQVY5ZVZDWGIxZ1Ns?=
+ =?utf-8?B?cnFZV1hxN3NzQVNDZUhzaG5qajQ2TXZ3Z0ZDcUlFUDNxSTU1MGNVTFBLc2xo?=
+ =?utf-8?B?M2JTdU1hL0tpbkFvWTYrZmoyUmpaOUVGVjEzelJYVUNmRUlaeG9aTTFacHZV?=
+ =?utf-8?B?QTBIREtQTit2YUtUNjZxQ0dnamV5Nmd3RVF2VEI4dHhhRFNPcjdNeG9lcS9z?=
+ =?utf-8?B?b2lRUkpkVDlQRWxBUDg3R3lKL0lQYnFDVDhLa05CR2RjZ29kcUwzZ1dNU3Ri?=
+ =?utf-8?B?SFFRSHNKSFFCQTdvZHhacitEVGo0N3BWemxadThpT0pDcWFYMGZVbUx3VTJH?=
+ =?utf-8?B?TkRuMm1NS1VwM1dYL1BtWjg0V0ltWlVvT2tYOTVteW12WHFETkZkSHVPUkxx?=
+ =?utf-8?B?akFFdDExVCtiVnRtTXhXU1ZuanE3WHI3NjBrbE5FWllSTHBMNWN1TkU5WWsz?=
+ =?utf-8?B?NjM3MGo2RE1BdnhWbUVydVcwcnlYdFoyM0NRbDlaTUhIcVM0bXBsQWN1RFg1?=
+ =?utf-8?B?WEd1aWpwdmVTZFA2QVZ4SThsV2syZ2dBb0IxMllsUDVONWFaZGtKMmpQbEp3?=
+ =?utf-8?B?N0duVUp4ZTl4WElhaXdRd0RpN2h1ZnhlM2dMYmtHeTN4Ukp1U21QZnNITDZH?=
+ =?utf-8?B?TXNLbXJnOGFyUTE4K3podkc2eWVYOWRncmsrZ0QzSzA1SGpnYXMwY1RueDdY?=
+ =?utf-8?B?cllhQUFRRGFLNUgyR0pVR2RQbFNzSXlJNjdScVdZN3EyeVUvUDU5NFZLMGcy?=
+ =?utf-8?B?WUh0aDl4bWl1M255UE1iQ0JzSi9kOHg5b2hacHNKdEgwMWZ5V3JoTjhCd01r?=
+ =?utf-8?B?R2pJa1dYQmRvQ3JtdmNDRDZVOFVpOGk2NGtLdmFWRzJPbjEydStUbVlUQVRP?=
+ =?utf-8?B?RVVvbHRuUFByTzFRdHVQMmJzNEJXYkFoOTZ3ak1pS3M0Vk96L3d2bGJjQVp3?=
+ =?utf-8?B?T0JRMFVpYzJkRU5aNmNOMHpHYmtWTXVBWVZ2b1lOMGttVzdCekpwL3grcEU4?=
+ =?utf-8?B?ZmQyK3ZodEpIeVJFRWhzOEZkUUk4eTArUTBVRGkrbXpFdlhjazZ0Z2RUZkZa?=
+ =?utf-8?B?T2craWwrbjhBTjc1WUFuOVNSVmNLa0FpMHlicUl1elptdnA5N2wvcUY0elZx?=
+ =?utf-8?B?NGdiTDRoZUZ2SGd6Q2xwSFQ0WE1IZVNEVG5OWG5GajVPbWM4bUtxVm1uQXBZ?=
+ =?utf-8?B?MllMcHVIUnFtVTFMaGNrdkxlZjFLeHJvSXVBeHBWWGlQSjJoL3A1cVdVbFlM?=
+ =?utf-8?B?MU5VdmQvOW9ZUDdUL2M3aFA0STJIcDVGUnF2N3YxU2dOTWZhWjRVdEZoRmdE?=
+ =?utf-8?B?czRmbmlsMk1oMTJpcWx1d0dkRzl5YXdSTGlKQXpHWS9HWFc0ZlIvUDJuNEkw?=
+ =?utf-8?B?ei9IZ1lLallhYTNnbHc2WXdjQ2VyUEpTTW1ZdXVWS3gxNjczbDNyRkxrR2x3?=
+ =?utf-8?B?NW52K0dYQy9IYnpXNVRHTTBpMUdpeTNKYWdOMlppTWR2WlFwRDJESktuaXR5?=
+ =?utf-8?B?WFQ3RFJ5T1RSak9ZWDdrZ3NiYkRSNk5oTjNBWnh1ejNZNXE3ZTFQZks2YnZR?=
+ =?utf-8?B?NXBNeUlMZU1tUXIyU3ZuNWxwTDFpYjlOaU9YV2NscG5JdThtRS9DbXBPS3kx?=
+ =?utf-8?B?SWdYWDBpN2p6SmF5NDBMdmJRUngvRVI3T0xzcEJDWm5neGd5K3RHS3hpK0V1?=
+ =?utf-8?B?eEtBRHFOanMzbThGTWJoWVBiN1JBMmlxWHhkd1hFN0dsS1BvaXA0L1ZFTjlG?=
+ =?utf-8?B?SC9pT3hudE96MitOVnVGYTdJUE50MFM5WE9GRjNDUG9IN1BBU2RickxVTXJM?=
+ =?utf-8?B?UnBkeTNmMnd0RjNMSjA4cnlmOERiejlkbXdUeElSTzVYaERvcnE5bmh1cXBw?=
+ =?utf-8?B?Vm1xRzc2aGs2YTBzeEh3dUVqUWRYdndyV20vcnRudTRFUHloVDZicFdXTld6?=
+ =?utf-8?B?UUtoTW9DK1pmSnpVeU9lTkR2U1RYS084Umg1V29GVGlId09kZWtDcGsxV2xy?=
+ =?utf-8?B?bXFTRWhGWW1EL2x6dHIzaVc0akRiZmtiNnphQ0k4WkdnUFRvV2diVGk1dWlT?=
+ =?utf-8?B?b1Z0dHk4SEhra09yZkI3T1U3VUNYYW1EcUhBS1JOS1NqT3pYcjl6ZDB5dEJx?=
+ =?utf-8?Q?vsRaHbfvFQ2titywgzAIx+L9F?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d94fe8eb-7e04-4f42-4d11-08dc685c24b3
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB4098.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83de240f-356a-448f-5949-08dc685b47cb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2024 14:47:23.5563
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:53:34.4239
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aCNDOXLsCeoZq+dYHBncNMETgQePYT0jkB4ayxoye88tUAtmjxwwCvu+CY6ZPQ8YS8sZNE1VmXHIBbFxb/Azwg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR18MB5134
-X-Proofpoint-GUID: egHA7_DIcm7RvcXuwZ_u_s_indDJLm5f
-X-Proofpoint-ORIG-GUID: egHA7_DIcm7RvcXuwZ_u_s_indDJLm5f
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-29_12,2024-04-29_01,2023-05-22_02
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a6AmzYPD2r8cFd7e+7tPXYqH3rIAAsi8nucNZlbCQtU3Bus8Kw6Ua+dGyo+MkFKvlppLMviVQBhfkvU3DbqN7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7108
 
-> ----------------------------------------------------------------------
-> On Wed, Apr 17, 2024 at 06:13:49PM -0700, Witold Sadowski wrote:
-> > Add new bindings for v2 Marvell xSPI overlay:
-> > mrvl,xspi-nor  compatible string
-> > New compatible string to distinguish between orginal and modified xSPI
-> > block
-> >
-> > PHY configuration registers
-> > Allow to change orginal xSPI PHY configuration values. If not set, and
-> > Marvell overlay is enabled, safe defaults will be written into xSPI
-> > PHY
-> >
-> > Optional base for xfer register set
-> > Additional reg field to allocate xSPI Marvell overlay XFER block
-> >
-> > Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
+On Sat, Apr 27, 2024 at 02:30:57PM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Apr 02, 2024 at 10:33:37AM -0400, Frank Li wrote:
+> > From: Richard Zhu <hongxing.zhu@nxp.com>
+> > 
+> > Both IMX8MM_EP and IMX8MP_EP have the "IMX6_PCIE_FLAG_HAS_APP_RESET"
+> > set indeed. Otherwise, the LTSSM_EN bit wouldn't be asserted anymore.
+> > That's the root cause that PCIe link is down when i.MX8MM and i.MX8MP
+> > PCIe are in the EP mode.
+> > 
+> 
+> This commit message is difficult to understand. I think the issue you are fixing
+> is that these 2 SoCs do not control the 'apps_reset', due to which the LTSSM
+> state is not configured properly.
+> 
+> Referring Link Down is confusing at its best. Is the link training happens first
+> of all?
+
+Commit message is not good enough, how about change to below one
+
+PCI: imx6: Fix iMX8MM and iMX8MP's EP mode failing to establish link
+
+Add IMX6_PCIE_FLAG_HAS_APP_RESET flag to IMX8MM_EP and IMX8MP_EP drvdata.
+This was missed during code restructuring. The app-reset from System Reset
+Controller needs to be released before starting LTSSM.
+
+Frank
+
+> 
+> - Mani
+> 
+> > Fixes: 0c9651c21f2a ("PCI: imx6: Simplify reset handling by using *_FLAG_HAS_*_RESET")
+> > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > > ---
-> >  .../devicetree/bindings/spi/cdns,xspi.yaml    | 92 ++++++++++++++++++-
-> >  1 file changed, 91 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> > b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> > index eb0f92468185..0e608245b136 100644
-> > --- a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> > @@ -20,23 +20,82 @@ allOf:
-> >
-> >  properties:
-> >    compatible:
-> > -    const: cdns,xspi-nor
-> > +    oneOf:
-> > +      - description: Vanilla Cadence xSPI controller
-> > +        items:
-> > +          - const: cdns,xspi-nor
->=20
-> The "items: isn't required here is it? Can't you just have
->     oneOf:
->       - description: Vanilla Cadence xSPI controller
->         const: cdns,xspi-nor
->       - description: Cadence xSPI controller with v2 Marvell overlay
->         const: mrvl,xspi-nor
-> if you don't want to use an enum?
-
-It works without items, but I will try also with enums.
-
->=20
-> > +      - description: Cadence xSPI controller with v2 Marvell overlay
-> > +        items:
-> > +          - const: mrvl,xspi-nor
->=20
->=20
-> "mrvl" is deprecated, please use "marvell". You're also missing a soc-
-> specific compatible here, I doubt there's only going to be one device fro=
-m
-> marvell with an xspi controller ever.
-
-The intention is to add overlay on top of existing IP block to gain some
-More features from it. So if there will be different SoC with same xSPI
-IP, we can simply use that property, as internal SoC structure will be the =
-same.
-On the other hand, if there will be used different IP to handle SPI operati=
-ons
-It should use different driver. Also, I do not expect that new version of t=
-he
-Overlay will be developed to handle different IP.
-
->=20
-> >    reg:
-> > +    minItems: 3
-> >      items:
-> >        - description: address and length of the controller register set
-> >        - description: address and length of the Slave DMA data port
-> >        - description: address and length of the auxiliary registers
-> > +      - description: address and length of the xfer registers
-> >
-> >    reg-names:
-> > +    minItems: 3
-> >      items:
-> >        - const: io
-> >        - const: sdma
-> >        - const: aux
-> > +      - const: xferbase
->=20
-> Please constrain the 4th reg to only the marvell device.
-
-Ok.
-
->=20
-> >
-> >    interrupts:
-> >      maxItems: 1
-> >
-> > +  cdns,dll-phy-control:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
->=20
-> Under what circumstances do you expect these things to change for a
-> particular SoC? If it's fixed per SoC, you could deduce it from the
-> compatible rather than needing properties.
->=20
-> None of these properties explain what they do and all appear to just set
-> register values directly, which is not generally something that we permit
-> in DT. Some explanation of how these values vary would help a lot...
-
-I will remove that PHY configuration block. That can be d in driver, based
-on SoC version/HW overlay version.
-I believe to change that values or some internal clock should be changed,
-or whole internal structure, have to be changed. After few internal
-discussions, I don't think only changing the SoC will be enough to change
-that values.
-
->=20
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x707
-> > +
-> > +  cdns,rfile-phy-control:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
->=20
-> Please enforce constraints like which compatibles something is valid for
-> in the binding, not in free-form text.
->=20
->=20
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x40000
-> > +
-> > +  cdns,rfile-phy-tsel:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0
-> > +
-> > +  cdns,phy-dq-timing:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x101
-> > +
-> > +  cdns,phy-dqs-timing:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x700404
-> > +
-> > +  cdns,phy-gate-lpbk-ctrl:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x200030
-> > +
-> > +  cdns,phy-dll-master-ctrl:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x00800000
-> > +
-> > +  cdns,phy-dll-slave-ctrl:
-> > +    description: |
-> > +      PHY config register. Valid only for cdns,mrvl-xspi-nor
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x0000ff01
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -68,6 +127,37 @@ examples:
-> >                  reg =3D <0>;
-> >              };
-> >
-> > +            flash@1 {
-> > +                compatible =3D "jedec,spi-nor";
-> > +                spi-max-frequency =3D <75000000>;
-> > +                reg =3D <1>;
-> > +            };
-> > +        };
-> > +    };
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    bus {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        mrvl_xspi: spi@d0010000 {
->=20
-> Drop the node label here, nothing ever refers to it.
-
-Ok.
-
->=20
-> Thanks,
-> Conor.
->=20
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +            compatible =3D "mrvl,xspi-nor";
-> > +            reg =3D <0x0 0xa0010000 0x0 0x1040>,
-> > +                  <0x0 0xb0000000 0x0 0x1000>,
-> > +                  <0x0 0xa0020000 0x0 0x100>,
-> > +                  <0x0 0xa0090000 0x0 0x100>;
-> > +            reg-names =3D "io", "sdma", "aux", "xferbase";
-> > +            interrupts =3D <0 90 IRQ_TYPE_LEVEL_HIGH>;
-> > +            interrupt-parent =3D <&gic>;
-> > +
-> > +            flash@0 {
-> > +                compatible =3D "jedec,spi-nor";
-> > +                spi-max-frequency =3D <75000000>;
-> > +                reg =3D <0>;
-> > +            };
-> > +
-> >              flash@1 {
-> >                  compatible =3D "jedec,spi-nor";
-> >                  spi-max-frequency =3D <75000000>;
-> > --
-> > 2.43.0
-> >
-
-Regards
-Witek
+> >  drivers/pci/controller/dwc/pci-imx6.c | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> > index 99a60270b26cd..e43eda6b33ca7 100644
+> > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > @@ -1568,7 +1568,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> >  	},
+> >  	[IMX8MM_EP] = {
+> >  		.variant = IMX8MM_EP,
+> > -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+> > +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
+> > +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+> >  		.mode = DW_PCIE_EP_TYPE,
+> >  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> >  		.clk_names = imx8mm_clks,
+> > @@ -1579,7 +1580,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> >  	},
+> >  	[IMX8MP_EP] = {
+> >  		.variant = IMX8MP_EP,
+> > -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+> > +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
+> > +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+> >  		.mode = DW_PCIE_EP_TYPE,
+> >  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> >  		.clk_names = imx8mm_clks,
+> > 
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
