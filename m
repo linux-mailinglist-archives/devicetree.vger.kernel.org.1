@@ -1,87 +1,97 @@
-Return-Path: <devicetree+bounces-63685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91BCF8B5E7D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:02:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D6D8B5EA0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C25F11C2225E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:02:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69B401F260F7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A3384D0D;
-	Mon, 29 Apr 2024 16:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B0C839EB;
+	Mon, 29 Apr 2024 16:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iCSHbLqe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gw4y/hv0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2277D83CC7;
-	Mon, 29 Apr 2024 16:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C736714A8D;
+	Mon, 29 Apr 2024 16:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714406518; cv=none; b=n+fve3wzPMITuiGErWYaKGJoYcSD/IFqDHvvQaB08mCF/8AZD4E3/ddXULqpf5M/MRD1qY1XMQ8ESFvehizRtu1qjVNopVGmSbxAXmU2iO+DGrn5+DyYjNJjgtKc1W0H/OZHA//Jz0U7fEUTSqh0bW/a0+e290QKK+DkWFxjKw4=
+	t=1714407000; cv=none; b=Fi44Kktl77AAps0ogrCSru4RYUvaTfD7F9QGkcpkM3MR1E7OF9k+oiqxA2wExHaMUNvDec5jLlY5pnvKDULKfGXDr8e1xjbkZnJYDgwN5+ae8sjMJFPBLnSJ+uJDCEYb/eBu605mtsNMP1B1drEs/Gbi5+L0ZcptCofHN+sD4Bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714406518; c=relaxed/simple;
-	bh=UkM343oSMQWEK0dox5ssRSFKZYQm+bsRKHwz7hxlUKI=;
+	s=arc-20240116; t=1714407000; c=relaxed/simple;
+	bh=ZAtGzg5xpGyRTDWRrb2P98Cvugc+fB+eaQXGW6P1/hE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nGbzz46inX0LEzijagNrc/MT+GWS+pwja0Z6zokMeEYOdCF6wvbu5eO4LamvO7QN/V6X6IAzQrv1LC+AXtXa1PA3FXFUbtWHGX0Cf4Kn5oCEQYuiGwlFule17AVrzX0JSqhtrcIirKyQvaieYPEE1RKvEM5sBefco7V004ewrhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iCSHbLqe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20301C113CD;
-	Mon, 29 Apr 2024 16:01:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qpvpOQjG5YT2CttgKF/Z1siSQcpJe5qMFyBLuv/KHfYuAfeUTPPPevlw553mHOF7jSAE2NpOvSwcSRLljOJ8cUqXG2aaU9epvImKTldfwrZpOPN0F0DkYfQt20horjeYm60eIageB6OHid9xXnbkMP+J1FadDXfkVXiWzLkq7o8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gw4y/hv0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C47FC113CD;
+	Mon, 29 Apr 2024 16:10:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714406517;
-	bh=UkM343oSMQWEK0dox5ssRSFKZYQm+bsRKHwz7hxlUKI=;
+	s=k20201202; t=1714407000;
+	bh=ZAtGzg5xpGyRTDWRrb2P98Cvugc+fB+eaQXGW6P1/hE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iCSHbLqemrUuzr8Y9IsIyc9/tYXlgGDyYHCqws8PR279di/EongHim/OSoQNpOBC1
-	 S6sc0vc9iHCE9Iew3DSGPTG5rzD6JO9QRKQGRgSWBPa6FJCcCa0JA/xCezDJAhasfT
-	 jMMWLmUF6726w+EHE4zOt0eQkykMXkah3UFwDRf3rhNzrk6Hk1GYFHAm904IHQvJ7P
-	 3QjrM0fV5VoIt94j67JsgxtCjkla6Fw9L7GU/XuLSFs5a2OyV0WwEx+2/uCP3Qcpjg
-	 c/7Esq7fCkUyHp/F5x6/mVkYozZsuyUZsjMjEFxWKItHaEWfZyiZOMvFbvGbu8QMJI
-	 f5f0U94TUUsUA==
-Date: Mon, 29 Apr 2024 11:01:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: Luca Weiss <luca@z3ntu.xyz>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom,smd-edge: Mark
- qcom,ipc as deprecated
-Message-ID: <171440646386.1897168.2356516040793552151.robh@kernel.org>
-References: <20240425-qcom-ipc-deprecate-v1-0-a8d8034253ea@z3ntu.xyz>
- <20240425-qcom-ipc-deprecate-v1-1-a8d8034253ea@z3ntu.xyz>
+	b=gw4y/hv0on/UyzNmi4cz6milNX1OQfPdqWJ//xYpNdrCAvZV7BZvi6kywVg10g7Os
+	 8xP0emuan30Ddh4d16M+uYPMpVAgiOGtvWmxGTUft3mY/o7zfGqt/MngKsEr6XHzhG
+	 z3O3uIwbKliJxxrnbqJ8ekwtga9LX7zveXVEHnzToracaCaU/cGdsvVLP7HYIutAWC
+	 G2LbUuUkqvFfZMNBLmzypobpICmnx7beK2au/htN8cxTzdS8zTORVVXIXC/iPxv7VH
+	 8oaRjZzH/g69yHwiRY/XdNLiWv1Y/mvShsSyj9tiTgQWAWzUSNJhWTjr11lKg+uPN1
+	 iH8G1tWMCIGCw==
+Date: Tue, 30 Apr 2024 01:09:58 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Alina Yu <alina_yu@richtek.com>
+Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	johnny_lai@richtek.com, cy_huang@richtek.com
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: rtq2208: Add property to get
+ ldo of RTQ2208 is adjustable or not
+Message-ID: <Zi_GVrak1a8e6v7r@finisterre.sirena.org.uk>
+References: <1714385807-22393-1-git-send-email-alina_yu@richtek.com>
+ <1714385807-22393-2-git-send-email-alina_yu@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1k+RQz/jK2KhQiZu"
+Content-Disposition: inline
+In-Reply-To: <1714385807-22393-2-git-send-email-alina_yu@richtek.com>
+X-Cookie: lisp, v.:
+
+
+--1k+RQz/jK2KhQiZu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240425-qcom-ipc-deprecate-v1-1-a8d8034253ea@z3ntu.xyz>
 
+On Mon, Apr 29, 2024 at 06:16:46PM +0800, Alina Yu wrote:
+> Since there is no way to check is ldo is adjustable or not.
+> 'richtek,use-fix-dvs' is added for that. user is supposed to know whether vout of ldo is adjustable.
 
-On Thu, 25 Apr 2024 21:14:30 +0200, Luca Weiss wrote:
-> Deprecate the qcom,ipc way of accessing the mailbox in favor of the
-> 'mboxes' property.
-> 
-> Update the example to use mboxes.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+As Krzysztof said we already know if the voltage can change since in
+order for Linux to change the voltage there must be a voltage range
+specified (and see comment on patch 2).
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+--1k+RQz/jK2KhQiZu
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYvxlUACgkQJNaLcl1U
+h9DfNgf8ClE+rYHKggStfAAkgeIFkBwgVTxO1I85bFXhSuclF7fd7Y6sE0sTwNtr
+QtWcDvwPxbAEKwqJwouq/C3ktCeNVQVGKkGpRaUnQZ+FjqKN2ZS6CImRWb697D6l
+tuwIjMt660KtNHtDCDLvXODd2OaVUkxCfL55C94hHgURP0+C8D43KjBasw5lHz7j
+fdBpUC84egX4zFpDfTCmATRVIjCLXIxooUEfog6NnoM+7gZV3xlVOS7mDoCgoUcQ
+t3ji3C+JZqo3sEb7cuYiuQcZAhAOU85adO7mo9YLzpKZKSOxoH7u4PpR9mUqG+5m
+5X7DT0Z3/Ekv5DSu6KoR9WEQTTMWkQ==
+=rZd1
+-----END PGP SIGNATURE-----
+
+--1k+RQz/jK2KhQiZu--
 
