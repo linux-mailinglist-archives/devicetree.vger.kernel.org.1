@@ -1,237 +1,135 @@
-Return-Path: <devicetree+bounces-63486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9468B5164
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 08:27:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DE98B5175
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 08:31:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62BC01F221D8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 06:27:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47A40B20C2C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 06:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC81210A31;
-	Mon, 29 Apr 2024 06:27:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Py6EuaIT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0C110FF;
+	Mon, 29 Apr 2024 06:31:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7B210A09
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 06:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F1312E6C
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 06:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714372070; cv=none; b=VNMEEWcdSj40oDpZ7HQ8QMPBRAYkRhIXK9NGsx9ItVtn/SoSxJhtG5JYyC0ZMeu+Qo4xg3d76uLOwPgAQl7Zsk2mGN3PwwgqHh6RtGAsqPkcNt0XHNDT5JsTCzuY4DCWS1lcqda7l4GmG/VdlTs6S32UCt486PKzlPqluebNi+w=
+	t=1714372263; cv=none; b=tr8qGNsopnps5bxcUSMyTHqP0WcQ1A4z5qd6kQbU8eJJgbSNUx/zWWOp7SFhS04ywkrs5RrHV2y0iCYH7pEL7ZeoodLKpVeUkpxZg0VRiO0ikXhh66Z/DxLwyGUALFKzzvUAcVIOkChXxbnGkanI2+DYQRejKk82rB44fudmneg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714372070; c=relaxed/simple;
-	bh=pQ1HlVQ90krhqOnXJ5XQMVdoHSa9+n1hUzM/hln9e50=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vcr2UbngO+XA8jooYcws5EDpFplz+ey0JoI9dDC6+rojQn0pFNfZpEAwt/RO6eP55UllTO3erEs6CoSOWjf2nzuQSgXily+0ZlU4AZfoXucnu5zYqjG7SHauKg6D0GYhBMLvvvVZ8/CPnIoHauay1uAP84kthKuDKWBsAgSFRdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Py6EuaIT; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-572250b7704so4098764a12.2
-        for <devicetree@vger.kernel.org>; Sun, 28 Apr 2024 23:27:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714372067; x=1714976867; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qA1Mq+BKArwz7aZn7XQgiZHHBtYnA3j8xSFLJOCXWzY=;
-        b=Py6EuaITLY+hOvGO4ULiTbwDKB8P/f2O9c0pbW0ZWvFfPEJ+upQ5Auz4UpsTHZUxXJ
-         Omb97/Ua/Pmsitn6DGSTP9lTnTzdOkkmP/Xv5XeVS66AicLUURQ9TVGeD6+bJ8qGzxMZ
-         fwLRc39vDGzUKEfiTdVk5+zpirSXyYrU+j+8zVotnP+pDC1CJlmjvlKFhT2PuLorwoyP
-         24AE0KDlNw8cvzKvL3MEkwzLRWkv0CVH4zzsrgTQUMzwJ1+LWscqfwfBmknXgdl8IqcE
-         YmwGZDEKOKMcda7hysVznjjWK39Q4FPkXXvSw+Heo9xP5uItK7pvEWlFwTrno32lPol5
-         3nqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714372067; x=1714976867;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qA1Mq+BKArwz7aZn7XQgiZHHBtYnA3j8xSFLJOCXWzY=;
-        b=c5DIumtrvEHWRHzZyOdYaeyxjyr9fZNieQNuX20PYU175XXpLRfLGdLh96/bTPK9La
-         5QPhIaIqrCYjnnCHrlVJusuRqmRSECTlCiYoLqyH5jNLoSYwYV/ANNGIwzBUTWZSTwt9
-         IKC+XZcWAxE5BcjJxNXO/t/E8PsKSFxwvhRXlrXUvDuKWEWKJZ/MiFTCgUz4VE+unUVY
-         oMG7CJlgT1uAdWaufFutEVJ7p289PntSiKtsuVj+lN+7kw6VuJkXKx/IcMzfrg8P1sTZ
-         EbEZD3ngzMiuaK37tZfmW5/KtzFFrXoJGQ6zj5jzsWmthkJPb6sDP6G1q+ucgk530XHY
-         bHiw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNlHjMfP2GWrXruqMu3fF2t+o1/Usfsu8saEXHi050rBXOJ1cxJgJp77S1YV1Wb+nkhd5r9/RMtRY4pyoa8DnLE8p+crmoMdYfUA==
-X-Gm-Message-State: AOJu0Yx+Ka3gjawQktLEARg9pKCDz+V2+AjMd+lGSf+muh63qcMBWMUO
-	pn53hmIFe3BCFmHtJI3dwX2aJsTTwDJ41vbCVsjKvYQ3eVTaSjm9A8HAVBgBgz8=
-X-Google-Smtp-Source: AGHT+IESUXN7I7fO318PxM8X0XDcywLSdQf4htvE8HhqgqMtYThdRx/pY4Ue7USfJXLXKoE92r5Sog==
-X-Received: by 2002:a50:8acd:0:b0:56e:3774:749b with SMTP id k13-20020a508acd000000b0056e3774749bmr4907398edk.42.1714372067101;
-        Sun, 28 Apr 2024 23:27:47 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id a13-20020aa7d74d000000b005726ee95a38sm2183591eds.88.2024.04.28.23.27.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Apr 2024 23:27:46 -0700 (PDT)
-Message-ID: <1613d7e3-a5cc-4b8e-a905-3699779476fe@linaro.org>
-Date: Mon, 29 Apr 2024 08:27:44 +0200
+	s=arc-20240116; t=1714372263; c=relaxed/simple;
+	bh=R7C5wr96MqWDYR44Ry+prYbPTSvDWaKrG2gXzaFYjI8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nXjRGqEm0NOPonGyXGjzDhs5T+dCvtq3RfSwmG3Av0TdbB2Z4e1u4l4kkm8sNyYuJ07My6Av1ZSkO8LAM3nBIYUzIzebK9sTVNZykjjjfGqimwP+nR8q38oKzBRHoxBPFHt3uGI2cWEKUSJmlkZl0eJxU6oeNU7Y+Fr8OO3z8QQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s1KXJ-0007Fa-Dv; Mon, 29 Apr 2024 08:30:49 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s1KXI-00Evg4-9u; Mon, 29 Apr 2024 08:30:48 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s1KXI-00BDAk-0h;
+	Mon, 29 Apr 2024 08:30:48 +0200
+Date: Mon, 29 Apr 2024 08:30:47 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Trevor Gamblin <tgamblin@baylibre.com>, linux-pwm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com, 
+	dlechner@baylibre.com, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org
+Subject: Re: [PATCH 1/2 v5] dt-bindings: pwm: Add AXI PWM generator
+Message-ID: <sjgqbftxfz763qoj33p2diba4ify4lae2vc2amcpaudjtdlse7@buk2wrofz3fp>
+References: <20240424125850.4189116-1-tgamblin@baylibre.com>
+ <20240424125850.4189116-2-tgamblin@baylibre.com>
+ <8bc13253-db16-4801-9f69-b06ba4e129be@baylibre.com>
+ <148f8e69-ad44-40f8-b277-69c289b94c68@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: i2c: mux: mule: add dt-bindings for mule
- i2c multiplexer
-To: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com>
- <20240426-dev-mule-i2c-mux-v1-2-045a482f6ffb@theobroma-systems.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240426-dev-mule-i2c-mux-v1-2-045a482f6ffb@theobroma-systems.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-Except that this was not fully tested few comments.
-
-A nit, subject: drop second/last, redundant "dt-bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gvrldjymnq56fhzd"
+Content-Disposition: inline
+In-Reply-To: <148f8e69-ad44-40f8-b277-69c289b94c68@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-On 26/04/2024 18:49, Farouk Bouabid wrote:
-> This patch adds support for the Mule I2C multiplexer.
+--gvrldjymnq56fhzd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+Hello Krzysztof,
 
-> 
-> Mule is an mcu that emulates a set of i2c devices which are reacheable
-> through an i2c-mux.
-> 
-> The emulated devices share a single i2c address with the mux itself where
-> the requested register is what determines which logic is executed (mux or
-> device).
-> 
-> Signed-off-by: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-> ---
->  .../devicetree/bindings/i2c/i2c-mux-mule.yaml      | 80 ++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-mule.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-mule.yaml
-> new file mode 100644
-> index 000000000000..458e4661cbc8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-mule.yaml
+On Mon, Apr 29, 2024 at 08:23:19AM +0200, Krzysztof Kozlowski wrote:
+> On 26/04/2024 22:11, Trevor Gamblin wrote:
+> >=20
+> > On 2024-04-24 8:58 a.m., Trevor Gamblin wrote:
+> >> From: Drew Fustini <dfustini@baylibre.com>
+> >>
+> >> Add Analog Devices AXI PWM generator.
+> >>
+> >> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+> >> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+> >> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> > Note that I missed the following two acks from the v4 series when=20
+> > preparing v5:
+> >=20
+> > Acked-by: Michael Hennerich<michael.hennerich@analog.com>
+> > Acked-by: Nuno Sa<nuno.sa@analog.com>
+>=20
+> You cannot add other people's tags that way. By default b4 ignores it.
 
-Use compatible as filename.
+I'm aware that I have to pay attention to that detail (i.e. using b4 am
+-S). Full disclosure: I asked off-list if Trevor missed to add these
+Acks and requested to add them this way if yes.
 
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/i2c-mux-mule.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mule I2C multiplexer
-> +
-> +maintainers:
-> +  - Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-> +  - Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> +
-> +description: |
-> +  Mule is an mcu that emulates a set of i2c devices which are reacheable
+> Also, don't modify the tags...
 
-typo, reachable
+you mean the missing space between name and email address? I can fix
+that up when (and if) I apply the patches.
 
-> +  through an i2c-mux.
-> +
-> +  The emulated devices share a single i2c address with the mux itself where
-> +  the requested register is what determines which logic is executed (mux or
-> +  device)
-> +
-> +      +--------------------------------------------------+
-> +      | Mule                                             |
-> +      |    +---------------+                             |
-> +  ------+->|Config register|----+                        |
-> +      | |  +---------------+    |                        |
-> +      | |                       V_                       |
-> +      | |                      |  \          +--------+  |
-> +      | |                      |   \-------->| dev #0 |  |
-> +      | |                      |   |         +--------+  |
-> +      | |                      | M |-------->| dev #1 |  |
-> +      | +--------------------->| U |         +--------+  |
-> +      |                        | X |-------->| dev #2 |  |
-> +      |                        |   |         +--------+  |
-> +      |                        |   /-------->| dev #3 |  |
-> +      |                        |__/          +--------+  |
-> +      +--------------------------------------------------+
-> +
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-mux.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: tsd,mule-i2c-mux
-> +
-> +  reg:
-> +    maxItems: 1
-> +
+Best regards
+Uwe
 
-Best regards,
-Krzysztof
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
+--gvrldjymnq56fhzd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYvPpcACgkQj4D7WH0S
+/k7SUQf7BzKSUujDtEWtqcp4TGtptEioI6AM59Ll/ritKfTWBnFnWKdX7u4WnDJD
+3p5P4fNBG/KKUsJoRJTYUT397NhSkot00rGWFHgGDOwFTggpPjEt8BE8Kut+k0QX
+Nohl2BxUw6/UAeDG0zut9ObxmR9oGecTwtswRr9nK7Ol+5QOxlPQJn5jdwhiVAe4
+8UeF1Hp/zt7WeDkCHWw3q8wM6hlFvqclE/4WYB1h5UfQ3ZLXxFd/2kltlyZwAtFm
+YTuG2t/Ku/KnXlB07a+VIDFyHUPUj7xMXM3R7siYli+hZClqP+q12CK91dDu6fTh
+G1Wbqcs033VybfJGNg3u+24MJaGyiw==
+=6L5Y
+-----END PGP SIGNATURE-----
+
+--gvrldjymnq56fhzd--
 
