@@ -1,250 +1,226 @@
-Return-Path: <devicetree+bounces-63636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D789A8B5B1F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:20:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05858B5B41
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:30:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BC631F21C96
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:20:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6598528232A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4D47BAED;
-	Mon, 29 Apr 2024 14:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49043D72;
+	Mon, 29 Apr 2024 14:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rf+5EAPZ"
+	dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="dX+uwNIn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52ACE76413
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 14:20:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714400439; cv=none; b=r0HYKKqCVnE6k/WMqzzZ9ZYgg0w5c++6WsZYMShnIK97s3d9flhcHd9abn82TFBzO5jKGNOH4tJACpHr5m5KfgvCGQzMOUzDWunieMx959igKuCdjBYLlWs2gGCkCY/79G7VgkYex/Yu4ovXt+DgqIv9iQFE7FIf/IpG5RFEaps=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714400439; c=relaxed/simple;
-	bh=uSTONnEE6bCuSEveO0Ljfw2aXr4s4UGIYP8uCnP1O9w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Pn1QsTLQHFfcagkU4/UHU8sK9xS1INJfrp352nnzMBRKe0Hp04NrfpMLQGt0UHUXbKX5AihcwBoP2EQEziqEuRsQgeuAHaAyy1YWjThGzV+0UzJSGg1EnjFZ0ar7PHGQBO7dSamnQhG+fhzITH/GrOIqFekTOSfOrai1AfdcJTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rf+5EAPZ; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de603e3072dso397601276.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 07:20:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714400435; x=1715005235; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bh5GjqgFJnCNeFlUQdx4KaiNVw6ilwHux7LWxSHvRJc=;
-        b=rf+5EAPZm/Y//W9tqbPkoGS0sC9MxtB+z81h+oLZPRE/cO7F+g8gwSPfeF7aN+Kw/s
-         mwVesoGzU8wu3jbUYdTCRQO/qCmiUUH+Mp9/DEVIyCzbpt3IESJGV0Pbxhw7bXWgYwzo
-         8NKU6qXqmuV4BMK2uBFTMk+5kIsG4EsxBQwf6rT8GVUOz8TJqf1bJsJ30jwgQn8x1mHq
-         CI3DDFn1rP5813Hxt2z0TYPhM3eIiyqmdGQP6TmeMAMPvWE3F1NVPjTs7h7EGir9VDCV
-         ym08R+ISbruAmiDZsJgPB3LSped8YixuslGEd1OpKCXfc5/IO8ipSe70HOSWXl+E94//
-         AFTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714400435; x=1715005235;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bh5GjqgFJnCNeFlUQdx4KaiNVw6ilwHux7LWxSHvRJc=;
-        b=hnaaFeNWetdAShnMhQcw5ULMJZKyxk80bFMwrktBuEGoNEvlVPmcPxSrYg99JSRZzE
-         PaNWd+HGBBrGgrbDDh6f4xP6fwgY0tQqQl6CPPtm5XsUN890VsDoHYZu1+a7KAteUTS+
-         g2FWNvrzQX29BkbXhkhyVJ8iG6Ku2e1Wu3PFhxB0WIuiPmOFFRbticrcYcFl0HQVQJhV
-         Q1IDaQ+bWtipnzK5a4k+8qMaANfkKtoXHRk1qxdZhKaBfm6J8+2jktkY9YKbeSDgt1hm
-         a0uXouXYS5n89KrbD6ph7T2fFQXJT0Wx6jWHcFahOCEiZa7zHNRcfiHyJSmzqdD8FF5q
-         BEVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUNddq9eMBNtbzrHOT72Z/beBNtUioMZ0s+d0w5ckBM2PcXCw95fZXSj+IXuSM3iNmEHgpHylSKNi6qZx0T32gvFqHzsWuHyO6qEw==
-X-Gm-Message-State: AOJu0Yw7dBPzRHqk6lp6hzBGZNHEjZCQgoSWjVJhQNPL1Gr9ivhPV/ue
-	CBsEbATvziQZjhHeK4l4IC1PXWO2Tiqin1+uFwnFGi18WzVb6Nn9pYTopZmMgwFdJmEJxgnPT6Q
-	znvEyKGG5Ua//96orFQFLHkD5fjsC5ihEsd1U0A==
-X-Google-Smtp-Source: AGHT+IHmlJ2jyI8mjBe+pxOG4dsuHYfxVfiW8tyhuQv/f2dImX1G7antM0eOYDE0OprKHgsuTrDWIBw4oGYVVa6LOXo=
-X-Received: by 2002:a25:b19d:0:b0:de0:fb7b:864f with SMTP id
- h29-20020a25b19d000000b00de0fb7b864fmr7331009ybj.37.1714400435318; Mon, 29
- Apr 2024 07:20:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4ECB654;
+	Mon, 29 Apr 2024 14:30:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714401042; cv=fail; b=Ei3EX/FlCl2z6fnmkxUbbO3qTeW8cD2MQBACv9/iVXXg7qrH6WFqLTbu3h6ulzGyWUwPDrzRhV1MkJZxRBWwUXuCKMXpOxxuncFhq3n+ZaHYEX0AsE6nLMVtUJor19LolOFdMWgBULPwlfODgjxeuExb2s11MebEIyA/uhgC9oA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714401042; c=relaxed/simple;
+	bh=GOH0Wa95LppLGdeGgK51LU5SMLR8yAcUrH5qtF+I6O0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=V02c2ewWoIamKXpJOJvrzdCf6lGcJCQUR3Fs8Q/LmiZKhgAs5YYdEw3afNV2+/YF2TNQLOJ7rDRLo4Ra3EC0oTDpEC634fCLoWGcRz2e0yBPrtyWSM3SLV9pBfkdkcVGd6lW4yuT+eXN3xVr+6JOlPmK8wX6HSQBJKsfFzYJjRE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=dX+uwNIn; arc=fail smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43T3vO7j005302;
+	Mon, 29 Apr 2024 07:30:35 -0700
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2169.outbound.protection.outlook.com [104.47.55.169])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3xt43au049-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Apr 2024 07:30:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ctYcOPC1WuLW+4NPt31SEI+Kj2LVa2FTpahQbocHFf1ws5kJsOsrO4h0mlCovuYmdFwbT1WC6/ey9KFtguVTWYUBmGcqv8g0NnwY2/5zt3MSfKqahrF2vNRS4vHJnkm3rNKVKZLE1DBXgEyp/nlgX7TrrKsfjPsa1VnUSYLR0gstdw5lhV3IShGQngCtW5X7CNCjzDm2UCYp/3GgPEUqtCjAdJbaH+xZQqj1KpKcp4jwEy0xzwluIaDky1+hQYkKz2oqk3qUrqmTKYL9r0IIhHtOff/RV1jtsh+1YljtPSoRMk7yphuyQ2KeMpfNpqKwu87tP+T892ECygUXdO5dpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GOH0Wa95LppLGdeGgK51LU5SMLR8yAcUrH5qtF+I6O0=;
+ b=g1oTYMMKSYlVQNZAP/OVwyofjKoW0y5nyaTS82Yc1ofqZlD9f4KZL5kDxXatVaD9PipMMUnXa4dvXQImdkkHTHUWZPU5g+c/lzlrCpEA56B+TtN+/kPqpb29KTiRiAPk9UPgws9x8SjIc1u1jnNX5JYiAs0pbMNVplTHv7QFbm4Okbu2k2TFiMWKE1BhBo08FwOODd/75FdK8rNOlf9FhfWv56qi6mfOFHzAS2ZrspliOw2ne3XXj1T3gyNwn61zxCmTrYH9LawI1VqjXTiD1jAZiRmv6OUK2YhuUmeDPmGWVpmv9pHCXZ7KCp5w56mv8jKvxyGp72e/XKF4fpHtbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GOH0Wa95LppLGdeGgK51LU5SMLR8yAcUrH5qtF+I6O0=;
+ b=dX+uwNInz0+K2Z/4jLA0PStroIRPEQtjiYHC0BRQ0qJXZDKummgtokPlG3FyZ5QC8WlBrgoiYN/+ifhprKh/vf7Ow61mU7qIik84RcyVNWQZHQWV6VTN6UfD3sGmtHBKIwag0J/Cyo6RfLZM369+/HWNTAaq4/oiK+p1fyYNtSI=
+Received: from CO6PR18MB4098.namprd18.prod.outlook.com (2603:10b6:5:34b::5) by
+ BN9PR18MB4268.namprd18.prod.outlook.com (2603:10b6:408:11d::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7519.35; Mon, 29 Apr 2024 14:30:31 +0000
+Received: from CO6PR18MB4098.namprd18.prod.outlook.com
+ ([fe80::5dc7:7d9d:2619:191d]) by CO6PR18MB4098.namprd18.prod.outlook.com
+ ([fe80::5dc7:7d9d:2619:191d%5]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
+ 14:30:29 +0000
+From: Witold Sadowski <wsadowski@marvell.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC: "broonie@kernel.org" <broonie@kernel.org>,
+        "robh@kernel.org"
+	<robh@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "pthombar@cadence.com" <pthombar@cadence.com>,
+        Piyush
+ Malgujar <pmalgujar@marvell.com>
+Subject: RE: [EXTERNAL] Re: [PATCH v3 4/5] spi: cadence: Allow to read basic
+ xSPI configuration from ACPI
+Thread-Topic: [EXTERNAL] Re: [PATCH v3 4/5] spi: cadence: Allow to read basic
+ xSPI configuration from ACPI
+Thread-Index: AQHakS3IEG1hJ0bMHU6EYeq4uC1r/rFuT7AAgBEONvA=
+Date: Mon, 29 Apr 2024 14:30:29 +0000
+Message-ID: 
+ <CO6PR18MB40989F97F92C9A37C6BA896DB01B2@CO6PR18MB4098.namprd18.prod.outlook.com>
+References: <20240329194849.25554-1-wsadowski@marvell.com>
+ <20240418011353.1764672-1-wsadowski@marvell.com>
+ <20240418011353.1764672-5-wsadowski@marvell.com>
+ <16a4a58c-cae6-4b62-859b-3661c052468a@linaro.org>
+In-Reply-To: <16a4a58c-cae6-4b62-859b-3661c052468a@linaro.org>
+Accept-Language: en-US, pl-PL
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CO6PR18MB4098:EE_|BN9PR18MB4268:EE_
+x-ms-office365-filtering-correlation-id: 2bff310e-40ea-47b2-219c-08dc6858eb97
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230031|376005|1800799015|366007|38070700009;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?UTV6d2ZHK2ROVlVyanJMRnlkNm1UMnNJcnlNQzZwTDdXQnh2a2tkQUlvUUVk?=
+ =?utf-8?B?dnpWNEN5MTBNcStoRjFVdGs2Mzc0Z3piTExQbzUxS2tsbTFURHl1S0NFS3Ju?=
+ =?utf-8?B?TFp3YnFJOFpZTjlBZTlNQmU5TW1uU1RuRGQwVGV2cHo1NnFuQ3NUOG1DNHZX?=
+ =?utf-8?B?dm5yTWYxdUNkUmlPVWJDcGpOZ1dwK0lJUjM3V0VpSVVOYlMrQjNsWkp2OUxj?=
+ =?utf-8?B?LzlIL0lQRE5nWW1hVHNncDlTcDVrbW9WaFNYdEF0QThYRkNPT2hRTG5neHdB?=
+ =?utf-8?B?VkVPbjQ3WEs0TFBZWTVIV0hhRzJiUCs0RE5ndy9IMVJ1TDZxVDJhTCtFbzVW?=
+ =?utf-8?B?Y2wvWlJsNThIMURHMmdLc1pGbzJiaVZvUytKWi8wMHc2S29Ca2JJYjZxMjVG?=
+ =?utf-8?B?dWFOY1Q5KzdZdlN4emZFRGtIRXZlT1BjdjZXTmFQRTdneVJHaC95UlNiYzc3?=
+ =?utf-8?B?N1ZZMkx6TkxCblo5NnUvTlR5TFhHUC8yN2plMzFZaWZBVk5OaW1abjJWRmhx?=
+ =?utf-8?B?ekI5QTJ5djJYMXg3eWlMYUNiVW5kUVJpNTBQNWJZTmkyWDVKV3p0cXJ5MWJ4?=
+ =?utf-8?B?MzB2dUMzck1YUzRGdytRTW53eUxqdUtVdVVUaFRvMUFVUDNsZWlud1RJTXpr?=
+ =?utf-8?B?NzBYSU1XSGl3L01kcGJGSGMzMG5rLzBmdnlWQzVibHNlRHY5bEw5NWlvaytR?=
+ =?utf-8?B?MmI3a1ZlSEY5VXZrc3BlNVphY2lBbXRDYWtiemkwdGVlTmpiekZROVVsMlkx?=
+ =?utf-8?B?aGlMQktJa0xqOGw4c3ZBWlNDWjc5ZlcvQVhaTzhJYTUyOFhDWVNkaXBqZ2w5?=
+ =?utf-8?B?SmEyRDJyUUhYNUF6aURXVTlLOHdIVGF1T3djZ3BXQ3JuZWY2UkQycE1XbkRr?=
+ =?utf-8?B?Sk9ITGl1Qm80bk85R0w4K2F1SElmZHVyM3lwc3hnYW9wOU8xMWErQURoNm1K?=
+ =?utf-8?B?WjN4MENReG5Rdk9CLzNwemJSNTdvajhCck1FQ0F3bDdwVlQ1bmdnN0trRDlF?=
+ =?utf-8?B?cE5FblJERzRFMTlHVktEYStkMmlUbDNaeDRIektaNThNNG92aGdXQjIycHo1?=
+ =?utf-8?B?b1hLeC82dG9mTDJ2cjl4WUx1VXM4eDVRY0tZOStNRTArdm1meEo4Z1ZCMmpJ?=
+ =?utf-8?B?Q01JNXZmT2ZQUUdRUGI0SGRIeFFMSWl2c29lcnhZSHRYdE5uWmVtR3dsamlv?=
+ =?utf-8?B?OHFrcHlPcmNNWW1TNnd6d095YXFuWkdyRnlWdzA5Nkloc0pYYldKaWpqZ096?=
+ =?utf-8?B?cTdveVVqMjljNEVvS2hoS2hRYlY2U2xINmxYZnZJWktnUisvSkwzYUd4L2FO?=
+ =?utf-8?B?eXZnOE5ZR0wwakRmYUxEN0wxNjhZM05CUE1OOW4rOGJ1UE1ISlFxVjFtUm1Z?=
+ =?utf-8?B?Wi9rQ09YNWJ0YnE2d01CYWRvcHA0ZnhnT3ZNTEo1SkgrUUZJTmhuREQ1Y3RX?=
+ =?utf-8?B?Sm84cEdzWThiT1NPOWVwSDJFNTlnQ09OdUVNdnBwai9lVVpBNXlqUi8zMFAv?=
+ =?utf-8?B?OGZYSEtEZWlKZng0QlJRMVpkaE44emQ0L2dLWVozaWdSVlZ6RFNTaGZMeUUx?=
+ =?utf-8?B?VENNMG9rV1pkTmtrZmZvZkgzT25XSzFZbmMvQm94WTRHOUd0Ym9TblpYYUt4?=
+ =?utf-8?B?K0dBTURZR2orTFRnVHhjZFVFSkk0UnlrcTFpRnNNeTFJZVRBcWRGWEhYTFAr?=
+ =?utf-8?B?UTFyc3FWMWV1RXJDdFplOWtBdVhLQUJlL2tEV0U5bHVrS2ZCalNyT21Pcitz?=
+ =?utf-8?B?dnJxTXlkcFMyc01GODJRdEhycit0QXVxK2IrUDRlNDM5UjU3RTNvbDBSYUtr?=
+ =?utf-8?B?UCtMMUxONXJpSTV4VFJ0UT09?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4098.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?QVVPczNWQll0M3h5K2J3NE5Ed2lSdVZaeWUycUgxMmRqRUU5ajJ2czBUUE0w?=
+ =?utf-8?B?U056dFdKNTNmMEpVNGUvT2E5KzllY3owT3FRcmdmU3BJOFRxNk9ZdjQwNTJj?=
+ =?utf-8?B?QU9wTVVEeXRPaXFCejZ6ZzJzQmFxVUJwaVVnVngwTk1CWkExYUJob3M2dk40?=
+ =?utf-8?B?NzIyeXRtNHFXSHRsREhLS1hXcWVBRTJOK3dtZER1MWZ5WEJFOHY5ekMwOGN2?=
+ =?utf-8?B?RFNSclM1T21iYmVMYVVNOTJxVUFZRlZyT29iYTZmaDdiTFdpNWJKbEZuRTEx?=
+ =?utf-8?B?Sy9ySU51bVJnQUFOYkVzeFhCSitKbmZXUjlHMHl0UXYrRmdEZGNCaThiTWJk?=
+ =?utf-8?B?emhlV0pLRXdsaGNZZWRwcVhsU2F0d3F5U0xBNk5kRVprK0JOVzlsVjIvd1V2?=
+ =?utf-8?B?cUF6QnYyTEVxM3U1dHlUM2tCR1dOVCtUS05YVFJxMUNCZUZUdDBiZUh2Znow?=
+ =?utf-8?B?Y1JZc2RtMzVFLzJ5ZFVzRlYrSUxINVJYNUpLS1hnaVlwZkhBdGxoS1J3TkJP?=
+ =?utf-8?B?Vk81WUZRajZGWnFwanZlZG5PbHF4dUdJRFR3cmJ5V2pYZ0dDQVBDTmJUSXox?=
+ =?utf-8?B?djN3MVR3N1BUdm0zMVRlT09iNDJoK3UyZDdtL0Y2Z2lsSFlUUzF0UjlQOXU1?=
+ =?utf-8?B?MjZoNUVZb1c0Z3o2am0rUnR6cmxTR0xCTHNpcFp0U0tYTkpoYjRVdFRpbUNZ?=
+ =?utf-8?B?c1JRZlAwcEI2NGNxL0hEb3FXNmpqM2xCY3IzQmRQaTdKeEorSVRpdy9TVTFv?=
+ =?utf-8?B?LzNlY3pLbjBqVEY1Y3UyVmNONm8rMWFXcTRJRWx3TEJvNVREZDRmcDN5dDdM?=
+ =?utf-8?B?MDhzQTRCUGFYTk41bnlJaUIzWHR1a2VEc0RRdzArbTRsMWd2UWM0aWMzbDNS?=
+ =?utf-8?B?bHRXNFd0cklnMlhramU4dVZNaVhRekY1YW1xbW9RWXNibllGcDRFNzlMRDd3?=
+ =?utf-8?B?Rms3RG1NL2VRYzVGYi9aZlVmaWlyUmlJWitTTXV1Q09kZ0ZkVU1pTndRVnVN?=
+ =?utf-8?B?YWtFb05xc1pjY1hHTnVMcGxJdjkxbStRNzl0UGhFY3VuWXN2bzBkbDJ2eHA3?=
+ =?utf-8?B?MUhZd0FaNGlQZWR4aXR5anUyOXhYL0xSRjIyaEMzQjFvNTF1N3NxQlJySmty?=
+ =?utf-8?B?ZG1XWkN4c3FjQmplUWo3L1ppdVpTcmdnRXB4cXVMQk80WDRKVVNFR3RBZGJF?=
+ =?utf-8?B?TkluMmZGdnRqL0dFcllRWlBEUzhTOUgyVzBNU1JHaERoOHE4WCtQZFROc0RY?=
+ =?utf-8?B?eENGWGJneVAzMk8vSkhXNUhtMHVzTnZnMmI1QzZvdEZVZ3VNSURHT1R0QXBn?=
+ =?utf-8?B?SlVvYjA5QkZPTk1pdTcwbUMxK01NRjJrUVlkLzFDS0pDUUw4bE1Qd2M1a0JY?=
+ =?utf-8?B?TjR1bXg4ZnNGQmRwbjM3b3dJZ2ErOVVWKzFIMkkyZVpjbys4RW5Kc2xNZThy?=
+ =?utf-8?B?RTFFQXUvcEU2S3hnazJtcW9FakFwUk5icjdvUnVmTDJDS21nNWIydVRsUHU5?=
+ =?utf-8?B?aE4wak95TEhsMWdJT1ptbzZ6N2UzcUpoNEZwckxzdWVEOWJNbWZMbjZCdUFM?=
+ =?utf-8?B?aUorRXc3RytDS0pVKzVkYW5ZbWVDbzNMR0FrNjkvdFBLWnUzNVVCQ0RHUzRX?=
+ =?utf-8?B?enJZTXpHSjFoQlM4ckZiSDljbjNtNXhTZkJ2TkJjT3FNZVFsSnhROVNXVEpl?=
+ =?utf-8?B?Z1pNU054NVdMY2ZPZXF2ZWdQZW1OSHBZZkFob3hENVAvclZGaENiMUVLRFJR?=
+ =?utf-8?B?bCtoTCs4QW9LMW16MXB5ZXFGNWoySEIwdHJpTnB1enkvVEh6eVhnN0dIQjJu?=
+ =?utf-8?B?S05wN3dsV1Nrd1dMbmk5czlMUGZSMXFLOS9pNDBLUW9YQ3M3QnY1REFaa3ho?=
+ =?utf-8?B?TzB3b1UwYnYybmRNWk9IeGpWZWdyZEwyTTVTRW0ralBBRnZaaTl0RWhnUity?=
+ =?utf-8?B?SUs0T2tWc00yWjlsVUg2Qm1UY3NkOTBBWmxWOVFTa2drcDRObkVTdDZoYVpw?=
+ =?utf-8?B?YjlqUGd1UWgxMFNqbGlvSmNWSmNsQ2hwQWNhelRqYTJmcjZ5L1lacWZMVHhU?=
+ =?utf-8?B?a1RtTUFTK2pHQTlleXowZkxyQmFtRUFZZ0dJTVI3Sy90OWYyZnk0V2xubTZm?=
+ =?utf-8?Q?4DThP1zck2zpNLLnCoUshCRxX?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com>
- <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
- <CAPDyKFqq+gMDHx_-g-j9rO3nBDcXRSoXRjJK9D51=VaQ5XaGvw@mail.gmail.com>
- <af9c6747-120e-48c1-8c04-9594c9b49666@tuxon.dev> <2d674a18-006f-4182-bc85-bcfa50615495@tuxon.dev>
-In-Reply-To: <2d674a18-006f-4182-bc85-bcfa50615495@tuxon.dev>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 29 Apr 2024 16:19:59 +0200
-Message-ID: <CAPDyKFp+8VnxDfhDzvP1KWCN_oRHrVMCru9BXO_55GkF=gHUBA@mail.gmail.com>
-Subject: Re: [PATCH RESEND v8 09/10] watchdog: rzg2l_wdt: Power on the PM
- domain in rzg2l_wdt_restart()
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: marvell.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB4098.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2bff310e-40ea-47b2-219c-08dc6858eb97
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2024 14:30:29.8446
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EgO6pr9JZ4L+rxRCuXSJPrMehZKwiAkHiC7gxhbrGh5Zk6QAKbstZVBryeYZEA3l4CyBK1wbUh1KXymKbDEiqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR18MB4268
+X-Proofpoint-ORIG-GUID: gyBv8NAsKDtLIZ7mjEbpzT_0xHtLCDoQ
+X-Proofpoint-GUID: gyBv8NAsKDtLIZ7mjEbpzT_0xHtLCDoQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-29_12,2024-04-29_01,2023-05-22_02
 
-On Wed, 24 Apr 2024 at 13:14, claudiu beznea <claudiu.beznea@tuxon.dev> wrote:
->
-> Hi, Ulf,
->
-> On 12.04.2024 17:02, claudiu beznea wrote:
-> > Hi, Ulf,
-> >
-> > On 12.04.2024 14:14, Ulf Hansson wrote:
-> >> On Wed, 10 Apr 2024 at 16:19, Claudiu <claudiu.beznea@tuxon.dev> wrote:
-> >>>
-> >>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>>
-> >>> The rzg2l_wdt_restart() is called from atomic context. Calling
-> >>> pm_runtime_{get_sync, resume_and_get}() or any other runtime PM resume
-> >>> APIs is not an option as it may lead to issues as described in commit
-> >>> e4cf89596c1f ("watchdog: rzg2l_wdt: Fix 'BUG: Invalid wait context'")
-> >>> that removed the pm_runtime_get_sync() and used directly the
-> >>> clk_prepare_enable() APIs.
-> >>>
-> >>> Starting with RZ/G3S the watchdog could be part of its own software
-> >>> controlled power domain (see the initial implementation in Link section).
-> >>> In case the watchdog is not used the power domain is off and accessing
-> >>> watchdog registers leads to aborts.
-> >>>
-> >>> To solve this the patch powers on the power domain using
-> >>> dev_pm_genpd_resume() API before enabling its clock. This is not
-> >>> sleeping or taking any other locks as the power domain will not be
-> >>> registered with GENPD_FLAG_IRQ_SAFE flags.
-> >>>
-> >>> Link: https://lore.kernel.org/all/20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com
-> >>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>> ---
-> >>>
-> >>> Changes in v8:
-> >>> - none, this patch is new
-> >>>
-> >>>  drivers/watchdog/rzg2l_wdt.c | 12 ++++++++++++
-> >>>  1 file changed, 12 insertions(+)
-> >>>
-> >>> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
-> >>> index c8c20cfb97a3..98e5e9914a5d 100644
-> >>> --- a/drivers/watchdog/rzg2l_wdt.c
-> >>> +++ b/drivers/watchdog/rzg2l_wdt.c
-> >>> @@ -12,6 +12,7 @@
-> >>>  #include <linux/module.h>
-> >>>  #include <linux/of.h>
-> >>>  #include <linux/platform_device.h>
-> >>> +#include <linux/pm_domain.h>
-> >>>  #include <linux/pm_runtime.h>
-> >>>  #include <linux/reset.h>
-> >>>  #include <linux/units.h>
-> >>> @@ -164,6 +165,17 @@ static int rzg2l_wdt_restart(struct watchdog_device *wdev,
-> >>>         struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
-> >>>         int ret;
-> >>>
-> >>> +       /*
-> >>> +        * The device may be part of a power domain that is currently
-> >>> +        * powered off. We need to power it up before accessing registers.
-> >>> +        * We don't undo the dev_pm_genpd_resume() as the device need to
-> >>> +        * be up for the reboot to happen. Also, as we are in atomic context
-> >>> +        * here there is no need to increment PM runtime usage counter
-> >>> +        * (to make sure pm_runtime_active() doesn't return wrong code).
-> >>> +        */
-> >>> +       if (!pm_runtime_active(wdev->parent))
-> >>> +               dev_pm_genpd_resume(wdev->parent);
-> >>> +
-> >>
-> >> I doubt this is the correct solution, but I may be wrong. Unless this
-> >> is invoked at the syscore stage?
-> >
-> > On my case I see it invoked from kernel_restart(). As of my code reading,
->
-> With the above explanations, do you consider calling dev_pm_genpd_resume()
-> here is still wrong?
-
-Yes. At least, those genpd functions were not added to cope for cases like this.
-
-Moreover, you still need to find another solution as
-clk_prepare_enable() can't be called in this path.
-
->
-> Do you have any suggestions I could try?
-
-Not at the moment, but I will try to circle back to this topic more
-thinking next week, when I have some more time.
-
->
-> Thank you,
-> Claudiu Beznea
-
-Kind regards
-Uffe
-
->
-> > at that point only one CPU is active with IRQs disabled (done in
-> > machine_restart()). Below is the stack trace decoded on next-20240410 with
-> > this series
-> > (https://lore.kernel.org/all/20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com/)
-> > on top and the one from here (adding power domain support):
-> > https://lore.kernel.org/all/20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com/
-> >
-> > Hardware name: Renesas SMARC EVK version 2 based on r9a08g045s33 (DT)
-> > Call trace:
-> > dump_backtrace (arch/arm64/kernel/stacktrace.c:319)
-> > show_stack (arch/arm64/kernel/stacktrace.c:326)
-> > dump_stack_lvl (lib/dump_stack.c:117)
-> > dump_stack (lib/dump_stack.c:124)
-> > rzg2l_wdt_restart (drivers/watchdog/rzg2l_wdt.c:180)
-> > watchdog_restart_notifier (drivers/watchdog/watchdog_core.c:188)
-> > atomic_notifier_call_chain (kernel/notifier.c:98 kernel/notifier.c:231)
-> > do_kernel_restart (kernel/reboot.c:236)
-> > machine_restart (arch/arm64/kernel/process.c:145)
-> > kernel_restart (kernel/reboot.c:287)
-> > __do_sys_reboot (kernel/reboot.c:755)
-> > __arm64_sys_reboot (kernel/reboot.c:715)
-> > invoke_syscall (arch/arm64/include/asm/current.h:19
-> > arch/arm64/kernel/syscall.c:53)
-> > el0_svc_common.constprop.0 (include/linux/thread_info.h:127
-> > arch/arm64/kernel/syscall.c:141)
-> > do_el0_svc (arch/arm64/kernel/syscall.c:153)
-> > el0_svc (arch/arm64/include/asm/irqflags.h:56
-> > arch/arm64/include/asm/irqflags.h:77 arch/arm64/kernel/entry-common.c:165
-> > arch/arm64/kernel/entry-common.c:178 arch/arm64/kernel/entry-common.c:713)
-> > el0t_64_sync_handler (arch/arm64/kernel/entry-common.c:731)
-> > el0t_64_sync (arch/arm64/kernel/entry.S:598)
-> >
-> > The watchdog restart handler is added in restart_handler_list and this list
-> > is invoked though do_kernel_restart(). As of my code investigation the
-> > restart_handler_list is invoked only though do_kernel_restart() and only
-> > though the stack trace above.
-> >
-> > Thank you,
-> > Claudiu Beznea
-> >
-> >>
-> >>>         clk_prepare_enable(priv->pclk);
-> >>>         clk_prepare_enable(priv->osc_clk);
-> >>>
-> >>> --
-> >>> 2.39.2
-> >>>
-> >>>
-> >>
-> >> Can you redirectly me to the complete series, so I can have a better
-> >> overview of the problem?
-> >
-> > This is the series that adds power domain support for RZ/G3S SoC:
-> > https://lore.kernel.org/all/20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com/
-> >
-> > This is the series that adds watchdog support for RZ/G3S SoC:
-> > https://lore.kernel.org/all/20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com/
-> >
-> > Thank you for your review,
-> > Claudiu Beznea
-> >
-> >>
-> >> Kind regards
-> >> Uffe
+PiBPbiAxOC8wNC8yMDI0IDAzOjEzLCBXaXRvbGQgU2Fkb3dza2kgd3JvdGU6DQo+ID4gRnJvbTog
+UGl5dXNoIE1hbGd1amFyIDxwbWFsZ3VqYXJAbWFydmVsbC5jb20+DQo+ID4NCj4gPiBUaGVzZSBj
+aGFuZ2VzIGVuYWJsZXMgdG8gcmVhZCB0aGUgY29uZmlncyBmcm9tIEFDUEkgdGFibGVzIGFzIHJl
+cXVpcmVkDQo+ID4gZm9yIHN1Y2Nlc3NmdWwgcHJvYmluZyBpbiBBQ1BJIHVlZmkgZW52aXJvbm1l
+bnQuDQo+ID4gSW4gY2FzZSBvZiBBQ1BJIGRpc2FibGVkL2R0cyBiYXNlZCBlbnZpcm9ubWVudCwg
+aXQgd2lsbCBjb250aW51ZSB0bw0KPiA+IHJlYWQgY29uZmlncyBmcm9tIGR0cyBhcyBiZWZvcmUN
+Cj4gPg0KPiANCj4gLi4uDQo+IA0KPiA+ICAJfQ0KPiA+IEBAIC05MjQsNiArOTg5LDIxIEBAIHN0
+YXRpYyBpbnQgY2Ruc194c3BpX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UNCj4gKnBkZXYp
+DQo+ID4gIAlyZXR1cm4gMDsNCj4gPiAgfQ0KPiA+DQo+ID4gKyNpZmRlZiBDT05GSUdfQUNQSQ0K
+PiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGFjcGlfZGV2aWNlX2lkIGNkbnNfeHNwaV9hY3BpX21h
+dGNoW10gPSB7DQo+ID4gKwl7DQo+ID4gKwkJLmlkID0gImNkbnMseHNwaS1ub3IiLA0KPiA+ICsJ
+CS5kcml2ZXJfZGF0YSA9IChrZXJuZWxfdWxvbmdfdCkgJmNkbnNfZHJpdmVyX2RhdGEsDQo+ID4g
+Kwl9LA0KPiA+ICsJew0KPiA+ICsJCS5pZCA9ICJtcnZsLHhzcGktbm9yIiwNCj4gPiArCQkuZHJp
+dmVyX2RhdGEgPSAoa2VybmVsX3Vsb25nX3QpICZtcnZsX2RyaXZlcl9kYXRhLA0KPiANCj4gVUVG
+SSBwcm92aWRlcyBjb21wYXRpYmxlcyBmb3IgQUNQST8gSSB0aGluayB0aGF0J3MgZmlyc3Qgc3Vj
+aCBmb3JtYXQgaW4NCj4gdGhlIGtlcm5lbC4NCg0KWWVzLCB0aGF0IGNvZGUgaXMgbm90IGRvaW5n
+IHdoYXQgd2FzIGV4cGVjdGVkLg0KQ3VycmVudCB1c2FnZSBzY2VuYXJpbyBpbiBBQ1BJIG1vZGUg
+aXM6DQp4U1BJIGJsb2NrIHdpdGggSElEIFBSUDAwMDEsIGFuZCBhZGRpdGlvbmFsIGNvbXBhdGli
+bGUgcGFja2FnZSBzZXQgdG8NCmNvcnJlY3QgY29tcGF0aWJsZSBzdHJpbmcNCldpdGggdGhhdCBh
+cHByb2FjaCBvbmx5IGlzc3VlKGluIEFDUEkgbW9kZSkgaXMgd2l0aCBtYXRjaGluZyBkZXZpY2UN
+CndpdGggZGF0YSBmaWVsZCBmcm9tIG9mX2RldmljZV9pZC4gSXQgbG9va3MgbGlrZSB0aGVyZSBh
+cmUgZnVuY3Rpb25zDQp0byBtYXRjaCB0aGF0IHdoZW4gRFRCIGlzIHVzZWQsIGJ1dCBpbiBBQ1BJ
+IG1vZGUgaXQgZmFpbHMuDQpJIGJlbGlldmUgc29sdXRpb24gaXMgdG8gdHJhdmVyc2UgZGV2LT5k
+cml2ZXItPm9mX21hdGNoX3RhYmxlIG1hbnVhbGx5DQpUbyBtYXRjaCBkZXZpY2UgbmFtZSB3aXRo
+IGNvcnJlY3QgY29tcGF0aWJsZSBkYXRhIHN0cnVjdHVyZS4NClRoYXQgd2lsbCBiZSBpbmNsdWRl
+ZCBpbiBuZXh0IHBhdGNoc2V0Lg0KDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
+DQpSZWdhcmRzDQpXaXRlaw0KDQo=
 
