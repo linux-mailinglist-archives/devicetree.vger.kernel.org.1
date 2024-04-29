@@ -1,176 +1,171 @@
-Return-Path: <devicetree+bounces-63689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B654D8B5EC3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:17:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D578B5EDB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76421C2127A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:17:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05CF81C21848
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6115284E14;
-	Mon, 29 Apr 2024 16:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6BDE85C62;
+	Mon, 29 Apr 2024 16:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="peHhpQsh"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="sSTpse/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3063A537E4;
-	Mon, 29 Apr 2024 16:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5323A85297
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 16:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714407445; cv=none; b=d11Q8iYkFg6bv4kge4aGyg/s860YOEYWVh4BBANSgCQTvJOZbsyVQOjQXXKCPfhw1AOGoJ5+MrwSn/KmrFOrZkB/wGAApgwNe2Pdf7Ad5SD5QC0WVrNRkC2eLP1gdKLiptkhPAgR5UgzeA7Pj7ES6ghf09FCl3TOyd3b/C4Y5F0=
+	t=1714407678; cv=none; b=W/1f3fs0zvpClquYooPTciBxKM+mRhmkPTJPD+nEKM4v6iv18F/91IF+qDjJ+6sI4jLHNrLxVYXVgUnwW37VAKLYPd7ZTprf8++/nclBmMi5H89iLBrrc74PYuvZh0ZGpmwByR/pY+0+ZU4jmWvoTKKfIShs0BcTcYf+wST1buc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714407445; c=relaxed/simple;
-	bh=fFqtnGEXmleunxxwmJFa/gw4J4uUe8QQW7/ym6mqmIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m3XRpRQfLU7Yfto9PoFVqYV9w/cP417eNNEAf16WipBwtWZiAcN00dRt1LWA2zi9hllGX07P4XVr8GIRji/y8pBPce3cNY3FAAD8gdGOaUifnBnnOlNnSAc16dsqemapwLEWjwBzV+GTZf6p1X1QbB0fbVAWBwrZ9Fhbfb/Ie3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=peHhpQsh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70974C113CD;
-	Mon, 29 Apr 2024 16:17:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714407444;
-	bh=fFqtnGEXmleunxxwmJFa/gw4J4uUe8QQW7/ym6mqmIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=peHhpQshIYMKgCjHb7us2iCLHYuPPTP+iGOlmvtnb3lusViJnx/VJRq4uD4Lij077
-	 c6lYjSCxOcPfGeV/1PejGw0XFlUxt05lrQ+yEJizlve6r/8oCe6mb7ZiCMs4BTeIHi
-	 k0pSDFQD7uup811s1AheDKpSAF7UC54Q+DqlLNrBuRsIUigjKDD6Nf0ugMNBJB9oIb
-	 BXRUsIZXGB+Q8UHy1qPtso0nRBKibYVZZ7C0OFtbvhgBeVZUhRX3dn60mqp453qFsR
-	 P3s1SjzMeL+LU0SaqUr8xUzf5buqCfqT2KpOIf1Vkx1lrEdCU2+Qh7rFTY9Ne6X3ae
-	 44fgSn3T1V3Ag==
-Date: Mon, 29 Apr 2024 17:17:16 +0100
-From: Simon Horman <horms@kernel.org>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, saeedm@nvidia.com, anthony.l.nguyen@intel.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	andrew@lunn.ch, corbet@lwn.net, linux-doc@vger.kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	horatiu.vultur@microchip.com, ruanjinjie@huawei.com,
-	steen.hegelund@microchip.com, vladimir.oltean@nxp.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com,
-	Pier.Beruto@onsemi.com, Selvamani.Rajagopal@onsemi.com,
-	Nicolas.Ferre@microchip.com, benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 01/12] Documentation: networking: add OPEN
- Alliance 10BASE-T1x MAC-PHY serial interface
-Message-ID: <20240429161716.GZ516117@kernel.org>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <20240418125648.372526-2-Parthiban.Veerasooran@microchip.com>
+	s=arc-20240116; t=1714407678; c=relaxed/simple;
+	bh=m8JLb1BdA35HdBjPkaAuNAfY/AHY/SDnhNfpPmwpAr4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=sUWL4l1mq/wTlAD/u4LaQdBY+rbLl3YyzkwQgo2/C2E8LSYNGwKHdPBRetn2Qidhxd33aLqqR/maE2rCmHJqIGxWrmi644NiNx1ZYUngMSWdDEQIlrLyBQwWsi7NdQD5B6VhmiyuI012WDlRnCx1r5gk+aitcOfhOzm/baPDwzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=sSTpse/J; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41ba0bb5837so21687515e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 09:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714407675; x=1715012475; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TjXiKLYT+vUURpqFWBvNlsCdhsHBjZCyYATylO1W8pY=;
+        b=sSTpse/J66i8+IIQi0z5mUfXgMRwLWKA9F5py6zcxcX5VKx/c9Hc3Aa9pu+bj/ybWe
+         EhFZ+LE1mJrSFZeXoR+Hig2SG8R2CBTyw5tf/vmux4r9DQDDuFxlL1FJJRu1fWW27PY2
+         AD60vVXFTksdlq6pI9FngukxiJnpnAyLcNMttVW5MumYR5/3gpikE9wtqFL2h6yqoiCZ
+         zCCCN4aFruArSZKZa89LwSrF1obi4sHoo9udt7Cpza35Ds3ocjBRT0q/R4YLI4qLfJRD
+         a9VV+wg32yoEOZjBlUHHqv2LyT1RpNRV2780avbauSw/XgskZYj0olvWEyi0DRM5Rr0y
+         3QgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714407675; x=1715012475;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TjXiKLYT+vUURpqFWBvNlsCdhsHBjZCyYATylO1W8pY=;
+        b=tYXSQr38XeohOJPqMgfXeXACt2EQ9r4iH15wgZpx4zPnAG3kJNU/+ALZfT4wcUQRYe
+         4waavpBq6hYF3ZURMyrGAIijKEFUDv1vHODw339VWeHL4vSGufuGgnNSR7+vsTYuZexq
+         +f8LXUC+95bVXPyNJJFGSE3yQmSrIEDXAUAsCHGI7sSssRXMviI6+TyIwwtAINkyBUaN
+         vGA0N9IAAyt1Gm89hsavLQYEm4etee2KkZdf9OXqNdM5UHwu7cqJzHzsC5QbrnAQolry
+         DGmtp9BhJA3gwq5ISDYaDnL9LQFBP28Sdt0de4Kz0UnYqRaZSt44p/GJFDfVWrQAb10a
+         uhVg==
+X-Forwarded-Encrypted: i=1; AJvYcCVP5RNhUpagquUjKxLU6jW9x76xaQzM7wHDB497WJT8NO9xBHMaNEeljb2dDQmXmF8w2VvbYg6GRimq102Ab5tslHiPp+kb3BQplg==
+X-Gm-Message-State: AOJu0YzCQYdmy0voPu7lke9/FVcVeOsjc/U8zHxuFx1oVC8PeULOrjVD
+	wm7Q7/XCZSaHn8qrcZSvXBp2R95yubzS/wOW6N2HIKm9lYugYHTdIm5o/0py/wQ=
+X-Google-Smtp-Source: AGHT+IEwTazlO5LpSJzhQHEdjt+50wYigGrsXmr6gaH7/NGRF2hB7OgAQ6yhAN9gI3nHePvx8wBg0A==
+X-Received: by 2002:a05:600c:4f0d:b0:419:d841:d318 with SMTP id l13-20020a05600c4f0d00b00419d841d318mr9399276wmq.29.1714407674824;
+        Mon, 29 Apr 2024 09:21:14 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id t20-20020a05600c199400b0041c012ca327sm7469761wmq.45.2024.04.29.09.21.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Apr 2024 09:21:14 -0700 (PDT)
+Message-ID: <61729cd3-0a93-4e8c-a7c8-6832d43c7a3a@freebox.fr>
+Date: Mon, 29 Apr 2024 18:17:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418125648.372526-2-Parthiban.Veerasooran@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH v1 2/3] arm64: dts: qcom: msm8998: add venus node
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: Bjorn Andersson <andersson@kernel.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <2b21b160-a530-486a-9404-c5bf8863ffed@freebox.fr>
+Content-Language: en-US
+In-Reply-To: <2b21b160-a530-486a-9404-c5bf8863ffed@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 18, 2024 at 06:26:37PM +0530, Parthiban Veerasooran wrote:
-> The IEEE 802.3cg project defines two 10 Mbit/s PHYs operating over a
-> single pair of conductors. The 10BASE-T1L (Clause 146) is a long reach
-> PHY supporting full duplex point-to-point operation over 1 km of single
-> balanced pair of conductors. The 10BASE-T1S (Clause 147) is a short reach
-> PHY supporting full / half duplex point-to-point operation over 15 m of
-> single balanced pair of conductors, or half duplex multidrop bus
-> operation over 25 m of single balanced pair of conductors.
-> 
-> Furthermore, the IEEE 802.3cg project defines the new Physical Layer
-> Collision Avoidance (PLCA) Reconciliation Sublayer (Clause 148) meant to
-> provide improved determinism to the CSMA/CD media access method. PLCA
-> works in conjunction with the 10BASE-T1S PHY operating in multidrop mode.
-> 
-> The aforementioned PHYs are intended to cover the low-speed / low-cost
-> applications in industrial and automotive environment. The large number
-> of pins (16) required by the MII interface, which is specified by the
-> IEEE 802.3 in Clause 22, is one of the major cost factors that need to be
-> addressed to fulfil this objective.
-> 
-> The MAC-PHY solution integrates an IEEE Clause 4 MAC and a 10BASE-T1x PHY
-> exposing a low pin count Serial Peripheral Interface (SPI) to the host
-> microcontroller. This also enables the addition of Ethernet functionality
-> to existing low-end microcontrollers which do not integrate a MAC
-> controller.
-> 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+From: Pierre-Hugues Husson <phhusson@freebox.fr>
 
-Hi Parthiban,
+Now that the venus clocks are fixed, we can add the DT node.
 
-Some minor feedback from my side.
+Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+---
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
-> ---
->  Documentation/networking/oa-tc6-framework.rst | 491 ++++++++++++++++++
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 5f5b90a6e2bf1..3d3b1f61c0690 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -3010,6 +3010,54 @@ mdss_dsi1_phy: phy@c996400 {
+ 			};
+ 		};
+ 
++		venus: video-codec@cc00000 {
++			compatible = "qcom,msm8998-venus";
++			reg = <0x0cc00000 0xff000>;
++			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&mmcc VIDEO_TOP_GDSC>;
++			clocks = <&mmcc VIDEO_CORE_CLK>,
++				 <&mmcc VIDEO_AHB_CLK>,
++				 <&mmcc VIDEO_AXI_CLK>,
++				 <&mmcc VIDEO_MAXI_CLK>;
++			clock-names = "core", "iface", "bus", "mbus";
++			iommus = <&mmss_smmu 0x400>,
++				 <&mmss_smmu 0x401>,
++				 <&mmss_smmu 0x40a>,
++				 <&mmss_smmu 0x407>,
++				 <&mmss_smmu 0x40e>,
++				 <&mmss_smmu 0x40f>,
++				 <&mmss_smmu 0x408>,
++				 <&mmss_smmu 0x409>,
++				 <&mmss_smmu 0x40b>,
++				 <&mmss_smmu 0x40c>,
++				 <&mmss_smmu 0x40d>,
++				 <&mmss_smmu 0x410>,
++				 <&mmss_smmu 0x421>,
++				 <&mmss_smmu 0x428>,
++				 <&mmss_smmu 0x429>,
++				 <&mmss_smmu 0x42b>,
++				 <&mmss_smmu 0x42c>,
++				 <&mmss_smmu 0x42d>,
++				 <&mmss_smmu 0x411>,
++				 <&mmss_smmu 0x431>;
++			memory-region = <&venus_mem>;
++			status = "disabled";
++
++			video-decoder {
++				compatible = "venus-decoder";
++				clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
++				clock-names = "core";
++				power-domains = <&mmcc VIDEO_SUBCORE0_GDSC>;
++			};
++
++			video-encoder {
++				compatible = "venus-encoder";
++				clocks = <&mmcc VIDEO_SUBCORE1_CLK>;
++				clock-names = "core";
++				power-domains = <&mmcc VIDEO_SUBCORE1_GDSC>;
++			};
++		};
++
+ 		mmss_smmu: iommu@cd00000 {
+ 			compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
+ 			reg = <0x0cd00000 0x40000>;
+-- 
+2.34.1
 
-Please add oa-tc6-framework to 
-
-Flagged by: make SPHINXDIRS="networking" htmldocs
-
->  MAINTAINERS                                   |   6 +
->  2 files changed, 497 insertions(+)
->  create mode 100644 Documentation/networking/oa-tc6-framework.rst
-> 
-> diff --git a/Documentation/networking/oa-tc6-framework.rst b/Documentation/networking/oa-tc6-framework.rst
-
-...
-
-> +Device drivers API
-> +==================
-> +
-> +The include/linux/oa_tc6.h defines the following functions:
-> +
-> +.. c:function:: struct oa_tc6 *oa_tc6_init(struct spi_device *spi,
-> +                                           struct net_device *netdev)
-
-I think that you need to use a '\' to escape newlines
-for a for a multi-line c:function.
-
-e.g.
-.. c:function:: struct oa_tc6 *oa_tc6_init(struct spi_device *spi, \
-                                           struct net_device *netdev)
-
-Link: https://www.sphinx-doc.org/en/master/usage/domains/index.html
-
-Flagged by make SPHINXDIRS="networking" htmldocs
-when using Sphinx 7.2.6
-
-> +
-> +Initialize OA TC6 lib.
-> +
-> +.. c:function:: void oa_tc6_exit(struct oa_tc6 *tc6)
-> +
-> +Free allocated OA TC6 lib.
-> +
-> +.. c:function:: int oa_tc6_write_register(struct oa_tc6 *tc6, u32 address,
-> +                                          u32 value)
-> +
-> +Write a single register in the MAC-PHY.
-> +
-> +.. c:function:: int oa_tc6_write_registers(struct oa_tc6 *tc6, u32 address,
-> +                                           u32 value[], u8 length)
-> +
-> +Writing multiple consecutive registers starting from @address in the MAC-PHY.
-> +Maximum of 128 consecutive registers can be written starting at @address.
-> +
-> +.. c:function:: int oa_tc6_read_register(struct oa_tc6 *tc6, u32 address,
-> +                                         u32 *value)
-> +
-> +Read a single register in the MAC-PHY.
-> +
-> +.. c:function:: int oa_tc6_read_registers(struct oa_tc6 *tc6, u32 address,
-> +                                          u32 value[], u8 length)
-> +
-> +Reading multiple consecutive registers starting from @address in the MAC-PHY.
-> +Maximum of 128 consecutive registers can be read starting at @address.
-> +
-> +.. c:function:: netdev_tx_t oa_tc6_start_xmit(struct oa_tc6 *tc6,
-> +                                              struct sk_buff *skb);
-> +
-> +The transmit Ethernet frame in the skb is or going to be transmitted through
-> +the MAC-PHY.
-
-...
 
