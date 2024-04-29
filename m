@@ -1,129 +1,130 @@
-Return-Path: <devicetree+bounces-63464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F255B8B5094
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3A98B509E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AED592827C8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 05:11:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65B65281764
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 05:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCF4D2F5;
-	Mon, 29 Apr 2024 05:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5050D51C;
+	Mon, 29 Apr 2024 05:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QxKqmohu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XouBsHLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D27C8E2;
-	Mon, 29 Apr 2024 05:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABF8D515;
+	Mon, 29 Apr 2024 05:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714367510; cv=none; b=q8hs1BVNRdd7mr4O+ya2RYWIZy156bU4B58iXAPrm3IEXAZsv45/O6ggQeEgZY0f39YD4qf0QLTDMd2pSwwhQJrh9ihmuN0aMojIMF1uP66rlHz3ai7+8kwa5dJ43guMlZKejgCjIYvUqsaYGhJKLa4mb/dobwDaG2kVnJW9SSA=
+	t=1714367648; cv=none; b=kpQPIZQz6rGJ+R7nqEWloOKQvN+zGoHkxvDuU34ZCBvtgKyjTJMky+fDIMOOlXqG8lLOb8g20peZhp5HSTBDU5RcuZADYE2BuifS4Ianlk0R6wqFrTXjyTG1fETWSyG4aS2QBtQbxc7zS9egmvw2TD1LJ7IXuIwR8h0N7Xnx8vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714367510; c=relaxed/simple;
-	bh=Iu9ihiDH7ipkBxbPE/zRH0DjYFD8tuEm8iaj2BgOdEs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ABkLCdaKa4CNUHxmhvqMFDEkFMrCvFmwSNxPU5ol+IFh5jkxSBRM3QvgocrP47I3ZP6IuN3+S9FiXsKYcGIfimgMQM2xVDjXpZgW1esswnK2Xz2FG/u1w4D2Aj2koGG4LDG0G9g0rabQW40hzX+OL1qIXr1c1ylT1ZvYEUzm1KM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QxKqmohu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94910C113CD;
-	Mon, 29 Apr 2024 05:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714367509;
-	bh=Iu9ihiDH7ipkBxbPE/zRH0DjYFD8tuEm8iaj2BgOdEs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QxKqmohu67m+yQMNNYKrW27EFY+hTEUQL1tmu5yBDh7ncs3M9N5rQk5ntRVnxRGZd
-	 tyZ8BBd979in+PtAGznoIBu0cnIpt/L/y1jPXyJ8KgUg3WutU4CIJ3HnKXc8HljruE
-	 UZAkW7WsGE01MVNcyS/2I+eNFfoaqcXs5GOfyMCh5j7Gkukanbzedoyc6WZ/cPQYGi
-	 jU+SNKDXFrsA+pg/74iI/tGDE4EQvwwHn1+yCPnQkzxVa21ZEYFT5viaQjCEKT95eo
-	 9ExIvlyIDUIQT+5QYgiaBKu5a0TZNYtTiErCBc0u9+TeaTJyVk1/4rTH0fhi7Demq2
-	 9R56BWaDSw7Rw==
-Message-ID: <b0e794ad-f164-4304-b59e-736606bfe529@kernel.org>
-Date: Mon, 29 Apr 2024 07:11:43 +0200
+	s=arc-20240116; t=1714367648; c=relaxed/simple;
+	bh=LOB8StXyZXYH/XY9UsffloYZM/xf1QPKlDb/jL6XLMg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DxZtXK9zkeVrXWgXZ51vV2Zh9DY3omUB3f6dDps0rkdANjxFCabBz7T2ueq3TUytku+iJfwearWzBPTbdYgRV/79lLj/VEP7Wmkfs7z4uB4Ciyjv/iIaHlJ6wkR0OXFFVXwWcBg9dIx18eIlnz02168SKcrnLw2vP/K5HdPAUKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XouBsHLT; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T5DgeY098261;
+	Mon, 29 Apr 2024 00:13:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714367623;
+	bh=FHC8hHDhd2PbbJ5rnihDqnECh12r4f6wby1K3UtboNA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=XouBsHLT/Pvp+wG3PNzf4uDD3ELE0YuhlIqZVk0+u04STXfCGPeAbhMb1bIpLALgn
+	 h2sFgV6KBz3BT+sKqTlqQVHJ9PrsNzWVQg9gw7ANdgwICu7e15sUkQWDgbm5XDfMZs
+	 WcZMZSRbIvU5gDXdorx+5tz5uik7+ulrfRU+Iexo=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T5DggU078548
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Apr 2024 00:13:42 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Apr 2024 00:13:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Apr 2024 00:13:42 -0500
+Received: from [172.24.227.88] (uda0500640.dhcp.ti.com [172.24.227.88])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T5DcIW017805;
+	Mon, 29 Apr 2024 00:13:38 -0500
+Message-ID: <3d547a28-5ead-3cee-204c-c212db9f3ecc@ti.com>
+Date: Mon, 29 Apr 2024 10:43:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
- compatible for STM32MP13
-To: Patrick Delaunay <patrick.delaunay@foss.st.com>,
- Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Pascal Paillet <p.paillet@foss.st.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20240426183253.1360098-1-patrick.delaunay@foss.st.com>
- <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am62a7-sk: Add alias for CPSW3G
+ MAC port 1
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
-Content-Type: text/plain; charset=UTF-8
+To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>,
+        <s-vadapalli@ti.com>, <srk@ti.com>, <danishanwar@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Ravi Gunasekaran
+	<r-gunasekaran@ti.com>
+References: <20240425102038.1995252-1-c-vankar@ti.com>
+ <20240425102038.1995252-2-c-vankar@ti.com>
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20240425102038.1995252-2-c-vankar@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 26/04/2024 20:32, Patrick Delaunay wrote:
-> Add new compatible "st,stm32mp13-pwr-reg" for STM32MP13 SoC family.
+
+
+On 4/25/24 3:50 PM, Chintan Vankar wrote:
+> From: Siddharth Vadapalli <s-vadapalli@ti.com>
 > 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> Add alias for CPSW3G MAC port 1 to enable kernel to fetch MAC Address
+> directly from U-Boot.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
 > ---
 > 
-> Changes in v2:
-> - update for Rob review, only add compatible for STM32MP13 family
+> Link to v1:
+> https://lore.kernel.org/r/20230424111945.3865240-2-s-vadapalli@ti.com/
+> 
+> Changes from v1 to v2:
+> - No changes.
+> 
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> index f241637a5642..7ac3049302ae 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -22,6 +22,7 @@ aliases {
+>  		serial3 = &main_uart1;
+>  		mmc0 = &sdhci0;
+>  		mmc1 = &sdhci1;
+> +		ethernet0 = &cpsw_port1;
+>  	};
+>  
+>  	chosen {
 
-Please start testing your patches BEFORE sending.
+Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 
-Best regards,
-Krzysztof
-
+-- 
+Regards,
+Ravi
 
