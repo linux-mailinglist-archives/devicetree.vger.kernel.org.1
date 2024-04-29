@@ -1,126 +1,150 @@
-Return-Path: <devicetree+bounces-63581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9CD8B5702
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 13:43:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F928B5708
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 13:46:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25D6E1F22B16
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:43:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 074E51F20CA5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757334AEC7;
-	Mon, 29 Apr 2024 11:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085134C626;
+	Mon, 29 Apr 2024 11:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WV+TRVrK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="i+pwZsOl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BBD47A5C
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 11:43:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E684B5DA;
+	Mon, 29 Apr 2024 11:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714390993; cv=none; b=hDNFN4kcYKP92CV5pM0pwhzsg2/kbUZ4x4Jg9TpGBRKDFnqunD0FbCfTQ7DhimPnsJgCwChPFJcbCFLrAS45vkbuojmDJK2zA+qpBvqw9g+fBYxfCOTweIlKKL8/06tmcoHrzwf9ypKFT6KMJZmfYkLGz4HgtSMCJZlEUGwBSYA=
+	t=1714391185; cv=none; b=us9e3mm9IAOzcpGqJ+R/o06LfZN3gBFondXF/tvyz4lmvuc4RewbpTQebRIABYYAxn4XIIjXKs2Ad65DS2tDI6fmBUKZZXoc8XKv/ASrWHWqrMD0L6rtpMzFIM7TLSddoyCRg0XR/uAthYzpTuZB5X4LzkRHOo6zoEBo7ar9EqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714390993; c=relaxed/simple;
-	bh=wlwCiZQhxacSX1iOcX1bXb8eeSP8O9zxMxdtgI9EZUo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hZCV2JBdGMDP8B/fGUTytmojHJC2t2uKFhHXSjcEnhQvWlrUmZjsZoWWi26gruFtoTvwlgX4PPvVvUt0Kc55QrwaBchc3+BbdFmEXME+0iv0JIAZ7mhT+ba/HOCicV2kpZGLzo3eq9Ll2v3MpagG0+WF7Y2jVY5WfKulqmiH24w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WV+TRVrK; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41adf3580dbso24812525e9.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 04:43:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714390989; x=1714995789; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i14vi0uS6yalE2yHHE98+WWyzuINERvn0mRjSQcogLE=;
-        b=WV+TRVrKzWsLalu7QCkeNYUozng7DAsGN0XSKRX1CNokWvNXd55nq3Dd7rAgTvK9GK
-         zUH2Xs1yederuAN3LPawxA1ae/351v3u9WdF9No33Suyk9Z6Qg0oq0mgGc1W6+rAf6dt
-         IezKYNN9yhrFsad8qUXw/hWS1atX5oNWQtpCs0fZtGmkvh0IU+LzPLqwWn9E6g84/3j2
-         /EFw8H3SNzz3Pl/2Wcss+34usZYfcacj6MO152T4QpZOwfeU9kPDVxI7tuN/t8iGSogu
-         D80eTjcq/NHuud+Koouk2V8sZjLmkV6wyZ0zFKmeCTHdc11SeJdWn8vihxMFV8I45hEp
-         PigA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714390989; x=1714995789;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i14vi0uS6yalE2yHHE98+WWyzuINERvn0mRjSQcogLE=;
-        b=M8iF2sacRkvKly7cGQxduAagdtvLwj90TI4Rexoymk1OiIrSPjHEsUo93UvyuVtUNI
-         sYrHK1HIXH9f0zJh6oLsgx/UlqRWV+6sZKvR91s+jkCSKPQLEOinnPJUPtVpvahc7uVD
-         scYhnxLbu8yh9A+y4RbJFJl50LERpnyOLKYkxx7yhUOZyFOSs7Sm4v1+jwec48Wq9NOL
-         oIfBM1dvzdLK+pbtta3ojZK52kZoiw3gdpHjPoDQpovKjFRYMR/kBp5bPt9Jp677v+Ma
-         FiURSVUhj7urWaytGFCkugfeMxE2We38UVw7/5FKp9fetdQaTWrdMxjCL6tS/U//ht/D
-         +8yA==
-X-Forwarded-Encrypted: i=1; AJvYcCVNiEcnLxwREP36z6ZGEV948yUbrUnsS3rYRs26rFvj+KT7oeZL9zM8H2bhXezQfN2sVzzlJPd/czAoejSrOaUc9Ai4CSABDCbehw==
-X-Gm-Message-State: AOJu0YzWbw3+W0+fhTNm2UX4GqZncHNCWwSE5CyJIdu2OkRpoN76cqW/
-	ztvqRbXEVJPMRWYC+XCpxqEnGDg6r33VF9eQeiGcumVViZL48Nsh+W+k8Okei4k=
-X-Google-Smtp-Source: AGHT+IEI1UVkZOMPYRMSz4HtjyDrrZTWNzj/RlriUs5QHmYdGK5xHJYWjf4nbA7zpSf33ACYcYdQ4A==
-X-Received: by 2002:a05:600c:3587:b0:41b:8c5c:31b9 with SMTP id p7-20020a05600c358700b0041b8c5c31b9mr7553097wmq.14.1714390989553;
-        Mon, 29 Apr 2024 04:43:09 -0700 (PDT)
-Received: from localhost.localdomain ([2.221.137.100])
-        by smtp.gmail.com with ESMTPSA id j28-20020a05600c1c1c00b0041bfb176a87sm7006611wms.27.2024.04.29.04.43.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Apr 2024 04:43:09 -0700 (PDT)
-From: Jean-Philippe Brucker <jean-philippe@linaro.org>
-To: will@kernel.org,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	liviu.dudau@arm.com,
-	sudeep.holla@arm.com,
-	joro@8bytes.org
-Cc: robin.murphy@arm.com,
-	nicolinc@nvidia.com,
-	ketanp@nvidia.com,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: fvp: Enable PCIe ATS for Base RevC FVP
-Date: Mon, 29 Apr 2024 12:39:39 +0100
-Message-ID: <20240429113938.192706-5-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240429113938.192706-2-jean-philippe@linaro.org>
-References: <20240429113938.192706-2-jean-philippe@linaro.org>
+	s=arc-20240116; t=1714391185; c=relaxed/simple;
+	bh=NQ5SGdqdAmQZOScQ9Q82ZKMV6DbrbkLXg5mjOjzV6oE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Phw0VG7GGOscOAQ78zaX/CLbTd8NKlnj3MGc3WX+rOOF7tF+2Cvw6oIeQXQM5UnyYSRLSAkIFnyTzlbKEESME6wxFSCi+EyCyHSD/NwyDku83uyqxV10FYtGy9C1Zo3Yrt9SBmNgUxO/nmaCvBYg3pNZezwApZ3gbOAefIAjs+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=i+pwZsOl; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43TBkEEF017873;
+	Mon, 29 Apr 2024 06:46:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714391174;
+	bh=UUwDz8JS3bdRJRihPsNX0v5/LIsDiQOiM2qFVEyewPQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=i+pwZsOlZ4Q7cMcilY808cuUxzTlatVMoZJuZ7dTtyKd8cbQWtLqOioY2s+ptY1Xk
+	 3qS+rhj8QbQUXflNiQTrB5trQErFdCnCssqOR0ElDUL7xIlxBSlbS0xCVQqwk1lty8
+	 83FojerqmkdJlZWDeXrTU6aRxE5jgnwbTKV59ueQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43TBkE1u124387
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Apr 2024 06:46:14 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Apr 2024 06:46:14 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Apr 2024 06:46:14 -0500
+Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43TBkAom098182;
+	Mon, 29 Apr 2024 06:46:11 -0500
+Message-ID: <f406bac9-f4c1-4289-8239-82420cd300b8@ti.com>
+Date: Mon, 29 Apr 2024 17:16:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/5] arm64: dts: ti: k3-j784s4: Add overlay for dual
+ port USXGMII mode
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>
+References: <20240329053130.2822129-1-c-vankar@ti.com>
+ <20240329053130.2822129-6-c-vankar@ti.com>
+ <1cf7f439-45cc-42cb-b707-4c87c00015ac@linaro.org>
+From: Chintan Vankar <c-vankar@ti.com>
+In-Reply-To: <1cf7f439-45cc-42cb-b707-4c87c00015ac@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Declare that the host controller supports ATS, so the OS can enable it
-for ATS-capable PCIe endpoints.
 
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
- arch/arm64/boot/dts/arm/fvp-base-revc.dts | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-index 60472d65a3557..85f1c15cc65d0 100644
---- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-+++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-@@ -243,6 +243,7 @@ pci: pci@40000000 {
- 		iommu-map = <0x0 &smmu 0x0 0x10000>;
- 
- 		dma-coherent;
-+		ats-supported;
- 	};
- 
- 	smmu: iommu@2b400000 {
--- 
-2.44.0
+On 29/04/24 16:01, Krzysztof Kozlowski wrote:
+> On 29/03/2024 06:31, Chintan Vankar wrote:
+>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>
+>> The CPSW9G instance of the CPSW Ethernet Switch supports USXGMII mode
+>> with MAC Ports 1 and 2 of the instance, which are connected to ENET
+>> Expansion 1 and ENET Expansion 2 slots on the EVM respectively, through
+>> the Serdes2 instance of the SERDES.
+>>
+>> Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration USXGMII mode
+>> at 5 Gbps each.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+>> ---
+>>
+>> Link to v5:
+>> https://lore.kernel.org/r/20240314072129.1520475-6-c-vankar@ti.com/
+>>
+>> Changes from v5 to v6:
+>> - Updated order of properties in Device Nodes based on
+>>    https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+>>
+>>   arch/arm64/boot/dts/ti/Makefile               |  6 +-
+>>   .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   | 81 +++++++++++++++++++
+>>   2 files changed, 86 insertions(+), 1 deletion(-)
+>>   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index f8e47278df43..2d798ef415e4 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
+>> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+>>   
+>>   # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+>>   k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+>> @@ -148,6 +149,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+>>   	k3-j721s2-evm-pcie1-ep.dtbo
+>>   k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
+>>   	k3-j784s4-evm-quad-port-eth-exp1.dtbo
+>> +k3-j784s4-evm-usxgmii-exp1-exp2.dtbs := k3-j784s4-evm.dtb \
+>> +	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo\
+> 
+> I have doubts this commit was ever built. It clearly fails, just like
+> now linux-next fails.
+> 
 
+Apologies for the syntax error here, I will fix it and post next
+version.
+
+> Best regards,
+> Krzysztof
+> 
 
