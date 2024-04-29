@@ -1,140 +1,116 @@
-Return-Path: <devicetree+bounces-63544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768478B548E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:50:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7A08B5497
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:54:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159A41F220AE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 935901C20D4E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011EF2836D;
-	Mon, 29 Apr 2024 09:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48549286AE;
+	Mon, 29 Apr 2024 09:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPvYVg0l"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j1MObEsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF039241E7;
-	Mon, 29 Apr 2024 09:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3092375B
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 09:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714384251; cv=none; b=h9fpn7L5+UbYykWaEqhbgz+0t8FqFnY2+/LXZ0l4mzieAo/9y2U2U+XAofCF8dnTcZd6aTB3EjWzXB2ySZ8pDk14HTPaO1wkTXmiYNt0d9ffDb9Ufay9eEDSni7iQgeLGOrDKW0uf32IoSPrKiI8HCDnccfAvDvulO8uATgpR1Q=
+	t=1714384452; cv=none; b=t6mNV7w2rgUgs99udjYGVSEgEcsyGbEyy/6apOO03lYm1Ztk1oaSD9klC6j2twH9VXZQrhu/2KBBT+YeDOzHMNXrYvIgPBazfx73AEUdnTydjBeflLl+OYobA6FyDSEbRAOLFJd1PRjSUqzOBkZlTMuNucUKmnhlXTxoP7i1ldc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714384251; c=relaxed/simple;
-	bh=E5xY7/XNBnk4rwXxqmhcINZCCCynbLhDFY/tnllWA+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IKv9naFvEO5LPdTxMJub1sJYPJ/II8gLRMw9ow+VE0KBta9Tv8Puc3ieL39x6/dd3gpMNJ07gfo4YPEGEm4niogA02Y/QYRC5zQDrjZ2FROVB7wpx6UBX8h/Nsbrwxk/vJdniE6sPUIVNF/No7g5b/jiazF2Y+tk4nksaZVY9pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPvYVg0l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D140AC113CD;
-	Mon, 29 Apr 2024 09:50:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714384251;
-	bh=E5xY7/XNBnk4rwXxqmhcINZCCCynbLhDFY/tnllWA+U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CPvYVg0lXSdPFARtPt7nEIZ4kGKYOsyXFwE52QuaOh6Ie8tlfeqoC6Jq6UMro8p/B
-	 yXvoWiHOlu31sWjhNtis0P8I1GuEreok5+Ud5MKUAOYWoiFJx3QjrNzmR7Db7Sq2k5
-	 D/Y/YP3CMQCl2q/VVi9oRy5vwb46AIM+kiV6ZYkMBxxCCkTgb6JlUuUE+W/Dj6v0EO
-	 Tt62LbYjSJ5htkGLOQSasor0K8dv9yOsKsI/uWRGqWzJKYnzanM113HFPtQ50/STkx
-	 jEkV5hmxgQNeMtBTdDYnIqMAG0rNQbl+Ch317Fezb3El/JyWm7PeDgEGhst0i9/dUv
-	 KNkFtfAarpmVg==
-Date: Mon, 29 Apr 2024 11:50:47 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v5 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <Zi9tdz_VvhqIHnQI@lore-desk>
-References: <cover.1714377864.git.lorenzo@kernel.org>
- <6c9db20505b01a66807995374f2af475a23ce5b2.1714377864.git.lorenzo@kernel.org>
- <CAHp75Vc0=bKk+D9ULPhfbVkgHpRTST_niNBYo4Jri_71XQa+dg@mail.gmail.com>
+	s=arc-20240116; t=1714384452; c=relaxed/simple;
+	bh=6Vcg0heBQTZuMAZV/90OJ42YzsBiIRDDFrShHiCidxE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LY1JkovEnaFrf/TOvzDsqFYJ02l3vXPNwKdrwS0hza4zBxVvHrerC+3/f1pRQhNlrQd+xCrT6tqeJvRX+DTd3MeSdAcEynLAIuKYIP7bdUZ0Im3CpHg69/wiKxAknEl2+oz29oukFR6PKxq/JMPKW19+oZQqeX/B6mg3MNoUCis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=j1MObEsk; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6ed5109d924so3633923b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 02:54:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1714384450; x=1714989250; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=K9Tuxkuv5GP03on1LEPNW9dEztUbP1PxdWw89MgNsZg=;
+        b=j1MObEskRJEbSqrmPhPIRPqjnQ66ocyQLzwzFHjeqUUGmuvW83MTa6aaPnFBQhRXtP
+         IKUiPYdQp+MZCxfg83iwRuJdHGrsz8/WI8D/24ejAVNXZ2HbltSSri5szQdbVzhSoSGj
+         5IjLu5n6yk5vIW4qEPDY3HOvZluTbdjKE7/hs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714384450; x=1714989250;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K9Tuxkuv5GP03on1LEPNW9dEztUbP1PxdWw89MgNsZg=;
+        b=Tg5WN0fqPV6eYxjIuXj25sKzRcG742EmsG6fGMcxA9R8gAyhBzG0biW3yIH2frMQrS
+         MOtaMWdWxgoryI/GDpDsFtHZwj8JQMd+OlDfEeca9w+dlB+jUPhhxQziqs5uh8qdi+Vz
+         LRpDR+OHo5nZjAh9NJCCc9LteVY0B0kGlYAbmpmzMCbcEtxTS9Lf8s+tDSOyJghFi0dI
+         XMKGByoJ5MDq13OWPhlrTqiFzxdDTRbkNt0quUtl4F3WIn7T6/YUyCXNcwwCwM/kHhK3
+         MCCAkg8l8fiCuCYb4BMPJ4Y8QfS65aRh8VDaOBgXBX8lBubXGDcJg60JONjmM8lm65AV
+         VKWA==
+X-Gm-Message-State: AOJu0Yw57flrJrVRsKZ3XZXktlbkDyWyESMmE8/WN9rGSr5z7jwn/HvN
+	6y3HJ9WmfYH25kiTFYfgL2A0cbRgUQyHYcbN5j8GXlAPEEerG2RJnIyBJR2SAg==
+X-Google-Smtp-Source: AGHT+IE8IGwWKDE8w65mqrsUHZCWFhQYSBQsWdqW2ncfFU1qhQ9LU47X0Hj6sRPRPpb9Jccy3pViug==
+X-Received: by 2002:a05:6a20:d80f:b0:1af:3d3f:83f1 with SMTP id iv15-20020a056a20d80f00b001af3d3f83f1mr5737629pzb.44.1714384450196;
+        Mon, 29 Apr 2024 02:54:10 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:38e5:4a2b:ec4a:2ec9])
+        by smtp.gmail.com with ESMTPSA id c7-20020a056a000ac700b006eb0027f2b8sm18932083pfl.9.2024.04.29.02.54.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 02:54:10 -0700 (PDT)
+From: Pin-yen Lin <treapking@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC support),
+	linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC support),
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	linux-kernel@vger.kernel.org (open list:ARM/Mediatek SoC support),
+	Hsin-Te Yuan <yuanhsinte@chromium.org>,
+	Pin-yen Lin <treapking@chromium.org>
+Subject: [PATCH] arm64: dts: mediatek: mt8192-asurada: Add off-on-delay-us for pp3300_mipibrdg
+Date: Mon, 29 Apr 2024 17:53:31 +0800
+Message-ID: <20240429095333.3585438-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.44.0.769.g3c40516874-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FJ8W5D6xOH+ziJQT"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vc0=bKk+D9ULPhfbVkgHpRTST_niNBYo4Jri_71XQa+dg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Set off-on-delay-us to 500000 us for pp3300_mipibrdg to make sure it
+complies with the panel sequence. Explicit configuration on the
+regulator node is required because mt8192-asurada uses the same power
+supply for the panel and the anx7625 DP bridge. So powering on/off the
+DP bridge could break the power sequence requirement for the panel.
 
---FJ8W5D6xOH+ziJQT
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: f9f00b1f6b9b ("arm64: dts: mediatek: asurada: Add display regulators")
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
-> On Mon, Apr 29, 2024 at 11:13=E2=80=AFAM Lorenzo Bianconi <lorenzo@kernel=
-=2Eorg> wrote:
-> >
-> > Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
-> > found on Airoha ARM SoCs.
->=20
-> FWIW,
-> Reviewed-by: Andy Shevchenko <andy@kernel.org>
->=20
-> ...
->=20
-> > +static void airoha_snand_cleanup(struct spi_device *spi)
-> > +{
-> > +       struct airoha_snand_dev *as_dev =3D spi_get_ctldata(spi);
->=20
-> > +       struct airoha_snand_ctrl *as_ctrl;
-> > +
-> > +       as_ctrl =3D spi_controller_get_devdata(spi->controller);
->=20
-> You may do it on one line above (the same way as for as_dev).
-> Ditto for other similar cases around.
+---
 
-It was to avoid going beyond 79 columns, I do not have a strong opinion abo=
-ut
-it.
+ arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
->=20
-> > +       dma_unmap_single(as_ctrl->dev, as_dev->dma_addr,
-> > +                        as_dev->buf_len, DMA_BIDIRECTIONAL);
-> > +       spi_set_ctldata(spi, NULL);
-> > +}
->=20
-> ...
->=20
-> > +static const struct of_device_id airoha_snand_ids[] =3D {
-> > +       { .compatible   =3D "airoha,en7581-snand" },
-> > +       { /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, airoha_snand_ids);
->=20
-> No need to keep this block here, the first user is below the ->probe().
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+index 7a704246678f..08d71ddf3668 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+@@ -147,6 +147,7 @@ pp3300_mipibrdg: regulator-3v3-mipibrdg {
+ 		regulator-boot-on;
+ 		gpio = <&pio 127 GPIO_ACTIVE_HIGH>;
+ 		vin-supply = <&pp3300_g>;
++		off-on-delay-us = <500000>;
+ 	};
+ 
+ 	/* separately switched 3.3V power rail */
+-- 
+2.44.0.769.g3c40516874-goog
 
-ack, I will fix it.
-
-Regards,
-Lorenzo
-
->=20
-> --=20
-> With Best Regards,
-> Andy Shevchenko
-
---FJ8W5D6xOH+ziJQT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZi9tdwAKCRA6cBh0uS2t
-rKfNAP9I4jcnIaZQ5k30M1Gx9lo6B2yz4xYNsUPlCzB0Unqg8wEAgGIvWEECoWIX
-lLIqu/Q2/8SNBk9W4i/3JIRvXdxIVwM=
-=M4qH
------END PGP SIGNATURE-----
-
---FJ8W5D6xOH+ziJQT--
 
