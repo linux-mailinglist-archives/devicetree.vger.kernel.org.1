@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-63608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D348B591D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:53:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D7A8B591F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:53:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BA9D1F221A8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:53:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DCB31C20DAA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D15F6D1D8;
-	Mon, 29 Apr 2024 12:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610D470CCB;
+	Mon, 29 Apr 2024 12:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dolx0Et2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lmdzsbLr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7444B7CF2B
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 12:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E396FE20
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 12:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714395073; cv=none; b=dw96oqQ2AEV8U3PBfkB9HsoNKPnnWK4TxBoNFIOI8YgBRuRtF37D4SDb4U8/w5bH7Tw+XB8/SYjHCk9gdFN5oJHae8O9v/s1T8hy7I3+AUB40RzMnud1c2hc9yQcxzACuf+C7ZigiausUjDxunIsWwxLgDw2SqRIhQY5W7k3/jk=
+	t=1714395081; cv=none; b=G/YBmnJPojL1NewTt79uJRMCEXoC5uBZEbZAmAMylWdigPiOa0WBITpOsDiMpO734gPwCwTzFYsSiQbf3V3z11bVxu74Y4B+rLzjbnzw3mDvb1mqlAb5EZQA4MNpmm3VjG8ErkWE/y24TjHBgbdPfmLMZU9Oe3fUn4tt6RoK8Ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714395073; c=relaxed/simple;
-	bh=pe8G9p+5P17X+6aAHDkyKKC/MlCpHCHV2awoLfH+sa0=;
+	s=arc-20240116; t=1714395081; c=relaxed/simple;
+	bh=gSPTlr0VBBzkRCIURVwBTn5xzbfhPg5dw3Ha9B1pM04=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=nM7cl/8EjOn7kt6Yitk2Lurqt+UHAMr8hmObkwrnOlfcCvkaPz7UjZhceHRCRMHkZWqtLXNFoODACLw4U62XA4cPhNud6ZM4B6ubQKUxfaNXk5YRUNpJjySMjR07tAKBRnwBJxH/bd4x9I77y3JozcVQ2PWOz+4yww4uZsi3ltg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dolx0Et2; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=JWmgf+uMQlWWMcmYTiGV4zYmZJCq7mURkSl2KoCVxILVPSvwPnhTQbvajkJK4esrGCVRTkcXyTy6gBLeAcgOU34xQKeqrSOYBTZ4B9Zcf2kOeJbHmiO81nvgkZfnXSCzEERYfQPvQO6u7mFnolhpISYm6BqOa5sdSgqbE8V+R8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lmdzsbLr; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41b79451145so24673415e9.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 05:51:11 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41ba1ba55ffso15270695e9.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 05:51:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714395070; x=1714999870; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714395078; x=1714999878; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eN5fY6zvwHqNicRZDwZ/+hgP7ChQx+W9f+XFS8SdjD8=;
-        b=dolx0Et2UucO4RfgxxnK/1LC1vt/Js3d3ROWAL1tap7eLyjbBn/fhgq32Nazul04EA
-         ZwoGh1+01deDVQkcJJACnrYErFB8sJD8Og2cW7jq1nRffqkQUP3VwtQ900CmE269VrCj
-         kxJnZugf/iPNevdfqqRcaS00I8+Y/dPUY0WHF/rVk3Fn3kVhK/3KoxjXbs2jFHn3scv9
-         yON18c0LMcp+Ap9m1kmnoNgSGJ/bM/kf1R99mdGH0/OJiclNkvvEpdobExFvvH8wAQne
-         GzWYfe3QC9HpIX02nUBfSX9usAI1wXT1BFVLCnuBhBUVatN9muEwxbnMRrZ37SyaulkO
-         Jzkg==
+        bh=PDIY9s2RJ2xRPkiukpn1HLtVc24S+QYrw8xF4eyHUBs=;
+        b=lmdzsbLrKyDGQm7N/Ny0NadxgxBWo2QoJx6wxSuOcJ1uNOUgHx4sDF6JtRC2nPlk33
+         o08cNMfyAqWnTC+aRTRFJZQrlPZy+whDXIuVLnAZNpbUEJ+OHQiFUPQemKBbJbsib1Xd
+         4SVSVHGKBkJ0NTBLjwqbcMg8aaCDbfJqlPzyWzt2xpF1fsxm5UwMDBwyjpk+lz18EzZW
+         Wu924MBAf/9BZZoey9EiG19o3/+i6c2Ov/iAO/kB4CakEaWmiiHYP+CufBp462Dhgbkv
+         1JZQmnPFpIsi6tJyGFEcFz5XSIeVqr3WvBUH0QEsyPGkRCwgE3CF1dA9VrAXTBnVTkSa
+         nZ5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714395070; x=1714999870;
+        d=1e100.net; s=20230601; t=1714395078; x=1714999878;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=eN5fY6zvwHqNicRZDwZ/+hgP7ChQx+W9f+XFS8SdjD8=;
-        b=UJe8dM1N60m2kh4E398I3bB4C3UVHR7G9YNOOuZbC5aagW1iaKCt3R9whM9xREFvV+
-         BsBvU2uHQ4F3xCs32WuF2Tjtvz2pNxWBcTY5IuWaZ+BsR9/ntR3FDAZKurWITES9jWwI
-         LSNqLp5o3K56DavulaTwIjj7PB7NxIfd05E0ihXUyT0QUmjYLCC5U3TYaclKloQHAAkS
-         2LRXcdq1PYmk2lWq/dgcj5rYEC8e/jgKGcXMbbQyIgLI3A0Y3ezqpEev6AoB5NGFR3eZ
-         APi/jvyNgjMfa8QL9HiNbk4Mp547Ayjeqa+V0Ae29ycqKWOpuwtiVb2J+xgSddkWULdm
-         D/OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXaIh0A4aUHOYXT9pXlUkJveFejra8Fsfyj50Or4KT8kyRMMWjMibaabO8p+Iey+BoM4Fdme7vYi2PuLisGmEdv98lPcVWTB98vmg==
-X-Gm-Message-State: AOJu0YzMEuz60PkFKIbuOdVDnoMivk62yPFqhC5v2e7NSpkETRJV8ukc
-	cv2vef1v717qxuE7VDHYWRKnJ/alXxS0wXkRM+uyZj8qUEYTkTbmasxgyuGAvzQ=
-X-Google-Smtp-Source: AGHT+IHnCz6LZx0FNyxSdv4FcPNxpY/R+tbn+duWjJcyrChNRsNL9i18Zpr8P2NmF05VLLvhALBvOg==
-X-Received: by 2002:a05:600c:470d:b0:41a:1b3f:b465 with SMTP id v13-20020a05600c470d00b0041a1b3fb465mr5769257wmo.26.1714395069514;
-        Mon, 29 Apr 2024 05:51:09 -0700 (PDT)
+        bh=PDIY9s2RJ2xRPkiukpn1HLtVc24S+QYrw8xF4eyHUBs=;
+        b=BzHPkzU5uMg9GIOQ8pbFhayPVMy0Akv27JWZIgRFKLoNirwohYbTU20pzD5p7uOvZw
+         JATah9heBnlcPe1iqzjN9aNpVyIQL+VZugTqOMNQ4j1LcgYKwxAbyNGZJrJRfssn+IOC
+         jWMrluaXb1nV2kMvuCvqlZwsrE5aALZcmoAmffR3fAST/sZsxm4S5dIzDYs4199fE83k
+         bxLpdEbqtIyJGocL39N1pRBQrVzU9tC6ABs0ltG6xgPzGI8E51cJk2ndIQDchvjFppnp
+         wzFNwA6NyuzRCIUBLeSbxrjUAeithmdmVtuoZY2dXq0MWuiuvdyiYgQmwkrEFtNVAtXh
+         DMCA==
+X-Forwarded-Encrypted: i=1; AJvYcCXiRoP9Ev9AFyIIz5PAON0euWhlgD+iu2Hd2+L+m20eSnQZK3a8Wt9JAT3eDaQdPwDMd9WLZZsTPNjE+vdlCvLOhssGnvY2oB3FwA==
+X-Gm-Message-State: AOJu0YzxxDfpKnBuEEkVaph+/AVWt+YUCIYhavUN/d4PpiDCq3ul6NIj
+	ZIY9dmnbB3CNsoFG16ZkeTTFjvQ3LNSKH3x8d/1GLjPEHDDNmbRQC53X0ca6fiQ=
+X-Google-Smtp-Source: AGHT+IF4yCm1L2PfyAvsiV07AozWKhA+NKumsFsD/aq4tlT0uK1ojhkCX2pfI5aw8vupgPzCyxrZbA==
+X-Received: by 2002:a05:600c:1d2a:b0:41a:4623:7ee9 with SMTP id l42-20020a05600c1d2a00b0041a46237ee9mr5908828wms.10.1714395078233;
+        Mon, 29 Apr 2024 05:51:18 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:cad:2140:d72:4b40:65fa:89e6? ([2a01:e0a:cad:2140:d72:4b40:65fa:89e6])
-        by smtp.gmail.com with ESMTPSA id z9-20020a05600c0a0900b00418916f5848sm40849583wmp.43.2024.04.29.05.51.08
+        by smtp.gmail.com with ESMTPSA id b7-20020a5d4b87000000b0034cf3001104sm3458454wrt.33.2024.04.29.05.51.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Apr 2024 05:51:09 -0700 (PDT)
-Message-ID: <d3367636-6a67-4199-af37-d76cc75f5484@linaro.org>
-Date: Mon, 29 Apr 2024 14:51:08 +0200
+        Mon, 29 Apr 2024 05:51:17 -0700 (PDT)
+Message-ID: <4f5f19b5-7385-4d85-b63f-fdafe62dc987@linaro.org>
+Date: Mon, 29 Apr 2024 14:51:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +80,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 08/12] arm64: dts: qcom: sm8550: move PHY's
+Subject: Re: [PATCH 07/12] arm64: dts: qcom: sm8450: move PHY's
  orientation-switch to SoC dtsi
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -89,7 +89,7 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240429-usb-link-dtsi-v1-0-87c341b55cdf@linaro.org>
- <20240429-usb-link-dtsi-v1-8-87c341b55cdf@linaro.org>
+ <20240429-usb-link-dtsi-v1-7-87c341b55cdf@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -116,7 +116,7 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240429-usb-link-dtsi-v1-8-87c341b55cdf@linaro.org>
+In-Reply-To: <20240429-usb-link-dtsi-v1-7-87c341b55cdf@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -127,69 +127,28 @@ On 29/04/2024 14:43, Dmitry Baryshkov wrote:
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 2 --
->   arch/arm64/boot/dts/qcom/sm8550-mtp.dts                     | 2 --
->   arch/arm64/boot/dts/qcom/sm8550-qrd.dts                     | 2 --
->   arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts | 1 -
->   arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 2 ++
->   5 files changed, 2 insertions(+), 7 deletions(-)
+>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 2 --
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi    | 2 ++
+>   2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> index f786d9114936..98934e4a81b2 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> @@ -1279,8 +1279,6 @@ &usb_dp_qmpphy {
->   	vdda-phy-supply = <&vreg_l3e_1p2>;
->   	vdda-pll-supply = <&vreg_l3f_0p88>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> index 9926294e4f84..71dc06db7736 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> @@ -1120,8 +1120,6 @@ &usb_1_qmpphy {
 >   
-> -	orientation-switch;
+>   	vdda-phy-supply = <&vreg_l6b_1p2>;
+>   	vdda-pll-supply = <&vreg_l1b_0p91>;
 > -
->   	status = "okay";
->   };
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index 56800ab903a1..d3fd00176233 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -972,8 +972,6 @@ &usb_dp_qmpphy {
->   	vdda-phy-supply = <&vreg_l3e_1p2>;
->   	vdda-pll-supply = <&vreg_l3f_0p91>;
->   
 > -	orientation-switch;
-> -
->   	status = "okay";
 >   };
 >   
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> index d0b373da39d4..1d487c42a39b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -1156,8 +1156,6 @@ &usb_dp_qmpphy {
->   	vdda-phy-supply = <&vreg_l3e_1p2>;
->   	vdda-pll-supply = <&vreg_l3f_0p88>;
->   
-> -	orientation-switch;
-> -
->   	status = "okay";
->   };
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-> index 7a8d5c34e9e6..92a88fb05609 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-> @@ -757,7 +757,6 @@ &usb_1_hsphy {
->   &usb_dp_qmpphy {
->   	vdda-phy-supply = <&pm8550vs_2_l3>;
->   	vdda-pll-supply = <&pm8550ve_l3>;
-> -	orientation-switch;
->   
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 3ada5a30ecb7..9980504f66db 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -3170,6 +3170,8 @@ usb_dp_qmpphy: phy@88e8000 {
+>   &usb_1_qmpphy_out {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index d138b90bb280..3494d5076368 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2304,6 +2304,8 @@ usb_1_qmpphy: phy@88e8000 {
 >   			#clock-cells = <1>;
 >   			#phy-cells = <1>;
 >   
