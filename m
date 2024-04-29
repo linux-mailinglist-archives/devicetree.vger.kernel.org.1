@@ -1,171 +1,151 @@
-Return-Path: <devicetree+bounces-63566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75BA48B55E3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFC78B560A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 13:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02D041F22F92
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 10:55:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80C571F21420
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34CA3A8EF;
-	Mon, 29 Apr 2024 10:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08533D55B;
+	Mon, 29 Apr 2024 11:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RqN72Smo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZQPbM460"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207FF22EEB
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 10:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF773D0B3
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 11:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714388147; cv=none; b=qWrcOfMdoslexdKXakSfKkMnxOWpGJKGqFrXJ+eXPoIVfBUFBgGamUdUC0kVx6jg1NF6GLBm0aebHL86fJWUIX1shncY5DCVnMjsQTRpXephDS6yOmkk7a7DBT3gP1oKofZBBUm7lXmFTT4zqJojsRVVE9gP/df94iBg8I52Xik=
+	t=1714388925; cv=none; b=sC4QYlpod7LUkg3vPitgpZ5qiVGSmj/qt3j/zUA0iVkmXuDgiGeOHYKWPRuNByhimb9NdUqLxu+gMZKVnykEuDVMO6EtzZTlZMjUjV7IdLCKwFN/fQne6c5vFfy83X1D/GbbjyjCeCeVUC2FuCrUoXzwX1DckKDuMNo72yL/RjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714388147; c=relaxed/simple;
-	bh=Xpupn6nv6f2q38+tmYSrohtAxHhfoWPOabgy2X+P2HM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eegfEIWqYmO+J3qEHZGlUaltpYl7HJHElfEwaDLosYaQ5zqgMvdlw0c1uHS+eM2x6kPbXsB+VlE38x8JA4O1rwZbP25jplzR7pal5fLb5sAL8bfq7X6pw68PzUpsH9SVj5NzDALWBhf7nczKY9tMkdNkNFP0GflwXvZpydvT6U4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RqN72Smo; arc=none smtp.client-ip=209.85.219.175
+	s=arc-20240116; t=1714388925; c=relaxed/simple;
+	bh=9c7oxmiXTpo5sdlDiSIF1N+bBYPppb/Glq+E27VXlkw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Ng/mGcfY5s7QG2J5vCuk1gmKERfnC6vSoFuYNjvqzzIEhVi8b7ihq7+1j+2qt4X5MrpAnTpOVoZi2MpPVwGeXPFvS377dP5guNYfHyxprWujGa7IH7w6HR19aKMBl6GhN3jR8yw8hYP9pQTGiEZnmZK9Yia0Ewnon1NtmQxo0Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZQPbM460; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-de59daab3f3so3542152276.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 03:55:44 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2dd6c14d000so52617641fa.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 04:08:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714388144; x=1714992944; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HK9OBY6JCsI5PbvjejB+IUXQa8uw72iX0OVXzGaQJV4=;
-        b=RqN72Smo87boybYk0biU491UJ2hX+RJHRb0epw9NuEPoXPbZy+O/dcrX2UQzwz8zfn
-         22unEBQRlyVVqSgIQ/HEephQ9WNkxmNkLm8v2VzY5JUlHFujea//EyDoUTY6m0hgFpJD
-         vSixFTitHZPDDzbd/I3UGA4l0UoHZjBbeZbI0FbsSwFOjZJImU4hDUfDlniXwaeSsrJ1
-         NdQQjLtv7e/TT8Norxfk8IVQsMmxpYgXr6BpoPtQQ1Iqb2cQXmjWc98pYN0UPW96r8G6
-         8dKBcsZvFHCValowyiSrTJAnLiJnSU138DJr9MctjH2udQl5ua90RDaXiVV6R7kX0Xaw
-         IZLw==
+        d=linaro.org; s=google; t=1714388922; x=1714993722; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=H5nlE/gKXKtZyCtKakKoynFLO/s21hRFIz45EgqLtos=;
+        b=ZQPbM460kozq1CpFc+Plb987ashUoCYhb8CLXrqLu52eVeb7LHngaOLgXGWnR4KoSm
+         flfUTU80UqUOpk9d/N6VRaUSnthl0GCyODewjnd/Ia5GKX+wVbBbxz6U1f9zsZvUf25e
+         ErxJvc/sqSR2HB1zuUWnkkYWJbWpg3bw8vqQulIXxcgIu+Yu2Mn2bGs4XYDdsw4N4Hpm
+         HAgWDHT4tbaeNrVu0Y5WD7IEztlpA0b+ea1Qhwx3rm6w0f/2Np+FFOUkIUPqhnqCfn5f
+         BcSKtz5rAyuSdTg7U0fJkBjQrYEoYO/rtJ7vvgceRKgavFrDWQs6Hltos9d+tXmg/EhE
+         XBVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714388144; x=1714992944;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HK9OBY6JCsI5PbvjejB+IUXQa8uw72iX0OVXzGaQJV4=;
-        b=J8cJn2redC+HYgnWfTyRnrnkQJklCRi3FCoqdyf5uGQHoRzPtRz4LC4wIYU18KR/ud
-         K4PN873Ha5ir64sYfCTWEpPq31pBizHxXEGzdopWM/SZaoqORbl2foR0x/Dquy9yRZ9c
-         q7MFWA3uHYMpsQnxS9PgTYf5NDh0+3W6tp+BNg4QUPsR+y5+GLVyh/R23D4M4s9HLEEO
-         1dxp2gwdudlhvSkTKfvFnE9sSb1Tby5djaKKZYk0FuC/a5RIxYYRI9Co4jr+cXatFWvG
-         Mcq/Mkg5FiToHJ3N7J6KDp3a61q1Zx9vJ92Tq8bsKXeJIOpagATxQBIF80bUIWaxhxx3
-         N89Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXLBOC2Qto/fuPYo7lryw8b63RNaCoXCqC1szXJlCsntAJbCI7FJ2Wc6jFhDKdLevivQz2vLEvEFktmXES03GJ6PhuCArMipIj+Mw==
-X-Gm-Message-State: AOJu0YxqRa0ZSPJlI+9hAt6cIvBWvp3xL8wMn9tAKVRgDZwSTcLgt/hU
-	VPQ3tVRlFny8oYuiUPmiqVi74OPe5T+f/TL3DecEtvipffUmmk5lvzkUKGlwsvwCLG0Qphce6Dt
-	KY4e+4ibPQmEl6r/1s7jW12aiwQv0HBHHnirztw==
-X-Google-Smtp-Source: AGHT+IGnLAI/1mmfL0Yrtu3STdW3JZRgrtSe9fLYX4PwRR3wSZS0mEZbbEeASJOYhpilXlNLDeYA2jBBTzekDMQ4uOM=
-X-Received: by 2002:a25:ae18:0:b0:de5:5d4b:1632 with SMTP id
- a24-20020a25ae18000000b00de55d4b1632mr9731287ybj.60.1714388144152; Mon, 29
- Apr 2024 03:55:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714388922; x=1714993722;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H5nlE/gKXKtZyCtKakKoynFLO/s21hRFIz45EgqLtos=;
+        b=OL/CJEgtMKnO6YESsG7U5AIEm/toTr4XmCzrTO1Pt5vusF0U0aDbg4EC9FfRTNt14b
+         A4AT1WBgd4d3tCPGFsN//SmoIKtEwJJSxY2kFLZClvXrsTPIhGVEVXtX+CiQYHelunkf
+         OsoA9Sg70RFgNffo7L4Fuxcho8WDblIE4DItoEBM0S/J08L70A14S7CHpsI5wHNCP1xZ
+         9uCtmfgbhL06UmwPSS2Tuhb9fdYu9/IHwT7EHlIn0JnLGESNFfSqzmG2kEPRIJRgqe7w
+         e+l0iYHSalt7uODAdJwXxSj1NYELId/WalHvRnfgvD7eDoXwPVN7a0z12wu3hmr/hDiG
+         Y+Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+dqCBTEu/m4Yjh7T+g9u7zLmWWra/wDXQmZdeq4tuKaqZc6Fb+1zA+GNVN87HZ8IcBL/Rap9CYxer7g5RezvQiRkFCFJ4YnH0CA==
+X-Gm-Message-State: AOJu0YyoUkmfqcKxzOD5h9XgXOkxphsQfZyFTyfbkmXbDEB5C3ljJ2Jh
+	zbM+NuZ+Omf6ojftVmkJZlnpY9iMZj9TBRt4MZ8aYuSOfXxecuu6tH9FFSq33DI=
+X-Google-Smtp-Source: AGHT+IEuF9MTMbDDvvruAjzlean3gb0uB7Mg8YLjCNZkBk4ndSHhKaHF5XHYI+hxCwcB4isDtTQ6/Q==
+X-Received: by 2002:a2e:3513:0:b0:2de:d00f:e656 with SMTP id z19-20020a2e3513000000b002ded00fe656mr6854910ljz.37.1714388922282;
+        Mon, 29 Apr 2024 04:08:42 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a16-20020adffb90000000b0034af18ef68csm21326343wrr.5.2024.04.29.04.08.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Apr 2024 04:08:41 -0700 (PDT)
+Message-ID: <cfd60a71-b0c1-49d5-82ce-0c52764cea14@linaro.org>
+Date: Mon, 29 Apr 2024 12:08:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240415182052.374494-1-mr.nuke.me@gmail.com> <20240415182052.374494-7-mr.nuke.me@gmail.com>
- <CAA8EJpqY1aDZMaeqBULEOD26UeGYbLd8RsA16jZw7zXJ7_oGPQ@mail.gmail.com>
- <6726fa2b-f5fe-10fb-6aab-f76d61f0b3cd@gmail.com> <4a7b1e1d-ac68-4857-8925-f90c9e123fd1@gmail.com>
- <CAA8EJppGW=qyk2P6Z_S=dp0njsCjqZaXjw8qU4MY1HOZR-N=4A@mail.gmail.com> <Zi88Hdx6UgBo/gti@hu-varada-blr.qualcomm.com>
-In-Reply-To: <Zi88Hdx6UgBo/gti@hu-varada-blr.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Apr 2024 13:55:32 +0300
-Message-ID: <CAA8EJpq+Bbws8yH5Xq7rHyA+-=DaCcfEcgUa5RUt2+LWQW0kKg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] phy: qcom-qmp-pcie: add support for ipq9574 gen3x2 PHY
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: "Alex G." <mr.nuke.me@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/6] interconnect: icc-clk: Allow user to specify
+ master/slave ids
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@linaro.org,
+ djakov@kernel.org, dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240429091314.761900-1-quic_varada@quicinc.com>
+ <20240429091314.761900-2-quic_varada@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240429091314.761900-2-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 29 Apr 2024 at 09:20, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> On Wed, Apr 17, 2024 at 12:50:49AM +0300, Dmitry Baryshkov wrote:
-> > On Wed, 17 Apr 2024 at 00:25, Alex G. <mr.nuke.me@gmail.com> wrote:
-> > >
-> > > Hi Dmitry,
-> > >
-> > > On 4/15/24 16:25, mr.nuke.me@gmail.com wrote:
-> > > >
-> > > >
-> > > > On 4/15/24 15:10, Dmitry Baryshkov wrote:
-> > > >> On Mon, 15 Apr 2024 at 21:23, Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> > > >> wrote:
-> > > >>>
-> > > >>> Add support for the gen3x2 PCIe PHY on IPQ9574, ported form downstream
-> > > >>> 5.4 kernel. Only the serdes and pcs_misc tables are new, the others
-> > > >>> being reused from IPQ8074 and IPQ6018 PHYs.
-> > > >>>
-> > > >>> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> > > >>> ---
-> > > >>>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 136 +++++++++++++++++-
-> > > >>>   .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |  14 ++
-> > > >>>   2 files changed, 149 insertions(+), 1 deletion(-)
-> > > >>>
-> > > >>
-> > > >> [skipped]
-> > > >>
-> > > >>> @@ -2448,7 +2542,7 @@ static inline void qphy_clrbits(void __iomem
-> > > >>> *base, u32 offset, u32 val)
-> > > >>>
-> > > >>>   /* list of clocks required by phy */
-> > > >>>   static const char * const qmp_pciephy_clk_l[] = {
-> > > >>> -       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux",
-> > > >>> +       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux",
-> > > >>> "anoc", "snoc"
-> > > >>
-> > > >> Are the NoC clocks really necessary to drive the PHY? I think they are
-> > > >> usually connected to the controllers, not the PHYs.
-> > > >
-> > > > The system will hang if these clocks are not enabled. They are also
-> > > > attached to the PHY in the QCA 5.4 downstream kernel.
-> >
-> > Interesting.
-> > I see that Varadarajan is converting these clocks into interconnects.
-> > Maybe it's better to wait for those patches to land and use
-> > interconnects instead. I think it would better suit the
-> > infrastructure.
-> >
-> > Varadarajan, could you please comment, are these interconnects
-> > connected to the PHY too or just to the PCIe controller?
->
-> Sorry for the late response. Missed this e-mail.
->
-> These 2 clks are related to AXI port clk on Aggnoc/SNOC, not
-> directly connected to PCIE wrapper, but it should be enabled to
-> generate pcie traffic.
+On 29/04/2024 10:13, Varadarajan Narayanan wrote:
+>   	for (i = 0, j = 0; i < num_clocks; i++) {
+>   		qp->clocks[i].clk = data[i].clk;
+>   
+> -		node = icc_node_create(first_id + j);
+> +		node = icc_node_create(first_id + data[i].master_id);
 
-So, are they required for the PHY or are they required for the PCIe
-controller only?
+You have a few conditionals in the way down the end of the existing 
+for() loop but then you hit this
 
->
-> Thanks
-> Varada
->
-> > > They are named "anoc_lane", and "snoc_lane" in the downstream kernel.
-> > > Would you like me to use these names instead?
-> >
-> > I'm fine either way.
-> >
+         onecell->nodes[j++] = node;
+     }
 
+which means that this
 
+     node = icc_node_create(first_id + data[i].master_id);
 
--- 
-With best wishes
-Dmitry
+is not analogous to this
+
+     node = icc_node_create(first_id + j);
+
+So for any loop of this for() where j was incremented previously you 
+would not _not_ have the same node ids after your change.
+
+In other words dropping the j index will result in different node numbering.
+
+Is that
+
+a) intended
+b) correct
+
+Your commit log says "allow the drive rto provide the preferred master 
+ids and slave ids" which it does but it _also_ changes the autogenerated 
+ids.
+
+So could you either a) fix that or b) justify it, in your commit log.
+
+Also I think the 8996 specific change should be in its own patch.
+
+TBH I'm not sure the autogen change is on-purpose or warranted and for 
+certain the commit log is not elucidating on which is the intended case.
+
+I think you should rewrite this patch in two ways
+
+1. Fix the autogen case or
+1. Justify the change for the autogen case.
+2. Separate drivers/clk/qcom/clk-cbf-8996.c into its own patch that
+    applies directly after changing the core
+
+Perhaps you've already gone through this debate with other reviewers but 
+then you haven't captured that in your cover letter or commit log so at 
+a minimum, please do that.
+
+---
+bod
 
