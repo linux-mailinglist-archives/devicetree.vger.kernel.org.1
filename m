@@ -1,91 +1,92 @@
-Return-Path: <devicetree+bounces-63562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F868B5591
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:39:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 678118B559D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:42:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66EAC1C21ECD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 10:39:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0348B236A3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 10:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207023F9D8;
-	Mon, 29 Apr 2024 10:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E2238DFC;
+	Mon, 29 Apr 2024 10:42:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="ZeiwofjH"
+	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="MQjJrVDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB9E3E494
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 10:38:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795352941F
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 10:42:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714387092; cv=none; b=YsN/Lcp+ccNv7NzR9Lr94zRRl25Q9PbSqOA6V/jnE6NUeElBvj/AW1yr6nssdzPHBBdyXbRa33iopPCGJqK3L2EAPHc3nB2M7yO/3SBsuWqK/dg+ppwHvAi11kb3VKS8iUDAnyKOcT631LTxtAmpxvFVsPfbT8tcv/UhHt/VPIM=
+	t=1714387355; cv=none; b=na9DEVi9Og3uFzaUjYMXSjBejGnniSdMcTAKvG91ugXO0Lee834J2DmoKRhj80wKzbCy4aGv4bzJKTWFICJ6fianddSCYsbdTTxUs8tg8Y6ebZC9mMOWLBHsnY8asOYpfUFvf3Gvm2wNu+U+QI0g3n6AVZgzwJ3PsMSv/EX7t/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714387092; c=relaxed/simple;
-	bh=NT4axfLV5so4MHdczPOcLAZj95UXq5Tm+h9HSL4IoAo=;
+	s=arc-20240116; t=1714387355; c=relaxed/simple;
+	bh=Nz2aHzGyxCGbf4VQ25wGGdpxEimyVAT/uALfZ2g/QAQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ptzpqSQ3/lhCPdnR141ilQe9/9giKS8cRIScjankjL3NUrKvr9m2sP52r5aBdWUmi1zfiSM/1X5nYHmSO1Wx53RxpYC8pAQ/TjlMp/TABz9QVx84GkvM99Nkc/fZjRNYROgEsAD1ufwQWprWLlOjAwwAQMERr41cahqpcOHmmzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se; spf=pass smtp.mailfrom=ferroamp.se; dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b=ZeiwofjH; arc=none smtp.client-ip=209.85.167.48
+	 Content-Type:Content-Disposition:In-Reply-To; b=P8+fGnBcEyeDtPFv8ErImN6v+nsntbV8gav+URYcybGBsPBuTIEwaLj7Ib7CrPK7SVJ+RvxfEijrRLKvlquxQx/TEm+bGjrJ7WqwHhxfFU+UOrHRFGo+kyuoOy/DbyDL2RofX356qZl+9T9e3JwHJgolqYS2W4pabRatI4XQhnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se; spf=pass smtp.mailfrom=ferroamp.se; dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b=MQjJrVDR; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ferroamp.se
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-516d264d0e4so4905271e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 03:38:09 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-516d1ecaf25so5924401e87.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 03:42:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1714387088; x=1714991888; darn=vger.kernel.org;
+        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1714387352; x=1714992152; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fjzB5kOYHpIXeG3DalUTk+1WzbsP4BD9hLC648e5APk=;
-        b=ZeiwofjHmGINVoP2jvQjS5sy5rfYbk07y7BQ88mpKuAtxax14y/8arg6IAAB2zBUe4
-         yJirhaT3rxp9hAJvB0hHMNRSQ4BEbe1cphRmp5F03jGvs68VrZH31RGkxgj+dFZRyrvU
-         v/otfgY+VwJApivRrPrj4ATngN/+gKBEooSHCZWwwdALV1tMSeEHagZJhM4ddlbwsAGI
-         5anntWk0ohMrknTThUVijwI6f6Kg5dkEkj3Rw/P9ZZy84qolPGJHgFo7NJJbfths+zw6
-         zvHexqld2hJDvauBBhv51VC+RSOGt+ISTSjWxVVjGFyplkRuIi7M7i19LxpbgCHSSWsv
-         t0oA==
+        bh=Nz2aHzGyxCGbf4VQ25wGGdpxEimyVAT/uALfZ2g/QAQ=;
+        b=MQjJrVDR7Xxv/wR6ZCxyW2eft9B9LwEi/6FNy/Yj1QGvU2Wb82/BDgUug3V+7kz6zk
+         4RyYquUImHPfMB5zcBR/K7kR8kigXKQ+7/66xSpns6m58UUzeNDNMju3BpoatZiHFbT5
+         g9Tc3AG3rWdUX84MvbjtM3NmYF5jpq1mlA4jcZlNPlUEBj3jF5X7oiBVqeH/z71wvhmG
+         l4o9qNtMVhozLxaWYhGkLhZc300/7p9XK1EDi1fRISYXTTe2ozqrjbvZhTUN3ZA7I7iU
+         iajX1WX0L6ahcGe2BSRO3/Bbx5Y+dcAEaXue0l69+znOjJYVXT59HO7fjpkHU3W5ciHv
+         KHKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714387088; x=1714991888;
+        d=1e100.net; s=20230601; t=1714387352; x=1714992152;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fjzB5kOYHpIXeG3DalUTk+1WzbsP4BD9hLC648e5APk=;
-        b=O7Yh5ttd0OqVbPnnkavjn3Abmz+dvcT4lsk/KUsHpYHL49TUmXx4DoQWg6Y2OxiBwz
-         3x+AG3SED0JHYzhPN8twu0NzKy+LiY+9yBkklgn3pdD4FydvXr16nwCBpE/hp2o57qyt
-         PHZ3dAQ3ZMp6Eib/9p8JAN91ID/3wsuA7IcjwHlHO8P/C1D6UG6ezCt8etCsFejY8/SU
-         ZrsNtkhWEUDE3OXR0366vTDxsqP7vUKspwz+9Aja4Ul5lquunufbtTwyHQQ9Gdimt0Pn
-         EkoNxgrk7mqRDCJRgh81f4tWq0ZzNARGFfS4uh+oCG69tldXajylZnHHd3S/g0QInT82
-         Y2jA==
-X-Forwarded-Encrypted: i=1; AJvYcCXGNlPJO82NSdQjtrcOCBrm+mekq6ls+Mp8amNEeLCg7hp7QRZt07qeugvBC0Zn7d/JWTkFEcIJJ2nFgwmVjzHM+eJyT69IxDidSA==
-X-Gm-Message-State: AOJu0YyKEHK3KvCQYUmAZuIBMOQd/yqBIwWB9PxG4Ii2CVFPP/0uTwe4
-	3zaUKHXyV+Y6cLopM4DlMQfLZZMcCJoZyNqkx3ffce8yVr0fchkqanIAqLcgJ5g=
-X-Google-Smtp-Source: AGHT+IEHVNXQsyKshnf6f8TXqzAPKtcUZxZwg655xlhrBAyzGERSWZml0/lCbYiuKWsIzvFvtuyaLw==
-X-Received: by 2002:ac2:48ba:0:b0:51a:c904:f1 with SMTP id u26-20020ac248ba000000b0051ac90400f1mr3281586lfg.3.1714387087641;
-        Mon, 29 Apr 2024 03:38:07 -0700 (PDT)
+        bh=Nz2aHzGyxCGbf4VQ25wGGdpxEimyVAT/uALfZ2g/QAQ=;
+        b=kqA40p8+aWXsoM91NBqom5OQhJnHD/zKYi+UCOI/XjpLuqCBcNnWeLMLZm1CY/gJfh
+         RklqxM+gl/HqoRWlHnK9mNmb2uMUr5sB4uzKuPqtFVrKH7PcKFuaZ5upWICoVzgepkVn
+         CJLlNlL9WMIwaP5WmdFQ5pI1oUdfMSxXkLvP0h2z73aBdwoX8/Td7eBzE3X2DjxcYhAI
+         +Mai1ZmqDtIBvYHtSa2IOARY4rSf2HUPmYaZyijAmzAi6iszZeTlBRV2l9w/bvcqaNyt
+         edSi3eWVE5s2g2/Awe2CdRq9B11tXAX0CzhhAyAYyJOrkHCWc1TJoWIDuqtgkcjw1IFc
+         rsgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWDxEIIbofV9LO1rRrO37DxCkYIn5JaXChW3PoZXZJ/WnSNWhkFS2cC4bnpPKgLASY7G23yvYWXZpiIThDIz2OYWA0zVqXskdqnsA==
+X-Gm-Message-State: AOJu0Yy1tySGhdJ+o6TFmjrCw/mBS952FkGBHYpMyK3FfvfMn95x4zuG
+	/Aco3x4aajnwNgSltMdXlXEpPtVZgm/ygCu7uTBikxnpT4BoSNfKsgumha4aiYQ=
+X-Google-Smtp-Source: AGHT+IGC/EWccJ9E9/wUYZ6qvH0GazTIQwjcgftBrMnJ0ZHtEs6kojINIqdEOv8KtHZPrjAeqTfdhw==
+X-Received: by 2002:a19:5f42:0:b0:51c:d28d:526b with SMTP id a2-20020a195f42000000b0051cd28d526bmr4779616lfj.6.1714387351618;
+        Mon, 29 Apr 2024 03:42:31 -0700 (PDT)
 Received: from builder (c188-149-135-220.bredband.tele2.se. [188.149.135.220])
-        by smtp.gmail.com with ESMTPSA id c36-20020a05651223a400b0051cc38f801csm1080372lfv.118.2024.04.29.03.38.07
+        by smtp.gmail.com with ESMTPSA id m7-20020a056512358700b005175dab1cfdsm4044973lfr.257.2024.04.29.03.42.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Apr 2024 03:38:07 -0700 (PDT)
-Date: Mon, 29 Apr 2024 12:38:05 +0200
+        Mon, 29 Apr 2024 03:42:31 -0700 (PDT)
+Date: Mon, 29 Apr 2024 12:42:29 +0200
 From: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-To: Parthiban.Veerasooran@microchip.com
-Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
-	saeedm@nvidia.com, anthony.l.nguyen@intel.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	corbet@lwn.net, linux-doc@vger.kernel.org, robh+dt@kernel.org,
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
 	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
 	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
 	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
 	benjamin.bigler@bernformulastudent.ch
 Subject: Re: [PATCH net-next v4 13/12] net: lan865x: optional hardware reset
-Message-ID: <Zi94jdVg8a5MaB3E@builder>
+Message-ID: <Zi95lRl-WfeMgPmR@builder>
 References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
  <Zi68sDje4wfgftyZ@builder>
- <dd9da345-e056-4f34-8e39-6901bf9c1636@microchip.com>
+ <13c38696-25ed-418d-b85e-950736384a0b@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,57 +95,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dd9da345-e056-4f34-8e39-6901bf9c1636@microchip.com>
+In-Reply-To: <13c38696-25ed-418d-b85e-950736384a0b@lunn.ch>
 
-> > This commit optionally enables a hardware reset of the lan8650/1
-> > mac-phy. These chips have a software reset that is discourage from use
-> > in the manual since it only resets the internal phy.
-> The software reset done by the current driver is not only resetting the 
-> internal PHY, it resets the entire MAC-PHY including the integrated PHY.
-> The reset bit of the Clause 22 basic control register only will reset 
-> the internal PHY alone. But oa_tc6_sw_reset_macphy() function is writing 
-> software reset bit in the Reset Control and Status register which resets 
-> the entire MAC-PHY including the internal PHY.
+> You sent this patch in an odd way. We don't normally see headers like
+> this. I've been using b4 recently for patch management:
 
-All right, I did not dig deep enough obviously.
+Sorry about that, I appreciate the suggestion!
 
-> The above note is given in the lan8650 datasheet to let the user to know 
-> that clause 22 software reset will reset only internal PHY but I don't 
-> think they mean it for the MAC-PHY software reset done from Reset 
-> Control and Status register.
+You left good comments on the implementation side as well, I'll wait
+with addressing these. Parthibans feedback does invalidate the core of
+the problem I set out to solve with this patch.
 
-Could still be relevant to implement the .soft_reset with -EOPNOTSUPP as
-Andrew has suggested in the phy driver.
-
-> 
-> So in my opinion, I don't see the need of external pin reset as the 
-> existing oa_tc6_sw_reset_macphy() function does the software reset of 
-> the entire MAC-PHY.
-
-I agree with your assesment that this invalidates the problem I was
-aiming at solving.
-
-Additionally I figured out why my setup did not work without the HW
-reset, I had missed a pull resistor in the schematic that held the IC in
-reset.
-
-To me it seems more feature complete to have a driver option for the
-physical capabilities of the chip, but if it doesn't actually solve a
-problem it might just be bloat.
-
-> 
-> Still if you see a need to have this external pin reset as an optional 
-> function then it may be needed for all the vendor specific MAC drivers. 
-> In that case, reset-gpios parameter value alone can be taken from the 
-> chip specific device tree and the remaining code for operating the reset 
-> gpio can be moved to oa_tc6.c and the function name can be 
-> oa_tc6_hw_reset_macphy().
-> 
-
-If the consensus is to keep a HW reset I do like this suggestion.
-
-I won't push for this to be included, if it is, I'm happy to address the
-feedback of patch 13.
+If the patch is not dropped I'll ofc address these points!
 
 R
 
