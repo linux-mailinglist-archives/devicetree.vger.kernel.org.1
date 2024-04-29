@@ -1,102 +1,123 @@
-Return-Path: <devicetree+bounces-63497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249A78B51E5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 08:58:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2FB48B5204
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A29B1B210B1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 06:58:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9755F1F214DE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2321611C94;
-	Mon, 29 Apr 2024 06:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D55812E7C;
+	Mon, 29 Apr 2024 07:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HasDBHgB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LY9EyzqS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7523A111A5;
-	Mon, 29 Apr 2024 06:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2759134A0;
+	Mon, 29 Apr 2024 07:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714373901; cv=none; b=GaSUHw25adlXkIhTzRHnglvObmxt2PQDpHsHi633hA5Kyf3m6suQ7Y0DaiEIW/4KXPxXL9ye08W6M7zT23Uy1oWE/41DLJi3JhSe7aoLRTTO3bskUMIRcKq4/urNwsfGwQMMpFIDUoDT0RyVH9xMjb4cZNN9WrRmXuEE7Yh18c0=
+	t=1714374640; cv=none; b=JaqkHwxNoWTGRHIKcyq39z5ihXz8xFBJabUV7tPuAJbW5RWUD+XgorovkGZjFd7R5kvrko/ar6VXL89LnY1RAM5vpBGtSFQgkIUaUVIIfdmUuReG9xKRXfDfY+vovd87mNNX0tzOe15DJ/D3rPRSgYKLFKwucv1eIEUwf90bHv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714373901; c=relaxed/simple;
-	bh=Py68IY/+ljaICP3qWpJKN4auBrI7bO6Iy+kpy+BcGjY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=PCWE8vsUeb6uvdUjLCpnqBP2hcqLCUX9A4532zUMEJTtXMSS3v/g308LdZIJrWvFEjtnASA9HTP7pyd/6kXfQMKAf1sgASLyCV1tPQPqplW0NDGC27hZyV2M+J80rs8m1A5QrWTQbCE96VAY43v/dFsqDAOg7It60GftOUtLZ+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HasDBHgB; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T6wCPJ069784;
-	Mon, 29 Apr 2024 01:58:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714373892;
-	bh=uxsEzA8YQiJtpudbOgeMEIqvfY/FdfNq87a9eDj3ncU=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=HasDBHgBFWKDlZFIALCl+FWYzRpklLkYP55Uq9n9ou1DUkbLAf2kcOY4XhT6yLuXF
-	 ojWYa3+4wPOyIDLAkgMfsKWi/XtHjxNm27pUynKffMLZEwxUkhS+MZOYa49xBObmxF
-	 GptKmd3MhrrPnPqLJvIrU0l60YUjy/D4RTYnwWic=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T6wCOv030073
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 01:58:12 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 01:58:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 01:58:12 -0500
-Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T6w8WM004811;
-	Mon, 29 Apr 2024 01:58:09 -0500
-Message-ID: <f400160f-1caf-44f6-a1b2-3a538eebd63c@ti.com>
-Date: Mon, 29 Apr 2024 12:28:08 +0530
+	s=arc-20240116; t=1714374640; c=relaxed/simple;
+	bh=u4RpuH47LCq8+OKqkijooorm9I+Cq42DccMjOsHgWJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mGC3ffyF4B2LXVcPh+jK2ZGlQxyXTnpF445i2LM0ZCYl94o2hcVli/VjPCl+86icwWYbAqH6eQfyvD7aD1qd9rJZ71+XFdDQx7iv1ukexFH3cef1lj3QLsE1GwBfdIERfKNEFGPQ+I82ETGw6EiNBlcsJ/YwI+tuwb6pwi3f7BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LY9EyzqS; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1e2b137d666so31468905ad.2;
+        Mon, 29 Apr 2024 00:10:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714374638; x=1714979438; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ezNGmgXtmN/d5QQIznl5zIrhQk/v8pmvi9ftsZ0N98=;
+        b=LY9EyzqSZrOSb8FtxwnWlmDwIStHPJwII4rCneOMRmHYberz3eAHot0iYqGC8mEqh0
+         dJHk3WVzzT9u9RWD9g0wjg+XiLNU2sBH5XatOtQq/jYbQ4szQ1W7NAxdGTcbhgacaB6+
+         jbEkGoXwuQwvauiArgwxXHrsM84OxA8ug2vr8I1KU0CEHZWR5zlnRfli6MbXMShKNfeU
+         zjFtw8JrXDvHAoJ5ftAvp13FVxc5MpcckCULpcFldg1h1BMsuK29rQyyfDUxnuPVWwCm
+         Jx+vDDTBHL5dPDQK0+u8c7ygm+BFegToCr+ypjZjQtdheRIL3u7Vdj+ELjT+j7m/uupx
+         hmnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714374638; x=1714979438;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6ezNGmgXtmN/d5QQIznl5zIrhQk/v8pmvi9ftsZ0N98=;
+        b=rfs4xLoO0A9VjgGNlwAbV2Wq9k6s3812KwA+G0yFeYEzpupPrJOAJN5rdptbEbDoZB
+         ZM6xz1l0toSChPA7xKjDdJ8cb/QBRp10RIn0ukgZAYi/MPfJHmqQEiILjrm+asjgbrDh
+         t58Yy75sf9p8/RuF6TsnLzgvSuOC+3wvi9OyU/5ppG7Fq+r0rPOLJQHEGIg6TtPVLSyH
+         VhjkfnKzPUWE9Eq0lFOroX+ufD1EUc5UEo++9CkRmEYAKAoackuIll68pVHXg6fKRXMu
+         IBNGrYgAR/i0K5th5t+Cs9zyI9qwrayfrNsjB8qGhpV1wcmQEwCm9z6jed3PoJ0cayw4
+         759A==
+X-Forwarded-Encrypted: i=1; AJvYcCXVNRFAPYepb8MTBFBgBNgDac8Jt3wDpTjQedG0BxNVYOFyyUCyOzkFmhoIqoNeK17ZhWkWcDUokYaBQxUKBlV1a/4A4z22QKmVlpGvDWRJ8alxHqqSmQ63m/tmEI4Nd33/D+hQVUge69KPTVUb6ogBgXOGuL95SRgZOuy6/lUfU9+tBQ==
+X-Gm-Message-State: AOJu0YySJYTutRokwUZYoiKwyYWDIP/Ni6v0yooNvy3nPHjXMKh/CGRT
+	g2+XHjMO1Lw+z10JljWkfrgeDvy99xtacRb6mtaTtUGNHIpP0nHy3MS6rF40
+X-Google-Smtp-Source: AGHT+IGZzv0nK/Ap+onynsI5bN80EXBIn8pYwFdVCFbTCUWgtG4x9ojg6OcZwUwaJZNiNQm8wLn4Jg==
+X-Received: by 2002:a17:902:e5cd:b0:1e8:6614:51cc with SMTP id u13-20020a170902e5cd00b001e8661451ccmr11367971plf.5.1714374637938;
+        Mon, 29 Apr 2024 00:10:37 -0700 (PDT)
+Received: from five231003 ([2409:40f0:3004:21d1:ce46:748f:4353:8a5d])
+        by smtp.gmail.com with ESMTPSA id ku13-20020a170903288d00b001e403970ec0sm19500551plb.277.2024.04.29.00.10.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 00:10:37 -0700 (PDT)
+Date: Mon, 29 Apr 2024 12:40:31 +0530
+From: Kousik Sanagavarapu <five231003@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: Re: [RFC PATCH] spi: dt-bindings: ti,qspi: convert to dtschema
+Message-ID: <Zi9H5371PrJtIKVy@five231003>
+References: <20240428070258.4121-1-five231003@gmail.com>
+ <59fe75b6-a4a4-4c90-a3c4-c8a4b539e879@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am625-sk: Add bootph-all property
- in phy_gmii_sel node
-Content-Language: en-US
-From: Chintan Vankar <c-vankar@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
- Menon <nm@ti.com>,
-        <s-vadapalli@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20240429061600.2723904-1-c-vankar@ti.com>
- <c17d8123-e9cb-45b5-84df-9fe102ddeddc@kernel.org>
- <4b3d2578-06ea-4feb-aa31-3968063953e8@ti.com>
-In-Reply-To: <4b3d2578-06ea-4feb-aa31-3968063953e8@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <59fe75b6-a4a4-4c90-a3c4-c8a4b539e879@kernel.org>
 
+On Mon, Apr 29, 2024 at 07:07:38AM +0200, Krzysztof Kozlowski wrote:
+> On 28/04/2024 08:58, Kousik Sanagavarapu wrote:
+> > Convert txt binding of TI's qspi controller (found on their omap SoCs) to
+> > dtschema to allow for validation.
 
+[...]
 
-On 29/04/24 12:12, Chintan Vankar wrote:
+> > +  spi-max-frequency:
+> > +    description: Maximum SPI clocking speed of the controller in Hz.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
 > 
 > 
-> On 29/04/24 12:08, Krzysztof Kozlowski wrote:
->> Are you sure you kept proper ordering of nodes or just stuffed this to
->> the end?
-> 
-> Yes, I added this node at the end.
+> Are you sure that's actually needed? That's not a property of controller.
 
-Is it okay to add it at the end or it should be defined after "cpsw3g"
-node ?
+[...]
+
+> > +        num-cs = <4>;
+> > +        spi-max-frequency = <48000000>;
+> 
+> Drop. Are you sure driver parses it?
+
+The driver does parse it though.  Looking at
+drivers/spi/spi-ti-qspi.c::ti_qspi_probe(),
+
+	if (!of_property_read_u32(np, "spi-max-frequency", &max_freq))
+		host->max_speed_hz = max_freq;
+
+So I included it in the dtschema as well.  Please let me know if
+including it in the dtschema in this case is wrong.
+
+Thanks
 
