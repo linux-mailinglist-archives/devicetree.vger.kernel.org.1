@@ -1,137 +1,220 @@
-Return-Path: <devicetree+bounces-63466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C66D8B50A6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:18:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F9A8B50B2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:25:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A45911C217FA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 05:18:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FD121C214CE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 05:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE87D520;
-	Mon, 29 Apr 2024 05:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00344D53C;
+	Mon, 29 Apr 2024 05:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WGwh58Gd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fEqa9gd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DF3D515;
-	Mon, 29 Apr 2024 05:18:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABA98BE2;
+	Mon, 29 Apr 2024 05:25:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714367896; cv=none; b=Dr1Dq9UPeLUa02aXxNSd+Cwv8sHGjABsRGmgjylfLKcxWJ4C0yUPu6yKY3/77GoArHvvt5C0gilWYfz6F4Zgll7WoxGqQyzP0XR4kYgsZkAYF86kufaGsuPrLK+DTtB182wk9CcDHd70lIMk3FXK5gXxdWRj9H0IENTAvNK5FiI=
+	t=1714368317; cv=none; b=hca3MSqoXmx72dbqQMnh5EwSZ/ZSOQpVDnXbiKlgZrHIuWlf8Zvp1SSznOtVVQh8lM0Q6iLSzyNJtPNFhJ1yK2PQzVNw+f3KwFKFBYgfT79ZL3Gx189r69yo2x1kBo5gyAlPHsdM+IzYo25EiHYCXUH0Z8z8rIZ1YbMSdr0p3wM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714367896; c=relaxed/simple;
-	bh=qooaycyXcEwFMgbLaejo2Eb1UKNs1HunVbSCf0OC2Fo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rt84O9ic9r8iHaf9PuDe7lZHyixO1+y0ax+1K7bbEcpcpwxH0+5sFoVYr/PAVC3maU27mMfuxoRZxmU+9nuCLbBZvZRwVGFCMCv765b96R67fC2aeefx5CzG0xccTC5vdaoKz9/kT1+43DbogM0vNV2bJ0OQc4QZDy9jEQrG+Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WGwh58Gd; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-344047ac7e4so2801727f8f.0;
-        Sun, 28 Apr 2024 22:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714367893; x=1714972693; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uwGA64C1r1xkHN72jIWxpN8Q71Ufkov+rKTRlObLNLM=;
-        b=WGwh58GdErzDEudIj3HXax5XlBlLRk9u2xqBX6eyORwfxKJDGpIZJ4sWYlr/QDIhei
-         95Cm7WvsnnokXBUc8YyiXxARr9BAaCNfX+el9v3t6t/xmUrViCHPm4O/07IpjC2aAzUl
-         +nhEF21X1gUxqZJBZukQOiPyDRkpSm4ljZgiOgpgRT05WfcMBe7gLaqN0B06Pyi5LOSV
-         xNTiKDKYdSCbqE1UQ4H41AXSzymDPapPeWDZMGk1BRaRFjLec35dMLjf/QRz4K2U4pjH
-         SPuzMhp/GBfEARRIGQTxermHnD1SO640rTgahuhBcYiN6LKcejtPPk4JgP0cCdAgtplK
-         qloA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714367893; x=1714972693;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uwGA64C1r1xkHN72jIWxpN8Q71Ufkov+rKTRlObLNLM=;
-        b=e2N/OYWKwG3HUWz09eJwavaU2VTo6kaD3+bA9QRdC06Y79PXWdpqmGOrxB7G4TpIil
-         yuKHx8nNS43nksSP+00XU5AeQvYCZY2EE+D1/oKdnEJ3YSIRyluj/eY84wOzie3D0vVj
-         dwuWdSHv3gWSh4Giq4xfOkwtLeVXnLz8NvqePxV7VO/BrNqKSSd6JFVG2otP4UdxTGDw
-         Y49NsEy0tjSdz/Ubx21Z6eNUSSq305TXAZsw2wuUDgpHClU4gfUYp9A5iiNfXdefReyt
-         qL54bwYnYkznk/xJuLMYQc1w+INWD1thLmW6hga/RujwFnSaecuKde7bEgqLrWI/6i26
-         whQw==
-X-Forwarded-Encrypted: i=1; AJvYcCWOqc4oqkX3xiH+a2OLseJ430qJbVuJVNz7wkuX66iPMKIkey6s3FoIKfyVhnQ0od4dYBdZrgkDwQmLDmO1zKuiNn/Gzz37K06S+QumPiY1Cz6UetiCvhGU/BkCvJpjU0FbyeQKizCy4looy5Zk+3enhwcRIxOXLxAhdCkOXVUjqmci92R/EbA4JzzYS1Cl5R9jNP+0SB6Y6T8NapLESopKlyyLIKQr7NkLAwkk0zzMNsnf/DjHcIgnAAx1
-X-Gm-Message-State: AOJu0Yyx7+pPXdZIxJoHdoSoe8SDlPr8pETVj67b9NC9XHqnvKKOX+1v
-	5Rl+c6xRjhn8G/fgPz0k4dCQsV1an5ILBdIKBg8JBgBL8TCQGtF89YbwtBVJ/r1bxXZSAOopnFq
-	R+yEvEHJ3uzYKEcUdlTsekPCmqEM=
-X-Google-Smtp-Source: AGHT+IEGhQp8Q/vKN8iZGdoxw5OL5JHgh7qmf1rS8+jy74QjfXfT6iSCzTaaqjQQ17BGJclMB87/EJjPCjE7hO5gNTg=
-X-Received: by 2002:a5d:6592:0:b0:34d:760:f8b3 with SMTP id
- q18-20020a5d6592000000b0034d0760f8b3mr2105140wru.10.1714367892881; Sun, 28
- Apr 2024 22:18:12 -0700 (PDT)
+	s=arc-20240116; t=1714368317; c=relaxed/simple;
+	bh=Ed7Oj6KAsZjX9rdEOr1fDKRnxgpa4qVUZuWx/uLGxX0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MwlMAxTXE/WaLxFcE2MlyfzmEmDoEKlY42h3ylL+ZZqqeKWIEjYmNK64iKFg6of0rwniTCxTLHUwjfGpS3PbnxGngJbhI1TqNz4ayXNh+foNvo+weKdYkCkVophGQkRGSK3yst+Hu0PwVTT6+BTdICVYKKcm/zeTZK0XpD7Z/UM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fEqa9gd/; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T5Otw8063283;
+	Mon, 29 Apr 2024 00:24:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714368295;
+	bh=YlwjJexDMMoV1TKua9hyBS7nJpSKTtWk5vd9QtlVsNc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=fEqa9gd/XdAsN2euun74yGGQVFkROVLZPY8S76KbRnzSV9CWOTRb8S+cdh7ZwDCza
+	 I0TSK2Kv6nOapcVQ74FmyHSxAaGoBDmPR5dpRY+ihSxSrrUMKpmObbgNuaRQrTUhU6
+	 PdEbKbthAFHZJ27pkNt78KJuB66qLzUW7uppLctw=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T5Ot8j047330
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Apr 2024 00:24:55 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Apr 2024 00:24:55 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Apr 2024 00:24:54 -0500
+Received: from [172.24.227.88] (uda0500640.dhcp.ti.com [172.24.227.88])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T5OoV0038567;
+	Mon, 29 Apr 2024 00:24:51 -0500
+Message-ID: <6a3ef0c1-d6b3-7161-1338-c7c0a9c41d18@ti.com>
+Date: Mon, 29 Apr 2024 10:54:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240429033833.895122-1-peteryin.openbmc@gmail.com> <e6ba7e83-0329-4fc8-a1d6-83a8683cc812@roeck-us.net>
-In-Reply-To: <e6ba7e83-0329-4fc8-a1d6-83a8683cc812@roeck-us.net>
-From: Peter Yin <peteryin.openbmc@gmail.com>
-Date: Mon, 29 Apr 2024 13:18:01 +0800
-Message-ID: <CAPSyxFTQw6MVSwO3ab23OQHKVYZCKm1N0k8AGQXfpXGAXDVkqw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] hwmon: (pmbus) Add support for Infineon XDP710
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, 
-	Patrick Rudolph <patrick.rudolph@9elements.com>, Lukas Wunner <lukas@wunner.de>, 
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-i2c@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am62a7: Add overlay for second
+ CPSW3G Port
+Content-Language: en-US
+To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>,
+        <s-vadapalli@ti.com>, <srk@ti.com>, <danishanwar@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Ravi Gunasekaran
+	<r-gunasekaran@ti.com>
+References: <20240425102038.1995252-1-c-vankar@ti.com>
+ <20240425102038.1995252-3-c-vankar@ti.com>
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20240425102038.1995252-3-c-vankar@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Sorry, I thought it was going to be applied after I fixed it.
 
-On Mon, Apr 29, 2024 at 1:00=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
-wrote:
->
-> On 4/28/24 20:38, Peter Yin wrote:
-> > Add support for Infineon XDP710. This is a Hot-Swap Controller.
-> >
-> > Change log:
-> >
-> > v2 -> v3
-> >      - Fixed Ack quotes
-> >      - rename "microOhmRsense" to "micro_ohm_rsense"
-> >
-> > v1 -> v2
-> >      - Merged patch 3 into patch 1.
-> >      - Modified comments.
-> >      - Fixed the microOhmRsense array.
-> >      - Improved operational accuracy.
-> >
-> > v1
-> >      - Add support for xdp710 hot-swap device from Infineon vendor
-> > ---
-> >
-> > Peter Yin (2):
-> >    hwmon: (pmbus) Add support for Infineon XDP710
-> >    dt-bindings: hwmon: Add infineon xdp710 driver bindings
-> >
-> >   .../devicetree/bindings/trivial-devices.yaml  |   2 +
-> >   Documentation/hwmon/index.rst                 |   1 +
-> >   Documentation/hwmon/xdp710.rst                |  83 +++++++++++
-> >   drivers/hwmon/pmbus/Kconfig                   |   9 ++
-> >   drivers/hwmon/pmbus/Makefile                  |   1 +
-> >   drivers/hwmon/pmbus/xdp710.c                  | 132 +++++++++++++++++=
-+
-> >   6 files changed, 228 insertions(+)
-> >   create mode 100644 Documentation/hwmon/xdp710.rst
-> >   create mode 100644 drivers/hwmon/pmbus/xdp710.c
-> >
->
-> What is the point of resending this ? I said I applied the series.
->
-> Guenter
->
+
+On 4/25/24 3:50 PM, Chintan Vankar wrote:
+> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> 
+> The SK-Ethernet-DC01 Add-On Ethernet Card for AM62A7-SK board supports
+> RGMII mode.
+> 
+> Add overlay to enable the second CPSW3G port in RGMII-RXID mode with the
+> Add-On Ethernet Card.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> ---
+> 
+> Link to v1:
+> https://lore.kernel.org/r/20230424111945.3865240-3-s-vadapalli@ti.com/
+> 
+> Changes from v1 to v2:
+> - Since support for device tree overlays for am62a7-sk is already enabled
+>   by commit "635ed9715194", it is removed from this series.
+> 
+>  arch/arm64/boot/dts/ti/Makefile               |  3 +
+>  .../dts/ti/k3-am62a7-sk-ethernet-dc01.dtso    | 61 +++++++++++++++++++
+>  2 files changed, 64 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index c76b41f86527..8c55e46d9f98 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
+>  
+>  # Boards with AM62Ax SoC
+>  dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk-ethernet-dc01.dtbo
+>  
+>  # Boards with AM62Px SoC
+>  dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
+> @@ -123,6 +124,8 @@ k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
+>  	k3-am62x-sk-csi2-ov5640.dtbo
+>  k3-am62a7-sk-csi2-tevi-ov5640-dtbs := k3-am62a7-sk.dtb \
+>  	k3-am62x-sk-csi2-tevi-ov5640.dtbo
+> +k3-am62a7-sk-ethernet-dc01-dtbs := k3-am62a7-sk.dtb \
+> +	k3-am62a7-sk-ethernet-dc01.dtbo
+>  k3-am62a7-sk-hdmi-audio-dtbs := k3-am62a7-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
+>  k3-am62p5-sk-csi2-imx219-dtbs := k3-am62p5-sk.dtb \
+>  	k3-am62x-sk-csi2-imx219.dtbo
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+> new file mode 100644
+> index 000000000000..f6d5a089a717
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+> @@ -0,0 +1,61 @@
+> +// SPDX-License-Identifier: GPL-2.0
+
+Please update the license to "GPL-2.0-only OR MIT"
+
+> +/**
+> + * DT Overlay for second CPSW3G port in RGMII mode using SK-ETHERNET-DC01
+> + * Add-On Daughtercard with AM62A7-SK.
+> + *
+> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&{/} {
+> +	aliases {
+> +		ethernet1 = "/bus@f0000/ethernet@8000000/ethernet-ports/port@2";
+> +	};
+> +};
+> +
+> +&cpsw3g {
+> +	pinctrl-0 = <&main_rgmii1_pins_default>, <&main_rgmii2_pins_default>;
+
+
+One entry per line like below
+
+pinctrl-0 = <&main_rgmii1_pins_default>,
+	    <&main_rgmii2_pins_default>;
+
+> +};
+> +
+> +&cpsw_port2 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-rxid";
+> +	phy-handle = <&cpsw3g_phy1>;
+> +};
+> +
+> +&cpsw3g_mdio {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	cpsw3g_phy1: ethernet-phy@1 {
+> +		reg = <1>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,min-output-impedance;
+> +	};
+> +};
+> +
+> +&main_pmx0 {
+> +	main_rgmii2_pins_default: main-rgmii2-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62AX_IOPAD(0x0184, PIN_INPUT, 0) /* (AA21) RGMII2_RD0 */
+> +			AM62AX_IOPAD(0x0188, PIN_INPUT, 0) /* (Y20) RGMII2_RD1 */
+> +			AM62AX_IOPAD(0x018c, PIN_INPUT, 0) /* (AB21) RGMII2_RD2 */
+> +			AM62AX_IOPAD(0x0190, PIN_INPUT, 0) /* (AB20) RGMII2_RD3 */
+> +			AM62AX_IOPAD(0x0180, PIN_INPUT, 0) /* (AA20) RGMII2_RXC */
+> +			AM62AX_IOPAD(0x017c, PIN_INPUT, 0) /* (W18) RGMII2_RX_CTL */
+> +			AM62AX_IOPAD(0x016c, PIN_INPUT, 0) /* (AA19) RGMII2_TD0 */
+> +			AM62AX_IOPAD(0x0170, PIN_INPUT, 0) /* (Y18) RGMII2_TD1 */
+> +			AM62AX_IOPAD(0x0174, PIN_INPUT, 0) /* (AA18) RGMII2_TD2 */
+> +			AM62AX_IOPAD(0x0178, PIN_INPUT, 0) /* (W17) RGMII2_TD3 */
+> +			AM62AX_IOPAD(0x0168, PIN_INPUT, 0) /* (AB19) RGMII2_TXC */
+> +			AM62AX_IOPAD(0x0164, PIN_INPUT, 0) /* (Y19) RGMII2_TX_CTL */
+> +		>;
+> +	};
+> +};
+
+-- 
+Regards,
+Ravi
 
