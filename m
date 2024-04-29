@@ -1,256 +1,176 @@
-Return-Path: <devicetree+bounces-63753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99DA8B6480
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 23:23:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4418B6491
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 23:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70CEA288B62
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:23:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F871B2125E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF0D1836DC;
-	Mon, 29 Apr 2024 21:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE5D184112;
+	Mon, 29 Apr 2024 21:26:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="d6MzEwo/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ma4fsmPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2043.outbound.protection.outlook.com [40.107.7.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 784B1181CE1;
-	Mon, 29 Apr 2024 21:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714425821; cv=fail; b=Fg4TZyE3rcQArWVmA0F/4YQojqTAk4gwdQEyUO0Ba/HTkpvhXcTrEdJOdjLqkx118X/AmiDDK+5MFYQhbs8Kf7crZ1IK6XSbDIsUvysvE8OAMpRAC6G88EsthqXM+q0hjVVsLSytnAjyAxZfD6hO0RFsb3jGiGWwgFX9YGyNmx8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714425821; c=relaxed/simple;
-	bh=dbFVGZrXHsxeQfBwlmW6ahfnkz/suxU3emapI86IKoI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=fJILCtvsKpivJ4OorseHw0UEUJn5xqpRcCCLGCaWjM84vGljinFMuG2nDqza5U2McIyYis+U/BH9kEXR5IWqb0YElXnSmNCbd5bHb1QyOZZ+Kq4ObLU5VocAaxlrulev5DSFi+iKhTHa9a9W4C6rthbrQiEDXZc74kC8VgmtYLI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=d6MzEwo/; arc=fail smtp.client-ip=40.107.7.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ah8oEM2b8/WAqfmy3RYHXVkl74SQG+k6jtrR9UdoTsxSw29BdYupciXIKLwesMNM/B39JDyeI7DeTlkmczjFTaGvgm0Zcm7rlUVybpDp3khp6lO/WkTdrw1jrIjc2DqKIZS0eM8bz7QiRzgbGvd1T6nUWOrpvF8FVPA6+GGQYEc/cjDKArYZdg9lgO7vGKr2lo2HNzN6IY7QEx2Y0jCG6SMdhjvUw9lk59yHjzw//EPO0LaD4JN4ahuHvyBwcOXb820AM//Sjyh850kvN3usLxirBko1y4SWweL74y3TmkDJpfPyaZQE7VSrsJoshZ4Cy9EKJtoq482p9k0C/654gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4DQvtZbSPDRyZuSAxNADOMVHq8fsFg/nMiEvobaKmWw=;
- b=LSTXic4uCmm0MIxzBlrNxUuK0e3TvJMCgJJwQSy3vNE21eYs8Q8G+LhEvW/Dd0bPDHpJwutXAugSlLaVX16WRMqx1RbcmxdJ7RnX43sOP3LWBoemoyKHD+6q0QWhIxWsOwFQ9IHfpYOB8sRI0UTXCKPsHJec27PHejtWJ30bAzs0SK/CAGHn7ZXiGSuYeQhgrikNG6HTOpsm/BQo+dpTgtwQq3HtWwT6BTfQAL928eWWz5C8PmjI5gJNlHMfPV6ZhXPzmzMdFZ5R0MF76jDxM3bKC0q/n6nwDs7EW6fFB1DAvgWPYVm0jPFAd12L4OSkEdRsx7cw24QTkjJRl1XCZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4DQvtZbSPDRyZuSAxNADOMVHq8fsFg/nMiEvobaKmWw=;
- b=d6MzEwo/jIwD7g6IvZDj1h1yugmRvgkwoIhGWhWvV99WiVfSzs0BY/q9QRUIDFyBDl4yCYn+2reXvMwk8uzX/Cv6W0wA3ZJ83Tg008WZ7ZdtXLN36do7TwxIZtb3TmoR37HMyDaqQ6ifC9u3fgoGjO0uJynnTvVd8Ypx9aKgipQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB8524.eurprd04.prod.outlook.com (2603:10a6:20b:433::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
- 2024 21:23:36 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7519.035; Mon, 29 Apr 2024
- 21:23:36 +0000
-Date: Mon, 29 Apr 2024 17:23:23 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 10/11] dt-bindings: imx6q-pcie: Add i.MX8Q pcie
- compatible string
-Message-ID: <ZjAPy05fGLqX6W1I@lizhi-Precision-Tower-5810>
-References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
- <20240402-pci2_upstream-v3-10-803414bdb430@nxp.com>
- <20240429154823.GD1709920-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240429154823.GD1709920-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR13CA0042.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C7D1184105
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 21:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714426005; cv=none; b=gh3dQtUG1RPE/UFuwRZNvt1LGcF1IYjHeEwGaQLYXATvtXNWGG6UiT7Lye8EoEhK38v1Kgfhj7dOMwAnZrrzYyT/yAcwKCjQkLOJZA939/erXVIDI9U7bctw37EXmOhXwvVI3l1r2OKMcbdCutcZwc0KZ/IR76tBK65lyMm4xOQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714426005; c=relaxed/simple;
+	bh=Dr1C3G4pbGiXPC5Ti/nKd6k7VSHbUcwlgdfOmEAfcuw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rojOCqe2xxcw1B/VY5k8VHrs8B+vdAsD3FgA3rB4gSxNKIsF200YUdAsq06hpxBWoEhqVziJM65o185G6C3VLRZnIULWc7ZaPigY5RXb00NKDXHTHmkwYvcsqsxpxEsVSfKerOcVxxSLxMU4ZrG4577qrUXISVX7qsvF5TX1EjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ma4fsmPq; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dcc71031680so4894803276.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 14:26:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714426003; x=1715030803; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QU/Tws1Y+aFFVGVLoOklo9JtVUD/v/fzs2lzZlQCwNQ=;
+        b=ma4fsmPqofCCJJ9JwoRipkbZJBsYoXJ6OJhIx+xK7xV6qkhkYhy9H8I4Wwm1V5xSGa
+         OaZlx9gJbSLwB21m+AjcPPa+f9I2/z2WFaS5RsRkLaNL9Rrkm242cOpVWDJ38PGPf93v
+         Qu80w3KEPHe5KxE7JFiTiCEExdleXOB+BT5E4eyB/2geEMxXPlEF82BDWHDiCdl75i7P
+         r/1mqb05Vkra5AF91J2XX2rUbXwXwJPUzVsmWJkZp7Zo/O523xZGd57ue2TDEEZPFUEO
+         fH4XN1i+5OVucg5EaJHUduAbRzg8D7HCJil7vTSWDx+7b4QLnQe8Iu/hP9Cg61nyNYla
+         +grg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714426003; x=1715030803;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QU/Tws1Y+aFFVGVLoOklo9JtVUD/v/fzs2lzZlQCwNQ=;
+        b=vODSQ4sxnZIMVbPBKq5hD7kDlvQjFELf5nnh5qvqLr4al+MjZoMNPljOwpJ6XfPpgD
+         n8UwPVcnn2Vp3KgvNV6b3Ql5oyYQqUKJ5TWFqmsyZrTZvapP8HywGBult0lIwQYhpHwM
+         uvTCe85CJUKmq2cw7pU6OZ3vrE2GDAAPHGYYAwSOQZCPKfZngtk+yfjzWII2Xw9U4HJg
+         ZkLWqcAhbD4XgZ/93bgD4rqrpin8qTOoX0mxCJEy3oRfvQdN086CMeD74fhlup306q9m
+         XB9ehl+kuoX5SGTqXcRum8GHM/D8IbG9t06Adp+1kl8XKOuZOrO7oLGdhKSMRJXOC9to
+         Kfaw==
+X-Forwarded-Encrypted: i=1; AJvYcCU2r3a4YfAKTOLdczJYCPaV0SO2H1Rb7aPotMeFzZEgUiorYIxJMJmDheS7qR5jxrn003ES9ODnnpzDGfn7su60LEiJXT5WgDRHGA==
+X-Gm-Message-State: AOJu0Yx188rgqCWLbzPgWmB4Lnj7OMvVVreKmEVm7P08KjLc2T7nIxIE
+	VgEByJTYeQuAUX2/nzQwWMDRBBOSvdg3bm8RlZ/yPzcNFU/4QDORstGpq7167r2j6GODaUU7Ri9
+	+GXMj33YtNY8ZO2bTpkfMHz8WwD0ScWnEOnNx8Q==
+X-Google-Smtp-Source: AGHT+IGKK3YXyDU+4ECuqi3EgUuBK4bT+CVyxZ6dH/j0Bz4fVxCMiVvjkF3hOLG0ZcsUc7l0RWVJyvbD7ONlUCh2d6s=
+X-Received: by 2002:a25:b910:0:b0:dcc:6112:f90d with SMTP id
+ x16-20020a25b910000000b00dcc6112f90dmr10901148ybj.62.1714426003134; Mon, 29
+ Apr 2024 14:26:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8524:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34a8eede-ae56-4695-e6a8-08dc6892a117
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|7416005|1800799015|376005|366007|52116005|38350700005;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UkZxaS9qR1lwNlVSbmlJRlRtS1licUV0clpXWk05MlNzaU9wU1ZaS2UwZEI4?=
- =?utf-8?B?ck4zeDJ2SDJPTGdneHhlRzNoMlNmcXpTaDJQd0NQMDNPVis0MHA3aEVZaVlw?=
- =?utf-8?B?ZTJ6WUcrYTk4SVNmR1I0VEZVTHU0TnBncnh4M0lrZVgyQ0JtZnFTUHpaL0hB?=
- =?utf-8?B?Y3ZVWlpWQVZpQmtwazNwS3lzS2dXdFo4OFcwWWphYXJ0a293aWdScDRzZjhX?=
- =?utf-8?B?K3MyZUkzMlU5T0hhMUVNUmdycUVCVDFsekxiNWRCSktrZGFteTFCb081VWhh?=
- =?utf-8?B?OVlodCtFOFVjYmNsMUxrM3lDTzZYVnZmWFZTMnpDY2ZWR2NnR1pDNGlxcnFz?=
- =?utf-8?B?TUZ6MGRtbjJValRjbzV6Q3JhMjhyMFFUTDRtMlFXakpVVE9OdWV3SUdBRFpX?=
- =?utf-8?B?Z0VxSXg1ejRBQi9xUFZsVUlpK0k5Ti81M2dwcHlCaHpBUVpreDdSa3VpaFNG?=
- =?utf-8?B?UVpaKzVKMU5RWmhqR0oxcDVmR1NoeU1qN1F1dHlOL0dqYjB6VkRFbTNxQWQ4?=
- =?utf-8?B?bHhmOFNXSnlHNGZrK2tNVzdhSTIyOTl2R2gzYWhqeWM0NUlqRDJoeGJ1dHVT?=
- =?utf-8?B?YW8rVitmalBvQVlrZndXb1duVWlkSTJoRU9hMjJZWFdhODVUZ2M4aG1iVnhN?=
- =?utf-8?B?YzFhWW4rd1grYU5MY0p5Y2hzVWQ4aE5UUkVqdzQvM1Y1dVlGZ0JFOGRWOFp0?=
- =?utf-8?B?SzVMbUNXV09qTGNFTHBoU2svU1hDaTZhVG9hbXkwbTN2cGNDVThhVFpEUTIw?=
- =?utf-8?B?RC9vVlV0NE0xYlZCNG8xNFprR2pRWmZRM2IwbzU3T3lFRUFPMW44RGtBcWNw?=
- =?utf-8?B?em1YZ21zQmFzSWhHUlNuRlBjSEF3ejd1K3lBOTNtWUdvZ2gweHhOZW9GRUhZ?=
- =?utf-8?B?UGJCbDBsc0xtRS8ya1o2Y0xOQUVLbE5ZZFVFWTgvMW1zSUFqYm5nWE1hSXNW?=
- =?utf-8?B?YUo2ak95U0thMjVmSU56YlNRNERtMDl0amdESzdPczlQQWdNd2Ivb0lTTGxS?=
- =?utf-8?B?bzFobHQwaU9hUng4OWhaZlFHSVdYVTVKdW8xNWRmSU5WVTQwWVJENDhqamZI?=
- =?utf-8?B?cEhKTW5OcFBkcWQxUGFRSGlXUXFnK3JvcXEwQ1BaM1p3SXEvcnIzc3NtRmEz?=
- =?utf-8?B?MFJKMi9wU2xlYnhrMmozMDl3cCtlL3FEWHNhU1VtMjFVUHlpaXZRTWlKTHcr?=
- =?utf-8?B?ZEFhWmljMHVMNkl5ekxScEVKUWNNNXRHYTVXb3NwWWZBVmlDajRQb2NxeGt2?=
- =?utf-8?B?SjF0ZXBPVWg1RUZ6SzBwaCtYSFJta1QxeXAvYnFzdEV1SFhCWU5uaVJlNEk4?=
- =?utf-8?B?dzZOWExWV01kWm1zZ0JWc0d1WE9tdHg5ZmljclpCRWFsaDBYVEc1R01LSlhW?=
- =?utf-8?B?UWlqVndZaXpFTDhjVmhYaVIvMlFDVjROOXJ1OUdkVENSMkpEWmU0clpqSGFt?=
- =?utf-8?B?RldUdUQ4WUFNUVdEZmdqMFZrMHdySTIxRjZmMFREQXczOGp1MTlYUHZ2NjFW?=
- =?utf-8?B?Z3dQMVZ2T0c4MGk5eHRpVFcvVzVmNWtmalJ0YmluMmhMNUpjanBHaTZoTHNu?=
- =?utf-8?B?Q1VpcTF4Q29EN2Mxc2I4Z3J2RndrMktrNjdtQlE1WEpPdk5OQllFSUhiam5L?=
- =?utf-8?B?SXRSYitkSjNZbUs5ekhyY2p6enpES013OWlodzE3M29SNUtMeExWV1RsbW9y?=
- =?utf-8?B?L2NjTmx5Y3I2TitIWWErWSsvemg4RjZiVUExSWh4Z0pvSFJNc3g5VWxBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005)(366007)(52116005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Y1ZJb0Q4TDA2MEt5MmI4WnVkWSszMG80YVFYT0pQR3I3bjFjaE4reXp4bjdI?=
- =?utf-8?B?UVlreFB0T0tuWHNvZjl5YXp1c3d6ck1pOEp3bi9hMWFIRFUyVHcwR0ZQSTNR?=
- =?utf-8?B?RjVNc3hNRUhwNk1tbkkySCtHM29UVk5sb0Jqb3FtQWo2ZGwzdVVBeW45dHhk?=
- =?utf-8?B?anZHN2RCOVpZSkp3ckVkU01uRzczTlU2eUNjZHFpb3BjLzk0bFgzYjVOUkcx?=
- =?utf-8?B?U3hMT25IbUZkcHk2VmlaSExPcVRRQmtwTlJpc3dxdHJUbEZpRk1pTm8wY1Ax?=
- =?utf-8?B?ZFF2UXdTNHYwSHU4Y3VjK0gyNkx1UnpBT3M1WU9NZmZDakVsYmszbEw0QTJm?=
- =?utf-8?B?Q09ESS8zOFRIVWZSdTNDbGY3eGp5Nm9pTkcvUHptOFVxUW45VkU5b2VnbVgy?=
- =?utf-8?B?WnFFOUxaNnBpTmluSW1acXJQa1lTeDVtZlZMaGJONGF5cURvanBodDU0aTZH?=
- =?utf-8?B?YnNQSW5JMmRmSmYzU0UwbUhWNmMrdUVGbmlORlZBZ3hsTTB3ckZHZGhPbmlw?=
- =?utf-8?B?N3RndDVFVGEwU1lTREZuM1ZndDl4aERXb2JqNEZ5eTkxWHlFMXJNb3RVL1B5?=
- =?utf-8?B?NlRBb01BbHZ4d1dobDh3Mmp6UEFyeEdMcWlsMUNLc1FQTG9ZdnlyZU04L05X?=
- =?utf-8?B?ZmY4MUJRSkU3ay9IRk1aeTh4WGZ4bzR1NWlKOW0rYmlHc0lURTFIL2EyaDND?=
- =?utf-8?B?a1FjTkxuUFNidHQzSkFXblpxQ2FndDNzSGxPank3RkR3YTNIRlhWczl3ZkVW?=
- =?utf-8?B?WEIrcE1sODIwK0EvdUZQZy9ZNXNObmlsS2dsRGFscHEzTnhBc0ZHdkVQNzZk?=
- =?utf-8?B?Y1A4c0ZkdnREc0swMDF1dUJnb2FJUE9nYm55M1BFYXFZWEVLQ0ZYZjBnYVh0?=
- =?utf-8?B?S0RoMmhTYUZySmdIOHpCZkNudm8vbGs4R1dqTmsxQ2dVQVJQc1AzZ3ZZWlIv?=
- =?utf-8?B?czJQT1Nnc0FGOExjMFVlQllWWnlGUnRXTlFvdTlsNlFlSHhHUWFSMkdVekt1?=
- =?utf-8?B?OG9OL2xNVzhuNEFGa2dJWmFucVZBYWFFY1J1Y0NnMVhUVmRYNXFlVjRMdFMx?=
- =?utf-8?B?ZzlxSHliTDAvQ0ptRkx1dmk4eUJ4VkhmRzRuZGxsSGhPR3cxQUZuNGZERUQ3?=
- =?utf-8?B?Z0JmQzNmM1JxMFpGR0svbk1NNFBWSllUQ2ZIQmxFOVJYeHhyYUhvdkRNbHdl?=
- =?utf-8?B?UVRJWTZjenEvQ3VtaHFscjZyNUNuOU9FYkppVmZ4N29EcENRckN3QmUzVjU4?=
- =?utf-8?B?UWpZdU9tQW1FazJtNWwxYWdIS2VCZFZwZmZCSm4rWXlFQnNhMmlqdG9ac1Zn?=
- =?utf-8?B?Y0hvUlQ3SDIwdnFCcTVpUU5CS2RISlEwTmc1WWNrN0RYVDJXb3NRZHRNbU5I?=
- =?utf-8?B?cWdFbDlsYkRpbWM4dElGUko1VDFQM0c0d1J1cGZPZXNJSTFQbk44TittU1Jx?=
- =?utf-8?B?YUdLeU9ZTWgzelRNL0oyekZwOHFWZkcwQlVvT1JvWm5BbnZmVUIvWlV1ajhp?=
- =?utf-8?B?cUxXYkFxYnVJWXdIZHRKSTEwSkZhdHMrQS9EUHhjeXR1YVEwc0FsME1hSmg3?=
- =?utf-8?B?TmNmK3dmd1JibDFaWjJHU3ErWUY5eXVKeHE4ZDRVOVNrR0dNa0ZTTmRUaXZY?=
- =?utf-8?B?dVgvTTBLdnpKcnB5cmlJRk9pS1gvSU5xZGEwdEVKTXRJMmpXNEo3V1pzMGlP?=
- =?utf-8?B?QzhxdVk4SFVVYnNxTkg0OUxmTEtnQUtJVXhJRUJCNDA4azBqckxzVXE1RTRz?=
- =?utf-8?B?K3hTTGo5dVlqb25tWUp6N0xFWHJkVjV2MjA0S3h6YmN4YzVwNWI2NDE2Y1Fl?=
- =?utf-8?B?MndpajN6ZnlYdEFlS2Q1OFFHTXpURTdpbTFRWm5qREFMWGY3NEIvd3E0WkhZ?=
- =?utf-8?B?enFjazV3QTZmd2pYL1Q4Tzd6RVc2cTBLZzgwVVV5RW9icU5wb0tLRDB2Rm5l?=
- =?utf-8?B?emxTWHlSL1ljUmQwbmVySHh1ajRuVGJmWFU4eTBDNll6aFowUjkxakRla2FQ?=
- =?utf-8?B?U0g1WGI0MnoyaUxNaytaK3VjVVV4cFFHQWQ2ODI0WExWS1VNUnZDTmNVNUdz?=
- =?utf-8?B?ZG8vOEpMbTM3cWV3QnhOYkE0RXMwa0x0MkdxY0MydnhJWC85RzQ4TjN2UTk3?=
- =?utf-8?Q?upiIBW67t5SIzFXhAJCVr6fDu?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34a8eede-ae56-4695-e6a8-08dc6892a117
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 21:23:36.0355
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kIK3cRQ3aQjZa1MTB/a/CzouZoywrlkmxAWt0Az7m9hk4+NFa5th00KmFlgT33wzEut6uqaAhdReP9yq2gwW5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8524
+References: <cover.1713523152.git.robin.murphy@arm.com> <bebea331c1d688b34d9862eefd5ede47503961b8.1713523152.git.robin.murphy@arm.com>
+ <Zi_LV28TR-P-PzXi@eriador.lumag.spb.ru>
+In-Reply-To: <Zi_LV28TR-P-PzXi@eriador.lumag.spb.ru>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 30 Apr 2024 00:26:31 +0300
+Message-ID: <CAA8EJprL8NbNfOvp17hrHoVNkKBpD39xfeu+STm6m9VObF2n9Q@mail.gmail.com>
+Subject: Re: [PATCH v4 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
+To: Robin Murphy <robin.murphy@arm.com>, 
+	"open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>, Vineet Gupta <vgupta@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
+	Dexuan Cui <decui@microsoft.com>, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
+	David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>, 
+	Niklas Schnelle <schnelle@linux.ibm.com>, Matthew Rosato <mjrosato@linux.ibm.com>, 
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, 
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	Jason Gunthorpe <jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Apr 29, 2024 at 10:48:23AM -0500, Rob Herring wrote:
-> On Tue, Apr 02, 2024 at 10:33:46AM -0400, Frank Li wrote:
-> > From: Richard Zhu <hongxing.zhu@nxp.com>
-> > 
-> > Add i.MX8Q PCIe "fsl,imx8q-pcie" compatible strings.
-> > 
-> > Add "fsl,local-address" property for i.MX8Q platforms. fsl,local-address
-> > is address of PCIe module in high speed io (HSIO)subsystem bus fabric. HSIO
-> > bus fabric convert the incoming address base to this local-address. Two
-> > instances of PCI have difference local address.
-> 
-> This is just some intermediate bus address? We really should be able to 
-> describe this with standard ranges properties.
-
-Yes, Maybe dwc's implement have some problem. After read below doc again
-https://elinux.org/Device_Tree_Usage#PCI_Address_Translation
-
-                  ┌──────┐  ┌──────────┐                                 
-┌────┐0x18001000  │      │  │          │                                 
-│CPU ├───────────►│      ├──┤  Others  │                                 
-└────┘            │      │  │          │                                 
-                  │      │  └──────────┘                                 
-                  │      │                                               
-                  │      │   ┌─────────┐                                 
-                  │      │   │         │            ┌───────────┐        
-                  │      ├──►│ HSIO    │ 0xB8001000 ├───────────┤        
-                  │      │   │ Fabric  ├───────────►│Bar0       │ TLP mem 0xB8001000   
-                  │      │   │         │            │0xB8000000 ├───────►
-                  └──────┘   └─────────┘            │           │        
-                  Main Fabric                       ├───────────┤        
-                                                    │           │        
-                                                    │           │        
-                                                    │           │        
-                                                    │           │        
-                                                    │           │        
-                                                    │           │        
-                                                    │ DWC       │        
-                                                    │ PCIe      │        
-                                                    │ Controller│        
-                                                    │           │        
-                                                    │           │        
-                                                    └───────────┘        
-
-
-dts should be
-
-ranges = <0x82000000 0 0xB8000000 0x18000000 0 0x07f00000>
-		       ^^^^
-
-u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
-                offset = entry->res->start;
-{
-	... 
-	return (cpu_addr - entry->offset);
-}
-
-NVME can work. let me do more test.
-
-Frank
-> 
-> > 
-> > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Mon, 29 Apr 2024 at 19:31, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Fri, Apr 19, 2024 at 05:54:45PM +0100, Robin Murphy wrote:
+> > It's somewhat hard to see, but arm64's arch_setup_dma_ops() should only
+> > ever call iommu_setup_dma_ops() after a successful iommu_probe_device(),
+> > which means there should be no harm in achieving the same order of
+> > operations by running it off the back of iommu_probe_device() itself.
+> > This then puts it in line with the x86 and s390 .probe_finalize bodges,
+> > letting us pull it all into the main flow properly. As a bonus this lets
+> > us fold in and de-scope the PCI workaround setup as well.
+> >
+> > At this point we can also then pull the call up inside the group mutex,
+> > and avoid having to think about whether iommu_group_store_type() could
+> > theoretically race and free the domain if iommu_setup_dma_ops() ran just
+> > *before* iommu_device_use_default_domain() claims it... Furthermore we
+> > replace one .probe_finalize call completely, since the only remaining
+> > implementations are now one which only needs to run once for the initial
+> > boot-time probe, and two which themselves render that path unreachable.
+> >
+> > This leaves us a big step closer to realistically being able to unpick
+> > the variety of different things that iommu_setup_dma_ops() has been
+> > muddling together, and further streamline iommu-dma into core API flows
+> > in future.
+> >
+> > Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com> # For Intel IOMMU
+> > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> > Tested-by: Hanjun Guo <guohanjun@huawei.com>
+> > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > > ---
-> >  .../devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml |  5 +++++
-> >  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml        | 18 ++++++++++++++++++
-> >  2 files changed, 23 insertions(+)
+> > v2: Shuffle around to make sure the iommu_group_do_probe_finalize() case
+> >     is covered as well, with bonus side-effects as above.
+> > v3: *Really* do that, remembering the other two probe_finalize sites too.
+> > ---
+> >  arch/arm64/mm/dma-mapping.c  |  2 --
+> >  drivers/iommu/amd/iommu.c    |  8 --------
+> >  drivers/iommu/dma-iommu.c    | 18 ++++++------------
+> >  drivers/iommu/dma-iommu.h    | 14 ++++++--------
+> >  drivers/iommu/intel/iommu.c  |  7 -------
+> >  drivers/iommu/iommu.c        | 20 +++++++-------------
+> >  drivers/iommu/s390-iommu.c   |  6 ------
+> >  drivers/iommu/virtio-iommu.c | 10 ----------
+> >  include/linux/iommu.h        |  7 -------
+> >  9 files changed, 19 insertions(+), 73 deletions(-)
+>
+> This patch breaks UFS on Qualcomm SC8180X Primus platform:
+>
+>
+> [    3.846856] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0x1032db3e0, fsynr=0x130000, cbfrsynra=0x300, cb=4
+> [    3.846880] ufshcd-qcom 1d84000.ufshc: ufshcd_check_errors: saved_err 0x20000 saved_uic_err 0x0
+> [    3.846929] host_regs: 00000000: 1587031f 00000000 00000300 00000000
+> [    3.846935] host_regs: 00000010: 01000000 00010217 00000000 00000000
+> [    3.846941] host_regs: 00000020: 00000000 00070ef5 00000000 00000000
+> [    3.846946] host_regs: 00000030: 0000000f 00000001 00000000 00000000
+> [    3.846951] host_regs: 00000040: 00000000 00000000 00000000 00000000
+> [    3.846956] host_regs: 00000050: 032db000 00000001 00000000 00000000
+> [    3.846962] host_regs: 00000060: 00000000 80000000 00000000 00000000
+> [    3.846967] host_regs: 00000070: 032dd000 00000001 00000000 00000000
+> [    3.846972] host_regs: 00000080: 00000000 00000000 00000000 00000000
+> [    3.846977] host_regs: 00000090: 00000016 00000000 00000000 0000000c
+> [    3.847074] ufshcd-qcom 1d84000.ufshc: ufshcd_err_handler started; HBA state eh_fatal; powered 1; shutting down 0; saved_err = 131072; saved_uic_err = 0; force_reset = 0
+> [    4.406550] ufshcd-qcom 1d84000.ufshc: ufshcd_verify_dev_init: NOP OUT failed -11
+> [    4.417953] ufshcd-qcom 1d84000.ufshc: ufshcd_async_scan failed: -11
+
+Just to confirm: reverting f091e93306e0 ("dma-mapping: Simplify
+arch_setup_dma_ops()") and b67483b3c44e ("iommu/dma: Centralise
+iommu_setup_dma_ops()" fixes the issue for me. Please ping me if you'd
+like me to test a fix.
+
+
+-- 
+With best wishes
+Dmitry
 
