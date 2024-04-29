@@ -1,232 +1,128 @@
-Return-Path: <devicetree+bounces-63722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5BC8B62FE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:59:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7048B6318
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 22:04:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3EC6282B5D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 19:58:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA3DEB20589
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149AF1411DA;
-	Mon, 29 Apr 2024 19:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A99140E58;
+	Mon, 29 Apr 2024 20:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="KY90fIfE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WIbbGqzh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2131.outbound.protection.outlook.com [40.107.101.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E1113C3D3;
-	Mon, 29 Apr 2024 19:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.131
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714420729; cv=fail; b=FY+1QLwpyJFy5f3+00lP3S+CUdgfbe5KPNh1Op1/kaaJhsiCSPzwAgbj7fKLZ/qD3m5JUGvoMY+ucz1HqUFnQaK21zLo7D22xFxg2MIIiB04SAuFpU7TLYYL06V8Coajzo6c6oiod4BURH1+oAteNCRhAL0mXHh1D8nuKFM6COg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714420729; c=relaxed/simple;
-	bh=eDYoVr+XP357sZ07CwDDXTv1cyNxxJ+ZTgw78nRQSe0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HukZ+2nMWBaD+eZ+Igw35euEZZjiF6+XGCwmpSz9oLjqNf+3smsBc8Qilu5Xje1Kirl0xUKFRrzCxKkVvmErjA9STGJM3/r7asQW7E6SMQuTT/ZNlPdNhYMfOQmQdM1sALXmtpPJ5TZJEvsifTZn3mSu/bcX7Ou+DAExzlM2qYQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=KY90fIfE; arc=fail smtp.client-ip=40.107.101.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DmX0+0pk9Ac5DiXuwCgSNCysf0t+Y7YrW4KV9+B8jtdP5DNurcuiafmJDlMPBk1RSkWTBWakZU++h8Uq3gMQOZLPVRm7C7VTJXGt3h1UeEynDPIDT9YrpxmeOsYWYQ+jvAUkbHCcVf/GeGq04z+x+7EItiFw7od3M5LbYFO/K8aR5nJ8Jwj3eJq4i0O6AkRIiFMCzTIsNdsR+QtYpE81Qpzk260uzvkyYKSEnymrXoFca/ByXWEVuIIYaUynasAwaIIn2/q7r0irBQJ3Jz5QPLIZwt/qas6WGcB4kt8MCUs7VYtaNOypVvY1zMUynzqaOneNdsTAtAWSPrjfDKqHSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X54Xa1eKAVIDD9PaUZZqbbT3IyZpuTp5cidwzcrjnrA=;
- b=a2aiRxlzER8E4uPbbZDLXiiWE/xif42ICArBc7CyaWBKc/Ld1eXUhxqqqjGSefkbc6PWpWJRuK9jvj67NH2YxdbzjXv7jeHDh0owUwLzVaXErYXWzZ6jvFDhLmBv2mWt889qaXIS5wc/Ogfkp8jBvnNJlcnqFeBaKeFms8xpi3rc/Y4ikhuq5S4Kig3eAJmBDLq6DTE4NhMqxQ0h5XK+YBC62g8xba8kNrBY4spLlZhAPS9dJeHtlhsToY2kqWAFeRFGo9qYtpW4iNdghSAX2Xzq2TxNw/rgFQCykQZ3HfR6yO97MMupRillhCQ5CNOqYnLb2zuNNW0afIj/NninbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X54Xa1eKAVIDD9PaUZZqbbT3IyZpuTp5cidwzcrjnrA=;
- b=KY90fIfEaG2P9j2yztfK3XMPXSUmh/i2Dzc5dPC9MOEgP0/NLZVLIV4FVYfoHZCMQZzqtCykBBDrTer6YF6EGFhcEHHCIQI15CHdxPTVMz2SE5d4xoih2VSkdn065QWAxj89T7uI+oqDlKGJUwN97Z2Lbb3jj9KQNl9lQsejXFA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
- by PH7PR22MB3962.namprd22.prod.outlook.com (2603:10b6:510:2bf::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35; Mon, 29 Apr
- 2024 19:58:45 +0000
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::e6c9:dbd4:f002:212f]) by SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::e6c9:dbd4:f002:212f%7]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
- 19:58:45 +0000
-From: Nathan Morrisson <nmorrisson@phytec.com>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	j-keerthy@ti.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	upstream@lists.phytec.de,
-	w.egorov@phytec.de
-Subject: [PATCH v2 2/2] arm64: dts: ti: phycore-am64: Add PMIC
-Date: Mon, 29 Apr 2024 12:58:30 -0700
-Message-Id: <20240429195830.4027250-2-nmorrisson@phytec.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240429195830.4027250-1-nmorrisson@phytec.com>
-References: <20240429195830.4027250-1-nmorrisson@phytec.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH0PR03CA0428.namprd03.prod.outlook.com
- (2603:10b6:610:10e::23) To SA1PR22MB5636.namprd22.prod.outlook.com
- (2603:10b6:806:3e2::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A7C13AD1E
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 20:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714421084; cv=none; b=A/X7IuySVrcVdchkA7nY7UYqvxtL0lWXoJHj/NNTiTwswmiFS2C+3bNsW469PNzNTGzIUx7+FgSY1uGyGomQXE+nRN/eI5H2hwCYob1KYMqzi8gT+7ntPdLp/vicp1Dahod2bpmAoGrQukBOcoaRrVIZOrydARotZ6c00XjdmJY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714421084; c=relaxed/simple;
+	bh=vr6HYHNikxrE9uxnRijq931ZgRzQtEgdb3JuE8cpJSM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ajbq2NKivBGIA7BR2BMRhdqPKyz/n1GQ9dsaei73gekECpj9uV5CWS87shB4BUdXAxk1yGkEYaXtnOIVj6LZKYZab7pMqtyb0SatguznnDZSte++Lt6i1tM2WPbpk8QGBuh3a5LafxuOkqX1kU6hdaceFx29no9lQ4v8+oH3Jrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WIbbGqzh; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a5200afe39eso550782566b.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 13:04:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714421081; x=1715025881; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MBevWuCkVXQNiIio5Rvv3o9eiqdWWz0SFEKzoKMNFwY=;
+        b=WIbbGqzhZPx3CmBFB6sJIbFgBRnGbJVsFpykyllHcJt59S3sfy1iOZSlICjIZUuiES
+         hEj3xl0h4fc+NZDBM6bStR8YPimRlZy7BbHueRgPo4NHiu598L8wDXCGsfd77s9j0hNJ
+         DXQi4DMYm+GwC3bh3YirnV3lthP8TZ19RDsTozvipE+vrz3BcZE1+A9UcCHx9RX4C481
+         S1HJI9KJFZYTnk/kIZnnMVXY+9MoG7N4uq1EIJnTls4GRl8tb4X51GBSJxmMO80NBMoI
+         NJL97SFhhFGiSaH4Mr8VKlSSXhe0iEHWfJ+3GXoxzYqwvh+0peE6EvdLsUP4jh3JZDVX
+         NXAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714421081; x=1715025881;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MBevWuCkVXQNiIio5Rvv3o9eiqdWWz0SFEKzoKMNFwY=;
+        b=dMpDgEeNkDkSVOMqmW5LiEAGsUeAgUD2sw5SN9mk9i0fAOqyIzAREoVhiQoEb1sjEQ
+         8OxBvxQYLWRdsQ3Ss9HZygbOSTvvlNqU4CS+BI+4rybltP8yIbEDz4JbtVfVw5GCS2B8
+         Y2YyGOW75xusP3ipsA4SVu79AohSIcSwZ7/IUoPH+1Zo/oT2y/UpgjW/XoGlZ5WjlaWR
+         ovkrRBgMExAvyPX5B50r+XeWhmNMlJkvX0JkzCqRHtT7+BTMm1PqjEE5WqpjoqlkkdAM
+         oBmMByRigrvBmmyEAwOe0Wy54M249Rjp2n/l9RDRfJ3mT7hKV3O0X0uz+IthQUrJGi4B
+         GGxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXxJarRkQnM1oZdFzmHyynwxldDEhq3MMBx77WHrHHrB1UpalJ1IR/NqkQWzJrYuwY81Y+OMKahTywq58C5rVkqq5HtwJWx+t1RTg==
+X-Gm-Message-State: AOJu0YyOMdpLPzp1CnnQCBhlkP58LnQprfNY3CRGqhdu0zEIanNKYU64
+	nBEZNVKXFzIfzZwcOPYYzPRHSzI18XucHlz7DSHL5yNULzDtIlNbe3//ovJvrRk=
+X-Google-Smtp-Source: AGHT+IEwxOsduorLqYmOECGbGSlyf8SHBXhtUyR4n6IHP4C5E96b2T1pKw70dIQG95K7lnDVKs8gMQ==
+X-Received: by 2002:a17:907:76c2:b0:a55:b2da:3e92 with SMTP id kf2-20020a17090776c200b00a55b2da3e92mr9322913ejc.68.1714421081239;
+        Mon, 29 Apr 2024 13:04:41 -0700 (PDT)
+Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
+        by smtp.gmail.com with ESMTPSA id ld4-20020a170906f94400b00a5906d14c31sm1140887ejb.64.2024.04.29.13.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 13:04:40 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH 0/4] hook up pin controller clocks on Google Tensor gs101
+Date: Mon, 29 Apr 2024 21:04:37 +0100
+Message-Id: <20240429-samsung-pinctrl-busclock-dts-v1-0-5e935179f3ca@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|PH7PR22MB3962:EE_
-X-MS-Office365-Filtering-Correlation-Id: 288faad5-0dc5-475a-6809-08dc6886c6c3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|1800799015|376005|7416005|52116005|366007|38350700005;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?lM7oRIowq1sP2j3CuvpNNxciZGIVB9lT74velMa0kjiN0++pe2SiSNQU2a9f?=
- =?us-ascii?Q?kXtKKN2yu4RU5TqExyDM90GS1Qpj7JCgs0CDhSujGFUupNxN2FDS3CojzOQ/?=
- =?us-ascii?Q?+xuR+TezLbObdcZ0CQTkyng44ODjM1VDDOERJNTZPLtykCseZ8g0LE+ebX/1?=
- =?us-ascii?Q?tgHTJ3x6An3AphCTOvr+W+ImIOIah2Y4yKMC8onemm9teZfY3nQ8/MLjATlA?=
- =?us-ascii?Q?udfvXVmDvhTiJhnzI/FAwvnAP4857k0Egh4K3VBaQ0Lx6F3XdkqlRtTc43td?=
- =?us-ascii?Q?QAewpi18/dlwk9+/PVjZDKfwOi+5P083iyb7O+4Mv2MWXe9lI5909mQpFlEn?=
- =?us-ascii?Q?DY4ySLY0h1juFv2BI2rEvKTL2DaYMfVHWja4ggMJDG9cSit4UN/Rmp1ozjC3?=
- =?us-ascii?Q?hI5DIIFUyp/o/sCnm/olnYPZ4Sl78gjMZemxsskt+7loqlg1e5Hkt0U3t1Ey?=
- =?us-ascii?Q?hMJEq17P4p2yGw1WvG5Q/Dka3eb8aOUIFbxyqeJ5yXqJOIMd7cKhr6wFf3kD?=
- =?us-ascii?Q?rD0S1NWTkUpU5IF8eio1/OPYMedoFTV0LSA4v8iNY1FSQuWk4oDUiegs/78D?=
- =?us-ascii?Q?pKqnzo+RsJJ77uA2DtSX1DtpRRO4oHdXwcOiIxPO9VYtJMpe+HZMcdw3xwOa?=
- =?us-ascii?Q?LhjUzQY6xuueKOMuV4wCf/u5G/0xC1IEPlBg1w4Ngr57kyIXvG9XYDhhfDYl?=
- =?us-ascii?Q?vPslQPUJfn0phxH8FpkBL5W1dopf7B2gm28s/yZUoWox2TBTr9kR5C/qtZDB?=
- =?us-ascii?Q?c/gyo/cNnLBy5QjFmTb17G9KOmM6K640XYGnAtXU6VjKma0O6j+R0j87XMRW?=
- =?us-ascii?Q?2+XBnQUSOylAlTnaWg5KmI136jf7oPlok0I/+vbe6JS0cmY6N+/HCm5xtiZH?=
- =?us-ascii?Q?bZj1titfe0VHVgsncuHvbBkXccNtp2aIQJGoF7CfDNmkVfpYzfGdwYvYXh7m?=
- =?us-ascii?Q?9CegJIcNB/kwc2qQyDpwFL5ofZLqUhRMUEX52UJtUAPjvCcdKeKFp10E9sty?=
- =?us-ascii?Q?pv3kD+DaEQ5w9/UyDLiA4Q8GWqxY+CiLuEM0niqsQU1UfRaE5iUx3TmzgTUO?=
- =?us-ascii?Q?9UmG8qy2zOpn3IUYFNmfg9PtSFnWFmUq1W+vNCh1pMOEWTZQuViRyRs9gkY+?=
- =?us-ascii?Q?IWPEZGt9cGkjivR6f4eLr23d6MzDtBvS947avd/WbpKjiWMOdfzkSMQIPxDG?=
- =?us-ascii?Q?LgewPMTG+OANdP2pHyCfqJiCMJ4I20lAS66gkfvB0ktW596i2lDor/n5qWeh?=
- =?us-ascii?Q?beei8qAzJ3xQeSwi2IB8uO2Z27E5v4mH7rJvpV0gkP13ELKapWWs3fdu0as2?=
- =?us-ascii?Q?2p/s1DzdjAKTwroaqISb78jnbDBVxGjuWJg0Jg/jtTNOlw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(7416005)(52116005)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9mB91L/o+hQNaV+s8GUz3ROnipsbEIMzlqSPeeDkHaTaHRw76An8vmlATO+4?=
- =?us-ascii?Q?AGIiPYZM5Ut02l+cI/PHb5peS81uGiXf166Q0dlujl+nkhjycSh/Hod8c9s+?=
- =?us-ascii?Q?JGf3XjWZeJSzPXfs4MUD8mnMmKGCXXZ5P+chBgSshft00Vr4+BLn4KyTpR2B?=
- =?us-ascii?Q?MmF4rznRi9zu2yoqy53edFR2V7vPw9cLdaHA7KQcY1U9X4Z4nEnXF51Hb7dz?=
- =?us-ascii?Q?qkE/vJc6hSWVRAEcVccZhnuo4h8otBVtIBZcY2+g433GehxrmUQVQ3sLxE2/?=
- =?us-ascii?Q?B4LhGUptjLHOTeiJLhPq7/7P5kAcjiY4RLgTO1gi6C55+2Vsq092mLoL2DCx?=
- =?us-ascii?Q?YKJFjFEowDptdJzHL9xnmPke9tXROtFGvXWg+vcjmojytlwNGVSrtp0d+zxF?=
- =?us-ascii?Q?89jmo3+1oCxRGBJr8xRUCgXGNkLlU/EKmnlcjjGozSW2cAV1oHhzjXwyo8nz?=
- =?us-ascii?Q?VgEB2ah6JPQCz4YKnj93lFTLIuQKaN0ztJDyfyfGtJ/q88oEgPsgZDGLFYLK?=
- =?us-ascii?Q?eLZo5czr+BsaByGQya6UtR8I0GPARZST3R+nGaoVSyoG4YtzBWp2e8u+Ah5f?=
- =?us-ascii?Q?mAH7IRdCIya0wJF6iYP/D9bBRQ/T1fhGH8gQ2SLsCHi2fGEhFWDPqRiGLvSK?=
- =?us-ascii?Q?Q8K9/DZjsMDj7gBZ202pZgu5uEsqQLeRvHqXGNkc2s2ExKWSauvIZISZgd0G?=
- =?us-ascii?Q?bQ6RMn6rLw/AFYAcYP0hEpjqvdoL7eBEuDKFe9OVXOWSHeelDeiBQb5O5YlY?=
- =?us-ascii?Q?9sAoIAfAiLef4Ah0yoZq5XIKoQkdPtuXKP+4vSuPCAM5nR6oErTSq8R5CC7+?=
- =?us-ascii?Q?MaHLnPrSdJx7VXe35Xw03GiQroe1DbGC4vtNvjnNm++rIhwGZHldNfu2fWnd?=
- =?us-ascii?Q?l0d0bDPz1NzkHUzrYf/n6l1QoTdSZV+Gl//cj8/fEiAREPKUVwx0vsCHZbEQ?=
- =?us-ascii?Q?+3KhxqBUiR4YcI9YREg20cYmDWY+KS4fx0iobx1na6fJ7JA0bhc58bxH5IcL?=
- =?us-ascii?Q?0vHYLkxUORhE+mvF1kfsZ5dZEaK2gvaMxmMAkfM965W7dtbRf8VT4wMmyrw1?=
- =?us-ascii?Q?bVbwl1GGJYfm/1yOM+CsPQ4f2ClvvwAipaLWZyFam/5/iDC12xsMCHkcnuoz?=
- =?us-ascii?Q?OF2A+kZ3tsTOvvdG1tOFPE4qvY5t7og4EyUdSCKagjagIoZc0H5EduoP64/6?=
- =?us-ascii?Q?YJmLGTECmmJ/jUgJwxwBXkaQzLm41HpjuiVMgCVL1RooT2NyBIkb0q6/JbdS?=
- =?us-ascii?Q?DlH1wdQXJhbV1sOyH2SubrZQCICJRDFjHXC9wpFyxtlKgHosTnd5Q5/6poGe?=
- =?us-ascii?Q?8YUUeuqDZYLQnNbV1fpEw0u0rFlydwz1NaVSANY1lRgdcwMmxuSRPs+S15X3?=
- =?us-ascii?Q?Svtijg+JO8KHVW2uU1YMp7Ac8nmqJout10g58zSS+qWqI8tapAw9fX1f377D?=
- =?us-ascii?Q?Y5ksuMx5qgRB83UJdwTIHYpBmvfcXa5WwtAw1/ygd0rcmMXXKoJJQngDnx7u?=
- =?us-ascii?Q?DWANjhDrs9kxr5v3haCCB4r16ujINzWBM86lDYmcishv2t5AC8VLOrTtrREP?=
- =?us-ascii?Q?PXaxFlmYDnExIkd8tpbhVbDtoX/16D8FzNQQkiqp?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 288faad5-0dc5-475a-6809-08dc6886c6c3
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 19:58:45.1104
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ccthxb8jOu/m9Rd1lzJd90R3uyfJg6peyDCpuLCBHlO1wvKHxnseyRrqxvDu8h1ldkBY05l0XfZv+ZdoJQ+KTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR22MB3962
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFX9L2YC/x3MQQqDQAwAwK9IzgbcNLbYr4gHXVMbtKtstAji3
+ 108zmUOMIkqBu/sgCh/NZ1Dgssz8N82DILaJwMVxAVThdb+bAsDLhr8GifsNvPT7EfsV0N+dkQ
+ PfrmSHaRiifLR/e7r5jwvCIh4LW4AAAA=
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, 
+ Sam Protsenko <semen.protsenko@linaro.org>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.12.4
 
-Add a PMIC node to the phycore-am64 device tree.
+This series hooks up the individual clocks for each pin controller in the
+gs101 DTS.
 
-Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+On Google Tensor gs101 there are separate bus clocks / gates each for each
+pinctrl instance. To be able to access each pinctrl instance's registers,
+this bus clock needs to be running, otherwise register access will hang.
+
+The driver update to support this extra clock has been proposed in
+https://lore.kernel.org/r/20240426-samsung-pinctrl-busclock-v3-0-adb8664b8a7e@linaro.org
+
+This series depends on:
+* hsi2 series:
+  https://lore.kernel.org/r/20240429-hsi0-gs101-v3-0-f233be0a2455@linaro.org
+* pin controller clock support:
+  https://lore.kernel.org/r/20240426-samsung-pinctrl-busclock-v3-0-adb8664b8a7e@linaro.org
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
-v2: No change
+André Draszik (4):
+      arm64: dts: exynos: gs101: specify bus clock for pinctrl (far) alive
+      arm64: dts: exynos: gs101: specify bus clock for pinctrl_peric[01]
+      arm64: dts: exynos: gs101: specify bus clock for pinctrl_hsi2
+      arm64: dts: exynos: gs101: specify placeholder clocks for remaining pinctrl
 
- .../boot/dts/ti/k3-am64-phycore-som.dtsi      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+---
+base-commit: 87e0588641086e91f3d0a7d97b939301990b1e86
+change-id: 20240429-samsung-pinctrl-busclock-dts-46b223471541
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-index 125e507966fb..2c3b20ddfb8b 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-@@ -265,6 +265,50 @@ i2c_som_rtc: rtc@52 {
- 		interrupts = <70 IRQ_TYPE_EDGE_FALLING>;
- 		wakeup-source;
- 	};
-+
-+	pmic@61 {
-+		compatible = "ti,lp8733";
-+		reg = <0x61>;
-+
-+		buck0-in-supply = <&vcc_5v0_som>;
-+		buck1-in-supply = <&vcc_5v0_som>;
-+		ldo0-in-supply = <&vdd_3v3>;
-+		ldo1-in-supply = <&vdd_3v3>;
-+
-+		regulators {
-+			vdd_core: buck0 {
-+				regulator-name = "VDD_CORE";
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_3v3: buck1 {
-+				regulator-name = "VDD_3V3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_1v8_ldo0: ldo0 {
-+				regulator-name = "VDD_1V8_LDO0";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdda_1v8: ldo1 {
-+				regulator-name = "VDDA_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+		};
-+	};
- };
- 
- &main_r5fss0_core0 {
+Best regards,
 -- 
-2.25.1
+André Draszik <andre.draszik@linaro.org>
 
 
