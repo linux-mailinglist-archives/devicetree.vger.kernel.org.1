@@ -1,101 +1,113 @@
-Return-Path: <devicetree+bounces-63679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7458B5E09
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 17:48:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314378B5E12
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 17:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC06B1F21CAE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 15:48:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC1291F21D7A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 15:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEEB83CA0;
-	Mon, 29 Apr 2024 15:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8971783A18;
+	Mon, 29 Apr 2024 15:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ITNnj7tb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QEJjaB8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B05B83A15;
-	Mon, 29 Apr 2024 15:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3943082D9E;
+	Mon, 29 Apr 2024 15:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714405707; cv=none; b=kEj7FF4nZ2V2VKtfiPhBihufPBomnr85q75+HjVWpwhhm4Vuwls1QgM5DV7CAHN2Z+LQvixIZPqB6hFQpgFnPVS4zvlSaSGBbmM2vyMS4TVDjkxx3N0Hj+GYxAShF1ZyZSmBSrcCuAF7P+klRJtXXHHzagx+EacToFarMnk8rMA=
+	t=1714405746; cv=none; b=QC4pI/qurl7J9AFzabPg+NxYM/1UtIK4mzV8K67Wy1gRVqNFeB8CJAuwWEyNRwEkPh5+0MaxmxPn0x7vKBanw9FpbvoAofIUv8TdkEbUEXakjQKVDU+XhzMoueHpgajzXV2lwrM5FcK7s13Qgpdn/g1wz7tKcHlvM/PWhzWIwJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714405707; c=relaxed/simple;
-	bh=cyhUbzfUoN1KUr5rX6PXJv0rnxb5FXq2sfNUH2u8A/4=;
+	s=arc-20240116; t=1714405746; c=relaxed/simple;
+	bh=ZVzOBW5sDTut2lHyNx/PKeP/GfUlSjNh77/I3/nUe9k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QGEqWOR/NI2/rMDr1sWH8nufxONEq5kg7A2zqS24//VdcEGxk9R5cEU3AamHppR7BKZKW6LQFlJImlH4+8O7Yav7NuoV8Y2FkxxBxAz2mTfBhEROlVe/EseMFzqVb372/dkUZAyjQzbXSrIsBHz3MRPdGFv7c0+3PA3qWVCgmAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ITNnj7tb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24A9FC4AF14;
-	Mon, 29 Apr 2024 15:48:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714405706;
-	bh=cyhUbzfUoN1KUr5rX6PXJv0rnxb5FXq2sfNUH2u8A/4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ITNnj7tb3iF2CMw5njk9bYQuJ8Ls3TaFXNfDioGLZghCik30KMKJS0c5QTmB9jF4z
-	 QTWgdlnBGzjFXglEjF/QhIZQL9whbqQ+eRVlqhlLpZ62eXQwm8YLh7/XuCR8t/Lb7Y
-	 Yq1feJyJv1U4cjAM6Aqu9kqGlugTwtBpfCp3dp0wPZ6ODDAa7YVhBRYb1pEzZRVgR6
-	 pIpuXiKmdSGzwSurBOahCUrJqfqVuczUfeYDpL05vD4Hiv/qjYIHm2WcG9B7ddVCu/
-	 WtCeiKEt+ZeJR1zSD6GkZUeIiTy863YIH9uzzllfckFZn4Qrj/Fr8//iPOtpC5sGst
-	 CuF+erd4g0Gqw==
-Date: Mon, 29 Apr 2024 10:48:23 -0500
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 10/11] dt-bindings: imx6q-pcie: Add i.MX8Q pcie
- compatible string
-Message-ID: <20240429154823.GD1709920-robh@kernel.org>
-References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
- <20240402-pci2_upstream-v3-10-803414bdb430@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l+x2sKZgmNycKikoXBUpZ4ePpO4+QX/y92GbsPLcJUJDcALbg6fOdP37Q17lJh7c+sRmv1cM1WfG8+06j33MpjpWt1cNdTUOJXZcpr5IPVOvnEb8w8G6yZFE0IYw08YR1HghnF+J0TL4tqR0BmtznVGWrauHq22u4amR3m+mcLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QEJjaB8o; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e834159f40so36733065ad.2;
+        Mon, 29 Apr 2024 08:49:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714405744; x=1715010544; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RTVJAIKC4lPIZ0F4i4bQIVUsZ9S3zGn4x8qWDen6T24=;
+        b=QEJjaB8ojqdV+ayNQM7CBhlVH0QrpvWCmw1tLGtAF4uSEky4EyXyZiMdkwO7Up+Tmd
+         rQp+fyUFcm+Jmv+OC49iWlTlPRX4Ybyf4QzoFknSLu0hpqcdIj/CUrfADr0ahfA+nwNU
+         E7SLgryQiD/vK5Wz3bZ+NeOKzi9QB8G/SRRSQgDHUNIqpC0b+buZaJcFSjdUeaK+k7/d
+         QESY04xHL3xjUoxzXWi37rLbCfm5yJQxnNjc9lj7bRRUocEJdDgnN60Ep03XkXDE9t5H
+         YbTcja7DltW9oANB9EMaoPy53763fEyE3gTfLuddg3j/6EtdvXKXoKz/hmf0cZ0aGzOT
+         WK1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714405744; x=1715010544;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RTVJAIKC4lPIZ0F4i4bQIVUsZ9S3zGn4x8qWDen6T24=;
+        b=hrSQPJ7ww0/2E3T6aI/BJRihL+KGwoHHFSLHN/kiKEyM8uACyhTdGJbNcxQSoSQ7t8
+         +Ylrrw4+nHBi1gjckZRP83QeGOqUVWXVZ9PMzOaUwoyk6iQn+d36koAzrv9JaLgJaeeo
+         xlXyG6l0i+cm0fddvFo7nRg0lT+Lq0VXNrHpIQzOnr0+SiCE68HRgtolEK77DiAz1gop
+         CI/E0BCoL/y3CmkqNl1T9mnzyiIgVcXFMgA70y5eCJqBzO4sPlf5DGs3b7jKTQtQCvJ0
+         +54ZCEaMV6UNLnD2W4qyzspo1UqKLLuvjEU44cLrRnoRfgbHXN0L+xApRlBz9DqnX5zW
+         Rz9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVZkHHd9elWkZfVoMWkV11gAz0QHV+NXvJnL92sPVDlGaVxRxZUNdXsvqoCRLFKh84tLym9oeajWcTpb7GaXFvFYabnENPj6U5SDA5MsGWWbU/Vo9UkYkSh2HGLIzS1JDEZv1tIW2fo/A==
+X-Gm-Message-State: AOJu0YxBYrBUAsBw2F2DeGmccTxQfwfqHz2dwxupIzlnlToJbI7zoFJo
+	3ovnCvRFwOKa2w6yr1dQfNNViGa8vajQ4Ycn4Ws1dGw0T7oN/mBcJiOd0BrL
+X-Google-Smtp-Source: AGHT+IGUHeNWKqWe1EsrhcdTBmnx7paoRfJsqeZpp1FD6zALSHFENPxrectRjZ5wK6+7rR8vOKLcRw==
+X-Received: by 2002:a17:902:d648:b0:1e7:89af:f267 with SMTP id y8-20020a170902d64800b001e789aff267mr9425905plh.37.1714405744245;
+        Mon, 29 Apr 2024 08:49:04 -0700 (PDT)
+Received: from five231003 ([2405:201:c006:31f8:99f3:b2ed:50d6:5ff8])
+        by smtp.gmail.com with ESMTPSA id m5-20020a170902768500b001e4478e9b21sm20470297pll.244.2024.04.29.08.49.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 08:49:03 -0700 (PDT)
+Date: Mon, 29 Apr 2024 21:18:58 +0530
+From: Kousik Sanagavarapu <five231003@gmail.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: Re: [PATCH v2] spi: dt-bindings: ti,qspi: convert to dtschema
+Message-ID: <Zi_Bar7-I0yxYfL6@five231003>
+References: <20240429154443.5907-1-five231003@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240402-pci2_upstream-v3-10-803414bdb430@nxp.com>
+In-Reply-To: <20240429154443.5907-1-five231003@gmail.com>
 
-On Tue, Apr 02, 2024 at 10:33:46AM -0400, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
-> 
-> Add i.MX8Q PCIe "fsl,imx8q-pcie" compatible strings.
-> 
-> Add "fsl,local-address" property for i.MX8Q platforms. fsl,local-address
-> is address of PCIe module in high speed io (HSIO)subsystem bus fabric. HSIO
-> bus fabric convert the incoming address base to this local-address. Two
-> instances of PCI have difference local address.
+Forgot to add the "Changes since"
 
-This is just some intermediate bus address? We really should be able to 
-describe this with standard ranges properties.
-
+On Mon, Apr 29, 2024 at 09:14:21PM +0530, Kousik Sanagavarapu wrote:
+> Convert txt binding of TI's qspi controller (found on their omap SoCs) to
+> dtschema to allow for validation.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> The changes, w.r.t. the original txt binding, are:
+> 
+> - Introduce "clocks" and "clock-names" which was never mentioned.
+> - Reflect that "ti,hwmods" is deprecated and is not a "required"
+>   property anymore.
+> - Introduce "num-cs" which allows for setting the number of chip
+>   selects.
+> - Drop "qspi_ctrlmod".
+> 
+> Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
 > ---
->  .../devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml |  5 +++++
->  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml        | 18 ++++++++++++++++++
->  2 files changed, 23 insertions(+)
+
+Changes since v1:
+- Removed a redundant paragraph in the commit message.
+- Mention that we are dropping "qspi_ctrlmod", which I forgot to do in
+  the last iteration.
 
