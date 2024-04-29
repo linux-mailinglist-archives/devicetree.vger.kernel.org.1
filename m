@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-63467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F9A8B50B2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:25:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 898E58B50DE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:58:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FD121C214CE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 05:25:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3C53B21961
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 05:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00344D53C;
-	Mon, 29 Apr 2024 05:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B44F5DF5C;
+	Mon, 29 Apr 2024 05:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fEqa9gd/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DYF5Fa3p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABA98BE2;
-	Mon, 29 Apr 2024 05:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79B2F4EE;
+	Mon, 29 Apr 2024 05:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714368317; cv=none; b=hca3MSqoXmx72dbqQMnh5EwSZ/ZSOQpVDnXbiKlgZrHIuWlf8Zvp1SSznOtVVQh8lM0Q6iLSzyNJtPNFhJ1yK2PQzVNw+f3KwFKFBYgfT79ZL3Gx189r69yo2x1kBo5gyAlPHsdM+IzYo25EiHYCXUH0Z8z8rIZ1YbMSdr0p3wM=
+	t=1714370331; cv=none; b=G/AGBMc0p1c1YR4zSy2hJcsdo8YC8XFyCEO/zOIqa78PpAiP0oZI94M7F0Rr9oUT0RI+eMukZsXYtsZwnVrouB18OoGKRaDwTDh1GGWMGrGNafuRH9rjKmxMg8h8I3UaFS6J+ZQhH1w/uAdYiCsvz5OqdZuPd400hrPmwd8X8ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714368317; c=relaxed/simple;
-	bh=Ed7Oj6KAsZjX9rdEOr1fDKRnxgpa4qVUZuWx/uLGxX0=;
+	s=arc-20240116; t=1714370331; c=relaxed/simple;
+	bh=e1P8tGa6IFpA81KoEGzB1eIGcS4THl82BNUlm40/2GI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MwlMAxTXE/WaLxFcE2MlyfzmEmDoEKlY42h3ylL+ZZqqeKWIEjYmNK64iKFg6of0rwniTCxTLHUwjfGpS3PbnxGngJbhI1TqNz4ayXNh+foNvo+weKdYkCkVophGQkRGSK3yst+Hu0PwVTT6+BTdICVYKKcm/zeTZK0XpD7Z/UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fEqa9gd/; arc=none smtp.client-ip=198.47.19.142
+	 In-Reply-To:Content-Type; b=iZkBsAzMcOOGO5gbmHCXo9GfE1Fh3D/UT8DiBAo6+5Kd6sa4fP/k1B1C1WpeJugs4TzMpYAWPvDnVM4ldGzVAoTcUnNvZBUehjoGv0Spxza/Uh3SH6qpjNGi/eRbUV2ytGiQd41ybKCMvKzmvbxqEL+PHBICgWDqzXTCNUL/III=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DYF5Fa3p; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T5Otw8063283;
-	Mon, 29 Apr 2024 00:24:55 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T5wYF0072429;
+	Mon, 29 Apr 2024 00:58:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714368295;
-	bh=YlwjJexDMMoV1TKua9hyBS7nJpSKTtWk5vd9QtlVsNc=;
+	s=ti-com-17Q1; t=1714370314;
+	bh=/S14Cs9r0Kc9xNHZTnf7vdOEmagLCFWKsUwxz+NjGuk=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fEqa9gd/XdAsN2euun74yGGQVFkROVLZPY8S76KbRnzSV9CWOTRb8S+cdh7ZwDCza
-	 I0TSK2Kv6nOapcVQ74FmyHSxAaGoBDmPR5dpRY+ihSxSrrUMKpmObbgNuaRQrTUhU6
-	 PdEbKbthAFHZJ27pkNt78KJuB66qLzUW7uppLctw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T5Ot8j047330
+	b=DYF5Fa3p/Hg8Lnow+Q2LYfNOOFuWsQfoCf9ZWSi8irqIn0MEok09bH0Kdjwn8xOBu
+	 Mwd5k39MbF2oATfgBg9QEV70mIsfRwntE9Mo6osMKFihR2RZ8HcjmlLemun2WPmrFH
+	 TfASB7Wovx4hpEdUo9OdNqIbGETO/hzWSoURc1U8=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T5wYul114455
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 00:24:55 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 29 Apr 2024 00:58:34 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 00:24:55 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 00:58:34 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 00:24:54 -0500
+ Frontend Transport; Mon, 29 Apr 2024 00:58:34 -0500
 Received: from [172.24.227.88] (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T5OoV0038567;
-	Mon, 29 Apr 2024 00:24:51 -0500
-Message-ID: <6a3ef0c1-d6b3-7161-1338-c7c0a9c41d18@ti.com>
-Date: Mon, 29 Apr 2024 10:54:50 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T5wUp5036283;
+	Mon, 29 Apr 2024 00:58:31 -0500
+Message-ID: <c9a3cce8-c122-c9d2-37ae-1deb01acaec9@ti.com>
+Date: Mon, 29 Apr 2024 11:28:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,152 +66,160 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am62a7: Add overlay for second
- CPSW3G Port
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-evm-icssg1-dualemac: add overlay
+ for mii mode
 Content-Language: en-US
-To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
- Menon <nm@ti.com>,
-        <s-vadapalli@ti.com>, <srk@ti.com>, <danishanwar@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+To: MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, <srk@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
         Ravi Gunasekaran
 	<r-gunasekaran@ti.com>
-References: <20240425102038.1995252-1-c-vankar@ti.com>
- <20240425102038.1995252-3-c-vankar@ti.com>
+References: <20240423090028.1311635-1-danishanwar@ti.com>
 From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <20240425102038.1995252-3-c-vankar@ti.com>
+In-Reply-To: <20240423090028.1311635-1-danishanwar@ti.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
 
-On 4/25/24 3:50 PM, Chintan Vankar wrote:
-> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+On 4/23/24 2:30 PM, MD Danish Anwar wrote:
+> Add device tree overlay to enable both ICSSG1 ports available on AM64x-EVM
+> in MII mode.
 > 
-> The SK-Ethernet-DC01 Add-On Ethernet Card for AM62A7-SK board supports
-> RGMII mode.
-> 
-> Add overlay to enable the second CPSW3G port in RGMII-RXID mode with the
-> Add-On Ethernet Card.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 > ---
+> NOTE: This patch depends on [1]. Without [1] mii mode will not work for
+> ICSSG. Patch [1] is currently posted to net subsystem.
 > 
-> Link to v1:
-> https://lore.kernel.org/r/20230424111945.3865240-3-s-vadapalli@ti.com/
+> This patch is based on next-20240423 linux-next tag.
 > 
-> Changes from v1 to v2:
-> - Since support for device tree overlays for am62a7-sk is already enabled
->   by commit "635ed9715194", it is removed from this series.
+> [1] https://lore.kernel.org/all/20240423084828.1309294-1-danishanwar@ti.com/
 > 
->  arch/arm64/boot/dts/ti/Makefile               |  3 +
->  .../dts/ti/k3-am62a7-sk-ethernet-dc01.dtso    | 61 +++++++++++++++++++
->  2 files changed, 64 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+>  arch/arm64/boot/dts/ti/Makefile               |   4 +
+>  .../ti/k3-am642-evm-icssg1-dualemac-mii.dtso  | 101 ++++++++++++++++++
+>  2 files changed, 105 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac-mii.dtso
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index c76b41f86527..8c55e46d9f98 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
->  
->  # Boards with AM62Ax SoC
->  dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk-ethernet-dc01.dtbo
->  
->  # Boards with AM62Px SoC
->  dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
-> @@ -123,6 +124,8 @@ k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
->  	k3-am62x-sk-csi2-ov5640.dtbo
->  k3-am62a7-sk-csi2-tevi-ov5640-dtbs := k3-am62a7-sk.dtb \
->  	k3-am62x-sk-csi2-tevi-ov5640.dtbo
-> +k3-am62a7-sk-ethernet-dc01-dtbs := k3-am62a7-sk.dtb \
-> +	k3-am62a7-sk-ethernet-dc01.dtbo
->  k3-am62a7-sk-hdmi-audio-dtbs := k3-am62a7-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
->  k3-am62p5-sk-csi2-imx219-dtbs := k3-am62p5-sk.dtb \
->  	k3-am62x-sk-csi2-imx219.dtbo
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+
+[...]
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac-mii.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac-mii.dtso
 > new file mode 100644
-> index 000000000000..f6d5a089a717
+> index 000000000000..3081b5c64886
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
-> @@ -0,0 +1,61 @@
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac-mii.dtso
+> @@ -0,0 +1,101 @@
 > +// SPDX-License-Identifier: GPL-2.0
 
 Please update the license to "GPL-2.0-only OR MIT"
 
 > +/**
-> + * DT Overlay for second CPSW3G port in RGMII mode using SK-ETHERNET-DC01
-> + * Add-On Daughtercard with AM62A7-SK.
+> + * DT overlay for enabling both ICSSG1 port on AM642 EVM in MII mode
 > + *
-> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
 > + */
 > +
 > +/dts-v1/;
 > +/plugin/;
-> +
 > +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/net/ti-dp83867.h>
 > +#include "k3-pinctrl.h"
 > +
 > +&{/} {
 > +	aliases {
-> +		ethernet1 = "/bus@f0000/ethernet@8000000/ethernet-ports/port@2";
+> +		ethernet1 = "/icssg1-eth/ethernet-ports/port@1";
 > +	};
-> +};
 > +
-> +&cpsw3g {
-> +	pinctrl-0 = <&main_rgmii1_pins_default>, <&main_rgmii2_pins_default>;
-
-
-One entry per line like below
-
-pinctrl-0 = <&main_rgmii1_pins_default>,
-	    <&main_rgmii2_pins_default>;
-
-> +};
+> +	mdio-mux-2 {
+> +		compatible = "mdio-mux-multiplexer";
+> +		mux-controls = <&mdio_mux>;
+> +		mdio-parent-bus = <&icssg1_mdio>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
-> +&cpsw_port2 {
-> +	status = "okay";
-> +	phy-mode = "rgmii-rxid";
-> +	phy-handle = <&cpsw3g_phy1>;
-> +};
+> +		mdio@0 {
+> +			reg = <0x0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +
-> +&cpsw3g_mdio {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	cpsw3g_phy1: ethernet-phy@1 {
-> +		reg = <1>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +		ti,min-output-impedance;
+> +			icssg1_phy2: ethernet-phy@3 {
+> +				reg = <3>;
+> +			};
+> +		};
 > +	};
 > +};
 > +
 > +&main_pmx0 {
-> +	main_rgmii2_pins_default: main-rgmii2-default-pins {
+> +	icssg1_mii1_pins_default: icssg1-mii1-default-pins {
 > +		pinctrl-single,pins = <
-> +			AM62AX_IOPAD(0x0184, PIN_INPUT, 0) /* (AA21) RGMII2_RD0 */
-> +			AM62AX_IOPAD(0x0188, PIN_INPUT, 0) /* (Y20) RGMII2_RD1 */
-> +			AM62AX_IOPAD(0x018c, PIN_INPUT, 0) /* (AB21) RGMII2_RD2 */
-> +			AM62AX_IOPAD(0x0190, PIN_INPUT, 0) /* (AB20) RGMII2_RD3 */
-> +			AM62AX_IOPAD(0x0180, PIN_INPUT, 0) /* (AA20) RGMII2_RXC */
-> +			AM62AX_IOPAD(0x017c, PIN_INPUT, 0) /* (W18) RGMII2_RX_CTL */
-> +			AM62AX_IOPAD(0x016c, PIN_INPUT, 0) /* (AA19) RGMII2_TD0 */
-> +			AM62AX_IOPAD(0x0170, PIN_INPUT, 0) /* (Y18) RGMII2_TD1 */
-> +			AM62AX_IOPAD(0x0174, PIN_INPUT, 0) /* (AA18) RGMII2_TD2 */
-> +			AM62AX_IOPAD(0x0178, PIN_INPUT, 0) /* (W17) RGMII2_TD3 */
-> +			AM62AX_IOPAD(0x0168, PIN_INPUT, 0) /* (AB19) RGMII2_TXC */
-> +			AM62AX_IOPAD(0x0164, PIN_INPUT, 0) /* (Y19) RGMII2_TX_CTL */
+> +			AM64X_IOPAD(0x00f8, PIN_INPUT, 1) /* (V9) PRG1_PRU0_GPO16.PR1_MII_MT0_CLK */
+> +			AM64X_IOPAD(0x00f4, PIN_OUTPUT, 0) /* (Y9) PRG1_PRU0_GPO15.PR1_MII0_TXEN */
+> +			AM64X_IOPAD(0x00f0, PIN_OUTPUT, 0) /* (AA9) PRG1_PRU0_GPO14.PR1_MII0_TXD3 */
+> +			AM64X_IOPAD(0x00ec, PIN_OUTPUT, 0) /* (W9) PRG1_PRU0_GPO13.PR1_MII0_TXD2 */
+> +			AM64X_IOPAD(0x00e8, PIN_OUTPUT, 0) /* (U9) PRG1_PRU0_GPO12.PR1_MII0_TXD1 */
+> +			AM64X_IOPAD(0x00e4, PIN_OUTPUT, 0) /* (AA8) PRG1_PRU0_GPO11.PR1_MII0_TXD0 */
+> +			AM64X_IOPAD(0x00c8, PIN_INPUT, 1) /* (Y8) PRG1_PRU0_GPO4.PR1_MII0_RXDV */
+> +			AM64X_IOPAD(0x00d0, PIN_INPUT, 1) /* (AA7) PRG1_PRU0_GPO6.PR1_MII_MR0_CLK */
+> +			AM64X_IOPAD(0x00c4, PIN_INPUT, 1) /* (V8) PRG1_PRU0_GPO3.PR1_MII0_RXD3 */
+> +			AM64X_IOPAD(0x00c0, PIN_INPUT, 1) /* (W8) PRG1_PRU0_GPO2.PR1_MII0_RXD2 */
+> +			AM64X_IOPAD(0x00cc, PIN_INPUT, 1) /* (V13) PRG1_PRU0_GPO5.PR1_MII0_RXER */
+> +			AM64X_IOPAD(0x00bc, PIN_INPUT, 1) /* (U8) PRG1_PRU0_GPO1.PR1_MII0_RXD1 */
+> +			AM64X_IOPAD(0x00b8, PIN_INPUT, 1) /* (Y7) PRG1_PRU0_GPO0.PR1_MII0_RXD0 */
+> +			AM64X_IOPAD(0x00d8, PIN_INPUT, 1) /* (W13) PRG1_PRU0_GPO8.PR1_MII0_RXLINK */
 > +		>;
 > +	};
+> +
+> +	icssg1_mii2_pins_default: icssg1-mii2-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x0148, PIN_INPUT, 1) /* (Y10) PRG1_PRU1_GPO16.PR1_MII_MT1_CLK */
+> +			AM64X_IOPAD(0x0144, PIN_OUTPUT, 0) /* (Y11) PRG1_PRU1_GPO15.PR1_MII1_TXEN */
+> +			AM64X_IOPAD(0x0140, PIN_OUTPUT, 0) /* (AA11) PRG1_PRU1_GPO14.PR1_MII1_TXD3 */
+> +			AM64X_IOPAD(0x013c, PIN_OUTPUT, 0) /* (U10) PRG1_PRU1_GPO13.PR1_MII1_TXD2 */
+> +			AM64X_IOPAD(0x0138, PIN_OUTPUT, 0) /* (V10) PRG1_PRU1_GPO12.PR1_MII1_TXD1 */
+> +			AM64X_IOPAD(0x0134, PIN_OUTPUT, 0) /* (AA10) PRG1_PRU1_GPO11.PR1_MII1_TXD0 */
+> +			AM64X_IOPAD(0x0118, PIN_INPUT, 1) /* (W12) PRG1_PRU1_GPO4.PR1_MII1_RXDV */
+> +			AM64X_IOPAD(0x0120, PIN_INPUT, 1) /* (U11) PRG1_PRU1_GPO6.PR1_MII_MR1_CLK */
+> +			AM64X_IOPAD(0x0114, PIN_INPUT, 1) /* (Y12) PRG1_PRU1_GPO3.PR1_MII1_RXD3 */
+> +			AM64X_IOPAD(0x0110, PIN_INPUT, 1) /* (AA12) PRG1_PRU1_GPO2.PR1_MII1_RXD2 */
+> +			AM64X_IOPAD(0x011c, PIN_INPUT, 1) /* (AA13) PRG1_PRU1_GPO5.PR1_MII1_RXER */
+> +			AM64X_IOPAD(0x010c, PIN_INPUT, 1) /* (V11) PRG1_PRU1_GPO1.PR1_MII1_RXD1 */
+> +			AM64X_IOPAD(0x0108, PIN_INPUT, 1) /* (W11) PRG1_PRU1_GPO0.PR1_MII1_RXD0 */
+> +			AM64X_IOPAD(0x0128, PIN_INPUT, 1) /* (U12) PRG1_PRU1_GPO8.PR1_MII1_RXLINK */
+> +		>;
+> +	};
+> +};
+> +
+> +&cpsw3g {
+> +	pinctrl-0 = <&rgmii1_pins_default>;
+> +};
+> +
+> +&cpsw_port2 {
+> +	status = "disabled";
+> +};
+> +
+> +&mdio_mux_1 {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg1_eth {
+> +	pinctrl-0 = <&icssg1_mii1_pins_default &icssg1_mii2_pins_default>;
+> +};
+> +
+> +&icssg1_emac0 {
+> +	phy-mode = "mii";
+> +};
+> +
+> +&icssg1_emac1 {
+> +	status = "okay";
+> +	phy-handle = <&icssg1_phy2>;
+> +	phy-mode = "mii";
 > +};
 
 -- 
