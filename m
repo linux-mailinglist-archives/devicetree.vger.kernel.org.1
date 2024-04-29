@@ -1,134 +1,188 @@
-Return-Path: <devicetree+bounces-63759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26C68B6603
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 01:06:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71D58B6608
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 01:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74C3D28326C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 23:06:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 633B82838B1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 23:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D63CE1411F7;
-	Mon, 29 Apr 2024 23:06:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zWWhImlz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6577441F;
+	Mon, 29 Apr 2024 23:10:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6843A77624
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 23:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.68
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC401E886;
+	Mon, 29 Apr 2024 23:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714431997; cv=none; b=rz8lRb7HjKfM36pq5NaCvQTgClZI7xNt10fiJEZqSGFuUj+iBn/AZcm1dhsRvUaDST+ze5c1rqO6oxHJqfbl7WRxZisp7GYK5BUkEShJ/1QYKlN4D+7ZLnK7HpikULcnPnGmBaXd57muChpacBta8pXNiRMtRqmUYQt9vZxae/w=
+	t=1714432240; cv=none; b=tTaNVIEw+HfsLvkmy+jkUfPLRzDgMY187CHBwgYOE2bJuj4evtNjsVGR5CpRctLZ/ppaHs0ed38EXLSI+oA3QmLBVKQs/1nHRjjsgwXKjoXwf9ZquDGtS5neNgNJdvFGe80v+sawfuxS4z1loy0L4mr5aDdv1x2uPzE1mMjLCLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714431997; c=relaxed/simple;
-	bh=oCpzsnULxIgSn6f6NyIWzCzj4/D2x7S7p/X3jeHAGOo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e2VdQW1DgqAfd9sENOsZNrQOYK5jP8xRTWVWQA2417bSZH9MrZdAJvqAm2H/QksuOc/vHS1rxatGOv84zdjpChMt9ugiT2RAzc9Kyr2McNXjtQJLwTpsPO15FxZMg144iyMlO7mC1xN4QxPN0xBUthSWOtbKmbrI3AdFDK8QG0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zWWhImlz; arc=none smtp.client-ip=209.85.221.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f68.google.com with SMTP id ffacd0b85a97d-34c1fff534fso3724383f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 16:06:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714431994; x=1715036794; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9Wc1VRWdSj/kw6OxjVRGGw4/2n20BQdC0iB/qkj8dg=;
-        b=zWWhImlzXZjQmWla9wIXBCooFCJDbmLFMy7op2Wc8hoDsHj3i/qCfnrfvvOx8MM14Y
-         6ayFOyZAWWEYM8FlRLy4gbVhQJGibdwPo5lINr88DZg4s+QcYX7NhBl91RZlq3VI1cu7
-         8PIAf6mwVKzi7/AcUcUlXxqqRC9dKI7Lm4HKKWuLgnKC4tsobq8YsYYf4KUw6rv70Ebf
-         ORhItLOh8nwLOLr/ZzkQGQAwqEw3tTUkwtrmeUWLEKHQJfEzMNO6rteu+b6lqsP5kvz8
-         i0oS/VGko/IwLY2DsifvcqicxcZ4nw3OolLb7SVKzRaNoaM1aMGkMI81PqpHNyQoWB39
-         miNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714431994; x=1715036794;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9Wc1VRWdSj/kw6OxjVRGGw4/2n20BQdC0iB/qkj8dg=;
-        b=EK27vpHbVpNwVFjB4ekInAbCUtO6eNMrkT3eax65DxwfUfZMAUZrVPRnO3SxnqlsL5
-         pWgvrkbVzmPX6iByoZ2GO0Tn1BnWo+k0ucHK0PWLa2sWu7SAn0yeWLgz8wSLLVD8lChC
-         lV8SM7oGaUASzSdvpHSxga/CgkxDX0op2PCWLcWJa7StKPyzSeVuFvaiSd7b8+D4rNNR
-         WZIBeMFdeckfkIg25rSEMLsOKoIWAAvTIk0fLcSf+Tha/SptZxU+7U2xnDvOIsUeHddN
-         NoYJALNqbCuwHNnG1uiwP4F81EA+23ddtITwF9QOuDjLvykicBu/7M1hjUgkQv/yADoi
-         tRUw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxwvCIWNxywuMyX6OhoZnsUcza6VSyDB2sA9bqv3Oj1LUZh47dcvYMTyZHNuDqCsnDb85OV1W/A01bsqxsOcalgCGVhu9Z+uiCdw==
-X-Gm-Message-State: AOJu0Yx7pNZzIE1UQT9sxHFfRaDS2d28q1Galg0maFsjWkfE26BSe1eT
-	op6SG/XJAQylkWhbwTpoX3nKe1sqZXlsxebohdUC60Pxtk+Me2CL6lHuEFgZntU=
-X-Google-Smtp-Source: AGHT+IHCWKrgaTKGrhkqF26FTfzxhgQB+moXIvDSb8J8J/IOshycaSS5Xrsj1BsiFf+7Gnj7wtoHtg==
-X-Received: by 2002:adf:ee0c:0:b0:34a:2a90:c45 with SMTP id y12-20020adfee0c000000b0034a2a900c45mr8641646wrn.31.1714431993724;
-        Mon, 29 Apr 2024 16:06:33 -0700 (PDT)
-Received: from [192.168.0.102] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id r30-20020adfb1de000000b00343e392829dsm30873168wra.97.2024.04.29.16.06.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Apr 2024 16:06:33 -0700 (PDT)
-Message-ID: <32b3c158-8709-42c0-9e6e-81ccdd0e7ab5@linaro.org>
-Date: Tue, 30 Apr 2024 00:06:32 +0100
+	s=arc-20240116; t=1714432240; c=relaxed/simple;
+	bh=SbRHJCSbdxa/qHvVX0OGFsqW3ckRvJ41Yn/16rcpiaU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ku2Ne1ugC/OlqSMCs8X6Ru0FsDm/2kmi8bAqose+32fZzMf8Cp14JF2nL7A6aQ9FOsFmhhxU7T2FFsO3M9T396sqfFRodY70uhKXEC9D0gI3d6r3Gsi0HLLj/fqwnl3WRfd0ICGKj02hLwdoNAt1XRExEQJEYeBfgP5ug/FreCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 466312F4;
+	Mon, 29 Apr 2024 16:11:04 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 251303F762;
+	Mon, 29 Apr 2024 16:10:36 -0700 (PDT)
+Date: Tue, 30 Apr 2024 00:10:02 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-sunxi@lists.linux.dev, wens@csie.org, jernej.skrabec@gmail.com,
+ samuel@sholland.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: Add cache information to the SoC
+ dtsi for H6
+Message-ID: <20240430001002.4797e4e3@minigeek.lan>
+In-Reply-To: <49abb93000078c692c48c0a65ff677893909361a.1714304071.git.dsimic@manjaro.org>
+References: <6a772756c2c677dbdaaab4a2c71a358d8e4b27e9.1714304058.git.dsimic@manjaro.org>
+	<49abb93000078c692c48c0a65ff677893909361a.1714304071.git.dsimic@manjaro.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: media: add qcom,msm8998-venus
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
- <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <2b21b160-a530-486a-9404-c5bf8863ffed@freebox.fr>
- <4ea494cf-134e-4380-aea1-4c166a626561@freebox.fr>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <4ea494cf-134e-4380-aea1-4c166a626561@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 29/04/2024 17:15, Marc Gonzalez wrote:
-> Add YAML binding for Qualcomm MSM8998 Venus HW video encode and decode.
-> (Based on qcom,msm8996-venus.yaml)
+On Sun, 28 Apr 2024 13:40:36 +0200
+Dragan Simic <dsimic@manjaro.org> wrote:
+
+> Add missing cache information to the Allwinner H6 SoC dtsi, to allow
+> the userspace, which includes lscpu(1) that uses the virtual files provided
+> by the kernel under the /sys/devices/system/cpu directory, to display the
+> proper H6 cache information.
 > 
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> Adding the cache information to the H6 SoC dtsi also makes the following
+> warning message in the kernel log go away:
+> 
+>   cacheinfo: Unable to detect cache hierarchy for CPU 0
+> 
+> The cache parameters for the H6 dtsi were obtained and partially derived
+> by hand from the cache size and layout specifications found in the following
+> datasheets and technical reference manuals:
+> 
+>   - Allwinner H6 V200 datasheet, version 1.1
+>   - ARM Cortex-A53 revision r0p3 TRM, version E
+> 
+> For future reference, here's a brief summary of the documentation:
+> 
+>   - All caches employ the 64-byte cache line length
+>   - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative instruction
+>     cache and 32 KB of L1 4-way, set-associative data cache
+>   - The entire SoC has 512 KB of unified L2 16-way, set-associative cache
+> 
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+
+I can confirm that the data below matches the manuals, but also the
+decoding of the architectural cache type registers (CCSIDR_EL1):
+  L1D: 32 KB: 128 sets, 4 way associative, 64 bytes/line
+  L1I: 32 KB: 256 sets, 2 way associative, 64 bytes/line
+  L2: 512 KB: 512 sets, 16 way associative, 64 bytes/line
+
+tinymembench results for the H6 are available here:
+https://github.com/ThomasKaiser/sbc-bench/blob/master/results/26Ph.txt
+and confirm the theory. Also ran it locally with similar results.
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Thanks,
+Andre
+
 > ---
->   Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml | 155 ++++++++++++++++++++++++++++
->   1 file changed, 155 insertions(+)
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 37 ++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml b/Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml
-> new file mode 100644
-> index 0000000000000..86a20954cb354
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml
-> @@ -0,0 +1,155 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,msm8998-venus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> index d11e5041bae9..1a63066396e8 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -29,36 +29,73 @@ cpu0: cpu@0 {
+>  			clocks = <&ccu CLK_CPUX>;
+>  			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache>;
+>  		};
+>  
+>  		cpu1: cpu@1 {
+>  			compatible = "arm,cortex-a53";
+>  			device_type = "cpu";
+>  			reg = <1>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+>  			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache>;
+>  		};
+>  
+>  		cpu2: cpu@2 {
+>  			compatible = "arm,cortex-a53";
+>  			device_type = "cpu";
+>  			reg = <2>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+>  			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache>;
+>  		};
+>  
+>  		cpu3: cpu@3 {
+>  			compatible = "arm,cortex-a53";
+>  			device_type = "cpu";
+>  			reg = <3>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+>  			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache>;
+> +		};
 > +
-> +title: Qualcomm MSM8998 Venus video encode and decode accelerators
-> +
-> +maintainers:
-> +  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> +		l2_cache: l2-cache {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+> +			cache-unified;
+> +			cache-size = <0x80000>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <512>;
+>  		};
+>  	};
+>  
+> 
 
-You should list yourself as maintaining a file you add upstream, plus 
-I'm pretty sure that's not Stan's current email address.
-
-However, looking at this I think you should just add a new compat to 
-Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml since 
-the rest of the file is 1:1
-
----
-bod
 
