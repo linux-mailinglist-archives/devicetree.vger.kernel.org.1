@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-63501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72EB48B524A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:25:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D57B8B5250
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:26:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E8201F21A46
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:25:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B80C51C20D1C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28CE413AEE;
-	Mon, 29 Apr 2024 07:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABCF13AEE;
+	Mon, 29 Apr 2024 07:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JrvQQFV+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P2f7D534"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECDB78472;
-	Mon, 29 Apr 2024 07:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D0A14003;
+	Mon, 29 Apr 2024 07:26:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714375549; cv=none; b=NX+fIXT8eB5i+WPZrpWpGyKEtJsPwFS2x9bwmVMIeCPOGOr+ipx5JRJwI6Aopu5yL7RSBU+oGEBvyLg431J8EDNmLkd2JieaA3GGe2rMf1YVVqA+VJFuhJupISsrcFLGzaH0sp7i709IRKFgUV5NfLrjQqfDXW5hw3oZ4Bq2nH4=
+	t=1714375581; cv=none; b=TUoAtuMj+iJgbJs1r5CnwdyhCyUQioRXuE5kFM66xWm1vXWAjG9B6cOAEN8fzIULve3/vHhoP6BR+/B8Exiw2nMlYUOdTCu1Sm2ksPF8DGp8kAkgxg1ebJi9o7J0Iplf4RnGxXDXg5DyiZNOK2GR1a4JKBbD9ebYzIjz/Hz+jLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714375549; c=relaxed/simple;
-	bh=HADVt0e0B/pg98rMxUXytmNKr8grn91AvnMopqDte2U=;
+	s=arc-20240116; t=1714375581; c=relaxed/simple;
+	bh=yak16byc3TWXxdICWXkXcuSlkx8ka4I8T5KbpEX+Igc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TaKlQw6D9//QNrqC5krVn+u/m4TFIhzJL706dYjFoBeWGLlwNu+QnNf2DQlH95bldPNC+GuR0nPYmQ6JDbF3QM9GzetkPLXV1HXZEM4qV3w0mg6lDNVvCZuhq5PEuGUfzx93Sev3+rhcuaqEvzp/k0w4Ti/liLvuYx3RqvjO9Ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JrvQQFV+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04303C113CD;
-	Mon, 29 Apr 2024 07:25:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ceUJFUeVM97s/ByXT8GX4hd3gpfcY7YwDClB27tfd4zgagIk/cZRypT9pm8D0E0TLMaHMceYsBq4E7r6HN4RKpIEZYvis8PEJG7ODrXobY5eBReUAchUJjNIrBmxCwcW4FL6vMGyOTHhtP/zXz9/QhlU0qCBAnOL+eau1XOahVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P2f7D534; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF9BC4AF14;
+	Mon, 29 Apr 2024 07:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714375548;
-	bh=HADVt0e0B/pg98rMxUXytmNKr8grn91AvnMopqDte2U=;
+	s=k20201202; t=1714375580;
+	bh=yak16byc3TWXxdICWXkXcuSlkx8ka4I8T5KbpEX+Igc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JrvQQFV+t0qveKS6tiIEJs3lceWl+/V8k0AR27jYTm/N9+UVJOEOc2YL+EguNAr3a
-	 3msiT9goSG8auKiEyvAz/UAmQJxrsIpBbjjVs/WAzbZAOScGVmo20cBZBrVO8+9uno
-	 hiWLC9/y6cinbhwvI2CaYg4JHnP8TcUFl8pQjU4/aVeppH2TOk/5wB5Jto5vDSEKtl
-	 EUDUMYFMnKFU8hCPoH7DG1hhAdJ31JySzpP1vZQE8mUoWBRs1VLvM9g8m3qd972w0u
-	 j9JYt3AgSHgs4ELsw+VxxI0/y014p+v7+QYuBwonyfh2ZpQW1uDJ08Zx0y2UObYEzZ
-	 wHaTjt5NjLOdw==
-Message-ID: <b2db7031-b9f5-49fd-85bd-f0984f4cd9ed@kernel.org>
-Date: Mon, 29 Apr 2024 09:25:43 +0200
+	b=P2f7D5346PT5Y6qZ7bAe/EbqSveqvUEQmrvJXXbw7F2tTSQDQqghXTIhBx+Gu6eZ9
+	 wWsDaVXwpplMBKTGnLUYlcKH2G3c6rxlIVNo7TrgZF6lP/usNl8LY18d76/prwIJQk
+	 GWlbzrbFtH8GeqEII+s6Goo1UpYb/7evKQ8PwmWlOKE0ZYwlqJY/q3Kt3c8c4ORZJe
+	 p4qulhwjkJ+a8FOu6XU3U4ysSDpjLLJGCBUc9lVSRzIzY4Il9wAedvBp3wMkpfS149
+	 uMSICECtlZzpvAbvwO0wy2Yho13eWoM1JNWG7RyVnkcS1wPDfSBEuB61IMUvrUam5t
+	 bUAh+OLVI+tCA==
+Message-ID: <44e430f6-1bad-4d0c-a908-823b83625db5@kernel.org>
+Date: Mon, 29 Apr 2024 09:26:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] spi: dt-bindings: ti,qspi: convert to dtschema
-To: Kousik Sanagavarapu <five231003@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-References: <20240428070258.4121-1-five231003@gmail.com>
- <59fe75b6-a4a4-4c90-a3c4-c8a4b539e879@kernel.org>
- <Zi9H5371PrJtIKVy@five231003>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am625-sk: Add bootph-all property
+ in phy_gmii_sel node
+To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Nishanth Menon <nm@ti.com>, s-vadapalli@ti.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240429061600.2723904-1-c-vankar@ti.com>
+ <c17d8123-e9cb-45b5-84df-9fe102ddeddc@kernel.org>
+ <4b3d2578-06ea-4feb-aa31-3968063953e8@ti.com>
+ <f400160f-1caf-44f6-a1b2-3a538eebd63c@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,42 +107,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Zi9H5371PrJtIKVy@five231003>
+In-Reply-To: <f400160f-1caf-44f6-a1b2-3a538eebd63c@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/04/2024 09:10, Kousik Sanagavarapu wrote:
-> On Mon, Apr 29, 2024 at 07:07:38AM +0200, Krzysztof Kozlowski wrote:
->> On 28/04/2024 08:58, Kousik Sanagavarapu wrote:
->>> Convert txt binding of TI's qspi controller (found on their omap SoCs) to
->>> dtschema to allow for validation.
+On 29/04/2024 08:58, Chintan Vankar wrote:
 > 
-> [...]
 > 
->>> +  spi-max-frequency:
->>> +    description: Maximum SPI clocking speed of the controller in Hz.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> On 29/04/24 12:12, Chintan Vankar wrote:
 >>
 >>
->> Are you sure that's actually needed? That's not a property of controller.
-> 
-> [...]
-> 
->>> +        num-cs = <4>;
->>> +        spi-max-frequency = <48000000>;
+>> On 29/04/24 12:08, Krzysztof Kozlowski wrote:
+>>> Are you sure you kept proper ordering of nodes or just stuffed this to
+>>> the end?
 >>
->> Drop. Are you sure driver parses it?
+>> Yes, I added this node at the end.
 > 
-> The driver does parse it though.  Looking at
-> drivers/spi/spi-ti-qspi.c::ti_qspi_probe(),
-> 
-> 	if (!of_property_read_u32(np, "spi-max-frequency", &max_freq))
-> 		host->max_speed_hz = max_freq;
-> 
-> So I included it in the dtschema as well.  Please let me know if
-> including it in the dtschema in this case is wrong.
+> Is it okay to add it at the end or it should be defined after "cpsw3g"
+> node ?
 
-Ah, indeed. It is fine there. Keep it in the binidng and in the example.
+What is the ordering for this subarch? What does the DTS coding style say?
 
 Best regards,
 Krzysztof
