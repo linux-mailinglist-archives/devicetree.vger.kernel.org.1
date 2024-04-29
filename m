@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-63715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7B28B60F4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:17:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE5D8B6103
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:23:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E36D01F22172
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:17:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 801651C215A4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C3383CBA;
-	Mon, 29 Apr 2024 18:17:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF1C128815;
+	Mon, 29 Apr 2024 18:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AaRV4J4W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LxLOW1Nh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE7B86655;
-	Mon, 29 Apr 2024 18:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1052B12839D
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 18:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714414629; cv=none; b=IRgHqUqbILJjsAj7SxkiuVH/uS9t77D0KOm9WSEkB/IP3cM/ILqAnIaQbpXDlVEGk0IkMdaoIC817s9G/fV0PpHCRXD1TzjN3TfPQ9AWyRe34E3ytBhAMnOQacojKBBvBbgyN3k8NkfpJnIjLWndIG5q49B/sBENxPFJoM4cfiM=
+	t=1714414977; cv=none; b=lZYLPVdSusYZf6ZED+WY7rr3OUYZXaZNUPd153M08E9sjVoORBDaOiDAusn8UNJzmgGi0y1WRkvEu+GHdXCiRug0xSW4WaqfJ/v5A7KW1w6wbWMUJULkrE4dIJ0g+A20wpmf4mlrGXQ+aJw8Zce7YMCwcrtH2uOgVdx10ZO0X7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714414629; c=relaxed/simple;
-	bh=KTs/zoUiuae6edwc/kqu2RFwwl4StxbktlOIiidz9wI=;
+	s=arc-20240116; t=1714414977; c=relaxed/simple;
+	bh=9DPgT3uw6Y+clGGpSsRmzljwmd2Ouber8k8voXHDBl0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VZE7XY1yqF5jZNE44hifq6OXTGMZLRP0xmI9PDpCQCGy5XEOD6uMFzvi+ByPnuCgKBCXKUbcgw47V/NpYguGt7Fo+XtN7RJVxl2Zv2UzAJmRok5uJe4l4U11pRTbiX7CoOgwfLiODd8Fy3gJ7G5pcw+rMjIx833XME8eEBEFjec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AaRV4J4W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A80C113CD;
-	Mon, 29 Apr 2024 18:17:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714414628;
-	bh=KTs/zoUiuae6edwc/kqu2RFwwl4StxbktlOIiidz9wI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AaRV4J4WwE56BJrb1a7pnWvHCVi37mvSMiwZvqd2OJ2r9Xn0nWr+shOzejtptHMpJ
-	 tzl1n0xI3FBsQxbLk3Il2FAyYmn8N9Rt6sHlYmV+TZ4JdymsV4oAdeI/k8bJ13q8mB
-	 yB7pC3/URzZTb5Df740Q4fY69qSp+wjGc7cfE2S1LwzJoaBwzdebwEPU70kYFa5QWj
-	 aWjOBxQetkxdn2Ln411xP/1mbBtcpo4JA/Gf9NtKbg/avE+Ai66b18sVLIN8ClZcf3
-	 Q0HLgMRSHq9NKERVTsrbdtK88dQZVM32da2AP46tIyYZ/V8UnG3pdMEzX9RZd26r2Z
-	 mJ34PvcHMtfog==
-Message-ID: <f817d567-1b36-4c1a-aa2c-81615ac8fe76@kernel.org>
-Date: Mon, 29 Apr 2024 20:17:02 +0200
+	 In-Reply-To:Content-Type; b=SYu2Z9qPAzTtVZw1YPPrydQBRbPoYd+ZrQGtR2zfvh3HMAsNk90wxN1jP1zHnHTGT1/Iqq6jtY8tulVhfDw0aiZDmKl+cq3uHdCeKvqCVMB/w9aEA0FK0fjKDvYC4pkP1jzQBmcAsQUtLnt63IdlOltvrcJVKZ2a8/Z5wBoWLbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LxLOW1Nh; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2dd6a7ae2dcso76868471fa.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 11:22:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714414974; x=1715019774; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=MV4tcYbM0vrj95ZOoIsoEZgFljTqlrV4AU8wxowI8sE=;
+        b=LxLOW1Nh6wp+K5JIRbhSfT5R+DlQE3YT3LNVErswXaxugEwvihz+I6xPICH34pN995
+         AfFZZ2RHeO2649nkgGFTZ4PdLcaVNJ3hIOgN/YpbfFxX4T8yI6CPBie9SYqQOwQv+Fez
+         9V6Xa7OVQa0073zjUKM655ce5yOVnsdo1Ttt28F71ZHCRXNXGE7pzbfKv3xBWwMBo70l
+         KoAmRYiQH9S041Emc8i52m2TkqieCtxtSp5Dp60dx43S5/4jP4qDxUvWvLwX7sU4S6ND
+         TnPmEruYNvrIZPk3Ep+kyldN6o6H3LmxwynY03DMSKFKsgk8FIvPzvoTELYxjyJHvIZp
+         N6YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714414974; x=1715019774;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MV4tcYbM0vrj95ZOoIsoEZgFljTqlrV4AU8wxowI8sE=;
+        b=ZNcbvdkCZV47QXWiGVFA0U+9suCOINgEQFLPtSNcKCk4nsCipD4pQ1WfojCoVSPDEM
+         BjRjF7YMsPecEDxvm3d51yjGEVZA5wY76uSW+HLIuvicbdCiB3bl/aayiLRu+p0pKXVc
+         F/G9Vq2WttMZRFsu7kfYitVWe18Gc6S0g6+A8T+Vpk+NZQKFMpLy5IJ4pmxSiEZOrDCs
+         za9XughflBDlMY8rV4bAqqRaS8I/FhHhY8uPNrd+2qIk5wwx8C0IoKOGigRjheqMzZQT
+         aEudpjwes5bFYGTHAKkiRrcTlPtDGrxHK44Xq5+KTpNm8r8t7EnW7AqCbMRuQIltX9ns
+         ZpZA==
+X-Forwarded-Encrypted: i=1; AJvYcCXGBDiiSBKGF8HyrBsF9Y8yBad+bAgXMKlSckUw0kKnAkTceOATS4aXzDd8mexWQfBCdyADJRgnqBGku6O7JlCLOp2tXjqiH+ISOA==
+X-Gm-Message-State: AOJu0YzBaV1A2n7nU+DE3jnvEDnfeyBwq+7rg/5QaVctTBhQ6puLZw2j
+	u0UjPDsyWtjdE2ZMZkXQQyZuuzBOD+3HaDJ7ZuZFptS9Z7VIVQQSK1VWlQZa4yM=
+X-Google-Smtp-Source: AGHT+IHTWJlW3inbq+j91+T09l9wjeKR68upzSPtWOOaz2zGxnNvrR/JhwLNTg6hP1pNzFXdSAYSrg==
+X-Received: by 2002:a2e:a1c5:0:b0:2d6:c749:17bc with SMTP id c5-20020a2ea1c5000000b002d6c74917bcmr8832501ljm.31.1714414974159;
+        Mon, 29 Apr 2024 11:22:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id v5-20020a170906380500b00a58f36e5fecsm2514214ejc.67.2024.04.29.11.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Apr 2024 11:22:53 -0700 (PDT)
+Message-ID: <793d016d-2bde-407a-8300-f42182431eb1@linaro.org>
+Date: Mon, 29 Apr 2024 20:22:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +77,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/14] dt-bindings: spi: Document the IBM Power SPI
- controller
-To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
- linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au
-References: <20240425213701.655540-1-eajames@linux.ibm.com>
- <20240425213701.655540-2-eajames@linux.ibm.com>
- <e2b52bfb-0742-4baf-8269-86075b5cc54e@kernel.org>
- <f1c3947c-e1c8-4dac-bbf7-e9c0dc9c27e9@linux.ibm.com>
- <992317a7-2606-404c-bc62-4d181ea9e147@kernel.org>
- <b2bdae97-7cd5-4961-9cd4-1142a862d55f@linux.ibm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT
+ binding
+To: Marek Vasut <marex@denx.de>, linux-bluetooth@vger.kernel.org,
+ Marcel Holtmann <marcel@holtmann.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org
+References: <20240319042058.133885-1-marex@denx.de>
+ <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
+ <93eeb045-b2a3-41d7-a3f2-1df89c588bfd@denx.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -76,71 +104,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <b2bdae97-7cd5-4961-9cd4-1142a862d55f@linux.ibm.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <93eeb045-b2a3-41d7-a3f2-1df89c588bfd@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/04/2024 16:38, Eddie James wrote:
-> 
-> On 4/28/24 11:39, Krzysztof Kozlowski wrote:
->> On 26/04/2024 16:49, Eddie James wrote:
->>> On 4/26/24 01:15, Krzysztof Kozlowski wrote:
->>>> On 25/04/2024 23:36, Eddie James wrote:
->>>>> The IBM Power chips have a basic SPI controller. Document it.
->>>> Please use subject prefixes matching the subsystem. You can get them for
->>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->>>> your patch is touching.
+On 29/04/2024 17:10, Marek Vasut wrote:
+> On 3/19/24 6:41 AM, Krzysztof Kozlowski wrote:
+>> On 19/03/2024 05:20, Marek Vasut wrote:
+>>> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
+>>> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
+>>> This chip is present e.g. on muRata 1YN module.
 >>>
->>> Isn't spi the right subsystem here?
->> And what prefix shall be for SPI bindings? Did you run the command or
->> just replying to disagree with me?
+>>> Extend the binding with its DT compatible using fallback
+>>> compatible string to "brcm,bcm4329-bt" which seems to be
+>>> the oldest compatible device. This should also prevent the
+>>> growth of compatible string tables in drivers. The existing
+>>> block of compatible strings is retained.
+>>>
+>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> 
-> The correct prefix is either dt-bindings: spi or spi: dt-bindings. I 
-> used the former. Would you prefer I use the latter? I followed your 
+> Is there any action necessary from me to get this applied ?
 
-The correct is the latter, although I see now Mark stopped stripping
-dt-bindings in such case. Log is still suggesting that (git log
---oneline -- Documentation/devicetree/bindings/spi/ | grep "^[0-9a-f]\+
-spi:" | wc -l gives 370 vs 130), although I understand now different
-approach.
-
-It's also mentioned here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html
-
+I recommend resending with proper PATCH prefix matching net-next
+expectations.
 
 Best regards,
 Krzysztof
