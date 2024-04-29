@@ -1,179 +1,192 @@
-Return-Path: <devicetree+bounces-63500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA408B5239
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACB68B5230
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 645521F21893
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:21:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FB5B1F219AB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 07:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 301F813FF2;
-	Mon, 29 Apr 2024 07:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2A5134BE;
+	Mon, 29 Apr 2024 07:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gC/uRCyV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iVMZflnj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7350115AE0
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 07:21:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E246510971;
+	Mon, 29 Apr 2024 07:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714375277; cv=none; b=aqpd5jeRzXbiKI0rdXjjQgIHq3QJTT0MjyHizk5olGttwLvwN+MkV1Dqu4reMiMBU7cHLSn/7ao10F6gqxb0D2Od3NTdef8HeZO/RTneHuZUHQPQwPVr/Y81YDbXO3p8Rqq3KlR6apiAZTpNQT+yxTQa9FgP9r9RjjL96sAkWl4=
+	t=1714375247; cv=none; b=uq2C9eW2M8a2BkPZ+TPzO3Fl8rKQXnqOPVpD0WIpv2YuhujBT9H0Ud6DXKpvMul7nm9kfqM1OW9dJAwfPw1gr/xEYIcMORQ0zCvvrCE3SgZBVl6kvlocilhSt7/yCTp2DC5rure2WFslF9R6WhZExX2uO0augjq1EEM6r0WGpEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714375277; c=relaxed/simple;
-	bh=cBTnCY3KBtBRr30AjNsz8q6YkNKmPKiRnzFhas2NNX8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oumkLDdjXDK0vuwvFJAFA6nEkZzynJxeVwFGFhHcqCehenQ0u/kjL29/h4AAFXLjz/usBaQnMhVt7AjNLoBqBahLRDznLmBrmAtLGQLbMRGEUpdfeV560MmCWPe29LOUjtSThDxKCqm2zq7mbvU6PcVSafflEvCnQC6Jnm9s8pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gC/uRCyV; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-7e3d5cfd81fso621525241.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 00:21:15 -0700 (PDT)
+	s=arc-20240116; t=1714375247; c=relaxed/simple;
+	bh=FaZ+FTwuhJV/kjew2rB30wE6OM5b3S3I9tzJXoha6+g=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=p6G/NEU5mp1cAo+kVFqMXvyInM3FBa06zTFz30cpcQJxg16es7TF6F81XdZV22M2arjd+wFiv45cKMDc7k6wUFoSy/nwY5s6B1dRN6xHq/Bb7DRcX9fXGtdulk3f0N6KEzZr4ZlZcwVetmZhSB5/Lyh47H7ODLkRyC/owH2pbqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iVMZflnj; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-41b782405d5so29987185e9.2;
+        Mon, 29 Apr 2024 00:20:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714375274; x=1714980074; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k4CtgL63N0Lb5Fc/VSdHeoMgN9WVz1qLr0PmEGVLiVA=;
-        b=gC/uRCyVHPA41Q9BN/kaZQ5YtCu0u2XpOeeKu/jKzziCuUWdYrcVW4tdlxF8XQWSLG
-         mza6/y9Kfn+Ve1S035X48zQ5joAVFhiIA2ZylBg5omEh5UsVoA2fIFG7CqahJdy0b/dl
-         C8gIMaKq9z+aZyFjvQkAkEXZSsTYCr/f9tno8ctNdrV0Lkx7V1ky+p/E7ACEMOdm12/K
-         soQVKWgiJkckUjiiWmzheBvvcdmcJWa+AzmhGwctOvbp3fDxbPsQmIg5NS4F2ME/W/UB
-         UVdgH/aVPH6PUE2J9Rwxp3VsOeD0d2XJf82j6dVKa271WIb23vBSZ9TWYErLj8DuLpG8
-         TaGA==
+        d=gmail.com; s=20230601; t=1714375244; x=1714980044; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VuRhE21XzHwDXdcbtWbCYdj1BqrENkdd7owmcqg9iKs=;
+        b=iVMZflnjkZH76se+Txbr9MtqbTuHdyPtfBlOFfeklqdA9aotMiiXoOEHuWrUnOuAOe
+         WkUXuAB1ukAfRUQh/Fzqr3vl0/uXEkUZ1ld04REwTS5CJjTJi5ZC9IjxsC1xmQrFD8cL
+         uatbsjalEgHeEBOQ9CHvq+5ER4hxzv/8oKYCsoQEna2s28Wz1tBd+Q4oezg0Tambn+Ay
+         ek/MBv+T9t8A72jQjUFi9swFiGKq0gUbN8Wpunjl/QMRqltx4pUpKO2LukfAx6S08iTr
+         K5SI/gi9VI3egfRZMkHcPh4+6RtuhbDeEJsE+6l9mMiqH0DdQqKVNKyBzJFQ1XJMpHa/
+         Kr9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714375274; x=1714980074;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k4CtgL63N0Lb5Fc/VSdHeoMgN9WVz1qLr0PmEGVLiVA=;
-        b=OZ5eqlywMjaf7ZRu2gPl4yTMrlPZ5uVENObvVGds4Tp/vHJUkRqrENcJawF+ZGchho
-         qYkDfVjqCm7C0ZQeUbcw9JdEnEXrHYr2jnCevlGOxdUoL5J7fhrRzi8l3LM306GIgJfw
-         mrKb5eOxxE0AVXZP+667Bl7OqXaFzEW1aMlrgN/vGk9SKYtHa11JcZ7GqJr9tcKRlgMY
-         SoFGpwX98SfVmf6lEZpY57ekE7CoPFvXnwKJ6/8ZFY/hrwxJfivfU5s1AIFyVOPtqhZH
-         RLVtr2lFJS3qHtv2H++gpDyNVk7FQcXpVadWhFUMLio5wvn+nmhMkR+2g+xVrzXFoKfU
-         aJZA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1Xt3AZ3GTTa+hFX7DyyI4yepg4TCabAB1W/Z7ewVvpAbNvZbyrna+oD5gGn2L+uCNBKj3s5x0CSaAbVGXk2eXNchqnRvdZd49UQ==
-X-Gm-Message-State: AOJu0YzxMUFA/Rr2Q0ZaiQzYevk/OMT8AQDbyyu8+hHV6K7UlFZvFtdR
-	Y5XjjiuJoTHPnlTuMB7Pd1YGpyiJtxJlYSwcPX8ZZPST9oUND0DbmSNhGaAt14spktN/D3zBZah
-	RbGFLV/LqWZVcy+9N4hmGAPs+iEUXi7Zq4zk9mg==
-X-Google-Smtp-Source: AGHT+IFTQhCi6zGH8UpHY/Gea7P61K+intVrtnp1dSZHdoHSbR6jH1Glk906JzDo6d3r6zm3BQ4dpX/TSHx7GI4x8ZA=
-X-Received: by 2002:a67:ee09:0:b0:47b:d49b:c59 with SMTP id
- f9-20020a67ee09000000b0047bd49b0c59mr8661651vsp.10.1714375274307; Mon, 29 Apr
- 2024 00:21:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714375244; x=1714980044;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VuRhE21XzHwDXdcbtWbCYdj1BqrENkdd7owmcqg9iKs=;
+        b=JYnX8VCNjqcCX11mp+A2DkKgR/TbwZ9XHQtzctYAyb56gMV2obdxMv//wyohYTLphG
+         5a//WpTeDpFHS6hLlpp54Jpva8RKUfoFC7XlslEfk8rUYWd9ufWZ9GjyNIO/vTNlmbEx
+         QdyRCuuKEO2/dd9mpDK/KOrzCWqF27CMIjnS7JN3ansbJFsWeKt0P+E4EUys71PHCZEJ
+         Cel5j94cAQkmBWyF4+EdCzZvz9zAR0rmjjpX48Tgduk7/5EO/ZMvBd53BkT1ZOfZCmJY
+         Yhz8UJbGkdzYbvN3hsLsSrSI5NXNfKrbLIVQJDk0T2pVSw2yeYwydO5qW0h58z3RBETn
+         RqZw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2eD8D958AjGD9QBzeoYs73QoVWwYyI5gC+tymfUy4pBE3H2DeLMZoGJsf8/mIROKVMPM3cE331l0Czr/am+AXIOTD8SLt6P1E38LTY3azFGJlfA6G8RnZX8HkmOyU2mlM0Dr1kA==
+X-Gm-Message-State: AOJu0YxhRLOrcgAmJ2fhkXTh32EclXIcaMJkPxuZp/HkK+w7FxMsYHu2
+	LVS2lvEcio9e1I+oSXGa98N8sHQ0JqsVj0q+zwhAJ8ITpfcMITc0
+X-Google-Smtp-Source: AGHT+IGcKV5p6fryFNa8FeK6yPu3HVSA3yKa3W56gy2KDYxlfl8pHaG/IX4a9qmPs1JxAKr41pjHdA==
+X-Received: by 2002:a05:600c:3d9b:b0:41b:e94f:1e88 with SMTP id bi27-20020a05600c3d9b00b0041be94f1e88mr4975835wmb.24.1714375243993;
+        Mon, 29 Apr 2024 00:20:43 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
+        by smtp.gmail.com with ESMTPSA id bh18-20020a05600c3d1200b0041bd920d41csm7920607wmb.1.2024.04.29.00.20.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 00:20:43 -0700 (PDT)
+Message-ID: <b988e9b88eb7589ed38a5f50a2b1ad10007fa1ce.camel@gmail.com>
+Subject: Re: [PATCH v2 7/7] iio: adc: ad9467: support digital interface
+ calibration
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
+	 <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org,  Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, Alexandru Ardelean
+ <alexandru.ardelean@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+  Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Date: Mon, 29 Apr 2024 09:24:21 +0200
+In-Reply-To: <20240428183231.644857bd@jic23-huawei>
+References: <20240426-ad9467-new-features-v2-0-6361fc3ba1cc@analog.com>
+	 <20240426-ad9467-new-features-v2-7-6361fc3ba1cc@analog.com>
+	 <20240428183231.644857bd@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240403043416.3800259-1-sumit.garg@linaro.org>
- <CAFA6WYNxTPgiq6WLQaKGMTenuKe51SXXhgGYkdyRibghXAMfnA@mail.gmail.com> <CAFA6WYPk6E8JM8z62Skxq454WwPFYQ9EDx7FD--inqe7YoNJkg@mail.gmail.com>
-In-Reply-To: <CAFA6WYPk6E8JM8z62Skxq454WwPFYQ9EDx7FD--inqe7YoNJkg@mail.gmail.com>
-From: Sumit Garg <sumit.garg@linaro.org>
-Date: Mon, 29 Apr 2024 12:51:03 +0530
-Message-ID: <CAFA6WYNbQLz2Gio6dS2MbDT7hgNWmq27K2ng218cbYmGvQ+VhA@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-To: andersson@kernel.org, konrad.dybcio@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	stephan@gerhold.net, caleb.connolly@linaro.org, neil.armstrong@linaro.org, 
-	dmitry.baryshkov@linaro.org, laetitia.mariottini@se.com, 
-	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com, 
-	benjamin.missey@non.se.com, daniel.thompson@linaro.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 19 Apr 2024 at 20:57, Sumit Garg <sumit.garg@linaro.org> wrote:
->
-> On Tue, 9 Apr 2024 at 23:24, Sumit Garg <sumit.garg@linaro.org> wrote:
-> >
-> > Hi Bjorn, Konrad,
-> >
-> > On Wed, 3 Apr 2024 at 10:04, Sumit Garg <sumit.garg@linaro.org> wrote:
-> > >
-> > > Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> > > Box Core board based on the Qualcomm APQ8016E SoC. For more information
-> > > refer to the product page [1].
-> > >
-> > > One of the major difference from db410c is serial port where HMIBSC board
-> > > uses UART1 as the debug console with a default RS232 mode (UART1 mode mux
-> > > configured via gpio99 and gpio100).
-> > >
-> > > Support for Schneider Electric HMIBSC. Features:
-> > > - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
-> > > - 1GiB RAM
-> > > - 8GiB eMMC, SD slot
-> > > - WiFi and Bluetooth
-> > > - 2x Host, 1x Device USB port
-> > > - HDMI
-> > > - Discrete TPM2 chip over SPI
-> > > - USB ethernet adaptors (soldered)
-> > >
-> > > This series is a v2 since v1 of this DTS file has been reviewed on the
-> > > U-Boot mailing list [2].
-> > >
-> > > Changes in v5:
-> > > - Addressed another nitpick from Stephen.
-> > > - Collected Stephen's review tag.
-> > > - Warnings reported by Rob's DT check bot aren't related to HMIBSC
-> > >   board DTS but rather they are due to msm8916.dtsi or extcon-usb-gpio.txt
-> > >   still not converted to YAML format.
-> > >
-> >
-> > I haven't seen any further comments on this series, can you help to pick it up?
->
-> Gentle reminder.
->
+On Sun, 2024-04-28 at 18:32 +0100, Jonathan Cameron wrote:
+> On Fri, 26 Apr 2024 17:42:16 +0200
+> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+>=20
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >=20
+> > To make sure that we have the best timings on the serial data interface
+> > we should calibrate it. This means going through the device supported
+> > values and see for which ones we get a successful result. To do that, w=
+e
+> > use a prbs test pattern both in the IIO backend and in the frontend
+> > devices. Then for each of the test points we see if there are any
+> > errors. Note that the backend is responsible to look for those errors.
+> >=20
+> > As calibrating the interface also requires that the data format is disa=
+bled
+> > (the one thing being done in ad9467_setup()), ad9467_setup() was remove=
+d
+> > and configuring the data fomat is now part of the calibration process.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+>=20
+> One trivial comment.
+>=20
+> I'd have picked up the whole series, but it feels too big to do on a Sund=
+ay
+> when you only posted on Friday.=C2=A0 Hence, lets let it sit for at least
+> a few more days to see if others have comments.
 
-Is there anything missing on my part to get this accepted? It has
-already gone through the review cycle with v5 posted for about a month
-now.
+Yeah, I kind of waited till the last moment to see if you had any important
+comment (on the first version open discussions) that could affect v2 :).
+>=20
+> It might not make this cycle as a result.=C2=A0=C2=A0 I've picked up the =
+2 fixes
+> today to increase the chances those make it.
+>=20
+> Jonathan
+>=20
+>=20
+> > =C2=A0static int ad9467_read_raw(struct iio_dev *indio_dev,
+> > =C2=A0			=C2=A0=C2=A0 struct iio_chan_spec const *chan,
+> > =C2=A0			=C2=A0=C2=A0 int *val, int *val2, long m)
+> > @@ -345,7 +606,9 @@ static int ad9467_write_raw(struct iio_dev *indio_d=
+ev,
+> > =C2=A0{
+> > =C2=A0	struct ad9467_state *st =3D iio_priv(indio_dev);
+> > =C2=A0	const struct ad9467_chip_info *info =3D st->info;
+> > +	unsigned long sample_rate;
+> > =C2=A0	long r_clk;
+> > +	int ret;
+> > =C2=A0
+> > =C2=A0	switch (mask) {
+> > =C2=A0	case IIO_CHAN_INFO_SCALE:
+> > @@ -358,7 +621,23 @@ static int ad9467_write_raw(struct iio_dev *indio_=
+dev,
+> > =C2=A0			return -EINVAL;
+> > =C2=A0		}
+> > =C2=A0
+> > -		return clk_set_rate(st->clk, r_clk);
+> > +		sample_rate =3D clk_get_rate(st->clk);
+> > +		/*
+> > +		 * clk_set_rate() would also do this but since we would
+> > still
+> > +		 * need it for avoiding an unnecessary calibration, do it
+> > now.
+> > +		 */
+> > +		if (sample_rate =3D=3D r_clk)
+> > +			return 0;
+> > +
+> > +		iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
+> > +			ret =3D clk_set_rate(st->clk, r_clk);
+> > +			if (ret)
+> > +				return ret;
+> > +
+> > +			guard(mutex)(&st->lock);
+> > +			ret =3D ad9467_calibrate(st);
+> 			return ad9467_calibrate(st);
+> > +		}
+> 		unreachable();
+>=20
+> not totally elegant but I think the early return makes more sense and we
+> should
+> just use an unreachable() to squash the resulting compiler warning.
+>=20
 
--Sumit
+As you might remember I'm not a big fan of the unreachable() but also no st=
+rong
+feelings about it :). Do you expect a v3 for this or is this something you =
+can
+fix up while applying (assuming no other things pop by)?=20
 
->
-> >
-> > > Changes in v4:
-> > > - Dropped IRQ_TYPE_EDGE_FALLING for pm8916_resin given the expectations
-> > >   of Linux kernel driver. Instead depend on systemd workaround suggested
-> > >   by Caleb to get expected HMIBSC reset behaviour.
-> > > - Incorporated further DT coding style comments from Stephen.
-> > > - Warnings reported by Rob's DT check bot aren't related to HMIBSC
-> > >   board DTS but rather they are due to msm8916.dtsi or extcon-usb-gpio.txt
-> > >   still not converted to YAML format.
-> > >
-> > > Changes in v3:
-> > > - Picked up tags.
-> > > - Fixed further DT schema warnings.
-> > > - Configure resin/power button interrupt as falling edge.
-> > > - Incorporate DTS coding style comments from Krzysztof and Konrad.
-> > >
-> > > Changes in v2:
-> > > - Fix DT schema warnings.
-> > > - Incorporate suggestions from Stephan.
-> > > - Document UART1 mode GPIOs based mux.
-> > >
-> > > [1] https://www.se.com/us/en/product/HMIBSCEA53D1L0T/iiot-edge-box-core-harmony-ipc-emmc-dc-linux-tpm/
-> > > [2] https://patchwork.ozlabs.org/project/uboot/patch/20240311111027.44577-6-sumit.garg@linaro.org/
-> > >
-> > > Sumit Garg (3):
-> > >   dt-bindings: vendor-prefixes: Add Schneider Electric
-> > >   dt-bindings: arm: qcom: Add Schneider Electric HMIBSC board
-> > >   arm64: dts: qcom: apq8016: Add Schneider HMIBSC board DTS
-> > >
-> > >  .../devicetree/bindings/arm/qcom.yaml         |   1 +
-> > >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
-> > >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> > >  .../dts/qcom/apq8016-schneider-hmibsc.dts     | 491 ++++++++++++++++++
-> > >  4 files changed, 495 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > >
-> > > --
-> > > 2.34.1
-> > >
+- Nuno S=C3=A1
+>=20
 
