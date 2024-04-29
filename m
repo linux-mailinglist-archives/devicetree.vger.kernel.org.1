@@ -1,98 +1,108 @@
-Return-Path: <devicetree+bounces-63669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7EE8B5D6A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 17:22:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2381D8B5D46
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 17:19:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B2FDB2A257
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 15:19:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD1A21F21115
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 15:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5889D127B58;
-	Mon, 29 Apr 2024 15:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B11A82D7A;
+	Mon, 29 Apr 2024 15:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="LT8pKSHm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLJPYumP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15391272D6;
-	Mon, 29 Apr 2024 15:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703307E0F2;
+	Mon, 29 Apr 2024 15:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714403450; cv=none; b=uEP40IpQvb8Os7FWcql1W6Z1ndnh5qpcrALo4stIiPYiqRSakYsw6MpfhgWgCmuwJgtv6koV4vQuMqxDe40F0KbEFgSrcXdDTWsS9RKGSLqXrTjbDqa6/SvuaOi2rGOWYQB2GxO2OrP3gmLPdeZsNmhM/F15p0V1AgoEHtaqoPk=
+	t=1714403503; cv=none; b=SmC1off2nnKvtaXfyyPJ1C9oj5wlH+4dAV6M0u0k+G9jcE4v4pDDjqCkZEeJ2TNyvSODxrUmTdRSH7+Qfh1I4K1aFfB0YnTengavqCQbk3ZtWoiLmIUmd1NoSg5hB6PPM88m5l+yFeIKTbpSDpkO4fr/6M6rQVbzrVpvTo0nR7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714403450; c=relaxed/simple;
-	bh=8L8NBC0tuW5E0IO/qcCgf442V11CmQ8oFUvg3oL+A30=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aPRdgvWWcNlZvfaczbELaQENNqxHCqE1zmznAabIGggPLJWInWLhsCFCYDa0h90+BwmoI2x6/mo45BkdWeIY5Tf1zKENH6gZ5P/z5CHfbhu9i7igC0q4M4QHtyoXlFNQEVLx3SVEt7zaVKx/xOV7Y+3BBypjLYvvmdi43O4j9EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=LT8pKSHm; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 8094788155;
-	Mon, 29 Apr 2024 17:10:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1714403445;
-	bh=qHYA/D1msUd7p69S7hlOfXNJ8AvqD4n0cCmw28Z+mks=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LT8pKSHmWio28RlZ2qybtunuy0ffJhJCqXw6r+ACq5XvDIcAA4PjGC0P0EgewZ8m6
-	 qxxnsURhudhbCZLOabRTdlvoWD79Vf/czuSs0zx+Ig+aGv9701a1ZKhtHuNHOH+fW8
-	 fe6ldB0A37NHEKBpZPPQWvSdjxZpxsntZH0xeAYyMA9kpHybB9osBp3Johoksbgsr0
-	 nWyIpIomYPGJ8830MNUjYWUKxRLlnqw4uFth4QspQgME4QcnBlDKieeM1ZKO8YwpbF
-	 T5l1aTDsHwTETIDmvvWqizO2z0DdtB1Vnow0L+EpHcbdpLh3R5+qYAKLnfbC9GZJHm
-	 HjkYm+zIi4v0A==
-Message-ID: <93eeb045-b2a3-41d7-a3f2-1df89c588bfd@denx.de>
-Date: Mon, 29 Apr 2024 17:10:43 +0200
+	s=arc-20240116; t=1714403503; c=relaxed/simple;
+	bh=CIXcvwGpFixZBreh058VGVZ+NOH7kWo7gvJMk6mMaT0=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TFfL+SVBncP76GNMDEBNGwYXnqUDH2NVtrrGzQZqp7KOK7SlxxGZpzZEiMTVGKb0rVpWuEduMEDfCaqfNcOyf0Iru6Qu1S2v4O6MleWVrqNIXkkE48H7AeZRRV1Ow44qOQtpg5i3xJsqI2zRVv0ouf3FslV2b2uaVcLAWZfbwEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLJPYumP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 253CEC113CD;
+	Mon, 29 Apr 2024 15:11:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714403502;
+	bh=CIXcvwGpFixZBreh058VGVZ+NOH7kWo7gvJMk6mMaT0=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=hLJPYumPEJljAUpSPqB51Tw+uwapqs/KBo9lShECozqJ4aDIqpBSZo7L6/mnlw5rM
+	 5pRa1OSV220E6k9izAnlr/re74u/QJt3AHX83ZB3dsKBxHQYZTJQfgyJ+cuk0s2M5K
+	 4N6ga9msjiTrxEFMhAtcRSQ6QxeNfLB+LiHJGiR2j/WOkbOiBGjGFcO6xDTsvYnFqF
+	 eAYC9xpDPwgyAnLOM22W0e1jHI9fpugp77mMC9TK9D2fMdoqnFefQN2lra44ccFFSD
+	 ad2/pP+ui/dy5IuchWSPBCRK4f6JnkVYWkd6P/JWgQjZMDBLIFXW6ktDHxi5F6a1oc
+	 RP8ErvancuySQ==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, shengjiu.wang@gmail.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Shengjiu Wang <shengjiu.wang@nxp.com>
+In-Reply-To: <1714026906-16723-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1714026906-16723-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: fsl,ssi: Convert to YAML
+Message-Id: <171440350070.1835960.10169386594914544102.b4-ty@kernel.org>
+Date: Tue, 30 Apr 2024 00:11:40 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT
- binding
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-bluetooth@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, netdev@vger.kernel.org
-References: <20240319042058.133885-1-marex@denx.de>
- <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-Mailer: b4 0.14-dev
 
-On 3/19/24 6:41 AM, Krzysztof Kozlowski wrote:
-> On 19/03/2024 05:20, Marek Vasut wrote:
->> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
->> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
->> This chip is present e.g. on muRata 1YN module.
->>
->> Extend the binding with its DT compatible using fallback
->> compatible string to "brcm,bcm4329-bt" which seems to be
->> the oldest compatible device. This should also prevent the
->> growth of compatible string tables in drivers. The existing
->> block of compatible strings is retained.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
+On Thu, 25 Apr 2024 14:35:06 +0800, Shengjiu Wang wrote:
+> Convert the fsl,ssi binding to YAML.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add below compatible strings which were not listed
+> in document:
+> 
+> fsl,imx50-ssi
+> fsl,imx53-ssi
+> fsl,imx25-ssi
+> fsl,imx27-ssi
+> fsl,imx6q-ssi
+> fsl,imx6sl-ssi
+> fsl,imx6sx-ssi
+> 
+> [...]
 
-Is there any action necessary from me to get this applied ?
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: fsl,ssi: Convert to YAML
+      commit: 2da01ca3674c6e90dbeeda02168849e2ec877edc
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
