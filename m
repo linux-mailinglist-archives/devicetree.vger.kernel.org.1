@@ -1,132 +1,175 @@
-Return-Path: <devicetree+bounces-63734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2151A8B63E8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 22:57:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 595438B63F7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 23:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DBC8B21DB2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:57:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D129D2817EE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 668A21779A5;
-	Mon, 29 Apr 2024 20:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BC2179201;
+	Mon, 29 Apr 2024 21:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BKNMTFb0"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="iIeBy+k9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B678A1E886;
-	Mon, 29 Apr 2024 20:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799D6178CC1;
+	Mon, 29 Apr 2024 21:01:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714424269; cv=none; b=c02YlnM7ps2lKursE80d0/EG/BKkBIM82GNxyn0vgW5n4huhS350ZT8gNg50NTkV6scSM2YR2J4mUkjbgDCqoJ/x9PnoKBvev1e/g94D7YT2JhmdB6PMFo1RCkP2sV01hYtzAkb+p1VIzIrOije1Rw8B5WbihI24nIXArHsbvss=
+	t=1714424513; cv=none; b=WjCgclE94NrL6zZ6Zh9XtzOhX0JbpMqqQMR1IS+vBzJYlVUKGgquBAdgbXqvrTbqMMKEUSNS2DIephClPpPjS+T6XVpookr6uF61xjBLTkSlFxiplV4en0hK2gsmnqFQ0oodLtqR6vm4Xv7t+BQQzj3d+x39PjzYYRsSj228Ggs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714424269; c=relaxed/simple;
-	bh=dJtsrE2v3jaKw5VkxelZkA6Wz54/g/h4cLRiepnTIdE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CAZd9Km7GMXRryrcC+WRkR/otFbSz/PRBAIUjJBcqBR4kxCkAzBJ2ugISa3XP9eP/2XxN0d4V0O+dAj/wq1A0jzOSWbYLnOCV5GlKir4XOUEtpI+a22Bf52U2YgrKQYU3kacfUBzRcR2/3wBP2yFGfUxU4UsPuP+IdofSINBftA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BKNMTFb0; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2dfb4ea2bbfso29649101fa.2;
-        Mon, 29 Apr 2024 13:57:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714424266; x=1715029066; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dJtsrE2v3jaKw5VkxelZkA6Wz54/g/h4cLRiepnTIdE=;
-        b=BKNMTFb0NgSBYXh7DYem/OV783M/6eEuYf5w2EZz9wXDS84BuOfbTI+6lST8n2WSb/
-         Nj0n/UFH7yMFqbsJtZicgCPhOW2H/AXFf6Vuv7S/gLbKCfxNnLT/sabb4LqJN2270S3o
-         GUyDRO6DAhKy+0ZUB5JX2dzn8fj4IByjY6M+wMkd6/iTVIJR/2tHpT5yoOtFfq9cYGOd
-         69ISsuLuNIlGvgOZtMiK27EQZIIDZjzCuVpqOFI0citvUIOGTGP4LHlVe2ul+BIyBpQx
-         qNTyDCqdC/zT29kizyqBZnZaS/rz87jB6pbaOwM+Qcig/lQc9vgR+guofbUgG6Fupgqn
-         k90g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714424266; x=1715029066;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dJtsrE2v3jaKw5VkxelZkA6Wz54/g/h4cLRiepnTIdE=;
-        b=XaUhjeob572QiiuYubK8adWRMV4fxg2Y38vSAB2yzU/5fEbZ3X1gVtf9FwhHCUkkCZ
-         kDHastA9KPqWIvkM2M/XM1OraMv/rY/V8L9fjGQHkPEP3/ALjoDu+tH5wX4BlzN6EZFy
-         czj1N3hc0Eq/hZGEkqHUuziWsUOO48w7Y4CYnqKyddvzhPUaoKB4k2COLWz+afe7HbTz
-         g+DML3GFmf69mphKwNfeX5tkIfVERJ4rDtISnAw7iIGkRaXrlrLFb+TI1fvuVsUq/75B
-         8OyylawtKOstl47X1BXJ62S/CTIddF26gqTWC7OPq6Q8ocwaGG0CnD89ZDmuSucsbxNv
-         S6mA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/IQi4gazsQ4XF9mY/M31E3tBpPQU95Gw+q8kBsnIN+UEpaoqmQ09mLWCOOZX7RudmxacWOIE+chsElLeiBwUt5mvoYrs/zPS8P4uOiz8eKIZJ3ocCQj9nDYalGHs8Qk6bFq6bRIDEb+IYi5txdiy1Xc/gdQeEdIOVf6hSVSquyRo7Iw==
-X-Gm-Message-State: AOJu0Ywi5nxlG7o3m9SXh4IONXCAgX7eFrxiWeo4rMd/A9sSJLAJ7z4+
-	1PYQ6CyVAMGqpKRe2orv6ZjZq4bLT17kqJO6pK2O5F9Spjam4pGWomd2g2K4eBKryWxigXuQHbM
-	fdqdzSvP4ABW+s5pKC4jfq5rStg8=
-X-Google-Smtp-Source: AGHT+IGQJk2euqsn10YsIrACnj0l2e7c2HREXcW0k86OgPB1dFwqNRU0nLUxm8tatoL1HdNT8yu2SUbnyyzcwIm+48E=
-X-Received: by 2002:a2e:928a:0:b0:2d9:eb66:6d39 with SMTP id
- d10-20020a2e928a000000b002d9eb666d39mr6832573ljh.19.1714424265554; Mon, 29
- Apr 2024 13:57:45 -0700 (PDT)
+	s=arc-20240116; t=1714424513; c=relaxed/simple;
+	bh=+O2L9G/0QBwEbq9DlY6yLWzONMRiWRRLBrZA2i2zDRM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kCUobigvt5SsbkhNHYCnr5iMRJYO/58Ojd6Lx2tJxpsKnoUyWxILR5ftB9I6sz2XynEQa+MCNPYCUTI9EgUk0XR148haum85kEMTYs8M5YsjmDIH2Oks/BOi9oBUcKiEpQh/bc2DJ23WRc3lTkW8kjIC9ulGt4Vl4c62V7h0rY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=iIeBy+k9; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353727.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43TL0k5l007584;
+	Mon, 29 Apr 2024 21:01:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=wNGJ28Vtk6wJXeGRiVnvKvCMM3rl98GwLlQuChM+pkk=;
+ b=iIeBy+k9Gj3AgalOG+jzQf51K1059VkutNDOYiwQQUuKD2jEG9O9JlGP6l6q+41Phl2t
+ 3rWAq8hpuMZ6N1E11Y4XJAOk1YSCo48pBeC2dFag0qMEAJ+26H5hN4RHk7Tr2ujoYehJ
+ CenYjkxWOwGSmjujxtfxVNYjptCzSAIsIDXnte0Mu0Jb+UvNteOVM1DWvSMMEbWsUI/A
+ v5D4OB4NKLHN22n40ahL6kZqnWRs1uO+vMrhrzOVJVFF5f7C/Uo1WdgtGubdpq8a9vCQ
+ iScY60xlVmrGLfwDA4WhCN4zWwOUVLoTq9WBkbY+7ql+owdhWP9Kh4M1g7zK6Jv6tQP1 bQ== 
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xtjy9g0fp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Apr 2024 21:01:37 +0000
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43TIKB3r003184;
+	Mon, 29 Apr 2024 21:01:36 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xscpp9gax-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Apr 2024 21:01:36 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43TL1Xdd61342186
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 29 Apr 2024 21:01:35 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 1655C5806C;
+	Mon, 29 Apr 2024 21:01:33 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 50A1658065;
+	Mon, 29 Apr 2024 21:01:32 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.151.254])
+	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 29 Apr 2024 21:01:32 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: eajames@linux.ibm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        linux-spi@vger.kernel.org, linux-i2c@vger.kernel.org,
+        lakshmiy@us.ibm.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+        andi.shyti@kernel.org
+Subject: [PATCH v4 00/17] ARM: dts: aspeed: Add IBM P11 BMC Boards
+Date: Mon, 29 Apr 2024 16:01:14 -0500
+Message-Id: <20240429210131.373487-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.39.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240319042058.133885-1-marex@denx.de> <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
- <93eeb045-b2a3-41d7-a3f2-1df89c588bfd@denx.de> <793d016d-2bde-407a-8300-f42182431eb1@linaro.org>
- <c21823f2-4dd7-490a-8b76-7cab422428ba@denx.de>
-In-Reply-To: <c21823f2-4dd7-490a-8b76-7cab422428ba@denx.de>
-From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date: Mon, 29 Apr 2024 16:57:33 -0400
-Message-ID: <CABBYNZJk33ZcKc9EPi+Hmqb-pq3vSSzB3wkS4nJ45dxG6dBMUw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT binding
-To: Marek Vasut <marex@denx.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-bluetooth@vger.kernel.org, 
-	Marcel Holtmann <marcel@holtmann.org>, "David S. Miller" <davem@davemloft.net>, 
-	Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: KqqBrw2o1RWh4eEop0T0nY9adF_kMSwe
+X-Proofpoint-GUID: KqqBrw2o1RWh4eEop0T0nY9adF_kMSwe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-29_18,2024-04-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ malwarescore=0 mlxlogscore=717 priorityscore=1501 lowpriorityscore=0
+ mlxscore=0 bulkscore=0 phishscore=0 suspectscore=0 spamscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2404010000 definitions=main-2404290138
 
-Hi Marek,
+Add the Blueridge and Fuji BMC systems. Document many missing FSI related
+properties, and fix existing warnings. Make some minor fixes in OCC and
+SCOM drivers for the updated bindings.
 
-On Mon, Apr 29, 2024 at 4:44=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
->
-> On 4/29/24 8:22 PM, Krzysztof Kozlowski wrote:
-> > On 29/04/2024 17:10, Marek Vasut wrote:
-> >> On 3/19/24 6:41 AM, Krzysztof Kozlowski wrote:
-> >>> On 19/03/2024 05:20, Marek Vasut wrote:
-> >>>> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
-> >>>> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
-> >>>> This chip is present e.g. on muRata 1YN module.
-> >>>>
-> >>>> Extend the binding with its DT compatible using fallback
-> >>>> compatible string to "brcm,bcm4329-bt" which seems to be
-> >>>> the oldest compatible device. This should also prevent the
-> >>>> growth of compatible string tables in drivers. The existing
-> >>>> block of compatible strings is retained.
-> >>>>
-> >>>> Signed-off-by: Marek Vasut <marex@denx.de>
-> >>>
-> >>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> Is there any action necessary from me to get this applied ?
-> >
-> > I recommend resending with proper PATCH prefix matching net-next
-> > expectations.
->
-> I don't think bluetooth is net-next , it has its own ML and its own
-> 'Bluetooth:' subject prefix. Its patchwork.k.o project also doesn't seem
-> to contain many patches with 'net'/'net-next' prefix. Also DT bindings
-> do not seem to use it per 'git log
-> Documentation/devicetree/bindings/net/bluetooth/'. But the bot is
-> complaining about the prefix. Hence my confusion.
+Changes since v2:
+ - Split up the DTS patches
+ - Add documentation patches
 
-Well usually we require Bluetooth: prefix to indicate this patch is
-for bluetooth/bluetooth-next trees, or you can do via subject e.g.
-[bluetooth-next v1...] otherwise it could be merged via other trees.
+Changes since v3:
+ - Remove references to fsi.txt
+ - Change ibm,p10-spi to ibm,spi-fsi
+ - Change ibm,fsi2pib to ibm,p9-scom
+ - Change ibm,hub-fsi-controller to ibm,p9-fsi-controller
+ - Fix warnings
+ - Fix formatting
+ - Add device driver fixes
 
---=20
-Luiz Augusto von Dentz
+Eddie James (17):
+  dt-bindings: spi: Document the IBM FSI-attached SPI controller
+  dt-bindings: fsi: fsi2spi: Document SPI controller child nodes
+  dt-bindings: fsi: Document the IBM SCOM engine
+  dt-bindings: fsi: p9-occ: Convert to json-schema
+  dt-bindings: fsi: Document the IBM SBEFIFO engine
+  dt-bindings: fsi: Document the FSI controller common properties
+  dt-bindings: fsi: ibm,i2cr-fsi-master: Reference common FSI controller
+  dt-bindings: fsi: ast2600-fsi-master: Convert to json-schema
+  dt-bindings: fsi: Document the FSI Hub Controller
+  dt-bindings: i2c: i2c-fsi: Convert to json-schema
+  dt-bindings: arm: aspeed: add IBM P11 BMC boards
+  ARM: dts: aspeed: Add IBM P11 FSI devices
+  ARM: dts: aspeed: Add IBM P11 Blueridge BMC system
+  ARM: dts: aspeed: Add IBM P11 Fuji BMC system
+  fsi: occ: Get device number from FSI minor number API
+  fsi: occ: Find next available child rather than node name match
+  fsi: scom: Update compatible string to match documentation
+
+ .../bindings/arm/aspeed/aspeed.yaml           |    2 +
+ .../fsi/aspeed,ast2600-fsi-master.yaml        |   81 +
+ .../bindings/fsi/fsi-controller.yaml          |   66 +
+ .../bindings/fsi/fsi-master-aspeed.txt        |   36 -
+ .../devicetree/bindings/fsi/ibm,fsi2spi.yaml  |   36 +-
+ .../bindings/fsi/ibm,i2cr-fsi-master.yaml     |    5 +-
+ .../bindings/fsi/ibm,p9-fsi-controller.yaml   |   45 +
+ .../devicetree/bindings/fsi/ibm,p9-occ.txt    |   16 -
+ .../devicetree/bindings/fsi/ibm,p9-occ.yaml   |   41 +
+ .../bindings/fsi/ibm,p9-sbefifo.yaml          |   51 +
+ .../devicetree/bindings/fsi/ibm,p9-scom.yaml  |   37 +
+ .../devicetree/bindings/i2c/i2c-fsi.txt       |   40 -
+ .../devicetree/bindings/i2c/ibm,i2c-fsi.yaml  |   58 +
+ .../devicetree/bindings/spi/ibm,spi-fsi.yaml  |   55 +
+ MAINTAINERS                                   |    2 +-
+ arch/arm/boot/dts/aspeed/Makefile             |    2 +
+ .../dts/aspeed/aspeed-bmc-ibm-blueridge.dts   | 1689 +++++++
+ .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   | 3877 +++++++++++++++++
+ .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 1538 +++++++
+ drivers/fsi/fsi-occ.c                         |   49 +-
+ drivers/fsi/fsi-scom.c                        |    2 +-
+ 21 files changed, 7590 insertions(+), 138 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
+ create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-fsi-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-sbefifo.yaml
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-scom.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-fsi.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/ibm,spi-fsi.yaml
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts
+ create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-quad.dtsi
+
+-- 
+2.39.3
+
 
