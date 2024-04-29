@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-63686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D6D8B5EA0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:10:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 657FD8B5EAB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:14:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69B401F260F7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:10:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95044B218F3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B0C839EB;
-	Mon, 29 Apr 2024 16:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28AB584A2B;
+	Mon, 29 Apr 2024 16:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gw4y/hv0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULmvL0e+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C736714A8D;
-	Mon, 29 Apr 2024 16:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B4E83CB9;
+	Mon, 29 Apr 2024 16:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714407000; cv=none; b=Fi44Kktl77AAps0ogrCSru4RYUvaTfD7F9QGkcpkM3MR1E7OF9k+oiqxA2wExHaMUNvDec5jLlY5pnvKDULKfGXDr8e1xjbkZnJYDgwN5+ae8sjMJFPBLnSJ+uJDCEYb/eBu605mtsNMP1B1drEs/Gbi5+L0ZcptCofHN+sD4Bc=
+	t=1714407239; cv=none; b=A9gc0p84xbGQYp2uXwjNL+O0Emn7NiuPwuXPjecqIls+B3aoFXAxC8mKjGsij5m3/6/tI7fRntap2BEiH2iOBTbtzdgtDCeo5jBJ49b5XpwnOoMEk42dU5JGQEyQ40d4C+Fw5DlyK+Rr7iO5/ZeEnrXA76YzZAfA+AkZDyCSKC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714407000; c=relaxed/simple;
-	bh=ZAtGzg5xpGyRTDWRrb2P98Cvugc+fB+eaQXGW6P1/hE=;
+	s=arc-20240116; t=1714407239; c=relaxed/simple;
+	bh=2oFLRsAgw53HjrPHJfiYkkbK08cBxJ1ZVH2NeS3iJU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qpvpOQjG5YT2CttgKF/Z1siSQcpJe5qMFyBLuv/KHfYuAfeUTPPPevlw553mHOF7jSAE2NpOvSwcSRLljOJ8cUqXG2aaU9epvImKTldfwrZpOPN0F0DkYfQt20horjeYm60eIageB6OHid9xXnbkMP+J1FadDXfkVXiWzLkq7o8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gw4y/hv0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C47FC113CD;
-	Mon, 29 Apr 2024 16:10:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YI+K4WbMpx18Y71bKZ9qee8KIaFFYG8HSOtuunRE0r/a3AqeiUgR0UFKVBC5RUGJob4IDly6P/NiYMgHg/wV3pSPPAYbzkko7YfyboUdSKzagSsPOnzA6GzCN9CiW6xzUk2becD1gpBk5tUs/2WSVQVtYHbX88QVcaU2Gtw1pzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ULmvL0e+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35538C113CD;
+	Mon, 29 Apr 2024 16:13:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714407000;
-	bh=ZAtGzg5xpGyRTDWRrb2P98Cvugc+fB+eaQXGW6P1/hE=;
+	s=k20201202; t=1714407238;
+	bh=2oFLRsAgw53HjrPHJfiYkkbK08cBxJ1ZVH2NeS3iJU8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gw4y/hv0on/UyzNmi4cz6milNX1OQfPdqWJ//xYpNdrCAvZV7BZvi6kywVg10g7Os
-	 8xP0emuan30Ddh4d16M+uYPMpVAgiOGtvWmxGTUft3mY/o7zfGqt/MngKsEr6XHzhG
-	 z3O3uIwbKliJxxrnbqJ8ekwtga9LX7zveXVEHnzToracaCaU/cGdsvVLP7HYIutAWC
-	 G2LbUuUkqvFfZMNBLmzypobpICmnx7beK2au/htN8cxTzdS8zTORVVXIXC/iPxv7VH
-	 8oaRjZzH/g69yHwiRY/XdNLiWv1Y/mvShsSyj9tiTgQWAWzUSNJhWTjr11lKg+uPN1
-	 iH8G1tWMCIGCw==
-Date: Tue, 30 Apr 2024 01:09:58 +0900
+	b=ULmvL0e+8/UYbIjh1UWsrEwtwqrgUyH65IYS1AHQwX59qHb6amZBYOpM5rKV4mluO
+	 /Fr4t+AUoowzReyDVQoT3UP1ZWS+hFnEr06ra8uWkh+DudjprANd7gJKudBV1sfxOj
+	 uItLx0EN9snwEZNV0l8IQXP11f049XWOPKbuXHS8vIjOVaQpVr5H3tiPPhSACP/K2J
+	 ExgIdiDKOUqs4Eo03ZdEy8SQiO39grXQ8iOfuH2W51j4PyOOVvN/KIIAzCua3PJV8j
+	 11oi+jn0ViRGIVhAREs5OZjg04HHZvKAIIhpTDtGHggtTJbpuRQsf5qcyvP/pm4x1A
+	 schkbqt4UBxbQ==
+Date: Tue, 30 Apr 2024 01:13:56 +0900
 From: Mark Brown <broonie@kernel.org>
 To: Alina Yu <alina_yu@richtek.com>
 Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	johnny_lai@richtek.com, cy_huang@richtek.com
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: rtq2208: Add property to get
- ldo of RTQ2208 is adjustable or not
-Message-ID: <Zi_GVrak1a8e6v7r@finisterre.sirena.org.uk>
+Subject: Re: [PATCH 2/2] regulator: rtq2208: Fix RTQ2208 buck ramp delay and
+ ldo vout setting and segmentaion fault when devm_of_regulator_put_matches is
+ called
+Message-ID: <Zi_HRJ6xJ8cEhKAy@finisterre.sirena.org.uk>
 References: <1714385807-22393-1-git-send-email-alina_yu@richtek.com>
- <1714385807-22393-2-git-send-email-alina_yu@richtek.com>
+ <1714385807-22393-3-git-send-email-alina_yu@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,38 +61,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1k+RQz/jK2KhQiZu"
+	protocol="application/pgp-signature"; boundary="CMFEKwFL0XCdxy2X"
 Content-Disposition: inline
-In-Reply-To: <1714385807-22393-2-git-send-email-alina_yu@richtek.com>
+In-Reply-To: <1714385807-22393-3-git-send-email-alina_yu@richtek.com>
 X-Cookie: lisp, v.:
 
 
---1k+RQz/jK2KhQiZu
+--CMFEKwFL0XCdxy2X
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Apr 29, 2024 at 06:16:46PM +0800, Alina Yu wrote:
-> Since there is no way to check is ldo is adjustable or not.
-> 'richtek,use-fix-dvs' is added for that. user is supposed to know whether vout of ldo is adjustable.
+On Mon, Apr 29, 2024 at 06:16:47PM +0800, Alina Yu wrote:
 
-As Krzysztof said we already know if the voltage can change since in
-order for Linux to change the voltage there must be a voltage range
-specified (and see comment on patch 2).
+> ramp_delay range of bucks is changed.
+> The maximum ramp up and down range is shorten from 64mVstep/us tor 16mVstep/us/.
+> The LDO's Vout is adjustable if the haardware setting allow it, and it can be set either 1800mv or 3300mv.
+> Additionally, the discharge register is chaned to other position.
+> The discharge register has been moved to another position.
+> In this version, a software bug has been fixed. rtq2208_ldo_match is no longer a local variable,
+> which prevents invalid memory access when devm_of_regulator_put_matches is called.
 
---1k+RQz/jK2KhQiZu
+As covered in submitting-patches.rst since this is a bunch of different
+changes that don't really overlap it should be split into multiple
+patches, for example the change of the ramp time for the DCDCs should be
+separate to all the LDO stuff.
+
+> -		if (init_data->constraints.min_uV == init_data->constraints.max_uV)
+> -			rdesc->desc.fixed_uV = init_data->constraints.min_uV;
+> +		fixed_uV = of_property_read_bool(match->of_node, "richtek,use-fix-dvs");
+> +
+> +		if (fixed_uV) {
+> +			desc->n_voltages = 1;
+> +			desc->fixed_uV = init_data->constraints.min_uV;
+> +			desc->ops = &rtq2208_regulator_ldo_fix_ops;
+> +		} else {
+> +			desc->n_voltages = ARRAY_SIZE(rtq2208_ldo_volt_table);
+> +			desc->volt_table = rtq2208_ldo_volt_table;
+> +			desc->ops = &rtq2208_regulator_ldo_adj_ops;
+> +		}
+
+The driver shouldn't need to look at the constraints to set up the
+operations for the hardware, if the regulator can be configured for
+multiple voltages just register it that way and let the core figure out
+if we ever actually want to change the voltage.
+
+--CMFEKwFL0XCdxy2X
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYvxlUACgkQJNaLcl1U
-h9DfNgf8ClE+rYHKggStfAAkgeIFkBwgVTxO1I85bFXhSuclF7fd7Y6sE0sTwNtr
-QtWcDvwPxbAEKwqJwouq/C3ktCeNVQVGKkGpRaUnQZ+FjqKN2ZS6CImRWb697D6l
-tuwIjMt660KtNHtDCDLvXODd2OaVUkxCfL55C94hHgURP0+C8D43KjBasw5lHz7j
-fdBpUC84egX4zFpDfTCmATRVIjCLXIxooUEfog6NnoM+7gZV3xlVOS7mDoCgoUcQ
-t3ji3C+JZqo3sEb7cuYiuQcZAhAOU85adO7mo9YLzpKZKSOxoH7u4PpR9mUqG+5m
-5X7DT0Z3/Ekv5DSu6KoR9WEQTTMWkQ==
-=rZd1
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYvx0MACgkQJNaLcl1U
+h9A9ygf/b3X8dbsjTS9LgrAuYbruOGAJnJaScqP+1gX0zNEp0EFUHrtJPJ4T4mZU
+QqwtkJWQgMcw/9pt62Av3woKE2P684R4nExzH0rUOxdchYNHQN71NB8BingBqX+a
+NZp5iqeorVGrRBdSjbDmI6w0UYS0cRbGhxn6gZ4HCtkC+9THf0N6YFdrA6RuhwRx
+BUWG6LZbDxdPD/B9ePz5R8OIy7W3u/sGf5iy5KIc/KoLTh+EGnHrM6Ldr2s+ZoEn
+fv5pyBI0ZgzsvKxhtPhEkxvZTJMIA30cpYm3sxzoTj9Pjz9lJPs/iddRu04N+RMU
+81nq1XlHyqNRI7o8eE5HFb4cQP4jeg==
+=BqI3
 -----END PGP SIGNATURE-----
 
---1k+RQz/jK2KhQiZu--
+--CMFEKwFL0XCdxy2X--
 
