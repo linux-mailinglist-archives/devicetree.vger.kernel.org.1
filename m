@@ -1,204 +1,192 @@
-Return-Path: <devicetree+bounces-63550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45398B54E6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:18:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6117A8B555F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:31:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83BCE282E2F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 10:18:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E33501F22F47
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 10:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E882DF84;
-	Mon, 29 Apr 2024 10:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15BF031A66;
+	Mon, 29 Apr 2024 10:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="V3fUA3PH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pG56B01O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227BB2C85F;
-	Mon, 29 Apr 2024 10:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583FA3D64
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 10:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714385874; cv=none; b=i5k0YoGcjKwpFa+htUjrilCsAsBIPxo8Zer/Piqf98NKcxHwTmCaKs0P4EroHtFS7rmXZ17vRiTleCEADBxow6RQ5V1SarXmIZxaOBEOQTSeIb4tNcDTRSX+qPfGGEJGWCqlIzf9li2gqILDEVi/n3lRU00X7DW5GMLdAe9DEGA=
+	t=1714386696; cv=none; b=lfP5kMv5NGHLWXX2CTIzFgYr3WdB4HaoF3N7CS0NXFMxjMWcgrtbsvubnoHNEzPK/eFsEnzP2bNR4Ta+sMZbFcvwzwKZ5yklAV+hvxr+HM4rrUvRTA8pCAGMx2aBvTyCndd0p1+rfVyK9z1FIw2r4MDZD633faAKZ5+chE2ZnQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714385874; c=relaxed/simple;
-	bh=80PY6jL4DQo7PY+vtJwC9gF0O1nUV5FFyvCVjuO3buE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TO778epHQHvIydrnZuh0RH/+i7cWccZ4MxOaW02NrK0IoyHymLUV5Jb8FbjuO4sA3rCeamIxb9ngfuBEL9uMYUUPztc6uDXUEf2pMaWwK55QseH+xztCAoJtJv135OaNhRympuOIzGz8wIDtPYocqImDaZ2L2WBaevI71iGXxBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=V3fUA3PH; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43TAHjjR126980;
-	Mon, 29 Apr 2024 05:17:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714385865;
-	bh=Px2f67gMOFMB3tes57EilRrghU4XcLaNrfLnMFzKEEo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=V3fUA3PHLY6+6yHYnxNAvQ0FjzqCGnWp3okDYkMU9nEHaMiTvVnVpYGlUOn6Hrzu5
-	 7G3mlyslNxFXbJ5UBtMrCJR/H6u7+9oboTb7vy7GWUm6mHMEQqURaiqwzgVzv+o+1m
-	 agcL6dW2Hkldv6Ffqa/R2YmEEswdKN9Yr3kAJk5I=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43TAHjuW017124
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 05:17:45 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 05:17:44 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 05:17:45 -0500
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43TAHis5103097;
-	Mon, 29 Apr 2024 05:17:44 -0500
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        <s-vadapalli@ti.com>, <danishanwar@ti.com>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Chintan Vankar <c-vankar@ti.com>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-am62a7: Add overlay for second CPSW3G Port
-Date: Mon, 29 Apr 2024 15:47:39 +0530
-Message-ID: <20240429101739.2770090-3-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240429101739.2770090-1-c-vankar@ti.com>
-References: <20240429101739.2770090-1-c-vankar@ti.com>
+	s=arc-20240116; t=1714386696; c=relaxed/simple;
+	bh=Hw2qgATJSBTGrf75vTIAjwORxmNc8hxIwPuthSw1m2o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dqevQCBX0DwwyFLWg8U3VzpCTbrqAeumKx3M12uouj8IN6W8Y7ysvWyzXtdRtXv3VlOB6zWnuBLrWbohTPBJyXXrypga+vKSvwes3Y7i/O8MUNJY/ReTMeFz5BBsQtxQYqGsL4SbJzZKEltCpovqEJHyK4lF7tx/pnCXFz8nN18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pG56B01O; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a58eb9a42d9so214064966b.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 03:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714386691; x=1714991491; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=M/qc+UCmLnHMxrZ1VRhlB4bll/7dc2yIJ4EBZbdYm6k=;
+        b=pG56B01O9BI8oZo/XuP+I9kTrRbgR6tL6gDf3J+y9GMkql4z5JZq2eFRDtbO2qvO2U
+         ETnMq4xrcIQG3hMn1g3adBMP2AZniKr/0UQybMlxSwyGoz15E/FASLzlFtu5v1/oJEcy
+         +CR9wOSh7Lw84hr2J4I0jS1mwJ+WEN4cN1BbkgnFDO4R/LFwlIpjpHH6TJ/1OQ/psrCm
+         zz7qEyphU47kANkp1PGECepstI2Xfb3wCtFn5QAWkXvuBQ8t81q/A990RtTCHfnIrcOp
+         ytJEEWTtlalam5Ft0x2fpkXZeLUa2UxUKGdSJ+yKUuZNeje+tJk1fd/F82IePnySd23a
+         ldZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714386691; x=1714991491;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M/qc+UCmLnHMxrZ1VRhlB4bll/7dc2yIJ4EBZbdYm6k=;
+        b=pqYhM+/gxO/3o7qNjRcU0hzQLRvI76BSUgs/LM84Rsc8+U/5tbbvWRIZtn/bTWJ0a/
+         Lq8Q3cVd8LxHBQbYT2Va2mq5sxTFYCcPsZk8bXfmmB1t8MPiUrIFxTUVMvEQUJye479X
+         Op//wa1L4ERTtvLrrRaaPkdQwd7evMd/dDVWgJ1UyotmsbNL7yztenFTEKw+miGI5l8r
+         hrKBT50REKaLwyPxg7EEaaRectVMYBLTveFTWnLtuYpEOUolrUw5gLloq5dPc7Z0oub1
+         hPvP71QeQltkCOA8LJH9ldXgx9wHF3bUy4/rL/UpivPGo7Hs1JCR1MyGB3ccQ8ZS0dce
+         T4UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXew+QnoYf0tGuN8qm8jQ51r+No8/QFHphy1xmQT0+JfckzKVu5Tn6GljQI7WEqycE/Bn7h/RJPjGRg2dBAyyL5SDkGEEkJNyx1Q==
+X-Gm-Message-State: AOJu0Yz2BV9bYh1eTDJFOThh2Ocf1sUmobsHd5z6oVWvyoJsP3m3NpRp
+	bpqJlArAeD9Hmg8eMnhLX8cFCk4NTSgubE3QehWuatGkPEgTV5LpPJ2x8nzxYa4=
+X-Google-Smtp-Source: AGHT+IGDILAl/gI5WFRQcZGMCIgMOSCZWPNCiwyYZv4utCwXuEL8OxsWERNpnlublyuLm5UCwOfwJg==
+X-Received: by 2002:a17:906:71d4:b0:a58:f143:b458 with SMTP id i20-20020a17090671d400b00a58f143b458mr3403152ejk.62.1714386690650;
+        Mon, 29 Apr 2024 03:31:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id c19-20020a170906155300b00a526a99ccecsm13661059ejd.42.2024.04.29.03.31.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Apr 2024 03:31:30 -0700 (PDT)
+Message-ID: <1cf7f439-45cc-42cb-b707-4c87c00015ac@linaro.org>
+Date: Mon, 29 Apr 2024 12:31:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/5] arm64: dts: ti: k3-j784s4: Add overlay for dual
+ port USXGMII mode
+To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh@kernel.org>, Tero Kristo <kristo@kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, s-vadapalli@ti.com
+References: <20240329053130.2822129-1-c-vankar@ti.com>
+ <20240329053130.2822129-6-c-vankar@ti.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240329053130.2822129-6-c-vankar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
+On 29/03/2024 06:31, Chintan Vankar wrote:
+> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> 
+> The CPSW9G instance of the CPSW Ethernet Switch supports USXGMII mode
+> with MAC Ports 1 and 2 of the instance, which are connected to ENET
+> Expansion 1 and ENET Expansion 2 slots on the EVM respectively, through
+> the Serdes2 instance of the SERDES.
+> 
+> Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration USXGMII mode
+> at 5 Gbps each.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> ---
+> 
+> Link to v5:
+> https://lore.kernel.org/r/20240314072129.1520475-6-c-vankar@ti.com/
+> 
+> Changes from v5 to v6:
+> - Updated order of properties in Device Nodes based on
+>   https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> 
+>  arch/arm64/boot/dts/ti/Makefile               |  6 +-
+>  .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   | 81 +++++++++++++++++++
+>  2 files changed, 86 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index f8e47278df43..2d798ef415e4 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+>  
+>  # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+>  k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+> @@ -148,6 +149,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+>  	k3-j721s2-evm-pcie1-ep.dtbo
+>  k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
+>  	k3-j784s4-evm-quad-port-eth-exp1.dtbo
+> +k3-j784s4-evm-usxgmii-exp1-exp2.dtbs := k3-j784s4-evm.dtb \
+> +	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo\
 
-The SK-Ethernet-DC01 Add-On Ethernet Card for AM62A7-SK board supports
-RGMII mode.
+I have doubts this commit was ever built. It clearly fails, just like
+now linux-next fails.
 
-Add overlay to enable the second CPSW3G port in RGMII-RXID mode with the
-Add-On Ethernet Card.
-
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
----
-
-Link to v2:
-https://lore.kernel.org/r/20240425102038.1995252-3-c-vankar@ti.com/
-
-Changes from v2 to v3:
-- Updated SPDX-License-Identifier and "pinctrl-0" property in "cpsw3g"
-  node in "k3-am62a7-sk-ethernet-dc01.dtso" as suggested by Ravi.
-
- arch/arm64/boot/dts/ti/Makefile               |  3 +
- .../dts/ti/k3-am62a7-sk-ethernet-dc01.dtso    | 62 +++++++++++++++++++
- 2 files changed, 65 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 48fb19a523bd..b4bc5712b1a4 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- 
- # Boards with AM62Ax SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk-ethernet-dc01.dtbo
- 
- # Boards with AM62Px SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
-@@ -125,6 +126,8 @@ k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
- 	k3-am62x-sk-csi2-ov5640.dtbo
- k3-am62a7-sk-csi2-tevi-ov5640-dtbs := k3-am62a7-sk.dtb \
- 	k3-am62x-sk-csi2-tevi-ov5640.dtbo
-+k3-am62a7-sk-ethernet-dc01-dtbs := k3-am62a7-sk.dtb \
-+	k3-am62a7-sk-ethernet-dc01.dtbo
- k3-am62a7-sk-hdmi-audio-dtbs := k3-am62a7-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
- k3-am62p5-sk-csi2-imx219-dtbs := k3-am62p5-sk.dtb \
- 	k3-am62x-sk-csi2-imx219.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
-new file mode 100644
-index 000000000000..ed73d9a80379
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
-@@ -0,0 +1,62 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for second CPSW3G port in RGMII mode using SK-ETHERNET-DC01
-+ * Add-On Daughtercard with AM62A7-SK.
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@f0000/ethernet@8000000/ethernet-ports/port@2";
-+	};
-+};
-+
-+&cpsw3g {
-+	pinctrl-0 = <&main_rgmii1_pins_default>,
-+		    <&main_rgmii2_pins_default>;
-+};
-+
-+&cpsw_port2 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&cpsw3g_phy1>;
-+};
-+
-+&cpsw3g_mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	cpsw3g_phy1: ethernet-phy@1 {
-+		reg = <1>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_rgmii2_pins_default: main-rgmii2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62AX_IOPAD(0x0184, PIN_INPUT, 0) /* (AA21) RGMII2_RD0 */
-+			AM62AX_IOPAD(0x0188, PIN_INPUT, 0) /* (Y20) RGMII2_RD1 */
-+			AM62AX_IOPAD(0x018c, PIN_INPUT, 0) /* (AB21) RGMII2_RD2 */
-+			AM62AX_IOPAD(0x0190, PIN_INPUT, 0) /* (AB20) RGMII2_RD3 */
-+			AM62AX_IOPAD(0x0180, PIN_INPUT, 0) /* (AA20) RGMII2_RXC */
-+			AM62AX_IOPAD(0x017c, PIN_INPUT, 0) /* (W18) RGMII2_RX_CTL */
-+			AM62AX_IOPAD(0x016c, PIN_INPUT, 0) /* (AA19) RGMII2_TD0 */
-+			AM62AX_IOPAD(0x0170, PIN_INPUT, 0) /* (Y18) RGMII2_TD1 */
-+			AM62AX_IOPAD(0x0174, PIN_INPUT, 0) /* (AA18) RGMII2_TD2 */
-+			AM62AX_IOPAD(0x0178, PIN_INPUT, 0) /* (W17) RGMII2_TD3 */
-+			AM62AX_IOPAD(0x0168, PIN_INPUT, 0) /* (AB19) RGMII2_TXC */
-+			AM62AX_IOPAD(0x0164, PIN_INPUT, 0) /* (Y19) RGMII2_TX_CTL */
-+		>;
-+	};
-+};
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
