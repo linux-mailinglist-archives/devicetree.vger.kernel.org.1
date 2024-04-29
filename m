@@ -1,152 +1,197 @@
-Return-Path: <devicetree+bounces-63719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A07658B6270
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:39:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0568B62B7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:42:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40ABD1F21649
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 19:39:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D340281FDA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 19:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FE013B2A2;
-	Mon, 29 Apr 2024 19:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22BB13B5B6;
+	Mon, 29 Apr 2024 19:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xWbJ9Vy0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I8EOKwFJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF2B17597;
-	Mon, 29 Apr 2024 19:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6F51292CA;
+	Mon, 29 Apr 2024 19:40:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714419563; cv=none; b=PQClUZRzU6kzmtxVqULRT1ydYenbAVN+yLDKHwBqPEfgP9qZyY215yxBp7BoDPtXyXDwPSl2qjhOTXQ1rqAQGCVDyKvXsrGeqQKp3VdXjrZdyo4/fa0hV5mXBJ+fhQsgNtOA+UxKU5AhnieH14Kx8kEB8Pp5UqSr8a3/7+1plv8=
+	t=1714419642; cv=none; b=Xo84fkZgiW6yzmQMTD35OFQzmOJwFEWO43iX9ntx4E9vwJltYiMYT5KTei5CqLNgIfx61l/Lda9pnnz4YZmtDr3YZu9qcB83WIS7xXWiIDTnOkJNo2TkSEEVXhbIjNBVR4jpm1qzrYCUeO95I6GVdLLQy1dEqIdsjE1mcwBYwkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714419563; c=relaxed/simple;
-	bh=WhgcW/bisSpMZeVcT/iQoAmlUPS83pZyhBZcNJvwjkI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XCNlnRHqYYpI6nuP82mzU5vPR4JWzReA0GtyG+x56o5Kot3O5VnzWQ1Nned3xADh3CWGNFWntX1ZPNv9EApIaXL/ORIbF3v+t/zmxaSvFb/OnsCzYM85CbwpHn2tK6gW0l/NqxTvh9jL/0Li1MrwSUPskZDhzmlv2xeFswXqwUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xWbJ9Vy0; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43TJdCRA025117;
-	Mon, 29 Apr 2024 14:39:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714419552;
-	bh=lVO2rgJjLq4yw9Oul8jln9aM6c3F0zQr/8SSJzsApYQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=xWbJ9Vy0/d5ip39xkTzF8xujH1O01/X1GWBuwV2fAnFSrT8ogcV6GvYb0X4p8VCOw
-	 crR45GlvB0XLGWRFmD4QFYxUAhA4aO/0QCqn360r9l1AuTONz+smPNY5m7i0QIuU9k
-	 0E5wMpnrQi90uHe70pSfMLydPDf9BY+n4qoKwP70=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43TJdCfU109555
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 14:39:12 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 14:39:12 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 14:39:11 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43TJdBQE093494;
-	Mon, 29 Apr 2024 14:39:11 -0500
-Date: Mon, 29 Apr 2024 14:39:11 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Chintan Vankar <c-vankar@ti.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH v6 5/5] arm64: dts: ti: k3-j784s4: Add overlay for dual
- port USXGMII mode
-Message-ID: <20240429193911.crcrasbcxnhxonlh@altitude>
-References: <20240329053130.2822129-1-c-vankar@ti.com>
- <20240329053130.2822129-6-c-vankar@ti.com>
- <1cf7f439-45cc-42cb-b707-4c87c00015ac@linaro.org>
- <f406bac9-f4c1-4289-8239-82420cd300b8@ti.com>
+	s=arc-20240116; t=1714419642; c=relaxed/simple;
+	bh=ULuvvHNYTvbRfphoJuwlrdezz0qvdg3BcFmkYoUv1dU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ORoDt9rMrM0gdxm8Wvezje+J2oCdgaN7hHn27SjUuklveb3HuIr5yBBIUtywanc6qKGgeTVpi2bkePk75MZX/ztEzxBi0qNDObAqvJZ7rDW2zwLFhSszPuhojVnEYzaVh9HLHx0YVE3hkU8Ht9dkOu/3zSsFfgK3leoDfudG5Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I8EOKwFJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B71C113CD;
+	Mon, 29 Apr 2024 19:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714419641;
+	bh=ULuvvHNYTvbRfphoJuwlrdezz0qvdg3BcFmkYoUv1dU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=I8EOKwFJMeZfDlNOw897+opXzCVtAiP8j2JL/cuCRnAHVlYRvMn5iQAxdgoLzYjEr
+	 ULE+4fYpBn/OogPErRCEFEGs8ET23cFo7k7kO9/VM8qFC2ED0pKcG+XoS+ONFoFuqB
+	 eV4TIiE6lgoXEzAWRHrhwxAkgaEBkjz+1XGXMySSmkDHzC9/+JGsZlGLWARXc1Mif2
+	 L1rRl+9f8Gyqn23hap1M8UgEV5RmYG58bLEH6lZ2mmI6Mh4DMJy5dQaryQv2H+6BR5
+	 jtWytxo6qK+kcGwQHexYfl07+G7ucpserSaDklVGx04xMPab7H4jRfDKCVh7tFXC8A
+	 d75hvBROnnPkg==
+Date: Mon, 29 Apr 2024 20:40:27 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Gradinariu, Ramona" <Ramona.Gradinariu@analog.com>
+Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, Ramona Gradinariu
+ <ramona.bolboaca13@gmail.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "linux-doc@vger.kernel.org"
+ <linux-doc@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "corbet@lwn.net" <corbet@lwn.net>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>
+Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7
+ families
+Message-ID: <20240429204027.3e47074a@jic23-huawei>
+In-Reply-To: <BL1PR03MB5992DEBF82C0DB7BDC5EA0FF971B2@BL1PR03MB5992.namprd03.prod.outlook.com>
+References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
+	<20240423084210.191987-5-ramona.gradinariu@analog.com>
+	<20240428162555.3ddf31ea@jic23-huawei>
+	<e62f8df4b06abc371b1e9fe3232cb593e468d54c.camel@gmail.com>
+	<BL1PR03MB5992DEBF82C0DB7BDC5EA0FF971B2@BL1PR03MB5992.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <f406bac9-f4c1-4289-8239-82420cd300b8@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 17:16-20240429, Chintan Vankar wrote:
-> 
-> 
-> On 29/04/24 16:01, Krzysztof Kozlowski wrote:
-> > On 29/03/2024 06:31, Chintan Vankar wrote:
-> > > From: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > > 
-> > > The CPSW9G instance of the CPSW Ethernet Switch supports USXGMII mode
-> > > with MAC Ports 1 and 2 of the instance, which are connected to ENET
-> > > Expansion 1 and ENET Expansion 2 slots on the EVM respectively, through
-> > > the Serdes2 instance of the SERDES.
-> > > 
-> > > Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration USXGMII mode
-> > > at 5 Gbps each.
-> > > 
-> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > > Signed-off-by: Chintan Vankar <c-vankar@ti.com>
-> > > ---
-> > > 
-> > > Link to v5:
-> > > https://lore.kernel.org/r/20240314072129.1520475-6-c-vankar@ti.com/
-> > > 
-> > > Changes from v5 to v6:
-> > > - Updated order of properties in Device Nodes based on
-> > >    https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-> > > 
-> > >   arch/arm64/boot/dts/ti/Makefile               |  6 +-
-> > >   .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   | 81 +++++++++++++++++++
-> > >   2 files changed, 86 insertions(+), 1 deletion(-)
-> > >   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> > > index f8e47278df43..2d798ef415e4 100644
-> > > --- a/arch/arm64/boot/dts/ti/Makefile
-> > > +++ b/arch/arm64/boot/dts/ti/Makefile
-> > > @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
-> > >   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-> > >   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-> > >   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
-> > > +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
-> > >   # Build time test only, enabled by CONFIG_OF_ALL_DTBS
-> > >   k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
-> > > @@ -148,6 +149,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
-> > >   	k3-j721s2-evm-pcie1-ep.dtbo
-> > >   k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
-> > >   	k3-j784s4-evm-quad-port-eth-exp1.dtbo
-> > > +k3-j784s4-evm-usxgmii-exp1-exp2.dtbs := k3-j784s4-evm.dtb \
-> > > +	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo\
-> > 
-> > I have doubts this commit was ever built. It clearly fails, just like
-> > now linux-next fails.
-> > 
-> 
-> Apologies for the syntax error here, I will fix it and post next
-> version.
+On Mon, 29 Apr 2024 13:17:42 +0000
+"Gradinariu, Ramona" <Ramona.Gradinariu@analog.com> wrote:
 
-Series dropped. Looks like it slipped my checker as well :(
+> > -----Original Message-----
+> > From: Nuno S=C3=A1 <noname.nuno@gmail.com>
+> > Sent: Monday, April 29, 2024 10:59 AM
+> > To: Jonathan Cameron <jic23@kernel.org>; Ramona Gradinariu
+> > <ramona.bolboaca13@gmail.com>
+> > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; linux-
+> > doc@vger.kernel.org; devicetree@vger.kernel.org; corbet@lwn.net;
+> > conor+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; robh@kernel.org;
+> > Gradinariu, Ramona <Ramona.Gradinariu@analog.com>; Sa, Nuno
+> > <Nuno.Sa@analog.com>
+> > Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7 fa=
+milies
+> >=20
+> > [External]
+> >=20
+> > On Sun, 2024-04-28 at 16:25 +0100, Jonathan Cameron wrote: =20
+> > > On Tue, 23 Apr 2024 11:42:09 +0300
+> > > Ramona Gradinariu <ramona.bolboaca13@gmail.com> wrote:
+> > > =20
+> > > > The ADIS16545 and ADIS16547 are a complete inertial system that
+> > > > includes a triaxis gyroscope and a triaxis accelerometer.
+> > > > The serial peripheral interface (SPI) and register structure provid=
+e a
+> > > > simple interface for data collection and configuration control.
+> > > >
+> > > > These devices are similar to the ones already supported in the driv=
+er,
+> > > > with changes in the scales, timings and the max spi speed in burst
+> > > > mode.
+> > > > Also, they support delta angle and delta velocity readings in burst
+> > > > mode, for which support was added in the trigger handler.
+> > > >
+> > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com> =20
+> > >
+> > > What is Nuno's relationship to this patch?=C2=A0 You are author and t=
+he sender
+> > > which is fine, but in that case you need to make Nuno's involvement e=
+xplicit.
+> > > Perhaps a Co-developed-by or similar is appropriate?
+> > > =20
+> > > > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com> =20
+> > > A few comments inline.=C2=A0 Biggest one is I'd like a clear statemen=
+t of why you
+> > > can't do a burst of one type, then a burst of other.=C2=A0 My guess i=
+s that the
+> > > transition is very time consuming?=C2=A0 If so, that is fine, but you=
+ should be
+> > > able
+> > > to let available_scan_masks handle the disjoint channel sets. =20
+> >=20
+> > Yeah, the burst message is a special spi transfer that brings you all o=
+f the
+> > channels data at once but for the accel/gyro you need to explicitly con=
+figure
+> > the chip to either give you the "normal vs "delta" readings. Re-configu=
+ring the
+> > chip and then do another burst would destroy performance I think. We co=
+uld
+> > do
+> > the manual readings as we do in adis16475 for chips not supporting burs=
+t32.
+> > But
+> > in the burst32 case those manual readings should be minimal while in he=
+re we
+> > could have to do 6 of them which could also be very time consuming...
+> >=20
+> > Now, why we don't use available_scan_masks is something I can't really
+> > remember
+> > but this implementation goes in line with what we have in the adis16475
+> > driver.
+> >=20
+> > - Nuno S=C3=A1
+> >  =20
+>=20
+> Thank you Nuno for all the additional explanations.
+> Regarding the use of available_scan_masks, the idea is to have any possib=
+le
+> combination for accel, gyro, temp and timestamp channels or delta angle, =
+delta=20
+> velocity, temp and  timestamp channels. There are a lot of combinations f=
+or=20
+> this and it does not seem like a good idea to write them all manually. Th=
+at is=20
+> why adis16480_update_scan_mode is used for checking the correct channels=
+=20
+> selection.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+If you are using bursts, the data is getting read anyway - which is the main
+cost here. The real question becomes what are you actually saving by suppor=
+ting all
+the combinations of the the two subsets of channels in the pollfunc?
+Currently you have to pick the channels out and repack them, if pushing the=
+m all
+looks to me like a mempcy and a single value being set (unconditionally).
+
+Then it's a question of what the overhead of the channel demux in the core =
+is.
+What you pass out of the driver via iio_push_to_buffers*()
+is not what ends up in the buffer if you allow the IIO core to do data demu=
+xing
+for you - that is enabled by providing available_scan_masks.  At buffer
+start up the demux code computes a fairly optimal set of copies to repack
+the incoming data to match with what channels the consumer (here probably
+the kfifo on the way to userspace) is expecting.
+
+That demux adds a small overhead but it should be small as long
+as the channels wanted aren't pathological (i.e. every other one).
+
+Advantage is the driver ends up simpler and in the common case of turn
+on all the channels (why else did you buy a device with those measurements
+if you didn't want them!) the demux is zerocopy so effectively free which
+is not going to be the case for the bitmap walk and element copy in the
+driver.
+
+Jonathan
+
+>=20
+> Ramona G.
+
 
