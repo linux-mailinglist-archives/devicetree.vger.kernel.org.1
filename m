@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-63641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1558B5B95
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:41:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFE928B5B99
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:41:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37764282101
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:41:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 077501C202ED
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CDA7F47A;
-	Mon, 29 Apr 2024 14:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB9B38060A;
+	Mon, 29 Apr 2024 14:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XU6p+tGh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLGiMvri"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C2A7EF1C;
-	Mon, 29 Apr 2024 14:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B9880603
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 14:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714401690; cv=none; b=mm2IMI7aF0YGaIbVC14FPk2HsPmzaEyHPIEFx9QvUZJi1F9brdJC07MAOVsIaS1lOAYykXvysKEL2h7mdtVbfe0b/ZYTBPWNFk+76ZkZ6AeGdfMTMExjVQpcu0zN2K3yLQBE5sMWwtKdFIwxscxo0Hxaftd11h829O34Igxip3M=
+	t=1714401693; cv=none; b=tAlltQvO7IxcmoAPjPHu2nSMGtVH6UWinD2hGT0UP8K2aDg4MO3PVyRyYBmBmXWIN8GVRw8bZNc5SxLzTvU1B6Nybs+SwwnP+6qI6ZbpwQdlzjPSPXSFMssHfIeOJFrgWyVi/bHL2RhP0RtgaiE6wbqD/t5cy7BtD0YCwB1zGK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714401690; c=relaxed/simple;
-	bh=BfGzqjUkUfh2bKjqEy9+ovnsRwzMYpaL/0SsvVv1eD0=;
+	s=arc-20240116; t=1714401693; c=relaxed/simple;
+	bh=Y8ittdi7phk5dNVfh+YXp4HWbXwdUBw7WNQB4Y6gNmY=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=qKyj1ol7Q/fEcKMAuExxrdC5TBvnuYKXZbb2cmSTYCdv9UWF6kQpMZb1/L35YyJ2DyJkhh6qOvszcYaDpIEcoW0zSe4kHGwgwUGNXycgFVDqqXPbtmjvBP0J8q4MzwNQ99tbGD9fWkmOH7hngRFBBpWtGhbd/NUXhIhXZFB1zM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XU6p+tGh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28CCCC113CD;
-	Mon, 29 Apr 2024 14:41:30 +0000 (UTC)
+	 Message-Id:Subject; b=GgpqDDZCMeIPMEz2wn/KkR0VcSkJDMSuJv+LabHyqiOHPcAdE/PHdKkXWT5Zp6A+g6vU88bJah81gudRdzCCAy24KXqEHxm+fsHSe9uTaEdZqgQQjF0+vODXXH0z2JswiA61NOGY/g5S3y6uR5NS0Gigx1C+ILFKj2IShNYfOXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLGiMvri; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0748FC113CD;
+	Mon, 29 Apr 2024 14:41:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714401690;
-	bh=BfGzqjUkUfh2bKjqEy9+ovnsRwzMYpaL/0SsvVv1eD0=;
+	s=k20201202; t=1714401693;
+	bh=Y8ittdi7phk5dNVfh+YXp4HWbXwdUBw7WNQB4Y6gNmY=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=XU6p+tGhv5RfHy84tJ1zvaJPBiOwMr01YePNRSF5lEf54aBacb+FYPUm19/u54tug
-	 hNl/QAQflnCtzjGEwVVNArWfqKzdI2qpqokL2wI8Dzx/oCcaKU/IKn49mz5k2+518G
-	 HMfdvfA/l27awPv6pTNbQkbujj6qUQYzl+sDhVn/79a6ncw+RxSEyZqI2kwogV/ndJ
-	 UqSgFgdj3SFDsQfF+xRFessMq3mLUy7LhyiskNM+kjOO6KQNemBHvdIOrYkrd2kvYO
-	 v7g1jh/GsGPbSUG/Mq1iGLoa/DAi7bK1nHFIfviXIKCIhXE9E6sJoa7+88Wcz/qIbY
-	 RcNyhtjr9CyrA==
-Date: Mon, 29 Apr 2024 09:41:27 -0500
+	b=PLGiMvriK5BT4zUvamHeAI2s4Q3l5wIDrZOOakljGUbNqC1Onh0lPfnjfex9dVqQX
+	 l4j1F2p2vpUVCBp4TbAp+sy5f9KpeKPj6z0x5hnGRjQzIZ2Cw9INm8QWc4VGpiCrCr
+	 NVv8AI4GDz9LU/kdWQCfGjXvL3bOfd+B00FrjvKs64evemn983ILvIoxDcFS/z7pvC
+	 sIiEc9f9gUnbyqx/kmbPMnsr2PyDjxyurd/v/9CdFxTeD+VyVAta7iXUkRiZLDXQxO
+	 sNpnfqDmqfwMwDKGRcWFYVOkV4x6qyRSS1YH+3DHo5duh5kMf8nI30OM2CTtcJtJDh
+	 R+BIQm7Jkn2+g==
+Date: Mon, 29 Apr 2024 09:41:31 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,93 +51,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Andi Shyti <andi.shyti@kernel.org>, devicetree@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Peter Rosin <peda@axentia.se>, 
- Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com>
-References: <20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com>
-Message-Id: <171440140976.1676403.7480189987204011691.robh@kernel.org>
-Subject: Re: [PATCH 0/7] Add Mule I2C multiplexer support
+To: Marek Vasut <marex@denx.de>
+Cc: =?utf-8?q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Andre Przywara <andre.przywara@arm.com>, kernel@dh-electronics.com, 
+ Dario Binacchi <dario.binacchi@amarulasolutions.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Ahmad Fatoum <a.fatoum@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Steffen Trumtrar <s.trumtrar@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>, 
+ linux-stm32@st-md-mailman.stormreply.com
+In-Reply-To: <20240427221048.65392-1-marex@denx.de>
+References: <20240427221048.65392-1-marex@denx.de>
+Message-Id: <171440141047.1676474.1900576669579352447.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: stm32: Add compatible string
+ for DH electronics STM32MP13xx DHCOR DHSBC board
 
 
-On Fri, 26 Apr 2024 18:49:31 +0200, Farouk Bouabid wrote:
-> Mule is an mcu that emulates a set of i2c devices which are reacheable
-> through an i2c-mux.
+On Sun, 28 Apr 2024 00:10:10 +0200, Marek Vasut wrote:
+> Add DT compatible string for DH electronics STM32MP13xx DHCOR SoM and
+> DHSBC carrier board. This stm32mp135f-dhcor-dhsbc board is a stack of
+> DHCOR SoM based on STM32MP135F SoC (900MHz / crypto capabilities)
+> populated on DHSBC carrier board.
 > 
-> The emulated devices share a single i2c address with the mux itself where
-> the requested register is what determines which logic is executed (mux or
-> device):
+> The SoM contains the following peripherals:
+> - STPMIC (power delivery)
+> - 512MB DDR3L memory
+> - eMMC and SDIO WiFi module
 > 
-> 1- The devices on the mux can be selected (mux function) by writing the
-> appropriate device number to an i2c config register (0xff) that is not
-> used by any device logic.
+> The DHSBC carrier board contains the following peripherals:
+> - Two RGMII Ethernet ports
+> - USB-A Host port, USB-C peripheral port, USB-C power supply plug
+> - Expansion connector
 > 
-> 2- Any access to a register other than the config register will be
-> handled by the previously selected device.
-> 
->       +-------------------------------------------------------+
->       |  Mule                                                 |
->       |        +---------------+                              |
->     ----+-(1)->|Config register|-----+                        |
->       | |      +---------------+     |                        |
->       | |                            V_                       |
->       | |                            |  \          +--------+ |
->       | |                            |   \-------->| dev #0 | |
->       | |                            |   |         +--------+ |
->       | |                            | M |-------->| dev #1 | |
->       | +-----------(2)------------->| U |         +--------+ |
->       |                              | X |-------->| dev #2 | |
->       |                              |   |         +--------+ |
->       |                              |   /-------->| dev #3 | |
->       |                              |__/          +--------+ |
->       +-------------------------------------------------------+
-> 
-> The current i2c-mux implementation does not allow the mux to share the i2c
-> address of a child device. As a workaround, when creating each i2c child
-> adapter we do not assign the parent adapter to avoid the address-match with
-> the mux.
-> 
-> This patch-series adds support for this multiplexer. Mule is integrated
-> as part of rk3399-puma, px30-ringneck, rk3588-tiger and rk3588-jaguar
-> boards.
-> 
-> Signed-off-by: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
-> Farouk Bouabid (7):
->       i2c: mux: add the ability to share mux-address with child nodes
->       dt-bindings: i2c: mux: mule: add dt-bindings for mule i2c multiplexer
->       i2c: muxes: add support for mule i2c multiplexer
->       arm64: dts: rockchip: add mule i2c mux (0x18) on rk3399-puma
->       arm64: dts: rockchip: add mule i2c mux (0x18) on rk3588-tiger
->       arm64: dts: rockchip: add mule i2c mux (0x18) on px30-ringneck
->       arm64: dts: rockchip: add mule i2c mux (0x18) on rk3588-jaguar
-> 
->  .../devicetree/bindings/i2c/i2c-mux-mule.yaml      |  80 +++++++++++
->  arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi    |  20 ++-
->  arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi      |  20 ++-
->  arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts     |  19 ++-
->  arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi     |  19 ++-
->  drivers/i2c/i2c-mux.c                              |  10 +-
->  drivers/i2c/muxes/Kconfig                          |  11 ++
->  drivers/i2c/muxes/Makefile                         |   1 +
->  drivers/i2c/muxes/i2c-mux-mule.c                   | 157 +++++++++++++++++++++
->  include/linux/i2c-mux.h                            |   1 +
->  10 files changed, 327 insertions(+), 11 deletions(-)
+> Cc: "Leonard Göhrs" <l.goehrs@pengutronix.de>
+> Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Andre Przywara <andre.przywara@arm.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sean Nyekjaer <sean@geanix.com>
+> Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
 > ---
-> base-commit: c85af715cac0a951eea97393378e84bb49384734
-> change-id: 20240404-dev-mule-i2c-mux-9103cde07021
-> 
-> Best regards,
-> --
-> Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-> 
-> 
+> V2: Fix the bindings to list the right SoC/SoM/Board compatibles
+> ---
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 
@@ -155,10 +126,13 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3588-jaguar.dtb' for 20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com:
+New warnings running 'make CHECK_DTBS=y st/stm32mp135f-dhcor-dhsbc.dtb' for 20240427221048.65392-1-marex@denx.de:
 
-arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: fan@18: '#cooling-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: /soc/serial@40018000/bluetooth: failed to match any schema with compatible: ['infineon,cyw43439-bt', 'brcm,bcm4329-bt']
+arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: /soc/sai@4400a000/audio-controller@4400a004: failed to match any schema with compatible: ['st,stm32-sai-sub-a']
+arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: /soc/sai@4400a000/audio-controller@4400a024: failed to match any schema with compatible: ['st,stm32-sai-sub-b']
+arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: /soc/sai@4400b000/audio-controller@4400b004: failed to match any schema with compatible: ['st,stm32-sai-sub-a']
+arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: /soc/sai@4400b000/audio-controller@4400b024: failed to match any schema with compatible: ['st,stm32-sai-sub-b']
 
 
 
