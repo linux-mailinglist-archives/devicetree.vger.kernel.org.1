@@ -1,92 +1,101 @@
-Return-Path: <devicetree+bounces-63591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653128B5862
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:23:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 128838B58C2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 968641C21188
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:23:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3D00288DDC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 12:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D2776020;
-	Mon, 29 Apr 2024 12:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787223C482;
+	Mon, 29 Apr 2024 12:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qLUQsOww"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQgJfJEV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A906A348;
-	Mon, 29 Apr 2024 12:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A926200A6;
+	Mon, 29 Apr 2024 12:40:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714393190; cv=none; b=cnFBj/9+l/Jkz46bMijV7TWSXLNGN1L2cyZUo9HZ3MidcJI8dW4H+71AXCyiZp+LolmsNeOjxzOSVRV6D9o87MfBOUckOt6fpNIyILUH+Uh5moJnNKKrKSub9PPYyOwAUV5yxVrAc5oWEcql+LKA0C5wb6GG8jdyogUH4HS+EGI=
+	t=1714394430; cv=none; b=lWAnlw2UJl5Q+5gTn6xAX4HiQPYBEunB9K3oNwPsRc6D0ImrbfQuN2MNUJIn58FqD14sdlmna5tkqrlbd2d3ktpKKl4gxJ0LMHN7VBw3VcQ2MZAAgRwSYT2gSwYRvOIupw3eDteqpJ/6vK/NLhsnVhOsQ/lPvtNig9MB8rlgMZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714393190; c=relaxed/simple;
-	bh=Fl9BhUxNImaCXdVN/1n68+3txGl5bOMxWJDJ36ZX+3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jjhw8Bk8RcPoUiq4zCrRFb2yaZspbaWGZngDcYiqqndUUcSOScmmKr2Jyq/TVy6POKlbVzWt8jeuRSjcIVyQAP/yHpU6ypcvrgVZDlMMFHT+Z7PQTMsdzRi5GX2LmiYTHkSwgpJFH18beehwottDMD6TFt0gYKuFO9Xzof7VHIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qLUQsOww; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=55Zi9dSPjmV6EHr7HXJBBK0GAS5n6uFRNxp94MfZdBU=; b=qLUQsOwwolipCNVXpGEyEnoXAw
-	PQUEuVzOIPv1Xra3ZcnQ8/4vEmqxgy17IPjhTjhQlOJTL2tEL7Fhbg/mCN86z+XXuvKN9k3VJznlQ
-	u867a5LQb+Ba7RbPrkr+dhEgP2nj8UsgbIz8Syvjx4H/92JStHWIIaNVUZUf+kKZJbg8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1s1Pyo-00EFN7-Sg; Mon, 29 Apr 2024 14:19:34 +0200
-Date: Mon, 29 Apr 2024 14:19:34 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-Cc: Parthiban.Veerasooran@microchip.com, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	horms@kernel.org, saeedm@nvidia.com, anthony.l.nguyen@intel.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	corbet@lwn.net, linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 13/12] net: lan865x: optional hardware reset
-Message-ID: <eaa4eb3e-d82a-4b52-a375-1fc84be7225a@lunn.ch>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <Zi68sDje4wfgftyZ@builder>
- <dd9da345-e056-4f34-8e39-6901bf9c1636@microchip.com>
- <Zi94jdVg8a5MaB3E@builder>
+	s=arc-20240116; t=1714394430; c=relaxed/simple;
+	bh=87Rk9acUbU1c3cr0M/lXRo4KVIueJyuGIf44rO9GCQg=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=kDCDTovbDoyEsh9VIo0ITfPcw9pfodJF2zBcEKOgYUyu3CYUrg6kA/3a/122L+KqO1XbpHwhwujd4mXqNayDqK0wexU6TBFLpyfD8snheItF1tv1uFHdIhtTyFxslxWtdLPSxUOKH3pZ7F5qhuH/UnQaq5pjGlTe30xO+IYviMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQgJfJEV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C1554C4AF1C;
+	Mon, 29 Apr 2024 12:40:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714394429;
+	bh=87Rk9acUbU1c3cr0M/lXRo4KVIueJyuGIf44rO9GCQg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=CQgJfJEVLd9yjkZelAZ3kAyWk/sy8nLWUbD0D6QMLjlVYlA6dmfEIKobfW090I7Zg
+	 dgpOaBB04b5EjJKmbF0qAeQTsfW3tZGPrPlNKfc0hkauyLGh41dVcJr4c5yN3bZWWc
+	 uhorh3ErfYmOjMSfH2AjWvEOXO3qiKQkGwOyjITRW+CgEkyEC++/diIp+V+ZBsmU2h
+	 /yV+Pnv07OihuKSnxuwy6iVQ+gJNzd9vzJhDAcTX+HrBLiL7ADJysnEhH2kNQv6Xc6
+	 eEBc8y80+dIchs4Zu6FQswfuW1RMW/XdFGLj9ldW6nmdj3CAzX6J3WQWeEh1A09+dX
+	 D0lRwauG3bHGw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AB838C54BAE;
+	Mon, 29 Apr 2024 12:40:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zi94jdVg8a5MaB3E@builder>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2 0/3] net: dsa: realtek: fix LED support for
+ rtl8366
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171439442969.25762.4960715126381337221.git-patchwork-notify@kernel.org>
+Date: Mon, 29 Apr 2024 12:40:29 +0000
+References: <20240427-realtek-led-v2-0-5abaddc32cf6@gmail.com>
+In-Reply-To: <20240427-realtek-led-v2-0-5abaddc32cf6@gmail.com>
+To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
+ f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
 
-> Additionally I figured out why my setup did not work without the HW
-> reset, I had missed a pull resistor in the schematic that held the IC in
-> reset.
+Hello:
 
-Having a reset controlled by software is a pretty common
-design. Something needs to ensure the device is out of reset. It could
-be the bootloader, but i don't particularly like that, hiding away
-critical things where they are hard to see. So i think having it in
-the Linux driver is better.
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-There is an open question of does the driver need to actually reset
-the device, or is it sufficient to ensure it is out of reset? The
-wording of the standard suggests a hardware reset cycle is probably
-not required, but why did Microchip provide a reset pin?
+On Sat, 27 Apr 2024 02:11:27 -0300 you wrote:
+> This series fixes the LED support for rtl8366. The existing code was not
+> tested in a device with switch LEDs and it was using a flawed logic.
+> 
+> The driver now keeps the default LED configuration if nothing requests a
+> different behavior. This may be enough for most devices. This can be
+> achieved either by omitting the LED from the device-tree or configuring
+> all LEDs in a group with the default state set to "keep".
+> 
+> [...]
 
-	Andrew
+Here is the summary with links:
+  - [net-next,v2,1/3] net: dsa: realtek: keep default LED state in rtl8366rb
+    https://git.kernel.org/netdev/net-next/c/5edc6585aafe
+  - [net-next,v2,2/3] net: dsa: realtek: do not assert reset on remove
+    https://git.kernel.org/netdev/net-next/c/4f580e9aced1
+  - [net-next,v2,3/3] net: dsa: realtek: add LED drivers for rtl8366rb
+    https://git.kernel.org/netdev/net-next/c/32d617005475
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
