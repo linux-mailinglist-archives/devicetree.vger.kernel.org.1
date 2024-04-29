@@ -1,55 +1,108 @@
-Return-Path: <devicetree+bounces-63698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9081E8B5EF3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:27:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718F88B5F08
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA4D6B238D5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:27:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80E61F24C5A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC09884A30;
-	Mon, 29 Apr 2024 16:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF7284E1B;
+	Mon, 29 Apr 2024 16:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcOav+33"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ga7I3Ezj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96498824AA;
-	Mon, 29 Apr 2024 16:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A829A39852
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 16:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714408040; cv=none; b=ke8uSIZ4m4e0NTHjL+bsbe/WD9a3TzbWIeH4Zx7cNUJn2bNKh8MiQpG/U7GBI8vcQH/k1G1MV2+9YFA49ZMquo7uLpOG/MorV6KydzW6PlYEpOSd/d7flUtcpfHq0cnxSUZI5sbr5ulnbk+BiALFomQX+In76IvA1Ld4AwN0+zM=
+	t=1714408285; cv=none; b=rJ7MxSfLywqi20p9jd02WS38JJhyaXjg+9WDJYU4fI9+NOultfEOpMU/LFkPV9IS5k8maf9mIzFMnBQTqzYwYkBj1MzosAFkvIxopMks5BfZtjCc1KsWV0AWpIg4ao+0bAcT5Dnf2i3MKj4PWggNejfRN7QfWxBx87Kaq0ULaGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714408040; c=relaxed/simple;
-	bh=WTd0PHYr8dkvTrJwQDiAv3Ks1lrKu1Q404pSYACa/oQ=;
+	s=arc-20240116; t=1714408285; c=relaxed/simple;
+	bh=eDE2L21JKW8N96Vi3ng/YDqFma0PceL01iOHHG7iHr8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pTMhZzKSQFNf2jVvIXLVEThsIhCFmBIgNGKJIe3ECKxerOUVSCnrCWoffA/UBhcYm94Qw2zuOf8Y+veJNw+WwPA0lrBRIsueAt2epsQO2Vk0AfriK1DDBVL8/SdVMhfG2uqGsCRyqc4rAhkopvUxn80pI78JXPCxE2+KNFtwGRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcOav+33; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A997C113CD;
-	Mon, 29 Apr 2024 16:27:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714408040;
-	bh=WTd0PHYr8dkvTrJwQDiAv3Ks1lrKu1Q404pSYACa/oQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dcOav+33Qgbmy4BeigepKEv8dt4PMFttVCJkpAoTlQ7VEeAS87P3GRp8kxroRALLU
-	 MhX15hTdc1POlRN2YBmEOwthMYLiiAYKF5+kO4PeNIu4F18AnuX9btEH5FnHIsNx7a
-	 FU0z/on3LFiHOq2kW8joRg15buD7JKPGTqQ5VZpzlVtgwI0NAwP6d4eAn3bz+veNp+
-	 kZ8fK2fCTZFr2OVxAvKqWNCou35H8qGsVYieL+bzPzOEpbRbRea9GoYaEh1zzefw72
-	 cEivk0sx3hrX/sbgF+ES4foRNoB/1OzPLRc2GkyGjmh2Q1JQXOKIinBAV8i5+g8LoS
-	 OzVbVqv3TBaqw==
-Date: Mon, 29 Apr 2024 11:27:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shresth Prasad <shresthprasad7@gmail.com>
-Cc: javier.carrasco.cruz@gmail.com, skhan@linuxfoundation.org,
-	devicetree@vger.kernel.org, saravanak@google.com,
-	linux-kernel@vger.kernel.org, Julia Lawall <julia.lawall@inria.fr>
-Subject: Re: [PATCH][next] of: property: Use scope based cleanup on port_node
-Message-ID: <171440802093.2111608.15033080205921005255.robh@kernel.org>
-References: <20240428115226.41345-2-shresthprasad7@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VeXkpvmMXPtPGBuv560dEdcElQSNBuRUw+FfYykqHSPSKYw3I6ONGC2bEL0X7nwEgzv3I13HtWXDkl9uiU7/Ir5JrxdnM5+xM8o8xrqZO3NqucNd6AxJdOmBPLSWg/XoulG04mOQDb5d93y1nHJpfZ2Njgwc2AlJA2cPs36sLRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ga7I3Ezj; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2dae975d0dcso61113281fa.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 09:31:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714408282; x=1715013082; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AzGLiR69PoJGRhtxNKXAUaM6fxmHvGr503ePlBzc+m0=;
+        b=ga7I3Ezj6Bh9Y7IKjN4AkwZeUr/08cTH2ZrlL8igbsZyoeRV6Cx1FHeqLili6rrQ1w
+         EXSRdd75oqS1r+KzTKHmUV1eYFMH/BTiMaATHHnBNgUzyOeObIjmdvjzOV7ZKWuiDJW9
+         yRLlbAgn4V/1ATL3KPTmb7tqaZUzf/yTm5io6J2MJRHzeGgreX1g9L9tDVQmtE/gfI/H
+         /W09EflLcX0l+p0VmN0nVsW9fExaxu+dFFJLciZhs3kk26boNs4asiGBIYYQ3wauXOV0
+         35t4NHWVbdf1bSPu0nxlxlyhWhvSH60BEGGkD3f9GiXwTtScUf8qkcgXXUHDwP85fSqU
+         p4uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714408282; x=1715013082;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AzGLiR69PoJGRhtxNKXAUaM6fxmHvGr503ePlBzc+m0=;
+        b=tOx62xTkPZSEDVdNvdCayoFGjgVsDycZ53q2UWwRoSPoh0V0RdGzHy5rGNzEmezrKB
+         TEbdqdd970lSbQJuxxfwJZv7LHL8eDSgwDAxe1aD3Cq16ArhltTtJ7YPKCTbqwxnsbj7
+         6/MUAxNnuZbI64Qy6mY1x1kgQ5xrSHr4Fc8TMGGGp3HeYOLMjwnE72fasBiU02qfKV07
+         nUKVsWd1YmLJ0OKYzTGcq6BC9BCvTj51zNA1ZtiuRRHrdJoWss2xKIWihKB3iGXQ8uyu
+         7Y5rcgbjk+JziCu0gHIP9k5BReQDqu9p9xst/ogopSI7MmsvFz/xkKqmP9L/OUS7knBQ
+         0EAg==
+X-Forwarded-Encrypted: i=1; AJvYcCXwx6B0noVuQJjeXcfFk0jfcQLIN0zeS+AQfws8p1giv0VAVzXyIsL5XFUeI6l3t/xVstPFdYBxtCtZ0vDkYNtQmUM219JP7HPfSA==
+X-Gm-Message-State: AOJu0YxpmqPGpntkMygsuqJmdngXPiEXvbId9IYEduP6kUEkStn8GqSz
+	W9a+xKqjoXsRIxdzKFTSNixpOgI2ngwAjTbxzcbf20EhEPC/KxQaAd9JqE9vJW4=
+X-Google-Smtp-Source: AGHT+IHk3Z5XGDbb0v+Fmz92VybJVjDFdKDawu/AbXxfV/kYiZFIeb4QW5ZOrzeqL0UzpA0hXaFkSQ==
+X-Received: by 2002:a05:651c:1992:b0:2de:6f52:5c8d with SMTP id bx18-20020a05651c199200b002de6f525c8dmr53916ljb.21.1714408281677;
+        Mon, 29 Apr 2024 09:31:21 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id h22-20020a2eb0f6000000b002dfa8b1a07asm961511ljl.111.2024.04.29.09.31.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 09:31:21 -0700 (PDT)
+Date: Mon, 29 Apr 2024 19:31:19 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
+	Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v4 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
+Message-ID: <Zi_LV28TR-P-PzXi@eriador.lumag.spb.ru>
+References: <cover.1713523152.git.robin.murphy@arm.com>
+ <bebea331c1d688b34d9862eefd5ede47503961b8.1713523152.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,25 +111,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240428115226.41345-2-shresthprasad7@gmail.com>
+In-Reply-To: <bebea331c1d688b34d9862eefd5ede47503961b8.1713523152.git.robin.murphy@arm.com>
 
-
-On Sun, 28 Apr 2024 17:22:27 +0530, Shresth Prasad wrote:
-> Use __free cleanup handler which ensures that the resource is freed when
-> it goes out of scope, thus removing the need to manually clean it up
-> using of_node_put.
+On Fri, Apr 19, 2024 at 05:54:45PM +0100, Robin Murphy wrote:
+> It's somewhat hard to see, but arm64's arch_setup_dma_ops() should only
+> ever call iommu_setup_dma_ops() after a successful iommu_probe_device(),
+> which means there should be no harm in achieving the same order of
+> operations by running it off the back of iommu_probe_device() itself.
+> This then puts it in line with the x86 and s390 .probe_finalize bodges,
+> letting us pull it all into the main flow properly. As a bonus this lets
+> us fold in and de-scope the PCI workaround setup as well.
 > 
-> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
-> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> At this point we can also then pull the call up inside the group mutex,
+> and avoid having to think about whether iommu_group_store_type() could
+> theoretically race and free the domain if iommu_setup_dma_ops() ran just
+> *before* iommu_device_use_default_domain() claims it... Furthermore we
+> replace one .probe_finalize call completely, since the only remaining
+> implementations are now one which only needs to run once for the initial
+> boot-time probe, and two which themselves render that path unreachable.
+> 
+> This leaves us a big step closer to realistically being able to unpick
+> the variety of different things that iommu_setup_dma_ops() has been
+> muddling together, and further streamline iommu-dma into core API flows
+> in future.
+> 
+> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com> # For Intel IOMMU
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Hanjun Guo <guohanjun@huawei.com>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
-> Rob Herring <robh@kernel.org> sent a patch fixing similar cases in
-> property.c but seems to have missed this one. Please let me know if this
-> is mistake, or if it was left unchanged for a reason.
-> 
->  drivers/of/property.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
+> v2: Shuffle around to make sure the iommu_group_do_probe_finalize() case
+>     is covered as well, with bonus side-effects as above.
+> v3: *Really* do that, remembering the other two probe_finalize sites too.
+> ---
+>  arch/arm64/mm/dma-mapping.c  |  2 --
+>  drivers/iommu/amd/iommu.c    |  8 --------
+>  drivers/iommu/dma-iommu.c    | 18 ++++++------------
+>  drivers/iommu/dma-iommu.h    | 14 ++++++--------
+>  drivers/iommu/intel/iommu.c  |  7 -------
+>  drivers/iommu/iommu.c        | 20 +++++++-------------
+>  drivers/iommu/s390-iommu.c   |  6 ------
+>  drivers/iommu/virtio-iommu.c | 10 ----------
+>  include/linux/iommu.h        |  7 -------
+>  9 files changed, 19 insertions(+), 73 deletions(-)
 
-Applied, thanks!
+This patch breaks UFS on Qualcomm SC8180X Primus platform:
 
+
+[    3.846856] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0x1032db3e0, fsynr=0x130000, cbfrsynra=0x300, cb=4
+[    3.846880] ufshcd-qcom 1d84000.ufshc: ufshcd_check_errors: saved_err 0x20000 saved_uic_err 0x0
+[    3.846929] host_regs: 00000000: 1587031f 00000000 00000300 00000000
+[    3.846935] host_regs: 00000010: 01000000 00010217 00000000 00000000
+[    3.846941] host_regs: 00000020: 00000000 00070ef5 00000000 00000000
+[    3.846946] host_regs: 00000030: 0000000f 00000001 00000000 00000000
+[    3.846951] host_regs: 00000040: 00000000 00000000 00000000 00000000
+[    3.846956] host_regs: 00000050: 032db000 00000001 00000000 00000000
+[    3.846962] host_regs: 00000060: 00000000 80000000 00000000 00000000
+[    3.846967] host_regs: 00000070: 032dd000 00000001 00000000 00000000
+[    3.846972] host_regs: 00000080: 00000000 00000000 00000000 00000000
+[    3.846977] host_regs: 00000090: 00000016 00000000 00000000 0000000c
+[    3.847074] ufshcd-qcom 1d84000.ufshc: ufshcd_err_handler started; HBA state eh_fatal; powered 1; shutting down 0; saved_err = 131072; saved_uic_err = 0; force_reset = 0
+[    4.406550] ufshcd-qcom 1d84000.ufshc: ufshcd_verify_dev_init: NOP OUT failed -11
+[    4.417953] ufshcd-qcom 1d84000.ufshc: ufshcd_async_scan failed: -11
+
+-- 
+With best wishes
+Dmitry
 
