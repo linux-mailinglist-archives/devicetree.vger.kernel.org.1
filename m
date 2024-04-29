@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-63712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB118B6062
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 19:46:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 215B88B60CA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 19:57:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CE571F21DE9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 17:46:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC958285C59
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 17:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085671292C3;
-	Mon, 29 Apr 2024 17:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E930812838D;
+	Mon, 29 Apr 2024 17:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BZszZqqF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FhOuAbcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46241128394
-	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 17:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DB8127E24;
+	Mon, 29 Apr 2024 17:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714412759; cv=none; b=doRVILP3l4tYcJ/gICz6UA5esq3tGvjbqrr8Pxwefh6TkkNZWNZq62Zy1M6r4K5XgRZVd3Q8KJ72/YVpa11G7ZEfbJThyWD4hGlswdj9UUKCGbH5tTkJEz7BggASg3NsLNeN9+PC0JrNa1pZ5MUNI1fInYRdtsqQvNzNPHbN7WQ=
+	t=1714413237; cv=none; b=eZi5gQ+rYeLMCk3MqmHuT1V4baS3VIRry71OJbKD2uTcAx/1SYaEYcm/gxGft5dMFDXS5GLad7sYPNI3hJpymHluSk+Y0CKGD4kSsZ9zlMdI3Cn7Hn0o1FMyItIihnK0Zs8wWrX0qlJL37BVjRKIAViEn+BRbhvxVaBl+zfs/5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714412759; c=relaxed/simple;
-	bh=mgjcD7hp520/ztuEfpIccIs4uiJmV/8qUUFIowV8cug=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g27Nsccbux95AZMAJ67HXRDJVQn06J+hkG4Oll6/Kbx62DP7adXmDieuJXVOJ4cO/eJFOdp4FaJcKi568ugUY32D+XVpj5sfYmmJoipQmYCqfO1ysBKC+c71DGNtPcna0vzjxcekaLBCGn78XaDxo1qhz7gaU2/Dv2SmNDnQVbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BZszZqqF; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5176f217b7bso8254410e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 10:45:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714412756; x=1715017556; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=eBv9j0xKxiOeFWlCZ0VAoYZYkegKw2+sv6YG2qAnlmU=;
-        b=BZszZqqFIMHc6B2syd8Znp9dLt5gOwogiirCndNNFxWzRNw3lng4OQQko1rmyUlQFr
-         Xm6H5NuoCSq0a/oQQtPUSwVf6L+MOb29/Ek5YpyQAjLYo76nkZP9SuGtdSgNVbAODIXD
-         SR73RXL9MtzmncfstaeCJlQ8gUckndac+rrCuJcFXPQH1IhINMTGqkzUwFIqzLWEDWsD
-         zxtnRGnG9Q7zdgfPgBMouZj65oVwssZzJyyszG43FeD4ikCakxV8ktLdFt83BJEI1kch
-         5bs9j7Ltp0djgp1+z/JmHo92gMoNBiuvXtVZlqU6pdJ8MUrBPzHJPoQAyeyafZsPK6PQ
-         QVFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714412756; x=1715017556;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eBv9j0xKxiOeFWlCZ0VAoYZYkegKw2+sv6YG2qAnlmU=;
-        b=SXjftkej1Hh05T1v8NbOp+E1X2uWhkCqhcv+hgU7DN7UgghhBUuNKNaCqR9HdHcqUE
-         7HacyHRbWRwm7n23C5sib3gTa0ecHKbBKIfRIi10zdYSbxaQIT+jUkRFTpQ69ppgKqF9
-         rMrTibtCG7FdyFpYh0y7R5eOlUDrYLTF0/0fQwOFzc4b+r6ncRulTq6RtmkwrOa5o0Hr
-         FtL0bNTn/xivLWJAMpS0wHQuAvi+qoFsI/ixM2UEBjv3+a/nqUkZD9MZjMGUWUtSutx+
-         6wiuqbipKhuvzHbHdNU6y8gsqhuy100m+FF9mcLu3uI8H4Om3yoiAql/T58+kLoPK2Nf
-         Pzmg==
-X-Forwarded-Encrypted: i=1; AJvYcCX/mxrehXpBuSMPRQK+JxoXLn0I5NRpYFHch33R6wcRXRe4TqdTmd6pwfA0D5pxeXFVUR1k3+JpAdeWIbampyalzDqn0ACN8Y0SpQ==
-X-Gm-Message-State: AOJu0Yzem6+qYtsEARiPSdw29JCsKrkcP8eSkbQ7JlQtulHHsyyHgLG5
-	HPw/GftriNylsj0M84vao96jW62vowYyMTgckwrHOGLYZtx5yhVQD0EoHIlrvH4=
-X-Google-Smtp-Source: AGHT+IG/XyQmoTK7x5jg0nXeuhArxRsKnBVSeQHGXlFvXPcd2BPI3wlepnpCZV+nHlVQsdjfjV/+sA==
-X-Received: by 2002:ac2:4989:0:b0:51b:528e:ce7d with SMTP id f9-20020ac24989000000b0051b528ece7dmr8538610lfl.34.1714412756310;
-        Mon, 29 Apr 2024 10:45:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id d3-20020a170906640300b00a58ca8e88c2sm4364559ejm.15.2024.04.29.10.45.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Apr 2024 10:45:55 -0700 (PDT)
-Message-ID: <479aeb87-ddc1-421a-a451-d9e62893eef5@linaro.org>
-Date: Mon, 29 Apr 2024 19:45:54 +0200
+	s=arc-20240116; t=1714413237; c=relaxed/simple;
+	bh=Mu2xjdBMiMwzwUS/tqROHZIqj20yWyChjQNECrOchpE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CKJ2EYj8RkErsC8qGDiC33lhDjSTQN6IHZDNl5xA1MYryfZk3fpBtcptZMhmmGLKbv3uz2t/71k2Gvag3v/y2xDFQngUFYzhUfF9oIjy6YXvJQxNt1zios2twhK2gsxIQLTtQEAQE74JjYiddbwrorK/OkQDBKBCAY8fYLfsaIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FhOuAbcv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43THrFSO032615;
+	Mon, 29 Apr 2024 17:53:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=lZgKyo7o04rm3Pl0yI1YOAtST2FJkyWDoNpEAjU+5l8=; b=Fh
+	OuAbcvgnQAuwV50ND7eujhtqFT2Yz15LxKfmXy1Ca25VYzWa8/4M+Gne5PUZNIud
+	2guuI6o1n+Srf6ysvhUDocW0PY/pZt7DycTn46f52IJW3gmXiI8KVznqBMJ0Q3HY
+	FPI/6fMZvD2NtraLWCKx5A4pnNicXhUkbnDv707ws5QEty5E/XBZLTr4e7FwZ0TH
+	VGpEi6sQDr+2siMzyimm0c49cn9EjgV5yhBNAYab3U8C8KUxkVfMnfCeuUl+crax
+	6Q/TtEh2wBKz3x0Jo1hXvsDAJ6bn2CEn9DhwBNQAdc5Xiq/dsc/T+cCkalfQTYBr
+	rzEfFDH1WGAnkZvvthsA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xt5xkb1yy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Apr 2024 17:53:51 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43THroJf007571
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Apr 2024 17:53:50 GMT
+Received: from [10.71.110.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 29 Apr
+ 2024 10:53:47 -0700
+Message-ID: <2f5e514a-cb49-4c10-a3bd-76b517032953@quicinc.com>
+Date: Mon, 29 Apr 2024 10:53:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,87 +65,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] clock support for Samsung Exynos pin controller
- (Google Tensor gs101)
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>,
- Sam Protsenko <semen.protsenko@linaro.org>, kernel-team@android.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240426-samsung-pinctrl-busclock-v3-0-adb8664b8a7e@linaro.org>
- <171441172281.306662.17546797534297489946.b4-ty@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] of: reserved_mem: Remove the use of phandle from the
+ reserved_mem APIs
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <171441172281.306662.17546797534297489946.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Rob Herring <robh@kernel.org>
+CC: <saravanak@google.com>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, <devicetree@vger.kernel.org>
+References: <20240422235243.2878536-1-quic_obabatun@quicinc.com>
+ <171440638161.1895148.11194020129017609758.robh@kernel.org>
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+In-Reply-To: <171440638161.1895148.11194020129017609758.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 3EcTqAjlXgGAR5Ko14Jbzt8DH354LLOk
+X-Proofpoint-GUID: 3EcTqAjlXgGAR5Ko14Jbzt8DH354LLOk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-29_15,2024-04-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ mlxscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 priorityscore=1501 phishscore=0 mlxlogscore=687
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404290115
 
-On 29/04/2024 19:28, Krzysztof Kozlowski wrote:
-> 
-> On Fri, 26 Apr 2024 14:25:13 +0100, André Draszik wrote:
->> This series enables clock support on the Samsung Exynos pin controller
->> driver.
+
+On 4/29/2024 8:59 AM, Rob Herring wrote:
+> On Mon, 22 Apr 2024 16:52:43 -0700, Oreoluwa Babatunde wrote:
+>> The __find_rmem() function is the only place that references the phandle
+>> field of the reserved_mem struct. __find_rmem() is used to match a
+>> device_node object to its corresponding entry in the reserved_mem array
+>> using its phandle value. But, there is already a function called
+>> of_reserved_mem_lookup() which carries out the same action using the
+>> name of the node.
 >>
->> This is required on Socs like Google Tensor gs101, which implement
->> fine-grained clock control / gating, and as such a running bus clock is
->> required for register access to work.
+>> Using the of_reserved_mem_lookup() function is more reliable because
+>> every node is gauranteed to have a name, but not all nodes will have a
+>> phandle.
 >>
-
-Where's the DTS?
-
-Best regards,
-Krzysztof
-
+>> Nodes are only assigned a phandle if they are explicitly defined in the
+>> DT using "phandle = <phandle_number>", or if they are referenced by
+>> another node in the DT. Hence, If the phandle field is empty, then
+>> __find_rmem() will return a false negative.
+>>
+>> Hence, delete the __find_rmem() function and switch to using the
+>> of_reserved_mem_lookup() function to find the corresponding entry of a
+>> device_node in the reserved_mem array. Since the phandle field of the
+>> reserved_mem struct is now unused, delete that as well.
+>>
+>> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+>> ---
+>>  drivers/of/of_reserved_mem.c    | 26 +++-----------------------
+>>  include/linux/of_reserved_mem.h |  1 -
+>>  2 files changed, 3 insertions(+), 24 deletions(-)
+>>
+> Applied, thanks!
+Thank you!
+>
 
