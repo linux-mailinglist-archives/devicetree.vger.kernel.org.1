@@ -1,151 +1,238 @@
-Return-Path: <devicetree+bounces-63495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738BE8B51B3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 08:45:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7348B51DC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 08:57:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9FF4B20A85
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 06:45:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47FBF2814A2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 06:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58DD1119B;
-	Mon, 29 Apr 2024 06:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A1A11C94;
+	Mon, 29 Apr 2024 06:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Qfzt0Y9z"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OJtApqpI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="GNFMWpF+";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OJtApqpI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="GNFMWpF+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239CBD530;
-	Mon, 29 Apr 2024 06:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CD7D530;
+	Mon, 29 Apr 2024 06:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714373104; cv=none; b=RMLrNEmreCBAeaeVqDQXYGqnyqd4zbETLY6bilmCjXVm6txuQqIfSgv0nKUZVHacO/MHTNDJFU+9FCNd6P6fnoZK46e/F7MvZt4g2rG/v9hIKdUW+GBf8+J5s/+2AUIMNDvq6PfgPYSIP9VrsJIaHlf0/u2jBRHWA0ug56ce/B8=
+	t=1714373827; cv=none; b=HTg8oxnaY1YQEo2QjmsL6Mkv6kIK5ISagP8jkXjnrni5/kzhR+GSYKMXFM2Umg8dtx9A/TuEcMJddZKilniJQdesLHOD810SPld7z9Px5n+xUfI4tEFa6bnSqzwFGvtFUhYR5I08zovYAEVoc8+ugxgwkwb7hhhRwb90Fu3CfFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714373104; c=relaxed/simple;
-	bh=kf0Sp5Dag35+XC7rii10LELvFF8T9FtBCw/5i9WRxNI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=q/55Wn24oWaqK3/GMieec2kX7petuxP2FhcLTNEiofnTrjXpH+XzPYs3RD7OaTAgJLsZ49GvlaCJsiWdiWqUxRpML5mVMLZMNeBOeGO5fTKP0OA9WxRkPFPc0KdMKT/mWJ87hWh3uOTJH4LIYxOQ9R4lXEDMfRLI+4vF5cJjEak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Qfzt0Y9z; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T6isNS126903;
-	Mon, 29 Apr 2024 01:44:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714373094;
-	bh=aXfTQ3gdHYzn2quXzyz9Q/IIQTkniyIjZGbNelRlR7c=;
-	h=From:Date:Subject:To:CC;
-	b=Qfzt0Y9zzil6T+jQdZtcA09RpPoqjZXYDiV1NEjNyVwTlDilSX/zrztoWUAQlDMk4
-	 ltO2jqlKAGXPZlm5x63jJJW1+sqQUPtlMjUTAqfFFimTuroPFPpxid3niMBV6PS7Du
-	 r2h7CgJhwaaEVJwjusTKxWd4k34p5owGcJvLAFo4=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T6isve018071
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 01:44:54 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 01:44:54 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 01:44:54 -0500
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T6irXU115567;
-	Mon, 29 Apr 2024 01:44:53 -0500
-From: Jai Luthra <j-luthra@ti.com>
-Date: Mon, 29 Apr 2024 12:14:50 +0530
-Subject: [PATCH v3] arm64: dts: ti: Fix csi2-dual-imx219 dtb names
+	s=arc-20240116; t=1714373827; c=relaxed/simple;
+	bh=09FThBTM6Hwa/xsabgjmzwu4MaDIcTHSgg/+eqvr7L8=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=W7+L4VNe3vFj/2MIY2PNPUc1j+Wd1dy5Cc8C9qlyh9hDbPaMKPObXLEq5YUsM4KqwwTvKJgqE+6q7ivwoNWcKPLDhIC0Hk3fplTv6tz1ESy5eVqd3gSzhkkaKrY3F67uQCeMnHqALAXMy+t2c5e4QOQEV89gVkMTAudz4pnrix8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=OJtApqpI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=GNFMWpF+; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=OJtApqpI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=GNFMWpF+; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 73D4D229E1;
+	Mon, 29 Apr 2024 06:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1714373821; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=foSFvja1xtZKhFfCb1ELz3yeDCDBi6VORfN0RMsU5pA=;
+	b=OJtApqpIPGDK99iFXGxcMgAEKKSpnM04GzeAMgKa2KYTtHV2N5fgr5FwKZcqya773HSXu6
+	51Yuz6es2QA/gM88Razf4OefFkQliUzDjRexy4Q5ImYaQlh0Z1SWxn5VN348qvzftAkX1H
+	xMYJpgUYptBOswYZmmf2ysYF9QoScuI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1714373821;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=foSFvja1xtZKhFfCb1ELz3yeDCDBi6VORfN0RMsU5pA=;
+	b=GNFMWpF+hD8jdZO3NGTur7+AX8P0TG8hhl97FjQtoFv8BAptI92Y6TI4srZUqvpGhG56FQ
+	OaByZXcdFnunNzDQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1714373821; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=foSFvja1xtZKhFfCb1ELz3yeDCDBi6VORfN0RMsU5pA=;
+	b=OJtApqpIPGDK99iFXGxcMgAEKKSpnM04GzeAMgKa2KYTtHV2N5fgr5FwKZcqya773HSXu6
+	51Yuz6es2QA/gM88Razf4OefFkQliUzDjRexy4Q5ImYaQlh0Z1SWxn5VN348qvzftAkX1H
+	xMYJpgUYptBOswYZmmf2ysYF9QoScuI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1714373821;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=foSFvja1xtZKhFfCb1ELz3yeDCDBi6VORfN0RMsU5pA=;
+	b=GNFMWpF+hD8jdZO3NGTur7+AX8P0TG8hhl97FjQtoFv8BAptI92Y6TI4srZUqvpGhG56FQ
+	OaByZXcdFnunNzDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D1700138A7;
+	Mon, 29 Apr 2024 06:57:00 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([10.150.64.162])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id gBRzMbxEL2YQbQAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Mon, 29 Apr 2024 06:57:00 +0000
+Date: Mon, 29 Apr 2024 08:57:12 +0200
+Message-ID: <87o79s1ws7.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: "Rajashekar Kuruva (Temp)" <quic_kuruva@quicinc.com>
+Cc: <srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<corbet@lwn.net>,
+	<lgirdwood@gmail.com>,
+	<andersson@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>,
+	<gregkh@linuxfoundation.org>,
+	<Thinh.Nguyen@synopsys.com>,
+	<broonie@kernel.org>,
+	<bgoswami@quicinc.com>,
+	<tiwai@suse.com>,
+	<robh@kernel.org>,
+	<konrad.dybcio@linaro.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>,
+	<alsa-devel@alsa-project.org>
+Subject: Re: [PATCH] [RFC PATCH] ALSA: usb-audio: endpoint: Prevent NULL pointer deference in snd_usb_endpoint_close
+In-Reply-To: <64ed9496-577c-4f31-b061-9f3dcaca4b26@quicinc.com>
+References: <20240426122511.547755-1-quic_kuruva@quicinc.com>
+	<877cgks399.wl-tiwai@suse.de>
+	<64ed9496-577c-4f31-b061-9f3dcaca4b26@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240429-dtb_name_fix-v3-1-e13d58e744ef@ti.com>
-X-B4-Tracking: v=1; b=H4sIAOFBL2YC/3WMQQ6CMBAAv0J6tqZdioAn/2EMadlF9gCYljQaw
- t8tHIwx8TiTzCwikGcK4pwtwlPkwNOYID9kou3teCfJmFiAAqMMFBJn14x2oKbjp8wLRdYZxMo
- 6kZKHp6T33fWWuOcwT/6136Pe7J9R1FLLLkeFZalqR9Vl5mM7DWK7RPgu658SUmm06VzlSjgBf
- sp1Xd+SRN2L3wAAAA==
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vaishnav
- Achath <vaishnav.a@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>,
-        Devarsh
- Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1690; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=kf0Sp5Dag35+XC7rii10LELvFF8T9FtBCw/5i9WRxNI=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBmL0HjjsfLhxa8RRr9w6q9zGdqaT5WPhL8lOIdP
- PhbHdpw8V+JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZi9B4wAKCRBD3pH5JJpx
- RQ9mEACkC5MsQ33MYRr5pbcGnj+skj/PWFriGPqKIyGIGIb8Lj19tyzLZf5mQEB6lY3QOffshjw
- FZZpIQwMypuXwSxQZaYRwwe2o5ajbPQeDLXVyiiT4uXSbr2oY90KTXeLZQTZsmfWzPI5i/e3Lm/
- Wqr5I3MB5gYMlXduS3m23/cEz3nf5t0p5oe5hqgJp61L1lrILYc1lurSQGODy/0BcR6vvzx0ePJ
- DU020+n6cJGpUTl7PcjS6dYGBzFEl7M2yZ44ekpzrp7/UltPvZsVPHu/bqED12m2UOkslutbBIe
- YILS3yRYFCuvfsH9cYoQHVp9anVWVHLe0tBYjOAUq4+vvSaT76nmter/qf4/3evxJaKHTWJ+IRg
- SmZ+gx78Gx6jtObYOfo2jHoXZaXDExh4Q7qGemJPr1beTXctgwB1sqB4ncAF+kCbEp1QzADGI5T
- N7GUwxY3RfdUjSMLrN/k+7+L53pj7jsKeer0Q70RUhzCvRuTDMz4tanQ6hSM3+CGjb1XJhCWJZP
- BvxztQa8XhbglvZR59ncwO7MNJFZGcY6lRyhM+0ENQlf6Q11yXDQ0ZTnOBa341t2NK3wolq55t4
- FlJvxdeUkx9OGYbHBaW76nsutyJxb6rEWeFYRAnR9yJfOIZuDj/Y311c3AlCbE7Kwkuv4D6b9am
- fXSYxacpmjgs3FA==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -1.80
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,lwn.net,gmail.com,linuxfoundation.org,synopsys.com,quicinc.com,suse.com,vger.kernel.org,alsa-project.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	TO_DN_SOME(0.00)[]
 
-Fix the output filenames of the combined device tree blobs generated by
-applying *-csi2-dual-imx219-* overlays on the base dtbs during compile
-test.
+On Mon, 29 Apr 2024 08:23:27 +0200,
+Rajashekar Kuruva (Temp) wrote:
+> 
+> 
+> On 4/26/2024 6:13 PM, Takashi Iwai wrote:
+> > On Fri, 26 Apr 2024 14:25:11 +0200,
+> > Rajashekar kuruva wrote:
+> >> When multiple plug-in and plug-out events occur,
+> >> there is a risk of encountering a NULL pointer dereference
+> >> leading to a kernel panic during a headset use-case.
+> >> this issue arises in the snd_usb_endpoint_close function
+> > Such a scenario can't happen: ep->iface_ref is changed only in
+> > chip->mutex lock, hence it can't be NULL there.
+> > 
+> > 
+> > thanks,
+> > 
+> > Takashi
+> 
+> Hi Takashi,
+> 
+> Actually we are facing NULL pointer deference while running headset
+> case when i checked call trace the last running function is
+> snd_usb_endpoint_close where iface_ref and clock_ref both are 0x0
+> 
+> [75703.933104][T10585] Unable to handle kernel NULL pointer
+> dereference at virtual address 0000000000000004
+> [75703.933113][T10585] [RB/E]rb_sreason_str_set: sreason_str set NULL
+> pointer dereference
+> [75703.933116][T10585] Mem abort info:
+> [75703.933117][T10585]   ESR = 0x0000000096000005
+> [75703.933119][T10585]   EC = 0x25: DABT (current EL), IL = 32 bits
+> [75703.933120][T10585]   SET = 0, FnV = 0
+> [75703.933121][T10585]   EA = 0, S1PTW = 0
+> [75703.933123][T10585]   FSC = 0x05: level 1 translation fault
+> [75703.933124][T10585] Data abort info:
+> [75703.933124][T10585]   ISV = 0, ISS = 0x00000005
+> [75703.933125][T10585]   CM = 0, WnR = 0
+> …
+> [75703.933676][T10585] CPU: 3 PID: 10585 Comm: kworker/u17:0 Tainted:
+> G S      W  OE 6.1.43-android14-11-ga2fa77d36d26-ab11204829 #1
+> [75703.933697][T10585] pstate: 62400005 (nZCv daif +PAN -UAO +TCO -DIT
+> -SSBS BTYPE=--)
+> [75703.933700][T10585] pc : snd_usb_endpoint_close+0x30/0x104
+> [75703.933721][T10585] lr : snd_usb_endpoint_close+0x28/0x104
+> [75703.933724][T10585] sp : ffffffc04b2bb740
+> [75703.933725][T10585] x29: ffffffc04b2bb740 x28: ffffff8024e3ba78
+> x27: ffffffd266e91da0
+> [75703.933728][T10585] x26: ffffffc04b2bb7a8 x25: ffffff89bec5be00
+> x24: 00000000ffffffea
+> [75703.933730][T10585] x23: 0000000000000002 x22: ffffff885d568008
+> x21: ffffff8024e3ba78
+> [75703.933732][T10585] x20: ffffff885d568000 x19: ffffff8024e3bb18
+> x18: ffffffd26db2d140
+> [75703.933734][T10585] x17: 00000000f01b0818 x16: 00000000f01b0818
+> x15: 0000000000000008
+> [75703.933736][T10585] x14: ffffff8a3e2b5780 x13: ffffff8a3e2b5780
+> x12: ffffffd26cbd2770
+> [75703.933738][T10585] x11: 0000000000000001 x10: ffffff8984320000 x9
+> : 4f43b86e946b4e00
+> [75703.933740][T10585] x8 : 0000000000000000 x7 : 0000000000000001 x6
+> : fffffffdef8e8b70
+> [75703.933742][T10585] x5 : 0000000000000001 x4 : 0000000000000000 x3
+> : ffffff8024e3bb28
+> [75703.933743][T10585] x2 : 00000001011fa7c9 x1 : ffffffc04b2bb680 x0
+> : 0000000000000000
+> [75703.933746][T10585] Call trace:
+> [75703.933747][T10585]  snd_usb_endpoint_close+0x30/0x104
 
-Fixes: f767eb918096 ("arm64: dts: ti: k3-j721e-sk: Add overlay for IMX219")
-Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
-Changes in v3:
-- Add missed R-by tag from Aradhya (apologies for the spam)
-- Link to v2: https://lore.kernel.org/r/20240429-dtb_name_fix-v2-1-414fb8b7262d@ti.com
+Who is actually calling snd_usb_endpoint_close()?
+I guess that's rather a bug in the call pattern, not the code in
+USB-audio driver itself.
 
-Changes in v2:
-- Rebase to latest ti-k3-dts-next branch
-- Link to v1: https://lore.kernel.org/r/20240425-dtb_name_fix-v1-1-f3d0d7709be8@ti.com
----
- arch/arm64/boot/dts/ti/Makefile | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+snd_usb_endpoint_close() is supposed to be called only for a really
+opened endpoint.  So, if any, it's rather a race (or a bug) in the
+caller side, and it should be addressed there instead.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 48fb19a523bd..9c536d4902f4 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -170,10 +170,10 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am642-evm-icssg1-dualemac.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
--	k3-am68-sk-base-board-csi2-dual-imx219-dtbs \
--	k3-am69-sk-csi2-dual-imx219-dtbs \
-+	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
-+	k3-am69-sk-csi2-dual-imx219.dtb \
- 	k3-j721e-evm-pcie0-ep.dtb \
--	k3-j721e-sk-csi2-dual-imx219-dtbs \
-+	k3-j721e-sk-csi2-dual-imx219.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtb \
- 	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
 
----
-base-commit: 3454b58dd9d99e317871e9abd57f589ae7580642
-change-id: 20240425-dtb_name_fix-350eab4dd8ab
+thanks,
 
-Best regards,
--- 
-Jai Luthra <j-luthra@ti.com>
-
+Takashi
 
