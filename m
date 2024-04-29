@@ -1,126 +1,112 @@
-Return-Path: <devicetree+bounces-63732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBED78B63C3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 22:41:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1E08B63CD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 22:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70826283C18
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:41:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C647B23F97
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F5C177990;
-	Mon, 29 Apr 2024 20:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7255217B512;
+	Mon, 29 Apr 2024 20:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lFVW50JX"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CTNjgoqN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE7B1411EF;
-	Mon, 29 Apr 2024 20:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DA8179950;
+	Mon, 29 Apr 2024 20:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714423277; cv=none; b=ElgWhOaNnokOXC49eJ9NKeFG/NkiMUxwUIVOZ7OjxWNp8Z5eVSNz7sgmFgOr9WEu5l2mhO/6xSNwFlytnTY4PobIpUYNyhZdHRZsLMZl8TMGoLnE3YPDx2Wi/gTG0SCjTkl1v9VwfBzhBOVFJ1GapCbhKOqf7Wo8CUo5yCKz5wM=
+	t=1714423474; cv=none; b=Duj+1uA/8ATTJ7GfGMzsIDDQIMBkPRyF/CGUcfN9w1vK0WlxAfDsFsptXOtwFDN1d4+VS9P6cTrYLpkROp7xels3kcikJ0ASxml5xFRn085UMpqznp9LXsyd3+jFDm8PKJd7ppz+KQNVbFxZi8h5ZHrX5LZA7mxS5WTS+k/dw7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714423277; c=relaxed/simple;
-	bh=IBy5vuNdM6tBND8jWE+r9vS2L9OGBZ4fU8CmR7rmuPo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Fu8dM6S8wvkLUiuWmG3OMHWFRHT63IRh1n1wtRDK2vK+JJwNnaxuBbqDQ3SWwqV2xAQMXncvFyzqc1UWJs0vmqwkmoJaBsH8ngg457tSC9j8Hg0jKX2JbhA2MMc0iiCP9kGPXlVSq/Sz/K9v1kRdo9TfWVF9B3RjNs5lGxExgBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lFVW50JX; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43TKf3Eh057525;
-	Mon, 29 Apr 2024 15:41:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714423263;
-	bh=GABK8szO4+HDKRTLZ25fXfMpPgxdpF438K8WMz+nTlk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=lFVW50JXRz5yRKK7gX6uPySNfK+Nxv/IunUcS+k4BPVhTMxaJBSIdD574OsM2msxh
-	 CCC6nC2Gx+t3P2wyUubmGOlfbrH7csRPU0pCYl4208ngY+O1WOxytxauWL9ZimUoQ6
-	 sj3l4Rzdx7J/PW97mPAKwIYF9jViCUaFK52jd1fQ=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43TKf3D5027579
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 15:41:03 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 15:41:02 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 15:41:02 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43TKf2dr121833;
-	Mon, 29 Apr 2024 15:41:02 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>,
-        <r-gunasekaran@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: beagleplay: Fix Ethernet PHY RESET GPIOs
-Date: Mon, 29 Apr 2024 15:41:01 -0500
-Message-ID: <171442325719.132809.18343635173532672947.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240305-b4-for-v6-9-am65-beagleplay-ethernet-reset-v2-1-2bf463a7bf13@kernel.org>
-References: <20240305-b4-for-v6-9-am65-beagleplay-ethernet-reset-v2-1-2bf463a7bf13@kernel.org>
+	s=arc-20240116; t=1714423474; c=relaxed/simple;
+	bh=4ArbJmboZJkva+40RgFBkMMMnhvs/jRgCk9AgEu8Q2E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jOInKql6n9Z9jxRtVfngTu8SO5XWFXbyiFqOjOHZWGOxRzxdb8I24orMZGqAifQeSfPLqb/m8Hlt/f+dmFUIfVZ7uf205X/D/9RTLO3YmAG/wN887Ozh11AxHARqdSrLZH/52bxYgdx9/xrSHZ67Uu/Sa8qfaxihmaYb6QQ7gK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CTNjgoqN; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 9A7A8888D7;
+	Mon, 29 Apr 2024 22:44:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1714423470;
+	bh=AsfAKdnfhBOp5OD5DjPCztspGKTLGOlMTtGRezi6dLA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CTNjgoqN+/dFyq+wRwFHbU4s+hNq2hJtj6QbEf/upPPf/e0cmkarAC/wNFsWzLagz
+	 dzavVnYQVRjsElt3YQBJ/WwRYyQCsI3gQdsK1axjRWBFlBWm+lMwOvQrH8UMfilrpw
+	 M46RfkuRXLhKlwAUL9PZ1/WRJ8MERAD2JwljycPcgWOPx87VcIRpLq44FqJocUSNrQ
+	 GvbC/5bUNeA+D5bPaSb65rH2X6ay5jlDDLSmilSh7pgfKDIe40yXcE7gFFlb4JyPLI
+	 i6zLABSN4BX9HpxrAUxf9QRPPwKxOlZJsAoiXNY1Dh2DDWtc3hPoGYA4lcJ5m2c28c
+	 s9OPSuXTIVIwg==
+Message-ID: <c21823f2-4dd7-490a-8b76-7cab422428ba@denx.de>
+Date: Mon, 29 Apr 2024 22:44:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT
+ binding
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-bluetooth@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org
+References: <20240319042058.133885-1-marex@denx.de>
+ <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
+ <93eeb045-b2a3-41d7-a3f2-1df89c588bfd@denx.de>
+ <793d016d-2bde-407a-8300-f42182431eb1@linaro.org>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <793d016d-2bde-407a-8300-f42182431eb1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Roger Quadros,
-
-On Tue, 05 Mar 2024 15:15:32 +0200, Roger Quadros wrote:
-> The RESET GPIO pinmux should be part of MDIO bus node
-> so that they can be in the right state before the PHY
-> can be probed via MDIO bus scan.
+On 4/29/24 8:22 PM, Krzysztof Kozlowski wrote:
+> On 29/04/2024 17:10, Marek Vasut wrote:
+>> On 3/19/24 6:41 AM, Krzysztof Kozlowski wrote:
+>>> On 19/03/2024 05:20, Marek Vasut wrote:
+>>>> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
+>>>> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
+>>>> This chip is present e.g. on muRata 1YN module.
+>>>>
+>>>> Extend the binding with its DT compatible using fallback
+>>>> compatible string to "brcm,bcm4329-bt" which seems to be
+>>>> the oldest compatible device. This should also prevent the
+>>>> growth of compatible string tables in drivers. The existing
+>>>> block of compatible strings is retained.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Is there any action necessary from me to get this applied ?
 > 
-> The GPIO pin should be setup with PIN_INPUT so that
-> input circuitry is enabled in case software wants to
-> check pin status. Without this, incorrect status is shown
-> in /sys/kernel/debug/gpio.
-> 
-> [...]
+> I recommend resending with proper PATCH prefix matching net-next
+> expectations.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/1] arm64: dts: ti: beagleplay: Fix Ethernet PHY RESET GPIOs
-      commit: 0b1133ee36ecbf3b02f69cc4e8a169f1b6019e40
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+I don't think bluetooth is net-next , it has its own ML and its own 
+'Bluetooth:' subject prefix. Its patchwork.k.o project also doesn't seem 
+to contain many patches with 'net'/'net-next' prefix. Also DT bindings 
+do not seem to use it per 'git log 
+Documentation/devicetree/bindings/net/bluetooth/'. But the bot is 
+complaining about the prefix. Hence my confusion.
 
