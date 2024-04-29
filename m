@@ -1,101 +1,121 @@
-Return-Path: <devicetree+bounces-63628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC81E8B5AA8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 15:58:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EABD48B5AED
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 16:08:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21CA1B28321
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 13:57:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A60C5283AEC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 14:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5597A745ED;
-	Mon, 29 Apr 2024 13:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B5379B7E;
+	Mon, 29 Apr 2024 14:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GG2LIngI"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Nhw9HWjJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8086A8DC;
-	Mon, 29 Apr 2024 13:57:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00358763FC
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 14:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714399022; cv=none; b=hWqGXIo7rpnlD0qNGRmpBWpLRvmf2SNkTgVMtCAxRcfXW+fE8Vk2hAPr34SCe17mpbWbHYfFEXYy+ur0ipnB8rZyc5DUdNT+H2TrEmJfr5y3zOZ47y3dUZ8LJ2jz8AcjLSY8hAQ4VrGC+cziDTAfiv1+qECh+ZjPQd75fb0Hubw=
+	t=1714399703; cv=none; b=KUXieV2Bp/ff5BJto2fN3gdFHRWin3V2lnM1iQQFkvPq9/jVQSBEvDeI+hUhKl/Xc4Pu+OIyFDMYn6rH1luDU1Qe06oA3bRays/N+pMHnuka3PUkAMxK+MyI3eUoF754OtOQWw3WtjmzUQ/PWHTYtiYnTyXN7LLuw9mrU1KpPBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714399022; c=relaxed/simple;
-	bh=hrLWHVfoaJSAGcsmzkGrXHUYp5l5rsvCk0u32hKO+Bw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gaWYg6zaRqiXivQnHXLd9w3gl2Mzr9tsnYhkqxRzlUG32TNActUURE4Uw+hjfGUZloSz3bmrXb3DGw5pvrT8SFNxMOjSwY5wHLbR3YZkghpGdDiE/Lmz4MzLHnbOfhOrr5kQtRStTWE1e+Si714B8XY84ii+dcORYL584oBH3ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GG2LIngI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9040BC4AF19;
-	Mon, 29 Apr 2024 13:57:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714399021;
-	bh=hrLWHVfoaJSAGcsmzkGrXHUYp5l5rsvCk0u32hKO+Bw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GG2LIngIGzse3bsQ9kthxsjMAUAZI18Z566oUWErkMx6pPPK49xkUk+Xz0B0X/Bn6
-	 R+b/P+Htbg22jhWoXDB3Oyz9gUNFa0MN/amxRG6aIki1f6CGNXKXGfBiIsMQQFOXjW
-	 YTmvzuopp2z2VIIg7xi23SW8B8QERxA2gbE/cTlQhkeuuVyPDzHkpS30qyffRa3Npp
-	 BbYI0Cd1nNXvpvP7zDBBD+K2ENXv03afNPJUZ6U//q0KF8rtLwUz60ylXyFnIi+FGl
-	 jLBwmtlZ2+0I0um1rWTWHVQBh3wiZxSCmFzINCFYm/gHYuYfK/rY6qG37jIEW6kM5c
-	 y+/eAsjXLl9jA==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2db17e8767cso52413921fa.3;
-        Mon, 29 Apr 2024 06:57:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXPP1nzWT+T7r1oMk7NuIllaju4C5zN/URBmbFt3eKErJi9Uw6mvjnvPEwcR/nWxpCw38GEHZzriTipIdQJjaP1RSPNsQu9MwuRRwOt+WxvLfCYOyu8IL5tR3a+D4lbxQ2jw75CNfrzXUdtyiTAkW0h6/W1O/ql49MQDn2iWcMzAjqsRQ==
-X-Gm-Message-State: AOJu0Yw28WdaAOn91anqcBMB0/frRnRykzPUILG1k4lk1RbfNZ1ONn6A
-	cKLI6av0guR+CWhHCIycnQu8zlhNEJIL1yew3Jvq912oP16BjpUeyfhBnGSSgO/BxEgwB7kE38V
-	08xY81fEkRXVDByKZpkvbu1EE1g==
-X-Google-Smtp-Source: AGHT+IEEwIcqYTHNTyeaORQu//zY9IvZBv3W8ieDDuTopIM8O5FwyOdckugAJo/9oCC9YM+OZe74ACDK193felORT8U=
-X-Received: by 2002:a05:651c:212a:b0:2da:7af:e6a1 with SMTP id
- a42-20020a05651c212a00b002da07afe6a1mr7547332ljq.3.1714399019810; Mon, 29 Apr
- 2024 06:56:59 -0700 (PDT)
+	s=arc-20240116; t=1714399703; c=relaxed/simple;
+	bh=UMmU4EaPtt4Sc7gHKo5oC4Xvqd8k19rulgB4e7VGPFs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=n5/xukHKsu90VrqYHv+iDbPoiZ4HIgPj+Bj4qRYWKzGL19RzhzdZUVylh9ipTax6jnLV2XmiTxAGUjVQqRKIDJC20nE+3WV5GV6/czqMCKmXT6w8crcRhZdXnNxAWAzADWHF6sxVC0cpJBan1YoLzZzJrqDB5S7KxI+HIHPKtd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Nhw9HWjJ; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-349545c3eb8so3092675f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 07:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714399700; x=1715004500; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZgN/Q2xaGtKT6vvkSTDEzO9awo6/5voQRCCnxevwdKQ=;
+        b=Nhw9HWjJqIH35rtbuCYJNilli0R5uvlS94U5G5XGnJk/WZXA33owxAekzK4+z6KRYc
+         JDvlARjEujZwlWDdxxoggVYaSHJZ+m2xDVx9adEwkQz1TMtlNIJQmJISHaQTmnoKOftO
+         cVdQa7gbiIHXebQv42VOUf2BFzAR1zIi3iKHTs3KvXAsY6I/NbHisNdpMEDUcHKGD1Pa
+         pPLhA7Vj6c8nvgOWUxLQaCf/lWoe4CXcAEBxkQItuc5snD0pfj3IbEUk7ll4gOujBi6e
+         YWqhCGIOviSdGk7F+bFaOoEbNIuKlyhIPRL8AjBRh832KEp4nxRESkiy2NZK4IwpATFA
+         ctDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714399700; x=1715004500;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ZgN/Q2xaGtKT6vvkSTDEzO9awo6/5voQRCCnxevwdKQ=;
+        b=c7XiyzzkozEb29ScY4/BXuEddVLA5KUUXGQQysWcuF2OCtROWPV9pFWY3Dcytktvnz
+         8r2fDWt5WRU/0mWc9IeNgGbFoGk2LpXv0vEae2+8Y0ziOv9Jvv0yygxNRpqGod0kIe0z
+         I9QhICN9A5hxB/xgmf/zYKzEax5ID0v/EpX6+grt3v5s2bqc8aKdwyVGlpVbTull4FZy
+         wkQ9/YiX0fTQ34sPrVhRuTcXX8LIiy0mkyLyYP5Rdz+JnnKT+HPst+zwnREOtSvk8uqt
+         n7a8A7CQvQchQG1qGoun0ofz3q5HMh890sk1yXn9RAk0+xibkZRypE1hRd6DFn/vblap
+         7HpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX8Ow6KbyALYJ+Yp9toUkYhEd7rq+wgvQuayCWaT3Z+LJTjrXsEdEewODCMz1ChTOkBrRtGNVkVmTZZ0JdiXexpzC626KUcjy7v8Q==
+X-Gm-Message-State: AOJu0YwRqBXPty056fl6QKu6P4vUL35VycoHFiCH6KOM8qU5K4bW2VyG
+	GWdmAinrsVqOfSh9LyIqoSa8P8xE0Gz32YS7wzqpLXl0xChJtHoawNl43/kjwEQ=
+X-Google-Smtp-Source: AGHT+IEYOKVhPKai+Fa1uXLnecUJvyvuyl4SsHgSfkU/MZ0kr1joJET/wbdjmxnDeMCyPvAKUbffYw==
+X-Received: by 2002:a5d:6306:0:b0:343:efb7:8748 with SMTP id i6-20020a5d6306000000b00343efb78748mr6534087wru.66.1714399700400;
+        Mon, 29 Apr 2024 07:08:20 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id h1-20020a5d6881000000b0034615862c64sm29585477wru.110.2024.04.29.07.08.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Apr 2024 07:08:20 -0700 (PDT)
+Message-ID: <ebbda69c-63c1-4003-bf97-c3adf3ccb9e3@freebox.fr>
+Date: Mon, 29 Apr 2024 16:01:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com>
- <20240426-dev-mule-i2c-mux-v1-2-045a482f6ffb@theobroma-systems.com>
-In-Reply-To: <20240426-dev-mule-i2c-mux-v1-2-045a482f6ffb@theobroma-systems.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 29 Apr 2024 08:56:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJH-wD1BbSK=DmBtftpWT7YDbabmvgy1+PPii-8ziHTiQ@mail.gmail.com>
-Message-ID: <CAL_JsqJH-wD1BbSK=DmBtftpWT7YDbabmvgy1+PPii-8ziHTiQ@mail.gmail.com>
-Subject: Re: [PATCH 2/7] dt-bindings: i2c: mux: mule: add dt-bindings for mule
- i2c multiplexer
-To: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Andi Shyti <andi.shyti@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>, Heiko Stuebner <heiko@sntech.de>, 
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v3 0/3] Work around missing MSA_READY indicator for msm8998
+ devices
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>
+Cc: wireless <linux-wireless@vger.kernel.org>, DT
+ <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Alexey Minnekhanov <alexeymin@postmarketos.org>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Apr 26, 2024 at 11:50=E2=80=AFAM Farouk Bouabid
-<farouk.bouabid@theobroma-systems.com> wrote:
->
-> This patch adds support for the Mule I2C multiplexer.
->
-> Mule is an mcu that emulates a set of i2c devices which are reacheable
+Work around missing MSA_READY indicator in ath10k driver
+(apply work-around for all msm8998 devices)
 
-MCU
+CHANGELOG v3
+- Add a paragraph in binding commit to explain why we use
+  a DT property instead of a firmware feature bit.
+- Warn if the "no_msa_ready_indicator" property is true,
+  but we actually receive the indicator.
 
-reachable
+Marc Gonzalez (3):
+  dt-bindings: net: wireless: ath10k: add qcom,no-msa-ready-indicator prop
+  wifi: ath10k: do not always wait for MSA_READY indicator
+  arm64: dts: qcom: msm8998: set qcom,no-msa-ready-indicator for wifi
 
-> through an i2c-mux.
->
-> The emulated devices share a single i2c address with the mux itself where
-> the requested register is what determines which logic is executed (mux or
-> device).
+ Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml |  5 +++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi                           |  1 +
+ drivers/net/wireless/ath/ath10k/qmi.c                           | 11 +++++++++++
+ drivers/net/wireless/ath/ath10k/qmi.h                           |  1 +
+ 4 files changed, 18 insertions(+)
 
-Just to be sure, we need a complete binding for the MCU. Is this the
-only thing the MCU does?
-
-Rob
+-- 
+2.34.1
 
