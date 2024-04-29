@@ -1,107 +1,152 @@
-Return-Path: <devicetree+bounces-63718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC4848B614A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 20:45:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A07658B6270
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 21:39:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19DC2B23159
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 18:45:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40ABD1F21649
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 19:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C9113AA51;
-	Mon, 29 Apr 2024 18:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FE013B2A2;
+	Mon, 29 Apr 2024 19:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IVomnz8S"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xWbJ9Vy0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C652B13AA27;
-	Mon, 29 Apr 2024 18:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF2B17597;
+	Mon, 29 Apr 2024 19:39:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714416305; cv=none; b=k5Yk5FLBta8V2/qobd9WaW6s7fQMA4aHDcY5smzSDzlnTqEqPVJ2+qp+r9W+Avkxbk6O0klenODUi0bOwWMehvJ7JHsqNcc0f9yr8NVOBRjjJHr8/aNBIyfuKaS2hvNfjNB8McQ3wRYL7xSRIKHgWeAx23J7zeQpv1/V5gCW9R4=
+	t=1714419563; cv=none; b=PQClUZRzU6kzmtxVqULRT1ydYenbAVN+yLDKHwBqPEfgP9qZyY215yxBp7BoDPtXyXDwPSl2qjhOTXQ1rqAQGCVDyKvXsrGeqQKp3VdXjrZdyo4/fa0hV5mXBJ+fhQsgNtOA+UxKU5AhnieH14Kx8kEB8Pp5UqSr8a3/7+1plv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714416305; c=relaxed/simple;
-	bh=zPY7hLzbTy+LxKVaUSHZBYlNztmRr8ZvA5EWhz9y/AA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gX0x8nrg7hWOrjREaKixG1SYr2zEEvIgMwV5B2Nf9vmkXLpt4HqL7nl1o61g5I1iS+9giHAhuPFkPhKpFUbUFumd720PbTKP3xpbfD5rQuQxcieUTsuxE6+fYAXDE2xGgwL+3QO65+r3sfOL5jPP7nIODQA0k50IjJHJsmSacdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IVomnz8S; arc=none smtp.client-ip=198.47.23.248
+	s=arc-20240116; t=1714419563; c=relaxed/simple;
+	bh=WhgcW/bisSpMZeVcT/iQoAmlUPS83pZyhBZcNJvwjkI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XCNlnRHqYYpI6nuP82mzU5vPR4JWzReA0GtyG+x56o5Kot3O5VnzWQ1Nned3xADh3CWGNFWntX1ZPNv9EApIaXL/ORIbF3v+t/zmxaSvFb/OnsCzYM85CbwpHn2tK6gW0l/NqxTvh9jL/0Li1MrwSUPskZDhzmlv2xeFswXqwUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xWbJ9Vy0; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43TIimib008705;
-	Mon, 29 Apr 2024 13:44:48 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43TJdCRA025117;
+	Mon, 29 Apr 2024 14:39:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714416288;
-	bh=emWvFMVSjdWWzi3lqsMnMIF5LXNxHU9wHxBHQfKmECE=;
-	h=From:To:CC:Subject:Date;
-	b=IVomnz8SfnaDvqtA3h3ANEQNt2t1GoI/EPs+DhQ4kMxaRdNX5A0DJnCV0dxnXr9U2
-	 UtfuAhqt/nVknsfVvqmFNnuzlrJud+vVwPYjEOy5DJ8LaslWZjj+Uw2ck0uBkqSwQ2
-	 miKzTo08LuCAVOQ6oqX4Rk9OUGTgnso9+UtXUfKA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43TIimsm026726
+	s=ti-com-17Q1; t=1714419552;
+	bh=lVO2rgJjLq4yw9Oul8jln9aM6c3F0zQr/8SSJzsApYQ=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=xWbJ9Vy0/d5ip39xkTzF8xujH1O01/X1GWBuwV2fAnFSrT8ogcV6GvYb0X4p8VCOw
+	 crR45GlvB0XLGWRFmD4QFYxUAhA4aO/0QCqn360r9l1AuTONz+smPNY5m7i0QIuU9k
+	 0E5wMpnrQi90uHe70pSfMLydPDf9BY+n4qoKwP70=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43TJdCfU109555
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Apr 2024 13:44:48 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 29 Apr 2024 14:39:12 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 13:44:48 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 14:39:12 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 13:44:48 -0500
-Received: from udb0866455.dhcp.ti.com (udb0866455.dhcp.ti.com [128.247.81.242])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43TIimMB052574;
-	Mon, 29 Apr 2024 13:44:48 -0500
-From: Vibhore Vardhan <vibhore@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <khilman@baylibre.com>, <msp@baylibre.com>, <d-gole@ti.com>,
-        Vibhore
- Vardhan <vibhore@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-am62a-wakeup: Enable RTC node
-Date: Mon, 29 Apr 2024 13:44:45 -0500
-Message-ID: <20240429184445.14876-1-vibhore@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Frontend Transport; Mon, 29 Apr 2024 14:39:11 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43TJdBQE093494;
+	Mon, 29 Apr 2024 14:39:11 -0500
+Date: Mon, 29 Apr 2024 14:39:11 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Chintan Vankar <c-vankar@ti.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v6 5/5] arm64: dts: ti: k3-j784s4: Add overlay for dual
+ port USXGMII mode
+Message-ID: <20240429193911.crcrasbcxnhxonlh@altitude>
+References: <20240329053130.2822129-1-c-vankar@ti.com>
+ <20240329053130.2822129-6-c-vankar@ti.com>
+ <1cf7f439-45cc-42cb-b707-4c87c00015ac@linaro.org>
+ <f406bac9-f4c1-4289-8239-82420cd300b8@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f406bac9-f4c1-4289-8239-82420cd300b8@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On-chip RTC is used as a wakeup source on am62a board designs. This
-patch removes the disabled status property to enable the RTC node.
+On 17:16-20240429, Chintan Vankar wrote:
+> 
+> 
+> On 29/04/24 16:01, Krzysztof Kozlowski wrote:
+> > On 29/03/2024 06:31, Chintan Vankar wrote:
+> > > From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > 
+> > > The CPSW9G instance of the CPSW Ethernet Switch supports USXGMII mode
+> > > with MAC Ports 1 and 2 of the instance, which are connected to ENET
+> > > Expansion 1 and ENET Expansion 2 slots on the EVM respectively, through
+> > > the Serdes2 instance of the SERDES.
+> > > 
+> > > Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration USXGMII mode
+> > > at 5 Gbps each.
+> > > 
+> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> > > ---
+> > > 
+> > > Link to v5:
+> > > https://lore.kernel.org/r/20240314072129.1520475-6-c-vankar@ti.com/
+> > > 
+> > > Changes from v5 to v6:
+> > > - Updated order of properties in Device Nodes based on
+> > >    https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> > > 
+> > >   arch/arm64/boot/dts/ti/Makefile               |  6 +-
+> > >   .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   | 81 +++++++++++++++++++
+> > >   2 files changed, 86 insertions(+), 1 deletion(-)
+> > >   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> > > index f8e47278df43..2d798ef415e4 100644
+> > > --- a/arch/arm64/boot/dts/ti/Makefile
+> > > +++ b/arch/arm64/boot/dts/ti/Makefile
+> > > @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
+> > >   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
+> > >   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+> > >   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
+> > > +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+> > >   # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+> > >   k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+> > > @@ -148,6 +149,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+> > >   	k3-j721s2-evm-pcie1-ep.dtbo
+> > >   k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
+> > >   	k3-j784s4-evm-quad-port-eth-exp1.dtbo
+> > > +k3-j784s4-evm-usxgmii-exp1-exp2.dtbs := k3-j784s4-evm.dtb \
+> > > +	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo\
+> > 
+> > I have doubts this commit was ever built. It clearly fails, just like
+> > now linux-next fails.
+> > 
+> 
+> Apologies for the syntax error here, I will fix it and post next
+> version.
 
-Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Series dropped. Looks like it slipped my checker as well :(
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-index f7bec484705a..49a577a37ccf 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-@@ -49,7 +49,6 @@ wkup_rtc0: rtc@2b1f0000 {
- 		clock-names = "vbus", "osc32k";
- 		power-domains = <&k3_pds 117 TI_SCI_PD_EXCLUSIVE>;
- 		wakeup-source;
--		status = "disabled";
- 	};
- 
- 	wkup_rti0: watchdog@2b000000 {
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
