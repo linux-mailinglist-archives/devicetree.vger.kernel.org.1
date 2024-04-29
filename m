@@ -1,130 +1,125 @@
-Return-Path: <devicetree+bounces-63532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344848B5429
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:22:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1660F8B5425
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 11:22:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 663B61C21276
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:22:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4674DB22026
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2024 09:22:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F79224EA;
-	Mon, 29 Apr 2024 09:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE982030B;
+	Mon, 29 Apr 2024 09:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QYl9GtHq"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="RtJypCal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpcmd13147.aruba.it (smtpcmd13147.aruba.it [62.149.156.147])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84EA10A13;
-	Mon, 29 Apr 2024 09:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE5420326
+	for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 09:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714382559; cv=none; b=VUTL1/JZVXyHbCsslnUqeAQtGSaJKvBwHe9JM2BnHkwGTxoO4r95Rzh6Brp/zC/g/3LK8Pv0g/qD0VFL9uAxpnGWqecesQexF2YiZg6pEB7O7c5yG96Fudorrd5d7LIpxy+KWscy5eXO7CUJQGOL9vjY6JY928nqEEjnEPmpbAc=
+	t=1714382533; cv=none; b=jvSlJrm/8zZyqSzJcH0fUMRKSKK8bZJeSTdsb9bLRvCr9TPrAE2NowOQgfHLOdWPxTGsBTwdLeJorIfzZPJCzSvqhr+v/xHJsIlNLM+T3RQJqV2ytu8lmTYYLP+S7eBFoFQYQr+oCJilrSRy92mfiB5UuBAslSVVpulLKrqt4V0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714382559; c=relaxed/simple;
-	bh=uRso8OTIDgSi6hlihdnvz6u6dS4eEVLxFjwCiEFqXJs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qV0T08GMLPw/5NRK7/B13cqWwa/qyhEWD0/JYi7CAKYBvMM/8vRfQbqzUK02jFw6IElWUvEm+pNNe1rN4ReI76cRbUh2TnRBt+oCQRZwdZKCgF2cWv/jePr7Sy8LG2fv6jHrvz7R+OdlCD1MXRuddBVr7ykm4MUTcaHEJtauHTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QYl9GtHq; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5709cb80b03so4109524a12.2;
-        Mon, 29 Apr 2024 02:22:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714382556; x=1714987356; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P06jmw+kKM6TGfkhUGkzKJO5qkuqhaUT7dHJDv+GMuM=;
-        b=QYl9GtHqHxqcZCTGV88nzA/PT9NdHgOSLnoxnuv6pmqLx4YVxYEPu5MnL5BZbgGG4w
-         99TC7tcwEJj1MNwp0qZxEmKi4C5VZ/jvVp0oBkFB3Ez1kr6FJt8AqHhTWFLwCkBhLXnF
-         w24inzDSeJF2mrbWxmhD3gcAX60lbuxD6/RO/koQzb8x6zn4xk9FJsaSMwViTeIFJTLa
-         DzxC/PXZHEwjHeRiYCSwdn8NlnLtSO0Br1O15OsGufYHZO2FgtcmwpBTBCbkdJ8UjJf+
-         0vPmMwKjhBOASz7xa5kT6ue4W8W6Cp3ruYEBo/IR4DYspy7UFed743+wFbyWQJFbuLfM
-         kchA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714382556; x=1714987356;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P06jmw+kKM6TGfkhUGkzKJO5qkuqhaUT7dHJDv+GMuM=;
-        b=HBbxYYDanX+AGeyhe9LzTZw8LETiSiZk3ZeqzYeReqEK8QpevSuZbdGcrIZk3O2Y1A
-         T+cgRjr8guZL7b6xzLO3NR5S7hx38Akpg/CaZE/TPkQzAVNHtsjVgb9s+SkrwZ1Xkbk/
-         pSi6Ad3WazNzPvSEACeX2EZqfUu66INVRSh5etN/TaIegcDcChGPlrfGqO073UI6Vkh8
-         XxmHOdJy41TWxbCaev6zwDoqUrAzaJIVmWeSd0hURx60cuwEtzdxwvzSP0p4xxMTBpSh
-         4HfjCyqWWE/deCLt3bAg0mtUxbOrsljejU8CgC9Bh9oGMVP3Bgl7h9esoOhZ664AIX0S
-         uYaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW11lzUkO6yd4iHIVGpPfB9oLA2MfNCJAUAFgm50jZMZ1HSo3RUCWFl6RnhrbkkoV3RvpFqgLpjAapQFcG6L8Us8GaCv2weWHtiiw==
-X-Gm-Message-State: AOJu0Yx4GqSf/TknK2Y5FkUDPCh0rlfuvu1PDRX2oWPliUFOjzXkJDrA
-	eG5YlwUljI33l7566Y5GEFSG/Cd6zfMhDtsS/Wm8t4mDzbq/B7t1d4SpHSWDNjlCD2ObPBuB9yl
-	Isfam4oDiHIgEzyvXVUuKBFy0PVM=
-X-Google-Smtp-Source: AGHT+IFStgVjaSo3pk3txOTIPySLMGz7fvaU+PopoAUqYoGAO47GML5Qh3YJmt+I/+Qw5sqNYAHeoIjyd8eDLMlpUG4=
-X-Received: by 2002:a17:907:1b25:b0:a58:bcad:47c0 with SMTP id
- mp37-20020a1709071b2500b00a58bcad47c0mr7806744ejc.47.1714382555636; Mon, 29
- Apr 2024 02:22:35 -0700 (PDT)
+	s=arc-20240116; t=1714382533; c=relaxed/simple;
+	bh=v+9IardeQVHSNjpM0cCMrsumgfLobKVvrfyCwoM4r5A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I5c99LB8qD1BJM8axcpwK2iWRYAZ8TkgN4gbMD60KG5CbMvgjy11Vr1jydqiLjSYEk1oBYBgc6fvIZKpJTyZZRuCSDo4uGf0IpWn74NrAlK71/0MJDjzrDsfcJ6DIvo0rB100jLXqERCEU1r5/o1ydVAvQ7bduGv5ox40Pv451E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=RtJypCal; arc=none smtp.client-ip=62.149.156.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam ([146.241.8.107])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id 1ND4sV3Dq8U421ND5sO3Gl; Mon, 29 Apr 2024 11:22:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1714382527; bh=v+9IardeQVHSNjpM0cCMrsumgfLobKVvrfyCwoM4r5A=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=RtJypCal2HgNizvWD+OI4RGT1RAfQK4PMNc7BVnf2+MkPqf5xMeEVHTQXlvfUR5bm
+	 rhe3HiZEYyE/THa/lggvICFtb7+ZbN3wAEmpyE9+e4d4xRmKE/Fvc69kSYo5dqPQ8A
+	 8u2SS9hCoNMdlPkWlZkUnvFekPFQQ5JpNbOrXoOdCaSN4p4aAud2JAkIPKm7HHwu9z
+	 iad4i0PLXUNGFQgfKooOhbf4RUgLH0jEN0jIN4gSbSmmuqerdva+izh5Xqd4YgTEtQ
+	 /nloKzXl4qFiRs83bBR8pF3MxRFplTgVxNEVja4xV9TAWFOOE/dKihI4PLWIueBGKS
+	 GE+951pfJSpKA==
+Date: Mon, 29 Apr 2024 11:22:06 +0200
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Matteo Lisi <matteo.lisi@engicam.com>,
+	Mirko Ardinghi <mirko.ardinghi@engicam.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: arm: fsl: add Engicam i.Core MX93
+ EDIMM 2.0 Starter Kit
+Message-ID: <Zi9mvnx90mxnhv8j@engicam>
+References: <20240429084422.8369-1-fabio.aiuto@engicam.com>
+ <20240429084422.8369-2-fabio.aiuto@engicam.com>
+ <07fa8910-da6e-49f3-a3d3-b7a55c48224a@kernel.org>
+ <Zi9iAZjrq13X4K/C@engicam>
+ <5858b5de-4083-4c46-b23c-14f5bec113f0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1714377864.git.lorenzo@kernel.org> <6c9db20505b01a66807995374f2af475a23ce5b2.1714377864.git.lorenzo@kernel.org>
-In-Reply-To: <6c9db20505b01a66807995374f2af475a23ce5b2.1714377864.git.lorenzo@kernel.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 29 Apr 2024 12:21:58 +0300
-Message-ID: <CAHp75Vc0=bKk+D9ULPhfbVkgHpRTST_niNBYo4Jri_71XQa+dg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] spi: airoha: add SPI-NAND Flash controller driver
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-spi@vger.kernel.org, conor@kernel.org, broonie@kernel.org, 
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com, 
-	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
-	angelogioacchino.delregno@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5858b5de-4083-4c46-b23c-14f5bec113f0@kernel.org>
+X-CMAE-Envelope: MS4xfEclqJNNWSx5Jl/gUw/lTjW5w2a5uNsh6ud23jxkPlVxDs5py/slyZcCBI+c9jxHVeScb29MJTtBYE4cUp8whME/QmgWnp/naj9Mdk/icw855VuWwciB
+ 7uWoQ7oXfsysyYbTKzNAGMEtPmOl7Sat4+HACGYPvgr2js6G7G/PLxDbdZ8gauI1AEvnuwA/NYGvoIf80ldAnLv5pyQ4/QtrNntv8R27iMTXioTNHrffew8k
+ q+s2Mb/5um7W8arZTR4iANbj0Jfxd0iCcMMsujCppcRaDriW/kW2uSR3z9D+Z01Xr7Wmt1uP0h4xcBATIx4QAXWFveFm8IbX6YLkS89HfoqSMych54+iVgSL
+ wEMJDUJEi49+Ybp3zvPD0nSaQns7GT+IfBanb+AkLEuti/Qy4IVW46/OHvBMGsqA+H8n7GQNWsDK5NW6e/vKgTw0JyjFd0TzjSAp0OJ/3Yn8Cp+Cx234XnkX
+ +BI5vR+riCvat7Mwf/GfhR+Wn/G0iYDPqTdBJKWa04kFHFezaNFmfsm9ddpBEXulMEOgeqlFHvTxYq9u3YhgfeU7LCJUqjSZcMRpsLzEcwY+H/UDPEBhfosl
+ iaL/ynxT70moFwYXPPrSUh2tX6DSM54Uti9V1AQSqHKHmg==
 
-On Mon, Apr 29, 2024 at 11:13=E2=80=AFAM Lorenzo Bianconi <lorenzo@kernel.o=
-rg> wrote:
->
-> Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
-> found on Airoha ARM SoCs.
+Dear Krzysztof,
 
-FWIW,
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
+Il Mon, Apr 29, 2024 at 11:04:03AM +0200, Krzysztof Kozlowski ha scritto:
+> On 29/04/2024 11:01, Fabio Aiuto wrote:
+> > Dear Krzysztof,
+> > 
+> > Il Mon, Apr 29, 2024 at 10:53:08AM +0200, Krzysztof Kozlowski ha scritto:
+> >> On 29/04/2024 10:44, Fabio Aiuto wrote:
+> >>> i.Core MX93 is a NXP i.MX93 based EDIMM SoM by Engicam.
+> >>>
+> >>> EDIMM 2.0 Starter Kit is an EDIMM 2.0 Form Factor Capacitive
+> >>> Evaluation Board by Engicam.
+> >>>
+> >>> i.Core MX93 needs to be mounted on top of EDIMM 2.0 Starter Kit
+> >>> to get the full i.Core MX93 EDIMM 2.0 Starter Kit board.
+> >>>
+> >>> Add bindings for this board.
+> >>>
+> >>> Cc: Matteo Lisi <matteo.lisi@engicam.com>
+> >>> Cc: Mirko Ardinghi <mirko.ardinghi@engicam.com>
+> >>> Reviewed-by: Krzysztof Kozlowsky <krzk@kernel.org>
+> >>
+> >> What the hell? Why are you changing tags?
+> > 
+> > I fear I don't understand your comment. Did you gave me
+> > your Reviewed-by: tag, didn't you?
+> > 
+> > When Conor gave me his Acked-by in v2 told me to pick up
+> > yours too...
+> 
+> I *DID NOT* give such tag. Why do you manually type people names? You
+> are ought to COPY the entire tag. Not amend it, not change it, not try
+> to write by yourself.
 
-...
+I apologize for that, will send a v8
 
-> +static void airoha_snand_cleanup(struct spi_device *spi)
-> +{
-> +       struct airoha_snand_dev *as_dev =3D spi_get_ctldata(spi);
+kr,
 
-> +       struct airoha_snand_ctrl *as_ctrl;
-> +
-> +       as_ctrl =3D spi_controller_get_devdata(spi->controller);
+fabio
 
-You may do it on one line above (the same way as for as_dev).
-Ditto for other similar cases around.
-
-> +       dma_unmap_single(as_ctrl->dev, as_dev->dma_addr,
-> +                        as_dev->buf_len, DMA_BIDIRECTIONAL);
-> +       spi_set_ctldata(spi, NULL);
-> +}
-
-...
-
-> +static const struct of_device_id airoha_snand_ids[] =3D {
-> +       { .compatible   =3D "airoha,en7581-snand" },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, airoha_snand_ids);
-
-No need to keep this block here, the first user is below the ->probe().
-
---=20
-With Best Regards,
-Andy Shevchenko
+> 
+> Best regards,
+> Krzysztof
+> 
 
