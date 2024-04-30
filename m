@@ -1,137 +1,128 @@
-Return-Path: <devicetree+bounces-63930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162178B704D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:45:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E623B8B7083
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:46:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 478AD1C220C9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:45:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 235C61C21E75
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C9612DDB8;
-	Tue, 30 Apr 2024 10:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hmy4HjZX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9782B12C47A;
+	Tue, 30 Apr 2024 10:46:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5398412DD9C;
-	Tue, 30 Apr 2024 10:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2808C12C53F;
+	Tue, 30 Apr 2024 10:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714473861; cv=none; b=lOol2n2muTQkJ+xCRP8dbXK0NSrjo8zCuNZn4rDDy0h+08nhAymjxmjXLA1hYfvGM9S/TZmERqBfkQ5Ifl6g3LzbpxdkswHoRnS+706RGZMAadIRqDcCMUETNUa3f4VqOziy6GO0ca7Ct+6ZRXBnenzYgreNAm36jJxbEfQVBaI=
+	t=1714473993; cv=none; b=X93ktZyvYOUbVU9nkBz4yZJJBBV0EHGH0IRvpcijiSMH7EqGi8WUD39BXoZk3nRTSSC0QfvvL1Kv5E6azkELCa+mTofo0KnTF+RJkGdJ3yKfQrGptMIfpolc/A72p6eSnVNcT4rZi1k/q7i7kw2NdjqpCUQ6GArk85VFrArfW1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714473861; c=relaxed/simple;
-	bh=jmofaJ3QWKGh4FuQgnidJQUjJ4vAccqiIwWwk4VBoUk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mhufcDruZ51Pf41kCeEUQWbfHKPIV9LgVPGacbz+XGJWJxvBBUjlpY/ELYr6PQn3WAmwr77UIRiXwvuU0Sfui9yIHb/HILizkIPWdIyv871nav7pn0mrkd2qoaCTiUWvGqV1CmjiWXZuYJqKc5oE6yuJm5GAf0oV31p6KEBNqt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hmy4HjZX; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-516d2600569so6758825e87.0;
-        Tue, 30 Apr 2024 03:44:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714473858; x=1715078658; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G6FI6Pr5Zw7YU5fITapN3BSMuLEhwI7dVwWigXJEbPU=;
-        b=Hmy4HjZXnYun4N3w+S7qwUdjFS+xocF9xUlPg38mDDVstpv2wMfvja9sJXIqjVujGC
-         HszND0zpDC+tKcsnuqB09NFc7bCEU55sRj+kFPDRXUm5a+UsPqTE4V7uzcVlZU+RbxII
-         hNFaSXpV6T8+54B2RcatWQNH4VfPaunqMCTWOhtwphba+Kwn81uMR5Y5Jd2q1uxQ/T0S
-         PjM9ZQLUf27UuI32RakqEh7Bz23Gs4rKAcqFh3iPvffk7l2NFz9yUQL12eGkw0xtdUva
-         HptcGj1EZfUf1mokIfDZ56ZtQNmVQxFl8bZHMw/S3IrjvK3NpIQWdjKO6Bjq9R6DugkQ
-         NmFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714473858; x=1715078658;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G6FI6Pr5Zw7YU5fITapN3BSMuLEhwI7dVwWigXJEbPU=;
-        b=F6ifPPWmBrkRyvtdxwl5zCv0f82Zh0GKj8TrzXYJlrTOGyBbAnEpL5L9PFUXaxne/c
-         McRQZ6FHuWcaTRIa2wa3fmwafjBro9ZWBJAIHAzwBMYdB4RH3bkqvyM1lJp1hSWzT+hD
-         fN0ENuknDk/ScB2Gv26JQscBXx+xdXPbzpDBntBbNWd8wrLdy9cvt0tiTCG5yuxahjAH
-         zq8N3NmEj43iAH51zpesVZhSX4MRyaci4+xB85v+wh/2riJtZKUBXiEkIkZVV3+CAcTA
-         AvL/nwhtzJQU9pf+1g3Biv/ZeDm8V1px7Cx2L2Q6cZguofPllXU9r0OgIe48Rb+sb7GG
-         IN9w==
-X-Forwarded-Encrypted: i=1; AJvYcCV6IGcKKmfxuR836wtKWcBsOto1iVHVMEdqva1M1M5DrwQQe2JB06lL7x9hgjWUXrz+nwo9BemstASM1JeIdPA8KML+5qlme0db7g==
-X-Gm-Message-State: AOJu0YwvNbJBNGrOR5YdHBNB+Fu4IN3tI6/HMYcasrewim8hV+Miv/l/
-	ObmxLTVYOXFy5Y693/CVDFzvU7XSH+L6XDCwS9scJdU2LkldAXC1
-X-Google-Smtp-Source: AGHT+IE1/Hq+tFW08EaAqJcX/KieuMNro/vZRtBgruiDeTAF6Szwb0xjPS8W1TwAeFIB9vKcihxQzQ==
-X-Received: by 2002:a05:6512:4013:b0:51d:2056:efaa with SMTP id br19-20020a056512401300b0051d2056efaamr6845331lfb.32.1714473858552;
-        Tue, 30 Apr 2024 03:44:18 -0700 (PDT)
-Received: from [192.168.0.20] (cpc115152-dals23-2-0-cust532.20-2.cable.virginm.net. [86.12.82.21])
-        by smtp.gmail.com with ESMTPSA id p8-20020a5d48c8000000b0034af40b2efdsm23595951wrs.108.2024.04.30.03.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 03:44:18 -0700 (PDT)
-From: Connor Abbott <cwabbott0@gmail.com>
-Date: Tue, 30 Apr 2024 11:43:20 +0100
-Subject: [PATCH v3 6/6] drm/msm/a7xx: Add missing register writes from
- downstream
+	s=arc-20240116; t=1714473993; c=relaxed/simple;
+	bh=mE6yvWjTcmXVXU5c5sghfUVd7O4Ux9KAsDuJ2YuvrWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VpXzZo9RvSuA0ao2EIAIWlfRXHDo7v5jimuxR0VjSg7qIsdEooZzHosky6qsnWhMTJcbvWbnyWVcEuHiWieU/3s22NvGkAV0UlBBXaHb+4mqBzEdIlHu360zoudY1sAv5zyh92Nqrdk5X3ZPXkxiKwbGsHjwxq5QMUjQAB+dxos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 152CD2F4;
+	Tue, 30 Apr 2024 03:46:58 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1FF353F73F;
+	Tue, 30 Apr 2024 03:46:30 -0700 (PDT)
+Date: Tue, 30 Apr 2024 11:46:27 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-sunxi@lists.linux.dev, wens@csie.org, jernej.skrabec@gmail.com,
+ samuel@sholland.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: Add cache information to the SoC
+ dtsi for H6
+Message-ID: <20240430114627.0cfcd14a@donnerap.manchester.arm.com>
+In-Reply-To: <6fdeb49d57ccccca62e4f43dbe9475e3@manjaro.org>
+References: <6a772756c2c677dbdaaab4a2c71a358d8e4b27e9.1714304058.git.dsimic@manjaro.org>
+	<49abb93000078c692c48c0a65ff677893909361a.1714304071.git.dsimic@manjaro.org>
+	<20240430001002.4797e4e3@minigeek.lan>
+	<6fdeb49d57ccccca62e4f43dbe9475e3@manjaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240430-a750-raytracing-v3-6-7f57c5ac082d@gmail.com>
-References: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
-In-Reply-To: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Jun Nie <jun.nie@linaro.org>, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- freedreno@lists.freedesktop.org, Connor Abbott <cwabbott0@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1714473850; l=1178;
- i=cwabbott0@gmail.com; s=20240426; h=from:subject:message-id;
- bh=jmofaJ3QWKGh4FuQgnidJQUjJ4vAccqiIwWwk4VBoUk=;
- b=ujp5kRgQelCyVGrPXqO7Kl6H4xLU3dtkkFWc1xAKk6SPvxdAcmD/lCjWErIW2i2gG1Q8n+eOT
- XvDBjRqaVWmBj97gf7s7X4XErXC6is+dMOqDznpv0NP0SF0YmjR4s+R
-X-Developer-Key: i=cwabbott0@gmail.com; a=ed25519;
- pk=dkpOeRSXLzVgqhy0Idr3nsBr4ranyERLMnoAgR4cHmY=
 
-This isn't known to fix anything yet, but it's a good idea to add it.
+On Tue, 30 Apr 2024 02:01:42 +0200
+Dragan Simic <dsimic@manjaro.org> wrote:
 
-Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
----
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Hi Dragan,
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 52b080206090..24a4ed9bfea9 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1953,6 +1953,17 @@ static int hw_init(struct msm_gpu *gpu)
- 				  BIT(6) | BIT(5) | BIT(3) | BIT(2) | BIT(1));
- 	}
- 
-+	if (adreno_is_a750(adreno_gpu)) {
-+		/* Disable ubwc merged UFC request feature */
-+		gpu_rmw(gpu, REG_A6XX_RB_CMP_DBG_ECO_CNTL, BIT(19), BIT(19));
-+
-+		/* Enable TP flaghint and other performance settings */
-+		gpu_write(gpu, REG_A6XX_TPL1_DBG_ECO_CNTL1, 0xc0700);
-+	} else if (adreno_is_a7xx(adreno_gpu)) {
-+		/* Disable non-ubwc read reqs from passing write reqs */
-+		gpu_rmw(gpu, REG_A6XX_RB_CMP_DBG_ECO_CNTL, BIT(11), BIT(11));
-+	}
-+
- 	/* Enable interrupts */
- 	gpu_write(gpu, REG_A6XX_RBBM_INT_0_MASK,
- 		  adreno_is_a7xx(adreno_gpu) ? A7XX_INT_MASK : A6XX_INT_MASK);
+> Hello Andre,
+> 
+> On 2024-04-30 01:10, Andre Przywara wrote:
+> > On Sun, 28 Apr 2024 13:40:36 +0200
+> > Dragan Simic <dsimic@manjaro.org> wrote:
+> >   
+> >> Add missing cache information to the Allwinner H6 SoC dtsi, to allow
+> >> the userspace, which includes lscpu(1) that uses the virtual files 
+> >> provided
+> >> by the kernel under the /sys/devices/system/cpu directory, to display 
+> >> the
+> >> proper H6 cache information.
+> >> 
+> >> Adding the cache information to the H6 SoC dtsi also makes the 
+> >> following
+> >> warning message in the kernel log go away:
+> >> 
+> >>   cacheinfo: Unable to detect cache hierarchy for CPU 0
+> >> 
+> >> The cache parameters for the H6 dtsi were obtained and partially 
+> >> derived
+> >> by hand from the cache size and layout specifications found in the 
+> >> following
+> >> datasheets and technical reference manuals:
+> >> 
+> >>   - Allwinner H6 V200 datasheet, version 1.1
+> >>   - ARM Cortex-A53 revision r0p3 TRM, version E
+> >> 
+> >> For future reference, here's a brief summary of the documentation:
+> >> 
+> >>   - All caches employ the 64-byte cache line length
+> >>   - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative 
+> >> instruction
+> >>     cache and 32 KB of L1 4-way, set-associative data cache
+> >>   - The entire SoC has 512 KB of unified L2 16-way, set-associative 
+> >> cache
+> >> 
+> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>  
+> > 
+> > I can confirm that the data below matches the manuals, but also the
+> > decoding of the architectural cache type registers (CCSIDR_EL1):
+> >   L1D: 32 KB: 128 sets, 4 way associative, 64 bytes/line
+> >   L1I: 32 KB: 256 sets, 2 way associative, 64 bytes/line
+> >   L2: 512 KB: 512 sets, 16 way associative, 64 bytes/line  
+> 
+> Thank you very much for reviewing my patch in such a detailed way!
+> It's good to know that the values in the Allwinner datasheets match
+> with the observed reality, so to speak. :)
 
--- 
-2.31.1
+YW, and yes, I like to double check things when it comes to Allwinner
+documentation ;-) And it was comparably easy for this problem.
 
+Out of curiosity: what triggered that patch? Trying to get rid of false
+warning/error messages?
+And do you plan to address the H616 as well? It's a bit more tricky there,
+since there are two die revisions out: one with 256(?)KB of L2, one with
+1MB(!). We know how to tell them apart, so I could provide some TF-A code
+to patch that up in the DT. The kernel DT copy could go with 256KB then.
+
+Cheers,
+Andre.
 
