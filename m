@@ -1,165 +1,176 @@
-Return-Path: <devicetree+bounces-63909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1559D8B6ED0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FF18B6EFA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:01:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95AF1283F0E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:52:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B94D52848B7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6E9128389;
-	Tue, 30 Apr 2024 09:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D061292C7;
+	Tue, 30 Apr 2024 10:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="0vDQKLOw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WjKg3xSv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D711272AB;
-	Tue, 30 Apr 2024 09:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3393A8CB;
+	Tue, 30 Apr 2024 10:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714470760; cv=none; b=a4NmXZgeOeiS8tVABFyxPYA9nRkjosEUvI2+NUKoaslvQtDDByA2e4UhHiHymf/fGiRivP3/5rXUL12kN9BgNw0mCZcV8aKYGPOk1WD7Nj70gO52xqFNm7dfATNSxpKlu3HcBTNNQVhLQ1WxqABzpmszUTl6oQ/dWDQmmvV+h9g=
+	t=1714471295; cv=none; b=CJZB7N8eVgK9ff1pdZYUkbBpHxPNUV4ngcbsC4qGZYqdCvVM8t7jgcsnPq3SugJG5lzXfQm8TIars3TmN12pEWn2utJ6e8vl8BDKo1ie26uHWp4SD4Zh21/Zu3sNiIid5C39wUVguysSXhfG/X3nmEgBVK4uFZ0Jg5aPDzOwcH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714470760; c=relaxed/simple;
-	bh=34AxLChZrxxqHn1rYrjE3n7vuuxWsZUQYT7Rf3uwoQc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fbMoshS8ersUE0ykX/E8UxTCRHQmDudBI8R4u8Ma6cXVf85Dj9eYdoxsLzUsqHBssfLZjB5oOEGSjb9BqRNh3D/rpwumxr6mAtzWtIYeFwmGBMGqUlZ1Fk0uuiAC8TAIBAno1jOy+yG7sVFvLAW2Oi+V1kPShX0lch6Rli+DSh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=0vDQKLOw; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1714470756;
-	bh=34AxLChZrxxqHn1rYrjE3n7vuuxWsZUQYT7Rf3uwoQc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=0vDQKLOwgXxhzFhDjTWnQU3kuptP84J3H/JMQqd4nlpdZuZ245vHqSGv8SqIzEFyD
-	 pI64jSlCfB8+4477d7BHY5JMPlK4YNn8NqcKEmgKCQy/y+Ro5kJkP/MPIqA6VVqS1n
-	 OQCUC36ha+e8u2EvH0s1tSiUi3Yr7AgrU+c8cA6OnzoYRMJORAsTRQ/Wbx9SDBiYPt
-	 VPIDHGggwOh4xGokXkAYTj74YdHlcqgTAMAYKr3gPU93G866zVS+q1+BduFU86I2Hb
-	 KLL8liPgykUc49u9k0luukl8NXbE+5QTjujclGtNi1zj8oQSIqP/j7yu5wPkhi1FB7
-	 zH6leRSB1LbJQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 27EE2378143B;
-	Tue, 30 Apr 2024 09:52:36 +0000 (UTC)
-Message-ID: <8c4f32db-5c80-4fef-8e8d-76f74d3c6bd4@collabora.com>
-Date: Tue, 30 Apr 2024 11:52:35 +0200
+	s=arc-20240116; t=1714471295; c=relaxed/simple;
+	bh=HRtbQSiUJHkdJKMMUh1+vHOl/scgu9Hv+aza5ULZaUc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WD7PI7B6HcdprNVlXR6wXWUuwSaYbr2PxI3LhWK4wh4PxoeT1qAzv9gZ9EGTA+iphIv3j/mzr5RYXo8sDE7kZLIHwf70fpm7DQkiCcw2NEzDlFnmLrUWfkYQ9zgTi4eGE05Rd7Y2ahObWDYzHqkDBLs5iixNRAteIppm9vPcDzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WjKg3xSv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43U506dM028710;
+	Tue, 30 Apr 2024 10:01:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=7T6rIF6M/ss3/DSb2FFEFh9GP9HIOHUQ0xVyL/y3hbE=; b=Wj
+	Kg3xSvVgekZrNGXIHbwFWIdquphlTa1FhPqCN/icSFJ9WQbq5K3S0ICO1J/6WMSw
+	K1cUNbGrY9o1uDb1w2xzJle5irbyhlhaSNstlR0+HChvA5vBZY25OlySIAIB2onN
+	/b/zmW+YcJx9U8R5G1wGkmechYhF3c7/9DkUi3YS/p2IYWXE824N8npzzjKocbGG
+	jqwEF7OPkE+InE/8bqllUqx60eWQ4ywgtYz9rILGfIwTOYftSATtGzlhaBL7UHfR
+	hUKiOD/TzEIbbjhNpc5wo/BU2M5Cc6Gsx9vxolYaXWqbxZM9EUOnMDZpJDYoBQ6Q
+	8u/QRsxs1sNNsrswStqw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xtb6052w6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Apr 2024 10:01:23 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43UA1Ljm020901
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Apr 2024 10:01:21 GMT
+Received: from [10.216.61.95] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Apr
+ 2024 03:01:16 -0700
+Message-ID: <be6ce8b8-ce4f-7018-a46b-fa5780050847@quicinc.com>
+Date: Tue, 30 Apr 2024 15:31:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8192-asurada: Add off-on-delay-us
- for pp3300_mipibrdg
-To: Pin-yen Lin <treapking@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-mediatek@lists.infradead.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- "open list:ARM/Mediatek SoC support" <linux-kernel@vger.kernel.org>,
- Hsin-Te Yuan <yuanhsinte@chromium.org>
-References: <20240429095333.3585438-1-treapking@chromium.org>
- <b3c69a78-78c9-4a15-829b-e4b36e16566a@collabora.com>
- <CAEXTbpf2HOQj_AxHGbsgOXVF_HyKttL=z7Mi8QStcmuOS+yN7g@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom: Update SM8150 videocc
+ bindings
 Content-Language: en-US
-In-Reply-To: <CAEXTbpf2HOQj_AxHGbsgOXVF_HyKttL=z7Mi8QStcmuOS+yN7g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Rob Herring <robh@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Taniya
+ Das" <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20240401-videocc-sm8150-dt-node-v2-0-3b87cd2add96@quicinc.com>
+ <20240401-videocc-sm8150-dt-node-v2-1-3b87cd2add96@quicinc.com>
+ <20240402160545.GA223060-robh@kernel.org>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <20240402160545.GA223060-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lauzhnSf67ErVCSXtUOenRiBNTikamAY
+X-Proofpoint-ORIG-GUID: lauzhnSf67ErVCSXtUOenRiBNTikamAY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-30_04,2024-04-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 bulkscore=0 suspectscore=0 impostorscore=0 clxscore=1011
+ priorityscore=1501 mlxlogscore=999 spamscore=0 phishscore=0 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404300072
 
-Il 30/04/24 11:32, Pin-yen Lin ha scritto:
-> Hi Angelo,
-> 
-> On Tue, Apr 30, 2024 at 4:17 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 29/04/24 11:53, Pin-yen Lin ha scritto:
->>> Set off-on-delay-us to 500000 us for pp3300_mipibrdg to make sure it
->>> complies with the panel sequence. Explicit configuration on the
->>> regulator node is required because mt8192-asurada uses the same power
->>> supply for the panel and the anx7625 DP bridge. So powering on/off the
->>> DP bridge could break the power sequence requirement for the panel.
->>>
->>> Fixes: f9f00b1f6b9b ("arm64: dts: mediatek: asurada: Add display regulators")
->>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
->>>
->>
->> Uhm, there might be more to it - I don't think that this should ever happen.
->>
->> The regulator is refcounted, so...
->>    * Bridge on: panel goes off, but regulator doesn't turn off (refcount=1)
->>      * Panel resume -> sequence respected (refcount=2 -> wait -> more vregs, etc)
->>    * Bridge off: panel is already off (refcount=0)
->>      * Bridge resume -> refcount=1, no panel commands yet
-> 
-> The off-on-delay could be violated because the bridge driver does not
-> check the delay.
-> 
->>      * Panel resume -> refcount=2, wait -> more vregs, etc
->>
->> Can you please describe the issue that you're getting?
-> 
-> The symptom we observed is that the device has a small chance to
-> reboot to a black panel, and we think the panel's unprepare delay (the
-> time to power down completely) might not be satisfied because the
-> bridge doesn't check that when it enables the regulator. Even if the
-> regulator is enabled by the panel driver, the delay can also be
-> violated in the following sequence:
-> 
-> * t=0ms, bridge on: panel goes off, but regulator doesn't turn off
-> (refcount=1). The .unprepared_time in panel_edp is updated
-> * t=300ms, bridge off, regulator goes off (refcount=0)
-> * t=600ms, panel on, the panel driver thinks the unprepare delay
-> (500ms) is satisfied, but the regulator was disabled 300ms ago.
-> 
-> Did I miss anything here? Or should I add more detail to the commit message?
-> 
 
-Heh, no you didn't miss anything, this time it's just me :-)
+On 4/2/2024 9:35 PM, Rob Herring wrote:
+> On Mon, Apr 01, 2024 at 04:44:23PM +0530, Satya Priya Kakitapalli wrote:
+>> Update the clocks list for SM8150 to add both AHB and XO clocks,
+>> as it needs both of them.
+> I read this as you are adding 2 clocks, but it is really just 1 you are
+> adding (iface).
 
-If you can please add that description to the commit message for a v2 that'd be
-appreciated on my side.
 
-In any case
+Yes, I am adding AHB (iface) as its needed for SM8150, which is not 
+present in the current bindings.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
+> This should have more detail on why breaking the ABI is okay here.
+
+
+Sure, I'll update the commit text accordingly.
+
+
+>> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/clock/qcom,videocc.yaml         | 17 ++++++++++++++++-
+>>   1 file changed, 16 insertions(+), 1 deletion(-)
 >>
->> Cheers,
->> Angelo
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> index 6999e36ace1b..68bac801adb0 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> @@ -75,7 +75,6 @@ allOf:
+>>             enum:
+>>               - qcom,sc7180-videocc
+>>               - qcom,sdm845-videocc
+>> -            - qcom,sm8150-videocc
+>>       then:
+>>         properties:
+>>           clocks:
+>> @@ -101,6 +100,22 @@ allOf:
+>>               - const: bi_tcxo
+>>               - const: bi_tcxo_ao
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - qcom,sm8150-videocc
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: AHB
+>> +            - description: Board XO source
+>> +        clock-names:
+>> +          items:
+>> +            - const: iface
+>> +            - const: bi_tcxo
+>> +
+>>     - if:
+>>         properties:
+>>           compatible:
 >>
-> Regards,
-> Pin-yen
-> 
->>> ---
->>>
->>>    arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> index 7a704246678f..08d71ddf3668 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> @@ -147,6 +147,7 @@ pp3300_mipibrdg: regulator-3v3-mipibrdg {
->>>                regulator-boot-on;
->>>                gpio = <&pio 127 GPIO_ACTIVE_HIGH>;
->>>                vin-supply = <&pp3300_g>;
->>> +             off-on-delay-us = <500000>;
->>>        };
->>>
->>>        /* separately switched 3.3V power rail */
+>> -- 
+>> 2.25.1
 >>
-
 
