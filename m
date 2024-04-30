@@ -1,135 +1,149 @@
-Return-Path: <devicetree+bounces-64002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764028B76C8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A6A98B76D5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 168AE1F24738
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:17:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5CA81F25E5E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A183171672;
-	Tue, 30 Apr 2024 13:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1F8171E55;
+	Tue, 30 Apr 2024 13:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WWX7/8IO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="2FRRSI97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BA9171664;
-	Tue, 30 Apr 2024 13:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59732171E49;
+	Tue, 30 Apr 2024 13:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714483041; cv=none; b=FpFVoDHx1qlkuk3MibyMBPai753CJEc35DxMzr7hePlGx/J+XxdZ6JF4WgMhhX9spS4i1R18jGBwqkfS2ytTOLgEAeMXh5zhhc4NfqHmeQkEOWUJGC3feTcMzzjQjceMg9pUaOPDaMY5Sjxy9C6m3KL/yzXO7PtL67P6bFN2LwE=
+	t=1714483234; cv=none; b=RZcxYVIgB9LBNVVp/pklICeYTUob943GBaq5marRora/JscYkteSZ5YANRxX8AgUKYllDf1VsveXUuBi8zw0SXyou+w1feTlwoh+CNHQQTi5FTvP1CNym99PhM9oHUExGuH2C9HlsfVAivBhHXCSkO9SU3q8rijNSw18IBKGUEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714483041; c=relaxed/simple;
-	bh=VMkqoBJRN48tblfmFf9bcJEYsIJXhgMHYeRuvgtQoI0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P42PY1N9bHtwCp1ARRPh9Goa1fpNiP77+/oQ3U6a8BLH6ACh33nTCPFeQBwypmSEAC5DBULA3iqgDcUI3KJi4iIuYPj8rUbFmUp1M5rv3hlFs+KyUzPqA+M+e02QQlGpaaj0GiZDWh4NlPExCq3HJmbUKjLyysvy5kLDO0erpkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WWX7/8IO; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43UDHDN6090744;
-	Tue, 30 Apr 2024 08:17:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714483033;
-	bh=aZzicnjqDrPOIhmfm0+MOKr4+ehahLnwfmSmNFzdlao=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=WWX7/8IO0UMYL61wWN5dfZMik8bPg8IiWxXPuqifur81p6B1TSmcQ++HOHC1jiO0D
-	 KypYIoOaUMebxmmkl5xJfuCJlFT/FXAyBZcUg8OT7dqWE2goym15qI/flf2MuiPK9Y
-	 qdpyUTcZPbY3tX17umXDQ5RkgeQKwI0JZzFKPwvE=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43UDHDEH012358
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Apr 2024 08:17:13 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- Apr 2024 08:17:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 Apr 2024 08:17:12 -0500
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43UDH8oR029655;
-	Tue, 30 Apr 2024 08:17:09 -0500
-Message-ID: <104fbdbc-a3f6-091a-72f4-17d4fa24ad92@ti.com>
-Date: Tue, 30 Apr 2024 18:47:07 +0530
+	s=arc-20240116; t=1714483234; c=relaxed/simple;
+	bh=F7Xc0i5LqTLUVcR9pEW59UMkv6QivjdXaw/5qjYRNRc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uQ4s3el1nCDVj91LxWmmD9F0SjpiJcnCm/Ih0RrGL9nngXHnAFFkDBoJsATH071e/fKdln6Vo1aZUkIvDcL1F/NerVNd+vT/JWB29I2k5psbxWht51dzRLjITwAn2M1R5wGD0Xy1qNTCho7xFySm6S9AoJPsrFQtO2AqEc4bUQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=2FRRSI97; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1714483231;
+	bh=F7Xc0i5LqTLUVcR9pEW59UMkv6QivjdXaw/5qjYRNRc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=2FRRSI97EyrjLf6V/HzElSGlP6DxmuRR3fimjBPDltPbzbX8opYM9qzG1IvHSf97I
+	 6e1CkM3HS06J4ApHqhNLWBvmFVr8CIHGrYGKNnvR9WwmC48FzmrTGtYrMX/Xw6CEtX
+	 RrFi5ZB2+5LBLljd+KWX71ciC4LYHFm+eRFp8KJveHQ8pISGOjMDTWODCUXnPE0LwP
+	 8Oj5NVFj1KKDOUeRIM5dn6LBLNNaUtRZl5JxfS3AhR4AxpnYoxkj0YqwhYrhWnsDSv
+	 JQ8Bgh+E/d6ArxPuVi20LO3H0cV4t0Z1nB3+ULeZlAi+g4UpWP6l6/pphVffx7B8RE
+	 UEpn2JcpmFQqA==
+Received: from apertis.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BC2F137813E3;
+	Tue, 30 Apr 2024 13:20:30 +0000 (UTC)
+From: Julien Massot <julien.massot@collabora.com>
+To: linux-media@vger.kernel.org,
+	sakari.ailus@iki.fi
+Cc: devicetree@vger.kernel.org,
+	kernel@collabora.com,
+	linux-kernel@vger.kernel.org,
+	mchehab@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH v7 0/5] Add support for MAX96714/F and MAX96717/F GMSL2 ser/des
+Date: Tue, 30 Apr 2024 15:19:26 +0200
+Message-ID: <20240430131931.166012-1-julien.massot@collabora.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] arm64: dts: ti: Fix csi2-dual-imx219 dtb names
-To: Jai Luthra <j-luthra@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Vaishnav Achath <vaishnav.a@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>
-References: <20240429-dtb_name_fix-v2-1-414fb8b7262d@ti.com>
-Content-Language: en-US
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20240429-dtb_name_fix-v2-1-414fb8b7262d@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
+Change since v6:
+  - Remove mention of C-PHY for MAX96717, this serializer is D-PHY only
+  - Remove bus-type requirement for MAX96717
+  - Minor changes requested by Sakari
+  - Workaround a MAX96717 issue, which occurs when stopping
+    the CSI source before stopping the MAX96717 CSI receiver.
 
+Power management is not included in this patchset. The GMSL link is
+not always resuming when the deserializer is suspended without
+suspending the serializer.
 
-On 29/04/24 12:13, Jai Luthra wrote:
-> Fix the output filenames of the combined device tree blobs generated by
-> applying *-csi2-dual-imx219-* overlays on the base dtbs during compile
-> test.
-> 
-> Fixes: f767eb918096 ("arm64: dts: ti: k3-j721e-sk: Add overlay for IMX219")
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+Change since v5:
+ - Reverse fallback logic: max9671{4,7} can fallback to max9671{4,7}F
+ - use const instead of enum for max9671{4,7}f compatible as suggested
 
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+Change since v4:
+ - Add support for MAX96717 and MAX96714 and use them as a fallback for
+   MAX96717F and MAX96714F respectively
+ - The drivers are now compatible with MAX96717 and MAX96714 since no change in
+   the logic is needed
+ - Reference 'i2c-gate' instead of 'i2c-controller' in the bindings
 
-Regards
-Devarsh
-> ---
-> Changes in v2:
-> - Rebase to latest ti-k3-dts-next branch
-> - Link to v1: https://lore.kernel.org/r/20240425-dtb_name_fix-v1-1-f3d0d7709be8@ti.com
-> ---
->  arch/arm64/boot/dts/ti/Makefile | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 48fb19a523bd..9c536d4902f4 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -170,10 +170,10 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->  	k3-am642-evm-icssg1-dualemac.dtb \
->  	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
->  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
-> -	k3-am68-sk-base-board-csi2-dual-imx219-dtbs \
-> -	k3-am69-sk-csi2-dual-imx219-dtbs \
-> +	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
-> +	k3-am69-sk-csi2-dual-imx219.dtb \
->  	k3-j721e-evm-pcie0-ep.dtb \
-> -	k3-j721e-sk-csi2-dual-imx219-dtbs \
-> +	k3-j721e-sk-csi2-dual-imx219.dtb \
->  	k3-j721s2-evm-pcie1-ep.dtb \
->  	k3-j784s4-evm-quad-port-eth-exp1.dtb \
->  	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
-> 
-> ---
-> base-commit: 3454b58dd9d99e317871e9abd57f589ae7580642
-> change-id: 20240425-dtb_name_fix-350eab4dd8ab
-> 
-> Best regards,
+Change since v3:
+- bindings
+  - Renamed bindings to drop the 'f' suffix
+  - Add bus type to MAX96717 and remove from MAX9674
+  - Add lane-polarities to both bindings
+
+- drivers
+  - Address changes requested by Sakari in v3
+  - use v4l2_subdev_s_stream_helper for MAX96714
+  - do not init regmap twice in the MAX96714 driver
+  - Fix compilations on 32 bits platforms
+
+Change since v2:
+- Convert drivers to use CCI helpers
+- Use generic node name
+- Use 'powerdown' as gpio name instead of 'enable'
+- Add pattern generator support for MAX96714
+
+These patches add support for Maxim MAX96714F deserializer and
+MAX96717F serializer.
+
+MAX96714F has one GMSL2 input port and one CSI2 4 lanes output port,
+MAX96717F has one CSI2 input port and one GMSL2 output port.
+
+The drivers support the tunnel mode where all the
+CSI2 traffic coming from an imager is replicated through the deserializer
+output port.
+
+Both MAX96714F and MAX96717F are limited to a 3Gbps forward link rate
+leaving a maximum of 2.6Gbps for the video payload.
+
+Julien Massot (9):
+  dt-bindings: media: add Maxim MAX96717 GMSL2 Serializer
+  dt-bindings: media: add Maxim MAX96714 GMSL2 Deserializer
+  media: i2c: add MAX96717 driver
+  media: i2c: add MAX96714 driver
+  drivers: media: max96717: stop the csi receiver before the source
+
+ .../bindings/media/i2c/maxim,max96714.yaml    |  174 +++
+ .../bindings/media/i2c/maxim,max96717.yaml    |  157 +++
+ MAINTAINERS                                   |   14 +
+ drivers/media/i2c/Kconfig                     |   34 +
+ drivers/media/i2c/Makefile                    |    2 +
+ drivers/media/i2c/max96714.c                  | 1024 +++++++++++++++++
+ drivers/media/i2c/max96717.c                  |  927 +++++++++++++++
+ 7 files changed, 2332 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96714.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
+ create mode 100644 drivers/media/i2c/max96714.c
+ create mode 100644 drivers/media/i2c/max96717.c
+
+-- 
+2.44.0
+
 
