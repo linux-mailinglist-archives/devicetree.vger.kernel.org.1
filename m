@@ -1,194 +1,121 @@
-Return-Path: <devicetree+bounces-64151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60F48B823A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 23:59:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2B98B828F
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 00:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D39771C2291E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 21:59:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BB4DB215DC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 22:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064F51BED9C;
-	Tue, 30 Apr 2024 21:59:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AmnQ+JW9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95C01BED8F;
+	Tue, 30 Apr 2024 22:01:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F42D1BED7A
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 21:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C2B74E11;
+	Tue, 30 Apr 2024 22:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714514392; cv=none; b=JZTlTRNsdv2Fp6ZGv5mII+L8k+4Hl0/fXpP/N7wkcKp2KvV3RR2IL1mvbjYSNHh6I5ZYrVsZR/fNMP8pyrC4moU4wY0epF4Rt+5GpKOq9LT5bDUu7uP7ZiXwaYDTlwi38LOLYcto7IU3SA2FeH9lSEsZKwxZVP2eOrsUNEcPsHA=
+	t=1714514495; cv=none; b=kEMWbxzlmEKkk5uP3jALJBZt+gQUgdEW6bNKIQwOgCQCQsLCucL88B+rCi40Doex+az8s+hLNFub5MvBw3Qr8g0swmNi+rkr0tcIw8oGD8zAF8AAv/t9I3SfiwrGc2M19MH9lxXWBVPm1HsZPu080ILUsj4hPtIHfptPsHE0uLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714514392; c=relaxed/simple;
-	bh=WjMKI4UZslQKccmIJplzRTJDSbleSPr2wCt6aMSDOzM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pakVePhO+5IjME8j+AFdC0dRbNci4RbZdP6YUrkWwPYEKHTpOAFoLqt/cYXq/hDLstvOIU/u/g7tJDVfGJobm+ja7x+LGVV8Lfp8auyJISUfHvdR5pDCv8SY7Y0uwJTwC4OWBpR4Nd6xtgk+kYopmwNssX5FY5VqsFNweaRj5OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AmnQ+JW9; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de5a7b18acdso5757890276.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 14:59:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714514389; x=1715119189; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aitWmRcAVpn7HzPwQhTVKeFU7re+mCUC33ppmlezlfs=;
-        b=AmnQ+JW9Y+6at3/PERebiBD14XIGrSas2RWW/gb6Q7I31NlM7RM6z7evFSZR03Tj5g
-         hbVKbbIk9OR8N4fHbxPpP4zdqUaGGViAJ12N1tnScolB21twraj7bdzRZY3CGGwIFWLs
-         ZW4ferFC5t656guOxx3ZwZoHhJf828/677rDtIhwtqrTXivlGfxPO1oQ8lxtNedgRAO3
-         1/+p4pBm7+rzMX+kXP3rgnRDROxzNq8MJDwTRyLtmiJHSCRgT8Qp9/yfOh3MtrxubET1
-         Ck/C+IGh2ZfXsiAv8BuvVoNSiuqw9h2ZSlYMizymqcsTIbgT5/741R1rYoZwnIP9v+/u
-         nxng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714514389; x=1715119189;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aitWmRcAVpn7HzPwQhTVKeFU7re+mCUC33ppmlezlfs=;
-        b=qPMrdwxSIUGO+l4vOzJcBoV10+7ziXWCp7rCsH7+g8KETQFc+F89fPvAdGGL8Wpyo1
-         jHGd668wHGZNJmq9jHnvTroVAkIM1aJllIcj44V7RQ0mjntO9foICk+FaNCxdbTkPg/s
-         p7PNjIpAZUSYkzfq0ZRJsOehjAOth+Pp83wmNiEjIvHJQSG4O68XyrOe9LPat2/QCqzV
-         VINqeRcTlkPEaZuJXiryBv4Pze9ngCTUv1cT52S3yV8QiX2diftCLtBBpuizqvXD/Gt4
-         jPkUQhPRei3EkO+YC2iUq0dhiIKK81lnHl5kjdQ3iKwyM3Q1kF0diuABkrGF/djFubmh
-         iN2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU1mWKbE66jkQ5oBAMOGQydwGBerTrZAVhq7H3fYWduQUrs4i3QoZbslFHIilpO3Kq6+EdiJ5rs2I1XDgz53ZxVKyxC6CoIEmk5sA==
-X-Gm-Message-State: AOJu0YzkoA4iyIdMLYdresPXKte8YTdUkR7RGWoTJlmHWQtEIYOthL7C
-	ugjCb2dHteWdbx6CWL2M2ZfacugXJqM0woex8Ni+t3OyZHwfE4skbaDCR8DH3o6HRQRRYJklW3V
-	JitgfgJimjxgcPYZ/gBGlb3CbSo2G2btZngIkiQ==
-X-Google-Smtp-Source: AGHT+IE1KB8yrzrfhVxOHpSzlO3DAENKkQ1zAhecye+ph9WJKSb9t/G7xbAvzC7x1FXX+/8cofgIR2G0w2AQZg8an/o=
-X-Received: by 2002:a25:907:0:b0:dcc:9e88:b15 with SMTP id 7-20020a250907000000b00dcc9e880b15mr878986ybj.41.1714514389105;
- Tue, 30 Apr 2024 14:59:49 -0700 (PDT)
+	s=arc-20240116; t=1714514495; c=relaxed/simple;
+	bh=iEt4z79Rp/ekOOktnvu3zl7uib0Zfw+JTHZVZY8sIzc=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=nrLp/sX76ERJqUJ0MBaAsqMQVIQNijW8czU9VrLOqjhjATDJjYL9FNezFTPLCjPtzoIjGgwofBrcUPQHtMFTWzGuOnT9bYcavF0UiRRoZFQLp79LlFGX7mO3EQwEWkZnEBWI+Bsy189yb9EoAGeqcRS9DVhMESKpW2fb3bofxU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1s1vXQ-0000000019H-1CUZ;
+	Tue, 30 Apr 2024 22:01:24 +0000
+Date: Tue, 30 Apr 2024 23:01:17 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Landen Chao <Landen.Chao@mediatek.com>, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH net v2] net: dsa: mt7530: fix impossible MDIO address and
+ issue warning
+Message-ID: <11f5f127d0350e72569c36f9060b6e642dfaddbb.1714514208.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240415182052.374494-1-mr.nuke.me@gmail.com> <20240415182052.374494-7-mr.nuke.me@gmail.com>
- <CAA8EJpqY1aDZMaeqBULEOD26UeGYbLd8RsA16jZw7zXJ7_oGPQ@mail.gmail.com>
- <6726fa2b-f5fe-10fb-6aab-f76d61f0b3cd@gmail.com> <4a7b1e1d-ac68-4857-8925-f90c9e123fd1@gmail.com>
- <CAA8EJppGW=qyk2P6Z_S=dp0njsCjqZaXjw8qU4MY1HOZR-N=4A@mail.gmail.com>
- <Zi88Hdx6UgBo/gti@hu-varada-blr.qualcomm.com> <CAA8EJpq+Bbws8yH5Xq7rHyA+-=DaCcfEcgUa5RUt2+LWQW0kKg@mail.gmail.com>
- <ZjCQM24T2XIJ6GAR@hu-varada-blr.qualcomm.com> <9d9c569b-2e9c-4fd3-9a1a-50f198bd0884@gmail.com>
-In-Reply-To: <9d9c569b-2e9c-4fd3-9a1a-50f198bd0884@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 1 May 2024 00:59:37 +0300
-Message-ID: <CAA8EJpocetzWV-xoVzeD7HxkE9s4+iGq7Q-sZz8Ue89YuptdYw@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] phy: qcom-qmp-pcie: add support for ipq9574 gen3x2 PHY
-To: mr.nuke.me@gmail.com
-Cc: Varadarajan Narayanan <quic_varada@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Wed, 1 May 2024 at 00:51, <mr.nuke.me@gmail.com> wrote:
->
-> On 4/30/24 1:31 AM, Varadarajan Narayanan wrote:
-> > On Mon, Apr 29, 2024 at 01:55:32PM +0300, Dmitry Baryshkov wrote:
-> >> On Mon, 29 Apr 2024 at 09:20, Varadarajan Narayanan
-> >> <quic_varada@quicinc.com> wrote:
-> >>>
-> >>> On Wed, Apr 17, 2024 at 12:50:49AM +0300, Dmitry Baryshkov wrote:
-> >>>> On Wed, 17 Apr 2024 at 00:25, Alex G. <mr.nuke.me@gmail.com> wrote:
-> >>>>>
-> >>>>> Hi Dmitry,
-> >>>>>
-> >>>>> On 4/15/24 16:25, mr.nuke.me@gmail.com wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>> On 4/15/24 15:10, Dmitry Baryshkov wrote:
-> >>>>>>> On Mon, 15 Apr 2024 at 21:23, Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> >>>>>>> wrote:
-> >>>>>>>>
-> >>>>>>>> Add support for the gen3x2 PCIe PHY on IPQ9574, ported form downstream
-> >>>>>>>> 5.4 kernel. Only the serdes and pcs_misc tables are new, the others
-> >>>>>>>> being reused from IPQ8074 and IPQ6018 PHYs.
-> >>>>>>>>
-> >>>>>>>> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> >>>>>>>> ---
-> >>>>>>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 136 +++++++++++++++++-
-> >>>>>>>>    .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |  14 ++
-> >>>>>>>>    2 files changed, 149 insertions(+), 1 deletion(-)
-> >>>>>>>>
-> >>>>>>>
-> >>>>>>> [skipped]
-> >>>>>>>
-> >>>>>>>> @@ -2448,7 +2542,7 @@ static inline void qphy_clrbits(void __iomem
-> >>>>>>>> *base, u32 offset, u32 val)
-> >>>>>>>>
-> >>>>>>>>    /* list of clocks required by phy */
-> >>>>>>>>    static const char * const qmp_pciephy_clk_l[] = {
-> >>>>>>>> -       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux",
-> >>>>>>>> +       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux",
-> >>>>>>>> "anoc", "snoc"
-> >>>>>>>
-> >>>>>>> Are the NoC clocks really necessary to drive the PHY? I think they are
-> >>>>>>> usually connected to the controllers, not the PHYs.
-> >>>>>>
-> >>>>>> The system will hang if these clocks are not enabled. They are also
-> >>>>>> attached to the PHY in the QCA 5.4 downstream kernel.
-> >>>>
-> >>>> Interesting.
-> >>>> I see that Varadarajan is converting these clocks into interconnects.
-> >>>> Maybe it's better to wait for those patches to land and use
-> >>>> interconnects instead. I think it would better suit the
-> >>>> infrastructure.
-> >>>>
-> >>>> Varadarajan, could you please comment, are these interconnects
-> >>>> connected to the PHY too or just to the PCIe controller?
-> >>>
-> >>> Sorry for the late response. Missed this e-mail.
-> >>>
-> >>> These 2 clks are related to AXI port clk on Aggnoc/SNOC, not
-> >>> directly connected to PCIE wrapper, but it should be enabled to
-> >>> generate pcie traffic.
-> >>
-> >> So, are they required for the PHY or are they required for the PCIe
-> >> controller only?
-> >
-> > These 2 clks are required for PCIe controller only.
-> > PCIE controller need these clks to send/receive axi pkts.
->
-> Very interesting information, thank you!
->
-> Dmitry, In light of this information do you want me to move these clocks
-> out of the PHY and into the PCIe controller?
+The MDIO address of the MT7530 and MT7531 switch ICs can be configured
+using bootstrap pins. However, there are only 4 possible options for the
+switch itself: 7, 15, 23 and 31. As in MediaTek's SDK the address of the
+switch is wrongly stated in the device tree as 0 (while in reality it is
+31), warn the user about such broken device tree and make a good guess
+what was actually intended.
 
-That's what I was thinking about.
+This is imporant also to not break compatibility with older device trees
+as with commit 868ff5f4944a ("net: dsa: mt7530-mdio: read PHY address of
+switch from device tree") the address in device tree will be taken into
+account.
 
->
-> Alex
->
-> > Thanks
-> > Varada
-> >
-> >>>>> They are named "anoc_lane", and "snoc_lane" in the downstream kernel.
-> >>>>> Would you like me to use these names instead?
-> >>>>
-> >>>> I'm fine either way.
-> >>>>
-> >>
-> >>
-> >>
-> >> --
-> >> With best wishes
-> >> Dmitry
+Fixes: b8f126a8d543 ("net-next: dsa: add dsa support for Mediatek MT7530 switch")
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+Changes since v1:
+ - use FW_WARN as suggested.
+ - fix build on net tree which doesn't have 'mdiodev' as member of the
+   priv struct. Imho including this patch as fix makes sense to warn
+   users about broken firmware, even if the change introducing the
+   actual breakage is only present in net-next for now.
 
+ drivers/net/dsa/mt7530-mdio.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-
+diff --git a/drivers/net/dsa/mt7530-mdio.c b/drivers/net/dsa/mt7530-mdio.c
+index fa3ee85a99c1..3c21c8d074c7 100644
+--- a/drivers/net/dsa/mt7530-mdio.c
++++ b/drivers/net/dsa/mt7530-mdio.c
+@@ -193,6 +193,19 @@ mt7530_probe(struct mdio_device *mdiodev)
+ 			return PTR_ERR(priv->io_pwr);
+ 	}
+ 
++	/* Only MDIO bus address 7, 15, 23 and 31 are valid options */
++	if (~(mdiodev->addr & 0x7) & 0x7) {
++		/* If the address in DT must be wrong, make a good guess about
++		 * the most likely intention, and issue a warning.
++		 */
++		int correct_addr = ((((mdiodev->addr - 7) & ~0x7) % 0x20) + 7) & 0x1f;
++
++		dev_warn(&mdiodev->dev, FW_WARN
++			 "impossible switch MDIO address in device tree: %d, assuming %d\n",
++			 mdiodev->addr, correct_addr);
++		mdiodev->addr = correct_addr;
++	}
++
+ 	regmap_config = devm_kzalloc(&mdiodev->dev, sizeof(*regmap_config),
+ 				     GFP_KERNEL);
+ 	if (!regmap_config)
 -- 
-With best wishes
-Dmitry
+2.44.0
+
 
