@@ -1,176 +1,199 @@
-Return-Path: <devicetree+bounces-63910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08FF18B6EFA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:01:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C3C8B6F0C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:05:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B94D52848B7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:01:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E96A281B75
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D061292C7;
-	Tue, 30 Apr 2024 10:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690161292EE;
+	Tue, 30 Apr 2024 10:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WjKg3xSv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a/vVu+Cs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3393A8CB;
-	Tue, 30 Apr 2024 10:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3D41292CE
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 10:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714471295; cv=none; b=CJZB7N8eVgK9ff1pdZYUkbBpHxPNUV4ngcbsC4qGZYqdCvVM8t7jgcsnPq3SugJG5lzXfQm8TIars3TmN12pEWn2utJ6e8vl8BDKo1ie26uHWp4SD4Zh21/Zu3sNiIid5C39wUVguysSXhfG/X3nmEgBVK4uFZ0Jg5aPDzOwcH8=
+	t=1714471539; cv=none; b=WyukcInOv/MpUtZSBCOgkqO28Mvi5BJd//pvevZTJN/01MvTmVLkioNmvEwl/vUN5gjr2vJv5JaEMZRIaNEarTkR3s++S7/7NssqkL65a7/X/0NpdRvTTGtlVWv/NMH/rCM0xfR66ZR9dtbB/5KY39R5PE6oLQWtUtsaz8oFQ2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714471295; c=relaxed/simple;
-	bh=HRtbQSiUJHkdJKMMUh1+vHOl/scgu9Hv+aza5ULZaUc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WD7PI7B6HcdprNVlXR6wXWUuwSaYbr2PxI3LhWK4wh4PxoeT1qAzv9gZ9EGTA+iphIv3j/mzr5RYXo8sDE7kZLIHwf70fpm7DQkiCcw2NEzDlFnmLrUWfkYQ9zgTi4eGE05Rd7Y2ahObWDYzHqkDBLs5iixNRAteIppm9vPcDzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WjKg3xSv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43U506dM028710;
-	Tue, 30 Apr 2024 10:01:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=7T6rIF6M/ss3/DSb2FFEFh9GP9HIOHUQ0xVyL/y3hbE=; b=Wj
-	Kg3xSvVgekZrNGXIHbwFWIdquphlTa1FhPqCN/icSFJ9WQbq5K3S0ICO1J/6WMSw
-	K1cUNbGrY9o1uDb1w2xzJle5irbyhlhaSNstlR0+HChvA5vBZY25OlySIAIB2onN
-	/b/zmW+YcJx9U8R5G1wGkmechYhF3c7/9DkUi3YS/p2IYWXE824N8npzzjKocbGG
-	jqwEF7OPkE+InE/8bqllUqx60eWQ4ywgtYz9rILGfIwTOYftSATtGzlhaBL7UHfR
-	hUKiOD/TzEIbbjhNpc5wo/BU2M5Cc6Gsx9vxolYaXWqbxZM9EUOnMDZpJDYoBQ6Q
-	8u/QRsxs1sNNsrswStqw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xtb6052w6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 10:01:23 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43UA1Ljm020901
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 10:01:21 GMT
-Received: from [10.216.61.95] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Apr
- 2024 03:01:16 -0700
-Message-ID: <be6ce8b8-ce4f-7018-a46b-fa5780050847@quicinc.com>
-Date: Tue, 30 Apr 2024 15:31:13 +0530
+	s=arc-20240116; t=1714471539; c=relaxed/simple;
+	bh=yjnf9AHRZqMRj34Tm4uXwc28cPM6Ap6BSJeHaNIbUF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Jsjr/GcNsRxp6Cv03X+hRUwYzFNtJNn/+q/ZtQMjKJfNdkm7z5P4LESTNKI9fFGiiHRJDXFvERaPMimP+KkzhsZydkM6u8Oa21kWU0icTaMbx9GJNvo70INlxqamepj/GhansbZ9ytDT9bGWrA0TvyAjbS0EjewndkmGwPJnAGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a/vVu+Cs; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-51c077cfc09so6434241e87.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714471536; x=1715076336; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=0c2r4ftfYh1i1ily+9Iyry9v4Wnv2g5Jvj7DDy6gfK4=;
+        b=a/vVu+Cs50feEULZioEi+k+nDxq02qErhxZqTgON5eMER9w942bejdaUHXsCveG8ie
+         O5bVgldlx+lOIQNZQxcUhTWbkVNpxcMdmKZC095ssw2WRwqWV8X0DaNVudL1dUUwqdp3
+         r2EAsjKIQJrM2ZXQRUH41e9sffrtlzG9H4XpFQdmFpFWj9f9wrbVbe6HZNAU9bfPC6pJ
+         6Rz++k2oPsfT7RU6WQznZnuMyBMAv0ZJN2h43gQV7XoITu+8QYY3cHf2LgCssKrnpcSy
+         9y7TBFvFvkih5MOSAuhQfZ591VnpQSR1QcDnN1HYy6Et0SgiCth7ZlYZzOihkQB/OFYy
+         J7eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714471536; x=1715076336;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0c2r4ftfYh1i1ily+9Iyry9v4Wnv2g5Jvj7DDy6gfK4=;
+        b=bq1856HoT7HaVCs15Bn4J5O2Gw/J3DwHp8ciqWfnXoRGY9ekKc6/IBM0zH1LGq+SvA
+         ZALayHj1xAg13WlY40WB7k+KWq2DHuRtqsyA5m0dMUd37wdKTW4LC8T3XF1OO7OzuVKl
+         6PRVkXdyKhstcZ6jSoz66sQYDfkueefkNB7SgszCj893ODvNOhNd6wGWgUWLfpDd8SOx
+         ov8O7jebMVBthL8JP/MH4f1Yj7Xuka8aT1dHfBQ1vqUSBagWej3K3/vzrOgZg8QCtGmL
+         uqp+FvhGCtr0B6mIgy94ehAZ4Yr1WB+uFtHFDnsrBdCoxsNm4ODtzd0I1MGKHXlaNZNu
+         +RYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGOuEwxaZE/EYUjn6rI0NcBGRBQmotcpRoywKr25QdW511AlzxZSi/Pu18BTIegiKpZl9fB7sb+2nnucsYtH+7xqgxN31CL3hU9Q==
+X-Gm-Message-State: AOJu0YzDcR1Ua5TYzFwPpf6c792fFXMPU6p3ASX8wnSSVblIKcWJ3/5i
+	kr2/Uq+hnMj6+egTwLqsxJ2usjdp1IaxV70fTtj5fCwneFHMVgj7+VhLPcnlPsM=
+X-Google-Smtp-Source: AGHT+IGwoRnxtInvigRnSf3xrL3fTWc2gzyovUQB8J5oNTSn7LjfiqRATlNm+qPBQg6sV5IYrs/Wlg==
+X-Received: by 2002:ac2:5586:0:b0:51c:cfae:afd0 with SMTP id v6-20020ac25586000000b0051ccfaeafd0mr7262972lfg.21.1714471535866;
+        Tue, 30 Apr 2024 03:05:35 -0700 (PDT)
+Received: from [192.168.114.15] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id bv19-20020a170906b1d300b00a58eabf6082sm3724816ejb.199.2024.04.30.03.05.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 03:05:35 -0700 (PDT)
+Message-ID: <27f4f3dd-9375-40cf-8c8f-1c4edf66e31b@linaro.org>
+Date: Tue, 30 Apr 2024 12:05:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom: Update SM8150 videocc
- bindings
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 6/6] arm64: dts: qcom: ipq9574: Add icc provider
+ ability to gcc
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, djakov@kernel.org,
+ dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240418092305.2337429-1-quic_varada@quicinc.com>
+ <20240418092305.2337429-7-quic_varada@quicinc.com>
+ <a7194edd-a2c8-46fc-bea1-f26b0960e535@linaro.org>
+ <Ziov6bWBXYXJ4Zp8@hu-varada-blr.qualcomm.com>
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Taniya
- Das" <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20240401-videocc-sm8150-dt-node-v2-0-3b87cd2add96@quicinc.com>
- <20240401-videocc-sm8150-dt-node-v2-1-3b87cd2add96@quicinc.com>
- <20240402160545.GA223060-robh@kernel.org>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <20240402160545.GA223060-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <Ziov6bWBXYXJ4Zp8@hu-varada-blr.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lauzhnSf67ErVCSXtUOenRiBNTikamAY
-X-Proofpoint-ORIG-GUID: lauzhnSf67ErVCSXtUOenRiBNTikamAY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-30_04,2024-04-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 bulkscore=0 suspectscore=0 impostorscore=0 clxscore=1011
- priorityscore=1501 mlxlogscore=999 spamscore=0 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404300072
 
-
-On 4/2/2024 9:35 PM, Rob Herring wrote:
-> On Mon, Apr 01, 2024 at 04:44:23PM +0530, Satya Priya Kakitapalli wrote:
->> Update the clocks list for SM8150 to add both AHB and XO clocks,
->> as it needs both of them.
-> I read this as you are adding 2 clocks, but it is really just 1 you are
-> adding (iface).
-
-
-Yes, I am adding AHB (iface) as its needed for SM8150, which is not 
-present in the current bindings.
-
-
-> This should have more detail on why breaking the ABI is okay here.
-
-
-Sure, I'll update the commit text accordingly.
-
-
->> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
->> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> ---
->>   .../devicetree/bindings/clock/qcom,videocc.yaml         | 17 ++++++++++++++++-
->>   1 file changed, 16 insertions(+), 1 deletion(-)
+On 25.04.2024 12:26 PM, Varadarajan Narayanan wrote:
+> On Tue, Apr 23, 2024 at 02:58:41PM +0200, Konrad Dybcio wrote:
 >>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
->> index 6999e36ace1b..68bac801adb0 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
->> @@ -75,7 +75,6 @@ allOf:
->>             enum:
->>               - qcom,sc7180-videocc
->>               - qcom,sdm845-videocc
->> -            - qcom,sm8150-videocc
->>       then:
->>         properties:
->>           clocks:
->> @@ -101,6 +100,22 @@ allOf:
->>               - const: bi_tcxo
->>               - const: bi_tcxo_ao
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - qcom,sm8150-videocc
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: AHB
->> +            - description: Board XO source
->> +        clock-names:
->> +          items:
->> +            - const: iface
->> +            - const: bi_tcxo
->> +
->>     - if:
->>         properties:
->>           compatible:
 >>
->> -- 
->> 2.25.1
+>> On 4/18/24 11:23, Varadarajan Narayanan wrote:
+>>> IPQ SoCs dont involve RPM in managing NoC related clocks and
+>>> there is no NoC scaling. Linux itself handles these clocks.
+>>> However, these should not be exposed as just clocks and align
+>>> with other Qualcomm SoCs that handle these clocks from a
+>>> interconnect provider.
+>>>
+>>> Hence include icc provider capability to the gcc node so that
+>>> peripherals can use the interconnect facility to enable these
+>>> clocks.
+>>>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>> ---
 >>
+>> If this is all you do to enable interconnect (which is not the case,
+>> as this patch only satisfies the bindings checker, the meaningful
+>> change happens in the previous patch) and nothing explodes, this is
+>> an apparent sign of your driver doing nothing.
+> 
+> It appears to do nothing because, we are just enabling the clock
+> provider to also act as interconnect provider. Only when the
+> consumers are enabled with interconnect usage, this will create
+> paths and turn on the relevant NOC clocks.
+
+No, with sync_state it actually does "something" (sets the interconnect
+path bandwidths to zero). And *this* patch does nothing functionally,
+it only makes the dt checker happy.
+
+> 
+> This interconnect will be used by the PCIe and NSS blocks. When
+> those patches were posted earlier, they were put on hold until
+> interconnect driver is available.
+> 
+> Once this patch gets in, PCIe for example will make use of icc.
+> Please refer to https://lore.kernel.org/linux-arm-msm/20230519090219.15925-5-quic_devipriy@quicinc.com/.
+> 
+> The 'pcieX' nodes will include the following entries.
+> 
+> 	interconnects = <&gcc MASTER_ANOC_PCIE0 &gcc SLAVE_ANOC_PCIE0>,
+> 			<&gcc MASTER_SNOC_PCIE0 &gcc SLAVE_SNOC_PCIE0>;
+> 	interconnect-names = "pcie-mem", "cpu-pcie";
+
+Okay. What about USB that's already enabled? And BIMC/MEMNOC?
+
+> 
+>> The expected reaction to "enabling interconnect" without defining the
+>> required paths for your hardware would be a crash-on-sync_state, as all
+>> unused (from Linux's POV) resources ought to be shut down.
+>>
+>> Because you lack sync_state, the interconnects silently retain the state
+>> that they were left in (which is not deterministic), and that's precisely
+>> what we want to avoid.
+> 
+> I tried to set 'sync_state' to icc_sync_state to be invoked and
+> didn't see any crash.
+
+Have you confirmed that the registers are actually written to, and with
+correct values?
+
+Konrad
 
