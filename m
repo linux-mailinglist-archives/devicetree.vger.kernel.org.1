@@ -1,113 +1,116 @@
-Return-Path: <devicetree+bounces-64121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E3C8B7F99
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:18:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 661AB8B800D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:48:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 756261F23C08
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:18:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27DB7280BED
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9981836C7;
-	Tue, 30 Apr 2024 18:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815A1190679;
+	Tue, 30 Apr 2024 18:47:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BJISBlk+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OIPhQ9br"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7365D181CE8
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 18:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D6117F38A
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 18:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714501108; cv=none; b=mt7e7MXNwzxOvxgyaxZkr8j/argurUXLtAc+8NyBJXyZ8czJ89DEm9JmYrUb1VoWvVv/E8joJQmccfwKhH4w3BjM1iRmTPOJFN1Lf1XIusP/BvufN82aVGDoRTQXhmCCVAmld8cQuQtRt6k60KC7o0F/oRZ8QPzyDIRsARsjNS4=
+	t=1714502875; cv=none; b=DXusvaoVgOhWpmxF/U1B72j4GRsSjKbFdbcFH6CjfoZf+QsAAHzoIl7E56MPFRoA96xuiPFXalbl8A+c9TJhnhMoIFu7UphXMvUDjaBKR7J8w3Vlr8rkkcdJr+cOSinVAPm85jeSo3jZz0Swl1cuReloLw+jVOFhpOsHx8xHwjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714501108; c=relaxed/simple;
-	bh=UutKKL5v4hLIvztgtNbZifKME80U9mdpqFYB4ZXETek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rxrRIMBFEP+niGH9tojU/inRuGaz1bG2txSEmaBtOxDPwifDOzO8qzd2Urx8F1iATNwvD4nSOoiX7elDAVAFChNukYckD8k8vG/dVs2hTWrtmeCosm0mwuBG91aWO673QNXb8joB143w0Hxr7uB6FGR70j8TAaG1I5PERpXd2rw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=BJISBlk+; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1714501106;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7bMjhKG6eUiLMls1sKg9TQtPsjkZbGw6Je2cQ0wOI9I=;
-	b=BJISBlk+Cu92qJcwXtCCsPGLTS2V0JPMl67490Qak0HN8HhAXua0sVkLLGsw57hwb9U1tQ
-	sWI7sopCbXakrYjwLpiaJTfLlU3jiG67DqZs8MBMHUVsKlf6zxchErbOdX5dXujdq2M39R
-	sP1LUN6X5l6NJzZbcJ9SpooPIowEn+E=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-671-1eJrbx39NAKg8RlJp1oa5A-1; Tue, 30 Apr 2024 14:18:25 -0400
-X-MC-Unique: 1eJrbx39NAKg8RlJp1oa5A-1
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6a0e8859d2bso6181406d6.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 11:18:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714501103; x=1715105903;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1714502875; c=relaxed/simple;
+	bh=kGD5LDeSbcCCWAZ6A/xTsiTIRSiUSuZbqr6vAjxd3Cw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=iXbplXgmhNUDDCOR8NaOvYWuLDXrPTsZKvKhNAUmKookjR2PH7qP2C/QTFlVbyLuBJAA2tLZ1jlqRbk/B31RNUwyu+Z5wVp6PDgGmoQWLvheg+Sf0yfOpUUb2lZ4JVzSvDu+KUa/Dk4u/m0/LjN6dLUCctEzMsi7oT9mMiKPv64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OIPhQ9br; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e477db7fbso10480552a12.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 11:47:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714502871; x=1715107671; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7bMjhKG6eUiLMls1sKg9TQtPsjkZbGw6Je2cQ0wOI9I=;
-        b=J6cOOg/sLAAr5+0/ZaI4ZtvdIIfgB6IfH0UgXmX0P5PO7VxXEdmhi4y2xshzSQm2Vy
-         IZBiMEOCC0+21h7FuX29WqNIQueGEM8/3Gh+3Nt5UPFI4DYzaeDBwVKeJV3EoAFKsvv5
-         oRPqkyH+si6Z/PxxtQSfS56BsKMyJrCB1udRcfgadXEw56D/JakybX4zP/ZgVMy3KDg0
-         OtY+Lob7paSAqfbbbpqaNrPhZLF+315NMFpictazigmv0aPdLZ/eW/eEbGHBOWvmslOf
-         2U0jMdwFU4DMXfgJxcRLZt7y0SvDq0DFc0iQbOQPXT+N9VQBQCbFRXvwu1CTA7ureNKK
-         Dupw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuebq2QPg9v/cZTXGOoFqmCFEi8uSvgWj28YCVS+XLNDAffDtc+wcnmDqaO/Z8TAkTZHUidbL+uYYv/O8MKSAsgOYt0kyZTqrZug==
-X-Gm-Message-State: AOJu0YxU531ZmXB/6HZcr8Cr5+R4QM9gYLH++uY1/zJ0dZoHDR/wYC5U
-	joiY/bHHOH5k/tM1X+1KICdZdDokwD+Xu8RWwFt9AA0KyYBEeMmEpGPnKNk4JQ5wvMu2qcgHQHw
-	shGlBDPmdxoH3qBFZejsVcx4D72OxfNMtwMpAUxWF3U5og0xqOrnd46vVXLI=
-X-Received: by 2002:a05:6214:1bcc:b0:699:2760:b44 with SMTP id m12-20020a0562141bcc00b0069927600b44mr136863qvc.8.1714501103199;
-        Tue, 30 Apr 2024 11:18:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFUnGrLFR1P3p5845OT+cZcbzwoG5yrAYahQu0eKiEn6wC9wa0Bi1GmTFeAdhouIlg0/I+oSA==
-X-Received: by 2002:a05:6214:1bcc:b0:699:2760:b44 with SMTP id m12-20020a0562141bcc00b0069927600b44mr136842qvc.8.1714501102808;
-        Tue, 30 Apr 2024 11:18:22 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::33])
-        by smtp.gmail.com with ESMTPSA id y10-20020a0ceaca000000b006a0e69dc029sm439759qvp.82.2024.04.30.11.18.21
+        bh=maRahzj8h5WVnvC+mJW92etfXWS9KKobW2gRJpAJKic=;
+        b=OIPhQ9brVvcrUCrjPLZwRiUAcc//4HY18rBPHNyAB/zeZvdewEWQpWlU3H+PkLi8Bh
+         1iOc+su9uPMdSyhi5IxzKaBD6m8oIRUFZ1zopP2AwOpCnGGkhxUdEVZr7TJcuH2kASUW
+         I6m2KwyN/9WNjrqnDSfXP5YcPxdqi6CIw9UkEUXAi3LROu9FoSP97rL4V1u4RvaE6wkw
+         1/KlfMHmR69+Xvafn/jIaBX6cz0ZaVWV3cTIHGPDCEnyenZSdhoR9YRb2bgi8q2jEbNB
+         B4J2v2iEPdsCmEHtSlD5i2BjuJWVaSNL4kOuZJwhAO6MJ93zRyJ+zmealJEEI4QVHJeK
+         UpQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714502871; x=1715107671;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=maRahzj8h5WVnvC+mJW92etfXWS9KKobW2gRJpAJKic=;
+        b=j5V0sa/jw3Io4R7ffzw2EpNjBJSsUPelvc13pb9xErVwZW8vMnp9dTIii2LiX7USm6
+         A7FwqgjPP0MadEj3euuPs/e37rh6tRF17w/G1qosMHzZrJ58oIkIzw4IHe4ybdlgKRyz
+         e3044VHPPiiQFZdOrS7Ugwwzm+qJceIExmR69RL5qTSmb3v5WBR0rCh4LkfrmJiINR2M
+         hHO/NhrCISuiJaE4kgGuc3NHIVdT5rQpEMZsc/HgXKreouwy1p5S867jLjk/R/QRV2mp
+         Azs12APC0i1mx/SLxAkB9ZIMj53x4eZxJwG59d/x8Sg6E9tRNa4oUUxiE39fGG2F5w3v
+         Sk6Q==
+X-Gm-Message-State: AOJu0YyDZuD4A6gJEG5QaG74JAO5ZPyxQwvajMwoEkMtQLv1VkkdzbWa
+	g1VS6V62rGKUcgZu/V20VtCeGVK1dic+1OtgDai6L9rzIDSzI3olTvfKlanKR1U=
+X-Google-Smtp-Source: AGHT+IGJbfmzfuk/vn40VU5LkNZp8KDxHuOXhqtzXfBuMgXu9HJtS1cNimFP4kK9KcbpUyPCXPodzw==
+X-Received: by 2002:a50:99d1:0:b0:572:9f40:514d with SMTP id n17-20020a5099d1000000b005729f40514dmr458430edb.29.1714502871081;
+        Tue, 30 Apr 2024 11:47:51 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id b10-20020aa7dc0a000000b0056fe755f1e6sm14333569edu.91.2024.04.30.11.47.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 11:18:22 -0700 (PDT)
-Date: Tue, 30 Apr 2024 13:18:20 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: mark ethernet devices as
- DMA-coherent
-Message-ID: <tsdaohzq7sk5d5fnakv6hoq4ykytbkrtxv7bxvbctu5bnyh5wi@6dgtg754axyo>
-References: <20240425-mark_ethernet_devices_dma_coherent-v1-1-ad0755044e26@quicinc.com>
+        Tue, 30 Apr 2024 11:47:50 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ alim.akhtar@samsung.com, Peter Griffin <peter.griffin@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+ willmcvicker@google.com, kernel-team@android.com
+In-Reply-To: <20240430141445.2688499-1-peter.griffin@linaro.org>
+References: <20240430141445.2688499-1-peter.griffin@linaro.org>
+Subject: Re: [PATCH v5 0/3] Enable UFS on gs101 / Pixel 6 (Oriole)
+Message-Id: <171450286905.358014.14131394137410804196.b4-ty@linaro.org>
+Date: Tue, 30 Apr 2024 20:47:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240425-mark_ethernet_devices_dma_coherent-v1-1-ad0755044e26@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On Thu, Apr 25, 2024 at 04:07:10PM -0700, Sagar Cheluvegowda wrote:
-> Ethernet devices are cache coherent, mark it as such in the dtsi.
+
+On Tue, 30 Apr 2024 15:14:42 +0100, Peter Griffin wrote:
+> This series contains the dts, dtsi that enables UFS on Pixel 6 (Oriole).
+> From v3 onwards it has been split into separate series as you requested.
+> v5 has been rebased on next-20240430, to avoid the conflicts with Andre's
+> USB enablement work that was recently queued.
 > 
-> Change-Id: Id180fae617f2e348c0a80c6664b131cc57fcb4d6
-> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+> Along with the various driver code UFS is now functional, the SKhynix
+> HN8T05BZGKX015 can be enumerated, partitions mounted etc.
+> 
+> [...]
 
-In addition to what others have said, I think you should include
-fixes tags for this, so something like:
+Applied, thanks!
 
-Fixes: ff499a0fbb23 ("arm64: dts: qcom: sa8775p: add the first 1Gb ethernet interface")
-Fixes: e952348a7cc7 ("arm64: dts: qcom: sa8775p: add a node for EMAC1")
+[1/3] arm64: dts: exynos: gs101: Add the hsi2 sysreg node
+      https://git.kernel.org/krzk/linux/c/b5f5fe4b317c0fbda725a44d9c92d97930ad68e9
+[2/3] arm64: dts: exynos: gs101: Add ufs and ufs-phy dt nodes
+      https://git.kernel.org/krzk/linux/c/4c65d7054b4ce8ceb30ba2b8aed90ceff6158d73
+[3/3] arm64: dts: exynos: gs101: enable ufs, phy on oriole & define ufs regulator
+      https://git.kernel.org/krzk/linux/c/aaafb21e8190cd2bc8cadf3e0f017bc5c11bb109
 
-to indicate this isn't just an improvement, but a proper bug fix.
-
-Thanks,
-Andrew
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
