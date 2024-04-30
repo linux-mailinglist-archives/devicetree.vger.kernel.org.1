@@ -1,134 +1,176 @@
-Return-Path: <devicetree+bounces-64089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5F28B7D0D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:33:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E228B7D16
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:34:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABE1CB25895
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:33:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CD821F2298F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BBD181B8F;
-	Tue, 30 Apr 2024 16:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF78317F38A;
+	Tue, 30 Apr 2024 16:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T9nHxHti"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pD4vRHaL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68AC21802D9;
-	Tue, 30 Apr 2024 16:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFDC91802AB;
+	Tue, 30 Apr 2024 16:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714494725; cv=none; b=qgl2v2i0nJmghbTvTH/Nu9mOQ1A3LwLrrBx0+wJsP5Ihebt77H9O6WHjavtAMbbagBFqlhZKQU+vQoPHybxk8VkpK241qbcohxiUUVipxt251COJPr9fxwmOPhtDipRJ9eFSLCQxFdCf6Hs5MESV8XHdOgaWx9MN0jSNfRWCEm0=
+	t=1714494790; cv=none; b=rpZMVVRcKQLLphqrjmAaJt3aV5qQNOkrjjjYOHSYmu2KuGJ5QAxa2scHOIKCBPvhmY60FJRy9z7k7UL8o9gc62dSs1ewHACl98pieWqvA09jHcTUIF1LZ3BizsHZRBUEnd/d048dk3HWBXiEvnWN//freFXgi3VYUHiJUv5Uu5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714494725; c=relaxed/simple;
-	bh=eEwpKA9eimH5IItZ7lk5+yvlBFgoCmRBmu4D4mg/9BA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=HRE8eplFdNux6NE4ZOaTLS49vRARe7zqJHJxop/OFSwc78labod8vhOjPSCxs4jiMElVvL0wJU++ooWKnKhiE/5OVIjfaYdME6lYMCDLrNarv/a8QKGcPZlDw84NQOK5uqsfJq1ruH4fyj54MnHNUuRz8HWFqUixu4jRaYGkWaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T9nHxHti; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43U5ra8g022930;
-	Tue, 30 Apr 2024 16:32:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references; s=
-	qcppdkim1; bh=ZAl/Q23+BAwdfUELEQHpiOL1cbIeVR68SdsEy0W+5e4=; b=T9
-	nHxHti0OnqT7Sd9pANlHpHnzXQST5EoqLFEdFcWrTSJs5+OBcqvd9sFVmsvPcp/w
-	wkf+D2zGm8dZHjmP1GuFsfjmKKg724BIyRPx3tC/GiV+PLANlo/EHiRfPdCB1XAJ
-	n/X5XrWYproj1Pbm9K6TneM1F3sR5xB34DvNBbF00ZwsTgC2Wa4TpKMltAt7OkGt
-	QTBRUNF5Xvd2AX9zChr3jFsJJmYktn6EDikr/92cINO2XAVQsJn6BuHikdHVr28K
-	ECD82atQEo2c0+GGTnZjpq22hhblbFvKg0ZdRTT/ZrFtveKm8ASBgytsTtsnXjZ8
-	WdXq6+UBDbUVY+fYoW1g==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xttw3hghg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 16:32:00 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 43UGVv7O003714;
-	Tue, 30 Apr 2024 16:31:57 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3xrtem1f8a-1;
-	Tue, 30 Apr 2024 16:31:57 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 43UGVuDP003707;
-	Tue, 30 Apr 2024 16:31:57 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 43UGVusi003706;
-	Tue, 30 Apr 2024 16:31:56 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-	id 281872287; Tue, 30 Apr 2024 22:01:56 +0530 (+0530)
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-To: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org,
-        manivannan.sadhasivam@linaro.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        quic_schintav@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: qcom: sa8775p: Set max link speed to gen4 for ep pcie
-Date: Tue, 30 Apr 2024 22:01:51 +0530
-Message-Id: <1714494711-10322-3-git-send-email-quic_msarkar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1714494711-10322-1-git-send-email-quic_msarkar@quicinc.com>
-References: <1714494711-10322-1-git-send-email-quic_msarkar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5u0jMRtzRv-YDDqs6mNpW42F34t2HLiO
-X-Proofpoint-ORIG-GUID: 5u0jMRtzRv-YDDqs6mNpW42F34t2HLiO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-30_09,2024-04-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 impostorscore=0 bulkscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0
- mlxlogscore=889 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404300118
+	s=arc-20240116; t=1714494790; c=relaxed/simple;
+	bh=2l9At3Rp5SxGzMz7kyLqL/eq/W5Zy3EozaXiK/uejhE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=chCak1bls3CfrqUHB7KwkhRwX5EHrvVCqccYwknHBul+trhKGqDXf5pJjupc+aBE0F8r3syUbIFSQKom5H1g9aVX60z0f6UQ5oQCNxmeWqmq7La+upcdp3liTBqgPqjFt6z9gLVBcQB6KP7uhCVdl07lDuiJfJQwjYfvoZmOtAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pD4vRHaL; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BFC8020002;
+	Tue, 30 Apr 2024 16:33:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1714494786;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6dwRYW34S8P17vH5XtXPm9HMUxIxV6qRAOkld5Rx8tE=;
+	b=pD4vRHaLymllfg0enq0ckdTh0OfXfYFtd4pVL1kWnOQRKiaqG9KikcdmJGbFdNAdJ4y+Uk
+	HSiK6RSIWe7M6dI0nB4ZrLMD4+bDxl4uYNZw04CEXdgHv87LKw04ySU1W+CQjsuY4Efeq2
+	MmO4ywAzfKPoJwqkSaGHEaC1AK8izw7s/QswydY7bBAhbUT1ttklmJ5GK8bu3FrYFfrbdf
+	5rxUN+9oP5MvAEVAMkaFFnq5viDSN35lc6J0LRhNyPnF7x33rcxA5eGmaPOFpAeg08U5Z9
+	VPV3FiXS0h/7kJVwWV/kJSxcW5RarNmQ3TG9DZFR5ualYpbrXM3SkeLOHNwpZQ==
+Date: Tue, 30 Apr 2024 18:33:01 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
+ UNGLinuxDriver@microchip.com, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Saravana Kannan
+ <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 00/17] Add support for the LAN966x PCI device using a DT
+ overlay
+Message-ID: <20240430183301.46568e35@bootlin.com>
+In-Reply-To: <4571846d-2001-4bbf-b311-d0b42844143d@lunn.ch>
+References: <20240430083730.134918-1-herve.codina@bootlin.com>
+	<4571846d-2001-4bbf-b311-d0b42844143d@lunn.ch>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Adding this change to set max link speed to gen4 as sa8775p supports
-gen4 so that pcie link can be enumerated as gen4.
+Hi Andrew,
 
-Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Tue, 30 Apr 2024 15:40:16 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 0c52180..aad2cd7 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3730,7 +3730,7 @@
- 		power-domains = <&gcc PCIE_0_GDSC>;
- 		phys = <&pcie0_phy>;
- 		phy-names = "pciephy";
--		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
-+		max-link-speed = <4>;
- 		num-lanes = <2>;
- 
- 		status = "disabled";
-@@ -3888,7 +3888,7 @@
- 		power-domains = <&gcc PCIE_1_GDSC>;
- 		phys = <&pcie1_phy>;
- 		phy-names = "pciephy";
--		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
-+		max-link-speed = <4>;
- 		num-lanes = <4>;
- 
- 		status = "disabled";
--- 
-2.7.4
+> On Tue, Apr 30, 2024 at 10:37:09AM +0200, Herve Codina wrote:
+> > Hi,
+> > 
+> > This series adds support for the LAN966x chip when used as a PCI
+> > device.  
+> 
+> > This patch series for now adds a Device Tree overlay that describes an
+> > initial subset of the devices available over PCI in the LAN996x, and
+> > follow-up patch series will add support for more once this initial
+> > support has landed.  
+> 
+> What host systems have you tested with? Are they all native DT, or
+> have you tested on an ACPI system? I'm just wondering how well DT
+> overlay works if i were to plug a LAN966x device into something like
+> an x86 ComExpress board?
 
+I tested on a native DT system (marvell board).
+
+Also I tested on a x86 system (basically a simple PC).
+Not all components are available upstream to have it working on a x86 (ACPI)
+system. The missing component is not related to the LAN966x PCI driver itself
+but in the way DT node are created up to the PCI device.
+A DT node at PCI device is needed to have a DT node parent (target) for the
+overlay.
+The DT node chain is also important because BARs address translations are
+done using the 'ranges' property available in each node in the chain.
+
+On a full DT system, the DT looks like (simplified in naming and without the
+node properties):
+/
+  soc {
+    ...
+    pci_root_bridge {  <-- Present in base dts
+       pci_to_pci_bridge {  <-- Created at runtime based on PCI enumeration
+            pci_device {  <-- Created at runtime based on PCI enumeration
+            }
+       }
+       pci_device { <-- Created at runtime based on PCI enumeration
+       };
+    };
+  };
+
+On x86:
+- A DT root empty node is created.
+  This is already upstream from a first proposal [1] and then second one [2].
+- PCI-to-PCI bridge and device DT nodes are created at runtime.
+  This is the same on DT base systems and this feature is available upstream
+  too (last proposal at [3]).
+
+The DT node missing in the chain is the node for the PCI root bridge.
+On ACPI, no "base" dts describes this node. The PCI root bridge is described
+by ACPI.
+
+I have some draft code that create this DT node when a PCI host bridge is
+register if a DT node is not already present and so fill the hole in the DT
+node chain.
+With that the DT in an ACPI system looks like this:
+/
+  pci_root_bridge {  <-- Created at runtime when a PCI host bridge is registered
+     pci_to_pci_bridge {  <-- Created at runtime based on PCI enumeration
+          pci_device {  <-- Created at runtime based on PCI enumeration
+          }
+     }
+     pci_device { <-- Created at runtime based on PCI enumeration
+     };
+  };
+
+With this node added, the driver works the same way in both DT and ACPI
+systems without any modification.
+
+I plan to send the code creating the PCI host bridge node when this current
+series is landed in order to add support for DT overlay over PCI on x86
+systems.
+
+Also an other series (under review [4]) is needed to avoid struct device
+duplication related to the DT nodes creation.
+
+[1] https://lore.kernel.org/lkml/20230317053415.2254616-1-frowand.list@gmail.com/#r
+[2] https://lore.kernel.org/lkml/20240217010557.2381548-1-sboyd@kernel.org/
+[3] https://lore.kernel.org/lkml/1692120000-46900-1-git-send-email-lizhi.hou@amd.com/
+[4] https://lore.kernel.org/lkml/20240423145703.604489-1-herve.codina@bootlin.com/
+
+Best regards,
+Hervé
 
