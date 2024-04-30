@@ -1,114 +1,113 @@
-Return-Path: <devicetree+bounces-64055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 502E48B7B8B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:29:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4BE8B7BC2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:36:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C835280CA5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:29:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB1881C243A2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAE117B518;
-	Tue, 30 Apr 2024 15:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B821171E4D;
+	Tue, 30 Apr 2024 15:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K/Oq/jVM"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="gR5rHT60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f67.google.com (mail-io1-f67.google.com [209.85.166.67])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1839117B4F1;
-	Tue, 30 Apr 2024 15:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52D9143733
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 15:35:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714490862; cv=none; b=lfdJDxY7Vkq6oOBobSFk7q4kvD5EK0IHdFzIPLCkgRZjuP9iyoH0Ozpb1XXBVEVUh//E3m7dPnB0Q3pLfOk8xFRAigAQ2vb4mFsEjn/aq02CinJGcAlZQEBS9LQ5YOqq2y0O1nUF5MLafjNzM8FbePPQWvas4JnIg8fGoEnEgh4=
+	t=1714491318; cv=none; b=WU+p0hao4OEepJO2zslgzstBv84WgqlNcHYtpWlice+Arwhbb+OPNm3H0ASxtlNhyPk/URfKSSCFhPvDbVN0OFok8bUBI7JbfZZah4goVLblo+U9ltBya4Gqq8xjKYcleLdjdUsvuQd+BQyT4+0OLZ9Sot5n17D0D5F26wmOJEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714490862; c=relaxed/simple;
-	bh=jWF+R6k2K8uFH2ZwLb7M5SwfeSLuAYQBwMI3KrqqS9o=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=QebiqatfXUIiuFAYm8anjWTEXJpSJKNrT3V93TK+T2gnaXEEZBkT9zENj+DN806Tx5BWo7acTnTJVefCKgB8TjDONK2uT/+FeeyOeZsbv9AXIH3HpDMfDRdTWEprBlXSiXU0giktt1arDFk6ZX7071yFxZmch4cGkds5yYvvxk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K/Oq/jVM; arc=none smtp.client-ip=209.85.166.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f67.google.com with SMTP id ca18e2360f4ac-7da04b08b82so161583239f.0;
-        Tue, 30 Apr 2024 08:27:40 -0700 (PDT)
+	s=arc-20240116; t=1714491318; c=relaxed/simple;
+	bh=cnERhQN+psqBArfbsUuDM43qjdDKzTKRv36HTHjehz0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=S5rO8l3UdqXaAvWLv3ZvTK1dBI1RF98eBqxyW5RDKLXCa19t8BKbcPDNHrc1UIhNqExGuXT7+/ygxfsqzOBPV6DFa/26AGzqoWjs2NfdwV+u12kTtzRFRQn51HACiNXYHnRipzKVa7rq7HLj0Gm8lL3cHW/BTsO4/MAUDDFNzA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=gR5rHT60; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2dd6c160eaaso71394541fa.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 08:35:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714490860; x=1715095660; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=S6EiQe0sO4zpsi2K9SK5LkhEBFfWw4caydHufI3cd9g=;
-        b=K/Oq/jVMUmhDzXuWEYpTr+AqNe0D4lhc6yJwQESDsSLH70cOD+D580khWgnG/MA8eu
-         TboDGuAZFay+ZVQQbLzi2sWcEt5zMBUvCpaEXJ+uly/kIEV7Pt1dQh2hL+upwfVS70jN
-         6cHwHM3gMRbYRFHhVYBvWNMxu623BCHhjmsQELXspXP6ALSokPFxbK4onpNhcANJArc1
-         61rf/j4eHVWCm2y6PY2zdMWvnUAz/oiKJ0vdnA2ui7Y2jypZFSsEN6R6i31CpcvCpwni
-         eVv6mHSCMTU3oOAAt98HC1hKtaZGdlbkfk5IXB7mLsKyPN41ePF1Ijn4Zar9kpxYEua5
-         eoOg==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714491313; x=1715096113; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2c9rH3JeyvGKQdDSVVVx0PhRv40r9PE97KLjHmXfjCg=;
+        b=gR5rHT60Jj2V51q2Cp+q58BmddwhPsV6gSjHWqiKSP+WnrOIsrdnAM2z8QnmMONb98
+         W5hORwssgO2fVzaWBsEXUI7h4s69VHf0v1qCQV03PwAgQj/wYpWjbQmZVfk8lzhiZH0u
+         MbvllkJy46868rtIBIiY70/VKUra0yjPmn7eNIND3aD8FaLTeMoxpY5vHMHt97z1yuK3
+         pWoBuQo/cRQ1E9/fdJySMaZiG2GlI2TohEYgM4KUqn8EMHkDocVA0Ye9Q/vl4HBhKtn6
+         juVC4uhv9q6WFpUYTXp9+VwTGcnf8swAsngwamM8zgb9nV3qFMfVKlS9Fe919EmMfj3+
+         DP4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714490860; x=1715095660;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S6EiQe0sO4zpsi2K9SK5LkhEBFfWw4caydHufI3cd9g=;
-        b=qPd8hJGdtnWboYkP4sqMH3vyv1JjSm7xT7NRHfGGMwsHAANGHu8KO0Sq344K3NQxsj
-         62bKBkwB5EieKo/zP5c9mLB6iuXs5WseqNBxzJuHW4prF7FTs+n60BazaTd0R1lxsPG5
-         zFyvb3WnY1xOnwWUglzsKnimrgUv5FB9P7SagwP/QsiINdAgfI9wIlJ8WauVwsFruyAU
-         MHTb5YuK1BLwKzEUKf9OCpeir74bjaaam7ksCcdbed/UplmsaAbg0b3+iY27ZHUibB3a
-         E2pugyaRxE+sQbWt+Drkk0fXcwX2LKFDYYRWUpQE01aehCUB6SpzAFa9R20V+h2DO8TX
-         xwpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUnAOLLzfoWRxBvlVWcZIvqKco2EVtAzKut3n2usxPuTYgSJ3+1R6l6nr0Xepr3Du19i2qDemVCsEzC/7mpYFf0RBDtWxUBnsqLHvF7iewmCPx5pFOYQIPSq0b6088rrgOmvd0P6qs45g==
-X-Gm-Message-State: AOJu0Yx1OrQMsmOMvAvghyPiVlXirEbdgWy0FKCiTTg83yF/xfST86JQ
-	d52KADQ0yqVtTf3wJhTjivUkxYxDrIE4tXLkbwfyUCXEplS7C3jaZsR45K5ybC0KfvMeWNfbusW
-	R0fnHVRXqM8ZkiKJaGuJ2pvBKE+e7fmzPRz4=
-X-Google-Smtp-Source: AGHT+IE0//FQwR5UIdVVFw2WGgKiJkdMJcXHNiF4QNIpntmkbmTTI+WUxzf9IYa+Nz70K6B3N/w9svoZP0aAL9JqlIM=
-X-Received: by 2002:a5e:924b:0:b0:7d5:dd91:4b47 with SMTP id
- z11-20020a5e924b000000b007d5dd914b47mr171678iop.7.1714490860191; Tue, 30 Apr
- 2024 08:27:40 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714491313; x=1715096113;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2c9rH3JeyvGKQdDSVVVx0PhRv40r9PE97KLjHmXfjCg=;
+        b=Mot84WRLF8DIzOoc3aCzTU1HxIg7ze8N5e7XUjykHjrKZyCZuuf1LmVKJnnfPS5NH8
+         bXBUxz5AzCFMITs6moeY7voj8PrOpaYe1fNtb6zPMgJX3UCogw4wUbeaJJhYoaaees+z
+         jjEgl4uKak2W7rjKXiRUFKOMXUjDeUYUWNe3W5RaEkVf6pTE2XXwK00TYIYgb6qCsfxR
+         x2KxAFhdeOPET0FvQL1pr3qrR5XWdXGbf5TAB/pIV6XNBtMoIPzstOt+2K5G11gu0Fmf
+         woIE7i2mAVXlzJroo2ehYeCH1n8ChcYoLDmOonuH4U3/vWpMkJ1eQMj/qimpBYZXzOVO
+         jitw==
+X-Forwarded-Encrypted: i=1; AJvYcCW1Y/zQEU7FnWxa6lEJE4oem9YKw7JMrEjTIOA+ejWyhnOBDJPwTJivCnHd2KpTWPZoUEBDuIMSo3Lcq62zYuuKb2r5uBQll90oLA==
+X-Gm-Message-State: AOJu0Yz4qguoY4d3UYh3Sz5Q4x1ctPNu1wRrholLg111Ez2UtUnll13e
+	y+DKPIcp5r5y+RSRah2WDK8FtjqmuNq/HIox0d/WB9fQh6egiFBN6EtvWtQVOvVyzRbiH82zdDS
+	J
+X-Google-Smtp-Source: AGHT+IH4FyszgLVd5E8UC44LgcvddxJsdBSvb733jfv+WHaa2WIHic3JGHRXMCNJwvDMKXzwCmXWRw==
+X-Received: by 2002:a2e:8682:0:b0:2da:b1fc:7b8f with SMTP id l2-20020a2e8682000000b002dab1fc7b8fmr64095lji.9.1714491312626;
+        Tue, 30 Apr 2024 08:35:12 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id h13-20020a05600c314d00b0041ac4aafd3dsm27045674wmo.12.2024.04.30.08.35.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 08:35:12 -0700 (PDT)
+Message-ID: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
+Date: Tue, 30 Apr 2024 17:28:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Petar Stoykov <pd.pstoykov@gmail.com>
-Date: Tue, 30 Apr 2024 17:27:27 +0200
-Message-ID: <CADFWO8Ghcmno8rgJ1WGyEvcjdrTEZr4_TXfhLjXQymzmR5FKPQ@mail.gmail.com>
-Subject: [PATCH v2 3/3] MAINTAINERS: Add Sensirion SDP500
-To: linux-iio@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Rob Herring <robh+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Angel Iglesias <ang.iglesiasg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v2 0/3] Add support for qcom msm8998-venus (HW vdec / venc)
+To: Bjorn Andersson <andersson@kernel.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From c4437fd0ea296c4c964b1fb924144ae24a2ce443 Mon Sep 17 00:00:00 2001
-From: Petar Stoykov <pd.pstoykov@gmail.com>
-Date: Mon, 15 Jan 2024 14:57:57 +0100
-Subject: [PATCH 3/3] MAINTAINERS: Add Sensirion SDP500
+Changes in v2
+- Add Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> for patches 2 & 3
+- Replace qcom,msm8998-venus.yaml (copy of qcom,msm8996-venus.yaml) with item in qcom,msm8996-venus.yaml
 
-Add myself as a maintainer for Sensirion SDP500 pressure sensor driver
+Marc Gonzalez (3):
+  dt-bindings: media: add qcom,msm8998-venus
+  arm64: dts: qcom: msm8998: add venus node
+  media: venus: add MSM8998 support
 
-Signed-off-by: Petar Stoykov <pd.pstoykov@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+ Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml |  4 ++-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi                           | 48 +++++++++++++++++++++++++++++
+ drivers/media/platform/qcom/venus/core.c                        | 42 +++++++++++++++++++++++++
+ 3 files changed, 93 insertions(+), 1 deletion(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 40c754b4c39c..11e8f353dc9e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19533,6 +19533,12 @@ S:    Maintained
- F:    Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
- F:    drivers/iio/chemical/scd4x.c
-
-+SENSIRION SDP500 DIFFERENTIAL PRESSURE SENSOR DRIVER
-+M:    Petar Stoykov <pd.pstoykov@gmail.com>
-+S:    Maintained
-+F:    Documentation/devicetree/bindings/iio/pressure/sdp500.yaml
-+F:    drivers/iio/pressure/sdp500.c
-+
- SENSIRION SGP40 GAS SENSOR DRIVER
- M:    Andreas Klinger <ak@it-klinger.de>
- S:    Maintained
 -- 
-2.30.2
+2.34.1
 
