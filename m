@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-64114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3878B7E66
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:27:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4A98B7F1B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:42:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE040B20CEE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:27:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE2FF28724C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4214917F385;
-	Tue, 30 Apr 2024 17:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97972181B85;
+	Tue, 30 Apr 2024 17:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKCf087I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUajm13C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F2A17BB20;
-	Tue, 30 Apr 2024 17:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB91180A65;
+	Tue, 30 Apr 2024 17:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714498016; cv=none; b=iuZ2Q60LSbVJHFiXWFAUc9P/J7LRgDvqy+eMgtdKwJXG8fkUnYVdwfrJnIgy1OGhfIUzF3HKsL1EiTdALcArj+Y0I5VWU01KuncutfgIVKw4spsilwRnZ6sZBVqxZokHAQaipSU5+PuEDBi+JfE+fDke1SKn8gH6fiBlnqB0p/E=
+	t=1714498828; cv=none; b=tCHoUQ6EMZbzOa4/uftWXRz+kgK9WPvKTni/0JclUqX7rfvyg1KI4xMxdepSssCdz/jSXt2DnmsgZM+6enDJyKWfRcDk3rPqX/81xIp53Owba6Yz7qlJMY0gEjsgcMZ3Dk5TGqU7jY1CeObNZslUvdi5PwAGf7YgwUI1AGeKcbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714498016; c=relaxed/simple;
-	bh=0KeV2u9ksY0YfA2yFgfKkgJQrLCCtz23h5HZRBAWiFI=;
+	s=arc-20240116; t=1714498828; c=relaxed/simple;
+	bh=A3daid6gt27LF6h7IJdI3WMp1fTrzwT7facaYskyd5M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OtDllCa8fzfgZ4vgXi1+sUZ+vTDqx3Cu/ZuUSVRoQBLCbkfWMcLRJ2alcnxnyoxZZg0rJJezDeMIoHOGNpagJDf4ELdLA5BFDEQxK19EM+PSgAxzBeugDdpQ6tBLUlE0WHoz6MjLMWPXI7vjkq+OEocD/SmY876EiauTslXp5yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GKCf087I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 316FBC2BBFC;
-	Tue, 30 Apr 2024 17:26:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=c2Pd65cgCftaM4hnRKNVtgQSvFeztMdfDd57BvcjkhO0EiPODZrSH4AanG8xj53jlOTyfwkUP/QUUO7eOONJBNB+xmM2/YMt6fj2DUyG7ke9DeWkyCXkIC/bUDoNcV1XU3n9PmfXPY3LVI+k4orLWfq2/D2MuKeeCxalnl84bbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUajm13C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6515C2BBFC;
+	Tue, 30 Apr 2024 17:40:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714498015;
-	bh=0KeV2u9ksY0YfA2yFgfKkgJQrLCCtz23h5HZRBAWiFI=;
+	s=k20201202; t=1714498827;
+	bh=A3daid6gt27LF6h7IJdI3WMp1fTrzwT7facaYskyd5M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GKCf087IOPhdKhN23Rh+4nYolxBmxLSO7gl4cTkAbF6IGcHWam/bcbmhNLA0+5hfG
-	 NefAyi4QAhJonrQ2T0uvSS/DlYCnplWB39GhCHO53EgsgQ0NYC1sXg3abQ1zUvVNcs
-	 r/5CFiGjbedNdrNPSNYdu6m6+ypoEZuI1adiGctzrgRXmlEEwbj5c6pqJ+PG1/apNU
-	 5LXjHQvUrx64k0PqjL/h9GDYReGsYZOrdMZD7n2E5GDIqxY4N/HalTeDmOGf4NGWXQ
-	 bhuZMNQP0cxZiOxT/nJ2sEjm8HcuCNshVJZmBpkiQLQRi6SCzJHBgcwS1ntMIyxLXW
-	 U4TKnxxq7IBeQ==
-Date: Tue, 30 Apr 2024 18:26:49 +0100
+	b=jUajm13CSQwfI9glQZLtwzwDa8eF5mLGtIjRR2jLytylcPWrFVYQIADDDKT7kvq8X
+	 WBEaxcJSMBnjL+pKVp/+mjIlzDNglcyKvWneIhNrk/QnrYq1tLLrYz2OeZKCQNKJk7
+	 xBi0MYvSvCLdT+VZgwkqKPDsYMSzNbx+jSc/c5i3/E114uTMV4Qfv6gSGgDm5Pu3WW
+	 pqld++E0uFp5DtzpN+aSV6lCOgkyOKj2ZUsxDeuUM1xTPYZBBczIuNewOBpVWebvAA
+	 E2pFCNgKUdimYOZrxcVTmFiiVd++UltaDzXbRSW4PmHNVEYf+yodk7fj5syK5Jr4h9
+	 FpFpaPjibyk0Q==
+Date: Tue, 30 Apr 2024 18:40:24 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-	andy@kernel.org, nuno.sa@analog.com, marcelo.schmitt@analog.com,
-	bigunclemax@gmail.com, dlechner@baylibre.com, okan.sahin@analog.com,
-	fr0st61te@gmail.com, alisa.roman@analog.com,
-	marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
-	liambeguin@gmail.com
-Subject: Re: [PATCH v7 5/6] dt-bindings: iio: adc: ad7192: Add AD7194 support
-Message-ID: <20240430-sandfish-bring-16ce723b8612@spud>
-References: <20240430162946.589423-1-alisa.roman@analog.com>
- <20240430162946.589423-6-alisa.roman@analog.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] yamllint: Drop excluding quoted values with ',' from
+ checks
+Message-ID: <20240430-unsnap-eskimo-444052f98b7d@spud>
+References: <20240426195438.2771968-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,41 +58,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QgM2jKZVHy6EjSwK"
+	protocol="application/pgp-signature"; boundary="RPjVfbQMebod70Rs"
 Content-Disposition: inline
-In-Reply-To: <20240430162946.589423-6-alisa.roman@analog.com>
+In-Reply-To: <20240426195438.2771968-1-robh@kernel.org>
 
 
---QgM2jKZVHy6EjSwK
+--RPjVfbQMebod70Rs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 30, 2024 at 07:29:45PM +0300, Alisa-Dariana Roman wrote:
-> From: Alisa-Dariana Roman <alisadariana@gmail.com>
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+On Fri, Apr 26, 2024 at 02:54:37PM -0500, Rob Herring (Arm) wrote:
+> From: Rob Herring <robh@kernel.org>
+>=20
+> Strings with commas were excluded from checks because yamllint had false
+> positives for flow style maps and sequences which need quotes when
+> values contain commas. This issue has been fixed as of the 1.34 release,
+> so drop the work-around.
 
-btw, the whole series has a from != signoff email problem. My git
-send-email handles that for me without me having to do anything by
-inserting a From: header in the patches, like so:
-https://lore.kernel.org/all/20240424-tabby-plural-5f1d9fe44f47@spud/
+Hmm, is this a bit aggressive of an upgrade? I only checked Debian since
+it is what this machine uses, and it only seems to be shipping 1.33 in
+testing & unstable.
 
-I am not sure what option you're missing to suggest, but it may be as
-setting the `--from` arg (or sendemail.from in your gitconfig).
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/.yamllint | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/.yamllint b/Documentation/=
+devicetree/bindings/.yamllint
+> index 358c88813937..fadbc6ad3c76 100644
+> --- a/Documentation/devicetree/bindings/.yamllint
+> +++ b/Documentation/devicetree/bindings/.yamllint
+> @@ -7,7 +7,7 @@ rules:
+>    quoted-strings:
+>      required: only-when-needed
+>      extra-allowed:
+> -      - '[$^,[]'
+> +      - '[$^[]'
+>        - '^/$'
+>    line-length:
+>      # 80 chars should be enough, but don't fail if a line is longer
+> --=20
+> 2.43.0
+>=20
 
-Thanks,
-Conor.
-
-
---QgM2jKZVHy6EjSwK
+--RPjVfbQMebod70Rs
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjEp2AAKCRB4tDGHoIJi
-0kziAQDcAT7+brax7bXTdBP5X+1u8YLuwr8T//H8T5XVPYXs8wD/X5FEQlyk1Qg+
-BoUHQ4cGSH7Sp4iWyYrKn7r9j82Wkwk=
-=ue30
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjEtCAAKCRB4tDGHoIJi
+0oFZAQD0JBzhXISrZJ4yB/rFSb4WQ9ET9q36W46JBQkBp3DuDwD9Fy+2z/xA/BqS
+5K9c2nPGOH0eVUV/wZAlbDEuwRbcOgk=
+=nE9f
 -----END PGP SIGNATURE-----
 
---QgM2jKZVHy6EjSwK--
+--RPjVfbQMebod70Rs--
 
