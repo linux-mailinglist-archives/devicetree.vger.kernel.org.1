@@ -1,165 +1,143 @@
-Return-Path: <devicetree+bounces-63892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F21B8B6E63
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:33:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D59398B6E6C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:34:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92C281C20A05
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:32:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D24861C22217
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6191127E25;
-	Tue, 30 Apr 2024 09:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6739F128376;
+	Tue, 30 Apr 2024 09:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dZ4pdO1X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fuKfgBAf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FBE422618
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 09:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF150127E3F
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 09:34:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714469576; cv=none; b=mNpwNll9M9P1BOLgiDhza7M3WSXNLUaYcOpXVzXmT8dmE3uH83Igdv7ypxUy36oUVKqp8IsaxxWF0Aiaehg55Hb7RwRNc+isobgo+rj87K8LcFCsKwE7Woceb4/McqddV1Hft4YXsOfBjSKIxJ8cj/q0OvoVUSNJPKtJ9FZ8Q+w=
+	t=1714469680; cv=none; b=b+j0q7pWqyaRpbKBRGyc04KAu6k12kHXJh93FQOiK1oRvl2DDvG5jjmx0W8R5I/lYb8A51m+vaeiUNrYtA0ltRP2kF+sxnQ+usuO5Q9Rhp2SBXIJ6kAQBsOzt1ada1Hhs9J1eujwDgPf6m6NPghb22X3qvXGOJWRZV1CkAXckbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714469576; c=relaxed/simple;
-	bh=6VlkZ94vfBaUMbJ4oTeQI2QukBnMnA4AUGq7pWtBJas=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HcL0bwZupunzL+YA62GQzjdEqPQJMRWdt2VAV6sS4uc4hLbhpULBDeXiZIyDZqILQ/KKsfXTzZbCfcmvDq7TW+ZkdmTwDAaJj17HPi74uo4V5FC1wDrx0SPiqsL6xOHjWkj7T+81TUg6/Sp53am2pjEN1ltBRNPu/RVam9FXECI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dZ4pdO1X; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5d42e7ab8a9so2996318a12.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 02:32:55 -0700 (PDT)
+	s=arc-20240116; t=1714469680; c=relaxed/simple;
+	bh=k9NWBESpvLG5vWGkgDECyGlUm6v7jCcZsE1y+XKUUCs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gsjhl9SUSdJSrpMYcwrZnu/dSK84ljX6Bn0btF60vlQ6NeAp/e0/TrOWatSTZAXQo9qwxMbyRV6bNfRfVcsLPANbwNOmX5YjZ5Zb/amgH6obM10ijy7kqNqo9TmBJa4DwK0mmtB4CDcCAx4/fAkId5U9Rof7GePeUdLZ+9gSpws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fuKfgBAf; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5727dc6d3edso2526704a12.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 02:34:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1714469575; x=1715074375; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rZ1f3Q6BEnZTJT1SiGVBJeWSactvAosCQCCnwWRZCiM=;
-        b=dZ4pdO1X3VrYtmBeozkPKcvwEKLLHpNOO1/jj6Gxv+CY88ZuCneIEcyhceSaRTb74U
-         g1JDmpzT+For/q+DLSpyPALFLr4iZj+c2x69/MgfS5X7Wy0qRkvwdm7yE/QMjvVYcV7S
-         CTfYB0k8gx+fVmMx5f31PIOoe/LQqL+9JT/F4=
+        d=linaro.org; s=google; t=1714469677; x=1715074477; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=xpI5WAoKM9x04SKzVc9sX1ORhdeI2ZrvsKIYhkvbqIo=;
+        b=fuKfgBAfaKQaF/p+fvnGIU/0vLX4APoJVGhPFi3iPdehG+op+bOiSruEejjiqyePT/
+         IVVe7uB328aGrwiJC+aXzZBoKQQnxaTtUj1nGvh7IShSTaVOh7EU2dACZIb1BRjEPU7y
+         +KU1rIR5RkMiXUTzTgBafRf3XTd3bmYUJQxsN/WNlolUjk5oc5OKjv5dx13gNvzJoRos
+         7CdVWcGRKHX6ofpEEU+dUObBSEZ7exT4svP86a5V4a6Kf6ADzshV+SpZjF1y5MllawNc
+         FMphnMhNcrNW5ujypuL+Xp9MUtXf/prT5sylMSUarQx/MRiRwYxgHRGiTlyDPpbqfhbn
+         Mzug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714469575; x=1715074375;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rZ1f3Q6BEnZTJT1SiGVBJeWSactvAosCQCCnwWRZCiM=;
-        b=AIuYXu3ilDhd+xLwmd+J4X4eEPj2o6V+O0cjEme/ut0F9MVJ2L7sIyhYIlKgfywtks
-         ut3Vz4vIYrwYCJjMtEqIWf2l7m6WJ0hDEgbl4jNiGJB45IcuysfJESPoxGq4P+LrV0jc
-         8bPgla6aoUawb8Ms59MpwCphnznHBJo4//hqOdQDtqoDK+lZ2jo8BVfLa5wcx1sX3hda
-         HHiF4iG4pVaOwNTLjFiyVoFuds5ivhIhXZzse6B9xmrx4SYweBwTBXnCV+6B4eGSr9cV
-         I9HdthsqlsqMkimopRLmJ9DH2yldz/sXlzl29YgOkmWSewwD8GX7JgkDyF29Kbv6khFF
-         eobQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHYCGrW3qVN+90UIv9W/7Ky26AZ6Q5U5/hBm05RjtFOwBFnvhTz5LN/vOW9Y9DyzDVcvDXZxDW6/bnB7l49v8HlKrGU51uL/qu8g==
-X-Gm-Message-State: AOJu0YzyhTSgwwHbffRP2vGrHBhMS4VHiYpOhxincYp6aH63OyaE1bPe
-	Zy+KUNzXlQZBx32r+5KicVKt17NSbC5b+mDPA3ET6wRbIeidw+oC7kjqCqjzTC0ld1OPtZRacwv
-	5NJewPco3RI2vtxhcpanMPYO5P1H+TTqkj6tK
-X-Google-Smtp-Source: AGHT+IHe4n3YPDXbWHUn5ncUC54LJGZHAP4fN5Liyf2K72GnMccBlNkfMj6dDGsch6IeTojaMR/TVjx0GT+KLwkPyEM=
-X-Received: by 2002:a05:6a20:9c8f:b0:1ae:84b3:bb5c with SMTP id
- mj15-20020a056a209c8f00b001ae84b3bb5cmr12622020pzb.1.1714469574691; Tue, 30
- Apr 2024 02:32:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714469677; x=1715074477;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xpI5WAoKM9x04SKzVc9sX1ORhdeI2ZrvsKIYhkvbqIo=;
+        b=KODyQ70CYPt/Hd4UD1NWqZ8HEYAceZL15HMFB4cBBzcFGIg4fMFyUJszZ3AnwXxOmA
+         IYNrfTMfch9gxI/r9754c1h8hOl99UhqDyytwm1q7/aKjittVuXpbyeRAJBLHks8wV3o
+         UwUN5ijKBeepwr9/31PH+wceEvrwKjnjx3UTaRFLtCNaRLtSPrAA6uIvzRc8ZN/jg/W0
+         WDxrDAI+jOKwX0xRwuGOQ03WUnAUHLdIMKh6Dzfg9PA9+0ZowGm9jjFU9drKG4a4l3i9
+         GfbqgGVhDqNPPLjx3+t6KhkstOE6JycDUVXQidBFYuT9qel7X66p37wdowMuJdR0DN6t
+         AQwA==
+X-Forwarded-Encrypted: i=1; AJvYcCV019jda5LPYFhpDwvDg09C9eDmnnYG2Rs/XxqG276v216Es6N4jZjhrBnnITb12OWfTifnpG7GlJOIiD1hla5H0K/BCVGTasNmRA==
+X-Gm-Message-State: AOJu0YwLmk7MmIRRmAHQPlAaoQfM55iSDJF3OCzsds44yz/n42vSjrjV
+	o9UpD//iz6CXyTcJp6Oy7OvT8X4hy/Oe+XTbP5EdpzDy3slDTYxKMLxpZmPdjno=
+X-Google-Smtp-Source: AGHT+IF1hRM0MWJpCdc02GqdalwkS9joDUtSdv8iCT6RCkzWaJB273u6HmJra4KNhwmTA9fs7r7nRw==
+X-Received: by 2002:a50:ab0d:0:b0:570:1ea8:cd1c with SMTP id s13-20020a50ab0d000000b005701ea8cd1cmr1510922edc.35.1714469676955;
+        Tue, 30 Apr 2024 02:34:36 -0700 (PDT)
+Received: from [192.168.114.15] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id r19-20020aa7cb93000000b00572031756a8sm10071242edt.16.2024.04.30.02.34.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 02:34:36 -0700 (PDT)
+Message-ID: <a35c0e9f-9f1f-44ea-8248-cc632c6db291@linaro.org>
+Date: Tue, 30 Apr 2024 11:34:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240429095333.3585438-1-treapking@chromium.org> <b3c69a78-78c9-4a15-829b-e4b36e16566a@collabora.com>
-In-Reply-To: <b3c69a78-78c9-4a15-829b-e4b36e16566a@collabora.com>
-From: Pin-yen Lin <treapking@chromium.org>
-Date: Tue, 30 Apr 2024 17:32:43 +0800
-Message-ID: <CAEXTbpf2HOQj_AxHGbsgOXVF_HyKttL=z7Mi8QStcmuOS+yN7g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8192-asurada: Add off-on-delay-us
- for pp3300_mipibrdg
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	"open list:ARM/Mediatek SoC support" <linux-kernel@vger.kernel.org>, Hsin-Te Yuan <yuanhsinte@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/12] arm64: dts: qcom: delete wrong usb-role-switch
+ properties
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240429-usb-link-dtsi-v1-0-87c341b55cdf@linaro.org>
+ <20240429-usb-link-dtsi-v1-11-87c341b55cdf@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240429-usb-link-dtsi-v1-11-87c341b55cdf@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Angelo,
+On 29.04.2024 2:43 PM, Dmitry Baryshkov wrote:
+> The usb-role-switch property doesn't make sense for the USB hosts which
+> are fixed to either host or peripheral USB data mode. Delete
+> usb-role-switch property being present in SoC dtsi.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-On Tue, Apr 30, 2024 at 4:17=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 29/04/24 11:53, Pin-yen Lin ha scritto:
-> > Set off-on-delay-us to 500000 us for pp3300_mipibrdg to make sure it
-> > complies with the panel sequence. Explicit configuration on the
-> > regulator node is required because mt8192-asurada uses the same power
-> > supply for the panel and the anx7625 DP bridge. So powering on/off the
-> > DP bridge could break the power sequence requirement for the panel.
-> >
-> > Fixes: f9f00b1f6b9b ("arm64: dts: mediatek: asurada: Add display regula=
-tors")
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> >
->
-> Uhm, there might be more to it - I don't think that this should ever happ=
-en.
->
-> The regulator is refcounted, so...
->   * Bridge on: panel goes off, but regulator doesn't turn off (refcount=
-=3D1)
->     * Panel resume -> sequence respected (refcount=3D2 -> wait -> more vr=
-egs, etc)
->   * Bridge off: panel is already off (refcount=3D0)
->     * Bridge resume -> refcount=3D1, no panel commands yet
+I'm more than sure all of these devices are physically capapable of
+doing both modes, but the infra to switch modes / provide VBUS as
+host was / is not hooked up or present yet
 
-The off-on-delay could be violated because the bridge driver does not
-check the delay.
-
->     * Panel resume -> refcount=3D2, wait -> more vregs, etc
->
-> Can you please describe the issue that you're getting?
-
-The symptom we observed is that the device has a small chance to
-reboot to a black panel, and we think the panel's unprepare delay (the
-time to power down completely) might not be satisfied because the
-bridge doesn't check that when it enables the regulator. Even if the
-regulator is enabled by the panel driver, the delay can also be
-violated in the following sequence:
-
-* t=3D0ms, bridge on: panel goes off, but regulator doesn't turn off
-(refcount=3D1). The .unprepared_time in panel_edp is updated
-* t=3D300ms, bridge off, regulator goes off (refcount=3D0)
-* t=3D600ms, panel on, the panel driver thinks the unprepare delay
-(500ms) is satisfied, but the regulator was disabled 300ms ago.
-
-Did I miss anything here? Or should I add more detail to the commit message=
-?
-
->
-> Cheers,
-> Angelo
->
-Regards,
-Pin-yen
-
-> > ---
-> >
-> >   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 1 +
-> >   1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/ar=
-m64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > index 7a704246678f..08d71ddf3668 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > @@ -147,6 +147,7 @@ pp3300_mipibrdg: regulator-3v3-mipibrdg {
-> >               regulator-boot-on;
-> >               gpio =3D <&pio 127 GPIO_ACTIVE_HIGH>;
-> >               vin-supply =3D <&pp3300_g>;
-> > +             off-on-delay-us =3D <500000>;
-> >       };
-> >
-> >       /* separately switched 3.3V power rail */
->
+Konrad
 
