@@ -1,98 +1,211 @@
-Return-Path: <devicetree+bounces-63963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82FC38B74F1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86D58B7507
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EE80284D6F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:54:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE2A284678
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E90313D25D;
-	Tue, 30 Apr 2024 11:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CFE13D600;
+	Tue, 30 Apr 2024 11:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kAYfwnR9"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="gfax4WYZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D83E13C9C3;
-	Tue, 30 Apr 2024 11:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CB013D273
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 11:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714478073; cv=none; b=U/iYkBn2CUiUEQ6h15q/R/M7ITbV6YUdaDI44zjK2CWVwY7vJh+PHrV3t08dyHusLEvnn6XVMbybe9ApeDjpMIeUuRwp2aRYXDKMbM4Cb32jRD2C57nirbFZzNMAV+zBrW5Iaci5y0+essX80WLDUliIYpmKb3jiTpRO3qyiUOM=
+	t=1714478297; cv=none; b=QMCmI4a7tQpLYzzNYytZuJ7eH+WDbXgCIev682oRPwxBENmjhkTdKHEnK0QQMmRjhiY8ReLEtW6w8duYqEjp0Dv+AFTBZI32TE5miXQaP8EaAmgDI0zz90e8goz3KTxl7wSVk+AteYl8b5FwNnrV3voZJYaim8b2MBy6a4rfrjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714478073; c=relaxed/simple;
-	bh=IapLrD/jogJqlTH0kGzdqSYfKtIIUt9wn2mvkUe0d0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WxOfErQ/Yd9DfpdlqF1D47akLywMr0qGX+sS/0EcaaQQMkpjkWIW+Xz4izKoakoR+Ysl0MzIbPKE5eBAlQZaE/f1yK6cLib9Wp9rHv1o/Yi/4iKd+YVxTNI+rZIaquKB2TIuo5gCO//z4JwS1pyhBA9FqWY/g+7WqM7Z6UQAOOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kAYfwnR9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11D00C4AF19;
-	Tue, 30 Apr 2024 11:54:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714478072;
-	bh=IapLrD/jogJqlTH0kGzdqSYfKtIIUt9wn2mvkUe0d0k=;
-	h=Date:From:To:List-Id:Cc:Subject:In-Reply-To:References:From;
-	b=kAYfwnR98InXLzwlWJqhJA+JJwOhNTOxNuHCOr4RLbp9x8NKXnlALo/tp99txLx5D
-	 A6L77Zd/oAV1I+ZP3rWVoFgPC7SrlJNbLS9BwUzJb9J8Pow4CpbGZ2tEbComEoLqak
-	 cis1JMW3l5PHjwsqJbWZnJju62BIOR48k+31tZhtFG7TKgdAx4OMKRHVDXPuCUlS8J
-	 lcRNkrbkXpZaPhiOuTIPh1CA6lqP383MVfvUdxwGj4wISR6qmPChKtUPMlE+qUNU0U
-	 ClQsCpxIooroqgx27cmxLAR8VjL8181Zxg8IuTivqPkJHmWwJWhsHkr6QI3Zekz59q
-	 MCzjOH19AN24Q==
-Date: Tue, 30 Apr 2024 13:54:23 +0200
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org, Andy
- Shevchenko <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo
- =?UTF-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Alessandro Zummo
- <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Christophe JAILLET
- <christophe.jaillet@wanadoo.fr>, Dan Carpenter <dan.carpenter@linaro.org>,
- devicetree@vger.kernel.org, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Guenter Roeck <linux@roeck-us.net>, Herbert
- Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
- <linus.walleij@linaro.org>, linux-crypto@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-watchdog@vger.kernel.org, Olivia Mackall <olivia@selenic.com>, Rob
- Herring <robh+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Uwe =?UTF-8?B?S2xlaW5lLUs=?=
- =?UTF-8?B?w7ZuaWc=?= <uwe@kleine-koenig.org>
-Subject: Re: [PATCH v7 0/9] Turris Omnia MCU driver
-Message-ID: <20240430135423.2034fb51@dellmb>
-In-Reply-To: <875xw45cgj.fsf@BLaptop.bootlin.com>
-References: <20240424173809.7214-1-kabel@kernel.org>
-	<875xw45cgj.fsf@BLaptop.bootlin.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1714478297; c=relaxed/simple;
+	bh=4Id6VGdf2u95AiGZLRjJqIidD6qWkQ0vVUrWA2CAko0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=crzTO63IOojsSmx6fdkzCKkbKpE6TiHkHGWUZM0NXSR683IR+qTPzBcRxBNEeu00468NtSQMkc5ULJI4uRKy68hlTckI1lM8qGpozGZ8IjO3tYAOoeF+qaqdM8HhzeqRcpJC7D7k60mbFenzrO6KcS8yoqdF2B4TUJJ7n8uLaFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=gfax4WYZ; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-34a42d6e216so1247530f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 04:58:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714478293; x=1715083093; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OzSSsyfFzBl2mcBYufKCnCUvVLKXjpztnM9DRhV5I5Q=;
+        b=gfax4WYZVWRWHneERJ5B9qLZ+IGdyGTAn1ajTfdxobuIBSH9Y1VwduofRqT8pXlEnt
+         B3eRiNcry74gnR2ZfzleUYU1cpIdZ33M07dJcB+DId08lzZtiwbagmnV4Q9rur4JB8Ue
+         vV2Z1vZ0RB+VXCNn60bFd8JxrQchN9+M/8AUKqyBIT3QuHtsPIg4FT7yxKGDsGho+e66
+         Lc3Ca+RGcPxE8Z4I270KgfAfkDM1pW4eCl57wXctjEQIXM3bfX03uj7QelroWUb68+pm
+         j3ykx8JWRwzDyOru8RKRvXYplu1uJwRBUBPdCNxiNqHQodkZYPJ4CRM2oSEPEfPq/tdk
+         GvTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714478293; x=1715083093;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OzSSsyfFzBl2mcBYufKCnCUvVLKXjpztnM9DRhV5I5Q=;
+        b=Y99vj1D5iTAlEuGUOP9lpkftQk9g0n08Q0ykTHdRBGW7IY+NwxtYWaRe1W6kfS1zyz
+         qoGivMLgzyP1fkkW5xVlLjFChZg581/ADT7b6Ge3DNfaJGNZhAfyN/DodVIssccb7fTn
+         QRKxc0JIhqyPxYga1cEvwk5Z+gkm8ZN1p/q8dKMxD0aSxkPk1tGfDZ9nJKxCx5HhnflO
+         Hod3FCNNmQPoXJljYsIMZC3u5gEQSqnnNEmqfvOt1Ilm4a2/nUfBrZDDdz04nslELRrb
+         yoE4T5c0hayPc+EZrGOxVTR7FUR/1Vsr/ztBVcibTuKCnf6e2R4mDrlcp1tpSF6dPYc3
+         a8yw==
+X-Forwarded-Encrypted: i=1; AJvYcCUm0Tm8+FuRzEm9maa3PV6GXH3mrPOs6uUJhhiEBI76pzmFQC8IYOpRtVNtTLNYizxmaPZXA2OIZt272T5ohOz8/MAARa0Ao+4rwg==
+X-Gm-Message-State: AOJu0YzHn5lWMdYNfhj3FHJZtWM1VWv+kjDw0ajaLfZHtxF2NrOxM5Ia
+	hEtMyMyvnQNY9VJAD3tZUaPcojhEAeONfYQHMkx0L6AkNxEkslPUDMOJPGU/3ko=
+X-Google-Smtp-Source: AGHT+IFowi0uScE3U6kwtOLic0zxD94ruOb8GXnQAwFE/D5XSkJPVJ8UzE8OGVrMPrp7yPhK24S50A==
+X-Received: by 2002:a05:6000:1756:b0:34d:af59:32bc with SMTP id m22-20020a056000175600b0034daf5932bcmr103435wrf.7.1714478293117;
+        Tue, 30 Apr 2024 04:58:13 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:c21b:67fd:90ab:9053? ([2a01:e0a:999:a3a0:c21b:67fd:90ab:9053])
+        by smtp.gmail.com with ESMTPSA id g17-20020a5d5551000000b0034c5e61ee82sm10843260wrw.67.2024.04.30.04.58.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 04:58:12 -0700 (PDT)
+Message-ID: <dbcf0be9-eae6-4776-bc5b-c6fad58df9c3@rivosinc.com>
+Date: Tue, 30 Apr 2024 13:58:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/11] riscv: add ISA extensions validation
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+ Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+References: <20240429150553.625165-1-cleger@rivosinc.com>
+ <20240429150553.625165-3-cleger@rivosinc.com>
+ <20240429-subtext-tabby-3a1532f058a5@spud>
+ <5d5febd5-d113-4e8c-9535-9e75acf23398@rivosinc.com>
+ <20240430-payable-famished-6711765d5ca4@wendy>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20240430-payable-famished-6711765d5ca4@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 26 Apr 2024 18:13:32 +0200
-Gregory CLEMENT <gregory.clement@bootlin.com> wrote:
 
-> Hello all,
->
-...
+
+On 30/04/2024 13:44, Conor Dooley wrote:
+> On Tue, Apr 30, 2024 at 09:18:47AM +0200, Clément Léger wrote:
+>>
+>>
+>> On 30/04/2024 00:15, Conor Dooley wrote:
+>>> On Mon, Apr 29, 2024 at 05:04:55PM +0200, Clément Léger wrote:
+>>>> Since a few extensions (Zicbom/Zicboz) already needs validation and
+>>>> future ones will need it as well (Zc*) add a validate() callback to
+>>>> struct riscv_isa_ext_data. This require to rework the way extensions are
+>>>> parsed and split it in two phases. First phase is isa string or isa
+>>>> extension list parsing and consists in enabling all the extensions in a
+>>>> temporary bitmask without any validation. The second step "resolves" the
+>>>> final isa bitmap, handling potential missing dependencies. The mechanism
+>>>> is quite simple and simply validate each extension described in the
+>>>> temporary bitmap before enabling it in the final isa bitmap. validate()
+>>>> callbacks can return either 0 for success, -EPROBEDEFER if extension
+>>>> needs to be validated again at next loop. A previous ISA bitmap is kept
+>>>> to avoid looping mutliple times if an extension dependencies are never
+>>>> satisfied until we reach a stable state. In order to avoid any potential
+>>>> infinite looping, allow looping a maximum of the number of extension we
+>>>> handle. Zicboz and Zicbom extensions are modified to use this validation
+>>>> mechanism.
+>>>
+>>> Your reply to my last review only talked about part of my comments,
+>>> which is usually what you do when you're gonna implement the rest, but
+>>> you haven't.
+>>> I like the change you've made to shorten looping, but I'd at least like
+>>> a response to why a split is not worth doing :)
+>>
+>> Hi Conor,
+>>
+>> Missed that point since I was feeling that my solution actually
+>> addresses your concerns. Your argument was that there is no reason to
+>> loop for Zicbom/Zicboz but that would also apply to Zcf in case we are
+>> on RV64 as well (since zcf is not supported on RV64). So for Zcf, that
+>> would lead to using both mecanism or additional ifdefery with little to
+>> no added value since the current solution actually solves both cases:
+>>
+>> - We don't have any extra looping if all validation callback returns 0
+>> (except the initial one on riscv_isa_ext, which is kind of unavoidable).
+>> - Zicbom, Zicboz callbacks will be called only once (which was one of
+>> your concern).
+>>
+>> Adding a second kind of callback for after loop validation would only
+>> lead to a bunch of additional macros/ifdefery for extensions with
+>> validate() callback, with validate_end() or with both (ie Zcf)). For
+>> these reasons, I do not think there is a need for a separate mechanism
+>> nor additional callback for such extensions except adding extra code
+>> with no real added functionality.
+>>
+>> AFAIK, the platform driver probing mechanism works the same, the probe()
+>> callback is actually called even if for some reason properties are
+>> missing from nodes for platform devices and thus the probe() returns
+>> -EINVAL or whatever.
+>>
+>> Hope this answers your question,
 > 
-> It is still early as there are some comment pending but I wonder who
-> will responsible of merging all theses patches ?
+> Yeah, pretty much I am happy with just an "it's not worth doing it"
+> response. Given it wasn't your first choice, I doubt you're overly happy
+> with it either, but I really would like to avoid looping to closure to
+> sort out dependencies - particularly on the boot CPU before we bring
+> anyone else up, but if the code is now more proactive about breaking
+> out, I suppose that'll have to do :)
+
+Ahah, I would have done it if it would have make sense and add any
+useful support. But AFAICT, the current implementation solves most of
+the problems you raised.
+
+While thinking about it, I can even simply it a bit more. Once a ISA
+extension bit is set in the final mask, I can actually disable it in the
+original mask to avoid looping over it again. I'll send a V5.
+
+> I kinda wish we didn't do this at all, but I think we've brought this
+> upon ourselves via hwprobe. I'm still on the fence as to whether things
+> that are implied need to be handled in this way. I think I'll bring this
+> up tomorrow at the weekly call, because so far it's only been you and I
+> discussing this really and it's a policy decision that hwprobe-ists
+> should be involved in I think.
+
+Yeah sure.
+
 > 
-> Arnd ? Hans ? Ilpo ? me ?
+> Implied extensions aside, I think we will eventually need this stuff
+> anyway, for extensions that make no sense to consider if a config option
+> for a dependency is disabled.
+> From talking to Eric Biggers the other week about
+> riscv_isa_extension_available() I'm of the opinion that we need to do
+> better with that interface w.r.t. extension and config dependencies,
+> and what seems like a good idea to me at the moment is putting tests for
+> IS_ENABLED(RISCV_ISA_FOO) into these validate hooks.
 
-I am assigning these patches to Arnd on patchwork all this time, so I
-guess it could be him, unless he has a problem with this?
+Yeah, see what you mean. I think we also need to define if we want to
+expose all the ISA extensions in /proc/cpuinfo (ie no matter the config
+of the kernel) or not. If so, additional validate() callback would make
+sense. If we want to keep the full ISA string in /proc/info, then we
+will need another way of doing so.
 
-I've just sent v8.
+> 
+> I'll try to look at the actual implementation here tomorrow.
 
-Marek
+Great, thanks.
+
+Clément
+
+> 
+> Cheers,
+> Conor.
 
