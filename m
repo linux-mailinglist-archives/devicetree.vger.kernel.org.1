@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-64115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4A98B7F1B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:42:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C92C58B7F2D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:46:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE2FF28724C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:42:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82D8D2867EB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97972181B85;
-	Tue, 30 Apr 2024 17:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F4A1802DA;
+	Tue, 30 Apr 2024 17:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUajm13C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIYnCcZg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB91180A65;
-	Tue, 30 Apr 2024 17:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B631802CE;
+	Tue, 30 Apr 2024 17:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714498828; cv=none; b=tCHoUQ6EMZbzOa4/uftWXRz+kgK9WPvKTni/0JclUqX7rfvyg1KI4xMxdepSssCdz/jSXt2DnmsgZM+6enDJyKWfRcDk3rPqX/81xIp53Owba6Yz7qlJMY0gEjsgcMZ3Dk5TGqU7jY1CeObNZslUvdi5PwAGf7YgwUI1AGeKcbc=
+	t=1714499152; cv=none; b=fsWUVvY5ac2nVQoJj99rrmDyhop4eUxdmcqBhth+fnI61gKcDRZkJKmN2Ehv4acCgJLUAxOhwmYyzGwtr5a71a4N24eBZCtJv0yCkzMFAYGNQz6oJE6vYmKRz8bv/lSoj9TEacm/q/RJtHXOjBVC0S/s1WVqPSl4diqIR2YTols=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714498828; c=relaxed/simple;
-	bh=A3daid6gt27LF6h7IJdI3WMp1fTrzwT7facaYskyd5M=;
+	s=arc-20240116; t=1714499152; c=relaxed/simple;
+	bh=WLEQ3N5wFvW2Z5YFU/JwG9a/A9m5nkkvWveppFX+lUA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c2Pd65cgCftaM4hnRKNVtgQSvFeztMdfDd57BvcjkhO0EiPODZrSH4AanG8xj53jlOTyfwkUP/QUUO7eOONJBNB+xmM2/YMt6fj2DUyG7ke9DeWkyCXkIC/bUDoNcV1XU3n9PmfXPY3LVI+k4orLWfq2/D2MuKeeCxalnl84bbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUajm13C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6515C2BBFC;
-	Tue, 30 Apr 2024 17:40:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MGWxkngj8aLJyLOfXHQ3vwTOPWrAgNRwPN82VTygqZa84tYfVZvKEqXfMa3DGJRJ59bintMHzUj7NPX1V/+fZbdxTJ1IFe6fRHC2wc2Sbuk+1nk2JpI32y2XPiJQitiVlNrQ6DZw3r3QpaNnZxSz9lvShXaXUg3FX5l4id9hyFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qIYnCcZg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D50C2BBFC;
+	Tue, 30 Apr 2024 17:45:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714498827;
-	bh=A3daid6gt27LF6h7IJdI3WMp1fTrzwT7facaYskyd5M=;
+	s=k20201202; t=1714499151;
+	bh=WLEQ3N5wFvW2Z5YFU/JwG9a/A9m5nkkvWveppFX+lUA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jUajm13CSQwfI9glQZLtwzwDa8eF5mLGtIjRR2jLytylcPWrFVYQIADDDKT7kvq8X
-	 WBEaxcJSMBnjL+pKVp/+mjIlzDNglcyKvWneIhNrk/QnrYq1tLLrYz2OeZKCQNKJk7
-	 xBi0MYvSvCLdT+VZgwkqKPDsYMSzNbx+jSc/c5i3/E114uTMV4Qfv6gSGgDm5Pu3WW
-	 pqld++E0uFp5DtzpN+aSV6lCOgkyOKj2ZUsxDeuUM1xTPYZBBczIuNewOBpVWebvAA
-	 E2pFCNgKUdimYOZrxcVTmFiiVd++UltaDzXbRSW4PmHNVEYf+yodk7fj5syK5Jr4h9
-	 FpFpaPjibyk0Q==
-Date: Tue, 30 Apr 2024 18:40:24 +0100
+	b=qIYnCcZgBL6SbYhqhuHjI/ULrBsu2trohxUQAMwlBmbIubR5wSam/5s7WWWVETG2z
+	 MmFg+yzm68XFQE4Gisp50y+YiEjQhn8q6JR/Q267OIMUR6/EWvhOChe5BesBSF5muH
+	 gywcidWKeXG1nLmKXJRfdYFL14SCTRKyA7jKgOTQxZFr0AD4iGRRy2FImvEVfVNOBk
+	 0tGSVDznW+NDX3O18B3t7XeR56W777QDl2bljTfNLL7akVrj67zkAtO+tQuugfaWAG
+	 EPkTzycCM8R40y0VKoYrZeO97NJnbSloMY/2Ry9b6QbDVwiYKYU60UEzC3tbJ3fhby
+	 EuriAzNxJkFvw==
+Date: Tue, 30 Apr 2024 18:45:47 +0100
 From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] yamllint: Drop excluding quoted values with ',' from
- checks
-Message-ID: <20240430-unsnap-eskimo-444052f98b7d@spud>
-References: <20240426195438.2771968-1-robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: ads7846: Add hsync-gpios
+Message-ID: <20240430-balance-cider-ff632766ae98@spud>
+References: <20240430-gpio-leds-miscarm-v1-0-9c94d7711f6c@linaro.org>
+ <20240430-gpio-leds-miscarm-v1-2-9c94d7711f6c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,62 +64,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RPjVfbQMebod70Rs"
+	protocol="application/pgp-signature"; boundary="r3SrJfZiYCTF1xBf"
 Content-Disposition: inline
-In-Reply-To: <20240426195438.2771968-1-robh@kernel.org>
+In-Reply-To: <20240430-gpio-leds-miscarm-v1-2-9c94d7711f6c@linaro.org>
 
 
---RPjVfbQMebod70Rs
+--r3SrJfZiYCTF1xBf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 26, 2024 at 02:54:37PM -0500, Rob Herring (Arm) wrote:
-> From: Rob Herring <robh@kernel.org>
+On Tue, Apr 30, 2024 at 09:03:48AM +0200, Linus Walleij wrote:
+> The TI ADS7846 emits a horizontal sync signal that is usually
+> connected to a GPIO for polling. Add a binding for this.
 >=20
-> Strings with commas were excluded from checks because yamllint had false
-> positives for flow style maps and sequences which need quotes when
-> values contain commas. This issue has been fixed as of the 1.34 release,
-> so drop the work-around.
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-Hmm, is this a bit aggressive of an upgrade? I only checked Debian since
-it is what this machine uses, and it only seems to be shipping 1.33 in
-testing & unstable.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/.yamllint | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/.yamllint b/Documentation/=
-devicetree/bindings/.yamllint
-> index 358c88813937..fadbc6ad3c76 100644
-> --- a/Documentation/devicetree/bindings/.yamllint
-> +++ b/Documentation/devicetree/bindings/.yamllint
-> @@ -7,7 +7,7 @@ rules:
->    quoted-strings:
->      required: only-when-needed
->      extra-allowed:
-> -      - '[$^,[]'
-> +      - '[$^[]'
->        - '^/$'
->    line-length:
->      # 80 chars should be enough, but don't fail if a line is longer
-> --=20
-> 2.43.0
->=20
+Cheers,
+Conor.
 
---RPjVfbQMebod70Rs
+--r3SrJfZiYCTF1xBf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjEtCAAKCRB4tDGHoIJi
-0oFZAQD0JBzhXISrZJ4yB/rFSb4WQ9ET9q36W46JBQkBp3DuDwD9Fy+2z/xA/BqS
-5K9c2nPGOH0eVUV/wZAlbDEuwRbcOgk=
-=nE9f
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjEuSwAKCRB4tDGHoIJi
+0tPqAQCmTyw4ducaa0PWz+LC/g51/tToWzvQkPQIqyXLMDGZggD9H2VbzZrIINb4
+aX+Jw2Sz8VKUtXwd7oVmAO0X7hhfXAQ=
+=W5di
 -----END PGP SIGNATURE-----
 
---RPjVfbQMebod70Rs--
+--r3SrJfZiYCTF1xBf--
 
