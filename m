@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-63919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B8E8B6F90
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA1E8B6F96
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 126FCB219F5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:23:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7318EB20E02
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC33613D268;
-	Tue, 30 Apr 2024 10:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8B513D240;
+	Tue, 30 Apr 2024 10:23:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEB41419BC
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 10:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35ABB13BC3B
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 10:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714472569; cv=none; b=uHxVIh74zdbwht5O8eDvw8adrPlw6/9EnzE0aEcpM63tNb3eucLWiejqb1O5nVNxAzvTza8JaYGAFKGn23aEu9UAlIqjLAnfkzr7QKadEB+kgwFtN4vKlf8qX4JFLq1YXi0607v6bPIh/7/0RCUBtUa9bBOQ5sdBxIMmn0BWkBE=
+	t=1714472629; cv=none; b=XsQh81Kv+7UX9EvnSZQc9AU6p7JUHcP/Z7WX5p6GPdmt1D/7vWrRm6bQk21O9O4Uzs3uELjJfLvFXKWYObXyz8Vo+Lg3gqlROm1g3NFplpHpAEVmJ/J9Qvu8tAe/elHcoyeEi5gvkK5nQhiYDWT26qhXfLw3MGg76Qf6qHOhho4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714472569; c=relaxed/simple;
-	bh=krf2c1GkUobPI6NrzHHAPV2pd3geJngPoEGsQX9XiYg=;
+	s=arc-20240116; t=1714472629; c=relaxed/simple;
+	bh=eLH+METm0AsTFQ6Y4g1s5b5xJ/ljP9ZtdjDuXyD+Kmg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cal1xZLlaE5Bu1S9T9BCJUt7uMjB6V9j2WpzxoW3OyStDqQkNXbUwe8il4VjrXFVJZcBRr+uloOflqzRAxyo0cf3Es4rs4INNvwvWdy7S69ljVUzdmWwAJYhQ77U/V96uguT2iTFVWkv1uQUQ70SQCasSVQhTFu21nYtUlZz77g=
+	 Content-Type:Content-Disposition:In-Reply-To; b=hXh5hRifExQo07k67G3LURg+XQj9XPi+b3X+h1NrPzbWK9RbVT3h55bJOHk1zRn7MUfaVvm041J53R/452sMjG1lfx5Xa3R2Cqm5qGtR9NIwMv8ElBZ2NOzqx0vrzo37gLrCTfJh0bYo9FjH58tu/FjBO45n+ZUdHPTEmMD08J4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 74FE71480
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:23:14 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DC471480
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:24:14 -0700 (PDT)
 Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C02603F73F
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:22:47 -0700 (PDT)
-Date: Tue, 30 Apr 2024 11:22:29 +0100
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 68A613F73F
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:23:47 -0700 (PDT)
+Date: Tue, 30 Apr 2024 11:23:29 +0100
 From: Liviu Dudau <liviu.dudau@arm.com>
 To: Jean-Philippe Brucker <jean-philippe@linaro.org>
 Cc: will@kernel.org, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
@@ -42,10 +42,10 @@ Cc: will@kernel.org, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
 	nicolinc@nvidia.com, ketanp@nvidia.com, linux-pci@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: generic: Add ats-supported property
-Message-ID: <ZjDGZdkTDmlVcUGf@e110455-lin.cambridge.arm.com>
+Subject: Re: [PATCH 2/3] iommu/of: Support ats-supported device-tree property
+Message-ID: <ZjDGoT2kAmnilqVu@e110455-lin.cambridge.arm.com>
 References: <20240429113938.192706-2-jean-philippe@linaro.org>
- <20240429113938.192706-3-jean-philippe@linaro.org>
+ <20240429113938.192706-4-jean-philippe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,50 +55,49 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240429113938.192706-3-jean-philippe@linaro.org>
+In-Reply-To: <20240429113938.192706-4-jean-philippe@linaro.org>
 
-On Mon, Apr 29, 2024 at 12:39:37PM +0100, Jean-Philippe Brucker wrote:
-> Add a way for firmware to tell the OS that ATS is supported by the PCI
-> root complex. An endpoint with ATS enabled may send Translation Requests
-> and Translated Memory Requests, which look just like Normal Memory
-> Requests with a non-zero AT field. So a root controller that ignores the
-> AT field may simply forward the request to the IOMMU as a Normal Memory
-> Request, which could end badly. In any case, the endpoint will be
-> unusable.
-> 
-> The ats-supported property allows the OS to only enable ATS in endpoints
-> if the root controller can handle ATS requests. Only add the property to
-> pcie-host-ecam-generic for the moment. For non-generic root controllers,
-> availability of ATS can be inferred from the compatible string.
+On Mon, Apr 29, 2024 at 12:39:38PM +0100, Jean-Philippe Brucker wrote:
+> Device-tree declares whether a PCI root-complex supports ATS by setting
+> the "ats-supported" property. Copy this flag into device fwspec to let
+> IOMMU drivers quickly check if they can enable ATS for a device.
 > 
 > Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Tested-by: Ketan Patil <ketanp@nvidia.com>
 
 Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 
 > ---
-> From a while ago: https://lore.kernel.org/all/20200219222454.GA16221@bogus/
-> ---
->  Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  drivers/iommu/of_iommu.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> index d25423aa71674..94d4a4914a483 100644
-> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> @@ -110,6 +110,12 @@ properties:
->    iommu-map-mask: true
->    msi-parent: true
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index 3afe0b48a48db..082b94c2b3291 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -105,6 +105,14 @@ static int of_iommu_configure_device(struct device_node *master_np,
+>  		      of_iommu_configure_dev(master_np, dev);
+>  }
 >  
-> +  ats-supported:
-> +    description:
-> +      Indicates that a PCIe host controller supports ATS, and can handle Memory
-> +      Requests with Address Type (AT).
-> +    type: boolean
+> +static void of_pci_check_device_ats(struct device *dev, struct device_node *np)
+> +{
+> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
 > +
->  required:
->    - compatible
->    - reg
+> +	if (fwspec && of_property_read_bool(np, "ats-supported"))
+> +		fwspec->flags |= IOMMU_FWSPEC_PCI_RC_ATS;
+> +}
+> +
+>  /*
+>   * Returns:
+>   *  0 on success, an iommu was configured
+> @@ -147,6 +155,7 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
+>  		pci_request_acs();
+>  		err = pci_for_each_dma_alias(to_pci_dev(dev),
+>  					     of_pci_iommu_init, &info);
+> +		of_pci_check_device_ats(dev, master_np);
+>  	} else {
+>  		err = of_iommu_configure_device(master_np, dev, id);
+>  	}
 > -- 
 > 2.44.0
 > 
