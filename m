@@ -1,87 +1,85 @@
-Return-Path: <devicetree+bounces-63977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1CF38B753B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 14:02:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18AF58B757E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 14:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9092B22B9F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:02:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADAFC1F243E5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0794A13D615;
-	Tue, 30 Apr 2024 12:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4746713D630;
+	Tue, 30 Apr 2024 12:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PP/eEPCw"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="iq39YaZc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C82D13D267;
-	Tue, 30 Apr 2024 12:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0546168A9;
+	Tue, 30 Apr 2024 12:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714478538; cv=none; b=SyQjB4TcRX/WAMfW080fdcOgJ6zhO5S+ETSzzOZeEeq4ptWPyPH076ytBC+jv1VQ2LK9FL3dBJz0WGG0qA3SXaT0keTlDrczwe3sqVqAgJNIuJiRLyA9woBc23cRqFgJV/2kma7thjzb3sSpBrcAZUZ+EGf80dxhDRzXN0nl3vE=
+	t=1714479197; cv=none; b=jNsU8dVHEV0Y9bSiAp23yDLg1/eOKMu3y/0XtCaCz9XKH5qmxIiByldHitLR1IUabXWnN4woGgLlqCDWuXNZYBSXMDHTZLeLX7FcMUMIuioO6nuMaQS4ixMmhzDwJPjj6V7HSfjhMbqibSH/+15HLBkMsyRZCuwYbCW/gnOqUp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714478538; c=relaxed/simple;
-	bh=79UNfhj2pKS3elAdRYb+cWvVDbeO+ck0Bf+XlOj7T44=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c3JnXU5ynd86evalACIAKB0QPLb3rK5XhP5eyq28Prav1jFyQDNEUcsli18RnzN7ARuv6aDwiPiBUZnmzyglYPBFWmiV9OhqX45QeNsP4GedQOwpx+RLWBPSZQO2bKhPs0hCDOVk9MhbpZGkTqfNkAPDDpEHpEZXo01YccwN9g0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PP/eEPCw; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51ca95db667so5240485e87.0;
-        Tue, 30 Apr 2024 05:02:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714478536; x=1715083336; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zox/qmaglXo0HD/YN8voWJNp1dns8XrdzThPKzYbfYs=;
-        b=PP/eEPCwefkzMAxI3m34BUPZBGkPJX6Esd6qK0EyholXhUf0DGH0zdSNDrRi6hajB6
-         NcO8O9wPlhO9O27BtgHItwFrOAn1ybAIgXRza9KypD4gC7nwj/7o40lT08XcBOxJmp0j
-         vvxSnhhRzroJ3dvO9qTvXEQnTB6syElH1AB5obgj31cAoCBuT5mFShgw+SNVEnp21Niu
-         M/vf5iFluGKmRikvvt/mYwyCzb47CYoLPkqfNOYBsayfKYHW2LkOAxHUBJgT6rwpOdZ6
-         V7Z0R5mVGzhttM6fnoRcIiJz341bP5XeG3tAbPgPMvHQt7wdqlHKm+9I1DpcqXevxaRu
-         uk/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714478536; x=1715083336;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zox/qmaglXo0HD/YN8voWJNp1dns8XrdzThPKzYbfYs=;
-        b=S4t3W07aXMNDyscadSR7Tulf5yaY7LoQp6YEif4f/zmpGQEx1uG7e092WIsJ/X6A0s
-         V2Thgovbq8LkrlPZswXrNOVSaddIypANcgYzzifWwT4rW9+YtM7V+UcY4sgPrEdiWR3/
-         z848qdrbLC1oQig8UArC9RtoOMPnWwgU6QgjaqpZK746QxaNofwaqY9NXGK/CKo3/gh7
-         0KRvRgkNe62C0DigljNq9ziFNHM+e6CSdD3LzQkEZGUsOUK+mG/o6Xl571Rxk5cGJrqX
-         MLvSVJfyWVpyd+4okUjyrns0KGJtwtZjxjkzRmQzFT43aisKFNRL8BU2EtRX5U5GpJxn
-         subg==
-X-Forwarded-Encrypted: i=1; AJvYcCVkrZmOQZBz520hfFDItjCSqrIrpb61Angg3ELZHIp97NtoiI5ZC1p1irT9kr9o4fwBJEnlctkvkv5wmjTDwwqBn+PM/93twcGH9CpxuOLiBh7qJXRAk7G8Q5EmJmCRHZvo5ZGo47rpl7+xRpv4Ncvt/4UM96sgxvCWITuvjwq93p04RdRlihsz
-X-Gm-Message-State: AOJu0YyXHY3+nEracrL27qTFk3SNOiykWV0ax3s9+KK/gYun29glGlmH
-	Al83RJxXJTN8qFl9APuKuZrlKAyxy8p8zSc2WbmzvACUCy/aWzfw
-X-Google-Smtp-Source: AGHT+IEm3BEi0uEfxCxsS46zHZU+iHIkKBDuGFJu0IExFYzQtNGkHdUxuvrOiz7C2B6tfd+FYUZPSA==
-X-Received: by 2002:a05:6512:12cb:b0:51d:53fa:6530 with SMTP id p11-20020a05651212cb00b0051d53fa6530mr8597982lfg.28.1714478535490;
-        Tue, 30 Apr 2024 05:02:15 -0700 (PDT)
-Received: from fedora ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id v4-20020ac258e4000000b00516cba5b4cesm4479734lfo.46.2024.04.30.05.02.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 05:02:14 -0700 (PDT)
-Date: Tue, 30 Apr 2024 15:02:10 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: [PATCH v1 6/6] MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
-Message-ID: <e8d27104a7c673c87583557d2e40139f2908eb01.1714478142.git.mazziesaccount@gmail.com>
-References: <cover.1714478142.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1714479197; c=relaxed/simple;
+	bh=doLKeQy4TExi5QdhktMBd2IZ1vpBh5RzTkVFTj89drA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FP3I620ouV54SFdN7/+8Y7R9sH0BV1ASt0+0Fp9S54oXxijdqc5pV9438SR12HLYr3Liy/4onXF4+g8yRGLLkIdC/ciQNPZEtf3RMX7sBSPBZ+0Mjggptmxjg48ayogAs2mpQaDbPaIhAU7Uey7sTlUkJwFWLoQKWYItHP5thro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=iq39YaZc; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1714479194; x=1746015194;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=doLKeQy4TExi5QdhktMBd2IZ1vpBh5RzTkVFTj89drA=;
+  b=iq39YaZcFwUzIWCSDeHlLmn0X/Ix/zIRb8/fuiAAs9RwOCZj9+wGQuz4
+   J2ym+Gwg7KqBEV8+G5zuJJveIUr119qt42UFJ+MiMAoCzsbKkF2UP4Yfm
+   RtY1sLuqrGesrtF12EUYnpujltujJdIRIkd5093hGgHVkRv1coXdfyeMQ
+   4t8X4ng7DX6MOGecYtQVFD5UyXI2IV5gDUKIit2UAFsPQxenBcAYdUMmG
+   gXzWW20CEbVLWmSSD285KL60NmY1tTP5vhe+Ium46pYTcr8y4Ncaz5wqO
+   KyUKIKaC0pacn5d61uAELzTHUu7hjSD+ZJixOwSsrSthtIAUVeJBkA5YT
+   Q==;
+X-CSE-ConnectionGUID: uObasyPdQ16WgqrK/xhteQ==
+X-CSE-MsgGUID: onc3MT8LRSmj1H2yRHI51w==
+X-IronPort-AV: E=Sophos;i="6.07,242,1708412400"; 
+   d="asc'?scan'208";a="190594512"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Apr 2024 05:13:13 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 30 Apr 2024 05:12:53 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 30 Apr 2024 05:12:50 -0700
+Date: Tue, 30 Apr 2024 13:12:32 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+CC: Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel
+	<anup@brainfault.org>, Shuah Khan <shuah@kernel.org>, Atish Patra
+	<atishp@atishpatra.org>, <linux-doc@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <kvm@vger.kernel.org>,
+	<kvm-riscv@lists.infradead.org>, <linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH v4 02/11] riscv: add ISA extensions validation
+Message-ID: <20240430-gratuity-refinish-29abb136c958@wendy>
+References: <20240429150553.625165-1-cleger@rivosinc.com>
+ <20240429150553.625165-3-cleger@rivosinc.com>
+ <20240429-subtext-tabby-3a1532f058a5@spud>
+ <5d5febd5-d113-4e8c-9535-9e75acf23398@rivosinc.com>
+ <20240430-payable-famished-6711765d5ca4@wendy>
+ <dbcf0be9-eae6-4776-bc5b-c6fad58df9c3@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,80 +87,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DwNfJbWB549XTXxk"
+	protocol="application/pgp-signature"; boundary="8ucTtHBCJgf8Riu/"
 Content-Disposition: inline
-In-Reply-To: <cover.1714478142.git.mazziesaccount@gmail.com>
+In-Reply-To: <dbcf0be9-eae6-4776-bc5b-c6fad58df9c3@rivosinc.com>
 
-
---DwNfJbWB549XTXxk
-Content-Type: text/plain; charset=us-ascii
+--8ucTtHBCJgf8Riu/
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Add maintainer entries for ROHM BD96801 a.k.a 'scalable PMIC'
-drivers to be reviewed by ROHM people.
+On Tue, Apr 30, 2024 at 01:58:11PM +0200, Cl=E9ment L=E9ger wrote:
+> Yeah, see what you mean. I think we also need to define if we want to
+> expose all the ISA extensions in /proc/cpuinfo (ie no matter the config
+> of the kernel) or not. If so, additional validate() callback would make
+> sense. If we want to keep the full ISA string in /proc/info, then we
+> will need another way of doing so.
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+If extensions aren't usable, they shouldn't be in /proc/cpuinfo either
+as there's programs that parse that to figure out what they can use,
+possibly even only checking a single cpu and using that as gospel.
+That's why there's that per-hart-isa thing that was added by one of your
+colleagues last year.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aa3b947fb080..da68144d51ae 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19111,17 +19111,21 @@ F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/mfd/rohm-bd9576.c
-+F:	drivers/mfd/rohm-bd96801.c
- F:	drivers/regulator/bd71815-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
- F:	drivers/regulator/bd9576-regulator.c
-+F:	drivers/regulator/bd96801-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd9576_wdt.c
-+F:	drivers/watchdog/bd96801_wdt.c
- F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
- F:	include/linux/mfd/rohm-bd957x.h
-+F:	include/linux/mfd/rohm-bd96801.h
- F:	include/linux/mfd/rohm-generic.h
- F:	include/linux/mfd/rohm-shared.h
-=20
---=20
-2.44.0
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---DwNfJbWB549XTXxk
+--8ucTtHBCJgf8Riu/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmYw3cEACgkQeFA3/03a
-ocWPbggA1DOQEhF5jDsmIciK9UdDzwrr+OWE/aRtufuahdexUKICIldB1q4P2GcV
-O9S5ws0EikcsPbkE0j0qmSTF3FIj3KhAFSkq5YeyYxHYMxxLhGidoapGcN5mcGOw
-99FEDVsWsE28UE/0MrY/y0TSA6clVLw3bQaIqZVpmS5N1eMqZ4z0I/m5UC6vRfkH
-faobCFXzEvcxbqv6RJ7pRhCuVll8zmkAKIL5w0GRDuBEuPW9qq7mfsUD0px3YECy
-Bdv5r/uyx6sdS+UozfGvk0Mh5uaHlDFucSDV9diICB6P9v2LaHiR6cTyH73JpDBY
-TtD9vdoak3cZm6FCEzieay8Lg5Db2Q==
-=s5kO
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjDgMAAKCRB4tDGHoIJi
+0neYAQC5KDKxLwVlxUktx/6ZGxEKZ7t0/TmIWfR2P7wsLDIFPQD/YOo01ylZOQ90
+q2ipRVfjcUwY9iXnlr4411pWO+cJBAA=
+=u/5V
 -----END PGP SIGNATURE-----
 
---DwNfJbWB549XTXxk--
+--8ucTtHBCJgf8Riu/--
 
