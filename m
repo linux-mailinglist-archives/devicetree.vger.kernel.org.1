@@ -1,126 +1,200 @@
-Return-Path: <devicetree+bounces-64079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672428B7CCA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:27:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A8D8B7CDF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:30:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1776F28187F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:27:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7863FB2134C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557FC179203;
-	Tue, 30 Apr 2024 16:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B7117B506;
+	Tue, 30 Apr 2024 16:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="16Axr43u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VJlZ6dXp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B34176FB2
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 16:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A53B17B4F5;
+	Tue, 30 Apr 2024 16:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714494423; cv=none; b=HYCegGmWFQkiJPNkqguux0lyj55OqK7ydr0ziAuvFi9aADMS39EOQQOFg1s7DwR+hll6dywpQLcGnPmkx1iKUF5bFZ24t2U/hKS8gIATguijzDKLdtzDj1UQYG8HMH7Nz8jkIHJUlqLmFvIPrtlVtAVsxkiwiec2eOb1qNHtj/Y=
+	t=1714494600; cv=none; b=R9dEsjLRoFDeJ/w6LhmSQc4OQ701NR3JK+NcrcCKyAbp/eBYBAyeqvZaRTYqOupExfHSjP/EYkUJ7GErlfOnp3NP1BIxoXyJlCZAJUfQPhNbEcKuG3NIwroZaIGXpgzlwiXZb2nY00zQnb2cUtIqZH1/gFr3cofFu3ZvXzobzLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714494423; c=relaxed/simple;
-	bh=he8m3D8ERV3+ZM39Fi93bNF7eApo77thjOFwsQw02Jc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=GlXXsXLUmFI0KMrQotjENSYUmBSbiqAnKKlWTV0Y1z4QKe0Lk7xv5/ycgI1WbJn4SnEgYKXJXcYOfGvaz5kWjTRRoWdGqJlB0SbEHjnyv2Zlo9t6Xkod7pVS4jxNe+aS4i2sjcZBSNfrWDeHidZDBR5ZGCkVv6SUMQJps01SD70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=16Axr43u; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-43b0b09d012so10014331cf.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 09:27:01 -0700 (PDT)
+	s=arc-20240116; t=1714494600; c=relaxed/simple;
+	bh=uFNfjZwNfsMbmzivDYpvkjkobl1t9QD8f//b+VnosG4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d2diEpo3XgJVQ2/U0jhVYjoqiWaOC2Sj89DmL4LBoOptBi58C4Xh/NdHcfNXQyeNvQ/ppYLkm42jaxyJbVk47QPfPhpmN3MyiO/b5LnxqViolf6bBfxm4I1hSNYlsChdTI4S/YBRmQ3u11iBZkoh4Ye5vaDpYJ71T0agBCtFv9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VJlZ6dXp; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-41ba1ba55ffso25411375e9.1;
+        Tue, 30 Apr 2024 09:29:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1714494421; x=1715099221; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZC7KljP54si9I/OvR7p1QytBPv8oCv3FFtdLpBVVIEM=;
-        b=16Axr43uV02MEX/z8YUk5KFhdk3HpMRW5WxcgKJE6GPHIhsUwc6D4ZLIfewbLLDV/O
-         SbQNupHZd47oX2VD9H2bdrgwW4Ys96mNsbmb3XAm65O+/riJW9C/p2ilgYZJCCURjnd7
-         0juX4UWBW7NCnZzUG2opJW4IPUY/RcoBiOF81uTpj+QLb3Oc5ZDU1eGUYctrjcaK2K+7
-         wHkIb3vG/b9V5YhmexaH8VpJSCwkQC8zRU3qyfYeZ/iQqhwfI9ssoRO0NHuI1BxZ6cvF
-         BF/zxruXcjizgRzZYzkcpZxOwdaPvML5Ywo9lYjP+64aTfWAp54dVcsB1bhkXxdlv9kg
-         oOcA==
+        d=gmail.com; s=20230601; t=1714494597; x=1715099397; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qe410Y7Pw3RLVaHlgFyU3e1PRJtNfNOnZTPvy+S7FYM=;
+        b=VJlZ6dXpz8v7RFPUey1UPAbECo+Cvb8n0sT3bKOq90OqP8CSxoGfF0PdQXLvLd4Md8
+         8B6AX1U75jPfY+UeW60+Ry0fQ5Jblt986yehh5r72KRl2YN3tpFCgwgtsQ8LOplNLZyi
+         qoVAIa2o/5MWJ6fQ4s6/6hsWbQvuMe0nfFdDRV2I8GRnRLZuCh49M5eMQafCmBkrx/E4
+         wQ2SP54Le73ofeU7vF2onqTnQJO1dEBmzd7UtJODT5oPn9OrfDHDi/uRFNEHRFLXZS/a
+         jTrLxb9uMW/a2CUHpf4010aDXiSaxGmF1H4zEwHW2Jg64xx4+xeM0ittTK1+1P6Z9cLn
+         PmJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714494421; x=1715099221;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZC7KljP54si9I/OvR7p1QytBPv8oCv3FFtdLpBVVIEM=;
-        b=Zpjt9FooEywbhHa7jnqZbpInEpMs+0P4wesWmPzscltLKfDZklMK+wF3izTre/FyML
-         g0l7Ls57JSdDP6M983JAeMqA4OdNQlQt5YtoTsEqoHLyEQyXmhoFA9cG522MQOCBgee2
-         T6vXxdPD92bDhCy+j6LgNWLPcUF4yji5uZGIWLwo9EyoDkjnQ6MdeLIVM34/6np3R6Gg
-         Jx7UIK3F94LMSGgV2a+GOZlfVzXgjHY3YXg74h/ILrSCi+lSK6h1Sa9RBg84n9pvIYin
-         69mRKGvhx2YnsQu3au4lYbNVnR+jiE+yff2WCHqgTaeUs3qptUKVW4EOifGqxe1dEGmf
-         OFzA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbCJZd1HFLCVlihfxebuWdRGNX96evqsibNTIQEY0Prgum4jpZUiQjnK9zDkt5yFmYK0SKAlk95bEQUgVnGyHf8uLU17C1BOojHw==
-X-Gm-Message-State: AOJu0YyQD4ssNY8e62sYpx3XtNn2USblMqhI9TCaRVu2MBrfzPtjW121
-	94kPZuEhczDwmtG6Ho7q5rxcfajsgOllLHyGk8NaDeFccoDXb4nSMN8VD02QkZk=
-X-Google-Smtp-Source: AGHT+IH4i4XqXX+ome3EmdELyywbvX6TD934yBgrF6DZ4ror/4GM3Vhte1p+vjOEJwXaTd3AlXGjSg==
-X-Received: by 2002:a05:622a:491:b0:43b:a44:f83c with SMTP id p17-20020a05622a049100b0043b0a44f83cmr5414263qtx.56.1714494420540;
-        Tue, 30 Apr 2024 09:27:00 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:17:6448::7a9])
-        by smtp.gmail.com with ESMTPSA id o15-20020ac8428f000000b0042f04e421d2sm11469789qtl.24.2024.04.30.09.26.59
+        d=1e100.net; s=20230601; t=1714494597; x=1715099397;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qe410Y7Pw3RLVaHlgFyU3e1PRJtNfNOnZTPvy+S7FYM=;
+        b=XfD+phgmAegHcbHHXaB+xHM6SzbDNyhlrbZ20KGulwwe+JYZVcgp2HVh72RvmINrQK
+         3PKULS6PcCKnTAasUegFvy6POIC2FY0TH4Xk3FDjETBuJBPLWrMsiKwl6wH9+lLP4IkW
+         cUd6BkwzjUAB+yRYB1kQWIwIaMAqJrmL4ylCinZGBlAYJpAQOm9NxgVsHHJG4NAWanNa
+         CG/Lsk0hPKPA7Auf5llGttCYtMdHp9iQSz4sxle+dUOQOIvgGSt/gkm6AbP8wn9s6l+M
+         PXBvqjZbvxhdPCq/HKDI07f9VJfazyBIG4igFzgpPmc1zQesQywP1Ao7N9wdL9M34Qqo
+         6ftw==
+X-Forwarded-Encrypted: i=1; AJvYcCWUXDvVjz619aNYaYqD2kECC9LF2J2L1fUKmnRlUB4XjRISuisKo3r1orbm2pV/dFC0dBW7AuqIvP0fW3v4L0X6b0XHLQT6lJWaHSMLCivcjB5fb9u/Btyqe6I0/gPPLb21QJWj2+tfKs+tYAc5B3m5JDCrZXiS6eYiUZInT0y4k8Hvpg==
+X-Gm-Message-State: AOJu0Yx0t03nFS7vPWhUP0FJhXf3tLYJEOWcXvhIh8EZN/osymg3b7wv
+	72fdMpuPexdiUHIpWw0zBCgxmQTsXCid1z887+HJvedoocHIFiUb
+X-Google-Smtp-Source: AGHT+IF+1JSopzVdrR085zsb7AjrHP/1qo8VJhUCEuReCpMNFh9Co95SKbsN4Yd9Wxpe8oRj3cy5mg==
+X-Received: by 2002:a05:600c:4f91:b0:418:5ef3:4a04 with SMTP id n17-20020a05600c4f9100b004185ef34a04mr335696wmq.18.1714494596312;
+        Tue, 30 Apr 2024 09:29:56 -0700 (PDT)
+Received: from spiri.. ([2a02:2f08:a105:8300:da4d:6b2c:f166:22e6])
+        by smtp.gmail.com with ESMTPSA id h15-20020a05600c350f00b00418d68df226sm46505396wmq.0.2024.04.30.09.29.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 09:27:00 -0700 (PDT)
-Message-ID: <1ce1bcf60d8540f867b800816acecfff610ee948.camel@ndufresne.ca>
-Subject: Re: [PATCH v7 1/2] dt-bindings: media: rockchip-vpu: Add rk3588
- vpu121 compatible string
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
- mchehab@kernel.org,  robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de,  sebastian.reichel@collabora.com,
- sfr@canb.auug.org.au, sigmaris@gmail.com,  linkmauve@linkmauve.fr, Conor
- Dooley <conor.dooley@microchip.com>
-Date: Tue, 30 Apr 2024 12:26:58 -0400
-In-Reply-To: <59899cfa3d3245309ce6952ae1028dceae27b488.camel@ndufresne.ca>
-References: <20240430024002.708227-1-liujianfeng1994@gmail.com>
-	 <20240430024002.708227-2-liujianfeng1994@gmail.com>
-	 <59899cfa3d3245309ce6952ae1028dceae27b488.camel@ndufresne.ca>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual; keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        Tue, 30 Apr 2024 09:29:56 -0700 (PDT)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: michael.hennerich@analog.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: alexandru.tachici@analog.com,
+	lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	andy@kernel.org,
+	nuno.sa@analog.com,
+	marcelo.schmitt@analog.com,
+	bigunclemax@gmail.com,
+	dlechner@baylibre.com,
+	okan.sahin@analog.com,
+	fr0st61te@gmail.com,
+	alisa.roman@analog.com,
+	marcus.folkesson@gmail.com,
+	schnelle@linux.ibm.com,
+	liambeguin@gmail.com
+Subject: [PATCH v7 0/6] iio: adc: ad7192: Add AD7194 support
+Date: Tue, 30 Apr 2024 19:29:40 +0300
+Message-Id: <20240430162946.589423-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Sorry,
+Dear maintainers,
 
+Thank you all for the feedback!
 
-[...]
-> > +          - const: rockchip,rk3568-vpu
->=20
-> Sorry to come that late, but I'm noticing a big mistake here. You said yo=
-u are
-> enabling VDPU121, the JPEG decoder. But we don't have a JPEG decoder driv=
-er
-> mainline, is there some patches missing ?
->=20
-> Nicolas
+I am submitting the upgraded series of patches for the ad7192 driver.
 
-Ignore this part, just didn't read carefully. This is about getting H264, V=
-P8
-and MPEG2 out of these extra cores of course. I still would like to know ho=
-w we
-will express the grouping of these four cores, so a driver can know they ar=
-e
-identical G1 cores and not bound to be time sliced with an H1 core like the
-fifth one? I want to see a plan that will work and will not cause headache =
-for
-future work on fully utilizing the HW resources.
+Please consider applying in order.
 
-Nicolas
+Thank you!
+
+v6 -> v7
+  - patch1: move mutex lock and unlock to protect whole switch statement
+  - patch3: use NANO from units.h
+  - patch3: add comment
+  - patch3: use dev_err_probe
+  - patch4: new patch to add single-channel property
+  - patch5: modify maximum number of channels to include single-ended channels
+  - patch5: add single-channel property to bindings for single-ended channels
+  - patch5: modify example to include single-channel property
+  - patch5: modify channel pattern to "^channel@[0-9a-f]+$"
+  - patch5: modify required properties for channel node
+  - patch6: add function to validate ain channel
+  - patch6: remove function to parse one channel
+  - patch6: single-ended channels are now also configured in the devicetree
+  - patch6: modified some names to reflect the changes
+
+v5 -> v6
+  - protect ad7192_update_filter_freq_avail with lock
+  - better bindings description for AINCOM
+  - the pseudo-differential channels are no longer configured as differential
+    when aincom supply is not present in devicetree, in this case the offset for
+    the channels is set to 0
+  - because of the above change, there is no longer a need for multiple channel
+    options
+  - correct channels regex in bindings
+  - no need to move chip_info anymore
+  - change names to ad7194_parse_channel/s
+  - add else statement to highlight parse_channels effect
+
+v4 -> v5
+  - add aincom supply as discussed previously
+    https://lore.kernel.org/all/CAMknhBF5mAsN1c-194Qwa5oKmqKzef2khXnqA1cSdKpWHKWp0w@mail.gmail.com/#t
+  - ad7194 differential channels are now dynamically configured in the
+    devicetree
+
+v3 -> v4
+  - drop device properties patch, changes already applied to tree
+  - change bindings and driver such that for AD7194 there are 16
+    differential channels, by default set to AINx - AINCOM, which can be
+    configured in devicetree however the user likes
+  - corrected mistake regarding positive and negative channel macros:
+    subtract 1 from the number corresponding to AIN input
+
+v2 -> v3
+  - add precursor patch to simply functions to only pass
+    ad7192_state
+  - add patch to replace custom attribute
+  - bindings patch: correct use of allOf and some minor changes to
+    the ad7194 example
+  - add ad7194 patch:
+    - use "ad7192 and similar"
+    - ad7194 no longer needs attribute group
+    - use callback function in chip_info to parse channels
+    - move struct ad7192_chip_info
+    - change position of parse functions
+  - drop clock bindings patch
+
+v1 -> v2
+  - new commit with missing documentation for properties
+  - add constraint for channels in binding
+  - correct pattern for channels
+  - correct commit message by adding "()" to functions
+  - use in_range
+  - use preferred structure in Kconfig
+
+Kind regards,
+
+Alisa-Dariana Roman (6):
+  iio: adc: ad7192: Use standard attribute
+  dt-bindings: iio: adc: ad7192: Add aincom supply
+  iio: adc: ad7192: Add aincom supply
+  dt-bindings: iio: adc: Add single-channel property
+  dt-bindings: iio: adc: ad7192: Add AD7194 support
+  iio: adc: ad7192: Add AD7194 support
+
+ .../devicetree/bindings/iio/adc/adc.yaml      |   8 +
+ .../bindings/iio/adc/adi,ad7192.yaml          |  95 +++++++
+ drivers/iio/adc/Kconfig                       |  11 +-
+ drivers/iio/adc/ad7192.c                      | 245 ++++++++++++++----
+ 4 files changed, 309 insertions(+), 50 deletions(-)
+
+-- 
+2.34.1
+
 
