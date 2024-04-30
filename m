@@ -1,202 +1,159 @@
-Return-Path: <devicetree+bounces-63784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487418B67FA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 04:24:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E97538B6800
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 04:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2BE6285E2E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 02:24:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CE1B1C20C66
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 02:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B45C14F;
-	Tue, 30 Apr 2024 02:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2EAC13C;
+	Tue, 30 Apr 2024 02:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CNQLRAF0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ckAE7q91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7367FBE65;
-	Tue, 30 Apr 2024 02:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009EA8BF0;
+	Tue, 30 Apr 2024 02:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714443872; cv=none; b=pC8qjcrU+9lyW7pV96cFyxggdpimjoKVUl7ElnxEhHrJj6xOrceFUFY5BRy3I408oDpG4CF8S2AbK1qy8RShldBqThGnax6uSZCn9BIjHCaqcHV822mFvfUIwFfTNmGd4C+koWEbO/3SiPBXNttmIJkqyHceZ24G0JF5KSh8CZY=
+	t=1714444836; cv=none; b=KPUm4dImDTgK1Nze7K8gF3C8CKxp/EUn0UWLyfduaNRPuD2vahNfdffRRovlkj6wIlVajd1rMurIWIsobIz3dCcVpByUcArdVMRYnv1A3/g91mffbio58TXOPKTzp33HJhlFZwkhWshGvVfzEDnMjj0P/8n6T7MToEJyhCSrsFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714443872; c=relaxed/simple;
-	bh=pmwqwsEcd7U/qZHJ+Dc0ucUAvzmGVQhizHBuwyENqAg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nH7HHrTMxNcoyQUe2zukDb+pZo0YwEsptEKF/gytsIuH5hYYmJR6OseXS2w3xkwJ1plSFKlboztz31zVPMjdYcZrDpHhIQb+KSCidj46JsNK1A+imbUFfx6+raUJ3W1qwKNCX26oHbemy98AGZ3listw2HzZeynScW0rdNLxf9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CNQLRAF0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43TLbejC032540;
-	Tue, 30 Apr 2024 02:24:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=6lrEskrEUqVZMAmiL5Nha
-	YKYFsg09GatthIqjRXOHU4=; b=CNQLRAF0YB1UMllen2w3LoURtQQev/OIHvN4R
-	2vuL8oyASxSwu/qD0G0YBTFz10l5xFQT6yjvyfuTKGi6MXG8eBzvR4QFOv21q1Mp
-	+LpWeX7o2x7dU2tbAScxbRObVoXBp9g0m6J2KodafbVVoud2odERjYXgfGaJZj+I
-	LWUEjzkwXjB8Lgkdu413z6+WrEgD/HGit/+Pn27qYfDfAlORTcFXH8LevdKRZ21X
-	/WAm18pKibqYXZ7q1U7rUerr1RARUNi+4USg5LqZBI3Kud3mBeSjypc6kP9TG+A3
-	VVOTpkFNouq1pi/Nh+4AD8vTyhEz7rBHulVToKS1wFpmvTziQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xtd8kjyhn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 02:24:21 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43U2OJ84024694
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 02:24:19 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 29 Apr 2024 19:24:19 -0700
-Date: Mon, 29 Apr 2024 19:24:18 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-CC: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
-        ath10k <ath10k@lists.infradead.org>,
-        wireless
-	<linux-wireless@vger.kernel.org>,
-        DT <devicetree@vger.kernel.org>, MSM
-	<linux-arm-msm@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Pierre-Hugues Husson <phhusson@freebox.fr>,
-        "Arnaud
- Vrac" <avrac@freebox.fr>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Jami Kettunen <jamipkettunen@gmail.com>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Alexey Minnekhanov
-	<alexeymin@postmarketos.org>
-Subject: Re: [PATCH v3 2/3] wifi: ath10k: do not always wait for MSA_READY
- indicator
-Message-ID: <ZjBWUvdEI6aq4s6M@hu-bjorande-lv.qualcomm.com>
-References: <ebbda69c-63c1-4003-bf97-c3adf3ccb9e3@freebox.fr>
- <23540303-5816-45d5-a1af-5f09d645a73b@freebox.fr>
+	s=arc-20240116; t=1714444836; c=relaxed/simple;
+	bh=V+BIjUiYOCcEwN69Co+s6BOhtm9QYzyaY1P9x36j10g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CZiRi9Y1xhhIqaRU+SMglb8Ks177R9N7+Abs6bpreUrQ9c7gRnrf/M6srDh1HZPfqx5N40ymGwX2y8F8NHOrLZHk7xsEcZT/pxpY2BVuAmgUolBt5zKTjqMTsXvxBV1X+33rLsimJRST/wJqb+aFagAMyfUncgVqWPXe7T4rmhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ckAE7q91; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5ce07cf1e5dso3665319a12.2;
+        Mon, 29 Apr 2024 19:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714444834; x=1715049634; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sW8wTvn689x/3NF6m1acLAgYnG3AFU0fUmh1MuYjwa0=;
+        b=ckAE7q91IfzrN70d6LiK7org9WJGLKvjajs3CUkuJp2Cu9R9dvBzXfJpxQhkrBXEQg
+         +8vjvKaudu1CysIq9mQu9OfXzx7fCVnAi/ohh0YADMsn6d+OzPMhETN9kvGMM9hP6Kt6
+         dgoM4QgNrgA8+5sF4EdG21LvG4KWuhoIDVFAAXb7eTanybvVKkuHE8yRGfe6qZJbzOll
+         Oa6dPyUR0hWjiWum+BICU1b06BpBS73DY0xMOvu/fdC9iZNYdoI3BrLLg/kO0wwxMzzc
+         WrPvYoF29lMhsfbvfWTiJEwtaarXk6zvichhgiPjONis0N/+O54WlUNpuilS4qbjNdxp
+         eSJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714444834; x=1715049634;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sW8wTvn689x/3NF6m1acLAgYnG3AFU0fUmh1MuYjwa0=;
+        b=goEsG2gUBQz55j2vMBGsmmzgxLo9zaNtYG0qZbAEbQ86HZdh9/x4uKprbMGnzfY5g/
+         QlKjLTlu0DN0JzySUQt1EnHpmbeJmwaglUJoOfnkvLsl5ZJw1WmnzEOB87548FceV1le
+         66MEmZ+HZHtLAz4pd0TIGIL5iDuzZ3YtDvPz3mWmaV9lhUnaDnnL0JH5nfWzZ//hQRc5
+         xawCUft/uVgKsYuTRcKA81+3PyLpn+XiWN8MHBfWpE1qHbbboOqDiStWeOc7BcWleFiF
+         M2Cfb8U3vM7lYwnA3GwVZ3zh4930iEMEImptfz1tM6rXi3MsF0CHahZnHEXDIl5XOCf5
+         t2Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2EYI6QTxUAL4L/9nvaI37JeSvP9KXQMrDZM3SZz5jqHkctPeCUprnTvikjyDuYtDt/+EaDWUEGd3iPLqAQ8Xq/6iOIhJh75pQnMlqNp+Ls7c53i2q7LLX976K1lq4diNHHGCpzo4h2Q==
+X-Gm-Message-State: AOJu0YychkdOQQYaEtKaNTsti6Ujwi8gukUrKEznQm/fXr7sYAMizbmJ
+	WvaFGc4OEN3rRBbBr8wApVt2cvMTv6rblyKUrjF5V+9IYmYsfNw8STv1SEiH8SA=
+X-Google-Smtp-Source: AGHT+IGQ/U4aomSuAFTFW8a1DiWeeFc6BiBlthAINUNDuett4xlAUBHOZ+zlA9EnnefZijQ2Xnwbnw==
+X-Received: by 2002:a05:6a20:2a1e:b0:1a7:94ea:a9b4 with SMTP id e30-20020a056a202a1e00b001a794eaa9b4mr10919673pzh.32.1714444833844;
+        Mon, 29 Apr 2024 19:40:33 -0700 (PDT)
+Received: from toyko-2.5 ([45.32.55.39])
+        by smtp.gmail.com with ESMTPSA id x12-20020a170902ec8c00b001eac94472f6sm8400379plg.93.2024.04.29.19.40.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 19:40:33 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: ezequiel@vanguardiasur.com.ar,
+	p.zabel@pengutronix.de,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	sebastian.reichel@collabora.com,
+	liujianfeng1994@gmail.com,
+	sfr@canb.auug.org.au,
+	sigmaris@gmail.com,
+	nicolas@ndufresne.ca,
+	linkmauve@linkmauve.fr
+Subject: [PATCH v7 0/2] Add hantro g1 video decoder support for RK3588
+Date: Tue, 30 Apr 2024 10:40:00 +0800
+Message-Id: <20240430024002.708227-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <23540303-5816-45d5-a1af-5f09d645a73b@freebox.fr>
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HYKogTH30GHR9Si_6cD6fVVZkiUuS6SK
-X-Proofpoint-ORIG-GUID: HYKogTH30GHR9Si_6cD6fVVZkiUuS6SK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-29_22,2024-04-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- adultscore=0 spamscore=0 mlxscore=0 phishscore=0 suspectscore=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404300016
+Content-Transfer-Encoding: 8bit
 
-On Mon, Apr 29, 2024 at 04:06:29PM +0200, Marc Gonzalez wrote:
-> The ath10k driver waits for an "MSA_READY" indicator
-> to complete initialization. If the indicator is not
-> received, then the device remains unusable.
-> 
-> Several msm8998-based devices are affected by this issue.
-> Oddly, it seems safe to NOT wait for the indicator, and
-> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
-> 
-> fw_version 0x100204b2
-> fw_build_timestamp 2019-09-04 03:01
-> fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.1.0-01202-QCAHLSWMTPLZ-1.221523.2
-> 
-> Jeff Johnson wrote:
-> 
->   The feedback I received was "it might be ok to change all ath10k qmi
->   to skip waiting for msa_ready", and it was pointed out that ath11k
->   (and ath12k) do not wait for it.
-> 
->   However with so many deployed devices, "might be ok" isn't a strong
->   argument for changing the default behavior.
-> 
-> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+This is the v7 version of this series adding hantro g1 video decoder
+support for RK3588.
 
-As with patch 1, please address the s-o-b and accept my:
+RK3588 has Hantro G1 video decoder known as VDPU121 in TRM of RK3588 which
+is capable to decode MPEG2/H.264/VP8 up to 1920x1088. This vpu ip is also
+found in RK3568.
 
-Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+Test results from fluster can be found from thread of v3[1].
 
-Regards,
-Bjorn
+Changes in v7:
+ - Change compatible string from vdpu121 to vpu121 to match the real
+   hardware
+ - Change the devicetree node vdpu_mmu to vpu_mmu because this mmu is
+   also used by vepu121 jpeg encoder
+ - Link to v6: https://lore.kernel.org/all/20240418111002.83015-1-liujianfeng1994@gmail.com/
 
-> ---
->  drivers/net/wireless/ath/ath10k/qmi.c | 11 +++++++++++
->  drivers/net/wireless/ath/ath10k/qmi.h |  1 +
->  2 files changed, 12 insertions(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-> index 38e939f572a9e..f1f33af0170a0 100644
-> --- a/drivers/net/wireless/ath/ath10k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
-> @@ -1040,6 +1040,10 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
->  		switch (event->type) {
->  		case ATH10K_QMI_EVENT_SERVER_ARRIVE:
->  			ath10k_qmi_event_server_arrive(qmi);
-> +			if (qmi->no_msa_ready_indicator) {
-> +				ath10k_info(ar, "qmi not waiting for msa_ready indicator");
-> +				ath10k_qmi_event_msa_ready(qmi);
-> +			}
->  			break;
->  		case ATH10K_QMI_EVENT_SERVER_EXIT:
->  			ath10k_qmi_event_server_exit(qmi);
-> @@ -1048,6 +1052,10 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
->  			ath10k_qmi_event_fw_ready_ind(qmi);
->  			break;
->  		case ATH10K_QMI_EVENT_MSA_READY_IND:
-> +			if (qmi->no_msa_ready_indicator) {
-> +				ath10k_warn(ar, "qmi unexpected msa_ready indicator");
-> +				break;
-> +			}
->  			ath10k_qmi_event_msa_ready(qmi);
->  			break;
->  		default:
-> @@ -1077,6 +1085,9 @@ int ath10k_qmi_init(struct ath10k *ar, u32 msa_size)
->  	if (of_property_read_bool(dev->of_node, "qcom,msa-fixed-perm"))
->  		qmi->msa_fixed_perm = true;
->  
-> +	if (of_property_read_bool(dev->of_node, "qcom,no-msa-ready-indicator"))
-> +		qmi->no_msa_ready_indicator = true;
-> +
->  	ret = qmi_handle_init(&qmi->qmi_hdl,
->  			      WLFW_BDF_DOWNLOAD_REQ_MSG_V01_MAX_MSG_LEN,
->  			      &ath10k_qmi_ops, qmi_msg_handler);
-> diff --git a/drivers/net/wireless/ath/ath10k/qmi.h b/drivers/net/wireless/ath/ath10k/qmi.h
-> index 89464239fe96a..0816eb4e4a18a 100644
-> --- a/drivers/net/wireless/ath/ath10k/qmi.h
-> +++ b/drivers/net/wireless/ath/ath10k/qmi.h
-> @@ -107,6 +107,7 @@ struct ath10k_qmi {
->  	char fw_build_timestamp[MAX_TIMESTAMP_LEN + 1];
->  	struct ath10k_qmi_cal_data cal_data[MAX_NUM_CAL_V01];
->  	bool msa_fixed_perm;
-> +	bool no_msa_ready_indicator;
->  	enum ath10k_qmi_state state;
->  };
->  
-> -- 
-> 2.34.1
-> 
-> 
+Changes in v6:
+ - Apply dt-bindings first
+ - Collect missing commit tags of old versions
+ - Specify the base commit suggested by Diederik
+ - Link to v5: https://lore.kernel.org/all/20240413064608.788561-1-liujianfeng1994@gmail.com/
+
+Changes in v5:
+ - Add missing interrupt-names to devicetree node
+ - Rebase devicetree patch based on next-20240412
+ - Link to v4: https://lore.kernel.org/all/20240316071100.2419369-1-liujianfeng1994@gmail.com/
+
+Changes in v4:
+ - Change compatible string to rockchip,rk3588-vdpu121
+ - Link to v3: https://lore.kernel.org/all/20231231151112.3994194-1-liujianfeng1994@gmail.com/
+
+Changes in v3:
+ - Drop code in hantro_drv.c because hantro g1 vpu in rk3588 is compatible
+with the one in rk3568, only adding devicetree node should work.
+ - Change devicetree node name to video-codec@fdb50000 to match the reg
+address.
+ - Add dt-bindings rockchip,rk3588-vpu compatible with rockchip,rk3568-vpu
+ - Link to v2: https://lore.kernel.org/all/20231228131617.3411561-1-liujianfeng1994@gmail.com
+
+Changes in v2:
+- Fix alphabetical order in patch1 and patch3
+- Sort device tree node by bus-address
+- Drop rk3588_vpu_variant fron v1 because that is exactly the same as rk3568_vpu_variant
+- Link to v1: https://lore.kernel.org/all/20231227173911.3295410-1-liujianfeng1994@gmail.com
+
+[1]https://lore.kernel.org/all/20240118080602.9028-1-liujianfeng1994@gmail.com/
+
+Jianfeng Liu (2):
+  dt-bindings: media: rockchip-vpu: Add rk3588 vpu121 compatible string
+  arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
+
+ .../bindings/media/rockchip-vpu.yaml          |  3 +++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 21 +++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+
+
+base-commit: b0a2c79c6f3590b74742cbbc76687014d47972d8
+--
+2.34.1
+
 
