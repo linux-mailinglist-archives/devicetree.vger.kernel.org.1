@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-63854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830CE8B6BFA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:37:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620478B6C0A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:44:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2280E1F220A3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:37:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CCAB28282F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D25C3AC16;
-	Tue, 30 Apr 2024 07:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1457A3B2AD;
+	Tue, 30 Apr 2024 07:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CBVKNDlR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E0LZr87B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E395211C;
-	Tue, 30 Apr 2024 07:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06903AC34;
+	Tue, 30 Apr 2024 07:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714462657; cv=none; b=HRw9KKR6BtjMocFQyEFh0N6RCENp/gtGcBKx7/1UjojbSw2fhyikVleQLBT0X6iMEBzpiPAgCkBWmEtanxjSSkt3t6CQuYWOpeh2P8DeUerSLgYwK2ItD+bFg8b/V+2Acbc0nETEhNf157gyE3mjhPprgn5uDE0SfCK6fhJe5cA=
+	t=1714463095; cv=none; b=WbA3qWGPJRmeTIieHxrZIywzCyCOTdPzEU6RcB/l0yiTxqyMUqrlFsXZGZCtHufafR0vwp+iqKUHcbZcygDOWsb2YcyLrI9AA36aVROPtMyaVz2zedKl/4aUkZCVMDmemOeB9g37d7ZmmzHVC9j0Y53sJ1uH7cyJQbtRma2pms8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714462657; c=relaxed/simple;
-	bh=krPJeBCTuBz1aWldMqdexquKCcUfoDQsCJfqOk4ydOU=;
+	s=arc-20240116; t=1714463095; c=relaxed/simple;
+	bh=gVpn6Oq0px7xMoPOAjyOKT/3ALa3+kijseAZtRBRZnU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X+H9pkPc0GWJcwOvM8TZK6HdkapvJY8v/g0VU8nj+T4WJznZprVc8grePnCe5kT9m7JO/agQZXLuxzW3PhVxv9xvmeLCNDnN5xx0kRyhnc09Fp87U+/3AoXa7EfkA5azJV2y9KlK5thLooqZV7andec4TJt5iuOLpht8BGtdpOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CBVKNDlR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5DD5C2BBFC;
-	Tue, 30 Apr 2024 07:37:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=b/x2pYPoS+/z291vC5g8F9MNXK7LNhJczFXjLDygyXM2wUrOWhiHNzzYvSZVFo7yb1rCmtyiCGFDcttf2iDWHnHoKE0iDdhNpRRVfEgJfRZQMe5B914Gk4S7pw/hL02jSYsf9zQHOyT/YNSYrDMw1U1tj0UAc+M0UnDSMT9Vlvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E0LZr87B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75889C2BBFC;
+	Tue, 30 Apr 2024 07:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714462656;
-	bh=krPJeBCTuBz1aWldMqdexquKCcUfoDQsCJfqOk4ydOU=;
+	s=k20201202; t=1714463094;
+	bh=gVpn6Oq0px7xMoPOAjyOKT/3ALa3+kijseAZtRBRZnU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CBVKNDlRT/H9+nTjaIvp/4Kfs7GOGznhW+JsLqWqtnYWCZuqyw/F5HTmmPouDNeOC
-	 mceznabUuXWFBooVSyOUVijqNDBOsDg7nkN1kP5AuFyMX3G6VzqpUlkrrCITjvi3/u
-	 fPC/LDN/xwvkhFT6bmAFX5b+mmpIzhZdvP1TmMiNIcomcF0Sj+G+7Wkt7k2CW79rYj
-	 JFZy+4pizK2VDS1txnXi3j/La0ILi0Qyg+sWXMB7YwPMa/so2mG4H0X9K/jY+fPR7w
-	 mLDOXHJX1EcQKdMmOnQM+/GHNo3iI6u76mq1PBe6Samwrb2M9zy9DNnqqJi5Me09fb
-	 ZJMWk41z/lgfw==
-Message-ID: <c722d3d6-2acb-4669-b541-eebaf71b3a04@kernel.org>
-Date: Tue, 30 Apr 2024 09:37:30 +0200
+	b=E0LZr87B775FSTUWF+HnGDPd/+rAAZNkJuPOrEBQVPbrnqLiJAiNEnaijDMDUg7nO
+	 UHiHb0RCxqM5N21sW/k5QrhwAsSjbTGb2j3UKhmsElq1TM9JLht9WiuVG6h/DQI9BT
+	 bmoegEJLhr62sLlNVJ2w+lT5Rikb0OQJ7Cqi7bcMCH71TIV4lp2vJ0DYTeBWGj9COU
+	 VsU7CUyamQg6cNjTsBNMPX23q6s35Ej+yT6PfHePNhq3++yNMPm0dB6IuHkCJekzzb
+	 dYiXFaGD0GjI3KL569KIyzfsrW54ceqjFmd3LfsyZTPUYTJmAJ+426p8ES6OczSpvo
+	 iWr9u/7/tyWyg==
+Message-ID: <d9a37c7c-7b18-4077-9e7c-f2f999429d7a@kernel.org>
+Date: Tue, 30 Apr 2024 09:44:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 17/17] fsi: scom: Update compatible string to match
- documentation
-To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Convert lp873x.txt to
+ json-schema
+To: Nathan Morrisson <nmorrisson@phytec.com>, lee@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com,
+ vigneshr@ti.com, kristo@kernel.org, j-keerthy@ti.com
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
- linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, andi.shyti@kernel.org
-References: <20240429210131.373487-1-eajames@linux.ibm.com>
- <20240429210131.373487-18-eajames@linux.ibm.com>
+ linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de,
+ w.egorov@phytec.de
+References: <20240429195830.4027250-1-nmorrisson@phytec.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,33 +104,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240429210131.373487-18-eajames@linux.ibm.com>
+In-Reply-To: <20240429195830.4027250-1-nmorrisson@phytec.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/04/2024 23:01, Eddie James wrote:
-> Use p9-scom instead of fsi2pib.
-
-Why? Commits must *always* say why you are doing it. What is easy to see.
-
+On 29/04/2024 21:58, Nathan Morrisson wrote:
+> Convert the lp873x binding to DT schema format. The gpio-controller
+> and #gpio-cells properties were removed from required because using
+> the device as a GPIO controller is optional.
 > 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  drivers/fsi/fsi-scom.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/fsi/fsi-scom.c b/drivers/fsi/fsi-scom.c
-> index 61dbda9dbe2b..18ca213fdc7e 100644
-> --- a/drivers/fsi/fsi-scom.c
-> +++ b/drivers/fsi/fsi-scom.c
-> @@ -589,7 +589,7 @@ static int scom_remove(struct device *dev)
->  }
->  
->  static const struct of_device_id scom_of_ids[] = {
-> -	{ .compatible = "ibm,fsi2pib" },
-> +	{ .compatible = "ibm,p9-scom" },
+> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
 
-This breaks all users without any explanation in the commit!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
