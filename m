@@ -1,121 +1,102 @@
-Return-Path: <devicetree+bounces-63889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4505F8B6D69
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:53:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66148B6D71
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:54:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76C2A1C20C40
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 08:53:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D1F3B209AC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 08:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE193127B50;
-	Tue, 30 Apr 2024 08:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7911129E64;
+	Tue, 30 Apr 2024 08:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FecDbuGS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZZrBJ0sW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABD8127B45;
-	Tue, 30 Apr 2024 08:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3734127E02;
+	Tue, 30 Apr 2024 08:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714467061; cv=none; b=edFEwNmbuKZ9n1LJJF8qbv6LYMdAwmBoUbIarw2nBF9kGW4hL4Bvv3GgP2vzqFCBadgSEdswAiqs5AUSDNB9vD92ZNTsR12ChLh6G/RXb6qM+BKce0vuW4D7g0IFYL8HoaP4quqaIk348zlfor47qfQHhP4SljvAk6CrLKnLHRE=
+	t=1714467095; cv=none; b=XPkAbtr0kP+lSVmejX/mkzYt+AIWpIivTxPx0OyOVS6J/wxWaCfKcB6r4YQp9AhXILVebT6E5YIB/gYr+KiK8ffF0RLCKIioxdEpkpioWmH/UwJtcV+UvH6OL2kRSIMfWvRteOMzFHsM3JhTZWIM6ysUoO8rATHqjkbdmQAXKsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714467061; c=relaxed/simple;
-	bh=IypIK3kBxWNpgYpv9gUQHPuPuf3nErj2l8FfJU/iaaw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qJoGYv7EfYmYE+V142TI1p8vMU/yX7hXdMCiGhDuEca2CFEphgk67qQwBJ1IgMftmpQcAHN2TmcJODB8S2BvyWNrTdfK5mip8E1dXXzOiQ88WZQBqYxz1uVihHaq1DcFjOBuzq7cPaddglW+OAU11yPC7PLuZT1BVd+fD7NLCeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FecDbuGS; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43U8ooKV100185;
-	Tue, 30 Apr 2024 03:50:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714467050;
-	bh=vbAq38zwd5R+EsdOCXYpzBxmXWGqdKAmPOWIfsVG70U=;
-	h=From:To:CC:Subject:Date;
-	b=FecDbuGS/TgdNaDRfwanjqE/476CWxyDdW4PpFOS5Ozjd4iaSZEm/ct60AOqgT3XW
-	 TT2rJkI1F/ciuegZQg2aLY/JVg14qYb7/HBezhBFVwMJFrnY0jk5wXFeQ/SPj3FKcZ
-	 jC8H4mXacAZ9iJmUQBOKz/3c/1QGPdAXWTj0dgK0=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43U8ooQA064115
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Apr 2024 03:50:50 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- Apr 2024 03:50:50 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 Apr 2024 03:50:50 -0500
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43U8on0d059618;
-	Tue, 30 Apr 2024 03:50:50 -0500
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        <s-vadapalli@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Chintan Vankar <c-vankar@ti.com>
-Subject: [PATCH v3] arm64: dts: ti: k3-am62x-sk-common: Add bootph-all property in phy_gmii_sel node
-Date: Tue, 30 Apr 2024 14:20:48 +0530
-Message-ID: <20240430085048.3143665-1-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1714467095; c=relaxed/simple;
+	bh=zvLIiyW+JffmN42SewRlbiKGu/JyJ34KrEDyBdS2XdE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Fvx5s8loqHbva+78IHgw/fW+uAOnN7FdeSf52RKCYz+Ge915liNBjsmkmhAordd4L2tEcHP2P8XZXj4BwHOJYBQzjc7SkFLmi3A+IVzkvvl8fV4HYbvcomn+MPPOLS2VlRomUstChjxt+/U2hfdQX0r0/VaRoAXK7yzJjfG7yJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZZrBJ0sW; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3F86920007;
+	Tue, 30 Apr 2024 08:51:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1714467092;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zZ33nCDPzcz3GbzldkrJNXG20ehE1+Mdo499qe1NhRM=;
+	b=ZZrBJ0sWMMQ641ZoxefcTdJs+U9C/L15J6uz2Ou0JHNB2IHOu+Zdq65d9u2RUMu1AWGyF1
+	PUDbN6BFrZTJNAhfK+dMOpAghh9uRVZc97yPj+TPRuCllkdkGJlyuDgn36QBGc+gUIGLyS
+	VIf/rU14jKRvvaM38y+apb4YxuDYUw/9Q5XJFKQeFpUMRtb0koQaCV7UwRuyUlT2z4Q4Vv
+	/lDcJbyyg+js3YfU+Tzq1M7DCjgK1ijQr0JeWAUhAxjR9VPjLIZ0xJ5v6aB39zifkJfuq9
+	O4Ytlahza2BZlzoP3Bb2o3L5XRco9nIU34pcH7WwalxcCmWVqBCdP0jjqZTfCg==
+Date: Tue, 30 Apr 2024 10:51:30 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Doug Anderson <dianders@chromium.org>, Chen-Yu Tsai
+ <wenst@chromium.org>, Matt Coster <Matt.Coster@imgtec.com>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Maxime Chevallier
+ <maxime.chevallier@bootlin.com>, Rob Herring <robh@kernel.org>, Conor
+ Dooley <conor@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ linux-kernel@vger.kernel.org
+Subject: Re: Hotplug hardware with (un)loadable DT overlays - unconference
+ meeting notes
+Message-ID: <20240430105130.11725e1e@bootlin.com>
+In-Reply-To: <20240426115141.201f257a@booty>
+References: <20240426115141.201f257a@booty>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-GND-Sasl: herve.codina@bootlin.com
 
-Add missing bootph-all property for CPSW MAC's PHY node
-phy_gmii_sel.
+Hi,
 
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
----
+On Fri, 26 Apr 2024 11:51:41 +0200
+Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
 
-This patch is based on linux-next tagged next-20240430.
+...
 
-Link to v2:
-https://lore.kernel.org/r/20240429061600.2723904-1-c-vankar@ti.com/
+> One use case is for the LAN966x, a classic SoC that can be however be
+> started in "endpoint mode", i.e. with the CPU cores deactivated and a
+> PCI endpoint that allows an external CPU to access all the peripherals
+> over PCIe. In practice the whole SoC would be used as a peripheral chip
+> providing lots of devices for another SoC where the OS runs. This use
+> case has been described by Rob Herring and Lizhi Hou at LPC 2023 [4][5].
+> 
 
-Changes from v2 to v3:
-- Removed "bootph-all" property from "k3-am625-sk.dts" and added it
-  to "k3-am62x-sk-common.dtsi" since we need the same functionality
-  for "SK-AM62-LP" board.
+FYI, I sent upstream the first iteration of the series adding minimal
+support the LAN966x PCI device driver.
+  https://lore.kernel.org/lkml/20240430083730.134918-1-herve.codina@bootlin.com/
 
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+This driver binds on the LAN996x PCI VID/PID, and when probed, loads a DT
+overlay to instantiates all internal devices re-using all existing drivers
+with no change.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 3c45782ab2b7..96378b19c419 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -128,6 +128,10 @@ hdmi_connector_in: endpoint {
- 	};
- };
- 
-+&phy_gmii_sel {
-+	bootph-all;
-+};
-+
- &main_pmx0 {
- 	/* First pad number is ALW package and second is AMC package */
- 	main_uart0_pins_default: main-uart0-default-pins {
--- 
-2.34.1
-
+Best regards,
+Hervé
 
