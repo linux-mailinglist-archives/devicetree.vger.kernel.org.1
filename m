@@ -1,158 +1,104 @@
-Return-Path: <devicetree+bounces-64155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7A48B82AB
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 00:28:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AE38B82E1
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 01:07:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 331DE1F23761
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 22:28:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E32AB22AB7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 23:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008F11BF6DC;
-	Tue, 30 Apr 2024 22:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB191A0B05;
+	Tue, 30 Apr 2024 23:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Sbv0F32G"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="oBDqUP6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1A5129E72;
-	Tue, 30 Apr 2024 22:28:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A5786126;
+	Tue, 30 Apr 2024 23:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714516084; cv=none; b=MtwlwYNaTkaw4s1PmC3XEdjNUiAB2Ty4X9BkARNN/EQ4mluLNfDo2TWRYUhAbt0CHwStlmNOXLQUmqWlwh9QX2DjDUGYY0KE7TXYH43SmO3A+1qIcePmWqwil+JSKHR2+vFgWEPyb0+V31C4Xzlc3AEbMup/7bwfKgV5CA41MlM=
+	t=1714518445; cv=none; b=n3RNKKAGqe2GBnq7ub5ZJlZUWmliVSJKdRN9IGxi3iw4lNsgfMktqD8ftlHgAFloiL3uppnl7RIudtExpo5ruXxr7KdjhnI4b/sWlv7FNi5TQQP6pBaIcqActrKWv+NdnqfxD1B9MNK9/1D+A0hDkZOZmdQWOrYNQNXMYaq3Sxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714516084; c=relaxed/simple;
-	bh=nCJ0j4T5hcnbSsOaAdtHnGckQLLph1fsGdcwW2w7Eh8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hRn5aufRPn/zFXNa6+RVqV4ItliGUMNluAdRVD4Seth5xuQhWV9jEqxVjW2gcv2MasHzhCzMWfuQ4a+BYNHr88gl+hQh+XiEXWHyfwVH3PoN3yhJYuFHisQ3oUyki0kgCQOPz6aMHorOwuUL1Puqd7c5iz5pWn1I0gw7XI2ByUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Sbv0F32G; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Yo2VxZsGCYZGIZ1iS7RdDXRNSVG5Zc5WRZQlm2xWZTE=; b=Sbv0F32G1WJNqNmKwl+BjKKsjQ
-	taUGuGreIgQM9ex/bGom+ZIufrHq9cCJaxAesAVLWX6DGD1wGTkwDhgAmAoCWT6hA3ydUCtoBuJQH
-	f8dcr4IJ4crgFIuFqGHD+53AX8Dv851y/23Biae8UyIlQ2LI7Xup/FPxZpb/Fk8DS72UIqo+SZlUP
-	6rLCVSsNDYrFqJeOIv7y4FZumdk3EMzJK/kRiyTh7pmRhIVy7q8EhKpolwlAzyyIDZfJx7K/oTQs4
-	mSUw/kdbzh9CEmZou3JB7gYXwv56kT03R/2iQu09ICUUGoxOceImRJe2YCQzTbAH4A++ODwbT/jhC
-	wsyWSVYQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58144)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1s1vwn-0005Zf-0r;
-	Tue, 30 Apr 2024 23:27:37 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1s1vwh-00027o-L9; Tue, 30 Apr 2024 23:27:31 +0100
-Date: Tue, 30 Apr 2024 23:27:31 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Landen Chao <Landen.Chao@mediatek.com>, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net v2] net: dsa: mt7530: fix impossible MDIO address and
- issue warning
-Message-ID: <ZjFwU24kReNJHKdY@shell.armlinux.org.uk>
-References: <11f5f127d0350e72569c36f9060b6e642dfaddbb.1714514208.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1714518445; c=relaxed/simple;
+	bh=UiF7/ghBykYpbovESaEST/D8hgIqcnXCpRmmKBl/9Sk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=H1NX609JmP2dUN9+CoubS5ow3GP8w62RSeBfDh5A6R1BUKWH1K/uSpRZJZxGRCfAgp7wTs03S9uVavSorobNkrcQYCPMyuN/TsQt3Ns93Y0xzRB65J2hKo4d3oN/bsEamENXS//zImzWobh6D/pZ61/Yp5e1SB1AlFHdlR/P1MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=oBDqUP6v; arc=none smtp.client-ip=192.19.144.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id F1774C0000E7;
+	Tue, 30 Apr 2024 16:07:16 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com F1774C0000E7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1714518437;
+	bh=UiF7/ghBykYpbovESaEST/D8hgIqcnXCpRmmKBl/9Sk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=oBDqUP6vITqnxbcMmr3MolIwZ1dWIOYCJGNidwL4h5os2h8NmxNo3Cmt55c/lEUR5
+	 wrg11/ojF+Tf+Ao0J3ZqIs+7MRrNc62UfcIbDrV6wCJjKnNBRDDEeav5QFqTjpJdJL
+	 DIWomqwRhcRGTlK3h7kvS9M0QOdvh/1LtKMwL6/Q=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 1B16618041CAC4;
+	Tue, 30 Apr 2024 16:07:15 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 0/2] ARM: dts: BCM5301X: Fix PCIe controller warnings
+Date: Tue, 30 Apr 2024 16:07:12 -0700
+Message-Id: <20240430230714.3923578-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <11f5f127d0350e72569c36f9060b6e642dfaddbb.1714514208.git.daniel@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Apr 30, 2024 at 11:01:17PM +0100, Daniel Golle wrote:
-> +	/* Only MDIO bus address 7, 15, 23 and 31 are valid options */
-> +	if (~(mdiodev->addr & 0x7) & 0x7) {
+Hi Rafal,
 
-So the common thing about the three addresses you mention are that they
-all have the least significant three bits set. So I'd suggest to spell
-that out in the comment:
+Here is a counter proposal to your patch series:
 
-	/* Only MDIO bus addresses 7, 15, 23, and 31 are valid options,
-	 * which all have the least significant three bits set. Check
-	 * for this.
-	 */
+https://lore.kernel.org/all/20240423110238.32148-1-zajec5@gmail.com/
 
-The test here is also not obvious, so I would suggest:
+which is a little bit smaller in terms of lines changed. Note that with
+either my patches or yours, we still have the following warnings show
+up:
 
-	if ((mdiodev->addr & 7) != 7) {
+arch/arm/boot/dts/broadcom/bcm4709-netgear-r8000.dts:133.15-145.4:
+Warning (pci_device_reg): /axi@18000000/pcie@18012000/bridge@0,0,0: PCI
+unit address format error, expected "0,0"
+arch/arm/boot/dts/broadcom/bcm4709-netgear-r8000.dts:152.15-191.4:
+Warning (pci_device_reg): /axi@18000000/pcie@18013000/bridge@1,0,0: PCI
+unit address format error, expected "0,0"
 
-which is much easier to read and ties up with the above comment.
+Thanks!
 
-> +		/* If the address in DT must be wrong, make a good guess about
-> +		 * the most likely intention, and issue a warning.
-> +		 */
-> +		int correct_addr = ((((mdiodev->addr - 7) & ~0x7) % 0x20) + 7) & 0x1f;
+Florian Fainelli (1):
+  ARM: dts: BCM5301X: Relocate PCIe nodes to top-level
 
-Huh? Again, not obvious what this is doing. So, I threw this into a C
-program that wraps the thing in a for() loop from 0..31 to see what it
-produces.
+Rafał Miłecki (1):
+  ARM: dts: BCM5301X: Describe PCIe controllers fully
 
-addr range	result
-0-6		31
-7-14		7
-15-22		15
-23-30		23
-31		31
-
-Is it really sane to be suggesting "31" for values 0-6 ?
-
-> +
-> +		dev_warn(&mdiodev->dev, FW_WARN
-> +			 "impossible switch MDIO address in device tree: %d, assuming %d\n",
-> +			 mdiodev->addr, correct_addr);
-> +		mdiodev->addr = correct_addr;
-
-Sorry, but no. You must not change the mdiodev address. The address
-member is used to index arrays in the MDIO bus, and changing it will
-end up corrupting those arrays.
-
-For example, when a MDIO device is registered:
-
-	mdiodev->bus->mdio_map[mdiodev->addr] = mdiodev;
-
-when it is unregistered:
-
-        if (mdiodev->bus->mdio_map[mdiodev->addr] != mdiodev)
-                return -EINVAL;
-
-will fail, and a dangling pointer will be left at the original
-address. Moreover, the reset control (if any) will not be put.
-
-If the MDIO device address is wrong, then you can either fail or
-maybe create a new mdio device with the correct address - but the
-latter may get quite icky from a coding point of view. You would
-have to tear down this other device when the original incorrect
-one is unbound from the driver.
+ arch/arm/boot/dts/broadcom/bcm-ns.dtsi | 97 +++++++++++++++-----------
+ 1 file changed, 58 insertions(+), 39 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.34.1
+
 
