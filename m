@@ -1,152 +1,106 @@
-Return-Path: <devicetree+bounces-63787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2010F8B6806
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 04:41:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9819C8B6811
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 04:53:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 526ED1C2223E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 02:41:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA1491C21D78
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 02:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B9DD50F;
-	Tue, 30 Apr 2024 02:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE50D517;
+	Tue, 30 Apr 2024 02:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJg4OugD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s2Ve/dkz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4D4D529;
-	Tue, 30 Apr 2024 02:41:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0165D2EE;
+	Tue, 30 Apr 2024 02:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714444871; cv=none; b=j5TqzLrhMc8UOmv8gf1fSM7hgjXvLQKC0mO1t0b+UkcV3OWGUDx1MfCn/D92D/Wo7sXPcgJvdeQe0IYeNC3MVRNq8nYRJOBT91kl17XIKvAn3hjRaN9Dzy5XeOg437RqnldHONttJH+FBs4VxdcobP+71kN5HiXGn4t+biIeOLE=
+	t=1714445601; cv=none; b=Nc3k2plgG6ypbMdM+eFjV6nOM7VfO2H4H0PWQhYRRec3hi2MdsWM+C475nsRkB8OkHZTk/SaW94J5KXcQrKRpP8SBzBeHrSQyETb+xnjwd1cSNcnjZGaDgZMP4nHVwCB36qbU89ksW0pDzq+8dULoSBaj5xNXIVHpwzhX3c5qn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714444871; c=relaxed/simple;
-	bh=xfXA+XYI4fplRPgwcNuRoQF8Y24bz3B6Mi80kAQVs5Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gja77Jd81NLW1rSsab4fNgHGtXEvbOk8FFr/gY/6ay1hXd6HoA/VIIP66jTur7jC7WOSqtrj5ssGrvkpIF2yYjP5xIPECy7INCdP+oEVqUwlmf1Zd1mGNCdvQcAhHhQkv6QD7Jz8hBYDCvlULu3iyqC3sfhUrWCCAxMwRMtKybg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FJg4OugD; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e51398cc4eso46663645ad.2;
-        Mon, 29 Apr 2024 19:41:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714444869; x=1715049669; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eso4ARCm72QdAVSfiatUmFnG0dBC92pYQJkl3ko9Fxc=;
-        b=FJg4OugDzxhPLZWJA0ArRqHPpuQg5V4N8B+CZLZdoT0kELWTAwoFllSVxEPbmmEIBK
-         4TbAk9PKi1RCRDHJnJlioKaAWr38QQG1Ede4FGP2yYAkOkqY9PEn9QY9BwCTeEHL7snp
-         6lqOr/basfSKt64qduQTM/3hcda1hBcdtSxPBHtjl7aQp3RrHzfEh92SScQTOBRb03Q3
-         UxHUZDj/b3AfMzzbh5TWZzVRE3RgkQTi26LYyjiiBWcEyseDrBb+YhTJhfL/PUmdaxKl
-         3FgesCT0qpaf9WuzpAXqp09Rnx12lwS1xJUOeEQFapEL0YiPUIVukLerylwskEqr1qUZ
-         Wt7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714444869; x=1715049669;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Eso4ARCm72QdAVSfiatUmFnG0dBC92pYQJkl3ko9Fxc=;
-        b=D0X/WDFBl/y5azONkbIS15cNZ5TKaHUIRSXcBQwaH97WzUdqrHSpJGWGV5gwg0L6qX
-         OPyS39BqbGy92OV6JoMcCQaJnGXU8dsMcPmjPpww1DpAhsxtDM/BtHhB78hWR0ACMrnW
-         xam+rZpRTdiUgfzNXLRkAWCBnu/rJyYQVzrWp03Oq+S8Wbli7iI+NloShCkQhN3vCeGJ
-         asN1B5MD+0fYCX5d/+Pjcmpli5tGnEEXorL4JGIoBn6txGu7Mk2cWXWmYQJXvy3ZvxnO
-         M5Q4aXpDEaeMta/hpSsGbMHdRu/LDYGULz1Pkvotu5/fF7AVl89t07ZSs2O21GjSHKqK
-         OQNA==
-X-Forwarded-Encrypted: i=1; AJvYcCXEyvNpvsMfL0K6dPUITG7bNp0EkVZhoAVCGQ7jiuW6dMAGURhbwafOTIehqZf7zbedsKgcpcbZ2B+A5O7XTDEDG2Z9oVBAwMvSdHuh9Fu6nUBM0XyUClbdzNtD0UmdS3GAV3VzDiMiLw==
-X-Gm-Message-State: AOJu0YwLpA0g83rwpbhZ6o6P6CcLbFpJUVWJLdT7WpfdQyAPlAa+Yap1
-	+E4D104pTUEuahWfQwHzCCOKVATIxENV8zLspSV/DQHhOxh5ZzWuw2DrUrNZa6M=
-X-Google-Smtp-Source: AGHT+IFcX43HEpbg0J5y68Nceakg6ZWP+vZGNSqE6JNf4XEeKnHfyk4h8JG/DM/CW+eONVEaJV2mcQ==
-X-Received: by 2002:a17:902:f648:b0:1eb:7ba:a4c3 with SMTP id m8-20020a170902f64800b001eb07baa4c3mr16274996plg.48.1714444868887;
-        Mon, 29 Apr 2024 19:41:08 -0700 (PDT)
-Received: from toyko-2.5 ([45.32.55.39])
-        by smtp.gmail.com with ESMTPSA id x12-20020a170902ec8c00b001eac94472f6sm8400379plg.93.2024.04.29.19.40.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Apr 2024 19:41:08 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: ezequiel@vanguardiasur.com.ar,
-	p.zabel@pengutronix.de,
-	mchehab@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	sebastian.reichel@collabora.com,
-	liujianfeng1994@gmail.com,
-	sfr@canb.auug.org.au,
-	sigmaris@gmail.com,
-	nicolas@ndufresne.ca,
-	linkmauve@linkmauve.fr
-Subject: [PATCH v7 2/2] arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
-Date: Tue, 30 Apr 2024 10:40:02 +0800
-Message-Id: <20240430024002.708227-3-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240430024002.708227-1-liujianfeng1994@gmail.com>
-References: <20240430024002.708227-1-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1714445601; c=relaxed/simple;
+	bh=ZbwdDaroTdo1GXJdazAaqQwp1j9mDh2nFYYMy1dOxZY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jdb/GUvAMg33ZGXb2zeJcGgKaRVDPe0c0RBiCgIAdttu2OcRgausJtDg8gmNqQ0RQNa/HXG2Evp1U3EkxSuOvIMy/RPSoXAPcX8GbTdIkQtdy21D8Y2V9GrzKLejgolOriIjhmATA1n7DN+NOYkXbGaT9pY3O/ko7sOuvRrjJvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s2Ve/dkz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13B59C116B1;
+	Tue, 30 Apr 2024 02:53:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714445600;
+	bh=ZbwdDaroTdo1GXJdazAaqQwp1j9mDh2nFYYMy1dOxZY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s2Ve/dkzHaZytY/7ZZi+2NJbXD1Qee6O59sRdhbrzt3zuAQ+AESp1ngA4+yvM1aA9
+	 zJ/0FjGDr5IgGfo3qXJ6C42rZMKYl5UTpaJPpXxuO7iOfZoFP+oiqRJ0AHu/RmjizF
+	 mqJSg8omO2zIPo4DLIUU9Qt7M1OFeJEaNfDN4GXlivAtNdfWE24mHue9oFm8IGhFJi
+	 ZQIj167hQfOdkVlaVLxpF73ZapXS1kDtU3OX2FJ2mUQ5Tzrr3U3ASTkB90bgtIrXRt
+	 FFIusSV0zUHIGy2dY7saGMrnzF+tRivpjkX9bDFTZC+niSqw70vRhn6kJbbzXbMPd2
+	 Y8jlW/fpZapAw==
+Date: Tue, 30 Apr 2024 11:53:17 +0900
+From: Mark Brown <broonie@kernel.org>
+To: "zoie.lin" <zoie.lin@mediatek.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 1/3] misc: eeprom: at24: add optional dovdd-supply
+Message-ID: <ZjBdHdVUW9Q67nAC@finisterre.sirena.org.uk>
+References: <20240426102949.23057-1-zoie.lin@mediatek.com>
+ <20240426102949.23057-2-zoie.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ZIh+FzWuFnJR7Nbu"
+Content-Disposition: inline
+In-Reply-To: <20240426102949.23057-2-zoie.lin@mediatek.com>
+X-Cookie: lisp, v.:
 
-Enable Hantro G1 video decoder in RK3588's devicetree.
 
-Tested with FFmpeg v4l2_request code taken from [1]
-with MPEG2, H.264 and VP8 samples.
+--ZIh+FzWuFnJR7Nbu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
+On Fri, Apr 26, 2024 at 06:29:47PM +0800, zoie.lin wrote:
+> From: Zoie Lin <zoie.lin@mediatek.com>
+>=20
+> Incorporate support for the dovdd regulator, which supplies an
+> additional power source to the EEPROM.
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Hugh Cole-Baker <sigmaris@gmail.com>
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+It would be helpful if you could supply some additional information
+about what this supply is, why we can't tell if it's supposed to be
+there or not and so on.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index b0a59ec51..da10df7d6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -1135,6 +1135,27 @@ power-domain@RK3588_PD_SDMMC {
- 		};
- 	};
+--ZIh+FzWuFnJR7Nbu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-+	vpu: video-codec@fdb50000 {
-+		compatible = "rockchip,rk3588-vpu121", "rockchip,rk3568-vpu";
-+		reg = <0x0 0xfdb50000 0x0 0x800>;
-+		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "vdpu";
-+		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+		clock-names = "aclk", "hclk";
-+		iommus = <&vpu_mmu>;
-+		power-domains = <&power RK3588_PD_VDPU>;
-+	};
-+
-+	vpu_mmu: iommu@fdb50800 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb50800 0x0 0x40>;
-+		interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clock-names = "aclk", "iface";
-+		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		#iommu-cells = <0>;
-+	};
-+
- 	av1d: video-codec@fdc70000 {
- 		compatible = "rockchip,rk3588-av1-vpu";
- 		reg = <0x0 0xfdc70000 0x0 0x800>;
---
-2.34.1
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYwXRcACgkQJNaLcl1U
+h9BeJgf+KQ2qScakBicm2lPxwrL7sUMR4q3n03ty2aFii2oaAjfWmx3n7bfbHQB3
+rMAz8iACiz36eaQsR0IYeuKcsSXCjgp8QQhqXU5nj3+8cvAn7G2gSYn9+EODx3Mr
+n3ZCoDJxzcnuwpjuEKHuo7tFlD+kPRwmuc3z8TEowNosa5KpMUna/qvTk0z4ETIP
+AERQFdjEyZVDV7EXjPAMBLt24M33PKPljlE0E/8jpOHCYsWg4zaWXae3zyvCOFoy
+vD3NFlQ4eb+ITlUkRuaYwmFAAsvjiOwyM31/CeeIA3any2ybfk6S0e2yB8sGzQe7
+HuMkGpgeXsfHaA3g0KANZ3jndjKC4A==
+=Oyc6
+-----END PGP SIGNATURE-----
+
+--ZIh+FzWuFnJR7Nbu--
 
