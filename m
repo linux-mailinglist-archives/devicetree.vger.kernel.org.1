@@ -1,216 +1,343 @@
-Return-Path: <devicetree+bounces-63769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F788B66F0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 02:41:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 827158B670A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 02:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18334282C64
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 00:41:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A68EE1C22CEF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 00:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE8BA48;
-	Tue, 30 Apr 2024 00:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ugJOHsXo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5FF10E4;
+	Tue, 30 Apr 2024 00:50:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2135.outbound.protection.partner.outlook.cn [139.219.17.135])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125586AA7
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 00:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714437693; cv=none; b=O3c+tWuB+oRN4mKsyMdiUfj60bO0fGjJiXswBi07Mgq05SHb2a2tRiVnyjlZ9BpbNLQegLL7fYV8CERSGPmecgTEmkkFtILQqwNMLOu+uDcqctudhD84SOXSVZi4fw2hs8jbUVnqG72+4H53m+d/5bKy8F9P4VyPFWjJZQ7Rk2k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714437693; c=relaxed/simple;
-	bh=pk2Cj2RSwpAkddbu5ayAVxm8bKVUiyDImLMqV4vDwjg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ukGBq7kNNm8/4bAWoxslYDn5Tkl8QTlo2ltOg0igQV1M9nrhLrt6rB6Ni4foQx9dh5C4ECQHoJwv1PxEaTHOe4xhYfGIDzagvMpOIw4SGsJ8pEsGDUULm7IWaQBDerlbK7b5nU5WZc0I/M5xQ5XjfgSP89IkPduORT7/PPhVWZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ugJOHsXo; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so3900461276.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 17:41:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714437691; x=1715042491; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ewGjGVlVj/i6nUR8WSz8shyu8O8i8b1LnxiquSQu0Bc=;
-        b=ugJOHsXoMJR6TutipWWdvr8l2eJVlQtrvgYxaP0G6pR1Fvc6eOObAoWxgfSWjsFjl3
-         n3/LuXNERxpHXpGQtk7K/oTWF63gFePQHv9GQ7yb4VkNXwkJ9S3ymJxIKiU2tWDUIBYe
-         oSBRu/CdcWig8IvrCIrDI/xsKJs9eJJD9fojB5u6+ORQj9tjXvBn55ujm/5o3paSKr3f
-         ODVrOOf0eMoCJwmeG8RqwCgjfAICIjX7pGHpZByzxVuJszJ6bTPW3lVZ4+yOrQwF2jVj
-         eiz7iXdbKP+iFaOGRhQ6tppkWB6E7ekWEEABnKK1kHu+lTpLwnWI8oGxRYWyDM5AJbWO
-         H/TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714437691; x=1715042491;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ewGjGVlVj/i6nUR8WSz8shyu8O8i8b1LnxiquSQu0Bc=;
-        b=qJ/yzTisDZjyDNbHTNBTP5twX+g++zalqcuzJBNVU0tHzRJYXsGn39mfrdJKmQUF7I
-         0oMq2nJsxB/KVlVb85Zac6srefkDf58c1FQaxFsXWoT0O1/S5VX6mUozqfySpmNNyE75
-         xT42CKMFTTtlgX69UtRamlFHWNP1d8URvW2dQMOQxKYFHnZUToqfnrOeH8FGbIM/W7OB
-         a4/068AYV8f2a4dmzhIGIlfGgLB+X4mBH7ioTMDKkUpOG7QcwvUCFssCQwCbdQJn5CwA
-         QAhLjJJrB8irQn3a1YSnLqxgMVvzK4M9pUkuXym05BsfFgKa3sq+YLqy984eU/p6Y3U7
-         l0Ag==
-X-Forwarded-Encrypted: i=1; AJvYcCUuY95sIBqV28KFyBGKm/mMPFnyJZZvmXOyBH6MLbJxX7YwTP24sDv4gmBUarjKCj2zVbgAvLSFqHOyh3MY3+GXreQyD18MeFPw7w==
-X-Gm-Message-State: AOJu0Yz9UFSVwWzMQMY9YTHUylBhTa0yIYn/7iUn5mvTJHC4lbaWK8P/
-	bk95tJtMqymlcC3r4ZaaKlKuAunf5iKDewRHyLyovCGysLgBSWrbG9YW4+1lQ9qccQjt2LBMm71
-	oWPh2ltP4UKarTs7FXuB0hzhiWS9nzcMblK0BnA==
-X-Google-Smtp-Source: AGHT+IEwXWe4Z8CC1z4BRoDOt3xCr6XQiUXw2opzMRSv7RCMNxwJyE8N8t/S4Ivrg5f5f0R7smdIfn5jUi86Jmgafv8=
-X-Received: by 2002:a25:ab4b:0:b0:de5:56c4:acc3 with SMTP id
- u69-20020a25ab4b000000b00de556c4acc3mr914713ybi.16.1714437690982; Mon, 29 Apr
- 2024 17:41:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E57C920EB;
+	Tue, 30 Apr 2024 00:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.135
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714438224; cv=fail; b=Hjen28MBq9XADDACkpvbjZTKQu5j2Lh4oXVhK+W4rcRszj9qR5p+XSMtk199RK0HooWjJ1qCGcJmDUMG/ZFThZT8KazIXn/Kb8zFiYrBuxuLY1zRug5eNR88Z0neA4qKG+3KPK8yS/Xq67UFNS1Utb4UOMaJNUY3i8fC7DqcihY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714438224; c=relaxed/simple;
+	bh=+zJ5guYFlvEynRENXInKQxX+dIM9Uo32M90pOYNeGus=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=lftt7DWqWKvy2gLjfkT2neIFd/qZiAPKRjBOP4wnz6WENwuzsQBmnvdkl9gdsKdIWZRJ/mt8pJaIUVyY8P4LRCvdriv7zBT5/TT7dwJ84DsSM0VpPyMccn+Ib0nFu6X/+m40CIqKEJjNLEy7ZMPUQrS0NwJnegU0HkLK2AT0lTU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R+uKWj+42xfQWPB3a7pqI+EB3tA/FmdHQ00ywkchVKxl+na3Dhc+s7WfrzTV/GFke6rkjYv9MXqnjUpIxr/8HgmVM9xKwVmlLisUoXo5vxGG6tOsG1APM6rroartD9w6tz/bhBiAZnF/YJolm/Lnx4AAH3/kpGpnnTsanjS+mQL6m5mg+WwkMtZRZehn3XPRjuYWA7a89r8og7G/z415NN5Myw/bwyBC4mj57/tQBhXf0PmkBYmEYWNqFS2MTzHlCloK7Jyu/eA2cDOldl2noEWQyVvuFYYlR/5xwUfonMps9YkAcm8xKn9RDKB68wD95DPm08/iHwIKhyV4xpEjMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LeTILt1v8L0hlm0IowNWIINS/QOqgp6YbCFQjj2thnM=;
+ b=RX+3WWze22LTNZeYGhliPovsUOy1lNiNB4eAYqBvY7CWQJOmrPRjDdRREQ2eP40mkjRYsIr4kEIRU3p3Oi69b14l3u4g691ZewaulXrZMRN4mtVPy8gQ9qlPMBuPBJYrZpfvA0yeyhP7rs4JoxhV8mcbtlAhdIP4/XICWnzqytKGuQcLoVvMzmqz2BN7Lv/fFJkeyVlkj8XvFvsThaxp8KVxgn6h3dxFgpiak1f66oHlrH+D6jInEjYLZrPZHYoGFwhFHEcly/URHoXvO9B8S8TzHuxz4gkRj1iPThR18RkRGtYUWKQPyww465cVf4uswIBm6kQeKkQkUjI97v6YPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:18::12) by BJXPR01MB0551.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:16::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 30 Apr
+ 2024 00:50:10 +0000
+Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
+ ([fe80::3e54:57b5:e3e3:7f09]) by
+ BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn ([fe80::3e54:57b5:e3e3:7f09%6])
+ with mapi id 15.20.7472.044; Tue, 30 Apr 2024 00:50:10 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Conor Dooley
+	<conor@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Thomas
+ Gleixner <tglx@linutronix.de>, Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v16 15/22] PCI: microchip: Add event irqchip field to host
+ port and add PLDA irqchip
+Thread-Topic: [PATCH v16 15/22] PCI: microchip: Add event irqchip field to
+ host port and add PLDA irqchip
+Thread-Index: AQHagPD3nzNr5zgHs0qxspgsCqWuULGALtGg
+Date: Tue, 30 Apr 2024 00:50:10 +0000
+Message-ID:
+ <BJXPR01MB0855B876D2B73F33E8A39460E61AA@BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn>
+References: <20240328091835.14797-1-minda.chen@starfivetech.com>
+ <20240328091835.14797-16-minda.chen@starfivetech.com>
+In-Reply-To: <20240328091835.14797-16-minda.chen@starfivetech.com>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BJXPR01MB0855:EE_|BJXPR01MB0551:EE_
+x-ms-office365-filtering-correlation-id: 39c4636d-a2ee-4fb6-87b1-08dc68af7cc1
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ IC7L7ENSk60VN2JMKLAI2JRW2H3MCzA6UmTmIgW06HgGTRXVOLLKAOe0bySSRkAKv5RyOgGMYE3nGCQlpuZmIsvxe3eLlt4Q22CpYq20imm5j7+UqlgI2dI1nEET0q/Xc6s5znjBV3XyJEb0Xq7qE7/CldGDt6pwk4cpjAif8dET1JeQ3LtrMFlsYkMe96jKS2mH0qJXu4cG7cy5sdqvoeyzBCjuuNw56zB5vu7Jx2CLPgpWpIfZHxGUbcy1czztRvWKJrSNH+/NFOoZ7LSDR2Ux/qUf7ShVU4TvBKbt2ii7HT5i0LMTozQQEdEBLbJn8YGkdw9Z55ZIHnrUxQ4ey9/qBhZ+Mu7dIdGdN7UUzI2oObAOQpATgo4sqPkmy0PoQq6j74PhBUMPvQSuznbJbdshdo6GhEjE+WQ+PC+JXsBPc2Cf3LQNrE9/veFbf41i4gOXpmyupqGV0xp+c6kdoGJ0D543LCo5RRcBbvRQmUUxatfg81yhjlcW70WBq2xcxLraH/agf95OBE2J25IBnpm07/Fn3F0A2Ku0/EzcIhlMTZ33+5M37EPIOkoncXuHXbSOEZwxzAT6l96cyI9SiaWIDRXAsNjRXITBMifLF5sJg4pwLtW/a6PA8e4TWM7X
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(1800799015)(7416005)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?mtNFwSY906Vas59N6vWZa3tUgw9CknMkR2ojmcM6IoT433ibu67XGfjVSe?=
+ =?iso-8859-2?Q?ieJXCTl2gKBzvdG3R1aJadqCUwswxZ+iK4R8hpgofTxcnIT+0j+4XkI4W+?=
+ =?iso-8859-2?Q?jSEWRgMEwCfhjBVXqbzakaCqPxKBQ6ZYGkbwZAfaK+PyoN0xSFHQjyCFt+?=
+ =?iso-8859-2?Q?StbVrpbiRfoeV4sjncuU1hRJBWot4SFfm+pDOMY9MTWnZQQNeYV8aD9bOa?=
+ =?iso-8859-2?Q?IRK9Z0W+j7vRRZtXqH2Gs/5lDcsxV2qiZzSKLdZItk0N81fOuMmuvIuP0K?=
+ =?iso-8859-2?Q?69aB3eYSQ2x/9yVxEbJaQtLCSfI2GAfRLiuIHhRtLVSYIYj9QYpHZik8hu?=
+ =?iso-8859-2?Q?SRaZfufCR75mfJ6Ovc5/LentoTz3PPhthmLcM0L3gTZH0zBbU8kqJcMHrQ?=
+ =?iso-8859-2?Q?Y46X/Y8xWSBf93Pf/7+BV8BY3rgf6S/hTc3aqGV1qQMUuebM2mY0anZPor?=
+ =?iso-8859-2?Q?a/EWclZSraWbH3Lm00Q9yCeKkFf6jNxxvffwFY2YhuKucQUukCG8UB2Lzj?=
+ =?iso-8859-2?Q?sdSug3dj26fd8vVjxGLz85BuyAsvACLGtH14DsDVPN+Tk/p0P9wPuh3Rc9?=
+ =?iso-8859-2?Q?lvBJTfdx4UkJXkG5Jn6ZsJyaLJbWiQPxGAGC6E2STsQn3J88OlNbND6hqs?=
+ =?iso-8859-2?Q?h/Z0tv8hC1Tn8sUYgEVT2NJ5ocARF1YETepk8JiRprA8thp58LOw3MMIhL?=
+ =?iso-8859-2?Q?+d1fxRlv88IC/oOnHZ57UEKFTJ1DFyIrlsmsaR0lFYBWqZr++wysCrbvXt?=
+ =?iso-8859-2?Q?D1o9icE7vWFeyKj02ottxPhqESIyu1kSzaoqTM47B3OfTuPA0aFV7iBmvE?=
+ =?iso-8859-2?Q?spZHIq5Z1Z/pRKUlK5VK2lJllHXm1ZIAyEaCkrJ3/F4S2nXc9LkUptrAEP?=
+ =?iso-8859-2?Q?ym5jRhQZpqdytBHzT+/UkucD6bDNCJXpihExGaNziNWOMDiasFkGnv3xon?=
+ =?iso-8859-2?Q?ZP7wcuT4WHB84e5YhRsN4Mm+z6wMtg/u/lstxiX/4c89z52niVvp1Avmvg?=
+ =?iso-8859-2?Q?2zpdAXb2MBJ8L5+h3/CIbA33sTlqYDhNlimQZjMXIIQlu8GSwAtf5RYOQx?=
+ =?iso-8859-2?Q?V1znLs6uTgVW7TIeTRyifKuVypMSgaRPnY1nIC5Fy1j7gZCfF4vn+/pUFZ?=
+ =?iso-8859-2?Q?se0DIhBCT3w4sjQ5h8+8DGlQ5MBw2e8FRHPCvxcpQ9kjzbOiXAezdZcNKn?=
+ =?iso-8859-2?Q?+YGbBEsLZcq8rOM8frfSJ2H32vDoNSqgV7W0KZILUirWYp8u1Qz4IJFQ+I?=
+ =?iso-8859-2?Q?7HGCVNI7WlWphwfW6irqTbPrPsazROrPeqZYM8AHx/CaNgsgBR1rjYZv+X?=
+ =?iso-8859-2?Q?dcYXedpsZM0fhL6BPHhELnAS1miX2RKuDund8s35tR80PFIAm4oqhy20l1?=
+ =?iso-8859-2?Q?rwqAKuR51lwsabRjNcAABawyuR6kramQXUvM/Z2iwKUyk3cq7jGy2+GJx8?=
+ =?iso-8859-2?Q?s5uLpp7dpZOZjRXH/Ks6aOkOARVnLlFLZsG2lyZWLVBI3DfgkCmxsTALay?=
+ =?iso-8859-2?Q?f2ih8bW/gysxi0OZitTLU4gnTFJC4AGa2FkIoOfJMcoI4nZQ4QTF2hzOJc?=
+ =?iso-8859-2?Q?HTx6uOkru5mhWvCPLDcRvqBJ+7sM6pKb17fyM8swXDQ4+bKqIv1juXg8+1?=
+ =?iso-8859-2?Q?0IcCUFj1HyhEJB+7SE50ZG2EL8lQ5x8H/R?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1713523152.git.robin.murphy@arm.com> <bebea331c1d688b34d9862eefd5ede47503961b8.1713523152.git.robin.murphy@arm.com>
- <Zi_LV28TR-P-PzXi@eriador.lumag.spb.ru> <2662a5ba-3115-4fe5-9cec-bff71f703a82@arm.com>
-In-Reply-To: <2662a5ba-3115-4fe5-9cec-bff71f703a82@arm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 30 Apr 2024 03:41:19 +0300
-Message-ID: <CAA8EJprxLvYEP8+ggk8fw--kHaK+_QoYan4st2wWpPicHa6_+w@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>, Vineet Gupta <vgupta@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
-	Dexuan Cui <decui@microsoft.com>, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
-	David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>, 
-	Niklas Schnelle <schnelle@linux.ibm.com>, Matthew Rosato <mjrosato@linux.ibm.com>, 
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	Jason Gunthorpe <jgg@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-
-On Tue, 30 Apr 2024 at 01:26, Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2024-04-29 5:31 pm, Dmitry Baryshkov wrote:
-> > On Fri, Apr 19, 2024 at 05:54:45PM +0100, Robin Murphy wrote:
-> >> It's somewhat hard to see, but arm64's arch_setup_dma_ops() should only
-> >> ever call iommu_setup_dma_ops() after a successful iommu_probe_device(),
-> >> which means there should be no harm in achieving the same order of
-> >> operations by running it off the back of iommu_probe_device() itself.
-> >> This then puts it in line with the x86 and s390 .probe_finalize bodges,
-> >> letting us pull it all into the main flow properly. As a bonus this lets
-> >> us fold in and de-scope the PCI workaround setup as well.
-> >>
-> >> At this point we can also then pull the call up inside the group mutex,
-> >> and avoid having to think about whether iommu_group_store_type() could
-> >> theoretically race and free the domain if iommu_setup_dma_ops() ran just
-> >> *before* iommu_device_use_default_domain() claims it... Furthermore we
-> >> replace one .probe_finalize call completely, since the only remaining
-> >> implementations are now one which only needs to run once for the initial
-> >> boot-time probe, and two which themselves render that path unreachable.
-> >>
-> >> This leaves us a big step closer to realistically being able to unpick
-> >> the variety of different things that iommu_setup_dma_ops() has been
-> >> muddling together, and further streamline iommu-dma into core API flows
-> >> in future.
-> >>
-> >> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com> # For Intel IOMMU
-> >> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> >> Tested-by: Hanjun Guo <guohanjun@huawei.com>
-> >> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> >> ---
-> >> v2: Shuffle around to make sure the iommu_group_do_probe_finalize() case
-> >>      is covered as well, with bonus side-effects as above.
-> >> v3: *Really* do that, remembering the other two probe_finalize sites too.
-> >> ---
-> >>   arch/arm64/mm/dma-mapping.c  |  2 --
-> >>   drivers/iommu/amd/iommu.c    |  8 --------
-> >>   drivers/iommu/dma-iommu.c    | 18 ++++++------------
-> >>   drivers/iommu/dma-iommu.h    | 14 ++++++--------
-> >>   drivers/iommu/intel/iommu.c  |  7 -------
-> >>   drivers/iommu/iommu.c        | 20 +++++++-------------
-> >>   drivers/iommu/s390-iommu.c   |  6 ------
-> >>   drivers/iommu/virtio-iommu.c | 10 ----------
-> >>   include/linux/iommu.h        |  7 -------
-> >>   9 files changed, 19 insertions(+), 73 deletions(-)
-> >
-> > This patch breaks UFS on Qualcomm SC8180X Primus platform:
-> >
-> >
-> > [    3.846856] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0x1032db3e0, fsynr=0x130000, cbfrsynra=0x300, cb=4
->
-> Hmm, a context fault implies that the device did get attached to a DMA
-> domain, thus has successfully been through __iommu_probe_device(), yet
-> somehow still didn't get the right DMA ops (since that "IOVA" looks more
-> like a PA to me). Do you see the "Adding to IOMMU group..." message for
-> this device, and/or any other relevant messages or errors before this
-> point?
-
-No, nothing relevant.
-
-[    8.372395] ufshcd-qcom 1d84000.ufshc: Adding to iommu group 6
-
-(please ignore the timestamp, it comes before ufshc being probed).
-
-> I'm guessing there's a fair chance probe deferral might be
-> involved as well. I'd like to understand what path(s) this ends up
-> taking through __iommu_probe_device() and of_dma_configure(), or at
-> least the number and order of probe attempts between the UFS and SMMU
-> drivers.
-
-__iommu_probe_device() gets called twice and returns early because ops is NULL.
-
-Then finally of_dma_configure_id() is called. The following branches are taken:
-
-np == dev->of_node
-of_dma_get_range() returned 0
-bus_dma_limit and dma_range_map are set
-__iommu_probe_device() is called, using the `!group->default_domain &&
-!group_lis` case, then group->default_domain() is not NULL,
-In the end, iommu_setup_dma_ops() is called.
-
-Then the ufshc probe defers (most likely the PHY is not present or
-some other device is not there yet).
-
-On the next (succeeding) try, of_dma_configure_id() is called again.
-The call trace is more or less the same, except that
-__iommu_probe_device() is not called
-
-> I'll stare at the code in the morning and see if I can spot any
-> overlooked ways in which what I think might be happening could happen,
-> but any more info to help narrow it down would be much appreciated.
->
-> Thanks,
-> Robin.
->
-> > [    3.846880] ufshcd-qcom 1d84000.ufshc: ufshcd_check_errors: saved_err 0x20000 saved_uic_err 0x0
-> > [    3.846929] host_regs: 00000000: 1587031f 00000000 00000300 00000000
-> > [    3.846935] host_regs: 00000010: 01000000 00010217 00000000 00000000
-> > [    3.846941] host_regs: 00000020: 00000000 00070ef5 00000000 00000000
-> > [    3.846946] host_regs: 00000030: 0000000f 00000001 00000000 00000000
-> > [    3.846951] host_regs: 00000040: 00000000 00000000 00000000 00000000
-> > [    3.846956] host_regs: 00000050: 032db000 00000001 00000000 00000000
-> > [    3.846962] host_regs: 00000060: 00000000 80000000 00000000 00000000
-> > [    3.846967] host_regs: 00000070: 032dd000 00000001 00000000 00000000
-> > [    3.846972] host_regs: 00000080: 00000000 00000000 00000000 00000000
-> > [    3.846977] host_regs: 00000090: 00000016 00000000 00000000 0000000c
-> > [    3.847074] ufshcd-qcom 1d84000.ufshc: ufshcd_err_handler started; HBA state eh_fatal; powered 1; shutting down 0; saved_err = 131072; saved_uic_err = 0; force_reset = 0
-> > [    4.406550] ufshcd-qcom 1d84000.ufshc: ufshcd_verify_dev_init: NOP OUT failed -11
-> > [    4.417953] ufshcd-qcom 1d84000.ufshc: ufshcd_async_scan failed: -11
-> >
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39c4636d-a2ee-4fb6-87b1-08dc68af7cc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2024 00:50:10.0795
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VDYJVKpGqY2Hb9j9TIjCHg6+ikojGMU+3OL/EMpKFioOFNNbWVbqr+avcGCi6J/7wYkixZeV4/cioz7k2gqbJ068AvsUjM43eefwemLEyAU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJXPR01MB0551
 
 
+>=20
+> As PLDA dts binding doc(Documentation/devicetree/bindings/pci/
+> plda,xpressrich3-axi-common.yaml) showed, PLDA PCIe contains an interrupt
+> controller.
+>=20
+> Microchip PolarFire PCIE event IRQs includes PLDA interrupts and Polarfir=
+e
+> additional interrupts. The interrupt irqchip ops includes ack/mask/unmask
+> interrupt ops, which will write correct registers.
+> Microchip Polarfire PCIe additional interrupts require to write Polarfire=
+ SoC
+> self-defined registers. So Microchip PCIe event irqchip ops can not be re=
+-used.
+>=20
+> Microchip Polarfire PCIe additional intrerrupts:
+> (defined in drivers/pci/controller/plda/pcie-microchip-host.c)
+> EVENT_PCIE_L2_EXIT
+> EVENT_PCIE_HOTRST_EXIT
+> EVENT_PCIE_DLUP_EXIT
+> EVENT_SEC_TX_RAM_SEC_ERR
+> EVENT_SEC_RX_RAM_SEC_ERR
+> ....
+>=20
+> To support PLDA its own event IRQ process, implements PLDA irqchip ops an=
+d
+> add event irqchip field to struct pcie_plda_rp.
+>=20
+Hi Thomas
+  Could you review this patch? Thanks.=20
 
--- 
-With best wishes
-Dmitry
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../pci/controller/plda/pcie-microchip-host.c | 66 ++++++++++++++++++-
+>  drivers/pci/controller/plda/pcie-plda.h       | 34 +++++-----
+>  2 files changed, 84 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c
+> b/drivers/pci/controller/plda/pcie-microchip-host.c
+> index b3df373a2141..beaf5c27da84 100644
+> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> @@ -770,6 +770,64 @@ static struct irq_chip mc_event_irq_chip =3D {
+>  	.irq_unmask =3D mc_unmask_event_irq,
+>  };
+>=20
+> +static u32 plda_hwirq_to_mask(int hwirq) {
+> +	u32 mask;
+> +
+> +	/* hwirq 23 - 0 are the same with register */
+> +	if (hwirq < EVENT_PM_MSI_INT_INTX)
+> +		mask =3D BIT(hwirq);
+> +	else if (hwirq =3D=3D EVENT_PM_MSI_INT_INTX)
+> +		mask =3D PM_MSI_INT_INTX_MASK;
+> +	else
+> +		mask =3D BIT(hwirq + PCI_NUM_INTX - 1);
+> +
+> +	return mask;
+> +}
+> +
+> +static void plda_ack_event_irq(struct irq_data *data) {
+> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> +
+> +	writel_relaxed(plda_hwirq_to_mask(data->hwirq),
+> +		       port->bridge_addr + ISTATUS_LOCAL); }
+> +
+> +static void plda_mask_event_irq(struct irq_data *data) {
+> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> +	u32 mask, val;
+> +
+> +	mask =3D plda_hwirq_to_mask(data->hwirq);
+> +
+> +	raw_spin_lock(&port->lock);
+> +	val =3D readl_relaxed(port->bridge_addr + IMASK_LOCAL);
+> +	val &=3D ~mask;
+> +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
+> +	raw_spin_unlock(&port->lock);
+> +}
+> +
+> +static void plda_unmask_event_irq(struct irq_data *data) {
+> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> +	u32 mask, val;
+> +
+> +	mask =3D plda_hwirq_to_mask(data->hwirq);
+> +
+> +	raw_spin_lock(&port->lock);
+> +	val =3D readl_relaxed(port->bridge_addr + IMASK_LOCAL);
+> +	val |=3D mask;
+> +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
+> +	raw_spin_unlock(&port->lock);
+> +}
+> +
+> +static struct irq_chip plda_event_irq_chip =3D {
+> +	.name =3D "PLDA PCIe EVENT",
+> +	.irq_ack =3D plda_ack_event_irq,
+> +	.irq_mask =3D plda_mask_event_irq,
+> +	.irq_unmask =3D plda_unmask_event_irq,
+> +};
+> +
+>  static const struct plda_event_ops plda_event_ops =3D {
+>  	.get_events =3D plda_get_events,
+>  };
+> @@ -777,7 +835,9 @@ static const struct plda_event_ops plda_event_ops =3D
+> {  static int plda_pcie_event_map(struct irq_domain *domain, unsigned int=
+ irq,
+>  			       irq_hw_number_t hwirq)
+>  {
+> -	irq_set_chip_and_handler(irq, &mc_event_irq_chip, handle_level_irq);
+> +	struct plda_pcie_rp *port =3D (void *)domain->host_data;
+> +
+> +	irq_set_chip_and_handler(irq, port->event_irq_chip, handle_level_irq);
+>  	irq_set_chip_data(irq, domain->host_data);
+>=20
+>  	return 0;
+> @@ -962,6 +1022,9 @@ static int plda_init_interrupts(struct platform_devi=
+ce
+> *pdev,
+>  	if (!port->event_ops)
+>  		port->event_ops =3D &plda_event_ops;
+>=20
+> +	if (!port->event_irq_chip)
+> +		port->event_irq_chip =3D &plda_event_irq_chip;
+> +
+>  	ret =3D plda_pcie_init_irq_domains(port);
+>  	if (ret) {
+>  		dev_err(dev, "failed creating IRQ domains\n"); @@ -1039,6 +1102,7
+> @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  		return ret;
+>=20
+>  	port->plda.event_ops =3D &mc_event_ops;
+> +	port->plda.event_irq_chip =3D &mc_event_irq_chip;
+>=20
+>  	/* Address translation is up; safe to enable interrupts */
+>  	ret =3D plda_init_interrupts(pdev, &port->plda, &mc_event); diff --git
+> a/drivers/pci/controller/plda/pcie-plda.h
+> b/drivers/pci/controller/plda/pcie-plda.h
+> index e0e5e7cc8434..0e5157eb3a32 100644
+> --- a/drivers/pci/controller/plda/pcie-plda.h
+> +++ b/drivers/pci/controller/plda/pcie-plda.h
+> @@ -107,6 +107,8 @@ enum plda_int_event {
+>=20
+>  #define PLDA_NUM_DMA_EVENTS			16
+>=20
+> +#define EVENT_PM_MSI_INT_INTX			(PLDA_NUM_DMA_EVENTS +
+> PLDA_INTX)
+> +#define EVENT_PM_MSI_INT_MSI			(PLDA_NUM_DMA_EVENTS +
+> PLDA_MSI)
+>  #define PLDA_MAX_EVENT_NUM			(PLDA_NUM_DMA_EVENTS +
+> PLDA_INT_EVENT_NUM)
+>=20
+>  /*
+> @@ -116,21 +118,22 @@ enum plda_int_event {
+>   * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
+>   * |12|11|10|9| intx |7|6|5|4|3|2|1|0| DMA error | DMA end   |
+>   * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
+> - * bit 0-7  DMA interrupt end : reserved for vendor implement
+> - * bit 8-15 DMA error : reserved for vendor implement
+> - * 0:  AXI post error (PLDA_AXI_POST_ERR)
+> - * 1:  AXI fetch error (PLDA_AXI_FETCH_ERR)
+> - * 2:  AXI discard error (PLDA_AXI_DISCARD_ERR)
+> - * 3:  AXI doorbell (PLDA_PCIE_DOORBELL)
+> - * 4:  PCIe post error (PLDA_PCIE_POST_ERR)
+> - * 5:  PCIe fetch error (PLDA_PCIE_FETCH_ERR)
+> - * 6:  PCIe discard error (PLDA_PCIE_DISCARD_ERR)
+> - * 7:  PCIe doorbell (PLDA_PCIE_DOORBELL)
+> - * 8:  4 INTx interruts (PLDA_INTX)
+> - * 9:  MSI interrupt (PLDA_MSI)
+> - * 10: AER event (PLDA_AER_EVENT)
+> - * 11: PM/LTR/Hotplug (PLDA_MISC_EVENTS)
+> - * 12: System error (PLDA_SYS_ERR)
+> + * event  bit
+> + * 0-7   (0-7)   DMA interrupt end : reserved for vendor implement
+> + * 8-15  (8-15)  DMA error : reserved for vendor implement
+> + * 16    (16)    AXI post error (PLDA_AXI_POST_ERR)
+> + * 17    (17)    AXI fetch error (PLDA_AXI_FETCH_ERR)
+> + * 18    (18)    AXI discard error (PLDA_AXI_DISCARD_ERR)
+> + * 19    (19)    AXI doorbell (PLDA_PCIE_DOORBELL)
+> + * 20    (20)    PCIe post error (PLDA_PCIE_POST_ERR)
+> + * 21    (21)    PCIe fetch error (PLDA_PCIE_FETCH_ERR)
+> + * 22    (22)    PCIe discard error (PLDA_PCIE_DISCARD_ERR)
+> + * 23    (23)    PCIe doorbell (PLDA_PCIE_DOORBELL)
+> + * 24    (27-24) INTx interruts (PLDA_INTX)
+> + * 25    (28):   MSI interrupt (PLDA_MSI)
+> + * 26    (29):   AER event (PLDA_AER_EVENT)
+> + * 27    (30):   PM/LTR/Hotplug (PLDA_MISC_EVENTS)
+> + * 28    (31):   System error (PLDA_SYS_ERR)
+>   */
+>=20
+>  struct plda_pcie_rp;
+> @@ -155,6 +158,7 @@ struct plda_pcie_rp {
+>  	raw_spinlock_t lock;
+>  	struct plda_msi msi;
+>  	const struct plda_event_ops *event_ops;
+> +	const struct irq_chip *event_irq_chip;
+>  	void __iomem *bridge_addr;
+>  	int num_events;
+>  };
+> --
+> 2.17.1
+
 
