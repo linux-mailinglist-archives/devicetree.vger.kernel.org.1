@@ -1,277 +1,233 @@
-Return-Path: <devicetree+bounces-63797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60378B69AE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:04:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4DA08B69D6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:21:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C56D1F21750
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 05:04:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD4D1C21F0D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 05:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1308B156C2;
-	Tue, 30 Apr 2024 05:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34BBB1758C;
+	Tue, 30 Apr 2024 05:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ifGMxCuV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cEsW47AF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2557B14AA9;
-	Tue, 30 Apr 2024 05:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AFBF5256
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 05:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714453462; cv=none; b=e4l674d9O3QJRov8CLUmrb3eV3CPDM/vsVU142S+tfNgEy0mbZXDXD9kUpEyKX/gHBQW9eu5CnG31H64kOcLQnipNmf6XuICOwRtLZxB4v0KT40wielOyFCtCgJlTCG5HYx42b5BNsP7yiZA6VZI7fkd3UPb6fIvX6Sc7BV4Qpg=
+	t=1714454495; cv=none; b=BYaoAMt5lIwYoqGvPgt1UxenMlqDSTxrOrb8rl9u4+P1y0cX9Pxwht2KxW2j+DeqKpvo9vA7LN8RCT6TxsXMqpDbwJ9ld/unHk1PSZyEbR1WdEDTuruehvd/+po+5jWI91MDn9k1dPesi6Ws/8GX+6P1oQx6EeDnurhkxPMbiHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714453462; c=relaxed/simple;
-	bh=dLZ0s/UbIhMVfNEG/uVowxg5arMykBqN5Ffds8gOu98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WhCGjoQve38egqfdP3V714ZXELHSJZWlrlQCXLD9Wh0b+6qPjP5AeaLiGI5KREAKSaG3k7GX+iFqrk3G7bSLIYhVp1goc2KEPIKl3jGPzaFwlK+Dz5l65VOxy6K3nypKdR9vd0Tl1QK2tj6yVDQ75i/4qBWunZO4F4EtYb/qEfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ifGMxCuV; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43U544RN035696;
-	Tue, 30 Apr 2024 00:04:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714453444;
-	bh=XOXY3rxnL37UlQjMqNIj3aL65ZkBj73t1MItP1RQdvY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ifGMxCuVkNA05jayCkJyo5JUfkcsxpRDaszvtV8ET2bYKc37CGuX6RFcfA/tsGo/U
-	 dVEE10pyVgKgDZiV8+yCYf3XSrzxSx2CbVE9CHe5bCFyamp2oMZCScDF2+oG0hdDkG
-	 m1xjYNZRo+xsDU6S2ycZQPipOOs/mEdRrvBcIE7U=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43U544NK019305
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Apr 2024 00:04:04 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- Apr 2024 00:04:04 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 Apr 2024 00:04:04 -0500
-Received: from [10.24.69.66] (uda0510294.dhcp.ti.com [10.24.69.66])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43U540hd130137;
-	Tue, 30 Apr 2024 00:04:01 -0500
-Message-ID: <36018979-6b5a-47e3-871e-ef3808e362b2@ti.com>
-Date: Tue, 30 Apr 2024 10:34:00 +0530
+	s=arc-20240116; t=1714454495; c=relaxed/simple;
+	bh=zH5JC0vELFAUV2si43PisfO65kvPP588yFpbrzrGSos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wi4nw/K0GS0ND5YqNx6hapOLHgRnU6VxbmZokwvMG8SfFe5HWnaQCPHCpuylQR5hOONHvyb1+W7ZfQ2vqXfS4EPi1oFMtQEpu5kU0dk4v/Sj/YREzpJZNcjkEC0ISjmnnd+aJ7vE8HQFAm6hZ6ru29oWODaqc3AsUYC8/SpdeYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cEsW47AF; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6f07de6ab93so4898491b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 22:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714454493; x=1715059293; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vuMDk+h2WAX2hDgqHpK6EhDjKwV5gOXwgT8Rq78Xqd4=;
+        b=cEsW47AFpiI/9pedaZLxALyw90Dd/GjV0uVAz2OTqytL1rBj5yIvC1xJh5sKJvDejL
+         /KwlyrNP4yx34Lm91sJq85g05vDO2b1PPQCGbNd/uUSisr3aFiQLerfzunv/blLT/tIS
+         5cxSaZuWVf9uEq+v51mhwHWS9V8AhQxAmGJyakyvGilWYPw6SBBmLlyQX/ZF3FNtuGVv
+         6WRJp/0PpLn0zHSC0mKDAB3WfqhmubtoE+CtAPDEcP1Gj6pdVNhBcKaNsU3ZJ38rWV5Z
+         LLPBcSi2ZUJ7rXeFCf7EeIuLz1dV+2+biOfe/ZscqEKeZh/vq1u2+kaGgMOXsIA3ngmk
+         V7lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714454493; x=1715059293;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vuMDk+h2WAX2hDgqHpK6EhDjKwV5gOXwgT8Rq78Xqd4=;
+        b=Bkjog9Ywx/CEuWBK+q3pn8TkGc7wna+bQtS2YsWu0yM7T3tRmxiGn/hU0HfI9vqpNg
+         iIfcY+GPHkdEg6Cd0puc5YG1hKfRAa4/Oxxz21O8maVqbrR8WAuOFQVD+0DpBvDK3eHA
+         K7EQvHjNmdFqAZFnirwPA06TLTrIGWV/EeKEsfeWIqDsLeEipYqHbwTVMwaMf8MDBNWW
+         YP5dy0tEBfnDvDVVEzplxy6Veus6AUq782i+unRjIzG1IG6eq+iHs2hJuX4YqhMtTkAI
+         dwPvY9jXD6GoXenQKw1KPIQ8G1tmYImNJFl8FMjgEZHaS6GLL9Nr3Rsqk+hpuRxdnuy1
+         N8uA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+g1LQOwk/1ZA2iBn+xljxWTzhI6U+wKuKV2bST8NvIMXHN9cG+h4hKDW3+iGuLsy4tUCJdonqe2NptYlHJItU9Msu6KjEeiebUg==
+X-Gm-Message-State: AOJu0YwN+Dp0/xmi+9aU27d3jFHUrYRlTi0EXWT3L5cq1OzQTNGv6lTi
+	OPNJTynKiK6I1ejWB/66nrpf8UlDA5hgu1z4MrlP5pNzsVXe5/PhrZqeXnBQ9Q==
+X-Google-Smtp-Source: AGHT+IGjt94arU+ZMuPGRIOgYFN5GyJzfTxZ9ToNSzFhHOOIVfYVbECLUUHpDJTHXYHeiixGugp64w==
+X-Received: by 2002:a05:6a00:398d:b0:6ec:e726:b6f5 with SMTP id fi13-20020a056a00398d00b006ece726b6f5mr14601591pfb.26.1714454492888;
+        Mon, 29 Apr 2024 22:21:32 -0700 (PDT)
+Received: from thinkpad ([220.158.156.15])
+        by smtp.gmail.com with ESMTPSA id 13-20020a056a00070d00b006e69a142458sm20182974pfl.213.2024.04.29.22.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 22:21:32 -0700 (PDT)
+Date: Tue, 30 Apr 2024 10:51:25 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
+	bmasney@redhat.com, djakov@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	vireshk@kernel.org, quic_vbadigan@quicinc.com,
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v12 2/6] PCI: qcom: Add ICC bandwidth vote for CPU to
+ PCIe path
+Message-ID: <20240430052125.GC3301@thinkpad>
+References: <20240427-opp_support-v12-0-f6beb0a1f2fc@quicinc.com>
+ <20240427-opp_support-v12-2-f6beb0a1f2fc@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721e-sk: Add support for multiple
- CAN instances
-To: Bhavya Kapoor <b-kapoor@ti.com>, <nm@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20240412112025.201639-1-b-padhi@ti.com>
- <bbc276d6-709b-41f0-9987-63750d78deaa@ti.com>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <bbc276d6-709b-41f0-9987-63750d78deaa@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240427-opp_support-v12-2-f6beb0a1f2fc@quicinc.com>
 
-Hi Bhavya,
+On Sat, Apr 27, 2024 at 07:22:35AM +0530, Krishna chaitanya chundru wrote:
+> To access the host controller registers of the host controller and the
+> endpoint BAR/config space, the CPU-PCIe ICC (interconnect) path should
+> be voted otherwise it may lead to NoC (Network on chip) timeout.
+> We are surviving because of other driver voting for this path.
+> 
+> As there is less access on this path compared to PCIe to mem path
+> add minimum vote i.e 1KBps bandwidth always which is sufficient enough
+> to keep the path active and is recommended by HW team.
+> 
+> During S2RAM (Suspend-to-RAM), the DBI access can happen very late (while
+> disabling the boot CPU). So do not disable the CPU-PCIe interconnect path
+> during S2RAM as that may lead to NoC error.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
-On 15/04/24 13:52, Bhavya Kapoor wrote:
-> On 12/04/24 16:50, Beleswar Padhi wrote:
->> CAN instance 0 in the mcu domain is brought on the J721E-SK board
->> through header J1. Thus, add its respective transceiver 1 dt node to add
->> support for this CAN instance.
->>
->> CAN instances 0, 5 and 9 in the main domain are brought on the J721E-SK
->> board through headers J5, J6 and J2 respectively. Thus, add their
->> respective transceivers 2, 3 and 4 dt nodes to add support for these CAN
->> instances.
->>
->> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> Reviewed-by: Bhavya Kapoor <b-kapoor@ti.com>
->> ---
->> Test logs: https://gist.github.com/3V3RYONE/2144fa883bf3a390981d25572971fcf3
->>
->> v3: Changelog:
->> 1) Updated board name in capital letters in commit message description
->> 2) Updated test logs to include communication between all applicable CAN
->> instances
->>
->> Link to v2:
->> https://lore.kernel.org/linux-arm-kernel/20240325103405.182692-1-b-padhi@ti.com/
->>
->> v2: Changelog:
->> 1) Re-ordered status = "okay" property to the end of all applicable dt
->> nodes following kernel documentation
->>
->> Link to v1:
->> https://lore.kernel.org/linux-arm-kernel/20240315124728.490331-1-b-padhi@ti.com/
->>
->>   arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 116 +++++++++++++++++++++++++
->>   1 file changed, 116 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
->> index 0c4575ad8d7c..7170f0220afd 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
->> @@ -210,6 +210,42 @@ vdd_sd_dv_alt: gpio-regulator-tps659411 {
->>   			 <3300000 0x1>;
->>   	};
->>   
->> +	transceiver1: can-phy0 {
-> Hi Beleswar, all looks good to me just one little suggestion to keep
->
-> transceiver and can-phy number as same for better understanding
->
-> and to avoid some bit of confusion later.
->
-> Eg.) transceiver<x>: can-phy<x>
-Thanks for the review. I will send PATCH v4 with these changes shortly.
->
->> +		compatible = "ti,tcan1042";
->> +		#phy-cells = <0>;
->> +		max-bitrate = <5000000>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
->> +		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
->> +	};
->> +
->> +	transceiver2: can-phy1 {
->> +		compatible = "ti,tcan1042";
->> +		#phy-cells = <0>;
->> +		max-bitrate = <5000000>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
->> +		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
->> +	};
->> +
->> +	transceiver3: can-phy2 {
->> +		compatible = "ti,tcan1042";
->> +		#phy-cells = <0>;
->> +		max-bitrate = <5000000>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
->> +		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
->> +	};
->> +
->> +	transceiver4: can-phy3 {
->> +		compatible = "ti,tcan1042";
->> +		#phy-cells = <0>;
->> +		max-bitrate = <5000000>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
->> +		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
->> +	};
->> +
->>   	dp_pwr_3v3: fixedregulator-dp-prw {
->>   		compatible = "regulator-fixed";
->>   		regulator-name = "dp-pwr";
->> @@ -367,6 +403,45 @@ J721E_IOPAD(0x164, PIN_OUTPUT, 7) /* (V29) RGMII5_TD2 */
->>   		>;
->>   	};
->>   
->> +	main_mcan0_pins_default: main-mcan0-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
->> +			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
->> +		>;
->> +	};
->> +
->> +	main_mcan0_gpio_pins_default: main-mcan0-gpio-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
->> +		>;
->> +	};
->> +
->> +	main_mcan5_pins_default: main-mcan5-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_IOPAD(0x050, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
->> +			J721E_IOPAD(0x04c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
->> +		>;
->> +	};
->> +
->> +	main_mcan5_gpio_pins_default: main-mcan5-gpio-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
->> +		>;
->> +	};
->> +
->> +	main_mcan9_pins_default: main-mcan9-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_IOPAD(0x0d0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
->> +			J721E_IOPAD(0x0cc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
->> +		>;
->> +	};
->> +
->> +	main_mcan9_gpio_pins_default: main-mcan9-gpio-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
->> +		>;
->> +	};
->> +
->>   	dp0_pins_default: dp0-default-pins {
->>   		pinctrl-single,pins = <
->>   			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
->> @@ -555,6 +630,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
->>   		>;
->>   	};
->>   
->> +	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_WKUP_IOPAD(0x0ac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
->> +			J721E_WKUP_IOPAD(0x0a8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
->> +		>;
->> +	};
->> +
->> +	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721E_WKUP_IOPAD(0x0bc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
->> +		>;
->> +	};
->> +
->>   	/* Reset for M.2 M Key slot on PCIe1  */
->>   	mkey_reset_pins_default: mkey-reset-pns-default-pins {
->>   		pinctrl-single,pins = <
->> @@ -1108,6 +1196,34 @@ &pcie1_rc {
->>   	num-lanes = <2>;
->>   };
->>   
->> +&mcu_mcan0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
->> +	phys = <&transceiver1>;
->> +	status = "okay";
->> +};
->> +
->> +&main_mcan0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&main_mcan0_pins_default>;
->> +	phys = <&transceiver2>;
->> +	status = "okay";
->> +};
->> +
->> +&main_mcan5 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&main_mcan5_pins_default>;
->> +	phys = <&transceiver3>;
->> +	status = "okay";
->> +};
->> +
->> +&main_mcan9 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&main_mcan9_pins_default>;
->> +	phys = <&transceiver4>;
->> +	status = "okay";
->> +};
->> +
->>   &ufs_wrapper {
->>   	status = "disabled";
->>   };
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 44 ++++++++++++++++++++++++++++++----
+>  1 file changed, 40 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 14772edcf0d3..465d63b4be1c 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -245,6 +245,7 @@ struct qcom_pcie {
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+>  	struct icc_path *icc_mem;
+> +	struct icc_path *icc_cpu;
+>  	const struct qcom_pcie_cfg *cfg;
+>  	struct dentry *debugfs;
+>  	bool suspended;
+> @@ -1409,6 +1410,9 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>  	if (IS_ERR(pcie->icc_mem))
+>  		return PTR_ERR(pcie->icc_mem);
+>  
+> +	pcie->icc_cpu = devm_of_icc_get(pci->dev, "cpu-pcie");
+> +	if (IS_ERR(pcie->icc_cpu))
+> +		return PTR_ERR(pcie->icc_cpu);
+>  	/*
+>  	 * Some Qualcomm platforms require interconnect bandwidth constraints
+>  	 * to be set before enabling interconnect clocks.
+> @@ -1418,7 +1422,20 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>  	 */
+>  	ret = icc_set_bw(pcie->icc_mem, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
+>  	if (ret) {
+> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+> +		dev_err(pci->dev, "Failed to set bandwidth for PCIe-MEM interconnect path: %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Since the CPU-PCIe path is only used for activities like register
+> +	 * access of the host controller and endpoint Config/BAR space access,
+> +	 * HW team has recommended to use a minimal bandwidth of 1KBps just to
+> +	 * keep the path active.
+> +	 */
+> +	ret = icc_set_bw(pcie->icc_cpu, 0, kBps_to_icc(1));
+> +	if (ret) {
+> +		dev_err(pci->dev, "Failed to set bandwidth for CPU-PCIe interconnect path: %d\n",
+>  			ret);
+>  		return ret;
+>  	}
+> @@ -1448,7 +1465,7 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
+>  
+>  	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
+>  	if (ret) {
+> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+> +		dev_err(pci->dev, "Failed to set bandwidth for PCIe-MEM interconnect path: %d\n",
+>  			ret);
+>  	}
+>  }
+> @@ -1610,7 +1627,7 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>  	 */
+>  	ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
+>  	if (ret) {
+> -		dev_err(dev, "Failed to set interconnect bandwidth: %d\n", ret);
+> +		dev_err(dev, "Failed to set bandwidth for PCIe-MEM interconnect path: %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> @@ -1634,7 +1651,18 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>  		pcie->suspended = true;
+>  	}
+>  
+> -	return 0;
+> +	/*
+> +	 * Only disable CPU-PCIe interconnect path if the suspend is non-S2RAM.
+> +	 * Because on some platforms, DBI access can happen very late during the
+> +	 * S2RAM and a non-active CPU-PCIe interconnect path may lead to NoC
+> +	 * error.
+> +	 */
+> +	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
+> +		ret = icc_disable(pcie->icc_cpu);
+> +		if (ret)
+> +			dev_err(dev, "Failed to disable CPU-PCIe interconnect path: %d\n", ret);
+> +	}
+> +	return ret;
+>  }
+>  
+>  static int qcom_pcie_resume_noirq(struct device *dev)
+> @@ -1642,6 +1670,14 @@ static int qcom_pcie_resume_noirq(struct device *dev)
+>  	struct qcom_pcie *pcie = dev_get_drvdata(dev);
+>  	int ret;
+>  
+> +	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
+> +		ret = icc_enable(pcie->icc_cpu);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to enable CPU-PCIe interconnect path: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	if (pcie->suspended) {
+>  		ret = qcom_pcie_host_init(&pcie->pci->pp);
+>  		if (ret)
+> 
+> -- 
+> 2.42.0
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
