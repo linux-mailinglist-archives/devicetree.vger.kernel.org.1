@@ -1,67 +1,70 @@
-Return-Path: <devicetree+bounces-63997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDCE88B76AF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:14:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82478B76B6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:15:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC57D1C224AA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:14:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DA9F1F23176
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC857171652;
-	Tue, 30 Apr 2024 13:14:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91317171669;
+	Tue, 30 Apr 2024 13:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b="GtVMv3ax";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="MFLydRQo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XpFMj+Tu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from c180-43.smtp-out.ap-south-1.amazonses.com (c180-43.smtp-out.ap-south-1.amazonses.com [76.223.180.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D541171650;
-	Tue, 30 Apr 2024 13:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=76.223.180.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ECCE171650;
+	Tue, 30 Apr 2024 13:15:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714482893; cv=none; b=i40QJ+OEeiuqGlU9t+SrP/s9VJYhm0VIZuPRCOYACXOoYO9tUq9dI+J0xJ0TeSvuIJP1lGc/fEiT+6j9j8R1MTxMhv+VtgYOpNUAdhNpG4ZWdAy8HLRQnT5gJSzX9c6yeLug3BRgim82G42W8Mf5O6ViqZHgjOd/DWmwv1P75oY=
+	t=1714482928; cv=none; b=P6z8JIhk8POAgomV9EgobifOgeN+tmA83U+d1intePXjm02f4WfeJLQM3+tAfGNldEtyPHVSfisdKzSSNBz6fBnnaOjP4OQOtjBNlQf/fFrrw6bhQ6TWVeR9lCRjqeQswLYJezqyFyEuGRL9yPfghnDOtfFfsSczwImYByTivbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714482893; c=relaxed/simple;
-	bh=hRAzHyDk1qTLIrlooGx0M57K3X+4fNqF8Q2oyy7l7+4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aPziAy6AMQAZi++trzDlVNxaxF4es4N7c8D3cYCXYdyg6qD/BWWMH24xLJskD4dQ7VUt73X5CYSwMUdsF1XNc7s5Crk4JVxU1L6ORmfeJhXy0d/SbkQocRR1m1K7QuaY4KMtczvBzm2OxJBD2fGq3X5Qs5eG2y7AUrVEXLr9mRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ap-south-1.amazonses.com; dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b=GtVMv3ax; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=MFLydRQo; arc=none smtp.client-ip=76.223.180.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ap-south-1.amazonses.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=i3fe3efcd4pbz7ipgssfqjhzqx347xbc; d=ltts.com; t=1714482889;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Transfer-Encoding;
-	bh=hRAzHyDk1qTLIrlooGx0M57K3X+4fNqF8Q2oyy7l7+4=;
-	b=GtVMv3axxNwIcx0FE90iAp6cvXjFhzHhLHvBypp0xN0aiHf/AOsgkCDPJavOVcKo
-	4YtkTv0Yj2Qht2ipft+9ZVeOl2kpSG6yxcOFG6HB4Wyb6dwa9wNzQxWUYR4k8Oz3s9A
-	SfAoxLQHGyLzWXaqNhBWBNl4kSxyzU+F83JA6F6FVyiAV7mMwNCcp0+5Zcr/sMy/Dmu
-	mOYqTDKpsR/DyBCAx8ZvMniWgDC9EfWJEx9DgX/3P11s02OFtZXVuQKOgqqQuEmYdLb
-	zsx+m7zS1AZJSU0p1QCZg2UzDSC8513zlpDRNdqxTroLnP/DUUD6pm2gl9mDq8BfMwt
-	LAr3F+770g==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=zpkik46mrueu52d3326ufxxchortqmoc; d=amazonses.com; t=1714482889;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
-	bh=hRAzHyDk1qTLIrlooGx0M57K3X+4fNqF8Q2oyy7l7+4=;
-	b=MFLydRQoIt1VbFSbNQyQmwW/GUU0ZmCPGgTw29NpyXa82FSMLXly0UcYv8XSUjBb
-	HuY5AL2fz9ADTBRSJoiVRFB2m0XCaCua0rb2VZmgtujPculcE5JR5iBy1lfocjasJC6
-	J+ykzfAGt8BDzHZhjuEBloRHyNgp4RXfdvyf0088=
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: linux-kernel@vger.kernel.org
-Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jpanis@baylibre.com, devicetree@vger.kernel.org, arnd@arndb.de, 
-	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org, 
-	linus.walleij@linaro.org, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com, 
-	kristo@kernel.org, eblanc@baylibre.com, 
-	Bhargav Raviprakash <bhargav.r@ltts.com>
-Subject: [PATCH v8 00/10] Add support for TI TPS65224 PMIC
-Date: Tue, 30 Apr 2024 13:14:49 +0000
-Message-ID: <0109018f2f24c15e-c50bfc29-5f1d-4368-a4b8-2c9f1d398abb-000000@ap-south-1.amazonses.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1714482928; c=relaxed/simple;
+	bh=757iCYoIsKkUcdsP57iRDgmlBFTQS9/413EFwB/892I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Sz/2lMW14XdOvAD6cAHAkETueiaVzCEzLn0x/Oo84jGYK/RnpSf++2aGH5+VRiZSFLH35ygyuY7cANF5Ams4QNWmtCne48F73z+Y5kxiRvU+LVImgHRvd6Z5Egeivv6Yb+PPzWuZjyCHZFwgZd+shbjJNZtji5uxLv5gwWwlWug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XpFMj+Tu; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43UDFHF6090073;
+	Tue, 30 Apr 2024 08:15:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714482917;
+	bh=vNdyiWs0x6rJrsBCMraD3865GiI0ITcITr7GM/VZIZI=;
+	h=From:To:CC:Subject:Date;
+	b=XpFMj+Tu42b26EP9+JPjhaaDhm260BpvTsDauabG2EOTlrk+1QTvvhMbi7OH1aEkJ
+	 3wkKKV+TvDN/ovf6OoSlmz11ypE9Rd8ozVxWmTT7wQzS/DC+Qa+H16bPEas/xdaBBH
+	 3rprYhXpjAlSxS/UAeoBSiL4aBxO9pp3n6079vNo=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43UDFHAg025359
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Apr 2024 08:15:17 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ Apr 2024 08:15:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 Apr 2024 08:15:17 -0500
+Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [10.24.69.66])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43UDFD5n026323;
+	Tue, 30 Apr 2024 08:15:14 -0500
+From: Beleswar Padhi <b-padhi@ti.com>
+To: <nm@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <b-kapoor@ti.com>, <u-kumar1@ti.com>
+Subject: [PATCH v4] arm64: dts: ti: k3-j721e-sk: Add support for multiple CAN instances
+Date: Tue, 30 Apr 2024 18:45:12 +0530
+Message-ID: <20240430131512.1327283-1-b-padhi@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,94 +72,195 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Feedback-ID: 1.ap-south-1./RC/PI2M8xOxQmTMPi0M1Q8h2FX69egpT62QKSaMPIA=:AmazonSES
-X-SES-Outgoing: 2024.04.30-76.223.180.43
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-This series modifies the existing TPS6594 drivers to add support for the
-TPS65224 PMIC device that is a derivative of TPS6594. TPS65224 has a
-similar register map to TPS6594 with a few differences. SPI, I2C, ESM,
-PFSM, Regulators and GPIO features overlap between the two devices.
+CAN instance 0 in the mcu domain is brought on the J721E-SK board
+through header J1. Thus, add its respective transceiver 1 dt node to add
+support for this CAN instance.
 
-TPS65224 is a Power Management IC (PMIC) which provides regulators and
-other features like GPIOs, Watchdog, Error Signal Monitor (ESM) and
-Pre-configurable Finite State Machine (PFSM). The SoC and the PMIC can
-communicate through the I2C or SPI interfaces. The PMIC TPS65224
-additionally has a 12-bit ADC.
-Data Sheet for TPS65224: https://www.ti.com/product/TPS65224-Q1
+CAN instances 0, 5 and 9 in the main domain are brought on the J721E-SK
+board through headers J5, J6 and J2 respectively. Thus, add their
+respective transceivers 2, 3 and 4 dt nodes to add support for these CAN
+instances.
 
-Driver re-use is applied following the advice of the following series:
-https://lore.kernel.org/lkml/2f467b0a-1d11-4ec7-8ca6-6c4ba66e5887@baylibre.com/
+Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+---
+Test logs: https://gist.github.com/3V3RYONE/2144fa883bf3a390981d25572971fcf3
 
-The features implemented in this series are:
-- TPS65224 Register definitions
-- Core (MFD I2C and SPI entry points)
-- PFSM	
-- Regulators
-- Pinctrl
+v4: Changelog:
+1) Made transceiver ID and can-phy ID in sync for all applicable nodes
 
-TPS65224 Register definitions:
-This patch adds macros for register field definitions of TPS65224
-to the existing TPS6594 driver.  
+Link to v3:
+https://lore.kernel.org/all/20240412112025.201639-1-b-padhi@ti.com/
 
-Core description:
-I2C and SPI interface protocols are implemented, with and without
-the bit-integrity error detection feature (CRC mode).
+v3: Changelog:
+1) Updated board name in capital letters in commit message description
+2) Updated test logs to include communication between all applicable CAN
+instances
 
-PFSM description:
-Strictly speaking, PFSM is not hardware. It is a piece of code.
-PMIC integrates a state machine which manages operational modes.
-Depending on the current operational mode, some voltage domains
-remain energized while others can be off.
-PFSM driver can be used to trigger transitions between configured
-states.
+Link to v2:
+https://lore.kernel.org/linux-arm-kernel/20240325103405.182692-1-b-padhi@ti.com/
 
-Regulators description:
-4 BUCKs and 3 LDOs.
-BUCK12 can be used in dual-phase mode.
+v2: Changelog:
+1) Re-ordered status = "okay" property to the end of all applicable dt
+nodes following kernel documentation
 
-Pinctrl description:
-TPS65224 family has 6 GPIOs. Those GPIOs can also serve different
-functions such as I2C or SPI interface or watchdog disable functions.
-The driver provides both pinmuxing for the functions and GPIO capability.
+Link to v1:
+https://lore.kernel.org/linux-arm-kernel/20240315124728.490331-1-b-padhi@ti.com/
 
-This series was tested on linux-next tag: next-20240118
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 116 +++++++++++++++++++++++++
+ 1 file changed, 116 insertions(+)
 
-Test logs can be found here:
-https://gist.github.com/LeonardMH/58ec135921fb1062ffd4a8b384831eb0
-
-Changelog v7 -> v8:
-- Refactoring regulator driver
-
-Bhargav Raviprakash (7):
-  mfd: tps6594: use volatile_table instead of volatile_reg
-  dt-bindings: mfd: ti,tps6594: Add TI TPS65224 PMIC
-  mfd: tps6594-i2c: Add TI TPS65224 PMIC I2C
-  mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
-  mfd: tps6594-core: Add TI TPS65224 PMIC core
-  misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
-  arch: arm64: dts: ti: k3-am62p5-sk: Add TPS65224 PMIC support in AM62P
-    dts
-
-Nirmala Devi Mal Nadar (3):
-  mfd: tps6594: Add register definitions for TI TPS65224 PMIC
-  regulator: tps6594-regulator: Add TI TPS65224 PMIC regulators
-  pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO
-
- .../devicetree/bindings/mfd/ti,tps6594.yaml   |   1 +
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  95 +++++
- drivers/mfd/tps6594-core.c                    | 253 +++++++++++--
- drivers/mfd/tps6594-i2c.c                     |  20 +-
- drivers/mfd/tps6594-spi.c                     |  20 +-
- drivers/misc/tps6594-pfsm.c                   |  48 ++-
- drivers/pinctrl/pinctrl-tps6594.c             | 277 +++++++++++---
- drivers/regulator/Kconfig                     |   4 +-
- drivers/regulator/tps6594-regulator.c         | 334 +++++++++++++----
- include/linux/mfd/tps6594.h                   | 351 +++++++++++++++++-
- 10 files changed, 1215 insertions(+), 188 deletions(-)
-
-
-base-commit: 2863b714f3ad0a9686f2de1b779228ad8c7a8052
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 0c4575ad8d7c..02e6c49b7090 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -210,6 +210,42 @@ vdd_sd_dv_alt: gpio-regulator-tps659411 {
+ 			 <3300000 0x1>;
+ 	};
+ 
++	transceiver1: can-phy1 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
++		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver2: can-phy2 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver3: can-phy3 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver4: can-phy4 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	dp_pwr_3v3: fixedregulator-dp-prw {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "dp-pwr";
+@@ -367,6 +403,45 @@ J721E_IOPAD(0x164, PIN_OUTPUT, 7) /* (V29) RGMII5_TD2 */
+ 		>;
+ 	};
+ 
++	main_mcan0_pins_default: main-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
++			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
++		>;
++	};
++
++	main_mcan0_gpio_pins_default: main-mcan0-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
++		>;
++	};
++
++	main_mcan5_pins_default: main-mcan5-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x050, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
++			J721E_IOPAD(0x04c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
++		>;
++	};
++
++	main_mcan5_gpio_pins_default: main-mcan5-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
++		>;
++	};
++
++	main_mcan9_pins_default: main-mcan9-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x0d0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
++			J721E_IOPAD(0x0cc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
++		>;
++	};
++
++	main_mcan9_gpio_pins_default: main-mcan9-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
++		>;
++	};
++
+ 	dp0_pins_default: dp0-default-pins {
+ 		pinctrl-single,pins = <
+ 			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
+@@ -555,6 +630,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+ 		>;
+ 	};
+ 
++	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0x0ac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
++			J721E_WKUP_IOPAD(0x0a8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
++		>;
++	};
++
++	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0x0bc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
++		>;
++	};
++
+ 	/* Reset for M.2 M Key slot on PCIe1  */
+ 	mkey_reset_pins_default: mkey-reset-pns-default-pins {
+ 		pinctrl-single,pins = <
+@@ -1108,6 +1196,34 @@ &pcie1_rc {
+ 	num-lanes = <2>;
+ };
+ 
++&mcu_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan0_pins_default>;
++	phys = <&transceiver1>;
++	status = "okay";
++};
++
++&main_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan0_pins_default>;
++	phys = <&transceiver2>;
++	status = "okay";
++};
++
++&main_mcan5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan5_pins_default>;
++	phys = <&transceiver3>;
++	status = "okay";
++};
++
++&main_mcan9 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan9_pins_default>;
++	phys = <&transceiver4>;
++	status = "okay";
++};
++
+ &ufs_wrapper {
+ 	status = "disabled";
+ };
 -- 
-2.25.1
+2.34.1
 
 
