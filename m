@@ -1,147 +1,104 @@
-Return-Path: <devicetree+bounces-64108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B77B8B7E45
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:15:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F5C8B7E49
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:16:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D54061F22D2C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:15:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 981A61F22D2C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24E917BB06;
-	Tue, 30 Apr 2024 17:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EFD917BB06;
+	Tue, 30 Apr 2024 17:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJMHgM0Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ncPzi1s3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7D917B4E1;
-	Tue, 30 Apr 2024 17:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06709179972;
+	Tue, 30 Apr 2024 17:16:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714497340; cv=none; b=sOmm1psmO8EN2ZeA2ULpLT1WCOdgxsIMPeEDwirhANXbGl0WwJXYIyL7W0Qx1OWUvnHFUdaX29yoYSKygvWCA2aBqOYlKz1O1gzC1idvPb8DsWUL8xD/THFiF9mUvJksFbEmF7e4xM5BpPprQ/4+sYOyHmRb/dGTz2U7u+KQ7co=
+	t=1714497402; cv=none; b=BVVwYWTU6xkPiU2exAxBMiOceA1OcEkYQ4/EVGwn/2onh3yJMHx8Xtzgdru0LxLcW+8KAdHKKh7n0tIvLNLpoijTJyKy1cwyokZPfSCuQr0OP931FfohSbdaebnlyEbChTGHoCENkvRZfJ/Z1UuB/AyU5Rm+FShJbA8kvVix+6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714497340; c=relaxed/simple;
-	bh=LczTJ/3+u06tFbxHtG5qj/8oZxiYyIFvCajsFk4vFgs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pm3d8doeaBpEE1lJ5gQgi9L0vUG8as/OZZKt7v9s5OuC9UESrGVp4XFlKy3rcMbIjcFcEORa0vCZ5lpq/OSsOd9sk45cs9rGEOFyh3DkPNjSOqVFakoZran6eokw8dxrcy2pClLBoM5rlnS+JSRvpYAPp+zd/LG+tinBlKuDeyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJMHgM0Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FCC7C2BBFC;
-	Tue, 30 Apr 2024 17:15:33 +0000 (UTC)
+	s=arc-20240116; t=1714497402; c=relaxed/simple;
+	bh=UM4Myfw7j7uZr0oU03VjauXTrSlN9bfj7UyNwemQRfY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GT3N23bhI6L289Z8cZuo+6XAeuieMuxlQ9ENk7mKhraSS1Nr/ATN4iv4jmJAKdhl/Q7R406GU8O8f8nj2AzxE6od9kqz1ZxvZAiX4gCgiChqIgktosP0E8xrQ0S9bvzUrb4kJJp3nsITGEDTo0vSOveTeyGE3kIsVk4p8A+YbE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ncPzi1s3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C62C4AF18;
+	Tue, 30 Apr 2024 17:16:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714497340;
-	bh=LczTJ/3+u06tFbxHtG5qj/8oZxiYyIFvCajsFk4vFgs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bJMHgM0Q0yyZYiaxgiGeYgaz0/y19jSOAE5eh6VN/SWIMPHanu8Q042ONIs/1BNdv
-	 dYclRiMV/z5QXOknvSez2A2H3QL5LrXoXB4wBYoCJG0KEXrt4bZTkcEvXY5yvh+V2F
-	 L2RVs+XHEfeOC+PWV+sQR7gJmBNww97ZyItQhNWhn+/9/FYdB95NE/SEswt6l2nLlr
-	 em7Lspwnwa59wmhI0xVZTLSAdKS2MN3cKnORIWTDuL7bR4a6pNnnVxRZtouZMIXLjk
-	 RYDPWAJXB1sKhdgyiy5ia0gcJoVWoUX88eJKzlZcLItA9PAGsMaPSDh3NVy4Qf6Y2S
-	 dIwltWt7ZmN0g==
-Date: Tue, 30 Apr 2024 18:15:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-	andy@kernel.org, nuno.sa@analog.com, marcelo.schmitt@analog.com,
-	bigunclemax@gmail.com, dlechner@baylibre.com, okan.sahin@analog.com,
-	fr0st61te@gmail.com, alisa.roman@analog.com,
-	marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
-	liambeguin@gmail.com
-Subject: Re: [PATCH v7 4/6] dt-bindings: iio: adc: Add single-channel property
-Message-ID: <20240430-perplexed-obedience-91e4bbc158e5@spud>
-References: <20240430162946.589423-1-alisa.roman@analog.com>
- <20240430162946.589423-5-alisa.roman@analog.com>
+	s=k20201202; t=1714497401;
+	bh=UM4Myfw7j7uZr0oU03VjauXTrSlN9bfj7UyNwemQRfY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ncPzi1s3u2ES6MKoFRNVJhpNljKB77/8yxn8ZPIRnm4709iv7dhFzNiy7FMSKvBU2
+	 TuBFzDRe+TaQIX5lam6kpxda76PVYMXdMKuQhF6hait4u/NqcMQnBK+QTTONEVFo6r
+	 JI4suDhDfKgWyqDtURiIAJO+e+xmpujFhOATjIBP4XvRUR9mvzP+gqnN1ltMYpyrBt
+	 uY7aoUgKETyVogbB4k6UDg3sPD5gyQwYTaOM/51BGHd9lNbIsqluc283xvKyoHl8y9
+	 foImlEUMJaAuaV1CweL6tu8HQ6Sv1V+tW9AsGzzeQptMVh/iJ92zUmQF9A25bkqI4z
+	 dMg/+iIiGR5Vw==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-516d2b9cd69so7200680e87.2;
+        Tue, 30 Apr 2024 10:16:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXXQ/nat75G+5bqbsbRC1LDW2m3RQJLMNv5QQIIM2nS+q/uYMUqjDIBAIcMHMHRq9yX5+/RqNe7v356Ft6dOdPKh8f1kZJdf0IjbQ/P9XVn/e6RAMNnYigHK7NX7chnceIZuYSiSg==
+X-Gm-Message-State: AOJu0Yyy/5YKNVQ0HCsuPkePyJQlFsa6bIBxm8bFgwoPQdiGszaUO+5V
+	O+735mcl8hrjvBciaH/wHpxzBpOY3yiVS+eH0JdAZHOuZ/vDEUCJxptmMW6XZfhA+1wZE9jaQHA
+	XdNIp4pUZgRUo+t3bYSaLvZJPqw==
+X-Google-Smtp-Source: AGHT+IFoXSlP1BOLp331TXPZuru98nnqyG+1OHUxU2ibTvTPfsH3K6ZLAW6XSvJ7z2hH995oh9AaoeVqBKOvO/0ukAU=
+X-Received: by 2002:a05:6512:2087:b0:51d:9429:dc with SMTP id
+ t7-20020a056512208700b0051d942900dcmr72850lfr.5.1714497399803; Tue, 30 Apr
+ 2024 10:16:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PDQmOlRp3irkveLm"
-Content-Disposition: inline
-In-Reply-To: <20240430162946.589423-5-alisa.roman@analog.com>
-
-
---PDQmOlRp3irkveLm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <cover.1714450308.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1714450308.git.zhoubinbin@loongson.cn>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Tue, 30 Apr 2024 12:16:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJK7MTC5LEfUnyOdpcmnON_aT4dJgpvDXAifJiYaZ_pug@mail.gmail.com>
+Message-ID: <CAL_JsqJK7MTC5LEfUnyOdpcmnON_aT4dJgpvDXAifJiYaZ_pug@mail.gmail.com>
+Subject: Re: [PATCH v1 0/6] dt-bindings: pwm: Cleanup pwm-cells required twice
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 30, 2024 at 07:29:44PM +0300, Alisa-Dariana Roman wrote:
-> Devices that have both single-ended channels and differential channels
-> cause a bit of confusion when the channels are configured in the
-> devicetree.
->=20
-> Clarify difference between these two types of channels for such devices
-> by adding single-channel property alongside diff-channels. They should
-> be mutually exclusive.
+On Tue, Apr 30, 2024 at 2:32=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> Hi all:
+>
+> When I was submitting the Loongson PWM dt-binding, Rob reminded me that
+> the pwm-cells property was already required in pwm.yaml and did not need
+> to be repeated.
+>
+> This patchset attempts to clean up the required pwm-cells attribute twice=
+.
 
-I think that this mutual exclusion and the requirement for reg in the
-absence of either property should be enforced by the binding, not
-described in a commit message or free-form text in the property
-description.
+Thanks for this.
 
->=20
-> Devices that have only single-ended channels can still use reg property
-> to reference a channel like before.
->=20
-> Suggested-by: Jonathan Cameron <jic23@kernel.org>
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adc.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documen=
-tation/devicetree/bindings/iio/adc/adc.yaml
-> index 36775f8f71df..0c3eae580732 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> @@ -38,6 +38,14 @@ properties:
->        The first value specifies the positive input pin, the second
->        specifies the negative input pin.
-> =20
-> +  single-channel:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
+> Thanks.
+>
+> Binbin Zhou (6):
+>   dt-bindings: pwm: bcm2835: Do not require pwm-cells twice
+>   dt-bindings: pwm: google,cros-ec: Do not require pwm-cells twice
+>   dt-bindings: pwm: marvell,pxa: Do not require pwm-cells twice
+>   dt-bindings: pwm: mediatek,mt2712: Do not require pwm-cells twice
+>   dt-bindings: pwm: mediatek,pwm-disp: Do not require pwm-cells twice
+>   dt-bindings: pwm: snps,dw-apb-timers: Do not require pwm-cells twice
 
-> +      When devices combine single
+This could really just be one patch. It's the same repeated change and
+it's all going to 1 maintainer. No need to respin for that though.
 
-s/single/single-ended/, no?
-
-Cheers,
-Conor.
-
-> and differential channels, allow the channel
-> +      for a single element to be specified, independent of reg (as for
-> +      differential channels). If this and diff-channels are not present =
-reg
-> +      shall be used instead.
-> +
->    settling-time-us:
->      description:
->        Time between enabling the channel and first stable readings.
-> --=20
-> 2.34.1
->=20
-
---PDQmOlRp3irkveLm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjEnMgAKCRB4tDGHoIJi
-0nmFAP0SFmFJ06QVr/ZUb8POUYIM+y3lJg9ACZUMhkbdpdaIbgEAlT+Fr0iOnvsi
-3Fopg90rdUWM/dPtiohMVjLK6+URqA0=
-=6E9G
------END PGP SIGNATURE-----
-
---PDQmOlRp3irkveLm--
+Rob
 
