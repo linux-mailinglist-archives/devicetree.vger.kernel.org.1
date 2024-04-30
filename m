@@ -1,216 +1,158 @@
-Return-Path: <devicetree+bounces-64099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568388B7D40
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:38:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 643808B7D42
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D101B2269B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:38:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83F381C231F7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D17199E8D;
-	Tue, 30 Apr 2024 16:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C5E140E3D;
+	Tue, 30 Apr 2024 16:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b="H1KQtZz6";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="btSmqQl8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dhGV+ZdJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from c180-45.smtp-out.ap-south-1.amazonses.com (c180-45.smtp-out.ap-south-1.amazonses.com [76.223.180.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3268179965;
-	Tue, 30 Apr 2024 16:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=76.223.180.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8015FDDBE
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 16:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714494967; cv=none; b=tm8Oo12B0EQamAxO+ivHmqNp3AGijuKMLt3bZLEkqHvbBye0hNldDi/kfzT5+qUQ1XNf77tL1vzEbbxJuN4a0A0cLy+xzUt7FcIP9oMnsNrtfDkBia+pGPPJGZzuDTSWCyPDiIpolFAB/xNClKWDbN0E6KH//SPA4EyMdSstMns=
+	t=1714495038; cv=none; b=FloGyKpJ13n72ddT0THE1txIKepVDCttga/ufDEAt/WWMyu97CzRm/YKX8HN5kgJu7i7s+d9VxVAmnYLu+AQW9XhvL39xE8ayUgL68MkBGuKyAw+9joAm1X/7A90o+q1H+w5nXUKvrUYViio/Z3ZaxCMQxnPci+6R3waSI5pMcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714494967; c=relaxed/simple;
-	bh=/z6DZH45bLOkfq/gVueWFPb4M8m52qtDKhLklz3wx38=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oPKZOot8oTc91K+pWWRcXCndU5SleCTbCeWtQMlcbsZFEKhXj1HxbtdD56ofxx1vWHz3jhG30TMe6bPhJiA8LE6XtQV0dNaxGHx1fW1mL+LpWGKyFo2cgRJ8q4G8jSfA3+XPwmB8TKrnj5e3h3atDTMHcdZlMXmg5fhL97/5M5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ap-south-1.amazonses.com; dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b=H1KQtZz6; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=btSmqQl8; arc=none smtp.client-ip=76.223.180.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ap-south-1.amazonses.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=i3fe3efcd4pbz7ipgssfqjhzqx347xbc; d=ltts.com; t=1714494963;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
-	bh=/z6DZH45bLOkfq/gVueWFPb4M8m52qtDKhLklz3wx38=;
-	b=H1KQtZz67/faeWjiZwSpMdixZ/m5qeSJi5VuouLNeQInv2BDTMmsySN1BLKIcXzR
-	xtdDu4G1WSG9HDmKtaLrsifAo00dUYv0COtCJQPtF5JSH3H8i1wGBCnvYiVm3du8s5A
-	LOCP+FZurlCdsms4hajqj6BpTnygAm+Db9Ql9IMKvvZ/KJyF4YOpFeN8ZnpvG0YByIQ
-	53uwPWeo6RwVFBg3Dbw2T6YFMDjACKYRkvbT7ZdK4I0FAFFoepyyyWbEdITRvigM343
-	It1mRVvb1dbR9OHnddwAN4bixntbRaqFEBDpFuRMsdLy0Ye7y+IdgWtmax26mtJwbdB
-	avTEAS4f1g==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=zpkik46mrueu52d3326ufxxchortqmoc; d=amazonses.com; t=1714494963;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
-	bh=/z6DZH45bLOkfq/gVueWFPb4M8m52qtDKhLklz3wx38=;
-	b=btSmqQl8DRqgVF1J8k1jhBf/sDbV71Tv9XDJlXxi3oDobNZ3h5V5HB+p5zqQ8wld
-	j75/NGskpIB0s5GdAlc56Sch367l9S+hWv4OsVYcMaDZoGQS74uLILz0UYTyuE7EtNH
-	rbH5atpe+8iU6YACHRcnTpLPBtJFKEY3oU7Z4jHU=
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: linux-kernel@vger.kernel.org
-Cc: bhargav.r@ltts.com, arnd@arndb.de, broonie@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, eblanc@baylibre.com, 
-	gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, 
-	lgirdwood@gmail.com, linus.walleij@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	m.nirmaladevi@ltts.com, nm@ti.com, robh+dt@kernel.org, 
-	vigneshr@ti.com
-Subject: [PATCH v8 10/10] arch: arm64: dts: ti: k3-am62p5-sk: Add TPS65224 PMIC support in AM62P dts
-Date: Tue, 30 Apr 2024 16:36:03 +0000
-Message-ID: <0109018f2fdcfee6-3cc623b4-2f4e-47aa-adc3-96f071d209f8-000000@ap-south-1.amazonses.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <0109018f2f24c15e-c50bfc29-5f1d-4368-a4b8-2c9f1d398abb-000000@ap-south-1.amazonses.com>
-References: <0109018f2f24c15e-c50bfc29-5f1d-4368-a4b8-2c9f1d398abb-000000@ap-south-1.amazonses.com>
+	s=arc-20240116; t=1714495038; c=relaxed/simple;
+	bh=9CpN840f2wTT9zTjYM6ElxKvLKgIrVf9hv1SbuRDWgE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kIbuIcxhozvh/RTMEmIlzqOOBM4DqA23K0MT2HkrsA601WtgRU53NE8H1JfGtiT9EjJGRnC8QhdqC3SsiICKkCW4ACvJUcmsvIKKK2Z2fZkaTkiiXMcc1Wqt85HKW2ZYsY1hMMbQwePOln2nsqrEul//OxyS/RHCEuXIdZZlF4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dhGV+ZdJ; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a51addddbd4so648825766b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 09:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714495035; x=1715099835; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2NrGBRSW1H5HEb8rlYybZvtI0xpQurZ+vyDd2YBGwSg=;
+        b=dhGV+ZdJlAYlNnBwG9wPPyTjIiSZ35I5MOVWhD7Q3SocdN3YpZPoVlnKk4pMNNV7xD
+         z0YJkq2Tou0O8K328zMEym0TCbxgMMP3bX9lzdnacUJx4xymmw1xZB1xyKMFSRZZbSLI
+         +A7HU+bAjQCUVEb0G1q8SoIZtpRgkRJ7q3FCXyg5us8g0L93KPXu7zU2s0NfaxCyU4Ju
+         pICs5cY3QGGqbp5hGacmk2h5FHCQ72O99CHXDFdXYoDRmldCsiKgiqjTS8XNEsaC2z53
+         dpCZkEGwLZw7RhifDufpY0dqmLszaGDTLt6q49G37qO35sqLufTexio4SlUciLvgLm+2
+         D+aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714495035; x=1715099835;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2NrGBRSW1H5HEb8rlYybZvtI0xpQurZ+vyDd2YBGwSg=;
+        b=NRYA0LseV1zK7luimVRipGWTyVNcLf73ARkMt/GfJaSC+J64EL4HoPgBhQo8hZ7/i9
+         tVEwp/XGgYyanxr6vvoPki9RRd64vuXFZ1bzY3odnkoWzNQlwDwS3ZWJmswOMmIV0FWn
+         NzUty1Y6KCOZcHCrjMawgUiCqXkLvUJG4Z5LFrqyyRIfg0Yhzzs0uc6tKsWeZAViCHsy
+         PFYJsCUpMGz6lXZp+jENTk5ApNdt+UG2f9kXMeGb/Zw29sOoh9URYv2R7/cn+Ugcp8yQ
+         cHeXz4zfhr2Ri+cs1QRk/ARcWatoaYCpRc49xx0QiAMsocVLluTy0v9Vqrjj26ZQksau
+         NguA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbZLUgmY2WvNmrcPTEHUPoT2XaTaBkJ1DQTEmFlfoTgtz/pEWZ6lb1XoShlKUmh4+KsPCGVUb/2km2HbixfbkOkz4ZKKCRdsqOKA==
+X-Gm-Message-State: AOJu0Yx8Y89FDwdsWmUx7MLULarXyqOAkdUO4oWkK1Cahi3WI9tjRyu7
+	KMKfrndFAiN7hzKPgIuDKNmYtzSdmu7Mo7TqbY9disuAOe9pj6yhTeTBU/TJUTQDixI+kOHkHFh
+	p7tU=
+X-Google-Smtp-Source: AGHT+IGvSOBJo6lnod5DMBhu3GxWe/i83cG660ROXgVUIpjVTSsHSXsW/BwD81ZbvNPgTNmKsvwR7Q==
+X-Received: by 2002:a17:906:4f91:b0:a58:ec38:be74 with SMTP id o17-20020a1709064f9100b00a58ec38be74mr198644eju.17.1714495034604;
+        Tue, 30 Apr 2024 09:37:14 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id i21-20020a170906a29500b00a526a992d82sm15282670ejz.4.2024.04.30.09.37.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 09:37:14 -0700 (PDT)
+Message-ID: <6bfe3573-a9a3-4d7e-ad77-d1ceea625ebb@linaro.org>
+Date: Tue, 30 Apr 2024 18:37:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Feedback-ID: 1.ap-south-1./RC/PI2M8xOxQmTMPi0M1Q8h2FX69egpT62QKSaMPIA=:AmazonSES
-X-SES-Outgoing: 2024.04.30-76.223.180.45
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: add qcom,msm8998-venus
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
+ <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
+ <4f99f0a1-1fae-42cf-a8ea-0f859e9818b9@freebox.fr>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <4f99f0a1-1fae-42cf-a8ea-0f859e9818b9@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for TPS65224 PMIC in device tree of AM62P EVM. Adds regulator
-configuration, pinmux configurations and pmic device nodes.
+On 30/04/2024 17:30, Marc Gonzalez wrote:
+> msm8998 has the same video encode/decode accelerator as msm8996.
+> 
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
 
-Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 95 +++++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index 1773c05f7..5d8e4321b 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -112,6 +112,16 @@ vddshv_sdio: regulator-3 {
- 		bootph-all;
- 	};
- 
-+	vcc_3v3_main: regulator-4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_main";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -580,6 +590,12 @@ &main_uart1 {
- &mcu_pmx0 {
- 	bootph-all;
- 
-+	pmic_irq_pins_default: pmic-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (B10) MCU_GPIO0_0 */
-+		>;
-+	};
-+
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
- 		pinctrl-single,pins = <
- 			AM62PX_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-@@ -589,6 +605,13 @@ AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
- 		>;
- 		bootph-all;
- 	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x04c, PIN_INPUT, 0) /* (A13) WKUP_I2C0_SCL */
-+			AM62PX_MCU_IOPAD(0x050, PIN_INPUT, 0) /* (C11) WKUP_I2C0_SDA */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -599,6 +622,78 @@ &wkup_uart0 {
- 	bootph-all;
- };
- 
-+&wkup_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	tps65224: pmic@48 {
-+		compatible = "ti,tps65224-q1";
-+		reg = <0x48>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&mcu_gpio0>;
-+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+		ti,primary-pmic;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		buck12-supply = <&vcc_3v3_main>;
-+		buck3-supply = <&vcc_3v3_main>;
-+		buck4-supply = <&vcc_3v3_main>;
-+
-+		ldo1-supply = <&vcc_3v3_main>;
-+		ldo2-supply = <&vcc_3v3_main>;
-+		ldo3-supply = <&vcc1v8_sys>;
-+
-+		regulators {
-+			vcc_core: buck12 {
-+				regulator-name = "vcc_core_buck12";
-+				regulator-min-microvolt = <715000>;
-+				regulator-max-microvolt = <895000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc1v8_sys: buck3 {
-+				regulator-name = "vcc1v8_sys_buck3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc1v1: buck4 {
-+				regulator-name = "vcc1v1_buck4";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-always-on;
-+			};
-+
-+			vdda1v8: ldo1 {
-+				regulator-name = "vdda1v8_ldo1";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			dvdd3v3: ldo2 {
-+				regulator-name = "dvdd3v3_ldo2";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc_0v85: ldo3 {
-+				regulator-name = "vcc_0v85_ldo3";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- /* mcu_gpio0 and mcu_gpio_intr are reserved for mcu firmware usage */
- &mcu_gpio0 {
- 	status = "reserved";
--- 
-2.25.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
