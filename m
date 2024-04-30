@@ -1,125 +1,106 @@
-Return-Path: <devicetree+bounces-64119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E028B7F64
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:05:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09ECF8B7F8B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:15:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53CD4285228
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:05:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4831FB21A17
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FE818133F;
-	Tue, 30 Apr 2024 18:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00147181CE0;
+	Tue, 30 Apr 2024 18:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSJtY/Qv"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OVcErK7x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27D9175560;
-	Tue, 30 Apr 2024 18:04:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF95179650;
+	Tue, 30 Apr 2024 18:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714500298; cv=none; b=TQgoNaYQEy7aauWLDOmA5D8yqLLWTLteU418XsALvN3k9/6WW1Nhcf2SjCV3SIJfZLoKoaYfVxOeFOEBj9viQtprnq7qI0olrniXr7QvU1GEV2pmTtP2slgcEdd5MLMm5pTS0HSown/+nRc9BfhdDLNxrJZY7JSZXin05WzqmjQ=
+	t=1714500918; cv=none; b=DmhQMOCBpJyRzvyg8dozXdkPCRKQWjuYT3uS3On2LBacUMMNzD2WNsZmae707r/+SNVRiBvBuHFN1WKjGj2DUR1lvYL28rky8YTXKfpYoY/S9lvElsr0SLzc3XR2e4wCD9zzswjWQHxhK+FG3C1TuCRZUcY8Imvjefn9ZUl5Jvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714500298; c=relaxed/simple;
-	bh=jz73RuQd4HFNSDYi2UqJP9KQ4zUfUOQNSb6BLXUEHwg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=imantSBPUTaRX0TAW7OeBq3ResXgmOq099sT99pzRrHOfo7Mypf1B5UeUZoWPmP1SfaAciX6GdYyzhE98ec7BIjt/Qi9hUrmL1QC+INZK+qBDun5yzuLqBJjCN83Nujp5iGiPfouRzXDmoolGAVXZTk+0oWvLS7YaZexVedUDQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSJtY/Qv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E61CC2BBFC;
-	Tue, 30 Apr 2024 18:04:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714500298;
-	bh=jz73RuQd4HFNSDYi2UqJP9KQ4zUfUOQNSb6BLXUEHwg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=NSJtY/QvQALgQFXBeHV7rY3KeJCSZ9+AonDpJ2HFpC29toNWlNk+gqsdtxpbebs00
-	 q3tEDlPd8Wts/wDUW1S7Zy/khgJb7aNcLlPi7tsr6T6KpiSNHlH1dLXL/Yxpl+6QDs
-	 DmtzORqjy4aN7H49O4GyESjB+3L1I5V7TjMC0kndfCtJ1hwUoiybMzwmvULoK5DQPK
-	 QRzbvfyWnhTIZj0PZE48fbcmc/iUyLporwdTSIn3FObt5Ne9pLnWop5hMRdl0v/p8X
-	 O6qy8SU4UCRMqKdQqNt3yvcVobX3wdRIlqMuadCVdTA1bKuHu0bIduhrGV19tj81+w
-	 f+hm4i6Pf0utQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: clock: fixed: Define a preferred node name
-Date: Tue, 30 Apr 2024 13:04:14 -0500
-Message-ID: <20240430180415.657067-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1714500918; c=relaxed/simple;
+	bh=X8HAYBAZH/nxmniE/1cqLRfga2wy39yx06ebZq3l3/E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZnB4i8G6E52Tkt4AxJmdTz4+zs1IY0hc9pG9yg8GxICNL+e3oKWdZo6xdsDpl6CZ9fWg/eltVxMBOkD7n1SSGC5XNr9lUV7USqAbJDVZx8QWoJTr64sCGlvPbxpuAoWnQYWEayZ7kcO7F+ndqxF4qSToqIeSMIhn64dU3cYXU/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=OVcErK7x; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=nAD2Nur76Zf3BvEl9/PM5+Xuqr6DOFdCXMuTEX+Eofc=; b=OVcErK7xVvv+7h/GyB1FfYeATt
+	GuyC1O656IqIK7sSzG67XDlzH87FmguF+ApCOreR3W3jt3z1XSVmEdEDo18q/wtuOcAUwH8c31/Ik
+	Y9LDrlvKgM8r1xPAFiCvuPo5jjnwWhyBQgYr+VG10ksQe7DNIZO64/XEVxD1JlW1Dp6c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1s1s0O-00ENI1-GV; Tue, 30 Apr 2024 20:15:04 +0200
+Date: Tue, 30 Apr 2024 20:15:04 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 00/17] Add support for the LAN966x PCI device using a DT
+ overlay
+Message-ID: <dbbf505b-c3ed-4d2d-b518-f322636269a2@lunn.ch>
+References: <20240430083730.134918-1-herve.codina@bootlin.com>
+ <4571846d-2001-4bbf-b311-d0b42844143d@lunn.ch>
+ <20240430183301.46568e35@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240430183301.46568e35@bootlin.com>
 
-Define "clock-<freq>" as the preferred node name for fixed-clock and
-fixed-factor-clock where <freq> is the output frequency of the clock.
-There isn't much of an existing pattern for names of these nodes. The
-most frequent patterns are a prefix or suffix of "clk", but there's a
-bunch that don't follow any sort of pattern. We could use
-"clock-controller-.*", but these nodes aren't really a controller in any
-way. So let's at least align with part of that and use 'clock-'.
+> Also I tested on a x86 system (basically a simple PC).
+> Not all components are available upstream to have it working on a x86 (ACPI)
+> system. The missing component is not related to the LAN966x PCI driver itself
+> but in the way DT node are created up to the PCI device.
 
-For now this only serves as documentation as the schema still allows
-anything to avoid lots of additional warnings for something low priority
-to fix. Once a "no deprecated" mode is added to the tools, warnings can
-be enabled selectively.
+Good to hear it nearly "just works". There does not seem to be any
+interest in describing complex network devices like this using ACPI,
+which is many years behind what we have in DT in terms of building
+blocks for networking devices. Like many PCIe devices, the LAN966x is
+pretty much self contained, so fits DT overlays nicely.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/clock/fixed-clock.yaml | 9 +++++++++
- .../devicetree/bindings/clock/fixed-factor-clock.yaml    | 9 +++++++++
- 2 files changed, 18 insertions(+)
+There is also a slowly growing trend to have PCIe network devices
+which Linux controls, rather than offloading to firmware. The wangxun
+drivers are another example. So it is great to see the remaining
+pieces being put in place to support this.
 
-diff --git a/Documentation/devicetree/bindings/clock/fixed-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-index b0a4fb8256e2..90fb10660684 100644
---- a/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-@@ -11,6 +11,15 @@ maintainers:
-   - Stephen Boyd <sboyd@kernel.org>
- 
- properties:
-+  $nodename:
-+    anyOf:
-+      - description:
-+          Preferred name is 'clock-<freq>' with <freq> being the output
-+          frequency as defined in the 'clock-frequency' property.
-+        pattern: "^clock-([0-9]+|[a-z0-9-]+)$"
-+      - description: Any name allowed
-+        deprecated: true
-+
-   compatible:
-     const: fixed-clock
- 
-diff --git a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
-index 8f71ab300470..4afdb1c98f5f 100644
---- a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
-@@ -11,6 +11,15 @@ maintainers:
-   - Stephen Boyd <sboyd@kernel.org>
- 
- properties:
-+  $nodename:
-+    anyOf:
-+      - description:
-+          If the frequency is fixed, the preferred name is 'clock-<freq>' with
-+          <freq> being the output frequency.
-+        pattern: "^clock-([0-9]+|[0-9a-z-]+)$"
-+      - description: Any name allowed
-+        deprecated: true
-+
-   compatible:
-     enum:
-       - fixed-factor-clock
--- 
-2.43.0
-
+Thanks
+	Andrew
 
