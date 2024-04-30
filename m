@@ -1,128 +1,145 @@
-Return-Path: <devicetree+bounces-63931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E623B8B7083
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:46:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 053938B70B9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:49:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 235C61C21E75
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:46:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73C051F21E46
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9782B12C47A;
-	Tue, 30 Apr 2024 10:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C14D12C46B;
+	Tue, 30 Apr 2024 10:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UbLVpBve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2808C12C53F;
-	Tue, 30 Apr 2024 10:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A1412C46D
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 10:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714473993; cv=none; b=X93ktZyvYOUbVU9nkBz4yZJJBBV0EHGH0IRvpcijiSMH7EqGi8WUD39BXoZk3nRTSSC0QfvvL1Kv5E6azkELCa+mTofo0KnTF+RJkGdJ3yKfQrGptMIfpolc/A72p6eSnVNcT4rZi1k/q7i7kw2NdjqpCUQ6GArk85VFrArfW1s=
+	t=1714474149; cv=none; b=pWL3OdNq8Ia8nBm4KPPC4/UkIwX//mAdOvUEcaG2s+AOWgc6lIZ78/js8wiJaxlqUGF3srzADpf5fIDZjgaddsREa9rYJEE90FAu/MbSg/AJ4J3VJNy1tvBummxYyIAFQj29oSO4MRnleo9K8tAa0fXQnOkUJrtucWolDNjc1F4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714473993; c=relaxed/simple;
-	bh=mE6yvWjTcmXVXU5c5sghfUVd7O4Ux9KAsDuJ2YuvrWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VpXzZo9RvSuA0ao2EIAIWlfRXHDo7v5jimuxR0VjSg7qIsdEooZzHosky6qsnWhMTJcbvWbnyWVcEuHiWieU/3s22NvGkAV0UlBBXaHb+4mqBzEdIlHu360zoudY1sAv5zyh92Nqrdk5X3ZPXkxiKwbGsHjwxq5QMUjQAB+dxos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 152CD2F4;
-	Tue, 30 Apr 2024 03:46:58 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1FF353F73F;
-	Tue, 30 Apr 2024 03:46:30 -0700 (PDT)
-Date: Tue, 30 Apr 2024 11:46:27 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-sunxi@lists.linux.dev, wens@csie.org, jernej.skrabec@gmail.com,
- samuel@sholland.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: Add cache information to the SoC
- dtsi for H6
-Message-ID: <20240430114627.0cfcd14a@donnerap.manchester.arm.com>
-In-Reply-To: <6fdeb49d57ccccca62e4f43dbe9475e3@manjaro.org>
-References: <6a772756c2c677dbdaaab4a2c71a358d8e4b27e9.1714304058.git.dsimic@manjaro.org>
-	<49abb93000078c692c48c0a65ff677893909361a.1714304071.git.dsimic@manjaro.org>
-	<20240430001002.4797e4e3@minigeek.lan>
-	<6fdeb49d57ccccca62e4f43dbe9475e3@manjaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1714474149; c=relaxed/simple;
+	bh=KR7LI6rrvuirq0c+KmaHMvWrLRxfufK+DbJifyv82Qk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BUt+UTOpwEQgOMVAsPBC2DTqz+YQJ4ELSQEVrN5OXGBMGVkL/8Tn87Qg2wuzu6ZeO9Z5C6R8sfEvyhEHZ5jJpGZYkMm3MXa23V5/vhCXABoejsjakFQKqyJHv6udaCxiTdKlr2N1JNVtX2ZVdwaDk48BSmQS23kWY3xcG31pBDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UbLVpBve; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56e6a1edecfso8285941a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714474145; x=1715078945; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=96pQ6DWgcHMQ5/U8CMRhHuWIuxEmhkD85mjVVrXWF00=;
+        b=UbLVpBve3+r94mvVfUfWo1duE7zM7QYdhmgmHaq3nc70SaaR1GT9XyTGQvsl7iMaac
+         qSdCDaeXzyt0m+JD+fdTTFt31E42Dq8fbPVGupovwp8mbeDQBVJkzua/vMc+8jf3f4GJ
+         sJd65VtIu7HP87mUwk2H40YUZXOwCuURLkZxLlGngqwaPBmnYLLhVC68MEFL8MHmg83K
+         FTDxJqto65BoBGnDRNtFVz1PG4Zgoiz61LY0UWXPyuMV2iGTvciX40OcUyqq+Q4+c22K
+         Bxgv/1Sx7zIU+kL+2yYnBpHPz17f0AdAERNviZFArPXy/CiX3E4J1ymYoA14xMKjnMIP
+         1gHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714474145; x=1715078945;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=96pQ6DWgcHMQ5/U8CMRhHuWIuxEmhkD85mjVVrXWF00=;
+        b=DS6sGmEII5c1VD0mKz8wMHlXiXSn1ZJWx4pUCerxZ0oXe8wiPHygNmD+pYcY/OR9YO
+         18lI93d5g8IJQOnJaUGIj9f5AU0JEhFRmbGuKZgoRoO8evhM4sb2YR07NbTRIm1kFoUU
+         iRlbFjvbecHneCDfrIOgtfFJMj2WXgumDvGuzCr1tRbQvRgqdRRwwb/ZX6i0iXdSlScw
+         yVgl/txm3Gj4ZXl9UK7LftUFL39MVepxB9G2lVh4QHXOWo1oZjY1Xegr4LavmJQfJ3zQ
+         ClAGq28B/GN5JZysUPPXFGxlwH457L8M84bKW8WvkxG4eDrkD4oN4AWtxdnjJae6BM5u
+         KJmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZx4bvgVPixXkp9MmRHO9IkqaVm24LgDqy3/PMFZWF/GT/3WbC9xKzwkR6zL5mDLrs5r7BfV2rleDa7MCDpX9xtvR1Q7wnNQ6kVw==
+X-Gm-Message-State: AOJu0Yw5l3EDhuUEYbKO83b8w8vc3GHSIMjPfrwmIP4Pnm2qLzMDl8zR
+	sLrFwhJseHx3bTfmxC4bwJrUAzzv2jdtsbUoKmzWvH/zF1hMrDXJOoBuHiJ6QxU=
+X-Google-Smtp-Source: AGHT+IHcHgW7CGWFxNpCJDQuVnBapsMVl/Bvxuzrl9xFVKEJT4JxiWQYtybyj+kN/JkgGXn8LVTdIQ==
+X-Received: by 2002:a50:9f66:0:b0:570:5214:f62 with SMTP id b93-20020a509f66000000b0057052140f62mr7149035edf.0.1714474142756;
+        Tue, 30 Apr 2024 03:49:02 -0700 (PDT)
+Received: from [192.168.114.15] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id f11-20020a056402194b00b005728a19c957sm1280572edz.26.2024.04.30.03.48.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 03:49:02 -0700 (PDT)
+Message-ID: <26b5a160-f804-4f3b-aaaa-6c4eb6d9d056@linaro.org>
+Date: Tue, 30 Apr 2024 12:48:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/6] firmware: qcom_scm: Add gpu_init_regs call
+To: Connor Abbott <cwabbott0@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jun Nie <jun.nie@linaro.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+References: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
+ <20240430-a750-raytracing-v3-2-7f57c5ac082d@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240430-a750-raytracing-v3-2-7f57c5ac082d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Tue, 30 Apr 2024 02:01:42 +0200
-Dragan Simic <dsimic@manjaro.org> wrote:
-
-Hi Dragan,
-
-> Hello Andre,
+On 30.04.2024 12:43 PM, Connor Abbott wrote:
+> This will used by drm/msm to initialize GPU registers that Qualcomm's
+> firmware doesn't make writeable to the kernel.
 > 
-> On 2024-04-30 01:10, Andre Przywara wrote:
-> > On Sun, 28 Apr 2024 13:40:36 +0200
-> > Dragan Simic <dsimic@manjaro.org> wrote:
-> >   
-> >> Add missing cache information to the Allwinner H6 SoC dtsi, to allow
-> >> the userspace, which includes lscpu(1) that uses the virtual files 
-> >> provided
-> >> by the kernel under the /sys/devices/system/cpu directory, to display 
-> >> the
-> >> proper H6 cache information.
-> >> 
-> >> Adding the cache information to the H6 SoC dtsi also makes the 
-> >> following
-> >> warning message in the kernel log go away:
-> >> 
-> >>   cacheinfo: Unable to detect cache hierarchy for CPU 0
-> >> 
-> >> The cache parameters for the H6 dtsi were obtained and partially 
-> >> derived
-> >> by hand from the cache size and layout specifications found in the 
-> >> following
-> >> datasheets and technical reference manuals:
-> >> 
-> >>   - Allwinner H6 V200 datasheet, version 1.1
-> >>   - ARM Cortex-A53 revision r0p3 TRM, version E
-> >> 
-> >> For future reference, here's a brief summary of the documentation:
-> >> 
-> >>   - All caches employ the 64-byte cache line length
-> >>   - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative 
-> >> instruction
-> >>     cache and 32 KB of L1 4-way, set-associative data cache
-> >>   - The entire SoC has 512 KB of unified L2 16-way, set-associative 
-> >> cache
-> >> 
-> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>  
-> > 
-> > I can confirm that the data below matches the manuals, but also the
-> > decoding of the architectural cache type registers (CCSIDR_EL1):
-> >   L1D: 32 KB: 128 sets, 4 way associative, 64 bytes/line
-> >   L1I: 32 KB: 256 sets, 2 way associative, 64 bytes/line
-> >   L2: 512 KB: 512 sets, 16 way associative, 64 bytes/line  
-> 
-> Thank you very much for reviewing my patch in such a detailed way!
-> It's good to know that the values in the Allwinner datasheets match
-> with the observed reality, so to speak. :)
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
+> ---
 
-YW, and yes, I like to double check things when it comes to Allwinner
-documentation ;-) And it was comparably easy for this problem.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Out of curiosity: what triggered that patch? Trying to get rid of false
-warning/error messages?
-And do you plan to address the H616 as well? It's a bit more tricky there,
-since there are two die revisions out: one with 256(?)KB of L2, one with
-1MB(!). We know how to tell them apart, so I could provide some TF-A code
-to patch that up in the DT. The kernel DT copy could go with 256KB then.
-
-Cheers,
-Andre.
+Konrad
 
