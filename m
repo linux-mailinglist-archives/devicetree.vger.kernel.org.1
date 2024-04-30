@@ -1,478 +1,211 @@
-Return-Path: <devicetree+bounces-63954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B338B7490
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE62F8B7494
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:35:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DAA41C20C9E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:33:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BCD81C20FA2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40F512D746;
-	Tue, 30 Apr 2024 11:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32FE512D755;
+	Tue, 30 Apr 2024 11:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VuTmflJD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TWPDVOBz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FBED12D1E9;
-	Tue, 30 Apr 2024 11:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0946412D746;
+	Tue, 30 Apr 2024 11:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714476805; cv=none; b=Vu+jRlQiznL8uRXmdL+QgJGOn1pKoJcVxD/eXSra95n88oEKtQxI0JCNDgrezx5Ii++yfGo+mYYJxGXWlyYDQnwTN7BsaRTXwK2za+RdeRcxKRD1sEUKhjKMXno2pas5rVJPzbYCe+FESIDHLJ5Zk8CS0+EfRkroAYvfUmM49MI=
+	t=1714476906; cv=none; b=Lq5ZkEfaChGRIIFkgS7lXclfyNW2NO2f/+Ncsl229hDFFQMGHl9Fbk0UMrETw5GHMUBqWsGVFAU1kn3YEM0N3W1jWN/ZW0rWvCuEMy4OedvyIIdiKsPZ3e32vZfwJEcEcLccEkCk+MNsg9Xrxo684eP79glw/DuGwjkgnRZnJNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714476805; c=relaxed/simple;
-	bh=0w5YEUbbQDmxnlY8WtAQqQUNXq1ZpWckW2j0exEtYoo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m4WEQtF+CC+H0mrFDttSEWKQ9BSQKjbPCN+37gBIU76Q4z4MZOS45spwMN/MaQ/fZQ0U3Wo0F3WQGxeVgE7NiYKElUOJTe/hDtZxJqYxAy1ys/gRxF169g4SLqTa5b4MAHWfoO/9bxBj1qaYriZiXz7aAF3v6tUrfhaXGqnxkuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VuTmflJD; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1714476797;
-	bh=0w5YEUbbQDmxnlY8WtAQqQUNXq1ZpWckW2j0exEtYoo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VuTmflJDRloBpily1/ruHfyUL3wBKRo8vjc089iaNA6WTIitox0oHlZKj3G3NG0X0
-	 mS+JttWzMev1kV1P+VdS3e4AUOSF1QaWwKDKm4okHRhIaVFb4Dg9ADIKRlf2vSJS1B
-	 eJZ91QMu1Z++FORYq7A5b3WL8h3gxxRKg2F/wbVVdj2WgoHcFGg2T0a4jZPjR7v5sh
-	 iNvcyhun6D6B0v6o9i0HDjqM6DnuG+9vXAupSxWgePPtDyJOxDZDvQjgHuJCEWgm0/
-	 CnOP9O8Wo1CHhT97AVpD7ILlGt93ADClJWOu5zBNCWNvGixaiUEpUFdpXOeOUuLsaz
-	 a5vbFNYJKfDnw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1D3CE37813C4;
-	Tue, 30 Apr 2024 11:33:16 +0000 (UTC)
-Message-ID: <608fdbde-ad06-45ec-9771-18aa9f002f2d@collabora.com>
-Date: Tue, 30 Apr 2024 13:33:15 +0200
+	s=arc-20240116; t=1714476906; c=relaxed/simple;
+	bh=sxELeoveQyBre7ysa3POtgLGQh7DXaFQ4aIvHwFGZhk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TNsmgpiUZ0gMfRFK+qkRMoNmXezpMRuu0joTCiRgE5SWFASZoyft9F7waLN+/D8gSNjtErva1Ku0IDZc1V9oJ5DhsT3g7SemJII5ShsJqSfFYAzW2lHEI67kw6Y+ZCncd8us6BPwsoZSHtRH+0uRv8faTeJaUSBVAYy3tSIRoVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TWPDVOBz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3966C2BBFC;
+	Tue, 30 Apr 2024 11:35:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714476905;
+	bh=sxELeoveQyBre7ysa3POtgLGQh7DXaFQ4aIvHwFGZhk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TWPDVOBzUKxdgbVU/EzK2z365JwEkd273wG6jpr0AscMPIDuyLKa3lvcS0qHNglRX
+	 Qr/viURln37ItxVtuRsv8KCJJ1jdyA4973LiWMRtsIQY85W8buB/ebiY4QmlM9u284
+	 E7Qr3fVf1zF5TKXXsb9vW767PxP+RcegNHm9m9s4kx8Adpsh1O2ZaCkCKChA3cuOqI
+	 e5fabNHp/kd7iv9PRbAJ6WefdVtewcDJ0sJZpkdLkSliwpXN67HRFfRoHS72A0U9MX
+	 Ff5/5IqDARkSFlcqNWjBrTGz2aZySBunwGFRf+KWsCpgoRmGqYWuZu2cL5daV6e77A
+	 SnWM2UKlAfNjQ==
+Date: Tue, 30 Apr 2024 13:34:58 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 04/12] dt-bindings: rockchip: Add DesignWare based PCIe
+ Endpoint controller
+Message-ID: <ZjDXYguzuhnJAcfg@ryzen.lan>
+References: <20240424-rockchip-pcie-ep-v1-v1-0-b1a02ddad650@kernel.org>
+ <20240424-rockchip-pcie-ep-v1-v1-4-b1a02ddad650@kernel.org>
+ <20240425160809.GA2613935-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] drm/mediatek: Add support for OF graphs
-To: Alexandre Mergnat <amergnat@baylibre.com>, chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com
-References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
- <1fc23530-89ba-4e36-9e9a-a1289f56a9bc@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <1fc23530-89ba-4e36-9e9a-a1289f56a9bc@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240425160809.GA2613935-robh@kernel.org>
 
-Il 30/04/24 12:17, Alexandre Mergnat ha scritto:
-> Hi Angelo,
+On Thu, Apr 25, 2024 at 11:08:09AM -0500, Rob Herring wrote:
+> On Wed, Apr 24, 2024 at 05:16:22PM +0200, Niklas Cassel wrote:
+> > Document DT bindings for PCIe Endpoint controller found in Rockchip SoCs.
+> > 
+> > Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> > ---
+> >  .../bindings/pci/rockchip-dw-pcie-ep.yaml          | 192 +++++++++++++++++++++
+> >  1 file changed, 192 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml
+> > new file mode 100644
+> > index 000000000000..57a6c542058f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml
+> > @@ -0,0 +1,192 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie-ep.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: DesignWare based PCIe Endpoint controller on Rockchip SoCs
+> > +
+> > +maintainers:
+> > +  - Niklas Cassel <cassel@kernel.org>
+> > +
+> > +description: |+
+> > +  RK3588 SoC PCIe Endpoint controller is based on the Synopsys DesignWare
+> > +  PCIe IP and thus inherits all the common properties defined in
+> > +  snps,dw-pcie-ep.yaml.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: rockchip,rk3588-pcie-ep
 > 
-> On 09/04/2024 14:02, AngeloGioacchino Del Regno wrote:
->> This series was tested on MT8195 Cherry Tomato and on MT8395 Radxa
->> NIO-12L with both hardcoded paths, OF graph support and partially
->> hardcoded paths (meaning main display through OF graph and external
->> display hardcoded, because of OVL_ADAPTOR).
+> 3568 doesn't support endpoint mode? It would be good to keep the 
+> bindings aligned.
+
+It does.
+However, it does not have the dedicated IRQ lines for the eDMA interrupts.
+I will add rk3568 to the DT binding and to the driver.
+If someone wants eDMA functional for rk3568, there is further code needed,
+but EP mode without eDMA should work on rk3568 as is.
+
+
+> > +  phys:
+> > +    maxItems: 1
+> > +
+> > +  phy-names:
+> > +    const: pcie-phy
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 2
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: pwr
+> > +      - const: pipe
 > 
-> Is that make sense for you to add the DTS changes of these boards into this serie ?
-> I asked because, IMHO, that could help to understand the serie.
+> Most of this is all duplicated from rockchip-dw-pcie.yaml. Pull out the 
+> common bits to a separate schema file and reference it from the RC and 
+> endpoint schemas.
+
+Ok, will fix in V2.
+
+
+> You'll need to add to interrupts/interrupt-names in the common schema 
+> and then restrict the number of items here and in the RC schema.
+
+Remember that eDMA can be used also in RC mode.
+Even if the RC binding doesn't allow it right now, these interrupts could
+be optional also for RC mode, in case someone actually wants to use them
+in the future.
+
+
+> > +
+> > +  vpcie3v3-supply: true
 > 
+> This doesn't make sense for endpoint mode. At least in the sense this 
+> is supposed to be a standard slot voltage driven from the host side.
 
-Yes and no... but I imagine that you're asking this because you're trying to
-prepare something with a different SoC+board(s) combination :-)
+I tried not supplying the regulator for the EP side on my rock5b
+(rk3588 based) platform.
+The driver (in EP mode) probes correctly, but does not work without this,
+regardless of how I try. Boot EP first, boot RC first.
 
-In that case, I'm preventively sorry because what follows here is not 100%
-perfectly tidy yet as I didn't mean to send the devicetree commits upstream
-before this series got picked....
+Looking at the rock5b schematic:
+https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1423_sch.pdf
+Page 7, specifically VCC3V3_PCIE30.
+It does seem to only support sourcing VIN from a regulator on the local
+board (VCC5V0_SYS).
 
-... but there you go - I'm sure that you won't mind and that the example will
-be more than good enough for you.
+(Looking at a vendor using this SoC in a board that supports EP mode
+(Mixtile Blade 3), they do supply the regulator also for the EP-mode
+DT node.)
 
-Please note that one of the reasons why I didn't want to add this to the series
-is that the following changes show only a mere 50% of the reasons why we want OF
-graph support on mediatek-drm (but mainly, it's because I didn't have time to
-actually rebase etc :-P )
+I will drop the "vpcie3v3-supply" from the EP binding and keep it
+only in the RC binding. (As perhaps some other rk3588 based board can
+actually source the 3.3v from the PCIe slot in EP mode.)
 
-
-Cheers!
-Angelo
-
+I will keep it in the rock5b (a rk3588 based board) DT overlay,
+as it is obviously needed for rock5b.
 
 
-  .../boot/dts/mediatek/mt8195-cherry.dtsi      |  65 +++++++-
-  arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 153 +++++++++++++++++-
-  .../dts/mediatek/mt8395-radxa-nio-12l.dts     |  24 +++
-  3 files changed, 231 insertions(+), 11 deletions(-)
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - num-lanes
+> > +  - phys
+> > +  - phy-names
+> > +  - power-domains
+> > +  - resets
+> > +  - reset-names
+> 
+> A bunch or all? of these can be in the common schema too.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi 
-b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 86d283ffe807..b05b6bbd457c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -267,12 +267,29 @@ &auxadc {
-  	status = "okay";
-  };
+Ok, will fix in V2.
 
-+&dither0_out {
-+	remote-endpoint = <&dsc0_in>;
-+};
-+
-  &dp_intf0 {
-  	status = "okay";
 
--	port {
--		dp_intf0_out: endpoint {
--			remote-endpoint = <&edp_in>;
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dp_intf0_in: endpoint {
-+				remote-endpoint = <&merge0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dp_intf0_out: endpoint {
-+				remote-endpoint = <&edp_in>;
-+			};
-  		};
-  	};
-  };
-@@ -287,6 +304,27 @@ dp_intf1_out: endpoint {
-  	};
-  };
-
-+&dsc0 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dsc0_in: endpoint {
-+				remote-endpoint = <&dither0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dsc0_out: endpoint {
-+				remote-endpoint = <&merge0_in>;
-+			};
-+		};
-+	};
-+};
-+
-  &edp_tx {
-  	status = "okay";
-
-@@ -481,6 +519,27 @@ pmic@34 {
-  	};
-  };
-
-+&merge0 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			merge0_in: endpoint {
-+				remote-endpoint = <&dsc0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			merge0_out: endpoint {
-+				remote-endpoint = <&dp_intf0_in>;
-+			};
-+		};
-+	};
-+};
-+
-  &mfg0 {
-  	domain-supply = <&mt6315_7_vbuck1>;
-  };
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi 
-b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 88a0035a31a5..982572d7bfd8 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -3077,14 +3077,6 @@ vencsys_core1: clock-controller@1b000000 {
-  			#clock-cells = <1>;
-  		};
-
--		vdosys0: syscon@1c01a000 {
--			compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys", "syscon";
--			reg = <0 0x1c01a000 0 0x1000>;
--			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
--			#clock-cells = <1>;
--		};
--
--
-  		jpgenc-master {
-  			compatible = "mediatek,mt8195-jpgenc";
-  			power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
-@@ -3143,6 +3135,38 @@ ovl0: ovl@1c000000 {
-  			clocks = <&vdosys0 CLK_VDO0_DISP_OVL0>;
-  			iommus = <&iommu_vdo M4U_PORT_L0_DISP_OVL0_RDMA0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x0000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					ovl0_in: endpoint {
-+						remote-endpoint = <&vdosys0_ep_main>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					ovl0_out: endpoint {
-+						remote-endpoint = <&rdma0_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		vdosys0: syscon@1c01a000 {
-+			compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys", "syscon";
-+			reg = <0 0x1c01a000 0 0x1000>;
-+			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
-+			#clock-cells = <1>;
-+
-+			port {
-+				vdosys0_ep_main: endpoint {
-+					remote-endpoint = <&ovl0_in>;
-+				};
-+			};
-  		};
-
-  		rdma0: rdma@1c002000 {
-@@ -3153,6 +3177,25 @@ rdma0: rdma@1c002000 {
-  			clocks = <&vdosys0 CLK_VDO0_DISP_RDMA0>;
-  			iommus = <&iommu_vdo M4U_PORT_L0_DISP_RDMA0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x2000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					rdma0_in: endpoint {
-+						remote-endpoint = <&ovl0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					rdma0_out: endpoint {
-+						remote-endpoint = <&color0_in>;
-+					};
-+				};
-+			};
-  		};
-
-  		color0: color@1c003000 {
-@@ -3162,6 +3205,25 @@ color0: color@1c003000 {
-  			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-  			clocks = <&vdosys0 CLK_VDO0_DISP_COLOR0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x3000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					color0_in: endpoint {
-+						remote-endpoint = <&rdma0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					color0_out: endpoint {
-+						remote-endpoint = <&ccorr0_in>;
-+					};
-+				};
-+			};
-  		};
-
-  		ccorr0: ccorr@1c004000 {
-@@ -3171,6 +3233,25 @@ ccorr0: ccorr@1c004000 {
-  			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-  			clocks = <&vdosys0 CLK_VDO0_DISP_CCORR0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x4000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					ccorr0_in: endpoint {
-+						remote-endpoint = <&color0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					ccorr0_out: endpoint {
-+						remote-endpoint = <&aal0_in>;
-+					};
-+				};
-+			};
-  		};
-
-  		aal0: aal@1c005000 {
-@@ -3180,6 +3261,25 @@ aal0: aal@1c005000 {
-  			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-  			clocks = <&vdosys0 CLK_VDO0_DISP_AAL0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x5000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					aal0_in: endpoint {
-+						remote-endpoint = <&ccorr0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					aal0_out: endpoint {
-+						remote-endpoint = <&gamma0_in>;
-+					};
-+				};
-+			};
-  		};
-
-  		gamma0: gamma@1c006000 {
-@@ -3189,6 +3289,25 @@ gamma0: gamma@1c006000 {
-  			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-  			clocks = <&vdosys0 CLK_VDO0_DISP_GAMMA0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x6000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					gamma0_in: endpoint {
-+						remote-endpoint = <&aal0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					gamma0_out: endpoint {
-+						remote-endpoint = <&dither0_in>;
-+					};
-+				};
-+			};
-  		};
-
-  		dither0: dither@1c007000 {
-@@ -3198,6 +3317,24 @@ dither0: dither@1c007000 {
-  			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-  			clocks = <&vdosys0 CLK_VDO0_DISP_DITHER0>;
-  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x7000 0x1000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					dither0_in: endpoint {
-+						remote-endpoint = <&gamma0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					dither0_out: endpoint {
-+					};
-+				};
-+			};
-  		};
-
-  		dsi0: dsi@1c008000 {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts 
-b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index 7ab19b4e046f..b4a7dad2fea7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -1063,6 +1063,10 @@ &disp_pwm0 {
-  	status = "okay";
-  };
-
-+&dither0_out {
-+	remote-endpoint = <&dsi0_in>;
-+};
-+
-  &dsi0 {
-  	status = "okay";
-  	#address-cells = <1>;
-@@ -1089,6 +1093,25 @@ dsi_panel_in: endpoint {
-  		};
-  	};
-
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dsi0_in: endpoint {
-+				remote-endpoint = <&dither0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dsi_out: endpoint {
-+				remote-endpoint = <&dsi_panel_in>;
-+			};
-+		};
-+	};
-+/* old hardcoded dsi stuff, disappear!
-  	ports {
-  		port {
-  			dsi_out: endpoint {
-@@ -1096,6 +1119,7 @@ dsi_out: endpoint {
-  			};
-  		};
-  	};
-+*/
-
-  };
-
--- 
-2.45.0
-
+Kind regards,
+Niklas
 
