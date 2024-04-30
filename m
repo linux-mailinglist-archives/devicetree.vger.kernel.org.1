@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-63858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DF68B6C24
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:50:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E408B6C42
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:54:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27F7B1F22DCD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:50:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AA82283DCD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28937405EC;
-	Tue, 30 Apr 2024 07:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDC24085A;
+	Tue, 30 Apr 2024 07:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ee7W6fMj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SGCwJS+L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F5714AB7
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 07:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4527F3FE37
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 07:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714463414; cv=none; b=kkImugTZHZNUQeUtZS+8Q/++DXRT69FzNjd5wryF+LR/j/l4Iz7vimSte/veXDIYJsEzfA9iVVECWJnXgV10QQ/t8hCqsmmLzYCTOzqhVpezpPfkmzYFS4VbnSjd1888yvMB7h2svuQxV5MfHnCQ64O2oc3pXtuyRqUpa+NbFlE=
+	t=1714463669; cv=none; b=o5k6ikcaP6bRE6xXgcifo35PbhscCoE05HT76PScS6G0etraJ8lTLl+7VW+/+YJh4lxAneas6ulYVelxvpipC35s7a52f/j0NEN7mk3pN5hKm3m3R+287m5NQWZAM62tBKOy0y+3bIXHOXo19oWrwO0kWMD1RRhlGNWRojgsyqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714463414; c=relaxed/simple;
-	bh=y3GPHREQOB5v6cbz7zi466YFbYAsd74MT7Yxe2f9iMU=;
+	s=arc-20240116; t=1714463669; c=relaxed/simple;
+	bh=HJ2VKkzA15lNgZXjsvZCEBHNeCF+C3lGqDW3KlAC1nc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fn/nyTPy+VDamKBdUbZct0KLm+44ZIMavTaW4DFAWKFWNHLN6Xn1Zfvo0i8dIn5ATOtl4MkuGvAFKZeOMLsRIoUJiaHETaNgOaiO0Xt0Lp6rXGTC6AIvyX5r7QtOyLdiqIlclyU3oy8zkPtc22jI2Lq+NmDAXHyVtYFRlTET1a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ee7W6fMj; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:Content-Type; b=TUZK624NfnnWS7M/L5/Gv8CcN791IT+gCGkyOJg7FoWSNGjRSkPbKR1dCpiZZnkwNGqgvLR3qCYGUVSUEMWc0tvUFcKHP6mz5U10+WdjEJXU12H+s1fdUcIkvwzxqIVAUglcwWiVvXxL9B6UGOpxwxfircvMsshk72oqJcKKTo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SGCwJS+L; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5725cfa2434so1612797a12.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 00:50:11 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5176f217b7bso9367472e87.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 00:54:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714463410; x=1715068210; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714463664; x=1715068464; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CdZMwTmpWj9xg3Z7thMGgyDqIb86JCoZXlPnTCASMNo=;
-        b=Ee7W6fMjxq/0Ng6dDmxZYvak3RsZvdezsgNNuketcCPT/bA/weVB2bg4Cbj/2tHTd9
-         2Glt/hcoNnijWDdDfROIjR+nyx6hX3hfBZLcDd9+uu2/f3l+OZSPTu8w8vnw5i58G4Qm
-         1ntDlsa9lnVBTYDaDD+TtOa/yF+hbGzu9vjoNb3zAdL0olYO2QunT2Gw0WYsOc6f5IZF
-         JzN0p3yRob+sDwsmc9VMH8k4VL5aaIX0YSWk+E7QU0i7XpztuxIHCn+IP5ImBNlVX6k1
-         BrJz+YD5hP0PeB8qRbWVYiLQVXFtZ8hz/OyZloaFQTIsZ+P6gDV1eePm9X20EWlSSCYU
-         kMBg==
+        bh=+COGoHRjrpytxWAGl3DpYEcAeGz8XxUB2Cn5F9RtnwU=;
+        b=SGCwJS+LZJq0p4xczN/v0K5AmsDIn+2YuPSqNiTSZWLd5qBv6zVqvHlWXPq+htT+/L
+         5/WszjfIYd+ueBb8uSMapaiTMqwPkyl6ORNCBB9220wPU4HjSz+BSRd1IanNGGKZMsgw
+         eQqcir7aUtQ538n/fDq7xQT8/UBCHZQTcIWDvfz4bby2sJBZqNRlo96bOGTcS/4FNbop
+         /9xWPaH4Xa0fBe1c6YPoP+efhRETtgjzy/73xXVjJbnhxMSrkIcsM0kUOh9kC6rOPOCH
+         BnjBtGz6n/QqQzNe0QFfk7PYHZy3G/0RB2raKDgk+FOo9oyh+12UEoNexvLYTvdykv63
+         lscA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714463410; x=1715068210;
+        d=1e100.net; s=20230601; t=1714463664; x=1715068464;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CdZMwTmpWj9xg3Z7thMGgyDqIb86JCoZXlPnTCASMNo=;
-        b=T+9hnX/9y/XhlRRRc0ASLJvsdM/5OMNldMALckHXUFOPskAuZ52Qeu/jwoAwHoIjOi
-         sKb7yxKObsskQld8rAE90v4RopOPSXnX6k/BQAQDR8/g9lC0YK21cJunzmAECeIv7AXE
-         coz1J9CsRbRG0tgAV5alcE1ZtbpqLQdhwjHC1YggOnmC7QYpVx4h8876614JrWDlLDwU
-         FQrMyZVlg0XWIu6Nmb2nkCAw96bpReO5+inP8PeH1XkSZ9dFT/KA/OeUEkzw1FoClyAa
-         WmoIuCqWeXFWw3CeTwmAtVHphp6DRoyivt/aBv5oIXgB36chJJsBX8IWGFOr4Wxe/UYB
-         aSkA==
-X-Forwarded-Encrypted: i=1; AJvYcCXsp3B+rbaejl4nOJe+1xm4T2CjA4aQiGCZrOeWLdLXVTlD4zi73WAUwWiQAkfNTRf+DIdpEHX1ECjpPdIJQA5IasylzpnOu5psUg==
-X-Gm-Message-State: AOJu0Yw8AfgXC6/i64NPmeG65hyMde/YvrZPEaNrvFk+KgymfwLZWInj
-	UcQrBqeyCz5pfQ3tWMBZ7lA+U2iQDGdxyZLyG0ImbDO2NP3uhYQs6wIOXoI51xA=
-X-Google-Smtp-Source: AGHT+IHi0Sn9aiR+1OAfx4ul4FSxAOk5uyAUhpJrG+gB+VwB0CVMGXcCFuSrzyCx2E0mx7Tck8Y7ug==
-X-Received: by 2002:a50:f61b:0:b0:572:325a:8515 with SMTP id c27-20020a50f61b000000b00572325a8515mr11052060edn.36.1714463409850;
-        Tue, 30 Apr 2024 00:50:09 -0700 (PDT)
+        bh=+COGoHRjrpytxWAGl3DpYEcAeGz8XxUB2Cn5F9RtnwU=;
+        b=ulbWEGmSLAn/4o3PI3q7eB6QnyNqqvFN9qIBeBRyXAm8zSm7EoY4r6InUMahgyV5+q
+         Skee/CCnnKldMXCqSzG0RYzFbtiAlbFiA+3YNcH/BtyXGbtIrowuxI8LQYXQB4AGr8OP
+         sDwUXQ/XoGAKq4wHaie9DI+CClFUZDOYpYM4dFuAOp19yBoHovdduTCjDU/wEswWLudM
+         t1ZdcJoRX2uHdAr/q3kwvCR92Klau2wEmZJ6vmf5fA4qP+oqd3K5JROGooVlgyeaT+Py
+         HxW3WubV4F3YGpIPWMn8uR/4UfsuHyGaSPOmAQOcYO77BiuG5g7/uyQeVq3ufcd9VWw2
+         vEKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWy2httbTNt1cz0dvljlQIYeZ985npSKn5uHtmFJSJQ3JQPiUek8g+cNenTUcfHM0vR32SfhGAK7s831jd9y2tvCEFRXNzkyO/BvQ==
+X-Gm-Message-State: AOJu0YxVdnJKQkdp9f834hr6Uz/psDW4lYyTCvLrUWsRgKSXPD9VSFm9
+	HV36Z19dxsCwLtUqp8nKYJg4kgDdgHnvabqeIiiRg1ToEVSaiDddCaIveOoXOgA=
+X-Google-Smtp-Source: AGHT+IGU58GDyAaqJm5SJS5bIUqPkO/WqmbfGbVrIsjqUl9E+BpLW1b8L7SKHGtC8ud2imOGy/bT1A==
+X-Received: by 2002:ac2:5b4c:0:b0:51c:fd0a:7e37 with SMTP id i12-20020ac25b4c000000b0051cfd0a7e37mr7526447lfp.20.1714463664313;
+        Tue, 30 Apr 2024 00:54:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id n18-20020a05640205d200b005727b2ae25csm273823edx.14.2024.04.30.00.50.08
+        by smtp.gmail.com with ESMTPSA id z13-20020a170906434d00b00a51e5813f4fsm14993451ejm.19.2024.04.30.00.54.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Apr 2024 00:50:09 -0700 (PDT)
-Message-ID: <5ed51fdb-ffa7-482b-8789-a190e9b3459a@linaro.org>
-Date: Tue, 30 Apr 2024 09:50:07 +0200
+        Tue, 30 Apr 2024 00:54:23 -0700 (PDT)
+Message-ID: <9655f9ca-91e5-42c5-9a08-cb342179dc4c@linaro.org>
+Date: Tue, 30 Apr 2024 09:54:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT
- binding
-To: Marek Vasut <marex@denx.de>, linux-bluetooth@vger.kernel.org,
- Marcel Holtmann <marcel@holtmann.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>,
+Subject: Re: [PATCH v1 1/3] dt-bindings: media: add qcom,msm8998-venus
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
+ <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, netdev@vger.kernel.org
-References: <20240319042058.133885-1-marex@denx.de>
- <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
- <93eeb045-b2a3-41d7-a3f2-1df89c588bfd@denx.de>
- <793d016d-2bde-407a-8300-f42182431eb1@linaro.org>
- <c21823f2-4dd7-490a-8b76-7cab422428ba@denx.de>
+ Conor Dooley <conor+dt@kernel.org>
+References: <2b21b160-a530-486a-9404-c5bf8863ffed@freebox.fr>
+ <4ea494cf-134e-4380-aea1-4c166a626561@freebox.fr>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,37 +138,130 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c21823f2-4dd7-490a-8b76-7cab422428ba@denx.de>
+In-Reply-To: <4ea494cf-134e-4380-aea1-4c166a626561@freebox.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/04/2024 22:44, Marek Vasut wrote:
-> On 4/29/24 8:22 PM, Krzysztof Kozlowski wrote:
->> On 29/04/2024 17:10, Marek Vasut wrote:
->>> On 3/19/24 6:41 AM, Krzysztof Kozlowski wrote:
->>>> On 19/03/2024 05:20, Marek Vasut wrote:
->>>>> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
->>>>> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
->>>>> This chip is present e.g. on muRata 1YN module.
->>>>>
->>>>> Extend the binding with its DT compatible using fallback
->>>>> compatible string to "brcm,bcm4329-bt" which seems to be
->>>>> the oldest compatible device. This should also prevent the
->>>>> growth of compatible string tables in drivers. The existing
->>>>> block of compatible strings is retained.
->>>>>
->>>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> Is there any action necessary from me to get this applied ?
->>
->> I recommend resending with proper PATCH prefix matching net-next
->> expectations.
+On 29/04/2024 18:15, Marc Gonzalez wrote:
+> Add YAML binding for Qualcomm MSM8998 Venus HW video encode and decode.
+> (Based on qcom,msm8996-venus.yaml)
 > 
-> I don't think bluetooth is net-next , it has its own ML and its own 
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml | 155 ++++++++++++++++++++++++++++
+>  1 file changed, 155 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml b/Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml
+> new file mode 100644
+> index 0000000000000..86a20954cb354
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,msm8998-venus.yaml
+> @@ -0,0 +1,155 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,msm8998-venus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm MSM8998 Venus video encode and decode accelerators
+> +
+> +maintainers:
+> +  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> +
+> +description: |
 
-True, indeed. The net prefix confused me.
+Do not need '|' unless you need to preserve formatting.
+
+> +  The Venus IP is a video encode and decode accelerator present
+> +  on Qualcomm platforms
+> +
+> +allOf:
+> +  - $ref: qcom,venus-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,msm8998-venus
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: iface
+> +      - const: bus
+> +      - const: mbus
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: video-mem
+> +      - const: cpu-cfg
+> +
+> +  iommus:
+> +    maxItems: 20
+> +
+> +  video-decoder:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: venus-decoder
+> +
+> +      clocks:
+> +        maxItems: 1
+> +
+> +      clock-names:
+> +        items:
+> +          - const: core
+> +
+> +      power-domains:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - clocks
+> +      - clock-names
+> +      - power-domains
+> +
+> +    additionalProperties: false
+> +
+> +  video-encoder:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: venus-encoder
+> +
+> +      clocks:
+> +        maxItems: 1
+> +
+> +      clock-names:
+> +        items:
+> +          - const: core
+> +
+> +      power-domains:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - clocks
+> +      - clock-names
+> +      - power-domains
+> +
+> +    additionalProperties: false
+
+In nested blocks, put it after the type:object, for readability.
+
+> +
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
