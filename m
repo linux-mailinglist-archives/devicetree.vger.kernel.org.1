@@ -1,191 +1,337 @@
-Return-Path: <devicetree+bounces-63791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 816568B6955
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 06:08:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 892378B697B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 06:37:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA4291F220F4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 04:08:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EF5C28239F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 04:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB78F11733;
-	Tue, 30 Apr 2024 04:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F263D205E17;
+	Tue, 30 Apr 2024 04:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="SUo28tdh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lni58lhF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC6C11185
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 04:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E5479DE;
+	Tue, 30 Apr 2024 04:37:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714450116; cv=none; b=fymTxVA/Z5kr6UFlXX/xoxs7HWyInRLh+N8oxDKtPO1C+IkybGdhwlPkTRW8t1OsbnnFGeoOhmm5CFzpLwjc6iO4Awj9iXhKKQNCczBTpChdU0EHD948FIskURoQ20eRSZWCRU1AfoaTA92kuXTxEnEFeC0itdxpdu4PADjmYb8=
+	t=1714451831; cv=none; b=al7/PeO2VeAbDT2IQtEkoKPnazMRgKEnHt2pB5se/VsFUUKbX5D1uJfxhKdfYI2zrLV4B9fHTNEyEOi4naARwK3Pn06sZ5S6kaTWkKyCHod5x4tzWtgVI2TxUU38DDgVcGFtfUfNP5MAZSAmma2zqZ8QaGHrGyIbbCpZwX18Zx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714450116; c=relaxed/simple;
-	bh=tG0gR3luXw6co1uV9l6dsdMa/PsBDGFgb76VFuZxDFA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=adMcrex75mA02BbM+hAuq/4Eoo9XdxiTKaEFmzNAG372w1LJ4CsPTGlZDZxTcz5pQE/rDhaB2EvARFqVVjw5B3naz9wGGF57JJrZGbh2MRCVQLWGL7FG7Z8TdiKYpBQecaO0mn3RddUDR09nLPf81iMb3Oj875UBdDWgs5wf0sE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=SUo28tdh; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-de45dba157cso4894704276.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2024 21:08:35 -0700 (PDT)
+	s=arc-20240116; t=1714451831; c=relaxed/simple;
+	bh=ZN7Zq+jiw7Kjs/LYwfdHP/3ry2hvJCD2BKi3S3GlNLc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mGeCrZFk3oYA4AbFbudDzKFgkFt5XVcMkv9LVqwiJZRBbgmxE3I9dtZOKOrfNGFUPEAe+fc9+wE1ds40BiWtX0+rOliHmzDS/xNO4Fv4JQT6N79O9sb97sohr3Fg//m/LGCYaLLsCb6UJ5RUq4chS056nfqosi0YOzTFi4iiEcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lni58lhF; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5af27a0dde1so3343320eaf.3;
+        Mon, 29 Apr 2024 21:37:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1714450114; x=1715054914; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gCslZkcQd5RtLXYuX+Nd2JyjWr4Wgb6SjvGmoz0L3zE=;
-        b=SUo28tdhAw0hJRAOpxEmJPb9T4IQL0OQxKfDiiNkLYszBj/tMy6A5IfUEM+a50jiqr
-         9VwpxQAaxNEtDLE6D01YMjPzEp0FP9v9NrGQ63oCAO3PBP/VxoB/hPu3sd/ECX/HsWxr
-         ff/2z6aZ08hBy8zJtmLLk3zjLX7eaSKRIHyUbT4yzjAap/zwHfVSAmmHATYlMCPlLtgl
-         KFyy7AvRFNBN6YEBp1ZYQuJuKiJbe5iBtX3Eby0X/rplxuDSqnIBaNxoV7rXXHFWawWh
-         KUFTdIrwdGhjrcfwcBHjzK4npeiL5NieLn31xI48OUrxzBFjc0YziAVt1aK6CIK8rN9l
-         DbDQ==
+        d=gmail.com; s=20230601; t=1714451828; x=1715056628; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6MUvhJfdV6HNHsUortMTUYfgCW5/FmZUUA2yG0TvW7Q=;
+        b=Lni58lhFieDXuF/xJdZjiiuIsUosxsu2kK6xqaLVyPEDJVXcEuZ3ZMAnSxFhd9o/ox
+         FpCsl7ZoI93I6zHYNTYG9JRH3BF496EDNEAm5lbOYGevDxUELPMLPWlGJRsrGUSn1kE0
+         BAsbsTlBPHJdavPisvA5+fMEltz+GAHyklBS1sYC5G3j2TvYCXghTLzaIw0DDKCRMeKw
+         xU/f5x8g7btxLfGLPC4ayigjaqPWn0Z9LfSSRxXaEBE2EllXh/rmUNiE4yvT8JQiwvjx
+         BHdExhevR8WqH4OAFGjsOHYNZRSKvmHQUUe+el8+hmkOSvJzBIhc/0utPnX2SBSO/lmo
+         uY6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714450114; x=1715054914;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gCslZkcQd5RtLXYuX+Nd2JyjWr4Wgb6SjvGmoz0L3zE=;
-        b=ag+yCGwOqiB62eJFcj1l4gv8h3SzWPnxVl6yXCqUpw5lPuzkQjyBTarC6XWFGEB+Bw
-         cfimTxm2kt7NwYdBz/iqws14+t6qeqPRqa2R2wdibj06VcDiM/XSL5bwSqpo9o3XZO07
-         Ema69KC9lIZc9E5bwhxHiFHOhNBcAcBD8RPmQ/J1OmDbraoHvHVj2xuBnkIkKVIUPVa3
-         EPJ7BG3/p0A98A9GuNUSreXxjZjUez/azrObFpD//+rnsKEs9tQwJ0T8/RkAEcSUg/fw
-         0kI6qIbrmtmurkDDW+aW4Ycvrd/leXYbyN9OjR2hw8v/1PEKGsTXpTOLX6OyzLBR4dHT
-         EdVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+N2CLfWxlwXb93uLbt5eCy8aovZxZi1uj7O+7PkGa9FbIgyfmjJ4LJ3yfmQmNin1CeeDA5JK8kkkLtUS2C6DjcYk0rD/2lmcysQ==
-X-Gm-Message-State: AOJu0YweUm1Yzz0eKD+FH6ihTvd3j0ETiZvP+a9QhmlLcYAIf2hypAa3
-	dsJRYzLSDGMXdGEjSjp58p/hRt7TuW9ammNc2e3eA3IeOPlDPhJ6zrYOPYju2bM=
-X-Google-Smtp-Source: AGHT+IFwAJsZsr7vaGkLxE1T7x6+TzNPPDBiFljXpmorJhrntyhYM0B3aRKRclxB5YSlsfW2NRqwOw==
-X-Received: by 2002:a05:690c:6d03:b0:615:8c1:d7ec with SMTP id iv3-20020a05690c6d0300b0061508c1d7ecmr11997230ywb.33.1714450113146;
-        Mon, 29 Apr 2024 21:08:33 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id i190-20020a0dc6c7000000b00618876dc75fsm5694002ywd.27.2024.04.29.21.08.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Apr 2024 21:08:32 -0700 (PDT)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v3] of: property: Add fw_devlink support for interrupt-map property
-Date: Tue, 30 Apr 2024 09:38:22 +0530
-Message-Id: <20240430040822.1133339-1-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1714451828; x=1715056628;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6MUvhJfdV6HNHsUortMTUYfgCW5/FmZUUA2yG0TvW7Q=;
+        b=I05bYLItcgEAhFJ52o1qKj1p3cntM76VkM4xeElhcNCpMNK4lE2la5NAasijuOWLUg
+         HeecJL6Jbp9TFJV5+9UVhKrb5l7lKt8N7Tv1bMs2q80FUCdyYkFkuSYGdjb5igjElLHf
+         E1CnYp2tnCUbw6twW6gxGWqpJu5wR7VWGaWibOcM5OKVnxnqPZQOb5eVPCYZCDBVkoVC
+         5XcYeuKAP/CRA19S0taPEQxg7Dd+OhfqszsvIRrtQ3J7TVIXjal32CvUgv19YZqYAUgP
+         l9QX2F2d0q8nK9t2l2YtjrMjHv6Ww9iXrcxDU+N2Dab3WqqKWgHTM4xCC6hoeNZZq/th
+         qvsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXufl8Sqip4PZWM1UaHJ56CVQJESLhAGIG1+IpDQDAEOsT1nLeKP3Nq6RBWcM8RY2yGwLm8iwqrJMa7+xRRWSZ+1zrplyKMoli1WAK9oux9pYD33WRjbkxhZ0lHw2O+ZBNEa30u6bE14RIwlFU4F6k9qdK7tPN1aFn2tyJ8uGNSws6c/A==
+X-Gm-Message-State: AOJu0YytCyCZaXb1evOCYRs+16ZazJFQHmekgan4o1SG+9O71D5M1tNM
+	U81COoyfTlPF2vC0InYHH5KlfVeI9O8FkCsU2hoils2Lt8E8L3j4YcxGimVMUkMDHBNZOSmy0xJ
+	4rs5mc2XRXoTuZkITxD+OND2iJ5W/rUv4m4w=
+X-Google-Smtp-Source: AGHT+IHn4gh/sB1tEugAYrmg5GZjqdVSjS4c8zKVmn67NjF6sglhqekaIgD8LjH89RZR6dOSsOOaU3lnGy85arhHTl4=
+X-Received: by 2002:a4a:8c10:0:b0:5aa:6404:936a with SMTP id
+ u16-20020a4a8c10000000b005aa6404936amr13212891ooj.5.1714451828143; Mon, 29
+ Apr 2024 21:37:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240406063413.3334639-1-qiujingbao.dlmu@gmail.com>
+ <20240406063413.3334639-3-qiujingbao.dlmu@gmail.com> <njsvev4dxjln2guw3lr5zwvytzvvmj7qcuduo2v56dhvuxujs4@eqm4cmh6ddva>
+In-Reply-To: <njsvev4dxjln2guw3lr5zwvytzvvmj7qcuduo2v56dhvuxujs4@eqm4cmh6ddva>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Tue, 30 Apr 2024 12:36:56 +0800
+Message-ID: <CAJRtX8So3PifNFfsnq1BmP3+8kevhM6Fk6moMp=wFX4o8q89SQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Some of the PCI controllers (such as generic PCI host controller)
-use "interrupt-map" DT property to describe the mapping between
-PCI endpoints and PCI interrupt pins. This the only case where
-the interrupts are not described in DT.
+Hi, Uwe
 
-Currently, there is no fw_devlink created based on "interrupt-map"
-DT property so interrupt controller is not guaranteed to be probed
-before PCI host controller. This affects every platform where both
-PCI host controller and interrupt controllers are probed as regular
-platform devices.
+On Mon, Apr 29, 2024 at 10:54=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello,
+>
+> On Sat, Apr 06, 2024 at 02:34:13PM +0800, Jingbao Qiu wrote:
+> > Implement the PWM driver for CV1800.
+> >
+> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> > ---
+> >  drivers/pwm/Kconfig      |  10 ++
+> >  drivers/pwm/Makefile     |   1 +
+> >  drivers/pwm/pwm-cv1800.c | 296 +++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 307 insertions(+)
+> >  create mode 100644 drivers/pwm/pwm-cv1800.c
+> >
+> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> > index 1dd7921194f5..3869ca022aeb 100644
+> > --- a/drivers/pwm/Kconfig
+> > +++ b/drivers/pwm/Kconfig
+> > @@ -182,6 +182,16 @@ config PWM_CROS_EC
+> >         PWM driver for exposing a PWM attached to the ChromeOS Embedded
+> >         Controller.
+> >
+> > +config PWM_CV1800
+> > +     tristate "Sophgo CV1800 PWM driver"
+> > +     depends on ARCH_SOPHGO || COMPILE_TEST
+> > +     help
+> > +       Generic PWM framework driver for the Sophgo CV1800 series
+> > +       SoCs.
+> > +
+> > +       To compile this driver as a module, build the dependecies
+> > +       as modules, this will be called pwm-cv1800.
+> > +
+> >  config PWM_DWC_CORE
+> >       tristate
+> >       depends on HAS_IOMEM
+> > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> > index 90913519f11a..6295e2259efc 100644
+> > --- a/drivers/pwm/Makefile
+> > +++ b/drivers/pwm/Makefile
+> > @@ -14,6 +14,7 @@ obj-$(CONFIG_PWM_CLK)               +=3D pwm-clk.o
+> >  obj-$(CONFIG_PWM_CLPS711X)   +=3D pwm-clps711x.o
+> >  obj-$(CONFIG_PWM_CRC)                +=3D pwm-crc.o
+> >  obj-$(CONFIG_PWM_CROS_EC)    +=3D pwm-cros-ec.o
+> > +obj-$(CONFIG_PWM_CV1800)     +=3D pwm-cv1800.o
+> >  obj-$(CONFIG_PWM_DWC_CORE)   +=3D pwm-dwc-core.o
+> >  obj-$(CONFIG_PWM_DWC)                +=3D pwm-dwc.o
+> >  obj-$(CONFIG_PWM_EP93XX)     +=3D pwm-ep93xx.o
+> > diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
+> > new file mode 100644
+> > index 000000000000..37a6be3f63aa
+> > --- /dev/null
+> > +++ b/drivers/pwm/pwm-cv1800.c
+> > @@ -0,0 +1,296 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Sophgo CV1800 PWM driver
+> > + * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> > + *
+> > + * Limitations:
+> > + * - It output low when PWM channel disabled.
+>
+> Just to be sure: the output is low independant of the POLARITY register?
 
-This creates fw_devlink between consumers (PCI host controller) and
-supplier (interrupt controller) based on "interrupt-map" DT property.
+When the value of the POLARITY register is 1, the PWM outputs a high level.
+When the value of the POLARITY register is 0, the PWM output is low.
+Should I make this point here?
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
-Changes since v2:
-- No need for a loop to find #interrupt-cells property value
-- Fix node de-reference leak when index is greater than number
-  of entries in interrupt-map property
-Changes since v1:
-- Updated commit description based on Rob's suggestion
-- Use of_irq_parse_raw() for parsing interrupt-map DT property
----
- drivers/of/property.c | 50 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+>
+> > + * - This pwm device supports dynamic loading of PWM parameters. When =
+PWMSTART
+> > + *   is written from 0 to 1, the register value (HLPERIODn, PERIODn) w=
+ill be
+> > + *   temporarily stored inside the PWM. If you want to dynamically cha=
+nge the
+> > + *   waveform during PWM output, after writing the new value to HLPERI=
+ODn and
+> > + *   PERIODn, write 1 and then 0 to PWMUPDATE[n] to make the new value=
+ effective.
+> > + * - Supports up to Rate/2 output, and the lowest is about Rate/(2^30-=
+1).
+> > + * - By setting HLPERIODn to 0, can produce 100% duty cycle.
+> > + * - This hardware could support inverted polarity. By default, the va=
+lue of the
+> > + *   POLARITY register is 0x0. This means that HLPERIOD represents the=
+ number
+> > + *   of low level beats.
+> > + * - This hardware supports input mode and output mode, implemented th=
+rough the
+> > + *   Output-Enable/OE register. However, this driver has not yet imple=
+mented
+> > + *   capture callback.
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pwm.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#define PWM_CV1800_HLPERIOD_BASE    0x00
+> > +#define PWM_CV1800_PERIOD_BASE      0x04
+> > +#define PWM_CV1800_POLARITY         0x40
+> > +#define PWM_CV1800_START            0x44
+> > +#define PWM_CV1800_DONE             0x48
+> > +#define PWM_CV1800_UPDATE           0x4c
+> > +#define PWM_CV1800_OE               0xd0
+> > +
+> > +#define PWM_CV1800_HLPERIOD(n)      (PWM_CV1800_HLPERIOD_BASE + ((n)*0=
+x08))
+> > +#define PWM_CV1800_PERIOD(n)        (PWM_CV1800_PERIOD_BASE + ((n)*0x0=
+8))
+> > +
+> > +#define PWM_CV1800_UPDATE_MASK(n)   (BIT(0) << (n))
+> > +#define PWM_CV1800_OE_MASK(n)       (BIT(0) << (n))
+> > +#define PWM_CV1800_START_MASK(n)    (BIT(0) << (n))
+> > +#define PWM_CV1800_POLARITY_MASK(n) (BIT(0) << (n))
+> > +
+> > +#define PWM_CV1800_MAXPERIOD        0x3fffffff
+> > +#define PWM_CV1800_MINPERIOD        2
+> > +#define PWM_CV1800_CHANNELS         4
+> > +#define PWM_CV1800_PERIOD_RESET     BIT(1)
+> > +#define PWM_CV1800_HLPERIOD_RESET   BIT(0)
+> > +#define PWM_CV1800_REG_DISABLE      0x00U
+> > +#define PWM_CV1800_REG_ENABLE(n)    (BIT(0) << (n))
+>
+> BIT(n)?
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index a6358ee99b74..7326ca07adfe 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1311,6 +1311,55 @@ static struct device_node *parse_interrupts(struct device_node *np,
- 	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
- }
- 
-+static struct device_node *parse_interrupt_map(struct device_node *np,
-+					       const char *prop_name, int index)
-+{
-+	const __be32 *imap, *imap_end, *addr;
-+	struct of_phandle_args sup_args;
-+	u32 addrcells, intcells;
-+	int i, imaplen;
-+
-+	if (!IS_ENABLED(CONFIG_OF_IRQ))
-+		return NULL;
-+
-+	if (strcmp(prop_name, "interrupt-map"))
-+		return NULL;
-+
-+	if (of_property_read_u32(np, "#interrupt-cells", &intcells))
-+		return NULL;
-+	addrcells = of_bus_n_addr_cells(np);
-+
-+	imap = of_get_property(np, "interrupt-map", &imaplen);
-+	if (!imap || imaplen <= (addrcells + intcells))
-+		return NULL;
-+	imap_end = imap + imaplen;
-+
-+	sup_args.np = NULL;
-+	while (imap < imap_end) {
-+		addr = imap;
-+		imap += addrcells;
-+
-+		sup_args.np = np;
-+		sup_args.args_count = intcells;
-+		for (i = 0; i < intcells; i++)
-+			sup_args.args[i] = be32_to_cpu(imap[i]);
-+		imap += intcells;
-+
-+		if (of_irq_parse_raw(addr, &sup_args))
-+			return NULL;
-+
-+		if (!index)
-+			return sup_args.np;
-+
-+		of_node_put(sup_args.np);
-+		sup_args.np = NULL;
-+		imap += sup_args.args_count + 1;
-+		index--;
-+	}
-+
-+	return NULL;
-+}
-+
- static struct device_node *parse_remote_endpoint(struct device_node *np,
- 						 const char *prop_name,
- 						 int index)
-@@ -1359,6 +1408,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_msi_parent, },
- 	{ .parse_prop = parse_gpio_compat, },
- 	{ .parse_prop = parse_interrupts, },
-+	{ .parse_prop = parse_interrupt_map, },
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
--- 
-2.34.1
+yes, I will fix it.
 
+>
+> > +
+> > +struct cv1800_pwm {
+> > +     struct regmap *map;
+> > +     struct clk *clk;
+> > +     unsigned long clk_rate;
+> > +};
+> > +
+> > +static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *ch=
+ip)
+> > +{
+> > +     return pwmchip_get_drvdata(chip);
+> > +}
+> > +
+> > +static const struct regmap_config cv1800_pwm_regmap_config =3D {
+> > +     .reg_bits =3D 32,
+> > +     .val_bits =3D 32,
+> > +     .reg_stride =3D 4,
+> > +};
+> > +
+> > +static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device =
+*pwm,
+> > +                          bool enable)
+> > +{
+> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
+> > +     u32 pwm_enable, state;
+> > +
+> > +     regmap_read(priv->map, PWM_CV1800_START, &pwm_enable);
+> > +     pwm_enable &=3D PWM_CV1800_START_MASK(pwm->hwpwm);
+> > +
+> > +     /*
+> > +      * If the parameters are changed during runtime, Register needs
+> > +      * to be updated to take effect.
+> > +      */
+> > +     if (pwm_enable && enable) {
+> > +             regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
+> > +                                PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
+> > +                                PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> > +             regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
+> > +                                PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
+> > +                                PWM_CV1800_REG_DISABLE);
+>
+> I think using a plain 0 instead of PWM_CV1800_REG_DISABLE would be a tad
+> clearer.
+
+I will fix it.
+
+>
+> > +     } else if (!pwm_enable && enable) {
+> > +             regmap_update_bits(priv->map, PWM_CV1800_START,
+> > +                                PWM_CV1800_START_MASK(pwm->hwpwm),
+> > +                                PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> > +     } else if (pwm_enable && !enable) {
+> > +             regmap_update_bits(priv->map, PWM_CV1800_START,
+> > +                                PWM_CV1800_START_MASK(pwm->hwpwm),
+> > +                                PWM_CV1800_REG_DISABLE);
+> > +     }
+> > +
+> > +     /* check and set OE/Output-Enable mode */
+> > +     regmap_read(priv->map, PWM_CV1800_OE, &state);
+> > +     state &=3D PWM_CV1800_OE_MASK(pwm->hwpwm);
+> > +
+> > +     if (state =3D=3D PWM_CV1800_REG_DISABLE && enable)
+>
+> Here I'd use:
+>
+>         regmap_read(priv->map, PWM_CV1800_OE, &state);
+>
+>         if ((state & BIT(pwm->hwpwm)) && enable)
+>
+
+I will fix it.
+
+> > +             regmap_update_bits(priv->map, PWM_CV1800_OE,
+> > +                                PWM_CV1800_OE_MASK(pwm->hwpwm),
+> > +                                PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > [...]
+> > +static int cv1800_pwm_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct cv1800_pwm *priv;
+> > +     struct pwm_chip *chip;
+> > +     void __iomem *base;
+> > +     int ret;
+> > +
+> > +     chip =3D devm_pwmchip_alloc(dev, PWM_CV1800_CHANNELS, sizeof(*pri=
+v));
+> > +     if (!chip)
+> > +             return PTR_ERR(chip);
+> > +     priv =3D to_cv1800_pwm_dev(chip);
+> > +
+> > +     base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(base))
+> > +             return PTR_ERR(base);
+> > +
+> > +     priv->map =3D devm_regmap_init_mmio(&pdev->dev, base,
+> > +                                       &cv1800_pwm_regmap_config);
+> > +     if (IS_ERR(priv->map))
+> > +             return PTR_ERR(priv->map);
+>
+> devm_regmap_init_mmio() doesnt' emit an error message on failure, so
+> please add one here.
+
+I will fix it.
+
+Thank you for your suggestion.
+
+Best regards
+Jingbao Qiu
 
