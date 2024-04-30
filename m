@@ -1,110 +1,143 @@
-Return-Path: <devicetree+bounces-64045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10DE8B7A95
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:52:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B2E8B7AD2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C37E28501F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 14:52:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89C801F210B3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 15:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0AC770EF;
-	Tue, 30 Apr 2024 14:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E381A14374C;
+	Tue, 30 Apr 2024 15:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8Epojar"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EJE3Z4a2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3E01527B9;
-	Tue, 30 Apr 2024 14:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F00E7710A;
+	Tue, 30 Apr 2024 15:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714488737; cv=none; b=AYe6RhT0xJjN6lQxh1bnKQJauaO2InxuEAX71OemCm6tEW+tkUub1kUtaXWq6pac6GKkdgn9j9Q74QdXCh6mg73XscbTA3gWoTKka3V6fZMEa/a6/OhUo1/ROA089NFY9UABkUySBn37Ul/cuPCTK0Ck4w7or2bl8NRL3HX/3Qw=
+	t=1714489215; cv=none; b=OrFMVtsp3w0AJmJ6ENG8eMySR6JrC6Bm5YPTsm8DHbXKILGN49LxsPIudXlih9kzo21KR5MbHUt1sqxfoUY7BoPMpgQjQ5RzEsE28osb+udqKg9zo8azJZB8Hued41mB2+6SiGuzEZKchayS5yE7EPEg+pTgHe3RHxtdy6zvzqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714488737; c=relaxed/simple;
-	bh=53TYS050ekFY+hCRJgoRydEbdy9KAeSVM7IKbSuCNm0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IHUPowBgoZh+qA37mdfJ+HdEVGWpLOhesulJT6eZY7drCon3kEWrn0OXJrB1k+Iw+eMoMqeLnMTywIMwkaf9hvXp5Wz5HdyQlzit9x+Tm0IYUtbOJAFo8Gnx0BK14GCPaxLtnM59aTuStY+pPWAjpFixo0Qr4pnDeesibcaJLj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8Epojar; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE075C2BBFC;
-	Tue, 30 Apr 2024 14:52:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714488737;
-	bh=53TYS050ekFY+hCRJgoRydEbdy9KAeSVM7IKbSuCNm0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j8EpojarNlsedEwjtCKTA3iSWhwIXd1JliB+DGEha/dE/3eOHpABarJ3X6CsV34oh
-	 R6XeCaqV9rb7U1+yOJlq91YEse8pLKIC23K0OM/P4fkwLlQ/pz2Jk02BcYOPKFC8GR
-	 12gKzm7gdPWZy6VWSrzFFLC2OZFte3RCATIjoUPFDNzE7j+6vj8EYlHQqFcjTucrrT
-	 4RLrx+O+oXVYrbqfckBnv2YirNQBq4mBezBK3+cb2ILpQh8h0uOlI/AGpQKmuvNtMc
-	 nZHpHinrEbMLEJFEgjKio8xHNJjV54Nml8e7VTqLa6RY0x1NRm4YdEgYdPqhYmywzb
-	 VfNe3d1e0lhNg==
-Date: Tue, 30 Apr 2024 23:52:15 +0900
-From: Mark Brown <broonie@kernel.org>
-To: Bhargav Raviprakash <bhargav.r@ltts.com>
-Cc: dan.carpenter@linaro.org, arnd@arndb.de, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, eblanc@baylibre.com,
-	gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-	lgirdwood@gmail.com, linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, nm@ti.com,
-	robh+dt@kernel.org, vigneshr@ti.com
-Subject: Re: [PATCH v7 08/10] regulator: tps6594-regulator: Add TI TPS65224
- PMIC regulators
-Message-ID: <ZjEFn43dNf1UFn3f@finisterre.sirena.org.uk>
-References: <54eca1ac-288c-4f88-8c06-f5859bfa715c@moroto.mountain>
- <0109018f2f1bd112-3d9df5c2-8ed6-47dd-97fe-d724da6d2bed-000000@ap-south-1.amazonses.com>
+	s=arc-20240116; t=1714489215; c=relaxed/simple;
+	bh=CfSl9GtlAtHB+rcXJHozuQgrFboWGNOXnQ3OvS3lmTg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NwjlAkyYQftkL5bJDuBC9dPrY/bRGrv14yyjrLZtIe4elYTx72nUsWE3Lpj54isLIiH9Hhcg88Np7UXFzZbtqdRQaq3JaR2yxT+IyR34ukzuogwogXaxA4DNGHEZJh+IR8UzseKFnJ3fmdLTAbR2OazIhMlZ4Nd1/rBrjGZ/nJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EJE3Z4a2; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2b27c660f91so709133a91.0;
+        Tue, 30 Apr 2024 08:00:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714489214; x=1715094014; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SkT2QLC8TQmVSP+rJF4kvPIyKIKgXzRowbjPH7GH+Ug=;
+        b=EJE3Z4a2AeEPgj4cqL30xNXk4k6BB+oymLgYG9tu9Ra5am6JFA8uuvFD4OC9RSHBvw
+         BCrXjCoYinx3hwJUmnuXo1PoKklWcw3Ta/nQjhz5OlRL71IUxqdIfYuQJXZn9dUqhn8E
+         +DaEXBJFM9dA0lyFT7WPMLctUZHfHL2B3VTwaawEBBDtIR25KwxA0AnJ1n4T2brFObP2
+         UOso9dD8NAB6kfP6K2qx42ns1fZZCWy7hvTwiwg0a5GnxCTXHYfplqZKpSKEmwaq8V0e
+         wg0RKBDGm/kip1Tda0DThZbZnngCZTaBysbM3DEIdEUJ8l+Am0gwqXWHRP2MIXToB5FK
+         FdjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714489214; x=1715094014;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SkT2QLC8TQmVSP+rJF4kvPIyKIKgXzRowbjPH7GH+Ug=;
+        b=NmwY/dvg5yU75NIbkUQcQP00MyV8AVUBPdNFteEBfWOiUMQ8faVtmTAGw6e5LkhLCY
+         ncRqO5VmSjaCcE2AN99JqoDUJ91CnNsgwVRkn+dvBrK/AX0hSBJBvoE3ofXpPWKrwu01
+         sNFZiygRl/oxuO7Ky0a2N8K1+rECu26/WPDVB7FOWLOHZr+RKfCoSA+nr6HHg9QQyG67
+         j5WQoLfI5drpqtyGgI1+aDO0CkqiXnekpUBQ/Gt6nkVKusJOGNcKpKtASAxqhQ60pKa8
+         /TuRQzRsl48hpKa8l2lqI512AkrI4doS/EKLYy6X2uyrboLZ1QXCZadC9hKui8L0p9Rh
+         qFLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVoTKqxXrGFCN22+0JsEimWWBUFWIwJEMNYaIZz+Nv411CEHKKaM6MEUYD7ipzYIQnJr2T6YRYkX19R79kv65EIZTk/8dcaP4HxJa3TlO24Qw1ERezQadNGrt72HG6nffgy6Zo8XWUOuqxlVKQoj3wNBsxn1r7auE2R0e3pBuNtxddnb+HUngN0Vs4=
+X-Gm-Message-State: AOJu0YyTS32NI91QfdOPHS3GS3tBYmCLr/zz01PGSDTQa5DUYnbpc5Wl
+	LiCLhhA5XcDUsw8NSWEfMyyphCNksxxGx9CN4BcKT4GZ6LGB4Yqm
+X-Google-Smtp-Source: AGHT+IGAQ3aPK4tUlkrLyZpFr1uhaVhJVk+IDywxNHSn7gT4m3RnY2l3NP0GS3xjID/0W3CX1D2V3g==
+X-Received: by 2002:a17:90b:128f:b0:2b2:ac4e:9221 with SMTP id fw15-20020a17090b128f00b002b2ac4e9221mr1520475pjb.4.1714489213036;
+        Tue, 30 Apr 2024 08:00:13 -0700 (PDT)
+Received: from prasmi.domain.name ([103.219.60.80])
+        by smtp.gmail.com with ESMTPSA id r6-20020a17090a5c8600b002ade3490b4asm15428745pji.22.2024.04.30.08.00.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Apr 2024 08:00:12 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-mmc@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/3] Update compat strings for SD/MMC nodes on RZ/{G2L (family), G3S, V2M} SoCs
+Date: Tue, 30 Apr 2024 15:59:34 +0100
+Message-Id: <20240430145937.133643-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3y5hQ7/3IW5AFlAE"
-Content-Disposition: inline
-In-Reply-To: <0109018f2f1bd112-3d9df5c2-8ed6-47dd-97fe-d724da6d2bed-000000@ap-south-1.amazonses.com>
-X-Cookie: lisp, v.:
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
---3y5hQ7/3IW5AFlAE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi All,
 
-On Tue, Apr 30, 2024 at 01:05:03PM +0000, Bhargav Raviprakash wrote:
-> Hello,
->=20
-> On Thu, 25 Apr 2024 10:59:22 +0300, Dan Carpenter wrote:
-> > On Wed, Apr 17, 2024 at 11:49:59AM +0000, Bhargav Raviprakash wrote:
-> > > From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
-> > >=20
-> > > Add support for TPS65224 regulators (bucks and LDOs) to TPS6594 drive=
-r as
-> > > they have significant functional overlap. TPS65224 PMIC has 4 buck
+- RZ/G2UL and RZ/Five ("r9a07g043")
+- RZ/G2L(C) ("r9a07g044")
+- RZ/V2L ("r9a07g054")
+- RZ/G3S ("r9a08g045")
+- RZ/V2M ("r9a09g011")
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+The SD/MMC Interface in the above listed SoCs is not identical to that of
+R-Car Gen3. These SoCs have HS400 disabled and use fixed address mode.
+Therefore, we need to apply fixed_addr_mode and hs400_disabled quirks.
+'renesas,rzg2l-sdhi' is introduced as a generic compatible string for the
+above SoCs where fixed_addr_mode and hs400_disabled quirks will be applied.
 
---3y5hQ7/3IW5AFlAE
-Content-Type: application/pgp-signature; name="signature.asc"
+v2->v3
+- Dropped items keyword
+- Sorted strings alphabetically
+- Collected Ack and RB tags 
 
------BEGIN PGP SIGNATURE-----
+v1->v2
+- Updated commit messages for patch #1 and #2
+- Dropped SoC DTSI changes as its a hard dependency
+- Grouped single const value items into an enum list.
+- For backward compatibility retained RZ/V2M compat string
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYxBZ4ACgkQJNaLcl1U
-h9DXMwf+PKODDwDeqON9VM4u0juqL+7Z/SE5lYR5NQ1gvMYOMKzPTld8bz/PB2kf
-gC8pX8P1Y4oKkxn8V3Cnr+eVnkvo6i5bvj7rOmZErI9gSmAEihBztBT9PLUyrhH5
-5EMosMXHlpPoN8GOC8isaz3MkASPD1fRa84BaIx0UxwH7ELiV0cmFsTzoU/nk1Vj
-T2cqzZG0so1FqOQlJqyDsUzUOqSphIbZt8SPQ9CmgC3d//RJt8bBA6HX2+F5tAiV
-3DuTuQOOaEV8XN2zJGJIUra5ZS3ye1Xq/qmEO0giCur0fNf9LnkUPLiiXbhm/qFu
-w0yBjxzDbztR1l/3YBiBdL8QZUOqlA==
-=HFcV
------END PGP SIGNATURE-----
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240422213006.505576-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
---3y5hQ7/3IW5AFlAE--
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: mmc: renesas,sdhi: Group single const value items into an
+    enum list
+  dt-bindings: mmc: renesas,sdhi: Document RZ/G2L family compatibility
+  mmc: renesas_sdhi: Add compatible string for RZ/G2L family, RZ/G3S,
+    and RZ/V2M SoCs
+
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml | 39 ++++++++-----------
+ drivers/mmc/host/renesas_sdhi_internal_dmac.c |  9 +++--
+ 2 files changed, 21 insertions(+), 27 deletions(-)
+
+-- 
+2.34.1
+
 
