@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-63932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 053938B70B9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:49:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D80B8B70E0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 12:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73C051F21E46
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:49:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96B0AB21A6E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 10:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C14D12C46B;
-	Tue, 30 Apr 2024 10:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3A512C49E;
+	Tue, 30 Apr 2024 10:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UbLVpBve"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="embfVNKs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A1412C46D
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 10:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB0612B176
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 10:50:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714474149; cv=none; b=pWL3OdNq8Ia8nBm4KPPC4/UkIwX//mAdOvUEcaG2s+AOWgc6lIZ78/js8wiJaxlqUGF3srzADpf5fIDZjgaddsREa9rYJEE90FAu/MbSg/AJ4J3VJNy1tvBummxYyIAFQj29oSO4MRnleo9K8tAa0fXQnOkUJrtucWolDNjc1F4=
+	t=1714474244; cv=none; b=Z4M4Em79PkSNUAyh3N+UZf0z0fm7VPjs162EKpC9uMqKD/Tmn199rBg7UK6xRPIbChrjoGqQ6oYVU3Dusth1UZd4mMEqRm5LtawZ6U7iCyEftAEoV+m1d3OCKE9LRVnO0QZ9OMHJwUkn3Kb54Zp88c/lCF/GRUQ4NvVt4QZHLzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714474149; c=relaxed/simple;
-	bh=KR7LI6rrvuirq0c+KmaHMvWrLRxfufK+DbJifyv82Qk=;
+	s=arc-20240116; t=1714474244; c=relaxed/simple;
+	bh=mRsxVvx9L5BRMyJ13finFLcew5fRH0ULvgWm1yQ7GYc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BUt+UTOpwEQgOMVAsPBC2DTqz+YQJ4ELSQEVrN5OXGBMGVkL/8Tn87Qg2wuzu6ZeO9Z5C6R8sfEvyhEHZ5jJpGZYkMm3MXa23V5/vhCXABoejsjakFQKqyJHv6udaCxiTdKlr2N1JNVtX2ZVdwaDk48BSmQS23kWY3xcG31pBDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UbLVpBve; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:Content-Type; b=ZfYq+9NbXEE+Rr5OHp+Cig8bsBdc2teYx0StjJHRDQ+/cCrjrLr2HABd6jLSPaCIxg56+3p4lHV4v0jW+vl8vQ/R4NDsCCAZdvJ1S9IhIS7zCcL4hiWOYg4rLRysjDHuKTW9iwpr6EIB2OP0K6ufCz8MrT6BNy9qgbyMxerOn2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=embfVNKs; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56e6a1edecfso8285941a12.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:49:06 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-572a06e47a7so323183a12.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 03:50:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714474145; x=1715078945; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714474241; x=1715079041; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=96pQ6DWgcHMQ5/U8CMRhHuWIuxEmhkD85mjVVrXWF00=;
-        b=UbLVpBve3+r94mvVfUfWo1duE7zM7QYdhmgmHaq3nc70SaaR1GT9XyTGQvsl7iMaac
-         qSdCDaeXzyt0m+JD+fdTTFt31E42Dq8fbPVGupovwp8mbeDQBVJkzua/vMc+8jf3f4GJ
-         sJd65VtIu7HP87mUwk2H40YUZXOwCuURLkZxLlGngqwaPBmnYLLhVC68MEFL8MHmg83K
-         FTDxJqto65BoBGnDRNtFVz1PG4Zgoiz61LY0UWXPyuMV2iGTvciX40OcUyqq+Q4+c22K
-         Bxgv/1Sx7zIU+kL+2yYnBpHPz17f0AdAERNviZFArPXy/CiX3E4J1ymYoA14xMKjnMIP
-         1gHg==
+        bh=heDKZ4eTBF6PRoXX5DIUciwgFRkTeI3rTInleG5oDYE=;
+        b=embfVNKsSHEVZdDB1zSG914H7X4kxhjREckFq56lQhZ2wingEQaCdAS+aJTSDcxlpD
+         A3YtuX2HdInv98q4ylp4jgfWGTSRzUjshUQZCLKEW8Q8h6D1VGvSiQkGukBTPfRAnEdh
+         fOkYy8H8A+fBYFjwxGN+0gjGmhPv+Y4sN/QCIqNLELzNRAfK/o4hVH3l23/9QnqOi7g4
+         x/gZal/qgrARq7PHBrJ1BvNkHN9GEFMv0248MVINo7tV68bfx3vTkHAeMcleQbKpGdoA
+         JZ3BGMyueoY/liKPL8f9A3X1lWFUOfdql7TGmFbinmfB+sNPijLoFzXDHKygy7Tk4N4k
+         xIPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714474145; x=1715078945;
+        d=1e100.net; s=20230601; t=1714474241; x=1715079041;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=96pQ6DWgcHMQ5/U8CMRhHuWIuxEmhkD85mjVVrXWF00=;
-        b=DS6sGmEII5c1VD0mKz8wMHlXiXSn1ZJWx4pUCerxZ0oXe8wiPHygNmD+pYcY/OR9YO
-         18lI93d5g8IJQOnJaUGIj9f5AU0JEhFRmbGuKZgoRoO8evhM4sb2YR07NbTRIm1kFoUU
-         iRlbFjvbecHneCDfrIOgtfFJMj2WXgumDvGuzCr1tRbQvRgqdRRwwb/ZX6i0iXdSlScw
-         yVgl/txm3Gj4ZXl9UK7LftUFL39MVepxB9G2lVh4QHXOWo1oZjY1Xegr4LavmJQfJ3zQ
-         ClAGq28B/GN5JZysUPPXFGxlwH457L8M84bKW8WvkxG4eDrkD4oN4AWtxdnjJae6BM5u
-         KJmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZx4bvgVPixXkp9MmRHO9IkqaVm24LgDqy3/PMFZWF/GT/3WbC9xKzwkR6zL5mDLrs5r7BfV2rleDa7MCDpX9xtvR1Q7wnNQ6kVw==
-X-Gm-Message-State: AOJu0Yw5l3EDhuUEYbKO83b8w8vc3GHSIMjPfrwmIP4Pnm2qLzMDl8zR
-	sLrFwhJseHx3bTfmxC4bwJrUAzzv2jdtsbUoKmzWvH/zF1hMrDXJOoBuHiJ6QxU=
-X-Google-Smtp-Source: AGHT+IHcHgW7CGWFxNpCJDQuVnBapsMVl/Bvxuzrl9xFVKEJT4JxiWQYtybyj+kN/JkgGXn8LVTdIQ==
-X-Received: by 2002:a50:9f66:0:b0:570:5214:f62 with SMTP id b93-20020a509f66000000b0057052140f62mr7149035edf.0.1714474142756;
-        Tue, 30 Apr 2024 03:49:02 -0700 (PDT)
+        bh=heDKZ4eTBF6PRoXX5DIUciwgFRkTeI3rTInleG5oDYE=;
+        b=Dea8v3g/b1UEAYWvXGUb/6tm2TBYAv70Xy2DyxMJ2heTRyaCseQkD4rpx+YX96YQHd
+         Owh+0M0rMUuc3gCm3eX/PrVY0KolkCixZ/4YToQDLGu8iQ7yUKJ5t19KwXQ2gBLCB9IE
+         SPiGkrvA4znCB190eqv+4jYZYMbaCa+dQ5AsgBAQhg2WrVHjgteoetEdGv223I4uyPdM
+         8rRTmZNc4YXokn6tqBkD8qxRz5yX0svk//7g6+dfsHEIyoO9oiYS09R28sp+nvlaPxWT
+         nY93V7Ger1gr25+Lk4HrV2Ad0E9VDPREduyiB36fSbdHc55wAYK/tw9MJ39YSieU8aNa
+         Sbcg==
+X-Forwarded-Encrypted: i=1; AJvYcCWS87AuznSjVSeMyGsVVRP/Ex9Aj6O55WMIkD5XcfmZq1u09AObJdECi8V9dqU3kfrqdBvjZfssFlZAngDYaxtZ/ddvbr446JOMTw==
+X-Gm-Message-State: AOJu0YzArLtxXAdIHGUPmt7rcOQ3P/66242g8fRP8iOAjSB14iLbnKfn
+	654WzfINAsWHj2eHF8dAr6aniiXFZZ0oZHPPxx1+ho//QHS8SkwCKDAQrE7pWsQ=
+X-Google-Smtp-Source: AGHT+IH1XYonBidSUACstLU6jC7krFVAZzpuAMOU1LAElC67702TrtyyPBlsM0c3CMPFlJ3N3xZKlw==
+X-Received: by 2002:a17:906:e255:b0:a58:7dab:28a2 with SMTP id gq21-20020a170906e25500b00a587dab28a2mr10103009ejb.48.1714474240667;
+        Tue, 30 Apr 2024 03:50:40 -0700 (PDT)
 Received: from [192.168.114.15] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id f11-20020a056402194b00b005728a19c957sm1280572edz.26.2024.04.30.03.48.59
+        by smtp.gmail.com with ESMTPSA id y12-20020a170906470c00b00a59168ab380sm1057967ejq.140.2024.04.30.03.50.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Apr 2024 03:49:02 -0700 (PDT)
-Message-ID: <26b5a160-f804-4f3b-aaaa-6c4eb6d9d056@linaro.org>
-Date: Tue, 30 Apr 2024 12:48:58 +0200
+        Tue, 30 Apr 2024 03:50:40 -0700 (PDT)
+Message-ID: <296424cf-8b8b-4a0e-b531-6ca4f37cfa60@linaro.org>
+Date: Tue, 30 Apr 2024 12:50:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/6] firmware: qcom_scm: Add gpu_init_regs call
+Subject: Re: [PATCH v3 4/6] drm/msm/a7xx: Initialize a750 "software fuse"
 To: Connor Abbott <cwabbott0@gmail.com>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -89,7 +89,7 @@ To: Connor Abbott <cwabbott0@gmail.com>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  freedreno@lists.freedesktop.org
 References: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
- <20240430-a750-raytracing-v3-2-7f57c5ac082d@gmail.com>
+ <20240430-a750-raytracing-v3-4-7f57c5ac082d@gmail.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -127,13 +127,18 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240430-a750-raytracing-v3-2-7f57c5ac082d@gmail.com>
+In-Reply-To: <20240430-a750-raytracing-v3-4-7f57c5ac082d@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30.04.2024 12:43 PM, Connor Abbott wrote:
-> This will used by drm/msm to initialize GPU registers that Qualcomm's
-> firmware doesn't make writeable to the kernel.
+> On all Qualcomm platforms with a7xx GPUs, qcom_scm provides a method to
+> initialize cx_mem. Copy this from downstream (minus BCL which we
+> currently don't support). On a750, this includes a new "fuse" register
+> which can be used by qcom_scm to fuse off certain features like
+> raytracing in software. The fuse is default off, and is initialized by
+> calling the method. Afterwards we have to read it to find out which
+> features were enabled.
 > 
 > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
