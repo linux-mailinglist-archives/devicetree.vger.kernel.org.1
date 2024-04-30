@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-63855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620478B6C0A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:44:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3668B6C13
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 09:47:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CCAB28282F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:44:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F1271C21F0E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 07:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1457A3B2AD;
-	Tue, 30 Apr 2024 07:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E8173D3A0;
+	Tue, 30 Apr 2024 07:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E0LZr87B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lmMlvQwV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06903AC34;
-	Tue, 30 Apr 2024 07:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0BB3BBE3;
+	Tue, 30 Apr 2024 07:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714463095; cv=none; b=WbA3qWGPJRmeTIieHxrZIywzCyCOTdPzEU6RcB/l0yiTxqyMUqrlFsXZGZCtHufafR0vwp+iqKUHcbZcygDOWsb2YcyLrI9AA36aVROPtMyaVz2zedKl/4aUkZCVMDmemOeB9g37d7ZmmzHVC9j0Y53sJ1uH7cyJQbtRma2pms8=
+	t=1714463244; cv=none; b=LaQ7rOsILH99W0sxyTRwT5iWJUcDrg6Lz0sFwDH3PPVXStYEkOMG3EfNfMA1+KxYMOQewTDZ2UdXj+ODU2IHU6iIsB0bm9SoHxFF8tIeLY3F03dXF1KkzVAfLBlX8/NVxifG1oe2ZYr5A/OVbsrY+/f+onNhO8Z5ylbuKxJU7Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714463095; c=relaxed/simple;
-	bh=gVpn6Oq0px7xMoPOAjyOKT/3ALa3+kijseAZtRBRZnU=;
+	s=arc-20240116; t=1714463244; c=relaxed/simple;
+	bh=W1sgp1Kny+KPNJGW+TrFDyeFPETjWXqP9cbph8sBSOo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b/x2pYPoS+/z291vC5g8F9MNXK7LNhJczFXjLDygyXM2wUrOWhiHNzzYvSZVFo7yb1rCmtyiCGFDcttf2iDWHnHoKE0iDdhNpRRVfEgJfRZQMe5B914Gk4S7pw/hL02jSYsf9zQHOyT/YNSYrDMw1U1tj0UAc+M0UnDSMT9Vlvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E0LZr87B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75889C2BBFC;
-	Tue, 30 Apr 2024 07:44:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=W5/kmPl54n2yhxm6/2eh1yAj40jy83ROw0jJ62Snbu+6szTcnEQ7JXGi8ewwb+2lQVToNkGxH+6k75mW2LH7vFOSQiJt/Kf95mRI8eXxvvwjtGpW95UpHAy36oWRTkcZ+E4K743ps3Wfzh/D2bQw7mnYQJ7IBx9xGaMlQzf83gE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lmMlvQwV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DBD7C2BBFC;
+	Tue, 30 Apr 2024 07:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714463094;
-	bh=gVpn6Oq0px7xMoPOAjyOKT/3ALa3+kijseAZtRBRZnU=;
+	s=k20201202; t=1714463243;
+	bh=W1sgp1Kny+KPNJGW+TrFDyeFPETjWXqP9cbph8sBSOo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=E0LZr87B775FSTUWF+HnGDPd/+rAAZNkJuPOrEBQVPbrnqLiJAiNEnaijDMDUg7nO
-	 UHiHb0RCxqM5N21sW/k5QrhwAsSjbTGb2j3UKhmsElq1TM9JLht9WiuVG6h/DQI9BT
-	 bmoegEJLhr62sLlNVJ2w+lT5Rikb0OQJ7Cqi7bcMCH71TIV4lp2vJ0DYTeBWGj9COU
-	 VsU7CUyamQg6cNjTsBNMPX23q6s35Ej+yT6PfHePNhq3++yNMPm0dB6IuHkCJekzzb
-	 dYiXFaGD0GjI3KL569KIyzfsrW54ceqjFmd3LfsyZTPUYTJmAJ+426p8ES6OczSpvo
-	 iWr9u/7/tyWyg==
-Message-ID: <d9a37c7c-7b18-4077-9e7c-f2f999429d7a@kernel.org>
-Date: Tue, 30 Apr 2024 09:44:48 +0200
+	b=lmMlvQwVXfdPGcVETz5RhbXSIGrkn2xl0EQw5Lvwz1msSMReviSp8uUIhzRP5SdXp
+	 x3M8Ip98+lq7ej/RaBpiCQI5t1gpnF3AnZfNyqqGOstLaVKZe9imQtwUUu6v+ILvjy
+	 PWS8cYBKic8uipwshMtbluIY3SzhVvz6Fo+Wb22gWWO0bhR7fW/sf6NOXhEFQn+voA
+	 zi9X9hXX2I/daYzXpynpmh8rnlFalzNB4pXbbDv0chjqlwxgQNs8OuHGAttRh+tlZe
+	 Phs/kNyBa/m4u4UT362lcVCernH9/LSqLYqbN3RDfuHyLHLHYfh+tbtGNnKW32NtO0
+	 f6gjW+snMccHw==
+Message-ID: <97886e14-f07f-4175-8e8d-2d70c2daa907@kernel.org>
+Date: Tue, 30 Apr 2024 09:47:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Convert lp873x.txt to
- json-schema
-To: Nathan Morrisson <nmorrisson@phytec.com>, lee@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com,
- vigneshr@ti.com, kristo@kernel.org, j-keerthy@ti.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de,
- w.egorov@phytec.de
-References: <20240429195830.4027250-1-nmorrisson@phytec.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add Sophgo SG2042 external
+ hardware monitor support
+To: Inochi Amaoto <inochiama@outlook.com>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <IA1PR20MB4953D1C509CC7F23620CCA01BB1B2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953EF54DBF6D5681C27014BBB1B2@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,35 +107,70 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240429195830.4027250-1-nmorrisson@phytec.com>
+In-Reply-To: <IA1PR20MB4953EF54DBF6D5681C27014BBB1B2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/04/2024 21:58, Nathan Morrisson wrote:
-> Convert the lp873x binding to DT schema format. The gpio-controller
-> and #gpio-cells properties were removed from required because using
-> the device as a GPIO controller is optional.
+On 29/04/2024 14:03, Inochi Amaoto wrote:
+> Due to the design, Sophgo SG2042 use an external MCU to provide
+> hardware information, thermal information and reset control.
 > 
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+> Add bindings for this monitor device.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> ---
+>  .../hwmon/sophgo,sg2042-hwmon-mcu.yaml        | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> new file mode 100644
+> index 000000000000..64a8403aaab8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/sophgo,sg2042-hwmon-mcu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sophgo SG2042 onboard MCU support
+> +
+> +maintainers:
+> +  - Inochi Amaoto <inochiama@outlook.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: sophgo,sg2042-hwmon-mcu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This looks like thermal sensor, so you miss ref to thermal-sensor.yaml
+in top-level. Just like other sensors.
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#thermal-sensor-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        syscon@17 {
 
----
+Are you sure this is syscon? Title says mcu, compatible says hwmon...
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
