@@ -1,193 +1,124 @@
-Return-Path: <devicetree+bounces-64135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D458B8158
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 22:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A35A78B8161
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 22:28:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9C742822F9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:25:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8CFA282575
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC9119DF45;
-	Tue, 30 Apr 2024 20:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50AFA19DF72;
+	Tue, 30 Apr 2024 20:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m4o0H8CN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KnKkWiXe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A81C18412A;
-	Tue, 30 Apr 2024 20:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CB71F176;
+	Tue, 30 Apr 2024 20:28:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714508700; cv=none; b=QHzXOd42SisuQAPTpOA42NHt3y58SX9VE1Kh/RK53mrUb+PusvLx5D4HT/IbmTVtnC3DwHBrcNBcpKZzB9nrmeVR1pPfQLlU6YjGIbxOCroA+0lph8q6oZdpqIWICnq30T4Y/HjPcMBTAPUp/k2oaXjDkM1qYa5qZ70M1l1xhPU=
+	t=1714508929; cv=none; b=AaPGKUwp6wBm5nFiIMvZQvXbwZXVUV8Vg4/eDgmPcLGf1qJJ8Vz7yrMiDS4ik9YBOS8wmVtpasehKZzXl70OEB8B1TqA/LHi85fobHiL8gtGmUhI0l2fJoSlfsK6iEBQTCYiW/InQa/UlCIES3jPgwMFD5OR0EqipSAH7+mTrmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714508700; c=relaxed/simple;
-	bh=YK0ojQVxvVKavdRF62uiNBOU2ZXdClhDIYj2p8To/K8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eKPWfbYg77zikY6zZVYcqtF4KyAhxxsJhFZJq3Gn/ko2KkznEtIQXaJU9Pra3h8L09txvplQYc0P7BkGZpubQ5xHWlXKY9IuQy7e1a24A0Dd5zInsdzvnicJZB8V33AjOeEx4InFmol+//yq5ZDFK6YdGdWZSNRTVzcM1gq6Mt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m4o0H8CN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF84C2BBFC;
-	Tue, 30 Apr 2024 20:24:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714508699;
-	bh=YK0ojQVxvVKavdRF62uiNBOU2ZXdClhDIYj2p8To/K8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m4o0H8CNPOm4vbL22XkO3NBODXBP2RQxKga431SeRHapVBS6EZf3LpvX51Oxhn5Mr
-	 +5YJ8XrTkgqKDigdBnOIjPsCi0snH2cr8XBTCyHrOjVs4YeIMFw7sjXmu+z0HEV3tK
-	 haV3pwJtRzTnr9+FoRS2Fhniuppwk8ygYVCIwSEUMja07zPXlTbCB84N0RpfSGyuHn
-	 xw4KULT2KjHcjVMTcYiheycAb8TU4fPOAlFMEBjXyfrjJyyK4V2s6Co9jXbrjHvV+p
-	 5p8VyLLO8dRyeCSR7nnsq7pAvG2mmwDiG/i/NkRcxZJXvBEIP9iMkeb2546N7O0vh4
-	 pa5PE8ivPLC+Q==
-Date: Tue, 30 Apr 2024 21:24:51 +0100
-From: Simon Horman <horms@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 12/17] irqchip: Add support for LAN966x OIC
-Message-ID: <20240430202451.GF2575892@kernel.org>
-References: <20240430083730.134918-1-herve.codina@bootlin.com>
- <20240430083730.134918-13-herve.codina@bootlin.com>
+	s=arc-20240116; t=1714508929; c=relaxed/simple;
+	bh=X4XRyOqZhoouAcC1Q84O7GKsyRYLL98VlCeL84nXFPQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NRyPi4pI8Yy8tCtL+f/4D6MmRUg1T7vHXmVB0L7MZ+wfPkZItn46DcPQSLTCPQdl1NgyOelnRbXjCpZn7+w/gwNxhXgJt+eFYpbpQKrGX07gN/IRL0FqGFG3l3xPaRqfbjEBbPPbZ+ukaxa5bxhDcEr4rJzZha5pgQfuorqW7Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KnKkWiXe; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5708d8beec6so7803713a12.0;
+        Tue, 30 Apr 2024 13:28:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714508926; x=1715113726; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YmrpHLX46flU70H17+DNbupiS1vXQOS2XUzjHPnNgH8=;
+        b=KnKkWiXe4CPk4yfdPNxfd5sp1/ipaIbM/ILtvKD+pB7x75pFN6zdnp6ZVKApvRyVme
+         j/wbd0K8686t2+b5D3ZSwppRX62u8m4fj4xtGwefSwAARubsjg2cxoPWqVuR+rCMpM01
+         RobSXQW9dv4+W7y/NiC8oIeAScmS4P0jbhU+hGsy7G5xAW9XwxVdzd2Qq6cvPQikUXR4
+         i7tm0fl4lrcbAzqSHtSr4q447tU90gQKbQk/uLfLsN7yn407aNLr64FfmtAYi+S7hPbH
+         fnFWNECgkWahvf1TYhI0eGuFEIHKnAouRlxFmRSNBnVEaa6hVG9YEbFnX9VnJaAQ/BMb
+         fhog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714508926; x=1715113726;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YmrpHLX46flU70H17+DNbupiS1vXQOS2XUzjHPnNgH8=;
+        b=Sj1uEJqQOaK6DAI9xe+eeYbwkvkQMccivj0ySjLOZ1shykURdZOZx0AJGnJij9McLj
+         iYZRPHIbg9sDZw1xxCPcGyGXGbMPw4LewZGhqALs7Cn6aqS/y7g2gVKErLH4nf1FmrN7
+         46S8JF8UPt4Rt1meNwRQHkbyLfawSGXxwH5TKK6PhaBIhUxsaoYdNZqpjZj3NAOr6gkN
+         pUXdVsNq7QPIArYjBpmvvryZNpp5baVxyIlscGsVNAXdERBUd4EH6JcdoLlV0VQIYGfE
+         OUXXmf5lrvCD8W5kJhBy0fnz2aFmtMji2gYgbVBaKRFlIaGlrk0ldAX9gliLzlZfzPLW
+         0YTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZbTEAZjA5hJmSfBgbuVTbLdEvCiAJl1FcwKDIe0Z6gXXuEkS9rLZmFLmmGMhQEwUVx83el+qdYrk4NblsWmJJ9T/iEDQywi7AkzsjxwY+Zj7aJRiJMk6oc2MOBxgMTt3ssNTcUcbMAo8XXL/nMsQdLhkofVdcRfE+Lst5vzWsIUOUgg==
+X-Gm-Message-State: AOJu0Yxqk/hOhh3d1L/SqNs9YKIhplCygfCdHz17NI3VTJwkfsARvW1s
+	eRI20mUwCDREAbAfV/JwEA3uY5G41iaxBQZzJ9ZIci5ii7zlbnt9yxKpaH4ZE+zSNp/JnORZ3WD
+	LuhkuU0vrsikXjh3xufYqqYs19ss=
+X-Google-Smtp-Source: AGHT+IHbwX88oiFyDn0d3AB7Q1SVGsCIqNerQ7gq2MrtrAzNfHBrnRujxPcKOfKH5sabH7DDp4y1YvxhnW5dr8pysjA=
+X-Received: by 2002:a17:906:c419:b0:a58:e3d5:87ba with SMTP id
+ u25-20020a170906c41900b00a58e3d587bamr698030ejz.75.1714508925684; Tue, 30 Apr
+ 2024 13:28:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240430083730.134918-13-herve.codina@bootlin.com>
+References: <20240430162946.589423-1-alisa.roman@analog.com> <20240430162946.589423-4-alisa.roman@analog.com>
+In-Reply-To: <20240430162946.589423-4-alisa.roman@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 30 Apr 2024 23:28:08 +0300
+Message-ID: <CAHp75Vc+C8g0PFgKLmjyspv_39wXNba58eLgJkNRqWgRyjujbw@mail.gmail.com>
+Subject: Re: [PATCH v7 3/6] iio: adc: ad7192: Add aincom supply
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, nuno.sa@analog.com, 
+	marcelo.schmitt@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
+	okan.sahin@analog.com, fr0st61te@gmail.com, alisa.roman@analog.com, 
+	marcus.folkesson@gmail.com, schnelle@linux.ibm.com, liambeguin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 30, 2024 at 10:37:21AM +0200, Herve Codina wrote:
-> The Microchip LAN966x outband interrupt controller (OIC) maps the
-> internal interrupt sources of the LAN966x device to an external
-> interrupt.
-> When the LAN966x device is used as a PCI device, the external interrupt
-> is routed to the PCI interrupt.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-Hi Herve,
-
-> +static int lan966x_oic_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *node = pdev->dev.of_node;
-> +	struct lan966x_oic_data *lan966x_oic;
-> +	struct device *dev = &pdev->dev;
-> +	struct irq_chip_generic *gc;
-> +	int ret;
-> +	int i;
-> +
-> +	lan966x_oic = devm_kmalloc(dev, sizeof(*lan966x_oic), GFP_KERNEL);
-> +	if (!lan966x_oic)
-> +		return -ENOMEM;
-> +
-> +	lan966x_oic->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(lan966x_oic->regs))
-> +		return dev_err_probe(dev, PTR_ERR(lan966x_oic->regs),
-> +				     "failed to map resource\n");
-> +
-> +	lan966x_oic->domain = irq_domain_alloc_linear(of_node_to_fwnode(node),
-> +						      LAN966X_OIC_NR_IRQ,
-> +						      &irq_generic_chip_ops, NULL);
-
-nit: Please consider limiting lines to 80 columns wide in Networking code.
-
-> +	if (!lan966x_oic->domain) {
-> +		dev_err(dev, "failed to create an IRQ domain\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	lan966x_oic->irq = platform_get_irq(pdev, 0);
-> +	if (lan966x_oic->irq < 0) {
-> +		dev_err_probe(dev, lan966x_oic->irq, "failed to get the IRQ\n");
-> +		goto err_domain_free;
-
-Hi,
-
-This will result in the function returning ret.
-However, ret is uninitialised here.
-
-Flagged by W=1 builds with clang-18, and Smatch.
-
-> +	}
-> +
-> +	ret = irq_alloc_domain_generic_chips(lan966x_oic->domain, 32, 1, "lan966x-oic",
-> +					     handle_level_irq, 0, 0, 0);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "failed to alloc irq domain gc\n");
-> +		goto err_domain_free;
-> +	}
-> +
-> +	/* Init chips */
-> +	BUILD_BUG_ON(DIV_ROUND_UP(LAN966X_OIC_NR_IRQ, 32) != ARRAY_SIZE(lan966x_oic_chip_regs));
-> +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> +		lan966x_oic_chip_init(lan966x_oic, gc, &lan966x_oic_chip_regs[i]);
-> +	}
-> +
-> +	irq_set_chained_handler_and_data(lan966x_oic->irq, lan966x_oic_irq_handler,
-> +					 lan966x_oic->domain);
-> +
-> +	irq_domain_publish(lan966x_oic->domain);
-> +	platform_set_drvdata(pdev, lan966x_oic);
-> +	return 0;
-> +
-> +err_domain_free:
-> +	irq_domain_free(lan966x_oic->domain);
-> +	return ret;
-> +}
-> +
-> +static void lan966x_oic_remove(struct platform_device *pdev)
-> +{
-> +	struct lan966x_oic_data *lan966x_oic = platform_get_drvdata(pdev);
-> +	struct irq_chip_generic *gc;
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> +		lan966x_oic_chip_exit(gc);
-> +	}
-> +
-> +	irq_set_chained_handler_and_data(lan966x_oic->irq, NULL, NULL);
-> +
-> +	for (i = 0; i < LAN966X_OIC_NR_IRQ; i++)
-> +		irq_dispose_mapping(irq_find_mapping(lan966x_oic->domain, i));
-> +
-> +	irq_domain_unpublish(lan966x_oic->domain);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> +		irq_remove_generic_chip(gc, ~0, 0, 0);
-> +	}
-> +
-> +	kfree(lan966x_oic->domain->gc);
-> +	irq_domain_free(lan966x_oic->domain);
-> +}
+On Tue, Apr 30, 2024 at 7:30=E2=80=AFPM Alisa-Dariana Roman
+<alisadariana@gmail.com> wrote:
+>
+> AINCOM should actually be a supply. AINx inputs are referenced to AINCOM
+> in pseudo-differential operation mode. AINCOM voltage represents the
+> offset of corresponding channels.
 
 ...
+
+> +               ret =3D regulator_enable(aincom);
+> +               if (ret)
+> +                       return dev_err_probe(&spi->dev, ret,
+> +                                            "Failed to enable specified =
+AINCOM supply\n");
+> +
+> +               ret =3D devm_add_action_or_reset(&spi->dev, ad7192_reg_di=
+sable, aincom);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               ret =3D regulator_get_voltage(aincom);
+> +               if (ret < 0)
+> +                       return dev_err_probe(&spi->dev, ret,
+> +                                            "Device tree error, AINCOM v=
+oltage undefined\n");
+> +               st->aincom_mv =3D ret / 1000;
+
+MILLI ?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
