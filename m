@@ -1,105 +1,123 @@
-Return-Path: <devicetree+bounces-64101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2BE08B7D5E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E59A8B7D63
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DACC28383C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:46:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD90C284CC7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802C6173351;
-	Tue, 30 Apr 2024 16:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905E417B4FF;
+	Tue, 30 Apr 2024 16:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDZB5/SZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a8IZPujo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512BE12C7FA;
-	Tue, 30 Apr 2024 16:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6BD17B51C
+	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 16:46:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714495559; cv=none; b=QJq+NciT2WUxf2P9vSUT/VtNAcQwpzEg8iCi3AsSS8V5U5HJajo0+oqBylYHI4L0tLwXe56C0QlfD/FBT+6Vk06DP74jh8QoEQV3WkJnUJtLavz/NxXcNiXkXUbqiLhd1i90K6YirpQ9pNqe1sERmcGQYBuvXuYbdhnZ0CMQZwE=
+	t=1714495578; cv=none; b=b/I/yxF/ntwRvTogPgDsttgBL813cCITeytSlySUlSghBmYgsPRPwH0rQjGeBgogYjQ7orKAXPK9rWy1OAh4u1WF0NcHH0Wyz0FPSjIolKBd/hBgUzWjOuO3S8Ysw3SkBM/j+WblG8X80Cm6p96pXr1mvfS3BF3jqPZ8pEgLTUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714495559; c=relaxed/simple;
-	bh=whThbLhJehj+vJNYPrBx5LJzg4oR+50VDinWzCi1mqg=;
+	s=arc-20240116; t=1714495578; c=relaxed/simple;
+	bh=qzU4VbzUFeRv/W7BTSCws6gfXSQSS7oC0XCRshZUgAk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VSUJE+cJg5e4v7i9lxxqnsNiLauFgAJHRzQRa3QWVGmNyqw1dVsfwFJIHxGOIe4sNJDpnIbu+aHMmmQTZzH5OoUgmkzHGe3BOROJqHo9JJgwfZIp6LXGUDH5Z0JMzE9aGcZ3SG6L9MqycTPyQvR96KRFJA8Y/KSF4nZt1i0E/ZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDZB5/SZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3499C2BBFC;
-	Tue, 30 Apr 2024 16:45:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714495559;
-	bh=whThbLhJehj+vJNYPrBx5LJzg4oR+50VDinWzCi1mqg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iDZB5/SZztKxmERhUPcSdf1UFRBYXi9yrsi9ztHk2+oInXHVuo1nEkH8wrkEiEN30
-	 sZDX28sBq6mApRl1UhIQ5ktRacHF+nBMqejBlRF6rQndLFC9871R1BgZ9zj+yrboZi
-	 mQNhRH76IsvQPxqrr23GkbaL0/V0skmgZgn3ZPqP84ial5OI4872YMlEOYfnz5jJ7H
-	 JtSqfdu+kB3T/DfJqgNRST1HYcx1A6dnH3sbn8vzKNNnutO0BwARW8HNEqswm+OPbm
-	 KsAYQBbyejfPCUStHbDh1PzeTsKNLcmBcy15fPBJx0gF1R48XMoeJ0RdxDbYclCECn
-	 c3H5EWX3+pdqQ==
-Date: Tue, 30 Apr 2024 17:45:54 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Petar Stoykov <pd.pstoykov@gmail.com>, linux-iio@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] Add support for Sensirion SDP500
-Message-ID: <20240430-booth-spinster-bf59f780f10a@spud>
-References: <CADFWO8EZWkXeAMcURgGGEmzVjiSxFTVAbKpsb2Qmv66EZiTc+A@mail.gmail.com>
- <ZjEQKqkWA66HtiD4@smile.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uOwxD0hOD1TCLfQtHh0cqncYuoPFD6ogZqR/X9SerXl1hT1fUrryotXZYdd6OgCDNteDO8BCjVXFuiHfkNyEwt5782/UypHBFxzH9RBG2gHkkdqvq/RQuRZTV/8Z1JqCTWwiUt5jFhJ34e0HqjIdFVT6AOVjJyok2/GA2np/AjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a8IZPujo; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6ee3042cb98so1481630a34.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 09:46:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714495576; x=1715100376; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zCeSwrp/mNlBdqA3TllWYVD3pWNYe1arwo8/uJ5j/aA=;
+        b=a8IZPujoT8PWPVsnoC+6V8FQmnBjw2oP/JIabogN8yiTfvMDrTthxyIP8BbPet1tlK
+         xmoBfKjs3vHFE7hwfgMu5BRZefSBf1hIQTpNZXB9k6wohCQAY6mCzi8UeEgciND8N1ls
+         xCIQifgDDFf/CYpMGHhRRAauo65ZJfl3w8cHzaB9G1mI1zSJCuJr3IUs8YIce3dp/fRV
+         vVfHpMKyfpoqCxBeMUeUSvxVu0l1ONM501E3W2AfgehzEqij27xvq86Uy9IMkFPOG9Pr
+         kVmzPdihzyovvDB3QBxigHR4yonjgzo38lO3cxh/x3kJpwrJ7V4joQWq43ZlJVtsnF/C
+         srpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714495576; x=1715100376;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zCeSwrp/mNlBdqA3TllWYVD3pWNYe1arwo8/uJ5j/aA=;
+        b=lSz868iH4pavteibJjFycWw+Uy1Qyae2IntJ58gp5vBIvH144vka85HcKc+FTs57JJ
+         EiwCXss91iJc9hTxt6i9y/ZYNgk1NUXgJMBSVRlQ0NzVpfog0hi1m5zmLdxEIhzP2pi+
+         cwjl8HaE6dqOBVseue0S3RBECBGuijPy6da43LUZYkz2EZqOCQmonICoKt54Hqw7JO6l
+         CkArXrdOjgH0t4hL8kLNFrQAGbJmHoy9eVmKS9InU0mX2EgRycb15+GqN48aeL2yesc/
+         QPaLFswvihZByfd9DWtZ7NAmvBKRP+xqc5pqdb73pwcD/sCcYG6imNEZmHqHAjvniTTc
+         kq4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVDhtsOjZSrmX0IQnGhKOlqNEMC19huEn+RMDcia5icl+SLC4dpdmwKxqCUnwcjzql9UZGvx2aVXa+P0KMzEwto1nSwpi8tGy83tA==
+X-Gm-Message-State: AOJu0YylLiGq3kvxc621NF9HkkADDzYFDr4OmQDqLYWIE2QeFny2VDyZ
+	/94emM/aFX2nm9eHCp7UatM77qKRJ0Oij4Cyw4fuLZVS2Ah+cocVX2mM2dXdPK8=
+X-Google-Smtp-Source: AGHT+IH8F1std92hvf4fXAZ5Hsa2XfNZ5XXJItRDYaUPxJEOGBg3MYvwiNgKSUGo270d1I21pwkKsA==
+X-Received: by 2002:a05:6358:52c7:b0:183:b7a0:8aa with SMTP id z7-20020a05635852c700b00183b7a008aamr432390rwz.13.1714495575942;
+        Tue, 30 Apr 2024 09:46:15 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:2e09:6862:d789:2631])
+        by smtp.gmail.com with ESMTPSA id t15-20020a6564cf000000b006148e35166fsm2898855pgv.87.2024.04.30.09.46.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Apr 2024 09:46:15 -0700 (PDT)
+Date: Tue, 30 Apr 2024 10:46:12 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Olivia Wen <olivia.wen@mediatek.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Tinghan Shen <tinghan.shen@mediatek.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	jason-ch.chen@mediatek.com, yaya.chang@mediatek.com,
+	teddy.chen@mediatek.com
+Subject: Re: [PATCH v4 0/4] Support MT8188 SCP core 1
+Message-ID: <ZjEgVMj5s62pd3Db@p14s>
+References: <20240430011534.9587-1-olivia.wen@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rMltWNAOmxMHJ1q9"
-Content-Disposition: inline
-In-Reply-To: <ZjEQKqkWA66HtiD4@smile.fi.intel.com>
-
-
---rMltWNAOmxMHJ1q9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240430011534.9587-1-olivia.wen@mediatek.com>
 
-On Tue, Apr 30, 2024 at 06:37:14PM +0300, Andy Shevchenko wrote:
-> On Tue, Apr 30, 2024 at 05:27:17PM +0200, Petar Stoykov wrote:
-> > From c4437fd0ea296c4c964b1fb924144ae24a2ce443 Mon Sep 17 00:00:00 2001
-> > From: Petar Stoykov <pd.pstoykov@gmail.com>
-> > Date: Mon, 29 Apr 2024 16:41:30 +0200
-> > Subject: [PATCH 0/3] Add support for Sensirion SDP500
-> >=20
-> > This patch series
->=20
-> It's not. I mean from the email chaining perspective. Have you forgotten
-> to add --thread to git format-patch?
->=20
-> Also, what is that in above?
+On Tue, Apr 30, 2024 at 09:15:30AM +0800, Olivia Wen wrote:
+> Change in v4:
+> Updating the description of PATCH v4 4/4.
+> 
+> Olivia Wen (4):
+>   dt-bindings: remoteproc: mediatek: Support MT8188 dual-core SCP
+>   remoteproc: mediatek: Support MT8188 SCP core 1
+>   remoteproc: mediatek: Support setting DRAM and IPI shared buffer sizes
+>   remoteproc: mediatek: Add IMGSYS IPI command
+> 
+>  .../devicetree/bindings/remoteproc/mtk,scp.yaml    |   2 +
+>  drivers/remoteproc/mtk_common.h                    |  11 +-
+>  drivers/remoteproc/mtk_scp.c                       | 230 +++++++++++++++++++--
+>  drivers/remoteproc/mtk_scp_ipi.c                   |   7 +-
+>  include/linux/remoteproc/mtk_scp.h                 |   1 +
+>  5 files changed, 225 insertions(+), 26 deletions(-)
 
-Looks more like patches pasted into gmail or w/e, rather than sent with
-git send-email.
+I have applied this set.
 
---rMltWNAOmxMHJ1q9
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
+Mathieu
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjEgQgAKCRB4tDGHoIJi
-0p1JAP9nApeDk2wwuTo+HfdptPW9V/ztL01XegpGhD8dVbxn7gEAz6TDsELkSn12
-suoTxHy6QW5v3r4oBt40mdnn+Rzkngo=
-=RMsK
------END PGP SIGNATURE-----
-
---rMltWNAOmxMHJ1q9--
+> 
+> -- 
+> 2.6.4
+> 
 
