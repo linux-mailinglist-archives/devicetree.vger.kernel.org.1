@@ -1,105 +1,125 @@
-Return-Path: <devicetree+bounces-64118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE3D8B7F46
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 19:53:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E028B7F64
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 20:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD0991C22546
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 17:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53CD4285228
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 18:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C930180A69;
-	Tue, 30 Apr 2024 17:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FE818133F;
+	Tue, 30 Apr 2024 18:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TbJL+TLN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSJtY/Qv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7379A175560;
-	Tue, 30 Apr 2024 17:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27D9175560;
+	Tue, 30 Apr 2024 18:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714499601; cv=none; b=gb9wT1dMzeu5FeYkna2pHA3wDhl6IIonrPJcU5cxV6OZqvlDnTrrcdpzhIKXiwqDejT47dmV1eSmXMYTHbjrYZ1fU3QQ8OHEYUWFUtzRJVp6h70w+Y660ot+F6bB+o8WQkth9ruTayLBbJa9E60b1xGyKae59bTMKgNkXChyR3s=
+	t=1714500298; cv=none; b=TQgoNaYQEy7aauWLDOmA5D8yqLLWTLteU418XsALvN3k9/6WW1Nhcf2SjCV3SIJfZLoKoaYfVxOeFOEBj9viQtprnq7qI0olrniXr7QvU1GEV2pmTtP2slgcEdd5MLMm5pTS0HSown/+nRc9BfhdDLNxrJZY7JSZXin05WzqmjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714499601; c=relaxed/simple;
-	bh=EjgsmtsYJ56z9zdyIVeG7EAt+Nnc2Q7ee4yCJg7gxtE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u5Fygi3gRzhT6WzgsFUmC/O3DN2xQZZgnqNkATGO4cMCSD4p8bRPokf1yAyFUuvRfBeih8/hO6OY3kE1bwlC8WqeItzhuVJZ9hQgsTtfYsirjsh4rLtXbtgqdVW0TnH1voIlV6FPG4j+VDVgiKqlQu6PN0AKNjJXb3sd5T4OeK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TbJL+TLN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 133BEC4AF14;
-	Tue, 30 Apr 2024 17:53:21 +0000 (UTC)
+	s=arc-20240116; t=1714500298; c=relaxed/simple;
+	bh=jz73RuQd4HFNSDYi2UqJP9KQ4zUfUOQNSb6BLXUEHwg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=imantSBPUTaRX0TAW7OeBq3ResXgmOq099sT99pzRrHOfo7Mypf1B5UeUZoWPmP1SfaAciX6GdYyzhE98ec7BIjt/Qi9hUrmL1QC+INZK+qBDun5yzuLqBJjCN83Nujp5iGiPfouRzXDmoolGAVXZTk+0oWvLS7YaZexVedUDQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSJtY/Qv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E61CC2BBFC;
+	Tue, 30 Apr 2024 18:04:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714499601;
-	bh=EjgsmtsYJ56z9zdyIVeG7EAt+Nnc2Q7ee4yCJg7gxtE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=TbJL+TLNx5ggbzSIRs6m6PIwCnkrs1323wBdL9YcBGlU92Luox0mSFYBh+6CgR9Hk
-	 CYL/qUukm7uqBi8KxTNNM17lNkPSDufZ1RJ4hGEAYKrH53qq+MEKQqE5NUzYFzgxJg
-	 RgN2Qkg3pGfGLYgi20TPAAgWdau3RksYz/SgMeVGWbiwVV75zYHZ+4mO4sSGdMJMy3
-	 DefExk1RboXKh2DRvzjy8OynbAnJYMU9GVrv7uoqgnW9inFxCPkhVy0z2FqC5n8OiK
-	 cajoX4L5pXw1NvgP8qhCZe5gTdnHw8/m6Cxn9KOxkrLCEsOSvXYnVObPH37uXzX0GW
-	 qj1HiPsfJnJBg==
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e0a2870bceso30560261fa.2;
-        Tue, 30 Apr 2024 10:53:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCURGWKgkEe7TaCOC3SP7fEp7hchmg4b1PTb3Oq7Bt6xEdRQDNGUgfOmyEWOQSuTm36doxFol9ilDYrcaqlPCD9V5VzjVTZhcoB8N1pLbm4EEDxMGlujdt5sW2qy09DHOaKRgAijzRrvJw==
-X-Gm-Message-State: AOJu0YzAcZx/h1gBpSpzGPJhiGLKkYdK8SC+o9OLj1ZfxUmJU3zKRPm2
-	ShZCzjuq8vRwJ+0s4U7YbLykEP/W8A3Dp/cgnhADZeYCTy7PKTZ6veurl7aDR8J7ZAgqmCMlcUC
-	z5M+bj4QCcxMFwXdsSEBaFvnn9g==
-X-Google-Smtp-Source: AGHT+IFhHkqLhgpvwGTt4C10o31XkNU0ZIZ09Wxl2M1R7Je27A5LHpVnsz5LsILEGDumPiTE9QiwPy0FsDiPk08bc1A=
-X-Received: by 2002:ac2:530a:0:b0:51b:abde:b18e with SMTP id
- c10-20020ac2530a000000b0051babdeb18emr111387lfh.61.1714499599323; Tue, 30 Apr
- 2024 10:53:19 -0700 (PDT)
+	s=k20201202; t=1714500298;
+	bh=jz73RuQd4HFNSDYi2UqJP9KQ4zUfUOQNSb6BLXUEHwg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=NSJtY/QvQALgQFXBeHV7rY3KeJCSZ9+AonDpJ2HFpC29toNWlNk+gqsdtxpbebs00
+	 q3tEDlPd8Wts/wDUW1S7Zy/khgJb7aNcLlPi7tsr6T6KpiSNHlH1dLXL/Yxpl+6QDs
+	 DmtzORqjy4aN7H49O4GyESjB+3L1I5V7TjMC0kndfCtJ1hwUoiybMzwmvULoK5DQPK
+	 QRzbvfyWnhTIZj0PZE48fbcmc/iUyLporwdTSIn3FObt5Ne9pLnWop5hMRdl0v/p8X
+	 O6qy8SU4UCRMqKdQqNt3yvcVobX3wdRIlqMuadCVdTA1bKuHu0bIduhrGV19tj81+w
+	 f+hm4i6Pf0utQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: clock: fixed: Define a preferred node name
+Date: Tue, 30 Apr 2024 13:04:14 -0500
+Message-ID: <20240430180415.657067-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240426195438.2771968-1-robh@kernel.org> <20240430-unsnap-eskimo-444052f98b7d@spud>
-In-Reply-To: <20240430-unsnap-eskimo-444052f98b7d@spud>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 30 Apr 2024 12:53:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJLEku=NT-JPE7cijdhPFEQm+i+cghOt6e4+LNOGP8oPg@mail.gmail.com>
-Message-ID: <CAL_JsqJLEku=NT-JPE7cijdhPFEQm+i+cghOt6e4+LNOGP8oPg@mail.gmail.com>
-Subject: Re: [PATCH] yamllint: Drop excluding quoted values with ',' from checks
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Apr 30, 2024 at 12:40=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Fri, Apr 26, 2024 at 02:54:37PM -0500, Rob Herring (Arm) wrote:
-> > From: Rob Herring <robh@kernel.org>
-> >
-> > Strings with commas were excluded from checks because yamllint had fals=
-e
-> > positives for flow style maps and sequences which need quotes when
-> > values contain commas. This issue has been fixed as of the 1.34 release=
-,
-> > so drop the work-around.
->
-> Hmm, is this a bit aggressive of an upgrade? I only checked Debian since
-> it is what this machine uses, and it only seems to be shipping 1.33 in
-> testing & unstable.
+Define "clock-<freq>" as the preferred node name for fixed-clock and
+fixed-factor-clock where <freq> is the output frequency of the clock.
+There isn't much of an existing pattern for names of these nodes. The
+most frequent patterns are a prefix or suffix of "clk", but there's a
+bunch that don't follow any sort of pattern. We could use
+"clock-controller-.*", but these nodes aren't really a controller in any
+way. So let's at least align with part of that and use 'clock-'.
 
-Humm, yeah and that's what the bot is running...
+For now this only serves as documentation as the schema still allows
+anything to avoid lots of additional warnings for something low priority
+to fix. Once a "no deprecated" mode is added to the tools, warnings can
+be enabled selectively.
 
-It's only required if you don't want warnings. The issue for me is if
-we don't enable this, we get new cases we have to go fix. I could
-enable it only on the bot (with some work), but then I get 'I ran the
-checks and didn't see this'.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/clock/fixed-clock.yaml | 9 +++++++++
+ .../devicetree/bindings/clock/fixed-factor-clock.yaml    | 9 +++++++++
+ 2 files changed, 18 insertions(+)
 
-There is also a new check for quoted keys that I want to enable. I
-haven't done that because then 1.34 is really required as yamllint
-will error out on unknown (to older versions) checks. That's what
-really drives the minimum version.
+diff --git a/Documentation/devicetree/bindings/clock/fixed-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+index b0a4fb8256e2..90fb10660684 100644
+--- a/Documentation/devicetree/bindings/clock/fixed-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+@@ -11,6 +11,15 @@ maintainers:
+   - Stephen Boyd <sboyd@kernel.org>
+ 
+ properties:
++  $nodename:
++    anyOf:
++      - description:
++          Preferred name is 'clock-<freq>' with <freq> being the output
++          frequency as defined in the 'clock-frequency' property.
++        pattern: "^clock-([0-9]+|[a-z0-9-]+)$"
++      - description: Any name allowed
++        deprecated: true
++
+   compatible:
+     const: fixed-clock
+ 
+diff --git a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+index 8f71ab300470..4afdb1c98f5f 100644
+--- a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+@@ -11,6 +11,15 @@ maintainers:
+   - Stephen Boyd <sboyd@kernel.org>
+ 
+ properties:
++  $nodename:
++    anyOf:
++      - description:
++          If the frequency is fixed, the preferred name is 'clock-<freq>' with
++          <freq> being the output frequency.
++        pattern: "^clock-([0-9]+|[0-9a-z-]+)$"
++      - description: Any name allowed
++        deprecated: true
++
+   compatible:
+     enum:
+       - fixed-factor-clock
+-- 
+2.43.0
 
-I'll hold off on this at least until it lands in debian.
-
-Rob
 
