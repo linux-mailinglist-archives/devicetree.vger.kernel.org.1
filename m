@@ -1,197 +1,163 @@
-Return-Path: <devicetree+bounces-63958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727538B74C3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:45:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B56C8B74DD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 13:51:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 938B4B20BF2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:45:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2459B21407
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 11:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827BA131BA7;
-	Tue, 30 Apr 2024 11:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C8613C9C3;
+	Tue, 30 Apr 2024 11:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="A25zNcBP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMotWVD+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D4215AAA4;
-	Tue, 30 Apr 2024 11:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46691311B0;
+	Tue, 30 Apr 2024 11:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714477526; cv=none; b=lCkTVzdahBfJus+cBsuFHubo10n0TtTHIJeHIZKumTaNaPPvTpgEST8kUSsspd6iW7Ebl32DwQMzrADlnzYXTQ+kJyvpHCqeGcCGbjKNZLnDD1InduSezKssHxhE5K+YwZcRExWJZB0JVmv0omK6KNLDAapSzdk22iXAPtdc/9o=
+	t=1714477881; cv=none; b=na3uTiXUcqArIW5vGtnH0oovOIx2+sTCzZqxDRrP71aofxQqSbCwCicroJRmcVqDiSzV29Rm51ROawB9hOnzSs6sQstQKScrThcwttX55M9lV5FWEGLs3RZWROU5JjfPuxUbVois38lZl0jeFhuDkQizrmcmrvOF+t+06i5ukRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714477526; c=relaxed/simple;
-	bh=fHd/tvgknZmDQ1B+dKw15+R47eqN73inFJLNupe/g1s=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QA/PFD3R8JoYdeASZQzBoBwSIjymw11vSZtgVu6dq26EmR9m371G+ekj/IEnXBgC2mwK6+SeXlQNnqGGgPHHm1f64PlfDjDIJPGa99zrVYO709hhgAFEhBOoSQLzHoYZTJ8jKKXBKN2mx6GbqN8Hy4RkXMk801OTZio0RNqVqjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=A25zNcBP; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1714477524; x=1746013524;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fHd/tvgknZmDQ1B+dKw15+R47eqN73inFJLNupe/g1s=;
-  b=A25zNcBPz5slS+g+28gjb5qbg+h28Q5qBrTNou6vSMHIM+rsq9nPmLaN
-   BDMceGe5qICILFvTb7eGU555TFRWpABws4BEXnyWFQA1S7yX5Ao000Pf6
-   lRWquYf79ym7aj5Ewkzo1/DpsTOOZVeDeXxKTpbBjthxl0VcEXLzMW7e6
-   eefnSYWtD/k9JgJdebKOUe4SMK3Wsn6IaHzq8Igb8cCYDj9H1gIHNmYp9
-   7x5TQwYH8QAePViA7kCTKh8o0S2nDjwypczQ0zRuFzkj/beGsq8hkK7Ow
-   mfG1TvbfnPmiwBhF+afQC8Yl9LOmtigQnAV/vyuLO3RCHVa45emsJlb8d
-   w==;
-X-CSE-ConnectionGUID: rJqdjKizQQ68Np9QZCjhLw==
-X-CSE-MsgGUID: kyLwJnyCT2SNMFyBqjKUEg==
-X-IronPort-AV: E=Sophos;i="6.07,242,1708412400"; 
-   d="asc'?scan'208";a="190592988"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Apr 2024 04:45:22 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 30 Apr 2024 04:44:50 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Tue, 30 Apr 2024 04:44:47 -0700
-Date: Tue, 30 Apr 2024 12:44:30 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-CC: Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Paul
- Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel
-	<anup@brainfault.org>, Shuah Khan <shuah@kernel.org>, Atish Patra
-	<atishp@atishpatra.org>, <linux-doc@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <kvm@vger.kernel.org>,
-	<kvm-riscv@lists.infradead.org>, <linux-kselftest@vger.kernel.org>
-Subject: Re: [PATCH v4 02/11] riscv: add ISA extensions validation
-Message-ID: <20240430-payable-famished-6711765d5ca4@wendy>
-References: <20240429150553.625165-1-cleger@rivosinc.com>
- <20240429150553.625165-3-cleger@rivosinc.com>
- <20240429-subtext-tabby-3a1532f058a5@spud>
- <5d5febd5-d113-4e8c-9535-9e75acf23398@rivosinc.com>
+	s=arc-20240116; t=1714477881; c=relaxed/simple;
+	bh=vBMSAoS4FslXBKMp6Bl0M5x8r+e0FbC1+oCjbaWlU+U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Veq64Z2g6VZ8yaZtUdsSWhHyFmhXGaYocvbq1droZ/zZNL0NxWUsQ6XOYKh0+h4Hm9Hm10r005QoeuzTDk5PgNY1/hpTTbIOoIjZA9vNmo/hH1BiJgOpdjljuf43/RlKfnX5tjZLj4RjHCl/nRRAIEHZhmbD7sHfY0mOrh9rsLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMotWVD+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58150C2BBFC;
+	Tue, 30 Apr 2024 11:51:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714477881;
+	bh=vBMSAoS4FslXBKMp6Bl0M5x8r+e0FbC1+oCjbaWlU+U=;
+	h=From:List-Id:To:Cc:Subject:Date:From;
+	b=gMotWVD+CJA+GM/SxYj9XE7Mk8Hco1CyjfuSrPqdU4hoQhynWYHtQIf0WOOfdbiSU
+	 lU++GicjvEdHyvtJ/8558SA6RYJnUoN63kWFqctUrcB7K3zk6sGEgwtD97p87r32UU
+	 bkzxDigyd5GNgegCk/2QZdxTAtFYahWogTFfgVxh86MKfx6FkmyV1PQPc4VyyNtenw
+	 CLmUjK9nDlCymDKeaptNcIMJi3bKb05F/yTrnkzPo0rGMK1ooGAhbovsZIsSUdgL5J
+	 n76Xq8hcCI/tuQIThcly+VDWJj5hmkXapZ88+F+emQBPlrTjdemHej3Mk/lC3n0TS1
+	 /Ll+rmIzu0bHQ==
+From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	soc@kernel.org,
+	arm@kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	devicetree@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-crypto@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	Olivia Mackall <olivia@selenic.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
+Subject: [PATCH v8 0/9] Turris Omnia MCU driver
+Date: Tue, 30 Apr 2024 13:51:02 +0200
+Message-ID: <20240430115111.3453-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="o3hC9HS35D3JsI9f"
-Content-Disposition: inline
-In-Reply-To: <5d5febd5-d113-4e8c-9535-9e75acf23398@rivosinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---o3hC9HS35D3JsI9f
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Andy, Hans, Ilpo, Arnd, Gregory, and others,
 
-On Tue, Apr 30, 2024 at 09:18:47AM +0200, Cl=E9ment L=E9ger wrote:
->=20
->=20
-> On 30/04/2024 00:15, Conor Dooley wrote:
-> > On Mon, Apr 29, 2024 at 05:04:55PM +0200, Cl=E9ment L=E9ger wrote:
-> >> Since a few extensions (Zicbom/Zicboz) already needs validation and
-> >> future ones will need it as well (Zc*) add a validate() callback to
-> >> struct riscv_isa_ext_data. This require to rework the way extensions a=
-re
-> >> parsed and split it in two phases. First phase is isa string or isa
-> >> extension list parsing and consists in enabling all the extensions in a
-> >> temporary bitmask without any validation. The second step "resolves" t=
-he
-> >> final isa bitmap, handling potential missing dependencies. The mechani=
-sm
-> >> is quite simple and simply validate each extension described in the
-> >> temporary bitmap before enabling it in the final isa bitmap. validate()
-> >> callbacks can return either 0 for success, -EPROBEDEFER if extension
-> >> needs to be validated again at next loop. A previous ISA bitmap is kept
-> >> to avoid looping mutliple times if an extension dependencies are never
-> >> satisfied until we reach a stable state. In order to avoid any potenti=
-al
-> >> infinite looping, allow looping a maximum of the number of extension we
-> >> handle. Zicboz and Zicbom extensions are modified to use this validati=
-on
-> >> mechanism.
-> >=20
-> > Your reply to my last review only talked about part of my comments,
-> > which is usually what you do when you're gonna implement the rest, but
-> > you haven't.
-> > I like the change you've made to shorten looping, but I'd at least like
-> > a response to why a split is not worth doing :)
->=20
-> Hi Conor,
->=20
-> Missed that point since I was feeling that my solution actually
-> addresses your concerns. Your argument was that there is no reason to
-> loop for Zicbom/Zicboz but that would also apply to Zcf in case we are
-> on RV64 as well (since zcf is not supported on RV64). So for Zcf, that
-> would lead to using both mecanism or additional ifdefery with little to
-> no added value since the current solution actually solves both cases:
->=20
-> - We don't have any extra looping if all validation callback returns 0
-> (except the initial one on riscv_isa_ext, which is kind of unavoidable).
-> - Zicbom, Zicboz callbacks will be called only once (which was one of
-> your concern).
->=20
-> Adding a second kind of callback for after loop validation would only
-> lead to a bunch of additional macros/ifdefery for extensions with
-> validate() callback, with validate_end() or with both (ie Zcf)). For
-> these reasons, I do not think there is a need for a separate mechanism
-> nor additional callback for such extensions except adding extra code
-> with no real added functionality.
->=20
-> AFAIK, the platform driver probing mechanism works the same, the probe()
-> callback is actually called even if for some reason properties are
-> missing from nodes for platform devices and thus the probe() returns
-> -EINVAL or whatever.
->=20
-> Hope this answers your question,
+this is v8 of the series adding Turris Omnia MCU driver.
 
-Yeah, pretty much I am happy with just an "it's not worth doing it"
-response. Given it wasn't your first choice, I doubt you're overly happy
-with it either, but I really would like to avoid looping to closure to
-sort out dependencies - particularly on the boot CPU before we bring
-anyone else up, but if the code is now more proactive about breaking
-out, I suppose that'll have to do :)
-I kinda wish we didn't do this at all, but I think we've brought this
-upon ourselves via hwprobe. I'm still on the fence as to whether things
-that are implied need to be handled in this way. I think I'll bring this
-up tomorrow at the weekly call, because so far it's only been you and I
-discussing this really and it's a policy decision that hwprobe-ists
-should be involved in I think.
+This series depends on the immutable branch between LEDs and locking,
+introducing devm_mutex_init(), see the PR
+  https://lore.kernel.org/linux-leds/20240412084616.GR2399047@google.com/
 
-Implied extensions aside, I think we will eventually need this stuff
-anyway, for extensions that make no sense to consider if a config option
-for a dependency is disabled.
-=46rom talking to Eric Biggers the other week about
-riscv_isa_extension_available() I'm of the opinion that we need to do
-better with that interface w.r.t. extension and config dependencies,
-and what seems like a good idea to me at the moment is putting tests for
-IS_ENABLED(RISCV_ISA_FOO) into these validate hooks.
+See also cover letters for v1, v2, v3, v4, v5, v6 and v7:
+  https://patchwork.kernel.org/project/linux-soc/cover/20230823161012.6986-1-kabel@kernel.org/
+  https://patchwork.kernel.org/project/linux-soc/cover/20230919103815.16818-1-kabel@kernel.org/
+  https://patchwork.kernel.org/project/linux-soc/cover/20231023143130.11602-1-kabel@kernel.org/
+  https://patchwork.kernel.org/project/linux-soc/cover/20231026161803.16750-1-kabel@kernel.org/
+  https://patchwork.kernel.org/project/linux-soc/cover/20240323164359.21642-1-kabel@kernel.org/
+  https://patchwork.kernel.org/project/linux-soc/cover/20240418121116.22184-1-kabel@kernel.org/
+  https://patchwork.kernel.org/project/linux-soc/cover/20240424173809.7214-1-kabel@kernel.org/
 
-I'll try to look at the actual implementation here tomorrow.
+Changes since v7:
+- fixed wrong $id path in DT binding (patch 1)
+- removed resource managed IRQ mapping disposal, which is not needed, as
+  pointed out by Andy (patches 6, 7)
+- added some more #includes (for linux/device.h, linux/interrupt.h,
+  linux/hw_random.h) (patches 3, 6, 7)
+- dropped the Fixes tags from the DT changes (patches 8, 9), with an
+  explanation of this added into the commit message of patch 8, as
+  suggested by Andrew
 
-Cheers,
-Conor.
+Marek Behún (9):
+  dt-bindings: firmware: add cznic,turris-omnia-mcu binding
+  platform: cznic: Add preliminary support for Turris Omnia MCU
+  platform: cznic: turris-omnia-mcu: Add support for MCU connected GPIOs
+  platform: cznic: turris-omnia-mcu: Add support for poweroff and wakeup
+  platform: cznic: turris-omnia-mcu: Add support for MCU watchdog
+  platform: cznic: turris-omnia-mcu: Add support for MCU provided TRNG
+  platform: cznic: turris-omnia-mcu: Add support for digital message
+    signing via debugfs
+  ARM: dts: turris-omnia: Add MCU system-controller node
+  ARM: dts: turris-omnia: Add GPIO key node for front button
 
---o3hC9HS35D3JsI9f
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../ABI/testing/debugfs-turris-omnia-mcu      |   13 +
+ .../sysfs-bus-i2c-devices-turris-omnia-mcu    |  126 ++
+ .../firmware/cznic,turris-omnia-mcu.yaml      |   86 ++
+ MAINTAINERS                                   |    5 +
+ .../dts/marvell/armada-385-turris-omnia.dts   |   35 +-
+ drivers/platform/Kconfig                      |    2 +
+ drivers/platform/Makefile                     |    1 +
+ drivers/platform/cznic/Kconfig                |   51 +
+ drivers/platform/cznic/Makefile               |    9 +
+ .../platform/cznic/turris-omnia-mcu-base.c    |  439 +++++++
+ .../platform/cznic/turris-omnia-mcu-debugfs.c |  207 ++++
+ .../platform/cznic/turris-omnia-mcu-gpio.c    | 1048 +++++++++++++++++
+ .../cznic/turris-omnia-mcu-sys-off-wakeup.c   |  258 ++++
+ .../platform/cznic/turris-omnia-mcu-trng.c    |  101 ++
+ .../cznic/turris-omnia-mcu-watchdog.c         |  123 ++
+ drivers/platform/cznic/turris-omnia-mcu.h     |  188 +++
+ include/linux/turris-omnia-mcu-interface.h    |  249 ++++
+ 17 files changed, 2940 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/ABI/testing/debugfs-turris-omnia-mcu
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-turris-omnia-mcu
+ create mode 100644 Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
+ create mode 100644 drivers/platform/cznic/Kconfig
+ create mode 100644 drivers/platform/cznic/Makefile
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu-base.c
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu-debugfs.c
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu-gpio.c
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu-sys-off-wakeup.c
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu-trng.c
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu-watchdog.c
+ create mode 100644 drivers/platform/cznic/turris-omnia-mcu.h
+ create mode 100644 include/linux/turris-omnia-mcu-interface.h
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.43.2
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjDZngAKCRB4tDGHoIJi
-0jaXAQDZLEWybBZ6OTc/u2wI/xhLxITFoBF1IWTZ2CPcg9nOugD/e972YLWSGflR
-ZM//z1//gOap3OewaAJgMnP4nvYeEA4=
-=U5u8
------END PGP SIGNATURE-----
-
---o3hC9HS35D3JsI9f--
 
