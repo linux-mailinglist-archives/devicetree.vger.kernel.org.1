@@ -1,185 +1,104 @@
-Return-Path: <devicetree+bounces-63773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-63776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3738B6733
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 03:10:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536678B6745
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 03:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD664284FF9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 01:10:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3387F1C22134
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 01:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F271843;
-	Tue, 30 Apr 2024 01:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37470205E36;
+	Tue, 30 Apr 2024 01:16:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="WIMtMFir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2104.outbound.protection.partner.outlook.cn [139.219.146.104])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138E010E4;
-	Tue, 30 Apr 2024 01:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714439449; cv=fail; b=chx3A+zsisfJmbniWaPG+AbZvOThgX6cSdtDZUVUgtDTYT+6Odq5tlSn+KD5YPo9oo9XAy+QBKHA0iIN912axN69f9zbx0Fv8Tgh3h3fZEuAEZ7fLce52nzVD89YGN96Cr3AwaWMu7T/7YSJpv7UF62OfaXpAsG20QxP1iKuNl4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714439449; c=relaxed/simple;
-	bh=mqf9zux01Mp8IjUDLV4bg7yEYl+cGwg5NsgWFLH2FHg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KtRgdAAoB/q8/hImbKT0tE2kNqpK7Nkxsr58VnYQ2KgVGZn9Q8+qJcEAFIpOWsK6RSRnJz1oV+Z5D1ZkA2CDk5nnJVreTCPgNSSBQiClYfvlWbDGVPkjyR1sfLTNz2vUFAZ+hvNMD7Tbju0XB69my7GF39zislLsJbz95Nbod4I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TFJPu9KXn2nPXyJT1AhlgP1P1LU9Syn0ry2yx+zc5O3q6ZuJE3Lj7yvOTwqxkiezCMx7bBJSVyvvDCaBi/myiP9i1GY0O0bnNjmt+pKLu73mIPcJxQ3w2OR/iHnL7BUQUBxmVLzz2jh9p3OjOflEMtPa1VmXpfXnz/s93Y3dsdJVB8y6FsNEtdg8PmRXC3VWSam9zqVqak1oJXIU6MZVUW17EQdJ92c6fkWQVHs0PRv9k20+ceg1ltW8rkKb5SQxKgEuw3w7pHe0EKXLaqrPMYMWXryJ0EJLpYMIpMj4if5WlpEc/UwdFnRaZVfGMP4jU4MML4MDg2KlZyIDgZge4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UNJdvvCVrz/WikenykXT18UHNn39k+4YiiKHS7QNvZM=;
- b=k/GkJwAtoqwGzHHJWQhUbMXrBIF5xQ0ucYgYlYC3m2PwQ4+koD3/PnFrxM94xIWvZZdR8hdXPPo569FUbQAliJpgdh1qeFh+oFjTl1wQ/6SzoIH1e1c/HK+hzIAdt/89bXh47NWidSaJH3vtGPQ9MASYQm/0u7yUt+nneZdYLaAOM4TSJ/22zNM5NU3SGoCdXRDOh9FlNMP2IUlmQfYud4u0G06rGiAGM3mFqdFBHNcHuClvCGric13b2+MJtflV+9pnJbjJreElTlwHGTut/gK/Tab/Hs1irX9zJ2OAVIZhlbbsVYA11yQORywMyq3LuAkA4jDPSx5GeZ4qmsFcmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:18::12) by BJXPR01MB0501.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:16::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 30 Apr
- 2024 01:10:37 +0000
-Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
- ([fe80::3e54:57b5:e3e3:7f09]) by
- BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn ([fe80::3e54:57b5:e3e3:7f09%6])
- with mapi id 15.20.7472.044; Tue, 30 Apr 2024 01:10:37 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Minda Chen <minda.chen@starfivetech.com>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, Conor Dooley <conor@kernel.org>,
-	=?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, Rob Herring
-	<robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner
-	<tglx@linutronix.de>, Daire McNamara <daire.mcnamara@microchip.com>, Emil
- Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v16 15/22] PCI: microchip: Add event irqchip field to host
- port and add PLDA irqchip
-Thread-Topic: [PATCH v16 15/22] PCI: microchip: Add event irqchip field to
- host port and add PLDA irqchip
-Thread-Index: AQHagPD3nzNr5zgHs0qxspgsCqWuULGALtGggAAFt/A=
-Date: Tue, 30 Apr 2024 01:10:37 +0000
-Message-ID:
- <BJXPR01MB0855EFC06D44A450CB56E3E2E61AA@BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn>
-References: <20240328091835.14797-1-minda.chen@starfivetech.com>
- <20240328091835.14797-16-minda.chen@starfivetech.com>
- <BJXPR01MB0855B876D2B73F33E8A39460E61AA@BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn>
-In-Reply-To:
- <BJXPR01MB0855B876D2B73F33E8A39460E61AA@BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BJXPR01MB0855:EE_|BJXPR01MB0501:EE_
-x-ms-office365-filtering-correlation-id: a4cc33a9-d7c9-4b10-f30c-08dc68b25814
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- T4MWod096/QYO3yPxIO2rvxEJLi6qsrepcF/6q3e/rMhOitPdGxixuF/epdQVAYsR00Tdad429Y2gdCsRNzMd5bvFdNdIwaAeuGpLwwvqgU/Qw3FjwZ9L0osQ1e5n4Zjx3xg1Du4oxfbTKLZR7ILZjgrvlna40kUFVzCSS3gPYF8qOFQotZw43sN7qxezOeAg15mXzAKAloJzgkttrrfXQ8j530+hkeXAYRJmSNLudxtW9PHv4sJ6jzqHnHQVljoNWldLwfCoPPk9y7zePIA32ir18xRUkb+QCBnu/DBenbvrXb+xur51WnPSKSwIXZfsmIp+b3ZBhrlbg2q8UWqpVzefalgUjyyFm2/INOdiF1/cP6rc7UCVHCf0df98Hs+VUHHulwTXZrOUxjK7VGIWg/xSm75gZRckOapP2tUZ9PL0iKNNA78mzlTVl6Eh2qRe4EsY7oVb8uFCrtAIl7lV4F7eDwLS5bXLRrueKsCbQ4GPWy2ppN3Z5BILpnN+4l9Q29lJwzqDKit04yhwFzXgh2ziOfbVO6Ex2wb0jenOj0nexQwK4Ic8BqpCFtWs6arC5H4Gat+7rPkYsIOWYafWAAUM69i7zGqjM1ZMYmBT9BI/KZ1yrTFOHnVb/4ih8SJbItGm6oB5QYweYYg1VeOWg==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(1800799015)(38070700009)(921011);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?C1Avjy5xylDwZXCqJCSuglhaPi5i2rhxE5Cl60kAvYOf2BQslZ4A7bY0FK?=
- =?iso-8859-2?Q?2POVlPk71/t3w2llK7aiSO/Qub9UrcsHAW7BuT4k2+xUcJnb6Vb1ATzf4O?=
- =?iso-8859-2?Q?/OtHxsaYaA4TXwrekNVpsl1TK1TpmkYRxrqzYira+k2Vh2tTCiuLsr+li2?=
- =?iso-8859-2?Q?iXRUqnMNEyH+rPSGkkpbAc1xToAd3vDT5RdapHJ3+0azV6zOESWgbyy/Am?=
- =?iso-8859-2?Q?yEkdctAKqQXGPe4xppoGvSAXoE+jsOZZRxjBaYVl7ZBPSG00pnS2MPBXPw?=
- =?iso-8859-2?Q?blOeqN0/Gf4EXi7fKja/4SptJhJ0F1NyT+iIB2C0RFanNl8vDySzRZzQKe?=
- =?iso-8859-2?Q?Z/0Dn9v81VwCYOw++qTLKH+ZkHQAk6JqgK773uNkT0BT86VeBbI06X6fPF?=
- =?iso-8859-2?Q?S9pSjbJLOOj/9Q3xsz84+Fx/PnUQKnhMLlG1IJ7CmK3WH39noY2kL2xTBc?=
- =?iso-8859-2?Q?6R5REkHk+rBoJWHdIFXmw6+2lasPFJByUDWfW1bj4W0PMIbUbgtRYgb0iF?=
- =?iso-8859-2?Q?0uhiekyN7kSk+k8AlgNrp5SFMw/fh/mzQphhDWB3Z/Wcjjvr0mBaSxjKJ0?=
- =?iso-8859-2?Q?D1HuNCQyHvLLGM1zvLBwnKTLNSzh+ejdwqm9ada9HWY2xY9WTs4dNKNP2c?=
- =?iso-8859-2?Q?AnEzVhLqrsqz4e/57HZlelKsIqZVja5r8Zx7iRMkhl8Ydub2s/IMHjRJqG?=
- =?iso-8859-2?Q?Zy2QCQ8laWmNhyvRMD9EZ8RHUqynf3OXDNL6/LpKzhnOxW4BXlyd3N5Y8Z?=
- =?iso-8859-2?Q?QqtTaORXE0gYSukxBMKahyPrUi4i08/cODLHs087050W2+8Xk4ENh0kTzq?=
- =?iso-8859-2?Q?bXXSE6RWwC4Zre5KG2YAfPT63PjRtDUPk7gyz/qbDR6dR4a8meuta6lLPb?=
- =?iso-8859-2?Q?CPilpNnW7R9/GCDbhQmiR7hKpywzhkumuuoh1nWD2rryVTUa50eR92XYCi?=
- =?iso-8859-2?Q?wKshUJc7w+RarVY+73Ts72FpEFqTr1LDhyem4e3K7dlWvEG6HBfk8e/E4q?=
- =?iso-8859-2?Q?4zRTfu20H3Fl5Z8pMc3ANy2/69aaIfC0OIP/IK3xhsTY2zZRifd+EkVkCW?=
- =?iso-8859-2?Q?EPhREdRqBtrKXOhoUyrFb+UWJHuF7xM0Gez0YhVKFZRrQBlTbHIKWJsl6P?=
- =?iso-8859-2?Q?OXZ3igcTlIWuxCYfKIT+mllYnNSHMiISTZ0OyRcWbbOZaR7izC/BlcuzkF?=
- =?iso-8859-2?Q?4gUkdkx8xf926CpzlWW7Un/4YujgUD0HPGZk8b51HcS0D7PnMQ1/3Ckbok?=
- =?iso-8859-2?Q?UT3A7x9sWRAsgEsdB91AQUmpxx/eH2fEIkRHPOL30MLiXD91kiEPuSlEDz?=
- =?iso-8859-2?Q?pPIiF1Fa9P8t6VMp2Wiy6030itdjMxgLhJUuw18MawmDiA3yCd4aRQxCrt?=
- =?iso-8859-2?Q?mDv79iTsw/wEjmBSSirHTxY+6Z3mFTekU0n4+UWfm1S6HTAhM8dXBIWuFq?=
- =?iso-8859-2?Q?YHLPfyulNUAJuTBZKHy3v8UrdhVt3xL0FumQnCKvfP89nsxnJ+tZRepmSu?=
- =?iso-8859-2?Q?zjMLdWLiPI922PvkmMUV8H84zpBCR5+PJqWq9IyORw7GNpifpIMEY3V112?=
- =?iso-8859-2?Q?EVn+q9bjS4hPwLDlihfBqRyTTB02/EYkCT0iTYslN5y/1HVp4r6UrsZh69?=
- =?iso-8859-2?Q?aR/CybEz/B5UtQkznb638zm/V6QFpfRSBS?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077E21C33;
+	Tue, 30 Apr 2024 01:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714439760; cv=none; b=rwm9O/UnWZ7o22nKhbRtCFZKbbh6VmzDzEWeTHzUqm2fGksGdkcm2etFUpwbNMdiFCm0ksbzoqqg6XkS1jOXbbtVQ4i5ByocHeOEi8oXzk/61DfCinTiX878l4pxMcKI5t6QGxqJ+JZdbWdJDv0lzIEj/4xsayqq/CSh8j6P3kg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714439760; c=relaxed/simple;
+	bh=eM5xvI01NgUPByPC3K6awA80YXkY3Nm0CXi0UV8yhGA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r/zE4CGum7+BoX20S0ZQZDGFKUwfyZYXjIiCv5cQgzXxY2m+3AfRsD7CbNDWwMW58hWkU1305m4Uze+gVtjrqEHJ2Grb2/boUmBADrJKe50ss8KcVA/aW4Ptz+BDdfCphJYHSUoJSkTuLDYibiUK80YwD5VgdzlYq5M1ONuByig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=WIMtMFir; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 2ef914a6068f11ef8065b7b53f7091ad-20240430
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=E7qOPXMN3EtN709VL/sVHkpUIxB3GzdKBCh9pB/IiYI=;
+	b=WIMtMFirpKj9IulHiTt0u8xMJKx6YyRc494w108Pd7UwmfZxWfy0+0zd1WbS1Y+S4ZREuq3rxlInQZNUdR30IFJIV+HdeynWUWquadjJvKpXTP7x85etCgQS7OppPLC0mWfQdXZodTdg8vjs7l153TlvNlIkrEFgFjljJZErdJs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38,REQID:18194811-b185-4094-8b9c-254a341966cf,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:82c5f88,CLOUDID:15cf7ffb-ed05-4274-9204-014369d201e8,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 2ef914a6068f11ef8065b7b53f7091ad-20240430
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <olivia.wen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1898165973; Tue, 30 Apr 2024 09:15:50 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 30 Apr 2024 09:15:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 30 Apr 2024 09:15:49 +0800
+From: Olivia Wen <olivia.wen@mediatek.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Tinghan
+ Shen <tinghan.shen@mediatek.com>, <linux-remoteproc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<jason-ch.chen@mediatek.com>, <yaya.chang@mediatek.com>,
+	<teddy.chen@mediatek.com>, <olivia.wen@mediatek.com>
+Subject: [PATCH v4 0/4] Support MT8188 SCP core 1
+Date: Tue, 30 Apr 2024 09:15:30 +0800
+Message-ID: <20240430011534.9587-1-olivia.wen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4cc33a9-d7c9-4b10-f30c-08dc68b25814
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2024 01:10:37.0643
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bkF5KlMgYlUd/hCsxoP0+4BIwhFszB6HiS0Djf1PF3dU55mBEyVbzdDM7TIXH9/sd3H2pbHXhMbWSizovW5LtHqHbqEEinZHREmKtGU/vUs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJXPR01MB0501
+Content-Type: text/plain
+X-MTK: N
 
+Change in v4:
+Updating the description of PATCH v4 4/4.
 
->=20
->=20
-> >
-> > As PLDA dts binding doc(Documentation/devicetree/bindings/pci/
-> > plda,xpressrich3-axi-common.yaml) showed, PLDA PCIe contains an
-> > interrupt controller.
-> >
-> > Microchip PolarFire PCIE event IRQs includes PLDA interrupts and
-> > Polarfire additional interrupts. The interrupt irqchip ops includes
-> > ack/mask/unmask interrupt ops, which will write correct registers.
-> > Microchip Polarfire PCIe additional interrupts require to write
-> > Polarfire SoC self-defined registers. So Microchip PCIe event irqchip o=
-ps can
-> not be re-used.
-> >
-> > Microchip Polarfire PCIe additional intrerrupts:
-> > (defined in drivers/pci/controller/plda/pcie-microchip-host.c)
-> > EVENT_PCIE_L2_EXIT
-> > EVENT_PCIE_HOTRST_EXIT
-> > EVENT_PCIE_DLUP_EXIT
-> > EVENT_SEC_TX_RAM_SEC_ERR
-> > EVENT_SEC_RX_RAM_SEC_ERR
-> > ....
-> >
-> > To support PLDA its own event IRQ process, implements PLDA irqchip ops
-> > and add event irqchip field to struct pcie_plda_rp.
-> >
->Hi Thomas
->   Could you review this patch? Thanks.
->=20
-Hi Thomas
-  Previous Lorrenzo ask you to review this patch. The PLDA PCIe interrupt r=
-egister
-can be seen in the patch.
+Olivia Wen (4):
+  dt-bindings: remoteproc: mediatek: Support MT8188 dual-core SCP
+  remoteproc: mediatek: Support MT8188 SCP core 1
+  remoteproc: mediatek: Support setting DRAM and IPI shared buffer sizes
+  remoteproc: mediatek: Add IMGSYS IPI command
 
-All:
-   Sorry to resend this.
+ .../devicetree/bindings/remoteproc/mtk,scp.yaml    |   2 +
+ drivers/remoteproc/mtk_common.h                    |  11 +-
+ drivers/remoteproc/mtk_scp.c                       | 230 +++++++++++++++++++--
+ drivers/remoteproc/mtk_scp_ipi.c                   |   7 +-
+ include/linux/remoteproc/mtk_scp.h                 |   1 +
+ 5 files changed, 225 insertions(+), 26 deletions(-)
 
-Minda
+-- 
+2.6.4
+
 
