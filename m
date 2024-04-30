@@ -1,155 +1,146 @@
-Return-Path: <devicetree+bounces-64019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B099C8B793B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:26:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F7F8B794E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 16:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4164B2812AA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 14:26:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFEB2B25866
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2024 14:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8164F17A93F;
-	Tue, 30 Apr 2024 14:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0691C6886;
+	Tue, 30 Apr 2024 14:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="P4xY72de"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ItfwH0JN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D929178CE7
-	for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 14:14:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7713C1C6611;
+	Tue, 30 Apr 2024 14:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714486481; cv=none; b=gjCA2Wyj34PfN9NFu32w0Ig2QpDf3l+w+YZpEtPcku+UBZva/LYi9xQXWlyV2FehyvqH+GxtC2uhHY+YOUg9GWxv+BxvUClIWr1DuzXw3mrPumq45Tw6RJ2VKUwhOTwnP3UbzPULZhxJMeKdOoW7uLFeF83tasGVHsP/saYRtGk=
+	t=1714486506; cv=none; b=gZF90W9AgrsuA3ov/k8MPSwdKOqkuFWiCkYdGsxZDaKePm5BTsphUUgWuLPVRo/goGsKq9ChPjSXorsUYktZFGGMbSEqr3QLIrieN5pY77ZzFJYHpYUI5M/xQO0hjNeQ+OfAye8gXE3r08nkv/2vxmvU1gxBB2GYK9kuquE+5b0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714486481; c=relaxed/simple;
-	bh=NTGwvE5oTPK+qiXk3TYvQc1vlA1cbXpr4kZtSuS3KHs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rdAky/hyhNwmIL0LaQpBUyaNxhfonTXSOUfX/Q+u376ArD/+7EC7iv05Tvkv6sfm9TybQaG9mkmr6oqXwB+xnG25UjW2NOWzS17YMnD4GPGGukHwP8ShOCY0DQJM+fZTGuYdts5KbiMEo+70nThSjpP3gwdnBcc52ufHXIF8f80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=P4xY72de; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-41b7a26326eso33996935e9.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2024 07:14:37 -0700 (PDT)
+	s=arc-20240116; t=1714486506; c=relaxed/simple;
+	bh=Sg6ud7KiGS1Cp5pElVI9VFlSWWalF/rJ+U9DkbHk3yk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VenE8ZyvJqMEC0+xtIAn5vg5OAOfoBojRUwgMkBcv/ZOjcmP+WV54fxrDV+OZRhEys8pB/7vWoxt7vIsUri3wTvH6zGxJBMD5ZUxCrPOLAXrmGGwgLb7UV5EhPA1xklxPTh8qpDuODwzFwH0YHBr56aw8EkzoNesefVo05IWrVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ItfwH0JN; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2b1b1a38f54so1806764a91.1;
+        Tue, 30 Apr 2024 07:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714486476; x=1715091276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BuJcMbRLUf82KUepIk3TKbpGuDateTsBvHpdeo4lhoI=;
-        b=P4xY72deNjVVS7ep4BrZDZDyA6HVMHfAZIcQj2/rnZJrH2NrxfI/Bfr0wBGU5EJCB+
-         yuNSZZEH0d/49yex4ngCqoQMAlImIe/mbkkdb18ymKJp6s5TQKEwKD95gHVgNsKv9BRE
-         QdjXkQsKi2+thDYKk915sqn69DEQJEbWCrDbCpfQTpaZzoDlFmowwjE0u0tlV4Udm/Fb
-         dVccPFl0WjCsvYGMm+XH5OwtJvxi9/i2KUtqFnRqyoBgcgRV+ovg51waH+1Fw/7PnlT9
-         WRvd5Lkpp/2/IinSmD6cyetxTfpdG4wN404zDTMykz8lxp9USNz6nz+3EPEHtAmXbf7j
-         foXg==
+        d=gmail.com; s=20230601; t=1714486505; x=1715091305; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jt+Wgc/0cpY0Hhbq8ZGUv5ZmpO1a7WlBPnK8BTyEmKY=;
+        b=ItfwH0JNKUibwbMgBr04LPYDElehY0sjNhDPdRtpWORm5aRIcbWwC1U8SGPVNSIWbW
+         Id1Q4Jo8biGFvn6ExmXcOCKm36q4fp8EvdOxWYWtXDgcw98K/fdgsFVXmLCwG52cdsOu
+         ROMAA7lTalw0ilAEwvqpF42A+OD2Yul7Iz8V02pU5mOBeatnGjlk/p8LhVElTL1BWtk7
+         VRRb4GU5kgmiA7DPxSPO+JBY1vEPdrwwKCjtMCdjoMCPfakzTNiMkwv0d4ibl32CShhu
+         ghjQhfW29eJwq3lrhnRSrHn0iFkOMZeeB+f0JuOg345PxknJyOelEFBOX3jEO12tZwmp
+         TWUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714486476; x=1715091276;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BuJcMbRLUf82KUepIk3TKbpGuDateTsBvHpdeo4lhoI=;
-        b=Po8QvVNpK+Fud4VjneVHCMVk0DLY/vh3eevCZB8lcvb4ARgRum6cfCjtw6MiHnFmU8
-         dIKqKcP0GuSFlL5MFEeMTc3uf9uQFBAHbgSmK0d0Hpb72BH6KGMr6miyJs24GmX6odgg
-         UNFctmhlHvEYYaRZa3r5aKp52PVD7DCSstSwlKWxwPIWMjoeyPulASlk0ePd/9faDN+r
-         3gW5e+rIb9wCRN4sfdjZWnrZVHQ9BRCQTeLZ+i/R/kbRC2kWHBG4Vq9E8gLZFHMRe4Jw
-         4hg8/MUauiJSi7/LCO4RH3Md1aTud9kWtl9GnwRNUmXczABOLkIoh/yC8XbeT9LAOLHe
-         z9sA==
-X-Forwarded-Encrypted: i=1; AJvYcCXJ8Y0XQd+7+1A1H43OGH+/+5s0hTu7+LTAYgaExETrxeLJ2j/504uE85x2N57BW79h5x5lFmoRlMI56MNV+MBhn1bYyy94++bNNg==
-X-Gm-Message-State: AOJu0Yybz1rlTfJoIiL1f5y819zkzHaiJIm7e6Mq9W9h8zXr4nx6IRH8
-	6CRTnMtZCCyNFlVLzS4CWw7bffavIuG2w4fPRaI9z+/+ZKuEHiGWBbwmVZ5i7+g=
-X-Google-Smtp-Source: AGHT+IFSKfcPM3rOfZybfP+Et3c+Dhy8Xi6uL2xbCb0wZeTmqyvosgGFBcPatPn7+KZSJ7rK2K+kNQ==
-X-Received: by 2002:a05:600c:314a:b0:418:fb6f:5f59 with SMTP id h10-20020a05600c314a00b00418fb6f5f59mr12386080wmo.2.1714486476081;
-        Tue, 30 Apr 2024 07:14:36 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id l2-20020a05600c4f0200b0041be78ae1f0sm12292455wmq.2.2024.04.30.07.14.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Apr 2024 07:14:35 -0700 (PDT)
-Message-ID: <b206f776-f402-43b0-8db3-1b16474b3bc8@freebox.fr>
-Date: Tue, 30 Apr 2024 16:14:35 +0200
+        d=1e100.net; s=20230601; t=1714486505; x=1715091305;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jt+Wgc/0cpY0Hhbq8ZGUv5ZmpO1a7WlBPnK8BTyEmKY=;
+        b=OOXkIWsUFqDgm7/SF7T5/nsPIv4+u3Qq2asfZ7Kmvhjg4o1awzsvGulRbBh1vTiDTV
+         FFaFgvchJX5D3KCZzgbg3oPfXLPIRlkqp+6eftRC6feUGHS1QMb9bFVOuOvaIsYohnXl
+         jPbeETuWm1TEzylkghbp2wUlyJQegBc4VdCSgxAGQJVK8ETYAuQFHlIA/CR7iyAcWDpi
+         buzmDZIiqVy5xjmkV9gA85mbEdJJpEcGL5bQ5H4U8EmM6Q1HdZN3Z4cHRYGpPbgQ+CTX
+         7EQJHe26Q/0HpclRI5ZbTb7OdjqK+gkCeYsq8Wbm/0krHPu40DLY02oe3g8xO97HtYyy
+         S+Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCVELQGTOH2brh4nDx+UQrsU7XvEC5z5A7x8bTQ5pxWfMLRYxRcJyDZLH4AZ78QE+MmgTPnrRtBUu1fUPrTlHc9FQpZmK91Jm0KmcFHb9UC4++riEQnqF4J6z6L1p0wmBwaSR8a3S7lILtDNR5iR
+X-Gm-Message-State: AOJu0YyYSY9La1JGAr5jM/zWttEKZdozExh8s3HgWjS0wcInIdOc5TKn
+	0MmqKVxRImhdDsSxCtSMQPQpGoNXFxBx3ooxsB0NAprmcIQ78yGg
+X-Google-Smtp-Source: AGHT+IGXNwe0ifTdrMrDTPt8hFE4IiyaFYwYtJAYXveAhwUnXl/cH700jJrLQOdOWJ8qhtHPia5u7g==
+X-Received: by 2002:a17:90a:9317:b0:2b2:a6e9:400c with SMTP id p23-20020a17090a931700b002b2a6e9400cmr1164428pjo.12.1714486504606;
+        Tue, 30 Apr 2024 07:15:04 -0700 (PDT)
+Received: from prasmi.domain.name ([103.219.60.80])
+        by smtp.gmail.com with ESMTPSA id az24-20020a17090b029800b0029bacd0f271sm22883227pjb.31.2024.04.30.07.15.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Apr 2024 07:15:03 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/2] Add IAX45 support for RZ/Five SoC
+Date: Tue, 30 Apr 2024 15:14:36 +0100
+Message-Id: <20240430141438.132838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] media: venus: add MSM8998 support
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
- <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <2b21b160-a530-486a-9404-c5bf8863ffed@freebox.fr>
- <31072144-8880-483f-880b-8c8ca73b2003@freebox.fr>
- <c805843b-041c-4546-8bf8-ce2a0c71a470@linaro.org>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <c805843b-041c-4546-8bf8-ce2a0c71a470@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 30/04/2024 01:19, Bryan O'Donoghue wrote:
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> On 29/04/2024 17:19, Marc Gonzalez wrote:
->
->> From: Pierre-Hugues Husson <phhusson@freebox.fr>
->>
->> Add the missing bits for MSM8998 support.
->>
->> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->>   drivers/media/platform/qcom/venus/core.c | 42 ++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 42 insertions(+)
->>
->> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->> index ce206b7097541..42e0c580e093d 100644
->> --- a/drivers/media/platform/qcom/venus/core.c
->> +++ b/drivers/media/platform/qcom/venus/core.c
->> @@ -587,6 +587,47 @@ static const struct venus_resources msm8996_res = {
->>   	.fwname = "qcom/venus-4.2/venus.mbn",
->>   };
->>   
->> +static const struct freq_tbl msm8998_freq_table[] = {
->> +	{ 1944000, 520000000 },	/* 4k UHD @ 60 (decode only) */
->> +	{  972000, 520000000 },	/* 4k UHD @ 30 */
->> +	{  489600, 346666667 },	/* 1080p @ 60 */
->> +	{  244800, 150000000 },	/* 1080p @ 30 */
->> +	{  108000,  75000000 },	/* 720p @ 30 */
->> +};
->> +
->> +/*
->> + * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi
-> 
-> Nice touch.
-> 
-> Does encoding/decoding work on -next sans interconnect support ? I think 
-> we discussed on IRC it does but I'll ask again just to confirm.
+Hi All,
 
-(We have no use-case for encoding.)
-Decoding works, of course.
-I would not submit a broken feature :)
+The IAX45 block on RZ/Five SoC is almost identical to the IRQC bock found
+on the RZ/G2L family of SoCs.
 
-(vp9 2560x1440 59.940fps) decodes at x2  (122s for 240s)
-(vp9  854x480  29.970fps) decodes at x15 ( 16s for 240s)
+IAX45 performs various interrupt controls including synchronization for the
+external interrupts of NMI, IRQ, and GPIOINT and the interrupts of the
+built-in peripheral interrupts output by each module. And it notifies the
+interrupt to the PLIC.
+- Select 32 TINT from 82 GPIOINT.
+- Integration of bus error interrupts from system bus.
+- Integration of ECC error interrupts from On-chip RAM.
+- Indicate interrupt status. (NMI, IRQ, TINT, integrated bus error
+  interrupt and integrated ECC error interrupt)
+- Setting of interrupt detection method. (NMI, IRQ and TINT)
+- All interrupts are masked by INTMASK.
+- Mask function for NMI, IRQ and TINT
 
-I find the performance quite decent.
-Though I would have expected a larger performance ratio:
-2560x1440 59.940fps = 221 Mpixel/s
- 854x480  29.970fps =  12 Mpixel/s
+This patch series adds support for IAX45 in the IRQC driver and enables
+this on RZ/Five SoC.
 
-If 1440p decodes at x2, 480p should decode at x30 ?
-Or maybe the bottleneck is elsewhere :)
+v3->v4
+- Renamed rzg2l_irqc_init_helper -> rzg2l_irqc_common_init
+- Moved the locks into callers for (un)mask and (en/dis)able functions
+- Collected RB tag from Geert for patch#2
 
-Regards
+v2->v3
+- DTS/I patches dropped from the series as they have been merged into
+  renesas-soc tree
+- Just using a const from compat string instead of having it in a items
+- Added RZ/Five specific irqchip
+
+v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document
+    RZ/Five SoC
+  irqchip/renesas-rzg2l: Add support for RZ/Five SoC
+
+ .../renesas,rzg2l-irqc.yaml                   |  17 +-
+ drivers/irqchip/irq-renesas-rzg2l.c           | 148 +++++++++++++++++-
+ 2 files changed, 155 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
 
 
