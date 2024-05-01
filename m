@@ -1,182 +1,136 @@
-Return-Path: <devicetree+bounces-64347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8288B8EC8
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 19:07:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE128B8ED0
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 19:11:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC9E4B20C36
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:07:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 585052816F7
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E25517C68;
-	Wed,  1 May 2024 17:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00EA182BB;
+	Wed,  1 May 2024 17:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5EPMXKH"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="uHTrGo5J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C8517580;
-	Wed,  1 May 2024 17:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A36517C98
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 17:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714583269; cv=none; b=iEgybuiHm2Kmef4v5Hl1Enhp+DrvJekVR57AxnXrBy/9RCSe+jDzTPY3Cegnqphguzd0gBfkHNsGTeJJMirc+bcaK3SzwdjidW9YkK3z3i8+3UV6Yb5/+P3NUkJamWrpUYts/U2hHnEPKh70tCxqXLUcOd4K6X0d0jmivr1ETl0=
+	t=1714583463; cv=none; b=iiDE+IAs3VGFPIf+pTfQvr53kNvhGY574IdOsAcTrZHvBoKx0AFZuJwAc865Zp5j62xAJo2c/1oJ4buo8oirziMrzDuLvv4Qn9MfNIEFU30v18DZi8mFblmQsXVMAb/gMl98/OF9Sf7Er7/9DtnQ5Hbd/cGE+kbphJhvdI1rsqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714583269; c=relaxed/simple;
-	bh=8/png6sxsqEGBRMcXp6Bjwq65G0P803V71/0WDXSe9Y=;
+	s=arc-20240116; t=1714583463; c=relaxed/simple;
+	bh=pZAOS/T1u3WYFJhsFU1zktGFGi+9KYNTImhhH3xfeKo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Iouvc9KTiGCOPjFdPvz3ZrkL3gpt84+XkovL+UbxYdTfjkgOgau/IUAK4+IiHKxUKFY/FwHSLD2OuCXkoJuHixEiT+iYJqAFmxz1KTCiDES+SoZaCy3slVpwLZrUHsibNAPTBED0zAJpNMDeq3UOIydoZDibGiW3GMQLlEr9f+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5EPMXKH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E807C072AA;
-	Wed,  1 May 2024 17:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714583269;
-	bh=8/png6sxsqEGBRMcXp6Bjwq65G0P803V71/0WDXSe9Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5EPMXKHlB4SDJriFUqz44y53RD4A4LCX3HHMjR9aPglBpE3/T1/QFAGTBfxIriFc
-	 HT57GzvsDFFNwRYNYrnW+qhDr4Lz+BfijWMLpYbTNW8uWKmh1znJO6KrQ95ZpNt+nU
-	 fQDZ0mybKZitIuvm8e+6qPLfF/04nfjKc3DSNokViAZ2ZVkBQcoyeeESvdQNqF8qTO
-	 ONaG2w9eamgRMad9Yfq8gKpcqDHexNAD7vpi29kk0fL2/B5mJxnweXjJUjBBSbRUyr
-	 KwYrB7CX1coBz497nT2Wf6OA1ScS/hbd2upZXmN2yCjj4VIg3VVM9dlrC0+KPPSh7h
-	 RRKngkClwAnWA==
-Date: Wed, 1 May 2024 18:07:44 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: net: mediatek: remove wrongly added clocks
- and SerDes
-Message-ID: <20240501-prorate-hanky-5fbb9ff28bc5@spud>
-References: <ea2e786eda4561cb5d11b62a4edd7e75c0975f1f.1714513773.git.daniel@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NS72PwdCqqXqKRsza7s4ner4dvtRNt3ruDhMonZSiRfYIxXHkqNyriFA1TJxcIy1CST1+nC3H9eOyoxErhyqNQcyLXIsw4Ev/XxuRSVuwSVvceQ+Yx6bw2J8zUFJRXQqTE5LVPHQtuPh5gP80IOD7t5yG7p1eZ4sJ1Otsht4jYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=uHTrGo5J; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1e3ca546d40so59669745ad.3
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 10:11:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714583461; x=1715188261; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7VEcP2FdbTuUC3sLwg55sFZlBNkkI24Wn6q64j9hZkM=;
+        b=uHTrGo5JLLGnMbH5QgPkVY/+HGVN/EW9HmjfcHJfWdHNiMD9EfsmVt92BilMOItN7l
+         TIunE56JqNtp1LTYsTS2+euIEbOUa3FC2LZsL68xg7l0KN5xV14wRyiAITWf9kDTiYEj
+         nm/69ibSGjrGNWevERGDxpyD89Lu6/AWfDnzM52bEDhaTzumf2+BnWVguziPTtSgre+X
+         oDU47Zb746h5dkiobEzZ1Pq8SCE3e8dZHi1QriNiDToQ3TKbD4zyPSt477ZpTSXuqrj7
+         XaMjv1mT8A9LHzcZJDUo3ptTmJPwafhH5iqTMUZvzFksNfUqxWdffrDyUcMMzdjbczVe
+         aJOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714583461; x=1715188261;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7VEcP2FdbTuUC3sLwg55sFZlBNkkI24Wn6q64j9hZkM=;
+        b=LFX31t0COoh6OOqf7CItR2nvMmhBXYjagE2DUY7IhAsIz8FwatzT2aXhXBkLPS+Q22
+         q/CUSsUieNqxT/cE+oMlKjZuHslnpYCumnwFvKYfaOxkPi9TZCG4a2Av5AQzzmxuiX9a
+         gwXUPhz+X235LcFetnQRLjL9NiovxcTmi1qGfS/5gL794KL+AysTloqfI7JwG4Yt7Vvi
+         qi2D/PbDaaUFOF/SVEgoeo/Qb7MNMWKaQpGuLX7zuicYpB0g72arz79b+isu+89y8eFx
+         5YQD/8sl5ho9eATcj9/tP0sWVVtg/IyOCest+2jzVhR0NwlHMkVsgJBoytpS0fugYPV0
+         LScQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU6wMrfj2RzRlM7G1kwi56wsAR/xhwLAUBRqIhQnVFsz3teIlChAeu1ZAR1DPV0mohbWCcvx4iNQoQ3zh303T35yUEq8/PKv0RPVw==
+X-Gm-Message-State: AOJu0YxB4bkniRNi7lVyN/OUnHrmaOy4K83gsUZMAI7/RTlFqvsH4AQv
+	F+PvLdAZDwF1JGai6ezr3+OsWPMSODWcXKqjWMiFKmTa5Z8eozKthsNhDl2zN60=
+X-Google-Smtp-Source: AGHT+IHpxFS6GEORaahugjisle6m4KLF0ZtLQCz0Flxl/HiPXR710X9hyJZCr2QqZFZg/RK2FxmvGg==
+X-Received: by 2002:a17:902:6bca:b0:1e4:df0c:a570 with SMTP id m10-20020a1709026bca00b001e4df0ca570mr3014699plt.8.1714583461518;
+        Wed, 01 May 2024 10:11:01 -0700 (PDT)
+Received: from ghost ([2601:647:5700:6860:1dcc:e03e:dc61:895d])
+        by smtp.gmail.com with ESMTPSA id mq8-20020a170902fd4800b001e23fcdebe9sm24447681plb.98.2024.05.01.10.10.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 May 2024 10:11:01 -0700 (PDT)
+Date: Wed, 1 May 2024 10:10:57 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v4 05/16] riscv: Extend cpufeature.c to detect vendor
+ extensions
+Message-ID: <ZjJ3oaFWhbLc39sz@ghost>
+References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
+ <20240426-dev-charlie-support_thead_vector_6_9-v4-5-b692f3c516ec@rivosinc.com>
+ <20240501-drivable-deviation-0a493511770c@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iA7tPiIVLweNoVjq"
-Content-Disposition: inline
-In-Reply-To: <ea2e786eda4561cb5d11b62a4edd7e75c0975f1f.1714513773.git.daniel@makrotopia.org>
-
-
---iA7tPiIVLweNoVjq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240501-drivable-deviation-0a493511770c@spud>
 
-On Tue, Apr 30, 2024 at 10:53:55PM +0100, Daniel Golle wrote:
-> Several clocks as well as both sgmiisys phandles were added by mistake
-> to the Ethernet bindings for MT7988.
->=20
-> This happened because the vendor driver which served as a reference uses
-> a high number of syscon phandles to access various parts of the SoC
-> which wasn't acceptable upstream. Hence several parts which have never
-> previously been supported (such SerDes PHY and USXGMII PCS) are going to
-> be implemented by separate drivers. As a result the device tree will
-> look much more sane.
->=20
-> Quickly align the bindings with the upcoming reality of the drivers
-> actually adding support for the remaining Ethernet-related features of
-> the MT7988 SoC.
->=20
-> Fixes: c94a9aabec36 ("dt-bindings: net: mediatek,net: add mt7988-eth bind=
-ing")
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  .../devicetree/bindings/net/mediatek,net.yaml | 32 ++++---------------
->  1 file changed, 7 insertions(+), 25 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Do=
-cumentation/devicetree/bindings/net/mediatek,net.yaml
-> index e74502a0afe8..030d106bc7d3 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -337,32 +337,23 @@ allOf:
->            minItems: 4
-> =20
->          clocks:
-> -          minItems: 34
-> -          maxItems: 34
-> +          minItems: 24
-> +          maxItems: 24
-> =20
->          clock-names:
->            items:
-> -            - const: crypto
-> +            - const: xgp1
-> +            - const: xgp2
-> +            - const: xgp3
+On Wed, May 01, 2024 at 12:40:38PM +0100, Conor Dooley wrote:
+> On Fri, Apr 26, 2024 at 02:29:19PM -0700, Charlie Jenkins wrote:
+> > Separate vendor extensions out into one struct per vendor
+> > instead of adding vendor extensions onto riscv_isa_ext.
+> > 
+> > Add a hidden config RISCV_ISA_VENDOR_EXT to conditionally include this
+> > code.
+> > 
+> > The xtheadvector vendor extension is added using these changes.
+> > 
+> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > ---
+> >  arch/riscv/Kconfig                               |  2 +
+> >  arch/riscv/Kconfig.vendor                        | 19 ++++++
+> >  arch/riscv/include/asm/cpufeature.h              | 18 ++++++
+> >  arch/riscv/include/asm/vendor_extensions.h       | 26 ++++++++
+> >  arch/riscv/include/asm/vendor_extensions/thead.h | 19 ++++++
+> >  arch/riscv/kernel/Makefile                       |  2 +
+> >  arch/riscv/kernel/cpufeature.c                   | 77 ++++++++++++++++++------
+> >  arch/riscv/kernel/vendor_extensions.c            | 18 ++++++
+> >  arch/riscv/kernel/vendor_extensions/Makefile     |  3 +
+> >  arch/riscv/kernel/vendor_extensions/thead.c      | 36 +++++++++++
+> 
+> I see no modifications to cpu.c here, is it intentional that vendor
+> stuff isn't gonna show up in /proc/cpuinfo?
 
-Why is the ordering changing too?
+I wasn't sure if that's something we were wanting to support since
+hwprobe is the prefered api, but I can add that if it is desired.
 
->              - const: fe
->              - const: gp2
->              - const: gp1
->              - const: gp3
-> +            - const: esw
-> +            - const: crypto
->              - const: ethwarp_wocpu2
->              - const: ethwarp_wocpu1
->              - const: ethwarp_wocpu0
-> -            - const: esw
-> -            - const: netsys0
-> -            - const: netsys1
-> -            - const: sgmii_tx250m
-> -            - const: sgmii_rx250m
-> -            - const: sgmii2_tx250m
-> -            - const: sgmii2_rx250m
-> -            - const: top_usxgmii0_sel
-> -            - const: top_usxgmii1_sel
-> -            - const: top_sgm0_sel
-> -            - const: top_sgm1_sel
-> -            - const: top_xfi_phy0_xtal_sel
-> -            - const: top_xfi_phy1_xtal_sel
->              - const: top_eth_gmii_sel
->              - const: top_eth_refck_50m_sel
->              - const: top_eth_sys_200m_sel
-> @@ -375,15 +366,6 @@ allOf:
->              - const: top_netsys_sync_250m_sel
->              - const: top_netsys_ppefb_250m_sel
->              - const: top_netsys_warp_sel
-> -            - const: wocpu1
-> -            - const: wocpu0
-> -            - const: xgp1
-> -            - const: xgp2
-> -            - const: xgp3
-> -
-> -        mediatek,sgmiisys:
-> -          minItems: 2
-> -          maxItems: 2
-> =20
->  patternProperties:
->    "^mac@[0-1]$":
-> --=20
-> 2.44.0
->=20
+- Charlie
 
---iA7tPiIVLweNoVjq
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJ23wAKCRB4tDGHoIJi
-0jQoAQCrI827zGT9l/GNCLHhBDxuB2DyQ+FKu0l+4FvZTur7ZwEA3BOvbyZ4jXdL
-DGa1XxfE8CunnKNn9b20At6jUlGZwwk=
-=dQTZ
------END PGP SIGNATURE-----
-
---iA7tPiIVLweNoVjq--
 
