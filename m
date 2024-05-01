@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-64231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF748B8894
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:27:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C19168B8897
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12DBCB225DD
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:27:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618651F22CB3
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFA95339D;
-	Wed,  1 May 2024 10:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBE95336F;
+	Wed,  1 May 2024 10:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KaUl7cuP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="loQ5iUwr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D36752F7A;
-	Wed,  1 May 2024 10:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12EC321105;
+	Wed,  1 May 2024 10:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714559221; cv=none; b=ViuywQm/4NeItE6DMLLWeWn1cQp3G3Xv/15KXCPFN1Ip2dLGzpO1Vt+5/vP3juu0UVMQl4d3Ci/7zUhHbXgh0v68nTG9OOSfOyWgjOoo6JJP7Z6wSb1jEiLkMM465ix7atut/Xqbe45gnjLSdhottN+5Y7zhNT7AkK2KFpSgbVg=
+	t=1714559345; cv=none; b=uwYvQr5UXaPDt3c5Eo9FBYb++R2lU+dwD5u0pUCFijk4OFM3+ZxNPfrYUE4LmHR701L8cjh+1alw0uZnN3ezSxKCuMii1pSP4muL0SYXxO8Axe/JHVbPY7A28VUjsYBEc56lGfph12UUL6mLbmunWDqKZWMPg2PDK4yh6CRrSeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714559221; c=relaxed/simple;
-	bh=M4wufcTQBXyVeKT46DPsFVpUs/kdB9wcJel9lehVPUU=;
+	s=arc-20240116; t=1714559345; c=relaxed/simple;
+	bh=QAnXPsAnHY9jFBZfXHH7xszr9KUqFg1EjZHkntL3WFQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=anOHr/pzs/+6lT436ejozdjMGRLGDE5IB+qAPRRWP2bKljHAc9/w/zLnwxMJOTAE1mMgj53DYTSDEGwGxYV2WLrQZroedVM7MhgWjjB+uebvVuHcbmK5k61B4PEQgcu36BbvlcUi5k8tf7y7FKkOtwJl8slEXQ7h++oo8njx5mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KaUl7cuP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 500EFC113CC;
-	Wed,  1 May 2024 10:26:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iaRBGe9JuTnKj6IXXGYSd4CtR/XpqJ24IeSLjj/lTRrqSt/JMR6ccGh20DvGdWdT7QIbD25L1tzGIaEmB9T1YkFrVKAMnLsv2aq9dBsmVqXbxGRQW3fsyyv3g5MgO1vtyvbDmXSMiNCV+05s/UfeTvmZj0dp/BCYAAP7ZiI2ZO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=loQ5iUwr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1233C113CC;
+	Wed,  1 May 2024 10:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714559220;
-	bh=M4wufcTQBXyVeKT46DPsFVpUs/kdB9wcJel9lehVPUU=;
+	s=k20201202; t=1714559344;
+	bh=QAnXPsAnHY9jFBZfXHH7xszr9KUqFg1EjZHkntL3WFQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KaUl7cuPXOa0P7cu7Ewrh3TZlVWoRKBC+ihhQF4EbrTl4S0aiHnorUI7wzK9GvjaD
-	 cF9TDmsXsl53RByL+NapCcX1lRiHKFnkzKuW7sVeCpXNNd4zvkry5d61MOLy33BMxh
-	 /j18ATO9wKL+7gaVOozdFXln3i4mwg6pmFzhZIIfApURqGDfOebg+oPxOZjFQA4IfB
-	 cEZUzjeNQQeFHAFH68RUaCOppa5ojasPY5zrrKsVHg+9792hlRFIpZthvzQLt+1vaC
-	 yHDD1iYqXjpdIlYTYoS7rwfefkGjoMvE4p+bMO/X2o6NOpxxuh9soOmwMsvGkifdja
-	 2qli/F3KOYosw==
-Message-ID: <8ce66e56-7f41-4f2d-ac10-1328784a51af@kernel.org>
-Date: Wed, 1 May 2024 12:26:52 +0200
+	b=loQ5iUwrmEBiKOg0A3WXR3+y2rD/oo6+spwXotqrboKCnxlqmdthNQheHorWCUZF0
+	 eobIfS+9Db+zlUIKskODZrXOq1JB3WDpYw08dAzJ9gI4LdnVxsX8FhFW2yd2puXA6V
+	 fYUx7e3Ppw8IgdiMoDlTml9G4jIXSJobV+mtioPRPA5u0Ir7wR50JDIOcPWsMdKbXF
+	 +zhSoIBADj4qzHlaEA3cx2haTXdSW9sFYWof8KkZTRdy7MyMvx9iC6NRwOx5ekUpO3
+	 hnulRfyUWglIM/nEIiP4MNaKq2urXtxDA2Ecsw1OLUBCZ7X6F3MReXhLhJwGAmK+d/
+	 eWV/KR12r9aJA==
+Message-ID: <7742b3d6-b513-43f2-803a-dec83eb37116@kernel.org>
+Date: Wed, 1 May 2024 12:28:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] dt-bindings: net: ti: icssg_prueth: Add
- documentation for PA_STATS support
-To: MD Danish Anwar <danishanwar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Eric Dumazet <edumazet@google.com>, "David S. Miller" <davem@davemloft.net>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com,
+Subject: Re: [PATCH] dt-bindings: soc: ti: pruss: Add documentation for
+ PA_STATS support
+To: MD Danish Anwar <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, srk@ti.com,
  Vignesh Raghavendra <vigneshr@ti.com>, r-gunasekaran@ti.com,
  Roger Quadros <rogerq@kernel.org>
-References: <20240430122403.1562769-1-danishanwar@ti.com>
+References: <20240430121915.1561359-1-danishanwar@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,36 +104,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240430122403.1562769-1-danishanwar@ti.com>
+In-Reply-To: <20240430121915.1561359-1-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/04/2024 14:24, MD Danish Anwar wrote:
-> Add documentation for ti,pa-stats property which is syscon regmap for
+On 30/04/2024 14:19, MD Danish Anwar wrote:
+> Add documentation for pa-stats node which is syscon regmap for
 > PA_STATS register. This will be used to dump statistics maintained by
 > ICSSG firmware.
 > 
 > Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 > ---
->  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/soc/ti/ti,pruss.yaml    | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> index e253fa786092..abf372f7191b 100644
-> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> @@ -55,6 +55,11 @@ properties:
->      description:
->        phandle to MII_RT module's syscon regmap
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> index c402cb2928e8..cb6f41660847 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> @@ -278,6 +278,23 @@ patternProperties:
 >  
-> +  ti,pa-stats:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to PA_STATS module's syscon regmap
+>      additionalProperties: false
+>  
+> +  pa-stats@[a-f0-9]+$:
 
-One register needed? Then use phandle-array syntax - see examples.
-Explain in description the purpose of this register in the context of
-*this* device.
+Missing ^
+
+> +    description: |
+> +      PA-STATS sub-module represented as a SysCon.
+> +
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: ti,pruss-pa-st
+> +          - const: syscon
+> +
+
+No resources? So you use it just to instantiate Linux driver? That's not
+the purpose of DT. Just squash it into parent node?
+
+> +      reg:
+> +        maxItems: 1
+> +
+> +    additionalProperties: false
+
+Put it after type:object.
+
+> +
+>    interrupt-controller@[a-f0-9]+$:
+>      description: |
+>        PRUSS INTC Node. Each PRUSS has a single interrupt controller instance
 
 Best regards,
 Krzysztof
