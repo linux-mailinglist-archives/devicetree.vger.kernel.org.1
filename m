@@ -1,121 +1,162 @@
-Return-Path: <devicetree+bounces-64336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20268B8E58
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:39:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 876768B8E61
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18319B20B02
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:39:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA7BC1C2192F
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E5BD52E;
-	Wed,  1 May 2024 16:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C53EE554;
+	Wed,  1 May 2024 16:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gBgqQCku"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QXRFrzgS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD5D8F6D;
-	Wed,  1 May 2024 16:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521C8DDC9;
+	Wed,  1 May 2024 16:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714581549; cv=none; b=eyDZisopgsXrslBioFTEfDVQQisXm6roHbAkas1sU5SEe0aV4E19ySJGWmnR0v4TbcdvHwz+kWkSDz+K3CXeuRM1DlqBq3wHHAmi9N4a99OFxUtDHNhzV95AStWklDFa0oK7j977mIR5/nKIkN727XCmDi02NEdXjfYALNFZM30=
+	t=1714581837; cv=none; b=tRst9nypEsM9t3qDtE6xUIJxbI0NWkTl9pd/ZxbRpUfLeNULBtvtIbt0y0a24fy8T5ttUs2gwvtFn0EYzXctIL51FI+l8O+bRVIwH0Rfi+sG6wu98KMK0lKQljZAwkI3pkA4BAhWHuo6Ageh1wVkaiE12qi8Am/MN/NU00EvBFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714581549; c=relaxed/simple;
-	bh=k/GVusRHOyex5CyvjGxaO6gyf6xeCU6g2W+wW2wckwM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SnQRt92ckJUFhUczhj4drjjvoeaQaiNiPUuFh16JFvMCXgsH2C8FV8rU+yIVQAdCsPySUGfPgttG6fLeC/yX43hfK3WO04sFvB4/CqCxMi4F8OZHL5oaMALhOLjXcc7pl8kf+EYX/Z6Tv3pk1l3RShgsyncD14+guMGkrL5uV7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gBgqQCku; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 305EFC4AF14;
-	Wed,  1 May 2024 16:39:05 +0000 (UTC)
+	s=arc-20240116; t=1714581837; c=relaxed/simple;
+	bh=QWcAOLTO8HSRNQR7l2tPRwkVIRhPLH+s6spyTlBFlVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=p7qlWiM5LdDHjwSSvgGxzrZ0L0rkOvBFeddm5+GHEfbFyZSXDdxvLbOYMLhlmZS3nVYCoijhN0mVuJI0ML4iioYuD0V99BFM3s6pD8Mc2vhVMZ7/smZHSxvTKODnAmnODjVqh6G2TQ1mKBv/pQCmBJQYZ/0lou9BOjtwugGbMXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QXRFrzgS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F64C072AA;
+	Wed,  1 May 2024 16:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714581548;
-	bh=k/GVusRHOyex5CyvjGxaO6gyf6xeCU6g2W+wW2wckwM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gBgqQCkuMQ4/OQ71Ase8a78abZi33+i2C/O015Xi+/9hau7DSWR4iT3ARSSNbz1Sk
-	 NX6VmtQv5iekEMK64mVICEsALTaBNAw+Q0mWgqf/XKhsiX70PCH3ix2AfYwpPyueuP
-	 OZFKhZeMC+Jnf/UalQwesiIWj2e5ksM4d7Muz1m0RmQMr3TD47QhoCKVYoNr2lZ/xH
-	 SlNV4MlC7Yze1wmxttwxcKHpuEIeiXg5l9DnFcRll8wdxxkEwsKgDIeJj28bc060DR
-	 CbXhSoTWMILzORQMkxHmASm5JnD81UPD8vWUsot2EWE8hSb2zUUqtcW7NDzrZF7L4t
-	 EET7hpybIoGsw==
-Date: Wed, 1 May 2024 17:39:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Petar Stoykov <pd.pstoykov@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] Add support for Sensirion SDP500
-Message-ID: <20240501-synthesis-repose-30563cffd41e@spud>
-References: <CADFWO8EZWkXeAMcURgGGEmzVjiSxFTVAbKpsb2Qmv66EZiTc+A@mail.gmail.com>
- <ZjEQKqkWA66HtiD4@smile.fi.intel.com>
- <20240430-booth-spinster-bf59f780f10a@spud>
- <CADFWO8FzQ8FgD5a2jKECaMRX65_1Nd6vsgh43bXqsSz52xtZKw@mail.gmail.com>
+	s=k20201202; t=1714581837;
+	bh=QWcAOLTO8HSRNQR7l2tPRwkVIRhPLH+s6spyTlBFlVA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=QXRFrzgSeRD7793XdFLDK/nIA6hZnOkmMcSnEVzFrhE0kdCOkMEjukGK7LbugYMEE
+	 OQwsbvAcOL5EZxkkO79sGYUko7wA3iS2BGkTxDg+dtqBr/ywp0rHNpcspCzzOE/nMJ
+	 g30O3nsIsdXX/vOPv1O9aP/+bWwk5IBiGebVWcaKdXQubKMRyi0Kap1Ue3fqkH24sW
+	 DpELp/LEH3+Tn1pVFYB0I3ak0+u4eBk5sSPL+qxo+dw8z3wfk6nkp0yYeuLxH555m0
+	 prCTYTd1qQJSWdugkGhW/EabhZ55A1qh/9ealOXZ8+/YOMBT1w2SVZpfaLui8nJMGJ
+	 Qgibg52MlDJtg==
+Message-ID: <621b4545-454f-46d1-8ccb-2d1dc522e8eb@kernel.org>
+Date: Wed, 1 May 2024 18:43:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8YvzeVVYX/1w9PwP"
-Content-Disposition: inline
-In-Reply-To: <CADFWO8FzQ8FgD5a2jKECaMRX65_1Nd6vsgh43bXqsSz52xtZKw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 RESEND 5/8] PCI: qcom: Add support for IPQ9574
+To: mr.nuke.me@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
+ <20240501042847.1545145-6-mr.nuke.me@gmail.com>
+ <a973f67b-de7f-4e21-b6b4-3b85d056456d@kernel.org>
+ <f7176c82-3702-4667-b68b-a8b7e3ad8690@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f7176c82-3702-4667-b68b-a8b7e3ad8690@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 01/05/2024 17:43, mr.nuke.me@gmail.com wrote:
+> On 5/1/24 5:21 AM, Krzysztof Kozlowski wrote:
+>> On 01/05/2024 06:28, Alexandru Gagniuc wrote:
+>>> IPQ9574 has four PCIe controllers: two single-lane Gen3, and two
+>>> dual-lane Gen3. The controllers are identical from a software
+>>> perspective, with the differences appearing in the PHYs.
+>>>
+>>> Add a compatible for the PCIe on IPQ9574.
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions, under or above your Signed-off-by tag. Tag is "received", when
+>> provided in a message replied to you on the mailing list. Tools like b4
+>> can help here. However, there's no need to repost patches *only* to add
+>> the tags. The upstream maintainer will do that for tags received on the
+>> version they apply.
+>>
+>> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+> 
+> I had an Acked-by tag from Rob for what is now patch 6/8 -- previously 
+> 5/7. Due to last-minute info from QUIC Inc, Dmitry and I decided to move 
+> the "snoc" and "anoc" clocks out of the PHY and to the PCIe controller.
+> 
+> This change resulted in a 6/8 patch that is substantially different from 
+> what Rob acked. I felt it was inappropriate to keep the tag.
+
+So please read my message again:
+"If a tag was not added on purpose, please state why and what changed."
+
+Your changelog for that patch should say that.
 
 
---8YvzeVVYX/1w9PwP
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Best regards,
+Krzysztof
 
-On Wed, May 01, 2024 at 12:47:32PM +0200, Petar Stoykov wrote:
-> On Tue, Apr 30, 2024 at 6:46=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Tue, Apr 30, 2024 at 06:37:14PM +0300, Andy Shevchenko wrote:
-> > > On Tue, Apr 30, 2024 at 05:27:17PM +0200, Petar Stoykov wrote:
-> > > > From c4437fd0ea296c4c964b1fb924144ae24a2ce443 Mon Sep 17 00:00:00 2=
-001
-> > > > From: Petar Stoykov <pd.pstoykov@gmail.com>
-> > > > Date: Mon, 29 Apr 2024 16:41:30 +0200
-> > > > Subject: [PATCH 0/3] Add support for Sensirion SDP500
-> > > >
-> > > > This patch series
-> > >
-> > > It's not. I mean from the email chaining perspective. Have you forgot=
-ten
-> > > to add --thread to git format-patch?
-> > >
-> > > Also, what is that in above?
-> >
-> > Looks more like patches pasted into gmail or w/e, rather than sent with
-> > git send-email.
->=20
-> For stupid reasons I can't use git send-email. I thought I will manage wi=
-th
-> using gmail alone. The thing at the start is a mess-up of copy paste inde=
-ed.
-
-As Konstantin pointed out, the b4 web submission endpoint is ideal for
-this kind of scenario.
-
---8YvzeVVYX/1w9PwP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJwJwAKCRB4tDGHoIJi
-0g9UAP9+bM+S+0AcCnYdrAuYhmDG77Pyf38FkKki3tanp2jX4gD+LsKR2E9LjHk0
-7dpTztDA6kRr+0D9uidJlnv1l3fgwAU=
-=NZ84
------END PGP SIGNATURE-----
-
---8YvzeVVYX/1w9PwP--
 
