@@ -1,146 +1,147 @@
-Return-Path: <devicetree+bounces-64205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4968B875D
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 11:15:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF598B8773
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 11:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD3C1B22069
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 09:15:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F18281F216AE
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 09:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FDE502A6;
-	Wed,  1 May 2024 09:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B27650A63;
+	Wed,  1 May 2024 09:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M0r5kY3t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WDjoYGB9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0994E1A2;
-	Wed,  1 May 2024 09:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD416502A0
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 09:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714554897; cv=none; b=YZKdSW0PrmN7sRIGxt0Ox8Pa5xxNOIloka564YKlsOr9FPvYV1M/Vpp/nFCugGc26JrybLaiFehYEJPKo1DVsXGDQFRUz0k/KnNRRg+3cnH8fsdy4x1idJS0uH/E31Ge0e26i4VOQ9CHZeN76zm4CDDhfZHiLFbb0d+jCLfcswU=
+	t=1714555180; cv=none; b=BAY2ef8ZchfpJSBNH/3sy68Lt4cKlUmWH7F5A5dTark48WxaR2cx+uOSZV/RcGyfzAPBqCV9q8gTzaWSsJ3vEUbLtyyfAG0AX5qHZrY0kHFnwojZGzZ7FRh+Hhcub4CDuqGXqlNHSompRfAhF/7LokrlHdmIaNmgqIgkQVUHuSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714554897; c=relaxed/simple;
-	bh=Yrwu+7N9ljC9VYp3+kNHnWjn/O68b7FpSGtuKjbJJhY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ermcCul/qXbAHOFhEjqCSOkXRB7nGtQWY3IyMbJoB2+C1795wUNhND/L2ODE/G/IOskgnl20orwLDRbDNYE9c/sjF+xFRCzbzgjzZcJZ6sDQ/54e0Tt/IMQqV5PzDd8dqi21lxGs+zD6d7St0lvssy/Zh965NCczzP/sLe8jkEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M0r5kY3t; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6ee135f6a21so1621185a34.2;
-        Wed, 01 May 2024 02:14:56 -0700 (PDT)
+	s=arc-20240116; t=1714555180; c=relaxed/simple;
+	bh=vOiHeEPDJN5GlmzdRmXiBwTTBEgNxD0YW3MwZ4O0Zuw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sCuhyxep2tAyBUuzVfGGGkoj4TiKqBEnnLCM4cezhwwV8NXiBQhGg27iCWROhq7S+r31fmRCE8G/XBEZnaf3qnqV1Ff4Gt4g+fUpTYrZTbZHPg9zqI/V4SybRiMiHWSBR/9Nhp2hkuRnDE+ATy3rqNF10tUUzppylZiYOY9TekE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WDjoYGB9; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a58eb9a42d9so524305966b.0
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 02:19:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714554895; x=1715159695; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Yrwu+7N9ljC9VYp3+kNHnWjn/O68b7FpSGtuKjbJJhY=;
-        b=M0r5kY3t1nO4bNB28p7iMtY3sMVpBrFsqYZbaC6pGBWTEoQXD2ilndJVA9WOaj1whV
-         itcUqXfhI7IlJK8QLfgiM2mVXp2mKpFzfoneE1pbIud+za0rT5+uKXRmTs9Xo6OviR9l
-         S7kPME1DuLd0He7Zjrw0Gj+cXtIKuhcw+BjiUjiKdLuswB69uFRWTCbm+5dRF3M9GzSx
-         OBVfxf8+MM87/BrH0DYrwTa0qP4/+l+b/3w3e/9lQSLOlYQYDePKsRvDfw0C496obxTP
-         wPj7ygIs0k+y+rjA9Od8XlEq6ZP4WhOVie59GtljpVUYOpAKAGLtLF90MskYfH9si3pz
-         VR+w==
+        d=linaro.org; s=google; t=1714555177; x=1715159977; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IU5666ZgVnJUhWYrIKpU1fyu97lInGaK9ybimnvX8Wc=;
+        b=WDjoYGB9xWSwByFJ4M8d3ZoITb4mHcB9toVxy8G0Xoix6yTHcnqO9rrUrEkCpu9xXT
+         otz1kB4MKlo9e92Wa/jOwb28tJKf3TAHWKUg10FUzwnUOIIGlJ0r9uUBjWUfCNP6R31h
+         0OWT/7Zm54Ng793dXx00dBiOdQWGvG5I3fjsooKZMWfX1NuwdHRa89waIeL84MubpiJL
+         ZQyib9LQGcQBqKvpW+p/UUgOd2mS4WG//uKbHmr6r40uLW1bEPpBuAMG3CaTr431wWtA
+         hxs9H6ZINhDJ9zf85ZjshOO+TrUhsfo8JiVWei0DBUkR6BzEHvwk53Q6jBkIXzRnHe4d
+         MbWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714554895; x=1715159695;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Yrwu+7N9ljC9VYp3+kNHnWjn/O68b7FpSGtuKjbJJhY=;
-        b=WZETvk714pVfyTNDW9/N54PSKnJc3/C5bWLmbbQEVojXGbIYNOmq1YubGi21v2aqcV
-         tH5shAtk3QCdY6GBF2bp+5/xpNk4qQ8QcvhIb5838KC9RLC6Ppu3mY4lTZ0AA14LKyZ7
-         sX6z7So08EufcoRktFElvHShOY9CIr9Uq+brCI4Gw7XkQvjX0TeOzMc+jhTVN7voRT36
-         VUDAYittN8yYnW75KLqO7DlSJu7wtTWMu7C3mcaSPRzKtIU0q3K64MrGnREDwvttiZYk
-         k1f98wzQyxF1qcIztrSR0TypNZBFEd/XE4uLZ75T1APbMEP2Sr91ooQA6LLNRHrsSAFG
-         NnWg==
-X-Forwarded-Encrypted: i=1; AJvYcCVSf+iJIlIcUMKu1kQFaWjA0kSVPqjG7fRM39ReDgxsCRq3CB7hNGKlZxL+bIfADG0yAuCWYtIvXHzMZfI7BCeeAbigI8cQLxuuQYYmL0Sc/25Aq6h7NmegKDSJ4UB2/wTzUAi/uePQIiYHAXuyK5FYEaGtTA0TVSIVdNTvtbYK46MvKA==
-X-Gm-Message-State: AOJu0YzjjLCZQTJ19SQ2O7xVvuoornRUkXd3HDdUwBUu8ekJ2DumrIF1
-	GJM4x76nWUdsG6nSmVVLX4W5ws4gUh2rfsCl8jm9MFHqgn+n1Raxfl3VdbUr9yjvV3pISnW61T/
-	T0oi0FEi1d1lDuHVWwDjv+Pwctak=
-X-Google-Smtp-Source: AGHT+IGB88rqVJammMgYM3oslOHaBTKTsRsW43uAnWRMsBUZN18rwIQH5n45k77Z2MCO14x1ZQUMCgg3zOyxf+F9sXk=
-X-Received: by 2002:a9d:6209:0:b0:6ee:1bfe:9a6b with SMTP id
- g9-20020a9d6209000000b006ee1bfe9a6bmr2006443otj.34.1714554895055; Wed, 01 May
- 2024 02:14:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714555177; x=1715159977;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IU5666ZgVnJUhWYrIKpU1fyu97lInGaK9ybimnvX8Wc=;
+        b=Cc4lh4ID3fhFrq4qzxffxImvuBiCp+KDwc9s7c8LNqmQ6t2fqMw1KD0qhnMdsA3Aul
+         JeUTPKJjH2S+RD6IqYD9j6glNTNf8yDFKdu/bb0zkemogPhpYHpeErGawzq7BFV3iODw
+         EYJ8J5z5wYMcZugb3YA21C/W2IcprLtLoh9PTPd1JA/E3Lnk4gWOv6QrY73rlHnA1cUy
+         aDbZFkiCqnFVOArfse/gQFcVJ3GrFx1CfMUKVjvnqw11aNoUPrdGS6AMhxERgr6yKmao
+         JHqgQTX4bFhv8yrP7I4FOYijOx1MeWp/VZKVoCseslMehUZhCx8s7Y0lfL2TP2QRe577
+         nkHw==
+X-Forwarded-Encrypted: i=1; AJvYcCWzAN6+RzvM8/I46K/lj8jEYZO3YTt4mFcwDNzXnJgIp3V8OStqqp6/PNb/uSEmNCWnyOYyBRowtAnTeqW1UN4SWQanjpwcBlcBdg==
+X-Gm-Message-State: AOJu0YwyUtJ71SmPyvvQyYi/lizBQed9E91geSmwn/y/SPTfjYLIQc85
+	UcmQWKJoDqao4syLwRVK8B9E79dQu7f44n0h8nmx+z3Di4Rv0vWwSCKnj7Bild4=
+X-Google-Smtp-Source: AGHT+IH/Ba7QbLPRPS+XzgPny6nXWZgsA7cIv4uu6lM0q2mhIikp9GNHF5bwt9YwZT+naZcTk3Cmgw==
+X-Received: by 2002:a17:906:2c16:b0:a51:982e:b3f7 with SMTP id e22-20020a1709062c1600b00a51982eb3f7mr1404669ejh.37.1714555177187;
+        Wed, 01 May 2024 02:19:37 -0700 (PDT)
+Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
+        by smtp.gmail.com with ESMTPSA id bw13-20020a170906c1cd00b00a58de09fd92sm5425674ejb.27.2024.05.01.02.19.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 May 2024 02:19:36 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v2 0/7] USB31DRD phy support for Google Tensor gs101 (HS &
+ SS)
+Date: Wed, 01 May 2024 10:19:35 +0100
+Message-Id: <20240501-usb-phy-gs101-v2-0-ed9f14a1bd6d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240204044143.415915-1-qiujingbao.dlmu@gmail.com>
- <20240204044143.415915-3-qiujingbao.dlmu@gmail.com> <IA1PR20MB49533772D594D18204E9F9EEBB192@IA1PR20MB4953.namprd20.prod.outlook.com>
- <CAJRtX8Rz0BhbtBJq+gSRTU3vsOwfyWjrqJ-Q1fqr7ZFeY2uaNQ@mail.gmail.com> <IA1PR20MB495377FCD5101F85B02BB5BCBB192@IA1PR20MB4953.namprd20.prod.outlook.com>
-In-Reply-To: <IA1PR20MB495377FCD5101F85B02BB5BCBB192@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Wed, 1 May 2024 17:14:43 +0800
-Message-ID: <CAJRtX8Ruh4BethYcGM2RueNBDioXpn8dJ3yvUD4iW_1cmiVFqg@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] rtc: sophgo: add rtc support for Sophgo CV1800 SoC
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dlan@gentoo.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACcJMmYC/3XMywrCMBCF4Vcps3YkkwQKrnwP6SKXaTogTUm0W
+ Erf3di9y//A+XaoXIQr3LodCq9SJc8t9KWDMLk5MUpsDVppq6w2+K4el2nDVEkROj8apl5HChb
+ aZyk8yuf0HkPrSeorl+3kV/qt/6SVUCH7GLxxgXob70+ZXcnXXBIMx3F8Aa6V3tGrAAAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
+ kernel-team@android.com, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Arnd Bergmann <arnd@arndb.de>, lee@kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.12.4
 
-On Wed, May 1, 2024 at 3:43=E2=80=AFPM Inochi Amaoto <inochiama@outlook.com=
-> wrote:
->
-> On Wed, May 01, 2024 at 01:03:58PM GMT, Jingbao Qiu wrote:
-> > Hi, Inochi
-> >
-> > On Wed, May 1, 2024 at 10:19=E2=80=AFAM Inochi Amaoto <inochiama@outloo=
-k.com> wrote:
+This patch series adds support for the Exynos USB 3.1 DRD combo phy, as
+found in Exynos 9 SoCs like Google GS101. It supports USB SS, HS and
+DisplayPort, but DisplayPort is out of scope for this series.
 
-> > > Another thing is that I do not think is a good way to let the
-> > > rtc driver access RTC_CTRL area directly. You have already
-> > > know there is a 8051 device in the 0x05025000. It is necessary
-> > > to make some room for this device. Maybe you want to implement
-> > > them all in the rtc driver? If so, I do think it is a bad idea.
-> >
-> >
-> > Do you mean that RTC drivers should not directly access the 0x05025000 =
-address?
-> > Because there is an 8051 subsystem on this address.
->
-> Yes. At least we need some mechanism to share these address between
-> this devices.
->
-> > Firstly, I do not intend to implement 8051 in the RTC driver,
-> > but the 8051 subsystem is located within a module independently
-> > powered by the RTC.
-> > So if we want to implement the 8051 subsystem in the future, it can be
-> > used as a node in RTC? I'm not sure.
->
-> Yes, this is what I care about.
->
-> > Then, Alexandre told me that there are operations related to PM in
-> > RTC, such as the following files.
-> > This matches the description of address 0x05025000.
-> >
-> > drivers/rtc/rtc jz4740. c
-> >
->
-> I do not think this is something related to the PM. 8051 is more
-> like remoteproc. So it is necessary to arrange them carefully.
->
+In terms of UTMI+, this is very similar to the existing Exynos850
+support in this driver. The difference is that it supports both UTMI+
+(HS) and PIPE3 (SS). Firstly, there are some preparatory patches to simplify
+addition, while the bulk of the changes is around the SS part.
 
-You are right.
-I learned from official documents that 8051 works in the RTC domain.
-Linux does not provide relevant interfaces to operate 8051,
-Just providing a mailbox for communication between them, or through
-interruptions.
-I don't understand how 8051 works, so I shouldn't write to the
-corresponding registers in RTC.
+This version doesn't change anything around Krzysztof's comments regarding
+syscon- vs Exynos-specific PMU APIs, but I wanted to post a version with at
+least the simple fixes that are necessary as well applied.
 
-https://milkv.io/docs/duo/getting-started/8051core
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+Changes in v2:
+- avoid having nested else/if in the DT binding (Rob)
+- add missing bitfield.h include
+- Link to v1: https://lore.kernel.org/r/20240423-usb-phy-gs101-v1-0-ebdcb3ac174d@linaro.org
 
+---
+André Draszik (7):
+      dt-bindings: phy: samsung,usb3-drd-phy: add gs101 compatible
+      phy: exynos5-usbdrd: use exynos_get_pmu_regmap_by_phandle() for PMU regs
+      phy: exynos5-usbdrd: support isolating HS and SS ports independently
+      phy: exynos5-usbdrd: set ref clk freq in exynos850_usbdrd_utmi_init()
+      phy: exynos5-usbdrd: uniform order of register bit macros
+      phy: exynos5-usbdrd: convert to clk_bulk for phy (register) access
+      phy: exynos5-usbdrd: support Exynos USBDRD 3.1 combo phy (HS & SS)
 
-> > > > 2.25.1
-> > > >
+ .../bindings/phy/samsung,usb3-drd-phy.yaml         |  61 +-
+ drivers/phy/samsung/Kconfig                        |   1 -
+ drivers/phy/samsung/phy-exynos5-usbdrd.c           | 754 +++++++++++++++++++--
+ include/linux/soc/samsung/exynos-regs-pmu.h        |   4 +
+ 4 files changed, 756 insertions(+), 64 deletions(-)
+---
+base-commit: d04466706db5e241ee026f17b5f920e50dee26b5
+change-id: 20240423-usb-phy-gs101-abf3e172d1c4
+
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
+
 
