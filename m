@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-64222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7778B8850
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:01:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1188C8B886B
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:14:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1B151C230D5
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:01:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5B5D2814C9
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCAE151C4C;
-	Wed,  1 May 2024 10:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C0D53392;
+	Wed,  1 May 2024 10:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HwjclCTb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a16CXjra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF1251036;
-	Wed,  1 May 2024 10:01:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC17524BE
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 10:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714557692; cv=none; b=enSRtC88rCYb08EJXgY+tIkNoMGxVuwHnaBNCGs/RTL5wmYmSWh08pPPlIM3mva7d5FxnUyFBeMGanY9nohzhBIWl9yA+Ig0jg1+naTvWYXfOxpiS/0AaSMnqmblcibbvALhMPzQsXN9xOhzUcM5D+aWd+sE+2pogFO1H0x/8YY=
+	t=1714558463; cv=none; b=ah2aLIzVZMqul7T4KZt0jYMT6XIA7W5ZBYv793YhqHWxWUmK0tZR4yrWvqGwQix9G6oCUn5dkm12tzXIG0XcQucv46+zCg2MN1TkJ+gx44JwIBsLSD6Nh8fP6814MjyPajmQ03uKouhStmtYy2HMthioZGSTN+znmahzLNkXyFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714557692; c=relaxed/simple;
-	bh=Hd8WBmznF8s3GFca7bl23FfAapWO49hb4n7ZJcgVZX8=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=YefJSGfexPfO17RFQZx3ZpjBB6iR/1DKV/7I6dnAwzNyKkEW4cq6cGWka+CIsj0UZJFk/kU1mgmZHHL8m4a4cx4X+immuGP+Gs60/I5p0yHOXMl+cDdUGFVV3D+PIjC1HKvS6iSkzdkeb0QMftzxRELTdel0Uun27jTrKaWZA8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HwjclCTb; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1714557690; x=1746093690;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Hd8WBmznF8s3GFca7bl23FfAapWO49hb4n7ZJcgVZX8=;
-  b=HwjclCTb1hokX7PPnZ5NP6KaAcUaZacBc/esx8KFHRewL0cTm8wo0nLF
-   BiEYxvXlIYwla76/va4GEjQ/DUBoYV4QnoWiWITvvnzrFYoUvZQ3uqEyk
-   LTfLvKI5dT0NHhN6XlWdKw4EcpOlBVKoRzcjfDQAODzAlCyM+w+3ns/uR
-   8pC7RLdXyJxBNPljvG+nKDtYpma+6I6BE2HFfthMOP786+kGDBDCpfz87
-   5rM99nzKal7PYFmLLfB0C9VCQdbYxmsqdiO6sXwVxMJQgOS5tWJvKnn4t
-   wRS9ehsMMlPK65Qfq8Y40/S97hxcUF2Jb2BZGMxeICySJpTM3quumfrde
-   A==;
-X-CSE-ConnectionGUID: Sgsw640MT620RsRGMbOOkQ==
-X-CSE-MsgGUID: qHS9RrHyStSa7RP+lN0E9g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10155829"
-X-IronPort-AV: E=Sophos;i="6.07,245,1708416000"; 
-   d="scan'208";a="10155829"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2024 03:01:29 -0700
-X-CSE-ConnectionGUID: udJhc1hNT0e0Cs8MdxtM1Q==
-X-CSE-MsgGUID: Hg8wu7WfTWWT6SwKQNXnkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,245,1708416000"; 
-   d="scan'208";a="27230625"
-Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.124.225.176]) ([10.124.225.176])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2024 03:01:25 -0700
-Message-ID: <57678928-4557-4975-ae23-7e11904e5302@linux.intel.com>
-Date: Wed, 1 May 2024 18:01:22 +0800
+	s=arc-20240116; t=1714558463; c=relaxed/simple;
+	bh=Ng5tOItL9yq/Oyae3SGSSL7FnZWMWizfspIcGK1MlEA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o/GwAXZiiMjR8UDqST5Y4RQGvtCral/uC7n0jXo4UNwb4YulM8VNKlCQPLdJohD4OYoaEfYttzmqw4NDev9m8IPhQdKZl4fdfeyYk+EZ4mdtBb+gmAAt07qgX7HVeod1glP5ISMRB6aKkhvbD8BOF8ZwwT6H0pEC+6ChL4M1tJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a16CXjra; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41b782405d5so55482475e9.2
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 03:14:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714558459; x=1715163259; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zScdSa2ySIZ6rQgcDeS1BUCAXDX3v1qlFq/0opj/DmU=;
+        b=a16CXjrauinJBBaZCkBlRskZL+5QGqfEoVCxJsGAmFYw21HAzv7dSaoTtwg9ReF3pj
+         P6N1RU2LecWP3VAk3OSBQ41lTlzB8uGjBXyYNyYpQIzOppz4ygvEbMpiu4G/t37Vy+Fg
+         19KEef3yJeeaNTXXFqt2Rxoe0ecvCtqcnORAIo5nR5KpkTkseJEJt06FEkapz5Zm+U1+
+         c3tZNR/+49Ty00+pfqAu+OYe00MjEMlGZwjV3tr48LDPoQRbNOz+MUSaiWKG87jObgmp
+         egBoIn4Ptm2N1Zunz95c+dK1ve1r5/0m+ZkPRz/wrQMlUPem26+JPWIGN7IwLoWNJB6i
+         9Odg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714558459; x=1715163259;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zScdSa2ySIZ6rQgcDeS1BUCAXDX3v1qlFq/0opj/DmU=;
+        b=LoSUoo8JLbN+ljB1DXFEQ3cZt7zrYNXERS6SNPaGv4/MRvARiAj7YahN6TkysqAzGD
+         MFuH5DDPetVkT5LTnHWO6VkLpBGyKm//ZulCecZsM4DxC4tFVP5KmaYdP6pmUE7YCE8g
+         Nz1gGx40TGZ25awjsCwdDRQLBxnbMB9I9KRnsh5+NUvU8X2UaiQvxxA0/cWhjSdEREL5
+         cV1klmAJZoLsILnf8LguBNbvtw7kmEQE9t2bh4wFXeEgp5aovlAba7qd5au/7eBPS+Ty
+         PfXplfIYZe0MpAPb6VFU1HVzcfIG1g5Vmz/X44URhYK2D5n1NiXfkRZmyaGB6Rd3oHEJ
+         tG0g==
+X-Forwarded-Encrypted: i=1; AJvYcCViFRwVPkxogmxPkNVd5ImrWxFKsUc0y2cpc8jim4tw6cbBlbqL6VNxe/n3GBneVixhLKPwxDfMR/ipNrr1V01i/XA01eDC6L1AVQ==
+X-Gm-Message-State: AOJu0YwTb3F04Fk9pBCNirP59DAkDpgTjvxgZKrsHIxbAIDfNCXO34vH
+	OduSP5YJXt51NM7RM8M0sAA9z/qnegtONPOPiE5KH9oRF/QahShdBXCi7+brkF0=
+X-Google-Smtp-Source: AGHT+IEN48/nlgV4qk/IWlQgEEJUbZ9RROEnU3BpBkcpYNoPG0ExeAQDiRheCUWbeotT9/saLayqhQ==
+X-Received: by 2002:adf:a2d0:0:b0:34c:fd73:55d with SMTP id t16-20020adfa2d0000000b0034cfd73055dmr1700109wra.70.1714558459094;
+        Wed, 01 May 2024 03:14:19 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id i6-20020adffc06000000b0034cceee9051sm758971wrr.105.2024.05.01.03.14.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 May 2024 03:14:18 -0700 (PDT)
+Message-ID: <1c3ae48e-9030-41dc-a13d-b16462a63007@linaro.org>
+Date: Wed, 1 May 2024 11:14:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,52 +76,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <apatel@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Nick Kossifidis <mick@ics.forth.gr>,
- Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH] arm64: dts: qcom: qcs404: fix bluetooth device address
+To: Johan Hovold <johan+linaro@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@rivosinc.com
-Subject: Re: [PATCH v3 3/7] iommu/riscv: Add RISC-V IOMMU PCIe device driver
-To: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Paul Walmsley <paul.walmsley@sifive.com>
-References: <cover.1714494653.git.tjeznach@rivosinc.com>
- <3a04bd180fd510cb90e8d8dba5fb60f207e5e83f.1714494653.git.tjeznach@rivosinc.com>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20240501075201.4732-1-johan+linaro@kernel.org>
 Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <3a04bd180fd510cb90e8d8dba5fb60f207e5e83f.1714494653.git.tjeznach@rivosinc.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240501075201.4732-1-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2024/5/1 4:01, Tomasz Jeznach wrote:
-> Introduce device driver for PCIe implementation
-> of RISC-V IOMMU architected hardware.
+On 01/05/2024 08:52, Johan Hovold wrote:
+> The 'local-bd-address' property is used to pass a unique Bluetooth
+> device address from the boot firmware to the kernel and should otherwise
+> be left unset so that the OS can prevent the controller from being used
+> until a valid address has been provided through some other means (e.g.
+> using btmgmt).
 > 
-> IOMMU hardware and system support for MSI or MSI-X is
-> required by this implementation.
-> 
-> Vendor and device identifiers used in this patch
-> matches QEMU implementation of the RISC-V IOMMU PCIe
-> device, from Rivos VID (0x1efd) range allocated by the PCI-SIG.
-> 
-> MAINTAINERS | added iommu-pci.c already covered by matching pattern.
-> 
-> Link:https://lore.kernel.org/qemu-devel/20240307160319.675044-1-dbarboza@ventanamicro.com/
-> Co-developed-by: Nick Kossifidis<mick@ics.forth.gr>
-> Signed-off-by: Nick Kossifidis<mick@ics.forth.gr>
-> Signed-off-by: Tomasz Jeznach<tjeznach@rivosinc.com>
+> Fixes: 60f77ae7d1c1 ("arm64: dts: qcom: qcs404-evb: Enable uart3 and add Bluetooth")
+> Cc: stable@vger.kernel.org	# 5.10
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->   drivers/iommu/riscv/Kconfig     |   5 ++
->   drivers/iommu/riscv/Makefile    |   1 +
->   drivers/iommu/riscv/iommu-pci.c | 119 ++++++++++++++++++++++++++++++++
->   3 files changed, 125 insertions(+)
->   create mode 100644 drivers/iommu/riscv/iommu-pci.c
+>   arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> index 10655401528e..a22b4501ce1e 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> @@ -62,7 +62,7 @@ bluetooth {
+>   		vddrf-supply = <&vreg_l1_1p3>;
+>   		vddch0-supply = <&vdd_ch0_3p3>;
+>   
+> -		local-bd-address = [ 02 00 00 00 5a ad ];
+> +		local-bd-address = [ 00 00 00 00 00 00 ];
+>   
+>   		max-speed = <3200000>;
+>   	};
 
-Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
-
-Best regards,
-baolu
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
