@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-64228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 794AE8B8888
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:22:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 856EA8B888E
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3A371F21E01
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:22:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FBC5280D04
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6BA52F62;
-	Wed,  1 May 2024 10:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14203A1A2;
+	Wed,  1 May 2024 10:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ty3MpEbR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZKSJT6Tf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4FA33CD1;
-	Wed,  1 May 2024 10:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC611524DD
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 10:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714558971; cv=none; b=UxzcaQPvdAfNjl6y0IWXlCNWLKmJoLQu6vqO6LUAr0+lMoS5ez5HBx7B/NOZWx8dg7PTMAhGHNSmaRPsVw4Ribblf/w5+PSkgGVuqg7yOWTAroR+81c3lOZ0gS4EcHWTRjdsPDz1+JlJL+izE692riIfArAP7HdtJxX4nsYiwkM=
+	t=1714559082; cv=none; b=hVYA2IEhsYFen2DhQoV4a+DCjTuQ5iQ0HvIVPZLLgKBVzdAxKS1BOZ0GauA0riqesmEmOxQo7P1hi/znTGdYyX3fjolAIT+TQz19b//+BdHGLURdxIHcXtoAJwOqy9Fw1dBA25Bj6t7ZVPUF8fcSSg9AgBzGf/t3v8KC95AaP7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714558971; c=relaxed/simple;
-	bh=h7rfDC4P2mHHyUWnZGsoBw6xnXprPlYP35xFxAJ8hkk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=CBNl/qZg6f/qTWElpK9OY77vTyi/qJZX4oWybAK2XiFjA7Hg/jpq1FfR6pStklgnIgOR+GOjZ/SJfRhWh+NolyNcVGeRfxLqQirHwByNTV6PdHFtHX3AgTAGp8Z7LnovHgTmvh2Cttgt/y2GzZAAJEzJhNtHoXK4oWLQJjuPmdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ty3MpEbR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 831DCC113CC;
-	Wed,  1 May 2024 10:22:45 +0000 (UTC)
+	s=arc-20240116; t=1714559082; c=relaxed/simple;
+	bh=pUE6MZ0QkfS0ZSevFuwaGYHP0xaz3DhCJD24vWNTLKU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e2CQoFOjDwlT1VByHMWGNJiG5KLZcMlA4wcFCUVr6XL1NDceBAnrhIAwnCKxorTAKBuSRFwpOTw8jyciz3Z0K6HM24K0XeC9BIl+mx1P0tBqEIFjl3C28FAcg3ggqQctX3MJ262/SEM+YeebLODYWI0SC5jhhXK1X1Doc+JHdhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZKSJT6Tf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0BACC113CC;
+	Wed,  1 May 2024 10:24:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714558971;
-	bh=h7rfDC4P2mHHyUWnZGsoBw6xnXprPlYP35xFxAJ8hkk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Ty3MpEbRpWE1yo8InyD1sxP+/W8K8RAOB9q9qKzGbDRfWxbtubKaecHB2vfahIbcZ
-	 EV30//Gu0KmugjzGGHA/B0IIEVDhnuKX80rs+p2klPpv5RZAo1gqJBz/NpQfjy3L6I
-	 vnUWGSaWST5GPW6Soo3CNvq1iFSN5TJB0iUCLbiha6c26aeopYRMpljnGPlGrJGt/S
-	 SsO5DdNpyi8oSIVs2XJ4HiyXnBqfKhJR6RF4qVeD8HnOsjHqLVuEDG/ESe4TJYVGGh
-	 rZYBfAmNEjRN7mjAPtNp2/wY/bbVZSQ3A7rNZmViYMmoVAvWfDNx3aNc2J1x/LbhLY
-	 kb48+bAtwPyqw==
-Message-ID: <ea1c925f-1696-4491-a792-1b9165447dad@kernel.org>
-Date: Wed, 1 May 2024 12:22:42 +0200
+	s=k20201202; t=1714559082;
+	bh=pUE6MZ0QkfS0ZSevFuwaGYHP0xaz3DhCJD24vWNTLKU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZKSJT6TfRLmXs3JdmpD2lLhxhU44sNj5chx0TkoNNTWV1VzId/o40yfUu/1BjYSvP
+	 FPLV3qpFh6iDDIvZnpFU6QvOIOKUfHag1jsQO9i+D2NjQ33qeXiNTy8dAOPiZQ9H7Q
+	 StOksUbivLxk5f4m8Wb2VIf/n8xkIcWclb5Aov1Ll8m2CkfRGg7PtXceZQ9W5TwDS5
+	 PrqEpzA1zeeCGr3gV44x8sHTKyf2syXU0fyfdhKxRzHIpLlRGmosfO8/H43C21Jr0u
+	 TA79O+oWo0D7G3h/bd0C29g+FT/VIZ9l5QtGvej+fW/YDes7ihirpdXiwEkN3UQL5D
+	 5EjB4BptehsRg==
+Message-ID: <65af46c3-e48f-4eae-8390-2bc01332ccbf@kernel.org>
+Date: Wed, 1 May 2024 12:24:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 RESEND 0/8] ipq9574: Enable PCI-Express support
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] ARM: dts: aspeed-g6: Add nodes for i3c controllers
+To: Jeremy Kerr <jk@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Joel Stanley <joel@jms.id.au>, Conor Dooley <conor+dt@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20240501033832.1529340-1-jk@codeconstruct.com.au>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -112,37 +101,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
+In-Reply-To: <20240501033832.1529340-1-jk@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/05/2024 06:28, Alexandru Gagniuc wrote:
-> There are four PCIe ports on IPQ9574, pcie0 thru pcie3. This series
-> addresses pcie2, which is a gen3x2 port. The board I have only uses
-> pcie2, and that's the only one enabled in this series. pcie3 is added
-> as a special request, but is untested.
+On 01/05/2024 05:38, Jeremy Kerr wrote:
+> Add the i3c controller devices to the ast2600 g6 common dts. We add all
+> 6 busses to the common g6 definition, but leave disabled through the
+> status property, to be enabled per-platform.
 > 
-> I believe this makes sense as a monolithic series, as the individual
-> pieces are not that useful by themselves.
+> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 93 +++++++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
 > 
-> In v2, I've had some issues regarding the dt schema checks. For
-> transparency, I used the following test invocations to test:
-> 
->       make dt_binding_check     DT_SCHEMA_FILES=qcom,pcie.yaml:qcom,ipq8074-qmp-pcie-phy.yaml
->       make dtbs_check           DT_SCHEMA_FILES=qcom,pcie.yaml:qcom,ipq8074-qmp-pcie-phy.yaml
-> 
-> Changes since v3:
->  - "const"ify .hw.init fields for the PCIE pipe clocks
->  - Used pciephy_v5_regs_layout instead of v4 in phy-qcom-qmp-pcie.c
->  - Included Manivannan's patch for qcom-pcie.c clocks
->  - Dropped redundant comments in "ranges" and "interrupt-map" of pcie2.
->  - Added pcie3 and pcie3_phy dts nodes
->  - Moved snoc and anoc clocks to PCIe controller from PHY
-> 
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> index 29f94696d8b1..f9d01599a965 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> @@ -866,6 +866,13 @@ i2c: bus@1e78a000 {
+>  				ranges = <0 0x1e78a000 0x1000>;
+>  			};
+>  
+> +			i3c: bus@1e7a0000 {
+> +				compatible = "simple-bus";
 
-Three postings within short time... Allow people to actually review your
-code. Please wait 24h before posting new version. Include entire
-feedback and all tags. Explain why you ignore/skip some tags.
+What bus is it? Why is it even needed? If it is i3c, then for sure
+compatible is wrong.
+
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0 0x1e7a0000 0x8000>;
+> +			};
+> +
+>  			fsim0: fsi@1e79b000 {
+>  				compatible = "aspeed,ast2600-fsi-master", "fsi-master";
+>  				reg = <0x1e79b000 0x94>;
+> @@ -1125,3 +1132,89 @@ i2c15: i2c-bus@800 {
+>  		status = "disabled";
+>  	};
+>  };
+> +
+> +&i3c {
+
+????
+
+That's not how we construct DTS.  Overrides/extends of nodes are for
+boards, not within DTSI.
+
+Please provide full correct definition IN ONE place. See DTS coding style.
 
 Best regards,
 Krzysztof
