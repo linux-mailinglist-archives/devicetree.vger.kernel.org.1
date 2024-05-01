@@ -1,91 +1,89 @@
-Return-Path: <devicetree+bounces-64173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B148B84B6
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 06:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 330CC8B84BF
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 06:11:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 305F51F26219
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 04:11:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDB3F1F230AF
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 04:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18DF2502A3;
-	Wed,  1 May 2024 04:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E9452F9E;
+	Wed,  1 May 2024 04:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DwGSnOoO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bp7OIaY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E61D50277;
-	Wed,  1 May 2024 04:08:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7202A51C4B;
+	Wed,  1 May 2024 04:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714536505; cv=none; b=XamzCPhuKxvnjxdHafp0QUf3Ryobf8RoAbUC2lCR3rsWpuuq/qaviUKPTr1x3DcV07B/7s8vtEgBWSk008dRV+5zdnnMqHPWM6Rq5MO4DFIYwrNi4YKatoEujsDrINCiL4ky+g8MAmHlQW09GvoNZuPyMUJzcZmVSQ9tW0p45mA=
+	t=1714536509; cv=none; b=HCca7XUOh/qUGq4waX4TuwFZ/b+0Uggl8NrHKuxccJzkrT/oZUJfCtZQPGVfSU+iUdRASu0JQow3NGNKijR66W5iloz7YNIz9cWmQ1muQO4yEOxRFLZLAB+u/LfYRex/J4WOMKbPuPmfDFWhobGvxRGB3NFKlaY1VpcDspwBmjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714536505; c=relaxed/simple;
-	bh=hTXTBAcEL8gMHMEYQjxjqOhus0GQvyCJWh1hLepjz8Q=;
+	s=arc-20240116; t=1714536509; c=relaxed/simple;
+	bh=l8wNOtYhNTub8tqUC0hD6JfTNva6XfYe64dArOyPXTg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rViRiQgnDmvvSNKg8ffATZKYbeu10IIAw0m6lMR/QtV+wMX67HeBokP53n5MssAuzMciOrDrVhEsxzosuH1pPBdJC9PELlmaWBXbqZcrlX9gS8VTn8pgm6N49HYwlLLxsVj/x5RVEHdMd5AyMN2QkFIOWsduST9rAKipye9EtcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DwGSnOoO; arc=none smtp.client-ip=209.85.167.169
+	 MIME-Version; b=mvLYJQVw/xjV0g0WtP9V/jxZ+3G66HWuC+dT8KaaXprEdvxKqm2teJeYUO4UPH2KzwSHLbjwNw7h3tiXfG63yjkin3yzSZG7/uHy4dRCneoGgwYxne3YJaUloohTbDbElntqP5jsiPk+dI0lKF3dXpDdSRJPOblATNlQISaM8u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bp7OIaY7; arc=none smtp.client-ip=209.85.167.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3c74b643aebso3805097b6e.0;
-        Tue, 30 Apr 2024 21:08:23 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3c86f066256so1119149b6e.2;
+        Tue, 30 Apr 2024 21:08:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714536503; x=1715141303; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1714536507; x=1715141307; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=53QnHnVF7bqkRAf/NYE3eZQ50tFTHOIRODlZaYfoSVE=;
-        b=DwGSnOoOk3VVfAp7AbHIA84JtWRDl9AlYrnRXcN1JH6ToKJoTkvbrhpGP2SnPkOuai
-         dUw9ZcOpYCCkXJr3HbzY56rHba3pTFG4tb5v3oSwmt3ks1OXYG/+cSmXliUVKHufeAq2
-         EKUsIh4o53ylUtDCC0jBZFi76FRDsWGYEFxIn6UaZMla0hx+uDrdswuP6YbAIkWaBPgs
-         u6eJVOEC5xeXqB6H7EZ43JB53jC2E21pX2qf3UNYwZrKcoYphI+5IY9vI0+NbhzS0o+l
-         GJDM6qyJTusyK3Oogmx7bhnCOQon/jPH+jbqyKG7d+urZsqNI4F21izAD2gXl6o9q2IG
-         1eYw==
+        bh=ghcu5svxDDMwf9Ya6V/1d6nG/9vm8dM7H011zLAoFaA=;
+        b=bp7OIaY7XwM7bACqznblyRtGy2xMUUz6fsxZmpt5wemymHSYSd2TGKduE42qH7z3G3
+         ckIhr5g4jjTZ2v1CoEIKFMhM1xEQ8lsvjNYEbTMOLVPOt312aSEJpjV+6vkSaq7UcCxy
+         yYEhkA69q6DRhFxComg/xNpnbb1JlhHRSJwH9mBhjkUYVDvowvmiu9vjptvUxe4RJnUO
+         daBNuW6UCO8rCv3XjE2Gsxgc3SuEFFBCl2pRlMrhZ32BaScW+x2sJi9V/XJDK8xJrupf
+         NbbHsr4LClQvYNPNxcHt5Ku9XXcd6mRf+phzzM7VYx0TxY0JhUzwVVZXxB3Ce9pfJRT3
+         fLCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714536503; x=1715141303;
+        d=1e100.net; s=20230601; t=1714536507; x=1715141307;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=53QnHnVF7bqkRAf/NYE3eZQ50tFTHOIRODlZaYfoSVE=;
-        b=dFoEauB2Ky9su2DeGi0aS0ttu8wPem0WXe8x5MqavW1OmHDYVXmrZzMmbFf9Uhq1wR
-         IJEjiXgT37k5uF6x0mR3AK9Iw6PbCZU1YcWXn4wzfZdfMKJDko4xVhumWCnHnsS+Y7Oq
-         Vl3MEPhRDFyTU2oghLyf0EHhM/0M/vYWvModONWs2mSjbtnquWz7DLSWMnZpfdJjx/Hz
-         dEu0Oi1iszVyJ/lokusbghuIUQtQefqNEmndXMaxwVXZk4DK9AsweZTWY3TSTq4faopZ
-         JU4AheW5zKae23SHC8Eul/F4LmyQHc/BIi4u0nTwVkj0XpD4XCcaXxnMkv2va/T9vKOZ
-         BOZA==
-X-Forwarded-Encrypted: i=1; AJvYcCViH6jAhwyGuiw4JqzcXZD2fNeLd9OU7mE08jWNPgOd+T8+TA4+giS1F4nwxm5kj5Fm/qhzDWaIbjfyXXkGtGTRUlNQrZ2V7xe/fiEe8fH7iJ81xkcmorRHaMZhHy4Ppcmj7gf5aWkBVB7UYWhZBgPxRF9kUKfjRjestKOWVJwUt9NmaqQ=
-X-Gm-Message-State: AOJu0YzPTOtLUPzJjh9KMNk/aPvpcyaTgPc+1Yfs5cbT1LwqZidG0vIE
-	bAu9UV+HgoMgcyOKCkar7t6/rhUFYim9Rg7XhyY1TZ/QmZDNoSWs
-X-Google-Smtp-Source: AGHT+IHQCeqDtAWwHxJq0EYDpCrAbEJnNRyv4lCYJPcXsODkyuZoZMaQ5pZHQOZD5UnnPJ3dl/zZmg==
-X-Received: by 2002:aca:1009:0:b0:3c7:999:f5d9 with SMTP id 9-20020aca1009000000b003c70999f5d9mr1791399oiq.15.1714536502642;
-        Tue, 30 Apr 2024 21:08:22 -0700 (PDT)
+        bh=ghcu5svxDDMwf9Ya6V/1d6nG/9vm8dM7H011zLAoFaA=;
+        b=kc2CiaQKsZY9Upkzn3iCy6yQEtzUNp+fPtNIbDBGdicc2cdEwSUMqf/iBw2hGzLRNf
+         14xvQuMY8z1agzndh3U/8pG0DdunhxRQYkkK8LL1CYkEJ4YG+nq0ZB11HSHFWzH7onxp
+         Lj6X3+2mRXUbWhKyMnCm4JHsHpzPkWogf/It1zSCo0DjDP6ylLDbZIhC9DRjgf8faclk
+         8KVnkiotpjv1dPIS+F78n4aYbMkwngCbzQWBzRUldl6gL1N3ctMIB9+if/pFjCqxfjQ6
+         NXAqSQ0Y3PDdtSmIxA29sagCuoFOxEAVhyXkZPhjTceW7LIMCXqehkzbH7F0tzuAArvi
+         0ojA==
+X-Forwarded-Encrypted: i=1; AJvYcCVwEc7MQhzLOgl81oCsasubjdNTVrtXtths3FLWS9nzM1Tz3O4aIFA0wpM1TjK5NS29wD1AqWS4DvQP6zzOGv/A312wjIZKCwymgD4ClllbzYkkarEC8TfoZGAHN+cSyj5q0Jy9odG8Gx8=
+X-Gm-Message-State: AOJu0YxYrp6GQEMOBKXYoxNH6Ylw1hC+D9tpe5ucnFGA3pnZahj4J8+I
+	exm+j6BhJ2IDiunW2/mI6As3dTyz000X2etDsPGYEvCdrOiHZcMB
+X-Google-Smtp-Source: AGHT+IGzsSP6HTqUq08TCgftQdBYcecsnJuXxz+gqYPzPUH+wcP5U0uuwhVYuL1b5TbHT7DYBIxszw==
+X-Received: by 2002:a05:6808:2381:b0:3c8:2b8e:6982 with SMTP id bp1-20020a056808238100b003c82b8e6982mr1858496oib.18.1714536507521;
+        Tue, 30 Apr 2024 21:08:27 -0700 (PDT)
 Received: from nukework.lan (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id w2-20020a056808018200b003c8643f0e5csm1067872oic.16.2024.04.30.21.08.21
+        by smtp.gmail.com with ESMTPSA id w2-20020a056808018200b003c8643f0e5csm1067872oic.16.2024.04.30.21.08.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 21:08:22 -0700 (PDT)
+        Tue, 30 Apr 2024 21:08:27 -0700 (PDT)
 From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: linux-kernel@vger.kernel.org,
 	quic_kathirav@quicinc.com,
 	Alexandru Gagniuc <mr.nuke.me@gmail.com>,
 	linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v4 3/8] dt-bindings: PCI: qcom: Add IPQ9574 PCIe controller
-Date: Tue, 30 Apr 2024 23:07:54 -0500
-Message-Id: <20240501040800.1542805-13-mr.nuke.me@gmail.com>
+Subject: [PATCH v4 6/8] dt-bindings: phy: qcom,ipq8074-qmp-pcie: add ipq9574 gen3x2 PHY
+Date: Tue, 30 Apr 2024 23:07:57 -0500
+Message-Id: <20240501040800.1542805-16-mr.nuke.me@gmail.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240501040800.1542805-1-mr.nuke.me@gmail.com>
 References: <20240501040800.1542805-1-mr.nuke.me@gmail.com>
@@ -97,93 +95,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-IPQ9574 has PCIe controllers which are almost identical to IPQ6018.
-The difference is that the "iface" clock is replaced by the "snoc",
-and "anoc". The "sleep" reset is replaced by an "aux" reset.
-Document these differences along with the compatible string.
+The IPQ9574 gen3x2 PHY is very similar to IPQ6018. It requires the
+same parameters as IPQ6018. Add a new compatible string for this PHY.
 
 Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/pci/qcom,pcie.yaml    | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ .../devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index cf9a6910b542..ac6d2b1b8702 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -26,6 +26,7 @@ properties:
-           - qcom,pcie-ipq8064-v2
-           - qcom,pcie-ipq8074
-           - qcom,pcie-ipq8074-gen3
-+          - qcom,pcie-ipq9574
-           - qcom,pcie-msm8996
-           - qcom,pcie-qcs404
-           - qcom,pcie-sdm845
-@@ -161,6 +162,7 @@ allOf:
-             enum:
-               - qcom,pcie-ipq6018
-               - qcom,pcie-ipq8074-gen3
-+              - qcom,pcie-ipq9574
-     then:
-       properties:
-         reg:
-@@ -397,6 +399,39 @@ allOf:
-             - const: axi_m_sticky # AXI Master Sticky reset
-             - const: axi_s_sticky # AXI Slave Sticky reset
+diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
+index 634cec5d57ea..8a8e23282d1c 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
+@@ -19,6 +19,7 @@ properties:
+       - qcom,ipq6018-qmp-pcie-phy
+       - qcom,ipq8074-qmp-gen3-pcie-phy
+       - qcom,ipq8074-qmp-pcie-phy
++      - qcom,ipq9574-qmp-gen3x2-pcie-phy
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,pcie-ipq9574
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: axi_m # AXI Master clock
-+            - const: axi_s # AXI Slave clock
-+            - const: axi_bridge # AXI bridge clock
-+            - const: anoc
-+            - const: snoc
-+            - const: rchng
-+        resets:
-+          minItems: 8
-+          maxItems: 8
-+        reset-names:
-+          items:
-+            - const: pipe # PIPE reset
-+            - const: aux # AUX reset
-+            - const: sticky # Core Sticky reset
-+            - const: axi_m # AXI Master reset
-+            - const: axi_s # AXI Slave reset
-+            - const: axi_s_sticky # AXI Slave Sticky reset
-+            - const: axi_m_sticky # AXI Master Sticky reset
-+            - const: ahb # AHB Reset
-+
-   - if:
-       properties:
-         compatible:
-@@ -507,6 +542,7 @@ allOf:
-                 - qcom,pcie-ipq8064v2
-                 - qcom,pcie-ipq8074
-                 - qcom,pcie-ipq8074-gen3
-+                - qcom,pcie-ipq9574
-                 - qcom,pcie-qcs404
-     then:
-       required:
-@@ -566,6 +602,7 @@ allOf:
-               - qcom,pcie-ipq8064-v2
-               - qcom,pcie-ipq8074
-               - qcom,pcie-ipq8074-gen3
-+              - qcom,pcie-ipq9574
-               - qcom,pcie-qcs404
-     then:
-       properties:
+   reg:
+     items:
 -- 
 2.40.1
 
