@@ -1,115 +1,160 @@
-Return-Path: <devicetree+bounces-64351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 333AF8B8EED
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 19:19:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA4D58B8F1D
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 19:38:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5BE51F22115
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:19:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ADDF282770
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299C318042;
-	Wed,  1 May 2024 17:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FFA12FF67;
+	Wed,  1 May 2024 17:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HMSpGVhI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FG482jE1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E842FDDAB;
-	Wed,  1 May 2024 17:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262C5D2FE;
+	Wed,  1 May 2024 17:38:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714583982; cv=none; b=Y1hiCtw+VXiUPgU6Qu+S6vjMqMHHeAUWeV0tbj3EiEOLwjJHBK4cYKvdnDHRhZ4ODTOaPPvC7GOYzksnahUv1senflII4xVrc/orKH1pEpcijJfMgmSLLcgz4rXC6U+iHa7zHO9ycIN287OyIJiFRgjwIAG2HuknW8I5J8Cs07Q=
+	t=1714585109; cv=none; b=hBk2z4MA3JWM4s9SPx9gD1wB+k3oOIF838svJx7zBs7ci2c0h0vzOkCe+zll1l/GZ2tndh3qjRk2MNMEfhACMp2I7kiw5zAiXZNBufq5lxZxxmqCejxKSR9T3NZxRRYYXp7vpkwjgHdIYEu0JGYW5+nsyzT6akqMdv4A3KKBOtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714583982; c=relaxed/simple;
-	bh=mJpQKEtcJ3c2v8AHUID+6FduoqIlPGmY7MH+0xeYgrQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RVy/shA78FbIgIrTO0k/VH+JcuOVb2nuHdluATBXTfUVb6UyEYW6mc2/Sj5MOl5B3mTRDtHdW6ZH41PbXn6dNFo6njIJtEoiyftTi+mckeuyPH7WCN0tc8N33d7jwISN6b2wt2OZG44amj92sjWjcBMtijyp4EGbGDdDysZOxCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HMSpGVhI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07A04C072AA;
-	Wed,  1 May 2024 17:19:36 +0000 (UTC)
+	s=arc-20240116; t=1714585109; c=relaxed/simple;
+	bh=3Rom1K33gLjGc5KMu7YOMHTB0qLyXpnfXozkAEwXuwQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=PKd7GUJiMxZwD9EtP178mmOwafAs8acex0vuvItmIA2xOvSSHmWCXODQqCbzHtp5IdRS5hGP++HP5v2a2s/ohYHksgV9LNPzJFNql/MZhmGG/XLU66BfuIauZ+06/gfc+rRRl6eJrcL1mBD8DVOYJCnRq3l//RRNp02yaW6MSN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FG482jE1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EA32C072AA;
+	Wed,  1 May 2024 17:38:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714583981;
-	bh=mJpQKEtcJ3c2v8AHUID+6FduoqIlPGmY7MH+0xeYgrQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HMSpGVhI8L8uDLsSJJEyFBTgsakjDAs1is1XCNC2hQxzL/c3hmNjyHKnYw9L7pnNm
-	 3VrCgUo1asZ5RBoNv4kM5h9lNXbDcn//XWfzXfR8sj3XMhA6M1MgMq8QH4Gi+wWaJ5
-	 0l2lDkdkGXWlXMWPo4BAyk0qBvpH9mWWcG2UvJeygxKc85jiZz0wukD31Ex0OU/5s2
-	 gg6jbKOb2F7NJjqav6GG3wo7ox9dAtoBhAVqLdD5ZgpQImiveSIsKvm6tUjj1me2Xj
-	 npHYon9go63e2dhegSbafdb4RQwnnOedglZqjxDB5gNnJW+9JfXd8t44tI5kKN+1dT
-	 QOkkuGbs4LPzg==
-Date: Wed, 1 May 2024 18:19:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Evan Green <evan@rivosinc.com>
-Cc: Charlie Jenkins <charlie@rivosinc.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v4 05/16] riscv: Extend cpufeature.c to detect vendor
- extensions
-Message-ID: <20240501-flagstone-zealous-2fc722bfad39@spud>
-References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
- <20240426-dev-charlie-support_thead_vector_6_9-v4-5-b692f3c516ec@rivosinc.com>
- <CALs-HstM64Hy_=XVz=0sWQt=8j1u+bq6RhthUuD3P0E4=HyvcA@mail.gmail.com>
+	s=k20201202; t=1714585108;
+	bh=3Rom1K33gLjGc5KMu7YOMHTB0qLyXpnfXozkAEwXuwQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=FG482jE1b23MALPQTleYDyQE1i/V2NpJTWpzv1GQrZKsSaSchZfte6XfXHrUIstsY
+	 wWdvHyKMw9fx5FUqlBzhSH8osTQZvwTaZrGrt0Xn7ftNu8Xnk9lGJlz2dzCPMB9qoz
+	 KALX3k6b91XTBT3kA1wPdPZM1m66uA/qOBn4jLCr8YaiQvQ9BXxjfR5pprRftIrhrw
+	 /9yJKII93CaytSG1/TarbiJyKVzIxg351HGh1Dn0Eh9JPrh8emJM5tohPnWbTgYddS
+	 MVvWkLicm8OIZWsV8yNLVsfkfG/AJ0uL+iysVuZKcIktl/Ty/JJRX7tSvQs9GmjmOW
+	 nh95iuzB5VEsA==
+Date: Wed, 1 May 2024 12:38:26 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 15/17] pci: of_property: Add the interrupt-controller
+ property in PCI device nodes
+Message-ID: <20240501173826.GA808463@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mVgGewDsv8YXPdzq"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CALs-HstM64Hy_=XVz=0sWQt=8j1u+bq6RhthUuD3P0E4=HyvcA@mail.gmail.com>
+In-Reply-To: <20240430083730.134918-16-herve.codina@bootlin.com>
 
+In subject: s/pci:/PCI:/ to match history. s/Add the/Add/ for brevity.
 
---mVgGewDsv8YXPdzq
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Apr 30, 2024 at 10:37:24AM +0200, Herve Codina wrote:
+> PCI devices and bridges DT nodes created during the PCI scan are created
+> with the interrupt-map property set to handle interrupts.
+> 
+> In order to set this interrupt-map property at a specific level, a
+> phandle to the parent interrupt controller is needed.
+> On systems that are not fully described by a device-tree, the parent
+> interrupt controller may be unavailable (i.e. not described by the
+> device-tree).
 
-On Wed, May 01, 2024 at 09:44:15AM -0700, Evan Green wrote:
-> On Fri, Apr 26, 2024 at 2:29=E2=80=AFPM Charlie Jenkins <charlie@rivosinc=
-=2Ecom> wrote:
+Rewrap into one paragraph or add blank line to separate paragraphs.
 
-> > +struct riscv_isa_vendor_ext_data_list {
-> > +       const struct riscv_isa_ext_data *ext_data;
-> > +       struct riscv_isainfo *per_hart_vendor_bitmap;
-> > +       unsigned long *vendor_bitmap;
->=20
-> It took a lot of digging for me to understand this was the set of
-> vendor extensions supported on all harts. Can we add that to the name,
-> maybe something like isa_bitmap_all_harts? (I wonder if we could drop
-> the vendor part of the name since we already know we're in a
-> vendor_ext_data_list structure).
-
-Reading this made me wonder, why is the all-hart bitmap an unsigned long
-when the per hart one is a riscv_isainfo struct?
-
---mVgGewDsv8YXPdzq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJ5pgAKCRB4tDGHoIJi
-0mvKAQDZ/PuqkdmAAHeDEhcfzV4GeMOwujPT7ib0jWzVFEvmMAEAhdzNdXJHw+cT
-qfdruwRE1FLdK0IBpLEhnxWwE/OVvgc=
-=uVOz
------END PGP SIGNATURE-----
-
---mVgGewDsv8YXPdzq--
+> As mentioned in the [1], avoiding the use of the interrupt-map property
+> and considering a PCI device as an interrupt controller itself avoid the
+> use of a parent interrupt phandle.
+> 
+> In that case, the PCI device itself as an interrupt controller is
+> responsible for routing the interrupts described in the device-tree
+> world (DT overlay) to the PCI interrupts.
+> 
+> Add the 'interrupt-controller' property in the PCI device DT node.
+> 
+> [1]: https://lore.kernel.org/lkml/CAL_Jsq+je7+9ATR=B6jXHjEJHjn24vQFs4Tvi9=vhDeK9n42Aw@mail.gmail.com/
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  drivers/pci/of_property.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> index c2c7334152bc..9f8b940029ed 100644
+> --- a/drivers/pci/of_property.c
+> +++ b/drivers/pci/of_property.c
+> @@ -183,6 +183,26 @@ static int of_pci_prop_interrupts(struct pci_dev *pdev,
+>  	return of_changeset_add_prop_u32(ocs, np, "interrupts", (u32)pin);
+>  }
+>  
+> +static int of_pci_prop_intr_ctrl(struct pci_dev *pdev, struct of_changeset *ocs,
+> +				 struct device_node *np)
+> +{
+> +	int ret;
+> +	u8 pin;
+> +
+> +	ret = pci_read_config_byte(pdev, PCI_INTERRUPT_PIN, &pin);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	if (!pin)
+> +		return 0;
+> +
+> +	ret = of_changeset_add_prop_u32(ocs, np, "#interrupt-cells", 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return of_changeset_add_prop_bool(ocs, np, "interrupt-controller");
+> +}
+> +
+>  static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+>  				struct device_node *np)
+>  {
+> @@ -334,6 +354,10 @@ int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
+>  		ret = of_pci_prop_intr_map(pdev, ocs, np);
+>  		if (ret)
+>  			return ret;
+> +	} else {
+> +		ret = of_pci_prop_intr_ctrl(pdev, ocs, np);
+> +		if (ret)
+> +			return ret;
+>  	}
+>  
+>  	ret = of_pci_prop_ranges(pdev, ocs, np);
+> -- 
+> 2.44.0
+> 
 
