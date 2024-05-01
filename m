@@ -1,317 +1,149 @@
-Return-Path: <devicetree+bounces-64375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E398B90A0
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 22:33:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4588B90B0
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 22:39:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08FC72831EA
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 20:33:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BA3D1C20DA7
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 20:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B109013049E;
-	Wed,  1 May 2024 20:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C471635D4;
+	Wed,  1 May 2024 20:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SypZ/tLc"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="1k+HxI3L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185C31527B2;
-	Wed,  1 May 2024 20:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9A517C6A
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 20:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714595576; cv=none; b=kDhddhhsU5j4ZfspYTFYeh8FT9ZhrlBeSjvNNMRUYIvMoaxJHGClc1GaewcTnkrHsN8jTx3k9vrOGgQHX6CnXLlJvfB9ssJPmcLRtkA/2/bTGUWfGXqLun8FlNu/RQ20ez/ah0qPncBzlCiDzjHzvt2wqjy1ROYQbng2u4z0X6A=
+	t=1714595965; cv=none; b=VMzeTmCZjsSSFoQtPyCdcBlu5VUHHOgvW0GxiPpCPgzuBo8T8KRGPSmDBptM5G8HUnHMl1IqjLYpwNQ7PkiGuIYdS80yvGVlD9y4d+r19o/y8Jt4oDyU61Eru8FNt2x/UrDZ+ZwIotKh9+3fN+pUfKMT6NYmeZarw+1NCYDK1W8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714595576; c=relaxed/simple;
-	bh=kHPex7wRsRdxgybsWrTwxdR3oVX9EtULevfdnKktyQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=AU7q/ml7RPhiw92YCQPRyshKVJcvDpytPH4Icu5YBWL36RZTBNPoJ64UY0ivEZEL+uVNrqxKD/xOmlH8cG595QPVnONQ1ABmwZU5b9U+TqIvcgseGOFAV8lx49TbU/FN50lGmh4pZpDiZVobLrjXO/8B35LMov4iJworMerZ6lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SypZ/tLc; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-23d39e4c0d9so739124fac.0;
-        Wed, 01 May 2024 13:32:54 -0700 (PDT)
+	s=arc-20240116; t=1714595965; c=relaxed/simple;
+	bh=2GwCqwpwUIKYGDSmrRTVo6q9dQy7rbyy3/yglpIabsw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=diK1TvzT2Tpfh0KwiA3r7JyMlWPgGlBVxVNoWphIdfEmM1mo44FflkyGnRB7MdiJpSnxzekUHQjqBWL/VPcJFpZpnAiP21H2lv36mE5ZWSpShfzdvocQwuFbM3iLF3NiB5YFWGmp/HwMarAJ3BLi1SitE3jHtiM94ucGdRRea1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=1k+HxI3L; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6f074520c8cso6856609b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 13:39:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714595574; x=1715200374; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PK6bUYnjKXA3139CuZnFqKdohXzB6bNghOA877px0F0=;
-        b=SypZ/tLckei+0YnnXpuPrsPK31yfviKmoKPUfD8t0Ok/yW2Oryf1+YavXkYD/6LiCV
-         hDXkXHAbyncZSLR6IUih1rowfi3/xtMfClpoVSnnx8bCeb/GEhk+hMweFRc19z4oOIaT
-         Sif867X5o6aMxkI2Xo2y6L17RtpaJUKHTX0XCaNnmbmT6O2Nqmg4+zdq5Z+u+MXlCevE
-         gjPkhNLRb8WKm1J3kezu8NarzHThsSlDMKJibxlGvuzh46zNEA0SWTJaYI/qgJlM0KR6
-         BXhG5fNoHIw9OsBnGqFiEpPavvI6ToUBU9Af+cejUk5txMWvzxMVBiZP7Em+LX97L/3Z
-         +aVw==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714595963; x=1715200763; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AKSbKmCdqNYp/TkwU1C8PV1OsGdgS8t0tRM69B6F3C8=;
+        b=1k+HxI3LYeEeCx0TrCDMtB6bNLA4aUDy2MM0w2Sqovz0iFf1plgNpqThgzXbQJ3gJX
+         2tUO6CliziAf94ZAHDK5iTJkCOjv0l7IIn+FKS+o6xcUPeug3k3sSeMszkeNxV8MbjVD
+         s1VzYdSfL1X5K8blvTS0XGPQso/eYwjJ6THlUkizhclk9cSkYtXdKgdExTSLp7elJmL4
+         bIbnteKkjBCVyVsoI7b7lQ+3f8aKA25T/uQiZug32ZkVK8gRLsFBI04wc6ll6HjRwmHz
+         LVF1rn2wrWMHMyPZCoMvlfYNy42bHrjL5k+eSH6PGybMAxLV+3CfhpsWV/VloYc4TtEP
+         ovaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714595574; x=1715200374;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PK6bUYnjKXA3139CuZnFqKdohXzB6bNghOA877px0F0=;
-        b=UFUkxFoSGSoI2pHQ1iToxTV7CqqERdEraojwMjBK8AgXDiJq4T7axSYcyJRCd65IOr
-         Aj7AlKW4hkpotKyQsV7uSquSV+p1ApIm/yxUOi32vte4KcdKQfDQCdggTzwv7Gj6VmkT
-         NkPhyU7yYzzbj4XFmhFWDA4yNfuoiFYPi+VeYsMVwbaDb3IvGjXL7hj5jxaHO54GVt/P
-         82f7t7kjxDL/1gWEUnIB2l7x+jxi8mIFTueZHV4vejGr+vpgSnvV/4lJmw02Cczwzz4B
-         ONecFu0DcitQ6VYjuLGeybInRwHisqCk16WWinnsprIvdyoLV9c0DrXF6fMGl2TfLzlQ
-         U5ow==
-X-Forwarded-Encrypted: i=1; AJvYcCWdKzNWpMvX0NvFJUu/SCt3mBxr9UnCEb2b33aB5ETn/b0prNJKhqnzLzHs81DaKWPwt1UDD4aSfNqhqnKGImALiCx2/3/amz7jM7EYYHlfWGyZPTOwLf6XITEhp+zsk1YU0c8RxJTqHLxdMGu1dA1QbiG2HGgZIZ0xXqq9QW8+h2kWiAN46m0qeiD3TLmD7m4grUTDzV+ZdsnR4eRKphFsWhT922PK/0e6q1qoUNHIx7iFB9r28QSKjpaBnSw=
-X-Gm-Message-State: AOJu0YyXM1T/vNmdtL7XLcyJKBqlCWm1CDrC34t/GKqPXi4HmG3CWK/1
-	Kf7nOkVI4HtChAs2o27znqHEZSfYFx4p7n2mNn94tbMOSqMZRw3/
-X-Google-Smtp-Source: AGHT+IEEi213Oim+pFQt5WqNLTilQ8NosxMtUvlAkKIuNAoYd59Y3HupxqwZGjbBQ04m8SUtsX/Msw==
-X-Received: by 2002:a05:6870:be97:b0:22f:bdb:633c with SMTP id nx23-20020a056870be9700b0022f0bdb633cmr125208oab.16.1714595574119;
-        Wed, 01 May 2024 13:32:54 -0700 (PDT)
-Received: from [192.168.7.110] (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id rb11-20020a056871618b00b0023b5791f396sm2889919oab.15.2024.05.01.13.32.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 May 2024 13:32:53 -0700 (PDT)
-Message-ID: <7da9d481-1e44-4f0e-9210-fcbd95bd654f@gmail.com>
-Date: Wed, 1 May 2024 15:32:52 -0500
+        d=1e100.net; s=20230601; t=1714595963; x=1715200763;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AKSbKmCdqNYp/TkwU1C8PV1OsGdgS8t0tRM69B6F3C8=;
+        b=Xoh+lnecfR83sKSekroZ/9+st+e4Bb0Ne3jL9HhVttbYIySXlgRbNd7x51wM7Izb9v
+         +tw0rqak4F5bg+gcHoIsWe41R81mNld8W/oyCSdE4sD6taJ9feo4AOtB/TXwzUTNAhuu
+         MT7A3can2PbvFRXvaGQY7QI2OYNO7NRb4MjhCBqg7Y/hdH7CzQ9s0zNHxiGtOtEyDr51
+         zqlo73NLzAtKwoCsaOdJNrrhZNB8R8euYBe2xAupSy/TLBAmcxrvU1AVtFXG3RTNAqOo
+         ycWUF1CHy8XYjjZ9IjbWjMXUtpcq9ZASJQMs8f8EF0HSCVLEKHhxuYoToB4shV/mDD55
+         6SAw==
+X-Forwarded-Encrypted: i=1; AJvYcCXngTRaDPQkioz9Hegc+heyLSL3D1lDyhWSTCiKAZUIDNQY6zaMcHbmbr1gTBWKXmq5d0k/42JPlQu+287HO1dSmzwjfTWbWxgerw==
+X-Gm-Message-State: AOJu0YxQ5m8vNWXJye2xinvnEl6dTjwOMBrM30yo2yhFAsNBVesVjy5r
+	9dd8F/fPWUaQ+LrydsDwThxF82FX8aTthuqGvIgW28MgSEY9Lmwg9Ntv656yjlk=
+X-Google-Smtp-Source: AGHT+IHt+rl59slOy1iEvfvZBlyLdzZV/krFCrpw2Eo+5Hs2TZHpo6k/cWFEA5ZGhA3qB1CbXECo4g==
+X-Received: by 2002:a05:6a20:5617:b0:1af:36df:5159 with SMTP id ir23-20020a056a20561700b001af36df5159mr18100pzc.59.1714595962795;
+        Wed, 01 May 2024 13:39:22 -0700 (PDT)
+Received: from ghost ([2601:647:5700:6860:1dcc:e03e:dc61:895d])
+        by smtp.gmail.com with ESMTPSA id v22-20020aa78516000000b006f03a06314esm23032553pfn.195.2024.05.01.13.39.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 May 2024 13:39:22 -0700 (PDT)
+Date: Wed, 1 May 2024 13:39:20 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v4 07/16] riscv: cpufeature: Extract common elements from
+ extension checking
+Message-ID: <ZjKoeLcs4YDsDztT@ghost>
+References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
+ <20240426-dev-charlie-support_thead_vector_6_9-v4-7-b692f3c516ec@rivosinc.com>
+ <20240501-probable-unfunded-746ef6ae1853@spud>
+ <ZjKcfZsWgR1AY3AZ@ghost>
+ <20240501-hazy-reformist-8ff36ba53450@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 RESEND 8/8] arm64: dts: qcom: ipq9574: add PCIe2 and
- PCIe3 nodes
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
- <20240501042847.1545145-9-mr.nuke.me@gmail.com>
-Content-Language: en-US
-From: "Alex G." <mr.nuke.me@gmail.com>
-In-Reply-To: <20240501042847.1545145-9-mr.nuke.me@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240501-hazy-reformist-8ff36ba53450@spud>
 
-
-
-On 4/30/24 23:28, Alexandru Gagniuc wrote:
-> On ipq9574, there are 4 PCIe controllers. Describe the pcie2 and pcie3
-> nodes, and their PHYs in devicetree.
+On Wed, May 01, 2024 at 09:15:44PM +0100, Conor Dooley wrote:
+> On Wed, May 01, 2024 at 12:48:13PM -0700, Charlie Jenkins wrote:
+> > On Wed, May 01, 2024 at 12:37:14PM +0100, Conor Dooley wrote:
+> > > On Fri, Apr 26, 2024 at 02:29:21PM -0700, Charlie Jenkins wrote:
+> > > > The __riscv_has_extension_likely() and __riscv_has_extension_unlikely()
+> > > > functions from the vendor_extensions.h can be used to simplify the
+> > > > standard extension checking code as well. Migrate those functions to
+> > > > cpufeature.h and reorganize the code in the file to use the functions.
+> > > > 
+> > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > > > ---
+> > > >  arch/riscv/include/asm/cpufeature.h        | 78 +++++++++++++++++-------------
+> > > >  arch/riscv/include/asm/vendor_extensions.h | 28 -----------
+> > > >  2 files changed, 44 insertions(+), 62 deletions(-)
+> > > > 
+> > > > diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
+> > > > index fedd479ccfd1..17896ec9ec11 100644
+> > > > --- a/arch/riscv/include/asm/cpufeature.h
+> > > > +++ b/arch/riscv/include/asm/cpufeature.h
+> > > > @@ -98,59 +98,66 @@ extern bool riscv_isa_fallback;
+> > > >  
+> > > >  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
+> > > >  
+> > > > +#define EXT_ALL_VENDORS		0
+> > > 
+> > > It's not really "all vendors", it's standard. Otherwise, this seems all
+> > 
+> > This hooks up into the alternatives:
+> > 
+> > ALTERNATIVE("nop", "j	%l[l_yes]", %[vendor], %[ext], 1)
 > 
-> The pcie0 and pcie1 controllers use a gen3x1 PHY, which is not
-> currently supported. Hence, only pcie2 and pcie3 are described. Only
-> pcie2 was tested because my devboard only has conenctions to pcie2.
+> Yeah, I know what you're using it for, I just find the naming odd.
+> > 
+> > Where the "vendor" argument is supposed to be 0 if the alternative is
+> > applicable to all vendors. Is there a better way to convey this?
 > 
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 178 +++++++++++++++++++++++++-
->   1 file changed, 176 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 7f2e5cbf3bbb..c391886cf9ab 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -300,8 +300,8 @@ gcc: clock-controller@1800000 {
->   				 <0>,
->   				 <0>,
->   				 <0>,
-> -				 <0>,
-> -				 <0>,
-> +				 <&pcie2_phy>,
-> +				 <&pcie3_phy>,
->   				 <0>;
->   			#clock-cells = <1>;
->   			#reset-cells = <1>;
-> @@ -745,6 +745,180 @@ frame@b128000 {
->   				status = "disabled";
->   			};
->   		};
-> +
-> +		pcie2_phy: phy@8c000 {
-> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> +			reg = <0x0008c000 0x14f4>;
-> +
-> +			clocks = <&gcc GCC_PCIE2_AUX_CLK>,
-> +				 <&gcc GCC_PCIE2_AHB_CLK>,
-> +				 <&gcc GCC_PCIE2_PIPE_CLK>;
-> +			clock-names = "aux",
-> +				      "cfg_ahb",
-> +				      "pipe";
-> +
-> +			clock-output-names = "pcie_phy2_pipe_clk";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +
-> +			resets = <&gcc GCC_PCIE2_PHY_BCR>,
-> +				 <&gcc GCC_PCIE2PHY_PHY_BCR>;
-> +			reset-names = "phy",
-> +				      "common";
-> +			status = "disabled";
-> +		};
-> +
-> +		pcie3_phy: phy@f4000 {
-> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> +			reg = <0x000f4000 0x14f4>;
-> +
-> +			clocks = <&gcc GCC_PCIE3_AUX_CLK>,
-> +				 <&gcc GCC_PCIE3_AHB_CLK>,
-> +				 <&gcc GCC_PCIE3_PIPE_CLK>;
-> +			clock-names = "aux",
-> +				      "cfg_ahb",
-> +				      "pipe";
-> +
-> +			clock-output-names = "pcie_phy3_pipe_clk";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +
-> +			resets = <&gcc GCC_PCIE3_PHY_BCR>,
-> +				 <&gcc GCC_PCIE3PHY_PHY_BCR>;
-> +			reset-names = "phy",
-> +				      "common";
-> +			status = "disabled";
-> +		};
-> +
-> +		/* TODO: Populate pcie0/pcie1 when gen3x1 phy support is added. */
-> +
-> +		pcie2: pcie@20000000 {
-> +			compatible = "qcom,pcie-ipq9574";
-> +			reg = <0x20000000 0xf1d>,
-> +			      <0x20000f20 0xa8>,
-> +			      <0x20001000 0x1000>,
-> +			      <0x00088000 0x4000>,
-> +			      <0x20100000 0x1000>;
-> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
-> +
-> +			ranges = <0x81000000 0x0 0x20200000 0x20200000 0x0 0x00100000>,
-> +				 <0x82000000 0x0 0x20300000 0x20300000 0x0 0x07d00000>;
-> +
-> +			device_type = "pci";
-> +			linux,pci-domain = <3>;
-> +			bus-range = <0x00 0xff>;
-> +			num-lanes = <2>;
-> +			max-link-speed = <3>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			phys = <&pcie2_phy>;
-> +			phy-names = "pciephy";
-> +
-> +			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi";
-> +
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 0 164 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &intc 0 0 165 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &intc 0 0 186 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &intc 0 0 187 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			clocks = <&gcc GCC_PCIE2_AXI_M_CLK>,
-> +				 <&gcc GCC_PCIE2_AXI_S_CLK>,
-> +				 <&gcc GCC_PCIE2_AXI_S_BRIDGE_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>,
-> +				 <&gcc GCC_PCIE2_RCHNG_CLK>;
-> +			clock-names = "axi_m",
-> +				      "axi_s",
-> +				      "axi_bridge",
-> +				      "rchng";
+> s/EXT_ALL_VENDORS/STANDARD_EXT/?
 
-There is a mistake here with the clock-names :( . Will fix it in v5.
+Sure :)
 
-> +
-> +			resets = <&gcc GCC_PCIE2_PIPE_ARES>,
-> +				 <&gcc GCC_PCIE2_AUX_ARES>,
-> +				 <&gcc GCC_PCIE2_CORE_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE2_AXI_M_ARES>,
-> +				 <&gcc GCC_PCIE2_AXI_S_ARES>,
-> +				 <&gcc GCC_PCIE2_AXI_S_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE2_AXI_M_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE2_AHB_ARES>;
-> +			reset-names = "pipe",
-> +				      "aux",
-> +				      "sticky",
-> +				      "axi_m",
-> +				      "axi_s",
-> +				      "axi_s_sticky",
-> +				      "axi_m_sticky",
-> +				      "ahb";
-> +			status = "disabled";
-> +		};
-> +
-> +		pcie3: pcie@18000000 {
-> +			compatible = "qcom,pcie-ipq9574";
-> +			reg = <0x18000000 0xf1d>,
-> +			      <0x18000f20 0xa8>,
-> +			      <0x18001000 0x1000>,
-> +			      <0x000f0000 0x4000>,
-> +			      <0x18100000 0x1000>;
-> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
-> +
-> +			ranges = <0x81000000 0x0 0x18200000 0x18200000 0x0 0x00100000>,
-> +				 <0x82000000 0x0 0x18300000 0x18300000 0x0 0x07d00000>;
-> +
-> +			device_type = "pci";
-> +			linux,pci-domain = <4>;
-> +			bus-range = <0x00 0xff>;
-> +			num-lanes = <2>;
-> +			max-link-speed = <3>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			phys = <&pcie3_phy>;
-> +			phy-names = "pciephy";
-> +
-> +			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi";
-> +
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 0 189 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &intc 0 0 190 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &intc 0 0 192 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &intc 0 0 192 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			clocks = <&gcc GCC_PCIE3_AXI_M_CLK>,
-> +				 <&gcc GCC_PCIE3_AXI_S_CLK>,
-> +				 <&gcc GCC_PCIE3_AXI_S_BRIDGE_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE3_2LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE3_2LANE_S_CLK>,
-> +				 <&gcc GCC_PCIE3_RCHNG_CLK>;
-> +			clock-names = "axi_m",
-> +				      "axi_s",
-> +				      "axi_bridge",
-> +				      "anoc",
-> +				      "snoc",
-> +				      "rchng";
-> +
-> +			resets = <&gcc GCC_PCIE3_PIPE_ARES>,
-> +				 <&gcc GCC_PCIE3_AUX_ARES>,
-> +				 <&gcc GCC_PCIE3_CORE_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE3_AXI_M_ARES>,
-> +				 <&gcc GCC_PCIE3_AXI_S_ARES>,
-> +				 <&gcc GCC_PCIE3_AXI_S_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE3_AXI_M_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE3_AHB_ARES>;
-> +			reset-names = "pipe",
-> +				      "aux",
-> +				      "sticky",
-> +				      "axi_m",
-> +				      "axi_s",
-> +				      "axi_s_sticky",
-> +				      "axi_m_sticky",
-> +				      "ahb";
-> +			status = "disabled";
-> +		};
->   	};
->   
->   	thermal-zones {
+- Charlie
+
+
 
