@@ -1,190 +1,128 @@
-Return-Path: <devicetree+bounces-64245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1F08B893F
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 13:32:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 559018B8954
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 13:37:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55FF61F22B08
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 11:32:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 828721C23104
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 11:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BEF770F4;
-	Wed,  1 May 2024 11:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA77984A49;
+	Wed,  1 May 2024 11:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="beA3KVgr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD3761664;
-	Wed,  1 May 2024 11:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8937983CDF;
+	Wed,  1 May 2024 11:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714563128; cv=none; b=I0Wsz5CiAd7RYqWeRyTQs2oeJZY6d7ByomQWS3ZXrI2GtXCnE2ZuFFtnDJpwvY+AoS2IPx5tEia1dOcndpXgQmi/RVHuI9Mh253N1jwsm2YaTqURWnAaEklHjfY32l1EVB9eMLNgxo/WOUxlqeGVETYETAOJpFMWQ+UDTvoD/zQ=
+	t=1714563441; cv=none; b=XQN0VuqoV3Py/vnRkUKuv5y+LQre031YlqGIRhhBatRrSLYb5BETMC5+cECZDGV0qGQcZBQsGiIPMldfCHJghAyxIbthV2vSGQSTf6A+wz6jA1XWLeNaRw8kVWIwUjXhoJZEsiHIQ/KllfagfYpKVB1QbStDuyyDu+e0FnmZ7TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714563128; c=relaxed/simple;
-	bh=IKkLZZ/6LHNlSiF5MEAigsdy2P81iDCz4def5PRB3/U=;
+	s=arc-20240116; t=1714563441; c=relaxed/simple;
+	bh=MP62atQMR9QZoG0+ZlmS5Hnq2cah7KkCkJlRp2jaF4I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZzGMtLkWu3/BIT5pXHW/Nh6+lfVWAEj5x9LSVH9gU97VQ+mLPA9qaL/1YiTWVOmmnzPWoh2D3WAnCr3fahFRYgL+T1lRViBCHIVkJXh7jDBbLSTD0oQGBA5jJsqgd6jtr5hQrrknjesKXfBKD+ECpJkRyqovSge9iUilvJX9/6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A6E912F4;
-	Wed,  1 May 2024 04:32:31 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DCE613F793;
-	Wed,  1 May 2024 04:32:02 -0700 (PDT)
-Date: Wed, 1 May 2024 12:32:00 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: Add properties
- for i.MX95 Pinctrl OEM extensions
-Message-ID: <ZjIoMJOAxtC-nkZO@pluto>
-References: <20240418-pinctrl-scmi-oem-v1-v2-0-3a555a3c58c3@nxp.com>
- <20240418-pinctrl-scmi-oem-v1-v2-1-3a555a3c58c3@nxp.com>
- <20240424193007.GA329896-robh@kernel.org>
- <DU0PR04MB9417C67342B1DD6CC299B4CE88172@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=I4UMUTh7RZZz7tqbAqFcCqwzVPLC2IzmVg1SF6qXDa2go3OhOizeMkyrZY3tfWj5XDBNEb1gN/w1uHsQb5gQhqlTZyojH2zSGncMspCZV9ZzsTz4WfLn+4VRo7EQSNKXeoaRejE5x8Oa0Oa9C/+nCImwkHmbVFwrS5yMuceaRhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=beA3KVgr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EDF8C32789;
+	Wed,  1 May 2024 11:37:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714563441;
+	bh=MP62atQMR9QZoG0+ZlmS5Hnq2cah7KkCkJlRp2jaF4I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=beA3KVgrsWenCerL/qvg7nGJ1js6iXuqGs3AptzAocKB/boxOcYGnp3XkmaF/2oAO
+	 oX/IKgwc3iepDK0HUg4Io2c4i03pdfDpZgk1kcov4Ai/aBxurHiyiAX6HmVvpU/2SO
+	 NUgp2LZev45f9DvID3VJ/ctqV7scYd+UBaa9jEA43ipsr+v4I9z5uvqE1vmo0LXCpJ
+	 qbaaeWs//uQyrcYV7j53qJtIC7z+cFGAY0qdpMGpg3dAbcmAZGjn0tM0K556QYzqkQ
+	 0hJcGqFhq9jdyXi0dahmnkLEGQ+9rxMrR1yFQRySAqIuiMalxkuwm595dFktELebK8
+	 aVetVR6dPCr+Q==
+Date: Wed, 1 May 2024 12:37:14 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v4 07/16] riscv: cpufeature: Extract common elements from
+ extension checking
+Message-ID: <20240501-probable-unfunded-746ef6ae1853@spud>
+References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
+ <20240426-dev-charlie-support_thead_vector_6_9-v4-7-b692f3c516ec@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="4cVAmCcvx4abtooG"
+Content-Disposition: inline
+In-Reply-To: <20240426-dev-charlie-support_thead_vector_6_9-v4-7-b692f3c516ec@rivosinc.com>
+
+
+--4cVAmCcvx4abtooG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9417C67342B1DD6CC299B4CE88172@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 25, 2024 at 09:06:00AM +0000, Peng Fan wrote:
-> Hi Rob,
-> 
-> > Subject: Re: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: Add properties
-> > for i.MX95 Pinctrl OEM extensions
-> > 
-> > On Thu, Apr 18, 2024 at 10:53:17AM +0800, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > i.MX95 Pinctrl is managed by SCMI firmware using OEM extensions. This
-> > > patch is to add i.MX95 Pinctrl OEM extensions properties.
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/firmware/arm,scmi.yaml     |  9 ++-
-> > >  .../bindings/firmware/nxp,imx95-scmi-pinctrl.yaml  | 66
-> > > ++++++++++++++++++++++
-> > >  2 files changed, 72 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> 
-> ....
-> 
-> > > +
-> > > +title: i.MX System Control and Management Interface (SCMI) Pinctrl
-> > > +Protocol
-> > > +
-> > > +maintainers:
-> > > +  - Peng Fan <peng.fan@arm.com>
-> > > +
-> > > +patternProperties:
-> > > +  '[a-f0-9]+$':
-> > > +    type: object
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +    properties:
-> > > +      pins:
-> > > +        $ref: /schemas/types.yaml#/definitions/string
-> > > +        description: name of the pin
-> > > +        items:
-> > > +          enum: [ daptdi, daptmsswdio, daptclkswclk, daptdotraceswo,
-> > > +                  gpioio00, gpioio01, gpioio02, gpioio03, gpioio04,
-> > 
-> > ioio?
-> 
-> Yes. The name is exported from SCMI firmware.
-> 
-> > 
-> > > +                  gpioio05, gpioio06, gpioio07, gpioio08, gpioio09,
-> > > +                  gpioio10, gpioio11, gpioio12, gpioio13, gpioio14,
-> > > +                  gpioio15, gpioio16, gpioio17, gpioio18, gpioio19,
-> > > +                  gpioio20, gpioio21, gpioio22, gpioio23, gpioio24,
-> > > +                  gpioio25, gpioio26, gpioio27, gpioio28, gpioio29,
-> > > +                  gpioio30, gpioio31, gpioio32, gpioio33, gpioio34,
-> > > +                  gpioio35, gpioio36, gpioio37, ccmclko1, ccmclko2,
-> > > +                  ccmclko3, ccmclko4, enet1mdc, enet1mdio, enet1td3,
-> > > +                  enet1td2, enet1td1, enet1td0, enet1txctl, enet1txc,
-> > > +                  enet1rxctl, enet1rxc, enet1rd0, enet1rd1, enet1rd2,
-> > > +                  enet1rd3, enet2mdc, enet2mdio, enet2td3, enet2td2,
-> > > +                  enet2td1, enet2td0, enet2txctl, enet2txc, enet2rxctl,
-> > > +                  enet2rxc, enet2rd0, enet2rd1, enet2rd2, enet2rd3,
-> > > +                  sd1clk, sd1cmd, sd1data0, sd1data1, sd1data2, sd1data3,
-> > > +                  sd1data4, sd1data5, sd1data6, sd1data7, sd1strobe,
-> > > +                  sd2vselect, sd3clk, sd3cmd, sd3data0, sd3data1,
-> > > +                  sd3data2, sd3data3, xspi1data0, xspi1data1, xspi1data2,
-> > > +                  xspi1data3, xspi1data4, xspi1data5, xspi1data6,
-> > > +                  xspi1data7, xspi1dqs, xspi1sclk, xspi1ss0b, xspi1ss1b,
-> > > +                  sd2cdb, sd2clk, sd2cmd, sd2data0, sd2data1, sd2data2,
-> > > +                  sd2data3, sd2resetb, i2c1scl, i2c1sda, i2c2scl, i2c2sda,
-> > > +                  uart1rxd, uart1txd, uart2rxd, uart2txd, pdmclk,
-> > > +                  pdmbitstream0, pdmbitstream1, sai1txfs, sai1txc,
-> > > +                  sai1txd0, sai1rxd0, wdogany, fccuerr0 ]
-> > > +
-> > > +      nxp,func-id:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        description: Indicates the PAD connections which function
-> > > + module
-> > 
-> > The description makes no sense...
-> 
-> I will use below description in v3:
-> For each pin, there are up to 8 muxing options (called ALT modes). For example:
-> Select 1 of 5 iomux modes to be used for pad: DAP_TCLK_SWCLK.
-> 000b - Select mux mode: ALT0 mux port: JTAG_MUX_TCK of instance: jtag_mux
-> 010b - Select mux mode: ALT2 mux port: CAN4_RX of instance: imx95_wakeupmix_top
-> 100b - Select mux mode: ALT4 mux port: FLEXIO1_FLEXIO30 of instance: imx95_wakeupmix_top
-> 101b - Select mux mode: ALT5 mux port: GPIO3_IO30 of instance: imx95_wakeupmix_top
-> 110b - Select mux mode: ALT6 mux port: LPUART5_CTS_B of instance: imx95_wakeupmix_top
-> The nxp,func-id property is selecting one ALT mode.
-> 
-> > 
-> > > +
-> > > +      nxp,pin-conf:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        description: The PAD configuration
-> > 
-> > PAD stands for? Or is it pin configuration as the property name says?
-> 
-> It is pin configuration which includes pull up/down, drive strength and etc.
-> 
-> > 
-> > This is just a raw register values? 
-> 
-> Yes.
-> 
-> Why can't standard pinctrl properties be
-> > used here. What's the point of using SCMI pinctrl if you are just shuttling
-> > register values to SCMI?
-> 
-> Standard pinctrl properties will need more memory in our SCMI
-> firmware design. We have limited on-chip memory for SCMI firmware usage.
-> 
+On Fri, Apr 26, 2024 at 02:29:21PM -0700, Charlie Jenkins wrote:
+> The __riscv_has_extension_likely() and __riscv_has_extension_unlikely()
+> functions from the vendor_extensions.h can be used to simplify the
+> standard extension checking code as well. Migrate those functions to
+> cpufeature.h and reorganize the code in the file to use the functions.
+>=20
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/cpufeature.h        | 78 +++++++++++++++++-------=
+------
+>  arch/riscv/include/asm/vendor_extensions.h | 28 -----------
+>  2 files changed, 44 insertions(+), 62 deletions(-)
+>=20
+> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
+/cpufeature.h
+> index fedd479ccfd1..17896ec9ec11 100644
+> --- a/arch/riscv/include/asm/cpufeature.h
+> +++ b/arch/riscv/include/asm/cpufeature.h
+> @@ -98,59 +98,66 @@ extern bool riscv_isa_fallback;
+> =20
+>  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
+> =20
+> +#define EXT_ALL_VENDORS		0
 
-So you sort of strip-down the server due to hw constraints, but is it
-the SCMI server still compliant with the spec ? (as in supporting all
-the mandatory commands and features for the protocols you decided to
-support)
+It's not really "all vendors", it's standard. Otherwise, this seems all
+grand to me,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
-Cristian
+Cheers,
+Conor.
+
+--4cVAmCcvx4abtooG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjIpagAKCRB4tDGHoIJi
+0nqbAQDotPME6y45R4f68eXuCnbyY4XAOyDUzD3fL8AW4YgGDAD/VCUttdmY/5WW
+rxMqmWx1QCw9yGME4Abt8BHVFnG4ZgI=
+=cdZM
+-----END PGP SIGNATURE-----
+
+--4cVAmCcvx4abtooG--
 
