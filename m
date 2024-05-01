@@ -1,247 +1,178 @@
-Return-Path: <devicetree+bounces-64233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1A88B889D
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:32:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1B98B88AE
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAF9DB2162F
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:31:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F32EC2835EB
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E5F53E09;
-	Wed,  1 May 2024 10:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D1554669;
+	Wed,  1 May 2024 10:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5ee8bwg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wYXcL8zx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930CED520;
-	Wed,  1 May 2024 10:31:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5786E33CD1
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 10:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714559512; cv=none; b=lsIPGrcB8Njd/R8HOWAI4UPSiKPauaEKhAf9wiSkycgbNpk4qBttjBQrK7XNUlNk16qv/AQ2dtGkajwLmrjFKnAtVgoxUxYHc74hXGo5xJ3CQIrHRjTcGyHCCI7C94/RRvmKIPZvvwfuprftmSFxNUrPTIMmDanufhELaIWOPRc=
+	t=1714560093; cv=none; b=I8XojZkxUeIUNs6t/ujoAEwAcmz/zpLfMnYesDMzPHn76dQcw/sTRitbm/suP7hOs3uywlXAFNLGYLk/GPTru3QqoZOLc1+OgvXvi8N76HaLgglQVGnGVxZf4twSOr976Bv93XZhvDjt5oHCkeneA8jSzGV1EW8h5oeOtpuTXBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714559512; c=relaxed/simple;
-	bh=6DBbHrkfxS0tiwHrPZgT+bjTP/LQ6KTVWXOSl9oS0uw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GKJbMJNsr0yj38pAKqBpiKs5xQVbQQcuAfZ1cZgyJeNFz6vZH5R1M1Bjg5cJ+u7FfyeUlomXxchX8lZcMhZpVaiiviHdvt9yA2Ram5bt/8vSvcWnLcGFiQxSk12Dog9QMSSBUec2cKXbCUBHjyemEprVjYo07NmYuDdmpflJsZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5ee8bwg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87259C113CC;
-	Wed,  1 May 2024 10:31:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714559512;
-	bh=6DBbHrkfxS0tiwHrPZgT+bjTP/LQ6KTVWXOSl9oS0uw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5ee8bwgBLBCu4DumpOEAERsjw3ZbAP1XblSkz9aVFKZGtMgCFTiA0pxj3GXTowo2
-	 7ckb1Z6BdjEoy5msRFbdI7BAYmKf3htSei2B1D+T+yu7FP0PpQaNy/3aUaePzp97sH
-	 cKmbeqTesHi0Ye71vJBxFoyAGSy1+14roh4mNDgO4HIUFKck3ZWyiaPStY1bnoEVLR
-	 X+s8MeH8GU3OZ/Bbz6IXbIwrDt+H/pAnwRuBeq5KVjdgFCzLaJJOUDaF7GmMYbxq0+
-	 c/FTazQwk1znasxvU2OYJorZPiHHCvI29cVf3yfADDUqbsf5qSiQcr3P/qB1DuRqmk
-	 iHHbtFC1LN2rw==
-Date: Wed, 1 May 2024 11:31:45 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v4 03/16] riscv: vector: Use vlenb from DT
-Message-ID: <20240501-showroom-rephrase-66c0929011b3@spud>
-References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
- <20240426-dev-charlie-support_thead_vector_6_9-v4-3-b692f3c516ec@rivosinc.com>
+	s=arc-20240116; t=1714560093; c=relaxed/simple;
+	bh=/ZQIG/3uaLNNMu+Jaq1pWiCGUFBqLdO9PicLaF6MvLk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NKMCFWjbFwzv6//UQ3d0LGgFEo82KWhAeY8ikaWJDyMkxdelIk2mfDUPBOJb5hWF0hQg1mAJXgTIoUBulLzknYe1EIwWnmPylhfVzt1vH3iG3knyFlRYmA4e/g3D48NWzeAP8CKq8FfiUAU8TPzcvf0lUgZTnjj5WDNjKY8isDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wYXcL8zx; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-418e4cd2196so51832865e9.1
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 03:41:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714560091; x=1715164891; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tnAXwpnJCfyBMxb2ERCfc2sWQTd2dlZbEzR3Sps3cGc=;
+        b=wYXcL8zx8FZQPqbO9RvL1JXAfm4RWFrs5VIluI3eq4BM1lHNiYM20BOy8QoQvkz21B
+         ZZ67Vz0Ll0sk3yMP5psrVEKU0bcf4Yg+KvZJ9ZxfW4sPgpnrzd/yxXEWSs0t001VTfkP
+         Ctdbp90ogzAv96hGo62lEX/XYr8sBIGR2lUZnwWw0TvX3pn+Q/u4srDbng6iyWQ1NNX0
+         mBUy3B+l2ASUa/oH3+Bfk2HOq+LFlNJKW41o/2P9bwvkXx/Oj7yfmvP3AKbmyDVWcNpp
+         KQo1IKSBNUKsTP7EtjFkzjW3qXM1QtoWzBZT+SSZTex3FSO3+6PsbxgAenXISlPtFStY
+         bSkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714560091; x=1715164891;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tnAXwpnJCfyBMxb2ERCfc2sWQTd2dlZbEzR3Sps3cGc=;
+        b=mEBXgd9TmLjQusbpd89nntGQFDTWav5QQdddGB6QGoD6jUTvog1FQ5FrBkRSCSknwu
+         yvh0EgOJscVfY+7YbpU0wzUpmNI/pGBc0byxpPRb7VfT2Ya/yligKX82qrEeXqzKgskO
+         dJZXq6R7DcEzi6gYf4jMj6/S8xZEqnMujYW0HSouSQuA5hCaOQpvB/5jVjq9GUafJDUy
+         oh+novOJXwqsWgbMfw9t8L6zRCaJMook21Rn13exgpySuV/pyUmnA9DEXY9zAZJpTxlL
+         B6oggXqicPfex6qOprWhlZt1Bh4G1zJ0z94v6SOEuqhVrAp55BH82W0MTFysWQb6dWVt
+         ZWww==
+X-Forwarded-Encrypted: i=1; AJvYcCWiddZB70lVNTnm+HYEmJgCp8ezwAxv6/0k32zJOEzQcp/iimAWXY83A9LYA5Gltn+JrhMDwqCo17PmocQIqknCeaLztLIZCdIStg==
+X-Gm-Message-State: AOJu0YxGF7t4PM2LclkduRk1D+ERRbTVqp1+70wP99U0J0f4q0C8lui8
+	3LoUOeJj+x2pxt11bPx4ckAUY+udrqwkPVMm6MPIMWI8623yvPKAKsd2uAmC9IA=
+X-Google-Smtp-Source: AGHT+IHji7usLVWIknIEKSCSQW1rplXvuNFa5Fj/xKexpEet4LiizDosHcaq8CZihdGZp2qmPdKChw==
+X-Received: by 2002:a05:600c:1384:b0:416:6af1:27af with SMTP id u4-20020a05600c138400b004166af127afmr1596783wmf.35.1714560090610;
+        Wed, 01 May 2024 03:41:30 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a5-20020a05600c224500b0041aa79f27a0sm1775807wmm.38.2024.05.01.03.41.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 May 2024 03:41:30 -0700 (PDT)
+Message-ID: <c55b7cdf-5ff2-42fb-8611-d9492f37d4b1@linaro.org>
+Date: Wed, 1 May 2024 11:41:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SnPvkgTlHmJo6buD"
-Content-Disposition: inline
-In-Reply-To: <20240426-dev-charlie-support_thead_vector_6_9-v4-3-b692f3c516ec@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/8] dt-bindings: clock: qcom: Add SM8650 video clock
+ controller
+To: Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Taniya Das <quic_tdas@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>
+References: <20240430142757.16872-1-quic_jkona@quicinc.com>
+ <20240430142757.16872-3-quic_jkona@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240430142757.16872-3-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
---SnPvkgTlHmJo6buD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Apr 26, 2024 at 02:29:17PM -0700, Charlie Jenkins wrote:
-> If vlenb is provided in the device tree, prefer that over reading the
-> vlenb csr.
->=20
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+On 30/04/2024 15:27, Jagadeesh Kona wrote:
+> SM8650 video clock controller has most clocks same as SM8450,
+> but it also has few additional clocks and resets. Add device tree
+> bindings for the video clock controller on Qualcomm SM8650 platform
+> by defining these additional clocks and resets on top of SM8450.
+> 
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
 > ---
->  arch/riscv/include/asm/cpufeature.h |  2 ++
->  arch/riscv/kernel/cpufeature.c      | 43 +++++++++++++++++++++++++++++++=
-++++++
->  arch/riscv/kernel/vector.c          | 12 ++++++++++-
->  3 files changed, 56 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
-/cpufeature.h
-> index 347805446151..0c4f08577015 100644
-> --- a/arch/riscv/include/asm/cpufeature.h
-> +++ b/arch/riscv/include/asm/cpufeature.h
-> @@ -31,6 +31,8 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
->  /* Per-cpu ISA extensions. */
->  extern struct riscv_isainfo hart_isa[NR_CPUS];
-> =20
-> +extern u32 riscv_vlenb_of;
+>   .../bindings/clock/qcom,sm8450-videocc.yaml   |  6 ++++-
+>   .../dt-bindings/clock/qcom,sm8650-videocc.h   | 23 +++++++++++++++++++
+>   2 files changed, 28 insertions(+), 1 deletion(-)
+>   create mode 100644 include/dt-bindings/clock/qcom,sm8650-videocc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+> index 78a1bb5be878..922e95c61778 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+> @@ -8,18 +8,22 @@ title: Qualcomm Video Clock & Reset Controller on SM8450
+>   
+>   maintainers:
+>     - Taniya Das <quic_tdas@quicinc.com>
+> +  - Jagadeesh Kona <quic_jkona@quicinc.com>
+>   
+>   description: |
+>     Qualcomm video clock control module provides the clocks, resets and power
+>     domains on SM8450.
+>   
+> -  See also:: include/dt-bindings/clock/qcom,sm8450-videocc.h
+> +  See also::
+> +    include/dt-bindings/clock/qcom,sm8450-videocc.h
+> +    include/dt-bindings/clock/qcom,sm8650-videocc.h
+>   
+>   properties:
+>     compatible:
+>       enum:
+>         - qcom,sm8450-videocc
+>         - qcom,sm8550-videocc
+> +      - qcom,sm8650-videocc
+>   
+>     reg:
+>       maxItems: 1
+> diff --git a/include/dt-bindings/clock/qcom,sm8650-videocc.h b/include/dt-bindings/clock/qcom,sm8650-videocc.h
+> new file mode 100644
+> index 000000000000..4e3c2d87280f
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,sm8650-videocc.h
+> @@ -0,0 +1,23 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
 > +
->  void riscv_user_isa_enable(void);
-> =20
->  #if defined(CONFIG_RISCV_MISALIGNED)
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 3ed2359eae35..8158f34c3e36 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -35,6 +35,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __r=
-ead_mostly;
->  /* Per-cpu ISA extensions. */
->  struct riscv_isainfo hart_isa[NR_CPUS];
-> =20
-> +u32 riscv_vlenb_of;
+> +#ifndef _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8650_H
+> +#define _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8650_H
 > +
->  /**
->   * riscv_isa_extension_base() - Get base extension word
->   *
-> @@ -648,6 +650,42 @@ static int __init riscv_isa_fallback_setup(char *__u=
-nused)
->  early_param("riscv_isa_fallback", riscv_isa_fallback_setup);
->  #endif
-> =20
-> +static int riscv_homogeneous_vlenb(void)
-
-Without a verb, this function name is rather odd.
-
-> +{
-> +	int cpu;
-> +	u32 prev_vlenb =3D 0;
-> +	u32 vlenb;
+> +#include "qcom,sm8450-videocc.h"
 > +
-> +	for_each_possible_cpu(cpu) {
-> +		struct device_node *cpu_node;
+> +/* SM8650 introduces below new clocks and resets compared to SM8450 */
 > +
-> +		cpu_node =3D of_cpu_device_node_get(cpu);
-> +		if (!cpu_node) {
-> +			pr_warn("Unable to find cpu node\n");
-> +			continue;
-
-Hmm, if we fail to find the cpu node, then shouldn't we be returning an
-error?
-
-> +		}
+> +/* VIDEO_CC clocks */
+> +#define VIDEO_CC_MVS0_SHIFT_CLK					12
+> +#define VIDEO_CC_MVS0C_SHIFT_CLK				13
+> +#define VIDEO_CC_MVS1_SHIFT_CLK					14
+> +#define VIDEO_CC_MVS1C_SHIFT_CLK				15
+> +#define VIDEO_CC_XO_CLK_SRC					16
 > +
-> +		if (of_property_read_u32(cpu_node, "riscv,vlenb", &vlenb)) {
-> +			of_node_put(cpu_node);
+> +/* VIDEO_CC resets */
+> +#define VIDEO_CC_XO_CLK_ARES					7
 > +
-> +			if (prev_vlenb)
-> +				return -1;
+> +#endif
 
-Can you return an errno here and below please?
+Extensibility +1
 
-> +			continue;
-> +		}
-> +
-> +		if (prev_vlenb && vlenb !=3D prev_vlenb) {
-> +			of_node_put(cpu_node);
-> +			return -1;
-> +		}
-> +
-> +		prev_vlenb =3D vlenb;
-> +		of_node_put(cpu_node);
-> +	}
-> +
-> +	riscv_vlenb_of =3D vlenb;
-> +	return 0;
-> +}
-> +
->  void __init riscv_fill_hwcap(void)
->  {
->  	char print_str[NUM_ALPHA_EXTS + 1];
-> @@ -671,6 +709,11 @@ void __init riscv_fill_hwcap(void)
->  			pr_info("Falling back to deprecated \"riscv,isa\"\n");
->  			riscv_fill_hwcap_from_isa_string(isa2hwcap);
->  		}
-> +
-> +		if (riscv_homogeneous_vlenb() < 0) {
-> +			pr_warn("RISCV_ISA_V only supports one vlenb on SMP systems. Please e=
-nsure that the riscv,vlenb devicetree property is the same across all CPUs.=
- Either all CPUs must have the riscv,vlenb property, or none. If no CPUs in=
- the devicetree use riscv,vlenb then vlenb will be probed from the vlenb CS=
-R. Disabling vector.\n");
-
-Oh dear, that's a bit unwieldy... I think you could get away with a far
-more basic message - and you should be able to break this over lines,
-adjacent string literals should get concatenated.
-I'd probably say something like "unsupported heterogeneous vlen detected,
-vector extension disabled", however we should actually check that the
-vector extension has been detected on all CPUs and that kernel support
-for vector is enabled before emitting a warning for this.
-
-Cheers,
-Conor.
-
-> +			elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
-> +		}
->  	}
-> =20
->  	/*
-> diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
-> index 6727d1d3b8f2..e04586cdb7f0 100644
-> --- a/arch/riscv/kernel/vector.c
-> +++ b/arch/riscv/kernel/vector.c
-> @@ -33,7 +33,17 @@ int riscv_v_setup_vsize(void)
->  {
->  	unsigned long this_vsize;
-> =20
-> -	/* There are 32 vector registers with vlenb length. */
-> +	/*
-> +	 * There are 32 vector registers with vlenb length.
-> +	 *
-> +	 * If the riscv,vlenb property was provided by the firmware, use that
-> +	 * instead of probing the CSRs.
-> +	 */
-> +	if (riscv_vlenb_of) {
-> +		this_vsize =3D riscv_vlenb_of * 32;
-> +		return 0;
-> +	}
-> +
->  	riscv_v_enable();
->  	this_vsize =3D csr_read(CSR_VLENB) * 32;
->  	riscv_v_disable();
->=20
-> --=20
-> 2.44.0
->=20
-
---SnPvkgTlHmJo6buD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjIaEQAKCRB4tDGHoIJi
-0hNBAP9YH38VakJjIeXqwOnQlJJWTLPRdPDQPf5eTY+Ir67I6QEA8WCxzjgKtaAO
-OCpGug+WIcHcZlm8J+isXxxHhyQ9TwQ=
-=T1wq
------END PGP SIGNATURE-----
-
---SnPvkgTlHmJo6buD--
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
