@@ -1,173 +1,115 @@
-Return-Path: <devicetree+bounces-64238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257758B88BB
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:46:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8308B88C0
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:47:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDEFB285C01
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:46:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 016E1286382
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 10:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1D4548EF;
-	Wed,  1 May 2024 10:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876345490E;
+	Wed,  1 May 2024 10:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOQlLWew"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HKL3uBgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8C6D4F881;
-	Wed,  1 May 2024 10:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86584F881;
+	Wed,  1 May 2024 10:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714560375; cv=none; b=Gvisb6XiMoKeAoE+tw5ZfUYcbOvfgLHKGGzlcMcV52c3P8xFWpxVrSMEZJgp88b46QQlDkMI/Ju7D166EzFDG+N3Xg0fB8rBepSYclIjHmRiCEW7jeOCNQ0jyGwgXXt1ZqvVfiIH/EohKEbZRjS51VQRolXC6R0nqYk2RgvY9Gs=
+	t=1714560466; cv=none; b=KoKQW7TC3dOmo7NEgmEPBJpm5BakNKp0aC40M0pXRm0oLc4u4nqEMZIMuw60nwmohy0X5GA/t3z/NpncMJ9Iq+yTkUD3ibSg2ec3Rb7rG0TRQrPu75wWr0t82ywJzF+R5qB4AiHvN3IF4JM/51qbilYhu6/4WnMA8UKGf8qZJTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714560375; c=relaxed/simple;
-	bh=bX0yFlagqPxL0dHVhtKj3sAKB8RRba8ErDXH4L/dIlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d+9uhF1g+0yudSRBI+ornw9hxYdFOxq2LXSSz7nQkErHGBZqrQSAg8NuRrJg2nXPIogiB2XQ6OKblL7OTSH0IQDCMgXhuct994hQMuBFDSN66GXfluBEObe3Eh5N4BujFyImGJVPgUCt9utZkYZb+VoKnFuXYYxdQ+k84L7x23w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOQlLWew; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D304BC113CC;
-	Wed,  1 May 2024 10:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714560374;
-	bh=bX0yFlagqPxL0dHVhtKj3sAKB8RRba8ErDXH4L/dIlM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TOQlLWewBQhULLcVzVr3hASRrCE4wgGiJ7futMijuDRrO24JY+JBhielx22xMrfiM
-	 CXxWH8VktaCHkkyQgueekYdahaGDIr0L80H30Vt+7pU7vIRz5inSaRuaiDeZsgE8Ik
-	 OfVh2Bsf/0eH4c2Fr5PFjPe4IW0+r3+YG0a97ectlPzyVsDTzMoMDq1nZVQXWL0Y3O
-	 BCvWFWfZGIjFVI1u9XGgt1QQKEEAN+KkH6V3zaG6Wf/khOzkt0V8HcwdVQ/CW+9lRn
-	 qXhbbK8qmKKaOG7Iw+pIqQXv3c0JBG5JvPpPhm2ZTVHRTsURmoQ4aSYFh9Jr0xfeOZ
-	 sjzdEnGxpkUrg==
-Date: Wed, 1 May 2024 11:46:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v4 05/16] riscv: Extend cpufeature.c to detect vendor
- extensions
-Message-ID: <20240501-chastise-gecko-342f2c35cfc1@spud>
-References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
- <20240426-dev-charlie-support_thead_vector_6_9-v4-5-b692f3c516ec@rivosinc.com>
+	s=arc-20240116; t=1714560466; c=relaxed/simple;
+	bh=qF2S9kRF2bnK8+Mn2EI6KFSaM3JZbWrGmzDAE/FLGmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XGc5lVbMRvVPMyRD2jJxh86wlNfioMNIORWvclIynxtaEOoHhl7Dzx5C3O/wV0NfU1RHVIPwFG1ETBovAB7gcJUPjH/jwNkBQ9e3TkNPaWfDcxDPfYg1pe9JryxP9WkqE5r7AYt319EBMXp8lXfPSBVvA4GuV1kSPexHbEJfE4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HKL3uBgL; arc=none smtp.client-ip=209.85.128.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-41b79450f78so38331125e9.2;
+        Wed, 01 May 2024 03:47:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714560463; x=1715165263; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qF2S9kRF2bnK8+Mn2EI6KFSaM3JZbWrGmzDAE/FLGmk=;
+        b=HKL3uBgLQhN48CHA7waTLLK9wKjgLp67pOsJ24wK2AqnB27Blmy87OX1Qg+HFyAyTG
+         B7BLmOX5BggIGKgVGaJE1gH5pb6zcYF0J6K4IM/mbw62PhlXV6aG2EKZ+87xUSfHr9mS
+         2LNUJQv/wKPYitpsPptDN64Ok8vxjQXfE9dcKW2K+0SmbotxEbsugr0iFuVf/yrhlO8r
+         ON+ahD7yfwRlvSKnC5QZyjz/jiKR9rYf/9RzazU94WvbJKp/2sBQDEBY/3fBp7c4Ypag
+         8wYBp2J/S38tJvoyNgY17iE/pyM6domKV72gwZcHHTJG58zh76tM8Gpjm5Yp9JDoZa/R
+         AVnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714560463; x=1715165263;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qF2S9kRF2bnK8+Mn2EI6KFSaM3JZbWrGmzDAE/FLGmk=;
+        b=lzMlYFLK8NNNGKzzMJWqR0Xyy3POcjMliYB8d5pIyQ00MD4zocW7ymaOrW6nwCdQky
+         +GCS9EP4XC1ovYD42clGbYUzw4ddwovpQfSJjpYUB7Z14U/TWEk88BbBriqIDCW/XRb5
+         Md2S9P6ng0xd9rCYdM7mvho30oO+h8GLv4PdXWk9Z3emhE4zEgj2LpOldCS8K1Ur8Hlc
+         V5JQezD4hnurHXDg+IYXf1/61OaP9d89kfgKB8/g8cgWjbRONRlQtajegf+SEQd6aTQY
+         sYIiG68OpuaBof2VB4rMPyv/mM6x89Krpa5fxH+i9U2NOy+ZMyov8fuN46lubVh5IV+4
+         R6Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqTc5ssMLMMz394ur+12Zo8VjyxBVrO/eTxF0oybAbM8EBB7FG0KT+fCCjNZfg/HQjHtU0OsF5nqjbrjpJRpnUmT6Hts/wVoi99qSGdU/sFCBIUb2Q/AkcmWlLcUw9J3YX78I9j/CC0n0ZrQZ2rGV3r2HhX2MnsazuYOwp3rDfhSK5fw==
+X-Gm-Message-State: AOJu0YwL3XhiDT+cYyp+GpbCc24VzunFg1zWqIih58QhwNmT0KKBN2Up
+	/W33Eqou7yVDuj/lqLUbjpep0DBT9G2+cH9D/8cnsKQBwRn4B7zsQQ/kj6eX9Gkp0kuwrjQLhVu
+	n3SxFI4dbfrhdD7EHO7gSQQGb/Q/uyyQKzMs=
+X-Google-Smtp-Source: AGHT+IGYu7yaltNnrcGlBtdeLcVRMiJYJjlHzWktXSWPpKkB1YOx5qr9AwD+FU57kLNbdTvclS0w1nvMncugKBostG8=
+X-Received: by 2002:a5d:4246:0:b0:34d:b265:6401 with SMTP id
+ s6-20020a5d4246000000b0034db2656401mr2361598wrr.46.1714560463010; Wed, 01 May
+ 2024 03:47:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IU1h/zA/fxPmJmrU"
-Content-Disposition: inline
-In-Reply-To: <20240426-dev-charlie-support_thead_vector_6_9-v4-5-b692f3c516ec@rivosinc.com>
-
-
---IU1h/zA/fxPmJmrU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <CADFWO8EZWkXeAMcURgGGEmzVjiSxFTVAbKpsb2Qmv66EZiTc+A@mail.gmail.com>
+ <ZjEQKqkWA66HtiD4@smile.fi.intel.com> <20240430-booth-spinster-bf59f780f10a@spud>
+In-Reply-To: <20240430-booth-spinster-bf59f780f10a@spud>
+From: Petar Stoykov <pd.pstoykov@gmail.com>
+Date: Wed, 1 May 2024 12:47:32 +0200
+Message-ID: <CADFWO8FzQ8FgD5a2jKECaMRX65_1Nd6vsgh43bXqsSz52xtZKw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add support for Sensirion SDP500
+To: Conor Dooley <conor@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, linux-iio@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+	Angel Iglesias <ang.iglesiasg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 26, 2024 at 02:29:19PM -0700, Charlie Jenkins wrote:
-> Separate vendor extensions out into one struct per vendor
-> instead of adding vendor extensions onto riscv_isa_ext.
->=20
-> Add a hidden config RISCV_ISA_VENDOR_EXT to conditionally include this
-> code.
->=20
-> The xtheadvector vendor extension is added using these changes.
+On Tue, Apr 30, 2024 at 6:46=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Tue, Apr 30, 2024 at 06:37:14PM +0300, Andy Shevchenko wrote:
+> > On Tue, Apr 30, 2024 at 05:27:17PM +0200, Petar Stoykov wrote:
+> > > From c4437fd0ea296c4c964b1fb924144ae24a2ce443 Mon Sep 17 00:00:00 200=
+1
+> > > From: Petar Stoykov <pd.pstoykov@gmail.com>
+> > > Date: Mon, 29 Apr 2024 16:41:30 +0200
+> > > Subject: [PATCH 0/3] Add support for Sensirion SDP500
+> > >
+> > > This patch series
+> >
+> > It's not. I mean from the email chaining perspective. Have you forgotte=
+n
+> > to add --thread to git format-patch?
+> >
+> > Also, what is that in above?
+>
+> Looks more like patches pasted into gmail or w/e, rather than sent with
+> git send-email.
 
-This mostly looks good to me, thanks for the updates. There's one thing
-that I think is wrong, but I need to test and will get back to you on...
-
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> ---
->  arch/riscv/Kconfig                               |  2 +
->  arch/riscv/Kconfig.vendor                        | 19 ++++++
->  arch/riscv/include/asm/cpufeature.h              | 18 ++++++
->  arch/riscv/include/asm/vendor_extensions.h       | 26 ++++++++
->  arch/riscv/include/asm/vendor_extensions/thead.h | 19 ++++++
->  arch/riscv/kernel/Makefile                       |  2 +
->  arch/riscv/kernel/cpufeature.c                   | 77 ++++++++++++++++++=
-------
->  arch/riscv/kernel/vendor_extensions.c            | 18 ++++++
->  arch/riscv/kernel/vendor_extensions/Makefile     |  3 +
->  arch/riscv/kernel/vendor_extensions/thead.c      | 36 +++++++++++
->  10 files changed, 200 insertions(+), 20 deletions(-)
->=20
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index be09c8836d56..fec86fba3acd 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -759,6 +759,8 @@ config RISCV_EFFICIENT_UNALIGNED_ACCESS
-> =20
->  endchoice
-> =20
-> +source "arch/riscv/Kconfig.vendor"
-> +
->  endmenu # "Platform type"
-> =20
->  menu "Kernel features"
-> diff --git a/arch/riscv/Kconfig.vendor b/arch/riscv/Kconfig.vendor
-> new file mode 100644
-> index 000000000000..4fc86810af1d
-> --- /dev/null
-> +++ b/arch/riscv/Kconfig.vendor
-> @@ -0,0 +1,19 @@
-> +menu "Vendor extensions"
-> +
-> +config RISCV_ISA_VENDOR_EXT
-> +	bool
-> +
-> +menu "T-Head"
-> +config RISCV_ISA_VENDOR_EXT_THEAD
-> +	bool "T-Head vendor extension support"
-> +	select RISCV_ISA_VENDOR_EXT
-> +	default y
-> +	help
-> +	  Say N here if you want to disable all T-Head vendor extension
-> +	  support. This will cause any T-Head vendor extensions that are
-> +	  requested to be ignored.
-
-What does "requested to be ignored" mean to a punter configuring a
-kernel? I'd expect this to be something like:
-
-"Say N here to disable detection of and support for all T-Head vendor
-extensions. Without this option enabled, T-Head vendor extensions will
-not be detected at boot and their presence not reported to userspace."
-
-In general, I'd expect something that needs some support in the kernel
-(like vector) to function to have a dedicated option, but the likes of
-their Zba variant could be detected and reported via hwprobe et al
-once RISCV_ISA_VENDOR_EXT_THEAD is enabled.
-
-Cheers,
-Conor.
-
---IU1h/zA/fxPmJmrU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjIdbwAKCRB4tDGHoIJi
-0h/4AQDbSwC+zSd2L4oMXZ62nZMJrbPWx5JE9S7nb98blCe6XwEAgXMzwjjp4Aq0
-0/Nm2H/CfihseOibQXFgeXh59NryOgo=
-=g7p2
------END PGP SIGNATURE-----
-
---IU1h/zA/fxPmJmrU--
+For stupid reasons I can't use git send-email. I thought I will manage with
+using gmail alone. The thing at the start is a mess-up of copy paste indeed=
+.
 
