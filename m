@@ -1,161 +1,309 @@
-Return-Path: <devicetree+bounces-64339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5396A8B8E69
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:45:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A083D8B8E71
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:46:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 080A4283F2D
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55F42283F25
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED85DDC3;
-	Wed,  1 May 2024 16:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A3BFBE8;
+	Wed,  1 May 2024 16:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b8mrd9b0"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="aYiREsO0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87712D52F
-	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 16:45:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6138CE542
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 16:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714581949; cv=none; b=K8TCG0SEG6NfLjTxv8b4nFExVsAs+vuoxgh06m8CgnNMEd4ySREn7MxCYeAAc8ZAhmmCCutKEFNwW12j5elT5pRQjHSkDYc0JWWO2IwrNUQC088QRUeenvEek/V5Qj6eGCg/nYvjLgc9EIQg/rkHvi0ZME+NImcDnJNDiRKMFao=
+	t=1714582000; cv=none; b=ugHqbpkWXd5QAqGXpcIlO7WLCJGBWg7S/F4UWg5lnEpdvJQvf3UURsiQG0JBvtUA1gDOexmunOfWowU39KgCudRBAgi175z8fhF/0CJgkFksYS51trUdAcmEjwjgCLZXIsvC9ZSxnxZkzEwErMoOLWLeSc9VXF96C1CFy0yz0Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714581949; c=relaxed/simple;
-	bh=tJDHpVVjDdwtBugmMlu+otKkhPryPFq5kjkW+kM16fo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X57gE7pkDZcZD9i2vghOufO+SPDcu9j+fzpCEpuhj7R7/Ged0Rg8XU+LkMYaQEOWciKeRCc+WMDOAPP32LbRPSYxAor89jZjqK+If2dDnlEVOQBKifWP5v++5MAft/Q8fdas27NwlgD9XP85pHZVI3oxmWn91tdY0qTis+8Q4sA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b8mrd9b0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555A3C072AA;
-	Wed,  1 May 2024 16:45:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714581949;
-	bh=tJDHpVVjDdwtBugmMlu+otKkhPryPFq5kjkW+kM16fo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b8mrd9b0FP0chojwQ6F/OfJNV7JncPl/lRevy9iVD11urX53OO3oDudKfjpje9nBt
-	 yp8c0PRDmoF5u5sZbl+fPqrSU979ni0Mo4TntZZQu2XkDvzQiPabVCd2OY5NeU/vai
-	 yCyBmHrjvpiAXa9M9JePHyGYs8nwbUapFDAln6g7KAxsNldWTIOeDo3/0q8CBTOBG5
-	 U3zNT6ni7SgT99dZhM4xkpimIgQVPB/L5svDQpJky89MtJaawFb7/4+XOKUgR9/T/t
-	 LB+kkGVI14x+XOxOeYcguk3gUgMm2/z0FaKkzWm3VroqrDSIxhz/2YyKJeJaxZp24O
-	 frX7+hzneyltw==
-Message-ID: <c5331cf8-7295-4e6a-ba39-e0751a2c357e@kernel.org>
-Date: Wed, 1 May 2024 18:45:43 +0200
+	s=arc-20240116; t=1714582000; c=relaxed/simple;
+	bh=tR+PGLQo9BVGPoo9A8iw6jPgITstE381cUqT5HTEdhs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IQF+PZU0IvPnQnxpYt0ufqjzAnAsvibhDJcT9xvxZ/5nTFo0HggPHIU7vyiWKJwDZYGyrYrppiu0LFxLf6OJkwydiFNRXULaYPyIkevhVcOJvL6TIbBKRweJYquAzlDWHOkWM9QoykwbQkXBrw7p4sDJfpUgE05hf45azxzHB/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=aYiREsO0; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2df848f9325so58641021fa.1
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 09:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714581996; x=1715186796; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nPkyhmFJU1JMGPaNgbyvGV60qehrcfbkIOrxyWAvpo8=;
+        b=aYiREsO0CAmNCkVjjtwKM+Gb+4leHTPNr37/K8oqJtrOGqG94N+WHpPf08a3FbDrpw
+         tqb1fCj07MUDlgk1lNnK6BdmN0hX5Qk4IDAR+F5j5ZriDdk785NbYZcVfobmO7qh8W8i
+         jWfVLATpumhKkBut0v1jroeZiRM5EZXPZjGbUa3vZjR2Md1q4G8ARXHUJUc1NmG7OvH+
+         2y/U4gUOWFFaU7Q9TxFKwmYXDbWCY9zATOxx55kOiWJF/mMihwxGgzlhFggdzQaCCCpP
+         CDS7AysfJurADdqYL5hg9UWMYdyvhPzuuDq7Eqbxb9X8Rt/jKh9pn+kulS4PbC+Fabwz
+         WxKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714581996; x=1715186796;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nPkyhmFJU1JMGPaNgbyvGV60qehrcfbkIOrxyWAvpo8=;
+        b=WKrIy0saFved+yLbi+whw3dhwDJ03iQg19NbSm7A5lWt2gXprcfoTJsHqbSdZfTW6b
+         3RS64g4aadMdOEw1CnTgeDpatNh0ElYlANUugocltkbMtw27nURVWl7K1MTsZWSwLSRP
+         3vFcjQWDM1hQrKgyWZroxhi4uGkJnNizKI4/sir08MEed1c37zwgfXM5gup3zT5jEAFh
+         tTkVpN1TKUSlKJryoCtsx3bo22mYjKx3zXTmdsYmw/U2mtHksbIUNVNaqkN9jjjOFieS
+         abpQqBWUoBb80+Suyzxt3xeDwqF7UA6JwoMxB1Nwvs5porE4ex/E1bUGdrN/Jds2Qhev
+         GawA==
+X-Forwarded-Encrypted: i=1; AJvYcCXD8hZBOOGTnmcEbYnKld0O8fdNxc6zuzbFDjfkgsYUjb63Wn7rTKrSuO6zdI0M6Gb0Vqq8bI+LiKUO5MEKfpyXkk8LQ6p8VRWhEQ==
+X-Gm-Message-State: AOJu0Yz8N2WckIXyFyP6BViBQeL0dRMcSHWeGAvhxllN0DNq+A/krOGw
+	SVWs2R+1bcfF7DQDAaNN45m5OAchcoThaSPdC2Xe6u+hB6hkxGsqhIWXYKdsnLYEAKh6kpXQaiO
+	ac5IhYUVUKvJqVp1+VRFRKplv7px6/hsCmTqE+g==
+X-Google-Smtp-Source: AGHT+IG2HxP8EkhhzvKMZFmu+eStMsTn8Na5rYE3NFMbVub2yDTq+zSkE9e9PLzI6PYUpamY3eZ/RVfBbio+sRUFRIA=
+X-Received: by 2002:a2e:9b48:0:b0:2e0:ca9a:a1c7 with SMTP id
+ o8-20020a2e9b48000000b002e0ca9aa1c7mr2232711ljj.45.1714581996597; Wed, 01 May
+ 2024 09:46:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: aspeed-g6: Add nodes for i3c controllers
-To: Jeremy Kerr <jk@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Joel Stanley <joel@jms.id.au>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20240501033832.1529340-1-jk@codeconstruct.com.au>
- <65af46c3-e48f-4eae-8390-2bc01332ccbf@kernel.org>
- <09ed10182e2282d7e408a4fef7994da010fe058e.camel@codeconstruct.com.au>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <09ed10182e2282d7e408a4fef7994da010fe058e.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-5cf53b5bc492@rivosinc.com>
+ <20240426-dev-charlie-support_thead_vector_6_9-v4-13-5cf53b5bc492@rivosinc.com>
+In-Reply-To: <20240426-dev-charlie-support_thead_vector_6_9-v4-13-5cf53b5bc492@rivosinc.com>
+From: Evan Green <evan@rivosinc.com>
+Date: Wed, 1 May 2024 09:46:00 -0700
+Message-ID: <CALs-HsuPXhc93jqs==-Gq5Os701jxmzjxg82EHdOFHn+H-9Jdg@mail.gmail.com>
+Subject: Re: [PATCH v4 13/16] riscv: hwprobe: Add thead vendor extension probing
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Conor Dooley <conor.dooley@microchip.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Palmer Dabbelt <palmer@rivosinc.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/05/2024 13:17, Jeremy Kerr wrote:
-> Hi Krzysztof,
-> 
->>> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
->>> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
->>> @@ -866,6 +866,13 @@ i2c: bus@1e78a000 {
->>>                                 ranges = <0 0x1e78a000 0x1000>;
->>>                         };
->>>  
->>> +                       i3c: bus@1e7a0000 {
->>> +                               compatible = "simple-bus";
->>
->> What bus is it? Why is it even needed? If it is i3c, then for sure
->> compatible is wrong.
-> 
-> This is not the i3c bus, it's the MMIO mapping that allows us to specify
-> the individual i3c controller mappings as sensible offsets into the main
-> address space. Did you miss the ranges property there?
-> 
-> This is following the existing design for the i2c controllers.
-> 
->>> +                               #address-cells = <1>;
->>> +                               #size-cells = <1>;
->>> +                               ranges = <0 0x1e7a0000 0x8000>;
->>> +                       };
->>> +
->>>                         fsim0: fsi@1e79b000 {
->>>                                 compatible = "aspeed,ast2600-fsi-master", "fsi-master";
->>>                                 reg = <0x1e79b000 0x94>;
->>> @@ -1125,3 +1132,89 @@ i2c15: i2c-bus@800 {
->>>                 status = "disabled";
->>>         };
->>>  };
->>> +
->>> +&i3c {
->>
->> ????
->>
->> That's not how we construct DTS.  Overrides/extends of nodes are for
->> boards, not within DTSI.
-> 
-> The overrides are occurring at the &i3cX labels, not &i3c. Platform
-> level dts just connect at those labels to define overrides for each bus:
+On Fri, Apr 26, 2024 at 2:37=E2=80=AFPM Charlie Jenkins <charlie@rivosinc.c=
+om> wrote:
+>
+> Add a new hwprobe key "RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0" which
+> allows userspace to probe for the new RISCV_ISA_VENDOR_EXT_XTHEADVECTOR
+> vendor extension.
+>
+> This new key will allow userspace code to probe for which thead vendor
+> extensions are supported. This API is modeled to be consistent with
+> RISCV_HWPROBE_KEY_IMA_EXT_0. The bitmask returned will have each bit
+> corresponding to a supported thead vendor extension of the cpumask set.
+> Just like RISCV_HWPROBE_KEY_IMA_EXT_0, this allows a userspace program
+> to determine all of the supported thead vendor extensions in one call.
+>
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/hwprobe.h                   |  4 +--
+>  .../include/asm/vendor_extensions/thead_hwprobe.h  | 11 ++++++
+>  arch/riscv/include/uapi/asm/hwprobe.h              |  3 +-
+>  arch/riscv/include/uapi/asm/vendor/thead.h         |  3 ++
+>  arch/riscv/kernel/sys_hwprobe.c                    |  9 +++++
+>  arch/riscv/kernel/vendor_extensions/Makefile       |  1 +
+>  .../riscv/kernel/vendor_extensions/thead_hwprobe.c | 42 ++++++++++++++++=
+++++++
+>  7 files changed, 70 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/riscv/include/asm/hwprobe.h b/arch/riscv/include/asm/hw=
+probe.h
+> index 630507dff5ea..e68496b4f8de 100644
+> --- a/arch/riscv/include/asm/hwprobe.h
+> +++ b/arch/riscv/include/asm/hwprobe.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+>  /*
+> - * Copyright 2023 Rivos, Inc
+> + * Copyright 2023-2024 Rivos, Inc
+>   */
+>
+>  #ifndef _ASM_HWPROBE_H
+> @@ -8,7 +8,7 @@
+>
+>  #include <uapi/asm/hwprobe.h>
+>
+> -#define RISCV_HWPROBE_MAX_KEY 6
+> +#define RISCV_HWPROBE_MAX_KEY 7
+>
+>  static inline bool riscv_hwprobe_key_is_valid(__s64 key)
+>  {
+> diff --git a/arch/riscv/include/asm/vendor_extensions/thead_hwprobe.h b/a=
+rch/riscv/include/asm/vendor_extensions/thead_hwprobe.h
+> new file mode 100644
+> index 000000000000..907cfc4eb4dc
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/vendor_extensions/thead_hwprobe.h
+> @@ -0,0 +1,11 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _ASM_RISCV_VENDOR_EXTENSIONS_THEAD_HWPROBE_H
+> +#define _ASM_RISCV_VENDOR_EXTENSIONS_THEAD_HWPROBE_H
+> +
+> +#include <linux/cpumask.h>
+> +
+> +#include <uapi/asm/hwprobe.h>
+> +
+> +void hwprobe_isa_vendor_ext_thead_0(struct riscv_hwprobe *pair, const st=
+ruct cpumask *cpus);
+> +
+> +#endif
+> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/u=
+api/asm/hwprobe.h
+> index 9f2a8e3ff204..21e96a63f9ea 100644
+> --- a/arch/riscv/include/uapi/asm/hwprobe.h
+> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+>  /*
+> - * Copyright 2023 Rivos, Inc
+> + * Copyright 2023-2024 Rivos, Inc
+>   */
+>
+>  #ifndef _UAPI_ASM_HWPROBE_H
+> @@ -67,6 +67,7 @@ struct riscv_hwprobe {
+>  #define                RISCV_HWPROBE_MISALIGNED_UNSUPPORTED    (4 << 0)
+>  #define                RISCV_HWPROBE_MISALIGNED_MASK           (7 << 0)
+>  #define RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE    6
+> +#define RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0   7
+>  /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
+>
+>  /* Flags */
+> diff --git a/arch/riscv/include/uapi/asm/vendor/thead.h b/arch/riscv/incl=
+ude/uapi/asm/vendor/thead.h
+> new file mode 100644
+> index 000000000000..43790ebe5faf
+> --- /dev/null
+> +++ b/arch/riscv/include/uapi/asm/vendor/thead.h
+> @@ -0,0 +1,3 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +
+> +#define                RISCV_HWPROBE_VENDOR_EXT_XTHEADVECTOR   (1 << 0)
+> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwpr=
+obe.c
+> index 8cae41a502dd..e59cac545df5 100644
+> --- a/arch/riscv/kernel/sys_hwprobe.c
+> +++ b/arch/riscv/kernel/sys_hwprobe.c
+> @@ -13,6 +13,7 @@
+>  #include <asm/uaccess.h>
+>  #include <asm/unistd.h>
+>  #include <asm/vector.h>
+> +#include <asm/vendor_extensions/thead_hwprobe.h>
+>  #include <vdso/vsyscall.h>
+>
+>
+> @@ -216,6 +217,14 @@ static void hwprobe_one_pair(struct riscv_hwprobe *p=
+air,
+>                         pair->value =3D riscv_cboz_block_size;
+>                 break;
+>
+> +       case RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0:
+> +#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_THEAD
+> +               hwprobe_isa_vendor_ext_thead_0(pair, cpus);
+> +#else
+> +               pair->value =3D 0;
+> +#endif
 
-You miss the point. Look how DTS is constructed, read DTS coding style.
+Could we move this ifdef into the header by declaring a dummy
+hwprobe_isa_vendor_ext_thead_0() in the header for the !ENABLED case?
 
-Your first node is empty and that is not readable.
+> +               break;
+> +
+>         /*
+>          * For forward compatibility, unknown keys don't fail the whole
+>          * call, but get their element key set to -1 and value set to 0
+> diff --git a/arch/riscv/kernel/vendor_extensions/Makefile b/arch/riscv/ke=
+rnel/vendor_extensions/Makefile
+> index 8f1c5a4dc38f..f511fd269e8a 100644
+> --- a/arch/riscv/kernel/vendor_extensions/Makefile
+> +++ b/arch/riscv/kernel/vendor_extensions/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>
+>  obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)       +=3D thead.o
+> +obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)       +=3D thead_hwprobe.o
+>  obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_ANDES)       +=3D andes.o
+> diff --git a/arch/riscv/kernel/vendor_extensions/thead_hwprobe.c b/arch/r=
+iscv/kernel/vendor_extensions/thead_hwprobe.c
+> new file mode 100644
+> index 000000000000..e8e2de292032
+> --- /dev/null
+> +++ b/arch/riscv/kernel/vendor_extensions/thead_hwprobe.c
+> @@ -0,0 +1,42 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include <asm/vector.h>
+> +#include <asm/vendor_extensions/thead.h>
+> +#include <asm/vendor_extensions/thead_hwprobe.h>
+> +
+> +#include <linux/cpumask.h>
+> +#include <linux/types.h>
+> +
+> +#include <uapi/asm/hwprobe.h>
+> +#include <uapi/asm/vendor/thead.h>
+> +
+> +void hwprobe_isa_vendor_ext_thead_0(struct riscv_hwprobe *pair, const st=
+ruct cpumask *cpus)
+> +{
+> +       /*
+> +        * Loop through and record extensions that 1) anyone has, and 2) =
+anyone
+> +        * doesn't have.
+> +        */
+> +
+> +       struct riscv_isainfo *per_hart_thead_bitmap =3D riscv_isa_vendor_=
+ext_list_thead.per_hart_vendor_bitmap;
+> +       int cpu;
+> +       u64 missing;
+> +
+> +       for_each_cpu(cpu, cpus) {
+> +               struct riscv_isainfo *isainfo =3D &per_hart_thead_bitmap[=
+cpu];
+> +
+> +#define EXT_KEY(ext)                                                    =
+               \
+> +       do {                                                             =
+               \
+> +               if (__riscv_isa_extension_available(isainfo->isa, RISCV_I=
+SA_VENDOR_EXT_##ext)) \
+> +                       pair->value |=3D RISCV_HWPROBE_VENDOR_EXT_##ext; =
+                 \
+> +               else                                                     =
+               \
+> +                       missing |=3D RISCV_HWPROBE_VENDOR_EXT_##ext;     =
+                 \
+> +       } while (false)
+> +
+> +       EXT_KEY(XTHEADVECTOR);
+> +
+> +#undef EXT_KEY
+> +       }
+> +
+> +       /* Now turn off reporting features if any CPU is missing it. */> =
++       pair->value &=3D ~missing;
+> +}
 
-Best regards,
-Krzysztof
+Something to consider, perhaps when there's a second vendor, is how we
+might reduce this boilerplate on the second vendor. Probably best to
+wait though until we know exactly what the commonalities are. This
+looks good for now.
 
+
+>
+> --
+> 2.44.0
+>
 
