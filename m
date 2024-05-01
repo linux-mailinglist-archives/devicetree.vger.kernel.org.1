@@ -1,136 +1,220 @@
-Return-Path: <devicetree+bounces-64314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABFBC8B8D6E
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:45:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2966C8B8D92
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:00:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 663DD285202
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 15:45:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 429EE1C21D52
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A49A1311BB;
-	Wed,  1 May 2024 15:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6BB612FB06;
+	Wed,  1 May 2024 16:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JA9s74oB"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Nb25n8mJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB4B12FF8E;
-	Wed,  1 May 2024 15:43:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D4212F395;
+	Wed,  1 May 2024 16:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714578227; cv=none; b=nAXp5gt+KlHUTOXy00nLml/J13ccPnJjdjZUw/rKxWMIfO3yHiB4Jm7MrNQ93c9XWn37bViELOUpZCZyytdo0MXRb7IVfW7CKNdr8ZYjRZx3jsUvV9XrDx0/h6DUb5RsLYylJVitEghuLFRJ9z7gSkzhsDb17WBHspFpYg9wO4k=
+	t=1714579219; cv=none; b=mEU7mfkG4JY+nEkGDGKbx64JAWixAaxYnJqdwl3rS3QskcS9H+4upK0VeLOmrNu8xqr3zCc3i0dpOoL7fnjDgwucnBrWyDrw4eVLLBlz9HwLB9czrjo3GQJzTjbenCWkBJDXZ/hnbo/ll6ll3U2UPuzD7b237DE3Rd9FzwODcwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714578227; c=relaxed/simple;
-	bh=+j1MhO27oq6Z2k/UMaKrknwIvc97IqQ6TsLfVDaEsVA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qyqHUn9/qS8y2+Uy3jGPXY7m39VXKdc5UARjtyhMiDpzOr4jLMLC52AG6JiStD/kdGgErik428W3Jnn7MhiReOiH+zlYHXPtm2XFQTrWz0K4XkXWwam/w+b1kbercJtTYrPDLTFdJXFeAVXoPMkyQFwUPdSgKRi+ARM10yfrxbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JA9s74oB; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6eb93ec8804so3900805a34.2;
-        Wed, 01 May 2024 08:43:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714578225; x=1715183025; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WYyt1RBKP+5wqyIqwmy5cnYZMq9VEpLdANc4tFv/eOc=;
-        b=JA9s74oBcNhi3U2CLmWURFd2W5GdVotI852dwp5wy4qkLb9GyiWPWdpugf7kz7MW6E
-         uKZWDIiY0JEnRDSOqLvnNbiKOVGX9Cay0hMMkXh6CCX1JSkpSBvvXppcQMyUvVnAgt27
-         1At1IHqX60vNNwkGVfooe7HYdNu06bt0lKLKpxXhk0JsuAYDnshjylmagbYVcYr063kh
-         Eu0u4Lgl7kSgj5vpE+460LrdweO8fEAhZObQ8YQf82nENILEgeorKAKkBb+oe/sCSWic
-         i+yebGfIl0n05zCGgeH3lWtlqq1dmKJUHc5/Z+6NZFS5asC9A9AtlAoTGuzxL1H4NDg0
-         3dHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714578225; x=1715183025;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WYyt1RBKP+5wqyIqwmy5cnYZMq9VEpLdANc4tFv/eOc=;
-        b=M4KFwDFTu3QR1CL34FJwpH9nEk0kFOh3OdR2ET/unwrX7l0QXyXhLRQuLg+DcSrAkD
-         N5cNSFttCQa+8G6c/5CLMUkPZNbnT4ifHjfh73BJRBpYyO3KBaqp+b7Ze5hzkupiLvUx
-         r88IuXJ1OjMkLPW2ucz0peWrpnHYLnYLOZpRUqXj/LHg1amn6RGoVkImCQUSWovOXAhT
-         HFSjYuabt9el7zl+u5FSTae1m2tGWsGvyl1xiSCVQqqbs3ryFwmfGYEgUUaaeLNTF4aW
-         9Woyc+A5eVLSnnPSynau7AWGkAbbnVluqf0MY9EaVQ3iCXof9Q+fZUIHeVcf2dHuz3Oq
-         B4Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZc/zJJK20mf4MAOolUl5RGUabcWO/oQ81cA7hQILnu0xzRammqSu71FsJCElrLt6nih/h0FVtdrl+ZjbElCF/w84Hw2efCN5kbMBWZ9uphC1bKzZhquaEsWmgQ2PLxfwIEGBPjvwJxlvppwhKwQwEIEeDUdiMKZDYrO7KGgto79QXfDvCHfqdrxQ3njUpvZz8sDGLSVY40R5D4EnIl3vi9+8gQr/7H7Vjsxh8ZCOWpR5YKUQBOSX2wxh2uck=
-X-Gm-Message-State: AOJu0YxBxuSGh2DEyXATfYyi8wVS9hwPlWTl3Qzi644LVcoTx96tiHZh
-	2NHrzS4tIIvIC/idCnjUAoAfgGp4zvUBDpdkbP3m8rJDbvzCNHw2
-X-Google-Smtp-Source: AGHT+IEVAUBi8gaQAQaPiF+BdK+POH9BTZIvS3fio856v721oE2NZNnhywEs1M2R3KrsTS8RWdtRpg==
-X-Received: by 2002:a05:6830:1284:b0:6ef:a0a4:b601 with SMTP id z4-20020a056830128400b006efa0a4b601mr1830971otp.36.1714578225542;
-        Wed, 01 May 2024 08:43:45 -0700 (PDT)
-Received: from [192.168.7.169] (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id fc12-20020a056830498c00b006ee0d82d41dsm1595872otb.71.2024.05.01.08.43.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 May 2024 08:43:45 -0700 (PDT)
-Message-ID: <f7176c82-3702-4667-b68b-a8b7e3ad8690@gmail.com>
-Date: Wed, 1 May 2024 10:43:43 -0500
+	s=arc-20240116; t=1714579219; c=relaxed/simple;
+	bh=0FvJEKNyoL4+WVAUbCEUE5NNfk6krBIm/bTVbgXAx+8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=los/e11yBJbx5ifQQ6Vor0E7kIJJFj87hKEykwbbuFu7tPan34qZw0w9PP2m9ZHoAl3pRq1mTjpH/witJd+yKFPxYpC5r8Js2IWG7DwvAU3JW6biL2C9Ld6Ht3v+1q3xH98sXb4yBoPNZ0O3+ZhWZWPdUNmzKEZkgiCVoKFwaNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Nb25n8mJ; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 441FQFkn013979;
+	Wed, 1 May 2024 15:59:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=uYHsTZws7Y+ZIooWWy97bE9FTUukDpYcGKov8WVR2eM=;
+ b=Nb25n8mJHCEBML3dOGEfYbulveaRbuYgqLJp5fSGuNe28G4Zr0hY5duYU2zSQhiamOis
+ 5aPBBvVpBG8SXo9gFuU1AAw41LcRixqCRLBZLmra32o7/UhjZmV+DTFLOsOIwROkOrpl
+ f34v4asfv3Us5OlEQz7sQPvsp0ZsfovvkvENbZ+8+xz+iHC/MLSQ3HRbXgCPPP+6bXdS
+ PbEzuuX1d3ISf9nZ7/VFbt9fNOMjZ9L42/VSCKU61HvKFD31tmkR1IIYsWoPA7I9/1PY
+ QnlsBwZEWEOZEFHoqaj7qF+nv7q9akdKpOSbekflDSQwB9iD4FhtQIAur4eD2ux516gh ZQ== 
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xurcd0225-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 01 May 2024 15:59:59 +0000
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 441FtW1R001464;
+	Wed, 1 May 2024 15:59:58 GMT
+Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3xsbpu3fm5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 01 May 2024 15:59:58 +0000
+Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
+	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 441Fxtcd40764114
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 1 May 2024 15:59:57 GMT
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6E4B258064;
+	Wed,  1 May 2024 15:59:55 +0000 (GMT)
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D536658061;
+	Wed,  1 May 2024 15:59:54 +0000 (GMT)
+Received: from [9.61.151.254] (unknown [9.61.151.254])
+	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Wed,  1 May 2024 15:59:54 +0000 (GMT)
+Message-ID: <e3601656-84d3-47e1-9cbd-d2cb0dde5f51@linux.ibm.com>
+Date: Wed, 1 May 2024 10:59:54 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 04/17] dt-bindings: fsi: p9-occ: Convert to json-schema
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
+        linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+        andrew@codeconstruct.com.au, andi.shyti@kernel.org
+References: <20240429210131.373487-1-eajames@linux.ibm.com>
+ <20240429210131.373487-5-eajames@linux.ibm.com>
+ <0fcadbe6-7615-498e-89c0-e3b072c4828c@kernel.org>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <0fcadbe6-7615-498e-89c0-e3b072c4828c@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: GKMmqTHj5LTt7ttpRRWNmEvJAUezIuHR
+X-Proofpoint-ORIG-GUID: GKMmqTHj5LTt7ttpRRWNmEvJAUezIuHR
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 RESEND 5/8] PCI: qcom: Add support for IPQ9574
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
- <20240501042847.1545145-6-mr.nuke.me@gmail.com>
- <a973f67b-de7f-4e21-b6b4-3b85d056456d@kernel.org>
-Content-Language: en-US
-From: mr.nuke.me@gmail.com
-In-Reply-To: <a973f67b-de7f-4e21-b6b4-3b85d056456d@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-01_15,2024-04-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ clxscore=1015 phishscore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 spamscore=0 suspectscore=0 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2404010000 definitions=main-2405010112
 
-On 5/1/24 5:21 AM, Krzysztof Kozlowski wrote:
-> On 01/05/2024 06:28, Alexandru Gagniuc wrote:
->> IPQ9574 has four PCIe controllers: two single-lane Gen3, and two
->> dual-lane Gen3. The controllers are identical from a software
->> perspective, with the differences appearing in the PHYs.
+
+On 4/30/24 01:53, Krzysztof Kozlowski wrote:
+> On 29/04/2024 23:01, Eddie James wrote:
+>> Conver to json-schema for the OCC documentation. Also document the fact
+>> that the OCC "bridge" device will often have the hwmon node as a
+>> child.
 >>
->> Add a compatible for the PCIe on IPQ9574.
-> 
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>> Changes since v3:
+>>   - Move required below other properties
+>>   - Drop "occ-" in child node
+>>   - Drop hwmon unit address
+>>   - Complete example
+>>   - Change commit message to match similar commits
+>>
+>>   .../devicetree/bindings/fsi/ibm,p9-occ.txt    | 16 --------
+>>   .../devicetree/bindings/fsi/ibm,p9-occ.yaml   | 41 +++++++++++++++++++
+>>   2 files changed, 41 insertions(+), 16 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt
+>>   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt b/Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt
+>> deleted file mode 100644
+>> index e73358075a90..000000000000
+>> --- a/Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt
+>> +++ /dev/null
+>> @@ -1,16 +0,0 @@
+>> -Device-tree bindings for FSI-attached POWER9/POWER10 On-Chip Controller (OCC)
+>> ------------------------------------------------------------------------------
+>> -
+>> -This is the binding for the P9 or P10 On-Chip Controller accessed over FSI from
+>> -a service processor. See fsi.txt for details on bindings for FSI slave and CFAM
+>> -nodes. The OCC is not an FSI slave device itself, rather it is accessed
+>> -through the SBE FIFO.
+>> -
+>> -Required properties:
+>> - - compatible = "ibm,p9-occ" or "ibm,p10-occ"
+>> -
+>> -Examples:
+>> -
+>> -    occ {
+>> -        compatible = "ibm,p9-occ";
+>> -    };
+>> diff --git a/Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml b/Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml
+>> new file mode 100644
+>> index 000000000000..3ab2582cb8a0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml
+>> @@ -0,0 +1,41 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/fsi/ibm,p9-occ.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: IBM FSI-attached On-Chip Controller (OCC)
+>> +
+>> +maintainers:
+>> +  - Eddie James <eajames@linux.ibm.com>
+>> +
+>> +description:
+>> +  The POWER processor On-Chip Controller (OCC) helps manage power and
+>> +  thermals for the system, accessed through the FSI-attached SBEFIFO
+>> +  from a service processor.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ibm,p9-occ
+>> +      - ibm,p10-occ
+>> +
+>> +patternProperties:
+>> +  "^hwmon":
+> And now it raises questions:
+> 1. Other devices on FSI bus have unit addresses, so why this does not?
+> 2. This suggest only one hwmon, so ^hwmon$, which is then not a
+> patternProperty but property.
+> 3. But the true problem why do you even need two empty nodes? These
+> should be combined into one node.
 
-I had an Acked-by tag from Rob for what is now patch 6/8 -- previously 
-5/7. Due to last-minute info from QUIC Inc, Dmitry and I decided to move 
-the "snoc" and "anoc" clocks out of the PHY and to the PCIe controller.
 
-This change resulted in a 6/8 patch that is substantially different from 
-what Rob acked. I felt it was inappropriate to keep the tag.
+1. This is not truly on the FSI bus. It is on the SBEFIFO "bus"
 
-Alex
+2. True enough, I'll change it to property.
+
+3. If this binding was being designed now, I'd agree with you, but the 
+two nodes (occ and occ-hwmon) are already documented, I'm just changing 
+to yaml here... Changing that would require a lot of changes and would 
+break the two drivers.
+
+
+>
+>> +    type: object
+>> +    $ref: /schemas/hwmon/ibm,occ-hwmon.yaml
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    occ {
+>> +        compatible = "ibm,p9-occ";
+>> +
+>> +        hwmon {
+>> +            compatible = "ibm,p9-occ-hwmon";
+>> +        };
+>> +    };
+> Best regards,
+> Krzysztof
+>
 
