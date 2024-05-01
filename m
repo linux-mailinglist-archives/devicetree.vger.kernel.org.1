@@ -1,212 +1,157 @@
-Return-Path: <devicetree+bounces-64321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE178B8DE2
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:16:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DED708B8DEB
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F1C31C212C7
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:16:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB396B21CF4
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8D512FF76;
-	Wed,  1 May 2024 16:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B21130491;
+	Wed,  1 May 2024 16:19:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="UUaKwAFx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CIESdWjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3B312F58D;
-	Wed,  1 May 2024 16:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB6D12FF91
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 16:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714580199; cv=none; b=dsjf5WVsQeI3srO1U61ABBj1zsNQ8AcFtLcYiWcf2hjBV4Kn/TLkJkFqSqTycn4ghLdCMZ1yeY51+Fg2SSylMM0lkR6t3cJ1BZXkvQjC9ZMJAoXhxYemtDTXcLdDzGbFjjbjsYui7Kr1PsIRgtTOZvqlRKAQIhpoMzM9hyTClgU=
+	t=1714580384; cv=none; b=tEigyIkl6wM6wGWviMZwpK4fEaDzutSXQ29T+GWvP+XqYam8SgaXssYNS7jtnr6MTAM1vQk5QeFVmc2ew4kYta17ysMopu9tcQdK8Tyaz8oFmt2kH6RnKEZFr19SJkGZTuVQoPIgRzArCS4V9CLHcgMAUu5i6KDp6GvbzBzXLMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714580199; c=relaxed/simple;
-	bh=a0TELZcUexC9ov7Y/6rIr+/gFb8JyfRBiIwz8pwNl9c=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=DTjizG0mDQiDcqm1TCto0q81surmHxM88VNN9qhoo6lRDF2yAX66RbjSdMbqGjTyzZbzmv5GOBsJf91JDlnEV7ALbQMzjdIbJYVVgLCqFET1A25Nf0dY4zOf4wS+RZsHSnQ86xCt6E3ZumTmH0HBAhTwUr1RayPUHBE7k+hJYp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=UUaKwAFx; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 441G2un5023227;
-	Wed, 1 May 2024 16:16:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=NM4/8DaUxtVSAIyf/fOq/KNgwSvzlVsklV7Nr1aa6wU=;
- b=UUaKwAFx4L4QqbKahih6OStMrTy/G1XdHrJdfUAxIOjW7caiVZh1KCUCxB2xmbU8U8f9
- 8d7hftIsUG3ua/IdyDG4vib3QQ5xT2J4Xb7JrJazsbj/APPRiI6t64LXmFVWMPHc5pAo
- gl/rYTr4zUF+Kz5HkZnAk7QRYG0x1SKoS54fXgExgrIeKpYFhbyj39W+fD3vd8EKmBw5
- Jkqs7r1lYzUpxupKgxGM+jysCOoeQinCOQEN/ytSPdiD691gdW+tJtQFum/7rfY223cC
- wT4JXzfVYLcBLlLlJTeaFcwUNIhkxVxpChTuIoJsnCNBA3Za9RX9LYsvBA8+othistUN Ng== 
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xurwf80wm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 May 2024 16:16:27 +0000
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 441E8Lif011759;
-	Wed, 1 May 2024 16:16:26 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3xsdwmb11s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 May 2024 16:16:26 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 441GGNxA32965134
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 1 May 2024 16:16:25 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 2FD0458061;
-	Wed,  1 May 2024 16:16:23 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 8F0A658058;
-	Wed,  1 May 2024 16:16:22 +0000 (GMT)
-Received: from [9.61.151.254] (unknown [9.61.151.254])
-	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Wed,  1 May 2024 16:16:22 +0000 (GMT)
-Message-ID: <1ebaaa48-9812-467e-9189-c1cd3369b6cb@linux.ibm.com>
-Date: Wed, 1 May 2024 11:16:22 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/17] dt-bindings: i2c: i2c-fsi: Convert to
- json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, andi.shyti@kernel.org
-References: <20240429210131.373487-1-eajames@linux.ibm.com>
- <20240429210131.373487-11-eajames@linux.ibm.com>
- <bbf12675-e0f5-4150-96d1-097eb7abd81a@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <bbf12675-e0f5-4150-96d1-097eb7abd81a@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 2Qw7KSI9PqFtb6VMwdVxjBsB-eu-Ox6i
-X-Proofpoint-ORIG-GUID: 2Qw7KSI9PqFtb6VMwdVxjBsB-eu-Ox6i
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1714580384; c=relaxed/simple;
+	bh=Hial4NE0MI1OOXFbCphdaD+gWgv6Gib1/wJMCCUVjAg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oIJ+iG6cWzBgYuyZZD+QjI6ZqHAfsReDFiFeALfxDSmCN1aQsukQRXF9ImSlUXBaXAw+QtLg6s4qrAFg4aRgHSjkPfuy5W/vvRqt8ehw3zuIqa0zPgaJoU5z5++gSm4ozKsmY+grSpsT/5joxWPWsLLwantJbmUpJxnIyt7N+rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CIESdWjt; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2db6f5977e1so81758021fa.2
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 09:19:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714580381; x=1715185181; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9MplgDZslzUh6Bxa/uOXel4exzaD4mou494VCSMeydc=;
+        b=CIESdWjt1YLIsKegZN/eElev0lqmGJG5YztZiHJmQOwoDsjCgCgQL4gbqbg6qWtMAk
+         IYcyqzGss9wRq5hwB72V92lttF2qDs4rKf38Bb3TBmkFgIPfOX7TB7HpkbVCLXEO/Jtn
+         imuIHRXbB+u8AUXS3KtZpm/HBuOH830IFc2sLh8nOOMUylzaEIBBlaTWQ2IiiqufODr3
+         j67pdSKdZbZK3B2TtiO0graoAlIUQJIgoJn2/0oWtTZmzzLqZVBbgsMLmoayKXHVd72d
+         hAm/20nyDA16Ug58UE2Aj5FB937wXVkAa/MxAT0lPFyWKI6HumFEMlFq2pQBzqaxyxDC
+         GKyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714580381; x=1715185181;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9MplgDZslzUh6Bxa/uOXel4exzaD4mou494VCSMeydc=;
+        b=upp3GwyBIH3kWHRt98i93gxYUIwbzrQw5BLgAp7Cdh6IfTxLfpUSczVMDh9WGLvFR8
+         ZwqcrND9R+Dfom3UrKukZnZ6CgsQHmPdLEoqGXPaxNXRZh3lDIuXfbOqPLGKg4BgXJxd
+         x842MCxfQVUdO+P7KlKf7FGqZB/tdMLGxMjtP8UZ7mNSWxhDV+v5vYj6W8TZTSTTLxfs
+         9DJnRItFO73Wp3MbxjjOnBQqN0MXSatACBC5lsrWdp2z07+faXx7Jmf7BS+K8mFLV2R+
+         qMJrIwLLFbdQ4uOjr1DUKzFcmBsF7jvFE+GvwPaNFa37POAWQ9L2fH0yNIt0IQIG+jfI
+         HGlg==
+X-Forwarded-Encrypted: i=1; AJvYcCXIQctVCbNFhgfFBiY0XCr0vdrffjpBtje9RDfEW/MuGhLjvRF+p6qgW+mWK/BfPiCQQjl/xsSigq9UZLFg2O7+vM6V26UaHZzd6g==
+X-Gm-Message-State: AOJu0YzT0pjZBotW6hD1ODR/t/HrD+ozEqBy4VZ6J9tK4uCHwjJ5n2e3
+	GBjxyq/cpIJdUlNR3trovMtZUBJRpeE8HPsZedHJ/DqDJBhXCuonYgHSPtVpqqM=
+X-Google-Smtp-Source: AGHT+IHKgc6t8AxmFEjtGVZj9pN8xREsNV095xi7ULMS3j0aWhAOjeM9gooTZzTH17vCV6aP1Opmgw==
+X-Received: by 2002:a05:6512:1327:b0:518:b144:9020 with SMTP id x39-20020a056512132700b00518b1449020mr2027238lfu.61.1714580379137;
+        Wed, 01 May 2024 09:19:39 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id d30-20020a0565123d1e00b00516d0029383sm4909306lfv.28.2024.05.01.09.19.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 May 2024 09:19:38 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 00/13] arm64: dts: qcom: fix PHY-related warnings
+Date: Wed, 01 May 2024 19:19:26 +0300
+Message-Id: <20240501-qcom-phy-fixes-v1-0-f1fd15c33fb3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-01_16,2024-04-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 malwarescore=0 mlxlogscore=999 phishscore=0
- lowpriorityscore=0 spamscore=0 mlxscore=0 adultscore=0 bulkscore=0
- suspectscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2404010000 definitions=main-2405010115
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI5rMmYC/x3LQQqAIBBA0avIrBtQE6yuEi2kppxFaQpRhHdPW
+ j4+/4VMiSnDIF5IdHHmcFSoRsDs3bER8lINWmojje7xnMOO0T+48k0ZO6OsdLZTpFqoU0z0h/q
+ MUykfrN8er2AAAAA=
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
+ Wesley Cheng <quic_wcheng@quicinc.com>, cros-qcom-dts-watchers@chromium.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ David Wronek <davidwronek@gmail.com>, Andy Gross <andy.gross@linaro.org>, 
+ Evan Green <evgreen@chromium.org>, Douglas Anderson <dianders@chromium.org>, 
+ Iskren Chernev <me@iskren.info>, Luca Weiss <luca.weiss@fairphone.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Yassine Oudjana <y.oudjana@protonmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@somainline.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2227;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=Hial4NE0MI1OOXFbCphdaD+gWgv6Gib1/wJMCCUVjAg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmMmuYC89DTsZQEAbgf6DFMcHa/L9r+P3mo6w85
+ 3oQZsH3C+iJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZjJrmAAKCRCLPIo+Aiko
+ 1TDyB/9f7iKmEdPEB6C4kT/zJ99cFcuSZWzOx8+V9w57WQeiBqBFY/bkqVzzkUaHdX2zTNqt/da
+ rZb8oWmlxnGTGMsJSvvPe0U8Of5vl6vVQLAPOWbzUDVKxCw91eB4zHFGQWY7bISTTp/bRWpmUAG
+ 38Kqx3/U8rE9DYFh/igu5mgE+JuCgTofGQN6Gs8LnoOH84oDZlPqSq0Z6O1fRdo2j/gRGKTaGEd
+ rkPi5Ddeu8dG1cpWzUqaT0JfDvYl5wbWdvpgKIMbhvM5UHXDOUGkiDyuS4evqZiZGxBLDeK2VQm
+ 57ufOYQWbUaDu+toQRoL7KHHeKouL+AOsbWBZyv8q4ua3IxY
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
+This series goes over Qualcomm PHY bindings and device DTs and fixes
+obvious errors and warnings reported by dt-validate.
 
-On 4/30/24 02:35, Krzysztof Kozlowski wrote:
-> On 29/04/2024 23:01, Eddie James wrote:
->> Convert to json-schema for the FSI-attached I2C controller.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->> Changes since v3:
->>   - Update MAINTAINERS
->>   - Change commit message to match similar commits
->>
->>   .../devicetree/bindings/i2c/i2c-fsi.txt       | 40 -------------
->>   .../devicetree/bindings/i2c/ibm,i2c-fsi.yaml  | 58 +++++++++++++++++++
->
-> Please split independent patches to separate patchsets, so they can be
-> reviewed and picked up by respective maintainers.
->
-> I don't see any dependency here. Neither in 1st patch.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (13):
+      dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: fix x1e80100-gen3x2 schema
+      dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: fix msm899[68] power-domains
+      dt-bindings: phy: qcom,usb-snps-femto-v2: use correct fallback for sc8180x
+      arm64: dts: qcom: sc7180: drop extra UFS PHY compat
+      arm64: dts: qcom: sc8180x: add power-domain to UFS PHY
+      arm64: dts: qcom: sdm845: add power-domain to UFS PHY
+      arm64: dts: qcom: sm6115: add power-domain to UFS PHY
+      arm64: dts: qcom: sm6350: add power-domain to UFS PHY
+      arm64: dts: qcom: sm8250: add power-domain to UFS PHY
+      arm64: dts: qcom: sm8350: add power-domain to UFS PHY
+      arm64: dts: qcom: sm8450: add power-domain to UFS PHY
+      arm64: dts: sda660-ifc6560: document missing USB PHY supplies
+      arm64: dts: qcom: msm8996-xiaomi-common: drop excton from the USB PHY
 
+ .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml         |  1 -
+ .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml          | 16 +++++++++++++++-
+ .../devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml  |  4 +---
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi      |  1 -
+ arch/arm64/boot/dts/qcom/sc7180.dtsi                     |  3 +--
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi                    |  2 ++
+ arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts      | 15 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi                     |  2 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi                     |  2 ++
+ arch/arm64/boot/dts/qcom/sm6350.dtsi                     |  2 ++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi                     |  2 ++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi                     |  2 ++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi                     |  2 ++
+ 13 files changed, 46 insertions(+), 8 deletions(-)
+---
+base-commit: f0282d40f30868d986d9c94201949e5d1d44acc9
+change-id: 20240429-qcom-phy-fixes-84170a781e13
 
-OK, I guess that makes it complicated for Andrew to pull together with 
-the device tree changes in a way that avoids warnings, but I agree there 
-is no direct dependency.
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-
->
->
->>   MAINTAINERS                                   |  2 +-
->>   3 files changed, 59 insertions(+), 41 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-fsi.txt
->>   create mode 100644 Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml
->>
-> ...
->
->> diff --git a/Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml b/Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml
->> new file mode 100644
->> index 000000000000..8ff5585a3aa5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml
->> @@ -0,0 +1,58 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/i2c/ibm,i2c-fsi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: IBM FSI-attached I2C controller
->> +
->> +maintainers:
->> +  - Eddie James <eajames@linux.ibm.com>
->> +
->> +description:
->> +  This I2C controller is an FSI CFAM engine, providing access to a number of
->> +  I2C busses. Therefore this node will always be a child of an FSI CFAM node.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ibm,i2c-fsi
->> +
->> +  reg:
->> +    items:
->> +      - description: FSI slave address
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +allOf:
->> +  - $ref: /schemas/i2c/i2c-controller.yaml#
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c@1800 {
->> +        compatible = "ibm,i2c-fsi";
->> +        reg = <0x1800 0x400>;
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        i2c-bus@0 {
->> +            reg = <0>;
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
-> This does not look right. Why do you have multiple i2c-bus children? I
-> do not think i2c-controller.yaml schema allows this.
-
-
-It does seem to allow it, as this validates here and in the device tree. 
-It is this way because the I2C controller provides multiple busses. 
-Should I change it so to add "bus" pattern properties that reference 
-i2c-controller.yaml?
-
-
-Thanks,
-
-Eddie
-
-
->
-> Best regards,
-> Krzysztof
->
 
