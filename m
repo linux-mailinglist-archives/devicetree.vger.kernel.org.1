@@ -1,105 +1,110 @@
-Return-Path: <devicetree+bounces-64263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D276F8B8B57
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 15:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9F08B8BA7
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:06:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61A96284AD3
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 13:39:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BAF72825D6
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 14:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6442D12EBCE;
-	Wed,  1 May 2024 13:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2073A12E1E0;
+	Wed,  1 May 2024 14:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GW741CxZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b7VIk2YQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3735E537E8;
-	Wed,  1 May 2024 13:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAFA50248;
+	Wed,  1 May 2024 14:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714570732; cv=none; b=PA8U5z6141QpTV8pXyz0i+qB8DdxEznRHZFN2n0MMoWWQbFAPVRIHeedq1viYTyyQY9FPqf4NyFs0yRgJIm2k4KCVkMLq0dmuuk3c2l4PKl+pJ9lxG+Rn2zfOYTWlQtso7RtWrNDPPfXMRxJzVPJlDNsNfx53lTsU8A5bqwpjpQ=
+	t=1714572414; cv=none; b=eIm9+NwuibbJ5MLENFVlKxDoWPl0tQ/1BthX9W9NVHjvwy1rmLLPp0Ic6frYGDvF22UdhHcyuLH10RIVpZhfnEJlWBVtFW4ZDGq5UzKTbESRb4U1r0nT4khYPUdHhPS6hBtIr47kmWlOkTY42XYjdxKktrsJPY+QLLF0ZSQUCv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714570732; c=relaxed/simple;
-	bh=j0oaQ8b47fGiXoQlbs/2U1ga1tXrWq7nIrgqSM7Za1c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CmJcMpG56Qbr0pdXyGtzPjfKj2Ul3xl5t8cwYoZ/pp/3MUSbboxvl5Hj3RVqMMV98TM7E6WwiYUxTKomOfE2oulhCXfOP+FYqYUvQRsb13yipF1NhV0ujB/gcN5j2L16h8FORA/AqAXs2ibm+qontl+DV8V1/ddr0SnREt299/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GW741CxZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80C85C113CC;
-	Wed,  1 May 2024 13:38:49 +0000 (UTC)
+	s=arc-20240116; t=1714572414; c=relaxed/simple;
+	bh=AcR136gtgNUZp2TMJl2fBlKkyVpp9/41WyUGPmas4wE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nTnOxFjQVVGTuAgsPBUtZ9/4BdPiKclq3h5/4e3Zymg+fk/Ra/tKnDMv+13cx0hJFtu7zD00eMR3Tu49AyFy8aHPaTtARob5r5Fpng9bhDXBh42dU1xedW34FV20wvBioukeJkvGFhvpi0wLr1uVUxLkPxaY0yRejtrK+qmCenI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b7VIk2YQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 064EDC072AA;
+	Wed,  1 May 2024 14:06:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714570731;
-	bh=j0oaQ8b47fGiXoQlbs/2U1ga1tXrWq7nIrgqSM7Za1c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GW741CxZ3vifngI4De6WtyUszYUnbUF3hcVnflui8DwaQMnptn1KTphlQd1wDQSH4
-	 HL2RP9djbjlJlmfyMBCrOo0medLFXas7ibGFzlwRaobxmvvAlbx4Q0btbQyxCYAM35
-	 JNiu25EVCpdtE15BMAsSHOChyitP9zQ+6Rlx8oD+0bMjR16vra8ySUk9kKX6ng+u7L
-	 6xhaA9f0dEjRJN+5Q1d5DffXUnM30RWvjK+Oz8Rv4GwEVucGUUXHigZokqmgCg680W
-	 1szCk3uDNk4MNrDF+rnwms9Y/juOpLuzo+csurFlHjeWhiw8xZnj1NJC0Bq6w92BRc
-	 31spcPZJH90/Q==
-Date: Wed, 1 May 2024 14:38:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Petar Stoykov <pd.pstoykov@gmail.com>
-Cc: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: pressure: Add Sensirion SDP500
-Message-ID: <20240501-glare-cyclist-14ecbafde79d@spud>
-References: <CADFWO8GC6RP6A7H-Cq5UZHfBY3VJZTCqssdZet61hH031euhwQ@mail.gmail.com>
- <20240430-unnamable-wrench-16c9ad780df1@spud>
- <CADFWO8FnMh3OSXO5c9YnafDEf8dxu7MHuH-J32H_Dgx4VSZ=Tw@mail.gmail.com>
+	s=k20201202; t=1714572413;
+	bh=AcR136gtgNUZp2TMJl2fBlKkyVpp9/41WyUGPmas4wE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=b7VIk2YQmi+N58qtneuqPdrfCJNRsehkQ/LMxgFJGRQiaoxtu9Ux/gef49JVMGNvv
+	 YwI0s0cCDhyYLF39ixZpVKa9o/j3Of4lJGmQ9cOzZlKTcTSK/ghpjbsZ6cWcV4do6a
+	 QSF2FPuz5bll3/YfWIfjZtYpil8HPblYPSsBhKoHjWbGfHA+03oMLEG9/9S1C4D343
+	 Kh6QmkdZjuuwlLhza3f9jPdiYMRu2fAHdpixEmA9VC54XVryOsJFpbmXcBmbBtszel
+	 J1BSd+jlTQon3li6yXI/54B78gLdRJbn/6s/HaqyTEi51Wi0KeknavALwayAdMoDz3
+	 +Kn7ufz6FaM9A==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-spi@vger.kernel.org
+Cc: broonie@kernel.org,
+	conor@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	andy.shevchenko@gmail.com
+Subject: [PATCH v6 0/3] Add add spi-nand flash controller driver for EN7581
+Date: Wed,  1 May 2024 16:06:40 +0200
+Message-ID: <cover.1714571980.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Fk66tp7xhewH+tVB"
-Content-Disposition: inline
-In-Reply-To: <CADFWO8FnMh3OSXO5c9YnafDEf8dxu7MHuH-J32H_Dgx4VSZ=Tw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
+found on Airoha ARM EN7581 SoCs.
 
---Fk66tp7xhewH+tVB
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v5:
+- modify patch commit logs
+- cosmetic rework
+Changes since v4:
+- rely on devm_platform_ioremap_resource() routine
+- rework airoha_snand_is_page_ops() routine
+Changes since v3:
+- rely on devm_kzalloc() to allocate airoha_snand_dev buffers
+- rely on dev_err_probe()
+- cosmetic rework
+Changes since v2:
+- Fix compilation warnings
+- Remove interrupt entry in dts since it is not connected so far
+Changes since v1:
+- Introduce spi clock dependency
 
-On Wed, May 01, 2024 at 02:06:12PM +0200, Petar Stoykov wrote:
-> On Tue, Apr 30, 2024 at 6:50=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> > On Tue, Apr 30, 2024 at 05:27:20PM +0200, Petar Stoykov wrote:
+Lorenzo Bianconi (3):
+  spi: dt-bindings: Add binding doc for spi-airoha-snfi
+  arm64: dts: airoha: en7581: Add spi-nand node
+  spi: airoha: Add spi-nand flash controller driver
 
-> > Other than the fact that a fallback compatible might be required here,
-> > this looks like a candidate for trivial-devices.yaml.
->=20
-> This sounds like a more serious comment. We will definitely continue using
-> this driver internally for now. But do you think it's still worth adding
-> it as a separate driver instead of leaving it for "trivial-devices"?
-> It has been a useful driver for us so we thought it is worth sharing.
+ .../bindings/spi/airoha,en7581-snand.yaml     |   65 +
+ MAINTAINERS                                   |    9 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |   19 +
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-airoha-snfi.c                 | 1124 +++++++++++++++++
+ 6 files changed, 1228 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
+ create mode 100644 drivers/spi/spi-airoha-snfi.c
 
-trivial-devices.yaml is about the binding, not the driver - you still
-get to have a dedicated driver.
+-- 
+2.44.0
 
---Fk66tp7xhewH+tVB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJF5wAKCRB4tDGHoIJi
-0o+gAQCAjJNBaPvE1tePTSvrQrNPkm1gpvxWn+P66psNWKhgigD7BIRgbvhUSX3H
-9/FpdL6lj2GbRaaZYapsd1BkR9c4Fgc=
-=YMTs
------END PGP SIGNATURE-----
-
---Fk66tp7xhewH+tVB--
 
