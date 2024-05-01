@@ -1,186 +1,227 @@
-Return-Path: <devicetree+bounces-64285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE8F8B8C67
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:01:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D06F28B8CFA
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:30:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D7211C21E53
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 15:01:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0078E1C21A72
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 15:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E5312F38C;
-	Wed,  1 May 2024 15:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE4E12F5B7;
+	Wed,  1 May 2024 15:30:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="gB9JxAcj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtprelay03.ispgateway.de (smtprelay03.ispgateway.de [80.67.29.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-108-mta41.mxroute.com (mail-108-mta41.mxroute.com [136.175.108.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2382A5FBB1;
-	Wed,  1 May 2024 15:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.67.29.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7A112F59F
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 15:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714575696; cv=none; b=lSQXEbJf2RDY0jyneU+bkO08P4YmLzu/F0mJcsO3RXVjOadtW/wezVJs/EoKpHOMTbBNOzd+6oFEZi43fNBEd8g0QC5KYh78wkrXkHV7cHxn7SDEfwT+chrip19KRd7lu96kOgzifnlHNTd3nQcDBuJwNzeD9ZrxEQag2BKsBZk=
+	t=1714577403; cv=none; b=LrjwdGr9lsi4gqp1/uiZ8LXejNzQ6x3BHU+px+BP7pKHeJ6S483xksltvmhSakMypRipILMLE4pgGc5KIqjjTBi6v1tX1hfOqjL/9AxCitVA2OcFM7Q/LDzfydFY9G1Fx6qrpYK3xUCkCNhBnkfRAUYXJ2mDvgJXinWcNV6uSPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714575696; c=relaxed/simple;
-	bh=NvCi5JvUW+/oPdxAzW+ciyt2Sx1QV/dEnicrPhl7NDg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=t2BlLAdFAWQO09n5ePpsE8dakZRvR+pvDXC0OKZik9QrLRiGZgSztyY0Tk4672Y1PukUugc4kOM31SZSW7ueminl9L5PShwUkOmk1izIvA5Zh0/oGNTulL7bqA8NlUd/sbqNxqyMtyM5WOf8Z8aZHE+2gP8Xbgz8pT2HgW2VsYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; arc=none smtp.client-ip=80.67.29.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-Received: from [92.206.191.65] (helo=framework.lan)
-	by smtprelay03.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.97.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1s2BQb-000000002oW-10Po;
-	Wed, 01 May 2024 16:59:25 +0200
-Message-ID: <c5e5f49295350ada2cdb280a77b1c877058d4d64.camel@apitzsch.eu>
-Subject: Re: [PATCH v2 2/3] leds: sy7802: Add support for Silergy SY7802
- flash LED controller
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>, "Gustavo A. R.
- Silva" <gustavoars@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Date: Wed, 01 May 2024 16:59:34 +0200
-In-Reply-To: <20240411124855.GJ1980182@google.com>
-References: <20240401-sy7802-v2-0-1138190a7448@apitzsch.eu>
-	 <20240401-sy7802-v2-2-1138190a7448@apitzsch.eu>
-	 <20240411124855.GJ1980182@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 
+	s=arc-20240116; t=1714577403; c=relaxed/simple;
+	bh=/pRCtSseLzYkCvXz7LcflhT9f5jyHTqpeVpOZcybRX8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qEprLpvOx689gtdulSdogkUP4W6jj9oV+YAsLbU6cOz4fBF1cN/UYdhJlo8H6COzRn9cT8zAw4uKwlAaCWEUVhaeJ4zeKIQvFoZfLkyNhYMf21adVCsnQWyXyI6Myvg/6M6ZG/seeT5CFuwjkWXt8RIGaWS2pmK75FLVpy9SKVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=gB9JxAcj; arc=none smtp.client-ip=136.175.108.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta41.mxroute.com (ZoneMTA) with ESMTPSA id 18f34c228370008ca2.00f
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Wed, 01 May 2024 15:24:50 +0000
+X-Zone-Loop: 5965dc0cac1b0654517d899f9bc03ecb1f36976fbe1a
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=9fd1WG4wcM9VhDUCqkT94Cc+eRxvqfQ5BlXSqcGrRWY=; b=gB9JxAcjgsgJGpTreOxML+Glj+
+	g4//pBQBOvFdzLV2baYfGNX2hv6xYVPH86yvkkoRdt/emmeNz2OINfVEu/caOcSQSn4448U/g7qrZ
+	lp8VO9awzTsz9UepRJ7gPyBUwQ5OzqYjFKbQLUt0RJs8BRtGkaEzjG6cwHDW/2mRRCszEMYCi80jy
+	4ikjmUpKZ8ttClAHewrJZopsN5PUIlgYpNpi8rzB5Ffd0m7sxps98tGFtx/lt9eQSlNWVihTbKYwi
+	utFfF2M5Jpsw4pu4+vav2tKG6fqALqk+tl9dEl3MQFhuxHPzLHIe3EuJf4g7DE5JUkYI3anQbA8Af
+	sS2cCxaw==;
+From: git@luigi311.com
+To: linux-media@vger.kernel.org
+Cc: dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	sakari.ailus@linux.intel.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	pavel@ucw.cz,
+	phone-devel@vger.kernel.org,
+	Luis Garcia <git@luigi311.com>
+Subject: [PATCH v5 00/25] imx258 improvement series
+Date: Wed,  1 May 2024 09:24:17 -0600
+Message-ID: <20240501152442.1072627-1-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: personal@luigi311.com
 
-Hi Lee Jones,
+From: Luis Garcia <git@luigi311.com>
 
-thanks for the feedback. I will address your comments in the next
-version. I have a few comments/questions though, see below.
+v5:
+  - Changed ownership of a few patches to Ondrej Jirman
+  - Implement feedback from Tommy Merciai
+    - media: i2c: imx258: Add support for reset gpio
+    - media: i2c: imx258: Use v4l2_link_freq_to_bitmap helper
+    - media: i2c: imx258: Convert to new CCI register access helpers
 
-Best regards,
-Andr=C3=A9
+v4:
+  - Swapped out the use macro patch for a patch that uses the new
+    CCI register access helpers per Sakari Ailus
+  - Fix order of reset and powerdown gpio before disable regulators
+  - Fix formating of all patches
+  
+  - Implemented feedback from Pavel Machek
+    - media: i2c: imx258: Follow normal V4L2 behaviours
+    - media: i2c: imx258: Allow configuration of clock
+  - Implemented feedback from Sakari Ailus
+    - media: i2c: imx258: Add support for powerdown gpio
 
-Am Donnerstag, dem 11.04.2024 um 13:48 +0100 schrieb Lee Jones:
-> On Mon, 01 Apr 2024, Andr=C3=A9 Apitzsch via B4 Relay wrote:
-> >=20
-> > [..]
-> > +
-> > +#define SY7802_TIMEOUT_DEFAULT_US	512000U
-> > +#define SY7802_TIMEOUT_MIN_US		32000U
-> > +#define SY7802_TIMEOUT_MAX_US		1024000U
-> > +#define SY7802_TIMEOUT_STEPSIZE_US	32000U
-> > +
-> > +#define SY7802_TORCH_BRIGHTNESS_MAX 8
-> > +
-> > +#define SY7802_FLASH_BRIGHTNESS_DEFAULT	14
-> > +#define SY7802_FLASH_BRIGHTNESS_MIN	0
-> > +#define SY7802_FLASH_BRIGHTNESS_MAX	15
-> > +#define SY7802_FLASH_BRIGHTNESS_STEP	1
->=20
-> Much nicer to read if everything was aligned.
 
-Using tab size 8, SY7802_FLASH_BRIGHTNESS_* look aligned to me. Do you
-refer to SY7802_TORCH_BRIGHTNESS_MAX here?=20
+v3 Luis Garcia
 
->=20
-> > [..]
-> > +
-> > +	/*
-> > +	 * There is only one set of flash control logic, and this
-> > flag is used to check if 'strobe'
->=20
-> The ',' before 'and' is superfluous.
->=20
-> > +	 * is currently being used.
-> > +	 */
->=20
-> Doesn't the variable name kind of imply this?
->=20
-> > +	if (chip->fled_strobe_used) {
-> > +		dev_warn(chip->dev, "Please disable strobe first
-> > [%d]\n", chip->fled_strobe_used);
->=20
-> "Cannot set torch brightness whilst strobe is enabled"
+- Add Use v4l2_link_freq_to_bitmap helper patch per Sakari Ailus
+- Separate dt-bindings for powerdown per Rob Herring
+- Fix dt-bindings for imx258.yaml
+- Fix sign offs per Dang Huynh 
+- Fix versioning per Conor Dooley and Kieran Bingham
+- Use scripts to validate and fix patches
+- Implemented feedback from Sakari Ailus
+  - media: i2c: imx258: Add support for 24MHz clock
+  - media: i2c: imx258: Add support for running on 2 CSI data lanes
 
-The comment and the warn message are taken from 'leds-mt6370-flash.c'.
-But I think using the warn message you suggested the comment can be
-removed.
+- Implemented feedback from Rob Herring
+  - dt-bindings: media: imx258: Add alternate compatible strings
 
->=20
-> > +		ret =3D -EBUSY;
-> > +		goto unlock;
-> > +	}
-> > +
-> > +	if (level)
-> > +		curr =3D chip->fled_torch_used | BIT(led->led_no);
-> > +	else
-> > +		curr =3D chip->fled_torch_used & ~BIT(led->led_no);
-> > +
-> > +	if (curr)
-> > +		val |=3D SY7802_MODE_TORCH;
-> > +
-> > +	/* Torch needs to be disabled first to apply new
-> > brightness */
->=20
-> "Disable touch to apply brightness"
->=20
-> > +	ret =3D regmap_update_bits(chip->regmap, SY7802_REG_ENABLE,
-> > SY7802_MODE_MASK,
-> > +				 SY7802_MODE_OFF);
-> > +	if (ret)
-> > +		goto unlock;
-> > +
-> > +	mask =3D led->led_no =3D=3D SY7802_LED_JOINT ?
-> > SY7802_TORCH_CURRENT_MASK_ALL :
->=20
-> Why not just use led->led_no in place of mask?
 
-I might be missing something, but I don't know how to use led->led_no
-in place of mask, when
-led->led_no is in {0,1,2} and
-mask is in {0x07, 0x38, 0x3f}.
 
->=20
-> Easier to read if you drop SY7802_TORCH_CURRENT_MASK_ALL to its own
-> line.
->=20
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SY7802_TORCH_CURRENT_MASK(led->l=
-ed_no);
-> > +
-> > [..]
-> > +
-> > +static int sy7802_probe(struct i2c_client *client)
-> > +{
-> > +	struct device *dev =3D &client->dev;
-> > +	struct sy7802 *chip;
-> > +	size_t count;
-> > +	int ret;
-> > +
-> > +	count =3D device_get_child_node_count(dev);
-> > +	if (!count || count > SY7802_MAX_LEDS)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "No child node or node count ov=
-er max led
-> > number %zu\n", count);
->=20
-> Split them up and report on them individually or combine the error
-> message:
->=20
-> "Invalid amount of LED nodes"
+v2 Luis Garcia
 
-This snippet was also taken from 'leds-mt6370-flash.c'.
+- Add use macros patch 
+- Add support for powerdown gpio patch
+- Add support for reset gpio patch
+- Dropped Add support for long exposure modes patch
+- Implemented feedback from Jacopo Mondi
+  - media: i2c: imx258: Add regulator control
+  - media: i2c: imx258: Add support for 24MHz clock
+  - media: i2c: imx258: Add support for running on 2 CSI data lanes
+  - media: i2c: imx258: Add get_selection for pixel array information
+  - media: i2c: imx258: Issue reset before starting streaming
+  - media: i2c: imx258: Set pixel_rate range to the same as the value
+  - dt-bindings: media: imx258: Add alternate compatible strings
+  - media: i2c: imx258: Change register settings for variants of the sensor
+  - media: i2c: imx258: Make HFLIP and VFLIP controls writable
 
->=20
+This adds a few more patches and drops one. The long exposure mode patch
+was dropped due to the bug that Jacopo found. The powerdown and reset gpio
+patches were added as that fixes support for the Pinephone Pro, without
+them the sensor doesn't initialize correctly.
+
+Tested on a Pinephone Pro by forcing 24 mhz clock. The two lower 
+resolutions had some artifacts but that is expected as more changes are 
+required to fix them for the Pinephone Pro specifically, kept all 
+registers the same as Dave's original patch since that works on dedicated
+imx258 hardware and the artifacts are PPP specific so it shouldn't 
+be a regression.
+
+
+
+v1 Dave Stevenson
+
+This is a set of patches for imx258 that allow it to work with alternate
+clock frequencies, over either 2 or 4 lanes, and generally adding
+flexibility to the driver.
+
+Tested with an IMX258 module from Soho Enterprises that has a 24MHz
+oscillator. Both 2 and 4 lane configurations work with correct link
+frequencies and pixel rates.
+
+Jacopo has tested on a PinePhone Pro which has an ~19.2MHz clock fed from
+the SoC, He confirms that the two lower resolution modes work, but not the
+full res mode. Comparing to the BSP it looks like they have some weird
+clock configuration in the 4208x3120 mode (nominally 1224Mb/s/lane instead
+of 1267). As it has never previously worked directly with the mainline
+driver this isn't a regression but may indicate that there is a need for
+support of additional link frequencies in the future.
+
+The last patch that makes HFLIP and VFLIP configurable may be contentious
+as I've retained the default configuration of inverted from the original
+driver. I know this was discussed recently, but I can't recall the final
+outcome.
+
+I am relying on someone from Intel testing this out, as correcting the
+cropping and supporting flips has changed the Bayer order. Seeing as this
+is all above board in V4L2 terms I really hope that the layers above it
+behave themselves.
+
+Dave Stevenson (20):
+  media: i2c: imx258: Remove unused defines
+  media: i2c: imx258: Make image geometry meet sensor requirements
+  media: i2c: imx258: Disable digital cropping on binned modes
+  media: i2c: imx258: Remove redundant I2C writes.
+  media: i2c: imx258: Add regulator control
+  media: i2c: imx258: Make V4L2_CID_VBLANK configurable.
+  media: i2c: imx258: Split out common registers from the mode based
+    ones
+  media: i2c: imx258: Add support for 24MHz clock
+  media: i2c: imx258: Add support for running on 2 CSI data lanes
+  media: i2c: imx258: Follow normal V4L2 behaviours for clipping
+    exposure
+  media: i2c: imx258: Add get_selection for pixel array information
+  media: i2c: imx258: Allow configuration of clock lane behaviour
+  media: i2c: imx258: Correct max FRM_LENGTH_LINES value
+  media: i2c: imx258: Issue reset before starting streaming
+  media: i2c: imx258: Set pixel_rate range to the same as the value
+  media: i2c: imx258: Support faster pixel rate on binned modes
+  dt-bindings: media: imx258: Rename to include vendor prefix
+  dt-bindings: media: imx258: Add alternate compatible strings
+  media: i2c: imx258: Change register settings for variants of the
+    sensor
+  media: i2c: imx258: Make HFLIP and VFLIP controls writable
+
+Luis Garcia (2):
+  media: i2c: imx258: Use v4l2_link_freq_to_bitmap helper
+  media: i2c: imx258: Convert to new CCI register access helpers
+
+Ondrej Jirman (3):
+  dt-bindings: media: imx258: Add binding for powerdown-gpio
+  media: i2c: imx258: Add support for powerdown gpio
+  media: i2c: imx258: Add support for reset gpio
+
+ .../i2c/{imx258.yaml => sony,imx258.yaml}     |   15 +-
+ MAINTAINERS                                   |    2 +-
+ drivers/media/i2c/Kconfig                     |    1 +
+ drivers/media/i2c/imx258.c                    | 1451 ++++++++++-------
+ 4 files changed, 850 insertions(+), 619 deletions(-)
+ rename Documentation/devicetree/bindings/media/i2c/{imx258.yaml => sony,imx258.yaml} (86%)
+
+-- 
+2.44.0
+
 
