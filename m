@@ -1,108 +1,105 @@
-Return-Path: <devicetree+bounces-64254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBC58B8A20
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 14:37:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 478408B8A24
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 14:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E769AB20A86
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:37:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 046C2283BDC
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 12:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908DFFC01;
-	Wed,  1 May 2024 12:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC55224D5;
+	Wed,  1 May 2024 12:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BU2zS/pz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BE433DD;
-	Wed,  1 May 2024 12:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4393CF9D6;
+	Wed,  1 May 2024 12:40:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714567025; cv=none; b=K+tGC+jWOvKI80N0pJfpbeqlz7bTVUXtKBf57edRQzpDDB/hOPqaFnrRifRXfnpXHsm8/nQIr1mQtfoMwc9UTfc8/e8fAEg7x84ggxWpTG3skN1waWQbxm3ArfVOWrO/540TlJRAkSQdzf02hXz+fmy2jXdAyDQ9HKqCRkuGzDE=
+	t=1714567203; cv=none; b=qY6yaS9WjqHWPa+EoL+Hgc1y3T52H+K6S8xThQ8vsUDJjSkAcsUYvLBCQYjSI2GifC8Efi77sdaLdlyQ2tiHx8erbWB1RsnhrZIhhsk1Sk48Q2KUvicAuqSL/jfyA0/fodd9nc9XQtpkPKmsH65XPsDnJZiaEmhCpQTYO+KEt1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714567025; c=relaxed/simple;
-	bh=jiPJIKOPACJlRigbwCAhBeP3mvgotgIB4cHD8g8MBkw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bPtNdoLylM0jRQ802HKbOKMA/oQLWiwAmaLwI/vfRpHn+5eN6/wKaZnnRhlgM0VxJ8kufvfa9M2FyuV7xZacrm/hcCMqpF8JgsrucA8enANVcBmL9gr8bQN4zHn0EaOf2fqnTtsOxb0c+rzqwMmWrUSsIhwlCg8KHz9O/OVevvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2693B2F4;
-	Wed,  1 May 2024 05:37:28 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98C753F73F;
-	Wed,  1 May 2024 05:36:59 -0700 (PDT)
-Date: Wed, 1 May 2024 13:36:57 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 4/6] pinctrl: scmi: export pinctrl_scmi_get_pins
-Message-ID: <ZjI3abJUIgo4xgRu@pluto>
-References: <20240428-pinctrl-scmi-oem-v3-v3-0-eda341eb47ed@nxp.com>
- <20240428-pinctrl-scmi-oem-v3-v3-4-eda341eb47ed@nxp.com>
+	s=arc-20240116; t=1714567203; c=relaxed/simple;
+	bh=cl0dB5wGo+5uj0Y4IQNMQknyPfpkK+3SgXwRRuMM5EM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VH4DnpQ8XzS1hAyX5TuSntcjiQMCBOHFz5ZYJA3kpms/41VrhuRe9MFdoYPUvJiJ8u8dj4FbnHYQ5qIgNST+FQo3gWc6Mwm3Ci0nLbMoLLpkzFNhPIYN8IPslqKq8spXlSgs6KFXNGo/A6zXdh4jnox+W1J5/QLnfUMBllLbbGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BU2zS/pz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C03D6C4AF14;
+	Wed,  1 May 2024 12:40:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714567202;
+	bh=cl0dB5wGo+5uj0Y4IQNMQknyPfpkK+3SgXwRRuMM5EM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=BU2zS/pz6catu1evdEGNz+5JPjugv/TZDFsNqElqDT3eLgxQl+AsZk7j6Z0xQ9j/w
+	 l7QxAWnwHalymxPBytEy0dobttdhXqel1zgQFKWN+/OFmBgLcp+MXJejeT07AKZi2O
+	 Lh9x4qsaZcz0wadMswTjmrWZMGJUmWt6mEj6ADUUg2+O1tjtDoxd/Cp5IB4+TyF1gF
+	 vG7sUo0cqt43SLkUt/tZ0V6fjvR59/TJjgEEyacouyj7vSU9mYjoXaxTy0fjkozTQs
+	 mMngeWklfzhGcCKnEVl9pqO87GwnouiHOBLGTLizxjMXxmLQiz302iLFBtu5DRuGSN
+	 0I+iP5hWJJysQ==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516d264d0e4so713117e87.0;
+        Wed, 01 May 2024 05:40:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXeSu0iEiNRKgYTFsdg5sKX39pNV9HCrHV/IWv0MvwowC0+1Vw6kFJyY+qvMziTFq+9leHOF9HK6lUR83Im+SBFrkYcLnXnWMiWJBqzcwB/wM3+Aih3sz4TGKmiCWjsipIyo8r7134zRg==
+X-Gm-Message-State: AOJu0YzLnr0RUWvkQet8wsQ58i/rn050EZWHXMw67zxeZowck9IOtT+Y
+	df1WrhnpDsgtKE8ri0CaPFv0Ac/NwEwJ8+yk26wWLO15Lz19HffIs2am9I6ovPMI+gb9Y1V4NvL
+	Hd+llaaeLLViCRfqE2GYzgrUhbg==
+X-Google-Smtp-Source: AGHT+IHfnLb4uX/CU49Wr6YrEIPeVaOTobqSBnrzfgvUOpXZjqc+PjMD1HIeOKWFvDKbqLBLBRoBOD0nP82bn0JE5fo=
+X-Received: by 2002:ac2:42cf:0:b0:51c:4e0f:ba33 with SMTP id
+ n15-20020ac242cf000000b0051c4e0fba33mr758683lfl.18.1714567201151; Wed, 01 May
+ 2024 05:40:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240428-pinctrl-scmi-oem-v3-v3-4-eda341eb47ed@nxp.com>
+References: <20240430172520.535179-1-robh@kernel.org> <4f3ce3439e3d996471085e906902e508528308d3.camel@codeconstruct.com.au>
+In-Reply-To: <4f3ce3439e3d996471085e906902e508528308d3.camel@codeconstruct.com.au>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 1 May 2024 07:39:48 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJmciSKp4H2KXcqv78Vga5gDi0JU_PY4Dth7LJrq6swMA@mail.gmail.com>
+Message-ID: <CAL_JsqJmciSKp4H2KXcqv78Vga5gDi0JU_PY4Dth7LJrq6swMA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: aspeed: Drop 'oneOf' for pinctrl node
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Apr 28, 2024 at 01:07:50PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add pinctrl-scmi.h to include the function prototype and 'struct
-> scmi_pinctrl' to export pinctrl_scmi_get_pins, so other drivers
-> could use it.
-> 
+On Tue, Apr 30, 2024 at 7:40=E2=80=AFPM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+>
+> On Tue, 2024-04-30 at 12:25 -0500, Rob Herring (Arm) wrote:
+> > The use of 'oneOf' to include 1 of 3 possible child node schemas result=
+s
+> > in error messages containing the actual error message(s) for the correc=
+t
+> > SoC buried in the tons of error messages from the 2 schemas that don't
+> > apply. It also causes the pinctrl schema to be applied twice as it will
+> > be applied when the compatible matches.
+> >
+> > All that's really needed in the parent schema is to ensure one of the
+> > possible compatible strings is present in the pinctrl node so that its
+> > schema will be applied separately.
+>
+> Thanks, I think it improves the readability of intent in the binding as
+> well.
+>
+> To understand the impact better I grabbed the patch and diffed the
+> output of `make CHECK_DTBS=3Dy aspeed/aspeed-ast2600-evb.dtb` before and
+> after applying it, but there was no significant difference in output.
+> Should that not demonstrate the errors being cleaned up? If not, what
+> should?
 
-Hi Peng,
+Try it on one of the new boards posted in the last 1-2 days. It showed
+up on my testing dtbs_check on patches. I didn't send a report because
+there was so much noise in it.
 
-so you wrote a new alternative SCMI driver using Pinctrl protocol@0x19
-so that you can just parse you custom DT bindings and then use the SCMI
-pinctrl_ops to set the OEM extensions to configure your platform...
-...since your firmware cannot cope with the all SCMI stack footprint....
-
-... you seemed to have solved the issue of having 2 Pinctrl drivers
-coexisting under the Linux Pinctrl subsystem while attached to the same
-protocol@19 node with patch 5/6 blocklist (if I get that right..)
-
-I think this approach of a standalone SCMI alternative Pinctrl driver
-that handles distinctly NXP OEM extensions and DT-parsing is certainly
-more preferable than the original series you posted months ago where
-custom NXP stuff were simply stuck on top of the Generic SCMI Pinctrl driver...
-
-...what I still dont understand is why you exported data and structure
-from pincttl-scmi.c to use it here; when NXP pinctrl is active the
-standard Linux generic Pinctrl driver wont be alive, so not probed, so
-no data can be shared, the only thing I can imagine is that you are
-just trying to avoid duplicating a dozen lines from the logic of
-scmi_pinctrl_get_pins() into your new NXP driver.
-
-In this way, though, you are creating a dependency between 2 drivers,
-that are not even allowed to cohexist at runtime really (due to the
-blocklist trick).
-
-Am I missing something ?
-
-If not, I think it will be much better to just rewrite that few lines of
-scmi_pincrtrl_pins_get trivial logic into your NXP driver and keep the 2
-drivers fully distinct at all times.
-
-Thanks,
-Cristian
-
+Rob
 
