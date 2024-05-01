@@ -1,59 +1,93 @@
-Return-Path: <devicetree+bounces-64167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A22428B8480
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 05:39:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF9F8B8493
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 06:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 619D6283C4B
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 03:39:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCBAA1C21EE7
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 04:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AF022097;
-	Wed,  1 May 2024 03:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A87238DC3;
+	Wed,  1 May 2024 04:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="YQ1KQucJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ocd66zqi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9451433E1
-	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 03:39:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC8F29405;
+	Wed,  1 May 2024 04:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714534755; cv=none; b=hoJablHE538lnQ7R0yF5f8av1pj4EoN83BwGnc9TGliCRgeQu+JTrSTReYZZOssBMoOeIgkW2T7YWYiavii4Um+i19wlf4CbcUb1TqJBfHT/9hA57u3wryntNXdt7iu2UE+IRanFLVvjqSpBZlYK9UR0L8+O8ybhzIFy5G8hvuw=
+	t=1714536486; cv=none; b=Fc69fDF2ber33a2aoSDDQv6oIouvyeFsEFcxapE3A0+PPF4d/5lNTGmvqqE2+YPbNASSw5S6OBbjd8yzMyyVhSz257ZtbNUHvExYEzJldyMaEk95FIBi9OUCzY7pjB6lxdE6hEGUlBKmoAYwN4i/4VE2pC7Jfe6CvEwOwI9MPAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714534755; c=relaxed/simple;
-	bh=dvhBjKBcPUz269brIvkZDthuqZA64s8rx8FCG1g1cQ4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iXeE9ZD7apEVMtXSHwyRqngRyXdonFxhQ3+VoYWqaXyRR2Fv7I/fzCB9hVsgQT4iS8NuGFB4t2oPHURwPXMXTDo1IB4+VcdSo0BTpHEjIknGaXO0AuICmGTf3fmRMr7JkHO1mmIIK4ovd29XssIEB3RtbShFSwnxOowf1m0h4MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=YQ1KQucJ; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: by codeconstruct.com.au (Postfix, from userid 10000)
-	id E5A252019F; Wed,  1 May 2024 11:39:10 +0800 (AWST)
+	s=arc-20240116; t=1714536486; c=relaxed/simple;
+	bh=/LW5UP24d3M9gnDJHKsZY3AjzrEnrgPIA21IZxGWV+o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=hg85xoN8iUbfK/ZAvhqDzawEq3FNpfo3tP1Vf8ZTovQHsEjH1RfL86G9tpxOLfZEq5VhnNIV4vAuqoVkxBuu1TiIT21jKyq/I1uLaP+DfaZGJkGe3khTu0jomldc6YnP1A+W6/k3+ZvqERMPsOruGtFU+n4TquvDXLGzhiW1WMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ocd66zqi; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3c7513a991cso4345129b6e.1;
+        Tue, 30 Apr 2024 21:08:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1714534750;
-	bh=7oapRTJqY1YXZtznldlbQ7h2355L4bGDZc4nRiSauP4=;
-	h=From:To:Cc:Subject:Date;
-	b=YQ1KQucJ/pFDSVQg0EWK5MfNJughorP+ElJ/JSXhdug4zwo6gSF8d1ZkzUghrb1/G
-	 wfzbmCRrG9Ywsy5Ie41m9HZNNIvh+SrOi0CWf4BleYMQLId5nHz30qySVg8e877IrD
-	 TNhfHcXkWN93W7GrzisnYZpQTr74rWJYfGxuz3TYxtzAC4+ZpvqO05tAPl88g64kNE
-	 pvQMJrfnZvRAj1vo4qWKDAVcWxahyImYIof9EoSMqLeKox7G54/W7yjsxtblKH+szt
-	 hQaiXmbPxS8na+fz9hf8BJ2FMLB+LjoH5IUvuDGNrOl5ZczV0H7J4xszmLvb7G1dhK
-	 6lT90XSMp3XVw==
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Joel Stanley <joel@jms.id.au>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: [PATCH] ARM: dts: aspeed-g6: Add nodes for i3c controllers
-Date: Wed,  1 May 2024 11:38:32 +0800
-Message-Id: <20240501033832.1529340-1-jk@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.2
+        d=gmail.com; s=20230601; t=1714536484; x=1715141284; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eQII4bd5vU3iEBUOJRNxIf3Y2tkmIxs3qzEGZCMfEv8=;
+        b=Ocd66zqifgVp9HxefgdAMCefTDJd9e2cCw8L27JdontZ8JktuR5FfT0u3wsuw+PP8J
+         N9bnhh4HMxEf+Epep8aQ4tQhKsE2yHvVtuU3jY3OOFhn5YHTHDhpa2GXxeywVgiTdtZA
+         xRFF/JXxZZ40/wpRobARQssej4QT6UIT2OdGFROfdnAE0PBhJu67LRt2pRKMAbVcpt42
+         u3o+LyCkogNknSjjMXpvFiCezF+hi0iiUeBrD9NJwNKU+mNHEqUKV8q09fjPHg1nR4FJ
+         3JY5+KySHMchLtQPtZmFQzAA+rT2C2mOz5CGn1hlF1v+MAFyp6or6zxp01VxNl21bbUo
+         rubw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714536484; x=1715141284;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eQII4bd5vU3iEBUOJRNxIf3Y2tkmIxs3qzEGZCMfEv8=;
+        b=gCsVJ3Pfq2sWfG9qcPejQFpBsM46lQvsKmutOt3/pWKwGDn+WR9NiYvUo/j41k76Fm
+         ugue+GcuP5t4OFXWgBaAWKEywrPEA+rfzpi32KcXjqsnXyiNGaqbEnPcPOo+SRoV0RJR
+         MVSKMAxi5YMABFUStSTx5bvNb9Qzir82NUI3dzN59cz7pMcZrAM0rMw1kl31JOCXIlag
+         bwMuaWdfJFKTDnc58wpdlicDZUGJ7yIxseDAjfFsH39sLmDHcBqrmFMF3rN9kwZc8BI9
+         HkE97ef5dTRpkjT2hHiV2uclLVH80P7rYpCDh07Ii/PKWMUqMTgXTs0RSqR/SBXYIUXK
+         kMMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqSxe2e3eYKO58oz79LyPdIlr8oRQqr9X7A0cZ4C73J7Tdn+PX7AB9IFrCirywPMe162S3fbXfAc7ecaz8veFDEauYapA1KazKuQnCGKWIE3iw/uLPsPij8MNieV5iF/QYVJGmwjdJyxcv2NQlaUHOud4MNiItC+RrRuQjhwd9syMMViE=
+X-Gm-Message-State: AOJu0Yyeuvj8UuKce++CjVFebV9OoOithA/+5EORgAyM2xldtImmZ7Dj
+	teGRS7Ulz3H3A4LCHpVhmjIipJf1BwJi3W/iprNpM8YHbiFKCx3mJffonEi+7kk=
+X-Google-Smtp-Source: AGHT+IHhxTl5k/+evzZ/7myhhtGs4Q+NGdUipnNMPy+mJqCCxGveYPCkAbK/AwpAGhGYlE5UDRtZ1Q==
+X-Received: by 2002:a05:6808:15a2:b0:3c7:3af6:1cb5 with SMTP id t34-20020a05680815a200b003c73af61cb5mr1916976oiw.46.1714536483873;
+        Tue, 30 Apr 2024 21:08:03 -0700 (PDT)
+Received: from nukework.lan (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
+        by smtp.gmail.com with ESMTPSA id w2-20020a056808018200b003c8643f0e5csm1067872oic.16.2024.04.30.21.08.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Apr 2024 21:08:03 -0700 (PDT)
+From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	quic_kathirav@quicinc.com,
+	Alexandru Gagniuc <mr.nuke.me@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 1/8] dt-bindings: clock: Add PCIe pipe related clocks for IPQ9574
+Date: Tue, 30 Apr 2024 23:07:43 -0500
+Message-Id: <20240501040800.1542805-2-mr.nuke.me@gmail.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240501040800.1542805-1-mr.nuke.me@gmail.com>
+References: <20240501040800.1542805-1-mr.nuke.me@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,124 +96,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the i3c controller devices to the ast2600 g6 common dts. We add all
-6 busses to the common g6 definition, but leave disabled through the
-status property, to be enabled per-platform.
+Add defines for the missing PCIe PIPE clocks.
 
-Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 93 +++++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index 29f94696d8b1..f9d01599a965 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -866,6 +866,13 @@ i2c: bus@1e78a000 {
- 				ranges = <0 0x1e78a000 0x1000>;
- 			};
- 
-+			i3c: bus@1e7a0000 {
-+				compatible = "simple-bus";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0 0x1e7a0000 0x8000>;
-+			};
-+
- 			fsim0: fsi@1e79b000 {
- 				compatible = "aspeed,ast2600-fsi-master", "fsi-master";
- 				reg = <0x1e79b000 0x94>;
-@@ -1125,3 +1132,89 @@ i2c15: i2c-bus@800 {
- 		status = "disabled";
- 	};
- };
-+
-+&i3c {
-+	i3c_global: i3c-global {
-+		compatible = "aspeed,ast2600-i3c-global", "syscon", "simple-mfd";
-+		reg = <0x0 0x1000>;
-+		resets = <&syscon ASPEED_RESET_I3C_DMA>;
-+	};
-+
-+	i3c0: i3c@2000 {
-+		compatible = "aspeed,ast2600-i3c";
-+		reg = <0x2000 0x1000>;
-+		#address-cells = <3>;
-+		#size-cells = <0>;
-+		clocks = <&syscon ASPEED_CLK_GATE_I3C0CLK>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i3c1_default>;
-+		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+		aspeed,global-regs = <&i3c_global 0>;
-+		status = "disabled";
-+	};
-+
-+	i3c1: i3c@3000 {
-+		compatible = "aspeed,ast2600-i3c";
-+		reg = <0x3000 0x1000>;
-+		#address-cells = <3>;
-+		#size-cells = <0>;
-+		clocks = <&syscon ASPEED_CLK_GATE_I3C1CLK>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i3c2_default>;
-+		interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+		aspeed,global-regs = <&i3c_global 1>;
-+		status = "disabled";
-+	};
-+
-+	i3c2: i3c@4000 {
-+		compatible = "aspeed,ast2600-i3c";
-+		reg = <0x4000 0x1000>;
-+		#address-cells = <3>;
-+		#size-cells = <0>;
-+		clocks = <&syscon ASPEED_CLK_GATE_I3C2CLK>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i3c3_default>;
-+		interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-+		aspeed,global-regs = <&i3c_global 2>;
-+		status = "disabled";
-+	};
-+
-+	i3c3: i3c@5000 {
-+		compatible = "aspeed,ast2600-i3c";
-+		reg = <0x5000 0x1000>;
-+		#address-cells = <3>;
-+		#size-cells = <0>;
-+		clocks = <&syscon ASPEED_CLK_GATE_I3C3CLK>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i3c4_default>;
-+		interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-+		aspeed,global-regs = <&i3c_global 3>;
-+		status = "disabled";
-+	};
-+
-+	i3c4: i3c@6000 {
-+		compatible = "aspeed,ast2600-i3c";
-+		reg = <0x6000 0x1000>;
-+		#address-cells = <3>;
-+		#size-cells = <0>;
-+		clocks = <&syscon ASPEED_CLK_GATE_I3C4CLK>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i3c5_default>;
-+		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-+		aspeed,global-regs = <&i3c_global 4>;
-+		status = "disabled";
-+	};
-+
-+	i3c5: i3c@7000 {
-+		compatible = "aspeed,ast2600-i3c";
-+		reg = <0x7000 0x1000>;
-+		#address-cells = <3>;
-+		#size-cells = <0>;
-+		clocks = <&syscon ASPEED_CLK_GATE_I3C5CLK>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i3c6_default>;
-+		interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+		aspeed,global-regs = <&i3c_global 5>;
-+		status = "disabled";
-+	};
-+};
+diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+index 08fd3a37acaa..52123c5a09fa 100644
+--- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
++++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+@@ -216,4 +216,8 @@
+ #define GCC_CRYPTO_AHB_CLK				207
+ #define GCC_USB0_PIPE_CLK				208
+ #define GCC_USB0_SLEEP_CLK				209
++#define GCC_PCIE0_PIPE_CLK				210
++#define GCC_PCIE1_PIPE_CLK				211
++#define GCC_PCIE2_PIPE_CLK				212
++#define GCC_PCIE3_PIPE_CLK				213
+ #endif
 -- 
-2.39.2
+2.40.1
 
 
