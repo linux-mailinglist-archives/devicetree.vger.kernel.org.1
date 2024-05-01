@@ -1,116 +1,130 @@
-Return-Path: <devicetree+bounces-64270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAB18B8BD7
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:26:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFD58B8BEE
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D35AA1F22550
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 14:26:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF0EEB2274F
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 14:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1416F12F382;
-	Wed,  1 May 2024 14:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB61710958;
+	Wed,  1 May 2024 14:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GEGApENE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxDlY5Y1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE99A12E1D5;
-	Wed,  1 May 2024 14:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8096E552;
+	Wed,  1 May 2024 14:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714573589; cv=none; b=k7VnVEPZl3E/U+ou97pYR48Ev5c6Q/ePShP+BCNiUNYSUHA2vl/Q05RFmCurRAl50GkHEiPoUCJNOlhtorMomfNOPkFF+Ex9MvUrvdAKFqCJtXrZhpTS+hQ/vd29V+5TXTBwS0RpvLgm7OH3S+AELMbMRapN7aPwtIadMERADnk=
+	t=1714574048; cv=none; b=NEPkJDIuCiGw6qBTvEVsKwvyNXoWLfsn6R9RBBgaCvhTS3Ms5SL4X4VViERpq6ohYf6ilf+aI1DqZ4jI8FZk9JT7rhwIVtdoqh9NhNRy4NYFKNNlef/0Bet0U1lKHo+hi9xW6Yw01R/8wBoj2ctolUNBlDXPDM/9UsiAttfaN/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714573589; c=relaxed/simple;
-	bh=gvjcuw/DNw3vvMUAeKkw8TDIEbg1vf9BJ6FzQ8Vh0bg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NUozUC979MdN+3sUTxreiFXqTTrDxrb38lEPXGcXiIxrdXeVfWFxzCt2nAtOmtGT7BfmbP7+wmXkQQG2Ybgp5Nf91Bv9FdEujUPIVvRo7GjSio8/NB0ZsCn7f1RAWuYHBNJldzYtlB/7a7DIdf5Fl6zSIFMYpDtPlBytTtIBdik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GEGApENE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5BF9C072AA;
-	Wed,  1 May 2024 14:26:27 +0000 (UTC)
+	s=arc-20240116; t=1714574048; c=relaxed/simple;
+	bh=CWxfucLjZKMuCq9KUz1Dscdcskx00ZJ/clYJpxna/Wk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f2Ra0Oj04w0Nwl0ZU/QwhEOv/l+Ww4zI9IXYIHSFBnxXrrPnSbvZnHF6mnKKhCzTHwfTeWyIDibXlH4HvQdQbWvaTmp0moSRiw9z98FWKc2WKzbAaBQZKtr1a2QBQyTBc9++i4d8ogtSJGw8kgQBNuu2zvJoVDqwY5mnJfXQLCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxDlY5Y1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9A77C072AA;
+	Wed,  1 May 2024 14:34:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714573588;
-	bh=gvjcuw/DNw3vvMUAeKkw8TDIEbg1vf9BJ6FzQ8Vh0bg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=GEGApENEN48MwbICDHhHvgqTEZTBOF/ujvWWeRXa4b2Fww4CW2kbHg9q2/fom2lnl
-	 dJ/9Peu44EhWyEABpUHR0PCVeRrVrI1HpPTmSs96Aj3EjGODFg5RFII0OlzUWuFxdO
-	 RBUaSpuFxNF7bQvUy8GUJKZV7DP30eznSzRYklJ2hmdlNFr+RWXwaa8UtLQNffo8aE
-	 slXZ0kd0PQAj65pB2JgisJz1ART6cVGFuJOWTaMhnsU6vAc3KYeVG2hbOAP+UG8Dgf
-	 Go9Y2hbB/uajp7MGSclfxiD/fqgNtBMi2MdrA8cnpNiM8aHFrGyLdJv/NE07TeiUIv
-	 r0OU51IVe1gsw==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-arm-kernel@lists.infradead.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	devicetree@vger.kernel.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	lorenzo.bianconi83@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linus.walleij@linaro.org,
-	brgl@bgdev.pl,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH] arm64: dts: airoha: en7581: Add gpio controller nodes
-Date: Wed,  1 May 2024 16:25:54 +0200
-Message-ID: <2d27e1ad360dec2c3d78d9800bc93ecb6f9b50c5.1714573214.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.44.0
+	s=k20201202; t=1714574048;
+	bh=CWxfucLjZKMuCq9KUz1Dscdcskx00ZJ/clYJpxna/Wk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GxDlY5Y1ypPthIpoAtKyaQd/ZBIcHSLBpr/2xmEoAGoXygcPxqr51/dxE+AgvpT2h
+	 desQDC+pv+ZldTvWod9pExwhM7IjD3Ryup55foKD4EKmtLb8ayHlP63eor321wLfBP
+	 YjsWuCPgsTYztYTBA7ydpIf/E5DarzDgWJJ3SuCxbZW5zJVHgr6OZ+8WhH1wQwyGP3
+	 XmKLUcYlcfl+ug5TyoX62OvbbrHC80zfCVYaPQrN5FWht2SPjZSTIL/w7cbJ6Oy9zQ
+	 z6kp4yP27xuZlcSId5Jg1Q9ow/Wm6lV8ldyR7ZLFrftpmVVbJiaJKi9LsKawzZkABE
+	 dafvfUzoG6ihQ==
+Date: Wed, 1 May 2024 15:34:01 +0100
+From: Will Deacon <will@kernel.org>
+To: Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, robdclark@gmail.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
+	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
+	quic_sudaraja@quicinc.com, djakov@kernel.org
+Subject: Re: [PATCH v8 2/7] iommu/arm-smmu-qcom-debug: Add support for TBUs
+Message-ID: <20240501143400.GA15503@willie-the-truck>
+References: <20240417133731.2055383-1-quic_c_gdjako@quicinc.com>
+ <20240417133731.2055383-3-quic_c_gdjako@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417133731.2055383-3-quic_c_gdjako@quicinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Introduce the Airoha EN7581 gpio nodes in Airoha EN7581 dtsi
+Hi Georgi,
 
-Tested-by: Rajeev Kumar <Rajeev.Kumar@airoha.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
-This patch is based on the following pending patch:
-https://patchwork.kernel.org/project/spi-devel-general/patch/189790802f3ba1a80c4ab5e064b2425e5a360098.1714571980.git.lorenzo@kernel.org/
----
- arch/arm64/boot/dts/airoha/en7581.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+On Wed, Apr 17, 2024 at 06:37:26AM -0700, Georgi Djakov wrote:
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
+> index bb89d49adf8d..eff7ca94ec8d 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index 98c2a86086e1..5d0d76cecfe0 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -178,5 +178,25 @@ spi_nand: nand@0 {
- 				spi-rx-bus-width = <2>;
- 			};
- 		};
-+
-+		gpio0: gpio@1fbf0200 {
-+			compatible = "airoha,en7523-gpio";
-+			reg = <0 0x1fbf0204 0 0x4>,
-+			      <0 0x1fbf0200 0 0x4>,
-+			      <0 0x1fbf0220 0 0x4>,
-+			      <0 0x1fbf0214 0 0x4>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
-+
-+		gpio1: gpio@1fbf0270 {
-+			compatible = "airoha,en7523-gpio";
-+			reg = <0 0x1fbf0270 0 0x4>,
-+			      <0 0x1fbf0260 0 0x4>,
-+			      <0 0x1fbf0264 0 0x4>,
-+			      <0 0x1fbf0278 0 0x4>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
- 	};
- };
--- 
-2.44.0
+...
+
+> +static const struct of_device_id qcom_tbu_of_match[] = {
+> +	{ .compatible = "qcom,sc7280-tbu" },
+> +	{ .compatible = "qcom,sdm845-tbu" },
+> +	{ }
+> +};
+> +
+> +static struct platform_driver qcom_tbu_driver = {
+> +	.driver = {
+> +		.name           = "qcom_tbu",
+> +		.of_match_table = qcom_tbu_of_match,
+> +	},
+> +	.probe = qcom_tbu_probe,
+> +};
+> +builtin_platform_driver(qcom_tbu_driver);
+
+I just noticed that this breaks a modular build of the arm-smmu driver
+because we now have two init functions for the module:
+
+  ld.lld: error: duplicate symbol: init_module
+  >>> defined at arm-smmu.c
+  >>>            drivers/iommu/arm/arm-smmu/arm-smmu.o:(init_module)
+  >>> defined at arm-smmu-qcom-debug.c
+  >>>            drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.o:(.init.text+0x4)
+
+I think you should initialise the TBU debug feature by calling into it
+manually from qcom_smmu_impl_init().
+
+Please can you send a patch to fix that? For now, I'll bodge it so that
+the qcom debug stuff doesn't build as a module (see below).
+
+Cheers,
+
+Will
+
+--->8
+
+diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+index 032bfd681307..66325210c8c9 100644
+--- a/drivers/iommu/Kconfig
++++ b/drivers/iommu/Kconfig
+@@ -376,7 +376,7 @@ config ARM_SMMU_QCOM
+
+ config ARM_SMMU_QCOM_DEBUG
+        bool "ARM SMMU QCOM implementation defined debug support"
+-       depends on ARM_SMMU_QCOM
++       depends on ARM_SMMU_QCOM=y
+        help
+          Support for implementation specific debug features in ARM SMMU
+          hardware found in QTI platforms. This include support for
 
 
