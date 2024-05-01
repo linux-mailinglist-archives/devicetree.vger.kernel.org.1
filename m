@@ -1,286 +1,219 @@
-Return-Path: <devicetree+bounces-64342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DDF8B8E85
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:52:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4018B8E8F
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F163B21495
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:52:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB8431F2392F
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A0BE542;
-	Wed,  1 May 2024 16:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406C810A2A;
+	Wed,  1 May 2024 16:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RczkqTMa"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Xyg99y92"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B2C748D;
-	Wed,  1 May 2024 16:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CC0125B9
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 16:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714582337; cv=none; b=u8AhVpCmTCJxsiCHKuFmwdYBLj9ursNzup4eautgaKhuYbPYsGVtbS2OKZ9sgI+0CzcccBYGsOo79eEA4WCLEeeBCE9kUUwCw/aWxRiD4cmZoHaZNbrN70MMhOjoP5zIaC5/RjMTtTxr+ujMgfHqqw4MlrLp/+AwCghztX252+E=
+	t=1714582483; cv=none; b=UqBIK0oVJS3JFFRYn0ra+dfqRv1eRf0hKF4kDnq16wiWx3ZedLi9HnXU4Uaq7noD9foP0wAh9JPv20XOQUF6wEfHbiezG1jOcLKghln5tOY2gZicOfBnkOi0iDrlUrUBfDWCVoihVL+a78EV6ASyjY3TgackPfUIoOYqBAirBIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714582337; c=relaxed/simple;
-	bh=EoTNNFNmdiSJ+ihhxP7N6TMOpU57rtyD9Vd0HKERdZw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GhNY4eEbQVbaoSg8UQz+4xSTN+EQWimq6m3HWrbhKTqY3Am3VMnLf33N3ZxjdWtBgovKt5pNI840QsohxlKYALHc/Ca+M5xq8Dx3iWP7Gsdr/hd+v0md8A33QxwFIrSofqnnsy/oIfcSiXluf3nVCg4EVpnN6Zu1Em0lhsRStAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RczkqTMa; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6f4178aec15so1482108b3a.0;
-        Wed, 01 May 2024 09:52:16 -0700 (PDT)
+	s=arc-20240116; t=1714582483; c=relaxed/simple;
+	bh=GL8aoeKVv7NTqthKTQt9djeQqR3rw/C/jRnAEiWNkz8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J8U7BnyxBqMmURxfMZpzMuCykXLS1gKU5+ROVPL8bD2hDXY7ePfzTxFAdgeFpaOe2lyvMNH1G6N2eER5ykqTcz+1l692UNbokD4MPjyO48DZze0yguuz4pUQ/VmgdodVJvCARDKBqMMImP0Pg7mxsfIuWin/b4sQyE8EX5Zwxq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Xyg99y92; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2db2f6cb312so110177621fa.2
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 09:54:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714582335; x=1715187135; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=X+kLWLzH38TvjMAPOyIaIJoNEWichEBjYFHCLTsZASU=;
-        b=RczkqTMaw6+/lEwp6+gdvvuF2HLS/W3drvRC5yl/IOfMjpu6eUDEp8yjiFZPpx8Bpu
-         nF51wDsuxb366T3x0NlSjJ2bJLqzJYziOKKlGbYrK6bKpjrfsDkc6CxYacqlJjfYeT9V
-         tA0Yl7u3o3jXu4zWFG5Seakoz6tVL4+J+huFgef1W0zpOvuTASlXutLaN+ftLHznmABb
-         g3VbYpGrvvWbUCALMP9NPfi6BSmEPAaST6DxjtZjvJw+YJb3NceQhOFLp6aRrbxg8xbG
-         PXdFN8qC3ebO9pJq/PZGSxLKdbO9I5oIMV1iAcjlPkNF6JJQjawXrL5hDzHRRXsbjwzm
-         un8g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714582478; x=1715187278; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w/wlojJlB2oaskScy046z1eNPepG9Aezgzs4l2bkU6o=;
+        b=Xyg99y92CTooGbYfJsuPfy618xlMfQYPUp0HmeXmBNHAnZNQBbYdIg47MlOLd+pfNj
+         65uHT3C9AVpQnFL8B9h+QAU76+PsQ435FjNxeTH5ib+p/ND9jSFVa7+52FlUQRALNU1v
+         FvfZAUYzABdF/9GiUiZ2IYUWI44iBSKKz+Lr3516nAtP21SWc9hNg62417IkyIrx9HTh
+         AW6FPSr7XiUXHZn3sTWuQE2Fjl85eiD6bcqCiemEPo4qFE0oXDf/lsoNJ8IIezr4krrd
+         fw2OJaZMc6baV19oFvJlh0uLLbUKpkVRBJ48ZVMEQG3qDwUQevPrVJT3SnaqSaaSX8Cb
+         nokg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714582335; x=1715187135;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X+kLWLzH38TvjMAPOyIaIJoNEWichEBjYFHCLTsZASU=;
-        b=vaCaQMAd5MfDhRyqTrIAE0iwbiI8/+Bh6V374G/Tn4vr5It4JFc6qpKX/9i66VZEu1
-         cLal8DVArxpFJy3vtKo5o9XXOGe87OZmpCRyogz2ECv+5p3Dr/lnKlUwT6ND6muhY5Fo
-         2iQ6cr9QzbxTJWv7PcmhsOwF0yogiE6sIM7GmCYJVvsutt/mfpXNJQ1rtrqKWJoQsgyZ
-         n3qkG+3d4dLYybP8D9lbsuS6E1kJzj3O12lPFRUgtCIeyvKL8nuyhzRdwEK1xoQjWOc5
-         eisFHVf3/pgyvAOd4bBCDUiqKxfYYB+safb/C1Eg8itQB2KWHmBd7GQ08cBp4ULjBseI
-         GNZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWgsL1yDcfrnaMqQ+zEwulSzYZTRJ2BHrjwCLRwK5IvoQHtSiHpJ+ms/fvmzGQ0WZh+pFZGygmaXTF1i2xn6HXlsky/mqRw3mruC19RCcYVtPL68qjFBl4Js9FvbZA+/7ls1COH5krUpw==
-X-Gm-Message-State: AOJu0YxA/0xmkOFfmme9EydLuifOAXW0QyJwWNhS95zcUmpiyihYcBQd
-	AK2J1s6zPQMPHlO3zC/m384NQNvF1K00Kmivc0xYnms6sIbjIfuI
-X-Google-Smtp-Source: AGHT+IFoLPLaa10OmlKHdeMWUQfAXY6nicn0jqB5kR0cepCobySIMzdTUmrXKqUApZ+BDGQJOD7ZNA==
-X-Received: by 2002:a05:6a21:339f:b0:1ad:7e4d:2ea6 with SMTP id yy31-20020a056a21339f00b001ad7e4d2ea6mr3618013pzb.20.1714582335399;
-        Wed, 01 May 2024 09:52:15 -0700 (PDT)
-Received: from kousik.local ([2405:201:c006:31f8:c3a6:8218:5d12:51ef])
-        by smtp.gmail.com with ESMTPSA id gd22-20020a056a00831600b006e6fc52ecd0sm22758866pfb.123.2024.05.01.09.52.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 May 2024 09:52:14 -0700 (PDT)
-From: Kousik Sanagavarapu <five231003@gmail.com>
-To: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Kousik Sanagavarapu <five231003@gmail.com>
-Subject: [PATCH v3] spi: dt-bindings: ti,qspi: convert to dtschema
-Date: Wed,  1 May 2024 22:18:53 +0530
-Message-ID: <20240501165203.13763-1-five231003@gmail.com>
-X-Mailer: git-send-email 2.45.0.rc1.8.ge326e52010
+        d=1e100.net; s=20230601; t=1714582478; x=1715187278;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w/wlojJlB2oaskScy046z1eNPepG9Aezgzs4l2bkU6o=;
+        b=kMQVinMAopfEYm1L0iAeh5ymq0p+kNCc+jDyzacVGzZHtxW4h8qDMB9GBY6BdNwEXp
+         v+h0mD0ywAV/ZtvE3Jf7+6ONkAKtDP5G35Fp2esHDEi3FQrsdA85KQK093aX2RBOlAEd
+         9Bu3s5BBtXTERKNIpw+Rz2X4O2IcQDlu/ZCAIyaqGs/GCTFa5ySRxO+zRxL1LVGciwX6
+         jEwYlf7s2nCW0QQ2nHTZbWuz4FFsuiWH5MT6QyStq0TypEpeezf3lvn6VuDbWGhq7KBV
+         Ak/NogL/BesJnDboh39nZ2r2TBD4qG/fbZPpCB2MuQ8jbPM8T+GbaS8h4kZSBXp0wtxn
+         Vjwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUL48Ul4t2SpV3rHi1UIkjZCxrKvTgNXw9/T8teXYBHarWGMSN7eUpKgXM8GyeBouBZOMxKN9CEcnYsHU9KMek6m4BdJNS3GYLq6w==
+X-Gm-Message-State: AOJu0YysdBmXQjn3VQ9I1JuWXTrBHz+1no11jgvz7nbTO9nudY2x/njF
+	KiIdZbwjC1W6/PdBHRPl48us+ttOWFWcKlXvltIdhj14StBWT1WGvEycpYcAjWsswMYWJoCCRFR
+	cXXrFQ3Ey+ucS6T0JP/nC0ef51a8w1UNqAieXkA==
+X-Google-Smtp-Source: AGHT+IHy8X3vNCkUoqaYTTSby7XxzA2kbJbzSLWq5fgusbVBvlv4DCRXAp8OqI8IJ6PDqlqgTl6hQqQcOvULrY1H8Pk=
+X-Received: by 2002:a2e:7c0e:0:b0:2d8:5af9:90c5 with SMTP id
+ x14-20020a2e7c0e000000b002d85af990c5mr2708389ljc.39.1714582478520; Wed, 01
+ May 2024 09:54:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240430162946.589423-1-alisa.roman@analog.com> <20240430162946.589423-4-alisa.roman@analog.com>
+In-Reply-To: <20240430162946.589423-4-alisa.roman@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Wed, 1 May 2024 11:54:27 -0500
+Message-ID: <CAMknhBHa7zfWeQj7LDFCZDWc8i8as1WD964L2J3z6v_Un6kXFQ@mail.gmail.com>
+Subject: Re: [PATCH v7 3/6] iio: adc: ad7192: Add aincom supply
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, nuno.sa@analog.com, 
+	marcelo.schmitt@analog.com, bigunclemax@gmail.com, okan.sahin@analog.com, 
+	fr0st61te@gmail.com, alisa.roman@analog.com, marcus.folkesson@gmail.com, 
+	schnelle@linux.ibm.com, liambeguin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert txt binding of TI's qspi controller (found on their omap SoCs) to
-dtschema to allow for validation.
+On Tue, Apr 30, 2024 at 11:30=E2=80=AFAM Alisa-Dariana Roman
+<alisadariana@gmail.com> wrote:
+>
+> AINCOM should actually be a supply. AINx inputs are referenced to AINCOM
+> in pseudo-differential operation mode. AINCOM voltage represents the
+> offset of corresponding channels.
+>
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
+>  drivers/iio/adc/ad7192.c | 41 ++++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 39 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+> index ace81e3817a1..3e797ff48086 100644
+> --- a/drivers/iio/adc/ad7192.c
+> +++ b/drivers/iio/adc/ad7192.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/module.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/property.h>
+> +#include <linux/units.h>
+>
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/sysfs.h>
+> @@ -186,6 +187,7 @@ struct ad7192_state {
+>         struct regulator                *vref;
+>         struct clk                      *mclk;
+>         u16                             int_vref_mv;
+> +       u32                             aincom_mv;
+>         u32                             fclk;
+>         u32                             mode;
+>         u32                             conf;
+> @@ -742,10 +744,19 @@ static int ad7192_read_raw(struct iio_dev *indio_de=
+v,
+>                         *val =3D -(1 << (chan->scan_type.realbits - 1));
+>                 else
+>                         *val =3D 0;
 
-The changes, w.r.t. the original txt binding, are:
+nit: add blank line before switch for readability
 
-- Introduce "clocks" and "clock-names" which was never mentioned.
-- Reflect that "ti,hwmods" is deprecated and is not a "required"
-  property anymore.
-- Introduce "num-cs" which allows for setting the number of chip
-  selects.
-- Drop "qspi_ctrlmod".
+> +               switch (chan->type) {
+> +               case IIO_VOLTAGE:
 
-Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
----
-Changes since v1:
-- Removed a redundant paragraph in the commit message.
-- Mention that we are dropping "qspi_ctrlmod", which I forgot to do in
-  the last iteration.
+Comment could be helpful here as a few things might not be obvious:
+* Only applies to pseudo-differential inputs (!chan->differential)
+* AINCOM voltage has to be converted to "raw" units.
 
-Changes since v2:
-- Don't make "num-cs" an array.
-- The max number of syscon-chipselects is now 1.
-- Make the unit-address in the example right.
-- Fix a typo in "syscon-chipselects"'s description.
+> +                       if (st->aincom_mv && !chan->differential)
+> +                               *val +=3D DIV_ROUND_CLOSEST_ULL((u64)st->=
+aincom_mv * NANO,
+> +                                                             st->scale_a=
+vail[gain][1]);
+> +                       return IIO_VAL_INT;
+>                 /* Kelvin to Celsius */
+> -               if (chan->type =3D=3D IIO_TEMP)
+> +               case IIO_TEMP:
+>                         *val -=3D 273 * ad7192_get_temp_scale(unipolar);
+> -               return IIO_VAL_INT;
+> +                       return IIO_VAL_INT;
+> +               default:
+> +                       return -EINVAL;
+> +               }
+>         case IIO_CHAN_INFO_SAMP_FREQ:
+>                 *val =3D DIV_ROUND_CLOSEST(ad7192_get_f_adc(st), 1024);
+>                 return IIO_VAL_INT;
+> @@ -1052,6 +1063,7 @@ static int ad7192_probe(struct spi_device *spi)
+>  {
+>         struct ad7192_state *st;
+>         struct iio_dev *indio_dev;
+> +       struct regulator *aincom;
+>         int ret;
+>
+>         if (!spi->irq) {
+> @@ -1067,6 +1079,31 @@ static int ad7192_probe(struct spi_device *spi)
+>
+>         mutex_init(&st->lock);
+>
+> +       /*
+> +        * Regulator aincom is optional to maintain compatibility with ol=
+der DT.
+> +        * Newer firmware should provide a zero volt fixed supply if wire=
+d to
+> +        * ground.
+> +        */
+> +       aincom =3D devm_regulator_get_optional(&spi->dev, "aincom");
 
- .../devicetree/bindings/spi/ti,qspi.yaml      | 96 +++++++++++++++++++
- .../devicetree/bindings/spi/ti_qspi.txt       | 53 ----------
- 2 files changed, 96 insertions(+), 53 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/spi/ti,qspi.yaml
- delete mode 100644 Documentation/devicetree/bindings/spi/ti_qspi.txt
+Do we need to consider other errors separate from -EINVAL?
 
-diff --git a/Documentation/devicetree/bindings/spi/ti,qspi.yaml b/Documentation/devicetree/bindings/spi/ti,qspi.yaml
-new file mode 100644
-index 000000000000..626a915b3d77
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/ti,qspi.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/ti,qspi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI QSPI controller
-+
-+maintainers:
-+  - Kousik Sanagavarapu <five231003@gmail.com>
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am4372-qspi
-+      - ti,dra7xxx-qspi
-+
-+  reg:
-+    items:
-+      - description: base registers
-+      - description: mapped memory
-+
-+  reg-names:
-+    items:
-+      - const: qspi_base
-+      - const: qspi_mmap
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: fck
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  num-cs:
-+    minimum: 1
-+    maximum: 4
-+    default: 1
-+
-+  ti,hwmods:
-+    description:
-+      Name of the hwmod associated to the QSPI.  This is for legacy
-+      platforms only.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    deprecated: true
-+
-+  syscon-chipselects:
-+    description:
-+      Handle to system control region containing QSPI chipselect register
-+      and offset of that register.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to system control register
-+          - description: register offset
-+
-+  spi-max-frequency:
-+    description: Maximum SPI clocking speed of the controller in Hz.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/dra7.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    spi@4b300000 {
-+        compatible = "ti,dra7xxx-qspi";
-+        reg = <0x4b300000 0x100>,
-+              <0x5c000000 0x4000000>;
-+        reg-names = "qspi_base", "qspi_mmap";
-+        syscon-chipselects = <&scm_conf 0x558>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        clocks = <&l4per2_clkctrl DRA7_L4PER2_QSPI_CLKCTRL 25>;
-+        clock-names = "fck";
-+        num-cs = <4>;
-+        spi-max-frequency = <48000000>;
-+        interrupts = <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/spi/ti_qspi.txt b/Documentation/devicetree/bindings/spi/ti_qspi.txt
-deleted file mode 100644
-index 47b184bce414..000000000000
---- a/Documentation/devicetree/bindings/spi/ti_qspi.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--TI QSPI controller.
--
--Required properties:
--- compatible : should be "ti,dra7xxx-qspi" or "ti,am4372-qspi".
--- reg: Should contain QSPI registers location and length.
--- reg-names: Should contain the resource reg names.
--	- qspi_base: Qspi configuration register Address space
--	- qspi_mmap: Memory mapped Address space
--	- (optional) qspi_ctrlmod: Control module Address space
--- interrupts: should contain the qspi interrupt number.
--- #address-cells, #size-cells : Must be present if the device has sub-nodes
--- ti,hwmods: Name of the hwmod associated to the QSPI
--
--Recommended properties:
--- spi-max-frequency: Definition as per
--                     Documentation/devicetree/bindings/spi/spi-bus.txt
--
--Optional properties:
--- syscon-chipselects: Handle to system control region contains QSPI
--		      chipselect register and offset of that register.
--
--NOTE: TI QSPI controller requires different pinmux and IODelay
--parameters for Mode-0 and Mode-3 operations, which needs to be set up by
--the bootloader (U-Boot). Default configuration only supports Mode-0
--operation. Hence, "spi-cpol" and "spi-cpha" DT properties cannot be
--specified in the slave nodes of TI QSPI controller without appropriate
--modification to bootloader.
--
--Example:
--
--For am4372:
--qspi: qspi@47900000 {
--	compatible = "ti,am4372-qspi";
--	reg = <0x47900000 0x100>, <0x30000000 0x4000000>;
--	reg-names = "qspi_base", "qspi_mmap";
--	#address-cells = <1>;
--	#size-cells = <0>;
--	spi-max-frequency = <25000000>;
--	ti,hwmods = "qspi";
--};
--
--For dra7xx:
--qspi: qspi@4b300000 {
--	compatible = "ti,dra7xxx-qspi";
--	reg = <0x4b300000 0x100>,
--	      <0x5c000000 0x4000000>,
--	reg-names = "qspi_base", "qspi_mmap";
--	syscon-chipselects = <&scm_conf 0x558>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	spi-max-frequency = <48000000>;
--	ti,hwmods = "qspi";
--};
--- 
-2.45.0.rc1.8.ge326e52010
+I've done something like this in other drivers:
 
+if (IS_ERR(aincom)) {
+    if (PTR_ERR(aincom) !=3D -EINVAL)
+        return dev_err_probe(...);
+
+    st->aincom_mv =3D 0;
+} else {
+   ...
+    st->aincom_mv =3D ...;
+}
+> +       if (IS_ERR(aincom)) {
+> +               st->aincom_mv =3D 0;
+> +       } else {
+> +               ret =3D regulator_enable(aincom);
+> +               if (ret)
+> +                       return dev_err_probe(&spi->dev, ret,
+> +                                            "Failed to enable specified =
+AINCOM supply\n");
+> +
+> +               ret =3D devm_add_action_or_reset(&spi->dev, ad7192_reg_di=
+sable, aincom);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               ret =3D regulator_get_voltage(aincom);
+> +               if (ret < 0)
+> +                       return dev_err_probe(&spi->dev, ret,
+> +                                            "Device tree error, AINCOM v=
+oltage undefined\n");
+> +               st->aincom_mv =3D ret / 1000;
+> +       }
+> +
+>         st->avdd =3D devm_regulator_get(&spi->dev, "avdd");
+>         if (IS_ERR(st->avdd))
+>                 return PTR_ERR(st->avdd);
+> --
+> 2.34.1
+>
 
