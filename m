@@ -1,141 +1,229 @@
-Return-Path: <devicetree+bounces-64243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A1F8B8923
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 13:20:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9288B892E
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 13:30:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD9A0B20AA5
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 11:20:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DCD9284D66
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 11:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B968B58217;
-	Wed,  1 May 2024 11:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791DF629E4;
+	Wed,  1 May 2024 11:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BVDh0Yk6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FV/NkRDA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93F856B63;
-	Wed,  1 May 2024 11:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425724F898;
+	Wed,  1 May 2024 11:30:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714562414; cv=none; b=tRsva6PVhjY+h/qilwPURxzbjAhv4VbGKd3UhSUOVAqlchQrHuYQc0Q8LQANpnhLHNAzLTVCuJgpkAQB2ipkKBEqGntqZd17zVjie1hl3vzFiQoB/VBevf7w/IN7oqoyupj6HXkTDE7KNKfsae8n1cWyqrf5hyR6Fi7SkLO+EJU=
+	t=1714563004; cv=none; b=W8pwIlF4XJmxW1GKSgr7UuPSFm2BJs3ZSvexwCnt57bU4Ao1omsNdUXMjz6zATh/IudxleF5gE/UWo2yUt9x930Ifth+WOQkbVcecYNDlT22h6UB7+ZMzOUTfLS2bFd/5rN2k6ib7x3eiI2ML5WzqZOw4SrqghqumQiVvDBRkeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714562414; c=relaxed/simple;
-	bh=VdaxhUn/XM6Ym1rOWk8SQaeNn5/QJQcnrhKtg4irLf0=;
+	s=arc-20240116; t=1714563004; c=relaxed/simple;
+	bh=wnyP0N2IUEGu5xTUV2erSrz4gmuy2GNmNKOOWDxahyQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m6VOpakN3EwgsCxEPuIaHJMValg5hEmmnAge1wHL+3RP+9a6oMK7Bp+r/j7NgdBfjHpDzByzfPIXLEfgMuEtKkm/XYiolL0tSKnluWM6r/NNNxLTs0EE4YQf1JDLvBZAA+GxmAGCwAbda6PH/QjnmYrM0GFrinfEluqGWUajwqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BVDh0Yk6; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BFD2324000C;
-	Wed,  1 May 2024 11:20:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1714562403;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+cNJcR4HKthr4uVQ8bZMEc3QTkCQ0VDxcnetbrScSKg=;
-	b=BVDh0Yk6zShpiP0lUaFPccR0hocR9I7SgxGCP1iFeWYYv8Hjj3fFidC+tuWwRSRv7ygAHx
-	Y0239OrhnxD0dawobTnFpggmXx2SNnDuluNCBRXuirnvhg4JvuYz4KctaDHzWErIHMpLYD
-	fkKR9MmCCBXK7DIK0NqceuT+odWLR3bB2/70HJOaWSbMXR+o4IxeTYyFPDwoGamqe87AbO
-	lKZI1frIGFZqDPgB94mNLtTtwVlcNfYnBSm9YJbfnvot02lfclM9UnnwSracs4zwF5QcTh
-	olBgKp5IBR28GBPHyLOvVV2houTWn+b66Xze0nXZuuqgtM6SleFZiYxJFyVJfQ==
-Date: Wed, 1 May 2024 13:20:01 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Cc: Inochi Amaoto <inochiama@outlook.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dlan@gentoo.org
-Subject: Re: [PATCH v8 2/2] rtc: sophgo: add rtc support for Sophgo CV1800 SoC
-Message-ID: <20240501112001dc47d549@mail.local>
-References: <20240204044143.415915-1-qiujingbao.dlmu@gmail.com>
- <20240204044143.415915-3-qiujingbao.dlmu@gmail.com>
- <IA1PR20MB49533772D594D18204E9F9EEBB192@IA1PR20MB4953.namprd20.prod.outlook.com>
- <CAJRtX8Rz0BhbtBJq+gSRTU3vsOwfyWjrqJ-Q1fqr7ZFeY2uaNQ@mail.gmail.com>
- <IA1PR20MB495377FCD5101F85B02BB5BCBB192@IA1PR20MB4953.namprd20.prod.outlook.com>
- <CAJRtX8Ruh4BethYcGM2RueNBDioXpn8dJ3yvUD4iW_1cmiVFqg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ieeyATj0dycJcTqHrHqor7vCE5l4daB0M90lkW53PIYhRZbw+3UfjKjeB2Fy8Cl0YKvLNO3UHgh0Jl/XFW3/zoE+MO4gY+pGvp5Qi8cPMLSMwhzmVSyCA6AIXBm5FKH50aBgqey1HRHByTuvLqheRyBBDkpThAouxrytv6mGsBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FV/NkRDA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46749C113CC;
+	Wed,  1 May 2024 11:29:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714563003;
+	bh=wnyP0N2IUEGu5xTUV2erSrz4gmuy2GNmNKOOWDxahyQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FV/NkRDARin7EyZMp5zpEWMLOj7VUk5uwlOKmK/QraQENAekoYt74g9QAxgVzlN7Q
+	 08GMdnBX9j1fCSX+x9eHg/9gkz/RRyQGC6WXGnBZKEQrc/FYO3xS2k2rJOgUeNOvO9
+	 v+6TP+11RF1FxRoCP6ym+ANBFfHJod9ArKo9IAbRaqgfJWhwB1P4LfsvKEsURoylZR
+	 HA405aAGd6qouJVCU+Tav/nkNNHiA3TFy/qmglhIqIAuB/6EkZ8Ogy42gqJmmRlz6H
+	 Xeur1ue0wnBx8dK9Mr/kaiu3qffOQ5XkwtpYP2HF/F5YNEPWhYoshZQbfFN6YyH+RF
+	 In72dVGW+yRmQ==
+Date: Wed, 1 May 2024 12:29:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v4 06/16] riscv: Introduce vendor variants of extension
+ helpers
+Message-ID: <20240501-tripping-acetone-e556e993ba95@spud>
+References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
+ <20240426-dev-charlie-support_thead_vector_6_9-v4-6-b692f3c516ec@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Y5+x5J78UsrLnSS+"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJRtX8Ruh4BethYcGM2RueNBDioXpn8dJ3yvUD4iW_1cmiVFqg@mail.gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20240426-dev-charlie-support_thead_vector_6_9-v4-6-b692f3c516ec@rivosinc.com>
 
-On 01/05/2024 17:14:43+0800, Jingbao Qiu wrote:
-> On Wed, May 1, 2024 at 3:43 PM Inochi Amaoto <inochiama@outlook.com> wrote:
-> >
-> > On Wed, May 01, 2024 at 01:03:58PM GMT, Jingbao Qiu wrote:
-> > > Hi, Inochi
-> > >
-> > > On Wed, May 1, 2024 at 10:19 AM Inochi Amaoto <inochiama@outlook.com> wrote:
-> 
-> > > > Another thing is that I do not think is a good way to let the
-> > > > rtc driver access RTC_CTRL area directly. You have already
-> > > > know there is a 8051 device in the 0x05025000. It is necessary
-> > > > to make some room for this device. Maybe you want to implement
-> > > > them all in the rtc driver? If so, I do think it is a bad idea.
-> > >
-> > >
-> > > Do you mean that RTC drivers should not directly access the 0x05025000 address?
-> > > Because there is an 8051 subsystem on this address.
-> >
-> > Yes. At least we need some mechanism to share these address between
-> > this devices.
-> >
-> > > Firstly, I do not intend to implement 8051 in the RTC driver,
-> > > but the 8051 subsystem is located within a module independently
-> > > powered by the RTC.
-> > > So if we want to implement the 8051 subsystem in the future, it can be
-> > > used as a node in RTC? I'm not sure.
-> >
-> > Yes, this is what I care about.
-> >
-> > > Then, Alexandre told me that there are operations related to PM in
-> > > RTC, such as the following files.
-> > > This matches the description of address 0x05025000.
-> > >
-> > > drivers/rtc/rtc jz4740. c
-> > >
-> >
-> > I do not think this is something related to the PM. 8051 is more
-> > like remoteproc. So it is necessary to arrange them carefully.
-> >
-> 
-> You are right.
-> I learned from official documents that 8051 works in the RTC domain.
-> Linux does not provide relevant interfaces to operate 8051,
-> Just providing a mailbox for communication between them, or through
-> interruptions.
-> I don't understand how 8051 works, so I shouldn't write to the
-> corresponding registers in RTC.
-> 
-> https://milkv.io/docs/duo/getting-started/8051core
 
-Then you will have to have a driver for the 8051 firmware before being
-able to access registers that are outside of the RTC range. However, I
-se the firmware is using RTC_INFOx without any form of locking but I
-guess this just means Linux will have to ensure it never writes to
-those.
+--Y5+x5J78UsrLnSS+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> 
-> > > > > 2.25.1
-> > > > >
+On Fri, Apr 26, 2024 at 02:29:20PM -0700, Charlie Jenkins wrote:
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> index c073494519eb..dd7e8e0c0af1 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -844,25 +844,41 @@ void __init_or_module riscv_cpufeature_patch_func(s=
+truct alt_entry *begin,
+>  {
+>  	struct alt_entry *alt;
+>  	void *oldptr, *altptr;
+> -	u16 id, value;
+> +	u16 id, value, vendor;
+> =20
+>  	if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+>  		return;
+> =20
+>  	for (alt =3D begin; alt < end; alt++) {
+> -		if (alt->vendor_id !=3D 0)
+> -			continue;
+> -
+>  		id =3D PATCH_ID_CPUFEATURE_ID(alt->patch_id);
+> +		vendor =3D PATCH_ID_CPUFEATURE_ID(alt->vendor_id);
+> =20
+> -		if (id >=3D RISCV_ISA_EXT_MAX) {
+> +		/*
+> +		 * Any alternative with a patch_id that is less than
+> +		 * RISCV_ISA_EXT_MAX is interpreted as a standard extension.
+> +		 *
+> +		 * Any alternative with patch_id that is greater than or equal
+> +		 * to RISCV_VENDOR_EXT_ALTERNATIVES_BASE is interpreted as a
+> +		 * vendor extension.
+
+I think this stuff is all fine, since we can always re-jig things in the
+future if needs be.
+
+> +		 */
+> +		if (id < RISCV_ISA_EXT_MAX) {
+> +			/*
+> +			 * This patch should be treated as errata so skip
+> +			 * processing here.
+> +			 */
+> +			if (alt->vendor_id !=3D 0)
+> +				continue;
+> +
+> +			if (!__riscv_isa_extension_available(NULL, id))
+> +				continue;
+> +		} else if (id >=3D RISCV_VENDOR_EXT_ALTERNATIVES_BASE) {
+> +			if (!__riscv_isa_vendor_extension_available(VENDOR_EXT_ALL_CPUS, vend=
+or, id))
+> +				continue;
+> +		} else {
+>  			WARN(1, "This extension id:%d is not in ISA extension list", id);
+>  			continue;
+>  		}
+> =20
+> -		if (!__riscv_isa_extension_available(NULL, id))
+> -			continue;
+> -
+>  		value =3D PATCH_ID_CPUFEATURE_VALUE(alt->patch_id);
+>  		if (!riscv_cpufeature_patch_check(id, value))
+>  			continue;
+> diff --git a/arch/riscv/kernel/vendor_extensions.c b/arch/riscv/kernel/ve=
+ndor_extensions.c
+> index f76cb3013c2d..eced93eec5a6 100644
+> --- a/arch/riscv/kernel/vendor_extensions.c
+> +++ b/arch/riscv/kernel/vendor_extensions.c
+> @@ -3,6 +3,7 @@
+>   * Copyright 2024 Rivos, Inc
+>   */
+> =20
+> +#include <asm/vendorid_list.h>
+>  #include <asm/vendor_extensions.h>
+>  #include <asm/vendor_extensions/thead.h>
+> =20
+> @@ -16,3 +17,42 @@ const struct riscv_isa_vendor_ext_data_list *riscv_isa=
+_vendor_ext_list[] =3D {
+>  };
+> =20
+>  const size_t riscv_isa_vendor_ext_list_size =3D ARRAY_SIZE(riscv_isa_ven=
+dor_ext_list);
+> +
+> +/**
+> + * __riscv_isa_vendor_extension_available() - Check whether given vendor
+> + * extension is available or not.
+> + *
+> + * @cpu: check if extension is available on this cpu
+> + * @vendor: vendor that the extension is a member of
+> + * @bit: bit position of the desired extension
+> + * Return: true or false
+> + *
+> + * NOTE: When cpu is -1, will check if extension is available on all cpus
+> + */
+> +bool __riscv_isa_vendor_extension_available(int cpu, unsigned long vendo=
+r, unsigned int bit)
+> +{
+> +	unsigned long *bmap;
+> +	struct riscv_isainfo *cpu_bmap;
+> +	size_t bmap_size;
+> +
+> +	switch (vendor) {
+> +#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_THEAD
+> +	case THEAD_VENDOR_ID:
+> +		bmap =3D riscv_isa_vendor_ext_list_thead.vendor_bitmap;
+> +		cpu_bmap =3D riscv_isa_vendor_ext_list_thead.per_hart_vendor_bitmap;
+> +		bmap_size =3D riscv_isa_vendor_ext_list_thead.bitmap_size;
+> +		break;
+> +#endif
+> +	default:
+> +		return false;
+> +	}
+> +
+> +	if (cpu !=3D -1)
+> +		bmap =3D cpu_bmap[cpu].isa;
+> +
+> +	if (bit >=3D bmap_size)
+> +		return false;
+> +
+> +	return test_bit(bit, bmap) ? true : false;
+> +}
+> +EXPORT_SYMBOL_GPL(__riscv_isa_vendor_extension_available);
+
+I wonder if we care to implement a non __ prefixed version of this, like
+the standard stuff? The only __ version users of the standard one are in
+kvm and core arch code, the "external" users all use the non-prefixed
+version.
+
+In any case,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--Y5+x5J78UsrLnSS+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjIntAAKCRB4tDGHoIJi
+0pG1AP9aIuCIPhbYrT1n7AA8UjSnOOwkB+PkZ7aGQQs6HdTO4gEA7aKglY8RnM0i
+x4nkold+5MiZkBsWg8bRWX3UFKhfEAA=
+=BvUa
+-----END PGP SIGNATURE-----
+
+--Y5+x5J78UsrLnSS+--
 
