@@ -1,143 +1,121 @@
-Return-Path: <devicetree+bounces-64335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CEF8B8E14
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:22:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D20268B8E58
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44BE0282B95
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:22:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18319B20B02
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA734134405;
-	Wed,  1 May 2024 16:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E5BD52E;
+	Wed,  1 May 2024 16:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rC0HJo1v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gBgqQCku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48747133423
-	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 16:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD5D8F6D;
+	Wed,  1 May 2024 16:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714580398; cv=none; b=sfFBdEbJxMT4PTLpMjW23c+nvU0KyhxsFFS6j/sSuUYrMMHlvY62Qgcwi+wEkgy12zh+pdZxv8aF27iVEygovwYRMoecANQ+NaNroejpFLwtLdEqTdqtsHb/MB41knNO3HKa1M9XIzC9F1XliOwV3vhgvYeSgFHMxhJjoudxOKM=
+	t=1714581549; cv=none; b=eyDZisopgsXrslBioFTEfDVQQisXm6roHbAkas1sU5SEe0aV4E19ySJGWmnR0v4TbcdvHwz+kWkSDz+K3CXeuRM1DlqBq3wHHAmi9N4a99OFxUtDHNhzV95AStWklDFa0oK7j977mIR5/nKIkN727XCmDi02NEdXjfYALNFZM30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714580398; c=relaxed/simple;
-	bh=Bi5rhyr14KcQQ7+MOAD5H9S1njlLb5FKYBD685uF7IE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rVGjnqn1fz6DGrEmwVl/l5MWmfpca1TpD1+PpuQfGKiRNcbxs4t1+RePbFjnl01F5oCCqL8XRA9pv+EPlFVufKWYHYPIDSE9DYQdoBBRkIk2yhqhw7l9EyR5I++EIMcc9A8eStpPyqdknJZAucnV0N+YuXC2ILV9MNwPpe1Ndzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rC0HJo1v; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-518a56cdc03so7968492e87.1
-        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 09:19:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714580395; x=1715185195; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8qbl1bY1oXPc/BrE+BcAYxIg4JVPN7Au51+xkWvlhws=;
-        b=rC0HJo1vxz4oDhy2zl3cRFGglXj3n1mS7eHGZRxuRimBpBTJaohvMA+MOvjPodmlES
-         J5HWpeYwvCXxw8pWzBJGzGg3BVZt29LvohvQgMD2yhe5RvW8PNiwJmTZ0FwZ8xPqRCA7
-         rRvgktMbLhMUwZcqPJ88PDEvbP8TitUOTdiRzcHZs9gYpNIUwUkMwfPJO5PB1xNcaVhD
-         Q5pXF5rhZaof2J44YzEzKi6CNtyrFQkxiTYwTQRz2oU4duMon8oY9VX/lOguZgqKoeOS
-         5b4c+U3p2Cx8Dzxw7r5GVqcYy/M9dcTpCE9D+hhRoAQExRvrx2mnCU2IOzVNFBGvgzUE
-         OjUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714580395; x=1715185195;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8qbl1bY1oXPc/BrE+BcAYxIg4JVPN7Au51+xkWvlhws=;
-        b=q74qksVrqeqCWksNUVRK6jCaHf1/fUGzLBLllyRey9gLEZqhpPIhA9KzewLhelDJ7F
-         rJdqTaupStltcLZwJDREcG0IjRMpux4U179x3Fw4W0/a7maIz63AcKByAKU7t3ggWxuT
-         OlD7/2q8UVvPNfZShCqGx+yKRGhZCBUAFKaDE1YRhLleQudoepdql8xPwnfnTvbPdydj
-         NsZ81YlPOS2IIDe1Nknpyd9TIUsz6jBD4atsMOpo0I+FxBTQp2F6OxSYMijtysQF0XZg
-         9Q6dQ97x1voPBFrjtgmuJrepVKHES1G/OXdn8ELsJZPc34wDonUROKeasTCMAoON+bqM
-         jCbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUU1E71MJskDkrRuvTKFmXlAyjfJX/2AHz0OZNN9gLhhK8bo8oP+m0ND2EsPmRVicsUXwsmIjFYbyFzYT6+TwUMN6vV5WBiMCQH4Q==
-X-Gm-Message-State: AOJu0YzajA0EUM9r8DFIOZuADndpkIKChntab2SJ0EE3Owi2kIUQr81H
-	lkr+RdHKNrCgbnyHh6EGkhTtYOszlJ9o7te9s4mMsMENSr1AYeUqmscXbUO6Doo=
-X-Google-Smtp-Source: AGHT+IHsMijjwWCg5z5tsLM+qCe+9yqE2j6ZSGFnxh1tYEFb+8CyeD5Rpg82R3EDRP+9OglQQR/VWQ==
-X-Received: by 2002:a05:6512:3991:b0:51d:2eba:614 with SMTP id j17-20020a056512399100b0051d2eba0614mr2448878lfu.53.1714580395645;
-        Wed, 01 May 2024 09:19:55 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id d30-20020a0565123d1e00b00516d0029383sm4909306lfv.28.2024.05.01.09.19.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 May 2024 09:19:55 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 01 May 2024 19:19:39 +0300
-Subject: [PATCH 13/13] arm64: dts: qcom: msm8996-xiaomi-common: drop excton
- from the USB PHY
+	s=arc-20240116; t=1714581549; c=relaxed/simple;
+	bh=k/GVusRHOyex5CyvjGxaO6gyf6xeCU6g2W+wW2wckwM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SnQRt92ckJUFhUczhj4drjjvoeaQaiNiPUuFh16JFvMCXgsH2C8FV8rU+yIVQAdCsPySUGfPgttG6fLeC/yX43hfK3WO04sFvB4/CqCxMi4F8OZHL5oaMALhOLjXcc7pl8kf+EYX/Z6Tv3pk1l3RShgsyncD14+guMGkrL5uV7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gBgqQCku; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 305EFC4AF14;
+	Wed,  1 May 2024 16:39:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714581548;
+	bh=k/GVusRHOyex5CyvjGxaO6gyf6xeCU6g2W+wW2wckwM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gBgqQCkuMQ4/OQ71Ase8a78abZi33+i2C/O015Xi+/9hau7DSWR4iT3ARSSNbz1Sk
+	 NX6VmtQv5iekEMK64mVICEsALTaBNAw+Q0mWgqf/XKhsiX70PCH3ix2AfYwpPyueuP
+	 OZFKhZeMC+Jnf/UalQwesiIWj2e5ksM4d7Muz1m0RmQMr3TD47QhoCKVYoNr2lZ/xH
+	 SlNV4MlC7Yze1wmxttwxcKHpuEIeiXg5l9DnFcRll8wdxxkEwsKgDIeJj28bc060DR
+	 CbXhSoTWMILzORQMkxHmASm5JnD81UPD8vWUsot2EWE8hSb2zUUqtcW7NDzrZF7L4t
+	 EET7hpybIoGsw==
+Date: Wed, 1 May 2024 17:39:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Petar Stoykov <pd.pstoykov@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Angel Iglesias <ang.iglesiasg@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Add support for Sensirion SDP500
+Message-ID: <20240501-synthesis-repose-30563cffd41e@spud>
+References: <CADFWO8EZWkXeAMcURgGGEmzVjiSxFTVAbKpsb2Qmv66EZiTc+A@mail.gmail.com>
+ <ZjEQKqkWA66HtiD4@smile.fi.intel.com>
+ <20240430-booth-spinster-bf59f780f10a@spud>
+ <CADFWO8FzQ8FgD5a2jKECaMRX65_1Nd6vsgh43bXqsSz52xtZKw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240501-qcom-phy-fixes-v1-13-f1fd15c33fb3@linaro.org>
-References: <20240501-qcom-phy-fixes-v1-0-f1fd15c33fb3@linaro.org>
-In-Reply-To: <20240501-qcom-phy-fixes-v1-0-f1fd15c33fb3@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
- Wesley Cheng <quic_wcheng@quicinc.com>, cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- David Wronek <davidwronek@gmail.com>, Andy Gross <andy.gross@linaro.org>, 
- Evan Green <evgreen@chromium.org>, Douglas Anderson <dianders@chromium.org>, 
- Iskren Chernev <me@iskren.info>, Luca Weiss <luca.weiss@fairphone.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@somainline.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=880;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=Bi5rhyr14KcQQ7+MOAD5H9S1njlLb5FKYBD685uF7IE=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmMmua/n9RREl+g5vb+gDOANKfA9kBoBl8gO6sK
- 3bZBBDzZ5eJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZjJrmgAKCRCLPIo+Aiko
- 1XM9B/4ymPAO5auW++iWtOUKx+7lvM+O9UCLKdBYi2MFlVxEAEY4dD9Wu+t5d1FLyExiTBUH6Df
- LDuTXwplLk/XawajHzlKSm1GVDM4ZtN+wDT4artifItPVaJdZ1/nVPZrG6LztFBuHcWx30d0zsn
- oO4wOUe+3mvjI1/3Bm26rTNiyajJw2klIc7LXhOQqKf1R4jnx2BBz69BvoHZJlUKr60Tg0YFyuH
- Q6DRxDfJ95xEnKyvLb7zC/8GL2UokUK5QIVNMFR7R5U8H9e4C9OaewxPKeUi4X8L9ptnhNu8ACi
- GT/6H8+ZUvpepneqmOxY5XwGHBY7IfVw4IAIMihGfLvudOFe
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8YvzeVVYX/1w9PwP"
+Content-Disposition: inline
+In-Reply-To: <CADFWO8FzQ8FgD5a2jKECaMRX65_1Nd6vsgh43bXqsSz52xtZKw@mail.gmail.com>
 
-The USB PHYs don't use extcon connectors, drop the extcon property from
-the hsusb_phy1 node.
 
-Fixes: 46680fe9ba61 ("arm64: dts: qcom: msm8996: Add support for the Xiaomi MSM8996 platform")
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+--8YvzeVVYX/1w9PwP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-index 5ab583be9e0a..0386636a29f0 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-@@ -405,7 +405,6 @@ &usb3_dwc3 {
- 
- &hsusb_phy1 {
- 	status = "okay";
--	extcon = <&typec>;
- 
- 	vdda-pll-supply = <&vreg_l12a_1p8>;
- 	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
+On Wed, May 01, 2024 at 12:47:32PM +0200, Petar Stoykov wrote:
+> On Tue, Apr 30, 2024 at 6:46=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Tue, Apr 30, 2024 at 06:37:14PM +0300, Andy Shevchenko wrote:
+> > > On Tue, Apr 30, 2024 at 05:27:17PM +0200, Petar Stoykov wrote:
+> > > > From c4437fd0ea296c4c964b1fb924144ae24a2ce443 Mon Sep 17 00:00:00 2=
+001
+> > > > From: Petar Stoykov <pd.pstoykov@gmail.com>
+> > > > Date: Mon, 29 Apr 2024 16:41:30 +0200
+> > > > Subject: [PATCH 0/3] Add support for Sensirion SDP500
+> > > >
+> > > > This patch series
+> > >
+> > > It's not. I mean from the email chaining perspective. Have you forgot=
+ten
+> > > to add --thread to git format-patch?
+> > >
+> > > Also, what is that in above?
+> >
+> > Looks more like patches pasted into gmail or w/e, rather than sent with
+> > git send-email.
+>=20
+> For stupid reasons I can't use git send-email. I thought I will manage wi=
+th
+> using gmail alone. The thing at the start is a mess-up of copy paste inde=
+ed.
 
--- 
-2.39.2
+As Konstantin pointed out, the b4 web submission endpoint is ideal for
+this kind of scenario.
 
+--8YvzeVVYX/1w9PwP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJwJwAKCRB4tDGHoIJi
+0g9UAP9+bM+S+0AcCnYdrAuYhmDG77Pyf38FkKki3tanp2jX4gD+LsKR2E9LjHk0
+7dpTztDA6kRr+0D9uidJlnv1l3fgwAU=
+=NZ84
+-----END PGP SIGNATURE-----
+
+--8YvzeVVYX/1w9PwP--
 
