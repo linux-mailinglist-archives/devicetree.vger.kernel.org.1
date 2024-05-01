@@ -1,58 +1,72 @@
-Return-Path: <devicetree+bounces-64348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E088B8ECE
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 19:11:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F11B8B8ED6
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 19:13:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50FED1F21B31
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:11:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B36F2810B5
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 17:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9689418040;
-	Wed,  1 May 2024 17:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C29D1B977;
+	Wed,  1 May 2024 17:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdFxNzny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tkwq10iK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A9AE17C9E;
-	Wed,  1 May 2024 17:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A9041B949;
+	Wed,  1 May 2024 17:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714583463; cv=none; b=KmG0Puw/kWj+8wAtbteL8UCcH+5gM7OTs9hzBPtEeOSwiJi6ksJJnIlcmDst3cVi1bWax9fK+mHgWUeIWu+2+x0bNTE+lrmmKE9M60CBIxz1XuC3C6Jix2VCgrMhgf6JE2vGSqY3MqW9U6UtyGPjkNUjlApT5pXDAbEGGpK2H/g=
+	t=1714583583; cv=none; b=fuv3aAC0EX+Nv/0ZfCpb+bcd/Q0rawO9RxYG9GuMeyDWjEMil3SDfCbXDHC/7K488IlYXqtsVv43GXyyt7AihGLmFhKF2fcsf/lSiKDuBOlzplb7pnX0dcJaRyEyzyT1OzUEtICQsxHQDzn2xZgtFZRxiGhSP3NRkltK1RDdAYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714583463; c=relaxed/simple;
-	bh=CvimenrnvSpvu9T+qIIZURnkOSrzShtnui5KbQDvcN8=;
+	s=arc-20240116; t=1714583583; c=relaxed/simple;
+	bh=IPz3/aYgNNtTogx2QM/gCrHuFcu+FzM5abaZXdd4Yz4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mYccke+MIS8Gtf1wxvqaboFdoImDyQbqhPlP6snHIyhk+TWljC6eiZl98yeZeRn1KaBKupaPvdgmasxf2Q3uM3YarWnUP75ckxgzUrs5gNcYQHQM1v4hKPTViIq0mGIhf/KkI5/XhX7ROvjc+y4VuZUzu2OMPGa7AuvW7SiKM7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdFxNzny; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C767C072AA;
-	Wed,  1 May 2024 17:11:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lSnakXLYVOe+79yyWnfJdKRy224ineR/r4PNLUDCOjeZmd19DT8u9lTlS+8n6XATcDwEUDJR1ARTr9hwqn/HbptpkDO9QvM3YwvobeHC3blnhBAyqY7ZvEHoySakjXiT5Ckwp9EyxnxYsLvGbXsmHFy1jks2wEPl8llVaisX0QI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tkwq10iK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56A3CC072AA;
+	Wed,  1 May 2024 17:12:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714583463;
-	bh=CvimenrnvSpvu9T+qIIZURnkOSrzShtnui5KbQDvcN8=;
+	s=k20201202; t=1714583582;
+	bh=IPz3/aYgNNtTogx2QM/gCrHuFcu+FzM5abaZXdd4Yz4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rdFxNznyN1YXGbVqu5gY4BCEflNp9o4L0Vk3ITFqp/WQT4PuHet/m/pks6xRLZEq2
-	 Bm/hJBGv775FSXzEfTUoDovufAQwV+XTAuQ0Vp98ztE+VsRDXiggfGUZFpY/yLerTy
-	 RokQrKIjDvz5OAozU1ymdSXoRyvEWgnZsxzCGOrXgeroKG6vOW/MJM46dFTpKE6N2Y
-	 22rwZI5fKHYvbUq33koOuWAH1zHdkBzJYqunqeoQ1myHSvmWfvYW5+TGH29napJK1M
-	 t95BS5W4HKkN0FRnDNx2kAKW6RhBAp/PO31z1JCK4Ah//LUOdJc3tvDWdpcySmMKVk
-	 pa0wejeFXc29w==
-Date: Wed, 1 May 2024 18:10:59 +0100
+	b=Tkwq10iKy65p80Ifjsox/DLLayxuj+nXv/KiaiaLvUT7iXX3Lsb/vXUKbej837y6+
+	 oFP+d24cLqsoV3YN+nD9qskRfyG4+hXDqDaoRaVlUza1aio4ef9rNxlOCWxtQvKao2
+	 hxfQpL3nt0+VPUHXaFRYC2KVeXXPG2VGBnPj9M8Dn/WCAnceBWQsYMEfrwDuI6vi3Y
+	 NpGSZW3z8srrJh0iKwVNS8cYydXi8ii4cJO0cVWwY/cLtZofBPJomJQ1VLOopgiSeg
+	 OPpOAETa2Cin4x7krMLph7NXP8rnqXSLtuWMKv7cuoGwfEu8Ke8+qdVuhFtU0Cb06O
+	 YIvRyEzwbv9XA==
+Date: Wed, 1 May 2024 18:12:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: clock: fixed: Define a preferred node
- name
-Message-ID: <20240501-chug-patronage-b5122063b8df@spud>
-References: <20240430180415.657067-1-robh@kernel.org>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v4 05/16] riscv: Extend cpufeature.c to detect vendor
+ extensions
+Message-ID: <20240501-drained-gradation-28fbca0cb566@spud>
+References: <20240426-dev-charlie-support_thead_vector_6_9-v4-0-b692f3c516ec@rivosinc.com>
+ <20240426-dev-charlie-support_thead_vector_6_9-v4-5-b692f3c516ec@rivosinc.com>
+ <20240501-drivable-deviation-0a493511770c@spud>
+ <ZjJ3oaFWhbLc39sz@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,47 +74,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="U2+tXBPqARrp5IaL"
+	protocol="application/pgp-signature"; boundary="/qzKnHYGdUVhk0nf"
 Content-Disposition: inline
-In-Reply-To: <20240430180415.657067-1-robh@kernel.org>
+In-Reply-To: <ZjJ3oaFWhbLc39sz@ghost>
 
 
---U2+tXBPqARrp5IaL
+--/qzKnHYGdUVhk0nf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 30, 2024 at 01:04:14PM -0500, Rob Herring (Arm) wrote:
-> Define "clock-<freq>" as the preferred node name for fixed-clock and
-> fixed-factor-clock where <freq> is the output frequency of the clock.
-> There isn't much of an existing pattern for names of these nodes. The
-> most frequent patterns are a prefix or suffix of "clk", but there's a
-> bunch that don't follow any sort of pattern. We could use
-> "clock-controller-.*", but these nodes aren't really a controller in any
-> way. So let's at least align with part of that and use 'clock-'.
+On Wed, May 01, 2024 at 10:10:57AM -0700, Charlie Jenkins wrote:
+> On Wed, May 01, 2024 at 12:40:38PM +0100, Conor Dooley wrote:
+> > On Fri, Apr 26, 2024 at 02:29:19PM -0700, Charlie Jenkins wrote:
+> > > Separate vendor extensions out into one struct per vendor
+> > > instead of adding vendor extensions onto riscv_isa_ext.
+> > >=20
+> > > Add a hidden config RISCV_ISA_VENDOR_EXT to conditionally include this
+> > > code.
+> > >=20
+> > > The xtheadvector vendor extension is added using these changes.
+> > >=20
+> > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > > ---
+> > >  arch/riscv/Kconfig                               |  2 +
+> > >  arch/riscv/Kconfig.vendor                        | 19 ++++++
+> > >  arch/riscv/include/asm/cpufeature.h              | 18 ++++++
+> > >  arch/riscv/include/asm/vendor_extensions.h       | 26 ++++++++
+> > >  arch/riscv/include/asm/vendor_extensions/thead.h | 19 ++++++
+> > >  arch/riscv/kernel/Makefile                       |  2 +
+> > >  arch/riscv/kernel/cpufeature.c                   | 77 ++++++++++++++=
+++++------
+> > >  arch/riscv/kernel/vendor_extensions.c            | 18 ++++++
+> > >  arch/riscv/kernel/vendor_extensions/Makefile     |  3 +
+> > >  arch/riscv/kernel/vendor_extensions/thead.c      | 36 +++++++++++
+> >=20
+> > I see no modifications to cpu.c here, is it intentional that vendor
+> > stuff isn't gonna show up in /proc/cpuinfo?
 >=20
-> For now this only serves as documentation as the schema still allows
-> anything to avoid lots of additional warnings for something low priority
-> to fix. Once a "no deprecated" mode is added to the tools, warnings can
-> be enabled selectively.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> I wasn't sure if that's something we were wanting to support since
+> hwprobe is the prefered api, but I can add that if it is desired.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Desired API for programmatic consumption, sure, but for human users
+I think it's good to have the info there.
 
-Cheers,
-Conor.
-
---U2+tXBPqARrp5IaL
+--/qzKnHYGdUVhk0nf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJ3owAKCRB4tDGHoIJi
-0p9TAQDgyb5yg4qV+pkQZ0Sc7IX/CryZGstKB8vF/WQ5JyQCjQEA/IAOPdegxbz1
-SgYJ+rbhILiikt+AvHkSD4XzjcP5Sw0=
-=jFhx
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjJ4GAAKCRB4tDGHoIJi
+0j3QAQDeC/2mrXk6dao/g67mzgn2Smh9xCv61aljEa2yPZ5CnAEAgL6ApCxtDfzO
+MGOVAm2ywft3ZaZrWjs6YI+O9CVW4gw=
+=YR4z
 -----END PGP SIGNATURE-----
 
---U2+tXBPqARrp5IaL--
+--/qzKnHYGdUVhk0nf--
 
