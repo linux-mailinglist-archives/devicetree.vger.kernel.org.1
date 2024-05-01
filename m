@@ -1,172 +1,120 @@
-Return-Path: <devicetree+bounces-64318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF868B8DBB
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:07:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCA88B8DBF
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 18:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 911E4B23E3B
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:07:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9934286A71
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 16:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E51C012FF6D;
-	Wed,  1 May 2024 16:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4245F130A4C;
+	Wed,  1 May 2024 16:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="mN6XUyB0"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="cVLSPO4N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC2212F361;
-	Wed,  1 May 2024 16:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDE1130484
+	for <devicetree@vger.kernel.org>; Wed,  1 May 2024 16:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714579584; cv=none; b=W+AfzYeXyP4rTgC1izrO0SNMQJPa3EkN6npHiKQoBQRuv6tWPQwEO5YwAIAaDE/drHAFvLEuuu/zI7Rv0JGR1SYDs4lShL0t2XYCQK85XYpsqj0IaubFcU+pJuizpDJ5hXi3r0jjqLKC5KBv0IPBhMbGc1PjVAILh21Sh9Hc46M=
+	t=1714579632; cv=none; b=Itjt0LKBRvBMQpfo+aE65OEjbIetDHcNxDIFiRKnS0EpMgMJ4RB3KMPl2IbLth9yP1K3Huzm0YuHDu/AnLZAg3W74WI0k1fAZ+dQcvlnGFLdIhid1VXO2a662eh17P1sb36clY3O54VpAtKbP9hjrOwtRP/EKaSK4hqA95XCUag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714579584; c=relaxed/simple;
-	bh=ZcgzKDm/of9Wt+5rIopJ7QuvS112pELrgGHc232E0m8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b7fmiDVHnW0H7lGekSDobftbGR8nEPNl+r/Gl7N+d1X+vHZGPCym94BPIpswoyub/0e/1ftMLwaZ1fBTZC8kghRECvKXlfUkevIccw1yGlPggj8whYzsZST9pGiZlSG0aqLZ3gQ7vRSyLacHNorIUOIu+gQQZ8TR61GB4X+CPxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=mN6XUyB0; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 441FQ0qY015311;
-	Wed, 1 May 2024 16:06:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=qhTErhXv7kPwGaPxnSu5C0AL6AK3KjxuhOkfaFwZrQ0=;
- b=mN6XUyB00UsD2iuJxIAR04/2WE9DudhyREnnD24y80M8HKvcoLajesGJdOQzsfhHZ9Sh
- MQK8OqsIAhXvCmhFFLDQrdMmG9wGjTvkDzLQnWFa0H/yXKLx7OUOvfSM1LnSJ+KorEiW
- 8/qnsCaW3V2YNUMZr6O1/tKAa5ad13gsALUOMhNLZknEeBe5dOqPtU7rhbA4gikRM+Ih
- Bw3YGwD25SpLbrpD/7JZZJ+b7PHhj5MMewZEZmCOhVE/WXGlP0R0vl7URVtoWtnAR1ri
- u6W3Zpwu25ESVPKcEZh3jmMynzhMtdpJiLcMTEz5DiV0ybCN+4CmUQ0DJiHTh2Nv+27I JQ== 
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xurc882g1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 May 2024 16:06:06 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 441D6r2m022258;
-	Wed, 1 May 2024 16:06:05 GMT
-Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xsd6mu5sa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 May 2024 16:06:05 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 441G62iY23069406
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 1 May 2024 16:06:05 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E1FC058057;
-	Wed,  1 May 2024 16:06:02 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 57E3358058;
-	Wed,  1 May 2024 16:06:02 +0000 (GMT)
-Received: from [9.61.151.254] (unknown [9.61.151.254])
-	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Wed,  1 May 2024 16:06:02 +0000 (GMT)
-Message-ID: <366b0cb8-1309-4f15-b4f0-077dfaf4250c@linux.ibm.com>
-Date: Wed, 1 May 2024 11:06:02 -0500
+	s=arc-20240116; t=1714579632; c=relaxed/simple;
+	bh=OBhqEyKuT9SGbY1gPylDuVYK6xBEaByxvLrKFZiA8D8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f8GKhzRQEIC1YazjQ/Z5rE/XQixfrqhTJhnC0bsqkq8nlB0vZ07NNpVAPEpd6KF3zjb0czYgy82sj1FkL5VJT89vsXlsZfhnAcwXeFAP9TPcir+yv7LqPdA7P1roNbyAApVuMDDIwP23MQoPZlu5H57CczsMhz7jXFGrUE/arXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=cVLSPO4N; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-78f05341128so482788285a.0
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2024 09:07:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1714579629; x=1715184429; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OBhqEyKuT9SGbY1gPylDuVYK6xBEaByxvLrKFZiA8D8=;
+        b=cVLSPO4NpEYu7PFl9RKOxx9L/Y6USU5VD25hFwQrr063VgZokHQhxT+wqvQPNiH59o
+         YUatDw/oC9VpFeFKHP9/pj1xQY0m6yoPdCNneIVQpVffazogsHJDh9XAsd1MnpQPiPpG
+         1zeyIfBujbW86IJIPwtmYiQia8fIZdiOIogWByqDGCFSUg8tj5ucVXvMwpQmoEG68na7
+         J9jGf89nCEp+dnBkYsQTcRyP20RysJDfTu+TR43P8J5/mP+k9bFy58VnI3Tsz4QnKqxs
+         TfPyLk0eGiRGJxmndmYmFw+ELMgspN8182021+0MU9hqftGU1sBTLnaDyhx6W1tHSoMz
+         oPEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714579629; x=1715184429;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OBhqEyKuT9SGbY1gPylDuVYK6xBEaByxvLrKFZiA8D8=;
+        b=uIPjLjqurGvsDP9Xv9Jno21gc1jrOnhCx25mOSLQUEwd65axTfjarqVSESEVapJ2g6
+         dM3YmAdYmNpPjYU1iiySnB0W0DPU3OEFQtmVHfiUarby0SSt8C8yO6da/04wiNCJ6VkY
+         Gr4xig4tUVyHt3gg4qPoZ/xSUovNmenWtvJXtKsmCawu6l1Q2lu0SicGG9cI5HJ6RL+R
+         bxq03C/vN1F187JfP1fv86v2E6JZnp3tfSCvfdPLcZSBDAMG9ziKlXrnUy7tL0KnTWog
+         dt4BN+4Ixb5F3M7ba7ujTAokO5dQ4tUvMFG1fXD6l2kA1WOtnEwMwdy7IdOsYnK50s5V
+         5dJw==
+X-Forwarded-Encrypted: i=1; AJvYcCU5FhC2LihlF6z9sx07/RBoj6THGtQk4YTB426uwUemlyZ+wN0YOrMSX0rPdJ7bxjv3wgZac91sHiKSs8M1+Ze4neCcJPC0pgdTcg==
+X-Gm-Message-State: AOJu0YzRwEWrungw3CvUg3QWeT7gS124qS8iaEtshuJvZcnNbE3mez4J
+	CbMTBB9I9HoXRWM0rTnYRDW/ZyIT3jo18YTDgzd14aAfQQIa4AAOnuW+w8KpiHs=
+X-Google-Smtp-Source: AGHT+IEIToKXo0oiLD8614cnvRWTKlqp8YbwZyKQg7eanOTB8s3Hn6dt4BqjP2UpzNxDw9ZcGXsFhg==
+X-Received: by 2002:a05:620a:2059:b0:78e:e7dc:fd3b with SMTP id d25-20020a05620a205900b0078ee7dcfd3bmr2822573qka.73.1714579629470;
+        Wed, 01 May 2024 09:07:09 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
+        by smtp.gmail.com with ESMTPSA id n6-20020a05620a294600b00790eb55fd58sm3512214qkp.129.2024.05.01.09.07.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 May 2024 09:07:08 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1s2CU8-00DuqC-5D;
+	Wed, 01 May 2024 13:07:08 -0300
+Date: Wed, 1 May 2024 13:07:08 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com
+Subject: Re: [PATCH v3 0/7] Linux RISC-V IOMMU Support
+Message-ID: <20240501160708.GF1723318@ziepe.ca>
+References: <cover.1714494653.git.tjeznach@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/17] dt-bindings: fsi: Document the FSI controller
- common properties
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, andi.shyti@kernel.org
-References: <20240429210131.373487-1-eajames@linux.ibm.com>
- <20240429210131.373487-7-eajames@linux.ibm.com>
- <3bcc9143-6896-496b-aa30-7ac0fc2d8e51@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <3bcc9143-6896-496b-aa30-7ac0fc2d8e51@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: EUwgN6h4fW5c-n53JwXNklGrSmNFME6R
-X-Proofpoint-ORIG-GUID: EUwgN6h4fW5c-n53JwXNklGrSmNFME6R
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-01_15,2024-04-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- bulkscore=0 phishscore=0 malwarescore=0 suspectscore=0 priorityscore=1501
- impostorscore=0 mlxlogscore=999 clxscore=1015 spamscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2404010000
- definitions=main-2405010112
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1714494653.git.tjeznach@rivosinc.com>
 
+On Tue, Apr 30, 2024 at 01:01:50PM -0700, Tomasz Jeznach wrote:
+> This patch series introduces support for RISC-V IOMMU architected
+> hardware into the Linux kernel.
 
-On 4/30/24 02:01, Krzysztof Kozlowski wrote:
-> On 29/04/2024 23:01, Eddie James wrote:
->> +
->> +patternProperties:
->> +  "cfam@[0-9a-f],[0-9a-f]":
->> +    type: object
->> +    properties:
->> +      chip-id:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          Processor index
-> fsi.txt tells a bit more about it, so extend the description.
+It seems in reasonable shape now, at least in terms of implementing
+the domain logic.
 
+It would be nice if you'd run it through clang-format and correct some
+of the minor misformatting it will point out. We still like to have a
+80 col line limit in most cases. There are many overages here that
+aren't well justified.
 
-Ack.
+And you could consider the nitpicky style advice to use 'reverse
+christmas tree' for the variable declarations like most of the
+subsystem is trending toward.
 
-
-Thanks,
-
-Eddie
-
-
->
->
->> +
->> +      reg:
->> +        maxItems: 1
->> +
->> +      "#address-cells":
->> +        const: 1
->> +
->> +      "#size-cells":
->> +        const: 1
->> +
->> +    required:
->> +      - reg
->> +
->> +    additionalProperties: true
->> +
->> +additionalProperties: true
->> +
->> +examples:
->> +  - |
->> +    fsi {
->> +        #address-cells = <2>;
->> +        #size-cells = <0>;
->> +
->> +        cfam@0,0 {
->> +            reg = <0 0>;
->> +            #address-cells = <1>;
->> +            #size-cells = <1>;
->> +            chip-id = <0>;
->> +        };
->> +    };
-> Drop the example, it's not being validated/used.
-
-
-Ack.
-
-
->
-> Best regards,
-> Krzysztof
->
+Jason
 
