@@ -1,193 +1,94 @@
-Return-Path: <devicetree+bounces-64413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB2D8B9436
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 07:27:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3668B9443
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 07:36:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C9511F212AC
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 05:27:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F2B41C21253
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 05:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494111F959;
-	Thu,  2 May 2024 05:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2474A200A0;
+	Thu,  2 May 2024 05:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="UJCR0hkD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R3ZAs/TQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49ADA1CA81;
-	Thu,  2 May 2024 05:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B98D18E1D;
+	Thu,  2 May 2024 05:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714627648; cv=none; b=iLcYAgyqKNARERkmNTbUyqIDaH+BuWG3/qBza3c+9n7Xaj/9enKurOEvBphOQ50cnP3gfPDv7te4CHpu0DZWzXi6PD7tMkslQ9yJp1sy35tlw+T3EDOPVQVmlKgJIp/v3UG+VH9MsWTRvkfiLns2QU9CUXfcDwAg7mAZw+zkg14=
+	t=1714628192; cv=none; b=RwiCAaM4W+PBRabCTOylNH54HGVKfxWvpQ1IJIaAcMXHMGYjT59YnQS/bTbechUuDQE42sYQNkZlppdPjfrDBvwfPgnMQpSZ6B7aQmikJ7Dkq47iebscpTU59KBzicdjIHV7+tuKasHSUDBBp+YcuzGwGs5H2JzEVlijWHVKwcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714627648; c=relaxed/simple;
-	bh=ftHzH9qvJa3de0MGd82tHpZ8K22GEeMdMaS34WhIAiU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hbdwWQwKTsF4fTdG1OiijVO42PWmTK8b0MmHYNoZiY0/u2k5jHRsr1Z3dOC422mv6JJge7kyCvfiY1wQGnP5DzgAAvY8hSzNmL+FCY8oX9+O4lRV2WLDdbmjokS2i0HZgp6FS8eGjTq0D2qm/jlg9oqPNtNzC+9mQViPvCVIfJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=UJCR0hkD; arc=none smtp.client-ip=213.160.72.247
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
-	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=iw9sb5bPm/obi3rgls3+3/4K0A0MuMZb4NR+Kz+bqj0=; b=UJCR0hkDNdfxATyaw5BU3n50vf
-	LphM+CQi668+Gn1auChFaligiaHZoThnzPncO/8TioOmvKhqkIbAUNFTdT1TKvKfRy38ufnVVwoiR
-	JqIZea/fWsEufV4vr/rJVO7A54QkB8nM0dT8OVu7PSUMrMKyl2x5N6JeMPXdnkc8eb6A=;
-Received: from 127.0.0.1
-	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim latest)
-	(envelope-from <christoph.fritz@hexdev.de>)
-	id 1s2OyD-001YZ2-2d;
-	Thu, 02 May 2024 07:27:02 +0200
-Message-ID: <77d0b2c62aad02c7c6f291676673b672ab35528a.camel@hexdev.de>
-Subject: Re: [PATCH 05/11] dt-bindings: net: can: Add serdev LIN bus dt
- bindings
-From: Christoph Fritz <christoph.fritz@hexdev.de>
-Reply-To: christoph.fritz@hexdev.de
-To: Krzysztof Kozlowski <krzk@kernel.org>, Oliver Hartkopp
- <socketcan@hartkopp.net>, Marc Kleine-Budde <mkl@pengutronix.de>, Vincent
- Mailhol <mailhol.vincent@wanadoo.fr>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires
- <bentiss@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri
- Slaby <jirislaby@kernel.org>
-Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>, Jonathan Corbet
-	 <corbet@lwn.net>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-serial@vger.kernel.org
-Date: Thu, 02 May 2024 07:26:59 +0200
-In-Reply-To: <784d78a8-3809-4a53-a9f2-7d9682b82c58@kernel.org>
-References: <20240422065114.3185505-1-christoph.fritz@hexdev.de>
-	 <20240422065114.3185505-6-christoph.fritz@hexdev.de>
-	 <784d78a8-3809-4a53-a9f2-7d9682b82c58@kernel.org>
-Organization: hexDEV GmbH
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1714628192; c=relaxed/simple;
+	bh=92pBswW6jEjH4ui2v7elSUIe5aDcq9luO/galnT/M2k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lqtYMGURZjh3eVxpO+h0JI6Umm2gxd9MNP/GGfAMUIu6tYlj/a/ldDhQ5eNAHUs0V1xeRYhQ1+3D+8akJq5rm4ryODMwGvGbTobp980VMaiLEr/K9vpg0ZyGfS1A40WZr0Oz6kkwPRV8Fs+JPQx6YOQgsf7xvjziPCtFNByrgXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R3ZAs/TQ; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4425aK35067072;
+	Thu, 2 May 2024 00:36:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714628180;
+	bh=XxDRXovinw64QVgu+ST66HbCRuNxaRtTmvqXcimU5KY=;
+	h=From:To:CC:Subject:Date;
+	b=R3ZAs/TQtIIeOAPl4w7Jx5U9ZThWrSAlouuAaGWaP8f7hhRbCWAMOab4HZYoo1hEo
+	 a7wSWfbzx64l+dIHmzTqwHKrgTpxK88K13qcCLD0otUp7a7SOhDh62LS49f2NUCQIA
+	 wDxT6X4h9zcgWJe5f8Nd1xSTM7VO0hMNs9W4m/p4=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4425aKoO061250
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 2 May 2024 00:36:20 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
+ May 2024 00:36:19 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 2 May 2024 00:36:19 -0500
+Received: from uda0500640.dal.design.ti.com (uda0500640.dhcp.ti.com [172.24.227.88])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4425aGCh027413;
+	Thu, 2 May 2024 00:36:16 -0500
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <srk@ti.com>, <rogerq@kernel.org>,
+        <r-gunasekaran@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Add USB 3.0 support for J784S4
+Date: Thu, 2 May 2024 11:06:13 +0530
+Message-ID: <20240502053615.29514-1-r-gunasekaran@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello Krzysztof,
+J784S4 has one USB sub system.
+This series adds and enables support for USB 3.0 for
+J784S4 EVM.
 
- thanks for your feedback, please see my answers below.
+Matt Ranostay (2):
+  arm64: dts: ti: k3-j784s4-main: Add support for USB
+  arm64: dts: ti: k3-j784s4-evm: Enable USB3 support
 
-On Mon, 2024-04-22 at 09:54 +0200, Krzysztof Kozlowski wrote:
-> On 22/04/2024 08:51, Christoph Fritz wrote:
-> > Add documentation of device tree bindings for serdev UART LIN-Bus
-> > devices equipped with LIN transceivers.
-> 
-> A nit, subject: drop second/last, redundant "dt bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-OK
-
-> 
-> > 
-> > Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> > ---
-> >  .../bindings/net/can/linux,lin-serdev.yaml    | 29 +++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml b/Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml
-> > new file mode 100644
-> > index 0000000000000..cb4e932ff249c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/can/linux,lin-serdev.yaml
-> > @@ -0,0 +1,29 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/can/linux,lin-serdev.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Linux serdev LIN-Bus Support
-> 
-> This looks like Linux binding, but we expect here description of hardware.
-
-OK
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 41 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 39 ++++++++++++++++++++
+ 2 files changed, 80 insertions(+)
 
 
-> > +
-> > +description: |
-> > +  LIN-Bus support for UART devices equipped with LIN transceivers,
-> > +  utilizing the Serial Device Bus (serdev) interface.
-> 
-> serdev is Linux thingy, AFAIR. Please describe the hardware.
-
-OK, in v2 it will get changed to:
-
-"""
-LIN transceiver, mostly hard-wired to a serial device, used for
-communication on a LIN bus.
-"""
-
-> 
-> > +
-> > +  For more details on an adapter, visit: https://hexdev.de/hexlin#tty
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: linux,lin-serdev
-> 
-> Feels confusing. Your link describes real hardware, but you wrote
-> bindings for software construct.
-> 
-> If you add this to DT, then it is hard-wired on the board, right?
-
-Yes, it is hard-wired.
-
->  If so, how this could be a software construct?
-
-It's not, but fairly generic, that's why I used 'linux,lin-serdev' as
-compatible string. In v2 I'll change it to 'hexdev,lin-serdev'.
-
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +examples:
-> > +  - |
-> > +    &uart2 {
-> 
-> & does not make much sense here. I think you wanted it to be serial bus,
-> so serial.
-
-OK
-
-> 
-> > +      status = "okay";
-> 
-> Drop, it was not disabled anywhere.
-
-OK
-
-> 
-> 
-> > +      linbus {
-> > +        compatible = "linux,lin-serdev";
-> > +      };
-> > +    };
-
-Let me address these points, fix warnings from dt_binding_check and
-reroll in v2.
-
-Thanks
-  -- Christoph
+base-commit: f68868ba718e30594165879cc3020607165b0761
+-- 
+2.17.1
 
 
