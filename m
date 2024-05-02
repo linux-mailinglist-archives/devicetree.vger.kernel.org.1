@@ -1,113 +1,87 @@
-Return-Path: <devicetree+bounces-64585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FBA8B9E65
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 18:21:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC97D8B9E82
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 18:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85E9EB20DFA
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:21:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD6821C23746
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC88215DBA2;
-	Thu,  2 May 2024 16:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DAF15E5A2;
+	Thu,  2 May 2024 16:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GO84u2It"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WNXH3ChP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF73414A634;
-	Thu,  2 May 2024 16:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E90615AADE;
+	Thu,  2 May 2024 16:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714666864; cv=none; b=EGnxediQ5I2QVCXyR31EweeiiZruy1hO84OApuPqI9qNrRyMRPv3vIKr7mHdomqc9qAr1ShTNFa4IcJ6T8uRcuxuk8m6TORYGHN8rK1BOraYn5msmPPjUSaH+hWTSHaWgzN4P3wKwOLtDXF4bWBhWA5872pZROhjGFLmQGXduVw=
+	t=1714667110; cv=none; b=q5+9GEOpJC3djWM3CNGyqzPslQg2a6oRR17dfRKva/r9c2wkJbonrdYndfzxosDWgmxENPUQsw79n73q6ejcBdY8gjdvFvkWXQn5zSbNkEdETu+vk+W/LQKUNeV+q8+XLVyzMpJC2T9T7AUD046ioF1s7BQOJ9o2FiyqEqQhqjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714666864; c=relaxed/simple;
-	bh=WleDPBDuGpkWYaKIN5o6wY74OKM8aEWx5ZRGLFVujOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F1iRyi0evMyJWL0bemee9AbI8CsQjKOGju2TrxvvBrN/9CsPFsuN0qx4+jHauvWNAwN/SmmaFJU2/t8s7ApYQck/uJUGQGzTKW9MqoQOIWiqnx+jf4b/V8IOwN+hTbpegcgnA/u0v0IyYXGBlnta/vWLzsUoRFVZlpqDuRLfzOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GO84u2It; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D72C113CC;
-	Thu,  2 May 2024 16:21:01 +0000 (UTC)
+	s=arc-20240116; t=1714667110; c=relaxed/simple;
+	bh=eVUU9My3Jrjs/UHQZgJr3z5gPt43bz69SadF6dklRZQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=N0CmTk3+T2+oJLk+z+eQK8DM+qaZM6l6FLt2fGPgX8Qecq4QoUBwHHo7+owDBiBmjE/jaWJeu18FX1jrlSVshqLJaWGZuauJ8EfBCjx+nBV2azRGQRKAKuEyz0X6qJvBs6U+UyA+4oytrK1/01vBKbg5GPxv48bzW+QuDwbRTvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WNXH3ChP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CCB5C113CC;
+	Thu,  2 May 2024 16:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714666864;
-	bh=WleDPBDuGpkWYaKIN5o6wY74OKM8aEWx5ZRGLFVujOA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GO84u2ItR5Rr4hpqiC0d9PsHJCwKEEg+nLUQ9CRVhpHu2VD0bwPC7JMGH4KBtLkp2
-	 WM4XouZZzLXEgFSCGESPV3BRfFT9t6mMS7GcnZtC8r4xb4eQimd0GqAooYbrwsXTLf
-	 I9+SBPe32rta1CSCKrc/emOsNatWjznN+xbxXxrhTrKnAkcJWCW6cFBnD8AEETI9iZ
-	 AFmF9nKvhOn6P4/DtXxSO1dxgzRGzldQBXLxYGurhifbNsm+CvPFLlm6DaQY5L2j7Y
-	 +s+nncxdHPn1GaXBlucr7UrOWpMNja0dFDyBcRyrnlBmWUh9IT5yyAiXbbTWSqHiH0
-	 RSE3KK+YVKk5g==
-Date: Thu, 2 May 2024 17:20:59 +0100
+	s=k20201202; t=1714667110;
+	bh=eVUU9My3Jrjs/UHQZgJr3z5gPt43bz69SadF6dklRZQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=WNXH3ChPi0Vwe6FxeKPmuAqK9AxeuX4anIvy5ODcU4kxdrgHftCjt8XEsxT5lQjkk
+	 T4+yj0txY0H3urWx5R5wJNFbVA/fq9Y1LWt8G/l4o0jGNqJzjWsM81qzZguxjfmAab
+	 1ZDFHiN1QsuS/4wN0zD2KjnW5GZB8Cz3uJa8Sh9xsY7p8bl3TAtXbb43gcqbwVOG6+
+	 7Sd65ReQrl9+vW668LRvM6GOfHVSvqFLtfRIQXge9SQwwW66V1x+LhZ8EEl+gJbMoh
+	 MTAeqe5W9yIOTTVzBSH/Q8TsVi1zIsYfxg92qTUc+05kGap3p2HDsQ1gKsikBYH2RC
+	 qCzJSXYnMKOJg==
 From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+To: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v1 1/6] dt-bindings: ROHM BD96801 PMIC regulators
-Message-ID: <20240502-vitalize-oat-ecbc14647df8@spud>
-References: <cover.1714478142.git.mazziesaccount@gmail.com>
- <c747a3395a52bdb9b9697f814cd781fb0903b894.1714478142.git.mazziesaccount@gmail.com>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: microchip: add pac1934 power-monitor to icicle
+Date: Thu,  2 May 2024 17:24:55 +0100
+Message-ID: <20240502-wafer-landowner-fd8f7dc290f4@spud>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240501-spearman-primary-17df3c21c770@spud>
+References: <20240501-spearman-primary-17df3c21c770@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pkgSKLeZe7hVqg4G"
-Content-Disposition: inline
-In-Reply-To: <c747a3395a52bdb9b9697f814cd781fb0903b894.1714478142.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=524; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=d0Yhjtp2Siagwln1k5fEq4fncaZ2UG0U07TBV/HvY+0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGnG+8KvB2zWNj4TtDW4QPOhgwBHqOAfuWltwQdnrb95o Gqv9YOejlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzknC/D/7jIh9VtmYz7v9jK FLSWLIjUPmf993Fj15eCpZMPfbumwcvw39e8KMdz+8WlcinrNs/Z0W3lEFUv+TZAdWZEwsZ5J30 UOAE=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---pkgSKLeZe7hVqg4G
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 01 May 2024 16:36:31 +0100, Conor Dooley wrote:
+> The binding for this landed in v6.9, add the description. In the
+> off-chance that there were people carrying local patches for this based
+> on the driver shipped on the Microchip website (or vendor kernel) both
+> the binding and sysfs filenames changed during upstreaming.
+> 
+> 
 
-On Tue, Apr 30, 2024 at 02:59:50PM +0300, Matti Vaittinen wrote:
-> ROHM BD96801 is a highly configurable automotive grade PMIC. Introduce
-> DT bindings for the BD96801 regulators.
->=20
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->=20
-> ---
-> RFCv2 =3D> v1
+Applied to riscv-dt-for-next, thanks!
 
-RFC is a status, not a version - ideally this would have been v3 and the
-next version v4.
+[1/1] riscv: dts: microchip: add pac1934 power-monitor to icicle
+      https://git.kernel.org/conor/c/8fd63d81a760
 
->     - Drop regulator-name pattern requirement
->     - do not require regulator-name
-
-
-Krzysztof had some comments on the buck/ldo node names and on the
-initial value properties that I'm not sure if have been addressed, so
-gonna leave this series to him.
-
-Cheers,
+Thanks,
 Conor.
-
-
---pkgSKLeZe7hVqg4G
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjO9awAKCRB4tDGHoIJi
-0jr+AQCQt6Z+SetdU9x2J/oqB3jM4GsDUaIIBK2HqhEaBSlUHQEAq3UG5y0PLiXN
-TH7mteDIKPhBUiBOtcmWzO+dHOcXYA4=
-=OtgH
------END PGP SIGNATURE-----
-
---pkgSKLeZe7hVqg4G--
 
