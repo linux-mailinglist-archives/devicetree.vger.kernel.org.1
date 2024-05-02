@@ -1,176 +1,137 @@
-Return-Path: <devicetree+bounces-64524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243F78B99AC
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:05:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A878B99B9
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98FBF284B43
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:05:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 103E81C2165E
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58671612EB;
-	Thu,  2 May 2024 11:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4907E5FDB5;
+	Thu,  2 May 2024 11:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="oLXjtQAE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="auWjptQk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AAA60DE9;
-	Thu,  2 May 2024 11:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B35742044;
+	Thu,  2 May 2024 11:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714647930; cv=none; b=QAizgGjhHT62Ts0tyIPtpN4GyDCvrGlmQGjTyoMmRF/efFI2wiB88Z4JiF2ZvCdL9jmmHw4wPdPLLfm5Y2LKoY/C+fsAKbjPfc+Gcwn3wIySkXlhzkVyeXXFC4Mlbo86mL1xyWyXmTZTbDK1GNqn6sGcs2GmD4s/gzkWGqOwbZY=
+	t=1714648031; cv=none; b=Xb3f6Rs3kye2RbWoUbJQzAZXMs6DhAUWDPVq67tfjmArQ7b75oa/05iG+R0QEBMScjen+1UaK61lBaIs1LRbX7jktXCM0cDMkJlSFUPuBVZsgDKytokK/7Pn3xywIuui3vhs7Hpug0wU7naZEZSKDjWL9P7IGVSDDTB2Dk5b35E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714647930; c=relaxed/simple;
-	bh=Kp2l51ecWpRwmEM8Bmx8V4CrrmwL2QByZPuaxOfTOhg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=k4SyU7ZALv4Bnq1n4zqUOZ8TordnPUB9cuprS5CB7MIjnXUSnsY84eU5DmugmaxOULPhFob6sDn5PoWrfhHIOwM2I0KJffzlLQcd7fXN4QC9NlSxjJHW/WIQM0nCtZpjEWOOL4lMo381mggYH1O6X+87mpYfeCVdp98hkE0dxOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=oLXjtQAE; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 00247E45;
-	Thu,  2 May 2024 13:04:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1714647865;
-	bh=Kp2l51ecWpRwmEM8Bmx8V4CrrmwL2QByZPuaxOfTOhg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oLXjtQAE/amqd2tDzZw/5t0/diPNLf3v4XXseRJLbYB05ldcUdYra1viRevwuQbIj
-	 SA37BzVmegpLJj823fpBQ2TRyOApKimsh6u+PI33jVGTJV1P5Uo6ZJK+KUV69jZlzX
-	 DQUBynQSVzs3KO4vLtyM9kd54v/ZMUiV2Hj/2snM=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Linux Media Mailing List <linux-media@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 5/7] media: dt-bindings: Add bindings for Raspberry Pi PiSP Back End
-Date: Thu,  2 May 2024 13:05:00 +0200
-Message-ID: <20240502110503.38412-6-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240502110503.38412-1-jacopo.mondi@ideasonboard.com>
-References: <20240502110503.38412-1-jacopo.mondi@ideasonboard.com>
+	s=arc-20240116; t=1714648031; c=relaxed/simple;
+	bh=Np9pvEsoFitSg29emT+0EpuitAMJ3ccV39LNm511Gss=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c5s+3dO45EibZjGj1Bg2D7Bi/jRhzuQTetTgDkdRxQQX/y+fO/GUyH21Lfk8etJaIwEgM8jF0DdbEkyqGfRzTZnlrQ8mwMXuUJfFm+KCexNOj13J9yyn+ZrwpPaIvrr4gqtoyZkqKY+Lujh/3hQypMHLeDv9pL+WMkKV+pCYGy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=auWjptQk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A37EBC32789;
+	Thu,  2 May 2024 11:07:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714648030;
+	bh=Np9pvEsoFitSg29emT+0EpuitAMJ3ccV39LNm511Gss=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=auWjptQk37oycIWeIeE8HIS7LneZ9hi+9rxCJxNCYFpAHBbrNrzj90nnVf1vEiC6y
+	 OEQ0kNQgRuJTFU7jId3hs6SkqfldgszVbZPzRSAmILDPH0VC7/KPzlWJbsYFhiYY8X
+	 MnxtD4oTbpxogAM2L50UA0QjTgcCfi5/kYTOFZ7nwAkPAifhVISLmhRvK8w03tcLuw
+	 zAG2caimyP9PiAWR/6lykRzZnhqIbVVl2rAeKnMk5DzARmxzLCl5c9VLJaxqsvbpuu
+	 RVh6S0G6exJk4I1VHMxZtjd7nYutrfarNuajJUAOdTVCnOOu4n73lwTMqU0wCEOVTN
+	 4z7Omhl2iAZUg==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-518931f8d23so7827618e87.3;
+        Thu, 02 May 2024 04:07:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXt7tl3vu9hUD00ZF+Mg9/oUFkMUWQyQiYk/h6RRDbYdOhvgjHVLOKT0p2w8n0ik2TuIz5CRJLBRfM7o/gPxoAEPJULlF/ss8F6L6S24PmGjzokkQNQdZhLD+m4kU/1uJye4S5VzupmZs3EizPFdRbhtdcVp0zfq43Csg2ObNm2pthX0anTBw==
+X-Gm-Message-State: AOJu0YzGH4e8Dh0MnoWFmjzxBKIoV1+aVie37o1aevamGXEA+LeFk6HB
+	oZ8otE1ms03bC2KzcXRMSPkwspCjLJQHLC1UG0aVrZXgyH6Db1dOp97Bg3koSI0ZQYysHfBxsSz
+	VMBSRRZZ95ip55K1dt6oxezICNLs=
+X-Google-Smtp-Source: AGHT+IGglbNUcmY0tPy/2FfcGCZjTbOKNm3qt2fGG0t4e4fvLjpNRktw1NMsov0qlKycBZDrNlJq8PKuHtWWp4wr4O0=
+X-Received: by 2002:a05:6512:1042:b0:51e:e846:2b6f with SMTP id
+ c2-20020a056512104200b0051ee8462b6fmr2210297lfb.51.1714648029315; Thu, 02 May
+ 2024 04:07:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240430202928.1143802-3-robh@kernel.org>
+In-Reply-To: <20240430202928.1143802-3-robh@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Thu, 2 May 2024 20:06:32 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATnr-L0Xwi2xCy1hcuPV=H=11+1bR=D0ji21exhprXRXg@mail.gmail.com>
+Message-ID: <CAK7LNATnr-L0Xwi2xCy1hcuPV=H=11+1bR=D0ji21exhprXRXg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: kbuild: Fix dt_binding_check for arch
+ without dts directory
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
-signal processor.
+On Wed, May 1, 2024 at 5:30=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org> =
+wrote:
+>
+> Commit 1d06c77d93da ("dt-bindings: kbuild: Add separate
+> target/dependency for processed-schema.json") placed setting CHECK_DTBS
+> for 'dt_binding_check' target within the section that depends on having
+> arch/$ARCH/boot/dts/ which x86 doesn't have for example. That results in
+> the schema checks not running for the examples. Move setting it back out
+> of the conditional section as it was (CHECK_DT_BINDING is still
+> replaced).
+>
+> Fixes: 1d06c77d93da ("dt-bindings: kbuild: Add separate target/dependency=
+ for processed-schema.json")
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+> Cc: devicetree@vger.kernel.org
+>
+> Masahiro, Please take this as the above commit is in your tree.
 
-Datasheet:
-https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Naushir Patuck <naush@raspberrypi.com>
----
-v5->v6:
-- No changes
+I squashed this to the original commit.
 
-v4->v5:
-- No changes
+Thanks.
 
-v3->v4:
-- Drop 'clock-names' as we have been confirmed there's a single clock
 
-v2->v3:
-- Add back 'clock-names' as suggested by Laurent
-- Add Rob's ack
-- minor grammar/style fixes
----
- .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-new file mode 100644
-index 000000000000..1fc62a1d8eda
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
-+
-+maintainers:
-+  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+description: |
-+  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
-+  processor that fetches images in Bayer or Grayscale format from DRAM memory
-+  in tiles and produces images consumable by applications.
-+
-+  The full ISP documentation is available at
-+  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm2712-pispbe
-+      - const: raspberrypi,pispbe
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        isp@880000  {
-+             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
-+             reg = <0x10 0x00880000 0x0 0x4000>;
-+             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-+             clocks = <&firmware_clocks 7>;
-+             iommus = <&iommu2>;
-+        };
-+    };
---
-2.44.0
 
+>
+>  Makefile | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/Makefile b/Makefile
+> index f4fe5b0ea931..43a2a630436a 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -1403,7 +1403,7 @@ dtbs: dtbs_prepare
+>  # dtbs_install depend on it as dtbs_install may run as root.
+>  dtbs_prepare: include/config/kernel.release scripts_dtc
+>
+> -ifneq ($(filter dt_binding_check dtbs_check, $(MAKECMDGOALS)),)
+> +ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
+>  export CHECK_DTBS=3Dy
+>  endif
+>
+> @@ -1422,6 +1422,10 @@ endif
+>
+>  endif
+>
+> +ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
+> +export CHECK_DTBS=3Dy
+> +endif
+> +
+>  PHONY +=3D scripts_dtc
+>  scripts_dtc: scripts_basic
+>         $(Q)$(MAKE) $(build)=3Dscripts/dtc
+> --
+> 2.43.0
+>
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
