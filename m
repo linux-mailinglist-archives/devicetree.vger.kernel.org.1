@@ -1,128 +1,140 @@
-Return-Path: <devicetree+bounces-64561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B538B9BE6
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 15:53:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 261E28B9BF9
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15B461F228DE
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:53:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56C011C211BA
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD00E13C673;
-	Thu,  2 May 2024 13:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AB313C67F;
+	Thu,  2 May 2024 14:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p5kJu7n1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q7d3AT//"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7669A75817;
-	Thu,  2 May 2024 13:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF502C8F3
+	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 14:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714657999; cv=none; b=QBs8QT/C+SPP5GKGG0SMG+IY7ZQkttd/M516dVsAvzzAEOg8VeGH/RayAmzg2syEwKlwOF35x0LTUKwkqE4t/BtFfHJvzIKSAPHtwcyDZLsY93jUK+gD1PFQJQUODt/yo464rszM6Ie3DIWO+Z6ao5Tb6BMHYes+cgUYzmdLpjo=
+	t=1714658565; cv=none; b=o31W09zcP5i5CyBNvqSjtx7LM95XxUMsrdzux9w1lg155SgTtjQkpYLKzWtbqSY23VRenmWxTQZMuKhNVvoTcqdDKxlJZpvh7rwMfeyO78t2GiXXuNC782Gdy5tRchgaBiKktYS01LHFJQTjj+vFpWyZ0pYxQ+CMS9df2+Pl4sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714657999; c=relaxed/simple;
-	bh=9gO+mtHEd28XVOGV5Nm2eXPpwkTS7kxon3iiI1XLz3k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q61hXNM9Insyed96LyRneR3Dqk0fPLQHot0bqNjCrOQPT7oVhVf0nmbnmawYbfv057qD5jZBgv186OLR1eKo9xJLVWa1AU55FdWuo0ZcIB6ZCqOfRrupVoKhkX6P0kMxUPFvt8MJit8NroAnVc/BS118w09JOayPKAq2qbbHTJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p5kJu7n1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67469C113CC;
-	Thu,  2 May 2024 13:53:16 +0000 (UTC)
+	s=arc-20240116; t=1714658565; c=relaxed/simple;
+	bh=+HwR5bHMntTZYTp+bozxMQeT0vh+3PiCz9q8t56GhL4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y72z7HQiVtjCpanq3nK7ZuwQmkfm/9TUEwqQisIQyYzYio0KeGAOR5s8rrgyBviMOdgm3o8fgwdwqAZEBlEDVXVQvd9DCSI4W4Jpm5Dz/QyAfeJT5+RS+4pwBIWzFLnQpjPD04U4gPZPhEG7/BW2HSmQi9FDau9ZdNUicduTW8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q7d3AT//; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6C00C113CC;
+	Thu,  2 May 2024 14:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714657999;
-	bh=9gO+mtHEd28XVOGV5Nm2eXPpwkTS7kxon3iiI1XLz3k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p5kJu7n1zt0AoaeiV0hp9IPTcUPyhl7rJPwnHb5G9aRffxNAq3JWR8fGWPIcs2bWn
-	 gOyae26RApWJwl17T8Jnrnm/JXcyMWWVFYBRoVJXADUct9H6/bi6+gKx9CbCOmlY/p
-	 SjGev/nyQMymS3NxFEO/wlYkk0vn2kXasTiMCMQpqVZdgIXYVWSNu5KnJRIBsLLBEp
-	 3uarLYWvxRKVIkBNMujonjP0TBkByRgyFVPJ4c9INFn0tUt/5xhWqvGP4Xc7B0aKPr
-	 5XyRSK1JzbeJ1vl3QoM9eYT1pZL3tEA++qP/HrEQ546Fm8ibIxUW7yZS1eviNSu9KV
-	 ScVCvd/Q0BUdg==
-Message-ID: <1379814b-fdd5-48d7-a206-86595e71cc38@kernel.org>
-Date: Thu, 2 May 2024 15:53:14 +0200
+	s=k20201202; t=1714658565;
+	bh=+HwR5bHMntTZYTp+bozxMQeT0vh+3PiCz9q8t56GhL4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Q7d3AT//EiibcCizWOsAk8niX0aavjwjPDAt8Q4gRWVStGtP17/vRPJHqeEQY0DEW
+	 QWIzQ/hF3PmtGNLUHHxIjKNvhx4Q8b5LCtvd5pe/6lWAbTm358l1fnyZU73yp8leJe
+	 ue26ZPRk6tS5sDa+XtDwv4inN94rAUy7Nve/VhrT1L5zM6L/ltYWWRvTKziXGWU4A7
+	 XUE0fKXyXpHlOKXq8nVYxFD1Tf9clFlMWjgCjm5mj8tw1eGJt/hm7bbCcW9/6zLIu4
+	 2M5hPwkYO90ucDh1CIlAcRTYb8LHSuy3Ph7X1ntPvATCqJif8v9sbcPSKQaBj6Td2p
+	 JA2830q9xA1hA==
+From: Niklas Cassel <cassel@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Damien Le Moal <dlemoal@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Niklas Cassel <cassel@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: add rk3588 IOMMUs
+Date: Thu,  2 May 2024 16:02:32 +0200
+Message-ID: <20240502140231.477049-2-cassel@kernel.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: spi: spi-cadence: Add optional reset
- control
-To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Michal Simek <michal.simek@amd.com>, Lars-Peter Clausen <lars@metafoo.de>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Eng Lee Teh <englee.teh@starfivetech.com>
-References: <20240502104800.3030486-1-jisheng.teoh@starfivetech.com>
- <20240502104800.3030486-3-jisheng.teoh@starfivetech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240502104800.3030486-3-jisheng.teoh@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2797; i=cassel@kernel.org; h=from:subject; bh=+HwR5bHMntTZYTp+bozxMQeT0vh+3PiCz9q8t56GhL4=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGNKM53xvv7Oy3+Rfx5NHm9ZzbdtWHKLZd4T1uuw+YR2fu wFHXH6od5SyMIhxMciKKbL4/nDZX9ztPuW44h0bmDmsTCBDGLg4BWAiQusYfrN/ODBrFW/J7yuN DUslG+PXP7bZvf3oofoFOi7BokdXWu5g+J8ezhW+ZD+vsiN3Coftdnv1i9WxfgVxQVtstp1NFU/ awQgA
+X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
+Content-Transfer-Encoding: 8bit
 
-On 02/05/2024 12:48, Ji Sheng Teoh wrote:
-> Document the optional reset control to SPI.
-> 
-> Signed-off-by: Eng Lee Teh <englee.teh@starfivetech.com>
-> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> ---
+The mmu600_pcie is connected with the five PCIe controllers.
+The mmu600_php is connected with the USB3 controller, the GMAC
+controllers, and the SATA controllers.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+See 8.2 Block Diagram, in rk3588 TRM (Technical Reference Manual).
 
+The IOMMUs are disabled by default, as further patches are needed to
+program the SID/SSIDs in to the IOMMUs.
 
-Best regards,
-Krzysztof
+iommu: Default domain type: Translated
+iommu: DMA domain TLB invalidation policy: strict mode
+arm-smmu-v3 fc900000.iommu: ias 48-bit, oas 48-bit (features 0x001c1eaf)
+arm-smmu-v3 fc900000.iommu: allocated 65536 entries for cmdq
+arm-smmu-v3 fc900000.iommu: allocated 32768 entries for evtq
+arm-smmu-v3 fc900000.iommu: msi_domain absent - falling back to wired irqs
+
+Additionally, the IOMMU correctly triggers an IOMMU fault when
+a PCIe device performs a write (since the device hasn't been
+assigned a SID/SSID):
+arm-smmu-v3 fc900000.iommu: event 0x02 received:
+arm-smmu-v3 fc900000.iommu:      0x0000010000000002
+arm-smmu-v3 fc900000.iommu:      0x0000000000000000
+arm-smmu-v3 fc900000.iommu:      0x0000000000000000
+arm-smmu-v3 fc900000.iommu:      0x0000000000000000
+
+While this doesn't provide much value as is, having the devices as
+disabled in the device tree will allow developers to see that the rk3588
+actually has IOMMUs on the SoC.
+
+Signed-off-by: Niklas Cassel <cassel@kernel.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 24 +++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+index 87b83c87bd55..aaea48a19e26 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -501,6 +501,30 @@ usb_host2_xhci: usb@fcd00000 {
+ 		status = "disabled";
+ 	};
+ 
++	mmu600_pcie: iommu@fc900000 {
++		compatible = "arm,smmu-v3";
++		reg = <0x0 0xfc900000 0x0 0x200000>;
++		interrupts = <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
++		#iommu-cells = <1>;
++		status = "disabled";
++	};
++
++	mmu600_php: iommu@fcb00000 {
++		compatible = "arm,smmu-v3";
++		reg = <0x0 0xfcb00000 0x0 0x200000>;
++		interrupts = <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
++		#iommu-cells = <1>;
++		status = "disabled";
++	};
++
+ 	pmu1grf: syscon@fd58a000 {
+ 		compatible = "rockchip,rk3588-pmugrf", "syscon", "simple-mfd";
+ 		reg = <0x0 0xfd58a000 0x0 0x10000>;
+-- 
+2.44.0
 
 
