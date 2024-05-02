@@ -1,182 +1,106 @@
-Return-Path: <devicetree+bounces-64498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6122E8B9844
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:59:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5808B9861
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E63D91F2171D
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:59:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F29D51F25759
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A83957301;
-	Thu,  2 May 2024 09:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7080A56772;
+	Thu,  2 May 2024 10:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PCnEpblM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUrsD7Gz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781515676F
-	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 09:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493424F88C;
+	Thu,  2 May 2024 10:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714643982; cv=none; b=O6QzagqpPtKZHq9dmB1ztj98xFkJqRqxDvgs8JisSOOxKefiOIMU5p1+SuiOASo5wxbFgBRH4UtkWnCXoM/955v1vy7g45lPn2OMLCWOUqsjISHHUbD1vFpKjyThxxSXiqvN0eKLzZsUxKzt1VJNWYwj8HlXssu5bXrWqQXmVTI=
+	t=1714644117; cv=none; b=WITuCgF9porVedvEPFOEjitsqqsX8BGdfvRvR1HvUqYvHlTcpeddnREnOP4UdNMQZY+m8PeLA59r8o6KkeLdXykJ0etzVXgDw1nUD4Fx5Uf+SCnirAIHpb9xpuNP7BNY1HWgqfMGx2AdMdRClmYUj1yN/4YcR6zj68m74gbAuk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714643982; c=relaxed/simple;
-	bh=0VwrMUO3X+y6UpEoWe11LsUQtiTXlZrdy2wyBSrCHUk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=npVQA6HuukRtpNa2HZPfTWNlbwez7VLfI88mEfSfTtTm/Lz76r5rgy4hbSUReON99dVsPIT3buPnnhj8MPB7vXzEct+I0Gb7S1qDZyBTodwKOM4tqJkjFduq3QU6t6NMaP+Xi7WbOTOcw+QmnyuOoRLTaMPVcLr0eZLjkO2V2FY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PCnEpblM; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-51f45104ef0so273941e87.3
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 02:59:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1714643979; x=1715248779; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IAWzFtfBZwMQoHv84/W+JImIB5vAq9WxgZXxmYPg6EU=;
-        b=PCnEpblMIvnfYoI0CBfMTAacBznA4ZpfckEWfCi/HFn8+IqJAFj8dZGlrFi4bt6m/1
-         0lB9E3F0FN8eII3mGwxBfPsHsN7vXZvn9vz2kpc/xQScgMN2bdINWP9up0EZTvh0Iejg
-         +idOA/bY83LCw4EIkIPPZM9BKJ97hY1zBbC78=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714643979; x=1715248779;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IAWzFtfBZwMQoHv84/W+JImIB5vAq9WxgZXxmYPg6EU=;
-        b=v2Nq7rR9fFaIxxhKLYTQ0tdfW/hPI35F0K3hR44kHypBjjT2fb0sXnkVPRUhgvZGSK
-         DCX7KX885qGmrKo2p56EgQt6q/bi66YcfVObbk7Y6/sJgYjVEGwhPxe3nSTZrKp7Z6zc
-         za4EQLAT5So0IhnIXjyigchITsAyYKCWgT2sMUhF/3ioJyKvCFEW7k05hvzm8OtPwbeI
-         xeeCJ+vVE0WofzjTasUV9VLOiWOoSw5cQN04zrLDuKk9Ww30omWkx0ZE75Lay26IaNLx
-         s680nlrkPxiAhvbO53HmQfFbguUdIk8fFKxfwcgP1ks4ItxFfyVZpB+ygg2nNIlXuofk
-         CKRA==
-X-Forwarded-Encrypted: i=1; AJvYcCWr2ZPVSNYv1woZxizn3kCk79ywWuZ2Ux0GvvsGafXoSbVJRSX8kCSqxN6Oyuo8FI/PZcfZ2HYovvKIDAnaL5EOd7ej1ctjEmrlGg==
-X-Gm-Message-State: AOJu0Yxj/46dfBecmTJkEdv9/4PG4gbqnycHYUUkoCTT5Zbu5xGkEooi
-	cyMeXBK86e+FqefjgiwxyBg0t8uUXuqxF/GIRV5uuNCHIlAe3V5JB2dTErJZ7uHEp+MNsW4PFUn
-	uyHzBTXNlpiynylsJ+cmD6TUiTu0VXvTLkcwG
-X-Google-Smtp-Source: AGHT+IEGkMy9wnAsRv/sjRzs/mP6zDLzjdxZZenS550ahLeLjpaIxqNlXTywDzD62yFQysa3FGIxwKwuDOr1BNgiH+Q=
-X-Received: by 2002:a05:6512:3c87:b0:51c:cd8d:2865 with SMTP id
- h7-20020a0565123c8700b0051ccd8d2865mr4075910lfv.44.1714643978564; Thu, 02 May
- 2024 02:59:38 -0700 (PDT)
+	s=arc-20240116; t=1714644117; c=relaxed/simple;
+	bh=5MizojhZapYDNM1cW8qYSQdLAZLpGpHIYNcukdk2XZk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sswoO3Mf0iQqdHTRYFKUkbUufcAlkoGzIF+ezDVdPt1Td8+UaAF08BzY0AvJEgZyVrbvq0ZhI80rGm909+qgtM2WUrprWkaDiYJ1eCGo1pPZMeKv7eCq4AnvlfxUo89RQcBsLn4M+7fySYiu5tWKosbKQFdxdhIbvgYIgjih7Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUrsD7Gz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B55CFC113CC;
+	Thu,  2 May 2024 10:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714644116;
+	bh=5MizojhZapYDNM1cW8qYSQdLAZLpGpHIYNcukdk2XZk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nUrsD7Gzg7Qyu4uWYHmseDBExKYVTRp1n7NMo5YAFtalh0+cMrKvuEIHRPQoQadmY
+	 aPHnaGt3H9Vslgnnmj43hG/vbD6s0RkI2Rvoag4ahpMm7Gxn8+dL10eaqD3T53HEjz
+	 zIop6nbnCsKQa+0p0/5TmxbH6roAR9wHUqgPSodCs2S45hQu1nFj7kyYi7NLGudAob
+	 ZiFW/r6lwnZorO8lCrIABixM4QXACvqLPg+YzOPq+ibD5tyTosds9pYyDl/F+R6tfJ
+	 feiOMO0A6FqUBAx1d0zD2CK+rmWdULNziws6Df3O5DhNCaEA+8v0knkVo0ou7mYkz8
+	 rhg/zHdbz+gDQ==
+Date: Thu, 2 May 2024 11:01:51 +0100
+From: Lee Jones <lee@kernel.org>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	srk@ti.com
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+Message-ID: <20240502100151.GR5338@google.com>
+References: <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+ <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+ <eb7a0d5c-c197-44b9-baea-e9b54792b447@kernel.org>
+ <af61424e-7006-49f5-b614-3caa3674685a@ti.com>
+ <083e50de-1c99-4a58-8b55-4dec26d97c1b@kernel.org>
+ <9bca7d94-142e-4717-aea7-437805717a00@ti.com>
+ <a895ddc8-5c18-49d7-86c4-b995bb946914@ti.com>
+ <94bae793-ba4f-467f-917d-213fa3cd6faa@ti.com>
+ <20489a1e-51d1-42b3-9014-fc1c00b087db@linaro.org>
+ <8a64294a-df1e-4331-aca5-0b23b637b9e1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240416071410.75620-1-angelogioacchino.delregno@collabora.com> <20240416071410.75620-19-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240416071410.75620-19-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 2 May 2024 17:59:27 +0800
-Message-ID: <CAGXv+5GddLeYr-CZBFUcpUMR_NV0=0fu6Qp71hvKO6tJdJjF6w@mail.gmail.com>
-Subject: Re: [PATCH v5 18/18] arm64: dts: mediatek: mt8186-corsola: Specify
- sound DAI links and routing
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com, 
-	trevor.wu@mediatek.com, maso.huang@mediatek.com, 
-	xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de, 
-	kuninori.morimoto.gx@renesas.com, shraash@google.com, amergnat@baylibre.com, 
-	nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de, 
-	dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com, 
-	eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev, 
-	jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com, 
-	ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com, 
-	nfraprado@collabora.com, alsa-devel@alsa-project.org, 
-	shane.chien@mediatek.com, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8a64294a-df1e-4331-aca5-0b23b637b9e1@ti.com>
 
-On Tue, Apr 16, 2024 at 3:15=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> The drivers and bindings acquired support for specifying audio hardware
-> and links in device tree: describe and link the sound related HW of this
-> machine.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  .../boot/dts/mediatek/mt8186-corsola.dtsi     | 42 ++++++++++++++++---
->  1 file changed, 37 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
-4/boot/dts/mediatek/mt8186-corsola.dtsi
-> index 1807e9d6cb0e..afdab5724eaa 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> @@ -42,7 +42,7 @@ backlight_lcd0: backlight-lcd0 {
->                 default-brightness-level =3D <576>;
->         };
->
-> -       bt-sco-codec {
-> +       bt-sco {
+On Thu, 25 Apr 2024, Siddharth Vadapalli wrote:
 
-I remember changing this node from "bt-sco" to "bt-sco-codec" because
-of a review comment when I submitted the Corsola dts series.
+> On Fri, Apr 05, 2024 at 08:55:18AM +0200, Krzysztof Kozlowski wrote:
+> > On 05/04/2024 07:21, Siddharth Vadapalli wrote:
+> > >>>> bindings in the changelog or cover letter.
+> > >>>
+> > >>> Thank you for clarifying. I will post the DTS patches corresponding to
+> > >>> this patch and reference this patch in the DTS patch series.
+> > >>
+> > >> I have posted the DTS patch at:
+> > >> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404081845.622707-1-s-vadapalli@ti.com/
+> > >> indicating the dependency on this bindings patch.
+> > > 
+> > > Hello Krzysztof,
+> > > 
+> > > Do I have to post a v2 for this patch? You had Acked it initially but I
+> > 
+> > No, I acked it. All this unnecessary talk was because you did not post a
+> > user, but it is not a requirement, at least when we expect such user.
+> 
+> Lee,
+> 
+> Could you please merge this patch? It applies cleanly on the latest
+> linux-next tagged next-20240424.
 
->                 compatible =3D "linux,bt-sco";
->                 #sound-dai-cells =3D <0>;
->         };
-> @@ -223,12 +223,44 @@ sound: sound {
->                 mediatek,adsp =3D <&adsp>;
->                 mediatek,platform =3D <&afe>;
->
-> -               playback-codecs {
-> -                       sound-dai =3D <&it6505dptx>, <&rt1019p>;
-> +               audio-routing =3D
-> +                       "Headphone", "HPOL",
-> +                       "Headphone", "HPOR",
-> +                       "IN1P", "Headset Mic",
-> +                       "Speakers", "Speaker",
-> +                       "HDMI1", "TX";
-> +
-> +               hs-playback-dai-link {
-> +                       link-name =3D "I2S0";
-> +                       dai-format =3D "i2s";
-> +                       mediatek,clk-provider =3D "cpu";
-> +                       codec {
-> +                               sound-dai =3D <&rt5682s 0>;
-> +                       };
-> +               };
-> +
-> +               hs-capture-dai-link {
-> +                       link-name =3D "I2S1";
-> +                       dai-format =3D "i2s";
-> +                       mediatek,clk-provider =3D "cpu";
-> +                       codec {
-> +                               sound-dai =3D <&rt5682s 0>;
-> +                       };
->                 };
->
-> -               headset-codec {
-> -                       sound-dai =3D <&rt5682s 0>;
-> +               spk-share-dai-link {
-> +                       link-name =3D "I2S2";
-> +                       mediatek,clk-provider =3D "cpu";
-> +               };
-> +
-> +               spk-hdmi-playback-dai-link {
-> +                       link-name =3D "I2S3";
-> +                       dai-format =3D "i2s";
-> +                       mediatek,clk-provider =3D "cpu";
-> +                       /* RT1019P and IT6505 connected to the same I2S l=
-ine */
-> +                       codec {
-> +                               sound-dai =3D <&it6505dptx>, <&rt1019p>;
-> +                       };
->                 };
->         };
->
-> --
-> 2.44.0
->
+I ignored it due to the length of discussion that appeared to be
+on-going.
+
+-- 
+Lee Jones [李琼斯]
 
