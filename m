@@ -1,162 +1,86 @@
-Return-Path: <devicetree+bounces-64527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEEA8B99C3
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE6B8B99CA
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D050C1F2408B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:10:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 026341F24486
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B7E5FEF2;
-	Thu,  2 May 2024 11:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9624660BB6;
+	Thu,  2 May 2024 11:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QMFTKOww"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="g2MrRezj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAA35C8EF;
-	Thu,  2 May 2024 11:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B6E60263
+	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 11:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714648201; cv=none; b=Z01tia1G9cRf6z/nbGTngn7XYRJdrY+egSFbqgnjG5+p1KocBI/Eg38t55y+sQVfGzP1k7nbcEf/CEZiJjtbOcezXIE0D4V1VZbF+nduciI5dIAs+vfQdMdAYXZQAXcdGHQHCwSJGfuNge5ylg2SagmwjfriWo49rzcZTwwzeSU=
+	t=1714648225; cv=none; b=k6+K/l5AG51R66qYsQsbkERNnzQaORUkMlaM6MoZx+Ul1acOFWsZG7GLTJBMQOqAlTmx1AJatkItCaDlx42WvcAtTucRvejRpfjs+gIAEhnDCUlvgiRb5GWf64jnxfHOZppsHvdSe8/2msIWJKaMrEpfs8aJbUC58lwo1EP8AMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714648201; c=relaxed/simple;
-	bh=unJP1NwysKlSIETESGSQdBq48jBlZec/OubfEgTf09A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IxGCf7xgIMc6raiZNah6Wp6LyFDBxBfrnKbzTH36F/2AhBMVXlLliYWSEjZKGognU43Yp6p/NKW0088ym4JaBfd9cPt5ClDSorrY76drKC1q88pct0n07CzfaXZxmBHnDQOZ97LcPuGDgtG58cqqyzAQ2ic9qI6yo1brYZBooO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QMFTKOww; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4425pI1M018346;
-	Thu, 2 May 2024 11:09:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=1R54idS8kX6ibLVp50hFilNZrY8MA6+STSvHKvSkkOg=; b=QM
-	FTKOwwFTrW6nxJgwmXoqO6a3jwh5629anl0FLNBeyoWyUXCChyvh66PZwI8RbYgQ
-	iJz6CqoZKN2Y0pW6ij4XbApNrqrLvnUMn8Ti74/rgS7aqeSaYEqmtqaXwtZluCKQ
-	jfxTzEaKis4pZU4E0YxopiqghejtKAXH2fbeFLFWXZQibL7niNJgwLGXh7vXhs62
-	Qa7O9RnNAckQene4AoKd1m2RiycKKMtjF4ZFwdrNCdnnUIJBpTzO2s02Tgir/Fb2
-	xoBelNy3HPzfcT0rLeH1r0GBu/i1C2a2aj6YIuXjdEs5vppILuFYVrH+7i/E+zxr
-	YNvypvhUmf0R/wj2K3jg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xu71jbr56-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 May 2024 11:09:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 442B9sPQ013474
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 May 2024 11:09:54 GMT
-Received: from [10.218.5.19] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 2 May 2024
- 04:09:48 -0700
-Message-ID: <b21f2d88-3429-41cd-b8df-4353845c1320@quicinc.com>
-Date: Thu, 2 May 2024 16:39:34 +0530
+	s=arc-20240116; t=1714648225; c=relaxed/simple;
+	bh=/EV7QTZeTfQy4aM6c9V7M+q9IBE33PIbhjLzwvZTesg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JLWlufvLS4osmZnlLFbr4lWqkPgS+2dKXDUgRtUJuFAdPu6SudyWjaQdIxw9ImGFc6CLFND6HM+TrbXkWnfezA+3fYlQg5PRaqRkzEo+PiCOfq4VeHYjLbsjBD4iivwgiUxjxuBG41/oLX2FjrpMgSxXTM1Vrm+j4ctL1tL218o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=g2MrRezj; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from pecola.lan (unknown [159.196.93.152])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 80DE020009;
+	Thu,  2 May 2024 19:10:19 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1714648219;
+	bh=/EV7QTZeTfQy4aM6c9V7M+q9IBE33PIbhjLzwvZTesg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=g2MrRezjUoMYZkCJRjbMGrLeMb0Yt0Re+IzEbflrcuLQX0OIY2nliDkG+0mdavYgU
+	 mpyaHAqkOUeYJIXITL4juMy52uAW5HLl1pUEKTBpwVjDxMjoCr+iTkO9MqsQUaN09F
+	 bY8uQPCZyTlTSQv6nlHsdo3p5KbZWeCD22J9FKkZvW80LMR7xY6lJVJBBPs/VllhVm
+	 Vm31iMfbk7f0CFL3Ri680/hSJuiQdc6dSQ3ehHb97OHuKo93gLig675d1lxtgoYLZR
+	 5OgihvrxByxnvERAV5wfyW/SiFnAto5zGP2i8GbCVpB+f5chVnToUQpUhHqI6jJYDe
+	 MhG5v8J6TV7DQ==
+Message-ID: <f14b79f4771a4216be6eb2de4352f9f1dda0eafc.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed-g6: Add nodes for i3c controllers
+From: Jeremy Kerr <jk@codeconstruct.com.au>
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, Andrew Jeffery
+ <andrew@codeconstruct.com.au>,  Joel Stanley <joel@jms.id.au>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>
+Date: Thu, 02 May 2024 19:10:19 +0800
+In-Reply-To: <c5331cf8-7295-4e6a-ba39-e0751a2c357e@kernel.org>
+References: <20240501033832.1529340-1-jk@codeconstruct.com.au>
+	 <65af46c3-e48f-4eae-8390-2bc01332ccbf@kernel.org>
+	 <09ed10182e2282d7e408a4fef7994da010fe058e.camel@codeconstruct.com.au>
+	 <c5331cf8-7295-4e6a-ba39-e0751a2c357e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 5/8] dt-bindings: clock: qcom: Fix the incorrect order
- of SC8280XP camcc header
-To: Johan Hovold <johan@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vladimir Zapolskiy
-	<vladimir.zapolskiy@linaro.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>
-References: <20240430142757.16872-1-quic_jkona@quicinc.com>
- <20240430142757.16872-6-quic_jkona@quicinc.com>
- <ZjHklEN4zV5QG5Zv@hovoldconsulting.com>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <ZjHklEN4zV5QG5Zv@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bZ-kJ4VXR6TYYluN2ZLfL6vMolDF_x39
-X-Proofpoint-ORIG-GUID: bZ-kJ4VXR6TYYluN2ZLfL6vMolDF_x39
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-02_01,2024-05-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 bulkscore=0 adultscore=0 priorityscore=1501
- impostorscore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0
- clxscore=1011 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2404010003 definitions=main-2405020070
+
+Hi Krysztof,
+
+> Your first node is empty and that is not readable.
+
+I'd argue that separating the i3c definitions makes the source more
+readable (granted, at the cognitive expense of having to dereference a
+label), but ok.
+
+I'll send a v2 with the bus definitions inline, but first reworking the
+existing i2c definitions to use the same format.
+
+Cheers,
 
 
-
-On 5/1/2024 12:13 PM, Johan Hovold wrote:
-> On Tue, Apr 30, 2024 at 07:57:54PM +0530, Jagadeesh Kona wrote:
->> Fix the incorrect order of SC8280XP camcc header file in SM8450 camcc
->> bindings.
-> 
-> Try to avoid using the word "fix" in the commit summary (Subject) and
-> commit message for things like this which are essentially cleanups to
-> avoid making it sound like a bug fix (which automated tooling may then
-> select for backporting).
->   
-
-Thanks Johan for your review!
-
-Yes, will remove the word "fix" in commit subject and message.
-
->> Fixes: 206cd759fbd2 ("dt-bindings: clock: Add SC8280XP CAMCC")
-> 
-> Also drop the Fixes tag as this is not a bug fix.
-> 
-
-Sure, will drop Fixes tag in next series.
-
-Thanks,
-Jagadeesh
-
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> index fa0e5b6b02b8..bf23e25d71f5 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> @@ -14,9 +14,9 @@ description: |
->>     domains on SM8450.
->>   
->>     See also::
->> +    include/dt-bindings/clock/qcom,sc8280xp-camcc.h
->>       include/dt-bindings/clock/qcom,sm8450-camcc.h
->>       include/dt-bindings/clock/qcom,sm8550-camcc.h
->> -    include/dt-bindings/clock/qcom,sc8280xp-camcc.h
->>       include/dt-bindings/clock/qcom,x1e80100-camcc.h
-> 
-> Johan
+Jeremy
 
