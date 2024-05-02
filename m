@@ -1,126 +1,101 @@
-Return-Path: <devicetree+bounces-64486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE8C8B97D6
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:34:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A426F8B97E4
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:37:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84455285656
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:34:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AB65281893
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCDC55C08;
-	Thu,  2 May 2024 09:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BC654FAD;
+	Thu,  2 May 2024 09:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="oG5pnS/g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lPPwQXi9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8103399F
-	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 09:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0913F537E7;
+	Thu,  2 May 2024 09:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714642440; cv=none; b=AdfSvvj4rqBWyS4xaLk/w0DlfSFr8KAlbikSrMgbHtRie5VqcPTrRfabbhsPdhpMapX/3Kpn/QWTg0bpzeGIryBj+k+qCNOOWFwAHW2bhbsx6trGGNlomSl8t5A276daztQsKdpPFKkKU2p96g2s4HaSpnYkhch5RuGjBGdjKH0=
+	t=1714642661; cv=none; b=CzAq5gxD1ylz4c5qJHRmAog2GSgvDGkyY/QR+OnsOI7ea84RqpUx1T3Uq25vwBfv2HwT8Ba9cbivZOIgA4cwqeTop2a0aV4VzWU6+z0t75eWtrn1gcYonsye/5HakZVDRy8SW5q7xQDY55PnAkF3uYbI8oCe4oPe2IMXFTWxjmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714642440; c=relaxed/simple;
-	bh=nkEb1cGpxGhnxIo11VL8ruy9enHJYVmsxY5j3gtXE/Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=koblcxPAxfVR3gJyIFAEqdw3XkJvskma8LwNfLNqKFovzOcvRGoWg5RhDRG0/HWXv2v4KE+C+skq2N4K+0inhddeWqMBTPFQrUE7JmpimXQEVp/ynSNJDRPoKKNMJhz1Mr7vc0+YKPWgR9Uk7aW0IfPPoyG9G10rU3hcIojEnBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=oG5pnS/g; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2db101c11beso91415211fa.0
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 02:33:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1714642436; x=1715247236; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FUPIZkrFl6BEjtW1yyE61WicVfg6hOSYbd+LAsiXxyM=;
-        b=oG5pnS/gE7OtIXwozrCCBErGDyeCovH0iy2Ld/keNJvPpOwSfe0k4rzt3UvjWGSxvt
-         g2gCaID4xXaqM64okiTwi8n5w31N46EKd02+1OgoD4ZcVYejmmfIqk6S7nlYzeH/6vhW
-         bCMUnslX3QBc3uk1lGG5sW9s5Em4sFAL20H0I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714642436; x=1715247236;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FUPIZkrFl6BEjtW1yyE61WicVfg6hOSYbd+LAsiXxyM=;
-        b=U9s+9SZ5FsziFu/PgOfwmUeLMVPwNTsXnOMdK/Xn/9oOzrQ0FKFK0zLnQ0EdVWxSD8
-         OLj9DwoIVUAfbQhD8BpSHYLiw7dObq7bJaMmMPaQG0NgCGyf3F+9OhoQcC3LL5uhB30N
-         e0EjmExeK9PPk0zpOZsS9atHSQcxMmR919BgE2Y2Bt2eVImNu8zDa1Yy4jjYOCrcWFRV
-         cLDkkRbtXcN2yMxppgmyj+VHWqsKK5sId0Bpk0zGdjXefDpYBmdK6FvsCP36Pvwe2oxw
-         ZGnbAQHozX17K6slcgpgOxbUCqqXkD++vKVRFs5pYPN/41fB6RkX+k+0XM9QSA8nZtr5
-         qjVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoKHIZZ32g7QEQB0DT5oVBuGaRJf8R6mWMzJY++bfnVsOypKf2A37DONBObWaMmchHi4Gp1YUtRZj74DStOZZRqInMq3TDaq3e2w==
-X-Gm-Message-State: AOJu0Yy7lbr1AsBxG50zS2YSOW8KJBhvK5ly7B5urEgezscSNB9fZ7Pe
-	arVkxdsF0jR2gYib5M4X6DmvAvgtN7nku+6XI2U+FtkzbxuP1Tnc+MxPpEkQ/7gYUz8JLSfvipQ
-	ga+gdhQU+P/Zs9Jzjdl84OxqukxkFUjWytuH7
-X-Google-Smtp-Source: AGHT+IGq4dmzHxgktFLM5a2WhXUqq3A67gAwjMdqjX26QYOxX34ttC61CkVRyaFFQXyx2u2V5502HE2Ng9PF3eBB1oM=
-X-Received: by 2002:a2e:994e:0:b0:2e1:fa3f:6165 with SMTP id
- r14-20020a2e994e000000b002e1fa3f6165mr481449ljj.8.1714642436155; Thu, 02 May
- 2024 02:33:56 -0700 (PDT)
+	s=arc-20240116; t=1714642661; c=relaxed/simple;
+	bh=RnY2mHcy5s3RJThqemCEECImstQv/0eAsLqYWQqx2tU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bbbFj2yQZQlJMe4WEJsXAL+MvjhnOxSwHztiJiRZghZ3tr03+jkoJ/h7nJbc4nAYY2m2l2v2dIS005qfUqiQCTZl+wcuWdMbWryp1P1cdcxiXKLNeFW1EP7P1SK8T66W2JLwrX0794IBs7j6BcBKmuFvPCdA/x1acw80Sj3py0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lPPwQXi9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 121A3C113CC;
+	Thu,  2 May 2024 09:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714642660;
+	bh=RnY2mHcy5s3RJThqemCEECImstQv/0eAsLqYWQqx2tU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lPPwQXi98HzM6jGfYAgRqIcHBMr9YrZ2xhPPAoEhJLzoahliDjqS3qpsyi2mfOT4O
+	 Pe82VCZWek9mTR+2lZiCVfKgXKFBZefcSPB4+b+p1CjvAkK5iWtqdMAdoUh9usYNEy
+	 9MnuVkkEo3HxLawUhyJm9jQw3/dvS8+8QnJEkBrYADACam70584lD2tuGEfiGYp+zw
+	 cac9fuMh0OloP5KWjOT8dowYHtF/GM6vfIrPFtEBTDdqXxdKhkde5Y0xkFmTzCpGOl
+	 EgAw8t40lhq6PpYIaO4jtqRthLAHg+twcsgXqRsudn0b9vnzKi/LU0TOi7I7BqzP/Q
+	 s86gdo75JZJhg==
+Date: Thu, 2 May 2024 10:37:35 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
+Message-ID: <20240502093735.GK5338@google.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <c17d163e-29cc-4049-985e-d1ef91d764cb@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240502-anx-tdm-v1-0-894a9f634f44@chromium.org>
-In-Reply-To: <20240502-anx-tdm-v1-0-894a9f634f44@chromium.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 2 May 2024 17:33:45 +0800
-Message-ID: <CAGXv+5FS1UwFiGYh-qZDau0yok3Gwf7g7GdRi=qJAG51ZDXD1Q@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Add TDM setting support
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Xin Ji <xji@analogixsemi.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c17d163e-29cc-4049-985e-d1ef91d764cb@app.fastmail.com>
 
-On Thu, May 2, 2024 at 5:03=E2=80=AFPM Hsin-Te Yuan <yuanhsinte@chromium.or=
-g> wrote:
->
-> The anx7625 supports two different TDM settings, which determine whether
-> or not the first audio data bit should be shifted. This series adds the
-> support for configuring TDM setting through a property in the device
-> tree.
+On Sun, 28 Apr 2024, Ryan Walklin wrote:
 
-As mentioned offline, this shouldn't need a DT property. Instead the
-machine driver dictates which format is used to the DAIs, and the
-DAIs set their respective settings accordingly. It would seem that
-one of the drivers is misbehaving.
+> On Thu, 18 Apr 2024, at 12:07 PM, Andre Przywara wrote:
+> > This is v2 of the fixes to the AXP717 PMIC support series. 
+> <snip>
+> > I don't know if that's still feasible, but those two patches would be a
+> > good candidate to squash into the patches that they fix.
+> >
+> > The other three patches add the "boost" regulator, which is meant to
+> > provide the 5V USB VBUS power when operating from the battery. It's the
+> > usual trinity of binding/mfd/regulator patches.
+> > Again this could be squashed into the respective patches from the
+> > original series, if people agree.
+> >
+> > Please have a look and test!
+> >
+> > Based on mfd/ib-mfd-regulator-6.10, as detailed below.
+> 
+> Looks good here, RSB communication, regulator and 5v boost support configured via DT working well on my H700 board, established by a combination of successful device bringup and kernel reporting. Concur with the request to be squashed into the mfd-next tree for 6.10 if possible, thanks!
+> 
+> Ryan
+> 
+> Tested-by: Ryan Walklin <ryan@testtoast,com>
 
-ChenYu
+This doesn't look like a valid email address.
 
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
-> ---
-> Hsin-Te Yuan (2):
->       dt-bindings: drm/bridge: anx7625: Add a perporty to change TDM sett=
-ing
->       drm/bridge: anx7625: Change TDM setting accroding to dt property
->
->  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml      | 4 ++=
-++
->  drivers/gpu/drm/bridge/analogix/anx7625.c                         | 8 ++=
-++++++
->  drivers/gpu/drm/bridge/analogix/anx7625.h                         | 1 +
->  3 files changed, 13 insertions(+)
-> ---
-> base-commit: 90d35da658da8cff0d4ecbb5113f5fac9d00eb72
-> change-id: 20240430-anx-tdm-7ce41a0a901d
->
-> Best regards,
-> --
-> Hsin-Te Yuan <yuanhsinte@chromium.org>
->
+Did you manually type it out?  I suggest against doing that.
+
+-- 
+Lee Jones [李琼斯]
 
