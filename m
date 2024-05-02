@@ -1,123 +1,158 @@
-Return-Path: <devicetree+bounces-64507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C2B8B98CA
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:28:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9F98B98D3
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:31:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0E70B20E77
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:28:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 097181F22049
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174FC58228;
-	Thu,  2 May 2024 10:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA3941A94;
+	Thu,  2 May 2024 10:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="R75ht3ED"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ptnzpBEE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34DC5490A;
-	Thu,  2 May 2024 10:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A0463C7;
+	Thu,  2 May 2024 10:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714645695; cv=none; b=Z1rEUopdsyZ8sAR6yPPsC/drqpU174f8iakAD8ifGr2oX9ibhnGi8PbmPjHnt9vUznyYLWQLiKQk0h8PUDthUVS1+WlFndiOp+7SDPdlyE8ryFXNrMpC1HCs8V1XxLA7On4JAqbSXdIzfMEsivyn6qiOxmMm6RC3oP5vPkT8/W4=
+	t=1714645891; cv=none; b=FgHRbwGc6btYm95n5yFfMTjPPiVvQ/RIBe7HVLK/CTg38dOJbrJRSqck5abjHtaJQ+ZWs+A2KYHG0Bbk4CsfpJ5ZeaGEAMNEGtpK5glpmGPpsuDnJJ9lByhwqEhAeGoHoy2JLwt+zV1Q3I6Ccuj7dJrxKK3SM2Fd3kzAo/9R8IU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714645695; c=relaxed/simple;
-	bh=QmV/eTHFw8ZKJX10ez9RvU5h49+qC63UtC3QhKPZVpw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bRPYxCF4Vzlx+sfVDFCPaHACEZz/ZYBZC46tA1b1I6K7Ix5leeXFaUL7nMlO7D0pLW340bdaVu98NWD52A+RfKqndvQCFzNDRBjw4V7fGdr4WryObmFdyhVsYK1lJHu4fxGVbC/etM4NBvoMVpNgxkB+8/PAdkvn7YoOi4sH4HY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=R75ht3ED; arc=none smtp.client-ip=130.133.4.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ravhJOzIKgIW3saDRAbKe8VZQUb/zFOpUwQ7zgeZ6Ms=; t=1714645693; x=1715250493; 
-	b=R75ht3EDRsv8hOTbRSDFY64C+zTBXL99lvQUfQi6nby8K+RsqFmRd7QwxXpG/VaYQsnAdJUaFPT
-	cEhx6ALSCt5aUth80JP9XNJFKDxHzZqkgFvLV7SLaqrJXx3V+5HP53xsH/REBCc4t/yFhOQD8fNxG
-	moMtNOBtLp021DGOos4zwry+IP4ZItn4V64owk2AwooKHjcXCvpf5/PFnCmlcaHF+DpvkXjdn0N88
-	66gKpZjnHh3tgWXBEIYjbgky5sybh9bq+/VBAOiL3R5pmQ0vYXzA8qqVpK3OvTSOWDBgU1Ruid3ZV
-	mGdt0KUDS+a8a1i+PjVUgZotG+93zh9ELntA==;
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.97)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1s2Tfe-00000001yC6-1TSg; Thu, 02 May 2024 12:28:10 +0200
-Received: from p57bd90e8.dip0.t-ipconnect.de ([87.189.144.232] helo=[192.168.178.20])
-          by inpost2.zedat.fu-berlin.de (Exim 4.97)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1s2Tfe-000000007WF-0Y7d; Thu, 02 May 2024 12:28:10 +0200
-Message-ID: <1280dad5fe1761d0c8828d6cee6dbd91e077a5b0.camel@physik.fu-berlin.de>
-Subject: Re: [PATCH] sh: j2: drop incorrect SPI controller max frequency
- property
-From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Conor Dooley <conor+dt@kernel.org>, Yoshinori Sato
- <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, 
- devicetree@vger.kernel.org, linux-sh@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Kousik Sanagavarapu <five231003@gmail.com>
-Date: Thu, 02 May 2024 12:28:09 +0200
-In-Reply-To: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
-References: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0 
+	s=arc-20240116; t=1714645891; c=relaxed/simple;
+	bh=3dHMTEpx+RjhmY6hvsHHM+apJyEPXU7sJbM2hOdVHVs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mFXzGVp9GI4V4WJlcD/KD522VoWu1C5VD9sEqtRAjsk5G7K+3VFigxa4pL8O8kC6YoC0eAl4c9kbSkwzMTfhbvVBzGUYGCC+AeGuvEmQ6C5/BHBzQ7BpLM9rGvoRig0O+HpU8J8WxXWBCvkacHcrVyFlJboVF1Du708wQR8ANrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ptnzpBEE; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1714645889; x=1746181889;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3dHMTEpx+RjhmY6hvsHHM+apJyEPXU7sJbM2hOdVHVs=;
+  b=ptnzpBEE69P8Yzc+sD6xwsWOEIxSkYHpM4R7/C9rhTxuNr2VP5MHFNDo
+   omeBtIRsDv8pnPQE9MZLyJMqO9YWfVO6oe5N/lQb5Z1wIlH3rH27ByIKP
+   0GjQsIt/7cZZF0pGPlAKUwOfefSfDmenVlbdoJYB7r7XlKDMIDeJFI27K
+   XG73aCaRwj/iMj8kEqS8FCvlfxab+eqXjLHTAh+Lpg29iU3KUQ91aVU61
+   ehp4ACXrKunWHdaBZfBypZ0H0H8sHOz8Z9/w66pPYBroPwMhpRNqHwMVE
+   zKTYDp5swaCA2t0vdN69xT749thwq7FDHoN5eYCDPFOWLa5BuP5M7JZZN
+   w==;
+X-CSE-ConnectionGUID: j7YMYpQzS2Gpi/aU2WdzxA==
+X-CSE-MsgGUID: 9DOz9USjTpSELk8k6vmCKw==
+X-IronPort-AV: E=Sophos;i="6.07,247,1708412400"; 
+   d="asc'?scan'208";a="25515845"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 May 2024 03:31:26 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 2 May 2024 03:31:22 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 2 May 2024 03:31:17 -0700
+Date: Thu, 2 May 2024 11:31:00 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Herve Codina <herve.codina@bootlin.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Thomas Gleixner <tglx@linutronix.de>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
+	<arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+	<Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Allan Nielsen
+	<allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 06/17] dt-bindings: net: mscc-miim: Add resets property
+Message-ID: <20240502-petted-dork-20eb02e5a8e3@wendy>
+References: <20240430083730.134918-1-herve.codina@bootlin.com>
+ <20240430083730.134918-7-herve.codina@bootlin.com>
+ <5d899584-38ed-4eee-9ba5-befdedbc5734@lunn.ch>
+ <20240430174023.4d15a8a4@bootlin.com>
+ <2b01ed8a-1169-4928-952e-1645935aca2f@lunn.ch>
+ <20240502115043.37a1a33a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-ZEDAT-Hint: PO
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oR2zK1enCDCWfwar"
+Content-Disposition: inline
+In-Reply-To: <20240502115043.37a1a33a@bootlin.com>
 
-On Fri, 2024-03-22 at 07:42 +0100, Krzysztof Kozlowski wrote:
-> The J2 SPI controller bindings never allowed spi-max-frequency property
-> in the controller node.  Neither old spi-bus.txt bindings, nor new DT
-> schema allows it.  Linux driver does not parse that property from
-> controller node, thus drop it from DTS as incorrect hardware
-> description.  The SPI child device has already the same property with
-> the same value, so functionality should not be affected.
+--oR2zK1enCDCWfwar
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, May 02, 2024 at 11:50:43AM +0200, Herve Codina wrote:
+> Hi Andrew,
 >=20
-> Cc: Kousik Sanagavarapu <five231003@gmail.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/sh/boot/dts/j2_mimas_v2.dts | 2 --
->  1 file changed, 2 deletions(-)
+> On Tue, 30 Apr 2024 18:31:46 +0200
+> Andrew Lunn <andrew@lunn.ch> wrote:
 >=20
-> diff --git a/arch/sh/boot/dts/j2_mimas_v2.dts b/arch/sh/boot/dts/j2_mimas=
-_v2.dts
-> index fa9562f78d53..faf884f53804 100644
-> --- a/arch/sh/boot/dts/j2_mimas_v2.dts
-> +++ b/arch/sh/boot/dts/j2_mimas_v2.dts
-> @@ -71,8 +71,6 @@ spi0: spi@40 {
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
-> =20
-> -			spi-max-frequency =3D <25000000>;
-> -
->  			reg =3D <0x40 0x8>;
-> =20
->  			sdcard@0 {
+> > > We have the same construction with the pinctrl driver used in the LAN=
+966x
+> > >   Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+> > >=20
+> > > The reset name is 'switch' in the pinctrl binding.
+> > > I can use the same description here as the one present in the pinctrl=
+ binding:
+> > >   description: Optional shared switch reset.
+> > > and keep 'switch' as reset name here (consistent with pinctrl reset n=
+ame).
+> > >=20
+> > > What do you think about that ? =20
+> >=20
+> > It would be good to document what it is shared with. So it seems to be
+> > the switch itself, pinctl and MDIO? Anything else?
+> >=20
+>=20
+> To be honest, I know that the GPIO controller (microchip,sparx5-sgpio) is
+> impacted but I don't know if anything else is impacted by this reset.
+> I can update the description with:
+>   description:
+>     Optional shared switch reset.
+>     This reset is shared with at least pinctrl, GPIO, MDIO and the switch
+>     itself.
+>=20
+> Does it sound better ?
 
-Applied to my sh-linux tree in the for-next branch.
+$dayjob hat off, bindings hat on: If you don't know, can we get someone
+=66rom Microchip (there's some and a list in CC) to figure it out?
 
-Thanks,
-Adrian
+Cheers,
+Conor.
 
---=20
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+--oR2zK1enCDCWfwar
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjNrYwAKCRB4tDGHoIJi
+0pEQAQCt7WPpck+AFuGS12oVa1N8yGCSfuKXJm4Od9Da8tlaPgD/aFOJjFeQYVzV
+6qqMPyJPVrPFYPKTQXVXJGXs/c3Crwg=
+=iWhj
+-----END PGP SIGNATURE-----
+
+--oR2zK1enCDCWfwar--
 
