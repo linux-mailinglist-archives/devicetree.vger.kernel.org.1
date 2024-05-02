@@ -1,148 +1,135 @@
-Return-Path: <devicetree+bounces-64470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0908B9719
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:04:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CEC8B9731
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CAD8283561
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:04:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34E561C210C5
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E73B51016;
-	Thu,  2 May 2024 09:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B88E5025A;
+	Thu,  2 May 2024 09:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="elXXJ7Qy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fG7qYrNV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26C354646
-	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 09:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABE4A47772
+	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 09:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714640628; cv=none; b=h/JSVuwu19v3nWZK0hc+MzxDC/is2jjG72TnZi9vcXgTydyv2zLcp9AENIwYxlfgjNNZyJMnCycVpx9UeedrTiEdbYq04pp4HvuzbfJ+1hcLs5qP2KT8VGEfk0YN4f1q51J56EdzWpv7e78cbj++j7ty58kF7kVtcAdMVPPv6OQ=
+	t=1714640995; cv=none; b=U29HNUGK64DWuzI1ks2X4hqDG8sjwxv6t2U5/bR40B31UijsV/vDtX8IkHC/IeU8zM+1m6tU5UMkyJDy2McCoaeFF51aUT93/I3wolAzSqUmYaMrlsIn86Y+gB3hixg5oeWHTWdOo4UeHX+sC+cf5ElMnPnvKJYXdL2GX55O81k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714640628; c=relaxed/simple;
-	bh=4PGjFnYS1Tn3QA5kerObdvNBnqGr5E86ZSozMvjg5qo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pp5vVEcNUqloK0vVuK6VY1M5ObpqwQPp3xwPVqxez2DIn4C6k7YLbI/1+VfSLyJlu2Z4Ro1+Iw9Gcv1lhHKwEQVZvMcRiuBNkPtXLmq4GCzwfFBCLbqyIPVlnaNilM1Cot/ao5ibmAMmZVUZ00J3lmrv5rB1gGLwYUMIJmCvitg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=elXXJ7Qy; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1ec4b2400b6so23452935ad.3
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 02:03:46 -0700 (PDT)
+	s=arc-20240116; t=1714640995; c=relaxed/simple;
+	bh=n/OhqxALAln0kGe0/36dqPOYiJ+TShHU1w2PGqEKDZM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i74KW0Y9QQP2RELpZg9qvWqEv3Ndp2EWFpROMFCUhgmCSMRH1uQSzchRWTjQY43/AV15acNesq1zq+qIChRAdcMW70RXi9yBsplSAzvRHj8aD33gLN0zPpvrMXdfTfzsXtaHDDMf3OIpELNlTODj6Lf59tJ8e5+wk5OyBxVzcnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fG7qYrNV; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-61b3be24dd9so13304387b3.0
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 02:09:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1714640626; x=1715245426; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mSBBp0xVAK2Nv+uiyQY9w2gt3jv+iQ6l4RIpa967w98=;
-        b=elXXJ7Qyu6YM/wKVfPSJZcF3fSUj3tureIyd4bh4TX+s9rX/xL5LtN5h2AX66bgwJ0
-         413QCuTowaQ4+yfY2MQiSIXM9KhcFJUYm8zSSVsfs9BXLn5BqgerSqSrXZenVOQ88nwU
-         7zCewU3W6kIvqx2BBU0Amhw6x1bVs81w443qY=
+        d=linaro.org; s=google; t=1714640992; x=1715245792; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1/zatMGpGKtRjuZEjLxtq2F8wzIhvOe+INlmlepdI6U=;
+        b=fG7qYrNVo4jhxhJn6EGd7zD6LWvNhEnriUsTTSjNY9NoUt0pUbtUKIGW5jDj3NZPSQ
+         SFoj0VA5471epbtD9RY3ChUy7blynrmO9Yxxd2ngCCUE3I27xT42odjypMCsltmHoKOX
+         vMj3jQreiwcO/ykhqE2H28Hi1lhC6LCEPVS9x6kqU7rXWVIqg4rpc5twEIDuLfu/6ezE
+         vuCOwIUmXK2UAkyJ0NzVHiiUJxZjs6UZ3XpwDprBOiPXI49kvnfU8SJbho8UT2ENYCUZ
+         G+JFh0NAgYpIc1vMxvbu53x/WVlkJHYjRMq354XvT0gigMmutIlbw6eJ08/HnpqgAM9h
+         aK5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714640626; x=1715245426;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mSBBp0xVAK2Nv+uiyQY9w2gt3jv+iQ6l4RIpa967w98=;
-        b=eI8wFpcgqKhikHk8eRR+6CTan/1S8vt1k0P3jDFzVDE5rQMZv80xAR9JXCNnXtM5HB
-         FAvh+M9z62oSlRo0eagnneiDiESNoTxV0j7SDmpMErDA9jshmOqcmsLCuXS/yrtJ8w+2
-         ZueI87cj+IDAYtALyO2dKyfub5CSHXU41M6NjDcaa6h4aLYnwKXuV5Q9lXezP05WYMOq
-         cuOmtkdY2xtw+CHEOwf2vNSOHQiflOGejj8SMNvQBE/AgQlexauSxsfU4CnmhifldqU+
-         V3vFpKSCpQsPs8BtF0EtLWR5bTWk3WPqce3PngzfcTdG17iC1fMbK7ikNR4z2jSwm9jU
-         vRLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbwawMGMqnLdvDMr2T2N1qh1JJC59g7bS3/TYNdcu/Ez1eRIOSNFVQxRW6bLtFPu3mATcfo7dYYgu5DvnS9Ft2QTLO1UHckL5O0A==
-X-Gm-Message-State: AOJu0YwclmDogezOX7riStSJkSK//u7JUn1w0+Do4KLP/27UfOuXtFoU
-	BZBnfYOIegIu6PhM2miAnYQjCiHafF012dXB1OGHuSw6NxawZINgxgglJhcJYw==
-X-Google-Smtp-Source: AGHT+IEBuAfvynb9BlBVviwdLBMz5FWVRR1coQ299RAg2o7gZQK05GKLeQOsAHksMZJ/R+wmVm710A==
-X-Received: by 2002:a17:902:db01:b0:1e2:1df:449b with SMTP id m1-20020a170902db0100b001e201df449bmr1720490plx.69.1714640626252;
-        Thu, 02 May 2024 02:03:46 -0700 (PDT)
-Received: from yuanhsinte1.c.googlers.com (150.221.124.34.bc.googleusercontent.com. [34.124.221.150])
-        by smtp.gmail.com with ESMTPSA id c17-20020a170902d49100b001ebd73f61fcsm764983plg.121.2024.05.02.02.03.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 May 2024 02:03:45 -0700 (PDT)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Thu, 02 May 2024 09:03:32 +0000
-Subject: [PATCH 2/2] drm/bridge: anx7625: Change TDM setting accroding to
- dt property
+        d=1e100.net; s=20230601; t=1714640992; x=1715245792;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1/zatMGpGKtRjuZEjLxtq2F8wzIhvOe+INlmlepdI6U=;
+        b=KPjReIry04VvWe9PVS1JbibZCHNiNcQgCo6Zj/I28QOm6fHOj9S6he0Mkl/ju6V0Hx
+         /uShhUAfWV0+2SG6sBrLGEa7EDq7Ln8ns3b2tff7bP/KAm0ooy34aPnM+3BrFMF+LyXX
+         g/2h5wvWTbRGBB6/e7Qy8qQNeu1Gn6vybeWqMiNdNJ6pr7RriX08MpDvcNdClgwsTiYp
+         ZPp3UjXQnttVVeNMd1VmP1gSlu6JkFgKAdS0XTftDrFa8gwXrELu3pgRi2yDLlQl1CS8
+         /vjzC4FDrqOE0l8UUOx5RkWF9l2yAbaLr/EO09/7FKVoBHd40bngEOK4kotHypRhdXoa
+         sPLw==
+X-Forwarded-Encrypted: i=1; AJvYcCUk5N9f0vxjM4yTxNvgIkikyJ0U1f6+J27IySyzywvoaRGqwCv/rV0JMxt9Wa57gZjD+jUvk3UkuRFo12OrI37tDWzknLMdk5vIDA==
+X-Gm-Message-State: AOJu0Ywyyz8rShr7s7kOY4bxWDzN2swhtCFlDllSQqoHk4TQPug6BJ4N
+	RaR+WxWobi6zYynvUkIbwDWtTR0uRgTaLPSj18aCoifBjMg3Cvtw3aDlRJpwKKlV4KbzMpgJpFP
+	4b0QsGQN1uWo3hR4o+wc/2BGlVFSbfzTcsiVzBQ==
+X-Google-Smtp-Source: AGHT+IHTjIcrLiNWiQmOEtS+44C7Ab3xJFK2eL518wA9ilO8nE4pOsFSQKofOwT8IJ+55tNjPRhgz3t+rKUXR6zejYw=
+X-Received: by 2002:a05:690c:398:b0:61b:e1e8:9a2c with SMTP id
+ bh24-20020a05690c039800b0061be1e89a2cmr1840034ywb.1.1714640992635; Thu, 02
+ May 2024 02:09:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240502-anx-tdm-v1-2-894a9f634f44@chromium.org>
-References: <20240502-anx-tdm-v1-0-894a9f634f44@chromium.org>
-In-Reply-To: <20240502-anx-tdm-v1-0-894a9f634f44@chromium.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hsin-Te Yuan <yuanhsinte@chromium.org>
-X-Mailer: b4 0.12.4
+References: <20240502090326.21489-1-quic_kbajaj@quicinc.com>
+In-Reply-To: <20240502090326.21489-1-quic_kbajaj@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 2 May 2024 12:09:41 +0300
+Message-ID: <CAA8EJprPLqj7GQM0vmN25U2+3kDow=NH8=-VC2N-0p92Ub3iCA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Add devicetree support of USB for QDU/QRU1000
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Bjorn Andersson <quic_bjorande@quicinc.com>, 
+	quic_wcheng@quicinc.com, quic_ppratap@quicinc.com, 
+	Jack Pham <quic_jackp@quicinc.com>, Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-For some SoCs, the TDM setting is not to shift the first audio data bit,
-which is not the default setting of anx7625. In such cases, the TDM
-setting should be changed according to the device tree property.
+On Thu, 2 May 2024 at 12:04, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>
+> This series adds devicetree nodes to support interconnects and usb for qdu/qru1000.
+> This is based on previously sent driver series[1].
+>
+> ------
+> Changes in v3:
+> * As per comments on upstream[2], to get role-switch working on QDU/QRU1000, it was recommended to
+>   use the actual TI switch driver. Since driver doesn't have the functionality to provide role-switch
+>   based on gpio, thus reverting back USB dr_mode to peripheral and removed the remote end-point nodes
+>   and usb-conn-gpio based role switch functionality.
 
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
----
- drivers/gpu/drm/bridge/analogix/anx7625.c | 8 ++++++++
- drivers/gpu/drm/bridge/analogix/anx7625.h | 1 +
- 2 files changed, 9 insertions(+)
+This is not correct. The recommendation was to describe hardware properly.
+Which means adding schema description, adding  ti,your-switch
+compatible to the usb-conn-gpio.c driver, etc.
 
-diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-index 29d91493b101a..538edddf313c9 100644
---- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-+++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-@@ -1709,6 +1709,9 @@ static int anx7625_parse_dt(struct device *dev,
- 	if (of_property_read_bool(np, "analogix,audio-enable"))
- 		pdata->audio_en = 1;
- 
-+	if(!of_property_read_bool(np, "no-shift-audio-data"))
-+		pdata->shift_audio_data = 1;
-+
- 	return 0;
- }
- 
-@@ -1866,6 +1869,11 @@ static int anx7625_audio_hw_params(struct device *dev, void *data,
- 					   ~TDM_SLAVE_MODE,
- 					   I2S_SLAVE_MODE);
- 
-+	if (!ctx->pdata.shift_audio_data)
-+		ret |= anx7625_write_or(ctx, ctx->i2c.tx_p2_client,
-+				       AUDIO_CONTROL_REGISTER,
-+				       TDM_TIMING_MODE);
-+
- 	/* Word length */
- 	switch (params->sample_width) {
- 	case 16:
-diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
-index 39ed35d338363..41b395725913a 100644
---- a/drivers/gpu/drm/bridge/analogix/anx7625.h
-+++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
-@@ -441,6 +441,7 @@ struct anx7625_platform_data {
- 	u8 lane1_reg_data[DP_TX_SWING_REG_CNT];
- 	u32 low_power_mode;
- 	struct device_node *mipi_host_node;
-+	int shift_audio_data;
- };
- 
- struct anx7625_i2c_client {
+> * Link to v2: https://lore.kernel.org/linux-arm-msm/20240319091020.15137-1-quic_kbajaj@quicinc.com/
+>
+> Changes in v2:
+> * Changes qmpphy node name
+> * Changes dr_mode to otg and added USB-B port USB role switch
+> * Dropped maximum-speed property from usb dwc3 node
+> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240311120859.18489-1-quic_kbajaj@quicinc.com/
+>
+> [1] https://lore.kernel.org/linux-arm-msm/20240502082017.13777-1-quic_kbajaj@quicinc.com/
+> [2] https://lore.kernel.org/all/CAA8EJppNZrLzT=vGS0NXnKJT_wL+bMB9jFhJ9K7b7FPgFQbcig@mail.gmail.com/
+> ------
+>
+> Komal Bajaj (3):
+>   arm64: dts: qcom: qdu1000: Add USB3 and PHY support
+>   arm64: dts: qcom: qdu1000-idp: enable USB nodes
+>   arm64: dts: qcom: qru1000-idp: enable USB nodes
+>
+>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts |  23 +++++
+>  arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 120 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/qru1000-idp.dts |  23 +++++
+>  3 files changed, 166 insertions(+)
+>
+> --
+> 2.42.0
+>
+>
+
 
 -- 
-2.45.0.rc1.225.g2a3ae87e7f-goog
-
+With best wishes
+Dmitry
 
