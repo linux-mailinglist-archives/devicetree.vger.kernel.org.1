@@ -1,61 +1,55 @@
-Return-Path: <devicetree+bounces-64463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BBD8B969E
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:44:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05BC58B96DE
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:51:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00E481C20FEA
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 08:44:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC115283FEE
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 08:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FDFF46525;
-	Thu,  2 May 2024 08:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057AF47A4C;
+	Thu,  2 May 2024 08:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ASzglJyC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634B146447;
-	Thu,  2 May 2024 08:44:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C06E51C52;
+	Thu,  2 May 2024 08:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714639492; cv=none; b=hKQrfl81ECkt9px9UfiB+mpfO3uxGvlHn9up4/dWXbD7vk5zD37itlTFu1F1VC+nyHlUfue63u6/j5s65KHOI37fAagw2mdpqDWMIsYjBUnsN/oUTUXW14LzI3K8MADFa+Rc2IW5oN/iwtCs5chNdhLmJBJ2EOFWAhKszzg5g0Q=
+	t=1714639857; cv=none; b=qcjTIqsoqcJqG0PpwU9DwltLa2JoFh3oQCZaNLduEnT70aCy0vXjVzmn83JKWWCPpZGLPNUMYcUFZXeaolsoSIt3Yb0CHNWsVVQVfXF50zuQJja+w2PiARYirJ0hSh2TPkZrdyA7CR5fgv2X2kaud/kCrwl2UbvckRqz7Z1S7rc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714639492; c=relaxed/simple;
-	bh=+NLHBhZRBYI95WFHsn7dVOTxgbFKRVWzxhhF4X4AOvM=;
+	s=arc-20240116; t=1714639857; c=relaxed/simple;
+	bh=+Lb7J1gmlvIpsXKmJHjaAl2BUALuNXoInVJs8yhviak=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hJwL1D3IddKAuNbc1dNiNPZ/qE0gHB/uS6LoXjl2rMSKAsuOiVoly5xQanxulYgamaMFhP6k5lIZ+cEHkaDCxXRQ3qLc3l+EEMfyLQOOyAOjs6pU9Tgzeh8sExZD7Jh5J7woD+098wK/+Omj9I+9Ky99fFbRdQjG71a5LYeX0h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a5878caeb9eso924482966b.1;
-        Thu, 02 May 2024 01:44:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714639489; x=1715244289;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xyUR0PVRexJrQieSgPDu+6a93eOrFLP5eQgOtFYkWn8=;
-        b=ecsThdGuNOLYxc8lH3dYQ55JZ/L7tWzauZoEt1ebJpmzgXLGviz1AIUMbml/osslLN
-         Dk5KQlcnGHO8f0nbwx8/FXtdYKF6fAkD+ixb/KQnjbfoPl9eehzjuRL3YATZR7yh0BFb
-         KgH2hGAShJYSTgY1sh/zqzuhwl7Ns5EjOhGcGOj4x0tC9boF44HEMPTJW/5cyMg+gjPv
-         1sL8ETHFg+TfBlmUnfPgcg1JfUwYjfxN9X0uUsQHyLiiH0Dl52lz4xTD3ghyK8Uzpzlq
-         EUlIymIRxADrXEeJuDWGGwOhawuzR/qTciP0cWqEK7NKyFQ2O06a7RGr5qMnTEI+UBxO
-         7L0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW4wJSvC3ldYbQR7jBrvaKVegBqYLtjaa12U7W+dmXFIbFVU5QwY1GOn0mog7sYpPCJYhmQvJDPfjc1YxOhViCjmrYeHZWjkHj0krkn0/I5ML1MB/gL/N9W0RFUh7sYgp0plWH2EYFDIC1wikPvtUCxgXiLxdd4pkploTt2lI8i9lPFaAIbBCAMczfQSAHQqur2OhuOI/vb/FfO2a2a8HJVKVnLkrrOMvUYZd+srP59EIXfz/m0TDR1
-X-Gm-Message-State: AOJu0YxojFuaS3dbOZsi9nHnXKfy7pBdD7dB4DvsrL8YFEkYIE9AEEeO
-	ROtZrjYHy8uNSVA0FpfeAbLROLP3Bb+FWUYXK4h+FgLJOtJ0Eh+y
-X-Google-Smtp-Source: AGHT+IGEQIirZ0qBejPyDoJk4QL6GI0vA+1pbCVirhPev7LTDbO1LHmOhOOg/ZWB8jg0YyHzdfb4SA==
-X-Received: by 2002:a17:906:340f:b0:a58:e789:8eb7 with SMTP id c15-20020a170906340f00b00a58e7898eb7mr2958300ejb.74.1714639488468;
-        Thu, 02 May 2024 01:44:48 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:69? ([2a0b:e7c0:0:107::aaaa:69])
-        by smtp.gmail.com with ESMTPSA id og20-20020a1709071dd400b00a5970e88670sm198140ejc.176.2024.05.02.01.44.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 May 2024 01:44:47 -0700 (PDT)
-Message-ID: <6ae3c1af-4368-4a3e-bfb5-366080048dac@kernel.org>
-Date: Thu, 2 May 2024 10:44:46 +0200
+	 In-Reply-To:Content-Type; b=OtpQWcreK8Qhr/pdjv+Afpa6RRaGHC453+9i6HjoD6s+wfpRCUbhAcGrEXQ736aoTuK6Wh1l3nP5kZqp2OtOdk9jw2YdXrrOv9BD6AOKZIRiePXQIQPUuM7AcDRWnFXj4nvkKNd37ii3DnWlT+3Z7ihNpQ/pA1gi91LsNxqGihM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ASzglJyC; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1714639854;
+	bh=+Lb7J1gmlvIpsXKmJHjaAl2BUALuNXoInVJs8yhviak=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ASzglJyCUneV4xe5N8g29/uZljb8ODoTyebr/uFYbBkUljBsgxkIely3MH0C4GHsH
+	 TLWRcvz1bWUXgO9S108/DbZB51kkrUC9IFBjvgGmytwCMUuWYNwOCUafbgJUliqKtK
+	 po54belYQIctldmUvYi6C0To9PoVwgJjYX5srxPVazkiAWpf3jCLHVfJzGNVqEpBLm
+	 5U/sVQj3HN9tXekw0Lrhl/h8kLoDt5Kz9Ru2US+pBKLLVUXm1FUQhMMQ+JZgdG7wPU
+	 TdV6j4REC+tJwtXHyx/LbBt8hsaHWU/m7WycT0eif8ZSzSPxy6nxFvu8/PV/ucemGQ
+	 6mlcsx7MCpyLA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A3E953781013;
+	Thu,  2 May 2024 08:50:52 +0000 (UTC)
+Message-ID: <becdc2e5-4a1d-4280-b6f8-78d4903be283@collabora.com>
+Date: Thu, 2 May 2024 10:50:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,234 +57,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/12] can: Add support for serdev LIN adapters
-To: Christoph Fritz <christoph.fritz@hexdev.de>,
- Oliver Hartkopp <socketcan@hartkopp.net>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sre@kernel.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>,
- Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>,
- linux-can@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-serial@vger.kernel.org
-References: <20240502075534.882628-1-christoph.fritz@hexdev.de>
- <20240502075534.882628-8-christoph.fritz@hexdev.de>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
+ support for board path
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "wenst@chromium.org" <wenst@chromium.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
+ <20240409120211.321153-3-angelogioacchino.delregno@collabora.com>
+ <aa7e3bcf70383e563a65919f924ec2e5e4cd778c.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Jiri Slaby <jirislaby@kernel.org>
-Autocrypt: addr=jirislaby@kernel.org; keydata=
- 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
-In-Reply-To: <20240502075534.882628-8-christoph.fritz@hexdev.de>
+In-Reply-To: <aa7e3bcf70383e563a65919f924ec2e5e4cd778c.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02. 05. 24, 9:55, Christoph Fritz wrote:
-> This commit introduces LIN-Bus support for UART devices equipped with
-> LIN transceivers, utilizing the Serial Device Bus (serdev) interface.
+Il 25/04/24 04:23, CK Hu (胡俊光) ha scritto:
+> Hi, Angelo:
 > 
-> For more details on an adapter, visit: https://hexdev.de/hexlin#tty
-...
-> --- /dev/null
-> +++ b/drivers/net/can/lin-serdev.c
-> @@ -0,0 +1,514 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/* Copyright (C) 2024 hexDEV GmbH - https://hexdev.de */
-> +
-> +#include <linux/module.h>
-> +#include <linux/wait.h>
-> +#include <linux/init.h>
-> +#include <linux/errno.h>
-> +#include <linux/string.h>
-> +#include <linux/kernel.h>
+> On Tue, 2024-04-09 at 14:02 +0200, AngeloGioacchino Del Regno wrote:
+>> Document OF graph on MMSYS/VDOSYS: this supports up to three DDP
+>> paths
+>> per HW instance (so potentially up to six displays for multi-vdo
+>> SoCs).
+>>
+>> The MMSYS or VDOSYS is always the first component in the DDP
+>> pipeline,
+>> so it only supports an output port with multiple endpoints - where
+>> each
+>> endpoint defines the starting point for one of the (currently three)
+>> possible hardware paths.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <
+>> angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../bindings/arm/mediatek/mediatek,mmsys.yaml | 23
+>> +++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git
+>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>> index b3c6888c1457..4e9acd966aa5 100644
+>> ---
+>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>> +++
+>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>> @@ -93,6 +93,29 @@ properties:
+>>     '#reset-cells':
+>>       const: 1
+>>   
+>> +  port:
+>> +    $ref: /schemas/graph.yaml#/properties/port
+>> +    description:
+>> +      Output port node. This port connects the MMSYS/VDOSYS output
+>> to
+>> +      the first component of one display pipeline, for example one
+>> of
+>> +      the available OVL or RDMA blocks.
+>> +      Some MediaTek SoCs support up to three display outputs per
+>> MMSYS.
+>> +    properties:
+>> +      endpoint@0:
+>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>> +        description: Output to the primary display pipeline
+>> +
+>> +      endpoint@1:
+>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>> +        description: Output to the secondary display pipeline
+>> +
+>> +      endpoint@2:
+>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>> +        description: Output to the tertiary display pipeline
+>> +
+>> +    required:
+>> +      - endpoint@0
+>> +
+> 
+> mmsys/vdosys does not output data to the first component of display
+> pipeline, so this connection looks 'virtual'. Shall we add something
+> virtual in device tree? You add this in order to decide which pipeline
+> is 1st, 2nd, 3rd, but for device it don't care which one is first. In
+> computer, software could change which display is the primary display.
+> I'm not sure it's good to decide display order in device tree?
+> 
 
-What do you need kernel.h for? You should explicitly require what you 
-need (you apparently do), so kernel.h should not be needed.
+Devicetree describes hardware, so nothing virtual can be present - and in any case,
+the primary/secondary/tertiary pipeline is in relation to MM/VDO SYS, not referred
+to software.
 
-> +#include <net/lin.h>
-> +#include <linux/of.h>
-> +#include <linux/serdev.h>
-> +#include <linux/slab.h>
-> +#include <linux/kfifo.h>
-> +#include <linux/workqueue.h>
-> +#include <linux/tty.h>
+Better explaining, the primary pipeline is not necessarily the primary display in
+DRM terms: that's a concept that is completely detached from the scope of this
+series and this graph - and it's something that shall be managed solely by the
+driver (mediatek-drm in this case).
 
-Might be eaier to maintain if you sort them.
+Coming back to the connection looking, but *not* being virtual: the sense here is
+that the MM/VDOSYS blocks are used in the display pipeline to "stitch" together
+the various display pipeline hardware blocks, or, said differently, setting up the
+routing between all of those (P.S.: mmsys_mtxxxx_routing_table!) through the VDO
+Input Selection (VDOx_SEL_IN) or Output Selection (VDOx_SEL_OUT) and with the
+assistance of the VDO Multiple Output Mask (VDOx_MOUT) for the multiple outputs
+usecase, both of which, are described by this graph.
 
-> +#define LINSER_SAMPLES_PER_CHAR		10
-> +#define LINSER_TX_BUFFER_SIZE		11
-> +#define LINSER_RX_FIFO_SIZE		256
-> +#define LINSER_PARSE_BUFFER		24
-> +
-> +struct linser_rx {
-> +	u8 data;
-> +	u8 flag;
-> +};
-> +
-> +enum linser_rx_status {
-> +	NEED_MORE = -1,
-> +	MODE_OK = 0,
-> +	NEED_FORCE,
-> +};
-> +
-> +struct linser_priv {
-> +	struct lin_device *lin_dev;
-> +	struct serdev_device *serdev;
-> +	DECLARE_KFIFO_PTR(rx_fifo, struct linser_rx);
-> +	struct delayed_work rx_work;
-> +	ulong break_usleep_min;
-> +	ulong break_usleep_max;
-> +	ulong post_break_usleep_min;
-> +	ulong post_break_usleep_max;
-> +	ulong force_timeout_jfs;
-
-The same as for uint :)
-
-> +	struct lin_responder_answer respond_answ[LIN_NUM_IDS];
-> +	struct mutex resp_lock; /* protects respond_answ */
-> +	bool is_stopped;
-> +};
-...
-> +static void linser_derive_timings(struct linser_priv *priv, u16 bitrate)
-> +{
-> +	unsigned long break_baud = (bitrate * 2) / 3;
-> +	unsigned long timeout_us;
-> +
-
-Are those 1000000UL USEC_PER_SEC?
-
-> +	priv->break_usleep_min = (1000000UL * LINSER_SAMPLES_PER_CHAR) /
-> +				 break_baud;
-> +	priv->break_usleep_max = priv->break_usleep_min + 50;
-> +	priv->post_break_usleep_min = (1000000UL * 1 /* 1 bit */) / break_baud;
-> +	priv->post_break_usleep_max = priv->post_break_usleep_min + 30;
-> +
-> +	timeout_us = DIV_ROUND_CLOSEST(1000000UL * 256 /* bit */, bitrate);
-> +	priv->force_timeout_jfs = usecs_to_jiffies(timeout_us);
-> +}
-...
-> +static bool linser_tx_frame_as_responder(struct linser_priv *priv, u8 id)
-> +{
-> +	struct lin_responder_answer *answ = &priv->respond_answ[id];
-> +	struct serdev_device *serdev = priv->serdev;
-> +	u8 buf[LINSER_TX_BUFFER_SIZE];
-> +	u8 checksum, count, n;
-> +	ssize_t write_len;
-> +
-> +	mutex_lock(&priv->resp_lock);
-> +
-> +	if (!answ->is_active)
-> +		goto unlock_and_exit_false;
-> +
-> +	if (answ->is_event_frame) {
-> +		struct lin_responder_answer *e_answ;
-> +
-> +		e_answ = &priv->respond_answ[answ->event_associated_id];
-> +		n = min(e_answ->lf.len, LIN_MAX_DLEN);
-> +		if (memcmp(answ->lf.data, e_answ->lf.data, n) != 0) {
-> +			memcpy(answ->lf.data, e_answ->lf.data, n);
-> +			checksum = lin_get_checksum(LIN_FORM_PID(answ->lf.lin_id),
-> +						    n, e_answ->lf.data,
-> +						    answ->lf.checksum_mode);
-> +			answ = e_answ;
-> +		} else {
-> +			goto unlock_and_exit_false;
-
-Can't you simply use guard(mutex) above and avoid the error-prone 
-gotos/cleanup completely?
-
-> +		}
-> +	} else {
-> +		checksum = answ->lf.checksum;
-> +	}
-> +
-> +	count = min(answ->lf.len, LIN_MAX_DLEN);
-> +	memcpy(&buf[0], answ->lf.data, count);
-> +	buf[count] = checksum;
-> +
-> +	mutex_unlock(&priv->resp_lock);
-> +
-> +	write_len = serdev_device_write(serdev, buf, count + 1, 0);
-> +	if (write_len < count + 1)
-> +		return false;
-> +
-> +	serdev_device_wait_until_sent(serdev, 0);
-> +
-> +	return true;
-> +
-> +unlock_and_exit_false:
-> +	mutex_unlock(&priv->resp_lock);
-> +	return false;
-> +}
-> +
-> +static void linser_pop_fifo(struct linser_priv *priv, size_t n)
-> +{
-> +	struct serdev_device *serdev = priv->serdev;
-> +	struct linser_rx dummy;
-> +	size_t ret, i;
-> +
-> +	for (i = 0; i < n; i++) {
-> +		ret = kfifo_out(&priv->rx_fifo, &dummy, 1);
-
-Does kfifo_skip() not work for records? (I added it recently for serial.)
-
-> +		if (ret != 1) {
-> +			dev_err(&serdev->dev, "Failed to pop from FIFO\n");
-> +			break;
-> +		}
-> +	}
-> +}
+This means that the VDOSYS is really the "master" of the display pipeline since
+everything gets enabled, mixed and matched from there - and that's in the sense
+of hardware operation, so we are *really* (and not virtually!) flipping switches.
 
 
-thanks,
--- 
-js
-suse labs
+Cheers,
+Angelo
+
+> Regards,
+> CK
+> 
+> 
+>>   required:
+>>     - compatible
+>>     - reg
 
 
