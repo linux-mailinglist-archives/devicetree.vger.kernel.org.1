@@ -1,120 +1,183 @@
-Return-Path: <devicetree+bounces-64626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479708BA3A3
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:02:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C43238BA3BC
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51629B2272C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 23:01:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C5AE283458
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 23:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107B41BC58;
-	Thu,  2 May 2024 23:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E0F1CAA1;
+	Thu,  2 May 2024 23:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MHJAIlu4"
+	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="S9jStY+c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2103.outbound.protection.outlook.com [40.107.236.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0991BF3B;
-	Thu,  2 May 2024 23:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714690912; cv=none; b=gQvs9xi29Fzr1Ur3rxEI/qi8jwA6rCsPwM8VxHTWsedjWzvIKo2Ih5NF9TSM0vMupO4FFwDlCPPD1l28NoxKKp7I9EzxIrsQqBn81xYpW5CjomuNjlr/bVZyh/izHZXEaoPaLeDarhSh4PSrfTImAfpS7K7jawlkekj1PzCmFsQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714690912; c=relaxed/simple;
-	bh=uzuM7TNYRLaC7ZjpI6en8/48B/eOKBl2O3vykFutHqI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SanDkubYF9KpIfwOJ1YHA91ivCPa6LME6BmegXppfnc+ajcL8MlLH5mv2siE8a+gUZOdNaPIO5gCF00Nt5jp+h3hgkRxYCYGWNvGzbeaoqkCMEs+DNMzyr9LEMLEHohKhSK5lfRanZhxernH7AIlDN1V0NEz6dbPYC39gaH3s+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MHJAIlu4; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2b432d0252cso29191a91.2;
-        Thu, 02 May 2024 16:01:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714690910; x=1715295710; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XCgtG1nwu07ZwZE9dSCljwhtr7EDaNxVfu99sHhwnkM=;
-        b=MHJAIlu4pOFhQypnZfjuwx1QOatZKzrKWL1xnsG5iIxoYr3ljT08x7tYGkqTsdE8qR
-         FmQp5yu64PdSbCeSC1d7b++ukBsQlroJy5Ur+l0V/cW8TbpzTXBt/0Eda0Vte38Wjq33
-         90fwGZ2yqKmQma7Fa8oHgo5eH0IGuzxFdStapd2aluilpF+fRjUXFR6Uj0BC3gf0Wd2o
-         fNP1p3oqF52VGv8rL5GKG87EK7F2HQHyKNmmRbtAerr836vE50sCuPp5XYkKmtXxAF5y
-         3WRn2igF/Aep78Dk1LjpKEW0sSqBOUWlvbKwu8oDVnCOrMbXvgVK581L7NfccsZWBkip
-         Q6Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714690910; x=1715295710;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XCgtG1nwu07ZwZE9dSCljwhtr7EDaNxVfu99sHhwnkM=;
-        b=u8+cPXeACuiuzegYhYR4Wl0ojGGgxrEIfDvJHtauFOShg+dgLfyRATqGvgus/vxc4x
-         xp+a3QDYbv/1SzpXz1IuR8Mv4yDYdL0y2LqO84XQ+iIMX6Gz6XLIsQ4mD90CqyVq/Anx
-         lr+hu9DxDW1zkeSgBWaQT8a1vKXrJN+I7FVEq14VvzGHly2mQwXN8vWNWD9hWPLu2MMO
-         n0R8X50DLCFNltqfx7ShHq6kkml2M2/mJO75CpbvPdsKlc8jv4f968uhJOzibgXjz4Gs
-         rJQ7ppbVrnf1RyLZYGvdB1VvKALfWe71OR3T2LgwwdOdBMxgYch80kX2KrthyqO7983n
-         hc9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXO4BkE6F9Qp2fIZ1/fKzjCrnyFm2wKacN5d4Wsmk1J5ybvYRFhcXJAP5kIUM7XX2k0CBptUwFClslc9cqyyIeNwU+YsgrF5vZfEr8ByDcd1lUc8cBO1ECaZlHUUWBFY8652tnvEP4hSQ==
-X-Gm-Message-State: AOJu0YzdQ6VoScQ8oklsRJqAM2dTqdmzcOZqnJkbHn/eXHEmLNFPp1xi
-	FrGEoHtM34Bw2Ky0xMOzW0wSoMbJnZJBDBuZX2TEp/kchzAd68HNqHQsDLNEArnZBpknNDEJA0v
-	Mas03fcqao4DvOc16sWYNNygHplo=
-X-Google-Smtp-Source: AGHT+IFq0Ma/DIdow1xoRPp5Dc+4pREzgwQiKnt7LZodL1844R/VAlyKYhooFHEruzpy7OVyTvmmVgJEjI7sGzzil9k=
-X-Received: by 2002:a05:6a21:998b:b0:1af:650f:d06a with SMTP id
- ve11-20020a056a21998b00b001af650fd06amr1353918pzb.6.1714690908455; Thu, 02
- May 2024 16:01:48 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993AE57C8D;
+	Thu,  2 May 2024 23:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.103
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714691326; cv=fail; b=fPTxaEtuBhKLDu1ZR+S5QBMfIiLqEdRW4DzUGi8OQIU3291AXyIjhmQR1Z5HOd/TJlhFeLn70dQg6JSWBCRrh+/sG5PCE0neccLUcDUR4+0LNjUgNqkwjWn0mxOCbHHjm2dxDX3A7PC4/qWvn8E9Z5BmgIbC/XyieIBvSOKg+uI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714691326; c=relaxed/simple;
+	bh=qq5dRT1FdWytudK0MHoTmLPxSmFH7b6Tja67737Vd4U=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=El6De/B3Jl6qw3GeO8XK7S5Xz0EykB7FRisA/kaiJqG4/WpT94pSmnbBaQQjpsnecTEfhkfBFBuTTyBR9txcjDmfNdGnhwTp6l3O1t3kxW6bRvUmBrAjm4IN8IH9Tl/7+a+zWuHxBQEou3P9709GdWpKraGHuu8IRbrICdkxI0M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=S9jStY+c; arc=fail smtp.client-ip=40.107.236.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L5Y3FLOCRh/7qn9Aa2pTL4ESYAmXVj2/50cvF32IcXzsab07oW8bUGtkiNfgvpl4DucFKpWFDUt6e6F4TsV3DyEnD40EPkQ+HeifaAsOKRJQVEjLaWj1JeYooPtY6Prkdbfi5SkapsbVqpbXEMdN5MCuWlt5G4DMy79H9usCdv9tzKPT1ovF0gYkH2SKHpU2gTDUu7xv+3i8ak2CzD+hpgNMIlQHKgsYeXZJJgMEM0G7ABt/4CeYPJ5O/0N+/Q3V4FR+MemdnCHzvv/dv5vNY763iSkpipbALn7C5Oo6hVlrjf4yd2H8VQDX/rEULmHwztMJ4EhvTGsica0pUjA4qQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ktyZUIK4j27jLWFyJOzXOoEaFQaQEa3R1OrWETqXJZ8=;
+ b=kTNRJwQjx5IZ6Idig8GvL7GQnyVVwiXQWZWoWkMo3H+ptCq1Kp890VLmvSYmi2VuCDJCzCXNf8aMvbedNOzglHNlJrE9iD2C7ldVkLMXHKY81d8r9yylRRs8xa4ucQReyuVF1rxFh87Pj1p8ex2e90RXET71f8+oAVoXAetjPympCsuIY87vicXAJwE5Tp3RdzOaCQJ45AFaSGVEZLPeWV1ixCDG7MIViJLeca4aJqibhbs+HUeQyQN/1Ns/MPZ5Lgh4qHM00dc/1KpnLfVV0dLC/oDM5fXv/XvUaAmZWOqMU46knSqP+Tmrs1Gc9RVrHc1f1tGV1Puy0vyOH7YszA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
+ dkim=pass header.d=phytec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ktyZUIK4j27jLWFyJOzXOoEaFQaQEa3R1OrWETqXJZ8=;
+ b=S9jStY+cOWVB2eXLV/NGeEWoJrj8Pd+xY0seeBnnjz+iGUT//vEirUfdtbX2hr7uGBh8W4TbZaafJkdMROF4zTyXZHij/tUnPDQcpBCItF9URZXmCBZmXK3mg8inLATzE2OyXRmbSb4ZLZMDG7f42aBhfrLsqVw3PiIXquxb7wk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.com;
+Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
+ by CH4PR22MB5918.namprd22.prod.outlook.com (2603:10b6:610:232::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35; Thu, 2 May
+ 2024 23:08:40 +0000
+Received: from SA1PR22MB5636.namprd22.prod.outlook.com
+ ([fe80::aaeb:2d53:9f16:db45]) by SA1PR22MB5636.namprd22.prod.outlook.com
+ ([fe80::aaeb:2d53:9f16:db45%4]) with mapi id 15.20.7544.029; Thu, 2 May 2024
+ 23:08:39 +0000
+From: Nathan Morrisson <nmorrisson@phytec.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de,
+	w.egorov@phytec.de
+Subject: [PATCH 0/4] Add overlays to disable optional hardware in k3-am6xx-phycore-som boards
+Date: Thu,  2 May 2024 16:08:25 -0700
+Message-Id: <20240502230829.1983678-1-nmorrisson@phytec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH0PR04CA0044.namprd04.prod.outlook.com
+ (2603:10b6:610:77::19) To SA1PR22MB5636.namprd22.prod.outlook.com
+ (2603:10b6:806:3e2::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240502215747.2832126-1-christian.gmeiner@gmail.com>
-In-Reply-To: <20240502215747.2832126-1-christian.gmeiner@gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Thu, 2 May 2024 20:01:37 -0300
-Message-ID: <CAOMZO5CY8PQN7b01N+oNO=92CVtPPfWzuzxphs49gh+4H+58Mw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8qm: Add GPU nodes
-To: Christian Gmeiner <christian.gmeiner@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Christian Gmeiner <cgmeiner@igalia.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|CH4PR22MB5918:EE_
+X-MS-Office365-Filtering-Correlation-Id: 397552af-393d-4621-a5d6-08dc6afccdd4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|376005|52116005|366007|1800799015|7416005|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?aqEIWJ5PotclzUyUKsEM8TorMaybQAV+eqnv757HMHR1NBmA/Yi69a5FtTQo?=
+ =?us-ascii?Q?l/ByHDNXIXpSmeN+u9ZVFbDfzCheVa3/1vpUvYmFiJySp6JRtHWRXFacnvfS?=
+ =?us-ascii?Q?kkfJFCcGpihXkuD5j3JC+LBJKwThyOsYK89ttCbkLVrJr05Iip+QwOsMNxvt?=
+ =?us-ascii?Q?C8eLNSVmmp+f7astk4Rs5do8/iRX98eP0ndS6OvmyKVmdOm/Fzl2wtQServB?=
+ =?us-ascii?Q?Io8maFuQkrrAKPafRqkc4u5VE9vAS4nlVtmfJ5bA5fNinjnYLqtW98p0sc9y?=
+ =?us-ascii?Q?EeKpZm0b8mPXOtVxYLDb2tyUmz4MCikpD9MSF7i96LembcP1/vFWKbnSCbf9?=
+ =?us-ascii?Q?oZLhRRG5Wct2N2s5FbCTQB2iEDNAYspNx/0jqxx9IavySEAfjt6G+5GIEKyB?=
+ =?us-ascii?Q?zBbQxv9e8vV30JMUtjSa3w6j1TMb2TQkVVXtqonN4fTTKIRfd6ttGxtx+Cxm?=
+ =?us-ascii?Q?MCsMKwGqm2zEEds9d5RjQn6Q216Td5IJVuymAiIL/dn54lFOcnv8uRXhwApa?=
+ =?us-ascii?Q?he4UZM3Iu20WTgP7DNsXgJ3y9/ATuzx1yeKe8MCdJOovoFxx/QWWGY0Ev+2M?=
+ =?us-ascii?Q?BYsjZEY8sc5kfB9tr1yatYlmVtiggEeVJUB/cgbhvmKAERvr4D7L2zM0k/To?=
+ =?us-ascii?Q?VvXwWaDm4IqNgOZyPDdoOGzvr/1/OSYeEvoagogONqVUbZwLkb370Geo0klI?=
+ =?us-ascii?Q?dOTCRXuxnqW1dlw2K8jmvJMVC5RTh6STR2GtnfYUMbhyZuf1262Rtqo8m0f4?=
+ =?us-ascii?Q?mUufdLdwf6ndSgUHtgVzR7nf3aiGrF4pHOBkas39YPE4NLLXw24Fy8BSkyl6?=
+ =?us-ascii?Q?8ab+2R+y/63CntMw5at4UaLMcr8yFH4H57ABubQLANXD+OIAu1JrgBTGx3C0?=
+ =?us-ascii?Q?BxsLSlCrpI6Q08L4NxWI0vQ7iny7hFm0Zla+riky2SsgNGgxTfDD2Lmq3F0K?=
+ =?us-ascii?Q?+sA2/EFpu+LHtK84CMidAzB4dCRKlGsyO8m7HgiS8CKeWlFy5AuU2q9bAIEV?=
+ =?us-ascii?Q?5O6Rv2w9HWr2J8aT0r4jes677XuHJMcqpeTuVDXupMr17yKfa6bZuiEMKgm1?=
+ =?us-ascii?Q?5LvV6uNat9WDJjwtSktZ8tZwwWV/mRo4TxtVEl6q7VPmw8dpz272ahx5MqbP?=
+ =?us-ascii?Q?W5n5gJr56b9fmMWl9Tvg5bP8jDiATmp72i5KKIBeVSj3o7/kzul+kg78RJuG?=
+ =?us-ascii?Q?gX5TyjAMoFUzwZ9nvwqFcmooEm9/spv5Q/wfE6idpPalRT1dTwan3cpVsfEJ?=
+ =?us-ascii?Q?o98vGigB8EJ7WlCGVpMkmfsJJHbOpGqOH69FCcigrxZQ4xbdUCZD3u4XVriq?=
+ =?us-ascii?Q?2rkXm2shjM1yC4EY6HYcpxOXIXvAbpPGtWVuiDoWYMyRTQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(366007)(1800799015)(7416005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ybWse4Q0xsOyCBn6BE7XVoFtJ/py6cG6orKuwSIuQmGIvG5QSQc2tDWPSlEx?=
+ =?us-ascii?Q?x4Q8Sh98fj0B1sy/mSBaq9CJFXTnn3tqJ7ROCyKYrTyyqYtgoQmauML8OfQU?=
+ =?us-ascii?Q?qiXjbstBmPAGh33YADr9H3eJFeFY3ALcsUS1Fa+BjXVihHgKHgfkjQwX7EdK?=
+ =?us-ascii?Q?CPpAu9QeHQ5SvqpyqWaQ0k1U6WV+VR41W9noT6r7TFUjTtRVPcZjHBqzMRUN?=
+ =?us-ascii?Q?Tirpo2FuyvB9yXi4ZeWDzYteR82IarbHJDpUm0CPdRZPxC5jSe+1tSslirq9?=
+ =?us-ascii?Q?9dJ7WSFS+O9gZu3Z72ELbhWxIBCGdG4+avVcTYqMhJoxwNKVjdui8CcxW4vC?=
+ =?us-ascii?Q?6LGlHDZsz58ntnXtPNOwaL+OI6MKqIbnCpEuXCl5gH08ChoBn9b00NmLDaLu?=
+ =?us-ascii?Q?pNstY0pQPyZ0+SMUFWgdKKKS3m+i2vyNCq+G0nycYPgfIi3u8uiSdgkX0tLN?=
+ =?us-ascii?Q?YwBLz3XdbgVropKHsQfAtz3j6fqpo/ceqbn0FGOQVQ3NcV/ONA63RR0KcPGa?=
+ =?us-ascii?Q?vWeIAL2db256tY/Gm9BWUyPj4nVuKEHGKNEQwiIhohRePDhtn1B7lBggKLYb?=
+ =?us-ascii?Q?HqUhTaSGq+oa5EYi3bbivDozuVHZiqI5r6lZbnayze839S2TMSYheARepSS6?=
+ =?us-ascii?Q?z/F0VeBGtZ/iJ/bRPZCsCouAsGOai7a1LKSqAXO8uctTSdhcDPDIuEzEm/h2?=
+ =?us-ascii?Q?LucT6cMM4GADesqafg+4epxywIl63IULJftYdgjIno/w5dtuzh+eWf2R3ZqK?=
+ =?us-ascii?Q?dH5fO6VOTop+uTtFQXG8Iat1wltIT6F8IzE2T6aY9cygliUZ82KadRwhpTli?=
+ =?us-ascii?Q?0qxZRlBioiFwsA+iA3uZMkW78ItTzGXIG4T8I3g4nZIRuPiIcu5qvhv5RiWe?=
+ =?us-ascii?Q?dROWenTRbqM6G4KAIyquyDZWh9Dp1IyQic64aNTRqJrfWnguFZTmH5FfwXQz?=
+ =?us-ascii?Q?gzjw2uo+R8eHsQ7CRiPcnfY+BVYMDXOwz0PoeV+q5crhg7SQYysyAOlPZTbm?=
+ =?us-ascii?Q?pdeaOSWQZK4fI/c/kEUgFKtviIc/0hbxq9iiGeUZLyopf34Qwc/8nYc/5FDL?=
+ =?us-ascii?Q?NXdoHT4BsCVUVzwglg0QqYblmNOazjecNjUXkIBs9rUKwThUCLy2LQViJswZ?=
+ =?us-ascii?Q?yhz0FHAw2e6KoMXlZvTfz37Oxk/5kAZleruqUcOGzvJ4JbaVXRsnEC2a/ijW?=
+ =?us-ascii?Q?bzT0YDaB8y3uzpbmhltH5dzsQOH5J0DFc3fLoVsCTeDi51N2EqAQbLWAjDwh?=
+ =?us-ascii?Q?u0xbRLc9ztg4QvlfoY3TR6wztuwLlhKP5V6FWfRjX/xnK0uGwUYhsns0PW6s?=
+ =?us-ascii?Q?2EkhrlCdIxEdqyLrryfgDjb/HERbix1N/CK525HdYMHauhxHZCpRUfuh042O?=
+ =?us-ascii?Q?R1mO8rDEAp1POOre8+MwR2/DiPB2O5Zt7UW7FnZVeYA+716ksWZ1fQYZrMH5?=
+ =?us-ascii?Q?sbbNnYIkpStfYjPM7jb+nySW9vRvJ4yd3RGIzsXLYPBl0IaXbJGrDmoZqYP7?=
+ =?us-ascii?Q?okrIZ8C1AUX0jB4DjKYRB+FNPEN25HRYJR+n7SVL1ixlKp879wffrOuyKuNy?=
+ =?us-ascii?Q?bntSwOAGOevr8qB2PjvKi7m/t/AwTPX0q2/EYsoB?=
+X-OriginatorOrg: phytec.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 397552af-393d-4621-a5d6-08dc6afccdd4
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2024 23:08:39.8878
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LH11AMYM950WuZFDkkq6w+y5JCp19SprRQd4Aacx4bFrfq1s8F2ft8J3ltqTkMaB2opOmSsa4HJlMuu1i6gHqg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH4PR22MB5918
 
-Hi Christian,
+Add three overlays to disable the eth phy, rtc, and spi nor. These
+overlays will be used to disable device tree nodes for components
+that are optionally not populated.
 
-On Thu, May 2, 2024 at 6:58=E2=80=AFPM Christian Gmeiner
-<christian.gmeiner@gmail.com> wrote:
->
-> From: Christian Gmeiner <cgmeiner@igalia.com>
->
-> Add the DT node for the GPU core found on the i.MX8QM.
->
-> etnaviv-gpu 53100000.gpu: model: GC7000, revision: 6009
-> [drm] Initialized etnaviv 1.4.0 20151214 for etnaviv on minor 0
->
-> Signed-off-by: Christian Gmeiner <cgmeiner@igalia.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8qm.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8qm.dtsi
-> index b3d01677b70c..54879ae1d7d5 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-> @@ -467,6 +467,7 @@ drc_crit0: trip1 {
->         #include "imx8-ss-dma.dtsi"
->         #include "imx8-ss-conn.dtsi"
->         #include "imx8-ss-lsio.dtsi"
-> +       #include "imx8-ss-gpu0.dtsi"
+Nathan Morrisson (4):
+  arm64: dts: ti: k3-am64-phycore-som: Add serial_flash label
+  arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable eth phy
+  arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable rtc
+  arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disabl spi nor
 
-Nit: better put it in alphabetical order.
+ arch/arm64/boot/dts/ti/Makefile               |  5 +++++
+ .../boot/dts/ti/k3-am64-phycore-som.dtsi      |  2 +-
+ .../ti/k3-am6xx-phycore-disable-eth-phy.dtso  | 19 +++++++++++++++++++
+ .../dts/ti/k3-am6xx-phycore-disable-rtc.dtso  | 15 +++++++++++++++
+ .../ti/k3-am6xx-phycore-disable-spi-nor.dtso  | 15 +++++++++++++++
+ 5 files changed, 55 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-eth-phy.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-rtc.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+-- 
+2.25.1
+
 
