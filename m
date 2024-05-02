@@ -1,121 +1,127 @@
-Return-Path: <devicetree+bounces-64504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE5268B98AB
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:19:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C53988B98B3
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5103C1F2117B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:19:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C61B28461F
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7891957871;
-	Thu,  2 May 2024 10:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C956957880;
+	Thu,  2 May 2024 10:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="EX49FeXO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RfLdXnh0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D014F56B7C
-	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 10:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10EB56B73;
+	Thu,  2 May 2024 10:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714645170; cv=none; b=bN6dnjc9u0tnUTwa8xTbzlwR1WCGccbWIuD4hKcVBw16d4YesbkAhbBiY8eadzLCVnFs50LZ/sDLXuePWJV/upl8pkwY2F9wkEpb+EtYa8A3q0ec645TJR05e8Qx5GU9sD91TMhmJt5zbnDturNmxsi4jm7TZ81bvH+RlH/N87M=
+	t=1714645284; cv=none; b=RLGgId0ZxsswH1W6ICLXGqdCMlVgir95dwDqvhDTV4lPbjRChHDWKdfd98h15KsPCRHZSu8yzioI+4+riwCRIWQAdiDnlsTCt+5+I7/NBPk37/BspBmDbYl0LuWgGh3CF7+ejVIDyhwoiHXVbKoQhex1+ZEd6DFH2v6kUsPfBsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714645170; c=relaxed/simple;
-	bh=SzdfhFNmfbY0akJ1pT0827xvNbVlgz999vdKmYWFqO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=awhKvdt6crvyKQEREKDwn6RInx2U6g4mXB5VJomWCehJ3TWI34akwbSWJrWTNCIzIZ6ovI0bFhFv75yxatUcsmKj8Xf3X6V0flbV1lWcGLiLWYIibIznOzxLZq7uLBNtRy2aLymWRrt+5qwF8f8mtT3lPjLy7SAtqbJdc+TaTpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se; spf=pass smtp.mailfrom=ferroamp.se; dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b=EX49FeXO; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ferroamp.se
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51ca95db667so7951517e87.0
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 03:19:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1714645167; x=1715249967; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=naga1w1FW0PSOrZMYV5n9h8B1yzg3KgoDWK1Ah84GPI=;
-        b=EX49FeXO26Px115TokDePYAsAFEO9EfWC3zhXAX6jfWbpocKOXECchwZVvPvSoHNW4
-         7e0lozhYd0pPgl1G43FRFh+wJQg9znq666F3KQPbHdwGa8qrGgEYXZZ9uQX2NzA8gyq4
-         TGk8V0kN8j+6iMay/Z2LaMOMLtDOixbE1IAKTYbUjGLoG0sIZZtGb458xnBj7GxsKFsf
-         fplWcHV/CxhJvK2wcaPqd4TsgKECBO7q+gc0sU/tbGR2wAcdxrUccSTpvol4HPADL03O
-         cO9Qd7kczVSO2WuPd2sfSM775y1yii2aO1Orv8p0A6Z2lM/PWnOrXP30VviPDspKV9md
-         XBzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714645167; x=1715249967;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=naga1w1FW0PSOrZMYV5n9h8B1yzg3KgoDWK1Ah84GPI=;
-        b=v8eeEWFEz+mVwRb/edr1BXUDmBHy4k4HDm/0ZvZtTwkziKIX8ZcEpEA6jElNKKqynR
-         oBlqsMN880zorr5/S0rBeCDsD0S6MeKaXQbC8c/mQaAVgTXbAVZvwKT/PRdiEzympv9f
-         S3H/U72HGG9tyXkoirqt3ChqVeTnTsd3LUSZW+/eZYjbWEiFS3cNlaqXZhNNpo7SbM0j
-         TQqbCsmYCiYitfBf1ijQfORNL0OyLn6gkBQ+LjNAXTBsSqP7xtAV/AmbtxxRYbckYuzj
-         dYukFIMMMbyPQVuihba+NnJ+SQL9ObfhYSSA6Uv600bXj0UFWMpcTjvPfUZmFvAjvhpf
-         WALw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEOJ6GAPUORzekVHaZQmRim89RqxpSzkPdT1jYE6VJEY5zhdeRDsaUTuiu3uY5c6r+yGwkTwcvcOIZrUimJSBEtcj3ewPGCVhItA==
-X-Gm-Message-State: AOJu0Yxq1tF4Pd7t0s/tM7l4akQOobvQrWHEjgNNfUoiOtgTSuAlDa7R
-	1mH54fjWAH4E7WBowrq/qtWTf2Ngu0259o4BmHch3xfwB4FSK3iXmVmEObG2cZs=
-X-Google-Smtp-Source: AGHT+IHCRdtXtGwWe0SqeTDND706jHkPF0K9+vbhrHzYQePwLL8tTiJLxENACnvGP+66WD2/+CI3pQ==
-X-Received: by 2002:a05:6512:281c:b0:51d:a541:733 with SMTP id cf28-20020a056512281c00b0051da5410733mr1641872lfb.66.1714645166991;
-        Thu, 02 May 2024 03:19:26 -0700 (PDT)
-Received: from builder (c188-149-135-220.bredband.tele2.se. [188.149.135.220])
-        by smtp.gmail.com with ESMTPSA id o25-20020a056512053900b0051956ad1b03sm125138lfc.14.2024.05.02.03.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 May 2024 03:19:26 -0700 (PDT)
-Date: Thu, 2 May 2024 12:19:25 +0200
-From: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-To: Parthiban.Veerasooran@microchip.com
-Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
-	saeedm@nvidia.com, anthony.l.nguyen@intel.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	corbet@lwn.net, linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 05/12] net: ethernet: oa_tc6: implement error
- interrupts unmasking
-Message-ID: <ZjNorUP-sEyMCTG0@builder>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <20240418125648.372526-6-Parthiban.Veerasooran@microchip.com>
- <Zi1Xbz7ARLm3HkqW@builder>
- <77d7d190-0847-4dc9-8fc5-4e33308ce7c8@lunn.ch>
- <Zi4czGX8jlqSdNrr@builder>
- <874654d4-3c52-4b0e-944a-dc5822f54a5d@lunn.ch>
- <ZjKJ93uPjSgoMOM7@builder>
- <b7c7aad7-3e93-4c57-82e9-cb3f9e7adf64@microchip.com>
+	s=arc-20240116; t=1714645284; c=relaxed/simple;
+	bh=Uu8k1Y2EqX4OzuTvC+/1Fe63HhtOPHkpZYGeEgvWJ44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZLQIsh1dknQ+1xKloHw6qYZwCahPiNV3YC7VDsKV4GqHalqdnTbShluW+w81154WxKXuxyLq1VatXiCqOSoKjittxJ8MRmV/oXCdONCZn4QEj5ZR9RzPjeFzJJPZo0mMtq/InS0V4siwfAEm2FuteaByvdBix4Z2VeU9So31kPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RfLdXnh0; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 442AKoMU112356;
+	Thu, 2 May 2024 05:20:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714645250;
+	bh=frYcCDaItIA9BuawKlzNsoAiSO+Svo4MUn6Yuai0x7A=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RfLdXnh0NZo7iAYvStFvR0Tsb3fpuOtinvVHsYBn1ugyvK270RTbJvBASBqYm10NC
+	 egB1o2FiuX5xsBFRAIkRpWzf5wPwIUphftZlTbv5RHIqpexeHuSFTI4OnV3MfN9zez
+	 N3E5ZVr2FCX/DC1qk5PGKdpthmFOxDnJEdG0ZF80=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 442AKomr028630
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 2 May 2024 05:20:50 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
+ May 2024 05:20:50 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 2 May 2024 05:20:50 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 442AKi08019243;
+	Thu, 2 May 2024 05:20:45 -0500
+Message-ID: <c420b47b-acb9-4055-9e5f-78deee1b575f@ti.com>
+Date: Thu, 2 May 2024 15:50:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b7c7aad7-3e93-4c57-82e9-cb3f9e7adf64@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Fix reg ranges for main_pktdma dma-controller node
+To: Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <bb@ti.com>, <devicetree@vger.kernel.org>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
+References: <20240430105253.203750-1-j-choudhary@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240430105253.203750-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-> I tried to reproduce the issue in my setup with your above applications.
-> But surprisingly I couldn't reproduce the issue you are facing.
-> 
-> One end is Raspberry Pi 4 with lan8651 MAC-PHY and the other end is 
-> Raspberry Pi 4 with EVB-LAN8670-USB Stick.
-> 
-> lan8651 MAC-PHY side:
-> ---------------------
-> 
+Thanks Jayesh
 
-Did you run both client and server on both ends? The previous tests I
-have done have only sent traffic in one direction, which did not lead to
-a live lock.
-But both sending and receiving as fast as possible in both directions
-trigger the problems on my end.
-R
+On 4/30/2024 4:22 PM, Jayesh Choudhary wrote:
+> The dma-controller node 'main_pktdma' has few memory regions with
+> wrong sizes.
+>
+> DMASS0_PKTDMA_RINGRT is marked as 4MB region when it is actually a 2MB
+> region. Similarly, DMASS0_PKTDMA_TCHANRT is marked as 256KB region but
+> the actual size is 128KB as shown in TRM in the section for Main Memory
+> Map (Table 2-1)
+>
+> Fix these region across AM62, AM62A and AM62P (which is also used in
+> J722S)
+>
+> TRM:
+
+
+For series
+
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+
+
+>
+> AM625: <https://www.ti.com/lit/pdf/spruiv7>
+> AM62A7: <https://www.ti.com/lit/pdf/spruj16>
+> AM62P: <https://www.ti.com/lit/pdf/spruj83>
+> J722S: <https://www.ti.com/lit/zip/sprujb3>
+>
+> Changelog v1->v2:
+> - Add main_pktdma node name in commit message for more clarity about the
+>    dma-controller and mention the table for memory map in TRM in each patch.
+>
+> v1 patch:
+> <https://lore.kernel.org/all/20240405085208.32227-1-j-choudhary@ti.com/>
+>
+> Jayesh Choudhary (3):
+>    arm64: dts: ti: k3-am62-main: Fix the reg-range for main_pktdma
+>    arm64: dts: ti: k3-am62a-main: Fix the reg-range for main_pktdma
+>    arm64: dts: ti: k3-am62p-main: Fix the reg-range for main_pktdma
+>
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 4 ++--
+>   3 files changed, 6 insertions(+), 6 deletions(-)
+>
 
