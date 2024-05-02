@@ -1,190 +1,120 @@
-Return-Path: <devicetree+bounces-64617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63FEC8BA10B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 21:24:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63CF58BA16E
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 22:13:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E51071F21E40
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 19:24:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92D99B22D25
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 20:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1012717B507;
-	Thu,  2 May 2024 19:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA16E180A82;
+	Thu,  2 May 2024 20:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oYA0/9tt"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="HH7Akq59"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-17.smtpout.orange.fr [80.12.242.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E4615FA74;
-	Thu,  2 May 2024 19:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC41158845;
+	Thu,  2 May 2024 20:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714677880; cv=none; b=Bamv9Jw2a8PO9yCOe8u4XO/vx0d3WXK9D13tRHajOal43ydkbCeixBgXHEG74fVImm505IaF2euRhyg/IV3Hn1VXHunmhEyw8Qdm+IQz0OSUGeqpiK6fFSLEiwzzgRUkmuMN6nzG1v8lVUqTeCzl1rKwTYHPUnCmm5YXOYnu8os=
+	t=1714680797; cv=none; b=BWrvYxKZ8Z/ah2SQ2Mrpr+V+1THyiUEUzX1ZBJfiV2+iswfbs42kwONckQNlHEQkEBUUzWSKZ5Kh6qHWqC/qQPeF2rIirL11QrtLv9XPFkdnhjbeRtggAIWS+57tlbBEApJsxWwq/1flaba9YtrU+9jYWEXk350Ey8ZmtxULDwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714677880; c=relaxed/simple;
-	bh=EAePZDF8XNyp2wRcYAYzFho1tbEySQ1YjlPF8DAs2oQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=j+YcEhL3AieaPG8kyeGgZgkDLe9IeSUADxk5pjeKdX39pm9e23f+zAGMbbuH3XuxWhUSmzM3cgokCWEr68gbIQ5UO/EULYt+zIl66u51/60692soaq37mlVZsSFxVsMXPskn4taJfShxrY69ZOnjqmwu9spLA/P+WY3g3ZjXDzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oYA0/9tt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 442FIjtk017812;
-	Thu, 2 May 2024 19:24:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=QcfkUQW
-	3XVkXgNiqcn6ekksykSb8JLl/zC0zWaF74JY=; b=oYA0/9ttFj0OpsJB3Df0638
-	o7PKyH9Bype6dkqZh4j7BvHLN1APAKHhVy2h7/Q7SC8GHL0qcc4IG9Tn9VHmnc3R
-	eR4sL7lfST0XoqKUKSdHYMzVWiCPpsNBCRPXIglNnNZ0KRHNLVGcaLBZqbVbRs0J
-	+mxvbETtgsuT2+cTDCtCxQFbAecodHy3Ge3qCAOnQbaSlCix3pkUCHb9PY35ceWh
-	PgTegh8vMThb68I6Is6ydT/6KL5aWy7NzbgBdpJUZMKdKlrj6j97vZj4oR5N4PyS
-	OpwKluPhVGMccu7SGXgioq0FqsFSDu4JgvuqVFAIDITiGBIMy7uwYsO2ZIoyZJA=
-	=
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xup5kuban-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 May 2024 19:24:33 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 442JOWnv030648
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 May 2024 19:24:32 GMT
-Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 2 May 2024 12:24:28 -0700
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-To: <robh@kernel.org>, <saravanak@google.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Subject: [PATCH v2] of: reserved_mem: Remove the use of phandle from the reserved_mem APIs
-Date: Thu, 2 May 2024 12:24:03 -0700
-Message-ID: <20240502192403.3307277-1-quic_obabatun@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1714680797; c=relaxed/simple;
+	bh=qFIP7k9Gs4vwTcVje7q6elE+MmAusYXcHMvSEBBntAU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CuOQLWBAyGfkSHgsQDhE32oTK3a86ffyiJ8Pugh/zhtX77Lc4dneNFOmfcuAdrxoTc11AHvMU/h58qWPYXecEuWlWiRLt9C334t1u38xg7jvJ42IBSbxO2BCaZrDncpdluV9X6Qirfjxr70zeMQjY0BPeU5vmeiypO3eqwwpiqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=HH7Akq59; arc=none smtp.client-ip=80.12.242.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([86.243.17.157])
+	by smtp.orange.fr with ESMTPA
+	id 2cngsZkixUMqY2cngsWQgT; Thu, 02 May 2024 22:13:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1714680786;
+	bh=4hGjswma74ozpI6l2DVvyyn31CrL8ZkyXTaEf2lOVKU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=HH7Akq59Ise5EXDVdE64IqVsm/TLFHUnEWfNQuWaAiDnQobOhuhdZJe705bfi08qb
+	 IHUW6uaodfGEeDngh+D1goA7Kzzdknjt9MQ0G5RMyV6ergnVVDM4FnxuDhXbY4bBUL
+	 4OrsqJacDu67Gn2+ijqPM42G9H3LMC3YN64cPEA3XrL7g+Tn2Gkmfn/9UZ+1M5kjd6
+	 lc52oGB7Pv8/CFDnV4c8vZ+7GpC8dnx6kTVMg+iD4sVkkp/IYVD+ywNT+ZA9o/4rd1
+	 sOW7PYrOpivBJZuPEaGjqqjONA6q2m1auX7WP+0+c3wNiUXbMOqtWr+pgfeA4kqCTl
+	 aLweBxWQddaAg==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Thu, 02 May 2024 22:13:06 +0200
+X-ME-IP: 86.243.17.157
+Message-ID: <1f42371c-2fc9-46e5-b27b-3167e026e772@wanadoo.fr>
+Date: Thu, 2 May 2024 22:13:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] leds: sy7802: Add support for Silergy SY7802 flash
+ LED controller
+To: git@apitzsch.eu, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20240401-sy7802-v2-0-1138190a7448@apitzsch.eu>
+ <20240401-sy7802-v2-2-1138190a7448@apitzsch.eu>
+Content-Language: en-MW
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240401-sy7802-v2-2-1138190a7448@apitzsch.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: sWlefe6RoSsbVFTJpczb2FYNwjbTa6AG
-X-Proofpoint-GUID: sWlefe6RoSsbVFTJpczb2FYNwjbTa6AG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-02_11,2024-05-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- priorityscore=1501 suspectscore=0 adultscore=0 clxscore=1015
- impostorscore=0 spamscore=0 mlxlogscore=890 lowpriorityscore=0 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405020127
 
-The __find_rmem() function is the only place that references the phandle
-field of the reserved_mem struct. __find_rmem() is used to match a
-device_node object to its corresponding entry in the reserved_mem array
-using its phandle value. But, there is already a function called
-of_reserved_mem_lookup() which carries out the same action using the
-name of the node.
+Le 01/04/2024 à 23:23, André Apitzsch via B4 Relay a écrit :
+> From: André Apitzsch <git@apitzsch.eu>
+> 
+> Add support for SY7802 flash LED controller. It can support up to 1.8A
+> flash current.
+> 
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> ---
+>   drivers/leds/flash/Kconfig       |  11 +
+>   drivers/leds/flash/Makefile      |   1 +
+>   drivers/leds/flash/leds-sy7802.c | 532 +++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 544 insertions(+)
 
-Using the of_reserved_mem_lookup() function is more reliable because
-every node is guaranteed to have a name, but not all nodes will have a
-phandle.
+...
 
-Nodes are only assigned a phandle if they are explicitly defined in the
-DT using "phandle = <phandle_number>", or if they are referenced by
-another node in the DT. Hence, If the phandle field is empty, then
-__find_rmem() will return a false negative.
+> +static int sy7802_led_register(struct device *dev, struct sy7802_led *led,
+> +			       struct device_node *np)
+> +{
+> +	struct led_init_data init_data = {};
+> +	int ret;
+> +
+> +	init_data.fwnode = of_fwnode_handle(np);
+> +
+> +	ret = devm_led_classdev_flash_register_ext(dev, &led->flash, &init_data);
+> +	if (ret) {
+> +		dev_err(dev, "Couldn't register flash %d\n", led->led_no);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
 
-Hence, delete the __find_rmem() function and switch to using the
-of_reserved_mem_lookup() function to find the corresponding entry of a
-device_node in the reserved_mem array. Since the phandle field of the
-reserved_mem struct is now unused, delete that as well.
+Hi,
 
-Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
----
-v2:
-- Addressed error found by kernel test bot:
-  https://lore.kernel.org/all/202405020127.3ncxx3EI-lkp@intel.com/
-- Fixed spelling error in commit text.
+Nitpick: return 0;
 
-v1:
-https://lore.kernel.org/all/20240422235243.2878536-1-quic_obabatun@quicinc.com/
+CJ
 
- drivers/of/of_reserved_mem.c    | 22 +---------------------
- include/linux/of_reserved_mem.h |  1 -
- 2 files changed, 1 insertion(+), 22 deletions(-)
-
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 8236ecae2953..46e1c3fbc769 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -437,17 +437,10 @@ void __init fdt_init_reserved_mem(void)
- 	for (i = 0; i < reserved_mem_count; i++) {
- 		struct reserved_mem *rmem = &reserved_mem[i];
- 		unsigned long node = rmem->fdt_node;
--		int len;
--		const __be32 *prop;
- 		int err = 0;
- 		bool nomap;
- 
- 		nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
--		prop = of_get_flat_dt_prop(node, "phandle", &len);
--		if (!prop)
--			prop = of_get_flat_dt_prop(node, "linux,phandle", &len);
--		if (prop)
--			rmem->phandle = of_read_number(prop, len/4);
- 
- 		if (rmem->size == 0)
- 			err = __reserved_mem_alloc_size(node, rmem->name,
-@@ -477,19 +470,6 @@ void __init fdt_init_reserved_mem(void)
- 	}
- }
- 
--static inline struct reserved_mem *__find_rmem(struct device_node *node)
--{
--	unsigned int i;
--
--	if (!node->phandle)
--		return NULL;
--
--	for (i = 0; i < reserved_mem_count; i++)
--		if (reserved_mem[i].phandle == node->phandle)
--			return &reserved_mem[i];
--	return NULL;
--}
--
- struct rmem_assigned_device {
- 	struct device *dev;
- 	struct reserved_mem *rmem;
-@@ -534,7 +514,7 @@ int of_reserved_mem_device_init_by_idx(struct device *dev,
- 		return 0;
- 	}
- 
--	rmem = __find_rmem(target);
-+	rmem = of_reserved_mem_lookup(target);
- 	of_node_put(target);
- 
- 	if (!rmem || !rmem->ops || !rmem->ops->device_init)
-diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
-index 4de2a24cadc9..e338282da652 100644
---- a/include/linux/of_reserved_mem.h
-+++ b/include/linux/of_reserved_mem.h
-@@ -11,7 +11,6 @@ struct reserved_mem_ops;
- struct reserved_mem {
- 	const char			*name;
- 	unsigned long			fdt_node;
--	unsigned long			phandle;
- 	const struct reserved_mem_ops	*ops;
- 	phys_addr_t			base;
- 	phys_addr_t			size;
--- 
-2.34.1
+> +}
 
 
