@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-64590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66428B9F22
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 19:01:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8218B9F63
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 19:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C8F61F231C4
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 17:01:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A3BA282DE1
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 17:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC4816D327;
-	Thu,  2 May 2024 17:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A785516FF31;
+	Thu,  2 May 2024 17:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPmI2I5L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEw//myQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342A615D5A6;
-	Thu,  2 May 2024 17:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756CD13C820;
+	Thu,  2 May 2024 17:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714669254; cv=none; b=dIx+umo5kJqawfdXEpWDmxxS69uL15KPXX1u1cSAB1EhxuRw5BagXjSIKEc/h2hdlb673BP2SwDhuD7DPDmJEySbFvSKUgU6rkZuS0998V/R2h/gdU6yOwdZPhJE4X+do8GnU0hNMrqW+80q7PSSvCz+HyZ3S2765fvLIB6/yPc=
+	t=1714670612; cv=none; b=GLk7u0kVSFyrcUUtRFmbAT+AMaXSuzQXneH5ahxDCXlDAXlMEWozyAiFZTUSMhPnHJ2++rPHC4UQUJGQ/CSgoTcILQMxcTZoV8NmNg505EqIObG9hBq2PyUGl0/TDYoMz+m2HbFs1ou9B64c6K45d4TS16dHPA3nU5T61ezi7xQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714669254; c=relaxed/simple;
-	bh=IXPlEwfwp75+6cYqzARY+ouvPniGVrcbLA4YwU0vDuo=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mNcmBdde8ajIvpk1arpMyooebWre3ikw72v3o77IdsLX9Jtw59/+etNgWylAd4cpxkxZmPPchyu8BRgIdonnJ/Z7064wnGw4ouq5HlcqEos8VxdgOSIpvvbQBIpIUa2lPgtHfVsN8nDK6uwJp6GDBhNtZQwxPVa4A/OsFwc4sak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPmI2I5L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13EACC113CC;
-	Thu,  2 May 2024 17:00:50 +0000 (UTC)
+	s=arc-20240116; t=1714670612; c=relaxed/simple;
+	bh=VnsaxWRKYnVr47uFHyKJNESO4A+VCX3F1VXJeDiJ/wE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=b7u2DUgGxKeiTq0VmDg2bS+XE/lgpYWbiYHsEkineELJX6tY0hEO5CyBDb1ZMFyJBvlAaxy7zb6qa38vDVL4plXIcNrMSnLbi0qF1oN0neqidFsWJIsuLGCoNGTP0+uzBhZhihW6iTxJ6cpU9KS9yXqI/8lH1T9t5FL+YF6987w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEw//myQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0581FC113CC;
+	Thu,  2 May 2024 17:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714669253;
-	bh=IXPlEwfwp75+6cYqzARY+ouvPniGVrcbLA4YwU0vDuo=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=hPmI2I5L3nXawSVbzXh1ZmcFmSiho5NdxJMDvjtNaOk62Sqkiz4T7OOwX7scWH2pF
-	 azP2y9LxN0h4MZVIIJU1Td/vI4Yvoz4qq2w3PqzQjbabKxA/mEYO84gqpUCGpCw2Ns
-	 EJwfnaWxVxLvWg3FKsTOxLboj2O+s6STbe3ie23hD7z2LTM0VqNwQpOES7dheg2NJ4
-	 BpnqrQcaeS+nnPbMYn1uRZr0tEUKQ/poie23amB5uFsD7QSTI/B1QmMUryclyNPEJx
-	 YyWL8gxkRSO3UPg17xPepzlkZx6wN9A14woDj1XpVBfe2dyyUflO0FOr7/UCmD4kwn
-	 9aJsJXYakQrxg==
+	s=k20201202; t=1714670612;
+	bh=VnsaxWRKYnVr47uFHyKJNESO4A+VCX3F1VXJeDiJ/wE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=pEw//myQGuRYUqtOXZmIxXyH4H0J8VfltjfUEy33nM03vSVHns36q/Bjn64wncMoI
+	 rwzMZJVErkdkTx8k+ppDCwWTrsXFKHtC5L+9XiJnw6VL2dMRM04xB2sPTiZAr+2r6I
+	 3O2v8YpabggFwN0qP1dYNJNNKp3Q/CoJOe8Ob9VaxBrTN5Wt0byFZlanRNobwQsZhc
+	 JqoVg3++raHpIwZsZgwxtCQDiMwHeUB8K/wo1mWA0sFjaeSwVYOOgimfHt7GZQjW6c
+	 +C3s9FbIV5aWZH0Y92nf03YMyI4PZ7DlEFS6dP0iKCYXIJgO+jz+CkPoNj9MuhIlgZ
+	 MjM0Y0hEu9BiA==
 From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
-References: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: allwinner,sun6i-a31-prcm:
- Use hyphens in node names
-Message-Id: <171466925079.1213177.7158816605938803187.b4-ty@kernel.org>
-Date: Thu, 02 May 2024 18:00:50 +0100
+To: Lee Jones <lee@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240430172520.535179-1-robh@kernel.org>
+References: <20240430172520.535179-1-robh@kernel.org>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: aspeed: Drop 'oneOf' for
+ pinctrl node
+Message-Id: <171467060972.1223907.593520549880230505.b4-ty@kernel.org>
+Date: Thu, 02 May 2024 18:23:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +65,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.12.4
 
-On Wed, 24 Apr 2024 06:55:21 +0200, Krzysztof Kozlowski wrote:
-> Underscores should not be used in node names (dtc with W=2 warns about
-> them), so replace them with hyphens.  This should have no impact on
-> known users: Linux MFD driver does not care about children node names.
-> DTS was already adjusted in commit 0f47ef3ff1bd ("arm: dts: allwinner: drop
-> underscore in node names"), so without this change, we observe
-> dtbs_check warnings:
+On Tue, 30 Apr 2024 12:25:19 -0500, Rob Herring (Arm) wrote:
+> The use of 'oneOf' to include 1 of 3 possible child node schemas results
+> in error messages containing the actual error message(s) for the correct
+> SoC buried in the tons of error messages from the 2 schemas that don't
+> apply. It also causes the pinctrl schema to be applied twice as it will
+> be applied when the compatible matches.
+> 
+> All that's really needed in the parent schema is to ensure one of the
+> possible compatible strings is present in the pinctrl node so that its
+> schema will be applied separately.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: mfd: allwinner,sun6i-a31-prcm: Use hyphens in node names
-      commit: 334fbae01f66a81bcbeed2dd0ac954660beeb4aa
+[1/1] dt-bindings: mfd: aspeed: Drop 'oneOf' for pinctrl node
+      commit: 8f553c27697bc5e11074e37dfc0def6e39e489b2
 
 --
 Lee Jones [李琼斯]
