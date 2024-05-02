@@ -1,127 +1,131 @@
-Return-Path: <devicetree+bounces-64541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28078B9AAB
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:21:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532D58B9AD8
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:27:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 929921F2295D
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:21:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82270B20AF4
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFBC78276;
-	Thu,  2 May 2024 12:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4084C6A8AC;
+	Thu,  2 May 2024 12:27:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3Ff7dkW"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bNgfbgJ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C7560EC3;
-	Thu,  2 May 2024 12:21:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8CD60EC3;
+	Thu,  2 May 2024 12:26:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714652508; cv=none; b=W6yLbvNy31b3Ko4EGwCeJ+uYUqK0STuatPW0VRJjf6iMEEnBppohy83w8wYgM+uhybs+rnyt2M9mKi63eTMQ6XeL7qnQ9nt1N4B65+gtkkciXJe4YFAz2Vr4610hnDLuaYlBC+0QR5XXnh5252VwXnKx5ngbrl0DFN30tSao5DQ=
+	t=1714652822; cv=none; b=Cuiv//5KgYD7FN+t/yJ4pflfAn+Ggsgxcn+FjuIdff/WCWrziT3G8/oxqYA40TQXkHXFBgOunr2qX6UY3HLVALnwx0NlrSRj3EQtZEIM/rz+mzrwLLSD4PsvlAftGS9PBnDgpndbDmtL5DagErxlqmi9w8yL/84335re/h+77nw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714652508; c=relaxed/simple;
-	bh=NQ9L9Lov85Ebza43syf+1XkLlafT45p9wRn4gG4tKQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aCamtY2j/5uccy5YE/HJVY6a2ebdPMnYIAS3PCRTtPBKIR4jtUVrJLnxkJCoQAAwNz02UHknb+PzdZqMSv3KDV03WoipNx5QNEhKAhermvp4X7ABd0UAmMPGKpxYXWD7WM0xaGsC5j4VSheEZJ8vXauzmFkQJRkPN0WZCidOHsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3Ff7dkW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B5CAC4AF18;
-	Thu,  2 May 2024 12:21:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714652507;
-	bh=NQ9L9Lov85Ebza43syf+1XkLlafT45p9wRn4gG4tKQY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D3Ff7dkWHDxe6GV4slqUlKVxcNKKxrsvQ5OeOjwsoVhPTLbUgvCB79cW4gG8aCWdu
-	 d1SJQrYjvgWr3adnybN6PFSuC0LFH5WGr2cBL0XCuS5FYptlXFzRcysJzsvRsplemz
-	 r3G7qlaTaed2y8PiTD0d7nyRerEv9L+0NImAiYwRQsJ6P/Rzlv04jz1NK9NQJxvD1n
-	 /WA6ZtbysDyTGU96rhVgl378OcsYydVLL8AIFQPKbSxG31OHgcTPKz8PVuhGwlIWfV
-	 On4ZNs421HAlDC2sbOXk0pnWO+rlxuTWDyw54crSxdC6h2fFJK16kWJv0pjIiw+XC1
-	 3w9X0MaFjWCUA==
-Message-ID: <89f96e06-1966-43c2-b4c4-17e1669c2566@kernel.org>
-Date: Thu, 2 May 2024 14:21:42 +0200
+	s=arc-20240116; t=1714652822; c=relaxed/simple;
+	bh=ubGsjiWQHWPaEZ1fQ7tqbi/KKjuYjwt1nMnswlvWugU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uov5vh5jFYoqs8EK8zA5Opdx/tacbpzt/Fjb5/SuudlVEyxy7ACdvzQ/v41TbVxvCy9UmraDZ3YzHn8jNa8Pw+GlabMQEggq+CwN9EKoKdUoyEtqhnV/xK1DBl1iMbpq7eC6xExuLjvleeuETqQ2SYw5QP1cOFPeEpTgz1z+S7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bNgfbgJ/; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=gVITxXoUTVKTfjI6S12QFG1wv1DAg8EEN4Ngn7R7v5M=; b=bNgfbgJ/L9jRQ2A93jsYogUi+N
+	kWVgx9OUBoOTsJoCcLnAlM6XDTuqJr5/b2Qg5GAYLGF2BXEZ/MWrDQvuHcnTqN2csm1keEMrEAtix
+	pmaiapgE22GVw3XeCstUGB1Oe/srzXlYSK/M8u46dgZAzc8c2vtsOE9QQyf662Yasyis=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1s2VWG-00EVEN-M8; Thu, 02 May 2024 14:26:36 +0200
+Date: Thu, 2 May 2024 14:26:36 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 06/17] dt-bindings: net: mscc-miim: Add resets property
+Message-ID: <4f9fd16b-773d-40e7-86d8-db19e2f6da16@lunn.ch>
+References: <20240430083730.134918-1-herve.codina@bootlin.com>
+ <20240430083730.134918-7-herve.codina@bootlin.com>
+ <5d899584-38ed-4eee-9ba5-befdedbc5734@lunn.ch>
+ <20240430174023.4d15a8a4@bootlin.com>
+ <2b01ed8a-1169-4928-952e-1645935aca2f@lunn.ch>
+ <20240502115043.37a1a33a@bootlin.com>
+ <20240502-petted-dork-20eb02e5a8e3@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: spi: spi-cadence: Add optional reset
- control
-To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Michal Simek <michal.simek@amd.com>, Lars-Peter Clausen <lars@metafoo.de>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Eng Lee Teh <englee.teh@starfivetech.com>
-References: <20240502104800.3030486-1-jisheng.teoh@starfivetech.com>
- <20240502104800.3030486-3-jisheng.teoh@starfivetech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240502104800.3030486-3-jisheng.teoh@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240502-petted-dork-20eb02e5a8e3@wendy>
 
-On 02/05/2024 12:48, Ji Sheng Teoh wrote:
-> Document the optional reset control to SPI.
+On Thu, May 02, 2024 at 11:31:00AM +0100, Conor Dooley wrote:
+> On Thu, May 02, 2024 at 11:50:43AM +0200, Herve Codina wrote:
+> > Hi Andrew,
+> > 
+> > On Tue, 30 Apr 2024 18:31:46 +0200
+> > Andrew Lunn <andrew@lunn.ch> wrote:
+> > 
+> > > > We have the same construction with the pinctrl driver used in the LAN966x
+> > > >   Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+> > > > 
+> > > > The reset name is 'switch' in the pinctrl binding.
+> > > > I can use the same description here as the one present in the pinctrl binding:
+> > > >   description: Optional shared switch reset.
+> > > > and keep 'switch' as reset name here (consistent with pinctrl reset name).
+> > > > 
+> > > > What do you think about that ?  
+> > > 
+> > > It would be good to document what it is shared with. So it seems to be
+> > > the switch itself, pinctl and MDIO? Anything else?
+> > > 
+> > 
+> > To be honest, I know that the GPIO controller (microchip,sparx5-sgpio) is
+> > impacted but I don't know if anything else is impacted by this reset.
+> > I can update the description with:
+> >   description:
+> >     Optional shared switch reset.
+> >     This reset is shared with at least pinctrl, GPIO, MDIO and the switch
+> >     itself.
+> > 
+> > Does it sound better ?
 > 
-> Signed-off-by: Eng Lee Teh <englee.teh@starfivetech.com>
-> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> $dayjob hat off, bindings hat on: If you don't know, can we get someone
+> from Microchip (there's some and a list in CC) to figure it out?
 
-Who is the author here? What are these three SoBs expressing? Rob asked
-for this last time.
+That is probably a good idea, there is potential for hard to find bugs
+here, when a device gets an unexpected reset. Change the order things
+probe, or an unexpected EPRODE_DEFER could be interesting.
 
-Best regards,
-Krzysztof
-
+       Andrew
 
