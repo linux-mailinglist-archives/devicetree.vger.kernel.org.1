@@ -1,154 +1,134 @@
-Return-Path: <devicetree+bounces-64467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA198B970C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:01:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 766AA8B9722
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:04:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 929201F21020
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:01:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A823B230B3
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 09:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F4C50269;
-	Thu,  2 May 2024 09:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A87654F83;
+	Thu,  2 May 2024 09:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpdCii1w"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h0Tw1/gm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D384647772;
-	Thu,  2 May 2024 09:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BD1524D4;
+	Thu,  2 May 2024 09:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714640489; cv=none; b=XLC+YmDvnaL/tlDdCB+EPoeeJurHRKdqJvPAHcgOX1P+06GnuS0cBqmgvapfooI6qwtalPCpa/508bEQTtW9/vd7SpPmV4Q9k+FxYYgCAG54GNMhZAuOaqjE/ts/YIadIQl+iaSBGCGIq5WEGSM9m6fuRxWWX/Uc3wiwmLlrdo8=
+	t=1714640646; cv=none; b=ZqxouXgMzW6Hlk205DW92mktQwfx6jTpIRXJezTSJ3rMCpPkewV+nNfvlMzYPrdimnGuW1U8BgqyolTAuigx1JpfQhLPMRbuH1FwixuRIooVn9UVv5VlE96BZQvUN2/A43t8lC5mfXsSTAduE11bBOHNv5jdg/5Bdp/9bY/K0n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714640489; c=relaxed/simple;
-	bh=x30V454GNv9VD+1ZTgjfWBiPNDBnn7aNwiLl+GMPeDc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=epCaBKLU41+cT+m6o4HEEuIEZlmKD//4WhNzP7O6EkCh5l+v0L05H3UOXo/6lPTd4TjjOpzTXZTZ7COKiA9RnLv1puD3m4+BxFaawhmfNSTBOkCBHRqjNhSGRnw8eLlv41BVnBItMYJ756KkP550D9+cjBLjEuq5WXFJeKehI4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpdCii1w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9448DC113CC;
-	Thu,  2 May 2024 09:01:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714640488;
-	bh=x30V454GNv9VD+1ZTgjfWBiPNDBnn7aNwiLl+GMPeDc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EpdCii1wnyZqRjAmOIyHSSDKE0OQcG4lTmm0PB3M57zSF4L4M6TXA95dU0xl5nD5m
-	 5mgb6iMVS5t5L8hC0zTbAdBlox5LQ+R8XPsts3ZAS2edtIk6tg8nD7uoE48jJD2e50
-	 IS+ZDPzeTYJ0OIe2R9hif6tW0ipPOOMOQspPr2B4iU8N0TfpMZy+T6zJB0WxNrXypj
-	 88kXJrMEJ2LB6GEEG+pdZ8aqSzzu1kpLy2RaYDM6IWdh0LlFpoYJTgRRS8prt9k7fG
-	 0cO5qadsQwNBnNzNnbo2IFWbDzBJbo2LlYcCEnU9gCZsgvfo7lbwQYExUQ10+Tfukh
-	 8iwhHhLjzlfAA==
-Message-ID: <3f76bc8e-deee-4684-aef7-36be193cf38c@kernel.org>
-Date: Thu, 2 May 2024 11:01:17 +0200
+	s=arc-20240116; t=1714640646; c=relaxed/simple;
+	bh=/dLzXBWO2gX67x6MrYoCiCNImnc6++eIecsIUiMMaRQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XKO83diD4seQLJMWV6IQpTb7qw1A/wr0htalOR070KXGLonpxHhfNvi19blg+CNBIHM+ZSzuZ3Sl2aaiC9/a3Ce9pUdi6FLEMmu8MhZn+37JClqg44WoQXQbCYZdPJ+IZYa6ChIE9Ul3nnjboHwukYU1IMqstdgyrjWul19a2hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h0Tw1/gm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4427iTur005893;
+	Thu, 2 May 2024 09:03:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=GvTyKXX
+	MsPRuSwaky8m+AKhm17G0F14YTIxoxZkYJAU=; b=h0Tw1/gmHgy/rvBo7OHFxpF
+	b8n+1v4j0PA9s0q1Y2u3t1k4ggLkt8KJk62GnsolQXoWz5GsBftS+1DOEiBn6ov3
+	p86TWTqOkU8oxF9KEMOGfUMLqghFoE/qP7iHTojB3dFQ6v5CfD3Svdw0jCJcn315
+	noVj6Q2jE624ey65TXN+XU/hbgiBUfWu6dgFcpPyjKlinMCOMcFswwxKQtS1+iH4
+	DoK09RmbokgEJS28NusW4gT9rb+bth/5Ez+/ziz0QTbEba4SwuSaSxCavH/1Xllc
+	2Ism02RcwiXd8i61beQuhkNjSt2kR6SGhmMgTRVBZAq4cXXfnU2hofSEk3wUlEA=
+	=
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xv6q0r4mh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 02 May 2024 09:03:49 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44293mI4004314
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 2 May 2024 09:03:48 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 2 May 2024 02:03:44 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>, <quic_wcheng@quicinc.com>,
+        <quic_ppratap@quicinc.com>, Jack Pham
+	<quic_jackp@quicinc.com>,
+        Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH v3 0/3] Add devicetree support of USB for QDU/QRU1000
+Date: Thu, 2 May 2024 14:33:23 +0530
+Message-ID: <20240502090326.21489-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/12] dt-bindings: net/can: Add serial (serdev) LIN
- adapter
-To: Christoph Fritz <christoph.fritz@hexdev.de>,
- Oliver Hartkopp <socketcan@hartkopp.net>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>,
- Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>,
- linux-can@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-serial@vger.kernel.org
-References: <20240502075534.882628-1-christoph.fritz@hexdev.de>
- <20240502075534.882628-7-christoph.fritz@hexdev.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240502075534.882628-7-christoph.fritz@hexdev.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -E_ChrEKDEc3R7aRPsF_Ax-lbipTMZ44
+X-Proofpoint-GUID: -E_ChrEKDEc3R7aRPsF_Ax-lbipTMZ44
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-01_16,2024-05-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=15 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 spamscore=15
+ mlxlogscore=77 malwarescore=0 phishscore=0 adultscore=0 clxscore=1015
+ mlxscore=15 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405020053
 
-On 02/05/2024 09:55, Christoph Fritz wrote:
-> This patch adds dt-bindings for serial LIN bus adapters. These adapters are
+This series adds devicetree nodes to support interconnects and usb for qdu/qru1000.
+This is based on previously sent driver series[1].
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+------
+Changes in v3:
+* As per comments on upstream[2], to get role-switch working on QDU/QRU1000, it was recommended to
+  use the actual TI switch driver. Since driver doesn't have the functionality to provide role-switch
+  based on gpio, thus reverting back USB dr_mode to peripheral and removed the remote end-point nodes
+  and usb-conn-gpio based role switch functionality.
+* Link to v2: https://lore.kernel.org/linux-arm-msm/20240319091020.15137-1-quic_kbajaj@quicinc.com/
 
-> basically just LIN transceivers that get hard-wired with serial devices.
-> 
-> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+Changes in v2:
+* Changes qmpphy node name
+* Changes dr_mode to otg and added USB-B port USB role switch
+* Dropped maximum-speed property from usb dwc3 node
+* Link to v1: https://lore.kernel.org/linux-arm-msm/20240311120859.18489-1-quic_kbajaj@quicinc.com/
 
-...
+[1] https://lore.kernel.org/linux-arm-msm/20240502082017.13777-1-quic_kbajaj@quicinc.com/
+[2] https://lore.kernel.org/all/CAA8EJppNZrLzT=vGS0NXnKJT_wL+bMB9jFhJ9K7b7FPgFQbcig@mail.gmail.com/
+------
 
-> +maintainers:
-> +  - Christoph Fritz <christoph.fritz@hexdev.de>
-> +
-> +properties:
-> +  compatible:
-> +    const: hexdev,lin-serdev
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
+Komal Bajaj (3):
+  arm64: dts: qcom: qdu1000: Add USB3 and PHY support
+  arm64: dts: qcom: qdu1000-idp: enable USB nodes
+  arm64: dts: qcom: qru1000-idp: enable USB nodes
 
-This must be additionalProperties: false.
+ arch/arm64/boot/dts/qcom/qdu1000-idp.dts |  23 +++++
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 120 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qru1000-idp.dts |  23 +++++
+ 3 files changed, 166 insertions(+)
 
-Best regards,
-Krzysztof
+--
+2.42.0
 
 
