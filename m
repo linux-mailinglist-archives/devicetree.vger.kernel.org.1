@@ -1,185 +1,132 @@
-Return-Path: <devicetree+bounces-64563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DE48B9C21
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:14:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 088EA8B9C29
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F24DB221EC
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:14:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD58C281F1C
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D12513C696;
-	Thu,  2 May 2024 14:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E2B13C694;
+	Thu,  2 May 2024 14:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="So0Vbqp8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EqTJTRH5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E2E12DDBF;
-	Thu,  2 May 2024 14:14:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8376413C687;
+	Thu,  2 May 2024 14:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714659273; cv=none; b=M8t0HqaTTI7Q9jYelJxl7p985XRFD7fs5dtxp4BBhVYZAAPcX3GNY4lVzMy/ZarOy1sUPxIVZBBBON7vzWMLlZZdlnFR9qkzevOG8TQsZdCey4cOnylPcexSGCB28SACLptQ9wBvpXDWMO2sriQWDKdZ1TBNAQsmF4s8zsYJ0qA=
+	t=1714659406; cv=none; b=SjFkkO28eG2Mx0DLFRA7Dj/W7hm0hbxMT2Ybg7Mh4n5zWfwWWajK7fFh61PRNIpjG2W6BVLtBDZapmmv1R+KWhEjY6RjmkDYPf9qhTCn2YUibfnlDIUYNK7mskSs/OW2OKSEHzX4vhrrLy7eMEhhb9lbqDnzGT7qKCqRYoIfvSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714659273; c=relaxed/simple;
-	bh=TqGPQfv5cuk6T1XGFYZfEGJtd5vUUufArvfOG8WA+bE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTjh5RkpDKChZZJSIlo4tyFuFJVglEqEWwngo8pAR91R4NQS4bbJEGjoG/G7Qp/UA5J1pTxSrIw5An6h/jpNrkehecOYsUKN+vR0Xw7lNsSftPgwf2uixhMEDg0wV1p42njWs5Lu9bTI6lX+dzx9JIbAw4dkcwuu54xp0jhNZjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=So0Vbqp8; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=/l18ESN+CGYoapWjh3HxNbj/XMovUs4b0G9wlX7P+3c=; b=So0Vbqp8qMueIWyjz6YJtlM1lU
-	uelnWzp88m6gGS1Ft8TAqTi9Uvcl8S++BJwu/q32Dg0hY4s7wu4LEta3rzw+c5dJWn5zvPANXk136
-	92zAq5NIYe+7xgaba3TMoKYW+9AgYRT2ygHgD0p9SqX+M4PFAzOjtlk/gENIOiVQf0iDihkoOG42q
-	UHQe79XI7teRc+uS1bQ+v0H82YTwr1LoTPpnanstLiz9QAZ0+UE5OOy21zXvhwapdRTA6aK5VP3bd
-	g1HfOqnaB7OVWuV+6K3NtAvyth+YsQfSI4lUbLds2In47jjJptrbdyGw9zJ3KSAfGjshM4ltqKjFt
-	8DYE8VdA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:60508)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1s2XCQ-0007N8-1b;
-	Thu, 02 May 2024 15:14:14 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1s2XCP-0003i3-J2; Thu, 02 May 2024 15:14:13 +0100
-Date: Thu, 2 May 2024 15:14:13 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lxu@maxlinear.com, hkallweit1@gmail.com, michael@walle.cc,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/2] net: phy: mxl-gpy: add new device tree property
- to disable SGMII autoneg
-Message-ID: <ZjOftdnoToSSsVJ1@shell.armlinux.org.uk>
-References: <Zikd+GxuwMRC+5Ae@shell.armlinux.org.uk>
- <Zikrv5UOWvSGjgcv@eichest-laptop>
- <ZilLz8f6vQQCg4NB@shell.armlinux.org.uk>
- <Zio9g9+wsFX39Vkx@eichest-laptop>
- <ZippHJrnvzXsTiK4@shell.armlinux.org.uk>
- <Zip8Hd/ozP3R8ASS@eichest-laptop>
- <ZiqFOko7zFjfTdz4@shell.armlinux.org.uk>
- <ZiqUB0lwgw7vIozG@eichest-laptop>
- <Ziq5+gRXGmqt9bXM@shell.armlinux.org.uk>
- <ZjOYuP5ypnH8GJWd@eichest-laptop>
+	s=arc-20240116; t=1714659406; c=relaxed/simple;
+	bh=3RBBOW+rshzFs1S3SAZzaRZ3GGcmNPFboYktTF3HBj4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ooUbex0A/FUOPVz+d6o/JE4t2xpdf6pBwRijaChrfVMiHCMqcWjENlQCX3i5na7AeWHU2XWi+Q3PSyMrB22NolW1rXTt1YUT+7rewei79UPPcHKJ0ADwDmdzq4Eh0N/IxMZrpRFjsEifTDkWW9sjKO/Xkm78hY5LpCgrfxjfl3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EqTJTRH5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 263BBC113CC;
+	Thu,  2 May 2024 14:16:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714659406;
+	bh=3RBBOW+rshzFs1S3SAZzaRZ3GGcmNPFboYktTF3HBj4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EqTJTRH5D7Xwct54c7wXhOGl6mIORyt9dYdzyFTzjsNRBhNN6K7hwxn6ENfiFWxBh
+	 A+0h4J2DIzSO6O9hPblsM4jUGVTfTVawxnJB96G3DVjW2soPc070qxDvvnGTuJ5B2C
+	 +1fQ+abMQ6nUd4iXXyBNdJJ7tRnsLtU6aO1OSGXQ/6piKfwNI+VocTeKwGofnCqF06
+	 RYeBqrmg3cgGFMtbzGm73uIZKc/GGPeMiuXNajZM0ooWsETueeVEetXdr+mSgORUqO
+	 JX4T6W5SGtYp3bumSRbw1tdUyRObERvmrAbgQ4cp0hcEBDoU5NiyOmVoEHfzDobhSB
+	 /3coG9WF5D7gw==
+Message-ID: <b0c9aa87-ae84-4979-b26b-8fd0579c5f08@kernel.org>
+Date: Thu, 2 May 2024 16:16:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZjOYuP5ypnH8GJWd@eichest-laptop>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] spi: spi-cadence: Add optional reset control
+ support
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Michal Simek <michal.simek@amd.com>, Lars-Peter Clausen <lars@metafoo.de>
+Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Eng Lee Teh <englee.teh@starfivetech.com>
+References: <20240502104800.3030486-1-jisheng.teoh@starfivetech.com>
+ <20240502104800.3030486-2-jisheng.teoh@starfivetech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240502104800.3030486-2-jisheng.teoh@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 02, 2024 at 03:44:24PM +0200, Stefan Eichenberger wrote:
-> Hi Russell,
-> 
-> Sorry for the late reply but I wanted to give you some update after
-> testing with the latest version of your patches on net-queue.
+On 02/05/2024 12:47, Ji Sheng Teoh wrote:
+>  
+>  /* Macros for the SPI controller read/write */
+> @@ -588,6 +591,16 @@ static int cdns_spi_probe(struct platform_device *pdev)
+>  		goto remove_ctlr;
+>  	}
+>  
+> +	xspi->rstc = devm_reset_control_get_optional_exclusive(&pdev->dev, "spi");
+> +	if (IS_ERR(xspi->rstc)) {
+> +		ret = PTR_ERR(xspi->rstc);
+> +		dev_err(&pdev->dev, "Cannot get SPI reset.\n");
 
-I've also been randomly distracted, and I've been meaning to ping you
-to test some of the updates.
+Please switch to:
+ret = dev_err_probe()
 
-http://git.armlinux.org.uk/cgit/linux-arm.git/log/?h=net-queue
+Best regards,
+Krzysztof
 
-The current set begins with:
-
-"net: sfp-bus: constify link_modes to sfp_select_interface()" which is
-now in net-next, then the patches between and including:
-
-"net: phylink: validate sfp_select_interface() returned interface" to
-"net: phylink: clean up phylink_resolve()"
-
-That should get enough together for the PCS "neg" mode to be consistent
-with what the MAC driver sees.
-
-The remaining bits that I still need to sort out is the contents of
-phylink_pcs_neg_mode() for the 802.3z mode with PHY, and also working
-out some way of handling the SGMII case where the PHY and PCS disagree
-(one only supporting inband the other not supporting inband.)
-
-I'm not sure when I'll be able to get to that - things are getting
-fairly chaotic again, meaning I have again less time to spend on
-mainline... and I'd like to take some vacation time very soon (I really
-need some time off!)
-
-> I think I see the problem you are describing.
-> 
-> When the driver starts it will negotiate MLO_AN_PHY based on the
-> capabilities of the PHY and of the PCS. However when I switch to 1GBit/s
-> it should switch to MLO_AN_INBAND but this does not work. Here the
-> output of phylink:
-
-I'm designing this to work the other way - inband being able to fall
-back to PHY (out of band) mode rather than PHY mode being able to fall
-forwards to inband mode.
-
-> The problem is that the PCS continues to be in phy mode but the PHY
-> driver currently only supports LINK_INBAND_ENABLE and SGMII for 1GBit/s.
-> 
-> What I'm wondering is if it wouldn't make sense to adapt the phy driver
-> to support MLO_AN_PHY in SGMII/1000BASE-X mode.
-
-PHYs have no idea about MLO_AN_xxx at all, neither should they. This
-is not part of phylib's API, and I don't think PHYs should ever know
-about MLO_AN_xxx stuff (which is something purely between phylink and
-the MAC driver.) The structure here is:
-
-      MAC            PCS                   PHY
-       ^              ^                    ^ ^-----.
-       v              v                    v       |
-   MAC driver <-> PCS driver <-------> PHY driver  |
-       ^           ^                    ^          |
-       |           |                    |          |
-  MLO_AN_xxx  PHYLINK_PCS_NEG_xxx       |          |
-       `           '                    |          |
-        \         /                     v          |
-          phylink <----------------> phylib <------'
-
-MLO_AN_xxx is far beyond the PHY, and more or less defines the overall
-"system" operating mode. PHYLINK_PCS_NEG_xxx defines the properties
-used for the PCS link to the next device towards the media. This is
-more of relevance to what the PHY should be using on its MAC-facing
-interface.
-
-> Currently the mxl-gpy phy driver can only support:
-> 10/100/1000 MBit/s: SGMII with MLO_AN_INBAND
-> 2500MBit/s          2500Base-X with MLO_AN_PHY
-> 
-> However, the PHY would also support the following mode:
-> 10/100/1000 MBit/s: SGMII with MLO_AN_PHY
-
-The problem with this is some PHYs will not pass data _unless_ their
-SGMII control frame to the PCS has been acknowledged by the PCS - in
-other words, inband has to be used. However, that can be coped with,
-because such a PHY driver should be saying that it only supports
-LINK_INBAND_ENABLE in SGMII mode... and firmware must tell phylink
-that it wants to use inband mode (as that's exactly what firmware
-must do today in this situation.)
-
-> I just don't know how the PHY driver could know about what it should
-> configure.
-
-Currently, I haven't added an interface to cope with the case where
-a PHY says LINK_INBAND_ENABLE | LINK_INBAND_DISABLE to allow it to be
-configured in that case... that's something that will eventually be
-needed.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
