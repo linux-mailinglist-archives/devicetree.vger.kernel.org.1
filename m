@@ -1,125 +1,132 @@
-Return-Path: <devicetree+bounces-64389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A422D8B9241
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 01:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D80568B92A7
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 02:03:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3940B20B8F
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2024 23:22:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F5FAB21258
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 00:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C91A168AF4;
-	Wed,  1 May 2024 23:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722B8647;
+	Thu,  2 May 2024 00:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="cfBYHfFj"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="kp8qZs/i";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="eJnJ1sG7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5AC5168AE2;
-	Wed,  1 May 2024 23:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981287F6;
+	Thu,  2 May 2024 00:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714605771; cv=none; b=BPJEdmXNdUNGE28q5wjvv6G74OiMfHUxpFAJEYTjvHXCICZpl3HVskSr/L7RHXttRZGiC6r62tfIb+/udSBpDB3NLLLUqz3IIMA+4qwDg5rhEU/8BqPRMHXSUc8aPdSRDr4lF0jT29YdJEPJ5ZOnhiaimPItq19co7bCYlwdzMA=
+	t=1714608211; cv=none; b=qASusfLfIuwtCQMSWZzrrcfGvXieCX0rJ2YF6uz5TPSAj+BBuL5+ahSWempTx+UHIMAKdMdjhPKFm7kX0DLykPh0BtGKoAAL6f+Jgwn0Gad8D/3/tYGhwH7Zc7FLhQHVGKL8l+dp5BBWe+WEkUEK9rX3nmfPQqtX5zJ8tjH7XH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714605771; c=relaxed/simple;
-	bh=ASG9oeBUFZtM4xnfSdSwMJ0RkzBAhW91WAMIIg//66I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bRkURIZfIntfuSrj9d5nsoSpe1TAFKge0He/qMtwNIOSrBOUaGNgeQdfZXKjJ5UvQ6TdOEMPvOowAaW7HFnfNHpYFfbnKrvRNfKoTepprREOEHOOr62Jyt1txo4znfn8xrmx++4b1QyffMH7iqKiF5/B1I36y4dZ9FaErYQp72Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=cfBYHfFj; arc=none smtp.client-ip=71.19.156.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:712b:6300::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 36D3A1E4;
-	Wed,  1 May 2024 16:15:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1714605337;
-	bh=LA75uaniDW9QbvPNlFYPb/h62PSnV3LT98zz/24EjcM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cfBYHfFjUj9spCXIvTPWoe0grN9GBk4zZD9EBNPT87kJNyFwebFs8KOjPnsicacQr
-	 3gKXWVTe/LlFNeucZ4NxYj9sGXdQ6ORmlSWWuH+Q8qoCq/4fkVB1dnYiEjfLgPkRok
-	 PV+61sd320i63fCX0lJIFAdzcI561zcirWD1SKvo=
-Date: Wed, 1 May 2024 16:15:35 -0700
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Joel Stanley <joel@jms.id.au>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: Add ASRock SPC621D8HM3 BMC
-Message-ID: <561b69da-f4e4-49df-ac3e-db0003d549e0@hatter.bewilderbeest.net>
-References: <20231120121954.19926-4-zev@bewilderbeest.net>
- <20231120121954.19926-6-zev@bewilderbeest.net>
- <CACPK8Xf6vRKJZHuovMXd2h=nnuKW4m5mcRrfZaTsY987Ai6huQ@mail.gmail.com>
+	s=arc-20240116; t=1714608211; c=relaxed/simple;
+	bh=1sKkjFU96N7WQ/Alcm0gt69fbHMFNm4H/4w/Y1PgO/w=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=DAp1tqmf3A25MfsbZLvqTFbnDlGFC1qtajQfDCyJsrg+Mq0M/KkpBJkCwgqaT/9TuVGDkHkva0mKV/k1i9HvYS9+PaxWnae0k35+ufqZaYgVH2zfCxRnxp3BMrYEUvOBqZsMrNlVEjrBoOayAc9jJsUDpS5gRr0znpAGU6Vn6ZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=kp8qZs/i; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=eJnJ1sG7; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1714608202;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=J4jzCGoAK5gYl8hpdgidkPo+bYHUWqSGYg+U6RVV820=;
+	b=kp8qZs/i/NeO7qfmBU3pkT3RZ2CP7BAPeXs2WILS38escNUt21sBZ8FPt9ISkTZMM1JnR6
+	TgNk6LX4GPGmIA3aABXnoLlisukSiyZLBGOfl9+ZyZG8xd5tZi1u0ZfCtQYEsTt49JcA6D
+	/j1jfLobwICqaaUuO0qwuXKQWrwKtycYAnQiFIY/OnKMOiAMmicgsLedA4tCzQ9pJVQg2q
+	/jJlTqpyywNqqyW2lPvaXtcslXk0bDS5bYetRkwKaPskN/jBFFOuJ7iAFQkZe1yIPql96x
+	xmckFM53fcT+6ESd0DZF6IQleqJCg5Gd/Yvdf5WZNgIOpKeiGq2fRauCZzbHAA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1714608202;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=J4jzCGoAK5gYl8hpdgidkPo+bYHUWqSGYg+U6RVV820=;
+	b=eJnJ1sG70pSoKYDNmnIMoXYuvS14n1rytkredEJDGF5uaJOItsoLTMSzHeQnrN6W6lovD5
+	k+88/oJHU9x5qUBw==
+To: Herve Codina <herve.codina@bootlin.com>, Herve Codina
+ <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lee
+ Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, UNGLinuxDriver@microchip.com, Andrew Lunn
+ <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Saravana Kannan <saravanak@google.com>, Bjorn
+ Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 10/17] irqdomain: Add missing parameter descriptions in
+ docs
+In-Reply-To: <20240430083730.134918-11-herve.codina@bootlin.com>
+References: <20240430083730.134918-1-herve.codina@bootlin.com>
+ <20240430083730.134918-11-herve.codina@bootlin.com>
+Date: Thu, 02 May 2024 02:03:17 +0200
+Message-ID: <87cyq5rsfu.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <CACPK8Xf6vRKJZHuovMXd2h=nnuKW4m5mcRrfZaTsY987Ai6huQ@mail.gmail.com>
+Content-Type: text/plain
 
-On Mon, Apr 29, 2024 at 06:23:27PM PDT, Joel Stanley wrote:
->Hi Zev,
->
->On Mon, 20 Nov 2023 at 22:50, Zev Weiss <zev@bewilderbeest.net> wrote:
->>
->> This is a Xeon board broadly similar (aside from CPU vendor) to the
->> already-support romed8hm3 (half-width, single-socket, ast2500).  It
->> doesn't require anything terribly special for OpenBMC support, so this
->> device-tree should provide everything necessary for basic
->> functionality with it.
->
->We've had these in the aspeed tree for a while, but as I was on leave
->there was no pull request. I'm just putting one together now and
->noticed some unusual looking device tree compatibles:
->
->WARNING: DT compatible string "renesas,isl69269" appears un-documented
->-- check ./Documentation/devicetree/bindings/
->#220: FILE: arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts:181:
->+        compatible = "renesas,isl69269", "isl69269";
->
->WARNING: DT compatible string "isl69269" appears un-documented --
->check ./Documentation/devicetree/bindings/
->#220: FILE: arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts:181:
->+        compatible = "renesas,isl69269", "isl69269";
->
->WARNING: DT compatible string "st,24c128" appears un-documented --
->check ./Documentation/devicetree/bindings/
->#230: FILE: arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts:191:
->+        compatible = "st,24c128", "atmel,24c128";
->
->
->Can you update the patch to be checkpatch clean when applied to v6.9?
->
->Cheers,
->
->Joel
+On Tue, Apr 30 2024 at 10:37, Herve Codina wrote:
+>  /**
+>   * irq_domain_xlate_onecell() - Generic xlate for direct one cell bindings
+> + * @d: IRQ domain involved in the translation
 
-Hi Joel,
+Please write out 'Interrupt domain'
 
-After looking at it a bit, I *think* the third warning above (st,24c128) 
-is a false positive due to the checkpatch script's ad-hoc grep of the DT 
-binding files not picking up on the regex-based compatible definition in 
-Documentation/devicetree/bindings/eeprom/at24.yaml -- AFAICT, the 
-compatible strings match what's described in the comment in that file 
-(and the actual regex itself I believe).
+> + * @ctrlr: the DT node for the device whose interrupt we're translating
 
-The isl69269 warnings are certainly legitimate though; I'll submit a v3 
-with that added to trivial-devices.yml.
+Device tree node. And we are not translating anything.
 
+> + * @intspec: the interrupt specifier data from the DT
+> + * @intsize: the number of entries in @intspec
+> + * @out_hwirq: pointer at which to write the hwirq number
+
+Pointer to starage for the hardware interrupt number
+
+> + * @out_type: pointer at which to write the interrupt type
+
+...
+
+Please align these in tabular fashion:
+
++ * @d:         Interrupt domain involved in the translation
++ * @ctrlr:     The device tree node for the device whose interrupt is translated
++ * @intspec:   The interrupt specifier data from the device tree
++ * @intsize:   The number of entries in @intspec
++ * @out_hwirq: Pointer to storage for the hardware interrupt number
++ * @out_type:  Pointer to storage for the interrupt type
+
+
+>  /**
+>   * irq_domain_translate_onecell() - Generic translate for direct one cell
+>   * bindings
+> + * @d: IRQ domain involved in the translation
+> + * @fwspec: FW interrupt specifier to translate
+
+Firmware interrupt specifier
 
 Thanks,
-Zev
 
+        tglx
 
