@@ -1,191 +1,176 @@
-Return-Path: <devicetree+bounces-64521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81D58B999D
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:04:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243F78B99AC
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:05:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7533B20C49
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:04:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98FBF284B43
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FFD5FBB7;
-	Thu,  2 May 2024 11:04:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58671612EB;
+	Thu,  2 May 2024 11:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="w8Daq/DZ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="oLXjtQAE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A20B58228;
-	Thu,  2 May 2024 11:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AAA60DE9;
+	Thu,  2 May 2024 11:05:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714647840; cv=none; b=q1F56w+w4iF8Di2jTjNtNGawUbLFCzHWvdyrQo5V+/CXTZgUfLuhOiPndAh4hXx6odZ7vOnP2mdBSkjMc/tAWUK9beF1sEgBg9XYnxwABRe2FX2ybDpvQ1MmT9Y7x6sqopQBDTJaj5vSgQQnrGWtkzBwSDlMNI0GB+yR9989yj4=
+	t=1714647930; cv=none; b=QAizgGjhHT62Ts0tyIPtpN4GyDCvrGlmQGjTyoMmRF/efFI2wiB88Z4JiF2ZvCdL9jmmHw4wPdPLLfm5Y2LKoY/C+fsAKbjPfc+Gcwn3wIySkXlhzkVyeXXFC4Mlbo86mL1xyWyXmTZTbDK1GNqn6sGcs2GmD4s/gzkWGqOwbZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714647840; c=relaxed/simple;
-	bh=fBAaoFlZfEYbgWcR99nmTfqssQTQgju1ZEXTW9eeSuA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=iQI3vas9qkDFJfRGSikZQw2Y5z51xB9e3ZsunS9aojhByCeAyFnrH8o0iACSeP+ntx05oXmTB7ZteG5FwHoWudAw/iXOQ+XLFesRwB63R+PB5QTuEN+zo9vF+fqhPnNadP1tr3/nfw9A6WdBmn8U/KT8dZAn/dBH8AHyu3JSNoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=w8Daq/DZ; arc=none smtp.client-ip=213.160.72.247
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
-	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=xrJZEtQCkguErjBYfgKPVVDWS0LKbQlBAZ4XgRsohl4=; b=w8Daq/DZymap2DLm1CeW8Nw4I5
-	j+RVpAvi3xizokSsLbEw6qsCi2BiEen1O7JWqsLMoZjR4P8OX+LC554+ib4cTAeBLrLC0WZIwJnPf
-	cYvUWLR5yY88z44C/H4/D/JjkM8Y27hHNhfN1aYOWxCA0ibj/54xsTQrxABJ6g9NFbss=;
-Received: from 127.0.0.1
-	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim latest)
-	(envelope-from <christoph.fritz@hexdev.de>)
-	id 1s2UE3-001Z33-21;
-	Thu, 02 May 2024 13:03:44 +0200
-Message-ID: <48c55b05dae4628d4e811178bfd5e855ac93ee77.camel@hexdev.de>
-Subject: Re: [PATCH v2 06/12] dt-bindings: net/can: Add serial (serdev) LIN
- adapter
-From: Christoph Fritz <christoph.fritz@hexdev.de>
-Reply-To: christoph.fritz@hexdev.de
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Sebastian Reichel
- <sre@kernel.org>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-serial@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
- Jiri Kosina <jikos@kernel.org>, Jiri Slaby <jirislaby@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>,  Andreas Lauser
- <andreas.lauser@mercedes-benz.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
- Benjamin Tissoires <bentiss@kernel.org>, devicetree@vger.kernel.org, Eric
- Dumazet <edumazet@google.com>, Jonathan Corbet <corbet@lwn.net>, Jakub
- Kicinski <kuba@kernel.org>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
- netdev@vger.kernel.org,  linux-input@vger.kernel.org, Pavel Pisa
- <pisa@cmp.felk.cvut.cz>, Oliver Hartkopp <socketcan@hartkopp.net>, "David S
- . Miller" <davem@davemloft.net>
-Date: Thu, 02 May 2024 13:03:42 +0200
-In-Reply-To: <171464227142.1356329.4931419696225319861.robh@kernel.org>
-References: <20240502075534.882628-1-christoph.fritz@hexdev.de>
-	 <20240502075534.882628-7-christoph.fritz@hexdev.de>
-	 <171464227142.1356329.4931419696225319861.robh@kernel.org>
-Organization: hexDEV GmbH
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1714647930; c=relaxed/simple;
+	bh=Kp2l51ecWpRwmEM8Bmx8V4CrrmwL2QByZPuaxOfTOhg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=k4SyU7ZALv4Bnq1n4zqUOZ8TordnPUB9cuprS5CB7MIjnXUSnsY84eU5DmugmaxOULPhFob6sDn5PoWrfhHIOwM2I0KJffzlLQcd7fXN4QC9NlSxjJHW/WIQM0nCtZpjEWOOL4lMo381mggYH1O6X+87mpYfeCVdp98hkE0dxOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=oLXjtQAE; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 00247E45;
+	Thu,  2 May 2024 13:04:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1714647865;
+	bh=Kp2l51ecWpRwmEM8Bmx8V4CrrmwL2QByZPuaxOfTOhg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=oLXjtQAE/amqd2tDzZw/5t0/diPNLf3v4XXseRJLbYB05ldcUdYra1viRevwuQbIj
+	 SA37BzVmegpLJj823fpBQ2TRyOApKimsh6u+PI33jVGTJV1P5Uo6ZJK+KUV69jZlzX
+	 DQUBynQSVzs3KO4vLtyM9kd54v/ZMUiV2Hj/2snM=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Linux Media Mailing List <linux-media@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 5/7] media: dt-bindings: Add bindings for Raspberry Pi PiSP Back End
+Date: Thu,  2 May 2024 13:05:00 +0200
+Message-ID: <20240502110503.38412-6-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240502110503.38412-1-jacopo.mondi@ideasonboard.com>
+References: <20240502110503.38412-1-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2024-05-02 at 04:31 -0500, Rob Herring (Arm) wrote:
-> On Thu, 02 May 2024 09:55:28 +0200, Christoph Fritz wrote:
-> > This patch adds dt-bindings for serial LIN bus adapters. These adapters are
-> > basically just LIN transceivers that get hard-wired with serial devices.
-> > 
-> > Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> > ---
-> >  .../bindings/net/can/hexdev,lin-serdev.yaml   | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.example.dtb: /example-0/serial/linbus: failed to match any schema with compatible: ['linux,lin-serdev']
+Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
+signal processor.
 
-Yes, that's obviously still false and will be fixed in v3.
+Datasheet:
+https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
 
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240502075534.882628-7-christoph.fritz@hexdev.de
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Naushir Patuck <naush@raspberrypi.com>
+---
+v5->v6:
+- No changes
 
-I'm wondering why my local run of dt_binding_check does not catch this:
+v4->v5:
+- No changes
 
-$ pip3 install dtschema --upgrade
-Requirement already satisfied: dtschema in ./venv/lib/python3.11/site-packages (2024.4)
-Requirement already satisfied: ruamel.yaml>0.15.69 in ./venv/lib/python3.11/site-packages (from dtschema) (0.18.6)
-Requirement already satisfied: jsonschema<4.18,>=4.1.2 in ./venv/lib/python3.11/site-packages (from dtschema) (4.17.3)
-Requirement already satisfied: rfc3987 in ./venv/lib/python3.11/site-packages (from dtschema) (1.3.8)
-Requirement already satisfied: pylibfdt in ./venv/lib/python3.11/site-packages (from dtschema) (1.7.0.post1)
-Requirement already satisfied: attrs>=17.4.0 in ./venv/lib/python3.11/site-packages (from jsonschema<4.18,>=4.1.2->dtschema) (23.2.0)
-Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 in ./venv/lib/python3.11/site-packages (from jsonschema<4.18,>=4.1.2->dtschema) (0.20.0)
-Requirement already satisfied: ruamel.yaml.clib>=0.2.7 in ./venv/lib/python3.11/site-packages (from ruamel.yaml>0.15.69->dtschema) (0.2.8)
+v3->v4:
+- Drop 'clock-names' as we have been confirmed there's a single clock
 
-$ git diff
-diff --git a/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml b/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-index c178eb9be1391..385cbe132258d 100644
---- a/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-+++ b/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-@@ -27,6 +27,6 @@ examples:
-   - |
-     serial {
-         linbus {
--            compatible = "hexdev,lin-serdev";
-+            compatible = "linux,lin-serdev";
-         };
-     };
+v2->v3:
+- Add back 'clock-names' as suggested by Laurent
+- Add Rob's ack
+- minor grammar/style fixes
+---
+ .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
 
-$ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-  HOSTCC  scripts/basic/fixdep
-  HOSTCC  scripts/dtc/dtc.o
-  HOSTCC  scripts/dtc/flattree.o
-  HOSTCC  scripts/dtc/fstree.o
-  HOSTCC  scripts/dtc/data.o
-  HOSTCC  scripts/dtc/livetree.o
-  HOSTCC  scripts/dtc/treesource.o
-  HOSTCC  scripts/dtc/srcpos.o
-  HOSTCC  scripts/dtc/checks.o
-  HOSTCC  scripts/dtc/util.o
-  LEX     scripts/dtc/dtc-lexer.lex.c
-  YACC    scripts/dtc/dtc-parser.tab.[ch]
-  HOSTCC  scripts/dtc/dtc-lexer.lex.o
-  HOSTCC  scripts/dtc/dtc-parser.tab.o
-  HOSTLD  scripts/dtc/dtc
-  HOSTCC  scripts/dtc/libfdt/fdt.o
-  HOSTCC  scripts/dtc/libfdt/fdt_ro.o
-  HOSTCC  scripts/dtc/libfdt/fdt_wip.o
-  HOSTCC  scripts/dtc/libfdt/fdt_sw.o
-  HOSTCC  scripts/dtc/libfdt/fdt_rw.o
-  HOSTCC  scripts/dtc/libfdt/fdt_strerror.o
-  HOSTCC  scripts/dtc/libfdt/fdt_empty_tree.o
-  HOSTCC  scripts/dtc/libfdt/fdt_addresses.o
-  HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
-  HOSTCC  scripts/dtc/fdtoverlay.o
-  HOSTLD  scripts/dtc/fdtoverlay
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-/home/ch/linux/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml: ignoring, error in schema: properties: brcm,tperst-clk-ms: type
-/home/ch/linux/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: ignoring, error in schema: properties: emcs205,max-state: description
-  DTEX    Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.example.dts
-  DTC_CHK Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.example.dtb
+diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+new file mode 100644
+index 000000000000..1fc62a1d8eda
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
++
++maintainers:
++  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++description: |
++  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
++  processor that fetches images in Bayer or Grayscale format from DRAM memory
++  in tiles and produces images consumable by applications.
++
++  The full ISP documentation is available at
++  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm2712-pispbe
++      - const: raspberrypi,pispbe
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        isp@880000  {
++             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
++             reg = <0x10 0x00880000 0x0 0x4000>;
++             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
++             clocks = <&firmware_clocks 7>;
++             iommus = <&iommu2>;
++        };
++    };
+--
+2.44.0
 
-Any ideas?
-
-I'm using a python venv here, maybe this is related?
-
-Thanks
-  -- Christoph
 
