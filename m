@@ -1,198 +1,152 @@
-Return-Path: <devicetree+bounces-64452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568AB8B9609
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:01:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB228B9614
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C473282ED1
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 08:01:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70FAA281AD4
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 08:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C473FE37;
-	Thu,  2 May 2024 08:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99815286BD;
+	Thu,  2 May 2024 08:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qYtPJVRh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kq0q4HNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FBB2D047
-	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 08:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0194B1527AD
+	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 08:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714636847; cv=none; b=tQnFfNUlXMoR1LFabutnZ1k7LXGOR5PqDpLkPzp7bYkp5isqV1uP7sVvwEEJua3ycZLVsnBxd26/0qRRt6p/3m5B4XhR+SiX5RM0tcSE7Dn7c39ENwWQOFTdweFVOqa0WYJZU+chAKuBuMi86xmH64iCTmi4WUGbNOo2hsy6tPA=
+	t=1714637026; cv=none; b=KecdwIv0paGiOqmxQiSCBR+PinnV8J4TdmuC7ZQ4gztCJRs/gIlHUryq1XWbGdp0XMZGEwQeBLW0hnXTYJvnufvTih/HEUfObVdQTWzUgBHHWorTQZ7mJM8IBPAcTqpfkOYj9AKwZOEQcXd/axh4RzKeKJi2OUnrB05cF1HQU3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714636847; c=relaxed/simple;
-	bh=6YI9duv4q6KVjAqk9Z+8wEkt2+gAL9b/MgcLDx+vv1w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Zn2DsXPzHNz90s9q775FXN2F6OZDMNQP13mbQqzl2kCRQ5yPGPRuVCSinI0jKmrK6f74ChWHv9dnedlheSMBfMGE5mfxQXYoE/szUQg748ePZILhQUm5x74YhmxLlZAZT9XdTLlUSU9ZJoVO1O32H3p2wFvu+6kxqnT1qPUZAwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qYtPJVRh; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1714637026; c=relaxed/simple;
+	bh=JuaNdhG1yybHKCDxCOnNbtaouCO/R7KqIkUAHSq+at8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Pg2NxN9R/4JNuuBJZ2qF2YvT25ZOAef/EDWYAeXeo3u43+nZia/VmlQcG19cqJBmd3jiKGr1xE7Su94AHzpBtCID9Cmrkfdba9zYhr9tnqlkYxtuCsQTyhvjHNpNiHLRpq/vuatpkW8Yz01OXQCk/nb9EW4fBc2kCiiU7Cv2HE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kq0q4HNZ; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41b782405d5so65226915e9.2
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 01:00:45 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2dcc8d10d39so89090391fa.3
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 01:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714636844; x=1715241644; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1714637023; x=1715241823; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ajn8usTuqsfMNwN0wgJ7uSMnydqkyy9vQLRbPTG7jrc=;
-        b=qYtPJVRhstYWlPfz9fHTbv2opdLRLOJUKJ1XWe3NPx4j8aH5x3GXKdBzBQQ1soUnWl
-         1ZAdy/OwlOvKA09u/i9xEF8X8sitcScSPdbNY4XuBg3+q7ebeKJzn0q5zLvy2F89Y/Tr
-         p1yg8z8g2w9Tlo0cqIQe4s/y1YdlA55mrAG54BqyxURRwwpsF2Y84C79uvLkeNM1GEUc
-         ZxPKZtdf/hXw8l+dnz8aGOggAT2XXTlhe/WC+cEDxoBBWFNLn1hP+Pahyd3qBV4J+ECO
-         4vdMWtyKvxdZOpiNxYCY0Y94VH6QxXxrBoFaKjIqBPJ5s+C0R9z37EFQXaY7FMszf0Cc
-         B1IQ==
+        bh=0Gwh/IaVsJdTO/wtoqCQNJq6R897Bz66ybMuoZB8azo=;
+        b=kq0q4HNZQnQLGB68nzGU7S/J8Z92g5PhPk9SqLl2L8Uk+sH+aAS5RLVukS/K5RqzSY
+         Km0/IYUsliKh5lDYmfTizsb8c2J3Ld606pOFhiMzHUc5/nLkgA+4ANWNMFnD4SuYOZYs
+         m7Lr8Vw2vufecT5X32hoSNDobkKidaKozumfiEsrnCy2CCbRfM5d4ugxg7V+NQ70psiv
+         RI/6H5QkE3CvO3BpnJ1ZvyyIWgB3I+EgkkmGT2nqqmCJeOWTGw9Cw3fBr4BBR44OwiH+
+         tARe8TpXYo5++2ENHKxp2FqYXU7eQ6AuRDmTBhBsQr40kMKjkDq+VpbY2txV4JgPe2q6
+         4gwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714636844; x=1715241644;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ajn8usTuqsfMNwN0wgJ7uSMnydqkyy9vQLRbPTG7jrc=;
-        b=cOMo7O4hafieefiPVoT9rYGgHTCsARr96DsntrKDNOHT1K0oMSQec4+4y2kKRBi6Uo
-         GNsRjjbA6e8kOtDtjNXpk0VK6lkly8uyppdnfPV7vOsPSZ+cOoeOKRKsvoQobLx18+gD
-         svs7XSAOVD9dHD3BBQ/9/ZmP8EficJKPb3P/PzHp3ec9rMRI6t3g5ToasfG2SjtYuj3L
-         BbI3n2a6ns8thWhqEJPxLJWlxzlVyoWWV1ohJV7C2zc/fbhoSW0IXjqnI3CDJ6Ycd6rg
-         yKnpYvKnDmX6u1MZ3dEtT5PPjfTqj6ubHqW+/SmeF9yK23hiZe3JUg3WbUJyr2WrGPu6
-         lXLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8yp6+P8RL4/OBmru6mzUxfMCbotuAAYM08iPxjHrrQHS+x5xC8CxI6bmMxn7Vs5+gZrGZp4RdA3bnDwkUVrOy0z1pMFOj8wswwQ==
-X-Gm-Message-State: AOJu0YyFf67fgX/wOSfncl1HH+Ey7I+s3qPqeEn19sUCiIm+yem1pVek
-	0RA09+mFRP0uBDRlcDka3q6dFwc5ba9KcUYoDnNcv+ro/Lzha3WsDdrZwxuJPoU=
-X-Google-Smtp-Source: AGHT+IEMzh95ItE0S47y+bpv9P8IykzSeSutZN4r/l9PRXL2kPtzF3jrDQ3CyeUQConSnwboYrmVUg==
-X-Received: by 2002:a05:6000:1811:b0:34d:95be:9340 with SMTP id m17-20020a056000181100b0034d95be9340mr3821414wrh.40.1714636843593;
-        Thu, 02 May 2024 01:00:43 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id t15-20020a05600c198f00b0041c02589a7csm4806597wmq.40.2024.05.02.01.00.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 May 2024 01:00:43 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 02 May 2024 10:00:38 +0200
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sm8650: remove pcie-1-phy-aux-clk
- and add pcie1_phy pcie1_phy_aux_clk
+        d=1e100.net; s=20230601; t=1714637023; x=1715241823;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0Gwh/IaVsJdTO/wtoqCQNJq6R897Bz66ybMuoZB8azo=;
+        b=BgmCB7CGhezSWHKTZmzwmUKV4gkDFezgICGiAUcHE33+6jpmIOTfBy6qOpigEGsGaV
+         SPcsP8rddfGtLM4WGqMU8J0AsqeY7H3NhWpt4tV6OdcCd64Rk9uj708D7K0jvB2DB99Q
+         Oq4dfKwbSpFd4GBRMD4gGgA2Zxo4umPYLohzUFOraIlGJkszcMSPHnuKHbp0l/IlMNzz
+         yoZRAKC2jsZxqf9h1MffUBqwT8f4jmEJgBnRPpgDTEj7nW5sLkAT/HQGCoXZ94NwiXdA
+         d/FvmazGKB2+rJGXIMlCkXcfU18culFZNJvMTMSUMp1OVzOqoJh64gqgF1CImAjXuSts
+         VqsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXpRQ0Z6CerM9e/RdXnw8jVauuqpVxg2b4ZOlIC34lfjZPK+HHYxGYKxIJZ5rw67fWe6p7m8hOmbrs2x9MYhyZrb1iGyFBJXwVd+w==
+X-Gm-Message-State: AOJu0Yy6BHbUn1yMeTxgu1QlcVhRzF7PDjgEP4Mk4JMPGYGXgTNAj3Q9
+	Pzf6M+eArATckS9OPq91yPh16XCesLiwom0jbD2rYwuq7EdgQ1gg0ns2cnq5edY=
+X-Google-Smtp-Source: AGHT+IFKB2jYfl8fT7daTvXF76Voco2LUQCQynA10mjWN/2Fl/PgSJVaA7LhHuO7psiOU98YLDVNKg==
+X-Received: by 2002:a2e:b0e8:0:b0:2e1:dc63:9f9 with SMTP id h8-20020a2eb0e8000000b002e1dc6309f9mr765564ljl.23.1714637023167;
+        Thu, 02 May 2024 01:03:43 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:cad:2140:67e2:5e2:652b:4129? ([2a01:e0a:cad:2140:67e2:5e2:652b:4129])
+        by smtp.gmail.com with ESMTPSA id f20-20020a05600c4e9400b0041b5500e438sm1042055wmq.23.2024.05.02.01.03.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 May 2024 01:03:42 -0700 (PDT)
+Message-ID: <a4441fba-4a2e-4107-8fe6-c0dbb985fbc8@linaro.org>
+Date: Thu, 2 May 2024 10:03:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/6] arm64: dts: qcom: sm8650: Fix GPU cx_mem size
+To: Connor Abbott <cwabbott0@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jun Nie <jun.nie@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+References: <20240426-a750-raytracing-v2-0-562ac9866d63@gmail.com>
+ <20240426-a750-raytracing-v2-1-562ac9866d63@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240426-a750-raytracing-v2-1-562ac9866d63@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240502-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v5-3-10c650cfeade@linaro.org>
-References: <20240502-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v5-0-10c650cfeade@linaro.org>
-In-Reply-To: <20240502-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v5-0-10c650cfeade@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2773;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=6YI9duv4q6KVjAqk9Z+8wEkt2+gAL9b/MgcLDx+vv1w=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmM0gngOgq2EfztlknwDOuQ3nmqCige71pZnTYJcQU
- ueaQc6yJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZjNIJwAKCRB33NvayMhJ0ZPbD/
- 0ZnGwYdOfo2jlubqYAOosNE3GmfifylqGGvo47yEhvcYQrSk045jmGzrX5Yu+QuIMXWPSrydWIEFeL
- pxhZZHdA+Ylu96GghwR9n6Le2/nZ4sh6QQvvJWohXk6o5+ak+TlZfNyuEvIT1Y7gkPikSYH0FfJuph
- DMgMz1Ix7WwriGGeOLe+tcUwvQAdVjEoveHknAyB3wuMqDt5dllPV+MVOqvCy2W2v1jqhT3j+DCYsc
- 1V+AsqeuuD4J+OvetedR5IOrxiA1pPa/ElbWkrvd5X3lbnX/dP3CmqpZkfgdPKOHtESA+wUohf5yHI
- Y6bh0jysptG/WM60RqxcxRGDehK/h90rhEefCcdb+BkYlkz6+yhrBVC4BuU54DIPIOGyutyRC0ODAU
- FXejUnjkzqEGxRXSrIV0Hn3s0ahmKBLql3oXQAqs2viPU26iePuLBzg5A67FGztft2KoUbKksrcr+9
- 39ylvdnOYxF6cof888iAxOS5GsUpimjqPsPInbLcOxMRK8DXk7LPdAb+LgpctThulhtH3jIA2BPPyS
- Xk0KD2yixakCPy9eNF1eDIq8UTIcxDSxRpdyMwpDDUWwE2Z8GeOkw6VDzb40RtDTzIfPyT92mo95aL
- RNIFr4U99WiGvYCEUzJ+7rHhURO54MjTwrF8Qm8yTA6vuYpLFCHHuBXN5Akg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-The PCIe Gen4x2 PHY found in the SM8650 SoCs have a second clock named
-"PHY_AUX_CLK" which is an input of the Global Clock Controller (GCC) which
-is muxed & gated then returned to the PHY as an input.
+On 26/04/2024 20:33, Connor Abbott wrote:
+> This is doubled compared to previous GPUs. We can't access the new
+> SW_FUSE_VALUE register without this.
+> 
+> Fixes: db33633b05c0 ("arm64: dts: qcom: sm8650: add GPU nodes")
+> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 658ad2b41c5a..78b8944eaab2 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -2607,7 +2607,7 @@ tcsr: clock-controller@1fc0000 {
+>   		gpu: gpu@3d00000 {
+>   			compatible = "qcom,adreno-43051401", "qcom,adreno";
+>   			reg = <0x0 0x03d00000 0x0 0x40000>,
+> -			      <0x0 0x03d9e000 0x0 0x1000>,
+> +			      <0x0 0x03d9e000 0x0 0x2000>,
+>   			      <0x0 0x03d61000 0x0 0x800>;
+>   			reg-names = "kgsl_3d0_reg_memory",
+>   				    "cx_mem",
+> 
 
-Remove the dummy pcie-1-phy-aux-clk clock and now the pcie1_phy exposes
-2 clocks, properly add the pcie1_phy provided clocks to the Global Clock
-Controller (GCC) node clocks inputs.
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  4 ----
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  4 ----
- arch/arm64/boot/dts/qcom/sm8650.dtsi    | 13 ++++---------
- 3 files changed, 4 insertions(+), 17 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-index d04ceaa73c2b..ea092f532e5a 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-@@ -641,10 +641,6 @@ &mdss_dsi0_phy {
- 	status = "okay";
- };
- 
--&pcie_1_phy_aux_clk {
--	clock-frequency = <1000>;
--};
--
- &pcie0 {
- 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
- 	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index 4e94f7fe4d2d..bd87aa3aa548 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -835,10 +835,6 @@ &mdss_dp0_out {
- 	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
- };
- 
--&pcie_1_phy_aux_clk {
--	clock-frequency = <1000>;
--};
--
- &pcie0 {
- 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
- 	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 62a6e77730bc..78b8944eaab2 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -60,11 +60,6 @@ bi_tcxo_ao_div2: bi-tcxo-ao-div2-clk {
- 			clock-mult = <1>;
- 			clock-div = <2>;
- 		};
--
--		pcie_1_phy_aux_clk: pcie-1-phy-aux-clk {
--			compatible = "fixed-clock";
--			#clock-cells = <0>;
--		};
- 	};
- 
- 	cpus {
-@@ -758,8 +753,8 @@ gcc: clock-controller@100000 {
- 				 <&bi_tcxo_ao_div2>,
- 				 <&sleep_clk>,
- 				 <&pcie0_phy>,
--				 <&pcie1_phy>,
--				 <&pcie_1_phy_aux_clk>,
-+				 <&pcie1_phy QMP_PCIE_PIPE_CLK>,
-+				 <&pcie1_phy QMP_PCIE_PHY_AUX_CLK>,
- 				 <&ufs_mem_phy 0>,
- 				 <&ufs_mem_phy 1>,
- 				 <&ufs_mem_phy 2>,
-@@ -2467,8 +2462,8 @@ pcie1_phy: phy@1c0e000 {
- 
- 			power-domains = <&gcc PCIE_1_PHY_GDSC>;
- 
--			#clock-cells = <0>;
--			clock-output-names = "pcie1_pipe_clk";
-+			#clock-cells = <1>;
-+			clock-output-names = "pcie1_pipe_clk", "pcie1_phy_aux_clk";
- 
- 			#phy-cells = <0>;
- 
-
--- 
-2.34.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
