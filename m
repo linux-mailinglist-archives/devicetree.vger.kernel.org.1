@@ -1,222 +1,240 @@
-Return-Path: <devicetree+bounces-64513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0673C8B9931
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:43:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C37488B993E
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:45:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B5851F21894
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:43:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ECD81F21800
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD20B78C6E;
-	Thu,  2 May 2024 10:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2DF7E572;
+	Thu,  2 May 2024 10:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="hxRrl8zu"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="DDqJ6uWX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFD2605BB;
-	Thu,  2 May 2024 10:40:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00B75C60D;
+	Thu,  2 May 2024 10:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714646422; cv=none; b=L6WqYzIpuBoaT97y81YBhSuu9PRdhNNetotY16Fb6wTTyLkPTZu9X2RoqKVaKQvxSKn3GVi0ah8SH5XQGXvTblC3nfgbChqG8dDISPqtNNi0ZmUC194HDdMtKUxYq+EBBb/FZDYvOfagBSzVPm0k1zoIjk5oSZZAzf42ID7DW/s=
+	t=1714646489; cv=none; b=p7NCMXWlmc5l0TFrYKn+wubv2Ejxjf2gB+Vibr7l3DcS6HmuslFNApJELT9tGHKnbQxVb2wPZaXZslUYqThG+JE2qigiOQgRv0/uEQJnyUjz/hzWxqa73qvQEsogUoK/38lNjYY9AyXnGfwuHfKHXl87keEKxZjvbaROgbhTt14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714646422; c=relaxed/simple;
-	bh=ScRaDhIpV127IN2u4IRMxbcJ62UMUy4jPlUrmCzVMKY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J7Gduiy4GZeaXJJoZ2zm9/B37gKsHCf69nK6StLzrbUGBOthX0hQXeOFziKNoLJvHod0Oy8LAzR2amV3baqh6fsYsikqhpb2Cy4RrjgNA9VyeY72vflPk9SzJpRFx/SOnMWcW1NIw5DjnAHpJNdx9hTXavaPfr5xnkaTTlh2XlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=hxRrl8zu; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1714646412; x=1715251212; i=j.neuschaefer@gmx.net;
-	bh=6OXJA6Op8AyXGG0UDDxLGH3tvgeicFvPJqUw6T5kUbc=;
-	h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=hxRrl8zuChzw55RMQflwp7LKbYiPFy0ZZt8yx8NZ/Dq4g/FCU31fUP3+FmwR3exN
-	 TF8U2y79hG2fWEX7VhYBgzLn5dowiT1R5GAU51LrqgANiVsWk0/5DgQJtiX89Ptya
-	 LP509nGTPoKexTIIo7QT0TUebmRmoFsFRagEOYj/ZXffpmyd+k75r8FCk91CR7kSW
-	 8Xt7WK3kHD71rZZdkGW1zvRuO0DYOLcjBivEXh9Gy+xS5sjG4Qq9BaiJqZelQFQyd
-	 uPDYTuO5eChJKxLwT062m8ysSW/OxLb9SUTW6zM9YmdchYC/XD0mkTuQtK+hU40bq
-	 w3c8BBruMWTXhVMJpQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([89.1.59.78]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MVNAr-1sBRu72x6N-00QZRI; Thu, 02
- May 2024 12:40:12 +0200
-From: =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Date: Thu, 02 May 2024 12:40:05 +0200
-Subject: [PATCH v12 6/6] ARM: dts: wpcm450: Switch clocks to clock
- controller
+	s=arc-20240116; t=1714646489; c=relaxed/simple;
+	bh=OqJ+yIymupM8os2NNtWYxIDzuic0X9q0L/FNYuyp6NQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uLMzAxtLt+XgVp7LFnWf5hoRuWfyErgdq8swm6k7gHfjkR89a/h3/NHt3aCbf1SfVPE1PBNdB9ebzucGDriCB96KoLTxrFGONftbxkio4RiaF77sFvRHJr9A3j4dKCT/K1x45lPYu+tdLnEnMKsX/hHzvQqYyf0IZTqg3mJLIUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=DDqJ6uWX; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=4UUHAno7rypybrcQtRJnCbtjDnm2b3MTrzNRoHFFT+4=; b=DDqJ6uWXnxC+eCkZQ7gN9aIjkb
+	o+Ouhe7Rg91OXbK1/odgrwOFaA6dXxRBbs6uy+CzYzxCFJteto934oK/rKoev1Ntg9s9p+GYVVzIC
+	VfVAcwv8kpe+bOYZDEa5Jb6VBisVxPmFjJQH2n9IxGJJcuvjxi7NH887u+P62++5sogo=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1s2TsE-001Z1U-1D;
+	Thu, 02 May 2024 12:41:11 +0200
+Message-ID: <2ab875b8216dd32d0d1e495a52a20c02a40e3e5d.camel@hexdev.de>
+Subject: Re: [PATCH v2 02/12] HID: hexLIN: Add support for USB LIN bus
+ adapter
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+Reply-To: christoph.fritz@hexdev.de
+To: Jiri Slaby <jirislaby@kernel.org>
+Cc: Oliver Hartkopp <socketcan@hartkopp.net>, Marc Kleine-Budde
+ <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David
+ S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, Benjamin
+ Tissoires <bentiss@kernel.org>,  Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Sebastian Reichel <sre@kernel.org>, Linus
+ Walleij <linus.walleij@linaro.org>, Andreas Lauser
+ <andreas.lauser@mercedes-benz.com>,  Jonathan Corbet <corbet@lwn.net>,
+ Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org,  linux-serial@vger.kernel.org
+Date: Thu, 02 May 2024 12:41:07 +0200
+In-Reply-To: <acf0251e-41b9-410d-a663-ff6c34d2bc3e@kernel.org>
+References: <20240502075534.882628-1-christoph.fritz@hexdev.de>
+	 <20240502075534.882628-3-christoph.fritz@hexdev.de>
+	 <acf0251e-41b9-410d-a663-ff6c34d2bc3e@kernel.org>
+Organization: hexDEV GmbH
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <20240502-wpcm-clk-v12-6-1d065d58df07@gmx.net>
-References: <20240502-wpcm-clk-v12-0-1d065d58df07@gmx.net>
-In-Reply-To: <20240502-wpcm-clk-v12-0-1d065d58df07@gmx.net>
-To: openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org
-Cc: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1714646407; l=3443;
- i=j.neuschaefer@gmx.net; s=20240329; h=from:subject:message-id;
- bh=kTIwYF9CzV7EiefFtPbjPQBui0vN/ls9WsnRdurtK5Q=;
- b=i5Nq00oyRbu3AdZD8yy38vGM7GdRnEMZs+mGG+3ay/O/Wyfg8NaGHyiZFF5+okDYgRRB5h3DN
- Q5d4gVOoKhUB7XDLKtjAK4YSHebPDyraHUvCX+G5sAcIoTajJGKy06S
-X-Developer-Key: i=j.neuschaefer@gmx.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Provags-ID: V03:K1:hIS1j75iLlGFzDqsq+dZOPH9oD8RRwRngZCC2XzrPED0kjl9VzG
- tctJWpzU85h5nTaGYuPEsGU2Ky/yE9g/qqf1HuxSBl3vHOK0DM4Aa48KUwfcYciYcMbCZL1
- JdT/xpRZRmdNe7nDiUp4nYSPbm7NKM2foniMSld5PbS15DUIClvJq9fZNvvKxsNE2wtYhtW
- yF23+xG8cKN2iKxoG4Z0g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:utNei+oMAA8=;d1JrV2fj7oGow4bds/UHwSLcGsk
- NF95oW2ztrNogQOM35PCLwCEQcGiQXhqQpgYD9hDo0x5RxsvxnAKrx8Y2tF318a8FTSOPIRB2
- UQt2DRubFbpXhYu07L65+mjg2u512e6XjbffsrnMSlzhcozhuN/Iwz0kBt9K8VLfFJjwh8Hc/
- vlV8XGLc/+nhD21Ts04HnFowEZ7cE49/BNBdC3AwM1jZLZ2cL74jcUjFiZTtfcHPSC6I075gi
- 06kuJazbup6OcY+w9Qjsf9Hqkvp/4XBPBSopB90ydCdFSAFueeEwaNg5zPyr8Wmr3iVfG1qR1
- Btc5IbQrdFeFp5axBdVGJ1lm/9BgcGghiGZzihlHgXkq6ILkA+kAtjopoMCZ9CyAoRZ48FuWK
- pFvRPRlPO5HbVPg0fWsMCoNsyE8CCL1gTf9UTRR0kG3cSF2yw58Xi+f0ZZ4+rqNCe1oUJ2jNp
- TbZEMOQYNPFklJU7G/HITEBaCP9+c8ny9ibM/8Hd0m80pr7NCmXYwP0tCWeqlsQX7Wogq7Zpz
- LSqQChOTl2fopbHLj/aGi8IdiaStThcN0T/AXa2OAR01zPV0IDiu9YMC14vOv+tknIDRVmRvK
- ge8Lxb7NcGjSLXVpWFP+0Cb9m4vjTM3oO3PYUrW95Vb9/kHRgldm3DjtjK66mBrjsOo++HlXw
- l1QFtAHIbe7XZVLIKBgn7l6tVgq1VCEc9go2lW392HBwERZrdPdeVm14KE5+bFxylnQ6eDs+i
- jOoD35HXeK89INu8Y0QXSGqslX4n1phWKTF6GHvCkl9nhM9XrJqkpQTtvHEG+zRI/p+cbcCNC
- o6sIB36qBvzXd0FdcapQCnmhJhNm5j5umVdX1J80AbQRQ=
+Content-Transfer-Encoding: 7bit
 
-This change is incompatible with older kernels because it requires the
-clock controller driver, but I think that's acceptable because WPCM450
-support is generally still in an early phase.
+On Thu, 2024-05-02 at 10:30 +0200, Jiri Slaby wrote:
+> On 02. 05. 24, 9:55, Christoph Fritz wrote:
+> > This patch introduces driver support for the hexLIN USB LIN bus adapter,
+> > enabling LIN communication over USB for both controller and responder
+> > modes. The driver interfaces with the CAN_LIN framework for userland
+> > connectivity.
+> > 
+> > For more details on the adapter, visit: https://hexdev.de/hexlin/
+> > 
+> > Tested-by: Andreas Lauser <andreas.lauser@mercedes-benz.com>
+> > Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> ...
+> > --- /dev/null
+> > +++ b/drivers/hid/hid-hexdev-hexlin.c
+> > @@ -0,0 +1,630 @@
+> ...
+> > +static int hexlin_stop(struct lin_device *ldev)
+> > +{
+> > +	struct hid_device *hdev = to_hid_device(ldev->dev);
+> > +	struct hexlin_priv_data *priv = hid_get_drvdata(hdev);
+> > +
+> > +	hid_hw_close(hdev);
+> > +
+> > +	priv->is_error = true;
+> > +	complete(&priv->wait_in_report);
+> > +
+> > +	mutex_lock(&priv->tx_lock);
+> > +	mutex_unlock(&priv->tx_lock);
+> 
+> This is a weird way to implement a completion. It looks like you need 
+> another one.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+They are not necessary, even more so when I can drop the
+mutex_destroy() below.
 
-It's probably best to delay merging of this patch until after the driver
-is merged; I'm including it here for review, and in case someone wants
-to set up a shared branch between the clock and devicetree parts.
+> 
+> > +	return 0;
+> > +}
+> ...> +static int hexlin_probe(struct hid_device *hdev,
+> > +			const struct hid_device_id *id)
+> > +{
+> > +	struct hexlin_priv_data *priv;
+> > +	int ret;
+> > +
+> > +	priv = devm_kzalloc(&hdev->dev, sizeof(*priv), GFP_KERNEL);
+> > +	if (!priv)
+> > +		return -ENOMEM;
+> > +
+> > +	priv->hid_dev = hdev;
+> > +	hid_set_drvdata(hdev, priv);
+> > +
+> > +	mutex_init(&priv->tx_lock);
+> > +
+> > +	ret = hid_parse(hdev);
+> > +	if (ret) {
+> > +		hid_err(hdev, "hid parse failed with %d\n", ret);
+> > +		goto fail_and_free;
+> > +	}
+> > +
+> > +	ret = hid_hw_start(hdev, HID_CONNECT_DRIVER);
+> > +	if (ret) {
+> > +		hid_err(hdev, "hid hw start failed with %d\n", ret);
+> > +		goto fail_and_stop;
+> > +	}
+> > +
+> > +	ret = hid_hw_open(hdev);
+> > +	if (ret) {
+> > +		hid_err(hdev, "hid hw open failed with %d\n", ret);
+> > +		goto fail_and_close;
+> > +	}
+> > +
+> > +	init_completion(&priv->wait_in_report);
+> > +
+> > +	hid_device_io_start(hdev);
+> > +
+> > +	ret = init_hw(priv);
+> > +	if (ret)
+> > +		goto fail_and_close;
+> > +
+> > +	priv->ldev = register_lin(&hdev->dev, &hexlin_ldo);
+> > +	if (IS_ERR_OR_NULL(priv->ldev)) {
+> > +		ret = PTR_ERR(priv->ldev);
+> > +		goto fail_and_close;
+> > +	}
+> > +
+> > +	hid_hw_close(hdev);
+> > +
+> > +	hid_info(hdev, "hexLIN (fw-version: %u) probed\n", priv->fw_version);
+> > +
+> > +	return 0;
+> > +
+> > +fail_and_close:
+> > +	hid_hw_close(hdev);
+> > +fail_and_stop:
+> > +	hid_hw_stop(hdev);
+> > +fail_and_free:
+> > +	mutex_destroy(&priv->tx_lock);
+> > +	return ret;
+> > +}
+> > +
+> > +static void hexlin_remove(struct hid_device *hdev)
+> > +{
+> > +	struct hexlin_priv_data *priv = hid_get_drvdata(hdev);
+> > +
+> > +	unregister_lin(priv->ldev);
+> > +	hid_hw_stop(hdev);
+> > +	mutex_destroy(&priv->tx_lock);
+> 
+> It is unusual to destroy a mutex. Why do you do that?
+> 
 
-v12:
-- work around timer-npcm7xx driver issue by providing timer clock separate=
-ly
+Just for code clarity and it should help if someone wants to use
+CONFIG_DEBUG_MUTEXES.
 
-v11:
-- no changes
+To be able to drop the lock/unlock from above, I could add the
+lock/unlock here or just drop the mutex_destroy() completely.
 
-v10:
-- Reintroducing this patch as part of the clock/reset controller series
-=2D--
- arch/arm/boot/dts/nuvoton/nuvoton-wpcm450.dtsi | 32 ++++++++++++++++-----=
------
- 1 file changed, 20 insertions(+), 12 deletions(-)
+I'll just drop it in upcoming v3.
 
-diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450.dtsi b/arch/arm/boo=
-t/dts/nuvoton/nuvoton-wpcm450.dtsi
-index ff153858801ccf..daf4d399ecab4c 100644
-=2D-- a/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450.dtsi
-+++ b/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450.dtsi
-@@ -2,6 +2,7 @@
- // Copyright 2021 Jonathan Neusch=C3=A4fer
+> > +}
+> ...
+> > +static int __init hexlin_init(void)
+> > +{
+> > +	return hid_register_driver(&hexlin_driver);
+> > +}
+> > +
+> > +static void __exit hexlin_exit(void)
+> > +{
+> > +	hid_unregister_driver(&hexlin_driver);
+> > +}
+> 
+> 
+> 
+> > +
+> > +/*
+> > + * When compiled into the kernel, initialize after the hid bus.
+> > + */
+> > +late_initcall(hexlin_init);
+> 
+> Hmm, why not module_init() then? (And module_hid_driver().)
 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
+Looking at the other hid drivers and testing with just
 
- / {
- 	compatible =3D "nuvoton,wpcm450";
-@@ -30,13 +31,6 @@ cpu@0 {
- 		};
- 	};
+module_hid_driver(hexlin_driver)
 
--	clk24m: clock-24mhz {
--		/* 24 MHz dummy clock */
--		compatible =3D "fixed-clock";
--		clock-frequency =3D <24000000>;
--		#clock-cells =3D <0>;
--	};
--
- 	refclk: clock-ref {
- 		/* 48 MHz reference oscillator */
- 		compatible =3D "fixed-clock";
-@@ -44,6 +38,19 @@ refclk: clock-ref {
- 		#clock-cells =3D <0>;
- 	};
+works here fine for compiled into the kernel and as a module.
 
-+	refclk_div2: clock-refdiv2 {
-+		/*
-+		 * reference oscillator divided by 2, as a workaround because
-+		 * the npcm7xx-timer driver needs its clock earlier than the
-+		 * clk-wpcm450 driver (as a platform driver) can provide it.
-+		 */
-+		compatible =3D "fixed-factor-clock";
-+		clocks =3D <&refclk>;
-+		#clock-cells =3D <0>;
-+		clock-mult =3D <1>;
-+		clock-div =3D <2>;
-+	};
-+
- 	soc {
- 		compatible =3D "simple-bus";
- 		#address-cells =3D <1>;
-@@ -70,7 +77,7 @@ serial0: serial@b8000000 {
- 			reg =3D <0xb8000000 0x20>;
- 			reg-shift =3D <2>;
- 			interrupts =3D <7 IRQ_TYPE_LEVEL_HIGH>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_UART0>;
- 			pinctrl-names =3D "default";
- 			pinctrl-0 =3D <&bsp_pins>;
- 			status =3D "disabled";
-@@ -81,7 +88,7 @@ serial1: serial@b8000100 {
- 			reg =3D <0xb8000100 0x20>;
- 			reg-shift =3D <2>;
- 			interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_UART1>;
- 			status =3D "disabled";
- 		};
+> 
+> > +module_exit(hexlin_exit);
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_AUTHOR("Christoph Fritz <christoph.fritz@hexdev.de>");
+> > +MODULE_DESCRIPTION("LIN bus driver for hexLIN USB adapter");
 
-@@ -89,14 +96,15 @@ timer0: timer@b8001000 {
- 			compatible =3D "nuvoton,wpcm450-timer";
- 			interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
- 			reg =3D <0xb8001000 0x1c>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&refclk_div2>,
-+				 <&refclk_div2>;
- 		};
-
- 		watchdog0: watchdog@b800101c {
- 			compatible =3D "nuvoton,wpcm450-wdt";
- 			interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
- 			reg =3D <0xb800101c 0x4>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_WDT>;
- 		};
-
- 		aic: interrupt-controller@b8002000 {
-@@ -480,7 +488,7 @@ fiu: spi-controller@c8000000 {
- 			#size-cells =3D <0>;
- 			reg =3D <0xc8000000 0x1000>, <0xc0000000 0x4000000>;
- 			reg-names =3D "control", "memory";
--			clocks =3D <&clk 0>;
-+			clocks =3D <&clk WPCM450_CLK_FIU>;
- 			nuvoton,shm =3D <&shm>;
- 			status =3D "disabled";
- 		};
-
-=2D-
-2.43.0
-
+Thanks
+  -- Christoph
 
