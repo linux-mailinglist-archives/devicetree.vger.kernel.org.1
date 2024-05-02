@@ -1,113 +1,112 @@
-Return-Path: <devicetree+bounces-64397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1126E8B92EF
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 02:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94EC08B9310
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 03:16:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C6F4B21825
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 00:51:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B67BEB20B89
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 01:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1632B1078B;
-	Thu,  2 May 2024 00:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809EE1172C;
+	Thu,  2 May 2024 01:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cCbgBEMr"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="jRQ9UR1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91ABFC18;
-	Thu,  2 May 2024 00:50:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F093C12E6D;
+	Thu,  2 May 2024 01:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714611060; cv=none; b=AV26rNlVm6BdcoTtVqTvUzOWlV1Ms4OWBDO3jXwKKajv9lsO+tMxLHX/Jvi6K//rlvEJ3bWkwmSK8rXG4GbO3llGhVCb0WOIH1LKBHSEIunIJ4p9dd1gNyf3seOSxIi9MTPbjH3b9FPiem77KrzR+MuvW6Iu5xigHoXmTcf2KHU=
+	t=1714612588; cv=none; b=gQlUXLrAIofff6eKzTbVLKQijmDS+8uNxveQvueHejj5cFxmRLRMOIUlM8SKfTDTukf442/5uY7QhA3x7gumg0q6n5YrF3Qeq9/brSgRFaBGy96KhbrxQTJ+XbBoX8pfduj5rab/Nm+cyi7Oed2d+TYKVqcM+h86OjFY5G4wSEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714611060; c=relaxed/simple;
-	bh=iYwlZk09lGEg5SU8dNZHUSzybOX1TNAiKtHww/Lb6ME=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K3WH4RTv/NdWsn6QlCsMBmk1KE3YU/7IyFDw3RkbEepG8fZ1C8/hZg6nIdDcxZ0qpZyjLVZ7UnJDVsz057JwevICRK68BSZdorqRrf0r1S3F3Z0+J+rk+yNjoSTvJ98aI+Hdt8t7CIPaqbUG+R8qA42sS0pGp2r4G0IciXbuOwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cCbgBEMr; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6effe9c852eso6547398b3a.3;
-        Wed, 01 May 2024 17:50:58 -0700 (PDT)
+	s=arc-20240116; t=1714612588; c=relaxed/simple;
+	bh=I1H2b5dmLu+h090Wf3JV8wPJG4mgtbGH1NdOaoBnM7U=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Mly47vhfEiPoBH3RYY2j5FZ/XZuflwx/Eq9E7rtpJEfUJdZ75GCdGBNkatarrJGOK07HjgoF5zVeeBjx+Pr65N467tIfca+Rv33G4rHrNih3l/zP0KieTwxPKbt8rzFYy/ZWKtjU+d1KS+7mfO5way4VLzF+tHL1B6SB0OR0wgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=jRQ9UR1Z; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.148.88] (unknown [120.20.105.107])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AF26D20009;
+	Thu,  2 May 2024 09:16:23 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714611058; x=1715215858; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QmLIxq18jhqSpH6wwbeekfAu7FDAZjqkdNP+HNU2GsE=;
-        b=cCbgBEMrKqwFzccq1xnLFTqTSnuPrpaGlvoR07sJZ2atLdQUu1cFWENOi7Gky7pilU
-         QXRj9QwLXaIm5qE1B8lhBRifMdkkzGmn47tx1WZKHqW5y7e1zNfkTkq8gaO4a/HfDSM6
-         e5Jr3Qo48gjkZQpkzCcRWYzxcql2zB0wsJfR9Ru+klqlVrJARZ57oyYL2WGwDxuOnrNA
-         KwiZEqBv3b/Mov1+9+qJeqGSS9aC81rwzZYllfkX8qvZ+rxymFPecA0zA+se2/ia8LXC
-         85XLP7Eh83qOP6+onKIUvzXVkRCmgoTGZKcnS0uKE3DEfiXrDtH/oDKUyTcllMnMP51R
-         jn8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714611058; x=1715215858;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QmLIxq18jhqSpH6wwbeekfAu7FDAZjqkdNP+HNU2GsE=;
-        b=Mo5VzuW2C9R1qooZJ1MBsomcFGoKQvdaNKaLkHpxI5vTQdH91zfXq75aKt/3n3gYUG
-         vsxwtESONlCBy0cLmyLZdiLDBZFIlrNNgBjwGI28e15tVsn3ZyP39jPnxIrlhYgRtAlT
-         283NJMS6yAIaIsOvtKopQ7QdciiPz94ySvVPAlWCJlpULkKWx+O/+GTvel8VSe+6mtiQ
-         Rjb1OfS0aP08c7EFYrZ9A+0IbEutDBvs/yWd14DbnYW2y7pzp23XJZiysM3gv611sB0i
-         LjoYs138HVDpC04yWpSN6hTWA+z37ZN+Z9ikIvpE6Nvsg+qWl0E3OJ2Be80bB6eyHCRn
-         rZ+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXZX3zjMtb7dLq5kktrPNTr47iohKtwlDE+BxnSzEKmpqmtrGe3k4UJzDVF27Hr1FwD98XPqpyi6dRSmJTrpPfGmmlG5iaeddlRwvZeaMwWsBmvqNAPDdEbKpinJ2QO5c4Vz3PpC/rASA==
-X-Gm-Message-State: AOJu0YxhZxDTcgZz/a2OC9fTZBvX9QUDsX+LfobUj1aw/d4a0BD3B2nI
-	9l97I+3cBQ2c731W30kWxHOX1AiURUFeTLr8WDU+aT+KxdKbutF8+s+IuA==
-X-Google-Smtp-Source: AGHT+IFwn8ax05rz6vc9ez7T2CHuGf6DKVB3Mu6PTuI4pajvQwXVnPkoYQkY5l9rlad5X0NX+pJlFQ==
-X-Received: by 2002:a05:6a00:2d87:b0:6f3:ed26:e4f5 with SMTP id fb7-20020a056a002d8700b006f3ed26e4f5mr774032pfb.7.1714611057989;
-        Wed, 01 May 2024 17:50:57 -0700 (PDT)
-Received: from [192.168.0.107] ([103.124.138.155])
-        by smtp.gmail.com with ESMTPSA id gd26-20020a056a00831a00b006ea923678a6sm23156602pfb.137.2024.05.01.17.50.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 May 2024 17:50:57 -0700 (PDT)
-Message-ID: <776e460d-b86d-4051-84d0-0388e2d57278@gmail.com>
-Date: Thu, 2 May 2024 07:50:52 +0700
+	d=codeconstruct.com.au; s=2022a; t=1714612584;
+	bh=I1H2b5dmLu+h090Wf3JV8wPJG4mgtbGH1NdOaoBnM7U=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=jRQ9UR1ZZ2FVs0XozVicmEwg1CRNhSKmKccCABEs31nGicFn/2prKvEeQ2rbh+rWa
+	 WAaWf/S4eh7Lp/yTx0jVmqReJh/6AlvwZAFcK/6YQ0uAo/NfkeUqNEAxQQ76DSIHdS
+	 HUzavRDOacprdfMmSg0DbVM7TTH/3qWIL2E69NZwhYRo6bexYncEA03PzojNt2gCaQ
+	 kchPJIOrTNKRxid89ZHpzHIVThucjhfR7q/y5kkaxLOja2otHPXBjoFCoevzrcNSUF
+	 9rf2y4Dkp1mgEwkaDZp44VxNdZrn+ev3hdWMwvdOt8ytjK/6LOLPUhbUJV1FlTMzS4
+	 aHu5HfKEy+b4A==
+Message-ID: <73284390fda1971eb6727102eba75324a1886a2a.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] dt-bindings: mfd: aspeed: Drop 'oneOf' for pinctrl node
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Date: Thu, 02 May 2024 10:46:23 +0930
+In-Reply-To: <CAL_JsqJmciSKp4H2KXcqv78Vga5gDi0JU_PY4Dth7LJrq6swMA@mail.gmail.com>
+References: <20240430172520.535179-1-robh@kernel.org>
+	 <4f3ce3439e3d996471085e906902e508528308d3.camel@codeconstruct.com.au>
+	 <CAL_JsqJmciSKp4H2KXcqv78Vga5gDi0JU_PY4Dth7LJrq6swMA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Supporting a Device with Switchable Current/Voltage Measurement
-To: =?UTF-8?Q?Jo=C3=A3o_Paulo_Silva_Gon=C3=A7alves?=
- <jpaulo.silvagoncalves@gmail.com>
-Cc: Linux IIO <linux-iio@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Devicetree <devicetree@vger.kernel.org>, joao.goncalves@toradex.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>
-References: <20240501233853.32y4ev7jvas5ahdz@joaog-nb>
- <ZjLe0yIpMyPRl-eZ@archie.me> <20240502004247.pfevxrxf3ephw2tm@joaog-nb>
-Content-Language: en-US
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <20240502004247.pfevxrxf3ephw2tm@joaog-nb>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-On 5/2/24 07:42, João Paulo Silva Gonçalves wrote:
-> On Thu, May 02, 2024 at 07:31:15AM +0700, Bagas Sanjaya wrote:
->> [also Cc: IIO and devicetree maintainers]
->> What are these ohms and where do you get them?
->>
->> Confused...
-> 
-> Ignore them. They are not real values. I got them from the
-> bidings example of iio-rescale devices. The DT draft is an 
-> example, not the final/correct form. 
-> 
+On Wed, 2024-05-01 at 07:39 -0500, Rob Herring wrote:
+> On Tue, Apr 30, 2024 at 7:40=E2=80=AFPM Andrew Jeffery
+> <andrew@codeconstruct.com.au> wrote:
+> >=20
+> > On Tue, 2024-04-30 at 12:25 -0500, Rob Herring (Arm) wrote:
+> > > The use of 'oneOf' to include 1 of 3 possible child node schemas resu=
+lts
+> > > in error messages containing the actual error message(s) for the corr=
+ect
+> > > SoC buried in the tons of error messages from the 2 schemas that don'=
+t
+> > > apply. It also causes the pinctrl schema to be applied twice as it wi=
+ll
+> > > be applied when the compatible matches.
+> > >=20
+> > > All that's really needed in the parent schema is to ensure one of the
+> > > possible compatible strings is present in the pinctrl node so that it=
+s
+> > > schema will be applied separately.
+> >=20
+> > Thanks, I think it improves the readability of intent in the binding as
+> > well.
+> >=20
+> > To understand the impact better I grabbed the patch and diffed the
+> > output of `make CHECK_DTBS=3Dy aspeed/aspeed-ast2600-evb.dtb` before an=
+d
+> > after applying it, but there was no significant difference in output.
+> > Should that not demonstrate the errors being cleaned up? If not, what
+> > should?
+>=20
+> Try it on one of the new boards posted in the last 1-2 days. It showed
+> up on my testing dtbs_check on patches. I didn't send a report because
+> there was so much noise in it.
 
-OK, thanks!
+I tried with aspeed/aspeed-bmc-ibm-blueridge.dtb and yeah, it does
+clean up a lot of barf. Nice. Thanks.
 
--- 
-An old man doll... just what I always wanted! - Clara
+Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
+[1]: https://lore.kernel.org/lkml/20240429210131.373487-14-eajames@linux.ib=
+m.com/
 
