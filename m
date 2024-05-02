@@ -1,143 +1,87 @@
-Return-Path: <devicetree+bounces-64589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663638B9EF4
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 18:54:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66428B9F22
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 19:01:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 973C81C21BD7
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:54:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C8F61F231C4
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 17:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493F616D4FC;
-	Thu,  2 May 2024 16:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC4816D327;
+	Thu,  2 May 2024 17:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzRLyXgc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPmI2I5L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1430D15E80E;
-	Thu,  2 May 2024 16:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342A615D5A6;
+	Thu,  2 May 2024 17:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714668845; cv=none; b=lG83rJzkONZQz0/Mpykkzr2xwwaiKbsToShcHRddP1EWB1/rYPrUY8HdA9984ZNqWRIjnxexaWqkXOYCWtORBoq4i19vhPKdOvgi+9E16eyDQiKVXoRaXNPFe4kJ1XSA1bfz6wt7i8hI1bPkKqfb4PJoRwzhJl+tjWhnMEjSVew=
+	t=1714669254; cv=none; b=dIx+umo5kJqawfdXEpWDmxxS69uL15KPXX1u1cSAB1EhxuRw5BagXjSIKEc/h2hdlb673BP2SwDhuD7DPDmJEySbFvSKUgU6rkZuS0998V/R2h/gdU6yOwdZPhJE4X+do8GnU0hNMrqW+80q7PSSvCz+HyZ3S2765fvLIB6/yPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714668845; c=relaxed/simple;
-	bh=OLGfIPy7WzXr5vPGBKNPCXFEJl7Vq520a+RMhrYvuO8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OZFPUYsJpQIJoipIXUDHXxxjw5F8O3NmKcaBUeHk2jqP66MWQvdVOmSGYOPFloCC7Us8VAN36IbtzysfsV23HkIoM5se8RQ53EEeTLzY5FWGeOjoq0OU5gYDBuEaiwLfksCckIZHmsZQydBtgU8PMlB9Ttyfxlmx0PkdUxJAqT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GzRLyXgc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA938C116B1;
-	Thu,  2 May 2024 16:54:00 +0000 (UTC)
+	s=arc-20240116; t=1714669254; c=relaxed/simple;
+	bh=IXPlEwfwp75+6cYqzARY+ouvPniGVrcbLA4YwU0vDuo=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=mNcmBdde8ajIvpk1arpMyooebWre3ikw72v3o77IdsLX9Jtw59/+etNgWylAd4cpxkxZmPPchyu8BRgIdonnJ/Z7064wnGw4ouq5HlcqEos8VxdgOSIpvvbQBIpIUa2lPgtHfVsN8nDK6uwJp6GDBhNtZQwxPVa4A/OsFwc4sak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPmI2I5L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13EACC113CC;
+	Thu,  2 May 2024 17:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714668844;
-	bh=OLGfIPy7WzXr5vPGBKNPCXFEJl7Vq520a+RMhrYvuO8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GzRLyXgcaxa8KUf1gzDxi1g9pS3L7O2CBA0GR0/B02Xd/v5fw0790sP7bma6wJej7
-	 srExDQkAByoIChhIH4GJM29CDBpoERkPNfBz4UaE8Bo+9pbgmwKb/X3vj69wHw2cAe
-	 DofeWNyOWo+u8mRHAGY9wzt9PszhIlXK0wG/vkbLqBUxzezNSiyvKckHFDyyZtVIYP
-	 lTtmLwCzvcvRLvIHj0XiCmrmi34F6kMD86sJrz4n3UYH2jvnl89TyVLylxxSdnChB+
-	 O5awecR8RqlykXDWZH7WbfxedHmfhR7hAuY65qTnMrd8ZLppBvixHWmZmU9FI7jS1/
-	 QXOJwitZWsq3w==
-Message-ID: <963a1006-a68f-448d-807f-40c9e85e1c2a@kernel.org>
-Date: Thu, 2 May 2024 19:53:57 +0300
+	s=k20201202; t=1714669253;
+	bh=IXPlEwfwp75+6cYqzARY+ouvPniGVrcbLA4YwU0vDuo=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=hPmI2I5L3nXawSVbzXh1ZmcFmSiho5NdxJMDvjtNaOk62Sqkiz4T7OOwX7scWH2pF
+	 azP2y9LxN0h4MZVIIJU1Td/vI4Yvoz4qq2w3PqzQjbabKxA/mEYO84gqpUCGpCw2Ns
+	 EJwfnaWxVxLvWg3FKsTOxLboj2O+s6STbe3ie23hD7z2LTM0VqNwQpOES7dheg2NJ4
+	 BpnqrQcaeS+nnPbMYn1uRZr0tEUKQ/poie23amB5uFsD7QSTI/B1QmMUryclyNPEJx
+	 YyWL8gxkRSO3UPg17xPepzlkZx6wN9A14woDj1XpVBfe2dyyUflO0FOr7/UCmD4kwn
+	 9aJsJXYakQrxg==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
+References: <20240424045521.31857-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: allwinner,sun6i-a31-prcm:
+ Use hyphens in node names
+Message-Id: <171466925079.1213177.7158816605938803187.b4-ty@kernel.org>
+Date: Thu, 02 May 2024 18:00:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/7] iommu/arm-smmu-qcom-debug: Add support for TBUs
-Content-Language: en-US
-To: Will Deacon <will@kernel.org>, Georgi Djakov <quic_c_gdjako@quicinc.com>
-Cc: robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- robdclark@gmail.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
- quic_sudaraja@quicinc.com
-References: <20240417133731.2055383-1-quic_c_gdjako@quicinc.com>
- <20240417133731.2055383-3-quic_c_gdjako@quicinc.com>
- <20240501143400.GA15503@willie-the-truck>
-From: Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20240501143400.GA15503@willie-the-truck>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-Hi Will,
+On Wed, 24 Apr 2024 06:55:21 +0200, Krzysztof Kozlowski wrote:
+> Underscores should not be used in node names (dtc with W=2 warns about
+> them), so replace them with hyphens.  This should have no impact on
+> known users: Linux MFD driver does not care about children node names.
+> DTS was already adjusted in commit 0f47ef3ff1bd ("arm: dts: allwinner: drop
+> underscore in node names"), so without this change, we observe
+> dtbs_check warnings:
+> 
+> [...]
 
-On 1.05.24 17:34, Will Deacon wrote:
-> Hi Georgi,
-> 
-> On Wed, Apr 17, 2024 at 06:37:26AM -0700, Georgi Djakov wrote:
->> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
->> index bb89d49adf8d..eff7ca94ec8d 100644
->> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
->> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
-> 
-> ...
-> 
->> +static const struct of_device_id qcom_tbu_of_match[] = {
->> +	{ .compatible = "qcom,sc7280-tbu" },
->> +	{ .compatible = "qcom,sdm845-tbu" },
->> +	{ }
->> +};
->> +
->> +static struct platform_driver qcom_tbu_driver = {
->> +	.driver = {
->> +		.name           = "qcom_tbu",
->> +		.of_match_table = qcom_tbu_of_match,
->> +	},
->> +	.probe = qcom_tbu_probe,
->> +};
->> +builtin_platform_driver(qcom_tbu_driver);
-> 
-> I just noticed that this breaks a modular build of the arm-smmu driver
-> because we now have two init functions for the module:
-> 
->    ld.lld: error: duplicate symbol: init_module
->    >>> defined at arm-smmu.c
->    >>>            drivers/iommu/arm/arm-smmu/arm-smmu.o:(init_module)
->    >>> defined at arm-smmu-qcom-debug.c
->    >>>            drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.o:(.init.text+0x4)
-> 
-> I think you should initialise the TBU debug feature by calling into it
-> manually from qcom_smmu_impl_init().
-> 
-> Please can you send a patch to fix that? For now, I'll bodge it so that
-> the qcom debug stuff doesn't build as a module (see below).
+Applied, thanks!
 
-Тhanks for sorting that out and apologies for missing it. We are at rc6 now and
-i am afraid that i won't be able to validate my patch until next week (Easter
-holidays here). I'll definitely send the rework when I get back.
+[1/1] dt-bindings: mfd: allwinner,sun6i-a31-prcm: Use hyphens in node names
+      commit: 334fbae01f66a81bcbeed2dd0ac954660beeb4aa
 
-BR,
-Georgi
-
-> 
-> Cheers,
-> 
-> Will
-> 
-> --->8
-> 
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index 032bfd681307..66325210c8c9 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -376,7 +376,7 @@ config ARM_SMMU_QCOM
-> 
->   config ARM_SMMU_QCOM_DEBUG
->          bool "ARM SMMU QCOM implementation defined debug support"
-> -       depends on ARM_SMMU_QCOM
-> +       depends on ARM_SMMU_QCOM=y
->          help
->            Support for implementation specific debug features in ARM SMMU
->            hardware found in QTI platforms. This include support for
-> 
+--
+Lee Jones [李琼斯]
 
 
