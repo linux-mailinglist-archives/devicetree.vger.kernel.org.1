@@ -1,268 +1,195 @@
-Return-Path: <devicetree+bounces-64531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BCA8B9A17
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:32:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6EB98B9A35
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 13:44:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0066F1C20432
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:32:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69217281031
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 11:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8846311D;
-	Thu,  2 May 2024 11:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A783D64CEC;
+	Thu,  2 May 2024 11:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B6IkPx42"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="En+nyEsU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDE363C7;
-	Thu,  2 May 2024 11:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2BB760DE9
+	for <devicetree@vger.kernel.org>; Thu,  2 May 2024 11:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714649521; cv=none; b=d4XBp+fDHzkdxI19zN04v2HuoqS7sY8csLgZkNxg1poJMjJsUEpPoK2E725YC3QWqGi8QXM4q4lMiD4gzKNEve7Tz5+KFvuRUbPPrC0gpR9UjqPuUwoblKqjxRRhWYWAEShZPAR0gozU7Wy2LdTaWMoLY2t6mrxs/HNsH1bfwa8=
+	t=1714650278; cv=none; b=OCI60+HX74UvXlYK39/q/mGIc3hUbdN+Ry/07nm7NTMHHc2xki811XTXJ+QOkQ6dOIiCuO4Gpo/MKivhvPxR5WvuaXlkUUF3DR3HII/2lZxKJRfqMmLWz1yXM2hnGfwQ+wyEGkUejaron6sr/Lyy+40xDpBuNUh+5v9OEjLM5tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714649521; c=relaxed/simple;
-	bh=7d8db+tuMLHa1Q6+B8yfKU6r6HwRAxZLZYsoHu+WPQg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=keh1r2D2AsmIqTG0UFZV5kujVDM42jbJTUOJDLGPU93iCNw+RejYCjcomRzVTBUdfX6oJSGwHc0dpb/UCahlgvuvSA2E68ktohVCMlYQVZ+4OSm1YUw51lKZxKG6cRhCqG/g0bzGMOWtvhNuW46BKx1N+kihry2BMqpIkn83E/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B6IkPx42; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a52223e004dso854825866b.2;
-        Thu, 02 May 2024 04:31:58 -0700 (PDT)
+	s=arc-20240116; t=1714650278; c=relaxed/simple;
+	bh=3B5U1op7r0DTmrEG2HdH2GbKAb31+8iCOdD7rSVpnX0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LLnCaWN3DYjZIx2pCcZ/T8JKFEZXYiyDmhGeNSPwbhWAax8KDV5X2TP6Re8eJMFvhAkQSHOnyJLiyppeF7z6gpomLV8y5FiVp+qhIT7osRNsZd3lgyjd5JaijQfAGAqc834iM1vGuTdGX+INGRQsZgZL7r1Ach93EwNN60ED/Jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=En+nyEsU; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-de462979e00so8756862276.3
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2024 04:44:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714649517; x=1715254317; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=hh6Bmu97EJ9uc9xiHA7rBDhMzG1LP4hfg+UEQHXFF0E=;
-        b=B6IkPx42pG63A2YIPPPbaHRzXULbBX+vE/KdedeYhpJIZ7bu2EnhEGUokwn5klI5A/
-         z0DKsMBSmyVElH8CaGiEUAKSGwLEmMM0dbt8og3gbxhOKMh/Ief8P/3sYnYoXny8Zh10
-         db9o7IL84gq0wOcK9kEl4xF99iLXVz73ZGd8/TQy/ad9uxTtAWU7LrwAOuuZGt9Sdgnd
-         wdB0vKBOs9yAYPo9LfEG4zXqS103gAKdcpFvo3AmtlRcNhmpSx4Xd7znCbDILa/+7fK9
-         tHKcvRdl6aqqSSoMKQ3pzCZejh9X0FIffC3KjKrFE0nZV9JKl30nsc6W0XW9rAVbbTT6
-         96sg==
+        d=linaro.org; s=google; t=1714650276; x=1715255076; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hs0Nc0RqDY6OiurlpPpTgb9tgJy9jZNX1Jp6pCKzxxM=;
+        b=En+nyEsUPc1JwEzc2k+SXZw9ecO8ayict3LYiA2Zoqb4JPZAPhgWobwBFAXXiCX/+4
+         nDBldw62lP9U/O0o6/7VVHSp++1CfC5j8+cTYD9cL/x+GirTXyAjbpSxqUU0rI3Hhp4S
+         zUy4vP+5/aAXlCRMVGpGCwWC1KEwCgyiZy3IST6S/YBDwQuJDagdpqppxct8nQw4dXra
+         lO+aMKeIcPAXRMWs/oWrKnOXykg3k46r8ZkDUbWgV9J2kT6n4D2OqRCZsbl4nopYFGNJ
+         IEjROQEVwzkGzqUyl3vdCxPzuYh/2J6JDO3DVACT2SQdz5dVezziZoZzVWYJ7RwJcDc7
+         GATA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714649517; x=1715254317;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hh6Bmu97EJ9uc9xiHA7rBDhMzG1LP4hfg+UEQHXFF0E=;
-        b=YupHIAi31YT1bXpwyrsV4tT2RVSayVS4RBrHclVApwnRdQhtQdHxO8EGewOzFX8gTl
-         mTtUvpq5KEGx+xR+uLHNhMd3KSyBs3Y5sqRi9gJ91QOhtr7o01wvJ4r2M9Tkee4yVhPQ
-         gHvJ8U3XZS63fn/tlUVbQDFu8KZ7oQ9ZirIqT+zXwej1NQeFFmeLtLHUGcPtPeZW3Esj
-         UfE+aM9rGYpQ41jjAYK89Xje10vCVIUHNoQ/uC9UxwbhOmoyZwjCTGef6JVlXgA8cpb4
-         ZnBHPyvBTiJ70dtvMIM7DMi/hFl1ktBlL4rnOeTDV4UTl9LgoHibXswIeOarMD6Emq8e
-         XAdw==
-X-Forwarded-Encrypted: i=1; AJvYcCVIWnD/bHpq7F8c3wsWoeWt0vlVaoMIc4+RnuY0BLGPcJvCc0TQRRKrpYtfQRmA9WUKX5zuXjwoBD2+HIcOQRfRFeQdvK14oANM+p/bCLe0XjcZL/EkNBH24IVBlCu5uBH17ISL/eXpeDDQx6A6S1DIB+dxqvXsLiLmpsKsk8u5XFQbeZNy+N7r2yfCJ83/EM1cT9h6finJgLTs2gLHKw==
-X-Gm-Message-State: AOJu0YyGdGAm+pAIYtH8miHLwYOSylfCAtlNrfhooLafahkGkU4Fk+/j
-	oya+8sot6M8a6T7v4WLPbH/SXXjWO5Pm9uIBqXE9fpfNTmswLpWK
-X-Google-Smtp-Source: AGHT+IFYbXcUy4uaWC/L1rSMhkEIGB1kzt+dzrBCbBz2iuN19fS6EoPJutoDDRqeUs3Rbj/VD36rDw==
-X-Received: by 2002:a17:906:2695:b0:a52:5493:a0b9 with SMTP id t21-20020a170906269500b00a525493a0b9mr1552025ejc.39.1714649517198;
-        Thu, 02 May 2024 04:31:57 -0700 (PDT)
-Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
-        by smtp.gmail.com with ESMTPSA id j8-20020a170906278800b00a5264576138sm458290ejc.35.2024.05.02.04.31.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 May 2024 04:31:56 -0700 (PDT)
-Message-ID: <0e13f8b643bb7afcc7c4f0d62741cf9fda66c1e0.camel@gmail.com>
-Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7 families
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, "Gradinariu, Ramona"
-	 <Ramona.Gradinariu@analog.com>
-Cc: Ramona Gradinariu <ramona.bolboaca13@gmail.com>, 
-	"linux-kernel@vger.kernel.org"
-	 <linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
-	 <linux-iio@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	 <linux-doc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	 <devicetree@vger.kernel.org>, "corbet@lwn.net" <corbet@lwn.net>, 
-	"conor+dt@kernel.org"
-	 <conor+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	 <krzysztof.kozlowski+dt@linaro.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"Sa, Nuno" <Nuno.Sa@analog.com>
-Date: Thu, 02 May 2024 13:31:55 +0200
-In-Reply-To: <20240429204027.3e47074a@jic23-huawei>
-References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
-	 <20240423084210.191987-5-ramona.gradinariu@analog.com>
-	 <20240428162555.3ddf31ea@jic23-huawei>
-	 <e62f8df4b06abc371b1e9fe3232cb593e468d54c.camel@gmail.com>
-	 <BL1PR03MB5992DEBF82C0DB7BDC5EA0FF971B2@BL1PR03MB5992.namprd03.prod.outlook.com>
-	 <20240429204027.3e47074a@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        d=1e100.net; s=20230601; t=1714650276; x=1715255076;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hs0Nc0RqDY6OiurlpPpTgb9tgJy9jZNX1Jp6pCKzxxM=;
+        b=lJZ2znwFpSurKeldJmq7u+2jWXMc3Fxcyhdu4WjZzxN1bWb2k6gfNR7CXq6VTrfXvk
+         akVO3VU0cMqzNmFzh7hK1+Oe1bhfkiPMZDminaK9L6ly25hezCKz3thPvX8Vwxnz1tjc
+         DkSLVdXV0RgCXt1gtAC/1yVpCBuUSbESE1VNzu42P3mYjQPAVJNjuuixLcpd0uDsj5YQ
+         gQmHnYBVeyzlOTigRXV94xVr/ZMJrGhsHfbWQCKQYxhG8hIjGdMO+F1E/hVYB7AahspL
+         1BGC5p4AGxQmJJRuCZHIjXZnsFK/8fprpzhw7r9OOuTMC/B2TydCGTRCUaKcCC2S/+23
+         8vVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUbwpoUa2oTMjx/7h+75iarW3KrJyjRQSoIGVV8+vagvryKvGkBIYzMXaBmSgLiIB9pJ1cxiCpnUxlkWtKBIRjjLLFLnTu+4wdGYg==
+X-Gm-Message-State: AOJu0YxK/1bYdFTZwXTSXSdUYl5ac2ODmvIaw5DoH7Lu7sCx/iGhcgYt
+	D8pPG+Ny6MAcW9oWgmmsISov8t749kaOS0kpU5vkomKRNo4ApKsYO2nfp3BoRin9RPyEfFNQ+Be
+	CbCEp+ekwZ0mHGWUdaAlBqJt00gI5zqCaAXiBig==
+X-Google-Smtp-Source: AGHT+IEFG+Ydm81rpI162xZeCq5BDZoBPUrt3LS/LIQol86OfQuy68hn7gucOlNacue4gvj7osvZue/EPKC5+EStroY=
+X-Received: by 2002:a5b:52:0:b0:de4:738b:c2ea with SMTP id e18-20020a5b0052000000b00de4738bc2eamr5728494ybp.24.1714650275853;
+ Thu, 02 May 2024 04:44:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240502090326.21489-1-quic_kbajaj@quicinc.com>
+ <CAA8EJprPLqj7GQM0vmN25U2+3kDow=NH8=-VC2N-0p92Ub3iCA@mail.gmail.com> <5134c012-60b1-4c07-9e1f-c48c3d88d404@quicinc.com>
+In-Reply-To: <5134c012-60b1-4c07-9e1f-c48c3d88d404@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 2 May 2024 14:44:24 +0300
+Message-ID: <CAA8EJppK7fMmX_cePhaK4Xy-+gfZfYZSWJDbEnVvq_60B32Rig@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Add devicetree support of USB for QDU/QRU1000
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc: Komal Bajaj <quic_kbajaj@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bjorn Andersson <quic_bjorande@quicinc.com>, quic_wcheng@quicinc.com, 
+	quic_ppratap@quicinc.com, Jack Pham <quic_jackp@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 2024-04-29 at 20:40 +0100, Jonathan Cameron wrote:
-> On Mon, 29 Apr 2024 13:17:42 +0000
-> "Gradinariu, Ramona" <Ramona.Gradinariu@analog.com> wrote:
->=20
-> > > -----Original Message-----
-> > > From: Nuno S=C3=A1 <noname.nuno@gmail.com>
-> > > Sent: Monday, April 29, 2024 10:59 AM
-> > > To: Jonathan Cameron <jic23@kernel.org>; Ramona Gradinariu
-> > > <ramona.bolboaca13@gmail.com>
-> > > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; linux-
-> > > doc@vger.kernel.org; devicetree@vger.kernel.org; corbet@lwn.net;
-> > > conor+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; robh@kernel.o=
-rg;
-> > > Gradinariu, Ramona <Ramona.Gradinariu@analog.com>; Sa, Nuno
-> > > <Nuno.Sa@analog.com>
-> > > Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7 =
-families
-> > >=20
-> > > [External]
-> > >=20
-> > > On Sun, 2024-04-28 at 16:25 +0100, Jonathan Cameron wrote:=C2=A0=20
-> > > > On Tue, 23 Apr 2024 11:42:09 +0300
-> > > > Ramona Gradinariu <ramona.bolboaca13@gmail.com> wrote:
-> > > > =C2=A0
-> > > > > The ADIS16545 and ADIS16547 are a complete inertial system that
-> > > > > includes a triaxis gyroscope and a triaxis accelerometer.
-> > > > > The serial peripheral interface (SPI) and register structure prov=
-ide a
-> > > > > simple interface for data collection and configuration control.
-> > > > >=20
-> > > > > These devices are similar to the ones already supported in the dr=
-iver,
-> > > > > with changes in the scales, timings and the max spi speed in burs=
-t
-> > > > > mode.
-> > > > > Also, they support delta angle and delta velocity readings in bur=
-st
-> > > > > mode, for which support was added in the trigger handler.
-> > > > >=20
-> > > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>=C2=A0=20
-> > > >=20
-> > > > What is Nuno's relationship to this patch?=C2=A0 You are author and=
- the sender
-> > > > which is fine, but in that case you need to make Nuno's involvement=
- explicit.
-> > > > Perhaps a Co-developed-by or similar is appropriate?
-> > > > =C2=A0
-> > > > > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>=
-=C2=A0=20
-> > > > A few comments inline.=C2=A0 Biggest one is I'd like a clear statem=
-ent of why you
-> > > > can't do a burst of one type, then a burst of other.=C2=A0 My guess=
- is that the
-> > > > transition is very time consuming?=C2=A0 If so, that is fine, but y=
-ou should be
-> > > > able
-> > > > to let available_scan_masks handle the disjoint channel sets.=C2=A0=
-=20
-> > >=20
-> > > Yeah, the burst message is a special spi transfer that brings you all=
- of the
-> > > channels data at once but for the accel/gyro you need to explicitly c=
-onfigure
-> > > the chip to either give you the "normal vs "delta" readings. Re-confi=
-guring the
-> > > chip and then do another burst would destroy performance I think. We =
-could
-> > > do
-> > > the manual readings as we do in adis16475 for chips not supporting bu=
-rst32.
-> > > But
-> > > in the burst32 case those manual readings should be minimal while in =
-here we
-> > > could have to do 6 of them which could also be very time consuming...
-> > >=20
-> > > Now, why we don't use available_scan_masks is something I can't reall=
-y
-> > > remember
-> > > but this implementation goes in line with what we have in the adis164=
-75
-> > > driver.
-> > >=20
-> > > - Nuno S=C3=A1
-> > > =C2=A0=20
-> >=20
-> > Thank you Nuno for all the additional explanations.
-> > Regarding the use of available_scan_masks, the idea is to have any poss=
-ible
-> > combination for accel, gyro, temp and timestamp channels or delta angle=
-, delta=20
-> > velocity, temp and=C2=A0 timestamp channels. There are a lot of combina=
-tions for=20
-> > this and it does not seem like a good idea to write them all manually. =
-That is=20
-> > why adis16480_update_scan_mode is used for checking the correct channel=
-s=20
-> > selection.
->=20
-> If you are using bursts, the data is getting read anyway - which is the m=
-ain
-> cost here. The real question becomes what are you actually saving by supp=
-orting all
-> the combinations of the the two subsets of channels in the pollfunc?
-> Currently you have to pick the channels out and repack them, if pushing t=
-hem all
-> looks to me like a mempcy and a single value being set (unconditionally).
-
-> Then it's a question of what the overhead of the channel demux in the cor=
-e is.
-> What you pass out of the driver via iio_push_to_buffers*()
-> is not what ends up in the buffer if you allow the IIO core to do data de=
-muxing
-> for you - that is enabled by providing available_scan_masks.=C2=A0 At buf=
-fer
-> start up the demux code computes a fairly optimal set of copies to repack
-> the incoming data to match with what channels the consumer (here probably
-> the kfifo on the way to userspace) is expecting.
->=20
-> That demux adds a small overhead but it should be small as long
-> as the channels wanted aren't pathological (i.e. every other one).
->=20
-> Advantage is the driver ends up simpler and in the common case of turn
-> on all the channels (why else did you buy a device with those measurement=
-s
-> if you didn't want them!) the demux is zerocopy so effectively free which
-> is not going to be the case for the bitmap walk and element copy in the
+On Thu, 2 May 2024 at 12:48, Krishna Kurapati PSSNV
+<quic_kriskura@quicinc.com> wrote:
+>
+>
+>
+> On 5/2/2024 2:39 PM, Dmitry Baryshkov wrote:
+> > On Thu, 2 May 2024 at 12:04, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+> >>
+> >> This series adds devicetree nodes to support interconnects and usb for qdu/qru1000.
+> >> This is based on previously sent driver series[1].
+> >>
+> >> ------
+> >> Changes in v3:
+> >> * As per comments on upstream[2], to get role-switch working on QDU/QRU1000, it was recommended to
+> >>    use the actual TI switch driver. Since driver doesn't have the functionality to provide role-switch
+> >>    based on gpio, thus reverting back USB dr_mode to peripheral and removed the remote end-point nodes
+> >>    and usb-conn-gpio based role switch functionality.
+> >
+> > This is not correct. The recommendation was to describe hardware properly.
+> > Which means adding schema description, adding  ti,your-switch
+> > compatible to the usb-conn-gpio.c driver, etc.
+> >
+>
+> Hi Dmitry,
+>
+>   Sorry for the confusion. In the comments [1],
+>
+> "So the compatible string should be "ti,hd3ss3220". Which is fine to be
+> used in the platform driver. Just describe the differences in the
+> schema."
+>
+> The compatible "ti,hd3ss3220" is already associated with a TI switch
+> driver [2]. But it works based on I2C. So we assumed you wanted us to
+> make changes to [2] by adding GPIO functionality (which usb-conn-gpio
+> exactly does), since the compatible you suggested matched with the TI
 > driver.
->=20
 
-Maybe my younger me was smarter but reading again the validation of the sca=
-n mask
-code (when available_scan_masks is available), I'm not sure why we're not u=
-sing them.
-I think that having one mask with delta values + temperature and another on=
-e with
-normal + temperature would be enough for what we want in here. The code in
-adis16480_update_scan_mode() could then be simpler I think.
+First of all, please don't make assumptions. It's better to ask rather
+than making assumptions which turn up to be incorrect.
 
-Now, what I'm still not following is the straight memcpy(). I may be missin=
-g
-something but the demux code only appears to kick in when we have compound =
-masks
-resulting of multiple buffers being enabled. So I'm not seeing how we can g=
-et away
-without picking the channels and place them correctly in the buffer passed =
-to IIO?
-What we could do in the future (for a similar device) is to maybe have a fa=
-stpath in
-the handler. Something like:
+Compatibles describe hardware. DT describes hardware. There are no
+drivers in question (yet).
+You have TI switch on your board, so you have to use "ti,hd3ss3220" to
+describe it.
 
-if (bitmap_full(scan_mask, masklength)) {
-	memcpy(iio_buff, burst + data_off, size);
-	goto push_to_iio;
-}
+Existing schema describes it as an I2C device. You have to extend the
+schema to allow non-i2c attachment. Describe GPIOs, make reg optional.
+Make this description purely from the datasheet and usb-c-connector
+point of view.
 
-Right now we would always have to do some "manual" work as the temperature =
-scan index
-does not match the position on the received burst data.
+> If it was to add compatible in usb-conn-gpio, then we can support OTG
+> functionality with no schema changes I believe, but the compatible
+> string might need a different name to avoid clashing with the name in [2].
 
-Some devices with the burst32 (which I think do not exist in this driver) w=
-ould also
-make the plain memcpy() harder.
+And this is the second, largely independent question. The
+usb-conn-gpio driver is a platform driver.The existing hd3ss3220.c
+driver is an I2C one. There is no clash between them.
 
-- Nuno S=C3=A1
+Note, unlike plain gpio-b-connector, the switch supports more pins and
+actually provides USB-C information to the host even when used in the
+dumb mode. Thus it might be better to add a separate driver that
+registers typec port and reports USB-C events.
 
+>
+> [1]:
+> https://lore.kernel.org/all/CAA8EJppNZrLzT=vGS0NXnKJT_wL+bMB9jFhJ9K7b7FPgFQbcig@mail.gmail.com/
+>
+> [2]:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/typec/hd3ss3220.c?h=v6.9-rc2
+>
+> Regards,
+> Krishna,
+>
+> >> * Link to v2: https://lore.kernel.org/linux-arm-msm/20240319091020.15137-1-quic_kbajaj@quicinc.com/
+> >>
+> >> Changes in v2:
+> >> * Changes qmpphy node name
+> >> * Changes dr_mode to otg and added USB-B port USB role switch
+> >> * Dropped maximum-speed property from usb dwc3 node
+> >> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240311120859.18489-1-quic_kbajaj@quicinc.com/
+> >>
+> >> [1] https://lore.kernel.org/linux-arm-msm/20240502082017.13777-1-quic_kbajaj@quicinc.com/
+> >> [2] https://lore.kernel.org/all/CAA8EJppNZrLzT=vGS0NXnKJT_wL+bMB9jFhJ9K7b7FPgFQbcig@mail.gmail.com/
+> >> ------
+> >>
+> >> Komal Bajaj (3):
+> >>    arm64: dts: qcom: qdu1000: Add USB3 and PHY support
+> >>    arm64: dts: qcom: qdu1000-idp: enable USB nodes
+> >>    arm64: dts: qcom: qru1000-idp: enable USB nodes
+> >>
+> >>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts |  23 +++++
+> >>   arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 120 +++++++++++++++++++++++
+> >>   arch/arm64/boot/dts/qcom/qru1000-idp.dts |  23 +++++
+> >>   3 files changed, 166 insertions(+)
+> >>
+> >> --
+> >> 2.42.0
+> >>
+> >>
+> >
+> >
+
+
+
+-- 
+With best wishes
+Dmitry
 
