@@ -1,83 +1,184 @@
-Return-Path: <devicetree+bounces-64500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3948B9863
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:03:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3968B9875
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 12:05:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA17E1F2582B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:03:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C71EB20A77
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 10:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C583E56B85;
-	Thu,  2 May 2024 10:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1149F56B77;
+	Thu,  2 May 2024 10:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YH/7RyzE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AE8R0PEy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E56E56B79;
-	Thu,  2 May 2024 10:02:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753C342AAB;
+	Thu,  2 May 2024 10:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714644144; cv=none; b=k2em0TgUaFZwLVcwbsa7esBMeKF/VDqDYRGqoLUctlOzQOytlAMSK5z2TrsTN0NM1fKl/nTCaMkNb+55Yim5Z9+TClGMEhIOCs0tM+UEwebyoFQHEAfwwAJ3vn2fPfeI1e4VAxfSDAqey0vsk29qdGbpjmS++5zAOAzAL4sftMU=
+	t=1714644342; cv=none; b=rPFOLb0XajGps5k4URLqWC6HysjhppVwK0R6EWa3fs+2t0YMs8ofi6yEQ1TWDqZVlmoIY53+C/fNnLZGkuVHiB3uzK+b3I0cpL1e3ei5b+ObCwSGTKd9sADj3PUnmTOXA+iFyA7BKvVAbRWXK/rWkMYTyvfK19om8LUlb33NyII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714644144; c=relaxed/simple;
-	bh=hUIfTQBhCxf+2q+K2cclO1376bXKdlTXiObnQCwR1Bs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GYA6/XsyyHjIN7uzlOszljjs2+xktFcw6DV6MjvTmQpQhg62e+TVYRQ4aaQNjt8fEc17F/NQNogpQS/UHAtJOn9oPlSBkBMN0Hy+9OqnC/VTWJVN7v1TGZObrQKQ8lhSyASAtPCJ95PYffM6KbVbj7C5oHIlq/R2CDGQCxTjzWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YH/7RyzE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43B26C113CC;
-	Thu,  2 May 2024 10:02:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714644144;
-	bh=hUIfTQBhCxf+2q+K2cclO1376bXKdlTXiObnQCwR1Bs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=YH/7RyzEDNL5kqdgyrSrJ5qnA6Sji/yXxoHgRvpGr9JdDdbhQvEV2bBNkxyJecWpv
-	 KHvgIg0aJl9JmQL4WsPe/wwkMU3IB78KHpA1hOr2owZTXLbC17pUd8mzQDDKMywrb4
-	 Q9vwVJ3ngxiSmMOlAYyT7qtb+qc2g+ogVUa2qpFICs4ac2khDMOJzLn3QYOuzBAY/p
-	 SYjbmbsUQE3MdDViIKm9sywpGCr28x9KlH3lgSGDBE+WitWC7cLnqRegm/n9J1xOAe
-	 IuMXnOe8+0HOLZ3sXEVapqtIPTrWvD14RsAKOoX0405V9EbEi2ftE09YMPNPhFQb0R
-	 74S0PCJYRBa5A==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, srk@ti.com
-In-Reply-To: <20240402105708.4114146-1-s-vadapalli@ti.com>
-References: <20240402105708.4114146-1-s-vadapalli@ti.com>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: syscon: Add
- ti,am62p-cpsw-mac-efuse compatible
-Message-Id: <171464414196.1144273.11589923765175802872.b4-ty@kernel.org>
-Date: Thu, 02 May 2024 11:02:21 +0100
+	s=arc-20240116; t=1714644342; c=relaxed/simple;
+	bh=CSMF8TVTmfpyLAZ8iFxB/1Lk5CprpPEhzH86+AomcuQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Gnbi+L9U29w9I2xy4As3wwRBbMH3hGoRRdyToVuhx7sMk1mXb6fuqpvDAuJsSt3NbAgfw4dEOYaSRXC3glGmLLUm2pWz+k85HscjPmhzinpzhwKkET79WMSnKGgD5vQlQRVzLcQXCtfOwaJwjh74/D9Uhwbt5ISndiI/ucnxp/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AE8R0PEy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4426kp2E012287;
+	Thu, 2 May 2024 10:05:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=TJq2/i5Zj8Gb1ky2H4os8IPFUg6ME1ot9K9spfIJlm4=; b=AE
+	8R0PEyAL7hWQhtx5WwtS8e1xKc+Ekg5QrNJw724SqKlqUMEzr3/H3GLwWpA9OY0F
+	cnNUx/OfcRLnNAC0E0WVZcGhPscCPiLvYkp48KiZFRQ0bP/nU7iUqgPijgYAmj+9
+	jJeIzY5oBLQbrHXNxbvYLloXmQgztyxQzwIFu6GrOF8QpxU3sY1Vi433GxpdXTmv
+	Erq55rJ3NtkzL/jW551diuVS8B6rXPGQhSS/OTcNnAZ+sZ88JPS2oE5/4us9BES+
+	UT279cDpne5xeUJB//3zpsn2EjLuMzT9tJjyWEjaiQo/XijPV7PHYAXpsEb0f2b9
+	/Dk493PV7rGYrlTpcKyA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xv41mgjgn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 02 May 2024 10:05:35 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 442A5YpV020501
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 2 May 2024 10:05:34 GMT
+Received: from [10.216.26.108] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 2 May 2024
+ 03:05:29 -0700
+Message-ID: <46e4000b-e588-d1b7-153e-047ed565565a@quicinc.com>
+Date: Thu, 2 May 2024 15:35:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.4
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: qcom: Add AHB clock for SM8150
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20240501-videocc-sm8150-dt-node-v3-0-2c4bd9ef48bd@quicinc.com>
+ <20240501-videocc-sm8150-dt-node-v3-1-2c4bd9ef48bd@quicinc.com>
+ <CAA8EJpotvs3AOYO3ct=_JabBdYDops4Yfdutga9KBAbVPoZ5yw@mail.gmail.com>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <CAA8EJpotvs3AOYO3ct=_JabBdYDops4Yfdutga9KBAbVPoZ5yw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: M8lt5M0Jugx5xPU3ML55SjwMf0gpsb3D
+X-Proofpoint-ORIG-GUID: M8lt5M0Jugx5xPU3ML55SjwMf0gpsb3D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-01_16,2024-05-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 malwarescore=0 mlxlogscore=999 clxscore=1015
+ priorityscore=1501 mlxscore=0 bulkscore=0 phishscore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405020062
 
-On Tue, 02 Apr 2024 16:27:08 +0530, Siddharth Vadapalli wrote:
-> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
-> contain the MAC Address programmed in the eFuse. Add compatible for
-> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
-> registers within the System Controller device-tree node. The default MAC
-> Address for the interface corresponding to the first MAC port will be set
-> to the value programmed in the eFuse.
-> 
-> [...]
 
-Applied, thanks!
+On 5/1/2024 5:36 PM, Dmitry Baryshkov wrote:
+> On Wed, 1 May 2024 at 11:32, Satya Priya Kakitapalli
+> <quic_skakitap@quicinc.com> wrote:
+>> SM8150 videocc needs AHB clock, so update the bindings for sm8150
+>> to add the AHB clock.
+>>
+>> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
+> The tag is incorrect. The mentioned commit didn't add sm8150 bindings,
+> so it didn't have a bug.
 
-[1/1] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse compatible
-      commit: 6269045670d79c1632480284a65be253ecd02ef5
 
---
-Lee Jones [李琼斯]
+Thanks, will correct the tag.
 
+
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/clock/qcom,videocc.yaml         | 17 ++++++++++++++++-
+>>   1 file changed, 16 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> index 6999e36ace1b..68bac801adb0 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> @@ -75,7 +75,6 @@ allOf:
+>>             enum:
+>>               - qcom,sc7180-videocc
+>>               - qcom,sdm845-videocc
+>> -            - qcom,sm8150-videocc
+>>       then:
+>>         properties:
+>>           clocks:
+>> @@ -101,6 +100,22 @@ allOf:
+>>               - const: bi_tcxo
+>>               - const: bi_tcxo_ao
+>>
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - qcom,sm8150-videocc
+> Could you please extend the sm8250 case instead of defining a new one?
+> Also could you please check if there is a clock (like ahb_clk_src)
+> that uses bi_tcxo_ao instead of bi_tcxo? If so, we have to add this
+> clock to the bindings even if the driver doesn't use/model it at this
+> point.
+
+
+There are no clocks using the bi_tcxo_ao on sm8150. Hence added separate 
+case for sm8150 instead of re-using sm8250.
+
+
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: AHB
+>> +            - description: Board XO source
+>> +        clock-names:
+>> +          items:
+>> +            - const: iface
+>> +            - const: bi_tcxo
+>> +
+>>     - if:
+>>         properties:
+>>           compatible:
+>>
+>> --
+>> 2.25.1
+>>
+>
 
