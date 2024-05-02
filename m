@@ -1,110 +1,141 @@
-Return-Path: <devicetree+bounces-64566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679208B9C60
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:35:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D48018B9CCF
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 987491C208A7
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:35:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73F671F2483A
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 14:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A7015351B;
-	Thu,  2 May 2024 14:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D0E16ABE3;
+	Thu,  2 May 2024 14:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hoqG6wE2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gl9hi2+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1441534F3;
-	Thu,  2 May 2024 14:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA05168AE3;
+	Thu,  2 May 2024 14:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714660501; cv=none; b=CYaPd1/5ZfEl6sxX7F8/21MSS2s6gFxQtz41RNe74lFGIuZabdJtDr4g8Ylc8GvdooD/135K3ow1+KEBhb4xG4g9hSE5M6FWgddBXuz1814KCPIlvNdbMOtfcq3oPFlq+QySabTiz9DrfPt1XW/MlxVbmt+gs3Vl1l4w67DrkS0=
+	t=1714661232; cv=none; b=RQ2xdqD+WThB9X5fjT1NyUfL6T13cuF05LWuIwxUN40WCqQB6ElRdggmwwjR0jJUbSPDjJqTGK+dwhCmyo2CQSaYVd5EPOphVF0VoZ5Nxda9JqKt0VJ6O1NSZFI/op6lVTb7yry6+8qT7YY8tCTp9HSr9ilVeK6lGm8PdpvP77Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714660501; c=relaxed/simple;
-	bh=az+H6CKJ3JtshNX3ivWDCWH1KSrZJLRxlg2naRmB0/8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OjGcW7zt/Ysqn2rwnV1VGxwJ6XYbKqBNHnqxwxR2F+KPojSrzJ/ZG4mqosdVp0tDtgIRIIKqWbLXSW/KlakL23ZrMWWm48aGffcIq54CaP7Q2iCXRBprBMCqdOmGA/I7K9JQiLuQbTFfZvg8xewSrlFaVWlmYDsGvARzN8JHa2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hoqG6wE2; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1714660499; x=1746196499;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=az+H6CKJ3JtshNX3ivWDCWH1KSrZJLRxlg2naRmB0/8=;
-  b=hoqG6wE2d2U2qFoMvn7xDYzY4YZ58ZQJbUhMP3MnXLJqPYNdKJX+oQRD
-   0fboPx+bWnbvyLbNNohuafcxGdVDEYwBGmMbEpdh9QjUZOLkPVlnkOAvN
-   ETQC6/nCYxhfhlgQt+Ctl8q6k7UJ5iOOyznnaivCF5LMM4iRQYujhD6J2
-   26+GYJ+ozsXnySo17uKcJ6o8jdM8JSe68kdP7Vji21cN8ZKf3w3Bkw6NE
-   PLQ5xkpyslfpul/W1lmWVdUVogMg8zzw4ZsbjczOdxzR3T36vZsmCtlA4
-   NOuTD6XXzeSOsHr1lWSwMLJsZ9Zn2YyPSeQjAxAMYxUDf5cOVwAGJk1OC
-   w==;
-X-CSE-ConnectionGUID: 6Y5bhyOoSXq5FFQlA0lIog==
-X-CSE-MsgGUID: bmojybWRRfSEIw4Ew2+m2g==
-X-IronPort-AV: E=Sophos;i="6.07,247,1708412400"; 
-   d="scan'208";a="23394532"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 May 2024 07:34:56 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 2 May 2024 07:34:55 -0700
-Received: from Lily.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Thu, 2 May 2024 07:34:53 -0700
-From: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-To: Mark Brown <broonie@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Conor Dooley
-	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
-	<valentina.fernandezalanis@microchip.com>, Prajna Rajendra Kumar
-	<prajna.rajendrakumar@microchip.com>
-Subject: [PATCH 3/3] spi: spi-microchip-core: Fix the number of chip selects supported
-Date: Thu, 2 May 2024 15:34:10 +0100
-Message-ID: <20240502143410.12629-4-prajna.rajendrakumar@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240502143410.12629-1-prajna.rajendrakumar@microchip.com>
-References: <20240502143410.12629-1-prajna.rajendrakumar@microchip.com>
+	s=arc-20240116; t=1714661232; c=relaxed/simple;
+	bh=y2u5f1oLItJctxgAjcS4FjLpG55+1RDUaMcyi4F1aXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VTFMa+ZWC7qHrWer6eNr4H+aTLWHnvYZ++q1blJDytKmM/BXfbV4s9iFNKniiWnPnt1aedBMvPzaTEd5TixeaDSEPFfhCKi6ZaUYvDRPZjFn8O+7As5wjmTV8J1IH4OIud0kFm/gXKJZ4Fctzqtbp5/q6DThILTN0yiyE9DzHAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gl9hi2+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82927C4AF52;
+	Thu,  2 May 2024 14:47:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714661232;
+	bh=y2u5f1oLItJctxgAjcS4FjLpG55+1RDUaMcyi4F1aXg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gl9hi2+ep47qhlCNVTn6ohOxbSroz6nK01LlIZBnI2QZ9ydzGObDkNdpG6MzQ7dKk
+	 taPz00sZSwMMla58IgruhJd2ka4duylPaHynYr18/gkWH1TW3Sf7NNdDNH9wTS15uM
+	 7ATFQcatEXiEp4K5FKQwH/scHIC29lm4uP1nKOxmgGrD57QHKQMhXLfY0CjY5GZSOC
+	 n4RReNUxq14RkXiPJTJAY00qp1/x+MB1W0g3n1CfCQIJRHimXsgPrljqrmvThRmCIM
+	 E4vrgduR50OxOizLbhgvaYH4eL/L10UXQuTWRx4/sSYp01l2H5Gcc5UBz3lerkRg/z
+	 Yh8B/E5njqp2w==
+Date: Thu, 2 May 2024 15:47:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: anx7625: Add a perporty to
+ change TDM setting
+Message-ID: <20240502-sheath-share-eac9afc24da9@spud>
+References: <20240502-anx-tdm-v1-0-894a9f634f44@chromium.org>
+ <20240502-anx-tdm-v1-1-894a9f634f44@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8/5nJfSkNtzWjt3N"
+Content-Disposition: inline
+In-Reply-To: <20240502-anx-tdm-v1-1-894a9f634f44@chromium.org>
 
-The SPI controller in PolarFire SoC has multiple chip selects, but only
-one is wired up in the MSS. Therefore, fix the driver to chose one
-chip select.
 
-Fixes: 9ac8d17694b6 ("spi: add support for microchip fpga spi controllers")
-Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
----
- drivers/spi/spi-microchip-core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--8/5nJfSkNtzWjt3N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/spi/spi-microchip-core.c b/drivers/spi/spi-microchip-core.c
-index 71886c27bca3..4289dfba9af5 100644
---- a/drivers/spi/spi-microchip-core.c
-+++ b/drivers/spi/spi-microchip-core.c
-@@ -21,7 +21,7 @@
- #include <linux/spi/spi.h>
- 
- #define MAX_LEN				(0xffff)
--#define MAX_CS				(8)
-+#define MAX_CS				(1)
- #define DEFAULT_FRAMESIZE		(8)
- #define FIFO_DEPTH			(32)
- #define CLK_GEN_MODE1_MAX		(255)
--- 
-2.25.1
+On Thu, May 02, 2024 at 09:03:31AM +0000, Hsin-Te Yuan wrote:
+> Add a perporty to indicate whether anx7625 should shift the first audio
+> data bit. The default TDM setting is to shift the first audio data bit.
+>=20
+> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+> ---
+>  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml          | =
+4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,an=
+x7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7=
+625.yaml
+> index a1ed1004651b9..915d5d54a2160 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.y=
+aml
+> @@ -82,6 +82,10 @@ properties:
+>      type: boolean
+>      description: let the driver enable audio HDMI codec function or not.
+> =20
+> +  no-shift-audio-data:
+> +    type: boolean
+> +    description: Disable the first audio data bit shift in the TDM setti=
+ngs.
 
+This just looks like software policy, since there's no mention in the
+commit message or description as to what property of the hardware causes
+this to be required. Can you please explain why this property is needed?
+
+You're also missing a vendor prefix.
+
+Thanks,
+Conor.
+
+> +
+>    aux-bus:
+>      $ref: /schemas/display/dp-aux-bus.yaml#
+> =20
+>=20
+> --=20
+> 2.45.0.rc1.225.g2a3ae87e7f-goog
+>=20
+
+--8/5nJfSkNtzWjt3N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjOnagAKCRB4tDGHoIJi
+0ln0AP9DyApFCoVvS4YZh4Z7BXzH/YTUbAbf7PTbHgDz4cGL9QEA+ljG5oEiafmA
+RaxNUDoXgKTJ7j2W3ct+VICnrpiK+AQ=
+=XNgZ
+-----END PGP SIGNATURE-----
+
+--8/5nJfSkNtzWjt3N--
 
