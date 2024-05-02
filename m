@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-64586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC97D8B9E82
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 18:25:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13FF58B9ED4
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 18:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD6821C23746
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:25:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E39D1C22442
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2024 16:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DAF15E5A2;
-	Thu,  2 May 2024 16:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D7215E7EA;
+	Thu,  2 May 2024 16:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WNXH3ChP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gTtXIYGT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E90615AADE;
-	Thu,  2 May 2024 16:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C1B664DB;
+	Thu,  2 May 2024 16:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714667110; cv=none; b=q5+9GEOpJC3djWM3CNGyqzPslQg2a6oRR17dfRKva/r9c2wkJbonrdYndfzxosDWgmxENPUQsw79n73q6ejcBdY8gjdvFvkWXQn5zSbNkEdETu+vk+W/LQKUNeV+q8+XLVyzMpJC2T9T7AUD046ioF1s7BQOJ9o2FiyqEqQhqjU=
+	t=1714668394; cv=none; b=rMF3LFVBOfuVZZwdLPSCHfQxENSIoloCSnCfLhIFe3Crw9KeGNkNAHbHL7J+jCLCXCzWdpvB/LgBcws37tfM8UgswBYi7k5+ycdtBFnfi3e2pmpL/op/qTCkalqSTjW3RADnc1VkzweN8F+NbkLIuCYxyNpMW+mBaWZ7rRS9tOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714667110; c=relaxed/simple;
-	bh=eVUU9My3Jrjs/UHQZgJr3z5gPt43bz69SadF6dklRZQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N0CmTk3+T2+oJLk+z+eQK8DM+qaZM6l6FLt2fGPgX8Qecq4QoUBwHHo7+owDBiBmjE/jaWJeu18FX1jrlSVshqLJaWGZuauJ8EfBCjx+nBV2azRGQRKAKuEyz0X6qJvBs6U+UyA+4oytrK1/01vBKbg5GPxv48bzW+QuDwbRTvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WNXH3ChP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CCB5C113CC;
-	Thu,  2 May 2024 16:25:08 +0000 (UTC)
+	s=arc-20240116; t=1714668394; c=relaxed/simple;
+	bh=yfNOr8I6emxbraWzqiLkTOoSxuGqpPV69lJpaOH6v8c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=iSsHQt2Dos3f82Po4gLYB0ZrAokOlVPFjy7ZEWUV42IKsg8rsYYbmohUINfST6GwVHFaOmAPeOonMd9+1BuYXN2B32scTIrO9ilOYaUGqtDOf8x5cku+KCjbZQd1LW+QIn9X4xgMGnWS2DnpHESjKM+qvapXT72/ujxNTArEAJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gTtXIYGT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1432C32789;
+	Thu,  2 May 2024 16:46:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714667110;
-	bh=eVUU9My3Jrjs/UHQZgJr3z5gPt43bz69SadF6dklRZQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WNXH3ChPi0Vwe6FxeKPmuAqK9AxeuX4anIvy5ODcU4kxdrgHftCjt8XEsxT5lQjkk
-	 T4+yj0txY0H3urWx5R5wJNFbVA/fq9Y1LWt8G/l4o0jGNqJzjWsM81qzZguxjfmAab
-	 1ZDFHiN1QsuS/4wN0zD2KjnW5GZB8Cz3uJa8Sh9xsY7p8bl3TAtXbb43gcqbwVOG6+
-	 7Sd65ReQrl9+vW668LRvM6GOfHVSvqFLtfRIQXge9SQwwW66V1x+LhZ8EEl+gJbMoh
-	 MTAeqe5W9yIOTTVzBSH/Q8TsVi1zIsYfxg92qTUc+05kGap3p2HDsQ1gKsikBYH2RC
-	 qCzJSXYnMKOJg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: microchip: add pac1934 power-monitor to icicle
-Date: Thu,  2 May 2024 17:24:55 +0100
-Message-ID: <20240502-wafer-landowner-fd8f7dc290f4@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240501-spearman-primary-17df3c21c770@spud>
-References: <20240501-spearman-primary-17df3c21c770@spud>
+	s=k20201202; t=1714668393;
+	bh=yfNOr8I6emxbraWzqiLkTOoSxuGqpPV69lJpaOH6v8c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=gTtXIYGTEKi5RC2zj8ImegHgCO11KS+7xoSX+9z38kPGxcuIwkRUjdWDaMQZdsCUm
+	 I9gJFCHszPoHDg2vP+SIsTO38XtC+vQwoX1lLzv5bNo7J4j7Reu6xPzd3j4RtWrgBp
+	 ub2XM1sv+uFQGrlBqnF1tO9TCW/DStYRwZSGL/DcHseeoICm2Ts/pY03SJl3vIHxZm
+	 uG8g+tvOIUugaRCAPAd69+Y6sXUG0RjtTG1Fpzx7+aMgjBLLG1NeE2PE8RrMp7LLD+
+	 HFpZR0yTDaa7SIoVf8+olQ+Ib5RavWVOB0D93JvUQwwJ5K7nvBYL6eD31kcCJCbIw/
+	 qNTOjUqbHKEBw==
+From: Lee Jones <lee@kernel.org>
+To: andersson@kernel.org, Herman van Hazendonk <github.com@herrie.org>
+Cc: benwolsieffer@gmail.com, chris.chapuis@gmail.com, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Satya Priya <quic_c_skakit@quicinc.com>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240415123038.1526386-1-github.com@herrie.org>
+References: <20240415123038.1526386-1-github.com@herrie.org>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: qcom: pm8xxx: Add pm8901
+ compatible
+Message-Id: <171466839064.1205357.5859595998076859143.b4-ty@kernel.org>
+Date: Thu, 02 May 2024 17:46:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,25 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=524; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=d0Yhjtp2Siagwln1k5fEq4fncaZ2UG0U07TBV/HvY+0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGnG+8KvB2zWNj4TtDW4QPOhgwBHqOAfuWltwQdnrb95o Gqv9YOejlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzknC/D/7jIh9VtmYz7v9jK FLSWLIjUPmf993Fj15eCpZMPfbumwcvw39e8KMdz+8WlcinrNs/Z0W3lEFUv+TZAdWZEwsZ5J30 UOAE=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-From: Conor Dooley <conor.dooley@microchip.com>
-
-On Wed, 01 May 2024 16:36:31 +0100, Conor Dooley wrote:
-> The binding for this landed in v6.9, add the description. In the
-> off-chance that there were people carrying local patches for this based
-> on the driver shipped on the Microchip website (or vendor kernel) both
-> the binding and sysfs filenames changed during upstreaming.
+On Mon, 15 Apr 2024 14:30:38 +0200, Herman van Hazendonk wrote:
+> Add missing compatible for the pm8901 model used in msm8660
+> such as (HP TouchPad (tenderloin).
 > 
 > 
 
-Applied to riscv-dt-for-next, thanks!
+Applied, thanks!
 
-[1/1] riscv: dts: microchip: add pac1934 power-monitor to icicle
-      https://git.kernel.org/conor/c/8fd63d81a760
+[1/1] dt-bindings: mfd: qcom: pm8xxx: Add pm8901 compatible
+      commit: cbb0241b40c4f2f27a2daf6fb09722d01a5c37ee
 
-Thanks,
-Conor.
+--
+Lee Jones [李琼斯]
+
 
