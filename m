@@ -1,367 +1,156 @@
-Return-Path: <devicetree+bounces-64637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E159A8BA4C6
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 03:04:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E73B8BA4DA
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 03:21:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9242F28487F
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:04:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D6E61F22E8E
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E939C138;
-	Fri,  3 May 2024 01:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnSEQHyT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43575CA7D;
+	Fri,  3 May 2024 01:20:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2097.outbound.protection.partner.outlook.cn [139.219.17.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182818F47;
-	Fri,  3 May 2024 01:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714698240; cv=none; b=NUoob3SoqVvLw88VJbcBtpocxJbnmtUri7yGD/QM/M/dNOsH9QktF4vi+4OmITXPU5xSOpAov56C9W278NYHenXGK3y0TeOwpGm4uNPbBTyT8QdnnVlecmq03L/o41CaWg0SjvfH3sATKXiG9NdWShpzL9cQ/CKqL+iv2d8mWZk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714698240; c=relaxed/simple;
-	bh=FGn9Nc/maQsdZyOrXW+2uXst/XbmpaxL7uMg4iUh4zU=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=Vfqf3ZUMA1kbax+oSQVWz3C9J42pDEuXb8grHz0pyC+mb+zYTtr6GY80ZNXeA0TGgpKC/8PJs4ijIUHen+3XwnQ6wbke+9PNFB2LB+yCGnh9PXqOGPuDl6SzjtPogs6DyGEwuPBaW/H7PLJWJxOMyPo3A3N7vnx4Hir2bEouH3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnSEQHyT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71828C113CC;
-	Fri,  3 May 2024 01:03:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714698239;
-	bh=FGn9Nc/maQsdZyOrXW+2uXst/XbmpaxL7uMg4iUh4zU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=AnSEQHyTTCGHh7q/8NojpB8iXu+pmFD3q8+Qt5iDoSxU44CaD9uP7HES+rqAfHtOj
-	 D+FGPt62oX9GyAGpLUoEwvJcndLS2sn8wqGwAT5A8OOxhsiWCPn5E82SWqQee/z7te
-	 15Fqb7S6RL5Kwyrths1IyL4Vkkmn6ku7y9sRQBf3rEj8AM/jUSOuNgwV8w7iwTS8l8
-	 /wMtvPmyBk0nc3ZGf2onYV3qeNKpRw/0uxJlLZC7N/2JhwAo56BKf/lRnC2TuLyfQY
-	 FDKjH+/W4XsZIPvpdsd/wS3Z9eU4QeifoPxi0bX4KsEtkuTttJFEGvL0SmvlnaeY5Y
-	 OxZQySt3ibrpw==
-Message-ID: <431171223433496db0a85072be5c83ba.sboyd@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53912A31;
+	Fri,  3 May 2024 01:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714699254; cv=fail; b=NU2BLf/VHT8ZjA2A0UEdYQLYIJF3l+mM8oLxM4BFhUKJBgrWkuBrfpUjq0hnRb/33K5kYpnZq+b9HhLc9ndJuMBAUrWfGLXiaZ1zqmNjuA4lEuVBqZWQhWdmpKclXHotZ9iWnawEW3G1J4ONdli8k3v1wNUNdJ9FJyfnyGjoU/g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714699254; c=relaxed/simple;
+	bh=msSzXoyUeddi2IcswFmc164OFAcDtPMX6sNhy3K7LDw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=s95aRxf9uCmmLb9dOFkOUhzchVbcw+BQ3je1xKXX2cZx0gqUuU031egehs/NHUvO17TDcMYMOsllrNsgTRqWwDEEQswbOLtM32OmC4Uzg2lOyLOx4l8Gq0auQsjlW89egwbgtnGcNrG0Zg5ijsU5WtuR/f7zn7pwBYIGkx9NuXc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c9qiiIeoKnMcjcsREWCkh1Z+RFnKlhn6VZMyEm70i2P6qaGRr3WyLxI0Sr/qwMxwxZlNwJDUevOIxi2eE1IscdrimCi+gpBzAIW+7RdUjfxRcLQtGmykiDjrsFku8kzkW9Gvys03eEJQXxx2DT/ve/ravIBeCCfhzyr714nUuU/ft15beZgjF7lp+4rfoHP87FQhH5cIPEUAm4Se8jUVRq2oV66COfexmwuE6gC1anJCGDR/KgzruDa12kSTdyJH2qliw5EGPWQTMsNQGRTtcVRosJJJzaCg3qLJm1TljoPMpaiy8AXpIsi9d7/5AJdIsPFyMwaBuT57k84GyF49Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=msSzXoyUeddi2IcswFmc164OFAcDtPMX6sNhy3K7LDw=;
+ b=ce8F+8QY3owuA9DZM1hxJ2LGly8jFA9U904FBhonrn5QgVD/hrpGs5YhzfWeAseDCd9dDMOo1ZQztEIBwBAN/z3+41aZusu8x5Z71jB3lzhF0SZEa4ge7cVfmy0TjM5ENp6w0MgDhMo3WMRB+vIfXwuIDH64NT0VtGqTSmwKD7CiHSFsRcZ6xkLb0sidSPF8JGMYd4gxaqWFI/i17MDHN710gqbCVLL5K/Bm3xaaf2md+smM93xURtqXY5svwjBDUYXd2/zFi2zH0sg4a9NSSsul2GqWPnjVyg+jKp6NcLRPVsHJSj7Mx2jRcoZ1lNMv0A9RLWme4rwINhf+V0hA0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::9) by ZQ4PR01MB1283.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:15::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Fri, 3 May
+ 2024 01:20:46 +0000
+Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+ ([fe80::301e:ec80:4356:8b14]) by
+ ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn ([fe80::301e:ec80:4356:8b14%6])
+ with mapi id 15.20.7472.044; Fri, 3 May 2024 01:20:46 +0000
+From: JiSheng Teoh <jisheng.teoh@starfivetech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>, Lars-Peter Clausen <lars@metafoo.de>
+CC: Leyfoon Tan <leyfoon.tan@starfivetech.com>, "linux-spi@vger.kernel.org"
+	<linux-spi@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, EngLee Teh <englee.teh@starfivetech.com>
+Subject: RE: [PATCH v2 1/2] spi: spi-cadence: Add optional reset control
+ support
+Thread-Topic: [PATCH v2 1/2] spi: spi-cadence: Add optional reset control
+ support
+Thread-Index: AQHanH5HH1BLD8AfE0SAO/KorZoVM7GD/biAgAC4nbA=
+Date: Fri, 3 May 2024 01:20:46 +0000
+Message-ID:
+ <ZQ4PR01MB11549D971962995878D9593EEB1FA@ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn>
+References: <20240502104800.3030486-1-jisheng.teoh@starfivetech.com>
+ <20240502104800.3030486-2-jisheng.teoh@starfivetech.com>
+ <b0c9aa87-ae84-4979-b26b-8fd0579c5f08@kernel.org>
+In-Reply-To: <b0c9aa87-ae84-4979-b26b-8fd0579c5f08@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ4PR01MB1154:EE_|ZQ4PR01MB1283:EE_
+x-ms-office365-filtering-correlation-id: 19c93834-b7a0-4963-4533-08dc6b0f4258
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ bgY5ZfrQrH7Dy57hf318f8eu0QWdA0cFFu2alahbnIw6YcEOMfvjwVXKYcglr2j/GPA3TOPTqoCxxsMSg1QsStzSzRi4fA/MMZ2w3u84buC7CQUL6x0KgtYBP7sPwFS0JTBrmCK4XJzM2/bje85H6X1mq+jml+Eig1ssHELqpvtVz/Jd5JY0kxYuXTPdaAgUOKu31hg5NJDS8rQekC7aRDHSbVH9oKSpY7lpXUJkUGeuQ75GwA7JzJI2AoTFP1lTB3/9gecpa4ZEMy5BWJZqo1DoCOcxgSaE4Y2XjHDTwwclUlvhkuA25NFz2XhmXkMDI6Nj/ZvUYtLj3hJuAh0bA0qrZ+cvz2ButITY6igFgMlNTUQ/37NDxUaVLVqTuZgs/DFpr7k43niJRYo6bR151iVlgqyzOff5gTWkLr9t9OklJjUQM221Vb8nSxMBiAgwSHTDFVgE48my8euckdpxyqMIJXeJmIeA9R3ToYNC4VoNSziLhR1N5UxUpq1gWDw8fx0buzSkxhwrDjyGflwDoqGc2hQUzt03cG1jZ7wYm2sG73iXyKmnRBOt9uZLV+OvTJRaU1YmKKTu8L/cYQ7/4WRFe3EVkxfEpjhRvqOwceLRBF8S6E0ZOKkLuN2zZIOC
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(1800799015)(7416005)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?U2xOTm15WnRiK1BHb1FuYnFId29PNE1JUGxoLzBHLzZFN29QOUdtNzdlem9z?=
+ =?utf-8?B?WXovZEk3SHZNTzQzc1RtbmxvckU5ekloR3pBclFqL3B4WnJnQUU3NTVUOWFo?=
+ =?utf-8?B?REtuWTVnOHF4TVR2bm1kc1piSUpKdEtZeTN4bWFRc2pGbnFncTE2aCtnVUh1?=
+ =?utf-8?B?K1BVS1JaczdmNHhBU29mbDFSckY2TnBwN2N3eWluSGpwSUhZL1NOVFd3UkFC?=
+ =?utf-8?B?em9GdksraGk4UEtBdWM3dnJZQnJhZU1PMkpjbzRpN2tob1VXamRMdGpLMnd1?=
+ =?utf-8?B?TGdYb3RZQ0hWaEY0Umg5cnZRTzJWWXRQSWhIWHgyVzR3STF1NXppUWliY0FY?=
+ =?utf-8?B?REVEdGxINGY0QnVwYTFZOXVoYnBVSUVidzFHbWlWZHRPRkQ5eEJZUjF6Q2t0?=
+ =?utf-8?B?RlV3R2VSb3pBNFJJTFJ5VHR2UndIakNwMXRNMUl6Um5oV2I4RWpYalN1NkNt?=
+ =?utf-8?B?MU1tYVBZN2ZsQTVqbWdKZVFqSkRYbUxhY2R2VzFlUU5zNDhCQlVzeEluRGxE?=
+ =?utf-8?B?RklJaU83K05WV1d6UVBDR1dmQzRpcWFCZFlCc25xUHowUWdpUkR2M3RyNi9n?=
+ =?utf-8?B?Qlg0NStXSTdYZGRuNHErWTdKdTdnS0toMXRSMXAzZDNBcmErVHQ2MDFmMlFG?=
+ =?utf-8?B?WVVRajBteitRNEZKczlPT3M3TG9BQlloNU1ZM2NDc2w5NUVIelpMZkRPM2FH?=
+ =?utf-8?B?ejdJVmxDaFlMdTVkNm5JVW1MMm9MVTlUZFVVQ2h0RUJsUExVQnFiUGdWc3B5?=
+ =?utf-8?B?dHBhN3B6RW5BdEVSM1phN2xBc3R4MTl5d296OTRnT0ZtUmtWcUZUMDh4Unlh?=
+ =?utf-8?B?UlhucDJBOXJicVQ5VjQyTjlleVA5blhIckY3T1RRN0VwRXlTaDJCV0x2b3hh?=
+ =?utf-8?B?ZGNBRU9ZZ2d2Q29NaytXYnRGaWZOU0xtU2FLeXdVeUlWSEM1Z2FFOFdMMWN5?=
+ =?utf-8?B?K2hoclZsZVIzbTF5YlNUL2g2V0xHTU8yMWt2VmlhVWlvanlMbDE2bDg3WWpw?=
+ =?utf-8?B?VTJNVzAyZDN0V1ZRbGczNFBCaUJIdElsV0FrTmRiQnpKdU5OVDljRWNKVU1r?=
+ =?utf-8?B?dlYrdVFoNmMrRlVLSmhrZll2dVZWWERxUmhFRTNHbU1CL3dGMGRpR2d6M25K?=
+ =?utf-8?B?SllSUHEzU1VOaGIvWVhsL3AvdUJPbS9RRmdTdTdCV09sSFREOE91MDlWWHJP?=
+ =?utf-8?B?Q3J1ZmNFUmtSVWR0eGVjNlBVdEZPcjdBSEZhdlIrbExSQjVzYk9hVzZBNXlJ?=
+ =?utf-8?B?elhpRTFVbVFpYlVMUWZ4NEloRzJBM0MwclRrQnV0TVY4YmE3WjB0UmkzdG52?=
+ =?utf-8?B?b2VjOFFGdkg1cGNzN2U1anZoMXVVSzIyUThWMlVGeE0xUDd5MmVCdEdPWGZo?=
+ =?utf-8?B?VHgvbHllRXVpbURWWDk1K0VJQTdYaFVraG5FSU9kZkdvQXlZZ2lXMTkvblA2?=
+ =?utf-8?B?b2pVcUpQTVBHNkJIQXVxQWFDTW15Z2hKSFMya1kzUnNFYW80clNNNE5DWFIr?=
+ =?utf-8?B?WUJsYTh1dkViVEo1ZHNlLzI3MHh6eWpDc0I1QnVRQmtNTDRBZUdYYTZlK2lM?=
+ =?utf-8?B?dnVKbkFhREcwS25yNGZRNU4wOGx1bFEwem11b1JNZTl1OW9OVWM3UnhQc1pk?=
+ =?utf-8?B?L3ZDZ3lKY29BSGxXcnQ0RngzR05LaWp3SXhZZ3ZTZ3VwT1dkTjBONDl0aGlr?=
+ =?utf-8?B?Vjh1SVozejBSdmVYL25aT0RuTW94TW9Ydnp5NnFPVjliZmJPYjYxOFhmSitx?=
+ =?utf-8?B?ekxYRE9NUTlZTWc5andvbGpMWTRaRkdHTVVndFlrYlA4T1hHSHRneWRBWmxn?=
+ =?utf-8?B?cGt0TXE2VW54elFhb2M4VDJRYk8yTEVBb2lCcWI0SkdOWmZLVzV3QWdMVDJJ?=
+ =?utf-8?B?K1RWMlN1OExqM1FlWDBBN0V1L3EwbEJRcDJLbkNHM3ZJUzNaK0RFUDh4WlRt?=
+ =?utf-8?B?a2NuT3VoWnNzbEZKa3BiRWc5TERMUi8zaG1SLzI3Skh2Yk83Z1FVT0lJZlVv?=
+ =?utf-8?B?N04yMmliallRM1JPc2JlZ0dqeW9KZ25xN0l1anFteE9HOHJFSlpwMmF1SGVD?=
+ =?utf-8?B?b3gxWVE5Um92TzlLbXFIcEIxR3hxTm10aW1pdnFhWlFaSExSMVRmV1BZYmVi?=
+ =?utf-8?B?TkdMRG1keDRQbW1aSTJqQWlnM2lmQzRlOE53dk5jNzJPTm15NVhWVXhnS2pG?=
+ =?utf-8?B?T2c9PQ==?=
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CABVgOSk=jGzj55v+YWzOBCsG7Wdk68pyZr0VdAYftybv+5X67A@mail.gmail.com>
-References: <20240422232404.213174-1-sboyd@kernel.org> <20240422232404.213174-6-sboyd@kernel.org> <CABVgOSk=jGzj55v+YWzOBCsG7Wdk68pyZr0VdAYftybv+5X67A@mail.gmail.com>
-Subject: Re: [PATCH v4 05/10] platform: Add test managed platform_device/driver APIs
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
-To: David Gow <davidgow@google.com>
-Date: Thu, 02 May 2024 18:03:57 -0700
-User-Agent: alot/0.10
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19c93834-b7a0-4963-4533-08dc6b0f4258
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2024 01:20:46.1037
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: S3N/tpM9j/FK/Ox2rv+7Zp9Asq+qTjoM3SSQxHk41goMgROdiMB7vAl2PCHy0yd2ybC+Y0gVwrIv4Z0Iw0/dK6OS/y/XWmF1FrHAxdC4m+Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1283
 
-Quoting David Gow (2024-05-01 00:55:46)
-> On Tue, 23 Apr 2024 at 07:24, Stephen Boyd <sboyd@kernel.org> wrote:
-> > diff --git a/Documentation/dev-tools/kunit/api/platformdevice.rst b/Doc=
-umentation/dev-tools/kunit/api/platformdevice.rst
-> > new file mode 100644
-> > index 000000000000..b228fb6558c2
-> > --- /dev/null
-> > +++ b/Documentation/dev-tools/kunit/api/platformdevice.rst
-> > @@ -0,0 +1,10 @@
-> > +.. SPDX-License-Identifier: GPL-2.0
-> > +
-> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > +Platform Device API
-> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > +
-> > +The KUnit platform device API is used to test platform devices.
-> > +
-> > +.. kernel-doc:: drivers/base/test/platform_kunit.c
-> > +   :export:
-> > diff --git a/drivers/base/test/Makefile b/drivers/base/test/Makefile
-> > index e321dfc7e922..740aef267fbe 100644
-> > --- a/drivers/base/test/Makefile
-> > +++ b/drivers/base/test/Makefile
-> > @@ -1,8 +1,11 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> >  obj-$(CONFIG_TEST_ASYNC_DRIVER_PROBE)  +=3D test_async_driver_probe.o
-> >
-> > +obj-$(CONFIG_KUNIT) +=3D platform_kunit.o
-> > +
->=20
-> Do we want this to be part of the kunit.ko module (and hence,
-> probably, under lib/kunit), or to keep this as a separate module.
-> I'm tempted, personally, to treat this as a part of KUnit, and have it
-> be part of the same module. There are a couple of reasons for this:
-> - It's nice to have CONFIG_KUNIT produce only one module. If we want
-> this to be separate, I'd be tempted to put it behind its own kconfig
-> entry.
-> - The name platform_kunit.ko suggests (to me, at least) that this is
-> the test for platform devices, not the implementation of the helper.
-
-I was following *_kunit as "helpers" and *_test as the test. Only
-loosely based on the documentation that mentions to use _test or _kunit
-for test files. Maybe it should have _kunit_helpers postfix?
-
-Following the single module design should I merge the tests for this
-code into kunit-test.c? And do the same sort of thing for clk helpers?
-That sounds like it won't scale very well if everything is in one module.
-
-Shouldn't the wrapper code for subsystems live in those subsystems like
-drm_kunit_helpers.c does? Maybe the struct device kunit wrappers should
-be moved out to drivers/base/? lib/kunit can stay focused on providing
-pure kunit code then.
-
->=20
-> I probably can be persuaded otherwise if you've got a strong
-> preference for it to stay as-is, though.
->=20
-> > diff --git a/drivers/base/test/platform_kunit.c b/drivers/base/test/pla=
-tform_kunit.c
-> > new file mode 100644
-> > index 000000000000..54af6db2a6d8
-> > --- /dev/null
-> > +++ b/drivers/base/test/platform_kunit.c
-> > @@ -0,0 +1,174 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Test managed platform driver
-> > + */
-> > +
-> > +#include <linux/device/driver.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include <kunit/platform_device.h>
-> > +#include <kunit/resource.h>
-> > +
-> > +/**
-> > + * platform_device_alloc_kunit() - Allocate a KUnit test managed platf=
-orm device
-> > + * @test: test context
-> > + * @name: device name of platform device to alloc
-> > + * @id: identifier of platform device to alloc.
-> > + *
-> > + * Allocate a test managed platform device. The device is put when the=
- test completes.
-> > + *
-> > + * Return: Allocated platform device on success, NULL on failure.
-> > + */
-> > +struct platform_device *
-> > +platform_device_alloc_kunit(struct kunit *test, const char *name, int =
-id)
->=20
-> I'd prefer, personally, this be named something like
-> kunit_platform_device_alloc(), to match the existing
-> kunit_device_register() functions.
->=20
->=20
-> > +{
-> > +       struct platform_device *pdev;
-> > +
-> > +       pdev =3D platform_device_alloc(name, id);
-> > +       if (!pdev)
-> > +               return NULL;
-> > +
-> > +       if (kunit_add_action_or_reset(test, (kunit_action_t *)&platform=
-_device_put, pdev))
->=20
-> Alas, casting function pointers to kunit_action_t* breaks CFI. It's
-> worth using a wrapper, which can be created with the
-> KUNIT_DEFINE_ACTION_WRAPPER() macro, e.g.
->=20
-> KUNIT_DEFINE_ACTION_WRAPPER(platform_device_put_wrapper,
-> platform_device_put, struct platform_device *);
-
-Thanks. I missed that.
-
->=20
-> > +               return NULL;
-> > +
-> > +       return pdev;
-> > +}
-> > +EXPORT_SYMBOL_GPL(platform_device_alloc_kunit);
-> > +
-> > +static void platform_device_add_kunit_exit(struct kunit_resource *res)
-> > +{
-> > +       struct platform_device *pdev =3D res->data;
-> > +
-> > +       platform_device_unregister(pdev);
-> > +}
-> > +
-> > +static bool
-> > +platform_device_alloc_kunit_match(struct kunit *test,
-> > +                                 struct kunit_resource *res, void *mat=
-ch_data)
-> > +{
-> > +       struct platform_device *pdev =3D match_data;
-> > +
-> > +       return res->data =3D=3D pdev;
-> > +}
-> > +
-> > +/**
-> > + * platform_device_add_kunit() - Register a KUnit test managed platfor=
-m device
-> > + * @test: test context
-> > + * @pdev: platform device to add
-> > + *
-> > + * Register a test managed platform device. The device is unregistered=
- when the
-> > + * test completes.
-> > + *
-> > + * Return: 0 on success, negative errno on failure.
-> > + */
-> > +int platform_device_add_kunit(struct kunit *test, struct platform_devi=
-ce *pdev)
->=20
-> As above, I'd lean towards naming this kunit_platform_device_add() for
-> consistency with the other KUnit device helpers.
->=20
-> > +{
-> > +       struct kunit_resource *res;
-> > +       int ret;
-> > +
-> > +       ret =3D platform_device_add(pdev);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       res =3D kunit_find_resource(test, platform_device_alloc_kunit_m=
-atch, pdev);
-> > +       if (res) {
-> > +               /*
-> > +                * Transfer the reference count of the platform device =
-if it was
-> > +                * allocated with platform_device_alloc_kunit(). In tha=
-t case,
-> > +                * calling platform_device_put() leads to reference cou=
-nt
-> > +                * underflow because platform_device_unregister() does =
-it for
-> > +                * us and we call platform_device_unregister() from
-> > +                * platform_device_add_kunit_exit().
-> > +                *
-> > +                * Usually callers transfer the refcount from
-> > +                * platform_device_alloc() to platform_device_add() and=
- simply
-> > +                * call platform_device_unregister() when done, but wit=
-h kunit
-> > +                * we have to keep this straight by redirecting the free
-> > +                * routine for the resource.
-> > +                */
-> > +               res->free =3D platform_device_add_kunit_exit;
-> > +               kunit_put_resource(res);
-> > +       } else if (kunit_add_action_or_reset(test,
-> > +                                            (kunit_action_t *)&platfor=
-m_device_unregister,
-> > +                                            pdev)) {
->=20
-> Nit: We don't want to cast directly to kunit_action_t *, as that
-> breaks CFI. Can we use KUNIT_DEFINE_ACTION_WRAPPER()?
->=20
-> > +               return -ENOMEM;
->=20
-> Nit: This is fine, as kunit_add_action_or_reset() only returns 0 or
-> -ENOMEM at the moment, but it could cause problems down the line if we
-> ever want to return a different error. I don't think that's
-> particularly likely, but it might be nicer to properly propagate the
-> error.
-
-I will propagate the return value.
-
->=20
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(platform_device_add_kunit);
-> > +
-> > +/**
-> > + * platform_driver_register_kunit() - Register a KUnit test managed pl=
-atform driver
-> > + * @test: test context
-> > + * @drv: platform driver to register
-> > + *
-> > + * Register a test managed platform driver. This allows callers to emb=
-ed the
-> > + * @drv in a container structure and use container_of() in the probe f=
-unction
-> > + * to pass information to KUnit tests. It can be assumed that the driv=
-er has
-> > + * probed when this function returns.
-> > + *
-> > + * Example
-> > + *
-> > + * .. code-block:: c
-> > + *
-> > + *     struct kunit_test_context {
-> > + *             struct platform_driver pdrv;
-> > + *             const char *data;
-> > + *     };
-> > + *
-> > + *     static inline struct kunit_test_context *
-> > + *     to_test_context(struct platform_device *pdev)
-> > + *     {
-> > + *             return container_of(to_platform_driver(pdev->dev.driver=
-),
-> > + *                                 struct kunit_test_context,
-> > + *                                 pdrv);
-> > + *     }
-> > + *
-> > + *     static int kunit_platform_driver_probe(struct platform_device *=
-pdev)
-> > + *     {
-> > + *             struct kunit_test_context *ctx;
-> > + *
-> > + *             ctx =3D to_test_context(pdev);
-> > + *             ctx->data =3D "test data";
-> > + *
-> > + *             return 0;
-> > + *     }
-> > + *
-> > + *     static void kunit_platform_driver_test(struct kunit *test)
-> > + *     {
-> > + *             struct kunit_test_context *ctx;
-> > + *
-> > + *             ctx =3D kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-> > + *             KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
-> > + *
-> > + *             ctx->pdrv.probe =3D kunit_platform_driver_probe;
-> > + *             ctx->pdrv.driver.name =3D "kunit-platform";
-> > + *             ctx->pdrv.driver.owner =3D THIS_MODULE;
-> > + *
-> > + *             KUNIT_EXPECT_EQ(test, 0, platform_driver_register_kunit=
-(test, &ctx->pdrv));
-> > + *             KUNIT_EXPECT_STREQ(test, ctx->data, "test data");
-> > + *     }
-> > + *
-> > + * Return: 0 on success, negative errno on failure.
-> > + */
-> > +int platform_driver_register_kunit(struct kunit *test,
-> > +                                  struct platform_driver *drv)
->=20
-> As above, I'd prefer kunit_platform_driver_register()
->=20
-> > +{
-> > +       int ret;
-> > +
-> > +       ret =3D platform_driver_register(drv);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       /*
-> > +        * Wait for the driver to probe (or at least flush out of the d=
-eferred
-> > +        * workqueue)
-> > +        */
-> > +       wait_for_device_probe();
->=20
-> Personally, I don't mind if this wrapper waits here (even if it makes
-> it less of a 'pure' wrapper), so long as we document it. Can you think
-> of any cases where we explicitly want _not_ to wait in a test?
->=20
-
-I don't like it because it's not deterministic. The function doesn't
-take any struct device to wait for. I've already written the code to use
-a completion, and it works well enough so I'll just do that. Then we
-don't have to worry if this API goes away, or that it doesn't actually
-determine if the driver has probed the device.
+PiBPbiAwMi8wNS8yMDI0IDEyOjQ3LCBKaSBTaGVuZyBUZW9oIHdyb3RlOg0KPiA+DQo+ID4gIC8q
+IE1hY3JvcyBmb3IgdGhlIFNQSSBjb250cm9sbGVyIHJlYWQvd3JpdGUgKi8gQEAgLTU4OCw2ICs1
+OTEsMTYgQEANCj4gPiBzdGF0aWMgaW50IGNkbnNfc3BpX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9k
+ZXZpY2UgKnBkZXYpDQo+ID4gIAkJZ290byByZW1vdmVfY3RscjsNCj4gPiAgCX0NCj4gPg0KPiA+
+ICsJeHNwaS0+cnN0YyA9IGRldm1fcmVzZXRfY29udHJvbF9nZXRfb3B0aW9uYWxfZXhjbHVzaXZl
+KCZwZGV2LT5kZXYsICJzcGkiKTsNCj4gPiArCWlmIChJU19FUlIoeHNwaS0+cnN0YykpIHsNCj4g
+PiArCQlyZXQgPSBQVFJfRVJSKHhzcGktPnJzdGMpOw0KPiA+ICsJCWRldl9lcnIoJnBkZXYtPmRl
+diwgIkNhbm5vdCBnZXQgU1BJIHJlc2V0LlxuIik7DQo+IA0KPiBQbGVhc2Ugc3dpdGNoIHRvOg0K
+PiByZXQgPSBkZXZfZXJyX3Byb2JlKCkNCg0KT2ssIHdpbGwgc3dpdGNoIHRvIHRoYXQuIFRoYW5r
+cy4NCg==
 
