@@ -1,128 +1,152 @@
-Return-Path: <devicetree+bounces-64773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC868BADAD
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:24:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF618BADB5
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E4821F21436
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:24:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E3B51C22244
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74D615357D;
-	Fri,  3 May 2024 13:24:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB4915358C;
+	Fri,  3 May 2024 13:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YAAMtZka"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QohNH+5A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFAB214A0AB;
-	Fri,  3 May 2024 13:24:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E14C621A06;
+	Fri,  3 May 2024 13:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714742679; cv=none; b=k091JboE2Vb3n8XBVgmblCSeOngc7ZodygozSmFpe7zqiI4pzbK1Zieg0QYnN9fQCQNErqAGkmbKNeKrGXCtmXTqLp3umeTMIQQbxgi0LT4/cEJdSxD8SQjbo4g0jPe2qaKHK1AluiEoghY3p9aov7yzj6OoIvF9Bcet11OQMtg=
+	t=1714742787; cv=none; b=YYI5IsfDV7zy3B+Tp/zGXLMJUvxPmmQ44tGCzMjS2phYYfmg6uZuraoMB3EzhEKdWWJNPYc4lkPez6etC8gbmISBuXa0R0xMnS4my7Gaj+kD+9eIKn489AsUZhC+xF66RZbnP7QkO//KRMr1WjqROoI/I0Bfr99315hERB0E+QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714742679; c=relaxed/simple;
-	bh=vBejc4y26BCn3jsVAONmf4WH+VOYO6P0hxMPw087VT0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lYx2TDEtQY8sUMvqFdEopnalYPdKcn108xnVJAIH5liLUGwJAaygdmrpiBc/IL1kxJuJQscwzFFZ24hBtCSQG6sabKMfcrHPNajCkJE2jF87vEQRBS8WeAJEgPLzy6k7XfBfDyi+/aBiUUQ84DdjXvlVq5iLM2CcdrE7kLFELi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YAAMtZka; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1172FC116B1;
-	Fri,  3 May 2024 13:24:38 +0000 (UTC)
+	s=arc-20240116; t=1714742787; c=relaxed/simple;
+	bh=FzJmLJEAfWbfxoDrGzOyw0EXb6lj4tCCnC3PFnqsC+8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ULAItGzEw8a+4zx5lvDr5VYl/gpBe0IUGA6o4+rvuHXao21MhNzk8ZMAqj/Z5ub1KA8uATgP3vewhsmEpmdaIQpTu4mr5eBFEZOg0llAxJXulqvfl3BHuNqytR3ItatYnx4ARtJz+2UT7tMKYibMgWSq4BHmZWzdGeAg2AUbO58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QohNH+5A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33CA4C116B1;
+	Fri,  3 May 2024 13:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714742679;
-	bh=vBejc4y26BCn3jsVAONmf4WH+VOYO6P0hxMPw087VT0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YAAMtZkaKaPmLIMMrzKy1xRAU9cA+SRW0uBiMhQw8xje/Yr3ZK0z7KC0jht54W2JL
-	 XZC8RfTVVrk3/1JMgs3RPDVIwmFEo5YTKI0iBMIng6dAPFXO7Icv3gjqDV19ewqjPa
-	 PVaF5CcsBVvmhf7pxREDdCvFGAMWTTaGc0/PBXx4EP3k3ksP53vOt0ejW5+ZXBjKIF
-	 wxkBbAHveeNqepoBEzwvbHRkX9GSrnZaufLn0d0e18xsNnWhVjKvdXYKAfn50xqbZD
-	 FdkPm770QijZ6/pRNvnar5RYKZ1/LEzhsRUlm3xoIfBdWufXjyY+iybWdgwHuVjAeQ
-	 Y0Rkk35uiMRiA==
-Date: Fri, 3 May 2024 08:24:38 -0500
-From: Rob Herring <robh@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] arm64: dts: add description for solidrun cn9131
- solidwan board
-Message-ID: <20240503132438.GA460984-robh@kernel.org>
-References: <20240502-cn9130-som-v4-0-0a2e2f1c70d8@solid-run.com>
- <20240502-cn9130-som-v4-4-0a2e2f1c70d8@solid-run.com>
- <d72c7637-e59f-4104-93e9-6faab2da0836@solid-run.com>
+	s=k20201202; t=1714742786;
+	bh=FzJmLJEAfWbfxoDrGzOyw0EXb6lj4tCCnC3PFnqsC+8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=QohNH+5ACzoqeSQBk3VonpvWlJw8iyUIYzpZ+b2IrA5H7UkLmHu7+eMluTFHH4Xl+
+	 8nzyy4Z/u9inj0mdTpo5579ZQpvuOi4Jwy7rOmlKH5N+6Tz4P9O0nJ+DhwpX2rozjG
+	 gh1tbgOZHDqCqFniDir6nvtaaKSF04vlALRjofWeRBREG+iWs9teyZy8/gg7SYHmSf
+	 Xr/oZhE41aeiawkv3kqXWky5oQwpTX1s4W6u75Ckr6BPKa8go5a7QEB/vcx30UXzLH
+	 2QB0iizPbib7MR7lC5WFD9HMFl/+ccspoIF2iDD5rlr3oMpprpbCJPaxRgXxOqQc4k
+	 IWTbcqgzj2OTQ==
+Date: Fri, 03 May 2024 08:26:25 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d72c7637-e59f-4104-93e9-6faab2da0836@solid-run.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev, 
+ Conor Dooley <conor.dooley@microchip.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240503-imx95-dts-v3-v4-0-535ddc2bde73@nxp.com>
+References: <20240503-imx95-dts-v3-v4-0-535ddc2bde73@nxp.com>
+Message-Id: <171474271031.624119.6280624703185299261.robh@kernel.org>
+Subject: Re: [PATCH v4 0/3] arm64: dts: add i.MX95 and EVK board
 
-On Thu, May 02, 2024 at 05:35:44PM +0000, Josua Mayer wrote:
-> Am 02.05.24 um 14:32 schrieb Josua Mayer:
-> > Add description for the SolidRun CN9131 SolidWAN, based on CN9130 SoM
-> > with an extra communication  processor on the carrier board.
-> >
-> > This board differentiates itself from CN9130 Clearfog by providing
-> > additional SoC native network interfaces and pci buses:
-> > 2x 10Gbps SFP+
-> > 4x 1Gbps RJ45
-> > 1x miniPCI-E
-> > 1x m.2 b-key with sata, usb-2.0 and usb-3.0
-> > 1x m.2 m-key with pcie and usb-2.0
-> > 1x m.2 b-key with pcie, usb-2.0, usb-3.0 and 2x sim slots
-> > 1x mpcie with pcie only
-> > 2x type-a usb-2.0/3.0
-> >
-> > Signed-off-by: Josua Mayer <josua@solid-run.com>
-> > ---
-> >  arch/arm64/boot/dts/marvell/Makefile               |   1 +
-> >  arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 643 +++++++++++++++++++++
-> >  2 files changed, 644 insertions(+)
-> >
-> cut
-> > +	/* Type-A port on J53 */
-> > +	reg_usb_a_vbus0: regulator-usb-a-vbus0 {
-> > +		compatible = "regulator-fixed";
-> > +		pinctrl-0 = <&cp0_reg_usb_a_vbus0_pins>;
-> > +		pinctrl-names = "default";
-> > +		regulator-name = "vbus0";
-> > +		regulator-min-microvolt = <5000000>;
-> > +		regulator-max-microvolt = <5000000>;
-> > +		regulator-oc-protection-microamp = <1000000>;
+
+On Fri, 03 May 2024 09:37:10 +0800, Peng Fan (OSS) wrote:
+> Add a minimal i.MX95 dtsi and EVK board dts.
+> i.MX95 has a M33 running SCMI firmware, but as of now, the scmi pinctrl
+> driver still not ready for i.MX95, so we count on bootloader to
+> configure the pinctrl for lpuart and sdhc and it boots well. After pinctrl
+> driver ready, we could move to use scmi pinctrl.
 > 
-> Is it correct to specify over-current protection for a 
-> regulator-fixed? It causes kernel messages:
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+> Changes in v4:
+> - Sort nodes by address
+> - Drop coresight nodes
+> - Align clock rates for SDHC1-3
+> - Drop wdog3 board specific property
+> - Link to v3: https://lore.kernel.org/r/20240428-imx95-dts-v3-v3-0-765395f88b9f@nxp.com
 > 
-> [ 7.988337] vbus0: IC does not support requested over-current limits 
-> [ 7.994756] vbus0: IC does not support requested over voltage limits 
-> [ 7.998796] vbus1: IC does not support requested over-current limits
-> ...
-
-Seems like you have your answer...
-
->
-> The reason I put the property was that the 1A limit is a property of 
-> the regulator component (NCP380-1.0A). Maybe that is the wrong property?
+> Changes in v3:
+> - Drop irqsteer node because binding not accepted
+> - Pass dtbs_check
+> - Link to v2: https://lore.kernel.org/r/20240226-imx95-dts-v2-0-00e36637b07e@nxp.com
 > 
-> It also generates an interrupt for which I found no suitable description.
+> Changes in v2:
+> - Addressed Rob and Krzysztof's comments, and fix dts_check issue
+>   To pass the dtbs_check, need apply:
+>   https://lore.kernel.org/all/20240226070910.3379108-1-peng.fan@oss.nxp.com/
+>   https://lore.kernel.org/all/20240226130243.3820915-1-peng.fan@oss.nxp.com/
+>   https://lore.kernel.org/all/20240226130516.3821803-1-peng.fan@oss.nxp.com/
+>   https://lore.kernel.org/all/20240226130826.3824251-1-peng.fan@oss.nxp.com/
+>   https://lore.kernel.org/all/20240219-imx-mailbox-v8-1-75535a87794e@nxp.com/
+> 
+> - Link to v1: https://lore.kernel.org/r/20240218-imx95-dts-v1-0-2959f89f2018@nxp.com
+> 
+> ---
+> Peng Fan (3):
+>       dt-bindings: arm: fsl: add i.MX95 19x19 EVK board
+>       arm64: dts: freescale: add i.MX95 basic dtsi
+>       arm64: dts: freescale: add i.MX95 19x19 EVK minimal board dts
+> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml    |    6 +
+>  arch/arm64/boot/dts/freescale/Makefile            |    1 +
+>  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts |  112 +++
+>  arch/arm64/boot/dts/freescale/imx95-clock.h       |  187 ++++
+>  arch/arm64/boot/dts/freescale/imx95-power.h       |   55 ++
+>  arch/arm64/boot/dts/freescale/imx95.dtsi          | 1049 +++++++++++++++++++++
+>  6 files changed, 1410 insertions(+)
+> ---
+> base-commit: bb7a2467e6beef44a80a17d45ebf2931e7631083
+> change-id: 20240428-imx95-dts-v3-bee59f0e559b
+> 
+> Best regards,
+> --
+> Peng Fan <peng.fan@nxp.com>
+> 
+> 
+> 
 
-Then you should describe the actual device because it is not just a 
-regulator-fixed. I suppose we could consider adding an interrupt to 
-regulator-fixed, but then its function can only be for (presumably) 
-over-current. Even details on how to handle it could vary as well.
 
-Rob
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y freescale/imx95-19x19-evk.dtb' for 20240503-imx95-dts-v3-v4-0-535ddc2bde73@nxp.com:
+
+arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: mmc@428b0000: 'assigned-clocks' is a dependency of 'assigned-clock-parents'
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: mmc@428b0000: 'assigned-clocks' is a dependency of 'assigned-clock-rates'
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+
+
+
+
 
 
