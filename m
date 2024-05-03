@@ -1,79 +1,83 @@
-Return-Path: <devicetree+bounces-64644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9E48BA513
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 03:47:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 421878BA529
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 04:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA6AD1F213A0
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:47:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C48811F21570
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 02:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78096FC0C;
-	Fri,  3 May 2024 01:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5718112E71;
+	Fri,  3 May 2024 02:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="h3kh6pgF"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KnOLduno"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2107.outbound.protection.outlook.com [40.92.102.107])
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2047.outbound.protection.outlook.com [40.92.102.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6B117C64;
-	Fri,  3 May 2024 01:47:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C29312B89;
+	Fri,  3 May 2024 02:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.47
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714700864; cv=fail; b=dDwhUi34sLby5s+dh0tTFUv2ylMFanYQnGNt8DgVkjtD723eG9DN7lBlwh6Zwea17p9KI724zzdHfWZwOBESj5Yk7AgAOAz5hTRBWOUqw5t0PscOS0qnCH76QwVqYaPLFIwQLuSwF4l1c5ZwFndYQVR1++5LBdA8e5o5KjE01Hs=
+	t=1714702103; cv=fail; b=BD+e8FBFrPdjLEgsI5j88k6WBelWp16AFuSTchs5sJixHEjc8Xm//eVHWymhAdOVR2jeXo16CrpJRuzyWoDk+HHKM7XwvhqLBYUhE0XJHfYjqhBDRt54BWHf+iZNHIZJsjQAPKRrsVuye+O0xor5yktgqzSc+wx4b4RRZILeQLE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714700864; c=relaxed/simple;
-	bh=kitP452pSO0+MYchVkPHkD9EZVl+mUu/4gqQrUXFPmU=;
+	s=arc-20240116; t=1714702103; c=relaxed/simple;
+	bh=LPUT/3K/ZlKFpo1EPXVnXZXjmqnZW/xdhKY2Gx5otog=;
 	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=tqm7QzwSzu1BhW8692uhQcKE70ONU2+e1prTBSkkfmpi0G+GTpfY+cuNxSNfdRjuw8G/NzkDoOOW+4uB3nSatBHXDoQm/YupjUY9GqPkTAHiBFPAFN0SeTAv2gRo8TGc1stKKPQeW2I8mxHGbbFH5fYE/P93706wguwoVZlgIEI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=h3kh6pgF; arc=fail smtp.client-ip=40.92.102.107
+	 Content-Type:MIME-Version; b=hx11JHyHsQKn0IaAK0cFq3g442sHJA35mHUfY1viN01stY6hABQgw4zyDO6niGgAnnpFqJjdptWSprTN27wRmSFbgaUYBEmrjkMCQMpC+EeA43FZJKHFXZv5nfiJZo1etPJbRtcCLUErKf2ZlThUWtfCtNkutdWfbI/nhs+58Yc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=KnOLduno; arc=fail smtp.client-ip=40.92.102.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g6mz8QAQkrEwcqoQ/n0MaCfcyZO5BP0TcUiLQ/rRd4gnFFuFtpST8twLAT2LPJJDebcdCcYJtmoB8B67+MW0jE9607RUBpA04WnNNn+4y8KOYYPKGu+W5y7W8T1F2/Q4pjqO/RnS+0+Wad00KJsu+vB1PE+uWPAnh3Q1hoZkDZlo7zRn2BrV27HIChCYc3yTj6/Rzv46+iWqKPk2mdcg30wLrC9bac8L0HVIZGV/vyAIaEe3GUHWrfy7L4qSWmrh6mNhk2wpcug1G6t9FCJ+lwT06OZCy3PI+XVmDP6jjsC/f6MpXV5ercSiqnka1AGxkKDHESu5FlbMlM3IQYT+gg==
+ b=mO2CgsBMKVZRtcuD+E4X70yopjOo8MpAhrW61lwWSYHl7dg0fd6WkeFkF0ewwtKSVef2AnYXWeE0PfAKfXX4jSeYK5OQ24i3I2FaW578FX5ZMFK9EEV/Y4+LsyPAnyih63AKd3uAXGvn6eC4nnLs+4YdO3tTSs7OPO8Z76ZHsxRscUYsuxIXE+iFWpM2Ixa9CL0PNf1YImAMmNs+Hp4jLt1kfIqYqB2rIkcBvhw8MV+oEi7IKnFalnfDtokDpd43/15JKJwEZN68d6oRbkpKVBkso3iNGbzeujAqXeUCj327ano2CkzstDZFbeHvk2M0/QeiSQDz5j6cS0UEAj6ZlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AC+bZicyWs+KrUWvKh6+Lzx8940Y6BwYuDWNfBetfe8=;
- b=hS8MFo4t+58DvWiwrw9Ep05oTb/LM46a/GSJgiqXGERVWR+3Z5dl/xZsCEE4fdZVmv/4DtjFsbDB8V90DFx0/2cT06r0I+mrRkm34BQdP5nKw84/RiO4xWRIuFy/kfTImhrH7bgiGN3Lmti24S3iktoyTWnSOAP71PG0tlY+iM/R6eDzPRjO8rvwfXjW4rkulpBGJ5seDLOBMEMcFD7FLnDlg9XhpN5tuG/kV8sTDfkkn1koXn1tQy+G0eDKTm15tyc0ZG0cQU7bOQxYHoTuUMkjp96ekez9dvrP2X1jpw+OplMyNWB1yoJuhmUnl07/XYr0uDOYmtHno95joAbS1Q==
+ bh=1KqeIxjMWYA3fUINUIfyDkstw4tqGlltz4Js6LflWiY=;
+ b=IOnzlAxJgus+KtlVVj1TzuDYIiF8MlRiaTEj4y1zrv8t01lWC72RUAqAgW/T0PDjUDJ3xnibgtxTonhqVJkXfOLltpaZrzdx4Ho6lJJGWLGE6gbI3N6zHG5WUfWZuFUMPIHY6neTTMREBql8v1wrSD8C9rWFgPOm269hWeVt7bO15Zo0dAtlVXLAuszaKt+iRXLKsEAYocd6u1ejE73J/mExLtW+qAjq8jgirX1RDamM7aLXj24oQHk4x3tNb0eEmQT1fsu/YovAlfhOAcvDI3xTItELnybEJ+5fNVoGAyW8almnwcFXO/FZ2OOSr1Qq3JLws2oBh7ZHvocC/RuBAQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AC+bZicyWs+KrUWvKh6+Lzx8940Y6BwYuDWNfBetfe8=;
- b=h3kh6pgFf75aATEz3fxCuxb7Fqu4pcnSg/cLI1qO4NlH8ur/c1L+5dv0Mae+65lzSQA52OdnnriTNrgV0kzKqoPoqQW4d/S8cGSJwAB9z98YWsIpsm2oNiw1/v+Q0clM6uAJK7DJEk5uChoyCZdiF1tqSEHaZQxheHAhj+V5dH5Lpn7uf9ivA70b2KO6k31Iufh+4y9BhlxBsqkaKgS2xtII1JMjPmCkxH9aw5KZGWYtk/ycvlZu1euMS2qUv6ayNJJUjK7/WKHZqcJXx5qak1AgyYEo9UBHOIyOpFil7PREystf4EQYstrdJNg8tGwhROStyLNarh+pT1gAPIPKaA==
-Received: from PN1P287MB2818.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:214::7)
- by PN0P287MB1526.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:186::14) with
+ bh=1KqeIxjMWYA3fUINUIfyDkstw4tqGlltz4Js6LflWiY=;
+ b=KnOLdunouPhCYqZ+Rui9Il57X1eKR5I4c9imwDOxPcfTnqgHL68JErBseU/tdg/zD0VUuAAgTOM/o/z47IqCtVAaWc+BRB+IrM8h+Z8H3xHtyTlwWfOSJ47C4IE1UO01ud59V6k+MWhk3daHYV0XVO3bGGPsDCIiIxvU5pmrcWIetKr/Dqz8HiqMqsXDoh+Bj5R0kj1bhNnqohctu2yklIsmqV81c7JzEiy3WCy85JenBi6aL19VaF40NfT+sAO3ZidMXAlzLbixnjqFmS3X1zfr9en9iXN+KdKsvG7PlKwBJLzwBDvep/EDuFdE9vqz5sIuM5ntHLEaQDfY6XJfcw==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN3P287MB0025.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:8f::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.30; Fri, 3 May
- 2024 01:47:36 +0000
-Received: from PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
- ([fe80::5a8a:9e40:a4e8:3e2d]) by PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
- ([fe80::5a8a:9e40:a4e8:3e2d%7]) with mapi id 15.20.7544.029; Fri, 3 May 2024
- 01:47:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.29; Fri, 3 May
+ 2024 02:08:15 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::664:2ecc:c36:1f2c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::664:2ecc:c36:1f2c%3]) with mapi id 15.20.7544.029; Fri, 3 May 2024
+ 02:08:14 +0000
 Message-ID:
- <PN1P287MB2818F3818BEBE875C460F158FE1F2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
-Date: Fri, 3 May 2024 09:47:32 +0800
+ <MA0P287MB2822AE8021C7ED48BD9A6D12FE1F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Fri, 3 May 2024 10:08:07 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] riscv: pwm: sophgo: add pwm support for CV1800
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, ukleinek@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: dlan@gentoo.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v2 0/2] riscv: sophgo: add USB phy support for CV18XX
+ series
+To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com>
+References: <IA1PR20MB4953182B8EDB465430289400BB1B2@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com>
+In-Reply-To: <IA1PR20MB4953182B8EDB465430289400BB1B2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-TMN: [A/ix3dZNnhf7b+ZX7GRrOih7r3pbBmvM]
-X-ClientProxiedBy: SG2PR02CA0071.apcprd02.prod.outlook.com
- (2603:1096:4:54::35) To PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:214::7)
+X-TMN: [jQ0SIiVbP2pdm/JmQrX62+5zU0Wr37OU]
+X-ClientProxiedBy: TYCP286CA0076.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:2b3::13) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
 X-Microsoft-Original-Message-ID:
- <1d996046-c633-4c99-b473-9b71ccd65123@outlook.com>
+ <b30c9612-614f-4c63-8ed5-735d389525e1@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,147 +86,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN1P287MB2818:EE_|PN0P287MB1526:EE_
-X-MS-Office365-Filtering-Correlation-Id: c7e90403-a4d7-4809-131b-08dc6b1301c7
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199019|440099019|3412199016|1602099003;
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN3P287MB0025:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c7f11bd-b4be-40e7-345c-08dc6b15e323
+X-Microsoft-Antispam: BCL:0;ARA:14566002|461199019|3412199016|440099019;
 X-Microsoft-Antispam-Message-Info:
-	YHDEYvIx8JYvHxyyWdIWrC9LMAiy/MWCm0PvrpCyJj6P5JkfoDVB69gdk0/VY6+hJj3ceL+eKTvD80pVCC3XbZ0UjC8C6VV0/FGudG3puv1K6JN60zFnDwDkvektE3NyjMzBqk+wnOo8ASqmSISaFKQOZFrE2WHHxFuoiSTCTxYfQWHHGoR6w4gwAfigtlX1KjkEf58kxsltscrPtuxxH9ovyN8i3sbU65jb5RpD0usEEmclQ/XfilDXQimBaJBCnnJNwvi9NIyTx5IS0OhKy/z4H1llpRPT6gcXWPBssPeJMq6Ma4QnY7muwKe/9qKI7xG/FvDJeCL+qP5EkIwCDLc4Xw0OBXR3pHvlnZLSs3AxfSsjBo7oU9kRx5olVDKUKTuX0sLt90Et+KVIeGH5y+Sw4qU/EDdwf26tDzjOez0jhTGq64BvnD3xi1CdPBLPHUM8QQUrEkHBfWj3Yvb3fL/y1xPNAjBU5tYdkTAX+VRtF3dL2BVPJWRzg1EpdbafabuaZ60WWc5FfW+sQ+VJRDuQD7eDHHmRIG/P041RMuRFuEEr6n5vxfGBgpoCaMNZD91iCmDDPjXPw7TeOUShI33D6gCkmaElfCRZVOBXXc4pNIDgMowUHom42YrlD9VGy4y1Ly4n1i2ehwH6EQYzJ5zqXhTXy8myP0upOx2QjPo=
+	6sqAT3BsHVc7ELVuJn9PqMbuB27/sEO5PiVmybLJzlCdCfCNEl8fovRz3goiqB+A3UevXU2XfS6p0Ygz0uBdZzt4h+4GJmF7aW1I6ubzWNYLibbqW0GxiA5+MxZlOsvkq9g+Tq4pn8bguHBfchcMPtYD+WR5IvDEkvxvb6hHLa1k/ryToSlLmix6asEN4BSU3BuvNhIElUTRRjhcsfbDptQz1dV09GUCtEJWaUQQhSpQD85ptalvJnin9gui5dHdTrBCxJU96QtZLsRF0gnYtzAKOv2VVOPnsXlMCND3QxvR4mNWUNht7VGrPjkkSzBdzA1dFbJql+Ys2jrQ7E81IGZf1sDG4VyXd+PIf9dJ67teX1JeqNHiBIDg2atbRAJsAau4k/S7lyc1GB/YxKU3JRchbrhMAaQPCdErzu+SglZDBLszW3+dN/8LzqE7vhpfd8zYyVk+CFUV1hCI6k2Bai4c0AzkL9u3UsA+ior67HST8Zg2nK8QG13tHBMSk7Adj3jGufF5AeSpLHcz2ykLl0xiCBooJX+gg4YnK6uFRDzeS5ql0cWW0EeSUAuBcxvd
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?N3Q0NExIdFlsdHdKbFVSOUdQckI1YkFjdWh3N2JqVDhLM2swUW5ianpyZ2Y0?=
- =?utf-8?B?SCs0OTJ3QlJoVnppYUkrVDFXRHV5eUdndTdodDUvcXcrSUZyZ2NncVJhZ1pt?=
- =?utf-8?B?c3VXRlltZWg0N040Z0VhUmIveEs3ZCtzUm1IK3o5S0MzcWM3dCtqSTBVbTRK?=
- =?utf-8?B?VlJkZCsxWW9iTUxqdFFhVU56cFdYOFptclJEblJ4MFp4MXBxWm1OdUlFUHdV?=
- =?utf-8?B?S0xCQnhrUlh6aVFTUkVUSEhOSWNEY0FJUGpoa1FkVk5TcGk0UHFyTGVyeERt?=
- =?utf-8?B?ZnZlZlMzNndwZkJVcFpEVkwrTnV2L2oxN1VKT1AzYzBLOUI2ejFNU2dMNmJk?=
- =?utf-8?B?dHE3SVJna2JNMmRDSVg3OCs3SWFLVDNSVVQybHIyK205dVd4YVBBaWdoVFJr?=
- =?utf-8?B?ZC93clFMWEkxaXg0b3JpdlZ2cXYybVowMFJXcmRqeXdVTGthQ1RyVDNVNnll?=
- =?utf-8?B?T3ZQZVliaUxHYlkvLzJMTFFMYnBDajRzbTFTNkkyakszQnFIanRKcXRXcGFi?=
- =?utf-8?B?RnNXNUVNRFRWK1FVTFBQUWZ2eG5lTFpOZGFzOGx4VWJBaTRyWmZzWFV4azA5?=
- =?utf-8?B?cnpCdVRleUt2RlhsSUQ0ZFl0TThBMjR0QXNTMUJsWEJCUU4zbmFaelo1eXkz?=
- =?utf-8?B?cUxBTWYweDc1RWtHMllyWjRQOVF0U09UOTh4aEh5ZFlzc1hxRTF5S1VWWmFM?=
- =?utf-8?B?bnhxb3M2dnpNdTNrWVg5WFNkK3VQR2Q2OU5lRG0ySEt6MFVLcEo5SzR2eHYv?=
- =?utf-8?B?SzgrNkw3SHNYYStuWjgzbFBDMUQ2RDg1TUF4aTVTMVBwSnBncnVEWUFacU1z?=
- =?utf-8?B?QlE5MCs3c0N2VnBuaVNZN1EyKzNSS2VVb0ZidzdRRTEwcVhrSTgzR2o1R3dK?=
- =?utf-8?B?bFVBSjJuUUkvVWhhdldhaGZxSThyNnZlM0FwcFQ4Ym10d2E4SHB1KyswemJ0?=
- =?utf-8?B?ZlBsQjR4eGdqOGx3WllLak1wL1dvOWtrTEoxSzFTRlBxZ2xaU0tnMTNudkti?=
- =?utf-8?B?aWwzc0pPRGVZV3htZWFlR2tTWHNERXRkSW0zWTJmbXZvT2VHOWJsM3BOYXJj?=
- =?utf-8?B?YThIZ2RMT2FreE4wSEJid3NXN0M0bjJsMEhyeUhaUVhld1hXTjVNc29FMFdD?=
- =?utf-8?B?MmNSSHZWNk1oSXM3UzZtL0t3TjVsVmNZTDV4YU1QTEtrNVphWTh2aW10T0Iv?=
- =?utf-8?B?UlVZa1gwS2h5alIwLzRYZ2ZCQmdBTzI1a3BCbzU3bTFwK3lxWWNJNkhiNi95?=
- =?utf-8?B?WVFLd2ZTNFpkcHZaVlBsV0FlYmVpNjRGUWdlSXdxZ3R5ei9qRDl3RW9qbTQr?=
- =?utf-8?B?TTdFRzBRemNzRmRsT2loaXdzdlhKM3pZYml4RWFQL016T2ZwU09YbWlCTFBO?=
- =?utf-8?B?akdjNG5scXp3T3JOczlOZUhndTVuVFhpUmtFVnlCNmxzcXQ1SU54SnZLMjlz?=
- =?utf-8?B?NHRoczJlMEdRcGxaZXlqRmw0QUFrUGpobllkRERjMEhPK0hxcTZncVpUSFl1?=
- =?utf-8?B?YkJQeXRzNGh5bDh4aXRqR3kvYlk2YWdvR0djaGRvY0MwZmJ4TjA3blBVWmY0?=
- =?utf-8?B?c00yNXR6SVhYQXZDUGJBQ3NXQUErbFdOWDNaanhaeFk3ZDdISEhVZFJVYXFt?=
- =?utf-8?B?YVFRdHdkamdtckJObHBDTjJCZkszTlVqUnJuN0xmdUNXTFRnTkExNUN5dGdL?=
- =?utf-8?Q?ZQkQbXTxjx4qU8jHAhN2?=
+	=?utf-8?B?dlNDdVlZeXc0cWo2VnNueHB1eE1UbDVibjhBNTJNNjhqTXZYbmd2K1FENFFB?=
+ =?utf-8?B?cWdGVFR5NEZaL29Kak11UFNiVFk3QVFnN0JEbnJBWDU0a3BrMTl3T1VBQ0F2?=
+ =?utf-8?B?Vmk4bFlmdXBzYWtXRVRCQjhIWUJxQ2ovMGtoY05vb2IrWW81ek1sS1NRcFph?=
+ =?utf-8?B?dEFOTjBGQmxLdDRkSmJFRUw1a2JILzFtWHlJeElIZEFPT0dmdEZWY1lBNzNw?=
+ =?utf-8?B?MERFS2gwSWJUUGFtOUpTbzVWM2QrT3ZDdGpxS254UWhvVnhONnRpS2lWWEdl?=
+ =?utf-8?B?bHA2WWh4ZHQ0K0VwQTRFNjhQRGxKTTRSS2FnZ1FzMXhhVm1VZVkvOFNCbUhS?=
+ =?utf-8?B?MzRKckRrQ0J2NytjNWI2WlBFbS9wSDAzUGNiQlpNdXpqZnYxNlF6RzNTT3J6?=
+ =?utf-8?B?STdIMys5RGVGSzhLcFcvZUF0K3c3OWkxMDM5dHFMRFRkU3NaR1cvSkIrZWhP?=
+ =?utf-8?B?SFRObmdRdVFBQzkxc1MzQkpIckR2eVEwamh6UEtBb1J5OExYTk41Y1JCRU00?=
+ =?utf-8?B?ZWlDbWJ2NEVGaTh5U3h1RU13bXhyRWxkcWN5d1pqOS92ZHVhUHpQRWZxTjlk?=
+ =?utf-8?B?QTVOYlJ6b0tXMlpGcmYwUFFIU0d3R2dNdEZUcTNkeFVWNmZHRXBNeHlSWXRu?=
+ =?utf-8?B?UmF2VDB4ZGppNW9GVEc0ZG5udHl5VERSNHBZMG9hMDBIanVOQVZvMWVZK2R6?=
+ =?utf-8?B?UEwzRFlWamhJVDEwblFHTSsxb29OcGQ2cjMweVVJQWdZQzVyQ2p1R01lMGRt?=
+ =?utf-8?B?eWNxczdQZHBmaHNEY25oMDNsenVNaTNia3Q3TkRLbmM3clNrZmxOSHFnYzFJ?=
+ =?utf-8?B?dGxsK2dIclJVZmhYQTRJNXdtd3Q3S2RlUGpHZVZuM1N4R2VUeUljdFVIZzR0?=
+ =?utf-8?B?cng5QnBaUGw5ZncyL2FqOHNMRWVIZWpTMFdienBNdWxKVTdSUU8yTTFOakQv?=
+ =?utf-8?B?a0t4MDNiUjV5dVZzVnhqc0FZSGxXQ3REWDZHRy9paFpPQ2JJUVN2bXRwNHFh?=
+ =?utf-8?B?cTg2Q2ZSWU8vb0h1eFRaLzhBSG8rWEhYY3FKTzZLdmZDWGpjRDVRNXMxMnpP?=
+ =?utf-8?B?THNWNFdlMlhYWGRubmVxajRpTzRtREV2N1RXRzBuc3VzcEJPeGdPVm9MeWo5?=
+ =?utf-8?B?U3N1blYzeG8yb1FXL2hScUdvMnRQbW1sQzdFaC9MWFdLekhXTWFZcFpScDBa?=
+ =?utf-8?B?UmhUdWZPVWwra1pGVnBudml1ZUR1RDdMQVpzWXhiVXFUazhvQmpoQXQzMG5V?=
+ =?utf-8?B?SVhtT3NNaFRBc25SSHp2N3BKaE9QcjdxeHJyTWVRWmhXblRnb2hJRzg2QVFj?=
+ =?utf-8?B?SzMvbnJ3QXBaTmtKMlVWMmFsUDMyN0JidUZEd3JGQWpKUEdWSmtjSTFOMERW?=
+ =?utf-8?B?UlhoWkRWNm9ncGxvelQvaVhjclNUN0YycHM5Z1U1MlZrTWR2azJVYmVyd3NP?=
+ =?utf-8?B?L04xN1JrT3Zvc1EySWoyRWlmU2JqRlF6UGZWek5qa0t0a3NvYTZSYTdLUVBs?=
+ =?utf-8?B?YlFRd2QvL3FpbXZvUkVXa1NwdnlraU8zcGVsV3NYc0x4UnF1SXlZN2hEWjBv?=
+ =?utf-8?B?elF5VHM4ckFyM2x1RWhGT0dIL1YyL3hQU0tkTHVpSXZ6SlVoREZkMnZrYVh1?=
+ =?utf-8?B?NW5KWCt4YUEraldRNU5DeDMwcUNNMElsWGtsNHVWV1M5SUFpVGcrVkxHdnZz?=
+ =?utf-8?Q?IhHv70CVPFu2jZwzmgwS?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c7e90403-a4d7-4809-131b-08dc6b1301c7
-X-MS-Exchange-CrossTenant-AuthSource: PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c7f11bd-b4be-40e7-345c-08dc6b15e323
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2024 01:47:36.1251
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2024 02:08:14.8918
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1526
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB0025
 
-Hi, Jingbao,
+Inochi,
 
-This patchset should also be sent to the linux-riscv mailinglist.
+Please also send this patchset to the linux-riscv mailinglist next time.
 
-On 2024/5/1 16:32, Jingbao Qiu wrote:
-> The Sophgo CV1800 chip provides a set of four independent
-> PWM channel outputs.
-> This series adds PWM controller support for Sophgo cv1800.
+Thanks,
+
+Chen
+
+On 2024/4/29 8:30, Inochi Amaoto wrote:
+> Add USB PHY support for CV18XX/SG200X series
 >
-> Changes since v6:
-> - add detailed Limitations
-> - using BIT(n) instead BIT(0) << n
-> - use 0 instead of disable macro
-> - modify OE judgment criteria
-> - add devm_regmap_init_mmio error message
-> - delete unused variable
+> Changed from v1:
+> 1. remove dr_mode property and use default mode instead.
+> 2. improve the description of `vbus_det-gpios` and `sophgo,switch-gpios`
 >
-> v6: https://lore.kernel.org/all/20240406063413.3334639-1-qiujingbao.dlmu@gmail.com/
+> Inochi Amaoto (2):
+>    dt-bindings: phy: Add Sophgo CV1800 USB phy
+>    phy: sophgo: Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X
 >
-> Changes since v5:
-> - delete the OE function because we plan to use the counter subsystem
->    instead of capture, so there is no need to reuse this code.
-> - fix set polarity reverse error.
+>   .../bindings/phy/sophgo,cv1800-usb-phy.yaml   |  68 ++++
+>   drivers/phy/Kconfig                           |   1 +
+>   drivers/phy/Makefile                          |   1 +
+>   drivers/phy/sophgo/Kconfig                    |  19 +
+>   drivers/phy/sophgo/Makefile                   |   2 +
+>   drivers/phy/sophgo/phy-cv1800-usb.c           | 378 ++++++++++++++++++
+>   6 files changed, 469 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/phy/sophgo,cv1800-usb-phy.yaml
+>   create mode 100644 drivers/phy/sophgo/Kconfig
+>   create mode 100644 drivers/phy/sophgo/Makefile
+>   create mode 100644 drivers/phy/sophgo/phy-cv1800-usb.c
 >
-> v5: https://lore.kernel.org/all/20240314100131.323540-1-qiujingbao.dlmu@gmail.com/
+> --
+> 2.44.0
 >
-> Changes since v4:
-> - drop filename
-> - fix macro
-> - optimize cv1800_pwm_set_polarity()
-> - optimize cv1800_pwm_set_oe()
-> - add comment for cv1800_pwm_set_oe()
-> - use ticks replace tem
-> - fix duty_cycle larger than period_val
-> - use devm_clk_rate_exclusive_get() replace
->    clk_rate_exclusive_get()
-> - map linux polarity to register polarity
->
-> v4: https://lore.kernel.org/all/20240304085933.1246964-1-qiujingbao.dlmu@gmail.com/
->
-> datasheet Link: https://github.com/milkv-duo/duo-files/blob/main/duo/datasheet/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
-> page 614
->
-> Changes since v3:
-> - use macro instead of npwm number
-> - add support for polarity feature
-> - add support for Output-Enable/OE feature
->
-> v3: https://lore.kernel.org/all/20240223082014.109385-1-qiujingbao.dlmu@gmail.com/
->
-> Changes since v2:
-> - use 0x08 instead of macro
-> - split if statements based on conditions
-> - in order to round up, first calculate the
->    number of high-level cycles, then subtract
->    it from the PERIOD to obtain the number of HLPERIOD
-> - use new pwmchip_alloc() API instead of old style
->
-> v2: https://lore.kernel.org/all/20240212121729.1086718-1-qiujingbao.dlmu@gmail.com/
->
-> Changes since v1:
-> - drop full stop from subject
-> - re-order maintainers and description
-> - pass checkpatch.pl --strict
-> - fix naming errors
-> - add "Limitations" section
-> - use a driver specific prefix for all defines
-> - using bool instead u32 in cv1800_pwm_enable
-> - check and set state->polarity
-> - use mul_u64_u64_div_u64
-> - use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
-> - using macro definitions instead of shift operations
-> - remove shift operation on 0
-> - use priv replace cv_pwm
-> - hardcode npwm
-> - set atomic to true
-> - remove MODULE_ALIAS
->
-> v1: https://lore.kernel.org/all/20240207055856.672184-1-qiujingbao.dlmu@gmail.com/
->
-> Jingbao Qiu (2):
->    dt-bindings: pwm: sophgo: add pwm for Sophgo CV1800 series SoC
->    pwm: sophgo: add pwm support for Sophgo CV1800 SoC
->
->   .../bindings/pwm/sophgo,cv1800-pwm.yaml       |  45 +++
->   drivers/pwm/Kconfig                           |  10 +
->   drivers/pwm/Makefile                          |   1 +
->   drivers/pwm/pwm-cv1800.c                      | 293 ++++++++++++++++++
->   4 files changed, 349 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,cv1800-pwm.yaml
->   create mode 100644 drivers/pwm/pwm-cv1800.c
->
->
-> base-commit: 32c44e1fa921aebf8a5ef9f778534a30aab39313
 
