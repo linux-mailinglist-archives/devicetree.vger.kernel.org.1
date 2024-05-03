@@ -1,271 +1,136 @@
-Return-Path: <devicetree+bounces-64778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DC58BADF9
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:46:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95448BADF8
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:46:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CC011C21053
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:46:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E8201F2248E
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05514153BD1;
-	Fri,  3 May 2024 13:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0070153BD1;
+	Fri,  3 May 2024 13:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bPfpqp39"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="oa2frlkA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33090153BE1
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 13:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2AA81E4B1
+	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 13:46:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714743977; cv=none; b=AI3Zg38MGCcJ5DM9Ca3T8rRafrlLkB5CyOilw66SgXkwBFYjmDrh/qVfJcBhhmqn/KaQNzO0nkUeQOpLuO574NKNCbeV5BwpiWFbdTB5TTlgHOhfWaykx6mbUxA71619iASOlQ/D7U/2EM+HR5JGsgaJOT8Vt1c2VhxUsKvMmZM=
+	t=1714743969; cv=none; b=U3kwTyPbfaLf99lf4stmgQfjjgt7WCoTM9tvUCuI2q4Bu0G3bBdLQAvdqoeJvld0CVTKtv0Xu1pCcTYifmugyt/1ySqcECHvSvWttkDJV1woxzj3+RAAy//+VN/V89R5DXQoaT89qvyhj4fyfN0wEQXrLKM8bsgXpwUD293N7Ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714743977; c=relaxed/simple;
-	bh=niQWlxJn5XH2Swl9BN4qcIlg9vZWKA0A2TStH6e2UPs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fcdPkIpcDTflCGz3JYj9K5rKwyf89mGeVEDwYgI7UmakrilcxIEclrI8sUXpXOduIFObUnAj53cvAzqSeUEaDiadILOGrpXdW+gQa6NpKACo54Yfd+iVHXFUuAJ9k5/M40CNZ2CZEEps6mZ2YethWleSOY1p+yyYLrp9jk6XZdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bPfpqp39; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dbed0710c74so8475125276.1
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 06:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714743975; x=1715348775; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VkO+KdbtUN9IqeShpgEcMEOobBVHfZYBUo6hb6ifhXo=;
-        b=bPfpqp39tcYsWlqnH+99DQhVeIRoCYTSdB3e9J8LjZjs22tlB4NpMhX2w5RaLg/Iow
-         HG4hbdU+NnONVw9yHxHWW8cfeu3YW3ua9XtjrloQm6ZiftdQ/oRDt6y7XOrtND/SQXsp
-         vig7laLYLUgA060wJ3RWLlQo1FJUJYasi2mmpX8qTM3bmXt1q/eTBzealY0KckmmBRvg
-         fFyDc5ZiKnOWuvKDua7D9PYbpHYkK3fEQS9KO+aTwOy23ob8mAI7M8INbXf+9YAAnXEH
-         erRCMFSwOL0/HBTz05ik0P53TIU1GQ2LsyLegu7PiZQHxxPxoSyI/EWYDFqUD3VZQtvd
-         1/dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714743975; x=1715348775;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VkO+KdbtUN9IqeShpgEcMEOobBVHfZYBUo6hb6ifhXo=;
-        b=GtOppxPdi6ahmI0PM6m7flI1ZLzOHP1NTQvUixg1fRScZS76g7blBEBNjM/N1fJ3bw
-         OwwCtAAZlMOSAHJ81YEMkWDvCrnGNcgv4wD75+s7qGQTUp8Yz1QgHZGQIByyr/dst1di
-         kzDXB1nM9skK1gAvevcBuCSo6FGWCqaVA8+O8Lehx7znar2NY220yggvQHNWh81CnVkQ
-         FZ6rfVGICY0jCW4avxGq5XEayoQgobt+GR5mjFJ3sFRfjO6gc59RrZJQG/IeTFVS60Bo
-         9rxjMXd3/copJKQBT/4JOJen4g1nHTj74smyyo0TjqNLByywaD3Hdfc/VEIQ3C2nJyIu
-         lBVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUSasRBMyk5dypnuCI0acxLt3A7KbQqDOL0MWHeMWQ4mREwozGm6gdTfJ4IEPdDsBcgQjvReAX1PmZQDG9CooRkWLcw+q1y0AVdTg==
-X-Gm-Message-State: AOJu0Yy64Rdx8Ztl4FfFa9icyIN53DfIXB+AEAogx7K7+wY4KIpZcJVo
-	dLe69KAdoDFYOMgmXk2je2mrI31Agn1zJcyh7Rkhn7O1VFxapE02R1aLhkKWAcWxhINdcomjSM7
-	s5NvPBKBccB/lVBLRGSQ2vzkqLBvr18UDZUX1RQ==
-X-Google-Smtp-Source: AGHT+IH/Xb1XcZDOaCvizhYyHNNZjGRIDjGUlZ+m+l5KoU1hpsPb+0dWkoH6eUByYXw6Znq4ecrpXd3LLQEK4dA3cKc=
-X-Received: by 2002:a25:b04a:0:b0:de8:8cd9:c43d with SMTP id
- e10-20020a25b04a000000b00de88cd9c43dmr2564219ybj.12.1714743975056; Fri, 03
- May 2024 06:46:15 -0700 (PDT)
+	s=arc-20240116; t=1714743969; c=relaxed/simple;
+	bh=P1392OE/D563sFcVxXWa6Sf/hW9rxpl/vL+Fg+RCMug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IPVU+zEyO5IRsrUaPOJz85NxyeYSl5ibp6GBv8dwBR/S4Pb7n68CO1QZes5V7T8uX9JKkBDmm8AENPf2fFgET1+nNHx03W+8jH9IXQMr7p9RTnX3RoiZG1l9YtyfH/RRWnQfqu/YA6AROrq7XQZI/IYvgyGuMDeHar8+UfOTOsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=oa2frlkA; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E04E593;
+	Fri,  3 May 2024 15:45:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1714743907;
+	bh=P1392OE/D563sFcVxXWa6Sf/hW9rxpl/vL+Fg+RCMug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oa2frlkA0Xy97uj0P9LJaPM9zXN0ypCbVdn3TA42ZaykQHHDQPl7CwohtUSF+RdZ8
+	 PvQbnjLqpT9pC/LwCkj605hnQz6GSDK3oCEiv4PtYMX6JodxKmCOR9irbrZYBrP8Ch
+	 rGQPt6xnOi+gUgJbiFCU0bTJM3OjslMrP+vj19R8=
+Date: Fri, 3 May 2024 16:45:57 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
+Message-ID: <20240503134557.GC13904@pendragon.ideasonboard.com>
+References: <20240416141914.9375-1-marex@denx.de>
+ <2327389.ElGaqSPkdT@steina-w>
+ <3311352.aeNJFYEL58@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240415-ti-sci-pd-v1-0-a0e56b8ad897@ideasonboard.com>
- <20240415-ti-sci-pd-v1-2-a0e56b8ad897@ideasonboard.com> <d4cd0323-4792-49b0-a4e2-0bc92068e7f0@ideasonboard.com>
-In-Reply-To: <d4cd0323-4792-49b0-a4e2-0bc92068e7f0@ideasonboard.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 3 May 2024 15:45:38 +0200
-Message-ID: <CAPDyKFqShuq98qV5nSPzSqwLLUZ7LxLvp1eihGRBkU4qUKdWwQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/2] pmdomain: ti-sci: Support retaining PD boot time state
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Abel Vesa <abel.vesa@linaro.org>, 
-	Saravana Kannan <saravanak@google.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Dave Gerlach <d-gerlach@ti.com>, J Keerthy <j-keerthy@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Santosh Shilimkar <santosh.shilimkar@oracle.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	Devarsh Thakkar <devarsht@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3311352.aeNJFYEL58@steina-w>
 
-+ Abel, Saravanna, Stephen
-
-On Mon, 15 Apr 2024 at 19:17, Tomi Valkeinen
-<tomi.valkeinen@ideasonboard.com> wrote:
->
-> On 15/04/2024 19:00, Tomi Valkeinen wrote:
-> > Add a new flag, TI_SCI_PD_KEEP_BOOT_STATE, which can be set in the dts
-> > when referring to power domains. When this flag is set, the ti-sci
-> > driver will check if the PD is currently enabled in the HW, and if so,
-> > set the GENPD_FLAG_ALWAYS_ON flag so that the PD will stay enabled.
-> >
-> > The main issue I'm trying to solve here is this:
-> >
-> > If the Display Subsystem (DSS) has been enabled by the bootloader, the
-> > related PD has also been enabled in the HW. When the tidss driver
-> > probes, the driver framework will automatically enable the PD. While
-> > executing the probe function it is very common for the probe to return
-> > EPROBE_DEFER, and, in rarer cases, an actual error. When this happens
-> > (probe() returns an error), the driver framework will automatically
-> > disable the related PD.
-> >
-> > Powering off the PD while the DSS is enabled and displaying a picture
-> > will cause the DSS HW to enter a bad state, from which (afaik) it can't
-> > be woken up except with full power-cycle. Trying to access the DSS in
-> > this state (e.g. when retrying the probe) will usually cause the board
-> > to hang sooner or later.
-> >
-> > Even if we wouldn't have this board-hangs issue, it's nice to be able to
-> > keep the DSS PD enabled: we want to keep the DSS enabled when the
-> > bootloader has enabled the screen. If, instead, we disable the PD at the
-> > first EPROBE_DEFER, the screen will (probably) go black.
->
-> A few things occurred to me. The driver is supposed to clear the
-> GENPD_FLAG_ALWAYS_ON when the driver has probed successfully. There are
-> two possible issues with that:
->
-> - Afaics, there's no API to do that, and currently I just clear the bit
-> in genpd->flags. There's a clear race there, so some locking would be
+On Fri, May 03, 2024 at 02:58:19PM +0200, Alexander Stein wrote:
+> Am Mittwoch, 17. April 2024, 11:12:04 CEST schrieb Alexander Stein:
+> > Am Dienstag, 16. April 2024, 16:19:10 CEST schrieb Marek Vasut:
+> > > Configure both CSI2 assigned-clock-rates the same way.
+> > > There does not seem to be any reason for keeping the
+> > > two CSI2 pixel clock set to different frequencies.
+> > > 
+> > > This also reduces first CSI2 clock from overdrive mode
+> > > frequency which is 500 MHz down below the regular mode
+> > > frequency of 400 MHz.
+> > > 
+> > > Signed-off-by: Marek Vasut <marex@denx.de>
+> > 
+> > Apparently there is no difference when using imx415 (3840x2160) sensor.
+> 
+> Just for the records: While this change does not affect imx415 (3840x2160)
+> processing, reducing clock-frequency as well (v3) imx415 does not work.
+> So I assume that for this image size a higher than default frequency is
 > required.
->
-> - This uses the GENPD_FLAG_ALWAYS_ON flag to say "PD is always on, until
-> the driver has started". If the PD would have GENPD_FLAG_ALWAYS_ON set
-> for other reasons, the driver would still go and clear the flag, which
-> might break things.
->
-> Also, unrelated to the above and not a problem in practice at the very
-> moment, but I think clocks should also be dealt with somehow. Something,
-> at early-ish boot stage, should mark the relevant clocks as in use, so
-> that there's no chance they would be turned off when the main kernel has
-> started (the main display driver is often a module).
->
-> It would be nice to deal with all the above in a single place. I wonder
-> if the tidss driver itself could somehow be split into two parts, an
-> early part that would probe with minimal dependencies, mainly to reserve
-> the core resources without doing any kind of DRM init. And a main part
-> which would (somehow) finish the initialization at a later point, when
-> we have the filesystem (for firmware) and the other bridge/panel drivers
-> have probed.
->
-> That can be somewhat achieved with simplefb or simpledrm, though, but we
-> can't do any TI DSS specific things there, and it also creates a
-> requirement to have either of those drivers built-in, and the related DT
-> nodes to be added.
 
-Without going into too much detail, this and similar problems have
-been discussed in the past. With the fw_devlink and the ->sync_state()
-callback we are getting closer to a solution, but for genpd a solution
-is still pending.
+For the time being I expect sensor overlays to override the default
+clock setup. Ideally the clock frequencies should be configured
+automatically at runtime by the CSI-2 RX driver.
 
-If you want to read up on earlier discussions and join us moving
-forward, that would be great. The last attempt for genpd to move this
-forward was posted by Abel Vesa:
-https://lore.kernel.org/linux-pm/20230621144019.3219858-1-abel.vesa@linaro.org/
+> > Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > 
+> > > ---
+> > > Cc: Conor Dooley <conor+dt@kernel.org>
+> > > Cc: Fabio Estevam <festevam@gmail.com>
+> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Cc: Paul Elder <paul.elder@ideasonboard.com>
+> > > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > > Cc: Rob Herring <robh@kernel.org>
+> > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: imx@lists.linux.dev
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > > ---
+> > > V2: Align both clock to 266 MHz and update commit message
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > index 1bb96e96639f2..7883f5c056f4e 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > @@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
+> > >  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+> > >  				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
+> > >  							 <&clk IMX8MP_CLK_24M>;
+> > > -				assigned-clock-rates = <500000000>;
+> > > +				assigned-clock-rates = <266000000>;
+> > >  				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+> > >  				status = "disabled";
+> > >  
+> > > 
 
-Beyond that, we have also discussed various solutions at the last LPC
-in Richmond. I think the consensus at that point was that Saravana
-targeted to post something for clocks - and when that was done, we
-should do the similar thing for genpd. Anyway, I have looped them into
-this thread, so they can share any updates on their side of the
-matter.
+-- 
+Regards,
 
->
->   Tomi
-
-Kind regards
-Uffe
-
->
-> > Another option here would perhaps be to change the driver framework
-> > (drivers/base/platform.c) which attaches and detaches the PD, and make
-> > it somehow optional, allowing the driver the manage the PD. That option
-> > has two downsides: 1) the driver _has_ to manage the PD, which would
-> > rule out the use of simplefb and simpledrm, and 2) it would leave the PD
-> > in off state from Linux's perspective until a driver enables the PD, and
-> > that might mean that the PD gets actually disabled as part of normal
-> > system wide power management (disabling unused resources).
-> >
-> > Yet another option would be to do this outside the ti_sci_pm_domains
-> > driver: a piece of code that would somehow be ran after the
-> > ti_sci_pm_domains driver has probed (so that we have the PDs), but
-> > before tidss/simplefb/simpledrm probes. The problem here is the
-> > "somehow" part. Also, this would partly have the same issue 2) as
-> > mentioned above.
-> >
-> > TODO: If this approach is ok, sci-pm-domain.yaml needs to be extended.
-> > Also, it sounds a bit like the cell value is not a bit-mask, so maybe
-> > adding TI_SCI_PD_KEEP_BOOT_STATE flag this way is not fine.
-> >
-> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> > ---
-> >   drivers/pmdomain/ti/ti_sci_pm_domains.c    | 27 +++++++++++++++++++++++++--
-> >   include/dt-bindings/soc/ti,sci_pm_domain.h |  1 +
-> >   2 files changed, 26 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/pmdomain/ti/ti_sci_pm_domains.c b/drivers/pmdomain/ti/ti_sci_pm_domains.c
-> > index 1510d5ddae3d..b71b390aaa39 100644
-> > --- a/drivers/pmdomain/ti/ti_sci_pm_domains.c
-> > +++ b/drivers/pmdomain/ti/ti_sci_pm_domains.c
-> > @@ -103,7 +103,7 @@ static struct generic_pm_domain *ti_sci_pd_xlate(
-> >               return ERR_PTR(-ENOENT);
-> >
-> >       genpd_to_ti_sci_pd(genpd_data->domains[idx])->exclusive =
-> > -             genpdspec->args[1];
-> > +             genpdspec->args[1] & TI_SCI_PD_EXCLUSIVE;
-> >
-> >       return genpd_data->domains[idx];
-> >   }
-> > @@ -161,6 +161,8 @@ static int ti_sci_pm_domain_probe(struct platform_device *pdev)
-> >                               break;
-> >
-> >                       if (args.args_count >= 1 && args.np == dev->of_node) {
-> > +                             bool is_on = false;
-> > +
-> >                               if (args.args[0] > max_id) {
-> >                                       max_id = args.args[0];
-> >                               } else {
-> > @@ -189,7 +191,28 @@ static int ti_sci_pm_domain_probe(struct platform_device *pdev)
-> >                               pd->idx = args.args[0];
-> >                               pd->parent = pd_provider;
-> >
-> > -                             pm_genpd_init(&pd->pd, NULL, true);
-> > +                             /*
-> > +                              * If TI_SCI_PD_KEEP_BOOT_STATE is set and the
-> > +                              * PD has been enabled by the bootloader, set
-> > +                              * the PD to GENPD_FLAG_ALWAYS_ON. This will
-> > +                              * make sure the PD stays enabled until a driver
-> > +                              * takes over and clears the GENPD_FLAG_ALWAYS_ON
-> > +                              * flag.
-> > +                              */
-> > +                             if (args.args_count > 1 &&
-> > +                                 args.args[1] & TI_SCI_PD_KEEP_BOOT_STATE) {
-> > +                                     /*
-> > +                                      * We ignore any error here, and in case
-> > +                                      * of error just assume the PD is off.
-> > +                                      */
-> > +                                     pd_provider->ti_sci->ops.dev_ops.is_on(pd_provider->ti_sci,
-> > +                                             pd->idx, NULL, &is_on);
-> > +
-> > +                                     if (is_on)
-> > +                                             pd->pd.flags |= GENPD_FLAG_ALWAYS_ON;
-> > +                             }
-> > +
-> > +                             pm_genpd_init(&pd->pd, NULL, !is_on);
-> >
-> >                               list_add(&pd->node, &pd_provider->pd_list);
-> >                       }
-> > diff --git a/include/dt-bindings/soc/ti,sci_pm_domain.h b/include/dt-bindings/soc/ti,sci_pm_domain.h
-> > index 8f2a7360b65e..af610208e3a3 100644
-> > --- a/include/dt-bindings/soc/ti,sci_pm_domain.h
-> > +++ b/include/dt-bindings/soc/ti,sci_pm_domain.h
-> > @@ -3,6 +3,7 @@
-> >   #ifndef __DT_BINDINGS_TI_SCI_PM_DOMAIN_H
-> >   #define __DT_BINDINGS_TI_SCI_PM_DOMAIN_H
-> >
-> > +#define TI_SCI_PD_KEEP_BOOT_STATE 2
-> >   #define TI_SCI_PD_EXCLUSIVE 1
-> >   #define TI_SCI_PD_SHARED    0
-> >
-> >
->
+Laurent Pinchart
 
