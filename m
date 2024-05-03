@@ -1,114 +1,117 @@
-Return-Path: <devicetree+bounces-64768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807038BAD16
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:04:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C08328BAD27
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A64F71C21653
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:04:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5878B214D0
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DDA153BE5;
-	Fri,  3 May 2024 13:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08710153584;
+	Fri,  3 May 2024 13:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L20zb0sy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CPJvLcdk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC5E14A08F;
-	Fri,  3 May 2024 13:03:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907C657CAF;
+	Fri,  3 May 2024 13:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714741434; cv=none; b=G8TqxaPeZStqfbtVqCCbCukIFClWgGpIiOJjlGR7g6rfpzhwCgYiFNFjWMy18M0TcTEAY+RwQMUK/2qC4Igf4cIydoZZiF9y4lZez71xFBgEorKc9/XkJxZo5aNHodADLjPhlMxoChLF9+QePsf5ImQhmq23u1ODqRmmqLMhFPk=
+	t=1714741643; cv=none; b=SgRxvc3QqYZqhw1cz+5SG1lsCgh3BP7YllzMWERgOlhMun/HpT7ysxtQJ1k/Yy1bN9VeKgxomsn1GH0NZZaieZslrWAQrvVXECvvqW2CRFLbwfGlZAu7RIminsFZEZoz84UgCHH3pxImdIoUvEpVvVwfFw9tvOXok6+xmdycaWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714741434; c=relaxed/simple;
-	bh=QIJdpoviZQBKczshFO6NH+Q6b1BR6BVP5K2x2cfw8M0=;
+	s=arc-20240116; t=1714741643; c=relaxed/simple;
+	bh=2/MtgxZmlmI6RFPcKKGrAXmBZooPJyXpn9LKisUZjaA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fYkJijhl6mVmniID2RQYlQbi0Y8gnjcX0h+xytQMsFcf1zjNlGULbjR6+ZbLkSSC63CYcCo4o893ZF0w5rAJdwyydb9bpbFWrL6slYwClOrMVrko/9xMe2bLnHxPXMuzxqNfiFoAJ4WRcqLJY9/prUmtVpC5N3Jsw/vtDcjU4vA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L20zb0sy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A2D8C4AF19;
-	Fri,  3 May 2024 13:03:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714741434;
-	bh=QIJdpoviZQBKczshFO6NH+Q6b1BR6BVP5K2x2cfw8M0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=L20zb0syXQqT/bJxeRTAZpS2P5t8Wp5z8WWcQhrjyVHrGBgkHZYAN4eYy3U0kV9zF
-	 vH2LBpfSSM3DpC48YQY6at2YXE7PEIXPPRhQ/xY1LolKZ4joS59oGC2IH6PqQ1xANu
-	 7t2sVikXICxJncM5CQZM5c6dvJLJfqi6NzQ0KYJ+ku/UhVZLI+xqH0DORUj3lQ/4GG
-	 as0i7kpeMAGWEwm787hKnyRiMRKyXZ3P9oZ6HIBV3PpO6IFKWz50IYJ890ManBJ/+b
-	 KS0LSkSCLvOxnxKnk7P5VSaKMZmyCx0Zar+LifCWmgW+zRmiEJUxAsIJmtPu6kP4VK
-	 8HfBpT2WD56Hg==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51f0b6b682fso2463437e87.1;
-        Fri, 03 May 2024 06:03:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWmHGCH7MW5oAhJHjxUsmjDWMIukJg6dyzGBspNBPcYXFTPRiLmFO9n8IdjpBnGnY1ieomUiVwMWaniAwqiNLEsA5RpFB2ynom8y+YXC/SG8Fuqtj/obkzyPQob4Db5aL8J224kXjixMA==
-X-Gm-Message-State: AOJu0Yxulkk59e/VKfyWZfZJI3xZH1PvOzfkH89Dhea+c5B/AK0GPW3A
-	N+JRTxpeMB5OBH7wXwwaGejsP6upQkR+QoXJ9ez7JouM8C8LGB9zH/IyBx5VM+Ty7QiUNQgbMIA
-	5ZMAW4m2wOtMNKrrbWFvy3hXPbw==
-X-Google-Smtp-Source: AGHT+IFAzybPw0nmiKUwPZXHcrHdxnzH3kv2HpsAVov/yrGuF8JskKjbpZBl14p1kUi7qAc+tPXB1gphmuvmX0YPU1M=
-X-Received: by 2002:a05:6512:3b08:b0:51a:e305:eb20 with SMTP id
- f8-20020a0565123b0800b0051ae305eb20mr3012638lfv.17.1714741432515; Fri, 03 May
- 2024 06:03:52 -0700 (PDT)
+	 To:Cc:Content-Type; b=XP6Mkki1tjAjmLBCd+5lmWnFwpQpVe4BgsHIVAyI5+dEk1Y/dep7LNIwGw6g1PudlYJqmN0hInCo4cLiYG6dCa4Pv4HKHXvAvAK8z2Dyauu/Prcr4L5MvuwekrSXM3GsgJAWBXiXxMLYrkPek/SH3fTapIb/qF9o3kBsTg16/mI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CPJvLcdk; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a58e787130fso503449366b.0;
+        Fri, 03 May 2024 06:07:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714741641; x=1715346441; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2/MtgxZmlmI6RFPcKKGrAXmBZooPJyXpn9LKisUZjaA=;
+        b=CPJvLcdkcKhJlRjisJBdJBsu/EclVrGuBwH2vrQro35HLEe7Xm0rvrD2Hi9MX/55/o
+         L0fxM4/8SX+TG7iQAFKPfjdOoJVbMnAnJBz1SG5X6CStkO3qjx28+F1vQPYa03oR0iAW
+         02Zs/UTP3G8gWItDncXeShI1awf+CyhzUFtVFeDPgpVuwNF8u+YFIp/FQt4AtqytUFcZ
+         9YLNbZauYL+tdma+BcNYYfxR+1VBlsn0zKNkOC8KkD00F7YNh1iiNWX08L5nIDa7g+an
+         /+fKd1Nk9glkzHPSpQkGoaXpjKT9k0B3RS8PjivTim/jWPOFd+olw98jU0O0THzKFemi
+         4t9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714741641; x=1715346441;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2/MtgxZmlmI6RFPcKKGrAXmBZooPJyXpn9LKisUZjaA=;
+        b=ryjWi6tL4/CuuwzdY6qThRNDFgtTVXV8uYl0hg7cqYv+zjDCDdVLfmQ53Sxr/mQBxO
+         UL1s45B21Pu7wfszuSvSOpApLc9PnVkuavWR6yA+rAje5uPn+By+KQY+kbTwkUwjTqjx
+         I3ZTxjZvJ9cOGB1Ly7s9owLx6CI7YHS9uM/3KQDIZZUXRjI3gELTUlUbe287b9bP+8y5
+         KAAzQ1E3b67gbMLJJ7JDyPRsaZHQxuG7aMnnHHjSEQAgdy4CQXT3XMeKjjPOwNiSirOJ
+         CFkEWtJdlQ4eNUvhmWDj/gcx3ZsiX/NDFHTekxgkUG0qKzJngx2mshHSevDOiuIyYZR4
+         6ROA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhzpSD9fxmEh72f0XOQ6bRKTaipBbMYcOVeb24gLWCqEmIcMPt/m36w+aciAIaz8ycyfOgT6zt39AA+xDmIoHaQKdXQxQFv1M72TzVJmzFdExzhjcgvRnTy6/57Jbmmm2kzV4kEA==
+X-Gm-Message-State: AOJu0YzTOgkU1wDX9yvJAqGc9MsIbJ4uPS1Bi7/cCyjMROmUlpm6zyPH
+	1N/2ctx0zMJ2h/OhMTqAzhM2HaSh/ah9+m4WizVW7Pzxp4e5ht2jwMgkH/riBb+SaaVlvzG8h52
+	Caz6rPATraSA+JkB9n17N/MbbKjY=
+X-Google-Smtp-Source: AGHT+IHg7XHZJmkffiibiAfe8W/O1QdYSBuoDLmLmNyfjjngZLubs8aDpp9aqEgDLvV5r+tfrMNSBzbztUOzAPr3rIg=
+X-Received: by 2002:a17:906:f90d:b0:a58:eac2:a54f with SMTP id
+ lc13-20020a170906f90d00b00a58eac2a54fmr2234202ejb.18.1714741640821; Fri, 03
+ May 2024 06:07:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240502192403.3307277-1-quic_obabatun@quicinc.com>
-In-Reply-To: <20240502192403.3307277-1-quic_obabatun@quicinc.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 3 May 2024 08:03:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLOL-dvzggx0OXXhfgVeztK4MgeFqgXV_Jg4mhXAed=2w@mail.gmail.com>
-Message-ID: <CAL_JsqLOL-dvzggx0OXXhfgVeztK4MgeFqgXV_Jg4mhXAed=2w@mail.gmail.com>
-Subject: Re: [PATCH v2] of: reserved_mem: Remove the use of phandle from the
- reserved_mem APIs
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Cc: saravanak@google.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <cover.1714571980.git.lorenzo@kernel.org> <08f55e89a1eb655402a748d700a023e1e27a194a.1714571980.git.lorenzo@kernel.org>
+ <ZjRHSWEPbFijFXqT@finisterre.sirena.org.uk> <ZjTVaenC3xm-4-Ik@lore-desk>
+In-Reply-To: <ZjTVaenC3xm-4-Ik@lore-desk>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 3 May 2024 16:06:43 +0300
+Message-ID: <CAHp75VcHuQ_7ZZQgysZOZ5TY=2pqC3uy_NoTF-iz6Wnu2cq2BQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] spi: airoha: Add spi-nand flash controller driver
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org, conor@kernel.org, 
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com, 
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
+	angelogioacchino.delregno@collabora.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 2, 2024 at 2:24=E2=80=AFPM Oreoluwa Babatunde
-<quic_obabatun@quicinc.com> wrote:
+On Fri, May 3, 2024 at 3:15=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.org=
+> wrote:
 >
-> The __find_rmem() function is the only place that references the phandle
-> field of the reserved_mem struct. __find_rmem() is used to match a
-> device_node object to its corresponding entry in the reserved_mem array
-> using its phandle value. But, there is already a function called
-> of_reserved_mem_lookup() which carries out the same action using the
-> name of the node.
+> > On Wed, May 01, 2024 at 04:06:43PM +0200, Lorenzo Bianconi wrote:
+> > > Introduce support for spi-nand driver of the Airoha NAND Flash Interf=
+ace
+> > > found on Airoha ARM SoCs.
+> >
+> > This doesn't apply against current code, please check and resend.
 >
-> Using the of_reserved_mem_lookup() function is more reliable because
-> every node is guaranteed to have a name, but not all nodes will have a
-> phandle.
+> Hi Mark,
 >
-> Nodes are only assigned a phandle if they are explicitly defined in the
-> DT using "phandle =3D <phandle_number>", or if they are referenced by
-> another node in the DT. Hence, If the phandle field is empty, then
-> __find_rmem() will return a false negative.
+> patch v6 3/3 has just a couple of cosmetic changes requested by Andy with
+> respect to v5 3/3.
 >
-> Hence, delete the __find_rmem() function and switch to using the
-> of_reserved_mem_lookup() function to find the corresponding entry of a
-> device_node in the reserved_mem array. Since the phandle field of the
-> reserved_mem struct is now unused, delete that as well.
->
-> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-> ---
-> v2:
-> - Addressed error found by kernel test bot:
->   https://lore.kernel.org/all/202405020127.3ncxx3EI-lkp@intel.com/
-> - Fixed spelling error in commit text.
->
-> v1:
-> https://lore.kernel.org/all/20240422235243.2878536-1-quic_obabatun@quicin=
-c.com/
->
->  drivers/of/of_reserved_mem.c    | 22 +---------------------
->  include/linux/of_reserved_mem.h |  1 -
->  2 files changed, 1 insertion(+), 22 deletions(-)
+> @Andy: do you think we can drop these changes or do you prefer to add the=
+m? (in
+> the latter case I can post an incremental patch).
 
-Applied, thanks.
+I am not sure what this is about, do you mean the changes asked by me
+made this driver not applicable?
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
