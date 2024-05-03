@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-64732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2E88BA983
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 11:11:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8767D8BA98D
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 11:13:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C588F281EDE
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:11:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AED16B2358A
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C883914F9C2;
-	Fri,  3 May 2024 09:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BDA114F110;
+	Fri,  3 May 2024 09:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C2bxxaql"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X14Yt8iO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975BA14EC61;
-	Fri,  3 May 2024 09:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF6B9146D4B;
+	Fri,  3 May 2024 09:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714727483; cv=none; b=Mf8Vz1575K+k/tW5vc959RoPD1scT1BdU7KsfXJo48QxkB9bcn+k2F/+jfuilR8i+odFyFp8t889LRtAIrWyAWhUowIhK/gAgF5zzijZUiNrYhpvoNrlcvc1r1g0cqcFAq2ME7bjk7qHL7dx9NimpP5i0umf75lrxQvkuKdszG8=
+	t=1714727595; cv=none; b=ZPcGbs5qqrSDumqzPc0HatnGC2f3xUxotCm/oulyIxN2iZxnpR/rJR5f2L8uwq3NI1lZvHr/4YphirWr80wlSe1n22tD0qzy3d3Tcz4MCpN2poXRq+urm6UBFd5q400KqXAz8qOan3JuMw6whjbNH9JwpRc4ESIM7FRqR0n8jN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714727483; c=relaxed/simple;
-	bh=VizUIb/OLvF1/i6uxSjEVxNNv4bH0BlLFRFnbhZrHoA=;
+	s=arc-20240116; t=1714727595; c=relaxed/simple;
+	bh=3LaUaAv7CyMgsmPwhMzjeWmmLQOKPPAU1rg5+fLg16Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eLJDwiNqQMOyKmaRrjJ2mYPAVwVW8xoR7ZuzIXxd4ikYkN9NNi1DKq/GRgoCxRjlxp2Ib+qh/25Ygc7Xf36AQ2BnB7RKT2chRZqaPaPKftmTYK8nZwIrhEFTymc7K4uOfM2lGB4GTr8qaiRHYyNJ3yHaH58gT4svhDyGaV5U/mM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C2bxxaql; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41A57C4AF14;
-	Fri,  3 May 2024 09:11:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Akz5aPQWVFLeH3C0yX62tyAlATK181UBEji1DFiEQZzk/G2xXonEZPKNg2C1ONVq+HNZjflc3HCE+/D7Zm2rEMC7msuKuF3ZcYLMGjCC0KiSIdyFaYHsdz7qlBHrw1KMtHx5EBpy+oxhMuuUBVdEbmmMheRGWIVRGXO/im43hZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X14Yt8iO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C6B6C116B1;
+	Fri,  3 May 2024 09:13:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714727483;
-	bh=VizUIb/OLvF1/i6uxSjEVxNNv4bH0BlLFRFnbhZrHoA=;
+	s=k20201202; t=1714727594;
+	bh=3LaUaAv7CyMgsmPwhMzjeWmmLQOKPPAU1rg5+fLg16Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C2bxxaqlPCCCktx4zWYgfeVigiW4irgVLzFAy9Qa2UpEhqgm+wgrzwXraXaAqlP5e
-	 RKPGRS6C8+IRtOw/8SM7GVFiv6FTEp0p+438mrrOdWyeaKl0L3jXPWZwSYoEvGcugo
-	 2NQIYCsSBhza0a9/zpIFHx2csBjkVN4UDkA5AHX/rlkjjjQAwfEMzH3oLYuQ4hAnE4
-	 hcj10/JTz9Y9BnLLZ82J3u/3AbCfs9DlHcDPScXHEZV93L2vS4mVIQdF4/F35xjNJn
-	 br7JsZ3QGIesj4nBz5Y8ZvP+/hMkxHtfOkxwb0CWeXSWXJNQ5mypySfGtuZ5ssXK7M
-	 +6rV+3qDNB7Tw==
-Message-ID: <48ec0bb5-a06e-4f18-97c3-1370b7facea4@kernel.org>
-Date: Fri, 3 May 2024 11:11:16 +0200
+	b=X14Yt8iOniJkilrmKoZkCD67RtnmMu1YNUsyONG1snPV1Xl2iOjt5G/S9DDBkqhDE
+	 +oLAX5nuJ2lbJuEGOQrMsxSVlWclgAXvyouhYBOqERsC8trTUQrVNf2Hp1pyRA5NbP
+	 15cwS8bOq57cZfaShsVHT9DoPy8EWK1REvCTtkV41JybZBF1PYKJJ9TT0OgM8G5fr2
+	 octBJP4J3rV0uBoP6x6WaIolQcXWFYOXiR5g8gIwfGeBPg96F5L+vOLKWa2nBQN8/4
+	 C0gM8lCFunDpmlEbheXfKT1e30qNKHZ1F68YMQeI1J4qwo0pFUtSREJ7PzjUer6gEJ
+	 xRS1eqReFgfZA==
+Message-ID: <c39eab66-4e78-4f24-bcaf-003161b38ed0@kernel.org>
+Date: Fri, 3 May 2024 11:13:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] dt-bindings: HID: i2c-hid: elan: add
- 'no-reset-on-power-off' property
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <benjamin.tissoires@redhat.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Douglas Anderson <dianders@chromium.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH v3 2/2] pinctrl: samsung: support a bus clock
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: Will McVicker <willmcvicker@google.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240423134611.31979-1-johan+linaro@kernel.org>
- <20240423134611.31979-4-johan+linaro@kernel.org>
- <2e67e4e6-83a7-4153-b6a7-cdec0ab2c171@kernel.org>
- <Zii2CUeIyBwxzrBu@hovoldconsulting.com>
- <bde4884c-117b-4e6e-8c7b-401b8320655b@kernel.org>
- <ZjNjMBNMegmTgN5B@hovoldconsulting.com>
+References: <20240426-samsung-pinctrl-busclock-v3-0-adb8664b8a7e@linaro.org>
+ <20240426-samsung-pinctrl-busclock-v3-2-adb8664b8a7e@linaro.org>
+ <ea6f17d7-49bf-4a1e-ba3b-757e29221590@linaro.org>
+ <9a960401-f41f-4902-bcbd-8f30f318ba98@kernel.org>
+ <c4c73732595b067369a6c8d71508d54358962552.camel@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,84 +113,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZjNjMBNMegmTgN5B@hovoldconsulting.com>
+In-Reply-To: <c4c73732595b067369a6c8d71508d54358962552.camel@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/05/2024 11:56, Johan Hovold wrote:
-> Hi Krzysztof,
-> 
-> and sorry about the late reply. Got side-tracked.
-> 
-> On Thu, Apr 25, 2024 at 11:39:24AM +0200, Krzysztof Kozlowski wrote:
->> On 24/04/2024 09:34, Johan Hovold wrote:
->>> On Tue, Apr 23, 2024 at 06:29:44PM +0200, Krzysztof Kozlowski wrote:
->>>> On 23/04/2024 15:46, Johan Hovold wrote:
->>>>> When the power supply is shared with other peripherals the reset line
->>>>> can be wired in such a way that it can remain deasserted regardless of
->>>>> whether the supply is on or not.
-> 
->>>>> This is important as it can be used to avoid holding the controller in
->>>>> reset for extended periods of time when it remains powered, something
->>>>> which can lead to increased power consumption. Leaving reset deasserted
->>>>> also avoids leaking current through the reset circuitry pull-up
->>>>> resistors.
->>>>>
->>>>> Add a new 'no-reset-on-power-off' devicetree property which can be used
->>>>> by the OS to determine when reset needs to be asserted on power down.
->>>>>
->>>>> Note that this property can also be used when the supply cannot be
->>>>> turned off by the OS at all.
+On 02/05/2024 12:41, André Draszik wrote:
+> On Thu, 2024-05-02 at 09:46 +0200, Krzysztof Kozlowski wrote:
+>> On 02/05/2024 09:41, Tudor Ambarus wrote:
+>>>>  
+>>>> @@ -223,6 +268,13 @@ static void exynos_irq_release_resources(struct irq_data *irqd)
+>>>>  	shift = irqd->hwirq * bank_type->fld_width[PINCFG_TYPE_FUNC];
+>>>>  	mask = (1 << bank_type->fld_width[PINCFG_TYPE_FUNC]) - 1;
+>>>>  
+>>>> +	if (clk_enable(bank->drvdata->pclk)) {
+>>>> +		dev_err(bank->gpio_chip.parent,
+>>>> +			"unable to enable clock for deconfiguring pin %s-%lu\n",
+>>>> +			bank->name, irqd->hwirq);
+>>>> +		return;
 >>>
->>>>>    reset-gpios:
->>>>>      description: Reset GPIO; not all touchscreens using eKTH6915 hook this up.
->>>>>  
->>>>> +  no-reset-on-power-off:
->  
->>>> Anyway, the property sounds like what the OS should be doing, which is
->>>> not what we want. You basically instruct driver what to do. We want a
->>>> described hardware configuration or hardware specifics.
->>>
->>> Right, and this was why I at first rejected a property name like this in
->>> favour of 'reset-pulled-to-supply' in my first draft. That name
->>> obviously does not work as the 'supply' suffix is already claimed, but I
->>> also realised that it doesn't really describe the hardware property that
->>> allows the reset line to remain asserted.
->>>
->>> The key feature in this hardware design is that the reset line will not
->>> just be pulled to the supply voltage (what other voltage would it be
->>> pulled to), but that it is also pulled to ground when the supply is
->>> disabled.
+>>> but here we just print an error. I guess that for consistency reasons it
+>>> would be good to follow up with a patch and change the return types of
+>>> these methods and return the error too when the clock enable fails.
 >>
->> OK, if the property was specific to the hardware, then I would propose
->> something more hardware-related, e.g. "reset-supply-tied". However :
+>> That's a release, so usually void callback. The true issue is that we
+>> expect release to always succeed, I think.
 >>
->>> Rather than trying to encode this in the property name, I settled on the
->>> descriptive 'no-reset-on-power-off' after the seeing the prior art in
->>> 'goodix,no-reset-during-suspend' property. The latter is too specific
->>> and encodes policy, but the former could still be considered hardware
->>> description and would also apply to other designs which have the
->>> property that the reset line should be left deasserted.
->>>
->>> One such example is when the supply can not be disabled at all (e.g. the
->>> Goodix case), but I can imagine there being more than one way to design
->>> such reset circuits.
->>
->> It seems it is common problem. LEDs have property
->> "retain-state-shutdown", to indicate that during system shutdown we
->> should not touch them (like power off). Would some variant be applicable
->> here? First, do we talk here about power off like system shutdown or
->> runtime PM, thus suspend?
+>> This points to issue with this patchset: looks like some patchwork all
+>> around the places having register accesses. But how do you even expect
+>> interrupts and pins to work if entire pinctrl block is clock gated?
 > 
-> A name like 'retain-state-shutdown' would also be too specific as what
-> I'm describing here is that the reset line should be (or can be) left
-> deasserted whenever the OS wants to power off the device.
+> I was initially thinking the same, but the clock seems to be required for
+> register access only, interrupts are still being received and triggered
+> with pclk turned off as per my testing.
 
-I don't think it is more specific than yours. It is actually more
-generic. First, shutdown=poweroff, so that part is the same.
-retain-state means keep things enabled, asserted, deasserted, etc, so
-multiple cases. Your wording is specific - only one state is kept during
-power off: reset deassert.
+Probably we could simplify this all and keep the clock enabled always,
+when device is not suspended. Toggling clock on/off for every pin change
+is also an overhead. Anyway, I merged the patches for now, because it
+addresses real problem and seems like one of reasonable solutions.
 
 Best regards,
 Krzysztof
