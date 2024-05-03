@@ -1,220 +1,276 @@
-Return-Path: <devicetree+bounces-64847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F7198BB231
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:11:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3C68BB2B4
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 270AE2813FE
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:11:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CB4C1C209FA
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:20:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B1B158213;
-	Fri,  3 May 2024 18:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8B5158D76;
+	Fri,  3 May 2024 18:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="SK6ea7SW"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fJz2lhJx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C811586C1
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 18:11:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CFC15886D
+	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 18:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714759863; cv=none; b=OxYl0rG/iZ9QR6HkiSrNIpUTZnRf5LpfaoZc5jds5F89osbAogtFGzVwdDW5VPhlJlirMe0BjkEHNk2Q2btiZ33Cq8nXWYM7c+nN+2MhrO8O5Cphps9RdJbsfMN2WxE2AuW5LtJe4jA7ciljFv2jzjJL9UyTz4IvrOlQSr2JOXI=
+	t=1714760324; cv=none; b=TS9YFzzvqN09iLwh5KRzJv5e7pSmDVNpMZZIcuoTg+va8qwj6Fhdx5Lijf3r6jB4r0i6wJMCFKhBWGMXFiL9OvGOFGRaVZDUeuoEnituVuYQ+0d9EXuQMIfWGE77ohZP956H8O1cXkLdJe2QmXglNsZhkxi8D1VNmaOklKLDwoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714759863; c=relaxed/simple;
-	bh=BDV4LFF0W3nkIbkwscNnSoy9CovnMcY/0BmN6MMpQpw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KDsgqcl04xcK37gwkojcNSux2Aijve8nAUV8zfPLSVRbWY5Je5rdVk1g+tBvpiE043VIjuErq5m76W7/9rWeBn/DMpIANgosZDYi4sJRyr7cXxxWbILk2rCSRxF5+e1qwYhOzkiBYBhKrERXUL1sdFgpZHm+F0l8g1IeN2E9p+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=SK6ea7SW; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1ed012c1afbso16208815ad.1
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 11:11:01 -0700 (PDT)
+	s=arc-20240116; t=1714760324; c=relaxed/simple;
+	bh=r/6gY2+LXNqc0EJoEqcqRGtQ40Iamm6JOA9ZUPtJzps=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oBX+8/HEZsy0AvuDt5My0qBqFjJg8j79qO4Xt1kYBTd7pjiV9s4s0wr9EWCRg2Fr+2uIy+WSjSGJoU7SL/lbDcqVS3S929pD90ppPRaw+0qoS4D+O34+PNYA94pdiRmgte+Rsv8G6DQ6khwI7WG14ZdyEfNbLohFXsk0yg0keaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=fJz2lhJx; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6f450f43971so591b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 11:18:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1714759861; x=1715364661; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HP0E+W4CNjdiqYdYJTTOaBAgmGAiW3lunGcWq/PWMeo=;
-        b=SK6ea7SWcCTVLkMgA2TMLRZ7CwQrx7moN0OofIRPrJz9UYsqCr1J2OU3cL8RAaHyjg
-         D6lT1GWwhdaux5D7r3mqU6+QK7OKfyWGh+dpkbshOQ4InYftVEXX2z8+xzxk+YdS0VHB
-         zqt/sdvUmerb+W25yIkRiw7Oce68wgvoQ7Ne61qpGfT7wkXqW+BFs/c7FvjmYTRXb+hg
-         W8PwqEatFikd+O+Qj66Hu7wvLuM8mhdk6j8gcZbYligQTOpNhFFVOOxcQICFxkvSCDOi
-         z/+D/uVAlBZjxim2B4blveUE8rvf9nMtp33thO/pjqtPoCA71PAGMRoc3bJI+OJrYrxW
-         xBOQ==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714760321; x=1715365121; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ChcKLFzPe2eQn/pwaNx0shjH861FBoRdOTFTkIbkbG0=;
+        b=fJz2lhJxPNmqjiyH44gXYI9sB1drx9OXtMLN2gT1QNYJaSGcj1/6xDK82Xc/tNQKTW
+         J3LPOp5k4BLue80BoYjsPWaKXW1amENFZiqjNecmL/6rY0AdmI+5ozhoAsR4XGu6qGzV
+         CGajpo2BzUkq/k40F/wu1FAa4W710EHKTB1KEW6uKhE+PvMR8GCs1TnhG0mChNISao+0
+         IixVdVj31cGOuoSfZn/IpHB9l5l/z8jAEQ4G2aay9A8UaQr3yvgf/Yv7JDAdeA/og89v
+         J751hyRKV82jjohEADJ2XEx8Eq49SQVk8nBaO0PRxbhIAXQmsrWOZcAap9UwiyzDzGMa
+         PIJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714759861; x=1715364661;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HP0E+W4CNjdiqYdYJTTOaBAgmGAiW3lunGcWq/PWMeo=;
-        b=DmXkf2uOX+10hENglZ895w51VJpdKnAY432RRhgC9/UN7qcocORHbgG1BuGpH07+ji
-         BmHEXyQcG8Hc53XgQ3HfIwLSQqJx6TDLupNvItMnqov2/FEdur1LJz0XT9wDo73MVp18
-         89NcGEU5tARG9fIZs7BGvA4UMoU8ZUMdeetE8HLZr92vHBHuXNE1rj6+xru+w4CtTnzl
-         u1HSYzDNGmn4hr8jcjp2IUE963PU8S1TWxEvv+WrLDpufdQPCxFE3q+fdC0WMXY7CZ6M
-         9OgONuNJRgtAw60VkcsYWAVQKw0SNavoZ2AR++BoM9+UowVAFqD6Y3YK1VC+033f2Tza
-         pTiA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0++z0YDQW0kyAgdcrDV0dhBi3H3OuH6gExbXa9Kn+gjfRl4lgkxwSKWhbQKGwZ1aXEnrD+7NuCilwREIcO/sSGazhaPkWQHOQqQ==
-X-Gm-Message-State: AOJu0Yx1gh2EmHfX6t9NxJI5P+qCE4EF3C8KNuYNDRcdHisUZVAiJFwV
-	F7boXTyPT7rWgi0iFvpdBNib5NXwYWRmt3Ho2rKceGF0STEkuFCxNa9p8otFOj4=
-X-Google-Smtp-Source: AGHT+IHo2vpIWpxJAU/WjqREvj8GpGY4pEVGXqwcLeuMUP5qY8hdLdogyncesU12hPqCxKNhJeFqIg==
-X-Received: by 2002:a17:903:120f:b0:1e5:560d:8519 with SMTP id l15-20020a170903120f00b001e5560d8519mr5281572plh.0.1714759861404;
-        Fri, 03 May 2024 11:11:01 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id p23-20020a1709027ed700b001ec379d8167sm3590693plb.115.2024.05.03.11.11.00
+        d=1e100.net; s=20230601; t=1714760321; x=1715365121;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ChcKLFzPe2eQn/pwaNx0shjH861FBoRdOTFTkIbkbG0=;
+        b=BmJiYRInU5rDVaTE+ewAeVbb+lQVZQ9z2Uyn/lVeK59W2sH4l6KW9mrybsZNRS3Ygo
+         ENSKwzQ2AkXZu1MHX7qby+ThVOFUJL9tVXb9YBjYmc9wWQWOzs53jvaFHsjdmq33GFUL
+         Ub5JxMyOqNv/gLAm4X+ENrEVqHIhgXZsxM9+jqovqmHcqDGRI9qCWQTRIlqdHxVVFbw5
+         Q7DzaFoVQXDV7jhQdmtcL5yB+swbr+QThhKIRP86a3ELv/pNOlKtAmMTB0B3Fx9uS23H
+         FZLSUKXW6vkcP8chB218InrAoRjjrhdDM2HJh02WhLW8LUkoKUVoJ+ZlUgfxCGRFTct4
+         Xg2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVLQWBDmZSJdBKnnx9LrORWbvg40FytJKV+OxDbl5MHtwX0U71y8twqd9XVeqF1hX5gx3WYhTG59gnB4hhFN5wB8dFVyVU65/XXrA==
+X-Gm-Message-State: AOJu0Yy0ZOFkbQReFDngmdbo0T/HtDRj//3VF8g8z9vhdOMiEUgYZvM8
+	xdGWX3K/PHJud4FkFkSWbC6m/k7PBdnkqv5RNWPApZ7Wnh81OW4MDmfBVx0DDfs=
+X-Google-Smtp-Source: AGHT+IGI2dGJ0NIoMKX8oUxPlZVNjsAo20iUsO3+gNq4qBhznQ5MIiDUtuKMThvEHpuPWqgQINkz2A==
+X-Received: by 2002:a05:6a00:9a3:b0:6ed:de6f:d72f with SMTP id u35-20020a056a0009a300b006edde6fd72fmr3985766pfg.20.1714760321217;
+        Fri, 03 May 2024 11:18:41 -0700 (PDT)
+Received: from charlie.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id fu6-20020a056a00610600b006f3f5d3595fsm3355421pfb.80.2024.05.03.11.18.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 May 2024 11:11:00 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1s2xN5-007WHT-5q;
-	Fri, 03 May 2024 15:10:59 -0300
-Date: Fri, 3 May 2024 15:10:59 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Sebastien Boeuf <seb@rivosinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux@rivosinc.com
-Subject: Re: [PATCH v3 7/7] iommu/riscv: Paging domain support
-Message-ID: <20240503181059.GC901876@ziepe.ca>
-References: <cover.1714494653.git.tjeznach@rivosinc.com>
- <b83f81c04d1f3885d860b1eec03761fe63a33183.1714494653.git.tjeznach@rivosinc.com>
- <20240501145621.GD1723318@ziepe.ca>
- <CAH2o1u63GjMnYrfa8W-c1hdp+TAA0R-FyxXM4dEiFF+KEGWwbA@mail.gmail.com>
+        Fri, 03 May 2024 11:18:40 -0700 (PDT)
+From: Charlie Jenkins <charlie@rivosinc.com>
+Subject: [PATCH v6 00/17] riscv: Support vendor extensions and xtheadvector
+Date: Fri, 03 May 2024 11:18:15 -0700
+Message-Id: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAH2o1u63GjMnYrfa8W-c1hdp+TAA0R-FyxXM4dEiFF+KEGWwbA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGgqNWYC/5XQzUrFMBAF4Fe5ZG0kk782rnwPkZJOEhvQpiQ1K
+ Je+u7l3Y5Eu6vLMDN+BuZLic/SFPF2uJPsaS0xzC/rhQnCy85un0bVMOOOSSQDqfKVtk9+jp+V
+ zWVJeh3Xy1g3V45ryoAdDQRkIyK0U4EijluxD/LrXvLy2PMXSTr/vrRVu038WVKCMShtMD8pjJ
+ /VzjjWVOOMjpg9y66h876qTLm8udk73qJnguj9wxc7l7KQrmqs7DEHyDhy4A1fuXX3Slc1VGJQ
+ Y1YjS8ANX/bqK8ZOuaq6DUSEDYY3++99t234ADqm4rjsCAAA=
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Guo Ren <guoren@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Conor Dooley <conor.dooley@microchip.com>, Evan Green <evan@rivosinc.com>, 
+ =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <cleger@rivosinc.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ Charlie Jenkins <charlie@rivosinc.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Heiko Stuebner <heiko@sntech.de>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714760318; l=8914;
+ i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
+ bh=r/6gY2+LXNqc0EJoEqcqRGtQ40Iamm6JOA9ZUPtJzps=;
+ b=ph6fqG1mkKm/tc4k031UnxPL8X8GQY0Ex28RFoSgD78qWqiPQUbgoqbG/iD7cytowXJbwa4EN
+ EujXp5tfYLYBgbrbLRnHsXm0nqol507hiC8zBipfHHLaq6NpR+lqSPL
+X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
+ pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
 
-On Fri, May 03, 2024 at 10:44:14AM -0700, Tomasz Jeznach wrote:
-> > > +     list_for_each_entry_rcu(bond, &domain->bonds, list) {
-> > > +             if (bond->dev == dev) {
-> > > +                     list_del_rcu(&bond->list);
-> > > +                     found = bond;
-> > > +             }
-> > > +     }
-> > > +     spin_unlock_irqrestore(&domain->lock, flags);
-> > > +
-> > > +     /* Release and wait for all read-rcu critical sections have completed. */
-> > > +     kfree_rcu(found, rcu);
-> > > +     synchronize_rcu();
-> >
-> > Please no, synchronize_rcu() on a path like this is not so
-> > reasonable.. Also you don't need kfree_rcu() if you write it like this.
-> >
-> > This still looks better to do what I said before, put the iommu not
-> > the dev in the bond struct.
-> >
-> >
-> 
-> I was trying not to duplicate data in bond struct and use whatever is
-> available to be referenced from dev pointer (eg iommu / ids / private
-> iommu dev data).
+This patch series ended up much larger than expected, please bear with
+me! The goal here is to support vendor extensions, starting at probing
+the device tree and ending with reporting to userspace.
 
-I'm not sure that is a valuable goal considering the RCU
-complexity.. But I suppose it would be a bit of a hassle to replicate
-the ids list into bond structurs. Maybe something to do when you get
-to ATS since you'll probably want to replicate the ATS RIDs. (see what
-Intel did, which I think is pretty good)
+The main design objective was to allow vendors to operate independently
+of each other. This has been achieved by delegating vendor extensions to
+a their own files and then accumulating the extensions in
+arch/riscv/kernel/vendor_extensions.c.
 
-> If I'm reading core iommu code correctly, device pointer and iommu
-> pointers should be valid between _probe_device and _release_device
-> calls. I've moved synchronize_rcu out of the domain attach path to
-> _release_device, LMK if that would be ok for now.  I'll have a
-> second another to rework other patches to avoid storing dev pointers
-> at all.
+Each vendor will have their own list of extensions they support.
 
-Yes, that seems better.. I'm happier to see device hot-unplug be slow
-than un attach
+There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 that is
+used to request which thead vendor extensions are supported on the
+current platform. This allows future vendors to allocate hwprobe keys
+for their vendor.
 
-There is another issue with the RCU that I haven't wrapped my head
-around..
+On to the xtheadvector specific code. xtheadvector is a custom extension
+that is based upon riscv vector version 0.7.1 [1]. All of the vector
+routines have been modified to support this alternative vector version
+based upon whether xtheadvector was determined to be supported at boot.
+I have tested this with an Allwinner Nezha board. I ran into issues
+booting the board on 6.9-rc1 so I applied these patches to 6.8. There
+are a couple of minor merge conflicts that do arrise when doing that, so
+please let me know if you have been able to boot this board with a 6.9
+kernel. I used SkiffOS [2] to manage building the image, but upgraded
+the U-Boot version to Samuel Holland's more up-to-date version [3] and
+changed out the device tree used by U-Boot with the device trees that
+are present in upstream linux and this series. Thank you Samuel for all
+of the work you did to make this task possible.
 
-Technically we can have concurrent map/unmap/invalidation along side
-device attach/detach. Does the invalidation under RCU work correctly?
+To test the integration, I used the riscv vector kselftests. I modified
+the test cases to be able to more easily extend them, and then added a
+xtheadvector target that works by calling hwprobe and swapping out the
+vector asm if needed.
 
-For detach I think yes:
+[1] https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc
+[2] https://github.com/skiffos/SkiffOS/tree/master/configs/allwinner/nezha
+[3] https://github.com/smaeul/u-boot/commit/2e89b706f5c956a70c989cd31665f1429e9a0b48
 
-   Inv CPU                                   Detach CPU
+Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+---
+Changes in v6:
+- Only check vlenb from of if vector enabled in kernel (Conor)
+- No need for variadic args in VENDOR_EXTENSION_SUPPORTED so just use a
+  standard argument
+- Make 'first' variable in riscv_fill_vendor_ext_list() static so that
+  the variable value remains across calls to the function (Evan)
+- Link to v5: https://lore.kernel.org/r/20240502-dev-charlie-support_thead_vector_6_9-v5-0-d1b5c013a966@rivosinc.com
 
-  write io_pte                               Update device descriptor
-  rcu_read_lock
-    list_for_each
-      <make invalidation command>            <make description inv cmd>
-      dma_wmb()                              dma_wmb()
-      <doorbell>                             <cmd doorbell>
-  rcu_read_unlock
-                                             list_del_rcu()
-                                             <wipe ASID>
+Changes in v5:
+- Make all vendors have the same size bitmap
+- Extract vendor hwprobe code into helper macro
+- Fix bug related to the handling of vendor extensions in the parsing of
+  the isa string (Conor)
+- Fix bug with the vendor bitmap being incorrectly populated (Evan)
+- Add vendor extensions to /proc/cpuinfo
+- Link to v4: https://lore.kernel.org/r/20240426-dev-charlie-support_thead_vector_6_9-v4-0-5cf53b5bc492@rivosinc.com
 
-In this case I think we never miss an invalidation, the list_del is
-always after the HW has been fully fenced, so I don't think we can
-have any issue. Maybe a suprious invalidation if the ASID gets
-re-used, but who cares.
+Changes in v4:
+- Disable vector immediately if vlenb from the device tree is not
+  homogeneous
+- Hide vendor extension code behind a hidden config that vendor
+  extensions select to eliminate the code when kernel is compiled
+  without vendor extensions
+- Clear up naming conventions and introduce some defines to make the
+  vendor extension code clearer
+- Link to v3: https://lore.kernel.org/r/20240420-dev-charlie-support_thead_vector_6_9-v3-0-67cff4271d1d@rivosinc.com
 
-Attach is different..
+Changes in v3:
+- Allow any hardware to support any vendor extension, rather than
+  restricting the vendor extensions to the same vendor as the hardware
+- Introduce config options to enable/disable a vendor's extensions
+- Link to v2: https://lore.kernel.org/r/20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com
 
-   Inv CPU                                   Attach CPU
+Changes in v2:
+- Added commit hash to xtheadvector
+- Simplified riscv,isa vector removal fix to not mess with the DT
+  riscv,vendorid
+- Moved riscv,vendorid parsing into a different patch and cache the
+  value to be used by alternative patching
+- Reduce riscv,vendorid missing severity to "info"
+- Separate vendor extension list to vendor files
+- xtheadvector no longer puts v in the elf_hwcap
+- Only patch vendor extension if all harts are associated with the same
+  vendor. This is the best chance the kernel has for working properly if
+  there are multiple vendors.
+- Split hwprobe vendor keys out into vendor file
+- Add attribution for Heiko's patches
+- Link to v1: https://lore.kernel.org/r/20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com
 
-  write io_pte
-  rcu_read_lock
-    list_for_each // empty
-                                             list_add_rcu()
-                                             Update device descriptor
-                                             <make description inv cmd>
-                                             dma_wmb()
-                                             <cmd doorbell>
-  rcu_read_unlock
+---
+Charlie Jenkins (15):
+      dt-bindings: riscv: Add xtheadvector ISA extension description
+      riscv: vector: Use vlenb from DT
+      riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree
+      riscv: Extend cpufeature.c to detect vendor extensions
+      riscv: Add vendor extensions to /proc/cpuinfo
+      riscv: Introduce vendor variants of extension helpers
+      riscv: cpufeature: Extract common elements from extension checking
+      riscv: Convert xandespmu to use the vendor extension framework
+      riscv: csr: Add CSR encodings for VCSR_VXRM/VCSR_VXSAT
+      riscv: Add xtheadvector instruction definitions
+      riscv: vector: Support xtheadvector save/restore
+      riscv: hwprobe: Add thead vendor extension probing
+      riscv: hwprobe: Document thead vendor extensions and xtheadvector extension
+      selftests: riscv: Fix vector tests
+      selftests: riscv: Support xtheadvector in vector tests
 
-As above shows we can "miss" an invalidation. The issue is narrow, the
-io_pte could still be sitting in write buffers in "Inv CPU" and not
-yet globally visiable. "Attach CPU" could get the device descriptor
-installed in the IOMMU and the IOMMU could walk an io_pte that is in
-the old state. Effectively this is because there is no release/acquire
-barrier passing the io_pte store from the Inv CPU to the Attach CPU to the
-IOMMU.
+Conor Dooley (1):
+      dt-bindings: riscv: cpus: add a vlen register length property
 
-It seems like it should be solvable somehow:
- 1) Inv CPU releases all the io ptes
- 2) Attach CPU acquires the io ptes before updating the DDT
- 3) Inv CPU acquires the RCU list in such a way that either attach
-    CPU will acquire the io_pte or inv CPU will acquire the RCU list.
- 4) Either invalidation works or we release the new iopte to the SMMU
-    and don't need it.
+Heiko Stuebner (1):
+      RISC-V: define the elements of the VCSR vector CSR
 
-But #3 is a really weird statement. smb_mb() on both sides may do the
-job??
+ Documentation/arch/riscv/hwprobe.rst               |  10 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   6 +
+ .../devicetree/bindings/riscv/extensions.yaml      |  10 +
+ arch/riscv/Kconfig                                 |   2 +
+ arch/riscv/Kconfig.vendor                          |  44 +++
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi      |   3 +-
+ arch/riscv/errata/andes/errata.c                   |   2 +
+ arch/riscv/errata/sifive/errata.c                  |   3 +
+ arch/riscv/errata/thead/errata.c                   |   3 +
+ arch/riscv/include/asm/cpufeature.h                |  98 ++++---
+ arch/riscv/include/asm/csr.h                       |  13 +
+ arch/riscv/include/asm/hwcap.h                     |   1 -
+ arch/riscv/include/asm/hwprobe.h                   |   4 +-
+ arch/riscv/include/asm/switch_to.h                 |   2 +-
+ arch/riscv/include/asm/vector.h                    | 247 +++++++++++++----
+ arch/riscv/include/asm/vendor_extensions.h         | 103 +++++++
+ arch/riscv/include/asm/vendor_extensions/andes.h   |  19 ++
+ arch/riscv/include/asm/vendor_extensions/thead.h   |  42 +++
+ .../include/asm/vendor_extensions/thead_hwprobe.h  |  18 ++
+ .../include/asm/vendor_extensions/vendor_hwprobe.h |  37 +++
+ arch/riscv/include/uapi/asm/hwprobe.h              |   3 +-
+ arch/riscv/include/uapi/asm/vendor/thead.h         |   3 +
+ arch/riscv/kernel/Makefile                         |   2 +
+ arch/riscv/kernel/cpu.c                            |  35 ++-
+ arch/riscv/kernel/cpufeature.c                     | 175 +++++++++---
+ arch/riscv/kernel/kernel_mode_vector.c             |   8 +-
+ arch/riscv/kernel/process.c                        |   4 +-
+ arch/riscv/kernel/signal.c                         |   6 +-
+ arch/riscv/kernel/sys_hwprobe.c                    |   5 +
+ arch/riscv/kernel/vector.c                         |  25 +-
+ arch/riscv/kernel/vendor_extensions.c              |  66 +++++
+ arch/riscv/kernel/vendor_extensions/Makefile       |   5 +
+ arch/riscv/kernel/vendor_extensions/andes.c        |  18 ++
+ arch/riscv/kernel/vendor_extensions/thead.c        |  18 ++
+ .../riscv/kernel/vendor_extensions/thead_hwprobe.c |  19 ++
+ drivers/perf/riscv_pmu_sbi.c                       |   9 +-
+ tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
+ tools/testing/selftests/riscv/vector/Makefile      |  17 +-
+ .../selftests/riscv/vector/v_exec_initval_nolibc.c |  93 +++++++
+ tools/testing/selftests/riscv/vector/v_helpers.c   |  67 +++++
+ tools/testing/selftests/riscv/vector/v_helpers.h   |   7 +
+ tools/testing/selftests/riscv/vector/v_initval.c   |  22 ++
+ .../selftests/riscv/vector/v_initval_nolibc.c      |  68 -----
+ .../selftests/riscv/vector/vstate_exec_nolibc.c    |  20 +-
+ .../testing/selftests/riscv/vector/vstate_prctl.c  | 295 ++++++++++++---------
+ 45 files changed, 1319 insertions(+), 341 deletions(-)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240411-dev-charlie-support_thead_vector_6_9-1591fc2a431d
+-- 
+- Charlie
 
-> > The number of radix levels is a tunable alot of iommus have that we
-> > haven't really exposed to anything else yet.
-> 
-> Makes sense. I've left an option to pick mode from MMU for cases where
-> dev/iommu is not known at allocation time (with iommu_domain_alloc()).
-> I'd guess it's reasonable to assume IOMMU supported page modes will
-> match MMU.
-
-Reasonable, but for this case you'd be best to have a global static
-that unifies the capability of all the iommu instances. Then you can
-pick the right thing from the installed iommus, and arguably, that is
-the right thing to do in all cases as we'd slightly prefer domains
-that work everywhere in that edge case.
-
-Jason
 
