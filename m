@@ -1,147 +1,90 @@
-Return-Path: <devicetree+bounces-64763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738FA8BACCA
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 14:49:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF8C48BACD5
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 14:53:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25F1F1F21816
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 12:49:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A16E280F3C
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 12:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5315153BC3;
-	Fri,  3 May 2024 12:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E249A152DF9;
+	Fri,  3 May 2024 12:53:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE83153835;
-	Fri,  3 May 2024 12:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5753A14267;
+	Fri,  3 May 2024 12:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714740546; cv=none; b=pFLLPk5UaY3IpGH+DoMsiH1uor64N4ZboUdnjymxvLp+dx0G1eMlk1pEOkeHPpj7GHtUnzwJHsqWfvpMXhD05aL5N0+cAIIhRbAIVeLXMXqaV3UqMI5ITQ76kXhql9lIrzx//UqHEbBrv9cL0ZukKeF12/kz+VF4v4z112BSP2A=
+	t=1714740795; cv=none; b=BMkQOUayaN0FU8nqhbkKSspSpg9RNJXs2KvKpywyGqpnz3rsXhXBEhzskBOQMExamiS105lOhXPji1osOV49LPfvHcr1U+lp6c2zMRoKekZrbnEGcN7UeR7WHWWuHLXG1eMDS9K+1zgeH0ygzKwV6vaVWr9MdmV/hXMRGGr0JAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714740546; c=relaxed/simple;
-	bh=PVowgn9PL8FaNm5k8xze9uzrhTDvsboHD8ZlIoi88FU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XerZ2XzMrc6yuOxKT4cK8yiIL9rBPHBXTRy3L4DNLV99K3yF7cA+T6/7hOcX4qQ1Cuhjzt/+lOAkfgbINejDc0bkjsYlli+p6Rr6NciPgIWGZbrzl850Gd28ZyizUYO+7ERoTR5A72mYD8WEps6q1EfikAelcm1uu3v3WSj8hVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D82913D5;
-	Fri,  3 May 2024 05:49:29 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B18293F793;
-	Fri,  3 May 2024 05:49:01 -0700 (PDT)
-Date: Fri, 3 May 2024 13:48:55 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, andersson@kernel.org, konrad.dybcio@linaro.org,
-	jassisinghbrar@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_rgottimu@quicinc.com,
-	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
-	quic_gkohli@quicinc.com, quic_nkela@quicinc.com,
-	quic_psodagud@quicinc.com, abel.vesa@linaro.org
-Subject: Re: [PATCH V4 2/5] mailbox: Add support for QTI CPUCP mailbox
- controller
-Message-ID: <ZjTdNwzA4F-GxYY5@pluto>
-References: <20240422164035.1045501-1-quic_sibis@quicinc.com>
- <20240422164035.1045501-3-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1714740795; c=relaxed/simple;
+	bh=83h6SpBSPjYfy0/mQXm1ihvyDTeo+XyvUt4VfNZyGT0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qhoO431E5+aA3wNe6nBX9W2lM3Qrirni9ZOgY9z0Wl4h2c/S//J+gfG8j5EFGcpNlJJ2c6je1uMgZRUBELKe9Ae/Z1Z0wUuZ/gp4XOYF63L0cDD3rf/FrAUq2YHxb1qNwVGJ3JfEeFZmI4B+FduHQ3Pf1zB47jKJ+fX2ql5eXNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b01.versanet.de ([83.135.91.1] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1s2sPR-0000tz-Kq; Fri, 03 May 2024 14:53:05 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: linux-rockchip@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 0/2] arm64: dts: rockchip: Add Radxa ROCK 3C
+Date: Fri, 03 May 2024 14:53:04 +0200
+Message-ID: <15481689.tv2OnDr8pf@diego>
+In-Reply-To: <171473602992.3469033.3176474743011728197.b4-ty@sntech.de>
+References:
+ <20240428123618.72170-1-amadeus@jmu.edu.cn>
+ <171473602992.3469033.3176474743011728197.b4-ty@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240422164035.1045501-3-quic_sibis@quicinc.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Apr 22, 2024 at 10:10:32PM +0530, Sibi Sankar wrote:
-> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
-> this driver enables communication between AP and CPUCP by acting as
-> a doorbell between them.
+Am Freitag, 3. Mai 2024, 13:38:19 CEST schrieb Heiko Stuebner:
+> On Sun, 28 Apr 2024 20:36:16 +0800, Chukun Pan wrote:
+> > Changes in v2:
+> >   Collected Acked-by.
+> >   Drop cd-gpios for sdhci.
+> >   Add mmc-hs200-1_8v to eMMC.
+> >   Correct the spi max frequency.
+> >   Update model name and compatible.
+> >   Update regulator according to the schematic.
+> > 
+> > [...]
 > 
+> Applied, thanks!
+> 
+> [1/2] dt-bindings: arm: rockchip: add Radxa ROCK 3C
+>       commit: c0c153e341d2a82241bf0a0b78117ceeb29be3eb
+> [2/2] arm64: dts: rockchip: Add Radxa ROCK 3C
+>       commit: ee219017ddb50be14c60d3cbe3e51ac0b2008d40
 
-Hi Sibi,
+Forgot to add, I've dropped the rk809-sound node, as well as the sound-related
+properties from the rk809 pmic that got flagged by the binding check
+and which I could reproduce here too.
 
-one small reflection about locking on the RX path down below...
+So please submit these as follow up patches, once the necessary changes
+to the pmic to allow its codec use are merged.
 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->
 
-[snip]
+Thanks
+Heiko
 
-> +struct qcom_cpucp_mbox {
-> +	struct mbox_chan chans[APSS_CPUCP_IPC_CHAN_SUPPORTED];
-> +	struct mbox_controller mbox;
-> +	void __iomem *tx_base;
-> +	void __iomem *rx_base;
-> +};
-> +
-> +static inline int channel_number(struct mbox_chan *chan)
-> +{
-> +	return chan - chan->mbox->chans;
-> +}
-> +
-> +static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
-> +{
-> +	struct qcom_cpucp_mbox *cpucp = data;
-> +	struct mbox_chan *chan;
-> +	unsigned long flags;
-> +	u64 status;
-> +	u32 val;
-> +	int i;
-> +
-> +	status = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_STAT);
-> +
-> +	for_each_set_bit(i, (unsigned long *)&status, APSS_CPUCP_IPC_CHAN_SUPPORTED) {
-> +		val = readl(cpucp->rx_base + APSS_CPUCP_RX_MBOX_CMD(i) + APSS_CPUCP_MBOX_CMD_OFF);
-> +		chan = &cpucp->chans[i];
-> +		/* Provide mutual exclusion with changes to chan->cl */
-> +		spin_lock_irqsave(&chan->lock, flags);
-> +		if (chan->cl)
 
-So the spinlock here is needed to properly check for races on chan->cl
-being NULLified by concurrent calls to mbox_channel_free()...the end
-result, though, is that you disable IRQs here on each single data
-processed on the RX path, while calling mbox_chan_received_data(), in order
-to avoid the remote (but real) possibility that the mbox users could free
-the channel while some traffic is still in-flight and processed by this ISR.
-
-Note that, though, that mbox_channel_free() calls straight away at start
-your controller provided qcom_cpucp_mbox_shutdown() method, where you disable
-the IRQ at the HW level in the chip: this means that the only race which could
-then happen between the call to .shutdown and chan->cl = NULL, would happen in
-any already executing qcom_cpucp_mbox_irq_fn() ISR...
-
-So, I was thinking, what if you add a
-
-	sincronize_irq(cpucp->irq);
-
-in your shutdown right after having disabled the HW IRQs.
-
-This would mean waiting for the termination of any IRQ handlers pending on your
-cpucp->irq (field that does not exist as of now :D), right after having
-disabled such irq and so just before NULLifying chan->cl...in this way you
-should be able to safely drop this spinlock call from the host RX path,
-because once you chan->cl = NULL is executed, the IRQs are disabled and
-any ongoing ISR would have been terminated.
-
-syncronize_irq() is blocking of course, potentially, but the shutdown
-method in mbox_chan_ops is allowed to be blocking looking at the comments.
-
-...not sure if all of this is worth to avoid this small section of code to be
-run with IRQs disabled....note though that the mbox_chan_received_data() calls
-straight away into the client provided cl->callback....so the real lenght of this
-code path is uncertain ....
-
-...just an idea to reason about...
-
-Thanks,
-Cristian
 
