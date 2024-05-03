@@ -1,113 +1,110 @@
-Return-Path: <devicetree+bounces-64736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7487B8BA9D1
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 11:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A198BA9D7
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 11:25:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E2E12861CA
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:23:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FC18286B2C
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94FE1509B3;
-	Fri,  3 May 2024 09:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CF614F121;
+	Fri,  3 May 2024 09:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NxjknMmh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0wlK9a7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4FF14F13D;
-	Fri,  3 May 2024 09:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC81A139CE5;
+	Fri,  3 May 2024 09:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714728028; cv=none; b=VJUujmS6MEkfhsD2udSs5NEnCRSXMQv+RJlJWZHgm9LAeMTd6LK9ZyBcLI5nvYFozq1xWFZ23vR4YyTBoBYofwHCdrf7nEKKuY2lETAnW8T+5sZIYil5MHtbXuEXJWIPXCSVjwvk86jdcy2L9VRYO/w84x2EXj91Zw6gq1WJCZA=
+	t=1714728305; cv=none; b=iYUGlD0eGUpxFEGFQmrsRnYHI+EiIjmq+wkylH7VUDLTx1/cJgGVhq5hr0aR9evaI45wH4pKkpI0wsvkLiCW7yk1wDnRjTmJg9EHPkCGDmRk/Qw0c+5xMjUxzAnR6pilz+ABnx03rQSq9vDb/xD4huVYbpDmp+qqAJIKbWiDyaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714728028; c=relaxed/simple;
-	bh=fy6FxSu0cqTQvWDYYzdNQibPVZfADLl8MbYVCyUvbWc=;
+	s=arc-20240116; t=1714728305; c=relaxed/simple;
+	bh=zK7UnGMi4p05jwvR3aEI2aFoiM1mhz4XLglPB41yM18=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QeNMAyHPXG+A7B1O5Rax5QdvE8O61vjEhcXOvpLENECZOpy1vfrKiM8ABK1aeA9AEIsKC6LhZ/55FW7NCmKaD8t6urkZBt/yP72YJYj33ds6dEItqvd/w2eMYjv5gnCknKRymsOCx22l8SpYlVuOPlj7wuirwLrfQYmJyVHiiiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NxjknMmh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B3EC116B1;
-	Fri,  3 May 2024 09:20:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ap8zv9KBxyux9t681F+g0KB5IfsULxRBSgwO8D5xj3P5MJCv4nL8m3XoffU5MvotZuceDifjlhneRLAwINfykW5y/eJnCMwxt9f+gmLDFDIiuJ+ux38sDasPYn2ZCE9KiiQ6p99D0Tgsgn5KwbQHQKKIALu1afoBu6I4bAgvyg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0wlK9a7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BAA9C116B1;
+	Fri,  3 May 2024 09:25:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714728028;
-	bh=fy6FxSu0cqTQvWDYYzdNQibPVZfADLl8MbYVCyUvbWc=;
+	s=k20201202; t=1714728304;
+	bh=zK7UnGMi4p05jwvR3aEI2aFoiM1mhz4XLglPB41yM18=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NxjknMmh5vUI+1ocScunvSswB4eol9lkhUhyulij3YNu0byBPWZp339PixNbydQ9q
-	 V7Ujm4OI7JX+OfXQAvRR+nlevC1H/h/Z+YwVeeAo9V+zx85kVmIKt3sQNt5rO5Pzfs
-	 E44nEsjU37MEETJ5W8AFIY5t/oa8Hk0eG+Z0rDowi50ZlOkTpgmGuPfSALc9R+bKMh
-	 24VKquRSjNNj3j4tzCmvVSWFg1T0NhsMVjig3rksNuXTUvEwS0VukELyFx2nv9JHc4
-	 NqbiwlDQsIgkY4bqZFhZmu9R1c+8lg6H3JhxQQZLtsutJ2NO/qJxBYjPJmX4nRP5ve
-	 lrnETyKMq2CKw==
-Date: Fri, 3 May 2024 10:20:21 +0100
-From: Lee Jones <lee@kernel.org>
-To: linux-kernel@vger.kernel.org, Bhargav Raviprakash <bhargav.r@ltts.com>
-Cc: m.nirmaladevi@ltts.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jpanis@baylibre.com, devicetree@vger.kernel.org, arnd@arndb.de,
-	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
-	linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, eblanc@baylibre.com
-Subject: Re: (subset) [PATCH v8 00/10] Add support for TI TPS65224 PMIC
-Message-ID: <20240503092021.GM1227636@google.com>
-References: <0109018f2f24c15e-c50bfc29-5f1d-4368-a4b8-2c9f1d398abb-000000@ap-south-1.amazonses.com>
- <171472796178.1311350.4406575677999610125.b4-ty@kernel.org>
+	b=s0wlK9a72ouNQmoFhqXfgNKQI+xm31/6CJEtIYe198RlKClcGzA0e24vvV5nzjZYq
+	 6TIok9pF1J9VamFuQfUy7yg7pG2NN58/sPl8L8TFHVG8qP3Uw41zPjt+X4+iz4Fi+4
+	 QztH9oN5aKKBNLgua90geuYD2YIrv4DRX2Jvhu2enpkucIzsjI8pCPH72hHpqIp16W
+	 O4FNsfkGxcqKEId4ayl9a9X17cCHtHdCH1AkK68tw8htrMeCIjQkQc7yrwyGDQ5S8l
+	 Q5pkQazhInpMTXLXMlltCxzx+eS2Qlaq2xi+Wg4yaVoXscSsH2yj1CG6iMPDHa/mYq
+	 QmExpUd9z37aA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1s2pA8-000000005Of-0cRG;
+	Fri, 03 May 2024 11:25:04 +0200
+Date: Fri, 3 May 2024 11:25:04 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: HID: i2c-hid: elan: add
+ 'no-reset-on-power-off' property
+Message-ID: <ZjStcGBPlpygpKki@hovoldconsulting.com>
+References: <20240423134611.31979-1-johan+linaro@kernel.org>
+ <20240423134611.31979-4-johan+linaro@kernel.org>
+ <2e67e4e6-83a7-4153-b6a7-cdec0ab2c171@kernel.org>
+ <Zii2CUeIyBwxzrBu@hovoldconsulting.com>
+ <bde4884c-117b-4e6e-8c7b-401b8320655b@kernel.org>
+ <ZjNjMBNMegmTgN5B@hovoldconsulting.com>
+ <48ec0bb5-a06e-4f18-97c3-1370b7facea4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <171472796178.1311350.4406575677999610125.b4-ty@kernel.org>
+In-Reply-To: <48ec0bb5-a06e-4f18-97c3-1370b7facea4@kernel.org>
 
-On Fri, 03 May 2024, Lee Jones wrote:
+On Fri, May 03, 2024 at 11:11:16AM +0200, Krzysztof Kozlowski wrote:
+> On 02/05/2024 11:56, Johan Hovold wrote:
+> > On Thu, Apr 25, 2024 at 11:39:24AM +0200, Krzysztof Kozlowski wrote:
 
-> On Tue, 30 Apr 2024 13:14:49 +0000, Bhargav Raviprakash wrote:
-> > This series modifies the existing TPS6594 drivers to add support for the
-> > TPS65224 PMIC device that is a derivative of TPS6594. TPS65224 has a
-> > similar register map to TPS6594 with a few differences. SPI, I2C, ESM,
-> > PFSM, Regulators and GPIO features overlap between the two devices.
+> >> It seems it is common problem. LEDs have property
+> >> "retain-state-shutdown", to indicate that during system shutdown we
+> >> should not touch them (like power off). Would some variant be applicable
+> >> here? First, do we talk here about power off like system shutdown or
+> >> runtime PM, thus suspend?
 > > 
-> > TPS65224 is a Power Management IC (PMIC) which provides regulators and
-> > other features like GPIOs, Watchdog, Error Signal Monitor (ESM) and
-> > Pre-configurable Finite State Machine (PFSM). The SoC and the PMIC can
-> > communicate through the I2C or SPI interfaces. The PMIC TPS65224
-> > additionally has a 12-bit ADC.
-> > Data Sheet for TPS65224: https://www.ti.com/product/TPS65224-Q1
-> > 
-> > [...]
+> > A name like 'retain-state-shutdown' would also be too specific as what
+> > I'm describing here is that the reset line should be (or can be) left
+> > deasserted whenever the OS wants to power off the device.
 > 
-> Applied, thanks!
-> 
-> [01/10] mfd: tps6594: Add register definitions for TI TPS65224 PMIC
->         commit: 84ccfaee29fe46e305244a69c4471e83629ad5d1
-> [02/10] mfd: tps6594: use volatile_table instead of volatile_reg
->         commit: 436250638b6d8e6cf8dceed82cdbbfc90ce3a775
-> [03/10] dt-bindings: mfd: ti,tps6594: Add TI TPS65224 PMIC
->         commit: 91fbd800649f62bcc6a002ae9e0c0b6b5bb3f0d0
-> [04/10] mfd: tps6594-i2c: Add TI TPS65224 PMIC I2C
->         commit: f8e5fc60e6666b46ce113b6b6de221ebba88668f
-> [05/10] mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
->         commit: 02716864fd5a53e057dcecdb36c807be6494120c
-> [06/10] mfd: tps6594-core: Add TI TPS65224 PMIC core
->         commit: 9d855b8144e6016357eecdd9b3fe7cf8c61a1de3
-> [07/10] misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
->         commit: 91020aecc8136174429d41a6dae3de7cf39f8000
-> [08/10] regulator: tps6594-regulator: Add TI TPS65224 PMIC regulators
->         commit: 00c826525fbae0230f6c3e9879e56d50267deb42
-> [09/10] pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO
->         commit: 2088297159178ffc7c695fa34a7a88707371927d
+> I don't think it is more specific than yours. It is actually more
+> generic. First, shutdown=poweroff, so that part is the same.
 
-Submitted for build testing.
+My point is that 'shutdown' is a specific OS concept (i.e. turning the
+whole system off), while powering off a *device* can be done for a
+number of reasons including closing a character device, suspend and
+system-wide shutdown.
 
-If it passes, I'll send out a PR for other maintainers to pull from.
+The policy decision of when to power off a device is left up to kernel
+(e.g. if a device needs to be kept on as it is currently configured as a
+wakeup device).
 
--- 
-Lee Jones [李琼斯]
+Johan
 
