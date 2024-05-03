@@ -1,114 +1,134 @@
-Return-Path: <devicetree+bounces-64806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CB08BAF1A
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:40:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 356F18BAF30
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:46:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A40D6B20C83
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 14:40:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66D241C21930
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 14:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE85C168DA;
-	Fri,  3 May 2024 14:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5754206A;
+	Fri,  3 May 2024 14:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LI/G1r9+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bItzuRmS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ABE957CB7;
-	Fri,  3 May 2024 14:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9B62E827;
+	Fri,  3 May 2024 14:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714747218; cv=none; b=ZyREa1eW3XqPnRRNeaY3OYSqbYB+FLRdeXEIdHvRzc9Yg2hrHxNlxQL97WgoihT78aEEnnR8nNIdWp3xBvunYXJHmIuZDiv0OSg+SsmrG/RcU6uVZLjyixgvZVmHWQYqoUX5n7l+qFIfQefTb9A7zSjIyQ81ldxMMPuqrYM8Jmc=
+	t=1714747580; cv=none; b=Jew/l4XYJ7Py/xDZvSLoE0UkWtTNfV2UJsHhttGeiZIdwa3UDd/ADdeVmg16YSk8+wlkjPB27ZOfd2v8aZRco1r6mxvu5iD8h9ZOqexucYvlFmRN2Va0RgqLU/sVlGZWpGtqBRqxRV2NV0pdb26xjxuG9ZKtaCim3HGtW7LRmRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714747218; c=relaxed/simple;
-	bh=7BtnR9RIBEkfdbceTTLR0pLPolLNCRzRcmlTMaHVZ24=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uN6/r+zs8WqjquOm5ApiQ57ugQvkBKpX8NNwDlnW+aGociqo0WFyCZDMCd03UaFqedoYElPW/l6uNDyd3RfsBk1/AB9BFrXBf/SuEY8MfJhlVCi42fvB7vX3HrhgyA0ofWoTiuo+EzQ7lFZLGIhWbsqHaHSPQxiM0/PNwSp/I64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LI/G1r9+; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D60A1C0005;
-	Fri,  3 May 2024 14:40:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1714747208;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tf6rG3rOuawc5yY8Jvkp/nAZaJ9cong6+YwM20vUweQ=;
-	b=LI/G1r9+F5hHmudrVZgl+FhWe1cx3c4zASY1twGIyWwNBd0bKtOgrb64vqpw+L/vbBWTkZ
-	WTFzxF+zCHvvzjW6FVSIvLh9AnMfTwU677Fox74DwaahvBPH78XbQAFp/syUaLC9rf8Y0m
-	Y/ueil+R5O5WGty2ArXqfbquZLIZ1Q7NuLOsw2pj4FdOgpaBsTr1jr0jk8XcRzFGujTPSF
-	EMzN3ivFepb212GPm9OGEFMxZoL17qfYrSfRaNnTuHxKnn8xDLHHtea0mAk4CX7+6nijDW
-	GLQNWXELwoYlRw+MewekajkgP41hBz+B/UbHP9GVY/U5xLgwUVvf4Kt76Ts2JQ==
-Date: Fri, 3 May 2024 16:40:03 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Saravana
- Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp
- Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
- Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 15/17] pci: of_property: Add the interrupt-controller
- property in PCI device nodes
-Message-ID: <20240503164003.36e7f182@bootlin.com>
-In-Reply-To: <20240501173826.GA808463@bhelgaas>
-References: <20240430083730.134918-16-herve.codina@bootlin.com>
-	<20240501173826.GA808463@bhelgaas>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1714747580; c=relaxed/simple;
+	bh=NxNcbhOCjngDaCVHjRPwz5ihVV74qe9PSAym9R0E9Ck=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nN2heyeS1BXkpKJywCChw1AjPnsUh8VaXyOSAlTOmG7F/98/DLyoHDFXds7iZnOszGJPLr8fLjg6g8TC00PoaWEhdV6ZX/JPCj/VpwPf4IFmdlhHXmNtUy1hUbp2zBt0NleSlEUbCukSIAY8d64nQZgMDQkqb3/6NfOGSqQsSH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bItzuRmS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43C03C116B1;
+	Fri,  3 May 2024 14:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714747579;
+	bh=NxNcbhOCjngDaCVHjRPwz5ihVV74qe9PSAym9R0E9Ck=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bItzuRmSftrASWXB8bfUvrheyly/NaMWMiZQW4eHmGkRMGYNww3pxYY64dpdozKTv
+	 d8AADK4gzmIXE6E7N0rxqaszsmistNyFl8eEu33s2Mub9zd8RxHzdQLTkt0M8R4+GT
+	 a2mtDcos4Bto0Kh9BEQEmVfoReSiE2DweXQ4m2KdP6CuawLqQ7Ek7fGf4Kpf8CDcTU
+	 muhTuAULZZlK//rOOyRwlegbaNd786nFfWkFBHBuJViUOKgaQpI6+8kHnYNOvW2s2m
+	 Vk2CDrVZ/4QpjcInj4czmf6wJxMHe6/UJe5qA7mckJbnTGF9Fd7S95r66jv3WfJpQv
+	 a6EzMyNiXXkHw==
+Message-ID: <7b6489b7-ec9f-4fc7-af72-4d5cc87acd7f@kernel.org>
+Date: Fri, 3 May 2024 16:46:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] spi: dt-bindings: Add num-cs property for mpfs-spi
+To: Prajna.Rajendrakumar@microchip.com, broonie@kernel.org
+Cc: linux-spi@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Conor.Dooley@microchip.com, devicetree@vger.kernel.org, robh@kernel.org,
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+ Valentina.FernandezAlanis@microchip.com, Daire.McNamara@microchip.com
+References: <20240502143410.12629-1-prajna.rajendrakumar@microchip.com>
+ <20240502143410.12629-3-prajna.rajendrakumar@microchip.com>
+ <10671947-f418-4520-a29f-4ce129770e65@kernel.org>
+ <1edb6c4c1a66c1a2009278b99f897e3a71b592c6.camel@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <1edb6c4c1a66c1a2009278b99f897e3a71b592c6.camel@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Transfer-Encoding: 7bit
 
-Hi Bjorn,
-
-On Wed, 1 May 2024 12:38:26 -0500
-Bjorn Helgaas <helgaas@kernel.org> wrote:
-
-> In subject: s/pci:/PCI:/ to match history. s/Add the/Add/ for brevity.
-
-Will be done in the next iteration.
-
+On 03/05/2024 14:54, Prajna.Rajendrakumar@microchip.com wrote:
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: microchip,mpfs-spi
+>>> +      not:
+>>> +        required:
+>>> +          - cs-gpios
+>>
+>> I don't understand what you are expressing here. Did you actually
+>> validate it that it achieves exactly what you want?
 > 
-> On Tue, Apr 30, 2024 at 10:37:24AM +0200, Herve Codina wrote:
-> > PCI devices and bridges DT nodes created during the PCI scan are created
-> > with the interrupt-map property set to handle interrupts.
-> > 
-> > In order to set this interrupt-map property at a specific level, a
-> > phandle to the parent interrupt controller is needed.
-> > On systems that are not fully described by a device-tree, the parent
-> > interrupt controller may be unavailable (i.e. not described by the
-> > device-tree).  
-> 
-> Rewrap into one paragraph or add blank line to separate paragraphs.
+> Since the controller supports only one chip select, the num-cs should
+> default to 1 and cannot exceed 1 unless GPIOs are used as chip selects.
 
-Will be rewrapped in one paragraph in the next iteration.
+That's not really the answer... or you want to say you did not test it?
 
-Thanks for your review.
 Best regards,
-Hervé
+Krzysztof
+
 
