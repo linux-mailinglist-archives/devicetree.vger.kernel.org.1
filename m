@@ -1,244 +1,276 @@
-Return-Path: <devicetree+bounces-64880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB478BB44C
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 21:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 164398BB47A
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 22:06:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1EB61C2154A
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 19:44:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39B221C221C8
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C2A158A25;
-	Fri,  3 May 2024 19:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014EA158D74;
+	Fri,  3 May 2024 20:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="2oFPrmCc"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="OEusx4YR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A10F13957E
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 19:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE03C134B1
+	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 20:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714765463; cv=none; b=jzymy5ArPk0xd6uDKPBAhSD1tUnpIq2WJNitRDqB8vODoYnty8HhsrTxCe8n9Nkkv9OX9+WiDd+6aRtZQvTPSFbqamAdLDQf+e2blvgSnxBi3gSxS1D79MyHA21ZhwtCHImPisLP4QuEsd98MoN1zTXnfEFY1HmFnLxnZtIiEyk=
+	t=1714766782; cv=none; b=vFQ45J8EAE5IrKOYp3QutZI+WiRjkrmkJwpO16CRRatqKvV8I+iiUv9lRNlRwqKNLatuxRPx3ERbBiuTTsFL7SuKtAPPFSQqT6eGeNP2fwhpJlD1B2AJuLFgzWAGCujom0ZFf/AdzFaQJA3g+FLG/GT0SzY12uQOPVJcTuMO8ZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714765463; c=relaxed/simple;
-	bh=0NLlSbUWjtfkSNMe90tPQL2xSqgQxt8SNfb42yWTU8Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MGj43Y6+nDU1qy33hFRLD2Of3T72dwraw/orhwU09mSf/av9toxro38+OrwZNVGxWunUbBJfBMwOPvaR063NwRN+7okHzUuDz+ZFF978sU3Od/CBF2qrwe0cPnHWL/iuuoKZzQoRsdB36l9luXSTIdEU8gOr7JPswoydqfi+/Wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=2oFPrmCc; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-5d8b887bb0cso13927a12.2
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 12:44:21 -0700 (PDT)
+	s=arc-20240116; t=1714766782; c=relaxed/simple;
+	bh=5pBLoEbM3MAdpvcd/11Vhv+fh4xalMFupTDxqqCMcyk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eJ7GzeR4rV8FLoSDls7sYHzXr92mowW2JBRLn6O5k+axdVQxvRRE0csgNBXhbupiOnrdZyZB7bk+345CVQPU8kkQTIPJwqeSCw2sFja2x1fGdrNs49PYZNgBu3t78cACYqT0zWISMRtf5NZV2/2Tsf/y14q85jdncX3rwC3bKBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=OEusx4YR; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4347cbdb952so59511cf.3
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 13:06:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714765461; x=1715370261; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CGjDpzqhZQyAQMKyqH+Z7WQdcPMW4kVzNIgeNLfdaAY=;
-        b=2oFPrmCcjzasyoCpy5AhnCPSBFINufmdYubjfIa/ZpLhV9vXxe8Ab0fmp1qlLA17GO
-         N4wUO8m1SF1FI5xDq7sPKJTdsQ5clYcPEWZZCrWDTMWkIou3dNxyeULIUnTkVbWE620S
-         8EjzELyznOoBaMQglczLqTy9ZMByUIwdyQwXVuFM0KyvqCb6nEVfaaOj+xMqjK+uSmOV
-         VHOp/0s600qSUKASTlwUzDP9u4nsInS/qdtzhnW40vLkks4NHtU4yhIKGx9fm9V52h8i
-         Ri0TKS6cMttWgjfe/4yC/lGe6d24MONCPSVfjglG+F4ZyFtcMgbpKCBuy3F4+Mrx3CPt
-         5e0Q==
+        d=broadcom.com; s=google; t=1714766778; x=1715371578; darn=vger.kernel.org;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MKJHsNRwdNxU2ERlykZCVH9tEQxAC7JSVbA4TWF9pgc=;
+        b=OEusx4YRzAS8L9Fad6uBgp1G4H/rMU8cGq9rjhPNJd9HHiIeoC0edT/0dI1jSrxQIK
+         q3noKsl3CcGwtKzspCS5GkI7X7C3oJ03rNYRpj70zzFG9v4hdR1hXA9E0rqccIfxp+Uq
+         o+mb7Fvvug4prGa9eql/qLiGCVM3YeZ4FwuOM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714765461; x=1715370261;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CGjDpzqhZQyAQMKyqH+Z7WQdcPMW4kVzNIgeNLfdaAY=;
-        b=lO3nl7yUEirgIVAkEKJmtsn5XdqepZKepOF6ry6VydFCXTiPNpONu4F4/6lc/fnh1y
-         tEBAEeASIlASL5i14SS5ReOHDHJW5odgDhNpp6Zk63uoSyPOK7KxcpOzGOFFMJVkB0zm
-         jw/dmnatEmrXJLVajyWTY0wrihEkdsHTdbBn7MmaCHf2SuewiRkYtp1yygTxWaMhu/u6
-         qYNZESE+DYoFzvML7TfKRNLUoO15uo4U5QEp8fGMZstknQHfonknWPiqhwd1kan8ehEt
-         TczGq0Y42BgMRkFKItSXaSqWjtB2JHJZ1dROrzU+KjL0SuUrsjAXZL5wvpCX7ZWeHai8
-         LqxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWNqaUWuwHTwh5hq6fyJKPGL2KQNCkOgmEbx1ilppzOWgkTgWOix62NRFNHyrd/k0eSh1uxyk61lQsmKzVGfhD51eMQkqyC940ZjA==
-X-Gm-Message-State: AOJu0YzWds+aiBTM6Z79KjExyTWG32SnsP1DKCCqES0K3XMHX1VdZ0RV
-	0JhaPEgl2OZTkCzXPu0DMoHVj3UkHF2rGgi8q5r2a+ztgDq03Abje45ekYN9z+1aU65xtEsFzj6
-	L4zrXdql1Z/LVjVDyuuS4Nc5tdcGZ9b4oJraIXw==
-X-Google-Smtp-Source: AGHT+IHresXDj8zjJo2L5u68znPjhx0ovrbhxu+59NRfgJ//aE/UKF6ubHAqLADqE7qY9hVfIpPoveM7rHNL5OQZ3Ao=
-X-Received: by 2002:a17:90b:354e:b0:2b4:33ee:25a1 with SMTP id
- lt14-20020a17090b354e00b002b433ee25a1mr3442632pjb.26.1714765460928; Fri, 03
- May 2024 12:44:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1714766778; x=1715371578;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MKJHsNRwdNxU2ERlykZCVH9tEQxAC7JSVbA4TWF9pgc=;
+        b=lUQKkntDUqq76fbAaGsHEeMyyunpT1WcpMpHaT8lLryAOW0MT1soWjhHwkzc+3COUC
+         2XXM6F2BA3VgOh3UFSHmRbfj8ZcERE4sylA4V9oLPIRh1j/7k97LI5ETNraSWPZMxsBI
+         eH3Z7dpp5QreHgkSYSNPe3mtDr2OiCmshusGeLz1uoxsE1RNBD9gBhVTuWdK3VWI+DYH
+         60AKpBY2iMIArqXUSFYi8jLveijbVbNoKLcpq8f5zRRKHCA8n0Lz9cOnBMNxTKtDPJ0i
+         2+urXWCtSkb/jX0ZeA+BsrRpwbNAUHqBH9auSUpVn837AvKSJBjtV5NShiRIUqIdtTeC
+         jDLg==
+X-Forwarded-Encrypted: i=1; AJvYcCXXoglx4WOmcfhvSOlRFwfsqdL9UYaThqlYYeVmR38sB0/U6ZXryDVKiQTL8ItCE7hEkQXz0LGe43FqxwnSPMJ2EsvG8Fn+UBKP5A==
+X-Gm-Message-State: AOJu0YyKRpmzr6DjS7gkvgkWB/sI+gXdPMDI7Leg6fusaAAuKHovgpmm
+	8Yum/2/NPgf5YRlPq7qOZpOrkOcz2ry71SAOQNKBkLm9zRAeRA5s1W48YXnFtA==
+X-Google-Smtp-Source: AGHT+IEuHeo97V1eJshwA0QfRN6Qkh2SLcp0um7XZFVDwH1OaQz9IE92KEwa1a7BNTYWUVkL7iUAmw==
+X-Received: by 2002:a05:622a:4d3:b0:43a:c0c7:a223 with SMTP id q19-20020a05622a04d300b0043ac0c7a223mr4175036qtx.48.1714766777863;
+        Fri, 03 May 2024 13:06:17 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id dr12-20020a05622a528c00b0043c58b6d941sm1917069qtb.42.2024.05.03.13.06.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 May 2024 13:06:15 -0700 (PDT)
+Message-ID: <74d7601c-ba89-42c3-acfa-31d55cf04e0e@broadcom.com>
+Date: Fri, 3 May 2024 13:06:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1714494653.git.tjeznach@rivosinc.com> <b83f81c04d1f3885d860b1eec03761fe63a33183.1714494653.git.tjeznach@rivosinc.com>
- <20240501145621.GD1723318@ziepe.ca> <CAH2o1u63GjMnYrfa8W-c1hdp+TAA0R-FyxXM4dEiFF+KEGWwbA@mail.gmail.com>
- <20240503181059.GC901876@ziepe.ca>
-In-Reply-To: <20240503181059.GC901876@ziepe.ca>
-From: Tomasz Jeznach <tjeznach@rivosinc.com>
-Date: Fri, 3 May 2024 12:44:09 -0700
-Message-ID: <CAH2o1u7av8zMucB2sKxBOZtd1eqEC4Qmgin=8VQ03pWbQdZUUg@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] iommu/riscv: Paging domain support
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux@rivosinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] dt-bindings: mips: brcm: Document mips-cbr-reg
+ property
+To: Christian Marangi <ansuelsmth@gmail.com>, Conor Dooley <conor@kernel.org>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <zajec5@gmail.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ =?UTF-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+ linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?Q?Daniel_Gonz=C3=A1lez_Cabanelas?=
+ <dgcbueu@gmail.com>
+References: <20240503135455.966-1-ansuelsmth@gmail.com>
+ <20240503135455.966-4-ansuelsmth@gmail.com>
+ <20240503-oncoming-taste-bab71375b67c@spud>
+ <66353c11.5d0a0220.bb93c.fb57@mx.google.com>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <66353c11.5d0a0220.bb93c.fb57@mx.google.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000b045a60617924041"
 
-On Fri, May 3, 2024 at 11:11=E2=80=AFAM Jason Gunthorpe <jgg@ziepe.ca> wrot=
-e:
->
-> On Fri, May 03, 2024 at 10:44:14AM -0700, Tomasz Jeznach wrote:
-> > > > +     list_for_each_entry_rcu(bond, &domain->bonds, list) {
-> > > > +             if (bond->dev =3D=3D dev) {
-> > > > +                     list_del_rcu(&bond->list);
-> > > > +                     found =3D bond;
-> > > > +             }
-> > > > +     }
-> > > > +     spin_unlock_irqrestore(&domain->lock, flags);
-> > > > +
-> > > > +     /* Release and wait for all read-rcu critical sections have c=
-ompleted. */
-> > > > +     kfree_rcu(found, rcu);
-> > > > +     synchronize_rcu();
-> > >
-> > > Please no, synchronize_rcu() on a path like this is not so
-> > > reasonable.. Also you don't need kfree_rcu() if you write it like thi=
-s.
-> > >
-> > > This still looks better to do what I said before, put the iommu not
-> > > the dev in the bond struct.
-> > >
-> > >
-> >
-> > I was trying not to duplicate data in bond struct and use whatever is
-> > available to be referenced from dev pointer (eg iommu / ids / private
-> > iommu dev data).
->
-> I'm not sure that is a valuable goal considering the RCU
-> complexity.. But I suppose it would be a bit of a hassle to replicate
-> the ids list into bond structurs. Maybe something to do when you get
-> to ATS since you'll probably want to replicate the ATS RIDs. (see what
-> Intel did, which I think is pretty good)
->
-> > If I'm reading core iommu code correctly, device pointer and iommu
-> > pointers should be valid between _probe_device and _release_device
-> > calls. I've moved synchronize_rcu out of the domain attach path to
-> > _release_device, LMK if that would be ok for now.  I'll have a
-> > second another to rework other patches to avoid storing dev pointers
-> > at all.
->
-> Yes, that seems better.. I'm happier to see device hot-unplug be slow
-> than un attach
->
-> There is another issue with the RCU that I haven't wrapped my head
-> around..
->
-> Technically we can have concurrent map/unmap/invalidation along side
-> device attach/detach. Does the invalidation under RCU work correctly?
->
-> For detach I think yes:
->
->    Inv CPU                                   Detach CPU
->
->   write io_pte                               Update device descriptor
->   rcu_read_lock
->     list_for_each
->       <make invalidation command>            <make description inv cmd>
->       dma_wmb()                              dma_wmb()
->       <doorbell>                             <cmd doorbell>
->   rcu_read_unlock
->                                              list_del_rcu()
->                                              <wipe ASID>
->
-> In this case I think we never miss an invalidation, the list_del is
-> always after the HW has been fully fenced, so I don't think we can
-> have any issue. Maybe a suprious invalidation if the ASID gets
-> re-used, but who cares.
->
-> Attach is different..
->
->    Inv CPU                                   Attach CPU
->
->   write io_pte
->   rcu_read_lock
->     list_for_each // empty
->                                              list_add_rcu()
->                                              Update device descriptor
->                                              <make description inv cmd>
->                                              dma_wmb()
->                                              <cmd doorbell>
->   rcu_read_unlock
->
-> As above shows we can "miss" an invalidation. The issue is narrow, the
-> io_pte could still be sitting in write buffers in "Inv CPU" and not
-> yet globally visiable. "Attach CPU" could get the device descriptor
-> installed in the IOMMU and the IOMMU could walk an io_pte that is in
-> the old state. Effectively this is because there is no release/acquire
-> barrier passing the io_pte store from the Inv CPU to the Attach CPU to th=
-e
-> IOMMU.
->
-> It seems like it should be solvable somehow:
->  1) Inv CPU releases all the io ptes
->  2) Attach CPU acquires the io ptes before updating the DDT
->  3) Inv CPU acquires the RCU list in such a way that either attach
->     CPU will acquire the io_pte or inv CPU will acquire the RCU list.
->  4) Either invalidation works or we release the new iopte to the SMMU
->     and don't need it.
->
-> But #3 is a really weird statement. smb_mb() on both sides may do the
-> job??
->
+--000000000000b045a60617924041
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Actual attach sequence is slightly different.
+On 5/3/24 12:33, Christian Marangi wrote:
+> On Fri, May 03, 2024 at 05:21:41PM +0100, Conor Dooley wrote:
+>> On Fri, May 03, 2024 at 03:54:03PM +0200, Christian Marangi wrote:
+>>> Document mips-cbr-reg and mips-broken-cbr-reg property.
+>>>
+>>> Some SoC suffer from a BUG where read_c0_brcm_cbr() might return 0
+>>> if called from TP1. The CBR address is always the same on the SoC
+>>> hence it can be provided in DT to handle broken case where bootloader
+>>> doesn't init it or SMP where read_c0_brcm_cbr() returns 0 from TP1.
+>>>
+>>> Usage of this property is to give an address also in these broken
+>>> configuration/bootloader.
+>>>
+>>> If the SoC/Bootloader ALWAYS provide a broken CBR address the property
+>>> "mips-broken-cbr-reg" can be used to ignore any value already set in the
+>>> registers for CBR address.
+>>>
+>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>> ---
+>>>   .../devicetree/bindings/mips/brcm/soc.yaml    | 32 +++++++++++++++++++
+>>>   1 file changed, 32 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+>>> index 975945ca2888..12d394b7e011 100644
+>>> --- a/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+>>> +++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+>>> @@ -55,6 +55,21 @@ properties:
+>>>            under the "cpus" node.
+>>>           $ref: /schemas/types.yaml#/definitions/uint32
+>>>   
+>>> +      mips-broken-cbr-reg:
+>>> +        description: Declare that the Bootloader init a broken
+>>> +          CBR address in the registers and the one provided from
+>>> +          DT should always be used.
+>>
+>> Why is this property even needed, is it not sufficient to just add the
+>> mips-cbr-reg property to the DT for SoCs that need it and use the
+>> property when present?
+>>
+> 
+> I described this in the cover letter. CBR might be set by the Bootloader
+> and might be not 0. In that case the value is ignored as an extra
+> precaution and the broken propetry is needed.
+> 
+>>> +        type: boolean
+>>> +
+>>> +      mips-cbr-reg:
+>>
+>> Missing a vendor prefix.
+>>
+> 
+> I will change this to bmips,cbr-reg hope it's O.K.
 
- Inv CPU                            Attach CPU
+brcm,bmips-cbr-reg please.
+-- 
+Florian
 
- write io_pte
-  rcu_read_lock
-    list_for_each // empty
-                                    list_add_rcu()
-                                    IOTLB.INVAL(PSCID)
-                                    <make description inv cmd>
-                                    dma_wmb()
-                                    <cmd doorbell>
- rcu_read_unlock
 
-I've tried to cover this case with riscv_iommu_iotlb_inval() called
-before the attached domain is visible to the device. This is something
-to optimize to avoid invalidating the whole PSCID if the domain was
-already attached to the same IOMMU, but I'd leave it for a separate
-patch series.
+--000000000000b045a60617924041
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-> > > The number of radix levels is a tunable alot of iommus have that we
-> > > haven't really exposed to anything else yet.
-> >
-> > Makes sense. I've left an option to pick mode from MMU for cases where
-> > dev/iommu is not known at allocation time (with iommu_domain_alloc()).
-> > I'd guess it's reasonable to assume IOMMU supported page modes will
-> > match MMU.
->
-> Reasonable, but for this case you'd be best to have a global static
-> that unifies the capability of all the iommu instances. Then you can
-> pick the right thing from the installed iommus, and arguably, that is
-> the right thing to do in all cases as we'd slightly prefer domains
-> that work everywhere in that edge case.
->
-
-That is a viable option. If you're ok I'll address this as a separate patch=
-.
-I've been trying to avoid adding more global variables, but it might
-not be avoidable.
-
-> Jason
-
-Best,
-- Tomasz
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOHuELHTHITal30x
+dh6W+Uf5fwzllqBC0u+nG5Cyj2ofMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDUwMzIwMDYxOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDeOQokTokC9Tv1oUNAY3LdgBXVuopJhZgh
+NzYpyE2x+PHX2oo5jV1oA39fTlrMX+FaHY2YPTTlMFMNRVwb5KM7OP1EtXbCEi9haN+oXYEJjxFc
+/UNA+YypzdQqv1AkRF16GFlCI9N+oW0p3h7QOYpHQAvk9v77JnP5WK7Q4XdIyHUxWDLmu439+Lh1
+LpO4k6NFp9B0NTQLRchhoIPk/xmfLg4gg/XLRfSxGQemfgkH47CIdMD8v2Y3uvPlBd0MaIMG+E8A
+10u7dZX3FSsYQvvD7apt/ND5h6IgR7ZEvQ9sOnstJiWARq5mCxe96EDlknzNaHtseWWOvL3QSdVg
+Au1Q
+--000000000000b045a60617924041--
 
