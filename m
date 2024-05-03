@@ -1,795 +1,315 @@
-Return-Path: <devicetree+bounces-64825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718748BB0AC
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:14:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 122038BB0BF
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0F481F23897
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:14:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3557A1C20D5F
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F6C156C4E;
-	Fri,  3 May 2024 16:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC75715533F;
+	Fri,  3 May 2024 16:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="eJuxJYda"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="n0NDzOf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2139.outbound.protection.outlook.com [40.107.21.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EF1156996
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 16:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714752785; cv=none; b=tVN5R/ny0GTdqyK5ejrLmNE/b9OFHbRX68SbdNYM6PsOWwMmoFPrk3+oMj7P99rgcCvZfnWq2blJ/SGCN9r0NjSnxG1Fd3qSvbTC6LFR/tPapx3mTaKO0uHMwNUn+hj2kxScsFOqAdfosVpdctoh7LRjShVkybjKzcm6rLWmhGQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714752785; c=relaxed/simple;
-	bh=AaBs2RdQKdtBiOgErWt4VDKD1JnUiKY6J1pQxRQu0vw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i0dhew7cEQeJg5t44j5bczWhO1EnaA2joXSQVsD8HiL+G5BUN3Wmn+/Is5+8c4ueZ3C3ZbHva1j4+alyuwyxc0YhU+lZ4y5w8X6mNTwc61ZKk+BYsGkFin5NxgWI43QUSibHnOFID0CfxLwmG1VtDPhynaTYzfnqR8LKTimysuw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=eJuxJYda; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1ec5387aed9so37600115ad.3
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 09:13:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714752782; x=1715357582; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cuwuFTePzNtnUxWb1C24xUZui7WXIZw4/uw2u4kNeLk=;
-        b=eJuxJYdaQcyX733alNmXJ+/O+5VTTunD7nDfUbrgL0srswWwD2pn6vvqByxGzNe830
-         NE4d8GT84un3/MOUKm3kuaWfNiJt5xyPaY9L84SxgYZVAuTSDyJnGX40ipEEbqIPNyk/
-         DJrNmfLE6MBuuCmUvY9GpRNm0pHAgOD6zLZr70k/r2Lw1MxsGNjbGlHqQ3D+b9M9a9PO
-         DHPlXTWCrq4EYLjR9TMdOvFQY8zGFRQ2MgfC1FIffu/FzT73RhLOFSI90p8ZS9a7io/B
-         1b0QThRWdojDjC0aRiQ4zmwdxIhnBi/rt3tv8y4v2css5YIr6R2GhUiDN3hyKWQIQZ4g
-         qtmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714752782; x=1715357582;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cuwuFTePzNtnUxWb1C24xUZui7WXIZw4/uw2u4kNeLk=;
-        b=ldb6Mm//TcbHW0n6fY6rPau9dCX9qODJbPg4XQUSPLgSOjlJyhGZ6Ob32OaP9X/z1+
-         g/B6zbwY/6ey+pW1/LEyW48SE93L+fkuMnBU31patv9JT3B0p+ZQcmxKcLmKx+oAxeeq
-         Kk4/IGS5F/FT+ojs1A8ExWCdxWJL5By1sYR7z1sKQgPWQEvfNbYzWAP8ZK6AWyAcE4N+
-         KPYN/6AIjPxrLapypeRUvvRUw6H/nLdeykIWzA/to3EJWXxxcm4TzgQ0rERz5nVTIKlU
-         BzrjxzU9SHwMDoZTwT/NhRxvmF9jvHlhJYnslV0Y/zk7vVxgLGU23924v9ZB+JRm1TcM
-         8+PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWwCaq2nd9pKHbrrpDwWRABsRVh0HieGwifuOB7ayBHY6QVRgyjE9ogatfC66+csN0nUk9N1A1f8ravn1OKoRY4DjT2XrYN5R7mbg==
-X-Gm-Message-State: AOJu0YyDouCM5DWmy9U5eOxGz4Hh3Sg0k47b6lQDTst+x8t4EakzX0xo
-	Ed2/TEzPIVAbKiQI4cXyV8BrkT6prGXHPtU9VcOgV7Z/p0Wq2Skqmz4x/7QV2Oo=
-X-Google-Smtp-Source: AGHT+IGKgG2WAKyeGUBTx/PGiqlMAXPLwMvJNWiAuxtQdjfsRLUWMLaAhHf6VyVfQmCTdKtbceYGEg==
-X-Received: by 2002:a17:903:1c8:b0:1ec:711b:edc0 with SMTP id e8-20020a17090301c800b001ec711bedc0mr3618224plh.67.1714752782009;
-        Fri, 03 May 2024 09:13:02 -0700 (PDT)
-Received: from tjeznach.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id x3-20020a170902ec8300b001e2086fddecsm3424746plg.139.2024.05.03.09.13.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 May 2024 09:13:01 -0700 (PDT)
-From: Tomasz Jeznach <tjeznach@rivosinc.com>
-To: Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Sebastien Boeuf <seb@rivosinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	iommu@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux@rivosinc.com,
-	Tomasz Jeznach <tjeznach@rivosinc.com>
-Subject: [PATCH v4 7/7] iommu/riscv: Paging domain support
-Date: Fri,  3 May 2024 09:12:40 -0700
-Message-Id: <1cda67ed73f0a1d5cb906b3692a90ab35416f2ba.1714752293.git.tjeznach@rivosinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1714752293.git.tjeznach@rivosinc.com>
-References: <cover.1714752293.git.tjeznach@rivosinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFBCD21360;
+	Fri,  3 May 2024 16:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.139
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714753220; cv=fail; b=K9OCspFnbVYXOchiBV2eHTDhRhcknM1NqBpYII3BEEsFkYLP4I43D+/IOjoBRYrsKdRKfGw8YeiBidSY1OTIf5B8ZC9UmP3+coBSQZ5btLWrPJwe7T89fO1E2ax6lkSTJMNIM6mNjMvCuwss21lsFhpp3JYT8hh4Rtmqt25TCb0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714753220; c=relaxed/simple;
+	bh=yNvH3CNrNNIrOSv+zm6Bkcyvoo1rSAFBl51zr/sVygg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KKSj5iAUhkas/bMM2IHnZ4W0oYwd7eiSR2MEs5rQN8l23wXYmY4E2uq9UHbzOqi06XNRe8twUywCYB9iMTkgM4MLCcnkvj1P36h7O9VPUSdXJ0XyyyeAzSwWK5Q2KdNNFwQ/oRQUYbG7CGAYUVuKjex0LZ4LVzb/rPVNKHIt/9o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=n0NDzOf9; arc=fail smtp.client-ip=40.107.21.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R6cFMFFVFCpElKZmtWVe9NSb++1TJy469QjkclfKQ95eH520BNdDjWVpwJs6JhYLZuO0Izjbc1dk0/A+AZS2trLG2lvdmhZYMQNc4AwH5CR4tZt4EGVtsn+WZ181yO01kldNJC4Y8nBOD8mLbKpGPSIkMaLb5JrwvVKtOwrxXmPmMFREka68B3qBhExTeg1/480jSgIulzdpexCbTRSi1ryFO6n1dtHMvQp6qklu/a2NHlyFO0tEscUaxEnwtXaepN4LZbU0ALNtYqX2VyzUunorPB70ABrfYNxS+H/2CTDTTuj8AcQpQrqqx3YpjWSvOLqVmSphnotEbiJwU67suA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MQt6mmXODkhqEhmCF3Br8xi6praQGTGC6Jikbnygre0=;
+ b=dLlUXljeCtdrcOxMvStgeO4jSI48TrgpGF526/t4fj1CDLJ6b0atrjyLcDzlELSpVJmu7Kwe18QkKyAXWzkkfzwt5qmcysF1ab47nrffeWsrTJe1kk5L4ntMOJ5j4gsDL+2TNyWdikFi1+aMsMHSmxAM69POacQgKiKQoRzJubbCiUVCo0cRcYNJVqpFlazQqGrI9z8MDnqCuxx+oQ7iTs2PrDQyN38y6NEHmZoPyOuj1aIhZF4OLuMZxz7DBvxk4lIuXy22XGrG0DaAsBCLzNzal88D9HyW9rMoARfDo1tUU9NgYHWTE5nG9uLOAZppSa68p5xCx1sElHrbZAxW+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MQt6mmXODkhqEhmCF3Br8xi6praQGTGC6Jikbnygre0=;
+ b=n0NDzOf9QiOchXsPDc7pE1J5Xa/jqWVK0wt2k+AKQ05oRSh4YR2mxXDmoFryp/LcrGtSa5TtOmzXTA1j8Yk6FZSgEgm84bpFZO/emTNb5ckbNZ1OFesgnOwGnk9pYjcFaenPnl+oPgldXmXshimo75ytgTJPpp5IuPbWELBaJbk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from DB7PR04MB4842.eurprd04.prod.outlook.com (2603:10a6:10:1b::13)
+ by AM8PR04MB7745.eurprd04.prod.outlook.com (2603:10a6:20b:234::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.30; Fri, 3 May
+ 2024 16:20:14 +0000
+Received: from DB7PR04MB4842.eurprd04.prod.outlook.com
+ ([fe80::ac08:df46:97bd:4ae6]) by DB7PR04MB4842.eurprd04.prod.outlook.com
+ ([fe80::ac08:df46:97bd:4ae6%6]) with mapi id 15.20.7544.029; Fri, 3 May 2024
+ 16:20:14 +0000
+Message-ID: <8506322f-bfbf-4582-a88b-b300cad2d344@cherry.de>
+Date: Fri, 3 May 2024 18:20:10 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] i2c: mux: add the ability to share mux-address with
+ child nodes
+To: Peter Rosin <peda@axentia.se>, Farouk Bouabid <farouk.bouabid@cherry.de>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com>
+ <20240426-dev-mule-i2c-mux-v1-1-045a482f6ffb@theobroma-systems.com>
+ <f7ddc503-21c6-10b8-3326-398de65bd6a8@axentia.se>
+ <318b22c7-4e90-4055-a893-bb995c16e8da@cherry.de>
+ <c5e375a0-8c64-f244-a5e6-bfcb3400d05a@axentia.se>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <c5e375a0-8c64-f244-a5e6-bfcb3400d05a@axentia.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: WA0P291CA0001.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::27) To DB7PR04MB4842.eurprd04.prod.outlook.com
+ (2603:10a6:10:1b::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4842:EE_|AM8PR04MB7745:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51e54e60-3c51-43c6-d54c-08dc6b8ce9ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|7416005|376005|366007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bXZLQTJrZTE1ai93VkFTaDJMbzRKajVnb21TNkxodFBFay84aHZoRHRpamlV?=
+ =?utf-8?B?NittUFRkclRoOGVoWGV1QlAwWjlZTEVmREprZERteURONHhVZEJXSlJVbDh1?=
+ =?utf-8?B?R1dEaUF4RlUycjd0VkZ4MzhvN1lHQWlqZHZOWUJsY2JYMFY2Q3BDL1RNSVNC?=
+ =?utf-8?B?Q2RwRjhkeVc1OXpmanpnazdEUUFaUzdLQ0RWUXdjS1Y5eHpwNmVlbDhXL05a?=
+ =?utf-8?B?dXllMzhaSStUdkErQmoyUnpsZ2NNM3g1clBkVHI0eThMMHFrSDY4RGdSRVlP?=
+ =?utf-8?B?TGczazRDeCs4eUxhUFRwcVJ4REJNbG9CQy9qVnJrMXkvZ095V0hDbkRwTDMx?=
+ =?utf-8?B?MTcxL1ZMTlpXd2NTb01FdjlVcHlBQThMbkUwQVUxZlJqVldnR3Q2QnRCTlBx?=
+ =?utf-8?B?ZlF4SkxsbHlYSGtyUGpsY1NmVUI0TzFSU0xxSUVVVDdQUjBvUENiMjM3YjdL?=
+ =?utf-8?B?cWxPSnZiSDdiMDZka0Z4bmxHUVROc0F2ZzVMZWlXaUsyZXNVUDVTbmNnMGFl?=
+ =?utf-8?B?SC9RTjdQVm90aDE2ZTFGVWhzTWpxZlJKN0syZVA4VnRKY3JWT2dJdU01QmNX?=
+ =?utf-8?B?M05ZQURIV0FZcmZVT0RHOXJiam5FTDNjTEpNbUU1WW5TeGRnT3RaTXF3VGNU?=
+ =?utf-8?B?QXNSWDdRZ2N6T0lEWWlheSsxeEhHRlpJQWVVKzdkYWZ1NmVMKzBvV2ErODM5?=
+ =?utf-8?B?SGY2OGd5OTZsdXFia08xdlRsNk5Ka2RZV1Q0QUVJd1o0Yzh5NSsxb2pZR3dk?=
+ =?utf-8?B?MHlhVkhFUkQ2R1dSTytiSTM0NzdEZldpL2NXK2tFNzRZUjNwUWlqWDM5T3Ni?=
+ =?utf-8?B?MGtGdGdzYy9WaVFZWVQzdVNHcS9RY0tPVnpkNXp6OTJ0ZmwzNCtjckg5Z2Vl?=
+ =?utf-8?B?ME9IZHdUSStJY2VENXFPQjlQbG52SVdqcWtDbDFJMlR2ckZGeXpMSjkwZDNQ?=
+ =?utf-8?B?a3Z6eFNsa2lra0JQSUxNVzhlM3pBUmd2MFovQkpHYWkxQWZaOE84cit4NTdY?=
+ =?utf-8?B?V1ZVVy8vNnlWc1Ixbk1JOEZMSEszQTBROURKV3AwU2oraTdWeFZORU42RGFX?=
+ =?utf-8?B?TUVEZFg5bnh1NXNLcXRkOHdNMmUwWnFYeG9JT3lQZVh2T1pDcjNEN09pZmNF?=
+ =?utf-8?B?Z2p4Y09ZYSt3bjJsSnFNNjdzZlJ0ZEk5ZkpBcDRlZ244K0x5QmRacktvVDIx?=
+ =?utf-8?B?LzAyRHl5T24xTFBMS3R4K2xiN0JuZU1PZDVoNWlPbWk4VWJ4ZFZZM0FkYW5Q?=
+ =?utf-8?B?S3BOR3JZSHpMcUkydU1RTFVIN0NrdEtuRzUwYThJcVcwTnlYWkR2VS9iRFNx?=
+ =?utf-8?B?dXhwME9oaC81Q3VDRnNISVNkM0NUbm1FaHFvTmJNb2Y0SjM0VVVtVHNIa1Qw?=
+ =?utf-8?B?R3hzVVR6cDBqaDFyc1Z1U2t6VWd1dU13NDhSUVhhRVhPQVRCS1J0MmI1ZHJk?=
+ =?utf-8?B?bmV5MXFKbTNnWHFSR2sxYWpBUENHQ0gxRTV5eTEwZmwva0lyMUJMVGE5MVlB?=
+ =?utf-8?B?NnpJNUVxY3dXbTFwYUtoaGRNUlpYZDIwblJaRUh5T2N1dGxPbUVsMDRONXl5?=
+ =?utf-8?B?QzNpNFRvVE5EdGpGMHBURlozSy8vZXRhVFFiMjA3YVR3TXoyNDlwcnM5TVlQ?=
+ =?utf-8?B?dmRKeVVoR2RzZ0RDSmlOSFNmd2Z6YTNhMWNrdHFPbTNqd1dwSVJiWTB4Z093?=
+ =?utf-8?B?WEx4cmpGUUVucnJjc2V2a1E1SXN3WWtXd0ViYTBjbVorN3EwdVFwVGtBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4842.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(366007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YWVsU1UvTUduK3M5L3J1RVJoS1QvdDVBSjlCWHIzS0hvU1dVdlZiMnRUSDFy?=
+ =?utf-8?B?MmdJSEZqZ1JqZ3dNNjZBUFZGVGN4S3E2ZkZ3THc1aHpYOVBIUzBOSXFPUmhH?=
+ =?utf-8?B?RnU1RDRuemdSUTdyc1doK1pWeTkxa0VsUWYvTVZyNUd0MzhsQmNXVGI1OXNh?=
+ =?utf-8?B?Uk5jQU5ZT2Vsb01JZC85WlhlSGhzMGI2UkZITnhZREExY3IydkNzd2lhTmN6?=
+ =?utf-8?B?WlRYUk82d1ZqcDRCUkN2VTFrTElNRVc2WTFQektlMm1OdGZGeHlQMElTZGFm?=
+ =?utf-8?B?UDVNRHRJWENobUMrbThDYWhNaXdER05jQTdXN1FaUFpaRk8vS3VLRE8zMExD?=
+ =?utf-8?B?bmdsRHFhSDdZcFZjbGUyV3E3OUo4UW5ZR2Z4aEhaT3dMK1FjNkF3UFQ1bXNJ?=
+ =?utf-8?B?djRkWjI3OFNvM2F4QUFjdU85ME43L0FLNlE5cDhwZURkMURlaTdZTkJJZ25m?=
+ =?utf-8?B?UmMyTzhVMUpsMU44M0h3ajg3YnZwakt2ZzBSS1dPMkZoZy8rdDdBeDZVM3FP?=
+ =?utf-8?B?ZXpyMWtsMHdrOHJ0d1BPUERvbElYVGNQalRXbG9yWG9wU1oxeTZyMDkvRGNN?=
+ =?utf-8?B?VnphQmtuU3laZnlPQTdiWDlnVzc2ZGZIcmlRZlZIMUlvWFpMZ2pybDlsZ20z?=
+ =?utf-8?B?VHY4eVpJenF3anpNMGhkN3BCZ3ZvOGJWOGRWNmJoVTVlTmZtRTNOcVVCaHFP?=
+ =?utf-8?B?SkszVWwydTFNRUhTYjNtWW9QZUFUd3Zmd21rVlNGQ01sTVFZNHJLR0ZHZXUr?=
+ =?utf-8?B?SUljaFNQTW84WVM4dHAzcFJqaHFiR3VLd3hxOFVqbEVGdmdCODJjVk5UWHRP?=
+ =?utf-8?B?dExLMlh1dzlHaVE4Smdhb3RJV2k3RS9nMmd1ODVNQjNRVmtiV1kzd3FQNkIr?=
+ =?utf-8?B?SVJyYzNlSkVsUFVRelNoNDdIb2pZUmMrd0VNK1FCTWVPbnMxOWpRandDRDBT?=
+ =?utf-8?B?SmlHMzlORnBURGZKTjc5NEVVeThzbDFRbnlqcmNPU0l2bStkU1owdTBJWmps?=
+ =?utf-8?B?QWVTbFlNVHRaZ3VCclJvMEU3MzIvSCtZYzlYcGV2Z2hTd3FZb0V0OGJIMXBD?=
+ =?utf-8?B?bWhpRk9mbXRWeElCb3hmTjE4U0VpeUwyYzBOT1E3Qnc5aEUwaDY5RVNxeFo2?=
+ =?utf-8?B?Vkl2NWJuNUp6N3FuLzhHNDJaelMxVERIajB1bmxJZHFKS3dwdVZoRlh5Rkx0?=
+ =?utf-8?B?bmRQUjRIR2pDY3UydEd6OC91OHd6MXpySEFwOXJRQnNJTFRUbG90c3pBK25w?=
+ =?utf-8?B?cEdsRjhLOExJSUVFNkZIRTVtcVBoSmRCTDQ2VlNyMC9YVkM1SlhPQjQzOFRt?=
+ =?utf-8?B?bXVET1JaYUtZU0ZWRUpLaURPczBNOTZld1RaZVNIQnB4WjZTSUk1cmpLS3Jq?=
+ =?utf-8?B?WW1rbVIyS3J5WGxRNXRlN0NvNjRCTytFSk4zVUg3VVZOVXAybWpkR0lLS0hn?=
+ =?utf-8?B?djRpNHZid3MvZ1VmVDZKVFVHNnorTlFJdlhEblhDZ1U4WVFGWmU1ZzJvVTNz?=
+ =?utf-8?B?ZEVVYmZra0h3TUxTZFlobEw5Vjd4Zmp4M0UxbmlKV0hnMDZ3VFJ2aXpOejVU?=
+ =?utf-8?B?TFFOdVptSWxGeXE2ZzVnbXdoeWFPR0dtUnV4WUtIbDJ5c3ZsQ0p6UDc2NXNk?=
+ =?utf-8?B?enZ1dENwenh5MnZuVEJybWpnOUFFQUtPU3ZyZlhMNnVaQWQxVHR2TmY5OGNk?=
+ =?utf-8?B?Q3AxSnA2am5pVURaR0p3dW8zNEdyKytXRzBNTU1xVFQwSmZ2YXBDTm8xdnVy?=
+ =?utf-8?B?YjZPbThHbFNQNWZYbmNPU2ZNemU2TWNNdGZVWk4waHdkRkp0emxpQ3U3M1Yv?=
+ =?utf-8?B?cUlsaUwzSjBWc09mdHI2QzNlUXozOWZ4UlFRQlFEYysrTmp3MVdORXA0cGpx?=
+ =?utf-8?B?RkNKRjRxV0U1U0MwNUtoUzErS3pkU25PNWtWQTIwYmxPYWZkVUZlTnkreXVh?=
+ =?utf-8?B?V3JzYXdLZ2Yzb2dNaFk0RzV2TEdMaGpka1BPZlBveUdUV0c0aWMzQmFWQ3ZJ?=
+ =?utf-8?B?ZVBrUEZjblY4MWdDQzBjNmhTNXlTMkpGa29meEhhdVhoZGYzOG56ZVFwTGhn?=
+ =?utf-8?B?d0FEL29hSnVwWGNDUXRuZGl0dXd5OGVZRnZIb0x6UWdxcS9tUlovR2RRRVNN?=
+ =?utf-8?B?OGdtNXVaYVhiVTBFTWlkY0NVWVpNTVJHVGlBeTJ4Z1IrYUZTY2RtZlBESExt?=
+ =?utf-8?B?dnc9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51e54e60-3c51-43c6-d54c-08dc6b8ce9ab
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4842.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2024 16:20:14.4548
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IYHGSo6wYq7PHivFXRUnxD1fWAY0LrgnD+nXMkjdTjR5VN6wL47C6ouhlotFv7wjzaJLkp5XNRTaDRInjrX7v+dYhNimQSxZ0clkw8qV9HQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7745
 
-Introduce first-stage address translation support.
+Hi Peter,
 
-Page table configured by the IOMMU driver will use the highest mode
-implemented by the hardware, unless not known at the domain allocation
-time falling back to the CPU’s MMU page mode.
+On 5/3/24 7:30 AM, Peter Rosin wrote:
+> Hi!
+> 
+> 2024-05-02 at 17:01, Farouk Bouabid wrote:
+>> Hi Peter,
+>>
+>> On 29.04.24 17:46, Peter Rosin wrote:
+>>> Hi!
+>>>
+>>> 2024-04-26 at 18:49, Farouk Bouabid wrote:
+>>>> Allow the mux to have the same address as a child device. This is useful
+>>>> when the mux can only use an i2c-address that is used by a child device
+>>>> because no other addresses are free to use. eg. the mux can only use
+>>>> address 0x18 which is used by amc6821 connected to the mux.
+>>>>
+>>>> Signed-off-by: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
+>>>> ---
+>>>>    drivers/i2c/i2c-mux.c   | 10 +++++++++-
+>>>>    include/linux/i2c-mux.h |  1 +
+>>>>    2 files changed, 10 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/i2c/i2c-mux.c b/drivers/i2c/i2c-mux.c
+>>>> index 57ff09f18c37..f5357dff8cc5 100644
+>>>> --- a/drivers/i2c/i2c-mux.c
+>>>> +++ b/drivers/i2c/i2c-mux.c
+>>>> @@ -331,7 +331,6 @@ int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
+>>>>        priv->adap.owner = THIS_MODULE;
+>>>>        priv->adap.algo = &priv->algo;
+>>>>        priv->adap.algo_data = priv;
+>>>> -    priv->adap.dev.parent = &parent->dev;
+>>>>        priv->adap.retries = parent->retries;
+>>>>        priv->adap.timeout = parent->timeout;
+>>>>        priv->adap.quirks = parent->quirks;
+>>>> @@ -348,6 +347,15 @@ int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
+>>>>        else
+>>>>            priv->adap.class = class;
+>>>>    +    /*
+>>>> +     * When creating the adapter, the node devices are checked for i2c address
+>>>> +     * match with other devices on the parent adapter, among which is the mux itself.
+>>>> +     * If a match is found the node device is not probed successfully.
+>>>> +     * Allow the mux to have the same address as a child device by skipping this check.
+>>>> +     */
+>>>> +    if (!(muxc->share_addr_with_children))
+>>>> +        priv->adap.dev.parent = &parent->dev;
+>>> This is a dirty hack that will not generally do the right thing.
+>>>
+>>> The adapter device parent is not there solely for the purpose of
+>>> detecting address clashes, so the above has other implications
+>>> that are not desirable.
+>>>
+>>> Therefore, NACK on this approach. It simply needs to be more involved.
+>>> Sorry.
+>>>
+>>> Cheers,
+>>> Peter
+>>>
+>>
+>> Another way to approach this is by implementing this flag as a quirk for the added adapter:
+>>
+>> (tested but not cleaned up)
+> 
+> Yes, good idea, this is much more targeted and generally feels a lot
+> better.
+> 
+>>
+>> """
+>>
+>> diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
+>> index ff5c486a1dbb..6a0237f750db 100644
+>> --- a/drivers/i2c/i2c-core-base.c
+>> +++ b/drivers/i2c/i2c-core-base.c
+>> @@ -821,9 +821,21 @@ static int i2c_check_mux_children(struct device *dev, void *addrp)
+>>   static int i2c_check_addr_busy(struct i2c_adapter *adapter, int addr)
+>>   {
+>>          struct i2c_adapter *parent = i2c_parent_is_i2c_adapter(adapter);
+>> +       bool skip_check = false;
+>>          int result = 0;
+>>
+>> -       if (parent)
+>> +       if (adapter->quirks) {
+>> +                if (adapter->quirks->flags & I2C_AQ_SHARE_ADDR) {
+>> +                       struct i2c_client *client = of_find_i2c_device_by_node(adapter->dev.of_node->parent);
+>> +
+>> +                       if (client) {
+>> +                               skip_check = client->addr == addr;
+>> +                               put_device(&client->dev);
+>> +                       }
+>> +                }
+>> +       }
+>> +
+>> +       if (parent && !skip_check)
+>>                  result = i2c_check_mux_parents(parent, addr);
+>>
+>>          if (!result)
+>> diff --git a/drivers/i2c/i2c-mux.c b/drivers/i2c/i2c-mux.c
+>> index 57ff09f18c37..e87cb0e43725 100644
+>> --- a/drivers/i2c/i2c-mux.c
+>> +++ b/drivers/i2c/i2c-mux.c
+>> @@ -334,7 +334,26 @@ int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
+>>          priv->adap.dev.parent = &parent->dev;
+>>          priv->adap.retries = parent->retries;
+>>          priv->adap.timeout = parent->timeout;
+>> -       priv->adap.quirks = parent->quirks;
+>> +       /*
+>> +        * When creating the adapter, the node devices are checked for i2c address
+>> +        * match with other devices on the parent adapter, among which is the mux itself.
+>> +        * If a match is found the node device is not probed successfully.
+>> +        * Allow the mux to have the same address as a child device by skipping this check.
+>> +        */
+>> +       if (!muxc->share_addr_with_children)
+>> +               priv->adap.quirks = parent->quirks;
+>> +       else {
+>> +               struct i2c_adapter_quirks *quirks = kzalloc(sizeof(*quirks), GFP_KERNEL);
+> 
+> This leaks, dev_kzalloc?
+> 
 
-This change introduces IOTINVAL.VMA command, required to invalidate
-any cached IOATC entries after mapping is updated and/or removed from
-the paging domain.  Invalidations for the non-leaf page entries use
-IOTINVAL for all addresses assigned to the protection domain for
-hardware not supporting more granular non-leaf page table cache
-invalidations.
+Quick questions about this though.
 
-Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
----
- drivers/iommu/riscv/iommu.c | 587 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 585 insertions(+), 2 deletions(-)
+priv is allocated with kzalloc and not devm_kzalloc and is then manually 
+kfree'd either as part of the error path or in i2c_del_mux_adapters. Is 
+there a reason for this? Shouldn't we migrate this to devm allocation as 
+well?
 
-diff --git a/drivers/iommu/riscv/iommu.c b/drivers/iommu/riscv/iommu.c
-index 4349ac8a3990..ec701fde520f 100644
---- a/drivers/iommu/riscv/iommu.c
-+++ b/drivers/iommu/riscv/iommu.c
-@@ -41,6 +41,10 @@
- #define dev_to_iommu(dev) \
- 	iommu_get_iommu_dev(dev, struct riscv_iommu_device, iommu)
- 
-+/* IOMMU PSCID allocation namespace. */
-+static DEFINE_IDA(riscv_iommu_pscids);
-+#define RISCV_IOMMU_MAX_PSCID		(BIT(20) - 1)
-+
- /* Device resource-managed allocations */
- struct riscv_iommu_devres {
- 	void *addr;
-@@ -766,6 +770,143 @@ static int riscv_iommu_iodir_set_mode(struct riscv_iommu_device *iommu,
- 	return 0;
- }
- 
-+/* This struct contains protection domain specific IOMMU driver data. */
-+struct riscv_iommu_domain {
-+	struct iommu_domain domain;
-+	struct list_head bonds;
-+	spinlock_t lock;		/* protect bonds list updates. */
-+	int pscid;
-+	int numa_node;
-+	int amo_enabled:1;
-+	unsigned int pgd_mode;
-+	unsigned long *pgd_root;
-+};
-+
-+#define iommu_domain_to_riscv(iommu_domain) \
-+	container_of(iommu_domain, struct riscv_iommu_domain, domain)
-+
-+/* Private IOMMU data for managed devices, dev_iommu_priv_* */
-+struct riscv_iommu_info {
-+	struct riscv_iommu_domain *domain;
-+};
-+
-+/* Linkage between an iommu_domain and attached devices. */
-+struct riscv_iommu_bond {
-+	struct list_head list;
-+	struct rcu_head rcu;
-+	struct device *dev;
-+};
-+
-+static int riscv_iommu_bond_link(struct riscv_iommu_domain *domain,
-+				 struct device *dev)
-+{
-+	struct riscv_iommu_device *iommu = dev_to_iommu(dev);
-+	struct riscv_iommu_bond *bond;
-+	struct list_head *bonds;
-+
-+	bond = kzalloc(sizeof(*bond), GFP_KERNEL);
-+	if (!bond)
-+		return -ENOMEM;
-+	bond->dev = dev;
-+
-+	/*
-+	 * Linked device pointer and iommu data remain stable in bond struct
-+	 * as long the device is attached to the managed IOMMU at _probe_device(),
-+	 * up to completion of _release_device() call. Release of the bond will be
-+	 * synchronized at the device release, to guarantee no stale pointer is
-+	 * used inside rcu protected sections.
-+	 *
-+	 * List of devices attached to the domain is arranged based on
-+	 * managed IOMMU device.
-+	 */
-+
-+	spin_lock(&domain->lock);
-+	list_for_each_rcu(bonds, &domain->bonds)
-+		if (dev_to_iommu(list_entry(bonds, struct riscv_iommu_bond, list)->dev) == iommu)
-+			break;
-+	list_add_rcu(&bond->list, bonds);
-+	spin_unlock(&domain->lock);
-+
-+	return 0;
-+}
-+
-+static void riscv_iommu_bond_unlink(struct riscv_iommu_domain *domain,
-+				    struct device *dev)
-+{
-+	struct riscv_iommu_bond *bond, *found = NULL;
-+
-+	if (!domain)
-+		return;
-+
-+	spin_lock(&domain->lock);
-+	list_for_each_entry_rcu(bond, &domain->bonds, list) {
-+		if (bond->dev == dev) {
-+			list_del_rcu(&bond->list);
-+			found = bond;
-+		}
-+	}
-+	spin_unlock(&domain->lock);
-+	kfree_rcu(found, rcu);
-+}
-+
-+/*
-+ * Send IOTLB.INVAL for whole address space for ranges larger than 2MB.
-+ * This limit will be replaced with range invalidations, if supported by
-+ * the hardware, when RISC-V IOMMU architecture specification update for
-+ * range invalidations update will be available.
-+ */
-+#define RISCV_IOMMU_IOTLB_INVAL_LIMIT	(2 << 20)
-+
-+static void riscv_iommu_iotlb_inval(struct riscv_iommu_domain *domain,
-+				    unsigned long start, unsigned long end)
-+{
-+	struct riscv_iommu_bond *bond;
-+	struct riscv_iommu_device *iommu, *prev;
-+	struct riscv_iommu_command cmd;
-+	unsigned long len = end - start + 1;
-+	unsigned long iova;
-+
-+	rcu_read_lock();
-+
-+	prev = NULL;
-+	list_for_each_entry_rcu(bond, &domain->bonds, list) {
-+		iommu = dev_to_iommu(bond->dev);
-+
-+		/*
-+		 * IOTLB invalidation request can be safely omitted if already sent
-+		 * to the IOMMU for the same PSCID, and with domain->bonds list
-+		 * arranged based on the device's IOMMU, it's sufficient to check
-+		 * last device the invalidation was sent to.
-+		 */
-+		if (iommu == prev)
-+			continue;
-+
-+		riscv_iommu_cmd_inval_vma(&cmd);
-+		riscv_iommu_cmd_inval_set_pscid(&cmd, domain->pscid);
-+		if (len && len >= RISCV_IOMMU_IOTLB_INVAL_LIMIT) {
-+			for (iova = start; iova < end; iova += PAGE_SIZE) {
-+				riscv_iommu_cmd_inval_set_addr(&cmd, iova);
-+				riscv_iommu_cmd_send(iommu, &cmd, 0);
-+			}
-+		} else {
-+			riscv_iommu_cmd_send(iommu, &cmd, 0);
-+		}
-+		prev = iommu;
-+	}
-+
-+	prev = NULL;
-+	list_for_each_entry_rcu(bond, &domain->bonds, list) {
-+		iommu = dev_to_iommu(bond->dev);
-+		if (iommu == prev)
-+			continue;
-+
-+		riscv_iommu_cmd_iofence(&cmd);
-+		riscv_iommu_cmd_send(iommu, &cmd, RISCV_IOMMU_QUEUE_TIMEOUT);
-+		prev = iommu;
-+	}
-+	rcu_read_unlock();
-+}
-+
- #define RISCV_IOMMU_FSC_BARE 0
- 
- /*
-@@ -785,10 +926,29 @@ static void riscv_iommu_iodir_update(struct riscv_iommu_device *iommu,
- {
- 	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
- 	struct riscv_iommu_dc *dc;
-+	struct riscv_iommu_command cmd;
-+	bool sync_required = false;
- 	u64 tc;
- 	int i;
- 
--	/* Device context invalidation ignored for now. */
-+	for (i = 0; i < fwspec->num_ids; i++) {
-+		dc = riscv_iommu_get_dc(iommu, fwspec->ids[i]);
-+		tc = READ_ONCE(dc->tc);
-+		if (tc & RISCV_IOMMU_DC_TC_V) {
-+			WRITE_ONCE(dc->tc, tc & ~RISCV_IOMMU_DC_TC_V);
-+
-+			/* Invalidate device context cached values */
-+			riscv_iommu_cmd_iodir_inval_ddt(&cmd);
-+			riscv_iommu_cmd_iodir_set_did(&cmd, fwspec->ids[i]);
-+			riscv_iommu_cmd_send(iommu, &cmd, 0);
-+			sync_required = true;
-+		}
-+	}
-+
-+	if (sync_required) {
-+		riscv_iommu_cmd_iofence(&cmd);
-+		riscv_iommu_cmd_send(iommu, &cmd, RISCV_IOMMU_IOTINVAL_TIMEOUT);
-+	}
- 
- 	/*
- 	 * For device context with DC_TC_PDTV = 0, translation attributes valid bit
-@@ -806,12 +966,415 @@ static void riscv_iommu_iodir_update(struct riscv_iommu_device *iommu,
- 	}
- }
- 
-+/*
-+ * IOVA page translation tree management.
-+ */
-+
-+#define IOMMU_PAGE_SIZE_4K     BIT_ULL(12)
-+#define IOMMU_PAGE_SIZE_2M     BIT_ULL(21)
-+#define IOMMU_PAGE_SIZE_1G     BIT_ULL(30)
-+#define IOMMU_PAGE_SIZE_512G   BIT_ULL(39)
-+
-+#define PT_SHIFT (PAGE_SHIFT - ilog2(sizeof(pte_t)))
-+
-+static void riscv_iommu_iotlb_flush_all(struct iommu_domain *iommu_domain)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+
-+	riscv_iommu_iotlb_inval(domain, 0, ULONG_MAX);
-+}
-+
-+static void riscv_iommu_iotlb_sync(struct iommu_domain *iommu_domain,
-+				   struct iommu_iotlb_gather *gather)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+
-+	riscv_iommu_iotlb_inval(domain, gather->start, gather->end);
-+}
-+
-+static inline size_t get_page_size(size_t size)
-+{
-+	if (size >= IOMMU_PAGE_SIZE_512G)
-+		return IOMMU_PAGE_SIZE_512G;
-+	if (size >= IOMMU_PAGE_SIZE_1G)
-+		return IOMMU_PAGE_SIZE_1G;
-+	if (size >= IOMMU_PAGE_SIZE_2M)
-+		return IOMMU_PAGE_SIZE_2M;
-+	return IOMMU_PAGE_SIZE_4K;
-+}
-+
-+#define _io_pte_present(pte)	((pte) & (_PAGE_PRESENT | _PAGE_PROT_NONE))
-+#define _io_pte_leaf(pte)	((pte) & _PAGE_LEAF)
-+#define _io_pte_none(pte)	((pte) == 0)
-+#define _io_pte_entry(pn, prot)	((_PAGE_PFN_MASK & ((pn) << _PAGE_PFN_SHIFT)) | (prot))
-+
-+static void riscv_iommu_pte_free(struct riscv_iommu_domain *domain,
-+				 unsigned long pte, struct list_head *freelist)
-+{
-+	unsigned long *ptr;
-+	int i;
-+
-+	if (!_io_pte_present(pte) || _io_pte_leaf(pte))
-+		return;
-+
-+	ptr = (unsigned long *)pfn_to_virt(__page_val_to_pfn(pte));
-+
-+	/* Recursively free all sub page table pages */
-+	for (i = 0; i < PTRS_PER_PTE; i++) {
-+		pte = READ_ONCE(ptr[i]);
-+		if (!_io_pte_none(pte) && cmpxchg_relaxed(ptr + i, pte, 0) == pte)
-+			riscv_iommu_pte_free(domain, pte, freelist);
-+	}
-+
-+	if (freelist)
-+		list_add_tail(&virt_to_page(ptr)->lru, freelist);
-+	else
-+		iommu_free_page(ptr);
-+}
-+
-+static unsigned long *riscv_iommu_pte_alloc(struct riscv_iommu_domain *domain,
-+					    unsigned long iova, size_t pgsize,
-+					    gfp_t gfp)
-+{
-+	unsigned long *ptr = domain->pgd_root;
-+	unsigned long pte, old;
-+	int level = domain->pgd_mode - RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV39 + 2;
-+	void *addr;
-+
-+	do {
-+		const int shift = PAGE_SHIFT + PT_SHIFT * level;
-+
-+		ptr += ((iova >> shift) & (PTRS_PER_PTE - 1));
-+		/*
-+		 * Note: returned entry might be a non-leaf if there was
-+		 * existing mapping with smaller granularity. Up to the caller
-+		 * to replace and invalidate.
-+		 */
-+		if (((size_t)1 << shift) == pgsize)
-+			return ptr;
-+pte_retry:
-+		pte = READ_ONCE(*ptr);
-+		/*
-+		 * This is very likely incorrect as we should not be adding
-+		 * new mapping with smaller granularity on top
-+		 * of existing 2M/1G mapping. Fail.
-+		 */
-+		if (_io_pte_present(pte) && _io_pte_leaf(pte))
-+			return NULL;
-+		/*
-+		 * Non-leaf entry is missing, allocate and try to add to the
-+		 * page table. This might race with other mappings, retry.
-+		 */
-+		if (_io_pte_none(pte)) {
-+			addr = iommu_alloc_page_node(domain->numa_node, gfp);
-+			if (!addr)
-+				return NULL;
-+			old = pte;
-+			pte = _io_pte_entry(virt_to_pfn(addr), _PAGE_TABLE);
-+			if (cmpxchg_relaxed(ptr, old, pte) != old) {
-+				iommu_free_page(addr);
-+				goto pte_retry;
-+			}
-+		}
-+		ptr = (unsigned long *)pfn_to_virt(__page_val_to_pfn(pte));
-+	} while (level-- > 0);
-+
-+	return NULL;
-+}
-+
-+static unsigned long *riscv_iommu_pte_fetch(struct riscv_iommu_domain *domain,
-+					    unsigned long iova, size_t *pte_pgsize)
-+{
-+	unsigned long *ptr = domain->pgd_root;
-+	unsigned long pte;
-+	int level = domain->pgd_mode - RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV39 + 2;
-+
-+	do {
-+		const int shift = PAGE_SHIFT + PT_SHIFT * level;
-+
-+		ptr += ((iova >> shift) & (PTRS_PER_PTE - 1));
-+		pte = READ_ONCE(*ptr);
-+		if (_io_pte_present(pte) && _io_pte_leaf(pte)) {
-+			*pte_pgsize = (size_t)1 << shift;
-+			return ptr;
-+		}
-+		if (_io_pte_none(pte))
-+			return NULL;
-+		ptr = (unsigned long *)pfn_to_virt(__page_val_to_pfn(pte));
-+	} while (level-- > 0);
-+
-+	return NULL;
-+}
-+
-+static int riscv_iommu_map_pages(struct iommu_domain *iommu_domain,
-+				 unsigned long iova, phys_addr_t phys,
-+				 size_t pgsize, size_t pgcount, int prot,
-+				 gfp_t gfp, size_t *mapped)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+	size_t size = 0;
-+	size_t page_size = get_page_size(pgsize);
-+	unsigned long *ptr;
-+	unsigned long pte, old, pte_prot;
-+	int rc = 0;
-+	LIST_HEAD(freelist);
-+
-+	if (!(prot & IOMMU_WRITE))
-+		pte_prot = _PAGE_BASE | _PAGE_READ;
-+	else if (domain->amo_enabled)
-+		pte_prot = _PAGE_BASE | _PAGE_READ | _PAGE_WRITE;
-+	else
-+		pte_prot = _PAGE_BASE | _PAGE_READ | _PAGE_WRITE | _PAGE_DIRTY;
-+
-+	while (pgcount) {
-+		ptr = riscv_iommu_pte_alloc(domain, iova, page_size, gfp);
-+		if (!ptr) {
-+			rc = -ENOMEM;
-+			break;
-+		}
-+
-+		old = READ_ONCE(*ptr);
-+		pte = _io_pte_entry(phys_to_pfn(phys), pte_prot);
-+		if (cmpxchg_relaxed(ptr, old, pte) != old)
-+			continue;
-+
-+		riscv_iommu_pte_free(domain, old, &freelist);
-+
-+		size += page_size;
-+		iova += page_size;
-+		phys += page_size;
-+		--pgcount;
-+	}
-+
-+	*mapped = size;
-+
-+	if (!list_empty(&freelist)) {
-+		/*
-+		 * In 1.0 spec version, the smallest scope we can use to
-+		 * invalidate all levels of page table (i.e. leaf and non-leaf)
-+		 * is an invalidate-all-PSCID IOTINVAL.VMA with AV=0.
-+		 * This will be updated with hardware support for
-+		 * capability.NL (non-leaf) IOTINVAL command.
-+		 */
-+		riscv_iommu_iotlb_inval(domain, 0, ULONG_MAX);
-+		iommu_put_pages_list(&freelist);
-+	}
-+
-+	return rc;
-+}
-+
-+static size_t riscv_iommu_unmap_pages(struct iommu_domain *iommu_domain,
-+				      unsigned long iova, size_t pgsize,
-+				      size_t pgcount,
-+				      struct iommu_iotlb_gather *gather)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+	size_t size = pgcount << __ffs(pgsize);
-+	unsigned long *ptr, old;
-+	size_t unmapped = 0;
-+	size_t pte_size;
-+
-+	while (unmapped < size) {
-+		ptr = riscv_iommu_pte_fetch(domain, iova, &pte_size);
-+		if (!ptr)
-+			return unmapped;
-+
-+		/* partial unmap is not allowed, fail. */
-+		if (iova & (pte_size - 1))
-+			return unmapped;
-+
-+		old = READ_ONCE(*ptr);
-+		if (cmpxchg_relaxed(ptr, old, 0) != old)
-+			continue;
-+
-+		iommu_iotlb_gather_add_page(&domain->domain, gather, iova,
-+					    pte_size);
-+
-+		iova += pte_size;
-+		unmapped += pte_size;
-+	}
-+
-+	return unmapped;
-+}
-+
-+static phys_addr_t riscv_iommu_iova_to_phys(struct iommu_domain *iommu_domain,
-+					    dma_addr_t iova)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+	unsigned long pte_size;
-+	unsigned long *ptr;
-+
-+	ptr = riscv_iommu_pte_fetch(domain, iova, &pte_size);
-+	if (_io_pte_none(*ptr) || !_io_pte_present(*ptr))
-+		return 0;
-+
-+	return pfn_to_phys(__page_val_to_pfn(*ptr)) | (iova & (pte_size - 1));
-+}
-+
-+static void riscv_iommu_free_paging_domain(struct iommu_domain *iommu_domain)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+	const unsigned long pfn = virt_to_pfn(domain->pgd_root);
-+
-+	WARN_ON(!list_empty(&domain->bonds));
-+
-+	if ((int)domain->pscid > 0)
-+		ida_free(&riscv_iommu_pscids, domain->pscid);
-+
-+	riscv_iommu_pte_free(domain, _io_pte_entry(pfn, _PAGE_TABLE), NULL);
-+	kfree(domain);
-+}
-+
-+static bool riscv_iommu_pt_supported(struct riscv_iommu_device *iommu, int pgd_mode)
-+{
-+	switch (pgd_mode) {
-+	case RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV39:
-+		return iommu->caps & RISCV_IOMMU_CAP_S_SV39;
-+
-+	case RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV48:
-+		return iommu->caps & RISCV_IOMMU_CAP_S_SV48;
-+
-+	case RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV57:
-+		return iommu->caps & RISCV_IOMMU_CAP_S_SV57;
-+	}
-+	return false;
-+}
-+
-+static int riscv_iommu_attach_paging_domain(struct iommu_domain *iommu_domain,
-+					    struct device *dev)
-+{
-+	struct riscv_iommu_domain *domain = iommu_domain_to_riscv(iommu_domain);
-+	struct riscv_iommu_device *iommu = dev_to_iommu(dev);
-+	struct riscv_iommu_info *info = dev_iommu_priv_get(dev);
-+	u64 fsc, ta;
-+
-+	if (!riscv_iommu_pt_supported(iommu, domain->pgd_mode))
-+		return -ENODEV;
-+
-+	if (domain->numa_node == NUMA_NO_NODE)
-+		domain->numa_node = dev_to_node(iommu->dev);
-+
-+	if (riscv_iommu_bond_link(domain, dev))
-+		return -ENOMEM;
-+
-+	/*
-+	 * Invalidate PSCID.
-+	 * This invalidation might be redundant if IOATC has been already cleared,
-+	 * however we are not keeping track for domains not linked to a device.
-+	 */
-+	riscv_iommu_iotlb_inval(domain, 0, ULONG_MAX);
-+
-+	fsc = FIELD_PREP(RISCV_IOMMU_PC_FSC_MODE, domain->pgd_mode) |
-+	      FIELD_PREP(RISCV_IOMMU_PC_FSC_PPN, virt_to_pfn(domain->pgd_root));
-+	ta = FIELD_PREP(RISCV_IOMMU_PC_TA_PSCID, domain->pscid) |
-+	     RISCV_IOMMU_PC_TA_V;
-+
-+	riscv_iommu_iodir_update(iommu, dev, fsc, ta);
-+	riscv_iommu_bond_unlink(info->domain, dev);
-+	info->domain = domain;
-+
-+	return 0;
-+}
-+
-+static const struct iommu_domain_ops riscv_iommu_paging_domain_ops = {
-+	.attach_dev = riscv_iommu_attach_paging_domain,
-+	.free = riscv_iommu_free_paging_domain,
-+	.map_pages = riscv_iommu_map_pages,
-+	.unmap_pages = riscv_iommu_unmap_pages,
-+	.iova_to_phys = riscv_iommu_iova_to_phys,
-+	.iotlb_sync = riscv_iommu_iotlb_sync,
-+	.flush_iotlb_all = riscv_iommu_iotlb_flush_all,
-+};
-+
-+static struct iommu_domain *riscv_iommu_alloc_paging_domain(struct device *dev)
-+{
-+	struct riscv_iommu_domain *domain;
-+	struct riscv_iommu_device *iommu;
-+	unsigned int pgd_mode;
-+	int va_bits;
-+
-+	iommu = dev ? dev_to_iommu(dev) : NULL;
-+
-+	/*
-+	 * In unlikely case when dev or iommu is not known, use system
-+	 * SATP mode to configure paging domain radix tree depth.
-+	 * Use highest available if actual IOMMU hardware capabilities
-+	 * are known here.
-+	 */
-+	if (!iommu) {
-+		pgd_mode = satp_mode >> SATP_MODE_SHIFT;
-+		va_bits = VA_BITS;
-+	} else if (iommu->caps & RISCV_IOMMU_CAP_S_SV57) {
-+		pgd_mode = RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV57;
-+		va_bits = 57;
-+	} else if (iommu->caps & RISCV_IOMMU_CAP_S_SV48) {
-+		pgd_mode = RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV48;
-+		va_bits = 48;
-+	} else if (iommu->caps & RISCV_IOMMU_CAP_S_SV39) {
-+		pgd_mode =  RISCV_IOMMU_DC_FSC_IOSATP_MODE_SV39;
-+		va_bits = 39;
-+	} else {
-+		dev_err(dev, "cannot find supported page table mode\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+
-+	domain = kzalloc(sizeof(*domain), GFP_KERNEL);
-+	if (!domain)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD_RCU(&domain->bonds);
-+	spin_lock_init(&domain->lock);
-+	domain->numa_node = NUMA_NO_NODE;
-+
-+	if (iommu) {
-+		domain->numa_node = dev_to_node(iommu->dev);
-+		domain->amo_enabled = !!(iommu->caps & RISCV_IOMMU_CAP_AMO_HWAD);
-+	}
-+
-+	domain->pgd_mode = pgd_mode;
-+	domain->pgd_root = iommu_alloc_page_node(domain->numa_node,
-+						 GFP_KERNEL_ACCOUNT);
-+	if (!domain->pgd_root) {
-+		kfree(domain);
-+		return ERR_PTR(-ENOMEM);
-+	}
-+
-+	domain->pscid = ida_alloc_range(&riscv_iommu_pscids, 1,
-+					RISCV_IOMMU_MAX_PSCID, GFP_KERNEL);
-+	if (domain->pscid < 0) {
-+		iommu_free_page(domain->pgd_root);
-+		kfree(domain);
-+		return ERR_PTR(-ENOMEM);
-+	}
-+
-+	/*
-+	 * Note: RISC-V Privilege spec mandates that virtual addresses
-+	 * need to be sign-extended, so if (VA_BITS - 1) is set, all
-+	 * bits >= VA_BITS need to also be set or else we'll get a
-+	 * page fault. However the code that creates the mappings
-+	 * above us (e.g. iommu_dma_alloc_iova()) won't do that for us
-+	 * for now, so we'll end up with invalid virtual addresses
-+	 * to map. As a workaround until we get this sorted out
-+	 * limit the available virtual addresses to VA_BITS - 1.
-+	 */
-+	domain->domain.geometry.aperture_start = 0;
-+	domain->domain.geometry.aperture_end = DMA_BIT_MASK(va_bits - 1);
-+	domain->domain.geometry.force_aperture = true;
-+
-+	domain->domain.ops = &riscv_iommu_paging_domain_ops;
-+
-+	return &domain->domain;
-+}
-+
- static int riscv_iommu_attach_blocking_domain(struct iommu_domain *iommu_domain,
- 					      struct device *dev)
- {
- 	struct riscv_iommu_device *iommu = dev_to_iommu(dev);
-+	struct riscv_iommu_info *info = dev_iommu_priv_get(dev);
- 
- 	riscv_iommu_iodir_update(iommu, dev, RISCV_IOMMU_FSC_BARE, 0);
-+	riscv_iommu_bond_unlink(info->domain, dev);
-+	info->domain = NULL;
- 
- 	return 0;
- }
-@@ -827,8 +1390,11 @@ static int riscv_iommu_attach_identity_domain(struct iommu_domain *iommu_domain,
- 					      struct device *dev)
- {
- 	struct riscv_iommu_device *iommu = dev_to_iommu(dev);
-+	struct riscv_iommu_info *info = dev_iommu_priv_get(dev);
- 
- 	riscv_iommu_iodir_update(iommu, dev, RISCV_IOMMU_FSC_BARE, RISCV_IOMMU_PC_TA_V);
-+	riscv_iommu_bond_unlink(info->domain, dev);
-+	info->domain = NULL;
- 
- 	return 0;
- }
-@@ -842,7 +1408,7 @@ static struct iommu_domain riscv_iommu_identity_domain = {
- 
- static int riscv_iommu_device_domain_type(struct device *dev)
- {
--	return IOMMU_DOMAIN_IDENTITY;
-+	return 0;
- }
- 
- static struct iommu_group *riscv_iommu_device_group(struct device *dev)
-@@ -861,6 +1427,7 @@ static struct iommu_device *riscv_iommu_probe_device(struct device *dev)
- {
- 	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
- 	struct riscv_iommu_device *iommu;
-+	struct riscv_iommu_info *info;
- 	struct riscv_iommu_dc *dc;
- 	u64 tc;
- 	int i;
-@@ -895,17 +1462,33 @@ static struct iommu_device *riscv_iommu_probe_device(struct device *dev)
- 		WRITE_ONCE(dc->tc, tc);
- 	}
- 
-+	info = kzalloc(sizeof(*info), GFP_KERNEL);
-+	if (!info)
-+		return ERR_PTR(-ENOMEM);
-+	dev_iommu_priv_set(dev, info);
-+
- 	return &iommu->iommu;
- }
- 
-+static void riscv_iommu_release_device(struct device *dev)
-+{
-+	struct riscv_iommu_info *info = dev_iommu_priv_get(dev);
-+
-+	synchronize_rcu();
-+	kfree(info);
-+}
-+
- static const struct iommu_ops riscv_iommu_ops = {
-+	.pgsize_bitmap = SZ_4K,
- 	.of_xlate = riscv_iommu_of_xlate,
- 	.identity_domain = &riscv_iommu_identity_domain,
- 	.blocked_domain = &riscv_iommu_blocking_domain,
- 	.release_domain = &riscv_iommu_blocking_domain,
-+	.domain_alloc_paging = riscv_iommu_alloc_paging_domain,
- 	.def_domain_type = riscv_iommu_device_domain_type,
- 	.device_group = riscv_iommu_device_group,
- 	.probe_device = riscv_iommu_probe_device,
-+	.release_device	= riscv_iommu_release_device,
- };
- 
- static int riscv_iommu_init_check(struct riscv_iommu_device *iommu)
--- 
-2.34.1
+Similarly, I was wondering if we couldn't add a devm_add_action_or_reset 
+for i2c_del_mux_adapters in i2c_add_mux_adapter? Is there something that 
+prevents us from doing this?
 
+Cheers,
+Quentin
 
