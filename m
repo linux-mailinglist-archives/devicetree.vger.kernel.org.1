@@ -1,338 +1,230 @@
-Return-Path: <devicetree+bounces-64727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B988BA90D
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 10:43:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FDB68BA918
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 10:43:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F00A4283985
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 08:43:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 444931C20AD9
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 08:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD5514EC6A;
-	Fri,  3 May 2024 08:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8B614D2BC;
+	Fri,  3 May 2024 08:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SYTKUOUF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0281D79CD;
-	Fri,  3 May 2024 08:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24BA14A097;
+	Fri,  3 May 2024 08:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714725735; cv=none; b=jmTFQ/JsdPYChFdYjzXzcvccAR9OOaQGUXdej/ZFZg65VodsOs1+hAgO8ckuN7riXy0UO2XTBpLlASt9ugOhdYSo6def79f3fQ6XB4SrCxThqZCaNpL2KezVGPjCETRDE99tR4Rh5lYkaQGi2uDrS9bPA1QxTDr0shZI2Rgwrbw=
+	t=1714725809; cv=none; b=CI+f/tJfYQYBUEaQtqF0T+HXErIM9U7psHzsPYCn11r+sCVVhn96JHoD8NORj13e72JXc6zz5PbNwtPp2kf0W2YekA+oz3ln3ViX06rN80v9zZiquPkTAS2ERUhkqAakLWOsgttKwSg1vVjAr5DN+U7XTq9ra233xIOp55bET2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714725735; c=relaxed/simple;
-	bh=GAQA8Cu8wAmIH1FlpBdN4xQZnDpLEk4jb5x6+/XVmE8=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kL48SU07buPiYhLIgx9n08+quxyEZKcpJPCNuspIFuKUgvNyNp/Tu8Mtb1bGD4vren4khSu/Vy+n3Ve2qAVT71ZkoVC3/7mLAz2CrY3gEoYMl/8ZSzCfMtbrRGiklT/hsyjNyjqzFZP919ab+rP34jhn/IhEa9Re0m9DMlxW8hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VW43d2t8Tz6GD6Y;
-	Fri,  3 May 2024 16:39:25 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 803C0140B33;
-	Fri,  3 May 2024 16:42:10 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 3 May
- 2024 09:42:10 +0100
-Date: Fri, 3 May 2024 09:42:09 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: <noname.nuno@gmail.com>
-CC: <jic23@kernel.org>, <Ramona.Gradinariu@analog.com>,
-	<ramona.bolboaca13@gmail.com>, <linux-kernel@vger.kernel.org>,
-	<linux-iio@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <corbet@lwn.net>, <conor+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <robh@kernel.org>, <Nuno.Sa@analog.com>
-Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7
- families
-Message-ID: <20240503094113.00001879@Huawei.com>
-In-Reply-To: <0df8386e74cbdfaaaf35a4bc59326151b863ae4c.camel@gmail.com>
-References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
- <20240423084210.191987-5-ramona.gradinariu@analog.com>
- <20240428162555.3ddf31ea@jic23-huawei>
- <e62f8df4b06abc371b1e9fe3232cb593e468d54c.camel@gmail.com>
- <BL1PR03MB5992DEBF82C0DB7BDC5EA0FF971B2@BL1PR03MB5992.namprd03.prod.outlook.com>
- <20240429204027.3e47074a@jic23-huawei>
- <0e13f8b643bb7afcc7c4f0d62741cf9fda66c1e0.camel@gmail.com>
- <20240502201408.216575e4@jic23-huawei>
- <0df8386e74cbdfaaaf35a4bc59326151b863ae4c.camel@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1714725809; c=relaxed/simple;
+	bh=ky6B7j1jZiqVnGlaH7oC77c+s1BMX9Zhi2nL4Pd+gXA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fHxYkExEzKh1bsiOPaqAR9jNkIpUGtxKgB2FgyeUbNIMwX33yAyrMOFXJXz40ByBMgJoGT0hAJ2NHUKy3fT7yydRT2+AZ6CifCKuVVN3A58ebfPPX3aYpM6Fkuchax8Yj8npSM2AlzDRaTfH50AYK3TxlnOUdDdwRQaN8F6jPPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SYTKUOUF; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5171a529224so11028818e87.0;
+        Fri, 03 May 2024 01:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714725806; x=1715330606; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IEs27K1gyZNt2tvtdLqSYiey4SQJpieBMRmsTHVkycI=;
+        b=SYTKUOUFTvVCgsl86tIFkGPzzBUPGzBi0zEmzuHUYNdJBe1sgxTqpFhAn8xfHwA5Gu
+         3P+iw5ArLox4Mb0gqcXU6lj2ASlzpSeceZgqlN44UzzvgJfpGL4enxOdRajBM8uM+L7M
+         6a4A2fDxce9LBncFSmPV+A6TQHFhG+/RPM3qEAZctpuq7/0uRX+H6u0m60KNGtJOktc2
+         ZdiY5LOFoiVDv6f/BBcxrMhPs41IqB23uSRB49bBsLA5lHXjSjLpYCP+JzBL6OruxvKJ
+         0HXNIG13oOEWBzCz1mxRx4r2Ru7aP9jjMJQric7Ctpz7Qb9cJvaTwNAO1rDGJaLF1zK9
+         Kamg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714725806; x=1715330606;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IEs27K1gyZNt2tvtdLqSYiey4SQJpieBMRmsTHVkycI=;
+        b=dL+izc9MBBWbG1Mj2uQ08rPgF1YLB69xtL3TGw2j1ZPe53e1M9/MhhkXxlH14/KI8+
+         yhds05TIS8n4Gb+KkIrz6WKikjbrSDnVVnN8UT+PdUcbtI5wis57DqiWg7a7cZpMYXfc
+         7E5YD2jPuHlrDbzLm2TgDal0V2cVFZvqdX6EYxS2rd3cSFgf3KN3TZOIdzcJ8RreY/5H
+         ovd7t9Kzb6ag730dJtLj35IOr6tEV3HAdQ/FJ/CFQKBbclk/Vr9bZO1+cZqXaYkDvPfA
+         iniGzLSNNd74UiqIn6FaGv69vI+A7edHdUxlag9t0QB8kIJl/0aXfY8ZoQdeG+vHLqgC
+         uWyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXvn0vzeoX/FyEVDiv3KqiRVPZUe9N+jF4nCVeDa85X9iwOKwlrfVxUEr/k/jfd/Hf0QekFcS/LloO2tMaJ06nWOOjbpjZNFmBXVhwmPDQ8DYzhJN6eiBoR8uM9+SaMtPozbXl+9xGAvWyeb011q0erOY/pHHs+C8WnORoNxv+dgh+F7L6pHfUc
+X-Gm-Message-State: AOJu0YwsBnR+U5D2qWleOi1m93jzucToUbApxeqyWO4ExV+91FZxss+j
+	brFbIPo9bZQ9qwAw0Rvf02bKwsYSKJsoar0beKIWD94KcCoAxnQM
+X-Google-Smtp-Source: AGHT+IHJtyOPKkGbWYt/4KxWKHuhexeylZ6ddCi7tRF3hNigrgboeptETxqKxsVJwYXeagClBNeMrQ==
+X-Received: by 2002:a05:6512:130f:b0:51f:2ae3:57b4 with SMTP id x15-20020a056512130f00b0051f2ae357b4mr1409425lfu.27.1714725805812;
+        Fri, 03 May 2024 01:43:25 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id j6-20020ac24546000000b0051926db8fe7sm468866lfm.228.2024.05.03.01.43.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 May 2024 01:43:25 -0700 (PDT)
+Message-ID: <6c461609-33e2-422e-a3a4-7d222ae3f7c4@gmail.com>
+Date: Fri, 3 May 2024 11:43:24 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/6] mfd: support ROHM BD96801 PMIC core
+Content-Language: en-US, en-GB
+To: Lee Jones <lee@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <cover.1714478142.git.mazziesaccount@gmail.com>
+ <91eafc06728ebb6158d86b58ce987fc8f802a453.1714478142.git.mazziesaccount@gmail.com>
+ <20240503074106.GG1227636@google.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240503074106.GG1227636@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 03 May 2024 08:09:29 +0200
-Nuno S=E1 <noname.nuno@gmail.com> wrote:
+On 5/3/24 10:41, Lee Jones wrote:
+> On Tue, 30 Apr 2024, Matti Vaittinen wrote:
+> 
+>> The ROHM BD96801 PMIC is highly customizable automotive grade PMIC
+>> which integrates regulator and watchdog funtionalities.
+>>
+>> Provide INTB IRQ and register accesses for regulator/watchdog drivers.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> ---
+>> Changelog: RFCv2 => v1:
+>> - drop ERRB interrupts (for now)
+>> - bd96801: Unlock registers in core driver
+>>
+>> Changelog: RFCv1 => RFCv2
+>> - Work-around the IRQ domain name conflict
+>> - Add watchdog IRQ
+>> - Various styling fixes based on review by Lee
+>> ---
+>>   drivers/mfd/Kconfig              |  13 ++
+>>   drivers/mfd/Makefile             |   1 +
+>>   drivers/mfd/rohm-bd96801.c       | 278 +++++++++++++++++++++++++++++++
+>>   include/linux/mfd/rohm-bd96801.h | 215 ++++++++++++++++++++++++
+>>   include/linux/mfd/rohm-generic.h |   1 +
+>>   5 files changed, 508 insertions(+)
+>>   create mode 100644 drivers/mfd/rohm-bd96801.c
+>>   create mode 100644 include/linux/mfd/rohm-bd96801.h
+> 
+> Still some nits, sorry.
 
-Resend as the to / cc entries were garbled. No idea why!
+No need to be sorry :) And, thanks for the review!
 
-> On Thu, 2024-05-02 at 20:14 +0100, Jonathan Cameron wrote:
-> > On Thu, 02 May 2024 13:31:55 +0200
-> > Nuno S=E1 <noname.nuno@gmail.com> wrote:
-> >  =20
-> > > On Mon, 2024-04-29 at 20:40 +0100, Jonathan Cameron wrote: =20
-> > > > On Mon, 29 Apr 2024 13:17:42 +0000
-> > > > "Gradinariu, Ramona" <Ramona.Gradinariu@analog.com> wrote:
-> > > > =A0  =20
-> > > > > > -----Original Message-----
-> > > > > > From: Nuno S=E1 <noname.nuno@gmail.com>
-> > > > > > Sent: Monday, April 29, 2024 10:59 AM
-> > > > > > To: Jonathan Cameron <jic23@kernel.org>; Ramona Gradinariu
-> > > > > > <ramona.bolboaca13@gmail.com>
-> > > > > > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; li=
-nux-
-> > > > > > doc@vger.kernel.org; devicetree@vger.kernel.org; corbet@lwn.net;
-> > > > > > conor+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > > > > > robh@kernel.org;
-> > > > > > Gradinariu, Ramona <Ramona.Gradinariu@analog.com>; Sa, Nuno
-> > > > > > <Nuno.Sa@analog.com>
-> > > > > > Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16=
-545/7
-> > > > > > families
-> > > > > >=20
-> > > > > > [External]
-> > > > > >=20
-> > > > > > On Sun, 2024-04-28 at 16:25 +0100, Jonathan Cameron wrote:=A0=
-=A0=A0  =20
-> > > > > > > On Tue, 23 Apr 2024 11:42:09 +0300
-> > > > > > > Ramona Gradinariu <ramona.bolboaca13@gmail.com> wrote:
-> > > > > > > =A0=A0  =20
-> > > > > > > > The ADIS16545 and ADIS16547 are a complete inertial system =
-that
-> > > > > > > > includes a triaxis gyroscope and a triaxis accelerometer.
-> > > > > > > > The serial peripheral interface (SPI) and register structure
-> > > > > > > > provide a
-> > > > > > > > simple interface for data collection and configuration cont=
-rol.
-> > > > > > > >=20
-> > > > > > > > These devices are similar to the ones already supported in =
-the
-> > > > > > > > driver,
-> > > > > > > > with changes in the scales, timings and the max spi speed i=
-n burst
-> > > > > > > > mode.
-> > > > > > > > Also, they support delta angle and delta velocity readings =
-in
-> > > > > > > > burst
-> > > > > > > > mode, for which support was added in the trigger handler.
-> > > > > > > >=20
-> > > > > > > > Signed-off-by: Nuno S=E1 <nuno.sa@analog.com>=A0=A0=A0  =20
-> > > > > > >=20
-> > > > > > > What is Nuno's relationship to this patch?=A0 You are author =
-and the
-> > > > > > > sender
-> > > > > > > which is fine, but in that case you need to make Nuno's invol=
-vement
-> > > > > > > explicit.
-> > > > > > > Perhaps a Co-developed-by or similar is appropriate?
-> > > > > > > =A0=A0  =20
-> > > > > > > > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.=
-com>=A0=A0=A0 =20
-> > > > > > > A few comments inline.=A0 Biggest one is I'd like a clear sta=
-tement of
-> > > > > > > why you
-> > > > > > > can't do a burst of one type, then a burst of other.=A0 My gu=
-ess is
-> > > > > > > that the
-> > > > > > > transition is very time consuming?=A0 If so, that is fine, bu=
-t you
-> > > > > > > should be
-> > > > > > > able
-> > > > > > > to let available_scan_masks handle the disjoint channel sets.=
-=A0=A0=A0  =20
-> > > > > >=20
-> > > > > > Yeah, the burst message is a special spi transfer that brings y=
-ou all
-> > > > > > of the
-> > > > > > channels data at once but for the accel/gyro you need to explic=
-itly
-> > > > > > configure
-> > > > > > the chip to either give you the "normal vs "delta" readings. Re-
-> > > > > > configuring the
-> > > > > > chip and then do another burst would destroy performance I thin=
-k. We
-> > > > > > could
-> > > > > > do
-> > > > > > the manual readings as we do in adis16475 for chips not support=
-ing
-> > > > > > burst32.
-> > > > > > But
-> > > > > > in the burst32 case those manual readings should be minimal whi=
-le in
-> > > > > > here we
-> > > > > > could have to do 6 of them which could also be very time consum=
-ing...
-> > > > > >=20
-> > > > > > Now, why we don't use available_scan_masks is something I can't=
- really
-> > > > > > remember
-> > > > > > but this implementation goes in line with what we have in the
-> > > > > > adis16475
-> > > > > > driver.
-> > > > > >=20
-> > > > > > - Nuno S=E1
-> > > > > > =A0=A0=A0  =20
-> > > > >=20
-> > > > > Thank you Nuno for all the additional explanations.
-> > > > > Regarding the use of available_scan_masks, the idea is to have any
-> > > > > possible
-> > > > > combination for accel, gyro, temp and timestamp channels or delta=
- angle,
-> > > > > delta=20
-> > > > > velocity, temp and=A0 timestamp channels. There are a lot of comb=
-inations
-> > > > > for=20
-> > > > > this and it does not seem like a good idea to write them all manu=
-ally.
-> > > > > That is=20
-> > > > > why adis16480_update_scan_mode is used for checking the correct c=
-hannels
-> > > > > selection.=A0  =20
-> > > >=20
-> > > > If you are using bursts, the data is getting read anyway - which is=
- the
-> > > > main
-> > > > cost here. The real question becomes what are you actually saving by
-> > > > supporting all
-> > > > the combinations of the the two subsets of channels in the pollfunc?
-> > > > Currently you have to pick the channels out and repack them, if pus=
-hing
-> > > > them all
-> > > > looks to me like a mempcy and a single value being set (uncondition=
-ally).=A0 =20
-> > >  =20
-> > > > Then it's a question of what the overhead of the channel demux in t=
-he core
-> > > > is.
-> > > > What you pass out of the driver via iio_push_to_buffers*()
-> > > > is not what ends up in the buffer if you allow the IIO core to do d=
-ata
-> > > > demuxing
-> > > > for you - that is enabled by providing available_scan_masks.=A0 At =
-buffer
-> > > > start up the demux code computes a fairly optimal set of copies to =
-repack
-> > > > the incoming data to match with what channels the consumer (here pr=
-obably
-> > > > the kfifo on the way to userspace) is expecting.
-> > > >=20
-> > > > That demux adds a small overhead but it should be small as long
-> > > > as the channels wanted aren't pathological (i.e. every other one).
-> > > >=20
-> > > > Advantage is the driver ends up simpler and in the common case of t=
-urn
-> > > > on all the channels (why else did you buy a device with those measu=
-rements
-> > > > if you didn't want them!) the demux is zerocopy so effectively free=
- which
-> > > > is not going to be the case for the bitmap walk and element copy in=
- the
-> > > > driver.
-> > > > =A0  =20
-> > >=20
-> > > Maybe my younger me was smarter but reading again the validation of t=
-he scan
-> > > mask
-> > > code (when available_scan_masks is available), I'm not sure why we're=
- not
-> > > using them.
-> > > I think that having one mask with delta values + temperature and anot=
-her one
-> > > with
-> > > normal + temperature would be enough for what we want in here. The co=
-de in
-> > > adis16480_update_scan_mode() could then be simpler I think.
-> > >=20
-> > > Now, what I'm still not following is the straight memcpy(). I may be =
-missing
-> > > something but the demux code only appears to kick in when we have com=
-pound
-> > > masks
-> > > resulting of multiple buffers being enabled. So I'm not seeing how we=
- can
-> > > get away
-> > > without picking the channels and place them correctly in the buffer p=
-assed
-> > > to IIO? =20
-> >=20
-> > It runs whenever the enabled mask requested (the channels that are enab=
-led) is
-> > different from the active_scan_mask. It only sends channels in one
-> > direction if there is only one user but it only sends the ones enabled =
-by that
-> > consumer.
-> > It's called unconditionally from iio_enable_buffers()
-> >=20
-> > That iterates over all enabled buffers (often there is only 1)
-> >=20
-> > and then checks if the active scan mask is the same as the one for this
-> > buffer.
-> > https://elixir.bootlin.com/linux/v6.9-rc6/source/drivers/iio/industrial=
-io-buffer.c#L1006
-> >=20
-> > The setup for whether to find a superset from available_scan_masks is h=
-ere
-> > https://elixir.bootlin.com/linux/v6.9-rc6/source/drivers/iio/industrial=
-io-buffer.c#L928
-> >=20
-> > Key is that if it happens to match, then we don't actually do anything =
-in the
-> > demux.
-> > It just gets passed straight on through.=A0 That does the fast path you=
- mention
-> > below. =20
->=20
-> Ahh got it... May failure was not realizing that iio_scan_mask_match() re=
-turns
-> the available masks so I was assuming that the bitmap_equal() check would=
- only
-> differ when multiple buffers are enabled.
->=20
-> Oh well, I think then this should work... I'm not sure it will be more
-> performant for the case where we don't enable all the channels because th=
-e demux
-> is a linked list which is far from being a performance friend (maybe we c=
-an do
-> some trials with something like xarray...). Still, for this to work the b=
-uffer
-> we pass into IIO has to be bigger than it needs to be (so bigger memset())
-> because, AFAIU, we will have to pass on all the scan elements and, as I s=
-aid,
-> the burst data will either have delta or normal measurements (not both). =
-I guess
-> the code will still look simpler so if there's no visible difference in
-> performance I'm fine with the change. I guess Ramona can give it a try to=
- see
-> how it looks like.
+> I probably wouldn't have been so picky if I hadn't have found the unused enum.
 
-Would be interesting to look at the performance of that code, but the
-real question is what channels do users typically enabled. If they enabled
-a full set (and I suspect most do) then that code doesn't nothing at all.
+Yeah, that's what you say ... XD
+It's Ok. Besides, I like your style of providing the better alternatives 
+along with your comments. (ref the print comments which I agreed with 
+and dropped from this reply).
 
-Original thinking was that the non common case didn't really matter much.
-If it is worth optimizing I'd suggest a double pass (or cheat - see later)
-1st pass works out number of elements, 2nd just saves them in a nice
-linear array.  It's typically small however, so maybe just allocate a linear
-array big enough for the worst case.
+>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+>> index 4b023ee229cf..9e874453d94d 100644
+>> --- a/drivers/mfd/Kconfig
+>> +++ b/drivers/mfd/Kconfig
+>> @@ -2089,6 +2089,19 @@ config MFD_ROHM_BD957XMUF
+>>   	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
+>>   	  designed to be used to power R-Car series processors.
+>>   
+>> +config MFD_ROHM_BD96801
+>> +	tristate "ROHM BD96801 Power Management IC"
+>> +	depends on I2C=y
+>> +	depends on OF
+>> +	select REGMAP_I2C
+>> +	select REGMAP_IRQ
+>> +	select MFD_CORE
+>> +	help
+>> +	  Select this option to get support for the ROHM BD96801 Power
+>> +	  Management IC. The ROHM BD96801 is a highly scalable Power Management
+>> +	  IC for industrial and automotive use. The BD96801 can be used as a
+>> +	  master PMIC in a chained PMIC solution with suitable companion PMICs.
+>> +
+>>   config MFD_STM32_LPTIMER
+>>   	tristate "Support for STM32 Low-Power Timer"
+>>   	depends on (ARCH_STM32 && OF) || COMPILE_TEST
+>> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+>> index c66f07edcd0e..e792892d4a8b 100644
+>> --- a/drivers/mfd/Makefile
+>> +++ b/drivers/mfd/Makefile
+>> @@ -264,6 +264,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
+>>   obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+>>   obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
+>>   obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
+>> +obj-$(CONFIG_MFD_ROHM_BD96801)	+= rohm-bd96801.o
+>>   obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+>>   obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+>>   obj-$(CONFIG_MFD_ACER_A500_EC)	+= acer-ec-a500.o
+>> diff --git a/drivers/mfd/rohm-bd96801.c b/drivers/mfd/rohm-bd96801.c
+>> new file mode 100644
+>> index 000000000000..1e9c49c857c1
+>> --- /dev/null
+>> +++ b/drivers/mfd/rohm-bd96801.c
 
-Jonathan
+...
 
->=20
-> - Nuno S=E1
-> >  =20
->=20
->=20
+>> +
+>> +enum {
+>> +	WDG_CELL = 0,
+>> +	REGULATOR_CELL,
+>> +};
+> 
+> Dead code?
+
+Yep. A leftover from the version with the ERRB stuff. Thanks for 
+pointing it out!
+
+...
+
+>> +
+>> +static int __init bd96801_i2c_init(void)
+>> +{
+>> +	return i2c_add_driver(&bd96801_i2c_driver);
+>> +}
+>> +
+>> +/* Initialise early so consumer devices can complete system boot? */
+> 
+> Why the question mark?  What are you unsure about?
+> 
+> Why doesn't -EPROBE_DEFER work for this?
+
+I am unsure of what kind of dependencies the real setups using these 
+PMICs have at boot time. Hence the (?). I've written drivers for a few 
+PMICs, and I've sometimes just done the usual:
+
+module_i2c_driver();
+
+This, however, tends to get converted to boilerplate + subsys_initcall() 
+by customers who actually start using the drivers - so I believe there 
+is a problem in getting the consumers powered if the PMIC(s) are 
+initialized too late. Anyways, it's probably nicer to try making it so 
+it works better on different setups out of the box :)
+
+I'd appreciate if someone wanted to shed some more light on this though!
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
