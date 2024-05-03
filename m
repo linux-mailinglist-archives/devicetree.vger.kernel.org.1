@@ -1,144 +1,128 @@
-Return-Path: <devicetree+bounces-64775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89F098BADC6
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:35:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46818BADE4
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 15:41:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5D8A1F22733
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:35:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E05921C22A09
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 13:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29A4153BC9;
-	Fri,  3 May 2024 13:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0EC5139CF8;
+	Fri,  3 May 2024 13:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8pxkAeR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i0zmi1MU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46D115358C;
-	Fri,  3 May 2024 13:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29712146D5B;
+	Fri,  3 May 2024 13:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714743297; cv=none; b=QdDI7ui1SE8JkdrvIddevXD/wh+CrcgphpEO3lca11r4Ex6/r+Dwt1ouKzeUTxTL3UXxXYzX+RRiyPnHCkkg+O3Gc+5D0t0MBfwyiUKcp/dulvnoTKj0+47P85km0GALALDGRJGHM5L3J1ln5QWKWKCDf2AncaIlJueFSugTcww=
+	t=1714743664; cv=none; b=PT/bt+bjq81nyRcD/OaD33HLCrbArMGNF0YsR+2MaW1mVJFTsQJmcoyg7eao4R+mwb/YwfW11xr1nqGrj6D2nd2wxsIqgqB9QXC0lwZl/kEQZpKUkjtz5VBKBR8wYN7tFqgRwgSQrPFahZ9FtYJLD5TrL2OIJBWHANsRYwR65aU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714743297; c=relaxed/simple;
-	bh=AGslWhle4NIaFIY0mVoJpE21AAJwhRwa4mBQbv6ZRFM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ZbJR8BoAB0xNMdbXKEZA52H3HLQaEMQIy4+bExftRviAXcSzqF4uD9hM6QPNWrbhO6u0eFBnnh0Vr7+XUb2UscEUOd4rTGiaB8H+ugWSpVJIAiRb9kmRX1KjI3i6PtRQtDZ7IRKFlNkToL8v8T9vZ6HfqLqT+VJNGQmXgq5tuGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8pxkAeR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECD5EC2BBFC;
-	Fri,  3 May 2024 13:34:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714743297;
-	bh=AGslWhle4NIaFIY0mVoJpE21AAJwhRwa4mBQbv6ZRFM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=k8pxkAeRmvIoVFkp6t0iXIq3Gk4/1zk2zsNC6IImZ8848Oj6h/sv3hrHQbujGE8F9
-	 Th53FltcJuJmWM2gttqffpQyn0Npyg8ipLNkJYhLH+ngxHqDK3G1LS+F2YNbjnur/a
-	 R/IHfBkmS4ZD0JOoIfMgS+WDOyoynrWM0NOQaiPZlSb3RgE2ljKQ9+zpVOgoblwOg7
-	 AMSE0fgJ+qkieWzWp+Dv9EdL1WrF4lrrEqD70VPZHcX4aYP5DYV9BCv4w+Seaa6lsj
-	 J083SIH0G8vlrWMiVw/r9Cj97UYB9BVmfr3uAj+Q6fBKCffkmIgaQWIMwcnGC6hsgZ
-	 OY1Fxq7Iuc7jg==
-Date: Fri, 03 May 2024 08:34:55 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1714743664; c=relaxed/simple;
+	bh=+Jb4lAg0slsq+gv6gy6EBzkWRDloikAOOewkPitfTrI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Rucz4AItMyMh8DxlKqyT4dU+amaSbHNvLMzwy0KFAOOhuBLJ9iDfVwzZ98sSQLRE4i19YjxX7mU+me8HeIC9yfMO/nN4Em9VBsU5/HhLmTCZqaHlu0fQ9oj/ioQ79mL5EBpKMsypDRxPBZDgkDYZKGl+5wGlEW09EhYOjwDczUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i0zmi1MU; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a58772187d8so1267549966b.3;
+        Fri, 03 May 2024 06:41:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714743661; x=1715348461; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Jb4lAg0slsq+gv6gy6EBzkWRDloikAOOewkPitfTrI=;
+        b=i0zmi1MUvNie6r9vkyGTWCtESoxL0MYOh7NMGxbHPT5VS/6ahDndyuAS/BgFDKJT9V
+         eAgCbzMGDMz3Xkb9QKMf5n5UCUC6RbR62haG9F4gKh3yxFRmFa9zdvAkBOyYFpuOZ4uT
+         VZvo0DB42BMvwmtuvOJdqXU4AAYuoPIN+kRSliHxdv4uNs3wbFhYzrfMYRJ4mS3qSa0+
+         HU/tuvx88qLomePev/zDOanJJfSHiLG3MOi/0y88XNwGSrmSd3lF35ZXdVGA4kWgViJm
+         fzDj5Ccz6906DwkeOjLgRdXSdbxcaGV+oeh0IY1lUn79hdkwkV6LdNpUscOFI2TFDWGm
+         CRQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714743661; x=1715348461;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Jb4lAg0slsq+gv6gy6EBzkWRDloikAOOewkPitfTrI=;
+        b=RuVuSIyyj4arQJaFgvv8oFpRuGGoPdVnwEMxxYzOseW9QzDnou+k/wTt+NrDcX1R/C
+         rg0XBVe0/3Yfoapdsjrzb0/BFo5MBFw+P4GPz1ydmTazYSdk07ZvjbHMVzJd39kQ5/+T
+         JFTCPg+cfcpIsv9Sctlin2MiyvzZqkBBGbu6mr6sn0zd/3XGMxrqG/wsqvcWEqhiPJoN
+         X9ZS+dvwcbcnnZFlD6I68h7FWqB70f4T06lSd5RlCD8AJ+REiPsGui/+l3F7N0/MeCJ1
+         JO011TM8kO0ff1vpohBnqEUZtTlx0FO3H+TjXZmzXCbK7nbkGgRsOf6eBsHGOJN8rXpe
+         ikOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVXUbtuddwlxmKGRSiwP7sHaR3XNU4NanxW7sDhWc42JJ6fk36HX1dP2NZ0zbbuSL2wCxl38YHPI+FuxjqbR99WYVQsL5uXljmH7ejSmUAiuCojHPD+UDUyz5gPPppd+1VWq56Ulw==
+X-Gm-Message-State: AOJu0YygYbh7Hh5D0EViT+vHhPUJfhbMdhrCwasbD7p2eFVtiIW6zU8A
+	0Vl2ae+qP4lcMEM6R6KrDG7WIHQ8hYJaZ1WLkMM5BIFj9hahbdIpJDQ+yJFOP7PGE0FaWThJXjf
+	N7wIP3u5HRuKe9KxKyJzELFIBB40=
+X-Google-Smtp-Source: AGHT+IHCwMQA70DCPDOHFKBLvywTmb3XJhioKRRRa2+J2zf2+AUi4IKRJDC4GLP9WjEqqVppgEyHNuVGQKIUpY7TkWg=
+X-Received: by 2002:a17:906:3ac2:b0:a59:86a8:8d0 with SMTP id
+ z2-20020a1709063ac200b00a5986a808d0mr2263616ejd.46.1714743661482; Fri, 03 May
+ 2024 06:41:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alex Soo <yuklin.soo@starfivetech.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, linux-gpio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Drew Fustini <drew@beagleboard.org>, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Ley Foon Tan <leyfoon.tan@starfivetech.com>, 
- Jianlong Huang <jianlong.huang@starfivetech.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Hal Feng <hal.feng@starfivetech.com>, 
- Emil Renner Berthing <kernel@esmil.dk>
-In-Reply-To: <20240503111436.113089-2-yuklin.soo@starfivetech.com>
-References: <20240503111436.113089-1-yuklin.soo@starfivetech.com>
- <20240503111436.113089-2-yuklin.soo@starfivetech.com>
-Message-Id: <171474329596.655929.15885006298482703153.robh@kernel.org>
-Subject: Re: [RFC PATCH v3 1/7] dt-bindings: pinctrl: starfive: Add JH8100
- pinctrl
+References: <cover.1714571980.git.lorenzo@kernel.org> <08f55e89a1eb655402a748d700a023e1e27a194a.1714571980.git.lorenzo@kernel.org>
+ <ZjRHSWEPbFijFXqT@finisterre.sirena.org.uk> <ZjTVaenC3xm-4-Ik@lore-desk>
+ <CAHp75VcHuQ_7ZZQgysZOZ5TY=2pqC3uy_NoTF-iz6Wnu2cq2BQ@mail.gmail.com> <ZjTkj30SxYeTKTA4@lore-desk>
+In-Reply-To: <ZjTkj30SxYeTKTA4@lore-desk>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 3 May 2024 16:40:24 +0300
+Message-ID: <CAHp75VfTfo4cZighemavZrNpV+HAAOP+BR-SCcMvxmBZYsQWxQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] spi: airoha: Add spi-nand flash controller driver
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org, conor@kernel.org, 
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com, 
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
+	angelogioacchino.delregno@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 3, 2024 at 4:20=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.org=
+> wrote:
+>
+> > On Fri, May 3, 2024 at 3:15=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel=
+.org> wrote:
+> > >
+> > > > On Wed, May 01, 2024 at 04:06:43PM +0200, Lorenzo Bianconi wrote:
+> > > > > Introduce support for spi-nand driver of the Airoha NAND Flash In=
+terface
+> > > > > found on Airoha ARM SoCs.
+> > > >
+> > > > This doesn't apply against current code, please check and resend.
+> > >
+> > > Hi Mark,
+> > >
+> > > patch v6 3/3 has just a couple of cosmetic changes requested by Andy =
+with
+> > > respect to v5 3/3.
+> > >
+> > > @Andy: do you think we can drop these changes or do you prefer to add=
+ them? (in
+> > > the latter case I can post an incremental patch).
+> >
+> > I am not sure what this is about, do you mean the changes asked by me
+> > made this driver not applicable?
+>
+> These are the only changes between patch v5 3/3 (applied by Mark) and pat=
+ch v6 3/3:
 
-On Fri, 03 May 2024 19:14:30 +0800, Alex Soo wrote:
-> Add documentation and header file for JH8100 pinctrl driver.
-> 
-> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
-> ---
->  .../pinctrl/starfive,jh8100-aon-pinctrl.yaml  | 260 ++++++++++++++++++
->  .../starfive,jh8100-sys-east-pinctrl.yaml     | 222 +++++++++++++++
->  .../starfive,jh8100-sys-gmac-pinctrl.yaml     | 162 +++++++++++
->  .../starfive,jh8100-sys-west-pinctrl.yaml     | 219 +++++++++++++++
->  .../pinctrl/starfive,jh8100-pinctrl.h         |  13 +
->  5 files changed, 876 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/starfive,jh8100-pinctrl.h
-> 
+I see now, so v5 was applied, and of course v6 can't be as most of it
+is already there.
+Yes, please send a follow up(s) to address my comments.
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.yaml:109:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.yaml:96:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.yaml:99:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.yaml:136:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-sys-pinctrl-gmac'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-sys-pinctrl-gmac'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-sys-pinctrl-west'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-sys-pinctrl-west'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-sys-pinctrl-east'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-sys-pinctrl-east'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-aon-pinctrl'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.yaml: properties:compatible: [{'items': [{'const': 'starfive,jh8100-aon-pinctrl'}, {'const': 'syscon'}, {'const': 'simple-mfd'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.yaml: ignoring, error in schema: properties: compatible
-Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.example.dtb: /example-0/soc/pinctrl@123e0000: failed to match any schema with compatible: ['starfive,jh8100-sys-pinctrl-west', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.example.dtb: /example-0/soc/pinctrl@12770000: failed to match any schema with compatible: ['starfive,jh8100-sys-pinctrl-gmac', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.example.dtb: /example-0/soc/pinctrl@122d0000: failed to match any schema with compatible: ['starfive,jh8100-sys-pinctrl-east', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.example.dtb: /example-0/soc/pinctrl@1f300000: failed to match any schema with compatible: ['starfive,jh8100-aon-pinctrl', 'syscon', 'simple-mfd']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240503111436.113089-2-yuklin.soo@starfivetech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
