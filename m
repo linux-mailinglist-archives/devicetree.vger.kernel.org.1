@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-64715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC5A8BA891
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 10:18:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5EEB8BA8A1
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 10:24:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 216591F22A63
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 08:18:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6226B2830F2
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 08:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF4E149C6D;
-	Fri,  3 May 2024 08:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C74148FEA;
+	Fri,  3 May 2024 08:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cT/UZhzh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rtg4hZx0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84DBD149C5C;
-	Fri,  3 May 2024 08:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C4F148313;
+	Fri,  3 May 2024 08:24:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714724311; cv=none; b=frLJ4f9KopfuV1h4vE/nggxTI2X3+pN0Ezm1dBIDedr60c4Y4a14cNnRywCtCgm+Pk3juLhUf7kXcGA2zprD8dF6HFltMUt/+y+j8wd0H4jEZKoY/TlB+8qSujbsx2NY+vGj6uBLFXMGoxQaPHpOLgmDEedTGevUE/DjQwe30+g=
+	t=1714724691; cv=none; b=nLbUFLaETMiSADHcng8j/7A3RaLkyAdH17XLtXMiQupwPp/Wn/R7nvToe6XySkssbB+g2m8Jq26UlclGtrUlURYCVflyM/tzB5OvOXD460K6CT8zqJEGMx7dymvIQz2QWTHPaYrdrwGJOJcCRApa6I/D725IRbEAuh7azBRdIQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714724311; c=relaxed/simple;
-	bh=Ar7uJX7Y9sXsbDOmIJMUCHFevTN4ih2GP+FjawYHoKU=;
+	s=arc-20240116; t=1714724691; c=relaxed/simple;
+	bh=8krA6oPxNixCEtNeNzJAv63F5yfpATT0K9/1XWZCeGA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UAQD4LHwccQUBUPd2e0OerMkzVm9MRNMGvl/jAKo2eZ82D8THYBvuXZ5qliatq+MNpNtWLrr0AsmSNN4+wqykfX3GGBuB72CWnvLF2V7YJhuxmk1BjtdSfKHYqS7UBlGj0vkxw8LvWjPVlUe9Ir+yH0FzYTBk6cq7utGguNeqIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cT/UZhzh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE542C116B1;
-	Fri,  3 May 2024 08:18:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XahqiRTfxjfjxAq+9bg9SL8qmbHaN4Qwba6LkB5cVC8+7ZWh5aD0YpGaLUjZZT+MFYkhZVCQfLSMgWIXkNFg8TFOoKJUXkb6nnonwF4g9BEWm69SullVMkZ2MyPkY2R8UlLoKefbgvqd91U90Ml85WsyxBpZbpXI96s4V01VYEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rtg4hZx0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7177C116B1;
+	Fri,  3 May 2024 08:24:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714724310;
-	bh=Ar7uJX7Y9sXsbDOmIJMUCHFevTN4ih2GP+FjawYHoKU=;
+	s=k20201202; t=1714724690;
+	bh=8krA6oPxNixCEtNeNzJAv63F5yfpATT0K9/1XWZCeGA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cT/UZhzheEo8BNxry12VAnxMma0HNlH+1RB/bHS5QYg5IOSD4mj9+VCZlPjHcsW02
-	 OrZ+ZycUrCzOTOvkD8dkC16GR/JbSBgaOd9JDrErk+YAWC2fz+xjWftfCN0N7BghHk
-	 xEsJTrz9UZKrT/srpvSTzey8HFeOXP4hkOeA/z+KA0xCFWvNmxJpXEnuCfbD+XG2sv
-	 zoVA2H6qKUvNZOdEaShKbDPliat7oTAhGXrnef4/3S3ajxDc0z+gkUC2vEixxsA4Kv
-	 G0swc9lUWOKI956K6ZSLvtZuKLh5A6B8bJH4zsZ5LMruxVuMpUr3vhdriOpaX3po+l
-	 I0Tog+m54kBCQ==
-Date: Fri, 3 May 2024 09:18:24 +0100
+	b=Rtg4hZx0dy65+Q3VXMkenm1Z4XbllBwBQU1G2FH2aWOQA/whveWb+LPEE8q9oMiqv
+	 GJsAbw8RC2yAbObkT+EzxykcFeEGtq+jOZZSIB62WX51Wwq4xlKgyvvzKWBpQOcCvT
+	 fRYkQ+tuOSBUCM6XKm5p96ollDIJE9kIgAJ1136y+91fqsp98csZpqctDViKcQcmX3
+	 89JJYyVykEuTmthi6lRYKmiU8i2rPH/LkR54VUZda43brEyTwvyc1ayuTOFE40cDyJ
+	 Ba9MVPkLepzSDiWrmAEZWovdIOOwSQdJfS1PjTlETIJpvLYqn/tMO247hOH3+ClBlH
+	 Tp+ZV4MWejNhw==
+Date: Fri, 3 May 2024 09:24:44 +0100
 From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Alex Bee <knaerzche@gmail.com>
-Cc: Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 0/5] Add RK816 PMIC support
-Message-ID: <20240503081824.GI1227636@google.com>
-References: <20240416161237.2500037-1-knaerzche@gmail.com>
- <171472425816.1279735.1509285489643125462.b4-ty@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH] dt-bindings: mfd: Use full path to other schemas
+Message-ID: <20240503082444.GJ1227636@google.com>
+References: <20240503072116.12430-1-krzysztof.kozlowski@linaro.org>
+ <a2886f72-210e-41a1-aae0-c079a4d11396@linaro.org>
+ <0af10387-ddfb-47b0-b59e-eeba1644be1c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,45 +69,25 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <171472425816.1279735.1509285489643125462.b4-ty@kernel.org>
+In-Reply-To: <0af10387-ddfb-47b0-b59e-eeba1644be1c@kernel.org>
 
-On Fri, 03 May 2024, Lee Jones wrote:
+On Fri, 03 May 2024, Krzysztof Kozlowski wrote:
 
-> On Tue, 16 Apr 2024 18:12:32 +0200, Alex Bee wrote:
-> > This series aims to add support for Rockchip RK816 PMIC series. As per
-> > datasheet it's targeted for RK3126/RK3128 (RK816-1), RK1108 (RK816-2) and
-> > PX3-SE (RK816-3) but might be used for other SoCs as well. The MFD consists
-> > of an integrated RTC, a GPIO controller, two 32k clock outputs, a power
-> > key, 3 buck- and 6 ldo regulators, 3 regulator-switches, and charger with
-> > integrated fuel gauge. Charger and fuel gauge are not part of this series.
-> > Two of the switches (otg/boost) are part of the binding, but not of
-> > the driver. They must only ever be enabled if no battery charging is
-> > happening, but it will be enabled automatically if a battery is attached
-> > and an external power source is connected. Thus that needs some
-> > incorporation of a yet to be added charger driver.
-> > Integration in the existing rk8xx-infrastructure was pretty straightforward
-> > and only needed very little tweaking. In order to not further bloat the
-> > driver(s) too much with additional `#define`s I tried to re-use existing
-> > ones wherever possible.
+> On 03/05/2024 10:08, Tudor Ambarus wrote:
 > > 
-> > [...]
+> > 
+> > On 5/3/24 08:21, Krzysztof Kozlowski wrote:
+> >>  .../bindings/mfd/samsung,s2mpa01.yaml         |  2 +-
+> >>  .../bindings/mfd/samsung,s2mps11.yaml         | 12 ++---
+> >>  .../bindings/mfd/samsung,s5m8767.yaml         |  4 +-
+> > 
+> > Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > 
-> Applied, thanks!
-> 
-> [1/5] dt-bindings: mfd: Add rk816 binding
->       commit: 06dfb41b1cf8d64327e5c4391e165f466506c4f0
-> [2/5] mfd: rk8xx: Add RK816 support
->       commit: e9006f81faf8e438ea83626db578610e49f31576
-> [3/5] pinctrl: rk805: Add rk816 pinctrl support
->       commit: 1bd97d64b5f0c01d03ecc9473ccfcf180dbbf54a
-> [4/5] regulator: rk808: Support apply_bit for rk808_set_suspend_voltage_range
->       commit: 9f4e899c286b5127e2443d50e37ee2112efbfa2c
-> [5/5] regulator: rk808: Add RK816 support
->       commit: 5eb068da74a0b443fb99a89d9e5062691649c470
+> So this should be Ack. You cannot review part of the patch ("I have
+> carried out a technical review of this patch...").
+> https://elixir.bootlin.com/linux/v6.8-rc5/source/Documentation/process/submitting-patches.rst
 
-Submitted for build testing.
-
-If successful, I'll follow-up with a PR.
+Reviewed-by is totally appropriate here.
 
 -- 
 Lee Jones [李琼斯]
