@@ -1,199 +1,204 @@
-Return-Path: <devicetree+bounces-64905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA2A8BB5D8
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 23:35:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7EC8BB661
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 23:48:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53B5E28639D
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 21:35:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF3D0B26F30
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 21:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E7DD54BD8;
-	Fri,  3 May 2024 21:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3556684FDD;
+	Fri,  3 May 2024 21:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m1p4Rwzk"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="ai5UqITR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED56E5914C;
-	Fri,  3 May 2024 21:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0047D5B1E9
+	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 21:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714772094; cv=none; b=Y6jarzwu+ejJ7OBMJur3bmamqlIijA4bf19DpmXgGQASdzvhMGTAqPlPNRnwhIFxUyYY/hJAGFT6FaYhgC/cwPkcJtM6EcZdUJFq17BDDhD4PZos2GgISZvNJSenjhTmXdwEcachuZZ9aWxThyYgF2ISjw/ICUnT1K/CqctXkJs=
+	t=1714772787; cv=none; b=qYpDKPNcKLtZ0E8ohZpn4cBZOXwJ0jce0ldNDphChIqqiImlBuUFEOqmJTjDXZf78BQOc6StNEf1YkMQdPhZKkT45oiJuH5Q2Seh+Bqf0sReaKUoOiheJ4kfiVJqXH4xj9aEG7sNiHOeIPnLitT+eaG6Rc2eGjYx1lBeDvEeHCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714772094; c=relaxed/simple;
-	bh=G+qm8/ugbECOEVX98AimsGMwO62Rp+FghrrPhBFcwwk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iKcvFv3dfL2v45LyjD0zdT9ENp/KiMjisTEKQgKihJryTsm4FLkBEtENfpIgQ9WF2ySgeSJJgWSMDWlK9kRiaNJVcGG6Fu2DrHs+Ov7kdtJGgmItsdfd5OKzRXDgF2/dqb/pN9TBXbAVRys34jK1yigVdMy5+C4/QoEDAA3bavs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m1p4Rwzk; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de54b28c41eso174466276.0;
-        Fri, 03 May 2024 14:34:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714772092; x=1715376892; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tC7sH68VgjfgX9UDWZ/v/q9uL8QvGp7TNkRbmhFCwL4=;
-        b=m1p4Rwzky0+igvUxP9f9wcQ+rnhCXMXAfOabXcMxTOYv2ycEoOJTrHPaDOcz4/n6Y2
-         TrH1TutXaA4g8Jqh7LGSp6DKGdmdTj7u+ecOhyzU5FfplNiYDUXG/zZwWlwz4z30jnIR
-         xoR578/tlAtYIaWdi0iil7vqOUPU8i74e3G4yq+0muG8mFxg/pDSWmND+M+fSsJSPOMG
-         eowVOh7ar6xjrq/q8J6ePNDLyDYETkw+F49vXgOxlNa+mQ7sXHRsZtAA/wzL+LShQKR/
-         TA/6dzJd91n6sBjDbU7piHst71tiOzk+3VqMF9a1ua6I8XmSZ6cFz475Xhz04GqrUhbG
-         Q9Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714772092; x=1715376892;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tC7sH68VgjfgX9UDWZ/v/q9uL8QvGp7TNkRbmhFCwL4=;
-        b=kwrTdqzDBc99dGZOmxD/EpbXrMC2Oh6DUxHTDENc5gj1FPtTrZwg9lQ54fZQKt3SGt
-         nm6dnLOU43TKbuxaevl6uvo5BmmfNV1jhkkzHzZIv789/fK4y7a8Kp0fZBSV69qY0YQE
-         KLl7zfRQfRpJ7ZLYx8oSpSm8vgMYrNckqcwpNtDYPZZCcUPXFCHL82dj3+QLUyxXaNkf
-         NKPg44dUdoTJSIaE/X5GLoaGjE11bBwc79nsOmNAneNl8nLAWGj9ypg7UtEl7CD2Rq3t
-         /+krfJf4YZgHbD9FcKMu7CFNpyTIWA54O3AEkMAy8iEI9X+2bBIbVVRaPYgWtO77seCx
-         NWyg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGJlQt3OWuSvQfSeYFCLZ7OW1Zs/a77NwDZxk412zDPIAIrWoxVUaKht03CxNYBfX2KvIA/7zt+iUmtOvEX1fhr0T33gSGk3TQk+315eC8W74eVYSsr4Ht2IXbbdcCEb/IYuzHFMzTXYteu5rmzCisNT/8U/XZYxK/d5S8ts/d/AsthFU=
-X-Gm-Message-State: AOJu0Yx3cvRUHfE2X/zkFo4b1jBxE4+AMuNm19X6dR6YGGAKeDRBmPrL
-	j6hoPyGgKPUQAkiGUjTQsxvTmha+H0zpRL7SiTtk/5x1XGoPtsyzkN/EPAeOdDuNiDvCHaN0w+v
-	/ZoRnJ6Xhi9E5/1SG81F6JPDE2QE=
-X-Google-Smtp-Source: AGHT+IEQvMYH3a3ssvxy7/wLXnv0LSmhPbEgC7ELP4izinqJGxMGJIE45fXICeFpMs8mFmdPFgPcOMLIbyUy2gK1MHA=
-X-Received: by 2002:a25:c70c:0:b0:dc5:f51e:6a60 with SMTP id
- w12-20020a25c70c000000b00dc5f51e6a60mr3921979ybe.6.1714772091984; Fri, 03 May
- 2024 14:34:51 -0700 (PDT)
+	s=arc-20240116; t=1714772787; c=relaxed/simple;
+	bh=vCATFAVm5j2l/tgS89AFZ3qjqyT58OStIRa316aPxP4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QY0xWwjMR/0qR1//n9ViHoOYh+dXIcouthDHEmw1qAOrXAKznDNI9uIfTgl0FpWJrkQi3lG+HhOLH06qUCfrGAy715Y2X5BP7R7iAr0wlEUQ/DNm9+LXUoHq5VnwElrtZrkSYdO2s8a0VLWfDloVL4HIVLuZgNBYPxdSIxAvdIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=ai5UqITR; arc=none smtp.client-ip=167.172.40.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1714772772;
+ bh=yJluxrbqMAEdPs4Fo4cA70yAXpw93jOBKBZ/ta4Y4TQ=;
+ b=ai5UqITRcaaBjabCnd1fzYfTiHFXQkY6itWKCk3KXZzdR51JrmNnb+8mcHfInc7J3tk3zjocR
+ 6WG8ELeCdTHEzBu1iqg4dhIOz5gwhAKTYTsMf+hif3E053p0PRrn50BDK+oIaUOJf0SjXFHGTUj
+ VSuEviCRVwErU5SBjCpZDbIBp6tX9IC9FXsmVW9ue2jvIMYg/3r8J+AVE33S1sdu71FX29pZefD
+ AMoxC+jaVBsNMtbow5py60GZyHxe/Bs1Pd13KReKOHbH1zcSBuc7WmMYBwEqjQX5bNB/JzVSxCK
+ u3LMoIdEB8YZ2NQsZIxPIz/g2g1Ztx93OAv9p+/Z79Ow==
+Message-ID: <d613aa4d-8c87-4735-8209-00510d5097fb@kwiboo.se>
+Date: Fri, 3 May 2024 23:46:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240503135455.966-1-ansuelsmth@gmail.com> <20240503135455.966-6-ansuelsmth@gmail.com>
- <5529fe79-e2f8-47ab-a0cf-2b37bb13bbd7@broadcom.com> <CABwr4_sz4DKjp_cJqTNBCyQSUhXGJM4_h1JSiK-h=8uAbPPoVQ@mail.gmail.com>
- <66355403.050a0220.9e59a.8031@mx.google.com>
-In-Reply-To: <66355403.050a0220.9e59a.8031@mx.google.com>
-From: =?UTF-8?Q?Daniel_Gonz=C3=A1lez_Cabanelas?= <dgcbueu@gmail.com>
-Date: Fri, 3 May 2024 23:34:41 +0200
-Message-ID: <CABwr4_u6bgdWHeYwyDTW3xoM-z+JaEPan98jY7QZjP6thgkGRA@mail.gmail.com>
-Subject: Re: [PATCH 5/6] mips: bmips: enable RAC on BMIPS4350
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, Hauke Mehrtens <hauke@hauke-m.de>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	=?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 3C
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240428123618.72170-1-amadeus@jmu.edu.cn>
+ <20240428123618.72170-3-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20240428123618.72170-3-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 167.172.40.54
+X-ForwardEmail-ID: 66355b2215cb5945d1c987e2
 
-El vie, 3 may 2024 a las 23:15, Christian Marangi
-(<ansuelsmth@gmail.com>) escribi=C3=B3:
->
-> On Fri, May 03, 2024 at 11:11:13PM +0200, Daniel Gonz=C3=A1lez Cabanelas =
-wrote:
-> > El vie, 3 may 2024 a las 20:56, Florian Fainelli
-> > (<florian.fainelli@broadcom.com>) escribi=C3=B3:
-> > >
-> > > On 5/3/24 06:54, Christian Marangi wrote:
-> > > > From: Daniel Gonz=C3=A1lez Cabanelas <dgcbueu@gmail.com>
-> > > >
-> > > > The data RAC is left disabled by the bootloader in some SoCs, at le=
-ast in
-> > > > the core it boots from.
-> > > > Enabling this feature increases the performance up to +30% dependin=
-g on the
-> > > > task.
-> > > >
-> > > > Signed-off-by: Daniel Gonz=C3=A1lez Cabanelas <dgcbueu@gmail.com>
-> > > > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > > > [ rework code and reduce code duplication ]
-> > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > > ---
-> > > >   arch/mips/kernel/smp-bmips.c | 12 ++++++++++++
-> > > >   1 file changed, 12 insertions(+)
-> > > >
-> > > > diff --git a/arch/mips/kernel/smp-bmips.c b/arch/mips/kernel/smp-bm=
-ips.c
-> > > > index 6048c471b5ee..7bde6bbaa41f 100644
-> > > > --- a/arch/mips/kernel/smp-bmips.c
-> > > > +++ b/arch/mips/kernel/smp-bmips.c
-> > > > @@ -617,6 +617,18 @@ void bmips_cpu_setup(void)
-> > > >               __raw_readl(bmips_cbr_addr + BMIPS_RAC_ADDRESS_RANGE)=
-;
-> > > >               break;
-> > > >
-> > > > +     case CPU_BMIPS4350:
-> > > > +             u32 rac_addr =3D BMIPS_RAC_CONFIG_1;
-> > > > +
-> > > > +             if (!(read_c0_brcm_cmt_local() & (1 << 31)))
-> > > > +                     rac_addr =3D BMIPS_RAC_CONFIG;
-> > > > +
-> > > > +             /* Enable data RAC */
-> > > > +             cfg =3D __raw_readl(bmips_cbr_addr + rac_addr);
-> > > > +             __raw_writel(cfg | 0xa, bmips_cbr_addr + rac_addr);
-> > >
-> > > This enables data pre-fetching (bit 3) and data-caching (bit 1), have
-> > > you tried with 0xF to see if this provides any additional speed-up?
-> > >
-> > > Looks correct to me otherwise, I wonder if a flush would be in order
-> > > right after enabling, though I did not see any specific instructions
-> > > towards that part in the programming notes.
-> > >
-> > > > +             __raw_readl(bmips_cbr_addr + rac_addr);
-> > > > +             break;
-> > > > +
-> > > >       case CPU_BMIPS4380:
-> > > >               /* CBG workaround for early BMIPS4380 CPUs */
-> > > >               switch (read_c0_prid()) {
-> > >
-> > Hi Florian.
-> > Bits 0 and 1 are already enabled by the bootloader, so no need to
+Hi Chukun,
 
-I meant bits 0 and 2. These are the RAC bits:
-#define RAC_FLH         (1 << 8)
-#define RAC_DPF         (1 << 6)
-#define RAC_NCH         (1 << 5)
-#define RAC_C_INV       (1 << 4)
-#define RAC_PF_D        (1 << 3)
-#define RAC_PF_I        (1 << 2)
-#define RAC_D           (1 << 1)
-#define RAC_I           (1 << 0)
+On 2024-04-28 14:36, Chukun Pan wrote:
+> The Radxa ROCK 3C is a development board with the
+> Rockchip RK3566 SoC. It has the following features:
+> 
+> - 1/2/4GB LPDDR4
+> - 1x HDMI Type A
+> - 1x PCIE 2.0 slot
+> - 1x FAN connector
+> - 3.5mm jack with mic
+> - 1GbE RTL8211F Ethernet
+> - 1x USB 3.0, 3x USB 2.0
+> - 40-pin expansion header
+> - MicroSD card/eMMC socket
+> - 16MB SPI NOR (gd25lq128d)
+> - AP6256 or AIC8800 WiFi/BT
+> 
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3566-rock-3c.dts      | 750 ++++++++++++++++++
+>  2 files changed, 751 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> 
 
-> > write 0xF. I checked it on some devices with BCM6328, 6358, 6368 SoCs.
-> >
-> > Example, without the patch, reading the RAC Configuration Register 0 an=
-d 1:
-> >
-> > - BCM6368 booting from TP0:
-> > root@OpenWrt:/# devmem 0xff400000
-> > 0x02A07015
-> > root@OpenWrt:/# devmem 0xff400008
-> > 0x0000000F
-> >
-> > - BCM6368 booting from TP1:
-> > root@OpenWrt:/# devmem 0xff400000
-> > 0x02A0701F
-> > root@OpenWrt:/# devmem 0xff400008
-> > 0x00000005
-> > root@OpenWrt:/#
-> >
->
-> [ fixed the top-post ]
->
-> If that's the case then i'm setting 0xf since we verified it doesn't
-> cause problem and it's already set.
+[snip]
 
-It's harmless to re-enable the instruction bits. BTW the log commit
-refers only to data RAC, 0xF is enabling both the data and instruction
-RAC.
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	vdd_cpu: regulator@1c {
+> +		compatible = "tcs,tcs4525";
+> +		reg = <0x1c>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-name = "vdd_cpu";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <800000>;
+> +		regulator-max-microvolt = <1150000>;
+> +		regulator-ramp-delay = <2300>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +
+> +	rk809: pmic@20 {
+> +		compatible = "rockchip,rk809";
+> +		reg = <0x20>;
 
-Daniel
->
-> --
->         Ansuel
+[snip]
+
+> +		codec {
+> +			mic-in-differential;
+
+This should be rockchip,mic-in-differential or removed.
+
+> +		};
+> +	};
+> +
+> +	eeprom: eeprom@50 {
+> +		compatible = "belling,bl24c16a", "atmel,24c16";
+> +		reg = <0x50>;
+> +		pagesize = <16>;
+> +	};
+> +};
+> +
+
+[snip]
+
+> +
+> +&sdmmc0 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> +	sd-uhs-sdr50;
+
+Do you have any references to issues related to why sd-uhs-sdr104 is not
+used here?
+
+My testing shows that io-domain is getting notified and correctly
+configured during boot. And card seem to be working correctly.
+
+[    2.162780] mmc_host mmc1: Bus speed (slot 0) = 375000Hz (slot req 400000Hz, actual 375000HZ div = 0)
+
+[    2.229408] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
+[    2.230042] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
+[    2.231493] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000
+[    2.232121] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000 done
+[    2.257294] mmc_host mmc1: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
+[    2.269482] dwmmc_rockchip fe2b0000.mmc: Successfully tuned phase to 254
+[    2.270098] mmc1: new ultra high speed SDR104 SDXC card at address aaaa
+[    2.271533] mmcblk1: mmc1:aaaa SD64G 59.5 GiB
+[    2.277357]  mmcblk1: p1
+
+Also when the card is later removed/re-inserted:
+
+[   80.181598] mmc1: card aaaa removed
+[   83.836785] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
+[   83.837611] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
+[   83.839263] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
+[   83.839952] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
+[   83.855358] mmc_host mmc1: Bus speed (slot 0) = 375000Hz (slot req 400000Hz, actual 375000HZ div = 0)
+[   84.153827] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
+[   84.154524] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
+[   84.156149] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000
+[   84.156838] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000 done
+[   84.183932] mmc_host mmc1: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
+[   84.202888] dwmmc_rockchip fe2b0000.mmc: Successfully tuned phase to 257
+[   84.203574] mmc1: new ultra high speed SDR104 SDXC card at address aaaa
+[   84.205537] mmcblk1: mmc1:aaaa SD64G 59.5 GiB
+[   84.211434]  mmcblk1: p1
+
+sd-uhs-ddr50 should also work based on my testing.
+
+Regards,
+Jonas
+
+> +	vmmc-supply = <&vcc3v3_sys>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	status = "okay";
+> +};
+> +
+
+[snip]
 
