@@ -1,137 +1,147 @@
-Return-Path: <devicetree+bounces-64867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C583F8BB360
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73F488BB37D
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:55:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3AAD1C20D1C
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:42:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A4981C2261F
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:55:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798F32E646;
-	Fri,  3 May 2024 18:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140E913A244;
+	Fri,  3 May 2024 18:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="DOvt3rmv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VD9H+C9W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE58E57C8A;
-	Fri,  3 May 2024 18:42:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9C1524BE;
+	Fri,  3 May 2024 18:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714761751; cv=none; b=NpzXaDXVRSWi5qn4p9jzwJRMxNAiFd56+TsGyERgrUspYhCnFwxaUQm3dWVlJNduUCtIaDJGv/R+NUyT8E1mOlDlz6UeJERg+uJXZJvqm5peU1qX+hk4mcWeWt07IHWrkRUQRkwmXCuKfOLp7H6YI5HpuzpcirNMs+SpZoa8JQc=
+	t=1714762523; cv=none; b=tKoPjereRSikhi8qfxG0znYG1dXssOL5emq1NLD4pvld2RZB8bWt8fkZ6GnEQuETu0f3hHpteVYCz2n1lbZBt9npmpydbb3mQy3xOATbNw3xZ7NWIINSUJ1FhfIQpAD/7SVxS06q/NEmHsuyyBuzgJvcfrN0+pHLSAzA9UD5ePc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714761751; c=relaxed/simple;
-	bh=6avGVeH0i3gUjukyCFF0pre8Nb9L4gOhXeEBFHfW1qo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JVi4qpifGy9Tqkoluas9iEUV7X7u9iXCJHC5Vf2TgbJNy8k23wh7cb+dfizJx4FdOPC9s/BUuph5pLzywqhuWotB3NrR8I8uFfz2DzqgghITBfiD9wrBVYEr/OVIdwOBdKCiyspA8gf8q3EHbqshUkL5k782trAV73tfO+iSIY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=DOvt3rmv; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C70B3120002;
-	Fri,  3 May 2024 21:42:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C70B3120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1714761742;
-	bh=9Z5eFlWXbAJBTHJC3tQ6YnOuDNtTKSSh4w04Pc+er9s=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=DOvt3rmvyGMhAYPBAyyGp6AgE7/vb6Ij8xaP4FrJBwSqatI/r5bOwQ7uWrWVMmmxe
-	 J04eJdZis9P3a4qlg4ym5Z1p9mpmVSmySRWD2MKaFYNpQyaFEFgH+IdeJa+/wgRczk
-	 6nq6dIz2EjVXbp1jMx+eX4y5bJFZYK03iehel75EYkFQExfbaV11tdKOZvxcYx1d2j
-	 rJ1wayes7Vbr/x+ma8ul7/lrRocJvNMAWPBp8DvZY8foYW2DonxLn9kEDW2xZ6Sw1i
-	 m2+JwjG/9Xx6n7+ITPdpFxdQJNEFlTomeE05l/KaB7OjC+2Qm3WdFOjQreJb9KymsP
-	 svlVUnad/R9AQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  3 May 2024 21:42:22 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 3 May
- 2024 21:42:22 +0300
-Date: Fri, 3 May 2024 21:42:22 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: <neil.armstrong@linaro.org>
-CC: <jbrunet@baylibre.com>, <mturquette@baylibre.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
-	<rafael@kernel.org>, <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-	<lukasz.luba@arm.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 0/3] arm64: dts: amlogic: a1: introduce thermal setup
-Message-ID: <20240503184222.cqka6nmjxhezfhtg@CAB-WSD-L081021>
-References: <20240328192645.20914-1-ddrokosov@salutedevices.com>
+	s=arc-20240116; t=1714762523; c=relaxed/simple;
+	bh=yeOI4X99Sc7Swlz3qKg+Cc6O9KkBtF41vdppAyeJnxM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O0PqXbLqPnbcd6JFzUDr8sdrb/Y/L0jiNa3wwUnoUgK0lZPRMaa0NV7n+21Ui/zBnxZV0k5GL6SEu54O2eF+X8LraMab4XfNriftzDlRTtevbD8bhUV+57BT1NE2dkXuEhMyieb4i+Ly5eb+qCbQJPX2/SW2Edm7OfuZajlONTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VD9H+C9W; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a599a298990so210817566b.2;
+        Fri, 03 May 2024 11:55:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714762521; x=1715367321; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EnxMYqw83s5oEuRsJKXGuOf6rkwvSd9+11+j63EQ1rg=;
+        b=VD9H+C9WDn6VsCGKikmPFWHCcYrBFvzEW2Tz51RI0Ea/9ARI6QmZx5Ub88YoAEN86c
+         6+q2sdTm0w3eKIwBH0WSez8mRrcHQwyOuKhAPrZw6jnh4XLb0HmriYrzAo+CBosEXARV
+         hnXv3jzqhazmP34VB3pYD0fcQo0nqJGypTyhISI5yMvz6qcdGyCTFquBFM4UWsuYBupM
+         dc9Z0exf1L2dohDOM+QA23ui7QFF7ICdrKP8ItkijTY4g8/boTDTSGvpOXUNXBadqo3r
+         Y3BhreQDfROvmSfdVrVoZBFSSmke+y1C6Vqk5phPR1YHj+jrxpKv5LFx/ajl71a2pRjp
+         kSmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714762521; x=1715367321;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EnxMYqw83s5oEuRsJKXGuOf6rkwvSd9+11+j63EQ1rg=;
+        b=AntEAL2qB8EBvyDkm9B/UVEj0IJVP/wDXl+J5/QwLKX4z84po4dM0gu9J0sOpyr57t
+         kir7RJXcIlTdpwYLU3WV0WeJdwYes7SpUd/X82kqyeGmn8h0SJCAKbIGavM/AyeT3P/V
+         Txkf3SqGj+mhtS/1VwChealPL6rBn6tfZgBVfPKCzwsMjHeztIB6S9o6Kih+vqB2OtYT
+         GcqJiJe1oFO/yRsAQ/npzeIr1ig8x6PXBwDfhotdI+COE4Z/EqUZ39ueD6NG7LhnDUPw
+         65O681PAYQnnITsuKzJvRtkqES4fL/36pDTmylQ6pOdCuNReBHTop+K+kaqfytKqdqBi
+         JViA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/GbFlJMIGfz9zoCgyrCTTAFZDBLe6qU4qK597ZxhIMz1+lOwb3yjZn1QH86G/j1lfR9jHr1HPH0nNzi4ZmuHHQ3iGw5mSp5I3da0c9kPMnOxgDgi2B+tghbUgblNvicSJKOP7B1y1PgvwIUmmUQuxl46V/aT117YGxlIUvDPIkiUFADThWZ3kqGZkpUhwlCm2mGK43dj0ODmKmKRxyJ8EUExYaDCTJQ4=
+X-Gm-Message-State: AOJu0YwzHdAQzYAUi5YT3tXxrklvCk9vEs6nu8I7pqjqovvadtJAMrvX
+	w/CzTFNCV00M2AbMnEMcaQSZ8kuRo9v/JNfnZzdGSSsZ7DSvkMfp
+X-Google-Smtp-Source: AGHT+IEQB6b4e3H38yp9btaJmIcRDwe/VCwFfyZT9AmvoljLIJT+ZBSK9hkBuHY8WT6rNnvO1Y6fxA==
+X-Received: by 2002:a17:906:4f0f:b0:a55:65e6:ce9f with SMTP id t15-20020a1709064f0f00b00a5565e6ce9fmr2326939eju.20.1714762520609;
+        Fri, 03 May 2024 11:55:20 -0700 (PDT)
+Received: from hex.my.domain (83.25.185.84.ipv4.supernova.orange.pl. [83.25.185.84])
+        by smtp.gmail.com with ESMTPSA id l8-20020a170906078800b00a598d3ddf8dsm1104618ejc.28.2024.05.03.11.55.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 May 2024 11:55:20 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH 0/3] ASoC: samsung: midas-audio: Add GPIO-based headset
+ jack detection
+Date: Fri, 03 May 2024 20:55:10 +0200
+Message-Id: <20240503-midas-wm1811-gpio-jack-v1-0-e8cddbd67cbf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240328192645.20914-1-ddrokosov@salutedevices.com>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185053 [May 03 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/03 14:55:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/03 14:55:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/03 16:56:00 #25080849
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA4zNWYC/x3MSQqAMAxA0atI1gaa4IRXERe1Ro3iQAsqiHe3u
+ HyL/x8I4lUC1MkDXk4Num8RlCbgJruNgtpHAxvOTG4YV+1twGuligjHQ3ecrVuwI8NcdFSKcxD
+ jw8ug9z9u2vf9AMBerkRoAAAA
+To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714762519; l=2127;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=yeOI4X99Sc7Swlz3qKg+Cc6O9KkBtF41vdppAyeJnxM=;
+ b=CVtRwrW63dzCjdHMfuym89IrHMx7aKfSUuB173VVInw9/mE4o5Hyn8+yEyj8S7B5FKza+8hMV
+ vXsUAqf9GV9CDmsqN7xyKlhXEfIeHB6rEq3lsoLMY/Om4x1ZtLbpKOW
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
-Hello Neil,
+Many of Samsung's Exynos 4 devices share the same midas-audio driver
+to handle the codec setup. While most of these devices, including the
+Midas itself, use the jack detection provided by the WM8994 driver,
+other devices such as the Samsung Galaxy Tab 3 8.0 (lt01) use two GPIOs
+and an ADC channel to determine jack insertion, the jack's type, and
+button presses (for headsets with volume up/down/play buttons).
 
-A1 Thermal Sensor was applied to linux-pm for v6.10-rc1:
+In the downstream kernel, this behavior is implemented in the sec-jack
+driver[1], and the per-device settings are configured in *-jack.c files
+in the mach folder (see e.g. the Tab 3's implementation[2]).
 
-https://lore.kernel.org/all/89a02410-87c8-47c6-aa50-04dad5b4e585@linaro.org/
+This patchset implements this mechanism in the midas_wm1811.c driver,
+and adds new DTS options to allow for its configuration. It also
+enables jack detection for the Samsung Galaxy Tab 3 8.0.
 
-Could you please advise if it's enough to proceed with this series? Or
-do I need to do something more?
+A very similar mechanism was already present in the aries_wm8994.c
+driver[3]; this implementation heavily borrows from it, though there
+are a few extra cleanups as well.
 
-On Thu, Mar 28, 2024 at 10:26:34PM +0300, Dmitry Rokosov wrote:
-> This patch series introduces thermal sensor declaration to the Meson A1
-> common dtsi file. It also sets up thermal zones for the AD402 reference
-> board. It depends on the series with A1 thermal support at [1].
-> 
-> Changes v2 since v1 at [2]:
->     - provide Neil RvB for cooling-cells dts patch
->     - purge unnecessary 'amlogic,a1-thermal' fallback
-> 
-> Links:
-> [1] - https://lore.kernel.org/all/20240328191322.17551-1-ddrokosov@salutedevices.com/
-> [2] - https://lore.kernel.org/all/20240328134459.18446-1-ddrokosov@salutedevices.com/
-> 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> 
-> Dmitry Rokosov (3):
->   arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
->   arm64: dts: amlogic: a1: introduce cpu temperature sensor
->   arm64: dts: amlogic: ad402: setup thermal-zones
-> 
->  .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 45 +++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 13 ++++++
->  2 files changed, 58 insertions(+)
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
+[1] https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/lineage-14.1/drivers/misc/sec_jack.c
+[2] https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/lineage-14.1/arch/arm/mach-exynos/tab3-jack.c
+[3] https://github.com/torvalds/linux/blob/master/sound/soc/samsung/aries_wm8994.c
+
+---
+Artur Weber (3):
+      ASoC: dt-bindings: samsung,midas-audio: Add GPIO-based headset jack detection
+      ASoC: samsung: midas_wm1811: Add GPIO-based headset jack detection
+      ARM: dts: samsung: exynos4212-tab3: Fix headset mic, add jack detection
+
+ .../bindings/sound/samsung,midas-audio.yaml        |  30 +++
+ arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi     |  23 +-
+ sound/soc/samsung/Kconfig                          |   2 +-
+ sound/soc/samsung/midas_wm1811.c                   | 265 ++++++++++++++++++++-
+ 4 files changed, 305 insertions(+), 15 deletions(-)
+---
+base-commit: e67572cd2204894179d89bd7b984072f19313b03
+change-id: 20240502-midas-wm1811-gpio-jack-b10226b17ecc
+
+Best regards,
 -- 
-Thank you,
-Dmitry
+Artur Weber <aweber.kernel@gmail.com>
+
 
