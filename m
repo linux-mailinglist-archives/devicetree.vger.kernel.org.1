@@ -1,145 +1,155 @@
-Return-Path: <devicetree+bounces-64708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82748BA831
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:59:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1A78BA81B
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A257282C47
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 07:59:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B90551F21F8E
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 07:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8F81482F8;
-	Fri,  3 May 2024 07:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AE0147C7A;
+	Fri,  3 May 2024 07:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="fpFYMV31"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PhtnMo/9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575131465B5;
-	Fri,  3 May 2024 07:59:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E784412B89;
+	Fri,  3 May 2024 07:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714723156; cv=none; b=bHkcykX++i2bmlZKV/Umn5l9XU3kvmcZIo1vUCUoQ5+hUYDv1FlEQ4Gei6EqYLOpazBBoCfzwFn832StsJZpIux6DaHC/nlUoNZY59+1mlRrOumhuSuI2f/vrhEABbRAhEEGa8ii9mwIv7W8bLnPFPgAqI38sINLtrmQF0Yo7hU=
+	t=1714722842; cv=none; b=RRqzgAV8uhzAAj4Fmt2kmSf4aheCDPtA4LYZN1DjhN78akeTrmSrsaHks3etKag36MLFJREzO62a9ruJqrU+vYk0Cln1YJhR2NNwmac3FIbYm9MV+o4ay0U0w2skZQtCRrzkpRFdh/UPBoMP0f+RNw2BG5VW5egjGWd32Xo+p38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714723156; c=relaxed/simple;
-	bh=f7H+OF65L/hmMeYTdnOeeM0VJ0Havz3E8X5ne5zG0X0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fxfXw8iOEeMRPtYo7owbuoqrLQVelU/eR/fcVfMD2pGyXrO7lYP+REcdf8EUstUt6MQYMgCAQEU49DVxEZ6MpiiLH1faIDpPmm6IOH99bEQNuoeszjJEnxpWcqd4yhxNpfcyFIMH/n02JffUdg7gsyIynABmotkFepHqNZEU6hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=fpFYMV31; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 314C012000C;
-	Fri,  3 May 2024 10:52:56 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 314C012000C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1714722776;
-	bh=vPYAXAEpU06TIJUWj2rEgevmEmcxPqtBx4Bo9O+8NsY=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=fpFYMV31LZZ4ynG08Pe03cA8a9KzeMzVOBBPvA7yhE4GkpadK25lCQuKD2i2VquMz
-	 Yz2DhND7KNfEk2+ltk4DG2n5sHRn/ShXRUyQBX5z9Vtq/SzCVzCDXnu9WFmmsJPx48
-	 8HvcyN8as4yWi9tBk9eSuA3QviSdPYK2y5i8T9XOvrLluchZWqS3KvWT8nEmmMbGKI
-	 tbTiIsbUOP7BUvWAOvkkDjZapdbfl2s/lJPO9H7UBpNw9HFaXqduhJbwm6j/zoYJxD
-	 82MWVXvE5/336Red8Oe25+0pqPkLKRhcuELTb2VJ0iOdTsbKXVG3CxND1nltay1lBr
-	 /xQsNWMXw7uwA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  3 May 2024 10:52:55 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 3 May
- 2024 10:52:55 +0300
-Date: Fri, 3 May 2024 10:52:55 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
-	<rafael@kernel.org>, <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 0/2] thermal: amlogic: introduce A1 SoC family Thermal
- Sensor controller
-Message-ID: <20240503075221.suupx27777tvhdvu@CAB-WSD-L081021>
-References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
- <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
- <20240417084007.uzg2uc7gwb6mi7bi@CAB-WSD-L081021>
- <20240426073106.3yl2dplvauper3lg@CAB-WSD-L081021>
- <35c9dbe9-9166-4358-bfa9-99f205acd8de@linaro.org>
+	s=arc-20240116; t=1714722842; c=relaxed/simple;
+	bh=RFadj7DhVRsYigha3zV68omh5cD+jF7AeI0l5uplGs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SfVWAyaOWrik6src80C0XyP7Kwxr+tVWrmm86ylDdUXx3SIkvVDWLSXueObpurYIXAaZAE8WTxMRL6EwO3qRL50BDxFJai8btXfd+xklT3eR2p+KaWsnXfMl3v3Gfd/LSRKz3z74pmzuv0dE+tHthzTtEgNdc/kGBP2vKX7/EmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PhtnMo/9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4436srbR030347;
+	Fri, 3 May 2024 07:53:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=3mzdCXxXwnn8uCG5UnxaKBkw7nHf6ws+H3ixiga1rf4=; b=Ph
+	tnMo/9H5defEBpAiWaXHCbfUbzlzPihxbRvIm/T1sckITy/l1zp8nVhHfFwjUHgQ
+	s5Ug37+Kxp/aa2QvM69pIrTfcgt1LpxtwPKFoqhois04amUWjupw9meo8Ak1aio4
+	7mLNa2NpGTBtdJNJYexesOmg41tnxkXCqelUU+XoiLwLDG1rF9T5KLjq6qKWtc9A
+	cl0zL08qZd5bbsS7WHpW56EZZyJd4oqgwEVL7jykzyNXL2Sms8cA2A5Lf9zH8xTK
+	frQMAdINzapOmJ9BvugUip3a1p1h79ZtWP4VOgbFlIWvca95yy14y/YODvEDLSP6
+	h2DsazBpJweCZsLjmBAQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xvu2n833h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 May 2024 07:53:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4437rpdi000345
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 3 May 2024 07:53:51 GMT
+Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 3 May 2024
+ 00:53:46 -0700
+Message-ID: <a0daf2d5-4c72-4d96-a8d4-b15adb7252d5@quicinc.com>
+Date: Fri, 3 May 2024 13:23:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <35c9dbe9-9166-4358-bfa9-99f205acd8de@linaro.org>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185030 [May 03 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;git.kernel.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/03 06:33:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/03 06:33:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/03 04:34:00 #25076274
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla Thunderbird
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
+To: Greg KH <gregkh@linuxfoundation.org>
+CC: kernel test robot <lkp@intel.com>,
+        Andrew Morton
+	<akpm@linux-foundation.org>,
+        Linux Memory Management List
+	<linux-mm@kvack.org>,
+        <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+        <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <nouveau@lists.freedesktop.org>
+References: <202405030439.AH8NR0Mg-lkp@intel.com>
+ <2024050342-slashing-froth-bcf9@gregkh>
+ <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
+ <2024050314-knelt-sandpaper-3884@gregkh>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <2024050314-knelt-sandpaper-3884@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
+X-Proofpoint-ORIG-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-03_04,2024-05-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 mlxlogscore=707
+ priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405030055
 
-Hello Daniel,
 
-On Fri, Apr 26, 2024 at 09:57:29AM +0200, Daniel Lezcano wrote:
-> 
-> Hi Dmitry,
-> 
-> On 26/04/2024 09:31, Dmitry Rokosov wrote:
-> > Hello Neil,
-> > 
-> > I hope you're doing well. I was wondering if you could assist me with
-> > below problem.
-> > 
-> > I'm a bit confused about which kernel repository the series was applied
-> > to. I asked Daniel about it, but unfortunately, I didn't receive any
-> > feedback from him. Could you provide some clarification on this matter?
-> > 
-> > Thank you in advance for your help.
-> 
-> I was OoO the last two weeks.
-> 
-> Your series is in my tree [1], which is pulled automatically by the linux-pm
-> tree in its bleeding-edge branch.
-> 
-> Today, this branch will move to the linux-next branch [2] which will also be
-> pulled by the linux-pm/next branch automatically.
-> 
-> Hope that helps and sorry for the delay to answer
-> 
->   -- Daniel
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/bleeding-edge
-> 
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/linux-next
 
-Thanks a lot for the update! Now I see the patches in the above repos.
+On 5/3/2024 11:58 AM, Greg KH wrote:
+> On Fri, May 03, 2024 at 11:30:50AM +0530, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 5/3/2024 10:42 AM, Greg KH wrote:
+>>> Ok, I'm getting tired of seeing these for the USB portion of the tree,
+>>> so I went to look for:
+>>>
+>>> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
+>>>> |-- arc-randconfig-002-20240503
+>>>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
+>>>
+>>> This warning (same for all arches), but can't seem to find it anywhere.
+>>>
+>>> Any hints as to where it would be?
+>>>
+>>
+>> Hi Greg,
+>>
+>>   I think the hw_mode was not removed in hs_phy_setup and left unused.
+>>
+>>   Thinh reported the same when there was a merge conflict into linux next
+>> (that the hw_mode variable was removed in ss_phy_setup and should be removed
+>> in hs_phy_setup as well):
+>>
+>> https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
+>>
+>>   Perhaps that was missed ?
+> 
+> Must have been.  I need it in a format that it can be applied in (a
+> 2-way diff can't apply...)
+> 
 
--- 
-Thank you,
-Dmitry
+I just checked it with W=1 and it is causing the issue:
+
+/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c: 
+In function 'dwc3_hs_phy_setup':
+/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c:679:15: 
+warning: variable 'hw_mode' set but not used [-Wunused-but-set-variable]
+   unsigned int hw_mode;
+                ^
+
+I can send a patch to fix it up. Also, just wanted to confirm if  I skip 
+the fixes and CC tags as the main patch wasn't yet merged into any 
+stable trees ?
+
+Regards,
+Krishna,
 
