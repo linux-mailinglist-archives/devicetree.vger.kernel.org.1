@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-64691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817FA8BA75C
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:05:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5C48BA762
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:07:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B25051C2163D
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 07:05:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0FFD1F21C40
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 07:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5FD1465AE;
-	Fri,  3 May 2024 07:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202B01465B9;
+	Fri,  3 May 2024 07:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SonmFwVo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BMWrQKDq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC6B1465A4;
-	Fri,  3 May 2024 07:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80811465B5;
+	Fri,  3 May 2024 07:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714719908; cv=none; b=K8z5VW1u52BcUn3cPZY9/Uyb/JLewPE02AjXdC5/rWiNnaXLEdJEmBEg4KBYvVxg5/bn7pIaZFjLcdMqA9OgzTuelJV52kNietcNv3COHBpkoWE2UwYwxXAv99sYC9iBW6DN771AAFX8kN4Jqq958FvyJ6l0qw30Gi5TxqVpWKI=
+	t=1714720059; cv=none; b=d5G1sA6mnhmlOn0vqIP/BSAEdQPRrPK3CwwBmlwlosrHHXsmMI9SeBw7YAwWXeYUpSBZdFyel9iqvfc1GZse53zl5qdU20n6VsXl1/Xq/Q67Uw3bjdut1OJJDRXfxXX1gAKPGn33F5ODJSvZ6EQt60midvz089WH50T8EJnfcz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714719908; c=relaxed/simple;
-	bh=9UVvjI8VRIg0/RBQCUn4FCyYD7HQWj/ur9UuYMy8h0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IKe6VZtBHJn/77LBoxMPnBRT77jvU4d23FptQ59zE5qQenFH2TnPhwLaELA4kbXDIVPh5wZh5WSNNTu8T635/gs6dO0B6WRndWxO1GigwvZIV8bFiXvyTO9SwmEgSciio37IiPzX0tOBJfYfMYg3I/2iSIyS8fcaCcF8ky45w2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SonmFwVo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74947C4AF18;
-	Fri,  3 May 2024 07:05:01 +0000 (UTC)
+	s=arc-20240116; t=1714720059; c=relaxed/simple;
+	bh=c+Ap1aPRU+I78lPYKeW9DP8O6zCFSYbokug+4j7STuY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=G/zIIRVfajIsXRfxJNha5z161ppTA26QRWZ6KAqY9IrWnR0o4VgPZD2ZiIIknt8rZu90oBfYr/wIPoU565LixHMcAsOIRAZpyP3cTmTqeGQZtVr0kXyUrQYg+WSTGaOYws1OVs7gvvrEWAutairdSqSjZiN79tNFcbgw21mPqjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BMWrQKDq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8F50C116B1;
+	Fri,  3 May 2024 07:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714719908;
-	bh=9UVvjI8VRIg0/RBQCUn4FCyYD7HQWj/ur9UuYMy8h0M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SonmFwVoJxTSsoxcXaCkkdzXonnwoV+frlsC0rm0lcqDNG2jhcsenwwx4zHwLfvOK
-	 zWKCLSKrmPrPwzwpkf/lE+jsGvWLsovD1tk4MyBawNj+9WscOsnUVg1h8WjampR6jv
-	 RBW9VgmJfUGq3fzyWHTgZcMeVcxSkzcZgGUyQU2Opl7l91Q+lgTudd9MQRyRFX6dBg
-	 QfixpDKCZKlzuTKXgRzMpjWJPtwSlATzSXtkahOiMHChhDwS+FL6BHKsVWQsja/7f1
-	 zVFNJFhjheAt78KwWwOuBvFuqT80pkHZr3AiFEp8GQTKN/rLaK0N1wdr9yBeNyW/9y
-	 jMdW+mDCAU70Q==
-Message-ID: <5b7334b7-e4d0-4650-a600-beb22fa6903d@kernel.org>
-Date: Fri, 3 May 2024 09:04:59 +0200
+	s=k20201202; t=1714720058;
+	bh=c+Ap1aPRU+I78lPYKeW9DP8O6zCFSYbokug+4j7STuY=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=BMWrQKDqv+OytmuhDgxXsXNGGTUvo1iWQ8UOfCHo5NCWSl+7ivbrFm6FOnHJytz1W
+	 J/hTktnZgNJqc+TOlmd9qlry9rXtUw69yTwnyhAbZ/RTnw+3ojz5/LjxsDov+yFo1d
+	 X8scudMaowgH0m4gC0jJ8KyjnxfH9bOwjENLDZyhXdrW6gHEb8rVHToF6kN81ipunN
+	 o5MvcEBZZFiU8r1hCbvCgud53Q0I6s8dCcvEH1nmiZn02tZpCIAcMFvNzGIP0PafUf
+	 ssl68b/3YQK7T3CbVUZs/h1cp5xSV4YjsGDZ+BCxCFP5JesRWTGtgFJhrRW9u3JUW9
+	 h2q5LpEsiYE9w==
+Message-ID: <95bb10cf-7707-43e2-931c-d0aa6431bab3@kernel.org>
+Date: Fri, 3 May 2024 09:07:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/13] dt-bindings: phy: qcom,usb-snps-femto-v2: use
- correct fallback for sc8180x
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>, cros-qcom-dts-watchers@chromium.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- David Wronek <davidwronek@gmail.com>, Andy Gross <andy.gross@linaro.org>,
- Evan Green <evgreen@chromium.org>, Douglas Anderson <dianders@chromium.org>,
- Iskren Chernev <me@iskren.info>, Luca Weiss <luca.weiss@fairphone.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20240501-qcom-phy-fixes-v1-0-f1fd15c33fb3@linaro.org>
- <20240501-qcom-phy-fixes-v1-3-f1fd15c33fb3@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: touchscreen: convert elan,ektf2127 to
+ json-schema
+To: Andreas Kemnade <andreas@kemnade.info>, dmitry.torokhov@gmail.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ hdegoede@redhat.com, andy.shevchenko@gmail.com,
+ u.kleine-koenig@pengutronix.de, siebren.vroegindeweij@hotmail.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240502185819.788716-1-andreas@kemnade.info>
+ <20240502185819.788716-2-andreas@kemnade.info>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,22 +105,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240501-qcom-phy-fixes-v1-3-f1fd15c33fb3@linaro.org>
+In-Reply-To: <20240502185819.788716-2-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/05/2024 18:19, Dmitry Baryshkov wrote:
-> The qcom,sc8180x-usb-hs-phy device uses qcom,usb-snps-hs-7nm-phy
-> fallback. Correct the schema for this platform.
+On 02/05/2024 20:58, Andreas Kemnade wrote:
+> Convert EKTF2127 infrared touchscreen controller binding to DT schema
+> and add ektf2232 compatible.
+
+This should be two commits.
+
 > 
-> Fixes: 9160fb7c39a1 ("dt-bindings: phy: qcom,usb-snps-femto-v2: use fallback compatibles")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->  Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
+>  .../bindings/input/touchscreen/ektf2127.txt   | 25 --------
+>  .../input/touchscreen/elan,ektf2127.yaml      | 59 +++++++++++++++++++
+>  2 files changed, 59 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ektf2127.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/elan,ektf2127.yaml
 > 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
+
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - elan,ektf2127
+> +      - elan,ektf2132
+> +      - elan,ektf2232
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-gpios:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - power-gpios
+> +
+> +unevaluatedProperties: false
+> +
+> +
+
+Just one blank line.
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+
 
 Best regards,
 Krzysztof
