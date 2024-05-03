@@ -1,443 +1,443 @@
-Return-Path: <devicetree+bounces-64829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0FD8BB0CE
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:22:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D77A8BB0E4
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:29:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99CE81F23AFD
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:22:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B540928249A
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:29:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D8F156235;
-	Fri,  3 May 2024 16:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1127615664E;
+	Fri,  3 May 2024 16:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="CD2tnfXU"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="TKfvy8u8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B56A155390
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 16:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1050E15533D
+	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 16:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714753349; cv=none; b=oZtfCQpIWsy8egLDTeJJucWopPJGZH6p2UG4/Pad0d1L3G80N5ioAoT8PPp9Yf2/jIRI3z5c4wo5THpgoS6Kjy9vnNkn6WvYRzG9nnOvFBAzbvnbTJbeDXHbHlETYhuQp+yWcXbQGeRpvlm579ymIAyioAs3ChDDvOX0hSdWIIk=
+	t=1714753745; cv=none; b=FNueRGjK4U+S7YnnqoPwd+rJF5lx6f+tgX3b3iPin89rFizB4Nv0Jrh81iUhBt+bOUXNeHJcEa2lLR9L9toLW9aSrMzMlUS9OvEo39USKNzF5Reu3h0jx31C+ADwpGm+e28qws3i6KKVCS9RYq91nlk99M7QZNeb7lIubZjruWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714753349; c=relaxed/simple;
-	bh=c9dS6IODXP4Sa9vddvDIPbhblKf3cRh8U45sWQZXJMU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VXFe/Z18N51Y6BZ6LiwWL+NcKdmAA1zdEWUrgkRr62qWTuXbvM+Djr8ClhvfXJcfRBndlVGybeMhvfZofypjJHGVn44rqqwuKJJKTqgF+0GUKayK7bT3GC+4r/Kiv09bWPUevpISxFKtxkD3fffQXqg3hFLdw0x6frt2jQafMJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=CD2tnfXU; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1714753345;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nxw0NFKVRpKcKglNNCf0PI1U17BH1awJqYwWUMhYTvA=;
-	b=CD2tnfXU9GtS5wyOlJt7CtTd5qMFn10u9FrwwslgvfqtGlMvNWMnChbiP6EaCUeEBuevPJ
-	FPWU2Lnutb8rJ6M8d14pRgXmpwbqeEqtehWRI25TqK9FfoOpEvNQQGdIMTNyAqXHeoqjh9
-	Qh9SqWKsMyhlNHe20b3IydxHDvO0Kb8=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-gpio@vger.kernel.org
-Cc: Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: pinctrl: xilinx: Add support for function with pins
-Date: Fri,  3 May 2024 12:22:16 -0400
-Message-Id: <20240503162217.1999467-2-sean.anderson@linux.dev>
-In-Reply-To: <20240503162217.1999467-1-sean.anderson@linux.dev>
-References: <20240503162217.1999467-1-sean.anderson@linux.dev>
+	s=arc-20240116; t=1714753745; c=relaxed/simple;
+	bh=+gJrURUGg8vTjavvnvTV30xxUQYc3d46PCw+cBhsEmg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ktWjEi9nPg/O7MqT2Flit7RTZfAicdZZK0brBRnv4PqENjaLOZNBmGW+RKiE3wJHZtCRxDtF1sGN7U6shB6mH8szafryHfapheGJY4QZPDQ+B1yJYkCTNpwqiEJMrK+RyEQ7904A6sDbGU0WS2Q+ClXsnHfnlxKgA+1tJf7ifPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=TKfvy8u8; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-51f8211c588so1040471e87.0
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 09:29:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1714753741; x=1715358541; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KcJ+k0H6/m0Cv9X3Vbvj6SbMtSmOhVR/JgA1iQ66e10=;
+        b=TKfvy8u82Aoba8D9OUVpQeWI3aGDz46ehlGm4H5xtSrbq2aDsDuGv6dlx/WLX2sIRk
+         BS+91Abf3LMJCwmL2aOCQh4VTkF2K3zvV1TihwXD/dpuaeIlXJULDApdD/io7eq21Tl6
+         tLMQdSUU0v8GFK3v+7VEuT4qHnc6ydBbHxtNElBCobJFldXqL0uO6bm0ghE+iTVFA6I7
+         fqqPIZs3YW7RshvjbOFWiBTYgQmcqoQK7Ddk5qBfuVkNg28udBG+QbIdAp6JNlVkqjCV
+         DL/y0WU4dxQfwrKTLaR80LG9hXmXd+Ev9OddgGtrRmJJxag6+vW66CoFslSrhDgJgxbf
+         790A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714753741; x=1715358541;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KcJ+k0H6/m0Cv9X3Vbvj6SbMtSmOhVR/JgA1iQ66e10=;
+        b=PyAYUAzO6QvO+QURu/Es9+HOk/4NWxEtD4lAN3tLFosJi5ygRJHp+CPhwUeg56LYPt
+         g/hhlL+qOsfN8vArujXQAIHX04cTbhBprPt7UBLmdWxXDKdqZAhSzorITB7NX8EiL2ry
+         VEDu4lPTDFT3UUKtwYcJ5narnH6ePwkmZE8t80EJ7EcF+jJdVPNhKpn4xGlB51jSDnjK
+         etmzj7v6MVhczH8gdqsuvsYZXoHoFhZcFCBxUD7HEwPNVKGFpLsqGJ0nPCVo3Y8kCF0O
+         yt/N1vbIpcxwbKKB4DC+mm5N/f0S2dGXiUdBHeh2SBLzfgvW13bhcPvZPUZ5/KNfR4Kn
+         yKag==
+X-Forwarded-Encrypted: i=1; AJvYcCWDqP9T1G+hiolw7jvd3Z+peFuKNQCAyXmJly3q5MkwD6sKIHbS9/kTliPA8iUqEKWMEdQgZArw0+zwxv1z4krAM8hGmJYbILedLw==
+X-Gm-Message-State: AOJu0Yx11KaWRwf6FdhJA32joKNHgW9Bg2lX1DLT/dB5btd+tYKIKz13
+	pV0iuNH5RAktnZl7uyyImSMl0mv/qBtPrZuUusBhZgflezn5n2HNaiTmQ1Bc4t6XYSX7YPvMORO
+	ExAM21Q7dQb29DcLjxLLgC55vw7MzRpjCJas2qA==
+X-Google-Smtp-Source: AGHT+IFtdP67COLORBthU+58PbG7sbgN360zM6O7Llu9lr3w+NSo/oXEx4BQXw+Mu92MLwTVGUQE6PDxBjuL9iQgMRY=
+X-Received: by 2002:ac2:4959:0:b0:51d:abb3:d701 with SMTP id
+ o25-20020ac24959000000b0051dabb3d701mr2283308lfi.5.1714753740901; Fri, 03 May
+ 2024 09:29:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+References: <20240502-dev-charlie-support_thead_vector_6_9-v5-0-d1b5c013a966@rivosinc.com>
+ <20240502-dev-charlie-support_thead_vector_6_9-v5-5-d1b5c013a966@rivosinc.com>
+In-Reply-To: <20240502-dev-charlie-support_thead_vector_6_9-v5-5-d1b5c013a966@rivosinc.com>
+From: Evan Green <evan@rivosinc.com>
+Date: Fri, 3 May 2024 09:28:24 -0700
+Message-ID: <CALs-Hsvt4f4hP--6Wb8QAYM20dPFegRj-GeaD7hoJiW1ZY+w4Q@mail.gmail.com>
+Subject: Re: [PATCH v5 05/17] riscv: Extend cpufeature.c to detect vendor extensions
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Conor Dooley <conor.dooley@microchip.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Palmer Dabbelt <palmer@rivosinc.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Support specifying the function per-pin. The driver doesn't care
-whethern you use pins or groups for this purpose.
+On Thu, May 2, 2024 at 9:46=E2=80=AFPM Charlie Jenkins <charlie@rivosinc.co=
+m> wrote:
+>
+> Separate vendor extensions out into one struct per vendor
+> instead of adding vendor extensions onto riscv_isa_ext.
+>
+> Add a hidden config RISCV_ISA_VENDOR_EXT to conditionally include this
+> code.
+>
+> The xtheadvector vendor extension is added using these changes.
+>
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  arch/riscv/Kconfig                               |  2 +
+>  arch/riscv/Kconfig.vendor                        | 19 +++++
+>  arch/riscv/include/asm/cpufeature.h              | 18 +++++
+>  arch/riscv/include/asm/vendor_extensions.h       | 34 +++++++++
+>  arch/riscv/include/asm/vendor_extensions/thead.h | 16 ++++
+>  arch/riscv/kernel/Makefile                       |  2 +
+>  arch/riscv/kernel/cpufeature.c                   | 93 ++++++++++++++++++=
++-----
+>  arch/riscv/kernel/vendor_extensions.c            | 18 +++++
+>  arch/riscv/kernel/vendor_extensions/Makefile     |  3 +
+>  arch/riscv/kernel/vendor_extensions/thead.c      | 18 +++++
+>  10 files changed, 203 insertions(+), 20 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index be09c8836d56..fec86fba3acd 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -759,6 +759,8 @@ config RISCV_EFFICIENT_UNALIGNED_ACCESS
+>
+>  endchoice
+>
+> +source "arch/riscv/Kconfig.vendor"
+> +
+>  endmenu # "Platform type"
+>
+>  menu "Kernel features"
+> diff --git a/arch/riscv/Kconfig.vendor b/arch/riscv/Kconfig.vendor
+> new file mode 100644
+> index 000000000000..85ac30496b0e
+> --- /dev/null
+> +++ b/arch/riscv/Kconfig.vendor
+> @@ -0,0 +1,19 @@
+> +menu "Vendor extensions"
+> +
+> +config RISCV_ISA_VENDOR_EXT
+> +       bool
+> +
+> +menu "T-Head"
+> +config RISCV_ISA_VENDOR_EXT_THEAD
+> +       bool "T-Head vendor extension support"
+> +       select RISCV_ISA_VENDOR_EXT
+> +       default y
+> +       help
+> +         Say N here to disable detection of and support for all T-Head v=
+endor
+> +         extensions. Without this option enabled, T-Head vendor extensio=
+ns will
+> +         not be detected at boot and their presence not reported to user=
+space.
+> +
+> +         If you don't know what to do here, say Y.
+> +endmenu
+> +
+> +endmenu
+> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
+/cpufeature.h
+> index 0c4f08577015..fedd479ccfd1 100644
+> --- a/arch/riscv/include/asm/cpufeature.h
+> +++ b/arch/riscv/include/asm/cpufeature.h
+> @@ -35,6 +35,24 @@ extern u32 riscv_vlenb_of;
+>
+>  void riscv_user_isa_enable(void);
+>
+> +#define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, _subset_exts_size)=
+ {     \
+> +       .name =3D #_name,                                                =
+         \
+> +       .property =3D #_name,                                            =
+         \
+> +       .id =3D _id,                                                     =
+         \
+> +       .subset_ext_ids =3D _subset_exts,                                =
+         \
+> +       .subset_ext_size =3D _subset_exts_size                           =
+         \
+> +}
+> +
+> +#define __RISCV_ISA_EXT_DATA(_name, _id) _RISCV_ISA_EXT_DATA(_name, _id,=
+ NULL, 0)
+> +
+> +/* Used to declare pure "lasso" extension (Zk for instance) */
+> +#define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
+> +       _RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, =
+ARRAY_SIZE(_bundled_exts))
+> +
+> +/* Used to declare extensions that are a superset of other extensions (Z=
+vbb for instance) */
+> +#define __RISCV_ISA_EXT_SUPERSET(_name, _id, _sub_exts) \
+> +       _RISCV_ISA_EXT_DATA(_name, _id, _sub_exts, ARRAY_SIZE(_sub_exts))
+> +
+>  #if defined(CONFIG_RISCV_MISALIGNED)
+>  bool check_unaligned_access_emulated_all_cpus(void);
+>  void unaligned_emulation_finish(void);
+> diff --git a/arch/riscv/include/asm/vendor_extensions.h b/arch/riscv/incl=
+ude/asm/vendor_extensions.h
+> new file mode 100644
+> index 000000000000..bf4dac66e6e6
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/vendor_extensions.h
+> @@ -0,0 +1,34 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright 2024 Rivos, Inc
+> + */
+> +
+> +#ifndef _ASM_VENDOR_EXTENSIONS_H
+> +#define _ASM_VENDOR_EXTENSIONS_H
+> +
+> +#include <asm/cpufeature.h>
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/types.h>
+> +
+> +/*
+> + * The extension keys of each vendor must be strictly less than this val=
+ue.
+> + */
+> +#define RISCV_ISA_VENDOR_EXT_MAX 32
+> +
+> +struct riscv_isavendorinfo {
+> +       DECLARE_BITMAP(isa, RISCV_ISA_VENDOR_EXT_MAX);
+> +};
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
----
+Nice, I think this was a good compromise: being honest with the
+compiler about the fixed array sizes, with the tradeoff that all
+vendors have to use the same ceiling for the number of bits. If one
+vendor raises this ceiling absurdly and starts creating huge amounts
+of waste we can revisit.
 
- .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 344 +++++++++---------
- 1 file changed, 176 insertions(+), 168 deletions(-)
+> +
+> +struct riscv_isa_vendor_ext_data_list {
+> +       const size_t ext_data_count;
+> +       const struct riscv_isa_ext_data *ext_data;
+> +       struct riscv_isavendorinfo per_hart_isa_bitmap[NR_CPUS];
+> +       struct riscv_isavendorinfo all_harts_isa_bitmap;
+> +};
+> +
+> +extern struct riscv_isa_vendor_ext_data_list *riscv_isa_vendor_ext_list[=
+];
+> +
+> +extern const size_t riscv_isa_vendor_ext_list_size;
+> +
+> +#endif /* _ASM_VENDOR_EXTENSIONS_H */
+> diff --git a/arch/riscv/include/asm/vendor_extensions/thead.h b/arch/risc=
+v/include/asm/vendor_extensions/thead.h
+> new file mode 100644
+> index 000000000000..48421d1553ad
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/vendor_extensions/thead.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _ASM_RISCV_VENDOR_EXTENSIONS_THEAD_H
+> +#define _ASM_RISCV_VENDOR_EXTENSIONS_THEAD_H
+> +
+> +#include <asm/vendor_extensions.h>
+> +
+> +#include <linux/types.h>
+> +
+> +/*
+> + * Extension keys must be strictly less than RISCV_ISA_VENDOR_EXT_MAX.
+> + */
+> +#define RISCV_ISA_VENDOR_EXT_XTHEADVECTOR              0
+> +
+> +extern struct riscv_isa_vendor_ext_data_list riscv_isa_vendor_ext_list_t=
+head;
+> +
+> +#endif
+> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
+> index 81d94a8ee10f..53361c50fb46 100644
+> --- a/arch/riscv/kernel/Makefile
+> +++ b/arch/riscv/kernel/Makefile
+> @@ -58,6 +58,8 @@ obj-y +=3D riscv_ksyms.o
+>  obj-y  +=3D stacktrace.o
+>  obj-y  +=3D cacheinfo.o
+>  obj-y  +=3D patch.o
+> +obj-y  +=3D vendor_extensions.o
+> +obj-y  +=3D vendor_extensions/
+>  obj-y  +=3D probes/
+>  obj-y  +=3D tests/
+>  obj-$(CONFIG_MMU) +=3D vdso.o vdso/
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 12c79db0b0bb..cc9ec393c8f6 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -24,6 +24,7 @@
+>  #include <asm/processor.h>
+>  #include <asm/sbi.h>
+>  #include <asm/vector.h>
+> +#include <asm/vendor_extensions.h>
+>
+>  #define NUM_ALPHA_EXTS ('z' - 'a' + 1)
+>
+> @@ -102,24 +103,6 @@ static bool riscv_isa_extension_check(int id)
+>         return true;
+>  }
+>
+> -#define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, _subset_exts_size)=
+ {     \
+> -       .name =3D #_name,                                                =
+         \
+> -       .property =3D #_name,                                            =
+         \
+> -       .id =3D _id,                                                     =
+         \
+> -       .subset_ext_ids =3D _subset_exts,                                =
+         \
+> -       .subset_ext_size =3D _subset_exts_size                           =
+         \
+> -}
+> -
+> -#define __RISCV_ISA_EXT_DATA(_name, _id) _RISCV_ISA_EXT_DATA(_name, _id,=
+ NULL, 0)
+> -
+> -/* Used to declare pure "lasso" extension (Zk for instance) */
+> -#define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
+> -       _RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, =
+ARRAY_SIZE(_bundled_exts))
+> -
+> -/* Used to declare extensions that are a superset of other extensions (Z=
+vbb for instance) */
+> -#define __RISCV_ISA_EXT_SUPERSET(_name, _id, _sub_exts) \
+> -       _RISCV_ISA_EXT_DATA(_name, _id, _sub_exts, ARRAY_SIZE(_sub_exts))
+> -
+>  static const unsigned int riscv_zk_bundled_exts[] =3D {
+>         RISCV_ISA_EXT_ZBKB,
+>         RISCV_ISA_EXT_ZBKC,
+> @@ -353,6 +336,21 @@ static void __init riscv_parse_isa_string(unsigned l=
+ong *this_hwcap, struct risc
+>                 bool ext_long =3D false, ext_err =3D false;
+>
+>                 switch (*ext) {
+> +               case 'x':
+> +               case 'X':
+> +                       if (acpi_disabled)
+> +                               pr_warn_once("Vendor extensions are ignor=
+ed in riscv,isa. Use riscv,isa-extensions instead.");
+> +                       /*
+> +                        * To skip an extension, we find its end.
+> +                        * As multi-letter extensions must be split from =
+other multi-letter
+> +                        * extensions with an "_", the end of a multi-let=
+ter extension will
+> +                        * either be the null character or the "_" at the=
+ start of the next
+> +                        * multi-letter extension.
+> +                        */
+> +                       for (; *isa && *isa !=3D '_'; ++isa)
+> +                               ;
+> +                       ext_err =3D true;
+> +                       break;
+>                 case 's':
+>                         /*
+>                          * Workaround for invalid single-letter 's' & 'u'=
+ (QEMU).
+> @@ -368,8 +366,6 @@ static void __init riscv_parse_isa_string(unsigned lo=
+ng *this_hwcap, struct risc
+>                         }
+>                         fallthrough;
+>                 case 'S':
+> -               case 'x':
+> -               case 'X':
+>                 case 'z':
+>                 case 'Z':
+>                         /*
+> @@ -572,6 +568,59 @@ static void __init riscv_fill_hwcap_from_isa_string(=
+unsigned long *isa2hwcap)
+>                 acpi_put_table((struct acpi_table_header *)rhct);
+>  }
+>
+> +static void __init riscv_fill_cpu_vendor_ext(struct device_node *cpu_nod=
+e, int cpu)
+> +{
+> +       if (!IS_ENABLED(CONFIG_RISCV_ISA_VENDOR_EXT))
+> +               return;
+> +
+> +       for (int i =3D 0; i < riscv_isa_vendor_ext_list_size; i++) {
+> +               struct riscv_isa_vendor_ext_data_list *ext_list =3D riscv=
+_isa_vendor_ext_list[i];
+> +
+> +               for (int j =3D 0; j < ext_list->ext_data_count; j++) {
+> +                       const struct riscv_isa_ext_data ext =3D ext_list-=
+>ext_data[j];
+> +                       struct riscv_isavendorinfo *isavendorinfo =3D &ex=
+t_list->per_hart_isa_bitmap[cpu];
+> +
+> +                       if (of_property_match_string(cpu_node, "riscv,isa=
+-extensions",
+> +                                                    ext.property) < 0)
+> +                               continue;
+> +
+> +                       /*
+> +                        * Assume that subset extensions are all members =
+of the
+> +                        * same vendor.
+> +                        */
+> +                       if (ext.subset_ext_size)
+> +                               for (int k =3D 0; k < ext.subset_ext_size=
+; k++)
+> +                                       set_bit(ext.subset_ext_ids[k], is=
+avendorinfo->isa);
+> +
+> +                       set_bit(ext.id, isavendorinfo->isa);
+> +               }
+> +       }
+> +}
+> +
+> +static void __init riscv_fill_vendor_ext_list(int cpu)
+> +{
+> +       bool first =3D true;
+> +
+> +       if (!IS_ENABLED(CONFIG_RISCV_ISA_VENDOR_EXT))
+> +               return;
+> +
+> +       for (int i =3D 0; i < riscv_isa_vendor_ext_list_size; i++) {
+> +               struct riscv_isa_vendor_ext_data_list *ext_list =3D riscv=
+_isa_vendor_ext_list[i];
+> +
+> +               if (first) {
+> +                       bitmap_copy(ext_list->all_harts_isa_bitmap.isa,
+> +                                   ext_list->per_hart_isa_bitmap[cpu].is=
+a,
+> +                                   RISCV_ISA_VENDOR_EXT_MAX);
+> +                       first =3D false;
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-index f13d315b5d5e..d3b258245e28 100644
---- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-@@ -42,179 +42,187 @@ patternProperties:
-         $ref: pinmux-node.yaml#
- 
-         properties:
-+          pins:
-+            description:
-+              List of pins to select (either this or "groups" must be specified)
-+            items:
-+              pattern: '^MIO([0-9]|[1-6][0-9]|7[0-7])$'
-+
-           groups:
-             description:
-               List of groups to select (either this or "pins" must be
-               specified), available groups for this subnode.
-             items:
--              enum: [ethernet0_0_grp, ethernet1_0_grp, ethernet2_0_grp,
--                     ethernet3_0_grp, gemtsu0_0_grp, gemtsu0_1_grp,
--                     gemtsu0_2_grp, mdio0_0_grp, mdio1_0_grp,
--                     mdio1_1_grp, mdio2_0_grp, mdio3_0_grp,
--                     qspi0_0_grp, qspi_ss_0_grp, qspi_fbclk_0_grp,
--                     spi0_0_grp, spi0_ss_0_grp, spi0_ss_1_grp,
--                     spi0_ss_2_grp, spi0_1_grp, spi0_ss_3_grp,
--                     spi0_ss_4_grp, spi0_ss_5_grp, spi0_2_grp,
--                     spi0_ss_6_grp, spi0_ss_7_grp, spi0_ss_8_grp,
--                     spi0_3_grp, spi0_ss_9_grp, spi0_ss_10_grp,
--                     spi0_ss_11_grp, spi0_4_grp, spi0_ss_12_grp,
--                     spi0_ss_13_grp, spi0_ss_14_grp, spi0_5_grp,
--                     spi0_ss_15_grp, spi0_ss_16_grp, spi0_ss_17_grp,
--                     spi1_0_grp, spi1_ss_0_grp, spi1_ss_1_grp,
--                     spi1_ss_2_grp, spi1_1_grp, spi1_ss_3_grp,
--                     spi1_ss_4_grp, spi1_ss_5_grp, spi1_2_grp,
--                     spi1_ss_6_grp, spi1_ss_7_grp, spi1_ss_8_grp,
--                     spi1_3_grp, spi1_ss_9_grp, spi1_ss_10_grp,
--                     spi1_ss_11_grp, spi1_4_grp, spi1_ss_12_grp,
--                     spi1_ss_13_grp, spi1_ss_14_grp, spi1_5_grp,
--                     spi1_ss_15_grp, spi1_ss_16_grp, spi1_ss_17_grp,
--                     sdio0_0_grp, sdio0_1_grp, sdio0_2_grp,
--                     sdio0_3_grp, sdio0_4_grp, sdio0_5_grp,
--                     sdio0_6_grp, sdio0_7_grp, sdio0_8_grp,
--                     sdio0_9_grp, sdio0_10_grp, sdio0_11_grp,
--                     sdio0_12_grp, sdio0_13_grp, sdio0_14_grp,
--                     sdio0_15_grp, sdio0_16_grp, sdio0_17_grp,
--                     sdio0_18_grp, sdio0_19_grp, sdio0_20_grp,
--                     sdio0_21_grp, sdio0_22_grp, sdio0_23_grp,
--                     sdio0_24_grp, sdio0_25_grp, sdio0_26_grp,
--                     sdio0_27_grp, sdio0_28_grp, sdio0_29_grp,
--                     sdio0_30_grp, sdio0_31_grp, sdio0_32_grp,
--                     sdio0_pc_0_grp, sdio0_cd_0_grp, sdio0_wp_0_grp,
--                     sdio0_pc_1_grp, sdio0_cd_1_grp, sdio0_wp_1_grp,
--                     sdio0_pc_2_grp, sdio0_cd_2_grp, sdio0_wp_2_grp,
--                     sdio1_0_grp, sdio1_1_grp, sdio1_2_grp,
--                     sdio1_3_grp, sdio1_4_grp, sdio1_5_grp,
--                     sdio1_6_grp, sdio1_7_grp, sdio1_8_grp,
--                     sdio1_9_grp, sdio1_10_grp, sdio1_11_grp,
--                     sdio1_12_grp, sdio1_13_grp, sdio1_14_grp,
--                     sdio1_15_grp, sdio1_pc_0_grp, sdio1_cd_0_grp,
--                     sdio1_wp_0_grp, sdio1_pc_1_grp, sdio1_cd_1_grp,
--                     sdio1_wp_1_grp, nand0_0_grp, nand0_ce_0_grp,
--                     nand0_rb_0_grp, nand0_dqs_0_grp, nand0_ce_1_grp,
--                     nand0_rb_1_grp, nand0_dqs_1_grp, can0_0_grp,
--                     can0_1_grp, can0_2_grp, can0_3_grp,
--                     can0_4_grp, can0_5_grp, can0_6_grp,
--                     can0_7_grp, can0_8_grp, can0_9_grp,
--                     can0_10_grp, can0_11_grp, can0_12_grp,
--                     can0_13_grp, can0_14_grp, can0_15_grp,
--                     can0_16_grp, can0_17_grp, can0_18_grp,
--                     can1_0_grp, can1_1_grp, can1_2_grp,
--                     can1_3_grp, can1_4_grp, can1_5_grp,
--                     can1_6_grp, can1_7_grp, can1_8_grp,
--                     can1_9_grp, can1_10_grp, can1_11_grp,
--                     can1_12_grp, can1_13_grp, can1_14_grp,
--                     can1_15_grp, can1_16_grp, can1_17_grp,
--                     can1_18_grp, can1_19_grp, uart0_0_grp,
--                     uart0_1_grp, uart0_2_grp, uart0_3_grp,
--                     uart0_4_grp, uart0_5_grp, uart0_6_grp,
--                     uart0_7_grp, uart0_8_grp, uart0_9_grp,
--                     uart0_10_grp, uart0_11_grp, uart0_12_grp,
--                     uart0_13_grp, uart0_14_grp, uart0_15_grp,
--                     uart0_16_grp, uart0_17_grp, uart0_18_grp,
--                     uart1_0_grp, uart1_1_grp, uart1_2_grp,
--                     uart1_3_grp, uart1_4_grp, uart1_5_grp,
--                     uart1_6_grp, uart1_7_grp, uart1_8_grp,
--                     uart1_9_grp, uart1_10_grp, uart1_11_grp,
--                     uart1_12_grp, uart1_13_grp, uart1_14_grp,
--                     uart1_15_grp, uart1_16_grp, uart1_17_grp,
--                     uart1_18_grp, i2c0_0_grp, i2c0_1_grp,
--                     i2c0_2_grp, i2c0_3_grp, i2c0_4_grp,
--                     i2c0_5_grp, i2c0_6_grp, i2c0_7_grp,
--                     i2c0_8_grp, i2c0_9_grp, i2c0_10_grp,
--                     i2c0_11_grp, i2c0_12_grp, i2c0_13_grp,
--                     i2c0_14_grp, i2c0_15_grp, i2c0_16_grp,
--                     i2c0_17_grp, i2c0_18_grp, i2c1_0_grp,
--                     i2c1_1_grp, i2c1_2_grp, i2c1_3_grp,
--                     i2c1_4_grp, i2c1_5_grp, i2c1_6_grp,
--                     i2c1_7_grp, i2c1_8_grp, i2c1_9_grp,
--                     i2c1_10_grp, i2c1_11_grp, i2c1_12_grp,
--                     i2c1_13_grp, i2c1_14_grp, i2c1_15_grp,
--                     i2c1_16_grp, i2c1_17_grp, i2c1_18_grp,
--                     i2c1_19_grp, ttc0_clk_0_grp, ttc0_wav_0_grp,
--                     ttc0_clk_1_grp, ttc0_wav_1_grp, ttc0_clk_2_grp,
--                     ttc0_wav_2_grp, ttc0_clk_3_grp, ttc0_wav_3_grp,
--                     ttc0_clk_4_grp, ttc0_wav_4_grp, ttc0_clk_5_grp,
--                     ttc0_wav_5_grp, ttc0_clk_6_grp, ttc0_wav_6_grp,
--                     ttc0_clk_7_grp, ttc0_wav_7_grp, ttc0_clk_8_grp,
--                     ttc0_wav_8_grp, ttc1_clk_0_grp, ttc1_wav_0_grp,
--                     ttc1_clk_1_grp, ttc1_wav_1_grp, ttc1_clk_2_grp,
--                     ttc1_wav_2_grp, ttc1_clk_3_grp, ttc1_wav_3_grp,
--                     ttc1_clk_4_grp, ttc1_wav_4_grp, ttc1_clk_5_grp,
--                     ttc1_wav_5_grp, ttc1_clk_6_grp, ttc1_wav_6_grp,
--                     ttc1_clk_7_grp, ttc1_wav_7_grp, ttc1_clk_8_grp,
--                     ttc1_wav_8_grp, ttc2_clk_0_grp, ttc2_wav_0_grp,
--                     ttc2_clk_1_grp, ttc2_wav_1_grp, ttc2_clk_2_grp,
--                     ttc2_wav_2_grp, ttc2_clk_3_grp, ttc2_wav_3_grp,
--                     ttc2_clk_4_grp, ttc2_wav_4_grp, ttc2_clk_5_grp,
--                     ttc2_wav_5_grp, ttc2_clk_6_grp, ttc2_wav_6_grp,
--                     ttc2_clk_7_grp, ttc2_wav_7_grp, ttc2_clk_8_grp,
--                     ttc2_wav_8_grp, ttc3_clk_0_grp, ttc3_wav_0_grp,
--                     ttc3_clk_1_grp, ttc3_wav_1_grp, ttc3_clk_2_grp,
--                     ttc3_wav_2_grp, ttc3_clk_3_grp, ttc3_wav_3_grp,
--                     ttc3_clk_4_grp, ttc3_wav_4_grp, ttc3_clk_5_grp,
--                     ttc3_wav_5_grp, ttc3_clk_6_grp, ttc3_wav_6_grp,
--                     ttc3_clk_7_grp, ttc3_wav_7_grp, ttc3_clk_8_grp,
--                     ttc3_wav_8_grp, swdt0_clk_0_grp, swdt0_rst_0_grp,
--                     swdt0_clk_1_grp, swdt0_rst_1_grp, swdt0_clk_2_grp,
--                     swdt0_rst_2_grp, swdt0_clk_3_grp, swdt0_rst_3_grp,
--                     swdt0_clk_4_grp, swdt0_rst_4_grp, swdt0_clk_5_grp,
--                     swdt0_rst_5_grp, swdt0_clk_6_grp, swdt0_rst_6_grp,
--                     swdt0_clk_7_grp, swdt0_rst_7_grp, swdt0_clk_8_grp,
--                     swdt0_rst_8_grp, swdt0_clk_9_grp, swdt0_rst_9_grp,
--                     swdt0_clk_10_grp, swdt0_rst_10_grp, swdt0_clk_11_grp,
--                     swdt0_rst_11_grp, swdt0_clk_12_grp, swdt0_rst_12_grp,
--                     swdt1_clk_0_grp, swdt1_rst_0_grp, swdt1_clk_1_grp,
--                     swdt1_rst_1_grp, swdt1_clk_2_grp, swdt1_rst_2_grp,
--                     swdt1_clk_3_grp, swdt1_rst_3_grp, swdt1_clk_4_grp,
--                     swdt1_rst_4_grp, swdt1_clk_5_grp, swdt1_rst_5_grp,
--                     swdt1_clk_6_grp, swdt1_rst_6_grp, swdt1_clk_7_grp,
--                     swdt1_rst_7_grp, swdt1_clk_8_grp, swdt1_rst_8_grp,
--                     swdt1_clk_9_grp, swdt1_rst_9_grp, swdt1_clk_10_grp,
--                     swdt1_rst_10_grp, swdt1_clk_11_grp, swdt1_rst_11_grp,
--                     swdt1_clk_12_grp, swdt1_rst_12_grp, gpio0_0_grp,
--                     gpio0_1_grp, gpio0_2_grp, gpio0_3_grp,
--                     gpio0_4_grp, gpio0_5_grp, gpio0_6_grp,
--                     gpio0_7_grp, gpio0_8_grp, gpio0_9_grp,
--                     gpio0_10_grp, gpio0_11_grp, gpio0_12_grp,
--                     gpio0_13_grp, gpio0_14_grp, gpio0_15_grp,
--                     gpio0_16_grp, gpio0_17_grp, gpio0_18_grp,
--                     gpio0_19_grp, gpio0_20_grp, gpio0_21_grp,
--                     gpio0_22_grp, gpio0_23_grp, gpio0_24_grp,
--                     gpio0_25_grp, gpio0_26_grp, gpio0_27_grp,
--                     gpio0_28_grp, gpio0_29_grp, gpio0_30_grp,
--                     gpio0_31_grp, gpio0_32_grp, gpio0_33_grp,
--                     gpio0_34_grp, gpio0_35_grp, gpio0_36_grp,
--                     gpio0_37_grp, gpio0_38_grp, gpio0_39_grp,
--                     gpio0_40_grp, gpio0_41_grp, gpio0_42_grp,
--                     gpio0_43_grp, gpio0_44_grp, gpio0_45_grp,
--                     gpio0_46_grp, gpio0_47_grp, gpio0_48_grp,
--                     gpio0_49_grp, gpio0_50_grp, gpio0_51_grp,
--                     gpio0_52_grp, gpio0_53_grp, gpio0_54_grp,
--                     gpio0_55_grp, gpio0_56_grp, gpio0_57_grp,
--                     gpio0_58_grp, gpio0_59_grp, gpio0_60_grp,
--                     gpio0_61_grp, gpio0_62_grp, gpio0_63_grp,
--                     gpio0_64_grp, gpio0_65_grp, gpio0_66_grp,
--                     gpio0_67_grp, gpio0_68_grp, gpio0_69_grp,
--                     gpio0_70_grp, gpio0_71_grp, gpio0_72_grp,
--                     gpio0_73_grp, gpio0_74_grp, gpio0_75_grp,
--                     gpio0_76_grp, gpio0_77_grp, usb0_0_grp,
--                     usb1_0_grp, pmu0_0_grp, pmu0_1_grp,
--                     pmu0_2_grp, pmu0_3_grp, pmu0_4_grp,
--                     pmu0_5_grp, pmu0_6_grp, pmu0_7_grp,
--                     pmu0_8_grp, pmu0_9_grp, pmu0_10_grp,
--                     pmu0_11_grp, pcie0_0_grp, pcie0_1_grp,
--                     pcie0_2_grp, pcie0_3_grp, pcie0_4_grp,
--                     pcie0_5_grp, pcie0_6_grp, pcie0_7_grp,
--                     csu0_0_grp, csu0_1_grp, csu0_2_grp,
--                     csu0_3_grp, csu0_4_grp, csu0_5_grp,
--                     csu0_6_grp, csu0_7_grp, csu0_8_grp,
--                     csu0_9_grp, csu0_10_grp, csu0_11_grp,
--                     dpaux0_0_grp, dpaux0_1_grp, dpaux0_2_grp,
--                     dpaux0_3_grp, pjtag0_0_grp, pjtag0_1_grp,
--                     pjtag0_2_grp, pjtag0_3_grp, pjtag0_4_grp,
--                     pjtag0_5_grp, trace0_0_grp, trace0_clk_0_grp,
--                     trace0_1_grp, trace0_clk_1_grp, trace0_2_grp,
--                     trace0_clk_2_grp, testscan0_0_grp]
-+              anyOf:
-+                - pattern: '^MIO([0-9]|[1-6][0-9]|7[0-7])$'
-+                - enum: [ethernet0_0_grp, ethernet1_0_grp, ethernet2_0_grp,
-+                         ethernet3_0_grp, gemtsu0_0_grp, gemtsu0_1_grp,
-+                         gemtsu0_2_grp, mdio0_0_grp, mdio1_0_grp,
-+                         mdio1_1_grp, mdio2_0_grp, mdio3_0_grp,
-+                         qspi0_0_grp, qspi_ss_0_grp, qspi_fbclk_0_grp,
-+                         spi0_0_grp, spi0_ss_0_grp, spi0_ss_1_grp,
-+                         spi0_ss_2_grp, spi0_1_grp, spi0_ss_3_grp,
-+                         spi0_ss_4_grp, spi0_ss_5_grp, spi0_2_grp,
-+                         spi0_ss_6_grp, spi0_ss_7_grp, spi0_ss_8_grp,
-+                         spi0_3_grp, spi0_ss_9_grp, spi0_ss_10_grp,
-+                         spi0_ss_11_grp, spi0_4_grp, spi0_ss_12_grp,
-+                         spi0_ss_13_grp, spi0_ss_14_grp, spi0_5_grp,
-+                         spi0_ss_15_grp, spi0_ss_16_grp, spi0_ss_17_grp,
-+                         spi1_0_grp, spi1_ss_0_grp, spi1_ss_1_grp,
-+                         spi1_ss_2_grp, spi1_1_grp, spi1_ss_3_grp,
-+                         spi1_ss_4_grp, spi1_ss_5_grp, spi1_2_grp,
-+                         spi1_ss_6_grp, spi1_ss_7_grp, spi1_ss_8_grp,
-+                         spi1_3_grp, spi1_ss_9_grp, spi1_ss_10_grp,
-+                         spi1_ss_11_grp, spi1_4_grp, spi1_ss_12_grp,
-+                         spi1_ss_13_grp, spi1_ss_14_grp, spi1_5_grp,
-+                         spi1_ss_15_grp, spi1_ss_16_grp, spi1_ss_17_grp,
-+                         sdio0_0_grp, sdio0_1_grp, sdio0_2_grp,
-+                         sdio0_3_grp, sdio0_4_grp, sdio0_5_grp,
-+                         sdio0_6_grp, sdio0_7_grp, sdio0_8_grp,
-+                         sdio0_9_grp, sdio0_10_grp, sdio0_11_grp,
-+                         sdio0_12_grp, sdio0_13_grp, sdio0_14_grp,
-+                         sdio0_15_grp, sdio0_16_grp, sdio0_17_grp,
-+                         sdio0_18_grp, sdio0_19_grp, sdio0_20_grp,
-+                         sdio0_21_grp, sdio0_22_grp, sdio0_23_grp,
-+                         sdio0_24_grp, sdio0_25_grp, sdio0_26_grp,
-+                         sdio0_27_grp, sdio0_28_grp, sdio0_29_grp,
-+                         sdio0_30_grp, sdio0_31_grp, sdio0_32_grp,
-+                         sdio0_pc_0_grp, sdio0_cd_0_grp, sdio0_wp_0_grp,
-+                         sdio0_pc_1_grp, sdio0_cd_1_grp, sdio0_wp_1_grp,
-+                         sdio0_pc_2_grp, sdio0_cd_2_grp, sdio0_wp_2_grp,
-+                         sdio1_0_grp, sdio1_1_grp, sdio1_2_grp,
-+                         sdio1_3_grp, sdio1_4_grp, sdio1_5_grp,
-+                         sdio1_6_grp, sdio1_7_grp, sdio1_8_grp,
-+                         sdio1_9_grp, sdio1_10_grp, sdio1_11_grp,
-+                         sdio1_12_grp, sdio1_13_grp, sdio1_14_grp,
-+                         sdio1_15_grp, sdio1_pc_0_grp, sdio1_cd_0_grp,
-+                         sdio1_wp_0_grp, sdio1_pc_1_grp, sdio1_cd_1_grp,
-+                         sdio1_wp_1_grp, nand0_0_grp, nand0_ce_0_grp,
-+                         nand0_rb_0_grp, nand0_dqs_0_grp, nand0_ce_1_grp,
-+                         nand0_rb_1_grp, nand0_dqs_1_grp, can0_0_grp,
-+                         can0_1_grp, can0_2_grp, can0_3_grp,
-+                         can0_4_grp, can0_5_grp, can0_6_grp,
-+                         can0_7_grp, can0_8_grp, can0_9_grp,
-+                         can0_10_grp, can0_11_grp, can0_12_grp,
-+                         can0_13_grp, can0_14_grp, can0_15_grp,
-+                         can0_16_grp, can0_17_grp, can0_18_grp,
-+                         can1_0_grp, can1_1_grp, can1_2_grp,
-+                         can1_3_grp, can1_4_grp, can1_5_grp,
-+                         can1_6_grp, can1_7_grp, can1_8_grp,
-+                         can1_9_grp, can1_10_grp, can1_11_grp,
-+                         can1_12_grp, can1_13_grp, can1_14_grp,
-+                         can1_15_grp, can1_16_grp, can1_17_grp,
-+                         can1_18_grp, can1_19_grp, uart0_0_grp,
-+                         uart0_1_grp, uart0_2_grp, uart0_3_grp,
-+                         uart0_4_grp, uart0_5_grp, uart0_6_grp,
-+                         uart0_7_grp, uart0_8_grp, uart0_9_grp,
-+                         uart0_10_grp, uart0_11_grp, uart0_12_grp,
-+                         uart0_13_grp, uart0_14_grp, uart0_15_grp,
-+                         uart0_16_grp, uart0_17_grp, uart0_18_grp,
-+                         uart1_0_grp, uart1_1_grp, uart1_2_grp,
-+                         uart1_3_grp, uart1_4_grp, uart1_5_grp,
-+                         uart1_6_grp, uart1_7_grp, uart1_8_grp,
-+                         uart1_9_grp, uart1_10_grp, uart1_11_grp,
-+                         uart1_12_grp, uart1_13_grp, uart1_14_grp,
-+                         uart1_15_grp, uart1_16_grp, uart1_17_grp,
-+                         uart1_18_grp, i2c0_0_grp, i2c0_1_grp,
-+                         i2c0_2_grp, i2c0_3_grp, i2c0_4_grp,
-+                         i2c0_5_grp, i2c0_6_grp, i2c0_7_grp,
-+                         i2c0_8_grp, i2c0_9_grp, i2c0_10_grp,
-+                         i2c0_11_grp, i2c0_12_grp, i2c0_13_grp,
-+                         i2c0_14_grp, i2c0_15_grp, i2c0_16_grp,
-+                         i2c0_17_grp, i2c0_18_grp, i2c1_0_grp,
-+                         i2c1_1_grp, i2c1_2_grp, i2c1_3_grp,
-+                         i2c1_4_grp, i2c1_5_grp, i2c1_6_grp,
-+                         i2c1_7_grp, i2c1_8_grp, i2c1_9_grp,
-+                         i2c1_10_grp, i2c1_11_grp, i2c1_12_grp,
-+                         i2c1_13_grp, i2c1_14_grp, i2c1_15_grp,
-+                         i2c1_16_grp, i2c1_17_grp, i2c1_18_grp,
-+                         i2c1_19_grp, ttc0_clk_0_grp, ttc0_wav_0_grp,
-+                         ttc0_clk_1_grp, ttc0_wav_1_grp, ttc0_clk_2_grp,
-+                         ttc0_wav_2_grp, ttc0_clk_3_grp, ttc0_wav_3_grp,
-+                         ttc0_clk_4_grp, ttc0_wav_4_grp, ttc0_clk_5_grp,
-+                         ttc0_wav_5_grp, ttc0_clk_6_grp, ttc0_wav_6_grp,
-+                         ttc0_clk_7_grp, ttc0_wav_7_grp, ttc0_clk_8_grp,
-+                         ttc0_wav_8_grp, ttc1_clk_0_grp, ttc1_wav_0_grp,
-+                         ttc1_clk_1_grp, ttc1_wav_1_grp, ttc1_clk_2_grp,
-+                         ttc1_wav_2_grp, ttc1_clk_3_grp, ttc1_wav_3_grp,
-+                         ttc1_clk_4_grp, ttc1_wav_4_grp, ttc1_clk_5_grp,
-+                         ttc1_wav_5_grp, ttc1_clk_6_grp, ttc1_wav_6_grp,
-+                         ttc1_clk_7_grp, ttc1_wav_7_grp, ttc1_clk_8_grp,
-+                         ttc1_wav_8_grp, ttc2_clk_0_grp, ttc2_wav_0_grp,
-+                         ttc2_clk_1_grp, ttc2_wav_1_grp, ttc2_clk_2_grp,
-+                         ttc2_wav_2_grp, ttc2_clk_3_grp, ttc2_wav_3_grp,
-+                         ttc2_clk_4_grp, ttc2_wav_4_grp, ttc2_clk_5_grp,
-+                         ttc2_wav_5_grp, ttc2_clk_6_grp, ttc2_wav_6_grp,
-+                         ttc2_clk_7_grp, ttc2_wav_7_grp, ttc2_clk_8_grp,
-+                         ttc2_wav_8_grp, ttc3_clk_0_grp, ttc3_wav_0_grp,
-+                         ttc3_clk_1_grp, ttc3_wav_1_grp, ttc3_clk_2_grp,
-+                         ttc3_wav_2_grp, ttc3_clk_3_grp, ttc3_wav_3_grp,
-+                         ttc3_clk_4_grp, ttc3_wav_4_grp, ttc3_clk_5_grp,
-+                         ttc3_wav_5_grp, ttc3_clk_6_grp, ttc3_wav_6_grp,
-+                         ttc3_clk_7_grp, ttc3_wav_7_grp, ttc3_clk_8_grp,
-+                         ttc3_wav_8_grp, swdt0_clk_0_grp, swdt0_rst_0_grp,
-+                         swdt0_clk_1_grp, swdt0_rst_1_grp, swdt0_clk_2_grp,
-+                         swdt0_rst_2_grp, swdt0_clk_3_grp, swdt0_rst_3_grp,
-+                         swdt0_clk_4_grp, swdt0_rst_4_grp, swdt0_clk_5_grp,
-+                         swdt0_rst_5_grp, swdt0_clk_6_grp, swdt0_rst_6_grp,
-+                         swdt0_clk_7_grp, swdt0_rst_7_grp, swdt0_clk_8_grp,
-+                         swdt0_rst_8_grp, swdt0_clk_9_grp, swdt0_rst_9_grp,
-+                         swdt0_clk_10_grp, swdt0_rst_10_grp, swdt0_clk_11_grp,
-+                         swdt0_rst_11_grp, swdt0_clk_12_grp, swdt0_rst_12_grp,
-+                         swdt1_clk_0_grp, swdt1_rst_0_grp, swdt1_clk_1_grp,
-+                         swdt1_rst_1_grp, swdt1_clk_2_grp, swdt1_rst_2_grp,
-+                         swdt1_clk_3_grp, swdt1_rst_3_grp, swdt1_clk_4_grp,
-+                         swdt1_rst_4_grp, swdt1_clk_5_grp, swdt1_rst_5_grp,
-+                         swdt1_clk_6_grp, swdt1_rst_6_grp, swdt1_clk_7_grp,
-+                         swdt1_rst_7_grp, swdt1_clk_8_grp, swdt1_rst_8_grp,
-+                         swdt1_clk_9_grp, swdt1_rst_9_grp, swdt1_clk_10_grp,
-+                         swdt1_rst_10_grp, swdt1_clk_11_grp, swdt1_rst_11_grp,
-+                         swdt1_clk_12_grp, swdt1_rst_12_grp, gpio0_0_grp,
-+                         gpio0_1_grp, gpio0_2_grp, gpio0_3_grp,
-+                         gpio0_4_grp, gpio0_5_grp, gpio0_6_grp,
-+                         gpio0_7_grp, gpio0_8_grp, gpio0_9_grp,
-+                         gpio0_10_grp, gpio0_11_grp, gpio0_12_grp,
-+                         gpio0_13_grp, gpio0_14_grp, gpio0_15_grp,
-+                         gpio0_16_grp, gpio0_17_grp, gpio0_18_grp,
-+                         gpio0_19_grp, gpio0_20_grp, gpio0_21_grp,
-+                         gpio0_22_grp, gpio0_23_grp, gpio0_24_grp,
-+                         gpio0_25_grp, gpio0_26_grp, gpio0_27_grp,
-+                         gpio0_28_grp, gpio0_29_grp, gpio0_30_grp,
-+                         gpio0_31_grp, gpio0_32_grp, gpio0_33_grp,
-+                         gpio0_34_grp, gpio0_35_grp, gpio0_36_grp,
-+                         gpio0_37_grp, gpio0_38_grp, gpio0_39_grp,
-+                         gpio0_40_grp, gpio0_41_grp, gpio0_42_grp,
-+                         gpio0_43_grp, gpio0_44_grp, gpio0_45_grp,
-+                         gpio0_46_grp, gpio0_47_grp, gpio0_48_grp,
-+                         gpio0_49_grp, gpio0_50_grp, gpio0_51_grp,
-+                         gpio0_52_grp, gpio0_53_grp, gpio0_54_grp,
-+                         gpio0_55_grp, gpio0_56_grp, gpio0_57_grp,
-+                         gpio0_58_grp, gpio0_59_grp, gpio0_60_grp,
-+                         gpio0_61_grp, gpio0_62_grp, gpio0_63_grp,
-+                         gpio0_64_grp, gpio0_65_grp, gpio0_66_grp,
-+                         gpio0_67_grp, gpio0_68_grp, gpio0_69_grp,
-+                         gpio0_70_grp, gpio0_71_grp, gpio0_72_grp,
-+                         gpio0_73_grp, gpio0_74_grp, gpio0_75_grp,
-+                         gpio0_76_grp, gpio0_77_grp, usb0_0_grp,
-+                         usb1_0_grp, pmu0_0_grp, pmu0_1_grp,
-+                         pmu0_2_grp, pmu0_3_grp, pmu0_4_grp,
-+                         pmu0_5_grp, pmu0_6_grp, pmu0_7_grp,
-+                         pmu0_8_grp, pmu0_9_grp, pmu0_10_grp,
-+                         pmu0_11_grp, pcie0_0_grp, pcie0_1_grp,
-+                         pcie0_2_grp, pcie0_3_grp, pcie0_4_grp,
-+                         pcie0_5_grp, pcie0_6_grp, pcie0_7_grp,
-+                         csu0_0_grp, csu0_1_grp, csu0_2_grp,
-+                         csu0_3_grp, csu0_4_grp, csu0_5_grp,
-+                         csu0_6_grp, csu0_7_grp, csu0_8_grp,
-+                         csu0_9_grp, csu0_10_grp, csu0_11_grp,
-+                         dpaux0_0_grp, dpaux0_1_grp, dpaux0_2_grp,
-+                         dpaux0_3_grp, pjtag0_0_grp, pjtag0_1_grp,
-+                         pjtag0_2_grp, pjtag0_3_grp, pjtag0_4_grp,
-+                         pjtag0_5_grp, trace0_0_grp, trace0_clk_0_grp,
-+                         trace0_1_grp, trace0_clk_1_grp, trace0_2_grp,
-+                         trace0_clk_2_grp, testscan0_0_grp]
-             maxItems: 78
- 
-           function:
--- 
-2.35.1.1320.gc452695387.dirty
-
+I think this is still not quite right. This behaves properly when
+called on the first cpu (let's say 0), but then we call it again with
+cpu 1, first gets set to true, and we clobber the old work we did for
+cpu 0. If we knew that cpu 0 was always called first (this looks true
+since both calls are within a for_each_possible_cpu() loop), and that
+this was only called once at boot for cpu 0 (looks true, and
+riscv_fill_hwcap() is __init), then it could be bool first =3D cpu =3D=3D 0=
+.
 
