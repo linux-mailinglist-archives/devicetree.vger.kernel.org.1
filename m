@@ -1,182 +1,85 @@
-Return-Path: <devicetree+bounces-64827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 660FF8BB0C6
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:21:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612948BB0CB
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:22:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7573B226B6
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:21:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B1952872D0
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C21155342;
-	Fri,  3 May 2024 16:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838BB15538A;
+	Fri,  3 May 2024 16:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8Qb7Kok"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="MDO8H5l+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C86154428;
-	Fri,  3 May 2024 16:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925DB155334
+	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 16:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714753307; cv=none; b=WREhSFTRIAiC/B3g1sUtlFT78+UWiDMi0J7aZ40swubXhuXKG9YcSUYuvzo9FBPHDt4fyk6jhJ2g2f7yeZY4+Cm9TD13/pYk+yiKZIhr0+vfAHONaz86TED7Y/INtIdNC8Ycwky9rZE/Fu6ams1X33ccQp6i7HrqKaH9nJz3NE8=
+	t=1714753347; cv=none; b=IdCacwYe9XpJn2KOofi6KoZDqvDAZ70uKsCAItOsfTTMDVzp9/PzlRRoLsbFFM23JvWbJ4gkaURglDSy3oxFrE+URa1Be+lYTum9ZDIsEkD1yEi80VqKK+hRoy+quX3egJjOg8dp8Z0Sgne5w771i+dPlbvISvn7EY47hlWLWFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714753307; c=relaxed/simple;
-	bh=1xspHNPP+TAZ5j87YBguQVSvoCMWV6Hj7z2sBpc6Hfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fzW4jDLqCMQXPh4IXpF7VUzqNnfsp/ho1BwuFmdGZkarC3AuaUoZyBeh5dUN1bmfMz2RJQPXqdl+f2NeYCtHanNA16VbPoxNnXY0SY4JgHyN8pTnyGDPPkuBn8hhjmaS1VUmSTQrZFsmYUEAW/L+RYN9SLuHPhYtkHyjigHumQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8Qb7Kok; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ECD2C32789;
-	Fri,  3 May 2024 16:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714753306;
-	bh=1xspHNPP+TAZ5j87YBguQVSvoCMWV6Hj7z2sBpc6Hfo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o8Qb7Kok9YovhpoYrNxz5FxEMbMUkRFVMkQHsBPD8AB14xyiH5BEBEaXXhLcgyLva
-	 3a+J3KrE2k0Y2f4EJQ8qvf+7B2k5wdW8XVFSmlLwOA09cBtBQojng0v+lpI1UVNdry
-	 bF9I6r961mQGpUhMd5pP1HEgtU5Kf1hHTYpqiiKXsyTt8MhxdbJZ3IUYI0/uwzhRCj
-	 FmX2JPdPgc66nGFIr0l+AQYknCaBDnP2TGm2lUpjab64QY8rPw278SKNnSyM5DGPdr
-	 Ne1hJsF/0AmSojg7Mim/dTvurTJpp924uEvCW2rFnzAy05fIQB8er2EDKpNbc7p93U
-	 96cL6plnyP48g==
-Date: Fri, 3 May 2024 17:21:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1714753347; c=relaxed/simple;
+	bh=J4+OVdF9NycY9uPpp5VNvqKh8hgvCLPHf5ryhnZ0hZo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OwBUciKpMl45hYgi60gFni4iuezUWvBEZArX7xpQ72No9AEVAQ0yZiaDRi6X8J6/Tcb1S0owdEUDFHT1DIbbfNjX+TZ2yluMqpKnXjq6/8754lPz6rZJbaOBjFhZr+jHLPl8wSox6F4B2GOYthUDSunWUKJOjyzkbxEUdh7Kqhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=MDO8H5l+; arc=none smtp.client-ip=91.218.175.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1714753343;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=KP44cf8QKhMXu5ffjHI0m+hur3z2Dlqf8PHPq6RoGLQ=;
+	b=MDO8H5l+ItJTiZCk3zMF9/ViSoHOLASF0iDshxKCKXR0SyELESqumRGF/p5ojgPuTRh3pO
+	ChXq1Rn0V5sUbaLY45OLVcqgpodKVk9wGWxnus9FbP0KXws9JdQ0iWjJN8VV7nxxjArSvJ
+	0cOUn/IflKzbcysiXkVAHoaY3r354wk=
+From: Sean Anderson <sean.anderson@linux.dev>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Michal Simek <michal.simek@amd.com>,
+	linux-gpio@vger.kernel.org
+Cc: Krishna Potthuri <sai.krishna.potthuri@amd.com>,
 	linux-kernel@vger.kernel.org,
-	Daniel =?iso-8859-1?Q?Gonz=E1lez?= Cabanelas <dgcbueu@gmail.com>
-Subject: Re: [PATCH 3/6] dt-bindings: mips: brcm: Document mips-cbr-reg
- property
-Message-ID: <20240503-oncoming-taste-bab71375b67c@spud>
-References: <20240503135455.966-1-ansuelsmth@gmail.com>
- <20240503135455.966-4-ansuelsmth@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] pinctrl: zynqmp: Support muxing individual pins
+Date: Fri,  3 May 2024 12:22:15 -0400
+Message-Id: <20240503162217.1999467-1-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LyhWp7dhQDBYJl7Z"
-Content-Disposition: inline
-In-Reply-To: <20240503135455.966-4-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+
+This series adds support for muxing individual pins, instead of
+requiring groups to be muxed together. See [1] for additional
+discussion.
+
+[1] https://lore.kernel.org/linux-arm-kernel/5bb0dc7e-4c89-4f3d-abc6-41ae9ded5ae9@linux.dev/
 
 
---LyhWp7dhQDBYJl7Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sean Anderson (2):
+  dt-bindings: pinctrl: xilinx: Add support for function with pins
+  pinctrl: zynqmp: Support muxing individual pins
 
-On Fri, May 03, 2024 at 03:54:03PM +0200, Christian Marangi wrote:
-> Document mips-cbr-reg and mips-broken-cbr-reg property.
->=20
-> Some SoC suffer from a BUG where read_c0_brcm_cbr() might return 0
-> if called from TP1. The CBR address is always the same on the SoC
-> hence it can be provided in DT to handle broken case where bootloader
-> doesn't init it or SMP where read_c0_brcm_cbr() returns 0 from TP1.
->=20
-> Usage of this property is to give an address also in these broken
-> configuration/bootloader.
->=20
-> If the SoC/Bootloader ALWAYS provide a broken CBR address the property
-> "mips-broken-cbr-reg" can be used to ignore any value already set in the
-> registers for CBR address.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/mips/brcm/soc.yaml    | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Docum=
-entation/devicetree/bindings/mips/brcm/soc.yaml
-> index 975945ca2888..12d394b7e011 100644
-> --- a/Documentation/devicetree/bindings/mips/brcm/soc.yaml
-> +++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
-> @@ -55,6 +55,21 @@ properties:
->           under the "cpus" node.
->          $ref: /schemas/types.yaml#/definitions/uint32
-> =20
-> +      mips-broken-cbr-reg:
-> +        description: Declare that the Bootloader init a broken
-> +          CBR address in the registers and the one provided from
-> +          DT should always be used.
+ .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 344 +++++++++---------
+ drivers/pinctrl/pinctrl-zynqmp.c              |  61 +++-
+ 2 files changed, 219 insertions(+), 186 deletions(-)
 
-Why is this property even needed, is it not sufficient to just add the
-mips-cbr-reg property to the DT for SoCs that need it and use the
-property when present?
+-- 
+2.35.1.1320.gc452695387.dirty
 
-> +        type: boolean
-> +
-> +      mips-cbr-reg:
-
-Missing a vendor prefix.
-
-> +        description: Reference address of the CBR.
-> +          Some SoC suffer from a BUG where read_c0_brcm_cbr() might
-> +          return 0 if called from TP1. The CBR address is always the
-> +          same on the SoC hence it can be provided in DT to handle
-> +          broken case where bootloader doesn't init it or SMP where
-
-s/init/initialise/ please :)
-
-Thanks,
-Conor.
-
-> +          read_c0_brcm_cbr() returns 0 from TP1.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
->      patternProperties:
->        "^cpu@[0-9]$":
->          type: object
-> @@ -64,6 +79,23 @@ properties:
->      required:
->        - mips-hpt-frequency
-> =20
-> +dependencies:
-> +  mips-broken-cbr-reg: [ mips-cbr-reg ]
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        anyOf:
-> +          - const: brcm,bcm6358
-> +          - const: brcm,bcm6368
-> +
-> +then:
-> +  properties:
-> +    cpus:
-> +      required:
-> +        - mips-cbr-reg
-> +
->  additionalProperties: true
-> =20
->  examples:
-> --=20
-> 2.43.0
->=20
-
---LyhWp7dhQDBYJl7Z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjUPFQAKCRB4tDGHoIJi
-0pNZAP96jyklbklNPKY4YnOx/KmP7ftWMWURZUPZ4jJx+TeBcgEA5ffTEJvJzWNp
-Msg4JtZu9TUybY2OeU8jwDgGHKilzQQ=
-=Csss
------END PGP SIGNATURE-----
-
---LyhWp7dhQDBYJl7Z--
 
