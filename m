@@ -1,148 +1,137 @@
-Return-Path: <devicetree+bounces-64866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6AB18BB314
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C583F8BB360
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 20:42:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D71691C214F8
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:30:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3AAD1C20D1C
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA2A15887B;
-	Fri,  3 May 2024 18:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798F32E646;
+	Fri,  3 May 2024 18:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="jcYIdUNN"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="DOvt3rmv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0C8158866;
-	Fri,  3 May 2024 18:29:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE58E57C8A;
+	Fri,  3 May 2024 18:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714760992; cv=none; b=P2g4v4HWxauRbZOBMXaGkCPAj1QQeTQBjU73a8sfL+cmlm/0sv5btBm70zHblscjF/e+GfzKTyLCL0bz+GnROBv3GnoPrUYhFQjtdFtJVkBsFXIPFgwAAaQEIo7HGYs12+2UamrQ2/z1uPcPakb/AIDCeOwuzp+SgHoAd8Yytkg=
+	t=1714761751; cv=none; b=NpzXaDXVRSWi5qn4p9jzwJRMxNAiFd56+TsGyERgrUspYhCnFwxaUQm3dWVlJNduUCtIaDJGv/R+NUyT8E1mOlDlz6UeJERg+uJXZJvqm5peU1qX+hk4mcWeWt07IHWrkRUQRkwmXCuKfOLp7H6YI5HpuzpcirNMs+SpZoa8JQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714760992; c=relaxed/simple;
-	bh=e6ynbt8+QgxzbH/E73GTS+ubMG/h4wOsFbzFgj/kgyM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nhLfjdpv2NIJ+ouHl9mO+ny244RWGHNO25GhDAy2OzCQ4hZL0vCMkD1fyt9z8KFMUe9HrsanIyqtHBBR2XykkGmWiJCEut6cKIrPPDq7oEYRpXVCw+3Q5osLm28aa2OrHGfGluxWo0esAdUdsuB6cd4ujgOzbpl7o9w0doGvuVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=jcYIdUNN; arc=none smtp.client-ip=213.160.72.247
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
-	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=gsmaW6yu2jr4Gxl/DMVyniBNsiaG9rH9ORl++Cua8YA=; b=jcYIdUNNrnGBnjJCd2kt159D5n
-	GZ7PdVcmuvmeEJg3t72W8DVoPl6nrYUZFNktgbaSVxnYtzKwYLdZNCfGoMSzlE2DOk94SbiRWszL7
-	+fMD4AhUVD2/UAwOZxo+Ub27B9PuY0a2SFGJ+8G5euEUsp6sbh7mbxXk7CwfGq3AFw/E=;
-Received: from 127.0.0.1
-	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim latest)
-	(envelope-from <christoph.fritz@hexdev.de>)
-	id 1s2xep-001awL-0X;
-	Fri, 03 May 2024 20:29:19 +0200
-Message-ID: <a5b894f8dc2ab0cf087a5b4972d7f752e6c17c16.camel@hexdev.de>
-Subject: Re: [PATCH v3 06/11] dt-bindings: net/can: Add serial (serdev) LIN
- adapter
-From: Christoph Fritz <christoph.fritz@hexdev.de>
-Reply-To: christoph.fritz@hexdev.de
-To: Conor Dooley <conor@kernel.org>
-Cc: Jiri Slaby <jirislaby@kernel.org>, Oliver Hartkopp
- <socketcan@hartkopp.net>,  Marc Kleine-Budde <mkl@pengutronix.de>, Vincent
- Mailhol <mailhol.vincent@wanadoo.fr>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires
- <bentiss@kernel.org>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sre@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Andreas Lauser
- <andreas.lauser@mercedes-benz.com>,  Jonathan Corbet <corbet@lwn.net>,
- Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org,  linux-serial@vger.kernel.org
-Date: Fri, 03 May 2024 20:29:15 +0200
-In-Reply-To: <20240503-fading-extruding-2105bbd8b479@spud>
-References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
-	 <20240502182804.145926-7-christoph.fritz@hexdev.de>
-	 <20240503-fading-extruding-2105bbd8b479@spud>
-Organization: hexDEV GmbH
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1714761751; c=relaxed/simple;
+	bh=6avGVeH0i3gUjukyCFF0pre8Nb9L4gOhXeEBFHfW1qo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JVi4qpifGy9Tqkoluas9iEUV7X7u9iXCJHC5Vf2TgbJNy8k23wh7cb+dfizJx4FdOPC9s/BUuph5pLzywqhuWotB3NrR8I8uFfz2DzqgghITBfiD9wrBVYEr/OVIdwOBdKCiyspA8gf8q3EHbqshUkL5k782trAV73tfO+iSIY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=DOvt3rmv; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C70B3120002;
+	Fri,  3 May 2024 21:42:22 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C70B3120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1714761742;
+	bh=9Z5eFlWXbAJBTHJC3tQ6YnOuDNtTKSSh4w04Pc+er9s=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=DOvt3rmvyGMhAYPBAyyGp6AgE7/vb6Ij8xaP4FrJBwSqatI/r5bOwQ7uWrWVMmmxe
+	 J04eJdZis9P3a4qlg4ym5Z1p9mpmVSmySRWD2MKaFYNpQyaFEFgH+IdeJa+/wgRczk
+	 6nq6dIz2EjVXbp1jMx+eX4y5bJFZYK03iehel75EYkFQExfbaV11tdKOZvxcYx1d2j
+	 rJ1wayes7Vbr/x+ma8ul7/lrRocJvNMAWPBp8DvZY8foYW2DonxLn9kEDW2xZ6Sw1i
+	 m2+JwjG/9Xx6n7+ITPdpFxdQJNEFlTomeE05l/KaB7OjC+2Qm3WdFOjQreJb9KymsP
+	 svlVUnad/R9AQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri,  3 May 2024 21:42:22 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 3 May
+ 2024 21:42:22 +0300
+Date: Fri, 3 May 2024 21:42:22 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>
+CC: <jbrunet@baylibre.com>, <mturquette@baylibre.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
+	<rafael@kernel.org>, <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+	<lukasz.luba@arm.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 0/3] arm64: dts: amlogic: a1: introduce thermal setup
+Message-ID: <20240503184222.cqka6nmjxhezfhtg@CAB-WSD-L081021>
+References: <20240328192645.20914-1-ddrokosov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240328192645.20914-1-ddrokosov@salutedevices.com>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185053 [May 03 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/03 14:55:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/03 14:55:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/03 16:56:00 #25080849
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hello Conor,
+Hello Neil,
 
- thanks for having an eye on this, please see my answer below.
+A1 Thermal Sensor was applied to linux-pm for v6.10-rc1:
 
-On Fri, 2024-05-03 at 18:12 +0100, Conor Dooley wrote:
-> On Thu, May 02, 2024 at 08:27:59PM +0200, Christoph Fritz wrote:
-> > Add dt-bindings for serial LIN bus adapters. These adapters are
-> > basically just LIN transceivers that are hard-wired to serial devices.
-> > 
-> > Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> > ---
-> >  .../bindings/net/can/hexdev,lin-serdev.yaml   | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml b/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-> > new file mode 100644
-> > index 0000000000000..c178eb9be1391
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-> > @@ -0,0 +1,32 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/can/hexdev,lin-serdev.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Serial LIN Adapter
-> > +
-> > +description:
-> > +  LIN transceiver, mostly hard-wired to a serial device, used for communication
-> > +  on a LIN bus.
-> > +  For more details on an adapter, visit <https://hexdev.de/hexlin#tty>.
-> > +
-> > +maintainers:
-> > +  - Christoph Fritz <christoph.fritz@hexdev.de>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: hexdev,lin-serdev
+https://lore.kernel.org/all/89a02410-87c8-47c6-aa50-04dad5b4e585@linaro.org/
+
+Could you please advise if it's enough to proceed with this series? Or
+do I need to do something more?
+
+On Thu, Mar 28, 2024 at 10:26:34PM +0300, Dmitry Rokosov wrote:
+> This patch series introduces thermal sensor declaration to the Meson A1
+> common dtsi file. It also sets up thermal zones for the AD402 reference
+> board. It depends on the series with A1 thermal support at [1].
 > 
-> Maybe I've just missed something on earlier versions that I didn't
-> read, but the name of the device on the website you link is "hexLIN",
-> so why is "lin-serdev" used here instead?
-
-The USB one is called hexLIN and has it's own HID driver.
-
-This serial LIN adapter doesn't really have a product name. Currently
-on our website it's generically called 'UART LIN Adapter'.
-
-This LIN adapter is basically just a LIN transceiver and very generic,
-so that one could solder it to any single-board computer with an uart.
-
-I think 'lin-serdev' for LIN and serial device fits great, also serdev
-is the name of the used kernel infrastructure (besides the LIN glue
-driver).
-
-If you still don't like it, I'm open to other names. What about
-"hexlin-uart" or "linser"?
-
-Thanks
-  -- Christoph
+> Changes v2 since v1 at [2]:
+>     - provide Neil RvB for cooling-cells dts patch
+>     - purge unnecessary 'amlogic,a1-thermal' fallback
 > 
+> Links:
+> [1] - https://lore.kernel.org/all/20240328191322.17551-1-ddrokosov@salutedevices.com/
+> [2] - https://lore.kernel.org/all/20240328134459.18446-1-ddrokosov@salutedevices.com/
+> 
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> 
+> Dmitry Rokosov (3):
+>   arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
+>   arm64: dts: amlogic: a1: introduce cpu temperature sensor
+>   arm64: dts: amlogic: ad402: setup thermal-zones
+> 
+>  .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 45 +++++++++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 13 ++++++
+>  2 files changed, 58 insertions(+)
+
+-- 
+Thank you,
+Dmitry
 
