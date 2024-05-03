@@ -1,156 +1,149 @@
-Return-Path: <devicetree+bounces-64638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E73B8BA4DA
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 03:21:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9901B8BA4E4
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 03:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D6E61F22E8E
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:21:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDEF2B21997
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 01:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43575CA7D;
-	Fri,  3 May 2024 01:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669D2CA7D;
+	Fri,  3 May 2024 01:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqHjGmHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2097.outbound.protection.partner.outlook.cn [139.219.17.97])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53912A31;
-	Fri,  3 May 2024 01:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.97
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714699254; cv=fail; b=NU2BLf/VHT8ZjA2A0UEdYQLYIJF3l+mM8oLxM4BFhUKJBgrWkuBrfpUjq0hnRb/33K5kYpnZq+b9HhLc9ndJuMBAUrWfGLXiaZ1zqmNjuA4lEuVBqZWQhWdmpKclXHotZ9iWnawEW3G1J4ONdli8k3v1wNUNdJ9FJyfnyGjoU/g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714699254; c=relaxed/simple;
-	bh=msSzXoyUeddi2IcswFmc164OFAcDtPMX6sNhy3K7LDw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=s95aRxf9uCmmLb9dOFkOUhzchVbcw+BQ3je1xKXX2cZx0gqUuU031egehs/NHUvO17TDcMYMOsllrNsgTRqWwDEEQswbOLtM32OmC4Uzg2lOyLOx4l8Gq0auQsjlW89egwbgtnGcNrG0Zg5ijsU5WtuR/f7zn7pwBYIGkx9NuXc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c9qiiIeoKnMcjcsREWCkh1Z+RFnKlhn6VZMyEm70i2P6qaGRr3WyLxI0Sr/qwMxwxZlNwJDUevOIxi2eE1IscdrimCi+gpBzAIW+7RdUjfxRcLQtGmykiDjrsFku8kzkW9Gvys03eEJQXxx2DT/ve/ravIBeCCfhzyr714nUuU/ft15beZgjF7lp+4rfoHP87FQhH5cIPEUAm4Se8jUVRq2oV66COfexmwuE6gC1anJCGDR/KgzruDa12kSTdyJH2qliw5EGPWQTMsNQGRTtcVRosJJJzaCg3qLJm1TljoPMpaiy8AXpIsi9d7/5AJdIsPFyMwaBuT57k84GyF49Xg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=msSzXoyUeddi2IcswFmc164OFAcDtPMX6sNhy3K7LDw=;
- b=ce8F+8QY3owuA9DZM1hxJ2LGly8jFA9U904FBhonrn5QgVD/hrpGs5YhzfWeAseDCd9dDMOo1ZQztEIBwBAN/z3+41aZusu8x5Z71jB3lzhF0SZEa4ge7cVfmy0TjM5ENp6w0MgDhMo3WMRB+vIfXwuIDH64NT0VtGqTSmwKD7CiHSFsRcZ6xkLb0sidSPF8JGMYd4gxaqWFI/i17MDHN710gqbCVLL5K/Bm3xaaf2md+smM93xURtqXY5svwjBDUYXd2/zFi2zH0sg4a9NSSsul2GqWPnjVyg+jKp6NcLRPVsHJSj7Mx2jRcoZ1lNMv0A9RLWme4rwINhf+V0hA0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::9) by ZQ4PR01MB1283.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:15::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Fri, 3 May
- 2024 01:20:46 +0000
-Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
- ([fe80::301e:ec80:4356:8b14]) by
- ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn ([fe80::301e:ec80:4356:8b14%6])
- with mapi id 15.20.7472.044; Fri, 3 May 2024 01:20:46 +0000
-From: JiSheng Teoh <jisheng.teoh@starfivetech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Michal Simek <michal.simek@amd.com>, Lars-Peter Clausen <lars@metafoo.de>
-CC: Leyfoon Tan <leyfoon.tan@starfivetech.com>, "linux-spi@vger.kernel.org"
-	<linux-spi@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, EngLee Teh <englee.teh@starfivetech.com>
-Subject: RE: [PATCH v2 1/2] spi: spi-cadence: Add optional reset control
- support
-Thread-Topic: [PATCH v2 1/2] spi: spi-cadence: Add optional reset control
- support
-Thread-Index: AQHanH5HH1BLD8AfE0SAO/KorZoVM7GD/biAgAC4nbA=
-Date: Fri, 3 May 2024 01:20:46 +0000
-Message-ID:
- <ZQ4PR01MB11549D971962995878D9593EEB1FA@ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn>
-References: <20240502104800.3030486-1-jisheng.teoh@starfivetech.com>
- <20240502104800.3030486-2-jisheng.teoh@starfivetech.com>
- <b0c9aa87-ae84-4979-b26b-8fd0579c5f08@kernel.org>
-In-Reply-To: <b0c9aa87-ae84-4979-b26b-8fd0579c5f08@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ4PR01MB1154:EE_|ZQ4PR01MB1283:EE_
-x-ms-office365-filtering-correlation-id: 19c93834-b7a0-4963-4533-08dc6b0f4258
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- bgY5ZfrQrH7Dy57hf318f8eu0QWdA0cFFu2alahbnIw6YcEOMfvjwVXKYcglr2j/GPA3TOPTqoCxxsMSg1QsStzSzRi4fA/MMZ2w3u84buC7CQUL6x0KgtYBP7sPwFS0JTBrmCK4XJzM2/bje85H6X1mq+jml+Eig1ssHELqpvtVz/Jd5JY0kxYuXTPdaAgUOKu31hg5NJDS8rQekC7aRDHSbVH9oKSpY7lpXUJkUGeuQ75GwA7JzJI2AoTFP1lTB3/9gecpa4ZEMy5BWJZqo1DoCOcxgSaE4Y2XjHDTwwclUlvhkuA25NFz2XhmXkMDI6Nj/ZvUYtLj3hJuAh0bA0qrZ+cvz2ButITY6igFgMlNTUQ/37NDxUaVLVqTuZgs/DFpr7k43niJRYo6bR151iVlgqyzOff5gTWkLr9t9OklJjUQM221Vb8nSxMBiAgwSHTDFVgE48my8euckdpxyqMIJXeJmIeA9R3ToYNC4VoNSziLhR1N5UxUpq1gWDw8fx0buzSkxhwrDjyGflwDoqGc2hQUzt03cG1jZ7wYm2sG73iXyKmnRBOt9uZLV+OvTJRaU1YmKKTu8L/cYQ7/4WRFe3EVkxfEpjhRvqOwceLRBF8S6E0ZOKkLuN2zZIOC
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(1800799015)(7416005)(366007)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?U2xOTm15WnRiK1BHb1FuYnFId29PNE1JUGxoLzBHLzZFN29QOUdtNzdlem9z?=
- =?utf-8?B?WXovZEk3SHZNTzQzc1RtbmxvckU5ekloR3pBclFqL3B4WnJnQUU3NTVUOWFo?=
- =?utf-8?B?REtuWTVnOHF4TVR2bm1kc1piSUpKdEtZeTN4bWFRc2pGbnFncTE2aCtnVUh1?=
- =?utf-8?B?K1BVS1JaczdmNHhBU29mbDFSckY2TnBwN2N3eWluSGpwSUhZL1NOVFd3UkFC?=
- =?utf-8?B?em9GdksraGk4UEtBdWM3dnJZQnJhZU1PMkpjbzRpN2tob1VXamRMdGpLMnd1?=
- =?utf-8?B?TGdYb3RZQ0hWaEY0Umg5cnZRTzJWWXRQSWhIWHgyVzR3STF1NXppUWliY0FY?=
- =?utf-8?B?REVEdGxINGY0QnVwYTFZOXVoYnBVSUVidzFHbWlWZHRPRkQ5eEJZUjF6Q2t0?=
- =?utf-8?B?RlV3R2VSb3pBNFJJTFJ5VHR2UndIakNwMXRNMUl6Um5oV2I4RWpYalN1NkNt?=
- =?utf-8?B?MU1tYVBZN2ZsQTVqbWdKZVFqSkRYbUxhY2R2VzFlUU5zNDhCQlVzeEluRGxE?=
- =?utf-8?B?RklJaU83K05WV1d6UVBDR1dmQzRpcWFCZFlCc25xUHowUWdpUkR2M3RyNi9n?=
- =?utf-8?B?Qlg0NStXSTdYZGRuNHErWTdKdTdnS0toMXRSMXAzZDNBcmErVHQ2MDFmMlFG?=
- =?utf-8?B?WVVRajBteitRNEZKczlPT3M3TG9BQlloNU1ZM2NDc2w5NUVIelpMZkRPM2FH?=
- =?utf-8?B?ejdJVmxDaFlMdTVkNm5JVW1MMm9MVTlUZFVVQ2h0RUJsUExVQnFiUGdWc3B5?=
- =?utf-8?B?dHBhN3B6RW5BdEVSM1phN2xBc3R4MTl5d296OTRnT0ZtUmtWcUZUMDh4Unlh?=
- =?utf-8?B?UlhucDJBOXJicVQ5VjQyTjlleVA5blhIckY3T1RRN0VwRXlTaDJCV0x2b3hh?=
- =?utf-8?B?ZGNBRU9ZZ2d2Q29NaytXYnRGaWZOU0xtU2FLeXdVeUlWSEM1Z2FFOFdMMWN5?=
- =?utf-8?B?K2hoclZsZVIzbTF5YlNUL2g2V0xHTU8yMWt2VmlhVWlvanlMbDE2bDg3WWpw?=
- =?utf-8?B?VTJNVzAyZDN0V1ZRbGczNFBCaUJIdElsV0FrTmRiQnpKdU5OVDljRWNKVU1r?=
- =?utf-8?B?dlYrdVFoNmMrRlVLSmhrZll2dVZWWERxUmhFRTNHbU1CL3dGMGRpR2d6M25K?=
- =?utf-8?B?SllSUHEzU1VOaGIvWVhsL3AvdUJPbS9RRmdTdTdCV09sSFREOE91MDlWWHJP?=
- =?utf-8?B?Q3J1ZmNFUmtSVWR0eGVjNlBVdEZPcjdBSEZhdlIrbExSQjVzYk9hVzZBNXlJ?=
- =?utf-8?B?elhpRTFVbVFpYlVMUWZ4NEloRzJBM0MwclRrQnV0TVY4YmE3WjB0UmkzdG52?=
- =?utf-8?B?b2VjOFFGdkg1cGNzN2U1anZoMXVVSzIyUThWMlVGeE0xUDd5MmVCdEdPWGZo?=
- =?utf-8?B?VHgvbHllRXVpbURWWDk1K0VJQTdYaFVraG5FSU9kZkdvQXlZZ2lXMTkvblA2?=
- =?utf-8?B?b2pVcUpQTVBHNkJIQXVxQWFDTW15Z2hKSFMya1kzUnNFYW80clNNNE5DWFIr?=
- =?utf-8?B?WUJsYTh1dkViVEo1ZHNlLzI3MHh6eWpDc0I1QnVRQmtNTDRBZUdYYTZlK2lM?=
- =?utf-8?B?dnVKbkFhREcwS25yNGZRNU4wOGx1bFEwem11b1JNZTl1OW9OVWM3UnhQc1pk?=
- =?utf-8?B?L3ZDZ3lKY29BSGxXcnQ0RngzR05LaWp3SXhZZ3ZTZ3VwT1dkTjBONDl0aGlr?=
- =?utf-8?B?Vjh1SVozejBSdmVYL25aT0RuTW94TW9Ydnp5NnFPVjliZmJPYjYxOFhmSitx?=
- =?utf-8?B?ekxYRE9NUTlZTWc5andvbGpMWTRaRkdHTVVndFlrYlA4T1hHSHRneWRBWmxn?=
- =?utf-8?B?cGt0TXE2VW54elFhb2M4VDJRYk8yTEVBb2lCcWI0SkdOWmZLVzV3QWdMVDJJ?=
- =?utf-8?B?K1RWMlN1OExqM1FlWDBBN0V1L3EwbEJRcDJLbkNHM3ZJUzNaK0RFUDh4WlRt?=
- =?utf-8?B?a2NuT3VoWnNzbEZKa3BiRWc5TERMUi8zaG1SLzI3Skh2Yk83Z1FVT0lJZlVv?=
- =?utf-8?B?N04yMmliallRM1JPc2JlZ0dqeW9KZ25xN0l1anFteE9HOHJFSlpwMmF1SGVD?=
- =?utf-8?B?b3gxWVE5Um92TzlLbXFIcEIxR3hxTm10aW1pdnFhWlFaSExSMVRmV1BZYmVi?=
- =?utf-8?B?TkdMRG1keDRQbW1aSTJqQWlnM2lmQzRlOE53dk5jNzJPTm15NVhWVXhnS2pG?=
- =?utf-8?B?T2c9PQ==?=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E49ABE58;
+	Fri,  3 May 2024 01:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714699665; cv=none; b=foVcCsvTd/+kNL/3DcYXnr+CV21WKnXdpU+XiN/AqNc/cbfNnQA+VXoH/hIqeYJKCHe52ITKbOorVp/xiPxaLi6repF4Th8c9kHA2FNey4PctHiiYBS2m+459y4AVmP6SFrZC4mlOWG3icciMLN7YIy/a8riO/39zOPVtLuPGh0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714699665; c=relaxed/simple;
+	bh=7+OCs1frOmX7fsw9+l60/r+QLonvowdRmW1VMJOzAxM=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=b4zaahVHhtnAlk7WPDgsd1uTmFLL50MNikSXbvJfiuh9rD45Nvwt6fptrnASazFdXODrM9rFwph8AlvYBjNhRZuHEob4s/RFZmySUREwa4V7c05mEajRo4Sb+KdpbnSEHCYDPUmS7y6Lu48q20+BDyiJCjKSIpeo16cPilboAaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqHjGmHa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 732E4C113CC;
+	Fri,  3 May 2024 01:27:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714699664;
+	bh=7+OCs1frOmX7fsw9+l60/r+QLonvowdRmW1VMJOzAxM=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=FqHjGmHatbLDqkXvPJmO2CWsjca1qAHGrHoekNT0AToQpwZKIGZldXBtXSSCK4ACa
+	 6ga+UZssczhA5iau0MzVvkwqvVli26agjx1ej4nz7G0dN23snKsLxe2Hlg9x1u2sM8
+	 IAD32WifcPNlG0lHA2JPWvgbsj4kRkrp9PbHt1y0HwFbM83+HSJZrW5/ow2Alx+JSz
+	 cLtNLL3upK2nW1AU9hUHOQqk1HdPvNzT2AVbK+ksS1pHlFFgF1IfbQn9A6i/wDY9rr
+	 rU+L/REE1z9Wr360oJkxXOMtPUW1U0zdCY8HKJM7ZX0iSpQkYiKI+JGWsLlJ60l7M7
+	 ohmHw4l1fyIFw==
+Message-ID: <b822c6a5488c4098059b6d3c35eecbbd.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19c93834-b7a0-4963-4533-08dc6b0f4258
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2024 01:20:46.1037
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: S3N/tpM9j/FK/Ox2rv+7Zp9Asq+qTjoM3SSQxHk41goMgROdiMB7vAl2PCHy0yd2ybC+Y0gVwrIv4Z0Iw0/dK6OS/y/XWmF1FrHAxdC4m+Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1283
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABVgOSmgUJp3FijpYGCphi1OzRUNvmYQmPDdL6mN59YnbkR2iQ@mail.gmail.com>
+References: <20240422232404.213174-1-sboyd@kernel.org> <CABVgOSmgUJp3FijpYGCphi1OzRUNvmYQmPDdL6mN59YnbkR2iQ@mail.gmail.com>
+Subject: Re: [PATCH v4 00/10] clk: Add kunit tests for fixed rate and parent data
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
+To: David Gow <davidgow@google.com>
+Date: Thu, 02 May 2024 18:27:42 -0700
+User-Agent: alot/0.10
 
-PiBPbiAwMi8wNS8yMDI0IDEyOjQ3LCBKaSBTaGVuZyBUZW9oIHdyb3RlOg0KPiA+DQo+ID4gIC8q
-IE1hY3JvcyBmb3IgdGhlIFNQSSBjb250cm9sbGVyIHJlYWQvd3JpdGUgKi8gQEAgLTU4OCw2ICs1
-OTEsMTYgQEANCj4gPiBzdGF0aWMgaW50IGNkbnNfc3BpX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9k
-ZXZpY2UgKnBkZXYpDQo+ID4gIAkJZ290byByZW1vdmVfY3RscjsNCj4gPiAgCX0NCj4gPg0KPiA+
-ICsJeHNwaS0+cnN0YyA9IGRldm1fcmVzZXRfY29udHJvbF9nZXRfb3B0aW9uYWxfZXhjbHVzaXZl
-KCZwZGV2LT5kZXYsICJzcGkiKTsNCj4gPiArCWlmIChJU19FUlIoeHNwaS0+cnN0YykpIHsNCj4g
-PiArCQlyZXQgPSBQVFJfRVJSKHhzcGktPnJzdGMpOw0KPiA+ICsJCWRldl9lcnIoJnBkZXYtPmRl
-diwgIkNhbm5vdCBnZXQgU1BJIHJlc2V0LlxuIik7DQo+IA0KPiBQbGVhc2Ugc3dpdGNoIHRvOg0K
-PiByZXQgPSBkZXZfZXJyX3Byb2JlKCkNCg0KT2ssIHdpbGwgc3dpdGNoIHRvIHRoYXQuIFRoYW5r
-cy4NCg==
+Quoting David Gow (2024-05-01 01:08:11)
+>=20
+> Thanks very much. I'm about halfway through reviewing these, and I
+> like them a lot so far.
+>=20
+> Most of my thoughts are just naming ideas. I fear some of them may be
+> the reverse of previous suggestions, as we've since landed the KUnit
+> device wrappers in include/kunit/device.h, which we decided would live
+> as part of KUnit, not as part of the device infrastructure. I don't
+> enormously mind if we make the opposite decision for these, though it
+> does seem a bit inconsistent if we do 'devices' differently from
+> 'platform_devices'. Thoughts?
+
+Let's discuss on one of the patches.
+
+>=20
+> The other thing I've noted so far is that the
+> of_apply_kunit_platform_device and of_overlay_apply_kunit_cleanup
+> tests fail (and BUG() with a NULL pointer) on powerpc:
+> > [15:18:51]     # of_overlay_apply_kunit_platform_device: EXPECTATION FA=
+ILED at drivers/of/overlay_test.c:47
+> > [15:18:51]     Expected pdev is not null, but is
+> > [15:18:51] BUG: Kernel NULL pointer dereference at 0x0000004c
+
+This seems to be because pdev is NULL and we call put_device(&pdev->dev)
+on it. We could be nicer and have an 'if (pdev)' check there. I wonder
+if that fixes the other two below?
+
+---8<---
+diff --git a/drivers/of/overlay_test.c b/drivers/of/overlay_test.c
+index 223e5a5c23c5..85cfbe6bb132 100644
+--- a/drivers/of/overlay_test.c
++++ b/drivers/of/overlay_test.c
+@@ -45,7 +45,8 @@ static void of_overlay_apply_kunit_platform_device(struct=
+ kunit *test)
+=20
+ 	pdev =3D of_find_device_by_node(np);
+ 	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, pdev);
+-	put_device(&pdev->dev);
++	if (pdev)
++		put_device(&pdev->dev);
+ }
+=20
+ static int of_overlay_bus_match_compatible(struct device *dev, const void =
+*data)
+@@ -77,8 +78,8 @@ static void of_overlay_apply_kunit_cleanup(struct kunit *=
+test)
+ 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, np);
+=20
+ 	pdev =3D of_find_device_by_node(np);
+-	put_device(&pdev->dev); /* Not derefing 'pdev' after this */
+ 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, pdev);
++	put_device(&pdev->dev); /* Not derefing 'pdev' after this */
+=20
+ 	/* Remove overlay */
+ 	kunit_cleanup(&fake);
+@@ -91,7 +92,8 @@ static void of_overlay_apply_kunit_cleanup(struct kunit *=
+test)
+ 	dev =3D bus_find_device(&platform_bus_type, NULL, kunit_compatible,
+ 			      of_overlay_bus_match_compatible);
+ 	KUNIT_EXPECT_PTR_EQ(test, NULL, dev);
+-	put_device(dev);
++	if (dev)
++		put_device(dev);
+ }
+=20
+ static struct kunit_case of_overlay_apply_kunit_test_cases[] =3D {
+
+> > [15:18:51]     # of_overlay_apply_kunit_platform_device: try faulted: l=
+ast line seen lib/kunit/resource.c:99
+> > [15:18:51]     # of_overlay_apply_kunit_platform_device: internal error=
+ occurred preventing test case from running: -4
+> > [15:18:51] [FAILED] of_overlay_apply_kunit_platform_device
+>=20
+> > [15:18:51] BUG: Kernel NULL pointer dereference at 0x0000004c
+> > [15:18:51] note: kunit_try_catch[698] exited with irqs disabled
+> > [15:18:51]     # of_overlay_apply_kunit_cleanup: try faulted: last line=
+ seen drivers/of/overlay_test.c:77
+> > [15:18:51]     # of_overlay_apply_kunit_cleanup: internal error occurre=
+d preventing test case from running: -4
+> > [15:18:51] [FAILED] of_overlay_apply_kunit_cleanup
+>=20
+> I've not had a chance to dig into it any further, yet, but it appears
+> to work on all of the other architectures I tried.
+
+Cool. I don't know why powerpc doesn't make devices. Maybe it has a
+similar design to sparc to create resources. I'll check it out.
 
