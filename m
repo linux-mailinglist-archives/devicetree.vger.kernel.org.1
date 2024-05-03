@@ -1,174 +1,131 @@
-Return-Path: <devicetree+bounces-64815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C4E8BB089
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:06:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5098BB08F
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 18:07:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26D8C1F21BE9
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:06:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14513B20EDA
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 16:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B311F15532B;
-	Fri,  3 May 2024 16:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80FF155310;
+	Fri,  3 May 2024 16:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jnNwcbKa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OBrMuUW0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA0A4AEE5
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 16:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999CCA944;
+	Fri,  3 May 2024 16:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714752389; cv=none; b=g/fhYOrBjCU/thz5Qpwz4wEZFZPmMZ2myA73DR9ZeSTUHnbuBsuTasGhY728gO+UH9ixAh2R5k36B8bX7DE7SEWwELj2uOJevwlVlVBInn4n0NFHhZxIiemOVIXDqWVKUKJrU9Uu/o5+9j7MHfYlxPIIh7K7OHGboAiVP6/7hr0=
+	t=1714752441; cv=none; b=MJEDb99OOY9W3JO2o03qRuN4SxVpWf7PLgo7hV274EqxC438bNmfLLdbKepy7Zq9/BQEKYrLENM6NSk5Q6MXXWVbwXTDJ9MkbS1VyLiemFEcRwmW0F7tfllYR5vfisTXFeJplsI7QjceGV6dYFJkXbDC59Xz3AlyOKxTh73At0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714752389; c=relaxed/simple;
-	bh=TouCGH5BPok4oaVsl/yEX4vdXHswWErpY8YWDlTAscY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q2RuPzldCinJAfJmBVxIlfmD4vpcq91Gks89npxQWTgmEj6m11vYVQWBxoSgd3GO5F2QetTyBtNoXKjdcOugGjEPasO9SGdPPArDXu4Pmt5QVnPDpxSMGyTV2x8zJ6mxJT6dRfVmkVfkN/EY+I+U0znH1YL2kQOS87b58aosnyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jnNwcbKa; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-41b21ed19f5so65337275e9.2
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 09:06:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714752386; x=1715357186; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RbupB7f3aV2sszX3kEEkcJM0tmBKeeypaOUtnM8Pcmw=;
-        b=jnNwcbKaijluQc96eVkjZ0OO+P4S3adRgV0cpdWD8C9JcjkWp5ycMidRkCyFZxRdY+
-         Tjx82vmWTFjSAx1+xTuho6RZoh5sdLKDcSbfJ3FUke9yHzsExvkHV/b+AWGyf+Lpt0Lt
-         JNB7j31w+vVaaN4foyUwv/9DzHozEh+q9Aj2Bwo/k7sK3ETZuOwPkllEfoJ6up5yLMYq
-         8HqaKgCDyzncqj8jr0OUu33B4C17YTbmtConr/cRSNitRpDxtXQEiG6CofVWpiipb9ET
-         KYAm2njEURbpaWwWaAfvb9bsInPvIsO1suakIOgYtLHSZArTlHwVgO4EKnUlxibl4qd9
-         0bHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714752386; x=1715357186;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RbupB7f3aV2sszX3kEEkcJM0tmBKeeypaOUtnM8Pcmw=;
-        b=fMPsoVCHklOjA0wAUI0Qe3YLHKfDqFnF8H7LXzQHblxqDjF/pLhPB2MSNYsjEJVlE0
-         NJSbNN2by2BvkCiaSOUr45Zdf5MjbLmaeZQaIawyfz+tqGM2tUR0gPY8jvXISVXptpz/
-         OyczPAuOCjsMmOv0h16h+vvBYHySOP9ddGayc3zdaqEY3amNu+66NmgmoutuE/67b6Iv
-         OR2DCjOYUhVUbcaIdD5n8RrYj3kM7MjhrEr7pqXCo0/5WjtlJdcwncUeeBuxNstSw63p
-         d2ZtjGmAH5Vo7LJpzZP1948Y6S7USpR3nMliEmZrzUU/UjcRHPjy3RZ5OcHmAU5u+n1J
-         /Llg==
-X-Forwarded-Encrypted: i=1; AJvYcCWswDn0p8qfLqerZmbfHxMmTuryS63wixbJp+Nocq7mcAH6trQ/G6jOYT1EkHnz1FAdg8XgysWlJrGHZAbkjEveEuXWVeCTbpO2DA==
-X-Gm-Message-State: AOJu0YyrCh/2xjnpOvBDVWlt/5ia3x4WCGcZa0VKVVRQ+UE+3L7Y4mCx
-	xWLD/GJQPRBbbm/1az1A29TN0st576VG70EDXzbkjdPPc3hau5p1ErBhhIOm4wZrdBeHQAqzQz4
-	WQP0=
-X-Google-Smtp-Source: AGHT+IExGOjq7cHgzt7HF328hWxDKfwf6uLJ3xTaEx61jCcmDImDNnnQkRoi1An+uovmvkneIPE69Q==
-X-Received: by 2002:a05:600c:34d2:b0:41c:3e1:9dbd with SMTP id d18-20020a05600c34d200b0041c03e19dbdmr2238169wmq.40.1714752386391;
-        Fri, 03 May 2024 09:06:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id u21-20020a05600c139500b004190d7126c0sm9847463wmf.38.2024.05.03.09.06.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 May 2024 09:06:25 -0700 (PDT)
-Message-ID: <4a75aae4-9ed6-4e7e-883f-23ffdc1354ec@linaro.org>
-Date: Fri, 3 May 2024 18:06:23 +0200
+	s=arc-20240116; t=1714752441; c=relaxed/simple;
+	bh=W91kcN7nrkWghZ/PoRIVOeNh3GWbeg+b2FW9mH1axwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bu8ideHFdM3OGhgk3CfZJWNnolqPsPiaDSGQqZKW34gccNH3rowvhJJ6/Nk4u3AycZIe/ElUJ1NKq32GeR6xx/O+9UF8X0TZF9GChRxOvJvLyuxd2EqNgnHwUB30mDZMabap0vs3exB3M9NNb2hXVqb8/l0NmIwsupvimPjNWEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OBrMuUW0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5DEBC116B1;
+	Fri,  3 May 2024 16:07:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714752441;
+	bh=W91kcN7nrkWghZ/PoRIVOeNh3GWbeg+b2FW9mH1axwY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OBrMuUW0rIzSheM3VMg+BPEExT47shrT6vDtXPA/mYlO86AKvbLspq93o37ooLZkg
+	 TO5HSnOpCGfcdQnvry6z4aKC+RE/RiIfy+5xFk913pofDAHOZ0obuDJ52RhY1kn3pk
+	 7yV5Cb/Yd///3aCUP8g0WFLWZKHfaM8SdG+3yxo8t80O+/r1jIgXarRWvlLaPekLtx
+	 /rCBufHXZw0XInJ70OUguiUwEgfn0jO2MuVX/JLR8GgtZmsIqEP6dHx0eMEuk2j7D6
+	 e2K4jV1VytMBye349sNgGR0yTODH9wmFJHsjXJPiT/kr0oQTW5CWkmkFP6WQkxdKEq
+	 0w1WXOw120J6Q==
+Date: Fri, 3 May 2024 17:07:15 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alex Soo <yuklin.soo@starfivetech.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [RFC PATCH v3 1/7] dt-bindings: pinctrl: starfive: Add JH8100
+ pinctrl
+Message-ID: <20240503-undress-mantra-e5e46b2f6360@spud>
+References: <20240503111436.113089-1-yuklin.soo@starfivetech.com>
+ <20240503111436.113089-2-yuklin.soo@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
- binding
-To: Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Rob Herring <robh@kernel.org>
-Cc: benjamin.mugnier@foss.st.com, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240417133453.17406-1-sylvain.petinot@foss.st.com>
- <20240417133453.17406-2-sylvain.petinot@foss.st.com>
- <20240418130916.GA1016598-robh@kernel.org>
- <e38eeaab-f3dd-4129-86aa-9f6bb03bdc40@foss.st.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e38eeaab-f3dd-4129-86aa-9f6bb03bdc40@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 03/05/2024 10:25, Sylvain Petinot wrote:
->>> +...
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 7c121493f43d..991e65627e18 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -20868,6 +20868,15 @@ S:	Maintained
->>>  F:	Documentation/hwmon/stpddc60.rst
->>>  F:	drivers/hwmon/pmbus/stpddc60.c
->>>  
->>> +ST VD56G3 DRIVER
->>> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
->>> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
->>> +L:	linux-media@vger.kernel.org
->>> +S:	Maintained
->>> +T:	git git://linuxtv.org/media_tree.git
->>
->> This should be covered by the media maintainer entry.
-> 
-> I'm really sorry but I don't see what you're referring to. Can you point
-> me to the correct direction please ?
-> 
-
-Find the media maintainer entry. Do you see Git tree there? Then it is
-done. Otherwise, do you have write commit access to above Git? Are you
-going to commit to that Git?
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KxAjTyFg5buG+CKV"
+Content-Disposition: inline
+In-Reply-To: <20240503111436.113089-2-yuklin.soo@starfivetech.com>
 
 
-Best regards,
-Krzysztof
+--KxAjTyFg5buG+CKV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 03, 2024 at 07:14:30PM +0800, Alex Soo wrote:
+> Add documentation and header file for JH8100 pinctrl driver.
+>=20
+> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
+
+> diff --git a/include/dt-bindings/pinctrl/starfive,jh8100-pinctrl.h b/incl=
+ude/dt-bindings/pinctrl/starfive,jh8100-pinctrl.h
+> new file mode 100644
+> index 000000000000..153ba950c062
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/starfive,jh8100-pinctrl.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +/*
+> + * Copyright (C) 2023-2024 StarFive Technology Co., Ltd.
+> + */
+> +
+> +#ifndef __DT_BINDINGS_PINCTRL_STARFIVE_JH8100_H__
+> +#define __DT_BINDINGS_PINCTRL_STARFIVE_JH8100_H__
+> +
+> +/* Pad Slew Rates */
+> +#define PAD_SLEW_RATE_FAST		1
+> +#define PAD_SLEW_RATE_SLOW		0
+
+Should this really be in the bindings? I don't see it having a direct
+user in the driver.
+
+Also, if this is the only header you have, I think the RFC tag could be
+dropped, since there'll not be a header we need to worry about getting
+into U-Boot etc with values that may change when the SoC moves from an
+FPGA etc to tape out.
+
+Cheers,
+Conor.
+
+--KxAjTyFg5buG+CKV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjULswAKCRB4tDGHoIJi
+0gziAQCOhL3Nl0Z9Etl6BrrDO57we/UhOPrfgVEhlu3CnukqOwD+JLtE6cJPbh5t
+83xkoNV1bF4rXWsE5iiR7H8VKiAfEQc=
+=Lyzr
+-----END PGP SIGNATURE-----
+
+--KxAjTyFg5buG+CKV--
 
