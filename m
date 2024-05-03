@@ -1,137 +1,150 @@
-Return-Path: <devicetree+bounces-64738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08108BA9E4
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 11:30:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 883548BAA57
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 11:55:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D4C41C21564
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:30:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E88A1F22D82
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 09:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1817214F9C8;
-	Fri,  3 May 2024 09:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C995914F9E9;
+	Fri,  3 May 2024 09:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="grBC8Hap"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="akKAKZ2R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745A614F114
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 09:30:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778E414F9CF;
+	Fri,  3 May 2024 09:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714728612; cv=none; b=coGsdqDXoF/Ezi1qESedQ99fUpUT22/oySnEHiId2HsJyBhylsfc3FGev5y7bLuGB7zioYFnAOMvdokFNWNXY2RUcRSHlrfids4Ew3/DsS4rq9USX3AGX4WmgQBPO5hL35ZreyoVeTdCVjEtnuw2awba8mQdGKMcqXPqDLaeBfM=
+	t=1714730052; cv=none; b=oyn3xLvVGvdf2EUp4h3+SU4/Xk7hbUCxJl2UUCUlYHmpq30hpwXimOsHhXJlBmhySiyUkX7c4ztEmGdrR0hrGxgp6Ff5OUCEG4krDKj+jyYt1vWSMQT7DD21Rf7mrV+6uMwxpYdmzXvDg7oSulnpJBliIVPBN/TiUCHWqHjMm5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714728612; c=relaxed/simple;
-	bh=ZNb2/oSuDvsekJbrUvzVBARQvr1M+l1FF1dsoV5we18=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=iZSQeVqU/CttLz+A9LgB8XubDbM7wV+A8t9YIMn9bYRVIGyOmuSZma/vm7NjzSOVzLhaKui6XHBJI0yoxOLfZX+pgiBnvmeH3xsieUZmW7GQjjgzp/oZkywanejZVUphNHP8kTFIBbh0EQ3sbPNme6if6pyZe/ZdzlGIwqK9IyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=grBC8Hap; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41b9dff6be8so49011615e9.3
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2024 02:30:09 -0700 (PDT)
+	s=arc-20240116; t=1714730052; c=relaxed/simple;
+	bh=oO6o2rpfHPOdGQjocbJm7nYQ52Uy5WZClOTnFXN9Xxs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kAlZzDCwS6nO1eHm496d4jg59hE8dGgs+QN0sydNJisJyqRsg+eo3oMqJS5U0AFi6fqxcEFkT1W5NIDh1PsO8P/XjS52TzXrqBjKt0ohKJ855qaDt5bPOg08rqHtPrdZCc1rLudWE5L57HxWMHi5MHDcIZqWUrtVtFjAklZDHn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=akKAKZ2R; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2b3e2d3d05cso268326a91.3;
+        Fri, 03 May 2024 02:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714728608; x=1715333408; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=KULRcTjxfat7nflWft5bz9NukEzEddiZ2lggi8GzZ0E=;
-        b=grBC8HapctbhvTbub7vtfg58qy5UOfQxyjgAjDMr32V+DGEd/69rY110u70yzZlY6a
-         YmTPKt6IV/MsENRwslhCcbDgSBGDe4k4WwzTlYIt+UO878ZX9DsXIkIBMxVOx1zoJcMY
-         FgyP0o6IbUbVXaV/zQE9StkIZtrzmXk2HHCRqlXL4sUGRIgGwR6+/lv89I0zWRDMwEYT
-         G/IBabHtyjy3TnI+0zk87noYm/ZWO0Zw3J2clS2bjmnsg/8KU+9cPmQN6GJ1G5t4k8al
-         m5T7fR3TvFhtVSnfpYMK9+YV2RvBLszqst1ruyBDcymP28MMtXB2/tAKCpwzjRoyeK5+
-         Xd6w==
+        d=gmail.com; s=20230601; t=1714730051; x=1715334851; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sPOCU02o4FkaTy8IAzYtzHqtONKNgZRbMXSkFgP/UHc=;
+        b=akKAKZ2RmqIZ6oa9lFoFm3nt4l9S4uLfHrKgRW6G90gHSaW62bD44tsIdiFDGZjhME
+         6rwwLtdHJkJWrR8oLxbrFG02aAUyITBZTwGH5AqFSF8Ysud6VORGPC72MyddwMn7dXiA
+         T2IeW/ihoEdDFCgt1NTFjcQAPzm0yPj9nZB9KYjkRxBXd2mMN3avcw0VavyBBwtGgtWb
+         buvG3CWL7UFpGRZHAkmEsYb66wNNfRJU+XaYzglGtIscxOCzaz7HuB+My1lK6qNYAkm8
+         v4NALE0Ys7xqsGtAKrilsUlIytZT/ov8m32aTAi41Kx0FXrLKlkVq2asfHPLD+GPau/T
+         17JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714728608; x=1715333408;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KULRcTjxfat7nflWft5bz9NukEzEddiZ2lggi8GzZ0E=;
-        b=M6s5FRUZBp3BXhvF0Q7Sbik5obh2Q/TW8a8oHSgrZZ0s+UrTJTCnLda8/XjV4VKciW
-         SbJTJEzRRhmYmHJXLlzRXBtGOqepHq5pNI4A7U7mZYQufElE3aOLI1y7Z/WvPQlM66Fj
-         vWu1bdSrzSvHyqN45hB9M0IuZjpb9CF6NyDqc3/jVycARLnMi6DHlwWMcLI/DClVGXvR
-         /W7C7UlDV9Px/9d8RBUQfRtAFFeg1Isn1/Y/ZOUd/iM/xpV7lT+Ak53RatnkYEGGKVlt
-         qowqJD1rD1grbZ3lAf7HerkQE3QiwhqzfMF8DzFmTC8m8bTDF/UV74AIvK1m5PBSIynT
-         6Yxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUI49DUBOtVEN/LQV3RfsMbb/pIuN1bSGwOovXFAN7sADTArx0uM3oAkoDtP//D7T3X4PqmHV1P4YrdGgk1hswP8sbv5WO6C2JktA==
-X-Gm-Message-State: AOJu0YwSRHTTfz7Uq/yn1YsVmtBtHLvDMIJnFvelYjJUgHWTt9eY4Lyg
-	VYWfBp4CbduI6ZKlvhopor91S99jo+Lw5dr7w4V6mprwEyrjzowDquGHHeFB1fg=
-X-Google-Smtp-Source: AGHT+IFMjfL7kc5atSQVs5RqNDVKOWw0871oLlfuW3vxv/8yUSCVntr1NwQgjxnL3bhXh2tYDPwLzw==
-X-Received: by 2002:a05:600c:a01:b0:41b:13a3:6183 with SMTP id z1-20020a05600c0a0100b0041b13a36183mr1736973wmp.24.1714728607700;
-        Fri, 03 May 2024 02:30:07 -0700 (PDT)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id bi9-20020a05600c3d8900b00418db9e4228sm4988571wmb.29.2024.05.03.02.30.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 May 2024 02:30:07 -0700 (PDT)
-Message-ID: <0106b6f58ce19752c2c685d128e5a480103ee91c.camel@linaro.org>
-Subject: Re: [PATCH v3 2/2] pinctrl: samsung: support a bus clock
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Tudor Ambarus
- <tudor.ambarus@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij
- <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Peter Griffin
- <peter.griffin@linaro.org>
-Cc: Will McVicker <willmcvicker@google.com>, Sam Protsenko
-	 <semen.protsenko@linaro.org>, kernel-team@android.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Fri, 03 May 2024 10:30:06 +0100
-In-Reply-To: <c39eab66-4e78-4f24-bcaf-003161b38ed0@kernel.org>
-References: <20240426-samsung-pinctrl-busclock-v3-0-adb8664b8a7e@linaro.org>
-	 <20240426-samsung-pinctrl-busclock-v3-2-adb8664b8a7e@linaro.org>
-	 <ea6f17d7-49bf-4a1e-ba3b-757e29221590@linaro.org>
-	 <9a960401-f41f-4902-bcbd-8f30f318ba98@kernel.org>
-	 <c4c73732595b067369a6c8d71508d54358962552.camel@linaro.org>
-	 <c39eab66-4e78-4f24-bcaf-003161b38ed0@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3-1 
+        d=1e100.net; s=20230601; t=1714730051; x=1715334851;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sPOCU02o4FkaTy8IAzYtzHqtONKNgZRbMXSkFgP/UHc=;
+        b=fGpjX6++zlXoYw0pFe/UCS22xPmqbR3sEkGCfSwCkMKDMLAgybzCNSgZt9zLb10ffZ
+         LAe5ISxiITXbqvOjuh5WZ5zMcjVA15IkKQc6E1caDNAU1ZVif8iv96wZYxvK3IDRfYSf
+         5avZ7TQntL0SEqy6Qba9/9h2L85wvJkFe9ci5dEySnvT1lkvZyhCkCgiVkdVH7Jcjgi1
+         06K+X2JnXepY40yODkiJAO2Q+LWo+1B8SZO1SqYiXunHuDXS7qFE0fEE/z20qqZhmD42
+         tjTnIcI3KF/4vputNHoO05AL7Z5Qkq5kuxVT9Ga7dr7ay2Tou7+yo8I+VCt62ZkDZJjl
+         ihVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ1vWevEYx2eZU/ZyTrzY1BC3ECKOjJ/CGllfP1afgIp0DMcIGTlB7NZMlhCKNmZLCVQVKetr9VL/KUK/vQ6taNVh2ded8MqBRDKheMSwE6ejJYMdAZ2xR/kt8bsPtxDodc3jy53qpPw==
+X-Gm-Message-State: AOJu0Yx6EIgV8KTGu5G6uw3DCX9ZY6WtoJRYPGKViZyqSP1psAVuyXMH
+	VfWpOovu6b/a7PGBRvYEAFnrmXyLxAc8G8SGldbuB/GlEcnbDU51vr9/xPX4tPEACiHwddlp4lb
+	XubREWrj0Y/t72rxfWtcuZgjUvG8=
+X-Google-Smtp-Source: AGHT+IEgM4iEd4jMMm+EgDh0hlCsdUSzQF59auS/YHpn16luP+NkPzAahk8j/ytqswvKTeU0s2kUrOhGLUSUYfIcevQ=
+X-Received: by 2002:a17:90a:f195:b0:2b2:760d:9507 with SMTP id
+ bv21-20020a17090af19500b002b2760d9507mr2255240pjb.0.1714730050781; Fri, 03
+ May 2024 02:54:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240503-imx95-dts-v3-v4-0-535ddc2bde73@nxp.com> <20240503-imx95-dts-v3-v4-3-535ddc2bde73@nxp.com>
+In-Reply-To: <20240503-imx95-dts-v3-v4-3-535ddc2bde73@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 3 May 2024 06:53:58 -0300
+Message-ID: <CAOMZO5D9i8LG7-4X6D+oHfZrJj+QoKa0DTusMX-H32227_s_4Q@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: freescale: add i.MX95 19x19 EVK
+ minimal board dts
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+Hi Peng,
 
-On Fri, 2024-05-03 at 11:13 +0200, Krzysztof Kozlowski wrote:
-> On 02/05/2024 12:41, Andr=C3=A9 Draszik wrote:
-> > I was initially thinking the same, but the clock seems to be required f=
-or
-> > register access only, interrupts are still being received and triggered
-> > with pclk turned off as per my testing.
->=20
-> Probably we could simplify this all and keep the clock enabled always,
-> when device is not suspended. Toggling clock on/off for every pin change
-> is also an overhead. Anyway, I merged the patches for now, because it
-> addresses real problem and seems like one of reasonable solutions.
+On Thu, May 2, 2024 at 10:29=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.co=
+m> wrote:
 
-I had contemplated a global enable of the clock on driver instantiation
-as well, but in the end for me the reasons why I chose the fine-grained
-approach here instead were:
+> +       aliases {
+> +               gpio0 =3D &gpio1;
+> +               gpio1 =3D &gpio2;
+> +               gpio2 =3D &gpio3;
+> +               gpio3 =3D &gpio4;
+> +               gpio4 =3D &gpio5;
+> +               i2c0 =3D &lpi2c1;
+> +               i2c1 =3D &lpi2c2;
+> +               i2c2 =3D &lpi2c3;
+> +               i2c3 =3D &lpi2c4;
+> +               i2c4 =3D &lpi2c5;
+> +               i2c5 =3D &lpi2c6;
+> +               i2c6 =3D &lpi2c7;
+> +               i2c7 =3D &lpi2c8;
+> +               mmc0 =3D &usdhc1;
+> +               mmc1 =3D &usdhc2;
+> +               mmc2 =3D &usdhc3;
+> +               serial0 =3D &lpuart1;
+> +               serial1 =3D &lpuart2;
+> +               serial2 =3D &lpuart3;
+> +               serial3 =3D &lpuart4;
+> +               serial4 =3D &lpuart5;
+> +               serial5 =3D &lpuart6;
+> +               serial6 =3D &lpuart7;
+> +               serial7 =3D &lpuart8;
+> +       };
 
-* Since the clock is only needed for register access, it seems only
-  natural to enable it during register accesses only. (The same would
-  happen if we had support for automatic clock gating in Linux).
-* If we think about external GPIO interrupts, they are likely to occur
-  very rarely (think button press by operator on some external keys or
-  I2C interrupts), it seems a waste to have the clock running all the
-  time.
-* drivers/i2c/busses/i2c-exynos5.c and drivers/soc/samsung/exynos-usi.c
-  also kinda do it this way. Bus clocks are only enabled when needed
-  (e.g. during transfer) (granted, the IPs (IP clocks) are also fully
-  enabled/disabled in those drivers when idle, and there is no such
-  thing here)
+This looks like an excessive aliases list.
+Can't you just have serial0, mmc0, and mmc1 instead?
 
+> +       reg_1p8v: regulator-1p8v {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-max-microvolt =3D <1800000>;
+> +               regulator-min-microvolt =3D <1800000>;
+> +               regulator-name =3D "+V1.8_SW";
+> +       };
+> +
+> +       reg_3p3v: regulator-3p3v {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-max-microvolt =3D <3300000>;
+> +               regulator-min-microvolt =3D <3300000>;
+> +               regulator-name =3D "+V3.3_SW";
+> +       };
+> +
+> +       reg_vref_1v8: regulator-adc-vref {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "vref_1v8";
+> +               regulator-min-microvolt =3D <1800000>;
+> +               regulator-max-microvolt =3D <1800000>;
+> +       };
 
-Cheers,
-Andre'
+These regulators are not used anywhere.
 
+Please add them when they have consumers for them.
 
