@@ -1,204 +1,213 @@
-Return-Path: <devicetree+bounces-64906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7EC8BB661
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 23:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA818BB6F2
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 00:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF3D0B26F30
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 21:48:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97622B24510
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 22:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3556684FDD;
-	Fri,  3 May 2024 21:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9859559162;
+	Fri,  3 May 2024 22:14:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="ai5UqITR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fgck2mNa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0047D5B1E9
-	for <devicetree@vger.kernel.org>; Fri,  3 May 2024 21:46:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC401EB21;
+	Fri,  3 May 2024 22:14:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714772787; cv=none; b=qYpDKPNcKLtZ0E8ohZpn4cBZOXwJ0jce0ldNDphChIqqiImlBuUFEOqmJTjDXZf78BQOc6StNEf1YkMQdPhZKkT45oiJuH5Q2Seh+Bqf0sReaKUoOiheJ4kfiVJqXH4xj9aEG7sNiHOeIPnLitT+eaG6Rc2eGjYx1lBeDvEeHCc=
+	t=1714774455; cv=none; b=CALuxEe8T3HMfcFwfduAp5ICml87CDklbU4lK2RgocitygV0e7rCRkuEOYhj3h66PKmUwla0xXolfb2OIaMZvT3lJUbHTep46wI/yiVOEx5AnDwVpnMV72udDYrjB3eD0mA0VJWYg+CP5afm+H24CAP/1due6D66MQojd1jKk44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714772787; c=relaxed/simple;
-	bh=vCATFAVm5j2l/tgS89AFZ3qjqyT58OStIRa316aPxP4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QY0xWwjMR/0qR1//n9ViHoOYh+dXIcouthDHEmw1qAOrXAKznDNI9uIfTgl0FpWJrkQi3lG+HhOLH06qUCfrGAy715Y2X5BP7R7iAr0wlEUQ/DNm9+LXUoHq5VnwElrtZrkSYdO2s8a0VLWfDloVL4HIVLuZgNBYPxdSIxAvdIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=ai5UqITR; arc=none smtp.client-ip=167.172.40.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1714772772;
- bh=yJluxrbqMAEdPs4Fo4cA70yAXpw93jOBKBZ/ta4Y4TQ=;
- b=ai5UqITRcaaBjabCnd1fzYfTiHFXQkY6itWKCk3KXZzdR51JrmNnb+8mcHfInc7J3tk3zjocR
- 6WG8ELeCdTHEzBu1iqg4dhIOz5gwhAKTYTsMf+hif3E053p0PRrn50BDK+oIaUOJf0SjXFHGTUj
- VSuEviCRVwErU5SBjCpZDbIBp6tX9IC9FXsmVW9ue2jvIMYg/3r8J+AVE33S1sdu71FX29pZefD
- AMoxC+jaVBsNMtbow5py60GZyHxe/Bs1Pd13KReKOHbH1zcSBuc7WmMYBwEqjQX5bNB/JzVSxCK
- u3LMoIdEB8YZ2NQsZIxPIz/g2g1Ztx93OAv9p+/Z79Ow==
-Message-ID: <d613aa4d-8c87-4735-8209-00510d5097fb@kwiboo.se>
-Date: Fri, 3 May 2024 23:46:06 +0200
+	s=arc-20240116; t=1714774455; c=relaxed/simple;
+	bh=zHMgoQFGqXCS0wSQQOdTlljNIzCktqC8tmQAhXSc1bs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HjfEnomaFp1KbodBdCmhbBp7/hCr8KhfnjoGZhNNG6vzPKp/dtSD/P17HYw2e5LqxkGXkxlnLYFs8LolHdcBhoHJLwXotZLowuBYd9h+hxm86C8vduy1ktXlVFodDl9AwKbDxNG7ncPVK1g+UZp+3wU/be44EwUZvLXvRga2IYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fgck2mNa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C948C116B1;
+	Fri,  3 May 2024 22:14:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714774455;
+	bh=zHMgoQFGqXCS0wSQQOdTlljNIzCktqC8tmQAhXSc1bs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fgck2mNae+YY4hsUBEkQ5FJ/w2FO1bLtdG/4lsuVeURk392XWBZw9mf/DK4zQ8zXS
+	 atnZG7SkpVc6tZaFIWSuz7UF3jj7p2oL49MrDDKiFrZBFWVnbyZnJi8Br50QLSXv50
+	 yyhqns4c8VeTjQGcWcOPzI4kwmM864riDRG3JFavF1HJ+5wo/XV1tcPiHfn6qM1IuT
+	 LYTJZd93I6/ld+8K/C1g2CCuvSAVaTxs+LvVbHOoYH5j9Gkksu09k/od9vSrC6evfQ
+	 lHjtaruLnjto5a7Lkus5bBGeT/FyBAmfFPRpalDstko2sTF6bX2s0EvvL3yLxQbFRA
+	 D/BxYTeggJ9Yw==
+Date: Fri, 3 May 2024 23:14:10 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Daniel =?iso-8859-1?Q?Gonz=E1lez?= Cabanelas <dgcbueu@gmail.com>
+Subject: Re: [PATCH 3/6] dt-bindings: mips: brcm: Document mips-cbr-reg
+ property
+Message-ID: <20240503-dreamboat-satin-4e51e27643b1@spud>
+References: <20240503135455.966-1-ansuelsmth@gmail.com>
+ <20240503135455.966-4-ansuelsmth@gmail.com>
+ <20240503-oncoming-taste-bab71375b67c@spud>
+ <66353c11.5d0a0220.bb93c.fb57@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 3C
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240428123618.72170-1-amadeus@jmu.edu.cn>
- <20240428123618.72170-3-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20240428123618.72170-3-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 167.172.40.54
-X-ForwardEmail-ID: 66355b2215cb5945d1c987e2
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KIHwxf5kbowPiFqn"
+Content-Disposition: inline
+In-Reply-To: <66353c11.5d0a0220.bb93c.fb57@mx.google.com>
 
-Hi Chukun,
 
-On 2024-04-28 14:36, Chukun Pan wrote:
-> The Radxa ROCK 3C is a development board with the
-> Rockchip RK3566 SoC. It has the following features:
-> 
-> - 1/2/4GB LPDDR4
-> - 1x HDMI Type A
-> - 1x PCIE 2.0 slot
-> - 1x FAN connector
-> - 3.5mm jack with mic
-> - 1GbE RTL8211F Ethernet
-> - 1x USB 3.0, 3x USB 2.0
-> - 40-pin expansion header
-> - MicroSD card/eMMC socket
-> - 16MB SPI NOR (gd25lq128d)
-> - AP6256 or AIC8800 WiFi/BT
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3566-rock-3c.dts      | 750 ++++++++++++++++++
->  2 files changed, 751 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-> 
+--KIHwxf5kbowPiFqn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[snip]
+On Fri, May 03, 2024 at 09:33:35PM +0200, Christian Marangi wrote:
+> On Fri, May 03, 2024 at 05:21:41PM +0100, Conor Dooley wrote:
+> > On Fri, May 03, 2024 at 03:54:03PM +0200, Christian Marangi wrote:
+> > > Document mips-cbr-reg and mips-broken-cbr-reg property.
+> > >=20
+> > > Some SoC suffer from a BUG where read_c0_brcm_cbr() might return 0
+> > > if called from TP1. The CBR address is always the same on the SoC
+> > > hence it can be provided in DT to handle broken case where bootloader
+> > > doesn't init it or SMP where read_c0_brcm_cbr() returns 0 from TP1.
+> > >=20
+> > > Usage of this property is to give an address also in these broken
+> > > configuration/bootloader.
+> > >=20
+> > > If the SoC/Bootloader ALWAYS provide a broken CBR address the property
+> > > "mips-broken-cbr-reg" can be used to ignore any value already set in =
+the
+> > > registers for CBR address.
+> > >=20
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/mips/brcm/soc.yaml    | 32 +++++++++++++++++=
+++
+> > >  1 file changed, 32 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/D=
+ocumentation/devicetree/bindings/mips/brcm/soc.yaml
+> > > index 975945ca2888..12d394b7e011 100644
+> > > --- a/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> > > +++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> > > @@ -55,6 +55,21 @@ properties:
+> > >           under the "cpus" node.
+> > >          $ref: /schemas/types.yaml#/definitions/uint32
+> > > =20
+> > > +      mips-broken-cbr-reg:
+> > > +        description: Declare that the Bootloader init a broken
+> > > +          CBR address in the registers and the one provided from
+> > > +          DT should always be used.
+> >=20
+> > Why is this property even needed, is it not sufficient to just add the
+> > mips-cbr-reg property to the DT for SoCs that need it and use the
+> > property when present?
+> >
+>=20
+> I described this in the cover letter.
 
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	vdd_cpu: regulator@1c {
-> +		compatible = "tcs,tcs4525";
-> +		reg = <0x1c>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		regulator-name = "vdd_cpu";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <800000>;
-> +		regulator-max-microvolt = <1150000>;
-> +		regulator-ramp-delay = <2300>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	rk809: pmic@20 {
-> +		compatible = "rockchip,rk809";
-> +		reg = <0x20>;
+It needs to be described in /this patch/. Cover letters usually don't
+end up in the commit history and I din't read them while looking for the
+justification for a change :)
 
-[snip]
+> CBR might be set by the Bootloader
+> and might be not 0. In that case the value is ignored as an extra
+> precaution and the broken propetry is needed.
 
-> +		codec {
-> +			mic-in-differential;
+I dunno, if the bootloader is bad, you need to set a property anyway,
+so why not set mips-cbr-reg?
 
-This should be rockchip,mic-in-differential or removed.
+> > > +        type: boolean
+> > > +
+> > > +      mips-cbr-reg:
+> >=20
+> > Missing a vendor prefix.
+> >=20
+>=20
+> I will change this to bmips,cbr-reg hope it's O.K.
+>=20
+> > > +        description: Reference address of the CBR.
+> > > +          Some SoC suffer from a BUG where read_c0_brcm_cbr() might
+> > > +          return 0 if called from TP1. The CBR address is always the
+> > > +          same on the SoC hence it can be provided in DT to handle
+> > > +          broken case where bootloader doesn't init it or SMP where
+> >=20
+> > s/init/initialise/ please :)
+> >=20
+>=20
+> Sure!
+>=20
+> > Thanks,
+> > Conor.
+> >=20
+> > > +          read_c0_brcm_cbr() returns 0 from TP1.
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > >      patternProperties:
+> > >        "^cpu@[0-9]$":
+> > >          type: object
+> > > @@ -64,6 +79,23 @@ properties:
+> > >      required:
+> > >        - mips-hpt-frequency
+> > > =20
+> > > +dependencies:
+> > > +  mips-broken-cbr-reg: [ mips-cbr-reg ]
+> > > +
+> > > +if:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        anyOf:
+> > > +          - const: brcm,bcm6358
+> > > +          - const: brcm,bcm6368
+> > > +
+> > > +then:
+> > > +  properties:
+> > > +    cpus:
+> > > +      required:
+> > > +        - mips-cbr-reg
+> > > +
+> > >  additionalProperties: true
+> > > =20
+> > >  examples:
+> > > --=20
+> > > 2.43.0
+> > >=20
+>=20
+>=20
+>=20
+> --=20
+> 	Ansuel
 
-> +		};
-> +	};
-> +
-> +	eeprom: eeprom@50 {
-> +		compatible = "belling,bl24c16a", "atmel,24c16";
-> +		reg = <0x50>;
-> +		pagesize = <16>;
-> +	};
-> +};
-> +
+--KIHwxf5kbowPiFqn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[snip]
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	disable-wp;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-> +	sd-uhs-sdr50;
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjVhsgAKCRB4tDGHoIJi
+0hnUAP9FW/ZnwZiInKq0TjTp29MaHp+FKIvw21I9oy9q1490XAEA9Sbv1NW3gSNK
+H7aTa7HcDyIr55Qx/JZmKHV8oKeXnQQ=
+=zLrm
+-----END PGP SIGNATURE-----
 
-Do you have any references to issues related to why sd-uhs-sdr104 is not
-used here?
-
-My testing shows that io-domain is getting notified and correctly
-configured during boot. And card seem to be working correctly.
-
-[    2.162780] mmc_host mmc1: Bus speed (slot 0) = 375000Hz (slot req 400000Hz, actual 375000HZ div = 0)
-
-[    2.229408] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
-[    2.230042] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
-[    2.231493] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000
-[    2.232121] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000 done
-[    2.257294] mmc_host mmc1: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
-[    2.269482] dwmmc_rockchip fe2b0000.mmc: Successfully tuned phase to 254
-[    2.270098] mmc1: new ultra high speed SDR104 SDXC card at address aaaa
-[    2.271533] mmcblk1: mmc1:aaaa SD64G 59.5 GiB
-[    2.277357]  mmcblk1: p1
-
-Also when the card is later removed/re-inserted:
-
-[   80.181598] mmc1: card aaaa removed
-[   83.836785] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
-[   83.837611] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
-[   83.839263] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
-[   83.839952] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
-[   83.855358] mmc_host mmc1: Bus speed (slot 0) = 375000Hz (slot req 400000Hz, actual 375000HZ div = 0)
-[   84.153827] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000
-[   84.154524] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 3300000 done
-[   84.156149] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000
-[   84.156838] rockchip-iodomain fdc20000.syscon:io-domains: Setting to 1800000 done
-[   84.183932] mmc_host mmc1: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
-[   84.202888] dwmmc_rockchip fe2b0000.mmc: Successfully tuned phase to 257
-[   84.203574] mmc1: new ultra high speed SDR104 SDXC card at address aaaa
-[   84.205537] mmcblk1: mmc1:aaaa SD64G 59.5 GiB
-[   84.211434]  mmcblk1: p1
-
-sd-uhs-ddr50 should also work based on my testing.
-
-Regards,
-Jonas
-
-> +	vmmc-supply = <&vcc3v3_sys>;
-> +	vqmmc-supply = <&vccio_sd>;
-> +	status = "okay";
-> +};
-> +
-
-[snip]
+--KIHwxf5kbowPiFqn--
 
