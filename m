@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-64965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA268BBD75
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 19:33:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB3F8BBD76
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 19:34:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 849AF1F21C01
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 17:33:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79D9028215F
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 17:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A9E5FB87;
-	Sat,  4 May 2024 17:33:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BF15D8EE;
+	Sat,  4 May 2024 17:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="erKYnFfu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kbE5RMIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813343C060
-	for <devicetree@vger.kernel.org>; Sat,  4 May 2024 17:33:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAD25C613
+	for <devicetree@vger.kernel.org>; Sat,  4 May 2024 17:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714843990; cv=none; b=EJaVy+sgppPe/IvBelYeBHG1XXnhg+qXqxCat6SBDTOExXebOdiGPho0XpoAGsnKrl82W3IJiqG4Xw/c2m68GBGYJtiJg4D5EPng6Q/Jtb3G1e/Na2RrUN3aF+vRDL9HoZcJPEuW1OFwP00+wdW7xFoFm5sQr0xwM4g2v4GhS5k=
+	t=1714844069; cv=none; b=Pf/dCAlLtOv0XPmZipOduY68GfAYW+xpOz7BgAP4i+08cvoDsL8l7MTO+gNRATCp58AR0+w5aR6Mxch0uXtrDz8CIyehicrvNLHPu5mXtNK57KnGLp1w4NqMaNfhO11D2ee8BBV7LlfYjgcs9nHYcjw46p8pYQ2o4HfJhoTHOq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714843990; c=relaxed/simple;
-	bh=grss7zHCKpxqroAliLhpvchyl8cBCCF8vBGGk7xTOag=;
+	s=arc-20240116; t=1714844069; c=relaxed/simple;
+	bh=t8DJCID8xMlgBo9/Zhgdzdd3fTKTsJkNHj1Ld2lCVV4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N7Vplz98tFPV7ClD6iH1raJ2ZecU/qrOsDCBjqI8EAsaYvd0EqPgZ6NtcenR6EIF7/Jqb8lg5S4xSyCISrco+e2Ug3BwS2f9HYFBG12sPDQyVXLD3uV1PR87BAkm7OhU/Mku4Lb7kW6SMKwWAHGYm8pph6cA6lT4NB1cM8Vamb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=erKYnFfu; arc=none smtp.client-ip=209.85.210.175
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tn944W3m2UmVXuQhIsXNQwcfpUjML/JTCT60ywMs2m1PFsF9bXoRBSkGJvU2UKGTLZhZxltRmxkqgFILtvEl9qUseLNW0PXMlVts8YbitUxUeCQBtztVYyOD7b6Ue8WQj7dhMVpLgk7UoqmVN51AUZgxMUBa07clQ3nTmPl/Aho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kbE5RMIh; arc=none smtp.client-ip=209.85.161.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6f4178aec15so592083b3a.0
-        for <devicetree@vger.kernel.org>; Sat, 04 May 2024 10:33:08 -0700 (PDT)
+Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5ad2da2196aso532125eaf.2
+        for <devicetree@vger.kernel.org>; Sat, 04 May 2024 10:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714843988; x=1715448788; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714844067; x=1715448867; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=tm+hkjnifsq0PhG6Ap2FjKNJi8qui9XYsXdKzpuswS8=;
-        b=erKYnFfupiEIobeT13V1jBOj9fGC9oS8qjj4NnUGOltO1tM6o0o0vKn0WRmTabLMzk
-         OsoAYwPIShq4f17rvgY9HtLUMpRtu7CztuiiGe7fIIygK4zPZNQxOw0d3Re2dEdLWgDc
-         AQ1dosZNrrdRAaHmsrn3F5JNwTesZIamR8BMVO+On2iFdmS/w0CLUgpjPZhVIWQ3VVU3
-         S5tptppZS1E1X/X/EMEe/pzr0OiEeyUbV2wSFI+uCjRdnzoMUrLZZmdriZwR9bdoR+xE
-         cHbz3n84I+aqT/KlgHO1XL0lNgUVOqy1fnHbA4TA99LM6fmw54Xb5dv7cmFznspCuw7o
-         1D8Q==
+        bh=lF9hGa2Fe1Mvyb7TMDOS1Nsom143EnG0rlaw7MDvQXo=;
+        b=kbE5RMIhRmeJWT/j4BMuVY3zZIoyN5L59BPWK2cesyrb1SyM+soaoz4TVb1Mbb89pE
+         5X8/RdiHKQ79LMyCb7dE1yjPb/DMpM3aAhpi9JSSL0ny6RXLYg9GSV3ZZX/m7Vb3A3Jt
+         fIYxJy3/6/tKP2gKbL6LpS+3F0EtAdIR2CaUVoJn9t9hfmTUS9xnQALTbkpjCsOHQd6s
+         y0fyADqxTDs7ivbmK7RSE8SDKis9CRtc4H1T5chYzENdp/abAmM8eJbx5lwWBy9pZqs5
+         Ti07JQeyGqV/NqxVDY+Ep566Kth+Ic4gsDKgswIbm1QzXs1phMIWpx5IBHnW2e7fCZJe
+         w6XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714843988; x=1715448788;
+        d=1e100.net; s=20230601; t=1714844067; x=1715448867;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tm+hkjnifsq0PhG6Ap2FjKNJi8qui9XYsXdKzpuswS8=;
-        b=rBD/d0TIAslHCj+U/YFbw2kljSmPcqT6jVmFbTWoy7BFpQEpCbfiOGclizF+xyGKs7
-         uY6dbjnHxyehJUTPEa+w2db5nDT9tzy3btnB927m3afXqMVvDcFqhzILocHq1hk7gT2X
-         LlB75fNrad8dT/RsfAft55K1QQnUdJQdd3tV7et4K57avs1WXf4UTJSXWtMaFicUmNQq
-         PTGf7nQElHg1USDWirQxfemfc52fEoi5ePMy2aUEoUJ228c5Qt0G9QA88IkTN/2A4up+
-         CxR11vQ7mI8N1f9qvtKii5gP+nS6Otz7tY1k6ehuaIl1mrBFSqz2V4bw+8Q8m/yo+Xqa
-         ZsBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWp4TX5mZmmlhSfsX6cajMZvfi0ot3SdD1/xgn0b5MlYCnk2dyG9pY1UPLVITXRN2Wf06t1z/peVSJozMrIIryYeQnIzOfZ5paCjQ==
-X-Gm-Message-State: AOJu0Ywxkq2c7V0qqB1XnhQ3x5jyndnvaSCyl1Ud8HHeC2J0MMcNiiQi
-	/LT3iiBI+D8zMse19Ephtakd76wNcIsmV5eK23gnUqzLRh7nSR1ryYfqQsXAEA==
-X-Google-Smtp-Source: AGHT+IE71SThGG0rboV5B+ZKojRHaS6qJbGuddDvZeSPOrsqMo/HKBJlduV4Wulkz6De+mWXnuG6lA==
-X-Received: by 2002:a05:6a00:4f82:b0:6ed:21b2:cb17 with SMTP id ld2-20020a056a004f8200b006ed21b2cb17mr6741671pfb.4.1714843987657;
-        Sat, 04 May 2024 10:33:07 -0700 (PDT)
+        bh=lF9hGa2Fe1Mvyb7TMDOS1Nsom143EnG0rlaw7MDvQXo=;
+        b=HoRmTn5MZrRCsrLngLdbntvGk5W74hW/gMAwVi6DiYVyAgBNNizolF12YpZiKcAGNP
+         prkvHstgYRzJDjcfreHkl0Iuy5PP2ihW4M8wSBqhR6FZ8LgLjWgYGS9KCKXstphEheXp
+         4cx2OOZ3mA+xhcc3qvWP4GEpRunnwCtNG2iq/XDkOKxXOdd2rzC94dcmZMH2fMOTlQAQ
+         BAHGi75HhMREUzWCUJmiffSsgstvAu8GD3A08DNQj7CywjkPQoHemNCmVRte7xCsDYYb
+         7svPjifafpVE1iJHvqxRddW211TcGF68iaH83oRt30wsCW8UnLWRptO3Iy7KaADASi8t
+         cl7w==
+X-Forwarded-Encrypted: i=1; AJvYcCVY3rTQl6SJzWQaKCGQypAx58MA+NXamvQMif/2lDF1YKfdRDwNTexB2Fb8tppDOhT+oTXq0nTTvUMFdDPd/W2qgnLArrwPSK6zSg==
+X-Gm-Message-State: AOJu0Yxf66TPeSt2GqwYsDO2uRT7YgXzvxQY5BKMStLUz5e8KzVcr48k
+	eelWvcuTLNWEhAtU27SsssB2fhf95wMTzscQ2idX7B2UKvG+VQWQos7ZA3WLfw==
+X-Google-Smtp-Source: AGHT+IGtCliIpa2MVbSI04PDWYwtgRMCuPn2T1Pi/UZAfpS5rQ03K3VFFKpFTdeHLmmbH2XLRGtNrA==
+X-Received: by 2002:a05:6358:5290:b0:17b:b559:2ba3 with SMTP id g16-20020a056358529000b0017bb5592ba3mr7033372rwa.11.1714844066742;
+        Sat, 04 May 2024 10:34:26 -0700 (PDT)
 Received: from thinkpad ([220.158.156.237])
-        by smtp.gmail.com with ESMTPSA id z6-20020a633306000000b0061f2dc31b96sm2268114pgz.47.2024.05.04.10.33.02
+        by smtp.gmail.com with ESMTPSA id j1-20020a634a41000000b006204acd1e0esm1658107pgl.10.2024.05.04.10.34.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 May 2024 10:33:07 -0700 (PDT)
-Date: Sat, 4 May 2024 23:03:00 +0530
+        Sat, 04 May 2024 10:34:26 -0700 (PDT)
+Date: Sat, 4 May 2024 23:04:20 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Niklas Cassel <cassel@kernel.org>
 Cc: Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>,
@@ -83,11 +83,11 @@ Cc: Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>,
 	Shawn Lin <shawn.lin@rock-chips.com>,
 	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 12/14] misc: pci_endpoint_test: Add support for
- rockchip rk3588
-Message-ID: <20240504173300.GI4315@thinkpad>
+Subject: Re: [PATCH v2 13/14] arm64: dts: rockchip: Add PCIe endpoint mode
+ support
+Message-ID: <20240504173420.GJ4315@thinkpad>
 References: <20240430-rockchip-pcie-ep-v1-v2-0-a0f5ee2a77b6@kernel.org>
- <20240430-rockchip-pcie-ep-v1-v2-12-a0f5ee2a77b6@kernel.org>
+ <20240430-rockchip-pcie-ep-v1-v2-13-a0f5ee2a77b6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,75 +97,65 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240430-rockchip-pcie-ep-v1-v2-12-a0f5ee2a77b6@kernel.org>
+In-Reply-To: <20240430-rockchip-pcie-ep-v1-v2-13-a0f5ee2a77b6@kernel.org>
 
-On Tue, Apr 30, 2024 at 02:01:09PM +0200, Niklas Cassel wrote:
-> Rockchip rk3588 requires 64k alignment.
-> While there is an existing device_id:vendor_id in the driver with 64k
-> alignment, that device_id:vendor_id is am654, which uses BAR2 instead of
-> BAR0 as the test_reg_bar, and also has special is_am654_pci_dev() checks
-> in the driver to disallow BAR0. In order to allow testing all BARs, add a
-> new rk3588 entry in the driver.
+On Tue, Apr 30, 2024 at 02:01:10PM +0200, Niklas Cassel wrote:
+> Add a device tree node representing PCIe endpoint mode.
 > 
-> We intentionally do not add the vendor id to pci_ids.h, since the policy
-> for that file is that the vendor id has to be used by multiple drivers.
+> The controller can either be configured to run in Root Complex or Endpoint
+> node.
 > 
-> Hopefully, this new entry will be short-lived, as there is a series on the
-> mailing list which intends to move the address alignment restrictions from
-> this driver to the endpoint side.
-> 
-> Add a new entry for rk3588 in order to allow us to test all BARs.
+> If a user wants to run the controller in endpoint mode, the user has to
+> disable the pcie3x4 node and enable the pcie3x4_ep node.
 > 
 > Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi | 35 ++++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> index 5519c1430cb7..09a06e8c43b7 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> @@ -136,6 +136,41 @@ pcie3x4_intc: legacy-interrupt-controller {
+>  		};
+>  	};
+>  
+> +	pcie3x4_ep: pcie-ep@fe150000 {
+> +		compatible = "rockchip,rk3588-pcie-ep";
+> +		clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
+> +			 <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
+> +			 <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>;
+> +		clock-names = "aclk_mst", "aclk_slv",
+> +			      "aclk_dbi", "pclk",
+> +			      "aux", "pipe";
+> +		interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		interrupt-names = "sys", "pmc", "msg", "legacy", "err",
+> +				  "dma0", "dma1", "dma2", "dma3";
+> +		max-link-speed = <3>;
+> +		num-lanes = <4>;
+> +		phys = <&pcie30phy>;
+> +		phy-names = "pcie-phy";
+> +		power-domains = <&power RK3588_PD_PCIE>;
+> +		reg = <0xa 0x40000000 0x0 0x00100000>,
+> +		      <0xa 0x40100000 0x0 0x00100000>,
+> +		      <0x0 0xfe150000 0x0 0x00010000>,
+> +		      <0x9 0x00000000 0x0 0x40000000>,
+> +		      <0xa 0x40300000 0x0 0x00100000>;
+> +		reg-names = "dbi", "dbi2", "apb", "addr_space", "atu";
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Isn't it common to define 'reg' property just below 'compatible'?
 
 - Mani
 
-> ---
->  drivers/misc/pci_endpoint_test.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index c38a6083f0a7..a7f593b4e3b3 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -84,6 +84,9 @@
->  #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
->  #define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
->  
-> +#define PCI_VENDOR_ID_ROCKCHIP			0x1d87
-> +#define PCI_DEVICE_ID_ROCKCHIP_RK3588		0x3588
-> +
->  static DEFINE_IDA(pci_endpoint_test_ida);
->  
->  #define to_endpoint_test(priv) container_of((priv), struct pci_endpoint_test, \
-> @@ -980,6 +983,11 @@ static const struct pci_endpoint_test_data j721e_data = {
->  	.irq_type = IRQ_TYPE_MSI,
->  };
->  
-> +static const struct pci_endpoint_test_data rk3588_data = {
-> +	.alignment = SZ_64K,
-> +	.irq_type = IRQ_TYPE_MSI,
-> +};
-> +
->  static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA74x),
->  	  .driver_data = (kernel_ulong_t)&default_data,
-> @@ -1017,6 +1025,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721S2),
->  	  .driver_data = (kernel_ulong_t)&j721e_data,
->  	},
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_ROCKCHIP, PCI_DEVICE_ID_ROCKCHIP_RK3588),
-> +	  .driver_data = (kernel_ulong_t)&rk3588_data,
-> +	},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(pci, pci_endpoint_test_tbl);
-> 
-> -- 
-> 2.44.0
-> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
