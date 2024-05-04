@@ -1,134 +1,129 @@
-Return-Path: <devicetree+bounces-64953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A548BBC6B
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 16:28:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A728BBCEE
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 18:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853091C20F10
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 14:28:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C707528272A
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 16:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FC33AC0C;
-	Sat,  4 May 2024 14:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6DB3CF63;
+	Sat,  4 May 2024 16:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="O+Cinq1G"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="hPvSedsp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09CF381D9;
-	Sat,  4 May 2024 14:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C764023767;
+	Sat,  4 May 2024 16:00:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714832882; cv=none; b=nFv0iz7/3P8a0Qw9XCsHdF+XR6r/MRYFrDWyRXmJzzTF+3fWsIb6vgTwpRXI+/ruDH7ClJaONzSVoFL/ZCeZBlH8u77irKlQkAjo6R0ISzp0/ZAMbSyRxQEb6EVBmKsWnaNs8a3AfbuRIXhOyeDhFSRIStGeIa5D7bR09ES7uNU=
+	t=1714838406; cv=none; b=Uzc7a0VAWhd6mNEv8txU7+Tc/CHwBKmhM9Z/RMcwOqYy9qn701XIfeNlFj1bAr2IhqlKQ1cQonGLt5Ju9CEe91e549rr0Quhypb+FC4JBwGA0wDBL+tsjyR9gSr+FF0m1bi15iujyFntsemzzs7GCqXAJT9YkPnPEhSYfY7OWBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714832882; c=relaxed/simple;
-	bh=HwPv9+AKMyHTHzY4fmj1exHYqsjVJIW4ECxeKr4NcwM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UEvxL9VbAvk1U2iebj6txM+e/nZH0BqiiPW16gtQN3vfzrWdZAGsqK7tv3BhCngdPEA3qkUjs1IUXj111DE9AwD1aV/9Fne5qtHrr5hujhXVl435kZSc5N5wLOPGKt6RFYWhVtS1zULE0qn2ZDxYkYLunFrJmddZD3+tzrbNtKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=O+Cinq1G; arc=none smtp.client-ip=80.12.242.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([86.243.17.157])
-	by smtp.orange.fr with ESMTPA
-	id 3GMjsEyZGuPiV3GMks2HSj; Sat, 04 May 2024 16:27:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1714832877;
-	bh=RqYKhXyxQzsUalkpz50XF6z0vFeF3FJ712ZCIzLOHG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=O+Cinq1GHFo+jJb97aeSNFRGj+H8OP8dSpV1RTewlr5gqGFWj53U9nVBYsLVvR17A
-	 aYOjbdrUmOsjkOoDotHQUmjYU3Eau+pmDq17bSYJHRJRtJKFy3jcUsqF5RNTc+ZJeM
-	 rgb6nt8YEfd/qknPKkLPGrOD5NrrNPFxuOilOnYZLx3kSn4yul/Is530EWIv8UT3kP
-	 Inj4NRv0/vpB9qdqvD8hZaqfWayVMZrgYvbkcl1rFOeW/C+5XlBThL2EIySkOokDiB
-	 3e46zWAq8OYdwC9URU18DTDrq2QVY+0Eyy0ldIVJhJilnkdSjyNoayU+kJMW/F+bao
-	 beI882/ZtHiMg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 04 May 2024 16:27:57 +0200
-X-ME-IP: 86.243.17.157
-Message-ID: <38193848-597d-47c1-9aea-5357e58f9983@wanadoo.fr>
-Date: Sat, 4 May 2024 16:27:53 +0200
+	s=arc-20240116; t=1714838406; c=relaxed/simple;
+	bh=2CfHE6U1TpkNccPPQ+ztJD0Glq/+yNTjt96lxseYs9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AFC2ixPzORGB+yeuuNlVAqLTKB6Jg8QMGKhRWTUlVuCWv2Tn3X3632Gry+Pu8V1XpBw869a9Lw981YKLIem/7QLRYHnJxCMFYhKx6r2e3f0afWBAhwglkn7Dir0xfPIFgFqYIH86xpQczT+szFXkpfy340n92oqro5Au6y/hdLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=hPvSedsp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D204C072AA;
+	Sat,  4 May 2024 16:00:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1714838405;
+	bh=2CfHE6U1TpkNccPPQ+ztJD0Glq/+yNTjt96lxseYs9w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hPvSedspztdtHSPN3XsMQ+YePzhvGV6PXZbpqNBYIQKQGzEhgcWZNr+okyglg99rQ
+	 0yEk8VpMdXRQp+bRoBPshGJKkBJSqqs6Rp8o4y26mTU8wBsCgnyuGVkEcjEOyi4wsW
+	 10UmPB7I7bt1NVTHNn/zWY6PsJR864PffTHSLVb4=
+Date: Sat, 4 May 2024 18:00:01 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+Cc: Jiri Slaby <jirislaby@kernel.org>,
+	Oliver Hartkopp <socketcan@hartkopp.net>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v3 03/11] tty: serdev: Add flag buffer aware
+ receive_buf_fp()
+Message-ID: <2024050410-gigolo-giddily-97b6@gregkh>
+References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
+ <20240502182804.145926-4-christoph.fritz@hexdev.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/12] dmaengine: Add STM32 DMA3 support
-To: amelie.delaunay@foss.st.com
-Cc: alexandre.torgue@foss.st.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, mcoquelin.stm32@gmail.com,
- robh+dt@kernel.org, vkoul@kernel.org
-References: <20240423123302.1550592-1-amelie.delaunay@foss.st.com>
- <20240423123302.1550592-6-amelie.delaunay@foss.st.com>
-Content-Language: en-MW
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240423123302.1550592-6-amelie.delaunay@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240502182804.145926-4-christoph.fritz@hexdev.de>
 
-Le 23/04/2024 à 14:32, Amelie Delaunay a écrit :
-> STM32 DMA3 driver supports the 3 hardware configurations of the STM32 DMA3
-> controller:
-> - LPDMA (Low Power): 4 channels, no FIFO
-> - GPDMA (General Purpose): 16 channels, FIFO from 8 to 32 bytes
-> - HPDMA (High Performance): 16 channels, FIFO from 8 to 256 bytes
-> Hardware configuration of the channels is retrieved from the hardware
-> configuration registers.
-> The client can specify its channel requirements through device tree.
-> STM32 DMA3 channels can be individually reserved either because they are
-> secure, or dedicated to another CPU.
-> Indeed, channels availability depends on Resource Isolation Framework
-> (RIF) configuration. RIF grants access to buses with Compartiment ID
-> (CIF) filtering, secure and privilege level. It also assigns DMA channels
-> to one or several processors.
-> DMA channels used by Linux should be CID-filtered and statically assigned
-> to CID1 or shared with other CPUs but using semaphore. In case CID
-> filtering is not configured, dma-channel-mask property can be used to
-> specify available DMA channels to the kernel, otherwise such channels
-> will be marked as reserved and can't be used by Linux.
+On Thu, May 02, 2024 at 08:27:56PM +0200, Christoph Fritz wrote:
+> This patch introduces an additional receive buffer callback variation
+> besides the already existing receive_buf(). This new callback function
+> also passes the flag buffer (TTY_NORMAL, TTY_BREAK, and friends).
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay-rj0Iel/JR4NBDgjK7y7TUQ@public.gmane.org>
+> If defined, this function gets prioritized and called instead of the
+> standard receive_buf().
+> 
+> An alternative approach could have been to enhance the receive_buf()
+> function and update all drivers that use it.
+
+Please, let's do that instead of adding random letters at the end of a
+function pointer :)
+
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
 > ---
+>  drivers/tty/serdev/serdev-ttyport.c |  2 +-
+>  include/linux/serdev.h              | 17 ++++++++++++++---
+>  2 files changed, 15 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/tty/serdev/serdev-ttyport.c b/drivers/tty/serdev/serdev-ttyport.c
+> index 3d7ae7fa50186..bb47691afdb21 100644
+> --- a/drivers/tty/serdev/serdev-ttyport.c
+> +++ b/drivers/tty/serdev/serdev-ttyport.c
+> @@ -32,7 +32,7 @@ static size_t ttyport_receive_buf(struct tty_port *port, const u8 *cp,
+>  	if (!test_bit(SERPORT_ACTIVE, &serport->flags))
+>  		return 0;
+>  
+> -	ret = serdev_controller_receive_buf(ctrl, cp, count);
+> +	ret = serdev_controller_receive_buf(ctrl, cp, fp, count);
+>  
+>  	dev_WARN_ONCE(&ctrl->dev, ret > count,
+>  				"receive_buf returns %zu (count = %zu)\n",
+> diff --git a/include/linux/serdev.h b/include/linux/serdev.h
+> index ff78efc1f60df..c6ef5a8988e07 100644
+> --- a/include/linux/serdev.h
+> +++ b/include/linux/serdev.h
+> @@ -23,11 +23,17 @@ struct serdev_device;
+>   * struct serdev_device_ops - Callback operations for a serdev device
+>   * @receive_buf:	Function called with data received from device;
+>   *			returns number of bytes accepted; may sleep.
+> + * @receive_buf_fp:	Function called with data and flag buffer received
+> + *			from device; If defined, this function gets called
+> + *			instead of @receive_buf;
+> + *			returns number of bytes accepted; may sleep.
 
-...
+I don't remember waht "fp" means here, and you don't document it, so
+let's just have one recieve_buf() callback please.
 
-> +	pm_runtime_set_active(&pdev->dev);
-> +	pm_runtime_enable(&pdev->dev);
-> +	pm_runtime_get_noresume(&pdev->dev);
-> +	pm_runtime_put(&pdev->dev);
-> +
-> +	dev_info(&pdev->dev, "STM32 DMA3 registered rev:%lu.%lu\n",
-> +		 FIELD_GET(VERR_MAJREV, verr), FIELD_GET(VERR_MINREV, verr));
-> +
-> +	return 0;
-> +
-> +err_clk_disable:
-> +	clk_disable_unprepare(ddata->clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static void stm32_dma3_remove(struct platform_device *pdev)
-> +{
-> +	pm_runtime_disable(&pdev->dev);
+thanks,
 
-Hi,
-
-missing clk_disable_unprepare(ddata->clk);?
-
-as in the error handling path on the probe just above?
-
-CJ
-
-> +}
-
-...
-
+greg k-h
 
