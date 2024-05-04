@@ -1,199 +1,204 @@
-Return-Path: <devicetree+bounces-64927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CB58BB9AA
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 08:50:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C39C78BB9E6
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 10:01:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BE57283AF3
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 06:50:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 319CA1F222E1
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 08:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34F14689;
-	Sat,  4 May 2024 06:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D603CD29E;
+	Sat,  4 May 2024 08:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lvDgUplk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eyutCsiu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B4712B7D;
-	Sat,  4 May 2024 06:50:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF0128EA;
+	Sat,  4 May 2024 08:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714805410; cv=none; b=IOzDHDSAlFkW3DE5LRr7KQ9xCwNK6WGmLWO5Fp9D27QzVTY2svFNi0X//JNDZF5psmaWV3KGD8wv/PqFT8E5UQkHOgIFBumCSUG4CrP0xdDBXNfBOokLEkwMaeW3/CnBJyFy+Kc9TUXTQy9rLjcbC5ik+hNQgxwFOR+bBFd03Is=
+	t=1714809696; cv=none; b=oBoUMR+nFPxHUGK1RYZHkEtV3WDZbJK56DpaiSNfl5hTOed8W9DauExQNucYLb34cQsXbuT1TLCrx4NffCSKt9862ixlVI19GoR7oldiELzqM95Fs6X8KuBzNhpiJdhWTNPTmG13GhWIHh7Ii71CGPJWFhWfYwoTza5IJOMEa5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714805410; c=relaxed/simple;
-	bh=R0TlPIIIm/V0GkqkwHs+5v9yj/zJg44U1G0GZwq2Xw8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rEUFiiSfKOPYYLygpqtrJ4OUQ1pX+dSvUoDUoVMH6n9dYwYM1GP20lbClg4qoLVF5g0cEoDkiw3G5TXNfAAhMkeHiWeoOxJsDHJyzBn+zrRwdaeiE6TgcefeoDF1aQ0pKYNa+7RGHjVmBi26Ar8XUqLH4mqijvskV6twmzz8xBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lvDgUplk; arc=none smtp.client-ip=209.85.161.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5af23552172so338609eaf.1;
-        Fri, 03 May 2024 23:50:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714805407; x=1715410207; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O2sbKjYzT4x1UoL5RpmaK50wwtSEQgH7b73Ky6YXb1k=;
-        b=lvDgUplkraVsWnsSW5ndmK3tUHW+HuhAOgMVQ3kL6TwdjrOT5WGFMMxD9YQuUoD79T
-         1vlJ5EN3WTaFSiyJ9zzY6t0YVK2paueQDa1a/tZxHQTUV34q15pKrk8ny4LgbEJ+UU49
-         HwRhMD23yjY4GQjqJkbOTUXiyGdYm5r5JStBkAZkagGAt+H77MYCbZQztUYe8nJzdRFT
-         /UQGCUPGmxY//M5+UCrPkZTAR1c/BB29mptZywk8VG/KMcLJyPlEFeG6N/q28W+15LEF
-         FB0jTofTk6ghcGL51yw6WMImcjp7Y2T2kgZzBI+Bu1aoW34karJJeLOazAAgo2qB+4n6
-         aJAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714805407; x=1715410207;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O2sbKjYzT4x1UoL5RpmaK50wwtSEQgH7b73Ky6YXb1k=;
-        b=mivFycyAdobWQRL7EkxR+pnnXfkpuifeZmejXAeKiLg6/EUxfi1g7kuAF4sNdYsfiI
-         Ts7bG3v2NsR8scA+41ire5b7FIuTD5OGQZSfXkba2yHC6LRbDaGTBqLKK/HhtKyJk0cj
-         AwXa13KTs/Kxm+AEjrHG2u0XQLpLuXnCG6I8ooI+WJymxv8vmIdCq1QJwFohdPN+bju4
-         0cynAtM+2rN9A/EOj+o4JzyPalyk+Zn3SzodymnDs9oZE/MskROpdI+iwms9tzI2KHGT
-         w/tWwcFfB5dnw87DbvqitNaIecRdZO5dFN6RjQYQY5inU3qU380Epq/ZOnKwuJSztIkb
-         WeVg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJAxsOgon2igN3seRPemVjSxvujHxRej5S5+F7szsR5uaIhT4PzFc3r/QNAO2ZzsiLKdYlrue1W8W4Wm5xYWPu79U3MkDa+3HcjVgqqKavXmCBE+yoEIKTjuk+XN2GVvxoUq0MJOq7nNcUiedRwWwCiV3aGCzk39X0F4TnpOkQOrePzA==
-X-Gm-Message-State: AOJu0YxQA1i4oTGydfHbvd4jDaFkAN7xj42FVaFzZpodWQZ5Z8M4p1iy
-	fA9bmwDYb7xcxib2DI46b4OwImm2DrDdARvFD9B9ejGq22Fn2BIQ6UmE4F9KlbvjXGeKdguY4z+
-	okGTjv209A3Ar7yyZ02TvN8PHf7s=
-X-Google-Smtp-Source: AGHT+IGWGhtJnlnrAsPTnGzkKYDaCZgrwiomT047J2Lrj8CoCeY+IesKUjnqTtkUFM1xQM+nuPuMXVzwgBopTqoH23w=
-X-Received: by 2002:a4a:dd95:0:b0:5ac:9f5f:fbdf with SMTP id
- h21-20020a4add95000000b005ac9f5ffbdfmr4665249oov.4.1714805405859; Fri, 03 May
- 2024 23:50:05 -0700 (PDT)
+	s=arc-20240116; t=1714809696; c=relaxed/simple;
+	bh=U6WZzZKbEA0lnbJAvsjBxMcDOnhoQXC4iJmnwhPM5Z8=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tWCokYGJ3b5B6OJ/Ge2SWw+l/LlIld9sCOPw5nHCO6n/r8sA3uVhQ6fq05XZykT5LJv3gup8gEP6COsTLWCP3qFdyTP4QA5Hr8FFJfRQ0+UHGKp9Wkn4ek9tlqGdvTXKzDzQCoZT1Dhbey2GwK15b4eTI93q90FLXlAPAuuWeGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eyutCsiu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4447g9xP026432;
+	Sat, 4 May 2024 08:01:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=+6Mbl8PCq39bVOAadjMGu
+	XgFbjxOzCts41TLEvEKtks=; b=eyutCsiuI7hXftSA2MoTIrSkwLwrJcCqWJaLi
+	75MZL4J8F/RQWMytRgRLY7dJiGFuI37p5OEM0tZzb/H87fR9uhy0enQl9/YdzgbB
+	+T2iHLrHDFDKLWpEgYt4Tqfoee+JlmT7UvL2f5Tmwtkd9rOAIjDHZ6lWpo3n0CcQ
+	IClFfPypDGo7zTEFrZJAlHm8m7TiuIok1rZVdg/UiqS0ZSlWxkEewxfaZ14Re7o9
+	xkme5gVacuWoDp9WzYhEkdMSJP1lanJ5O5zoATLknN1rXTN/Ei1DYSnsaEne2hxq
+	7Xpd01DDUKArn1hi6ZLMm8xQ5col7NspmPQ6jy0AjADaga7VA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xwc1c0c1q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 04 May 2024 08:01:29 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44481Sqc028949
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 4 May 2024 08:01:28 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sat, 4 May 2024 01:01:23 -0700
+Date: Sat, 4 May 2024 13:31:19 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <quic_anusha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v11 0/6] Add interconnect driver for IPQ9574 SoC
+Message-ID: <ZjXrTywO6+iRaEYk@hu-varada-blr.qualcomm.com>
+References: <20240430064214.2030013-1-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com> <PN1P287MB2818F3818BEBE875C460F158FE1F2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
-In-Reply-To: <PN1P287MB2818F3818BEBE875C460F158FE1F2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Sat, 4 May 2024 14:49:54 +0800
-Message-ID: <CAJRtX8SRudWy7q-ON3L-oTjQo8+GCKPX9_sP8Dq8p3t915yvMQ@mail.gmail.com>
-Subject: Re: [PATCH v7 0/2] riscv: pwm: sophgo: add pwm support for CV1800
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, dlan@gentoo.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240430064214.2030013-1-quic_varada@quicinc.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: opBfPShReaSeGuYFaYc3g2cxm-g4KYMV
+X-Proofpoint-ORIG-GUID: opBfPShReaSeGuYFaYc3g2cxm-g4KYMV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-04_04,2024-05-03_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 priorityscore=1501
+ malwarescore=0 mlxlogscore=999 adultscore=0 bulkscore=0 impostorscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405040057
 
-On Fri, May 3, 2024 at 9:47=E2=80=AFAM Chen Wang <unicorn_wang@outlook.com>=
- wrote:
+Bjorn,
+
+> On Tue, Apr 30, 2024 at 12:12:08PM +0530, Varadarajan Narayanan wrote:
+> MSM platforms manage NoC related clocks and scaling from RPM.
+> However, in IPQ SoCs, RPM is not involved in managing NoC
+> related clocks and there is no NoC scaling.
 >
-> Hi, Jingbao,
+> However, there is a requirement to enable some NoC interface
+> clocks for the accessing the peripherals present in the
+> system. Hence add a minimalistic interconnect driver that
+> establishes a path from the processor/memory to those peripherals
+> and vice versa.
 >
-> This patchset should also be sent to the linux-riscv mailinglist.
-
-I will do that.
-
+> Change icc-clk driver to take master and slave ids instead
+> of auto generating.
 >
-> On 2024/5/1 16:32, Jingbao Qiu wrote:
-> > The Sophgo CV1800 chip provides a set of four independent
-> > PWM channel outputs.
-> > This series adds PWM controller support for Sophgo cv1800.
-> >
-> > Changes since v6:
-> > - add detailed Limitations
-> > - using BIT(n) instead BIT(0) << n
-> > - use 0 instead of disable macro
-> > - modify OE judgment criteria
-> > - add devm_regmap_init_mmio error message
-> > - delete unused variable
-> >
-> > v6: https://lore.kernel.org/all/20240406063413.3334639-1-qiujingbao.dlm=
-u@gmail.com/
-> >
-> > Changes since v5:
-> > - delete the OE function because we plan to use the counter subsystem
-> >    instead of capture, so there is no need to reuse this code.
-> > - fix set polarity reverse error.
-> >
-> > v5: https://lore.kernel.org/all/20240314100131.323540-1-qiujingbao.dlmu=
-@gmail.com/
-> >
-> > Changes since v4:
-> > - drop filename
-> > - fix macro
-> > - optimize cv1800_pwm_set_polarity()
-> > - optimize cv1800_pwm_set_oe()
-> > - add comment for cv1800_pwm_set_oe()
-> > - use ticks replace tem
-> > - fix duty_cycle larger than period_val
-> > - use devm_clk_rate_exclusive_get() replace
-> >    clk_rate_exclusive_get()
-> > - map linux polarity to register polarity
-> >
-> > v4: https://lore.kernel.org/all/20240304085933.1246964-1-qiujingbao.dlm=
-u@gmail.com/
-> >
-> > datasheet Link: https://github.com/milkv-duo/duo-files/blob/main/duo/da=
-tasheet/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
-> > page 614
-> >
-> > Changes since v3:
-> > - use macro instead of npwm number
-> > - add support for polarity feature
-> > - add support for Output-Enable/OE feature
-> >
-> > v3: https://lore.kernel.org/all/20240223082014.109385-1-qiujingbao.dlmu=
-@gmail.com/
-> >
-> > Changes since v2:
-> > - use 0x08 instead of macro
-> > - split if statements based on conditions
-> > - in order to round up, first calculate the
-> >    number of high-level cycles, then subtract
-> >    it from the PERIOD to obtain the number of HLPERIOD
-> > - use new pwmchip_alloc() API instead of old style
-> >
-> > v2: https://lore.kernel.org/all/20240212121729.1086718-1-qiujingbao.dlm=
-u@gmail.com/
-> >
-> > Changes since v1:
-> > - drop full stop from subject
-> > - re-order maintainers and description
-> > - pass checkpatch.pl --strict
-> > - fix naming errors
-> > - add "Limitations" section
-> > - use a driver specific prefix for all defines
-> > - using bool instead u32 in cv1800_pwm_enable
-> > - check and set state->polarity
-> > - use mul_u64_u64_div_u64
-> > - use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
-> > - using macro definitions instead of shift operations
-> > - remove shift operation on 0
-> > - use priv replace cv_pwm
-> > - hardcode npwm
-> > - set atomic to true
-> > - remove MODULE_ALIAS
-> >
-> > v1: https://lore.kernel.org/all/20240207055856.672184-1-qiujingbao.dlmu=
-@gmail.com/
-> >
-> > Jingbao Qiu (2):
-> >    dt-bindings: pwm: sophgo: add pwm for Sophgo CV1800 series SoC
-> >    pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-> >
-> >   .../bindings/pwm/sophgo,cv1800-pwm.yaml       |  45 +++
-> >   drivers/pwm/Kconfig                           |  10 +
-> >   drivers/pwm/Makefile                          |   1 +
-> >   drivers/pwm/pwm-cv1800.c                      | 293 +++++++++++++++++=
-+
-> >   4 files changed, 349 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,cv180=
-0-pwm.yaml
-> >   create mode 100644 drivers/pwm/pwm-cv1800.c
-> >
-> >
-> > base-commit: 32c44e1fa921aebf8a5ef9f778534a30aab39313
+> Currently, drivers/clk/qcom/clk-cbf-8996.c is the only user of
+> icc-clk. And, it had exactly one master and one slave node.
+> For this the auto generated master (= 1) and slave (= 0) was
+> enough.
+>
+> However, when drivers/clk/qcom/gcc-ipq9574.c wanted to make use
+> of the icc-clk framework, it had more number of master and slave
+> nodes and the auto generated ids did not suit the usage.
+>
+> ---
+> v11:	No code changes
+> 	Commit log changed for the first patch
+> 	Added Acked-By: to 3 patches
 
-Best regards
-Jingbao Qiu
+Can this be included in your driver changes for 6.10?
+
+Thanks
+Varada
+
+> v10:	Set gcc-ipq9574 driver's sync_state to icc_sync_state
+> v9:	Squash icc-clk driver change and cbf-msm8996 change
+> 	Remove HWS_DATA macro
+> v8:	Change icc-clk driver to take master and slave ids instead
+> 	of auto generating
+> 	Remove ICC_xxx defines from dt-bindings header
+> 	Define MASTER/SLAVE_xxx macros from 0 .. n
+>
+> v7:	Fix macro names in dt-bindings header
+> 	Do clock get in icc driver
+>
+> v6:	Removed 'Reviewed-by: Krzysztof' from dt-bindings patch
+> 	Remove clock get from ICC driver as suggested by Stephen Boyd
+> 	so that the actual peripheral can do the clock get
+> 	first_id -> icc_first_node_id
+> 	Remove tristate from INTERCONNECT_CLK
+> v5:
+> 	Split gcc-ipq9574.c and common.c changes into separate patches
+> 	Introduce devm_icc_clk_register
+> 	Fix error handling
+> v4:
+> gcc-ipq9574.c
+> 	Use clk_hw instead of indices
+> common.c
+> 	Do icc register in qcom_cc_probe() call stream
+> common.h
+> 	Add icc clock info to qcom_cc_desc structure
+>
+> v3:
+> qcom,ipq9574.h
+> 	Move 'first id' define to clock driver
+> gcc-ipq9574.c:
+> 	Use indexed identifiers here to avoid confusion
+> 	Fix error messages and move code to common.c as it can be
+> 	shared with future SoCs
+>
+> v2:
+> qcom,ipq9574.h
+> 	Fix license identifier
+> 	Rename macros
+> qcom,ipq9574-gcc.yaml
+> 	Include interconnect-cells
+> gcc-ipq9574.c
+> 	Update commit log
+> 	Remove IS_ENABLED(CONFIG_INTERCONNECT) and auto select it from Kconfig
+> ipq9574.dtsi
+> 	Moved to separate patch
+> 	Include interconnect-cells to clock controller node
+> drivers/clk/qcom/Kconfig:
+> 	Auto select CONFIG_INTERCONNECT & CONFIG_INTERCONNECT_CLK
+>
+> Varadarajan Narayanan (6):
+>   interconnect: icc-clk: Specify master/slave ids
+>   dt-bindings: interconnect: Add Qualcomm IPQ9574 support
+>   interconnect: icc-clk: Add devm_icc_clk_register
+>   clk: qcom: common: Add interconnect clocks support
+>   clk: qcom: ipq9574: Use icc-clk for enabling NoC related clocks
+>   arm64: dts: qcom: ipq9574: Add icc provider ability to gcc
+>
+>  .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  2 +
+>  drivers/clk/qcom/Kconfig                      |  2 +
+>  drivers/clk/qcom/clk-cbf-8996.c               |  7 ++-
+>  drivers/clk/qcom/common.c                     | 35 ++++++++++-
+>  drivers/clk/qcom/common.h                     |  9 +++
+>  drivers/clk/qcom/gcc-ipq9574.c                | 33 +++++++++++
+>  drivers/interconnect/icc-clk.c                | 24 +++++++-
+>  .../dt-bindings/interconnect/qcom,ipq9574.h   | 59 +++++++++++++++++++
+>  include/linux/interconnect-clk.h              |  4 ++
+>  10 files changed, 173 insertions(+), 5 deletions(-)
+>  create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+>
+> --
+> 2.34.1
+>
 
