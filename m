@@ -1,152 +1,134 @@
-Return-Path: <devicetree+bounces-64952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55F18BBBD7
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 15:14:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A548BBC6B
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 16:28:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4584A1F21D5D
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 13:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853091C20F10
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 14:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB53A37143;
-	Sat,  4 May 2024 13:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FC33AC0C;
+	Sat,  4 May 2024 14:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f55QqJAx"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="O+Cinq1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B788B2869B;
-	Sat,  4 May 2024 13:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09CF381D9;
+	Sat,  4 May 2024 14:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714828420; cv=none; b=lRbUbAl+/quFKuU/l5d+Z1vziUGed1kb5NN0Qv683csU70W4hmO9nDMf467E3GQPhkTgUGIUwocLfm4wpk7U2rqmhhcLHWih4fTkvsfM7y+tI6b5p0FmoidU5zg/Nyue365Fow/mCJT7sE/ev+1zeVw0ISmMfTTmq3DiuhC3fNE=
+	t=1714832882; cv=none; b=nFv0iz7/3P8a0Qw9XCsHdF+XR6r/MRYFrDWyRXmJzzTF+3fWsIb6vgTwpRXI+/ruDH7ClJaONzSVoFL/ZCeZBlH8u77irKlQkAjo6R0ISzp0/ZAMbSyRxQEb6EVBmKsWnaNs8a3AfbuRIXhOyeDhFSRIStGeIa5D7bR09ES7uNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714828420; c=relaxed/simple;
-	bh=mB1V0MUkulAejpMzif3U6Gw3lBLCZIYHOeyQLUDvPjA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i933ijvYleBJDjZ8AiNA+QhKxW1S/Wx32m8jbTr4SaK2CZvs0zII6Sep55JzmdWi253S/4WSgYbkdtYWvbmCVovF5Bq/e/sD5ZM+o1cT1JCBvZRi/O4UmxI9j0bV/wC7FJMoPtjCdUFc1Mj2rIurDjMSdeMLzwVZSu8YH8WJAWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f55QqJAx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87CF5C32789;
-	Sat,  4 May 2024 13:13:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714828420;
-	bh=mB1V0MUkulAejpMzif3U6Gw3lBLCZIYHOeyQLUDvPjA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=f55QqJAxT/lIQdmjxJGUyFxh5HNjCIsMMZa7zAaka9pq1d53AX+g4sQI0oaTtrCyx
-	 ZGp61wedXpJlm5voqcO3eBfolunlk91fRAobCCxgTKeSHCLcTtB8HX+XCEaOjfainy
-	 vCN08QlPHPtGfON5VyyB64vbYMxg2dMD7MFkVTdS6x08rRtZBcHejB1BzEgAuH17Qv
-	 v7GUrrh3G/VfYw0hfhYf2iLz56jKL5uTwRWeyhSV0ZHExeYFBbGV/0GMRww8791iuK
-	 0DBXUFqz/5LAljDqg5qt1sw3AUMQViJp4rlRRPUwjxxrYwhqD+nKF3gccYjF+syG5c
-	 zrKwv+apQ85fw==
-Date: Sat, 4 May 2024 14:13:31 +0100
-From: Simon Horman <horms@kernel.org>
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-Cc: Oliver Hartkopp <socketcan@hartkopp.net>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v2 07/12] can: Add support for serdev LIN adapters
-Message-ID: <20240504131331.GL3167983@kernel.org>
-References: <20240502075534.882628-1-christoph.fritz@hexdev.de>
- <20240502075534.882628-8-christoph.fritz@hexdev.de>
+	s=arc-20240116; t=1714832882; c=relaxed/simple;
+	bh=HwPv9+AKMyHTHzY4fmj1exHYqsjVJIW4ECxeKr4NcwM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UEvxL9VbAvk1U2iebj6txM+e/nZH0BqiiPW16gtQN3vfzrWdZAGsqK7tv3BhCngdPEA3qkUjs1IUXj111DE9AwD1aV/9Fne5qtHrr5hujhXVl435kZSc5N5wLOPGKt6RFYWhVtS1zULE0qn2ZDxYkYLunFrJmddZD3+tzrbNtKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=O+Cinq1G; arc=none smtp.client-ip=80.12.242.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([86.243.17.157])
+	by smtp.orange.fr with ESMTPA
+	id 3GMjsEyZGuPiV3GMks2HSj; Sat, 04 May 2024 16:27:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1714832877;
+	bh=RqYKhXyxQzsUalkpz50XF6z0vFeF3FJ712ZCIzLOHG8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=O+Cinq1GHFo+jJb97aeSNFRGj+H8OP8dSpV1RTewlr5gqGFWj53U9nVBYsLVvR17A
+	 aYOjbdrUmOsjkOoDotHQUmjYU3Eau+pmDq17bSYJHRJRtJKFy3jcUsqF5RNTc+ZJeM
+	 rgb6nt8YEfd/qknPKkLPGrOD5NrrNPFxuOilOnYZLx3kSn4yul/Is530EWIv8UT3kP
+	 Inj4NRv0/vpB9qdqvD8hZaqfWayVMZrgYvbkcl1rFOeW/C+5XlBThL2EIySkOokDiB
+	 3e46zWAq8OYdwC9URU18DTDrq2QVY+0Eyy0ldIVJhJilnkdSjyNoayU+kJMW/F+bao
+	 beI882/ZtHiMg==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 04 May 2024 16:27:57 +0200
+X-ME-IP: 86.243.17.157
+Message-ID: <38193848-597d-47c1-9aea-5357e58f9983@wanadoo.fr>
+Date: Sat, 4 May 2024 16:27:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240502075534.882628-8-christoph.fritz@hexdev.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/12] dmaengine: Add STM32 DMA3 support
+To: amelie.delaunay@foss.st.com
+Cc: alexandre.torgue@foss.st.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, mcoquelin.stm32@gmail.com,
+ robh+dt@kernel.org, vkoul@kernel.org
+References: <20240423123302.1550592-1-amelie.delaunay@foss.st.com>
+ <20240423123302.1550592-6-amelie.delaunay@foss.st.com>
+Content-Language: en-MW
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240423123302.1550592-6-amelie.delaunay@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 02, 2024 at 09:55:29AM +0200, Christoph Fritz wrote:
-> This commit introduces LIN-Bus support for UART devices equipped with
-> LIN transceivers, utilizing the Serial Device Bus (serdev) interface.
+Le 23/04/2024 à 14:32, Amelie Delaunay a écrit :
+> STM32 DMA3 driver supports the 3 hardware configurations of the STM32 DMA3
+> controller:
+> - LPDMA (Low Power): 4 channels, no FIFO
+> - GPDMA (General Purpose): 16 channels, FIFO from 8 to 32 bytes
+> - HPDMA (High Performance): 16 channels, FIFO from 8 to 256 bytes
+> Hardware configuration of the channels is retrieved from the hardware
+> configuration registers.
+> The client can specify its channel requirements through device tree.
+> STM32 DMA3 channels can be individually reserved either because they are
+> secure, or dedicated to another CPU.
+> Indeed, channels availability depends on Resource Isolation Framework
+> (RIF) configuration. RIF grants access to buses with Compartiment ID
+> (CIF) filtering, secure and privilege level. It also assigns DMA channels
+> to one or several processors.
+> DMA channels used by Linux should be CID-filtered and statically assigned
+> to CID1 or shared with other CPUs but using semaphore. In case CID
+> filtering is not configured, dma-channel-mask property can be used to
+> specify available DMA channels to the kernel, otherwise such channels
+> will be marked as reserved and can't be used by Linux.
 > 
-> For more details on an adapter, visit: https://hexdev.de/hexlin#tty
-> 
-> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay-rj0Iel/JR4NBDgjK7y7TUQ@public.gmane.org>
+> ---
 
 ...
 
-> diff --git a/drivers/net/can/lin-serdev.c b/drivers/net/can/lin-serdev.c
-
-...
-
-> +static int linser_probe(struct serdev_device *serdev)
-> +{
-> +	struct linser_priv *priv;
-> +	int ret;
+> +	pm_runtime_set_active(&pdev->dev);
+> +	pm_runtime_enable(&pdev->dev);
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	pm_runtime_put(&pdev->dev);
 > +
-> +	priv = devm_kzalloc(&serdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	ret = kfifo_alloc(&priv->rx_fifo, LINSER_RX_FIFO_SIZE, GFP_KERNEL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	INIT_DELAYED_WORK(&priv->rx_work, linser_process_delayed);
-> +
-> +	priv->serdev = serdev;
-> +	serdev_device_set_drvdata(serdev, priv);
-> +	serdev_device_set_client_ops(serdev, &linser_ops);
-> +
-> +	ret = serdev_device_open(serdev);
-> +	if (ret) {
-> +		dev_err(&serdev->dev, "Unable to open device\n");
-> +		goto err_open;
-> +	}
-> +
-> +	serdev_device_set_flow_control(serdev, false);
-> +	serdev_device_set_break_detection(serdev, true);
-> +	linser_derive_timings(priv, LIN_DEFAULT_BAUDRATE);
-> +
-> +	mutex_init(&priv->resp_lock);
-> +
-> +	priv->lin_dev = register_lin(&serdev->dev, &linser_lindev_ops);
-> +	if (IS_ERR_OR_NULL(priv->lin_dev)) {
-> +		ret = PTR_ERR(priv->lin_dev);
-
-As per my feedback on an earlier patch in the series,
-in the case where priv->lin_dev is NULL,
-this will result in the function returning 0.
-Is that ok?
-
-Flagged by Smatch
-
-> +		goto err_register_lin;
-> +	}
-> +
-> +	serdev_device_close(serdev);
-> +	priv->is_stopped = true;
+> +	dev_info(&pdev->dev, "STM32 DMA3 registered rev:%lu.%lu\n",
+> +		 FIELD_GET(VERR_MAJREV, verr), FIELD_GET(VERR_MINREV, verr));
 > +
 > +	return 0;
 > +
-> +err_register_lin:
-> +	serdev_device_close(serdev);
-> +err_open:
-> +	kfifo_free(&priv->rx_fifo);
+> +err_clk_disable:
+> +	clk_disable_unprepare(ddata->clk);
+> +
 > +	return ret;
+> +}
+> +
+> +static void stm32_dma3_remove(struct platform_device *pdev)
+> +{
+> +	pm_runtime_disable(&pdev->dev);
+
+Hi,
+
+missing clk_disable_unprepare(ddata->clk);?
+
+as in the error handling path on the probe just above?
+
+CJ
+
 > +}
 
 ...
+
 
