@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-64945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6F38BBB7E
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 14:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FEFA8BBB85
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 14:46:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91F88282B0B
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 12:45:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C747282C3B
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 12:46:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD29321342;
-	Sat,  4 May 2024 12:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8672422339;
+	Sat,  4 May 2024 12:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5rBCQ7Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sjjIW+TY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206154A1C
-	for <devicetree@vger.kernel.org>; Sat,  4 May 2024 12:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81D820DF7
+	for <devicetree@vger.kernel.org>; Sat,  4 May 2024 12:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714826726; cv=none; b=P+f1Pvt5S74dkqtB3WsB0KwYEYlzjErrsjz1TAG2JN5i0K4TIS6WBblHxVLz/DS6cd4YdF7v7HCgdB7A24rkBpkSmPT6jQxBf6kb8vMUWTmxjll8XBTwLJrkH9+HASLinqM+5fc3hO6INaShk4ue9Iu5kjBUk3oOMTL8VYuiKXE=
+	t=1714826781; cv=none; b=GMOVS5yRWvP7PjN4NL5E1zqR2635zAZUiw8Zdf3byr9zIadThtjy78W76V14zTV1LxomQGApx9ksbnUgd3foBggg2YIez6wtKQALbLI81mfBVc0VdaIjgX+LjodYQp1YEjtUALxmp4MYYbpDcqV+pu85nYWqESlB+kUuHpU7hOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714826726; c=relaxed/simple;
-	bh=ga4oIcPdFMozDH6CQXgueKmuB+AGJYrNPk9q8zLxDhk=;
+	s=arc-20240116; t=1714826781; c=relaxed/simple;
+	bh=gpmmrnU7n/M1SY2zLCrGThpVoWo83jzWS4f6KOlN3Tw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X8KQKZHAKGuRjtTn3H4x51u3PpC5AqwoXP8PxVOUqUKd6a/Twl34Bqj/vuXd2aio/+bmYQo/ioDxadQXfQtrLYQuzidbJvoWzxHkRgjw4sGzu9X+QHHXTJpq0SpzP/+E6hlcEI5Vaae6gBFh9TKtTTMGYri2m4vMDhDcLPulffk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5rBCQ7Y; arc=none smtp.client-ip=209.85.128.46
+	 In-Reply-To:Content-Type; b=Bp9n8O2/wrq8AqPKrDkO8bKWZ7IaEc2E9JjvHXfQMkjdaYcQ+Pco1RruR2Ulu6Q3MpkRxkVbCYfoija30Y7yur132rq6a2bYaHa0Z5dsqfnlITLKKJ3k1wOAVekNhD+DpDvFxldY7DuVXN2ngrO6hps0wmYjpbE0/9moHCSwrq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sjjIW+TY; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41c7ac71996so4744155e9.3
-        for <devicetree@vger.kernel.org>; Sat, 04 May 2024 05:45:24 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34da84cb755so439918f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 04 May 2024 05:46:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714826723; x=1715431523; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714826778; x=1715431578; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hQl9kri2DA7gvWk/T5ziKHmH1C/U4ARbgW6hV2wkE9w=;
-        b=D5rBCQ7Yz43WYZRwpVRYpE3vZ1H2pMRCgYESHAAUGNX76kAJxC1ZV6YsM2QXwCg8bJ
-         NiKz4aG/Awkc6q5j9dARygo9x9XybwrKydV8su/O6AD9b6yGkwMPmBTr/sqln7QEKFfl
-         KC75QjL2KrwUbQDRzfavsIc5P2qg2Gchs/pdclK5mzT6Elpq/RJiKco7PPGE6SkEAznx
-         WZSK5BpL3noxTS7mi3FmhlfSjr8HgbDrKjSI1E/VbeBnp8ye/g3gSPwnDD/yHapFS/xQ
-         zC2xicSI94IPBuabnrocsUzU3/eE04a3ZecduOo8BUoYvojRBdpudk0+rqKXFLmKoFcH
-         t5Kg==
+        bh=u3YTRloN9mydGPa3HnKZdKNzv3PmpmiSZpDCMGoktfk=;
+        b=sjjIW+TYd+hXeFrrwGD1ZXn9tu3YLLi6ZN8kBsJMsg6uVpWQ7W+Kd5zDbVMA0wrzG5
+         CPRVI+AyMLEHEtjQ7A5ujheymCBW4Y47bzk48/gqotTQhiAQlRsOQx3pQ6TCcZdvBEGj
+         bNcE8p0E3cX456e9xtYasN+Ml4LRmAxjbY8MLfnsBzGQJS071CT85XKCfhZ3hYqd3PFP
+         0ksUj874owNKqC7zBQBlAfGDyuSPEOopE7wS7xRMZh4b1+UOCANtNBkUiuXfo4vC/Y9A
+         Ah5hNrllmXyvQSIPTYMsh3uE9ZP/PoxTjvUwWQe2IQf5sFH4YZKbMTGM4skmqsw4HSiS
+         497w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714826723; x=1715431523;
+        d=1e100.net; s=20230601; t=1714826778; x=1715431578;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hQl9kri2DA7gvWk/T5ziKHmH1C/U4ARbgW6hV2wkE9w=;
-        b=pr0uU31n2mg8aseFqGfR1QJp54bbkAk/P3pZWfmCzJ4VpbA8Nyk/3G8RzUOAsxDoTe
-         ExBcj8XdNcYP3EQ/ghtgwzeOgLhFIESyp2A/MJEwouKG8hVUt+P8UzSdmYI8uQJvCTpE
-         YLNVCWCG54jODoYEutXkA9WZijYQqM9jRG0tkb+JD4sdAnbDYzVDFbqQ9OV2MPdk0z7W
-         WEnIh9UiOj7PLuzupO3yNzNkeqTM7ePwzEVDWls62F5mzfTa7zgzY57a92LAqA5aUOTx
-         Eg/1oiAXmLY07szrFfDl176kkAMZFzFrry1e51dBYG2qEt5ZtCak48Z9wNuatBrdRotR
-         4dDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUph4pepWw0HZDtEbRsG07fwBDkpXREMAHViLMB3BP79vTfiz+5d4Ga9x8hB+dqTU8yuhgos+1mdmMHODYyDnI2KlxlfIjjPCxvrQ==
-X-Gm-Message-State: AOJu0Yya4pYZwx08Mi005yj0+x0nfU7D3E0QphbTutjpQyy7p5krJA9Q
-	yBC4FK0458PXfN9K70x8u/pOSzIGNCpeYkz8ZhTbtKVXPH47Cn4eYmEJysN4BTM=
-X-Google-Smtp-Source: AGHT+IF1k5IoLYmFSDKuAvssFR9KQYJctJn7T8iOIF8P2hYtIJ9pSdVm/FB22nVk46Us1FWNHO6XLw==
-X-Received: by 2002:a05:600c:4fc3:b0:41a:ff7d:2473 with SMTP id o3-20020a05600c4fc300b0041aff7d2473mr3926844wmq.4.1714826723508;
-        Sat, 04 May 2024 05:45:23 -0700 (PDT)
+        bh=u3YTRloN9mydGPa3HnKZdKNzv3PmpmiSZpDCMGoktfk=;
+        b=ErjuY8X5qKDy8VwpNnhRN3PNob5NAhgscYeKBIWMGqUi2jR0/aHHARZzWMJclBzVq0
+         9Yu1KidrAzJHVx7T/Z+azXjHAF3i8j6usDmmiL00Nz+JItb9L2QUFn5K/yw+8thwZSjw
+         1VH8vdfLJNdlXZyMy/9QCCpNEngYyWSrm8bgkVoGWcutA86r2ZmarmE0N7IitQlLzfqv
+         eEtyuDF26rcLxJrChnlZpjC9WJbD2nfvInECj5WRda5NiIdn9IX/k0YtmdtZBH8j15C4
+         zfQkD+LAllwFX/67Sw4nBOlwgCFESYhhAKA9isq87z/+EzPdoeqKkK8S4bgta9Asj8o8
+         zm9g==
+X-Forwarded-Encrypted: i=1; AJvYcCX4IwjzTHcQi6j8llwPO0/apOkQEPutYhkpjQf/34JgDsoIzgwF+sYrCWK2R8JB0WM7MiUAVfx0+pSTTWcDltBOFpeT1Ipy9E6ZMw==
+X-Gm-Message-State: AOJu0YwRwN43dQaMYVCRUf99Q0skprS0uohTVOtpvyh/HTNWdMedChXP
+	79Ci0TcATYqLPJXHgulM9XabrsOjs9ad1FurajrQVRxA1hvQ0bQyHEybwxjPhTA=
+X-Google-Smtp-Source: AGHT+IGFNcpQkZW+GM7S2h1UGz3w8T1kBsNwZsH5F8vIl2F/tchwlM1Anz86Ai+EjMSQXH5NbwjqFA==
+X-Received: by 2002:adf:fa52:0:b0:343:dd56:b941 with SMTP id y18-20020adffa52000000b00343dd56b941mr3760628wrr.52.1714826778293;
+        Sat, 04 May 2024 05:46:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bg5-20020a05600c3c8500b0041bbec72670sm9171961wmb.39.2024.05.04.05.45.21
+        by smtp.gmail.com with ESMTPSA id z18-20020adff752000000b0034e19861891sm6154362wrp.33.2024.05.04.05.46.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 May 2024 05:45:22 -0700 (PDT)
-Message-ID: <3951a7ea-b469-42dc-8240-a5c593bc536f@linaro.org>
-Date: Sat, 4 May 2024 14:45:20 +0200
+        Sat, 04 May 2024 05:46:17 -0700 (PDT)
+Message-ID: <0742a837-bacb-4c95-8c94-cd04b7af129d@linaro.org>
+Date: Sat, 4 May 2024 14:46:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/8] dt-bindings: clock: qcom: Fix SM8450 videocc
- incorrect header file name
+Subject: Re: [PATCH V3 2/8] dt-bindings: clock: qcom: Add SM8650 video clock
+ controller
 To: Jagadeesh Kona <quic_jkona@quicinc.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
@@ -95,7 +95,7 @@ Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
  Ajit Pandey <quic_ajipan@quicinc.com>,
  Imran Shaik <quic_imrashai@quicinc.com>
 References: <20240430142757.16872-1-quic_jkona@quicinc.com>
- <20240430142757.16872-2-quic_jkona@quicinc.com>
+ <20240430142757.16872-3-quic_jkona@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -142,31 +142,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240430142757.16872-2-quic_jkona@quicinc.com>
+In-Reply-To: <20240430142757.16872-3-quic_jkona@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30/04/2024 16:27, Jagadeesh Kona wrote:
-> Fix incorrect header file name in SM8450 videocc bindings.
+> SM8650 video clock controller has most clocks same as SM8450,
+> but it also has few additional clocks and resets. Add device tree
+> bindings for the video clock controller on Qualcomm SM8650 platform
+> by defining these additional clocks and resets on top of SM8450.
 > 
-> Fixes: 1e910b2ba0ed ("dt-bindings: clock: qcom: Add SM8450 video clock controller")
 > Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
 > ---
->  .../devicetree/bindings/clock/qcom,sm8450-videocc.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> index bad8f019a8d3..78a1bb5be878 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> @@ -13,7 +13,7 @@ description: |
->    Qualcomm video clock control module provides the clocks, resets and power
->    domains on SM8450.
->  
-> -  See also:: include/dt-bindings/clock/qcom,videocc-sm8450.h
-> +  See also:: include/dt-bindings/clock/qcom,sm8450-videocc.h
 
-Then also s/::/:/. It was a mistake to introduce it.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
