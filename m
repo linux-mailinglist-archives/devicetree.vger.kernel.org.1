@@ -1,260 +1,147 @@
-Return-Path: <devicetree+bounces-64968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94AB8BBDA2
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 20:28:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E17B8BBDDE
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 21:47:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9BF81C20EE4
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 18:28:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B167E1C20CF7
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 19:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADE27442F;
-	Sat,  4 May 2024 18:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0978783CD6;
+	Sat,  4 May 2024 19:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="Yxq1a95O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtprelay02.ispgateway.de (smtprelay02.ispgateway.de [80.67.31.29])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524C86EB68;
-	Sat,  4 May 2024 18:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.67.31.29
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419CF1EF01;
+	Sat,  4 May 2024 19:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714847276; cv=none; b=IDLEJTGIRJpnQ7OfEmbX0HPXz2ztJ39/lkt0ubgC1ZTxIQ0GGJ9N7HC/Xcf1g7/aBwjrHbtoqyRufi4CZEE7UlubfU3u/4iMYeMpfmmqnqjw1Ba3kzvm9FhskeN5ROhXW7/l6ng+cyUsaS+EPDC8mUcix5aAqrySBK/DRxdVY3M=
+	t=1714852057; cv=none; b=oZOy/ZknX4k+Sr24OBlUwZLdjch5KlZYb7kzvVTE7eWnlRgHDBk5CcYIL5qOs96a7Z/+xRNU1BfKQzW/4sg6+g4rIKi+ZbTuvlRDokKKRIEOwkeKdv7gmC4uagi6WcgPWdKgguKtrt5hjwRKIHMf4w0faINLZOInjNnCJ+o1hnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714847276; c=relaxed/simple;
-	bh=xFJ6dbahCUZbUAhjcrhX4bh6Ij+UbOLcDakcsigJlvI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Zk3caJerawX8ieILrAJwK+V0t1TzN36q7iMtksjmJGM8oid4MBMyTitwfRibguB4hOvvdk7xlhhcwEFfM1XcFTBthfGOH9eew9epptT33kraUd7vCSU7lXHKWdCZthVWH7fkTUvLDXhebEUjGMN6/YO+l31dWGsB71AFrGEIVys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; arc=none smtp.client-ip=80.67.31.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-Received: from [92.206.191.65] (helo=framework.lan)
-	by smtprelay02.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.97.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1s3K6A-00000000348-3Dby;
-	Sat, 04 May 2024 20:27:02 +0200
-Message-ID: <3309a9f1f5848681d0acf3bfdf9b6525fc88e1bc.camel@apitzsch.eu>
-Subject: Re: [PATCH v2 2/3] leds: sy7802: Add support for Silergy SY7802
- flash LED controller
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>, "Gustavo A. R.
- Silva" <gustavoars@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Date: Sat, 04 May 2024 20:27:11 +0200
-In-Reply-To: <20240503071953.GD1227636@google.com>
-References: <20240401-sy7802-v2-0-1138190a7448@apitzsch.eu>
-	 <20240401-sy7802-v2-2-1138190a7448@apitzsch.eu>
-	 <20240411124855.GJ1980182@google.com> <20240503071953.GD1227636@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 
+	s=arc-20240116; t=1714852057; c=relaxed/simple;
+	bh=/WrnDCzpka+2oFw0aiMtpn86OKLmLTHlxxKb0BiZCSI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WNRCcmbYTNs/RrzG27ikZJlOF2voGtbacLpj5XgbI2KZaCKfSkjx+2RV5MlMWSfJDxK9ECD/438gMsEnooJBB/kEvMwnHmW2jk2+E52U4zc09Z4Hn+aEmBTFwaEZVnNJ85L2SwCxiyMDY+wF1OsxyCO1qtZ3il24eR/U5MEorR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=Yxq1a95O; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1714852020; x=1716152020;
+	bh=yoXes3T8ZbZ3DnhYT18+cGNOATX7w7wWaeHO5qdkaRM=; h=From;
+	b=Yxq1a95ONuj7C+bbpEQYwiysE0hb3j4GgRwC13H7JQsARbvakBuyv6JlMQc03SqsB
+	 ynuW2FfFHNavPyck3qpnsEr663YpaNJr+jIfDU0ukBXk0pfaUfXV0HxHdGeHAKDzIU
+	 8gT924nMnvY2joGOrUNOk8v+dWDDTc5Emc9exTUNo/rLc+XSG9HZju0BJ9mr6xC3aG
+	 Zc9TW9u4p1zDuIW6cm29QKu4gUA7wgFQoMYiNS7Q5YL8vp4zb3I5kkwP4x59PkbPE6
+	 jxOx0hi75ASVU83FKsBZr8BiNG1dYSFV+m/f9VD0h0x6ZJJTzjjRFxkbXysrgrfV1M
+	 MLpt6/aM+Fy5w==
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 444JkwUn074171
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sat, 4 May 2024 21:47:00 +0200 (CEST)
+	(envelope-from balejk@matfyz.cz)
+From: Karel Balej <balejk@matfyz.cz>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org
+Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        balejk@matfyz.cz
+Subject: [PATCH v6 0/5] initial support for Marvell 88PM886 PMIC
+Date: Sat,  4 May 2024 21:37:03 +0200
+Message-ID: <20240504194632.2456-1-balejk@matfyz.cz>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
+Content-Transfer-Encoding: 8bit
 
-Am Freitag, dem 03.05.2024 um 08:19 +0100 schrieb Lee Jones:
-> On Thu, 11 Apr 2024, Lee Jones wrote:
->=20
-> > On Mon, 01 Apr 2024, Andr=C3=A9 Apitzsch via B4 Relay wrote:
-> >=20
-> > > From: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> > >=20
-> > > Add support for SY7802 flash LED controller. It can support up to
-> > > 1.8A
-> > > flash current.
-> >=20
-> > This is a very small commit message for a 500+ line change!
-> >=20
-> > Please, tell us more.
-> >=20
-> > > Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> > > ---
-> > > =C2=A0drivers/leds/flash/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-|=C2=A0 11 +
-> > > =C2=A0drivers/leds/flash/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 1 +
-> > > =C2=A0drivers/leds/flash/leds-sy7802.c | 532
-> > > +++++++++++++++++++++++++++++++++++++++
-> > > =C2=A03 files changed, 544 insertions(+)
-> > >=20
-> > > diff --git a/drivers/leds/flash/Kconfig
-> > > b/drivers/leds/flash/Kconfig
-> > > index 809b6d98bb3e..f39f0bfe6eef 100644
-> > > --- a/drivers/leds/flash/Kconfig
-> > > +++ b/drivers/leds/flash/Kconfig
-> > > @@ -121,4 +121,15 @@ config LEDS_SGM3140
-> > > =C2=A0	=C2=A0 This option enables support for the SGM3140 500mA
-> > > Buck/Boost Charge
-> > > =C2=A0	=C2=A0 Pump LED Driver.
-> > > =C2=A0
-> > > +config LEDS_SY7802
-> > > +	tristate "LED support for the Silergy SY7802"
-> > > +	depends on I2C && OF
-> > > +	depends on GPIOLIB
-> > > +	select REGMAP_I2C
-> > > +	help
-> > > +	=C2=A0 This option enables support for the SY7802 flash LED
-> > > controller.
-> > > +	=C2=A0 SY7802 includes torch and flash functions with
-> > > programmable current.
-> > > +
-> > > +	=C2=A0 This driver can be built as a module, it will be
-> > > called "leds-sy7802".
-> > > +
-> > > =C2=A0endif # LEDS_CLASS_FLASH
-> > > diff --git a/drivers/leds/flash/Makefile
-> > > b/drivers/leds/flash/Makefile
-> > > index 91d60a4b7952..48860eeced79 100644
-> > > --- a/drivers/leds/flash/Makefile
-> > > +++ b/drivers/leds/flash/Makefile
-> > > @@ -11,3 +11,4 @@ obj-$(CONFIG_LEDS_QCOM_FLASH)	+=3D leds-qcom-
-> > > flash.o
-> > > =C2=A0obj-$(CONFIG_LEDS_RT4505)	+=3D leds-rt4505.o
-> > > =C2=A0obj-$(CONFIG_LEDS_RT8515)	+=3D leds-rt8515.o
-> > > =C2=A0obj-$(CONFIG_LEDS_SGM3140)	+=3D leds-sgm3140.o
-> > > +obj-$(CONFIG_LEDS_SY7802)	+=3D leds-sy7802.o
-> > > diff --git a/drivers/leds/flash/leds-sy7802.c
-> > > b/drivers/leds/flash/leds-sy7802.c
-> > > new file mode 100644
-> > > index 000000000000..c03a571b0e08
-> > > --- /dev/null
-> > > +++ b/drivers/leds/flash/leds-sy7802.c
-> > > @@ -0,0 +1,532 @@
->=20
-> [...]
->=20
-> > > +static int sy7802_torch_brightness_set(struct led_classdev
-> > > *lcdev, enum led_brightness level)
-> >=20
-> > s/level/brightness/
-> >=20
-> > > +{
-> > > +	struct sy7802_led *led =3D container_of(lcdev, struct
-> > > sy7802_led, flash.led_cdev);
-> > > +	u32 led_enable_mask =3D led->led_no =3D=3D SY7802_LED_JOINT ?
-> > > SY7802_LEDS_MASK_ALL :
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SY7802_LEDS_MASK(led->led_no);
-> >=20
-> > Do all of the fancy multi-line assignment outside of the
-> > declaration block.
-> >=20
-> > > +	u32 enable_mask =3D SY7802_MODE_MASK | led_enable_mask;
-> > > +	u32 val =3D level ? led_enable_mask : SY7802_MODE_OFF;
-> > > +	struct sy7802 *chip =3D led->chip;
-> > > +	u32 curr;
-> >=20
-> > This is a temporary placeholder for fled_torch_used, right?
-> >=20
-> > fled_torch_used_tmp?=C2=A0 Sometimes abbreviated to tmp.
-> >=20
-> > > +	u32 mask;
-> >=20
-> > That's a lot of masks.=C2=A0 Which one is this?
-> >=20
-> > > +	int ret;
-> > > +
-> > > +	mutex_lock(&chip->mutex);
-> > > +
-> > > +	/*
-> > > +	 * There is only one set of flash control logic, and
-> > > this flag is used to check if 'strobe'
-> >=20
-> > The ',' before 'and' is superfluous.
-> >=20
-> > > +	 * is currently being used.
-> > > +	 */
-> >=20
-> > Doesn't the variable name kind of imply this?
-> >=20
-> > > +	if (chip->fled_strobe_used) {
-> > > +		dev_warn(chip->dev, "Please disable strobe first
-> > > [%d]\n", chip->fled_strobe_used);
-> >=20
-> > "Cannot set torch brightness whilst strobe is enabled"
-> >=20
-> > > +		ret =3D -EBUSY;
-> > > +		goto unlock;
-> > > +	}
-> > > +
-> > > +	if (level)
-> > > +		curr =3D chip->fled_torch_used | BIT(led->led_no);
-> > > +	else
-> > > +		curr =3D chip->fled_torch_used & ~BIT(led-
-> > > >led_no);
-> > > +
-> > > +	if (curr)
-> > > +		val |=3D SY7802_MODE_TORCH;
-> > > +
-> > > +	/* Torch needs to be disabled first to apply new
-> > > brightness */
-> >=20
-> > "Disable touch to apply brightness"
-> >=20
-> > > +	ret =3D regmap_update_bits(chip->regmap,
-> > > SY7802_REG_ENABLE, SY7802_MODE_MASK,
-> > > +				 SY7802_MODE_OFF);
-> > > +	if (ret)
-> > > +		goto unlock;
-> > > +
-> > > +	mask =3D led->led_no =3D=3D SY7802_LED_JOINT ?
-> > > SY7802_TORCH_CURRENT_MASK_ALL :
-> >=20
-> > Why not just use led->led_no in place of mask?
->=20
-> mask and led->led_no are assigned the same value from this point on.
+Hello,
 
-Thanks for the clarification.
-How to you come to the conclusion that mask and led->led_no are
-assigned the same value from this point on?
+the following implements basic support for Marvell's 88PM886 PMIC which
+is found for instance as a component of the samsung,coreprimevelte
+smartphone which inspired this and also serves as a testing platform.
 
-The value of led->led_no is used here only as part of the if condition
-(led->led_no =3D=3D SY7802_LED_JOINT) and not assigned to mask.
->=20
-> > Easier to read if you drop SY7802_TORCH_CURRENT_MASK_ALL to its own
-> > line.
-> >=20
-> > > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SY7802_TORCH_CURRENT_MASK(led-=
->led_no);
-> > > +
-> > > +	/* Register expects brightness between 0 and
-> > > MAX_BRIGHTNESS - 1 */
-> > > +	if (level)
-> > > +		level -=3D 1;
-> > > +
-> > > +	level |=3D (level << SY7802_TORCH_CURRENT_SHIFT);
-> > > +
-> > > +	ret =3D regmap_update_bits(chip->regmap,
-> > > SY7802_REG_TORCH_BRIGHTNESS, mask, level);
->=20
-> So why not kill the single-use 'mask' variable and use a cast version
-> of led->led_no here instead?
->=20
-> > > +	if (ret)
-> > > +		goto unlock;
-> > > +
-> > > +	ret =3D regmap_update_bits(chip->regmap,
-> > > SY7802_REG_ENABLE, enable_mask, val);
-> > > +	if (ret)
-> > > +		goto unlock;
-> > > +
-> > > +	chip->fled_torch_used =3D curr;
-> > > +
-> > > +unlock:
-> > > +	mutex_unlock(&chip->mutex);
-> > > +	return ret;
-> > > +}
->=20
+The code for the MFD is based primarily on this old series [1] with the
+addition of poweroff based on the smartphone's downstream kernel tree
+[2]. The onkey and regulators drivers are based on the latter. I am not
+in possesion of the datasheet.
+
+[1] https://lore.kernel.org/all/1434098601-3498-1-git-send-email-yizhang@marvell.com/
+[2] https://github.com/CoderCharmander/g361f-kernel
+
+Thank you and kind regards,
+K. B.
+---
+v6:
+- Rebase to v6.9-rc6.
+- Fix patchset versioning: the previous version was marked as v1 because I
+  considered RFC to be its own thing. Thank you to Krzysztof for
+  explaining that that is not the case. The previous version is thus now
+  marked as v5 and this is v6, sorry for any confusion.
+- v5: https://lore.kernel.org/r/20240331105608.7338-2-balejk@matfyz.cz/
+v5:
+- RFC v4: https://lore.kernel.org/r/20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz/
+- Rebase to v6.9-rc1.
+- Thank you to everybody for their feedback on the RFC!
+RFC v4:
+- RFC v3: https://lore.kernel.org/all/20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz/
+RFC v3:
+- Address Rob's feedback:
+  - Drop onkey bindings patch.
+- Rename PM88X -> PM886 everywhere.
+- RFC v2: https://lore.kernel.org/all/20240211094609.2223-1-karelb@gimli.ms.mff.cuni.cz/
+RFC v2:
+- Merge with the regulators series to have multiple devices and thus
+  justify the use of the MFD framework.
+- Rebase on v6.8-rc3.
+- Reorder patches.
+- MFD RFC v1: https://lore.kernel.org/all/20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz/
+- regulators RFC v1: https://lore.kernel.org/all/20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz/
+
+Karel Balej (5):
+  dt-bindings: mfd: add entry for Marvell 88PM886 PMIC
+  mfd: add driver for Marvell 88PM886 PMIC
+  regulator: add regulators driver for Marvell 88PM886 PMIC
+  input: add onkey driver for Marvell 88PM886 PMIC
+  MAINTAINERS: add myself for Marvell 88PM886 PMIC
+
+ .../bindings/mfd/marvell,88pm886-a1.yaml      |  76 +++
+ MAINTAINERS                                   |   9 +
+ drivers/input/misc/88pm886-onkey.c            |  98 ++++
+ drivers/input/misc/Kconfig                    |   7 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/mfd/88pm886.c                         | 148 ++++++
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/regulator/88pm886-regulator.c         | 476 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   6 +
+ drivers/regulator/Makefile                    |   1 +
+ include/linux/mfd/88pm886.h                   |  69 +++
+ 12 files changed, 904 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml
+ create mode 100644 drivers/input/misc/88pm886-onkey.c
+ create mode 100644 drivers/mfd/88pm886.c
+ create mode 100644 drivers/regulator/88pm886-regulator.c
+ create mode 100644 include/linux/mfd/88pm886.h
+
+-- 
+2.45.0
 
 
