@@ -1,123 +1,80 @@
-Return-Path: <devicetree+bounces-64915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247228BB877
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 01:46:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 157A68BB904
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 02:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62661F22141
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2024 23:46:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A895B22669
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 00:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33878594C;
-	Fri,  3 May 2024 23:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9B9139B;
+	Sat,  4 May 2024 00:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fRVmP9EM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5c1ZJRU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FFD84FB9;
-	Fri,  3 May 2024 23:46:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA2E15B3;
+	Sat,  4 May 2024 00:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714779967; cv=none; b=pz2QzD0pSgAWtCMMLgE33dbECls1iQcHvZeMm4BwA9UYg1MnSrFexG1bpB2kZBXmFhAOIg8ZnmDvTFqxtkSAXK6+DTVP3csdYbqU1qHhVUIUF8LM4GO5mGCVoRIcYiNWfhUAyglT55EyAoe+wfMaonasiv153RiRXLsXPy4CaWw=
+	t=1714784252; cv=none; b=MqqPitK0zynwaB+GNjFqxg93WLiZ2bVpUlEQmJrfNgveKW1ia7omyz4FN06pLjx/YIp4Wnwle1BK9QOV3N0I+0x/m1KAYvHqsSakGhr9Eg36NKHdJAHMj6TZmqhByWxyW/BVFZ1oB6MTYcFS1riqB4TLawB71BFr45mU4oaovew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714779967; c=relaxed/simple;
-	bh=RmyvOpXjU3UcXTf0FoNq4yBXKHe7nIpgvx+cXgQJKcE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tmg5G9OrbRPnn1fc3hSNIA37r1x6b7blOLm2QZp8g/KPY6T6hBhp07Ysse0B4uBNWOSI2LOpqT56LIIzWdLQEItwGKnOX0PGcE2h3F4fDVeE8SJCvjmOaGGOfamE2bfj9NpGIVsHiSwvU0akeh53FKz0X46y0l0JbwUcXiarUNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fRVmP9EM; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41b2119da94so2020995e9.0;
-        Fri, 03 May 2024 16:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714779964; x=1715384764; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EO+m93QGXslHrjPGmO8FASbDolTJm2yN6BHLs+HE6ts=;
-        b=fRVmP9EM0WzU/KOsduliGbnOJcBuaY3+D/jm9Bf0RgoI+W814lujPksKMsTdYn9522
-         k+fu7Nw1Ufg5hC8m5QcyaJX5n/Sq2aWmDpU73sRwyXrpIqfOiqKrPMxwy+CuBYtCAqk4
-         L6AlR+5E2tlzuMifcJibPpjIfYiDvlcpKE8J6QOobykzJIqKKxxXKGWI+Wyp+X3tdrde
-         +uan9/MnbQoxpBjVUy2c8Uh7z68qq1LWqJsUggcpPpk8gnvAZzqw/FWvTl77qBxUEKYV
-         eeNthvPHwR3j9iesMrB3biuKgbRpXB22wawrdHpw5jTfSgTW65ntOXaWfzXjGbIk3mAc
-         AdIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714779964; x=1715384764;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EO+m93QGXslHrjPGmO8FASbDolTJm2yN6BHLs+HE6ts=;
-        b=VjgO3ICXDMCB9Z0Uj6vrPWnZ+/MhenMc6wqTpBYcu2NZV/Rwmv+FRFuA7RlmycV0Qw
-         Gaf3kv9tacg/vhp6qK+KBk8kLJM771euWuCfZEf3S3ElierY379qUo0Jp+YIl11MhRTh
-         U3IqttYXh/YfpDCS6vquW9iN+atQTMklCcn/rI6PrLGRU6g9eAGZIWFV/Kt98R5O3AOJ
-         S7R6weT7NZtfqW3YniS/iIRwW2Ksid9cp2n1eC3AmYxBLGj+MF/YK6Yg7J4/bpXxmAiv
-         L5F6JQAxENrVIdFHytPogiINQcbPtYUjVICtfyATacLNNNlqFg6EYCloWM79jnQmbFtZ
-         kVOw==
-X-Forwarded-Encrypted: i=1; AJvYcCVBO/ZhNu5VoRuEwWkMVwUsEzAdqvvabqCbjtTFm7q1BKmg0p94OSkUyC1U9CS1/8oyMVZNp6xrnuu2bwqmKIhpU5SLdln8EpfGMdUSFMMpIjMkwqFYxTOjVzj7Z60b8/BNeyBx0gKDEQ==
-X-Gm-Message-State: AOJu0YxPOUopxquvSIJe0wjWVhDTA00V8BsUgTZccYi3dnjvAl7gSJvB
-	kumxxQsE2GJ5qrKOHBLtuWgjscEjevPEjwUyU97giIk+xqTiFs3aF2CthYIy
-X-Google-Smtp-Source: AGHT+IHZ9bhWxtPGRDpN/5tByeGf7VMDmWaPFBU4UThGiadCA3rZcHfp1fA1ARiXajSXlmKNg4G/VA==
-X-Received: by 2002:a05:600c:500f:b0:41a:446b:10df with SMTP id n15-20020a05600c500f00b0041a446b10dfmr3296067wmr.12.1714779964257;
-        Fri, 03 May 2024 16:46:04 -0700 (PDT)
-Received: from [192.168.1.130] (BC24954B.unconfigured.pool.telekom.hu. [188.36.149.75])
-        by smtp.gmail.com with ESMTPSA id v6-20020a5d6106000000b0034d743eb8dfsm4819405wrt.29.2024.05.03.16.46.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 May 2024 16:46:03 -0700 (PDT)
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>
-Date: Sat, 04 May 2024 01:45:25 +0200
-Subject: [PATCH 2/2] dt-bindings: iio: imu: bmi160: add bmi120
+	s=arc-20240116; t=1714784252; c=relaxed/simple;
+	bh=0Xc7VQAdC/90/3pFKSHHnBQUDZDgCqcfRhm70VyBDVg=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=ToXCNkJmMrTussXBtHxn6UOtrhpUsZqhhqq22AxvBfmaYCGkYOEUZgChsJ1yKQ5ZruC2h0hSeHz3H/25qOBnpwRN6GkBch+MhzyAWd7V3ljJaSS0KIRRAtWOy9FyL+wJL46//5/9ku4O6M3EBoE7j7bfonM19+fb21psbdFfM/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5c1ZJRU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3512C116B1;
+	Sat,  4 May 2024 00:57:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714784252;
+	bh=0Xc7VQAdC/90/3pFKSHHnBQUDZDgCqcfRhm70VyBDVg=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=P5c1ZJRU9neVPQpXiWmKdU2HY7l1V50Sb+rKDP2IexcFtJYjAhwA+M+HOYFNoMyFW
+	 8XVFdVBPo0aZA0zr1PjVESW5An8cTdo4EVXzHMzN4q9U+eHr2h7ghsiT80G3qoSIHp
+	 YbOzMP907EMAkhQKsbQljiul9ZX1BxhgDwzlI5MkdRiv9KJYlbeuSI5ZwEFfcoYPZD
+	 yE1SocXUcvOjiCw5h3nxkIJyNDZDKezq+yM/BHh1cXXRZ08k5uzl0tLp9/ZMKP6F50
+	 gv3Ce0YXUAkLGKSST1aNDehLdtUwnuoAaAvZXXFN9CoymCpeVCTPS3jcgPx7hSuM/p
+	 hQ8LzwXYA7zEg==
+Message-ID: <2b0495d3b3cfcd6dd6e7c70e68da38ef.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240504-bmi120-v1-2-478470a85058@gmail.com>
-References: <20240504-bmi120-v1-0-478470a85058@gmail.com>
-In-Reply-To: <20240504-bmi120-v1-0-478470a85058@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>, 
- Danila Tikhonov <danila@jiaxyga.com>
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240430180415.657067-1-robh@kernel.org>
+References: <20240430180415.657067-1-robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: clock: fixed: Define a preferred node name
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring (Arm) <robh@kernel.org>
+Date: Fri, 03 May 2024 17:57:29 -0700
+User-Agent: alot/0.10
 
-From: Danila Tikhonov <danila@jiaxyga.com>
+Quoting Rob Herring (Arm) (2024-04-30 11:04:14)
+> Define "clock-<freq>" as the preferred node name for fixed-clock and
+> fixed-factor-clock where <freq> is the output frequency of the clock.
+> There isn't much of an existing pattern for names of these nodes. The
+> most frequent patterns are a prefix or suffix of "clk", but there's a
+> bunch that don't follow any sort of pattern. We could use
+> "clock-controller-.*", but these nodes aren't really a controller in any
+> way. So let's at least align with part of that and use 'clock-'.
+>=20
+> For now this only serves as documentation as the schema still allows
+> anything to avoid lots of additional warnings for something low priority
+> to fix. Once a "no deprecated" mode is added to the tools, warnings can
+> be enabled selectively.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
-Document bosch,bmi120 compatible.
-
-Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-Signed-off-by: Barnbás Czémán <trabarni@gmail.com>
----
- Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-index 47cfba939ca6..9ca874aea837 100644
---- a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-@@ -16,7 +16,9 @@ description: |
- 
- properties:
-   compatible:
--    const: bosch,bmi160
-+    enum:
-+      - bosch,bmi120
-+      - bosch,bmi160
- 
-   reg:
-     maxItems: 1
-
--- 
-2.45.0
-
+Applied to clk-next
 
