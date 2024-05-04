@@ -1,114 +1,84 @@
-Return-Path: <devicetree+bounces-64918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FF98BB929
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 04:06:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2F08BB94B
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 04:34:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADA9F1F21660
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 02:06:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CCE42841CA
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 02:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69D17489;
-	Sat,  4 May 2024 02:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA6228E6;
+	Sat,  4 May 2024 02:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AL7P9+4f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CSuvkY0S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D386AC0;
-	Sat,  4 May 2024 02:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15C5F80B;
+	Sat,  4 May 2024 02:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714788413; cv=none; b=NQIF3ashvACl6cRpBjjf3U4Nf22Hey52/8u/58Ok3PbUl4LSaxZreG5XdH7C2i7AQr9CQbdas7tCnPcPXUkemLACyKe8Ha3Mjw/8SmEbioVintwkzbhEdvJuMlGXWLKbS9X6RA2+rXpiRvnMP+mSWAcOblohHuuZ41ZwRt1rxRM=
+	t=1714790078; cv=none; b=XkoLt+SZDvYtF/SiOQTeGs7kgsur6zDvqsYXufy8PjLiMogHT5AVzSNMfQ3GXBhcnoLZcCMu4eLY4nCn9aUy1TJR0zsO8EyOfs4wiLtfJMSYJOBg3GFQ1fG1sIO2k8KKMYfYStjuNUU589uc4WCb+wb5dEEnO1WEovKWrauit6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714788413; c=relaxed/simple;
-	bh=9/HUwWFCApOtzCHm2pdpofQL3S13z9SIlzxOPXrKgLE=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mCdeSA6Vsdbijdkas35yNwv6155N8JlzYFCevrIjG2QHDl9aCEVz+Ls1UDUuY+yNqDUdzJcLPPtW7lxPeC63je1O/FKL04UY+y1vJAPg8eIK+riOJibnbQiRB0+/PYfsl72G63aCEixQc1Hrs70o844Fa8v6HYo5F5E8B3zpif8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AL7P9+4f; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1714788412; x=1746324412;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=9/HUwWFCApOtzCHm2pdpofQL3S13z9SIlzxOPXrKgLE=;
-  b=AL7P9+4f0jOzNrZ01eD0aKTI0ZZt/vOGaFexEdJSDNsgF4RoDWWxvgyI
-   uoH2MtqVwrHldHYFoSPLFMoSxjtqQ1FPiPPLsDjM6o1AiBDzv9/XIGx7k
-   K2lRJIyoCIZW7w2It4/IkCQQ73nFQrlyUOJ8dmkOJlDQJbtx5ZqQ7hlwK
-   34Avc3iTUw/yO2u3/9995av1203+HDqscx3HbVFnA4VNKVSaKDRFwGt1f
-   WugVkO/Cnp/UrUI8AKKUQoJEGYUrYjhhOUumKgEqv7wp3DgnWkcwfmXMU
-   0g0LwLfZk4oNVe1t8YljRi417VwyuFU0MRWyHt3THJ3z+3mAVpqSVhM9G
-   A==;
-X-CSE-ConnectionGUID: izo0Gl4dROevW1SRe3fA9A==
-X-CSE-MsgGUID: vXh3S6iSTbKUPWs8JfMyUA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11063"; a="14395704"
-X-IronPort-AV: E=Sophos;i="6.07,252,1708416000"; 
-   d="scan'208";a="14395704"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2024 19:06:51 -0700
-X-CSE-ConnectionGUID: fbqs6S7CTPSDYfcFMS4Sgg==
-X-CSE-MsgGUID: +lc4EfxITNWBw/CbQ7Frqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,252,1708416000"; 
-   d="scan'208";a="58818072"
-Received: from unknown (HELO [10.239.159.127]) ([10.239.159.127])
-  by fmviesa001.fm.intel.com with ESMTP; 03 May 2024 19:06:47 -0700
-Message-ID: <b17ca96a-9e0c-43ca-9815-fee5a3661ad4@linux.intel.com>
-Date: Sat, 4 May 2024 10:05:14 +0800
+	s=arc-20240116; t=1714790078; c=relaxed/simple;
+	bh=yVXtEN60WPDs64dv0Sh0OrP9dwoVq7s070uOhEnMXTI=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=EBWN5d5Gjq7FJu7VCtGjmskKj5SHSPJAHo2JMkzfSVgQkMCwX6hzAikQG2qP1nK/s6ITafa6CoFXYCnSXm192sL3/7PIxSq4WoiJj5ZP+y4NeUtfA5PGtcKHp9OM6E+HtbqInmfuqAriSETTb+7Wd78wv0/P2gY8jOFJIoelv1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CSuvkY0S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 729ECC116B1;
+	Sat,  4 May 2024 02:34:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714790077;
+	bh=yVXtEN60WPDs64dv0Sh0OrP9dwoVq7s070uOhEnMXTI=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=CSuvkY0STqC1kOsfeQtFTBRAqnzH39UXnwMdiVfjFg8MPe6tAXdsHGdLC2aw9L9Yr
+	 Lbi7jZ7BC+ZdIHdpTCM0butQqpvIVTJbtokAAXtOgUEnazbsMf/bJ481YB+eK0kc+u
+	 Q+PN9K2u2word9wovED4Vu8bfqYigtkn3r5j9TGxjCQKMqsyVZgX69jgwOmdctC0/F
+	 qn61F6ElPnVIyIGMzdFtVMOjPjZLHsByndJl4apRR791VCDfgovWNycWnWhEPM2tyl
+	 gCu+RtFaqmV23gPo3N5PPEBTt7s+7cWoGGRZ7iAl1/Sk0Rs3O9YTHwZ+aTh0jfpo5h
+	 z6IsnyR27zhdA==
+Message-ID: <8dcdb1422cd144128c1dc6fff1c273d3.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <apatel@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Nick Kossifidis <mick@ics.forth.gr>,
- Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@rivosinc.com
-Subject: Re: [PATCH v4 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-To: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Paul Walmsley <paul.walmsley@sifive.com>
-References: <cover.1714752293.git.tjeznach@rivosinc.com>
- <68afb8d5e45e82dfc818385e01e9ddaa659007e1.1714752293.git.tjeznach@rivosinc.com>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <68afb8d5e45e82dfc818385e01e9ddaa659007e1.1714752293.git.tjeznach@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
+References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
+Subject: Re: [PATCH v2 00/11] Add Mobileye EyeQ system controller support (clk, reset, pinctrl)
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+To: Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rafael J. Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+Date: Fri, 03 May 2024 19:34:35 -0700
+User-Agent: alot/0.10
 
-On 5/4/24 12:12 AM, Tomasz Jeznach wrote:
-> Introduce platform device driver for implementation of RISC-V IOMMU
-> architected hardware.
-> 
-> Hardware interface definition located in file iommu-bits.h is based on
-> ratified RISC-V IOMMU Architecture Specification version 1.0.0.
-> 
-> This patch implements platform device initialization, early check and
-> configuration of the IOMMU interfaces and enables global pass-through
-> address translation mode (iommu_mode == BARE), without registering
-> hardware instance in the IOMMU subsystem.
-> 
-> Link:https://github.com/riscv-non-isa/riscv-iommu
-> Co-developed-by: Nick Kossifidis<mick@ics.forth.gr>
-> Signed-off-by: Nick Kossifidis<mick@ics.forth.gr>
-> Co-developed-by: Sebastien Boeuf<seb@rivosinc.com>
-> Signed-off-by: Sebastien Boeuf<seb@rivosinc.com>
-> Signed-off-by: Tomasz Jeznach<tjeznach@rivosinc.com>
+Quoting Th=C3=A9o Lebrun (2024-05-03 07:20:45)
+> Hello,
+>=20
+> This builds on previous EyeQ5 system-controller revisions[0], supporting
+> EyeQ5, EyeQ6L and EyeQ6H. We expose a few OLB system-controller
+> features here:
+>  - Clocks: some read-only PLLs derived from main crystal and some
+>    divider clocks based on PLLs.
+>  - Resets.
+>  - Pin controller, only on EyeQ5 (rest will use generic pinctrl-single).
+>=20
+> EyeQ6H is special in that it has seven instances of this
+> system-controller. Those are spread around and cannot be seen as a
+> single device, hence are exposed as seven DT nodes and seven
+> compatibles.
+>=20
+> This revision differs from previous in that it exposes all devices as a
+> single DT node. Driver-wise, a MFD registers multiple cells for each
+> device. Each driver is still in isolation from one another, each in
+> their respective subsystem.
 
-Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
-
-Best regards,
-baolu
+Why can't you use auxiliary device and driver APIs?
 
