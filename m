@@ -1,163 +1,191 @@
-Return-Path: <devicetree+bounces-64946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FEFA8BBB85
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 14:46:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7958BBB93
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 14:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C747282C3B
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 12:46:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EEF31C20D6A
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 12:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8672422339;
-	Sat,  4 May 2024 12:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F332C2233E;
+	Sat,  4 May 2024 12:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sjjIW+TY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHG9jkQM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81D820DF7
-	for <devicetree@vger.kernel.org>; Sat,  4 May 2024 12:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE65457CAE;
+	Sat,  4 May 2024 12:49:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714826781; cv=none; b=GMOVS5yRWvP7PjN4NL5E1zqR2635zAZUiw8Zdf3byr9zIadThtjy78W76V14zTV1LxomQGApx9ksbnUgd3foBggg2YIez6wtKQALbLI81mfBVc0VdaIjgX+LjodYQp1YEjtUALxmp4MYYbpDcqV+pu85nYWqESlB+kUuHpU7hOA=
+	t=1714826953; cv=none; b=a7z0WlrR1Xh65IevCnivXG1s3YKANifmKN+lh1v6Xjqp98pdohwkWvMXG8tfsp2ywLFpNZrBE9mWIt+2oVRvpKv1M/ihyktZjuDsvQSKnKz9nJXNO+wc0BTbgNHdRP2E5FYZ/iCv3vMQCe+PVJj2hiMMPQy4Oo6CGogJEiYwM38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714826781; c=relaxed/simple;
-	bh=gpmmrnU7n/M1SY2zLCrGThpVoWo83jzWS4f6KOlN3Tw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bp9n8O2/wrq8AqPKrDkO8bKWZ7IaEc2E9JjvHXfQMkjdaYcQ+Pco1RruR2Ulu6Q3MpkRxkVbCYfoija30Y7yur132rq6a2bYaHa0Z5dsqfnlITLKKJ3k1wOAVekNhD+DpDvFxldY7DuVXN2ngrO6hps0wmYjpbE0/9moHCSwrq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sjjIW+TY; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34da84cb755so439918f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 04 May 2024 05:46:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714826778; x=1715431578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=u3YTRloN9mydGPa3HnKZdKNzv3PmpmiSZpDCMGoktfk=;
-        b=sjjIW+TYd+hXeFrrwGD1ZXn9tu3YLLi6ZN8kBsJMsg6uVpWQ7W+Kd5zDbVMA0wrzG5
-         CPRVI+AyMLEHEtjQ7A5ujheymCBW4Y47bzk48/gqotTQhiAQlRsOQx3pQ6TCcZdvBEGj
-         bNcE8p0E3cX456e9xtYasN+Ml4LRmAxjbY8MLfnsBzGQJS071CT85XKCfhZ3hYqd3PFP
-         0ksUj874owNKqC7zBQBlAfGDyuSPEOopE7wS7xRMZh4b1+UOCANtNBkUiuXfo4vC/Y9A
-         Ah5hNrllmXyvQSIPTYMsh3uE9ZP/PoxTjvUwWQe2IQf5sFH4YZKbMTGM4skmqsw4HSiS
-         497w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714826778; x=1715431578;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u3YTRloN9mydGPa3HnKZdKNzv3PmpmiSZpDCMGoktfk=;
-        b=ErjuY8X5qKDy8VwpNnhRN3PNob5NAhgscYeKBIWMGqUi2jR0/aHHARZzWMJclBzVq0
-         9Yu1KidrAzJHVx7T/Z+azXjHAF3i8j6usDmmiL00Nz+JItb9L2QUFn5K/yw+8thwZSjw
-         1VH8vdfLJNdlXZyMy/9QCCpNEngYyWSrm8bgkVoGWcutA86r2ZmarmE0N7IitQlLzfqv
-         eEtyuDF26rcLxJrChnlZpjC9WJbD2nfvInECj5WRda5NiIdn9IX/k0YtmdtZBH8j15C4
-         zfQkD+LAllwFX/67Sw4nBOlwgCFESYhhAKA9isq87z/+EzPdoeqKkK8S4bgta9Asj8o8
-         zm9g==
-X-Forwarded-Encrypted: i=1; AJvYcCX4IwjzTHcQi6j8llwPO0/apOkQEPutYhkpjQf/34JgDsoIzgwF+sYrCWK2R8JB0WM7MiUAVfx0+pSTTWcDltBOFpeT1Ipy9E6ZMw==
-X-Gm-Message-State: AOJu0YwRwN43dQaMYVCRUf99Q0skprS0uohTVOtpvyh/HTNWdMedChXP
-	79Ci0TcATYqLPJXHgulM9XabrsOjs9ad1FurajrQVRxA1hvQ0bQyHEybwxjPhTA=
-X-Google-Smtp-Source: AGHT+IGFNcpQkZW+GM7S2h1UGz3w8T1kBsNwZsH5F8vIl2F/tchwlM1Anz86Ai+EjMSQXH5NbwjqFA==
-X-Received: by 2002:adf:fa52:0:b0:343:dd56:b941 with SMTP id y18-20020adffa52000000b00343dd56b941mr3760628wrr.52.1714826778293;
-        Sat, 04 May 2024 05:46:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id z18-20020adff752000000b0034e19861891sm6154362wrp.33.2024.05.04.05.46.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 May 2024 05:46:17 -0700 (PDT)
-Message-ID: <0742a837-bacb-4c95-8c94-cd04b7af129d@linaro.org>
-Date: Sat, 4 May 2024 14:46:16 +0200
+	s=arc-20240116; t=1714826953; c=relaxed/simple;
+	bh=L9wv45Em8bE+QdzHN+ZzOr0q0nVv0NR8uv/oDTyGCBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FQqAFHLVvVZgety4BHDwKr+D/cf2ntOpCVb02k8jQVD9brWKxpopdM7Wd0ixpXHbE7L0i8EaZkItha4GYhZq9jVD/DNC81vBihPj+XUHjzKBaAk/90lJ7VobuoqA9qH1ayJTZ/mrBU18LbMRYO08CdbSWzFUQOcqaoAK3vEqJtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHG9jkQM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A776BC072AA;
+	Sat,  4 May 2024 12:49:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714826953;
+	bh=L9wv45Em8bE+QdzHN+ZzOr0q0nVv0NR8uv/oDTyGCBI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qHG9jkQM8K0a//HPJ659OF/sg3x4Wuq71cSamSewKjSphBYxQhNPBXcWA1P+i7qHl
+	 RY/B0okoLc6T6pcYjk+qTZKk7mzb4FI5vJbRxVYRcNzDvz3FEj04kmnFoDz4sqxhg7
+	 ODAW9OYTvoWEUjhMXW9DDCqAresjetRTpLGJFQ3bBEJKFu81t2k298cClSkhhxy1mn
+	 U75M1GcEXK0TSE9VRsxj5tBorA8ZCjAZgo5AHgOTiWyn7bKfCkTCgHyq7UCBKNQeeO
+	 fQUeN5XxZEo8yjOwS/gSpF4KI1vzoX4gf2e2crVyxQkJ6Iaxg4OXU1NUtlhJesJl+a
+	 7+a15hFbojwjQ==
+Date: Sat, 4 May 2024 13:49:04 +0100
+From: Simon Horman <horms@kernel.org>
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+Cc: Oliver Hartkopp <socketcan@hartkopp.net>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v2 01/12] can: Add LIN bus as CAN abstraction
+Message-ID: <20240504124904.GJ3167983@kernel.org>
+References: <20240502075534.882628-1-christoph.fritz@hexdev.de>
+ <20240502075534.882628-2-christoph.fritz@hexdev.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/8] dt-bindings: clock: qcom: Add SM8650 video clock
- controller
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>
-References: <20240430142757.16872-1-quic_jkona@quicinc.com>
- <20240430142757.16872-3-quic_jkona@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240430142757.16872-3-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240502075534.882628-2-christoph.fritz@hexdev.de>
 
-On 30/04/2024 16:27, Jagadeesh Kona wrote:
-> SM8650 video clock controller has most clocks same as SM8450,
-> but it also has few additional clocks and resets. Add device tree
-> bindings for the video clock controller on Qualcomm SM8650 platform
-> by defining these additional clocks and resets on top of SM8450.
+On Thu, May 02, 2024 at 09:55:23AM +0200, Christoph Fritz wrote:
+> This patch adds a LIN (local interconnect network) bus abstraction on
+> top of CAN.  It is a glue driver adapting CAN on one side while offering
+> LIN abstraction on the other side. So that upcoming LIN device drivers
+> can make use of it.
 > 
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> ---
+> Tested-by: Andreas Lauser <andreas.lauser@mercedes-benz.com>
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
 
-Best regards,
-Krzysztof
+> diff --git a/drivers/net/can/lin.c b/drivers/net/can/lin.c
 
+...
+
+> +struct lin_device *register_lin(struct device *dev,
+> +				const struct lin_device_ops *ldops)
+> +{
+> +	struct net_device *ndev;
+> +	struct lin_device *ldev;
+> +	int ret;
+> +
+> +	if (!ldops || !ldops->ldo_tx || !ldops->update_bitrate  ||
+> +	    !ldops->ldo_open || !ldops->ldo_stop) {
+> +		netdev_err(ndev, "missing mandatory lin_device_ops\n");
+
+Hi Christoph,
+
+The line above uses ndev, but ndev is not initialised
+until a few lines further down.
+
+Flagged by Smatch.
+
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	ndev = alloc_candev(sizeof(struct lin_device), 1);
+> +	if (!ndev)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	ldev = netdev_priv(ndev);
+> +
+> +	ldev->ldev_ops = ldops;
+> +	ndev->netdev_ops = &lin_netdev_ops;
+> +	ndev->flags |= IFF_ECHO;
+> +	ndev->mtu = CANFD_MTU;
+> +	ldev->can.bittiming.bitrate = LIN_DEFAULT_BAUDRATE;
+> +	ldev->can.ctrlmode = CAN_CTRLMODE_LIN;
+> +	ldev->can.ctrlmode_supported = 0;
+> +	ldev->can.bitrate_const = lin_bitrate;
+> +	ldev->can.bitrate_const_cnt = ARRAY_SIZE(lin_bitrate);
+> +	ldev->can.do_set_bittiming = lin_set_bittiming;
+> +	ldev->ndev = ndev;
+> +	ldev->dev = dev;
+> +
+> +	SET_NETDEV_DEV(ndev, dev);
+> +
+> +	ret = lin_set_bittiming(ndev);
+> +	if (ret) {
+> +		netdev_err(ndev, "set bittiming failed\n");
+> +		goto exit_candev;
+> +	}
+> +
+> +	ret = register_candev(ndev);
+> +	if (ret)
+> +		goto exit_candev;
+> +
+> +	ldev->lin_ids_kobj = kobject_create_and_add("lin_ids", &ndev->dev.kobj);
+> +	if (!ldev->lin_ids_kobj) {
+> +		netdev_err(ndev, "Failed to create sysfs directory\n");
+> +		ret = -ENOMEM;
+> +		goto exit_unreg;
+> +	}
+> +
+> +	ret = lin_create_sysfs_id_files(ndev);
+> +	if (ret) {
+> +		netdev_err(ndev, "Failed to create sysfs entry: %d\n", ret);
+> +		goto exit_kobj_put;
+> +	}
+> +
+> +	/* Using workqueue as tx over USB/SPI/... may sleep */
+> +	ldev->wq = alloc_workqueue(dev_name(dev), WQ_FREEZABLE | WQ_MEM_RECLAIM,
+> +				   0);
+> +	if (!ldev->wq)
+> +		goto exit_rm_files;
+
+The goto above will result in: return ERR_PTR(ret)
+But ret is 0 here. Should it be set to a negative error value?
+
+Also flagged by Smatch.
+
+> +
+> +	INIT_WORK(&ldev->tx_work, lin_tx_work_handler);
+> +
+> +	netdev_info(ndev, "LIN initialized.\n");
+> +
+> +	return ldev;
+> +
+> +exit_rm_files:
+> +	lin_remove_sysfs_id_files(ndev);
+> +exit_kobj_put:
+> +	kobject_put(ldev->lin_ids_kobj);
+> +exit_unreg:
+> +	unregister_candev(ndev);
+> +exit_candev:
+> +	free_candev(ndev);
+> +	return ERR_PTR(ret);
+> +}
+> +EXPORT_SYMBOL_GPL(register_lin);
+
+...
 
