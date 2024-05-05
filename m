@@ -1,125 +1,134 @@
-Return-Path: <devicetree+bounces-64991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7D88BBF5D
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 07:37:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A18A8BBF9E
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 09:37:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76D781C20B06
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 05:37:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E534B21199
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 07:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B4779D8;
-	Sun,  5 May 2024 05:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02665566A;
+	Sun,  5 May 2024 07:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nS1iTZ0S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NjZ2kmYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFB74404;
-	Sun,  5 May 2024 05:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52728567F;
+	Sun,  5 May 2024 07:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714887446; cv=none; b=g9T2IcemOlrMsa6g/y6bDQM87+bVqnoigJUye0PtxUNdcqwm4fTI+jQ+u2bGh3KgIZlS+gRPHoGUDtylHISwQX82TTQjgRw8PriKiTKcVSBFKnOHNrKGVUA9YmKcIiRp7jvpgAOPWlErKLJAwWDEHZLvHntEcbkoOwNyfZqbAbs=
+	t=1714894618; cv=none; b=nH6gr78yW7xme1ipO2DOERZ5wG2lUKMr+z7CG2cq+CepodoCW8cJzLk/AxtKIPN1Y6T4thOwdy0BnPuh99O5SVgtyONinJbXyeos9k/zzGt50/h0BTZrRnqE5E0qcCgoyWanV0uhjH3p+9R01TzF4El+/flqGqjiu/r3ZHb7IZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714887446; c=relaxed/simple;
-	bh=1XLsS9UZ3/2QFzrtiwlhMbPrbRDok3+gNqxLDQ7l88A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RLjgBMKoAjVgps3QOXJ7Xw8TiacytackHivHSbAugvVtcm84RvTCDlyRvHl85oBup79SUN+wie13F13H+LpBZckLgqE+rrI/sHWWpOk6xc7Qa7b4FH8kX3VlkWVegiFBDxGgjfuEXUNwswtZc7u4F0+rLH5XChMxUZltqmMDH2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nS1iTZ0S; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1714894618; c=relaxed/simple;
+	bh=kF+BXbMdzjv9zJwYvETsu6yuoGSvo6HZ2u28p8vg1gA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZPSA/AMTs9+ImLe9oSDIUz9o4IJCb9/S5TAlA2H4rp49jb5HgVz0pgBprkPv8nPulP6p8A6Py+Xk5XXEcqhtLMmFUhvxg5ZcdddSdfQEX/Su3x2Rry6lEKTR8MEzuTwec6MeCnXcFghbJdJkDWsctZS2ivGnrX6RJxDeFclcaZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NjZ2kmYV; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41b79450f8cso5910335e9.3;
-        Sat, 04 May 2024 22:37:24 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-51f74fa2a82so1032000e87.0;
+        Sun, 05 May 2024 00:36:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714887443; x=1715492243; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aIHGQYXLm+H3AT0/XK/EI9TEN++7QBgYZ3oaGHN9sJw=;
-        b=nS1iTZ0S0DCJw9sfjMiwHDuso423W4VHyBr13e8Ywgjkn6pvqNkKoP2mWD/6Gjhtpa
-         2Hwlu7lCEITz+UclYQu5X8RfIS8wMRjDoHgwWUJbvFsUWi1lpRUZql3POpiFgoQtEaf9
-         S+3V6AvroJ9NtOfS9IFrCTJsQpQiQP0bKTv2XMnSHWH5oW8fgIxFjnVv6u9aWflFHgLt
-         bvzyaza1DFaKt9Hip4RXbUglFEadYrQXy1UObpEvfcpZAodA/4hS9vF7YZG8YP0EcRiC
-         6ahIdoo0GeVwN8akRoUBZvks9ZE5xEPuKXhDVo5xJUhT96NINw+HaLYwdpI0tP1yeR+a
-         oI4w==
+        d=gmail.com; s=20230601; t=1714894615; x=1715499415; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sV9tEny9NKUbEgU1EhkDp3KbnE7GbZyEn7aGZ4ZCiGY=;
+        b=NjZ2kmYVgI/ulciGhreJq3aSl2R2I2r1uQEC/SKHOjvMo2dIMR6BfRVFpzP2ZswfRy
+         0ICxKxtvjDJB81ui1WtP9vpyVjnqqdqZZ1HfySzCTMiHIuZl+F91rC0OBCjjhoc5NYEC
+         pgh9jJi1fq6ErU1RU7ZBMJUSH9qgRWcq0jD1nNOe3R+N825AGeTnYk+MvFpzZbhTsR8y
+         /OlbTwRV/+VKcSTtG8cys9V16ZtOY6mCX0TOxNCs55Qys+P1nZoIn0IjrS4gpFgvLWd3
+         ymRnrzhqxQMtcmuFjdsYA/QCW8lfsFfXwxKl2R1omeQ1biL/NoF1f8o2NJ04ftphkN2i
+         Qzew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714887443; x=1715492243;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1714894615; x=1715499415;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aIHGQYXLm+H3AT0/XK/EI9TEN++7QBgYZ3oaGHN9sJw=;
-        b=e6sVRshxXPrGAVfFTVCy0f4UcKCQLZ+59y9AyT0v4QwZezVFPhlsvdlOkMR36i2olo
-         76kmjHTU2E4JJfFL1O5A0M6Wbfjka7jux5XuxsZV8qEuCvz0fSiSim2V/CAhQQ+fZh7v
-         Rn9jdwjvV2WscfMsB00a/GAxBXe93bTXPWfpNwj3lSgPvTrCFdqmPAqdtebYkQmgw8L1
-         5yUewIORi4158Bd3QPLH3L5L67rd841u9J235XCgTzNBC79tpMN4ickVLZCyPuXN6ozk
-         x0xoQR4YWYGIqTcUIrPTNzxPXZNOM5THKpYzH+esgDHplCoVSWASXnQPqSugjM86kEfi
-         2+rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNtruRrsXqkIOgQkkz1Y27ljnbA56ZcG03IWNnAhPbuXOXbJJRImXj+UtfM1TlSWx6bfFHelnE1imvasSo4rcGFhlwRHQjesoJgHQfzXBTHdx6s/QnJvNVnlVXYw3lAm9+dmCVFTU/ig==
-X-Gm-Message-State: AOJu0Yymk+aaWRawjvlV1ovbgmBS04cvP7WDlxu2V3rxozN7Vg+bnrEc
-	nmzoM1EvUmicevgyIzKzd4aKzv+BjScKkxHh5iLqHwe7JA+yRm0w
-X-Google-Smtp-Source: AGHT+IGN7k0T7OPr4JF9BP8fH9zpFnfD92BtI6q/maJAqPJFCQ8r+3eu3k17OVb124qDqEydzKMNDg==
-X-Received: by 2002:a05:600c:4ecf:b0:41b:285:8417 with SMTP id g15-20020a05600c4ecf00b0041b02858417mr4745619wmq.40.1714887443321;
-        Sat, 04 May 2024 22:37:23 -0700 (PDT)
-Received: from [192.168.1.130] (51B6DCE0.unconfigured.pool.telekom.hu. [81.182.220.224])
-        by smtp.gmail.com with ESMTPSA id h11-20020a05600c314b00b00418f72d9027sm15050957wmo.18.2024.05.04.22.37.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 May 2024 22:37:22 -0700 (PDT)
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>
-Date: Sun, 05 May 2024 07:36:55 +0200
-Subject: [PATCH v3 2/2] dt-bindings: iio: imu: bmi160: add bmi120
+        bh=sV9tEny9NKUbEgU1EhkDp3KbnE7GbZyEn7aGZ4ZCiGY=;
+        b=UVURVUjEjz47veeS9Bswpsg2wnCjWRFaWE6YNwwUQ2xorKKA1VUf6JMEnHGVdqE5aQ
+         HfNPJIS5lwjLyXzvnoaYH4RYcH62csTfgs0CZzB2FjY2xlWM7NW89pPD+YsBwgdl4dbL
+         Ht/55ar4I/YQ37sakRVEh4QwINgvMlGxkfmclXgiWEZpPz6anS6d+q6cKBeFnBgExzNk
+         7UwroLx2/equQckjX/D1NU+OSnK9RBNA6bl6bh+nMey9rlD0ZL2Le5yu2JMdgIBnownK
+         vUobOG5w8vInH0uwBfMrd2O3Axe8/iiMEXfTRwXJhKm8+BKTfpz8UStPb+pvGleVFVZq
+         Z/9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVNrN9oeVAwFoAntYRng/KflYreps2FLIouHFk2F5aMn5GxovzXNO3S7yOHmgOA7ndTSJPCPh5W8E93UBcfo6eFHTsk2EF5PL7P3tRdjY36/ZDQmiMT34OAa+rchz81FzNk7dMifBdX9MWQquuqxl0/iXU/gnV3HjE0mNM7SrJn/BU3NBQy
+X-Gm-Message-State: AOJu0YzGBKro+RrhJ9XsVBPbPlMXxj8wTubKeet6VPE7P6TJWpl2HEgN
+	Z/WezfPUd6PhWaLPpp4Saosh0xMDbPVxE6TfVgWup2YVEQvCPyeFDvBzyqks/35S34a+EAghN9V
+	xCiPF+Zi8jzzENmxZd/6eMgMcrJ8=
+X-Google-Smtp-Source: AGHT+IEhm1kOZjjK2ZFI6f9D/6GM/IBpz99QMQr9mvR814WhujoDVJK3uBymnjH6FbQ1lNiuvR+8f/dPCun7Wnovqlg=
+X-Received: by 2002:ac2:4e88:0:b0:51a:c2fe:9f73 with SMTP id
+ o8-20020ac24e88000000b0051ac2fe9f73mr4834131lfr.51.1714894615147; Sun, 05 May
+ 2024 00:36:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240505-bmi120-v3-2-15cee3d0b2ef@gmail.com>
-References: <20240505-bmi120-v3-0-15cee3d0b2ef@gmail.com>
-In-Reply-To: <20240505-bmi120-v3-0-15cee3d0b2ef@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>, 
- Danila Tikhonov <danila@jiaxyga.com>
-X-Mailer: b4 0.13.0
+References: <20240417134237.23888-1-bavishimithil@gmail.com> <2e179356-425d-48cc-84db-0ea3e6203fba@kernel.org>
+In-Reply-To: <2e179356-425d-48cc-84db-0ea3e6203fba@kernel.org>
+From: Mithil <bavishimithil@gmail.com>
+Date: Sun, 5 May 2024 13:06:42 +0530
+Message-ID: <CAGzNGR=pvv67UJtNnkDUMhrpnPjNCCYEGeCaM7e_9=4G+Lcfgw@mail.gmail.com>
+Subject: Re: [PATCH v4] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Danila Tikhonov <danila@jiaxyga.com>
+On Wed, Apr 17, 2024 at 7:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 
-Document bosch,bmi120 compatible.
+> How did this happen? I see this was in v1, but I am quite surprised to
+> be listed here. I am for sure not a maintainer of this binding. Choose
+> driver maintainers or platform maintainers, worse case.
 
-Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-Signed-off-by: Barnbás Czémán <trabarni@gmail.com>
----
- Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+I might have overlooked this, will fix it. There is no driver
+maintainer for it as far as I know.
+Should I include the module author?
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-index 47cfba939ca6..3b0a2d8b2e91 100644
---- a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-@@ -16,7 +16,11 @@ description: |
- 
- properties:
-   compatible:
--    const: bosch,bmi160
-+    oneOf:
-+      - const: bosch,bmi160
-+      - items:
-+          - const: bosch,bmi120
-+          - const: bosch,bmi160
- 
-   reg:
-     maxItems: 1
+> Not much improved here. You miss $ref and optionally constraints.
+Something like this
+    $ref: /schemas/types.yaml#/definitions/string
+    enum: [mcpdm]
+Didnt really understand the "optionally constraints" part.
 
--- 
-2.45.0
+> Missing constraints, so replace it with maxItems: 1
+Similar to how clock-names are handled?
 
+> List the items. I asked to open existing bindings and take a look how it
+> is there. Existing bindings would show you how we code this part.
+  clock-names:
+    items:
+      - const: pdmclk
+    minItems: 1
+    maxItems: 1
+Something like this?
+
+> Just one blank line.
+Removed.
+
+> That's wrong address. Old code does not have 0. Please do no change
+> parts of code without reason. If there is a reason, explain it in the
+> changelog.
+>
+The checks were giving a warning if 0 was not included hence, I'll put
+the real address if needed then.
+
+> Include header and use common defines for flags. Just like all other
+> recent bindings.
+>
+There's no defines for them, this is how it is in the dts :(
+
+Best regards,
+Mithil
 
