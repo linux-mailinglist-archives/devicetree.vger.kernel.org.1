@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-64983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2AAA8BBF0F
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 03:52:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97CFC8BBF20
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 05:39:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99BD6282073
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 01:52:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 085611F2166F
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 03:39:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A7FEBE;
-	Sun,  5 May 2024 01:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0714690;
+	Sun,  5 May 2024 03:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="daErANad"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="lBQmISgn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2083.outbound.protection.outlook.com [40.92.42.83])
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2050.outbound.protection.outlook.com [40.107.6.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C48187F;
-	Sun,  5 May 2024 01:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.83
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F363D3C2F;
+	Sun,  5 May 2024 03:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714873911; cv=fail; b=dPDNcoJdFbQEpT6mzXbjjdHplp0GmBJDxN2OjXAm8jQwflrnYBqfFhsNL+cXrdMmVDnE0hdhoJIRusibdCIHA0bc+0sBK/nC3R00N1DgExhulR8JLojX3ulUSQF9eGuihl5RQaewPVOcBjliIELSEoFdbZBCAG+z9TWhCgQALRw=
+	t=1714880369; cv=fail; b=u/Qye6wbxIpcR+keCarrN/1XPqtqR4pvMjYoirt+f+GLxUTHRXr4GqVD7lI/m/x2o6jqn20povxWp8967UoiNF7rl18cckLAN6e9/VMgJUE3yiYIjIV39u43XS0T0q8sytwKw2n5EM+GLdwbWQgg7rsIyCmwi+HU/BhADjTOc5M=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714873911; c=relaxed/simple;
-	bh=8ZVxFCWbbM1qZFh2wpBQoL5l34P4/043K0K4XfWHiI8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LNF1blUjawa7J49J7j0GY3JGOsgrh1Wk+3h2uu4hmNxxdzRiReDpkxLGCCfDr4nhWC8Wy5TCtKrdVsrctRQ7Q3BGMJBdiNjo3KAxpB7HSSMWvNCGCp0j7wIwBFDany9PDfq8GRfC3Q+zeAQAb8+78UuhmhWIg14SYOg3+tokJDg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=daErANad; arc=fail smtp.client-ip=40.92.42.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1714880369; c=relaxed/simple;
+	bh=0arTN+qWnYxOIFYqiP5y6aXF1xIWis3WICNoIoWEI/Q=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=AiuUXKFxtKxNxpc5NI4FLSgfkWRI0OVeOamQFSZi/t280NEvudorfb1VEQkBRe0MHCIyWtno1vay4FTHRus/yP0jxQBylOr1RR09a9li5siUgvzuB5m+n6RfxNzqigcSBtvQCz/q+SUFO8SEWpALnB0Wl3FjNVw0DQHV8RqBJLE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=lBQmISgn; arc=fail smtp.client-ip=40.107.6.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ylmv5CXnm98JjGnOhTgXr5UYQ8Bkd5GBhox2J+UZxrSY1Wi7rmznZOe+V6fN9bHV5wyzWGVI0PbDRp18ZuufrNlXAsc91auoWTrQrhCQDh1NdgkXpf2bESivHSX4WZHYb2JJn4Hnee1DwNKPaJyY9s6KeUzvXEZ44pQ4LjAPIgSzqAI556Z/ddM2pUPUPVdrL3cnBefy3Et8X4M81hzu1oKiEYnrmW4U6413DkQLCH2b6rOi2fToSQzSAKb+pM/FwwagSK8mj9ErN6gjD2rG+8CfqORMnQp4c5r16eQAnU8FStJrUaW+/Y55c9g3U6z767Cir5pGYb2zu9AgHr2iCw==
+ b=MO1bUcXHhDkA8AHL8SjIeefH85TOgUMBJUaPl6/TsIpytEJD/SCM9aaY08SdcNVvorDuUWXUs+lSirBpDQmWNpGiFszeoonvnxhvdnqxT5sVn8ErcBUI7MXsPPh5ytvrqHNOUgnZVOS8bM2ttZu4frduTrgyIMkM5cFOpUhxLp2HIPHL3ntsZyZXnYu4gn3uhlu5AK6ekW0091IUnZDSmFEzS2jckuZM4XmSHLb2SfTV4AA/YF4Ercdp9PGy8fB2vA2CuNEI0ruiTVFFH2KZ/9Y3lFe57Tgf2ge+VkyiSHtha+0vz9nAk+g9ca3kAn3EeimB51u3M+vFOX0oRa74uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h0sQF2yediK5Doldlq6rtH+5QwrytBvqNDlig8hL2fQ=;
- b=eLgMq2UbIcdNGeSOqHw4jGcpcaOOi+rNfb7nGGVa+euWq5RdbCrFmOW77WlFOHGa1Ij1fLmt0lkQoixBujcrb2MccSFcQscrBbvx9WxRytFejMyrzrC/8lc7s41MXKtYSRfyonbK4zjJEXSeo3FbTyanIc3oguBas9eQeh4f7+66GaOQMUl/Y1LAmONGFypg2EWoo9pdghKy/psD4GoOF+ImXV/rteYglOA7z6CvMfxFzo/Mid1djYn28VJ6XZLfHYBnr3LhwMT4JgKp8eVAnxvaRS8rGVEloc6gwGJczI1Fy5+NUkorr1S6+GgKHPtdOm7zqjbbokevlGyW2N/Yrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=bQ3w+QpkMgcUge3fp+PRPdhRxWMK6ZHWFXNMoUKgF7k=;
+ b=M7yU4D3RoXG7WzIiELwK0Lz+BFKRRFC/DSeztH2xvyHSEx2SxSf7ncZ9i7PlsVp07SHzF8p5zUK13Ezmo/dH1GkyO3/Knxm+teahi4CUFvvN50obRPUw2MkjJFL4vc+e+7E9wJGjYM6b7J25oPAIkgyaGXiwgzgY7Nplo4PXgBjXRuprJTkv7CQp0y9hhWs0xBjiGROqqm6Qt/6uCMZNO9UGTtsLUPbQvZgxzmcPNeZ7yEr86Ht1JOsXpzOmgfaLiHTCy4a11w9UPtiklC4L2WL4I0nZQYWBR8SXO5/DTvEpIJG5+psOIF39l2ObvRLqOoPdLcl62KwAawEPY1zJIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h0sQF2yediK5Doldlq6rtH+5QwrytBvqNDlig8hL2fQ=;
- b=daErANadHBvSxE513dKXA8fHTvwveQQ6/XtpoxtWk8hm4AKrtlbdjsgMjeTLTgvegRioaLCgJEpYYH7sOAJd3ptzvdy2JHKn4rwv/tzQN0++b2nov3ohuwxHo08YR80vNuWXEymhG5IzB0003hxAGTRWnrK2aGsLvvPTlkltw43yH5xWw7EPrmCdyUERdAvDQfTNK+1r8zlRqkITFg9S9xDr3sz1vjFGh7IMRKpEytko2gl6RPaLAPTiKz3VT8E/Ckv6EA6AWES1qzT/8VfXvSkRcqiZ/i7YkFsXXVTn2iOi2ssF2Z/Jyt9Xq+IEpi4BlnEQpJoM0oxcFUwp9gE74A==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH0PR20MB4304.namprd20.prod.outlook.com (2603:10b6:510:12a::19) with
+ bh=bQ3w+QpkMgcUge3fp+PRPdhRxWMK6ZHWFXNMoUKgF7k=;
+ b=lBQmISgncV1jgej0kTewjtG4fPmn0KuLFl7WXLTpggWPyi9xhFbzO7Im66SU06s+y8DlhQRY8insbhQQSFqE9MBNBrjtl7HhqSTbuzGP6gA6A8gZrVE6eV9uPFjqNcztUp/BYhU87WuOAkPhxChgEmOS4RZhwrENHB/28EBMcKI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by PA4PR04MB7599.eurprd04.prod.outlook.com (2603:10a6:102:ea::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.39; Sun, 5 May
- 2024 01:51:47 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7544.036; Sun, 5 May 2024
- 01:51:47 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Liu Gui <kenneth.liu@sophgo.com>,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	dlan@gentoo.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v3 2/2] phy: sophgo: Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X
-Date: Sun,  5 May 2024 09:52:16 +0800
-Message-ID:
- <IA1PR20MB4953A1328FE458C4DE45DDDABB1D2@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <IA1PR20MB4953C1876484E149AA390DD5BB1D2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953C1876484E149AA390DD5BB1D2@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [O1kJS4wNSTHu8ntRvHdBbAcJGs0EHCwBeGoxaLeFwN0=]
-X-ClientProxiedBy: TYAPR01CA0206.jpnprd01.prod.outlook.com
- (2603:1096:404:29::26) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240505015219.754500-2-inochiama@outlook.com>
+ 2024 03:39:21 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7544.036; Sun, 5 May 2024
+ 03:39:20 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v4 0/3] pinctrl: scmi: support i.MX95 OEM extensions
+Date: Sun, 05 May 2024 11:47:16 +0800
+Message-Id: <20240505-pinctrl-scmi-oem-v3-v4-0-7c99f989e9ba@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEQBN2YC/32NTQrCMBCFr1Jm7Uj+oOLKe0gXMRntgElKUkKl5
+ O7GHkB4m+/B+94OhTJTgeuwQ6bKhVPsYE4DuNnGFyH7zqCEMsKoCy4c3ZrfWFxgTBSwapRKaiG
+ 0tKPx0JdLpidvh/U+dZ65rCl/jpOqf+1/X49A8lYbSQ8zkr/FbTm7FGBqrX0B3b/ETLQAAAA=
+To: Sudeep Holla <sudeep.holla@arm.com>, 
+ Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714880847; l=3919;
+ i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
+ bh=0arTN+qWnYxOIFYqiP5y6aXF1xIWis3WICNoIoWEI/Q=;
+ b=xAEZ7euqL9SsuuGtQf1PgtT6l0N8GiqdWmoHSeKk+B2xxyAJppKfTaiW6KOVFKwi/9pvx6Wtq
+ PpcJo8M8OlqABJLAMYdMkmwO6bxEGnHsXfqtqg0gGMFbnfNU+Fk0CeR
+X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
+ pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
+X-ClientProxiedBy: SI2PR01CA0022.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::14) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,504 +96,189 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH0PR20MB4304:EE_
-X-MS-Office365-Filtering-Correlation-Id: 50c6b742-1378-494a-7ea4-08dc6ca5ec2e
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|PA4PR04MB7599:EE_
+X-MS-Office365-Filtering-Correlation-Id: f270be40-d7c5-415e-dca5-08dc6cb4f2d3
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199019|3412199016|440099019|1710799017;
+	BCL:0;ARA:13230031|7416005|1800799015|52116005|376005|366007|921011|38350700005;
 X-Microsoft-Antispam-Message-Info:
-	88XgWPdCT4JjwV17I0Ne8SJSB1XGDHod5gAg0f1k3kTnYRuKXF7FXatomzYldFUDNMS8LO1P2iwT7fhNGy1C+I0RXS8eChE5WVb30qsHn3AyE37UlFpPpTZb4pXJqPtSX31LvXmmqxz24w8M9QHtZP6PgGvu0NN8Dyyabo/C+1d6Wo+z1ZBZhHUi54gccYKZ+SI8BXp7fMVQfZHaU7avx7Dufsa4Iqq6qn1FAkXr/Q2/vKZ2hwdLkYNGU/JOt1XBxQdi8S4URrj0g1FnQqHXivVeJBe29Rd6akX5FMAh58Eb/8CAy0ies86WCbw6J7Hna3lXR4CzyD+I6kFHmGSdqdBV+M5t9kTsXon5q5R8/moddVkzLyjVv1J6HKEfGVZVQshpM+jwXq0uEXNJYc8TPdAuH3dIe1ruJUPJns+jumfr655ug9+RfY5eJT0v+4W7DWyNCeBVjSwcDpNzALXjb7IYYeZ9Q9yl/r+rHkCdHOsVj6fW8geWg1zAwanGiKIXjPwO0eVQzhViw+ucr57uFGQlHZvyKBgBCxwEEtAa5bW/YXiSIie95Ol+RUzVqqcIuyJnW7UmorYBODEOitDc7vpYLogm704VW+xN8GgePQuJUem4jPfm6wOHHzzoLc0V
+	=?utf-8?B?NkxTVmxOazJPYUxRMHBxYWgyVTJMSWkyTk8zbzArWGJGUVZVZDBwOHJqOTIx?=
+ =?utf-8?B?aDVZZmVCaUsxeXVFRHBTTWhOb1RBQ1dzdkVlekFhSktxMW5nS0l1ZG0zQjZO?=
+ =?utf-8?B?WlJqMDR4bVFIcitHSTlzZkVsSHlnL2dVa25PTis2ck96Vi80NWFEam5zYXE2?=
+ =?utf-8?B?TkdEMWZXSFI3MEVrRlRxL2hXeWZRZ2dkZE5KWHY5cmZWemg4YWlVWGcvRFZ3?=
+ =?utf-8?B?ZThVUXJhY0FXQ3NpcUZramtLQnBzRkVRbGZSZURMSE05YyswRUE0UlowN1F5?=
+ =?utf-8?B?REQrV3VZNnpJa1lMTmRORmh5MzdDV3hpN1VnNlJMYW5sc3RzUmFDTFFETCtQ?=
+ =?utf-8?B?MkdNQ1Q4bTNqcFgvcHlXdlM0anJneEoyNGR3aFFFRkoveXl4Qlk2VHcveTJo?=
+ =?utf-8?B?Nm41ZUpPaTZaaUxmekhFOTJUdDF5R3lTRS9EdklTbzNwdm0xZno3R2pJMnIy?=
+ =?utf-8?B?eFVESm1lUU04aXYxSkZ0Skk4VVo2QkhVbjFpbnFTenExTk1OZEJySzBnWlhJ?=
+ =?utf-8?B?aEF1RHFQelUvTzBCSGhMMFNYbHRmRk5ETnF1d2tVdzlONUc2VCtHcWxTdUtL?=
+ =?utf-8?B?RHpLYlkyc2wveUhoV1ZXYjFNSG9xNmpuazBiZ2lmcnJGb1dTREtnVW5OM3dz?=
+ =?utf-8?B?VUFwK2FpWmg4a3R2S3lGRzgzQU16VUlEQlpNRUF2dnhoVzk3bmNxSDdsdXc3?=
+ =?utf-8?B?Uk5jb3pOMWYzMjVkbEU1WlhaVTl3azgrWTN2eUpHRGdmVHcwTDlHT3dBNVVT?=
+ =?utf-8?B?ZDg4NVFObnhZLzRwWlZlTzlKSFk5RnU5TXprWldjTGlqaDNsbndXcmFGV3JT?=
+ =?utf-8?B?SmppdEFxL3V1M3diLy9GQVFYMVRzZkNhZllUYUtjSm5IaU8vSzhFYld1LytS?=
+ =?utf-8?B?MjFDM0JaRE9KdnRicU5kQlNBaWx6NFJBcEVRcTlxQ3ErWEZXcVBFL1VYUWFJ?=
+ =?utf-8?B?a2wrNmZPdzRFaExrZTdhOWVJWnNHbGNocFNQVC9hTjBJOG9XUW5TL2RZa2VV?=
+ =?utf-8?B?Qi9KcDhlT1k5T0o3bnk3M1hCU2FZM2hjbVFQQnVqNlBEVWV6M1BGTWkyRUVk?=
+ =?utf-8?B?Kzc5c1BPbE1xSFpGYjh0YkRGZk5HaVR4azUyT2tldFZpWHA3OHhEYmNNZ3VT?=
+ =?utf-8?B?U1M3RW5TZDJCYkJnMnVlT3hQT0dvcklqYkNwZmtoL0ZiQkNSM0hQSCs3czY4?=
+ =?utf-8?B?TEhJaFhTcXJyMXkyL1poYko1bXpTVnBUUXh4Z25qdVhUSnNWQVk1NFBjVHRj?=
+ =?utf-8?B?bHJ0ODBGZG91d3dQRHVqRlJHMEgrUXZQV0pYbjd4Q0hTbGNmQ3Q0QnNhQ2Zp?=
+ =?utf-8?B?OTVKZ1ExdG9MRXRFa3piSWticEx5cjNlN0JiVXFKRjIyOTV2UFBobXFabmc0?=
+ =?utf-8?B?eUQvcExJNm9YVmlIWWVVcmIraGs4MnJQT0Y1SDJlZm1BdTZvY0JmREx3dm5O?=
+ =?utf-8?B?WVJOdWR2bjlYRFBTNy9XYmhNVkVvb3BvSm14Yy9SNFVMN3pxNEZVU2k1NFFS?=
+ =?utf-8?B?aUZIK2kxdDJZbTFPcDFXTWljbWlGTzVKU0VJWEl4Sml3WXo5QkJKRDlEVzJw?=
+ =?utf-8?B?a2Q0UE9lOGEzYnNzdVB0VFg1VUtWMGtNaytiRnFjd0JOMTZ3UzR5ajNwd25S?=
+ =?utf-8?B?QlhvRzh1NlI5dUxpSWdCSXRlTVRuTnlyNExkR0Uya2ZGVkpGR0tRZEN0eVpV?=
+ =?utf-8?B?R3NaU1J4Sjhpa2E3QmJTWGdVeTZha1p6YlI1N29oSkhJUy9ySldBSFhQemR2?=
+ =?utf-8?Q?cW+2QerWPHwaZGzHin1htkdAFkhELNXQM53ZnUt?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(52116005)(376005)(366007)(921011)(38350700005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?A4u2kR+OYuUAVG7pqB2FH7YRlBYhqpIWyqQ81Kzptw/cWnXPLADYo+q71wCp?=
- =?us-ascii?Q?WTd+Dx8MIaiua/CQYAEuWsi2NMjs1VSqYqQTdrDXXW6rh6AfCeCvIk3Cl9Ev?=
- =?us-ascii?Q?SYUcRgNdquuGjZTmM3iDljitziD9/Fftugb88Lkie5MjeZZY2jt7G55+9fhK?=
- =?us-ascii?Q?Yqs7ROp3IBbqQn7Va4sRfV8EJ9GW1ETZNAfOwhW8qwdyWceKN1wYrOIqHzw5?=
- =?us-ascii?Q?s4vqskDamPHQ1I9I/xd1U98B6eC6zDpXCgNzOKXoUpuks0ebBb686a/W4l1L?=
- =?us-ascii?Q?7LHGnAblTbSSIB/x/Fh3vBtE3SFixRdnnOaZlV7OvC9nFczcsMeWZFsx+hGx?=
- =?us-ascii?Q?cKbyhsQZIDM5NrdvFEBZ4pYWlsauDp92A8rb9isERFdEdCo/URmb0ZnETxGg?=
- =?us-ascii?Q?wcQ88rTQVW++2S24fPaOIxaS/uJtvKpJBaM5ToCiqIEpWtjFmaUuTHpC+XYv?=
- =?us-ascii?Q?f1Nd4zb87aCd1pUxHFv/NxJpOzzqEmy3HpF53qsEozwLALxdi2Vdyth6GJ7Y?=
- =?us-ascii?Q?s/vvbh0ss2d0d9MSLCDl5NAKS+y/Q7/DiVilGcEqiBhO0yr7+WGBtrthLjs3?=
- =?us-ascii?Q?Dgdr8hDz0ZpDewI02VVL/4TMEaVSyyUd/8ZpYqql4jjNhzUreabvWOf+NOsc?=
- =?us-ascii?Q?kaSxIqAXOTMSGUfph8a4Nr+OHmlf9WVSKxalpWoCUjAxH7DOyHh4NuVDSN0s?=
- =?us-ascii?Q?exWZ4MUZMdKZyduvZj2VPfr3nJFvBamEJInbM6f7H7vKaykKu1T5xkVQjRHP?=
- =?us-ascii?Q?KMF5eeZOuP9OKC78lieBoK1zleu+k6ho35zOLJOxQTe9rwPMPbPYRU9JbzHP?=
- =?us-ascii?Q?dwA8VQMVSUCp2WE5w8lmyQXaP2fmy9BmVJbc+kIyMTaTcJFqe4/qwvNbWFU3?=
- =?us-ascii?Q?YuozIu1MnVbEWC5xSwST4obRTelcZ39Nt2lmPGBJfQHD9t6deHvIF3vt2Fth?=
- =?us-ascii?Q?luv7weAUcuG3kVmSWkslhILCf0BYMpxOvc2Dpe3F9aXH/Oi3mb+mUMUenkSh?=
- =?us-ascii?Q?kWbvQGJUEo1wyZw1FuytEoyIJORbOV3z5rXMM8Qhh2T4rf4LkpOWaTdKlyJF?=
- =?us-ascii?Q?+JppIbjQAijxQTuajuV6H6N9yGxLVEwtAni/1D7Ub3X+QsDdn3oJm8tDzuXA?=
- =?us-ascii?Q?zXCwGIL5GyajePS5/1AXU0LMcQ7AnU7nMeF6770gntROTmKlQ3Uh+Y56NPnb?=
- =?us-ascii?Q?/I1/RyDnt7kDB9KCzqCukzvcsOcIBEWozCkoqH5WLKieW5F4Y3CRSmzP3npA?=
- =?us-ascii?Q?RdpOZbwlaBqDaF5TwI9e?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50c6b742-1378-494a-7ea4-08dc6ca5ec2e
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+	=?utf-8?B?anRFOFNXS3llRHNLb2ZTK3BYb0Z3clNzeDk0UGZKMHR6ZXhyK0wrMTdiTS92?=
+ =?utf-8?B?UlRMQ3J4eC9EY25DakZoTVVJcXRBRG1tTHY3N1FsbGQ2ZTFmVXc1MDNNamY0?=
+ =?utf-8?B?OFNzNW5qbnl5OFNDZHVBclNaeHUvcEVmVjMxTVRPMGFQTHVMaDROcnFsK0x3?=
+ =?utf-8?B?Rkh4NzJUZ0diR0FJTWt6cVN3RjFWSDJLZGJ3aStPTHdQRkl2ckdYekRQMUdE?=
+ =?utf-8?B?K3Fyb0ZoWWN5cHBLYXFzOFdJcXdoRHFWbktDNEhkU2FSTE03WEc2alFHeGVF?=
+ =?utf-8?B?K0VSd2xYUE5TTFRrWnpkTVZDb0Y5QmRRQmNyL2J1Y1ptZWtYRTM0R0dISVpE?=
+ =?utf-8?B?REt0RllSUHk4anhkeDltamFSQXNTb1lTL2xCbXd1aytNemczNEFXbzRSREdH?=
+ =?utf-8?B?SVp4SXlHd3NJM0h3VkYya0tHNStvUlBwWEU0aG1ReXdrdmFMNXRlZEE0OG1N?=
+ =?utf-8?B?MlM1YUF3cmlObHdQdVFoRk5Md0k0ZVVVLytLYk9hT25zZEhMaExobnV6RTQ1?=
+ =?utf-8?B?OW5oSXlFU0YwOFhPUzdOZ3Jqa3h5QytXWWdZYU1vL0w5djBYdU9aTGIrWVVW?=
+ =?utf-8?B?OTRQdVBMMFh2SnhGbG5ObGNOWjI1bTdqMjZHQWpCZkhuVzhzYi9QSzQyVFVI?=
+ =?utf-8?B?d0JxSVRqVm9sYXZHZ1VJNThEWVA4NlgzOVBHN0REUW5xVGlXNzVYSThDNGsv?=
+ =?utf-8?B?YUU3c3RqeUNRa1hWbVROV0tYQ283UVZJanZCSmhBOUFGZ2dqZURYMWkvRk52?=
+ =?utf-8?B?Q0UzZDNRYmVubW1CK25OT1BxL2dLcVpDejh5bjgzVHdYUnVwUDlBbVNxeHZV?=
+ =?utf-8?B?WmFUaXFuYzlIZFo1VUo4Y2lMcVdidS8wNEZGdjhHSURzMzJVOHEyZngvSWl3?=
+ =?utf-8?B?Lzcwd2JZWFg3RXNNeklaWWxHY0JZUnFZc2c4K3B4OTM4cVVWQWpQNkhLVjdE?=
+ =?utf-8?B?aU5pN3Z2blVvTDRTSHBVcndMNmV0UjZoWUxGcWJEK0JlSmF3bkh6VHo3MW5B?=
+ =?utf-8?B?TEhwZ1RQU3hMSG5vamtYeDlQV2VPRDRNc2t0b1Y1eWdDanBoL25aUnNnWEFY?=
+ =?utf-8?B?MEw4SDNQNWplMlMrM1BSeThCakZBVnVXVlpacGFYdldZT0hWMURMWjc4WVYw?=
+ =?utf-8?B?UG9ydGhrZENiUWlEM3dFZmp5c1FPOGNTT2VtN2dyZ3k2YjBtV3M3Wml0UHNB?=
+ =?utf-8?B?dFJyc05iRzFlU2hLTXZJQU5rNjZFREx5Nnp3d1orb2NhNll1SGMrUGdyZFhO?=
+ =?utf-8?B?azBTMFA4ZHNRb3B1UkptdVhEZFBScElVcVBUR2NoSWdHb28yOEk2aVJUc2Yy?=
+ =?utf-8?B?eGpFRThsdU4rN2N3S1Y5c1FHV2NHcERkUkhXU3R4R296ZkdpTUczakY2KytI?=
+ =?utf-8?B?Ty95aVdJdzlmOUpxbHVlRnFIVk51MjVOcFRqZmZSTXFVQUpNUnhwTjJkb3d4?=
+ =?utf-8?B?NXlSa09xYXVSSXkrdCtGTWJtTUZabW8yRXZSaDRDODVTRVVzS1FoSGdsQXBi?=
+ =?utf-8?B?SktIRXhaWTVTRVpzWE9oOTR1TnZ3UGhNRGNNMWszYmRXV0FyOEhzYWFEem5w?=
+ =?utf-8?B?Rjh0V0V2NGZYa2JFRUpTakpsTGFJRnNFRDJNNEtnNDYrdHpTRTJNaG9ENFp6?=
+ =?utf-8?B?eklaUUZXdkwwQ2toTUhIb1NFK2FSbUoxcmpPVGRoR1FsZzh3M0xxSjhwQUYw?=
+ =?utf-8?B?TUhIN0xvdDhUUEVOYWFQQnJoU0RkQ1AwUGY5YkpNRmVkN295aks2TnNLbTVY?=
+ =?utf-8?B?dzU3STdMa0dhdVQ5M1VFcE5DTGwvOWppU1VhVGYvdDJWeWw0bG5HNmtJdU1n?=
+ =?utf-8?B?NmlObWRjditydEYxLzBOS2t4MjNXQnpEdU5BVHpIUUlPbEV0VHFnUGVjdk9J?=
+ =?utf-8?B?VFhnQjJIRUp6V2oxVVBNR04vbGRDMnpRUmRjNFVoNGVOMEI3eVhqTkhmRk11?=
+ =?utf-8?B?YTdhSU94SXExSEw3YklmbmRkNVA2cHBPM1hUOSswNWR6OHJvVktRSjNSZ0hs?=
+ =?utf-8?B?Z2ZQVVk0MDhuVUY5SGNYOFJqZk9GMmFrV0ZHeUFoYXE5Ym1EKzlua0h6eTRj?=
+ =?utf-8?B?YldBRUI2RkZkdHNhUitCcmg4NFU0eVpPdnduUkNSeHAzQjVqWXcyOVRkTndL?=
+ =?utf-8?Q?ZRRA2tTc1r7Awiho7eWJAwOxZ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f270be40-d7c5-415e-dca5-08dc6cb4f2d3
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2024 01:51:46.9759
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2024 03:39:20.5813
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR20MB4304
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CJ9zvEkUYc8oafqM870SSvQkmo/ZTJqzGKCxF5PoU3ALpp6inot8UQo4qL2wx54U1Dac3oZQFeUb6hARmvWaaQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7599
 
-Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X.
+ARM SCMI v3.2 Table 24 Pin Configuration Type and Enumerations:
+'192 -255 OEM specific units'.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+i.MX95 System Manager FW supports SCMI PINCTRL protocol, but it has zero
+functions, groups. So pinctrl-scmi.c could not be reused for i.MX95.
+Because nxp,pin-func, nxp,pin-conf properties are rejected by dt
+maintainers, so use generic property 'pinmux' which requires a new driver
+pinctrl-imx-scmi.c
+
+The node will be as below:
+ pinctrl_usdhc1: usdhc1-pins {
+         sd1-grp0 {
+                 pinmux = <IMX95_PAD_SD1_CLK__USDHC1_CLK
+                           IMX95_PAD_SD1_STROBE__USDHC1_STROBE>;
+                 drive-strength = <0xe>;
+                 input-schmitt-enable;
+                 bias-pull-down;
+                 slew-rate = <0x3>;
+         };
+         sd1-grp1 {
+                 pinmux = <IMX95_PAD_SD1_CMD__USDHC1_CMD
+                           IMX95_PAD_SD1_DATA0__USDHC1_DATA0
+                           IMX95_PAD_SD1_DATA1__USDHC1_DATA1
+                           IMX95_PAD_SD1_DATA2__USDHC1_DATA2
+                           IMX95_PAD_SD1_DATA3__USDHC1_DATA3
+                           IMX95_PAD_SD1_DATA4__USDHC1_DATA4
+                           IMX95_PAD_SD1_DATA5__USDHC1_DATA5
+                           IMX95_PAD_SD1_DATA6__USDHC1_DATA6
+                           IMX95_PAD_SD1_DATA7__USDHC1_DATA7>;
+                 drive-strength = <0xe>;
+                 input-schmitt-enable;
+                 bias-pull-up;
+                 slew-rate = <0x3>;
+         };
+ };
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- drivers/phy/Kconfig                 |   1 +
- drivers/phy/Makefile                |   1 +
- drivers/phy/sophgo/Kconfig          |  19 ++
- drivers/phy/sophgo/Makefile         |   2 +
- drivers/phy/sophgo/phy-cv1800-usb.c | 378 ++++++++++++++++++++++++++++
- 5 files changed, 401 insertions(+)
- create mode 100644 drivers/phy/sophgo/Kconfig
- create mode 100644 drivers/phy/sophgo/Makefile
- create mode 100644 drivers/phy/sophgo/phy-cv1800-usb.c
+Changes in v4:
+- Rebase to next-20240503 
+- Add pinctrl-scmi-imx.c itself get pins and scmi pinctrl structure to decouple
+  pinctrl-scmi.c and pinctrl-scmi-imx.c, so drop patch 3,4,5.
+- Link to v3: https://lore.kernel.org/r/20240428-pinctrl-scmi-oem-v3-v3-0-eda341eb47ed@nxp.com
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 787354b849c7..596b37ab3191 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -92,6 +92,7 @@ source "drivers/phy/renesas/Kconfig"
- source "drivers/phy/rockchip/Kconfig"
- source "drivers/phy/samsung/Kconfig"
- source "drivers/phy/socionext/Kconfig"
-+source "drivers/phy/sophgo/Kconfig"
- source "drivers/phy/st/Kconfig"
- source "drivers/phy/starfive/Kconfig"
- source "drivers/phy/sunplus/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index 868a220ed0f6..7ff32f0ae08a 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -31,6 +31,7 @@ obj-y					+= allwinner/	\
- 					   rockchip/	\
- 					   samsung/	\
- 					   socionext/	\
-+					   sophgo/	\
- 					   st/		\
- 					   starfive/	\
- 					   sunplus/	\
-diff --git a/drivers/phy/sophgo/Kconfig b/drivers/phy/sophgo/Kconfig
-new file mode 100644
-index 000000000000..b1c558de6616
---- /dev/null
-+++ b/drivers/phy/sophgo/Kconfig
-@@ -0,0 +1,19 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Phy drivers for Sophgo platforms
-+#
-+
-+if ARCH_SOPHGO || COMPILE_TEST
-+
-+config PHY_SOPHGO_CV1800_USB
-+	tristate "Sophgo CV18XX/SG200X USB 2.0 PHY support"
-+	depends on MFD_SYSCON
-+	depends on USB_SUPPORT
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support the USB 2.0 PHY used with
-+	  the DWC2 USB controller in Sophgo CV18XX/SG200X
-+	  series SoC.
-+	  If unsure, say N.
-+
-+endif # ARCH_SOPHGO || COMPILE_TEST
-diff --git a/drivers/phy/sophgo/Makefile b/drivers/phy/sophgo/Makefile
-new file mode 100644
-index 000000000000..659537054cd4
---- /dev/null
-+++ b/drivers/phy/sophgo/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_PHY_SOPHGO_CV1800_USB)	+= phy-cv1800-usb.o
-diff --git a/drivers/phy/sophgo/phy-cv1800-usb.c b/drivers/phy/sophgo/phy-cv1800-usb.c
-new file mode 100644
-index 000000000000..bf1b86f7aa1a
---- /dev/null
-+++ b/drivers/phy/sophgo/phy-cv1800-usb.c
-@@ -0,0 +1,378 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/debugfs.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_gpio.h>
-+#include <linux/platform_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/regmap.h>
-+#include <linux/spinlock.h>
-+#include <soc/sophgo/cv1800-sysctl.h>
-+
-+#define PHY_IDPAD_C_OW			BIT(6)
-+#define PHY_IDPAD_C_SW			BIT(7)
-+
-+#define PHY_BASE_CLK_RATE		300000000
-+#define PHY_APP_CLK_RATE		125000000
-+#define PHY_LPM_CLK_RATE		12000000
-+#define PHY_STB_CLK_RATE		333334
-+
-+#define PHY_VBUS_DET_DEBOUNCE_TIME	usecs_to_jiffies(100)
-+
-+struct cv1800_usb_phy {
-+	struct phy *phy;
-+	struct regmap *syscon;
-+	spinlock_t lock;
-+	struct clk *usb_phy_clk;
-+	struct clk *usb_app_clk;
-+	struct clk *usb_lpm_clk;
-+	struct clk *usb_stb_clk;
-+	struct gpio_descs *switch_gpios;
-+	struct gpio_desc *vbus_det_gpio;
-+	int vbus_det_irq;
-+	struct delayed_work vbus_work;
-+	bool enable_otg;
-+};
-+
-+static int cv1800_usb_phy_set_idpad(struct cv1800_usb_phy *phy,
-+				    bool is_host)
-+{
-+	unsigned long flags;
-+	unsigned int regval = 0;
-+	int ret;
-+
-+	if (is_host)
-+		regval = PHY_IDPAD_C_OW;
-+	else
-+		regval = PHY_IDPAD_C_OW | PHY_IDPAD_C_SW;
-+
-+	spin_lock_irqsave(&phy->lock, flags);
-+	ret = regmap_update_bits(phy->syscon, CV1800_USB_PHY_CTRL_REG,
-+				 PHY_IDPAD_C_OW | PHY_IDPAD_C_SW,
-+				 regval);
-+	spin_unlock_irqrestore(&phy->lock, flags);
-+
-+	return ret;
-+}
-+
-+static void cv1800_usb_phy_set_gpio(struct cv1800_usb_phy *phy,
-+				    bool is_host)
-+{
-+	unsigned int i, ndescs;
-+	struct gpio_desc **gpios;
-+
-+	if (!phy->switch_gpios)
-+		return;
-+
-+	ndescs = phy->switch_gpios->ndescs;
-+	gpios = phy->switch_gpios->desc;
-+
-+	if (is_host) {
-+		for (i = 0; i < ndescs; i++)
-+			gpiod_set_value_cansleep(gpios[i], 0);
-+	} else {
-+		for (i = 0; i < ndescs; i++)
-+			gpiod_set_value_cansleep(gpios[ndescs - 1 - i], 1);
-+	}
-+}
-+
-+static int cv1800_usb_phy_set_mode_internal(struct cv1800_usb_phy *phy,
-+					    bool is_host)
-+{
-+	int ret = cv1800_usb_phy_set_idpad(phy, is_host);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	cv1800_usb_phy_set_gpio(phy, is_host);
-+
-+	return 0;
-+}
-+
-+static ssize_t dr_mode_store(struct device *dev,
-+			     struct device_attribute *attr,
-+			     const char *buf, size_t len)
-+{
-+	struct cv1800_usb_phy *phy = dev_get_drvdata(dev);
-+	bool is_host;
-+
-+	if (sysfs_streq(buf, "host")) {
-+		phy->enable_otg = false;
-+		is_host = true;
-+	} else if (sysfs_streq(buf, "peripheral")) {
-+		phy->enable_otg = false;
-+		is_host = false;
-+	} else if (sysfs_streq(buf, "otg") && phy->vbus_det_irq > 0) {
-+		phy->enable_otg = true;
-+	} else {
-+		return -EINVAL;
-+	}
-+
-+	if (phy->enable_otg)
-+		queue_delayed_work(system_wq, &phy->vbus_work,
-+				   PHY_VBUS_DET_DEBOUNCE_TIME);
-+	else
-+		cv1800_usb_phy_set_mode_internal(phy, is_host);
-+
-+	return len;
-+}
-+
-+static ssize_t dr_mode_show(struct device *dev,
-+			    struct device_attribute *attr,
-+			    char *buf)
-+{
-+	struct cv1800_usb_phy *phy = dev_get_drvdata(dev);
-+	unsigned long flags;
-+	unsigned int regval;
-+	bool is_host = true;
-+	int ret;
-+
-+	spin_lock_irqsave(&phy->lock, flags);
-+	ret = regmap_read(phy->syscon, CV1800_USB_PHY_CTRL_REG, &regval);
-+	spin_unlock_irqrestore(&phy->lock, flags);
-+
-+	if (ret)
-+		return ret;
-+
-+	if (regval & PHY_IDPAD_C_SW)
-+		is_host = false;
-+
-+	return sprintf(buf, "%s%s\n",
-+		       phy->enable_otg ? "otg: " : "",
-+		       is_host ? "host" : "peripheral");
-+}
-+
-+static DEVICE_ATTR_RW(dr_mode);
-+
-+static struct attribute *cv1800_usb_phy_attrs[] = {
-+	&dev_attr_dr_mode.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group cv1800_usb_phy_group = {
-+	.attrs = cv1800_usb_phy_attrs,
-+};
-+
-+static int cv1800_usb_phy_set_clock(struct cv1800_usb_phy *phy)
-+{
-+	int ret;
-+
-+	ret = clk_set_rate(phy->usb_phy_clk, PHY_BASE_CLK_RATE);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_set_rate(phy->usb_app_clk, PHY_APP_CLK_RATE);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_set_rate(phy->usb_lpm_clk, PHY_LPM_CLK_RATE);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_set_rate(phy->usb_stb_clk, PHY_STB_CLK_RATE);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int cv1800_usb_phy_set_mode(struct phy *_phy,
-+				   enum phy_mode mode, int submode)
-+{
-+	struct cv1800_usb_phy *phy = phy_get_drvdata(_phy);
-+	bool is_host;
-+
-+	switch (mode) {
-+	case PHY_MODE_USB_DEVICE:
-+		is_host = false;
-+		phy->enable_otg = false;
-+		break;
-+	case PHY_MODE_USB_HOST:
-+		is_host = true;
-+		phy->enable_otg = false;
-+		break;
-+	case PHY_MODE_USB_OTG:
-+		/* phy only supports soft OTG when VBUS_DET pin is connected. */
-+		if (phy->vbus_det_irq > 0) {
-+			phy->enable_otg = true;
-+			queue_delayed_work(system_wq, &phy->vbus_work,
-+					   PHY_VBUS_DET_DEBOUNCE_TIME);
-+		}
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return cv1800_usb_phy_set_mode_internal(phy, is_host);
-+}
-+
-+static const struct phy_ops cv1800_usb_phy_ops = {
-+	.set_mode	= cv1800_usb_phy_set_mode,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static void cv1800_usb_phy_vbus_switch(struct work_struct *work)
-+{
-+	struct cv1800_usb_phy *phy =
-+		container_of(work, struct cv1800_usb_phy, vbus_work.work);
-+	int state = gpiod_get_value_cansleep(phy->vbus_det_gpio);
-+
-+	cv1800_usb_phy_set_mode_internal(phy, state == 0);
-+}
-+
-+static irqreturn_t cv1800_usb_phy_vbus_det_irq(int irq, void *dev_id)
-+{
-+	struct cv1800_usb_phy *phy = dev_id;
-+
-+	if (phy->enable_otg)
-+		queue_delayed_work(system_wq, &phy->vbus_work,
-+				   PHY_VBUS_DET_DEBOUNCE_TIME);
-+	return IRQ_HANDLED;
-+}
-+
-+static void cv1800_usb_phy_init_mode(struct device *dev,
-+				     struct cv1800_usb_phy *phy)
-+{
-+	phy->enable_otg = false;
-+
-+	if (phy->vbus_det_irq > 0)
-+		phy->enable_otg = true;
-+
-+	if (phy->enable_otg)
-+		queue_delayed_work(system_wq, &phy->vbus_work, 0);
-+	else
-+		cv1800_usb_phy_set_mode_internal(phy, true);
-+}
-+
-+static int cv1800_usb_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device *parent = dev->parent;
-+	struct cv1800_usb_phy *phy;
-+	struct phy_provider *phy_provider;
-+	int ret;
-+
-+	if (!parent)
-+		return -ENODEV;
-+
-+	phy = devm_kmalloc(dev, sizeof(*phy), GFP_KERNEL);
-+	if (!phy)
-+		return -ENOMEM;
-+
-+	phy->syscon = syscon_node_to_regmap(parent->of_node);
-+	if (IS_ERR_OR_NULL(phy->syscon))
-+		return -ENODEV;
-+
-+	spin_lock_init(&phy->lock);
-+
-+	phy->usb_phy_clk = devm_clk_get_enabled(dev, "phy");
-+	if (IS_ERR(phy->usb_phy_clk))
-+		return dev_err_probe(dev, PTR_ERR(phy->usb_phy_clk),
-+			"Failed to get phy clock\n");
-+
-+	phy->usb_app_clk = devm_clk_get_enabled(dev, "app");
-+	if (IS_ERR(phy->usb_app_clk))
-+		return dev_err_probe(dev, PTR_ERR(phy->usb_app_clk),
-+			"Failed to get app clock\n");
-+
-+	phy->usb_lpm_clk = devm_clk_get_enabled(dev, "lpm");
-+	if (IS_ERR(phy->usb_lpm_clk))
-+		return dev_err_probe(dev, PTR_ERR(phy->usb_lpm_clk),
-+			"Failed to get lpm clock\n");
-+
-+	phy->usb_stb_clk = devm_clk_get_enabled(dev, "stb");
-+	if (IS_ERR(phy->usb_stb_clk))
-+		return dev_err_probe(dev, PTR_ERR(phy->usb_stb_clk),
-+			"Failed to get stb clock\n");
-+
-+	phy->phy = devm_phy_create(dev, NULL, &cv1800_usb_phy_ops);
-+	if (IS_ERR(phy->phy))
-+		return dev_err_probe(dev, PTR_ERR(phy->phy),
-+			"Failed to create phy\n");
-+
-+	ret = cv1800_usb_phy_set_clock(phy);
-+	if (ret)
-+		return ret;
-+
-+	phy->switch_gpios = devm_gpiod_get_array_optional(dev, "sophgo,switch",
-+							  GPIOD_OUT_LOW);
-+	if (IS_ERR(phy->switch_gpios))
-+		return dev_err_probe(dev, PTR_ERR(phy->switch_gpios),
-+			"Failed to get switch pin\n");
-+
-+	phy->vbus_det_gpio = devm_gpiod_get_optional(dev, "vbus_det", GPIOD_IN);
-+	if (IS_ERR(phy->vbus_det_gpio))
-+		return dev_err_probe(dev, PTR_ERR(phy->vbus_det_gpio),
-+			"Failed to process vbus pin\n");
-+
-+	phy->vbus_det_irq = gpiod_to_irq(phy->vbus_det_gpio);
-+	if (phy->vbus_det_irq > 0) {
-+		ret = devm_request_irq(dev, phy->vbus_det_irq,
-+				       cv1800_usb_phy_vbus_det_irq,
-+				       IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING,
-+				       "usb-vbus-det", phy);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+				"Failed to request vbus irq\n");
-+	}
-+
-+	INIT_DELAYED_WORK(&phy->vbus_work, cv1800_usb_phy_vbus_switch);
-+
-+	ret = sysfs_create_group(&dev->kobj, &cv1800_usb_phy_group);
-+	if (ret)
-+		dev_warn(dev, "failed to create sysfs attributes\n");
-+
-+	phy_set_drvdata(phy->phy, phy);
-+	platform_set_drvdata(pdev, phy);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	/*
-+	 * phy needs to change mode twice after initialization,
-+	 * otherwise the controller can not found devices attached
-+	 * to the phy.
-+	 */
-+	cv1800_usb_phy_set_idpad(phy, false);
-+	cv1800_usb_phy_set_idpad(phy, true);
-+	cv1800_usb_phy_init_mode(dev, phy);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static void cv1800_usb_phy_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct cv1800_usb_phy *phy = platform_get_drvdata(pdev);
-+
-+	if (phy->vbus_det_irq > 0)
-+		devm_free_irq(dev, phy->vbus_det_irq, phy);
-+
-+	cancel_delayed_work_sync(&phy->vbus_work);
-+}
-+
-+static const struct of_device_id cv1800_usb_phy_ids[] = {
-+	{ .compatible = "sophgo,cv1800-usb-phy" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_usb_phy_ids);
-+
-+static struct platform_driver cv1800_usb_phy_driver = {
-+	.probe = cv1800_usb_phy_probe,
-+	.remove_new = cv1800_usb_phy_remove,
-+	.driver = {
-+		.name = "cv1800-usb-phy",
-+		.of_match_table = cv1800_usb_phy_ids,
-+	 },
-+};
-+module_platform_driver(cv1800_usb_phy_driver);
-+MODULE_DESCRIPTION("CV1800/SG2000 SoC USB 2.0 PHY driver");
-+MODULE_LICENSE("GPL");
---
-2.45.0
+Changes in v3:
+- patch 2,3,4,5 are new.
+- Rewrite the binding, drop nxp,pin-x properties, use generic properties
+  as Rob commented.
+- Switch to using pinmux means pinctrl-scmi.c could not be reused, so
+  add a new driver in patch 6 for i.MX95. But pinctrl_scmi_get_pins and
+  scmi_pinctrl are exported for i.MX95 usage.
+- Link to v2: https://lore.kernel.org/r/20240418-pinctrl-scmi-oem-v1-v2-0-3a555a3c58c3@nxp.com
+
+Changes in v2:
+- Rename nxp,imx95-pinctrl.yaml  to nxp,imx95-scmi-pinctrl.yaml and move
+  to firmware
+- Merged patch [1,2]/3 v1 into patch 1/2 v2.
+- nxp,imx95-scmi-pinctrl.yaml only has patterProperties for subnode
+  The pinctrl will be as below for i.MX95.
+        pinctrl_usdhc1: usdhc1-pins {
+                sd1cmd {
+                        pins = "sd1cmd";
+                        nxp,func-id = <0>;
+                        nxp,pin-conf = <0x138e>;
+                };
+                sd1data {
+                        pins = "sd1data";
+                        nxp,func-id = <0>;
+                        nxp,pin-conf = <0x138e>;
+                };
+        };
+- Add pins enum, correct description.
+- Link to v1: https://lore.kernel.org/r/20240412-pinctrl-scmi-oem-v1-v1-0-704f242544c1@nxp.com
+
+---
+Peng Fan (3):
+      dt-bindings: firmware: arm,scmi: Add properties for i.MX95 Pinctrl OEM extensions
+      pinctrl: scmi: add blocklist
+      pinctrl: imx: support SCMI pinctrl protocol for i.MX95
+
+ .../devicetree/bindings/firmware/arm,scmi.yaml     |   9 +-
+ .../bindings/firmware/nxp,imx95-scmi-pinctrl.yaml  |  37 ++
+ drivers/pinctrl/freescale/Kconfig                  |   9 +
+ drivers/pinctrl/freescale/Makefile                 |   1 +
+ drivers/pinctrl/freescale/pinctrl-imx-scmi.c       | 586 +++++++++++++++++++++
+ drivers/pinctrl/pinctrl-scmi.c                     |  10 +
+ 6 files changed, 649 insertions(+), 3 deletions(-)
+---
+base-commit: 4db57327adc359a3f9a3481d60104be67c42964f
+change-id: 20240428-pinctrl-scmi-oem-v3-12130031a74d
+
+Best regards,
+-- 
+Peng Fan <peng.fan@nxp.com>
 
 
