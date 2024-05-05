@@ -1,612 +1,304 @@
-Return-Path: <devicetree+bounces-65028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE2B8BC2A2
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 18:53:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F5F8BC2C8
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 19:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A1081F214F9
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 16:53:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5C001F2128A
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 17:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E127443AA5;
-	Sun,  5 May 2024 16:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26AA93FE2A;
+	Sun,  5 May 2024 17:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="cnmCwKrQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BIZwSLk2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE81381D1;
-	Sun,  5 May 2024 16:52:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC72722611;
+	Sun,  5 May 2024 17:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714927957; cv=none; b=n1/zeOEl1tcU4pe6IsbdWQ0PKB+Rt7vxkuK3pqJcy+VT6pK2iGTzvy/nji5oEV+sMIPsd5rWmgp3Br9eE0sRlUGZ1lEXx4Ofh+q65jj42mhXCs1fYWIGgmTYebgYqV6owhyw5FSrPdBe7ykBoW1Ego0wnQy+0F316GGzU7r1LaM=
+	t=1714929522; cv=none; b=GUWoyq/lyPUfvaGUw/dIkYdeKTTqxs1vNbkgito4Dw8y5LIAUxcWANUfv0aGKYveb0HRrm63Gy83zgHoZDM9ni7knkUGMcMtmfeaMcEji7hn/sQ73jF0NzvmeHzsmWbkwkPiOjfj+zgs5RZuNSfXutZZTZtk9tkuPUYnKz0GB9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714927957; c=relaxed/simple;
-	bh=EcV8ZD+P458u487RgAGjM2Ou70RwyI3RjnlF1+xjQd4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hR7gJbSjdppO6NLiXgw8eY2AfHxwdx62Q6/4sehWxP5oxY5V6CwC6lCzFyAoNA0ZQiRgnHzRk3vqm0obedQ5YEZISguwVztKFiXa3LCZbTgS1Fpi0m0+KE7nar9PMzliR0xCshm6Jy5yFIQ+ftvYASFUqHcu1b/YY7rN8UXVC5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=cnmCwKrQ; arc=none smtp.client-ip=134.0.28.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout3.routing.net (Postfix) with ESMTP id 61DA060387;
-	Sun,  5 May 2024 16:46:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1714927563;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WfQqspoj71+FxpGCEJ8ZWeoj7IsIk6d99GjgkZWahNc=;
-	b=cnmCwKrQSPXqzhZTZ4AxUhETYeALYGqYiPa+OjzvcawVDU6mz6v5VjOmXJxBi2hRprcBJQ
-	TJQ8Mv9GzKVRDm5pRQK4djzE+dpXjscgrCB+gdxBA0phVqD+VsyZwXPQWZLhuu3aJpCewy
-	si0y4NawJlveYc8HVz0cpyFVqwseTbM=
-Received: from frank-G5.. (fttx-pool-217.61.153.24.bambit.de [217.61.153.24])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 541473604D6;
-	Sun,  5 May 2024 16:46:02 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Tianling Shen <cnsztl@immortalwrt.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Tianling Shen <cnsztl@gmail.com>
-Subject: [RFC v1 5/5] arm64: dts: mediatek: Add  mt7986 based Bananapi R3 Mini
-Date: Sun,  5 May 2024 18:45:49 +0200
-Message-Id: <20240505164549.65644-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240505164549.65644-1-linux@fw-web.de>
-References: <20240505164549.65644-1-linux@fw-web.de>
+	s=arc-20240116; t=1714929522; c=relaxed/simple;
+	bh=siSKxyKMPfbUfgRJE2KkzJJ3nXpR2oCWZyv7uG3ylxU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Aqre7I6VMT/zqXn3AQ2nW17fjoiwbWyRMpRpwSAMbKQEQHjSazXvUrG9Q/NjrXYhrG52axiTmp3205oNJW2eXqJZCyO9drNjgBX6VjhohFOtRDDwJDyn/OJr4oL3XMJh888qHTSosVkYLzYCUHMm3idjqKoxY5PR8zAge7e5r/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BIZwSLk2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95E24C113CC;
+	Sun,  5 May 2024 17:18:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714929520;
+	bh=siSKxyKMPfbUfgRJE2KkzJJ3nXpR2oCWZyv7uG3ylxU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BIZwSLk2+l7Kte2EqnSMN++r12JqfbAK7kK2k1vw8+etkQWhYNGyEntJ1DA0pRRIq
+	 XNFvTGipBC1su9tm28Cn0YNv1kXyLOHv0Uri81gy+YYV97jLQk18EFxWvlH8M7F3WA
+	 /dgGitDAOXj8PlnOW+RxyumaDgp75Pxi6JNRR0la2OMhUZ0BjoUArRGqu8xY5CqPD+
+	 9pb20LdeLmS3gHoHtyiMvsRlUjlRQ0ukxnhhUCID21WQ7WiNVe+T5sYuG30TCeofBX
+	 OmHXEA3ZfE08A3MieEAsAh4AjtoB7zhJ3zz959fpFw54nODpWtVwgrcLx2lxtXbhNm
+	 pNKwGS66V+ctA==
+Date: Sun, 5 May 2024 18:18:29 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Petar Stoykov <pd.pstoykov@gmail.com>
+Cc: linux-iio@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Angel Iglesias
+ <ang.iglesiasg@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: pressure: Add driver for Sensirion SDP500
+Message-ID: <20240505181829.49864540@jic23-huawei>
+In-Reply-To: <CADFWO8EQUkGcbE=RXjxXbub2tZge9+ss=gB-Q6wngFAvwFygRg@mail.gmail.com>
+References: <CADFWO8EQUkGcbE=RXjxXbub2tZge9+ss=gB-Q6wngFAvwFygRg@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: e9e85cae-a0b8-45d3-a30a-40942efcc1a2
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Tue, 30 Apr 2024 17:27:24 +0200
+Petar Stoykov <pd.pstoykov@gmail.com> wrote:
 
-Add device Tree for Bananapi R3 Mini SBC.
+> From 6ae7537517f551540121ca6fb3b99080b7580410 Mon Sep 17 00:00:00 2001
+> From: Petar Stoykov <pd.pstoykov@gmail.com>
+> Date: Mon, 15 Jan 2024 12:21:26 +0100
+> Subject: [PATCH 2/3] iio: pressure: Add driver for Sensirion SDP500
+> 
+> Sensirion SDP500 is a digital differential pressure sensor. The sensor is
+> accessed over I2C.
+> 
+> Signed-off-by: Petar Stoykov <pd.pstoykov@gmail.com>
+Hi Petar
 
-Co-developed-by: Eric Woudstra <ericwouds@gmail.com>
-Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
-Co-developed-by: Tianling Shen <cnsztl@gmail.com>
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/mediatek/Makefile         |   1 +
- .../mediatek/mt7986a-bananapi-bpi-r3-mini.dts | 486 ++++++++++++++++++
- 2 files changed, 487 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+Ignoring the patch formatting which others have already given feedback on,
+a few minor comments inline.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 37b4ca3a87c9..1763b001ab06 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-mini.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
-new file mode 100644
-index 000000000000..c764b4dc4752
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
-@@ -0,0 +1,486 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 MediaTek Inc.
-+ * Authors: Frank Wunderlich <frank-w@public-files.de>
-+ *          Eric Woudstra <ericwouds@gmail.com>
-+ *          Tianling Shen <cnsztl@immortalwrt.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/mt65xx.h>
-+
-+#include "mt7986a.dtsi"
-+
-+/ {
-+	model = "Bananapi BPI-R3 Mini";
-+	chassis-type = "embedded";
-+	compatible = "bananapi,bpi-r3mini", "mediatek,mt7986a";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	dcin: regulator-12vd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12vd";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		/* cooling level (0, 1, 2) - pwm inverted */
-+		cooling-levels = <255 96 0>;
-+		pwms = <&pwm 0 10000>;
-+		status = "okay";
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1.8vd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&dcin>;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3.3vd";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&dcin>;
-+	};
-+
-+	usb_vbus: regulator-usb-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpios = <&pio 20 GPIO_ACTIVE_LOW>;
-+		regulator-boot-on;
-+	};
-+
-+	en8811_a: regulator-phy1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "phy1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pio 16 GPIO_ACTIVE_LOW>;
-+		regulator-always-on;
-+	};
-+
-+	en8811_b: regulator-phy2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "phy2";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pio 17 GPIO_ACTIVE_LOW>;
-+		regulator-always-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		green_led: led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		reset-key {
-+			label = "reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+};
-+
-+&cpu_thermal {
-+	cooling-maps {
-+		map0 {
-+			/* active: set fan to cooling level 2 */
-+			cooling-device = <&fan 2 2>;
-+			trip = <&cpu_trip_active_high>;
-+		};
-+
-+		map1 {
-+			/* active: set fan to cooling level 1 */
-+			cooling-device = <&fan 1 1>;
-+			trip = <&cpu_trip_active_med>;
-+		};
-+
-+		map2 {
-+			/* active: set fan to cooling level 0 */
-+			cooling-device = <&fan 0 0>;
-+			trip = <&cpu_trip_active_low>;
-+		};
-+	};
-+};
-+
-+&crypto {
-+	status = "okay";
-+};
-+
-+&eth {
-+	status = "okay";
-+
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "2500base-x";
-+		phy-handle = <&phy14>;
-+	};
-+
-+	gmac1: mac@1 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <1>;
-+		phy-mode = "2500base-x";
-+		phy-handle = <&phy15>;
-+	};
-+
-+	mdio: mdio-bus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc0_pins_default>;
-+	pinctrl-1 = <&mmc0_pins_uhs>;
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&reg_1p8v>;
-+};
-+
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c_pins>;
-+	status = "okay";
-+
-+	/* MAC Address EEPROM */
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+
-+		address-width = <8>;
-+		pagesize = <8>;
-+		size = <256>;
-+	};
-+};
-+
-+&mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	phy14: ethernet-phy@14 {
-+		reg = <14>;
-+		interrupts-extended = <&pio 48 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&pio 49 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <20000>;
-+		phy-mode = "2500base-x";
-+		full-duplex;
-+		pause;
-+		airoha,pnswap-rx;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 { /* en8811_a_gpio5 */
-+				reg = <0>;
-+				color = <LED_COLOR_ID_YELLOW>;
-+				function = LED_FUNCTION_LAN;
-+				function-enumerator = <1>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+			led@1 { /* en8811_a_gpio4 */
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_LAN;
-+				function-enumerator = <2>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+		};
-+	};
-+
-+	phy15: ethernet-phy@15 {
-+		reg = <15>;
-+		interrupts-extended = <&pio 46 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&pio 47 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <20000>;
-+		phy-mode = "2500base-x";
-+		full-duplex;
-+		pause;
-+		airoha,pnswap-rx;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 { /* en8811_b_gpio5 */
-+				reg = <0>;
-+				color = <LED_COLOR_ID_YELLOW>;
-+				function = LED_FUNCTION_WAN;
-+				function-enumerator = <1>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+			led@1 { /* en8811_b_gpio4 */
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_WAN;
-+				function-enumerator = <2>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+		};
-+	};
-+};
-+
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_pins>;
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
-+&pio {
-+	i2c_pins: i2c-pins {
-+		mux {
-+			function = "i2c";
-+			groups = "i2c";
-+		};
-+	};
-+
-+	mmc0_pins_default: mmc0-pins {
-+		mux {
-+			function = "emmc";
-+			groups = "emmc_51";
-+		};
-+		conf-cmd-dat {
-+			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
-+			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
-+			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
-+			input-enable;
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+		conf-clk {
-+			pins = "EMMC_CK";
-+			drive-strength = <6>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-ds {
-+			pins = "EMMC_DSL";
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-rst {
-+			pins = "EMMC_RSTB";
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+	};
-+
-+	mmc0_pins_uhs: mmc0-uhs-pins {
-+		mux {
-+			function = "emmc";
-+			groups = "emmc_51";
-+		};
-+		conf-cmd-dat {
-+			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
-+			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
-+			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
-+			input-enable;
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+		conf-clk {
-+			pins = "EMMC_CK";
-+			drive-strength = <6>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-ds {
-+			pins = "EMMC_DSL";
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-rst {
-+			pins = "EMMC_RSTB";
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+	};
-+
-+	pcie_pins: pcie-pins {
-+		mux {
-+			function = "pcie";
-+			groups = "pcie_clk", "pcie_wake", "pcie_pereset";
-+		};
-+	};
-+
-+	pwm_pins: pwm-pins {
-+		mux {
-+			function = "pwm";
-+			groups = "pwm0";
-+		};
-+	};
-+
-+	spi_flash_pins: spi-flash-pins {
-+		mux {
-+			function = "spi";
-+			groups = "spi0", "spi0_wp_hold";
-+		};
-+	};
-+
-+	usb_ngff_pins: usb-ngff-pins {
-+		ngff-gnss-off-conf {
-+			pins = "GPIO_6";
-+			drive-strength = <8>;
-+			mediatek,pull-up-adv = <1>;
-+		};
-+		ngff-pe-rst-conf {
-+			pins = "GPIO_7";
-+			drive-strength = <8>;
-+			mediatek,pull-up-adv = <1>;
-+		};
-+		ngff-wwan-off-conf {
-+			pins = "GPIO_8";
-+			drive-strength = <8>;
-+			mediatek,pull-up-adv = <1>;
-+		};
-+		ngff-pwr-off-conf {
-+			pins = "GPIO_9";
-+			drive-strength = <8>;
-+			mediatek,pull-up-adv = <1>;
-+		};
-+		ngff-rst-conf {
-+			pins = "GPIO_10";
-+			drive-strength = <8>;
-+			mediatek,pull-up-adv = <1>;
-+		};
-+		ngff-coex-conf {
-+			pins = "SPI1_CS";
-+			drive-strength = <8>;
-+			mediatek,pull-up-adv = <1>;
-+		};
-+	};
-+
-+	wf_2g_5g_pins: wf-2g-5g-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_2g", "wf_5g";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
-+
-+	wf_dbdc_pins: wf-dbdc-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_dbdc";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
-+
-+	wf_led_pins: wf-led-pins {
-+		mux {
-+			function = "led";
-+			groups = "wifi_led";
-+		};
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_pins>;
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi_flash_pins>;
-+	status = "okay";
-+};
-+
-+&ssusb {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb_ngff_pins>;
-+	vusb33-supply = <&reg_3p3v>;
-+	vbus-supply = <&usb_vbus>;
-+	status = "okay";
-+};
-+
-+&trng {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&usb_phy {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
-+
-+&wifi {
-+	status = "okay";
-+	pinctrl-names = "default", "dbdc";
-+	pinctrl-0 = <&wf_2g_5g_pins>, <&wf_led_pins>;
-+	pinctrl-1 = <&wf_dbdc_pins>, <&wf_led_pins>;
-+
-+	led {
-+		led-active-low;
-+	};
-+};
-+
--- 
-2.34.1
+Also, I'd expect some regulator handling to turn the power on.
+Obviously on your particular board there may be nothing to do but good to
+have the support in place anyway and it will be harmless if the power
+is always on.
+
+Jonathan
+
+>  st_pressure-$(CONFIG_IIO_BUFFER) += st_pressure_buffer.o
+> diff --git a/drivers/iio/pressure/sdp500.c b/drivers/iio/pressure/sdp500.c
+> new file mode 100644
+> index 000000000000..7efcc69e829c
+> --- /dev/null
+> +++ b/drivers/iio/pressure/sdp500.c
+> @@ -0,0 +1,144 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +#include <linux/i2c.h>
+> +#include <linux/crc8.h>
+> +#include <linux/iio/iio.h>
+> +#include <asm/unaligned.h>
+> +
+> +#define SDP500_CRC8_POLYNOMIAL  0x31   // x8 + x5 + x4 + 1 (normalized to 0x31)
+> +#define SDP500_READ_SIZE        3
+> +#define SDP500_CRC8_WORD_LENGTH 2
+
+As below. I'd establish these off the data the are the lengths of by using
+a structure definition.  That will be more obvious and less fragile than
+defines hiding up here.
+
+
+> +#define SDP500_CRC8_INIT        0x00
+
+I'd just use the number inline.  Can't see what the define is adding.
+
+> +
+> +#define SDP500_SCALE_FACTOR 60
+> +
+> +#define SDP500_I2C_START_MEAS 0xF1
+> +
+> +struct sdp500_data {
+> +    struct device *dev;
+> +};
+> +
+> +DECLARE_CRC8_TABLE(sdp500_crc8_table);
+> +
+> +static int sdp500_start_measurement(struct sdp500_data *data, const
+> struct iio_dev *indio_dev)
+> +{
+> +    struct i2c_client *client = to_i2c_client(data->dev);
+> +
+> +    return i2c_smbus_write_byte(client, SDP500_I2C_START_MEAS);
+Doesn't seem worth a wrapper function. I would just put this code inline.
+> +}
+> +
+> +static const struct iio_chan_spec sdp500_channels[] = {
+> +    {
+> +        .type = IIO_PRESSURE,
+> +        .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+
+As below. It's a linear scale factor, so I would prefer _RAW and _SCALE
+to let userspace deal with the maths.
+
+> +    },
+> +};
+> +
+> +static int sdp500_read_raw(struct iio_dev *indio_dev,
+> +              struct iio_chan_spec const *chan,
+> +              int *val, int *val2, long mask)
+> +{
+> +    int ret;
+> +    u8 rxbuf[SDP500_READ_SIZE];
+You could define this as a struct so all the data types are obvious.
+
+	struct {
+		__be16 data;
+		u8 crc;
+	} __packed rxbuf;
+The  __packed let's you use sizeof(rxbuf) for the transfer size.
+Beware though as IIRC that will mean data is not necessarily aligned
+so you'll still need the unaligned accessors.
+
+> +    u8 rec_crc, calculated_crc;
+> +    s16 dec_value;
+> +    struct sdp500_data *data = iio_priv(indio_dev);
+> +    struct i2c_client *client = to_i2c_client(data->dev);
+> +
+> +    switch (mask) {
+> +    case IIO_CHAN_INFO_PROCESSED:
+> +        ret = i2c_master_recv(client, rxbuf, SDP500_READ_SIZE);
+> +        if (ret < 0) {
+> +            dev_err(indio_dev->dev.parent, "Failed to receive data");
+> +            return ret;
+> +        }
+> +        if (ret != SDP500_READ_SIZE) {
+> +            dev_err(indio_dev->dev.parent, "Data is received wrongly");
+
+I'd guess indio_dev->dev.parent == data->dev
+If so use data->dev as more compact and that's where you are getting the
+i2c_client from.
+
+> +            return -EIO;
+> +        }
+> +
+> +        rec_crc = rxbuf[2];
+> +        calculated_crc = crc8(sdp500_crc8_table, rxbuf,
+> SDP500_CRC8_WORD_LENGTH,
+
+I'd use the number 2 for length directly as it's useful to know this is the
+__be16 only, or sizeof(__be16)
+What is the point in rec_crc local variable?
+
+> +            SDP500_CRC8_INIT);
+> +        if (rec_crc != calculated_crc) {
+> +            dev_err(indio_dev->dev.parent, "calculated crc = 0x%.2X,
+> received 0x%.2X",
+> +                calculated_crc, rec_crc);
+> +            return -EIO;
+> +        }
+> +
+> +        dec_value = get_unaligned_be16(rxbuf);
+> +        dev_dbg(indio_dev->dev.parent, "dec value = %d", dec_value);
+
+When you move to returning scale and _raw this print won't add anything so
+drop it.
+
+> +
+> +        *val = dec_value;
+> +        *val2 = SDP500_SCALE_FACTOR;
+For linear transforms like this it is normally better to provide separate
+raw and scale interfaces.
+
+Then if anyone does want to add buffered support in the future that is easier
+to do as it is much more compact + userspace has floating point which is always
+going to be better for division than we can do in kernel.
+
+> +        return IIO_VAL_FRACTIONAL;
+> +    default:
+> +        return -EINVAL;
+> +    }
+> +}
+> +
+> +static const struct iio_info sdp500_info = {
+> +    .read_raw = &sdp500_read_raw,
+> +};
+> +
+> +static int sdp500_probe(struct i2c_client *client)
+> +{
+> +    struct iio_dev *indio_dev;
+> +    struct sdp500_data *data;
+> +    struct device *dev = &client->dev;
+> +    int ret;
+> +    u8 rxbuf[SDP500_READ_SIZE];
+> +
+> +    indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +    if (!indio_dev)
+> +        return -ENOMEM;
+> +
+> +    /* has to be done before the first i2c communication */
+> +    crc8_populate_msb(sdp500_crc8_table, SDP500_CRC8_POLYNOMIAL);
+> +
+> +    data = iio_priv(indio_dev);
+> +    data->dev = dev;
+> +
+> +    indio_dev->name = "sdp500";
+> +    indio_dev->channels = sdp500_channels;
+> +    indio_dev->info = &sdp500_info;
+> +    indio_dev->modes = INDIO_DIRECT_MODE;
+> +    indio_dev->num_channels = ARRAY_SIZE(sdp500_channels);
+> +
+> +    ret = sdp500_start_measurement(data, indio_dev);
+> +    if (ret)
+> +        return dev_err_probe(dev, ret, "Failed to start measurement");
+
+Blank line here would help readability a tiny bit.
+
+> +    /* First measurement is not correct, read it out to get rid of it */
+> +    i2c_master_recv(client, rxbuf, SDP500_READ_SIZE);
+> +
+> +    ret = devm_iio_device_register(dev, indio_dev);
+> +    if (ret < 0)
+> +        return dev_err_probe(dev, ret, "Failed to register indio_dev");
+
+We rarely bother with error prints on failure to register as it is unlikely
+to fail because of something that happened at runtime and if it does, that
+is easy to track down.  So I'd drop this print.
+If you really want to keep it I don't mind that much.
+
+> +
+> +    return 0;
+> +}
+> +
+> +static const struct i2c_device_id sdp500_id[] = {
+> +    { "sdp500" },
+> +    { }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, sdp500_id);
+> +
+> +static const struct of_device_id sdp500_of_match[] = {
+> +    { .compatible = "sensirion,sdp500" },
+> +    { }
+> +};
+> +MODULE_DEVICE_TABLE(of, sdp500_of_match);
+> +
+> +static struct i2c_driver sdp500_driver = {
+> +    .driver = {
+> +        .name    = "sensirion,sdp500",
+> +        .of_match_table = sdp500_of_match,
+> +    },
+> +    .probe       = sdp500_probe,
+> +    .id_table    = sdp500_id,
+I'd not bother with aligning = signs. It just tends to create noise
+as drivers evolve and people try to keep things aligned (resulting in realigning
+everything).
+
+> +};
+> +module_i2c_driver(sdp500_driver);
+> +
+> +MODULE_AUTHOR("Thomas Sioutas <thomas.sioutas@prodrive-technologies.com>");
+> +MODULE_DESCRIPTION("Driver for Sensirion SDP500 differential pressure sensor");
+> +MODULE_LICENSE("GPL");
 
 
