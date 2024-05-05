@@ -1,109 +1,112 @@
-Return-Path: <devicetree+bounces-65032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624B38BC2E9
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 19:58:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB308BC31E
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 20:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 973D6B20EC7
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 17:58:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CFBD1F209B8
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 18:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4F85915A;
-	Sun,  5 May 2024 17:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C1656BFCC;
+	Sun,  5 May 2024 18:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItLeR4cH"
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="QuRRHMOs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9119879D2;
-	Sun,  5 May 2024 17:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C8250297;
+	Sun,  5 May 2024 18:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714931901; cv=none; b=mvqQWlfFff0+K1tT4SSO6Q8UHoDmkLKaznBGltY0PYcZQ7jsfsMJ/rDn0ev4ofZyXKVFYDjvU4aRSZIli+iHwIONbMwFsNEgB39oz1cMjyMAW57UIoW+GDBsV8bRn9N8t/RMXihumRpogm+BIt6qHyCuOYI2ACUdav5nIKbvuvQ=
+	t=1714935114; cv=none; b=rdqXDtf4hFQo0AtkpiY392TAeVp7cdpYza1qHeSrszDTi9bnNN5JidXqV0P3y1swpoaFfp8tfjrYYalHNP83anqe9U/tnl04t6RvvNkfDPzJ+gSeK+xV2PzcEhBgUm5bzw9Qrgn2Sj2luTCoZEIHGEKaeEltLrPhby0QzYbVjp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714931901; c=relaxed/simple;
-	bh=3GEudGU7ASMXSyyGWnReK03kwpORCk7RJpxQt9efhqY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rDiIdUkTwGtkpyC6NBUJxf6h94CtYGHGo/qvv6oS1gxtiZxZHcibJ9eGF8MX20EgzUNM1bkZj4qhJJNz11TgZnjf3lA4cBxhHpIwp2a7LpJpxlumNtrpk/QKLziOm+8GZtdmw3qSPBw9dfYUAsB/kZnz6mvup0rjbA4o8vzFQFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItLeR4cH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0984C113CC;
-	Sun,  5 May 2024 17:58:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714931901;
-	bh=3GEudGU7ASMXSyyGWnReK03kwpORCk7RJpxQt9efhqY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ItLeR4cHWW45OS5rq+aGVndOX8kBINwEtq378D2RjWQiosFtPGJt8kSc7E2r5G4NZ
-	 Rx2Et9IL8XfJlCIC080wi9oq3bR14KyLpG5dsy149Y7VRR+HcjOwvH2xRbXgxSejRy
-	 2+OdkDptJ7Jwl7b/h0q7L5Oo8ZJR+aNFtdWuIe9cL3L6Hs+S/w0AsF4Br5crppyKqg
-	 AZwJkc0eaCmtH/egcnmrO3ARkP/bcg1JlaCSEwRJXnPXCq3gcUsDXpdv1Wqh8vzCt4
-	 KAGZ/K4JkMTy/Y7LstcKHvi9H/CM4h7QwEJspeBgDlpIrNbV6d+h9NbxUn6xtQHeXw
-	 w5tivJtdI4oSA==
-Date: Sun, 5 May 2024 18:58:09 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Petar Stoykov <pd.pstoykov@gmail.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Angel Iglesias
- <ang.iglesiasg@gmail.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: pressure: Add driver for Sensirion SDP500
-Message-ID: <20240505185809.7636403e@jic23-huawei>
-In-Reply-To: <CADFWO8EF0WxAV=k-ZAJ1McmaYv4SD5G+O4FhoMDsVQaRqe6sdg@mail.gmail.com>
-References: <CADFWO8HOb4zY7rPsCxWe2nvrzd8FjVNw0k8=8s4yB7C_BwS0ig@mail.gmail.com>
-	<20240116170337.00003a02@Huawei.com>
-	<CADFWO8EF0WxAV=k-ZAJ1McmaYv4SD5G+O4FhoMDsVQaRqe6sdg@mail.gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1714935114; c=relaxed/simple;
+	bh=XV/wisvfDecsJK1pH+e3lMIkinGg4Z0g8h7jG8NBLfw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=Gq/E6lAwynOWbhJoQk816M7ddHngg2ZwAhbDYLvErklIEWR3RfIoNctHkqwW0l+AMW/ksGsO6YZXw/hczvKA1h41J2PduZHbe16E8soLosUgiCxYftbm622mORUl3sGDCCDZFQpNoJvtL6QsraxkETPImHNdOc4plb66eNqM/J8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=QuRRHMOs; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1714935092; x=1716235092;
+	bh=YGxFQsbI+PnN98hU4cHyHP9LF765mb9ESjBSIrA+jBA=; h=From;
+	b=QuRRHMOskR69TFkqDXQ4lTIkl4bpFt1ARaYeCqJVTbIpnQeECM3zCn43TSNXlRMLY
+	 kdlrgioDh5gkt0j1ivNgNnwAlEPgIEjs8XEvsvBDbnKLI68na8xS+cSJy/VD04I6y6
+	 DnZ6gGV/zJSssINrELqjKRfR4JiWBXbUsgFG/RCJn6wF4fi2kFGaxIdupOsDdkWSJ4
+	 2ozcoGtgFqE7aeTtxs/ekOrMltieep3yFvFZVQ1e4MPEwRFm1VikvNRNHK7nRsHIvO
+	 vxzBEGmSeNL7GlHVh/mJq7acer4rusmQLnql2lswKBXyvlYK/4q9jBEvdzkr3JmRiK
+	 IyTyYsJtL5oPQ==
+Received: from localhost (koleje-wifi-0024.koleje.cuni.cz [78.128.191.24])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 445IpVNr027317
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sun, 5 May 2024 20:51:32 +0200 (CEST)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 05 May 2024 20:52:06 +0200
+Message-Id: <D11XRKUAK8EM.20N91SDPCH584@matfyz.cz>
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        "Conor Dooley"
+ <conor+dt@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Liam
+ Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH v6 3/5] regulator: add regulators driver for Marvell
+ 88PM886 PMIC
+To: "Mark Brown" <broonie@kernel.org>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20240504194632.2456-1-balejk@matfyz.cz>
+ <20240504194632.2456-4-balejk@matfyz.cz>
+ <ZjeidfoIbjvejphU@finisterre.sirena.org.uk>
+In-Reply-To: <ZjeidfoIbjvejphU@finisterre.sirena.org.uk>
 
+Mark Brown, 2024-05-06T00:15:01+09:00:
+> On Sat, May 04, 2024 at 09:37:06PM +0200, Karel Balej wrote:
+>
+> > +static const struct regulator_ops pm886_ldo_ops =3D {
+> > +	.list_voltage =3D regulator_list_voltage_table,
+> > +	.map_voltage =3D regulator_map_voltage_iterate,
+> > +	.set_voltage_sel =3D regulator_set_voltage_sel_regmap,
+> > +	.get_voltage_sel =3D regulator_get_voltage_sel_regmap,
+> > +	.enable =3D regulator_enable_regmap,
+> > +	.disable =3D regulator_disable_regmap,
+> > +	.is_enabled =3D regulator_is_enabled_regmap,
+> > +	.get_current_limit =3D pm886_regulator_get_ilim,
+>
+> Do these regulators actually enforce this limit or is this just a spec
+> limit beyond which regulation may fail?  If it's just a spec limit I'd
+> not expect this operation to be provided, it's more for a hard limit
+> where the regulator will detect and act on issues.  I don't see an error
+> interrupt or anything and this would be an unusual feature for a LDO.
 
-> > > +}
-> > > +
-> > > +static const struct iio_chan_spec sdp500_channels[] = {
-> > > +    {
-> > > +        .type = IIO_PRESSURE,
-> > > +        .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),  
-> >
-> > Looks like a simple linear scale.  Would be better to make scaling
-> > a userspace / consumer problem and provide IIO_CHAN_INFO_RAW
-> > and IIO_CHAN_INFO_SCALE.  
-> 
-> I prefer returning the pressure directly because there is no other calculation
-> that the user of this driver can do. If they make the calculation differently
-> then their pressure value would be wrong.
+I'm afraid I don't have the answer -- my only reference is the vendor
+version of the driver and I don't see anything there based on which I
+would be able to tell.
 
-Ah. I missed this and just made the same comment on v2.
-Let me give some more info than in the original review.
+But based on what you write, my guess would be that it's just a spec limit.
 
-The documentation on how to apply scale is simple and this scaling is
-pretty hard to get wrong.
+Should I then drop this op and the max_uA values from all the
+regulators?
 
-There are a couple of reasons we prefer to make it a userspace problem
-to do linear scaling and keep the actual channel value raw (if possible).
-1) Logging applications typically store the scale once, and each data
-   point is then much cheaper to store as a u16 than as a floating point
-   number.
-2) If you ever add buffered support, we do not support floating point
-   values in the buffer.  That basically means we have to have both
-   _PROCESSED and _RAW provided so that _SCALE makes sense for the buffer.
-   Horribly messy ABI is the result.
-
-Hence, push the scaling to userspace.
-
-Note that we can't always do this as some conversion functions are
-non linear and very hard to describe.  In those cases _PROCESSED makes
-sense.  That's not true here.
-
-Jonathan
+Thank you,
+K. B.
 
