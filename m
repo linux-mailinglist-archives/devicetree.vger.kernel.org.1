@@ -1,203 +1,170 @@
-Return-Path: <devicetree+bounces-64977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-64978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8618BBE4C
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 23:54:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D568BBEFB
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 03:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3466A1F219BD
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2024 21:54:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B5471C20B2E
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 01:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD07F84D25;
-	Sat,  4 May 2024 21:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF9281F;
+	Sun,  5 May 2024 01:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="5F9/OfrF"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="eN5K8zr/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2032.outbound.protection.outlook.com [40.92.41.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2F983CC8;
-	Sat,  4 May 2024 21:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714859640; cv=none; b=GVjXfAkCg3vNkhhriScMgiEaUKJMHLB9l8Bsuvi4NhXkdvKoRpp6mCtmycDH+jeoQkTZZRUVuWk+frIMUAg3LlT+lMtR3bopPyk9b0UtFrUAApASV9d8oMOR65zlTsRZeVq8/lidQE+oE05BEKwTmKjZwrZP/A84a7HL2k7TB+c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714859640; c=relaxed/simple;
-	bh=lGUai3OBbVcPuarJOkEgvhrXWORjqot9FSfSQI8erk4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kaAsaNz2XZXHMASLl6CCzzzG6SmYmAx3eeSpV7fUWrMR5gxbiGCWsafZaQb2pWFu28UrzCirRaD030+vDcpYSWYN383bhzdxh1ekzz4aDN/hLIRsF5t528ETB4i4y7e3ru/sbM2MwpQ4JNJSVL4keJ4iuCLc6QoCxAdros4Z5P0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=5F9/OfrF; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1s3NKH-005iKr-2v;
-	Sat, 04 May 2024 23:53:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=oh7AjFUuZxOMD8dhy3mDCuG2iys3ZUxJV2zi2DGl1Nk=; b=5F9/OfrFNGXq70yjhkwl26AYe+
-	OVlQvzJ89ZRqZMzzHp7UrKnFht1fRiJX+rYgoRcL8dZzkcr75DF7VTgcjTSaAuwT0a9e2DhiLEAlJ
-	S6dr4ym/EVZF/svP9LHaf39eG1v9ujxNYeJ56fKvbdsMiyPBpCPr6yNTjdtRCKECTc+X2FeM9YdzP
-	voGDEcfgBUyjQZgPSXLSAGrr7lEhHuoCwqR4EZbBJyxGb7WXr8LiwEhQesxabL0/dbwz9NGaZbJdI
-	+JJvEA+IXc2VrpwCwlRnpei6CGZIXx0JdoZiJ23tH9aRDPEdJU8OfywWiDXj7l7Y3EVRO5gXpZS+0
-	KZHe4BDA==;
-Received: from p200300c20737c2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:737:c200:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1s3NKF-000aXg-12;
-	Sat, 04 May 2024 23:53:48 +0200
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1s3NKG-003c4g-0w;
-	Sat, 04 May 2024 23:53:48 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de,
-	leoyang.li@nxp.com,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0ED717C2;
+	Sun,  5 May 2024 01:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.41.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1714871857; cv=fail; b=u6GZEA2YWQsVpg/sIthocKgQJecODtrCgjEe3chUl2ShtTps6+ES1vEZPF0dJ95IWgU/EOBuwASfFVirN5Wm/BLpwUqIqSnrs4sfc3LyTTz+w0WRAM50O49upZZExVQqvREQqBJlWyw1XRbeAUUybzHwlX1z2uxcIwvMCpJBffc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1714871857; c=relaxed/simple;
+	bh=5Sxz0eJdoPtt5AzgQypkFwOatCBX9PP8mKOSCrj9YdA=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=V+lDb5z/TirYXDUjr2BQeFpp+nr1Rh+sQbcKJJnekeFhYPg3pWDs6qLeM32cXJa9OBsvrhLITRb4R+owaPLylB6JbamKVpkuvm7vBkSVHP7Wb+jo/8Rc8V3gr6EbKW9UfhPeMjPsSSXxy3+eEcpuaTYTPHBMLa9Lw2sW4INJexc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=eN5K8zr/; arc=fail smtp.client-ip=40.92.41.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VWiLxelx24z3YRfPkCDpK+Zg7Vqm6s7x7X8RWHTIa6fjbQ+KVEfQLaCKDG9l/q6xHESHiAlYtW33cDdJbXQ/jw5f6yYx5l5mE8UtIuh444QPQAXrBrw37Db5fKTQSxnLoNNf+4fN7wG837R7YjmeXl05uPPM9B6fiKTHeITOpnzStA9PLSisZHdKzl2hXO4K8/SJ8GKHUleLRy7OwDOG82ixtbnCcayL+ZzmuHo2Hq1v72xwwTuJgQtdYgILjDojdeIjFqIvl3Yg2Hx+Eq4veEX9Yz2JJxuB2Dd0KCeega7cHKRSh5cnpPzEJrASpCSE6W9XfPvtgUInmchiukTD4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l3nMaR4cTwWMZxDFxLuA7cVFZ9e4fdVmOLkkfBCle0w=;
+ b=lWD6gZnaIRHUqlwMGvzmvM0tJSHMLjwOz9XqEF+95BzL9VDPLnygoUf1ZzM/ittdkyhSri/E3EF23yANdRlkvePM5nM1bRo69AFcncGuQ8WMBgsQdCsQFBJL6HxLLWmsuvQyEp/wLZR/+vZQhBCsys5ekSRXUPy42CSZRnQg7IRCMdCpgHdmf/+ORiVzZhxjXBziT8f3CyEzvjPfoW/+UK8yb6PJBlpoPQ4qnbBEd7m/Fg3iluUQRhXxShdddsJ/75PBM7MJFrr44nbDp4KQAHknwtsMlXv4wK1V6k3KgLT7l5bK6zfpKSdn8HxNFf/Rc54NwR3o9l3L2rTZKV6sIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l3nMaR4cTwWMZxDFxLuA7cVFZ9e4fdVmOLkkfBCle0w=;
+ b=eN5K8zr/p5CFrql/XYvYS1GpZzJTE/K+tWx3/S8giLpAqJj5yNHwm4HSqiDVvoRyGn7vjJEyPvLjD6lQzfWnJw79CUkQcdTSj3tsKz7ZYls8L07pJi4r0AbFDGtaFJ6yCL9Fj1P00taZhmLb4Tq27I1iJXlCjZ9k/iCTC2h1XkJQ71H0P7cgrgxou5ip+ZwOf1l5zAoArmXy77LQRQ/RnbwItgTQkGGqK1m/2JkQ9uiOAzjLb2uUFRV8C4jkky0fFZuPm4IT2zzdvhdAF68FEl+SphnNdUaeGmC1VgZhi0qfiX68rbN6bdFeYc1P/7wa5Yc7TdXesux1fCHEtS3O7w==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SA1PR20MB6964.namprd20.prod.outlook.com (2603:10b6:806:3a8::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.39; Sun, 5 May
+ 2024 01:17:29 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7544.036; Sun, 5 May 2024
+ 01:17:29 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH 2/2] ARM: dts: imx: Add Kobo Clara HD rev b
-Date: Sat,  4 May 2024 23:53:44 +0200
-Message-Id: <20240504215344.861327-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240504215344.861327-1-andreas@kemnade.info>
-References: <20240504215344.861327-1-andreas@kemnade.info>
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v5 0/2] riscv: sophgo: Add SG2042 external hardware monitor support
+Date: Sun,  5 May 2024 09:18:00 +0800
+Message-ID:
+ <PH7PR20MB4962C6D8FD6989BC79F9483FBB1D2@PH7PR20MB4962.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.45.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [h5eO1W7XnBu76wb8lUvbN6Sq9JbTZj0iKUUArmOfHFQ=]
+X-ClientProxiedBy: TYAPR01CA0129.jpnprd01.prod.outlook.com
+ (2603:1096:404:2d::21) To PH7PR20MB4962.namprd20.prod.outlook.com
+ (2603:10b6:510:1fa::6)
+X-Microsoft-Original-Message-ID:
+ <20240505011801.356972-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SA1PR20MB6964:EE_
+X-MS-Office365-Filtering-Correlation-Id: b8dc15b9-7383-47e1-b876-08dc6ca11f32
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199019|3412199016|440099019|1602099003|1710799017;
+X-Microsoft-Antispam-Message-Info:
+	FN1vYZcnP55W6M3zjAT/lJbbok6GQ4zccn/twetKL6KnhRP0LLVFSFjsrcWG6tG/qw/8eXNm0jitLvysR1QLapJ1d9RgG+o0/WAWNwDM7slLf8lUNiagYqLJk4ZtFnwXBwIsKjrpv5EEn9JkSHeeSGhfNz9wSzIodI9ZSFqimvD8BqvuSgLynxDmIPZUeRYlVKCD62M+ww3p1PyttzQpUnHCo5xJ1WdYaka3KFAUKb4SaVk2724OVL+Yreq95++DaAN5+ddojj+NhUmNsLP8w6sJQfqZUhoHUnvM59J/TqhuYr8jZ1p9EXIZMdSpkpk0mUwho/toJot1QriYhxZCBhAGky3D3rukkMAJiaC6rNFXy/SElv0fltp1nnhD0wQKyEOm20qZ58/JQl82In+XTZuWTAiYvASAOpwPurfYg9PAHHjFngwE7XzbVtXBaFOP5aeIK8iY8917QbEGus4c/aaqGFO3Ff/ffCOSB7FwDWjOwidY8EA/LedYYXOANHfD8ljzNfvderlsdi5HEKXWvXfwn3isZFLt8450/7cDXgYCSmW8CZvDlENJJUdt5ybPmjIuMzKd2vJ9mK5r4fs8YydG0ZnIqot0WKZeFf3G+kKlYj2wYD6x2g+MxAcytOIgQ4cFmDioS/tImg5TowLHn+qOAi7+uV/Y6WsSWx0XdDfuEUbbTmBXnvZEn9/nIYvK
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?r5giSZn9yeVTSwu0w6jTyeQt9pXHjgmGlOgygu7GrIMqVJzECka7ogLcxPpg?=
+ =?us-ascii?Q?cp8/mJit1afBiu02iMxplbjtskJ1hg/pQfeaU/f9A1/9kaqKrGTHzTXqlmwe?=
+ =?us-ascii?Q?mdHnDae30OkisN6g0qP5QopRLxfcrOnKHdl42o15YU68vDcQyP65vLRDTcNk?=
+ =?us-ascii?Q?sd2brUxU0AbIEDlSmnKuWTvDOF9VslNyCQIFDuZ81lGY1ObSTq48W1015hD7?=
+ =?us-ascii?Q?yKBhGiPLaC929hXRZQuOj0En4rsDnOcXnu6k54k939nAie527o4tDO0dzs6F?=
+ =?us-ascii?Q?HMWefM5KukUfjK+AA/sBTGtNHGVuCku7M4kkX348NgOoujTNmhBtjjlr3dVw?=
+ =?us-ascii?Q?e4zWUmWeaEMklvLoLpemnIZbsFaOGzJfawPSUoyXARW3SaeqBp833RmRZotw?=
+ =?us-ascii?Q?MRXt+ZGyMPnvYNUJxKdJWjaccT0xFksuLRxsiWkLpAB3U9+TMZgM9rfx9HgY?=
+ =?us-ascii?Q?YCpm5ZioGGV2gWQim3TSh57dTlZQDwc2O/qa9YsLbF/2e6FE2Zm8sDAhH2L/?=
+ =?us-ascii?Q?ub8x8mm9uq+FOPX+fQmkCOvnJuytMaeIR2pvWgFxaqNtMzMbXMIHPDDgRNqu?=
+ =?us-ascii?Q?MNxChCpwmTThlcGxFqRhld4htqt39+uaI9JvwQmN/ACuOQgOcRYbQxlyIrYK?=
+ =?us-ascii?Q?xUCmgw5geAatcEyV0FNbCpsuLWuBjm2ZozM8//PFP3biCQXkbErOCiQSedkt?=
+ =?us-ascii?Q?CWY6iMlBysIb5iKEUdGUDGXY7DKoSoByx+drnr4lp66zzh2/8hDZZ+eGNd9A?=
+ =?us-ascii?Q?yzF0sG9Yn6XIbrpCWAQO2a71Z7cXkco/vMco+JnVE90D+G9d8AApFgTif7Zy?=
+ =?us-ascii?Q?DeO3HClfDoX8zlAEeHdAvpfhCWQkn6wWU49xWTIFoASKJdvE/ZMKlpa3Wvb8?=
+ =?us-ascii?Q?H6YJfE6tgkfBLJ+8vtZIRg14+2yWYVkVdxRQt7+9ULsljbr9hWFQX3CWT29T?=
+ =?us-ascii?Q?NBB21SSaeFbwCKib0ag+leAR65xQ+dD+Nopzny9FA3Pyeak3WaVPWv3AezUL?=
+ =?us-ascii?Q?6NVzQ3Ldu+24hbyyYMrDoA8NkGUeh+mSKMmQuzP9lmDsucvclIJ6YZGGxzNW?=
+ =?us-ascii?Q?bpcEivLkCF8oFTySjaBRknbJm1MTmwNmgPXGxbqI4J9je+CrV1dAbcL1ws3l?=
+ =?us-ascii?Q?3gca7YppTFva5ZROdSqBuXrnxUSsCEGI7Y/crE5AuVTGXl0zHU7i98Zr6WqZ?=
+ =?us-ascii?Q?8G6W/ULNXqvEX87ResqnHDReHWkjeZJvMH3LO3VS97EgPcLZJIk92wN3L5L5?=
+ =?us-ascii?Q?k57fVHVE27bxe8jButc5?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b8dc15b9-7383-47e1-b876-08dc6ca11f32
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR20MB4962.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2024 01:17:28.9527
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR20MB6964
 
-There is a variation of the Kobo Clara HD containing a PMIC with different
-default settings for the regulators in the OTP and therefore also
-regulators wired up in a different way, so add a proper devicetree for it
-to avoid some magic smoke.
+Add support for the onboard hardware monitor for SG2042.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/nxp/imx/Makefile            |  1 +
- .../dts/nxp/imx/imx6sll-kobo-clarahd-b.dts    | 79 +++++++++++++++++++
- 2 files changed, 80 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd-b.dts
+Related SBI patch:
+https://lists.infradead.org/pipermail/opensbi/2024-April/006849.html
 
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 4052cad859fa9..a4826d128dfc7 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -288,6 +288,7 @@ dtb-$(CONFIG_SOC_IMX6SL) += \
- dtb-$(CONFIG_SOC_IMX6SLL) += \
- 	imx6sll-evk.dtb \
- 	imx6sll-kobo-clarahd.dtb \
-+	imx6sll-kobo-clarahd-b.dtb \
- 	imx6sll-kobo-librah2o.dtb
- dtb-$(CONFIG_SOC_IMX6SX) += \
- 	imx6sx-nitrogen6sx.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd-b.dts b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd-b.dts
-new file mode 100644
-index 0000000000000..09b890fe915ab
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd-b.dts
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: (GPL-2.0)
-+/*
-+ * Device tree for the Kobo Clara HD Rev B ebook reader
-+ *
-+ * Name on mainboard is: 37NB-E60K00+4B0
-+ * Serials start with: E60K02 (a number also seen in
-+ * vendor kernel sources)
-+ *
-+ * Copyright 2024 Andreas Kemnade
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx6sll-kobo-clarahd.dts"
-+
-+/ {
-+	model = "Kobo Clara HD Rev B";
-+	compatible = "kobo,clarahd-b", "kobo,clarahd", "fsl,imx6sll";
-+};
-+
-+&cpu0 {
-+	arm-supply = <&dcdc5_reg>;
-+	soc-supply = <&dcdc2_reg>;
-+};
-+
-+&dcdc1_reg {
-+	/delete-property/ regulator-min-microvolt;
-+	/delete-property/ regulator-max-microvolt;
-+
-+	regulator-state-mem {
-+		regulator-suspend-min-microvolt = <1040000>;
-+		regulator-suspend-max-microvolt = <1040000>;
-+	};
-+};
-+
-+&dcdc2_reg {
-+	regulator-min-microvolt = <660000>;
-+	regulator-max-microvolt = <1000000>;
-+
-+	regulator-state-mem {
-+		regulator-suspend-min-microvolt = <660000>;
-+		regulator-suspend-max-microvolt = <660000>;
-+	};
-+};
-+
-+&dcdc3_reg {
-+	/delete-property/ regulator-min-microvolt;
-+	/delete-property/ regulator-max-microvolt;
-+
-+	regulator-state-mem {
-+		regulator-suspend-min-microvolt = <3300000>;
-+		regulator-suspend-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&dcdc4_reg {
-+	/delete-property/ regulator-min-microvolt;
-+	/delete-property/ regulator-max-microvolt;
-+
-+	regulator-state-mem {
-+		regulator-suspend-min-microvolt = <1700000>;
-+		regulator-suspend-max-microvolt = <1700000>;
-+	};
-+};
-+
-+&dcdc5_reg {
-+	regulator-min-microvolt = <710000>;
-+	regulator-max-microvolt = <1100000>;
-+
-+	regulator-state-mem {
-+		regulator-suspend-min-microvolt = <710000>;
-+		regulator-suspend-max-microvolt = <710000>;
-+	};
-+};
-+
-+&ldo8_reg {
-+		/delete-property/ regulator-min-microvolt;
-+		/delete-property/ regulator-max-microvolt;
-+};
--- 
-2.39.2
+Changed from v4:
+1. use fix patch for binding ref.
+2. use unevaluatedProperties instead of additionalProperties for binding
+
+Changed from v3:
+1. add thermal-sensor check.
+2. change node type from syscon to hwmon
+
+Changed from v2:
+1. fix bindings id path.
+
+Changed from v1:
+1. Move patch from soc to hwmon.
+2. Fix typo.
+
+Inochi Amaoto (2):
+  dt-bindings: hwmon: Add Sophgo SG2042 external hardware monitor
+    support
+  drivers: hwmon: sophgo: Add SG2042 external hardware monitor support
+
+ .../hwmon/sophgo,sg2042-hwmon-mcu.yaml        |  43 ++
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/sg2042-hwmon-mcu.c              | 531 ++++++++++++++++++
+ 4 files changed, 586 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+ create mode 100644 drivers/hwmon/sg2042-hwmon-mcu.c
+
+--
+2.45.0
 
 
