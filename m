@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-65016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A8098BC098
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 15:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B23778BC094
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 15:41:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B39241F21079
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 13:42:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 690E31F213A4
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 13:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018D31D556;
-	Sun,  5 May 2024 13:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B0D1D54B;
+	Sun,  5 May 2024 13:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="SvRiPwWl"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="bQUUXQG8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F9E23767
-	for <devicetree@vger.kernel.org>; Sun,  5 May 2024 13:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3B41BC5C
+	for <devicetree@vger.kernel.org>; Sun,  5 May 2024 13:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714916511; cv=none; b=gJb10Rqd/8UHFlQIDx2dcXW86a9YgDCarAnmrc5LvILIhx61Ol47KcTkNen5mOrVKlNdvnnrlj4p3ZlWN8bfMLlG1vZMGUoluf5MA4FK/guuwWUxAzsf0R+dO5pD7oSt3rbjoryEQRcXYtamnvp8XejM22NHiROMkAcmzXktVO4=
+	t=1714916505; cv=none; b=ralqOWjLdOrljfJs93iBNoE2j8cphi+Cs0rqbpCcPvZdlFzgn1D1XgV+9rAGA/DnAIx4KfYDrODJvMu46WoxXI5a/v0J/L8ySDkAu2Xw9fXOhOJ4D0IV0+qkLKm3ThXJf4/VuzYB+7brnAmmcCgtUjkhkmUrzbaimTcMVV/ypgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714916511; c=relaxed/simple;
-	bh=vMHAB25GpqSX2vx/lPuSzrghl2AT8AicEvffckrntFo=;
+	s=arc-20240116; t=1714916505; c=relaxed/simple;
+	bh=CIgCjTXeZyu3DH0MqyAjHmzeAO/Nace6NJnBAsiQM0I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sq/10/VaPDTb3TXZ5jJcS7fP5mU4kmY863lct8v24yjyxmyb2r1TPZBFayhQF1SGcf9GEp4/y/DFxP5Lk+VCPvsGYhjNR5amEg01Wc9XwEjrEfFiO0uRNJ/iZivUq9acFyDKfKrRYBi3+ssKYoroV3Bxw+7HfVHRcJKscrX/J7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=SvRiPwWl; arc=none smtp.client-ip=167.172.40.54
+	 MIME-Version; b=buKu+F1SgX/7c1u/cFy/ENPLLdo1ZlwM8/5d89Fr1xlPfD1cH7oh+gkMEu/mb3j4IE5vvWIzvrKbKK8/GH6rBS28hTRab0TysQLnaw+Hd2DB2t5iqsnsTzFF1LA81Vge/FuSMYUsNW4FpzojIogzB0kZ1NmsjIQCwgSjVZj0qOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=bQUUXQG8; arc=none smtp.client-ip=149.28.215.223
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1714916492; bh=eTFSF0qSsxOuDHS34o+hgy93ZRL8a/aPI7xKAOuylBI=;
- b=SvRiPwWlI7y1OmkGt714c5P9kk/l/zL04V4apKKsdYa22MbHeMI9cdW109eR6Fe9Cz974xciv
- VSc6NApbV/jg48nsygdzzB8+rP9ak+ktbQXZD7sqyG/ajwts04zW/XA3cuV8Y/NiOdMLJ7jqMD3
- yUMKJI/E9KayR1IxaoP7GuEDieyScB5mDWLNeZyaEjfneHR9QfUc9y6I+Xqkhp7QgpwBa+UT89a
- bU8xTgHKDqvH1gqh4BHoYiARCOKE8TTJlNadUIl8fciDgNakZYt6pLA+2hyQZo7R2Wop2jRjlCy
- Lqh1v1CMWQVSVJ+zCOWhoK/Fd42DrooUYJUunXyYbdrA==
+ t=1714916495; bh=W8GUtXzj3Rp0251QTwW9fbnt8zTzF5kn1FBpfBkBZXA=;
+ b=bQUUXQG8BJMidveyOUWZaBStb1q0pTzIDkIWN5pibpOBp2DJiRIG0HvHSnKyIp/4WF9PolzYp
+ anuxkBg4CHuKRvzoZBPi3lNMle2ZCn+1HiBvWVpXx4FqCoX3As1Ze63YtP9PpoXjWXOmtmY2qUN
+ 2UVwqfGSvN3fvgRazpw9/luwgaLeM91fyi7B6pICUN/wiXkDwJRcjmg4UraKI1hdIesM7j+rsP9
+ Yl1M9X8UB/8ezDqcwsFbksnxxZ3JdLkToPKamsXhQmYH0GiaamEXB13F+bXKYXy4Se66FXOlIGC
+ bBdNuWFxijG1U/mtrxgQiNcGF7M57zlcdpyl31tFEbaQ==
 From: Jonas Karlman <jonas@kwiboo.se>
 To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
@@ -48,9 +48,9 @@ To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Jonas
  Karlman <jonas@kwiboo.se>
-Subject: [PATCH 1/4] dt-bindings: mfd: rk809: Fix vcc8 and vcc9-supply description
-Date: Sun,  5 May 2024 13:41:11 +0000
-Message-ID: <20240505134120.2828885-2-jonas@kwiboo.se>
+Subject: [PATCH 2/4] dt-bindings: mfd: rk809: Add audio codec properties
+Date: Sun,  5 May 2024 13:41:12 +0000
+Message-ID: <20240505134120.2828885-3-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240505134120.2828885-1-jonas@kwiboo.se>
 References: <20240505134120.2828885-1-jonas@kwiboo.se>
@@ -66,37 +66,76 @@ X-Report-Abuse: abuse@forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
 X-ForwardEmail-Version: 0.4.40
 X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 167.172.40.54
-X-ForwardEmail-ID: 66378c8a57f92010457d687e
+ 149.28.215.223
+X-ForwardEmail-ID: 66378c8e57f92010457d6890
 
-As can be seen in the RK809 datasheet BUCK5 and SWOUT1 share an input
-supply, vcc9, and SWOUT2 use vcc8 as the input supply.
+Similar to RK817 the RK809 also integrates a complete audio system.
 
-Correct the description for vcc8-supply and vcc9-supply to reflect this.
+Add audio codec properties to binding to reflect this.
 
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
- Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/mfd/rockchip,rk809.yaml          | 34 ++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
-index 839c0521f1e5..c951056b8b4d 100644
+index c951056b8b4d..b78e1b090105 100644
 --- a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
 +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
-@@ -78,11 +78,11 @@ properties:
+@@ -12,7 +12,7 @@ maintainers:
  
-   vcc8-supply:
-     description:
--      The input supply for SWITCH_REG1.
-+      The input supply for SWITCH_REG2.
+ description: |
+   Rockchip RK809 series PMIC. This device consists of an i2c controlled MFD
+-  that includes regulators, an RTC, and power button.
++  that includes regulators, an RTC, a power button and an audio codec.
  
-   vcc9-supply:
-     description:
--      The input supply for DCDC_REG5 and SWITCH_REG2.
-+      The input supply for DCDC_REG5 and SWITCH_REG1.
+ properties:
+   compatible:
+@@ -93,6 +93,34 @@ properties:
+         unevaluatedProperties: false
+     unevaluatedProperties: false
  
-   regulators:
-     type: object
++  clocks:
++    description:
++      The input clock for the audio codec.
++
++  clock-names:
++    description:
++      The clock name for the codec clock.
++    items:
++      - const: mclk
++
++  '#sound-dai-cells':
++    description:
++      Needed for the interpretation of sound dais.
++    const: 0
++
++  codec:
++    description: |
++      The child node for the codec to hold additional properties. If no
++      additional properties are required for the codec, this node can be
++      omitted.
++    type: object
++    additionalProperties: false
++    properties:
++      rockchip,mic-in-differential:
++        type: boolean
++        description:
++          Describes if the microphone uses differential mode.
++
+ allOf:
+   - if:
+       properties:
+@@ -284,5 +312,9 @@ examples:
+                     };
+                 };
+             };
++
++            rk809_codec: codec {
++                rockchip,mic-in-differential;
++            };
+         };
+     };
 -- 
 2.43.2
 
