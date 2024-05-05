@@ -1,105 +1,111 @@
-Return-Path: <devicetree+bounces-65018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92F88BC0BC
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 16:21:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 828D08BC19F
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 17:15:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53F821F21468
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 14:21:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B376D1C209AE
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2024 15:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261F4219E4;
-	Sun,  5 May 2024 14:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A85E0364DA;
+	Sun,  5 May 2024 15:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAamZeO2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/ELJ4Lr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFAEB22625;
-	Sun,  5 May 2024 14:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 760B91CD38;
+	Sun,  5 May 2024 15:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714918888; cv=none; b=jSfVGa2kWQdV26l6nrGqBXGXR61CMYZACBYVmEt6S+4QBEY1aGKPOAKEogUtXNUwYsPTrI/ojJbfXigS/4la4wco/OC6AFyzzvbSeo3nlEDM6ADsBW1H1AjJ7eDzeH2cAHQT3mswKK8xKWBa4hrAy01oymNBAKQ+OZRIwt2yhx8=
+	t=1714922105; cv=none; b=MdllWUOuVBq+U0j4qkQjkUZwJzAbsFzpXPZzWOoOYWog8n2KXHNUEJTPxChsEAv10XAUv0M2ghdGsqqWswjlbDVeA1xbG2bJx8X9tHqM7D3YJXWEL5z7Qpy699N4HDWnOXTp1ZUXTGGOdyaKBODe7gJkPIij+ZGkoNx8JrU9nPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714918888; c=relaxed/simple;
-	bh=vcX2OvZvu6X9DYQ6XWaLEsIDPp42KwZN4oit/W4BZU4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=DTgMsg0MaJAp/VRFfRfjecvnogJgyJMmhvBddXoL0a2TQQc69gn6a8VFsAwghqL+013kMlZrJqVKYAUAjgh0PYP8jFQAKwkoyvn7mSH0fm1wzFyqK12nzZLBxNkDBvi40zYB/pJUPnyFtA0zKXQp3n3TSjZjmlDCZW2njHH3jts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAamZeO2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44082C113CC;
-	Sun,  5 May 2024 14:21:27 +0000 (UTC)
+	s=arc-20240116; t=1714922105; c=relaxed/simple;
+	bh=3Y6Ya7aQNSsFwpYMxH3lYUB7Xh+C9ZSem7RoTyTrDho=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=msz0VijYbOxRY2uLRyu0UkhT55+d6/LxcL51DqB018SjKGB8TTuuxnC7GbDiUst8LwlgmStavtCQOEOwGrkX+5+KnXjeV0OQw5AEy1uBU/KEexaNDjwdFrcOoASaVTz0ote1+KtzLfrmzRF67wggGTf4sIbwtzSirUpU22TZebo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/ELJ4Lr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A44C113CC;
+	Sun,  5 May 2024 15:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714918887;
-	bh=vcX2OvZvu6X9DYQ6XWaLEsIDPp42KwZN4oit/W4BZU4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=WAamZeO2xqGI0kJ0UF5QCCiw4nVDRIssQZhnnNTJZVz5NxfLYeNBP5LTQ9EGYIZtd
-	 IoHP5nNydCGIuoCvqt9ITRaFwI/WMrfKNpqKQVFNkPBYUCIjWvN/yoMlvFYqx7JUGW
-	 HpuEc8f4XzHUb2AWg1QfbhVuvNgvam/tDCJZBDSsy1r3XGNjcZRXVG3qr+hTPtzyE8
-	 zJqf6yLd5KBUoqheixL3Yhu+kDbj+g5ZMsdbsExbptuZVByq2TTdc77zCHlNTofAQ5
-	 PXEkWVesDKM5HwMNytCfZPGuB+hWfzDOyWsQLHNHyx6o9MoQ4l7RWHozBN62GkLM2W
-	 8UZok0eh2ZHiw==
-Date: Sun, 05 May 2024 09:21:26 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1714922104;
+	bh=3Y6Ya7aQNSsFwpYMxH3lYUB7Xh+C9ZSem7RoTyTrDho=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k/ELJ4LrM9ORUxUqlCfMupo9YSZBMJECkHdD9BMAJ61a8YQLlQovmZ9IG0suZpLdK
+	 seN/esI+XuR80NrjWv46kFX+1WF5S6x1wHdvh6KWH2FwUn2p6lZc4GLKh72hQgv6yd
+	 qYLulpsOSazFXaMtz7IphDmMB2iJ8zjbIMDHkZuKERPKqYjTYR4eNInve65ppqjuiz
+	 g1FOnhJnfyCXdszGCw3/jKoYtDLyQIT9SpsVrBZR4TOl9DEZcBCOanqnLFVhCcHGPD
+	 X5/BmO1i68hD6mi6Jn6RpxHmt6q4Ox5iRkQInwl0uRJnxQ0I984o/54Qpqe+K3GM+/
+	 a3/ug+jEOxpKw==
+Date: Mon, 6 May 2024 00:15:01 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Karel Balej <balejk@matfyz.cz>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v6 3/5] regulator: add regulators driver for Marvell
+ 88PM886 PMIC
+Message-ID: <ZjeidfoIbjvejphU@finisterre.sirena.org.uk>
+References: <20240504194632.2456-1-balejk@matfyz.cz>
+ <20240504194632.2456-4-balejk@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>, 
- Zhang Qing <zhangqing@rock-chips.com>, linux-arm-kernel@lists.infradead.org, 
- Chris Zhong <zyw@rock-chips.com>, linux-rockchip@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- devicetree@vger.kernel.org
-In-Reply-To: <20240505134120.2828885-3-jonas@kwiboo.se>
-References: <20240505134120.2828885-1-jonas@kwiboo.se>
- <20240505134120.2828885-3-jonas@kwiboo.se>
-Message-Id: <171491888618.1725063.9283518594556057694.robh@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: rk809: Add audio codec
- properties
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uRnS6SowswNDaOxE"
+Content-Disposition: inline
+In-Reply-To: <20240504194632.2456-4-balejk@matfyz.cz>
+X-Cookie: lisp, v.:
 
 
-On Sun, 05 May 2024 13:41:12 +0000, Jonas Karlman wrote:
-> Similar to RK817 the RK809 also integrates a complete audio system.
-> 
-> Add audio codec properties to binding to reflect this.
-> 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> ---
->  .../bindings/mfd/rockchip,rk809.yaml          | 34 ++++++++++++++++++-
->  1 file changed, 33 insertions(+), 1 deletion(-)
-> 
+--uRnS6SowswNDaOxE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Sat, May 04, 2024 at 09:37:06PM +0200, Karel Balej wrote:
 
-yamllint warnings/errors:
+> +static const struct regulator_ops pm886_ldo_ops = {
+> +	.list_voltage = regulator_list_voltage_table,
+> +	.map_voltage = regulator_map_voltage_iterate,
+> +	.set_voltage_sel = regulator_set_voltage_sel_regmap,
+> +	.get_voltage_sel = regulator_get_voltage_sel_regmap,
+> +	.enable = regulator_enable_regmap,
+> +	.disable = regulator_disable_regmap,
+> +	.is_enabled = regulator_is_enabled_regmap,
+> +	.get_current_limit = pm886_regulator_get_ilim,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/rockchip,rk809.example.dtb: pmic@1b: 'codec' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk808.yaml#
+Do these regulators actually enforce this limit or is this just a spec
+limit beyond which regulation may fail?  If it's just a spec limit I'd
+not expect this operation to be provided, it's more for a hard limit
+where the regulator will detect and act on issues.  I don't see an error
+interrupt or anything and this would be an unusual feature for a LDO.
 
-doc reference errors (make refcheckdocs):
+--uRnS6SowswNDaOxE
+Content-Type: application/pgp-signature; name="signature.asc"
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240505134120.2828885-3-jonas@kwiboo.se
+-----BEGIN PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmY3onUACgkQJNaLcl1U
+h9BvkQf/TjTKRxV/vksAq6WKXBKwSrc1pWsXIi51Exrv1IpdrCb58IvaAuFOykV8
+NZABo6A/hS4k1XF7IppT4XInmZj31Og0LnSXgF0VMe3NsM+plc1Wd50KogVI6zQw
+S4cyXayPYmuG1tr1MB2saXTsvKhmCLRsr3zfqcLrti77mX+qdr2Z35VC5zepXZdg
++Dmbu8mYqbX6uW1vOn8DS9msb1FXeVAQKiQUoFd1cMe7/3EpzgOGZKE+FdIzBy2D
+Og0MXH689pniCS0lkbzTnnpq+q1GQqeIwgmqRXprHnnJKhbB6bOoRaK8+NAginEv
+8MMfIZqNOxcXrhh08DXhuUEc5mGgbg==
+=R4Zq
+-----END PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--uRnS6SowswNDaOxE--
 
