@@ -1,129 +1,217 @@
-Return-Path: <devicetree+bounces-65141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 306A68BCC7A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:57:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D848BCC8A
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CB771C21699
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:57:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CC12B21DE8
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 11:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B159E142635;
-	Mon,  6 May 2024 10:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FE0142E74;
+	Mon,  6 May 2024 11:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="H9zbk/XA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="V1mHG52b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3B2128372;
-	Mon,  6 May 2024 10:57:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5AE75815;
+	Mon,  6 May 2024 11:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714993024; cv=none; b=L+yNaKyhxGB3UGRvw/k0yBnYSgiz6gx8xBvaHb6MgjIAdiWUeFGaKnjWx7CZsaebVgmuvIjUhmqn9qSJSmczlFBvgkWm8rHN158oX70Q87FqvprvJYnIn0AWJAzlXkCgduUhXMu//DZsqad768B/uhncg5cwr1zMW8W9vEbw+2M=
+	t=1714993348; cv=none; b=momANhNgpJpuqIAlb/EHMIyr3UhvKEaNX69TwN66GrZAYLHiifgFfH8+3+Ojk+OkPBV3xQRUgc0NSaS8/xEFy4YkppAtjT/9Wc52UbAY1qENGvH7ZQpvYr7HPyR6s37+ufJmecae/WEb/aG7MCrQGwq6ARJy2mBg0F0rX2WdfKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714993024; c=relaxed/simple;
-	bh=X2NzglRsxYEgR27bOlIO3yydggeqp11lrTPWCFdKpY0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aUOKswzbyCKT/HSp2FDpnrhyOqaOVo9boxaAn55bj5YcP7on8Sx1fqik0nodf5RWgHPNFlLsqlSyIArvqR+XWQOo9ewnjMBtxwrJW/8wqyDGRwOTgapxsFbFBM3cCfmlkymXtocyESuNdfH56TVKr5oeLmHxyaqm6nt4VEbB32Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=H9zbk/XA; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1714993020;
-	bh=X2NzglRsxYEgR27bOlIO3yydggeqp11lrTPWCFdKpY0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H9zbk/XAZ/2DHUMgiAMu8VSJv0zpRMVlMYmkN+a0gGmvIS1wpR8SVqAOQ+pPu2pbg
-	 znIR0b7JnrWRLD2zl7chGIC5Z6Vq6d72sYYuV0XVCrlVz2Two0ojARXYz7uOLElEML
-	 kn1sc8EW89SVM1tYxf3Y96BnMyB3XIuEYBpzrpVrnvnWFBswLMorZLCIRI9NWxBpoJ
-	 HLdGd/1fiYwUxfoTRi+i0P1ekhKpzpTlHBpcMYbOzEUyWcny755o+W3TziWpNgBv3C
-	 NWWSxG8zdTxBrpP+Pl7JSZKnQL9lSxwahltQi5EpNX9oyZExta3bcDjyjgraEmFU97
-	 I4iG6AP/yCpcQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0BA97378020D;
-	Mon,  6 May 2024 10:56:58 +0000 (UTC)
-Message-ID: <50be68dc-b86a-4334-9f83-43c6fda2c271@collabora.com>
-Date: Mon, 6 May 2024 12:56:58 +0200
+	s=arc-20240116; t=1714993348; c=relaxed/simple;
+	bh=Oix5djLZmNkTp0exGsZ9laRtRhDbmtuVJV8qzd4CORU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W52KcaDLpmGz/C2xcibQXFidwLXf6ImsI7Zkzu+7hcyjOgVTsXr8VPPnbSXDt99OurTltguJT+dmwP82Yb0t6cg36/UeWoUm2+k0ODnAXsfNBd/GuQADbcWf3R5CzG25LFHcbt9UMzaOeG7pM89VDnVfhgZ/K8cvTr0XYdhungs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=V1mHG52b; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 446B28SB111425;
+	Mon, 6 May 2024 06:02:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1714993328;
+	bh=4nRIQOW4oDA+o2rDMlVOaPir43l7W2KwJJ7J1DUAzFs=;
+	h=From:To:CC:Subject:Date;
+	b=V1mHG52beUzIolT7kNEtGJsQ94vg24WJnkhEmuw2j6/ZD7QzbKUKS2FTdRziFmwQL
+	 /irHoyMx+JrZve3LzP+kTwCclZKkTwS1te/Qr732GvHYk0KqOLXXvj3z3ZhTEcON7e
+	 ex+mIpQcxXItT9D8oxP5wvcJbBfEHf5MoYfgMUAs=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 446B28mB111809
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 6 May 2024 06:02:08 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
+ May 2024 06:02:07 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 6 May 2024 06:02:07 -0500
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 446B23iM050823;
+	Mon, 6 May 2024 06:02:04 -0500
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <s-k6@ti.com>, <u-kumar1@ti.com>,
+        <n-francis@ti.com>
+Subject: [PATCH] arm64: boot: dts: ti: k3-*: Add memory node to bootloader stage
+Date: Mon, 6 May 2024 16:32:03 +0530
+Message-ID: <20240506110203.3230255-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] drm/mediatek: Add support for OF graphs
-To: Michael Walle <mwalle@kernel.org>,
- Alexandre Mergnat <amergnat@baylibre.com>, chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com
-References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
- <1fc23530-89ba-4e36-9e9a-a1289f56a9bc@baylibre.com>
- <608fdbde-ad06-45ec-9771-18aa9f002f2d@collabora.com>
- <D12H4GDJJEUF.1Y91H9RMUIX20@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <D12H4GDJJEUF.1Y91H9RMUIX20@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Il 06/05/24 12:02, Michael Walle ha scritto:
-> Hi Angelo,
-> 
-> On Tue Apr 30, 2024 at 1:33 PM CEST, AngeloGioacchino Del Regno wrote:
->>>> This series was tested on MT8195 Cherry Tomato and on MT8395 Radxa
->>>> NIO-12L with both hardcoded paths, OF graph support and partially
->>>> hardcoded paths (meaning main display through OF graph and external
->>>> display hardcoded, because of OVL_ADAPTOR).
->>>
->>> Is that make sense for you to add the DTS changes of these boards into this serie ?
->>> I asked because, IMHO, that could help to understand the serie.
->>>
->>
->> Yes and no... but I imagine that you're asking this because you're trying to
->> prepare something with a different SoC+board(s) combination :-)
->>
->> In that case, I'm preventively sorry because what follows here is not 100%
->> perfectly tidy yet as I didn't mean to send the devicetree commits upstream
->> before this series got picked....
->>
->> ... but there you go - I'm sure that you won't mind and that the example will
->> be more than good enough for you.
-> 
-> I've tested this series with the DSI0 output and it works. Nice! No
-> need for my DSI0 patch for the MT8395 anymore.
-> 
-> But I can't get it to work with the DisplayPort output, that is the
-> dp_intf1/dp_tx interface. I don' know how the pipeline have to look
-> like. The functional spec seems to be ambiguous on this. The text
-> seem to refer to the second vdosys but there is also a diagram where
-> you can use the first vdosys and dsc0. If you have any pointers for
-> me, I'm all ears :)
-> 
+Add the bootph-all property to the memory node so that it can be
+accessed by FDT functions at bootloader stage.
 
+The bootloader requires the memory node to be able to initialize and set
+the size of the DRAM banks. For this purpose, make sure all memory nodes
+are present and standardized, and modify them if not.
 
-The problem with this is that you need DDP_COMPONENT_DRM_OVL_ADAPTOR... which is
-a software thing and not HW, so that can't be described in devicetree.
+Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 1 +
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi     | 5 +++--
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts          | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi    | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts         | 1 +
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi    | 1 +
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi   | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts       | 4 ++--
+ 8 files changed, 16 insertions(+), 10 deletions(-)
 
-The only thing this series won't deal with is exactly that.
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+index aba0c52b1213..aa7139cc8a92 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -33,6 +33,7 @@ chosen {
+ 
+ 	memory@80000000 {
+ 		device_type = "memory";
++		bootph-all;
+ 		/* 4G RAM */
+ 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
+ 		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+index 0f4a5da0ebc4..2ebb7daa822f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+@@ -11,9 +11,10 @@
+ / {
+ 	memory@80000000 {
+ 		device_type = "memory";
++		bootph-all;
+ 		/* 16 GB RAM */
+-		reg = <0x00 0x80000000 0x00 0x80000000>,
+-		      <0x08 0x80000000 0x03 0x80000000>;
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000003 0x80000000>;
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index 50de2a448a3a..32cda4a08081 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -35,8 +35,8 @@ memory@80000000 {
+ 		device_type = "memory";
+ 		bootph-all;
+ 		/* 32G RAM */
+-		reg = <0x00 0x80000000 0x00 0x80000000>,
+-		      <0x08 0x80000000 0x07 0x80000000>;
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000007 0x80000000>;
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+index 7e6a584ac6f0..21fe194a5766 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+@@ -12,9 +12,10 @@
+ / {
+ 	memory@80000000 {
+ 		device_type = "memory";
++		bootph-all;
+ 		/* 4G RAM */
+-		reg = <0x00 0x80000000 0x00 0x80000000>,
+-		      <0x08 0x80000000 0x00 0x80000000>;
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 0c4575ad8d7c..a027cf2facee 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -31,6 +31,7 @@ chosen {
+ 
+ 	memory@80000000 {
+ 		device_type = "memory";
++		bootph-all;
+ 		/* 4G RAM */
+ 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
+ 		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+index 1fae6495db07..5ba947771b84 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+@@ -12,6 +12,7 @@
+ / {
+ 	memory@80000000 {
+ 		device_type = "memory";
++		bootph-all;
+ 		/* 4G RAM */
+ 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
+ 		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+index 623c8421525d..82aacc01e8fe 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+@@ -13,9 +13,10 @@
+ / {
+ 	memory@80000000 {
+ 		device_type = "memory";
++		bootph-all;
+ 		/* 16 GB RAM */
+-		reg = <0x00 0x80000000 0x00 0x80000000>,
+-		      <0x08 0x80000000 0x03 0x80000000>;
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000003 0x80000000>;
+ 	};
+ 
+ 	/* Reserving memory regions still pending */
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+index 81fd7afac8c5..e9a3b5c2faa4 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+@@ -33,8 +33,8 @@ memory@80000000 {
+ 		device_type = "memory";
+ 		bootph-all;
+ 		/* 32G RAM */
+-		reg = <0x00 0x80000000 0x00 0x80000000>,
+-		      <0x08 0x80000000 0x07 0x80000000>;
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000007 0x80000000>;
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+-- 
+2.34.1
 
-It's relatively easy, though, to add support for the OVL_ADAPTOR... as it would
-be just a matter of checking if any of the components in the pipeline contain a
-compatible that is in the OVL_ADAPTOR compatible list.
-
-I'll try to add that up today, let's see what I can do.
-
-Cheers,
-Angelo
 
