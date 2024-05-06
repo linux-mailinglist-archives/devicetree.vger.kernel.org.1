@@ -1,125 +1,113 @@
-Return-Path: <devicetree+bounces-65282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58028BD6F3
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 23:45:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA308BD788
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 00:09:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FDD1282BB1
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 21:45:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FCDB1C22C4B
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 22:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AF815B98D;
-	Mon,  6 May 2024 21:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6081515CD52;
+	Mon,  6 May 2024 22:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OjEorXMa"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UujdRw8N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420E813D2BC
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 21:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798D413D2BC;
+	Mon,  6 May 2024 22:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715031921; cv=none; b=jBm6T3AAaEwl0ycCC8MILNs1Rs4QyJxdhgme3qp/96kMQnYQ98yf5KjIkqSpUKITM/JqBsjnsTB92WI/C2GHgRxFapnZcc++PWlsEs63xUDMN2IpVHecRk42ozvoEmv2NnuURmbQlpIDh8g2IFGfl3hHLRoojGERABhlKOCaDFs=
+	t=1715033383; cv=none; b=DIstzl2o84hBH9u/PZVhsQyhdXGBTdkoAbhWfRuGkKL83ItJO6LsSpbUPu1men4iun//Yy0DqeoKNfaiWwkKhe0l0Jj0/21zKa87/KQtOljo9Wp9Hd2127zM3uHxYd4V5qVknvTE9GNVoY5RhBRE1gLVA4ptVTR/s+Tp7sk5bXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715031921; c=relaxed/simple;
-	bh=9nKNP/JM0dWgI6v7o0YUrp4gM/DyjT1WXWmXfCzYL5s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gPy9ds3Ru9+UgNfh5iH8U+GlFCMgD4TPV9kMFdgyZStcGycbFoLchNVTYJ3NcBSqhgarWdv3nmD18MqAVD3iN9GKAd1rElZCcg5L3KkI7K+u7Pgc2pqiv4ScrSIMN/XSKKKBR2Yw1lZz9dw8lqaID1ww5CrtcJpvIvEr+vqWJps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OjEorXMa; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e3efa18e6aso703261fa.0
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 14:45:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715031917; x=1715636717; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W3WVWXkWLEwrmQS6sLqWdGbxzbgxAi62bz5w3Px6ThI=;
-        b=OjEorXMaQZXFqYTDMcwG5FOAnXFZACt/Gj4FS1pngjgiWTUZs/O8IK6Ix+b7pvWa8m
-         BUlE1jzn2fswEW3SYE4ynefLO5g3pLjTZSWC6af3CNsOP3G+dMfVIcoHfTMqcw23H1IX
-         QqIizwMz5lZ9Jwo3KsXI3wkMibFY7MhZBuKDWNxcuS/6hOeB/RRPcNxBQUzzcUwjoHau
-         7kgXj31F1osgMIkAXMF08MRbTxhop4yx5kA2Grje4WYT4sxIiG3ffuKNwnJTOmtXB+By
-         hXYC1UpNMfNprcwPrHrT5en7mH3VxGm/w0rZ+ObH/UEiciFdFPYiiGWoJtiCWC0d0gAV
-         K8rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715031917; x=1715636717;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W3WVWXkWLEwrmQS6sLqWdGbxzbgxAi62bz5w3Px6ThI=;
-        b=CEawRcWosqb2muVCJheVWCskCd7/FHMxL+5c6q2Hxny6YpRJINbUP75uMP9m84boDP
-         bibZmeW5t97MOrddFnjxY/4jl+ukrxKhJhFsYeIqp0UlHxeN9LEFUteLx0+tFTGLxd5f
-         mi+x11byNNeCvKEo9EfxXlnn1NFpFvLm4TufYWd+trJeYxnmfYLQN1gVOZYidV/x7K3Q
-         qjV35DHOwYrjHeyswDQUK880lU0n2sGsJH4Ua6fZ8y7CIcJThScB3CJVJGflqWEhrPTo
-         1wJMAhLA2IHknU5ONl/k2JN+tSqqqebA8bxerwhsWrTam3Bl1u5mnG/gVuA8Sbw0YNeo
-         PP7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVD5uDp++yuQXl1JL8SrQ6VE2g7Ss06IbgQK4m9kcg/o7V5wJS6dcfQtiJirjMPUaTpS/7pP+lPaMPRPptlx+1Pepnb5Di8R16gyg==
-X-Gm-Message-State: AOJu0YwG22oTDTDplvaOvhQxwJlBUxLoygQAFnmiiPQT/ys7eZXU2lDo
-	F91AlV06zZuB2zHvWoRzgtLnFy3WPLXuoKqfQ92aD17uLQblL0vy0b0H6TnIWc0sSehMWolvUkJ
-	qyUBNEHLV1CnK9zAKHVn13aglXsPpQ4+fmWg8+g==
-X-Google-Smtp-Source: AGHT+IHsd5XtD0FymUqVhlLIsycfw7wyHM4Vf5doNVrCN/vA5jAhn0ZKKZMpPmFsSPQyM0wqdjgpjwEXJu54QhmYwo4=
-X-Received: by 2002:a2e:7202:0:b0:2e1:a635:4efc with SMTP id
- n2-20020a2e7202000000b002e1a6354efcmr250821ljc.14.1715031917296; Mon, 06 May
- 2024 14:45:17 -0700 (PDT)
+	s=arc-20240116; t=1715033383; c=relaxed/simple;
+	bh=r9BFmWG8V1HVuQ4IJR5EcoibqvPzjOfGBGYBkHWhi+U=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=BgJAsLCuwC1cbUgQjEbnxXjkRhITexVZ+pJ+kPoFALQgdfkYf8NG3wRC/lT/+Kxc8sHY8IYvAByIZDJoqwmLqm9dZB3QixRloXP0kaTA8yeQc0pFIlpZpFFfBAbKdFc8TQ5ApLm3EXAnnW0SRlDA/iCotJj8ZCPEPcIceLhtOfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UujdRw8N; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 446M9XNn076862;
+	Mon, 6 May 2024 17:09:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715033374;
+	bh=10wWVMhpZZp5B3uqn2MuHEK3VuAoIokX6nqD6qsNfl8=;
+	h=Date:Subject:From:To:CC:References:In-Reply-To;
+	b=UujdRw8NAd23gEHguZJfZrn540v/EhRp9VbQfMYSm2RQUXz3iMZj6RR7Va9SRklgq
+	 ESQ+7QtGfQLtPx8ICwP3mAqz+QdfEkDDWW8BK7urQnQdXOK6BIEym/5oX2Vhds5pJ2
+	 IblpC0RdGQu8ZTXIhpaZayo7m+Z9yHEJmSPgBy9Q=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 446M9Xch021857
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 6 May 2024 17:09:33 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
+ May 2024 17:09:33 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 6 May 2024 17:09:33 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 446M9XUX120857;
+	Mon, 6 May 2024 17:09:33 -0500
+Message-ID: <8651bce3-d097-465d-b8a7-c12e9d8a77b1@ti.com>
+Date: Mon, 6 May 2024 17:09:33 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com> <20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
-In-Reply-To: <20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 6 May 2024 16:45:06 -0500
-Message-ID: <CAMknhBEFdCMHt4-iDhNA2S3KpT=EYX53gDQjnQAu+Ph-gzO7GQ@mail.gmail.com>
-Subject: Re: [PATCH RFC v6 10/10] iio: adc: ad7380: add support for resolution boost
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	kernel test robot <lkp@intel.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: am335x: Add PRU system events for virtio
+From: Judith Mendez <jm@ti.com>
+To: <linux-omap@vger.kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>
+References: <20240501194157.2727136-1-jm@ti.com>
+Content-Language: en-US
+In-Reply-To: <20240501194157.2727136-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, May 1, 2024 at 9:56=E2=80=AFAM Julien Stephan <jstephan@baylibre.co=
-m> wrote:
->
+Hi all,
 
-...
+On 5/1/24 2:41 PM, Judith Mendez wrote:
+> From: Nick Saulnier <nsaulnier@ti.com>
+> 
+> A PRU system event "vring" has been added to each of the PRU nodes in
+> the PRU-ICSS remote processor subsystem to enable the virtio/rpmsg
+> communication between MPU and that PRU core. The additions are done
+> in the base am33xx-l4.dtsi, and so are inherited by all the AM335x
+> boards. Do note that PRUSS is available only on all AM3356+ SoCs.
+> 
+> The PRU system events is the preferred approach over using OMAP
+> mailboxes, as it eliminates an external peripheral access from
+> the PRU-side, and keeps the interrupt generation internal to the
+> PRUSS. The difference from MPU would be minimal in using one
+> versus the other.
+> 
+> Mailboxes can still be used if desired, but currently there is no
+> support on firmware-side for the SoC to use mailboxes. Either approach
+> would require that an appropriate firmware image is loaded/booted on
+> the PRU.
 
->
-> +static int ad7380_prepare_spi_xfer(struct ad7380_state *st, struct spi_t=
-ransfer *xfer)
-> +{
-> +       int bits_per_word;
-> +
-> +       memset(xfer, 0, sizeof(*xfer));
-> +
-> +       xfer->rx_buf =3D &st->scan_data.raw;
-> +
-> +       if (st->resolution_boost_enable =3D=3D RESOLUTION_BOOST_ENABLE)
-> +               bits_per_word =3D st->chip_info->channels[0].scan_type.re=
-albits;
-> +       else
-> +               bits_per_word =3D st->chip_info->channels[0].scan_type.re=
-albits - 2;
-> +
-> +       xfer->bits_per_word =3D bits_per_word;
-> +
-> +       xfer->len =3D (st->chip_info->num_channels - 1) * BITS_TO_BYTES(b=
-its_per_word);
+Please ignore this patch,
 
-This needs to be based on storagebits, not realbits.
+Thanks,
+Judith
 
-> +
-> +       return bits_per_word;
-> +}
-> +
 
