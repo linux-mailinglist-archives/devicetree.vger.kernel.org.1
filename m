@@ -1,163 +1,186 @@
-Return-Path: <devicetree+bounces-65249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6725C8BD3B0
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 19:11:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3467D8BD3F2
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 19:40:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89BCE1C21AB6
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:11:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53938B2295C
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C1F157469;
-	Mon,  6 May 2024 17:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC508157A40;
+	Mon,  6 May 2024 17:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RdPBQwlU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R6ejFAjF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC31156F38;
-	Mon,  6 May 2024 17:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556211F19A;
+	Mon,  6 May 2024 17:40:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715015505; cv=none; b=Tgi09AAg0q01jvu51woce2rV9DvdYMBtEwNrWlGPayNGlJzfF0AMwanussWs5LWMJMIJttquD9elZ393OHgak9xFXdbpHbKPAsgXz1iR7mW66tYi9W/BY4ZdvPe8O2b6A6wTXgWKXax0Ef3oE78w+Ydi+zXk9zuYFW0Wg0yRcCg=
+	t=1715017225; cv=none; b=WYi4XShQomCbFoDFCPi9mW+WWCpSqJM9wXYH1eouFPC94CSYCEsv9YssoWPaeIYg+yBAhH0DASCLF+1m9WUJ8DK3n4bqZm2kH4TAoHuGU1Eo5jZJ4DZKXSUAC1yzOCvQKhuvRrEoBuoulQnu0qWE5AkOiI27bR+OqhScOWu1UqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715015505; c=relaxed/simple;
-	bh=LGFYdoQCzAi5HsZnju8zdzQ4E+Uk80WyqMqgG7ChIFw=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=jEWSW+dvNp/qtFFDLYY8dFLUYtVHe9aaDnU+YSBgTxo50nF37K/Rszktpd1diH55dBCgzTRQ5ssir4gyW7Gq+aJcdRuLhtNk6qTskvr0DjGTP5wTpi6ETtHYIsm83w1CBmqCjm1R4HscuJIeFpmVjA0XlmvAlAwBiFIvHp/4U1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RdPBQwlU; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715015503; x=1746551503;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=LGFYdoQCzAi5HsZnju8zdzQ4E+Uk80WyqMqgG7ChIFw=;
-  b=RdPBQwlUK5L48iqe7p/UIrNbq80RLAq/iJb8PD4UuJrWlXIwkSuCide2
-   HubxPGdTozSbwnEnjLE0XH+d/DhCzSYJI8m40UsA2QLDU2iO/EJt3zKuq
-   MIBi0JI8w12rIqGe3+yDamcBgkSQMkPH0HReOVh2++GyegUaaoYZkmH//
-   DCsOFMi8u/kThr0fM7i9dRCvc1LiNnq8kmneNvFMOpJTbfol7zRPgY+IF
-   YNZ6CyZCPp3JL03SK80ORNGfyvvXvb4gl0CBnfsR3D+g86HXPWWmjYZGy
-   CwuFrv9/TzPqdRkGp4wgrz/35tnPgKnR5wTpl1K8doNqHL7MkT77AdCNg
-   w==;
-X-CSE-ConnectionGUID: ozx6vS5XQKS3gZl0M72bqQ==
-X-CSE-MsgGUID: rCHn4wSYRdeU1GRf7KEsZQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10649736"
-X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; 
-   d="scan'208";a="10649736"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2024 10:11:42 -0700
-X-CSE-ConnectionGUID: tdGZxArMTJOh9yCIaQhkTA==
-X-CSE-MsgGUID: ufIanFWhRTi4J6CQpim4EA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; 
-   d="scan'208";a="28814581"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.68])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2024 10:11:34 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Mon, 6 May 2024 20:11:30 +0300 (EEST)
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-cc: Jiri Slaby <jirislaby@kernel.org>, 
-    Oliver Hartkopp <socketcan@hartkopp.net>, 
-    Marc Kleine-Budde <mkl@pengutronix.de>, 
-    Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-    "David S . Miller" <davem@davemloft.net>, 
-    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-    Benjamin Tissoires <bentiss@kernel.org>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Sebastian Reichel <sre@kernel.org>, 
-    Linus Walleij <linus.walleij@linaro.org>, 
-    Andreas Lauser <andreas.lauser@mercedes-benz.com>, 
-    Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>, 
-    linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>, 
-    devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-    linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v3 09/11] can: lin: Handle rx offload config frames
-In-Reply-To: <20240502182804.145926-10-christoph.fritz@hexdev.de>
-Message-ID: <9cf35451-9d03-e487-c06b-580208ac3a3d@linux.intel.com>
-References: <20240502182804.145926-1-christoph.fritz@hexdev.de> <20240502182804.145926-10-christoph.fritz@hexdev.de>
+	s=arc-20240116; t=1715017225; c=relaxed/simple;
+	bh=Vcqjn1Z6RaAYOBPjcfqXMWtAhNGgVNzcQSJ1Gw0LXQw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LLU2hkBcSXO96MukpQTFpmT+VB3qsAXP8oSs/LS8gTtzEUQrPkgkpHfFZLr37dwe7BMxDFi2FSZ9QrYdEMIDHxJqFvErfAcPpmYIA5yshj8laO9kgpD7EYbdSlHybW2JhEct1dQgUvsM1dT+kw41hfJmZg0kOiDOIDQkYUnA/Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R6ejFAjF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 446DZokY027352;
+	Mon, 6 May 2024 17:40:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=7ATTd3ufsSDw7z+yQ+2rQFtgY+zu84cWtUZHkSX5Z+Q=; b=R6
+	ejFAjFJL9kxU7O90/lC3zCFOsIjR8Khe8zdKm3aC1vbEkMqywMsYiCH8uGdJkx8W
+	/C9fCgVcPdy78nb/849WYTwmqeK0Jd/mS0H2sjDinyw6V/s5KyOJwp7ScZwGFSpk
+	KNXULRRxT+wY9z6dkLnlntC2N7JJ7UlU+aELSS1jbZz5RN+uV6Gtd+gJE1ZKAv1a
+	meBVNwP8AJWBkNIpGFoU0wNJ+l7/LRkP+SfWa3kuOgJ9PBxlJVBZduFuQm800kMJ
+	FxuUY25FG+pBaJxnPPsFHnGvTGDXsx0427kI/MkyMxIGpO3de68tvTeQRk6PeUC4
+	yy/TDlqFcYA5/lAm4QKA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xxvv71166-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 May 2024 17:40:19 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 446HeIZP004597
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 6 May 2024 17:40:18 GMT
+Received: from [10.110.70.44] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 May 2024
+ 10:40:14 -0700
+Message-ID: <2649871c-ad10-4642-acc0-a15b03b4f1dd@quicinc.com>
+Date: Mon, 6 May 2024 10:40:13 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/5] soc: qcom: llcc: Add regmap for Broadcast_AND
+ region
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240329-llcc-broadcast-and-v4-0-107c76fd8ceb@quicinc.com>
+ <20240329-llcc-broadcast-and-v4-2-107c76fd8ceb@quicinc.com>
+ <d6b0f9d2-a489-4c0e-9c77-0e3eab49d3cb@linaro.org>
+ <13ccc36a-c3cc-469a-ae0b-71fd0d24bf63@quicinc.com>
+ <3365d84a-1b1d-4b1d-8be5-6d8d1039e6b9@linaro.org>
+From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+In-Reply-To: <3365d84a-1b1d-4b1d-8be5-6d8d1039e6b9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FGPey0LpD4LQr9f6nzx_HGpJdM7ptKPm
+X-Proofpoint-ORIG-GUID: FGPey0LpD4LQr9f6nzx_HGpJdM7ptKPm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-06_12,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1011 suspectscore=0
+ spamscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2405060126
 
-On Thu, 2 May 2024, Christoph Fritz wrote:
-
-> The CAN Broadcast Manager now has the capability to dispatch CANFD
-> frames marked with the id LINBUS_RXOFFLOAD_ID. This patch introduces
-> functionality to interpret these specific frames, enabling the
-> configuration of RX offloading within the LIN driver.
+On 4/10/2024 11:24 AM, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> ---
->  drivers/net/can/lin.c | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
 > 
-> diff --git a/drivers/net/can/lin.c b/drivers/net/can/lin.c
-> index 95906003666fb..ee2ebea2c865f 100644
-> --- a/drivers/net/can/lin.c
-> +++ b/drivers/net/can/lin.c
-> @@ -194,6 +194,27 @@ static void lin_remove_sysfs_id_files(struct net_device *ndev)
->  	}
->  }
->  
-> +static int lin_setup_rxoffload(struct lin_device *ldev,
-> +			       struct canfd_frame *cfd)
-> +{
-> +	struct lin_responder_answer answ;
-> +
-> +	if (!(cfd->flags & CANFD_FDF))
-> +		return -EMSGSIZE;
-
-This seems a bit odd error code.
-
-> +	BUILD_BUG_ON(sizeof(struct lin_responder_answer) > sizeof(cfd->data));
-> +	memcpy(&answ, cfd->data, sizeof(struct lin_responder_answer));
-
-2x sizeof(answ)
-
-> +
-> +	answ.lf.checksum_mode = (cfd->can_id & LIN_ENHANCED_CKSUM_FLAG) ?
-> +			LINBUS_ENHANCED : LINBUS_CLASSIC;
-> +
-> +	if (answ.lf.lin_id > LIN_ID_MASK ||
-> +	    answ.event_associated_id > LIN_ID_MASK)
-> +		return -EINVAL;
-> +
-> +	return ldev->ldev_ops->update_responder_answer(ldev, &answ);
-> +}
-> +
->  static void lin_tx_work_handler(struct work_struct *ws)
->  {
->  	struct lin_device *ldev = container_of(ws, struct lin_device,
-> @@ -206,6 +227,14 @@ static void lin_tx_work_handler(struct work_struct *ws)
->  	ldev->tx_busy = true;
->  
->  	cfd = (struct canfd_frame *)ldev->tx_skb->data;
-> +
-> +	if (cfd->can_id & LIN_RXOFFLOAD_DATA_FLAG) {
-> +		ret = lin_setup_rxoffload(ldev, cfd);
-> +		if (ret < 0)
-> +			netdev_err(ndev, "setting up rx failed %d\n", ret);
-> +		goto lin_tx_out;
-> +	}
-> +
->  	lf.checksum_mode = (cfd->can_id & LIN_ENHANCED_CKSUM_FLAG) ?
->  			   LINBUS_ENHANCED : LINBUS_CLASSIC;
->  	lf.lin_id = cfd->can_id & LIN_ID_MASK;
+> On 4/2/24 21:34, Unnathi Chalicheemala wrote:
+>> On 3/30/2024 4:46 AM, Krzysztof Kozlowski wrote:
+>>> On 29/03/2024 22:53, Unnathi Chalicheemala wrote:
+>>>> Define new regmap structure for Broadcast_AND region and initialize
+>>>> this regmap when HW block version is greater than 4.1, otherwise
+>>>> initialize as a NULL pointer for backwards compatibility.
+>>>>
+>>>
+>>>> +    struct regmap *regmap;
+>>>>       u32 act_ctrl_reg;
+>>>>       u32 act_clear_reg;
+>>>>       u32 status_reg;
+>>>> @@ -849,7 +850,8 @@ static int llcc_update_act_ctrl(u32 sid,
+>>>>           return ret;
+>>>>         if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+>>>> -        ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+>>>> +        regmap = drv_data->bcast_and_regmap ?: drv_data->bcast_regmap;
+>>>> +        ret = regmap_read_poll_timeout(regmap, status_reg,
+>>>>                         slice_status, (slice_status & ACT_COMPLETE),
+>>>>                         0, LLCC_STATUS_READ_DELAY);
+>>>>           if (ret)
+>>>> @@ -1284,6 +1286,16 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>>>         drv_data->version = version;
+>>>>   +    /* Applicable only when drv_data->version >= 4.1 */
+>>>> +    drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
+>>>> +    if (IS_ERR(drv_data->bcast_and_regmap)) {
+>>>
+>>> I am pretty sure this breaks all users. Can you please explain how do
+>>> you maintain ABI and that IS_ERR() is applied only for version >= 4.1?
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> IS_ERR() check is done for all versions.
+>> If new register isn't defined in DT(for version < 4.1) it simply sets bcast_and_regmap to NULL.
+>> Otherwise, for version >= 4.1, it goes to err(in the case bcast_and_regmap isn't set properly).
 > 
+> b4 shazam <this series>
+> 
+> booting on 8250, I get:
+> 
+> [    2.794850] qcom-llcc 9200000.system-cache-controller: invalid resource (null)
+> 
+> which comes from lib/devres.c : __devm_ioremap_resource()
+> 
+> Now, this is gonna get you an angry Johan(+CC) response when he sees this land in
+> the next release. Perhaps, this warning could either be removed from libdevres,
+> or some sort of an _optional variant that doesn't print it could be introduced.
+> 
+> Konrad
 
--- 
- i.
+Apologies for extremely late reply Konrad. Let me try to recap quickly.
+The part you pointed out initializes a new regmap LLCC Boradcast AND region
+which is available only SM8450 onward. This patch set is updating respective DTs
+and driver code.
 
+Regarding the resource error on booting, I had added this check in previous version
+of patch set (https://lore.kernel.org/all/1ca4d384-9df4-4c00-a4c9-0c5ff491616e@linaro.org/)
+
+@@ -1282,6 +1287,17 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+ 
+ 	drv_data->version = version;
+ 
++	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
++		drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
++		if (IS_ERR(drv_data->bcast_and_regmap)) {
++			ret = PTR_ERR(drv_data->bcast_and_regmap);
++			if (ret == -EINVAL)
++				drv_data->bcast_and_regmap = NULL;
++			else
++				goto err;
++		}
++	}
++
+
+This check will make sure we call devm_ioremap_resource() only when LLCC Boradcast AND region
+is defined in the devicetree and error is not shown in log.
 
