@@ -1,111 +1,194 @@
-Return-Path: <devicetree+bounces-65092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1918BC81B
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 09:07:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F06B88BC827
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 09:14:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35FDE281A7C
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 07:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80D60281945
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 07:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA798524AE;
-	Mon,  6 May 2024 07:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED2E5CDE6;
+	Mon,  6 May 2024 07:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="j6S2vSVa"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kUjdiYdD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C92481B1;
-	Mon,  6 May 2024 07:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEEF76D1A8;
+	Mon,  6 May 2024 07:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714979233; cv=none; b=IOoUWJoZINYDGvp18N/jKzq6cpt4/sbUsoaKVeINlhO3GUotQkwEYC3KaRdywoF8SwaNheP7rcywDVs8pK91r6FvW7iTToP44HvspW75toebdObU219BY6ArW13rmNtzlcEQR5+2E2qmfSb0WpcuzkLdjS71S48lR2x1LnU5ISQ=
+	t=1714979690; cv=none; b=skCI98EW+9CAFlfAPPNrNTs2rzrVyCoQ8OKOt91aY3DxZzgES6OCl2fq37W74LTU9xKeIULnMeKp5NLw5d7CYTqN8o4FJduCsCzRUxGnDicQah6aNzwKEn9eB5kWj33e7DWpsLvyYWEPGlH497Mb6JNfSAjxg7mImiA6QbohSfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714979233; c=relaxed/simple;
-	bh=/ygl80MN8pFCAtka2vGNeRmQZQPFH5Tx21QOyhP/sdw=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=YTBrWNaU/b5DMWIjxKQ0Ne2fWH4AE5S9TlKWny2+qCeLqVv729IITLtH5H4apwKEF5AQomuy0XTK/bPlCEw1rsNlul9z6K1cqEAWvj1Wf+f1F60Rld7IKSjIgwsk6W873nNp8Y084bGZ1k5f1V4p2cjZUEEu+0Fgk/Kxl/YkpMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=j6S2vSVa; arc=none smtp.client-ip=217.70.183.198
+	s=arc-20240116; t=1714979690; c=relaxed/simple;
+	bh=x+K7uJjDWqJHy+R8uwFrBt04oWI3036EKVKiTN1nWl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DAucwmYMBkn0Eh5H3JLIfIjRgF0KMemBcFfRlnLnsGCIZT5Jvj3HfDANRZZnb/14sKqHqm0tp04Bc3ts3ZrjncoF49bmkgM64F3f7qrGlLGJywoBL0sMgwEQ78bAR+4lKB8EVNJH9pzRsz2wxcdNZFi3kV5Q/ViVKkMjQMUAw7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kUjdiYdD; arc=none smtp.client-ip=217.70.183.198
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B373C0009;
-	Mon,  6 May 2024 07:07:01 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1FBFFC0005;
+	Mon,  6 May 2024 07:14:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1714979223;
+	t=1714979686;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=mF3okb/zlCrXIKizMgfKu76xu/b0djUY7d04ZIvQ2SI=;
-	b=j6S2vSVa12Y36dfV8tSiSbHT3HtfhSkv0miIpTvodL/pMj702HSJQ9y/L1BrzHr+qwLXn6
-	v2ZyKVzBxVY7xGQtCTXTbWlD8rGppHUFKNmkECKa+Yf1VYBvrBLYTLoG7xuPT0nlDSFKTn
-	tQ7+PrQmjCcsQsxCuGd/N0KUPOwZG5vSd8hklW22nf0kovdubmuVt/SGy/3rbafk+S4FOJ
-	tzr3557EK3oB4tVti3Y4jis6NgO+W+RNz4aJ954fCkd/SayzGMqihFKlpTH/owBuA4AaJk
-	mFHMNUcOPz0toEn0zeYQqJcoHweorazXNAudn8zQUYj+d9aebS6A5a/Z6hztRg==
-Date: Mon, 6 May 2024 09:07:41 +0200 (CEST)
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-cc: Romain Gantois <romain.gantois@bootlin.com>, 
-    "David S. Miller" <davem@davemloft.net>, 
-    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Geert Uytterhoeven <geert+renesas@glider.be>, 
-    Magnus Damm <magnus.damm@gmail.com>, 
-    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-    Jose Abreu <joabreu@synopsys.com>, 
-    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-    Russell King <linux@armlinux.org.uk>, 
-    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
-    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    linux-renesas-soc@vger.kernel.org, 
-    linux-stm32@st-md-mailman.stormreply.com, 
-    linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v5 2/7] net: stmmac: Add dedicated XPCS cleanup
- method
-In-Reply-To: <4wdcmcb2yxneynxtppestl6cp25z5xge3hfv7o47bxwpafn4cg@mtvc3ls2cxij>
-Message-ID: <ec3e6c1b-1a5e-f7c9-4782-bc8f01a67f5f@bootlin.com>
-References: <20240430-rzn1-gmac1-v5-0-62f65a84f418@bootlin.com> <20240430-rzn1-gmac1-v5-2-62f65a84f418@bootlin.com> <4wdcmcb2yxneynxtppestl6cp25z5xge3hfv7o47bxwpafn4cg@mtvc3ls2cxij>
+	bh=0dlMWT58sNslF6/PywFTgVb8B4K2AkFKS2JdJ04ybUM=;
+	b=kUjdiYdDz9ua+bFQ4PfrO/xM0z6iIZkKKGkpQs2hkepXleMh07irjTNReu4L1Y01qdwi7s
+	sJWfQ7GF2ygAMKH6ACP0GV8uAuzYBSPY5/emANHO/7VflPP8Zbi93Kfv94d+iQK3jClQ58
+	d3SBob6DbjPHW2rZKnP8xL5Jv+dyMAPtJ6Bd3eE2K07EaH+L/HpCVKMidFFqxgvhJxZspe
+	5a6Tn6i1+CflfPpuLt+fqHKRtimS0C+isz68VVCECZ4ZlmxFZbSjm6Q7wKugnXs7Yp0ZN5
+	GbRMgfM3UIaKOGpjwGeWR6kvGGw01YBBbIT9V8ZXWhuSmRRiqDY0MasudHCoLA==
+Date: Mon, 6 May 2024 09:14:44 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
+Cc: keguang.zhang@gmail.com, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: mtd: Add Loongson-1 NAND Controller
+Message-ID: <20240506091444.59228fa9@xps-13>
+In-Reply-To: <20240430-loongson1-nand-v7-1-60787c314fa4@gmail.com>
+References: <20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com>
+	<20240430-loongson1-nand-v7-1-60787c314fa4@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi Serge,
+Hello,
 
-On Fri, 3 May 2024, Serge Semin wrote:
+devnull+keguang.zhang.gmail.com@kernel.org wrote on Tue, 30 Apr 2024
+19:11:10 +0800:
 
-> 
-> > +void stmmac_pcs_clean(struct stmmac_priv *priv)
-> 
-> Ideally it would have been great to have the entire driver fixed to
-> accept the stmmac_priv pointer as the functions argument. But this
-> would be too tiresome. Anyway seeing the PCS-setup protagonist method
-> has the net_device pointer passed I would implement the same prototype
-> for the antagonist even though it would require an additional local
-> variable. That will make the MDIO and PCS local interface-functions
-> looking alike and as if unified. That is the reason of why I made
-> stmmac_xpcs_clean() accepting the net_device pointer. 
-> 
-> Alternatively both stmmac_pcs_setup() and stmmac_pcs_clean() could be
-> converted to just accepting a pointer to the stmmac_priv instance.
+> From: Keguang Zhang <keguang.zhang@gmail.com>
+>=20
+> Add devicetree binding document for Loongson-1 NAND Controller.
+>=20
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+> Changes in v7:
+> - rename the file to loongson,ls1b-nfc.yaml
+>=20
+> Changes in v6:
+> - A newly added patch
+> ---
+>  .../devicetree/bindings/mtd/loongson,ls1b-nfc.yaml | 66 ++++++++++++++++=
+++++++
+>  1 file changed, 66 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/loongson,ls1b-nfc.yaml=
+ b/Documentation/devicetree/bindings/mtd/loongson,ls1b-nfc.yaml
+> new file mode 100644
+> index 000000000000..a69f22b9fd9e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/loongson,ls1b-nfc.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/loongson,ls1b-nfc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson-1 NAND Controller
+> +
+> +maintainers:
+> +  - Keguang Zhang <keguang.zhang@gmail.com>
+> +
+> +allOf:
+> +  - $ref: nand-controller.yaml
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: loongson,ls1b-nfc
 
-I think that adapting stmmac_pcs_clean() to take a net_device struct would be 
-more appropriate since it's the simpler of the two methods. I'll implement this 
-in the next version.
+What is the rationale behind this choice? Seems like the b variant has
+two possible implementations and should always be preceded by a more
+specific compatible.
+
+As there is currently no description of this controller upstream, I
+would not care too much about any out-of-tree description and directly
+go for a clean description.
+
+> +      - items:
+> +          - enum:
+> +              - loongson,ls1a-nfc
+> +              - loongson,ls1c-nfc
+> +          - const: loongson,ls1b-nfc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    const: rxtx
+> +
+> +patternProperties:
+> +  "^nand@[0-3]$":
+> +    type: object
+> +    $ref: raw-nand-chip.yaml
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - dmas
+> +  - dma-names
+
+Should DMA props be required?
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    nand-controller@1fe78000 {
+> +        compatible =3D "loongson,ls1b-nfc";
+> +        reg =3D <0x1fe78000 0x40>;
+> +
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        dmas =3D <&dma 0>;
+> +        dma-names =3D "rxtx";
+
+There is a preferred spacing for DT nodes, see:
+https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+
+> +
+> +        nand@0 {
+> +            reg =3D <0>;
+> +            nand-use-soft-ecc-engine;
+> +            nand-ecc-algo =3D "hamming";
+
+These two properties are not needed. Unless there is no hardware ECC
+capability on this controller and in this case you need to ensure the
+properties are present in the schema.
+
+> +        };
+> +    };
+>=20
+
 
 Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Miqu=C3=A8l
 
