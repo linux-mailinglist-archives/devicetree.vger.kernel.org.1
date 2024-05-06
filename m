@@ -1,142 +1,187 @@
-Return-Path: <devicetree+bounces-65199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE1058BD0FD
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:04:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3C98BD122
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26A0CB215BE
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:04:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B3FB1C227EB
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B510153BF9;
-	Mon,  6 May 2024 15:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFFC1155A2B;
+	Mon,  6 May 2024 15:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="av4sU+M2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CzXeuxhZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B70313CFA5
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 15:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC4815534E;
+	Mon,  6 May 2024 15:10:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715007865; cv=none; b=SMEOp3Uf/YDba1ZbKPy+IJ3q7L81SIwov09RW54VRfJhv1zaLkx+29HdD6wWZKaDKkIbqLVaP9DLgDr5RqQaL4gGNATuueHIYpr7tBKFc8gvN7zHhaNd6d5YDL2+h7O9ea+0PCCBL7uCERmFASOz5mwLSp34cWPsCxw7MnlVG/o=
+	t=1715008215; cv=none; b=uZZ5r0nq77C7oNF0+ATPbxx/EaGkcFU3hfLM0hxvg+aeZypUhAe94UCT3Nclr+ozvWCA3tdpLsx7EzcpU+0G/MVNrLDl1Vujb0yP7jrszbJpXfIYzzeizN+jPV4GaAq7Eal75xeTZogQQgJIOhgX0FPedlvEWMVglxtYjwUE4SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715007865; c=relaxed/simple;
-	bh=43qt58Cc+4V7oWJGTmVtsNFw1630vbmzXiVtgfxHZ9s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UtIXzb6glH1u/7kAtFDWZnCcD80oMnTDdlMyRt6FzMljkiXApxOWDnaH+fKbeGaWw5uLZ1FQ6x+z3wRCurU0As8/Kpd/LBTMVw5T/U7QCGW/SbV+49KaflH6DXuwtT0jV1VBHa7ZHdhhPQYyupP9iDD8DVkMzrIrOhM+f9IAFcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=av4sU+M2; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e2b468ea12so18901241fa.1
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 08:04:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715007861; x=1715612661; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BFec+QhZVtPI2j0gseBfhUAnbpkhg51VBLT9XPfNp7Y=;
-        b=av4sU+M2cwLP1+ctSZeFcJ24IEbNCcZhTbr6ujAlMcrSLsr8WSpVSIU+5jnpZE0ziD
-         e7Lkpsg2qMHkfKZYQ1dsCfgLEJw4K0i2qU6rJiCjT27S9aBuKT599LKQaVgcaWhtyEIL
-         bIHXCkfSPao2fLQ95+2LNfB9loFxEjf8teduUxcsVzIPxRhMOChJnXJHXb3W9AsQH6fy
-         LgQvSoGnAcFSSqv/jkdBPKzpZFhP8otH+yDK/KHAHveFgRWHoaDKYMtU41sJA1rTTxVm
-         fKnBbh43TVl0zG/GjFppT8JlRkfEnkjpn6p+Do+dyCORsLjmca9actAmQX6zcKzVs6Me
-         nqMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715007861; x=1715612661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BFec+QhZVtPI2j0gseBfhUAnbpkhg51VBLT9XPfNp7Y=;
-        b=mG+Lqw1P7XAZHRPrQREObhpmRZS1sz1xE99jzvWaaTRdc0JT2O0D1hY8HYm8LQ/TKU
-         D0oAl1kIGKHdcGn7dsL4AFci3fuCKDjm2rDtSl2VMA9rCgIGSm3TnxDoRklxBmxQWqk1
-         SMt8OW+nc2w2cR09mSWr9HraBmHnfLw57zsU+SVE95rwIkM6YQfvGP7HcSCAx05Uptou
-         SN1XneWrojTF1OEv+nf36yKapyo4LvCIkWGWDoB+lC4hobDlajUmtl9OztXv4yrVMb+Y
-         LrXQQ9MeJ/myCy18IK3G4hM1wJipaeaRg4k3IpgRUC+zKcECXIQi8KOkURm0UEkSmxbx
-         JFMg==
-X-Forwarded-Encrypted: i=1; AJvYcCVkNLmmP8fkvaBiOG/dgueVj7y+j+LNPdNra/FH1aAd11qDYxnv6PosM54Pg+NiD3bDY4EwHVyH/GHBp3g32i66lQfaBV6gGVd82Q==
-X-Gm-Message-State: AOJu0YxJ2mwK8xuJz1Pd7JlW8otfWqLNhODYjx2Ir4XR6BVahXKTnqgl
-	/7X2lxB+hnOQAmNpAE7bM+ITs3owV0/I2X6Wtdxk9V8YWvG1xhAn99e6SRKdPZ2g4dmZ6cnJpr4
-	McIDrogBEB9OGy//pDkaPcHXkqCOf/gaddhA9VQ==
-X-Google-Smtp-Source: AGHT+IE0vUSq8J6yKmSvaFFAdn6z7ifFbvsSoTCfxPZW/BeGP4Fa/21CucscczMKZdBQTPg58bCo90Wa29WlJdmyQeA=
-X-Received: by 2002:a2e:9a8b:0:b0:2e3:331e:e33d with SMTP id
- p11-20020a2e9a8b000000b002e3331ee33dmr1247843lji.11.1715007861327; Mon, 06
- May 2024 08:04:21 -0700 (PDT)
+	s=arc-20240116; t=1715008215; c=relaxed/simple;
+	bh=4TqHne13Oc3HtRcJPwWDiVQUalvMRuzinffu+3SjKs4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pjNExhjix9cy8mRF1eIrerRCOTeaHKFCChxAV5KxPk4zkUtSSYlwk4wxoYDzqvQRtPkBGA4FS3FS8L15UjaC63vJFvFg8eHY4NAQGdj9Q+l3ACMcVH5qYkULrZZq/z4RIHSm8YzyqBx30YgOyq5WpZT4i5hqSgZN/I/wru9ihcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CzXeuxhZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64CDC4DDE1;
+	Mon,  6 May 2024 15:10:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715008214;
+	bh=4TqHne13Oc3HtRcJPwWDiVQUalvMRuzinffu+3SjKs4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CzXeuxhZHXN0vrxfduiSayDvEdw+1lSD5icC0IQAEkfk8uM3EurAca1hcgAjFAtvc
+	 QT0qoVALHmky1vPIm/Udm3OafipWcyo2aZ7xfmWgCcB2AhlgDz+M/A1BrrrixHU5b+
+	 yNwj6MXvs2ms3QsdIKxBpiNP9ZzH9g7HsspZhwxREijMns6bEZgzO+HXOUH88Em92X
+	 r82+mvFWb10QpXKbBOVXSxqmu9Dl+RBOLbFA70HwfhclAff755ktcqZjkKrPEMTwbe
+	 FvMx/XPrJpEr0oKNW2sspawE5s3xhcezbTk+SX57uhE89ZW8uLfOOkxB/6W05q1Urw
+	 E6Js2lfwqs83Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1s3zyp-000000006C7-0LIZ;
+	Mon, 06 May 2024 17:10:15 +0200
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya <quic_c_skakit@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 00/13] arm64: dts: qcom: sc8280xp-x13s: enable pm8008 camera pmic
+Date: Mon,  6 May 2024 17:08:17 +0200
+Message-ID: <20240506150830.23709-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
- <20240501-adding-new-ad738x-driver-v6-9-3c0741154728@baylibre.com> <20240506151725.10cf025e@jic23-huawei>
-In-Reply-To: <20240506151725.10cf025e@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 6 May 2024 10:04:10 -0500
-Message-ID: <CAMknhBFx-KVPRbm1xmKeU8ZaA7qt_c0_6eiUT-5kqTWVAvf3hw@mail.gmail.com>
-Subject: Re: [PATCH RFC v6 09/10] iio: adc: ad7380: add support for rolling
- average oversampling mode
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, kernel test robot <lkp@intel.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 6, 2024 at 9:17=E2=80=AFAM Jonathan Cameron <jic23@kernel.org> =
-wrote:
->
-> On Wed, 01 May 2024 16:55:42 +0200
-> Julien Stephan <jstephan@baylibre.com> wrote:
->
-> > Adds support for rolling average oversampling mode.
-> >
-> > Rolling oversampling mode uses a first in, first out (FIFO) buffer of
-> > the most recent samples in the averaging calculation, allowing the ADC
-> > throughput rate and output data rate to stay the same, since we only ne=
-ed
-> > to take only one sample for each new conversion.
-> >
-> > The FIFO length is 8, thus the available oversampling ratios are 1, 2, =
-4, 8
-> > in this mode (vs 1,  2, 4, 8, 16, 32 for the normal average)
->
-> Ah. I should have read on!
->
-> >
-> > In order to be able to change the averaging mode, this commit also adds
-> > the new "oversampling_mode" and "oversampling_mode_available" custom
-> > attributes along with the according documentation file in
-> > Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380 since no standard
-> > attributes correspond to this use case.
->
-> This comes to the comment I stuck in the previous patch.
->
-> To most people this is not a form of oversampling because the data rate
-> remains unchanged. It's a cheap low pass filter (boxcar) Google pointed m=
-e at:
-> https://dsp.stackexchange.com/questions/9966/what-is-the-cut-off-frequenc=
-y-of-a-moving-average-filter
->
-> in_voltage_low_pass_3db_frequency would be the most appropriate standard
-> ABI for this if we do treat it as a low pass filter control.
->
-> I'm not necessarily saying we don't want new ABI for this, but I would
-> like to consider the pros and cons of just using the 3db frequency.
->
-> So would that work for this part or am I missing something?
->
+The Qualcomm PM8008 PMIC is a so called QPNP PMIC with seven LDO
+regulators, a temperature alarm block and two GPIO pins (which are also
+used for interrupt signalling and reset).
 
-I like the idea. But from the link, it looks like the 3dB frequency
-depends on the sampling frequency which is unknown (e.g. could come
-from hrtimer trigger).
+Unlike previous QPNP PMICs it uses an I2C rather than SPMI interface,
+which has implications for how interrupts are handled.
 
-Would it be reasonable to calculate the 3db frequency at the max
-sample rate that the chip allows and just use those numbers?
+A previous attempt by Qualcomm to upstream support for PM8008 stalled
+two years ago at version 15 after a lot of back and forth discussion on
+how best to describe this device in the devicetree. [1] 
+
+After reviewing the backstory on this and surveying the current SPMI
+PMIC bindings and implementation, I opted for a new approach that does
+not describe internal details like register offsets and interrupts in
+the devicetree.
+
+The original decision to include registers offsets and internal
+interrupts for SPMI PMICs has led to a number of PMIC dtsi being created
+to avoid copying lots of boiler plate declarations. This in turn causes
+trouble when the PMIC USID address is configurable as the address is
+included in every interrupt specifier.
+
+The current SPMI bindings still do not describe the devices fully and
+additional data is therefore already provided by drivers (e.g.
+additional register blocks, supplies, additional interrupt specifiers).
+
+The fact that PMICs which use two USIDs (addresses) are modelled as two
+separate devices causes trouble, for example, when there are
+dependencies between subfunctions. [2]
+
+Subfunctions also do not necessarily map neatly onto the 256-register
+block partitioning of the SPMI register space, something which has lead
+to unresolved inconsistencies in how functions like PWM are described.
+[3]
+
+In short, it's a bit of a mess.
+
+With the new style of bindings, by contrast, only essential information
+that actually differs between machines would be included in the
+devicetree. The bindings would also be mostly decoupled from the
+implementation, which has started to leak out into the binding (e.g. how
+the QPNP interrupts are handled). This also allows for extending the
+implementation without having to update the binding, which is especially
+important as Qualcomm does not publish any documentation (e.g. to later
+enable regulator over-current protection).
+
+Some PMICs support both I2C and SPMI interfaces (e.g. PM8010) and we
+want to be able to reuse the same bindings regardless of the interface.
+
+As a proof concept I have written a new pmc8280 driver for one of the
+SPMI PMICs in the Lenovo ThinkPad X13s that uses the new style of
+bindings and I've been using that one to control backlight and
+peripheral regulators for a while now. Specifically, the gpio and
+temperature-alarm blocks can be used with some minor updates to the
+current drivers.
+
+That work still needs a bit of polish before posting, but my working PoC
+means that I'm confident enough that the new model will work and that we
+can go ahead and merge regulator support for the PM8008.
+
+This series is specifically needed for the camera sensors in the X13s,
+for which camera subsystem (camss) support has now been merged for 6.10.
+
+The first seven patches are preparatory and can possibly be merged
+separately from the rest of the series. The next two patches drops the
+broken GPIO support for PM8008 which had already been upstreamed. The
+last four patches rework the binding and MFD driver, add support for the
+regulators and enable the camera PMIC on the X13s.
+
+Johan
+
+[1] https://lore.kernel.org/all/1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com
+[2] https://lore.kernel.org/lkml/20231003152927.15000-3-johan+linaro@kernel.org
+[3] https://lore.kernel.org/r/20220828132648.3624126-3-bryan.odonoghue@linaro.org
+
+
+Johan Hovold (12):
+  dt-bindings: mfd: pm8008: add reset gpio
+  mfd: pm8008: fix regmap irq chip initialisation
+  mfd: pm8008: deassert reset on probe
+  mfd: pm8008: mark regmap structures as const
+  mfd: pm8008: use lower case hex notation
+  mfd: pm8008: rename irq chip
+  mfd: pm8008: drop unused driver data
+  dt-bindings: pinctrl: qcom,pmic-gpio: drop pm8008
+  pinctrl: qcom: spmi-gpio: drop broken pm8008 support
+  dt-bindings: mfd: pm8008: rework binding
+  mfd: pm8008: rework driver
+  arm64: dts: qcom: sc8280xp-x13s: enable pm8008 camera pmic
+
+Satya Priya (1):
+  regulator: add pm8008 pmic regulator driver
+
+ .../devicetree/bindings/mfd/qcom,pm8008.yaml  | 158 ++++++++-----
+ .../bindings/pinctrl/qcom,pmic-gpio.yaml      |   3 -
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 123 ++++++++++
+ drivers/mfd/Kconfig                           |   1 +
+ drivers/mfd/qcom-pm8008.c                     | 163 ++++++++-----
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   1 -
+ drivers/regulator/Kconfig                     |   7 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/qcom-pm8008-regulator.c     | 215 ++++++++++++++++++
+ include/dt-bindings/mfd/qcom-pm8008.h         |  19 --
+ 10 files changed, 554 insertions(+), 137 deletions(-)
+ create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
+ delete mode 100644 include/dt-bindings/mfd/qcom-pm8008.h
+
+-- 
+2.43.2
+
 
