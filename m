@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-65184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B34798BCF75
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:49:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BB48BCF7C
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:53:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E51661C21792
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:49:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD3072810DD
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC797FBB6;
-	Mon,  6 May 2024 13:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CE17F7C2;
+	Mon,  6 May 2024 13:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mauWTkRJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="oo8780Sl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD6080026;
-	Mon,  6 May 2024 13:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB587FBC3;
+	Mon,  6 May 2024 13:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715003346; cv=none; b=k35EVLpPAIKsaj8hVbZdiLL1B9z4fSskSZwgc69MGTDBiXrgcILBHxH1rtG+nwQy1btCRf4QJGOVtjkLz2/SqlM4F4EUTVRPqXryc8Icr3TCQZVw4QfiZP4RTJay37XVzQov+sgU/NkAS+iJpfltC+vSsDbfFx/eUXu6sSn6LxA=
+	t=1715003616; cv=none; b=ncQ8lENaX7MF1ScYi20KmQa//gfXf880Q+2VtEFZp3I9Z0p7/slesIKse2Z0ZiXveXotVzqyWmaf/SECc1tJvR2KjV5CoH/dOJuPJo5FbYa+Q9JNssLLj2hwz7yTELuWH1y+zK+ACPMEnLikhFCd9dAFmiPPMo6qBDj6hQAYibY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715003346; c=relaxed/simple;
-	bh=N+8SlHv+BG10Ed56ABIsCFuAhTqmY99V5r9tlcdPXOk=;
+	s=arc-20240116; t=1715003616; c=relaxed/simple;
+	bh=ZBw308vScpWpI6OOmAtYussqcW3H4nJ0DvHxVE73cic=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dTyHKyOeCaFWunj+1w+GVbf46mkQZq31vVHU3D747r5jW2AA/HN/G/62mZ8WCM588haleyNwbQOviklhZW31leK8307GhFnSlwqtq8i1XbvsdedsynGtMX3+OCp9nbD+lGTlfbtqAk0rgUW5+ueQdd7JaImAL8H7Om7kuV4gt0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mauWTkRJ; arc=none smtp.client-ip=217.70.183.201
+	 MIME-Version:Content-Type; b=bsP11WrkoKYxTSZuklYd+dCNvlubj8jO1JjItW9n/hrEStWcale1nCarOzkUJPz9JSu8MQIBBhtINw8XfaUVBVLJN6CU+dBsX7fRdKfQe4YZ4HbdE14Ocx6GLuwhbWzE99/Xx/XgxiWlOqxKtsoGhbYXIWTmsBKXsXVh/qSXXX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=oo8780Sl; arc=none smtp.client-ip=217.70.183.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E3A7F1BF20E;
-	Mon,  6 May 2024 13:48:59 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CFD9C60002;
+	Mon,  6 May 2024 13:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715003341;
+	t=1715003606;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=IiYk/OF8J/A5XkO49NEeG0JReklIrIL4u4kDqBfVQe0=;
-	b=mauWTkRJEwC2lvjJlXWeuOXCeuQOgxLTQoZe+3vo06UVOGbnAcLbx+bNbmOKRWY6N/2LMh
-	ZDPxv8XA2VsvMlJhgiYmdv0114okHcldvzL+KSx6iGlunRr5ydNL7c1Mq0g087+atQRTLh
-	Fcxkxsn0rh1VeFRBkpGPfu7kOn8og+qC/lMfPl6ICDW6CAsuZmoH0jM9hFYKEDUbm7LxvN
-	r/+W7vfKhw7rXY92GmeNbGyQxRdUAINnUkE2S2ksf/xbJYBm/OOO6MkCinkF6tem/bUGTb
-	tYehaTyf0yxIyTjRNJDaA02iiBlYKZzDvBhnU+bDdBPdzk4dlsD1AkVCAv+VZA==
-Date: Mon, 6 May 2024 15:48:58 +0200
+	bh=rl4J4sIVm+WsZbjOlT+E1mrylIFIWJ8bHbGao9o7iXw=;
+	b=oo8780SlEJkCVOPPXFOPXAqPxufjs+dTIjDui17WFF/ls4iGGmMYvS8ZmJlz0Ph+EhTCmV
+	9Dmitav+5z38uU64tHCsETTex1QgZnE2ipeEHFHy1cpMaMnQuqDDt//UKA6dS8B01odvtH
+	shs2EgcW1RgDT71l3ESfZnostdVzXOtWK/uSZ1GOEt5wjWudIuWCy8Xe2wUIeZbWzz5q4x
+	RTt5L43U1Bxoobv7ifVBN1iSOXKbgXAYMlLFjNWqhRrrZYKYrs8dHNukALuVTWi0/hwKHN
+	QCg9mcVvrd8QYy8kGZkskUKV7wSveAf/nw85zKkyHHkZYrhf56GUTdDGxUzFJA==
+Date: Mon, 6 May 2024 15:53:22 +0200
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: Arseniy Krasnov <avkrasnov@salutedevices.com>
 Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
@@ -58,12 +58,12 @@ Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
  <linux-arm-kernel@lists.infradead.org>,
  <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
  <oxffffaa@gmail.com>, <kernel@sberdevices.ru>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Message-ID: <20240506154858.003bab54@xps-13>
-In-Reply-To: <20240416085101.740458-2-avkrasnov@salutedevices.com>
+Subject: Re: [PATCH v5 2/2] mtd: rawnand: meson: support R/W mode for boot
+ ROM
+Message-ID: <20240506155322.002346d0@xps-13>
+In-Reply-To: <20240416085101.740458-3-avkrasnov@salutedevices.com>
 References: <20240416085101.740458-1-avkrasnov@salutedevices.com>
-	<20240416085101.740458-2-avkrasnov@salutedevices.com>
+	<20240416085101.740458-3-avkrasnov@salutedevices.com>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
@@ -78,75 +78,195 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 
 Hi Arseniy,
 
-avkrasnov@salutedevices.com wrote on Tue, 16 Apr 2024 11:51:00 +0300:
+avkrasnov@salutedevices.com wrote on Tue, 16 Apr 2024 11:51:01 +0300:
 
 > Boot ROM code on Meson requires that some pages on NAND must be written
 > in special mode: "short" ECC mode where each block is 384 bytes and
-> scrambling mode is on.
-
-Ok
-
-> Such pages located with the specified interval within specified offset.
-
-I'm sorry I don't get that sentence.
-
-> Both interval and offset are located in the
+> scrambling mode is on. Such pages located with the specified interval
+> within specified offset. Both interval and offset are located in the
 > device tree and used by driver if 'nand-is-boot-medium' is set for
 > NAND chip.
-
-This sentence is probably not needed.
-
 >=20
 > Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
 > ---
->  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  drivers/mtd/nand/raw/meson_nand.c | 88 +++++++++++++++++++++----------
+>  1 file changed, 59 insertions(+), 29 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yam=
-l b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> index 57b6957c8415..67b2f7c1259c 100644
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -64,11 +64,25 @@ patternProperties:
->          items:
->            maximum: 0
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/mes=
+on_nand.c
+> index 00ce0e5bb970..9ee11243b257 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -35,6 +35,7 @@
+>  #define NFC_CMD_RB		BIT(20)
+>  #define NFC_CMD_SCRAMBLER_ENABLE	BIT(19)
+>  #define NFC_CMD_SCRAMBLER_DISABLE	0
+> +#define NFC_CMD_SHORTMODE_ENABLE	1
+>  #define NFC_CMD_SHORTMODE_DISABLE	0
+>  #define NFC_CMD_RB_INT		BIT(14)
+>  #define NFC_CMD_RB_INT_NO_PIN	((0xb << 10) | BIT(18) | BIT(16))
+> @@ -78,6 +79,8 @@
+>  #define DMA_DIR(dir)		((dir) ? NFC_CMD_N2M : NFC_CMD_M2N)
+>  #define DMA_ADDR_ALIGN		8
 > =20
-> +      amlogic,boot-pages:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Number of pages starting from 0, where special ECC
-
-from *offset* 0 I guess?
-
-> +          algorithm will be used by the driver.
-
-"where a special ECC configuration must be used because it is accessed
-by the ROM code"? Maybe you can even detail what are these values if
-they are fixed.
-
-You should probably inform that scrambling shall be on as well.
-=20
+> +#define NFC_SHORT_MODE_ECC_SZ	384
 > +
-> +      amlogic,boot-page-step:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Interval between pages, read/written by the driver with
-> +          special ECC algorithm.
+>  #define ECC_CHECK_RETURN_FF	(-1)
+> =20
+>  #define NAND_CE0		(0xe << 10)
+> @@ -125,6 +128,8 @@ struct meson_nfc_nand_chip {
+>  	u32 twb;
+>  	u32 tadl;
+>  	u32 tbers_max;
+> +	u32 boot_pages;
+> +	u32 boot_page_step;
+> =20
+>  	u32 bch_mode;
+>  	u8 *data_buf;
+> @@ -298,28 +303,49 @@ static void meson_nfc_cmd_seed(struct meson_nfc *nf=
+c, u32 seed)
+>  	       nfc->reg_base + NFC_REG_CMD);
+>  }
+> =20
+> -static void meson_nfc_cmd_access(struct nand_chip *nand, int raw, bool d=
+ir,
+> -				 int scrambler)
+> +static int meson_nfc_page_is_boot(struct nand_chip *nand, int page)
 
-I'm not sure I fully get the description. What is the unit here? can
-you draw a small ascii-art diagram?
+meson_nfc_is_boot_page() is easier to read
 
+> +{
+> +	const struct meson_nfc_nand_chip *meson_chip =3D to_meson_nand(nand);
 > +
->      unevaluatedProperties: false
+> +	return (nand->options & NAND_IS_BOOT_MEDIUM) &&
+> +	       !(page % meson_chip->boot_page_step) &&
+
+I would dedicate all the space below ->boot_pages to the bootrom, no?
+Using space in between sounds silly.
+
+> +	       (page < meson_chip->boot_pages);
+> +}
+> +
+> +static void meson_nfc_cmd_access(struct nand_chip *nand, bool raw, bool =
+dir, int page)
+>  {
+> +	const struct meson_nfc_nand_chip *meson_chip =3D to_meson_nand(nand);
+>  	struct mtd_info *mtd =3D nand_to_mtd(nand);
+>  	struct meson_nfc *nfc =3D nand_get_controller_data(mtd_to_nand(mtd));
+> -	struct meson_nfc_nand_chip *meson_chip =3D to_meson_nand(nand);
+> -	u32 bch =3D meson_chip->bch_mode, cmd;
+>  	int len =3D mtd->writesize, pagesize, pages;
+> +	int scrambler;
+> +	u32 cmd;
 > =20
->      dependencies:
->        nand-ecc-strength: [nand-ecc-step-size]
->        nand-ecc-step-size: [nand-ecc-strength]
-> +      amlogic,boot-pages: [nand-is-boot-medium, "amlogic,boot-page-step"]
-> +      amlogic,boot-page-step: [nand-is-boot-medium, "amlogic,boot-pages"]
+> -	pagesize =3D nand->ecc.size;
+> +	if (nand->options & NAND_NEED_SCRAMBLING)
+> +		scrambler =3D NFC_CMD_SCRAMBLER_ENABLE;
+> +	else
+> +		scrambler =3D NFC_CMD_SCRAMBLER_DISABLE;
+
+That is a separate feature?
+
 > =20
+>  	if (raw) {
+>  		len =3D mtd->writesize + mtd->oobsize;
+>  		cmd =3D len | scrambler | DMA_DIR(dir);
+> -		writel(cmd, nfc->reg_base + NFC_REG_CMD);
+> -		return;
+> -	}
+> +	} else if (meson_nfc_page_is_boot(nand, page)) {
+> +		pagesize =3D NFC_SHORT_MODE_ECC_SZ >> 3;
+> +		pages =3D mtd->writesize / 512;
+> +
+> +		scrambler =3D NFC_CMD_SCRAMBLER_ENABLE;
+> +		cmd =3D CMDRWGEN(DMA_DIR(dir), scrambler, NFC_ECC_BCH8_1K,
+> +			       NFC_CMD_SHORTMODE_ENABLE, pagesize, pages);
+> +	} else {
+> +		pagesize =3D nand->ecc.size >> 3;
+> +		pages =3D len / nand->ecc.size;
 > =20
->  required:
+> -	pages =3D len / nand->ecc.size;
+> +		cmd =3D CMDRWGEN(DMA_DIR(dir), scrambler, meson_chip->bch_mode,
+> +			       NFC_CMD_SHORTMODE_DISABLE, pagesize, pages);
+> +	}
+> =20
+> -	cmd =3D CMDRWGEN(DMA_DIR(dir), scrambler, bch,
+> -		       NFC_CMD_SHORTMODE_DISABLE, pagesize, pages);
+> +	if (scrambler =3D=3D NFC_CMD_SCRAMBLER_ENABLE)
+> +		meson_nfc_cmd_seed(nfc, page);
+> =20
+>  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>  }
+> @@ -743,15 +769,7 @@ static int meson_nfc_write_page_sub(struct nand_chip=
+ *nand,
+>  	if (ret)
+>  		return ret;
+> =20
+> -	if (nand->options & NAND_NEED_SCRAMBLING) {
+> -		meson_nfc_cmd_seed(nfc, page);
+> -		meson_nfc_cmd_access(nand, raw, DIRWRITE,
+> -				     NFC_CMD_SCRAMBLER_ENABLE);
+> -	} else {
+> -		meson_nfc_cmd_access(nand, raw, DIRWRITE,
+> -				     NFC_CMD_SCRAMBLER_DISABLE);
+> -	}
+> -
+
+Ok I get it, the feature already exist but is handled differently.
+Please split this patch:
+- improve scrambler handling to facilitate boot page support
+- add boot pages support
+
+> +	meson_nfc_cmd_access(nand, raw, DIRWRITE, page);
+>  	cmd =3D nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
+>  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>  	meson_nfc_queue_rb(nand, PSEC_TO_MSEC(sdr->tPROG_max), false);
+> @@ -829,15 +847,7 @@ static int meson_nfc_read_page_sub(struct nand_chip =
+*nand,
+>  	if (ret)
+>  		return ret;
+> =20
+> -	if (nand->options & NAND_NEED_SCRAMBLING) {
+> -		meson_nfc_cmd_seed(nfc, page);
+> -		meson_nfc_cmd_access(nand, raw, DIRREAD,
+> -				     NFC_CMD_SCRAMBLER_ENABLE);
+> -	} else {
+> -		meson_nfc_cmd_access(nand, raw, DIRREAD,
+> -				     NFC_CMD_SCRAMBLER_DISABLE);
+> -	}
+> -
+> +	meson_nfc_cmd_access(nand, raw, DIRREAD, page);
+>  	ret =3D meson_nfc_wait_dma_finish(nfc);
+>  	meson_nfc_check_ecc_pages_valid(nfc, nand, raw);
+> =20
+> @@ -1436,6 +1446,26 @@ meson_nfc_nand_chip_init(struct device *dev,
+>  	if (ret)
+>  		return ret;
+> =20
+> +	if (nand->options & NAND_IS_BOOT_MEDIUM) {
+> +		ret =3D of_property_read_u32(np, "amlogic,boot-pages",
+> +					   &meson_chip->boot_pages);
+> +		if (ret) {
+> +			dev_err(dev, "could not retrieve 'amlogic,boot-pages' property: %d",
+> +				ret);
+> +			nand_cleanup(nand);
+> +			return ret;
+> +		}
+> +
+> +		ret =3D of_property_read_u32(np, "amlogic,boot-page-step",
+> +					   &meson_chip->boot_page_step);
+> +		if (ret) {
+> +			dev_err(dev, "could not retrieve 'amlogic,boot-page-step' property: %=
+d",
+> +				ret);
+> +			nand_cleanup(nand);
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	ret =3D mtd_device_register(mtd, NULL, 0);
+>  	if (ret) {
+>  		dev_err(dev, "failed to register MTD device: %d\n", ret);
 
 
 Thanks,
