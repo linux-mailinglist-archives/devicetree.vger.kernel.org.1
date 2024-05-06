@@ -1,223 +1,201 @@
-Return-Path: <devicetree+bounces-65192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D19648BD053
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD9F8BD08A
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:43:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 016211C21D48
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:30:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A976E1C242B5
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B48413DB83;
-	Mon,  6 May 2024 14:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14DF153510;
+	Mon,  6 May 2024 14:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qgSUMliR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BEwhDDqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA9D13D8BE;
-	Mon,  6 May 2024 14:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E5A1534F9;
+	Mon,  6 May 2024 14:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715005802; cv=none; b=Btp/O0Eowlnz7ZlzDIfp58C3aXUv5Kg3+q2R6bF8NAc6eFSWORmIOnqhBP5nv7Ff32vpbQV/TrISWhfbD4JQkUMr97dyUaCPhluBoXR8cXj68V3DdPTxYFs5N5DVsWUiFhT5AXQwnWv5cUeWo/CQ0S2yHWzb+ZzHiBsSmkj7who=
+	t=1715006621; cv=none; b=shv8TDNxp+gx347w1PQi3Ua78GpQMFQC/mG7LnWn6u0i6GeDg8NIA02o0RLxHFb1kqfmpyJQ+Zt4Q8N8NLh6BaRhweZlUzHXK92bm5RCNgtJ0Ugz4btDo/n9vEaUOT/kbrMJWeEMx3uWU3ClMxCjJV4XRrduF5mJp0ZyS1SpAIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715005802; c=relaxed/simple;
-	bh=xLyyQsgBKxOS7ju/Z1jQLkPWqUuski82jXjG4sGoz8w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A6bYYqT74IESSui24NrkTIGh5iCj/6PGQgPSsHt3+8FAef+oMP2UHm1B85NeP1HOhoRFDnOYEF9R/9Q7SqW61vzjAFV/yxgkouYe0VVdn9UBNQoaoaZVAxZQnIlZsrDgKf2ff84Eic4WqaQQcMffIhDuJKPb+jzMMlp8cZMKwgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qgSUMliR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43365C4AF63;
-	Mon,  6 May 2024 14:29:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715005801;
-	bh=xLyyQsgBKxOS7ju/Z1jQLkPWqUuski82jXjG4sGoz8w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qgSUMliRi/qdlo42bY09VW5dKPEjBw9ldcpgEjzTwevJIj1dfq6O6e1EAFPa+pDrY
-	 FLzUrvwfX3bfROez3MCZBCDoVObk4hzZIIa9HsNMrT8oXLPr5YCmUnox0M87In/P+b
-	 0+dM+vPrwLdcsagU0+j71jO9yQJZ4H2xbmX6lv1AmuhtV38wZOWXuqT7+hPdajtaIq
-	 mLxkoxt2Eh58K6D0Hu7Krf8og2mK7jf7Ur1i7s+Kp2YjlQ98he9GVbRNvWamAubOYp
-	 IH9feVvYL0ZJQ320d01epzTNyiK6mDfO15IWg9oCKsv8Aom2/KqkYxez9K7/WDVxzz
-	 o9mvjAjlEMazg==
-Date: Mon, 6 May 2024 15:29:46 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, kernel test robot <lkp@intel.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v6 10/10] iio: adc: ad7380: add support for
- resolution boost
-Message-ID: <20240506152946.74f1438c@jic23-huawei>
-In-Reply-To: <20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
-References: <20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
-	<20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1715006621; c=relaxed/simple;
+	bh=y647dMzPrxRgvSF4A0OcIoVEWcf6Sx+yOBZLZfTDR3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dyQK3BHdZiNKEnut03nrr/lrpwR1vqhZ7XFVY8CpxT2CWR3qwrvDJzWOe3Goyv4IiPMdLAzH+dIbKLKGlEjetL7R6smhDEcLsVOgFvjKKoo5jnYEuLEZ1rhGxqstkPhJqPaoLgnl81Ze8wJHioQIVEKj62o+DBcis8muOuYVuAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BEwhDDqT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 446DvusS020742;
+	Mon, 6 May 2024 14:43:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=g12AKeQZADDNahrrQPOiEakptlKeLPwOThbL5Jv4l8g=; b=BE
+	whDDqT5vX9cQRNYC+6GErOyrAvRq8w+PfVx/qhb/t3nPUzsJ5U14DMSue/OK2SeC
+	dE42PqDXF638rt2TcCbsqgCjn9sjqFMeJSrumUFbpLLv0cKy5n1baMHW+2b+qLn3
+	UiT+Hi0HgVKel518e5g18EKrMG92ifzgEDnwHiT0vIJsQsyyRYDcSlhMYPD7uxZs
+	IYpxqK51d0VrdCkoPBB9xc57fUad4otGK/6Ra/NK+rqCTLRAgu+JP9YD4uQVB0sk
+	ZCAmxe6+E5tPicwCZAkSXWOMwxcG4A5R9tsa0c54BS7C4i8U/9BNr44DaMURM28e
+	MJUUWxCj7pXUKSbR9fFg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xxwqdrgb7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 May 2024 14:43:33 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 446EhV9F007230
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 6 May 2024 14:43:31 GMT
+Received: from [10.216.21.139] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 May 2024
+ 07:43:26 -0700
+Message-ID: <803b267b-9171-8234-aa3a-fba0d738a64d@quicinc.com>
+Date: Mon, 6 May 2024 20:13:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 3/3] media: venus: add msm8998 support
+Content-Language: en-US
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Stanimir Varbanov
+	<stanimir.k.varbanov@gmail.com>,
+        Bryan O Donoghue
+	<bryan.odonoghue@linaro.org>
+CC: MSM <linux-arm-msm@vger.kernel.org>,
+        linux-media
+	<linux-media@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>,
+        "Pierre-Hugues Husson" <phhusson@freebox.fr>,
+        Arnaud Vrac <avrac@freebox.fr>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <72860c1d-7434-4be6-8c1d-9ea177602802@freebox.fr>
+ <14bda891-5035-433c-888e-b3c330eeffaf@freebox.fr>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <14bda891-5035-433c-888e-b3c330eeffaf@freebox.fr>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: K-3p3HzHPEijfjl9gscegYAPl73NYKGi
+X-Proofpoint-GUID: K-3p3HzHPEijfjl9gscegYAPl73NYKGi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-06_09,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 phishscore=0
+ adultscore=0 mlxscore=0 spamscore=0 bulkscore=0 malwarescore=0
+ mlxlogscore=999 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2404010003 definitions=main-2405060101
 
-On Wed, 01 May 2024 16:55:43 +0200
-Julien Stephan <jstephan@baylibre.com> wrote:
 
-> ad738x chips are able to use an additional 2 bits of resolution when
-> using oversampling. The 14-bits chips can have up to 16 bits of
-> resolution and the 16-bits chips can have up to 18 bits of resolution.
+On 5/6/2024 7:17 PM, Marc Gonzalez wrote:
+> From: Pierre-Hugues Husson <phhusson@freebox.fr>
 > 
-> In order to dynamically allow to enable/disable the resolution boost
-> feature, we have to set iio realbits/storagebits to the maximum per chips.
-> This means that for iio, data will always be on the higher resolution
-> available, and to cope with that we adjust the iio scale and iio offset
-> depending on the resolution boost status.
+> Add the missing bits for msm8998 support.
 > 
-> The available scales can be displayed using the regular _scale_available
-> attributes and can be set by writing the regular _scale attribute.
-> The available scales depend on the oversampling status.
-> 
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 > ---
+>  drivers/media/platform/qcom/venus/core.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
 > 
-> In order to support the resolution boost (additional 2 bits of resolution)
-> we need to set realbits/storagebits to the maximum value i.e :
->   - realbits = 16 + 2 = 18, and storagebits = 32 for 16-bits chips
->   - realbits = 14 + 2 = 16, and storagebits = 16 for 14-bits chips
-> 
-> For 14-bits chips this does not have a major impact, but this
-> has the drawback of forcing 16-bits chip users to always use 32-bits
-> words in buffers even if they are not using oversampling and resolution
-> boost. Is there a better way of implementing this? For example
-> implementing dynamic scan_type?
-> 
-> Another issue is the location of the timestamps. I understood the need
-> for ts to be consistent between chips, but right now I do not have a
-> better solution.. I was thinking of maybe adding the timestamps at the
-> beginning? That would imply to change the iio_chan_spec struct and maybe
-> add a iio_push_to_buffers_with_timestamp_first() wrapper function? Is
-> that an option?
-
-Questions discussed in another branch of the thread.
-
-Jonathan
-
-> 
-> Any suggestion would be very much appreciated.
-> ---
->  drivers/iio/adc/ad7380.c | 226 ++++++++++++++++++++++++++++++++++++++++-------
->  1 file changed, 194 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-> index 7b021bb9cf87..e240098708e9 100644
-> --- a/drivers/iio/adc/ad7380.c
-> +++ b/drivers/iio/adc/ad7380.c
-> @@ -20,6 +20,7 @@
->  #include <linux/err.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/units.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
-> @@ -58,6 +59,8 @@
->  #define AD7380_CONFIG1_CRC_R		BIT(4)
->  #define AD7380_CONFIG1_ALERTEN		BIT(3)
->  #define AD7380_CONFIG1_RES		BIT(2)
-> +#define RESOLUTION_BOOST_DISABLE	0
-> +#define RESOLUTION_BOOST_ENABLE		1
-If the field is defined, the values should be obvious.
-Also you used this as a boolean where simply passing in true
-or false would be less confusing.
-
->  #define AD7380_CONFIG1_REFSEL		BIT(1)
->  #define AD7380_CONFIG1_PMODE		BIT(0)
->  
-> @@ -86,6 +89,14 @@ struct ad7380_chip_info {
->  	const struct ad7380_timing_specs *timing_specs;
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index ce206b7097541..064120127cb86 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -554,6 +554,9 @@ static const struct venus_resources msm8916_res = {
+>  	.fwname = "qcom/venus-1.8/venus.mbn",
 >  };
-
-> @@ -259,6 +271,8 @@ struct ad7380_state {
->  	struct spi_device *spi;
->  	unsigned int oversampling_mode;
->  	unsigned int oversampling_ratio;
-> +	unsigned int scales[2][2];
-> +	bool resolution_boost_enable;
->  	struct regmap *regmap;
->  	unsigned int vref_mv;
->  	unsigned int vcm_mv[MAX_NUM_CHANNELS];
-> @@ -270,7 +284,10 @@ struct ad7380_state {
->  	 * As MAX_NUM_CHANNELS is 4 the layout of the structure is the same for all parts
->  	 */
->  	struct {
-> -		u16 raw[MAX_NUM_CHANNELS];
-> +		union {
-> +			u16 u16[MAX_NUM_CHANNELS];
-> +			u32 u32[MAX_NUM_CHANNELS];
-> +		} raw;
 >  
->  		s64 ts __aligned(8);
+> +/*
+> + * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blame/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8996-v3.dtsi#L403-414
+> + */
+There is no need to add the link to downstream code in comments. Please remove them.
 
-As per earlier comments, roll this timestamp into the union as well
-because it will move around.
-
->  	} scan_data __aligned(IIO_DMA_MINALIGN);
-> @@ -359,23 +376,67 @@ static int ad7380_debugfs_reg_access(struct iio_dev *indio_dev, u32 reg,
->  	unreachable();
->  }
-
+Regards,
+Vikash
+>  static const struct freq_tbl msm8996_freq_table[] = {
+>  	{ 1944000, 520000000 },	/* 4k UHD @ 60 (decode only) */
+>  	{  972000, 520000000 },	/* 4k UHD @ 30 */
+> @@ -587,6 +590,50 @@ static const struct venus_resources msm8996_res = {
+>  	.fwname = "qcom/venus-4.2/venus.mbn",
+>  };
 >  
-> +static int ad7380_set_resolution_boost(struct iio_dev *indio_dev, bool enable)
-You pass 1 or 0 in here rather than true or false which would make more sense.
-> +{
-> +	struct ad7380_state *st = iio_priv(indio_dev);
-> +	int ret;
+> +/*
+> + * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi#L42-53
+> + */
+> +static const struct freq_tbl msm8998_freq_table[] = {
+> +	{ 1944000, 465000000 },	/* 4k UHD @ 60 (decode only) */
+> +	{  972000, 465000000 },	/* 4k UHD @ 30 */
+> +	{  489600, 360000000 },	/* 1080p @ 60 */
+> +	{  244800, 186000000 },	/* 1080p @ 30 */
+> +	{  108000, 100000000 },	/* 720p @ 30 */
+> +};
 > +
-> +	if (st->resolution_boost_enable == enable)
-> +		return 0;
+> +/*
+> + * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi#L29-37
+> + */
+> +static const struct reg_val msm8998_reg_preset[] = {
+> +	{ 0x80124, 0x00000003 },
+> +	{ 0x80550, 0x01111111 },
+> +	{ 0x80560, 0x01111111 },
+> +	{ 0x80568, 0x01111111 },
+> +	{ 0x80570, 0x01111111 },
+> +	{ 0x80580, 0x01111111 },
+> +	{ 0x80588, 0x01111111 },
+> +	{ 0xe2010, 0x00000000 },
+> +};
 > +
-> +	ret = regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG1,
-> +				 AD7380_CONFIG1_RES,
-> +				 FIELD_PREP(AD7380_CONFIG1_RES, enable));
-Mapping true / false to 1 / 0 whilst correct doesn't give particularly readable
-code. So useful to just have an
-	enable ? 1 : 0 
-in there to make the mapping more obvious.
+> +static const struct venus_resources msm8998_res = {
+> +	.freq_tbl = msm8998_freq_table,
+> +	.freq_tbl_size = ARRAY_SIZE(msm8998_freq_table),
+> +	.reg_tbl = msm8998_reg_preset,
+> +	.reg_tbl_size = ARRAY_SIZE(msm8998_reg_preset),
+> +	.clks = { "core", "iface", "bus", "mbus" },
+> +	.clks_num = 4,
+> +	.vcodec0_clks = { "core" },
+> +	.vcodec1_clks = { "core" },
+> +	.vcodec_clks_num = 1,
+> +	.max_load = 2563200,
+> +	.hfi_version = HFI_VERSION_3XX,
+> +	.vmem_id = VIDC_RESOURCE_NONE,
+> +	.vmem_size = 0,
+> +	.vmem_addr = 0,
+> +	.dma_mask = 0xddc00000 - 1,
+> +	.fwname = "qcom/venus-4.4/venus.mbn",
+> +};
 > +
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->resolution_boost_enable = enable;
-
-Trivial: blank line here.
-
-> +	return 0;
-> +}
->
->  static int ad7380_init(struct ad7380_state *st, struct regulator *vref)
->  {
->  	int ret;
-> @@ -691,12 +849,16 @@ static int ad7380_init(struct ad7380_state *st, struct regulator *vref)
->  	if (ret < 0)
->  		return ret;
->  
-> -	/* Disable oversampling by default.
-> -	 * This is the default value after reset,
-> +	/* Disable oversampling and resolution boost by default.
-
-Follow through from earlier.  Wrong comment syntax + wrap lines nearer 80 chars.
-
-> +	 * This are the default values after reset,
->  	 * so just initialize internal data
->  	 */
-
+>  static const struct freq_tbl sdm660_freq_table[] = {
+>  	{ 979200, 518400000 },
+>  	{ 489600, 441600000 },
+> @@ -893,6 +940,7 @@ static const struct venus_resources sc7280_res = {
+>  static const struct of_device_id venus_dt_match[] = {
+>  	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
+>  	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
+> +	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
+>  	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
+>  	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
+>  	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
 
