@@ -1,130 +1,135 @@
-Return-Path: <devicetree+bounces-65130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6B88BCB88
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:03:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160428BCBFA
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:26:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCFAC280C09
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:03:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D452B21C7C
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:26:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87761142636;
-	Mon,  6 May 2024 10:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A07F1428F5;
+	Mon,  6 May 2024 10:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S5l+aU/O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F67E4205F
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 10:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40961422C5
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 10:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714989784; cv=none; b=NsNqEH8YMUgAefIle/SDVdfa2WiqZFbObGw0OOYtBzhTslOhNXZ7dVEfgKC/sbbk7HJe2yWaARlUF6IhkgcASMb24q1raqsAR355rWAUHBgQId38ZvE8tPV9PAqQmPkEt/HIPrHCGFDx8tdSpXKB9qpFziMNI24P3WZ5FFoOEr8=
+	t=1714991161; cv=none; b=W0PVQ//zyUB4EK6t3fmENvf7wMmrT0z4Wk5HF+QBlYr3pkB+5czck2R79k4yCWPRRmgKjgXynigT6pAKgahkbSsYohEFanSzYi3b7yvlziwJ+yVkQfe+s0LNCCuM3hPZtKh8Tj4GJ5I5jExCTsjW/lAad/V4mOGE3x6mh4p8wbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714989784; c=relaxed/simple;
-	bh=Z4EcRz/G6UHRpsJjAcYqWpUOiBu9/8gVcBoHx1+EaB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KmQYA4S3Qfgj11Qh9uerL07Ytcy3PNn4FqMG/bXTDc33/nkZIfqZ2li9Rjc9Iqp/XRzpTMyUnc1BryIYMCwtME2l2KH8BtNvv755nmQN3KLDYA6gNOOS/Y7tqnhNln1aMyXGXepXIpC5hADggPYwNlVQzdgdk3FcOME+7LWnFWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1s3vBG-0007qw-Vy; Mon, 06 May 2024 12:02:47 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1s3vBF-00GEz0-Eb; Mon, 06 May 2024 12:02:45 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 051D92CB44D;
-	Mon, 06 May 2024 10:02:45 +0000 (UTC)
-Date: Mon, 6 May 2024 12:02:44 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux@ew.tq-group.com
-Subject: Re: [PATCH v2 0/6] can: mcp251xfd: add gpio functionality
-Message-ID: <20240506-imperial-taupe-deer-9132a5-mkl@pengutronix.de>
-References: <20240506-mcp251xfd-gpio-feature-v2-0-615b16fa8789@ew.tq-group.com>
+	s=arc-20240116; t=1714991161; c=relaxed/simple;
+	bh=n1RXK8PRBumr7Cq4eyUxGTgGPR5PK0w81QRMXZNvDgc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sx+Gr3/q4Zu7X5+fMPkmJEyC3iePYlE+nN1+H3QEXb7m5/O4fqMLXl7sjnfph9HD1LHThnC7C4bFC04C6O8yTM9mi8MMLvpN282nLO9H8CzIGAZuX7Spw78i5GUByrNWJu6PsjZj+NMIqDJT7l8983yIHVmxRKvHOOnQ3rgh0L4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S5l+aU/O; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41dc9f98e8dso22494845e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 03:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714991158; x=1715595958; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MqztIhrDR9HC7lP+81EAWPGKzTvE0svV34mJctlOoNg=;
+        b=S5l+aU/O1TbOhhRwMy6jHOWI0Bkxb7N2kkbRK0VMYr79PhTtp9/zxqbRkHxT5dt1/h
+         IyHSVDYCW5VNu/xE58g+EIpH0QNbWSyYmVwCBs/0ytXcZv4Wpd8WIVGZb35kGgMeY03K
+         66sT5VxRaCVgW2FUucx+e6PHpmZoGfSLyZAjUx1/QicvewxNjDC7gfx/vIzTBKkr0Iz2
+         cCMU5+F5b904XXUHB7OuXCN1KOmLCt1HD/WGvPGDMBoKIK7hRTUQV1XCHrAYLUae09N0
+         P0CyUKMuuFkV9RKo4KiyjRPoVby8SFzyEunRF0rn9346SfpgCDS4MwwPl69SkKmZY96I
+         RJKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714991158; x=1715595958;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MqztIhrDR9HC7lP+81EAWPGKzTvE0svV34mJctlOoNg=;
+        b=RBu1ADDGObFLFiEed4MVBQ3/e65e6B5VVtuIfUZuge+/eU9gjfOiNl+up+EK1CKxch
+         mvzanpqKCgF+DK5VPZIp0kupTcU6LhsMDj6YQnsqcjNxcKeKQTJ+gNTLvsVv3OTJBIB5
+         sziapmm8LwUDUvFZjbSBu8fwrx11fB++9yw/2DOpsl+3szZgKK7bSSG/QoDpHJq20FRh
+         ky7zOTMhMa5Ok7GiOgWZUqcyn0UG2vAQosFNzFs8bUi3ljvDxFhYzIj7Y4lF2af0Xyi7
+         cjQs1ku2v4RcW7SOmq5JgJtyZhHETp+q/wvT/LmBXvwR68VlIOlKTF+fV+TjIUbU/8Ss
+         cgmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXpn+Z1DkqptILPBpUsh1PJCFK3koJybpDnWedwPGNI2zz/RezXJg7NuuxaIrT9oouB7lselBKOYl489zQvCLxuJeRuv3LbdGrTQ==
+X-Gm-Message-State: AOJu0Yxh6AtDk5ojyQsikrH4oc+NZTvfzRbZFo3rJPNvPuO2Kn3KtjXO
+	C6FUkvoy64QaCRYCA5g39l3ag3dk9qN8gg4487cm9l5Q7eIh3Y9lT9j6v8o4J4Q=
+X-Google-Smtp-Source: AGHT+IHOLVwBDFR0EUE4X7BqnBPhVbSRb3vyCDe9DkuBfXIisPyXPVqyyVT8KZlJSXWpQ8sV4pDLvw==
+X-Received: by 2002:a05:600c:4508:b0:417:eb5d:281b with SMTP id t8-20020a05600c450800b00417eb5d281bmr11469960wmo.17.1714991158177;
+        Mon, 06 May 2024 03:25:58 -0700 (PDT)
+Received: from [192.168.0.3] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id g20-20020a05600c311400b0041bf685921dsm15561933wmo.0.2024.05.06.03.25.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 May 2024 03:25:57 -0700 (PDT)
+Message-ID: <12daeed1-0075-4a6c-bd02-dc70a0c0d721@linaro.org>
+Date: Mon, 6 May 2024 11:25:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sse27ts3gacsw3dx"
-Content-Disposition: inline
-In-Reply-To: <20240506-mcp251xfd-gpio-feature-v2-0-615b16fa8789@ew.tq-group.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Add support for qcom msm8998-venus (HW vdec /
+ venc)
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
+ <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
+ <f5b9c8d5-d8ed-4dd1-9cd6-fb016d84cbd5@freebox.fr>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <f5b9c8d5-d8ed-4dd1-9cd6-fb016d84cbd5@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 06/05/2024 10:57, Marc Gonzalez wrote:
+> On 30/04/2024 17:28, Marc Gonzalez wrote:
+> 
+>> Changes in v2
+>> - Add Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> for patches 2 & 3
+>> - Replace qcom,msm8998-venus.yaml (copy of qcom,msm8996-venus.yaml) with item in qcom,msm8996-venus.yaml
+>>
+>> Marc Gonzalez (3):
+>>    dt-bindings: media: add qcom,msm8998-venus
+>>    arm64: dts: qcom: msm8998: add venus node
+>>    media: venus: add MSM8998 support
+>>
+>>   Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml |  4 ++-
+>>   arch/arm64/boot/dts/qcom/msm8998.dtsi                           | 48 +++++++++++++++++++++++++++++
+>>   drivers/media/platform/qcom/venus/core.c                        | 42 +++++++++++++++++++++++++
+>>   3 files changed, 93 insertions(+), 1 deletion(-)
+> 
+> Not sure what's holding up this series?
+> Can it be merged before the 6.10 merge window opens?
+> (Whose tree is it supposed to go through?)
+> 
+> Been working on this feature since Feb 19 with
+> [RFC WIP PATCH] venus: add qcom,no-low-power property
+> (First try turned out to be incorrect)
+> 
+> Regards
+> 
 
---sse27ts3gacsw3dx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Vikash, Stan.
 
-On 06.05.2024 07:59:42, Gregor Herburger wrote:
-> Hi all,
->=20
-> The mcp251xfd allows two pins to be configured as GPIOs. This series
-> adds support for this feature.
->=20
-> The GPIO functionality is controlled with the IOCON register which has
-> an erratum. The second patch is to work around this erratum. I am not
-                  ^^^^^^
-> sure if the place for the check and workaround in
-> mcp251xfd_regmap_crc_write is correct or if the check could be bypassed
-> with a direct call to mcp251xfd_regmap_crc_gather_write. If you have a
-> better suggestion where to add the check please let me know.
+I think this is ready to go, can we get an Acked-by so Hans can do the 
+merge ?
 
-Yes, better move the workaround to mcp251xfd_regmap_crc_gather_write().
-I don't remember under which circumstances regmap uses the
-gather_write() or the write() function.
-
-> Patch 1-3 from https://lore.kernel.org/linux-can/20240429-mcp251xfd-runti=
-me_pm-v1-0-c26a93a66544@pengutronix.de/
-
-Nitpick: Please add your S-o-b to these patches.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---sse27ts3gacsw3dx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmY4qsEACgkQKDiiPnot
-vG8TYAf9HmPQqBGVCnYkMCu3rzFuWptfpRq+2Ef2dNd1CszgbeuOuEN+Z97BRRHy
-KZjA/1Y1Y5185xwvzHH3TFSBB7H1huYN2zekcIEYVGNMExwYBpEPhWzdjWc2IH6w
-xdfwz21foHD50PsRk72FGmijpXN46RXBEIuV6KVbyvVVufNXxcNEz6yYcpIjgT+G
-TgVmmglnNtZmzYNfUgu9gKVAdbskQkUaziTlIO/QQwXveBTOWisq/83asXFMO9Sb
-u68PbNU6Z+/YKUv+OGz73a2cVV7NUcICpZPRHabgqFKmGzGFavFzb+8xXU42jPMN
-zgpwVIDPo8o2euA/22RHCkb2vudCDA==
-=+dVm
------END PGP SIGNATURE-----
-
---sse27ts3gacsw3dx--
+---
+bod
 
