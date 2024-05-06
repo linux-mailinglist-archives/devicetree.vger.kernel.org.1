@@ -1,162 +1,237 @@
-Return-Path: <devicetree+bounces-65265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D01638BD5B0
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 21:45:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A21E78BD5E4
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 21:54:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C904B2399D
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 19:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC0DB1C20F1D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 19:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5D215CD54;
-	Mon,  6 May 2024 19:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED5415ADAC;
+	Mon,  6 May 2024 19:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CRrVckZY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ejGK6bc7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D14215B54F;
-	Mon,  6 May 2024 19:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A329DDC7;
+	Mon,  6 May 2024 19:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715024646; cv=none; b=DKSVOZBJ03xDU17dX8LVJqKH0cUJuoqf3NxldfDnxBkkIQ1nQZpwN0OfhCVmRH0HoeIRs0JGTO7XjQ6rq/tIGLqKLKPrD/Fv2D7W/1MWeuoWA3QgeAupzq4wR6E5v4Dlv+aCnMYxYl6ZLIDRmEyERsbWUz/yDlYr4o1sV+poFCg=
+	t=1715025291; cv=none; b=CiIIf3xd5chy+mrWZvIwMzRhkk1t76gckmejNq1xZ5zvOuhBRyJ+6+VNqayK7lkZ/6C8UVLaiVb7wPMVXuev3csmAcRJY21QO5AMN9pGTJibmqB1Z4ZZNpss3RdPKgh+r0Q80vPy/PRJUIqZq+hjfdVSypkTCyX3CK2TE0N8gXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715024646; c=relaxed/simple;
-	bh=wjlH4Lt5S7mcx5jnJNpBQbgACYP+Lvxy1N0d55tJixs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Fo2z62Qgc+GQlREe9NZBIM0Ly/SNgzrH+dnpXp7sxolxjyMCNv0VcsEVrurjy3Q+56Hs62WLFZQwZolCm5atXAtk5xvbzvr+Flo348g4m5cGxPdDbL99l/B9yiClnSYcaCdOHtCipN7QHiolWNRWYHxg36ONxbXS+zwODUNxpIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CRrVckZY; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a59ad344f7dso434099566b.0;
-        Mon, 06 May 2024 12:44:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715024643; x=1715629443; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oPo30HLErisAcogmRAQBmaHjRdsPf6mxSQ2qeztK2Sw=;
-        b=CRrVckZYvWMRFB+7wj0wLjfATPj6wWMI5TKwM2GCO/FiHm52/gn9bA5T+ms4dGa0db
-         DU8TR/Ca6z8SyK+TODW3UiDV5k1ECNspInbj/yt3+ry/XxsFVDH10c3okf6i3QoHV2q+
-         ULFJIlbg+QSBzKieT755z/ekY9be7QXoI7MvHQmZOaRmEG+w8VERoK7JGnab33vfin8a
-         41YXDWlcIUjtOGT5TEkeLbKxrHuGpos5SrJybjBerU9PiE/8QHg0FqabZwyyOHqCwkkU
-         AoGQo05EJ4uZR191/y/zZ3y83rRwggrfKoEho2R4IlpBApc6wkshh6VLhAveIkTyne9T
-         P44A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715024643; x=1715629443;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oPo30HLErisAcogmRAQBmaHjRdsPf6mxSQ2qeztK2Sw=;
-        b=QxsLDWb97JkaxtenVreuWzQDNTZu+ee6ENgkqENRzL4q0qHlGg2rCyQ/Tqee9iSeXg
-         u9LkVYDyPYbGOXhSEi/QWkvi6xLwtyrtzIhyWICPlrDVdeLpyFrB0xE0DjFgV+SSZMxo
-         4hLI8ywaayWoTu8dhJNV7n4yyGxQWmSils0XIA9E57pDR2p5XN0mnpZIZf6aSho4wYHg
-         UuKd+d4Qfs1Zup0NHCD3OVaivZPhwyjRFPeh4XQKP71UF+iKMOGAnls38ecauBhII2KC
-         O32CBbXiInxoQAIAXBh4N2BRYaeuKZKCRvPJ1AjckWa3d1Fw1+Tk7DMj9A3p6+x8Tspt
-         +VyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJitviFKZoQWFM8VjKQvyrQAb/16Xn+kaTddenYqhxbRe/CRgU39r5Jk4UkN8VXIY+uCnNXcsENZeX9Ssi7SnAImsxR7KM83HzrJC+dzyuBm4PL8RhXnNadRT1DN4x9V1avO9h5oc/38+TufKsExDj365UwKvTplnuft7cvUYIGj7wbg==
-X-Gm-Message-State: AOJu0Yxbbdbt1p6Y66hhGv8zsRzD0KHBlhSxyaEl2MTrM//M+UIjfDl7
-	IaYJ1DhoW3i5NlbmGfhOfPWmimdvEJe3Syiul7X6rgNZR3ImMig=
-X-Google-Smtp-Source: AGHT+IHSrrVeS/vienMxLpjAA24SO1Al2k+NRtJh5keVZVgcxbiYBpQB1pEWoo3HKzaMNkd68QRWQw==
-X-Received: by 2002:a17:907:97d2:b0:a59:c9ad:bd26 with SMTP id js18-20020a17090797d200b00a59c9adbd26mr2965779ejc.12.1715024643508;
-        Mon, 06 May 2024 12:44:03 -0700 (PDT)
-Received: from U4.lan ([2a02:810b:f40:4600:1c62:e77:6753:5729])
-        by smtp.gmail.com with ESMTPSA id f13-20020a1709067f8d00b00a59d146f034sm1367321ejr.132.2024.05.06.12.44.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 May 2024 12:44:03 -0700 (PDT)
-From: Alex Bee <knaerzche@gmail.com>
-To: Sandy Huang <hjc@rock-chips.com>,
-	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH 7/7] ARM: dts: rockchip: Add DSI for RK3128
-Date: Mon,  6 May 2024 21:43:42 +0200
-Message-ID: <20240506194343.282119-8-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240506194343.282119-1-knaerzche@gmail.com>
-References: <20240506194343.282119-1-knaerzche@gmail.com>
+	s=arc-20240116; t=1715025291; c=relaxed/simple;
+	bh=1SofMlPLugistZwY8l/SGHCqle5+F8AVcDMwZvAKD4A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aNEBZ4Hf2MARG2HoBA9GQgf8us7mWQgCfM10c8MomPa0KGoRG+mmVn1XWvugCW6sEsHlGbMHAeD1oq+7Bsq1WoAC0rqLf+cxFwGCZ4OUymO/6RspXe+SMjLBW+afeK9Q5SM4Cebqo9IeN3XT/u8Gy/EvJerOjZD+KnZVoNXLyIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ejGK6bc7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 446Ifeve026215;
+	Mon, 6 May 2024 19:54:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=sC84BFtLU9L/vFaY+S8V8yTDY2IAdPN3Z4iW1X9my/E=; b=ej
+	GK6bc7/RcBZ0DT5py9PekjmzxTcWTfi9YXcc3dzQKYp50pSqk/5QPQGzOoW7ZQLL
+	prR896+dUr+B+dtcfoJY9PYOlZDZPnhtCmJGMeZDXwQ/IBeUK2lS0E1vnnulRSZV
+	8uRF13MKe4GiNaHm8olecDqgskpHQfLTdJ9eGdKehzSn5MjHpuHiQNSoVns0XlwS
+	Q9Sx0/8WfGB+5o66QbvtmJP8yHGszda0ePgH/khuQb/sxIHJJWbRQJf5dKeIKkCk
+	diNJgSjLUm5ryn3T5ZIlO+DFDz9joE+cbnY0ToXGuZ6gsjYcnob4SYk6GVvYdHaJ
+	jLrV8RngzlEsdPwNno2w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xxyc2rveu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 May 2024 19:54:32 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 446JsVao015583
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 6 May 2024 19:54:31 GMT
+Received: from [10.110.125.244] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 May 2024
+ 12:54:30 -0700
+Message-ID: <55ee8e86-e2eb-4c69-9692-df790454b8d6@quicinc.com>
+Date: Mon, 6 May 2024 12:54:29 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+Content-Language: en-US
+To: Prahlad Valluru <quic_vvalluru@quicinc.com>, <robh@kernel.org>
+CC: <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_nankam@quicinc.com>
+References: <171405653305.2527744.3813895380659072690.robh@kernel.org>
+ <20240426142442.7769-1-quic_vvalluru@quicinc.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20240426142442.7769-1-quic_vvalluru@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RcetPsM2xG4SYpl9QMUckgmROlZI_par
+X-Proofpoint-ORIG-GUID: RcetPsM2xG4SYpl9QMUckgmROlZI_par
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-06_14,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1011 spamscore=0
+ suspectscore=0 mlxscore=0 mlxlogscore=999 bulkscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405060141
 
-Add the Designware MIPI DSI controller and it's port nodes.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- arch/arm/boot/dts/rockchip/rk3128.dtsi | 36 ++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dts/rockchip/rk3128.dtsi
-index d16a9d03ba2b..93885338a80b 100644
---- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
-@@ -276,6 +276,42 @@ vop_out_hdmi: endpoint@0 {
- 				reg = <0>;
- 				remote-endpoint = <&hdmi_in_vop>;
- 			};
-+
-+			vop_out_dsi: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&dsi_in_vop>;
-+			};
-+		};
-+	};
-+
-+	dsi: dsi@10110000 {
-+		compatible = "rockchip,rk3128-mipi-dsi", "snps,dw-mipi-dsi";
-+		reg = <0x10110000 0x4000>;
-+		interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru PCLK_MIPI>;
-+		clock-names = "pclk";
-+		phys = <&dphy>;
-+		phy-names = "dphy";
-+		resets = <&cru SRST_VIO_MIPI_DSI>;
-+		reset-names = "apb";
-+		rockchip,grf = <&grf>;
-+		power-domains = <&power RK3128_PD_VIO>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			dsi_in: port@0 {
-+				reg = <0>;
-+				dsi_in_vop: endpoint {
-+					remote-endpoint = <&vop_out_dsi>;
-+				};
-+			};
-+
-+			dsi_out: port@1 {
-+				reg = <1>;
-+			};
- 		};
- 	};
- 
--- 
-2.43.2
+On 4/26/2024 7:24 AM, Prahlad Valluru wrote:
+> From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+> 
+> Enable lt9611uxc bridge for qcs6490 rb3 gen2 platform.
+> 
+> Signed-off-by: Prahlad Valluru <quic_vvalluru@quicinc.com>
+> ---
 
+Why is there a mismatch between your author name and signed off name?
+
+> v2: Addressed dtschema errors
+> 	- Fixed lt9611-irq
+> 	- vdd-supply error to be ignored, as it is connected to
+> 	  input supply directly, on rb3gen2
+> ---
+>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 86 ++++++++++++++++++++
+>   1 file changed, 86 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index a085ff5b5fb2..c14d4a4bb3ce 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -51,6 +51,18 @@
+>   			};
+>   		};
+>   	};
+> +	
+> +	hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		label = "HDMI";
+
+Is label mandatory? Doesn't seem so?
+
+Rest LGTM.
+
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con: endpoint {
+> +				remote-endpoint = <&lt9611_out>;
+> +			};
+> +		};
+> +	};
+>   
+>   	reserved-memory {
+>   		xbl_mem: xbl@80700000 {
+> @@ -530,6 +542,45 @@
+>   			   <GCC_WPSS_RSCP_CLK>;
+>   };
+>   
+> +&i2c0 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	lt9611_codec: hdmi-bridge@2b {
+> +		compatible = "lontium,lt9611uxc";
+> +		reg = <0x2b>;
+> +
+> +		interrupts-extended = <&tlmm 24 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
+> +
+> +		vcc-supply = <&vreg_l11c_2p8>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				lt9611_a: endpoint {
+> +					remote-endpoint = <&mdss_dsi0_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				lt9611_out: endpoint {
+> +					remote-endpoint = <&hdmi_con>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>   &i2c1 {
+>   	status = "okay";
+>   
+> @@ -602,6 +653,21 @@
+>   	status = "okay";
+>   };
+>   
+> +&mdss_dsi {
+> +        vdda-supply = <&vreg_l6b_1p2>;
+> +        status = "okay";
+> +};
+> +
+> +&mdss_dsi0_out {
+> +        remote-endpoint = <&lt9611_a>;
+> +        data-lanes = <0 1 2 3>;
+> +};
+> +
+> +&mdss_dsi_phy {
+> +        vdds-supply = <&vreg_l10c_0p88>;
+> +        status = "okay";
+> +};
+> +
+>   &qupv3_id_0 {
+>   	status = "okay";
+>   };
+> @@ -711,3 +777,23 @@
+>   	function = "gpio";
+>   	bias-disable;
+>   };
+> +
+> +&pm7250b_gpios {
+> +        lt9611_rst_pin: lt9611-rst-state {
+> +                pins = "gpio2";
+> +                function = "normal";
+> +
+> +                output-high;
+> +                input-disable;
+> +                power-source = <0>;
+> +        };
+> +};
+> +
+> +&tlmm {
+> +        lt9611_irq_pin: lt9611-irq-state {
+> +                pins = "gpio24";
+> +                function = "gpio";
+> +                drive-strength = <8>;
+> +                bias-disable;
+> +        };
+> +};
 
