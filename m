@@ -1,139 +1,160 @@
-Return-Path: <devicetree+bounces-65148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE478BCD6F
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:06:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E78F8BCD76
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:09:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB9A42868A8
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:06:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 402E71C215DA
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DD31411E1;
-	Mon,  6 May 2024 12:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E007142E6F;
+	Mon,  6 May 2024 12:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MY1Fro45"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9+6v+Kt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F4323D2;
-	Mon,  6 May 2024 12:06:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A8523D2;
+	Mon,  6 May 2024 12:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714997193; cv=none; b=DHCIHl+RdDAECf6gE6RFqf2TrCJM+BsAyVcjYnfL9/dNLvWHSAEMj7+jSeR62GcLACFvAEQ0qolU70v11YG18rgtX7pQQCLQ359QgpFWkuv32wOaduwL+R0yPBQGS6PB2WZt8+YOxG2bWWzix1+bFvMn2iFuN9iHOnTXdip3kVQ=
+	t=1714997348; cv=none; b=jRMynaCaONWMQvR4KE48WxFoTUOjyTfPb8/SFGgJc3jwDuiSiGg3qj0ZTI8xTLGxMsrHgbFH3btMdXVwhhPVWnCxEVSBFvtoKS8+GYNJ9u8wl+PoZWzfwPXwuI1v8XbXQK29av/xTDIM8mpkmQWc1JUsa8JoE5KMWi8DQBcepck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714997193; c=relaxed/simple;
-	bh=HA03VMTWx7hFRDjISikCd5rAe3inSqQv3U+JhT9BpIU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EkXH1yZstpfOr650WvxNmX/9oGWFEy8SJ4ZtjiW7JKEbm7ouDh5rNpz8/xNye8AQ67d+xCArt91nzimheWg1qLfs9H9KofDc4SRJLvxtaE190AZYXvCOJM78m5mQXzGt9PbmI3LTBxAWrrs8SyJtjPKBpxyjq5QTFAl5V1nCXSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MY1Fro45; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a599a298990so464281366b.2;
-        Mon, 06 May 2024 05:06:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714997189; x=1715601989; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0/7y05oOvga1AY6RWQLcXXp5qLqEnvKHODSbHeXVGyU=;
-        b=MY1Fro45MT109KR8h4CFKw/UXXkT1iQTF42niuo58YBUxvMaDtRbKZZbMgfruxXmaY
-         VvQzHECIrXViUiaTpi42n4jc0kL2xxMVRfXkXGIFztWRDeDitdt05zwgn8nZpucSxxSj
-         RDOf09UhiTc7YjLfm0/WWDFHfwrxleA1Tztu6xxPdvVnJIfKusCIY2H0ptrwNC/7qR74
-         85trjinFv53Qgh+XjUiaE9k8uWtKhrdt8VxhgbgsA4e0LZ9oLVESS/1hoqSFcovdypEy
-         7k0YpIvI1wt6Wj5SFXC6IpHVngB2s/7woRmKs5JUXdqNGA39asX06lY4fQHmnlXZr61N
-         Kzsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714997189; x=1715601989;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0/7y05oOvga1AY6RWQLcXXp5qLqEnvKHODSbHeXVGyU=;
-        b=szvDHpeZqomSKcQ4X46OMpHSJEmMrpcmIs66g6YHO9ZlQkD9SVE0YOoq4xNT4I1gjj
-         iePlqYxKKovEZWIn1Pv5kFlHLQN2/AAIaJhnCPZj2W7USMjz9v9t3UWFUfqpGowHF+Fk
-         tIdPhTrcb2/z7uoBAxk1WZO3fPdFqG4xifKcwEGxdV/DsD36+2nt4yuw/AEbLtdvJb6T
-         uOlLeDnIttSnMXCVEk+f5ptInLQ+ZAWCm2l0BXqWeol4Pc9TAUT7kZ55FRZAttj2iMBC
-         uIjqVETm70P2pU8jfmJFmAmrcsvzET2Ce49AC1fFKVYgspOojWqBSgVld4NIlUP2b2Jf
-         Oejw==
-X-Forwarded-Encrypted: i=1; AJvYcCVq2lwU8X1t4JWJm9jpu+M2OS9DAcw5ZroIELUKNJsEo22QFTn7ux5cRn1LFPpvZou0g+evYSDOnq0sEyFyyDeQpwStVcQCZPpycRBjA35UxRueFPfzF7jRPr5rDD2zyhakQpD9ztd3TvnOJcK1S5T5gEtUJijMdfRjPME6bM8sI+g4Wb69
-X-Gm-Message-State: AOJu0YzwC9aZUxpbXXpwPyl7uYTMsQQCdjARpTisBOMMTx4niWF4z5X1
-	1F3r8SiUbGkHtVUhiP5ufYC9U+606CkaZUJ70TKXLlIzma+LFChh96tylJTqDkjM9Mm6Mt9wlhn
-	1uEhNjMy8reVgOdsv2FRrZAogzXQ=
-X-Google-Smtp-Source: AGHT+IHYOQvdfPTTFrBUuHnnjBKaOyDGpkO8KwvWSje/sq7Hj4iOQq8UdxFrfB58gd/0Nlr4haiivWWz7SMhit2xpHg=
-X-Received: by 2002:a17:906:5482:b0:a55:a072:1ab8 with SMTP id
- r2-20020a170906548200b00a55a0721ab8mr6220034ejo.27.1714997188685; Mon, 06 May
- 2024 05:06:28 -0700 (PDT)
+	s=arc-20240116; t=1714997348; c=relaxed/simple;
+	bh=0Fnm+sI6wbj1mgKUxkxRr4HUT2qUNad/sLEyTt+hwpE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JZS/oG1Gxf9GO0ENTGJDcXwKnUW/cKQp79Z9kjJlBsfAyC0Vc81xNZnPXXaeta58LMEDMWfpbwmLD5ios0dgkwhYjRRdKP8coB4Zk/ypy984bFUUFAsuFVXKxCeDcISb5rgirv8mnOEW/YRIUgqBMod8arI5G4VzIkN3YZepplI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9+6v+Kt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A02EC116B1;
+	Mon,  6 May 2024 12:09:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714997347;
+	bh=0Fnm+sI6wbj1mgKUxkxRr4HUT2qUNad/sLEyTt+hwpE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E9+6v+Kti8MbD+yblxVWhraoQ6x5kHRP8p86QwLv1lLt86iYx1stJvwygiZKJSBRZ
+	 XZdCbVfvReLKs9UbAyFPS4EXPB64sNmcrOZ7ZzRdvVSZu0LEcenVRHUARoIpjoLRjz
+	 JdimM5YCje+w6lADPp5ePTCHt55ueJZ7iuaI915I5aMPTBWsf4mGO7QUMAPR2GfWwL
+	 b7NP4Yo6GDXn3BAG1rIgnDWF8O0Dq0jaakVIaI3ub7NXj7BRZZMxFRcHl9s1OsGBQ3
+	 tQgQ0xjOxCTZ4SNszihFdCm1RU58mcGYRyuHMM0k809VbLO4HIN5M8jsrJwcYDYeCQ
+	 x1hOM/zckr6cg==
+Date: Mon, 6 May 2024 13:09:02 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Yuklin Soo <yuklin.soo@starfivetech.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [RFC PATCH v3 0/7] Add Pinctrl driver for Starfive JH8100 SoC
+Message-ID: <20240506-buddhism-outtakes-5a2bbcc73f1a@spud>
+References: <20240503111436.113089-1-yuklin.soo@starfivetech.com>
+ <CACRpkdbxzbNedWTpA5i-45AqPc4fA+GeBGkrjrD_OgkxMZRwXw@mail.gmail.com>
+ <ZQZPR01MB0979DEF368CB86BB16B538E78A1CA@ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240505214754.891700-1-andreas@kemnade.info> <20240505214754.891700-4-andreas@kemnade.info>
-In-Reply-To: <20240505214754.891700-4-andreas@kemnade.info>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 6 May 2024 15:05:52 +0300
-Message-ID: <CAHp75Vdnwrxw96prr9hyLdZ2u6t1uNcj6pyxCp52UoVOpatTpg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] Input: ektf2127 - add ektf2232 support
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, u.kleine-koenig@pengutronix.de, hdegoede@redhat.com, 
-	siebren.vroegindeweij@hotmail.com, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fhe1DvgnzcGojSpS"
+Content-Disposition: inline
+In-Reply-To: <ZQZPR01MB0979DEF368CB86BB16B538E78A1CA@ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn>
+
+
+--fhe1DvgnzcGojSpS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 6, 2024 at 12:48=E2=80=AFAM Andreas Kemnade <andreas@kemnade.in=
-fo> wrote:
->
-> The chip is similar, but has status bits at different positions,
-> so use the correct bits.
+On Mon, May 06, 2024 at 07:31:19AM +0000, Leyfoon Tan wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Linus Walleij <linus.walleij@linaro.org>
+> > Sent: Monday, May 6, 2024 2:35 PM
+> > To: Yuklin Soo <yuklin.soo@starfivetech.com>
+> > Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>; Hal Feng
+> > <hal.feng@starfivetech.com>; Leyfoon Tan <leyfoon.tan@starfivetech.com>;
+> > Jianlong Huang <jianlong.huang@starfivetech.com>; Emil Renner Berthing
+> > <kernel@esmil.dk>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+> > Drew Fustini <drew@beagleboard.org>; linux-gpio@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > riscv@lists.infradead.org; Paul Walmsley <paul.walmsley@sifive.com>; Pa=
+lmer
+> > Dabbelt <palmer@dabbelt.com>; Albert Ou <aou@eecs.berkeley.edu>
+> > Subject: Re: [RFC PATCH v3 0/7] Add Pinctrl driver for Starfive JH8100 =
+SoC
+> >=20
+> > On Fri, May 3, 2024 at 1:14=E2=80=AFPM Alex Soo <yuklin.soo@starfivetec=
+h.com>
+> > wrote:
+> >=20
+> > > Starfive JH8100 SoC consists of 4 pinctrl domains - sys_east,
+> > > sys_west, sys_gmac, and aon. This patch series adds pinctrl drivers
+> > > for these 4 pinctrl domains and this patch series is depending on the
+> > > JH8100 base patch series in [1] and [2].
+> > > The relevant dt-binding documentation for each pinctrl domain has been
+> > > updated accordingly.
+> > >
+> > > [1]
+> > > https://lore.kernel.org/lkml/20231201121410.95298-1-jeeheng.sia@starfi
+> > > vetech.com/ [2]
+> > > https://lore.kernel.org/lkml/20231206115000.295825-1-
+> > jeeheng.sia@starf
+> > > ivetech.com/
+> >=20
+> > v3 is starting to look very nice, why is this patch set still in "RFC"?
+> >=20
+> > I would like some proper review from the StarFive maintainers at this p=
+oint so
+> > we can get it finished.
+> >=20
+> > Yours,
+> > Linus Walleij
+>=20
+> Hi Linus
+>=20
+> Thanks for reviewing the patches.
+>=20
+> There is a discussion in another thread about the JH8100 SoC being valida=
+ted on FPGA/Emulation only now.  The suggestion is to send the patches as "=
+RFC" before the real silicon availability.
+>=20
+> https://patchew.org/linux/20231201121410.95298-1-jeeheng.sia@starfivetech=
+=2Ecom/20231201121410.95298-3-jeeheng.sia@starfivetech.com/
 
-...
+I know I said "drivers" in that mail you link to, but I was mostly
+concerned about binding headers etc, of which I think there are actually
+none here, so see my reply to this thread a few days ago:
+https://lore.kernel.org/all/20240503-undress-mantra-e5e46b2f6360@spud/
 
-> @@ -46,6 +47,11 @@ struct ektf2127_ts {
->         struct input_dev *input;
->         struct gpio_desc *power_gpios;
->         struct touchscreen_properties prop;
-> +       int status_shift;
-> +};
-> +
-> +struct ektf2127_i2c_chip_data {
-> +       int status_shift;
->  };
->
->  static void ektf2127_parse_coordinates(const u8 *buf, unsigned int touch=
-_count,
+--fhe1DvgnzcGojSpS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I'm wondering if you are using --histogram diff algo when preparing the pat=
-ches.
+-----BEGIN PGP SIGNATURE-----
 
-...
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjjIXgAKCRB4tDGHoIJi
+0siTAPwPnSCk10VkOwstQsjPqJmO7jS0QCzQE8MSxiuXnngLHwD/btPWiaBObZuw
+ous37JV45r0PEtTo5WYRu5cNHmTICAI=
+=uM22
+-----END PGP SIGNATURE-----
 
-> +       chip_data =3D device_get_match_data(&client->dev);
-> +       if (!chip_data)
-> +               chip_data =3D (const struct ektf2127_i2c_chip_data *)id->=
-driver_data;
-> +       if (!chip_data) {
-> +               dev_err(&client->dev, "missing chip data\n");
-> +               return -EINVAL;
-
-First of all, there is a special combined API for this, please use it
-instead. Second, use dev_err_probe().
-
-> +       }
-
-...
-
->  #ifdef CONFIG_OF
-
-Side note: Ideally we should kill this ugliness. But it can be done later o=
-n.
-
-
---
-With Best Regards,
-Andy Shevchenko
+--fhe1DvgnzcGojSpS--
 
