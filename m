@@ -1,179 +1,139 @@
-Return-Path: <devicetree+bounces-65147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3961B8BCD53
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:04:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE478BCD6F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:06:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D797128565C
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:04:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB9A42868A8
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EC6143878;
-	Mon,  6 May 2024 12:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DD31411E1;
+	Mon,  6 May 2024 12:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ln+nA+X9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MY1Fro45"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6EE023D2;
-	Mon,  6 May 2024 12:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F4323D2;
+	Mon,  6 May 2024 12:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714997072; cv=none; b=LpZTllhA+hz6CbW9IUBgJz6X7iLLKPJ09fx5YO4+XccMajoL1Za8+jzIteeE/5XynfFX8x6xT5U3t9+MLTQe3LNdsVTEVGKGfXzory+fgDpociQBWftlg3bWg9AqPestqZEzBJJWZqUVDVpCaOHeDGnuDc35b23r9XpQprdm+CY=
+	t=1714997193; cv=none; b=DHCIHl+RdDAECf6gE6RFqf2TrCJM+BsAyVcjYnfL9/dNLvWHSAEMj7+jSeR62GcLACFvAEQ0qolU70v11YG18rgtX7pQQCLQ359QgpFWkuv32wOaduwL+R0yPBQGS6PB2WZt8+YOxG2bWWzix1+bFvMn2iFuN9iHOnTXdip3kVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714997072; c=relaxed/simple;
-	bh=5PJTo+1nA4XGk594VVt+JAjZaD6m5aaml7HnsVKFdyM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=mZw1wWlp3QTvOW9SpB6Ooutjr7m8ltimdPa97VRTkbySw4ixuGvsypk1IZRIfOZE0dXv9joNVXDXMAH1/dHSITLGmlvH2lAz20v3AoAG/AEZQBkrW4rmpkI3DLdZ5ZcYFDGuJxtOYfMs8K8JnJ/+TWg5ZXA1/uQfwEzI0+02epQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ln+nA+X9; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1714997193; c=relaxed/simple;
+	bh=HA03VMTWx7hFRDjISikCd5rAe3inSqQv3U+JhT9BpIU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EkXH1yZstpfOr650WvxNmX/9oGWFEy8SJ4ZtjiW7JKEbm7ouDh5rNpz8/xNye8AQ67d+xCArt91nzimheWg1qLfs9H9KofDc4SRJLvxtaE190AZYXvCOJM78m5mQXzGt9PbmI3LTBxAWrrs8SyJtjPKBpxyjq5QTFAl5V1nCXSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MY1Fro45; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a599a298990so464281366b.2;
+        Mon, 06 May 2024 05:06:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714997189; x=1715601989; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0/7y05oOvga1AY6RWQLcXXp5qLqEnvKHODSbHeXVGyU=;
+        b=MY1Fro45MT109KR8h4CFKw/UXXkT1iQTF42niuo58YBUxvMaDtRbKZZbMgfruxXmaY
+         VvQzHECIrXViUiaTpi42n4jc0kL2xxMVRfXkXGIFztWRDeDitdt05zwgn8nZpucSxxSj
+         RDOf09UhiTc7YjLfm0/WWDFHfwrxleA1Tztu6xxPdvVnJIfKusCIY2H0ptrwNC/7qR74
+         85trjinFv53Qgh+XjUiaE9k8uWtKhrdt8VxhgbgsA4e0LZ9oLVESS/1hoqSFcovdypEy
+         7k0YpIvI1wt6Wj5SFXC6IpHVngB2s/7woRmKs5JUXdqNGA39asX06lY4fQHmnlXZr61N
+         Kzsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714997189; x=1715601989;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0/7y05oOvga1AY6RWQLcXXp5qLqEnvKHODSbHeXVGyU=;
+        b=szvDHpeZqomSKcQ4X46OMpHSJEmMrpcmIs66g6YHO9ZlQkD9SVE0YOoq4xNT4I1gjj
+         iePlqYxKKovEZWIn1Pv5kFlHLQN2/AAIaJhnCPZj2W7USMjz9v9t3UWFUfqpGowHF+Fk
+         tIdPhTrcb2/z7uoBAxk1WZO3fPdFqG4xifKcwEGxdV/DsD36+2nt4yuw/AEbLtdvJb6T
+         uOlLeDnIttSnMXCVEk+f5ptInLQ+ZAWCm2l0BXqWeol4Pc9TAUT7kZ55FRZAttj2iMBC
+         uIjqVETm70P2pU8jfmJFmAmrcsvzET2Ce49AC1fFKVYgspOojWqBSgVld4NIlUP2b2Jf
+         Oejw==
+X-Forwarded-Encrypted: i=1; AJvYcCVq2lwU8X1t4JWJm9jpu+M2OS9DAcw5ZroIELUKNJsEo22QFTn7ux5cRn1LFPpvZou0g+evYSDOnq0sEyFyyDeQpwStVcQCZPpycRBjA35UxRueFPfzF7jRPr5rDD2zyhakQpD9ztd3TvnOJcK1S5T5gEtUJijMdfRjPME6bM8sI+g4Wb69
+X-Gm-Message-State: AOJu0YzwC9aZUxpbXXpwPyl7uYTMsQQCdjARpTisBOMMTx4niWF4z5X1
+	1F3r8SiUbGkHtVUhiP5ufYC9U+606CkaZUJ70TKXLlIzma+LFChh96tylJTqDkjM9Mm6Mt9wlhn
+	1uEhNjMy8reVgOdsv2FRrZAogzXQ=
+X-Google-Smtp-Source: AGHT+IHYOQvdfPTTFrBUuHnnjBKaOyDGpkO8KwvWSje/sq7Hj4iOQq8UdxFrfB58gd/0Nlr4haiivWWz7SMhit2xpHg=
+X-Received: by 2002:a17:906:5482:b0:a55:a072:1ab8 with SMTP id
+ r2-20020a170906548200b00a55a0721ab8mr6220034ejo.27.1714997188685; Mon, 06 May
+ 2024 05:06:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1714997068;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BAs1lGJgUE8IcSxaNdCcMS+IcwbDm0FCy8eVmjzBBWg=;
-	b=ln+nA+X994UchFfqtPO5Cy6k56qveGQdybuHAJxUx5sNhDyd50zrky8vYiqsSaBgaYhVMA
-	CgJ1pyYtPn9boZPZuz1svu3eWw/j6HDHLgOJh37AoKP01ltPDYH6tixujgLvRkS5x1pUpb
-	lOhDS/joqP5Z5FKnOJBHaSOS0cpdON6/KPYDAxSzEMUOdVzoibIjwXjbveQizng2zeAICj
-	97y12xxNo3lPYxFu+ffMuj6ZbR+xb5nsoLcifz9krWrVjompzBvx2lHaBLbB4LPYDDxEO5
-	aDkOsdi3q+LMQz7Dwc5atGhcnW2zeHkZ3KjKF+W0FoGfpJ6JNjEMp5BxhEkEqg==
-Date: Mon, 06 May 2024 14:04:27 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/6] arm64: dts: rockchip: add thermal zones
- information on RK3588
-In-Reply-To: <CABjd4Yz0NyqgJL8HXH2-KCxP-GbsiZjvdwqcQGh6RJuECH=kvw@mail.gmail.com>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <20240506-rk-dts-additions-v4-1-271023ddfd40@gmail.com>
- <5332d58d48607a5559a84a2f85ce3e1b@manjaro.org>
- <CABjd4Yz0NyqgJL8HXH2-KCxP-GbsiZjvdwqcQGh6RJuECH=kvw@mail.gmail.com>
-Message-ID: <908afd900e1e1305abb11496ad3611f3@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20240505214754.891700-1-andreas@kemnade.info> <20240505214754.891700-4-andreas@kemnade.info>
+In-Reply-To: <20240505214754.891700-4-andreas@kemnade.info>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 6 May 2024 15:05:52 +0300
+Message-ID: <CAHp75Vdnwrxw96prr9hyLdZ2u6t1uNcj6pyxCp52UoVOpatTpg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] Input: ektf2127 - add ektf2232 support
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, u.kleine-koenig@pengutronix.de, hdegoede@redhat.com, 
+	siebren.vroegindeweij@hotmail.com, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-05-06 12:29, Alexey Charkov wrote:
-> On Mon, May 6, 2024 at 1:52 PM Dragan Simic <dsimic@manjaro.org> wrote:
->> Thanks for submitting the v4 of this series!  Please, see a couple
->> of my comments below.
->> 
->> On 2024-05-06 11:36, Alexey Charkov wrote:
->> > This includes the necessary device tree data to allow thermal
->> > monitoring on RK3588(s) using the on-chip TSADC device, along with
->> > trip points for automatic thermal management.
->> >
->> > Each of the CPU clusters (one for the little cores and two for
->> > the big cores) get a passive cooling trip point at 85C, which
->> > will trigger DVFS throttling of the respective cluster upon
->> > reaching a high temperature condition.
->> >
->> > All zones also have a critical trip point at 115C, which will
->> > trigger a reset.
->> >
->> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> > ---
->> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 147
->> > ++++++++++++++++++++++++++++++
->> >  1 file changed, 147 insertions(+)
->> >
->> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > index 6ac5ac8b48ab..ef06c1f742e8 100644
->> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > @@ -10,6 +10,7 @@
->> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->> >  #include <dt-bindings/phy/phy.h>
->> >  #include <dt-bindings/ata/ahci.h>
->> > +#include <dt-bindings/thermal/thermal.h>
->> >
->> >  / {
->> >       compatible = "rockchip,rk3588";
->> > @@ -2368,6 +2369,152 @@ pwm15: pwm@febf0030 {
->> >               status = "disabled";
->> >       };
->> >
->> > +     thermal_zones: thermal-zones {
->> > +             /* sensor near the center of the SoC */
->> > +             package_thermal: package-thermal {
->> > +                     polling-delay-passive = <0>;
->> > +                     polling-delay = <0>;
->> > +                     thermal-sensors = <&tsadc 0>;
->> > +
->> > +                     trips {
->> > +                             package_crit: package-crit {
->> > +                                     temperature = <115000>;
->> > +                                     hysteresis = <0>;
->> > +                                     type = "critical";
->> > +                             };
->> > +                     };
->> > +             };
->> > +
->> > +             /* sensor between A76 cores 0 and 1 */
->> > +             bigcore0_thermal: bigcore0-thermal {
->> > +                     polling-delay-passive = <100>;
->> > +                     polling-delay = <0>;
->> > +                     thermal-sensors = <&tsadc 1>;
->> > +
->> > +                     trips {
->> > +                             bigcore0_alert: bigcore0-alert {
->> > +                                     temperature = <85000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> 
->> Doesn't removing the second passive trip, which was present in the v3,
->> result in confusing the IPA governor?
-> 
-> Not really - it will just treat the missing trip as 0C for its initial
-> PID calculations [1], and will continually run the governor as opposed
-> to putting it to rest when the temperature is below the "switch on"
-> value [2].
-> 
-> Getting the power allocation governor to work optimally (i.e. to
-> provide tangible benefits over, say, stepwise) is much more involved
-> than defining an arbitrary switch-on trip point, as it requires an
-> accurate estimate of sustainable power per thermal zone (which we
-> don't have for RK3588 in general, and furthermore it must depend a lot
-> on a particular cooling setup), and ideally some userspace
-> power/thermal model capable of tuning the PID coefficients and
-> updating them via sysfs based on how a particular system accumulates
-> and dissipates heat under different load.
-> 
-> So after thinking over it for a while I decided that those extra
-> passive trips were rather self-deceiving, as they are only useful in
-> the context of a power allocation governor but we do not have any of
-> the other pieces in place for the power allocation governor to work.
-> Better not to clutter the device tree IMO.
+On Mon, May 6, 2024 at 12:48=E2=80=AFAM Andreas Kemnade <andreas@kemnade.in=
+fo> wrote:
+>
+> The chip is similar, but has status bits at different positions,
+> so use the correct bits.
 
-I see, thanks for the clarification.  Please, give me some time
-to thoroughly test your patches, which I'll hopefully be able to
-do in the next few days.
+...
 
-> [1] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/thermal/gov_power_allocator.c#n156
-> [2] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/thermal/gov_power_allocator.c#n487
+> @@ -46,6 +47,11 @@ struct ektf2127_ts {
+>         struct input_dev *input;
+>         struct gpio_desc *power_gpios;
+>         struct touchscreen_properties prop;
+> +       int status_shift;
+> +};
+> +
+> +struct ektf2127_i2c_chip_data {
+> +       int status_shift;
+>  };
+>
+>  static void ektf2127_parse_coordinates(const u8 *buf, unsigned int touch=
+_count,
+
+I'm wondering if you are using --histogram diff algo when preparing the pat=
+ches.
+
+...
+
+> +       chip_data =3D device_get_match_data(&client->dev);
+> +       if (!chip_data)
+> +               chip_data =3D (const struct ektf2127_i2c_chip_data *)id->=
+driver_data;
+> +       if (!chip_data) {
+> +               dev_err(&client->dev, "missing chip data\n");
+> +               return -EINVAL;
+
+First of all, there is a special combined API for this, please use it
+instead. Second, use dev_err_probe().
+
+> +       }
+
+...
+
+>  #ifdef CONFIG_OF
+
+Side note: Ideally we should kill this ugliness. But it can be done later o=
+n.
+
+
+--
+With Best Regards,
+Andy Shevchenko
 
