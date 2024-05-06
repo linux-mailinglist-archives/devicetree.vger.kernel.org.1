@@ -1,135 +1,199 @@
-Return-Path: <devicetree+bounces-65131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160428BCBFA
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:26:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C668BCC03
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D452B21C7C
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:26:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B9E82826A1
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A07F1428F5;
-	Mon,  6 May 2024 10:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E641428ED;
+	Mon,  6 May 2024 10:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S5l+aU/O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iJTHnEME"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40961422C5
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 10:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452F414265C;
+	Mon,  6 May 2024 10:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714991161; cv=none; b=W0PVQ//zyUB4EK6t3fmENvf7wMmrT0z4Wk5HF+QBlYr3pkB+5czck2R79k4yCWPRRmgKjgXynigT6pAKgahkbSsYohEFanSzYi3b7yvlziwJ+yVkQfe+s0LNCCuM3hPZtKh8Tj4GJ5I5jExCTsjW/lAad/V4mOGE3x6mh4p8wbw=
+	t=1714991397; cv=none; b=OGnDsETXxU12ncMjXbx1i+VqyIvG063hZ6UJZavcgWCbMhynRIzvoTPFTumGIqyjM288co8odD5AJjF2hZ1bTRT0+VYNJ0TvmpnuJZW0g9q+VeBlCPEt6U/uEekXQGfXfZlzB9OPQjcTQeVly3IM5RegFlp4jQMs5lWvtiPnN0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714991161; c=relaxed/simple;
-	bh=n1RXK8PRBumr7Cq4eyUxGTgGPR5PK0w81QRMXZNvDgc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sx+Gr3/q4Zu7X5+fMPkmJEyC3iePYlE+nN1+H3QEXb7m5/O4fqMLXl7sjnfph9HD1LHThnC7C4bFC04C6O8yTM9mi8MMLvpN282nLO9H8CzIGAZuX7Spw78i5GUByrNWJu6PsjZj+NMIqDJT7l8983yIHVmxRKvHOOnQ3rgh0L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S5l+aU/O; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41dc9f98e8dso22494845e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 03:25:59 -0700 (PDT)
+	s=arc-20240116; t=1714991397; c=relaxed/simple;
+	bh=3PoJY7tNXwvsdNUc2P3zuM49T2QEkSgVCQPu9yNoIQk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=goTh1qY2tJI8U5Sl0QXIzZ4LGRVUjlTBd8DfBk+CQyU5PeUmOXE/Kw67PvvUS9UE1H7DzUjMWzhGag+sod0qvNB+wdI8LjLev3oZgWEGzX6AFiVkxvK5DWlbVyWxtIGGoH8ipxS7HFc5QIcbXHmrORZBePaN0OIwHKPlRbnYL78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iJTHnEME; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51fdc9af005so2632827e87.3;
+        Mon, 06 May 2024 03:29:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714991158; x=1715595958; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MqztIhrDR9HC7lP+81EAWPGKzTvE0svV34mJctlOoNg=;
-        b=S5l+aU/O1TbOhhRwMy6jHOWI0Bkxb7N2kkbRK0VMYr79PhTtp9/zxqbRkHxT5dt1/h
-         IyHSVDYCW5VNu/xE58g+EIpH0QNbWSyYmVwCBs/0ytXcZv4Wpd8WIVGZb35kGgMeY03K
-         66sT5VxRaCVgW2FUucx+e6PHpmZoGfSLyZAjUx1/QicvewxNjDC7gfx/vIzTBKkr0Iz2
-         cCMU5+F5b904XXUHB7OuXCN1KOmLCt1HD/WGvPGDMBoKIK7hRTUQV1XCHrAYLUae09N0
-         P0CyUKMuuFkV9RKo4KiyjRPoVby8SFzyEunRF0rn9346SfpgCDS4MwwPl69SkKmZY96I
-         RJKQ==
+        d=gmail.com; s=20230601; t=1714991393; x=1715596193; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BNMaBJWGHZyABbZOaeEJdaPLgk7Dz9409DKeZNEhRws=;
+        b=iJTHnEMESoEnqovcI2yy2yqnM2qYNEnrUE9lEeM3JPqNQ4Td48/zil1+Ppr39vpK4I
+         aaPJWvn+J/26VrK0QpZkYpSjC/2XAL3ugwLe9eLDn9FirWQX/FkmYr4I1vuW+qCICnCw
+         x2CLNmhfV5/7OTmVm9LRT/5FxuD4RniMGGGXWusYyfvJkfUrMM6Dhdg5/2arJeJKEnlm
+         cnX1ov9l0n5CZbP3XYj/KwriIwUNUbM3mls5U+0eRPtgHJRREvLzNqddjPpCskQ5WXnC
+         46Psip0geqolO33Va/D8Xlu0bi1FyotTcEBUHkrNeM7KbDMKjVlqFBJRJlxMosvkyhPz
+         aCpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714991158; x=1715595958;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MqztIhrDR9HC7lP+81EAWPGKzTvE0svV34mJctlOoNg=;
-        b=RBu1ADDGObFLFiEed4MVBQ3/e65e6B5VVtuIfUZuge+/eU9gjfOiNl+up+EK1CKxch
-         mvzanpqKCgF+DK5VPZIp0kupTcU6LhsMDj6YQnsqcjNxcKeKQTJ+gNTLvsVv3OTJBIB5
-         sziapmm8LwUDUvFZjbSBu8fwrx11fB++9yw/2DOpsl+3szZgKK7bSSG/QoDpHJq20FRh
-         ky7zOTMhMa5Ok7GiOgWZUqcyn0UG2vAQosFNzFs8bUi3ljvDxFhYzIj7Y4lF2af0Xyi7
-         cjQs1ku2v4RcW7SOmq5JgJtyZhHETp+q/wvT/LmBXvwR68VlIOlKTF+fV+TjIUbU/8Ss
-         cgmg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXpn+Z1DkqptILPBpUsh1PJCFK3koJybpDnWedwPGNI2zz/RezXJg7NuuxaIrT9oouB7lselBKOYl489zQvCLxuJeRuv3LbdGrTQ==
-X-Gm-Message-State: AOJu0Yxh6AtDk5ojyQsikrH4oc+NZTvfzRbZFo3rJPNvPuO2Kn3KtjXO
-	C6FUkvoy64QaCRYCA5g39l3ag3dk9qN8gg4487cm9l5Q7eIh3Y9lT9j6v8o4J4Q=
-X-Google-Smtp-Source: AGHT+IHOLVwBDFR0EUE4X7BqnBPhVbSRb3vyCDe9DkuBfXIisPyXPVqyyVT8KZlJSXWpQ8sV4pDLvw==
-X-Received: by 2002:a05:600c:4508:b0:417:eb5d:281b with SMTP id t8-20020a05600c450800b00417eb5d281bmr11469960wmo.17.1714991158177;
-        Mon, 06 May 2024 03:25:58 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id g20-20020a05600c311400b0041bf685921dsm15561933wmo.0.2024.05.06.03.25.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 May 2024 03:25:57 -0700 (PDT)
-Message-ID: <12daeed1-0075-4a6c-bd02-dc70a0c0d721@linaro.org>
-Date: Mon, 6 May 2024 11:25:56 +0100
+        d=1e100.net; s=20230601; t=1714991393; x=1715596193;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BNMaBJWGHZyABbZOaeEJdaPLgk7Dz9409DKeZNEhRws=;
+        b=TynYazd6tvu1rzFeOKD69wMHBAbYTXmROuK8odK018PKw6hvI1VCR6CIGvKA/kMTO1
+         bTIK3y3nkPdxUbfk7z6sto9E4V/R0557vXAqNbsGBCSmI2JqXRzQAUecC0YafbFTRnOS
+         a6h8ns/3GIgtIRBG0Tn3clkFPgornTOHeH3uTumz7JCqzOpkkJkxilToEcMPzIrhpjOf
+         m0W268ukxBW5p6FOOXFL+bNpQBNydnV5T+JxvAR9W7DtA9J6JdmTyRax7qekiCAQfaJr
+         OQQXAz32q3U41ZbOr+rwLjGC7TAeMrEsb+AX4K4gl1DHZf7L7t/5ULEYWQ8jCxYb3z5Y
+         IzWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVOpyam0pz8jvsmwUnyyqKOvXX5J9St/Fb/Gyiukrx+KuUHlJOPONNZz0VwVl6UURW/8LytiKdZ8cWXuAbzO+/U9L2Y8Kt5el9a9w/JpcVpJVoUr11M/0X4/FR5zjjCEs9GCZ6LlAcWDg==
+X-Gm-Message-State: AOJu0YwDX1NT5ZPs4arafsyoTukQPc0MrnGxj7gZXMez+ZnAD2hgx4qw
+	ezKYcw4tkFCQia5PrKMKR+/09w6vI8vS5qsSHYQH5SxdHAJ0NOJPgh8bUvIHchBWKN9Id3sHHyq
+	Od2+/upLTjLwvbtezstxTBlusNr4=
+X-Google-Smtp-Source: AGHT+IG+kj32TsL8muODw5VYvjt7aRQOGre2x2qhtWjM/D/2fzkEhZvrp99rRg39tty5jMlGjdEnSiLMOm9Us3O0nvU=
+X-Received: by 2002:a19:381a:0:b0:51b:528e:ce7d with SMTP id
+ f26-20020a19381a000000b0051b528ece7dmr7786951lfa.34.1714991393205; Mon, 06
+ May 2024 03:29:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] Add support for qcom msm8998-venus (HW vdec /
- venc)
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
- <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
- <f5b9c8d5-d8ed-4dd1-9cd6-fb016d84cbd5@freebox.fr>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <f5b9c8d5-d8ed-4dd1-9cd6-fb016d84cbd5@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <20240506-rk-dts-additions-v4-1-271023ddfd40@gmail.com> <5332d58d48607a5559a84a2f85ce3e1b@manjaro.org>
+In-Reply-To: <5332d58d48607a5559a84a2f85ce3e1b@manjaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 6 May 2024 14:29:41 +0400
+Message-ID: <CABjd4Yz0NyqgJL8HXH2-KCxP-GbsiZjvdwqcQGh6RJuECH=kvw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/6] arm64: dts: rockchip: add thermal zones
+ information on RK3588
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, 
+	Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/05/2024 10:57, Marc Gonzalez wrote:
-> On 30/04/2024 17:28, Marc Gonzalez wrote:
-> 
->> Changes in v2
->> - Add Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> for patches 2 & 3
->> - Replace qcom,msm8998-venus.yaml (copy of qcom,msm8996-venus.yaml) with item in qcom,msm8996-venus.yaml
->>
->> Marc Gonzalez (3):
->>    dt-bindings: media: add qcom,msm8998-venus
->>    arm64: dts: qcom: msm8998: add venus node
->>    media: venus: add MSM8998 support
->>
->>   Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml |  4 ++-
->>   arch/arm64/boot/dts/qcom/msm8998.dtsi                           | 48 +++++++++++++++++++++++++++++
->>   drivers/media/platform/qcom/venus/core.c                        | 42 +++++++++++++++++++++++++
->>   3 files changed, 93 insertions(+), 1 deletion(-)
-> 
-> Not sure what's holding up this series?
-> Can it be merged before the 6.10 merge window opens?
-> (Whose tree is it supposed to go through?)
-> 
-> Been working on this feature since Feb 19 with
-> [RFC WIP PATCH] venus: add qcom,no-low-power property
-> (First try turned out to be incorrect)
-> 
-> Regards
-> 
+Hello Dragan,
 
-Vikash, Stan.
+On Mon, May 6, 2024 at 1:52=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> wr=
+ote:
+>
+> Hello Alexey,
+>
+> Thanks for submitting the v4 of this series!  Please, see a couple
+> of my comments below.
+>
+> On 2024-05-06 11:36, Alexey Charkov wrote:
+> > This includes the necessary device tree data to allow thermal
+> > monitoring on RK3588(s) using the on-chip TSADC device, along with
+> > trip points for automatic thermal management.
+> >
+> > Each of the CPU clusters (one for the little cores and two for
+> > the big cores) get a passive cooling trip point at 85C, which
+> > will trigger DVFS throttling of the respective cluster upon
+> > reaching a high temperature condition.
+> >
+> > All zones also have a critical trip point at 115C, which will
+> > trigger a reset.
+> >
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 147
+> > ++++++++++++++++++++++++++++++
+> >  1 file changed, 147 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> > index 6ac5ac8b48ab..ef06c1f742e8 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> > @@ -10,6 +10,7 @@
+> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> >  #include <dt-bindings/phy/phy.h>
+> >  #include <dt-bindings/ata/ahci.h>
+> > +#include <dt-bindings/thermal/thermal.h>
+> >
+> >  / {
+> >       compatible =3D "rockchip,rk3588";
+> > @@ -2368,6 +2369,152 @@ pwm15: pwm@febf0030 {
+> >               status =3D "disabled";
+> >       };
+> >
+> > +     thermal_zones: thermal-zones {
+> > +             /* sensor near the center of the SoC */
+> > +             package_thermal: package-thermal {
+> > +                     polling-delay-passive =3D <0>;
+> > +                     polling-delay =3D <0>;
+> > +                     thermal-sensors =3D <&tsadc 0>;
+> > +
+> > +                     trips {
+> > +                             package_crit: package-crit {
+> > +                                     temperature =3D <115000>;
+> > +                                     hysteresis =3D <0>;
+> > +                                     type =3D "critical";
+> > +                             };
+> > +                     };
+> > +             };
+> > +
+> > +             /* sensor between A76 cores 0 and 1 */
+> > +             bigcore0_thermal: bigcore0-thermal {
+> > +                     polling-delay-passive =3D <100>;
+> > +                     polling-delay =3D <0>;
+> > +                     thermal-sensors =3D <&tsadc 1>;
+> > +
+> > +                     trips {
+> > +                             bigcore0_alert: bigcore0-alert {
+> > +                                     temperature =3D <85000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+>
+> Doesn't removing the second passive trip, which was present in the v3,
+> result in confusing the IPA governor?
 
-I think this is ready to go, can we get an Acked-by so Hans can do the 
-merge ?
+Not really - it will just treat the missing trip as 0C for its initial
+PID calculations [1], and will continually run the governor as opposed
+to putting it to rest when the temperature is below the "switch on"
+value [2].
 
----
-bod
+Getting the power allocation governor to work optimally (i.e. to
+provide tangible benefits over, say, stepwise) is much more involved
+than defining an arbitrary switch-on trip point, as it requires an
+accurate estimate of sustainable power per thermal zone (which we
+don't have for RK3588 in general, and furthermore it must depend a lot
+on a particular cooling setup), and ideally some userspace
+power/thermal model capable of tuning the PID coefficients and
+updating them via sysfs based on how a particular system accumulates
+and dissipates heat under different load.
+
+So after thinking over it for a while I decided that those extra
+passive trips were rather self-deceiving, as they are only useful in
+the context of a power allocation governor but we do not have any of
+the other pieces in place for the power allocation governor to work.
+Better not to clutter the device tree IMO.
+
+Best regards,
+Alexey
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/d=
+rivers/thermal/gov_power_allocator.c#n156
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/d=
+rivers/thermal/gov_power_allocator.c#n487
 
