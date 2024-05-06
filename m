@@ -1,154 +1,121 @@
-Return-Path: <devicetree+bounces-65172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 802738BCE8A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:54:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BCA8BCEA2
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:58:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B986287D51
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:54:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CCE1287497
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59344EB45;
-	Mon,  6 May 2024 12:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9F7763F1;
+	Mon,  6 May 2024 12:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BF3fbcQo"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="O9YxQ8dC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131966BB29;
-	Mon,  6 May 2024 12:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A036EB53;
+	Mon,  6 May 2024 12:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715000057; cv=none; b=l8QTkWOXFc1UVn4og53tVbAI/RTOhRfTa/9iaJ/6ix4vO08GWdXzHammSoM2ciMz2JnvQxu8wP2raBpPhfxkS+Oijrk7AW33MAikcA4lB/NUHOx34+jVR/MZH7m9Cpm0UoG4WY+Ajxz6Ql9jgDMWTB+QUMENvi/8pv84AuaJatU=
+	t=1715000318; cv=none; b=d7mBUL78qynu5sQQwBFreA9nFijxiFgiIlPd6o7QV30WrNvGtVxb2kkHM3pipuQtSm1v32LnjNZWYcg/R5LqpJtQ/oziytXhBhfZMcGlXsEwf5e0RW2SfXxWIQHa7599+uPzlGTx14ym4D0ZELFGZjkYZIRYRTwapoX6HypzXHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715000057; c=relaxed/simple;
-	bh=E29O+zMWl54OXMlXahFL9wvPKNx96W/D2EieMI10Y/w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KHQVro7JaSP8wBlLi44b4jv1ii6pSlsmSD3hlqeIV284RQvu/Y7OS99H6d5Wpn6GaxvFz64RshGTJtTFl4gsGCSbAxWGFKkslUE3feqABrMZlI0bPowuOUnvJUtPsStqmQXEiAd9s4U0bkfI48wttIzTeQLPE2ot1/nuHsc8UAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BF3fbcQo; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-51f29e80800so2020175e87.2;
-        Mon, 06 May 2024 05:54:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715000054; x=1715604854; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IYJUMLyOfuPVkBGsjqvkIOkmksaH29NkjD+X1QlY6WE=;
-        b=BF3fbcQoIMk3XTJYeL5bDMvtsnGmu+My9/JmRckN6IjsfWsaN37APcJrKTeXzGDLHf
-         eG7kUdnLzpeS2+AhUrcATHPW9YB7m2vChQItecg3TzhaBvJVlCHlWgy0cL8GrII4/835
-         zEXLOkqXIk2dr/pYVj03aGUHWXiu2DwrbRvO0wJkiBafst4FPt0hXrTcMoVZ4z2fEKrQ
-         ngxc63zvUOrQ0YTRg0Js9a6BaBoXP8j4T0a/CP9rc8kSEaNd5hDIOp3HMYQVWfO7iMqQ
-         GZGZBKsRo0oeuyY3w+Tv3B0kdIZZe2eiJIoPQubCVQTxVCA2LvF4gdvkv3L79IEl04ke
-         5BUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715000054; x=1715604854;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IYJUMLyOfuPVkBGsjqvkIOkmksaH29NkjD+X1QlY6WE=;
-        b=O88JYHySBcZuCSkEEkUOQw6VZqBj6AZRTfg0T+3vScNGh8Y8tV3PXoZxtXE4ppBWf2
-         +J1HgvDqTLkPfNnPSlnzYuRyARilllQuJERxyuiwYWiizDgK2AatR3ozE+WJI35zLI/Q
-         Yx14Y26AHpBv+x7dCvGwivPkcbTsPtuL6YUad7FyMCZrIpmht89XqsLHWTWKygvQlrWf
-         P6B1FghXG7dDshfxaB++meFt9o8eXUINtNLOjmeILBcY1o1lDChCqbkqsNgu6kAQJ3yk
-         HZle4e93rI6C/BguVLOgBicqaW8NlGnLAKjGQks47AYhngoHQDMowrDBv9UZIs0QlKEN
-         TmQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYvUUb334/0gme1cf6H1iO9qWVXppxT8MQEtvla43ZTCCQz0wK2cJBBbrNePiY46p0lTDvJsKjISz0aJ/WGGK9rXJxWMJVf6IT9pmdG/SsXUykSLLa2ZTyd2jWn9TlcPCVmxYNfIAqkw==
-X-Gm-Message-State: AOJu0YwLVxa/Acr3unn+vvvf/vUnpWdOgw1Zgo8AbgIyjuG2c2B5Fzn1
-	ZbMSrxBDSMZFsZMO/uTdm7JNry0/nLhev/JkQTuxhjHv2kSeALi7rSWqb59Sr69d36i01yKFgwu
-	PJHrzmWIXsvXRTJR1p7JZNmQCouI=
-X-Google-Smtp-Source: AGHT+IEuu9HAQAASDPOvUv+eo4vaDmGpspytyOqJN4kLuzL+gyh+71AymJnLzYz3lQHVXAn61CiMQkJLULyWq0AKhf4=
-X-Received: by 2002:a19:f51a:0:b0:51e:eeb1:f24b with SMTP id
- j26-20020a19f51a000000b0051eeeb1f24bmr5882309lfb.34.1715000053829; Mon, 06
- May 2024 05:54:13 -0700 (PDT)
+	s=arc-20240116; t=1715000318; c=relaxed/simple;
+	bh=tLmidEw0xvorttT3kpSnB/51l0/SZujW7+7sWnN3BTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Cg+cLSmRjo+VFFxTeNdh4sl4ws6enBRkBpaZQ6wSYbCw+nhxmvfcSIE66mU1MHcC54V8QLxy7eB5icM5SXe6PR8FIWUwEMtZWTPZZt0Jx9QUKooHbqMMTtwd/tMLfvHfqpTOxP3VVQg55oan6cXYn/PEHnlD0AUFu3JzJQU8f78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=O9YxQ8dC; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1715000315;
+	bh=tLmidEw0xvorttT3kpSnB/51l0/SZujW7+7sWnN3BTE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=O9YxQ8dCW1tqgLW5rA+0n2ArPG6QQFelD3GGiGn1iE3MvfASacacXhC4m6/6738Ti
+	 k/V/Ma+/rUbWei5h8Gs7kAAtv5k4CiXrV87IfdqqBH9pFD/I4e9fnTRgANZgxgA2Er
+	 YuKt83JuNXixC1NSoRiH2W/I3t3Q3F+oni1Sbj1Xj7L/PJD2WzQ5Vb65aCu5LqEH/R
+	 8QJmt3NtrgfLnLC1HR7QZuZWQSLB12fbi79eEanIy9j4bCVumzWB5ek4gl+mDAc7pJ
+	 NRa00YWGRzZUciGJQYW20VIAEebikMKu8YzZYlX4GMx7jHPMa+s0JxRr0qjzFI3a0L
+	 e9gMJgpPOcHXw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8896437813E3;
+	Mon,  6 May 2024 12:58:33 +0000 (UTC)
+Message-ID: <01b2e468-e721-4bc5-9149-4e2292eafd42@collabora.com>
+Date: Mon, 6 May 2024 14:58:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com> <2543817.5xW6y1K4kI@bagend>
-In-Reply-To: <2543817.5xW6y1K4kI@bagend>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 6 May 2024 16:54:02 +0400
-Message-ID: <CABjd4Yw-JA5=SfcgtVNYZN37hFbqf14Ut1yHTSz1YZiZ3NQ-pw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/6] arm64: dts: rockchip: enable thermal management on
- all RK3588 boards
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/mediatek: Implement OF graphs support for
+ display paths
+To: Michael Walle <mwalle@kernel.org>, chunkuang.hu@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ wenst@chromium.org, kernel@collabora.com
+References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
+ <20240409120211.321153-4-angelogioacchino.delregno@collabora.com>
+ <D12G1NPU2H06.3LBLR19XYUAA6@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <D12G1NPU2H06.3LBLR19XYUAA6@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello Diederik,
+Il 06/05/24 11:11, Michael Walle ha scritto:
+> Hi Angelo,
+> 
+> On Tue Apr 9, 2024 at 2:02 PM CEST, AngeloGioacchino Del Regno wrote:
+>> +static int mtk_drm_of_get_ddp_ep_cid(struct device_node *node,
+>> +				     int output_port, enum mtk_drm_crtc_path crtc_path,
+> 
+> Not sure what's your base branch is, but "enum mtk_drm_crtc_path"
+> was renamed to "enum mtk_crtc_path" in commit 9e149879038f5
+> ('drm/mediatek: Rename "mtk_drm_crtc" to "mtk_crtc"').
+> 
+>> +/**
+>> + * mtk_drm_of_ddp_path_build_one - Build a Display HW Pipeline for a CRTC Path
+>> + * @dev:          The mediatek-drm device
+>> + * @cpath:        CRTC Path relative to a VDO or MMSYS
+>> + * @out_path:     Pointer to an array that will contain the new pipeline
+>> + * @out_path_len: Number of entries in the pipeline array
+>> + *
+>> + * MediaTek SoCs can use different DDP hardware pipelines (or paths) depending
+>> + * on the board-specific desired display configuration; this function walks
+>> + * through all of the output endpoints starting from a VDO or MMSYS hardware
+>> + * instance and builds the right pipeline as specified in device trees.
+>> + *
+>> + * Return:
+>> + * * %0       - Display HW Pipeline successfully built and validated
+>> + * * %-ENOENT - Display pipeline was not specified in device tree
+>> + * * %-EINVAL - Display pipeline built but validation failed
+>> + * * %-ENOMEM - Failure to allocate pipeline array to pass to the caller
+>> + */
+>> +static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_drm_crtc_path cpath,
+> 
+> likewise
+> 
+>> +					 const unsigned int **out_path,
+>> +					 unsigned int *out_path_len)
+> 
+> -michael
 
-On Mon, May 6, 2024 at 4:29=E2=80=AFPM Diederik de Haas <didi.debian@cknow.=
-org> wrote:
->
-> Hi,
->
-> On Monday, 6 May 2024 11:36:33 CEST Alexey Charkov wrote:
-> > This enables the on-chip thermal monitoring sensor (TSADC) on all
-> > RK3588(s) boards that don't have it enabled yet. It provides temperatur=
-e
-> > monitoring for the SoC and emergency thermal shutdowns, and is thus
-> > important to have in place before CPU DVFS is enabled, as high CPU
-> > operating performance points can overheat the chip quickly in the
-> > absence of thermal management.
-> >
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts               | 4 ++++
-> >  8 files changed, 32 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
-> > b8e15b76a8a6..21e96c212dd8 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > @@ -742,6 +742,10 @@ regulator-state-mem {
-> >       };
-> >  };
-> >
-> > +&tsadc {
-> > +     status =3D "okay";
-> > +};
-> > +
-> >  &uart2 {
-> >       pinctrl-0 =3D <&uart2m0_xfer>;
-> >       status =3D "okay";
->
-> I built a kernel with v3 of your patch set and someone tested it on a ROC=
-K 5B
-> 'for me' and it had the following line in dmesg:
->
-> rockchip-thermal fec00000.tsadc: Missing rockchip,grf property
->
-> I'm guessing that turned up due to enabling tsadc, but (also) in v4 I did=
-n't
-> see a change wrt "rockchip,grf".
-> Should that be done? (asking; I don't know)
+Yeah, thanks for noticing that, I'll send a new version soon.
 
-I'm getting the same. Neither the mainline TSADC driver [1], nor the
-downstream one [2] seems to use the grf pointer on RK3588 at all. It
-still works in spite of that warning, although I can't see how (or if)
-it configures the reset mechanism without those GRF registers.
-
-Best regards,
-Alexey
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/drivers/thermal/rockchip_thermal.c#n818
-[2] https://github.com/radxa/kernel/blob/stable-5.10-rock5/drivers/thermal/=
-rockchip_thermal.c#L961
+Cheers
 
