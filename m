@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-65134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5009D8BCC3A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:44:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459968BCC4F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:47:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 068E328408E
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:44:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42C87B23687
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A811369B6;
-	Mon,  6 May 2024 10:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DB81422C5;
+	Mon,  6 May 2024 10:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cj0QhUiu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kNp2yy9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051822BAE3
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 10:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7925C43AD2
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 10:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714992283; cv=none; b=If56gOjFGwC99pGmqTAUk4YSFneq8sNv+nkFGqhDowtM9lYtUFj90WbVlGPWl4t1rherlqTwm6caUpViWwCDNpnvF1H+q4sdAywoAY4Pl9/HNnieFW8ZxExB2RuZGPn4ETZU1ijrsQIPxz4GzMsiFQVdkOI81v4WX6QBSQJc7/I=
+	t=1714992461; cv=none; b=o9ewMNxsRoWBzCXFtEl7XZ9bPlDpwck/iWo946awyUJdLIHqSosE8EawJ1Rzve9tDMAK8xu0Yhs/g5P3O88txGjUwwCqfX4GJnyuyeQ5BOQtkeuPc1kEsiAuWSHfIDR4mzm+qxK1wjlPBPgVLB2PS9wURm4rd5k+QGryR0dz3jI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714992283; c=relaxed/simple;
-	bh=REe3appDABDzPFfIlFojAt8YThiQ8/4tcGTdMepqMZM=;
+	s=arc-20240116; t=1714992461; c=relaxed/simple;
+	bh=miKDTiDqUonSxCr3BlIjLrQ8pqt+ajmD4CBVnCaH/VY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XEkbDj8Y04iVcCXavHozgbFqozWfcPW9TyU/8kR/5EovOSJaxMflx9HkSQvvfu7vnFQ7T/GM259N7toGOuOoSBX9uJxJ8sEIUIVycZR3v4mz+SQH+E2/fawVFic5XXyIe8VQageG9m5BQB2fdelm9jGuUP+q3GBdrNUxbG+rUy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cj0QhUiu; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=B289xo1k3EsX99LZ1YjP0Jczq7mKjvXSYKY9LHVdAi58CImguFs0affMRXhlcGgcq6NDPfhtJ8GUMxgeGrHpTgVRg1QjHxZ51ZL1+YQw7q5xvpgqOgek90NUFefm2nr1eog32Mng8UEJBZgytSeF32Z/EwjFS7vi9uAV/57warw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kNp2yy9c; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a556d22fa93so407630766b.3
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 03:44:40 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a599eedc8eeso366316266b.1
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 03:47:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714992279; x=1715597079; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1714992457; x=1715597257; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=8Gh0QHWFzZc1qbRmSzj176xyq5SqRTDtfEGjzoB8ndA=;
-        b=cj0QhUiuvPconKXRgMyXf1wUb2PCSWmX5S+nEMGGRzqQPctKKwg8zL7UjUn390tbjz
-         y0Wkkh6iS3FbPaJerJcp8K1FE0xp8aM6i9W+re7V4VA+h0b6A9P/arh24IPI/Sk3g3bF
-         +VvTKhuJjl19QICyd0QyiBVV4Bc9lq3mplrLsaOIXtd/08d3b10zZw1zIZEc7+Ta/8oH
-         Bf/mrPBV5t+JrD4dpmx9Sec50yjw4Z7O0pu2+xI7pipurGD6bZdiHwy9JXtuOXJf4Q7E
-         pcHHMKLOIoegK48DHhCooQYKoIWxEZ1dtYb0DmW81ZnYLPN8+HOiFPG02BdHaW7H2Ts8
-         tdpg==
+        bh=F4JMX3o86635aG32+mG9mxPC6jfYm0RO+Yn/FflTLFs=;
+        b=kNp2yy9cBcgJgsa6RNNI6R26DsRpGBiRvKpSvu4BXC8RhfdGV16CAxdoZ49RqwKBfj
+         t+WKu9qlrEl/0Oc5LC0dQXXR2qcTw/Px/NXz+FPOWPQFikevCf4UojKNSAwzLuBrwoDg
+         o/uf8jB3P5eLLrHqyYxCCp/puhcw4++GPjlhJgEF9AXGL7ZGlkvCb8wdH9Xn9g08BRQM
+         5sEAMUDw/9yTZHhtG0yCg+PrTv7mzc9ijeGMvdmKD/ezSJ3JT5qfkg6rf9r9JBzx1bKv
+         F/6EH5xaVAtQnezat7HNkyenv1qTI+TFLqwpaFoN9TeACbl4HW27Encg2d9Z8pNFq0FA
+         Lo7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714992279; x=1715597079;
+        d=1e100.net; s=20230601; t=1714992457; x=1715597257;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8Gh0QHWFzZc1qbRmSzj176xyq5SqRTDtfEGjzoB8ndA=;
-        b=b2IcPbIo2d5PA22UvLj3v2m/8i1r3SqatbTzPHGh/E0F9Ph3ifexYIQOzXu3ZQCfg2
-         472ssGVUjuEb3XZ996ST7EEQxFoGOlzO6Ue+sF47bLgl2rEkNLheUGcFts8oskJ1l7Cc
-         qDoMCb9tzJjEDz2Defc0UUGzxfRYKodpIoRyN7MQTuU9N3vgmcPBg2UfXoRS1HQWV4UV
-         bbExXPRi7Ilg9qcKHK6uKhnkmaGUBE7RSVUIXIjuQJseqZaHRVY92OljerqQcqcfzQ4a
-         +xmToQ4czCpWdvxKRSJIc2ysWyOhgbCbjOWSebx++Xi5OwNxxRPldUlGVpMArj09m/au
-         keGA==
-X-Gm-Message-State: AOJu0YzUvzB55F052tqgePfRUiaNh0cYnMykvN4PV6Wzj0TcYWxXlKo8
-	ctt1OKTYIG6ZhThVwcBsQvkLpFX0PLkmxgoVuUIC/7M+UmSUuG99wjqNuhQwgTWMHne/at13aCX
-	5
-X-Google-Smtp-Source: AGHT+IFtCcXuzWNN9u5WZLz9gZzLlYDjPDKHrS8PekNlyOJehJsFYJHkODYyy8b+QS40ZDI0Ya9U6w==
-X-Received: by 2002:a17:906:9817:b0:a59:a938:d92b with SMTP id lm23-20020a170906981700b00a59a938d92bmr3519581ejb.66.1714992279270;
-        Mon, 06 May 2024 03:44:39 -0700 (PDT)
+        bh=F4JMX3o86635aG32+mG9mxPC6jfYm0RO+Yn/FflTLFs=;
+        b=gyFMKmNNaZnzWI6VQHP4RcM1dRv+L/Ij2mvn57crT0nmwVLYezEy3kUXYen4eASkQC
+         qPwXtmPcNT8LCRSKbIku1CT1SILzWC2tcWu3Yb26apbvt7DKxMeBTZN/mB3Kl0pf0gRC
+         xcadcKhc4OpOUUUNjBhkhH6L7L6AEn7DpHD+cR63OzpXgq/XHCX9+ZA77sWMjmSTOM7p
+         4brEwHq+3qU74fnDnS0yS2IERhL3W+s1rrFX8RaUlSHyJkQ/HIRcW3hGT/GOY0K6kRGa
+         owPNghxtmDrfAbprwZt/lI/GnMyHwM6HeZzhIA6Lfol0RFqSp8SAvkpc4drTlpercmar
+         mZiQ==
+X-Gm-Message-State: AOJu0YwSKez1EnVd0GjP62kNLaqk/9/uvdYQazH6d6/vndQqWScZs1D0
+	EmpmKMnwEVjhFrii6VoYeOrsKhKnsuxsknSldJoRjf5rao2wrn9V69cuVdJ1kwE=
+X-Google-Smtp-Source: AGHT+IF6sSTww0riTzGefAdnhzvOckrnucY0ZN20UWJZ7vG/biTudz5LWPdPZY6cyiq/1WeV4Yccow==
+X-Received: by 2002:a50:c355:0:b0:572:2f0d:f4cb with SMTP id q21-20020a50c355000000b005722f0df4cbmr6378923edb.1.1714992456811;
+        Mon, 06 May 2024 03:47:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id qw11-20020a170906fcab00b00a59b64a4d13sm2243236ejb.165.2024.05.06.03.44.37
+        by smtp.gmail.com with ESMTPSA id n10-20020a056402434a00b00572df643637sm3211499edc.62.2024.05.06.03.47.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 May 2024 03:44:38 -0700 (PDT)
-Message-ID: <6b8fa101-eedf-4759-ba97-de60af15a022@linaro.org>
-Date: Mon, 6 May 2024 12:44:36 +0200
+        Mon, 06 May 2024 03:47:36 -0700 (PDT)
+Message-ID: <5c4a6d57-82e0-430b-a12e-59c331a32eab@linaro.org>
+Date: Mon, 6 May 2024 12:47:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: rk809: Fix vcc8 and vcc9-supply
- description
+Subject: Re: [PATCH 2/4] dt-bindings: mfd: rk809: Add audio codec properties
 To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -87,7 +85,7 @@ To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240505134120.2828885-1-jonas@kwiboo.se>
- <20240505134120.2828885-2-jonas@kwiboo.se>
+ <20240505134120.2828885-3-jonas@kwiboo.se>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,37 +132,113 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240505134120.2828885-2-jonas@kwiboo.se>
+In-Reply-To: <20240505134120.2828885-3-jonas@kwiboo.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 05/05/2024 15:41, Jonas Karlman wrote:
-> As can be seen in the RK809 datasheet BUCK5 and SWOUT1 share an input
-> supply, vcc9, and SWOUT2 use vcc8 as the input supply.
+> Similar to RK817 the RK809 also integrates a complete audio system.
 > 
-> Correct the description for vcc8-supply and vcc9-supply to reflect this.
+> Add audio codec properties to binding to reflect this.
 > 
 > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
+Except sending untested patches...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/mfd/rockchip,rk809.yaml          | 34 ++++++++++++++++++-
+>  1 file changed, 33 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> index c951056b8b4d..b78e1b090105 100644
+> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> @@ -12,7 +12,7 @@ maintainers:
+>  
+>  description: |
+>    Rockchip RK809 series PMIC. This device consists of an i2c controlled MFD
+> -  that includes regulators, an RTC, and power button.
+> +  that includes regulators, an RTC, a power button and an audio codec.
+>  
+>  properties:
+>    compatible:
+> @@ -93,6 +93,34 @@ properties:
+>          unevaluatedProperties: false
+>      unevaluatedProperties: false
+>  
+> +  clocks:
+> +    description:
+> +      The input clock for the audio codec.
+
+No, this allows anything. You must be here specific, see example-schema.
+maxItems: 1
+
+Drop description, redundant.
+
+> +
+> +  clock-names:
+> +    description:
+> +      The clock name for the codec clock.
+
+Drop description, redundant.
+
+> +    items:
+> +      - const: mclk
+> +
+> +  '#sound-dai-cells':
+> +    description:
+> +      Needed for the interpretation of sound dais.
+
+Drop description, redundant. Do you see it anywhere for such properties?
+
+> +    const: 0
 
 
----
+Missing ref to dai-common in your allOf (again: take a look how other
+bindings are doing it).
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+> +
+> +  codec:
+> +    description: |
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+Do not need '|' unless you need to preserve formatting.
+
+> +      The child node for the codec to hold additional properties. If no
+> +      additional properties are required for the codec, this node can be
+> +      omitted.
+
+That's useless description. Describe hardware, not syntax. This must say
+what this node represents.
+
+Anyway drop it. You do not have any resources there, so put properties
+in top level.
+
+
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      rockchip,mic-in-differential:
+> +        type: boolean
+> +        description:
+> +          Describes if the microphone uses differential mode.
+
+Your description copies property name. Do not describe the syntax
+"Description describes", but say what is it.
+
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -284,5 +312,9 @@ examples:
+>                      };
+>                  };
+>              };
+> +
+> +            rk809_codec: codec {
+> +                rockchip,mic-in-differential;
+
+Missing all other properties. Make your example complete.
 
 Best regards,
 Krzysztof
