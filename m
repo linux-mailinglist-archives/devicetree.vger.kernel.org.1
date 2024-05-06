@@ -1,164 +1,175 @@
-Return-Path: <devicetree+bounces-65218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE2D8BD19F
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:38:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4133F8BD1C2
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:47:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1DA71F23D2A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:38:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76F4AB24C3B
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D2D15573B;
-	Mon,  6 May 2024 15:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06D715572C;
+	Mon,  6 May 2024 15:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n7Zj3Awx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrWbB8pL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2042F2C;
-	Mon,  6 May 2024 15:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719171553BC;
+	Mon,  6 May 2024 15:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715009898; cv=none; b=SPetaiPK6PwBHoqn8ep47uUW7g/xTkAt6LSvf2jufmzdVPY7mA3TMWd21E9TcD2lIdqOC0W08uspzcwNgT9i1TvRnRqY7irvFX/3D2JUB64D1KxXDBFGMeN72M1BoOSjVXwPcpAzl0BJtPrTQXqQpBPatfPKRfX/RVRGSLVFg+I=
+	t=1715010455; cv=none; b=MQob6i1BEfXi9i8G3xQKY/A0fT2exFtQuq0WROVkcZEgA42gKGLF0qscHxCtRL4jl1xbCNhFg0gZJmV5KCkB7Af6g0e7IBaQ0MA0Bj2b1OkLVT+1C4LFE3V/7dCPMgZSpr8jh8jpdQVwHbuOd+dVZyVtzP2+zJkVu2SbaNbIo7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715009898; c=relaxed/simple;
-	bh=lq8TajzvkOy47+/9bqCVcmF6c929YJyj/nUUZTCovm4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S2VKKWb8a+qjHC+Z3guuGUXesotrBOQaKWrlfEsWTPIyNbBriMp9ywjvpu+oclWQ3TLvxmkHm2eYC14xmmllqVTkBv8JZsZyzbyxWlWEHPo71c1f0WAeCxprBxyNUi2nIJ9wYJbWLmpL5NWolOlC1cq54EePFI6tLywA5Z8X/hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n7Zj3Awx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36911C4AF65;
-	Mon,  6 May 2024 15:38:13 +0000 (UTC)
+	s=arc-20240116; t=1715010455; c=relaxed/simple;
+	bh=h5Zn71IG11xUlo/JirQepQ3NK+G0HDNvWXGwp8rEKRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RYjXeEwHp/8vkNprXQSx9gulIAiHHwSANs66VlJ7LWwPgGrCbdFEfhnPTU3MoIZKkjIPj9d/uUbLfL7eWhCspNXsJUiOeTVhX59bGWGyX3/Z/RyAKKGdLjgly9XzIRzlB4vLxd1AGlxjDggqsYEG/WEOU+CrK6zEUpZkw17Do5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrWbB8pL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 763DAC116B1;
+	Mon,  6 May 2024 15:47:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715009897;
-	bh=lq8TajzvkOy47+/9bqCVcmF6c929YJyj/nUUZTCovm4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n7Zj3AwxmJwLMch2uiuWHfIw/+RCg28CT2orj1uvNh5BdrjxqjNIzFWH6d8I42SZf
-	 6we56ge5QdhaRdhYlF8jnXomD8zp9h8BdHC2rAo2hrEOx5HpiLUX3vftCzp+Q1iRJ4
-	 01Fd7xzg+0ftVm5WygjFyLdgKUFm6YFX1eSZCRdqcypOCCwMRZDOXER1gUX86ZjO+E
-	 DunEI8syC+HcF04aT6GYGUIFG47KS0cAQkqF4nlo7UjglQGAg/rxD/7iwuGbjEG9Gn
-	 au+UhFluNtFayIwLkbf1eI+hdwwvmYUWan7HSZzqKGZI+83BU/bkbjgJAIligbdd7K
-	 Xe07H9RFYSnrA==
-Message-ID: <3903300d-9d5b-44b3-95fa-0579e5421071@kernel.org>
-Date: Mon, 6 May 2024 17:38:11 +0200
+	s=k20201202; t=1715010454;
+	bh=h5Zn71IG11xUlo/JirQepQ3NK+G0HDNvWXGwp8rEKRk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OrWbB8pLnQpbuok8zaRSW4weeZre/pSDnn9c2tYySH9JX9kJWrE37F6x7eT2huT80
+	 Clrv1urIZSjstPQ8XCIxfUzJvo3I4G+YNz07kK2Q2LNZO+E4WUmEUTEVjrrlrabWGA
+	 uJXyfwMLyE7RBgPfsxl6jnkvCsg5uo9vzWmnAoERrFehCcA8F+MJYPIcPN3QJ8BuMM
+	 wZBcZpG7MUPRR+IeNpa/gzXd3wbQpMHB7W/q8Lrc/bMzsxJIz7NK/sipNbfBz3Re2Q
+	 ZDX22+oOMwUrSP9ByqPsyJBNaU1SoROcrYHcxWU/wT8XC/5jFEhewp0wnBv9cTPPwW
+	 q/jQ8zTQfv7EQ==
+Date: Mon, 6 May 2024 16:47:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>,
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Message-ID: <20240506-distrust-famine-6848f75dd3fe@spud>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+ <20240411133832.2896463-18-avromanov@salutedevices.com>
+ <20240415-schnapps-plating-eb0895459004@spud>
+ <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: add I3C config in DTS
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
- joel@jms.id.au, openbmc@lists.ozlabs.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20240506113306.1283179-1-Delphine_CC_Chiu@wiwynn.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240506113306.1283179-1-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 06/05/2024 13:33, Delphine CC Chiu wrote:
-> Set I3C config in yosemite4 DTS.
-> 
-> Test plan:
-> Tested with aspeed I3C patches and I3C hub driver.
-> 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index 64075cc41d92..6a30c424d745 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -595,6 +595,92 @@ i2c-mux@72 {
->  	};
->  };
->  
-> +&i3c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i3c1_default>;
-> +	i3c-pp-scl-hi-period-ns = <40>;
-> +	i3c-pp-scl-lo-period-ns = <40>;
-> +	i3c-od-scl-hi-period-ns = <380>;
-> +	i3c-od-scl-lo-period-ns = <620>;
-> +	sda-tx-hold-ns = <10>;
-> +
-> +	mctp-controller;
-> +	hub@0x70 {
-
-That's not a valid unit address.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GdrLK7VTJWvHWU47"
+Content-Disposition: inline
+In-Reply-To: <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
 
 
-> +		reg = <0x70 0x3c0 0x00700000>;
-> +		cp0-ldo-en = "enabled";
-> +		cp1-ldo-en = "enabled";
-> +		cp0-ldo-volt = "1.2V";
-> +		cp1-ldo-volt = "1.2V";
-> +		tp0145-ldo-en = "enabled";
-> +		tp2367-ldo-en = "enabled";
-> +		tp0145-ldo-volt = "1.2V";
-> +		tp2367-ldo-volt = "1.2V";
-> +		tp0145-pullup = "2k";
-> +		tp2367-pullup = "2k";
+--GdrLK7VTJWvHWU47
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Where are bindings for all this?
+On Mon, May 06, 2024 at 01:48:01PM +0000, Alexey Romanov wrote:
+> On Mon, Apr 15, 2024 at 05:43:15PM +0100, Conor Dooley wrote:
+> > On Thu, Apr 11, 2024 at 04:38:26PM +0300, Alexey Romanov wrote:
+> > > GXL crypto IP isn't connected to clk and seconnd interrput line,
+> > > so we must remove them from dt-bindings.
+> >=20
+> > How does the device work without a clock?
+>=20
+> It's clocked by a common clock, the vendor didn't provide more
+> information. It doesn't have any special clock domains.
 
+So the hardware block does have a clock, which, even if it is a clock
+shared with other hardware blocks, makes your patch incorrect.
 
+Is the "blkmv" clock the shared clock?
 
-Best regards,
-Krzysztof
+Cheers,
+Conor.
 
+> > > Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings
+> > > documentation for amlogic-crypto")
+> > >=20
+> > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > > ---
+> > >  .../bindings/crypto/amlogic,gxl-crypto.yaml         | 13 +----------=
+--
+> > >  1 file changed, 1 insertion(+), 12 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-cry=
+pto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > index 948e11ebe4ee..d3af7b4d5f39 100644
+> > > --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > @@ -20,20 +20,11 @@ properties:
+> > >    interrupts:
+> > >      items:
+> > >        - description: Interrupt for flow 0
+> > > -      - description: Interrupt for flow 1
+> > > -
+> > > -  clocks:
+> > > -    maxItems: 1
+> > > -
+> > > -  clock-names:
+> > > -    const: blkmv
+> > > =20
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > >    - interrupts
+> > > -  - clocks
+> > > -  - clock-names
+> > > =20
+> > >  additionalProperties: false
+> > > =20
+> > > @@ -46,7 +37,5 @@ examples:
+> > >      crypto: crypto-engine@c883e000 {
+> > >          compatible =3D "amlogic,gxl-crypto";
+> > >          reg =3D <0xc883e000 0x36>;
+> > > -        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI =
+189 IRQ_TYPE_EDGE_RISING>;
+> > > -        clocks =3D <&clkc CLKID_BLKMV>;
+> > > -        clock-names =3D "blkmv";
+> > > +        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
+> > >      };
+> > > --=20
+> > > 2.34.1
+> > >=20
+>=20
+>=20
+>=20
+>=20
+> --=20
+> Thank you,
+> Alexey
+
+--GdrLK7VTJWvHWU47
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjj7kQAKCRB4tDGHoIJi
+0l3kAQD5POkxdd7Ibsf2owlwltjfQ8u5NyntENYzmmppOVoEcQD+Jv1hTUFpdYX1
+AIEdvzcVlt1l4S5vs5DnQz3ZOI72Uw4=
+=nXAR
+-----END PGP SIGNATURE-----
+
+--GdrLK7VTJWvHWU47--
 
