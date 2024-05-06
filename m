@@ -1,148 +1,151 @@
-Return-Path: <devicetree+bounces-65150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F48F8BCD8D
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:13:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB0898BCD9D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:17:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40EDB1C220B0
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:13:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 083DDB23A09
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1271143899;
-	Mon,  6 May 2024 12:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D742143898;
+	Mon,  6 May 2024 12:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MP2ZTid+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIffkB5C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD68143C65
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 12:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522FD14262C;
+	Mon,  6 May 2024 12:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714997588; cv=none; b=B3EMZS/bW2G8VWO7zVVJck6OhVBF3ybSMzRSHzGYBFSpRdO8++Eb/anPGilv4Ynj7x7ht5jLsVjyR6TD33BQRy+F42ZM154mxqa9LJA/0YzF8ZPl7XhHdytEnLCHZhJ8v/iqwN8vM5ClUhRfyA63co/vI8gj/SW+NR7z9L5SOtE=
+	t=1714997808; cv=none; b=rXmm806uSBG5hyRwjNrad/8+e1qL2klW7IUQrT7eAqfUGtkf8D2M3LrHLt7JAVA2nWuvQkdlaFR3swzFMgzQSZw+Ogrs30rO+0xus2K+KuD3C1P09qDQ5d9KGd6ygHOruWd4N1Xzqc3AhhzMQEFCz/LViU8HUQqSglYvjYntY/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714997588; c=relaxed/simple;
-	bh=SJorlvBhI60itC7iiQx26RslvUGaX59HbR2ZqMGANGk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FHcfme9mPMGmY+0wnlSMgSkdSgLwvc1gpFdSfN/gCZcQ/0tW1EWLg3Oo0sb2eszKVU5r/54VrHNqxKmSR6UmYRmTgK4yO21vtJtbW6jZkrN5xwzKgI4X+KYwjfKTtLdOlHLh/YmLhvUbpnBFXwa8rE4UKwXSDqfPakLHqZj1btU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MP2ZTid+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24661C4DDED
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 12:13:08 +0000 (UTC)
+	s=arc-20240116; t=1714997808; c=relaxed/simple;
+	bh=imW+tOmQLVq8kGToLptxFdeea7wI9xfeY1vCN4uPZuw=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=JpUSGapWTb3s34TGBgv/zMOyejZ2BR09gks+Val381wmcwGpn4yqi8V9vs6FtpeQhW0oVw1pxMVzee1ZkzUNIqwE7XquOyT3otDq3pG1jqGZQUEebfPbNKZ1vzm/N33RkUB9QoyGJYVnhrKX/aRYpBpQT7cl+ci7q9MvH8loCPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qIffkB5C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB935C116B1;
+	Mon,  6 May 2024 12:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714997588;
-	bh=SJorlvBhI60itC7iiQx26RslvUGaX59HbR2ZqMGANGk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MP2ZTid+1eKvTIvN/QPEkk4TUPg6SCDssM/QtEgT/VJn+yG+JY3RXN4QqPC2RE8OQ
-	 0yXzc8Wu3ZbdOvf/WPuf7/BK3l/62MuP2GHMmDi95xSk7E1J7QEnAfpkPmbfr9P1Xo
-	 5W5KzuO7FOBAQEDYRCQCR7g6ZXf+xgj7NLwWzmycE58js6wrjUo2IDwat/4pvY9Tbq
-	 +hSbcNFJuGsT00CAnLzKj7Fa3ey5If1aNDmvjy34BpMOLWO2gU2bdDfzama4F8LYBa
-	 uOVuWZ37lesdJ+zzD4r346wqHohkv0HJDQvOwy/LXUIZUG6NjnTo45/NU9au9fG+SF
-	 lV5TKpCSTjWWg==
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-deb65b541faso1552623276.0
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 05:13:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUmIZxQV54oki9OGmQrYhPnGvWK4WjmEyQTHA28jVysBW201AtXBQRoN+hIafFl6A8qnlyOCEch5ObXT5ueey40Ey7hnZm505FYJQ==
-X-Gm-Message-State: AOJu0YzSTZuO9t1ERAOfy+/cJCgrBhNn/vbp223wgGux5Uk2TI6FTpGM
-	2w9+S5c4oX6YloCDV7B0BRO98YiSIkOR+uDesb1zv9d30xMXwRamG7rTuTp04zxicbtoCnS/fwU
-	wSNed74kLEEB8HZg+z4aKhpFayDT8RRSYw6Qybg==
-X-Google-Smtp-Source: AGHT+IEdvvzDKPPs35mauLYBPaP2BlZLW/tD4jzIuzbyL2tiOrWFfQ0DbgvnC6EA7OV6cZIuLrHmcp8oSAKySJVe49A=
-X-Received: by 2002:a05:6902:1b01:b0:ddd:7456:d203 with SMTP id
- eh1-20020a0569021b0100b00ddd7456d203mr11606197ybb.41.1714997586640; Mon, 06
- May 2024 05:13:06 -0700 (PDT)
+	s=k20201202; t=1714997807;
+	bh=imW+tOmQLVq8kGToLptxFdeea7wI9xfeY1vCN4uPZuw=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=qIffkB5CzbpmgYvIlqOZw40xo0i/2sgi+EIaWIL/LDuqWYhPeMgtVXR0uJQb77FCZ
+	 Fc+luNUhSVsdItlyHjU+Y9ZOiouUgwpCUtdeggTEecnvjcMOzqrbMoyib3IzQp3yQV
+	 nsTdrAak3IUZe5De9szGwODR59R3C1Y4u8IQaRhjTZw3OuPPILRQRT9EEkbJcUJHYu
+	 iqwO7fGrg9puWWbUfX658Tqf0b/koh/V6yKK36CpjjFc0s+0skyEibCEFKliJFtGO4
+	 woQf8dAkmVFx4NTsmz0CkBws16hddpjW6CQGpqPzXxBjGsPIfVVKbyJfx4ZekDlN1h
+	 jWxiNdkZy83uQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,  Jeff Johnson
+ <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
+  wireless <linux-wireless@vger.kernel.org>,  DT
+ <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
+ Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
+ <avrac@freebox.fr>,  Bjorn Andersson <andersson@kernel.org>,  Konrad
+ Dybcio <konrad.dybcio@linaro.org>,  Jami Kettunen
+ <jamipkettunen@gmail.com>,  Jeffrey Hugo <quic_jhugo@quicinc.com>,  Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>,  Alexey Minnekhanov
+ <alexeymin@postmarketos.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+References: <ebbda69c-63c1-4003-bf97-c3adf3ccb9e3@freebox.fr>
+	<54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
+	<ZjBV+th9DmnNLhnN@hu-bjorande-lv.qualcomm.com>
+	<8734r3qysm.fsf@kernel.org>
+	<b6a1eadf-477d-48a8-bf39-ac3c3191e929@freebox.fr>
+Date: Mon, 06 May 2024 15:16:41 +0300
+In-Reply-To: <b6a1eadf-477d-48a8-bf39-ac3c3191e929@freebox.fr> (Marc
+	Gonzalez's message of "Tue, 30 Apr 2024 13:10:45 +0200")
+Message-ID: <87fruvm8ye.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240502-anx-tdm-v1-0-894a9f634f44@chromium.org> <20240502-anx-tdm-v1-2-894a9f634f44@chromium.org>
-In-Reply-To: <20240502-anx-tdm-v1-2-894a9f634f44@chromium.org>
-From: Robert Foss <rfoss@kernel.org>
-Date: Mon, 6 May 2024 14:12:55 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi79jNhCybjyX3aQjXAP_J6MpjuCBL5q2aFrgjENPt60kA@mail.gmail.com>
-Message-ID: <CAN6tsi79jNhCybjyX3aQjXAP_J6MpjuCBL5q2aFrgjENPt60kA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/bridge: anx7625: Change TDM setting accroding to
- dt property
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Xin Ji <xji@analogixsemi.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Thu, May 2, 2024 at 11:03=E2=80=AFAM Hsin-Te Yuan <yuanhsinte@chromium.o=
-rg> wrote:
->
-> For some SoCs, the TDM setting is not to shift the first audio data bit,
-> which is not the default setting of anx7625. In such cases, the TDM
-> setting should be changed according to the device tree property.
->
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
-> ---
->  drivers/gpu/drm/bridge/analogix/anx7625.c | 8 ++++++++
->  drivers/gpu/drm/bridge/analogix/anx7625.h | 1 +
->  2 files changed, 9 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/=
-bridge/analogix/anx7625.c
-> index 29d91493b101a..538edddf313c9 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -1709,6 +1709,9 @@ static int anx7625_parse_dt(struct device *dev,
->         if (of_property_read_bool(np, "analogix,audio-enable"))
->                 pdata->audio_en =3D 1;
->
-> +       if(!of_property_read_bool(np, "no-shift-audio-data"))
-> +               pdata->shift_audio_data =3D 1;
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-checkpatch --strict reports this:
+> On 30/04/2024 06:06, Kalle Valo wrote:
+>
+>> Bjorn Andersson wrote:
+>> 
+>>> On Mon, Apr 29, 2024 at 04:04:51PM +0200, Marc Gonzalez wrote:
+>>>
+>>>> The ath10k driver waits for an "MSA_READY" indicator
+>>>> to complete initialization. If the indicator is not
+>>>> received, then the device remains unusable.
+>>>>
+>>>> cf. ath10k_qmi_driver_event_work()
+>>>>
+>>>> Several msm8998-based devices are affected by this issue.
+>>>> Oddly, it seems safe to NOT wait for the indicator, and
+>>>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
+>>>>
+>>>> Jeff Johnson wrote:
+>>>>
+>>>>   The feedback I received was "it might be ok to change all ath10k qmi
+>>>>   to skip waiting for msa_ready", and it was pointed out that ath11k
+>>>>   (and ath12k) do not wait for it.
+>>>>
+>>>>   However with so many deployed devices, "might be ok" isn't a strong
+>>>>   argument for changing the default behavior.
+>>>>
+>>>> Kalle Valo first suggested setting a bit in firmware-5.bin to trigger
+>>>> work-around in the driver. However, firmware-5.bin is parsed too late.
+>>>> So we are stuck with a DT property.
+>>>>
+>>>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+>>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>>>
+>>> This says "Pierre-Hugues certifies the origin of the patch" then "Marc
+>>> certifies the origin of the patch". This would have to imply that
+>>> Pierre-Hugues authored the patch, but you're listed as the author...
+>>>
+>>> Perhaps a suitable answer to this question would be to add
+>>> "Co-developed-by: Pierre-Hugues ..." above his s-o-b, which implies that
+>>> the two of you jointly came up with this and both certify the origin.
+>> 
+>> BTW I can add that in the pending branch, no need to resend because of
+>> this. Just need guidance from Marc.
+>
+> I typed this patch all by myself with my grubby little paws.
+> You can drop PH's S-o-b.
+>
+>>> Other than that, I think this looks good, so please upon addressing this
+>>> problem feel free to add my:
+>>>
+>>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>> 
+>> Thanks, I'll then add this as well.
+>
+> Cool. Almost there :)
 
-ERROR: space required before the open parenthesis '('
-#27: FILE: drivers/gpu/drm/bridge/analogix/anx7625.c:1712:
-+    if(!of_property_read_bool(np, "no-shift-audio-data"))
+All I need is an ack from DT maintainers for this patch.
 
+DT maintainers: I think this is the best option and I can't think of any
+other solution so I would prefer to take this approach to our ath.git
+tree if it's ok for you.
 
-> +
->         return 0;
->  }
->
-> @@ -1866,6 +1869,11 @@ static int anx7625_audio_hw_params(struct device *=
-dev, void *data,
->                                            ~TDM_SLAVE_MODE,
->                                            I2S_SLAVE_MODE);
->
-> +       if (!ctx->pdata.shift_audio_data)
-> +               ret |=3D anx7625_write_or(ctx, ctx->i2c.tx_p2_client,
-> +                                      AUDIO_CONTROL_REGISTER,
-> +                                      TDM_TIMING_MODE);
-> +
->         /* Word length */
->         switch (params->sample_width) {
->         case 16:
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/=
-bridge/analogix/anx7625.h
-> index 39ed35d338363..41b395725913a 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> @@ -441,6 +441,7 @@ struct anx7625_platform_data {
->         u8 lane1_reg_data[DP_TX_SWING_REG_CNT];
->         u32 low_power_mode;
->         struct device_node *mipi_host_node;
-> +       int shift_audio_data;
->  };
->
->  struct anx7625_i2c_client {
->
-> --
-> 2.45.0.rc1.225.g2a3ae87e7f-goog
->
->
+IIRC someone suggested testing for firmware version string but I suspect
+that has the same problem as the firmware-N.bin approach: ath10k gets
+the firmware version too late. And besides it's difficult to maintain
+such a list in ath10k, it would always need kernel updates when there's
+a new firmware etc.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
