@@ -1,136 +1,324 @@
-Return-Path: <devicetree+bounces-65108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 536EE8BCA06
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:51:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F738BCA17
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:55:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0273D1F2137A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:51:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B8D728115E
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1CE142658;
-	Mon,  6 May 2024 08:50:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2CB1420B9;
+	Mon,  6 May 2024 08:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SEiBd/u8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QhMVi4D/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C7A1422AD;
-	Mon,  6 May 2024 08:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6451D547;
+	Mon,  6 May 2024 08:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714985415; cv=none; b=gDXwMAEmkoB8FqvvLgtVcJutM+fnP+eplXgLSmx62NCNVO/5nToqZZu4bD0lmaYbdj+X9yYTpEUxEZEvud6Oq1oBRyKgikrcbJ1QxQa6AkO1fUWWcnQwjMFfXg0vS+cHPFxosGUUQ0sgjWSf8N2kkJr/GHvvvXnElZYRuUTbDEI=
+	t=1714985751; cv=none; b=lakcDxM8EKk6xnLlIabUO7x8FkcNt0/pdSi/aEECOw1tRA/WNBse1IwLVlBKHOoULcANXKaGyldyUeRtqVNDrlcNZuTDV9yxduWi5fvMVogC5fqE73nBWrLY1OjTU+/97q8NMOK3Bfy4Z2tQEo0/Xq0WK4qLDYSQG3YvMtWPUbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714985415; c=relaxed/simple;
-	bh=PVEtpu+l2zGGzojDwX0WQr6+h4fSUImOuCn79HwWJeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eb13zwdcPBSHbsf3XdmszaiSH8gN8AcQUdImgbeHmJPzYYh01RF2SLqEBPGqQjx/VxwewL9RmvpqUtjTVh1H8uApuP7T5CRT58tTjlpqUtxT3DAjbT8EIB95ALp6vX6ua/uJaQeC2EywUfXfeAKfF9o1R+TrgklDXAMGxnxRyZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SEiBd/u8; arc=none smtp.client-ip=209.85.167.51
+	s=arc-20240116; t=1714985751; c=relaxed/simple;
+	bh=5BwyfntIK3lpoAl+NsPCM7E7RseaI28ODsfEelkHXFA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=EcWrdgfJOQ7xazinpOL/EXMFdBMswl9OHqGx2mjKHZ46O8Ed78R7PvEcurirhg2U2Hj9r8L3P3KwT80TocMhk4l4UuHGJobzUOr2eidPWmTPCwvFDpt8giXX9EEjh4d/c/THi87h/SmH+RAZQNQUTeIYyLSLAhgW+NVtIJW+FWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QhMVi4D/; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-51ab4ee9df8so2037841e87.1;
-        Mon, 06 May 2024 01:50:13 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a59cf8140d0so117029066b.3;
+        Mon, 06 May 2024 01:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714985412; x=1715590212; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0W3OM+PzsAuNXqvgrbwYe/sYHFhkCcz6xsmFOfCjwNc=;
-        b=SEiBd/u8pmlvxUXZjrcU4UPetWt2M6K20xyF312lftD5ydDohCH3IJWKOy86vMk+oG
-         tD0YqAEDYWneIjG6BuQsjQDaIkpDFswSzFTniEcVs+geQL/pHAiS9hGEy6lVVaDzTHXn
-         EHQNYmFxzqWfUkUSM7sRsyVMvAqkmRNryWfqTzRQLVRuJjWsw6a2qKHeAc/ZZHqKSv5j
-         nfTc9PHTo5kLi9vdjV6ac9ttLmgw65TzrLyOb91obntNsxWenT0AbIT+bctGqjwBRJVT
-         2iLPA5/DXcjVnnXTS0UVrpeGr5d8aO/eSrltmGVUQoXkfv2Dgh9AwTsD9ByEsmSvXgVu
-         yJsQ==
+        d=gmail.com; s=20230601; t=1714985748; x=1715590548; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wXrD55m3s5MvBqCwfZ7rBXZbb2rlAbVmpwur6DlLdaQ=;
+        b=QhMVi4D/nobb+LG+FH1BdfQIXgAnoeausarOUNB+wee3KnptmxOPXpQT7nnh45OWH7
+         RUyCi+ewbvTw0OyTfR5XKGese/ZdLNBri/QlfBOqJMuBETaNGcwmq3feJ6SXarFydkGF
+         X+ziqKa9HzXq9KrYNof+iQW+spEQF4Sh9di6jhDajivoFO5xuCG8p5DozbScats7olQ5
+         EMJ+fXmcxH0I8V7b9kSXFGjhvuF0lJQt33/+lqIHPi27AZYqoVc5VP1avWkujqy4O1Ty
+         58yXRh+Squ+H4dF6ha8Unap/3CCNecoInXElfZQhuLMXDVekMfe6zKJY2/RJVmlvQArs
+         xAxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714985412; x=1715590212;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0W3OM+PzsAuNXqvgrbwYe/sYHFhkCcz6xsmFOfCjwNc=;
-        b=doCGPtvzn8JY38X1I4I9rE7MygsKTzskocmse4x/akJytCBMjelbfGUETOEgCakget
-         iQ7X8iyjDMZ0+N2fdkzy5q9+gQHjn+kclnqn2qJD1fUsyQsqM2mvlYFrf6BT27WKEP+M
-         C35KJVQ13ZyQ//2Xk2ZFhFTVJ/gqHWmjAWPyzImnDTXT0h1YwQ4H0ggeJpZZoHbzEUFN
-         3Zc5Gm0JNCXE5w2cxU61ZPdx2YJcOMLukWPhJm5RA7BBzyjer9Cyucy+O3MQq/NViuyo
-         yyD4L3PnGqBdz3RlA81eKT21LWEPDV3XBmcUC0mRizxnhcyska/VYH8bEwpuXmxHuwYd
-         HXNw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrLuxkIa45W8B1vHYSBuVYKrXfHnHg0qQzYbRqajN2t3rKh38Q8CLmzt+YNFI4kFwwQn9eEvsr2PM46/A71ENqjW/2u1pvO+OGvSyzMOo8HxaE15Xvik6nDEuxzvuUAF0ap/B3kqkXfnjbaFw8Prj41yXw4kWNFJpgUbqq+vQixYBvweanI43NyRJ8WpItKfy9Ju4YovjuQddxgJDmdF/DYZNV
-X-Gm-Message-State: AOJu0Ywausg1AT+iw7Yt2RQ6ou8txgpoKd+aoqtxHCNK0erB3MCPpDXt
-	bqdUGm/qsvcGWrGoo7zPfJj07wzYe+oatHvWFhWXWE5l4aLcmCB7
-X-Google-Smtp-Source: AGHT+IEh+fGA+MGksiXkeu45MPOZ4U+YR5N+ndBcztXInjKnEGGz7Iui8cqavnJNkkCV9JKVT3Rxsw==
-X-Received: by 2002:ac2:46e3:0:b0:51d:2a27:9574 with SMTP id q3-20020ac246e3000000b0051d2a279574mr5758742lfo.6.1714985411631;
-        Mon, 06 May 2024 01:50:11 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id y6-20020a0565123f0600b0051e16048adesm1569125lfa.48.2024.05.06.01.50.10
+        d=1e100.net; s=20230601; t=1714985748; x=1715590548;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wXrD55m3s5MvBqCwfZ7rBXZbb2rlAbVmpwur6DlLdaQ=;
+        b=Wtz0YFzgQVRvU1dv/V2YdJkjVV2PNjMbQC/bYh6Jduo0U+cfwt5DpvdZrfZU3imF/T
+         EJZxjFToopPH7LVL+9gbdm8YIJM9IfYNMcIpoBDnNr0cgudvc+rN8UqqUHwf6r/ISel5
+         UQLSD0v3sQ7v5Fg9VO5Kp8k3LHl67bRVWJHBLSL71zIOaggr59vuuQ7uZMU4xYAzoQ14
+         uI4IOkzt0IUot0qiZzMfyyRt0eBwBk0hgHjC286i+QDhhjzNdZWEQO3lIVpC72hD0CO7
+         UymFFgMtcM9eqkuDy1d2/w0bpJtccS0Y8et5tn7YHmqgfN8Kk8fUIYzaRcac/6aLGxA5
+         NpGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUgP+RO2LY9b4brgBqSq/mVpXDIswHDdtxinRw/M2vugyMFXepkPBiy6BSXoytmATxLbQE71TdQOOQB3fPCM1EBWkExZ5wa33dHO4t0A2HB/TQ6rZ5vkLKs10uTuxMkeClgOhehmjz39O37MIocRSYaftvGOoOPXlUv5FH8OjwuIhrDA==
+X-Gm-Message-State: AOJu0YxIh/Dt4PGiHFGOhF6+oIAssEeLwVKtL1FTbB77OmDl5xXFkW2S
+	Zq49SSQCv5JN5BE+/1MQe4GNZLzbx8BlTLc0bptOEhXKk7gjpX+W
+X-Google-Smtp-Source: AGHT+IGcDCJFukxPe0iK9yuKiPeGVmJODZlRFBrKR1PwrDsZnyhRYNWFk22A1mJ3lxZ4YJzLDBci6g==
+X-Received: by 2002:a17:906:6a1a:b0:a59:ce90:27ea with SMTP id qw26-20020a1709066a1a00b00a59ce9027eamr1460119ejc.24.1714985747846;
+        Mon, 06 May 2024 01:55:47 -0700 (PDT)
+Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id n18-20020a170906841200b00a59a8a5dd15sm2756828ejx.206.2024.05.06.01.55.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 May 2024 01:50:11 -0700 (PDT)
-Date: Mon, 6 May 2024 11:50:08 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v5 2/7] net: stmmac: Add dedicated XPCS cleanup
- method
-Message-ID: <ljlbqz3o5btsufgc4jx3rqldmgvyl6k3raezcaur5g6qg44jje@ql2ws5ntt6eq>
-References: <20240430-rzn1-gmac1-v5-0-62f65a84f418@bootlin.com>
- <20240430-rzn1-gmac1-v5-2-62f65a84f418@bootlin.com>
- <4wdcmcb2yxneynxtppestl6cp25z5xge3hfv7o47bxwpafn4cg@mtvc3ls2cxij>
- <ec3e6c1b-1a5e-f7c9-4782-bc8f01a67f5f@bootlin.com>
+        Mon, 06 May 2024 01:55:47 -0700 (PDT)
+Message-ID: <a04d8015ea1606ce1eca86f7eaaa85a1c1b46d7a.camel@gmail.com>
+Subject: Re: [PATCH RFC v6 10/10] iio: adc: ad7380: add support for
+ resolution boost
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: kernel test robot <lkp@intel.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Mon, 06 May 2024 10:55:46 +0200
+In-Reply-To: <20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
+References: 
+	<20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
+	 <20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ec3e6c1b-1a5e-f7c9-4782-bc8f01a67f5f@bootlin.com>
 
-On Mon, May 06, 2024 at 09:07:41AM +0200, Romain Gantois wrote:
-> Hi Serge,
-> 
-> On Fri, 3 May 2024, Serge Semin wrote:
-> 
-> > 
-> > > +void stmmac_pcs_clean(struct stmmac_priv *priv)
-> > 
-> > Ideally it would have been great to have the entire driver fixed to
-> > accept the stmmac_priv pointer as the functions argument. But this
-> > would be too tiresome. Anyway seeing the PCS-setup protagonist method
-> > has the net_device pointer passed I would implement the same prototype
-> > for the antagonist even though it would require an additional local
-> > variable. That will make the MDIO and PCS local interface-functions
-> > looking alike and as if unified. That is the reason of why I made
-> > stmmac_xpcs_clean() accepting the net_device pointer. 
-> > 
-> > Alternatively both stmmac_pcs_setup() and stmmac_pcs_clean() could be
-> > converted to just accepting a pointer to the stmmac_priv instance.
->
- 
-> I think that adapting stmmac_pcs_clean() to take a net_device struct would be 
-> more appropriate since it's the simpler of the two methods. I'll implement this 
-> in the next version.
+On Wed, 2024-05-01 at 16:55 +0200, Julien Stephan wrote:
+> ad738x chips are able to use an additional 2 bits of resolution when
+> using oversampling. The 14-bits chips can have up to 16 bits of
+> resolution and the 16-bits chips can have up to 18 bits of resolution.
+>=20
+> In order to dynamically allow to enable/disable the resolution boost
+> feature, we have to set iio realbits/storagebits to the maximum per chips=
+.
+> This means that for iio, data will always be on the higher resolution
+> available, and to cope with that we adjust the iio scale and iio offset
+> depending on the resolution boost status.
+>=20
+> The available scales can be displayed using the regular _scale_available
+> attributes and can be set by writing the regular _scale attribute.
+> The available scales depend on the oversampling status.
+>=20
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+>=20
+> ---
+>=20
+> In order to support the resolution boost (additional 2 bits of resolution=
+)
+> we need to set realbits/storagebits to the maximum value i.e :
+> =C2=A0 - realbits =3D 16 + 2 =3D 18, and storagebits =3D 32 for 16-bits c=
+hips
+> =C2=A0 - realbits =3D 14 + 2 =3D 16, and storagebits =3D 16 for 14-bits c=
+hips
+>=20
+> For 14-bits chips this does not have a major impact, but this
+> has the drawback of forcing 16-bits chip users to always use 32-bits
+> words in buffers even if they are not using oversampling and resolution
+> boost. Is there a better way of implementing this? For example
+> implementing dynamic scan_type?
+>=20
 
-Awesome! Thanks.
+Yeah, I don't think it's that bad in this case. But maybe dynamic scan type=
+s is
+something we may need at some point yes (or IOW that I would like to see su=
+pported
+:)). We do some ADCs (eg: ad4630) where we use questionably use FW properti=
+es to set
+a specific operating mode exactly because we have a different data layout (=
+scan
+elements) depending on the mode.
+=20
+> Another issue is the location of the timestamps. I understood the need
+> for ts to be consistent between chips, but right now I do not have a
+> better solution.. I was thinking of maybe adding the timestamps at the
+> beginning? That would imply to change the iio_chan_spec struct and maybe
+> add a iio_push_to_buffers_with_timestamp_first() wrapper function? Is
+> that an option?
+>=20
+> Any suggestion would be very much appreciated.
+> ---
+> =C2=A0drivers/iio/adc/ad7380.c | 226 ++++++++++++++++++++++++++++++++++++=
+++++-------
+> =C2=A01 file changed, 194 insertions(+), 32 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
+> index 7b021bb9cf87..e240098708e9 100644
+> --- a/drivers/iio/adc/ad7380.c
+> +++ b/drivers/iio/adc/ad7380.c
+> @@ -20,6 +20,7 @@
+> =C2=A0#include <linux/err.h>
+> =C2=A0#include <linux/kernel.h>
+> =C2=A0#include <linux/module.h>
+> +#include <linux/units.h>
+> =C2=A0#include <linux/regmap.h>
+> =C2=A0#include <linux/regulator/consumer.h>
+> =C2=A0#include <linux/slab.h>
+> @@ -58,6 +59,8 @@
+> =C2=A0#define AD7380_CONFIG1_CRC_R		BIT(4)
+> =C2=A0#define AD7380_CONFIG1_ALERTEN		BIT(3)
+> =C2=A0#define AD7380_CONFIG1_RES		BIT(2)
+> +#define RESOLUTION_BOOST_DISABLE	0
+> +#define RESOLUTION_BOOST_ENABLE		1
 
--Serge(y)
+No ad7390 prefix?
 
-> 
-> Thanks,
-> 
-> -- 
-> Romain Gantois, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> =C2=A0#define AD7380_CONFIG1_REFSEL		BIT(1)
+> =C2=A0#define AD7380_CONFIG1_PMODE		BIT(0)
+> =C2=A0
+> @@ -86,6 +89,14 @@ struct ad7380_chip_info {
+> =C2=A0	const struct ad7380_timing_specs *timing_specs;
+> =C2=A0};
+> =C2=A0
+> +/*
+> + * realbits/storagebits cannot be dynamically changed, so in order to
+> + * support the resolution boost (additional 2=C2=A0 bits of resolution)
+> + * we need to set realbits/storagebits to the maximum value i.e :
+> + *=C2=A0=C2=A0 - realbits =3D 16 + 2 =3D 18, and storagebits =3D 32 for =
+16-bits chips
+> + *=C2=A0=C2=A0 - realbits =3D 14 + 2 =3D 16, and storagebits =3D 16 for =
+14-bits chips
+> + * We need to adjust the scale depending on resolution boost status
+> + */
+> =C2=A0#define AD7380_CHANNEL(index, bits, diff) {			\
+> =C2=A0	.type =3D IIO_VOLTAGE,					\
+> =C2=A0	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |		\
+> @@ -93,6 +104,7 @@ struct ad7380_chip_info {
+> =C2=A0	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE) |	\
+> =C2=A0		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
+> =C2=A0	.info_mask_shared_by_type_available =3D			\
+> +		BIT(IIO_CHAN_INFO_SCALE) |			\
+> =C2=A0		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
+> =C2=A0	.indexed =3D 1,						\
+> =C2=A0	.differential =3D (diff),					\
+> @@ -101,8 +113,8 @@ struct ad7380_chip_info {
+> =C2=A0	.scan_index =3D (index),					\
+> =C2=A0	.scan_type =3D {						\
+> =C2=A0		.sign =3D 's',					\
+> -		.realbits =3D (bits),				\
+> -		.storagebits =3D 16,				\
+> +		.realbits =3D (bits) + 2,				\
+> +		.storagebits =3D ((bits) + 2 > 16) ? 32 : 16,	\
+> =C2=A0		.endianness =3D IIO_CPU,				\
+> =C2=A0	},							\
+> =C2=A0}
+> @@ -259,6 +271,8 @@ struct ad7380_state {
+> =C2=A0	struct spi_device *spi;
+> =C2=A0	unsigned int oversampling_mode;
+> =C2=A0	unsigned int oversampling_ratio;
+> +	unsigned int scales[2][2];
+> +	bool resolution_boost_enable;
+> =C2=A0	struct regmap *regmap;
+> =C2=A0	unsigned int vref_mv;
+> =C2=A0	unsigned int vcm_mv[MAX_NUM_CHANNELS];
+> @@ -270,7 +284,10 @@ struct ad7380_state {
+> =C2=A0	 * As MAX_NUM_CHANNELS is 4 the layout of the structure is the sam=
+e for
+> all parts
+> =C2=A0	 */
+> =C2=A0	struct {
+> -		u16 raw[MAX_NUM_CHANNELS];
+> +		union {
+> +			u16 u16[MAX_NUM_CHANNELS];
+> +			u32 u32[MAX_NUM_CHANNELS];
+> +		} raw;
+> =C2=A0
+> =C2=A0		s64 ts __aligned(8);
+> =C2=A0	} scan_data __aligned(IIO_DMA_MINALIGN);
+> @@ -359,23 +376,67 @@ static int ad7380_debugfs_reg_access(struct iio_dev
+> *indio_dev, u32 reg,
+> =C2=A0	unreachable();
+> =C2=A0}
+> =C2=A0
+> +static int ad7380_prepare_spi_xfer(struct ad7380_state *st, struct spi_t=
+ransfer
+> *xfer)
+> +{
+> +	int bits_per_word;
+> +
+> +	memset(xfer, 0, sizeof(*xfer));
+> +
+> +	xfer->rx_buf =3D &st->scan_data.raw;
+> +
+> +	if (st->resolution_boost_enable =3D=3D RESOLUTION_BOOST_ENABLE)
+> +		bits_per_word =3D st->chip_info->channels[0].scan_type.realbits;
+> +	else
+> +		bits_per_word =3D st->chip_info->channels[0].scan_type.realbits - 2;
+> +
+> +	xfer->bits_per_word =3D bits_per_word;
+> +
+> +	xfer->len =3D (st->chip_info->num_channels - 1) *
+> BITS_TO_BYTES(bits_per_word);
+> +
+> +	return bits_per_word;
+
+I think this may very well be something we can do once during buffer enable=
+ment... I
+would expect that enabling/disabling resolution boost during buffering not =
+to be a
+great idea.
+=20
+> +}
+> +
+> =C2=A0static irqreturn_t ad7380_trigger_handler(int irq, void *p)
+> =C2=A0{
+> =C2=A0	struct iio_poll_func *pf =3D p;
+> =C2=A0	struct iio_dev *indio_dev =3D pf->indio_dev;
+> =C2=A0	struct ad7380_state *st =3D iio_priv(indio_dev);
+> -	struct spi_transfer xfer =3D {
+> -		.bits_per_word =3D st->chip_info->channels[0].scan_type.realbits,
+> -		.len =3D (st->chip_info->num_channels - 1) *
+> -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BITS_TO_BYTES(st->chip_info->chan=
+nels-
+> >scan_type.storagebits),
+> -		.rx_buf =3D st->scan_data.raw,
+> -	};
+> -	int ret;
+> +	struct spi_transfer xfer;
+> +	int bits_per_word, realbits, i, ret;
+> +
+> +	realbits =3D st->chip_info->channels[0].scan_type.realbits;
+> +	bits_per_word =3D ad7380_prepare_spi_xfer(st, &xfer);
+> =C2=A0
+> =C2=A0	ret =3D spi_sync_transfer(st->spi, &xfer, 1);
+> =C2=A0	if (ret)
+> =C2=A0		goto out;
+> =C2=A0
+> +	/*
+> +	 * If bits_per_word =3D=3D realbits (resolution boost enabled), we don'=
+t
+> +	 * need to manipulate the raw data, otherwise we may need to fix things
+> +	 * up a bit to fit the scan_type specs
+> +	 */
+> +	if (bits_per_word < realbits) {
+> +		if (realbits > 16 && bits_per_word <=3D 16) {
+> +			/*
+> +			 * Here realbits > 16 so storagebits is 32 and
+> bits_per_word is <=3D 16
+> +			 * so we need to sign extend u16 to u32 using reverse
+> order to
+> +			 * avoid writing over union data
+> +			 */
+> +			for (i =3D st->chip_info->num_channels - 2; i >=3D 0; i--)
+> +				st->scan_data.raw.u32[i] =3D sign_extend32(st-
+> >scan_data.raw.u16[i],
+> +								=09
+> bits_per_word - 1);
+> +		} else if (bits_per_word < 16) {
+
+Can't we have bits_per_word =3D 16 in case realbits <=3D 16?
+
+- Nuno S=C3=A1
+
 
