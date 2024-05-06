@@ -1,327 +1,256 @@
-Return-Path: <devicetree+bounces-65102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93D4B8BC96A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:20:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D6CD8BC96F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 10:20:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4979F283D6C
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:20:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FD281C20BED
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C880140E5F;
-	Mon,  6 May 2024 08:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7121C1411E0;
+	Mon,  6 May 2024 08:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VtKJu5uP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yvRj152D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B841D53C;
-	Mon,  6 May 2024 08:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7A4140E5F
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 08:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714983620; cv=none; b=V22piPqpIWYACkyE1PMYsDBFWVJmjpUSUa1oahJ8405Ve+Z2D0IxtP5EsRPeHYSREqPUrYB82rzvs93dq8XMBBS7t/MNOpD7fTdncEVSShW+zUYEJ77xuF54fzZdljeFA+0Nf97bT/pnXpqo05xHuSY6lbO3/T4ZAWYyA1oikwc=
+	t=1714983654; cv=none; b=nH0GhrSh+7IbBxXmgV/8PIj4sdKX9TKSItDXAhI9UaO6XMVgyEgRgCycM6ViMHR1HFDlzkWeqoA2NrYZR53ayBiX/NzbplwLMhUG+9zdjmfRvZja8PSys/ZI4tKMczxTH0IIM/kRJqJ22o8+T3BBVyrY1SPqI32vzGaObFT9IaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714983620; c=relaxed/simple;
-	bh=oI6KZL8xMEnOI0JUSajfcOjR5/0VaRJGSrYiP8gyYr4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=GrE1MQBvbJRcZhzAIk/b8Gc96ImjI58z/6TLl2pVXr2c33g7WKbfHj0Cpb5fJKrCuEZJwSu7e+ReRxoDn+2zmfKx7ce7pRNj41+wre4+Gp6Us5rfuRxJOp46igs9LD1PYxPgxl5/E+TBG/lQRNE8+tzgDTlGH+H2BoZMRiZ1RMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VtKJu5uP; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a599c55055dso366999866b.0;
-        Mon, 06 May 2024 01:20:18 -0700 (PDT)
+	s=arc-20240116; t=1714983654; c=relaxed/simple;
+	bh=9EKRr+bCzljf7Yxu99Qd5AgSXBwE9HkWUkKp3/LiLiY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DZLnT3v1x90mtuwuDa5ARk3N0cHCtsg6A3UR1dpyJl6hLPaHj6QK5fEgfBx+HVq8Jw6Xm936f3H12OBzcvCU+NaNfgjpvSx5GAZ6dOSkj6JidtPnSPqXakokKQh+1vkdxXfNlPVZiJZR0jCyPn583nrDqr5f14bbGitof54NpBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yvRj152D; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a599af16934so364315766b.1
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 01:20:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714983617; x=1715588417; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bNHd0an/gaXMy+olLRoP7YkYSvwCWy00m2F9nn+euPM=;
-        b=VtKJu5uPtaGcgYdMXmu6iRSlOe+CT8Vp+p5bAuk9iqr8OQXX0zHzJnoG+dqYW4pT9i
-         6F4PgV4yG9Y61NOcax11WFtqM8RMetkqn88wsUXOJZEqdDyhBXghwl/1AKnvKb1ONxPs
-         LLGr7dvvBQ2RePzVlsalO9mmpTyYKnBJF5/j225P4L0FvwdZglzGvzhpoEdzZDzyJIzu
-         H9HkPJKoJ9L1/4jODtAWeuLrWWKwPSCLsn6Jlzo0ThAxnOR1/pgGVbNbAntu0CWRsUTR
-         VWlrJh2dEaNNpDfJZlOVtQvC7US9BH0OMRCyiqmVFlZkL1FhIJmeqjR++EgkLShI0Xva
-         4zhg==
+        d=linaro.org; s=google; t=1714983651; x=1715588451; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tmDdcKP/w1lSqdUXDZt0r8WrvJuiZTD+uLc8uT6i3VI=;
+        b=yvRj152DeBH+R9XN02V25psTptw72+gtKX0fDyRzcC9/i53O9pMpTexhYOVYep0yRX
+         cGPvZkvURY9wincTPw0760yRxxKQoaum8WsFnGmWQEF4kr8+3yqA9NI9INcLNjQ8VYJ4
+         DAwm+PrY59O2d/SJQev9MWQyxDoPd7w2wgqPVcyIglRY70cGptZTuXpgGK1LHd6PU4dN
+         wphi7LyRTaVzs52TK9aGjq0e0B+fht6rwllm/5gbxl2Ane0D6BM9lnCx2FtAdOEkMA/U
+         pGJolilD/KgeF6TYJvsDp9wRelez8pLR7JmwL3JOoK7m7bMXRb2BHRnTpynt+qfwLkQg
+         TNPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714983617; x=1715588417;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bNHd0an/gaXMy+olLRoP7YkYSvwCWy00m2F9nn+euPM=;
-        b=BSnbYn9G8YATd82B+yrXp6gsk073IVu/nSkNyQWiE+G6Gko1DxFoIZEFkJ6kdFjnU5
-         e4yZ152AIEr5IMzUR20w7jeAT/srzfyxKTHi1I1LN0+M4AZR6JzXTU7TB8KIObbTO818
-         F9q8OpK+XDYsI5Qv8K+4gNTrnXulXLTE3J9fieAfP7f8yYtx07+pEDlgpmlktONZtWda
-         tzyxMmZkFP4JU75GhwJs1Xk72xT7ktTYRhFncXQFiA6bYdvPW0lrDtUUxMgR+QrAzmrr
-         k2pt9Aep3N1gGMoqsJq4u1RXyFMmNmtBWTRN26zuSoGmTRp9BvC4XDalYCBJ20vv5MJj
-         cXyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOYEUXBRIlFFYrqU8UGAeNLV1i52R+2MCkJOVAeCdph8RvEjvD+ZxYjR7s4zo4xmHMGHYht/jWfOxg3zXivlS8DFzdNKbXmfFz6TMd3JwvTf3ObBMvkEbWcBM4egxv/StJIGyeLGwSfZOlXtTC8NhVcgUjLIuBCTYSPoNlYJOX+FWJVg==
-X-Gm-Message-State: AOJu0YwLexIYTIj8FbQJyhTYYtIkwNq61SSqr9hvf89HMKLYc6JdU650
-	8akT3qybEoHHUPU6m5ISFr5zDEhQLQuYm8qcoDlKOULGSDHcrkfV
-X-Google-Smtp-Source: AGHT+IFj0E/KOpeYb7bSNt/7kwgAaso8l+rPl642Z/i+jT0OGVg0kBhQNBho96YZRTBKAiPgTx5Axw==
-X-Received: by 2002:a17:906:a159:b0:a52:3f01:e11d with SMTP id bu25-20020a170906a15900b00a523f01e11dmr5393048ejb.34.1714983616604;
-        Mon, 06 May 2024 01:20:16 -0700 (PDT)
-Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
-        by smtp.gmail.com with ESMTPSA id y17-20020a17090668d100b00a59bacd35ddsm1998352ejr.98.2024.05.06.01.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 May 2024 01:20:16 -0700 (PDT)
-Message-ID: <1be8a603c1db69278181089e3653b6312bcc99da.camel@gmail.com>
-Subject: Re: [PATCH RFC v6 08/10] iio: adc: ad7380: add oversampling support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, David Lechner
- <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: kernel test robot <lkp@intel.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Mon, 06 May 2024 10:20:15 +0200
-In-Reply-To: <20240501-adding-new-ad738x-driver-v6-8-3c0741154728@baylibre.com>
-References: 
-	<20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
-	 <20240501-adding-new-ad738x-driver-v6-8-3c0741154728@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        d=1e100.net; s=20230601; t=1714983651; x=1715588451;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tmDdcKP/w1lSqdUXDZt0r8WrvJuiZTD+uLc8uT6i3VI=;
+        b=UB1Nv8dkqc40YRveng8iwLDjnaA8YJAtG9maPhPJMdP8uCr8ea9KAeRH6cIInSmpgM
+         xaiWAzLyx8UiT0JK5GQPTwEatMgsnO3nRibBh4qE8KWsVfzLdfOHIBOwYCKSyV1SJ6Vk
+         k+XhHyWnsUvd65/9A5SpBEWs4thw7MaNu8fC0AA+uQgVqMIfZdSUwvvcY8Tq2FOmIjd/
+         GIAr4A5/VDSNHMlYJqZXQDrbjkgLojDLnqggKiWGIOt44cxgYC9AIlx68vM65bO210gb
+         34Ak4eNC2bqyHFUj6L8fGi0qvrLxm1YR2Ng2E0xriq5736PIPH0i3XkQJK4AHxBKnVEc
+         oeDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9IjJM6sB7DblAzmm6d8kLUybry3239S7qc7+iZA/DYlIW1xwJByJZrPhR+JYqSYqLVkyXD9dKoCtvU1zjrHM1Hi5opSrJ+0XMrA==
+X-Gm-Message-State: AOJu0Yy770dnfeWfxRSgW+RM754WT6zQr/uOp5pCH+UIyr2nR6jTLlLu
+	ciKoUgswlgdRd2XY/O6Cw2lQTCeEgkvAbKBClwecWB3AYEjgFEYpPralthcM0fo=
+X-Google-Smtp-Source: AGHT+IGZugCF55E3mU1WDQzk+ixOdDGn2ORJUjR1HtaCqaeFlXIxs5cPG2OOwXDTs5Xwl9OR1Wvf2A==
+X-Received: by 2002:a17:906:1d51:b0:a59:c220:16a5 with SMTP id o17-20020a1709061d5100b00a59c22016a5mr2666066ejh.9.1714983651254;
+        Mon, 06 May 2024 01:20:51 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.169])
+        by smtp.gmail.com with ESMTPSA id wr8-20020a170907700800b00a59be52ff98sm1884910ejb.191.2024.05.06.01.20.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 May 2024 01:20:50 -0700 (PDT)
+Message-ID: <174a8bfe-7a9e-4816-9bde-de48f04b07f6@linaro.org>
+Date: Mon, 6 May 2024 10:20:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v1 5/5] arm64: dts: mediatek: Add mt7986 based Bananapi R3
+ Mini
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+ Eric Woudstra <ericwouds@gmail.com>, Tianling Shen <cnsztl@immortalwrt.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-leds@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Tianling Shen <cnsztl@gmail.com>
+References: <20240505164549.65644-1-linux@fw-web.de>
+ <20240505164549.65644-6-linux@fw-web.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240505164549.65644-6-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Julien,
-
-On Wed, 2024-05-01 at 16:55 +0200, Julien Stephan wrote:
-> ad7380x(-4) parts are able to do oversampling to increase accuracy.
-> They support 2 average modes: normal average and rolling overage.
-> This commits focus on enabling normal average oversampling, which is the
-> default one.
->=20
-> Normal averaging involves taking a number of samples, adding them togethe=
-r,
-> and dividing the result by the number of samples taken.
-> This result is then output from the device. The sample data is cleared wh=
-en
-> the process completes. Because we need more samples to output a value,
-> the data output rate decrease with the oversampling ratio.
->=20
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+On 05/05/2024 18:45, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Add device Tree for Bananapi R3 Mini SBC.
+> 
+> Co-developed-by: Eric Woudstra <ericwouds@gmail.com>
+> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
+> Co-developed-by: Tianling Shen <cnsztl@gmail.com>
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
-> =C2=A0drivers/iio/adc/ad7380.c | 115 ++++++++++++++++++++++++++++++++++++=
-++++++++++-
-> =C2=A01 file changed, 114 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-> index 020959759170..1e3869f5e48c 100644
-> --- a/drivers/iio/adc/ad7380.c
-> +++ b/drivers/iio/adc/ad7380.c
-> @@ -88,7 +88,10 @@ struct ad7380_chip_info {
-> =C2=A0	.type =3D IIO_VOLTAGE,					\
-> =C2=A0	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |		\
-> =C2=A0		((diff) ? 0 : BIT(IIO_CHAN_INFO_OFFSET)),	\
-> -	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),	\
-> +	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE) |	\
-> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
-> +	.info_mask_shared_by_type_available =3D			\
-> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
-> =C2=A0	.indexed =3D 1,						\
-> =C2=A0	.differential =3D (diff),					\
-> =C2=A0	.channel =3D (diff) ? (2 * (index)) : (index),		\
-> @@ -156,6 +159,16 @@ static const struct ad7380_timing_specs ad7380_4_tim=
-ing =3D {
-> =C2=A0	.t_csh_ns =3D 20,
-> =C2=A0};
-> =C2=A0
+>  arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+>  .../mediatek/mt7986a-bananapi-bpi-r3-mini.dts | 486 ++++++++++++++++++
+>  2 files changed, 487 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index 37b4ca3a87c9..1763b001ab06 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-mini.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+> new file mode 100644
+> index 000000000000..c764b4dc4752
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+> @@ -0,0 +1,486 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > +/*
-> + * Available oversampling ratios. The indices correspond
-> + * with the bit value expected by the chip.
-> + * The available ratios depend on the averaging mode,
-> + * only normal averaging is supported for now
+> + * Copyright (C) 2021 MediaTek Inc.
+> + * Authors: Frank Wunderlich <frank-w@public-files.de>
+> + *          Eric Woudstra <ericwouds@gmail.com>
+> + *          Tianling Shen <cnsztl@immortalwrt.org>
 > + */
-> +static const int ad7380_normal_average_oversampling_ratios[] =3D {
-> +	1, 2, 4, 8, 16, 32,
-> +};
 > +
-> =C2=A0static const struct ad7380_chip_info ad7380_chip_info =3D {
-> =C2=A0	.name =3D "ad7380",
-> =C2=A0	.channels =3D ad7380_channels,
-> @@ -231,6 +244,7 @@ static const struct ad7380_chip_info ad7384_4_chip_in=
-fo =3D {
-> =C2=A0struct ad7380_state {
-> =C2=A0	const struct ad7380_chip_info *chip_info;
-> =C2=A0	struct spi_device *spi;
-> +	unsigned int oversampling_ratio;
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/pinctrl/mt65xx.h>
+> +
+> +#include "mt7986a.dtsi"
+> +
+> +/ {
+> +	model = "Bananapi BPI-R3 Mini";
+> +	chassis-type = "embedded";
+> +	compatible = "bananapi,bpi-r3mini", "mediatek,mt7986a";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	dcin: regulator-12vd {
 
-nit: move this to the other 'unsigned int' fields...
+Please use name for all fixed regulators which matches current format
+recommendation: 'regulator-[0-9]+v[0-9]+'
 
-> =C2=A0	struct regmap *regmap;
-> =C2=A0	unsigned int vref_mv;
-> =C2=A0	unsigned int vcm_mv[MAX_NUM_CHANNELS];
-> @@ -386,6 +400,12 @@ static int ad7380_read_direct(struct ad7380_state *s=
-t,
-> =C2=A0	};
-> =C2=A0	int ret;
-> =C2=A0
-> +	/*
-> +	 * In normal average oversampling we need to wait for multiple conversi=
-ons
-> to be done
-> +	 */
-> +	if (st->oversampling_ratio > 1)
-> +		xfers[0].delay.value =3D T_CONVERT_NS + 500 * st-
-> >oversampling_ratio;
-> +
-> =C2=A0	ret =3D spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> =C2=A0	if (ret < 0)
-> =C2=A0		return ret;
-> @@ -428,6 +448,91 @@ static int ad7380_read_raw(struct iio_dev *indio_dev=
-,
-> =C2=A0			/ st->vref_mv;
-> =C2=A0
-> =C2=A0		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*val =3D st->oversampling_ratio;
-> +
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad7380_read_avail(struct iio_dev *indio_dev,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 const int **vals, int *type, int *length,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*vals =3D ad7380_normal_average_oversampling_ratios;
-> +		*length =3D ARRAY_SIZE(ad7380_normal_average_oversampling_ratios);
-> +		*type =3D IIO_VAL_INT;
-> +
-> +		return IIO_AVAIL_LIST;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +/**
-> + * check_osr - Check the oversampling ratio
-> + * @available_ratio: available ratios's array
-> + * @size: size of the available_ratio array
-> + * ratio: ratio to check
-> + *
-> + * Check if ratio is present in @available_ratio. Check for exact match.
-> + * @available_ratio is an array of the available ratios (depending on th=
-e
-> oversampling mode).
-> + * The indices must correspond with the bit value expected by the chip.
-> + */
-> +static inline int check_osr(const int *available_ratio, int size, int ra=
-tio)
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git/commit/?id=b6d4b3500d57370f5b3abf0701c9166b384db976
 
-Please name the function ad7380_check_osr(). Also, drop the inline... The c=
-ompiler
-should be smart enough to take of that for us.
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "12vd";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	fan: pwm-fan {
+> +		compatible = "pwm-fan";
+> +		#cooling-cells = <2>;
+> +		/* cooling level (0, 1, 2) - pwm inverted */
+> +		cooling-levels = <255 96 0>;
+> +		pwms = <&pwm 0 10000>;
+> +		status = "okay";
 
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < size; i++) {
-> +		if (ratio =3D=3D available_ratio[i])
-> +			return i;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int ad7380_write_raw(struct iio_dev *indio_dev,
-> +			=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan, int val,
-> +			=C2=A0=C2=A0=C2=A0 int val2, long mask)
-> +{
-> +	struct ad7380_state *st =3D iio_priv(indio_dev);
-> +	int ret, osr;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		osr =3D check_osr(ad7380_normal_average_oversampling_ratios,
-> +				ARRAY_SIZE(ad7380_normal_average_oversampling_rati
-> os),
-> +				val);
-> +
-> +		if (osr < 0)
-> +			return osr;
-> +
-> +		iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-> +			ret =3D regmap_update_bits(st->regmap,
-> AD7380_REG_ADDR_CONFIG1,
-> +						 AD7380_CONFIG1_OSR,
-> +						 FIELD_PREP(AD7380_CONFIG1_OSR,
-> osr));
-> +
-> +			if (ret)
-> +				return ret;
-> +
-> +			st->oversampling_ratio =3D val;
-> +
-> +			/*
-> +			 * Perform a soft reset.
-> +			 * This will flush the oversampling block and FIFO but
-> will
-> +			 * maintain the content of the configurable registers.
-> +			 */
-> +			ret =3D regmap_update_bits(st->regmap,
-> AD7380_REG_ADDR_CONFIG2,
-> +						 AD7380_CONFIG2_RESET,
-> +						 FIELD_PREP(AD7380_CONFIG2_RESET,
-> +							=C2=A0=C2=A0=C2=A0
-> AD7380_CONFIG2_RESET_SOFT));
-> +		}
-> +		return 0;
+Why? Where is it disabled?
 
-return ret;
-
-Or you may be asked to directly return in regmap_update_bits() and use unre=
-achable()
-here.
-
-> =C2=A0	default:
-> =C2=A0		return -EINVAL;
-> =C2=A0	}
-> @@ -435,6 +540,8 @@ static int ad7380_read_raw(struct iio_dev *indio_dev,
-> =C2=A0
-> =C2=A0static const struct iio_info ad7380_info =3D {
-> =C2=A0	.read_raw =3D &ad7380_read_raw,
-> +	.read_avail =3D &ad7380_read_avail,
-> +	.write_raw =3D &ad7380_write_raw,
-> =C2=A0	.debugfs_reg_access =3D &ad7380_debugfs_reg_access,
-> =C2=A0};
-> =C2=A0
-> @@ -458,6 +565,12 @@ static int ad7380_init(struct ad7380_state *st, stru=
-ct
-> regulator *vref)
-> =C2=A0	if (ret < 0)
-> =C2=A0		return ret;
-> =C2=A0
-> +	/* Disable oversampling by default.
-> +	 * This is the default value after reset,
-> +	 * so just initialize internal data
-> +	 */
-
-Your comment block is not in accordance with coding style. checkpatch shoul=
-d complain
-about this.
-
-> +	st->oversampling_ratio =3D 1;
+> +	};
 > +
-> =C2=A0	/* SPI 1-wire mode */
-> =C2=A0	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
-> =C2=A0				=C2=A0 AD7380_CONFIG2_SDO,
->=20
+> +	reg_1p8v: regulator-1p8v {
+
+Please use name for all fixed regulators which matches current format
+recommendation: 'regulator-[0-9]+v[0-9]+'
+
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git/commit/?id=b6d4b3500d57370f5b3abf0701c9166b384db976
+
+In other places as well.
+
+
+
+Best regards,
+Krzysztof
 
 
