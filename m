@@ -1,156 +1,146 @@
-Return-Path: <devicetree+bounces-65154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53E08BCDB6
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:22:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF728BCDEE
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:29:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 226641C2357E
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:22:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CCD11C237E2
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F96143C45;
-	Mon,  6 May 2024 12:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9036143C6B;
+	Mon,  6 May 2024 12:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="k0eHOyo5"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="SWUc0BpI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC440143899;
-	Mon,  6 May 2024 12:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B989143C54
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 12:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714998136; cv=none; b=kNP2xCnZ9Ya1DBCYPgwtUfAWaa0B531zo78tWkCys7QW74BFuy1cs/EGGSz82iU51cB39EtfQAnOL7imkQJ+2aesba3Ube78NRfNwlnDUAZXKWtjvMBcptfsUGoHBz2dAtdOvlTr55e4FoPlV+z0HfPsMKJuVZMeioxDmvLHdW8=
+	t=1714998545; cv=none; b=ZnOcmcR4XU69jdrl3exXCur6V+OWDUi+uPj4CkSHbJHy2eQGjdr0P7pXUBtdmDzK3ACG+Q42SXc/ZtcrfjqFtkbDJDqZK+y3So3Ztkmre24JPF5rDZcPsjwQmBpjO4rM4MiOIx2XOGECPhvg13wlFHtYfiY2OlCSGDQDJayMjsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714998136; c=relaxed/simple;
-	bh=vzd6/g0j/LKpzRJ0n5NOO5gT3MBm83kOUuJoCDjo1YE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BUXBf4GOJ3iXnTezLmRbNEuQQDT8ySZre2+zvttydrHJ1YCRY2nN9I60GmC9EBKxdwKBub8ex3vmnKGlAMAc4Ck2qXBjIv2eYzkU+HzpPeJf3e/Nflt6z/J+soYcYTw3vifACkNwQd9n2wGTBSkXCVIwY6An7kmyLkas0yxg+YM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=k0eHOyo5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 446BoaQr013364;
-	Mon, 6 May 2024 12:22:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Dia/565uBgwal8VAh3McJ3ZZl+6Ufop3qtDDWi4EWFs=; b=k0
-	eHOyo52uxrjZGsrpx3TME8nV3Nhcwhn0pIVNhxT0HIqVKi3XufocvoJGzTn2b5be
-	PUdaBhxR1Eozk8QbFHmya0pswa7pqd36rc2jjE8HuSQr82grtnyolASBoQ83olza
-	8oPBRbKEUIRIfb7AyRESl6CkpcYtPcAlPxOq4JpZrkMCmJaVtr/LaPXGABVNs5T6
-	jUNGaOq23mRXzOP5VJn+E31yMdw+7kqmv+MLbfvHseGff33/UKVkYWvHdakmKNWD
-	INvVvwDcF2JzoOTDdd6gcL38mRgnMMgfuCl9QkgCtfplR/81Em03ISEnQ/G3w7AS
-	jcU9il/4gGDiK+N5tAjA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xxt6n0n68-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 May 2024 12:22:09 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 446CM8t4002182
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 May 2024 12:22:08 GMT
-Received: from [10.216.21.139] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 May 2024
- 05:22:04 -0700
-Message-ID: <0bce5d7c-8133-f3c7-55af-c5b8f89a5371@quicinc.com>
-Date: Mon, 6 May 2024 17:52:01 +0530
+	s=arc-20240116; t=1714998545; c=relaxed/simple;
+	bh=EGHZPmqvH4r1KctOg6eqewuTMYhyTlB8DsvRBoa8TDs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PXKu8vK2l5ZGCiCUfMVRzPBrCMcDbWavWb0pFmp0iF/g+Booyk9qrKecQ/iVRA1aotetz4f0Oz27kYdTa+u/qAqLllje76NkQOfXU5pzU8jjDhQAE7pLSBy4cawjeYOUMQty8XBguySRRU8IOCVCmXbtsX8Rn0yqNiB+9t25qmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=SWUc0BpI; arc=none smtp.client-ip=95.215.58.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1714998540;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=adS52XGOjAf9NFDpaofMTlIleiOLUvYtp7jAKoj1FWE=;
+	b=SWUc0BpIni3DNRfn8cUmU/S7IH9xdi7XJ4z+ZZRH7gm/RTzYlhrYmjj2zDCQx466aMGh1F
+	eI503oK8ijiOQj72yq1YfIfqmbSol0BmH+lfpAZr8bt2+SBH3XYmo1MMN7Lw4duS+eObGF
+	rF0+s7RsflXzGqVGP70xnWc57uULqOQX4R2EN0PUEvpCoyvsFTIbgU0qPnah7koyOc4wpI
+	aMWIqWYjKMU1X/hoTMTbpUlS0q47KGEi9iqZM/9Nv3Z698c7nV26ZhCUiVbZ/OiaAnwDKg
+	jFbJa3U3eiF3K6rxcQpD/g8H4VvaqaXoGRu8anaYWVJvzAyRV1CGq0NYyAphrA==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Alexey Charkov <alchark@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
+Subject:
+ Re: [PATCH v4 2/6] arm64: dts: rockchip: enable thermal management on all
+ RK3588 boards
+Date: Mon, 06 May 2024 14:28:50 +0200
+Message-ID: <2543817.5xW6y1K4kI@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com>
+References:
+ <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 0/3] Add support for qcom msm8998-venus (HW vdec /
- venc)
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Marc Gonzalez
-	<mgonzalez@freebox.fr>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jeffrey Hugo
-	<quic_jhugo@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Stanimir
- Varbanov" <stanimir.k.varbanov@gmail.com>
-CC: MSM <linux-arm-msm@vger.kernel.org>,
-        linux-media
-	<linux-media@vger.kernel.org>,
-        DT <devicetree@vger.kernel.org>,
-        "Pierre-Hugues Husson" <phhusson@freebox.fr>,
-        Arnaud Vrac <avrac@freebox.fr>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
- <f5b9c8d5-d8ed-4dd1-9cd6-fb016d84cbd5@freebox.fr>
- <12daeed1-0075-4a6c-bd02-dc70a0c0d721@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <12daeed1-0075-4a6c-bd02-dc70a0c0d721@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kTyPJ44fUyPfx9de_HpB-uPgdamB-N6N
-X-Proofpoint-ORIG-GUID: kTyPJ44fUyPfx9de_HpB-uPgdamB-N6N
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-06_07,2024-05-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 clxscore=1015 suspectscore=0 mlxlogscore=999
- spamscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0 mlxscore=0
- adultscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2404010003 definitions=main-2405060085
+Content-Type: multipart/signed; boundary="nextPart3764040.TKpFhyqhbS";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
+--nextPart3764040.TKpFhyqhbS
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Mon, 06 May 2024 14:28:50 +0200
+Message-ID: <2543817.5xW6y1K4kI@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com>
+MIME-Version: 1.0
 
-On 5/6/2024 3:55 PM, Bryan O'Donoghue wrote:
-> On 06/05/2024 10:57, Marc Gonzalez wrote:
->> On 30/04/2024 17:28, Marc Gonzalez wrote:
->>
->>> Changes in v2
->>> - Add Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> for patches
->>> 2 & 3
->>> - Replace qcom,msm8998-venus.yaml (copy of qcom,msm8996-venus.yaml) with item
->>> in qcom,msm8996-venus.yaml
->>>
->>> Marc Gonzalez (3):
->>>    dt-bindings: media: add qcom,msm8998-venus
->>>    arm64: dts: qcom: msm8998: add venus node
->>>    media: venus: add MSM8998 support
->>>
->>>   Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml |  4 ++-
->>>   arch/arm64/boot/dts/qcom/msm8998.dtsi                           | 48
->>> +++++++++++++++++++++++++++++
->>>   drivers/media/platform/qcom/venus/core.c                        | 42
->>> +++++++++++++++++++++++++
->>>   3 files changed, 93 insertions(+), 1 deletion(-)
->>
->> Not sure what's holding up this series?
->> Can it be merged before the 6.10 merge window opens?
->> (Whose tree is it supposed to go through?)
->>
->> Been working on this feature since Feb 19 with
->> [RFC WIP PATCH] venus: add qcom,no-low-power property
->> (First try turned out to be incorrect)
->>
->> Regards
->>
+Hi,
+
+On Monday, 6 May 2024 11:36:33 CEST Alexey Charkov wrote:
+> This enables the on-chip thermal monitoring sensor (TSADC) on all
+> RK3588(s) boards that don't have it enabled yet. It provides temperature
+> monitoring for the SoC and emergency thermal shutdowns, and is thus
+> important to have in place before CPU DVFS is enabled, as high CPU
+> operating performance points can overheat the chip quickly in the
+> absence of thermal management.
 > 
-> Vikash, Stan.
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts               | 4 ++++
+>  8 files changed, 32 insertions(+)
 > 
-> I think this is ready to go, can we get an Acked-by so Hans can do the merge ?
-Thanks Marc/Bryan for getting this through and getting rid of that hack
-"no-low-power".
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
+> b8e15b76a8a6..21e96c212dd8 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -742,6 +742,10 @@ regulator-state-mem {
+>  	};
+>  };
+> 
+> +&tsadc {
+> +	status = "okay";
+> +};
+> +
+>  &uart2 {
+>  	pinctrl-0 = <&uart2m0_xfer>;
+>  	status = "okay";
 
-There is a minor comment in patch 3/3, otherwise looks good.
+I built a kernel with v3 of your patch set and someone tested it on a ROCK 5B 
+'for me' and it had the following line in dmesg:
 
-Regards,
-Vikash
+rockchip-thermal fec00000.tsadc: Missing rockchip,grf property
+
+I'm guessing that turned up due to enabling tsadc, but (also) in v4 I didn't 
+see a change wrt "rockchip,grf".
+Should that be done? (asking; I don't know)
+
+Cheers,
+  Diederik
+--nextPart3764040.TKpFhyqhbS
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZjjNAgAKCRDXblvOeH7b
+bqzGAQD1bM1bOXBrGILEfvogB5p+W1FcHVZbgNHh5ucp7mH02QEAqaUP/WdxYNiG
+IwPC/uXaAjTKHHAb6H06K4aElQrtvwI=
+=Nb8T
+-----END PGP SIGNATURE-----
+
+--nextPart3764040.TKpFhyqhbS--
+
+
+
 
