@@ -1,164 +1,139 @@
-Return-Path: <devicetree+bounces-65196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777DE8BD0BB
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:51:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F5DB8BD0BD
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:51:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04EC31F21CF5
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:51:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40D531F22774
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326FA15357D;
-	Mon,  6 May 2024 14:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE85B154448;
+	Mon,  6 May 2024 14:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IsOaV9WQ"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="b2tbhVl4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF4013BAC7;
-	Mon,  6 May 2024 14:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AE9154434
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 14:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715007062; cv=none; b=d8mapL4F0EliFh0adbWwwPTlaI7Z1fWrfKnKPF2cW4mPohHVH32iOYZVBzYTSkkhRJtokOiGTdrm8+caDjaIOeW4dmD1yHHuWL4i1S1gkhK4rmqn7Rh2HD8fRRKGHgyLeBg7fOoORErpgrbZzXH/19v+PSGdZg7c/QT/qnHMEhs=
+	t=1715007067; cv=none; b=dccUJGvQ7XrxWuAik7vZT4x5osRfBceGzFwufGmHCUKCMUB2HkUpMF/Vv/t7mqqmzCk7nkg4jaHPA99UGFub7waRKSIzQrIDOI7JVSlZIJy9H6dqa4THr95axzUle+PFNlN4q3wOUI72/n6xlq/DO7ozG63kn35ZukfTWno4lEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715007062; c=relaxed/simple;
-	bh=eSfAG7eRcrkhY+Qr5HX1zI27MCV8+YfsRo1rrRm29Ls=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nuVcX+SPkxBg9rDXsEkjLqpzRR9UbCJ0SO522727EdRN2qUxgRuFOwIoMYIXSChFyyoUIxkfu1e9eD+2zosn7AgioVPlX7Jebl0kHy5e1BCP31yZ2ndFhq6jlTxOmpa/AE3XuAXXuhLCxsT9Np8q/1U8IwN4OeAgeUyoPVX6BHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=IsOaV9WQ; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 446Bbcmp010927;
-	Mon, 6 May 2024 16:50:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=selector1; bh=lFFdRBl
-	/abKwjIsFck+7iM64lIxYS3/Znv6CkxEJjqA=; b=IsOaV9WQBb4PNmAamgQO6Pm
-	UsI6cuhN67SNpPbgtJ4Wq+PeizHv3jG5aBChR2vvDjinzQr8Lj4ydQMlrk0hjqO3
-	gr0mmxIvCNJrZdQOIBjjnqbZfCVghd6dbBGXYYVvxJAnSjiW7QOASZauCCe0oOWG
-	IC9gyJCDKsAmiL9NqDXCICrP75gQ1T7yP+lHzspiJKIJGTpU2C0IVMziTU3WsD6x
-	cFgC2cAyxFrKrPhQnGRBJ1wPz6kRxTiIoFir1EelJLG+InMfUgaLWsVE33UkcWrT
-	G6KUt6u+EmO/1ZUfl18EOpBqjRS+0Wh3EukYygOxDB/n95QUK3++tLdrQXCLiNQ=
-	=
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xwcbx7j8r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 May 2024 16:50:27 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A641D4002D;
-	Mon,  6 May 2024 16:50:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D753D2248BB;
-	Mon,  6 May 2024 16:49:47 +0200 (CEST)
-Received: from localhost (10.48.87.177) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 6 May
- 2024 16:49:47 +0200
-From: Yannick Fertre <yannick.fertre@foss.st.com>
-To: Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ARM: dts: stm32: add goodix touchscreen on stm32mp135f-dk
-Date: Mon, 6 May 2024 16:49:45 +0200
-Message-ID: <20240506144945.293966-1-yannick.fertre@foss.st.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1715007067; c=relaxed/simple;
+	bh=7iDH+N4dqEAyUlSQDlKArZom8EBUBD3poBUiJ60lMGU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qKtEBcSzXC0RqTCckSDa/AXgm/PQk4H64NCRuk2jjZC7wI5FIIBUEIZ2eOVvspH5Y2IoV4vcy9w6fqdCVI4+KwsDxvzsOKaT4ubCheE90NerFDT8wYYbdWHgwLLvf5Y5+xaAUoHENIew58RsprhtArNzRR1tXjxVQB++ACpBgvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=b2tbhVl4; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-346359c8785so1672128f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 07:51:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1715007063; x=1715611863; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s25nNsZfQA5RmRKiUCh/t8nrLzDrKkJ43LxgVyizmD4=;
+        b=b2tbhVl4XNL7z9VJm8J6AJqim28IW0jhxwkWTsAx/md/NspgjIJYek9Qeay56dXMw+
+         ZhR21uaOU4j5tv2gHf2bYFv6TYZ5+WqraxA5LQt4lK/u1qZrePN9EZjLRz2FjWNsk2ZW
+         yZHiYYXlO2kN4RraJY6RPHwX41hcaSYMs3IfEOPIO9HT9vjtj6KcZCU5DUalG960k4Qt
+         Bqszzh53ABam5xddvbnNIzX60v2fEJqtTS9FzDY5Mf8xJhEPp8xoc5zvF7jfpu2X20ox
+         9OhucEs4gsMrE8JRyPyhn70BblHeYvs84LnIvMY41sKqTn7bE30ckx7oXtp4nrs6gu8t
+         5bHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715007063; x=1715611863;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s25nNsZfQA5RmRKiUCh/t8nrLzDrKkJ43LxgVyizmD4=;
+        b=RRTe3/EH5+8+Dt7BspXBPBVj/vytGyaMVDzIXNzwT6iR1mY64GmtRw9mozBN81kkSC
+         74gG0YfA8utEJKftLFM5vMlhsY+0UXeJxoCRxS+RWIX/h92TkDrAM7fNHg1LlraSkB8w
+         Obr0XT7zKGAJVTKCjHBHiXmoh35FaPYTWr24hH2F0pzq3zLykx23YxIBFReusna8Fl72
+         EkaMZetzgAZT3k5kaOnLd0mYiTBYNmmhwFuA2cO7sTp1K5UEp7FjPcvopwmFpqQWKn3q
+         NjiK6vaO+ATuhxAdNqc64oLPHvtuNBkZAQMNPlmyOSXOYxaIsMaKUfa2lz5UcZ9CdrjU
+         oBKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVpZUWCDB0fvcEdPhruLtTKsumuNOxu1y8ahcsiXuKJigO1Ja8jyBrJ1q5iEnKsjZnCh5E3Rfv/t1HqpiV5OnjxH3/s66fOACQtig==
+X-Gm-Message-State: AOJu0YzsbIzon2OphzffMl8gJAuyZ0JT9xjzromn2vdsoQMy9e6xbphR
+	/PfR89dqiM0cLk3NDSTFJmMNklL09b6V85FJ9n3DZCsGWGJ8D4UJEQ7CqqEbovA=
+X-Google-Smtp-Source: AGHT+IFoP4sD7V1fmiJRQwVHulmnwjUmlkDpvPyjrs2aw3izXS0DOoteipwwYPOAeJK5o2JUSbOdWA==
+X-Received: by 2002:adf:a29e:0:b0:34d:99ac:dcd0 with SMTP id s30-20020adfa29e000000b0034d99acdcd0mr6277700wra.49.1715007063674;
+        Mon, 06 May 2024 07:51:03 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id v6-20020a5d6106000000b0034d743eb8dfsm10852322wrt.29.2024.05.06.07.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 May 2024 07:51:03 -0700 (PDT)
+Message-ID: <4349e7ea-380d-4c91-83be-d74983e2cdb0@freebox.fr>
+Date: Mon, 6 May 2024 16:51:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-06_09,2024-05-06_02,2023-05-22_02
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] media: venus: add msm8998 support
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
+ <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <72860c1d-7434-4be6-8c1d-9ea177602802@freebox.fr>
+ <14bda891-5035-433c-888e-b3c330eeffaf@freebox.fr>
+ <803b267b-9171-8234-aa3a-fba0d738a64d@quicinc.com>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <803b267b-9171-8234-aa3a-fba0d738a64d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Touchscreen reset needs to be configured
-via the pinctrl not the driver (a pull-down resistor
-has been soldered onto the reset line which forces
-the touchscreen to reset state).
-Interrupt line must have a pull-down resistor
-in order to freeze the i2c address at 0x5D.
+On 06/05/2024 16:43, Vikash Garodia wrote:
 
-Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
----
- arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 22 +++++++++++++++++++++
- arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 14 +++++++++++++
- 2 files changed, 36 insertions(+)
+> On 5/6/2024 7:17 PM, Marc Gonzalez wrote:
+>
+>> From: Pierre-Hugues Husson <phhusson@freebox.fr>
+>>
+>> Add the missing bits for msm8998 support.
+>>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>> ---
+>>  drivers/media/platform/qcom/venus/core.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+>> index ce206b7097541..064120127cb86 100644
+>> --- a/drivers/media/platform/qcom/venus/core.c
+>> +++ b/drivers/media/platform/qcom/venus/core.c
+>> @@ -554,6 +554,9 @@ static const struct venus_resources msm8916_res = {
+>>  	.fwname = "qcom/venus-1.8/venus.mbn",
+>>  };
+>>  
+>> +/*
+>> + * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blame/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8996-v3.dtsi#L403-414
+>> + */
+>
+> There is no need to add the link to downstream code in comments. Please remove them.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-index 32c5d8a1e06a..21861cae21d9 100644
---- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-@@ -13,6 +13,28 @@ pins {
- 		};
- 	};
- 
-+	goodix_pins_a: goodix-0 {
-+		/*
-+		 * touchscreen reset needs to be configured
-+		 * via the pinctrl not the driver (a pull-down resistor
-+		 * has been soldered onto the reset line which forces
-+		 * the touchscreen to reset state).
-+		 */
-+		pins1 {
-+			pinmux = <STM32_PINMUX('H', 2, GPIO)>;
-+			output-high;
-+			bias-pull-up;
-+		};
-+		/*
-+		 * Interrupt line must have a pull-down resistor
-+		 * in order to freeze the i2c address at 0x5D
-+		 */
-+		pins2 {
-+			pinmux = <STM32_PINMUX('F', 5, GPIO)>;
-+			bias-pull-down;
-+		};
-+	};
-+
- 	i2c1_pins_a: i2c1-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 12, AF5)>, /* I2C1_SCL */
-diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-index 567e53ad285f..5e8ee2d4648a 100644
---- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-+++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-@@ -201,6 +201,20 @@ &i2c5 {
- 	/* spare dmas for other usage */
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
-+
-+	goodix: goodix-ts@5d {
-+		compatible = "goodix,gt911";
-+		reg = <0x5d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&goodix_pins_a>;
-+		interrupt-parent = <&gpiof>;
-+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-+		AVDD28-supply = <&scmi_v3v3_sw>;
-+		VDDIO-supply = <&scmi_v3v3_sw>;
-+		touchscreen-size-x = <480>;
-+		touchscreen-size-y = <272>;
-+		status = "okay" ;
-+	};
- };
- 
- &iwdg2 {
--- 
-2.34.1
+They are needed somewhere, to double check the values.
+Otherwise, it's just voodoo programming.
+
+If not in the code, then maybe in the commit message?
+
+Since qcom doesn't publish datasheets, downstream code
+is the best we've got.
+
+Regards
 
 
