@@ -1,130 +1,149 @@
-Return-Path: <devicetree+bounces-65222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0350F8BD1CF
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 885D28BD1D9
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:54:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1F1B2850D0
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:51:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 431992838E9
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39D11156237;
-	Mon,  6 May 2024 15:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7407715572D;
+	Mon,  6 May 2024 15:54:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nj1uiXIR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DBFmFcWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3F7155A27;
-	Mon,  6 May 2024 15:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C55142E8A;
+	Mon,  6 May 2024 15:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715010678; cv=none; b=Hp2WzzDHJy6wUUDpJTRm89GHusYD67Y/xw2c79ZCw09sb5xJIf0/xvSEhZr41rZtuaTUFbfe37Fxy5NpTdo8+5cwxbclZYsCRMj0ux1j/5UMVuQss25vSJ+xvL3JZPpARKQrTU1XrfIPqbQ/doPdRFCQh77gcrtjejVXvttFs5g=
+	t=1715010865; cv=none; b=r33voeuJL0+mLF9qWrI/+dctKlCBFPnuPPMKta5S4fnrmb/Aj8DYTLIKcgy+9NK9XDewvriXP0JXtwWjZ4HdgrD3mgJ4zPEF3Wk5pKDEJ1KC4kDcuqR1BXVIdbe7E4CbUvAaYLiYcIPBXA5eDMyDE1KRRf9MMlTjbaT6c3mS7PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715010678; c=relaxed/simple;
-	bh=RevPtx03YmQ4ojv4DAFVID03tKsCKqI8IgeaIHhY58I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Jmh9BNPdk9qM7nY2+BiKMlFdU3GuRcdHROn8QpnncreRkPP5L1av5SHAxDJJT3iT1Gh4T64/LjRln9tMdA6U7JFpifHxcooAt8Cw/ngVXLbPMXZ8S8XNKGAJEdSVOOX9vamE+GdIfAq7wj63Y6qLqvVjsulJrKr0mBusr4Zma9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nj1uiXIR; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a5200afe39eso535258666b.1;
-        Mon, 06 May 2024 08:51:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715010675; x=1715615475; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8I21WtsUZcdgpZuf38No+IlnE5W2vGDappaz3+ciLm0=;
-        b=nj1uiXIRUcv5sWAWSLW8aNZPHAiCqrER8XS6wuyPc8XmKpD37bn5Psg7PYFYk/fEBt
-         RY0dhS2exZ4Hbtwovpdprd3dwE3CwVpcYOf1IBOmPH8TEuDw5LPIzk+EK9rnAUjoa1ME
-         uo99xOZl9JfPJugF1fK/NYPZOJwDLZRKM8Q+gPS+Q5w5R3l5sNgSz+d8621cKKVkepmX
-         4mk+o5jC4C9G9kUsC8Y7fNjLYu9oKOB67Oyh95ZAglW4WcP8tyPYYGVDS9T/FkTp/X3F
-         NR+lRKj6OwAnXT54Xy7d9RGgAREbUUije2qYi4In5tcqioPy/iNoGWGX3b3qW/U2xFTA
-         5ykQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715010675; x=1715615475;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8I21WtsUZcdgpZuf38No+IlnE5W2vGDappaz3+ciLm0=;
-        b=ua+hMwJxKTvl+CwZVOcPruBRoNPzwcdkiH2zqzxg5kwKlYik7hZyb1ApnL+xW0WPWe
-         HU7NzcF+nTxZRBEhQfL6lrTxD3fF/Q7/pB8kKX6JFXxCTLRbeDWGjNxD7IGnVj+fFMJA
-         fzlRC1JRM2J4RX/utpDjk99rwiXJo4Sd8nrQaonLKap/h0uIutOqhYnCfl2NJlyGufgd
-         lytmHKBbSRVJ5XptBIdSTuJE8f1vgtyRw5cdL1rKg/9Ha5ab90pqQI+4IY3sQOjqFo9y
-         UC4wGtjJDsJmkVhS28vUrmyshTAc+VI3QPG1YdubPW5nlAHnTzscwNMlplTZr5op4QdJ
-         DvaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDPO3FmCL+r4QOPCjxS2dRJMBbRvNDWVKC5ZqS4L3Po96/HBUcwRxBwtc67DMYSMPL/OT94okVMrUqKgr2aCCPDz70XKL8IhwL7HNg
-X-Gm-Message-State: AOJu0YxpPaxeoeKPV5wgirzjYp/U/fhim57DRoJJlQStUJGn1fmxwBsG
-	in1ylxBlKRyVRSxiYB57j828w5Mif3AT4NkvqXL3PZSUw8qBSVOAAQr0
-X-Google-Smtp-Source: AGHT+IGUXcRYajK3MdV54mEIKa/3JOK3wciOaMvhxvgKosMw2KgO/7txS4O4aJlUGlkK5fzdsMOW2Q==
-X-Received: by 2002:a17:907:7e97:b0:a59:b1cf:fea0 with SMTP id qb23-20020a1709077e9700b00a59b1cffea0mr6357081ejc.19.1715010674674;
-        Mon, 06 May 2024 08:51:14 -0700 (PDT)
-Received: from U4.lan ([2a02:810b:f40:4600:1c62:e77:6753:5729])
-        by smtp.gmail.com with ESMTPSA id y24-20020a170906071800b00a59cec38bf3sm1356230ejb.52.2024.05.06.08.51.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 May 2024 08:51:14 -0700 (PDT)
-From: Alex Bee <knaerzche@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: rockchip: Add spdif node for RK3128
-Date: Mon,  6 May 2024 17:51:03 +0200
-Message-ID: <20240506155103.206592-3-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240506155103.206592-1-knaerzche@gmail.com>
-References: <20240506155103.206592-1-knaerzche@gmail.com>
+	s=arc-20240116; t=1715010865; c=relaxed/simple;
+	bh=iMkABcd0DBv9az9njPuwUR8B35ghWS0eM5Q6/tVyFFk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PexXVVpcELLsjQwoi4g1iEtrl9OCqPXnswySAhLpC0MGhFjb+CTEzKVRSX20PrHqfp9m4CbBDyGfobRbfGx2acK3barms8bgHXvfbB28c5QC0Zz3xM1RXQ+Ae26npKn1g/fbOPiL+ie2WF005OVaJ0RSV22ZwQw8mRnQNlZormo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DBFmFcWp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F11CC116B1;
+	Mon,  6 May 2024 15:54:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715010863;
+	bh=iMkABcd0DBv9az9njPuwUR8B35ghWS0eM5Q6/tVyFFk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DBFmFcWpT3kV6HurFA95Zrh/LmeCRaqezdk3DoQYk/aLBYZ+L3gAyVz5NqXKvX+vz
+	 7n0xFXEaXrsRXdlIxcvN7QlT/Rla8dyzXrn9ucwfdQIRHoSODel+ZPgCC+QgVO9S18
+	 u5S40ECc1sn/JIPIwMPf8xJ4lMfowrIXHrC2cjyQORtERne/Xj7l9oeLxatwQ4pnnt
+	 ylO0EvoObjnuc7w0IztkvR2/EzTH9PZg8DcwaavNKs90YF6kmt7RdqyeyQ2UQpPcK+
+	 a9dMh6pI5M4JKRHN6snHWHHI+yI0MiSigOYqAh81tGpDTDiX/dDi5NNlju23f5n6GB
+	 rknbZDEf4aUVA==
+Date: Mon, 6 May 2024 16:54:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Alisa-Dariana Roman <alisadariana@gmail.com>,
+	michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	alexandru.tachici@analog.com, lars@metafoo.de, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
+	nuno.sa@analog.com, marcelo.schmitt@analog.com,
+	bigunclemax@gmail.com, dlechner@baylibre.com, okan.sahin@analog.com,
+	fr0st61te@gmail.com, alisa.roman@analog.com,
+	marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
+	liambeguin@gmail.com
+Subject: Re: [PATCH v7 5/6] dt-bindings: iio: adc: ad7192: Add AD7194 support
+Message-ID: <20240506-evaluate-darkroom-b0f8a7bf4598@spud>
+References: <20240430162946.589423-1-alisa.roman@analog.com>
+ <20240430162946.589423-6-alisa.roman@analog.com>
+ <20240430-winnings-wrongness-32328ccfe3b5@spud>
+ <20240505204602.5d4cbfa0@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3Aufn4Dkbz1VH4dr"
+Content-Disposition: inline
+In-Reply-To: <20240505204602.5d4cbfa0@jic23-huawei>
 
-The SoC has a S/PDIF TX controller which is fully compatible with older
-generation Rockchip SoCs.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- arch/arm/boot/dts/rockchip/rk3128.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+--3Aufn4Dkbz1VH4dr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dts/rockchip/rk3128.dtsi
-index d0d1d7c2ab2f..bf6e05503141 100644
---- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
-@@ -372,6 +372,20 @@ i2s_8ch: i2s@10200000 {
- 		status = "disabled";
- 	};
- 
-+	spdif: spdif@10204000 {
-+		compatible = "rockchip,rk3128-spdif", "rockchip,rk3066-spdif";
-+		reg = <0x10204000 0x1000>;
-+		interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru SCLK_SPDIF>, <&cru HCLK_SPDIF>;
-+		clock-names = "mclk", "hclk";
-+		dmas = <&pdma 13>;
-+		dma-names = "tx";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&spdif_tx>;
-+		#sound-dai-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	sdmmc: mmc@10214000 {
- 		compatible = "rockchip,rk3128-dw-mshc", "rockchip,rk3288-dw-mshc";
- 		reg = <0x10214000 0x4000>;
--- 
-2.43.2
+On Sun, May 05, 2024 at 08:46:02PM +0100, Jonathan Cameron wrote:
+> On Tue, 30 Apr 2024 18:21:01 +0100
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > On Tue, Apr 30, 2024 at 07:29:45PM +0300, Alisa-Dariana Roman wrote:
+> > > +      diff-channels:
+> > > +        description:
+> > > +          Both inputs can be connected to pins AIN1 to AIN16 by choo=
+sing the
+> > > +          appropriate value from 1 to 16.
+> > > +        items:
+> > > +          minimum: 1
+> > > +          maximum: 16
+> > > +
+> > > +      single-channel:
+> > > +        description:
+> > > +          Positive input can be connected to pins AIN1 to AIN16 by c=
+hoosing the
+> > > +          appropriate value from 1 to 16. Negative input is connecte=
+d to AINCOM.
+> > > +        items:
+> > > +          minimum: 1
+> > > +          maximum: 16 =20
+> >=20
+> > Up to 16 differential channels and 16 single-ended channels, but only 16
+> > pins? Would the number of differential channels not max out at 8?
+>=20
+> May not really be limited to 16 differential. Many chips use general purp=
+ose
+> muxes on both sides so you can do all combinations. In practice that's no=
+rmally
+> pointless.
+>=20
+> A more useful case is to do all but one channel as positive inputs and th=
+e remaining
+> channel as the negative for those 15 differential channels.
 
+Yah, 15 is what I had in my head as the highest reasonable number given
+the information given about the AIN# pins.
+
+> This is effectively the same as doing pseudo differential channels, but
+> on more flexible hardware.  This is in contrast to a device that only sup=
+ports
+> pseudo differential where there is a special pin for the negative
+> (this device has that as well as full muxes on the other 16 lines).
+>=20
+> Having said all that.  The ad7194 datasheet says 8 differential channels..
+> I have no idea why though... Maybe something to do with the mux switching?
+> Or maybe assumption is that if you want to do pseudo differential you'll =
+use
+> the pseudo differential mode rather than wasting hardware?
+
+I didn't look at the datasheet tbf, I was just asking given the
+description didn't make sense to me and looking for an explanation from
+the author.
+
+--3Aufn4Dkbz1VH4dr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjj9KQAKCRB4tDGHoIJi
+0tgjAP0UT0hwLpfAghyxJPc+yxfShQLZbRCoHngwKOZZsGSlDwEAj4SyQghwbeUF
+1Y3RvIXr04WBMoljrmHNA3+f2Vm99QI=
+=f95D
+-----END PGP SIGNATURE-----
+
+--3Aufn4Dkbz1VH4dr--
 
