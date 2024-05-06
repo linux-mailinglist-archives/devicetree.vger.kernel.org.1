@@ -1,203 +1,111 @@
-Return-Path: <devicetree+bounces-65188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2235C8BCFDA
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:17:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B22B8BCFEE
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB663B2372A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:17:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB355283740
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE22013CFA7;
-	Mon,  6 May 2024 14:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11C313D621;
+	Mon,  6 May 2024 14:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vdr3fCqq"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qZNk2uVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C4781211;
-	Mon,  6 May 2024 14:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC8F81211;
+	Mon,  6 May 2024 14:18:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715005057; cv=none; b=EFoq0w6AmUmrvssClcmnXOyYheJikeXsv834NJtg2R07U4xiEppiAYc02OV1v0pmyaKZeme0MuQESkxzFsvqWGHCF0kB7LXCHHYtp2BkMI/jugb1QpCcIkFikSsul0EJkOBwN8WLz5fGCn7UaaGswwxYP2Lpd+2c9DN9JnQV8I4=
+	t=1715005110; cv=none; b=cj5nSucAr5PYkEPjO6py4POy8sWqP1ZX3x7JgtzIQwrh66DdPF2+/3oU0qzRP2vcW2njFatmxMalPnEqjJKA1RWgfhTmOZV1CgDPIcF3O0S3mXWL0Rs5Viw7apQQcNAuLdUK6RqE4KVxXn7dsd1tiEOntsXJaju/eqzoX4WSP5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715005057; c=relaxed/simple;
-	bh=UT5jdW+jA0vq5ow16r7/+j8BrvIMxmLSzYl2OnPgLWI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bIUjqIN4qByhFrbSotp4fyFgd9fjaxzBLNarRYyLjPBLmb+vQiqNQJvjPsu5cxBeYJhRcUj4tMZsYi6P+dIhpaCv3CoQ4tlIWhOgCLn51hETkPMK2+Wqo+SDuezw5iRUfSqbphMdqnOHFt7EJU1+pN4cd7SMv4NhHT1YEaGDpQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vdr3fCqq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555B6C116B1;
-	Mon,  6 May 2024 14:17:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715005057;
-	bh=UT5jdW+jA0vq5ow16r7/+j8BrvIMxmLSzYl2OnPgLWI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Vdr3fCqqIm0XrYDO7Hi/mGrr+H0sSZjGFu0Xr/Zfk7TzaFjKZUII1SY4yVsrnavOr
-	 sW06NjOvE0QWOZYkHs9dg8IxKqVUESLNLT73j3KrLYjfNOwzxnqoGADXDIjB6laeNR
-	 bRoaSSgF9RftStvkxRpFhtJcwckfi5uvlM4fu5j0pBQKwf55DNi9l35sMPs4vEG4Sz
-	 6/tl91ZVCYeQEZmC8CfH6gUjqWGJb4ndjuO6ZvlU6MPO6ICb9gkGOnN6SCRnrPXf+a
-	 SrDBT1OkHCeZiv6rYLvUcwDMYeZfErBWdHa2d1zLTPvo0ZNfJp/IeF9EZ5YDKyBpe5
-	 tqH5i6LCYFD+g==
-Date: Mon, 6 May 2024 15:17:25 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, kernel test robot <lkp@intel.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v6 09/10] iio: adc: ad7380: add support for rolling
- average oversampling mode
-Message-ID: <20240506151725.10cf025e@jic23-huawei>
-In-Reply-To: <20240501-adding-new-ad738x-driver-v6-9-3c0741154728@baylibre.com>
-References: <20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
-	<20240501-adding-new-ad738x-driver-v6-9-3c0741154728@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1715005110; c=relaxed/simple;
+	bh=Vi05QVSG3iatwDAILN86QUEWJ3fE0RrPn+kvsUCWGws=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eCE+H5cWpb/BS1KCngd5EcN28pLLT4azO39bmMf4AMmcJpHhKSQAsryHv5OsLPeXzP/D1MAhibTtS9Fs8OJVPGkujh9ClK0HN+8jAINCwifE3bwXKBQhWIkaQZa8oGDlPIptHtkOIQ0nrqIkycadlQWa/dj9957xzOIykv+pDhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qZNk2uVI; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1715005106;
+	bh=Vi05QVSG3iatwDAILN86QUEWJ3fE0RrPn+kvsUCWGws=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qZNk2uVI+pZGR3kmAAkImZwSLKE9T+TahIUXH14Y7DA0Pnhl54iALE4oXsJK4KjMq
+	 l3djJ5Ie/y8OAuQJelPxMxPTHk/toXDpEj+cBGquJK5jnoHgZg5RTsXXrsN8/rXtmA
+	 0FTxMdNRP/UOBcTJ2JRvdnjmqjOIM9FXNe35X/pyLiOiQi3u98e+N5EiyRLdbb4qzo
+	 lvVgqpKVoTWeQ39JSe9EJUrwwbL7iP3bIzwK3o2nZNR+xPMAXap5I7bNRijl+zO/e+
+	 ICB9MvXQkAU51lwau8PqYmHqQMG+Le3wdbXBgrYcFS14L6RxnoinEbMJ2PeTQb+zs0
+	 zNGjrTFn187Kw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4BD99378020D;
+	Mon,  6 May 2024 14:18:25 +0000 (UTC)
+Message-ID: <2e3e49ff-8ace-498b-b2d0-54500e6f1e70@collabora.com>
+Date: Mon, 6 May 2024 16:18:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] drm/mediatek: Add support for OF graphs
+To: Michael Walle <mwalle@kernel.org>,
+ Alexandre Mergnat <amergnat@baylibre.com>, chunkuang.hu@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ wenst@chromium.org, kernel@collabora.com
+References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
+ <1fc23530-89ba-4e36-9e9a-a1289f56a9bc@baylibre.com>
+ <608fdbde-ad06-45ec-9771-18aa9f002f2d@collabora.com>
+ <D12H4GDJJEUF.1Y91H9RMUIX20@kernel.org>
+ <50be68dc-b86a-4334-9f83-43c6fda2c271@collabora.com>
+ <1b8fa907-b48f-4ebe-bc17-3de1d7c0d062@collabora.com>
+ <D12LA0QKEFRQ.68TZEVQZ7FJB@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <D12LA0QKEFRQ.68TZEVQZ7FJB@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 01 May 2024 16:55:42 +0200
-Julien Stephan <jstephan@baylibre.com> wrote:
-
-> Adds support for rolling average oversampling mode.
+Il 06/05/24 15:17, Michael Walle ha scritto:
+> Hi Angelo,
 > 
-> Rolling oversampling mode uses a first in, first out (FIFO) buffer of
-> the most recent samples in the averaging calculation, allowing the ADC
-> throughput rate and output data rate to stay the same, since we only need
-> to take only one sample for each new conversion.
+> On Mon May 6, 2024 at 1:22 PM CEST, AngeloGioacchino Del Regno wrote:
+>>> The problem with this is that you need DDP_COMPONENT_DRM_OVL_ADAPTOR... which is
+>>> a software thing and not HW, so that can't be described in devicetree.
+>>>
+>>> The only thing this series won't deal with is exactly that.
+>>
+>> Sorry, no, I got confused.
+>>
+>> The series *does* already deal with that, as the pipeline is built before the check
+>> for OVL_ADAPTOR components, so that will get probed.
 > 
-> The FIFO length is 8, thus the available oversampling ratios are 1, 2, 4, 8
-> in this mode (vs 1,  2, 4, 8, 16, 32 for the normal average)
-
-Ah. I should have read on!
-
+> Are you sure? Because who is actually adding the OVL_ADAPTOR to the
+> path? It looks like your patch will walk the graph and add all the
+> components according to their compatible string. And since the
+> OVL_ADAPTOR is virtual and doesn't have a node..
 > 
-> In order to be able to change the averaging mode, this commit also adds
-> the new "oversampling_mode" and "oversampling_mode_available" custom
-> attributes along with the according documentation file in
-> Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380 since no standard
-> attributes correspond to this use case.
 
-This comes to the comment I stuck in the previous patch.
+I shouldn't look at code while having a flu.
 
-To most people this is not a form of oversampling because the data rate
-remains unchanged. It's a cheap low pass filter (boxcar) Google pointed me at:
-https://dsp.stackexchange.com/questions/9966/what-is-the-cut-off-frequency-of-a-moving-average-filter
+	if (mtk_drm_find_mmsys_comp(private, DDP_COMPONENT_DRM_OVL_ADAPTOR)) {
 
-in_voltage_low_pass_3db_frequency would be the most appropriate standard
-ABI for this if we do treat it as a low pass filter control.
+...but yes nothing adds the mmsys_comp for OVL_ADAPTOR.
 
-I'm not necessarily saying we don't want new ABI for this, but I would
-like to consider the pros and cons of just using the 3db frequency.
-
-So would that work for this part or am I missing something?
-
-> 
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> ---
->  Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380 |  38 ++++++
->  MAINTAINERS                                        |   1 +
->  drivers/iio/adc/ad7380.c                           | 143 +++++++++++++++++++--
->  3 files changed, 174 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380 b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380
-> new file mode 100644
-> index 000000000000..0a560ef3e32a
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380
-> @@ -0,0 +1,38 @@
-> +What: /sys/bus/iio/devices/iio:deviceX/oversampling_mode
-> +KernelVersion: 6.9
-> +Contact: Michael Hennerich <michael.hennerich@analog.com>
-> +Description:
-> +    Writing this attribute sets the oversampling average mode.
-> +    Reading it, shows the configured mode.
-> +    Available modes can be displayed using the oversampling_mode_available
-> +    attribute.
-> +    When writing this attribute to change the oversampling mode, this will
-> +    have the following side effects:
-Where possible, write ABI docs with the assumption we will generalize
-them in future. Annoyingly the documentation system doesn't allow for
-multiple descriptions. As such, additional information like this doesn't
-belong in the ABI docs.
-
-> +
-> +      - soft reset the ADC to flush the oversampling block and FIFO
-I think this was already picked up on in another review, but my inclination is
-make this something you can't change with the buffer enabled. The results
-will be rather unpredictable anyway and it will simplify the handling a little
-to just block that corner with a claim (or failure to claim) direct mode
-when setting this.
-
-> +
-> +      - the available oversampling ratios depend on the oversampling mode
-> +        configured so to avoid misconfiguration, changing the mode will disable
-> +        the oversampling by setting the ratio to 1.
-
-Better to get a close as possible.  If they've configured it to something we can't
-do then it's user error. If they have picked a value that is still possible then
-allowing that is a nice usability improvement.
-
-> +
-> +      - the list of available ratios (displayed by reading the
-> +        oversampling_ratio_available attribute) will be updated when changing
-> +        the oversampling mode.
-
-In general an ABI element is allowed to modify any other (because this sort of
-chaining is common.)  As such I don't think this needs to be in the ABI docs
-but would be a useful detail to add to a chip specific main document elsewhere.
-
-> +
-> +What: /sys/bus/iio/devices/iio:deviceX/oversampling_mode_available
-> +KernelVersion: 6.9
-> +Contact: Michael Hennerich <michael.hennerich@analog.com>
-> +Description:
-> +    Display the available oversampling average modes. The two available modes
-> +    are "normal" and "rolling" where "normal" average mode is the default one.
-> +
-> +      - normal averaging involves taking a number of samples, adding them
-> +        together, and dividing the result by the number of samples taken.
-> +        This result is then output from the device. The sample data is cleared
-> +        when the process completes. Because we need more samples to output a
-> +        value, the data output rate decrease with the oversampling ratio.
-> +
-> +      - rolling oversampling mode uses a first in, first out (FIFO) buffer of
-> +        the most recent samples in the averaging calculation, allowing the ADC
-> +        throughput rate and output data rate to stay the same, since we only need
-> +        to take only one sample for each new conversion.
-
-If we keep this, I wonder if "moving" or "rolling" is the more common term for this.
-
-
-> +
-> +static IIO_DEVICE_ATTR_RW(oversampling_mode, 0);
-> +static IIO_DEVICE_ATTR_RO(oversampling_mode_available, 0);
-> +
-> +static struct attribute *ad7380_attributes[] = {
-> +	&iio_dev_attr_oversampling_mode.dev_attr.attr,
-> +	&iio_dev_attr_oversampling_mode_available.dev_attr.attr,
-> +	NULL
-> +};
-> +
-> +static const struct attribute_group ad7380_attribute_group = {
-> +	.attrs = ad7380_attributes,
-> +};
-
-Bring the sysfs includes in here rather than in the original driver patch.
-
-Thanks,
-
-Jonathan
+Needs to be addressed, will do that asap.
 
