@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-65077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54BFA8BC782
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:24:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA9B48BC788
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85EFD1C20FDF
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 06:24:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB9B11C209CA
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 06:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066D44C62E;
-	Mon,  6 May 2024 06:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09964CB30;
+	Mon,  6 May 2024 06:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dotD2BlV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N7PD8Paz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADCB19479;
-	Mon,  6 May 2024 06:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949D952F8C;
+	Mon,  6 May 2024 06:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714976640; cv=none; b=lSjtrIS8MdhKEeJRp296qv3CmBmYX3xNNYk7ngls1zyE2smSYn7bn87GMobW9DE+wi52JwA/DiKi0q0mUioFyvwqfsZW4pdI3Tni1a7Dm4GDumY1l8yFSULzbaYp2PyYM4ecsfdXoYU+WOIZ5nBFLElX1xWhBgsJmhR+g92WlP8=
+	t=1714976695; cv=none; b=YGELiWWR+qzyziN3xn88JIb6R6TEAEbaEheQfl9LmNhEI4OGclrAGTzcTv1i4/Z5i1NbxPWkDpNJ1xmwD2zNKr47x9+vN6RJbw3C5BT13IUogEHi17Guj5CItDAA0GwvtPce8BRXePa4zTt6UFSzNNtNPYE/bayp2kdt3+LaUZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714976640; c=relaxed/simple;
-	bh=p4igZQLeFwGDAUOMUpmKtPTUN3wWPG7RQrSfgLmxk8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JlhDL4XFz9TfVDQCbDzaQa1L3Em2tRKxbQCbFeZj/UPaITQfIzo3AWbrMCS9YWFmtI1v1xuUy9nBltKowIetRuaZ2UNuMtchZ7WI9Guf7GIwgGmvIat/eThnyIJ+gqFGwat4WKivCPO+LBokIGvBZCflepomk7KCbnQsYV5o1NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dotD2BlV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC3ADC116B1;
-	Mon,  6 May 2024 06:23:54 +0000 (UTC)
+	s=arc-20240116; t=1714976695; c=relaxed/simple;
+	bh=Yp8dmIFtY71Zgi+1E+ti1eTGsqhPcVXSBdpSFvNtW8c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=FwC4jujx8dXHOUKO69KqEqeE9TjzwT3pstM0R+BcxsHpa2nQvrDVIK77EXlGKyZv0AhfPSqXbdcNDMxDQzELEvia+4Ap1rGKz5z2Qr8TjKIR+0u1rZ+4VzzwHBdYuF+O5n4Sbhqyfpsvtp9Hel0lyL9ke37412dL3uaZthRREc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N7PD8Paz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFBE0C4AF65;
+	Mon,  6 May 2024 06:24:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714976640;
-	bh=p4igZQLeFwGDAUOMUpmKtPTUN3wWPG7RQrSfgLmxk8U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dotD2BlV4BdYlqlgMd9bYraEZZwTGLAACBbg0eg0Eqeca3oL4rWPK6r6/jj7LgHvR
-	 GCq13a9pKKFy46d0/wReqz3BxIdTvbvI6ZDo9cw6qcJyg3GYiKLZGZAumuNiI7zeBB
-	 KcJ3thDDClDfS2C/Zr7Rp1E76Ku9ma1YI5g5VMiHDxdAtUUmD3m5Qseug/Kpt/Fk2h
-	 eAkvtRMv9ngyUJUWj5Di1buORKgAO60vjXK3XqhUbVZ62MBKz1YswI7kGMhU8na9Fy
-	 5lLeOiZRuOzPSdrf2j/DJHrQiWFj1ry2vAR3d+JV/7EO4INym797uSAkLdjB5gowlX
-	 8sQ80wUlJFpPA==
-Message-ID: <05365b5a-0398-4382-9646-a1586468ed10@kernel.org>
-Date: Mon, 6 May 2024 08:23:52 +0200
+	s=k20201202; t=1714976695;
+	bh=Yp8dmIFtY71Zgi+1E+ti1eTGsqhPcVXSBdpSFvNtW8c=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=N7PD8PazjwtPho6g3yqVnDJAzxlW1rr1QUhxSZoQkHegE8MI9Rbc3/QgdAxsBaDpC
+	 yt2cyyeiixY1eGh/6y5OyaTxBdTruX5q0BDQDbkN87wd6rQVBnMeOYMOFLLrPqJy7F
+	 z6ySbU0hRjwqyve1YrK0j9XxjMZFD7BT1K6m6wRp3LfJFnl2JWhB7zJ/Q41LUais74
+	 h4IJz9wsQ51N4PGZ+JPL67WKpn3Db3LA0vRCr9mAc7J+u8ZpGZuack3UgbfrXMRGAC
+	 8IX+zllWJjLRVOFURlGe/Wy8vnGnHiq909dfBVG4+9qOCEIIfr9BN0HgcJV4qaI0ER
+	 KD1/zpvlK+Tbg==
+Message-ID: <2a3925c6-4c97-4292-a6a3-14458efbd339@kernel.org>
+Date: Mon, 6 May 2024 08:24:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: clock: imx8mp: Add #reset-cells property
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
- peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+Subject: Re: [PATCH v2 1/3] dt-bindings: touchscreen: convert elan,ektf2127 to
+ json-schema
+To: Andreas Kemnade <andreas@kemnade.info>, dmitry.torokhov@gmail.com,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, marex@denx.de, imx@lists.linux.dev,
- shengjiu.wang@gmail.com
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1714967359-27905-1-git-send-email-shengjiu.wang@nxp.com>
- <1714967359-27905-2-git-send-email-shengjiu.wang@nxp.com>
+ u.kleine-koenig@pengutronix.de, hdegoede@redhat.com,
+ andy.shevchenko@gmail.com, siebren.vroegindeweij@hotmail.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240505214754.891700-1-andreas@kemnade.info>
+ <20240505214754.891700-2-andreas@kemnade.info>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,18 +105,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1714967359-27905-2-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20240505214754.891700-2-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/05/2024 05:49, Shengjiu Wang wrote:
-> Make audiomix block control a reset provider for
-> Enhanced Audio Return Channel (eARC).
+On 05/05/2024 23:47, Andreas Kemnade wrote:
+> Convert EKTF2127 infrared touchscreen controller binding to DT schema
+> and add ektf2232 compatible.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
 
-Why? Commit msg should explain that. Why suddenly this became reset
-coontroller? Does it represent hardware?
-
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
