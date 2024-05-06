@@ -1,104 +1,111 @@
-Return-Path: <devicetree+bounces-65091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5967C8BC7F7
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 09:04:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A1918BC81B
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 09:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A93E1C211DD
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 07:04:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35FDE281A7C
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 07:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2BA50263;
-	Mon,  6 May 2024 07:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA798524AE;
+	Mon,  6 May 2024 07:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dQ/oiTyU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="j6S2vSVa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F2148CCD
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 07:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C92481B1;
+	Mon,  6 May 2024 07:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714979046; cv=none; b=OViMxHmcxfthgtMxPsbuCcA9oDWDkkAssmWkpbuKacEiYFrEqGPIU4iLZdxV2rXfBlmZViT69doajNdBKw0+hq09yuqj0oCup7MPDSd/eavW4ReleCbm+Ogv4XvwfdNHZ+/MPWGCeMrssLOmhCPy1PF3EC/wJA8vGh6V9R0GtQs=
+	t=1714979233; cv=none; b=IOoUWJoZINYDGvp18N/jKzq6cpt4/sbUsoaKVeINlhO3GUotQkwEYC3KaRdywoF8SwaNheP7rcywDVs8pK91r6FvW7iTToP44HvspW75toebdObU219BY6ArW13rmNtzlcEQR5+2E2qmfSb0WpcuzkLdjS71S48lR2x1LnU5ISQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714979046; c=relaxed/simple;
-	bh=jznohTa5ug8sLejwDzqLsWt2v21AlWpPddDxegOk97Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iQaiTWwRtUNwCw0V/F0sm5aEi4COJRc8WTWoLQp3q21t6TEVbP5nLzQjIxiqP/QvOofaoZhdoc+1paPON+MsbUQ439ObAT7HuVRW1aOtEUjEejWSu89MFS1GWe7ypK3fXauBdTGBdpfK02C05Cks1EzSjYDwX5ofng/2P8H83R0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dQ/oiTyU; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dcc6fc978ddso1200346276.0
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 00:04:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714979043; x=1715583843; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jznohTa5ug8sLejwDzqLsWt2v21AlWpPddDxegOk97Q=;
-        b=dQ/oiTyU2fN9RIagzSYRg6qWB25L4lFR0Srj2AKyC1Iprq1lTa7yPKzcn5RWfv+9sv
-         8132CpWaujpyiH0LkMKQ0xWR9Ss+ylO/2FIC7CC86IKD0+qER3zhpXEg/qcqF0ltluzK
-         YE6x6414+4a0WCoaLoxgaA9xSQky4kOLxhlsaZ7WW0cgBrJVAo2qHZ/3ztFGeIs3ASve
-         pyHqw33Lu6VbjGZGplC89LC15H3QpqU7zgnlcMsHI4nSu1JWMlSOgHQNSQ0oMnn54Q1f
-         /X0dzDP0ySr1lIApKy0e4GrNOWzzuzTm0gZuVmWpZl1Xg6JThcJTCSvaYyVRdiuJFsd0
-         u2Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714979043; x=1715583843;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jznohTa5ug8sLejwDzqLsWt2v21AlWpPddDxegOk97Q=;
-        b=Wv+1mBipScupj3Ah1H+4u2DxU93iSKHwVsluoPWdcAgH2lSj68Ygt7J1wu3s/pgPD7
-         igFC8X+I+LAoyMoIpEexgLZAAy3yL6b7pk5BJlEvqSGr6XVgwp6NVDoVfhpu9WmpMlBL
-         gBoh/KupHA2bZO/jUR5TVw2ekW1oiJkzu0iFUFjuJZFrTHFkHgGWh4pJxSWitILVNYDG
-         FlhQtO+basgE+0Hxchf5yWnwnz34Ghf0Dh7n6SPcYIoxYr8DSKVdWl51BnkhsrStGbMV
-         7BQOFB5QAGDzKQd19kFEKoPlcQYNim3FPF+AYbki20VX52QunuGoctrmQksRDq8tNV7I
-         Ug/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWERWQvpxz+yJfH3b9hVADOHaZUYX2CyUUvkNrb5J4BOd0A7aximEG+Ufj+MzvTkXupdzpup18EjU3zyItWuSV98/kJPxUxG8h+Cg==
-X-Gm-Message-State: AOJu0YyfnP30nvnbBtSxxqt7fHTZCw/8G787J+8JcNRl4o93GaE1yZqP
-	ptVK0UNWIDc9dHJjDRocH4oPdKgUZNigmkIaTmFaqDQ+gdNgGlacSh5fb/6/sNQbQw2AW8CKYLQ
-	KvQJtPdn36amu+bW653shxGhjnEJ/2topmlmAMg==
-X-Google-Smtp-Source: AGHT+IG3yDOoLnUXRBMI8lrR2H5UzsYULy1K6My67I/jXLuqtZrm2OCq24OfQNt4/HKDtqbemqh1jHXtsBeCD2VzXyY=
-X-Received: by 2002:a05:6902:250e:b0:ddd:7ab7:2320 with SMTP id
- dt14-20020a056902250e00b00ddd7ab72320mr9354716ybb.27.1714979043648; Mon, 06
- May 2024 00:04:03 -0700 (PDT)
+	s=arc-20240116; t=1714979233; c=relaxed/simple;
+	bh=/ygl80MN8pFCAtka2vGNeRmQZQPFH5Tx21QOyhP/sdw=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=YTBrWNaU/b5DMWIjxKQ0Ne2fWH4AE5S9TlKWny2+qCeLqVv729IITLtH5H4apwKEF5AQomuy0XTK/bPlCEw1rsNlul9z6K1cqEAWvj1Wf+f1F60Rld7IKSjIgwsk6W873nNp8Y084bGZ1k5f1V4p2cjZUEEu+0Fgk/Kxl/YkpMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=j6S2vSVa; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B373C0009;
+	Mon,  6 May 2024 07:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1714979223;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mF3okb/zlCrXIKizMgfKu76xu/b0djUY7d04ZIvQ2SI=;
+	b=j6S2vSVa12Y36dfV8tSiSbHT3HtfhSkv0miIpTvodL/pMj702HSJQ9y/L1BrzHr+qwLXn6
+	v2ZyKVzBxVY7xGQtCTXTbWlD8rGppHUFKNmkECKa+Yf1VYBvrBLYTLoG7xuPT0nlDSFKTn
+	tQ7+PrQmjCcsQsxCuGd/N0KUPOwZG5vSd8hklW22nf0kovdubmuVt/SGy/3rbafk+S4FOJ
+	tzr3557EK3oB4tVti3Y4jis6NgO+W+RNz4aJ954fCkd/SayzGMqihFKlpTH/owBuA4AaJk
+	mFHMNUcOPz0toEn0zeYQqJcoHweorazXNAudn8zQUYj+d9aebS6A5a/Z6hztRg==
+Date: Mon, 6 May 2024 09:07:41 +0200 (CEST)
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Serge Semin <fancer.lancer@gmail.com>
+cc: Romain Gantois <romain.gantois@bootlin.com>, 
+    "David S. Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Geert Uytterhoeven <geert+renesas@glider.be>, 
+    Magnus Damm <magnus.damm@gmail.com>, 
+    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+    Jose Abreu <joabreu@synopsys.com>, 
+    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+    Russell King <linux@armlinux.org.uk>, 
+    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
+    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-renesas-soc@vger.kernel.org, 
+    linux-stm32@st-md-mailman.stormreply.com, 
+    linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v5 2/7] net: stmmac: Add dedicated XPCS cleanup
+ method
+In-Reply-To: <4wdcmcb2yxneynxtppestl6cp25z5xge3hfv7o47bxwpafn4cg@mtvc3ls2cxij>
+Message-ID: <ec3e6c1b-1a5e-f7c9-4782-bc8f01a67f5f@bootlin.com>
+References: <20240430-rzn1-gmac1-v5-0-62f65a84f418@bootlin.com> <20240430-rzn1-gmac1-v5-2-62f65a84f418@bootlin.com> <4wdcmcb2yxneynxtppestl6cp25z5xge3hfv7o47bxwpafn4cg@mtvc3ls2cxij>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240424185039.1707812-1-opendmb@gmail.com> <20240424185039.1707812-3-opendmb@gmail.com>
- <CACRpkda4v6Nu8V3MVamDpfs4qnc89e8Vd8fSyaNsqJQ40GQqZg@mail.gmail.com>
- <45b7742c-9cde-4238-9c2c-c75dfbe9d8f3@gmail.com> <CAMRc=MfEVCDf8sn7C-cO_Y1xa4RehQj1tvRSRtC5aj0dF6uJWA@mail.gmail.com>
-In-Reply-To: <CAMRc=MfEVCDf8sn7C-cO_Y1xa4RehQj1tvRSRtC5aj0dF6uJWA@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 6 May 2024 09:03:52 +0200
-Message-ID: <CACRpkdawMaQN1QrPXwdKBdkhrNAewe-Oe+FNXzks_O4mdg0Otw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] gpio: of: support gpio-ranges for multiple gpiochip devices
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Doug Berger <opendmb@gmail.com>, Phil Elwell <phil@raspberrypi.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Sun, May 5, 2024 at 2:25=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
-wrote:
+Hi Serge,
 
-> Please let me know if this is still a NAK, if so, I'll drop this
-> series from my tree at least for this release.
+On Fri, 3 May 2024, Serge Semin wrote:
 
-No I was just wrong, I had missed Sergio's addition of local
-offset for several-gpiochip-per-device handling completely
-and confused .offset with .base...
+> 
+> > +void stmmac_pcs_clean(struct stmmac_priv *priv)
+> 
+> Ideally it would have been great to have the entire driver fixed to
+> accept the stmmac_priv pointer as the functions argument. But this
+> would be too tiresome. Anyway seeing the PCS-setup protagonist method
+> has the net_device pointer passed I would implement the same prototype
+> for the antagonist even though it would require an additional local
+> variable. That will make the MDIO and PCS local interface-functions
+> looking alike and as if unified. That is the reason of why I made
+> stmmac_xpcs_clean() accepting the net_device pointer. 
+> 
+> Alternatively both stmmac_pcs_setup() and stmmac_pcs_clean() could be
+> converted to just accepting a pointer to the stmmac_priv instance.
 
-Yours,
-Linus Walleij
+I think that adapting stmmac_pcs_clean() to take a net_device struct would be 
+more appropriate since it's the simpler of the two methods. I'll implement this 
+in the next version.
+
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
