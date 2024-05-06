@@ -1,376 +1,129 @@
-Return-Path: <devicetree+bounces-65170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50A698BCE6A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:49:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A04B8BCE77
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:52:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D25CD1F22DE3
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:49:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB58F1C23AEF
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 12:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B0D78C7C;
-	Mon,  6 May 2024 12:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948156EB76;
+	Mon,  6 May 2024 12:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GAvw+jrf"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DEhFH1LD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0265FB9A;
-	Mon,  6 May 2024 12:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482FE78685;
+	Mon,  6 May 2024 12:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714999746; cv=none; b=DUGKa3oFwtMXskbhnBOhPU0328TitOWCwoH+/6pFmgDPgMtmxH29r/pAMzWxSR/syyZEHbtpBTPB77lEa8he6tMhGESXoa3Sq+MJXIwcNMECloTJEf/nHjFosYmdN4D2QPmkexK+ykwRUf0CPOddb8q+/ROuRt/is4X8NkjzSR8=
+	t=1714999929; cv=none; b=u8vJHgY+JlB97L/zP3Q1tMJROCMN0G9WpwFyd0CpcF1DNVVK4gBnduzYwYeD7ToVp1zdC67dBB5sxPsUfduu5G6hz5Hoxzg3xNYeaOqXSPnpoCfiUMPgwQ5QFhB+a8/WfVEscmFJHIp8zmdpGhTgBHrDlA03I75Zzn4+HUh1qps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714999746; c=relaxed/simple;
-	bh=2oBQSzZfrsPoLPKYfY3SQczWXSAvlBqiIyWSsQhNYMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BPA2jD5aqNawe1pcAUlQns8KloFpVLmp8wlwkcFU8CS+qQg65v6Y2gsxnMU/AVERTnhzjQXCEIhr/XzExH26a7PaC46mUpG2s58CqoYcfZReBeXE4dSbqJ7rWlvow1skVggEk38xKtT1fcdDJQbU8SNUaXedxX/1oPzVohsCdFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GAvw+jrf; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1714999742;
-	bh=2oBQSzZfrsPoLPKYfY3SQczWXSAvlBqiIyWSsQhNYMc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GAvw+jrfA1VJtA7Ai+fzIVi9HUWeJ3Z1JKjLH62eln6cImgj2JVD0poirjmtckcfy
-	 BLNMjen6TmHUi2uRuIm8v72yI9YLt/pdFaCjQi9IBfWEPtkBKIwKCKjmEoMqk3NnZ7
-	 gEsA5Sn3yrqI2eQsBJbi4o/KMufjj3ni+ry+2i3R7waEJDRPeJDE/41TkKfrPCKm8s
-	 hHl1Y9Xu/dec0W3rdNiKFQT6x/+R8XaHPafxu70dV/+PumWVFXNhFGyBgX4r68dU5n
-	 WzKYxaIMzmkIERr1jZAQiOASmL36BX7NPrTDCg8VZ5DRuyhXWP3yxIJqxCv/IDy6Xt
-	 aqDw3DltBgzWg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D3A2B3782060;
-	Mon,  6 May 2024 12:49:00 +0000 (UTC)
-Message-ID: <a4099612-a4ae-4211-9674-c7053d2a995a@collabora.com>
-Date: Mon, 6 May 2024 14:48:59 +0200
+	s=arc-20240116; t=1714999929; c=relaxed/simple;
+	bh=FV8UQO0S1djsen3MpBE9cS2jqNvRP6rmoNXoPs4e2Io=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=kUio5pv9aQtktxcGBuJRk/EjF8SyKS86IdX2fc1x7MPwsyN8DDe6wKPmdTnx7e+1w7WGKOtvf6MgI95YVFM+XgyPyAGeeMyGCM1MmVKiseEAcCX529hdAKKbw4ID3dbLBpzrp5s0kJ215oxY5zvuQRAYkGHbDKKWB9zthvTpfIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DEhFH1LD; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v1 5/5] arm64: dts: mediatek: Add mt7986 based Bananapi R3
- Mini
-To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- Eric Woudstra <ericwouds@gmail.com>, Tianling Shen <cnsztl@immortalwrt.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-leds@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Tianling Shen <cnsztl@gmail.com>
-References: <20240505164549.65644-1-linux@fw-web.de>
- <20240505164549.65644-6-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240505164549.65644-6-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1714999920;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IcAm2WrGck6byiy+v8QNJrY6eKW4T+0LgdGn5v1lLbM=;
+	b=DEhFH1LDh4TTBT2TfjjW0xq0TwYRYMMugmJ8I375PFBqP9tG2nTqogmv4k0fmu1eeIawwu
+	5WCOl3bIj5SxFlkPSplKtRyPzCEZx8KiMznb86aAWsdBlisFba5INw+HNAmtW9pL8PX7o6
+	mTpC/HKVXzQljAFKtc04q/LUrz7wQacVZEZNQTGnX0vGqN+Q12UbFhlri6Atm0DyDap68p
+	K1BV5hC2SJC7yUlAARVKc+byCwufqGfO6KtYS1eVA5LU7nPIfpms9OG1erjHviTt//SwjP
+	HF0DSW6LbqPSXzLC5bWxwCAnVJNbykTt+tDk1L6fMt0GDVJ58G2Fr4gnEmddxQ==
+Date: Mon, 06 May 2024 14:52:00 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Alexey Charkov <alchark@gmail.com>, Daniel
+ Lezcano <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/6] arm64: dts: rockchip: enable thermal management on
+ all RK3588 boards
+In-Reply-To: <2543817.5xW6y1K4kI@bagend>
+References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com>
+ <2543817.5xW6y1K4kI@bagend>
+Message-ID: <d40159069633e44ffe47a944cd9ec5a1@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Il 05/05/24 18:45, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
+Hey Diederik and Alexey,
+
+On 2024-05-06 14:28, Diederik de Haas wrote:
+> On Monday, 6 May 2024 11:36:33 CEST Alexey Charkov wrote:
+>> This enables the on-chip thermal monitoring sensor (TSADC) on all
+>> RK3588(s) boards that don't have it enabled yet. It provides 
+>> temperature
+>> monitoring for the SoC and emergency thermal shutdowns, and is thus
+>> important to have in place before CPU DVFS is enabled, as high CPU
+>> operating performance points can overheat the chip quickly in the
+>> absence of thermal management.
+>> 
+>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts               | 4 
+>> ++++
+>>  8 files changed, 32 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
+>> b8e15b76a8a6..21e96c212dd8 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> @@ -742,6 +742,10 @@ regulator-state-mem {
+>>  	};
+>>  };
+>> 
+>> +&tsadc {
+>> +	status = "okay";
+>> +};
+>> +
+>>  &uart2 {
+>>  	pinctrl-0 = <&uart2m0_xfer>;
+>>  	status = "okay";
 > 
-> Add device Tree for Bananapi R3 Mini SBC.
+> I built a kernel with v3 of your patch set and someone tested it on a 
+> ROCK 5B
+> 'for me' and it had the following line in dmesg:
 > 
-> Co-developed-by: Eric Woudstra <ericwouds@gmail.com>
-> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
-> Co-developed-by: Tianling Shen <cnsztl@gmail.com>
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->   .../mediatek/mt7986a-bananapi-bpi-r3-mini.dts | 486 ++++++++++++++++++
->   2 files changed, 487 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+> rockchip-thermal fec00000.tsadc: Missing rockchip,grf property
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 37b4ca3a87c9..1763b001ab06 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-mini.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
-> new file mode 100644
-> index 000000000000..c764b4dc4752
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
-> @@ -0,0 +1,486 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2021 MediaTek Inc.
-> + * Authors: Frank Wunderlich <frank-w@public-files.de>
-> + *          Eric Woudstra <ericwouds@gmail.com>
-> + *          Tianling Shen <cnsztl@immortalwrt.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/mt65xx.h>
-> +
-> +#include "mt7986a.dtsi"
-> +
-> +/ {
-> +	model = "Bananapi BPI-R3 Mini";
-> +	chassis-type = "embedded";
-> +	compatible = "bananapi,bpi-r3mini", "mediatek,mt7986a";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	dcin: regulator-12vd {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "12vd";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	fan: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		#cooling-cells = <2>;
-> +		/* cooling level (0, 1, 2) - pwm inverted */
-> +		cooling-levels = <255 96 0>;
+> I'm guessing that turned up due to enabling tsadc, but (also) in v4 I 
+> didn't
+> see a change wrt "rockchip,grf".
+> Should that be done? (asking; I don't know)
 
-Did you try to actually invert the PWM?
+Nice catch!  As it turns out, having "rockchip,grf" defined isn't
+needed for the RK3588, so this warning is of somewhat false nature.
+In more detail, having "rockchip,grf" defined is actually required
+only for some Rockchip SoCs, e.g. RK356x.
 
-Look for PWM_POLARITY_INVERTED ;-)
-
-> +		pwms = <&pwm 0 10000>;
-> +		status = "okay";
-> +	};
-> +
-> +	reg_1p8v: regulator-1p8v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "1.8vd";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		vin-supply = <&dcin>;
-> +	};
-> +
-> +	reg_3p3v: regulator-3p3v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3.3vd";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		vin-supply = <&dcin>;
-> +	};
-> +
-> +	usb_vbus: regulator-usb-vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb_vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpios = <&pio 20 GPIO_ACTIVE_LOW>;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	en8811_a: regulator-phy1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "phy1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pio 16 GPIO_ACTIVE_LOW>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	en8811_b: regulator-phy2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "phy2";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pio 17 GPIO_ACTIVE_LOW>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		green_led: led-0 {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		reset-key {
-> +			label = "reset";
-> +			linux,code = <KEY_RESTART>;
-> +			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +};
-> +
-> +&cpu_thermal {
-> +	cooling-maps {
-> +		map0 {
-> +			/* active: set fan to cooling level 2 */
-> +			cooling-device = <&fan 2 2>;
-> +			trip = <&cpu_trip_active_high>;
-> +		};
-> +
-> +		map1 {
-> +			/* active: set fan to cooling level 1 */
-> +			cooling-device = <&fan 1 1>;
-> +			trip = <&cpu_trip_active_med>;
-> +		};
-> +
-> +		map2 {
-> +			/* active: set fan to cooling level 0 */
-> +			cooling-device = <&fan 0 0>;
-> +			trip = <&cpu_trip_active_low>;
-> +		};
-> +	};
-> +};
-> +
-> +&crypto {
-> +	status = "okay";
-> +};
-> +
-> +&eth {
-> +	status = "okay";
-> +
-> +	gmac0: mac@0 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <0>;
-> +		phy-mode = "2500base-x";
-> +		phy-handle = <&phy14>;
-> +	};
-> +
-> +	gmac1: mac@1 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <1>;
-> +		phy-mode = "2500base-x";
-> +		phy-handle = <&phy15>;
-> +	};
-> +
-> +	mdio: mdio-bus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
-> +
-> +&mmc0 {
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc0_pins_default>;
-> +	pinctrl-1 = <&mmc0_pins_uhs>;
-> +	vmmc-supply = <&reg_3p3v>;
-> +	vqmmc-supply = <&reg_1p8v>;
-> +};
-> +
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c_pins>;
-> +	status = "okay";
-> +
-> +	/* MAC Address EEPROM */
-> +	eeprom@50 {
-> +		compatible = "atmel,24c02";
-> +		reg = <0x50>;
-> +
-> +		address-width = <8>;
-> +		pagesize = <8>;
-> +		size = <256>;
-> +	};
-> +};
-> +
-> +&mdio {
-
-You can just move all this stuff to where you declare the mdio-bus....
-
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	phy14: ethernet-phy@14 {
-
-I say that this is `phy0: ethernet-phy@14` - because this is the first PHY on this
-board.
-
-> +		reg = <14>;
-
-Uhm.. doesn't this require the ethernet-phy-id03a2.a411 compatible?
-
-> +		interrupts-extended = <&pio 48 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&pio 49 GPIO_ACTIVE_LOW>;
-> +		reset-assert-us = <10000>;
-> +		reset-deassert-us = <20000>;
-> +		phy-mode = "2500base-x";
-> +		full-duplex;
-> +		pause;
-> +		airoha,pnswap-rx;
-> +
-> +		leds {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			led@0 { /* en8811_a_gpio5 */
-> +				reg = <0>;
-> +				color = <LED_COLOR_ID_YELLOW>;
-> +				function = LED_FUNCTION_LAN;
-> +				function-enumerator = <1>;
-
-Why aren't you simply using a label?
-
-> +				default-state = "keep";
-> +				linux,default-trigger = "netdev";
-> +			};
-> +			led@1 { /* en8811_a_gpio4 */
-> +				reg = <1>;
-> +				color = <LED_COLOR_ID_GREEN>;
-> +				function = LED_FUNCTION_LAN;
-> +				function-enumerator = <2>;
-> +				default-state = "keep";
-> +				linux,default-trigger = "netdev";
-> +			};
-> +		};
-> +	};
-> +
-> +	phy15: ethernet-phy@15 {
-> +		reg = <15>;
-
-Same here.
-
-Cheers,
-Angelo
-
+I can get this covered in my soon-to-be-submitted device-tree cleanup
+patch series, if Alexey is fine with that.
 
