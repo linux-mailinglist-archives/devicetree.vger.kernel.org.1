@@ -1,111 +1,180 @@
-Return-Path: <devicetree+bounces-65189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B22B8BCFEE
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:19:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14BEC8BD010
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:23:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB355283740
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:19:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF4D51F2204D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11C313D621;
-	Mon,  6 May 2024 14:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A12413D8B5;
+	Mon,  6 May 2024 14:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qZNk2uVI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CCGhf7iC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC8F81211;
-	Mon,  6 May 2024 14:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207FC13CF8F;
+	Mon,  6 May 2024 14:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715005110; cv=none; b=cj5nSucAr5PYkEPjO6py4POy8sWqP1ZX3x7JgtzIQwrh66DdPF2+/3oU0qzRP2vcW2njFatmxMalPnEqjJKA1RWgfhTmOZV1CgDPIcF3O0S3mXWL0Rs5Viw7apQQcNAuLdUK6RqE4KVxXn7dsd1tiEOntsXJaju/eqzoX4WSP5c=
+	t=1715005251; cv=none; b=j2M+joX0lSd3u5TYR7TaED90JEtEFwYEV5f+BgkPL6b45cKUYqBuIVqjFmYCzEPDSI/TSxwzfs34XpDDvS0TbqmRaW1DOY4noa5sCbkzs4q+QztTYA9z3G3l0XVd/KcPP6K1BN1oKcl0tqn1+swhGNdpl997mGjcSzoU77rGggY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715005110; c=relaxed/simple;
-	bh=Vi05QVSG3iatwDAILN86QUEWJ3fE0RrPn+kvsUCWGws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eCE+H5cWpb/BS1KCngd5EcN28pLLT4azO39bmMf4AMmcJpHhKSQAsryHv5OsLPeXzP/D1MAhibTtS9Fs8OJVPGkujh9ClK0HN+8jAINCwifE3bwXKBQhWIkaQZa8oGDlPIptHtkOIQ0nrqIkycadlQWa/dj9957xzOIykv+pDhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qZNk2uVI; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1715005106;
-	bh=Vi05QVSG3iatwDAILN86QUEWJ3fE0RrPn+kvsUCWGws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qZNk2uVI+pZGR3kmAAkImZwSLKE9T+TahIUXH14Y7DA0Pnhl54iALE4oXsJK4KjMq
-	 l3djJ5Ie/y8OAuQJelPxMxPTHk/toXDpEj+cBGquJK5jnoHgZg5RTsXXrsN8/rXtmA
-	 0FTxMdNRP/UOBcTJ2JRvdnjmqjOIM9FXNe35X/pyLiOiQi3u98e+N5EiyRLdbb4qzo
-	 lvVgqpKVoTWeQ39JSe9EJUrwwbL7iP3bIzwK3o2nZNR+xPMAXap5I7bNRijl+zO/e+
-	 ICB9MvXQkAU51lwau8PqYmHqQMG+Le3wdbXBgrYcFS14L6RxnoinEbMJ2PeTQb+zs0
-	 zNGjrTFn187Kw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4BD99378020D;
-	Mon,  6 May 2024 14:18:25 +0000 (UTC)
-Message-ID: <2e3e49ff-8ace-498b-b2d0-54500e6f1e70@collabora.com>
-Date: Mon, 6 May 2024 16:18:24 +0200
+	s=arc-20240116; t=1715005251; c=relaxed/simple;
+	bh=v35O4MOv00OkD5Eak0/TAE7hgCKO/FarPLabAISIafg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z+tCc8Bkv1d5feRVJFfRvn7H/KVhz9KIK1l7Canu46q+bAyheD4TrrQujAQRq83FkTDN14H0G4aihqjMe2MMe0vzMEwSPif5ExfUnh8ejC4JqPO/CX30asNXVDPpVyrkBj1dufVvchaN8Fqt0RVefsK+i+hiQeGVPFPY5758+5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CCGhf7iC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B91D5C4AF66;
+	Mon,  6 May 2024 14:20:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715005250;
+	bh=v35O4MOv00OkD5Eak0/TAE7hgCKO/FarPLabAISIafg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CCGhf7iCvrvdO1ATf+Hxvn2NyWfeqH0aIGOcAknXZEOSrM8DVYC33/kmMwu3Bsrbb
+	 M41McHzwU9v75DbupsIzscvoHNrg8AZ31GjhSraOptdgRK1OjsQbqJ/5iDvgwqtQ6D
+	 m6SUsoS2S0tTJP/bFqMY2v+l4df54sD4OoGYJJ2EvK2OaUzL0Ufs0QcVGuQ7T5xXTJ
+	 JjJ/orAMCuHo1X1IgrzL3JmZRRqbvAqBMy53rXkWlPEe0oULCmuyvElgETpM+HTbqE
+	 CKQuStfTfjutV9VirdqFiIrE7X+F9JqviRCEmRlZ0wG7QU1HUAy9m7FeIAAQ/wvJS8
+	 3rexaZSozQ1nw==
+Date: Mon, 6 May 2024 15:20:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ kernel test robot <lkp@intel.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v6 10/10] iio: adc: ad7380: add support for
+ resolution boost
+Message-ID: <20240506152022.58794348@jic23-huawei>
+In-Reply-To: <20240506144616.0b90664b@jic23-huawei>
+References: <20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
+	<20240501-adding-new-ad738x-driver-v6-10-3c0741154728@baylibre.com>
+	<a04d8015ea1606ce1eca86f7eaaa85a1c1b46d7a.camel@gmail.com>
+	<20240506144616.0b90664b@jic23-huawei>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] drm/mediatek: Add support for OF graphs
-To: Michael Walle <mwalle@kernel.org>,
- Alexandre Mergnat <amergnat@baylibre.com>, chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com
-References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
- <1fc23530-89ba-4e36-9e9a-a1289f56a9bc@baylibre.com>
- <608fdbde-ad06-45ec-9771-18aa9f002f2d@collabora.com>
- <D12H4GDJJEUF.1Y91H9RMUIX20@kernel.org>
- <50be68dc-b86a-4334-9f83-43c6fda2c271@collabora.com>
- <1b8fa907-b48f-4ebe-bc17-3de1d7c0d062@collabora.com>
- <D12LA0QKEFRQ.68TZEVQZ7FJB@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <D12LA0QKEFRQ.68TZEVQZ7FJB@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Il 06/05/24 15:17, Michael Walle ha scritto:
-> Hi Angelo,
-> 
-> On Mon May 6, 2024 at 1:22 PM CEST, AngeloGioacchino Del Regno wrote:
->>> The problem with this is that you need DDP_COMPONENT_DRM_OVL_ADAPTOR... which is
->>> a software thing and not HW, so that can't be described in devicetree.
->>>
->>> The only thing this series won't deal with is exactly that.
->>
->> Sorry, no, I got confused.
->>
->> The series *does* already deal with that, as the pipeline is built before the check
->> for OVL_ADAPTOR components, so that will get probed.
-> 
-> Are you sure? Because who is actually adding the OVL_ADAPTOR to the
-> path? It looks like your patch will walk the graph and add all the
-> components according to their compatible string. And since the
-> OVL_ADAPTOR is virtual and doesn't have a node..
-> 
+On Mon, 6 May 2024 14:46:16 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-I shouldn't look at code while having a flu.
+> On Mon, 06 May 2024 10:55:46 +0200
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>=20
+> > On Wed, 2024-05-01 at 16:55 +0200, Julien Stephan wrote: =20
+> > > ad738x chips are able to use an additional 2 bits of resolution when
+> > > using oversampling. The 14-bits chips can have up to 16 bits of
+> > > resolution and the 16-bits chips can have up to 18 bits of resolution.
+> > >=20
+> > > In order to dynamically allow to enable/disable the resolution boost
+> > > feature, we have to set iio realbits/storagebits to the maximum per c=
+hips.
+> > > This means that for iio, data will always be on the higher resolution
+> > > available, and to cope with that we adjust the iio scale and iio offs=
+et
+> > > depending on the resolution boost status.
+> > >=20
+> > > The available scales can be displayed using the regular _scale_availa=
+ble
+> > > attributes and can be set by writing the regular _scale attribute.
+> > > The available scales depend on the oversampling status.
+> > >=20
+> > > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> > >=20
+> > > ---
+> > >=20
+> > > In order to support the resolution boost (additional 2 bits of resolu=
+tion)
+> > > we need to set realbits/storagebits to the maximum value i.e :
+> > > =C2=A0 - realbits =3D 16 + 2 =3D 18, and storagebits =3D 32 for 16-bi=
+ts chips
+> > > =C2=A0 - realbits =3D 14 + 2 =3D 16, and storagebits =3D 16 for 14-bi=
+ts chips
+> > >=20
+> > > For 14-bits chips this does not have a major impact, but this
+> > > has the drawback of forcing 16-bits chip users to always use 32-bits
+> > > words in buffers even if they are not using oversampling and resoluti=
+on
+> > > boost. Is there a better way of implementing this? For example
+> > > implementing dynamic scan_type?
+> > >    =20
+> >=20
+> > Yeah, I don't think it's that bad in this case. But maybe dynamic scan =
+types is
+> > something we may need at some point yes (or IOW that I would like to se=
+e supported
+> > :)). We do some ADCs (eg: ad4630) where we use questionably use FW prop=
+erties to set
+> > a specific operating mode exactly because we have a different data layo=
+ut (scan
+> > elements) depending on the mode. =20
+>=20
+> Yeah. Fixed scan modes were somewhat of a bad design decision a long time=
+ back.
+> However, the big advantage is that it got people to think hard about whet=
+her it is
+> worth supporting low precision modes. For slow devices it very rarely is =
+and
+> forcing people to make a decision and the advantage we never supported
+> low precision on those parts.
+>=20
+> Having said that there are good reasons for dynamic resolution changing
+> (the main one being the storage case you have here) so I'd be happy to
+> see some patches adding it. It might be easier than I've always thought
+> to bolt on.
+>=20
+> This and inkernel event consumers have been the two significant features
+> where I keep expecting it to happen, but every time people decide they re=
+ally
+> don't care enough to make them work :(
+>=20
+> >   =20
+> > > Another issue is the location of the timestamps. I understood the need
+> > > for ts to be consistent between chips, but right now I do not have a
+> > > better solution.. I was thinking of maybe adding the timestamps at the
+> > > beginning? That would imply to change the iio_chan_spec struct and ma=
+ybe
+> > > add a iio_push_to_buffers_with_timestamp_first() wrapper function? Is
+> > > that an option? =20
+>=20
+> You have lost me on this one.  Why does the timestamp need to be in a con=
+sistent
+> location?  We have lots of drivers where it moves about between different
+> chips they support, or indeed what channels are currently turned on.
+Maybe I now understand this?
+The concern is the structure used for the iio_push_to_buffers_with_timestam=
+p()
+That doesn't need to be a structure and if you look at drivers where it isn=
+'t
+the most common reason is because the timestamp needs to be able to move ar=
+ound.
 
-	if (mtk_drm_find_mmsys_comp(private, DDP_COMPONENT_DRM_OVL_ADAPTOR)) {
+So do something similar here.
 
-...but yes nothing adds the mmsys_comp for OVL_ADAPTOR.
+Jonathan
 
-Needs to be addressed, will do that asap.
+>=20
+> I haven't actually looked at the latest code yet, so maybe it will become
+> obvious!
+>=20
+> Jonathan
+>=20
+>=20
+>=20
+
 
