@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-65079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF648BC78B
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBCAE8BC791
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D2C91C2039A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 06:25:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEF661C2085D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 06:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681F24EB30;
-	Mon,  6 May 2024 06:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67314CB58;
+	Mon,  6 May 2024 06:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0BTfVZ2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpWFdlrQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E29542ABD;
-	Mon,  6 May 2024 06:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F8148CCD;
+	Mon,  6 May 2024 06:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714976701; cv=none; b=kLwayxf+1GW/Xe7qL8XVuHlyotrJWhaec4s+nN1csOZ1y0eas7FIkOGI5kRkSfnGiZkUcLJtiClSik10S66RmmsHdKqVVOQL+EjWL8+IuU18Hhx9WaMrBSiOELDHY8HXpE8xa9ugj643IpSEmyRDo5Nd9W5bHsqjfbhpAMDtCP0=
+	t=1714976946; cv=none; b=Snmcc9iigauXaa12OQUop+dvY5tp2xMe+X2fS5L50nQ/IYiH6Li48ePcg9nc3SFVvW3QAZcRqAAYpADd/RcoMHHCwkzALs2uxeJ3Ad5Oh7VO1X0BQb1oNgFQu1uJOHpo1hSXaWXVe/ldKrpQ6f68GfibPKeWNWBQNnpOs4HRlSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714976701; c=relaxed/simple;
-	bh=BURemB4eca4tPXlaW3SXTSCQku2k80TBcFTbyyvnmZ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=NKkRTmxW4LZHGcbyHCh+HlAEs6GFjnYaws0bQRFOzaZW3l7/hs2HFQhx8SezPJ06tpnX3+v9Zxv/2v/+zK9aba1f10G9y8xyPDy51rrzbgjd0IL6J9vRVBAxov3BPWMn2rRaB5v/A7yVqCzSWK0CoYIasVfTAHTaK346HGAJ8y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0BTfVZ2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0C94C3277B;
-	Mon,  6 May 2024 06:24:56 +0000 (UTC)
+	s=arc-20240116; t=1714976946; c=relaxed/simple;
+	bh=Wp8V1xbEsuIb8axNQCbpMXR4ddHlcSxKFTYvwFrK4jY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ovb53TEcWAKGbjgbiGwWwFLj3g36IEqC7vQz0uunTH1WQVBVwcwRBNZdZbGTyiuLVR/wt3MMDGtzDD87BgSvJ9sQu5C9hl8Tbtl7mQ3IDpm1B1Ja/iKWl0gCmPrPrnjLWpCDXmDHwdQcNyNuVMMrt6hclR4o0smXv618HTAm1eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpWFdlrQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4705CC116B1;
+	Mon,  6 May 2024 06:29:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714976700;
-	bh=BURemB4eca4tPXlaW3SXTSCQku2k80TBcFTbyyvnmZ4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=e0BTfVZ28JakFni5XQmUnOtyT+j5/eir9BpyypLLmBvCOjKFyNxco6nPH4/hjO7Yq
-	 7EH5gGVkmoptlmghnfQkh2k9WyX2aUZz7AOqJr8HqfNNjL/jkB9qhZ0R144ydxEOkc
-	 6gQyfpMjStfTFQYHhqM5/H9RG/9fZczo/R+eLaYUboBB3ETVa1YxQ3uS4sdf2Q/+8s
-	 /qbuVXYPki5L7rRLS/PpG/iRh1jwk2Quv0XymrtMgbG+hSg5oSd/f4N+1YFpiJhh+2
-	 FJvEjcR9Vb6GJDBb3108sjlEw4kYiD+C9VifA68gcvZBl6KrNA9w5Pzqkbm7exMjml
-	 c5Bi5lDskKVFg==
-Message-ID: <40eb62e2-4998-4ab4-a744-a00096fe97c2@kernel.org>
-Date: Mon, 6 May 2024 08:24:56 +0200
+	s=k20201202; t=1714976946;
+	bh=Wp8V1xbEsuIb8axNQCbpMXR4ddHlcSxKFTYvwFrK4jY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZpWFdlrQ3sfPb0TgPY+L2ht9cjLQDbaPrZ0snx2q4iQgsjHkkxuNbdGXuBAMXiSpR
+	 AlZ3Wsj3W7eTjQErU5BUddROrvn7GfMpcPxRmLNwCNqnQfdkBeCfQJ/xGvxVZnTzX2
+	 P5f5N7CuXzLnaSKJqLgognRdlUqQQjSyOUo/W2A+b7eNs0kiH3fMAghBucwgp/aGiN
+	 LCH/0YFS8mzDaMo3lTs8HUL9hUWoO4uIOiVjmbFesH1ZhwVAsSrS7ANprVyt+A+nDj
+	 nQOvfwKMLkOVUXmrGxfzlGg/FdTjM5d3O+cwRIQqpa7KkLXvV46uex5rV+8r16pL9o
+	 /zv7X10ycP8rg==
+Message-ID: <2efe0393-11ce-448d-81a9-eb2383bc1e4b@kernel.org>
+Date: Mon, 6 May 2024 08:28:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: touchscreen: elan,ektf2127: Add
- EKTF2232
-To: Andreas Kemnade <andreas@kemnade.info>, dmitry.torokhov@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- u.kleine-koenig@pengutronix.de, hdegoede@redhat.com,
- andy.shevchenko@gmail.com, siebren.vroegindeweij@hotmail.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240505214754.891700-1-andreas@kemnade.info>
- <20240505214754.891700-3-andreas@kemnade.info>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: samsung,midas-audio: Add
+ GPIO-based headset jack detection
+To: Artur Weber <aweber.kernel@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240503-midas-wm1811-gpio-jack-v1-0-e8cddbd67cbf@gmail.com>
+ <20240503-midas-wm1811-gpio-jack-v1-1-e8cddbd67cbf@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,18 +109,56 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240505214754.891700-3-andreas@kemnade.info>
+In-Reply-To: <20240503-midas-wm1811-gpio-jack-v1-1-e8cddbd67cbf@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/05/2024 23:47, Andreas Kemnade wrote:
-> Add a compatible for the EKTF2232, which is similar to other chips in this
-> document.
+On 03/05/2024 20:55, Artur Weber wrote:
+> Some Samsung devices that share the midas-audio driver use a GPIO-based
+> approach to headset jack detection, as opposed to using the built-in
+> jack detection provided by the wm8994 driver.
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Add DT configuration values that allow for describing these setups.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
+>  .../bindings/sound/samsung,midas-audio.yaml        | 30 ++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> index 6ec80f529d84..9f521131f2b3 100644
+> --- a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> +++ b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> @@ -61,6 +61,36 @@ properties:
+>      maxItems: 1
+>      description: GPIO pin for line out selection
+>  
+> +  headset-detect-gpios:
+> +    maxItems: 1
+> +    description: GPIO for detection of headset insertion
+> +
+> +  headset-key-gpios:
+> +    maxItems: 1
+> +    description: GPIO for detection of headset key press
+> +
+> +  io-channels:
+> +    maxItems: 1
+> +    description: IO channel to read micbias voltage for headset detection
+> +
+> +  io-channel-names:
+> +    const: headset-detect
+> +
+> +  headset-4pole-threshold-microvolt:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You need vendor prefix for this and next property.
+
+> +    minItems: 2
+> +    maxItems: 2
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+
 
 Best regards,
 Krzysztof
