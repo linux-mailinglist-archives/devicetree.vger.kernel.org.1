@@ -1,186 +1,187 @@
-Return-Path: <devicetree+bounces-65182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 590C38BCF6D
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:48:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 274D38BCF64
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:48:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAB561F221EE
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:48:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90AE31F21C18
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F3F8063C;
-	Mon,  6 May 2024 13:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604FE7FBB6;
+	Mon,  6 May 2024 13:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="T5p73/Ca"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="O1mD1gye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B549D7FBD1
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 13:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D301DA5F;
+	Mon,  6 May 2024 13:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715003313; cv=none; b=Lh0+yEqiTt6q5DpMrIQ5DgFDUj3xpueYFB1aJ/3kQGMe/Hb89poCz1j7Mq1AYL8tmMsu9tr/QhaGUUv/htP55Et8GqFS+9PezxxN2wPa6HlUL46jdtrvB9i2KuxUliIYzNOrjLk0YGfQnJBvG/QU7r5LA2ZsQ4XJdb+NUnAcyfE=
+	t=1715003295; cv=none; b=qhK1atr2kft8FSM8KXK9vU7/gmw1kNzTTf8km8Svh70CKf44aBxwcN54y7dUEA5tMpPqhEWYA23sAMpLJViQb+rkra8Y30lLW29YofjO8TNs6jQ//A4AEo64DPtfi0QzBq55sjDb9jomLZ386wRyY9c2zjOaYIZfql5m9dyd78s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715003313; c=relaxed/simple;
-	bh=JgCoIyaNf84LuEOmp2FQmBp4+GiQ/TBuX7xx4VD7nv0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=peYQNB8Oob29qM2V6UX6A+ln0gqVLlPOGMtKkZstlzG0qCf1rScYbTQqfoP+Bl0q1diGRL3LadjjSIfAzQEq98H8yEW8+u7jWwubXWn62nm+YtjR8mASzHc+OoK/WHgfCpaUy2b3VfKoJ7xrfZjOx0R9ddFCKU19L+UKBpaxLz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=T5p73/Ca; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41b5e74fa2fso16278405e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 06:48:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1715003310; x=1715608110; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SLH2UGXcs8WjbaIo1wdcYxN1wrBoZdoSVxpSWyyjSRA=;
-        b=T5p73/CaI14tTFOXiS6B/3OjGXEPse16lGRUu0AgfDxlRxBieljKxi1bNm3GCRgIxI
-         0FBpigXxW5A/j6bdzrq3uy102SLC44FpnpjaoF3GtWooPzn4nXhdbSLDRxqeDW0exduu
-         7sq3SNtxs5UnC1pLHaI18z8qeVjFypMClgBMLPxIdfTUZcrFEVY5FCOv6dz+4RwMyW2O
-         eKX2oifDRoFvG2C6t0HF33inpFR7XWPf2ztpOj0vFSOTdpjhMiK+U2GvTU13qqyuBzZT
-         eYkl3SqCsd0BTX9jhpnnGXGHjVTf9dkfGKkHOI0YvG7a9eXW3bPDZAUO9vxr+2uiYIMR
-         KT1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715003310; x=1715608110;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SLH2UGXcs8WjbaIo1wdcYxN1wrBoZdoSVxpSWyyjSRA=;
-        b=rKnPvQ916GJDIoEnviz2eDTjEjUV5cxdirXh5GHRFHuh5Dd0esHUMbB5FhmYhfhr5u
-         g21LVSWAwFPN7reIE8f5mgXZ38mCEIdEm/UdyFjzq6x7HG4JgOyPISoJU4e41K4lSph8
-         s672zBNHbxdbSiTXz19JYtxuX/u74hcDdj8dL07QCTaUfwzAAYY4BSOGeEBdb/6B/oMS
-         TUCJqRUOwavelQ18sRMVkBsoPG5eBPzldmjcNU/QUiYdA3evpGWTqbgi4iIHclk/FI65
-         pL5rQshamTRLpPhFb7gnsgfhCndOMxJKyB4rMjMPq7d48bp5JXQUMhf/YitO3vbiFmkF
-         W/dA==
-X-Forwarded-Encrypted: i=1; AJvYcCV0DGLZyAl/kFCODnGAX/oxBL+i19nkgMlKB8tkXJ/px1fwtXiWshniIV8r697mUqoDfSagntm9HlAjBh6VFMrmFusBKI8ZM9eeQQ==
-X-Gm-Message-State: AOJu0Yzc5IzBdNGIPDCXFS2d+TqUDvDirUxgkFchCEXmq1vDC42bup7H
-	Jl2H1PqMuc1kqw9he1+qIiiJvLd0Sx96Nt96jIkPUD4LShJVJkUxC7UGeOKRlSc=
-X-Google-Smtp-Source: AGHT+IEedcw3sMzjY7rXaFp1w7fge+NsJOpm4Z2nCZgS9MvKI8F14/OUmWE4PrWNmBbJOEFSZALqnQ==
-X-Received: by 2002:a05:600c:35cb:b0:41b:a670:a9f1 with SMTP id r11-20020a05600c35cb00b0041ba670a9f1mr8243093wmq.7.1715003310109;
-        Mon, 06 May 2024 06:48:30 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id je8-20020a05600c1f8800b0041bf28aa11dsm16131973wmb.42.2024.05.06.06.48.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 May 2024 06:48:29 -0700 (PDT)
-Message-ID: <14bda891-5035-433c-888e-b3c330eeffaf@freebox.fr>
-Date: Mon, 6 May 2024 15:47:24 +0200
+	s=arc-20240116; t=1715003295; c=relaxed/simple;
+	bh=lO4daNRtURIN7s30wcs18ZIWlnxVpekm8aU9a9t1tPg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=MP07igd2FmJ8PElEXUGhmpV34t26/iAIt/ZUdd/FCMsAGCUaic0btRbB/Z2ftSg1SmpLWlbEUOPKqQ9CkLib6nu5aCu1bEfWfKYvrEd7o4YTVNXj34o4nkFZqj6yqOIQcX+Jxwl2SlU/691IWQtsB3JHi40pBD4NZTw7dwsgdi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=O1mD1gye; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 60933100006;
+	Mon,  6 May 2024 16:48:02 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 60933100006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715003282;
+	bh=C6xCIPqri8hszP1/uAyU20bgm4X9w+t66Kn7K2I4Cjk=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=O1mD1gye/Ty8pe/LCt05+rgMEvKmXUjoC8sBj+UUp3Y8ortjuHE+8JwTR9Bg5KbDP
+	 t2N0lVMvoZubbQ+mt7ACU1KW0u/cg/JQaXFk6f+2tv40VROIcNry2kmjvIkxGJJ6ae
+	 XeSWh/+ybCe9JTT1giWjan7WqRtwBjXrE4UoIn28X+3zwcYHUTNKZOKtNvfBJlc3lw
+	 +nKP7WVXK3Lc6eD0wQFddT91C4ooMj/tpDgqAepw6r3vW4CJOx3rBR4P3yCPR5UJGw
+	 TJvN3bKlQpwVzoDAH0GFYHzcrP1v+mexbUemsdOQeMFC2QHB7u77ysg507NgIBNjfY
+	 UKGR70IW1RWzQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  6 May 2024 16:48:02 +0300 (MSK)
+Received: from p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 6 May 2024 16:48:01 +0300
+Received: from p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511]) by
+ p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511%9]) with mapi id
+ 15.02.1118.040; Mon, 6 May 2024 16:48:01 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Conor Dooley <conor@kernel.org>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Thread-Topic: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Thread-Index: AQHajBWjbcqi/hz3Ckugw/49eH+udbFpXY+AgCDP+AA=
+Date: Mon, 6 May 2024 13:48:01 +0000
+Message-ID: <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+ <20240411133832.2896463-18-avromanov@salutedevices.com>
+ <20240415-schnapps-plating-eb0895459004@spud>
+In-Reply-To: <20240415-schnapps-plating-eb0895459004@spud>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <FC46FF8DA00B1E429496D3165922BA1E@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: [PATCH v3 3/3] media: venus: add msm8998 support
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: Bjorn Andersson <andersson@kernel.org>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <72860c1d-7434-4be6-8c1d-9ea177602802@freebox.fr>
-Content-Language: en-US
-In-Reply-To: <72860c1d-7434-4be6-8c1d-9ea177602802@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185086 [May 06 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/06 12:01:00 #25108659
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-From: Pierre-Hugues Husson <phhusson@freebox.fr>
+On Mon, Apr 15, 2024 at 05:43:15PM +0100, Conor Dooley wrote:
+> On Thu, Apr 11, 2024 at 04:38:26PM +0300, Alexey Romanov wrote:
+> > GXL crypto IP isn't connected to clk and seconnd interrput line,
+> > so we must remove them from dt-bindings.
+>=20
+> How does the device work without a clock?
 
-Add the missing bits for msm8998 support.
+It's clocked by a common clock, the vendor didn't provide more
+information. It doesn't have any special clock domains.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- drivers/media/platform/qcom/venus/core.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+>=20
+> Cheers,
+> Conor.
+>=20
+> >=20
+> > Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings
+> > documentation for amlogic-crypto")
+> >=20
+> > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > ---
+> >  .../bindings/crypto/amlogic,gxl-crypto.yaml         | 13 +------------
+> >  1 file changed, 1 insertion(+), 12 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypt=
+o.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > index 948e11ebe4ee..d3af7b4d5f39 100644
+> > --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > @@ -20,20 +20,11 @@ properties:
+> >    interrupts:
+> >      items:
+> >        - description: Interrupt for flow 0
+> > -      - description: Interrupt for flow 1
+> > -
+> > -  clocks:
+> > -    maxItems: 1
+> > -
+> > -  clock-names:
+> > -    const: blkmv
+> > =20
+> >  required:
+> >    - compatible
+> >    - reg
+> >    - interrupts
+> > -  - clocks
+> > -  - clock-names
+> > =20
+> >  additionalProperties: false
+> > =20
+> > @@ -46,7 +37,5 @@ examples:
+> >      crypto: crypto-engine@c883e000 {
+> >          compatible =3D "amlogic,gxl-crypto";
+> >          reg =3D <0xc883e000 0x36>;
+> > -        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI 18=
+9 IRQ_TYPE_EDGE_RISING>;
+> > -        clocks =3D <&clkc CLKID_BLKMV>;
+> > -        clock-names =3D "blkmv";
+> > +        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
+> >      };
+> > --=20
+> > 2.34.1
+> >=20
 
-diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index ce206b7097541..064120127cb86 100644
---- a/drivers/media/platform/qcom/venus/core.c
-+++ b/drivers/media/platform/qcom/venus/core.c
-@@ -554,6 +554,9 @@ static const struct venus_resources msm8916_res = {
- 	.fwname = "qcom/venus-1.8/venus.mbn",
- };
- 
-+/*
-+ * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blame/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8996-v3.dtsi#L403-414
-+ */
- static const struct freq_tbl msm8996_freq_table[] = {
- 	{ 1944000, 520000000 },	/* 4k UHD @ 60 (decode only) */
- 	{  972000, 520000000 },	/* 4k UHD @ 30 */
-@@ -587,6 +590,50 @@ static const struct venus_resources msm8996_res = {
- 	.fwname = "qcom/venus-4.2/venus.mbn",
- };
- 
-+/*
-+ * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi#L42-53
-+ */
-+static const struct freq_tbl msm8998_freq_table[] = {
-+	{ 1944000, 465000000 },	/* 4k UHD @ 60 (decode only) */
-+	{  972000, 465000000 },	/* 4k UHD @ 30 */
-+	{  489600, 360000000 },	/* 1080p @ 60 */
-+	{  244800, 186000000 },	/* 1080p @ 30 */
-+	{  108000, 100000000 },	/* 720p @ 30 */
-+};
-+
-+/*
-+ * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi#L29-37
-+ */
-+static const struct reg_val msm8998_reg_preset[] = {
-+	{ 0x80124, 0x00000003 },
-+	{ 0x80550, 0x01111111 },
-+	{ 0x80560, 0x01111111 },
-+	{ 0x80568, 0x01111111 },
-+	{ 0x80570, 0x01111111 },
-+	{ 0x80580, 0x01111111 },
-+	{ 0x80588, 0x01111111 },
-+	{ 0xe2010, 0x00000000 },
-+};
-+
-+static const struct venus_resources msm8998_res = {
-+	.freq_tbl = msm8998_freq_table,
-+	.freq_tbl_size = ARRAY_SIZE(msm8998_freq_table),
-+	.reg_tbl = msm8998_reg_preset,
-+	.reg_tbl_size = ARRAY_SIZE(msm8998_reg_preset),
-+	.clks = { "core", "iface", "bus", "mbus" },
-+	.clks_num = 4,
-+	.vcodec0_clks = { "core" },
-+	.vcodec1_clks = { "core" },
-+	.vcodec_clks_num = 1,
-+	.max_load = 2563200,
-+	.hfi_version = HFI_VERSION_3XX,
-+	.vmem_id = VIDC_RESOURCE_NONE,
-+	.vmem_size = 0,
-+	.vmem_addr = 0,
-+	.dma_mask = 0xddc00000 - 1,
-+	.fwname = "qcom/venus-4.4/venus.mbn",
-+};
-+
- static const struct freq_tbl sdm660_freq_table[] = {
- 	{ 979200, 518400000 },
- 	{ 489600, 441600000 },
-@@ -893,6 +940,7 @@ static const struct venus_resources sc7280_res = {
- static const struct of_device_id venus_dt_match[] = {
- 	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
- 	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-+	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
- 	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
- 	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
- 	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
--- 
-2.34.1
 
+
+
+--=20
+Thank you,
+Alexey=
 
