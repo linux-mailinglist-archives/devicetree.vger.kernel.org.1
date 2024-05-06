@@ -1,273 +1,126 @@
-Return-Path: <devicetree+bounces-65127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2778BCB41
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 11:54:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B0D8BCB5D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 11:57:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22B681F25935
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 09:54:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56C61283275
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 09:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF70B14388D;
-	Mon,  6 May 2024 09:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA3F1422C5;
+	Mon,  6 May 2024 09:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="XfwY1Lm5"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="bo4aPX6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82261428F5;
-	Mon,  6 May 2024 09:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830484205F
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 09:57:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714989160; cv=none; b=az2uIPs2SuRAV3kJMABlUaRiSzb6SYb6xoiJUagKzQAYGXs2z7Ou0Yxt/08Y2yLJYKuJ9wWtJW8JD2RNBxLmaHjHvL0n3VBKnrELLrrEdycLDncCT4uLuR5LcSv8ruCuWuCVhJ60pBQ95V2Zd/5GbCl+0guumpzO4F+OxQ4oR0A=
+	t=1714989459; cv=none; b=BYqzIOJVwSoA9red7P9Tu0PGkiPi1IgVIGmeSRGzxGTm2z307RtpsJ4jsnLqTcJ+XanwhnxuI5/0qwDme+ehdQvdCEimQ9QPJXD8lN3GBUW4N5/asKBgLUay4ibm/xGyyWcNpDYHpplNjIGJFbOj0hFu+6SxzK29yDYm1FtNLfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714989160; c=relaxed/simple;
-	bh=/54d0jGVGvDU9dnTbnGZanYIS6PRw7xkNNkGVPgvq24=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=MnsVX9L5ECfT6qf3grZqoKF6QOfbwn9Q8E6CZ4ee5nbFW1BjBdK3Bx3M6sN6aIAX2BBlm5QRtFlnl6ypa83hkDn+8arw/TdSEYlK3CNKL5gKwUk+9GtHmi0PzBir6QEpIJJ3KzzjL/7AaXru4xRKIEBxokyC8/ddqLOylfT3g1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=XfwY1Lm5; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1714989459; c=relaxed/simple;
+	bh=R+RvoC9QKR2iTbew+813V7dr7HnWEw+z6LeJ/nOM7M0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=fWAaGkQdngtJG4V2Nv9/qAON8nVZznWZTu2dEoIe5u+BYTJlxGbw9H0s4P4I/HIXAhi9tXyEL/u9kQolpHDkAaEruoYV9xT82aqcbQj97p4d3SZOIKHfTXDlMSRb3w4LGe6YZJdzjB7GMpdcgipQxSmv/AAXFenwRkAi+BNaIgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=bo4aPX6V; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-41b7a26326eso12158825e9.3
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 02:57:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1714989454; x=1715594254; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QtIN9A7R8Fp/n1bWsijegojPl8VTdhoejF5Mq9JFXXU=;
+        b=bo4aPX6V62sn5xSnqs1C70FkRtLMZKqoyOug+YJXaZhb98jxkLKxNa2Lq7e9IIj2yZ
+         7O1GN1Qqb5TvZfC7wEfDhG8corNXAQgKiKGpgI7a3m+1Pdol5fa1kZ9dVrZmOsV39kki
+         +Irjj2mzyRvUPbK/V51qMWu2cht1MyJkmZL5Vc+FaiP3hKPK7dJkAhA7jEIlyzd4hNjJ
+         APAoPB73uJAo2SYDZVbWGek108GVUR/RxL2ZBTIX0bkhFC9is1VCjN4GaOwoI4KcLdEW
+         BmhJNVRDeKCZEhDH5Yfi+pOnWwikYEAVfHVmD3ydJ6tKoJ5uc4L8Mxir3mKa2WmBYnP+
+         MtEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714989454; x=1715594254;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QtIN9A7R8Fp/n1bWsijegojPl8VTdhoejF5Mq9JFXXU=;
+        b=NvkSoHBdKhEunee7jTojQxvDXSY0DlZ3TTICbqaZf/upvGMKiReJnB00S0msBPXPvV
+         kR2H9BeNqs4JM7ILxM6Ekhk5Rdl+6f39o0lWHlaVwtnoa43oY2dLlwclIZMcXRXIPtVd
+         qClRHc2SY2plPudgnB/JYjFlTmgyQgCm4pbH98+NwN3Mkx/QncclLqGgxD2qmDbLNgu2
+         lmtmvUfqLaB9/G8WhjC2FesCvBfJInJwItw3sO04KJfVNGuUj8Y3ocgyAmXhG0bJKrGr
+         fcZLgFxzyP6EjUJWiato3K4GO1m4ozX9WFyjZ+kKVACkJFdL6QvXP21rXYQs1cmTzQJl
+         F61Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXH6hZqowC5/DfOxXQNLeBek4tlqBicKc0prnqR9+nm4KxAdlqNCIaXwKDxPQ+C4QZRAGcigp0XNyQhMtDVmLAHUFuQXaA+Z9LTRQ==
+X-Gm-Message-State: AOJu0YzI3Gk+K8GG3sCoVaQubpwKPkdCNmOPY66+YJt1X13b1wEIOThq
+	/Bw+BWY9Gd0RxwdthOhO0Ojj4k/4xnuIRTv+tLe8+kWpqmJd/UGjCSB7gdRmCxA=
+X-Google-Smtp-Source: AGHT+IHLlCNSFgymsuasdkFKTfzL0stoaZgUrmBrNf/nr0c7/f0IkrV2OVcUD3qL3bjVmEkNASw+UA==
+X-Received: by 2002:a05:600c:5122:b0:41a:7fc8:a650 with SMTP id o34-20020a05600c512200b0041a7fc8a650mr8184338wms.0.1714989453671;
+        Mon, 06 May 2024 02:57:33 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c450900b0041bd920d41csm15411549wmo.1.2024.05.06.02.57.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 May 2024 02:57:33 -0700 (PDT)
+Message-ID: <f5b9c8d5-d8ed-4dd1-9cd6-fb016d84cbd5@freebox.fr>
+Date: Mon, 6 May 2024 11:57:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1714989149;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8HTnEbMGr6azDxEJRTbhySR4V4Ne6tL3XUGLhPTZCO0=;
-	b=XfwY1Lm5t3BuJGB0djBiYApOWL755wz3BW/pJbEi+IBLPjsYvbiqv6Pb17wlKgHPWKt7sR
-	GphaO39r/G+0W9VPdAir5gGkaHCbZE+L6gDMfg1qvOzUbgep/LwNSaGLkjbNLBfm2T6k59
-	XeED8IxS03ieMubGs8HREkkLSKc6BFpftpYqMXITrw80z934fJs/kq3ZXu2xBTH8KlMbZs
-	3XHHA7znoN7aDB28y+2/L749+kuc+U1MI+DQ1EA111kf5umZU646zdlqFasixOSH8ALu3K
-	AspnQbuqvVbmvzzMznE2E08a8hm8U3WsccMiQBKlcyA9DAfFZDK8qAJWLFeoIQ==
-Date: Mon, 06 May 2024 11:52:28 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/6] arm64: dts: rockchip: add thermal zones
- information on RK3588
-In-Reply-To: <20240506-rk-dts-additions-v4-1-271023ddfd40@gmail.com>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <20240506-rk-dts-additions-v4-1-271023ddfd40@gmail.com>
-Message-ID: <5332d58d48607a5559a84a2f85ce3e1b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Add support for qcom msm8998-venus (HW vdec /
+ venc)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: Bjorn Andersson <andersson@kernel.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
+Content-Language: en-US
+In-Reply-To: <ff646f97-68e3-4fef-9b56-2bd98f0cbe7d@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Alexey,
+On 30/04/2024 17:28, Marc Gonzalez wrote:
 
-Thanks for submitting the v4 of this series!  Please, see a couple
-of my comments below.
-
-On 2024-05-06 11:36, Alexey Charkov wrote:
-> This includes the necessary device tree data to allow thermal
-> monitoring on RK3588(s) using the on-chip TSADC device, along with
-> trip points for automatic thermal management.
+> Changes in v2
+> - Add Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> for patches 2 & 3
+> - Replace qcom,msm8998-venus.yaml (copy of qcom,msm8996-venus.yaml) with item in qcom,msm8996-venus.yaml
 > 
-> Each of the CPU clusters (one for the little cores and two for
-> the big cores) get a passive cooling trip point at 85C, which
-> will trigger DVFS throttling of the respective cluster upon
-> reaching a high temperature condition.
+> Marc Gonzalez (3):
+>   dt-bindings: media: add qcom,msm8998-venus
+>   arm64: dts: qcom: msm8998: add venus node
+>   media: venus: add MSM8998 support
 > 
-> All zones also have a critical trip point at 115C, which will
-> trigger a reset.
-> 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 147 
-> ++++++++++++++++++++++++++++++
->  1 file changed, 147 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> index 6ac5ac8b48ab..ef06c1f742e8 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->  #include <dt-bindings/phy/phy.h>
->  #include <dt-bindings/ata/ahci.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> 
->  / {
->  	compatible = "rockchip,rk3588";
-> @@ -2368,6 +2369,152 @@ pwm15: pwm@febf0030 {
->  		status = "disabled";
->  	};
-> 
-> +	thermal_zones: thermal-zones {
-> +		/* sensor near the center of the SoC */
-> +		package_thermal: package-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 0>;
-> +
-> +			trips {
-> +				package_crit: package-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		/* sensor between A76 cores 0 and 1 */
-> +		bigcore0_thermal: bigcore0-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 1>;
-> +
-> +			trips {
-> +				bigcore0_alert: bigcore0-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
+>  Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml |  4 ++-
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi                           | 48 +++++++++++++++++++++++++++++
+>  drivers/media/platform/qcom/venus/core.c                        | 42 +++++++++++++++++++++++++
+>  3 files changed, 93 insertions(+), 1 deletion(-)
 
-Doesn't removing the second passive trip, which was present in the v3,
-result in confusing the IPA governor?
+Not sure what's holding up this series?
+Can it be merged before the 6.10 merge window opens?
+(Whose tree is it supposed to go through?)
 
-> +				bigcore0_crit: bigcore0-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&bigcore0_alert>;
-> +					cooling-device =
-> +						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +
-> +		/* sensor between A76 cores 2 and 3 */
-> +		bigcore2_thermal: bigcore2-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 2>;
-> +
-> +			trips {
-> +				bigcore2_alert: bigcore2-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
+Been working on this feature since Feb 19 with
+[RFC WIP PATCH] venus: add qcom,no-low-power property
+(First try turned out to be incorrect)
 
-The same question about the second passive trip applies here, and to
-all similar cases below.
+Regards
 
-> +				bigcore2_crit: bigcore2-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&bigcore2_alert>;
-> +					cooling-device =
-> +						<&cpu_b2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu_b3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +
-> +		/* sensor between the four A55 cores */
-> +		little_core_thermal: littlecore-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 3>;
-> +
-> +			trips {
-> +				littlecore_alert: littlecore-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +				littlecore_crit: littlecore-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&littlecore_alert>;
-> +					cooling-device =
-> +						<&cpu_l0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu_l1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu_l2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu_l3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +
-> +		/* sensor near the PD_CENTER power domain */
-> +		center_thermal: center-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 4>;
-> +
-> +			trips {
-> +				center_crit: center-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		gpu_thermal: gpu-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 5>;
-> +
-> +			trips {
-> +				gpu_crit: gpu-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		npu_thermal: npu-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsadc 6>;
-> +
-> +			trips {
-> +				npu_crit: npu-crit {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	tsadc: tsadc@fec00000 {
->  		compatible = "rockchip,rk3588-tsadc";
->  		reg = <0x0 0xfec00000 0x0 0x400>;
 
