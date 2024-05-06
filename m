@@ -1,161 +1,159 @@
-Return-Path: <devicetree+bounces-65064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179B98BC6B6
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 07:21:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55DDE8BC73D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 08:00:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C756A281692
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 05:21:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C112A1F210C2
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 06:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2ED48CCD;
-	Mon,  6 May 2024 05:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701B5482CD;
+	Mon,  6 May 2024 06:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XKA1HKHG"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="EHiCA22R";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Vtm39H5a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B0F4594E;
-	Mon,  6 May 2024 05:21:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA05446CF;
+	Mon,  6 May 2024 06:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714972866; cv=none; b=kgZ1qKMmBNmT3aFuMPhXavdhTImka9rNgAIIIQ2fW7ujuDmt3HpEch8V6QMroUn4A2LsD4v2XZIQxySS5rn8HKZppaPu91XWQwe0eqU6p5h1CxwFXLuIReSYB/pqw65Z5dTF3yWquWadr2IfZnE156FT0JTL88Cv3YL+iALqIY0=
+	t=1714975208; cv=none; b=YTYgDhDraTr8nT7WRPXGYzo/4C9DglLyK9Dq5ujrEvPgtNbhnLAeswQmjfQlJPMcF8x/dExZHxPeNWMTE3pL2b6tco5H/K+4nfoSXgbfIAeSFKeC8nePst2fo3UpwCttwYIsxn9mo+DuXmYkHKsgk7UK/uWhcGoOHyFm4Iac2vs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714972866; c=relaxed/simple;
-	bh=Wjxl0Zh0F/lHFVCnitattjt+DSqY4zt6X9vp37pdqqk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IMGlUxanP2W9THN4xYS5+NHr+Tu9uNA42DJMtqiD3xWIqjkujs9arrDxGOvGaWB4Pzd5IFYvF1U5hyItJB4Fd8k6LnCinoJ4GsCTVRE9GUIZVF3oi2G5QwTlGGK/2/bo+LwMtPbVbC1fSsnrZi940hymlnqBfLMFGbXISTjCBVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XKA1HKHG; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4465Kuui124386;
-	Mon, 6 May 2024 00:20:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714972856;
-	bh=smd/1opGYkPR1eeZZ60lr/FH6hT2kFz1MrZ/LEP7fZs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=XKA1HKHGlKKuMBG/I5T2dyr19uytGymF8NUpAGRWW/svotS0nlomb+2103mgNJXP7
-	 8I8VhW+aD5fBznF2+YONPstWYEw7SrjEBwesL/aeaqa8ciBd5A+K99yg2ebrXD5wZ3
-	 UE+Dlm03bT5BWTHPU6mjXAH6YCilJReGvIT80kjI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4465KuO5027044
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 6 May 2024 00:20:56 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
- May 2024 00:20:56 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 6 May 2024 00:20:56 -0500
-Received: from uda0500640.dal.design.ti.com (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4465Kj0h069015;
-	Mon, 6 May 2024 00:20:53 -0500
-From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <srk@ti.com>, <rogerq@kernel.org>,
-        <r-gunasekaran@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j784s4-evm: Enable USB3 support
-Date: Mon, 6 May 2024 10:50:44 +0530
-Message-ID: <20240506052044.8228-3-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240506052044.8228-1-r-gunasekaran@ti.com>
-References: <20240506052044.8228-1-r-gunasekaran@ti.com>
+	s=arc-20240116; t=1714975208; c=relaxed/simple;
+	bh=KgXnKpGS7j1W3cutgX8wg9tLYZP638mj6jJLbZ5G8vc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CuEQdz22JXI2DJSx7KozMjFZb2yKWkMyH92eJpwBDaEFBNSe7St8dnYuDfv1AHA8Lzo/xqmfCyMAZnDOzMxvpCdM2sh8ayCOKcjeXf5G8m6EzgQKEyvJRVc8HhvsXS5/o19MtkrYpOoYTf/VO+3+eaDK1V4HgbulNVqZVGWKUP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=EHiCA22R; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Vtm39H5a reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1714975204; x=1746511204;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=l3MdTi3j5rgN9hablWq4x9eXzyjzcKzMbwO6NXO+aaM=;
+  b=EHiCA22RU9a6TXMdsKwwIqJVsGtLy/nqR+iOqStrG+o992P/BkEGyyX8
+   AlTIA662U27S3PHqo3hudlvYXGL9vxzuF0onKdWGuKAnhix9e3IqAIqh7
+   eSYoVgRWaOM9wfNhAzegjh6ziZk8aDNPk+h0lRI0VAQoLW3w3334LDqrQ
+   gLnVuKjw3uu562s0en0eY3DeQPsNjznLGaTpq/d4BGQg3X7eJ52T18jii
+   c19JNp6d5xxLFiQf0u1X8Z9u96/uyf+BxLTolXKP4d0HR5GMoYjpaWBCp
+   JgwN4cyZh/AfVX/H1zb718Cafm6IHfxN2KYE7It9QUN2lwf+AUaJ9DQLX
+   w==;
+X-CSE-ConnectionGUID: +uTMB1GFQXmbfrsmdPDoVA==
+X-CSE-MsgGUID: OMx7XGLVRQq/x9s8/5GUDQ==
+X-IronPort-AV: E=Sophos;i="6.07,257,1708383600"; 
+   d="scan'208";a="36751415"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 06 May 2024 07:59:55 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B3BD9173BE6;
+	Mon,  6 May 2024 07:59:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1714975190;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=l3MdTi3j5rgN9hablWq4x9eXzyjzcKzMbwO6NXO+aaM=;
+	b=Vtm39H5anoxbM1aUl+yWA8prXdExh6xoe229iwcpBplsba0xQz+fZERui+38S4ew+gBFiI
+	O25THqy0p+Oq8btgHkFC4cWbf1Ol3kb22FnSbF8EzRjDhhYOS2fSNH9DlJRLx+CGmGXFN2
+	uJVaQMQEdVoKF6u7itQctQSxaxWMuSObQPx00/2BbnWrEjBBXsP41qrwR/oYFjgxnOMmYB
+	xt9lOqQqVQYDudGuzR8wrwz0/+g6DxFyH3+4DmtU3gqg+uWcwLaDgmbUeRTx/w2e3y9Bj+
+	9NS7yyzxk/mQubr0Bjsb8xLntzq5N5OEAC4hKu65+5Q0Uo2/DUObcxAbZ+Y8jg==
+From: Gregor Herburger <gregor.herburger@ew.tq-group.com>
+Subject: [PATCH v2 0/6] can: mcp251xfd: add gpio functionality
+Date: Mon, 06 May 2024 07:59:42 +0200
+Message-Id: <20240506-mcp251xfd-gpio-feature-v2-0-615b16fa8789@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAM5xOGYC/4WNOw6DMBAFr4JcZ5FtAflUuUdEYZY1bAE2NhAix
+ N3jcIGUM9Kbt4tIgSmKR7aLQCtHdmMCfckE9mbsCLhNLLTUhSzUFQb0ulSbbaHz7MCSmZdAoO9
+ GNbYy2JSFSGMfyPJ2hl914p7j7MLn/FnVz/5NrgokNCixUraVeJNPeufzBF1wi8/RDaI+juMLO
+ Dhl3sIAAAA=
+To: Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Thomas Kopp <thomas.kopp@microchip.com>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux@ew.tq-group.com, gregor.herburger@ew.tq-group.com
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1714975188; l=2584;
+ i=gregor.herburger@ew.tq-group.com; s=20230829; h=from:subject:message-id;
+ bh=KgXnKpGS7j1W3cutgX8wg9tLYZP638mj6jJLbZ5G8vc=;
+ b=7MCvY1oUqEGxOEz551MKsVGPD++UONYKxvQw8sMdfJLoFDcUcnb9IVLWW5VJUx17pEC7RdbSr
+ W0gcK9K3JooCnPXfEtdH/OrQn++G+vXjgMaBpr51GxzxdHDDkPv2hCX
+X-Developer-Key: i=gregor.herburger@ew.tq-group.com; a=ed25519;
+ pk=+eRxwX7ikXwazcRjlOjj2/tbDmfVZdDLoW+xLZbQ4h4=
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Matt Ranostay <mranostay@ti.com>
+Hi all,
 
-The board uses SERDES0 Lane 3 for USB3 IP. So update the
-SerDes lane info for USB. Add the pin mux data and
-enable USB3 support.
+The mcp251xfd allows two pins to be configured as GPIOs. This series
+adds support for this feature.
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+The GPIO functionality is controlled with the IOCON register which has
+an erratum. The second patch is to work around this erratum. I am not
+sure if the place for the check and workaround in
+mcp251xfd_regmap_crc_write is correct or if the check could be bypassed
+with a direct call to mcp251xfd_regmap_crc_gather_write. If you have a
+better suggestion where to add the check please let me know.
+
+Patch 1-3 from https://lore.kernel.org/linux-can/20240429-mcp251xfd-runtime_pm-v1-0-c26a93a66544@pengutronix.de/
+Patch 4 is the fix/workaround for the aforementioned erratum
+Patch 5 adds the gpio support
+Patch 6 updates dt-binding
+
 ---
-Changes since v1:
-----------------
-* Fixed dtbs_check warning by renaming 'main-usbss0-pins-default'
-  to 'main-usbss0-default-pins'
+Changes in v2:
+- picked Marcs patches from https://lore.kernel.org/linux-can/20240429-mcp251xfd-runtime_pm-v1-0-c26a93a66544@pengutronix.de/
+- Drop regcache
+- Add pm_runtime in mcp251xfd_gpio_request/mcp251xfd_gpio_free
+- Implement mcp251xfd_gpio_get_multiple/mcp251xfd_gpio_set_multiple
+- Move check for rx_int/gpio conflict to mcp251xfd_gpio_request
+- Link to v1: https://lore.kernel.org/r/20240417-mcp251xfd-gpio-feature-v1-0-bc0c61fd0c80@ew.tq-group.com
 
-v1: https://lore.kernel.org/all/20240502053615.29514-2-r-gunasekaran@ti.com/
+---
+Gregor Herburger (3):
+      can: mcp251xfd: mcp251xfd_regmap_crc_write(): workaround for errata 5
+      can: mcp251xfd: add gpio functionality
+      dt-bindings: can: mcp251xfd: add gpio-controller property
 
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 41 ++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Marc Kleine-Budde (3):
+      can: mcp251xfd: properly indent labels
+      can: mcp251xfd: move mcp251xfd_timestamp_start()/stop() into mcp251xfd_chip_start/stop()
+      can: mcp251xfd: move chip sleep mode into runtime pm
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index d511b25d62e3..a2d3cba0423e 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -336,6 +336,13 @@
- 			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
- 		>;
- 	};
-+
-+	main_usbss0_pins_default: main-usbss0-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
-+		>;
-+	};
- };
- 
- &wkup_pmx2 {
-@@ -1041,6 +1048,40 @@
- 				 <&k3_clks 218 22>;
- };
- 
-+&serdes0 {
-+	status = "okay";
-+
-+	serdes0_usb_link: phy@3 {
-+		reg = <3>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz0 4>;
-+	};
-+};
-+
-+&serdes_wiz0 {
-+	status = "okay";
-+};
-+
-+&usb_serdes_mux {
-+	idle-states = <0>; /* USB0 to SERDES lane 3 */
-+};
-+
-+&usbss0 {
-+	status = "okay";
-+	pinctrl-0 = <&main_usbss0_pins_default>;
-+	pinctrl-names = "default";
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes0_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
-+
- &serdes_wiz4 {
- 	status = "okay";
- };
+ .../bindings/net/can/microchip,mcp251xfd.yaml      |   5 +
+ drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c     | 310 +++++++++++++++++----
+ drivers/net/can/spi/mcp251xfd/mcp251xfd-dump.c     |   2 +-
+ drivers/net/can/spi/mcp251xfd/mcp251xfd-regmap.c   |  31 ++-
+ drivers/net/can/spi/mcp251xfd/mcp251xfd-tef.c      |   2 +-
+ .../net/can/spi/mcp251xfd/mcp251xfd-timestamp.c    |   7 +-
+ drivers/net/can/spi/mcp251xfd/mcp251xfd-tx.c       |   2 +-
+ drivers/net/can/spi/mcp251xfd/mcp251xfd.h          |   7 +
+ 8 files changed, 303 insertions(+), 63 deletions(-)
+---
+base-commit: 1fdad13606e104ff103ca19d2d660830cb36d43e
+change-id: 20240417-mcp251xfd-gpio-feature-29a1bf6acb54
+
+Best regards,
 -- 
-2.17.1
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
 
