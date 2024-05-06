@@ -1,120 +1,164 @@
-Return-Path: <devicetree+bounces-65195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FD18BD098
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:45:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 777DE8BD0BB
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:51:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86A3C28828A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:45:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04EC31F21CF5
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 14:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2A3153582;
-	Mon,  6 May 2024 14:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326FA15357D;
+	Mon,  6 May 2024 14:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="dyziNFu8"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IsOaV9WQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D0C31534FD
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 14:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF4013BAC7;
+	Mon,  6 May 2024 14:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715006744; cv=none; b=nnOKExPxZv9Crn5TqNyqW8xnNjlS4zLdWM3UhYwXntbKWQLVa+dQGEhkoLBSUBK9C6NkTpy5q8cjcuwdfmNIxtceohi18gCHCyoxTwrgUZsef4gyfrFG0JAHhNPqGwYbo1BxwoA0m+711wHTE2QbjpuPJQYfHdOflmyZc2cSg18=
+	t=1715007062; cv=none; b=d8mapL4F0EliFh0adbWwwPTlaI7Z1fWrfKnKPF2cW4mPohHVH32iOYZVBzYTSkkhRJtokOiGTdrm8+caDjaIOeW4dmD1yHHuWL4i1S1gkhK4rmqn7Rh2HD8fRRKGHgyLeBg7fOoORErpgrbZzXH/19v+PSGdZg7c/QT/qnHMEhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715006744; c=relaxed/simple;
-	bh=dJL/4nHHVyMfHE+r7aDaey7YICu0AfSLuHlHOggg1NE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lK8GZ+pVXool7CbLWPLBXZJ0FTlQW+ldb05h3W9fG7BMDrVqSkAHtRJGcudv4dfms70n/IPBfEYIiYpM8Fd0G456tMPRF4Y13crBwr0R8oIt7dcVoWgznmnyqa5fhw+ZqO4uyOTINI8oXKpMa1drHTDDzMNwLRKZbBItez1OTGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=dyziNFu8; arc=none smtp.client-ip=95.215.58.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <06a4e5fd-3d26-4923-bcbf-0bdd66d756c4@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1715006740;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=q1l323OlqVNgQvRZA1TNt3bEY9wTCe6PZHzYFIfTBD0=;
-	b=dyziNFu8TkwgQEy4S0xRtrXuNqEYqSFRrjS+7rGhRf/v9t6FWbK6M7pIb7Rw9nhyKWSrJG
-	c8xWbXHnPIp5R9H3ITKJya/V8Hn2tWRFTfZWVke3UdG1jOrACTHcMw0X9B2Qbk4PtYeMcG
-	tugkIs1s5xSX+VApT7+HaUWY327fj4Q=
-Date: Mon, 6 May 2024 10:45:30 -0400
+	s=arc-20240116; t=1715007062; c=relaxed/simple;
+	bh=eSfAG7eRcrkhY+Qr5HX1zI27MCV8+YfsRo1rrRm29Ls=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nuVcX+SPkxBg9rDXsEkjLqpzRR9UbCJ0SO522727EdRN2qUxgRuFOwIoMYIXSChFyyoUIxkfu1e9eD+2zosn7AgioVPlX7Jebl0kHy5e1BCP31yZ2ndFhq6jlTxOmpa/AE3XuAXXuhLCxsT9Np8q/1U8IwN4OeAgeUyoPVX6BHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=IsOaV9WQ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 446Bbcmp010927;
+	Mon, 6 May 2024 16:50:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=lFFdRBl
+	/abKwjIsFck+7iM64lIxYS3/Znv6CkxEJjqA=; b=IsOaV9WQBb4PNmAamgQO6Pm
+	UsI6cuhN67SNpPbgtJ4Wq+PeizHv3jG5aBChR2vvDjinzQr8Lj4ydQMlrk0hjqO3
+	gr0mmxIvCNJrZdQOIBjjnqbZfCVghd6dbBGXYYVvxJAnSjiW7QOASZauCCe0oOWG
+	IC9gyJCDKsAmiL9NqDXCICrP75gQ1T7yP+lHzspiJKIJGTpU2C0IVMziTU3WsD6x
+	cFgC2cAyxFrKrPhQnGRBJ1wPz6kRxTiIoFir1EelJLG+InMfUgaLWsVE33UkcWrT
+	G6KUt6u+EmO/1ZUfl18EOpBqjRS+0Wh3EukYygOxDB/n95QUK3++tLdrQXCLiNQ=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xwcbx7j8r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 May 2024 16:50:27 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A641D4002D;
+	Mon,  6 May 2024 16:50:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D753D2248BB;
+	Mon,  6 May 2024 16:49:47 +0200 (CEST)
+Received: from localhost (10.48.87.177) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 6 May
+ 2024 16:49:47 +0200
+From: Yannick Fertre <yannick.fertre@foss.st.com>
+To: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: dts: stm32: add goodix touchscreen on stm32mp135f-dk
+Date: Mon, 6 May 2024 16:49:45 +0200
+Message-ID: <20240506144945.293966-1-yannick.fertre@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/2] pinctrl: zynqmp: Support muxing individual pins
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Michal Simek <michal.simek@amd.com>, linux-gpio@vger.kernel.org,
- Krishna Potthuri <sai.krishna.potthuri@amd.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20240503162217.1999467-1-sean.anderson@linux.dev>
- <CACRpkdbOAoSDNFhXfz3djUZh1_MQ_T75CC+-LmojRXvyCbUusA@mail.gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <CACRpkdbOAoSDNFhXfz3djUZh1_MQ_T75CC+-LmojRXvyCbUusA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-06_09,2024-05-06_02,2023-05-22_02
 
-On 5/6/24 02:43, Linus Walleij wrote:
-> On Fri, May 3, 2024 at 6:22 PM Sean Anderson <sean.anderson@linux.dev> wrote:
-> 
->> This series adds support for muxing individual pins, instead of
->> requiring groups to be muxed together. See [1] for additional
->> discussion.
->>
->> [1] https://lore.kernel.org/linux-arm-kernel/5bb0dc7e-4c89-4f3d-abc6-41ae9ded5ae9@linux.dev/
-> 
-> The way I usually would recommend to solve this would be to
-> define new subgroups, so e.g. for a UARTS:
-> 
-> uart0_grp = pin_rx, pin_tx, pin_cts, pin_dts, pin_dcd;
-> 
-> And today this would be used like that:
-> 
-> mux0:
->     function = "uart0";
->     groups = "uart0_grp";
-> 
-> Then we realize that not everyone need all the modem
-> control signals provided. What to do. Well this:
-> 
-> uart0_rxtx_grp = pin_rx, pin_tx:
-> uart0_modem_grp = pin_cts, pin_dts, pin_dcd;
-> 
-> mux0:
->     function = "uart0";
->     groups = "uart0_rxtx_grp";
-> 
-> Now the CTS, DTS, DCD pins can be reused for something
-> else such as GPIO.
-> 
-> I *know* that this breaks ABI: the driver group definitions change
-> and the device tree needs to be changed too.
-> 
-> This only matters if the users have a habit of distributing the
-> kernel and DTB separately so a new kernel needs to support
-> and old DTB. This varies in how much control we have but I
-> think for Xilinx systems the kernel and DTB are always updated
-> in lockstep, so it really does not matter?
+Touchscreen reset needs to be configured
+via the pinctrl not the driver (a pull-down resistor
+has been soldered onto the reset line which forces
+the touchscreen to reset state).
+Interrupt line must have a pull-down resistor
+in order to freeze the i2c address at 0x5D.
 
-Well, the pin groups are actually defined in the PMU firmware. And
-frankly, I don't see the point of pin "groups" when there are not actual
-pin groups at the hardware level. The pins can all be muxed
-individually, so there's no point in adding artificial groups on top.
-Just mux the pins like the hardware allows and everything is easy. Cuts
-down on the absurd number of strings too.
+Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+---
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 22 +++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 14 +++++++++++++
+ 2 files changed, 36 insertions(+)
 
---Sean
+diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+index 32c5d8a1e06a..21861cae21d9 100644
+--- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+@@ -13,6 +13,28 @@ pins {
+ 		};
+ 	};
+ 
++	goodix_pins_a: goodix-0 {
++		/*
++		 * touchscreen reset needs to be configured
++		 * via the pinctrl not the driver (a pull-down resistor
++		 * has been soldered onto the reset line which forces
++		 * the touchscreen to reset state).
++		 */
++		pins1 {
++			pinmux = <STM32_PINMUX('H', 2, GPIO)>;
++			output-high;
++			bias-pull-up;
++		};
++		/*
++		 * Interrupt line must have a pull-down resistor
++		 * in order to freeze the i2c address at 0x5D
++		 */
++		pins2 {
++			pinmux = <STM32_PINMUX('F', 5, GPIO)>;
++			bias-pull-down;
++		};
++	};
++
+ 	i2c1_pins_a: i2c1-0 {
+ 		pins {
+ 			pinmux = <STM32_PINMUX('D', 12, AF5)>, /* I2C1_SCL */
+diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+index 567e53ad285f..5e8ee2d4648a 100644
+--- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
++++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+@@ -201,6 +201,20 @@ &i2c5 {
+ 	/* spare dmas for other usage */
+ 	/delete-property/dmas;
+ 	/delete-property/dma-names;
++
++	goodix: goodix-ts@5d {
++		compatible = "goodix,gt911";
++		reg = <0x5d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&goodix_pins_a>;
++		interrupt-parent = <&gpiof>;
++		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
++		AVDD28-supply = <&scmi_v3v3_sw>;
++		VDDIO-supply = <&scmi_v3v3_sw>;
++		touchscreen-size-x = <480>;
++		touchscreen-size-y = <272>;
++		status = "okay" ;
++	};
+ };
+ 
+ &iwdg2 {
+-- 
+2.34.1
+
 
