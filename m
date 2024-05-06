@@ -1,181 +1,132 @@
-Return-Path: <devicetree+bounces-65232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604688BD25D
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 18:18:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB138BD285
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 18:21:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E3B4B2413C
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:17:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EE3F1C2246F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7E5156248;
-	Mon,  6 May 2024 16:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7A615665C;
+	Mon,  6 May 2024 16:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XdjHTtbT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="kM6o8b6A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01966762D2;
-	Mon,  6 May 2024 16:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8609B156643;
+	Mon,  6 May 2024 16:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715012189; cv=none; b=bBADECh45m6ZJkEhEnJ2E5p1qphnPKCejFhrvGJKHtvoixc22tE22O/cKc/QgB6oCkFm5SEXCqPeKItW1AEiaIKbOXC0vOh4Q1Q5nEF4p+tLCi363LJg8ZYiCnm3juIKx2kAEvRVznXyZz0LQb26MzF6xGVzcexsBN8UloqNY8c=
+	t=1715012485; cv=none; b=YZIYJ+WriINgASWr6Ho90dviPcx1bHey4vrKv6DqC0LwZQtneaPK5ml+5MgeIeDLD3VL6HT/L8o/hOveT36C/FzRssTyZwFlyfsSibBnZLrbwClyUNPoDax8qqV+1OXohOcBEXXaMoKp3j3nfMBzEBRw7V3t894bFu/aHQT3PpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715012189; c=relaxed/simple;
-	bh=Ri+Ds/sxr7JPSlqfXZs9ek55V/5xijmm8kLTGaAtM+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wcy8VnRakn94Suky0GqLPd0QAQxBnaHvVDbZkZY65gC5jd5gHfrSm4CSc8XXscLmCbVGvZiGe/4oL2UlARk/65WXvNnZLPWmj0zFfwAa8KeDxJYEVKc56U2RDLUuxJ3lkbl11HDXISbq1zqlAH4zEt52nsmapuoeH7zyoxZT/DM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XdjHTtbT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F4133C116B1;
-	Mon,  6 May 2024 16:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715012188;
-	bh=Ri+Ds/sxr7JPSlqfXZs9ek55V/5xijmm8kLTGaAtM+s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XdjHTtbTI+PnJbt3+foEezrLOaFgc/U60jkZ/Jj5gbqgM8E39usquZY7RtapwnEOT
-	 VPz5GIQIFsFfd9AOr7VvKIdqL7l0dwfy5TIa4m2D1c01GtOESwC/I/xCXOpB1cee1J
-	 EsKeGp+ddI/auKBDXQZjHy0iiMg5MXVeJ015n3toLJsU3Y6u66hLSR0l+zmd/Njisz
-	 4KCaQfVYj0HwP3ajDKdQiUPaUyJzUABEChS5qZIHXOJNkgbhuZ8fEGJOEQ0mH4XF19
-	 SPWQZ0ufjnSJF6TsMM0xTsjYN+5zGrvAaYN97WinwFWyQp1E72XqMASCQ4mjgdh82t
-	 1kbe2Uj/925sw==
-Date: Mon, 6 May 2024 17:16:21 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-Cc: Jiri Slaby <jirislaby@kernel.org>,
-	Oliver Hartkopp <socketcan@hartkopp.net>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 06/11] dt-bindings: net/can: Add serial (serdev) LIN
- adapter
-Message-ID: <20240506-jaws-cheesy-bf94885651c1@spud>
-References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
- <20240502182804.145926-7-christoph.fritz@hexdev.de>
- <20240503-fading-extruding-2105bbd8b479@spud>
- <a5b894f8dc2ab0cf087a5b4972d7f752e6c17c16.camel@hexdev.de>
+	s=arc-20240116; t=1715012485; c=relaxed/simple;
+	bh=S+05yN7aSpGFcjCkM4+0Eh53OJcAEkTC9skzEhS11Fk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jCeq9VDzJc80+wjfNKOq49XnIp5QnlK1SMlLl4KUnrc5sA+wV8+xVCh5bwdZxJztcUOKT33HdwZQ+7JVMomTjWyMk/6jhztdvMDK82GzEukEoejVgD2khWqyyBlxSofl6FJ0JdtneNW2XYCkYBOofeWxKhE2H+ceF4pse/xTn2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=kM6o8b6A; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1s415U-005r1u-1A;
+	Mon, 06 May 2024 18:21:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=12Vs5N0og4kk0yUGrgVqQQHG2X9PlApHfJ7FKvy0nt0=; b=kM6o8b6AMTsnRlimzGo1bBfSSz
+	oECtjQsNi/Fg+URwWCIMCLCYAxbbkiTq1YJ4CKOco/tqRwfnNfHMmWsnSOchPu6U5+QFMModu05Ap
+	fiq6iNtsyotEQbqwU3PVy+PQztFHFL/6fGYmMsCLgeevBqq+9Zr4HhevilCkgq3MPNrKJZMjYwwMy
+	sNW2fxt1bnbTjaPBJgOSJq3ZWXUC3/89HiJs5uzJjv7P9PQ0S28NH0NxrstY9VZBE49PKxYSHdw1x
+	gB7WsLLbkSDnB5ZMliulxxqQKx8qVUlVHtMLYXjejGBc6Vt3DbfmyBQhm+U4olfx6iIZy9EX9KAPT
+	Or+qzsrA==;
+Received: from p200300c20737c2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:737:c200:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1s415T-000fIM-2B;
+	Mon, 06 May 2024 18:21:12 +0200
+Date: Mon, 6 May 2024 18:21:11 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, u.kleine-koenig@pengutronix.de, hdegoede@redhat.com,
+ siebren.vroegindeweij@hotmail.com, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] Input: ektf2127 - add ektf2232 support
+Message-ID: <20240506182111.3c6673a0@aktux>
+In-Reply-To: <CAHp75Vdnwrxw96prr9hyLdZ2u6t1uNcj6pyxCp52UoVOpatTpg@mail.gmail.com>
+References: <20240505214754.891700-1-andreas@kemnade.info>
+	<20240505214754.891700-4-andreas@kemnade.info>
+	<CAHp75Vdnwrxw96prr9hyLdZ2u6t1uNcj6pyxCp52UoVOpatTpg@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IZWKdHDwzN9uOGw5"
-Content-Disposition: inline
-In-Reply-To: <a5b894f8dc2ab0cf087a5b4972d7f752e6c17c16.camel@hexdev.de>
-
-
---IZWKdHDwzN9uOGw5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 03, 2024 at 08:29:15PM +0200, Christoph Fritz wrote:
-> Hello Conor,
->=20
->  thanks for having an eye on this, please see my answer below.
->=20
-> On Fri, 2024-05-03 at 18:12 +0100, Conor Dooley wrote:
-> > On Thu, May 02, 2024 at 08:27:59PM +0200, Christoph Fritz wrote:
-> > > Add dt-bindings for serial LIN bus adapters. These adapters are
-> > > basically just LIN transceivers that are hard-wired to serial devices.
-> > >=20
-> > > Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> > > ---
-> > >  .../bindings/net/can/hexdev,lin-serdev.yaml   | 32 +++++++++++++++++=
-++
-> > >  1 file changed, 32 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/can/hexdev,=
-lin-serdev.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/can/hexdev,lin-ser=
-dev.yaml b/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-> > > new file mode 100644
-> > > index 0000000000000..c178eb9be1391
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/can/hexdev,lin-serdev.yaml
-> > > @@ -0,0 +1,32 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/can/hexdev,lin-serdev.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Serial LIN Adapter
-> > > +
-> > > +description:
-> > > +  LIN transceiver, mostly hard-wired to a serial device, used for co=
-mmunication
-> > > +  on a LIN bus.
-> > > +  For more details on an adapter, visit <https://hexdev.de/hexlin#tt=
-y>.
-> > > +
-> > > +maintainers:
-> > > +  - Christoph Fritz <christoph.fritz@hexdev.de>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: hexdev,lin-serdev
-> >=20
-> > Maybe I've just missed something on earlier versions that I didn't
-> > read, but the name of the device on the website you link is "hexLIN",
-> > so why is "lin-serdev" used here instead?
->=20
-> The USB one is called hexLIN and has it's own HID driver.
->=20
-> This serial LIN adapter doesn't really have a product name. Currently
-> on our website it's generically called 'UART LIN Adapter'.
->=20
-> This LIN adapter is basically just a LIN transceiver and very generic,
-> so that one could solder it to any single-board computer with an uart.
->=20
-> I think 'lin-serdev' for LIN and serial device fits great, also serdev
-> is the name of the used kernel infrastructure (besides the LIN glue
-> driver).
->=20
-> If you still don't like it, I'm open to other names. What about
-> "hexlin-uart" or "linser"?
+On Mon, 6 May 2024 15:05:52 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-I dunno, I don't really care about it being called "hexlin,lin-serdev",
-all that much, I just found it confusing that the link in the description
-sent me to the ""Hello World" in LIN" section of your site. If it had
-dropped me off at the "UART LIN adapter" section things woud've been less
-confusing.
+> From: Andy Shevchenko <andy.shevchenko@gmail.com>
+> To: Andreas Kemnade <andreas@kemnade.info>
+> Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,   con=
+or+dt@kernel.org, u.kleine-koenig@pengutronix.de, hdegoede@redhat.com,   si=
+ebren.vroegindeweij@hotmail.com, linux-input@vger.kernel.org,   devicetree@=
+vger.kernel.org, linux-kernel@vger.kernel.org
+> Subject: Re: [PATCH v2 3/3] Input: ektf2127 - add ektf2232 support
+> Date: Mon, 6 May 2024 15:05:52 +0300
+>=20
+> On Mon, May 6, 2024 at 12:48=E2=80=AFAM Andreas Kemnade <andreas@kemnade.=
+info> wrote:
+> >
+> > The chip is similar, but has status bits at different positions,
+> > so use the correct bits. =20
+>=20
+> ...
+>=20
+> > @@ -46,6 +47,11 @@ struct ektf2127_ts {
+> >         struct input_dev *input;
+> >         struct gpio_desc *power_gpios;
+> >         struct touchscreen_properties prop;
+> > +       int status_shift;
+> > +};
+> > +
+> > +struct ektf2127_i2c_chip_data {
+> > +       int status_shift;
+> >  };
+> >
+> >  static void ektf2127_parse_coordinates(const u8 *buf, unsigned int tou=
+ch_count, =20
+>=20
+> I'm wondering if you are using --histogram diff algo when preparing the p=
+atches.
 
-That said, calling the compatible after a linux-ism is a bit odd to me
-when the device seems to be called a "UART LIN adapter" on the page, not
-a "serdev".
+No, I am not using that, it seems to not make that chunk nicer.=20
+Yes, we want
 
-Cheers,
-Conor.
++       int status_shift;
+ };
++
++struct ektf2127_i2c_chip_data {
++       int status_shift;
++};
 
---IZWKdHDwzN9uOGw5
-Content-Type: application/pgp-signature; name="signature.asc"
+But that is not shorter or simpler, just more readable.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjkCVQAKCRB4tDGHoIJi
-0hFNAP9IZ2xs8L+8HDUj7EwsmhlcnekaNMvoaAPmci+3S7sVGwEAhYXvEL9+hMC2
-gv7FekqGBwL+ccs/QA/5F4W2A+cBpgA=
-=wRuw
------END PGP SIGNATURE-----
-
---IZWKdHDwzN9uOGw5--
+Regards,
+Andreas
 
