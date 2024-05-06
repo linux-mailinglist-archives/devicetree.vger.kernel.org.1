@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-65267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2848BD608
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 22:08:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B858BD60D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 22:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65E36283609
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 20:08:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77ADEB2189A
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 20:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89ECC15B0F5;
-	Mon,  6 May 2024 20:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2B315B0F0;
+	Mon,  6 May 2024 20:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GJ10Y1PW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GjCzqVN9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD59745D9
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 20:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC7B15AAB1
+	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 20:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715026086; cv=none; b=XIGfXi/MDqdOtftOMTZs+mInwvrG28ooTaH3XwaiUgwW85Z8BuGDsGURUa2S/CpB8FHeF0n5Z8D4s0+LpqIpYcaR5Zmt8fWwO3E7a6S+kZXfCNSR1OjkBZMR+F1admxFn21MryHwtIb/9y8Bti00ohDlawiXs98rtYUiM1RRYxg=
+	t=1715026181; cv=none; b=Awovbcglh17Px1CikygRoHYfxDe9Ozk2KDwNguRL5tUq5YDTqeP6ezuMgAgWBlnn8YZix8vRBsKZBA8I0J/PG5jRw+BB01bb9Otc/i8yeHjQaAjeOC7e0qOQLHwwxzzm2SJsqXdkDxPFuWFUww1podPR80PdgeQvc6GL9nRVeVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715026086; c=relaxed/simple;
-	bh=yJANYZ5LjdWz2cLq7h83HamivaxLEvIt81deRzqkkUY=;
+	s=arc-20240116; t=1715026181; c=relaxed/simple;
+	bh=MSaAVbxDo3OuZt+PkaJhcfICTABrdma+gokgGr9j444=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pFMsDZmZF3THv/xApNxyuuLwH4/I/af9I55cbEhY226xuU4CgI+RXMdiuwl+5+Q9nv0khyHT/5+9WTVGSjLrAfLDGHqz9gzQk45bU6SO4WqzG7UqYxMp8+7JFdspGxySe6L/dpyHJqdRTFsvimX0qTvB7N4aqbDv/yJwT3Fmv+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GJ10Y1PW; arc=none smtp.client-ip=209.85.208.179
+	 In-Reply-To:Content-Type; b=OkgnKHmhyNYGg7Jy8JJQucWEcJSm6CS8fFiJeGM3qXQGFjfgKvu8t2eaQNNx06geeageHnn6FMIidHVsb8KlBw954kADwZlAOKUEO8O/fiQVKoS1yNsxvdYXFyebV5xqj/KlGW5SBPr345ntpi63K6RpkuTDcTAeRs7mPKkVS/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GjCzqVN9; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2e0933d3b5fso30242331fa.2
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 13:08:04 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a59b58fe083so321640866b.0
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 13:09:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715026083; x=1715630883; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1715026178; x=1715630978; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4r2QFiv+Y5YFHDZS/uVsaIfDuAxtmH3kZzYhY3bwJMg=;
-        b=GJ10Y1PWYfbwnVrs6KVacugYJTpL2d3rRlbbTbej9dSUuhpKYdM2cBxHc5HfrjLdBO
-         HjgwSvSWp3HNEH7jHvFGsCYH8WCz3iaCKxeBYYUAkOXQgn2+zKmpSgh0K/hdVYiMfON/
-         L3JHgnMMtq3QYYpXob6AScX8ezABXyz9WZI5zYTP0AJu9uSVI6G7dBlTESUlaDjOsvXx
-         YoDQdkOL4QrJ9N0/BGgjymqkU8ZIhdrLw/HruIxEKk4cy7OiNO197yGgxM4wk/6XC8OD
-         PXHVPVribHLpEdbFRDD1e3j+ItJFinGaFIC4BGITdpXeTY5D99TVNF/BMyMa7jovDE0C
-         gEAg==
+        bh=fP1I9IhgTZGBV03Pf96OiwAha2qPEClVzUK53DdRWTk=;
+        b=GjCzqVN9iRZmV4VGlbURRjQXhRPP0hAM9jxuwnf19c3SjJwBbKkOTdqrBznQLALj69
+         Y86NcSg3WvqcFSjKyIkQA7wMTl0/zsudKuvdSlx9OqY4dq05JzZG/5woWzC7jM6lUxWm
+         pFjhSWRAh0w0RK+jGANBENs8DQRu3XeV1LA1ox99kFcWc/7xnn9xx7ubUVQ3IslipBfO
+         gLsce1H3S1Bky9Re4E6PxdNJRWHHI+XcvffzqP0ehpDXmxBBLBQeOZaCLESMsVycd13z
+         X+X3PCjI6a7NCj8+BYzYVrz9pQp8rD0Mc1E0jVYDq27NPrQWSBEBYW8bSsLHGtwWK/hc
+         unRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715026083; x=1715630883;
+        d=1e100.net; s=20230601; t=1715026178; x=1715630978;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4r2QFiv+Y5YFHDZS/uVsaIfDuAxtmH3kZzYhY3bwJMg=;
-        b=mt8U4mfwM4XNj8TPne9TFKuLKDaAYfhdJCyEPiSbrZQ0GUbws6I+EsEsigGpeJRTRA
-         dvIZ/3/KEd+0FQNjGYXMmF+RtDD0XAdVdby9pJ9+9MLMsFnjOJYfKBhdbYD/dizZJkna
-         i+EdmxS32lB+eMjbwrOdI9qzwEB0IzxsVtVuC9Bu8gPnUHsfBDymfoQr04l9CaBt/7cr
-         R8vFBdkb+fzjXfCqKAMHXFpOyyHaLCYlbsyOJl5YUJ2SorWuHwTQ2R/8v08L0M60UqGw
-         UddIbgrGyOPXAOkrw1WGZ5wZJ4m73C60YdMzrR1k3iBCI/A0I14yU8fABUd8zkkAAvYX
-         klLA==
-X-Gm-Message-State: AOJu0YxOZ7FaDMieNS0IQyl9s8riGB5h4V0m/5qqKRB5DmfE4VXOIexf
-	qI1qqPfidULh6xQfxY1GdvVbC1N7NvL8zUEASHw/c5EN5LZHt5yHAjrsB+UNBmQ=
-X-Google-Smtp-Source: AGHT+IGFIeRBBk7VGAPYN4qg+AUifIyYRtOsm5z71dsKQvzhwE0BVV5mvFEKkqGRIJ/bqHj8NG2rsA==
-X-Received: by 2002:a05:651c:1691:b0:2e1:d747:8c0 with SMTP id bd17-20020a05651c169100b002e1d74708c0mr7451991ljb.21.1715026083131;
-        Mon, 06 May 2024 13:08:03 -0700 (PDT)
+        bh=fP1I9IhgTZGBV03Pf96OiwAha2qPEClVzUK53DdRWTk=;
+        b=daJnSLG2I+SXWDHjVy8ZnyNNs3PzUHeByuRCGGWymTWHwfJYF5yHbEh5NXX7W3oIRq
+         XiObnrv2T8mIDN3jXN49Ee50oQ+odRgPa9JqDDuk3uW7UbFuilnDN0ixqYOJ1xWS+zRa
+         aML2HhDxSgrDZiK16g7vDIr8V4PpbNE43tBq9afPTXh7JkQdCRrLZCb25GUFJY66FDcY
+         Fdgt5f1os/3+CgNOHQ6LxNy9YwSfFqpPRwjVaWYlhF+wqVZqfhmAHplkIHQmRdlolaL4
+         krz+9MxVQ9+KJzhT1K5HajEaK3I8vXEAdbAuD5WkXsGPQ46ajKTk2Tm8nr5W78hyQ+Ou
+         gV4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWJynzAKhj1pe9+esWh3zn27bBLtPuWCJg6PoNybiZdlrze5ZqRLwUfTVo+UWGaVzQwDdcicWNDRsMNmEWq/KD9sbbYnB4cKkVSXw==
+X-Gm-Message-State: AOJu0YwVPBVf5xBeFnBoUj2yhEsrvVbtLPqr+3tCAtdMaZU1bhEcPaeq
+	lTWvkCOJN4iM20jFzgkKBbYw8GfLUeqIP0FLQvSrGg0pX+KfznQGZEuuQXmleA8=
+X-Google-Smtp-Source: AGHT+IGy2455buKr6CDgCPdc69ltaxc9eSph4eNlTnSW2h33rr4CCl2tGP2gBFXJBNLxPw3EzCthUg==
+X-Received: by 2002:a17:906:c311:b0:a59:b099:1544 with SMTP id s17-20020a170906c31100b00a59b0991544mr3463968ejz.42.1715026178297;
+        Mon, 06 May 2024 13:09:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id w26-20020aa7da5a000000b005722cb1dd6fsm5486170eds.27.2024.05.06.13.08.01
+        by smtp.gmail.com with ESMTPSA id u18-20020a170906125200b00a59c9c927e5sm1987971eja.57.2024.05.06.13.09.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 May 2024 13:08:02 -0700 (PDT)
-Message-ID: <ad7f3328-6eb7-4b32-9316-b0c79fd2753e@linaro.org>
-Date: Mon, 6 May 2024 22:08:00 +0200
+        Mon, 06 May 2024 13:09:37 -0700 (PDT)
+Message-ID: <d6fc16fd-0803-4a9e-ac3b-3183e47c73dd@linaro.org>
+Date: Mon, 6 May 2024 22:09:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,18 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: rk809: Add audio codec properties
-To: Jonas Karlman <jonas@kwiboo.se>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Radxa ROCK 3B
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240505134120.2828885-1-jonas@kwiboo.se>
- <20240505134120.2828885-3-jonas@kwiboo.se>
- <5c4a6d57-82e0-430b-a12e-59c331a32eab@linaro.org>
- <76519e53-a226-497b-9db1-4f11ea83151a@kwiboo.se>
+ <20240505134120.2828885-4-jonas@kwiboo.se>
+ <ade304a1-ea43-46cb-b425-b08055db49dc@linaro.org>
+ <c306b46bc695a256c35e506d98a08e47@manjaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,37 +135,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <76519e53-a226-497b-9db1-4f11ea83151a@kwiboo.se>
+In-Reply-To: <c306b46bc695a256c35e506d98a08e47@manjaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/05/2024 18:14, Jonas Karlman wrote:
->>
->>> +
->>> +  codec:
->>> +    description: |
->>
->> Do not need '|' unless you need to preserve formatting.
->>
->>> +      The child node for the codec to hold additional properties. If no
->>> +      additional properties are required for the codec, this node can be
->>> +      omitted.
->>
->> That's useless description. Describe hardware, not syntax. This must say
->> what this node represents.
->>
->> Anyway drop it. You do not have any resources there, so put properties
->> in top level.
+On 06/05/2024 13:46, Dragan Simic wrote:
+> Hello Krzysztof,
 > 
-> This just tries to follow the rockchip,rk817 binding, not fully sure
-> about the reasoning behind this node in the the rk817 binding.
+> On 2024-05-06 12:48, Krzysztof Kozlowski wrote:
+>> On 05/05/2024 15:41, Jonas Karlman wrote:
+>>> Add devicetree binding documentation for the Radxa ROCK 3B board.
+>>>
+>>> The Radxa ROCK 3B is a single-board computer based on the Pico-ITX 
+>>> form
+>>> factor (100mm x 75mm). Two versions of the ROCK 3B exists, a community
+>>> version based on the RK3568 SoC and an industrial version based on the
+>>> RK3568J SoC.
+>>>
+>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml 
+>>> b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> index 51cdaabaf0d9..41f2ab79e612 100644
+>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> @@ -799,6 +799,11 @@ properties:
+>>>            - const: radxa,rock3a
+>>>            - const: rockchip,rk3568
+>>>
+>>> +      - description: Radxa ROCK 3B
+>>
+>> Does not look like it matches recent fixups for names.
 > 
-> RK809/RK817 are very similar and their schema files could possible be
-> merged.
+> Actually, I can confirm that "Radxa ROCK 3B" conforms to the recently
+> employed naming scheme for Radxa boards.
 
-That binding was a conversion from something older, so it might not be
-in good shape. At least new binding should follow usual rules/style.
+Hm, I could have looked at older code.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
