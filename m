@@ -1,148 +1,430 @@
-Return-Path: <devicetree+bounces-65225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5C18BD1EE
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 17:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E228BD20B
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 18:01:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9E12839DC
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 15:57:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFA6628651C
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 16:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D26D155737;
-	Mon,  6 May 2024 15:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8053E155757;
+	Mon,  6 May 2024 16:01:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XOejWgI9"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="lECczozP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F9B6CDD0
-	for <devicetree@vger.kernel.org>; Mon,  6 May 2024 15:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B51155385;
+	Mon,  6 May 2024 16:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715011026; cv=none; b=DLKOsi5pKL3LpOZ4jgkMU/i8ZSh+cST+mcIr2yOnNrGTIQh8YFXs5EEWWbfLD2kgDHcXFl7uEXRPk9qa6Nc86RYgV6VNCh1KmPiDu7HHtFsyqJmF7103A3QFr+jbGIo15Q2SZMHQbsxZYKoW4/P6DGtgjzsLVexEYHEO9IKxN6E=
+	t=1715011267; cv=none; b=SiiKVXEW9Ve0EnOf2IWgCEwJxPADC/ekmGvJ7WapiuMXpFQkHl+2icQrbmsn7Vz3/wLYeeCo/YsLk/g5TEvNvrBpGF5KaCF4bN9ZxX+Iuja7Ymtz/UQFt/nJqgg/ID/tVIlWzA8+95dmOFGe3wjl+e/ABQv+mkkNedRbU6A2LQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715011026; c=relaxed/simple;
-	bh=ZtS8lcUcNajD+WoC67MiBgQDHwoj62xJ41dt8MsHELg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b8lgzuRKNVtH0O+cCqRG2cSt9kpS+95WIvbM4kR6URBkox3EgU+ZDlStFcaSoOVV/UR1xcZdqUIq3CvPgOmud/2H/zfPkVlOYQRpYpK+8/SDGnm+fMPKPHxH+lG2PyNTJW/orVYzNjNvHiu6nmASjLfJ0IlUkYXjTqlf/RFGOiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XOejWgI9; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-41e82b78387so14512625e9.0
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 08:57:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715011023; x=1715615823; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ddwM2CGl7vJRhVjDo+neqanyjQLvlT4cv1ldT0P/y9s=;
-        b=XOejWgI9c4wL1LkA9fGnaTsEGbqvXzKpcYFXie5dsevu0Wb2ZCe+bxnk0IcC14P9bQ
-         YP/N5w6WyDdkGLMtduG389YMOe7EkBtZrWtz5Y9Nn7ulFxN5+LFxkq81sx6kt3iqgRkH
-         60PFypkhJ55YoeCaHbeyV3atB1Jcsr1YfFawrAtBoD4wdxLJrlDChuDxUG+/uxY4HjJI
-         iZb4DuipROqd9pQLleAkL8rkRAFRde5LiW0hgGuZnMPWplr7oEeUnvbfZVvfvmKmVrox
-         Gb6Y3mGSBh8dW9VK8VHjhe8GUwgmb2Y83SVDjxBRM5zoDfBssUWlQ8yPeDbiQYf6XLYi
-         U5Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715011023; x=1715615823;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ddwM2CGl7vJRhVjDo+neqanyjQLvlT4cv1ldT0P/y9s=;
-        b=TdlOO4GTw7cISkur3jt5E5NqnYAfYNc/pXIDkszIWIZUFun2QT4yCHigjBzZYZRX1p
-         jv2FpSGjjB07C281Nj2rUL0Va3z5+LWp2B1DnR5yUacWewdk69ft8v6WYl087bKwMcSI
-         m0Z/3ENQbCHe5PVoR7UDYayZank/u0vfvFyyFwZkKEf1ObQCW+acLaLgmBrJfY/a4lD6
-         Jg3WasB09+nyLKbc/Ik0OOlkTVyWix8ABPQEWFVfl3wfgDgDw+k0CH9z0KS1Doc0o5hc
-         UvpliDO3ebN3lztE1lAPXKK+NpIsCgeqfIzR8mlh/f+OKCad5bRCYX+UgaeKNn+NHB3+
-         1A/w==
-X-Forwarded-Encrypted: i=1; AJvYcCURah7n1bhJN7wz1gNwxdsLO39nB9jgrFdJaeJjY5D5yTcuN/lqXiZuYG7/5u35tpifR7x18syzWGKOWadPi2O0Y+6/O4XTSByB0Q==
-X-Gm-Message-State: AOJu0YwO8LfnE6zcGlRdw4/oJ84sC0ysZdbYaqTyB2hBoDdhnhFbx09s
-	YD1PRoXvuBgDZSowEp0EiBcpPm1+Xu+nQ3UC8DR/+jahSkOAFTpm9eV6wMKCCpw=
-X-Google-Smtp-Source: AGHT+IEUQp+ScutCtcF5s/7UtarCLRiC92bqZUMBGgy6B2fws5M1pmrh5LYNqoTCaIaDTBhDCjvFVA==
-X-Received: by 2002:a05:600c:a06:b0:418:4841:162a with SMTP id z6-20020a05600c0a0600b004184841162amr8456307wmp.15.1715011022907;
-        Mon, 06 May 2024 08:57:02 -0700 (PDT)
-Received: from [192.168.0.8] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id g19-20020a05600c311300b0041496734318sm20319901wmo.24.2024.05.06.08.57.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 May 2024 08:57:02 -0700 (PDT)
-Message-ID: <ddd78134-6f04-4ef6-a3fa-4a2932d81165@linaro.org>
-Date: Mon, 6 May 2024 16:57:01 +0100
+	s=arc-20240116; t=1715011267; c=relaxed/simple;
+	bh=Not41Q6h3ptm7vf5+S5xcpNg3zIel9+F2NHBCSQ7NhI=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=kUVLXvXFoA3pqNInCqqdA3s0rJxrhd1LPYwrRzFoaAnECa3/H+4IQZqE4ap8MVdXsq2dXtUSvBhhNJgrl8cMGkTP82za0oqnIg7lygZLRTEycn+9ltAnI5CnuUHFIpYY3HogSxTXcKhqxLgKC3VvWK3bNTSdivALHWUOW+JoSO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=lECczozP; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1715011232; x=1715616032; i=frank-w@public-files.de;
+	bh=zFAoAFMPSDAF2hSbEFLdE/+HaXvlvZ8+PKbWUnzgWKA=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=lECczozPYgtFgQrcICyUzEC0UxuR1o1hopHkKbOVEyykpM0jdqUUY8p2nSe8y20b
+	 hGiVtNmSas2qQYnWkGO+An73APii4lR5aEaU3SuIZfHUETHTSwaBuqKGXZav+2Nbd
+	 1jO0a4MhqzarlsHnF40ihJJ8IRz51lD/TaQkNVQYj5bTW1v3Y2BVAv0m+E6bcdDx8
+	 HuN52MDjiQvGcJIuW7z2qgMoubGGYXkAmb49w4s6fYE716L/pdfAa37l1XM62PSt9
+	 o2iXiT8oGWhVdXy3aNU+uQH1H0tGwb4v7n522e4d+8tggh6K5/bL59RNY248fytfq
+	 LT+YYi6wrSUm++9i8w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [IPv6:::1] ([80.187.68.153]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M9Wuq-1s0gqB3iIW-0053Rs; Mon, 06
+ May 2024 18:00:32 +0200
+Date: Mon, 06 May 2024 18:00:30 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+CC: Eric Woudstra <ericwouds@gmail.com>, Tianling Shen <cnsztl@immortalwrt.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-leds@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Tianling Shen <cnsztl@gmail.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_v1_5/5=5D_arm64=3A_dts=3A_mediate?=
+ =?US-ASCII?Q?k=3A_Add_mt7986_based_Bananapi_R3_Mini?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <a4099612-a4ae-4211-9674-c7053d2a995a@collabora.com>
+References: <20240505164549.65644-1-linux@fw-web.de> <20240505164549.65644-6-linux@fw-web.de> <a4099612-a4ae-4211-9674-c7053d2a995a@collabora.com>
+Message-ID: <3E013BA7-0264-4AC3-B677-BDD16B1F8D90@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] media: venus: add msm8998 support
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Jeffrey Hugo
- <quic_jhugo@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <72860c1d-7434-4be6-8c1d-9ea177602802@freebox.fr>
- <14bda891-5035-433c-888e-b3c330eeffaf@freebox.fr>
- <803b267b-9171-8234-aa3a-fba0d738a64d@quicinc.com>
- <4349e7ea-380d-4c91-83be-d74983e2cdb0@freebox.fr>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <4349e7ea-380d-4c91-83be-d74983e2cdb0@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1dgAYaFHtc7EJBv4muaawIW5tkqlZguEe0+jz8+syRMCYxnVPhv
+ X8CKcSrs+AZOloZfdprln+g2RDW58Z9+M8nBBC2GhWB/XvKA7q3+Y06W8GfdXi5rsoJ95sL
+ nMF7/TJ9ZAMCzgdIatsSwa3M0Ow9mm0TEe0rFNFHj2EVU85xIiNnxy/sfwdjtsucAnT9/HK
+ Vz7ZLUpgpncF7rzUmGp3g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:yZZXYFhajyk=;jIsWIYDIG590kXssQqWzksnl0jK
+ HESedwIkaVtq/L8KOVlJtOOT3E58mruCCzM1QXINqtwt5poGVjQDm/EC2BFIcr0F+Y9D9dmXK
+ YSjELakaX682EVxztKaV/2NuBuADqTdOE9xAnN1YPKPlCHXIL5L/Nt5OR/3LLXVbv4IXs7LpS
+ 5tuYs4aPskKdRPRyoDArVGyIDdBMJ/fezE+Zqn2WdDTFPgB+Tw/+ZNWbEz4r1JHTPRawbAo4w
+ +L/0b6LMGy54rcShlQneoEFENwiSBGxx6uKmeh0MRBE/cgREcn6ZHNE1K4tpxnP2ewg/jY5ZP
+ 7SfxJKQ9SzfzsK5EtSrltpAWI7pdneUUCsQRERYru7lee2E4XuJNijZ2s66J84LbQfBAjbvsu
+ vHgXrZxkJZ1TZ/xydaHp2YLtNDLcmj3Ta5DJAs9uwkZX5DTSQBNidePO4qRoYAM8AGVOfTwiH
+ k1qxuJCbSrkQK6EgdnIbbfjY3//UIXKPVSHsGkRIEohNAHbqYxLgaI7w95urYgSVZQu/ft6UH
+ nbcJhtzVVXo6EwZd4wfufXMvZ21WJYFgGwCnkmkqIjD0axFy/8/+rxYiyNWhq44z1mE0BnO31
+ 69ybdSpGWE8kdj8xTUFBYJ1mCEWxPzlSG2hn/Mv2ONhv2ylJ09oyV9zgK1/m9qcmbDAri7aZb
+ WMTYFRpr5ZOzJ+522cRhunp/JmNGiRfS4uRF5N1J182v1ICJIlcfgXFgM5cZZ+2ofpD9A9M6/
+ JhQ6MSUPEm1hdpBJD62NdgJpPGrpZMg0URUCwCZD8dFBLIBEypYlXeCpax/mI/K8PlXztUMLu
+ pp6VCA8jnQAXphLzN851vKizwQUUTLbnYXyYBPibWma90=
 
-On 06/05/2024 15:51, Marc Gonzalez wrote:
-> On 06/05/2024 16:43, Vikash Garodia wrote:
-> 
->> On 5/6/2024 7:17 PM, Marc Gonzalez wrote:
->>
->>> From: Pierre-Hugues Husson <phhusson@freebox.fr>
->>>
->>> Add the missing bits for msm8998 support.
->>>
->>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>> ---
->>>   drivers/media/platform/qcom/venus/core.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
->>>   1 file changed, 48 insertions(+)
->>>
->>> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->>> index ce206b7097541..064120127cb86 100644
->>> --- a/drivers/media/platform/qcom/venus/core.c
->>> +++ b/drivers/media/platform/qcom/venus/core.c
->>> @@ -554,6 +554,9 @@ static const struct venus_resources msm8916_res = {
->>>   	.fwname = "qcom/venus-1.8/venus.mbn",
->>>   };
->>>   
->>> +/*
->>> + * https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blame/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8996-v3.dtsi#L403-414
->>> + */
->>
->> There is no need to add the link to downstream code in comments. Please remove them.
-> 
-> They are needed somewhere, to double check the values.
-> Otherwise, it's just voodoo programming.
-> 
-> If not in the code, then maybe in the commit message?
-> 
-> Since qcom doesn't publish datasheets, downstream code
-> is the best we've got.
-> 
-> Regards
-> 
+Hi
 
-Commit message is a good idea.
+Thanks for review=2E
 
-Do that.
+Am 6=2E Mai 2024 14:48:59 MESZ schrieb AngeloGioacchino Del Regno <angelog=
+ioacchino=2Edelregno@collabora=2Ecom>:
+>Il 05/05/24 18:45, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> Add device Tree for Bananapi R3 Mini SBC=2E
+>>=20
+>> Co-developed-by: Eric Woudstra <ericwouds@gmail=2Ecom>
+>> Signed-off-by: Eric Woudstra <ericwouds@gmail=2Ecom>
+>> Co-developed-by: Tianling Shen <cnsztl@gmail=2Ecom>
+>> Signed-off-by: Tianling Shen <cnsztl@gmail=2Ecom>
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+>>   =2E=2E=2E/mediatek/mt7986a-bananapi-bpi-r3-mini=2Edts | 486 +++++++++=
++++++++++
+>>   2 files changed, 487 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-=
+r3-mini=2Edts
+>>=20
+>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dt=
+s/mediatek/Makefile
+>> index 37b4ca3a87c9=2E=2E1763b001ab06 100644
+>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>> @@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-bananapi-bpi-=
+r64=2Edtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7981b-xiaomi-ax3000t=2Edtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-acelink-ew-7886cax=2Edtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3=2Edtb
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-mini=2Edtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-emmc=2Edtbo
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nand=2Edtbo
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nor=2Edtbo
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini=
+=2Edts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini=2Edts
+>> new file mode 100644
+>> index 000000000000=2E=2Ec764b4dc4752
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini=2Edts
+>> @@ -0,0 +1,486 @@
+>> +// SPDX-License-Identifier: (GPL-2=2E0 OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 MediaTek Inc=2E
+>> + * Authors: Frank Wunderlich <frank-w@public-files=2Ede>
+>> + *          Eric Woudstra <ericwouds@gmail=2Ecom>
+>> + *          Tianling Shen <cnsztl@immortalwrt=2Eorg>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/gpio/gpio=2Eh>
+>> +#include <dt-bindings/input/input=2Eh>
+>> +#include <dt-bindings/leds/common=2Eh>
+>> +#include <dt-bindings/pinctrl/mt65xx=2Eh>
+>> +
+>> +#include "mt7986a=2Edtsi"
+>> +
+>> +/ {
+>> +	model =3D "Bananapi BPI-R3 Mini";
+>> +	chassis-type =3D "embedded";
+>> +	compatible =3D "bananapi,bpi-r3mini", "mediatek,mt7986a";
+>> +
+>> +	aliases {
+>> +		serial0 =3D &uart0;
+>> +		ethernet0 =3D &gmac0;
+>> +		ethernet1 =3D &gmac1;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path =3D "serial0:115200n8";
+>> +	};
+>> +
+>> +	dcin: regulator-12vd {
+>> +		compatible =3D "regulator-fixed";
+>> +		regulator-name =3D "12vd";
+>> +		regulator-min-microvolt =3D <12000000>;
+>> +		regulator-max-microvolt =3D <12000000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	fan: pwm-fan {
+>> +		compatible =3D "pwm-fan";
+>> +		#cooling-cells =3D <2>;
+>> +		/* cooling level (0, 1, 2) - pwm inverted */
+>> +		cooling-levels =3D <255 96 0>;
+>
+>Did you try to actually invert the PWM?
+>
+>Look for PWM_POLARITY_INVERTED ;-)
 
----
-bod
+Mtk pwm driver does not support it
+
+https://elixir=2Ebootlin=2Ecom/linux/latest/source/drivers/pwm/pwm-mediate=
+k=2Ec#L211
+
+>> +		pwms =3D <&pwm 0 10000>;
+>> +		status =3D "okay";
+>> +	};
+>> +
+>> +	reg_1p8v: regulator-1p8v {
+>> +		compatible =3D "regulator-fixed";
+>> +		regulator-name =3D "1=2E8vd";
+>> +		regulator-min-microvolt =3D <1800000>;
+>> +		regulator-max-microvolt =3D <1800000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+>> +		vin-supply =3D <&dcin>;
+>> +	};
+>> +
+>> +	reg_3p3v: regulator-3p3v {
+>> +		compatible =3D "regulator-fixed";
+>> +		regulator-name =3D "3=2E3vd";
+>> +		regulator-min-microvolt =3D <3300000>;
+>> +		regulator-max-microvolt =3D <3300000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+>> +		vin-supply =3D <&dcin>;
+>> +	};
+>> +
+>> +	usb_vbus: regulator-usb-vbus {
+>> +		compatible =3D "regulator-fixed";
+>> +		regulator-name =3D "usb_vbus";
+>> +		regulator-min-microvolt =3D <5000000>;
+>> +		regulator-max-microvolt =3D <5000000>;
+>> +		gpios =3D <&pio 20 GPIO_ACTIVE_LOW>;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	en8811_a: regulator-phy1 {
+>> +		compatible =3D "regulator-fixed";
+>> +		regulator-name =3D "phy1";
+>> +		regulator-min-microvolt =3D <3300000>;
+>> +		regulator-max-microvolt =3D <3300000>;
+>> +		gpio =3D <&pio 16 GPIO_ACTIVE_LOW>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	en8811_b: regulator-phy2 {
+>> +		compatible =3D "regulator-fixed";
+>> +		regulator-name =3D "phy2";
+>> +		regulator-min-microvolt =3D <3300000>;
+>> +		regulator-max-microvolt =3D <3300000>;
+>> +		gpio =3D <&pio 17 GPIO_ACTIVE_LOW>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	leds {
+>> +		compatible =3D "gpio-leds";
+>> +
+>> +		green_led: led-0 {
+>> +			color =3D <LED_COLOR_ID_GREEN>;
+>> +			function =3D LED_FUNCTION_POWER;
+>> +			gpios =3D <&pio 19 GPIO_ACTIVE_HIGH>;
+>> +			default-state =3D "on";
+>> +		};
+>> +	};
+>> +
+>> +	gpio-keys {
+>> +		compatible =3D "gpio-keys";
+>> +
+>> +		reset-key {
+>> +			label =3D "reset";
+>> +			linux,code =3D <KEY_RESTART>;
+>> +			gpios =3D <&pio 7 GPIO_ACTIVE_LOW>;
+>> +		};
+>> +	};
+>> +
+>> +};
+>> +
+>> +&cpu_thermal {
+>> +	cooling-maps {
+>> +		map0 {
+>> +			/* active: set fan to cooling level 2 */
+>> +			cooling-device =3D <&fan 2 2>;
+>> +			trip =3D <&cpu_trip_active_high>;
+>> +		};
+>> +
+>> +		map1 {
+>> +			/* active: set fan to cooling level 1 */
+>> +			cooling-device =3D <&fan 1 1>;
+>> +			trip =3D <&cpu_trip_active_med>;
+>> +		};
+>> +
+>> +		map2 {
+>> +			/* active: set fan to cooling level 0 */
+>> +			cooling-device =3D <&fan 0 0>;
+>> +			trip =3D <&cpu_trip_active_low>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&crypto {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&eth {
+>> +	status =3D "okay";
+>> +
+>> +	gmac0: mac@0 {
+>> +		compatible =3D "mediatek,eth-mac";
+>> +		reg =3D <0>;
+>> +		phy-mode =3D "2500base-x";
+>> +		phy-handle =3D <&phy14>;
+>> +	};
+>> +
+>> +	gmac1: mac@1 {
+>> +		compatible =3D "mediatek,eth-mac";
+>> +		reg =3D <1>;
+>> +		phy-mode =3D "2500base-x";
+>> +		phy-handle =3D <&phy15>;
+>> +	};
+>> +
+>> +	mdio: mdio-bus {
+>> +		#address-cells =3D <1>;
+>> +		#size-cells =3D <0>;
+>> +	};
+>> +};
+>> +
+>> +&mmc0 {
+>> +	pinctrl-names =3D "default", "state_uhs";
+>> +	pinctrl-0 =3D <&mmc0_pins_default>;
+>> +	pinctrl-1 =3D <&mmc0_pins_uhs>;
+>> +	vmmc-supply =3D <&reg_3p3v>;
+>> +	vqmmc-supply =3D <&reg_1p8v>;
+>> +};
+>> +
+>> +
+>> +&i2c0 {
+>> +	pinctrl-names =3D "default";
+>> +	pinctrl-0 =3D <&i2c_pins>;
+>> +	status =3D "okay";
+>> +
+>> +	/* MAC Address EEPROM */
+>> +	eeprom@50 {
+>> +		compatible =3D "atmel,24c02";
+>> +		reg =3D <0x50>;
+>> +
+>> +		address-width =3D <8>;
+>> +		pagesize =3D <8>;
+>> +		size =3D <256>;
+>> +	};
+>> +};
+>> +
+>> +&mdio {
+>
+>You can just move all this stuff to where you declare the mdio-bus=2E=2E=
+=2E=2E
+
+Ok,see these 2 lines are already above,so can be dropped here=2E
+
+>> +	#address-cells =3D <1>;
+>> +	#size-cells =3D <0>;
+>> +
+>> +	phy14: ethernet-phy@14 {
+>
+>I say that this is `phy0: ethernet-phy@14` - because this is the first PH=
+Y on this
+>board=2E
+
+Ok,i change this and phy15
+
+>> +		reg =3D <14>;
+>
+>Uhm=2E=2E doesn't this require the ethernet-phy-id03a2=2Ea411 compatible?
+
+I can add it,but worked without it=2E
+
+There was a discussion about that and result was we don't need it in board=
+ dts,maybe add compatible in binding example=2E
+
+https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/20240206194751=2E=
+1901802-2-ericwouds@gmail=2Ecom/#25703356
+
+>> +		interrupts-extended =3D <&pio 48 IRQ_TYPE_EDGE_FALLING>;
+>> +		reset-gpios =3D <&pio 49 GPIO_ACTIVE_LOW>;
+>> +		reset-assert-us =3D <10000>;
+>> +		reset-deassert-us =3D <20000>;
+>> +		phy-mode =3D "2500base-x";
+>> +		full-duplex;
+>> +		pause;
+>> +		airoha,pnswap-rx;
+>> +
+>> +		leds {
+>> +			#address-cells =3D <1>;
+>> +			#size-cells =3D <0>;
+>> +
+>> +			led@0 { /* en8811_a_gpio5 */
+>> +				reg =3D <0>;
+>> +				color =3D <LED_COLOR_ID_YELLOW>;
+>> +				function =3D LED_FUNCTION_LAN;
+>> +				function-enumerator =3D <1>;
+>
+>Why aren't you simply using a label?
+
+You mean the comment? I can add it of course like for regulators=2E
+
+>> +				default-state =3D "keep";
+>> +				linux,default-trigger =3D "netdev";
+>> +			};
+>> +			led@1 { /* en8811_a_gpio4 */
+>> +				reg =3D <1>;
+>> +				color =3D <LED_COLOR_ID_GREEN>;
+>> +				function =3D LED_FUNCTION_LAN;
+>> +				function-enumerator =3D <2>;
+>> +				default-state =3D "keep";
+>> +				linux,default-trigger =3D "netdev";
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	phy15: ethernet-phy@15 {
+>> +		reg =3D <15>;
+>
+>Same here=2E
+>
+>Cheers,
+>Angelo
+>
+
+
+regards Frank
 
