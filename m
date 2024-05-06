@@ -1,165 +1,154 @@
-Return-Path: <devicetree+bounces-65143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1DC8BCC96
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:04:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D97898BCCC3
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 13:22:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A23581F21FBE
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 11:04:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C469D1C21605
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2024 11:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CA9142E7F;
-	Mon,  6 May 2024 11:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41E0143745;
+	Mon,  6 May 2024 11:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SP9bV9ld"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="15YeLV1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230E74436A;
-	Mon,  6 May 2024 11:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25AFA143736;
+	Mon,  6 May 2024 11:22:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1714993475; cv=none; b=It7TCT/qoXW9/MogbVuhjVv7OQBSsinga2WZcUrhJpsKRaf5D4+sg0QPL20RRD9BZhbcWQITLZ617cDduZRt/aAr32Y1ivTwIyivI3tRHbAAS33ioxzEy9bB7g69avDvznSqebS90PosLH4HOfJhm05jS/QV5OZzegJ8xYL3Sso=
+	t=1714994527; cv=none; b=DxNXplWuVyrdzFYVrGJ4R1DwNoqrH7rmpxkb1x4EbRO7QTbIt5Ho/YXQBal2TUtKSLI9pncCziSr6Oc+HqUaF+BZtoRB15tqqPI83goxHOL9nna7xjsr3dL6Ytdk+hVWB8iJtbUh4X/uTRb6z/+1x6LHHuToqdRrVZbgmJK2J7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1714993475; c=relaxed/simple;
-	bh=cKM8MiFe8UD3GcOQpM8SQTAqO/+sLmBQRRyweHqZnYc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hJ1QtM6m6tcGtyyK0KOWIH1BgF9SjgMqeZju0HbHDhJXo1iAqBnCIFE0estAqjsXpqoHoWzUk7/pj1wlhWgEkJVv4S4e5fRSW7U0hD7aRmpq0JhsGJnJK5fb41NfN7e8zfdaq7OVLpHSrHBZCBZz1ugaI3znEqiOF2ITcEemNbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SP9bV9ld; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4469eWwe018038;
-	Mon, 6 May 2024 11:04:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Fcp9j/FXI5yFpPzCvE/2UUZUXBbsLMWNUIkqwXMzhUk=; b=SP
-	9bV9ldFBrS3MR8upY/ddLt/ZdEVDe4vR9ZlRj0DpdTz1hOQBD2LrFLcdI2ALDvhr
-	aUlmk14MaQqmNcRNXr445mumXiEY9eTfZ5NO7WTt1B3BS66P/rbadlB7gWGSjs1G
-	KVovAp0Ej/+uulBIrd72rZWe8VHyj1TWJHVAVBRvbhn+zcfcX5yVrO5GXDwbb8yQ
-	Y2TG4z/GzcWItLtPfoWYMPlRrziYl04fmcTUezstNNprYoJsFBJlxpzZ9cN5X88A
-	y4BNiHy1c9HuzQvAek/cR7TYWbYs5AKenVOEtKKfkV6UKnEQ5HT/pKd4PmmLzb54
-	LUbVCJvsfhNEM0lGaONA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xwcm4kbcr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 May 2024 11:04:27 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 446B4OHa019309
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 May 2024 11:04:24 GMT
-Received: from [10.217.219.66] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 May 2024
- 04:04:19 -0700
-Message-ID: <972807ff-5db7-77a0-da90-6ecc1e7c1ecb@quicinc.com>
-Date: Mon, 6 May 2024 16:34:15 +0530
+	s=arc-20240116; t=1714994527; c=relaxed/simple;
+	bh=WRfIjoGXJOrxKIMOIK6fA9+RaDmVZhu3OL5+XnDAkHA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=d8pc+Gdz7q3DOGaRPPcZmSf2VwhGYvxTxemUnIRWP4qH3OdtvtBhpql4ZcDhuwznTfGtYGMy8qNHlUezey46Gb+3nzScZMQSqMS2dPdB7c/fHwh8dzYDn6K6ZGqvipLLBbnZiz/TeyH5TjluGiNvbzY23CsoVQ4UO/9cwZCPbqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=15YeLV1k; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1714994524;
+	bh=WRfIjoGXJOrxKIMOIK6fA9+RaDmVZhu3OL5+XnDAkHA=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=15YeLV1kyZjf+iw+wMojXNyYslS6EWt/yfOUxNyedsZMJOicabHB71UbapyfmROU1
+	 laIfq9QuGhe0QV0/T5L4nHJ77wdtpK3oXS0uYY5yDXGNC/JOJTyhls5n5Penh0Wqjf
+	 PGBSwEY8x5qaMssoxcZdlkXKdvkxh04ii8WFniP97mrSYM1DD+teypxXAEvBBkuuoT
+	 sZi2n/FIs5kzrpXTO+Z4ooZcoTk43qBETtKt1yWTprQdyTk9P97Is7wnkj+6AfTdZw
+	 kluGZq24q4hXoVrNQWGDYASrMBnOX/1QgnlK3mUVBzPghA4+GAqlhyyI1LTbfVZqHZ
+	 R9zaOkJt6TbPQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id AE6573782087;
+	Mon,  6 May 2024 11:22:02 +0000 (UTC)
+Message-ID: <1b8fa907-b48f-4ebe-bc17-3de1d7c0d062@collabora.com>
+Date: Mon, 6 May 2024 13:22:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: sa8775p: Set max link speed to
- gen4 for ep pcie
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] drm/mediatek: Add support for OF graphs
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Michael Walle <mwalle@kernel.org>,
+ Alexandre Mergnat <amergnat@baylibre.com>, chunkuang.hu@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ wenst@chromium.org, kernel@collabora.com
+References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
+ <1fc23530-89ba-4e36-9e9a-a1289f56a9bc@baylibre.com>
+ <608fdbde-ad06-45ec-9771-18aa9f002f2d@collabora.com>
+ <D12H4GDJJEUF.1Y91H9RMUIX20@kernel.org>
+ <50be68dc-b86a-4334-9f83-43c6fda2c271@collabora.com>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <konrad.dybcio@linaro.org>,
-        <manivannan.sadhasivam@linaro.org>, <quic_shazhuss@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_nayiluri@quicinc.com>, <quic_krichai@quicinc.com>,
-        <quic_vbadigan@quicinc.com>, <quic_schintav@quicinc.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1714494711-10322-1-git-send-email-quic_msarkar@quicinc.com>
- <1714494711-10322-3-git-send-email-quic_msarkar@quicinc.com>
- <CAA8EJprnO84T+mbUD-T55T0zU0ngWFnpa4i8EfWxu0UzJZuzgw@mail.gmail.com>
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-In-Reply-To: <CAA8EJprnO84T+mbUD-T55T0zU0ngWFnpa4i8EfWxu0UzJZuzgw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <50be68dc-b86a-4334-9f83-43c6fda2c271@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WAcxryBzBVRpTLZmaEe2a0lLyIRZFnrh
-X-Proofpoint-GUID: WAcxryBzBVRpTLZmaEe2a0lLyIRZFnrh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-06_07,2024-05-03_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- clxscore=1015 lowpriorityscore=0 bulkscore=0 mlxscore=0 adultscore=0
- malwarescore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405060076
+
+Il 06/05/24 12:56, AngeloGioacchino Del Regno ha scritto:
+> Il 06/05/24 12:02, Michael Walle ha scritto:
+>> Hi Angelo,
+>>
+>> On Tue Apr 30, 2024 at 1:33 PM CEST, AngeloGioacchino Del Regno wrote:
+>>>>> This series was tested on MT8195 Cherry Tomato and on MT8395 Radxa
+>>>>> NIO-12L with both hardcoded paths, OF graph support and partially
+>>>>> hardcoded paths (meaning main display through OF graph and external
+>>>>> display hardcoded, because of OVL_ADAPTOR).
+>>>>
+>>>> Is that make sense for you to add the DTS changes of these boards into this 
+>>>> serie ?
+>>>> I asked because, IMHO, that could help to understand the serie.
+>>>>
+>>>
+>>> Yes and no... but I imagine that you're asking this because you're trying to
+>>> prepare something with a different SoC+board(s) combination :-)
+>>>
+>>> In that case, I'm preventively sorry because what follows here is not 100%
+>>> perfectly tidy yet as I didn't mean to send the devicetree commits upstream
+>>> before this series got picked....
+>>>
+>>> ... but there you go - I'm sure that you won't mind and that the example will
+>>> be more than good enough for you.
+>>
+>> I've tested this series with the DSI0 output and it works. Nice! No
+>> need for my DSI0 patch for the MT8395 anymore.
+>>
+>> But I can't get it to work with the DisplayPort output, that is the
+>> dp_intf1/dp_tx interface. I don' know how the pipeline have to look
+>> like. The functional spec seems to be ambiguous on this. The text
+>> seem to refer to the second vdosys but there is also a diagram where
+>> you can use the first vdosys and dsc0. If you have any pointers for
+>> me, I'm all ears :)
+>>
+> 
+> 
+> The problem with this is that you need DDP_COMPONENT_DRM_OVL_ADAPTOR... which is
+> a software thing and not HW, so that can't be described in devicetree.
+> 
+> The only thing this series won't deal with is exactly that.
+
+Sorry, no, I got confused.
+
+The series *does* already deal with that, as the pipeline is built before the check
+for OVL_ADAPTOR components, so that will get probed.
+
+What I got confused about is the fact that I promised myself to cleanup the support
+for that OVL_ADAPTOR thing (which is unrelated to this series, even...), but again,
+this series will still get that probed anyway.
+
+Anyway.
+
+The pipeline for DP1 should be simply
+
+VDOSYS 1 -> MERGE 5 -> DP_INTF 1 -> DP
+
+(eDP on VDOSYS 0 -> MERGE 0 --- DP on VDOSYS 1 -> MERGE 5)
+
+Cheers,
+Angelo
+
+> 
+> It's relatively easy, though, to add support for the OVL_ADAPTOR... as it would
+> be just a matter of checking if any of the components in the pipeline contain a
+> compatible that is in the OVL_ADAPTOR compatible list.
+> 
+> I'll try to add that up today, let's see what I can do.
+> 
 
 
-On 4/30/2024 11:20 PM, Dmitry Baryshkov wrote:
-> On Tue, 30 Apr 2024 at 19:33, Mrinmay Sarkar <quic_msarkar@quicinc.com> wrote:
->> Adding this change to set max link speed to gen4 as sa8775p supports
->> gen4 so that pcie link can be enumerated as gen4.
-> Previous patches mentioned stability issues. Were they solved?
-Hi Dmitry,
-Thanks for review.
 
-Actually earlier gen4 related equalization setting was missing in driver.
-That's why gen4 was not stable and it was coming to gen3.
-
-With this below driver change gen4 is stable now
-https://lore.kernel.org/all/20240501163610.8900-1-quic_schintav@quicinc.com/ 
-
->> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 0c52180..aad2cd7 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -3730,7 +3730,7 @@
->>                  power-domains = <&gcc PCIE_0_GDSC>;
->>                  phys = <&pcie0_phy>;
->>                  phy-names = "pciephy";
->> -               max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
->> +               max-link-speed = <4>;
->>                  num-lanes = <2>;
->>
->>                  status = "disabled";
->> @@ -3888,7 +3888,7 @@
->>                  power-domains = <&gcc PCIE_1_GDSC>;
->>                  phys = <&pcie1_phy>;
->>                  phy-names = "pciephy";
->> -               max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
-> I think you've just sent a patchset which adds this node. Is there any
-> reason for setting the max-link-speed to 3 just to change it to 4
-> immediately?
-Earlier we were not sure about the root cause of the issue
-so limited the speed to gen3. Now as we have the solution
-for this issue so moving to gen4.
-> Thanks,
-> Mrinmay
->> +               max-link-speed = <4>;
->>                  num-lanes = <4>;
->>
->>                  status = "disabled";
->> --
->> 2.7.4
->>
->>
->
-> --
-> With best wishes
->
-> Dmitry
 
