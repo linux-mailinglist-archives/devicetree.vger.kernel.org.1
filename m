@@ -1,101 +1,93 @@
-Return-Path: <devicetree+bounces-65445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 302AC8BE684
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:49:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D4D8BE660
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:48:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9A0AB24956
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8214C1C23519
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40EDD168AEB;
-	Tue,  7 May 2024 14:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A211915FD0E;
+	Tue,  7 May 2024 14:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcvRtjQi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TiVBOLbx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AA5161915;
-	Tue,  7 May 2024 14:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B72152DF5;
+	Tue,  7 May 2024 14:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715093330; cv=none; b=uOJ6whi7n87NAkvbIkp9ZmatZIV6lN/H7uwJgQPV92LFI0TXEZ/CWOCIkznNf1zSVrbFUZTzDXq248pJnVTOpX56fiMXSf3lxqQu0CX4lUUNxyJ1OexDPnrlG0C/uuFSp0jcSZGPu+mpdvxHq0h9nEkEg4O5bJPUt3hEK+JB/NI=
+	t=1715093318; cv=none; b=g+uPPQrZrrfs6noo8KQFor8amrR+NszeKTZFkczLY44QnBXWon0oG9yU43OLJqlTkocf0iv5rCSVzda9w36NNycjMutbgVaAh38d7H/jUHV6nZWzNaBzGSxIq+sjz8lUR5HJcJJJuRobTxREwmfnyqAI6zYoTPns3/uKq7wfde0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715093330; c=relaxed/simple;
-	bh=Him/mGIj3I301yB+D6WucDHFkIiyFtUIv20skypew9M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B1+7UqJH9O9+gc0fkA4ZJmihFDuWNCMdnVyuVEDgWFArK0XlWddL5uHqZTJ+xo5cQnR1AvJXrL69jFoaWqh57KoqTvX0hHixaZemYL7pR2huhi7B+g+OVGeBvEhXn3uw9rTyj4+s6+8GIkqCsOOj+oyes64YPctyxjMXTv5lf/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hcvRtjQi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69E36C4DDFA;
-	Tue,  7 May 2024 14:48:50 +0000 (UTC)
+	s=arc-20240116; t=1715093318; c=relaxed/simple;
+	bh=urdxsMlEzLQBGVqSKnxrypj4fBHWfpgOgfIX92EUsvc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NO1lnbqpSdjYthjM44+RPPNcD2ewJKtSsjsGVi03b8qEadEEKANlsdE+7FRMcrxn/23WOZU9oMKZywRGaeYGSCJlyN2H0Q0iTn3b8zxDsGJV4M1/OleFTGrRLJwf/BghFiZIDaaZuDB/q/AQq3pyHwJJU1N+sLo+YTnDLoqVaic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TiVBOLbx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2A89C4AF63;
+	Tue,  7 May 2024 14:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715093330;
-	bh=Him/mGIj3I301yB+D6WucDHFkIiyFtUIv20skypew9M=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hcvRtjQifaNSUhMmdYSt45yob5sV2a/OgqGwU1EgQsClbBbqU8tyqNBOLWfHLvTk6
-	 6Rlc7J2H/mUOLZv8anlI/tFv6CHKcL6Bk8gaCpNNRG/VynA+o2R9CVB29udJbhugMr
-	 pJ2/06axKVn+qP2MfM9QSCVMfYSKABjGqNNrl145WrDwPSD3NuM+Cti96ROj5Iqvot
-	 QZ2G0hjY11AqHRbkFm4nyuWQipXXTjoCkc9Ku0flWNS+oZSenB40mX7f08WS286LAj
-	 cTVVhoGB9pseFko2pY695Uyn6oLbjGL5eTpCGusYxaTHTeMC7gYuKeAxEi2jO2OjWL
-	 Wk5AYz8lcI5Ng==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1s4M7g-000000003D0-3Ozv;
-	Tue, 07 May 2024 16:48:52 +0200
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Bjorn Andersson <andersson@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=k20201202; t=1715093318;
+	bh=urdxsMlEzLQBGVqSKnxrypj4fBHWfpgOgfIX92EUsvc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TiVBOLbxPUAIFbu38Cyv0TU+25GTrEESVMN3vjRSuUjR9aYs/eaWgKNGihOnzF8Fh
+	 rHzd7knaeJG34ACNTajX4zEYFNCQsgt6pJKijjtMqRMp+Q5QJNVYY5qhvLj+AgSzYb
+	 fzSl5VkfwfhAFYWAOAhy09KcJhQBK6l23XvPSnNtXF80w7cwq94EACPyIFdMvHTh5v
+	 YFJA9VKOtfDHlRzQaFtmVd9l3EUTmXpaGKmOOhEwNxp/1j4WaeKBijog6QtAK730Xe
+	 xbxNwmoDHTzlye3dnNu6Qx+kOZt237/19gXuDexIk3po7XZLE69DphaqSgR2oY4uzl
+	 FDWLxxIVQigbQ==
+Date: Tue, 7 May 2024 09:48:35 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	linux-riscv@lists.infradead.org, iommu@lists.linux.dev,
 	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 7/7] arm64: defconfig: enable Elan i2c-hid driver
-Date: Tue,  7 May 2024 16:48:21 +0200
-Message-ID: <20240507144821.12275-8-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240507144821.12275-1-johan+linaro@kernel.org>
-References: <20240507144821.12275-1-johan+linaro@kernel.org>
+	Rob Herring <robh+dt@kernel.org>, linux@rivosinc.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>, Will Deacon <will@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Sunil V L <sunilvl@ventanamicro.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: iommu: riscv: Add bindings for
+ RISC-V IOMMU
+Message-ID: <171508897177.213758.18021668060802877165.robh@kernel.org>
+References: <cover.1714752293.git.tjeznach@rivosinc.com>
+ <845127470ad85f9b4f690077968fe8c5d615c538.1714752293.git.tjeznach@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <845127470ad85f9b4f690077968fe8c5d615c538.1714752293.git.tjeznach@rivosinc.com>
 
-Enable the Elan i2c-hid driver which is needed for the touchscreen on
-machines like the Lenovo ThinkPad X13s.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, 03 May 2024 09:12:34 -0700, Tomasz Jeznach wrote:
+> Add bindings for the RISC-V IOMMU device drivers.
+> 
+> Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
+> ---
+>  .../bindings/iommu/riscv,iommu.yaml           | 147 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index ac6fb3de1e3a..56fb9725d7c0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1023,6 +1023,7 @@ CONFIG_SND_AUDIO_GRAPH_CARD2=m
- CONFIG_HID_MULTITOUCH=m
- CONFIG_I2C_HID_ACPI=m
- CONFIG_I2C_HID_OF=m
-+CONFIG_I2C_HID_OF_ELAN=m
- CONFIG_USB=y
- CONFIG_USB_OTG=y
- CONFIG_USB_XHCI_HCD=y
--- 
-2.43.2
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
