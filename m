@@ -1,193 +1,234 @@
-Return-Path: <devicetree+bounces-65504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06E18BEB6F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:20:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F29D38BEB64
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:17:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CB79B2AB22
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:14:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2303286BEF
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0175216D32A;
-	Tue,  7 May 2024 18:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F7C16D309;
+	Tue,  7 May 2024 18:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rAThU3xS"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="HvQYFbPx";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ff3XKmpn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wfhigh1-smtp.messagingengine.com (wfhigh1-smtp.messagingengine.com [64.147.123.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3618C16D307
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 18:14:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE6716D30F;
+	Tue,  7 May 2024 18:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715105689; cv=none; b=f1uB2kvHDD1S5cM+KEPHcXcSB7PRgU0imz+tFV7RoUPbjNULwnycWJoiHtH9icXuW9nryrn98opUK+MjJT0WGYAiGxRkFYrn82WZw7nfGOYJgbKoYm5DG3Hpgt3d0Xxbq4pcyhvYYSHzCg6MjSXpViUdtIVSfy9Zb9+W+PSZTzE=
+	t=1715105814; cv=none; b=alVyYEiBfV5302Ydv8pYSN5Ptp8A7WnTQ/Dg+SbYMfRXnZsG6McrkPmRGjdO1IOvdQRmazEw2/uQoFsuHWuwkXkl9cyKGal8kwJlycBht6DxG9XY4vJrIiceZgJtyFfwPnwhqzkNH5ENg4Bez4n3eXKKfk1T8QwoCmgSFusUFC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715105689; c=relaxed/simple;
-	bh=9Ifwdzf+BLBCB/Pq8sUmd441Gn2ZPiWzxJzH0wqn3vo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Akiu27Tz5ycmyaKgOP6BLwKQTB0Rj32NgLBZ/9buZ/kU8IB/yArl1umcEhbdQxICPqeRhIc94KyQlibLYTU1EQkXCkbVfHWZ5hYEcnmGCb+2MT66z3yz8xHsZZkd24FtK+k2wNlmZxGmFpdeioXdZNmmMAYlKxtxhjKT/GYDLLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rAThU3xS; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a59e4136010so417561766b.3
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 11:14:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715105686; x=1715710486; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MKG3vCPxMeIDWy7dMjQ27D54/PVeAXq1+pgcoFyh+N4=;
-        b=rAThU3xSd+iCtd9LxSkd4tEC9ndGyggz8T1qpZOysZDCNBWwzyrNwpAzpK+RI3ytNE
-         ZczhXmeNJit/k9vRX6n9fNGdoGJxC+yt3IfmJ/MJJIOaq672knn8p7nQyhI8Zk9nuFHM
-         uHuoW725bt8/dWIWe05bY0EEQxcjQBVsGdZ6Hp8HEjo/XanhUX10xOpHbwENPZwTYM2d
-         p2jIVV+n5p9fsTwnVN4HdbkjMEhIi+vx2uvQoQtEg+zH0MFLeVsen5GGr3kK6aBLGCJx
-         1s03MiyFdKewu4FlNb+gfw6XOT14cLjHYsxA5QSJmASmGZKe/w1KUi5TWExYD1M9Xr0w
-         p/1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715105686; x=1715710486;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MKG3vCPxMeIDWy7dMjQ27D54/PVeAXq1+pgcoFyh+N4=;
-        b=lSF9Xp8K4P/s7MWHwCGBH9+xVEuiLfW9CWa8VzQRqW6wqvC70pJ3N2EoYkOig/9w3Z
-         JNZ9IUxUc448aYjHg17uDJPr31beO1cxB3sWt9oHhCmpDxq7d4rgyHEaSky3vZpKOcBU
-         QZBR0JQybtLQwm42DnQ+zXZ/sfcWTp7yKI8VH3b4i+cDLTi21aBCw9xxMEU79zhPpzD6
-         PVULOyHm2DqkhdRCkZbQvScz4pNtgjP/kC1TQGAXC2WOh3J/Re12mvtzj5b/YdHbINBA
-         G4smKQHvuF5XFu5LKAvbOsKr9Pe3ye+JsCj1n6kRhNboPZPMOBD6UssmSSeiNjvH4fyn
-         DMTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWpGoEIKtyMji44rPQs6U01cdnOHdI5lezvyER1taa6Qn1keLpiXNievBANHCYV6WNMHn3lgYxzxe5zAzLUo4BGWwiqp9T7828shA==
-X-Gm-Message-State: AOJu0YzOQFBI7m/ngz+PF83zHWcXTweLLoxiPd4saIqdkwZz+r/CE51Z
-	cMnI6RWdjsEHnCw8ECWA0of8T2Cg2iaPJhqkuexhowsxQBYguqX1rNVz0wm8OxA=
-X-Google-Smtp-Source: AGHT+IHukQGajVAIgfxT7c6EtSGBonSivjXFUtAQjqO9LdhBb9jC224vD7xHt8n4BbkDE9Tw0ZEQsw==
-X-Received: by 2002:a17:906:4e81:b0:a59:a2f1:5a10 with SMTP id a640c23a62f3a-a59fb94bc41mr14398866b.6.1715105686570;
-        Tue, 07 May 2024 11:14:46 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id wr5-20020a170907700500b00a59f3e926c8sm663606ejb.152.2024.05.07.11.14.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 May 2024 11:14:46 -0700 (PDT)
-Message-ID: <8d2ea17c-f91e-4e14-a239-e5e999f6ac50@linaro.org>
-Date: Tue, 7 May 2024 20:14:43 +0200
+	s=arc-20240116; t=1715105814; c=relaxed/simple;
+	bh=tkkLup4fz7SXQkE6wLRmN85VKtFi0Vkf6N3FNeMPO4M=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=Me1iubFhZA6NVS4tycyGXTJfb55AoyRmF+d1gw2K7SzC0lJFCrGWJNsWYsVKcEDyXi0IU9D2sCci+762gEiae+VCOrK89i4isv0Gq0S0ZYxD0ah16HUJ7egxThId+/kNCmHSHDbO70h+vYn9cKVNnHjeRMo1Zaz5ut07cVCAUv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=HvQYFbPx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ff3XKmpn; arc=none smtp.client-ip=64.147.123.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfhigh.west.internal (Postfix) with ESMTP id 638291800101;
+	Tue,  7 May 2024 14:16:51 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Tue, 07 May 2024 14:16:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1715105811;
+	 x=1715192211; bh=xkZUyYvJJx8Ghug4jhe04XLSU69l2vONZ4Ow52k89Ng=; b=
+	HvQYFbPxc8YlfjpFXvw1MuSgSeGVfGjSsiV0vrW/5xGQMOoCpDmh5gyMAYAOl8Ym
+	NhEmh1T3kBzfPC4hT5VG+MLJllU0q6ABk3NtyEWCORXf3kli1ZgLtrKHnM7XUQf3
+	l4dW1/1flG6SOWec+rojzHejjnieogmsEGZ1AyWoBTRh8B78it2+JHD4mWjlVQIn
+	jqPjaCARHkKzQXRgKhEKBnDxvTQJWw51L85xmBNitw5WN8D/SkMG62vjDpOGgtL3
+	pIL/Cck6RWp60byfRHKp4cuPfnRxFORJV0iOpTFcjwxIahdmHTLkF1Ca/1J0Dwar
+	wFzzVz8OnP4BDAk1SXPW+g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1715105811; x=
+	1715192211; bh=xkZUyYvJJx8Ghug4jhe04XLSU69l2vONZ4Ow52k89Ng=; b=f
+	f3XKmpnrjqrj2Fofs2mBN4Pp58nD2YBGhsz7HVta5gtiVF0jwSkrFnKtwDHwnrbn
+	bNJWaaAAl1ctIjycb7GbAj6lKL2NJP+4GSUAzjzHdnfMqwhS1OcOBrqQ+/HZHlBg
+	A40qVCEtSmHNzGpHOlXj19pS3BRPXC9VC2QVEuMETjDInkmBQtmShpbQFnImgzjo
+	fMhrEkWmFrwrhjCi9YoU64eUNbzou74/VWMFZOmhGKFGyqJtsS7uEJ+j4+9f7Wbb
+	zWI/CGiyp15yEVMKtDQ6txbSveOOngph5MhTh+/c2DN1u7vvIbmvq0D0Gen2w9tE
+	FjF+8dgZVeqOOIUUVq7Yw==
+X-ME-Sender: <xms:EnA6ZjhgEbhjhOaTsBpa1trjh01D9uujWdp9FOWqtPQyg_kO7eZCMQ>
+    <xme:EnA6ZgBkbofPe7FeGJ76JCvwB8c0Ebzyu1zOwWUXbO8sGJ8BHpP7K4vMMDvo6RM_O
+    rDkBFSq7Vekkwt21Lc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddvkedguddvtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnhepjedutdeuhfdvjeevgfehudeitdehiefgveelheff
+    uddulefhkeeihfehudehgfevnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrgh
+    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgr
+    gihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:EnA6ZjHsOP8reLn_5GRUUjNM8x-hVbOFx5O2GRPkZ3ZPn5DM2UYyPw>
+    <xmx:EnA6ZgQDgE_x1e2R-JJBWr2mTSYYemsGE8dIt6QiijgZ8FpNXKTcpg>
+    <xmx:EnA6ZgylKlh2ajJTVijgDmL5GbzRkohoN0YtOGQtqv86sjACZebceg>
+    <xmx:EnA6Zm6qZ-pcWPEiKrbH5tAGAeXLXtkcjLjlgoHq5rdC-gJcUII8eg>
+    <xmx:EnA6ZvlCL922gQQb2JU6kYwWLtk3jL6IoXeCnneu4bzu6-fUMZ-VKmLM>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 3ECE536A0074; Tue,  7 May 2024 14:16:50 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-443-g0dc955c2a-fm-20240507.001-g0dc955c2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
-To: Andy Shevchenko <andy.shevchenko@gmail.com>,
- Johan Hovold <johan@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>,
- Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-13-johan+linaro@kernel.org>
- <Zjkq_nWyvc6bUtiu@surfacebook.localdomain>
- <ZjpMeVk_HiixZUEu@hovoldconsulting.com>
- <CAHp75VdUFMvkj-r76H7GFZdpcoh_nb8v6CBj4wBHztNhiaWULQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAHp75VdUFMvkj-r76H7GFZdpcoh_nb8v6CBj4wBHztNhiaWULQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Message-Id: <fbb4b8e2-edf4-4b4e-8b71-154a09f24ccd@app.fastmail.com>
+In-Reply-To: <20240507-jokester-antelope-808b21b957e6@spud>
+References: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
+ <20240507-cm_probe-v1-4-11dbfd598f3c@flygoat.com>
+ <20240507-jokester-antelope-808b21b957e6@spud>
+Date: Tue, 07 May 2024 19:16:25 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: mips: Document mti,mips-cm
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 07/05/2024 19:22, Andy Shevchenko wrote:
-> On Tue, May 7, 2024 at 6:44 PM Johan Hovold <johan@kernel.org> wrote:
->> On Mon, May 06, 2024 at 10:09:50PM +0300, Andy Shevchenko wrote:
->>> Mon, May 06, 2024 at 05:08:29PM +0200, Johan Hovold kirjoitti:
-> 
-> ...
-> 
->>>> [ johan: rework probe to match new binding, amend commit message and
->>>>          Kconfig entry]
->>>
->>> Wouldn't be better on one line?
->>
->> Now you're really nit picking. ;) I think I prefer to stay within 72
->> columns.
-> 
-> Not really. The tag block is special and the format is rather one
-> entry per line. This might break some scriptings.
-> 
-> ...
 
-I think [] can be wrapped, I saw it at least many times and I use as well...
 
-...
+=E5=9C=A82024=E5=B9=B45=E6=9C=887=E6=97=A5=E4=BA=94=E6=9C=88 =E4=B8=8B=E5=
+=8D=885:50=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Tue, May 07, 2024 at 10:01:52AM +0100, Jiaxun Yang wrote:
+>> Add devicetree binding documentation for MIPS Coherence Manager.
+>>=20
+>> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+>> ---
+>>  .../devicetree/bindings/mips/mips-cm.yaml          | 37 ++++++++++++=
+++++++++++
+>>  1 file changed, 37 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/mips/mips-cm.yaml b/Do=
+cumentation/devicetree/bindings/mips/mips-cm.yaml
+>> new file mode 100644
+>> index 000000000000..b92b008d7758
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mips/mips-cm.yaml
+Hi Cornor,
 
-> ...
-> 
->>>> +MODULE_ALIAS("platform:qcom-pm8008-regulator");
->>>
->>> Use ID table instead.
->>
->> No, the driver is not using an id-table for matching so the alias is
->> needed for module auto-loading.
-> 
-> Then create one. Added Krzysztof for that. (He is working on dropping
-> MODULE_ALIAS() in cases like this one)
+Thanks for your comments.
 
-Yeah, please use ID table, since this is a driver (unless I missed
-something). Module alias does not scale, leads to stale and duplicated
-entries, so should not be used as substitute of ID table. Alias is
-suitable for different cases.
+>
+> Filename matching the compatible please.
+Ok.
 
-Best regards,
-Krzysztof
+>
+>> @@ -0,0 +1,37 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mips/mips-cm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MIPS Coherence Manager
+>> +
+>> +description: |
+>> +  Defines a location of the MIPS Coherence Manager registers.
+>> +
+>> +maintainers:
+>> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mti,mips-cm
+>
+> Is it actually only available on mips? Google seems to report there
+> being Coherence Managers on their RISC-V offerings too.
 
+I think for MIPS's RISC-V system, it is only used by SBI and transparent
+to kernel, so it won't present in DT.=20
+
+Register fields for RISC-V system is totally different with MIPS one, and
+there is no driver to be reused. In MIPS system CM code is highly coupled
+with arch code, so for RISC-V if we want to expose it to kernel we'll ne=
+ed
+a new set of driver and a new binding.
+
+>
+>> +  reg:
+>> +    description: |
+>
+> The | isn't needed, there's no formatting to preserve.
+Ok.
+
+>
+>> +      Base address and size of an unoccupied memory region, which wi=
+ll be
+>> +      used to map the MIPS CM registers block.
+>
+> This sounds like it should actually be a memory-region that references
+> some reserved memory, not a reg, given the description. I think the
+> commit message here is lacking any information about what the intentio=
+ns
+> are for this binding.
+So it's actually a register block that can be remapped to anywhere in
+MMIO address space. DeviceTree usually passes firmware's mapping location
+to kernel.
+
+There are some other similar bindings like mti,mips-cdmm and mti,mips-cp=
+c,
+I just copied phraseology from them, should I try to explain it more her=
+e?
+
+>
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    cm@1fbf8000 {
+>
+> And a generic node name here please. I actually don't quite know what =
+to
+> suggest though, but "coherency-manager" would likely be better than
+> "cm".
+Ok
+
+Thanks!
+- Jiaxun
+>
+> Thanks,
+> Conor.
+>
+>> +      compatible =3D "mti,mips-cm";
+>> +      reg =3D <0x1bde8000 0x8000>;
+>> +    };
+>> +...
+>>=20
+>> --=20
+>> 2.34.1
+>>=20
+>
+> =E9=99=84=E4=BB=B6:
+> * signature.asc
+
+--=20
+- Jiaxun
 
