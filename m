@@ -1,122 +1,106 @@
-Return-Path: <devicetree+bounces-65435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD3178BE61D
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:36:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3395A8BE658
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:46:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED52DB21696
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:36:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD3D41F23BCA
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A2515EFD1;
-	Tue,  7 May 2024 14:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E56015FCF0;
+	Tue,  7 May 2024 14:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFu4SFwy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YUTozYw0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F30DC154BFC;
-	Tue,  7 May 2024 14:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D41314F9E7;
+	Tue,  7 May 2024 14:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715092568; cv=none; b=J8Szs3/2Tj8ctOJ+Ro15/NGGmX+2DaEXuX7U5zVrMeXHiChd79T7Y6nCpOFsTp7XUr6dgbGbvN5iuTc+HyAHKQ2aeL9KgzIeZyYxvgtoU90jkrF5Jlkh2KwzcOoA9C17uaO4lH1vNMD2W0J7QY98uFGOIinVmAn+5OmVY9TkgmA=
+	t=1715093174; cv=none; b=XyNL1p3GivzTASML7PFDxM092krvcJC8jHfgBsfAGL8OTvtiQFbu4pUu9kGFfG3F0zZpU6Ig6qMi9QBEdGBvWvrnZ0KP0X0MX8BZ3N8kMQMlJzduE2SwLHD5LYNfClWE2OuG7miqhmn1vYx+O/O8Rrq9qH4Y0uYCicg9SD3MUIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715092568; c=relaxed/simple;
-	bh=OTjMBZ+MwP+QZ3qrHxyCTvxPfkh9ukS1LO64DlNpS7Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mFWueRdqvUU8ddr1rGu1CwpGZuQ8rY0HH5bjOSHMQLUp6EHPyQicQEa2ryEkPNLAGvFyrWm9yxF2rgOIq1fBxvLOYBdYrF0y16MnwllnP+FSSfrujiToYC5YaZswTJMfXfe3XF+IuzppgIo9YhnE59COTKA/f4hU74aBiDa9Fgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFu4SFwy; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1ec69e3dbcfso22668775ad.0;
-        Tue, 07 May 2024 07:36:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715092566; x=1715697366; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4sE/TPSmc70RJaChbU/e2Q4/04mDKoGHf4Df/fOCQVg=;
-        b=BFu4SFwyjlgTRg29RhVjMQH9Fnugh3WBSmJz60fZ2X3NbWHGYxORrU2fhzE79O4ssJ
-         saFT+Fv/DHfJzoCNM1ON709ALWc3sCy8+Ncw+YTpw55vwc2cz/EGh9O7BRUCOUvxK+qE
-         iIZPuM1tVtORm26WOCjeFyWZXMQWu4TVlUVDiVfl8i3bQ3gQa95utQiPAvGx9GruWJ4r
-         DNRR48xohOVsZCP4gkx2rEWFiS29M4YBWn75GyfP87OdwQrVv2kQ1i9MpUr29SqPpJvT
-         yl6OsPRtzPMv7O3SIpqhVzIWsQJJmCNj7VAI5gEb4d/nZpfub9xgpqCg9e4wHHwhBiLh
-         R74Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715092566; x=1715697366;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4sE/TPSmc70RJaChbU/e2Q4/04mDKoGHf4Df/fOCQVg=;
-        b=r7JyJHiu6cLVY5VC5ko2YCVxzEPwsaQfgbIyNJalMg9mJDzzGJpbPEnVvEdkT+gFo2
-         nGs/gFj8pHww3TTrgBksuQzhVvSTFDN6Xo8zKv4vASnMAUW6CfIL1XHMoNVH1SSzGURV
-         1ycToeESfSsq3+mijfMQtRRDGuuzKYCotxh6yN3Mgd4BRGpq6EFZeA9VLaG0D488WIi0
-         rhHRWxf7l7i0nkrZr3FGu6vX07DE54qd4PYADXT987RvAdE3VAGTZGYptapYzsYcj1RQ
-         FGqlXrnT54KevPe9f1o7YjBZk87dS1gzlWZ+d6QKb0zZT2nFopzztkukyqnWzL3vk9yw
-         ZScw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAqzFljN+QEFdLJLEiaBqXmkYVcbWmlK/EVUrtZ5e2xhh/LOCoTikfNC/+XBprovDk97yO1nIJKxLuRqq3szMYeBR/zc7DtSyPqih28tsMQxSdaGRj5rUORUKGjkIzEpEhZ3JD4iCpvQ==
-X-Gm-Message-State: AOJu0YwyLUcYRGZWDB12qSFNicV6+NgdhZyMhl+EOpEQkvMl7KuJcXJG
-	oPt3snHl9ot3QgoET1YCwBUJfczmibR3ZYi45msAx/iqPUSKMU/6
-X-Google-Smtp-Source: AGHT+IF8UDVWK4Skk4ZlNGshwxW7PJ/6S/WIVk0uQs5wZ/EnneK9HcykXPYay7T6RrHB7WIfQNx9QA==
-X-Received: by 2002:a17:903:947:b0:1e2:a31e:2062 with SMTP id ma7-20020a170903094700b001e2a31e2062mr18166406plb.53.1715092566069;
-        Tue, 07 May 2024 07:36:06 -0700 (PDT)
-Received: from joaog-nb.. ([189.78.25.116])
-        by smtp.gmail.com with ESMTPSA id b11-20020a170903228b00b001e3c01dfaf5sm10105124plh.24.2024.05.07.07.36.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 May 2024 07:36:05 -0700 (PDT)
-From: Joao Paulo Goncalves <jpaulo.silvagoncalves@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	s=arc-20240116; t=1715093174; c=relaxed/simple;
+	bh=qiFNPy/M5xOU5Apj9nac5g7waihj20lGR0JTxp/W0yE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CpKJAnoG9Hpefm9FSpiznRC3Wgs3u9zbtF8+jrCzS74PGhzzPw+fcDRu/o2qt6aXFEKice4WYH0RZuKqobr2OoBCiGQuJn4JC0s3MQd+mLyF/NHVCxiAS2pTnKgU9RuiNqWkUn701OcrC6N7SKlqGeS+/KsBEhb6v2eYJaB4AF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YUTozYw0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 418CAC2BBFC;
+	Tue,  7 May 2024 14:46:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715093173;
+	bh=qiFNPy/M5xOU5Apj9nac5g7waihj20lGR0JTxp/W0yE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YUTozYw0dRedidCouZw5ma8UL+1Fw04tn0qL3gQV5eRykuOLDq1S7+JwGKmTojTu/
+	 EaeeuOozEFEQXsDLLDBs1eTwEZEXDNVQRoSDJ1cbDiRDSMULGuCSg8IdOskoFryVKm
+	 rz+VjcEMRi7fxAYj3sHK3PnTJZeObHZMoATG9zDtC98PENpUET/5Dz0jdKUAfSDRT6
+	 1caDXiaAwVs4lXMDKMU/qJSd1d5JGOZHWT9PpMqNaqyNGYSzl3kjzNXfxLa+ygZE7c
+	 IYYhG0H4h+EiWY/BR/BfQ+okjP3CfEUGzRVKHYRfzwyFfJ/vYJJiegawG+mipEZFRb
+	 R3nifGxAGFMBQ==
+Date: Tue, 7 May 2024 23:46:10 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: freescale: imx8mm-verdin: Fix GPU speed
-Date: Tue,  7 May 2024 11:35:55 -0300
-Message-Id: <20240507143555.471025-1-jpaulo.silvagoncalves@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH RESEND v5 0/2] regulator: sun20i: Add Allwinner D1 LDOs
+ driver
+Message-ID: <Zjo-sri2pdGvKhSf@finisterre.sirena.org.uk>
+References: <20240507041343.272569-1-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UCN6/5XXExvlKu29"
+Content-Disposition: inline
+In-Reply-To: <20240507041343.272569-1-wens@kernel.org>
+X-Cookie: Accuracy, n.:
 
-From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 
-The GPU clock was reduced on iMX8MM SOC device tree to prevent boards
-that don't support GPU overdrive from being out of specification. However,
-this caused a regression in GPU speed for the Verdin iMX8MM, which does
-support GPU overdrive. This patch fixes this by enabling overdrive mode
-in the SOM dtsi.
+--UCN6/5XXExvlKu29
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Fixes: 1f794d3eed53 ("arm64: dts: imx8mm: Reduce GPU to nominal speed")
-Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, May 07, 2024 at 12:13:41PM +0800, Chen-Yu Tsai wrote:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 4768b05fd765..0d9abca58821 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/phy/phy-imx8-pcie.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "imx8mm.dtsi"
-+#include "imx8mm-overdrive.dtsi"
- 
- / {
- 	chosen {
--- 
-2.34.1
+> This is a resend of the Allwinner D1 LDO driver series, separated by
+> subsystem. This part contains just the regulator driver bits. The sunxi
+> SRAM binding part will be sent out after the merge window due to a
+> conflict in next.
 
+...
+
+> A binding and driver change is required for the SRAM controller, to
+> accept the regulators device as its child node.
+
+This says that the driver depends on the SRAM change which isn't getting
+merged this time round?
+
+--UCN6/5XXExvlKu29
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmY6PrIACgkQJNaLcl1U
+h9AD3Af+IWzVr09AiNNVmrouYJlCu8NcxH1hYJ+2QieMfh4KGAydlzDNG3vVqbgJ
+mU2B5b9vHImlN81O9JXUigPatD37A3/r6qWdbrkBm2dNjVyClnVSfyYx6206X9jY
+hX0vP8E38zX/H7WOQUNu3H1JHb9ZXKk5R0glOxD5Og2R4uYL4z8hLa95a5kwE0cr
+N+m1+a3cCwUHoCTjDrF89ohW5uvc0kYNfoL2AOXBm4wBGp2h5OdkuQZ+zZIm/Spm
+/muzCAR2NPm4KPDVRPOfnEFV9Owi7S7MXqKiDSRjw3vwj48B3iNf5mi3rzbQtZeM
+XdazcU716hFKn5T7zftKinJZMyFAeQ==
+=w44p
+-----END PGP SIGNATURE-----
+
+--UCN6/5XXExvlKu29--
 
