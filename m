@@ -1,159 +1,144 @@
-Return-Path: <devicetree+bounces-65447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99EE18BE69F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:53:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120078BE6AC
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:56:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD7BC1C20FBC
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:53:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98E2AB25FB7
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE53615FD1A;
-	Tue,  7 May 2024 14:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD37C16078F;
+	Tue,  7 May 2024 14:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KVJZqZbO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QEUq8giv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1866156C6A;
-	Tue,  7 May 2024 14:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA7415FCF0;
+	Tue,  7 May 2024 14:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715093620; cv=none; b=M9i8DZM7ryTUknu1el/6YVezrDm5Rwb937usP82XQV1/+V5OVQ75egHlG+7+8WW40a+0NZPeKIyfR+U5+PARRrh984P4nei8KOiwPsgdX/KZ94WbW/iv0SPQJwTTSx4nXwlQtjioqXpY76UypygkHfZ+M175r9xTlwhVKxkDxSQ=
+	t=1715093759; cv=none; b=dAZTa9DOKlFyuhL06s1l8DQ1t6tcl7DyJknJSeRosuoHLb45LJItkdGO6dNKux+FmA9fl21mOoYkvVkBp1bU1ZBkEupRrZzwGx/CWSZDKrRxz0+cx67ZcFmOGXXNEd+a7ShAYJThlu686zqzSdCaM8+W4VLRre3xoYNFtaL0ID0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715093620; c=relaxed/simple;
-	bh=mifg95j6vMi6i0U3kvqVfsZok1b6cRwUjaejQFe3tmc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lqfQ4SqIlDWX+lvrTqL/a5u8dxQ7jTCNHxmA3RZNgdqHo9KD58PGhTFBmG7Nb8sIasTorYDFJPWYfHcf8GkcVFBu8wAFR4Wkw9Ks25Xrrw/OjgzFv8upOGwE8cQVhk/dCWMD5oB/8+RxKYDLe3JmhWjRUzWgkbCQNKOWPcL+YD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KVJZqZbO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B52B2C4AF18;
-	Tue,  7 May 2024 14:53:35 +0000 (UTC)
+	s=arc-20240116; t=1715093759; c=relaxed/simple;
+	bh=hDoeAt0aCGqvaRLZUhPUSNs/Q6T/LZp1Y/m0zwy/8VA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a16QLWM4Kw+jewiYEsmvgn+xeFZKHse80UmdICkCcIYugzSg7SuxmdvzOunDavYptLV6DM5K26QFQ7xNtwnd/j5600A+cC9I3zFUPVVkrkmni3SaCy9PJe0+/a61JOp9eWxI0i9CJ1rBkdE0z/enr247UrRDQgGVCJfiB5LGHaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QEUq8giv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7414C2BBFC;
+	Tue,  7 May 2024 14:55:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715093620;
-	bh=mifg95j6vMi6i0U3kvqVfsZok1b6cRwUjaejQFe3tmc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KVJZqZbOp1Mm5+5nreIunI8P4khD7SC2zW2LmEFSs7abqKasjKjDMWQp4PK9qjEZY
-	 LEZmb0PfJ+QsD1UNpax58S/o+7+qdrp5gHqDyhYZH75t8Ik2iJ/LCeR9O7mhHZBU7m
-	 hxoWxXY9nCpsFGDUq9+tzBLdhGCkGvDWpeK3k3yHUm7GPSjkWkYmyScd3ibZXQyn86
-	 5MkaP25YeSZmsI3UrVKBvp0c0AqBJm6xj/YBeywPkRe5rMJb+hNGiG4iI6wXr5JgpQ
-	 lAhzS/IL7aN7koM+GuHH1zdJ8S25NlY2gb7JvKQjKou+7uVNS0XUos9tCI/xhV0Lap
-	 /0OAqWwkpsSsQ==
-Message-ID: <7143551f-b149-40d6-933d-be4c28994607@kernel.org>
-Date: Tue, 7 May 2024 16:53:33 +0200
+	s=k20201202; t=1715093759;
+	bh=hDoeAt0aCGqvaRLZUhPUSNs/Q6T/LZp1Y/m0zwy/8VA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QEUq8givoAZQpiA+7kCVzFHDZ7o4/uRf2Ar8D35gCBskdc8ctAAiedeU/2XcNdmDT
+	 /jJ4W9KC09jl5eJwW1gWoAcrkfDbCHuF/ztqlKUSN5B07z8NBbUEr8A/F2GuvPAsUD
+	 VzzyajXyTrylJteeF95fmW9DZRu9p88ZJe+A4v5sw67LOfTOr/KgAnubAfaJ9VZhJ+
+	 VIucFJJmVs9jM0KQ5vMNZz9383IvHLtkceQlByPzxQFXKNG+gwncdHKxoDGqs8QXbs
+	 AWNngkoj6WDB2F6S0p3I1G2z1cg9AjAkW8wYzfsuCo+i4vnruH75rqVzsiQgCLLSIt
+	 P59VCWQBxvNhQ==
+Date: Tue, 7 May 2024 09:55:57 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 10/11] dt-bindings: imx6q-pcie: Add i.MX8Q pcie
+ compatible string
+Message-ID: <20240507145557.GA461201-robh@kernel.org>
+References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
+ <20240402-pci2_upstream-v3-10-803414bdb430@nxp.com>
+ <20240429154823.GD1709920-robh@kernel.org>
+ <ZjAPy05fGLqX6W1I@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] ARM: dts: samsung: exynos4212-tab3: Fix headset mic,
- add jack detection
-To: Artur Weber <aweber.kernel@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20240503-midas-wm1811-gpio-jack-v1-0-e8cddbd67cbf@gmail.com>
- <20240503-midas-wm1811-gpio-jack-v1-3-e8cddbd67cbf@gmail.com>
- <d1007753-bdcf-4db9-bb01-b36e742cee4b@kernel.org>
- <c76fa2cc-d41e-45c5-891a-b83d5d0634b1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <c76fa2cc-d41e-45c5-891a-b83d5d0634b1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZjAPy05fGLqX6W1I@lizhi-Precision-Tower-5810>
 
-On 07/05/2024 14:44, Artur Weber wrote:
-> On 6.05.2024 08:31, Krzysztof Kozlowski wrote:
->> On 03/05/2024 20:55, Artur Weber wrote:
->>> Add the necessary properties to the samsung,midas-audio node to allow
->>> for headset jack detection, set up the mic bias regulator GPIO and fix
->>> some other small issues with the sound setup.
->>>
->>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->>
->> ...
->>
->>> +
->>>   &bus_acp {
->>>   	devfreq = <&bus_dmc>;
->>>   	status = "okay";
->>> @@ -505,12 +521,11 @@ &i2c_4 {
->>>   	wm1811: audio-codec@1a {
->>>   		compatible = "wlf,wm1811";
->>>   		reg = <0x1a>;
->>> -		clocks = <&pmu_system_controller 0>;
->>> -		clock-names = "MCLK1";
->>> +		clocks = <&pmu_system_controller 0>,
->>> +			 <&s5m8767_osc S2MPS11_CLK_BT>;
->>> +		clock-names = "MCLK1", "MCLK2";
->>>   		interrupt-controller;
->>>   		#interrupt-cells = <2>;
->>> -		interrupt-parent = <&gpx3>;
->>> -		interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
->>
->> Does not look related at all to the patch.
+On Mon, Apr 29, 2024 at 05:23:23PM -0400, Frank Li wrote:
+> On Mon, Apr 29, 2024 at 10:48:23AM -0500, Rob Herring wrote:
+> > On Tue, Apr 02, 2024 at 10:33:46AM -0400, Frank Li wrote:
+> > > From: Richard Zhu <hongxing.zhu@nxp.com>
+> > > 
+> > > Add i.MX8Q PCIe "fsl,imx8q-pcie" compatible strings.
+> > > 
+> > > Add "fsl,local-address" property for i.MX8Q platforms. fsl,local-address
+> > > is address of PCIe module in high speed io (HSIO)subsystem bus fabric. HSIO
+> > > bus fabric convert the incoming address base to this local-address. Two
+> > > instances of PCI have difference local address.
+> > 
+> > This is just some intermediate bus address? We really should be able to 
+> > describe this with standard ranges properties.
 > 
-> I rolled up two small changes to the wm1811 audio codec config here:
+> Yes, Maybe dwc's implement have some problem. After read below doc again
+> https://elinux.org/Device_Tree_Usage#PCI_Address_Translation
+> 
+>                   ┌──────┐  ┌──────────┐                                 
+> ┌────┐0x18001000  │      │  │          │                                 
+> │CPU ├───────────►│      ├──┤  Others  │                                 
+> └────┘            │      │  │          │                                 
+>                   │      │  └──────────┘                                 
+>                   │      │                                               
+>                   │      │   ┌─────────┐                                 
+>                   │      │   │         │            ┌───────────┐        
+>                   │      ├──►│ HSIO    │ 0xB8001000 ├───────────┤        
+>                   │      │   │ Fabric  ├───────────►│Bar0       │ TLP mem 0xB8001000   
+>                   │      │   │         │            │0xB8000000 ├───────►
+>                   └──────┘   └─────────┘            │           │        
 
+Note the 0xB8xxxxxxx address on the right is a PCI address which could 
+be anything though folks often make it 1:1.
 
-https://elixir.bootlin.com/linux/v6.8-rc5/source/Documentation/process/submitting-patches.rst#L171
+>                   Main Fabric                       ├───────────┤        
+>                                                     │           │        
+>                                                     │           │        
+>                                                     │           │        
+>                                                     │           │        
+>                                                     │           │        
+>                                                     │           │        
+>                                                     │ DWC       │        
+>                                                     │ PCIe      │        
+>                                                     │ Controller│        
+>                                                     │           │        
+>                                                     │           │        
+>                                                     └───────────┘        
+> 
+> 
+> dts should be
+> 
+> ranges = <0x82000000 0 0xB8000000 0x18000000 0 0x07f00000>
+> 		       ^^^^
 
+And HSIO needs a node with 
 
+ranges = <0xb8000000 0x18000000 size>;
 
-Best regards,
-Krzysztof
+Rob
 
 
