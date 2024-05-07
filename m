@@ -1,130 +1,117 @@
-Return-Path: <devicetree+bounces-65530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837878BEC7A
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 21:20:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045AC8BECB0
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 21:36:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B51391C222E7
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:20:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 885A0B218B6
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D63316D9BC;
-	Tue,  7 May 2024 19:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A3C16E88E;
+	Tue,  7 May 2024 19:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bxSCVAql"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUhfyIqg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0AB6CDC2;
-	Tue,  7 May 2024 19:20:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E206916E880;
+	Tue,  7 May 2024 19:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715109644; cv=none; b=kJsruWWRsNYGPlWsIOAPXNOcZOiIyhdjNXrU4TJYdeYcbgTyGnzZLE0sjYA093c2RcZLi8EcEbl4gCVMZo29PbLsTG5ZvYWfSoFfS3LgsN6y9TRFVAqildairW3rF7bPjlHduPr9UYzXBtFe41jlRCfyiVJZSYBsD3RIlTbUyGA=
+	t=1715110560; cv=none; b=FOPCv9acc4y9H2QL6SAvb/4HOpkVc4sGj4I9WNLd1X33hGMTHPjcuEjgFq2EwjT+oe7PpMlmfO0uKOxyMvGEV6GR3+NFzR0PNzgftXRsHRuWUVSj/u4dJgLjRo/XXOmOvcIxD1yXio3DoHiU9YXJDP3ZKgt/AzKERNGv+drIWlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715109644; c=relaxed/simple;
-	bh=UmOAYChyytc3d3vdcOolrFvQRAouAlbOgpsqjqTT7oA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mfjtRgvMQmYLJL+59BrHealkpLaa/7YCvXVrZXsbhY8irnhzHHhkdnbc7LkwT+ZOqU3yyGzJ8oWoC5y0Sg6xREo+W5G4V/PSv//oSN6E3LBr/5DXHCMo18jjVB77P6S0dHQDpQ5qCci2IlaZez+6khUOse9nVrjeZJNmatLHc0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bxSCVAql; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 447IYJIF010716;
-	Tue, 7 May 2024 19:20:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=IVCv6BtGrBA4/HwfnDs7C7sIdNBdWXCmiV58VQXdVdU=; b=bx
-	SCVAqldnyxsZFsJXM5XYipVzvcbLDIwO+1cTwAXOG3sEVHLPJQuvBRgWmRtlLJBh
-	IHD39mVJHqbav9FY4oXGHfo+wTKtyrSdSf2auTHNnZGIfAk+jmWiuROedIzU1qGv
-	ILQ1WIFpxTR2b6RU5OVxR+p6unYGXL7xGzzP4WX/OvsUb9SAHfjAKcczbf09N5dy
-	eYe5h4SDWhv1GVdEBg6MeERDkr4Ynl2xXbk7c9MXZZF63gVL6RerT3bBt+vTD7U6
-	WPMxaHeqKo1VF1jLmT6wzps/wWjC6qv+0xvRBE70TlOSshOf64xwPQVqSNbkvKXw
-	UZ7refpWFUGuYfLJgG8A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xysprr2tf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 May 2024 19:20:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 447JKVYK002619
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 May 2024 19:20:31 GMT
-Received: from [10.110.125.244] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
- 12:20:30 -0700
-Message-ID: <9a48b0a8-d1d7-8e2d-dafa-47e136a46c99@quicinc.com>
-Date: Tue, 7 May 2024 12:20:30 -0700
+	s=arc-20240116; t=1715110560; c=relaxed/simple;
+	bh=bRHbcYBsOau7RDjFb4TOtC+YEMb0oH2Rg3gRpr/6wGE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qHivMvC8ztl43sfCqx/Dteuc3hYin2EcWGWDPUXrTU6DF1WpXMMvPVOshMWgwtyOVrZaqA5owdEjuBcbeSCa3J5+6t8awlDgxI9Jsb7llhP0hg4GJoPs6DyJQnGyXNvgfREpvsAlu/KtpTUyqRa72lovMLKdEqCxUIBp8KWu9oM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hUhfyIqg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27DFEC2BBFC;
+	Tue,  7 May 2024 19:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715110559;
+	bh=bRHbcYBsOau7RDjFb4TOtC+YEMb0oH2Rg3gRpr/6wGE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hUhfyIqgDc7kjRSbwQgC0OoI/RDBN9Ux6JALUaqshYxEFPa6wmQ2fkgPhNkgM2dtU
+	 QTzt1ROsrKQhB/LJi5Hei/I/nSEyAld3Iat/IbbGFHuFSQ2y2QvXtxAt3AX2lnHYAo
+	 J8YVu0/7vBFKKD+MDwLe3sj7V5tNZYNzOwgg/3taLFAdn7EHpDO13WIWeX2S7DI3UV
+	 hxWSrxgrulED+svg0ShBGgzKks8Kw3qd2z5KhpdgJyRR6SqRcNM+0PR4YDK+Eit0R/
+	 qQF7h5hPXbik8gNcWut6WxI045KzrabGMvqTlHsdza4HlMTJtpvEagRE4uT46RtBom
+	 RXmqb+qmu8bvA==
+Date: Tue, 7 May 2024 14:35:57 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Frank Wunderlich <linux@fw-web.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Tianling Shen <cnsztl@immortalwrt.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-leds@vger.kernel.org, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: Aw: Re: [RFC v1 2/5] dt-bindings: clock: mediatek: add
+ address-cells and size-cells to ethsys
+Message-ID: <20240507193557.GA924525-robh@kernel.org>
+References: <20240505164549.65644-1-linux@fw-web.de>
+ <20240505164549.65644-3-linux@fw-web.de>
+ <9f8237c4-f603-459a-9d34-9cda556874b8@linaro.org>
+ <trinity-9ceb52ff-9a3b-4fe2-93f8-2e95b8ffb1ee-1715014303393@3c-app-gmx-bap23>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Venkata Prahlad
- Valluru" <quic_vvalluru@quicinc.com>,
-        <andersson@kernel.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_nankam@quicinc.com>, <robh@kernel.org>
-References: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
- <20240507163045.28450-1-quic_vvalluru@quicinc.com>
- <a32fa81d-bd70-4dfa-b512-e2adce4f8c35@linaro.org>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <a32fa81d-bd70-4dfa-b512-e2adce4f8c35@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vBUzsSskaw0WJRFND1PRC0GW27DIojLh
-X-Proofpoint-ORIG-GUID: vBUzsSskaw0WJRFND1PRC0GW27DIojLh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-07_12,2024-05-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- suspectscore=0 spamscore=0 phishscore=0 mlxscore=0 mlxlogscore=816
- bulkscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405070135
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <trinity-9ceb52ff-9a3b-4fe2-93f8-2e95b8ffb1ee-1715014303393@3c-app-gmx-bap23>
 
-
-
-On 5/7/2024 9:35 AM, Krzysztof Kozlowski wrote:
-> On 07/05/2024 18:30, Venkata Prahlad Valluru wrote:
->> Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
->> reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
->> Bridge supplies are Vdd connected to input supply directly
->> and vcc to L11c. Enable HDMI output, bridge and corresponding
->> DSI output.
->>
->> Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
->> ---
->> v3: - Updated commit text
->>      - Arranged nodes in alphabetical order
->>      - Fixed signoff
->>      - Fixed drive strength for lt9611_irq_pin
->>      - Removed 'label' from hdmi-connector, which is optional
+On Mon, May 06, 2024 at 06:51:43PM +0200, Frank Wunderlich wrote:
+> > Gesendet: Montag, 06. Mai 2024 um 10:18 Uhr
+> > Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> > On 05/05/2024 18:45, Frank Wunderlich wrote:
+> > > From: Frank Wunderlich <frank-w@public-files.de>
+> > >
+> > > Add missing properties already used in mt7986a.dtsi.
+> >
+> > Missing for what? Or why? Provide context, IOW, explain why they are
+> > missing.
 > 
-> Please respond to each Bjorn comment and explain how did you implement it...
+> ethernet-node in mt7986a.dtsi hast reset-cells-property
 > 
-
-Yes, agreed. Even though it seems like you mostly just agreed to mine 
-and Bjorn's suggestions and decided to implement all those in v3 , it 
-would have been better to explicitly ack them or tell why you agreed or 
-what went wrong that you had not done it in v2 itself to close the loop.
-
-> Best regards,
-> Krzysztof
+> https://elixir.bootlin.com/linux/v6.9-rc1/source/arch/arm64/boot/dts/mediatek/mt7986a.dtsi#L559
 > 
+> and
+> 
+> address-cells and size-cells are used here:
+> 
+> https://elixir.bootlin.com/linux/v6.9-rc1/source/arch/arm64/boot/dts/mediatek/mt7986a.dtsi#L495
+> 
+> i saw the warnings while checking my r3mini dts...
+> 
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dtb: syscon@15000000: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/clock/mediatek,ethsys.yaml#
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dtb: ethernet@15100000: Unevaluated properties are not allowed ('#reset-cells' was unexpected)
+> 	from schema $id: http://devicetree.org/schemas/net/mediatek,net.yaml#
+> 
+> so i thought it is a good idea to fix this now ;)
+
+The dts is already fixed dropping these properties in linux-next.
+
+If you don't have child nodes with reg/ranges, then you never need 
+#address-cells or #size-cells.
+
+Rob
 
