@@ -1,135 +1,125 @@
-Return-Path: <devicetree+bounces-65506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E898BEB76
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:23:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E8E8BEBA0
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94F8D1F26B18
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:23:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2AB2281DEE
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B11316D32A;
-	Tue,  7 May 2024 18:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200F516D4F1;
+	Tue,  7 May 2024 18:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lay/yx53"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kWn57Da/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57486168AF5;
-	Tue,  7 May 2024 18:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6584C8A;
+	Tue,  7 May 2024 18:43:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715106206; cv=none; b=VkvyL5Un+X9kFzd9Kx5Hy6UiuV4jlpvYfrZSWfPnI57CxzTea30wx2hrqx8doe4a4NykixiBNuJF3teabsigcBY5xbwTVS1Nv5Hf12pE/zf9mmIHxmstrRoSF5q2gjkUMdg9z7CxJa3ANArF1sbRgzgAb9MvtuZ7hbh4YIBKUDA=
+	t=1715107422; cv=none; b=ZNua72qRNr5SlkYWEYVvl/tG4INVBFbkyuGvzWL6Q1PFGzGd6y8O7LB/N1nBegqWNhxio3mfd91TFbU914vtzJT1XvJMElHUJdnr+O+zXVYRrq9c+h3qSN5A9cQ4BoV9GFV9ZrRwKD2XUp9n7IkCCN+WKuqIREIR3tojUE+k2WA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715106206; c=relaxed/simple;
-	bh=MStEyZIy8lUrlEz3YXxVi+L4v57cbKF4Eo4absdpz0w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bYl/3Lpzqgk7vQVvN/UzPli6SycMlOGz+oSLCGFUzuEk35gIGe/1OrYmsP/WHqkD64vSwBN4PV7V9KdsEfrTtqsVWmGd88Hp0jrwIA4XXiCM73lQQrXeMNnbmCbBYOpV931SmEzDGZKXpjEu//sAI/x1yuCQ1w3lBlZisL6Ulzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lay/yx53; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E49D5C2BBFC;
-	Tue,  7 May 2024 18:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715106205;
-	bh=MStEyZIy8lUrlEz3YXxVi+L4v57cbKF4Eo4absdpz0w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Lay/yx53KbpfpwO7CQdf3vmre4vGqiT/8FZC/ih2xjnXRr9wfqIIaMvUwI5MVAMR7
-	 cJc8xW98hTe8dEn3CorRKDNHFQ8u/iBRv9ZfGtWh3gmR7UsfTIpqghINND7+p7Myl3
-	 lKnUpqNuA10FNx2YlnleYdhELmBoE/BvT0CaTd8Un2dRrETtv3KmHPYjC+ETPqs3no
-	 ndm/GHRqwF3+W9FdCfNbBhDQIGEBgm8NhVjzIavGRYdfyUk+fHOLAKr8qDcrCRv32F
-	 znBi/bryfyFN26w/iKl7+7DKmUtIg4aRUXjnsaO7ttQKpFJVbkqKI/7IWuAvcdEgos
-	 ZZZTunMAHghXg==
-Message-ID: <453186a6-ec03-4c28-a263-c295f9aaad2f@kernel.org>
-Date: Tue, 7 May 2024 20:23:19 +0200
+	s=arc-20240116; t=1715107422; c=relaxed/simple;
+	bh=ZOmzU0CvOJI++Zhf9QtCz4Fyz7ks9uSOclvdvTs/RkU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Tmk6wyEQYZdIzq2XHv3hEx4u2fKHYv3oN+nn6Nl+0PgDk1X6WvjRTRudP5DoZpyJvxHYm9YSZYdw59o9gruv5tlC3m35XGm/9Qag6PKr+CwPl9UQUhfDh/O8boTPVXr4bIYgE5amVOzYV2Jw8eBOi86KzrYlIXltS4xSFUIY6rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kWn57Da/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 447IKmMS015024;
+	Tue, 7 May 2024 18:43:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=qtbjKV1COQJkwbSR/pNfVXT/je6N+V3bgEm5XP+w/gU=; b=kW
+	n57Da/eWH0NsbR+02ullKBGMPD6WMBNWAJFiHBCbIOv8vXn3yn77ec4nS8Ex50Lg
+	olN17/+OjCXHAlPzMjP6eRZSO/2dY/l431k0DqijLF2hcJzpDu5Z1OZo+2ppfHo9
+	uxite/ZBKFKuXNU7Kzaxg2n0dDHJAs8vMshxDdDRafaLLJ8FreAhWix11Xhl3IHO
+	GiCGk3ARR2/OOIXzJNXx/PsEGakT7mZbGH7H4Czwn6UKc0Q2qIK7Hu6xDJsjSl0U
+	gpQshXKj9fCb6bs7E4n1gOyjNj1uV7pn+H98BQB0U79wgPJJsuFOfbTDYnHOqgd1
+	TzpB0SDqkWS+LHBDGbFQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xysg8r1s2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 May 2024 18:43:36 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 447IhZCc021332
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 May 2024 18:43:35 GMT
+Received: from [10.110.125.244] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
+ 11:43:34 -0700
+Message-ID: <6d7ac6dd-94b7-908c-9dfa-68efdc48e006@quicinc.com>
+Date: Tue, 7 May 2024 11:43:34 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mithil <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240417134237.23888-1-bavishimithil@gmail.com>
- <2e179356-425d-48cc-84db-0ea3e6203fba@kernel.org>
- <CAGzNGR=pvv67UJtNnkDUMhrpnPjNCCYEGeCaM7e_9=4G+Lcfgw@mail.gmail.com>
- <676ce61c-e850-4046-ad0f-e3382be3fe0c@kernel.org>
- <CAGzNGR=rDrd6LyAC2yB4XUcxn=H1VdY8LQO99NEOBR1sLGGT0Q@mail.gmail.com>
- <3425732a-390b-4c0f-ba1b-2a7e2219d581@kernel.org>
- <CAGzNGRmF8K7UDDERE_7UQw1EdC=J_jvvXqefU=M0v6FQcsnbhA@mail.gmail.com>
- <CAGzNGRmB5yYyVVDQZ0PaL7k0rie8TQAySwpzDx=QokUAV1NGug@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAGzNGRmB5yYyVVDQZ0PaL7k0rie8TQAySwpzDx=QokUAV1NGug@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>,
+        <andersson@kernel.org>
+CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_nankam@quicinc.com>, <robh@kernel.org>
+References: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+ <20240507163045.28450-1-quic_vvalluru@quicinc.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20240507163045.28450-1-quic_vvalluru@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WZ1ZEdG_VgokprOp3498ZZGxhsZ9vHjT
+X-Proofpoint-ORIG-GUID: WZ1ZEdG_VgokprOp3498ZZGxhsZ9vHjT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-07_11,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ mlxscore=0 suspectscore=0 mlxlogscore=799 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405070130
 
-On 07/05/2024 17:12, Mithil wrote:
-> Hey, before making a new patch I'll just list the changes that need to
-> be done according to this discussion.
-> Change maintainer
-> Change clocks to only include maxItems: 1
-> Change clock-names to include
-> items:
->  - const: pdmclk
-> Use correct address in example
 
-If you meant unit address, then yes.
 
-> Use flags for interrupt in example
+On 5/7/2024 9:30 AM, Venkata Prahlad Valluru wrote:
+> Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
+> reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
+> Bridge supplies are Vdd connected to input supply directly
+> and vcc to L11c. Enable HDMI output, bridge and corresponding
+> DSI output.
+> 
+> Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+> ---
+> v3: - Updated commit text
+>      - Arranged nodes in alphabetical order
+>      - Fixed signoff
+>      - Fixed drive strength for lt9611_irq_pin
+>      - Removed 'label' from hdmi-connector, which is optional
+> 
+> v2: Addressed dtschema errors
+> 	- Fixed lt9611-irq
+> 	- vdd-supply error to be ignored, as it is connected to
+> 	  input supply directly, on rb3gen2
+> ---
+>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 85 ++++++++++++++++++++
+>   1 file changed, 85 insertions(+)
+> 
 
-Everything else yes.
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
