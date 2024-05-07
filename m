@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-65597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A158BF0DA
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:12:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5928BF10A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2DB3B22AC8
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:12:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7125E1C228BC
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1EF913792D;
-	Tue,  7 May 2024 23:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20F913B790;
+	Tue,  7 May 2024 23:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="knJ4GvmE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dfzDXk2I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C9B137C54;
-	Tue,  7 May 2024 23:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB1113B78E;
+	Tue,  7 May 2024 23:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715122840; cv=none; b=I5ROAoE5xm91LB0jyU7ZUPI0CiddkOLTNIHC1ULGuZkjk8gmbAg/dT6vtK6D47EkEkFAgjaRSjz7txsGidoOSTabDoK4nIqFf/l0spl2q7WIxSsauLsxea312fc2V1gVCH+Z25FNpA+S5f2FwghgQfYjQtKCTAJ2sR21XzwOWkM=
+	t=1715122881; cv=none; b=GSe+X66mROBI6w9ZPRdxSXnUkmRUVXLa4/t5GMEMrmhIreIw/kU0gtuaNocmcW4z8cHv9vAbTyuUFX2LeLt5dJLQ8R5qAumUGPG0b9G0YwUJZNLvQLpIydL6mmYA7bbtUefP/0lfxnRNze6ayV7bYByLHUIK5WBa+c7DvXm1QlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715122840; c=relaxed/simple;
-	bh=VyDzfSvgygGoJ6vgcUYx97XIpCc+SJbIDApetEfwgow=;
+	s=arc-20240116; t=1715122881; c=relaxed/simple;
+	bh=rFAC8oNtjUVBchYHdF8+lnywIFKHivJ6mH4y+PqvvW0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dlY0qLBcL+qdI7rKCMwY1LwI+SK4mMJ6g3Jhb7OZk6qreKiQDmNq939C5rvX73kOApS96pEb0XqM0zb/s36tSu39YdiRaJZVOoGhzRAAzYcQOXpcWgS/A7IkpWBwmbEM+ULLGJa7v1TqFTzTqghwjHDj5acbcvt4gAyVHRI27aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=knJ4GvmE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B19E0C2BBFC;
-	Tue,  7 May 2024 23:00:38 +0000 (UTC)
+	 MIME-Version; b=jZ0QKE0RbCOCZZxISlL6xWf3G8BxZyhnBoIMf6v3GlIHAuni4DP1yakgzIcTyJD1tMp5R9nJNwwzrnd88fJqjEwqpzia+0bzKnEOgrvt34WMm6Zkns9OC46tJRZ02joN+a3tUZ9Jukxge6RtR9CsbfRPk9VkQjuqTeywJfEIdYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dfzDXk2I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5667C4AF17;
+	Tue,  7 May 2024 23:01:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715122840;
-	bh=VyDzfSvgygGoJ6vgcUYx97XIpCc+SJbIDApetEfwgow=;
+	s=k20201202; t=1715122881;
+	bh=rFAC8oNtjUVBchYHdF8+lnywIFKHivJ6mH4y+PqvvW0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=knJ4GvmEM6d5YJ7Wx3Nqh7G0CIFr64pbuARoobRbPKTKQL7LxBDh2LWPmxqxTpyXE
-	 2B8IENtKNg9OqzXsYIeV/2fwmWqudwdhki27OpDkdxHZnhMyw0PFUtmoyCOviTKbBG
-	 nHCz+zm8U12wmxbGhYQWAZBJBvR9X0oDAQ6vPOGd/hxegv0lebFlSpkYXqEacgPCrn
-	 7xrsDb2iAyEYTiDn/txAB/ebNYGyh5jeYxLde1DjgWi6lCr1roq7z9hQoq2CCxMzw0
-	 m8g3RFy9NOg85ehxaOh4mS0C7umtYrY7OiYt1fxzFM7ViVZgKdrYGzqliA1r3Hg9Mz
-	 Nz5oZtD+kaT0A==
+	b=dfzDXk2If9DqyP2OSdNXqmdslfPiWI68Fa/0paak/Pd/UU6AtVAbCxCEPwNZOspu7
+	 c/IYzE34xVvNlvNrdDvWJiiXdtwTqpUxGA6lVULH+E1msGZaRrkYpx6w4dm49rlBvn
+	 NkVrEObqKCLVXmZQ15CVQPkEL0TfOx+0obStFHo9lKs1XjZ8uwAJ92zi7t92Bb37Og
+	 ex+o4XkTQY3whNZBcL5nyZJQgme6/OuFwkj46xN1o9tZeK/+ZAZiPWK14wTXD1J1BQ
+	 jtWM3lstdSLRAXCEtklXSD0XEzz5MI9qxKSRJ8nRejXnzSTOwbhwyj0R94Tv05JavU
+	 /iptvHDfISeSg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -51,18 +51,18 @@ Cc: Rob Herring <robh@kernel.org>,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	sebastian.reichel@collabora.com,
-	s.hauer@pengutronix.de,
 	cristian.ciocaltea@collabora.com,
 	andy.yan@rock-chips.com,
+	s.hauer@pengutronix.de,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.1 04/12] dt-bindings: rockchip: grf: Add missing type to 'pcie-phy' node
-Date: Tue,  7 May 2024 19:00:06 -0400
-Message-ID: <20240507230031.391436-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 2/5] dt-bindings: rockchip: grf: Add missing type to 'pcie-phy' node
+Date: Tue,  7 May 2024 19:01:06 -0400
+Message-ID: <20240507230115.391725-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240507230031.391436-1-sashal@kernel.org>
-References: <20240507230031.391436-1-sashal@kernel.org>
+In-Reply-To: <20240507230115.391725-1-sashal@kernel.org>
+References: <20240507230115.391725-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +71,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.1.90
+X-stable-base: Linux 5.15.158
 Content-Transfer-Encoding: 8bit
 
 From: Rob Herring <robh@kernel.org>
@@ -92,10 +92,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 2ed8cca79b59c..e4eade2661f6b 100644
+index dfebf425ca49c..8fe31a7083db8 100644
 --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -151,6 +151,7 @@ allOf:
+@@ -141,6 +141,7 @@ allOf:
            unevaluatedProperties: false
  
          pcie-phy:
