@@ -1,109 +1,158 @@
-Return-Path: <devicetree+bounces-65499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3B78BE9FE
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:03:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A05908BEA3F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:17:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 673B5284FF8
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:03:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44AF0B28213
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 409A154BD3;
-	Tue,  7 May 2024 17:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1249454BFB;
+	Tue,  7 May 2024 17:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fdK4PMDE"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J7y4Cghf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108138F72;
-	Tue,  7 May 2024 17:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F613A951;
+	Tue,  7 May 2024 17:15:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715101406; cv=none; b=enNs/rgcs9fhOYbzgaG3skxyzrIyr81XcgUQLFwAR4A/GXBDY/qbFL5BfGsGTZbivSLqrnYhYKox3d0SDtfOTeT9OijPqFdYw+vWaCyWo/kxAiLaMSQt1g+l/28d20RN7xoK/GQvsZ1tGZ468vOUUy+4rg6Mawqz0gVzw0+rYm0=
+	t=1715102149; cv=none; b=Q4v2+mtH+jVPvTVJ8S2lTdmRMSNbSzvw4GSi4wZ2K4+X4bZiruHDKIBtpxlH8C6+di+dBDY2V1/TJpDyaQ3cGUiiZzWanSXSbInf+0n0WmCHz+xwWTlI7ycm7VrEHAsaJBZNNV5ppUlRPv5j2wkpWHCNVkY4fDg275Ikv0rT4uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715101406; c=relaxed/simple;
-	bh=ArnZiiYUYEC1mlgNlltHqQrIthtsLHuxUJszJP2E6B0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BEm0Q2xKdntd7UM+j+XXET8Zq2/94n5VFyYOCJ4j/9iCdKeSIKyw1HNWukJ3QaWXtk+OpTBHW/5D214VJ+6wqBMJupcMH4ZqTrhOhAAqQG+J6NcF22npOdYjFQ6nkCPQfqY4WOVHPEqL3exhe13lGoSSTILajV5bbZ+kA6F892g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fdK4PMDE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21011C4AF18;
-	Tue,  7 May 2024 17:03:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715101405;
-	bh=ArnZiiYUYEC1mlgNlltHqQrIthtsLHuxUJszJP2E6B0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fdK4PMDEapvW9NTJXzT+WrquyPt48Xws4KlkNo6FE7oktoOyUznLn8rIfaY6gM5Py
-	 Ai35goUtcDFnF1eqKMnmFSxGY1D73HWtQGjNE8sykSzf0CZi28QTnln4GQgINr0NNn
-	 MVVU89di3/rcQCu3cNK0iN0vLEvN54C17y6RYuIy06eftd4Pl771u4fatHSH/Scdcl
-	 z+F3JNuaby4oqQCcoGC/zcW8bsYatn7vphQQFiGJC9GU7PJN9kjk/4mj1flIUqMZWn
-	 5tX8+QDQSmk0TREMTmvmgCun34E0SCm65hXXDVQIn2W/KQeDcpJRUO4mlFGbAt8v63
-	 FuDt59RvNRyOw==
-Date: Tue, 7 May 2024 18:03:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v6 06/17] riscv: Add vendor extensions to /proc/cpuinfo
-Message-ID: <20240507-divisive-swoop-c2737a2d9a9f@spud>
-References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
- <20240503-dev-charlie-support_thead_vector_6_9-v6-6-cb7624e65d82@rivosinc.com>
+	s=arc-20240116; t=1715102149; c=relaxed/simple;
+	bh=Q/PO5tT0xhQtBGm3Jrv1EVhPRHZt11qBfXbZHXoBJwg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Je24K5Nb9YomsjI2XgScOj7oamLI64kWn6Xrg6WGnvadX8oH/NuHE0hOVuBG2rrcCA/K9VBirNiVe+a+7k+nzh/1fY0OOu3XJwkNNAOiKi+2Qpysel/r6MOHFt7CTVJAXhCwdtX8K5JOtxxS/Mlsu/PMsffq/geb4Ia0TtyjEPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J7y4Cghf; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 447HFX6A096082;
+	Tue, 7 May 2024 12:15:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715102133;
+	bh=2GIrttvXheSqzZiUQLCww8r4NlXBOs0jYqFU7kAkH8o=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=J7y4CghfJntoOM36oWcEhs4WChhmSjpYGexzlPflcKWj/cH/XTbkndM6B1dK01E1F
+	 uSkQLUPqijPG9IvuC+TQjveYCZi3oXPoy6PSbjB0HJ9nPUahoMivIIjCYCPz5ZcX2J
+	 K3UeFjcxzhVnlEF94WDjJoINPnkKxfZCBfTWwaxA=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 447HFXoJ015936
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 7 May 2024 12:15:33 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
+ May 2024 12:15:32 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 7 May 2024 12:15:32 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 447HFW70006845;
+	Tue, 7 May 2024 12:15:32 -0500
+Message-ID: <9c6f8999-715f-42e3-8d13-a5aef074dd5d@ti.com>
+Date: Tue, 7 May 2024 12:15:32 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DjOV1yEKcl4Dfmqk"
-Content-Disposition: inline
-In-Reply-To: <20240503-dev-charlie-support_thead_vector_6_9-v6-6-cb7624e65d82@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j722s: Redefine USB1 node
+ description
+To: Ravi Gunasekaran <r-gunasekaran@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <srk@ti.com>, <rogerq@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240429120932.11456-1-r-gunasekaran@ti.com>
+ <20240429120932.11456-3-r-gunasekaran@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240429120932.11456-3-r-gunasekaran@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 4/29/24 7:09 AM, Ravi Gunasekaran wrote:
+> USB1 controller on J722S and AM62P are from different vendors.
+> Redefine the USB1 node description for J722S by deleting the
+> node inherited from AM62P dtsi.
+> 
+> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j722s.dtsi | 39 ++++++++++++++++++++++++++++
+>   1 file changed, 39 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> index beba5a3ea6cc..90725eeb3178 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> @@ -13,6 +13,13 @@
+>   
+>   #include "k3-am62p5.dtsi"
+>   
+> +/*
+> + * USB1 controller on AM62P and J722S are of different IP.
+> + * Delete AM62P's USBSS1 node definition and redefine it for J722S.
+> + */
+> +
+> +/delete-node/ &usbss1;
+> +
+>   / {
+>   	model = "Texas Instruments K3 J722S SoC";
+>   	compatible = "ti,j722s";
+> @@ -120,6 +127,38 @@
+>   			status = "disabled"; /* Needs lane config */
+>   		};
+>   	};
+> +
+> +	usbss1: cdns-usb@f920000 {
 
---DjOV1yEKcl4Dfmqk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+MAIN domain items are defined in -main.dtsi files, for instance the
+USB node you are overriding was defined in k3-am62p-main.dtsi.
+This should go in a file named k3-j722s-main.dtsi.
 
-On Fri, May 03, 2024 at 11:18:21AM -0700, Charlie Jenkins wrote:
-> All of the supported vendor extensions that have been listed in
-> riscv_isa_vendor_ext_list can be exported through /proc/cpuinfo.
->=20
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+Andrew
 
-This seems fine, thanks for updating this interface :)
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---DjOV1yEKcl4Dfmqk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjpe1gAKCRB4tDGHoIJi
-0gm2AQCLHpjv3WhE7hyAxrtcfZiN9zHtIaysFDZBciMppAkHSwD/YTCG+52INlpy
-VoV7MjpQnmLGSVLjs8FDGFXVJUEjfQI=
-=g03H
------END PGP SIGNATURE-----
-
---DjOV1yEKcl4Dfmqk--
+> +		compatible = "ti,j721e-usb";
+> +		reg = <0x00 0x0f920000 0x00 0x100>;
+> +		ranges;
+> +		power-domains = <&k3_pds 278 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 278 3>, <&k3_clks 278 1>;
+> +		clock-names = "ref", "lpm";
+> +		assigned-clocks = <&k3_clks 278 3>; /* USB2_REFCLK */
+> +		assigned-clock-parents = <&k3_clks 278 4>; /* HF0SC0 */
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		status = "disabled";
+> +
+> +		usb1: usb@31200000{
+> +			compatible = "cdns,usb3";
+> +			reg = <0x00 0x31200000 0x00 0x10000>,
+> +			      <0x00 0x31210000 0x00 0x10000>,
+> +			      <0x00 0x31220000 0x00 0x10000>;
+> +			reg-names = "otg",
+> +				    "xhci",
+> +				    "dev";
+> +			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
+> +				     <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>, /* irq.6 */
+> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>; /* otgirq */
+> +			interrupt-names = "host",
+> +					  "peripheral",
+> +					  "otg";
+> +			maximum-speed = "super-speed";
+> +			dr_mode = "otg";
+> +		};
+> +	};
+>   };
+>   
+>   /* Main domain overrides */
 
