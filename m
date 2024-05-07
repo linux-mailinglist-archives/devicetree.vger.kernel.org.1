@@ -1,125 +1,96 @@
-Return-Path: <devicetree+bounces-65453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C1A8BE6F5
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:07:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2B48BE702
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:09:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6FD31C23DB0
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:07:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 436D8282D93
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3671816130C;
-	Tue,  7 May 2024 15:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BB71635C0;
+	Tue,  7 May 2024 15:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IgSXrtIE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQpdtnh8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5344716132A;
-	Tue,  7 May 2024 15:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7DE161338;
+	Tue,  7 May 2024 15:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715094465; cv=none; b=S1BgAPq6jqVmeyWQvcLZ108eLAzTRv60W/syZNkAnprE5g4ZMZLHWENoSSoBDzJYtY9iV0suTHMr/XGYzHZKAHs/Cd17OPhFcEKJKJw3TbRiQkzVFzUNHJXu0DOFzHShpR+S5qZBwDtd7nW6zEVRR5EBm/RBaSZM2t0Prara3YE=
+	t=1715094535; cv=none; b=WOcr0qjN6GCvsp71Wdgf8+yjaj5SD1LmnQlG7fecuMywLE+6SXPeEQGvHGPCPizqEcp6LXn2+2JHohjZfbJ27yFGiqmkXrx33ScorGCiqrDCqM3URwMaUyiQ5rv5vnIBAF0Z8PRoIQJzZwCdhY05ofIqOvQqWZ7y1G+xfrGKOk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715094465; c=relaxed/simple;
-	bh=UaQVvlK7uFSTTAgQAcJhZCMHMi2rIAYqLbFWW1dKZpE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=j3hTHx/htf9+hgSgsHQ+Hn1ZTULO4qwIic/tOLnbw8bMSeM/7zEduAs1QRHMJvWsu/iNccS4xKeu7gcGZljyliNK+OYMJdkT3J2SILIul8u5wy8E8MecGOoCF2xLq1GmUpP78j2JcgpOTTkLiWWzhypDxFKt+641t/8S4cJuYRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IgSXrtIE; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 82A1C24000B;
-	Tue,  7 May 2024 15:07:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715094460;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UaQVvlK7uFSTTAgQAcJhZCMHMi2rIAYqLbFWW1dKZpE=;
-	b=IgSXrtIEG4/C+lOXqlsXePSOdnwI1SABeDG763VaWxy+S+JXj4runTgPnKwdcHfuXTtzba
-	yjZzI3rAwxFFAtc1tHjH3hSj8b0NJCCr8/fb5bQmLzH2do82wj6QKoj0IOc4+4AbdGMvBa
-	DGyTqXuROwkGduBJU4SSUeh5irlEVVXmMXyWt+KzZ03vETHcTZdXx2tnyRFDWYA4QtAais
-	n7y4ENDEWFfwGejQpba4RWN5ctoHl9jmDY6yPKNIIIxPNsNPbU4D26dINW+HsOKYznFdtU
-	TGP30EEV0j/YPSTEHa9+kQnCO0pYGHWOG2XfLoTqwxYA4CfLoibIYZhqMMKi2A==
+	s=arc-20240116; t=1715094535; c=relaxed/simple;
+	bh=ycm52fKCEVH22ltB8v+hNmkSggINFRR1kVE47PuUHP4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJ0SFXyOeQrRz5wjOv+6h4aBdSEyyA1pg7SWZSeBKxs35yZJT/datwaLPRsYdQQOu52+bxVX1dXQBWO3nA95WhKq4nr2RJo+iGGTBpy9mFzp4UkMbMNGwpwQBftM7KtW7swnsaYLqbQPAM9wqVw11BV6NzTUvOLIOt5tjD52bvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hQpdtnh8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88102C4AF18;
+	Tue,  7 May 2024 15:08:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715094534;
+	bh=ycm52fKCEVH22ltB8v+hNmkSggINFRR1kVE47PuUHP4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hQpdtnh8YlsVoCH2VLVBNtU2+8DjCmRVpmI21ogmnm+njIqlao248WDYkDMmoe9/Y
+	 6wzui6NhfrCOsnXRkaZ2U9ucyRqWQanyCm858zh3Hxcof2nKCcdPYZmaPhKVHCxNhG
+	 pndnuBaAiTfDmt+LOSk9aJ3DxaOcAM/ERHs0bSpmOxK63GdGlEbaEDSvSs2fBQiJdX
+	 ODP68zn3KOy3gIBKOVUK3YUJonztbsYkvC3hp738xPjF+vRqIhCulzlIX/eplDYwm5
+	 +vggzua9WHBPpInKvPjUc90mDc91A5LjKDtoWmzdhXL13AyACK3milO1x/zZSjcKI/
+	 mFM+dzuNsPsRA==
+Date: Tue, 7 May 2024 16:08:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andy.yan@rock-chips.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	quentin.schulz@cherry.de, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH] dt-bindings: soc: rockchip: add rk3588 mipi dcphy syscon
+Message-ID: <20240507-obligate-ripping-76ed73f46f57@spud>
+References: <20240506124632.3621378-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5hlEgOW23HF9FJZj"
+Content-Disposition: inline
+In-Reply-To: <20240506124632.3621378-1-heiko@sntech.de>
+
+
+--5hlEgOW23HF9FJZj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 07 May 2024 17:07:39 +0200
-Message-Id: <D13I8TFIF77X.2EFWZ14LM2H6N@bootlin.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, "Lee
- Jones" <lee@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 01/11] dt-bindings: clock: mobileye,eyeq5-clk: drop
- bindings
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-X-Mailer: aerc 0.17.0
-References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
- <20240503-mbly-olb-v2-1-95ce5a1e18fe@bootlin.com>
- <ee278102-f4b8-4ca0-879e-f83cd54efbd0@linaro.org>
- <13ed1865-d702-47b6-b186-d5f060103280@linaro.org>
-In-Reply-To: <13ed1865-d702-47b6-b186-d5f060103280@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello,
+On Mon, May 06, 2024 at 02:46:32PM +0200, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+>=20
+> RK3588 CSI and DSI support requires the GRF for DC-PHY.
+>=20
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-On Fri May 3, 2024 at 6:05 PM CEST, Krzysztof Kozlowski wrote:
-> On 03/05/2024 17:57, Krzysztof Kozlowski wrote:
-> > On 03/05/2024 16:20, Th=C3=A9o Lebrun wrote:
-> >> Switch from sub-nodes in system-controller for each functionality to a
-> >> single node representing the entire OLB instance. dt-bindings is
-> >> unnecessary and soc/mobileye/mobileye,eyeq5-olb.yaml will inherit all
-> >> properties.
-> >=20
-> > Why changing this? You just added these bindings not so long time ago..=
-.
-> > This is very confusing to push bindings and then immediately ask to
-> > remove them.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-See this revision as a proposal of something that has been asked
-multiple times in previous reviews. See message from Stephen Boyd on
-last revision [0], or discussion with Rob Herring on much earlier
-revision [1].
+Cheers,
+Conor.
 
-Proposal from Stephen Boyd of using auxiliary devices makes sense, that
-could be the future direction of this series. It won't change the
-dt-bindings aspect of it, only the driver implementations.
+--5hlEgOW23HF9FJZj
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[0]: https://lore.kernel.org/lkml/daa732cb31d947c308513b535930c729.sboyd@ke=
-rnel.org/
-[1]: https://lore.kernel.org/lkml/20240124151405.GA930997-robh@kernel.org/
+-----BEGIN PGP SIGNATURE-----
 
-> One more point - anyway this should be revert with clear explanation WHY
-> you are reverting bindings.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjpEAgAKCRB4tDGHoIJi
+0olBAP9j0q1yLiXyy+lGOVgDlPpLYQPtcvDZFQmtY8MeXiLU2AEApyZLt7KBt/v1
+Y3oPzSZfq5aiOJR5N+pAz9i30QD0VAw=
+=fh3/
+-----END PGP SIGNATURE-----
 
-I'll make sure to use standard revert formatting and explain why it is
-being done.
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+--5hlEgOW23HF9FJZj--
 
