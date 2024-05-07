@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-65595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB6858BF017
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 00:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68FD08BF072
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 823EA1F23573
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:59:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F0B31F22B24
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9B284DE9;
-	Tue,  7 May 2024 22:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C531311B5;
+	Tue,  7 May 2024 22:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TfNMyBoZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Flrksmiy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0EA084DE6;
-	Tue,  7 May 2024 22:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB5C1311A9;
+	Tue,  7 May 2024 22:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715122659; cv=none; b=oHhDPhXsiH+vtDVFjMYAg38dLu480NcODbR64ZZ80lcoEDpRLj6PsBuADQ6DGVl6XgrjljKZsavTHmZ/XmSS3B6Heu4J56lpP3w3nSSRRrwE3x9yz2XMwfMAO6WN1erx+23R3w3ShJQ8EbqOnp3+GxSmWGirxkJTNJMj3msKOxU=
+	t=1715122759; cv=none; b=LmhpeZKs7OHnQtXYNf/8BxjjOlSbX15+pFq+bEfIX/hDEF51NWWs3tZ4PCeKEp8QHBtinmINm1LWDHStmJ+FgW7dqfzbDZYrYi3TSz9pSgxLDbmOgVHKLE1vheHTWev/DOXP1pIjWUuGYrzAtMhVMtmK0jiMbvDuTPIdBnGkNqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715122659; c=relaxed/simple;
-	bh=rl58UGSDXiOQtAtALxX1AesGxhJWgrq4HBhX/WX/mTM=;
+	s=arc-20240116; t=1715122759; c=relaxed/simple;
+	bh=uHVexuiQEyLGa/+Bpi1sAob8fjUD7bOIr0rbWd3nEPY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Tg8RQ1RXlmERkDpd/EK9K6y1l1uwO7OTjYkgr9sJ7En7bQV1hXzwBIHVOi/JuAFolsbT8Zms1V3qxXiAyJ83/8Svu5FpHVGORsMW+yvVnEaIZfWpSKWlhzmP3nDDkqlHcFvbBr9G39XfzEPGnbpgYhNCYa+w8Mr7PnrnbiXSSbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TfNMyBoZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EDC8C2BBFC;
-	Tue,  7 May 2024 22:57:37 +0000 (UTC)
+	 MIME-Version; b=KrTNiR1NCkecDXsZ9Vj/itrU6Euf5t2o2Ve7wFRdjkuZLEt7eOpFXMBjmnip646FU1FQyooYU27Mz5gcQeJJIyZrIYfFy+tNvurf/tFePBEdNVyFS1TPux3km5gssX7SUquP4Y9tvRGdcGzJyic8p1VdGB2n3hsmh547WituAyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Flrksmiy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF198C4AF17;
+	Tue,  7 May 2024 22:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715122658;
-	bh=rl58UGSDXiOQtAtALxX1AesGxhJWgrq4HBhX/WX/mTM=;
+	s=k20201202; t=1715122759;
+	bh=uHVexuiQEyLGa/+Bpi1sAob8fjUD7bOIr0rbWd3nEPY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TfNMyBoZAhMgD47ZLQN/r1wGsNff1TDtcoKWmDCFX/cXWUfkFrL6fzjWGC9pUTUZk
-	 ZLth9qDKKIN8lLtJa+2PlKQzgVzVuAR4hkAo2j0PzxfSjUWc24icvwSixor8AN8nJV
-	 i2vFx0ICMPqAzuGFhrhijKi9Qn5I/ibrKBXdF+k7uYzbrGP95V37WJ8REEAsVBbomi
-	 jQuNwx/hhWrGDPF40/nE8Mps7d6rCBPIlr11O9yo1Y0/kDyRbElrA0pMNeBCv0QFv4
-	 7sTWOoCSoQCsoRevczt46XGzf8BmM7vukwayOLr+MdbuDMFFT/ZTJzzIXjoRybQiqL
-	 lqqJbEbhcYuSw==
+	b=Flrksmiy0kJfG0XNQgHAHx1dcjBWBYFfBucjydqW8zAnj/Awuwgte2RN+kO4TRPuB
+	 2TXegU7ktZzy9bJzazljjqltpUXi12zNBddQNYrjYkpejR86pNkqxZUbmF/CTftp3t
+	 KMqKF7HtH/BcvR4aqMMBKzivWlaYEjaepf3rOiHy0h2QOC4spllF/fuojEps1xIGMK
+	 zav2Hohp9hYm3DdWJzMMTD9rSke/kls4pTMU5thUM9byVvTG+xW+eAqq/oKCNTshTe
+	 JSoPLORgkD9Lu89yDX298d4wSukLup46r6IKMQafriIozj4BlwFPr4QlahxwkH7Vxy
+	 /Y+TB9QaH+Hkg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -51,18 +51,18 @@ Cc: Rob Herring <robh@kernel.org>,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	sebastian.reichel@collabora.com,
-	andy.yan@rock-chips.com,
-	cristian.ciocaltea@collabora.com,
 	s.hauer@pengutronix.de,
+	cristian.ciocaltea@collabora.com,
+	andy.yan@rock-chips.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.8 06/23] dt-bindings: rockchip: grf: Add missing type to 'pcie-phy' node
-Date: Tue,  7 May 2024 18:56:32 -0400
-Message-ID: <20240507225725.390306-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.6 04/19] dt-bindings: rockchip: grf: Add missing type to 'pcie-phy' node
+Date: Tue,  7 May 2024 18:58:26 -0400
+Message-ID: <20240507225910.390914-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240507225725.390306-1-sashal@kernel.org>
-References: <20240507225725.390306-1-sashal@kernel.org>
+In-Reply-To: <20240507225910.390914-1-sashal@kernel.org>
+References: <20240507225910.390914-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +71,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.8.9
+X-stable-base: Linux 6.6.30
 Content-Transfer-Encoding: 8bit
 
 From: Rob Herring <robh@kernel.org>
@@ -92,10 +92,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 9793ea6f0fe65..575555810c2c2 100644
+index e4fa6a07b4fa2..be6ffec2b0749 100644
 --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -165,6 +165,7 @@ allOf:
+@@ -163,6 +163,7 @@ allOf:
            unevaluatedProperties: false
  
          pcie-phy:
