@@ -1,114 +1,70 @@
-Return-Path: <devicetree+bounces-65393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316118BE268
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:44:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F97D8BE289
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAE7628359A
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 12:44:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 562021F26658
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 12:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8247715B155;
-	Tue,  7 May 2024 12:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBDA15B979;
+	Tue,  7 May 2024 12:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="AY4ses1p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tGPbKqa1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C807A15B120
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 12:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976D315B12B;
+	Tue,  7 May 2024 12:51:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715085858; cv=none; b=BbhbjAJTsmgRNBsLrYykQTON6Ay5UGndQ9hITWlZ/cF3EdEjZWnGHPWfSgxb6ZLF0CE+fdlGT+cZMIvtXkPgfYCJT+Esn++q8oogA1K26jHmkxvYQmwsID48w2YmUt6x31Kcuy7gUV2kLBxWmsfwM9Q5ateHr8J39C0dNATT5jQ=
+	t=1715086315; cv=none; b=EJ7vIS8n6pddTFFIJWMYOgskVHeR2ivq0ibgYbgx0KrvGhLgTaOn8t8lxm2l5PuAoOJfmEl2r1dZ0ZfFPvYdHZ+bBfkF0j6WQ9t14J5HfO6sibpC9rkx68ZXQV4zPHDpbbJINp4Yk1Cjt3UDt6Rsi+dn8xNONnWFEYKt57K6Di0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715085858; c=relaxed/simple;
-	bh=rCURwd3Q1o74GfLAdxVB46w7pakgsA9iZZCIcyWzyh0=;
+	s=arc-20240116; t=1715086315; c=relaxed/simple;
+	bh=YkrG41OUg30UlrJKdM2bXKdavDQXZarnRBrRAJenv4U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rbPe/Q+/PnzqyKYezO8+HBxcpVMJc7L//KuuPKx6gW8HSp37ZCzvFujt/S8hZuAX9diMZ6bXtN12Y8MbWeR5WDcXNoiBolYWol5wtfgmoj4qz+05oqqUvfBDdVt6WUwCTNQwyk/g1yJDxucp9MZTj7xFYm89oKyMFv1IUSsAiLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se; spf=pass smtp.mailfrom=ferroamp.se; dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b=AY4ses1p; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ferroamp.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ferroamp.se
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e3e18c24c1so10411131fa.1
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 05:44:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1715085855; x=1715690655; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tsbjHZ4oF6OzYZ4G7o73ocZKjoIDcyU7RA+CqEB12r4=;
-        b=AY4ses1pQjZwUg7l43RFNggWigu5Dx2Wtk2wYh0IyR4EFY0CzCUp7ZCE8Ql14EtK1U
-         hGfXqhHmkSnrTh9yduh/RTNksFl7bxERIBxhz+C0Zdnw0RTfh9ERO5ykFch9t4IJJne+
-         +rRNRvVtOBJxn+Hs9uQJwzgH6DXHtKSbsNC8ACM2/Sw6UlvFI6NAwMhDzZbpnvOUyaAs
-         B3ohhHCFjEihel6LwD+5M9nuLRLj0XWt82G+NvK66AOtFHzXZB647qaPvuKXm9rVlsE6
-         ZlSzWopc8uQxX/TcpTBJyxvKck/nBxykAL3vcz4poA/7lKBIH+RZmwLICBvCRF8Gnp0E
-         7xCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715085855; x=1715690655;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tsbjHZ4oF6OzYZ4G7o73ocZKjoIDcyU7RA+CqEB12r4=;
-        b=DdHDMZM5t6RPccsqYJ/WCzxS1gQ/vhlmhOUzXbItBsAS2v2Y1kw/srT7G9Pnb2/rjB
-         P+8aAioOokYekE95N92nLum05+4FXP6QxR3HKSYVk/ZwxY8r04h4REii21qABdeWeG/w
-         3fvWjZTR+V/ZpshSBkXRvfX8umtGOSLkTqGh40OC3u8fRYLhe2Ww2k69I77nAFc1ZX/2
-         N1u2Ccvvb1mX6V40DPRJzMPpKLxk4CIXdwCBUFZniU7jhJ0csFAxozt6cQIYsPIQG6cJ
-         tokLDIXCcPGKApJcuFCAfjMaOyL0v5MmQ6Vcg31Vv5+vo7Ho5MEuqJtm6QibH80TarvC
-         8+2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXT6hxeXwkAuPvFPPhtMjs7xVR2JdSW1b+O6CIzmWS2dsaY/gpFO/Ni7ae3u8/gPik7Xe0LXBvejkT8wmPUX5b9e/kr0EZypJ/+Sg==
-X-Gm-Message-State: AOJu0YwBJBc2aVPfyyZbu1KQkC74OsPDe6bb8JXJW9YrfT2URFo7JFW6
-	0fQGKHLvmGYBkrKfiC8OYuIxcTt6CIbTpfmVwGj50dH8E83BzBMtQrIKy1cO92E=
-X-Google-Smtp-Source: AGHT+IECSYuhAFIO5Qpfm6EZY5kJxIESLcNoWa94sLoB+G7RdKTYP0/Ql0zcfk7jpD9ZOhmF48szIA==
-X-Received: by 2002:a2e:a173:0:b0:2d2:869a:55af with SMTP id u19-20020a2ea173000000b002d2869a55afmr8185336ljl.17.1715085854832;
-        Tue, 07 May 2024 05:44:14 -0700 (PDT)
-Received: from builder (c188-149-135-220.bredband.tele2.se. [188.149.135.220])
-        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b002e33be202e8sm965384ljn.72.2024.05.07.05.44.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 May 2024 05:44:14 -0700 (PDT)
-Date: Tue, 7 May 2024 14:44:12 +0200
-From: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-To: Piergiorgio Beruto <Pier.Beruto@onsemi.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	"Parthiban.Veerasooran@microchip.com" <Parthiban.Veerasooran@microchip.com>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"horms@kernel.org" <horms@kernel.org>,
-	"saeedm@nvidia.com" <saeedm@nvidia.com>,
-	"anthony.l.nguyen@intel.com" <anthony.l.nguyen@intel.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"corbet@lwn.net" <corbet@lwn.net>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-	"ruanjinjie@huawei.com" <ruanjinjie@huawei.com>,
-	"Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
-	"vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>,
-	"UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-	"Thorsten.Kummermehr@microchip.com" <Thorsten.Kummermehr@microchip.com>,
-	Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>,
-	"Nicolas.Ferre@microchip.com" <Nicolas.Ferre@microchip.com>,
-	"benjamin.bigler@bernformulastudent.ch" <benjamin.bigler@bernformulastudent.ch>
-Subject: Re: [PATCH net-next v4 05/12] net: ethernet: oa_tc6: implement error
- interrupts unmasking
-Message-ID: <ZjoiHMeKkab4XR-1@builder>
-References: <Zi1Xbz7ARLm3HkqW@builder>
- <77d7d190-0847-4dc9-8fc5-4e33308ce7c8@lunn.ch>
- <Zi4czGX8jlqSdNrr@builder>
- <874654d4-3c52-4b0e-944a-dc5822f54a5d@lunn.ch>
- <ZjKJ93uPjSgoMOM7@builder>
- <b7c7aad7-3e93-4c57-82e9-cb3f9e7adf64@microchip.com>
- <ZjNorUP-sEyMCTG0@builder>
- <ae801fb9-09e0-49a3-a928-8975fe25a893@microchip.com>
- <fd5d0d2a-7562-4fb1-b552-6a11d024da2f@lunn.ch>
- <BY5PR02MB678683EADBC47A29A4F545A59D1C2@BY5PR02MB6786.namprd02.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gMYeNzV63szQv+ZoaQ9fzc6TdJMniSSdwgGVn75+TJoMphCrm+JRI0oYMN8Rm6n37tb+PRgvQLs9PzLAsR6vRs2aQOFXWdM3QKLEAUz5SjgY3J/fIwwD1hFcTLDAPoXu56Mt/COfjjAkkq6nPskdirzuYNsnUOJD+5SY4+yP6sU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tGPbKqa1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23982C2BBFC;
+	Tue,  7 May 2024 12:51:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715086315;
+	bh=YkrG41OUg30UlrJKdM2bXKdavDQXZarnRBrRAJenv4U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tGPbKqa1QRN6Q8vFBcvwfLx5Wt0iXO2sD7KX/SqIxxdt7QCFRTz59ORppTJzP/E5E
+	 E+o5R2lTJKTnve0vuPp7cVVXZpzmLKXIOrZArK+Q6i6BeGTxTLNoaeobynnF1zW6pa
+	 pM1WTbYOysJHbgGRcD6z3H5idi+XFleUZu9ys5UFfGq503If2Ob2d2b7XpQsPM3a/a
+	 8q7Dj6g32Y+2DS+lXznIz4TvIhD3GdvEFdo5CyO1TwZs8vZxnqlpsymVbhUdvB7Lqk
+	 3fyNLOhyfENEckwYD0ia99Ne2XOAtcLZPo/G7tTHXEx474rUyeyQnlHsdZ7DosI1LZ
+	 LXSrzSxeS8jnw==
+Date: Tue, 7 May 2024 07:51:52 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH v2 03/11] dt-bindings: soc: mobileye: add EyeQ OLB system
+ controller
+Message-ID: <20240507125152.GA38845-robh@kernel.org>
+References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
+ <20240503-mbly-olb-v2-3-95ce5a1e18fe@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -118,33 +74,79 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <BY5PR02MB678683EADBC47A29A4F545A59D1C2@BY5PR02MB6786.namprd02.prod.outlook.com>
+In-Reply-To: <20240503-mbly-olb-v2-3-95ce5a1e18fe@bootlin.com>
 
-> The RXBOE is basically a warning, indicating that for some reason the SPI host is not fast enough in retrieving frames from the device.
-> In my experience, this is typically caused by excessive latency of the SPI driver, or if you have an unoptimized network driver for the MACPHY.
-
-Definetly tracks with what I'm seeing, got two macphys, one is sharing
-the bus with a can transiever, getting more RX overflows on that
-interface.
-
-> Thanks,
-> Piergiorgio
+On Fri, May 03, 2024 at 04:20:48PM +0200, Théo Lebrun wrote:
+> Add documentation to describe the "Other Logic Block" system-controller.
+> It deals with three platforms: EyeQ5, EyeQ6L and EyeQ6H. First two have
+> a single instance, whereas EyeQ6H has seven named instances.
 > 
-> Which is a bit ambiguous. I would hope it means the receiver has dropped the packet. It will not be passed to the host. But other than maybe count it, i don't think there is anything to do. But Ramón was suggesting you actually drop the frame currently be transferred over the SPI bus?
+> Features provided are:
+>  - Clocks, children to main crystal. Some PLLs and divider clocks.
+>  - Resets. EyeQ6H central, south, DDR0 and DDR1 do not have resets.
+>  - Pinctrl. Only EyeQ5 has such feature.
 > 
-> 	Andrew
+> Those are NOT the only registers exposed in OLB system-controllers! Many
+> individual registers, related to IP block integration, can be found.
+> 
+> We simplify devicetree references to OLB in two ways:
+>  - Compatibles exposing a single clock do not ask for a index argument.
+>  - Compatibles exposing a single reset domain do not ask for a domain
+>    index, only a reset index.
+> 
+> About pinctrl subnodes: all pins have two functionality, either GPIO or
+> something-else. The latter is pin dependent, we express constraints
+> using many if-then.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 375 +++++++++++++++++++++
+>  MAINTAINERS                                        |   2 +
+>  include/dt-bindings/clock/mobileye,eyeq5-clk.h     |  21 ++
+>  3 files changed, 398 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml
+> new file mode 100644
+> index 000000000000..bbd75b81166e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml
+> @@ -0,0 +1,375 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mobileye EyeQ SoC system controller
+> +
+> +maintainers:
+> +  - Grégory Clement <gregory.clement@bootlin.com>
+> +  - Théo Lebrun <theo.lebrun@bootlin.com>
+> +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+> +
+> +description:
+> +  OLB ("Other Logic Block") is a hardware block grouping smaller blocks. Clocks,
+> +  resets, pinctrl are being handled from here. EyeQ5 and EyeQ6L host a single
+> +  instance. EyeQ6H hosts seven instances.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mobileye,eyeq5-olb
+> +          - mobileye,eyeq6l-olb
+> +          - mobileye,eyeq6h-acc-olb
+> +          - mobileye,eyeq6h-central-olb
+> +          - mobileye,eyeq6h-east-olb
+> +          - mobileye,eyeq6h-west-olb
+> +          - mobileye,eyeq6h-south-olb
+> +          - mobileye,eyeq6h-ddr0-olb
+> +          - mobileye,eyeq6h-ddr1-olb
+> +      - const: syscon
+> +      - const: simple-mfd
 
-This was misscommunicated on my part. In my happy-hacking adventures I
-got better throughput when dropping more chunks in the driver code.
+You are getting rid of the child nodes, so you shouldn't need simple-mfd 
+any more.
 
---
-
-Suddenly I can't reproduce the hang, I'll give it one more attempt today
-though. Did some measurements with a better oscilloscope, I'm seeing a
-periodic latency of ~500us for clearing the irq, typically it's
-considerably shorter, and a periodic ~1ms silence on the wire.
-
-But since I can't reproduce the hang this is just performance related.
-
-R
+Rob
 
