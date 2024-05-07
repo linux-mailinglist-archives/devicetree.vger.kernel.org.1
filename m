@@ -1,126 +1,103 @@
-Return-Path: <devicetree+bounces-65389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3184F8BE1F6
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:23:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CBB8BE23F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:35:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62DF51C21C95
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 12:23:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DE142891B9
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 12:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C0615E211;
-	Tue,  7 May 2024 12:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883C6158D9C;
+	Tue,  7 May 2024 12:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="heZ0joYI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oIw1G/oQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1025215E1E5;
-	Tue,  7 May 2024 12:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5154E156F42;
+	Tue,  7 May 2024 12:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715084553; cv=none; b=X6sgvPLzPDSbs24hiHz6MYdzJo16GIM/YwbDgaoI1OqYa/WwQ9ptwJYzjcONXapmr7PxFo+bnaQescnvtFpN+QkSYeZy+VxREqrKllwp+RTUlKTrG6dbnslIbsjoj+2rnDTJwiTPCFLPp+SvtTs5f+wXXSSd97gJPNVpMg1GlLQ=
+	t=1715085350; cv=none; b=ug0tRw72oVs/orFH0toepE9RsGdVTZ3RwAy8LMGgRppfLvv+ncRQCTEOOZamqzsRA9UcMQq4XTMTwfC12q2P/9Snasa/w3CRfsvI/T1sQiKgyQdbk5l732jZJ+QR+2TFoSb26fWLfmRRtw2Av3O9HXSwkbrcV1CZxesi8SZDwtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715084553; c=relaxed/simple;
-	bh=6cQoncQ5unf3QFO+Zm6z73ucOUPvr7q1ARLhhcNcNiY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cV1/I4zsoD8CFc71kE4u/HdI1vkDgtizsNBpTJUtzde8G2tXoywvWD76NnBRntTPwm0LGsa0XbFRmxg9JYxXOWfpajY9wrnJ8BoOGqh3YRSo3P69g2cV2lS4NYXNAQHtm+sTg4dRfmYjs7Crk3pLDpZoSqZ80hgrEzmM89twnwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=heZ0joYI; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 447CMODs091036;
-	Tue, 7 May 2024 07:22:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715084544;
-	bh=VaPYXP7plLTdrxeb9bd/XeTAgqX+Y/r4AjC1Y9AxwXU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=heZ0joYIeGHwE/lPw2zbpmjfgbmw8oaFLg9XXlCtDbXfSr8LRt6xk2i3Rmi7B6a+t
-	 dzl2vr+b5rn/6QAH2KE/erw5LCtJ9TC6EOZnBa7FSDKjd/XwZZwKEZV/yZIsBVfqAc
-	 RRUGp6phh8TEfQYoaVq8rMIpbwm25K0Yyv/nZ1ek=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 447CMO1J050119
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 07:22:24 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 07:22:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 07:22:24 -0500
-Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 447CLwDS038074;
-	Tue, 7 May 2024 07:22:20 -0500
-From: Neha Malcom Francis <n-francis@ti.com>
-To: <robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>
-CC: <marten.lindahl@axis.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>, <n-francis@ti.com>
-Subject: [PATCH 5/5] arm64: boot: dts: ti: k3-j784s4-evm: Add TPS62873 node
-Date: Tue, 7 May 2024 17:51:58 +0530
-Message-ID: <20240507122158.3739291-6-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240507122158.3739291-1-n-francis@ti.com>
-References: <20240507122158.3739291-1-n-francis@ti.com>
+	s=arc-20240116; t=1715085350; c=relaxed/simple;
+	bh=LsmGeq70zt60QfE3cj3pndGAIZKzOL2F4FtFs2fO80w=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=RBs4vtd4JqtcOASeF5lcYVcNt28xE/VlEsBlagmq99YLUmJIoSUA0H8VEQh9ENvfuhYlXQhvKE823yKHwksjxfG/N17dsNI1/JaX1ZTFIAZqFW2CE/2tG2+YhCdHCzJ8IlPigV4iZyuD4wnVL+4CgZNQ4bBSZSqdXijcv/FM8KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIw1G/oQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91096C2BBFC;
+	Tue,  7 May 2024 12:35:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715085349;
+	bh=LsmGeq70zt60QfE3cj3pndGAIZKzOL2F4FtFs2fO80w=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=oIw1G/oQaH6QJ7LUBCSWj2KIl4GGSz9PdHcdmLDbLIVmyIBCOlP/LM0KIjUkBAaXR
+	 WNGUP4Zj/i4K14ZyqrwS7jBYybSsb3hHUX+YGW60mzwz/loSKX62oZxxKx5NkW4V3I
+	 /wwjC6gz4ucOsRsk1ywLrddJoN2mp6hQ01XRHuLIpjkDqxEBkkBjaq8lj8XJ8kxMRh
+	 HADHOf7YKDFDCeNFyL00HFblI96OwWOM1T3423QELHpZKdyEYEDKEWULNtLRTI203C
+	 mIi2XMGwN7rNGsw4AOv+eaa6HCL8eHbyXLcsa+DlHQ6//HCugWFP4pMT5OPCU80xD6
+	 tb90QlIe0AYcg==
+Date: Tue, 07 May 2024 07:35:46 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ krzk+dt@kernel.org, devicetree@vger.kernel.org, jonathanh@nvidia.com, 
+ conor+dt@kernel.org, adrian.hunter@intel.com, mkumard@nvidia.com, 
+ thierry.reding@gmail.com, linux-mmc@vger.kernel.org, andi.shyti@kernel.org, 
+ ulf.hansson@linaro.org, digetx@gmail.com, ldewangan@nvidia.com, 
+ wsa+renesas@sang-engineering.com, corbet@lwn.net, linux-doc@vger.kernel.org, 
+ linux-i2c@vger.kernel.org
+In-Reply-To: <20240506225139.57647-5-kyarlagadda@nvidia.com>
+References: <20240506225139.57647-1-kyarlagadda@nvidia.com>
+ <20240506225139.57647-5-kyarlagadda@nvidia.com>
+Message-Id: <171508534676.3540.5341170642240109274.robh@kernel.org>
+Subject: Re: [RFC PATCH 04/11] i2c: dt-bindings: configuration settings
 
-Add Tulip TPS62873 nodes for J784S4 EVM. These are step-down regulators
-that supply VDD_CPU_AVS and VDD_CORE_0V8 to the SoC.
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+On Tue, 07 May 2024 04:21:32 +0530, Krishna Yarlagadda wrote:
+> I2C interface timing registers are configured using config setting
+> framework. Document available properties for Tegra I2C controllers.
+> 
+> Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+> ---
+>  .../bindings/i2c/nvidia,tegra20-i2c.yaml      | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index 81fd7afac8c5..ccd91f266840 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -579,6 +579,28 @@ ldoa4: ldo4 {
- 			};
- 		};
- 	};
-+
-+	tps62873a: tps62873@40 {
-+		compatible = "ti,tps6287x";
-+		bootph-pre-ram;
-+		reg = <0x40>;
-+		regulator-name = "VDD_CPU_AVS";
-+		regulator-min-microvolt = <750000>;
-+		regulator-max-microvolt = <1330000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	tps62873b: tps62873@43 {
-+		compatible = "ti,tps6287x";
-+		bootph-pre-ram;
-+		reg = <0x43>;
-+		regulator-name = "VDD_CORE_0V8";
-+		regulator-min-microvolt = <760000>;
-+		regulator-max-microvolt = <840000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
- };
- 
- &mcu_uart0 {
--- 
-2.34.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.example.dts:37.20-50.15: Warning (i2c_bus_reg): /example-0/i2c@7000c000/config: missing or empty reg property
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240506225139.57647-5-kyarlagadda@nvidia.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
