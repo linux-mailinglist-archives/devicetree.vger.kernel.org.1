@@ -1,120 +1,234 @@
-Return-Path: <devicetree+bounces-65486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDCD78BE921
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:34:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 606C08BE92D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:36:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B94B1C239AF
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:34:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 839A61C2030F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D5216DEA9;
-	Tue,  7 May 2024 16:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1FB6FB2;
+	Tue,  7 May 2024 16:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nIrnwaFJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A0GSbALb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB7616D9C7
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 16:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E3154BEA;
+	Tue,  7 May 2024 16:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715099371; cv=none; b=eBzokJcVBxEys1lvN6sA9H9LtwpzF2BG8A2qSObm82dAA5Wycx2Ybm7DjQkp9dVfXFvR+mVDSKfmDQUi8UTDSjz59ltNFTooRuAMSz2O7XAWIvFYAwkb7loD4MiC7hOIdTV5nHQdyIm2g96rvmck589NzaCY4fNBHG1ykIsrQgc=
+	t=1715099478; cv=none; b=GStC4+78v/3KuTAU7mfT6pgVEHrRWzUQUpA5m2X83CHf2WXSUN+YHnOLdwsUkdLHTNxS284qdG1comfnLcExxavRk0JahNk4mYXm1+Yjni/psilhmevxobd12M3c3itMSCcXO3kE8cgnLKB4ho6WAgAi6OKkKoq2hOEeucNO5Os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715099371; c=relaxed/simple;
-	bh=gA40961915NjpJzym6L6HzsY7i//kdLIcIZ/CTYpdew=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UzkzwLV9QUo2ON1QksJTGfLOtPH68MCr3R57Ctt24oo0fvpH9TZe0zRZ7hvpp8+3TbKGUeJ24SH3xSK9l34Qp/qQUiT0CdSe20RPY/CgG8eqQPeUXwcne6VRtUG+XJoujlPEqXzbNGuGQIAEmVPtmQkG3Vpaq1z+bRG+BHbcWbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nIrnwaFJ; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3c96c096a32so1372303b6e.1
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 09:29:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715099368; x=1715704168; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hmBmzg39oPwlHH3+Q/yrquaQKff44gbWHvBa/1NwxMw=;
-        b=nIrnwaFJ5DoQ/kkLRHCJz/jYw7wYjDe16wQOs8zy+DnWaCpsy+AvColerosQspTrGu
-         yqfD4szdzlBPwbpahb1zDXZl3lLVgKA6szhpuV3yLQGhmIhjRPC+mhqNDRPJuHmzh+Lm
-         k9ZQZWAOltb1q/pIahheJLwQhpiROOKpqu+ic=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715099368; x=1715704168;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hmBmzg39oPwlHH3+Q/yrquaQKff44gbWHvBa/1NwxMw=;
-        b=wb2pM5IAR+lQl4/37787QgGw6+G5mtAlUdYlOIFMG/SwrvAZyBIzokic7nNuMFcL7e
-         RNrfzOLTce6Re67vOykw7nNyfKdeSQaiDRoyTFc2aWov1etrEWvP5TYx0vtHXegNRip3
-         RWoN1qRykSl3Yd70FHJaBZ4VuO6/RE57s6Lb7sJ9CiJFSegDsEz852rXsbC3aRnHxhFo
-         b9u186dqMTQaAu9xb06rsKneOw5en+SMtD+fOJKzVaCkveT7uHLnMePUOY7vNyotyv4U
-         Dzwy0haVHWfihxOlgpmQiG9vCJSCx/AZX8NZxLOTHk1ra/JJFyTwZUAImvQUt99eVJmj
-         8N5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUYqsS9X3yX0uyI7y1k5WRfWG4tWvNkN3AXht/+i30JUoX2tETn/NRbmaLk/DZAZeuyxLk6tx/oOm92sddJP3ae7uFkUOr+mm6t9A==
-X-Gm-Message-State: AOJu0YzDXZlsASXocfeyk5sh/KVSwViuL+L3mrArater6q8Af0H2wkZ6
-	H/0MZoeMSNc/wfLm9N/xs736us2SLOWHpECrYH+iZHS3g3u11pdRPfmtMAksG2BH+lxFIwUwx3M
-	=
-X-Google-Smtp-Source: AGHT+IGKPHWWwihc0S+5xkPBSkMjBhIGIA7BPWOSAQxCu+TbY0pW/3+TSYBbtoXdYXWYPRKrQUft0g==
-X-Received: by 2002:a05:6808:308b:b0:3c9:6b6f:b4a0 with SMTP id 5614622812f47-3c98532a514mr53178b6e.51.1715099366344;
-        Tue, 07 May 2024 09:29:26 -0700 (PDT)
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com. [209.85.160.173])
-        by smtp.gmail.com with ESMTPSA id a4-20020a0ce904000000b006a0f9e2da38sm4785030qvo.75.2024.05.07.09.29.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 May 2024 09:29:26 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-43ae23431fbso1121cf.0
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 09:29:25 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVrmw7l1tkXlWKv2grDorzulVpgKPJJ4C/CJLv7POWcGRghxfeLBv0jr6zGPSC8xto3Cr3wuwz9VXfmPPVCYbDVWZvHEi6Gk7tXfA==
-X-Received: by 2002:a05:622a:1243:b0:43d:a002:b with SMTP id
- d75a77b69052e-43da00202a4mr2608201cf.9.1715099364710; Tue, 07 May 2024
- 09:29:24 -0700 (PDT)
+	s=arc-20240116; t=1715099478; c=relaxed/simple;
+	bh=xf6vF2tLiDkxdORBNe7B9Y/dP2uQ/drLwUdwAmkrcok=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=p2FmEYJhkR2I7Ryvv6qlCf1Og4IXoW3TvUuuuvc+DiJ2IuTPCJ/M+DrJrijuDvsqGIZa6CW8KBqrukR0nPXE5tKTtbowQ+0zKtKrurSEGB4KxrEUvEK3XGjxzg8vjNEZAPhBKhxuyZ6LNs9KXl6c0Jb97sF0vdGyDpKjd72HEks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A0GSbALb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 447EQX3A024156;
+	Tue, 7 May 2024 16:31:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:in-reply-to:references; s=
+	qcppdkim1; bh=sEybrDKAPFJvrVijAN/jPDUy4nJOcnX3S0FLFrbEuEQ=; b=A0
+	GSbALbLY1tGVoTdMik5SlnMEx8oz52PpI6chAuSawAlQJAgiLDry1fLi/gF7ch6X
+	3H/xOq1d+dAXB1odkeLWXpnI5EDtVsPCPrC4W1DQFKAiuEwBCNKbnGtNThEdw2Vf
+	mdrW9lZSb06Y/OZlj/kkyB2ITfVbTqhifxGQFwyzGh4z3pojVpk5t4boXrH0/28/
+	T/BMZ/2lNFneXSYl0GvBG2UiU49c8YE8Y6a+Y9J6ICuL6PZ70IFd5M3sRTWWzGh0
+	pEgldUzyg+sI5w8eBcqFSxU9aIHGjAfhVka0GIYUV1ZZBBEZNfFfj+MQDb9A7+Db
+	j35NM5AJ+72J6PGWtYLQ==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyp2frc56-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 May 2024 16:31:10 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 447GV7vo019583;
+	Tue, 7 May 2024 16:31:07 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3xwe3krrx3-1;
+	Tue, 07 May 2024 16:31:07 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 447GV78H019578;
+	Tue, 7 May 2024 16:31:07 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-vvalluru-hyd.qualcomm.com [10.213.106.176])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 447GV6kq019576;
+	Tue, 07 May 2024 16:31:07 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 482827)
+	id 4B9A75006A2; Tue,  7 May 2024 22:01:06 +0530 (+0530)
+From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+To: andersson@kernel.org
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_abhinavk@quicinc.com,
+        quic_nankam@quicinc.com, quic_vvalluru@quicinc.com, robh@kernel.org
+Subject: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+Date: Tue,  7 May 2024 22:00:45 +0530
+Message-Id: <20240507163045.28450-1-quic_vvalluru@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+References: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: DsHK6veQ039EtKq0nzYV5JB_UfF5P8jv
+X-Proofpoint-ORIG-GUID: DsHK6veQ039EtKq0nzYV5JB_UfF5P8jv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-07_09,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 adultscore=0 spamscore=0 phishscore=0
+ impostorscore=0 bulkscore=0 clxscore=1015 mlxlogscore=949 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2405070112
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240424023010.2099949-1-yangcong5@huaqin.corp-partner.google.com>
- <20240424023010.2099949-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=VFk3epSxksh+n_LupTiZp=gK=LB2NESGy5iNF=5xFAmg@mail.gmail.com> <CAHwB_NJMWR883kjshtfBFuDBcM9Av87Fx2Jf4d=3_5LLnhUFXg@mail.gmail.com>
-In-Reply-To: <CAHwB_NJMWR883kjshtfBFuDBcM9Av87Fx2Jf4d=3_5LLnhUFXg@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 7 May 2024 09:29:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Wjgc4F2zMhzeLY1hmRN1PTjEpZ7nbYBCp8RPMM7LhPbg@mail.gmail.com>
-Message-ID: <CAD=FV=Wjgc4F2zMhzeLY1hmRN1PTjEpZ7nbYBCp8RPMM7LhPbg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/7] drm/panel: himax-hx83102: Break out as separate driver
-To: cong yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	robh+dt@kernel.org, conor+dt@kernel.org, airlied@gmail.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
+reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
+Bridge supplies are Vdd connected to input supply directly
+and vcc to L11c. Enable HDMI output, bridge and corresponding
+DSI output.
 
-On Tue, May 7, 2024 at 6:44=E2=80=AFAM cong yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> > Speaking of which, some of the panels that you add to this driver seem
-> > to disable extended commands at the end of their init sequence, but
-> > this one doesn't. Should it?
->
-> I  have confirmed with himax that disable extended commands  used
-> at the end to prevent accidental writing. And our inital code has been
-> confirmed by himax before FSI. Considering that this has been on the
-> market for a long time and there are no feedback issues, I think it shoul=
-d
-> remain the same as `panel-boe-tv101wum-nl6.c`.  What do you think?
+Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+---
+v3: - Updated commit text
+    - Arranged nodes in alphabetical order
+    - Fixed signoff
+    - Fixed drive strength for lt9611_irq_pin
+    - Removed 'label' from hdmi-connector, which is optional
 
-It's fine with me to leave it the same as `panel-boe-tv101wum-nl6.c`
-had it. At least it should be more obvious to people that there's a
-difference now. ;-)
+v2: Addressed dtschema errors
+	- Fixed lt9611-irq
+	- vdd-supply error to be ignored, as it is connected to
+	  input supply directly, on rb3gen2
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 85 ++++++++++++++++++++
+ 1 file changed, 85 insertions(+)
 
--Doug
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index a085ff5b5fb2..24b0b9525ea4 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -52,6 +52,17 @@
+ 		};
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con: endpoint {
++				remote-endpoint = <&lt9611_out>;
++			};
++		};
++	};
++
+ 	reserved-memory {
+ 		xbl_mem: xbl@80700000 {
+ 			reg = <0x0 0x80700000 0x0 0x100000>;
+@@ -530,6 +541,45 @@
+ 			   <GCC_WPSS_RSCP_CLK>;
+ };
+ 
++&i2c0 {
++	clock-frequency = <400000>;
++	status = "okay";
++
++	lt9611_codec: hdmi-bridge@2b {
++		compatible = "lontium,lt9611uxc";
++		reg = <0x2b>;
++
++		interrupts-extended = <&tlmm 24 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
++
++		vcc-supply = <&vreg_l11c_2p8>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt9611_a: endpoint {
++					remote-endpoint = <&mdss_dsi0_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				lt9611_out: endpoint {
++					remote-endpoint = <&hdmi_con>;
++				};
++			};
++		};
++	};
++};
++
+ &i2c1 {
+ 	status = "okay";
+ 
+@@ -587,6 +637,21 @@
+ 	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+ };
+ 
++&mdss_dsi {
++	vdda-supply = <&vreg_l6b_1p2>;
++	status = "okay";
++};
++
++&mdss_dsi0_out {
++	remote-endpoint = <&lt9611_a>;
++	data-lanes = <0 1 2 3>;
++};
++
++&mdss_dsi_phy {
++	vdds-supply = <&vreg_l10c_0p88>;
++	status = "okay";
++};
++
+ &mdss_edp {
+ 	status = "okay";
+ };
+@@ -711,3 +776,23 @@
+ 	function = "gpio";
+ 	bias-disable;
+ };
++
++&pm7250b_gpios {
++	lt9611_rst_pin: lt9611-rst-state {
++		pins = "gpio2";
++		function = "normal";
++
++		output-high;
++		input-disable;
++		power-source = <0>;
++	};
++};
++
++&tlmm {
++	lt9611_irq_pin: lt9611-irq-state {
++		pins = "gpio24";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++};
+-- 
+2.17.1
+
 
