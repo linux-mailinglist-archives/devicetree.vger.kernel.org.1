@@ -1,166 +1,157 @@
-Return-Path: <devicetree+bounces-65365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2178BDF15
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:56:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2DF8BDF1C
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70EE2B23A43
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:56:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C054C1F2261A
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:57:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8EB14E2D0;
-	Tue,  7 May 2024 09:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F7914E2F9;
+	Tue,  7 May 2024 09:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t0R82+7f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hk1sMRk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F91314EC65;
-	Tue,  7 May 2024 09:56:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3457D14E2DA;
+	Tue,  7 May 2024 09:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715075764; cv=none; b=Sn8qN1pDSol+uk/6NBzne9QFqO8y5K8D6T9Q0+vMBjmjMDsLPcQ3V3y/eZ+M5asFtQ+f38T1TLoQd5GpLmVST2XIcWyuicvWuebZXHYskVfiv+hDuvSnaEUZClpGGE0ccWFn7DxCnwZPSZO9hH3NbTNsZyjxNNQzOwMM4Nc+nnk=
+	t=1715075868; cv=none; b=iZFj8DYAOcboTjb9yR/5EgzuR4KMHIJw/GgZzwDo6hbdDYrSpu5rnf523Erb8gHsLz4iS8hrXgfzW4900m3792sIuQj+efcqb0AzWyJmZ0tDPs/asXFA4e82yyH83gHaERhqb1W6JrBxxcb/WzgWhLbq9Ghg7QspW4s7Wzqsyck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715075764; c=relaxed/simple;
-	bh=pzBYIDYPxxaFkxuKahT7iMaeKL1h19wPwuGYCEHqVeU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=siVWbep8GypXLIKJEJ3vzXntNuneKGIJfBhPsL3oPyUAxN/BvFPAL1HOMq9iOw5pt+uctJlMu1pWvWIY0s9UVrYYiQeAmFlJGOA2UasjD+2jdp0Mmy5x8jdYhsgDEVwlw9KZQ8rhgfxZC+FaSMb2K/jBWvFw7yj5VEmW+SS0GH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t0R82+7f; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4479tvtT107422;
-	Tue, 7 May 2024 04:55:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715075757;
-	bh=N17m9LzgCTati8EKmN4u+FCakx9xKHwIfJ2kC2zewIU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=t0R82+7fN0mf2mPZwWJWs/+OYC3s2mPXtf6ieThhSqhOimMVbw7/cmodUxjqqMeR2
-	 qZXcKoUg44l73LfnLP4qhrrUhDiC0dvPgPOVcr2hXiqdiSeU0z6Q9/Z9hRAkKeC+lX
-	 A9oIYJsGMf9Cr+f/1BPdKy6F7WEK9U9u0pRu3Egk=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4479tvcX034259
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 04:55:57 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 04:55:56 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 04:55:57 -0500
-Received: from uda0500640.dal.design.ti.com (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4479tjn9007273;
-	Tue, 7 May 2024 04:55:53 -0500
-From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <srk@ti.com>, <rogerq@kernel.org>,
-        <r-gunasekaran@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-j784s4-evm: Enable USB3 support
-Date: Tue, 7 May 2024 15:25:45 +0530
-Message-ID: <20240507095545.8210-3-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240507095545.8210-1-r-gunasekaran@ti.com>
-References: <20240507095545.8210-1-r-gunasekaran@ti.com>
+	s=arc-20240116; t=1715075868; c=relaxed/simple;
+	bh=cOslNnFXMgXOobE/xiF5+42V/TZM+XXhX8L45V5ggnc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Mm2waSi+wxIcqy3H8gfCpwfSFvhIz7rPvEHJgaNWZC/KBZYvmSS4p00CDV30GtpAP3TZJKUS6QGLuWLVJiT6PiyvDpE6c7M4GL5LE8gi8UhGISzYVrmoJ6CyxRJJrkj2duEZt8Y2Xwt/gOZnMyWM+TUSvRGKo+DxUL1FZXv4nh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hk1sMRk7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B5D91C2BBFC;
+	Tue,  7 May 2024 09:57:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715075867;
+	bh=cOslNnFXMgXOobE/xiF5+42V/TZM+XXhX8L45V5ggnc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=hk1sMRk7Y1YNUlCqbAckbD6+X7qSO5Pwbilp0Yszo/3BhDFSVfXmy7EledvHTb0BP
+	 3g1OLSDokasibZhG/iEEoNiNDv8UyDj5hV652ojB9pniJgV/dGZnu+K8VdfieIxxvY
+	 PihywliFmrC3n2S4oQ8ZzK5UkKrEX7tuEJO/a8zc0a3ehG3bzu0Eb52O7GOpBG/J5T
+	 GDBaNCtJaxJZrXMd7T0Xbs/LFchsrlsLASnYqbijuchSCFn5KysVTBs4h8mhsR7n7b
+	 rREc4YQChp+Ay4lR8yxqtU9xTtW28Fxr4rXhRx1iM5g83OMYcabssKHY9QU+H7QUO8
+	 fEG/5nBxYQXWw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A31B2C10F1A;
+	Tue,  7 May 2024 09:57:47 +0000 (UTC)
+From: =?utf-8?q?Noralf_Tr=C3=B8nnes_via_B4_Relay?= <devnull+noralf.tronnes.org@kernel.org>
+Subject: [PATCH 0/5] drm/tiny: panel-mipi-dbi: Support 18 bits per color
+ RGB666
+Date: Tue, 07 May 2024 11:57:25 +0200
+Message-Id: <20240507-panel-mipi-dbi-rgb666-v1-0-6799234afa3e@tronnes.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAX7OWYC/x3MTQqAIBBA4avErBuwNPu5SrQonWqgTBQikO6et
+ PwW7yWIFJgiDEWCQDdHvlxGVRZg9tlthGyzoRa1Eko06GdHB57sGe3CGLZFa42KhJRt11ptesi
+ tD7Ty83/H6X0/IxsMwmcAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
+ Tommaso Merciai <tommaso.merciai@amarulasolutions.com>, 
+ =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1715075866; l=3259;
+ i=noralf@tronnes.org; s=20221122; h=from:subject:message-id;
+ bh=cOslNnFXMgXOobE/xiF5+42V/TZM+XXhX8L45V5ggnc=;
+ b=41Zf668TAp8cqriNW2DsPKYmEM4c0aWJfyLBTOF67tWFBNUJC+z5QyZpMG+t0ClldrRxfxLhC
+ dIZZ21CwkQbC+e8kcN2QKeslmVL7sLNYD83//eoBfwdWqMRYmasnMFp
+X-Developer-Key: i=noralf@tronnes.org; a=ed25519;
+ pk=0o9is4iddvvlrY3yON5SVtAbgPnVs0LfQsjfqR2Hvz8=
+X-Endpoint-Received: by B4 Relay for noralf@tronnes.org/20221122 with
+ auth_id=8
+X-Original-From: =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+Reply-To: noralf@tronnes.org
 
-From: Matt Ranostay <mranostay@ti.com>
+Hi,
 
-The board uses SERDES0 Lane 3 for USB3 IP. So update the
-SerDes lane info for USB. Add the pin mux data and
-enable USB3 support.
+To my suprise I have discovered that the MIPI DBI specification does only
+list RGB111 as a pixel format for the Serial Interface (Type C).
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+For the parallel interface type (Type A and B) it lists: RGB332, RGB444,
+RGB565, RGB666 and RGB888.
+
+I have never read the specification closely enough to discover this always
+assuming that the datasheets for the various MIPI DBI compatible
+controllers I've looked at over the years did follow the specification
+when they supported RGB565 and RGB666 on the serial interface.
+
+So it is quite clear that the industry has chosen to extend the standard
+and provide support for more pixel formats over the serial interface.
+
+drm_mipi_dbi and its predecessor fbtft support only RGB565 over SPI since
+RGB666 uses 3 bytes per pixel instead of 2 bytes, severly impacting the
+framerate.
+
+The reason I started to look at this is that there seem to be an increase
+in cheap SPI displays that is based on the ILI9488 controller. The
+datasheet for this controller states that it supports RGB565, but
+experience[1] shows that this is not true and that the controller only
+supports RGB666 over SPI.
+
+I have known for some time that the ILI9486 controller does not support
+RGB565 over SPI, it only supports RGB111 and RGB666. Some display
+breakoutboard manufacturers have solved this by putting a shift register
+in front of the parallel bus on this controller in order to support
+RGB565. This requires some custom code when writing to the SPI bus as
+shown in the tiny/ili9486.c driver. The downside is that these displays
+are really slow due to the slow shift registers used.
+
+This patchset documents the defacto industry standard wrt pixel formats
+over SPI and adds support for RGB666 in the panel-mipi-dbi driver.
+
+There have been two previous attempts to add a DRM driver for
+ili9488[2][3]. The panel-mipi-dbi driver is a generic MIPI DBI driver
+supporting controller initialization via a firmware file and with the help
+of this patchset it will support ILI9488 based SPI displays.
+
+[1] https://github.com/notro/panel-mipi-dbi/issues/2#issuecomment-2016857690
+[2] https://lore.kernel.org/dri-devel/cover.1592055494.git.kamlesh.gurudasani@gmail.com/
+[3] https://lore.kernel.org/dri-devel/20221018164532.1705215-1-tommaso.merciai@amarulasolutions.com/
+
+Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
 ---
-Changes since v2:
------------------
-* No change
+Noralf Trønnes (5):
+      dt-bindings: display: panel: mipi-dbi-spi: Add a pixel format property
+      drm/mipi-dbi: Remove mipi_dbi_machine_little_endian()
+      drm/mipi-dbi: Make bits per word configurable for pixel transfers
+      drm/mipi-dbi: Add support for DRM_FORMAT_RGB888
+      drm/tiny: panel-mipi-dbi: Support the pixel format property
 
-Changes since v1:
-----------------
-* Fixed dtbs_check warning by renaming 'main-usbss0-pins-default'
-  to 'main-usbss0-default-pins'
+ .../bindings/display/panel/panel-mipi-dbi-spi.yaml | 31 +++++++++
+ drivers/gpu/drm/drm_mipi_dbi.c                     | 76 +++++++++++++++-------
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c              | 55 +++++++++++++++-
+ include/drm/drm_mipi_dbi.h                         | 10 +++
+ 4 files changed, 148 insertions(+), 24 deletions(-)
+---
+base-commit: 0209df3b4731516fe77638bfc52ba2e9629c67cd
+change-id: 20240405-panel-mipi-dbi-rgb666-4e033787d6c9
 
-v2: https://lore.kernel.org/all/20240506052044.8228-3-r-gunasekaran@ti.com/
-v1: https://lore.kernel.org/all/20240502053615.29514-3-r-gunasekaran@ti.com/
-
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 41 ++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index d511b25d62e3..a2d3cba0423e 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -336,6 +336,13 @@
- 			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
- 		>;
- 	};
-+
-+	main_usbss0_pins_default: main-usbss0-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
-+		>;
-+	};
- };
- 
- &wkup_pmx2 {
-@@ -1041,6 +1048,40 @@
- 				 <&k3_clks 218 22>;
- };
- 
-+&serdes0 {
-+	status = "okay";
-+
-+	serdes0_usb_link: phy@3 {
-+		reg = <3>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz0 4>;
-+	};
-+};
-+
-+&serdes_wiz0 {
-+	status = "okay";
-+};
-+
-+&usb_serdes_mux {
-+	idle-states = <0>; /* USB0 to SERDES lane 3 */
-+};
-+
-+&usbss0 {
-+	status = "okay";
-+	pinctrl-0 = <&main_usbss0_pins_default>;
-+	pinctrl-names = "default";
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes0_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
-+
- &serdes_wiz4 {
- 	status = "okay";
- };
+Best regards,
 -- 
-2.17.1
+Noralf Trønnes <noralf@tronnes.org>
+
 
 
