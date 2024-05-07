@@ -1,94 +1,63 @@
-Return-Path: <devicetree+bounces-65302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C178BD986
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 04:48:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE10B8BDA11
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 06:13:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22C901F22717
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 02:48:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFF4B1C22A32
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 04:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C1F4C619;
-	Tue,  7 May 2024 02:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62BCF42A97;
+	Tue,  7 May 2024 04:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CMibQX2X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rSllRN4Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8BB3D0AF;
-	Tue,  7 May 2024 02:48:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3282B54911;
+	Tue,  7 May 2024 04:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715050086; cv=none; b=goNB127yTDQbCHPpjgzccFTb1GPSF19dXhYTEDGA1gyj4LS3oDZJTuwnNRVQLzyKaS/zgDRdA8YsoM5ZQ6xGQM7/j2FkWC52RiFCVVvDmITTzK85fxL3OC1I2H9dwSXvO1WRCM/PhuAVenW8s9GCioQ85QMDfsdT+r3H49Uf77E=
+	t=1715055231; cv=none; b=KQ30GjwvcEs/KvTy6J1mRfO0Qopilh94EeriZ/cz/zA/v7EenX4iVX3q//8iT5KU81FDFY2frn4is9WYXns/XCKvzbhQMP2x4j/X180xYG3JlH4hy+NxHq40gQ+XN5cgD0MCSrhMa9C6GF7G6t0lLXRdqHDWlTONRW+XObCYseI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715050086; c=relaxed/simple;
-	bh=fPoxLXJ3y4JvA0eBPT3hLbERZiBjchIAQdBby/myRK4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Fuf8AHdwUZriMw+rMyFn0mXwy6764OHPz0I2XHTHtZz1y7byV7wepNgSDzspoqknG5WIn2AP8OoM2Oalx7+6uPP1pKxYq2dKzJrUGzcxQWcX4EKffBp7JFL9YEXFCa3pOODeYx8YiwGyXcyYz47LaZUspLZAa49kbbk56tx01PM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CMibQX2X; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-23d477a1a4fso1981399fac.3;
-        Mon, 06 May 2024 19:48:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715050084; x=1715654884; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B+2Yi0bAJKr/RmDXQertnEjM4vkBzvytl6JH2ermaTQ=;
-        b=CMibQX2XPZiifiivkDaPuvRldqwng7gnGLxitt1IN9O8hm7lNjJDBJNkXBK5x11bma
-         2ye76lE04AT+rG0plJQ0EecSRjqYxUtAxshEH4MCulU4wPL7eYCpxCG6QRiSohoffyqt
-         0LUtDpBoVyONTpWrrQnYqZFw01t4wP27fGKmPkREOQj7PV6Mrzovr72hkkUu4MuA6Kia
-         fqQT19ZR3U7LMt9KDiwoI4gIhUNu5N8Y267p2blCK6PZpgKB8ByjhvKVPRR90jb5dpx7
-         iytnxEtbc6pSHsqm+uCUWcY0bVOq7ielZQzWIBLHhTAtEsBP6ihf0Yf5qpYYyqjvfP9G
-         IfkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715050084; x=1715654884;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B+2Yi0bAJKr/RmDXQertnEjM4vkBzvytl6JH2ermaTQ=;
-        b=DFrO7TppBD1BYo6JAFr/1omUydGT2pGDbh5aza6D8xuma/JJWs6p16nIckkuXRjgcu
-         QGTGiGflharBTudkPPYo4aufodAHUxSF4mmg1qH89JIkKg6tIEnTwxt5J6YFwrD4m/kx
-         V8RHtmExZwRHI9D2IUdS3Xl5rAAK4N/OIr8GlEiJi9QfSmxnGJ/lFTEhsAurijUIXyy3
-         4C3S1ox533h3iE8u4Z9EAKLubAUUoyEKTsK90dAza08K0g6PHWJwynAmHwhfq/TgdhPQ
-         9/B0rorfbZIKqX+gZ4W9/n216Gc93mZ41ZKUIpyTUAdO/u1q3bxZydQQB4uSf2OLRwW+
-         62DA==
-X-Forwarded-Encrypted: i=1; AJvYcCXTb/hn8K15qgH9EVNOJLPZfp1TOtlG0xZFcNb9/Y82BVv6myXts1v5Wpv9xWIfVp12qsPmt8+QBK3XeKjUnhKT40NTqQOyRiBMEnbc2eH4PJl3jaiPUCB5tga0DjlnDnWjbOrqkvDvrfVQuLJGvZf/O5fUEBB+vSBWQ7C4bWG3pnYsHgshEihZcMWG6QNyKTFMc+iV/cBu9MKAJmZO0zM=
-X-Gm-Message-State: AOJu0Yz9tV9SxG6/73aLABXj8MXzjctpBfD6qdFFooRxsaFnGTV3yMI/
-	5MdLsErh4158U1I9h3Bn5JTNNpDGdCxcgnAk9hjiuztze3uZbRXw
-X-Google-Smtp-Source: AGHT+IEJtWYKDRvNU/yVKOg4A3pz537ZV2ldoO1wACQTYe6gsoPCrXTTJ5sVgICq2SqIVXCsWUaWZg==
-X-Received: by 2002:a05:6871:7410:b0:23c:737f:5bcf with SMTP id nw16-20020a056871741000b0023c737f5bcfmr16880218oac.8.1715050084160;
-        Mon, 06 May 2024 19:48:04 -0700 (PDT)
-Received: from nukework.lan (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id hg13-20020a056870790d00b002396fd308basm2333895oab.35.2024.05.06.19.48.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 May 2024 19:48:03 -0700 (PDT)
-From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1715055231; c=relaxed/simple;
+	bh=DKpFFQJLudXl5q5EDowTbB8AIlbECgKiTc8spqPSV7w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=W1TCLpjvL6MOuhIwumeXcmrjrURnv74HPrNcofnSFm6XE5brFPIVZutikKPDbwTN47zg8q1OIk1OSqYBTonoHzXIHxzNl2oBQ7LRPLb69VqJtcR4D3x2Q7oBoQuDNSzIry5Q9jC5iNopsutrlHrXBSt824zo85O3u0aG/Pkj6w0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rSllRN4Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF888C2BBFC;
+	Tue,  7 May 2024 04:13:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715055230;
+	bh=DKpFFQJLudXl5q5EDowTbB8AIlbECgKiTc8spqPSV7w=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rSllRN4QHUKvRMyoS8yZW0F2AwQZhSttdbSiC9Q22IV+Lm/n2D6IjNBVOp8oyFV+G
+	 b4Azf7LNAeFS553mVgf4vI+9ZBVPLQ5ynoT8jCv/5+CBQgskl5a7OGVDHzc0EEzIof
+	 yWAhwSq+YPNqgD6kvKp5fD12VCCv3Hljlpg8XkSXU46/EnnkpSCrqYyfVQZx3S34tY
+	 LV+QagkNJ47NCBvXoB3MIsjo8mOc/XJwZCFWTNKWBzeWnnvKKoKfhC9wA+HStz9bLZ
+	 JOXz9jbeP9v9/AQ6kEWBVGdwa+mk5YCm90/zIsxgaUg8gHtPsX4mKfCFrzlT6l+IxN
+	 y7q6x1bzMXRKQ==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 3DF815FE3B; Tue,  7 May 2024 12:13:48 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>,
-	linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: ipq9574: add MDIO bus
-Date: Mon,  6 May 2024 21:47:58 -0500
-Message-Id: <20240507024758.2810514-2-mr.nuke.me@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240507024758.2810514-1-mr.nuke.me@gmail.com>
-References: <20240507024758.2810514-1-mr.nuke.me@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH RESEND v5 0/2] regulator: sun20i: Add Allwinner D1 LDOs driver
+Date: Tue,  7 May 2024 12:13:41 +0800
+Message-Id: <20240507041343.272569-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,39 +66,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The IPQ95xx uses an IPQ4019 compatible MDIO controller that is already
-supported. Add a DT node to expose it.
+From: Chen-Yu Tsai <wens@csie.org>
 
-Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
----
-changes since v1:
- - pad "reg" address to eight digits with leading zeroes
+Hi,
 
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+This is a resend of the Allwinner D1 LDO driver series, separated by
+subsystem. This part contains just the regulator driver bits. The sunxi
+SRAM binding part will be sent out after the merge window due to a
+conflict in next.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 7f2e5cbf3bbb..ded02bc39275 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -232,6 +232,16 @@ rng: rng@e3000 {
- 			clock-names = "core";
- 		};
+Original cover letter:
 
-+		mdio: mdio@90000 {
-+			compatible =  "qcom,ipq9574-mdio", "qcom,ipq4019-mdio";
-+			reg = <0x00090000 0x64>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&gcc GCC_MDIO_AHB_CLK>;
-+			clock-names = "gcc_mdio_ahb_clk";
-+			status = "disabled";
-+		};
-+
- 		qfprom: efuse@a4000 {
- 			compatible = "qcom,ipq9574-qfprom", "qcom,qfprom";
- 			reg = <0x000a4000 0x5a1>;
---
-2.40.1
+This series adds the binding and driver for one of the two pairs of LDOs
+inside the Allwinner D1 SoC. I am splitting up the two pairs of LDOs to
+unblock merging the SoC devicetree; the analog LDOs depend on the audio
+codec binding, but they are not required to boot.
+
+A binding and driver change is required for the SRAM controller, to
+accept the regulators device as its child node.
+
+The example for the regulator device binding is in SRAM controller
+binding document, per Rob's request to keep MFD examples in one place.
+
+Because of this, at least the first 3 patches need to be taken together
+through the regulator tree, though it should be fine to merge the whole
+series that way.
+
+Changes in v5:
+ - Correct the voltage calculation for the non-linearity around 1.6 V.
+
+Changes in v4:
+ - Fix the order of the maintainer/description sections
+ - Replace unevaluatedProperties with "additionalProperties: false"
+ - Drop the analog LDOs until the codec binding is ready
+ - Drop the analog LDOs until the codec binding is ready
+ - Remove unevaluatedProperties from regulators schema reference
+ - Check the compatible string instead of the node name
+
+Changes in v3:
+ - Add "reg" property to bindings
+ - Add "unevaluatedProperties: true" to regulator nodes
+ - Minor changes to regulator node name patterns
+ - Remove system-ldos example (now added in the parent binding)
+ - Adjust control flow in sun20i_regulator_get_regmap() for clarity
+ - Require the regulators node to have a unit address
+ - Reference the regulator schema from the SRAM controller schema
+ - Move the system LDOs example to the SRAM controller schema
+ - Reorder the patches so the example passes validation
+
+Changes in v2:
+ - Remove syscon property from bindings
+ - Update binding examples to fix warnings and provide context
+ - Use decimal numbers for .n_voltages instead of field widths
+ - Get the regmap from the parent device instead of a property/phandle
+
+
+
+Samuel Holland (2):
+  regulator: dt-bindings: Add Allwinner D1 system LDOs
+  regulator: sun20i: Add Allwinner D1 LDOs driver
+
+ .../allwinner,sun20i-d1-system-ldos.yaml      |  37 +++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sun20i-regulator.c          | 156 ++++++++++++++++++
+ 4 files changed, 202 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+ create mode 100644 drivers/regulator/sun20i-regulator.c
+
+-- 
+2.39.2
 
 
