@@ -1,984 +1,288 @@
-Return-Path: <devicetree+bounces-65578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528E88BEE2D
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:36:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E67D38BEE3F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFC2E1F22EA7
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:36:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A648288580
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F488847C;
-	Tue,  7 May 2024 20:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C05D2E62C;
+	Tue,  7 May 2024 20:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bk2Vj8lR"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="nkYxF85O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2057.outbound.protection.outlook.com [40.107.247.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C93D18733D
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 20:36:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715114212; cv=none; b=YZupiwZuzigHNVPs8HtlAeWf8qZ4fal9PuNeTA5n+fwjv3YdNnu3gOB/dZETHp3ppoTv4DnnTdrqoinsjfTuQUd9dgoW7iphdD9sYnHwTAR9ZVcJdQuu1i3vmOuxlSvoSuhGYjUfF7rqWu7Dt0lXzp0v5kPViQNJEkQAepFisFE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715114212; c=relaxed/simple;
-	bh=oRcaHg1iB9c0i8f57plXCYo8D/VSzLFUwIhRNLalwIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cb6yBhqvftMi3TcjlZ2miI5b48Wt+jzLRx86l0Jhzo4RMSn8wTOM+HDT6BYOn2S9pHptacetKHWwZK0kjk06MyZqbMNjm6DK134s5aoe7EcltYh3oPyLw4bhbgSc2IIfzOCmzF9+yAWBjQZp8zGkEFAa9kGVD4jH56t3mWNpkFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bk2Vj8lR; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6ee13f19e7eso3013850b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 13:36:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715114209; x=1715719009; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5eHmO1acyRMILHCGfhCwyzv3k0Gt6ufc2SlVFhLCwVs=;
-        b=Bk2Vj8lRM9h7PXEmS7Kw7ZFU8PbWxSJUjtgTvHy+K1OS0EiF3rtPY1YxSgSQJBfWLI
-         tHDunJ/KpBwipUCKCMVHmPMVEPBXYFGuuRVZS9xY5At80Gvlf5K5S3jzvWj8nVxZVZDL
-         mt9Kp8v/t4/L1c5YZsfYoEMe2kBGJbsvHqaMR6Tzddf6wUr1flXh+t98QaeyQj6RGKN4
-         w5GJsFlVhhNZuKvyleko+MvWTGol5sPvPx2Lzqb2Xu7D1WuXHrMVIvdvzLCpq2qE+qOd
-         nx9MEczoQ8KtnxUEVMxfYpql3P0FP1/BDa9qTI9IJb//77OhJJAO+1SLTXD9Xkv/qAnM
-         RZTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715114209; x=1715719009;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5eHmO1acyRMILHCGfhCwyzv3k0Gt6ufc2SlVFhLCwVs=;
-        b=N69adghADVKVA/dD64NA8Fuk6CBgEZzE5v88CxT6odphRwG2RTOfvDulY4SnmlktR0
-         hukj1Ij5aPu09SGYUTlpQD2yYZFic8WGguqrwJiHNxShl1pnQogoBsMZgB0uyB2i5b1E
-         NQf4RimZLBSwKQ2bNi3xriChyeidg88rwkJavaMGmrtUDFVmgnG6pG55KT2aVe/7Zhew
-         +fb4xCxKqkFPQwz7NxzQ50nBtBVe092sg3+uYmQE9a7dE69l2xXT2AxE/ELhE3Edc7U6
-         S9A5PGS3xyh2KS2Rx/5aW8nbUHhTSSkNnzkfF2q4cQiHWAISTUWG/1Jh4YWhjLkNq1ec
-         /syw==
-X-Forwarded-Encrypted: i=1; AJvYcCXC6WkwnDjipBWWxJl915qt3PzSD+Rm+XeuH6P6S9lpqhGVbpb3ZaFZjttALSgquru3/9/Cj7OfyNmP7BbHGY9cfE0VnUVCbqDppg==
-X-Gm-Message-State: AOJu0YztSqiT217sklm2MguJYcJkmmTSzTzi7xRpx84+xHnCHm3DV9iX
-	mQMMzI6WWByAal9e/0kTUSzcxsYO8vx1bBjHp+MTW+ZHFRbVooyGkMwXSTLv1GE=
-X-Google-Smtp-Source: AGHT+IGSsoqj8dbA9Zq+aqN0b7gUSR8NVUzisQf5qsqf4Eh3uWt3dzW3IH1our+a7VkVe5UwpUiNVQ==
-X-Received: by 2002:a05:6a00:6314:b0:6ea:c43c:a650 with SMTP id d2e1a72fcca58-6f49c2a67b4mr762335b3a.32.1715114209290;
-        Tue, 07 May 2024 13:36:49 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:3ec5:4d91:c71f:d3e9])
-        by smtp.gmail.com with ESMTPSA id f17-20020aa78b11000000b006f45e7121a2sm6134997pfd.41.2024.05.07.13.36.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 May 2024 13:36:48 -0700 (PDT)
-Date: Tue, 7 May 2024 14:36:45 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Hari Nagalla <hnagalla@ti.com>, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 2/5] remoteproc: k3-m4: Add a remoteproc driver for
- M4F subsystem
-Message-ID: <ZjqQ3e1Qd4NBiFsi@p14s>
-References: <20240426191811.32414-1-afd@ti.com>
- <20240426191811.32414-3-afd@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0811254BED;
+	Tue,  7 May 2024 20:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715114621; cv=fail; b=g9atP4d/HbenHX9k8MfTbL3Zt196aAOHVKSgYoNl61QBgnUUnQpAyNbYq6iD1Ob9WKAss/MEV6juooxvs6yMGdONuQpV5s0ySfS1yn69j2sALu4lwIhep6OJAArL9NcZm0sOzlrMpU8pRRclAWQCOJxiR8Z9GNK/LSf/+JZX1uU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715114621; c=relaxed/simple;
+	bh=hc0vWKzWBYmTQPNA0uhujkmwegxnId+yCijUqEvVwaI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ixjPZg9oD9ULewCPe4yNvEjFHOe4GSCrRBWLZc8LDjyyMvhKjFYBnGS0lVrWy7Yzq4Yjc8lzEVzG8jK9vRDrNP1xEi+maaFJkUjb4lM2e/QuVHADsJZLc7AzwubPf6S395g4yGhjS8pB71/2fBvGNHGoGJ1NK8jyG3YR5a9AKak=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=nkYxF85O; arc=fail smtp.client-ip=40.107.247.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RniAJHX9QAXk12uEk70UXS3AquGgMbjS2OjpfAuUCeLfGknyb3psHUx3hu6ZAQf8Zeh/iIgiwS4EMjzjQkHeOdSRQxHNfCQkaig+/vsSbgdr2n2wJ/dUcSojLpHLzJHVp5Q7dwQf0UMZ4WI5F18hUHEVv7DK6Qbk+T0EWovneenpS2ZDwD97d4/WG7z3qgZjZClKqgDq/fzqin16kyagyk+kUb4UHFGBDZIYMbyttCgpFkfWdclLrjUh5q6WiKOP873tWXlMXPTR+pzqjRIcT63ekgFCBOAaqf4XU4oWxcZh2RG4/h8qsOoNI/vQn8nmwvplzfRfZzcQ4sfXfwx47A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qV44oIZVXxGjMUN038mXUA0fEvu2yZSoG67eTDt2HkM=;
+ b=H5oyecKKb04h6ohmk/vTXpGgiYSfdu7laDUQ6nXNdSCkdv3vWx8cxAR8J48jE07it2K8zEnSGfgnzotGQ5fG2ylwJKMnLBCceRBSoqu36nsfSRhTaGCj/Vk8ll+N0NKApULZCtBxbNqrcZPtUqpmpt1MeCCCEvuWHc548oJ8P86lrxbpmLfwV9qSG47S/zFX0v/JXi5wwzUA8r03Sx2IM/NRcX0ZRDDSeMQwbKDcABbd0iRceErQZGQTJyXOcOBkUF0FwyhVxsMtCQgH+sIhf4cGXf1VnSNFRiZG68xKIo3KmKgwnIwmHkbcJZFY5V7G5LVmNnRP3tTab1wDOvvYQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qV44oIZVXxGjMUN038mXUA0fEvu2yZSoG67eTDt2HkM=;
+ b=nkYxF85O2rB0OraZTKk1jzDTZJtMNkxG2MJ6kTsNbBOf+kjZcSKPYX4iyeQWM3J/zpOygsiVyZrg28yDYkF/Xr9bW7eJk2SxCvbxhbZKn/+Leizf2W+3ka/RBuPU0FiMgob0R+qFrOTQ3WUfg1TzrE6/JwO6Q44JXC43LqsiOt8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8576.eurprd04.prod.outlook.com (2603:10a6:102:217::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Tue, 7 May
+ 2024 20:43:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7544.041; Tue, 7 May 2024
+ 20:43:35 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: alexandre.belloni@bootlin.com
+Cc: conor.culhane@silvaco.com,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	ilpo.jarvinen@linux.intel.com,
+	imx@lists.linux.dev,
+	jirislaby@kernel.org,
+	joe@perches.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	miquel.raynal@bootlin.com,
+	robh@kernel.org,
+	zbigniew.lukwinski@linux.intel.com
+Subject: [PATCH resend v9 0/8] I3C target mode support
+Date: Tue,  7 May 2024 16:43:03 -0400
+Message-Id: <20240507204311.2898714-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SA1PR02CA0018.namprd02.prod.outlook.com
+ (2603:10b6:806:2cf::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240426191811.32414-3-afd@ti.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8576:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44a393d1-542d-4311-1d9a-08dc6ed65d71
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|7416005|1800799015|376005|52116005|366007|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?b3g5dWluUm9hN1pCYTZWT3VCd0RxZmZueXc5UXdNNHZYOUVyOVZPbWt3ZkJP?=
+ =?utf-8?B?VWJwcGR5RWlOR2dYaUFYVWtJVTRpMEFYNkxyYnhtRjlqNWRSWkxOTElQNzRB?=
+ =?utf-8?B?MHk2THJoVGdjd3VVV0NTdFd2TW5ESDJ0RTVIcmF2NzJtem5ua0s4Z0hEaHcv?=
+ =?utf-8?B?RjVxRkZ6d1ZROW5VRFJuUVlGZ3lVSmF1WFQxMXMvcG1tM1FEUkpEYmRwaWFa?=
+ =?utf-8?B?YkNvQ0xFUHdJQnEwUi9zUHJjMDlxdW5TQXZFd3lvZWlMZXNZalJlZU9FVEpY?=
+ =?utf-8?B?MjRWVFB6a2F1T1h4UjVMWVNvdTl4MFdnZm5SaWZLZFJzcXg5WGlQWEJCYWdU?=
+ =?utf-8?B?cEg1Uld0RzE3NldtYmV6c1F4RW11b1lqTjExTENGYmVlUVJwWHlRUjdjZmI5?=
+ =?utf-8?B?Qm5LN2g5TGZQaUdHQlJ2S210T01tcTR3KzRxanF1TGFsSk56dlR4dEpZWDIw?=
+ =?utf-8?B?ZXVVcHFwZ0FzTXBuVisrMjg3bWNCWWlZbTVaRnhvUUJxMmpWd2JmeS90UHhB?=
+ =?utf-8?B?VXk4UGoxM2hONnQrcTRRWkxqMTZ0MmlaVkNuR3NNaDlHbXpOb1RtVlBvUzdX?=
+ =?utf-8?B?eTRwejhwQnZFNDJ6WlM3eGtIRGMxcnhUMWk0VkZUY3FIVTJFeHNhMU1UR0ZO?=
+ =?utf-8?B?ajRXVHd5SWVxWGRJRDdOWmcySlJLTzlNL0kxWXR6N1RadWNYalU2SmM1dU1M?=
+ =?utf-8?B?Q3dEdG9pWk0rREF6T1lSZ2ZyN1Mzb2w1Zjg4OWx1NGQrTUI2anVZKzk5RFkx?=
+ =?utf-8?B?aUkwQ3RRYVZoT2VMZVppVnNPN0VoblByNWtiSlVkME5KTjI1dm1OdDZOS1U0?=
+ =?utf-8?B?cDNPL3l4dXpSS1AyT2wrd2JtbGhSa1hWOXNKVE9wenh5N2NWbVdXZC9ncldU?=
+ =?utf-8?B?NlVTdGFBU3NFY21WZUFlb09vR2FVWEJEbm1BUTFGcjIrV3NVcEU5WXRvMFBD?=
+ =?utf-8?B?UDMrS2c5UzRQU1B0UzVvcjFuQ3JXUHpSRmNpL3h2UDJNMDdIc0VrRGZkRnY1?=
+ =?utf-8?B?TjVuQWZ2d2pWbERlN3B3bTZmbjR6WndVN01LRVJGWXB4VVVwNkcxTVhiTDd6?=
+ =?utf-8?B?bDhpbWk4V3g3cm12eGw0QSsxQVUra0ZEVWVMR29uZDZDS0F2ZjhOVlFoSW0w?=
+ =?utf-8?B?dFQ2SVhBaDJJTldrMnZINFBsKzJTck1lWDVObThsQ0tSRjFiL3VuZnZLK0l1?=
+ =?utf-8?B?M3J1UW83Ny90MHBTbDJqZkJYQzdmUXdSNnpoWTYrS0pMM1BERlN3akgvbzVr?=
+ =?utf-8?B?ZXdTNUQyWGFBNGp5WlJ1b2RGeGM1anFQZGFMT3ZJcG85Z01FWERHd1EyN0t6?=
+ =?utf-8?B?UWxDMFdRR3hQVHg4RVVGdFFMMVZDcUg1TGNFdC9OSm1Ld2pZUGRVNExzb3BQ?=
+ =?utf-8?B?bmNBVTRrdEo3Q2NuT2N1NURZeVJudzBjYTVqSjFNWVYvWUpsc2Vpd2o3Z3I1?=
+ =?utf-8?B?TlExT00vYTlLaWNlQ1Q3OEptTC84SlZCbUJzSER1VVNidUcycEZJT3NCZGFB?=
+ =?utf-8?B?M2dmcjJvR0x2dlg3Rjl3dEFQMjFrRHpmTUFqZGdIdUg1YnB0Z09SVDFvcFZh?=
+ =?utf-8?B?c0pWS0psMHdzN0NqZnF2eUxsV3d4N0k2bGd3dXJNWXhqSS9CM2lMNUhHYkdH?=
+ =?utf-8?B?cWxFSHJpVktEczBlanY4WDFrQzUrTDV5eHl3NWZMMEFtakhyWHovZGRxUXV5?=
+ =?utf-8?B?ZzltTDZ4S1RjbFZFTkhabzR6U1V6cVhLRXN0NHMvRDRIK1NGVVAyVnJGaFd5?=
+ =?utf-8?Q?t0g1FZg2atvxJr6qm2QPtcB1lxnbP7J4HuPXxnq?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005)(52116005)(366007)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?a0NJaFpWTFlkL282aXZ0MXpHa2RuWjNsVlpZUzRQRkJPbXhtWFd2UHlxclVZ?=
+ =?utf-8?B?M2V3TE9pMFA0NnphK2ZSUTBobTJwTmJaZkxVRWk1YUx3eXZZYTNQSUhTZ1RQ?=
+ =?utf-8?B?Tm9zNVZzc1didG5MVmJaOFRobHRReURNN2tKKzlmekQxRE5NeGV2eWhIVEN2?=
+ =?utf-8?B?NXJkQmJXaEVyOE16TTV2UGVKdlVXNG42ZVpFaFdzbGpINjZEOXprUFpWRkRZ?=
+ =?utf-8?B?UzcvZG4zVzZZRENObHRjMVMwakRmazZGbk16Mkp3WmJrWnVnRDZyYXJNQ1pv?=
+ =?utf-8?B?MU9xZ2p1MUNIWDdheWFsVjllTGJTTHUrRWpNRjhTem01RjBLUStHYjVsNlE4?=
+ =?utf-8?B?NjdLbHVqWlJnOUNIb0grbi85dkV5cjNsamRBTzZia1p0cVBLcnFhU3Z0V25p?=
+ =?utf-8?B?KzVsTEhRSTlFMFV0bFpTcTBVNjlHYWQrVXlIc0FkZlk5YnUrWmk0TCt6N0tr?=
+ =?utf-8?B?QU11bWlYMlI1ZzVQaTFsU3F4UFMwdXA0aUlYNFF5S2NnUmVSangrMzhYWDhI?=
+ =?utf-8?B?K2d2UXNiaG82b016UmFOaFlqWkZlOEwxbkRKdGdyQkVkZzN6VVh1NFBuR09Z?=
+ =?utf-8?B?ZnZvTXJVSkJCYjdSWWsxR0FXYUZkWDBIWXoxSnJ4RTlPL3ZOWFhLT08rOWx5?=
+ =?utf-8?B?Q2RBN2M5TzMwMExRbS9uRGlJWExtL2R3OHVQL08xNlhSU1NJWmZyOHBaMzRP?=
+ =?utf-8?B?ZVNiSXF0M0JZUnFqNzdKU05kdXI4UFUrbFVyMW05QS9kdlNNUk9RdG5kcmV0?=
+ =?utf-8?B?d0MvSENVOEFNRVhsam5QOFlzbEhJUVQ4Z1BLUE9YL1FHbjBhSUZRL2tXMWZh?=
+ =?utf-8?B?MlNxRmRFMTI0bFFNM1VLc0RGVGdqR2o4S2ZwQUFJU0IwYm1mQ1JDV1NIcDJa?=
+ =?utf-8?B?NXdsWG5xaGlyVmNuM1hybE0xbHNKR2VhTXE2eXlsMzNZcEJka1RMcE1yS1lD?=
+ =?utf-8?B?QmcrTk9wK0V6eUxKWUZDbzJVMjgvbmV1YzlvbmtKMEg4ZUNFWmdpb2hSclpY?=
+ =?utf-8?B?Y2FOdXJIMkQ5UEc1T2pLUXVOdEY4dE9iSTRjeTRCc1ZZbzVxWXVoTDZzcHEr?=
+ =?utf-8?B?ai9aVDZ1QWgzd0lLYTN1QncvOS9yTmlpSEUzQTZobkNzdWxBMVpOWnEvZzBm?=
+ =?utf-8?B?WDRSY2pRU0FqNlJtYzlvMVkycDJTY0pLN0wzRmVTdHBOYktMMGMvQWg1YlRj?=
+ =?utf-8?B?RHR3UnQ5anU0WUtDVkp1MldadFdSQUtnM0JXNkhTaEpNNCtEdVVQSHpaNnRN?=
+ =?utf-8?B?WnB1ZnlXTmpzQXN4V3FiYkVDYlhzMThiR3hrUElGTEtyakJ1N1M5S1NTOG5u?=
+ =?utf-8?B?dDRlb2k5aURCYWlxbmlYUi9QbURqWGF6V3ZObGYzTE1YemVueHVUNzFacVRR?=
+ =?utf-8?B?M09MYVhrVWtzT1VOeVp3K3RCWEZ3S2gyMnVTaHcwUVFaUkRNQXlTTXlqTmZX?=
+ =?utf-8?B?a1EyZXVtS0VjOWtXRDZvNEJCbFVmSWUwd3UwWERGUzNWTUFDMEtZRG4rT0t4?=
+ =?utf-8?B?VVFDRG5nQ1BGMWxoSXh5TVFkTFY0UGNGMzdkckVWanU4NEJ3MVpCS0Z4eExT?=
+ =?utf-8?B?T3d5NWRZZzNkWXJIVTA5aVd0YTZPdkhhSTFscDJGdzg2SnZ5dFNzSk5HOTZj?=
+ =?utf-8?B?MnNhZWRCWTI1UWc5cnFKK25EV0V3THVuU0k0MjlQVE9kNUdrbWo0czNzbHFI?=
+ =?utf-8?B?M2dBWkJmUit2TDJMOXU2Q2ZyWHhlUlhKcGY4M083RmRXZUN0NnlUZjhuZnJm?=
+ =?utf-8?B?SUZhNXdTRm5LbUs3Z3NVTENvZFZNbDlYTkd3UXpYS0xCNFNWYndCS2pOaWxy?=
+ =?utf-8?B?WTliZlN4ODhnQjUwQWJnRmx0aitSd0JCZjhTNHZncUY2bGlBNkFIcDFFd1FB?=
+ =?utf-8?B?RUsreVNTUy9EOXZ1TnNDSjg2Y1NzSlpRVjlyNnhMcXRZbXZ0NTNxUjVjWHlt?=
+ =?utf-8?B?TG1WUDUrMWRmbUorUzN6aGFyMXk0RnlKcE1iMEU0VXhSMVZ4ODVEbDA2Q3h1?=
+ =?utf-8?B?amJmMFFUVkx5T3V5aTZBKzQwR0QwV3BxVGtYSUx5dTljWVBXYk1pekU3YktV?=
+ =?utf-8?B?ekVoaFdwZnNPekVmdzZicExqdlBSRjg3dUFnSHZDMU5lWXp5cW9ETlVhVktQ?=
+ =?utf-8?Q?l/6y2I1VaOh09wzPPqXg7bDn5?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44a393d1-542d-4311-1d9a-08dc6ed65d71
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 20:43:35.0769
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iuHXPWexR8UqZravOKmLLAo/sY0KL0qCrWer6rA6n6hbPhc4lFGXqZ/mob08QlbV55HYUNu8YHi4P+XzoiZrpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8576
 
-On Fri, Apr 26, 2024 at 02:18:08PM -0500, Andrew Davis wrote:
-> From: Martyn Welch <martyn.welch@collabora.com>
-> 
-> The AM62x and AM64x SoCs of the TI K3 family has a Cortex M4F core in
-> the MCU domain. This core is typically used for safety applications in a
-> stand alone mode. However, some application (non safety related) may
-> want to use the M4F core as a generic remote processor with IPC to the
-> host processor. The M4F core has internal IRAM and DRAM memories and are
-> exposed to the system bus for code and data loading.
-> 
-> A remote processor driver is added to support this subsystem, including
-> being able to load and boot the M4F core. Loading includes to M4F
-> internal memories and predefined external code/data memories. The
-> carve outs for external contiguous memory is defined in the M4F device
-> node and should match with the external memory declarations in the M4F
-> image binary. The M4F subsystem has two resets. One reset is for the
-> entire subsystem i.e including the internal memories and the other, a
-> local reset is only for the M4F processing core. When loading the image,
-> the driver first releases the subsystem reset, loads the firmware image
-> and then releases the local reset to let the M4F processing core run.
-> 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  drivers/remoteproc/Kconfig               |  13 +
->  drivers/remoteproc/Makefile              |   1 +
->  drivers/remoteproc/ti_k3_m4_remoteproc.c | 785 +++++++++++++++++++++++
->  3 files changed, 799 insertions(+)
->  create mode 100644 drivers/remoteproc/ti_k3_m4_remoteproc.c
-> 
-> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> index 48845dc8fa852..1a7c0330c91a9 100644
-> --- a/drivers/remoteproc/Kconfig
-> +++ b/drivers/remoteproc/Kconfig
-> @@ -339,6 +339,19 @@ config TI_K3_DSP_REMOTEPROC
->  	  It's safe to say N here if you're not interested in utilizing
->  	  the DSP slave processors.
->  
-> +config TI_K3_M4_REMOTEPROC
-> +	tristate "TI K3 M4 remoteproc support"
-> +	depends on ARCH_K3 || COMPILE_TEST
-> +	select MAILBOX
-> +	select OMAP2PLUS_MBOX
-> +	help
-> +	  Say m here to support TI's M4 remote processor subsystems
-> +	  on various TI K3 family of SoCs through the remote processor
-> +	  framework.
-> +
-> +	  It's safe to say N here if you're not interested in utilizing
-> +	  a remote processor.
-> +
->  config TI_K3_R5_REMOTEPROC
->  	tristate "TI K3 R5 remoteproc support"
->  	depends on ARCH_K3
-> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-> index 91314a9b43cef..5ff4e2fee4abd 100644
-> --- a/drivers/remoteproc/Makefile
-> +++ b/drivers/remoteproc/Makefile
-> @@ -37,5 +37,6 @@ obj-$(CONFIG_ST_REMOTEPROC)		+= st_remoteproc.o
->  obj-$(CONFIG_ST_SLIM_REMOTEPROC)	+= st_slim_rproc.o
->  obj-$(CONFIG_STM32_RPROC)		+= stm32_rproc.o
->  obj-$(CONFIG_TI_K3_DSP_REMOTEPROC)	+= ti_k3_dsp_remoteproc.o
-> +obj-$(CONFIG_TI_K3_M4_REMOTEPROC)	+= ti_k3_m4_remoteproc.o
->  obj-$(CONFIG_TI_K3_R5_REMOTEPROC)	+= ti_k3_r5_remoteproc.o
->  obj-$(CONFIG_XLNX_R5_REMOTEPROC)	+= xlnx_r5_remoteproc.o
-> diff --git a/drivers/remoteproc/ti_k3_m4_remoteproc.c b/drivers/remoteproc/ti_k3_m4_remoteproc.c
-> new file mode 100644
-> index 0000000000000..0030e509f6b5d
-> --- /dev/null
-> +++ b/drivers/remoteproc/ti_k3_m4_remoteproc.c
-> @@ -0,0 +1,785 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * TI K3 Cortex-M4 Remote Processor(s) driver
-> + *
-> + * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
-> + *	Hari Nagalla <hnagalla@ti.com>
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/mailbox_client.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/remoteproc.h>
-> +#include <linux/reset.h>
-> +#include <linux/slab.h>
-> +
-> +#include "omap_remoteproc.h"
-> +#include "remoteproc_internal.h"
-> +#include "ti_sci_proc.h"
-> +
-> +/**
-> + * struct k3_m4_rproc_mem - internal memory structure
-> + * @cpu_addr: MPU virtual address of the memory region
-> + * @bus_addr: Bus address used to access the memory region
-> + * @dev_addr: Device address of the memory region from remote processor view
-> + * @size: Size of the memory region
-> + */
-> +struct k3_m4_rproc_mem {
-> +	void __iomem *cpu_addr;
-> +	phys_addr_t bus_addr;
-> +	u32 dev_addr;
-> +	size_t size;
-> +};
-> +
-> +/**
-> + * struct k3_m4_rproc_mem_data - memory definitions for a remote processor
-> + * @name: name for this memory entry
-> + * @dev_addr: device address for the memory entry
-> + */
-> +struct k3_m4_rproc_mem_data {
-> +	const char *name;
-> +	const u32 dev_addr;
-> +};
-> +
-> +/**
-> + * struct k3_m4_rproc_dev_data - device data structure for a remote processor
-> + * @mems: pointer to memory definitions for a remote processor
-> + * @num_mems: number of memory regions in @mems
-> + * @uses_lreset: flag to denote the need for local reset management
-> + */
-> +struct k3_m4_rproc_dev_data {
-> +	const struct k3_m4_rproc_mem_data *mems;
-> +	u32 num_mems;
-> +	bool uses_lreset;
-> +};
-> +
-> +/**
-> + * struct k3_m4_rproc - k3 remote processor driver structure
-> + * @dev: cached device pointer
-> + * @rproc: remoteproc device handle
-> + * @mem: internal memory regions data
-> + * @num_mems: number of internal memory regions
-> + * @rmem: reserved memory regions data
-> + * @num_rmems: number of reserved memory regions
-> + * @reset: reset control handle
-> + * @data: pointer to device data
-> + * @tsp: TI-SCI processor control handle
-> + * @ti_sci: TI-SCI handle
-> + * @ti_sci_id: TI-SCI device identifier
-> + * @mbox: mailbox channel handle
-> + * @client: mailbox client to request the mailbox channel
-> + */
-> +struct k3_m4_rproc {
-> +	struct device *dev;
-> +	struct rproc *rproc;
-> +	struct k3_m4_rproc_mem *mem;
-> +	int num_mems;
-> +	struct k3_m4_rproc_mem *rmem;
-> +	int num_rmems;
-> +	struct reset_control *reset;
-> +	const struct k3_m4_rproc_dev_data *data;
-> +	struct ti_sci_proc *tsp;
-> +	const struct ti_sci_handle *ti_sci;
-> +	u32 ti_sci_id;
-> +	struct mbox_chan *mbox;
-> +	struct mbox_client client;
-> +};
-> +
-> +/**
-> + * k3_m4_rproc_mbox_callback() - inbound mailbox message handler
-> + * @client: mailbox client pointer used for requesting the mailbox channel
-> + * @data: mailbox payload
-> + *
-> + * This handler is invoked by the K3 mailbox driver whenever a mailbox
-> + * message is received. Usually, the mailbox payload simply contains
-> + * the index of the virtqueue that is kicked by the remote processor,
-> + * and we let remoteproc core handle it.
-> + *
-> + * In addition to virtqueue indices, we also have some out-of-band values
-> + * that indicate different events. Those values are deliberately very
-> + * large so they don't coincide with virtqueue indices.
-> + */
-> +static void k3_m4_rproc_mbox_callback(struct mbox_client *client, void *data)
-> +{
-> +	struct k3_m4_rproc *kproc = container_of(client, struct k3_m4_rproc,
-> +						  client);
-> +	struct device *dev = kproc->rproc->dev.parent;
-> +	const char *name = kproc->rproc->name;
-> +	u32 msg = (u32)(uintptr_t)(data);
-> +
-> +	dev_dbg(dev, "mbox msg: 0x%x\n", msg);
-> +
-> +	switch (msg) {
-> +	case RP_MBOX_CRASH:
-> +		/*
-> +		 * remoteproc detected an exception, but error recovery is not
-> +		 * supported. So, just log this for now
-> +		 */
-> +		dev_err(dev, "K3 rproc %s crashed\n", name);
-> +		break;
-> +	case RP_MBOX_ECHO_REPLY:
-> +		dev_info(dev, "received echo reply from %s\n", name);
-> +		break;
-> +	default:
-> +		/* silently handle all other valid messages */
-> +		if (msg >= RP_MBOX_READY && msg < RP_MBOX_END_MSG)
-> +			return;
-> +		if (msg > kproc->rproc->max_notifyid) {
-> +			dev_dbg(dev, "dropping unknown message 0x%x", msg);
-> +			return;
-> +		}
-> +		/* msg contains the index of the triggered vring */
-> +		if (rproc_vq_interrupt(kproc->rproc, msg) == IRQ_NONE)
-> +			dev_dbg(dev, "no message was found in vqid %d\n", msg);
-> +	}
-> +}
-> +
-> +/*
-> + * Kick the remote processor to notify about pending unprocessed messages.
-> + * The vqid usage is not used and is inconsequential, as the kick is performed
-> + * through a simulated GPIO (a bit in an IPC interrupt-triggering register),
-> + * the remote processor is expected to process both its Tx and Rx virtqueues.
-> + */
-> +static void k3_m4_rproc_kick(struct rproc *rproc, int vqid)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct device *dev = rproc->dev.parent;
-> +	u32 msg = (u32)vqid;
-> +	int ret;
-> +
-> +	/* send the index of the triggered virtqueue in the mailbox payload */
-> +	ret = mbox_send_message(kproc->mbox, (void *)(uintptr_t)msg);
+This  patch introduces support for I3C target mode, which is referenced
+with a PCIe Endpoint system. It also establishes a configuration framework
+(configfs) for the I3C target controller driver and the I3C target function
+driver
 
-I remember discussing this but can't recall the outcome.  Still, I don't see
-why (uintptr_t) is needed here.
+Typic usage as
 
-> +	if (ret < 0)
-> +		dev_err(dev, "failed to send mailbox message, status = %d\n",
-> +			ret);
-> +}
-> +
-> +/* Put the remote processor into reset */
-> +static int k3_m4_rproc_reset(struct k3_m4_rproc *kproc)
-> +{
-> +	struct device *dev = kproc->dev;
-> +	int ret;
-> +
-> +	ret = reset_control_assert(kproc->reset);
-> +	if (ret) {
-> +		dev_err(dev, "local-reset assert failed, ret = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (kproc->data->uses_lreset)
-> +		return ret;
-> +
-> +	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
-> +						    kproc->ti_sci_id);
-> +	if (ret) {
-> +		dev_err(dev, "module-reset assert failed, ret = %d\n", ret);
-> +		if (reset_control_deassert(kproc->reset))
-> +			dev_warn(dev, "local-reset deassert back failed\n");
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +/* Release the remote processor from reset */
-> +static int k3_m4_rproc_release(struct k3_m4_rproc *kproc)
-> +{
-> +	struct device *dev = kproc->dev;
-> +	int ret;
-> +
-> +	if (kproc->data->uses_lreset)
-> +		goto lreset;
-> +
-> +	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
-> +						    kproc->ti_sci_id);
-> +	if (ret) {
-> +		dev_err(dev, "module-reset deassert failed, ret = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +lreset:
-> +	ret = reset_control_deassert(kproc->reset);
-> +	if (ret) {
-> +		dev_err(dev, "local-reset deassert failed, ret = %d\n", ret);
-> +		if (kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
-> +							  kproc->ti_sci_id))
+The user can configure the i3c-target-tty device using configfs entry. In
+order to change the vendorid, the following commands can be used
 
-This is done unconditionally, even when dev_ops.get_device() above hasn't been
-called.
+        # echo 0x011b > functions/tty/func1/vendor_id
+        # echo 0x1000 > functions/tty/func1/part_id
+        # echo 0x6 > functions/tty/t/bcr
 
-> +			dev_warn(dev, "module-reset assert back failed\n");
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int k3_m4_rproc_request_mbox(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct mbox_client *client = &kproc->client;
-> +	struct device *dev = kproc->dev;
-> +	int ret;
-> +
-> +	client->dev = dev;
-> +	client->tx_done = NULL;
-> +	client->rx_callback = k3_m4_rproc_mbox_callback;
-> +	client->tx_block = false;
-> +	client->knows_txdone = false;
-> +
-> +	kproc->mbox = mbox_request_channel(client, 0);
-> +	if (IS_ERR(kproc->mbox)) {
-> +		ret = -EBUSY;
-> +		dev_err(dev, "mbox_request_channel failed: %ld\n",
-> +			PTR_ERR(kproc->mbox));
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Ping the remote processor, this is only for sanity-sake for now;
-> +	 * there is no functional effect whatsoever.
-> +	 *
-> +	 * Note that the reply will _not_ arrive immediately: this message
-> +	 * will wait in the mailbox fifo until the remote processor is booted.
-> +	 */
-> +	ret = mbox_send_message(kproc->mbox, (void *)RP_MBOX_ECHO_REQUEST);
-> +	if (ret < 0) {
-> +		dev_err(dev, "mbox_send_message failed: %d\n", ret);
-> +		mbox_free_channel(kproc->mbox);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * The M4 cores have a local reset that affects only the CPU, and a
-> + * generic module reset that powers on the device and allows the internal
-> + * memories to be accessed while the local reset is asserted. This function is
-> + * used to release the global reset on remote cores to allow loading into the
-> + * internal RAMs. The .prepare() ops is invoked by remoteproc core before any
-> + * firmware loading, and is followed by the .start() ops after loading to
-> + * actually let the remote cores to run. This callback is invoked only in
-> + * remoteproc mode.
-> + */
-> +static int k3_m4_rproc_prepare(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct device *dev = kproc->dev;
-> +	int ret;
-> +
-> +	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
-> +						    kproc->ti_sci_id);
-> +	if (ret)
-> +		dev_err(dev, "module-reset deassert failed, cannot enable internal RAM loading, ret = %d\n",
-> +			ret);
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * This function implements the .unprepare() ops and performs the complimentary
-> + * operations to that of the .prepare() ops. The function is used to assert the
-> + * global reset on applicable cores. This completes the second portion of
-> + * powering down the remote core. The cores themselves are only halted in the
-> + * .stop() callback through the local reset, and the .unprepare() ops is invoked
-> + * by the remoteproc core after the remoteproc is stopped to balance the global
-> + * reset. This callback is invoked only in remoteproc mode.
-> + */
-> +static int k3_m4_rproc_unprepare(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct device *dev = kproc->dev;
-> +	int ret;
-> +
-> +	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
-> +						    kproc->ti_sci_id);
-> +	if (ret)
-> +		dev_err(dev, "module-reset assert failed, ret = %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * This function implements the .get_loaded_rsc_table() callback and is used
-> + * to provide the resource table for a booted remote processor in IPC-only
-> + * mode. The remote processor firmwares follow a design-by-contract approach
-> + * and are expected to have the resource table at the base of the DDR region
-> + * reserved for firmware usage. This provides flexibility for the remote
-> + * processor to be booted by different bootloaders that may or may not have the
-> + * ability to publish the resource table address and size through a DT
-> + * property.
-> + */
-> +static struct resource_table *k3_m4_get_loaded_rsc_table(struct rproc *rproc,
-> +							 size_t *rsc_table_sz)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct device *dev = kproc->dev;
-> +
-> +	if (!kproc->rmem[0].cpu_addr) {
-> +		dev_err(dev, "memory-region #1 does not exist, loaded rsc table can't be found");
-> +		return ERR_PTR(-ENOMEM);
-> +	}
-> +
-> +	/*
-> +	 * NOTE: The resource table size is currently hard-coded to a maximum
-> +	 * of 256 bytes. The most common resource table usage for K3 firmwares
-> +	 * is to only have the vdev resource entry and an optional trace entry.
-> +	 * The exact size could be computed based on resource table address, but
-> +	 * the hard-coded value suffices to support the IPC-only mode.
-> +	 */
-> +	*rsc_table_sz = 256;
-> +	return (__force struct resource_table *)kproc->rmem[0].cpu_addr;
-> +}
-> +
-> +/*
-> + * Custom function to translate a remote processor device address (internal
-> + * RAMs only) to a kernel virtual address.  The remote processors can access
-> + * their RAMs at either an internal address visible only from a remote
-> + * processor, or at the SoC-level bus address. Both these addresses need to be
-> + * looked through for translation. The translated addresses can be used either
-> + * by the remoteproc core for loading (when using kernel remoteproc loader), or
-> + * by any rpmsg bus drivers.
-> + */
-> +static void *k3_m4_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len, bool *is_iomem)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	void __iomem *va = NULL;
-> +	phys_addr_t bus_addr;
-> +	u32 dev_addr, offset;
-> +	size_t size;
-> +	int i;
-> +
-> +	if (len == 0)
-> +		return NULL;
-> +
-> +	for (i = 0; i < kproc->num_mems; i++) {
-> +		bus_addr = kproc->mem[i].bus_addr;
-> +		dev_addr = kproc->mem[i].dev_addr;
-> +		size = kproc->mem[i].size;
-> +
-> +		/* handle M4-view addresses */
-> +		if (da >= dev_addr && ((da + len) <= (dev_addr + size))) {
-> +			offset = da - dev_addr;
-> +			va = kproc->mem[i].cpu_addr + offset;
-> +			return (__force void *)va;
-> +		}
-> +
-> +		/* handle SoC-view addresses */
-> +		if (da >= bus_addr && ((da + len) <= (bus_addr + size))) {
-> +			offset = da - bus_addr;
-> +			va = kproc->mem[i].cpu_addr + offset;
-> +			return (__force void *)va;
-> +		}
-> +	}
-> +
-> +	/* handle static DDR reserved memory regions */
-> +	for (i = 0; i < kproc->num_rmems; i++) {
-> +		dev_addr = kproc->rmem[i].dev_addr;
-> +		size = kproc->rmem[i].size;
-> +
-> +		if (da >= dev_addr && ((da + len) <= (dev_addr + size))) {
-> +			offset = da - dev_addr;
-> +			va = kproc->rmem[i].cpu_addr + offset;
-> +			return (__force void *)va;
-> +		}
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
-> +static int k3_m4_rproc_of_get_memories(struct platform_device *pdev,
-> +				       struct k3_m4_rproc *kproc)
-> +{
-> +	const struct k3_m4_rproc_dev_data *data = kproc->data;
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	int num_mems = 0;
-> +	int i;
-> +
-> +	num_mems = kproc->data->num_mems;
-> +	kproc->mem = devm_kcalloc(kproc->dev, num_mems,
-> +				  sizeof(*kproc->mem), GFP_KERNEL);
-> +	if (!kproc->mem)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < num_mems; i++) {
-> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> +						   data->mems[i].name);
-> +		if (!res) {
-> +			dev_err(dev, "found no memory resource for %s\n",
-> +				data->mems[i].name);
-> +			return -EINVAL;
-> +		}
-> +		if (!devm_request_mem_region(dev, res->start,
-> +					     resource_size(res),
-> +					     dev_name(dev))) {
-> +			dev_err(dev, "could not request %s region for resource\n",
-> +				data->mems[i].name);
-> +			return -EBUSY;
-> +		}
-> +
-> +		kproc->mem[i].cpu_addr = devm_ioremap_wc(dev, res->start,
-> +							 resource_size(res));
-> +		if (!kproc->mem[i].cpu_addr) {
-> +			dev_err(dev, "failed to map %s memory\n",
-> +				data->mems[i].name);
-> +			return -ENOMEM;
-> +		}
-> +		kproc->mem[i].bus_addr = res->start;
-> +		kproc->mem[i].dev_addr = data->mems[i].dev_addr;
-> +		kproc->mem[i].size = resource_size(res);
-> +
-> +		dev_dbg(dev, "memory %8s: bus addr %pa size 0x%zx va %pK da 0x%x\n",
-> +			data->mems[i].name, &kproc->mem[i].bus_addr,
+Binding i3c-target-tty Device to target Controller
+------------------------------------------------
 
-I'm pretty sure you are intrested in kproc->mem[i].bus_addr rather than
-&kproc->mem[i].bus_addr.
+In order for the target function device to be useful, it has to be bound to
+a I3C target controller driver. Use the configfs to bind the function
+device to one of the controller driver present in the system::
 
-> +			kproc->mem[i].size, kproc->mem[i].cpu_addr,
-> +			kproc->mem[i].dev_addr);
-> +	}
-> +	kproc->num_mems = num_mems;
-> +
-> +	return 0;
-> +}
-> +
-> +static void k3_m4_rproc_dev_mem_release(void *data)
-> +{
-> +	struct device *dev = data;
-> +
-> +	of_reserved_mem_device_release(dev);
-> +}
-> +
-> +static int k3_m4_reserved_mem_init(struct k3_m4_rproc *kproc)
-> +{
-> +	struct device *dev = kproc->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *rmem_np;
-> +	struct reserved_mem *rmem;
-> +	int num_rmems;
-> +	int ret, i;
-> +
-> +	num_rmems = of_property_count_elems_of_size(np, "memory-region",
-> +						    sizeof(phandle));
-> +	if (num_rmems < 0) {
-> +		dev_err(dev, "device does not reserved memory regions (%pe)\n",
-> +			ERR_PTR(num_rmems));
+        # ln -s functions/pci_epf_test/func1 controllers/44330000.i3c-target/
 
-Why use %pe and ERR_PTR() when function of_property_count_elems_of_size()
-returns a simple error code?
+Host side:
+        cat /dev/ttyI3C0
+Taret side:
+        echo abc >/dev/ttyI3C0
 
-> +		return -EINVAL;
-> +	}
-> +	if (num_rmems < 2) {
-> +		dev_err(dev, "device needs at least two memory regions to be defined, num = %d\n",
-> +			num_rmems);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* use reserved memory region 0 for vring DMA allocations */
-> +	ret = of_reserved_mem_device_init_by_idx(dev, np, 0);
-> +	if (ret) {
-> +		dev_err(dev, "device cannot initialize DMA pool (%pe)\n",
-> +			ERR_PTR(ret));
+Notes about header files.
 
-Same
+About Ilpo Järvinen's header file comments, it can pass build, some header
+should be included by other header files.
 
-> +		return ret;
-> +	}
-> +	ret = devm_add_action_or_reset(dev, k3_m4_rproc_dev_mem_release, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	num_rmems--;
-> +	kproc->rmem = devm_kcalloc(dev, num_rmems, sizeof(*kproc->rmem), GFP_KERNEL);
-> +	if (!kproc->rmem)
-> +		return -ENOMEM;
-> +
-> +	/* use remaining reserved memory regions for static carveouts */
-> +	for (i = 0; i < num_rmems; i++) {
-> +		rmem_np = of_parse_phandle(np, "memory-region", i + 1);
-> +		if (!rmem_np)
-> +			return -EINVAL;
-> +
-> +		rmem = of_reserved_mem_lookup(rmem_np);
-> +		if (!rmem) {
-> +			of_node_put(rmem_np);
-> +			return -EINVAL;
-> +		}
-> +		of_node_put(rmem_np);
-> +
-> +		kproc->rmem[i].bus_addr = rmem->base;
-> +		/* 64-bit address regions currently not supported */
-> +		kproc->rmem[i].dev_addr = (u32)rmem->base;
-> +		kproc->rmem[i].size = rmem->size;
-> +		kproc->rmem[i].cpu_addr = devm_ioremap_wc(dev, rmem->base, rmem->size);
-> +		if (!kproc->rmem[i].cpu_addr) {
-> +			dev_err(dev, "failed to map reserved memory#%d at %pa of size %pa\n",
-> +				i + 1, &rmem->base, &rmem->size);
-> +			return -ENOMEM;
-> +		}
-> +
-> +		dev_dbg(dev, "reserved memory%d: bus addr %pa size 0x%zx va %pK da 0x%x\n",
-> +			i + 1, &kproc->rmem[i].bus_addr,
-> +			kproc->rmem[i].size, kproc->rmem[i].cpu_addr,
-> +			kproc->rmem[i].dev_addr);
-> +	}
-> +	kproc->num_rmems = num_rmems;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct ti_sci_proc *k3_m4_rproc_of_get_tsp(struct device *dev,
-> +						  const struct ti_sci_handle *sci)
-> +{
-> +	struct ti_sci_proc *tsp;
-> +	u32 temp[2];
-> +	int ret;
-> +
-> +	ret = of_property_read_u32_array(dev->of_node, "ti,sci-proc-ids",
-> +					 temp, 2);
-> +	if (ret < 0)
-> +		return ERR_PTR(ret);
-> +
-> +	tsp = devm_kzalloc(dev, sizeof(*tsp), GFP_KERNEL);
-> +	if (!tsp)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	tsp->dev = dev;
-> +	tsp->sci = sci;
-> +	tsp->ops = &sci->ops.proc_ops;
-> +	tsp->proc_id = temp[0];
-> +	tsp->host_id = temp[1];
-> +
-> +	return tsp;
-> +}
-> +
-> +static void k3_m4_release_tsp(void *data)
-> +{
-> +	struct ti_sci_proc *tsp = data;
-> +
-> +	ti_sci_proc_release(tsp);
-> +}
-> +
-> +/*
-> + * Power up the M4F remote processor.
-> + *
-> + * This function will be invoked only after the firmware for this rproc
-> + * was loaded, parsed successfully, and all of its resource requirements
-> + * were met. This callback is invoked only in remoteproc mode.
-> + */
-> +static int k3_m4_rproc_start(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	int ret;
-> +
-> +	ret = k3_m4_rproc_request_mbox(rproc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = k3_m4_rproc_release(kproc);
-> +	if (ret)
-> +		goto put_mbox;
-> +
-> +	return 0;
-> +
-> +put_mbox:
-> +	mbox_free_channel(kproc->mbox);
-> +	return ret;
-> +}
-> +
-> +/*
-> + * Stop the M4 remote processor.
-> + *
-> + * This function puts the M4 processor into reset, and finishes processing
-> + * of any pending messages. This callback is invoked only in remoteproc mode.
-> + */
-> +static int k3_m4_rproc_stop(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +
-> +	mbox_free_channel(kproc->mbox);
-> +
-> +	k3_m4_rproc_reset(kproc);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Attach to a running M4 remote processor (IPC-only mode)
-> + *
-> + * This rproc attach callback only needs to request the mailbox, the remote
-> + * processor is already booted, so there is no need to issue any TI-SCI
-> + * commands to boot the M4 core. This callback is used only in IPC-only mode.
-> + */
-> +static int k3_m4_rproc_attach(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct device *dev = kproc->dev;
-> +	int ret;
-> +
-> +	ret = k3_m4_rproc_request_mbox(rproc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_info(dev, "M4 initialized in IPC-only mode\n");
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Detach from a running M4 remote processor (IPC-only mode)
-> + *
-> + * This rproc detach callback performs the opposite operation to attach callback
-> + * and only needs to release the mailbox, the M4 core is not stopped and will
-> + * be left to continue to run its booted firmware. This callback is invoked only in
-> + * IPC-only mode.
-> + */
-> +static int k3_m4_rproc_detach(struct rproc *rproc)
-> +{
-> +	struct k3_m4_rproc *kproc = rproc->priv;
-> +	struct device *dev = kproc->dev;
-> +
-> +	mbox_free_channel(kproc->mbox);
-> +	dev_info(dev, "M4 deinitialized in IPC-only mode\n");
-> +	return 0;
-> +}
-> +
-> +static const struct rproc_ops k3_m4_rproc_ops = {
-> +	.start		= k3_m4_rproc_start,
-> +	.stop		= k3_m4_rproc_stop,
-> +	.attach		= k3_m4_rproc_attach,
-> +	.detach		= k3_m4_rproc_detach,
-> +	.kick		= k3_m4_rproc_kick,
-> +	.da_to_va	= k3_m4_rproc_da_to_va,
-> +	.get_loaded_rsc_table = k3_m4_get_loaded_rsc_table,
-> +};
-> +
-> +static int k3_m4_rproc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	const struct k3_m4_rproc_dev_data *data;
-> +	struct k3_m4_rproc *kproc;
-> +	struct rproc *rproc;
-> +	const char *fw_name;
-> +	bool r_state = false;
-> +	bool p_state = false;
-> +	int ret = 0;
-> +
-> +	data = device_get_match_data(dev);
-> +	if (!data)
-> +		return -ENODEV;
-> +
-> +	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to parse firmware-name property\n");
-> +
-> +	rproc = devm_rproc_alloc(dev, dev_name(dev), &k3_m4_rproc_ops, fw_name,
-> +				 sizeof(*kproc));
-> +	if (!rproc)
-> +		return -ENOMEM;
-> +
-> +	rproc->has_iommu = false;
-> +	rproc->recovery_disabled = true;
-> +	if (data->uses_lreset) {
-> +		rproc->ops->prepare = k3_m4_rproc_prepare;
-> +		rproc->ops->unprepare = k3_m4_rproc_unprepare;
-> +	}
-> +	kproc = rproc->priv;
-> +	kproc->rproc = rproc;
-> +	kproc->dev = dev;
-> +	kproc->data = data;
-> +
-> +	kproc->ti_sci = devm_ti_sci_get_by_phandle(dev, "ti,sci");
-> +	if (IS_ERR(kproc->ti_sci))
-> +		return dev_err_probe(dev, PTR_ERR(kproc->ti_sci),
-> +				     "failed to get ti-sci handle\n");
-> +
-> +	ret = of_property_read_u32(np, "ti,sci-dev-id", &kproc->ti_sci_id);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "missing 'ti,sci-dev-id' property\n");
-> +
-> +	kproc->reset = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(kproc->reset))
-> +		return dev_err_probe(dev, PTR_ERR(kproc->reset), "failed to get reset\n");
-> +
-> +	kproc->tsp = k3_m4_rproc_of_get_tsp(dev, kproc->ti_sci);
-> +	if (IS_ERR(kproc->tsp))
-> +		return dev_err_probe(dev, PTR_ERR(kproc->tsp),
-> +				     "failed to construct ti-sci proc control\n");
-> +
-> +	ret = ti_sci_proc_request(kproc->tsp);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "ti_sci_proc_request failed\n");
-> +	ret = devm_add_action_or_reset(dev, k3_m4_release_tsp, kproc->tsp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = k3_m4_rproc_of_get_memories(pdev, kproc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = k3_m4_reserved_mem_init(kproc);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "reserved memory init failed\n");
-> +
-> +	ret = kproc->ti_sci->ops.dev_ops.is_on(kproc->ti_sci, kproc->ti_sci_id,
-> +					       &r_state, &p_state);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get initial state, mode cannot be determined\n");
-> +
-> +	/* configure devices for either remoteproc or IPC-only mode */
-> +	if (p_state) {
-> +		dev_info(dev, "configured M4 for IPC-only mode\n");
-> +		rproc->state = RPROC_DETACHED;
-> +		/* override rproc ops with only required IPC-only mode ops */
-> +		rproc->ops->prepare = NULL;
-> +		rproc->ops->unprepare = NULL;
-> +		rproc->ops->start = NULL;
-> +		rproc->ops->stop = NULL;
-> +		rproc->ops->attach = k3_m4_rproc_attach;
-> +		rproc->ops->detach = k3_m4_rproc_detach;
-> +		rproc->ops->get_loaded_rsc_table = k3_m4_get_loaded_rsc_table;
-> +	} else {
-> +		dev_info(dev, "configured M4 for remoteproc mode\n");
-> +		/*
-> +		 * ensure the M4 local reset is asserted to ensure the core
-> +		 * doesn't execute bogus code in .prepare() when the module
-> +		 * reset is released.
-> +		 */
-> +		if (data->uses_lreset) {
-> +			ret = reset_control_status(kproc->reset);
-> +			if (ret < 0) {
-> +				return dev_err_probe(dev, ret, "failed to get reset status\n");
-> +			} else if (ret == 0) {
-> +				dev_warn(dev, "local reset is deasserted for device\n");
-> +				k3_m4_rproc_reset(kproc);
-> +			}
-> +		}
-> +	}
-> +
-> +	ret = devm_rproc_add(dev, rproc);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to add register device with remoteproc core\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct k3_m4_rproc_mem_data am64_m4_mems[] = {
-> +	{ .name = "iram", .dev_addr = 0x0 },
-> +	{ .name = "dram", .dev_addr = 0x30000 },
-> +};
-> +
-> +static const struct k3_m4_rproc_dev_data am64_m4_data = {
-> +	.mems = am64_m4_mems,
-> +	.num_mems = ARRAY_SIZE(am64_m4_mems),
-> +	.uses_lreset = true,
+I added some, but I am not sure that is all needs. There may have tools,
+which can help check, but I don't know.
 
-If this is the case, why carrying k3_m4_rproc_dev_data::uses_lreset and all the
-code around it?
+Chagne from v2 to v3
+- using 'mode' distingiush master and target.
+- move svc-i3c-target.c to under master,
+- built together with svc-i3c-master.c
 
-I am done reviewing this set.
+Change from v1 to v2
+- change "slave" to "target"
+- include master side tty patch
+- fixed dtbcheck problem
+- fixed kerne-doc check warning
 
-Regards,
-Mathieu
+Some review comment may be lost since it is quite long time since v1. Now
+master side dependent patches already in linux-next. So sent target side
+patches with tty support again.
 
-> +};
-> +
-> +static const struct of_device_id k3_m4_of_match[] = {
-> +	{ .compatible = "ti,am64-m4fss", .data = &am64_m4_data, },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, k3_m4_of_match);
-> +
-> +static struct platform_driver k3_m4_rproc_driver = {
-> +	.probe	= k3_m4_rproc_probe,
-> +	.driver	= {
-> +		.name = "k3-m4-rproc",
-> +		.of_match_table = k3_m4_of_match,
-> +	},
-> +};
-> +module_platform_driver(k3_m4_rproc_driver);
-> +
-> +MODULE_AUTHOR("Hari Nagalla <hnagalla@ti.com>");
-> +MODULE_DESCRIPTION("TI K3 M4 Remoteproc driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.39.2
-> 
+No sure why an additional "\r\n" appended.
+
+Frank Li (8):
+  i3c: add target mode support
+  dt-bindings: i3c: svc: add proptery mode
+  Documentation: i3c: Add I3C target mode controller and function
+  i3c: svc: Add svc-i3c-main.c and svc-i3c.h
+  i3c: target: add svc target controller support
+  i3c: target: func: add tty driver
+  i3c: add API i3c_dev_gettstatus_format1() to get target device status
+  tty: i3c: add TTY over I3C master support
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |  11 +-
+ Documentation/driver-api/i3c/index.rst        |   1 +
+ .../driver-api/i3c/target/i3c-target-cfs.rst  | 109 +++
+ .../driver-api/i3c/target/i3c-target.rst      | 189 +++++
+ .../driver-api/i3c/target/i3c-tty-howto.rst   | 109 +++
+ Documentation/driver-api/i3c/target/index.rst |  13 +
+ drivers/i3c/Kconfig                           |  31 +-
+ drivers/i3c/Makefile                          |   3 +
+ drivers/i3c/device.c                          |  24 +
+ drivers/i3c/func/Kconfig                      |   9 +
+ drivers/i3c/func/Makefile                     |   3 +
+ drivers/i3c/func/tty.c                        | 481 +++++++++++
+ drivers/i3c/i3c-cfs.c                         | 389 +++++++++
+ drivers/i3c/internals.h                       |   1 +
+ drivers/i3c/master.c                          |  26 +
+ drivers/i3c/master/Makefile                   |   3 +-
+ drivers/i3c/master/svc-i3c-main.c             |  80 ++
+ drivers/i3c/master/svc-i3c-master.c           |  34 +-
+ drivers/i3c/master/svc-i3c-target.c           | 776 ++++++++++++++++++
+ drivers/i3c/master/svc-i3c.h                  |  15 +
+ drivers/i3c/target.c                          | 453 ++++++++++
+ drivers/tty/Kconfig                           |  13 +
+ drivers/tty/Makefile                          |   1 +
+ drivers/tty/i3c_tty.c                         | 432 ++++++++++
+ include/linux/i3c/device.h                    |   1 +
+ include/linux/i3c/target.h                    | 548 +++++++++++++
+ 26 files changed, 3724 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-target-cfs.rst
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-target.rst
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-tty-howto.rst
+ create mode 100644 Documentation/driver-api/i3c/target/index.rst
+ create mode 100644 drivers/i3c/func/Kconfig
+ create mode 100644 drivers/i3c/func/Makefile
+ create mode 100644 drivers/i3c/func/tty.c
+ create mode 100644 drivers/i3c/i3c-cfs.c
+ create mode 100644 drivers/i3c/master/svc-i3c-main.c
+ create mode 100644 drivers/i3c/master/svc-i3c-target.c
+ create mode 100644 drivers/i3c/master/svc-i3c.h
+ create mode 100644 drivers/i3c/target.c
+ create mode 100644 drivers/tty/i3c_tty.c
+ create mode 100644 include/linux/i3c/target.h
+
+-- 
+2.34.1
+
 
