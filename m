@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-65603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C138BF298
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:53:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8487B8BF2AE
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:55:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7F611C20BFD
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:53:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6E521C2155D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A57B183C3C;
-	Tue,  7 May 2024 23:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA7219F6D6;
+	Tue,  7 May 2024 23:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azqvRIWk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lNi5E7Mn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34EDF183C36;
-	Tue,  7 May 2024 23:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF6B1844BD;
+	Tue,  7 May 2024 23:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715123651; cv=none; b=bscUW59jiQojCvuLMbdfp4ngrXqg2N4YHMcs9yzbpME20q8cUmdqrlZRqSA7fxCdWun1OfDVfdRM0zWipuza6far8Q50bYsLk+dWgEjW6nGE8wUa3b1C5d36hreuDjMNEueUeKcYdAJSFgFp5VqMTgNiP6vgrhqBj5afcPw55hg=
+	t=1715123668; cv=none; b=afVCVXtjgylGlFFI+dHB8JDtS1t+ZTjmrAdCXJ6XAEHT8vidLwLeSFED1CxgcuDC3MgRYUUn+UGFNIpONa6+5BjjZJlhdlYcBsusZUX+yu7fyE+V2swG2TpGYzJX90CMOJVxB9Y1K+L1yxX5OvcyOlotXV3a2oj94t+52NZCVjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715123651; c=relaxed/simple;
-	bh=V9xwPCi2BbHqvXbn+HBOTFHYtgRml7I7/V1s2BHN2qA=;
+	s=arc-20240116; t=1715123668; c=relaxed/simple;
+	bh=DLyN2r9encUr8sDr7IL9hDMF/WiK1le1ynlyYCtHKX4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BXoE0+ajgYjZ/gYpFZXbEfGzB4mXvFXyfmZAqgG9z8B7fM92WY2Q09BirM7lAjjt5Uc8coPh1HPZkdnL7pZUtiVdnCv/uCi7jz9erawlpwo1/Kc/ee9DQS/ja1IM6hy1aW0Q9CmhDP9LQ/bjg8pK0zYRfMz8qbY1nMbVCBpjpic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azqvRIWk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0519C4AF17;
-	Tue,  7 May 2024 23:14:09 +0000 (UTC)
+	 MIME-Version; b=p7a7Cq0RMdduwNENsNzZT4/AKzkIop+ZkHeApgWhcG7wieIajOPuQYpZ0xBnWtybOIIOZNk4b5iyq3EwjqE32LgRl4K21hT4iKpAJgQrpwZ/TizfcIz6XSfEklEvmLuO3+hmk9mfSK8TkkbEc2U6ugAzM4yJr+9OuyCOirywqjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lNi5E7Mn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A8EAC3277B;
+	Tue,  7 May 2024 23:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715123650;
-	bh=V9xwPCi2BbHqvXbn+HBOTFHYtgRml7I7/V1s2BHN2qA=;
+	s=k20201202; t=1715123668;
+	bh=DLyN2r9encUr8sDr7IL9hDMF/WiK1le1ynlyYCtHKX4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=azqvRIWkc5tqT0c/wqFAjTgdSdORR/eK7POTT4E+BEPhGqhh2hwMewDBIedkniqLm
-	 TZO744hL/nWT3vPfq6Nf+lXWwM/TpmZ5MPLJSLbQCXe0sF2UwYpSfkTfnOmRmHrX7C
-	 rR3hHKdo58fajHToULx9MbgLSFSt7ReU9rh1uvY7j39KfhyxITHVGd456xKpvHvacS
-	 y6n9hAjWFYpJWxv+dAGvDJGNNPjBM81bULDu/NctXvrSTLmFtsYQxlCiUFci8HbvQ8
-	 IaPvEFR6BoTbkHQ8ExW3WxMxTN1Y6w1/0SvdhpKc7M/1DTUTu7z10fROuSuEchM9OQ
-	 m9GUUDp1Omikw==
+	b=lNi5E7MnW/CC0zdIZp8zFvUkLrbsdcjtDeyHvTg2xwmZeBfZ98PrCN5HzYzJ+3KwE
+	 5tVJuvTx28q1n0PUk6+IaQMaH3dEW5M3Dqp1Qd+yNDUwlwwZNi28+SRTTLB0MvFsf3
+	 xE7cZMVdKM7zq2yzs+TTDXnifT2Z0pAjS22LFGvEj90Ut/F47O9RJqScyWDRx2AUhD
+	 fFdzgLyykq3E7cXBIpdtbdqChQGC73DHXYVbaceqdg5prVy4Xs2Crsq0ooao0clEyv
+	 LiKxGqHxKLTnMehbesbaGbPqR7Yp0trQLX0Qwan/UAA0UzLM/YtUhd5AkpSCKtLuIx
+	 OZdRzT2AfVDgw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -53,12 +53,12 @@ Cc: Derek Fang <derek.fang@realtek.com>,
 	conor+dt@kernel.org,
 	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 2/9] ASoC: dt-bindings: rt5645: add cbj sleeve gpio property
-Date: Tue,  7 May 2024 19:13:57 -0400
-Message-ID: <20240507231406.395123-2-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 2/6] ASoC: dt-bindings: rt5645: add cbj sleeve gpio property
+Date: Tue,  7 May 2024 19:14:18 -0400
+Message-ID: <20240507231424.395315-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240507231406.395123-1-sashal@kernel.org>
-References: <20240507231406.395123-1-sashal@kernel.org>
+In-Reply-To: <20240507231424.395315-1-sashal@kernel.org>
+References: <20240507231424.395315-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.10.216
+X-stable-base: Linux 5.4.275
 Content-Transfer-Encoding: 8bit
 
 From: Derek Fang <derek.fang@realtek.com>
@@ -87,10 +87,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 6 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/sound/rt5645.txt b/Documentation/devicetree/bindings/sound/rt5645.txt
-index 41a62fd2ae1ff..c1fa379f5f3ea 100644
+index a03f9a872a716..bfb2217a9a658 100644
 --- a/Documentation/devicetree/bindings/sound/rt5645.txt
 +++ b/Documentation/devicetree/bindings/sound/rt5645.txt
-@@ -20,6 +20,11 @@ Optional properties:
+@@ -16,6 +16,11 @@ Optional properties:
    a GPIO spec for the external headphone detect pin. If jd-mode = 0,
    we will get the JD status by getting the value of hp-detect-gpios.
  
@@ -102,7 +102,7 @@ index 41a62fd2ae1ff..c1fa379f5f3ea 100644
  - realtek,in2-differential
    Boolean. Indicate MIC2 input are differential, rather than single-ended.
  
-@@ -68,6 +73,7 @@ codec: rt5650@1a {
+@@ -64,6 +69,7 @@ codec: rt5650@1a {
  	compatible = "realtek,rt5650";
  	reg = <0x1a>;
  	hp-detect-gpios = <&gpio 19 0>;
