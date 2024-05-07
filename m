@@ -1,453 +1,274 @@
-Return-Path: <devicetree+bounces-65360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08B108BDEE8
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:51:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 296738BDEEC
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:52:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8857B1F21663
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:51:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3823282A20
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:52:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C366A15EFA5;
-	Tue,  7 May 2024 09:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E4314EC5D;
+	Tue,  7 May 2024 09:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EgNnBxPW"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="io6A/m7g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2114.outbound.protection.outlook.com [40.107.22.114])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63A415ECDB;
-	Tue,  7 May 2024 09:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715075113; cv=none; b=AP7bEPkker6p7Z8HytcsQc8HXKvpmI4qM7yn9wB82xYSZC0LHgz06NpNSD46I6mA+wv1XFVxfhcXsvGx66of6ndUEDBHwTHEySoXhro4bchuGS9IZVEwlCMhKPrAEEc1febnxgkLz0z9ymcbQxiMvUt3gxkH4mAX94wVn+Uh6Rs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715075113; c=relaxed/simple;
-	bh=LotptT419RJjZIxp5/HVakY0x4ZOIGABu3UySn5o+rg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=kryGYsHZMIt4Yr428A0IwPf8qZpCeBE9cYruiceWBezTqIbF2UvTAWWjrHZE2UoFg8wnmB8wMJ/k3BfjpnQRcm5R6Wh0B7grEmI808u+LCHV2k569LIrxTIptRrl6B1c9Ws1aNSjPlzguZXh34N5rvGDooS/NVO9P3jVBVEGmHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EgNnBxPW; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4479j04Q104803;
-	Tue, 7 May 2024 04:45:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715075100;
-	bh=Oj2mmHyrTcTTk6J2565Df1tekT9zOELQa+Ky7kW0TFE=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=EgNnBxPWMKELGimIahx5OMeqMJUMGUQBeya/0D5V99sAwhHiWpjtHGUeEangoNnoI
-	 t80Y3QbEt9VTi0A4uOA5kZZ/lzkph1ayRNCo7zfuWgvc9rczxlYZri+wFXE0rpzlue
-	 LXY2TwJg8I5Yayl4njW7mXOoaolTJLJ0um5SWE+8=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4479j05L087028
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 04:45:00 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 04:44:59 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 04:44:59 -0500
-Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4479iXjZ117029;
-	Tue, 7 May 2024 04:44:55 -0500
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-Date: Tue, 7 May 2024 15:14:32 +0530
-Subject: [PATCH 5/5] arm64: dts: ti: k3-j7200*: Add bootph-* properties
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145B314D71D;
+	Tue,  7 May 2024 09:48:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.114
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715075331; cv=fail; b=tsbeiBQ+ZeLX1ik6BV3WIxcN8tcybqANBozGRLrwiPMMekP7wfB0OZf8wQ1hdbF5DmTxdC7dT7eQhI5jj+ZFCtcF+S5HLNpH8QH73NobakcNIf/ZvNGyrSjTinw2Szfxd3/4YuS9vdFfUbX7WRI26Vgqco19vpRg4poGvKeRS8U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715075331; c=relaxed/simple;
+	bh=HFfZVrCfc2McAseFLQwOZ7BhHZftBzywGsmw9qxdlpI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gfbnP0YxR5wOTnTr1cP3DwRC5Nv4UbUiZ0rWuQdwDuk6tQ4Mi8sKUlRLaSwFeFha+JQxHqgHF7L6mLEUWY4BF1Nd1dhvW9SDcZ7N2PSytZxgDe5UkwFB+bKkVAF24NOtUhm2/c1v++QE2zaa4PRjDWPS2yx8jSbVyjqoW1uSbbo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=io6A/m7g; arc=fail smtp.client-ip=40.107.22.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MV3P6HvRclcLmgCNPS9E323bt0k8+bsp0cGdHQ3qYyX3j5ayWOv+zPksi9aExBKeR22ZZVR3PLS/vEIKo9lYga30xu1wYLUmJ2SHLgwaqx9/BvZHFQNffbuP3ZW9fkern0+C4lVuMOxlbtc4xa9Esj/isyDI92nFm+aVbHf8K3H9ElJRiOPeKoCrW+XuLHONTZ5bMtmPwf0BM9NHJJdkpmmQqIyMGfKE9U/jKeqv1o1ovviLv7QaMGffDVPACXJsT9UDUlwJnbs83r+QTn0yKJxzxvjoCCsEiPB4EQJDsbEF5myfccvBOe7iFgiNoGs7kYDyRB20FOYRvTIyIa7fwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SFaPdzbEfsQyaZU8VsaxuVyOwQopmmOKiXFMV/tvz24=;
+ b=JznJIKYn55n5P6GX1MPD9vMVwPntyUXaZGcaSLyXCt4Lf19FXa/VrO05NJkvqMO+hHZZ+P5E5Obcny4O5GQryvlbKdUpcLXcOcoqTL3A5IVfLvMdcEV2PZhH3XtiAP4cBj9oKMAj5gSWHW3OaL7haHPEWsHtgOV+MfMR+zypKRbCWKdoaU5r99i5WJjPSJEl/ujOuLcOp6B5sZnay/cvQOGzt2q2YwawRLkNjUytCUoLnusVt/vNp57Dw3eFjAww2BjemSZP6xbnuDQmqqK7mDe1MHNFJW2ypgBpK7PHJIM08gslUGq/XrZqiIhoCECD1r696mk2Zw2IExriH7wVaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SFaPdzbEfsQyaZU8VsaxuVyOwQopmmOKiXFMV/tvz24=;
+ b=io6A/m7gRII11b6Wlc068SPCIdcSxJAU0u2rqvI2LY/LfTGpygRKPEzjCKQCGkJQphywJgFFy2a2YxRtLisDlJ2Wbwx22wVBbGyhWGY+WImvEXhLLQJDyKGJ+LvnqawJpY0xuCHuZ5kUzdMcuFIVI/ZxiJUOpPbYdArebrN0pbM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from DB7PR04MB4842.eurprd04.prod.outlook.com (2603:10a6:10:1b::13)
+ by DB9PR04MB9554.eurprd04.prod.outlook.com (2603:10a6:10:302::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41; Tue, 7 May
+ 2024 09:48:44 +0000
+Received: from DB7PR04MB4842.eurprd04.prod.outlook.com
+ ([fe80::ac08:df46:97bd:4ae6]) by DB7PR04MB4842.eurprd04.prod.outlook.com
+ ([fe80::ac08:df46:97bd:4ae6%6]) with mapi id 15.20.7544.041; Tue, 7 May 2024
+ 09:48:44 +0000
+Message-ID: <34968505-f8b1-4c6f-9d9c-5938edcdba68@cherry.de>
+Date: Tue, 7 May 2024 11:48:41 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] i2c: mux: add the ability to share mux core
+ address with child nodes
+To: Peter Rosin <peda@axentia.se>, Farouk Bouabid <farouk.bouabid@cherry.de>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240506-dev-mule-i2c-mux-v2-0-a91c954f65d7@cherry.de>
+ <20240506-dev-mule-i2c-mux-v2-1-a91c954f65d7@cherry.de>
+ <9b12dc9f-054b-fba5-e23d-48d0fe1a00e2@axentia.se>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <9b12dc9f-054b-fba5-e23d-48d0fe1a00e2@axentia.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA0P291CA0018.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::15) To DB7PR04MB4842.eurprd04.prod.outlook.com
+ (2603:10a6:10:1b::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240507-b4-upstream-bootph-all-v1-5-c6d52651856f@ti.com>
-References: <20240507-b4-upstream-bootph-all-v1-0-c6d52651856f@ti.com>
-In-Reply-To: <20240507-b4-upstream-bootph-all-v1-0-c6d52651856f@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Beleswar Padhi
-	<b-padhi@ti.com>, Manorit Chawdhry <m-chawdhry@ti.com>
-X-Mailer: b4 0.13-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1715075073; l=10136;
- i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
- bh=LotptT419RJjZIxp5/HVakY0x4ZOIGABu3UySn5o+rg=;
- b=1/xjkUasd3gtoExRz98VtT6ShTOvE2o0JIPt/RIqRZq2fjIhcJtrU7leAWSjZ9BmdIgRvXHnL
- t2k7MCF2X+QBT2bbnO+kOHn2O82LYfjr3d3eKiQSCAuZ9NdpI3dUnEG
-X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
- pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4842:EE_|DB9PR04MB9554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f0a89f7-7b0b-405d-8c4a-08dc6e7ae239
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005|7416005;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TTRMMEZHSk95aWpKVTRKejRHOVNRaGRCRVBpVzBUZDFUdmVwTmR5MWk2bk5r?=
+ =?utf-8?B?OWJuTmM4ZHh3bHFyT1czampUTi9oNEszWWMvTS9XWm42WXU2NWpYb1FkMUNK?=
+ =?utf-8?B?L1o2WlJ2bDhNZVEwdEpLMjdkdVJnUW9tR1NINHZWaUd3Mm9pMHN1aExLRDJx?=
+ =?utf-8?B?eGhBWUxEenB2a0ZwZG5TbjQ5V21GbzBGb0tSREs1QlR5Y2JXNFpUblA4UjFu?=
+ =?utf-8?B?V2dPcCs1RHZyVVBVeHNQcit3SnoxN1Z2MzlZcGdwU1p5aExtNHBIWVZLelJY?=
+ =?utf-8?B?TUdiU3Y1UUwxVjJ6UmxzajlUM1dxNFZlTnRSR0hHVHdiY0xxa2VIMnkxcnU3?=
+ =?utf-8?B?KzRhRHFra2UzRVFrdFRLajFvT0NTRk1TbEd2dnRreEt4UGc5MHZkRkxuSG8v?=
+ =?utf-8?B?Z1VRcHhJMERYTmlmejRJaG92QUxpR0ltb29mZ00xRXJUYTI1MnZrVXZCenlH?=
+ =?utf-8?B?azlGZURtQzVPZW9LR3drcXVCQkx5RTVXSzhvcXBRM1pWb1l2bDYzYUExZWVD?=
+ =?utf-8?B?ZGs5SnNsMjROTmxRczJ2U1JLVWZnVjc5OEZUak1vT25vaEpVTGhoY0I2ZDNW?=
+ =?utf-8?B?YTc2cURraGtJSnZhSVVUTG55UGQxMndKck0yQStMU3FKU0FOZzhzM3o4Nitl?=
+ =?utf-8?B?VDQrQnExTmcxSUhsNnlHSjZjbkhRamJpbURDNkhhTEVmdi9sbkxndXRJZXRq?=
+ =?utf-8?B?OTlSZHkrd3FMUlBSWVl4OFh3RDJGbEV1cHRGWld3UkpkVHF4SWZvalpXdFJ4?=
+ =?utf-8?B?Tk5HanUrYnRvaFNSSEp1RlRISitvWWI0WTdYTUZuclFxWkdUVkRQRWFXS0Z6?=
+ =?utf-8?B?RGQ3T1lPZkYrODlBTk9KUThGUlpkNjBucFNHaEVQR0tXRjZOTEluTnQveVg0?=
+ =?utf-8?B?a3liemQvekVMUHk1RTNsWlg4WUd6UHZwWnlsQ2dGQXY5RVpHOFZwelRuWUFH?=
+ =?utf-8?B?WldnRUhXQkkzYXp4Z2FhM2NrSEF3RVpiMU1VZTFON3RNS3NSMCt5c1h5eXNo?=
+ =?utf-8?B?ZXdZOTNROWlGc2ZDdmhzZ2c2bGplc3E3dDVaRFB4UkYrbmtvQ1FUQ1c2Y05L?=
+ =?utf-8?B?Qk1GZXBNekQ1b05rV1V6M291Ym01ZStlZlVvcEVDa2hFVFg5ckdqSEd5aFlu?=
+ =?utf-8?B?bXdyMUx5Q0lBRnY3eFZzRXdmMU4vOUZ3N2pkTTV1NnNkQWpjZjR3aG5DaHJs?=
+ =?utf-8?B?Z1J5dXdNeTh4MTVYVHBsazVkcDRJNHF4N3NaMEViMFNkSjJlQWZZK1hZZ1BB?=
+ =?utf-8?B?YWxLQ08vRVc1WU8wbW1zejVuYmZRdnplejMrcnJhSE12emh4M1ExYlV3Z1hk?=
+ =?utf-8?B?dTZXaVZIV3IwZDB2QmRHTEFxb2RvRFZ3cytvV2J1Y3Q1dVpPWWJBR1ZJQ245?=
+ =?utf-8?B?cHJMN1A4YmpqSmNkRXVzQTRzVzhSb0RFWEl5TWFFaXlWSWNPelhHeWFYa0Y3?=
+ =?utf-8?B?SGl6MlRlRGdodmdESURDVU9FYzZMWnJvK0Y0VVVLTGZoT25JU282VXFnYTJt?=
+ =?utf-8?B?cGdwV2NFckVmM2RLaHdSeGswbmRTVU9kKzE0dVpQd0l3Y0hndjBjbmd0VUtu?=
+ =?utf-8?B?RnBzOW9Cbm1sQUpRRGlwQ2EwNlk4V2xBSGhHcXQzRm9VY3lmdGdqbFpuNkda?=
+ =?utf-8?B?OU0zQTBERTRNL2o4NFBiSUw1bnIvSVE9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4842.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Znk2Vjd4cmlDcVEycEVnSlVrMUVEM1BqekU4WHFicW80U3F5OWN0T2ZFU0l3?=
+ =?utf-8?B?K2pqdnZaTGJ1M00rNGVod0sreG56b0FKSzdZVzBsNllXWGJ2dW5CT0ZrZDdy?=
+ =?utf-8?B?aTUzTVY2MkJuMUxVQnNiTmprZE9yN1FtZnhJMWR3MnpoK29ua01sdjhqYnNU?=
+ =?utf-8?B?SlVyMnZNNWZiNlozbXRIOFZzSkJRZ1p1dVBwSURTUEZQWFBCVXlUZ2JJaW4y?=
+ =?utf-8?B?a01NTGxxRHVtakpRL2I5TWxQOWkzYlZwL04vSk1KejEzelpEVXBlaWdXRFVo?=
+ =?utf-8?B?Zzkvb1J2cWZ1ZzNONHBJVmZUdlFZbHhpL1RJTkJncmI3VWUzSmJKeDVWWlNl?=
+ =?utf-8?B?Uk5HdHZya3lBeXpoSTVGaDBrMjl2T2dObzBjNk44VmorZ01WUG5oYWVnMWNV?=
+ =?utf-8?B?RG5iemhhTjVuMnRhSTNDd1BpUFpmR0NjQzVXbnk1cEljK1FYdnEzM1FuRjFS?=
+ =?utf-8?B?aUdCeWxjNytzWVZKM2hvczFFbUhjVy9SYWVBZWxNU3krWmRDcS9qVVpBRUpX?=
+ =?utf-8?B?S28weFE2TVJvYS9oOGVRL3UzeU1rb2hIVkdwMEtSYnhzc2dERGZHdm9idEtn?=
+ =?utf-8?B?dlN4OC9BL3FPb2FlNGhCK0RKRzl2MWY1WHJFV0x3UVlIcXkwRndqVkI4cEhE?=
+ =?utf-8?B?aE5JU0djNkQxYXk5Sm5zVExuQlVvSkdzY00zWXg2cGlHOUVpSm5PUVdRQ2Vh?=
+ =?utf-8?B?UE5uUXJDY3VMVGpPbTlQbUpCWW5aUEFkcEU3cDRxeis3R002aUhVcVNKL2hG?=
+ =?utf-8?B?QXZUakF3Rmp1bFdCOXdjQXd3QnhDMDJaUEZiSzU1a0xlV01JMFFsREk5c01t?=
+ =?utf-8?B?RDFvZklxS1ZkeTkvZlU3MEFTNWRyVm1TM2MrYWZ6QmhRbVJmb1JEb21mVU1I?=
+ =?utf-8?B?U3F0eHdNR0svV00vRm1CaGhaejArc245OVBwb1F3SVN6UkFQZjloUSs5b0xP?=
+ =?utf-8?B?eWRIVlkrQnMyTnJMMU1nekJSb21ock1zdGIrd3dvWXY0MGQ2Vm4zd3FISHRX?=
+ =?utf-8?B?aFk1Y3FCay83b2hHR3B6UktHQlp0VGRXejM1ajU3RmZJRDJ4T2wrcEd6TnFJ?=
+ =?utf-8?B?czFMMWw5UGhSZmF0eFRGS2Q4OGJUZlgrMzUvZnlRR01CT0hYVWYvSjFERWN0?=
+ =?utf-8?B?em1pbjNudFIyOXRkdmZ3eHM5ZTBsRHo5ZUtvR2pkQmtLSnpEb2wwK2hYSzlM?=
+ =?utf-8?B?RE5Sbk95aHNOYy9JaWlTQnpmVmhBc0M0SUlUU3cxWnB3OGVjSXJtVXNYc2po?=
+ =?utf-8?B?TTE4YnpXOTZHelliVHE4b1VyTGF1QVpWMi9Cb0lraXNiRTd5M1hGNTc3WjlE?=
+ =?utf-8?B?WnZrSXJEa3pPRml0VDExeEczb3ZLdGZ5OXE1Q3duSHRuMFdwbTVaMDdZUWlt?=
+ =?utf-8?B?eHNpY2pDUGZRRzNtZ2FIUTYvakVvVWdsZXpZS3ZpMkowMEgzZzAzb0NGMmdj?=
+ =?utf-8?B?V0xvdjZSYVFmR3hnSmFvcmxZeWZzdnV4YkNkT2NZWEZyZFliSWRjaFNPamUr?=
+ =?utf-8?B?VGFrajQvRnpLUlB1TFFFK1ZPWUlSZlJmYWM5Z205NGVaS0VUM3o3WkRlQ2o1?=
+ =?utf-8?B?Ymk5UEFiOTA4UXZ2d0owZGdNdHphYk5oOHkrZUozOWxOWVUxQnR5SXI2QjRF?=
+ =?utf-8?B?bzlOR0NHNFh5eitYenRNWW81NVBYRmVmWGhucmtEMWU3cTNVMEtRM2dmNFhC?=
+ =?utf-8?B?QVA1cWQyeGxOZEdxWVU2eE5GSXgwdXZOM2syYnJ4b0tRYytKWGJEbGpuVnNa?=
+ =?utf-8?B?TlRCMjJ2OHZwbUtoSDJhVm1oR0lUOWpTdmliUFpMbXBISlZXWXJOTTBsZ1Jw?=
+ =?utf-8?B?M0ZVODdRdlZIbUxydkw5MEZvTURqcEVxbUhPcWJ2VGxsbHNCSUNDb1VyWkdG?=
+ =?utf-8?B?V0Z5akUzRmJld3RjVUVRc090am5GN2JVYUxVbHVWVE1wZVFpenhGWjdrVDdr?=
+ =?utf-8?B?T050VVFlM2tCQmVtMWJta013MDFQWWNUK3VjeWpPaHh5Nzh1cTlEM1JhcFp0?=
+ =?utf-8?B?UGhiWDQ0eXM3MkpJRzEycThMOVQ0cmxZQ2t1bnlpclpQUllqQTVnYWtyeGVN?=
+ =?utf-8?B?b1pwSjlKRG04d3U3Y3I0OUlvemk4Q2lHd3RQRWoyK29lYWJzakhCeGw1ZUpT?=
+ =?utf-8?B?VzlBVExwMmE3T0Z3VnlMQkpmcHJXZnV1R0VzSHd1OGtSaFhSVkM1OVJCME50?=
+ =?utf-8?B?c0E9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0a89f7-7b0b-405d-8c4a-08dc6e7ae239
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4842.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 09:48:44.1825
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eiMTtDb2M33nHVKbg4v5s/igDa7dDANMS7ah/hWduIhvL8OlN9whmdZdKeH6SCDLf0Ye0c+2jhJ+Mq2oxGdUxVs5q4TIFmp2QVBDgcZzt0Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9554
 
-Adds bootph-* properties to the leaf nodes to enable U-boot to
-utilise them.
+Hi Peter,
 
-Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
----
- .../boot/dts/ti/k3-j7200-common-proc-board.dts     | 23 ++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi          |  2 ++
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi    | 10 ++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi        |  8 ++++++++
- 4 files changed, 43 insertions(+)
+On 5/6/24 11:26 PM, Peter Rosin wrote:
+> Hi!
+> 
+> Regarding the subject (and elsewhere) I think of "mux core" as roughly
+> the code in the i2c-mux.c file. So, for me, the "mux core" does not have
+> an address, it is a mux "driver instance" or "device" that sits on the
+> I2C address that you need to share.
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 6593c5da82c0..f7b96e8d6462 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -129,6 +129,7 @@ J721E_WKUP_IOPAD(0x94, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
- 			J721E_WKUP_IOPAD(0x8c, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
- 			J721E_WKUP_IOPAD(0x88, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
-@@ -136,6 +137,7 @@ wkup_uart0_pins_default: wkup-uart0-default-pins {
- 			J721E_WKUP_IOPAD(0x48, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
- 			J721E_WKUP_IOPAD(0x4c, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_cpsw_pins_default: mcu-cpsw-default-pins {
-@@ -153,12 +155,14 @@ J721E_WKUP_IOPAD(0x002c, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
- 			J721E_WKUP_IOPAD(0x0018, PIN_OUTPUT, 0) /* MCU_RGMII1_TXC */
- 			J721E_WKUP_IOPAD(0x001c, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_gpio_pins_default: wkup-gpio-default-pins {
- 		pinctrl-single,pins = <
- 			J721E_WKUP_IOPAD(0x70, PIN_INPUT, 7) /* (C14) WKUP_GPIO0_6 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_mdio_pins_default: mcu-mdio1-default-pins {
-@@ -204,6 +208,7 @@ J721E_IOPAD(0xb4, PIN_OUTPUT, 0) /* (T17) UART0_TXD */
- 			J721E_IOPAD(0xc0, PIN_INPUT, 2) /* (W3) SPI0_CS0.UART0_CTSn */
- 			J721E_IOPAD(0xc4, PIN_OUTPUT, 2) /* (U5) SPI0_CS1.UART0_RTSn */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_uart1_pins_default: main-uart1-default-pins {
-@@ -238,6 +243,7 @@ J721E_IOPAD(0xf0, PIN_INPUT, 0) /* (N20) MMC1_DAT2 */
- 			J721E_IOPAD(0xec, PIN_INPUT, 0) /* (N19) MMC1_DAT3 */
- 			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-@@ -259,6 +265,7 @@ main_usbss0_pins_default: main-usbss0-default-pins {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x04, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -267,12 +274,14 @@ &wkup_uart0 {
- 	status = "reserved";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &mcu_uart0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &main_uart0 {
-@@ -281,6 +290,7 @@ &main_uart0 {
- 	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &main_uart1 {
-@@ -293,6 +303,7 @@ &main_uart1 {
- &main_uart2 {
- 	/* MAIN UART 2 is used by R5F firmware */
- 	status = "reserved";
-+	bootph-all; /* Doubtful if required or not */
- };
- 
- &main_uart3 {
-@@ -310,11 +321,13 @@ &wkup_gpio0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_gpio_pins_default>;
-+	bootph-all;
- };
- 
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-+	bootph-all;
- };
- 
- &davinci_mdio {
-@@ -341,6 +354,7 @@ exp1: gpio@20 {
- 		reg = <0x20>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		bootph-all;
- 	};
- 
- 	exp2: gpio@22 {
-@@ -348,6 +362,7 @@ exp2: gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		bootph-all;
- 	};
- };
- 
-@@ -381,6 +396,7 @@ &main_sdhci0 {
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
-+	bootph-all;
- };
- 
- &main_sdhci1 {
-@@ -392,15 +408,18 @@ &main_sdhci1 {
- 	vqmmc-supply = <&vdd_sd_dv>;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
-+	bootph-all;
- };
- 
- &serdes_ln_ctrl {
- 	idle-states = <J7200_SERDES0_LANE0_PCIE1_LANE0>, <J7200_SERDES0_LANE1_PCIE1_LANE1>,
- 		      <J7200_SERDES0_LANE2_QSGMII_LANE1>, <J7200_SERDES0_LANE3_IP4_UNUSED>;
-+	bootph-all;
- };
- 
- &usb_serdes_mux {
- 	idle-states = <1>; /* USB0 to SERDES lane 3 */
-+	bootph-all;
- };
- 
- &usbss0 {
-@@ -408,11 +427,13 @@ &usbss0 {
- 	pinctrl-0 = <&main_usbss0_pins_default>;
- 	ti,vbus-divider;
- 	ti,usb2-only;
-+	bootph-all;
- };
- 
- &usb0 {
- 	dr_mode = "otg";
- 	maximum-speed = "high-speed";
-+	bootph-all;
- };
- 
- &tscadc0 {
-@@ -432,6 +453,7 @@ serdes0_pcie_link: phy@0 {
- 		#phy-cells = <0>;
- 		cdns,phy-type = <PHY_TYPE_PCIE>;
- 		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
-+		bootph-all;
- 	};
- 
- 	serdes0_qsgmii_link: phy@1 {
-@@ -440,6 +462,7 @@ serdes0_qsgmii_link: phy@1 {
- 		#phy-cells = <0>;
- 		cdns,phy-type = <PHY_TYPE_QSGMII>;
- 		resets = <&serdes_wiz0 3>;
-+		bootph-all;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 657f9cc9f4ea..111eba71ed33 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -136,6 +136,7 @@ secure_proxy_main: mailbox@32c00000 {
- 			      <0x00 0x32800000 0x00 0x100000>;
- 			interrupt-names = "rx_011";
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			bootph-all;
- 		};
- 
- 		hwspinlock: spinlock@30e00000 {
-@@ -1538,5 +1539,6 @@ main_esm: esm@700000 {
- 		compatible = "ti,j721e-esm";
- 		reg = <0x0 0x700000 0x0 0x1000>;
- 		ti,esm-pins = <656>, <657>;
-+		bootph-all;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 7cf21c99956e..1e346451ee35 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -21,16 +21,19 @@ dmsc: system-controller@44083000 {
- 		k3_pds: power-controller {
- 			compatible = "ti,sci-pm-domain";
- 			#power-domain-cells = <2>;
-+			bootph-all;
- 		};
- 
- 		k3_clks: clock-controller {
- 			compatible = "ti,k2g-sci-clk";
- 			#clock-cells = <2>;
-+			bootph-all;
- 		};
- 
- 		k3_reset: reset-controller {
- 			compatible = "ti,sci-reset";
- 			#reset-cells = <2>;
-+			bootph-all;
- 		};
- 	};
- 
-@@ -45,6 +48,7 @@ mcu_timer0: timer@40400000 {
- 		assigned-clock-parents = <&k3_clks 35 2>;
- 		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		bootph-pre-ram;
- 	};
- 
- 	mcu_timer1: timer@40410000 {
-@@ -187,6 +191,7 @@ wkup_conf: bus@43000000 {
- 		chipid: chipid@14 {
- 			compatible = "ti,am654-chipid";
- 			reg = <0x14 0x4>;
-+			bootph-all;
- 		};
- 	};
- 
-@@ -347,6 +352,7 @@ mcu_ringacc: ringacc@2b800000 {
- 			ti,sci = <&dmsc>;
- 			ti,sci-dev-id = <235>;
- 			msi-parent = <&main_udmass_inta>;
-+			bootph-all;
- 		};
- 
- 		mcu_udmap: dma-controller@285c0000 {
-@@ -371,6 +377,7 @@ mcu_udmap: dma-controller@285c0000 {
- 			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
- 						<0x0b>; /* RX_HCHAN */
- 			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
-+			bootph-all;
- 		};
- 	};
- 
-@@ -387,6 +394,7 @@ secure_proxy_mcu: mailbox@2a480000 {
- 		 * firmware on non-MPU processors
- 		 */
- 		status = "disabled";
-+		bootph-pre-ram;
- 	};
- 
- 	mcu_cpsw: ethernet@46000000 {
-@@ -530,6 +538,7 @@ hbmc_mux: mux-controller@47000004 {
- 			reg = <0x00 0x47000004 0x00 0x4>;
- 			#mux-control-cells = <1>;
- 			mux-reg-masks = <0x0 0x2>; /* HBMC select */
-+			bootph-all;
- 		};
- 
- 		hbmc: hyperbus@47034000 {
-@@ -648,6 +657,7 @@ wkup_vtm0: temperature-sensor@42040000 {
- 		      <0x00 0x42050000 0x00 0x350>;
- 		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
- 		#thermal-sensor-cells = <1>;
-+		bootph-all;
- 	};
- 
- 	mcu_esm: esm@40800000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index 7e6a584ac6f0..a875a79e95c6 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -15,6 +15,7 @@ memory@80000000 {
- 		/* 4G RAM */
- 		reg = <0x00 0x80000000 0x00 0x80000000>,
- 		      <0x08 0x80000000 0x00 0x80000000>;
-+	  bootph-all;
- 	};
- 
- 	reserved_memory: reserved-memory {
-@@ -120,6 +121,7 @@ J721E_WKUP_IOPAD(0x20, PIN_INPUT, 1) /* (B8) MCU_OSPI0_D5.MCU_HYPERBUS0_DQ5 */
- 			J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
- 			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
-@@ -136,6 +138,7 @@ J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
- 			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
- 			J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -145,6 +148,7 @@ wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 			J721E_WKUP_IOPAD(0x98, PIN_INPUT_PULLUP, 0) /* (F20) WKUP_I2C0_SCL */
- 			J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -162,6 +166,7 @@ main_i2c0_pins_default: main-i2c0-default-pins {
- 			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
- 			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_mcan0_pins_default: main-mcan0-default-pins {
-@@ -185,6 +190,7 @@ &hbmc {
- 	flash@0,0 {
- 		compatible = "cypress,hyperflash", "cfi-flash";
- 		reg = <0x00 0x00 0x4000000>;
-+		bootph-all;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
-@@ -329,6 +335,7 @@ bucka1: buck1 {
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			bucka2: buck2 {
-@@ -463,6 +470,7 @@ flash@0 {
- 		cdns,tchsh-ns = <60>;
- 		cdns,tslch-ns = <60>;
- 		cdns,read-delay = <4>;
-+		bootph-all;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
+I'm the one who suggested mux core here (privately) :)
 
--- 
-2.43.2
+The issue is that in my head a mux device is the i2c adapter/bus (from 
+i2c-mux.yaml dt binding example):
 
+"""
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+
+         i2c-mux@70 {
+             compatible = "nxp,pca9548";
+             reg = <0x70>;
+             #address-cells = <1>;
+             #size-cells = <0>;
+
+             i2c@3 {
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+                 reg = <3>;
+
+                 gpio@20 {
+                     compatible = "nxp,pca9555";
+                     gpio-controller;
+                     #gpio-cells = <2>;
+                     reg = <0x20>;
+                 };
+             };
+             i2c@4 {
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+                 reg = <4>;
+
+                 gpio@20 {
+                     compatible = "nxp,pca9555";
+                     gpio-controller;
+                     #gpio-cells = <2>;
+                     reg = <0x20>;
+                 };
+             };
+         };
+     };
+"""
+
+"mux core" here would refer to i2c-mux@70, "mux device"/"mux" i2c@3 or 
+i2c@4. E.g. when I'm saying "in mux 3", I'm talking about i2c@3 here.
+
+For me a driver instance is a device, so "mux driver instance" would be 
+a "mux device". Ah... naming is hard. Anyway, up to you, I just wanted 
+to make sure we're talking about the same thing and there's no confusion 
+here.
+
+[...]
+> I also wonder if that second condition (...->type == &i2c_client_type) should
+> be a WARN_ON_ONCE? I don't see how the flag can be set sanely on an adapter
+> that is not itself an I2C client. Can it?
+> 
+
+Agreed, good suggestion here... Though... 
+https://lwn.net/Articles/969923/ it seems new additions of WARN_ON are 
+now discouraged? Not looking to start a discussion here about whether 
+WARN_ON is good or bad, merely pointing at this if it was missed somehow.
+
+>> +
+>> +		if (!quirks)
+>> +			return -ENOMEM;
+>> +
+>> +		if (parent->quirks)
+>> +			memcpy(quirks, parent->quirks, sizeof(*quirks));
+>> +
+>> +		quirks->flags |= I2C_AQ_SKIP_ADDR_CHECK;
+>> +		quirks->skip_addr_in_parent = client->addr;
+>> +		priv->adap.quirks = quirks;
+> 
+> The I2C_AQ_SKIP_ADDR_CHECK flag should probably not be propagated?
+> 
+
+Oh... you mean if we have a mux on an i2c adapter of a mux and the 
+adapters handled by the parent mux have SKIP_ADDR set and we don't want 
+the adapters handled by the leaf mux to have this flag as well? Is that 
+what you meant?
+
+Cheers,
+Quentin
 
