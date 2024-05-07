@@ -1,158 +1,122 @@
-Return-Path: <devicetree+bounces-65500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05908BEA3F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:17:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5CD88BEA42
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44AF0B28213
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:15:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 033501C232D9
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1249454BFB;
-	Tue,  7 May 2024 17:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DA915E5D4;
+	Tue,  7 May 2024 17:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J7y4Cghf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KRF/Ew9X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F613A951;
-	Tue,  7 May 2024 17:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00A4A951;
+	Tue,  7 May 2024 17:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715102149; cv=none; b=Q4v2+mtH+jVPvTVJ8S2lTdmRMSNbSzvw4GSi4wZ2K4+X4bZiruHDKIBtpxlH8C6+di+dBDY2V1/TJpDyaQ3cGUiiZzWanSXSbInf+0n0WmCHz+xwWTlI7ycm7VrEHAsaJBZNNV5ppUlRPv5j2wkpWHCNVkY4fDg275Ikv0rT4uM=
+	t=1715102245; cv=none; b=rSc8kV0xRfpmariT8DSAaQUjbi2EWqMR1dCnEKoQZGAxnqLTabL+XVauIK/YgvKEn/QD/dHCtLMiqUP246yjgIy1VlzwdaSB1t1M0DgW4zFKE0AebJd3NFFZXRUqA6uHsVM6hDzlxi8UY/i6GJWGaNy5TXbfl8RwaNm817P2US4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715102149; c=relaxed/simple;
-	bh=Q/PO5tT0xhQtBGm3Jrv1EVhPRHZt11qBfXbZHXoBJwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Je24K5Nb9YomsjI2XgScOj7oamLI64kWn6Xrg6WGnvadX8oH/NuHE0hOVuBG2rrcCA/K9VBirNiVe+a+7k+nzh/1fY0OOu3XJwkNNAOiKi+2Qpysel/r6MOHFt7CTVJAXhCwdtX8K5JOtxxS/Mlsu/PMsffq/geb4Ia0TtyjEPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J7y4Cghf; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 447HFX6A096082;
-	Tue, 7 May 2024 12:15:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715102133;
-	bh=2GIrttvXheSqzZiUQLCww8r4NlXBOs0jYqFU7kAkH8o=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=J7y4CghfJntoOM36oWcEhs4WChhmSjpYGexzlPflcKWj/cH/XTbkndM6B1dK01E1F
-	 uSkQLUPqijPG9IvuC+TQjveYCZi3oXPoy6PSbjB0HJ9nPUahoMivIIjCYCPz5ZcX2J
-	 K3UeFjcxzhVnlEF94WDjJoINPnkKxfZCBfTWwaxA=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 447HFXoJ015936
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 12:15:33 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 12:15:32 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 12:15:32 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 447HFW70006845;
-	Tue, 7 May 2024 12:15:32 -0500
-Message-ID: <9c6f8999-715f-42e3-8d13-a5aef074dd5d@ti.com>
-Date: Tue, 7 May 2024 12:15:32 -0500
+	s=arc-20240116; t=1715102245; c=relaxed/simple;
+	bh=tt10DJ7fLHqtt+N8vHO5fh/JA2Lt8pJk91/4mSduB3I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NAkF+xt4n3ajKGH4xIg41Udjhm99HrMPh3yjvgzh9Z4/4ATnHOYPWUTitP4oGj0LS8QpSFUOaUhnkZEBNDiI/MQFGNmJ8ZfOzT/4+x8t7fF3TRjBK8ZmSACEo+SHMJv0lm3qToAG53oVJfYvqmUHNp9cb079qi8qPhr2a4RDIXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KRF/Ew9X; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59b178b75bso604683266b.0;
+        Tue, 07 May 2024 10:17:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715102242; x=1715707042; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aU3pwl905vszgFU7HmwRESNu0Xm5cT15cD2mMAswx3s=;
+        b=KRF/Ew9X6gvX+noHrDQEK2lUttRBh279tLKA8zZEINsqXubOAFnBH+ru/CMwP24rwq
+         oCfpcqeX8i+IRb0aXuxiFgE4zGjDgQDRmK5ghMI6KpLt77TZFYQRGUP5lIEc13QyTO6r
+         HCbB4Qnp/2lDc4sTmYY+jf43WHkhSXPTDotR3qq9MEGQwPGCLlTVy3r//zyBFuMfdAfp
+         ORBuhyVnlIRroHQbs97nHWI/M7EeSye8t8b6SIa26vOYlwfPRBKe6QUUY88+lyJhohMx
+         GqFaxXpOtseC9CFcZbnV/H7REGhFDFfFxli51K2z5R0ABkFcrLnRKlTt9CS/kifRP5Ru
+         35Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715102242; x=1715707042;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aU3pwl905vszgFU7HmwRESNu0Xm5cT15cD2mMAswx3s=;
+        b=IHUCVxm3dcK39h8IOYxEuVFb9OAJqyFN0fHCjgiUhrX43lQtPFiqffLMzCIEsxMyWP
+         qgvSHH50a0EMekjobZ7aNZu/NcqTqyxkd17i0ik2GOcd8KqqCz9H0xw0o+dSoRBSzyVz
+         yvHZazeyflAAS1uRyCP6sqFOWnSHwYfNW2kwbpvDZreNZqHoc42DwS3S4cpsqh77rlui
+         mqVG3bNmE/lMGW6PdbEfVu89Hoj6RnBwRN7uhEis+KzN0b7CIKu+46OOZ8mON8oTeBwH
+         7b4Rdi5dg3ZUtsOom85GRkt6U2BqiuPnn3Wsxhe/Wq6ql+pfLLZ7mhaXD49hQ0I+SPOh
+         LpNg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOVh+A+l/aMeF4FXBukRFye1L5/UtKyO2G6/IkzVjc5HdkULzoU8LIKvwwHBz1re+S1hyJGNNauWvYUlA5foHyosvti95rQMYNX5lYNrDPjGREuf93WUWw1CMUkzA8lgCIX1iL/8KO9oSpjFv+WQetAtPm20Tw62hJNf7d4qsKSS5rcV1cW55uX3T2VgtoOWQo87lygUlQq6onJwp9MNS6bkmi
+X-Gm-Message-State: AOJu0YyuJ+0SZZEDsgBcGK87TVF9sKUQqAk0zJyjyo3LMPjxL0UzSy5N
+	yW/CAbsXR5K9t5gvzrEZS0eZrPDIuzJV48HrX7CZyjHwdhp1f3rCQYK9P6wpJy4sdmzZyZoycRy
+	4v2pGc9E4TRMuNqntVIMJ0GWHczs=
+X-Google-Smtp-Source: AGHT+IG49CF7WhQZ87/VBmjtQFbVERL2rpkIsMgd7aYOztjgT0HKRzqzxOGBbKp1dCnVBrBbx7oAsUgIjRXIjMeChfU=
+X-Received: by 2002:a17:906:488:b0:a59:ae57:1663 with SMTP id
+ a640c23a62f3a-a59fb955523mr7210766b.19.1715102241777; Tue, 07 May 2024
+ 10:17:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j722s: Redefine USB1 node
- description
-To: Ravi Gunasekaran <r-gunasekaran@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <srk@ti.com>, <rogerq@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240429120932.11456-1-r-gunasekaran@ti.com>
- <20240429120932.11456-3-r-gunasekaran@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240429120932.11456-3-r-gunasekaran@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-3-johan+linaro@kernel.org> <ZjknxSsyo20b5_Tm@surfacebook.localdomain>
+ <ZjpCL_NQD7X3hasO@hovoldconsulting.com>
+In-Reply-To: <ZjpCL_NQD7X3hasO@hovoldconsulting.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 7 May 2024 20:16:45 +0300
+Message-ID: <CAHp75Vf0raEoVmvRKNxDQ7wdAOtwWYp_fQ1m8WBdnWEFGFOrYA@mail.gmail.com>
+Subject: Re: [PATCH 02/13] mfd: pm8008: fix regmap irq chip initialisation
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
+	Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/29/24 7:09 AM, Ravi Gunasekaran wrote:
-> USB1 controller on J722S and AM62P are from different vendors.
-> Redefine the USB1 node description for J722S by deleting the
-> node inherited from AM62P dtsi.
-> 
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j722s.dtsi | 39 ++++++++++++++++++++++++++++
->   1 file changed, 39 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-> index beba5a3ea6cc..90725eeb3178 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-> @@ -13,6 +13,13 @@
->   
->   #include "k3-am62p5.dtsi"
->   
-> +/*
-> + * USB1 controller on AM62P and J722S are of different IP.
-> + * Delete AM62P's USBSS1 node definition and redefine it for J722S.
-> + */
-> +
-> +/delete-node/ &usbss1;
-> +
->   / {
->   	model = "Texas Instruments K3 J722S SoC";
->   	compatible = "ti,j722s";
-> @@ -120,6 +127,38 @@
->   			status = "disabled"; /* Needs lane config */
->   		};
->   	};
-> +
-> +	usbss1: cdns-usb@f920000 {
+On Tue, May 7, 2024 at 6:01=E2=80=AFPM Johan Hovold <johan@kernel.org> wrot=
+e:
+> On Mon, May 06, 2024 at 09:56:05PM +0300, Andy Shevchenko wrote:
+> > Mon, May 06, 2024 at 05:08:19PM +0200, Johan Hovold kirjoitti:
+> > > The regmap irq array is potentially shared between multiple PMICs and
 
-MAIN domain items are defined in -main.dtsi files, for instance the
-USB node you are overriding was defined in k3-am62p-main.dtsi.
-This should go in a file named k3-j722s-main.dtsi.
+...
 
-Andrew
+> > > -                   dev_err(dev, "Failed to probe irq periphs: %d\n",=
+ rc);
+> > > +                   dev_err(dev, "failed to add IRQ chip: %d\n", rc);
+> >
+> > dev_err_probe(...); ?
+>
+> This function won't return -EPROBE_DEFER,
 
-> +		compatible = "ti,j721e-usb";
-> +		reg = <0x00 0x0f920000 0x00 0x100>;
-> +		ranges;
-> +		power-domains = <&k3_pds 278 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 278 3>, <&k3_clks 278 1>;
-> +		clock-names = "ref", "lpm";
-> +		assigned-clocks = <&k3_clks 278 3>; /* USB2_REFCLK */
-> +		assigned-clock-parents = <&k3_clks 278 4>; /* HF0SC0 */
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		status = "disabled";
-> +
-> +		usb1: usb@31200000{
-> +			compatible = "cdns,usb3";
-> +			reg = <0x00 0x31200000 0x00 0x10000>,
-> +			      <0x00 0x31210000 0x00 0x10000>,
-> +			      <0x00 0x31220000 0x00 0x10000>;
-> +			reg-names = "otg",
-> +				    "xhci",
-> +				    "dev";
-> +			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> +				     <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>, /* irq.6 */
-> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>; /* otgirq */
-> +			interrupt-names = "host",
-> +					  "peripheral",
-> +					  "otg";
-> +			maximum-speed = "super-speed";
-> +			dr_mode = "otg";
-> +		};
-> +	};
->   };
->   
->   /* Main domain overrides */
+This is not an argument for a long time (since documentation of
+dev_err_probe() had been amended to encourage its use for any error
+cases in probe).
+
+> and that would be a separate
+> change in any case.
+
+Sure, but why to add a technical debt? Perhaps a precursor cleanup patch?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
