@@ -1,165 +1,127 @@
-Return-Path: <devicetree+bounces-65456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55D818BE73D
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:19:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C57058BE723
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:15:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AE52B29BF9
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:14:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7CCB1C23DF4
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3866B16132B;
-	Tue,  7 May 2024 15:14:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E25161318;
+	Tue,  7 May 2024 15:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ISpe8zWi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbAdNNIB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB3215EFDE;
-	Tue,  7 May 2024 15:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904E916130B;
+	Tue,  7 May 2024 15:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715094872; cv=none; b=jei0tJAQv+AKVXcsphCaX7cXRbYLQkbU7e8YUcDZ+KFSI/v3YGlgfFyvmqQQUfFLFAXJQGnZI5HqitBOpmX/THc823iDLOV6VVdLJJy8Uyqzf7kKMFCbVyETRN2Y6WpZeFA9Q59xSrgzPRWePB2G3cJfRSN+Yl8RSK/FRpnNtok=
+	t=1715094890; cv=none; b=d1fRiXmMurRDn2l9hXqrUCtoxnb4GtpueyyTwPxodZzEac0bVWw2oe6U5mg7AccbY6+amLVWFeC5Dm7wu0FA0zE8MK+g4OB8vEAGMco0ZglMoWVGFTFaz3EB0gh3IHTazwVGCzA8EPCzGG7QKm4XrwgLp2VdnUP6ZHIkA3D/4F4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715094872; c=relaxed/simple;
-	bh=nB/cJv7IcDvCVPO18M+qfbJN1yWBxowX9QN+QZhjrR4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=H4khYe0h5U/qJ6NHesExnrc4F1L4uHtETnecZXQyP3l8FpBReFUQuvOzXk6g/HzzYJILtwP081Rulj0+v7k1VIXJQvyeu9BdrpodEHdKvfOZEAxygEUb0mry+A2J50huTSNIaCCJzqe8CCq6jxjv8tNfbk4kj61hPrbo42xxT90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ISpe8zWi; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E1D86E0005;
-	Tue,  7 May 2024 15:14:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715094867;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=206gGNUNB5hA5ZcFAZ6jyveJ5RgZY1MARbRfGQUc+HM=;
-	b=ISpe8zWiQep2P8Frm93frtzWECPQK7E31QuFfs4MQwQGxwF1LFceQXULO98URfaceGT6Pa
-	jd4Zwu76vmRl0LoukyAE9I4K5l8c8SUb5DBZzHHcw3hrTHvqkYr2ajIoRqQ5xcZmBMsaoO
-	mNRJInwwjq8LXBtvcpKIP/bFFbFDdLjsLaWqrqqeLU8C4FBgvnvEkmqsG+PNicz8fn1Hon
-	Fndh/FnABacFn11AoTLhgl5WSfUw1ks8SZSeCAQWVu0BWwIpo2bknBUYO/DPHUQqjVScoI
-	ZBu3nmgXHXdEvbSPJoT7Z5PLlX5yPraMtGNFME/46CrnxcK7PhdX0+lnB1KFOg==
+	s=arc-20240116; t=1715094890; c=relaxed/simple;
+	bh=PjCTV7JX3phTYmApghlae2CUkayVRisRZ1IV02RHcnQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ROhMuaGKTVirYgm9J0HG2sx684RDJqSrvaG40RiVLUo+UIM/YEjc2WkWa9Sizo86FfLYjCAlNqzwB0eEk1lB/PuYwo5gpxoNv5cw2GOqZ+wPW4G3o3RIfDVWzZlOWItFwwpeX8QOtjQI0pBtp4N0ytLmN8CNSfoFm8bipf5WYi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbAdNNIB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0820C2BBFC;
+	Tue,  7 May 2024 15:14:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715094890;
+	bh=PjCTV7JX3phTYmApghlae2CUkayVRisRZ1IV02RHcnQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=dbAdNNIBE5BaB+wRjqZ49wM9g1YM0gVZe02Rm0cjwLHjVLhtBZR1aPXgpeYbRMnGg
+	 vmaeLQBO4tBY+Keab/UbBTMraGLfNaTSbR9kLbKI7uRJ1AXm23+gD4Y5bF74ijPOAd
+	 ImNiajCdFbskPhJZ4Rg2q+5CfSfARELppPqbm8FkGSXOmnlhWhV5+VRWAAUMl6fPBs
+	 ihKIEwNKLVLzldd2dBvasLF+KjL2zOpji/o/RlQ+4+5EuB1aZGHET/kkx8KmyQdHwF
+	 JsiZRsgY6h7Denmo+nfxhDxoDZZ41sscorJEQdQae+j2yjYoBTkAZ5i8u9WzdyHHFJ
+	 9+CxSh2LoJDQw==
+Date: Tue, 07 May 2024 10:14:48 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 07 May 2024 17:14:25 +0200
-Message-Id: <D13IE06GUEJ9.UUNOU4QH2QN9@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 00/11] Add Mobileye EyeQ system controller support
- (clk, reset, pinctrl)
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Lee Jones" <lee@kernel.org>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
-X-Mailer: aerc 0.17.0
-References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
- <8dcdb1422cd144128c1dc6fff1c273d3.sboyd@kernel.org>
- <D13HXGJGMS76.XIIIZLZBCZ09@bootlin.com>
-In-Reply-To: <D13HXGJGMS76.XIIIZLZBCZ09@bootlin.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, dianders@chromium.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linus.walleij@linaro.org, 
+ xuxinxiong@huaqin.corp-partner.google.com, airlied@gmail.com, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ devicetree@vger.kernel.org, conor+dt@kernel.org, daniel@ffwll.ch, 
+ neil.armstrong@linaro.org
+In-Reply-To: <20240507135234.1356855-2-yangcong5@huaqin.corp-partner.google.com>
+References: <20240507135234.1356855-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240507135234.1356855-2-yangcong5@huaqin.corp-partner.google.com>
+Message-Id: <171509488827.493449.2668049686067198439.robh@kernel.org>
+Subject: Re: [PATCH v4 1/7] dt-bindings: display: panel: Add himax hx83102
+ panel bindings
 
-Hello,
 
-On Tue May 7, 2024 at 4:52 PM CEST, Th=C3=A9o Lebrun wrote:
-> On Sat May 4, 2024 at 4:34 AM CEST, Stephen Boyd wrote:
-> > Quoting Th=C3=A9o Lebrun (2024-05-03 07:20:45)
-> > > This builds on previous EyeQ5 system-controller revisions[0], support=
-ing
-> > > EyeQ5, EyeQ6L and EyeQ6H. We expose a few OLB system-controller
-> > > features here:
-> > >  - Clocks: some read-only PLLs derived from main crystal and some
-> > >    divider clocks based on PLLs.
-> > >  - Resets.
-> > >  - Pin controller, only on EyeQ5 (rest will use generic pinctrl-singl=
-e).
-> > >=20
-> > > EyeQ6H is special in that it has seven instances of this
-> > > system-controller. Those are spread around and cannot be seen as a
-> > > single device, hence are exposed as seven DT nodes and seven
-> > > compatibles.
-> > >=20
-> > > This revision differs from previous in that it exposes all devices as=
- a
-> > > single DT node. Driver-wise, a MFD registers multiple cells for each
-> > > device. Each driver is still in isolation from one another, each in
-> > > their respective subsystem.
-> >
-> > Why can't you use auxiliary device and driver APIs?
->
-> Good question. Reasons I see:
->
->  - I didn't know about auxdev beforehand. I discussed the rework with a
->    few colleagues and none mentioned it either.
->
->  - It feels simpler to let each device access iomem resources. From my
->    understanding, an auxdev is supposed to make function calls to its
->    parent without inheriting iomem access. That sounds like it will put
->    the register logic/knowledge inside a single driver, which could or
->    could not be a better option.
->
->    Implementing a function like this feels like cheating:
->       int olb_read(struct device *dev, u32 offset, u32 *val);
->
->    With an MFD, we hand over a part of the iomem resource to each child
->    and they deal with it however they like.
->
->  - Syscon is what I picked to share parts of OLB to other devices that
->    need it. Currently that is only for I2C speed mode but other devices
->    have wrapping-related registers. MFD and syscon are deeply connected
->    so an MFD felt natural.
->
->  - That would require picking one device that is platform driver, the
->    rest being all aux devices. Clock driver appears to be the one, same
->    as two existing mpfs and starfive-jh7110 that use auxdev for clk and
->    reset.
->
-> Main reason I see for picking auxdev is that it forces devices to
-> interact with a defined internal API. That can lead to nicer
-> abstractions rather than inheriting resources as is being done in MFD.
->
-> Are there other reasons?
+On Tue, 07 May 2024 21:52:28 +0800, Cong Yang wrote:
+> In V1, discussed with Doug and Linus [1], we need break out as separate
+> driver for the himax83102-j02 controller. Beacuse "starry,himax83102-j02"
+> and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
+> controller, they have some common CMDS. So add new documentation for
+> this panels.
+> 
+> For himax83102-j02 controller, no need 3v3 supply, so remove it.
+> 
+> [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=zBQJUC4CB2wj4s1h6n6aSAZQvdMV95r3zRUw@mail.gmail.com
+> 
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+> Chage since V4:
+> 
+> - Update commit message and add fallback compatible.
+> 
+> V3: https://lore.kernel.org/all/20240424023010.2099949-2-yangcong5@huaqin.corp-partner.google.com
+> 
+> Chage since V3:
+> 
+> - Update commit message.
+> 
+> V2: https://lore.kernel.org/all/20240422090310.3311429-2-yangcong5@huaqin.corp-partner.google.com
+> 
+> ---
+>  .../display/panel/boe,tv101wum-nl6.yaml       |  2 -
+>  .../bindings/display/panel/himax,hx83102.yaml | 73 +++++++++++++++++++
+>  2 files changed, 73 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+> 
 
-Self replying myself. I gave myself some time to think about that but I
-still have more thought now that I've written the previous email, and
-re-read almost all old revisions of this series.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I do like this auxdev proposal. More so than current MFD revision. One
-really nice feature is that it centralises access to iomem. I've
-noticed recently a register that has most its fields for reset but one
-lost bit dealing with a clock mux. Logic to handle that would be in one
-location.
+yamllint warnings/errors:
 
-Also, I just noticed you hinted at auxiliary devices in previous emails,
-which I thought was a generic term. I did not see it as a specific
-kernel infrastructure to be used. Sorry about that.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/himax,hx83102.example.dtb: panel@0: compatible:0: 'starry,himax83102-j02, himax,hx83102' does not match '^[a-zA-Z0-9][a-zA-Z0-9,+\\-._/]+$'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+Documentation/devicetree/bindings/display/panel/himax,hx83102.example.dtb: /example-0/dsi/panel@0: failed to match any schema with compatible: ['starry,himax83102-j02, himax,hx83102']
 
-Regards,
+doc reference errors (make refcheckdocs):
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240507135234.1356855-2-yangcong5@huaqin.corp-partner.google.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
