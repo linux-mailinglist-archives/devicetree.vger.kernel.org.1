@@ -1,165 +1,193 @@
-Return-Path: <devicetree+bounces-65466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8A08BE77B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:33:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2842D8BE782
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:34:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D7C81C238D1
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:33:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91ECA1F24D4F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6EC1165FBB;
-	Tue,  7 May 2024 15:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931461635D7;
+	Tue,  7 May 2024 15:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HKhScJgr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gW00Oyc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE521649C8;
-	Tue,  7 May 2024 15:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C68161331
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 15:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715095994; cv=none; b=GRM4KkeUFMKUrgw0I71HbWGDuDCnyPryHn1K6QQjvHCpfS9mAu/JwyEr7JkNNW5LLaecvyvxfj7Skr5B7ja277Y8JVcYlS3AcIB8WaLE+QWdqQEx/YurAIu/wSkt3YLL/Jr6OAGHh1aqFjHLt/85jfhxmHOXFlUwwtzJxoTvo4Y=
+	t=1715096070; cv=none; b=QreGPEp3NkhdhdStHIEWvlUQfzrOeTKjyHJxS2M5vVA9ROL2VDDDmFj9KIOTY+t10cAv2bS/ic2QZQolgaDYQ4x9zLcc1/p6YEWr72m+pKjQFGfP+kh2X55otrxbc+d42oAIzWx3s/rPKyNbv9ym68YXenITulBffOzvoFNh8BM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715095994; c=relaxed/simple;
-	bh=Uuw8yqLX+zNb2V3s6736daoABfNqSC9H9+VYeozPtso=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M5kciwYiw8qyAjHh7O9SQcti06g2bbDmdKo3ob9NZtNrCsjWmFmX1cn1PupSQAaIqBIhiH8gmDmsCPaTnxLLzQNJdg6GwZBtZVh7tf+L9AejiJt+0sXWzI93reNXtW0u7MYDAW4SY3DDcm5eOVDv/ThUkqplF8poslGpF1bOhmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HKhScJgr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFABAC2BBFC;
-	Tue,  7 May 2024 15:33:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715095993;
-	bh=Uuw8yqLX+zNb2V3s6736daoABfNqSC9H9+VYeozPtso=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HKhScJgrTiIWYZvifQK32YrfBrp/LH9y+F0KXy68fmKvrfE3fbmo4t7V3LrPAmUiQ
-	 2Duvw/JI7QJX9gONxzmkbiDr0MezUwA6sIlnRl6T+GuKskZu17FPf1vTxvoz0lTSiS
-	 CWPEOwSQ3axTXCMmf0qqvRRJ3a858uEa6yxE5rIzOX8/kDcxVk6/UFCg1O2ZHPDBtU
-	 zK6I7yzqBaUTC5jCA0F4Am7yEy+qbv6qdPGaHM7utiWu3+2m7GyxfDD7eCefVMv34y
-	 wA/9vCbiWVLxLoFuwU4YIF+Md/1x3n6cuqDdhvwUTRuSIDQYOKA5PgWX8X2ilti0v+
-	 evXHnC6DdCq/A==
-Date: Tue, 7 May 2024 16:33:08 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: Add Sophgo SG2042 external
- hardware monitor support
-Message-ID: <20240507-mantis-rotten-f4be1961b3f2@spud>
-References: <PH7PR20MB4962C6D8FD6989BC79F9483FBB1D2@PH7PR20MB4962.namprd20.prod.outlook.com>
- <IA1PR20MB4953F852CB7A9C5FE45E18EBBB1D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+	s=arc-20240116; t=1715096070; c=relaxed/simple;
+	bh=tu+2KsqH6Kw2kSlfjdVYv3BxFYp5x00TFFNEkPzGHcg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ITYvM14l/4ufMUh0L+8FSnXENVvh+b7raXz80ozFMMjQQ625mEfAvcoSof+rCa0eCYeEZc91a6x9z9z/DnT6pG6Kz/S9MprbM7BxUpCAqUG8A0C7W629Bj5zKwd1Lc7SDFljIsS7tRZNV48XSIN2Tad1DmKFtvg4TPCCDPNxgWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gW00Oyc8; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-51f1bf83f06so4012876e87.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 08:34:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715096067; x=1715700867; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BHoEecY35FMnmlhyVpSrsI+xWHMu8Vy09k8sd+/BChg=;
+        b=gW00Oyc8fLfPJID4YqM9e720ru5kWxlyfA1OnHKru9Y74tCJNW0bi7hzQy0U2ENcbZ
+         u8XaWeOgdfrnO72cKVQxcdPtEyAHNldFYd3Ibb3v73tQhEqqdGx9RuYhzUVLqQdw8SR+
+         aLrDYqrsLx2znhsjK+xdx5ibbH2sKV7FrGXixPd2RX6S3ela5RKS5hinnj16Z5yefmo0
+         LpYKUNhh9F/u8kUhtRbFhQ+6h4h1x8TOHG6Qb4ApUYfmk/LGdA95UcWNoHLdw3yuqMYk
+         Ln9c5fQL08E9tGJmONl076FUUVmfyF2pE9dhrSCIeGEEwKXqhPRCSBW62mD2cgMtcmMi
+         7XZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715096067; x=1715700867;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BHoEecY35FMnmlhyVpSrsI+xWHMu8Vy09k8sd+/BChg=;
+        b=Cc0s+y+P5Ugx1vs5v/IzKCgtPmPxGTdsfi+ji2WE7bJZjYtKGBLZ2vwJD9RsClGqxg
+         kRYLQu+SFnvl/cK8SIpYwfseXYZI3rXqMwriuzqquYZzl+N2Y/k2Zp999vW7Mr06h/vQ
+         ts58VkdWfh7KN7MOw11x3znD3MQx4/NhYTp76GJM+O6wgf4wxaLuuHEnElSUtetPN7oU
+         bwKDwI8B65Vx6r9f3Fk/XZ3bbajYh02zBS/uU3Iczwyge29TnCqcp1E8IVaPvYtwidy+
+         Hymbxrl0vrNgHPH+bx65zySfcPpdpc/ersPrxO2pHNN2gHXaoM0YzDaHcRFcHqEyFAXZ
+         ypmw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKBaoscskm5n/mbHsV6xulPE53OyrPAqLUMSyrVE+krJk2p745I3TSRwj5nq5Bwpr92aK9eZU4uRlcB8ihkbXK+4xy49l6QcdPfg==
+X-Gm-Message-State: AOJu0Yydv75C6+qmbaooFZ+1HIjdNQJ5p+nkcy/OUWywImL3UL+sbLGv
+	NPaVGo4h1LAp86YgG6Nco02wGHQSrc/tPCNpeSiSTy4m26HUzpPWssDBMpu6/i8=
+X-Google-Smtp-Source: AGHT+IEhWswRvXH88vuHJvUkIcH5ToHsgKLLHbQdBcNKmFn28UP+tHurJV3VIwnR15xNbDtbkI+YCg==
+X-Received: by 2002:a19:ac49:0:b0:51d:97e8:b780 with SMTP id r9-20020a19ac49000000b0051d97e8b780mr8499462lfc.44.1715096067213;
+        Tue, 07 May 2024 08:34:27 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.169])
+        by smtp.gmail.com with ESMTPSA id n4-20020aa7d044000000b005720e083878sm6440132edo.49.2024.05.07.08.34.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 May 2024 08:34:26 -0700 (PDT)
+Message-ID: <fd0228f2-2f41-4194-b804-7a90ea3a6091@linaro.org>
+Date: Tue, 7 May 2024 17:34:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="g3PGoBcSoUn7NI8A"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953F852CB7A9C5FE45E18EBBB1D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] dt-bindings: clock: mobileye,eyeq5-clk: drop
+ bindings
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
+ <20240503-mbly-olb-v2-1-95ce5a1e18fe@bootlin.com>
+ <ee278102-f4b8-4ca0-879e-f83cd54efbd0@linaro.org>
+ <13ed1865-d702-47b6-b186-d5f060103280@linaro.org>
+ <D13I8TFIF77X.2EFWZ14LM2H6N@bootlin.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <D13I8TFIF77X.2EFWZ14LM2H6N@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 07/05/2024 17:07, Théo Lebrun wrote:
+> Hello,
+> 
+> On Fri May 3, 2024 at 6:05 PM CEST, Krzysztof Kozlowski wrote:
+>> On 03/05/2024 17:57, Krzysztof Kozlowski wrote:
+>>> On 03/05/2024 16:20, Théo Lebrun wrote:
+>>>> Switch from sub-nodes in system-controller for each functionality to a
+>>>> single node representing the entire OLB instance. dt-bindings is
+>>>> unnecessary and soc/mobileye/mobileye,eyeq5-olb.yaml will inherit all
+>>>> properties.
+>>>
+>>> Why changing this? You just added these bindings not so long time ago...
+>>> This is very confusing to push bindings and then immediately ask to
+>>> remove them.
+> 
+> See this revision as a proposal of something that has been asked
+> multiple times in previous reviews. See message from Stephen Boyd on
 
---g3PGoBcSoUn7NI8A
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That's driver, we talk about bindings.
 
-On Sun, May 05, 2024 at 09:18:52AM +0800, Inochi Amaoto wrote:
-> Due to the design, Sophgo SG2042 use an external MCU to provide
-> hardware information, thermal information and reset control.
->=20
-> Add bindings for this monitor device.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> last revision [0], or discussion with Rob Herring on much earlier
+> revision [1].
+> 
+> Proposal from Stephen Boyd of using auxiliary devices makes sense, that
+> could be the future direction of this series. It won't change the
+> dt-bindings aspect of it, only the driver implementations.
+> 
+> [0]: https://lore.kernel.org/lkml/daa732cb31d947c308513b535930c729.sboyd@kernel.org/
+> [1]: https://lore.kernel.org/lkml/20240124151405.GA930997-robh@kernel.org/
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+So after Robs comment above, you still pushed the wrong approach and now
+you revert it?
 
-Cheers,
-Conor.
+Why v7 was sent ignoring Rob's comments:
+https://lore.kernel.org/all/20240221-mbly-clk-v7-3-31d4ce3630c3@bootlin.com/
 
-> ---
->  .../hwmon/sophgo,sg2042-hwmon-mcu.yaml        | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/sophgo,sg2042=
--hwmon-mcu.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-=
-mcu.yaml b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.=
-yaml
-> new file mode 100644
-> index 000000000000..f0667ac41d75
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/sophgo,sg2042-hwmon-mcu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 onboard MCU support
-> +
-> +maintainers:
-> +  - Inochi Amaoto <inochiama@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,sg2042-hwmon-mcu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#thermal-sensor-cells"
-> +
-> +allOf:
-> +  - $ref: /schemas/thermal/thermal-sensor.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        hwmon@17 {
-> +            compatible =3D "sophgo,sg2042-hwmon-mcu";
-> +            reg =3D <0x17>;
-> +            #thermal-sensor-cells =3D <1>;
-> +        };
-> +    };
-> --
-> 2.45.0
->=20
+Best regards,
+Krzysztof
 
---g3PGoBcSoUn7NI8A
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjpJtAAKCRB4tDGHoIJi
-0ojlAP4qRojNEmxLVCu8LiEozoXxSgRaOnYNdn9jUxygr7Q6ugD+LYcUcNRZ2116
-IeAQnV4lJkh7RnQwP1vgqhqwkgq5SwA=
-=mbl/
------END PGP SIGNATURE-----
-
---g3PGoBcSoUn7NI8A--
 
