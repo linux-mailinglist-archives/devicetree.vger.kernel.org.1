@@ -1,222 +1,166 @@
-Return-Path: <devicetree+bounces-65345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 808548BDDAF
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:02:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6B88BDDBE
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:06:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC3A81F220BD
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:02:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54E0A281601
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5417014EC55;
-	Tue,  7 May 2024 09:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B82914D452;
+	Tue,  7 May 2024 09:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="waj/86R2";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="RqqymNPp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JYFHBhHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F75714E2EA;
-	Tue,  7 May 2024 09:02:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C6614D2BB;
+	Tue,  7 May 2024 09:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715072522; cv=none; b=YIlJLH4bvQEdmcMzv3bKTvJqfRsinQ2gDLRZhNR26BVFUzwl+QUNLteWXtHc6ePwioy7EHgxmxLVGdjXUbFz6kpmILyVfl8Dgzm9gTqs7t+YKZIzrPydJk5z3c2v6QP5Y2sfBmTPpL8QtPkBDTi5hHcS2Q2weBHzC0S/A4Nv1t8=
+	t=1715072813; cv=none; b=J0NnwFoeKdihOUM8zw7LMoYV0G7ZZukgI4hcHOxDZS/fooLKZT+9qRh/zujMh/neQ0fPAbNIxquz1Qc+x2Vcp2I6gvC6nJHt4zf8360sjVidBGvFru3+btuNxf7Ot3NJK2lpXpewcXVCdSvoc+Y/nN4Ud5vFqpn8erAQa495KEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715072522; c=relaxed/simple;
-	bh=4EfRyQXq3a/gP4GGGVwHML+S7nX0DpMKT8K0KyhTHVI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YdgolIW/wwtImdQeIL8vyJyl0Q7IkUO5MECtYlWoWVJjTNXbgyKMfOyYesECSLR0D9uI2nyZPSiXetRJCfup34vleAYY4nTXHKdlf4AWmVVhPi+nrxZ5Ye1xGvr1+bwgQVygAPmui4jJo0vtobHJiIfGDA6dViFR2EpTjT7vTl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=waj/86R2; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=RqqymNPp; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 5383511400E4;
-	Tue,  7 May 2024 05:01:59 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Tue, 07 May 2024 05:01:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1715072519;
-	 x=1715158919; bh=IOB9Bc5dOldBOjUiG0Lh6BMLHiA0VIj5Z8gZUA8h7kY=; b=
-	waj/86R2GH7+nQ+1XzswG3hBr+MbcDeEAOD/d0ENurxtE6WnkFuoq5og3GMrz2Zz
-	nOmSRvZjJS0bVoy8TV9wDcOD9bLiH1dfahF3AlDF9LLSTi6FUNFls1YI/e/bQuGj
-	3nRU2c8qKRPkTrUUla28xUXZkntFZE+F0GKI5aocyfBnC9I0IKRQUsP25dFtHjfy
-	BhLrNAcfLUT7Tn6oiH/MOj8ujRaId/AuRcM278uEpjWmPWZSX/HljPVM36ZT/mGd
-	15bLETw7aVNM2c3nXGpnViXGHoeEpCfFq7B8Yp86vbTYxpDppqqsoSxfn2s/bDer
-	RIWdCe95ZDxBztfzuPjCJA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1715072519; x=
-	1715158919; bh=IOB9Bc5dOldBOjUiG0Lh6BMLHiA0VIj5Z8gZUA8h7kY=; b=R
-	qqymNPpj0dQ2Cz+GF68x3STu3r9Jj4bDfI78Tdqu28mErDlbaC0c8KwIqsK7lcyG
-	n+H0pn6g+m1jiNjfrBJcAlBeWV14Iwoms5/CjsWHJRrw4ps+fRw9aqVx6P3uKtuC
-	Nz1hiLeDdT3SNwClN79yxxu5nGzJVUY8T5dd5EyIg9Bk2HlEQUqmxkXtVQzxSu0A
-	ZAAGJcpb0RbZKO/OpBwJXzc8MORW3m/x5A5kxOp7+TFc9CP3Fip3BcxeFS5X0f+1
-	H6+dkNQ436QdnLmlG2uSlRLOT9R0DdBjJXuZJ1ioYil6V4TgASiRpEaljD60I8kY
-	03IK6kvPRorcLxwHOKbbg==
-X-ME-Sender: <xms:B-45ZtvVwqk8kW6aXp-n20gP-VmQO-vq64c_0tHep2cpi_HDFUlECQ>
-    <xme:B-45Zmfs8avFSuqN_huyEmng3kV7D82hiONfoFt3_7vhfBqICZvGJZ9CVs3ypho60
-    DhzdQANrnwGj9bXNzQ>
-X-ME-Received: <xmr:B-45ZgyKusiQGW5wBDOzPJTDXQITPOJuCRzy53qdOwmPUqnvVOQF9Gs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddvkedgtdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeflihgr
-    gihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
-    cuggftrfgrthhtvghrnhepvdekiefhfeevkeeuveetfeelffekgedugefhtdduudeghfeu
-    veegffegudekjeelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:B-45ZkP7Zv8xHPLury3btf4t3XGB53PSdyyeKiy_EOifjfIQQZ8Tgw>
-    <xmx:B-45Zt_xnjyR-wjGcxWCi4Ax1HnuC_mECuPlMuFncjRaQAaatHq_Bg>
-    <xmx:B-45ZkXydXkcN6YaTvYrynUSYfhMosLGGA0HbUOs9UTFSGlKIBzXPA>
-    <xmx:B-45Zue2G096-VpKuizKnOmif0fRs3AcXsb2FpfBQm9fVFu3jjq1_Q>
-    <xmx:B-45ZsZyjb7Lt9mI1_CY9PA0YrZkck4QjHb79vGgzxWZOtneKDtRpmFJ>
-Feedback-ID: ifd894703:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 7 May 2024 05:01:57 -0400 (EDT)
-From: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Date: Tue, 07 May 2024 10:01:53 +0100
-Subject: [PATCH 5/5] MIPS: cm: Probe GCR address from DeviceTree
+	s=arc-20240116; t=1715072813; c=relaxed/simple;
+	bh=wtw7hSmGwmn0lTDQ6W66pWog4VJFwb4uJMUZaQunLfc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iB3iY+TYFECktOT9ApP0cIwFbaNcERhnbbZhVKPk3iBp6pLahhlgwy8yNfc7wAtTr76/TydyjZYNY/HIrCHfW5FrkQZPwj1VTUrifg/+ojNEF0YwSanIuAZr2OXxUSpUrWcAF8yy06o3nXsAZ9o9nKYcRL16V4WUq+h0HVBnH1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JYFHBhHO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4477AhYb021187;
+	Tue, 7 May 2024 09:06:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=PHmJ/5M+D6CDuJkqzi+AHStULaSwVRigZYyaLMi9Q8I=; b=JY
+	FHBhHOUlGC0kxkVD0/KQYGuBXzOdG8TtoPoSs+wLrwFgsXlQC6sW3RNoqLAz2lzV
+	daKBGFdOUof7BKHuj5lUjnnpHK9JGvKHc7cSkQP5ClNUOHEFEtAorC5lyKl+GZ65
+	Y6VJSlTOxvK8B+FsPdPVBb8QMkJGU5oITCb17kdaG2YcmQNPgGil37yyaq8qTDNv
+	Cpi7pVlpECEvT/7NO3i7oHPgVcGw2SwrJfFvhVjy2EbT/ydjToRXbkAfNqrcrm1t
+	g0i9F9wxCcRdWpiYRYV7ApW3P/P8lFHToK/4m+c/ndBajHOK/gjSYjctGjmGCHtF
+	AulGaPnq3fYPJkJxdBGw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyfhv089b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 May 2024 09:06:45 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44796ikr026009
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 May 2024 09:06:44 GMT
+Received: from [10.216.21.139] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
+ 02:06:39 -0700
+Message-ID: <62d4798d-51d1-94a0-da52-9804dea33be8@quicinc.com>
+Date: Tue, 7 May 2024 14:36:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240507-cm_probe-v1-5-11dbfd598f3c@flygoat.com>
-References: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
-In-Reply-To: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
-To: Paul Burton <paulburton@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2951;
- i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
- bh=4EfRyQXq3a/gP4GGGVwHML+S7nX0DpMKT8K0KyhTHVI=;
- b=owGbwMvMwCHmXMhTe71c8zDjabUkhjTLt/85r9+dvsBAqmGKLJf55oiN83aKbbS4wBW6y150l
- dkSQz3XjlIWBjEOBlkxRZYQAaW+DY0XF1x/kPUHZg4rE8gQBi5OAZiIqB7DX/n0b0HvE9bv/bSn
- Nevs+3fiSnJlU3a+9YifzX39bFSAjyfDf+eyZ8u4u72iw8ULViYVyO4WuWwyZ54qq1zX4rbYe7O
- ucAIA
-X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
- fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 3/3] media: venus: add msm8998 support
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Marc Gonzalez
+	<mgonzalez@freebox.fr>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jeffrey Hugo
+	<quic_jhugo@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Stanimir
+ Varbanov" <stanimir.k.varbanov@gmail.com>
+CC: MSM <linux-arm-msm@vger.kernel.org>,
+        linux-media
+	<linux-media@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>,
+        "Pierre-Hugues Husson" <phhusson@freebox.fr>,
+        Arnaud Vrac <avrac@freebox.fr>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <72860c1d-7434-4be6-8c1d-9ea177602802@freebox.fr>
+ <14bda891-5035-433c-888e-b3c330eeffaf@freebox.fr>
+ <803b267b-9171-8234-aa3a-fba0d738a64d@quicinc.com>
+ <4349e7ea-380d-4c91-83be-d74983e2cdb0@freebox.fr>
+ <ddd78134-6f04-4ef6-a3fa-4a2932d81165@linaro.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <ddd78134-6f04-4ef6-a3fa-4a2932d81165@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Of4D8YoLuNRC1a6fvDaRnljK63YMWE2B
+X-Proofpoint-ORIG-GUID: Of4D8YoLuNRC1a6fvDaRnljK63YMWE2B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-07_03,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ mlxscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 impostorscore=0 spamscore=0 mlxlogscore=999
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405070062
 
-Traditionally, CM GCR address can be probed from CP0_CMGCRBase.
 
-However there are chips in wild that do have CM GCR but CP0_CMGCRBase
-is not available from CPU point of view. Thus we need to be able to
-probe GCR address from DeviceTree.
+On 5/6/2024 9:27 PM, Bryan O'Donoghue wrote:
+> On 06/05/2024 15:51, Marc Gonzalez wrote:
+>> On 06/05/2024 16:43, Vikash Garodia wrote:
+>>
+>>> On 5/6/2024 7:17 PM, Marc Gonzalez wrote:
+>>>
+>>>> From: Pierre-Hugues Husson <phhusson@freebox.fr>
+>>>>
+>>>> Add the missing bits for msm8998 support.
+>>>>
+>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+>>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>>>> ---
+>>>>   drivers/media/platform/qcom/venus/core.c | 48
+>>>> ++++++++++++++++++++++++++++++++++++++++++++++++
+>>>>   1 file changed, 48 insertions(+)
+>>>>
+>>>> diff --git a/drivers/media/platform/qcom/venus/core.c
+>>>> b/drivers/media/platform/qcom/venus/core.c
+>>>> index ce206b7097541..064120127cb86 100644
+>>>> --- a/drivers/media/platform/qcom/venus/core.c
+>>>> +++ b/drivers/media/platform/qcom/venus/core.c
+>>>> @@ -554,6 +554,9 @@ static const struct venus_resources msm8916_res = {
+>>>>       .fwname = "qcom/venus-1.8/venus.mbn",
+>>>>   };
+>>>>   +/*
+>>>> + *
+>>>> https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blame/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8996-v3.dtsi#L403-414
+>>>> + */
+>>>
+>>> There is no need to add the link to downstream code in comments. Please
+>>> remove them.
+>>
+>> They are needed somewhere, to double check the values.
+>> Otherwise, it's just voodoo programming.
+>>
+>> If not in the code, then maybe in the commit message?
+>>
+>> Since qcom doesn't publish datasheets, downstream code
+>> is the best we've got.
+>>
+>> Regards
+>>
+> 
+> Commit message is a good idea.
+> 
+> Do that.
+I am good with this, incase you are waiting for a confirmation from my end.
 
-It is implemented as:
-- If only CP0_CMGCRBase present, trust CP0_CMGCRBase
-- If only mti,mips-cm node present, trust mti,mips-cm reg prop
-- If both present, remap address space to address specified in dt
-
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- arch/mips/kernel/mips-cm.c | 58 +++++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 52 insertions(+), 6 deletions(-)
-
-diff --git a/arch/mips/kernel/mips-cm.c b/arch/mips/kernel/mips-cm.c
-index dddc9428fe58..9563fc1ad438 100644
---- a/arch/mips/kernel/mips-cm.c
-+++ b/arch/mips/kernel/mips-cm.c
-@@ -5,6 +5,8 @@
-  */
- 
- #include <linux/errno.h>
-+#include <linux/of_address.h>
-+#include <linux/of_fdt.h>
- #include <linux/percpu.h>
- #include <linux/spinlock.h>
- 
-@@ -179,23 +181,67 @@ static char *cm3_causes[32] = {
- static DEFINE_PER_CPU_ALIGNED(spinlock_t, cm_core_lock);
- static DEFINE_PER_CPU_ALIGNED(unsigned long, cm_core_lock_flags);
- 
-+static int __init mips_cm_fdt_scan(unsigned long node, const char *uname,
-+		int depth, void *data)
-+{
-+	unsigned long *cmgcr = data;
-+
-+	if (!of_flat_dt_is_compatible(node, "mti,mips-cm"))
-+		return 0;
-+
-+	*cmgcr = of_flat_dt_translate_address(node);
-+	if (*cmgcr == OF_BAD_ADDR)
-+		*cmgcr = 0;
-+
-+	return 0;
-+}
-+
- phys_addr_t __init __weak mips_cm_phys_base(void)
- {
--	unsigned long cmgcr;
-+	unsigned long gcr_reg = 0, gcr_dt = 0;
-+
-+	if (of_have_populated_dt()) {
-+		int err;
-+		struct resource res;
-+		struct device_node *cm_node;
-+
-+		cm_node = of_find_compatible_node(of_root, NULL, "mti,mips-cm");
-+		if (cm_node) {
-+			err = of_address_to_resource(cm_node, 0, &res);
-+			of_node_put(cm_node);
-+			if (!err)
-+				gcr_dt = res.start;
-+		}
-+	} else {
-+		of_scan_flat_dt(mips_cm_fdt_scan, &gcr_dt);
-+	}
- 
- 	/* Check the CMGCRBase register is implemented */
- 	if (!(read_c0_config() & MIPS_CONF_M))
--		return 0;
-+		return gcr_dt;
- 
- 	if (!(read_c0_config2() & MIPS_CONF_M))
--		return 0;
-+		return gcr_dt;
- 
- 	if (!(read_c0_config3() & MIPS_CONF3_CMGCR))
--		return 0;
-+		return gcr_dt;
- 
- 	/* Read the address from CMGCRBase */
--	cmgcr = read_c0_cmgcrbase();
--	return (cmgcr & MIPS_CMGCRF_BASE) << (36 - 32);
-+	gcr_reg = read_c0_cmgcrbase();
-+	gcr_reg = (gcr_reg & MIPS_CMGCRF_BASE) << (36 - 32);
-+
-+	/* If no of node, return straight away */
-+	if (!gcr_dt)
-+		return gcr_reg;
-+
-+	/* If the CMGCRBase mismatches with dt, remap it */
-+	if (gcr_reg != gcr_dt) {
-+		pr_info("Remapping CMGCRBase from 0x%08lx to 0x%08lx\n",
-+			gcr_reg, gcr_dt);
-+		change_gcr_base(CM_GCR_BASE_GCRBASE, gcr_dt);
-+	}
-+
-+	return gcr_dt;
- }
- 
- phys_addr_t __init __weak mips_cm_l2sync_phys_base(void)
-
--- 
-2.34.1
-
+Regards,
+Vikash
 
