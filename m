@@ -1,108 +1,91 @@
-Return-Path: <devicetree+bounces-65574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D888BEDDC
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:09:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE5D8BEDF0
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC3B61C24CF6
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:09:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 425A81F266B1
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FDF16EC16;
-	Tue,  7 May 2024 20:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25D8218732B;
+	Tue,  7 May 2024 20:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="UtGykWW+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DzCd5kht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com [91.218.175.187])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67DC914B976
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 20:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC943187320;
+	Tue,  7 May 2024 20:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715112448; cv=none; b=fe79eRM6fXiBLQAHt5Gv3dbwr85InyQZcCHL2HtxIjrx4GzcfOB/UGNWv5pJbSB5vA8oh8mO+fSwjLmP5KOEneR69PuRPQe5RG3jBAfaIsIlzAmaS4/HiON8cIHPeQmcM+eOn0wmxTGYJx4GsoVhzJmBGIenjxiX+YMuagGDf/8=
+	t=1715113011; cv=none; b=B+MEvJGG7kQIZghqXkkaWPWaJqiqnCuPVmIX27AeHnVpx0/AEY/FX7SL7IbRkPL5VydraUkXB2HS4vn6Qp47K7v1Gso8ZMUIX0ieFp0+N6UUAOWg7nJ8W2N+3nlWZ5nrAlVhzaMq80PiyuOHurAJuRKFtor8hsp0i12nMAfbQnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715112448; c=relaxed/simple;
-	bh=Mc50FQ9sa791H2dMnsRK0GR1vGBbxHb1li3CAQ2ZdSE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SbM19VVTH4PPb88/kEs3F8wwMdwJ2gJ1nX56vLJYp/I263aCX+znNpyDMJs10ALHgwwqvQgFa5xAQYpmbwfH8Pp13ATjMOmWf73YB6JIzJE8/EYEh3j/RpV8rOXXj4pafpK+6c0Gulpa6oOfkZX6/KY02MKrO2g+E5droeunsJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=UtGykWW+; arc=none smtp.client-ip=91.218.175.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <a4347e43-06f7-4ede-b50f-554d1194a1f6@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1715112443;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Nt2uO6TpJx24xGPFvSzYImK2G9i5k2qnHj1h7z6S7Lg=;
-	b=UtGykWW+noX7yFU08r1avJm7A81zlM2rR29tIloa0n2uR86TOf+TRIjG4Bp23h5dAh6GpO
-	XZcLGHJc+2ahGxUgVCJJB+n+S0FA1+fHztZ8J5241liHKgdMkb3sy6vx5zUrLFcN7ba34M
-	jVLuK0BJ7p2aluYRpfDvBx8wxZAG0kE=
-Date: Tue, 7 May 2024 16:07:18 -0400
+	s=arc-20240116; t=1715113011; c=relaxed/simple;
+	bh=cGaAkkEOXpEMKaanh5pAkmdxFKN5fg25gZkTzU10KXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UHSlECtaKtj1cAkmpxHw0aMe5saAmJ1lj2ssWdmYQUpv5pt7TqEezsc2NBCOwXnM4z5d+D6jICOWpp7x9HxtefH2JlavWrDw1rtfdevU1wbg/OZo/L2shVrzOQiIgcbSLvSrXn/yretLgqmy3qyfaSG310fWnJNw08x22yU2lW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DzCd5kht; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CBFAC2BBFC;
+	Tue,  7 May 2024 20:16:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715113010;
+	bh=cGaAkkEOXpEMKaanh5pAkmdxFKN5fg25gZkTzU10KXQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DzCd5kht5CJIc7xsbUMaE6HsmKbfChDDD1LJUcuBiK3Dl+rVaoYyxpGs8hZzE07Yj
+	 dLBXaoXx5Gq1PZ1KzqqDoCBnjNZqGc1D0LxU2t1Ee4zW9Jjo/Nz0eDs1o6kUO97Jmb
+	 tOKXF8acwihZSthw04n2tVCjY0niFo7R9e4iGQPMZ7E3t8eO7cvxtWEun7stK1KL+g
+	 vTcwg8eo5P1+Q1n9ZqDiAGZBToF3iZcbcnSfteaF8owH+28/SHfw9XMxBeyxP4Axkj
+	 Pjfzu9DUdhXHttJ2YMfT2jtHBGhR3FPHvkjWKeZqiKhVtUk5m2CxRQYV0AO/SPVbsU
+	 SYq7FfQx6p1wg==
+Date: Tue, 7 May 2024 15:16:48 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Drew Fustini <dfustini@tenstorrent.com>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Yangtao Li <frank.li@vivo.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	devicetree@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>, Fu Wei <wefu@redhat.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>
+Subject: Re: [PATCH RFC v3 2/7] dt-bindings: clock: Document T-Head TH1520
+ AP_SUBSYS controller
+Message-ID: <171511300571.994683.10040593951113632886.robh@kernel.org>
+References: <20240506-th1520-clk-v3-0-085a18a23a7f@tenstorrent.com>
+ <20240506-th1520-clk-v3-2-085a18a23a7f@tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: pci: xilinx-nwl: Add phys
-To: Rob Herring <robh@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- linux-pci@vger.kernel.org, Michal Simek <michal.simek@amd.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org
-References: <20240506161510.2841755-1-sean.anderson@linux.dev>
- <20240506161510.2841755-2-sean.anderson@linux.dev>
- <20240507200640.GA955773-robh@kernel.org>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <20240507200640.GA955773-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240506-th1520-clk-v3-2-085a18a23a7f@tenstorrent.com>
 
-On 5/7/24 16:06, Rob Herring wrote:
-> On Mon, May 06, 2024 at 12:15:04PM -0400, Sean Anderson wrote:
->> Add phys properties so Linux can power-on/configure the GTR
->> transcievers.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
->> ---
->> 
->> Changes in v2:
->> - Remove phy-names
->> - Add an example
->> 
->>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
->> index 426f90a47f35..693b29039a9b 100644
->> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
->> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
->> @@ -61,6 +61,10 @@ properties:
->>    interrupt-map:
->>      maxItems: 4
->>  
->> +  phys:
->> +    minItems: 1
->> +    maxItems: 4
+
+On Mon, 06 May 2024 21:55:15 -0700, Drew Fustini wrote:
+> Document bindings for the T-Head TH1520 AP sub-system clock controller.
 > 
-> I assume this is 1 phy per lane, but don't make me assume and define it.
+> Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+> Co-developed-by: Yangtao Li <frank.li@vivo.com>
+> Signed-off-by: Yangtao Li <frank.li@vivo.com>
+> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> ---
+>  .../bindings/clock/thead,th1520-clk-ap.yaml        | 64 +++++++++++++++
+>  MAINTAINERS                                        |  2 +
+>  include/dt-bindings/clock/thead,th1520-clk-ap.h    | 96 ++++++++++++++++++++++
+>  3 files changed, 162 insertions(+)
 > 
-> Rob
 
-It's one per lane. I'll add that to the description.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
---Sean
 
