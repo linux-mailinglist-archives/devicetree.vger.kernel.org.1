@@ -1,162 +1,141 @@
-Return-Path: <devicetree+bounces-65379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E808BE13E
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 13:41:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A051E8BE15D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 13:48:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 144AC1C21953
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:41:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40EDB1F23903
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A238F158D64;
-	Tue,  7 May 2024 11:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0C2152DEA;
+	Tue,  7 May 2024 11:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TuQ3fNX1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uf9H3qsB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1613B153821;
-	Tue,  7 May 2024 11:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA4F150995
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 11:48:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715082060; cv=none; b=J25TwQBeFU8WjHANX2A3BV/rmcbNFUUVoYeHaaSDKLbFT4aw0LCj4cVzIsikoo9eChH47qEOMAHyDTPC/d0KV4b5gt88mixoH5eMde3S0GfMJr31/8+AqnkL/RI6Xsv3loysIiYwaynnP3IvUQwZGH9XNMscovidRgFGoi67OK4=
+	t=1715082518; cv=none; b=LrYmyN08q7u+kWY8fyIVGGF7UvB2PhsdEZp+7eOI0Y+jtdf84UrkWA+M5j6APb7ur31ISKrLXzcxKOn+O51cbayXHGWcZRyT4/ba97LkjEeRj35+XoKgf3GfTeGL24H/4LlDU6/JYIF/6euraWKWFa5e6bImRqIciDlhPZfE/RU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715082060; c=relaxed/simple;
-	bh=PWpBOpNDr/xlcI419TA4O+00/LhO4PVJAa2tV399Fak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RSE7sFCKnsGFyV0xRakgQhkoXdh+7Q/kBicrKZzN0aomNgDbn4Foxbvv3QMHf8OPnQ5ioeurBMr2/LyeeIpPXCIqCWOphk5EdtGlyPz0Uzs0sI4Ao6V7OoTTUJ+Newzh3plH4lJRcHtPJueTNWe1FLPgtz5NYDWK48Lqofcde+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TuQ3fNX1; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4477As4c021346;
-	Tue, 7 May 2024 11:40:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=vAW2kebA5xILfVJjv5PmFuP/px2n8NNHksYQ7E6Ix3M=; b=Tu
-	Q3fNX1UNjyigHTf80l/GM20us+RTLBZFYV0KGWa91lNytIuJmm8JGtv2EWgtMH16
-	zwU3G6gvahZDS0qOcbioDf1yjaRp4MM5G032z55Jr7z77+8BFcXcbWhzDC+UPyo1
-	Am0tRA2eUi26wF1aY2bfmCcc31AzouILAjL/CGbzxCH1YHNmNY66foI4kuLXPphX
-	CVi1i15j4X91jLsZK1YZvpea8ajlu6irmMp984htotNHfhNGcZ/jahbWR1yTtHc5
-	IFc/9rE+JHcvDFcFJ3AY1suKWtvsuhKjo67HOeMuQHBiTh73IXcG/Bcfd9VwJAxO
-	irddtMqMAFnXQT9P466w==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyfhv0jdd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 May 2024 11:40:41 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 447BeIe0009444
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 May 2024 11:40:18 GMT
-Received: from [10.216.54.232] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
- 04:40:13 -0700
-Message-ID: <ed691f73-d56e-a653-d4bf-229a3ec561f1@quicinc.com>
-Date: Tue, 7 May 2024 17:10:10 +0530
+	s=arc-20240116; t=1715082518; c=relaxed/simple;
+	bh=ZvJC+HUC23cfgfMiVTigE+cAqOZWAnz9vZbxnvZ8ru0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wm+eyVc/Adjp6QeNekc/JMmTg+btoeQ5+HGhTybQzDotH78fcDA6h2s8KUvwlANN5lc6PJ3IIvDEX0CT8ne95hJyM2UrAA4LpheZCY5lLmISxFxnUDaLz0Eq8PP1GqxJuDQxq+rIIHDw8YN5mdqu/dUk+qBg9DKx1roEt4KNDug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Uf9H3qsB; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5206a5854adso2348293e87.0
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 04:48:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715082513; x=1715687313; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=72j6zNVVvGNrYMrCouTEzvFzVcRHh6PlR7ef9XOXTgQ=;
+        b=Uf9H3qsBB1mG3WF0plN0CboxxB8ch2s0qKwTRYjag5C+BU+IlXgsKM7hYhx0tiDts2
+         qc5GbbkGrphWjfcS+9odIxupiYn3+72eaOnbOPvQApgPU0thtOqJlCDYUz1XGu+dDaAH
+         Huc5tLjXXOFf2KLEjD28m96nOAVqIW7n0/sfFcMoSK8GYpQbS0s1RNUZb1eADTOmrwuz
+         8DuYQ7U+k5T+XgM60SVoz92dVdmP3eZeZh/Rxt+VwAlk0G6GyUUTIawqDpPuhDZL7exM
+         wtfjhEQwpPR0lbTGLdPgex00KjwZGJe/yoEJtW1tBOfEVywhncSXW2k1RYA7Lg1XzDiS
+         hyew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715082513; x=1715687313;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=72j6zNVVvGNrYMrCouTEzvFzVcRHh6PlR7ef9XOXTgQ=;
+        b=oMoLRQf+ILLCrdz9ukJHIUiy3NVXBDbDzIloAG18Ho3TWxUW3MpRIg02rK2oF3RNw0
+         0VZHkZ0ER4Ke2s4Z19pMKPIRsBEzmLBC22npQGNYpOEisE73qNIG2WNWhmvWIuPNQCvs
+         aiZCHD/Z8Z2SldebTy95WDx9UHg1Kir+quavzsr+7Zyhpa6zsjGqTIbmgYWazhPtYx8r
+         qAYQGSewPMX4oHgnZDtUY1xVb9zNaRUt2Hckpvqi6zsmi7IwRgORvDK0ENTNmLqlyvgR
+         EfoKCSmo53hH+ZAejLlWaZQNc/JvtPBq79xZ5vJSK95r8/8kY7vVS7QmU+QCxR9JIgk8
+         XTEw==
+X-Forwarded-Encrypted: i=1; AJvYcCXqmU+l1uoTcbhlGOHjwuP9JtBHeKv64z65JQ0mM8NAfuwfCSb6qyT3gHkdo5Mxf1rAo8JRD3MwicjgztdoxJ4sT7mZzzF6Hx5Q2Q==
+X-Gm-Message-State: AOJu0YyMAOuIdWQjZ1p3tvXcX9uss8tmw/EmXSTZMOHi4amvFsyfClch
+	DrujDHzNSrWAtaVsWMqfeu96HqW25ULIfZ1gUfFGeDSlHPmZJDI9mzKNnPcc7Mg=
+X-Google-Smtp-Source: AGHT+IEztQUsixU46vbtT83NzSNtDU2V2kQ90UiEWc9l8x732HZwYxqrdp6DKhIl1y8iyklIcrQtPg==
+X-Received: by 2002:a19:f713:0:b0:51d:3675:6a08 with SMTP id z19-20020a19f713000000b0051d36756a08mr7293073lfe.66.1715082513172;
+        Tue, 07 May 2024 04:48:33 -0700 (PDT)
+Received: from [172.30.205.144] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id b15-20020ac2562f000000b0051884ea2a32sm2086190lff.31.2024.05.07.04.48.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 May 2024 04:48:32 -0700 (PDT)
+Message-ID: <6dc632b0-792c-49c8-9f66-43f7a14789cc@linaro.org>
+Date: Tue, 7 May 2024 13:48:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 2/7] ASoC: codecs: wcd937x: add wcd937x codec driver
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
+To: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Das Srinagesh <quic_gurus@quicinc.com>,
+ Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-13-johan+linaro@kernel.org>
 Content-Language: en-US
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        "Srinivas
- Kandagatla" <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami
-	<bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
-	<perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-CC: <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <quic_pkumpatl@quicinc.com>
-References: <20240425091857.2161088-1-quic_mohs@quicinc.com>
- <20240425091857.2161088-3-quic_mohs@quicinc.com>
- <59f78ca7-ea09-41d7-9e6e-b0ce1af484e4@linux.intel.com>
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-In-Reply-To: <59f78ca7-ea09-41d7-9e6e-b0ce1af484e4@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240506150830.23709-13-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EDpNuAaSPbn_8MGd_rOpdrn-bePJnojS
-X-Proofpoint-ORIG-GUID: EDpNuAaSPbn_8MGd_rOpdrn-bePJnojS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-07_05,2024-05-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- mlxscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 spamscore=0 mlxlogscore=940
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405070081
 
-On 4/25/2024 7:13 PM, Pierre-Louis Bossart wrote:
+
+
+On 5/6/24 17:08, Johan Hovold wrote:
+> From: Satya Priya <quic_c_skakit@quicinc.com>
 > 
->> +struct wcd937x_priv {
->> +	struct sdw_slave *tx_sdw_dev;
->> +	struct sdw_slave *rx_sdw_dev;
-
+> Qualcomm Technologies, Inc. PM8008 is an I2C-controlled PMIC containing
+> seven LDO regulators. Add a PM8008 regulator driver to support PMIC
+> regulator management via the regulator framework.
 > 
-> Does this mean that the codec has 2 SoundWire interfaces?
-
-Yes, Similar to WCD938x 
-(https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/sound/soc/codecs/wcd938x.c?h=next-20240507), 
-it has two soundwire interfaces.
-
-All read/write operations associated with WCD937x goes over tx_sdw.
-
-rx_sdw_dev is unused in this driver. I will remove it.
-
+> Note that this driver, originally submitted by Satya Priya [1], has been
+> reworked to match the new devicetree binding which no longer describes
+> each regulator as a separate device.
 > 
-> If yes, aren't there merits in splitting the implementation in two
-> separate drivers, one for each interface and probing on the relevant partID?
+> This avoids describing internal details like register offsets in the
+> devicetree and allows for extending the implementation with features
+> like over-current protection without having to update the binding.
 > 
-> This is how the RT713 was handled. The mic function was exposed as the
-> RT1713.
+> Specifically note that the regulator interrupts are shared between all
+> regulators.
 > 
-> By representing the device as a single entity, things could be fun
-> because the two interfaces are really independent. things like clock
-> stop are handled at the interface level.
+> Note that the secondary regmap is looked up by name and that if the
+> driver ever needs to be generalised to support regulators provided by
+> the primary regmap (I2C address) such information could be added to a
+> driver lookup table matching on the parent compatible.
 > 
-> The code in this driver is difficult to review, for example in the probe
-> you wait for the TX part to complete the enumeration/initialization, but
-> there's nothing mentioned or stated on the RX part, and there's really
-> nothing related to the detection of this device. I don't actually see a
-> sdw_driver at all, it's a platform driver.
->
-wcd937x waits for TX part to complete as it is needed for register 
-read/write operations.
-
-Please refer patch 3/7 for slave driver.
-
-> Would you mind adding a paragraph on how the SoundWire interfaces are
-> handled and how the SoundWire bus is involved if there's no sdw_driver?
+> This also fixes the original implementation, which looked up regulators
+> by 'regulator-name' property rather than devicetree node name and which
+> prevented the regulators from being named to match board schematics.
 > 
-> Thanks!
+> [1] https://lore.kernel.org/r/1655200111-18357-8-git-send-email-quic_c_skakit@quicinc.com
+> 
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> [ johan: rework probe to match new binding, amend commit message and
+>           Kconfig entry]
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
 
-Sure, will add details in the commit message.
+I'm a bit lukewarm on calling this qcom-pm8008-regulator.. But then
+qcom-i2c-regulator or qpnp-i2c-regulator may bite due to being overly
+generic.. Would you know whether this code will also be used for e.g.
+PM8010?
 
-Soundwire master driver is already upstreamed and is available at
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/soundwire/qcom.c?h=next-20240507
-
-Thanks & Regards,
-Rafi.
-
+Konrad
 
