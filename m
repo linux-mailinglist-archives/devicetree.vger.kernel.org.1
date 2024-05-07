@@ -1,190 +1,149 @@
-Return-Path: <devicetree+bounces-65371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830448BDF26
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:58:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF1D18BDF57
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 12:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED4641F227CF
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8F55281D46
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 10:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4EA14EC62;
-	Tue,  7 May 2024 09:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7164414E2E0;
+	Tue,  7 May 2024 10:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/rD0RZp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u0BAXgGj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D4414E2FB;
-	Tue,  7 May 2024 09:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A8414D443;
+	Tue,  7 May 2024 10:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715075868; cv=none; b=Wj4LX0KQqb+ny/iL4HzdURHjPN0n7wmSNIbxl//8yU2lvNt88Ca0wE/4ofDNV9O8JkZzS6jRd1gwhZ5NMx5Xqn32a76PuFQj9LbVh1k27ppFZ6DzyecwYGEhVGJgVkkKIS614ltth3S96oXlmG80hzZiONuIyfm6eIZZB4bSy8Y=
+	t=1715076318; cv=none; b=IkVnr60WeGfo/IaFoHyTJvodeOlcoCWdAxzCrL0fVOXZTF+w+BP0GwsgnZ76saVYSEIWkJYMIKxKp65OYTeyUO/O1Z90GSY+nSE7AwtUMeFIjScImOjzPT0YburDOaUyMK52WzJSVy2towc9BXuTqm5OgPiPJEY6eWJk344fZ1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715075868; c=relaxed/simple;
-	bh=VxXd1pVTHgFPYpuyHPxoomX3P5xw2HYOOi9eD32Pv50=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OP05LV9x2bC2jc25aQDqSDYuLjRDkgSfX3KpEPiJOV2rYWj2Jhfumugmsi05TBWFGff1IZLrLi3OIl6I8Zbc/838KxCGbpQCfGrO759f7PfW8Jmk56i6POxA+LYjt1CXPaTBjLHprrsVoghL/HUTFkrQPouU4QrY7LG8AupEQj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/rD0RZp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F2A1FC4DDE1;
-	Tue,  7 May 2024 09:57:47 +0000 (UTC)
+	s=arc-20240116; t=1715076318; c=relaxed/simple;
+	bh=wjyf3Y9/PEfHLCo6ul7OYK2A98nnXByMH3n8zsXTdJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WkbvgnljM3J5js7Tz1j2WNjrAMAb03ENJMbLvk6TUUuzfQQZ8xuDKGya4J4KrvPMkucC037X9o+qeEoq8Lpr6ff0E3FRgeBqeO8pJvrxV4Am9mn/Ob8X0uvVLgG3pvU1MYQQKRIpq4fn4fUskZPDR24pXa/Bh5+xPLKpGduYS/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u0BAXgGj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 553D3C2BBFC;
+	Tue,  7 May 2024 10:05:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715075868;
-	bh=VxXd1pVTHgFPYpuyHPxoomX3P5xw2HYOOi9eD32Pv50=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=R/rD0RZpzX60V6mKu6LHwlotXtVKIc0qG5leuoiKU8hHsS4eNft4MnkCIm7mvacgq
-	 XsLYauJ+Ajg4W9+Ajm7IGE2f5v8wQpY9WF2vCDGTLa+kE9ZbYiIzI1A8fRo6jyC6xq
-	 kzXvRwJ/NfhgnaX7vtOUMgy8eGV5IdUpELduEEzxkN+bZOIuP+iY760uFe5HnHVscI
-	 ry2xlKgv4EuxQmfvnSiKwJy1OrtuyNu9vIHimEgqe2QNRLv75UwF45cC3n4HD2K9+S
-	 O9urKOHWVrA+GlkQwcye/DKyXc3o2xkgGx99Ion3Z7JD2dXzo5yhi8j6JkpB0DbTSl
-	 Bi+d9VKDxHubA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6C3EC25B78;
-	Tue,  7 May 2024 09:57:47 +0000 (UTC)
-From: =?utf-8?q?Noralf_Tr=C3=B8nnes_via_B4_Relay?= <devnull+noralf.tronnes.org@kernel.org>
-Date: Tue, 07 May 2024 11:57:30 +0200
-Subject: [PATCH 5/5] drm/tiny: panel-mipi-dbi: Support the pixel format
- property
+	s=k20201202; t=1715076317;
+	bh=wjyf3Y9/PEfHLCo6ul7OYK2A98nnXByMH3n8zsXTdJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u0BAXgGjZlgdwer+U0T5C9p+b6/JpacxQw5HHcsSokG2GOLP2AVsXg+mUxC4T1imU
+	 beUN1xKIggEcCIijv9OCPLhrVutNnOsjzUGJzAbj+/g32JTjLFuvupC/ml43ne4w8a
+	 XXl6Tbdm5zYIvNYuB/Gp2v4l7bX6SbWAjiptHHW1GyF7esO2EaNqnsm7nlsNldD2hN
+	 /5B1AF9VyshwToIAV6h42iu/wOcKfwcUrm5HMKYpkHILY6MllqLSw9l0G8UjHsapds
+	 SlRge/ISNHyiuUY1VqtXhBMhRx4Cf3eBtIDDIa1DBdqiMZMxHOrjFW2k61XNnlpGFz
+	 flwY9qmNmv/SA==
+Date: Tue, 7 May 2024 12:05:14 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nbd@nbd.name, john@phrozen.org, devicetree@vger.kernel.org,
+	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
+	upstream@airoha.com, lorenzo.bianconi83@gmail.com,
+	angelogioacchino.delregno@collabora.com, linus.walleij@linaro.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: airoha: en7581: Add gpio controller nodes
+Message-ID: <Zjn82thKKLx7juup@lore-desk>
+References: <2d27e1ad360dec2c3d78d9800bc93ecb6f9b50c5.1714573214.git.lorenzo@kernel.org>
+ <CAMRc=MeQp6FFhXSr1HbvVAd+D3wOsmtLvoxjt7QmT2a=NNTHmA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240507-panel-mipi-dbi-rgb666-v1-5-6799234afa3e@tronnes.org>
-References: <20240507-panel-mipi-dbi-rgb666-v1-0-6799234afa3e@tronnes.org>
-In-Reply-To: <20240507-panel-mipi-dbi-rgb666-v1-0-6799234afa3e@tronnes.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
- Tommaso Merciai <tommaso.merciai@amarulasolutions.com>, 
- =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1715075866; l=2926;
- i=noralf@tronnes.org; s=20221122; h=from:subject:message-id;
- bh=VkhLn8bg4+tzwHP3nVSjku8IqF1KyX0WKDV/6VouitQ=;
- b=bFYvp+sDnQMW8JJzoM3HGr82mP1zBTTSlRLZyXFf66wZVKC4zboe/8gY/RmUDjx662lLgoh5A
- NqkP6in6eQxCj0jVHXhcQLFjg9uTxVfRuq5AgQHbKTIm7arpKb5w/D2
-X-Developer-Key: i=noralf@tronnes.org; a=ed25519;
- pk=0o9is4iddvvlrY3yON5SVtAbgPnVs0LfQsjfqR2Hvz8=
-X-Endpoint-Received: by B4 Relay for noralf@tronnes.org/20221122 with
- auth_id=8
-X-Original-From: =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-Reply-To: noralf@tronnes.org
-
-From: Noralf Trønnes <noralf@tronnes.org>
-
-Add support for these pixel format property values:
-- r5g6b5, RGB565
-- b6x2g6x2r6x2, BGR666
-
-BGR666 is presented to userspace as RGB888. The 2 LSB in each color
-are discarded by the controller. The pixel is sent on the wire using
-8 bits per word (little endian) so the controller sees it as BGR.
-
-RGB565 is the default if the property is not present.
-
-Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
----
- drivers/gpu/drm/tiny/panel-mipi-dbi.c | 55 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/tiny/panel-mipi-dbi.c b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-index f80a141fcf36..f3aa2abce314 100644
---- a/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-+++ b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-@@ -26,6 +26,49 @@
- 
- #include <video/mipi_display.h>
- 
-+struct panel_mipi_dbi_format {
-+	const char *name;
-+	u32 fourcc;
-+	unsigned int bpp;
-+};
-+
-+static const struct panel_mipi_dbi_format panel_mipi_dbi_formats[] = {
-+	{ "r5g6b5", DRM_FORMAT_RGB565, 16 },
-+	{ "b6x2g6x2r6x2", DRM_FORMAT_RGB888, 24 },
-+};
-+
-+static int panel_mipi_dbi_get_format(struct device *dev, u32 *formats, unsigned int *bpp)
-+{
-+	const char *format_name;
-+	unsigned int i;
-+	int ret;
-+
-+	formats[1] = DRM_FORMAT_XRGB8888;
-+
-+	ret = device_property_read_string(dev, "format", &format_name);
-+	if (ret) {
-+		/* Old Device Trees don't have this property */
-+		formats[0] = DRM_FORMAT_RGB565;
-+		*bpp = 16;
-+		return 0;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(panel_mipi_dbi_formats); i++) {
-+		const struct panel_mipi_dbi_format *format = &panel_mipi_dbi_formats[i];
-+
-+		if (strcmp(format_name, format->name))
-+			continue;
-+
-+		formats[0] = format->fourcc;
-+		*bpp = format->bpp;
-+		return 0;
-+	}
-+
-+	dev_err(dev, "Pixel format is not supported: '%s'\n", format_name);
-+
-+	return -EINVAL;
-+}
-+
- static const u8 panel_mipi_dbi_magic[15] = { 'M', 'I', 'P', 'I', ' ', 'D', 'B', 'I',
- 					     0, 0, 0, 0, 0, 0, 0 };
- 
-@@ -276,6 +319,9 @@ static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
- 	struct drm_device *drm;
- 	struct mipi_dbi *dbi;
- 	struct gpio_desc *dc;
-+	unsigned int bpp;
-+	size_t buf_size;
-+	u32 formats[2];
- 	int ret;
- 
- 	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
-@@ -323,7 +369,14 @@ static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
- 	if (IS_ERR(dbidev->driver_private))
- 		return PTR_ERR(dbidev->driver_private);
- 
--	ret = mipi_dbi_dev_init(dbidev, &panel_mipi_dbi_pipe_funcs, &mode, 0);
-+	ret = panel_mipi_dbi_get_format(dev, formats, &bpp);
-+	if (ret)
-+		return ret;
-+
-+	buf_size = DIV_ROUND_UP(mode.hdisplay * mode.vdisplay * bpp, 8);
-+	ret = mipi_dbi_dev_init_with_formats(dbidev, &panel_mipi_dbi_pipe_funcs,
-+					     formats, ARRAY_SIZE(formats),
-+					     &mode, 0, buf_size);
- 	if (ret)
- 		return ret;
- 
-
--- 
-2.45.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vYM6OgB8S48O9dfD"
+Content-Disposition: inline
+In-Reply-To: <CAMRc=MeQp6FFhXSr1HbvVAd+D3wOsmtLvoxjt7QmT2a=NNTHmA@mail.gmail.com>
 
 
+--vYM6OgB8S48O9dfD
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+> On Wed, May 1, 2024 at 4:26=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel.o=
+rg> wrote:
+> >
+> > Introduce the Airoha EN7581 gpio nodes in Airoha EN7581 dtsi
+> >
+> > Tested-by: Rajeev Kumar <Rajeev.Kumar@airoha.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> > This patch is based on the following pending patch:
+> > https://patchwork.kernel.org/project/spi-devel-general/patch/189790802f=
+3ba1a80c4ab5e064b2425e5a360098.1714571980.git.lorenzo@kernel.org/
+> > ---
+> >  arch/arm64/boot/dts/airoha/en7581.dtsi | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/d=
+ts/airoha/en7581.dtsi
+> > index 98c2a86086e1..5d0d76cecfe0 100644
+> > --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
+> > +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
+> > @@ -178,5 +178,25 @@ spi_nand: nand@0 {
+> >                                 spi-rx-bus-width =3D <2>;
+> >                         };
+> >                 };
+> > +
+> > +               gpio0: gpio@1fbf0200 {
+>=20
+> These labels are not used anywhere.
+>=20
+> Bart
+
+ack. Let's drop this patch for the moment, I am planning to the work gpio
+support.
+
+Regards,
+Lorenzo
+
+>=20
+> > +                       compatible =3D "airoha,en7523-gpio";
+> > +                       reg =3D <0 0x1fbf0204 0 0x4>,
+> > +                             <0 0x1fbf0200 0 0x4>,
+> > +                             <0 0x1fbf0220 0 0x4>,
+> > +                             <0 0x1fbf0214 0 0x4>;
+> > +                       gpio-controller;
+> > +                       #gpio-cells =3D <2>;
+> > +               };
+> > +
+> > +               gpio1: gpio@1fbf0270 {
+> > +                       compatible =3D "airoha,en7523-gpio";
+> > +                       reg =3D <0 0x1fbf0270 0 0x4>,
+> > +                             <0 0x1fbf0260 0 0x4>,
+> > +                             <0 0x1fbf0264 0 0x4>,
+> > +                             <0 0x1fbf0278 0 0x4>;
+> > +                       gpio-controller;
+> > +                       #gpio-cells =3D <2>;
+> > +               };
+> >         };
+> >  };
+> > --
+> > 2.44.0
+> >
+
+--vYM6OgB8S48O9dfD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZjn82gAKCRA6cBh0uS2t
+rN0FAQCAVoXHlIcBroTElixujJu2yBPhfZhClfkTqv+xExVAjQD9F375rXktpi4C
+1RaCO08FwVabt67pvsxleUGnu3NtWgs=
+=xoIT
+-----END PGP SIGNATURE-----
+
+--vYM6OgB8S48O9dfD--
 
