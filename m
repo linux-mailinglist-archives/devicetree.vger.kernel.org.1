@@ -1,202 +1,124 @@
-Return-Path: <devicetree+bounces-65430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09EA8BE5B7
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:22:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6798A8BE5F7
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:32:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7718528B81B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:22:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 399D4B2C353
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBDE1607B8;
-	Tue,  7 May 2024 14:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41113161333;
+	Tue,  7 May 2024 14:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AmYCOQHW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MJnI0WgV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038611607A2;
-	Tue,  7 May 2024 14:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6285415FA66
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 14:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715091495; cv=none; b=npkqXSGNVO6tA6XQLtfqv+281ukZ7DMFn/EnaGpYy8aFDQdG1ZsU1SW8FEKtwJgP31UlWbHqTh4YAjg0C+WlJT2y35YBMzqzU5m84e72cEshyU5a9rSx5/LUB3LD8iW/u654xFztxgkLSMxS7HHol5nsAbccU4oMcTRubQTpC0s=
+	t=1715091534; cv=none; b=YHwKzU/Hvt907MwOxOuoaXnkOdqNDCPjWgKMJnqgTZgTHoWfLZ+MofCrJErISVatftLsWXFBcYzqeBAvYxM1RkVPYKCd9reCWcW/C/CaWUHJSZwhl0p5TE1uKfZE2smbWvPXwjtiRhxQTAh+LJjtseunq56rijTIJMFQMIjqiWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715091495; c=relaxed/simple;
-	bh=PDW/QaP3jSaNnV9YlzOt74iqoY5PBQglHHzpzQaGa0k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VgpbdRgQ4w10k53QvG3RVwM+zVKN6Orum9CqYsanaRStNBbHYu/Y86wOHiHhMJ3CLHAIIN+YkoMWYCKQxegqLYMwIdq277sMVLP90VREz9+qZkzMlete9QeuIIcqS/dV6CPvN59Sf/XFpyOO4R2/aDAiIzS9B/MiZmDdx6Z68ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AmYCOQHW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 447BPqa9006373;
-	Tue, 7 May 2024 14:18:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=sCBxcEV86oLS5MKk6pPLJoRpeRn2LFX/W4vhUZwcWXo=; b=Am
-	YCOQHWLExg+1dSbBwkigk+xcka3GlyrB81L075EsJyLCjPHF6pxh8FZkLwNhZcOc
-	bDgfSNo+AZ6PSAYRijpYn7x68EQRnlgA9aVy7grDjeNDPSYumGwoPGOZIR2XxehH
-	EQNQmC/xk2+xhZAneuJjB+l79MuvimDN+C+NCO4bOMX9vJVHqc7E+mu1OnBj+4js
-	7UC2zter0NHZEUMqe5yDdmo5xwHyWaqwVFotaEQLQ/a7BnuIGY/kh/3cCckQ0rW/
-	EqurQdAVFaaSZuO+5emagdlxq7SBPuRTwsMElJdBFHRWGZAEJnTgnbjp5RQ6xAh2
-	aFl8jfjCCudA3QkqdfTA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyf9gh4hc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 May 2024 14:18:06 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 447EI4Zd026576
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 May 2024 14:18:04 GMT
-Received: from [10.216.21.139] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
- 07:17:59 -0700
-Message-ID: <d1d42534-2d0f-ccd8-1e1d-1a64a4947555@quicinc.com>
-Date: Tue, 7 May 2024 19:47:55 +0530
+	s=arc-20240116; t=1715091534; c=relaxed/simple;
+	bh=E9jPUsIV1FFv9HwtRXaXD20Lt/JQPRSXI3gSnwpUUkc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L54vKRUVpW6lkbsEMldJJc+NRFSOwXV+Znr3+AO0HYbIPkGBnizvZoeH5ItH/XjoTktaUp2zRMVr5a5TU6N62n6/tnUh7ybjsGW09YigDYl7n823cGPj8UwLUxXvGdFWwHPbS3++J5fk0DW1gr9fUaCLQLfG4/2eUnXpIr85X3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MJnI0WgV; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-51f0f6b613dso3940247e87.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 07:18:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715091529; x=1715696329; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V6B9/opbNGy2dF5CZyiOc2E1LTO1EkA3zCx/KbLDUB4=;
+        b=MJnI0WgVZ5azaNfgzoT6XCYsR3mQzU/ZJl/yMEQuRT56bY1NWPxQDAbJh6HFKj/bjY
+         G+vnF6FIBIOq1J7Lu/ZUSuoIqkoqahbs/M8qNP9NlBiFmKW6ocsuEcu2ySC2mjdnfbrR
+         IxH/rKx76VRzG5bsZ/964SO7Hm8SkKlvBdRTsPL+wXXYrAkrNo+p61k/bAluk/oODi+m
+         DEg30/wHFcftOeUstrS1gWNJGw5BwkHQtnbDwE3c+7CiXpCdtqCtq6dnXJWEavS8tVMt
+         lo6NqVD55ehzbDPU1SB8utFdDSWJNxeAsqcw8MkB5GXwP78Ozkg7IQRmoCU19JuS1/Jr
+         27CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715091530; x=1715696330;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V6B9/opbNGy2dF5CZyiOc2E1LTO1EkA3zCx/KbLDUB4=;
+        b=FQ/g3D/GDk+Z5XVD4eUOYilfxSH3j+vToTkpnOQcaChisC9pYItL2n65+OpYFk2uYw
+         xakriVfTVRU4/iOJKD3Df32Asj9aY1CjOvE1Fn69nqy6JjC8wgcBYgUUYELmY/HO/nXX
+         biB6YfImEsqj98D6XKSKN3YPBda3PZF8c4vXFlZuDebkcP17+5OhC/yGt7fnx1S8WLIc
+         oGbVMWjTacNZd0V7LKtF0tbhR+oLJEEtc7EelksOTa1NxopOYFUfV62FMzfOv2KXqkDw
+         dIp2LXrcI/o8QPCTjsLY780lCTNYmcDUDExOYRZZhPePUhO/3KGQOOwGF6T7MizVGXOV
+         97wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWaTI1fHN5JQQMyKXhC/0gvuGq+f+rB2TdyFkAo9u1gzjhCOEw9bs5RzinNqlNztwpM2mFoYcaOOFBGAzB8pfpQvWhcMMe7ONQxPg==
+X-Gm-Message-State: AOJu0YzsTnQn4l9s7a0LddIoWMQFCJGE2+hpVpkWmTILHgAiYvp7KnSy
+	3kwhCvxQo+wPOGSJAVdPZcHgF0Vt7tq5EqLGq/VFUi17SKH8BWeI3OYKeoL+5LE=
+X-Google-Smtp-Source: AGHT+IGvfA2LnxMsAtbgMLtJQdOK715lWo1rdpwj0+KQ282HVHdI8dUi4imvbg6NqFVVZUmIGJifiw==
+X-Received: by 2002:ac2:5603:0:b0:51f:3fea:cbcf with SMTP id v3-20020ac25603000000b0051f3feacbcfmr7210675lfd.52.1715091529529;
+        Tue, 07 May 2024 07:18:49 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:c0d:408:fa88:abdb:17c2:cf24? ([2a00:f41:c0d:408:fa88:abdb:17c2:cf24])
+        by smtp.gmail.com with ESMTPSA id br39-20020a056512402700b0051da1d9c47esm2124202lfb.64.2024.05.07.07.18.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 May 2024 07:18:49 -0700 (PDT)
+Message-ID: <6d9879aa-ae84-4ed0-8b5f-5609fd0c37b9@linaro.org>
+Date: Tue, 7 May 2024 16:18:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 3/3] media: venus: add msm8998 support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] arch: arm64: dts: sm8650-hdk: add support for the
+ Display Card overlay
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20240422-topic-sm8650-upstream-hdk-v4-0-b33993eaa2e8@linaro.org>
+ <20240422-topic-sm8650-upstream-hdk-v4-3-b33993eaa2e8@linaro.org>
 Content-Language: en-US
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Stanimir Varbanov
-	<stanimir.k.varbanov@gmail.com>,
-        Bryan O Donoghue
-	<bryan.odonoghue@linaro.org>
-CC: MSM <linux-arm-msm@vger.kernel.org>,
-        linux-media
-	<linux-media@vger.kernel.org>,
-        DT <devicetree@vger.kernel.org>,
-        "Pierre-Hugues Husson" <phhusson@freebox.fr>,
-        Arnaud Vrac <avrac@freebox.fr>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <1cf08b56-a247-431b-a24b-69f563f49240@freebox.fr>
- <6df495c5-db26-431d-8ce1-8263a2a12b2f@freebox.fr>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <6df495c5-db26-431d-8ce1-8263a2a12b2f@freebox.fr>
-Content-Type: text/plain; charset="UTF-8"
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240422-topic-sm8650-upstream-hdk-v4-3-b33993eaa2e8@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _CQqI3_IaORzFZ6DdnF-KTLU0a8HsQ8a
-X-Proofpoint-GUID: _CQqI3_IaORzFZ6DdnF-KTLU0a8HsQ8a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-07_08,2024-05-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 adultscore=0 bulkscore=0 impostorscore=0 mlxscore=0
- phishscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405070098
 
 
-On 5/7/2024 3:00 PM, Marc Gonzalez wrote:
-> From: Pierre-Hugues Husson <phhusson@freebox.fr>
+
+On 4/22/24 10:48, Neil Armstrong wrote:
+> With the SM8650-HDK, a Display Card kit can be connected to provide
+> a VTDR6130 display with Goodix Berlin Touch controller.
 > 
-> Add the missing bits for msm8998 support.
+> In order to route the DSI lanes to the connector for the Display
+> Card kit, a switch must be changed on the board.
 > 
-> Downstream vendor code for reference:
+> The HDMI nodes are disabled since the DSI lanes are shared with
+> the DSI to HDMI transceiver.
 > 
-> https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi#L42-53
+> Add support for this card as an overlay and apply it it at
+> build-time to the sm8650-hdk dtb.
 > 
-> qcom,load-freq-tbl =
-> 	/* Encoders */
-> 	<972000 465000000 0x55555555>, /* 4k UHD @ 30 */
-> 	<489600 360000000 0x55555555>, /* 1080p @ 60 */
-> 	<244800 186000000 0x55555555>, /* 1080p @ 30 */
-> 	<108000 100000000 0x55555555>, /* 720p @ 30 */
-> 	/* Decoders */
-> 	<1944000 465000000 0xffffffff>, /* 4k UHD @ 60 */
-> 	< 972000 360000000 0xffffffff>, /* 4k UHD @ 30 */
-> 	< 489600 186000000 0xffffffff>, /* 1080p @ 60 */
-> 	< 244800 100000000 0xffffffff>; /* 1080p @ 30 */
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  drivers/media/platform/qcom/venus/core.c | 39 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index ce206b7097541..8b715cb7ab51a 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -587,6 +587,44 @@ static const struct venus_resources msm8996_res = {
->  	.fwname = "qcom/venus-4.2/venus.mbn",
->  };
->  
-> +static const struct freq_tbl msm8998_freq_table[] = {
-> +	{ 1944000, 465000000 },	/* 4k UHD @ 60 (decode only) */
-> +	{  972000, 465000000 },	/* 4k UHD @ 30 */
-> +	{  489600, 360000000 },	/* 1080p @ 60 */
-> +	{  244800, 186000000 },	/* 1080p @ 30 */
-> +	{  108000, 100000000 },	/* 720p @ 30 */
-> +};
-> +
-> +static const struct reg_val msm8998_reg_preset[] = {
-> +	{ 0x80124, 0x00000003 },
-> +	{ 0x80550, 0x01111111 },
-> +	{ 0x80560, 0x01111111 },
-> +	{ 0x80568, 0x01111111 },
-> +	{ 0x80570, 0x01111111 },
-> +	{ 0x80580, 0x01111111 },
-> +	{ 0x80588, 0x01111111 },
-> +	{ 0xe2010, 0x00000000 },
-> +};
-> +
-> +static const struct venus_resources msm8998_res = {
-> +	.freq_tbl = msm8998_freq_table,
-> +	.freq_tbl_size = ARRAY_SIZE(msm8998_freq_table),
-> +	.reg_tbl = msm8998_reg_preset,
-> +	.reg_tbl_size = ARRAY_SIZE(msm8998_reg_preset),
-> +	.clks = { "core", "iface", "bus", "mbus" },
-> +	.clks_num = 4,
-> +	.vcodec0_clks = { "core" },
-> +	.vcodec1_clks = { "core" },
-> +	.vcodec_clks_num = 1,
-> +	.max_load = 2563200,
-> +	.hfi_version = HFI_VERSION_3XX,
-> +	.vmem_id = VIDC_RESOURCE_NONE,
-> +	.vmem_size = 0,
-> +	.vmem_addr = 0,
-> +	.dma_mask = 0xddc00000 - 1,
-> +	.fwname = "qcom/venus-4.4/venus.mbn",
-> +};
-> +
->  static const struct freq_tbl sdm660_freq_table[] = {
->  	{ 979200, 518400000 },
->  	{ 489600, 441600000 },
-> @@ -893,6 +931,7 @@ static const struct venus_resources sc7280_res = {
->  static const struct of_device_id venus_dt_match[] = {
->  	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->  	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-> +	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
->  	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
->  	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
->  	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
 
-Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+After testing this on real hardware and getting some word, it turns out
+there's an issue with what seems like the SMMU ACL settings, preventing
+the display bridge I2C controller from being accessed and ending up in
+the board being unbootable, even without directly addressing the bridge.
 
-Regards,
-Vikash
+Not mergable as-is.
+
+Konrad
 
