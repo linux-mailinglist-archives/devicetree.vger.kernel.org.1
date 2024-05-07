@@ -1,118 +1,156 @@
-Return-Path: <devicetree+bounces-65376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EF08BDFCF
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 12:33:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C75D8BE0AA
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 13:07:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCD61B21CE0
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 10:33:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9731B1C23A44
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7056D5103F;
-	Tue,  7 May 2024 10:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8D21514F0;
+	Tue,  7 May 2024 11:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ep1WvJE5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DjbvWXXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24204F8A3;
-	Tue,  7 May 2024 10:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712E11509A0
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 11:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715078028; cv=none; b=Iv+SbpNrbJGdmoiUh+j7q90RBJukETOHdQNSojZomVQFtVbSXWyTjhs3dWqGF15413T8i4hE5rYISIcOL51QcBskpc21Bk17DjXoFt9b6nH0IAViZVrHsilcWNnQEESntgoZXHWtjuTFF0YQFTAfpMPV9PosXG2nrfldF5ctuGU=
+	t=1715080023; cv=none; b=TM119IFtg1W4RPp3oS4hVczrA12cdzqSSPgmMdVY1dtbIiDgQQ/aJTUg0WwQcA0IFcAATwrjZl2XQZQVzoOju0PPvoAeNeGvjGK9TVQQVOAX4a2KR0gBpl45LLwt+j1H3S6iLNBi0HkS5hki0Yg0hw0wCHmXIVpH2JO+Apl983s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715078028; c=relaxed/simple;
-	bh=vuLSVLPShz6wQViPjE2btrxyoSh9Pp3r0Hm9mJD2iXM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=koULRpY9oybDDLqHoCt2sBA9F4u5FUadtZbZZmRIKi/yHsJIqh+76dyJ3MRtxhS76WAVUNtUAr/EhZKIjHZfeM93UnV3WgKUT5xSkHN22+q0uH1//KR1Om+aI3yk4l40+EeYu9nmKRVIRLumWBYIYhxJufFCwtCXKj6LXiNkgNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ep1WvJE5; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 447AXb53067817;
-	Tue, 7 May 2024 05:33:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715078017;
-	bh=zv5l/OYnMFKUHadlnPzeVyb6qRV4kJtWC47FOfdYpxo=;
-	h=From:To:CC:Subject:Date;
-	b=Ep1WvJE509PJT0NuJphxSSih/ddxQJgUTFk0ki8T7/vSrVND1zSVhFCTsakKrBOvo
-	 Vet8PpW24YILdVVm7DC/ZFoEtAByTlRJ2mLTae96uorF36F7zkJc3q4acQkWi6R4f2
-	 7AAzrpJ1cmT304jbUnxZzzSSDScLY7guKRsrwQ6Y=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 447AXb7G065328
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 05:33:37 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 05:33:37 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 05:33:37 -0500
-Received: from uda0490681.. ([10.24.69.142])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 447AXWEm068713;
-	Tue, 7 May 2024 05:33:33 -0500
-From: Vaishnav Achath <vaishnav.a@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <j-choudhary@ti.com>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <vaishnav.a@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j722s: Fix main domain GPIO count
-Date: Tue, 7 May 2024 16:03:32 +0530
-Message-ID: <20240507103332.167928-1-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1715080023; c=relaxed/simple;
+	bh=0wthStaM0L1IEMjidKAObMHjHCckB8nsQgt387187UE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZNf/g3KPtfaUcTdXWfjk0OwSGG99oMe2Pi09uJFjgFug+Dq8koxJB3ridG1nF+vowQF+nw6wQXpnve5+CnS4TRj7by/J1jXeKN/W8qy5GfTUsTTvFnmajzMqqpIBHuanvnmuoCxUIynRELe+ELjLPRnwDocFiE1yx/3dZwR3Cds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DjbvWXXS; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e30c625178so26857451fa.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 04:07:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715080018; x=1715684818; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vu3E57enROBhkqZ25vaLZg3w8R1eCilIpWi4uX7bS5I=;
+        b=DjbvWXXSHAEEzyvHkXXH/E7lcMDOaq9rKhpNeikRSahjxHmcdpE+aZbSTZRFd0Hh2x
+         W2BIQOkswQRIsP5zr5Cq5dY0lOO4et3Wau+e6qL6iwn3eOwPK7FytbFKHmUGamT4FGiV
+         E1WKBrj/N35fgoYt4ycwNW9UK8WKvgGfjMjT3ugrWPM+O93DJi8+YGRQKzA+HfKfF1fq
+         rbRWkb4/w+wyTDEyRZPdfCDJO/HXep8UNfUtK1L7O+AXgzBXMQeqiBZqEWpwWruZr+kH
+         TW0wVCt/fQiC0nZIjweWbrOmLIgyYSKyNIwq8cOVET077Q0BgQCdMisKFdFWjQDPqY92
+         W9Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715080018; x=1715684818;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vu3E57enROBhkqZ25vaLZg3w8R1eCilIpWi4uX7bS5I=;
+        b=VwO4Cfh62AskX/xGRfGFdrLutSTFs62FHbTTqFCKXH4Jw0rc1DPd7R5eJ0+ZpUhK7G
+         r6ZQARdMckBLDElAZea+vmBgr3W8Q/R4o4wxKxMPixCoC75EQxqUpVQ0i5RD7otLwiro
+         YTOFkD26BhIrfYbCdHETU4n7z2q1wR3vGbIjYVkVvdejXfw4lrZkP68jg8MZsKGrz/sA
+         L1TlVFCG5VOLZxT1qos/c+XdenVDmtrzScmFTkNOZoBj3YiOgJqaDR5Vf4wRV/9zRhq6
+         SrD0FLxeduKoO/y8nxJWpBUHShyfCnGsDgbTcWtynGetrensPhj0Kea1rqgMutNJ9tVs
+         i/cA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3XJTZV2zTaGkgHATsmtRPkg3753uSmmW8LxTXjCrXd4XqUPH+R9TKO0tMp1MNrNEF7Wux7z5H4bAncuOKkfH7WTHsajpUK6tA7A==
+X-Gm-Message-State: AOJu0Yw25Y8QUSKwOGFSxpk+Z+BrWEgatDZW/iJfDd07b74ZLoFS4Ifn
+	7OZMRh2uHo9q5VglQf9S38437/jlBwZpqFnWUesnJST0P/F/VtKU3UslyDBvPhc=
+X-Google-Smtp-Source: AGHT+IExp0qXNrJyw996e89disi8phPXmFYED+G9fNF42W0b5gF5pUVkJQl64hC5epdp7ic0/3TADw==
+X-Received: by 2002:a2e:9153:0:b0:2da:15cf:1e23 with SMTP id q19-20020a2e9153000000b002da15cf1e23mr7938406ljg.17.1715080018522;
+        Tue, 07 May 2024 04:06:58 -0700 (PDT)
+Received: from [172.30.205.144] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id e3-20020a2e9e03000000b002d6daf3b41fsm1906226ljk.101.2024.05.07.04.06.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 May 2024 04:06:57 -0700 (PDT)
+Message-ID: <e1d66d4a-baf7-4f17-b214-be7e7432f53c@linaro.org>
+Date: Tue, 7 May 2024 13:06:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>
+Cc: wireless <linux-wireless@vger.kernel.org>, DT
+ <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Alexey Minnekhanov <alexeymin@postmarketos.org>
+References: <ebbda69c-63c1-4003-bf97-c3adf3ccb9e3@freebox.fr>
+ <0914f96e-fcfd-4088-924a-fc1991bce75f@freebox.fr>
+ <02592b09-8ab5-42ab-bd6b-6db79722d708@freebox.fr>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <02592b09-8ab5-42ab-bd6b-6db79722d708@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-J722S does not pin out all of the GPIO same as AM62P and have
-more number of GPIO on the main_gpio1 instance. Fix the GPIO
-count on both instances by overriding the ti,ngpio property.
 
-Fixes: ea55b9335ad8 ("arm64: dts: ti: Introduce J722S family of SoCs")
 
-More details at J722S/AM67 Datasheet (Section 5.3.11, GPIO):
-	https://www.ti.com/lit/ds/symlink/am67.pdf
+On 5/6/24 12:39, Marc Gonzalez wrote:
+> On 29/04/2024 16:07, Marc Gonzalez wrote:
+> 
+>> The ath10k driver waits for an "MSA_READY" indicator
+>> to complete initialization. If the indicator is not
+>> received, then the device remains unusable.
+>>
+>> cf. ath10k_qmi_driver_event_work()
+>>
+>> Several msm8998-based devices are affected by this issue.
+>> Oddly, it seems safe to NOT wait for the indicator, and
+>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
+>>
+>> Jeff Johnson wrote:
+>>
+>>    The feedback I received was "it might be ok to change all ath10k qmi
+>>    to skip waiting for msa_ready", and it was pointed out that ath11k
+>>    (and ath12k) do not wait for it.
+>>
+>>    However with so many deployed devices, "might be ok" isn't a strong
+>>    argument for changing the default behavior.
+>>
+>> cf. also
+>> https://wiki.postmarketos.org/wiki/Qualcomm_Snapdragon_835_(MSM8998)#WLAN
+>>
+>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>> ---
+>>   arch/arm64/boot/dts/qcom/msm8998.dtsi | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> index 67b8374ddf02f..4e6245095adfc 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> @@ -3234,6 +3234,7 @@ wifi: wifi@18800000 {
+>>   			iommus = <&anoc2_smmu 0x1900>,
+>>   				 <&anoc2_smmu 0x1901>;
+>>   			qcom,snoc-host-cap-8bit-quirk;
+>> +			qcom,no-msa-ready-indicator;
+>>   		};
+>>   	};
+>>   };
+> 
+> 
+> Bjorn,
+> 
+> This patch is supposed to go through your tree, right?
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
----
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Logs (6.9.0-rc7-next-20240507):
-	https://gist.github.com/vaishnavachath/2a629f73f4216fe00b74a7270b987534
-
- arch/arm64/boot/dts/ti/k3-j722s.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-index c75744edb143..9132b0232b0b 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-@@ -83,6 +83,14 @@ &inta_main_dmss {
- 	ti,interrupt-ranges = <7 71 21>;
- };
- 
-+&main_gpio0 {
-+	ti,ngpio = <87>;
-+};
-+
-+&main_gpio1 {
-+	ti,ngpio = <73>;
-+};
-+
- &oc_sram {
- 	reg = <0x00 0x70000000 0x00 0x40000>;
- 	ranges = <0x00 0x00 0x70000000 0x40000>;
--- 
-2.34.1
-
+Konrad
 
