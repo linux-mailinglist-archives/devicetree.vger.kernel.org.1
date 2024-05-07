@@ -1,238 +1,148 @@
-Return-Path: <devicetree+bounces-65339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3729C8BDD44
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 10:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 675AB8BDD9E
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:01:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59FB71C2152F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 08:41:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 988251C21435
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E66E14D2B7;
-	Tue,  7 May 2024 08:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3E614D440;
+	Tue,  7 May 2024 09:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KhSBliwr"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="GbrVqsw7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OtNW7qJz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 123AF13CA8D;
-	Tue,  7 May 2024 08:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B099E14D2B6;
+	Tue,  7 May 2024 09:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715071259; cv=none; b=kIkMsXnMuFJrDGh1WcljmzDxJmeSN40pWVuYFPl89s/OUibjcdc2LwdGwmUtFkzn8YlB6sxQGQshiqyjoDK6lxxHIznDiofuATNGS9tktc0JRv/gr35fq1E2RA5YMAqK/+rqKsC2mECTJ0d5pepsylcF3wD90k01lWDUbm9vjfc=
+	t=1715072514; cv=none; b=E1AbetJm+xW7SIfgneXPER/gEK/EBoHOt5pla9bz4HXXIoK7OyxcKi6YihMLAcecGcEj4nlv6cZzNtrg2iqe7JJrg0fZhMtDxx3OVSwYoZGKP8ySryKTt82islY6iBqP4oVgelzTTFxF4Duxs2t12fAMYqDyQGmtee/eJvzinXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715071259; c=relaxed/simple;
-	bh=sUjfAESTunl9013EBi9dsmv2GLZ5rTVceLRbegv7l8I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mKIbnsDIBnDG6EuFvzxCbcSPW5IMZyGfO6YjIYDXvLQaDA7iCZra+ygqJCuRYy0cJ9Xke9AU4JRF5apqnRvZd5es94TgD1J4BwA6E/BmrICxThTRqpQ3Qk1MwThWvGVCN57sHGWcRnH3OIGRZCzh7Q4fsc4EBSoVOIpqkYZzQaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KhSBliwr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2607AC3277B;
-	Tue,  7 May 2024 08:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715071258;
-	bh=sUjfAESTunl9013EBi9dsmv2GLZ5rTVceLRbegv7l8I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KhSBliwrI/bU2fZ42hVY1khLzHigeyRIA/KhyOPr/A0NKIb3ugHhAkZYBAYYg78+4
-	 nDFLqlYda/5fbLCZhTM/cMxc9mM2X5Dw3nAeNJFVsLQReagAvalOWQd+4dWCwnI1WR
-	 yjWc+JBRcVIdp0YdqdB0fYPDFlAuhysswwhXi86TgowjWEDnXJ3o7dkyo00xCMy5eN
-	 D6ZKTyybzFg+so1fTvzcXQK/v8K3FIoKubLjPQKCtHRsvjYB65fMeK/GhoibnrZ866
-	 97fyP0TE8kIdSkfuEaADnQyyLKWndlw9vs9NiwCdPbrmQ0OUGmb117mNbbur88tUeq
-	 3m7Hrytq62LpA==
-Date: Tue, 7 May 2024 09:40:52 +0100
-From: Lee Jones <lee@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kees Cook <keescook@chromium.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] leds: sy7802: Add support for Silergy SY7802
- flash LED controller
-Message-ID: <20240507084052.GW1227636@google.com>
-References: <20240401-sy7802-v2-0-1138190a7448@apitzsch.eu>
- <20240401-sy7802-v2-2-1138190a7448@apitzsch.eu>
- <20240411124855.GJ1980182@google.com>
- <20240503071953.GD1227636@google.com>
- <3309a9f1f5848681d0acf3bfdf9b6525fc88e1bc.camel@apitzsch.eu>
+	s=arc-20240116; t=1715072514; c=relaxed/simple;
+	bh=MkHue8S4BQIxwK+1JsfuYcgFlqMXjlm73/q8bJJv11Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rQZSCawsPQL4U+J1BuGKkCFISsDSUM7xXNAokMIcIMOk3BoW5VYTJjmSto6zdRBbvKGWTY9B7vWlGkDAjJQERYqT8Cx5fUp6cv66mpA3FOPGo2icOuOPwt8AAbSCRoKV72exEImUazIeg3yrdsi6lJAfygsoyzzQqKfyS3U/rtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=GbrVqsw7; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OtNW7qJz; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id B423A1140174;
+	Tue,  7 May 2024 05:01:51 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Tue, 07 May 2024 05:01:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1715072511; x=1715158911; bh=Hi
+	hTRv1yZ67xb/WPLADRRBZMZzkOnW5oUxtfEvjFXJM=; b=GbrVqsw7nz5In3SnjO
+	sNAKbNzGemUcOR1Z2HPBVo6xNCOVbS1p8XVuOVHbSxke/OZkgg0vHt9MfcEWKC41
+	OCthxJaiPb/D+vTq5Ksjf7BvzZrTR79eryuILY7UFjbBJJ8VEQJL//bFnfxx7pIU
+	fjOqT0YyCNQMT9wzn1b+1nHKkmy5b7AMERo2TxoWzO92/G/7Z76GZV16tXWhoIUz
+	Qp2S9UUuHVmk1j5n0l6VAqsB+XqEFUTjnBbf+m5gT4NGbWL4q8dXIHexx5O/5i0Z
+	n1vOTW4PokoFRfyx7SjzcsBjMUSp+W6Rl+X3KMAjL5UStDVmxWHhC+xup0HrpGgm
+	mk5g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm3; t=1715072511; x=1715158911; bh=HihTRv1yZ67xb
+	/WPLADRRBZMZzkOnW5oUxtfEvjFXJM=; b=OtNW7qJze4EbCIht+75D7ShE92HH7
+	16Lo2VRFrAsT8m5g1+BM3i8/G8vxgceowWWiv7Do5B/k9mxAmI1POPD/KmrkEa26
+	/e8nVz5onnTJs8LScFUshvuupWUZB78mCgJFLh9fvw28pZPqNNEClk01P2Y7onl9
+	llrIjGAdAm9ZI0gKIELZGz9n40uOtP5cnmrHJ+6x8I2+Jtr6tEVcVz0rXnVaQu+T
+	cK7NYAcWezN/XIU02exLiFNLMOORsuPtqQbxWNo6i9UIDaBVg1XAgcONHUE5z82a
+	C/vWpS/07vs1XCzMZExbVTETAKjxG2Gbg3VSCeOCt1fF27mltMBZ8rhvQ==
+X-ME-Sender: <xms:_-05ZlKa-p8zpvkmvBIlVQXW4saIZKteNn60vEGdJEsewnilkHWBdg>
+    <xme:_-05ZhJ95-ttViHmkH8QPej_XnD1AE_A4swGVjITHgahpHcHx2s_NJqWqwT8EWbo8
+    yVOedM_mPcxQn_ltOk>
+X-ME-Received: <xmr:_-05ZtvE5ks5okBjxMsBW8_ncLg8u1yA8FKjEDDVrW-0t6vwghvzw8k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddvkedgtdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeflihgrgihu
+    nhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqnecugg
+    ftrfgrthhtvghrnhepudffffffhfeuheevhffgleevkeeugeetfeegieeijeehfeekheek
+    veduveeigeeunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:_-05Zmb_5U768GPCYVnNx08G2pA7VSFn-GIa_agaKBoR_LRFD4KwvA>
+    <xmx:_-05ZsYmr10-KZbUuTkwOhPpTXFLPdAy4tK__USv4j5N0bgWrz7pOw>
+    <xmx:_-05ZqAC2DM1ttZ4KY9uhUN8yloaMVHtUeE1MYFeaw7ANnpVoEUUGg>
+    <xmx:_-05ZqZvcsO272dutd9PoRmd0oL6gejbQdfeH4oyWglYZu_SW8A6mg>
+    <xmx:_-05ZqnFsesbJMFp0Fr2pZFaVJ6lpvahdndI0fNAP7F3wvTvIY-KEkoa>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 7 May 2024 05:01:50 -0400 (EDT)
+From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH 0/5] MIPS: cm: Probe GCR address from devicetree
+Date: Tue, 07 May 2024 10:01:48 +0100
+Message-Id: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3309a9f1f5848681d0acf3bfdf9b6525fc88e1bc.camel@apitzsch.eu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPztOWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDUwMz3eTc+IKi/KRUXYNkMzPzZIskM+OkNCWg8oKi1LTMCrBR0bG1tQD
+ ymTllWgAAAA==
+To: Paul Burton <paulburton@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1161;
+ i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
+ bh=MkHue8S4BQIxwK+1JsfuYcgFlqMXjlm73/q8bJJv11Q=;
+ b=owGbwMvMwCHmXMhTe71c8zDjabUkhjTLt//P21bd2hWk6yKzs2/VC/vlWnoZc3x6rimEcDZ4L
+ Lz+1T6ho5SFQYyDQVZMkSVEQKlvQ+PFBdcfZP2BmcPKBDKEgYtTACZy/g0jw0QrSzExt+Pnk6tO
+ f/H82nRin/vWhTLsP/cEXjkiWGvqLsfI8Ed+xpeDLGEMq1lPnZv3Qtku7enk0E9W3jHT5ojF3Zz
+ hzQIA
+X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
+ fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
 
-On Sat, 04 May 2024, André Apitzsch wrote:
+Hi all,
 
-> Am Freitag, dem 03.05.2024 um 08:19 +0100 schrieb Lee Jones:
-> > On Thu, 11 Apr 2024, Lee Jones wrote:
-> > 
-> > > On Mon, 01 Apr 2024, André Apitzsch via B4 Relay wrote:
-> > > 
-> > > > From: André Apitzsch <git@apitzsch.eu>
-> > > > 
-> > > > Add support for SY7802 flash LED controller. It can support up to
-> > > > 1.8A
-> > > > flash current.
-> > > 
-> > > This is a very small commit message for a 500+ line change!
-> > > 
-> > > Please, tell us more.
-> > > 
-> > > > Signed-off-by: André Apitzsch <git@apitzsch.eu>
-> > > > ---
-> > > >  drivers/leds/flash/Kconfig       |  11 +
-> > > >  drivers/leds/flash/Makefile      |   1 +
-> > > >  drivers/leds/flash/leds-sy7802.c | 532
-> > > > +++++++++++++++++++++++++++++++++++++++
-> > > >  3 files changed, 544 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/leds/flash/Kconfig
-> > > > b/drivers/leds/flash/Kconfig
-> > > > index 809b6d98bb3e..f39f0bfe6eef 100644
-> > > > --- a/drivers/leds/flash/Kconfig
-> > > > +++ b/drivers/leds/flash/Kconfig
-> > > > @@ -121,4 +121,15 @@ config LEDS_SGM3140
-> > > >  	  This option enables support for the SGM3140 500mA
-> > > > Buck/Boost Charge
-> > > >  	  Pump LED Driver.
-> > > >  
-> > > > +config LEDS_SY7802
-> > > > +	tristate "LED support for the Silergy SY7802"
-> > > > +	depends on I2C && OF
-> > > > +	depends on GPIOLIB
-> > > > +	select REGMAP_I2C
-> > > > +	help
-> > > > +	  This option enables support for the SY7802 flash LED
-> > > > controller.
-> > > > +	  SY7802 includes torch and flash functions with
-> > > > programmable current.
-> > > > +
-> > > > +	  This driver can be built as a module, it will be
-> > > > called "leds-sy7802".
-> > > > +
-> > > >  endif # LEDS_CLASS_FLASH
-> > > > diff --git a/drivers/leds/flash/Makefile
-> > > > b/drivers/leds/flash/Makefile
-> > > > index 91d60a4b7952..48860eeced79 100644
-> > > > --- a/drivers/leds/flash/Makefile
-> > > > +++ b/drivers/leds/flash/Makefile
-> > > > @@ -11,3 +11,4 @@ obj-$(CONFIG_LEDS_QCOM_FLASH)	+= leds-qcom-
-> > > > flash.o
-> > > >  obj-$(CONFIG_LEDS_RT4505)	+= leds-rt4505.o
-> > > >  obj-$(CONFIG_LEDS_RT8515)	+= leds-rt8515.o
-> > > >  obj-$(CONFIG_LEDS_SGM3140)	+= leds-sgm3140.o
-> > > > +obj-$(CONFIG_LEDS_SY7802)	+= leds-sy7802.o
-> > > > diff --git a/drivers/leds/flash/leds-sy7802.c
-> > > > b/drivers/leds/flash/leds-sy7802.c
-> > > > new file mode 100644
-> > > > index 000000000000..c03a571b0e08
-> > > > --- /dev/null
-> > > > +++ b/drivers/leds/flash/leds-sy7802.c
-> > > > @@ -0,0 +1,532 @@
-> > 
-> > [...]
-> > 
-> > > > +static int sy7802_torch_brightness_set(struct led_classdev
-> > > > *lcdev, enum led_brightness level)
-> > > 
-> > > s/level/brightness/
-> > > 
-> > > > +{
-> > > > +	struct sy7802_led *led = container_of(lcdev, struct
-> > > > sy7802_led, flash.led_cdev);
-> > > > +	u32 led_enable_mask = led->led_no == SY7802_LED_JOINT ?
-> > > > SY7802_LEDS_MASK_ALL :
-> > > > +			      SY7802_LEDS_MASK(led->led_no);
-> > > 
-> > > Do all of the fancy multi-line assignment outside of the
-> > > declaration block.
-> > > 
-> > > > +	u32 enable_mask = SY7802_MODE_MASK | led_enable_mask;
-> > > > +	u32 val = level ? led_enable_mask : SY7802_MODE_OFF;
-> > > > +	struct sy7802 *chip = led->chip;
-> > > > +	u32 curr;
-> > > 
-> > > This is a temporary placeholder for fled_torch_used, right?
-> > > 
-> > > fled_torch_used_tmp?  Sometimes abbreviated to tmp.
-> > > 
-> > > > +	u32 mask;
-> > > 
-> > > That's a lot of masks.  Which one is this?
-> > > 
-> > > > +	int ret;
-> > > > +
-> > > > +	mutex_lock(&chip->mutex);
-> > > > +
-> > > > +	/*
-> > > > +	 * There is only one set of flash control logic, and
-> > > > this flag is used to check if 'strobe'
-> > > 
-> > > The ',' before 'and' is superfluous.
-> > > 
-> > > > +	 * is currently being used.
-> > > > +	 */
-> > > 
-> > > Doesn't the variable name kind of imply this?
-> > > 
-> > > > +	if (chip->fled_strobe_used) {
-> > > > +		dev_warn(chip->dev, "Please disable strobe first
-> > > > [%d]\n", chip->fled_strobe_used);
-> > > 
-> > > "Cannot set torch brightness whilst strobe is enabled"
-> > > 
-> > > > +		ret = -EBUSY;
-> > > > +		goto unlock;
-> > > > +	}
-> > > > +
-> > > > +	if (level)
-> > > > +		curr = chip->fled_torch_used | BIT(led->led_no);
-> > > > +	else
-> > > > +		curr = chip->fled_torch_used & ~BIT(led-
-> > > > >led_no);
-> > > > +
-> > > > +	if (curr)
-> > > > +		val |= SY7802_MODE_TORCH;
-> > > > +
-> > > > +	/* Torch needs to be disabled first to apply new
-> > > > brightness */
-> > > 
-> > > "Disable touch to apply brightness"
-> > > 
-> > > > +	ret = regmap_update_bits(chip->regmap,
-> > > > SY7802_REG_ENABLE, SY7802_MODE_MASK,
-> > > > +				 SY7802_MODE_OFF);
-> > > > +	if (ret)
-> > > > +		goto unlock;
-> > > > +
-> > > > +	mask = led->led_no == SY7802_LED_JOINT ?
-> > > > SY7802_TORCH_CURRENT_MASK_ALL :
-> > > 
-> > > Why not just use led->led_no in place of mask?
-> > 
-> > mask and led->led_no are assigned the same value from this point on.
-> 
-> Thanks for the clarification.
-> How to you come to the conclusion that mask and led->led_no are
-> assigned the same value from this point on?
+This series enabled mips-cm code to probe GCR address from devicetree.
 
-Because I am blind and didn't see the double equals ("==").
+This feature has been implemented in MIPS's out-of-tree kernel for
+a while, and MIPS's u-boot fork on boston will generate required
+"mti,mips-cm" node as well.
 
-#shouldhavegonetospecsavers
+Please review.
+Thanks
 
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+---
+Jiaxun Yang (5):
+      MIPS: generic: Do __dt_setup_arch in prom_init
+      MIPS: cm: Prefix probe functions with __init
+      MIPS: Move mips_cm_probe after prom_init
+      dt-bindings: mips: Document mti,mips-cm
+      MIPS: cm: Probe GCR address from DeviceTree
+
+ .../devicetree/bindings/mips/mips-cm.yaml          | 37 ++++++++++++
+ arch/mips/generic/init.c                           |  9 ++-
+ arch/mips/include/asm/mips-cm.h                    |  4 +-
+ arch/mips/kernel/mips-cm.c                         | 66 ++++++++++++++++++----
+ arch/mips/kernel/setup.c                           |  2 +-
+ 5 files changed, 100 insertions(+), 18 deletions(-)
+---
+base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
+change-id: 20240506-cm_probe-0c667c8b63bf
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Jiaxun Yang <jiaxun.yang@flygoat.com>
+
 
