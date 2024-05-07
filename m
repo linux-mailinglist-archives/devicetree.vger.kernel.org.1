@@ -1,102 +1,123 @@
-Return-Path: <devicetree+bounces-65459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB7E8BE735
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:17:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB1D8BE75C
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:24:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE38C28300E
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:17:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0018FB2850E
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E47168B0F;
-	Tue,  7 May 2024 15:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BCC1635BA;
+	Tue,  7 May 2024 15:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZdYdMfZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OO46xxDR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF36C168B02;
-	Tue,  7 May 2024 15:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1C416192D;
+	Tue,  7 May 2024 15:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715095023; cv=none; b=iNyw4mNwrkPAhXTovpM0/QpNLDOImshI7raHh90/qS/hnfsqXi1kd7tiubAt48f1bY7v6uz+dKXt8OyYNMNnaHURYthtCJtAXHHvI/O+Xm62u9qRqESx42DoxlVW1rXCH8Cge5G1rg5mbWU6Ys3gs+rCELBbhWdkHhzeRfudUxI=
+	t=1715095383; cv=none; b=nymAVCEMMDbjPDkFFKAV/27WmFyIFpNcBP+4OT2d0V6NuqRt6v2tfNKDamJP0ZSIXNeN/+dSpCMUUYKYTAu6DKl3XWqhDqeSX3k+FSNAplNgkKWX9s7vayeL9JITcj+l55EFuesQI92//B3ByFLXOh26d4l+lspySoOuWrBD7IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715095023; c=relaxed/simple;
-	bh=zyJu9yBHUsDZEwiqz7xPlI0025aurXNawhHfPRrtkwg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PoWdokkIZThdfSeuRjKiBveF7709T8jbhnlHrJTPYMXrdAdlbO3/41dYxJwUpgq2yXLEa2GS8CKNFzFXCjADcrOAB/Fz77rBJK74M8nXQ+HOf5YcmFNQ2Gog6mEPLp0Zq9iOILOzu6pRVLr6NUpGXBDLSptlET3Ib41PlDbAp5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZdYdMfZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E0BDC2BBFC;
-	Tue,  7 May 2024 15:17:03 +0000 (UTC)
+	s=arc-20240116; t=1715095383; c=relaxed/simple;
+	bh=Z6tWue+8yucqeQBE8UAQi/bkQKKKwed4j9928aTPaIQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K+VJCwTDlJ7vneIBM/J2V3PJgPYpb1miBZY8aVSDJpC01CfqLDWl5wb2wYoDAXxRPhclSlRPj0P4N8T2twY5lk2xTpoScFb3suesfh/JgnJQOy+ZpgqFUUfMfZXF542DnfIxIIcToymxiIFY7F/AsBryJxfwR3Aq/aprsrgNpN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OO46xxDR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E2B3C2BBFC;
+	Tue,  7 May 2024 15:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715095023;
-	bh=zyJu9yBHUsDZEwiqz7xPlI0025aurXNawhHfPRrtkwg=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=pZdYdMfZiA8TSK6gKH55RQbGK5Oagt5SyYfZL0flIEayMhhFIvLbQBzYQv5c//RWK
-	 BxviT6ItG19vjkwcTRYxnGhRPWTZ9vkFbbOkbPOSHU9XY1RJWh1O/Vfp4pe3Xc5QDQ
-	 U4Eyx5Z+skvIEjg49wYGNGHFz3nZkjc+mOfuUYNKmXdPS+I6Pqu3qUjdCtwhGqFOGH
-	 wBZETCUBut8DPWi+9Du6+Ogo/WbeH6CAoEuC5LVwP98BJ+8uCcNN3UUlREzW64bKcb
-	 PHDTSu1L4IdME+R4kg39WJ+Hlj9yJo3drMSAlZjAoWhqSPptIViDbnbswwOoJJsr8s
-	 0xtD9EZbvuiXg==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2df848f9325so38624901fa.1;
-        Tue, 07 May 2024 08:17:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUYP3G9M/EAQ+XqaPIbvVh6sS5UXbWxnJbac2SN9vYOVU+PpPhLAmJMXBGdpG7rML+BcOSPES5JZRtHIxEj7AMrXEQ9HvTPC1+K0k0zo3p72wTpxbQk4+S76hlWoPF+Kr7u+/+Z5J1XyQ==
-X-Gm-Message-State: AOJu0YydTjEin2vANqSQSaC9qSmcB3h/LzL7JZBtb3zdmhguckZCGKX2
-	rIvJPalLs7gVKWD5uhCt9yUPfnMm2+AMesxaC1Fv49ZBLKEDCQ9HECwNMjZBHxF5OkFSEPHuuuT
-	I+zfNPQFIjxrJ+iSXJ05jgxCLLKs=
-X-Google-Smtp-Source: AGHT+IEHukVmyg4VBnBczawNkg5xVFPgcAhPJDAvsYtrkmQdlKZstUvc83S09YCQ/qrduDkmFw5t2m++iSbLEQQBNMY=
-X-Received: by 2002:a2e:a212:0:b0:2df:e2d1:f4b5 with SMTP id
- h18-20020a2ea212000000b002dfe2d1f4b5mr9127593ljm.21.1715095021888; Tue, 07
- May 2024 08:17:01 -0700 (PDT)
+	s=k20201202; t=1715095383;
+	bh=Z6tWue+8yucqeQBE8UAQi/bkQKKKwed4j9928aTPaIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OO46xxDRGYhLgI+TLHc8PcATHXBhyAElovS45M7OI2JnvkkylNooynXnoJM8svtJu
+	 4TDqAwZS1ioUEsPIVJAc+ySzTgI/zTMy8ae3k7d6OG8qrKsyaGXf7ktdKRiTbI7+y9
+	 u9U5BJuEKRJHDt1DlgxBlAbTuetSLlTOa1xLhTYmSlm1u45+dgkF6phZId2XweyB03
+	 VrGrHUClrboXeU7VcEDDamNBVxKaJ8Bf02MKyTXB/i6OTEJt7UNAmqtTHKloHKaca1
+	 ch5IccDq9uHeapugsnWfgMHJPpxUpQaXL+WCC2iRE9/PRSnoN8GXe+ZpX8UFo47pif
+	 TVdDtOATY18Dg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1s4Mem-000000004j2-39NS;
+	Tue, 07 May 2024 17:23:05 +0200
+Date: Tue, 7 May 2024 17:23:04 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya <quic_c_skakit@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 10/13] dt-bindings: mfd: pm8008: rework binding
+Message-ID: <ZjpHWIKeFrJ1QZDj@hovoldconsulting.com>
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-11-johan+linaro@kernel.org>
+ <fa54422f-329e-4c3e-b297-b84438f75abe@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240507041343.272569-1-wens@kernel.org> <Zjo-sri2pdGvKhSf@finisterre.sirena.org.uk>
-In-Reply-To: <Zjo-sri2pdGvKhSf@finisterre.sirena.org.uk>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 7 May 2024 23:16:50 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67Avo0X-NRt5AxfsiZOuAAp2MgBxJBn5hu2yN6PjdtDFA@mail.gmail.com>
-Message-ID: <CAGb2v67Avo0X-NRt5AxfsiZOuAAp2MgBxJBn5hu2yN6PjdtDFA@mail.gmail.com>
-Subject: Re: [PATCH RESEND v5 0/2] regulator: sun20i: Add Allwinner D1 LDOs driver
-To: Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fa54422f-329e-4c3e-b297-b84438f75abe@kernel.org>
 
-On Tue, May 7, 2024 at 10:46=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Tue, May 07, 2024 at 12:13:41PM +0800, Chen-Yu Tsai wrote:
->
-> > This is a resend of the Allwinner D1 LDO driver series, separated by
-> > subsystem. This part contains just the regulator driver bits. The sunxi
-> > SRAM binding part will be sent out after the merge window due to a
-> > conflict in next.
->
-> ...
->
-> > A binding and driver change is required for the SRAM controller, to
-> > accept the regulators device as its child node.
->
-> This says that the driver depends on the SRAM change which isn't getting
-> merged this time round?
+On Tue, May 07, 2024 at 08:43:08AM +0200, Krzysztof Kozlowski wrote:
+> On 06/05/2024 17:08, Johan Hovold wrote:
+> > Rework the pm8008 binding by dropping internal details like register
+> > offsets and interrupts and by adding the missing regulator and
+> > temperature alarm properties.
+> > 
+> > Note that child nodes are still used for pinctrl and regulator
+> > configuration.
+> > 
+> > Also note that the pinctrl state definition will be extended later and
+> > could eventually also be shared with other PMICs (e.g. by breaking out
+> > bits of qcom,pmic-gpio.yaml).
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+ 
+> >    reg:
+> > -    description:
+> > -      I2C slave address.
+> 
+> Please split cleanups from actual functional/content rework.
 
-The SRAM driver change was already merged. The regulator DT binding doesn't
-depend on the SRAM binding change; it's the other way around: the SRAM
-binding change adds a reference to the new regulator binding.
+Sure.
 
-Hope that explains things.
+> > -
+> >      maxItems: 1
+> >  
+> >    interrupts:
+> >      maxItems: 1
+> >  
+> > -    description: Parent interrupt.
+> > -
+> >    reset-gpios:
+> >      maxItems: 1
+> >  
+> > -  "#interrupt-cells":
+> > +  vdd_l1_l2-supply: true
+> 
+> No underscores in property names.
 
-ChenYu
+Indeed. These names come from Qualcomm's v15, but I should have caught
+that. Thanks.
+
+Johan
 
