@@ -1,234 +1,186 @@
-Return-Path: <devicetree+bounces-65487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 606C08BE92D
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:36:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E6E8BE99D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:48:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 839A61C2030F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:36:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 591FBB2C91B
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1FB6FB2;
-	Tue,  7 May 2024 16:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4264916F29B;
+	Tue,  7 May 2024 16:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A0GSbALb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OJKudso3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E3154BEA;
-	Tue,  7 May 2024 16:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9152416F0E9
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 16:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715099478; cv=none; b=GStC4+78v/3KuTAU7mfT6pgVEHrRWzUQUpA5m2X83CHf2WXSUN+YHnOLdwsUkdLHTNxS284qdG1comfnLcExxavRk0JahNk4mYXm1+Yjni/psilhmevxobd12M3c3itMSCcXO3kE8cgnLKB4ho6WAgAi6OKkKoq2hOEeucNO5Os=
+	t=1715099539; cv=none; b=l7swkenQvXdu3vH10p0xziI2nTkyiKUNtmkPgY/wf+dHttBxIqoZT9L8WR8uHBZaOedAomxD4+axeTR8SlRuHdld1/Nl2dud1rqPOfhclt8HGY6Goqpy4jlKZsT25bhTgtudEgk1N8/e4EPB57epgMX/9y7m/RWKEiUls9okBnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715099478; c=relaxed/simple;
-	bh=xf6vF2tLiDkxdORBNe7B9Y/dP2uQ/drLwUdwAmkrcok=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=p2FmEYJhkR2I7Ryvv6qlCf1Og4IXoW3TvUuuuvc+DiJ2IuTPCJ/M+DrJrijuDvsqGIZa6CW8KBqrukR0nPXE5tKTtbowQ+0zKtKrurSEGB4KxrEUvEK3XGjxzg8vjNEZAPhBKhxuyZ6LNs9KXl6c0Jb97sF0vdGyDpKjd72HEks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A0GSbALb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 447EQX3A024156;
-	Tue, 7 May 2024 16:31:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references; s=
-	qcppdkim1; bh=sEybrDKAPFJvrVijAN/jPDUy4nJOcnX3S0FLFrbEuEQ=; b=A0
-	GSbALbLY1tGVoTdMik5SlnMEx8oz52PpI6chAuSawAlQJAgiLDry1fLi/gF7ch6X
-	3H/xOq1d+dAXB1odkeLWXpnI5EDtVsPCPrC4W1DQFKAiuEwBCNKbnGtNThEdw2Vf
-	mdrW9lZSb06Y/OZlj/kkyB2ITfVbTqhifxGQFwyzGh4z3pojVpk5t4boXrH0/28/
-	T/BMZ/2lNFneXSYl0GvBG2UiU49c8YE8Y6a+Y9J6ICuL6PZ70IFd5M3sRTWWzGh0
-	pEgldUzyg+sI5w8eBcqFSxU9aIHGjAfhVka0GIYUV1ZZBBEZNfFfj+MQDb9A7+Db
-	j35NM5AJ+72J6PGWtYLQ==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyp2frc56-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 May 2024 16:31:10 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 447GV7vo019583;
-	Tue, 7 May 2024 16:31:07 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3xwe3krrx3-1;
-	Tue, 07 May 2024 16:31:07 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 447GV78H019578;
-	Tue, 7 May 2024 16:31:07 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-vvalluru-hyd.qualcomm.com [10.213.106.176])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 447GV6kq019576;
-	Tue, 07 May 2024 16:31:07 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 482827)
-	id 4B9A75006A2; Tue,  7 May 2024 22:01:06 +0530 (+0530)
-From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
-To: andersson@kernel.org
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_abhinavk@quicinc.com,
-        quic_nankam@quicinc.com, quic_vvalluru@quicinc.com, robh@kernel.org
-Subject: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
-Date: Tue,  7 May 2024 22:00:45 +0530
-Message-Id: <20240507163045.28450-1-quic_vvalluru@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
-References: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DsHK6veQ039EtKq0nzYV5JB_UfF5P8jv
-X-Proofpoint-ORIG-GUID: DsHK6veQ039EtKq0nzYV5JB_UfF5P8jv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-07_09,2024-05-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 adultscore=0 spamscore=0 phishscore=0
- impostorscore=0 bulkscore=0 clxscore=1015 mlxlogscore=949 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2405070112
+	s=arc-20240116; t=1715099539; c=relaxed/simple;
+	bh=Ejd2J/LkdHnUAGoIdR+9zZ4NBny/4pYwcFVlGGF3+Y4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zgsp+8/hCmVgMyZ9Z53iqDkvA3c/CzI5vAJMoRMSOE4Lh8o703VHpN0NTF5+Bw27hLwok+ll05GBeH4mWGQgEYXQfAT6PLSsK3iSE/qBhY4wCdVhJ8om/t2PY6aPDsa5nKFa/kGDSAs7H3sCyNUxbwyKrj7c8ZgwPOiscOhOj28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OJKudso3; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-43d2b4d4d3eso11696761cf.2
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 09:32:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1715099535; x=1715704335; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DFavUp82x9+EKSXtviTqGgqyKSS9fBB+WIBnwLG/9Gg=;
+        b=OJKudso3yakWgk92WhfMjRP9pzJ+vtKd2A1jcHXk4wZXiFsJBVGDh7xrDVvponzZ9R
+         1Cvvvme/MlYVl58HVUY9S+kYRSCiIWLTFC9QOvv0wG3TlevY6fNOjm81vZlMWSY3LGOI
+         aXg9/sRylljPp5htpDmeoYiiX+FpOL0WzdJo8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715099535; x=1715704335;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DFavUp82x9+EKSXtviTqGgqyKSS9fBB+WIBnwLG/9Gg=;
+        b=cSGPPMte5DuHO8ZdpqeyKmjM1ggkLl5ZECukbKJTdn6VXHwnX/zBcsFWHW4GAKg1Fk
+         W9kP1/NZ21oppoOWNvO8EZngIRQ2dX7cY6X42Dtg1k3yzFideBP5OdhDHyvZBAKpReAs
+         CGX+okvITbwKmLGP2akWsil0LMsBKI9u159giAqxOFxVs+laA4pCs6s7bjdDnOH2kvwt
+         0Y/gYZ9J6rL/h7YQuV7KC1CcF2Un4bSZxbyi4hA2/BECZzKTri6d0qSS+uAr5JbYv1K3
+         GKGPeUtzEkKIXHDRFB2d7JZKz0VRTn0xqy322mofo2rxIuyzr4JHxJgDVmiiN83UxcMy
+         AUtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9s/aqkrKh13Ws2dVbamt0UsnAFMbiOQuCWKA+sLaHrD6R9Ywbu5MENQwcgkPDq4JUslWR2KbilrvVr+DEvyKVFmIix/k0dxVDKA==
+X-Gm-Message-State: AOJu0Yyp1WR7zSHocOXiu6CrbUGXldN6XdFsDL0lIi6kMTweYyhSQ6po
+	fuO1wzo7lJuW/MbLXeOVAqj19MyhZ5o8R/nBeN3UxmxC/U1WMDjVQhJNwWh9ZC7vU/IX4rasVEc
+	=
+X-Google-Smtp-Source: AGHT+IFXXzCwXNx0OlhRNJtUUX3na4zEf5GgEOsD2/UctwBFu/WAev86uknl5xsCb1hXIRCdR0Y6fg==
+X-Received: by 2002:a05:622a:410:b0:43a:74d8:8971 with SMTP id d75a77b69052e-43dbf50e870mr1777501cf.23.1715099535527;
+        Tue, 07 May 2024 09:32:15 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
+        by smtp.gmail.com with ESMTPSA id hj6-20020a05622a620600b00436440fd8bfsm6579873qtb.3.2024.05.07.09.32.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 May 2024 09:32:14 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-439b1c72676so610031cf.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 09:32:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVPjnT262GIRYsJhuOkT/VeyOBGdNIzpVBf6d7oOmI/yq1Dt4czUqJDVCVGqFPSDtytaQOVTqI2gG/wd063MhzfvyeSOfXGONSOtQ==
+X-Received: by 2002:a05:622a:598a:b0:43a:c1cd:2f4c with SMTP id
+ d75a77b69052e-43d9835c8a0mr2999981cf.5.1715099534265; Tue, 07 May 2024
+ 09:32:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20240507135234.1356855-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240507135234.1356855-2-yangcong5@huaqin.corp-partner.google.com> <171509488827.493449.2668049686067198439.robh@kernel.org>
+In-Reply-To: <171509488827.493449.2668049686067198439.robh@kernel.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 7 May 2024 09:32:02 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VNNB=jtyM1BMTUTzyTjOUqDxobWTYz9RAnCmYha-DG0w@mail.gmail.com>
+Message-ID: <CAD=FV=VNNB=jtyM1BMTUTzyTjOUqDxobWTYz9RAnCmYha-DG0w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: display: panel: Add himax hx83102
+ panel bindings
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linus.walleij@linaro.org, 
+	xuxinxiong@huaqin.corp-partner.google.com, airlied@gmail.com, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	devicetree@vger.kernel.org, conor+dt@kernel.org, daniel@ffwll.ch, 
+	neil.armstrong@linaro.org, "Rob Herring (Arm)" <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
-reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
-Bridge supplies are Vdd connected to input supply directly
-and vcc to L11c. Enable HDMI output, bridge and corresponding
-DSI output.
+Hi,
 
-Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
----
-v3: - Updated commit text
-    - Arranged nodes in alphabetical order
-    - Fixed signoff
-    - Fixed drive strength for lt9611_irq_pin
-    - Removed 'label' from hdmi-connector, which is optional
+On Tue, May 7, 2024 at 8:14=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org> =
+wrote:
+>
+>
+> On Tue, 07 May 2024 21:52:28 +0800, Cong Yang wrote:
+> > In V1, discussed with Doug and Linus [1], we need break out as separate
+> > driver for the himax83102-j02 controller. Beacuse "starry,himax83102-j0=
+2"
+> > and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
+> > controller, they have some common CMDS. So add new documentation for
+> > this panels.
+> >
+> > For himax83102-j02 controller, no need 3v3 supply, so remove it.
+> >
+> > [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=3DzBQJUC4CB2wj4s1h6n6aS=
+AZQvdMV95r3zRUw@mail.gmail.com
+> >
+> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> > ---
+> > Chage since V4:
+> >
+> > - Update commit message and add fallback compatible.
+> >
+> > V3: https://lore.kernel.org/all/20240424023010.2099949-2-yangcong5@huaq=
+in.corp-partner.google.com
+> >
+> > Chage since V3:
+> >
+> > - Update commit message.
+> >
+> > V2: https://lore.kernel.org/all/20240422090310.3311429-2-yangcong5@huaq=
+in.corp-partner.google.com
+> >
+> > ---
+> >  .../display/panel/boe,tv101wum-nl6.yaml       |  2 -
+> >  .../bindings/display/panel/himax,hx83102.yaml | 73 +++++++++++++++++++
+> >  2 files changed, 73 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/him=
+ax,hx83102.yaml
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/d=
+isplay/panel/himax,hx83102.example.dtb: panel@0: compatible:0: 'starry,hima=
+x83102-j02, himax,hx83102' does not match '^[a-zA-Z0-9][a-zA-Z0-9,+\\-._/]+=
+$'
+>         from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+> Documentation/devicetree/bindings/display/panel/himax,hx83102.example.dtb=
+: /example-0/dsi/panel@0: failed to match any schema with compatible: ['sta=
+rry,himax83102-j02, himax,hx83102']
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202405=
+07135234.1356855-2-yangcong5@huaqin.corp-partner.google.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
 
-v2: Addressed dtschema errors
-	- Fixed lt9611-irq
-	- vdd-supply error to be ignored, as it is connected to
-	  input supply directly, on rb3gen2
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 85 ++++++++++++++++++++
- 1 file changed, 85 insertions(+)
+I think several of your bindings patches have triggered Rob's bot.
+Please make sure you're set up to test this yourself and make sure you
+run it locally before sending out the next version of your patches. In
+general you should get in the habit of running 'make dt_binding_check'
+locally before you post any bindings changes.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index a085ff5b5fb2..24b0b9525ea4 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -52,6 +52,17 @@
- 		};
- 	};
- 
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&lt9611_out>;
-+			};
-+		};
-+	};
-+
- 	reserved-memory {
- 		xbl_mem: xbl@80700000 {
- 			reg = <0x0 0x80700000 0x0 0x100000>;
-@@ -530,6 +541,45 @@
- 			   <GCC_WPSS_RSCP_CLK>;
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	lt9611_codec: hdmi-bridge@2b {
-+		compatible = "lontium,lt9611uxc";
-+		reg = <0x2b>;
-+
-+		interrupts-extended = <&tlmm 24 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
-+
-+		vcc-supply = <&vreg_l11c_2p8>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lt9611_a: endpoint {
-+					remote-endpoint = <&mdss_dsi0_out>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				lt9611_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c1 {
- 	status = "okay";
- 
-@@ -587,6 +637,21 @@
- 	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
- };
- 
-+&mdss_dsi {
-+	vdda-supply = <&vreg_l6b_1p2>;
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&lt9611_a>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi_phy {
-+	vdds-supply = <&vreg_l10c_0p88>;
-+	status = "okay";
-+};
-+
- &mdss_edp {
- 	status = "okay";
- };
-@@ -711,3 +776,23 @@
- 	function = "gpio";
- 	bias-disable;
- };
-+
-+&pm7250b_gpios {
-+	lt9611_rst_pin: lt9611-rst-state {
-+		pins = "gpio2";
-+		function = "normal";
-+
-+		output-high;
-+		input-disable;
-+		power-source = <0>;
-+	};
-+};
-+
-+&tlmm {
-+	lt9611_irq_pin: lt9611-irq-state {
-+		pins = "gpio24";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
--- 
-2.17.1
+Thanks!
 
+-Doug
 
