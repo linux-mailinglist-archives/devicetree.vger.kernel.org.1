@@ -1,116 +1,180 @@
-Return-Path: <devicetree+bounces-65605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967398BF2BB
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:57:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF5A8BF2DB
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 02:00:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 522AD2839E7
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:56:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 501E01F21344
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 00:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F98E7F7C1;
-	Tue,  7 May 2024 23:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69157F482;
+	Tue,  7 May 2024 23:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/S2XvUi"
+	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="WKLk5a4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2137.outbound.protection.outlook.com [40.107.236.137])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58801A1A6B;
-	Tue,  7 May 2024 23:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715123682; cv=none; b=uQs+goO6B1hXn41J4UwL75ARpOCMLZvUGKzRFeGNS+8j8zPGiTzZq+wAjrLo2TWSy8rLWM7r36NoGpTa50q1iXylb6pZV9cPrFZZLWoOf0eLrvxMgZAIpwWWBUn023YWeL98CA2VqwQGPtnLPcRlMVV7n0SansHK6fnheHkKBJU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715123682; c=relaxed/simple;
-	bh=DLyN2r9encUr8sDr7IL9hDMF/WiK1le1ynlyYCtHKX4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UENzs6DU1FX1M7MHMBW18Mc4tXJTwSs5eLQ44nb+yyTAl2CXQrWvB5RPO+gn8hjIDB1Pglk6Hc7FpwHyNOU+zrz3fxJXVMDnaMGWQeY5OgzqZQv8Q65SFmxsFdlivpCK09X4vMIc79+BxLpzHl3dKGARnOHKbt84eQDHh/PaVJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/S2XvUi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F49DC2BBFC;
-	Tue,  7 May 2024 23:14:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715123680;
-	bh=DLyN2r9encUr8sDr7IL9hDMF/WiK1le1ynlyYCtHKX4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Y/S2XvUiXZRGqerf52Cx2Tu1sEVaI3Z1TponUbRGu2Vh2TdihZXzAc8xrYs6DEoWr
-	 QRYglVyr01ImRWHlgv0a2XvPk5/81IHlrbaLTB1dD7cgskW4hGS3Eh9q5O7fBjatlM
-	 716OSumw8NffAevtlGXdBtEeZtXS/j2hs8UQgbb/nh4zgUwKd0zoS46+kX/3LgvAZ5
-	 eIGC2oK7pyh2So1w2ERz0Sr1rnBbxEBuFb5FqPGvtfN64sh8t2oNYIqouCKeNue/IE
-	 wA6NUp9CkOB6wHLFjYh/oXXTFx5cUNLe7MzN6dHSsiarYoPvlTJ/CqjbRnkQReLK9r
-	 sHAd684E5P8yQ==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Derek Fang <derek.fang@realtek.com>,
-	Mark Brown <broonie@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	lgirdwood@gmail.com,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE187E107;
+	Tue,  7 May 2024 23:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.137
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715124196; cv=fail; b=HQLRQ9yWTmXSmRnl/oircxUmOnCv+qnEGYXoCnHdX2owUKkIabwXulFgTPr8WoxOTEkvV42Y6Gy9U99js+8w41aKy7Fe1aszKSz/Pa4qL32NLw41RLTphIV7pPUj2OkFjNu4PR8rY6SDkiaJ0Z4o8svJ3t1QFaDQXm4bxLsgUuE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715124196; c=relaxed/simple;
+	bh=0G5NdDVQyJdmaTVRo3z/BUXXsXQzAfvfeadRsvHKeBo=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=irJXekp6Rrm7OUQnQ1pisYjImYgscaPa/LfVNNolgLdE4wrH1YZzt4Po7RZSN6N9Q9Io2TAiMaaDZwVohet2oqr4ei7PfijvcSdgTcLhZENx5vhk8Mc8IQNQRJgSCrssRQQjYyASTg1Fy8wvx576CcEcerIOlpf30fhs51hp+NU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=WKLk5a4r; arc=fail smtp.client-ip=40.107.236.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VOTPAq/wKOG0Ax9DH/Z4Bd1hI3Wo9YRV1K8GVIBtNbw+03hCK5xy3EZ8Jky4uY3u8z2j9wDxlNfSUd7s8yB801o+fbcW0sg2qeJr2raCxqBnxaUD3PkGVvJctQKWwpSlc9JEmkJeQ5hEE8p9YX5yhgCqc24Ac+UgQOD4yeM5iYQA55/3ZdP3GvsFwrTeS4XIwWXJJaOOdR+ObsC2rO1kVOXbkeGq8gHQikcMWFzag1rdwTS7HOAuYrtJvzAA6kzmyM0FeIz6GYNjX1pt4CUs65OdAf/kk6/dmWYy5qpfvxMtOBNQtl14huFTX361gmf8wIC/vo7kJJ2sfCDNAnppsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SA/gG2zfHwPS8LiQzrBHxZUijOYzKDPgfa7ii+uDfXU=;
+ b=VfqgHRjc9VtUjiT939j89O1k0oAMO86QXwBVvNdc3l1VvPp7UqZ0ggnVjbju00u2EQsd0Dgx3JrKwLvF9pWwO6Ie8aAJAa4mf7UETv0UNdX/EJ26qhKs0Bk7Av2lWLtNDPTvtWLHMhlIvpCVJ2KFsTpwUoBYtvNASsT5P8LuVpcag74iDgmWD087oB8wzdkIGwSyLx6DVS2JKFmmlxpdckhnVlya8gDH9Z5TJKmnUhHRAJP6nrsd8kRKUd4qHH6i5ACWZAKh6JR67+89as384P3TYkF2jRjuCmVy8P19cilXYq3EJQmxe8EnkyGoWupzUjJ0OIF5YdTN2gTFy4LB6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
+ dkim=pass header.d=phytec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SA/gG2zfHwPS8LiQzrBHxZUijOYzKDPgfa7ii+uDfXU=;
+ b=WKLk5a4raNwM5PHNedR2vmLkC/GP3c70I+kn4w436hmW3V5ehVtNLEXhpRcWWk/barS2CXXvPpRkA6eNeWpg1kp1aYCI7tIeKwgkDTTk/grLwgh4WR0jNinEn4rl5VnX+edroicGG4x75iJzoAUwGAe0Cc7cN83qfxDToVq7fwI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.com;
+Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
+ by SJ2PR22MB4226.namprd22.prod.outlook.com (2603:10b6:a03:546::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.42; Tue, 7 May
+ 2024 23:23:09 +0000
+Received: from SA1PR22MB5636.namprd22.prod.outlook.com
+ ([fe80::aaeb:2d53:9f16:db45]) by SA1PR22MB5636.namprd22.prod.outlook.com
+ ([fe80::aaeb:2d53:9f16:db45%4]) with mapi id 15.20.7544.041; Tue, 7 May 2024
+ 23:23:09 +0000
+From: Nathan Morrisson <nmorrisson@phytec.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 2/4] ASoC: dt-bindings: rt5645: add cbj sleeve gpio property
-Date: Tue,  7 May 2024 19:14:33 -0400
-Message-ID: <20240507231436.395448-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240507231436.395448-1-sashal@kernel.org>
-References: <20240507231436.395448-1-sashal@kernel.org>
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de,
+	w.egorov@phytec.de
+Subject: [PATCH v2 0/2] Add PCIe overlay for am642-phyboard-electra
+Date: Tue,  7 May 2024 16:22:54 -0700
+Message-Id: <20240507232256.2865168-1-nmorrisson@phytec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH2PR10CA0004.namprd10.prod.outlook.com
+ (2603:10b6:610:4c::14) To SA1PR22MB5636.namprd22.prod.outlook.com
+ (2603:10b6:806:3e2::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 4.19.313
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|SJ2PR22MB4226:EE_
+X-MS-Office365-Filtering-Correlation-Id: d7d3823b-7cee-4ef8-ddcf-08dc6eeca80b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|366007|376005|52116005|7416005|1800799015|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?TU2+oCfcS8vtqT6e3XdIIfYFjrSE0iI9fTTPVjliBisGPJEsD8SMYd0F9YjV?=
+ =?us-ascii?Q?Y3yhALp7POIPk39Wp8P9ACrvvOurBP/kBLafUuzHdzAx0KwEGTXHY90s1sA3?=
+ =?us-ascii?Q?0NZf086S0Z9h3XTlDWMY/Dr8B2M6GgQU02R6umcgeIHYWMwsqJnESa2W05LT?=
+ =?us-ascii?Q?FWN7BN5bh5cu6CDDH5PhIUsBNqNphGutgHsWkZL7nZJ4s/Fqn2Ra7ESfRU2i?=
+ =?us-ascii?Q?OIQcuYV5J2j8AZWWNKlAwubLWr8fQmBEuzPq5Yj6uo4o8IEiBqIKgrKciueI?=
+ =?us-ascii?Q?reO8BH5tKIC2dC9qywKtpoAh7l1m4iO/rboI6ViLnmsyVhN841GR+CS/txMi?=
+ =?us-ascii?Q?SG0nOeeYQKiwi2JH1r7ynRKkFpapOA/g+uXaK2qt0DHTu8zQqmBgU57J2NO8?=
+ =?us-ascii?Q?aZBScHJqN4/K8Cq8kPFQAqWk1WN4n849fb6OR2iXVYyevC62BBjJVV98MAUb?=
+ =?us-ascii?Q?lkbuxiumfDON00uC6v2GhaYacUb+FJTqKHC5q1WoEv6qJhnjLJ0fxK8OVgtT?=
+ =?us-ascii?Q?kEHWII/Av6m8iX5kBIHqb2bqGcefZOkhe3BuELZ119Z4cDyfpxCbVwaq0u38?=
+ =?us-ascii?Q?WIDdBalo2LertuH5Pi/Umjn5tnLAdomXut+MO21f45W53/um3cqx/Ch71AH5?=
+ =?us-ascii?Q?tk4ed/m2X5ljXdrki7mbc/6jdYC/uVN4MbN+VOUO0cJKvR4SyQlZB71Av1Yw?=
+ =?us-ascii?Q?Wsi51OmCkkl0nBMF9bBgSNjsZq8451nejb8hYcbk2ep86aY4tQqf8YO9LVnh?=
+ =?us-ascii?Q?7CtsjtOE/ZlzR5OaJcgtcMNgxa6Ds0ruWBP/4JJXUxRJXX0zqvF9WEKGNAIr?=
+ =?us-ascii?Q?kuL3gTTlE6yBHhot9A3nJO5LbAoFBdbXB+Y9Lz4RHk8eX63fiHJjaxKbzeiO?=
+ =?us-ascii?Q?gP3tWzZ13sRdO5lgb64klvZ/bHoZlJFCwI7oKFRLL2ZH1fhS9dwIcS1yCP5U?=
+ =?us-ascii?Q?vbDvXwu5CKPHwggJGLuas5bz+IhllEw6jEO3RRuWGMu2PbEpPMTgOx/qwCrj?=
+ =?us-ascii?Q?ieirFo+Grk+h6F1SbH9d257VXKGofNPBlOAVNmxZp01ZiA5CYUmqCSPK2mAt?=
+ =?us-ascii?Q?uDNkA0E4CU0bH+lW23zuBD+aATRaHS5mG1wH2T2Rb6hjn+wqaf+kSBDvKJLO?=
+ =?us-ascii?Q?tyA6BsdFky9AUmSXbs+1rCC0EePVKD2By5HElI5uKQnDEUwfSY7bL1y2GQun?=
+ =?us-ascii?Q?fIlgNI5Ov5bvxGEfbTBvMfZqjUEFZROUoBzXTpH/+WLsR6vNm1Ux1J+7Yapn?=
+ =?us-ascii?Q?IWquiC+dtI5+IyAeOGlVVw+TppnvXzUOXzb3vrVWuY+GDc6WWWtKatO9QraH?=
+ =?us-ascii?Q?ELJaQPr7aSLhVNXy9FXzZyMYU3co7udppCxRKoBFIFwhMw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(52116005)(7416005)(1800799015)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?aeKBo3o5ll+Thc85zfbfCHz3/lY5RyxDUdSqQeSym4TckMPgVhu3b+wYmEqj?=
+ =?us-ascii?Q?r8PhUNYajO+ZFUfK+XouuQAtL/PvmXvdTUG8V1V7ID9OXykMefZ+ohxNx+uE?=
+ =?us-ascii?Q?kxGEVO1p34xfbiC9zK9hJXHJvKZFRDzk/Y4FPYjQGiEdYz/a9LSB/k30jePx?=
+ =?us-ascii?Q?fLwZzhYW63ad8J41fqU8YQ8YMJe24KCGkw48fnG5mAB7ow8qhJHFTDiGHV2x?=
+ =?us-ascii?Q?3ch54dQvxmkZY8B2To9XQsVa3SQkGxwwAxjHQsJMsaYUk8r2W4pd8f2aIp4R?=
+ =?us-ascii?Q?W3SJRghwi8a06McZkdV9k2ZJLo782vg/aMCbqsfFv1rzaAkLRRLsJLUVGvgc?=
+ =?us-ascii?Q?jIkKNLgdiPDzbyzFxVGyhE83ZRcN6sO2hvZseXNMSaKIrP/Kw8m2ZNZizDsD?=
+ =?us-ascii?Q?CnsbAm3rMRyetuemBdCpXSrnMD67EkpW8ZvTV3oHOAwNaCXyOEEMbic1hYLn?=
+ =?us-ascii?Q?OWlE/RWyEfXCaS9hu0FOMaSbcXuIcY9DoVuyISWl1i0LJLnQQxnMHEfiQH8z?=
+ =?us-ascii?Q?mCB9HxAjq4ewR5VktHvH2E76TJ5jYndCY8lHjtmc4LQLB2OZTI1dhlG+s0eL?=
+ =?us-ascii?Q?GKMNQTbARt4zGg2FrgqYqMXuKsdx6jS6OJiZIBmAJ05KxvAXQUqfVN4ZHKku?=
+ =?us-ascii?Q?VEfc2B11CeQat9aCx0+52wKfQmsWlDyNVeJmw4OKuV4b+ym1CCYzhVpehKOS?=
+ =?us-ascii?Q?wSDf0RyypWWSeaC6h9XuM6w2Dqr+URcj9bZDic1WtevwEay4ZzHPmkm+241X?=
+ =?us-ascii?Q?n/BEPDfPZ9Tcb4ls6D4NHEmlT84QJI8Wk7gzI421KFCCU1NRtu1fGpGC9can?=
+ =?us-ascii?Q?KFq3yvVl1bvF85UMgW6XN0j43zGGCRL52rVw2ofjx0K5nehhcrhgml8/WPVK?=
+ =?us-ascii?Q?S3wUfiyy4l64T4ulhDVCy5pGHOouvlds18+GfTbdZ0z5Lo9jztiRY0LH7s4R?=
+ =?us-ascii?Q?L4Z06XacsXR0dNqpkZHCHNfpR8QjIM+gTIggHdm/LzIbxF0KWqNdiTXAe4aQ?=
+ =?us-ascii?Q?tVeLxHVCCafy5sftyzFvGs8KwDrNvO9Rkpbn6LfwB+XDkxwwykTVQdIxjIdr?=
+ =?us-ascii?Q?W//mZU/E/WiHPO5zSc/ZPp1EBblMstnCPb1M66wDff44fs1JIiBlZaSSEto8?=
+ =?us-ascii?Q?oeOvDoSYTlLX4CwVGTNn7t7tLbVs/lYY3fjVD8ycrvr0yfK1iHBU/yr7LGye?=
+ =?us-ascii?Q?siGAQ6/kNL1YsjGEoMvVbeRX0CU6KyCj62vxmM6en79Ul6hixZIPKY8SGKJW?=
+ =?us-ascii?Q?HZmmwn0bs4YcHKnQE8q1UxH5rjSSlcBxOXakGwA2/hNfxkQekXOKzitaU8LU?=
+ =?us-ascii?Q?wZ5x+m44Bb19Gj7PNHDL4qkusjcRPKYVdTkWVGgo4oKds+en0CchccnHdXYD?=
+ =?us-ascii?Q?psId59ZWFM8pgHclR6W1Xunr26iYczecKzuyNMG0+YLgD8J3kulB4QtiFqQI?=
+ =?us-ascii?Q?t9sXZsPJtcIqsbVy02r6ktCQDNETJkqdg1ZGysm5z0yugsatXhx3lCb114RZ?=
+ =?us-ascii?Q?7cJZID0YlVVYcq+LT7VisICnFKTB1/lgKOu1qZgANXS4sfMw3pQWpW8pRtJR?=
+ =?us-ascii?Q?lfsBl1EtvpXXuXLhz1tqVW64tsCdcmXcIsej+DC4?=
+X-OriginatorOrg: phytec.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7d3823b-7cee-4ef8-ddcf-08dc6eeca80b
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 23:23:09.2780
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZQyW2W5aNmo580k68JFsA7AmUiSiI97AkFpg41Ah/Fhx9AhFOvLDy/vcPaF6cN3dkxN7ZIvs1sW8ZDMWnSLgTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR22MB4226
 
-From: Derek Fang <derek.fang@realtek.com>
+Remove PCIe pinmuxing from the am642-phyboard-electra device tree and
+provide an overlay to mux and enable PCIe.
 
-[ Upstream commit 306b38e3fa727d22454a148a364123709e356600 ]
+v2:
+  - Fix double space typo
+  - Remove redundant status = okay
 
-Add an optional gpio property to control external CBJ circuits
-to avoid some electric noise caused by sleeve/ring2 contacts floating.
+Nathan Morrisson (2):
+  arm64: dts: ti: am642-phyboard-electra: Remove PCIe pinmuxing
+  arm64: dts: ti: am642-phyboard-electra: Add overlay to enable PCIe
 
-Signed-off-by: Derek Fang <derek.fang@realtek.com>
+ arch/arm64/boot/dts/ti/Makefile               |  3 +
+ .../k3-am642-phyboard-electra-pcie-usb2.dtso  | 87 +++++++++++++++++++
+ .../dts/ti/k3-am642-phyboard-electra-rdk.dts  | 12 ---
+ 3 files changed, 90 insertions(+), 12 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-pcie-usb2.dtso
 
-Link: https://msgid.link/r/20240408091057.14165-2-derek.fang@realtek.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- Documentation/devicetree/bindings/sound/rt5645.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/rt5645.txt b/Documentation/devicetree/bindings/sound/rt5645.txt
-index a03f9a872a716..bfb2217a9a658 100644
---- a/Documentation/devicetree/bindings/sound/rt5645.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5645.txt
-@@ -16,6 +16,11 @@ Optional properties:
-   a GPIO spec for the external headphone detect pin. If jd-mode = 0,
-   we will get the JD status by getting the value of hp-detect-gpios.
- 
-+- cbj-sleeve-gpios:
-+  a GPIO spec to control the external combo jack circuit to tie the sleeve/ring2
-+  contacts to the ground or floating. It could avoid some electric noise from the
-+  active speaker jacks.
-+
- - realtek,in2-differential
-   Boolean. Indicate MIC2 input are differential, rather than single-ended.
- 
-@@ -64,6 +69,7 @@ codec: rt5650@1a {
- 	compatible = "realtek,rt5650";
- 	reg = <0x1a>;
- 	hp-detect-gpios = <&gpio 19 0>;
-+	cbj-sleeve-gpios = <&gpio 20 0>;
- 	interrupt-parent = <&gpio>;
- 	interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 	realtek,dmic-en = "true";
 -- 
-2.43.0
+2.25.1
 
 
