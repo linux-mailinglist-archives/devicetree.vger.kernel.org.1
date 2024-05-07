@@ -1,278 +1,115 @@
-Return-Path: <devicetree+bounces-65424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE70A8BE4E4
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 15:56:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACA28BE507
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E06AD1C2375B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 13:56:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 192991F2168D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 198C315EFAB;
-	Tue,  7 May 2024 13:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="tJHcCgjW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8202515F301;
+	Tue,  7 May 2024 14:01:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EC71607B0
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 13:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6486C15E205
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 14:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715090002; cv=none; b=q66qFjKi78uRjtQ+cQtgsouMHA9Aje2uujH4KElUSJ37/8UuvOHCmdIBD9jXzK0js4iSj/3eklGJdfiOT3ddGIdGQbXVcCt8EUxgEsD9e+oIT/oiTkBwsaag7uwobSTPvUDJSmqvTbF7qePToTgu13skyRrotOf2/QOjbzaTg/Y=
+	t=1715090475; cv=none; b=KXY667erBrfmt7sE+uM/aEzS53XOI9J8jhABNGBqOsAAoKws6aOKZxlS+0f5+m8JPq0pdWz6xN7E86H43WVtWBvcYFZPFrO20Lw/E/kn/FXLBZRwWzRt+Hro9Uv+MUpH4EKKr+pQXz88v2NYtSMzeWOLRQfp6muZs34uTEyNXBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715090002; c=relaxed/simple;
-	bh=+AedJe1jZ5c244LwCGTlVwl47WgUT0RlZvkO8Za7QQA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fS3Of7kciTiiNYC67hAnkcXXN8buTMp8ndWs1z04Kc4YQ4qYqPA9iF61F5it+FlahiXu9++OIlt8XXtua1XgI5mPC8Y4c1sx5QBkEpS4aAFUcvGxuIiN285P5xAz2qxi542kVF5qukVbp9UDtC/mTeq9RT92PS57nNmgNFhwvhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=tJHcCgjW; arc=none smtp.client-ip=209.85.166.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-36aff02f998so7291985ab.3
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 06:53:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1715089999; x=1715694799; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zpHclJFEuW4kOFKlSw7Ftf4pKZd1Pok84bCHI3epLVo=;
-        b=tJHcCgjWkecLjT28MmQBI1v8vU9zjYwBph4XbPkIfYrway2Of7JESP0Jul+fLbWij+
-         VSU5Mk6EUtxDYJ/iMZEDeTOoBbceXzYnHZGVh5G11r5ZjM/bnq/Q/A9y7tk4sjPEOaYB
-         rpWPvOG70IKdfqOuOgRRl2U/RTSvq+WGk3KpocuQhr9YqjqK5E5r3Zyv+UUE56BtdRrD
-         SiKCRUFjFA/IrW4nBKAvFxa/xkXtTsB4zJ2YK1PQHbS3Zm0tsOlk+CjW83opQYxrSYVj
-         GNW1Ro9wSGwmgJ9c1/46FN0+shuPcshOfd7PtFreLMR7cxzzsS1iHFYglv+UVy6K0bBj
-         09nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715089999; x=1715694799;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zpHclJFEuW4kOFKlSw7Ftf4pKZd1Pok84bCHI3epLVo=;
-        b=GbNdHePAAPInARL9yeCzsekQw3r06USn5ujNH1lSdGosiTE3gzaJBlpTO5Psr7scIB
-         rGhNToXL05faHtgR5VvrTwjIFvTXpIZEOpMZBkmzjIJ0YCvzb4W+oJtnZ0T8ZYpjgt+D
-         H8AF83jnRogUh1oYnvmD5YJ843GUwWosqEgYqT/ytzVd5jyqNZOy8x/McFq942eQxsEa
-         wFjphGbCNaQF4onx2HpO5dJhD3mLBZHDi/dHXU8pEuiVrVt/BfjMhxIIkaV/pLhHaxqE
-         HB4TpRcNAMEsSr4otBQnylEjHmS3xqLT+7GHVXyL5bAe6XcJ/EtT1dFaLPk4RLV7CiS/
-         8CvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWYZvkyYP4Xuc+isfIoVGfo657Nkg6beGGtcNRY3idVAKM7aU/cVzN+c0+dAZTOs3UvfALOJJcsAstoub3f7clD1KVVcw+yWnjLIw==
-X-Gm-Message-State: AOJu0Yyaut9zUtU4e+TBly8Xq6pa524CJkDXEOfZ2tw91xXCA/Va8K15
-	4EPHC57DZKGhESooXB5ZrY/1a5odlKC34Nnkc77CzPgK7FMagQ3RG2Sjb6KhpWw=
-X-Google-Smtp-Source: AGHT+IGnvaSYtH8j3gig+6F1c7q2YqerU29oTMoWoxfq26mksuvjvX0wQw0zUlP0JzrOHMisNvIsqA==
-X-Received: by 2002:a05:6e02:1fe6:b0:36c:514a:da18 with SMTP id dt6-20020a056e021fe600b0036c514ada18mr15974802ilb.20.1715089999477;
-        Tue, 07 May 2024 06:53:19 -0700 (PDT)
-Received: from localhost.localdomain ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id e7-20020a63e007000000b005dc8702f0a9sm9850542pgh.1.2024.05.07.06.53.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 May 2024 06:53:18 -0700 (PDT)
-From: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To: sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	daniel@ffwll.ch,
-	dianders@chromium.org,
-	linus.walleij@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	airlied@gmail.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	xuxinxiong@huaqin.corp-partner.google.com,
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH v4 7/7] drm/panel: himax-hx83102: Support for IVO t109nw41 MIPI-DSI panel
-Date: Tue,  7 May 2024 21:52:34 +0800
-Message-Id: <20240507135234.1356855-8-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240507135234.1356855-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20240507135234.1356855-1-yangcong5@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1715090475; c=relaxed/simple;
+	bh=7IlKOOxlhW34Ko+Asv2bXHnmfReSlXBGH5/tJfCEAYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mmEy5OebAAjLEboA8gaXFeyJcHd1sq+Kf0sAl4rQlja3jMtf2OXJJVlx+WdU0P/y1I7ERmSXYe8JDODpG46AG7uZQaYOs6Rd+1QID6eS8FqRrFSLYL/yhfLwpZJoTub9RTigkiBcK12kquQoTVsP3tAElyL622Mf1tMSRRNZ/T0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s4LND-0004CF-Ve; Tue, 07 May 2024 16:00:51 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s4LNB-0006Yi-GI; Tue, 07 May 2024 16:00:49 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s4LNB-00HPQd-1L;
+	Tue, 07 May 2024 16:00:49 +0200
+Date: Tue, 7 May 2024 16:00:49 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: renesas,tpu: Do not require pwm-cells
+ twice
+Message-ID: <3hcuqo3pv6iaad4mmadjs2bz2qajivp3schrwhprvm5pjmd4o5@aytiyoyd2jbu>
+References: <c0590d8898e553f29c96c7c4083f7b3ca1915727.1715050962.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ul7mgjrvuwrirqyd"
+Content-Disposition: inline
+In-Reply-To: <c0590d8898e553f29c96c7c4083f7b3ca1915727.1715050962.git.zhoubinbin@loongson.cn>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The IVO t109nw41 is a 11.0" WUXGA TFT LCD panel, use hx83102 controller
-which fits in nicely with the existing panel-himax-hx83102 driver. Hence,
-we add a new compatible with panel specific config.
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
-Chage since V4:
+--ul7mgjrvuwrirqyd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-- inital cmds use lowercasehex.
+Hello,
 
-V3: https://lore.kernel.org/all/20240424023010.2099949-8-yangcong5@huaqin.corp-partner.google.com
+On Tue, May 07, 2024 at 02:54:12PM +0800, Binbin Zhou wrote:
+> pwm-cells property is already required by pwm.yaml schema.
+>=20
+> Suggested-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 
-Chage since V3:
+Applied to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+=2E Thanks!
 
-- Depend Dous'series [1].
-[1]: https://lore.kernel.org/all/20240501154251.3302887-1-dianders@chromium.org
+Best regards
+Uwe
 
-V2: https://lore.kernel.org/all/20240422090310.3311429-8-yangcong5@huaqin.corp-partner.google.com
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
----
- drivers/gpu/drm/panel/panel-himax-hx83102.c | 121 ++++++++++++++++++++
- 1 file changed, 121 insertions(+)
+--ul7mgjrvuwrirqyd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/drivers/gpu/drm/panel/panel-himax-hx83102.c b/drivers/gpu/drm/panel/panel-himax-hx83102.c
-index 660dd1ed8d0a..7f658516f7f6 100644
---- a/drivers/gpu/drm/panel/panel-himax-hx83102.c
-+++ b/drivers/gpu/drm/panel/panel-himax-hx83102.c
-@@ -24,6 +24,7 @@
- #define HX83102_SETPOWER	0xb1
- #define HX83102_SETDISP		0xb2
- #define HX83102_SETCYC		0xb4
-+#define HX83102_UNKNOWN_B6	0xb6
- #define HX83102_SETEXTC		0xb9
- #define HX83102_SETMIPI		0xba
- #define HX83102_SETVDC		0xbc
-@@ -295,6 +296,101 @@ static int boe_nv110wum_init(struct hx83102 *ctx)
- 	return dsi_ctx.accum_err;
- };
- 
-+static int ivo_t109nw41_init(struct hx83102 *ctx)
-+{
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	msleep(60);
-+
-+	hx83102_enable_extended_cmds(ctx, true);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x2c, 0xed, 0xed, 0x27, 0xe7, 0x42,
-+					 0xf5, 0x39, 0x36, 0x36, 0x36, 0x36, 0x32, 0x8b, 0x11, 0x65, 0x00, 0x88,
-+					 0xfa, 0xff, 0xff, 0x8f, 0xff, 0x08, 0xd6, 0x33);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETDISP, 0x00, 0x47, 0xb0, 0x80, 0x00, 0x12,
-+					 0x71, 0x3c, 0xa3, 0x22, 0x20, 0x00, 0x00, 0x88, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCYC, 0x35, 0x35, 0x43, 0x43, 0x35, 0x35,
-+					 0x30, 0x7a, 0x30, 0x7a, 0x01, 0x9d);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_B6, 0x34, 0x34, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xcd);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x84);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETVDC, 0x1b, 0x04);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_BE, 0x20);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPTBA, 0xfc, 0xc4);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSTBA, 0x34, 0x34, 0x22, 0x11, 0x22, 0xa0,
-+					 0x31, 0x08, 0xf5, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xcc);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTCON, 0x80);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc6);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETRAMDMY, 0x97);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPWM, 0x00, 0x1e, 0x13, 0x88, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x08, 0x13, 0x07, 0x00, 0x0f, 0x34);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPANEL, 0x02, 0x03, 0x44);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc4);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCASCADE, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPCTRL, 0x07, 0x06, 0x00, 0x02, 0x04, 0x2c,
-+					 0xff);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x08,
-+					 0x08, 0x08, 0x08, 0x37, 0x07, 0x64, 0x7c, 0x11, 0x11, 0x03, 0x03, 0x32,
-+					 0x10, 0x0e, 0x00, 0x0e, 0x32, 0x17, 0x97, 0x07, 0x97, 0x32, 0x00, 0x02,
-+					 0x00, 0x02, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP1, 0x25, 0x24, 0x25, 0x24, 0x18, 0x18,
-+					 0x18, 0x18, 0x07, 0x06, 0x07, 0x06, 0x05, 0x04, 0x05, 0x04, 0x03, 0x02,
-+					 0x03, 0x02, 0x01, 0x00, 0x01, 0x00, 0xa8, 0xa8, 0xa8, 0xa8, 0x29, 0x29,
-+					 0x29, 0x29, 0x21, 0x20, 0x21, 0x20, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-+					 0x18, 0x18);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+					 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+					 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+					 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0x07, 0x10, 0x10, 0x1a, 0x26, 0x9e,
-+					 0x00, 0x4f, 0xa0, 0x14, 0x14, 0x00, 0x00, 0x00, 0x00, 0x12, 0x0a, 0x02,
-+					 0x02, 0x00, 0x33, 0x02, 0x04, 0x18, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x01, 0x7f, 0x11, 0xfd);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x86);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+					 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+					 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+					 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0x02, 0x00, 0x2b, 0x01, 0x7e, 0x0f,
-+					 0x7e, 0x10, 0xa0, 0x00, 0x00, 0x77, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x02);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPTBA, 0xf2);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x03, 0x07, 0x00, 0x10, 0x79);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0,
-+					 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0xfe, 0x01, 0xfe, 0x01, 0xfe, 0x01,
-+					 0x00, 0x00, 0x00, 0x23, 0x00, 0x23, 0x81, 0x02, 0x40, 0x00, 0x20, 0x6e,
-+					 0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+					 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0,
-+					 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+					 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+					 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc6);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCYC, 0x03, 0xff, 0xf8);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_E1, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc4);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x96);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x4f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x00);
-+
-+	msleep(60);
-+
-+	return dsi_ctx.accum_err;
-+};
-+
- static const struct drm_display_mode starry_mode = {
- 	.clock = 162680,
- 	.hdisplay = 1200,
-@@ -339,6 +435,28 @@ static const struct hx83102_panel_desc boe_nv110wum_desc = {
- 	.init = boe_nv110wum_init,
- };
- 
-+static const struct drm_display_mode ivo_t109nw41_default_mode = {
-+	.clock = 166400,
-+	.hdisplay = 1200,
-+	.hsync_start = 1200 + 75,
-+	.hsync_end = 1200 + 75 + 20,
-+	.htotal = 1200 + 75 + 20 + 55,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 115,
-+	.vsync_end = 1920 + 115 + 8,
-+	.vtotal = 1920 + 115 + 8 + 12,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static const struct hx83102_panel_desc ivo_t109nw41_desc = {
-+	.modes = &ivo_t109nw41_default_mode,
-+	.size = {
-+		.width_mm = 147,
-+		.height_mm = 235,
-+	},
-+	.init = ivo_t109nw41_init,
-+};
-+
- static int hx83102_enable(struct drm_panel *panel)
- {
- 	struct hx83102 *ctx = panel_to_hx83102(panel);
-@@ -587,6 +705,9 @@ static const struct of_device_id hx83102_of_match[] = {
- 	{ .compatible = "boe,nv110wum-l60",
- 	.data = &boe_nv110wum_desc
- 	},
-+	{ .compatible = "ivo,t109nw41",
-+	  .data = &ivo_t109nw41_desc
-+	},
- 	{ .compatible = "starry,himax83102-j02",
- 	  .data = &starry_desc
- 	},
--- 
-2.25.1
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmY6NBAACgkQj4D7WH0S
+/k7IDAf/UM9UZ0jj9GgNg/NesLlr1xViWGPBK3STaTwhC3/UI7OLSaBZwAp92EpK
+kMf/wyuSZyNDW75caUfKloCdgETRSnEWnXqhN14gCTkESaEPOm92lAa8yQdvS4hv
+oLSYJJYoOEtrxIURULLpXaNI2u4KUbFge3NCEcFYxk0eYq745KL1hVj9yk/L5Bsz
+IOePc47ShdtC/+t9Vug+WBHozLBWdOM2RDjvdTgp2cIW3bwVIcc00v5slbYB7xBi
+dO2w4vixuJqq4/jsleEYhv9/KLw7WOTsF2UOhNhPM4DGcgcKtNIZJ0PQ4L1UPo4X
+fX6Oonsptwe7nLCdUxStvBuPgm4kEQ==
+=S5q4
+-----END PGP SIGNATURE-----
+
+--ul7mgjrvuwrirqyd--
 
