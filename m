@@ -1,114 +1,109 @@
-Return-Path: <devicetree+bounces-65594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D54F8BEFA3
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 00:10:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6858BF017
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 00:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA9ADB2277A
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:10:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 823EA1F23573
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 22:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B52A714B977;
-	Tue,  7 May 2024 22:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9B284DE9;
+	Tue,  7 May 2024 22:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uwC9pMGa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TfNMyBoZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F7F77658
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 22:09:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0EA084DE6;
+	Tue,  7 May 2024 22:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715119799; cv=none; b=AcpqzUqTjJbCwzpe7+8p1W2FOVPV5V3kjQ8x7G2UVLU58Lz+Bx53QjTpuDxp1Vl789HRoO+tgcFrvEK61rgiOvV5/CM0//BKjmrP6VdHk7RNnh90pSUOI6lWycBTEbhQhSuPV67TeakWX4nWfydJTOw5TBMlyjveZojbjwYGeU4=
+	t=1715122659; cv=none; b=oHhDPhXsiH+vtDVFjMYAg38dLu480NcODbR64ZZ80lcoEDpRLj6PsBuADQ6DGVl6XgrjljKZsavTHmZ/XmSS3B6Heu4J56lpP3w3nSSRRrwE3x9yz2XMwfMAO6WN1erx+23R3w3ShJQ8EbqOnp3+GxSmWGirxkJTNJMj3msKOxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715119799; c=relaxed/simple;
-	bh=rz4ZDYMxudbdC8GSlW3kEF1CvatRJGfB9hkcnF0t+1k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K3sFnkZubG9luKVxG0Es3Ps3OX/M6GDxyShnKt72/1LN/lLqDAEIecHvHUnka5NOaqabA6DGNUDOCGSGS2/qIEwZDQf7EYsAUo+IfHjCx4fxnikcCzSbA8WWuPQePht1omAqhHYwuHIPJYC0/WnwTi3sowE4TyUtw//Ili0hh3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uwC9pMGa; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e22a1bed91so48541011fa.0
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 15:09:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715119796; x=1715724596; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ac4p6+1ybm5UDnW5YmcAzBGvGhVt4yypjSgPS4Q8TxY=;
-        b=uwC9pMGaMq0L8MdFA5rJGAmVMpaxa1weap19mgiiNV/XuGe1bh7J2d8/kULKKZHC2a
-         q2u55Zqq3B24kRw3Y4C7rTPjnqMKcX+VaBeORVKHEWrUqxH3bE5QLP6q6JRon/UuJLKG
-         nB7xto/6VdpCPZWQq8FnFJPdr8QHgwSWbXd7ah2OxGhilOxhKNvRBV12SjDK/4WcHx+N
-         MbFr/geLvWsVSsGOtwwId7Uu9v8OYm2al2uwBd9n6UiRAEIb5wdiDlz4cu+KH12TWwC4
-         D8SiZzOzH20MHu+ahQ8JKTci+8z1tUOTskH7T/r/sBogukghiEz8GNLtV3z08JP+TeCb
-         l1dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715119796; x=1715724596;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ac4p6+1ybm5UDnW5YmcAzBGvGhVt4yypjSgPS4Q8TxY=;
-        b=rRTjeuY+i8VHM90tKS7l2YDQxaYGqgxdLeyJVYCLmzG4Ov8F9eHLl0sgQNpJIP0PYd
-         bKY9LPx2Bioon5/WtvXADzC/lFvi6oNqhKTiR65+26d2fEKmlKSvYPn6xVQ5a16QMQqU
-         lSqPwmscDwMiS2lmoJPT6hwirTZCNQQaOzaKIGiVqzseYDZYHQ58MJ0thDuGhMMq22eQ
-         2H19Sv0ZXoOd6AORJiHmkd9O0T4mg4TKdSMQ4b0s3+sLh3ISaEaVJdfVC30rxbAGIlHy
-         JBdZDqA1UufjfJ5aIlGNduHjohSuDhxmHXyiHIEJR9s/Iq21Tsn0e8NIJI/R+ySx/Pf1
-         cfaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDiDYXkbTiumCiuoqFv+M4Cp1vV4OAlVM8Tax5Xa9MTjhnRjeLyDo2alJvME7DzySqKL07vgzUhEkiQMGTYAMH+51j8gkttOeUKw==
-X-Gm-Message-State: AOJu0YyUk+RQYKlxcqOx5YbLBCrFF82WHfWvdgd4r0hE1AmwCiSdKz3f
-	R+/lyZTTouT5zYJyotoJQOw6ydwzAqTMYovtnfqOm2ru/TyBw0WqnSJXSPNstDVFASbfXQSGa8Q
-	9J23v/UjdyD6041oJ15V61o6SruC1RYGNGpN3Ag==
-X-Google-Smtp-Source: AGHT+IGd4OLJ8TyONdPhu6+NfNprGQFNyY6nogkdByV/4wLX6NhgqopTXlvMPXz5HdHB96Qr6UROFsAkbdh+80WHfwA=
-X-Received: by 2002:a2e:3004:0:b0:2d6:ff04:200f with SMTP id
- 38308e7fff4ca-2e4476af8e9mr4709961fa.33.1715119796124; Tue, 07 May 2024
- 15:09:56 -0700 (PDT)
+	s=arc-20240116; t=1715122659; c=relaxed/simple;
+	bh=rl58UGSDXiOQtAtALxX1AesGxhJWgrq4HBhX/WX/mTM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Tg8RQ1RXlmERkDpd/EK9K6y1l1uwO7OTjYkgr9sJ7En7bQV1hXzwBIHVOi/JuAFolsbT8Zms1V3qxXiAyJ83/8Svu5FpHVGORsMW+yvVnEaIZfWpSKWlhzmP3nDDkqlHcFvbBr9G39XfzEPGnbpgYhNCYa+w8Mr7PnrnbiXSSbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TfNMyBoZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EDC8C2BBFC;
+	Tue,  7 May 2024 22:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715122658;
+	bh=rl58UGSDXiOQtAtALxX1AesGxhJWgrq4HBhX/WX/mTM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=TfNMyBoZAhMgD47ZLQN/r1wGsNff1TDtcoKWmDCFX/cXWUfkFrL6fzjWGC9pUTUZk
+	 ZLth9qDKKIN8lLtJa+2PlKQzgVzVuAR4hkAo2j0PzxfSjUWc24icvwSixor8AN8nJV
+	 i2vFx0ICMPqAzuGFhrhijKi9Qn5I/ibrKBXdF+k7uYzbrGP95V37WJ8REEAsVBbomi
+	 jQuNwx/hhWrGDPF40/nE8Mps7d6rCBPIlr11O9yo1Y0/kDyRbElrA0pMNeBCv0QFv4
+	 7sTWOoCSoQCsoRevczt46XGzf8BmM7vukwayOLr+MdbuDMFFT/ZTJzzIXjoRybQiqL
+	 lqqJbEbhcYuSw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Sasha Levin <sashal@kernel.org>,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	sebastian.reichel@collabora.com,
+	andy.yan@rock-chips.com,
+	cristian.ciocaltea@collabora.com,
+	s.hauer@pengutronix.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.8 06/23] dt-bindings: rockchip: grf: Add missing type to 'pcie-phy' node
+Date: Tue,  7 May 2024 18:56:32 -0400
+Message-ID: <20240507225725.390306-6-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240507225725.390306-1-sashal@kernel.org>
+References: <20240507225725.390306-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240504-bmi120-v2-0-3b3ce6e1c3c6@gmail.com>
-In-Reply-To: <20240504-bmi120-v2-0-3b3ce6e1c3c6@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 7 May 2024 17:09:45 -0500
-Message-ID: <CAMknhBEdcg3O9A5rDPkPSgpshn_F2CTRdNR1FjYud3i0F-VOtQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add support for bosch bmi120
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Danila Tikhonov <danila@jiaxyga.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.8.9
+Content-Transfer-Encoding: 8bit
 
-On Sat, May 4, 2024 at 8:00=E2=80=AFAM Barnab=C3=A1s Cz=C3=A9m=C3=A1n <trab=
-arni@gmail.com> wrote:
->
-> Add support for bosch bmi120.
-> BMI120 is an energy-efficient version of BMI160. Despite having a differe=
-nt
-> CHIPID value, this variant seems to be fully compatible with BMI160.
-> It could be find in many phones like xiaomi-vince or xiaomi-tissot.
->
-> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <trabarni@gmail.com>
-> ---
-> Changes in v2:
-> - Add bosch,bmi120 as a fallback compatible.
-> - Remove error path if chipid is not found.
-> - Link to v1: https://lore.kernel.org/r/20240504-bmi120-v1-0-478470a85058=
-@gmail.com
->
-> ---
-> Danila Tikhonov (2):
->       iio: imu: bmi160: add support for bmi120
->       dt-bindings: iio: imu: bmi160: add bmi120
->
+From: Rob Herring <robh@kernel.org>
 
-Preferably, the DT bindings patch should go first in the series before
-the code that use it (makes it easier for reviewers to read it in
-right order).
+[ Upstream commit d41201c90f825f19a46afbfb502f22f612d8ccc4 ]
+
+'pcie-phy' is missing any type. Add 'type: object' to indicate it's a
+node.
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Link: https://lore.kernel.org/r/20240401204959.1698106-1-robh@kernel.org
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 9793ea6f0fe65..575555810c2c2 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -165,6 +165,7 @@ allOf:
+           unevaluatedProperties: false
+ 
+         pcie-phy:
++          type: object
+           description:
+             Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
+ 
+-- 
+2.43.0
+
 
