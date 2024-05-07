@@ -1,196 +1,122 @@
-Return-Path: <devicetree+bounces-65434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866118BE5FB
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:33:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3178BE61D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 16:36:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A936A1C21AAB
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:33:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED52DB21696
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 14:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6721B15F335;
-	Tue,  7 May 2024 14:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A2515EFD1;
+	Tue,  7 May 2024 14:36:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b="GQ9axj59"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFu4SFwy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.kaechele.ca (mail.kaechele.ca [54.39.219.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625C215F322;
-	Tue,  7 May 2024 14:33:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.39.219.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F30DC154BFC;
+	Tue,  7 May 2024 14:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715092396; cv=none; b=XL3kCgZYRuFxwDMtJWstmq/VsCwGVNQ+HwlBzXTQtE4tQ5Ztb5QfwVUpELx2IRxzTzgyN/iV37CcUIrnHslpf0H9NF5dBifS6s/HRafNVQo4/0KuHoDpQKBOAfjRhhEePCHHy+f3xeRwmOenjIKz9GrJZpj42uZ0SoLu+WdjebY=
+	t=1715092568; cv=none; b=J8Szs3/2Tj8ctOJ+Ro15/NGGmX+2DaEXuX7U5zVrMeXHiChd79T7Y6nCpOFsTp7XUr6dgbGbvN5iuTc+HyAHKQ2aeL9KgzIeZyYxvgtoU90jkrF5Jlkh2KwzcOoA9C17uaO4lH1vNMD2W0J7QY98uFGOIinVmAn+5OmVY9TkgmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715092396; c=relaxed/simple;
-	bh=2bRKE40XKAnKAK3IOXbmvh2YbVgVOzuh6rhjPfP3L6s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HgQv06juTYVxpmpZeRJYUKsK1vNwuq11K4J4hpResSszkn9f9+9u7RlrdGSrklyosD2SXbAzOSkxOGRuQ+0UL8Vf2b7PtShcvaX4c4ykeH44QoNTMIAWF55veYua/2fZRMtC7uvi+vYBn8H6hIgLp24gQ5abY1cieeH7x8j3bBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca; spf=pass smtp.mailfrom=kaechele.ca; dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b=GQ9axj59; arc=none smtp.client-ip=54.39.219.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaechele.ca
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 359B8C005F;
-	Tue,  7 May 2024 10:33:22 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaechele.ca; s=201907;
-	t=1715092404; h=from:subject:date:message-id:to:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=v+B8UAwdldlntNqSaN2SmWNVp3MgBr8FmyOkts8KjeM=;
-	b=GQ9axj59docgOj999lAQCRr/y/bWWaGVrj8JMTprOuAzxim0AB28DoPtasGIA9KGYOXBO+
-	7InvhrbEXK1UU+MMtjpA/kG3gT9E3bP+y6xjUdp51atbdG8nPMm7GWTqWEFBW9VUx/DvNF
-	zENf8weZIdIEJ7OG9nVv94wQkdOgxgI=
-Message-ID: <5e139685-02c3-4446-9b89-d68bf15f55b4@kaechele.ca>
-Date: Tue, 7 May 2024 10:33:00 -0400
+	s=arc-20240116; t=1715092568; c=relaxed/simple;
+	bh=OTjMBZ+MwP+QZ3qrHxyCTvxPfkh9ukS1LO64DlNpS7Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mFWueRdqvUU8ddr1rGu1CwpGZuQ8rY0HH5bjOSHMQLUp6EHPyQicQEa2ryEkPNLAGvFyrWm9yxF2rgOIq1fBxvLOYBdYrF0y16MnwllnP+FSSfrujiToYC5YaZswTJMfXfe3XF+IuzppgIo9YhnE59COTKA/f4hU74aBiDa9Fgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFu4SFwy; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1ec69e3dbcfso22668775ad.0;
+        Tue, 07 May 2024 07:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715092566; x=1715697366; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4sE/TPSmc70RJaChbU/e2Q4/04mDKoGHf4Df/fOCQVg=;
+        b=BFu4SFwyjlgTRg29RhVjMQH9Fnugh3WBSmJz60fZ2X3NbWHGYxORrU2fhzE79O4ssJ
+         saFT+Fv/DHfJzoCNM1ON709ALWc3sCy8+Ncw+YTpw55vwc2cz/EGh9O7BRUCOUvxK+qE
+         iIZPuM1tVtORm26WOCjeFyWZXMQWu4TVlUVDiVfl8i3bQ3gQa95utQiPAvGx9GruWJ4r
+         DNRR48xohOVsZCP4gkx2rEWFiS29M4YBWn75GyfP87OdwQrVv2kQ1i9MpUr29SqPpJvT
+         yl6OsPRtzPMv7O3SIpqhVzIWsQJJmCNj7VAI5gEb4d/nZpfub9xgpqCg9e4wHHwhBiLh
+         R74Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715092566; x=1715697366;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4sE/TPSmc70RJaChbU/e2Q4/04mDKoGHf4Df/fOCQVg=;
+        b=r7JyJHiu6cLVY5VC5ko2YCVxzEPwsaQfgbIyNJalMg9mJDzzGJpbPEnVvEdkT+gFo2
+         nGs/gFj8pHww3TTrgBksuQzhVvSTFDN6Xo8zKv4vASnMAUW6CfIL1XHMoNVH1SSzGURV
+         1ycToeESfSsq3+mijfMQtRRDGuuzKYCotxh6yN3Mgd4BRGpq6EFZeA9VLaG0D488WIi0
+         rhHRWxf7l7i0nkrZr3FGu6vX07DE54qd4PYADXT987RvAdE3VAGTZGYptapYzsYcj1RQ
+         FGqlXrnT54KevPe9f1o7YjBZk87dS1gzlWZ+d6QKb0zZT2nFopzztkukyqnWzL3vk9yw
+         ZScw==
+X-Forwarded-Encrypted: i=1; AJvYcCWAqzFljN+QEFdLJLEiaBqXmkYVcbWmlK/EVUrtZ5e2xhh/LOCoTikfNC/+XBprovDk97yO1nIJKxLuRqq3szMYeBR/zc7DtSyPqih28tsMQxSdaGRj5rUORUKGjkIzEpEhZ3JD4iCpvQ==
+X-Gm-Message-State: AOJu0YwyLUcYRGZWDB12qSFNicV6+NgdhZyMhl+EOpEQkvMl7KuJcXJG
+	oPt3snHl9ot3QgoET1YCwBUJfczmibR3ZYi45msAx/iqPUSKMU/6
+X-Google-Smtp-Source: AGHT+IF8UDVWK4Skk4ZlNGshwxW7PJ/6S/WIVk0uQs5wZ/EnneK9HcykXPYay7T6RrHB7WIfQNx9QA==
+X-Received: by 2002:a17:903:947:b0:1e2:a31e:2062 with SMTP id ma7-20020a170903094700b001e2a31e2062mr18166406plb.53.1715092566069;
+        Tue, 07 May 2024 07:36:06 -0700 (PDT)
+Received: from joaog-nb.. ([189.78.25.116])
+        by smtp.gmail.com with ESMTPSA id b11-20020a170903228b00b001e3c01dfaf5sm10105124plh.24.2024.05.07.07.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 May 2024 07:36:05 -0700 (PDT)
+From: Joao Paulo Goncalves <jpaulo.silvagoncalves@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: freescale: imx8mm-verdin: Fix GPU speed
+Date: Tue,  7 May 2024 11:35:55 -0300
+Message-Id: <20240507143555.471025-1-jpaulo.silvagoncalves@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] input: himax_hx83112b: add regulator handling
-To: Job Noorman <job@noorman.info>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240504020745.68525-1-felix@kaechele.ca>
- <20240504020745.68525-3-felix@kaechele.ca>
- <95f8d63a-0343-49c3-90b6-f91efe559841@linaro.org>
-Content-Language: en-US
-From: Felix Kaechele <felix@kaechele.ca>
-In-Reply-To: <95f8d63a-0343-49c3-90b6-f91efe559841@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-Thanks, Krzysztof! Really appreciate your input, as I'm currently not a 
-regular contributor to the kernel.
+From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 
-On 2024-05-04 08:37, Krzysztof Kozlowski wrote:
-> On 04/05/2024 04:04, Felix Kaechele wrote:
->> Handle regulators used on this chip family, namely AVDD and VDD. These
->> definitions are taken from the GPLv2 licensed vendor driver.
->>
->> Signed-off-by: Felix Kaechele <felix@kaechele.ca>
->> Link: https://github.com/HimaxSoftware/HX83112_Android_Driver
->> ---
->>   drivers/input/touchscreen/himax_hx83112b.c | 48 ++++++++++++++++++++--
->>   1 file changed, 44 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/input/touchscreen/himax_hx83112b.c b/drivers/input/touchscreen/himax_hx83112b.c
->> index 4f6609dcdef3..0a797789e548 100644
->> --- a/drivers/input/touchscreen/himax_hx83112b.c
->> +++ b/drivers/input/touchscreen/himax_hx83112b.c
->> @@ -19,10 +19,12 @@
->>   #include <linux/interrupt.h>
->>   #include <linux/kernel.h>
->>   #include <linux/regmap.h>
->> +#include <linux/regulator/consumer.h>
->>   
->>   #define HIMAX_ID_83112B			0x83112b
->>   
->>   #define HIMAX_MAX_POINTS		10
->> +#define HIMAX_MAX_SUPPLIES		2
->>   
->>   #define HIMAX_REG_CFG_SET_ADDR		0x00
->>   #define HIMAX_REG_CFG_INIT_READ		0x0c
->> @@ -50,6 +52,7 @@ struct himax_event {
->>   static_assert(sizeof(struct himax_event) == 56);
->>   
->>   struct himax_ts_data {
->> +	struct regulator_bulk_data supplies[HIMAX_MAX_SUPPLIES];
->>   	struct gpio_desc *gpiod_rst;
->>   	struct input_dev *input_dev;
->>   	struct i2c_client *client;
->> @@ -63,6 +66,11 @@ static const struct regmap_config himax_regmap_config = {
->>   	.val_format_endian = REGMAP_ENDIAN_LITTLE,
->>   };
->>   
->> +static const char *const himax_supply_names[] = {
->> +	"avdd",
->> +	"vdd",
->> +};
->> +
-> 
-> That's confusing. Binding said only HX83100A family has regulators, but
-> you request for everyone.
-> 
+The GPU clock was reduced on iMX8MM SOC device tree to prevent boards
+that don't support GPU overdrive from being out of specification. However,
+this caused a regression in GPU speed for the Verdin iMX8MM, which does
+support GPU overdrive. This patch fixes this by enabling overdrive mode
+in the SOM dtsi.
 
-You're right. Looking at the vendor driver for each of models I could 
-see that it defined AVDD and VDD in both drivers. So I thought it could 
-make sense to offer it for the entire chip family, with which I meant 
-all HX831xx in this case.
+Fixes: 1f794d3eed53 ("arm64: dts: imx8mm: Reduce GPU to nominal speed")
+Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-But it seems after some more testing (and with this touch IC family 
-generally being a part of the display controller) the regulators are 
-sufficiently handled by the panel driver / bootloader for the use case 
-of having the touchscreen on when the display is on.
-It wouldn't allow for waking the screen by using the touchscreen, and 
-while I'd have to go back to the original OS on the device to verify 
-this again, I don't remember that working on the original OS either.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index 4768b05fd765..0d9abca58821 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/phy/phy-imx8-pcie.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "imx8mm.dtsi"
++#include "imx8mm-overdrive.dtsi"
+ 
+ / {
+ 	chosen {
+-- 
+2.34.1
 
-So I'm thinking I may drop the whole regulator part of the patchset to 
-keep it smaller.
-
->>   static int himax_read_config(struct himax_ts_data *ts, u32 address, u32 *dst)
->>   {
->>   	int error;
->> @@ -267,7 +275,7 @@ static irqreturn_t himax_irq_handler(int irq, void *dev_id)
->>   
->>   static int himax_probe(struct i2c_client *client)
->>   {
->> -	int error;
->> +	int error, i;
->>   	struct device *dev = &client->dev;
->>   	struct himax_ts_data *ts;
->>   
->> @@ -290,11 +298,31 @@ static int himax_probe(struct i2c_client *client)
->>   		return error;
->>   	}
->>   
->> +	int num_supplies = ARRAY_SIZE(himax_supply_names);
->> +
->> +	for (i = 0; i < num_supplies; i++)
->> +		ts->supplies[i].supply = himax_supply_names[i];
->> +
->> +	error = devm_regulator_bulk_get(dev,
-> 
-> devm_regulator_bulk_get_enable and drop rest of the code here.
-> 
-
-That's pretty neat. If I do decide to bring in regulator handling this 
-removes quite a bit of boilerplate.
-
-> 
->> +					num_supplies,
->> +					ts->supplies);
-> 
-> Wrap it properly at 80, not one argument in one line.
-> 
->> +	if (error) {
->> +		dev_err(dev, "Failed to get supplies: %d\n", error);
-> 
-> return dev_err_probe()
-> 
-
-Same here. Thanks for the hint.
-
->> +		return error;
->> +	}
->> +
->> +	error = regulator_bulk_enable(num_supplies,
->> +				      ts->supplies);
->> +	if (error) {
->> +		dev_err(dev, "Failed to enable supplies: %d\n", error);
->> +		goto error_out;
->> +	}
->> +
-
-I'll be sending a v2 shortly.
-
-Thanks again,
-Felix
 
