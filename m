@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-65601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990AC8BF23B
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:45:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDCD28BF278
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5DBB1C215FA
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:45:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99630284C74
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63907182C8F;
-	Tue,  7 May 2024 23:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58B220127C;
+	Tue,  7 May 2024 23:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FcPBlV9D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fDek9ubd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3710F182C8A;
-	Tue,  7 May 2024 23:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C91201255;
+	Tue,  7 May 2024 23:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715123559; cv=none; b=bglQxKro+BGdHc8rTANjpZKRlUiiphJZZ5fQ4xjY9qsFU4yqpwY4d7PMx1vst5/h6F0T6M5SK16kLJglNXu/8GAEJyQyFdD/tPwqgiLQt6mJ5CPbapaoGQQHPk3Z6E3ebbd/KUgzrtpRS1Ti7yfVAI7sAHylT+0EfFLc0f0BCwY=
+	t=1715123618; cv=none; b=e/Xk9be49LoVbpNywA0dG+YlwzRI3fdtf1t5zqYOUZVTLYjNSosSRT9DxKRGr2pXSHq6E0hRnqt574WULw4CNBEHTVlL2zqfrtUdTQDQwPW/d/xylFqa+cwbDZyDzyzZUi+rIOUYoNaUGKQnDEZxZ7Kg4WNgJUZrmBo3t7j3q/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715123559; c=relaxed/simple;
+	s=arc-20240116; t=1715123618; c=relaxed/simple;
 	bh=V9xwPCi2BbHqvXbn+HBOTFHYtgRml7I7/V1s2BHN2qA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EKSovPfZ9oVTvQDHFGiR9ST0Mmm+/dlA7Zf45I5swRPi+RxEbrHx/Z/g9U1Qiv2lEiC8yBtDJalkGJTC2ECY469USpRrBWTKuJeBs38N7PjZg5WiPYtSQJmi19smCYL0zP8rwlMJXCZiwRTa2wMkHYHWXLx02foN9jxhnxB4dvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FcPBlV9D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC69CC3277B;
-	Tue,  7 May 2024 23:12:37 +0000 (UTC)
+	 MIME-Version; b=mJ6kinWwL27WR1b4keY/BaAMZJUVpWRJH5LfmjrzEZh4RxHlyfXZ19nTZEYC+lfhTdi9pxGVhHKGTB0UHoBc9fBYyZhjcUTJFXxkO5Ba1IqWYTjGB0Y6RdFQE1Xo7hwKB43PldJCGo9kMqdldj/nS5kQahLnrPhbxRsCVRUeXcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fDek9ubd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ECF0C2BBFC;
+	Tue,  7 May 2024 23:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715123559;
+	s=k20201202; t=1715123618;
 	bh=V9xwPCi2BbHqvXbn+HBOTFHYtgRml7I7/V1s2BHN2qA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FcPBlV9Dy3qdxQaFQfGrklUYXBR4dFZaFoiHK5qA1QE1N+2BdEQDFfqwfxsXpGS7+
-	 XaTQjpcpr0A5bEUhm5oReM4wPPQBVvJKC1yZFDPImvI6UQraWrq2OJyjgpVixwBuYm
-	 jnKIuzmd9Gq5KtyMGh3l6m7jyNaw0v+LCWE1I3Xr49QhMmLCdE9kgA7aLTE5QvmhmK
-	 MGzF/YOXMyIPqdi5OhA6uGcslHarsrqSyW7S5HQe4vSU9ZBP2931WXSXHmdVjnfEma
-	 mPd/5EcgaOzwjq9PsWV9QqNi5Ti/5x2SFDW0ktKiqo7233AyKykY+UjrnuxZmOX6CL
-	 Jz1AsmrPmMymw==
+	b=fDek9ubdtnmpydOIP6XxdPUjEjKpCb+qDPrffLG8OiyC1SgBrBiK/QPM2u56ZoPz9
+	 Hr7Z1B8O9JCljGsgiU8yYV1B3tY+UaV907XoevznjeOEcofLwD9TP8BDrBryUVTKeM
+	 MydkcixPYA696OET4QvlRtROHKMTbePctaNcjCaAi/hTN6XB1mEEZQj6v5p4zdymL0
+	 jVx3mAbCdcYTJuyFJdwXkf8Ug4isHysqtH58t1w+H3Cb4ShkIZQC++Pj3mECnDxrEh
+	 iRQtibtaWCfVv7L4kJGlvuCtR5a++t6HXHYxzNI6GYt4/yTvqiJV0Szz+pICFwEBRh
+	 ByoQvCYosNDJQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -53,12 +53,12 @@ Cc: Derek Fang <derek.fang@realtek.com>,
 	conor+dt@kernel.org,
 	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 04/25] ASoC: dt-bindings: rt5645: add cbj sleeve gpio property
-Date: Tue,  7 May 2024 19:11:51 -0400
-Message-ID: <20240507231231.394219-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 03/15] ASoC: dt-bindings: rt5645: add cbj sleeve gpio property
+Date: Tue,  7 May 2024 19:13:12 -0400
+Message-ID: <20240507231333.394765-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240507231231.394219-1-sashal@kernel.org>
-References: <20240507231231.394219-1-sashal@kernel.org>
+In-Reply-To: <20240507231333.394765-1-sashal@kernel.org>
+References: <20240507231333.394765-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.1.90
+X-stable-base: Linux 5.15.158
 Content-Transfer-Encoding: 8bit
 
 From: Derek Fang <derek.fang@realtek.com>
