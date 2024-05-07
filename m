@@ -1,116 +1,150 @@
-Return-Path: <devicetree+bounces-65599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20248BF163
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:24:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A3C8BF2CC
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:59:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2AEA1C20ABE
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:24:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D624A280F5A
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 23:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78932131721;
-	Tue,  7 May 2024 23:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2452B13A898;
+	Tue,  7 May 2024 23:20:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hEjavXHz"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="MOaqecEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0D61311BA;
-	Tue,  7 May 2024 23:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8433212B148;
+	Tue,  7 May 2024 23:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715123301; cv=none; b=NFKhU2OGQHiDp2NJKrE/UZKZIlYtay+tLr0paHf6VsMKeJaZ+n12wPO1+/2TMqnFJAKhgwl6gDjxC2IkRJllsfzgRdqP82oLV60bbIcx7Sg/nqef/SfbZfWZMwzAuPpPu1TqJMhY45xcaEeTlQXVNbyhtzSieCyYnYla6ypAv/4=
+	t=1715124007; cv=none; b=rI5vxonSf0NCMU9VXfjbYZ3be+ns5cVLRIhaSPl4RbX9fyl4lPAU4/t+A29kAIK4SXV0YvF3YBhgBr70R5dmXR9iqIWpFxqNY8RxTZgfWb3c7jlkwWWBk+1iHscUWD1v8S2CEMNx8m04zAx0n/tROJpkheQSq7nnvVlMd1EbLFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715123301; c=relaxed/simple;
-	bh=V9xwPCi2BbHqvXbn+HBOTFHYtgRml7I7/V1s2BHN2qA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=u6gx6hsHnRQOYsalPlv3lyiRixe9OQlu/qPuYzBIlgNBJ1/u08TH202QTlGtBhUQmecM4WniavZMuabdz7g8MYiWQ6VAK8c+bs+RtPLQM1TEtQfi9vvU0HjWzTq2LQISOwPWgz/8SEq8J5GtQ+M/5ul/mKvvJCep4mlHPPsO3Pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hEjavXHz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5832C3277B;
-	Tue,  7 May 2024 23:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715123301;
-	bh=V9xwPCi2BbHqvXbn+HBOTFHYtgRml7I7/V1s2BHN2qA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hEjavXHz+8lHS0DmRyyrHOEcB19RMa1gH8wbacYO+OCwApKlczbXWva1qqQ4wnenI
-	 F56u6xWy9XnA9E0cyun/uhrFdQwfLnEcUeu48GUUbnMRz8w8axMKe+GNwLFx+2Wsw+
-	 DY/NYh8UywrdJZBoehjQYNtNtEgy1A8JuMDQf443Qvllg+tv2CT9jQCFPAoC3g0S2c
-	 8sTrLfkOtN8u/j/O9g/AdDMZN1yyk9u+IGGbQ9oRXJpo6jm4KCN5i/YOO7m6xaClMv
-	 hj41sO9QI9yupgA6WFWwHZknE+3gnd/DKyHnbccX5rXTTHPcpCOoV5XFwAhSiSuJ1F
-	 xAQdCjBrwSjNA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Derek Fang <derek.fang@realtek.com>,
-	Mark Brown <broonie@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	lgirdwood@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.8 10/52] ASoC: dt-bindings: rt5645: add cbj sleeve gpio property
-Date: Tue,  7 May 2024 19:06:36 -0400
-Message-ID: <20240507230800.392128-10-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240507230800.392128-1-sashal@kernel.org>
-References: <20240507230800.392128-1-sashal@kernel.org>
+	s=arc-20240116; t=1715124007; c=relaxed/simple;
+	bh=b/0FkzHkilB95lUbP7MEunDu86ZpEsqHeKZVNfq+xIQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MXKKs87FIjwrV8lqELe+BqW0DDvAlK/FPyKjJSM/vDVHuuD3Pw49k6aPw3JLfte9mkAzzQipLH5tJrUxWpKM9U/fHbvGBvSSJTJiEOOkbY29n+EVBCuOcMfY1KiezzsZmaueSVUYVtUOGdH+16o/3E8wLCj14V5RQJ/VeHfFspY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=MOaqecEa; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 99472120005;
+	Wed,  8 May 2024 02:19:59 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 99472120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715123999;
+	bh=FTEc3DcCrnODzUlI904uenRxffR/nTndkV7UF8lCKs0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=MOaqecEa7KzpL1uHnPOVQMAfm++G+nohFnyBcWYFaRlh/G0AO9QWjk82Et1kkHApv
+	 YDOkYJZt5Aar9dxZo5Cy2Hms33xkHc+AGcUS07i8C2OSlSQGZTiB8KaZtJUSzTqAnG
+	 OP7pLGOXuyUQ8V9w/tThPVtkNlrt7QEDoOyC8izhFQzAodLGoiZjafSqOEXq98jBqd
+	 R0zSh/eyDeuDttGiM+DeL9OoAXyWWIyJ/OxNWSfbvEaCbYwvkHHey23l5Sv1ktgK8P
+	 2vy/Cz2tPB5M2HcbRB7gN+zCXH6TuwS+v+TtKXddyXVo+uzjmJJ4g14mGMg2FjlDwx
+	 FvZ2+VVkv5mMA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed,  8 May 2024 02:19:59 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 8 May 2024 02:19:58 +0300
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <oxffffaa@gmail.com>,
+	<kernel@sberdevices.ru>, Arseniy Krasnov <avkrasnov@salutedevices.com>
+Subject: [PATCH v6 0/3] Meson: R/W support for pages used by boot ROM
+Date: Wed, 8 May 2024 02:09:00 +0300
+Message-ID: <20240507230903.3399594-1-avkrasnov@salutedevices.com>
+X-Mailer: git-send-email 2.35.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.8.9
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185123 [May 07 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/07 17:58:00 #25118681
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-From: Derek Fang <derek.fang@realtek.com>
+Amlogic's boot ROM code needs that some pages on NAND must be written
+in special "short" ECC mode with scrambling enabled. Such pages:
+1) Contain some metadata about hardware.
+2) Located with some interval starting from 0 offset, until some
+   specified offset. Interval and second offset are set in the
+   device tree.
 
-[ Upstream commit 306b38e3fa727d22454a148a364123709e356600 ]
+This patchset adds R/W support for such pages. To enable it we can setup
+it in dts:
 
-Add an optional gpio property to control external CBJ circuits
-to avoid some electric noise caused by sleeve/ring2 contacts floating.
+    nand-is-boot-medium;
+    amlogic,boot-pages = <1024>;
+    amlogic,boot-page-step = <128>;
 
-Signed-off-by: Derek Fang <derek.fang@realtek.com>
+It means that each 128th page in range 0 to 1024 pages will be accessed
+in special mode ("short" ECC + scrambling). In practice this feature is
+needed when we want to update first block of NAND - driver will enable
+required mode by itself using value from device tree.
 
-Link: https://msgid.link/r/20240408091057.14165-2-derek.fang@realtek.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- Documentation/devicetree/bindings/sound/rt5645.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changelog:
+ v1 -> v2:
+  * Rename 'meson,boot-page-XXX' -> 'amlogic,boot-page-XXX'.
+  * Add words that 'amlogic,boot-page-step' is measured in pages.
+  * Remove words that 'amlogic,boot-page-XXX' depends on 'nand-is-boot-medium'.
+  * Make both 'amlogic,boot-page-XXX' depend on each other also, in
+    addition to 'nand-is-boot-medium' dependency.
+ v2 -> v3:
+  * Add quotes to 0001 in dependencies. This fixes 'make dt_binding_check'
+    warning.
+ v3 -> v4:
+  * Rename 'amlogic,boot-page-last' to 'amlogic,boot-pages'.
+ v4 -> v5:
+  * Update 'description' fields in bindings.
+ v5 -> v6:
+  * Split patch for meson_nand.c to 2 patches: first is refactoring of
+    scrambling mode handling, another is support for special pages for
+    boot ROM.
+  * Update description and commit message in the bindings patch.
 
-diff --git a/Documentation/devicetree/bindings/sound/rt5645.txt b/Documentation/devicetree/bindings/sound/rt5645.txt
-index 41a62fd2ae1ff..c1fa379f5f3ea 100644
---- a/Documentation/devicetree/bindings/sound/rt5645.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5645.txt
-@@ -20,6 +20,11 @@ Optional properties:
-   a GPIO spec for the external headphone detect pin. If jd-mode = 0,
-   we will get the JD status by getting the value of hp-detect-gpios.
- 
-+- cbj-sleeve-gpios:
-+  a GPIO spec to control the external combo jack circuit to tie the sleeve/ring2
-+  contacts to the ground or floating. It could avoid some electric noise from the
-+  active speaker jacks.
-+
- - realtek,in2-differential
-   Boolean. Indicate MIC2 input are differential, rather than single-ended.
- 
-@@ -68,6 +73,7 @@ codec: rt5650@1a {
- 	compatible = "realtek,rt5650";
- 	reg = <0x1a>;
- 	hp-detect-gpios = <&gpio 19 0>;
-+	cbj-sleeve-gpios = <&gpio 20 0>;
- 	interrupt-parent = <&gpio>;
- 	interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 	realtek,dmic-en = "true";
+Arseniy Krasnov (3):
+  dt-bindings: mtd: amlogic,meson-nand: support fields for boot ROM code
+  mtd: rawnand: meson: refactor use of 'meson_nfc_cmd_access()'
+  mtd: rawnand: meson: read/write access for boot ROM pages
+
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 18 ++++
+ drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++++++------
+ 2 files changed, 77 insertions(+), 27 deletions(-)
+
 -- 
-2.43.0
+2.35.0
 
 
