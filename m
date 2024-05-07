@@ -1,122 +1,109 @@
-Return-Path: <devicetree+bounces-65501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CD88BEA42
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:17:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF548BEA66
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 19:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 033501C232D9
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:17:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EDFC1F252B8
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 17:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DA915E5D4;
-	Tue,  7 May 2024 17:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1BA16C44A;
+	Tue,  7 May 2024 17:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KRF/Ew9X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NHpaEv2j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00A4A951;
-	Tue,  7 May 2024 17:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06D21607B3;
+	Tue,  7 May 2024 17:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715102245; cv=none; b=rSc8kV0xRfpmariT8DSAaQUjbi2EWqMR1dCnEKoQZGAxnqLTabL+XVauIK/YgvKEn/QD/dHCtLMiqUP246yjgIy1VlzwdaSB1t1M0DgW4zFKE0AebJd3NFFZXRUqA6uHsVM6hDzlxi8UY/i6GJWGaNy5TXbfl8RwaNm817P2US4=
+	t=1715102490; cv=none; b=GvkdfiMAw4r7OMvYmtFWCCSd+suQmHQpIFsNT9a4PYgo3ArjzapL7oEBWQq2zAevijPQZdMbtN+KzruSGG2PYFXeFNfgxfdw15S7ohnp8Xv5QNCfhFhz8XAtAhdmLqtvhz3qBGv3UfOKnTqxSAdT0kZDY5NlevcU/1to8EREcYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715102245; c=relaxed/simple;
-	bh=tt10DJ7fLHqtt+N8vHO5fh/JA2Lt8pJk91/4mSduB3I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NAkF+xt4n3ajKGH4xIg41Udjhm99HrMPh3yjvgzh9Z4/4ATnHOYPWUTitP4oGj0LS8QpSFUOaUhnkZEBNDiI/MQFGNmJ8ZfOzT/4+x8t7fF3TRjBK8ZmSACEo+SHMJv0lm3qToAG53oVJfYvqmUHNp9cb079qi8qPhr2a4RDIXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KRF/Ew9X; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59b178b75bso604683266b.0;
-        Tue, 07 May 2024 10:17:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715102242; x=1715707042; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aU3pwl905vszgFU7HmwRESNu0Xm5cT15cD2mMAswx3s=;
-        b=KRF/Ew9X6gvX+noHrDQEK2lUttRBh279tLKA8zZEINsqXubOAFnBH+ru/CMwP24rwq
-         oCfpcqeX8i+IRb0aXuxiFgE4zGjDgQDRmK5ghMI6KpLt77TZFYQRGUP5lIEc13QyTO6r
-         HCbB4Qnp/2lDc4sTmYY+jf43WHkhSXPTDotR3qq9MEGQwPGCLlTVy3r//zyBFuMfdAfp
-         ORBuhyVnlIRroHQbs97nHWI/M7EeSye8t8b6SIa26vOYlwfPRBKe6QUUY88+lyJhohMx
-         GqFaxXpOtseC9CFcZbnV/H7REGhFDFfFxli51K2z5R0ABkFcrLnRKlTt9CS/kifRP5Ru
-         35Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715102242; x=1715707042;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aU3pwl905vszgFU7HmwRESNu0Xm5cT15cD2mMAswx3s=;
-        b=IHUCVxm3dcK39h8IOYxEuVFb9OAJqyFN0fHCjgiUhrX43lQtPFiqffLMzCIEsxMyWP
-         qgvSHH50a0EMekjobZ7aNZu/NcqTqyxkd17i0ik2GOcd8KqqCz9H0xw0o+dSoRBSzyVz
-         yvHZazeyflAAS1uRyCP6sqFOWnSHwYfNW2kwbpvDZreNZqHoc42DwS3S4cpsqh77rlui
-         mqVG3bNmE/lMGW6PdbEfVu89Hoj6RnBwRN7uhEis+KzN0b7CIKu+46OOZ8mON8oTeBwH
-         7b4Rdi5dg3ZUtsOom85GRkt6U2BqiuPnn3Wsxhe/Wq6ql+pfLLZ7mhaXD49hQ0I+SPOh
-         LpNg==
-X-Forwarded-Encrypted: i=1; AJvYcCWOVh+A+l/aMeF4FXBukRFye1L5/UtKyO2G6/IkzVjc5HdkULzoU8LIKvwwHBz1re+S1hyJGNNauWvYUlA5foHyosvti95rQMYNX5lYNrDPjGREuf93WUWw1CMUkzA8lgCIX1iL/8KO9oSpjFv+WQetAtPm20Tw62hJNf7d4qsKSS5rcV1cW55uX3T2VgtoOWQo87lygUlQq6onJwp9MNS6bkmi
-X-Gm-Message-State: AOJu0YyuJ+0SZZEDsgBcGK87TVF9sKUQqAk0zJyjyo3LMPjxL0UzSy5N
-	yW/CAbsXR5K9t5gvzrEZS0eZrPDIuzJV48HrX7CZyjHwdhp1f3rCQYK9P6wpJy4sdmzZyZoycRy
-	4v2pGc9E4TRMuNqntVIMJ0GWHczs=
-X-Google-Smtp-Source: AGHT+IG49CF7WhQZ87/VBmjtQFbVERL2rpkIsMgd7aYOztjgT0HKRzqzxOGBbKp1dCnVBrBbx7oAsUgIjRXIjMeChfU=
-X-Received: by 2002:a17:906:488:b0:a59:ae57:1663 with SMTP id
- a640c23a62f3a-a59fb955523mr7210766b.19.1715102241777; Tue, 07 May 2024
- 10:17:21 -0700 (PDT)
+	s=arc-20240116; t=1715102490; c=relaxed/simple;
+	bh=IDMR67aL+FJpg70JOZa/YqXPWKIXWABsZiy55mqfzgA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DcYt4MjxOk/FMEWAlX+pPPsDZ2gba1aL5LiIIsExwoRJLR82nHHZgg0Lis0gao+Se6TyOfuUKtq08BX7vgc0y3hL11fz69JgDgPH1frnQGiXUxnRlRerDI5YDYt+cj1oonQpcEkLoxjdLUMCUiLQPN//q1WwJpBefq+V3GmiTag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NHpaEv2j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75529C4AF66;
+	Tue,  7 May 2024 17:21:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715102490;
+	bh=IDMR67aL+FJpg70JOZa/YqXPWKIXWABsZiy55mqfzgA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NHpaEv2jt8RdYDITiy9cW34apA5GulWZo2VGWPOY6kGTB/MLm0oZRf9vNRf+yh1t0
+	 nnLFMUAroOpck8gryD83BDIOqV5B1JNQSOHDEgBHku2e0v6SzhePDRTyap9EHC0c0t
+	 GLri1U62zVHUBw5Pk+C1zOD3GHkzQWJ63cFDa6XaovjXV/JtqfJCFND6TXfwjy//iX
+	 NnB/0+FdFpHCosbJlZsey2qMVPWvlegX/tZ/k9kWNqjSZAbrOQzZ2UMJyxvM4iGfV5
+	 LgZ7lVefiDXtvO/aRum2TckSTKmJkPwiSjVXVKOaNrjhjkbeEo/bfNLouO1uapMu4q
+	 iSiielqQjuNmw==
+Date: Tue, 7 May 2024 18:21:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>, Andy Chiu <andy.chiu@sifive.com>
+Subject: Re: [PATCH v6 00/17] riscv: Support vendor extensions and
+ xtheadvector
+Message-ID: <20240507-rising-ricotta-1be648c095ed@spud>
+References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-3-johan+linaro@kernel.org> <ZjknxSsyo20b5_Tm@surfacebook.localdomain>
- <ZjpCL_NQD7X3hasO@hovoldconsulting.com>
-In-Reply-To: <ZjpCL_NQD7X3hasO@hovoldconsulting.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 7 May 2024 20:16:45 +0300
-Message-ID: <CAHp75Vf0raEoVmvRKNxDQ7wdAOtwWYp_fQ1m8WBdnWEFGFOrYA@mail.gmail.com>
-Subject: Re: [PATCH 02/13] mfd: pm8008: fix regmap irq chip initialisation
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vh6wbBhSwXsR2Sa9"
+Content-Disposition: inline
+In-Reply-To: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
 
-On Tue, May 7, 2024 at 6:01=E2=80=AFPM Johan Hovold <johan@kernel.org> wrot=
-e:
-> On Mon, May 06, 2024 at 09:56:05PM +0300, Andy Shevchenko wrote:
-> > Mon, May 06, 2024 at 05:08:19PM +0200, Johan Hovold kirjoitti:
-> > > The regmap irq array is potentially shared between multiple PMICs and
 
-...
+--vh6wbBhSwXsR2Sa9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > > -                   dev_err(dev, "Failed to probe irq periphs: %d\n",=
- rc);
-> > > +                   dev_err(dev, "failed to add IRQ chip: %d\n", rc);
-> >
-> > dev_err_probe(...); ?
->
-> This function won't return -EPROBE_DEFER,
+On Fri, May 03, 2024 at 11:18:15AM -0700, Charlie Jenkins wrote:
+> This patch series ended up much larger than expected, please bear with
+> me! The goal here is to support vendor extensions, starting at probing
+> the device tree and ending with reporting to userspace.
 
-This is not an argument for a long time (since documentation of
-dev_err_probe() had been amended to encourage its use for any error
-cases in probe).
+I think I've reviewed all the bits I care about, so thanks for all of
+your updates. It'd be nice if Andy could look at the actual vector parts
+of it, so I'm adding him to CC.
 
-> and that would be a separate
-> change in any case.
+Cheers,
+Conor.
 
-Sure, but why to add a technical debt? Perhaps a precursor cleanup patch?
 
---=20
-With Best Regards,
-Andy Shevchenko
+--vh6wbBhSwXsR2Sa9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjpjEwAKCRB4tDGHoIJi
+0szIAQDf5iSG/bM8HfBvrIsA44lVF79BoLK1Zcf3ndnVkXn1hQEA42EjkAPJta9g
+WY59vTOFOsAcXRSCDp9JbTmwIoNyvwM=
+=UC2O
+-----END PGP SIGNATURE-----
+
+--vh6wbBhSwXsR2Sa9--
 
