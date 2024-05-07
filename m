@@ -1,251 +1,248 @@
-Return-Path: <devicetree+bounces-65313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7FD18BDA6A
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 06:59:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8218BDA82
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 07:07:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48F531F25577
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 04:59:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD02C1C22E51
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 05:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B2C7351A;
-	Tue,  7 May 2024 04:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6E76BB2F;
+	Tue,  7 May 2024 05:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="f+T8K9QX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XK5zWgCP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C9B6F525
-	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 04:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C556A8DB;
+	Tue,  7 May 2024 05:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715057860; cv=none; b=JkXYjE/+yOT5Fp4JCgp0SlSPBfZ81IjPXGNaABov+wfJC2Vxgj1aO7z9p41RCRhQ9XQUtQ01SYYEgFnDGZN9IsVJdtfJAkh8ntnh/maMC05ziRjTVIjYvswOG/8kZ73j0pMv8YU/6330l7T5hGUpbpKVwbk2PxWlJYy5aW08KjI=
+	t=1715058448; cv=none; b=Lv/mDESA4R0RPvuDxQBK6tW8wMTsGWTC7K2ZmgINdvCgMBDIHOnXhlGiCwDkHtFYbSc3d8RokospXfGxq7rFnwO0skD5LQ/kRgTuxhTHWtiYHYO2dv5hx/yC9+8MUQ7wkDw7bFH7h1XfK6o0icmj+auSmxY+ZlDgydygxa1Dr4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715057860; c=relaxed/simple;
-	bh=uoSZcE5Xsilp2h5kGfeS4a/3IqaGYxAdmgKgnxrBUNU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uIuXlawQFfr9sw7TxSqgnVldDklosMOANyps4CweWgUSf8LUTCcN+2uV9oJZgi7sARaDDESFjp3+/tHmxCPA1CkTaxgobuZzyjfRT8Y7LWx4alG9F+GbyuqnRsMuHGa94NrPnWWZx4H9reaRq+9EpxrNOOZzlXG3cqRl4MaEJng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=f+T8K9QX; arc=none smtp.client-ip=209.85.210.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6f02e1fef90so1514813a34.3
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2024 21:57:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1715057857; x=1715662657; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H2lHWLueNqka2AOPVIme5EVkkFZiGfvJi+3KgwWaTVY=;
-        b=f+T8K9QXa+YaVglHch31/iPrzzedmDT1m01HWO2oUMALlURQz2kvCuFhg4FzizbsxS
-         ryZlWVaBm+DoCajCWJ4Lrdfplg3JgN8swDJS/mCRV6EIvcn4SW8bg30aRl2K3LSL719M
-         0Im6kMAhvzuSiJYq2hDc7g6zgmTN03T7jsnKGiMl7vp94u5WfcX9ciettnTCzyy0g+o1
-         Sqs9TjZNPEZCpDmT9xRR6a/OpiQfUAeI6wdwEejGUeA2AzxVW+LM57tO1Y8g2j6HhEVg
-         zVBjQY8tBB29C+vWHXBJKLx9p3LmTFjTWZDR1pdw7M2YY+kE226lP+UslHwMD32TnBTh
-         Rk0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715057857; x=1715662657;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H2lHWLueNqka2AOPVIme5EVkkFZiGfvJi+3KgwWaTVY=;
-        b=DWfiEiDdimGoH6nnORMboytT6iej8RVwrbMU7oMNpRpyasC2SBkYOA6Fjt7q56E11Z
-         Ke1dbRk7nTK+mrwdf4ZUEXZhtM9fl8LXBORM5ozCD8MQWVBOTI7xttMvl1XBgaqG1nRx
-         7JYhsuU5GrVCJim5NxOrhAj3NMgMvcTi92B0+gFUkL4RqJQkXq0GupUccIRwe6k1bpz5
-         fDTrxqXURdGpV0o4K8UFfTSMwPZXcDMLOOTCRG69Wufvu44wYO0uFU/GJUPNuWdlyrUo
-         eyEgFDd2jH3PXTGVQP3er0MXIYo77K2LkRlrkJupXwoCU8lYLCRhNQ7Bf2gkkUI9NRNH
-         GZTw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCamaEWq23lwqWijPTqhX9s89lpwmJDeM5NsBYBBhRPwZ2SRmDndxGjhpRZELHbNq2aCPlAT+P6wYCqKKsRYpFiYngkbtGaBTO4w==
-X-Gm-Message-State: AOJu0YwbNNnzUquDZsCKVxUqV5PdzJeavXKrrLXgkyT1xrpI1XomVO8A
-	wYD7jUvowpLCoDj4Pmg9WTi3F/C6qFadEJz4ER59gJfnHQ94plCi45oU0qG+mbc=
-X-Google-Smtp-Source: AGHT+IHeM+LZlAASDgAgZoJYi6IfqhYsJvdtMF0w6gMHjoszi7FeDpQTCR5RBlOwPb4z0zSfsEZQvQ==
-X-Received: by 2002:a9d:66c3:0:b0:6ef:9159:8915 with SMTP id t3-20020a9d66c3000000b006ef91598915mr13321544otm.37.1715057857495;
-        Mon, 06 May 2024 21:57:37 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:1c2:1802:170:6870:7119:e255:c3a0])
-        by smtp.gmail.com with ESMTPSA id o14-20020a637e4e000000b005f80aced5f3sm8987249pgn.0.2024.05.06.21.57.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 May 2024 21:57:37 -0700 (PDT)
-From: Drew Fustini <dfustini@tenstorrent.com>
-Date: Mon, 06 May 2024 21:55:20 -0700
-Subject: [PATCH RFC v3 7/7] riscv: dts: thead: update TH1520 dma and timer
- nodes to use clock controller
+	s=arc-20240116; t=1715058448; c=relaxed/simple;
+	bh=H9Wroe0+MJ8cZwAFOmgq+GNEwQs5Lm9VS6mDszVFKAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lJBz1vwVZw7atJJeyyQyKsky8Iv3Kmiw8AOWtCzsNHfqaZM6WVyd+NGduMYZsBGFObZP2+8Fc9Vmty4/wiPLKi05qzQ6UV90r7RWi1x5zuCrVdfEUP0f7fmWHjmonO4G65bmuPJzmL2/PxDPmPdmasIZiyQ8vhQQ3MUNa+l7Fw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XK5zWgCP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4474l4gW021668;
+	Tue, 7 May 2024 05:07:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=bI3pBZkYcsPCHQGgd/E01i4BuFAtOvg3ogKbyC5db1g=; b=XK
+	5zWgCPPoLgmUOPPDrmr1EuZ7GpwDbioFc+5OUYUnLDtmjtgTBvpCOeBH3YHzXl6j
+	T6KJeoxE2MH4232ZMRFCZJdnu5ijGxN2DqPsdwhERdxCsC1sj2Pqe0b3WL5gCTx6
+	WwSxTpOPvYzm6tQ/UakjUY0bleN9jk373uidDSTfR0G8arA3PqtpjHwO6L7vEB0b
+	fsFXjHoDZ4QFum/BmcxChYQWGpow7kuZWplhXlfLn9whZDMRj8ajOK3Np1UvmelH
+	Amxrii/Uo1pkbkCbAxTACx2mYPd0FeGXwOkLhtGwgVDTbqtkFHyXqCCdNx76udhq
+	Y6fO5x0ffvROewahW8Ow==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xxvv72370-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 May 2024 05:07:18 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44757H6D031707
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 May 2024 05:07:17 GMT
+Received: from [10.216.28.196] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 May 2024
+ 22:07:09 -0700
+Message-ID: <6ab2b8c5-a0a5-581a-6b3d-6af9ec763ced@quicinc.com>
+Date: Tue, 7 May 2024 10:37:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Update Devicetree
+ identifiers
+To: Caleb Connolly <caleb.connolly@linaro.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        <peter.griffin@linaro.org>, <linux-riscv@lists.infradead.org>,
+        <chrome-platform@lists.linux.dev>,
+        <linux-mediatek@lists.infradead.org>
+References: <1710418312-6559-1-git-send-email-quic_amrianan@quicinc.com>
+ <1710418312-6559-2-git-send-email-quic_amrianan@quicinc.com>
+ <9fdd04e8-cc7b-41e7-a099-055f39b3b462@linaro.org>
+Content-Language: en-US
+From: Amrit Anand <quic_amrianan@quicinc.com>
+In-Reply-To: <9fdd04e8-cc7b-41e7-a099-055f39b3b462@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240506-th1520-clk-v3-7-085a18a23a7f@tenstorrent.com>
-References: <20240506-th1520-clk-v3-0-085a18a23a7f@tenstorrent.com>
-In-Reply-To: <20240506-th1520-clk-v3-0-085a18a23a7f@tenstorrent.com>
-To: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
- Fu Wei <wefu@redhat.com>, Yangtao Li <frank.li@vivo.com>, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
- Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Drew Fustini <dfustini@tenstorrent.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1715057849; l=4851;
- i=dfustini@tenstorrent.com; s=20230430; h=from:subject:message-id;
- bh=uoSZcE5Xsilp2h5kGfeS4a/3IqaGYxAdmgKgnxrBUNU=;
- b=BifQO2sCcHe9fBTRk7kaehpgYjaAujHk0VCVti7HuFvmS4vxrzgImnYMt0/hjY1s2xpIUoVAI
- 3VNZYMYtEGwCH+FsfP6I8l3tUiDWT1Vg/QZawgOwqZNahnDphwqvTET
-X-Developer-Key: i=dfustini@tenstorrent.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fRBpH_utEobAeaEviHoaDXWmwgb-yF2Y
+X-Proofpoint-ORIG-GUID: fRBpH_utEobAeaEviHoaDXWmwgb-yF2Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-07_02,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1011 suspectscore=0
+ spamscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2405070034
 
-Change the dma-controller and timer nodes to use the APB clock provided
-by the AP_SUBSYS clock controller.
 
-Remove apb_clk reference from BeagleV Ahead and LPI4a dts.
+On 3/14/2024 7:59 PM, Caleb Connolly wrote:
+>
+> On 14/03/2024 12:11, Amrit Anand wrote:
+>> Update existing documentation for qcom,msm-id (interchangeably:
+>> qcom,soc-id) and qcom,board-id. Add support for qcom,pmic-id, qcom,oem-id
+>> to support multi-DTB selection on Qualcomm's boards.
+>>
+>> "qcom,soc-id", "qcom,board-id" and "qcom,pmic-id" are tuples of two 32-bit
+>> values. The "qcom,oem-id" is a tuple of one 32-bit value.
+>> Introduce macros to help generate SOC, board, PMIC and OEM identifiers.
+>> QCOM_SOC_ID and QCOM_SOC_REVISION can be used to generate qcom,msm-id.
+>> QCOM_BOARD_ID and QCOM_BOARD_SUBTYPE can be used to generate qcom,board-id.
+>> QCOM_PMIC_SID and QCOM_PMIC_MODEL can be used to generate qcom,pmic-id.
+>> QCOM_OEM_ID can be used to generate qcom,oem-id.
+>>
+>> Add entries for different types of SoC, boards, DDR type, Boot device
+>> type which are currently used by Qualcomm based bootloader.
+>>
+>> Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
+>> ---
+>>   include/dt-bindings/arm/qcom,ids.h | 86 ++++++++++++++++++++++++++++++++++----
+>>   1 file changed, 77 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+>> index f724834..dc24151 100644
+>> --- a/include/dt-bindings/arm/qcom,ids.h
+>> +++ b/include/dt-bindings/arm/qcom,ids.h
+>> @@ -8,9 +8,14 @@
+>>   #define _DT_BINDINGS_ARM_QCOM_IDS_H
+>>   
+>>   /*
+>> - * The MSM chipset and hardware revision used by Qualcomm bootloaders, DTS for
+>> - * older chipsets (qcom,msm-id) and in socinfo driver:
+>> + * The MSM chipset ID (soc-id) used by Qualcomm bootloaders,
+>> + * and in socinfo driver:
+>> + * where, "a" indicates Qualcomm supported chipsets, example MSM8260, MSM8660 etc
+>>    */
+>> +
+>> +#define QCOM_SOC_ID(a)  ((QCOM_ID_##a) && 0xffff)
+> How is QCOM_SOC_ID(SC7280) ever better than QCOM_ID_SC7280? What does
+> this mask give you? It's going into a 32-bit field and not being OR'd
+> with anything else...
+Ok, understood. Seems better.
+>> +
+>> +
+>>   #define QCOM_ID_MSM8260			70
+>>   #define QCOM_ID_MSM8660			71
+>>   #define QCOM_ID_APQ8060			86
+>> @@ -266,16 +271,79 @@
+>>   #define QCOM_ID_IPQ5302			595
+>>   #define QCOM_ID_IPQ5300			624
+>>   
+>> + /* The SOC revision used by Qualcomm bootloaders (soc-revision) */
+>> +
+>> +#define QCOM_SOC_REVISION(a)		(a & 0xff)
+>> +
+>>   /*
+>> - * The board type and revision information, used by Qualcomm bootloaders and
+>> - * DTS for older chipsets (qcom,board-id):
+>> + * The board type and revision information (board-id), used by Qualcomm bootloaders
+>> + * where, "a" indicates board type which can be either MTP, QRD etc
+>>    */
+>> +
+>>   #define QCOM_BOARD_ID(a, major, minor) \
+>> -	(((major & 0xff) << 16) | ((minor & 0xff) << 8) | QCOM_BOARD_ID_##a)
+>> +	(((major & 0xff) << 16) | ((minor & 0xff) << 8) | ((QCOM_BOARD_ID_##a) & 0xff))
+>> +
+>> +#define QCOM_BOARD_ID_MTP		0x8
+>> +#define QCOM_BOARD_ID_LIQUID		0x9
+>> +#define QCOM_BOARD_ID_DRAGONBOARD	0xA
+>> +#define QCOM_BOARD_ID_QRD		0x11
+> This replaces the previous definition of QCOM_BOARD_ID_QRD which was
+> decimal 11, now you're defining it as hex 0x11? I'm guessing this was a
+> typo.
 
-Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
----
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  4 ----
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi    |  4 ----
- arch/riscv/boot/dts/thead/th1520.dtsi              | 24 ++++++++--------------
- 3 files changed, 9 insertions(+), 23 deletions(-)
+Will correct it.
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 55f1ed0cb433..1180e41c7b07 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -44,10 +44,6 @@ &osc_32k {
- 	clock-frequency = <32768>;
- };
- 
--&apb_clk {
--	clock-frequency = <62500000>;
--};
--
- &dmac0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index 762eceb415f8..78977bdbbe3d 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -25,10 +25,6 @@ &osc_32k {
- 	clock-frequency = <32768>;
- };
- 
--&apb_clk {
--	clock-frequency = <62500000>;
--};
--
- &dmac0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index cf2141c3976f..34bd58b45baa 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -135,12 +135,6 @@ osc_32k: 32k-oscillator {
- 		#clock-cells = <0>;
- 	};
- 
--	apb_clk: apb-clk-clock {
--		compatible = "fixed-clock";
--		clock-output-names = "apb_clk";
--		#clock-cells = <0>;
--	};
--
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -326,7 +320,7 @@ dmac0: dma-controller@ffefc00000 {
- 			compatible = "snps,axi-dma-1.01a";
- 			reg = <0xff 0xefc00000 0x0 0x1000>;
- 			interrupts = <27 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&apb_clk>, <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>, <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "core-clk", "cfgr-clk";
- 			#dma-cells = <1>;
- 			dma-channels = <4>;
-@@ -341,7 +335,7 @@ dmac0: dma-controller@ffefc00000 {
- 		timer0: timer@ffefc32000 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xefc32000 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -350,7 +344,7 @@ timer0: timer@ffefc32000 {
- 		timer1: timer@ffefc32014 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xefc32014 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -359,7 +353,7 @@ timer1: timer@ffefc32014 {
- 		timer2: timer@ffefc32028 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xefc32028 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -368,7 +362,7 @@ timer2: timer@ffefc32028 {
- 		timer3: timer@ffefc3203c {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xefc3203c 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -399,7 +393,7 @@ uart5: serial@fff7f0c000 {
- 		timer4: timer@ffffc33000 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xffc33000 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -408,7 +402,7 @@ timer4: timer@ffffc33000 {
- 		timer5: timer@ffffc33014 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xffc33014 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -417,7 +411,7 @@ timer5: timer@ffffc33014 {
- 		timer6: timer@ffffc33028 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xffc33028 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <22 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -426,7 +420,7 @@ timer6: timer@ffffc33028 {
- 		timer7: timer@ffffc3303c {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xffc3303c 0x0 0x14>;
--			clocks = <&apb_clk>;
-+			clocks = <&clk CLK_PERI_APB_PCLK>;
- 			clock-names = "timer";
- 			interrupts = <23 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
+Thanks,
+Amrit
 
--- 
-2.34.1
-
+>> +#define QCOM_BOARD_ID_ADP		0x19
+>> +#define QCOM_BOARD_ID_HDK		0x1F
+>> +#define QCOM_BOARD_ID_ATP		0x21
+>> +#define QCOM_BOARD_ID_IDP		0x22
+>> +#define QCOM_BOARD_ID_SBC		0x24
+>> +#define QCOM_BOARD_ID_QXR		0x26
+>> +#define QCOM_BOARD_ID_X100		0x26
+>> +#define QCOM_BOARD_ID_CRD		0x28
+>> +
+>> +/*
+>> + * The platform subtype is used by Qualcomm bootloaders and
+>> + * DTS (board-subtype)
+>> + * where, "a" indicates boot device type, it can be EMMC,
+>> + * UFS, NAND or OTHER (which can be used for default).
+>> + * "b" indicates DDR type which can be 128MB, 256MB,
+>> + * 512MB, 1024MB, 2048MB, 3072MB, 4096MB or ANY
+>> + * (which can be used for default).
+>> + */
+>> +#define QCOM_BOARD_SUBTYPE(a, b, SUBTYPE) \
+>> +	(((QCOM_BOARD_BOOT_##a & 0xf) << 16) | ((QCOM_BOARD_DDRTYPE_##b & 0x7) << 8) | \
+>> +	(SUBTYPE & 0xff))
+>> +
+>> +/* Board DDR Type where each value indicates higher limit */
+>> +#define QCOM_BOARD_DDRTYPE_ANY		0x0
+>> +#define QCOM_BOARD_DDRTYPE_128M		0x1
+>> +#define QCOM_BOARD_DDRTYPE_256M		0x2
+>> +#define QCOM_BOARD_DDRTYPE_512M		0x3
+>> +#define QCOM_BOARD_DDRTYPE_1024M	0x4
+>> +#define QCOM_BOARD_DDRTYPE_2048M	0x5
+>> +#define QCOM_BOARD_DDRTYPE_3072M	0x6
+>> +#define QCOM_BOARD_DDRTYPE_4096M	0x7
+>>   
+>> -#define QCOM_BOARD_ID_MTP			8
+>> -#define QCOM_BOARD_ID_DRAGONBOARD		10
+>> -#define QCOM_BOARD_ID_QRD			11
+>> -#define QCOM_BOARD_ID_SBC			24
+>> +/* Board Boot Device Type */
+>> +#define QCOM_BOARD_BOOT_EMMC		0x0
+>> +#define QCOM_BOARD_BOOT_UFS		0x1
+>> +#define QCOM_BOARD_BOOT_NAND		0x2
+>> +#define QCOM_BOARD_BOOT_OTHER		0x3
+>> +
+>> +/*
+>> + * The PMIC slave id is used by Qualcomm bootloaders to
+>> + * indicates which PMIC is attached (pmic-sid)
+>> + */
+>> +
+>> +#define QCOM_PMIC_SID(a)		(a & 0xff)
+>> +
+>> +/*
+>> + * The PMIC ID is used by Qualcomm bootloaders to describe the ID
+>> + * of PMIC attached to bus described by SID (pmic-model)
+>> + */
+>> +
+>> +#define QCOM_PMIC_MODEL(ID, major, minor) \
+>> +	(((major & 0xff) << 16) | ((minor & 0xff) << 8) | (ID & 0xff))
+>> +
+>> +/*
+>> + * The OEM ID consists of 32 bit value to support OEM boards where they
+>> + * have slight differences on top of Qualcomm's standard boards
+>> + */
+>> +#define QCOM_OEM_ID(a)		(a & 0xffffffff)
+>>   
+>>   #endif /* _DT_BINDINGS_ARM_QCOM_IDS_H */
 
