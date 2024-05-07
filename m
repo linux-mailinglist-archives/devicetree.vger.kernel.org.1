@@ -1,274 +1,678 @@
-Return-Path: <devicetree+bounces-65361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296738BDEEC
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:52:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7038BDF0A
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 11:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3823282A20
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:52:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A1FF1F21647
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 09:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E4314EC5D;
-	Tue,  7 May 2024 09:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF3E149C6F;
+	Tue,  7 May 2024 09:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="io6A/m7g"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="UlOjR/Wh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2114.outbound.protection.outlook.com [40.107.22.114])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145B314D71D;
-	Tue,  7 May 2024 09:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.114
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715075331; cv=fail; b=tsbeiBQ+ZeLX1ik6BV3WIxcN8tcybqANBozGRLrwiPMMekP7wfB0OZf8wQ1hdbF5DmTxdC7dT7eQhI5jj+ZFCtcF+S5HLNpH8QH73NobakcNIf/ZvNGyrSjTinw2Szfxd3/4YuS9vdFfUbX7WRI26Vgqco19vpRg4poGvKeRS8U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715075331; c=relaxed/simple;
-	bh=HFfZVrCfc2McAseFLQwOZ7BhHZftBzywGsmw9qxdlpI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=gfbnP0YxR5wOTnTr1cP3DwRC5Nv4UbUiZ0rWuQdwDuk6tQ4Mi8sKUlRLaSwFeFha+JQxHqgHF7L6mLEUWY4BF1Nd1dhvW9SDcZ7N2PSytZxgDe5UkwFB+bKkVAF24NOtUhm2/c1v++QE2zaa4PRjDWPS2yx8jSbVyjqoW1uSbbo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=io6A/m7g; arc=fail smtp.client-ip=40.107.22.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MV3P6HvRclcLmgCNPS9E323bt0k8+bsp0cGdHQ3qYyX3j5ayWOv+zPksi9aExBKeR22ZZVR3PLS/vEIKo9lYga30xu1wYLUmJ2SHLgwaqx9/BvZHFQNffbuP3ZW9fkern0+C4lVuMOxlbtc4xa9Esj/isyDI92nFm+aVbHf8K3H9ElJRiOPeKoCrW+XuLHONTZ5bMtmPwf0BM9NHJJdkpmmQqIyMGfKE9U/jKeqv1o1ovviLv7QaMGffDVPACXJsT9UDUlwJnbs83r+QTn0yKJxzxvjoCCsEiPB4EQJDsbEF5myfccvBOe7iFgiNoGs7kYDyRB20FOYRvTIyIa7fwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SFaPdzbEfsQyaZU8VsaxuVyOwQopmmOKiXFMV/tvz24=;
- b=JznJIKYn55n5P6GX1MPD9vMVwPntyUXaZGcaSLyXCt4Lf19FXa/VrO05NJkvqMO+hHZZ+P5E5Obcny4O5GQryvlbKdUpcLXcOcoqTL3A5IVfLvMdcEV2PZhH3XtiAP4cBj9oKMAj5gSWHW3OaL7haHPEWsHtgOV+MfMR+zypKRbCWKdoaU5r99i5WJjPSJEl/ujOuLcOp6B5sZnay/cvQOGzt2q2YwawRLkNjUytCUoLnusVt/vNp57Dw3eFjAww2BjemSZP6xbnuDQmqqK7mDe1MHNFJW2ypgBpK7PHJIM08gslUGq/XrZqiIhoCECD1r696mk2Zw2IExriH7wVaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SFaPdzbEfsQyaZU8VsaxuVyOwQopmmOKiXFMV/tvz24=;
- b=io6A/m7gRII11b6Wlc068SPCIdcSxJAU0u2rqvI2LY/LfTGpygRKPEzjCKQCGkJQphywJgFFy2a2YxRtLisDlJ2Wbwx22wVBbGyhWGY+WImvEXhLLQJDyKGJ+LvnqawJpY0xuCHuZ5kUzdMcuFIVI/ZxiJUOpPbYdArebrN0pbM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from DB7PR04MB4842.eurprd04.prod.outlook.com (2603:10a6:10:1b::13)
- by DB9PR04MB9554.eurprd04.prod.outlook.com (2603:10a6:10:302::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41; Tue, 7 May
- 2024 09:48:44 +0000
-Received: from DB7PR04MB4842.eurprd04.prod.outlook.com
- ([fe80::ac08:df46:97bd:4ae6]) by DB7PR04MB4842.eurprd04.prod.outlook.com
- ([fe80::ac08:df46:97bd:4ae6%6]) with mapi id 15.20.7544.041; Tue, 7 May 2024
- 09:48:44 +0000
-Message-ID: <34968505-f8b1-4c6f-9d9c-5938edcdba68@cherry.de>
-Date: Tue, 7 May 2024 11:48:41 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] i2c: mux: add the ability to share mux core
- address with child nodes
-To: Peter Rosin <peda@axentia.se>, Farouk Bouabid <farouk.bouabid@cherry.de>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20240506-dev-mule-i2c-mux-v2-0-a91c954f65d7@cherry.de>
- <20240506-dev-mule-i2c-mux-v2-1-a91c954f65d7@cherry.de>
- <9b12dc9f-054b-fba5-e23d-48d0fe1a00e2@axentia.se>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <9b12dc9f-054b-fba5-e23d-48d0fe1a00e2@axentia.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: WA0P291CA0018.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::15) To DB7PR04MB4842.eurprd04.prod.outlook.com
- (2603:10a6:10:1b::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB6814E2D9
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 09:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715075699; cv=none; b=Wy4YVYzaK4alOh4mT+pJR8AZ52+AOylaWHeDE27gQdjyJHnDQ5ucd6JimrflRM5OlbSpJgPau3w9rWx0FkqAco1Ys5GRhAn0H9OUe7YiFCKUEEY30++i7b13L9hOqUnf5Obcbqo0Jg71HRkmBDqF9KB1CnUhT6iW6JnDs/KqZKc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715075699; c=relaxed/simple;
+	bh=CHE1tigzNNkyysRAD+2FS2ODjhBUTibYEbL0fTaTe08=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TXuOaVmjsVUnLIOtSOiKz0WUld+OsgXdqg7WvE/vgBvkXbWDEVIhWUgFhfEkMrKJKpqj0zdGd2nqiLgRQba5gVswbY/6xbe/Qjk9AZ/m8bsqBhEjBIWgz++jXL02MhVVjduXCKWK+4HwcNZ7gadQE+qSy8SiyHn0wFy5PGfRSpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=UlOjR/Wh; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com [209.85.128.200])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2442C424B8
+	for <devicetree@vger.kernel.org>; Tue,  7 May 2024 09:54:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1715075693;
+	bh=XxMfRWpdblXuwoQnBu1WEKFAk7dyHrSQLZjVkp66ZA8=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=UlOjR/WhtL7nV/WqqbgMJjKeaHG9jhMEVaEeEVlZoJKazLoZx5YOl6b/xCEQOxsZw
+	 m0alF18rCAMtB2Lqop3PmMihqqGEUvmf6kDE7Cw1TV+O1O0YRXX8bOzDu5SHC3jb3i
+	 9WqArcN3x1n2d3tPHznPaplmtjsA3kuhNmIrj9YTqgivBHFoiIafR6ksqENaSlKVaq
+	 tlzS4vSsLxPedZhUTdfOO6ynItFcMwUoxLnyCXEff98LdfWI1FEGODvbrcxBYxwmAb
+	 pgbJaq1HfXX/9+D3w81ni9JmiFBcdmH6rKe5CullNqcuzBUQ0DFxWi0zZfQr8cmae6
+	 jGt8eUm75jP6Q==
+Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-6202c9d143cso62034107b3.0
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2024 02:54:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715075674; x=1715680474;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XxMfRWpdblXuwoQnBu1WEKFAk7dyHrSQLZjVkp66ZA8=;
+        b=DCuqTnhB4QatvBq+dJV5FPo8T91wCgDnqG1KwGbzuP3wq5cN8RA1DkaQWmuC20SQ81
+         RCrDlviD/cI15ftwKccbEYFNcej9lDSpW9tvddKW+NNIokV5gvSfe3SKzSVx+gluZnau
+         0EnJ8MqV28vA1X7cibT553iYRjFIDu5qPjsZBWM6f+y2/fbtKaFBkG8r6hq4ParPu2OF
+         3INIfwtKWBxRFt43GAxkGgyKU/7ZUl9jtaRYHNHYHhzTy+O3mNFvl9RxXri2Pw+m3vC3
+         VOdutfz0oMqBvJPavXYKZpBDM4bo6ncMLeZlZhfCSt3NY3Luhs/cLhyx/JPzA8GOnTp4
+         EVRg==
+X-Forwarded-Encrypted: i=1; AJvYcCWclpvvseYTcm+JKNZ7JgacofaqkAJzrV6PCcv0ldgG1ewccGjZtKNHt9sFS2llMCNiBlDxWifsKs2B2RtQLVv621unA7JLcUalPQ==
+X-Gm-Message-State: AOJu0YzNj8k4x42JHfndn/E/6MiwaqsOXoYgMWxJijGUDl+nGCKSaxb4
+	z0hGgnzGhx5c6VMHTxmlz1VAlTxOc43nKD5mXZms/cI7yB73uIvdnWbDT9GzNgIbIjyDLFv+lWS
+	eUgkFFD14UbmFYQTO9kKj4bpg0n5mYE9qH/auhQg5SA5h8WU66egxDe+v4XVdHFmWtg8+SRGHPo
+	8qrjYMV2/C2TL8WHEiq7VmANrqj3wDWfLEuoeQpNKLuFvGrwrJxQ==
+X-Received: by 2002:a05:690c:6f84:b0:61a:b54d:5925 with SMTP id je4-20020a05690c6f8400b0061ab54d5925mr13088704ywb.38.1715075674292;
+        Tue, 07 May 2024 02:54:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEw6YUEAS9vk1bIxTyFsZLiot4XTIjgw5Dx5kaVtTIlLPYpm3g7P4Jh2xlEwW/ZGqyJQe5vTOEawAe9GnKxE5w=
+X-Received: by 2002:a05:690c:6f84:b0:61a:b54d:5925 with SMTP id
+ je4-20020a05690c6f8400b0061ab54d5925mr13088685ywb.38.1715075673819; Tue, 07
+ May 2024 02:54:33 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 7 May 2024 02:54:33 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <NTZPR01MB0986380E0F7930DF653D7807E1E4A@NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn>
+References: <20240412084543.7243-1-ziv.xu@starfivetech.com>
+ <20240412084543.7243-3-ziv.xu@starfivetech.com> <NTZPR01MB09860632D4BDB31B98E1BD18E11AA@NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn>
+ <CAJM55Z8U5ddBg_T34rHYUXQcTLdzhMhbhv3mZxehQL8VLBFtUA@mail.gmail.com> <NTZPR01MB0986380E0F7930DF653D7807E1E4A@NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4842:EE_|DB9PR04MB9554:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f0a89f7-7b0b-405d-8c4a-08dc6e7ae239
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005|7416005;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TTRMMEZHSk95aWpKVTRKejRHOVNRaGRCRVBpVzBUZDFUdmVwTmR5MWk2bk5r?=
- =?utf-8?B?OWJuTmM4ZHh3bHFyT1czampUTi9oNEszWWMvTS9XWm42WXU2NWpYb1FkMUNK?=
- =?utf-8?B?L1o2WlJ2bDhNZVEwdEpLMjdkdVJnUW9tR1NINHZWaUd3Mm9pMHN1aExLRDJx?=
- =?utf-8?B?eGhBWUxEenB2a0ZwZG5TbjQ5V21GbzBGb0tSREs1QlR5Y2JXNFpUblA4UjFu?=
- =?utf-8?B?V2dPcCs1RHZyVVBVeHNQcit3SnoxN1Z2MzlZcGdwU1p5aExtNHBIWVZLelJY?=
- =?utf-8?B?TUdiU3Y1UUwxVjJ6UmxzajlUM1dxNFZlTnRSR0hHVHdiY0xxa2VIMnkxcnU3?=
- =?utf-8?B?KzRhRHFra2UzRVFrdFRLajFvT0NTRk1TbEd2dnRreEt4UGc5MHZkRkxuSG8v?=
- =?utf-8?B?Z1VRcHhJMERYTmlmejRJaG92QUxpR0ltb29mZ00xRXJUYTI1MnZrVXZCenlH?=
- =?utf-8?B?azlGZURtQzVPZW9LR3drcXVCQkx5RTVXSzhvcXBRM1pWb1l2bDYzYUExZWVD?=
- =?utf-8?B?ZGs5SnNsMjROTmxRczJ2U1JLVWZnVjc5OEZUak1vT25vaEpVTGhoY0I2ZDNW?=
- =?utf-8?B?YTc2cURraGtJSnZhSVVUTG55UGQxMndKck0yQStMU3FKU0FOZzhzM3o4Nitl?=
- =?utf-8?B?VDQrQnExTmcxSUhsNnlHSjZjbkhRamJpbURDNkhhTEVmdi9sbkxndXRJZXRq?=
- =?utf-8?B?OTlSZHkrd3FMUlBSWVl4OFh3RDJGbEV1cHRGWld3UkpkVHF4SWZvalpXdFJ4?=
- =?utf-8?B?Tk5HanUrYnRvaFNSSEp1RlRISitvWWI0WTdYTUZuclFxWkdUVkRQRWFXS0Z6?=
- =?utf-8?B?RGQ3T1lPZkYrODlBTk9KUThGUlpkNjBucFNHaEVQR0tXRjZOTEluTnQveVg0?=
- =?utf-8?B?a3liemQvekVMUHk1RTNsWlg4WUd6UHZwWnlsQ2dGQXY5RVpHOFZwelRuWUFH?=
- =?utf-8?B?WldnRUhXQkkzYXp4Z2FhM2NrSEF3RVpiMU1VZTFON3RNS3NSMCt5c1h5eXNo?=
- =?utf-8?B?ZXdZOTNROWlGc2ZDdmhzZ2c2bGplc3E3dDVaRFB4UkYrbmtvQ1FUQ1c2Y05L?=
- =?utf-8?B?Qk1GZXBNekQ1b05rV1V6M291Ym01ZStlZlVvcEVDa2hFVFg5ckdqSEd5aFlu?=
- =?utf-8?B?bXdyMUx5Q0lBRnY3eFZzRXdmMU4vOUZ3N2pkTTV1NnNkQWpjZjR3aG5DaHJs?=
- =?utf-8?B?Z1J5dXdNeTh4MTVYVHBsazVkcDRJNHF4N3NaMEViMFNkSjJlQWZZK1hZZ1BB?=
- =?utf-8?B?YWxLQ08vRVc1WU8wbW1zejVuYmZRdnplejMrcnJhSE12emh4M1ExYlV3Z1hk?=
- =?utf-8?B?dTZXaVZIV3IwZDB2QmRHTEFxb2RvRFZ3cytvV2J1Y3Q1dVpPWWJBR1ZJQ245?=
- =?utf-8?B?cHJMN1A4YmpqSmNkRXVzQTRzVzhSb0RFWEl5TWFFaXlWSWNPelhHeWFYa0Y3?=
- =?utf-8?B?SGl6MlRlRGdodmdESURDVU9FYzZMWnJvK0Y0VVVLTGZoT25JU282VXFnYTJt?=
- =?utf-8?B?cGdwV2NFckVmM2RLaHdSeGswbmRTVU9kKzE0dVpQd0l3Y0hndjBjbmd0VUtu?=
- =?utf-8?B?RnBzOW9Cbm1sQUpRRGlwQ2EwNlk4V2xBSGhHcXQzRm9VY3lmdGdqbFpuNkda?=
- =?utf-8?B?OU0zQTBERTRNL2o4NFBiSUw1bnIvSVE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4842.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Znk2Vjd4cmlDcVEycEVnSlVrMUVEM1BqekU4WHFicW80U3F5OWN0T2ZFU0l3?=
- =?utf-8?B?K2pqdnZaTGJ1M00rNGVod0sreG56b0FKSzdZVzBsNllXWGJ2dW5CT0ZrZDdy?=
- =?utf-8?B?aTUzTVY2MkJuMUxVQnNiTmprZE9yN1FtZnhJMWR3MnpoK29ua01sdjhqYnNU?=
- =?utf-8?B?SlVyMnZNNWZiNlozbXRIOFZzSkJRZ1p1dVBwSURTUEZQWFBCVXlUZ2JJaW4y?=
- =?utf-8?B?a01NTGxxRHVtakpRL2I5TWxQOWkzYlZwL04vSk1KejEzelpEVXBlaWdXRFVo?=
- =?utf-8?B?Zzkvb1J2cWZ1ZzNONHBJVmZUdlFZbHhpL1RJTkJncmI3VWUzSmJKeDVWWlNl?=
- =?utf-8?B?Uk5HdHZya3lBeXpoSTVGaDBrMjl2T2dObzBjNk44VmorZ01WUG5oYWVnMWNV?=
- =?utf-8?B?RG5iemhhTjVuMnRhSTNDd1BpUFpmR0NjQzVXbnk1cEljK1FYdnEzM1FuRjFS?=
- =?utf-8?B?aUdCeWxjNytzWVZKM2hvczFFbUhjVy9SYWVBZWxNU3krWmRDcS9qVVpBRUpX?=
- =?utf-8?B?S28weFE2TVJvYS9oOGVRL3UzeU1rb2hIVkdwMEtSYnhzc2dERGZHdm9idEtn?=
- =?utf-8?B?dlN4OC9BL3FPb2FlNGhCK0RKRzl2MWY1WHJFV0x3UVlIcXkwRndqVkI4cEhE?=
- =?utf-8?B?aE5JU0djNkQxYXk5Sm5zVExuQlVvSkdzY00zWXg2cGlHOUVpSm5PUVdRQ2Vh?=
- =?utf-8?B?UE5uUXJDY3VMVGpPbTlQbUpCWW5aUEFkcEU3cDRxeis3R002aUhVcVNKL2hG?=
- =?utf-8?B?QXZUakF3Rmp1bFdCOXdjQXd3QnhDMDJaUEZiSzU1a0xlV01JMFFsREk5c01t?=
- =?utf-8?B?RDFvZklxS1ZkeTkvZlU3MEFTNWRyVm1TM2MrYWZ6QmhRbVJmb1JEb21mVU1I?=
- =?utf-8?B?U3F0eHdNR0svV00vRm1CaGhaejArc245OVBwb1F3SVN6UkFQZjloUSs5b0xP?=
- =?utf-8?B?eWRIVlkrQnMyTnJMMU1nekJSb21ock1zdGIrd3dvWXY0MGQ2Vm4zd3FISHRX?=
- =?utf-8?B?aFk1Y3FCay83b2hHR3B6UktHQlp0VGRXejM1ajU3RmZJRDJ4T2wrcEd6TnFJ?=
- =?utf-8?B?czFMMWw5UGhSZmF0eFRGS2Q4OGJUZlgrMzUvZnlRR01CT0hYVWYvSjFERWN0?=
- =?utf-8?B?em1pbjNudFIyOXRkdmZ3eHM5ZTBsRHo5ZUtvR2pkQmtLSnpEb2wwK2hYSzlM?=
- =?utf-8?B?RE5Sbk95aHNOYy9JaWlTQnpmVmhBc0M0SUlUU3cxWnB3OGVjSXJtVXNYc2po?=
- =?utf-8?B?TTE4YnpXOTZHelliVHE4b1VyTGF1QVpWMi9Cb0lraXNiRTd5M1hGNTc3WjlE?=
- =?utf-8?B?WnZrSXJEa3pPRml0VDExeEczb3ZLdGZ5OXE1Q3duSHRuMFdwbTVaMDdZUWlt?=
- =?utf-8?B?eHNpY2pDUGZRRzNtZ2FIUTYvakVvVWdsZXpZS3ZpMkowMEgzZzAzb0NGMmdj?=
- =?utf-8?B?V0xvdjZSYVFmR3hnSmFvcmxZeWZzdnV4YkNkT2NZWEZyZFliSWRjaFNPamUr?=
- =?utf-8?B?VGFrajQvRnpLUlB1TFFFK1ZPWUlSZlJmYWM5Z205NGVaS0VUM3o3WkRlQ2o1?=
- =?utf-8?B?Ymk5UEFiOTA4UXZ2d0owZGdNdHphYk5oOHkrZUozOWxOWVUxQnR5SXI2QjRF?=
- =?utf-8?B?bzlOR0NHNFh5eitYenRNWW81NVBYRmVmWGhucmtEMWU3cTNVMEtRM2dmNFhC?=
- =?utf-8?B?QVA1cWQyeGxOZEdxWVU2eE5GSXgwdXZOM2syYnJ4b0tRYytKWGJEbGpuVnNa?=
- =?utf-8?B?TlRCMjJ2OHZwbUtoSDJhVm1oR0lUOWpTdmliUFpMbXBISlZXWXJOTTBsZ1Jw?=
- =?utf-8?B?M0ZVODdRdlZIbUxydkw5MEZvTURqcEVxbUhPcWJ2VGxsbHNCSUNDb1VyWkdG?=
- =?utf-8?B?V0Z5akUzRmJld3RjVUVRc090am5GN2JVYUxVbHVWVE1wZVFpenhGWjdrVDdr?=
- =?utf-8?B?T050VVFlM2tCQmVtMWJta013MDFQWWNUK3VjeWpPaHh5Nzh1cTlEM1JhcFp0?=
- =?utf-8?B?UGhiWDQ0eXM3MkpJRzEycThMOVQ0cmxZQ2t1bnlpclpQUllqQTVnYWtyeGVN?=
- =?utf-8?B?b1pwSjlKRG04d3U3Y3I0OUlvemk4Q2lHd3RQRWoyK29lYWJzakhCeGw1ZUpT?=
- =?utf-8?B?VzlBVExwMmE3T0Z3VnlMQkpmcHJXZnV1R0VzSHd1OGtSaFhSVkM1OVJCME50?=
- =?utf-8?B?c0E9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0a89f7-7b0b-405d-8c4a-08dc6e7ae239
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4842.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 09:48:44.1825
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eiMTtDb2M33nHVKbg4v5s/igDa7dDANMS7ah/hWduIhvL8OlN9whmdZdKeH6SCDLf0Ye0c+2jhJ+Mq2oxGdUxVs5q4TIFmp2QVBDgcZzt0Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9554
+Mime-Version: 1.0
+Date: Tue, 7 May 2024 02:54:33 -0700
+Message-ID: <CAJM55Z9mTeRKxt3gc_c-APn0oUm=oZEkF1wsNxwSkDPCXUTLGA@mail.gmail.com>
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiBbUEFUQ0ggdjEwIDIvM10gY2xvY2tzb3VyY2U6IEFkZA==?=
+	=?UTF-8?B?IEpINzExMCB0aW1lciBkcml2ZXI=?=
+To: Ziv Xu <ziv.xu@starfivetech.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Walker Chen <walker.chen@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Peter,
+Ziv Xu wrote:
+>
+>
+> > -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
+> > =E5=8F=91=E4=BB=B6=E4=BA=BA: Emil Renner Berthing <emil.renner.berthing=
+@canonical.com>
+> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2024=E5=B9=B44=E6=9C=8830=E6=97=
+=A5 18:19
+> > =E6=94=B6=E4=BB=B6=E4=BA=BA: Ziv Xu <ziv.xu@starfivetech.com>; Daniel L=
+ezcano
+> > <daniel.lezcano@linaro.org>; Thomas Gleixner <tglx@linutronix.de>
+> > =E6=8A=84=E9=80=81: linux-riscv@lists.infradead.org; devicetree@vger.ke=
+rnel.org; Rob Herring
+> > <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Paul Walmsley
+> > <paul.walmsley@sifive.com>; Palmer Dabbelt <palmer@dabbelt.com>; Albert
+> > Ou <aou@eecs.berkeley.edu>; Philipp Zabel <p.zabel@pengutronix.de>; Wal=
+ker
+> > Chen <walker.chen@starfivetech.com>; Xingyu Wu
+> > <xingyu.wu@starfivetech.com>; linux-kernel@vger.kernel.org; Conor Doole=
+y
+> > <conor@kernel.org>
+> > =E4=B8=BB=E9=A2=98: Re: =E5=9B=9E=E5=A4=8D: [PATCH v10 2/3] clocksource=
+: Add JH7110 timer driver
+> >
+> > Ziv Xu wrote:
+> > >
+> > >
+> > > > -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
+> > > > =E5=8F=91=E4=BB=B6=E4=BA=BA: Ziv Xu
+> > > > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2024=E5=B9=B44=E6=9C=8812=E6=
+=97=A5 16:46
+> > > > =E6=94=B6=E4=BB=B6=E4=BA=BA: Daniel Lezcano <daniel.lezcano@linaro.=
+org>; Thomas Gleixner
+> > > > <tglx@linutronix.de>; Emil Renner Berthing
+> > > > <emil.renner.berthing@canonical.com>; Christophe JAILLET
+> > > > <christophe.jaillet@wanadoo.fr>
+> > > > =E6=8A=84=E9=80=81: linux-riscv@lists.infradead.org; devicetree@vge=
+r.kernel.org; Rob
+> > > > Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > > > <krzysztof.kozlowski+dt@linaro.org>; Paul Walmsley
+> > > > <paul.walmsley@sifive.com>; Palmer Dabbelt <palmer@dabbelt.com>;
+> > > > Albert Ou <aou@eecs.berkeley.edu>; Philipp Zabel
+> > > > <p.zabel@pengutronix.de>; Walker Chen
+> > > > <walker.chen@starfivetech.com>; Xingyu Wu
+> > > > <xingyu.wu@starfivetech.com>; linux-kernel@vger.kernel.org; Conor
+> > > > Dooley <conor@kernel.org>
+> > > > =E4=B8=BB=E9=A2=98: [PATCH v10 2/3] clocksource: Add JH7110 timer d=
+river
+> > > >
+> > > > From: Xingyu Wu <xingyu.wu@starfivetech.com>
+> > > >
+> > > > Add timer driver for the StarFive JH7110 SoC.
+> > > >
+> > > > This timer has four free-running and independent 32-bit counters.
+> > > > Each channel(counter) can trigger an interrupt when timeout even CP=
+U
+> > > > is sleeping. So this timer is used as global timer and register
+> > > > clockevent for each CPU core after riscv-timer registration on the =
+StarFive
+> > JH7110 SoC.
+> > > >
+> > > > Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
+> > > > Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> > > > ---
+> > > >  MAINTAINERS                        |   7 +
+> > > >  drivers/clocksource/Kconfig        |  11 +
+> > > >  drivers/clocksource/Makefile       |   1 +
+> > > >  drivers/clocksource/timer-jh7110.c | 345
+> > +++++++++++++++++++++++++++++
+> > > >  include/linux/cpuhotplug.h         |   1 +
+> > > >  5 files changed, 365 insertions(+)
+> > > >  create mode 100644 drivers/clocksource/timer-jh7110.c
+> > > >
+> > > > diff --git a/MAINTAINERS b/MAINTAINERS index
+> > > > 7c121493f43d..ef9b5f5bad9e 100644
+> > > > --- a/MAINTAINERS
+> > > > +++ b/MAINTAINERS
+> > > > @@ -21043,6 +21043,13 @@ S:	Maintained
+> > > >  F:	Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yam=
+l
+> > > >  F:	sound/soc/starfive/jh7110_tdm.c
+> > > >
+> > > > +STARFIVE JH7110 TIMER DRIVER
+> > > > +M:	Samin Guo <samin.guo@starfivetech.com>
+> > > > +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
+> > > > +S:	Supported
+> > > > +F:	Documentation/devicetree/bindings/timer/starfive,jh7110-timer.y=
+aml
+> > > > +F:	drivers/clocksource/timer-jh7110.c
+> > > > +
+> > > >  STARFIVE JH71X0 CLOCK DRIVERS
+> > > >  M:	Emil Renner Berthing <kernel@esmil.dk>
+> > > >  M:	Hal Feng <hal.feng@starfivetech.com>
+> > > > diff --git a/drivers/clocksource/Kconfig
+> > > > b/drivers/clocksource/Kconfig index
+> > > > 34faa0320ece..2dc97201dee1 100644
+> > > > --- a/drivers/clocksource/Kconfig
+> > > > +++ b/drivers/clocksource/Kconfig
+> > > > @@ -641,6 +641,17 @@ config RISCV_TIMER
+> > > >  	  is accessed via both the SBI and the rdcycle instruction.  This=
+ is
+> > > >  	  required for all RISC-V systems.
+> > > >
+> > > > +config STARFIVE_JH7110_TIMER
+> > > > +	bool "Timer for the STARFIVE JH7110 SoC"
+> > > > +	depends on ARCH_STARFIVE || COMPILE_TEST
+> > > > +	select TIMER_OF
+> > > > +	select CLKSRC_MMIO
+> > > > +	default ARCH_STARFIVE
+> > > > +	help
+> > > > +	  This enables the timer for StarFive JH7110 SoC. On RISC-V platf=
+orm,
+> > > > +	  the system has started RISCV_TIMER, but you can also use this
+> > timer
+> > > > +	  which can provide four channels to do a lot more things on JH71=
+10
+> > SoC.
+> > > > +
+> > > >  config CLINT_TIMER
+> > > >  	bool "CLINT Timer for the RISC-V platform" if COMPILE_TEST
+> > > >  	depends on GENERIC_SCHED_CLOCK && RISCV diff --git
+> > > > a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile index
+> > > > 4bb856e4df55..8dc2f0ea2d0f 100644
+> > > > --- a/drivers/clocksource/Makefile
+> > > > +++ b/drivers/clocksource/Makefile
+> > > > @@ -80,6 +80,7 @@ obj-$(CONFIG_INGENIC_TIMER)		+=3D
+> > ingenic-timer.o
+> > > >  obj-$(CONFIG_CLKSRC_ST_LPC)		+=3D clksrc_st_lpc.o
+> > > >  obj-$(CONFIG_X86_NUMACHIP)		+=3D numachip.o
+> > > >  obj-$(CONFIG_RISCV_TIMER)		+=3D timer-riscv.o
+> > > > +obj-$(CONFIG_STARFIVE_JH7110_TIMER)	+=3D timer-jh7110.o
+> > > >  obj-$(CONFIG_CLINT_TIMER)		+=3D timer-clint.o
+> > > >  obj-$(CONFIG_CSKY_MP_TIMER)		+=3D timer-mp-csky.o
+> > > >  obj-$(CONFIG_GX6605S_TIMER)		+=3D timer-gx6605s.o
+> > > > diff --git a/drivers/clocksource/timer-jh7110.c
+> > > > b/drivers/clocksource/timer-jh7110.c
+> > > > new file mode 100644
+> > > > index 000000000000..dc770507f209
+> > > > --- /dev/null
+> > > > +++ b/drivers/clocksource/timer-jh7110.c
+> > > > @@ -0,0 +1,345 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * Starfive JH7110 Timer driver
+> > > > + *
+> > > > + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> > > > + *
+> > > > + * This timer has four free-running and independent 32-bit counter=
+s
+> > > > +and runs in 24MHz
+> > > > + * clock on the StarFive JH7110 SoC. Each channel(counter) can
+> > > > +trigger an interrupt
+> > > > + * when timeout even CPU is sleeping. They support one-shot mode
+> > > > +and
+> > > > continuous-run mode.
+> > > > + *
+> > > > + * Each channel is used as a global timer that serves each cpu cor=
+e:
+> > > > + * JH7110 Timer Channel 0 -- CPU 0
+> > > > + * JH7110 Timer Channel 1 -- CPU 1
+> > > > + * JH7110 Timer Channel 2 -- CPU 2
+> > > > + * JH7110 Timer Channel 3 -- CPU 3
+> > > > + */
+> > > > +
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/clockchips.h>
+> > > > +#include <linux/cpu.h>
+> > > > +#include <linux/iopoll.h>
+> > > > +#include <linux/irq.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/reset.h>
+> > > > +
+> > > > +/* Bias: Ch0-0x0, Ch1-0x40, Ch2-0x80, and so on. */
+> > > > +#define JH7110_TIMER_CH_LEN		0x40
+> > > > +#define JH7110_TIMER_CH_BASE(x)		((x) *
+> > JH7110_TIMER_CH_LEN)
+> > > > +#define JH7110_TIMER_CH_MAX		4
+> > > > +
+> > > > +#define JH7110_DELAY_US			0
+> > > > +#define JH7110_TIMEOUT_US		10000
+> > > > +#define JH7110_CLOCKEVENT_RATING	300
+> > > > +#define JH7110_TIMER_MAX_TICKS		0xffffffff
+> > > > +#define JH7110_TIMER_MIN_TICKS		0xf
+> > > > +
+> > > > +#define JH7110_TIMER_INT_STATUS		0x00 /* RO[0:4]: Interrupt
+> > Status
+> > > > for channel0~4 */
+> > > > +#define JH7110_TIMER_CTL		0x04 /* RW[0]: 0-continuous run,
+> > 1-single run
+> > > > */
+> > > > +#define JH7110_TIMER_LOAD		0x08 /* RW: load value to counter
+> > */
+> > > > +#define JH7110_TIMER_ENABLE		0x10 /* RW[0]: timer enable
+> > register */
+> > > > +#define JH7110_TIMER_RELOAD		0x14 /* RW: write 1 or 0 both
+> > reload
+> > > > counter */
+> > > > +#define JH7110_TIMER_VALUE		0x18 /* RO: timer value register */
+> > > > +#define JH7110_TIMER_INT_CLR		0x20 /* RW: timer interrupt clear
+> > > > register */
+> > > > +#define JH7110_TIMER_INT_MASK		0x24 /* RW[0]: timer
+> > interrupt
+> > > > mask register */
+> > > > +
+> > > > +#define JH7110_TIMER_INT_CLR_ENA	BIT(0)
+> > > > +#define JH7110_TIMER_INT_CLR_AVA_MASK	BIT(1)
+> > > > +
+> > > > +#define JH7110_PERCPU_GET_CLKEVT
+> > > > 	(&jh7110_timer_info.clkevt[smp_processor_id()])
+> > > > +
+> > > > +/**
+> > > > + * struct jh7110_clkevt - Description of each timer channel
+> > > > + * @clk:		Clock of each timer channel
+> > > > + * @rst:		Reset of each timer channel
+> > > > + * @base:		Virtual address of each timer channel
+> > > > + * @irq:                Interrupt number of each timer channel
+> > > > + * @timer_enabled:      Enabled flag for each timer channel
+> > > > + * @name:		Name of each timer channel
+> > > > + */
+> > > > +struct jh7110_clkevt {
+> > > > +	struct clk		*clk;
+> > > > +	struct reset_control	*rst;
+> > > > +	void __iomem		*base;
+> > > > +	int			irq;
+> > > > +	bool			timer_enabled;
+> > > > +	char			name[sizeof("jh7110-timer.chX")];
+> > > > +};
+> > > > +
+> > > > +struct jh7110_timer_priv {
+> > > > +	struct clk		*pclk;
+> > > > +	struct reset_control	*prst;
+> > > > +	struct device		*dev;
+> > > > +	struct jh7110_clkevt	clkevt[JH7110_TIMER_CH_MAX];
+> > > > +};
+> > > > +
+> > > > +static struct jh7110_timer_priv jh7110_timer_info;
+> > > > +
+> > > > +/* 0:continuous-run mode, 1:single-run mode */ enum jh7110_timer_m=
+ode
+> > {
+> > > > +	JH7110_TIMER_MODE_CONTIN,
+> > > > +	JH7110_TIMER_MODE_SINGLE,
+> > > > +};
+> > > > +
+> > > > +/* Interrupt Mask, 0:Unmask, 1:Mask */ enum jh7110_timer_int_mask =
+{
+> > > > +	JH7110_TIMER_INT_ENA,
+> > > > +	JH7110_TIMER_INT_DIS,
+> > > > +};
+> > > > +
+> > > > +enum jh7110_timer_enable {
+> > > > +	JH7110_TIMER_DIS,
+> > > > +	JH7110_TIMER_ENA,
+> > > > +};
+> > > > +
+> > > > +/*
+> > > > + * BIT(0): Read value represent channel int status.
+> > > > + * Write 1 to this bit to clear interrupt. Write 0 has no effects.
+> > > > + * BIT(1): "1" means that it is clearing interrupt. BIT(0) can not=
+ be written.
+> > > > + */
+> > > > +static inline int jh7110_timer_int_clear(struct jh7110_clkevt
+> > > > +*clkevt) {
+> > > > +	u32 value;
+> > > > +	int ret;
+> > > > +
+> > > > +	/* Waiting interrupt can be cleared */
+> > > > +	ret =3D readl_poll_timeout_atomic(clkevt->base +
+> > > > +JH7110_TIMER_INT_CLR,
+> > > > value,
+> > > > +					!(value & JH7110_TIMER_INT_CLR_AVA_MASK),
+> > > > +					JH7110_DELAY_US, JH7110_TIMEOUT_US);
+> > > > +	if (!ret)
+> > > > +		writel(JH7110_TIMER_INT_CLR_ENA, clkevt->base +
+> > > > +JH7110_TIMER_INT_CLR);
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_start(struct jh7110_clkevt *clkevt) {
+> > > > +	int ret;
+> > > > +
+> > > > +	/* Disable and clear interrupt first */
+> > > > +	writel(JH7110_TIMER_INT_DIS, clkevt->base +
+> > > > JH7110_TIMER_INT_MASK);
+> > > > +	ret =3D jh7110_timer_int_clear(clkevt);
+> > > > +
+> > > > +	writel(JH7110_TIMER_INT_ENA, clkevt->base +
+> > > > JH7110_TIMER_INT_MASK);
+> > > > +	writel(JH7110_TIMER_ENA, clkevt->base + JH7110_TIMER_ENABLE);
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_shutdown(struct clock_event_device *evt) {
+> > > > +	struct jh7110_clkevt *clkevt =3D JH7110_PERCPU_GET_CLKEVT;
+> > > > +
+> > > > +	writel(JH7110_TIMER_DIS, clkevt->base + JH7110_TIMER_ENABLE);
+> > > > +	return jh7110_timer_int_clear(clkevt); }
+> > > > +
+> > > > +/* IRQ handler for the timer */
+> > > > +static irqreturn_t jh7110_timer_interrupt(int irq, void *data) {
+> > > > +	struct clock_event_device *evt =3D (struct clock_event_device *)d=
+ata;
+> > > > +	struct jh7110_clkevt *clkevt =3D &jh7110_timer_info.clkevt[0];
+> > > > +	u32 reg =3D readl(clkevt->base + JH7110_TIMER_INT_STATUS);
+> > > > +	u8 cpu_id =3D smp_processor_id();
+> > > > +
+> > > > +	/* Check interrupt status and channel(cpu) ID */
+> > > > +	if (!(reg & BIT(cpu_id)))
+> > > > +		return IRQ_NONE;
+> > > > +
+> > > > +	clkevt =3D &jh7110_timer_info.clkevt[cpu_id];
+> > > > +	writel(JH7110_TIMER_INT_CLR_ENA, (clkevt->base +
+> > > > +JH7110_TIMER_INT_CLR));
+> > > > +
+> > > > +	if (evt->event_handler)
+> > > > +		evt->event_handler(evt);
+> > > > +
+> > > > +	return IRQ_HANDLED;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_set_periodic(struct clock_event_device *ev=
+t) {
+> > > > +	struct jh7110_clkevt *clkevt =3D JH7110_PERCPU_GET_CLKEVT;
+> > > > +
+> > > > +	writel(JH7110_TIMER_MODE_CONTIN, clkevt->base +
+> > > > JH7110_TIMER_CTL);
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_set_oneshot(struct clock_event_device *evt=
+) {
+> > > > +	struct jh7110_clkevt *clkevt =3D JH7110_PERCPU_GET_CLKEVT;
+> > > > +
+> > > > +	writel(JH7110_TIMER_MODE_SINGLE, clkevt->base +
+> > > > JH7110_TIMER_CTL);
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_set_next_event(unsigned long next,
+> > > > +				       struct clock_event_device *evt) {
+> > > > +	struct jh7110_clkevt *clkevt =3D JH7110_PERCPU_GET_CLKEVT;
+> > > > +
+> > > > +	writel(JH7110_TIMER_MODE_SINGLE, clkevt->base +
+> > > > JH7110_TIMER_CTL);
+> > > > +	writel(next, clkevt->base + JH7110_TIMER_LOAD);
+> > > > +
+> > > > +	return jh7110_timer_start(clkevt); }
+> > > > +
+> > > > +static DEFINE_PER_CPU(struct clock_event_device, jh7110_clock_even=
+t) =3D
+> > {
+> > > > +	.features			=3D CLOCK_EVT_FEAT_PERIODIC |
+> > > > +					  CLOCK_EVT_FEAT_ONESHOT,
+> > > > +	.rating				=3D JH7110_CLOCKEVENT_RATING,
+> > > > +	.set_state_shutdown		=3D jh7110_timer_shutdown,
+> > > > +	.set_state_periodic		=3D jh7110_timer_set_periodic,
+> > > > +	.set_state_oneshot		=3D jh7110_timer_set_oneshot,
+> > > > +	.set_state_oneshot_stopped	=3D jh7110_timer_shutdown,
+> > > > +	.set_next_event			=3D jh7110_timer_set_next_event,
+> > > > +};
+> > > > +
+> > > > +static int jh7110_timer_dying_cpu(unsigned int cpu) {
+> > > > +	struct jh7110_timer_priv *priv =3D &jh7110_timer_info;
+> > > > +
+> > > > +	if (!priv->clkevt[cpu].timer_enabled)
+> > > > +		return 0;
+> > > > +
+> > > > +	writel(JH7110_TIMER_DIS, priv->clkevt[cpu].base +
+> > > > JH7110_TIMER_ENABLE);
+> > > > +	jh7110_timer_int_clear(&priv->clkevt[cpu]);
+> > > > +	reset_control_assert(priv->clkevt[cpu].rst);
+> > > > +	clk_disable_unprepare(priv->clkevt[cpu].clk);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_starting_cpu(unsigned int cpu) {
+> > > > +	struct clock_event_device *evt =3D per_cpu_ptr(&jh7110_clock_even=
+t,
+> > cpu);
+> > > > +	struct jh7110_timer_priv *priv =3D &jh7110_timer_info;
+> > > > +	int err;
+> > > > +	u32 rate;
+> > > > +
+> > > > +	if (cpu >=3D JH7110_TIMER_CH_MAX)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	err =3D clk_prepare_enable(priv->clkevt[cpu].clk);
+> > > > +	if (err)
+> > > > +		goto err_starting_cpu;
+> > > > +
+> > > > +	err =3D reset_control_deassert(priv->clkevt[cpu].rst);
+> > > > +	if (err)
+> > > > +		goto err_soft_reset;
+> > > > +
+> > > > +	rate =3D clk_get_rate(priv->clkevt[cpu].clk);
+> > > > +	evt->cpumask =3D cpumask_of(cpu);
+> > > > +	evt->irq =3D priv->clkevt[cpu].irq;
+> > > > +
+> > > > +	err =3D irq_force_affinity(evt->irq, cpumask_of(cpu));
+> > > > +	if (err)
+> > > > +		goto err_affinity;
+> > > > +
+> > > > +	clockevents_config_and_register(evt, rate,
+> > JH7110_TIMER_MIN_TICKS,
+> > > > +					JH7110_TIMER_MAX_TICKS);
+> > > > +
+> > > > +	/* Use one-shot mode */
+> > > > +	writel(JH7110_TIMER_MODE_SINGLE, (priv->clkevt[cpu].base +
+> > > > +JH7110_TIMER_CTL));
+> > > > +
+> > > > +	priv->clkevt[cpu].timer_enabled =3D true;
+> > > > +
+> > > > +	err =3D jh7110_timer_start(&priv->clkevt[cpu]);
+> > > > +	if (err)
+> > > > +		goto err_affinity;
+> > > > +	return 0;
+> > > > +
+> > > > +err_affinity:
+> > > > +	reset_control_assert(priv->clkevt[cpu].rst);
+> > > > +err_soft_reset:
+> > > > +	clk_disable_unprepare(priv->clkevt[cpu].clk);
+> > > > +err_starting_cpu:
+> > > > +	free_irq(evt->irq, evt);
+> > > > +	return err;
+> > > > +}
+> > > > +
+> > > > +static int jh7110_timer_probe(struct platform_device *pdev) {
+> > > > +	struct jh7110_timer_priv *priv =3D &jh7110_timer_info;
+> > > > +	struct clock_event_device *evt;
+> > > > +	struct jh7110_clkevt *clkevt;
+> > > > +	char name[sizeof("chX")];
+> > > > +	int ch;
+> > > > +	int ret;
+> > > > +	void __iomem *base;
+> > > > +
+> > > > +	base =3D devm_platform_ioremap_resource(pdev, 0);
+> > > > +	if (IS_ERR(base))
+> > > > +		return dev_err_probe(&pdev->dev, PTR_ERR(base),
+> > > > +				     "failed to map registers\n");
+> > > > +
+> > > > +	priv->prst =3D devm_reset_control_get_exclusive(&pdev->dev, "apb"=
+);
+> > > > +	if (IS_ERR(priv->prst))
+> > > > +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->prst),
+> > > > +				     "failed to get apb reset\n");
+> > > > +
+> > > > +	priv->pclk =3D devm_clk_get_enabled(&pdev->dev, "apb");
+> > > > +	if (IS_ERR(priv->pclk))
+> > > > +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->pclk),
+> > > > +				     "failed to get & enable apb clock\n");
+> > > > +
+> > > > +	ret =3D reset_control_deassert(priv->prst);
+> > > > +	if (ret)
+> > > > +		return dev_err_probe(&pdev->dev, ret, "failed to deassert apb
+> > > > +reset\n");
+> > > > +
+> > > > +	for (ch =3D 0; ch < JH7110_TIMER_CH_MAX; ch++) {
+> > > > +		evt =3D per_cpu_ptr(&jh7110_clock_event, ch);
+> > > > +		clkevt =3D &priv->clkevt[ch];
+> > > > +		snprintf(name, sizeof(name), "ch%d", ch);
+> > > > +
+> > > > +		clkevt->base =3D base + JH7110_TIMER_CH_BASE(ch);
+> > > > +		/* Ensure timer is disabled */
+> > > > +		writel(JH7110_TIMER_DIS, clkevt->base +
+> > JH7110_TIMER_ENABLE);
+> > > > +		ret =3D jh7110_timer_int_clear(clkevt);
+> > > > +		if (ret)
+> > > > +			return ret;
+> > > > +
+> > > > +		clkevt->rst =3D devm_reset_control_get_exclusive(&pdev->dev,
+> > name);
+> > > > +		if (IS_ERR(clkevt->rst))
+> > > > +			return PTR_ERR(clkevt->rst);
+> > > > +
+> > > > +		clkevt->clk =3D devm_clk_get(&pdev->dev, name);
+> > > > +		if (IS_ERR(clkevt->clk))
+> > > > +			return PTR_ERR(clkevt->clk);
+> > > > +
+> > > > +		clkevt->irq =3D platform_get_irq(pdev, ch);
+> > > > +		if (clkevt->irq < 0)
+> > > > +			return clkevt->irq;
+> > > > +
+> > > > +		snprintf(clkevt->name, sizeof(clkevt->name),
+> > "jh7110-timer.ch%d",
+> > > > ch);
+> > > > +		ret =3D devm_request_irq(&pdev->dev, clkevt->irq,
+> > > > jh7110_timer_interrupt,
+> > > > +				       IRQF_TIMER | IRQF_IRQPOLL,
+> > > > +				       clkevt->name, evt);
+> > > > +
+> > > > +		if (ret)
+> > > > +			return ret;
+> > > > +
+> > > > +		clkevt->timer_enabled =3D false;
+> > > > +	}
+> > > > +
+> > > > +	return cpuhp_setup_state(CPUHP_AP_JH7110_TIMER_STARTING,
+> > > > +				"clockevents/jh7110/timer:starting",
+> > > > +				jh7110_timer_starting_cpu,
+> > jh7110_timer_dying_cpu); }
+> > > > +
+> > > > +static const struct of_device_id jh7110_timer_match[] =3D {
+> > > > +	{ .compatible =3D "starfive,jh7110-timer", },
+> > > > +	{ /* sentinel */ }
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, jh7110_timer_match);
+> > > > +
+> > > > +static struct platform_driver jh7110_timer_driver =3D {
+> > > > +	.probe =3D jh7110_timer_probe,
+> > > > +	.driver =3D {
+> > > > +		.name =3D "jh7110-timer",
+> > > > +		.of_match_table =3D jh7110_timer_match,
+> > > > +	},
+> > > > +};
+> > > > +module_platform_driver(jh7110_timer_driver);
+> > > > +
+> > > > +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
+> > > > +MODULE_DESCRIPTION("StarFive JH7110 timer driver");
+> > > > +MODULE_LICENSE("GPL");
+> > > > diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.=
+h
+> > > > index 35e78ddb2b37..4a8b487c327e 100644
+> > > > --- a/include/linux/cpuhotplug.h
+> > > > +++ b/include/linux/cpuhotplug.h
+> > > > @@ -175,6 +175,7 @@ enum cpuhp_state {
+> > > >  	CPUHP_AP_CSKY_TIMER_STARTING,
+> > > >  	CPUHP_AP_TI_GP_TIMER_STARTING,
+> > > >  	CPUHP_AP_HYPERV_TIMER_STARTING,
+> > > > +	CPUHP_AP_JH7110_TIMER_STARTING,
+> > > >  	/* Must be the last timer callback */
+> > > >  	CPUHP_AP_DUMMY_TIMER_STARTING,
+> > > >  	CPUHP_AP_ARM_XEN_STARTING,
+> > > > --
+> > > > 2.17.1
+> > >
+> > > Hi Daniel / Thomas
+> > >
+> > > I have submitted new version of patch for jh7110 timer driver. Could =
+you please
+> > help to review and give your comments?
+> > > Thanks a lot!
+> >
+> > Hi Ziv
+> >
+> > I tried this on 6.9-rc6 on my VF2. It boots, but very slowly and "chopp=
+y". That is
+> > it repeatedly runs for <1s and then hangs for about 4s.
+> >
+> > Does this patch work for you?
+> >
+> > /Emil
+>
+> Hi, Emil
+>
+> I tried this on 6.9-rc7 and 6.9-rc7, but it doesn't reproduce the phenome=
+non you said.
+> The attachment is the log for 6.9-rc6. Could you please share your config=
+ file (starfive_visionfive2_defconfig or .config) with me?
 
-On 5/6/24 11:26 PM, Peter Rosin wrote:
-> Hi!
-> 
-> Regarding the subject (and elsewhere) I think of "mux core" as roughly
-> the code in the i2c-mux.c file. So, for me, the "mux core" does not have
-> an address, it is a mux "driver instance" or "device" that sits on the
-> I2C address that you need to share.
-> 
+Yeah, I just tried again on 6.9-rc7 (+ Conor's riscv-dt-for-next, Minda's P=
+CIe
+patches and the PWM driver) with this config:
 
-I'm the one who suggested mux core here (privately) :)
+https://sprunge.us/kiXXba
 
-The issue is that in my head a mux device is the i2c adapter/bus (from 
-i2c-mux.yaml dt binding example):
+I don't know if it makes a difference but my also board boots via EFI.
 
-"""
-     i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
-
-         i2c-mux@70 {
-             compatible = "nxp,pca9548";
-             reg = <0x70>;
-             #address-cells = <1>;
-             #size-cells = <0>;
-
-             i2c@3 {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-                 reg = <3>;
-
-                 gpio@20 {
-                     compatible = "nxp,pca9555";
-                     gpio-controller;
-                     #gpio-cells = <2>;
-                     reg = <0x20>;
-                 };
-             };
-             i2c@4 {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-                 reg = <4>;
-
-                 gpio@20 {
-                     compatible = "nxp,pca9555";
-                     gpio-controller;
-                     #gpio-cells = <2>;
-                     reg = <0x20>;
-                 };
-             };
-         };
-     };
-"""
-
-"mux core" here would refer to i2c-mux@70, "mux device"/"mux" i2c@3 or 
-i2c@4. E.g. when I'm saying "in mux 3", I'm talking about i2c@3 here.
-
-For me a driver instance is a device, so "mux driver instance" would be 
-a "mux device". Ah... naming is hard. Anyway, up to you, I just wanted 
-to make sure we're talking about the same thing and there's no confusion 
-here.
-
-[...]
-> I also wonder if that second condition (...->type == &i2c_client_type) should
-> be a WARN_ON_ONCE? I don't see how the flag can be set sanely on an adapter
-> that is not itself an I2C client. Can it?
-> 
-
-Agreed, good suggestion here... Though... 
-https://lwn.net/Articles/969923/ it seems new additions of WARN_ON are 
-now discouraged? Not looking to start a discussion here about whether 
-WARN_ON is good or bad, merely pointing at this if it was missed somehow.
-
->> +
->> +		if (!quirks)
->> +			return -ENOMEM;
->> +
->> +		if (parent->quirks)
->> +			memcpy(quirks, parent->quirks, sizeof(*quirks));
->> +
->> +		quirks->flags |= I2C_AQ_SKIP_ADDR_CHECK;
->> +		quirks->skip_addr_in_parent = client->addr;
->> +		priv->adap.quirks = quirks;
-> 
-> The I2C_AQ_SKIP_ADDR_CHECK flag should probably not be propagated?
-> 
-
-Oh... you mean if we have a mux on an i2c adapter of a mux and the 
-adapters handled by the parent mux have SKIP_ADDR set and we don't want 
-the adapters handled by the leaf mux to have this flag as well? Is that 
-what you meant?
-
-Cheers,
-Quentin
+/Emil
 
