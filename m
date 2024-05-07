@@ -1,234 +1,135 @@
-Return-Path: <devicetree+bounces-65505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29D38BEB64
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:17:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E898BEB76
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 20:23:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2303286BEF
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:17:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94F8D1F26B18
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2024 18:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F7C16D309;
-	Tue,  7 May 2024 18:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B11316D32A;
+	Tue,  7 May 2024 18:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="HvQYFbPx";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ff3XKmpn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lay/yx53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh1-smtp.messagingengine.com (wfhigh1-smtp.messagingengine.com [64.147.123.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE6716D30F;
-	Tue,  7 May 2024 18:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57486168AF5;
+	Tue,  7 May 2024 18:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715105814; cv=none; b=alVyYEiBfV5302Ydv8pYSN5Ptp8A7WnTQ/Dg+SbYMfRXnZsG6McrkPmRGjdO1IOvdQRmazEw2/uQoFsuHWuwkXkl9cyKGal8kwJlycBht6DxG9XY4vJrIiceZgJtyFfwPnwhqzkNH5ENg4Bez4n3eXKKfk1T8QwoCmgSFusUFC4=
+	t=1715106206; cv=none; b=VkvyL5Un+X9kFzd9Kx5Hy6UiuV4jlpvYfrZSWfPnI57CxzTea30wx2hrqx8doe4a4NykixiBNuJF3teabsigcBY5xbwTVS1Nv5Hf12pE/zf9mmIHxmstrRoSF5q2gjkUMdg9z7CxJa3ANArF1sbRgzgAb9MvtuZ7hbh4YIBKUDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715105814; c=relaxed/simple;
-	bh=tkkLup4fz7SXQkE6wLRmN85VKtFi0Vkf6N3FNeMPO4M=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=Me1iubFhZA6NVS4tycyGXTJfb55AoyRmF+d1gw2K7SzC0lJFCrGWJNsWYsVKcEDyXi0IU9D2sCci+762gEiae+VCOrK89i4isv0Gq0S0ZYxD0ah16HUJ7egxThId+/kNCmHSHDbO70h+vYn9cKVNnHjeRMo1Zaz5ut07cVCAUv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=HvQYFbPx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ff3XKmpn; arc=none smtp.client-ip=64.147.123.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailfhigh.west.internal (Postfix) with ESMTP id 638291800101;
-	Tue,  7 May 2024 14:16:51 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Tue, 07 May 2024 14:16:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1715105811;
-	 x=1715192211; bh=xkZUyYvJJx8Ghug4jhe04XLSU69l2vONZ4Ow52k89Ng=; b=
-	HvQYFbPxc8YlfjpFXvw1MuSgSeGVfGjSsiV0vrW/5xGQMOoCpDmh5gyMAYAOl8Ym
-	NhEmh1T3kBzfPC4hT5VG+MLJllU0q6ABk3NtyEWCORXf3kli1ZgLtrKHnM7XUQf3
-	l4dW1/1flG6SOWec+rojzHejjnieogmsEGZ1AyWoBTRh8B78it2+JHD4mWjlVQIn
-	jqPjaCARHkKzQXRgKhEKBnDxvTQJWw51L85xmBNitw5WN8D/SkMG62vjDpOGgtL3
-	pIL/Cck6RWp60byfRHKp4cuPfnRxFORJV0iOpTFcjwxIahdmHTLkF1Ca/1J0Dwar
-	wFzzVz8OnP4BDAk1SXPW+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1715105811; x=
-	1715192211; bh=xkZUyYvJJx8Ghug4jhe04XLSU69l2vONZ4Ow52k89Ng=; b=f
-	f3XKmpnrjqrj2Fofs2mBN4Pp58nD2YBGhsz7HVta5gtiVF0jwSkrFnKtwDHwnrbn
-	bNJWaaAAl1ctIjycb7GbAj6lKL2NJP+4GSUAzjzHdnfMqwhS1OcOBrqQ+/HZHlBg
-	A40qVCEtSmHNzGpHOlXj19pS3BRPXC9VC2QVEuMETjDInkmBQtmShpbQFnImgzjo
-	fMhrEkWmFrwrhjCi9YoU64eUNbzou74/VWMFZOmhGKFGyqJtsS7uEJ+j4+9f7Wbb
-	zWI/CGiyp15yEVMKtDQ6txbSveOOngph5MhTh+/c2DN1u7vvIbmvq0D0Gen2w9tE
-	FjF+8dgZVeqOOIUUVq7Yw==
-X-ME-Sender: <xms:EnA6ZjhgEbhjhOaTsBpa1trjh01D9uujWdp9FOWqtPQyg_kO7eZCMQ>
-    <xme:EnA6ZgBkbofPe7FeGJ76JCvwB8c0Ebzyu1zOwWUXbO8sGJ8BHpP7K4vMMDvo6RM_O
-    rDkBFSq7Vekkwt21Lc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvddvkedguddvtdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
-    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
-    homheqnecuggftrfgrthhtvghrnhepjedutdeuhfdvjeevgfehudeitdehiefgveelheff
-    uddulefhkeeihfehudehgfevnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrgh
-    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgr
-    gihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:EnA6ZjHsOP8reLn_5GRUUjNM8x-hVbOFx5O2GRPkZ3ZPn5DM2UYyPw>
-    <xmx:EnA6ZgQDgE_x1e2R-JJBWr2mTSYYemsGE8dIt6QiijgZ8FpNXKTcpg>
-    <xmx:EnA6ZgylKlh2ajJTVijgDmL5GbzRkohoN0YtOGQtqv86sjACZebceg>
-    <xmx:EnA6Zm6qZ-pcWPEiKrbH5tAGAeXLXtkcjLjlgoHq5rdC-gJcUII8eg>
-    <xmx:EnA6ZvlCL922gQQb2JU6kYwWLtk3jL6IoXeCnneu4bzu6-fUMZ-VKmLM>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 3ECE536A0074; Tue,  7 May 2024 14:16:50 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-443-g0dc955c2a-fm-20240507.001-g0dc955c2
+	s=arc-20240116; t=1715106206; c=relaxed/simple;
+	bh=MStEyZIy8lUrlEz3YXxVi+L4v57cbKF4Eo4absdpz0w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bYl/3Lpzqgk7vQVvN/UzPli6SycMlOGz+oSLCGFUzuEk35gIGe/1OrYmsP/WHqkD64vSwBN4PV7V9KdsEfrTtqsVWmGd88Hp0jrwIA4XXiCM73lQQrXeMNnbmCbBYOpV931SmEzDGZKXpjEu//sAI/x1yuCQ1w3lBlZisL6Ulzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lay/yx53; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E49D5C2BBFC;
+	Tue,  7 May 2024 18:23:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715106205;
+	bh=MStEyZIy8lUrlEz3YXxVi+L4v57cbKF4Eo4absdpz0w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Lay/yx53KbpfpwO7CQdf3vmre4vGqiT/8FZC/ih2xjnXRr9wfqIIaMvUwI5MVAMR7
+	 cJc8xW98hTe8dEn3CorRKDNHFQ8u/iBRv9ZfGtWh3gmR7UsfTIpqghINND7+p7Myl3
+	 lKnUpqNuA10FNx2YlnleYdhELmBoE/BvT0CaTd8Un2dRrETtv3KmHPYjC+ETPqs3no
+	 ndm/GHRqwF3+W9FdCfNbBhDQIGEBgm8NhVjzIavGRYdfyUk+fHOLAKr8qDcrCRv32F
+	 znBi/bryfyFN26w/iKl7+7DKmUtIg4aRUXjnsaO7ttQKpFJVbkqKI/7IWuAvcdEgos
+	 ZZZTunMAHghXg==
+Message-ID: <453186a6-ec03-4c28-a263-c295f9aaad2f@kernel.org>
+Date: Tue, 7 May 2024 20:23:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <fbb4b8e2-edf4-4b4e-8b71-154a09f24ccd@app.fastmail.com>
-In-Reply-To: <20240507-jokester-antelope-808b21b957e6@spud>
-References: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
- <20240507-cm_probe-v1-4-11dbfd598f3c@flygoat.com>
- <20240507-jokester-antelope-808b21b957e6@spud>
-Date: Tue, 07 May 2024 19:16:25 +0100
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: mips: Document mti,mips-cm
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Mithil <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240417134237.23888-1-bavishimithil@gmail.com>
+ <2e179356-425d-48cc-84db-0ea3e6203fba@kernel.org>
+ <CAGzNGR=pvv67UJtNnkDUMhrpnPjNCCYEGeCaM7e_9=4G+Lcfgw@mail.gmail.com>
+ <676ce61c-e850-4046-ad0f-e3382be3fe0c@kernel.org>
+ <CAGzNGR=rDrd6LyAC2yB4XUcxn=H1VdY8LQO99NEOBR1sLGGT0Q@mail.gmail.com>
+ <3425732a-390b-4c0f-ba1b-2a7e2219d581@kernel.org>
+ <CAGzNGRmF8K7UDDERE_7UQw1EdC=J_jvvXqefU=M0v6FQcsnbhA@mail.gmail.com>
+ <CAGzNGRmB5yYyVVDQZ0PaL7k0rie8TQAySwpzDx=QokUAV1NGug@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAGzNGRmB5yYyVVDQZ0PaL7k0rie8TQAySwpzDx=QokUAV1NGug@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 07/05/2024 17:12, Mithil wrote:
+> Hey, before making a new patch I'll just list the changes that need to
+> be done according to this discussion.
+> Change maintainer
+> Change clocks to only include maxItems: 1
+> Change clock-names to include
+> items:
+>  - const: pdmclk
+> Use correct address in example
 
+If you meant unit address, then yes.
 
-=E5=9C=A82024=E5=B9=B45=E6=9C=887=E6=97=A5=E4=BA=94=E6=9C=88 =E4=B8=8B=E5=
-=8D=885:50=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Tue, May 07, 2024 at 10:01:52AM +0100, Jiaxun Yang wrote:
->> Add devicetree binding documentation for MIPS Coherence Manager.
->>=20
->> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
->> ---
->>  .../devicetree/bindings/mips/mips-cm.yaml          | 37 ++++++++++++=
-++++++++++
->>  1 file changed, 37 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/mips/mips-cm.yaml b/Do=
-cumentation/devicetree/bindings/mips/mips-cm.yaml
->> new file mode 100644
->> index 000000000000..b92b008d7758
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mips/mips-cm.yaml
-Hi Cornor,
+> Use flags for interrupt in example
 
-Thanks for your comments.
+Everything else yes.
 
->
-> Filename matching the compatible please.
-Ok.
+Best regards,
+Krzysztof
 
->
->> @@ -0,0 +1,37 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mips/mips-cm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MIPS Coherence Manager
->> +
->> +description: |
->> +  Defines a location of the MIPS Coherence Manager registers.
->> +
->> +maintainers:
->> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: mti,mips-cm
->
-> Is it actually only available on mips? Google seems to report there
-> being Coherence Managers on their RISC-V offerings too.
-
-I think for MIPS's RISC-V system, it is only used by SBI and transparent
-to kernel, so it won't present in DT.=20
-
-Register fields for RISC-V system is totally different with MIPS one, and
-there is no driver to be reused. In MIPS system CM code is highly coupled
-with arch code, so for RISC-V if we want to expose it to kernel we'll ne=
-ed
-a new set of driver and a new binding.
-
->
->> +  reg:
->> +    description: |
->
-> The | isn't needed, there's no formatting to preserve.
-Ok.
-
->
->> +      Base address and size of an unoccupied memory region, which wi=
-ll be
->> +      used to map the MIPS CM registers block.
->
-> This sounds like it should actually be a memory-region that references
-> some reserved memory, not a reg, given the description. I think the
-> commit message here is lacking any information about what the intentio=
-ns
-> are for this binding.
-So it's actually a register block that can be remapped to anywhere in
-MMIO address space. DeviceTree usually passes firmware's mapping location
-to kernel.
-
-There are some other similar bindings like mti,mips-cdmm and mti,mips-cp=
-c,
-I just copied phraseology from them, should I try to explain it more her=
-e?
-
->
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    cm@1fbf8000 {
->
-> And a generic node name here please. I actually don't quite know what =
-to
-> suggest though, but "coherency-manager" would likely be better than
-> "cm".
-Ok
-
-Thanks!
-- Jiaxun
->
-> Thanks,
-> Conor.
->
->> +      compatible =3D "mti,mips-cm";
->> +      reg =3D <0x1bde8000 0x8000>;
->> +    };
->> +...
->>=20
->> --=20
->> 2.34.1
->>=20
->
-> =E9=99=84=E4=BB=B6:
-> * signature.asc
-
---=20
-- Jiaxun
 
