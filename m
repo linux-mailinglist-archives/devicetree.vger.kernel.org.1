@@ -1,228 +1,96 @@
-Return-Path: <devicetree+bounces-65673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236CA8BF862
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:22:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 381268BF882
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:29:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F5D51F22641
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:22:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7EF628436C
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779594596B;
-	Wed,  8 May 2024 08:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="fib8UQCf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3614B47A5C;
+	Wed,  8 May 2024 08:29:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A8E3FBAF
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 08:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701374500B
+	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 08:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715156526; cv=none; b=LGrkT3GiobjXTc6VYe0Z9cRoCKnPrvJZm9vAUd6I5mfyxsX3iVFDQh2rJDebhUzUvnV2NGFcuiRdpSsCUUUGDuBnOLStNVA0q5gZsea2BVjvypGX8ShOPCmnMiuimeFrp0LYA0JqXeigTKMI9RXHlsUT8LELIqWRemKyqDfL04c=
+	t=1715156974; cv=none; b=uaWbY7RFxXo7Lq8klIQO4wCCrqY3wlOFy3dk+Gm36P7s8GOqqozFo2lzzD2f1EyzXqYoCMnpKwK3ZLhqb9H7RkHq+oeUtCsxBTZjFxD5xqfVJkkk/82Si8mihCH7bJpEt1J0iqxtMO/1jCIAJdqdw2Rje3gfrl0sjXSVa0Y859o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715156526; c=relaxed/simple;
-	bh=VqnPVZobujaIPbHooqjp2g7rnHplNoCBcIs20OnSMiQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VZEVaXmL5qo0tqyEpxjvFgwfARApSbj4RbC5rrzPKlJO6mu9/CMmwrA4jQp59Fy5VwIjMrsXeEz5sm0y5u3INcxBm4VgnzxVtQWg4LJ71pdcceCnNl9dLlL6cwY2NSxUXBddvUWHrjzHdexcy8ItVeUn0ppRzyHHVPCSUUXFNRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=fib8UQCf; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-61bec6bab2bso43588697b3.1
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 01:22:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1715156522; x=1715761322; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t+tentO31VDVL/Z5hwv/0ekLp4NqtTVqujXuNpdLcPc=;
-        b=fib8UQCfJ2Hyzfm/EREULoQtDlG9eszx5eVlzrWvgBPMQtxORztymcZ299Oq3+GOem
-         4MvzMxgSz+X0mVF1OVPibNFqVKGsPb9UjMghQKaiBY5fXnVqPy9A45YfgDGoJSoJliib
-         A6cIzKaYpcjVxmx8h1UvopT3KG8o5NpQxxh53Lrefh+lwOOKlkUCxrz637M48Pwl6DWM
-         6POmgBhx6JC5i8f1G7BQITwNNlQmfJkXzoyUrLT1qzUrjZ+rdvTKAsJ1md+U9Pg1h+yX
-         267TKVIECPNEF1NEMsEFtHtYzGAYC4ZmeA9CWOdsG730QzXSCcZczEmUKsztJDdAJR76
-         V3CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715156522; x=1715761322;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t+tentO31VDVL/Z5hwv/0ekLp4NqtTVqujXuNpdLcPc=;
-        b=QnZ9sdZoie+ePJVx9yFJBJN4i4CC6FowixEhj9AeVTDIPcXVE7gytEZwKhIqitJwO/
-         BW/DeqHLh/dFZe13X7Ri6U+nbP7t4q7JboEwd4HCotdoG/d4N8ueVW6W50PAan0RLqsw
-         tAsTUel6/KtoCp5W56J59ZTMaO4Hd8GEC8nDnKqzESJhaD1Ycdm26AFUvazf4A3F6O0d
-         CQDrAZ2qqZC0YaXs77+SvaYaQLYgLpYtRPckNrRPHbxM6WYWJO4bCmbZohiOfcjE8PTk
-         pw3MgKh21pRnVsYmi0DkrZElbpLTIq3QIfl3RppzsDrx9mQXSMcW3igQ+JNJ7oYfXeiH
-         muow==
-X-Forwarded-Encrypted: i=1; AJvYcCVoHgnifV354J5VzliGMBPrUMV6ukvD88maMW0pfAETpqquQVKAfUuqogcpJRwKcQDRHJrG1eGFcpRd3TkEiQC90oehjy4xoB0SlQ==
-X-Gm-Message-State: AOJu0YwCEx4X6yFm6X1spBRt79Ai7xYhPbqsxtwyIGvH/cV3KJe9dVIb
-	HQuK1m68lnwakytwhetlcC9nP0V/XA4MFwgn9En99q/hGUGGInOpcCQiUYXCTd+kyrKrIceDqZY
-	ZQYEr+J6ll7rixbSpHLmdLc/P36+h6p+pd+0ySg==
-X-Google-Smtp-Source: AGHT+IEXgJR7FBS0oCD/booQ+HNJEgAOmWTrDpDTW/qaHhGxw4LiMjzSVLLC7ISbeidXkEBvgCdyI4cw47HDIT5WA/I=
-X-Received: by 2002:a81:8395:0:b0:618:7f3c:cbac with SMTP id
- 00721157ae682-62085ddbd63mr20603007b3.31.1715156519351; Wed, 08 May 2024
- 01:21:59 -0700 (PDT)
+	s=arc-20240116; t=1715156974; c=relaxed/simple;
+	bh=mJ58di7Olnn/aB+9hZCVFnUh4FH+Wc/bVpHWcjicra4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OwtV3T7cyZvrxlYhj2WSgzkgAXA1SCONpnS3YGuKt/ZGGo5P1gAItDCbto9OLuPLfCJp17oRNq4GjCEpK0BT8qC9SXI9Bx31t1fc1QzVcSEvpOgsOv4csImPu5OTKR4TMlpPK+bZ0Buziqqwp+YQAvc8q3BJlU1X5Rf4Db8eiTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.112.218])
+	by gateway (Coremail) with SMTP id _____8BxeOnoNztmsUkJAA--.12603S3;
+	Wed, 08 May 2024 16:29:28 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.112.218])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8CxrlfmNztmvWUVAA--.36694S2;
+	Wed, 08 May 2024 16:29:28 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v1 0/2] LoongArch: dts: Add more support device ndoes to Loongson-2K
+Date: Wed,  8 May 2024 16:29:09 +0800
+Message-ID: <cover.1715156107.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-2-e0c45bb6b253@sifive.com> <4acc62d0-d62b-4d42-805b-0bc7f663a81c@ghiti.fr>
-In-Reply-To: <4acc62d0-d62b-4d42-805b-0bc7f663a81c@ghiti.fr>
-From: Andy Chiu <andy.chiu@sifive.com>
-Date: Wed, 8 May 2024 16:21:47 +0800
-Message-ID: <CABgGipXcjY9KDU=fN6KtER3mPbxsQdb+Y5Czhq7QDBFFc6p__w@mail.gmail.com>
-Subject: Re: [PATCH v4 2/9] riscv: smp: fail booting up smp if inconsistent
- vlen is detected
-To: Alexandre Ghiti <alex@ghiti.fr>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor.dooley@microchip.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>, 
-	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
-	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>, 
-	Vincent Chen <vincent.chen@sifive.com>, Greentime Hu <greentime.hu@sifive.com>, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8CxrlfmNztmvWUVAA--.36694S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+	ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+	BjDU0xBIdaVrnRJUUUPjb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
+	xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
+	j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxV
+	AFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x02
+	67AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
+	ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E
+	87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82
+	IYc2Ij64vIr41l4c8EcI0En4kS14v26r1Y6r17MxAqzxv26xkF7I0En4kS14v26r126r1D
+	MxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI
+	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
+	0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
+	WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
+	IxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxU7_MaUUUUU
 
-On Thu, Apr 25, 2024 at 4:01=E2=80=AFAM Alexandre Ghiti <alex@ghiti.fr> wro=
-te:
->
-> Hi Andy,
->
-> On 12/04/2024 08:48, Andy Chiu wrote:
-> > Currently we only support Vector for SMP platforms, that is, all SMP
-> > cores have the same vlenb. If we happen to detect a mismatching vlen, i=
-t
-> > is better to just fail bootting it up to prevent further race/schedulin=
-g
-> > issues.
-> >
-> > Also, move .Lsecondary_park forward and chage `tail smp_callin` into a
-> > regular call in the early assembly. So a core would be parked right
-> > after a return from smp_callin. Note that a successful smp_callin
-> > does not return.
-> >
-> > Fixes: 7017858eb2d7 ("riscv: Introduce riscv_v_vsize to record size of =
-Vector context")
-> > Reported-by: Conor Dooley <conor.dooley@microchip.com>
-> > Closes: https://lore.kernel.org/linux-riscv/20240228-vicinity-cornstalk=
--4b8eb5fe5730@spud/
-> > Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-> > ---
-> > Changelog v4:
-> >   - update comment also in the assembly code (Yunhui)
-> > Changelog v2:
-> >   - update commit message to explain asm code change (Conor)
-> > ---
-> >   arch/riscv/kernel/head.S    | 19 ++++++++++++-------
-> >   arch/riscv/kernel/smpboot.c | 14 +++++++++-----
-> >   2 files changed, 21 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> > index 4236a69c35cb..a00f7523cb91 100644
-> > --- a/arch/riscv/kernel/head.S
-> > +++ b/arch/riscv/kernel/head.S
-> > @@ -165,9 +165,20 @@ secondary_start_sbi:
-> >   #endif
-> >       call .Lsetup_trap_vector
-> >       scs_load_current
-> > -     tail smp_callin
-> > +     call smp_callin
-> >   #endif /* CONFIG_SMP */
-> >
-> > +.align 2
-> > +.Lsecondary_park:
-> > +     /*
-> > +      * Park this hart if we:
-> > +      *  - have too many harts on CONFIG_RISCV_BOOT_SPINWAIT
-> > +      *  - receive an early trap, before setup_trap_vector finished
-> > +      *  - fail in smp_callin(), as a successful one wouldn't return
-> > +      */
-> > +     wfi
-> > +     j .Lsecondary_park
-> > +
-> >   .align 2
-> >   .Lsetup_trap_vector:
-> >       /* Set trap vector to exception handler */
-> > @@ -181,12 +192,6 @@ secondary_start_sbi:
-> >       csrw CSR_SCRATCH, zero
-> >       ret
-> >
-> > -.align 2
-> > -.Lsecondary_park:
-> > -     /* We lack SMP support or have too many harts, so park this hart =
-*/
-> > -     wfi
-> > -     j .Lsecondary_park
-> > -
-> >   SYM_CODE_END(_start)
-> >
-> >   SYM_CODE_START(_start_kernel)
-> > diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
-> > index d41090fc3203..673437ccc13d 100644
-> > --- a/arch/riscv/kernel/smpboot.c
-> > +++ b/arch/riscv/kernel/smpboot.c
-> > @@ -214,6 +214,15 @@ asmlinkage __visible void smp_callin(void)
-> >       struct mm_struct *mm =3D &init_mm;
-> >       unsigned int curr_cpuid =3D smp_processor_id();
-> >
-> > +     if (has_vector()) {
-> > +             /*
-> > +              * Return as early as possible so the hart with a mismatc=
-hing
-> > +              * vlen won't boot.
-> > +              */
-> > +             if (riscv_v_setup_vsize())
-> > +                     return;
-> > +     }
-> > +
-> >       /* All kernel threads share the same mm context.  */
-> >       mmgrab(mm);
-> >       current->active_mm =3D mm;
-> > @@ -226,11 +235,6 @@ asmlinkage __visible void smp_callin(void)
-> >       numa_add_cpu(curr_cpuid);
-> >       set_cpu_online(curr_cpuid, 1);
-> >
-> > -     if (has_vector()) {
-> > -             if (riscv_v_setup_vsize())
-> > -                     elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
-> > -     }
-> > -
-> >       riscv_user_isa_enable();
-> >
-> >       /*
-> >
->
-> So this should go into -fixes, would you mind sending a single patch for
-> this fix?
+Hi all:
 
-I thought it would be magically picked up by a bot as long as we have
-a fix tag. Am I assuming something wrong?
+Now, more Loongson-2K related deviers are supported, this patchset add
+these device nodes to dts files.
 
->
-> Your patch 8 is actually already fixed by Clement's patch
-> https://lore.kernel.org/linux-riscv/20240409143839.558784-1-cleger@rivosi=
-nc.com/
+Thanks.
 
-Okay, I will drop it at the next revision.
+Binbin Zhou (2):
+  LoongArch: dts: Add new supported device nodes to Loongson-2K0500
+  LoongArch: dts: Add new supported device nodes to Loongson-2K2000
 
-> and I already mentioned this one to Palmer.
->
-> Thanks,
->
-> Alex
->
+ .../boot/dts/loongson-2k0500-ref.dts          |  4 +
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 81 ++++++++++++++++++-
+ .../boot/dts/loongson-2k2000-ref.dts          |  4 +
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 44 +++++++++-
+ 4 files changed, 126 insertions(+), 7 deletions(-)
 
-Thanks,
-Andy
+-- 
+2.43.0
+
 
