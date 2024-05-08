@@ -1,142 +1,189 @@
-Return-Path: <devicetree+bounces-65628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708DA8BF493
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 04:33:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7393E8BF49D
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 04:37:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 026801F24D1C
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 02:33:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D36A5281B9F
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 02:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF5311C94;
-	Wed,  8 May 2024 02:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49F7107B6;
+	Wed,  8 May 2024 02:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GQ0Dx2Js"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oTOPnCtw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EC1385;
-	Wed,  8 May 2024 02:33:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 256362563;
+	Wed,  8 May 2024 02:37:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715135586; cv=none; b=j1cTlR+0cQ5Dd5OsW3bnCaNUVczD1AGL3XMRegvb1AvR9jOxOZDrVvf6wFNObHH9vCAXL/J4j6WH/BECQXJf6pARatY4fV0EQBJSigBuBAtPjov3Fz+fq7hJtyxawlJpntnW0cilg4HQ4AHr6I5ytcsrRKc7DXtz1vU7tQp/gxc=
+	t=1715135846; cv=none; b=umxksKHZJjmPXyPBMj8XDcuJR3AQ+I/BHltJ2NsbrjLrz7HBhmHRNMExhmZ8R4h6XyILU9hzCd+4DXY8NKC6//z3jmRt8dOfd7l0W9Go2VQBhL7wRkycYhKMVL10S5UmJJNr7/HA7ptvKopXutPSDOxZ+2eWkSXEVTKKF+DAoTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715135586; c=relaxed/simple;
-	bh=GQI3foM1aUdeD/8j61M4OYXqveWJZjDJO4QquolCYoU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Sy7kImm5I/rLcnogeENGmKmpJuuwqtg8AskKa+xinLwvjfxBC++5las8ujAuz9JzIKvjScLOwFx21F6dJnpyncJ56DZy/RjMx/EJQsXoO/2qc1zoVVUgej4rOhq33AW1H0EXDLzdg4fZEs76bjRPmaHTiwrXTgRade+wAfhgrNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GQ0Dx2Js; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4482WeoM059096;
-	Tue, 7 May 2024 21:32:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715135560;
-	bh=f/D3yLYXWBhynQURe0LWuItpjtu/UWwQJZrmRPe4JS0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=GQ0Dx2Js3uYQxFXGB+BldZJqEvDh7IMQQPy2gFM4GFcgiUhrnHmXkjeLucNQHDAua
-	 AvJ94QwxcQkDmRRF6fIerRv9E2nA7ipNHs6IsxU6hAfxFRcULcfw9EP4gFcDq5VEFv
-	 LDA9DXiz48Ccnhv5/OKk36cbIW7g4pTm3VEEPEp8=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4482We7G008452
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 21:32:40 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 21:32:40 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 21:32:40 -0500
-Received: from [172.24.227.36] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4482WZek088709;
-	Tue, 7 May 2024 21:32:36 -0500
-Message-ID: <a78d1d27-1d29-4031-9d4f-3f1e2dd47d76@ti.com>
-Date: Wed, 8 May 2024 08:02:35 +0530
+	s=arc-20240116; t=1715135846; c=relaxed/simple;
+	bh=L+7O8cBMHbYGbdx2i1sHwLmX/iYsNK3kndk4UoqXo0U=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T3/W7YEZFZ55EuoBb5iPk+3kwKrQqFCILerL/+owr/4bqo2DJppJ+9S6Hs7u2tjTpPmdap+CX94O2cnoBFQOKGyQy0xZwCVTlnhVKV89ZNy/hMUjzhWIaaR0c1D3sgxeHELUewIR2HfKr0cmeuQk2YtuyX4nbRN9xdHsfM+pM+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oTOPnCtw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4480tSlQ010362;
+	Wed, 8 May 2024 02:37:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=/ZCjObFVzI65lpVfxycSD
+	PFIUahEfff+75M1F2+9dBI=; b=oTOPnCtwrNqqvCiRTQi/md0vkbK+itUoS5I8n
+	/p7CyQqjbyBgP4m3oT/t9CLeFKFXtJjdFtr24CWpRjNUzY+iR1oZDxiTb+rtVro9
+	5W7ciqKSTfT/x6RqMY9hNouabsWuxKrtLgrzBioWuwnt22ExOiQZpz6+XbimQ/Az
+	iCWjBf+IcniJb9NE242lqTUZ41mdpOXwpCo1EbJfHnQLN4MIaEmukNEo384xNSs5
+	6QksrxwA3wveP5I5YaTUH4fNY/lbB6vOBmsY2AtQyDa2f/Bzm6L4YVnfbiMnFFq4
+	MKfSGvAeqJw50n79e3Ot5/MrOPZDp/P8+Z8aIu7CGlTsV11vw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xysph0rx9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 02:37:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4482bIlH001487
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 May 2024 02:37:18 GMT
+Received: from hu-mdtipton-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 7 May 2024 19:37:17 -0700
+Date: Tue, 7 May 2024 19:37:16 -0700
+From: Mike Tipton <quic_mdtipton@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Odelu Kukatla <quic_okukatla@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        "Gustavo A . R . Silva"
+	<gustavoars@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>
+Subject: Re: [PATCH v4 1/4] interconnect: qcom: icc-rpmh: Add QoS
+ configuration support
+Message-ID: <20240508023716.GD25316@hu-mdtipton-lv.qualcomm.com>
+References: <20240325181628.9407-1-quic_okukatla@quicinc.com>
+ <20240325181628.9407-2-quic_okukatla@quicinc.com>
+ <d59896bb-a559-4013-a615-37bb43278b2e@linaro.org>
+ <91f59477-1799-4db6-bcc2-3f0c5225d1c8@quicinc.com>
+ <0a58e05a-7bf5-459a-b202-66d88c095b45@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] regulator: dt-bindings: Unify compatible
-To: Rob Herring <robh@kernel.org>
-CC: <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>, <nm@ti.com>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <marten.lindahl@axis.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20240507122158.3739291-1-n-francis@ti.com>
- <20240507122158.3739291-2-n-francis@ti.com>
- <20240507211112.GA1053164-robh@kernel.org>
-Content-Language: en-US
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <20240507211112.GA1053164-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0a58e05a-7bf5-459a-b202-66d88c095b45@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: cUIFXgQRc5CvC0-zkk9z50wybFjoVYuB
+X-Proofpoint-GUID: cUIFXgQRc5CvC0-zkk9z50wybFjoVYuB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-07_16,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=835
+ impostorscore=0 priorityscore=1501 bulkscore=0 phishscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 malwarescore=0 adultscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405080017
 
-Hi Rob
+On Sat, Apr 13, 2024 at 09:31:47PM +0200, Konrad Dybcio wrote:
+> On 3.04.2024 10:45 AM, Odelu Kukatla wrote:
+> > 
+> > 
+> > On 3/27/2024 2:26 AM, Konrad Dybcio wrote:
+> >> On 25.03.2024 7:16 PM, Odelu Kukatla wrote:
+> >>> It adds QoS support for QNOC device and includes support for
+> >>> configuring priority, priority forward disable, urgency forwarding.
+> >>> This helps in priortizing the traffic originating from different
+> >>> interconnect masters at NoC(Network On Chip).
+> >>>
+> >>> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+> >>> ---
+> 
+> [...]
+> 
+> >>> @@ -70,6 +102,7 @@ struct qcom_icc_node {
+> >>>  	u64 max_peak[QCOM_ICC_NUM_BUCKETS];
+> >>>  	struct qcom_icc_bcm *bcms[MAX_BCM_PER_NODE];
+> >>>  	size_t num_bcms;
+> >>> +	const struct qcom_icc_qosbox *qosbox;
+> >>
+> >> I believe I came up with a better approach for storing this.. see [1]
+> >>
+> >> Konrad
+> >>
+> >> [1] https://lore.kernel.org/linux-arm-msm/20240326-topic-rpm_icc_qos_cleanup-v1-4-357e736792be@linaro.org/
 
-On 08/05/24 02:41, Rob Herring wrote:
-> On Tue, May 07, 2024 at 05:51:54PM +0530, Neha Malcom Francis wrote:
->> TPS62870/1/2/3 devices have different output currents (6A/9A/12A/15A) of
->> the TPS6287x family. The I2C addresses are the same between them. There
->> is no need for different compatibles for each for these devices so drop
->> them and add a unified "ti,tps6287x" compatible.
-> 
-> And s/w will never need to know what the max output current is?
-> 
+Note that I replied to this patch series as well. Similar comments here
+for how that approach would apply to icc-rpmh.
 
-Not really, as per understanding from the hardware teams.
+> >>
+> > 
+> > I see in this series, QoS parameters are moved into struct qcom_icc_desc. 
+> > Even though we program QoS at Provider/Bus level, it is property of the node/master connected to a Bus/NoC.
+> 
+> I don't see how it could be the case, we're obviously telling the controller which
+> endpoints have priority over others, not telling nodes whether the data they
+> transfer can omit the queue.
 
-> Same i2c address has no bearing. That's usually not even fixed for 1
-> device.
-> 
->>
->> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
->> ---
->>   .../devicetree/bindings/regulator/ti,tps62870.yaml         | 7 ++-----
->>   1 file changed, 2 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml b/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
->> index 386989544dac..2998773db990 100644
->> --- a/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
->> +++ b/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
->> @@ -15,10 +15,7 @@ allOf:
->>   properties:
->>     compatible:
->>       enum:
->> -      - ti,tps62870
->> -      - ti,tps62871
->> -      - ti,tps62872
->> -      - ti,tps62873
->> +      - ti,tps6287x
-> 
-> You just broke the existing users.
-> 
-> Wildcards in compatible names are generally discouraged. Maybe if this
-> was a new binding and had sufficient justification why we don't need to
-> distinguish parts, but this is an ABI and we're stuck with them.
-> 
-> If you are doing this to support more versions, then feel free to use
-> an existing string. It's just a unique identifier. You have 4 to choose
-> from.
-
-Thanks for the review, Rob! I should have known better than to remove 
-compatibles, excuse the noise!
+The QoS settings tune the priority of data coming out of a specific port
+on the NOC. The nodes are 1:1 with the ports. Yes, this does tell the
+NOC which ports have priority over others. But that's done by
+configuring each port's priority in their own port-specific QoS
+registers.
 
 > 
-> Rob
+> > It will be easier later to know which master's QoS we are programming if we add in node data.
+> > Readability point of view,  it might be good to keep QoS parameters in node data.  
 > 
+> I don't agree here either, with the current approach we've made countless mistakes
+> when converting the downstream data (I have already submitted some fixes with more
+> in flight), as there's tons of jumping around the code to find what goes where.
 
--- 
-Thanking You
-Neha Malcom Francis
+I don't follow why keeping the port's own QoS settings in that port's
+struct results in more jumping around. It should do the opposite, in
+fact. If someone wants to know the QoS settings applied to the qhm_qup0
+port, then they should be able to look directly in the qhm_qup0 struct.
+Otherwise, if it's placed elsewhere then they'd have to jump elsewhere
+to find what that logical qhm_qup0-related data is set to.
+
+If it *was* placed elsewhere, then we'd still need some logical way to
+map between that separate location and the node it's associated with.
+Which is a problem with your patch for cleaning up the icc-rpm QoS. In
+its current form, it's impossible to identify which QoS settings apply
+to which logical node (without detailed knowledge of the NOC register
+layout).
+
+Keeping this data with the node struct reduces the need for extra layers
+of mapping between the QoS settings and the node struct. It keeps all
+the port-related information all together in one place.
+
+I did like your earlier suggestion of using a compound literal to
+initialize the .qosbox pointers, such that we don't need a separate
+top-level variable defined for them. They're only ever referenced by a
+single node, so there's no need for them to be separate variables.
+
+But I don't see the logic in totally separating the QoS data from the
+port it's associated with.
+
+> 
+> Konrad
 
