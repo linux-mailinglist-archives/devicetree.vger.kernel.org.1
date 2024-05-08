@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-65642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8F28BF60A
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:21:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F9B8BF687
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCBA6B2151D
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 06:21:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C69B1C213E9
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 06:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5514917C69;
-	Wed,  8 May 2024 06:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F45C2030B;
+	Wed,  8 May 2024 06:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eDDk2Gc6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VoQkSm3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F0C22324;
-	Wed,  8 May 2024 06:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2F1B676;
+	Wed,  8 May 2024 06:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715149294; cv=none; b=ZM5nd2hrQrzy0KDCt1052sahT6QNfzfHQTCCoIE5SevLuU8ewD+RxpRSH1+g5ieYoRkl1T/Oen8wZp8gQUK3qyeYKOJ4ZouosM/OucRp5FVZP9/7VvMpBy1phDBY7+g29+w6AfMIwzFn0cBPoR4iLiJXxVuWr0TFZDe29Neh8Uw=
+	t=1715150960; cv=none; b=QJ05N/0WmXdi0VWIhVDSpP0LOm/cQ6pTrQqKXisXIyeNQmugmr0vrVJET+AXpedyXEYITAQxW13x9FfiCYib9ndOPqCgltf9NdJb0tMx4E0HOyq8lUwUoHBfX+oqeaioFsGQYsha08S8XQAF37uli11r3aYxVBZsODt+yS5IiRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715149294; c=relaxed/simple;
-	bh=koB9KjRCACYqvO5zQYyzJJVHaA/xr3oY+TisVzeadio=;
+	s=arc-20240116; t=1715150960; c=relaxed/simple;
+	bh=5RxUq8AaYJl2089Gir6TbXsMF4z4d+QPL4Xq0UTRyiw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KnsAXIXN1+OgRr7ks0lDHbWhhBvjrfDZrpSgOdbV2FQXiSgH1V3YqtcBLzXP2BsL5mWQ4VvS+aYTP4RLZZ0+wKRHskz4j6yhx/W8eZE1x9CWXRFMlHeGlDdKpkrezyuLTuh7E0VLfrYxFw+kjFkhiY/kKkBAmyVZByMRGIxRi6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eDDk2Gc6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4485fOw2022330;
-	Wed, 8 May 2024 06:21:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=S59UCkcML8LZV3YRENrW3zpbmlTqLI7XVn7wkHOw4Kw=; b=eD
-	Dk2Gc6K/n8eB8+HO3Z4pWDEwJRlxS9b/6dt/YNTm6aG494xosT/XdpH62Ggaxqmt
-	oDF0eDP7DS0UXb8JAbJjMrnB2Tv/6V4oakxoqdbw/wVWk/lwoqFbFdy9wSVvrVwI
-	Zf5LyvXBWYZg2iTDipMgnwYQqtIVmAMA2qgzTgBYwVnVGgZNsANth1a+T1CSbKuk
-	zUlko9r2/nso20OMaCRJIXMj0VTzTTyMMbhAnrVUjk9kPthuJhPpIVnZA3KXVHoN
-	tTqvQ+TfwCkUx/Y6/Nx0S+ch54+zLHlNFYiokUid6w2p1yGUWqVjvAr+mUCfK04X
-	hD5y1sy0GgXh1mVAJTSg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyste12p0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 May 2024 06:21:28 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4486LR6O009667
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 May 2024 06:21:27 GMT
-Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
- 23:21:21 -0700
-Message-ID: <fc1e0745-a226-4be4-9b08-379c81396a7e@quicinc.com>
-Date: Wed, 8 May 2024 11:51:04 +0530
+	 In-Reply-To:Content-Type; b=OSgMogF9FqFsmK7PCwa8Jd3kMDkqJfrQzghf3U1pzVYl9cWI5fmdtajQsX0TVktQR2c8vGo71UMBkU9HZx0YxXOrY7A9lZej5Ym80YBCvw6DEoOycG7e4ub1MpqlaZJup8xDR9+H3/di8FKjLrNtUOxAdXrUXMzb+Sqg4GG3lOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VoQkSm3k; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4486n0IX041531;
+	Wed, 8 May 2024 01:49:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715150940;
+	bh=xmUCTSYBX0Mui+FqKpbKHo9xPbDuKJ0O8lwtHyub0IM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VoQkSm3kmOlogc6mbHigX9Vx03J6JHqHAkkXg3WcFjjrfNsQOF+6aXWqazt745jJH
+	 ifHPVsl3uCWP3bk9EEkpunemukOG0Tb9LYMBSOjmQDLcMIVKMBciq1ntC173V7C89d
+	 Q1Ah5ypOuRckZgBGVj034PF9BGwCxgohcK5WI46c=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4486n01B015613
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 May 2024 01:49:00 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ May 2024 01:49:00 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 8 May 2024 01:49:00 -0500
+Received: from [172.24.227.36] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4486ms9h069593;
+	Wed, 8 May 2024 01:48:55 -0500
+Message-ID: <5678773e-1150-48ed-9c70-ba402602274e@ti.com>
+Date: Wed, 8 May 2024 12:18:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,81 +65,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/8] dt-bindings: clock: qcom: Fix SM8450 videocc
- incorrect header file name
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Vladimir
- Zapolskiy" <vladimir.zapolskiy@linaro.org>
-CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>
-References: <20240430142757.16872-1-quic_jkona@quicinc.com>
- <20240430142757.16872-2-quic_jkona@quicinc.com>
- <3951a7ea-b469-42dc-8240-a5c593bc536f@linaro.org>
+Subject: Re: [PATCH 3/5] arm64: boot: dts: ti: k3-am68-sk-base-board: Add
+ LP8733 and TPS6287 nodes
+To: "Kumar, Udit" <u-kumar1@ti.com>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <kristo@kernel.org>, <vigneshr@ti.com>,
+        <nm@ti.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>
+CC: <marten.lindahl@axis.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240507122158.3739291-1-n-francis@ti.com>
+ <20240507122158.3739291-4-n-francis@ti.com>
+ <dc369d86-2a67-423e-a020-8e7ff58b6029@ti.com>
 Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <3951a7ea-b469-42dc-8240-a5c593bc536f@linaro.org>
+From: Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <dc369d86-2a67-423e-a020-8e7ff58b6029@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9iI8pudK4sYzzSV4ASYdvZeui-EJ4Gzj
-X-Proofpoint-ORIG-GUID: 9iI8pudK4sYzzSV4ASYdvZeui-EJ4Gzj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-08_02,2024-05-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 mlxscore=0 bulkscore=0 clxscore=1015
- mlxlogscore=998 spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405010000
- definitions=main-2405080045
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Udit
 
-
-On 5/4/2024 6:15 PM, Krzysztof Kozlowski wrote:
-> On 30/04/2024 16:27, Jagadeesh Kona wrote:
->> Fix incorrect header file name in SM8450 videocc bindings.
+On 08/05/24 10:25, Kumar, Udit wrote:
+> Hi Neha
+> 
+> On 5/7/2024 5:51 PM, Neha Malcom Francis wrote:
+>> Add DTS node for LP87334E PMIC and two TPS6287x high current buck
+>> converters.
 >>
->> Fixes: 1e910b2ba0ed ("dt-bindings: clock: qcom: Add SM8450 video clock controller")
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> LP87334E is responsible for supplying power to the MCU and MAIN domains
+>> as well as to LPDDR4. The two TPS6287x supply power to the MAIN
+>> domain for AVS and other core supplies.
+>>
+>> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+>> Link: https://www.ti.com/lit/pdf/slda060
 >> ---
->>   .../devicetree/bindings/clock/qcom,sm8450-videocc.yaml          | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->> index bad8f019a8d3..78a1bb5be878 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->> @@ -13,7 +13,7 @@ description: |
->>     Qualcomm video clock control module provides the clocks, resets and power
->>     domains on SM8450.
->>   
->> -  See also:: include/dt-bindings/clock/qcom,videocc-sm8450.h
->> +  See also:: include/dt-bindings/clock/qcom,sm8450-videocc.h
+>> [..]
+>> +    tps62873b: tps62873@43 {
+>> +        compatible = "ti,tps6287x";
+>> +        bootph-pre-ram;
 > 
-> Then also s/::/:/. It was a mistake to introduce it.
+> I think,  we don;t need bootph-pre-ram for fixed regulator,
+> 
+> Please check once, if really bootph-pre-ram needed here
 > 
 
-Thanks Krzysztof for your review. Will update this in next series.
+Yeah, there's no need for the bootloader needing this regulator at present. Will 
+make the change, thanks!
 
-Thanks,
-Jagadeesh
+> 
+>> +        reg = <0x43>;
+>> +        regulator-name = "VDD_CORE_0V8";
+>> +        regulator-min-microvolt = <800000>;
+>> +        regulator-max-microvolt = <800000>;
+>> +        regulator-boot-on;
+>> +        regulator-always-on;
+>> +    };
+>> +};
+>> +
+>>   &mcu_uart0 {
+>>       status = "okay";
+>>       pinctrl-names = "default";
+
+-- 
+Thanking You
+Neha Malcom Francis
 
