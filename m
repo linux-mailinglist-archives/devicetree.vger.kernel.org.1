@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-65675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE97B8BF883
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:29:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BAD08BF884
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:29:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F78CB20D91
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:29:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 051D32843E4
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3818447A7D;
-	Wed,  8 May 2024 08:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2576D481C7;
+	Wed,  8 May 2024 08:29:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700EF3DB97
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F0045BE3
 	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 08:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715156974; cv=none; b=aguqOliFtPARG3P/NFVpD1W4RfDoqmnOuIxcNXr10Uc3H7bOTpi8bPa/nauIS1rrunANkEnvZJFWL7flwlpIYG4GPcCE5Q4JGaoHITGoN5kJ30XIDw3fopL1aDASh/seOf7I0TO3UKDzlF0ghVD1gyU+wBpYW+cAfUGRlgU09oU=
+	t=1715156975; cv=none; b=G8jhJyJBtQKq1moWomSR8WyQRCqRsZzBjELjLFjVBGJzKiVLSsAXT0l30mhddcYuwRMnTKFqoZl/Uq+gzb8+eXM7FpAJiZoG6WiRL6sWWkDDFxAzggz9H1mkGO+YDgexOU0Nu+UP1sYPdavdZpfoYM+D289Yk9HE+5OZov4xg+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715156974; c=relaxed/simple;
-	bh=plhsD/4kcTD28SZL1ovKLLfnXvY8Jj8qaFpPPzJDySo=;
+	s=arc-20240116; t=1715156975; c=relaxed/simple;
+	bh=mm+c/N642LvutLNJcJDi4vQqK0YCFW3AbDALd0DP900=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aiGGZIU9hBd7ehiajRjQQyOUAtW+1ESS/O8G915iryJBggC7WKn8+GjzyJt9O/hUQ8zhZ4jH1LSjS6AXg3lAGgYKdv7SrGS4pM5blpnV5oYHLxrtwfc/SCji08MGdNumH33tWUL3NCxHVq/O0MJ5vI2TNwR4J7gxx0gkrZKtc0c=
+	 MIME-Version; b=aBhdXU7TJywm5+iVwg2E0CEfRT8Mz/9lc8k2R4Dd+HjNmtLx9cwZEmhDxODF2yWz2lZfIHIdqeJH+8EpLQPmRFFc75AQegtTUE6hOFRdMtNe3VSUcu2SQYHmPIb8olXA+mXRNeGL0okROheinEOc2qJs3zohSzUr8axz8ZF9WeQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
 Received: from loongson.cn (unknown [112.20.112.218])
-	by gateway (Coremail) with SMTP id _____8Ax6unqNztmukkJAA--.12718S3;
+	by gateway (Coremail) with SMTP id _____8Bx9erqNztmwUkJAA--.13039S3;
 	Wed, 08 May 2024 16:29:30 +0800 (CST)
 Received: from localhost.localdomain (unknown [112.20.112.218])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8CxrlfmNztmvWUVAA--.36694S3;
-	Wed, 08 May 2024 16:29:29 +0800 (CST)
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8CxrlfmNztmvWUVAA--.36694S4;
+	Wed, 08 May 2024 16:29:30 +0800 (CST)
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 To: Binbin Zhou <zhoubb.aaron@gmail.com>,
 	Huacai Chen <chenhuacai@loongson.cn>,
@@ -45,9 +45,9 @@ Cc: Huacai Chen <chenhuacai@kernel.org>,
 	Xuerui Wang <kernel@xen0n.name>,
 	loongarch@lists.linux.dev,
 	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v1 1/2] LoongArch: dts: Add new supported device nodes to Loongson-2K0500
-Date: Wed,  8 May 2024 16:29:10 +0800
-Message-ID: <d0b25dedb43c000faad5b86cd0512dc6498e7839.1715156107.git.zhoubinbin@loongson.cn>
+Subject: [PATCH v1 2/2] LoongArch: dts: Add new supported device nodes to Loongson-2K2000
+Date: Wed,  8 May 2024 16:29:11 +0800
+Message-ID: <d2a7f3d5a0ec68de43d760fbd6e0e4e4bbafbc10.1715156107.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1715156107.git.zhoubinbin@loongson.cn>
 References: <cover.1715156107.git.zhoubinbin@loongson.cn>
@@ -58,15 +58,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8CxrlfmNztmvWUVAA--.36694S3
+X-CM-TRANSID:AQAAf8CxrlfmNztmvWUVAA--.36694S4
 X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxCr43Cw47Cr1fZF45ZrWkuFX_yoWrWw13pa
-	sFk39rGrW0vF1a9w45tFy8tF1kuF95CF97XwsrCFWUGrsaqFyjvr48tFyfXFWrWr4fX342
-	vFnYv34jkFnrZwcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+X-Coremail-Antispam: 1Uk129KBj93XoWxXw47Ww1UXr18JF4xCF4rJFc_yoW5Cw4kpa
+	srua17Kr409F1xu345tryUJF1kZFZ5CFnrWanIkFWUCrsIq34qqr48tF93tF18Wr4fX3yj
+	qrn5G34jkF4DZabCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
 	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
 	0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
 	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
 	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
 	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
 	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
@@ -78,21 +78,21 @@ X-Coremail-Antispam: 1Uk129KBj93XoWxCr43Cw47Cr1fZF45ZrWkuFX_yoWrWw13pa
 	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
 	67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0epB3UUUUU==
 
-By now, more Loongson-2K0500 related drivers are supported, such as
-clock controller, thermal controller, and dma controller.
-Now we add these device nodes to the Loongson-2K0500 dts file.
+By now, more Loongson-2K2000 related drivers are supported, such as
+clock controller and thermal controller.
+Now we add these device nodes to the Loongson-2K2000 dts file.
 
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 ---
- .../boot/dts/loongson-2k0500-ref.dts          |  4 +
- arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 81 ++++++++++++++++++-
- 2 files changed, 82 insertions(+), 3 deletions(-)
+ .../boot/dts/loongson-2k2000-ref.dts          |  4 ++
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 44 +++++++++++++++++--
+ 2 files changed, 44 insertions(+), 4 deletions(-)
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
-index 8aefb0c12672..62dad6297e82 100644
---- a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
-+++ b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
-@@ -41,6 +41,10 @@ linux,cma {
+diff --git a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
+index 74b99bd234cc..52daf41d7af4 100644
+--- a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
++++ b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
+@@ -39,6 +39,10 @@ linux,cma {
  	};
  };
  
@@ -100,13 +100,13 @@ index 8aefb0c12672..62dad6297e82 100644
 +	status = "okay";
 +};
 +
- &gmac0 {
+ &sata {
  	status = "okay";
- 
-diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-index 444779c21034..14345093631a 100644
---- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+ };
+diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
+index 9eab2d02cbe8..4e717f5bad45 100644
+--- a/arch/loongarch/boot/dts/loongson-2k2000.dtsi
++++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
 @@ -6,6 +6,7 @@
  /dts-v1/;
  
@@ -115,10 +115,18 @@ index 444779c21034..14345093631a 100644
  
  / {
  	#address-cells = <2>;
-@@ -19,14 +20,15 @@ cpu0: cpu@0 {
- 			compatible = "loongson,la264";
+@@ -19,21 +20,22 @@ cpu0: cpu@1 {
+ 			compatible = "loongson,la364";
  			device_type = "cpu";
  			reg = <0x0>;
+-			clocks = <&cpu_clk>;
++			clocks = <&clk LOONGSON2_NODE_CLK>;
+ 		};
+ 
+ 		cpu1: cpu@2 {
+ 			compatible = "loongson,la364";
+ 			device_type = "cpu";
+ 			reg = <0x1>;
 -			clocks = <&cpu_clk>;
 +			clocks = <&clk LOONGSON2_NODE_CLK>;
  		};
@@ -128,13 +136,13 @@ index 444779c21034..14345093631a 100644
 +	ref_100m: clock-ref-100m {
  		compatible = "fixed-clock";
  		#clock-cells = <0>;
--		clock-frequency = <500000000>;
+-		clock-frequency = <1400000000>;
 +		clock-frequency = <100000000>;
 +		clock-output-names = "ref_100m";
  	};
  
  	cpuintc: interrupt-controller {
-@@ -35,6 +37,22 @@ cpuintc: interrupt-controller {
+@@ -42,6 +44,22 @@ cpuintc: interrupt-controller {
  		interrupt-controller;
  	};
  
@@ -157,77 +165,38 @@ index 444779c21034..14345093631a 100644
  	bus@10000000 {
  		compatible = "simple-bus";
  		ranges = <0x0 0x10000000 0x0 0x10000000 0x0 0x10000000>,
-@@ -52,6 +70,55 @@ isa@16400000 {
- 			ranges = <1 0x0 0x0 0x16400000 0x4000>;
+@@ -58,6 +76,15 @@ isa@18400000 {
+ 			ranges = <1 0x0 0x0 0x18400000 0x4000>;
  		};
  
-+		clk: clock-controller@1fe10400 {
-+			compatible = "loongson,ls2k0500-clk";
-+			reg = <0x0 0x1fe10400 0x0 0x2c>;
++		clk: clock-controller@10010480 {
++			compatible = "loongson,ls2k2000-clk";
++			reg = <0x0 0x10010480 0x0 0x100>;
 +			#clock-cells = <1>;
 +			clocks = <&ref_100m>;
 +			clock-names = "ref_100m";
 +			status = "disabled";
 +		};
 +
-+		dma-controller@1fe10c00 {
-+			compatible = "loongson,ls2k0500-apbdma", "loongson,ls2k1000-apbdma";
-+			reg = <0 0x1fe10c00 0 0x8>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <67>;
-+			clocks = <&clk LOONGSON2_APB_CLK>;
-+			#dma-cells = <1>;
-+			status = "disabled";
-+		};
-+
-+		dma-controller@1fe10c10 {
-+			compatible = "loongson,ls2k0500-apbdma", "loongson,ls2k1000-apbdma";
-+			reg = <0 0x1fe10c10 0 0x8>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <68>;
-+			clocks = <&clk LOONGSON2_APB_CLK>;
-+			#dma-cells = <1>;
-+			status = "disabled";
-+		};
-+
-+		dma-controller@1fe10c20 {
-+			compatible = "loongson,ls2k0500-apbdma", "loongson,ls2k1000-apbdma";
-+			reg = <0 0x1fe10c20 0 0x8>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <69>;
-+			clocks = <&clk LOONGSON2_APB_CLK>;
-+			#dma-cells = <1>;
-+			status = "disabled";
-+		};
-+
-+		dma-controller@1fe10c30 {
-+			compatible = "loongson,ls2k0500-apbdma", "loongson,ls2k1000-apbdma";
-+			reg = <0 0x1fe10c30 0 0x8>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <70>;
-+			clocks = <&clk LOONGSON2_APB_CLK>;
-+			#dma-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		liointc0: interrupt-controller@1fe11400 {
- 			compatible = "loongson,liointc-2.0";
- 			reg = <0x0 0x1fe11400 0x0 0x40>,
-@@ -139,6 +206,14 @@ ohci0: usb@1f058000 {
- 			status = "disabled";
+ 		pmc: power-management@100d0000 {
+ 			compatible = "loongson,ls2k2000-pmc", "loongson,ls2k0500-pmc", "syscon";
+ 			reg = <0x0 0x100d0000 0x0 0x58>;
+@@ -80,6 +107,15 @@ syscon-poweroff {
+ 			};
  		};
  
-+		tsensor: thermal-sensor@1fe11500 {
-+			compatible = "loongson,ls2k0500-thermal", "loongson,ls2k1000-thermal";
-+			reg = <0x0 0x1fe11500 0x0 0x30>;
-+			interrupt-parent = <&liointc0>;
++		tsensor: thermal-sensor@1fe01460 {
++			compatible = "loongson,ls2k2000-thermal";
++			reg = <0x0 0x1fe01460 0x0 0x30>,
++			      <0x0 0x1fe0019c 0x0 0x4>;
++			interrupt-parent = <&liointc>;
 +			interrupts = <7 IRQ_TYPE_LEVEL_HIGH>;
 +			#thermal-sensor-cells = <1>;
 +		};
 +
- 		uart0: serial@1ff40800 {
- 			compatible = "ns16550a";
- 			reg = <0x0 0x1ff40800 0x0 0x10>;
+ 		liointc: interrupt-controller@1fe01400 {
+ 			compatible = "loongson,liointc-1.0";
+ 			reg = <0x0 0x1fe01400 0x0 0x64>;
 -- 
 2.43.0
 
