@@ -1,91 +1,106 @@
-Return-Path: <devicetree+bounces-65822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE3B8C028E
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:05:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B2E28C02C0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:14:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45CD51F22C16
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:05:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05E602819A0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:14:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFFEF1095A;
-	Wed,  8 May 2024 17:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725A612A17B;
+	Wed,  8 May 2024 17:14:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WZKtBqyP"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Qwf9Djb2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550FB652;
-	Wed,  8 May 2024 17:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6077C09E
+	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 17:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715187894; cv=none; b=FG83e/GSnfJja0+pQyXsrUszjwa5JgMp7bkiQ7LPHZ/VLm06Jrs9/cQRfrB7LS5CViUav2KFT0nb/hyIcnp7vIgZ8tomrMAqR87UZPLoqvF63HEIDcXMydoM7CLvZXUxXm5yHB5tWsKGdjj4QIn9ym4gstj5vubjd1WQusxlh18=
+	t=1715188455; cv=none; b=Dcjh7e4BZ02wcPq/upnffPWcyNov1zFMKBaXceGfdOkcmW9wBABwdwq0hVeBeulmKAVLuZqc4lxph4Sps0JntYwGtzPmU7zQTPpna/RygUGj1rBXud1BIxURtw1+GBb+nntVPd+9s1dTpajiKr5got68OTRNUx2qgOqXbxwZqOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715187894; c=relaxed/simple;
-	bh=D7E7QeI+gp0ya2d3meWYIiSnBaeMnXJODx+/8sDrago=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UeFhxQgJ8ixYqbp4y1foalJmU1Hmj1fxFKEb2CDl1+D9cHNjFiodO2YBiuLBf9qVFZ0tvbkaPpR3LKH0ZAE54fa0RSWdqS1EBR2foIxvK0yqaCUV0KiqutCF52IiRqIce5SAP9Tj90a/mfANrth+K/wagwroo24Ghh8iqobM5LA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WZKtBqyP; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5KTtRIHrwO6zZcqjjoJy7Z2JtnTKoYC+UnI35VpkFyk=; b=WZKtBqyPC1fQ2SapGaZKLVZ10q
-	Ivm2zSjyjRZCrrc4TbmokWe9WgSR80tPiiVjVSX3jBotWPP989QGawQX6B+hrqawRjjGDQjVaRyei
-	r+8pA9Jw/XawKKe28j2j8Fkym9xK8ZkSytljvMB5Gzv9AXRy0BgI8EEBwGlC6Q2gsP3c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1s4kia-00EyUG-0u; Wed, 08 May 2024 19:04:36 +0200
-Date: Wed, 8 May 2024 19:04:36 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 00/12] Add support for OPEN Alliance
- 10BASE-T1x MACPHY Serial Interface
-Message-ID: <6ba7e1c8-5f89-4a0e-931f-3c117ccc7558@lunn.ch>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <5f73edc0-1a25-4d03-be21-5b1aa9e933b2@lunn.ch>
- <32160a96-c031-4e5a-bf32-fd5d4dee727e@lunn.ch>
- <2d9f523b-99b7-485d-a20a-80d071226ac9@microchip.com>
+	s=arc-20240116; t=1715188455; c=relaxed/simple;
+	bh=W8j83Ea3GVr160getEMTkfwK8jToX2Yy/9+67CqUuPk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LMDTn+irB0yvzr0tDwRP3/4ni6WTbZJLZ94vqSpp4IJ7Wyl7yYyRA0OpFcGcnLQY2VhIZ09BagqjMCnm1R9+ENORCke60N0J4qun33uoU4Dl/PBQP4ffLiCSU4Vz2O+8+i5aJ3HNGtpSHRXDUxdoD+7t6MraY+w2APxuahV55GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Qwf9Djb2; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 16C512C0184;
+	Thu,  9 May 2024 05:05:48 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1715187948;
+	bh=K6i1inkk1HdZG0RAxFC807dO0ylhV1wxNEJo/OBI1xs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Qwf9Djb2RMAun6OB2Y6eBQb2o3Rv2anmPlu3G+XWcSXwSNISlf/lzMAg3qnKDPHgF
+	 UBHOAlszfWetHpUJlt/KHO4oJenK7PfittF1dPiAYDyulzorDS+vbXzvxLcPBrFGRV
+	 eV2C6kS0xm0GCYfCEplYWwgWQspyYvD8xZo+ELx5KVR5KVHa1N8ocm6JfwCW0DVXlJ
+	 PBU8ROrIhWVYm1t26vKdI6NVpG906ZCWhO4Z/9/lc17oSlOtHSbufqyFEb/To4Knbb
+	 hFQjZbB1uOkpGH5NLbJJgGdS/AiOsxqKoxTmh1IsGNe6xO2W86X+jxm8zExx6hiVHt
+	 NNTzkKt0Jsocw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B663bb0eb0000>; Thu, 09 May 2024 05:05:47 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id C5FAA13ECD2;
+	Thu,  9 May 2024 05:05:47 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id C02B528091F; Thu,  9 May 2024 05:05:47 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: jdelvare@suse.com,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] hwmon: (adt7475) duty cycle configuration
+Date: Thu,  9 May 2024 05:05:41 +1200
+Message-ID: <20240508170544.263059-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2d9f523b-99b7-485d-a20a-80d071226ac9@microchip.com>
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=MfrPuI/f c=1 sm=1 tr=0 ts=663bb0eb a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=TpHVaj0NuXgA:10 a=IntvOMply_uMlCww3fEA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-> Yes. I tried this test. It works as expected.
+I have a system that has very over spec'd fans so the amount of noise whe=
+n they
+run at 100% duty cycle is considerable. We have userspace monitoring tool=
+s that
+will configure appropriate fan control parameters but there is a bit of a=
+ delay
+between the kernel loading the driver and the userland tools catching up =
+to
+configure the fan control. This series adds device properties that allow =
+the
+PWM duty cycle to be specified via device properties so the PWM duty cycl=
+e can
+be reduced as soon as possible.
 
->    Each LAN8651 received approximately 3Mbps with lot of "Receive buffer 
-> overflow error". I think it is expected as the single SPI master has to 
-> serve both LAN8651 at the same time and both LAN8651 will be receiving 
-> 10Mbps on each.
+Chris Packham (2):
+  dt-bindings: hwmon: Document adt7475 PWM initial duty cycle
+  hwmon: (adt7475) Add support for configuring initial PWM duty cycle
 
-Thanks for testing this.
+ .../devicetree/bindings/hwmon/adt7475.yaml    | 26 ++++++++-
+ drivers/hwmon/adt7475.c                       | 56 +++++++++++++++++++
+ 2 files changed, 81 insertions(+), 1 deletion(-)
 
-This also shows the "Receive buffer overflow error" needs to go away.
-Either we don't care at all, and should not enable the interrupt, or
-we do care and should increment a counter.
+--=20
+2.43.2
 
-	Andrew
 
