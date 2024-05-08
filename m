@@ -1,171 +1,137 @@
-Return-Path: <devicetree+bounces-65740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D358BFD3F
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:35:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1898BFD47
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D44021F249F7
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:35:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C01871C20ADA
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936395577E;
-	Wed,  8 May 2024 12:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D798D4205F;
+	Wed,  8 May 2024 12:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KI1vs2J/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fVuDMYxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4C554FBE;
-	Wed,  8 May 2024 12:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B774347B6;
+	Wed,  8 May 2024 12:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715171718; cv=none; b=cEGHQE+6gZakRXAtZoxpOMCiNkGeDVqeFGXduRnkIX6HpKKVtG4DV8i6bkW7ESU2+rPxMGH1VDt/PDOmmBV3QFunO3tclTBvfWDVrJIPiTq/BsTCeOdzjEYfApTj40TlxQWW1eWD91n6zsSEBg+xlOaDo+h55l/cKMgRNSvXEHE=
+	t=1715171858; cv=none; b=C2e8VJqZITpGdcS9oZJ8w1VsQrqIiMdH9LIQWrbpfRhv6RjWyaa611PxDjsvBxvqDBGmYgieCfWi28MCYaqR6s3zEZIsCyyezCK2k3eDVDwCnfSmpvkyNcMmtxJdMDMYh/8bdba/t2nDhrKhfClGw7u41Pge9VJrKstNnvd5GR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715171718; c=relaxed/simple;
-	bh=2Etf+3oMm8wPJG4pw3INs5sFZubsOVqMVAIhncRw1Tc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dy9eVk8Uz7IjYixhD+Mj0MWdbUBuUWKkTQSMj+bfWG2N0f+k4GKbnpL65d4vuoK/MY6jTI5wGifbaParTRNLr3VqURhAvgB5RhI9aKhZEH8Xa00z+DPnsdWWXjI+EtgNvPIoK9b3j1V0gXa/xfQCCaivgchhMTJeB0i1myv2hkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KI1vs2J/; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 448CYwNu024030;
-	Wed, 8 May 2024 07:34:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715171698;
-	bh=yHR2bzsPIYHNIgrn3KJGdKIw3Nu3pQhsAXQh/+rbFXs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=KI1vs2J/Q6NjOdoLtKFjUeMz6uru7mGS+xEBTOidoKQ5yxO86IEdoN+H5PAxJeQcb
-	 d+B4T3N0KZkQquLc4VCX1AySyJ4jnoUYPI3JtP+1XGTa7piHlagyR8ve5pIcrn6cUC
-	 aaIt/tXw2Sfap3wRhtvCrUiQdLAyqYYs/JDOy/cI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 448CYwCe025812
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 May 2024 07:34:58 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
- May 2024 07:34:58 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 8 May 2024 07:34:58 -0500
-Received: from [172.24.227.88] (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 448CYsH3086002;
-	Wed, 8 May 2024 07:34:55 -0500
-Message-ID: <588e4d0a-78c6-553f-3c40-0d248f4c92f9@ti.com>
-Date: Wed, 8 May 2024 18:04:53 +0530
+	s=arc-20240116; t=1715171858; c=relaxed/simple;
+	bh=cAz7HeJbFspsZFZ1DAYm8MdRx4JYFVuGaZU2/nEtWSE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A3uatjmnBs5N/o44CSyLBQEUsXepmq3lAOjLTQePvISbfnGudIPUzihe+339luIXgQR2RLQYlAHHJgkJgiSpgGjDfvXhCunlCi3sost8LDsvBvN3tGHWaRYDZ1ljQz57uTiECfTm3glm1AmGJyJDOabLE2Er9+jubj3eavlx/1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fVuDMYxI; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51f300b318cso5068490e87.3;
+        Wed, 08 May 2024 05:37:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715171855; x=1715776655; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=i58eGKPvYNQTQcyeap/7W0ADrn9Va3j9vHO5Ufznw58=;
+        b=fVuDMYxIfgSgSsxnBwdSAog3UeLFFOUY36lksdFcyybPUCbXi6q7A2TfG78WyElM29
+         iVwaTnJKGSdtt51DCZFAEqWFUd9VPHA+41OqaHdMoZr3VRCFlmZHTS38bC/4W2e/lKnS
+         /daTZc6XY4We4nTZElyehmPL47waAww/oQ47fw4u3YqvefPHDs+WOvhbwxJwU0oirZrr
+         mWA7eRCdo0Dyt7yLYErgXufCMQsuS55erUEW0bWKwZJM3RqR34F4VhXeAKrpAe04FL8p
+         XA1RwhcLXMHjKXzWSwEOUJZ1initQTpB1EbTKNj6AyIk/3d0wf/zS6I5anGdJ6ew2KNU
+         Qswg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715171855; x=1715776655;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i58eGKPvYNQTQcyeap/7W0ADrn9Va3j9vHO5Ufznw58=;
+        b=V1v0PamH0EZlIQ8lpZYSO4q4n6s9mDFgYOxmtI3w1Z4lwwCeWcB56oFIsfIgA6UN4i
+         AW1p5+eIrG13BveDUdLIXIDZRcf+KhRkuTsBlfBkII8E0SWKGoPe7VJHgZAoE4Omv01h
+         L/JJHKm/NQJVOlj35o0cYHT5rJX7AEYFhuCLWR83J4eQVOKcDBQJOgcwnRUJJIqIo2Yn
+         osRVzlzuRwmkOR0idnPVXDofpEqHfjNSZ4E3t5QNGC0P5v1JOnIXsH/+x8J9PdWMMIV+
+         nUZle008w4Pz4+9K2oSLhu5S2CUrhlOkkLP2fzbUdyYEmvPiorWhy/gAZnPKfM+MzVEz
+         VfNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjQih1N0gDkgLwoVkMFJSaXwvJMtu2MGJE7sQuSfmI03ALToSH01uP55UO92PYN8HH0aCmfAVxTkLE6Fg2kFWdP6uUXoC+TP0s7mvUYoOhlIUjJdhSEVOuzFC7L1Ozn9Nnj+gygbxz+V287oKvUOA/Z7AAyCdOX4/XmPP5+THtX1Y3fP0=
+X-Gm-Message-State: AOJu0YwTPevSSDI8VHgbDlxqAYyfAC7qOEn5KV3F0zxFlxLqGi+h3ztR
+	RJxUhfqMwafqp+M8bkKTGvNXe2T1fnHx4i+mDhZ4npHSJwNZUQLHQo66pw==
+X-Google-Smtp-Source: AGHT+IESdzI9ECXTCgEWOcIfTwT0hKXRiT5PTOUn7yNGACujM0l6NidLseL3uzfgExjDFynctwp+jA==
+X-Received: by 2002:ac2:4a7a:0:b0:51d:605e:c1e0 with SMTP id 2adb3069b0e04-5217c5664d4mr1346867e87.19.1715171855101;
+        Wed, 08 May 2024 05:37:35 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id b26-20020a056512025a00b0051f026412b5sm2514455lfo.141.2024.05.08.05.37.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 May 2024 05:37:34 -0700 (PDT)
+Date: Wed, 8 May 2024 15:37:31 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: Paul Burton <paulburton@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/5] MIPS: cm: Probe GCR address from devicetree
+Message-ID: <zy2p2ebyjmuaj6fv2qhglljnjz2x4jmb5d7rkwipu6rn5rrxnc@2tavfilxs7ie>
+References: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j722s: Add support for SERDES0
-Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <srk@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Ravi
- Gunasekaran <r-gunasekaran@ti.com>
-References: <20240429120932.11456-1-r-gunasekaran@ti.com>
- <20240429120932.11456-2-r-gunasekaran@ti.com>
- <41047a89-2787-422f-a643-3e2d850da6dd@kernel.org>
-From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <41047a89-2787-422f-a643-3e2d850da6dd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
 
+Hi Jiaxun
 
-
-On 5/8/24 5:29 PM, Roger Quadros wrote:
+On Tue, May 07, 2024 at 10:01:48AM +0100, Jiaxun Yang wrote:
+> Hi all,
 > 
+> This series enabled mips-cm code to probe GCR address from devicetree.
 > 
-> On 29/04/2024 15:09, Ravi Gunasekaran wrote:
->> Add SERDES0 and its wrapper description to support USB3
->> and SGMII interfaces.
->>
->> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-j722s.dtsi | 54 ++++++++++++++++++++++++++++
->>  1 file changed, 54 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
->> index c75744edb143..beba5a3ea6cc 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
->> @@ -9,6 +9,7 @@
->>  #include <dt-bindings/interrupt-controller/irq.h>
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  #include <dt-bindings/soc/ti,sci_pm_domain.h>
->> +#include <dt-bindings/phy/phy-ti.h>
->>  
->>  #include "k3-am62p5.dtsi"
->>  
->> @@ -75,6 +76,50 @@
->>  			 <0x00 0x78000000 0x00 0x78000000 0x00 0x00008000>,
->>  			 <0x00 0x78100000 0x00 0x78100000 0x00 0x00008000>;
->>  	};
->> +
->> +	serdes_refclk: clock-cmnrefclk {
-> 
-> What could be the generic name here?
-> 
+> This feature has been implemented in MIPS's out-of-tree kernel for
+> a while, and MIPS's u-boot fork on boston will generate required
+> "mti,mips-cm" node as well.
 
-How about phy-clk or serdes-clk?
-I searched for "fixed-clock" and wide range of naming conventions is followed.
+Thank you very much for the series. This work has been scheduled in my
+TODO list for years. I could have done it earlier but a simple at the
+first glance change turned to be tricky. The main concern was the
+stage at what CM was probed. I was afraid to break things by changing
+the order of the CM-base address getting. Let's discuss this matter in
+the respective patch. It might get to be I was wrong to worry.
 
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-frequency = <0>;
->> +	};
->> +
->> +	serdes_wiz0: wiz@f000000 {
-> 
-> Should generic name be phy?
-
-Since serdes is used for both USB and PCIe,
-I can go with "phy".
+-Serge(y)
 
 > 
->> +		compatible = "ti,am64-wiz-10g";
->> +		ranges = <0x0f000000 0x0 0x0f000000 0x00010000>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		power-domains = <&k3_pds 279 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 279 0>, <&k3_clks 279 1>, <&serdes_refclk>;
->> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
->> +		num-lanes = <1>;
->> +		#reset-cells = <1>;
->> +		#clock-cells = <1>;
->> +
->> +		assigned-clocks = <&k3_clks 279 1>;
->> +		assigned-clock-parents = <&k3_clks 279 5>;
->> +
->> +		serdes0: serdes@f000000 {
+> Please review.
+> Thanks
 > 
-> here too?
-
-I could use "phy" here as well. 
-https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/qcom/sa8775p.dtsi#L1853
-https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/renesas/r8a779f0.dtsi#L563
-
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> ---
+> Jiaxun Yang (5):
+>       MIPS: generic: Do __dt_setup_arch in prom_init
+>       MIPS: cm: Prefix probe functions with __init
+>       MIPS: Move mips_cm_probe after prom_init
+>       dt-bindings: mips: Document mti,mips-cm
+>       MIPS: cm: Probe GCR address from DeviceTree
 > 
->> +			compatible = "ti,j721e-serdes-10g";
-
-[...]
-
+>  .../devicetree/bindings/mips/mips-cm.yaml          | 37 ++++++++++++
+>  arch/mips/generic/init.c                           |  9 ++-
+>  arch/mips/include/asm/mips-cm.h                    |  4 +-
+>  arch/mips/kernel/mips-cm.c                         | 66 ++++++++++++++++++----
+>  arch/mips/kernel/setup.c                           |  2 +-
+>  5 files changed, 100 insertions(+), 18 deletions(-)
+> ---
+> base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
+> change-id: 20240506-cm_probe-0c667c8b63bf
 > 
-
--- 
-Regards,
-Ravi
+> Best regards,
+> -- 
+> Jiaxun Yang <jiaxun.yang@flygoat.com>
+> 
+> 
 
