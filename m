@@ -1,131 +1,138 @@
-Return-Path: <devicetree+bounces-65692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F838BF98A
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 11:29:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E17A68BF999
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 11:38:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CCD7B22396
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 09:29:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 912651F23D2A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 09:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC8976050;
-	Wed,  8 May 2024 09:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DFD75803;
+	Wed,  8 May 2024 09:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="yI4LvrKF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TVGgilRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2A971753;
-	Wed,  8 May 2024 09:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D810FBA39;
+	Wed,  8 May 2024 09:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715160588; cv=none; b=s7Dw6EcCfG1wHXMt7BthOmO78ISE7yZDz6zvWli6DqJ54fVY5h2Exozx+553MHX7X9jVyrz99aKTSzwGbbXGeTgST9wKEHHEf2BPy1qFABVK3ciKptOuOR0B9YFuYbPPwQ1KD6NFHH9sRuUJ4dxdqcPho3mfkrDgVZoHgIWI5fU=
+	t=1715161120; cv=none; b=VyAFCYuL3FeD5rCasFDfYEcY7fbqqCygOj2RXOGkAuZ1KN3Vs1doo2s4EuqBw7PhwO0ayi66Al3lMTt7eunYXDmrLMMYITDQd0bDurzgqFzr3CZUvNWm+LcpAV4ZrdYEpQIKV02OpqoTBRvDLHCLXUB7EXhT88h+6pAg7FnI5Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715160588; c=relaxed/simple;
-	bh=CyUA6ks1HsLglg9cdqivgokq0SYSLKF5yuxVYskxaFY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=unJMbanPABl4VVNXLwyBwZSFRf2yiGynpdVfl37E6fKHi1l853yiGtDFsrg4OTHJNm6BY+AuG8JUiuJ+nfTvFHt6aL4OtYUndbVumoDhjB4vmnxyrk2S7r+sag6+BStJJFt700q2F6RwVd14v2ZF27Kx8LzWgF/2n4bOAiF1dJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=yI4LvrKF; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1715161120; c=relaxed/simple;
+	bh=1H9IvDj54BGaod2j76jKgisXrxX1D99LzNnw+l+mblA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eyuUtVHelZ3avxPMihd25W5OlAc+QcRTSZgFNSUBdvDMMmUMlaEuwSmW0WBe0UIkxzyooSFqNj8a+r9A17MO/qDLFhlRU0+tsivxuWCilt7V8HN0m3ssfzfRkuvhX2yZGIh3YJi+HO/0O72MDevpFQ8apGYzvvURZH2RGnp1gok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TVGgilRZ; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4489cQhv107634;
+	Wed, 8 May 2024 04:38:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715161106;
+	bh=6sFj4TRv+mWm2gwnLmvR0xCJWo1wPIZ0KZaV5KYBhUc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=TVGgilRZ0WpNmohfsVnM508aVOCLWS2ndjzoQWzkl4/ww5Lk5FKJCbyeUI3+bf+RZ
+	 rsGVUALr0ePVuDaROf6f5zn5n9L29YKzsE27vLFoAR1lHohxjBx+G0kn4sGmTYLz4h
+	 25BXyXcxDflG8b6O8mXVD0vjOh9ZsfP2cZizEAV0=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4489cQM7089838
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 May 2024 04:38:26 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ May 2024 04:38:25 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 8 May 2024 04:38:25 -0500
+Received: from [172.24.227.88] (uda0500640.dhcp.ti.com [172.24.227.88])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4489cLFc055890;
+	Wed, 8 May 2024 04:38:22 -0500
+Message-ID: <10c56e60-9de4-de79-edba-5034ae7438e0@ti.com>
+Date: Wed, 8 May 2024 15:08:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1715160582;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JL7Cqc7rpixgBgbCXhIQMAAO82vWRkxls15BxMKvRjg=;
-	b=yI4LvrKFeze38qylAOEwDE+u0aDLwijFZ11pRQXLtPq+5cRr4L29GioAoB+XHJJDyJS4SF
-	dYIhMJAXL01yhOISHYCff80gnsnbRlJjsKG6TCf4LS1ODA4AJ9t67oUGzH4ISIZDALxboo
-	gdoTbP5qvSjdWBwukr/zNQnLi6bvSeISFQ6/PHSSCnZ08BywqcGtOG8PJtO84fGlMs1fSD
-	snRkHQU1XjAAncDkgSsXaoQVWdgM9rBRrTVmCn+3xTLCgHk1394fEio19jL9iJEsXEUw01
-	ts0CTGePsVsnx/F2vIjQY0+BetXaqSm0qvR9tqLxnXB4gwwNq+qMV6QRH7xSvg==
-Date: Wed, 08 May 2024 11:29:41 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Kever Yang
- <kever.yang@rock-chips.com>
-Subject: Re: [PATCH v4 6/6] arm64: dts: rockchip: Add OPP data for CPU cores
- on RK3588
-In-Reply-To: <e220061e-0bb5-4fa4-9a91-aefd81e6636c@cherry.de>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <20240506-rk-dts-additions-v4-6-271023ddfd40@gmail.com>
- <e220061e-0bb5-4fa4-9a91-aefd81e6636c@cherry.de>
-Message-ID: <dd9c76519ee0eee177528488a4946056@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j722s: Redefine USB1 node
+ description
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <srk@ti.com>, <rogerq@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Ravi Gunasekaran <r-gunasekaran@ti.com>
+References: <20240429120932.11456-1-r-gunasekaran@ti.com>
+ <20240429120932.11456-3-r-gunasekaran@ti.com>
+ <9c6f8999-715f-42e3-8d13-a5aef074dd5d@ti.com>
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <9c6f8999-715f-42e3-8d13-a5aef074dd5d@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello Quentin,
 
-On 2024-05-08 11:12, Quentin Schulz wrote:
-> On 5/6/24 11:36 AM, Alexey Charkov wrote:
->> By default the CPUs on RK3588 start up in a conservative performance
->> mode. Add frequency and voltage mappings to the device tree to enable
->> dynamic scaling via cpufreq.
->> 
->> OPP values are adapted from Radxa's downstream kernel for Rock 5B [1],
->> stripping them down to the minimum frequency and voltage combinations
->> as expected by the generic upstream cpufreq-dt driver, and also 
->> dropping
->> those OPPs that don't differ in voltage but only in frequency (keeping
->> the top frequency OPP in each case).
->> 
->> Note that this patch ignores voltage scaling for the CPU memory
->> interface which the downstream kernel does through a custom cpufreq
->> driver, and which is why the downstream version has two sets of 
->> voltage
->> values for each OPP (the second one being meant for the memory
->> interface supply regulator). This is done instead via regulator
->> coupling between CPU and memory interface supplies on affected boards.
-> 
-> I'm not sure this is everything we need though.
-> 
-> For the LITTLE cores cluster, all OPPs up to 1.416GHz are using the
-> same opp-supported-hw, however the ones above, aren't.
-> 
-> 1.608GHz, 1.704GHz and 1.8GHz are all using different opp-supported-hw.
-> 
-> Similarly, for the big cores clusters, all OPPs up to 1.608GHz are
-> using the same opp-supported-hw, but not the ones above.
-> 
-> 1.8GHz and 2.016GHz, 2.208GHz, 2.256GHz, 2.304GHz, 2.352GHz and 2.4GHz
-> all have a different opp-supported-hw.
-> 
-> The values in that array are coming from cpu leakage (different for
-> LITTLE, big0 and big1 clusters) and "specification serial number"
-> (whatever that means), those are coming from the SoC OTP. In the
-> downstream kernel from Rockchip, the former value is called "SoC
-> Version" and the latter "Speed Grade".
-> 
-> I think this may have something to do with "binning" and I would see
-> the ones above the "common" OPPs as "overclocking". Not all CPUs would
-> support them and some may not run stable at some lower frequency than
-> their stable max. Adding Kever from Rockchip in Cc to have some input
-> on the need to support those.
 
-Good point.  We should remove the OPPs for both clusters that aren't
-supported by all RK3588(s) binnings, to be on the safe side.
+On 5/7/24 10:45 PM, Andrew Davis wrote:
+> On 4/29/24 7:09 AM, Ravi Gunasekaran wrote:
+>> USB1 controller on J722S and AM62P are from different vendors.
+>> Redefine the USB1 node description for J722S by deleting the
+>> node inherited from AM62P dtsi.
+>>
+>> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j722s.dtsi | 39 ++++++++++++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+>> index beba5a3ea6cc..90725eeb3178 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+>> @@ -13,6 +13,13 @@
+>>     #include "k3-am62p5.dtsi"
+>>   +/*
+>> + * USB1 controller on AM62P and J722S are of different IP.
+>> + * Delete AM62P's USBSS1 node definition and redefine it for J722S.
+>> + */
+>> +
+>> +/delete-node/ &usbss1;
+>> +
+>>   / {
+>>       model = "Texas Instruments K3 J722S SoC";
+>>       compatible = "ti,j722s";
+>> @@ -120,6 +127,38 @@
+>>               status = "disabled"; /* Needs lane config */
+>>           };
+>>       };
+>> +
+>> +    usbss1: cdns-usb@f920000 {
+> 
+> MAIN domain items are defined in -main.dtsi files, for instance the
+> USB node you are overriding was defined in k3-am62p-main.dtsi.
+> This should go in a file named k3-j722s-main.dtsi.
+> 
+> Andrew
+> 
 
-I'll hopefully dive into supporting different Rockchip binnings rather
-soon.  There's even more about that, and not just with the RK3588(s),
-which I think I'll get all covered.
+Ok. I will introduce k3-j722s-main.dtsi newly and define the USB 
+and SerDes nodes there. 
+
+[...]
+
+-- 
+Regards,
+Ravi
 
