@@ -1,91 +1,153 @@
-Return-Path: <devicetree+bounces-65860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E834C8C04BB
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 21:10:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82CF98C0533
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 21:41:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21B691C21C3A
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:10:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F7B3284F17
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D2613049C;
-	Wed,  8 May 2024 19:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261F8130AC1;
+	Wed,  8 May 2024 19:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hJ5vKu5V"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eO8Qobbh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D356E1DFC5;
-	Wed,  8 May 2024 19:10:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EAA6225D9;
+	Wed,  8 May 2024 19:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715195428; cv=none; b=SueTpz6e5uq0pZV3iC9RXj+mI/IYpYRPvks/ObpTWrSVWp82Nol9lZsVv7P6mkR1+E2nlA/Mzu/kr2jLmBGImbyDfLMzDI67TpoQYEJLnEVaTFeRa0aNRPLRC8TyogAfm7lxs2KJy6y1dYwmJQi3NSrxhQAw6f//Ijl/MVba6Yc=
+	t=1715197300; cv=none; b=qKOdra07+aAJIsWRbdtQLAU4aj3OiDEsFNO3OF/9cIVEaOA1n80kqZAaXKCpuHuGMRJYS4P0jNtzxPMQdveDHqqFo8lo9qtL6Re8pSZGbX5JrpAI3DVRMrDkceQppKgowK6evWJK647T4SgwaN+YDZOpMy24sV6uf75K3/cC3BY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715195428; c=relaxed/simple;
-	bh=8X6+44daOTVhYsmsLkXUJSkQDo/m4CLnbDr06hibE2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xv300LiUFT1oyN5xJk8kSs5WcRNnatCzMKKZ7fgVjMiF7Kd1KaeSmHz1VRBKCkYJughGBQuTzZqEVbb0GasU7cZZ8Aqa6qA8Q/TL310mmCuU4l20fjAOYnpAoE6as43UyYMVW22yus9lWvorD3B6Weq0AORnWOlDWlkUKPkvPi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hJ5vKu5V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38FFCC113CC;
-	Wed,  8 May 2024 19:10:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715195427;
-	bh=8X6+44daOTVhYsmsLkXUJSkQDo/m4CLnbDr06hibE2c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hJ5vKu5V89xWFWP1uYZlLrERK6CfxhPrCY6a8jb/ySjrZpqFudFLNPgiHXJNwT0Vz
-	 jNNAgxaY722wbJG58KXTBXYeaE9qCJa5MBu4cHlnEZVyiZJRxBcEsNPGbtSylESxro
-	 7IYzzLEACMQIlfR13GffPC2zgaGBcES3tE7JUXokXFDc5Q87AUCEppAl68YAiWwQA2
-	 rUKh1AakYlWWOHHva2U4Mm31oZYoA3D7aFvUhPxMKCGzH1HEJnFgaJBTLzQu1P6e23
-	 MLL2+Y958qtYm8LI1ZcYA6C2S1aG3+vjWDYCxq6j0dsOrAXeNfU4Z373ZncS/wHAbH
-	 0L2Waj4d4EsVw==
-Date: Wed, 8 May 2024 14:10:25 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Shijie Qin <shijie.qin@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Zhou Peng <eagle.zhou@nxp.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, Jeff LaBundy <jeff@labundy.com>,
-	Richard Weinberger <richard@nod.at>
-Subject: Re: [PATCH] dt-bindings: Use full path to other schemas
-Message-ID: <171519542260.2430941.15049314403040181204.robh@kernel.org>
-References: <20240505084618.135705-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1715197300; c=relaxed/simple;
+	bh=HapdOvbkq3cPe7mrnwPRJWY/JCHXpUP5zWlGDoia4vU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OAwtl4+3AguKmAXEPLfGf5tOhCYmDbWY0NctqbopvbSvABIuIE4vfFrGTl849D1l4jNKkfdBxW14vK5+eQC4s1ltobvjawPOOkBYh1dMX282gugqxzsKsVzXnoAIRoGbZqceqEEpIdkfcHVqMAfKcEvfg6h6bTPmSpg6DkDGz6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eO8Qobbh; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 448C4OBB027127;
+	Wed, 8 May 2024 19:41:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=//8eQG+4DJgnx0oufJSB0Ib+8mNORV/5apGuxCNbiww=; b=eO
+	8QobbhfFGKKMOMN0MklkBu/IIMkRiTUFvOXG2N0U+uncWf4fVgG9GtPXMgeIdubH
+	J50HYgA+5bxk/nOeBJHHbq2HKS4j5zMZ/Q3kDh7dq/kv/49NO56vh1ECoLNr55EU
+	DA3rlZra/g4d45My0ErWb2TBFfwn/+mWfuAVHYx8MVCGNaBlQNyJoTWp2Em/Bdsv
+	noRyvN6Bi5XEkIJot+es0BoE4Pi6E91c9c8TnRmI35MoU3j788jIDFeUcUiWTXna
+	4DXKNHqvzTUGvxIJnfOVGtLo+GEUrt52unFv9Gy1fHU9pzb2hr+0C0xfzEerqppB
+	zzlAl1GT3Pp2WutiX/ug==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y0930s2f2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 19:41:17 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 448JfGU3007751
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 May 2024 19:41:16 GMT
+Received: from [10.110.126.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 May 2024
+ 12:41:15 -0700
+Message-ID: <a602e121-28e0-3255-87bb-c75355926125@quicinc.com>
+Date: Wed, 8 May 2024 12:41:10 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240505084618.135705-1-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v21 34/39] ALSA: usb-audio: Add USB offloading capable
+ kcontrol
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>, <krzk+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <Thinh.Nguyen@synopsys.com>,
+        <broonie@kernel.org>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <bagasdotme@gmail.com>, <robh@kernel.org>, <konrad.dybcio@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240507195116.9464-1-quic_wcheng@quicinc.com>
+ <20240507195116.9464-35-quic_wcheng@quicinc.com>
+ <4ce8ee3b-21d3-4aa3-8fd5-7dcccc2b8abe@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <4ce8ee3b-21d3-4aa3-8fd5-7dcccc2b8abe@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _92PkR2WXZJ-AELmvZ21blO6NJUTRqKm
+X-Proofpoint-ORIG-GUID: _92PkR2WXZJ-AELmvZ21blO6NJUTRqKm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-08_09,2024-05-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ impostorscore=0 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 phishscore=0 mlxlogscore=999 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405010000
+ definitions=main-2405080144
 
+Hi Pierre,
 
-On Sun, 05 May 2024 10:46:18 +0200, Krzysztof Kozlowski wrote:
-> When referencing other schema, it is preferred to use an absolute path
-> (/schemas/....), which allows also an seamless move of particular schema
-> out of Linux kernel to dtschema.
+On 5/7/2024 2:37 PM, Pierre-Louis Bossart wrote:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> ---
+> On 5/7/24 14:51, Wesley Cheng wrote:
+>> In order to allow userspace/applications know about USB offloading status,
+>> expose a sound kcontrol that fetches information about which sound card
+>> index is associated with the ASoC platform card supporting offloading.  In
+>> the USB audio offloading framework, the ASoC BE DAI link is the entity
+>> responsible for registering to the SOC USB layer.  SOC USB will expose more
+>> details about the current offloading status, which includes the USB sound
+>> card and USB PCM device indexes currently being used.
+>>
+>> It is expected for the USB offloading driver to add the kcontrol to the
+>> sound card associated with the USB audio device.  An example output would
+>> look like:
+>>
+>> tinymix -D 1 get 'USB Offload Playback Capable Card'
+>> 0 (range -1->32)
 > 
-> Rob, maybe you can take it directly? Should apply cleanly on your tree.
-> ---
->  Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml | 2 +-
->  Documentation/devicetree/bindings/media/amphion,vpu.yaml    | 2 +-
->  Documentation/devicetree/bindings/mtd/mtd.yaml              | 4 ++--
->  3 files changed, 4 insertions(+), 4 deletions(-)
+> You already gave the following examples in patch 29:
+> 
+> "
+> USB offloading idle:
+> tinymix -D 0 get 'USB Offload Playback Route Status'
+> -->-1, -1 (range -1->32)
+> 
+> USB offloading active(USB card#1 pcm#0):
+> tinymix -D 0 get 'USB Offload Playback Route Status'
+> -->1, 0 (range -1->32)
+> "
+> 
+> Can you clarify how many controls there would be in the end?
+
+For USB offload situations, there will be a set of controls for playback 
+status and playback select.  The offload jack will also be there to tell 
+us if there is an offload path available for the platform ASoC sound card.
+
+> Also isn't tinymix -D N going to give you the controls for card N?
 > 
 
-Applied, thanks!
+Yes, since the offload portion is handled as a DPCM DAI link to the 
+platform ASoC card, it will be included as a kcontrol for that.
+
+Thanks
+Wesley Cheng
 
 
