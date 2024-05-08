@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-65809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 969448C01F0
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:26:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2F0F8C01F4
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:28:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 528542807BF
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:26:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7024DB21364
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED40129E6F;
-	Wed,  8 May 2024 16:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32C512A175;
+	Wed,  8 May 2024 16:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mzqDzW7U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GENxTopR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B514D128803;
-	Wed,  8 May 2024 16:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D7C129E80;
+	Wed,  8 May 2024 16:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715185588; cv=none; b=BUv9g9PzR+vq9wMplhyuifOQFo9OPUIJASIzdN61QtB/bwRBXjTfKMpR1zsXmDoslMzv6gk6q+C22V2hQbNeLh6xCTVxeUcB30or+N7wLLLNb7uBtfQfBP9hR/NeOExUfjHjiA9eJrBJIurtDZZIIsCXdd7turCcLNPW19h8CTg=
+	t=1715185688; cv=none; b=q6jnd5NcefYsyfOWu/syA67FHRjqBntEqX4a+4KiIb5qOmiEkKYn+MGn2zDc8mYuaMCt1oQ6AI4n4nBPWVf8JAyZU+0Gf8VWG+Qn1wIjCSKrY8aQPJ8OqVxVOMV3ZaVvCuCFdUReC/m8nADOP+WLrqCLorMiHGrjGp+v1/h3UQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715185588; c=relaxed/simple;
-	bh=rpmaTcF6NHb4RdcHyRzCGKLynwtWYkWx/YXOSidOu3Y=;
+	s=arc-20240116; t=1715185688; c=relaxed/simple;
+	bh=UYa9nQFbXFsPXVOkMa9L+1nCg7GuO4KyEPe7MnFS6Gw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TzI2NqMEDzp7AXd8yHbgVMW3a1J6ePfl+gc/CeCAuJq4VznUvFCcX4TX8EdX7VzXpA6/A4jNqanumqaLg/aaVQ0UH1SvKzI6Gdi/J5YfYGVUUNyRpP8q+a2RWQjicnA/ru81dLtpY4+BS4GJsHiITN9qMVpgJpgXS/4ypTDm0W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mzqDzW7U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56BC2C113CC;
-	Wed,  8 May 2024 16:26:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gr8dRkBMblHRLwtjeRh6wLDDiiy68Sivf+4Fd4gtzG5DJ27FdxlOOl5LwvJO5ZbdyUyhbsS6yWcFzrkCAsBWj2ghlbHQnAhBc849hLUhCAnIKXb4XDrn85JyxESxL5q/0Xs88CaOxloPXlQz0N0g2p/+Q7T2G6+zJuO9LLceFjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GENxTopR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D4B5C2BD11;
+	Wed,  8 May 2024 16:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715185588;
-	bh=rpmaTcF6NHb4RdcHyRzCGKLynwtWYkWx/YXOSidOu3Y=;
+	s=k20201202; t=1715185688;
+	bh=UYa9nQFbXFsPXVOkMa9L+1nCg7GuO4KyEPe7MnFS6Gw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mzqDzW7UmVFevoUNYXqlEDCH7fTwvTXl6i4PIVqMDV0nACJJdDWzzwBZ/qHw6N8vg
-	 LVB5U3CpNwNQEXsTCtHPjIkV4juJdBxwcA45xA+i8EwBFL5Bz27ihuHPSz38e2VAHc
-	 QmZ1n1IBnOwUpoLqUEdHRzp9IgC/9IKD1KFMiwGq4aDJQTJ5O4ozZ97SRuWZoiQ6pj
-	 PW+6ZnvLrBRpl8VtFB62/TX5zO8V5Zyf8jZmoQT04pI7o5/prnIPB6zZfVSRHGpQ/Y
-	 MKgtvyXGNmWmUWg08CEpksR6a63QR8GbnEzB6wYhTFP0mAk/qUIrccIOXCU60GuDB7
-	 diYPSfnNzQSrQ==
-Date: Wed, 8 May 2024 17:26:24 +0100
+	b=GENxTopRekGLP/hpvKlsVPa/uM3UMefaKagfqUrxUv1AgSMFQrYTZ65RRMZiGt0bz
+	 AnRMB47LJwr6GbmCWt7RMWoP9Mk+vuS5sdsdjenp9iCf5HtcxE3z8q+8cUtjTc27xu
+	 Yx78/lzsuitziWFznkN8LKwJNUZ5DrmShAwGO1HAAf9cdGurgmG15c3HxSUVrUeBxM
+	 i3LXC7vm/6ZQ/GVCn1qJ+2oZgQMRO99r/oYkBgYDJ7o30hcKbGy/weZ5jR3ShQlNd7
+	 P3hAr+P3O81+lANvBLv7MuYKTeso51NDVU5o9M+UkfFcqUykBJNuscY2S0c7cVF9iE
+	 9F5gZ+Bzx6/Xg==
+Date: Wed, 8 May 2024 17:28:03 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 1/2] LoongArch: dts: Add new supported device nodes to
- Loongson-2K0500
-Message-ID: <20240508-startup-oblivious-d864191f524f@spud>
-References: <cover.1715156107.git.zhoubinbin@loongson.cn>
- <d0b25dedb43c000faad5b86cd0512dc6498e7839.1715156107.git.zhoubinbin@loongson.cn>
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: Jonas Karlman <jonas@kwiboo.se>, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel-janitors@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v5 2/2] arm64: dts: rockchip: Add Radxa ZERO 3W/3E
+Message-ID: <20240508-blaming-kinfolk-7a0cf7f9a7c0@spud>
+References: <20240508070611.4153602-3-jonas@kwiboo.se>
+ <662d3052-d0ab-4034-84d3-fff4f985875b@web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,58 +62,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5VdxMT3EQ9yVAswp"
+	protocol="application/pgp-signature"; boundary="p7P9ZT5PsCFLYhGM"
 Content-Disposition: inline
-In-Reply-To: <d0b25dedb43c000faad5b86cd0512dc6498e7839.1715156107.git.zhoubinbin@loongson.cn>
+In-Reply-To: <662d3052-d0ab-4034-84d3-fff4f985875b@web.de>
 
 
---5VdxMT3EQ9yVAswp
-Content-Type: text/plain; charset=us-ascii
+--p7P9ZT5PsCFLYhGM
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 08, 2024 at 04:29:10PM +0800, Binbin Zhou wrote:
-> By now, more Loongson-2K0500 related drivers are supported, such as
-> clock controller, thermal controller, and dma controller.
-> Now we add these device nodes to the Loongson-2K0500 dts file.
+On Wed, May 08, 2024 at 12:22:52PM +0200, Markus Elfring wrote:
+> =E2=80=A6
+> > This adds initial support for =E2=80=A6
 >=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../boot/dts/loongson-2k0500-ref.dts          |  4 +
->  arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 81 ++++++++++++++++++-
->  2 files changed, 82 insertions(+), 3 deletions(-)
->=20
-> diff --git a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts b/arch/loong=
-arch/boot/dts/loongson-2k0500-ref.dts
-> index 8aefb0c12672..62dad6297e82 100644
-> --- a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
-> +++ b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
-> @@ -41,6 +41,10 @@ linux,cma {
->  	};
->  };
-> =20
-> +&clk {
-> +	status =3D "okay";
-> +};
+> Please convert this change description to an imperative wording.
 
-For most devices, doing the "disable in dtsi, enable in dts" approach is
-the right thing to do, but for things like clock-controllers or
-architectural interrupt controllers that no-one is going to disable
-since they'll not have a usable system otherwise, it's not needed.
+I think that sending a new version for s/This adds/Add/ would be a
+complete waste of developer time.
 
-Cheers,
-Conor.
-
---5VdxMT3EQ9yVAswp
+--p7P9ZT5PsCFLYhGM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjunsAAKCRB4tDGHoIJi
-0gDGAP97zOERCBCiF1XWGcTjTK9TVRtsHk31NwTP0/0QW2p7jgEA0eY9aE046JxU
-/XZFfemeT77STOBwpb/GhemQ79sBBwQ=
-=HpRW
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjuoEwAKCRB4tDGHoIJi
+0s48APwMPgOmyAXUppUMok08TEEu0Pz4L/HNda6y7HTL5uyrmAEAlCipL3IL9oOH
+3dCsFvC7ldVF8jBqCdFSEl+5pu5BgQE=
+=6FNx
 -----END PGP SIGNATURE-----
 
---5VdxMT3EQ9yVAswp--
+--p7P9ZT5PsCFLYhGM--
 
