@@ -1,363 +1,129 @@
-Return-Path: <devicetree+bounces-65877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6318C0760
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 00:37:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA4EE8C0792
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 01:14:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C69C1283BE7
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 22:37:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7096AB211F0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 23:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B21224B2F;
-	Wed,  8 May 2024 22:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B8578C72;
+	Wed,  8 May 2024 23:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gvOyBGsQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ezdt6q/R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC63E15E88
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 22:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B764502D;
+	Wed,  8 May 2024 23:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715207874; cv=none; b=PwZNUyc2hRd3frvxsvm21FKWxg87cBWslzUefXfFbU82PxDpJcd71/BHGw7jF9+8oM7YUxb6uI84A9T1MdfwzXStZ5LRb9RGVolpgGxyqPTFbM6l9KQnKU+ktGdQl1+BRaE7OVV2et7+3Nv2d0wRDmq8wlZHYNS1QqEHfF8BoAI=
+	t=1715210033; cv=none; b=LJ+HlFdrM6RmC5lxUqkrKGbLbMoFtmole0wKL0rNuSkvKgPPAgPKVAoew1P+yWpNCf4yAi3VMnhm8aM4UJ3ul4p4Atirnyk67J8zQsON8eTr3bwUmJq5DqiVZkuOOWrQhWB1px1YAdGAEKdXNpHsvQB4rYAtESfmEGI8V2r6KHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715207874; c=relaxed/simple;
-	bh=gkiQnNwVQrsa+28STlZ5/i+j4rn304bwjnjT6RZAH8c=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JiRMoZ/wILV329GYeZsJXZN2deQxT/TltLQNLQ/oCEu/jDVUsQOb1vf0mCL3t2uuPMUCUSA9F2TNXOIrLhwQBCF4XPqyxUL7zhnMkqc28efOvFFcsxd7wrgKES7Gvx9RTdVhR/NFt/gyjVzVo0vqiE3AM/WFcMFZdUUESbcV6GA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gvOyBGsQ; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-de60a51fe21so304953276.0
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 15:37:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715207872; x=1715812672; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CQnhPPJLZqhiPyY2VjG7VAxW3Am1dwZRgVu5xvgsRfk=;
-        b=gvOyBGsQA82/b71DKXWg3uNs5mjtvtzNHNn5Ta0OeOGNbmiikN/Z3qcIfA+1ip20TT
-         J25zVD0K9+4d4bfOi7I3TXUTGfvRR4DDbzpI6a9vBw2g5GIMQenYIkhJfOyw0CTDqhiD
-         z7PVwhy2hg/kG1aVfuNkeG+euOmvK/Y7GWlX0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715207872; x=1715812672;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CQnhPPJLZqhiPyY2VjG7VAxW3Am1dwZRgVu5xvgsRfk=;
-        b=VmlPgIoYAE8H48HLWxwMuMGIMO1Ui4S7U/9TBxg0sEL+bACUuusIhsn7bSo3Nxitz7
-         i09/PFKGFYwfQQK8B7lKI6NLsE+Ebp9IIXpziZDJIj+tEfzw+CE97LjbN+WkI5y6ejHu
-         t6hLwG+q850wrUDbPMnOukVH5kKdSg2FsvRK+TPAvUvaFBbUeUmas64hj1SMoaeuNSrE
-         ILpOKj+Z6eaoAxVFQrZmBQuqKMCSsUb59oAICs4CID51Ga/QCXvJTYOosmFXyF1+Kzh1
-         NCOx4Uf1P4TiXwRZ8AUQK4FrGNC5Lm0nNl3YgAybgK0RJPlSien98xlQliBtkeU9YO6F
-         MXLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUv9Izk0wHHqCXGF7bKCrocw82uszO89Ss0eLFxtrDUBRRfpyyeMUUtLHkvg1h5S3WV1Mhpk6aUVhHx7AcF73buqFunYdAlyp4NpA==
-X-Gm-Message-State: AOJu0YzCpLA87w4D43rQ1VTqy1DI5PlBOVxrSW7a7cg+6lHvNdcPSgcG
-	lwHqXXE/fTUbU108Uchx5G3Hmd287LTFeCTLdcjUdPkLA2EmFa3InHn+gdX0o+2n1xViMxFi3Xv
-	QEBsTA4/EHSvIm39yXhhQSNBLykPAg2LUMV0Q
-X-Google-Smtp-Source: AGHT+IEDCFI8xn8l9izDfECjs69+U4QoPp9r27+Xw69iFeSo27F7rPihO9uzigfOROJXNOoUrDXWiJl7KN8VUyIrL2c=
-X-Received: by 2002:a5b:811:0:b0:de5:4bb4:25b9 with SMTP id
- 3f1490d57ef6-debb9ce095dmr4747797276.12.1715207871771; Wed, 08 May 2024
- 15:37:51 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 8 May 2024 22:37:51 +0000
+	s=arc-20240116; t=1715210033; c=relaxed/simple;
+	bh=JUbTIS/I0CkID9zH4mhMiOz062nvn8SobfwMLUDy9V0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y18onhBA7kjKGsypyImGnrXw3bXMelafYbQMgJIqoeeWbSYroTTnTzwYIANMrd12lxL5fdnekDOBD46kf1+7EBuhmR3LMvfV0wa80MnBIkMrI+NoUy4FV4p5Q94NtFK/a7VRFzNIzqyWUZ0ZAKPJ9ExV+jbOs/3cQnY5XtDPrOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ezdt6q/R; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715210031; x=1746746031;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JUbTIS/I0CkID9zH4mhMiOz062nvn8SobfwMLUDy9V0=;
+  b=ezdt6q/Rc6wQqIAA4kL/IC5nNh2fX4JKyPZbGk75df59NFOAaMSjWkt5
+   HoMVbdQabTw/f+FUVKI1IzehcdT3pA0ZG+HKvjjLin5I3Tn025wgT9/z5
+   KTEZqer+e/wiJEod4m1poNW2beQ797Q4Cw0rgH2PBeldb8YVwk2NY7gPt
+   8/Al7Fr3F//EGcXs9DfCjItQAO8O4cckwARjB+sy2r3C9ZcZ10Spa/o6g
+   qs8E7SEMD4TGH/cm670zDvfxdq0/hAw1NEX3OcnVS6hBGmOW7dTq/YUVu
+   DmfToO1v4HWpZwoQ8TDEcoLOZTWJ2jFfz75dsVNiWPx2nOHBqfjr/YoEg
+   g==;
+X-CSE-ConnectionGUID: Kp4tGvroSACrfv6wzEmjsQ==
+X-CSE-MsgGUID: XYjsa160Q4yaMvdBLr2VNw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10967363"
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; 
+   d="scan'208";a="10967363"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2024 16:13:50 -0700
+X-CSE-ConnectionGUID: v4QTxU35Qae1eH8c8+dbvw==
+X-CSE-MsgGUID: rDza+m2GRcyQxfiWR0I1eA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; 
+   d="scan'208";a="59904689"
+Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 08 May 2024 16:13:47 -0700
+Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1s4qTo-0004DY-2Q;
+	Wed, 08 May 2024 23:13:44 +0000
+Date: Thu, 9 May 2024 07:13:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Daniel =?iso-8859-1?Q?Gonz=E1lez?= Cabanelas <dgcbueu@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/5] mips: bmips: rework and cache CBR addr handling
+Message-ID: <202405090546.iqx9FAqu-lkp@intel.com>
+References: <20240503212139.5811-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240506150830.23709-13-johan+linaro@kernel.org>
-References: <20240506150830.23709-1-johan+linaro@kernel.org> <20240506150830.23709-13-johan+linaro@kernel.org>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Wed, 8 May 2024 22:37:50 +0000
-Message-ID: <CAE-0n52KTZ8G2VuvrDgJ9kAE61YULXY4u6nPP3CYWpg1CBjbXA@mail.gmail.com>
-Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
-To: Bjorn Andersson <andersson@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Mark Brown <broonie@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Satya Priya <quic_c_skakit@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240503212139.5811-3-ansuelsmth@gmail.com>
 
-Quoting Johan Hovold (2024-05-06 08:08:29)
-> From: Satya Priya <quic_c_skakit@quicinc.com>
->
-> Qualcomm Technologies, Inc. PM8008 is an I2C-controlled PMIC containing
-> seven LDO regulators. Add a PM8008 regulator driver to support PMIC
-> regulator management via the regulator framework.
->
-> Note that this driver, originally submitted by Satya Priya [1], has been
-> reworked to match the new devicetree binding which no longer describes
-> each regulator as a separate device.
->
-> This avoids describing internal details like register offsets in the
-> devicetree and allows for extending the implementation with features
-> like over-current protection without having to update the binding.
+Hi Christian,
 
-Thanks. I had to remember this topic.
+kernel test robot noticed the following build errors:
 
->
-> Specifically note that the regulator interrupts are shared between all
-> regulators.
->
-> Note that the secondary regmap is looked up by name and that if the
-> driver ever needs to be generalised to support regulators provided by
-> the primary regmap (I2C address) such information could be added to a
-> driver lookup table matching on the parent compatible.
->
-> This also fixes the original implementation, which looked up regulators
-> by 'regulator-name' property rather than devicetree node name and which
-> prevented the regulators from being named to match board schematics.
->
-> [1] https://lore.kernel.org/r/1655200111-18357-8-git-send-email-quic_c_skakit@quicinc.com
->
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> [ johan: rework probe to match new binding, amend commit message and
->          Kconfig entry]
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-> diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
-> new file mode 100644
-> index 000000000000..51f1ce5e043c
-> --- /dev/null
-> +++ b/drivers/regulator/qcom-pm8008-regulator.c
-> @@ -0,0 +1,215 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/driver.h>
-> +
-> +#define VSET_STEP_MV                   8
-> +#define VSET_STEP_UV                   (VSET_STEP_MV * 1000)
-> +
-> +#define LDO_ENABLE_REG(base)           ((base) + 0x46)
-> +#define ENABLE_BIT                     BIT(7)
-> +
-> +#define LDO_VSET_LB_REG(base)          ((base) + 0x40)
-> +
-> +#define LDO_STEPPER_CTL_REG(base)      ((base) + 0x3b)
-> +#define DEFAULT_VOLTAGE_STEPPER_RATE   38400
-> +#define STEP_RATE_MASK                 GENMASK(1, 0)
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.9-rc7 next-20240508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Include bits.h?
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/mips-bmips-BCM6358-make-sure-CBR-is-correctly-set/20240504-052513
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240503212139.5811-3-ansuelsmth%40gmail.com
+patch subject: [PATCH v2 2/5] mips: bmips: rework and cache CBR addr handling
+config: mips-bcm63xx_defconfig (https://download.01.org/0day-ci/archive/20240509/202405090546.iqx9FAqu-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240509/202405090546.iqx9FAqu-lkp@intel.com/reproduce)
 
-> +
-> +#define NLDO_MIN_UV                    528000
-> +#define NLDO_MAX_UV                    1504000
-> +
-> +#define PLDO_MIN_UV                    1504000
-> +#define PLDO_MAX_UV                    3400000
-> +
-> +struct pm8008_regulator_data {
-> +       const char                      *name;
-> +       const char                      *supply_name;
-> +       u16                             base;
-> +       int                             min_dropout_uv;
-> +       const struct linear_range       *voltage_range;
-> +};
-> +
-> +struct pm8008_regulator {
-> +       struct regmap           *regmap;
-> +       struct regulator_desc   rdesc;
-> +       u16                     base;
-> +       int                     step_rate;
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405090546.iqx9FAqu-lkp@intel.com/
 
-Is struct regulator_desc::vsel_step usable for this? If not, can it be
-unsigned?
+All errors (new ones prefixed by >>):
 
-> +};
-> +
-> +static const struct linear_range nldo_ranges[] = {
-> +       REGULATOR_LINEAR_RANGE(528000, 0, 122, 8000),
-> +};
-> +
-> +static const struct linear_range pldo_ranges[] = {
-> +       REGULATOR_LINEAR_RANGE(1504000, 0, 237, 8000),
-> +};
-> +
-> +static const struct pm8008_regulator_data reg_data[] = {
-> +       /* name   parent       base    headroom_uv voltage_range */
-> +       { "ldo1", "vdd_l1_l2", 0x4000, 225000, nldo_ranges, },
-> +       { "ldo2", "vdd_l1_l2", 0x4100, 225000, nldo_ranges, },
-> +       { "ldo3", "vdd_l3_l4", 0x4200, 300000, pldo_ranges, },
-> +       { "ldo4", "vdd_l3_l4", 0x4300, 300000, pldo_ranges, },
-> +       { "ldo5", "vdd_l5",    0x4400, 200000, pldo_ranges, },
-> +       { "ldo6", "vdd_l6",    0x4500, 200000, pldo_ranges, },
-> +       { "ldo7", "vdd_l7",    0x4600, 200000, pldo_ranges, },
-> +};
-> +
-> +static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
-> +{
-> +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
-> +       __le16 mV;
-> +       int uV;
+   mips-linux-ld: arch/mips/kernel/smp-bmips.o: in function `bmips_ebase_setup':
+>> smp-bmips.c:(.text+0x114): undefined reference to `bmips_cbr_addr'
+>> mips-linux-ld: smp-bmips.c:(.text+0x118): undefined reference to `bmips_cbr_addr'
+   mips-linux-ld: arch/mips/kernel/smp-bmips.o: in function `bmips_cpu_setup':
+   smp-bmips.c:(.text+0x1a4): undefined reference to `bmips_cbr_addr'
+   mips-linux-ld: smp-bmips.c:(.text+0x1b4): undefined reference to `bmips_cbr_addr'
 
-Can this be unsigned? Doubt we have negative voltage and this would
-match rdesc.min_uV type.
-
-> +
-> +       regmap_bulk_read(pm8008_reg->regmap,
-> +                       LDO_VSET_LB_REG(pm8008_reg->base), (void *)&mV, 2);
-
-Is struct regulator_desc::vsel_reg usable for this?
-
-> +
-> +       uV = le16_to_cpu(mV) * 1000;
-> +       return (uV - pm8008_reg->rdesc.min_uV) / pm8008_reg->rdesc.uV_step;
-> +}
-> +
-> +static inline int pm8008_write_voltage(struct pm8008_regulator *pm8008_reg,
-> +                                                       int mV)
-> +{
-> +       __le16 vset_raw;
-> +
-> +       vset_raw = cpu_to_le16(mV);
-> +
-> +       return regmap_bulk_write(pm8008_reg->regmap,
-> +                       LDO_VSET_LB_REG(pm8008_reg->base),
-> +                       (const void *)&vset_raw, sizeof(vset_raw));
-
-Is the cast to please sparse?
-
-> +}
-> +
-> +static int pm8008_regulator_set_voltage_time(struct regulator_dev *rdev,
-> +                               int old_uV, int new_uv)
-> +{
-> +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
-> +
-> +       return DIV_ROUND_UP(abs(new_uv - old_uV), pm8008_reg->step_rate);
-> +}
-> +
-> +static int pm8008_regulator_set_voltage(struct regulator_dev *rdev,
-> +                                       unsigned int selector)
-> +{
-> +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
-> +       int rc, mV;
-> +
-> +       rc = regulator_list_voltage_linear_range(rdev, selector);
-> +       if (rc < 0)
-> +               return rc;
-> +
-> +       /* voltage control register is set with voltage in millivolts */
-> +       mV = DIV_ROUND_UP(rc, 1000);
-> +
-> +       rc = pm8008_write_voltage(pm8008_reg, mV);
-> +       if (rc < 0)
-> +               return rc;
-> +
-> +       return 0;
-
-Can be shorter to save lines
-
-	return pm8008_write_voltage(pm8008_reg, mV);
-
-> +}
-> +
-> +static const struct regulator_ops pm8008_regulator_ops = {
-> +       .enable                 = regulator_enable_regmap,
-> +       .disable                = regulator_disable_regmap,
-> +       .is_enabled             = regulator_is_enabled_regmap,
-> +       .set_voltage_sel        = pm8008_regulator_set_voltage,
-> +       .get_voltage_sel        = pm8008_regulator_get_voltage,
-> +       .list_voltage           = regulator_list_voltage_linear,
-> +       .set_voltage_time       = pm8008_regulator_set_voltage_time,
-> +};
-> +
-> +static int pm8008_regulator_probe(struct platform_device *pdev)
-> +{
-> +       struct regulator_config reg_config = {};
-> +       struct pm8008_regulator *pm8008_reg;
-> +       struct device *dev = &pdev->dev;
-> +       struct regulator_desc *rdesc;
-> +       struct regulator_dev *rdev;
-> +       struct regmap *regmap;
-> +       unsigned int val;
-> +       int rc, i;
-> +
-> +       regmap = dev_get_regmap(dev->parent, "secondary");
-> +       if (!regmap)
-> +               return -EINVAL;
-> +
-> +       for (i = 0; i < ARRAY_SIZE(reg_data); i++) {
-> +               pm8008_reg = devm_kzalloc(dev, sizeof(*pm8008_reg), GFP_KERNEL);
-> +               if (!pm8008_reg)
-> +                       return -ENOMEM;
-> +
-> +               pm8008_reg->regmap = regmap;
-> +               pm8008_reg->base = reg_data[i].base;
-> +
-> +               /* get slew rate */
-> +               rc = regmap_bulk_read(pm8008_reg->regmap,
-> +                               LDO_STEPPER_CTL_REG(pm8008_reg->base), &val, 1);
-> +               if (rc < 0) {
-> +                       dev_err(dev, "failed to read step rate: %d\n", rc);
-
-Is it step rate or slew rate? The comment doesn't agree with the error
-message.
-
-> +                       return rc;
-> +               }
-> +               val &= STEP_RATE_MASK;
-> +               pm8008_reg->step_rate = DEFAULT_VOLTAGE_STEPPER_RATE >> val;
-> +
-> +               rdesc = &pm8008_reg->rdesc;
-> +               rdesc->type = REGULATOR_VOLTAGE;
-> +               rdesc->ops = &pm8008_regulator_ops;
-> +               rdesc->name = reg_data[i].name;
-> +               rdesc->supply_name = reg_data[i].supply_name;
-> +               rdesc->of_match = reg_data[i].name;
-> +               rdesc->uV_step = VSET_STEP_UV;
-> +               rdesc->linear_ranges = reg_data[i].voltage_range;
-> +               rdesc->n_linear_ranges = 1;
-> +               BUILD_BUG_ON((ARRAY_SIZE(pldo_ranges) != 1) ||
-
-This should be an && not || right?
-
-> +                               (ARRAY_SIZE(nldo_ranges) != 1));
-> +
-> +               if (reg_data[i].voltage_range == nldo_ranges) {
-> +                       rdesc->min_uV = NLDO_MIN_UV;
-> +                       rdesc->n_voltages = ((NLDO_MAX_UV - NLDO_MIN_UV) / rdesc->uV_step) + 1;
-> +               } else {
-> +                       rdesc->min_uV = PLDO_MIN_UV;
-> +                       rdesc->n_voltages = ((PLDO_MAX_UV - PLDO_MIN_UV) / rdesc->uV_step) + 1;
-> +               }
-> +
-> +               rdesc->enable_reg = LDO_ENABLE_REG(pm8008_reg->base);
-> +               rdesc->enable_mask = ENABLE_BIT;
-> +               rdesc->min_dropout_uV = reg_data[i].min_dropout_uv;
-> +               rdesc->regulators_node = of_match_ptr("regulators");
-> +
-> +               reg_config.dev = dev->parent;
-> +               reg_config.driver_data = pm8008_reg;
-> +               reg_config.regmap = pm8008_reg->regmap;
-> +
-> +               rdev = devm_regulator_register(dev, rdesc, &reg_config);
-> +               if (IS_ERR(rdev)) {
-> +                       rc = PTR_ERR(rdev);
-> +                       dev_err(dev, "failed to register regulator %s: %d\n",
-> +                                       reg_data[i].name, rc);
-> +                       return rc;
-
-Could be return dev_err_probe() to simplify.
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
