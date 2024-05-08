@@ -1,135 +1,103 @@
-Return-Path: <devicetree+bounces-65858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7708C0496
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 20:48:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 227BD8C04B1
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 21:00:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F5ED1C20B33
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:48:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC6931F23B2A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E375E7FBD0;
-	Wed,  8 May 2024 18:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A6A12E1DA;
+	Wed,  8 May 2024 19:00:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="u3xwpj8W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XckR9UnS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BEE1E521;
-	Wed,  8 May 2024 18:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFDE12DDA1;
+	Wed,  8 May 2024 19:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715194101; cv=none; b=YRFjv/MGdIpjxLwlfF3/6OZcBJ5rOoQg60yeurQhDQJmXbWXxHU3JJQaZV3eiakEUMAn9cuKwXMPLFzbr19MJmdy6QXppSmaUEN2H0ivIhkyYTQ6TZzfCeMGs6wSo/KdJCoJiDk05zNENq0nb+3asao7068JjUHXHfNB5HuJpPo=
+	t=1715194848; cv=none; b=UvzDv8YCmkVGtGWbWRy7RfWNZlfRHfUVqobW7Yt9XKE2WFzs/gnNftTd7Hsz9RKs3LLuMnbRhI+/zJM+viQU04s+su9aGU1FJoibvvKSbdjH6JEdxd2yW/NV+6pq9BGI8YFEGDncJ46SqK430j4KjlDJFIJt6j/kiwjZK7uiIdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715194101; c=relaxed/simple;
-	bh=JSN51QMeVWBL5ZlNRHJJjZtaLYDfa+v+XlsqBseMV0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k5Z6GaroAIQ4q+BTt0Je37DsTljvXX7Xzv2QFC4I08PJuoBRHiLP/VdV0SiSWV9vuqkGjzFG+IdKkm5n8t3+ipJGnOOM+vfY1uyIBF3RD9KaEBWnbRrWrDscdH8J46mJSZ4cp9CfocS2A4uEeCSVLvklZamnaMu8AK1lm0pIVgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=u3xwpj8W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9144BC113CC;
-	Wed,  8 May 2024 18:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1715194101;
-	bh=JSN51QMeVWBL5ZlNRHJJjZtaLYDfa+v+XlsqBseMV0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u3xwpj8WHxR3j6K/wO1YBf5Uei8unwUijfe08+sBEUavcKFc+bBq7sz8L15Vij6gX
-	 e6N0Bizv0tdTlsMbKBpzpZ2hvE9AzlAw1jJ10GEw5Vicq+qzfAwuqeimPvey2ZTBN4
-	 tzrZUNvjR4rs8vnZuyQoHz4keOTmHKnahmluP9nM=
-Date: Wed, 8 May 2024 19:48:18 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-Cc: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Oliver Hartkopp <socketcan@hartkopp.net>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-	Netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v3 01/11] can: Add LIN bus as CAN abstraction
-Message-ID: <2024050852-vixen-arson-cb42@gregkh>
-References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
- <20240502182804.145926-2-christoph.fritz@hexdev.de>
- <61adf428-2205-1563-d0b6-fa843e08559d@linux.intel.com>
- <e0f3d0716ed2f4281561f08bbcd3050dddcf1831.camel@hexdev.de>
- <4e8a50a0-f938-8aaf-fe4b-d18765407d4d@linux.intel.com>
- <215d898a0244d717467d44a8e93f186e2f282daa.camel@hexdev.de>
+	s=arc-20240116; t=1715194848; c=relaxed/simple;
+	bh=THUpirS2DYDNx1Syq3v5LR9C0SjXYALQn8Wm0luUztM=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=GjOZQ+lX1fg7m/W9uIgqWWnpgmvKeZEpDeCcU5eLTbflUDevgvxGzUkcWjGQQPamoM5TPT3mJHAt/12QeSfJv7jsbMOIH4sDFdI5Aa/oF/bzhCxA6Ei05LhyhwV48PqE+i+6/CglatMgQj/H6Tr1+YjEcRPwsuqPmoaZpcDjsSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XckR9UnS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61AD6C113CC;
+	Wed,  8 May 2024 19:00:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715194847;
+	bh=THUpirS2DYDNx1Syq3v5LR9C0SjXYALQn8Wm0luUztM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=XckR9UnS7pBnMYhcByCFR2JM3VbJnj2bDkXIjOCUhl7bsSwtVI5L7cq9NzfdURzDh
+	 MQMFlHAclGGqwGNdDlQIUOAPM1xsGokcM41tJuie4pih91Ep8RoYShURywDjyxnX5x
+	 FVNULg+cbSgVr0iJ86/RDqR4P87BgXVhE4bJADj+cxc0yp2V+L4XgLy8b1r0zE5o6H
+	 2TWUvTxQlwO6XrVCcj8tKXfbOzPveolmkbVqUY912jAnrSARznmr0WtCqYfZGHYcbX
+	 qqlC9+oZFn8L8uWVKWi4DdijmWMEd2fMXfSxlXTuduHwYrq9c16cIG/40RK7UHkwZK
+	 N1xG+P0fKz4ww==
+Date: Wed, 08 May 2024 14:00:45 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <215d898a0244d717467d44a8e93f186e2f282daa.camel@hexdev.de>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: jdelvare@suse.com, linux-hwmon@vger.kernel.org, linux@roeck-us.net, 
+ linux-kernel@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240508170544.263059-2-chris.packham@alliedtelesis.co.nz>
+References: <20240508170544.263059-1-chris.packham@alliedtelesis.co.nz>
+ <20240508170544.263059-2-chris.packham@alliedtelesis.co.nz>
+Message-Id: <171519484579.2414809.16063275628400924542.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
+ duty cycle
 
-On Wed, May 08, 2024 at 08:20:51PM +0200, Christoph Fritz wrote:
-> ...
-> > ...
-> > > > > +static int lin_create_sysfs_id_files(struct net_device *ndev)
-> > > > > +{
-> > > > > +	struct lin_device *ldev = netdev_priv(ndev);
-> > > > > +	struct kobj_attribute *attr;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	for (int id = 0; id < LIN_NUM_IDS; id++) {
-> > > > > +		ldev->sysfs_entries[id].ldev = ldev;
-> > > > > +		attr = &ldev->sysfs_entries[id].attr;
-> > > > > +		attr->attr.name = kasprintf(GFP_KERNEL, "%02x", id);
-> > > > > +		if (!attr->attr.name)
-> > > > > +			return -ENOMEM;
-> > > > > +		attr->attr.mode = 0644;
-> > > > > +		attr->show = lin_identifier_show;
-> > > > > +		attr->store = lin_identifier_store;
-> > > > > +
-> > > > > +		sysfs_attr_init(&attr->attr);
-> > > > > +		ret = sysfs_create_file(ldev->lin_ids_kobj, &attr->attr);
-> > > > > +		if (ret) {
-> > > > > +			kfree(attr->attr.name);
-> > > > > +			return -ENOMEM;
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > 
-> > > > Can you use .dev_groups instead ?
-> > > 
-> > > I'm not sure where to attach this in this glue code here. Should I do a
-> > > class_register() and add the .dev_groups there?
-> > 
-> > I guess struct class would be correct direction but I'm not sure if it's 
-> > viable in this case. It would avoid the need for custom sysfs setup code
-> > if it's workable.
+
+On Thu, 09 May 2024 05:05:42 +1200, Chris Packham wrote:
+> Add documentation for the pwm-initial-duty-cycle and
+> pwm-initial-frequency properties. These allow the starting state of the
+> PWM outputs to be set to cater for hardware designs where undesirable
+> amounts of noise is created by the default hardware state.
 > 
-> I just tried to find a way, but these are 64 sysfs files and declaring
-> them all static looks a bit odd to me. I might be missing something
-> here.
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  .../devicetree/bindings/hwmon/adt7475.yaml    | 26 ++++++++++++++++++-
+>  1 file changed, 25 insertions(+), 1 deletion(-)
 > 
-> For v4 I would stick to the dynamic setup and fix the rollback.
-> 
-> Any objections?
 
-Yes, you race with userspace and loose by trying to do this "by hand".
-Make this static please.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-thanks,
+yamllint warnings/errors:
 
-greg k-h
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adt7475.example.dtb: hwmon@2e: adi,pwm-initial-frequency:0:1: 0 is not one of [11, 14, 22, 29, 35, 44, 58, 88, 22500]
+	from schema $id: http://devicetree.org/schemas/hwmon/adt7475.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240508170544.263059-2-chris.packham@alliedtelesis.co.nz
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
