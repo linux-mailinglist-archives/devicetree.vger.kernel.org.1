@@ -1,103 +1,91 @@
-Return-Path: <devicetree+bounces-65859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227BD8C04B1
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 21:00:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E834C8C04BB
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 21:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC6931F23B2A
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:00:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21B691C21C3A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A6A12E1DA;
-	Wed,  8 May 2024 19:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D2613049C;
+	Wed,  8 May 2024 19:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XckR9UnS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hJ5vKu5V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFDE12DDA1;
-	Wed,  8 May 2024 19:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D356E1DFC5;
+	Wed,  8 May 2024 19:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715194848; cv=none; b=UvzDv8YCmkVGtGWbWRy7RfWNZlfRHfUVqobW7Yt9XKE2WFzs/gnNftTd7Hsz9RKs3LLuMnbRhI+/zJM+viQU04s+su9aGU1FJoibvvKSbdjH6JEdxd2yW/NV+6pq9BGI8YFEGDncJ46SqK430j4KjlDJFIJt6j/kiwjZK7uiIdE=
+	t=1715195428; cv=none; b=SueTpz6e5uq0pZV3iC9RXj+mI/IYpYRPvks/ObpTWrSVWp82Nol9lZsVv7P6mkR1+E2nlA/Mzu/kr2jLmBGImbyDfLMzDI67TpoQYEJLnEVaTFeRa0aNRPLRC8TyogAfm7lxs2KJy6y1dYwmJQi3NSrxhQAw6f//Ijl/MVba6Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715194848; c=relaxed/simple;
-	bh=THUpirS2DYDNx1Syq3v5LR9C0SjXYALQn8Wm0luUztM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=GjOZQ+lX1fg7m/W9uIgqWWnpgmvKeZEpDeCcU5eLTbflUDevgvxGzUkcWjGQQPamoM5TPT3mJHAt/12QeSfJv7jsbMOIH4sDFdI5Aa/oF/bzhCxA6Ei05LhyhwV48PqE+i+6/CglatMgQj/H6Tr1+YjEcRPwsuqPmoaZpcDjsSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XckR9UnS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61AD6C113CC;
-	Wed,  8 May 2024 19:00:47 +0000 (UTC)
+	s=arc-20240116; t=1715195428; c=relaxed/simple;
+	bh=8X6+44daOTVhYsmsLkXUJSkQDo/m4CLnbDr06hibE2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xv300LiUFT1oyN5xJk8kSs5WcRNnatCzMKKZ7fgVjMiF7Kd1KaeSmHz1VRBKCkYJughGBQuTzZqEVbb0GasU7cZZ8Aqa6qA8Q/TL310mmCuU4l20fjAOYnpAoE6as43UyYMVW22yus9lWvorD3B6Weq0AORnWOlDWlkUKPkvPi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hJ5vKu5V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38FFCC113CC;
+	Wed,  8 May 2024 19:10:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715194847;
-	bh=THUpirS2DYDNx1Syq3v5LR9C0SjXYALQn8Wm0luUztM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=XckR9UnS7pBnMYhcByCFR2JM3VbJnj2bDkXIjOCUhl7bsSwtVI5L7cq9NzfdURzDh
-	 MQMFlHAclGGqwGNdDlQIUOAPM1xsGokcM41tJuie4pih91Ep8RoYShURywDjyxnX5x
-	 FVNULg+cbSgVr0iJ86/RDqR4P87BgXVhE4bJADj+cxc0yp2V+L4XgLy8b1r0zE5o6H
-	 2TWUvTxQlwO6XrVCcj8tKXfbOzPveolmkbVqUY912jAnrSARznmr0WtCqYfZGHYcbX
-	 qqlC9+oZFn8L8uWVKWi4DdijmWMEd2fMXfSxlXTuduHwYrq9c16cIG/40RK7UHkwZK
-	 N1xG+P0fKz4ww==
-Date: Wed, 08 May 2024 14:00:45 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1715195427;
+	bh=8X6+44daOTVhYsmsLkXUJSkQDo/m4CLnbDr06hibE2c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hJ5vKu5V89xWFWP1uYZlLrERK6CfxhPrCY6a8jb/ySjrZpqFudFLNPgiHXJNwT0Vz
+	 jNNAgxaY722wbJG58KXTBXYeaE9qCJa5MBu4cHlnEZVyiZJRxBcEsNPGbtSylESxro
+	 7IYzzLEACMQIlfR13GffPC2zgaGBcES3tE7JUXokXFDc5Q87AUCEppAl68YAiWwQA2
+	 rUKh1AakYlWWOHHva2U4Mm31oZYoA3D7aFvUhPxMKCGzH1HEJnFgaJBTLzQu1P6e23
+	 MLL2+Y958qtYm8LI1ZcYA6C2S1aG3+vjWDYCxq6j0dsOrAXeNfU4Z373ZncS/wHAbH
+	 0L2Waj4d4EsVw==
+Date: Wed, 8 May 2024 14:10:25 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Shijie Qin <shijie.qin@nxp.com>, Ming Qian <ming.qian@nxp.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Zhou Peng <eagle.zhou@nxp.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, Jeff LaBundy <jeff@labundy.com>,
+	Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH] dt-bindings: Use full path to other schemas
+Message-ID: <171519542260.2430941.15049314403040181204.robh@kernel.org>
+References: <20240505084618.135705-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: jdelvare@suse.com, linux-hwmon@vger.kernel.org, linux@roeck-us.net, 
- linux-kernel@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20240508170544.263059-2-chris.packham@alliedtelesis.co.nz>
-References: <20240508170544.263059-1-chris.packham@alliedtelesis.co.nz>
- <20240508170544.263059-2-chris.packham@alliedtelesis.co.nz>
-Message-Id: <171519484579.2414809.16063275628400924542.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
- duty cycle
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240505084618.135705-1-krzysztof.kozlowski@linaro.org>
 
 
-On Thu, 09 May 2024 05:05:42 +1200, Chris Packham wrote:
-> Add documentation for the pwm-initial-duty-cycle and
-> pwm-initial-frequency properties. These allow the starting state of the
-> PWM outputs to be set to cater for hardware designs where undesirable
-> amounts of noise is created by the default hardware state.
+On Sun, 05 May 2024 10:46:18 +0200, Krzysztof Kozlowski wrote:
+> When referencing other schema, it is preferred to use an absolute path
+> (/schemas/....), which allows also an seamless move of particular schema
+> out of Linux kernel to dtschema.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  .../devicetree/bindings/hwmon/adt7475.yaml    | 26 ++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
+> 
+> Rob, maybe you can take it directly? Should apply cleanly on your tree.
+> ---
+>  Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml | 2 +-
+>  Documentation/devicetree/bindings/media/amphion,vpu.yaml    | 2 +-
+>  Documentation/devicetree/bindings/mtd/mtd.yaml              | 4 ++--
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adt7475.example.dtb: hwmon@2e: adi,pwm-initial-frequency:0:1: 0 is not one of [11, 14, 22, 29, 35, 44, 58, 88, 22500]
-	from schema $id: http://devicetree.org/schemas/hwmon/adt7475.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240508170544.263059-2-chris.packham@alliedtelesis.co.nz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Applied, thanks!
 
 
