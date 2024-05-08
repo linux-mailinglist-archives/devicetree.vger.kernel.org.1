@@ -1,195 +1,238 @@
-Return-Path: <devicetree+bounces-65641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E29158BF605
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:21:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D1778BF5F0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF9311C20D13
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 06:21:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6A7D285256
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 06:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7061017C69;
-	Wed,  8 May 2024 06:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EE917BD8;
+	Wed,  8 May 2024 06:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WSQAdX9K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2135.outbound.protection.partner.outlook.cn [139.219.146.135])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E52E1758E;
-	Wed,  8 May 2024 06:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.135
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715149276; cv=fail; b=C4O7OwhkE9ueszZ/te6g29iW7gjq/UyJNV89Z2GAQvG+9k43V8YKFHOtpUMkQrgRpiC7ZcGeSTNlbX3MX0JGA9jbH5HzXh2STohVI6ncb/iL0S/UsybYQWKblyln+P89Xcj8QboNRMfGuBrrS3QVBPSg0Bai9Eq3gFG4IBgHCfU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715149276; c=relaxed/simple;
-	bh=vhyXDstkQ9XgXmpG/Wqgw0Oa4OHHIdRXHfTJo/HjLNw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lyAcso21+7bHqspvGC62oEDNv0SIcOW0zAwszMgq6T055Qrnyz4svOMq6TL13tnRz89UkuwsOeEUTM6h1E1e97kIAY6sVM/jCny4SAOCLLbw8792QEg4Dhf5rgyJYasa31ZHcG/a6f/PBRNyOgYGJsE6XAxOa2vrohexgVJHLGE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c+D02S3Jb6qLpQtBYM8R9QOaaWfsrK76jMKvm5OLJR0GzGhyV0Ny4SSt62ZbCcDHfFSapyM/zFiw+W+3DDoV7mhPbMQFHBgTTCXzdSvO7ji+vPXKrVDNh91mmuADDm5myl0ZGqh+9zzNBiJ91crLZg+KH1jeGXk9ITnPnJ758T+rswY3l5ffxDfueaFMSLGBwjyqu/rpTLckujqCLUM0QE4bgsXPA7xU/Z7KIVXm39pMOE8utvfhXZaPZUhTHnNRlbJeU4tttN77JDEZntkgVIDanRmoFXUFqeB431FV8Url7TZXHjroDHFoZaJPRr64PU/t/yxt5k/ZuxP7bx5pmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/l/yhPdxSaHesfLxpxwia9e0XvULHbFNP3fr+SAq+x8=;
- b=UDBzAgAWUwBxAKQv8cW9dNNsgyPwaRmuAVvwUaQ2SolJ6bk8UUR6uPE/7ansGk4KsvYN2MpI+ocisU/GTedB2hJQbPDA9Ui9E6cy2OlmvRjwQq9sx7I69iVamGepKGzvi0Z+fAsMQTRFZWmhoOqQHO5f24VaHVgv78t3MCSrzlWbWx1yxMqtR5/GzNLnGhXCnzCgQ7u8TYPNH/c6Pu1F1WRkQR5ultfzZUVec8z/mbGKdanwCUA7CN3fU9Chea/4e7hUvkfIoqJv7zuJCk/+Se/JGSbKPJE5dtkDKrXHgSFKpWQqANfupdcEJuVsBeiFVKivlvVrUxNLg6gsSdh0HA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::9) by ZQ4PR01MB1283.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:15::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 8 May
- 2024 05:48:05 +0000
-Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
- ([fe80::301e:ec80:4356:8b14]) by
- ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn ([fe80::301e:ec80:4356:8b14%6])
- with mapi id 15.20.7472.044; Wed, 8 May 2024 05:48:05 +0000
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Michal Simek <michal.simek@amd.com>,
-	Lars-Peter Clausen <lars@metafoo.de>
-Cc: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Eng Lee Teh <englee.teh@starfivetech.com>
-Subject: [PATCH v3 1/2] spi: spi-cadence: Add optional reset control support
-Date: Wed,  8 May 2024 13:47:27 +0800
-Message-ID: <20240508054728.1751162-2-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240508054728.1751162-1-jisheng.teoh@starfivetech.com>
-References: <20240508054728.1751162-1-jisheng.teoh@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHXPR01CA0026.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1b::35) To ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AEFF14273;
+	Wed,  8 May 2024 06:12:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715148744; cv=none; b=drUk8SKwYCrkA+CXMrsIpnEuuO30g8PNlkTKnwLIpvhCRsuzRtQt5pTxsOv20i8wgDxU4oza04km0mFQ8vJVtUUxZJA6datqHWpUjNocGqwvmWyR5fWULxbbBGKISW6eNU/pdMwERZh4cLYIfWRaH3ryPyHh77jo2JfwEpPQomM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715148744; c=relaxed/simple;
+	bh=5aMkkZ1B2+lfOCM2OjFOWEIGfwhGrWsXoOBRRLIJwQ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Qih4QtPS1WJaIGk1vVe3/eu4wxpaTHdUjBzeFQporGA15jJmJru538mLJqWpkSZ1X0JQlNg16a8pNQj7BWvRzKnmRC/k1nF0K7kh07Qx+lSdze6J37Fcd4oxyCbIJWLz4pkg6TsgaUZNX6QVP1lOlMpvzmJG2KaQB+Og9QNXjBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WSQAdX9K; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4483Z68M006373;
+	Wed, 8 May 2024 06:12:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=jb3/XATjXWxDN3NF6CVRPJgaS0+eF5CX+YjGKAaSIGI=; b=WS
+	QAdX9K08T1DFrvyw4Ujv7Vcx2/loF7NvShax+rKBPp3PivgSZ0XEDFsNxynNXnuX
+	IpzS6qOOKQLnV44vBywt0X3o2xF4tiQBE8PcOkq63lhCrkTXzYjHT48/y3iGGczL
+	EKJkhoQiz9rtzZzuMLJuMQuOdFqTC4HRIcie1zFQuB/ayljbjufch/KoPJNPCPlW
+	9VSX3t07KhwKCY0YnNnAqyTA+cRy1p2hKddl6gTGTiU8VDT1DcoTO71KdRIJMTI9
+	1jTMWsvBafGIEAwd3IKB0Gc0Un90tX3bQkpEo32gmQuRhwbEmqWTdvxg/AbBwzjW
+	KYcCsBIjWFVNhfLV/yFg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyste123w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 06:12:17 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4486CFBF026040
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 May 2024 06:12:15 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 May 2024
+ 23:12:10 -0700
+Message-ID: <737b595c-3433-8ad8-ca89-7af77098f589@quicinc.com>
+Date: Wed, 8 May 2024 11:41:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1154:EE_|ZQ4PR01MB1283:EE_
-X-MS-Office365-Filtering-Correlation-Id: 998f0a26-8430-4ed1-beb3-08dc6f226eba
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	9HetvZxU7EBT869EaKJ07ubqr/HsEKBBYzECkyzXebkcYlZEN35kDNJgdpouqibyHSfbgDPzYtaUOGLU5kucuzZKwsrzzsfbWIJG2WBu4a3rFxArWXn1A3aFqQiYQ/vYB8qsVOVw5Vpd2LsZO+pMpsrjFzct9tRHCRTsZWHSljB0HKs5+GdJlhRSt+21W/lcutzY/42ThuOfbnAQFa/Ue6wD8k3do4cn/9YUGE0hwqgkDTuKbgurC21dNyxErx1PF8cxtZ1ILXfXWFlWH87uKcZdIO5rn10nyzzeqsAcYBsCXkQhvZ5DqLAKKn7sY3X7iQxBMUvKIdU4UMwfH2CBPoBiceJ9MRGtwOsOGTyG4+t+mULEgGRRfN6owvI9KYkgAFjD9WGc6IzmDuJdEe1oP3kxoL1VOZStCBTeytCRc9pn3NDTGlgFIhKFO82Glk6DjfZj/oEbwXw7NrwCxUIvoQMSxv39gXGiRZc+r1Wy6Iy2078qF/DbpwwSYBEvqaD9+RNn8QyZGvqMiOn5RKIhe/pnOhC6XKWsWob+noofVUcY1aRnH/nQBYKsq+97EiwC72pK1Taos1Aqwjrql4yLYHc156CW0cQkGsU46AocxD0xoYmn5f1fkr3dyCt5wYNz
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(41320700004)(7416005)(52116005)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9O6cryDGe8QDoZ2F4aMUN5sjrFH8XlN+HQtSmWZf4FZgndGb5c/YpHpwris8?=
- =?us-ascii?Q?QIhHI28zKMvc+oehHriojcdxSG+94fWwMwqJoujWRlKraRqHhyei2JEkwtub?=
- =?us-ascii?Q?ELdLpJDLX+nNpkEC+Ydt87I9nRPfbFlrCom7JC4izGWGKcYAmss+mjzYUpgg?=
- =?us-ascii?Q?h0Qzb+WChInIZZ3h+YfI/o9PN3S4C2v7nIQXvbmOznyyN1IMoeORk0kPcbNs?=
- =?us-ascii?Q?+EPz0I8v01MbLrgwuVKJQ1ciLruC1eOZ6vVnr30/rc0fq14Q+xj1IeQ+YIKX?=
- =?us-ascii?Q?OP8s7PA1gCpJ2eXiCTx1VDrKqskhWjQf+B2k8VKVQ7G7+pIQ77BLIqAETKBY?=
- =?us-ascii?Q?e9Ju/zBt/6vX2Bbu7IcX+rNFGeIJQZFLRii+y8hRGDROc1TEFsLtQGmuQk3C?=
- =?us-ascii?Q?bzp5X1YJJ8dAdftQOLerSJjxHnjMz6GWvMasVi9IVwQyGAhkSNKZ9iQZKft8?=
- =?us-ascii?Q?WhmIhXsR0alB9mrADv/BUZvoT3t/KE8oYl1BWmpVAkG9g4q/Rte7ecxE8XUn?=
- =?us-ascii?Q?RhOimozZeqJU4WPnJbZDjZWqRQ8+mdb3a1RWu7cCtDcPwtgqe9mabgsTmRnV?=
- =?us-ascii?Q?+GxbQpZ91Q2dt/cEJAoK9AxnO/XTThHaUQFEFODRcI4yx5ZnOB0bjqVB+evT?=
- =?us-ascii?Q?16WA6NhkOJvulp+DvExY3PkX2uhOEQf3Dp0epQjr5BW7BTQg3QSvINaTPWoU?=
- =?us-ascii?Q?jSqv6Da+K4DfK1Asm6EPaTPACDCMCO+nMf0HRNy2KQoP2JDQE755xzdDlKT4?=
- =?us-ascii?Q?P3bt3EMfenW0I8aUFf4c0KaI/JQtqv/gduQh+PQP/5PzErUepyY82E+yHxM/?=
- =?us-ascii?Q?XwPN9z1NABsvIE2SYDCG2X6aqQnIf5pWuSpvl+a0N1jfx0lPIxFi7RVNAiXY?=
- =?us-ascii?Q?x8iNltbBhCq98saxCGwl24vPvrxsbZ4mRKW239Rh8kd0NfgGtZGZbfkH2+js?=
- =?us-ascii?Q?JxRSQjaqUV/eOQo+1n/KtT3PF461Qly2h8UYElSXkM8bzKkBIklGDCaR8pL+?=
- =?us-ascii?Q?PvLgswe4J0FrfecLpCUa6sh0OpWFe5qDt6CjTPedNOYSIgAfNn2qsXEeA82a?=
- =?us-ascii?Q?bnmQJR66H7Lt/43olgtdocCLBZXW4mtFIYSrg7pEl/IZl6rLD0nfOiFZ/N19?=
- =?us-ascii?Q?V64Sb2LUwn3CT/Wmne1vG5zipI2ojnM4fAKIe7Bi0ZqRT8DJVPq1nPlpzers?=
- =?us-ascii?Q?wkiWg/iXb3ie9HO8jpOJfeX7GIit5SyCSvVjQd+a+MWKXJMPgWHEPWBGFpGJ?=
- =?us-ascii?Q?zeFHDXteCcRrRzbkiH3pdX/JLzepX18nOIsVyeDp1WKjLtNLK4q6CJ7yAGDL?=
- =?us-ascii?Q?SFiJ/Yd1bJfro+qOnp4fiBKb/IvfPwGeOs/LhmpVv3/e/QnGxTEMVcGsoIpZ?=
- =?us-ascii?Q?iC1daL4Kmi5y5/A/kWl+yy1PUqHYEFxXEFOL2aeMH+U5pc6CwOupJHM1bqg4?=
- =?us-ascii?Q?/qqecONl+dd0F0yc3uvq8n/sHyr3YEiDHfijcALDdIu6Q0DKs5AZ1+flxzs+?=
- =?us-ascii?Q?/332tgI17uDT7qTxnEyQVT6gEaQ/4mBzpBpkpH12gnVegASVGpvO0ZpkuWl9?=
- =?us-ascii?Q?3m3cs5GUhiC/XHKjIGvxJYtzHy+XGsvX8pW9aaI05mU16bknIi17ssjPpAN7?=
- =?us-ascii?Q?eQ=3D=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 998f0a26-8430-4ed1-beb3-08dc6f226eba
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 05:48:05.8464
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5Zp0qdLl+450JGSpGL3qELEcNcq1tQUOQk+Qhmbd03DGYUEWaX9tG1HTXsWl3esHutA3h2QJu4YXlYvNHRcGHFf9K0EJVicKfear4/mfFs0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1283
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 0/3] Add devicetree support of USB for QDU/QRU1000
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krishna Kurapati PSSNV
+	<quic_kriskura@quicinc.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>, <quic_wcheng@quicinc.com>,
+        <quic_ppratap@quicinc.com>, Jack Pham
+	<quic_jackp@quicinc.com>
+References: <20240502090326.21489-1-quic_kbajaj@quicinc.com>
+ <CAA8EJprPLqj7GQM0vmN25U2+3kDow=NH8=-VC2N-0p92Ub3iCA@mail.gmail.com>
+ <5134c012-60b1-4c07-9e1f-c48c3d88d404@quicinc.com>
+ <CAA8EJppK7fMmX_cePhaK4Xy-+gfZfYZSWJDbEnVvq_60B32Rig@mail.gmail.com>
+Content-Language: en-US
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <CAA8EJppK7fMmX_cePhaK4Xy-+gfZfYZSWJDbEnVvq_60B32Rig@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: AMUnemoQiKrTYsjEuQIN5E8RHpr_w4cJ
+X-Proofpoint-ORIG-GUID: AMUnemoQiKrTYsjEuQIN5E8RHpr_w4cJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-08_02,2024-05-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 bulkscore=0 clxscore=1015
+ mlxlogscore=835 spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405010000
+ definitions=main-2405080043
 
-Add optional reset control support for spi-cadence to properly bring
-the SPI device into an operating condition.
 
-Co-developed-by: Eng Lee Teh <englee.teh@starfivetech.com>
-Signed-off-by: Eng Lee Teh <englee.teh@starfivetech.com>
-Co-developed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
----
- drivers/spi/spi-cadence.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/spi/spi-cadence.c b/drivers/spi/spi-cadence.c
-index e5140532071d..4eacf3f6e031 100644
---- a/drivers/spi/spi-cadence.c
-+++ b/drivers/spi/spi-cadence.c
-@@ -18,6 +18,7 @@
- #include <linux/of_address.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reset.h>
- #include <linux/spi/spi.h>
- 
- /* Name of this driver */
-@@ -111,6 +112,7 @@
-  * @dev_busy:		Device busy flag
-  * @is_decoded_cs:	Flag for decoder property set or not
-  * @tx_fifo_depth:	Depth of the TX FIFO
-+ * @rstc:		Optional reset control for SPI controller
-  */
- struct cdns_spi {
- 	void __iomem *regs;
-@@ -125,6 +127,7 @@ struct cdns_spi {
- 	u8 dev_busy;
- 	u32 is_decoded_cs;
- 	unsigned int tx_fifo_depth;
-+	struct reset_control *rstc;
- };
- 
- /* Macros for the SPI controller read/write */
-@@ -588,6 +591,16 @@ static int cdns_spi_probe(struct platform_device *pdev)
- 		goto remove_ctlr;
- 	}
- 
-+	xspi->rstc = devm_reset_control_get_optional_exclusive(&pdev->dev, "spi");
-+	if (IS_ERR(xspi->rstc)) {
-+		ret = dev_err_probe(&pdev->dev, PTR_ERR(xspi->rstc),
-+				    "Cannot get SPI reset.\n");
-+		goto remove_ctlr;
-+	}
-+
-+	reset_control_assert(xspi->rstc);
-+	reset_control_deassert(xspi->rstc);
-+
- 	if (!spi_controller_is_target(ctlr)) {
- 		xspi->ref_clk = devm_clk_get_enabled(&pdev->dev, "ref_clk");
- 		if (IS_ERR(xspi->ref_clk)) {
--- 
-2.43.2
+On 5/2/2024 5:14 PM, Dmitry Baryshkov wrote:
+> On Thu, 2 May 2024 at 12:48, Krishna Kurapati PSSNV
+> <quic_kriskura@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 5/2/2024 2:39 PM, Dmitry Baryshkov wrote:
+>>> On Thu, 2 May 2024 at 12:04, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>>>>
+>>>> This series adds devicetree nodes to support interconnects and usb for qdu/qru1000.
+>>>> This is based on previously sent driver series[1].
+>>>>
+>>>> ------
+>>>> Changes in v3:
+>>>> * As per comments on upstream[2], to get role-switch working on QDU/QRU1000, it was recommended to
+>>>>     use the actual TI switch driver. Since driver doesn't have the functionality to provide role-switch
+>>>>     based on gpio, thus reverting back USB dr_mode to peripheral and removed the remote end-point nodes
+>>>>     and usb-conn-gpio based role switch functionality.
+>>>
+>>> This is not correct. The recommendation was to describe hardware properly.
+>>> Which means adding schema description, adding  ti,your-switch
+>>> compatible to the usb-conn-gpio.c driver, etc.
+>>>
+>>
+>> Hi Dmitry,
+>>
+>>    Sorry for the confusion. In the comments [1],
+>>
+>> "So the compatible string should be "ti,hd3ss3220". Which is fine to be
+>> used in the platform driver. Just describe the differences in the
+>> schema."
+>>
+>> The compatible "ti,hd3ss3220" is already associated with a TI switch
+>> driver [2]. But it works based on I2C. So we assumed you wanted us to
+>> make changes to [2] by adding GPIO functionality (which usb-conn-gpio
+>> exactly does), since the compatible you suggested matched with the TI
+>> driver.
+> 
+> First of all, please don't make assumptions. It's better to ask rather
+> than making assumptions which turn up to be incorrect.
+> 
+> Compatibles describe hardware. DT describes hardware. There are no
+> drivers in question (yet).
+> You have TI switch on your board, so you have to use "ti,hd3ss3220" to
+> describe it.
+> 
+> Existing schema describes it as an I2C device. You have to extend the
+> schema to allow non-i2c attachment. Describe GPIOs, make reg optional.
+> Make this description purely from the datasheet and usb-c-connector
+> point of view.
+> 
+>> If it was to add compatible in usb-conn-gpio, then we can support OTG
+>> functionality with no schema changes I believe, but the compatible
+>> string might need a different name to avoid clashing with the name in [2].
+> 
+> And this is the second, largely independent question. The
+> usb-conn-gpio driver is a platform driver.The existing hd3ss3220.c
+> driver is an I2C one. There is no clash between them.
+> 
+> Note, unlike plain gpio-b-connector, the switch supports more pins and
+> actually provides USB-C information to the host even when used in the
+> dumb mode. Thus it might be better to add a separate driver that
+> registers typec port and reports USB-C events.
 
+Hi Dmitry,
+
+Regarding the comment:
+"Note, unlike plain gpio-b-connector, the switch supports more pins and 
+actually provides USB-C information to the host even when used in the 
+dumb mode. Thus it might be better to add a separate driver that 
+registers typec port and reports USB-C events."
+
+We are also aligned with your statement of expressing the hardware 
+correctly. Since this needs quite a bit of effort to write a new driver 
+for TI switch or modifying existing TI driver to add GPIO support, can't 
+we go ahead with peripheral support only since the driver support is 
+absent currently.
+
+We will plan to submit the patches in upcoming days for this. Since we 
+usually enable USB in peripheral mode so that USB debug (adb) will work, 
+I am thinking we can merge this and take up the OTG/host mode 
+separately. Please let me know your feedback on this.
+
+Thanks
+Komal
+
+> 
+>>
+>> [1]:
+>> https://lore.kernel.org/all/CAA8EJppNZrLzT=vGS0NXnKJT_wL+bMB9jFhJ9K7b7FPgFQbcig@mail.gmail.com/
+>>
+>> [2]:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/typec/hd3ss3220.c?h=v6.9-rc2
+>>
+>> Regards,
+>> Krishna,
+>>
+>>>> * Link to v2: https://lore.kernel.org/linux-arm-msm/20240319091020.15137-1-quic_kbajaj@quicinc.com/
+>>>>
+>>>> Changes in v2:
+>>>> * Changes qmpphy node name
+>>>> * Changes dr_mode to otg and added USB-B port USB role switch
+>>>> * Dropped maximum-speed property from usb dwc3 node
+>>>> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240311120859.18489-1-quic_kbajaj@quicinc.com/
+>>>>
+>>>> [1] https://lore.kernel.org/linux-arm-msm/20240502082017.13777-1-quic_kbajaj@quicinc.com/
+>>>> [2] https://lore.kernel.org/all/CAA8EJppNZrLzT=vGS0NXnKJT_wL+bMB9jFhJ9K7b7FPgFQbcig@mail.gmail.com/
+>>>> ------
+>>>>
+>>>> Komal Bajaj (3):
+>>>>     arm64: dts: qcom: qdu1000: Add USB3 and PHY support
+>>>>     arm64: dts: qcom: qdu1000-idp: enable USB nodes
+>>>>     arm64: dts: qcom: qru1000-idp: enable USB nodes
+>>>>
+>>>>    arch/arm64/boot/dts/qcom/qdu1000-idp.dts |  23 +++++
+>>>>    arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 120 +++++++++++++++++++++++
+>>>>    arch/arm64/boot/dts/qcom/qru1000-idp.dts |  23 +++++
+>>>>    3 files changed, 166 insertions(+)
+>>>>
+>>>> --
+>>>> 2.42.0
+>>>>
+>>>>
+>>>
+>>>
+> 
+> 
+> 
 
