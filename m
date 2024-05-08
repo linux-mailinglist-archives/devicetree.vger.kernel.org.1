@@ -1,208 +1,123 @@
-Return-Path: <devicetree+bounces-65706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 313788BFB34
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:43:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F38C8BFB44
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:48:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D1651F23A4F
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:43:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0B091C20DFF
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C147A81723;
-	Wed,  8 May 2024 10:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1956481AC9;
+	Wed,  8 May 2024 10:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ice7gnbB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8708121A;
-	Wed,  8 May 2024 10:43:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB0B81723
+	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 10:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715165024; cv=none; b=bjuTwtfvDSMqmCMqI5Zgw/GCynyIYF9sbPV+K7/iCbjO27iLihc4PeBYZeHuh8a+eV+Yd+u1vu6HSaGErDRy1q9ueRgIOoF4SYD0dXsLk/9AwnP/NDqgHJWkb9qQvVQorkv/VddEKlMvUF9bTgsbOA3FAuCwSj8goxgx0xTlJJU=
+	t=1715165280; cv=none; b=HehGRp3JWosbUTQ8PaFO81D4bSVEODPS9e2qFQskMA9kcNmEzkVDS/n1/edcxW0xypiF36VyCOa3TTrG+IZS5OJUBECDbc6vieGlgmee8qrsREl4tLjlbOJWEONP8vch4uFiX+QFSSj7hECD4vs9Pk/Ut6jbadZkvjmiEK3XdyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715165024; c=relaxed/simple;
-	bh=4kEk/+lJ061tISvnU8C3DinplnN17yBiPWG18m1vvrE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Th7DZdgaKVKjjBx6H/R1bljSXtemqeDXbRasEs5iz+RkmcNWy7ojCBBt9Z6Ywi2JvRA2/Y1D/MSFO5aIAJ2LMHT7mD1tqxJcOwUr7i2IzPp7hsrNA2D3FQOuJBVijxen725+/fr553b5uMwZXYNe3AwLAv780V3s3g+JLZEqPhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DD2DC1BF204;
-	Wed,  8 May 2024 10:43:28 +0000 (UTC)
-Message-ID: <d14c1d04-2fd9-4c9b-affb-f4335bd7e6fc@ghiti.fr>
-Date: Wed, 8 May 2024 12:43:28 +0200
+	s=arc-20240116; t=1715165280; c=relaxed/simple;
+	bh=vpbiHsnsZyeL5F2e2N4ix1aSqeYmPGen1pGmaZRkQLY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R249hKvOikLd3KgfdFJR9/52Mfkx4XvqiWVMlQxOjGCVm+0kRwvahvjSlFchX3M+LrxQZgPh1jR3yAsovTKTC1kE5GiJgM7nf3/jBnSGzbcpk1wP/PDIkPnvuDhy8E+VAOWkBKonGX7dtbF2izK8Ux7ZwRcyPx9qbLZGpXlCvlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ice7gnbB; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-de604ca3cfcso4111840276.3
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 03:47:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715165277; x=1715770077; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eoZX15B6govTZa1crSFZ03U1Z5NpIxQlGrKdNgAOQcI=;
+        b=ice7gnbB6KJJbj+0L9JlGDku5Nnr3B9LNgRo76/G44JSa9uXtlwrehvj5DJNfoLPQv
+         +cwguD53v+58bb4beVa0UOB1dmtG/aOugurMw6442qShzZwRYN7V+5OKBb5Q50Lk35mB
+         j8eFbN5BDpe+CM7BMs9nzEOI3gJsrNHqeV2TY0HCkqVAqvcFHIoHEQic4ms5NOBFnVIz
+         sbtDmBFbaVOyQMuWqhZT/PZ0EfOId+BRPN3PQdzeSJmVbUqWo4AxwheEP3uGP2lSoGc6
+         Nva1LfeZ+8y2EEwyrEcFRrlesVDXsms/z2EKA0LNcCcUGRk+0AotoA9N2u1f7A6fDmkz
+         MWGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715165277; x=1715770077;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eoZX15B6govTZa1crSFZ03U1Z5NpIxQlGrKdNgAOQcI=;
+        b=vIfH996ahPl48hhS8v2i0qDR+ZFzFPas9K266oiIyHiZCUldiMj3Ne24Ch+2QkJ8WF
+         2RxKxjCbG55w7lsxVV7kSJ7hwnaOfyAIdiWEHkz4YsWxSy8CI/prMnu4etWxeqao/l8r
+         MQ58GAcX0mqnEJZcTxliDSxfsrNZxa4+SOwtHlEv2MsFu8wg5TrkimGEleW9+iirPhbu
+         p7+Ur8TWXAj+PO2EoOBVWouvbKEjD6O+pNEzHMJEzb6lwk3ANo/hSlBzNTBK44Jc4ny9
+         S38KsbvIRORCGsWtMiIwWMvYVtzbut4CmbRSTaG8rzJhhVZVrp9DV+d1d2C663Oi3aKd
+         AEtw==
+X-Forwarded-Encrypted: i=1; AJvYcCVnlTUf+RC/RjT4FYlHpstUTK1lp8B8hgOTP1PEubgiYL61wgVifBTp682Fwv5PJMnEbEs25TIAVby+X7fv+8W8hx+haoroJG9HUg==
+X-Gm-Message-State: AOJu0YydQw7ANbCHjotao0t0Qc/t0Xfy8r2UlkfP9f82LrvtGkjICPxL
+	0XiHAPmEXBQGVy8dHRsFd8QfWsUaYsbQtb8UKVXq3Xt/g4zOE55OjGxSF0rwAl+mgsqIIOXUngC
+	vVtK6f/CF2cb3OytV+7yetbuxdposyAsiZ6XB+w==
+X-Google-Smtp-Source: AGHT+IEWwosbEieIG3yPj7wVS7/X+26Rl5SJvi7/VdhV3IY6zo46NS8e83824/vbmNXb+zl5PPWRF6ISWsjL+0RJS9M=
+X-Received: by 2002:a5b:9ca:0:b0:de0:f74b:25f3 with SMTP id
+ 3f1490d57ef6-debb9dd9428mr2093299276.60.1715165277491; Wed, 08 May 2024
+ 03:47:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/9] riscv: smp: fail booting up smp if inconsistent
- vlen is detected
-To: Andy Chiu <andy.chiu@sifive.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor.dooley@microchip.com>, Heiko Stuebner <heiko@sntech.de>,
- Guo Ren <guoren@kernel.org>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
- =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>,
- Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
- Vincent Chen <vincent.chen@sifive.com>,
- Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-2-e0c45bb6b253@sifive.com>
- <4acc62d0-d62b-4d42-805b-0bc7f663a81c@ghiti.fr>
- <CABgGipXcjY9KDU=fN6KtER3mPbxsQdb+Y5Czhq7QDBFFc6p__w@mail.gmail.com>
-Content-Language: en-US
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <CABgGipXcjY9KDU=fN6KtER3mPbxsQdb+Y5Czhq7QDBFFc6p__w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alex@ghiti.fr
+References: <171405653305.2527744.3813895380659072690.robh@kernel.org>
+ <20240426142442.7769-1-quic_vvalluru@quicinc.com> <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+ <20240508102202.GA28609@hu-vvalluru-hyd.qualcomm.com>
+In-Reply-To: <20240508102202.GA28609@hu-vvalluru-hyd.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 8 May 2024 13:47:46 +0300
+Message-ID: <CAA8EJppiGiaddrNLRGtzjKHfcYYU4LcXLCyOgfy2En7LRggv4A@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+To: jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc.smtp.subspace.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>, robh@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, konrad.dybcio@linaro.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_abhinavk@quicinc.com, 
+	quic_nankam@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Andy,
+On Wed, 8 May 2024 at 13:22, Prahlad Valluru <quic_vvalluru@quicinc.com> wrote:
+>
+> On Mon, May 06, 2024 at 06:14:10PM -0500, Bjorn Andersson wrote:
+> > On Fri, Apr 26, 2024 at 07:54:42PM GMT, Prahlad Valluru wrote:
+> > > From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+> > >
+> >
+> > Please don't thread new versions off existing version. b4 helps you with
+> > getting these things right, please check go/upstream for more details.
+>
+> My internal gitconfig is not configured correctly. Fixed in v3.
 
-On 08/05/2024 10:21, Andy Chiu wrote:
-> On Thu, Apr 25, 2024 at 4:01 AM Alexandre Ghiti <alex@ghiti.fr> wrote:
->> Hi Andy,
->>
->> On 12/04/2024 08:48, Andy Chiu wrote:
->>> Currently we only support Vector for SMP platforms, that is, all SMP
->>> cores have the same vlenb. If we happen to detect a mismatching vlen, it
->>> is better to just fail bootting it up to prevent further race/scheduling
->>> issues.
->>>
->>> Also, move .Lsecondary_park forward and chage `tail smp_callin` into a
->>> regular call in the early assembly. So a core would be parked right
->>> after a return from smp_callin. Note that a successful smp_callin
->>> does not return.
->>>
->>> Fixes: 7017858eb2d7 ("riscv: Introduce riscv_v_vsize to record size of Vector context")
->>> Reported-by: Conor Dooley <conor.dooley@microchip.com>
->>> Closes: https://lore.kernel.org/linux-riscv/20240228-vicinity-cornstalk-4b8eb5fe5730@spud/
->>> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
->>> ---
->>> Changelog v4:
->>>    - update comment also in the assembly code (Yunhui)
->>> Changelog v2:
->>>    - update commit message to explain asm code change (Conor)
->>> ---
->>>    arch/riscv/kernel/head.S    | 19 ++++++++++++-------
->>>    arch/riscv/kernel/smpboot.c | 14 +++++++++-----
->>>    2 files changed, 21 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
->>> index 4236a69c35cb..a00f7523cb91 100644
->>> --- a/arch/riscv/kernel/head.S
->>> +++ b/arch/riscv/kernel/head.S
->>> @@ -165,9 +165,20 @@ secondary_start_sbi:
->>>    #endif
->>>        call .Lsetup_trap_vector
->>>        scs_load_current
->>> -     tail smp_callin
->>> +     call smp_callin
->>>    #endif /* CONFIG_SMP */
->>>
->>> +.align 2
->>> +.Lsecondary_park:
->>> +     /*
->>> +      * Park this hart if we:
->>> +      *  - have too many harts on CONFIG_RISCV_BOOT_SPINWAIT
->>> +      *  - receive an early trap, before setup_trap_vector finished
->>> +      *  - fail in smp_callin(), as a successful one wouldn't return
->>> +      */
->>> +     wfi
->>> +     j .Lsecondary_park
->>> +
->>>    .align 2
->>>    .Lsetup_trap_vector:
->>>        /* Set trap vector to exception handler */
->>> @@ -181,12 +192,6 @@ secondary_start_sbi:
->>>        csrw CSR_SCRATCH, zero
->>>        ret
->>>
->>> -.align 2
->>> -.Lsecondary_park:
->>> -     /* We lack SMP support or have too many harts, so park this hart */
->>> -     wfi
->>> -     j .Lsecondary_park
->>> -
->>>    SYM_CODE_END(_start)
->>>
->>>    SYM_CODE_START(_start_kernel)
->>> diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
->>> index d41090fc3203..673437ccc13d 100644
->>> --- a/arch/riscv/kernel/smpboot.c
->>> +++ b/arch/riscv/kernel/smpboot.c
->>> @@ -214,6 +214,15 @@ asmlinkage __visible void smp_callin(void)
->>>        struct mm_struct *mm = &init_mm;
->>>        unsigned int curr_cpuid = smp_processor_id();
->>>
->>> +     if (has_vector()) {
->>> +             /*
->>> +              * Return as early as possible so the hart with a mismatching
->>> +              * vlen won't boot.
->>> +              */
->>> +             if (riscv_v_setup_vsize())
->>> +                     return;
->>> +     }
->>> +
->>>        /* All kernel threads share the same mm context.  */
->>>        mmgrab(mm);
->>>        current->active_mm = mm;
->>> @@ -226,11 +235,6 @@ asmlinkage __visible void smp_callin(void)
->>>        numa_add_cpu(curr_cpuid);
->>>        set_cpu_online(curr_cpuid, 1);
->>>
->>> -     if (has_vector()) {
->>> -             if (riscv_v_setup_vsize())
->>> -                     elf_hwcap &= ~COMPAT_HWCAP_ISA_V;
->>> -     }
->>> -
->>>        riscv_user_isa_enable();
->>>
->>>        /*
->>>
->> So this should go into -fixes, would you mind sending a single patch for
->> this fix?
-> I thought it would be magically picked up by a bot as long as we have
-> a fix tag. Am I assuming something wrong?
-
-
-It gets backported to stable when it is merged, but then it is missing 
-from the first stable releases (as long as it is not merged).
-
-But anyway, 6.9 fixes are all out, so let's hope this series makes it to 
-6.10.
-
-Thanks,
-
-Alex
-
+No. V3 was still sent as a reply. Please fix the way you are sending
+the patches. It has nothing to do with the git config.
 
 >
->> Your patch 8 is actually already fixed by Clement's patch
->> https://lore.kernel.org/linux-riscv/20240409143839.558784-1-cleger@rivosinc.com/
-> Okay, I will drop it at the next revision.
+> >
+> > > Enable lt9611uxc bridge for qcs6490 rb3 gen2 platform.
+> > >
+> >
+> > Even if it's clear what this is, I would prefer if you described the
+> > hardware a little bit in your commit message.
+> > "Rb3Gen2 has a HDMI connector, connected to DSI via a LT on i2cX.... reset and
+> > irq pins comes from x and y. Describe this."
+> >
 >
->> and I already mentioned this one to Palmer.
->>
->> Thanks,
->>
->> Alex
->>
-> Thanks,
-> Andy
+> Agreed. Updated the commit text to include bridge details.
+
 >
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+
+-- 
+With best wishes
+Dmitry
 
