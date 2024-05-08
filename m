@@ -1,120 +1,169 @@
-Return-Path: <devicetree+bounces-65636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DCF8BF560
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 06:56:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B69F8BF5BA
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 07:48:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49766B217D0
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 04:56:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8CEB1F2505A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 05:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0EEB14AA8;
-	Wed,  8 May 2024 04:56:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PrIdbbVt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003521758E;
+	Wed,  8 May 2024 05:48:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2119.outbound.protection.partner.outlook.cn [139.219.146.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B1C8F6C;
-	Wed,  8 May 2024 04:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715144181; cv=none; b=Cnb9qsZwCmflnLNqH6YXLSpVSo1MlL00qsf1ZaXdPXh9TcjPOI8jsLSSEvTKtDZ1NwPnQaXbm7eVTuRpVS0WCg3XuYE3PWU53mEOlEJ29VQQ9NpNHuf283zXlSST8tbCBVQ5bbTaFu9c4ndNTH2iBGjx5Zba1oWeNotXkrESt3M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715144181; c=relaxed/simple;
-	bh=Jyr2hUEWFKADNLWFdVy11ZFHNqpV4stk/iYWvzCKsBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ojN+nsiAhxorJzFLT5BIFq+SvddawIZYEzb6XlONhyaFIHPlArNnvr1vuh4VZ8YBT6kJlKORalJEELCen5Pih1WF7f53An5CW9Zt6OCvauN9ojH93j0a57OaD7WaQIABUkh8od1pzYcDyoeiY2+zh63ofdFgysnT9dGeT4q4pZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PrIdbbVt; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4484u2YS007973;
-	Tue, 7 May 2024 23:56:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715144162;
-	bh=i5ost6/8hJqOm8sNUZyUzXMh+TpN283BjGJn6wA9w1w=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=PrIdbbVt+PM5XaNGwAUuU0kgKips3Ke5b3rwMKJunbq+/T78afr/JJtyb7gTwST9y
-	 kU1c2s+XKMnPEQCYVn7j+tVUTyH4kKr2iQIhaOozjmTeezTu7K0txg5AlPW5opZW1A
-	 TDDG/gZTBuYJ0uy8vnVwtvV8rGcm45S9mI9T9ef4=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4484u2f6111141
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 May 2024 23:56:02 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- May 2024 23:56:02 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 May 2024 23:56:02 -0500
-Received: from [172.24.30.180] (lt5cd2489kgj.dhcp.ti.com [172.24.30.180])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4484twRF101335;
-	Tue, 7 May 2024 23:55:59 -0500
-Message-ID: <dc369d86-2a67-423e-a020-8e7ff58b6029@ti.com>
-Date: Wed, 8 May 2024 10:25:57 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7456C15E88;
+	Wed,  8 May 2024 05:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.119
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715147300; cv=fail; b=ZQjMjHpjL5PsiqHoN8VdI3iVXZxfV+htt+NJacpv1PtNawMzjoG3cFuJuF+rK/dFvbWTbkevRSjv+jrHzoenJTJINguC84I7eMAsEan5yCIaS/s15EheCHNfJVPvVdtBcm0bhL0v6O3j2kDELBbixO7CCGn7LIlP/F+H6T1Hy7M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715147300; c=relaxed/simple;
+	bh=60T3JzxEly7EJthIA2DHI9T1Hg8voJcmZ0OEihuFC8E=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=oESOJI6dzsN54joyWzxNiCo6Wvs1/W4bSV+66Cz8QmM3nDkcc98Q4Vfs6mzJExL7yhH23osbXqlnU+TJB5cXrPrl8KRrlTmghqSo8oQaKIT8UZfAfZnbdzLs+51//eqDeKbh7a1bJvu0eORGA1ZnT8wHrpza4B8fHytzlT4s8JA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WiEFYWyvBYe/g5sMVOLbdkFbeb5ypIwD/kzVpLP1x1lJV27VyJibMCvGgHica9rPSIj66DwfNaDYufxonTnx9uUccgF9lGljpqPU1Tv1AjfQwD8RtH2adjaH1QJgB6/Pde4M+E6uyIv7GazqLMZEv+JVt+YZOEQRR6iEdTdG2xMQ0MrVB/se4TvuZA9yfnYUTWJDOa+pfwnIZhu3Cft5Vu9fm3KuliNF2yogZfs8R8rKTQ7KhwGtF/rpT8TcEniQTV7V31YBjm6//mXonFZtg6BAWiBSp8CYCE4FurRW+C8T6Usttww5VebZvpUYG38CCHQ4vdFJvqBm2a7FARGqzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IoHuaOd4zqoYz+Zx5UM2D+r2YLaqJIvliBGIjPOtRc8=;
+ b=UGBqUmmR27IP1xQ7jkQMtR4R2dvG+9839JyXAOXb1fzRgzhEYM+ZnRr4W68RfYgBCw0ZfmIp6KSpAo0wUPOZRJ3fC2h5CzEJZMGBdilKTl4IOn5VJGGcbmZ5H2AZ/luQHY6Thbur856BjuJwnq09Vz6h2nFdyt9ViVaiDNhsZlgGXNK76W5U93nD86/yYCMe+QxfjitmZ8gcwHyTIl2thxSSrzO++CFPuZF2nQo4nnqy13SAj9ZFw05CrhnUON9pF0L4GQ2pfT1paVjj7eTZKUzjRXOItGLRV7k7g8MOWcFiXeO+ZJ8z0Efcx9CsDr18mbKMZXFnOwmCzB8oK+N4lw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::9) by ZQ4PR01MB1169.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:13::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 8 May
+ 2024 05:48:08 +0000
+Received: from ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+ ([fe80::301e:ec80:4356:8b14]) by
+ ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn ([fe80::301e:ec80:4356:8b14%6])
+ with mapi id 15.20.7472.044; Wed, 8 May 2024 05:48:08 +0000
+From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+To: Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>,
+	Lars-Peter Clausen <lars@metafoo.de>
+Cc: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Eng Lee Teh <englee.teh@starfivetech.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 2/2] dt-bindings: spi: spi-cadence: Add optional reset control
+Date: Wed,  8 May 2024 13:47:28 +0800
+Message-ID: <20240508054728.1751162-3-jisheng.teoh@starfivetech.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240508054728.1751162-1-jisheng.teoh@starfivetech.com>
+References: <20240508054728.1751162-1-jisheng.teoh@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHXPR01CA0026.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1b::35) To ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm64: boot: dts: ti: k3-am68-sk-base-board: Add
- LP8733 and TPS6287 nodes
-To: Neha Malcom Francis <n-francis@ti.com>, <robh@kernel.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>, <nm@ti.com>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>
-CC: <marten.lindahl@axis.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240507122158.3739291-1-n-francis@ti.com>
- <20240507122158.3739291-4-n-francis@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240507122158.3739291-4-n-francis@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1154:EE_|ZQ4PR01MB1169:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a6459af-73c6-4840-9ca0-08dc6f227013
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bnwSRuoS8Tz42vzYhUEC3li585Q6P4qGds+Ga6cSyn/1Erw5e2wyR3NZGBS4aLTgNoalu/XzfwpWhZOQh4PB2Vsh+WeFrBHe0Kq6dM2hOZ05YOZY6yQlpHXY8i1YGB8B2QBZ6M0f46IXz0cXmj4oEzGz1yLh8q5SQOpHkyHz9zZpv62eEAEGQo4+/KBG7PoUt2QCKB5zeFoyL1Aoc+h5jdQPXnfht6TbARy/ypJ9KvCot7W1+E4em4Xb1cMBjTFK9ozBfSAMbJ9rdtXzKpj6SlLsOMmXP8YSNkboyQe/Fz6R/t/RZuMYUxFpJ1xAgylGgYdYtSb89OXSqcoqSAJIXPSSPZq+DHQ9irj8lNrIS+dnlpOX19Y8r/+JcrzJIhcSm4a6lvm3cmBD4IF5rSq0kuWGxGmWa8A6CJqugXibjQzUC/9nIOWWAVaxae/CvR4kLyvLpbm0NPQ1/iwpCEKBWSenfEYtBnpIAymGFVAtZ/2qwW/v8z4TAvgKromMiH7tpD/S+XGz2nkHnKXtt53VxcU1N2gYxA0hrwCrA3+o43TTAuuO0L+Rao9Q0zCiX61gow89U52R/XnHjx36JPemVH+/a81YCZA37gezC5C5UbRTlnUKUtF7Lg3ZHzYJK74o
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(1800799015)(52116005)(41320700004)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?aBqbaMhhBLklSFSGAJphtoZJpY6pC9DNrOp3oeTbRtALMrOBQD+T9dS5L9O0?=
+ =?us-ascii?Q?KGSOtsqd2hqTRxf5pEO6zksLlmTgmsHx309z8BgceCmNuUYGbDnPYJkNhn5J?=
+ =?us-ascii?Q?tPr4H/WGzf9+oa+PwDfKMzK3x85OM9PHmLvqhsO5pFSv9yS4BDF536KYGiVu?=
+ =?us-ascii?Q?dE1FcghMnoOQmxAmDe/qCJx7FDc86eOiDBSte4wDI+CHPwPe0ltPhYANs8Dp?=
+ =?us-ascii?Q?jukr8Wg7FpSc+Qep3HeT5bOUJR88BwEVtwNTr4PE0G6EE5DHA4d4PQA1z4MW?=
+ =?us-ascii?Q?V7vx1tBVPHXUGVjNIaY6HTA1vS3mJqt1UVq+YuI3CClYZBxie/DwJlMD/hHm?=
+ =?us-ascii?Q?gO3+jjxHL8hutIPsXKKkAKwXCk4b42ll3sJ0OjO/MSCYtoLf48S4Uw/LfFUl?=
+ =?us-ascii?Q?XZ0mU6N3Iq715li8JK2R+lg9i8opiBYhY6KYJ/AkB54VWlW7fpVCIDlsKPSz?=
+ =?us-ascii?Q?yF50TnPTZKb3OmzRCk34C24d7nLX0Uya56yYx7Bq2lkvhJultneotMAK14mr?=
+ =?us-ascii?Q?rcS/mAkt8/2f4du32gXvrKemj5nVydrDKODdasFdWCFHsZKVG7HvyiCKbbFC?=
+ =?us-ascii?Q?euGiCKGMch4raDZY10L4h2JE+9UST6yzyvLwtQCWMamjiOf4jUuSlj7go2BU?=
+ =?us-ascii?Q?v2pMqjND7QHADSUnjj6rkureKBeQiWt6YmCyfMeFlI2LjCuGFG3Y92D5xv+w?=
+ =?us-ascii?Q?/JPx+zFjDb++1uE1PmPTvodYegaL+yWyJ7jxw5U7LJB+uEdX8w6WWFwyv/vf?=
+ =?us-ascii?Q?cnBEdcCZkpk8utsT2MxbHeCnongGwTdZM4FmLoOLL/FbEPlCz0y9hz7fwU8i?=
+ =?us-ascii?Q?OoceqlWv904SGW4EW/U3gR1vMAvQlPSasVPB6kwxe7GwqH32lNkDMfmAaTpk?=
+ =?us-ascii?Q?OfEGxmxLP3V+H10YnwpzUxuEjTaIOTOKqHqIQ1nUdkoBOs7DIHcoAcpcqR0y?=
+ =?us-ascii?Q?TwoYrdAeyiLRldVZyUTI1mmkQ94sbKuKuv9EOWZ2gMqFxvfClLEjidq9PhYN?=
+ =?us-ascii?Q?3QcR2n/Mjs6vuleIJ0ArxsgcHm3et/dWdyr+c9IOsNp0GT1ZyywEr9dSf0/H?=
+ =?us-ascii?Q?cBeWhr2/G4fHZ2bTWxkkNd6n4xkpuA1bIhEMUt0Vq7QZ3bmrjn7xiJWAe3SF?=
+ =?us-ascii?Q?vWU/8YB8XQ+yhzYjIFiQWcSEcYoNaYH2vanURD/Cl0u5TCYsny8pXBo2xG5g?=
+ =?us-ascii?Q?V8W/BmeSqdQVA8KvSNp8hHnnRdGH06tCVES/OsgLq2Bo6mj9PDk0jVXbvJts?=
+ =?us-ascii?Q?YCLVSXrLIvAe557O6+ud1ZNE18sSt8zuInmz9zA6sbGanLF6NCkwWGMYLmrs?=
+ =?us-ascii?Q?Wy72TpS7LfK04GbTF+N4ArOb2QhXJpyTmpQXxjShLPitiSkAXHJTFXnYJu2t?=
+ =?us-ascii?Q?jhMD9ErULcp7kg48V28BYJPTCARcjFipWzmj28sRYMmlyEMGfUj4gy6QFfRb?=
+ =?us-ascii?Q?9lUJ4rKIZE1cQd4jkVdE6IEjEPZ5Gy9H8hVio6fG933biq8tjiuVj0i69iFI?=
+ =?us-ascii?Q?xJwAbJtaNsdTkFOdEg4KrE4Jh65k/L2UkTVC+lO5OiQH+S+NBriVyf8N1hYZ?=
+ =?us-ascii?Q?6kN+7GW+CLogQ8pUuLFgHR8kfyyTzVhysCEmhWpTxt9S/z1maZwulSxW72Ts?=
+ =?us-ascii?Q?hGOI9ZtSCwujpmPAnrdHOpQ=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a6459af-73c6-4840-9ca0-08dc6f227013
+X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1154.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 05:48:08.1249
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QLT1EJCd+8H5SXZFd+VDI6UY41xpZHh7qUpRFpgVCWStMxrHJeQaP0oED4o2NKlLA1r97Y7PFBC03wnH3fefoW24MOvR7YCblw6Ij2lYpO4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1169
 
-Hi Neha
+Document the optional reset control to SPI.
 
-On 5/7/2024 5:51 PM, Neha Malcom Francis wrote:
-> Add DTS node for LP87334E PMIC and two TPS6287x high current buck
-> converters.
->
-> LP87334E is responsible for supplying power to the MCU and MAIN domains
-> as well as to LPDDR4. The two TPS6287x supply power to the MAIN
-> domain for AVS and other core supplies.
->
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> Link: https://www.ti.com/lit/pdf/slda060
-> ---
-> [..]
-> +	tps62873b: tps62873@43 {
-> +		compatible = "ti,tps6287x";
-> +		bootph-pre-ram;
+Co-developed-by: Eng Lee Teh <englee.teh@starfivetech.com>
+Signed-off-by: Eng Lee Teh <englee.teh@starfivetech.com>
+Co-developed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/spi/spi-cadence.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-I think,  we don;t need bootph-pre-ram for fixed regulator,
+diff --git a/Documentation/devicetree/bindings/spi/spi-cadence.yaml b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+index d4b61b0e8301..8de96abe9da1 100644
+--- a/Documentation/devicetree/bindings/spi/spi-cadence.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+@@ -55,6 +55,13 @@ properties:
+   label:
+     description: Descriptive name of the SPI controller.
+ 
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: spi
++
+ required:
+   - compatible
+   - reg
+-- 
+2.43.2
 
-Please check once, if really bootph-pre-ram needed here
-
-
-> +		reg = <0x43>;
-> +		regulator-name = "VDD_CORE_0V8";
-> +		regulator-min-microvolt = <800000>;
-> +		regulator-max-microvolt = <800000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
->   &mcu_uart0 {
->   	status = "okay";
->   	pinctrl-names = "default";
 
