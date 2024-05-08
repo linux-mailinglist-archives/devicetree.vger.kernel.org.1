@@ -1,197 +1,308 @@
-Return-Path: <devicetree+bounces-65742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42B28BFD4C
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 204918BFD99
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 599B628214F
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:38:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA7FD286D3E
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CC042062;
-	Wed,  8 May 2024 12:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0591754FAA;
+	Wed,  8 May 2024 12:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DxVlZ1Dw"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="FHDSzPwN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598553EA71;
-	Wed,  8 May 2024 12:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6DA50A7E;
+	Wed,  8 May 2024 12:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715171935; cv=none; b=VO2Kqxl3LZFdBOLBZxWDz0s4EJV+CwQqf/Xwqe5laD+dU+78Lhq514qsR6ov9yM4AzBZhxwfbxRPO2rWYlAA8hLfdS639Ho9BZtVV9Qb+AwpXwvcVY+lICXS/JhyJxeL1O9+dyqoyKlTHnqwEEbhd3WmMz4Oa+1I2LMGt1PS7bw=
+	t=1715172468; cv=none; b=V1mLnGI8VRJTu9KEw/edNFXWse47T6spqPZJRKBI975s2q0lP2xxKWGEBu1dP47Vz59YqCmZea618gxwMs0hc+o3DQ+ObUMaUFCskFHyM7Pig6sucjk3poH491B+fzsZTq9QYq3woLHhq6SaPFPvjXEHEN59pbDSU1NFeUnn5Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715171935; c=relaxed/simple;
-	bh=YVwXBtQreDx3E3FCTm5s4b7FvBNPm7PsGh/YNI7HFBs=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=hOPoXdfi5e/NX9AJav9qrQjrri2UbTInUTvW2+8tnB6yuJs6D/6xQVslkDX+OuKQeKMXGyBolEEiW2YeFChyF+cb6oVMhjDQ3TPGkJefAxPJKI1lbdl3X58WYqC9Au0ihzMDSh1stNcry7Sw+BDv3TAJUaN8eXS5BiWd4YFB8Mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DxVlZ1Dw; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1715172468; c=relaxed/simple;
+	bh=WPyi3SXFa6tQ0I3B1sOmV/iwAsDxSq2wRIcmLfLGteI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZOIOxclKdVHNihiHeWDvCRm16eTv3zAy90IHb1Vj4dLFus+LXqXXlYALgksaueW+fOvf/lvhD+ihgrC6pMoDm5dgNEsjxhoj41UI8d/HyEglDaHJ/e4tZscDxBVixUSuXcTSrSYzrcWvhy0+2ws4+3GSJrDWqETPi8+uAW0GH4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=FHDSzPwN; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Fr91Ri94RCEVnvc4RJ3UBX9Nrt7VQguTPYT2HEiuM5g=; b=FHDSzPwN2eZwJOrDjDMn8I12Yv
+	iqOFRPwaIXfun7wBBx89veyNR80dHrAlWnEBtKmyU65L0sP1pHd97cBq8/BeUa2wrfJ0w1RuaW0QX
+	IKtV+hzjRz4N0xWVshJdqIrgNqQmZZDNV3w2tj9LBpHVflvXIux9XtSZYBr6AGbwvhMQ=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1s4ghe-001hoe-1x;
+	Wed, 08 May 2024 14:47:23 +0200
+Message-ID: <e0f3d0716ed2f4281561f08bbcd3050dddcf1831.camel@hexdev.de>
+Subject: Re: [PATCH v3 01/11] can: Add LIN bus as CAN abstraction
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+Reply-To: christoph.fritz@hexdev.de
+To: Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Oliver Hartkopp <socketcan@hartkopp.net>, Marc Kleine-Budde
+ <mkl@pengutronix.de>
+Cc: Jiri Slaby <jirislaby@kernel.org>, Vincent Mailhol
+ <mailhol.vincent@wanadoo.fr>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Jiri
+ Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Sebastian Reichel
+ <sre@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Andreas Lauser
+ <andreas.lauser@mercedes-benz.com>,  Jonathan Corbet <corbet@lwn.net>,
+ Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org,  linux-serial@vger.kernel.org
+Date: Wed, 08 May 2024 14:47:19 +0200
+In-Reply-To: <61adf428-2205-1563-d0b6-fa843e08559d@linux.intel.com>
+References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
+	 <20240502182804.145926-2-christoph.fritz@hexdev.de>
+	 <61adf428-2205-1563-d0b6-fa843e08559d@linux.intel.com>
+Organization: hexDEV GmbH
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1715171930;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BPFkYEBLBu+tpZgMs9SII339kDjPu7h+3QrTJ//DNU0=;
-	b=DxVlZ1Dw2g3w914yY0RHiAhqFnuaZ1sMlaTmkbwpv+/NR4+GS92c09B8RQqbyUZqz2rZrh
-	UnqKAhBbjywxXiyUt8KtliLd/TtPa16AaBgn0WdB/eIjtWklIqaUgf/SkMghdi+7cK1Quj
-	JSsq5MDgny/YPuRGAvDvhjAqznpSqnM4qgCg63QdzF9g2MtEZNKJPUtq6OZnL0Q2NfmMYT
-	7JS2vYermceJj/lGk+39OwnSFix8wF8tbZTsmDRwn0sWE4GRrU7TUQPnXx6o+vrjul2maP
-	PhRBvShJrSj0QGCnMbMhzK+UeA2k90TNYf/Rk/CqtBCbgPoPizotciM5gH3ylw==
-Date: Wed, 08 May 2024 14:38:49 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Anand Moon <linux.amoon@gmail.com>, Diederik de Haas
- <didi.debian@cknow.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/6] arm64: dts: rockchip: enable thermal management on
- all RK3588 boards
-In-Reply-To: <CABjd4YwHGYRrpMFn1uoQMRh3Tp4-py111tZiCGgf7afWxNGXnQ@mail.gmail.com>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com>
- <2543817.5xW6y1K4kI@bagend>
- <CABjd4Yw-JA5=SfcgtVNYZN37hFbqf14Ut1yHTSz1YZiZ3NQ-pw@mail.gmail.com>
- <CANAwSgTU7UF_RaNnVSZR7SehQqC7Eo6D=JqT11gN7jK2diN_Ug@mail.gmail.com>
- <a1fb157c88f420cd85d56edff2a4d85b@manjaro.org>
- <CABjd4YwHGYRrpMFn1uoQMRh3Tp4-py111tZiCGgf7afWxNGXnQ@mail.gmail.com>
-Message-ID: <36ecf59460430bb7267b71c1f49fe123@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Alexey,
-
-On 2024-05-08 14:30, Alexey Charkov wrote:
-> On Wed, May 8, 2024 at 3:46 PM Dragan Simic <dsimic@manjaro.org> wrote:
->> On 2024-05-08 13:40, Anand Moon wrote:
->> > On Mon, 6 May 2024 at 18:24, Alexey Charkov <alchark@gmail.com> wrote:
->> >> On Mon, May 6, 2024 at 4:29 PM Diederik de Haas
->> >> <didi.debian@cknow.org> wrote:
->> >> > On Monday, 6 May 2024 11:36:33 CEST Alexey Charkov wrote:
->> >> > > This enables the on-chip thermal monitoring sensor (TSADC) on all
->> >> > > RK3588(s) boards that don't have it enabled yet. It provides temperature
->> >> > > monitoring for the SoC and emergency thermal shutdowns, and is thus
->> >> > > important to have in place before CPU DVFS is enabled, as high CPU
->> >> > > operating performance points can overheat the chip quickly in the
->> >> > > absence of thermal management.
->> >> > >
->> >> > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> >> > > ---
->> >> > >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts               | 4 ++++
->> >> > >  8 files changed, 32 insertions(+)
->> >> > >
->> >> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> > > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
->> >> > > b8e15b76a8a6..21e96c212dd8 100644
->> >> > > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> > > @@ -742,6 +742,10 @@ regulator-state-mem {
->> >> > >       };
->> >> > >  };
->> >> > >
->> >> > > +&tsadc {
->> >> > > +     status = "okay";
->> >> > > +};
->> >> > > +
->> >> > >  &uart2 {
->> >> > >       pinctrl-0 = <&uart2m0_xfer>;
->> >> > >       status = "okay";
->> >> >
->> >> > I built a kernel with v3 of your patch set and someone tested it on a ROCK 5B
->> >> > 'for me' and it had the following line in dmesg:
->> >> >
->> >> > rockchip-thermal fec00000.tsadc: Missing rockchip,grf property
->> >> >
->> >> > I'm guessing that turned up due to enabling tsadc, but (also) in v4 I didn't
->> >> > see a change wrt "rockchip,grf".
->> >> > Should that be done? (asking; I don't know)
->> >>
->> >> I'm getting the same. Neither the mainline TSADC driver [1], nor the
->> >> downstream one [2] seems to use the grf pointer on RK3588 at all. It
->> >> still works in spite of that warning, although I can't see how (or if)
->> >> it configures the reset mechanism without those GRF registers.
->> >>
->> >> Best regards,
->> >> Alexey
->> >>
->> >> [1]
->> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/thermal/rockchip_thermal.c#n818
->> >> [2]
->> >> https://github.com/radxa/kernel/blob/stable-5.10-rock5/drivers/thermal/rockchip_thermal.c#L961
->> >>
->> >
->> > If the following changes fix the warning.
->> >
->> > Checking the Rockchip RK3588 TRM V1.0-Part1-20220309.pdf
->> > PMU1GRF_SOC_CON3 which has tsadc_shut_reset_trigger_en bit
->> > to control the Enable TSADC shut reset trigger for DDR fail safe.
->> >
->> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > index 85c25d5efdad..5490a44e093e 100644
->> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > @@ -2662,6 +2662,7 @@ tsadc: tsadc@fec00000 {
->> >                 rockchip,hw-tshut-temp = <120000>;
->> >                 rockchip,hw-tshut-mode = <0>; /* tshut mode 0:CRU
->> > 1:GPIO */
->> >                 rockchip,hw-tshut-polarity = <0>; /* tshut polarity
->> > 0:LOW 1:HIGH */
->> > +               rockchip,pmu = <&pmu1grf>;
->> >                 pinctrl-0 = <&tsadc_gpio_func>;
->> >                 pinctrl-1 = <&tsadc_shut>;
->> >                 pinctrl-names = "gpio", "otpout";
->> 
->> Basically, the rockchip_thermal driver doesn't use GRF at all on
->> the RK3588(s), so virtually any value specified as "rockchip,pmu"
->> can eliminate the warning.
+On Mon, 2024-05-06 at 19:24 +0300, Ilpo Järvinen wrote:
+> On Thu, 2 May 2024, Christoph Fritz wrote:
 > 
-> To me, specifying an arbitrary GRF in the device tree just to silence
-> a warning that the current driver emits sounds bad. If the GRF is not
-> needed for TSADC initialization on RK3588, then it should not be in
-> the device tree (and it looks like the case here) - otherwise the
-> device tree ceases to be a truthful description of the hardware.
-
-After thinking a bit more about it, I think you're right.  If the
-rockchip_thermal driver ever gets changed to require use of GRF on
-the RK3588(s), only then adding that property to the DT would be
-the right thing to do.
-
-> I'm not sure if we need that "DDR fail safe" logic mentioned in the
-> TRM that Anand quoted, given that neither Rockchip downstream nor
-> current mainline driver implement it, and furthermore none of the
-> other SoC revisions supported by the driver mention it. If we do in
-> fact need it, we should probably first test it along with respective
-> driver code before committing to an upstream DT and thus making it
-> part of the ABI.
+> > This patch adds a LIN (local interconnect network) bus abstraction on
+> > top of CAN.  It is a glue driver adapting CAN on one side while offering
+> > LIN abstraction on the other side. So that upcoming LIN device drivers
+> > can make use of it.
+...
+> > +static ssize_t lin_identifier_show(struct kobject *kobj,
+> > +				   struct kobj_attribute *attr, char *buf)
+> > +{
+> > +	struct lin_attr *lin_attr = container_of(attr, struct lin_attr, attr);
+> > +	struct lin_device *ldev = lin_attr->ldev;
+> > +	ssize_t count = 0;
+> > +	struct lin_responder_answer answ;
+> > +	int k, ret;
+> > +	long id;
+> > +
+> > +	if (!ldev->ldev_ops->get_responder_answer)
+> > +		return -EOPNOTSUPP;
+> > +
+> > +	ret = kstrtol(attr->attr.name, 16, &id);
+> > +	if (ret)
+> > +		return ret;
+> > +	if (id < 0 || id >= LIN_NUM_IDS)
+> > +		return -EINVAL;
+> > +
+> > +	count += scnprintf(buf + count, PAGE_SIZE - count,
+> > +			   "%-6s %-11s %-9s %-9s %-2s %-24s %-6s\n",
+> > +			   "state", "cksum-mode", "is_event", "event_id",
+> > +			   "n", "data", "cksum");
 > 
-> IMO this is more of a driver issue than a device tree issue: maybe a
-> small patch to demote this warning to an info message would be better?
-> It's harmless anyway.
+> Onl use sysfs_emit() and sysfs_emit_at() in *_show functions.
 
-After having second thoughts, I'll see to improve the rockchip_thermal
-driver to emit that warning only when having "rockchip,grf" specified
-is actually needed for the particular Rockchip SoC.  That's how it 
-should
-behave, yelling about the wrong hardware description only when that's
-actually the case.
+OK
+
+> > +
+> > +	ret = ldev->ldev_ops->get_responder_answer(ldev, id, &answ);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	count += scnprintf(buf + count, PAGE_SIZE - count,
+> > +			   "%-6s %-11s %-9s %-9u %-2u ",
+> > +			   answ.is_active ? "active" : "off",
+> > +			   answ.lf.checksum_mode ? "enhanced" : "classic",
+> > +			   answ.is_event_frame ? "yes" : "no",
+> > +			   answ.event_associated_id,
+> > +			   answ.lf.len);
+> > +
+> > +	for (k = 0; k < answ.lf.len; k++)
+> > +		count += scnprintf(buf + count, PAGE_SIZE - count,
+> > +				   "%02x ", answ.lf.data[k]);
+> > +	for (; k < 8; k++)
+> > +		count += scnprintf(buf + count, PAGE_SIZE - count,
+> > +				   "   ");
+> > +	if (answ.lf.len)
+> > +		count += scnprintf(buf + count, PAGE_SIZE - count,
+> > +				   " %02x", answ.lf.checksum);
+> > +
+> > +	count += scnprintf(buf + count, PAGE_SIZE - count, "\n");
+> > +
+> > +	return count;
+> > +}
+...
+> > +
+> > +static int lin_create_sysfs_id_files(struct net_device *ndev)
+> > +{
+> > +	struct lin_device *ldev = netdev_priv(ndev);
+> > +	struct kobj_attribute *attr;
+> > +	int ret;
+> > +
+> > +	for (int id = 0; id < LIN_NUM_IDS; id++) {
+> > +		ldev->sysfs_entries[id].ldev = ldev;
+> > +		attr = &ldev->sysfs_entries[id].attr;
+> > +		attr->attr.name = kasprintf(GFP_KERNEL, "%02x", id);
+> > +		if (!attr->attr.name)
+> > +			return -ENOMEM;
+> > +		attr->attr.mode = 0644;
+> > +		attr->show = lin_identifier_show;
+> > +		attr->store = lin_identifier_store;
+> > +
+> > +		sysfs_attr_init(&attr->attr);
+> > +		ret = sysfs_create_file(ldev->lin_ids_kobj, &attr->attr);
+> > +		if (ret) {
+> > +			kfree(attr->attr.name);
+> > +			return -ENOMEM;
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> Can you use .dev_groups instead ?
+
+I'm not sure where to attach this in this glue code here. Should I do a
+class_register() and add the .dev_groups there?
+
+> FWIW, this function doesn't do rollback when error occurs.
+
+OK, this issue can be fixed in revision v4.
+
+...
+> > diff --git a/include/net/lin.h b/include/net/lin.h
+> > new file mode 100644
+> > index 0000000000000..e7c7c820a6e18
+> > --- /dev/null
+> > +++ b/include/net/lin.h
+> > @@ -0,0 +1,92 @@
+> > +/* SPDX-License-Identifier: GPL-2.0+ */
+> > +/* Copyright (C) 2024 hexDEV GmbH - https://hexdev.de */
+> > +
+> > +#ifndef _NET_LIN_H_
+> > +#define _NET_LIN_H_
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/can/dev.h>
+> > +#include <linux/device.h>
+> > +
+> > +#define LIN_NUM_IDS		64
+> > +#define LIN_HEADER_SIZE		3
+> > +#define LIN_MAX_DLEN		8
+> > +
+> > +#define LIN_MAX_BAUDRATE	20000
+> > +#define LIN_MIN_BAUDRATE	1000
+> > +#define LIN_DEFAULT_BAUDRATE	9600
+> > +#define LIN_SYNC_BYTE		0x55
+> > +
+> > +#define LIN_ID_MASK		GENMASK(5, 0)
+> > +/* special ID descriptions for LIN */
+> > +#define LIN_RXOFFLOAD_DATA_FLAG	0x00000200U
+> > +#define LIN_ENHANCED_CKSUM_FLAG	0x00000100U
+> 
+> BIT(x) x 2
+
+OK
+
+> 
+> > +
+> > +extern u8 lin_get_id_parity(u8 id);
+> > +
+> > +#define LIN_GET_ID(PID)		FIELD_GET(LIN_ID_MASK, PID)
+> > +#define LIN_FORM_PID(ID)	(LIN_GET_ID(ID) | \
+> > +					lin_get_id_parity(LIN_GET_ID(ID)))
+> > +#define LIN_GET_PARITY(PID)	((PID) & ~LIN_ID_MASK)
+> > +#define LIN_CHECK_PID(PID)	(LIN_GET_PARITY(PID) == \
+> > +					LIN_GET_PARITY(LIN_FORM_PID(PID)))
+> > +
+> > +struct lin_attr {
+> > +	struct kobj_attribute attr;
+> > +	struct lin_device *ldev;
+> > +};
+> > +
+> > +struct lin_device {
+> > +	struct can_priv can;  /* must be the first member */
+> > +	struct net_device *ndev;
+> > +	struct device *dev;
+> > +	const struct lin_device_ops *ldev_ops;
+> > +	struct workqueue_struct *wq;
+> > +	struct work_struct tx_work;
+> > +	bool tx_busy;
+> > +	struct sk_buff *tx_skb;
+> > +	struct kobject *lin_ids_kobj;
+> > +	struct lin_attr sysfs_entries[LIN_NUM_IDS];
+> > +};
+> > +
+> > +enum lin_checksum_mode {
+> > +	LINBUS_CLASSIC = 0,
+> > +	LINBUS_ENHANCED,
+> > +};
+> > +
+> > +struct lin_frame {
+> > +	u8 lin_id;
+> > +	u8 len;
+> > +	u8 data[LIN_MAX_DLEN];
+> > +	u8 checksum;
+> > +	enum lin_checksum_mode checksum_mode;
+> > +};
+> > +
+> > +struct lin_responder_answer {
+> > +	bool is_active;
+> > +	bool is_event_frame;
+> > +	u8 event_associated_id;
+> > +	struct lin_frame lf;
+> > +};
+> > +
+> > +struct lin_device_ops {
+> > +	int (*ldo_open)(struct lin_device *ldev);
+> > +	int (*ldo_stop)(struct lin_device *ldev);
+> > +	int (*ldo_tx)(struct lin_device *ldev, const struct lin_frame *frame);
+> > +	int (*update_bitrate)(struct lin_device *ldev, u16 bitrate);
+> > +	int (*update_responder_answer)(struct lin_device *ldev,
+> > +				       const struct lin_responder_answer *answ);
+> > +	int (*get_responder_answer)(struct lin_device *ldev, u8 id,
+> > +				    struct lin_responder_answer *answ);
+> > +};
+> > +
+> > +int lin_rx(struct lin_device *ldev, const struct lin_frame *lf);
+> > +
+> > +u8 lin_get_checksum(u8 pid, u8 n_of_bytes, const u8 *bytes,
+> > +		    enum lin_checksum_mode cm);
+> > +
+> > +struct lin_device *register_lin(struct device *dev,
+> > +				const struct lin_device_ops *ldops);
+> > +void unregister_lin(struct lin_device *ldev);
+> > +
+> > +#endif /* _NET_LIN_H_ */
+> > diff --git a/include/uapi/linux/can/netlink.h b/include/uapi/linux/can/netlink.h
+> > index 02ec32d694742..51b0e2a7624e4 100644
+> > --- a/include/uapi/linux/can/netlink.h
+> > +++ b/include/uapi/linux/can/netlink.h
+> > @@ -103,6 +103,7 @@ struct can_ctrlmode {
+> >  #define CAN_CTRLMODE_CC_LEN8_DLC	0x100	/* Classic CAN DLC option */
+> >  #define CAN_CTRLMODE_TDC_AUTO		0x200	/* CAN transiver automatically calculates TDCV */
+> >  #define CAN_CTRLMODE_TDC_MANUAL		0x400	/* TDCV is manually set up by user */
+> 
+> BIT(x) is these days available also for uapi I think.
+> 
+> > +#define CAN_CTRLMODE_LIN		0x800	/* LIN bus mode */
+
+So, should I use just BIT(11) for the new define, or should I also
+refactor the whole list while at it?
+
+Thanks
+  -- Christoph
 
