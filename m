@@ -1,192 +1,168 @@
-Return-Path: <devicetree+bounces-65729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468568BFC85
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 13:44:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0180B8BFC90
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 13:46:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4DA61F25391
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 11:44:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE6B9287E41
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 11:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E78082C6B;
-	Wed,  8 May 2024 11:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF9282492;
+	Wed,  8 May 2024 11:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="QyAPnrLz"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="QDBh2tlZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD674823D1
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 11:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E26823C3;
+	Wed,  8 May 2024 11:46:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715168629; cv=none; b=qNHAuXSVfbgJDoA2ev6Qi5gazJCc64ZwCaeRv0JQNzfWiff+ull+DTxL594yNfkQhvSul9NIfqkO69ksThScrWhxATdjJZsxFVLe8ZnWJOwF1acbuguCQDWEPmE2RaLDNiYPLfLZPvFUe2MB/sI7rjOBkzdY1Db47neO+vqzpiA=
+	t=1715168771; cv=none; b=i5+fC51NbtxGJh9kw4qlChGQJVmKtYzJejDZotD7+7VALWyP9TK9Z1g8zN+Ua4rmdBqTx1zNKksaZj+S8WFSbtPkUPRDH8Ff6nMmxouoxkcwV+Kblv06J1O0qdxX42Ar51aDpk+Rrm+phrI4PtaoeRVtWlXdHJUJtALYAi3b8Wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715168629; c=relaxed/simple;
-	bh=KMEJ67Lgf0ato9GCP4BhJGyrBemrOUmEZZ2EyOeaUVI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hrN3+qRkzVMXC2FPEXIaVJGoNUQD/uESL312dTx7n5UvERJWO1D3OI645k2rcSo8JfoFNytuHGFm/OhEL8CRead4Yky9Evj2hM/p/WzDGPLFIK4S9ffz/j6k/Umk6dDWOOIbJs++4kk8z4C8aQzy4sw3whtg3499RKnKF4ZsxG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=QyAPnrLz; arc=none smtp.client-ip=209.85.215.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-5dcc4076c13so527293a12.0
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 04:43:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1715168627; x=1715773427; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VzEeV8O7cqpPCMasGDN5yB28tX49+B8gmMSvUBqc6vQ=;
-        b=QyAPnrLztXMyrY/TFo8TGdM+2qOIVSpYTb+g2N0xq2uH/MuybjsbOXTK43UtSpijNn
-         Ay3bvkooK2AHoI3QRtMYe9v2MEp6YWZwS6Khe3iloB1kaVgSNg6SkOcm6BofYy09u9Kw
-         OzJ9iEyg+vnyMgiyRHOEhifbTkSyRg4rDY+jxWcUIB7bLxGVatSXVENlp5XC0n21VIjs
-         NFPG4334x1L5SmCMkIeG1MSVknqJEjqfV+2fw8+4dNlM+Gxd4Si5CpH2l1t5qcNh3DS1
-         ILivQu7pGrGCTOiXJuUC6YkvcuFT+TN4ZV5r5yrKlw+y2YIZXZ38vqrvNmH3blOBmRJP
-         /pkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715168627; x=1715773427;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VzEeV8O7cqpPCMasGDN5yB28tX49+B8gmMSvUBqc6vQ=;
-        b=TVmIJziIuhEbMWbwbnbLkedf5e/aSftC763obEnZux7mHaTi7CIr7X3XDJRD8EgHbQ
-         9N8uVgUY+4iTIAYd3ccnjHpBBFNJy8PlED0gcdPzt9hILuUgC4oJX0lKl0nPINMvJN1O
-         7AB9Uz0sSOd+HE+ifXfvXTaawV8slINlxESIOBShmye+8vYyi1Lpsbv75XlU6sM93k1h
-         CyhPeTfGFr6I91/wjS5bo+O9vQzSTFDu5PZfcchdi/w595I0IVAIhXjJHnDfRB+Jpkia
-         5YZwpMbFhyzyb1C0qpvP5gZBO0TuZm1PbMucyvklmr8Vvf6CYSAkZ49kplAlzURGTBeQ
-         LjjA==
-X-Forwarded-Encrypted: i=1; AJvYcCXwplQWdJalaHtt9wHgYMFameLPsuZxQFQq1imrqPliOBkWXuMRX6+oSD6/Y3WC3XFy/yMpoE/sqWSXZDbf7QVoFEnfJ7woqaI3xQ==
-X-Gm-Message-State: AOJu0YyzPhuCTrj4sK8rbeyswGIQ9TgEtuFiQGmX571iHGw5KI70bbC1
-	oOQwzTZA1RikdOBitrFIu4APp74dohhz8aN6vwt7+/YPaozkqUj2+WxzJYL85iZZYb2KIllHbNB
-	9wbV8wh1RkP29bqLLpplDPmJuzuF0HI/UxkJhHw==
-X-Google-Smtp-Source: AGHT+IEO3bd85u0B2AuxdYue4avxAitA4qBL7f0hd7JLyvHCW/eV8DnhuJEJqXEQqub2JjhK5jzqGCHK0lLkb/fyC7g=
-X-Received: by 2002:a17:90a:fb96:b0:2b2:802f:e90a with SMTP id
- 98e67ed59e1d1-2b611aed27bmr3178106a91.24.1715168627082; Wed, 08 May 2024
- 04:43:47 -0700 (PDT)
+	s=arc-20240116; t=1715168771; c=relaxed/simple;
+	bh=4MAkzDnIXfPA6ZFoEIGx5FodE3S9b44f4RuxYQaB8IU=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=UEJmztPiRE1r7XIFT3ksC0LD2NgorzxAwA6aQyGGQj013JOwiPkxQoz4H8A5y1YX922LusgNFpRAfxBMW2P0+TDBXZUh9Qaajr5I41Fh6x4QI2gVi/wLMDA0je9+LbZOjw6ML6swoRMl/dtGVZjIAsmVsvp3aB4YVrN0aDiBPGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=QDBh2tlZ; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240507135234.1356855-1-yangcong5@huaqin.corp-partner.google.com>
- <20240507135234.1356855-2-yangcong5@huaqin.corp-partner.google.com>
- <171509488827.493449.2668049686067198439.robh@kernel.org> <CAD=FV=VNNB=jtyM1BMTUTzyTjOUqDxobWTYz9RAnCmYha-DG0w@mail.gmail.com>
-In-Reply-To: <CAD=FV=VNNB=jtyM1BMTUTzyTjOUqDxobWTYz9RAnCmYha-DG0w@mail.gmail.com>
-From: cong yang <yangcong5@huaqin.corp-partner.google.com>
-Date: Wed, 8 May 2024 19:43:35 +0800
-Message-ID: <CAHwB_NLhKqqy-Ot=HjiG2oZ6MraYvvMaV_=r60=1yR4164FeaA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/7] dt-bindings: display: panel: Add himax hx83102
- panel bindings
-To: Doug Anderson <dianders@chromium.org>
-Cc: sam@ravnborg.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linus.walleij@linaro.org, 
-	xuxinxiong@huaqin.corp-partner.google.com, airlied@gmail.com, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	devicetree@vger.kernel.org, conor+dt@kernel.org, daniel@ffwll.ch, 
-	neil.armstrong@linaro.org, "Rob Herring (Arm)" <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1715168767;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/7KXEahwdtvUHXhII1BOAbQafO3CV4psWNz/FLhIG2g=;
+	b=QDBh2tlZN0XdVR745PuNwmWJC81aogbhng6PQhi+qBJqxqGUGmC/52WntbUpuDCRS7Q1rJ
+	qpyGLnZv9v/rePHAR/gDp30SXIk8+DSC5TOPtgFYCxoasYkLMniuupOWuE3WcfrEUYdnvb
+	iJK34MVophrNrh0fei13bBCDKN48ECL5q/DjXqTakJ1wF/zJ17M3LQyjQZkqW6KOlMLK4d
+	ieaFbxtAx75tFD/QWjRLux7J6Zf9sRUW3ZWzp6MbwpJHPWjDM3/emsJ5vyZBizH8VCHtvf
+	3vDyP87b1LjoTrQf3evKXqaO4jYE5EY9RPYtfjGblH3ctfOp2MrxxMl8FhBiKA==
+Date: Wed, 08 May 2024 13:46:06 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Alexey Charkov <alchark@gmail.com>, Diederik de Haas
+ <didi.debian@cknow.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/6] arm64: dts: rockchip: enable thermal management on
+ all RK3588 boards
+In-Reply-To: <CANAwSgTU7UF_RaNnVSZR7SehQqC7Eo6D=JqT11gN7jK2diN_Ug@mail.gmail.com>
+References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <20240506-rk-dts-additions-v4-2-271023ddfd40@gmail.com>
+ <2543817.5xW6y1K4kI@bagend>
+ <CABjd4Yw-JA5=SfcgtVNYZN37hFbqf14Ut1yHTSz1YZiZ3NQ-pw@mail.gmail.com>
+ <CANAwSgTU7UF_RaNnVSZR7SehQqC7Eo6D=JqT11gN7jK2diN_Ug@mail.gmail.com>
+Message-ID: <a1fb157c88f420cd85d56edff2a4d85b@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi, Doug &Conor
+Hello Anand,
 
-Doug Anderson <dianders@chromium.org> =E4=BA=8E2024=E5=B9=B45=E6=9C=888=E6=
-=97=A5=E5=91=A8=E4=B8=89 00:40=E5=86=99=E9=81=93=EF=BC=9A
->
-> Hi,
->
-> On Tue, May 7, 2024 at 8:14=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org=
-> wrote:
-> >
-> >
-> > On Tue, 07 May 2024 21:52:28 +0800, Cong Yang wrote:
-> > > In V1, discussed with Doug and Linus [1], we need break out as separa=
-te
-> > > driver for the himax83102-j02 controller. Beacuse "starry,himax83102-=
-j02"
-> > > and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
-> > > controller, they have some common CMDS. So add new documentation for
-> > > this panels.
-> > >
-> > > For himax83102-j02 controller, no need 3v3 supply, so remove it.
-> > >
-> > > [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=3DzBQJUC4CB2wj4s1h6n6=
-aSAZQvdMV95r3zRUw@mail.gmail.com
-> > >
-> > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > > ---
-> > > Chage since V4:
-> > >
-> > > - Update commit message and add fallback compatible.
-> > >
-> > > V3: https://lore.kernel.org/all/20240424023010.2099949-2-yangcong5@hu=
-aqin.corp-partner.google.com
-> > >
-> > > Chage since V3:
-> > >
-> > > - Update commit message.
-> > >
-> > > V2: https://lore.kernel.org/all/20240422090310.3311429-2-yangcong5@hu=
-aqin.corp-partner.google.com
-> > >
-> > > ---
-> > >  .../display/panel/boe,tv101wum-nl6.yaml       |  2 -
-> > >  .../bindings/display/panel/himax,hx83102.yaml | 73 +++++++++++++++++=
-++
-> > >  2 files changed, 73 insertions(+), 2 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/panel/h=
-imax,hx83102.yaml
-> > >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/display/panel/himax,hx83102.example.dtb: panel@0: compatible:0: 'starry,hi=
-max83102-j02, himax,hx83102' does not match '^[a-zA-Z0-9][a-zA-Z0-9,+\\-._/=
-]+$'
-> >         from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-> > Documentation/devicetree/bindings/display/panel/himax,hx83102.example.d=
-tb: /example-0/dsi/panel@0: failed to match any schema with compatible: ['s=
-tarry,himax83102-j02, himax,hx83102']
-> >
-> > doc reference errors (make refcheckdocs):
-> >
-> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2024=
-0507135234.1356855-2-yangcong5@huaqin.corp-partner.google.com
-> >
-> > The base for the series is generally the latest rc1. A different depend=
-ency
-> > should be noted in *this* patch.
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> >
-> > pip3 install dtschema --upgrade
-> >
-> > Please check and re-submit after running the above command yourself. No=
-te
-> > that DT_SCHEMA_FILES can be set to your schema file to speed up checkin=
-g
-> > your schema. However, it must be unset to test all examples with your s=
-chema.
->
-> I think several of your bindings patches have triggered Rob's bot.
-> Please make sure you're set up to test this yourself and make sure you
-> run it locally before sending out the next version of your patches. In
-> general you should get in the habit of running 'make dt_binding_check'
-> locally before you post any bindings changes.
+On 2024-05-08 13:40, Anand Moon wrote:
+> On Mon, 6 May 2024 at 18:24, Alexey Charkov <alchark@gmail.com> wrote:
+>> On Mon, May 6, 2024 at 4:29 PM Diederik de Haas 
+>> <didi.debian@cknow.org> wrote:
+>> > On Monday, 6 May 2024 11:36:33 CEST Alexey Charkov wrote:
+>> > > This enables the on-chip thermal monitoring sensor (TSADC) on all
+>> > > RK3588(s) boards that don't have it enabled yet. It provides temperature
+>> > > monitoring for the SoC and emergency thermal shutdowns, and is thus
+>> > > important to have in place before CPU DVFS is enabled, as high CPU
+>> > > operating performance points can overheat the chip quickly in the
+>> > > absence of thermal management.
+>> > >
+>> > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> > > ---
+>> > >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts               | 4 ++++
+>> > >  8 files changed, 32 insertions(+)
+>> > >
+>> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> > > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
+>> > > b8e15b76a8a6..21e96c212dd8 100644
+>> > > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> > > @@ -742,6 +742,10 @@ regulator-state-mem {
+>> > >       };
+>> > >  };
+>> > >
+>> > > +&tsadc {
+>> > > +     status = "okay";
+>> > > +};
+>> > > +
+>> > >  &uart2 {
+>> > >       pinctrl-0 = <&uart2m0_xfer>;
+>> > >       status = "okay";
+>> >
+>> > I built a kernel with v3 of your patch set and someone tested it on a ROCK 5B
+>> > 'for me' and it had the following line in dmesg:
+>> >
+>> > rockchip-thermal fec00000.tsadc: Missing rockchip,grf property
+>> >
+>> > I'm guessing that turned up due to enabling tsadc, but (also) in v4 I didn't
+>> > see a change wrt "rockchip,grf".
+>> > Should that be done? (asking; I don't know)
+>> 
+>> I'm getting the same. Neither the mainline TSADC driver [1], nor the
+>> downstream one [2] seems to use the grf pointer on RK3588 at all. It
+>> still works in spite of that warning, although I can't see how (or if)
+>> it configures the reset mechanism without those GRF registers.
+>> 
+>> Best regards,
+>> Alexey
+>> 
+>> [1] 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/thermal/rockchip_thermal.c#n818
+>> [2] 
+>> https://github.com/radxa/kernel/blob/stable-5.10-rock5/drivers/thermal/rockchip_thermal.c#L961
+>> 
+> 
+> If the following changes fix the warning.
+> 
+> Checking the Rockchip RK3588 TRM V1.0-Part1-20220309.pdf
+> PMU1GRF_SOC_CON3 which has tsadc_shut_reset_trigger_en bit
+> to control the Enable TSADC shut reset trigger for DDR fail safe.
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 85c25d5efdad..5490a44e093e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -2662,6 +2662,7 @@ tsadc: tsadc@fec00000 {
+>                 rockchip,hw-tshut-temp = <120000>;
+>                 rockchip,hw-tshut-mode = <0>; /* tshut mode 0:CRU 
+> 1:GPIO */
+>                 rockchip,hw-tshut-polarity = <0>; /* tshut polarity
+> 0:LOW 1:HIGH */
+> +               rockchip,pmu = <&pmu1grf>;
+>                 pinctrl-0 = <&tsadc_gpio_func>;
+>                 pinctrl-1 = <&tsadc_shut>;
+>                 pinctrl-names = "gpio", "otpout";
 
-Sorry, I forgot to running 'make dt_binding_check'.
-Thanks for the correction.
+Basically, the rockchip_thermal driver doesn't use GRF at all on
+the RK3588(s), so virtually any value specified as "rockchip,pmu"
+can eliminate the warning.
 
->
-> Thanks!
->
-> -Doug
+I'm already working on a rather large device-tree cleanup series,
+and this is already fixed in it.  Are you fine with dropping your
+patch as a separate one, and I'll tag you with Co-developed-by in
+the relevant patch from my series?
 
