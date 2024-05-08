@@ -1,96 +1,129 @@
-Return-Path: <devicetree+bounces-65810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F0F8C01F4
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:28:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 674BF8C0217
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:36:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7024DB21364
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:28:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F2B31C21172
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32C512A175;
-	Wed,  8 May 2024 16:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA944ECC;
+	Wed,  8 May 2024 16:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GENxTopR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JDipxYw7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D7C129E80;
-	Wed,  8 May 2024 16:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F2FDF59;
+	Wed,  8 May 2024 16:35:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715185688; cv=none; b=q6jnd5NcefYsyfOWu/syA67FHRjqBntEqX4a+4KiIb5qOmiEkKYn+MGn2zDc8mYuaMCt1oQ6AI4n4nBPWVf8JAyZU+0Gf8VWG+Qn1wIjCSKrY8aQPJ8OqVxVOMV3ZaVvCuCFdUReC/m8nADOP+WLrqCLorMiHGrjGp+v1/h3UQo=
+	t=1715186115; cv=none; b=RlhZMydz7+3DBAFPJIttjNBlQBpbMhH12MqfwRPudmLszDJxdEkjpttUcayNOMZITiOZyJNqCdopvNBSmaOFhzo4sMw2Jw1dZ/PZrlM90NqoogaMuLI5aQx1p+YoXc2NFBFMCfRipsTc5q7sAyBLX89vwwU+YmBxNdNhny4v8cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715185688; c=relaxed/simple;
-	bh=UYa9nQFbXFsPXVOkMa9L+1nCg7GuO4KyEPe7MnFS6Gw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gr8dRkBMblHRLwtjeRh6wLDDiiy68Sivf+4Fd4gtzG5DJ27FdxlOOl5LwvJO5ZbdyUyhbsS6yWcFzrkCAsBWj2ghlbHQnAhBc849hLUhCAnIKXb4XDrn85JyxESxL5q/0Xs88CaOxloPXlQz0N0g2p/+Q7T2G6+zJuO9LLceFjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GENxTopR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D4B5C2BD11;
-	Wed,  8 May 2024 16:28:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715185688;
-	bh=UYa9nQFbXFsPXVOkMa9L+1nCg7GuO4KyEPe7MnFS6Gw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GENxTopRekGLP/hpvKlsVPa/uM3UMefaKagfqUrxUv1AgSMFQrYTZ65RRMZiGt0bz
-	 AnRMB47LJwr6GbmCWt7RMWoP9Mk+vuS5sdsdjenp9iCf5HtcxE3z8q+8cUtjTc27xu
-	 Yx78/lzsuitziWFznkN8LKwJNUZ5DrmShAwGO1HAAf9cdGurgmG15c3HxSUVrUeBxM
-	 i3LXC7vm/6ZQ/GVCn1qJ+2oZgQMRO99r/oYkBgYDJ7o30hcKbGy/weZ5jR3ShQlNd7
-	 P3hAr+P3O81+lANvBLv7MuYKTeso51NDVU5o9M+UkfFcqUykBJNuscY2S0c7cVF9iE
-	 9F5gZ+Bzx6/Xg==
-Date: Wed, 8 May 2024 17:28:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel-janitors@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v5 2/2] arm64: dts: rockchip: Add Radxa ZERO 3W/3E
-Message-ID: <20240508-blaming-kinfolk-7a0cf7f9a7c0@spud>
-References: <20240508070611.4153602-3-jonas@kwiboo.se>
- <662d3052-d0ab-4034-84d3-fff4f985875b@web.de>
+	s=arc-20240116; t=1715186115; c=relaxed/simple;
+	bh=Q6TIkwRzzM31WdY1ZLK+qbjKG0jsm7ZjHFLqIxzE/Xo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oiG06DbdLlytO43WWVcyr/IjaBqP5sAnFWRlNUMqq4bH8501NnbNS3BvEuO+spIu1+lvK01yjWZgH/JeVmDnsPT+kiLGeL0pxF55H8psUGxXFJZY1He9BiZ0PrifxpKoFFZvNqSX1TgGY7V1sw8kbZ4jab4S0fkrVXFyit/3G6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JDipxYw7; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a59cdf7cd78so955741366b.0;
+        Wed, 08 May 2024 09:35:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715186112; x=1715790912; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zpNHSM3S3R1dbWtnGwbL7hqnWPLixps0QSnCzdWUuto=;
+        b=JDipxYw79ABSaEjXnqrvEMHQTLQ61oLAxOEUYnRsOEcmI+eQaggVLGize/5UL7a++m
+         d+1Fc+oDXeQM99BKiTu0FDit+03zBFzNI0H5GIJezJa4yMJnu98icr8d4vsGgTCH91Kd
+         a69HEQmQmhTs3HvIFGfRGvA906lcbanD9B+SE/w0UEXyaQBi7DC/Bh+fkkF+GTrsLrVD
+         4P5WZ0VNug0f7Ovcx6u7Wb2l7THJtvL1ytttmk9Gu/0s7E2rNWiHc+ltYLOzoiSY5Alb
+         eelXaAloMrTWIwykSKb5rtuIzaLDBBVi1646L669dSb2vZ0LLtIuFVvyOx4BdN7bP5n1
+         LG4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715186112; x=1715790912;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zpNHSM3S3R1dbWtnGwbL7hqnWPLixps0QSnCzdWUuto=;
+        b=xNYsYxE0Y/m3GGjaj27rfjVtYqKpyVkJ2Lg/45TCE7lHOxkXXTbwLvjErJ/pVRtZdS
+         0AXUY4HWE8V212o7fNrA1oSutRlTeSJ5RRQEekDH000KTq6vD/uGH/5tRZAIbtw7phvE
+         8rtntckfWELQ9nRLbyjGdyMNwnxPqPHZpMN/3313VNyJnLXC2uOS942JsyZwROuymJ2x
+         0dTq22VRnqGf+poLiJc6ktMe0Du3I8lztH91BVhRqgqwSFui2WC8guRlNw3yW18dQWBs
+         4QeJRCk1XTCxjBud6Ay7nCvBgcqAD4AGB8mC7Z3iuP+laZuqFJsb+3DMR+EX9yawulUB
+         A9aw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/VdeubvUF3mo8au/UKJrV9hujuaVZ24KhKDj1y0+4qCx+ukj00+FBomOW1ihYfiYVpH3l2eNnq8eHM8MMDI6TCJygGu/8yEC0fuOXkVwIEOqM5qVwQpnW0BwyczYVvBFdYPkEoeEDghXgBcpAJIPQi/A/Be3vpmTHBwww+lUwsGu0EPkuIZc=
+X-Gm-Message-State: AOJu0YyCmYbXZsljsnOdterm1ju9QaYsLB+irB/7CCxe0JDXKBWxI5Tk
+	AaS4JQcIZTr+R9A/SXyJYatD8JKlOK4XqEehtCtVj/MA1fTh+Kf43iBLww==
+X-Google-Smtp-Source: AGHT+IG8sJksLsgIw9a9mlc03pJcShkznrWX70Xz1bZ4vKiPwgKEZPM3f9WHAYSnmzM+cSnWmjM31g==
+X-Received: by 2002:a17:906:a3cc:b0:a58:e2b1:92c2 with SMTP id a640c23a62f3a-a59fb9dbc2cmr193575866b.57.1715186111984;
+        Wed, 08 May 2024 09:35:11 -0700 (PDT)
+Received: from localhost.localdomain (bzb212.neoplus.adsl.tpnet.pl. [83.30.47.212])
+        by smtp.gmail.com with ESMTPSA id kt1-20020a170906aac100b00a52295e014bsm7820894ejb.92.2024.05.08.09.35.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 May 2024 09:35:11 -0700 (PDT)
+From: Adam Skladowski <a39.skl@gmail.com>
+To: 
+Cc: phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Adam Skladowski <a39.skl@gmail.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] MSM8976 MDSS/GPU/WCNSS support
+Date: Wed,  8 May 2024 18:34:33 +0200
+Message-Id: <20240508163455.8757-1-a39.skl@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="p7P9ZT5PsCFLYhGM"
-Content-Disposition: inline
-In-Reply-To: <662d3052-d0ab-4034-84d3-fff4f985875b@web.de>
+Content-Transfer-Encoding: 8bit
 
+This patch series provide support for display subsystem, gpu
+and also adds wireless connectivity subsystem support.
 
---p7P9ZT5PsCFLYhGM
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v3
+================
+1. Minor styling fixes
+2. Converted qcom,ipc into mailbox on wcnss patch
 
-On Wed, May 08, 2024 at 12:22:52PM +0200, Markus Elfring wrote:
-> =E2=80=A6
-> > This adds initial support for =E2=80=A6
->=20
-> Please convert this change description to an imperative wording.
+Changes since v2
+================
+1. Disabled mdss_dsi nodes by default
+2. Changed reg size of mdss_dsi0 to be equal on both
+3. Added operating points to second mdss_dsi
+4. Brought back required opp-supported-hw on adreno
+5. Moved status under operating points on adreno
 
-I think that sending a new version for s/This adds/Add/ would be a
-complete waste of developer time.
+Changes since v1
+================
+1. Addressed feedback
+2. Dropped already applied dt-bindings patches
+3. Dropped sdc patch as it was submitted as part of other series
+4. Dropped dt-bindings patch for Adreno, also separate now
 
---p7P9ZT5PsCFLYhGM
-Content-Type: application/pgp-signature; name="signature.asc"
+Adam Skladowski (4):
+  arm64: dts: qcom: msm8976: Add IOMMU nodes
+  arm64: dts: qcom: msm8976: Add MDSS nodes
+  arm64: dts: qcom: msm8976: Add Adreno GPU
+  arm64: dts: qcom: msm8976: Add WCNSS node
 
------BEGIN PGP SIGNATURE-----
+ arch/arm64/boot/dts/qcom/msm8976.dtsi | 537 +++++++++++++++++++++++++-
+ 1 file changed, 533 insertions(+), 4 deletions(-)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjuoEwAKCRB4tDGHoIJi
-0s48APwMPgOmyAXUppUMok08TEEu0Pz4L/HNda6y7HTL5uyrmAEAlCipL3IL9oOH
-3dCsFvC7ldVF8jBqCdFSEl+5pu5BgQE=
-=6FNx
------END PGP SIGNATURE-----
+-- 
+2.44.0
 
---p7P9ZT5PsCFLYhGM--
 
