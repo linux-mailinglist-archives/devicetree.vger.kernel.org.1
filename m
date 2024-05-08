@@ -1,168 +1,110 @@
-Return-Path: <devicetree+bounces-65805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3AC38C01C7
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ABFB8C01D7
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:20:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A740C1F2378F
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:16:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C42EB1F2498A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB91129A69;
-	Wed,  8 May 2024 16:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE2C129A69;
+	Wed,  8 May 2024 16:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mb+hdOq5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdK4UBEe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E3571DFD8;
-	Wed,  8 May 2024 16:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F76F83A19;
+	Wed,  8 May 2024 16:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715184994; cv=none; b=LgEzfyuMbS6nlMV/o0J/yUg3632Gz24Mxj9ISCU7uq9eBMdAb9gnTf0HKIhHpWmR0MPzcyNnGh4LVUO6fHXcBSQGNCKf86gCuQ12h+/KH+UTdQB8/UFcDsO3m2HA5UMhSWOc3L2SmgxIOM78DwgflqbP+M3HKNb943BxrhMOv6c=
+	t=1715185218; cv=none; b=SJdTn66RZztQnVcjL1GK+qOoUEEuidxWt1fAD2i3DUMlkavLH3BIDyXsPuFo7twU9EcqDx7/EOxqJO+exPDJQdCrPH+42FCIHsWWy4U0+wWwX1ZDFS/nTHVZ5iR3q86EgnY6a1IqUlxkw+aJelDzj9pRSjRZtKIEYp4ZKrhn+3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715184994; c=relaxed/simple;
-	bh=7uXx6swrCcj63Q1Kq5orROu6Yte2GQluX/afoi/VjlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pUUO66ArORYCZGqZyczkJnh88MSPhFXobdc3P2RMHOkpwH7FGXyWi3MPc3pH/SPUlgziLxNbqm9wl4Pl3y8lXJFN3JaUQGt6LfrhV50e4c8M0v4ULNZg2UBHUuhUrSXtY0JZysKDSciuwq93Tpm+sgxa+G/rzDBICSWQeq5tyYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mb+hdOq5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B670CC113CC;
-	Wed,  8 May 2024 16:16:27 +0000 (UTC)
+	s=arc-20240116; t=1715185218; c=relaxed/simple;
+	bh=7Bcs9egzutasXmQ3GODsdhVNrBN1zsWCrT3shblN2JM=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=F9LFIwiIy5IFcUfdXuOx+y+GtGrp4YzfgytRrDLZK3l+zR/+Y/nP1hb5T9F/kpRHh5STszlVJxcmehxIg3Gcv7k8zuWraQ5dwo7WTvSyJO+EMzPq8GrsTUgSXANU3CFk+0fm6ygh53Z5nEZNPEE8NF6NHCxzrv1koZBSO4lGaRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdK4UBEe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9E39C113CC;
+	Wed,  8 May 2024 16:20:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715184993;
-	bh=7uXx6swrCcj63Q1Kq5orROu6Yte2GQluX/afoi/VjlM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mb+hdOq53qmHC0tsnwHZjWvs0XBJkKZMEiwnPjJ2mn32qKcZZw4pY0Mo55+FJrmcS
-	 /XCsoVhGSe7MSvmWWAwogYlSP3eqAlzXIz9RSwbgfLmeNG7CLVhSPmpXxCzieRVYuZ
-	 cOufbq3pU4xhAFLiBblQ/ahAAQ693QQWfoRODWX7xcxLCInUUXMjUdvHgoz9yw0RMM
-	 RLtGgoM9mPdmuvYQoPD2BTDowiNH94T95q73biOqRbfHENAbkQ//ZjHtcbEpdr+UQd
-	 Vu7kDL3ejYOds/rA8GqKWvTaQTr4SnyOOM0fSjQODFHTymGa9w14L3TTHDG08v3EJe
-	 yoCD9p5pfLmbg==
-Date: Wed, 8 May 2024 17:16:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Oliver Hartkopp <socketcan@hartkopp.net>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 06/11] dt-bindings: net/can: Add serial (serdev) LIN
- adapter
-Message-ID: <20240508-headwear-monorail-a425ac6fe8a8@spud>
-References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
- <20240502182804.145926-7-christoph.fritz@hexdev.de>
- <20240503-fading-extruding-2105bbd8b479@spud>
- <a5b894f8dc2ab0cf087a5b4972d7f752e6c17c16.camel@hexdev.de>
- <20240506-jaws-cheesy-bf94885651c1@spud>
- <f1173a7c-f18b-47cc-8873-30347489d1be@kernel.org>
- <b716f34ce54dfed2595690d37c121d242a18ff64.camel@hexdev.de>
+	s=k20201202; t=1715185218;
+	bh=7Bcs9egzutasXmQ3GODsdhVNrBN1zsWCrT3shblN2JM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=HdK4UBEeqasVn1Z9Gn+ouAO3JvJmVmtdl++v4Hzvmibx+MGABOUUfOwptnu2av+eO
+	 /Mpj+/zadxpDUBDMuTiYbJ+CdfFNdftsoqN+mrw6FbW3jdXLaLSGcw1pcYY4A+sGkK
+	 Hq2WZkkoVZCwCwqtgM46GE0hBmXcWXkq3K2zzzi+9DXmylBY+QtELrshQWlPDDagem
+	 k3UJN75Vif1TOkRW+WmD+INlP7qFLGOfOIBMbULDsOh99gXZmy+EXb1GpC/TC+IG5J
+	 UMGMnD5c7+lIeV1FmocU45NIUCod+sSWhgJ9TyclaSvLrWpLc3If9mCik8XY57KXoe
+	 91iPEBxTpbNEg==
+Date: Wed, 08 May 2024 11:20:16 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tlupBOI+4XnNwj6+"
-Content-Disposition: inline
-In-Reply-To: <b716f34ce54dfed2595690d37c121d242a18ff64.camel@hexdev.de>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <20240508144259.191843-4-jan.dakinevich@salutedevices.com>
+References: <20240508144259.191843-1-jan.dakinevich@salutedevices.com>
+ <20240508144259.191843-4-jan.dakinevich@salutedevices.com>
+Message-Id: <171518521621.2161709.4756483901685009302.robh@kernel.org>
+Subject: Re: [APPROACH 2 2/2] dt-bindings: clock: meson: Convert
+ axg-audio-clkc to YAML format
 
 
---tlupBOI+4XnNwj6+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 08 May 2024 17:42:59 +0300, Jan Dakinevich wrote:
+> Convert Amlogic AXG Audio Clock Controller binding to yaml.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 ------
+>  .../clock/amlogic,axg-audio-clkc.yaml         | 181 ++++++++++++++++++
+>  2 files changed, 181 insertions(+), 59 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> 
 
-On Wed, May 08, 2024 at 01:34:34PM +0200, Christoph Fritz wrote:
-> On Mon, 2024-05-06 at 20:50 +0200, Krzysztof Kozlowski wrote:
-> > On 06/05/2024 18:16, Conor Dooley wrote:
-> > > > > > +maintainers:
-> > > > > > +  - Christoph Fritz <christoph.fritz@hexdev.de>
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +  compatible:
-> > > > > > +    const: hexdev,lin-serdev
-> > > > >=20
-> > > > > Maybe I've just missed something on earlier versions that I didn't
-> > > > > read, but the name of the device on the website you link is "hexL=
-IN",
-> > > > > so why is "lin-serdev" used here instead?
-> > > >=20
-> > > > The USB one is called hexLIN and has it's own HID driver.
-> > > >=20
-> > > > This serial LIN adapter doesn't really have a product name. Current=
-ly
-> > > > on our website it's generically called 'UART LIN Adapter'.
-> > > >=20
-> > > > This LIN adapter is basically just a LIN transceiver and very gener=
-ic,
-> > > > so that one could solder it to any single-board computer with an ua=
-rt.
-> > > >=20
-> > > > I think 'lin-serdev' for LIN and serial device fits great, also ser=
-dev
-> > > > is the name of the used kernel infrastructure (besides the LIN glue
-> > > > driver).
-> > > >=20
-> > > > If you still don't like it, I'm open to other names. What about
-> > > > "hexlin-uart" or "linser"?
-> > >
-> > > I dunno, I don't really care about it being called "hexlin,lin-serdev=
-",
-> > > all that much, I just found it confusing that the link in the descrip=
-tion
-> > > sent me to the ""Hello World" in LIN" section of your site. If it had
-> > > dropped me off at the "UART LIN adapter" section things woud've been =
-less
-> > > confusing.
->=20
-> Hi Conor and Krzysztof,
->=20
-> I guess this is a chromium oddity, because browsing to
->=20
->  https://hexdev.de/hexlin#hexLINSER
->=20
-> brings the user to another headline ("hexLIN" not "hexLINSER") as long
-> as headline "hexLINSER" can be also displayed.
->=20
-> When using firefox, the top headline is hexLINSER as expected (at least
-> I do).
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
 
-Yeah, I think its actually chrome that I saw it originally, but that's
-probably irrelevant. After your re-org, in Chrome, if the window is small
-enough, I still only see the "3 Open Source Tool: hexLIN" stuff, but
-that's not an issue with the binding itself, so I won't hold things up
-on that basis.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.example.dtb: clock-controller@0: clocks: [[4294967295, 35], [4294967295, 11], [4294967295, 12], [4294967295, 13], [4294967295, 14], [4294967295, 69], [4294967295, 3], [4294967295, 4], [4294967295, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
 
---tlupBOI+4XnNwj6+
-Content-Type: application/pgp-signature; name="signature.asc"
+doc reference errors (make refcheckdocs):
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240508144259.191843-4-jan.dakinevich@salutedevices.com
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjulWQAKCRB4tDGHoIJi
-0tMQAP9fMElMFGNJxdwBsOADn6kLSS6YLWaEOU+ouw82kF76MAEAptNwatRO9P4z
-xo6AX9qqibZldOB8BhC2XkjXXCc6BAo=
-=k3yE
------END PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---tlupBOI+4XnNwj6+--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
