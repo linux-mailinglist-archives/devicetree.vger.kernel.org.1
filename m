@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-65657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE58E8BF70B
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 09:29:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB708BF719
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 09:34:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C3F7B23442
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 07:29:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F35F01F242E2
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 07:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B122837E;
-	Wed,  8 May 2024 07:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E690F2BB0E;
+	Wed,  8 May 2024 07:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFItLBxk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bH0BIpcQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A7F2C856;
-	Wed,  8 May 2024 07:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B67FA22301;
+	Wed,  8 May 2024 07:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715153368; cv=none; b=RYrESMCEuCdlV90J51gnySOCLhshCuuAzJ4Y99Ff4Fjz3fl524jQx5ROWH+rYxJia8pnFGSu0wzBcU+0o4CtJ3hchEWkMZDNwyWax8tFcVNoCwpZgspxNDZRDiXEa7fCSBfahE304nfCh4MUQKxzuWp0nHFGE+VcDXLPpCLwF68=
+	t=1715153685; cv=none; b=F1JOFnA5AXQh1wBG4Tm+uC5GTgc5MdDQZZVocBYz1N1P7ba7Y//uD6/jwvInSDSQSXB/016uOCDD356VBBtVHK/VfRhqcKuAI0HMayGt9rrVABOI8Qx+2uOuQk677VvoK/Myxkl7Yq3wB5mpjSVYlasyuBp1HbhLhPlOB/U2BGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715153368; c=relaxed/simple;
-	bh=32ioLqPM7lnDwXJD99G8P6IhwH1PO1nE9mcgPc5umFs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JUwp5fpsim5gWFgal2g1JTdPrXx/JMyBhdk0+zcZiQrVBqbyV0UHhmxSNEWM3vW5rbD9dnXsNME2R8HMdtxcb2WF1ru50i024/+FD5IZL62i8ED73qOJ/dwOIELN/BPGPzDNk4NsLEadKifWGdn+enXJYogUVmadDB/cTZ4g72c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFItLBxk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D2E2C4AF18;
-	Wed,  8 May 2024 07:29:23 +0000 (UTC)
+	s=arc-20240116; t=1715153685; c=relaxed/simple;
+	bh=lAlbifORId4Iqe5Et4Xx4lAvJBrGMg1upJ1kuvRnFog=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=R4lfFVo6X2nONCPr1pYzmcxIpJYVGcQB0fxFD4WatdgRXa0H90brk1nV2tlQveXu7K0QgX4E20+hhSeXblTnOSDVkjHvdx2rHSKA94cxAWYgprTpINMQ5GYAwOJ0qIOC/We+U5nzX9Oj+LzmW0EjeYR3AZU6QnAmZFqdRlujdZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bH0BIpcQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F19B3C113CC;
+	Wed,  8 May 2024 07:34:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715153368;
-	bh=32ioLqPM7lnDwXJD99G8P6IhwH1PO1nE9mcgPc5umFs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mFItLBxk0t3ORVVyP+Uw3/iq1vLTpubeQsj5frHza1Gp6X646wV1f2WM8uM4wDECP
-	 KOqsWeys1ZdIWR3duGlXMvO9i7AI+WJEwxMQ7h9BrgLAbZ6yIovQBV+saMRU1wXD3G
-	 SKPGKCBTfean3w/gA7MA42YX+8EMfRcZDFyKLJxRAgCcTaOSs0B8xKJiLXqVtFGsry
-	 ijatMDEyG9ws/DfoFHg/CMQOmk5qLq6o5LWZ+d8XIRCQA99O83uC4W7G2Aot4AKOJf
-	 isrCVR/ahVwwIXaOU5twMHdoEYcCk5pgF2QGTQpf5x4b1Irq/TT2k9xPDLwCKJCRx0
-	 R34QBFJ3OXhyQ==
-Message-ID: <a4479812-63aa-4f10-a4a0-0f0a44acb468@kernel.org>
-Date: Wed, 8 May 2024 09:29:20 +0200
+	s=k20201202; t=1715153685;
+	bh=lAlbifORId4Iqe5Et4Xx4lAvJBrGMg1upJ1kuvRnFog=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=bH0BIpcQ1Qx5tXc90kqXcjBLjM3aDHGeOF4O3gcjEXcYyKQH1p9QFHJo2andx6Euj
+	 Suhgrg5xWomacSm2dNFYfCs3i0ZTz4hr4H6A0n/sfJy2XPaGBGkoLky8KwXWPaCUaw
+	 lPXXJ4hhkhWJbGgArkjdyDb7rRuXPYVFd0VDEU2D1N93/D1eG2dRmyjbtefsfDTjTs
+	 ktwE+YYvUxaEMtcpmBgc6sThtiW5zX2FnZITt2whmRSVaTTfYAA7SsrLe74DT3GPSp
+	 69mPVHZoqEK0X27Zoao6u+E3EweIqNULayDUS/2D9pwAVxrQy6WyOddgNmQl9Uyh6N
+	 r2JBAA2LfLzLA==
+Message-ID: <e96bfb0a-fa1d-423e-925d-32f4e1e00421@kernel.org>
+Date: Wed, 8 May 2024 09:34:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] dt-bindings: HID: i2c-hid: elan: add
- 'no-reset-on-power-off' property
-To: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <benjamin.tissoires@redhat.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>, Linus Walleij <linus.walleij@linaro.org>,
- Douglas Anderson <dianders@chromium.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240507144821.12275-1-johan+linaro@kernel.org>
- <20240507144821.12275-4-johan+linaro@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: net: mediatek: remove wrongly added
+ clocks and SerDes
+To: Daniel Golle <daniel@makrotopia.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <1569290b21cc787a424469ed74456a7e976b102d.1715084326.git.daniel@makrotopia.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,30 +109,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240507144821.12275-4-johan+linaro@kernel.org>
+In-Reply-To: <1569290b21cc787a424469ed74456a7e976b102d.1715084326.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/05/2024 16:48, Johan Hovold wrote:
-> When the power supply is shared with other peripherals the reset line
-> can be wired in such a way that it can remain deasserted regardless of
-> whether the supply is on or not.
+On 07/05/2024 14:20, Daniel Golle wrote:
+> Several clocks as well as both sgmiisys phandles were added by mistake
+> to the Ethernet bindings for MT7988. Also, the total number of clocks
+> didn't match with the actual number of items listed.
 > 
-> This is important as it can be used to avoid holding the controller in
-> reset for extended periods of time when it remains powered, something
-> which can lead to increased power consumption. Leaving reset deasserted
-> also avoids leaking current through the reset circuitry pull-up
-> resistors.
+> This happened because the vendor driver which served as a reference uses
+> a high number of syscon phandles to access various parts of the SoC
+> which wasn't acceptable upstream. Hence several parts which have never
+> previously been supported (such SerDes PHY and USXGMII PCS) are going to
+> be implemented by separate drivers. As a result the device tree will
+> look much more sane.
 > 
-> Add a new 'no-reset-on-power-off' devicetree property which can be used
-> by the OS to determine when reset needs to be asserted on power down.
+> Quickly align the bindings with the upcoming reality of the drivers
+> actually adding support for the remaining Ethernet-related features of
+> the MT7988 SoC.
 > 
-> Note that this property can also be used when the supply cannot be
-> turned off by the OS at all.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Fixes: c94a9aabec36 ("dt-bindings: net: mediatek,net: add mt7988-eth binding")
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> v2: don't make changes to the order of clocks
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
