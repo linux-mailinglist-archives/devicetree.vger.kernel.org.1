@@ -1,103 +1,102 @@
-Return-Path: <devicetree+bounces-65737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E4E8BFCE9
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:10:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58F38BFD11
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:22:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23702285086
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:10:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84FA4B24B3E
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 12:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD998839E6;
-	Wed,  8 May 2024 12:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sFRmtvAK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8340B83CDB;
+	Wed,  8 May 2024 12:22:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9662577624;
-	Wed,  8 May 2024 12:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8812A83CCF;
+	Wed,  8 May 2024 12:22:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715170205; cv=none; b=hSN0OhBQ+TU5a5iPo5XEXdYGsn2MVvTYXNkXznK+OhwVQob4z66Y/lSDlMXlnrO7M9xlfL9aJnAHomDsW3LxtbuAs9V9jkJrjENqTIaasObFzOlvuwgm/XiJ1S3kC1cajye8oMdTTlHzeLRewMZyU5MD58Kt8qDNfv4PDeh5csg=
+	t=1715170939; cv=none; b=RGPuImIywIX7o5bdbpUHDbtu3x8YMdW2+B8veJJVTEt47UZTKZdMDH75VS4VkekS8cZbnM7zihaUleYYKMBWXTv6y2Ac29vPswCdPxJ0uQnI2I4U6uC2pl1iC8/NMOSPBrscqc8iKgYkzzERy8dBkzBiUp6oKywxlAc64j9lACQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715170205; c=relaxed/simple;
-	bh=kwnYT2wo58prA+lZzMCkxAtLyxPi8IBUAGWJcnItH1E=;
+	s=arc-20240116; t=1715170939; c=relaxed/simple;
+	bh=X1S1dzhW3wRfqpB++o89A6VLOtGJiekN3EHOLbW+84E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pht266QjXAz9+vayzLBWeuewZKEVRYGUJ6iKgTCzozt56/tHenlUuNQJnSfS4Sipy7IfObKGPG1G2urmhnu2GFuSBueaf8njOl+BEUPKQ3TiBiyQMV2BnJBqAlex5UJJkBeiva7IEfo7vKbDyYSzHYKhrB6WHBET2H7iNZfHWGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sFRmtvAK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 928BBC113CC;
-	Wed,  8 May 2024 12:10:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715170205;
-	bh=kwnYT2wo58prA+lZzMCkxAtLyxPi8IBUAGWJcnItH1E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sFRmtvAKS3X5wKKcVv+p06SnJ4YLBj5LYkRBjqxtlhg5qCI4c5zTIx4yHZa3KwR43
-	 qItiBy7xurUJsLUbWJ/FGiAhl+CAYk4ii/62LKWbxjcBOS6heFlVqqUbChjN5YPzIO
-	 rroOvedostUtAB2KE5VYbiXu3Jo8AK0pabcXURpMx7vid8aoF3Ttrz3oAf68P7+0Zo
-	 gTwAt4sS5+QHJEmQsa69W8mVerVzADysIctXKfI9Rb4M3s/mscwyih95er3J2pkMLk
-	 zSLZVic5BP3RdI59r6wTXoeMfVypsBa/Mg/UVBO41YnfHjNS91ELyB6zzIjciUNmEQ
-	 73GJJjLug9paw==
-Date: Wed, 8 May 2024 21:10:02 +0900
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Neha Malcom Francis <n-francis@ti.com>, conor+dt@kernel.org,
-	krzk+dt@kernel.org, kristo@kernel.org, vigneshr@ti.com, nm@ti.com,
-	lgirdwood@gmail.com, marten.lindahl@axis.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, u-kumar1@ti.com
-Subject: Re: [PATCH 1/5] regulator: dt-bindings: Unify compatible
-Message-ID: <ZjtrmqtB0GuLZRt5@finisterre.sirena.org.uk>
-References: <20240507122158.3739291-1-n-francis@ti.com>
- <20240507122158.3739291-2-n-francis@ti.com>
- <20240507211112.GA1053164-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=K6SikQK/+cjezFBMcYKuZIhf/pSlseV1QnJDGe11a9uCugIbMdwj/GRZvDvilbq//wPbVxThoR06JpjvRj3ljmNkR4H+7mUJoUA6nVLOG3yNasnfXUC1xTTCUmW4zJFmlXeBF5/cc5gQv41srJxXgCGC8/dSi0e3CZoVVkNPBV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 559B91007;
+	Wed,  8 May 2024 05:22:42 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7C7873F587;
+	Wed,  8 May 2024 05:22:14 -0700 (PDT)
+Date: Wed, 8 May 2024 13:22:12 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Aisheng Dong <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v5 0/3] pinctrl: scmi: support i.MX95 OEM extensions
+Message-ID: <ZjtudPS1CUqCJU5v@bogus>
+References: <20240508-pinctrl-scmi-oem-v3-v5-0-6f2b167f71bc@nxp.com>
+ <ZjtCGXgwgtZ4X49v@bogus>
+ <DU0PR04MB94170BB9A2C41DE40C8F575288E52@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="caxhegAuDCKMrwiG"
-Content-Disposition: inline
-In-Reply-To: <20240507211112.GA1053164-robh@kernel.org>
-X-Cookie: Accuracy, n.:
-
-
---caxhegAuDCKMrwiG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <DU0PR04MB94170BB9A2C41DE40C8F575288E52@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-On Tue, May 07, 2024 at 04:11:12PM -0500, Rob Herring wrote:
-> On Tue, May 07, 2024 at 05:51:54PM +0530, Neha Malcom Francis wrote:
-> > TPS62870/1/2/3 devices have different output currents (6A/9A/12A/15A) of
-> > the TPS6287x family. The I2C addresses are the same between them. There
-> > is no need for different compatibles for each for these devices so drop
-> > them and add a unified "ti,tps6287x" compatible.
+On Wed, May 08, 2024 at 09:41:24AM +0000, Peng Fan wrote:
+> Hi Sudeep,
+>
+> > Subject: Re: [PATCH v5 0/3] pinctrl: scmi: support i.MX95 OEM extensions
+> >
+> > On Wed, May 08, 2024 at 11:32:01AM +0800, Peng Fan (OSS) wrote:
+> > > ARM SCMI v3.2 Table 24 Pin Configuration Type and Enumerations:
+> > > '192 -255 OEM specific units'.
+> > >
+> > > i.MX95 System Manager FW supports SCMI PINCTRL protocol, but it has
+> > > zero functions, groups. So pinctrl-scmi.c could not be reused for i.MX95.
+> > > Because nxp,pin-func, nxp,pin-conf properties are rejected by dt
+> > > maintainers, so use generic property 'pinmux' which requires a new
+> > > driver pinctrl-imx-scmi.c
+> > >
+> >
+> > Not a review in particular, but if we decide to merge this deviation, it must be
+> > under the condition that it can be deleted anytime in the future if this
+> > becomes annoyance(like other vendors using this as a way to deviate from
+> > the specification). If we can't agree with that, then we better not merge this
+> > at all.
+>
+> It is ok for me. I agree.
+> But actually this driver still follows Spec by using OEM extensions.
+>
 
-> And s/w will never need to know what the max output current is?
+Agreed, but that's what I call as deviations. When such extensions are
+used as baseline implementation, it becomes deviations.
 
-Yes, this seems destructive of information for no gain - if anything it
-makes things harder to use since you can't just use the part number and
-instead have to know about the wildcard.
-
---caxhegAuDCKMrwiG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmY7a5kACgkQJNaLcl1U
-h9Cz6gf+OZ5o3pv5ICQZyeSnJcTOwr3KdfmWlw/dEuNym7cLbv2G9BUWmV0TmaOG
-BzJL1ke/igCjO+SY/aVQof+t5ACCrCXPwz9OTSzZTZkI4Rgy+l2RUM7vKFTQkOdL
-kmV5ij8UgEjTqSjCRtFTwqZ5piCtdio89hzhTwK3iu/eg3vg6e0CSMgWI2XXntxP
-sx5JddCdUwsoYsjWISeRFEu0jdo6lDU6HrDTgqVsQvDDAmdfmWSUzTHS5lmkaXGA
-RPGzWKeezFvtDieR+Nx5PI6DxqpnJ/eoaxOOlDXAvRPyIDZfQNw9/JQCWWp3en39
-G7o58kCzDspjePtw1zrcqLZw46snuw==
-=6RHm
------END PGP SIGNATURE-----
-
---caxhegAuDCKMrwiG--
+--
+Regards,
+Sudeep
 
