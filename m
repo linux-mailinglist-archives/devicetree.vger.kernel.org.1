@@ -1,120 +1,127 @@
-Return-Path: <devicetree+bounces-65622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B4D58BF347
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 02:09:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E14A28BF3E6
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 03:00:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6277B24796
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 00:09:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C99828556E
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 01:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B2F134404;
-	Tue,  7 May 2024 23:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C5F622;
+	Wed,  8 May 2024 01:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPtnZcDX"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="BFGjaM/D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA987EEE7;
-	Tue,  7 May 2024 23:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E979F399;
+	Wed,  8 May 2024 01:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715126132; cv=none; b=Sid2ipUstujhTdRC2C35Jbi04X6AXG6dYlN18+CEvUrwgiaa7f5aMT2Nc55A+Fu656t0qOvHBzfQueDY98jjKTAZjBLSZ199GCdbEan7vFNXfXlk3aUPhgpLQ+5vMV9tKi5FC/80M7/gG4zM9aa+XR6udjvhKaH6ioY8ozjSgz0=
+	t=1715130043; cv=none; b=oFkHcZqu6LUkPHxoPu2PgoDM7Q2dUNov0+GrHlKB1Zh9N4lAAFdKsJ+HSNgdpFSJY2zzxZ1ymm5oSg/o5Hf218bOz89DTbSgDG3obzuYe0c6G81/BR/5S3Z3C5ILbXZwli5Tn8fddZYvmlvZmAbqlEtOEJt8W2yM12WVs6JFSU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715126132; c=relaxed/simple;
-	bh=/7OZIyJaExPNEEfR8A1MS43PgmAU1yuWmNyB8jGptiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tVhwWSHTpgq4vN+RFGHZP2/zPBXSdEdRE1GG2+iS6vg8upHFYuEWEgVQup8z7dImTYpoxG1Uhq0HZojtlSubcJhKPMp7GliSDu7Xabq58c7rSiSUNdCEhm9Rtkc+m84GBD0NYkdLbTrOcoXYJGVBTEYzPWe5I2gwl6QT7CW4epU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPtnZcDX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A943CC2BBFC;
-	Tue,  7 May 2024 23:55:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715126131;
-	bh=/7OZIyJaExPNEEfR8A1MS43PgmAU1yuWmNyB8jGptiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GPtnZcDXAURyWK0GXZSG46Ok0NRJy8E+/MnuG/PpWMeTNZsTDYORmAlLkgnnFD0Mf
-	 A/hrNWQcq7gDbrb4dehVY15MXfyY/SW8vSul/OJQI/xEgbazDspdoFKDRyE7uWTIar
-	 qmOoDPvP0xgvtD+ObFVgctjZ1QbYhrczXYnwwk4MjiJiXSBZwwfRK0hNKQu2Q1YKqb
-	 0dlVkx1i8NsnlvCg5uOyAYlBFKkyLg4NGRzkPzZFhgcjOnEDJLKYvo6d9Op63k34uK
-	 3Fktw1iizS80J+8ILaGKtcjBuE+VgcJRLVBb85DT1MBmvr4PEqZquIAZ+KeNR/Ry7p
-	 Dm2/tVrRH+RYg==
-Date: Wed, 8 May 2024 01:55:24 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 08/14] PCI: dw-rockchip: Add rockchip_pcie_ltssm()
- helper
-Message-ID: <Zjq_bEoFe-xR_hww@ryzen.lan>
-References: <20240430-rockchip-pcie-ep-v1-v2-0-a0f5ee2a77b6@kernel.org>
- <20240430-rockchip-pcie-ep-v1-v2-8-a0f5ee2a77b6@kernel.org>
- <20240504171346.GE4315@thinkpad>
+	s=arc-20240116; t=1715130043; c=relaxed/simple;
+	bh=/8Bq7FXsUxoAh3ffhhufUURn58m0DQuS71n5CXE7GAU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=duzC6+PxC/TtuRVaPg8p6ebMT2ApaqIaSadn9op8LLdmmRY5CAmxD7XE+GTmYjpZwMKnPLFO2dSibV9ZOZ5DEJlejTIgqO8ZGralAwEgazEaMdEnjETk/hOAg32RiFk/epJ46lCNZZOk3agODNEVtdwfVHGGF67OxBg+gGIDaPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=BFGjaM/D; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp14-2-82-209.adl-apt-pir-bras31.tpg.internode.on.net [14.2.82.209])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CC19A20016;
+	Wed,  8 May 2024 09:00:30 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1715130033;
+	bh=kMjFTG/O0qrpfW1eF1AuxbXY76Q+hOssQVvDEfpATf4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=BFGjaM/DkrZvajCW6PMQ18HRX7vtyY7LVGbeDxBsQQcUCM0C3AtkktGVqvLIwxoLS
+	 cVE0p/hjrNyGMSgR8TThdds+fLF8whBw4153a6VXRLArCIJj5dNAZIeqa1QgYx0s0s
+	 P0su5qGrayeU6BCvf41pGwDnau0r3tl9qO16melnWDK6WjF0LoTs05ib6+pHcDBAHA
+	 J++C3ZfBln93RL/Yp2QAB8w40vMPaeJ80gaKoYPfV/IPX1NTLrgpSd8dLRKl8ArAjr
+	 2vX0QvWNdR9sRl3uS9064m2PEaSTysxSJ8ixQD8npnROaMI/on6jWvJO8MJh1Pd/Cj
+	 Qdio8kWqNb+ag==
+Message-ID: <db966c501288c73ac50a86aa2e5884e6cfc28715.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v8 0/2] Change email sender
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Kelly Hung <KellyHung@asus.com>, robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com
+Date: Wed, 08 May 2024 10:30:28 +0930
+In-Reply-To: <20240507092109.6018-1-KellyHung@asus.com>
+References: <20240507092109.6018-1-KellyHung@asus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240504171346.GE4315@thinkpad>
 
-Hello Mani,
+Hi Kelly,
 
-On Sat, May 04, 2024 at 10:43:46PM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Apr 30, 2024 at 02:01:05PM +0200, Niklas Cassel wrote:
-> > Add a rockchip_pcie_ltssm() helper function that reads the LTSSM status.
-> > This helper will be used in additional places in follow-up patches.
-> > 
-> 
-> Please don't use 'patches' in commit logs. Once the patches get merged, they
-> become commits.
+On Tue, 2024-05-07 at 17:21 +0800, Kelly Hung wrote:
+> Requesting assistance from ASUS IT, I obtained a new smtp account.
+> So send the patch again using new smtp account.
 
-Sure, will fix in V2.
+Ah, thanks, however Joel's already sent a PR to the ARM SoC maintainers
+with your patches. Sorry that we didn't communicate that too well.
+Here's the PR:
 
+https://lore.kernel.org/lkml/CACPK8Xd2Qc9MQUJ-8GuRjmyU50oMHpmmHPHLqAh9W_1Gy=
+qi2ug@mail.gmail.com/
 
-> 
-> > Signed-off-by: Niklas Cassel <cassel@kernel.org>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > index 1993c430b90c..4023fd86176f 100644
-> > --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > @@ -143,6 +143,11 @@ static int rockchip_pcie_init_irq_domain(struct rockchip_pcie *rockchip)
-> >  	return 0;
-> >  }
-> >  
-> > +static inline u32 rockchip_pcie_ltssm(struct rockchip_pcie *rockchip)
-> 
-> rockchip_pcie_get_ltssm()?
+>=20
+> Kelly Hung (2):
+>   dt-bindings: arm: aspeed: add ASUS X4TF board
+>   ARM: dts: aspeed: x4tf: Add dts for asus x4tf project
+>=20
+>  .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts  | 581 ++++++++++++++++++
+>  3 files changed, 583 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
+>=20
+> --
+> 2.25.1
+>=20
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+> This email and any attachments to it contain confidential information and=
+ are intended solely for the use of the individual to whom it is addressed.=
+ If you are not the intended recipient or receive it accidentally, please i=
+mmediately notify the sender by e-mail and delete the message and any attac=
+hments from your computer system, and destroy all hard copies. Please be ad=
+vised that any unauthorized disclosure, copying, distribution or any action=
+ taken or omitted in reliance on this, is illegal and prohibited. Any views=
+ or opinions expressed are solely those of the author and do not represent =
+those of ASUSTeK.
+>=20
+> For pricing information, ASUS is only entitled to set a recommendation re=
+sale price. All customers are free to set their own price as they wish.
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
 
-Sure, will fix in V2.
+Unfortunately these footers aren't helpful. The kernel's mailing list
+etiquette documentation has more info:
 
+https://subspace.kernel.org/etiquette.html#do-not-include-confidentiality-d=
+isclaimers
 
-> 
-> Also, no inline in C files, please. Compiler will inline functions with or
-> without the keyword anyway.
-
-Sure, will fix in V2.
-
-
-Kind regards,
-Niklas
+Andrew
 
