@@ -1,115 +1,96 @@
-Return-Path: <devicetree+bounces-65848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA0D8C03BE
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:51:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8258C03C3
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3E011F21B37
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:51:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE5A21C22747
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4579712A142;
-	Wed,  8 May 2024 17:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8A612B148;
+	Wed,  8 May 2024 17:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OZGi2A4T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApoqKHzX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA728BEE;
-	Wed,  8 May 2024 17:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E088C12A142;
+	Wed,  8 May 2024 17:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715190703; cv=none; b=EHR0HD8isDprBaDsDquqxanj5oGQnVdLgYhdULcF9PrA6k1s44xJ+T51lQFrokngRUa73tLK2ovA6fycpk8nZXIWFRb/Zagtn+I8RuQ0BJkeGBhECINFJKhzILdSNgGR6SnOrwJjsBoqD0ob4Nrgx+QhX67+ueHTSlImKwoMYO8=
+	t=1715190741; cv=none; b=m1d+tFG6xooayRlmC3IudsxcLT6uYhfcI94qotj7Or4zvNv/v5xC8IsJO/nraLu+fBpre0t3sSIWJDdfbx0hktIbFidsNN8Zw+sxdsJUwbpBrMgoIoaVzjYLmJrVsq7xFDZSl+pZEMwHRZXP1ClV4Y6bOCFxSj2lagsPkEN/jU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715190703; c=relaxed/simple;
-	bh=6BoXTjno+NyYSgI8Dc+giUYFLUmA8bHJfXR+Wn6NEzA=;
+	s=arc-20240116; t=1715190741; c=relaxed/simple;
+	bh=V08OoDeE/BUJIoy/ja+w/Rt8MrlxvnCD+7x3hx9Uva0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=szblAnsNAsC/9DPnWSyTMFn9W+8qQGzwq6WRxaBfxgz/yBq3pg7iGD/jyQp6jo7dWFR0YaOK7ywkbdd0u7Wjc8x8Vz1qMvrCYxZkFaqjoX6LxdC9JZK9PI1IgHCzuLlnnxWkH/w3cedFntPEgb0dLIZG4u1tO8LxVAiqgcM7dgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OZGi2A4T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A69EFC113CC;
-	Wed,  8 May 2024 17:51:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gNgM78kqt/WBGUrUbLJNyr0C34hnauJIShECfOVtDuJEaOOzi6+iQXLp/dzTtujbJujYW8B5dW9u3xX4H6zEP6lpsvaUz4IQ9fehS2K9dEQzm7O2f99RkumVtLfHdaUV1HkAuccLhUHQvAdv9XiyOBtuUNm9HuE8iT+UZVDzUYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApoqKHzX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34118C113CC;
+	Wed,  8 May 2024 17:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715190702;
-	bh=6BoXTjno+NyYSgI8Dc+giUYFLUmA8bHJfXR+Wn6NEzA=;
-	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
-	b=OZGi2A4TNpGcY+C687v7tFZX8EX7YlwtJSk47SHRcAamTYNiq/NWWyXieV/jNX/yR
-	 a6KPaTu7Uw6/tPk7e6KdcAVRAooRQeie107vVWvp9eNyktIzqr5HVmYLYkq/52fUJU
-	 0Ce0XXzHrKH62z3H+sWbAAGJd1H9osUP35KWDGu5bRSEhw2BZ5zYaN1swEr39KMIir
-	 lDAVgb7TC1bq8PVov4YOwj7Vn9uodBfR55Sa94Pq2SjoM3LZ5Afs97sBMTZ61n9xGg
-	 dYZKP0aBd229t2pqrWY0ilqmEUwNfViBiCgu9lhtpfyNsuVLg7DLh3kajcZTtYEg7k
-	 Q6j/Oy9rp55Mg==
-Date: Wed, 8 May 2024 19:50:55 +0200
-From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	devicetree@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
+	s=k20201202; t=1715190740;
+	bh=V08OoDeE/BUJIoy/ja+w/Rt8MrlxvnCD+7x3hx9Uva0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ApoqKHzX3z/2AoF31SX/TFqjty+rFAyu6nZmkQicKqhTFFUWZc5SOg/isoInxQnEL
+	 tleEKtY19DWrfGBkUbdSs6Jlx+eim2DBrMwRQz6X/MNH1OT/Iqw0P2StAFeMQMbyHP
+	 woEDpPaiopbpsQCYlzriwsjO6fBlGh7vRFUgbtkzitw9r1W7LIN8qTDQYmbfnc+DqB
+	 LEhJdeaZln0oeeogQulM8UR9vHzch9mKiqulz3qyyvoaT7jMt2yDcv3PZGW/aAQ22w
+	 uPM2Qo94Of5SndAMkD4TUAqIgcc4xSc9koRfQzyrM8jBr2jpBMYZNU3H7GZPm8EXfA
+	 iZSBTutGzIMdw==
+Date: Wed, 8 May 2024 12:52:18 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	Olivia Mackall <olivia@selenic.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-Subject: Re: [PATCH v9 0/9] Turris Omnia MCU driver
-Message-ID: <20240508175055.he4zsuvkj3bojnem@kandell>
-References: <20240508103118.23345-1-kabel@kernel.org>
- <ZjtfRIykefGlqRF9@smile.fi.intel.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, bpf@vger.kernel.org
+Subject: Re: [PATCH v4 10/12] dt-bindings: imx6q-pcie: Add i.MX8Q pcie
+ compatible string
+Message-ID: <171519073564.2270132.12798685611534581552.robh@kernel.org>
+References: <20240507-pci2_upstream-v4-0-e8c80d874057@nxp.com>
+ <20240507-pci2_upstream-v4-10-e8c80d874057@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZjtfRIykefGlqRF9@smile.fi.intel.com>
+In-Reply-To: <20240507-pci2_upstream-v4-10-e8c80d874057@nxp.com>
 
-On Wed, May 08, 2024 at 02:17:24PM +0300, Andy Shevchenko wrote:
-> On Wed, May 08, 2024 at 12:31:09PM +0200, Marek Behún wrote:
-> > Hello Andy, Hans, Ilpo, Arnd, Gregory, and others,
-> > 
-> > this is v9 of the series adding Turris Omnia MCU driver.
-> > 
-> > This series still depends on the immutable branch between LEDs and
-> > locking, introducing devm_mutex_init(), see the PR
-> >   https://lore.kernel.org/linux-leds/20240412084616.GR2399047@google.com/
-> > 
-> > See also cover letters for v1, v2, v3, v4, v5, v6, v7 and v8:
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20230823161012.6986-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20230919103815.16818-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20231023143130.11602-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20231026161803.16750-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20240323164359.21642-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20240418121116.22184-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20240424173809.7214-1-kabel@kernel.org/
-> >   https://patchwork.kernel.org/project/linux-soc/cover/20240430115111.3453-1-kabel@kernel.org/
+
+On Tue, 07 May 2024 14:45:48 -0400, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
 > 
-> From GPIO implementation perspective, it's good enough in my opinion. The rest
-> can be amended later on.
+> Add i.MX8Q PCIe "fsl,imx8q-pcie" compatible strings. clock-names align dwc
+> common naming convension.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml          | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
 
-I will send v10 tomorrow with these issues fixed. We'll see if Arnd will
-be willing to take this for 6.10, and if not, 6.11 will it be.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Marek
 
