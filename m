@@ -1,290 +1,249 @@
-Return-Path: <devicetree+bounces-65816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450808C0231
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:44:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D9E8C023F
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:47:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6857D1C21E17
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:44:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C64401F24557
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2347490;
-	Wed,  8 May 2024 16:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C7F65C;
+	Wed,  8 May 2024 16:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NJQ+Nper"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cehDNeeg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54911652
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 16:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B76563E;
+	Wed,  8 May 2024 16:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715186666; cv=none; b=i3bWAQ7eRy84yetWXA6RLqLCzOAU3fq9qQtBI5utMI6Fj/Q+t04NGap8fVvvYRhM1Fix92sKHOCf/KT9bVmYPT7xMxZpZZn+ybguudo3Lmmwjh846BQcDBjEAJCA7kF5sJmW2+u1+3zTvApHzmUSrvz1tLOI0uswFRyZw6N4IqA=
+	t=1715186862; cv=none; b=BWLpGWtXHcAKJuAc/7Q3uvz6HHcSABDovaIpxPfmpMRDZzwDGV/SHLjfILFPz/1fpNxrkJkBo/+A77NRQcIfGTgJ7gwONb1OM3MoOuDllxv46zbZcqqqbukSAsmcWv7gi9VFJQJ+4p8XpWAXjh6pXmrCC8rIGMdbQml64PvGav8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715186666; c=relaxed/simple;
-	bh=Qw8ASiGBSkqIUY2Tvhuhgcn1qFEJ53iO5A+fWjy6RjM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KMGA2b2VWy5wQE8FCxNatJhTe2VaK41OXPpxoR1qVHlvaTgRN6CbhKSxrIpb/nEgeVfR4jL1VNz1sP7BVwkDhd45bfxdN6fQ7ZMNR6rWGYT1m1Ul2y2y01f4ZXSURBqMhrBek5IGKVJ4kQAyyzgKYEiyMblH/u0+f68VRDUkHC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=NJQ+Nper; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-43d269fa3bbso9375931cf.0
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 09:44:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1715186662; x=1715791462; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9RQn+LQ+Pr1vU6r82WJXNHT+zL5Kd6UOeYPV6VsWGg0=;
-        b=NJQ+NperLjewpLu2BbCrFHuuqNP4a7nblQq4w2GkSHVABhXSgroDLKfRY9G/yMXUf9
-         enoDFAoVQ0DM9MikwAwXlhWlNpni22BesYzj9v40JUBcBgWoi2SOcLQfKfSNwhlD4REW
-         tlIH6h1P96a4AjbPwIkmyYickvJfwFcKnfWp8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715186662; x=1715791462;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9RQn+LQ+Pr1vU6r82WJXNHT+zL5Kd6UOeYPV6VsWGg0=;
-        b=X5NCqzCOfV2IX0/uwz12dKJWeMGX3Vh/5E5H3LgzYo1R9Rsf2wdY3DWQ1XFqzKWqGe
-         iG3ooWHpPFna/l/v/GpOER7D1wiUaCSmAY78CCCjvC7T6nObIme3jiNzx77WF0XfaGLg
-         uNvENNlreGx870szEtjh0TwlKIDdYT5dT5Ambb9Pfc+li/Clc36exUvi/vUMUAc/YQ87
-         6lIqH8St8JRtar+2yvQZZ0PWRPn45tZLrZ2kvNIzk0jB8GBKmWjCLXJXDqRDNjzun3Wt
-         JcLiOqXl9a1GYTNrxa+aRUeDORgVmE65zHEAK8AoAiAORUpJFRo4vDtWXz9tznFm0WG4
-         vp8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUS1spm1tuvOnzZcsqzQZyxfhUO42DWwhEShOo5vl99iLvWgv0aEw/xGOcEwYNGvBwPE9yapy0c5Pbk0/1jLt3JVIAO5NFvIeEQyQ==
-X-Gm-Message-State: AOJu0YyGCaRWD9nEO1HHPzbfDaJzkbMcybBJA4qbc27MkzkmR7GK7HV3
-	LNX1khyUo3BeG90DAPetj0tcDUb7zw3rx5ckogoBgmIsgzm/zIhF+/1sBMhWjg==
-X-Google-Smtp-Source: AGHT+IFZFoNRasNXkJ7SgvkTDbSJp5c9GMg9Q34fg6FccxNhrU7LpBQ34NMaB5CDRA470ncuqT0xEw==
-X-Received: by 2002:a05:622a:1a0d:b0:43c:5d37:5a97 with SMTP id d75a77b69052e-43dbed30d10mr40637981cf.31.1715186662199;
-        Wed, 08 May 2024 09:44:22 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id hx1-20020a05622a668100b004364d940d3dsm7696341qtb.96.2024.05.08.09.44.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 May 2024 09:44:20 -0700 (PDT)
-Message-ID: <9ed8a274-4db7-4ecb-a3db-f33818328a3d@broadcom.com>
-Date: Wed, 8 May 2024 09:44:17 -0700
+	s=arc-20240116; t=1715186862; c=relaxed/simple;
+	bh=G/+RUT2k7UJ/l1fi7XiRqiYTHntagvnq92yu5KTJVrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PicPJ1pqrfU+VoXwFKFuYuXMSDxFhwxcpI1rI/7HMOTrmf4t1f5LbXyyiRO00mmLbbawaTrvOsBXT2J8q1Lzq8u7uyPKFsBG2fwIewpCrbfjLJnBDcTwVEJC40aaHPtybO/qn76s1QEysEHU3lM0LljKdjCVFvf8OP6lgo2+KLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cehDNeeg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DD03C113CC;
+	Wed,  8 May 2024 16:47:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715186860;
+	bh=G/+RUT2k7UJ/l1fi7XiRqiYTHntagvnq92yu5KTJVrY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cehDNeeg9X/ZTdTbSBR2lwvZ51WhdQzmbG5tw2STpkKdvSRc0cJrhgHjXhP6Xu060
+	 /E2t9dKjv2tBkWBjNtDsIUT+WjC7ykSUYl54ZQc3+AGVxBbIl5vzxqv9Dk9Z8Au1DI
+	 oJY6j8P988d0B6O3L2gP12PLJL3CnJchiJAwI/fmNQS31azgiG4duHjizX/UJcB1Hk
+	 w8IKewoDNEzDtJTDrjFekF6Q56SSetQ0MDubEkVXLGg0NugYL0T5b269EzZdWkHcHs
+	 hb0X6bDn+F0SGTPHT2vPn1siHxsKToJruw+/9aX1vUdS2E0J44doEbIvRFUBDr/tKr
+	 6i7UqI8IHNWGg==
+Date: Wed, 8 May 2024 17:47:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Chanh Nguyen <chanh@os.amperecomputing.com>,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Justin Ledford <justinledford@google.com>,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+	Open Source Submission <patches@amperecomputing.com>,
+	Phong Vo <phong@os.amperecomputing.com>,
+	Thang Nguyen <thang@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: max31790: Add
+ maxim,pwmout-pin-as-tach-input property
+Message-ID: <20240508-onward-sedation-621cc48fa83f@spud>
+References: <20240414042246.8681-4-chanh@os.amperecomputing.com>
+ <13b195e6-cbbd-4f74-a6fa-d874cb4aaa45@linaro.org>
+ <065243cc-09cf-4087-8842-bd4394fb324f@amperemail.onmicrosoft.com>
+ <d549cf2b-a7fa-4644-8fcb-3c420503ee01@amperemail.onmicrosoft.com>
+ <20240423-gallantly-slurp-24adbfbd6f09@spud>
+ <ab5cfd8c-0e88-4194-a77e-5ffbb6890319@amperemail.onmicrosoft.com>
+ <396b47f5-9604-44ab-881f-94d0664bcab8@roeck-us.net>
+ <0dcc8788-604a-49c1-8c6b-fdbfa9192039@amperemail.onmicrosoft.com>
+ <da94fde6-3286-44eb-a543-c2ac4d11cd32@roeck-us.net>
+ <8fb38eb3-bb94-49cc-b5bc-80989d7876b9@amperemail.onmicrosoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: mips: brcm: Document
- brcm,bmips-cbr-reg property
-To: Rob Herring <robh@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <zajec5@gmail.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- =?UTF-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
- linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?UTF-8?Q?Daniel_Gonz=C3=A1lez_Cabanelas?=
- <dgcbueu@gmail.com>
-References: <20240503212139.5811-1-ansuelsmth@gmail.com>
- <20240503212139.5811-4-ansuelsmth@gmail.com>
- <20240507130728.GA43076-robh@kernel.org>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240507130728.GA43076-robh@kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000bf11fe0617f403a5"
-
---000000000000bf11fe0617f403a5
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 5/7/24 06:07, Rob Herring wrote:
-> On Fri, May 03, 2024 at 11:20:59PM +0200, Christian Marangi wrote:
->> Document brcm,bmips-cbr-reg and brcm,bmips-broken-cbr-reg property.
->>
->> Some SoC suffer from a BUG where read_c0_brcm_cbr() might return 0
->> if called from TP1. The CBR address is always the same on the SoC
->> hence it can be provided in DT to handle broken case where bootloader
->> doesn't init it or SMP where read_c0_brcm_cbr() returns 0 from TP1.
->>
->> Usage of this property is to give an address also in these broken
->> configuration/bootloader.
->>
->> If the SoC/Bootloader ALWAYS provide a broken CBR address the property
->> "brcm,bmips-broken-cbr-reg" can be used to ignore any value already set
->> in the registers for CBR address.
-> 
-> Why can't these be implied from an SoC specific compatible?
-
-Because some SoCs with the same compatible have it right, and some 
-wrong, courtesy of how the various OEMs implemented it.
-
-> 
-> It's not a great design where you have to update the DT which should be
-> provided from the bootloader in order to work-around bootloader
-> issues...
-
-The bootloader was designed without DT in mind, and while CFE had a 
-callback mechanism to query environment variables and whatnot, those 
-devices were stripped out of it.
-
-> 
->>
->> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->> ---
->>   .../devicetree/bindings/mips/brcm/soc.yaml    | 32 +++++++++++++++++++
->>   1 file changed, 32 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
->> index 975945ca2888..29af8f0db785 100644
->> --- a/Documentation/devicetree/bindings/mips/brcm/soc.yaml
->> +++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
->> @@ -55,6 +55,21 @@ properties:
->>            under the "cpus" node.
->>           $ref: /schemas/types.yaml#/definitions/uint32
->>   
->> +      brcm,bmips-broken-cbr-reg:
->> +        description: Declare that the Bootloader init a broken
->> +          CBR address in the registers and the one provided from
->> +          DT should always be used.
-> 
-> Why wouldn't brcm,bmips-cbr-reg being present indicate to use it?
-> 
->> +        type: boolean
->> +
->> +      brcm,bmips-cbr-reg:
->> +        description: Reference address of the CBR.
->> +          Some SoC suffer from a BUG where read_c0_brcm_cbr() might
->> +          return 0 if called from TP1. The CBR address is always the
->> +          same on the SoC hence it can be provided in DT to handle
->> +          broken case where bootloader doesn't initialise it or SMP
->> +          where read_c0_brcm_cbr() returns 0 from TP1.
->> +        $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> CBR is never defined anywhere in this patch.
-
-The very presence of "brcm,bmips-cbr-reg" property should be enough to 
-indicate to the kernel that it should the value provided, rather than 
-the value returned from read_c0_brcm_cbr(). That is, I don't think there 
-is a need to indicate to the kernel that the CBR value is broken, if you 
-provide a new value that is enough of a clue to tel you that.
--- 
-Florian
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="UUlXLBmKvVSmrjpp"
+Content-Disposition: inline
+In-Reply-To: <8fb38eb3-bb94-49cc-b5bc-80989d7876b9@amperemail.onmicrosoft.com>
 
 
---000000000000bf11fe0617f403a5
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+--UUlXLBmKvVSmrjpp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKxHXQibJJ9zXpp/
-Tbftu/4fNJPO1n7bQuR7qsJckAjgMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDUwODE2NDQyMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQC+KLkMrv+wd7AL7k1b0SP27J/cj5Sl5i/8
-/BNqfVoYL1PP5+eRdEKfTHTeTxs8R7TBh/eIyRgBLW6SBrzRTJKPG7i7TCzb6PQBjZJFGBLpLsox
-+zayVLmLrbDIcj0PNX+iM5Qc/xr7U460YErZKVGkZKRY1H2vN5OG/64+iA97z0HPlg72HhM+PBFV
-jbK1sJcmjKHKb9rxNWpoxWuDNtqv0HHq8he8GcQgNW+3Fd1Z2P3aOmtClqF4TdZZgHlM1pHzcYrg
-CAFjs4qig8nbwFivFPJQ+i8iSd1KJBNI0IsaEOYaLkbPDyBS4d3FGum5uqxKfBVDaPR8qI0HXnP2
-IA5A
---000000000000bf11fe0617f403a5--
+On Wed, May 08, 2024 at 10:44:34AM +0700, Chanh Nguyen wrote:
+> On 05/05/2024 22:40, Guenter Roeck wrote:
+> > On 5/5/24 03:08, Chanh Nguyen wrote:
+> > > On 25/04/2024 21:05, Guenter Roeck wrote:
+> > > > On 4/25/24 03:33, Chanh Nguyen wrote:
+> > > >=20
+> > > > pwm outputs on MAX31790 are always tied to the matching
+> > > > tachometer inputs
+> > > > (pwm1 <--> tach1 etc) and can not be reconfigured, meaning tach-ch =
+for
+> > > > channel X would always be X.
+> > > >=20
+> > > > > I would like to open a discussion about whether we should
+> > > > > use the tach-ch property on the fan-common.yaml
+> > > > >=20
+> > > > > I'm looking forward to hearing comments from everyone. For
+> > > > > me, both tach-ch and vendor property are good.
+> > > > >=20
+> > > >=20
+> > > > I am not even sure how to define tach-ch to mean "use the pwm outpu=
+t pin
+> > > > associated with this tachometer input channel not as pwm output
+> > > > but as tachometer input". That would be a boolean, not a number.
+> > > >=20
+> > >=20
+> > > Thank Guenter,
+> > >=20
+> > > I reviewed again the "tach-ch" property, which is used in the https:/=
+/elixir.bootlin.com/linux/v6.9-rc6/source/Documentation/devicetree/bindings=
+/hwmon/aspeed,g6-pwm-tach.yaml#L68
+> > > and https://elixir.bootlin.com/linux/v6.9-rc6/source/drivers/hwmon/as=
+peed-g6-pwm-tach.c#L434
+> > >=20
+> > > That is something completely different from my purpose.
+> > >=20
+> >=20
+> > Based on its definition, tach-ch is associated with fans, and it looks
+> > like the .yaml file groups multiple sets of fans into a single
+> > fan node.
+> >=20
+> > In the simple case that would be
+> >  =A0=A0=A0=A0tach-ch =3D <1>
+> > ...
+> >  =A0=A0=A0=A0tach-ch =3D <12>
+> >=20
+> > or, if all fans are controlled by a single pwm
+> >  =A0=A0=A0=A0tach-ch =3D <1 2 3 4 5 6 8 9 10 11 12>
+> >=20
+> > The existence of tachometer channel 7..12 implies that pwm channel
+> > (tachometer
+> > channel - 6) is used as tachometer channel. That should be sufficient to
+> > program
+> > the chip for that channel. All you'd have to do is to ensure that pwm
+> > channel
+> > "X" is not listed as tachometer channel "X + 6", and program pwm channel
+> > "X - 6"
+> > for tachometer channels 7..12 as tachometer channels.
+> >=20
+>=20
+> Hi Guenter,
+>=20
+> I applied the patch [2/3] in my patch series (https://lore.kernel.org/lkm=
+l/20240414042246.8681-3-chanh@os.amperecomputing.com/)
+>=20
+> My device tree is configured as below, I would like to configure PWMOUT p=
+ins
+> 5 and 6 to become the tachometer input pins.
+>=20
+>        fan-controller@20 {
+>          compatible =3D "maxim,max31790";
+>          reg =3D <0x20>;
+>          maxim,pwmout-pin-as-tach-input =3D /bits/ 8 <0 0 0 0 1 1>;
+>        };
+
+Why are you still operating off a binding that looks like this? I
+thought that both I and Krzysztof told you to go and take a look at how
+the aspeed,g6-pwm-tach.yaml binding looped and do something similar
+here. You'd end up with something like:
+
+        fan-controller@20 {
+          compatible =3D "maxim,max31790";
+          reg =3D <0x20>;
+
+          fan-0 {
+            pwms =3D <&pwm-provider ...>;
+            tach-ch =3D 6;
+        };
+
+          fan-1 {
+            pwms =3D <&pwm-provider ...>;
+            tach-ch =3D 7;
+        };
+};
+
+You can, as tach-ch or pwms do not need to be unique, set multiple
+channels up as using the same tachs and/or pwms.
+In the case of this particular fan controller, I think that the max31790
+is actually the pwm provider so you'd modify it something like:
+
+        pwm-provider: fan-controller@20 {
+          compatible =3D "maxim,max31790";
+          reg =3D <0x20>;
+	  #pwm-cells =3D <N>;
+
+          fan-0 {
+            pwms =3D <&pwm-provider ...>;
+            tach-ch =3D <6>;
+        };
+
+          fan-1 {
+            pwms =3D <&pwm-provider ...>;
+            tach-ch =3D <7>;
+        };
+};
+
+I just wrote this in my mail client's editor, so it may not be not
+valid, but it is how the fan bindings expect you to represent this kind
+of scenario.
+
+Cheers,
+Conor.
+
+>=20
+> The sysfs is generated by the max31790 driver are shown below. We can see
+> the PWM5 and PWM6 are not visible, and the fan11 and fan12 are visible. A=
+nd
+> all FAN devices are on my system, which worked as expected.
+>=20
+> root@my-platform:/sys/class/hwmon/hwmon14# ls
+> device       fan12_input  fan1_target  fan2_target  fan3_target fan4_targ=
+et
+> fan6_enable  of_node      pwm2         pwm4
+> fan11_fault  fan1_enable  fan2_enable  fan3_enable  fan4_enable fan5_enab=
+le
+> fan6_fault   power        pwm2_enable  pwm4_enable
+> fan11_input  fan1_fault   fan2_fault   fan3_fault   fan4_fault fan5_fault
+> fan6_input   pwm1         pwm3         subsystem
+> fan12_fault  fan1_input   fan2_input   fan3_input   fan4_input fan5_input
+> name         pwm1_enable  pwm3_enable  uevent
+>=20
+> Please share your comments!
+>=20
+> > Hope this helps,
+> > Guenter
+> >=20
+
+--UUlXLBmKvVSmrjpp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjuspwAKCRB4tDGHoIJi
+0tPqAP98wTeQweynaGBZg9YPawUPkDkuuI83sV+oyQj48YYoIwEA5FJvt12KWF00
+iVizwm+RfmufPUV1B5XMz/CFaVou7wU=
+=wzZY
+-----END PGP SIGNATURE-----
+
+--UUlXLBmKvVSmrjpp--
 
